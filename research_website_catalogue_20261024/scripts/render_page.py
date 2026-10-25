@@ -47,10 +47,11 @@ today=date.today().isoformat()
 authors=c.get('authors',[c['author']])
 article={'@type':'ScholarlyArticle','@id':url+'#article','url':url,'name':c['title'],'headline':c['title'],'description':c['description'],'abstract':c['abstract'],'author':[{'@type':'Person','name':a,**({'sameAs':'https://orcid.org/0009-0001-9320-500X'} if a=='Alec Kriebel' else {})} for a in authors],'datePublished':c['publication_date'],'version':c['version'],'creativeWorkStatus':'Unrefereed preprint','inLanguage':'en','isAccessibleForFree':True,'sameAs':doi,'identifier':{'@type':'PropertyValue','propertyID':'DOI','value':c['doi']},'encoding':{'@type':'MediaObject','contentUrl':url+c['pdf_filename'],'encodingFormat':'application/pdf'}}
 if c['version'] is None: article.pop('version')
+if paper.name in ('23444606','23440119','23224103'): article['license']='https://creativecommons.org/licenses/by/4.0/'
 schema={'@context':'https://schema.org','@graph':[{'@type':'WebPage','@id':url+'#page','url':url,'name':c['title'],'dateCreated':today,'dateModified':today,'mainEntity':{'@id':url+'#article'}},article]}
 def section(anchor,title,paragraphs):
     return f'<section id="{anchor}"><h2>{h(title)}</h2>'+''.join(f'<p>{h(p)}</p>' for p in paragraphs)+'</section>'
-abstract_heading=c.get('abstract_heading','Abstract') if paper.name in ('23383961','23430906') else 'Abstract'
+abstract_heading=c.get('abstract_heading','Abstract') if paper.name in ('23383961','23430906','23444606','23440119','23224103') else 'Abstract'
 sections=section('abstract',abstract_heading,c['abstract'].split('\n\n'))+section('plain-language','The idea in plain English',c['plain_language'])+section('result','The precise result',c['result'])
 if c.get('why_it_works'): sections+=section('proof','Why the result holds',c['why_it_works'])
 sections+=section('limits','Scope and limitations',c['limitations'])
@@ -58,11 +59,11 @@ status_paragraphs=[c.get('ai_disclosure', 'This is an unrefereed preprint. AI to
 if c.get('edition_note'): status_paragraphs.append(c['edition_note'])
 sections+=section('status','Status and AI use',status_paragraphs)
 if c.get('follow_up'): sections+=section('further-research','Further research',c['follow_up'])
-pdf_download=f'<a href="{h(c["pdf_filename"])}" download>Download PDF</a> · ' if paper.name in ('23203100','23383961','23430906') else ''
-paper_intro={'23383961':'The full five-page PDF appears in the on-page reader.','23430906':'Read the full seven-page paper in the on-page PDF reader.'}.get(paper.name)
+pdf_download=f'<a href="{h(c["pdf_filename"])}" download>Download PDF</a> · ' if paper.name in ('23203100','23383961','23430906','23444606','23440119','23224103') else ''
+paper_intro={'23383961':'The full five-page PDF appears in the on-page reader.','23430906':'Read the full seven-page paper in the on-page PDF reader.','23444606':'Read the complete seven-page paper in the on-page PDF reader.','23440119':'Read the complete five-page paper in the on-page PDF reader.','23224103':'Read the complete six-page paper in the on-page PDF reader.'}.get(paper.name)
 paper_intro_html=f'<p>{h(paper_intro)}</p>' if paper_intro else ''
 sections+=f'<section id="paper"><h2>Read the paper</h2>{paper_intro_html}<p><a href="{h(c["pdf_filename"])}">Open PDF in a full window</a> · {pdf_download}<a href="https://zenodo.org/records/{record_id}/files/{h(c["pdf_filename"])}">Download the original from Zenodo</a></p><iframe class="paper-pdf" src="{h(c["pdf_filename"])}#view=FitH" title="{h(c["title"])} — full paper PDF" loading="lazy"></iframe></section>'
-if paper.name in ('23383961','23430906'):
+if paper.name in ('23383961','23430906','23444606','23440119','23224103'):
     sections+=f'<section id="materials"><h2>Supporting materials</h2><ul><li><a href="{h(c["supplement_filename"])}" download>{h(c["supplement_label"])}</a> · <a href="https://zenodo.org/records/{record_id}/files/{h(c["supplement_filename"])}">Zenodo original ZIP</a></li></ul></section>'
 elif c.get('related_resources'):
     sections+='<section id="materials"><h2>Supporting materials</h2><ul>'+''.join(f'<li><a href="{h(x["url"])}">{h(x["label"])}</a>'+(' · DOI '+h(x['doi']) if x.get('doi') else '')+'</li>' for x in c['related_resources'])+'</ul></section>'
@@ -73,7 +74,7 @@ sections+='<section id="background"><h2>Background and prior work</h2><ul>'+''.j
 author_meta='\n'.join(f'<meta name="citation_author" content="{h(a)}">' for a in authors)
 pages=len(PdfReader(out/c['pdf_filename']).pages)
 download_links = [f'<a href="{h(c["pdf_filename"])}">Read the paper (PDF, {pages} pages)</a>']
-if paper.name in ('23203100','23383961','23430906'):
+if paper.name in ('23203100','23383961','23430906','23444606','23440119','23224103'):
     download_links.append(f'<a href="{h(c["pdf_filename"])}" download>Download PDF</a>')
 if c.get('supplement_filename'):
     download_links.append(f'<a href="{h(c["supplement_filename"])}" download>{h(c.get("supplement_label", "Source and verification (ZIP)"))}</a>')
@@ -81,6 +82,7 @@ for asset in c.get('additional_assets', []):
     assets.additional_asset_kind(asset)
     download_links.append(f'<a href="{h(asset["filename"])}">{h(asset["label"])}</a>')
 download_links.append(f'<a href="{doi}">Zenodo record</a>')
+if paper.name in ('23444606','23440119','23224103'): download_links.append('<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>')
 document=f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,6 +111,7 @@ document=f'''<!DOCTYPE html>
 (out/'index.html').write_text(document)
 bibtex_note=c['bibtex_note'] if 'bibtex_note' in c else ('Unrefereed preprint, version '+c['version'] if c['version'] is not None else 'Unrefereed preprint; no version number supplied')
 bib=f'@misc{{kriebel{published.year}_{slug.replace("-","_")},\n  author = {{{" and ".join(authors)}}},\n  title = {{{c["title"]}}},\n  year = {{{published.year}}},\n  doi = {{{c["doi"]}}},\n  url = {{{doi}}},\n  note = {{{bibtex_note}}}\n}}\n'
+if paper.name in ('23444606','23440119','23224103'): bib=(paper/'reviews/editorial/citation.bib').read_text()
 (out/'citation.bib').write_text(bib)
 # Extend the existing plain list without changing the user's other site content.
 index=(SITE/'index.html').read_text()

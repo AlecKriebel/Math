@@ -1,0 +1,3793 @@
+=== PDF PAGE 1 ===
+Mathematisches Forschungsinstitut Oberwolfach
+Report No. 53/2009
+DOI: 10.4171/OWR/2009/53
+Convex Geometry and its Applications
+Organised by
+Keith Ball, London
+Martin Henk, Magdeburg
+Monika Ludwig, New York
+November 29th – December 5th, 2009
+Abstract. The geometry of convex domains in Euclidean space plays a cen -
+tral role in several branches of mathematics: functional an d harmonic anal-
+ysis, the theory of PDE, linear programming and, increasing ly, in the study
+of other algorithms in computer science. High-dimensional geometry, both
+the discrete and convex branches of it, has experienced a str iking series of
+developments in the past 10 years. Several examples were pre sented at this
+meeting, for example the work of Rudelson et al. on conjuncti on matrices and
+their relation to conﬁdential data analysis, that of Litvak et al. on remote
+sensing and a series of results by Nazarov and Ryabogin et al. on Mahler’s
+conjecture for the volume product of domains and their polar s.
+Mathematics Subject Classiﬁcation (2000): 52A, 68Q25, 60D05.
+Introduction by the Organisers
+The meeting Convex Geometry and its Applications organised by Keith Ball, Mar-
+tin Henk and Monika Ludwig, was held from November 29 to December 5 , 2009.
+The meeting was attended by some 50 participants working in all area s of high-
+dimensional geometry. The program involved 10 plenary lectures of one hour’s
+duration and about 20 shorter lectures. Some highlights of the pro gram were as
+follows.
+Alexander Barvinok gave an extremely intriguing talk about new appr oximate
+formulae for the volume of (or number of lattice points inside) a body determined
+by linear programming constraints. These formulae are based on a s urprising use
+of the central limit theorem and its reﬁnements, and are accurate under quite weak
+conditions on the constraints. For example, the formulae are corr ect apart from a
+
+=== PDF PAGE 2 ===
+2852 Oberwolfach Report 53/2009
+constant factor for transportation polytopes: an astonishing d egree of accuracy in
+high-dimensional spaces.
+Mark Rudelson gave a very clear talk about the amount of noise that must
+be added to a contingency table of conﬁdential attributes, befor e the release of
+statistics based on the table, in order to ensure the privacy of the individuals rep-
+resented. The problem is to add the minimum amount of noise that will m ake
+reconstruction of the table impossible from the statistics that are made public.
+This minimum amount of noise is determined by the least singular value of the
+conjunction matrix (formed by entry-wise multiplication of the rows of the con-
+tingency matrix). Rudelson and his collaborators were able to employ an array of
+machinery concerning smallest singular values, developed mainly by pa rticipants
+at this meeting (especially Rudelson himself).
+In a related vein, Alexander Litvak spoke about estimates for the la rgest and
+smallest singular values for random matrices with columns that are ind ependent
+but whose entries are not. This considerably weakens the condition s under which
+such estimates have been found and makes it possible to answer com pletely, a
+question of Kannan, Lov´ asz and Simonovits on the empirical sample size needed
+to estimate the covariance matrix of a domain. The results also exte nd the range
+in which the remote sensing method of Candes, Donoho and Tao can b e applied.
+There has been a sudden upsurge in interest in the famous conject ure of Mahler
+that the product of the volumes of a domain and its polar should be min imised
+by the simplex (or the cube/cross-polytope pair in the symmetric ca se). Franck
+Barthe explained the surprisingly delicate proof of his result with Mat thieu Fradelizi:
+that the conjecture holds for domains having many symmetries. Dm itry Ryabogin
+explained his recent joint work showing that the cube is a local minimise r for the
+volume product, among symmetric domains. He also gave an imprompt u evening
+lecture on Nazarov’s complex-analytic proof of the approximate Ma hler conjecture
+proved by Bourgain and Milman.
+Guillaume Aubrun presented his very elegant proof of the recent re sult of Al-
+daz on the unboundedness (as a function of dimension) of the weak 1-1 norm of
+the maximal operator for high-dimensional cubes. Aubrun’s proof uses accurate
+probabilistic tools for counting lattice points in high-dimensional cube s and yields
+a stronger lower bound than the original proof.
+There were several excellent talks by young researchers. Luis Ra demacher pre-
+sented his solution to a problem that had become well-known from the work of
+B´ ar´ any, Vu, Reitzner and others: is it true that if K and L are convex domains
+withK ⊂ L, then a random simplex in K (a simplex with corners chosen indepen-
+dently at random from K) has smaller expected volume than a random simplex in
+L? Bizarrely, the answer is no and this helps to explain the diﬃculty in est imating
+volumes. Eugenia Saor ´ ın presented her joint solution of a problem g oing back to
+Hadwiger on the diﬀerentiability of extensions of the classical querm assintegrals.
+Hadwiger originally asked the question only in dimension 3 but the chara cteri-
+sation given here extends to higher dimensions. David Alonso-Guti´ errez spoke
+about his joint work on the slicing conjecture for domains with few ve rtices giving
+
+=== PDF PAGE 3 ===
+Convex Geometry and its Applications 2853
+a simpliﬁed proof of the result of Junge in this direction and establishin g a bound
+independent of dimension for domains whose number of vertices is pr oportional to
+dimension. Gergely Ambrus discussed the polarisation problem, which arises from
+the study of polynomials on normed spaces, and his remarkable solut ion of the
+2-dimensional case of the strong polarisation problem, using Blaschke products.
+There was widespread view that the (relatively) new arrangements to support
+young visitors to Oberwolfach are paying oﬀ handsomely.
+
+=== PDF PAGE 4 ===
+
+
+=== PDF PAGE 5 ===
+Convex Geometry and its Applications 2855
+W orkshop: Convex Geometry and its Applications
+T able of Contents
+Alexander Barvinok (joint with J.A. Hartigan)
+Gaussian formulas for volumes and the number of integer poin ts in
+polytopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2859
+K´ aroly J. B¨ or¨ oczky
+Stability of some inequalities related to the Pr´ ekopa-Lei ndler inequality . 2862
+Eugenia Saor ´ ın G´ omez (joint with M. A. Hern´ andez Cifre)
+How to make quermassintegrals diﬀerentiable: solving a pro blem by
+Hadwiger . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2865
+Luis Rademacher
+On the monotonicity of the expected volume of a random simple x . . . . . . 2867
+Artem Zvavitch (joint with A. Fish, F. Nazarov, D. Ryabogin)
+Iteration of intersection body operator . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2870
+Vlad Yaskin
+Unique determination of convex polytopes by non-central se ctions . . . . . . 2871
+Andreas Bernig
+First steps in quaternionic integral geometry . . . . . . . . . . . . . . . . . . . . . . . . 2872
+Alexander Koldobsky
+Positive deﬁnite functions and stable random vectors . . . . . . . . . . . . . . . . . 2876
+Mark Rudelson (joint with Shiva Kasiviswanathan, Adam Smith, Jonat han
+Ullman)
+Random conjunction matrices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2878
+Alexander E. Litvak (joint with R. Adamczak, O. Gu´ edon, A. Pajor , N.
+Tomczak-Jaegermann)
+On the behavior of random matrices with independent columns . . . . . . . . 2880
+Alina Stancu
+On aﬃne invariants for smooth convex bodies . . . . . . . . . . . . . . . . . . . . . . . 2881
+Franz E. Schuster
+Minkowski Valuations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2883
+Gabriele Bianchi and Richard J. Gardner (joint with Markus Kiderlen)
+Phase retrieval for characteristic functions of convex bod ies and
+reconstruction from covariograms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2886
+
+=== PDF PAGE 6 ===
+2856 Oberwolfach Report 53/2009
+David Alonso-Guti´ errez (joint with Jes´ us Bastero, Julio Bernu´es, Pawel
+Wolﬀ)
+On the isotropy constant of polytopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2890
+Carsten Sch¨ utt (joint with Mathieu Meyer, Elisabeth Werner)
+A convex body whose centroid and Santal´ o point are far apart . . . . . . . . . 2891
+Peter M. Gruber
+The Method of Voronoi . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2892
+Alain Pajor (joint with R. Adamczak, A. E. Litvak, N. Tomczak-Jaeg ermann)
+Low dimensional geometry of polytopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2894
+Erwin Lutwak (joint with Deane Yang, Gaoyong Zhang)
+Towards an Orlicz Brunn-Minkowski theory: Orlicz projecti on bodies . . . 2895
+Christoph Haberl (joint with Franz E. Schuster, Jie Xiao)
+Aﬃne analytic inequalities . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2896
+Franck Barthe (joint with Matthieu Fradelizi)
+Mahler’s conjecture for convex bodies with many symmetries . . . . . . . . . . 2898
+Nikos Dafnis (joint with A. Giannopoulos, A. Tsolomitis)
+Asymptotic shape of a random polytope in a convex body . . . . . . . . . . . . . 2898
+Elisabeth Werner (joint with Grigoris Paouris)
+Relative entropy of cone measures and Lp centroid bodies . . . . . . . . . . . . . 2901
+Grigoris Paouris (joint with Nikos Dafnis)
+Small ball probability estimates, ψ 2-behavior and the hyperplane
+conjecture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2903
+Gergely Ambrus (joint with Keith Ball)
+Recent Developments on the Polarization Problem . . . . . . . . . . . . . . . . . . . 2906
+Matthieu Fradelizi (joint with Grigoris Paouris, Carsten Sch¨ utt)
+Simplices in the Euclidean ball . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2907
+Guillaume Aubrun
+Maximal function for high-dimensional cubes . . . . . . . . . . . . . . . . . . . . . . . . 2909
+Dmitry Ryabogin (joint with F. Nazarov, F. Petrov, A. Zvavitch)
+A remark on the Mahler conjecture: local minimality of the un it cube . . 2911
+Dmitry Ryabogin
+The Nazarov proof of the Bourgain-Milman theorem . . . . . . . . . . . . . . . . . 2913
+Imre B´ ar´ any (joint with Nathanael Enriquez)
+Jarn´ ık’s convex lattice polygon for non-symmetric norms . . . . . . . . . . . . . 2915
+Gautier Berck (joint with A. Bernig, C. Vernicos)
+Volume entropy of Hilbert geometries . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2917
+Olivier Gu´ edon (joint with Omer Friedland)
+Random embedding from ℓn
+p into ℓN
+1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2918
+
+=== PDF PAGE 7 ===
+Convex Geometry and its Applications 2857
+Rolf Schneider (joint with Vitali Milman)
+A characterization of the mixed volume . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2920
+
+=== PDF PAGE 8 ===
+
+
+=== PDF PAGE 9 ===
+Convex Geometry and its Applications 2859
+Abstracts
+Gaussian formulas for volumes and the number of integer poin ts in
+polytopes
+Alexander Barvinok
+(joint work with J.A. Hartigan)
+Let P ⊂ Rn be a polytope and let Zn ⊂ Rn be the standard integer lattice. We
+are interested in the following two questions:
+How to compute or estimate the volume vol( P ) of P ?
+How to compute or estimate the number |P ∩ Zn| of integer points in P ?
+We assume that the polytope P is deﬁned as the intersection of a d-dimensional
+aﬃne subspace with the non-negative orthant Rn
++. Using coordinates, we deﬁne P
+by a system of linear equations Ax =b and inequalities x ≥ 0. Here A is a d × n
+matrix of rank d, A = (aij), and b is a d-vector.
+0.1. The Gaussian formula for volumes. Let
+f (x) = n +
+n∑
+i=1
+lnξi for x = (ξ1,...,ξ n).
+Then f (x) is a strictly concave function on Rn
++ and hence attains its maximum
+on P at a unique point z = (ζ1,...,ζ n). The maximum point z can be eﬃciently
+computed by interior point methods, see [7].
+Let us compute d × d matrices, C = (cij) and Q = (qij) by
+cij =
+n∑
+k=1
+aikajk and qij =
+n∑
+k=1
+aikajkζ2
+k.
+We approximate the volume of P :
+(1) vol( P ) ≈ ef (z)√
+detC
+(2π )d/ 2√ detQ.
+0.2. The Gaussian formula for the number of integer points. Here we
+assume, additionally, that A is an integer matrix, b is an integer vector and that
+the columns of A generate integer lattice Zd. Let
+g(x) =
+n∑
+i=1
+(ξi + 1) ln (ξi + 1) − ξi lnξi for x = (ξ1,...,ξ n).
+Then g is a strictly concave on Rn
++ and attains its maximum on P at a unique
+point z = (ζ1,...,ζ n), which can be eﬃciently computed. We compute a d × d
+matrix Q = (qij) by
+qij =
+n∑
+k=1
+aikajk
+(
+ζ2
+k +ζk
+)
+
+=== PDF PAGE 10 ===
+2860 Oberwolfach Report 53/2009
+and approximate the number of integer points in P :
+(2) |P ∩ Zn| ≈ eg(z)
+(2π )d/ 2√ detQ.
+0.3. Examples. The following examples were computed by De Loera [6]. Formula
+(2) overestimates the true number of 4 × 4 non-negative integer matrices with the
+row sums 220, 215, 93, and 64 and the column sums 108, 286, 71, an d 127 by about
+6%. In this case, the polytope P is deﬁned in the 16-dimensional space by a system
+of 7 equations (the row and column sums are not independent). If, instead, we
+apply formula (2) to estimate the number of 3 × 3 × 3 non-negative integer arrays
+with the sums [31, 22, 87], [50, 13, 77], [42, 87, 11] along the coordinate hyperplanes,
+the relative error drops to about 0 . 185%. Here the polytope P is deﬁned in the
+27-dimensional space by a system of 7 equations.
+Obviously, there are cases where formula (1) and especially (2) pro duce es-
+timates which are very far from the truth. General theorems sta ting suﬃcient
+conditions for formulas (1) and (2) to hold asymptotically, as well as applications
+to multi-way transportation polytopes (multi-index arrays of non- negative num-
+bers with prescribed sums along coordinate aﬃne hyperplanes) are given in [2].
+Curiously, for ordinary transportation polytopes (polytopes of n on-negative ma-
+trices with prescribed rows and column sums) formulas (1) and (2) h old up to
+a constant correction factor. For example, for the polytope of d oubly stochastic
+matrices the approximation (1) should be multiplied by e1/ 3, as follows from [5].
+Correction factors in formula (2) in the case of all row sums being eq ual and all
+column sums being equal are found from the asymptotic formulas of [4], while in
+the case of general row and column sums the correction factors a re computed in
+[3]. Those correction factors represent, essentially, the Edgeworth correction to the
+Gaussian distribution.
+We present below some intuition behind formulas (1) and (2), which als o ex-
+plains the name “Gaussian”.
+Recall that a random variable is exponential if its density is ae− ax for x ≥ 0,
+where a> 0 is a constant, and 0 for x< 0.
+Theorem 1. Let x1,...,x n be independent exponential random variables such
+that
+Exi =ζi for i = 1,...,n,
+where z = (ζ1,...,ζ n) is the solution of the optimization problem of Section 0.1.
+Then the density of random vector X = (x1,...,x n) is constant on P and equal
+to e− f (z) at every point of P .
+Denoting Y =AX we obtain a d-dimensional random vector such that
+vol(P ) = ef (z)√
+detC · (the density of Y at b).
+We observe that EY =b, that the covariance matrix of Y is matrix Q of Section
+0.1 and that Y is a weighted sum of n independent random d-vectors. We obtain
+
+=== PDF PAGE 11 ===
+Convex Geometry and its Applications 2861
+formula (1) if we assume, in the spirit of a Local Central Limit Theore m, that Y
+is approximately Gaussian.
+Recall that a random variablex is geometric if P (x =k) = pqk fork = 0, 1, 2,...
+and some positive p +q = 1.
+Theorem 2. Letx1,...,x n be independent geometric random variables such that
+Exi =ζi for i = 1,...,n,
+where z = (ζ1,...,ζ n) is the solution of the optimization problem of Section 0.2.
+Then the probability mass function of vector X = (x1,...,x n) is constant on P ∩ Zn
+and equal to e− g(z) at every integer point of P .
+DenotingY =AX we obtain a random d-dimensional random vector such that
+|P ∩ Zn|=eg(z)P (Y =b).
+We observe that EY =b, that the covariance matrix of Y is matrix Q of Section
+0.2 and that Y is a weighted sum of n independent random d-vectors. We obtain
+formula (2) if we assume, in the spirit of a Local Central Limit Theore m, that Y
+is approximately Gaussian.
+We observe that function f (x) of Section 0.1 is the maximum possible entropy
+of a probability distribution on Rn
++ with the expectation x and that the corre-
+sponding maximum entropy distribution is necessarily the product of independent
+exponential distributions of the coordinates of x. Similarly, function g(x) of Sec-
+tion 0.2 is the maximum possible entropy of a probability distribution on Zn
++ with
+the expectation x and the corresponding maximum entropy distribution is nec-
+essarily the product of independent geometric distributions of the coordinates of
+x. In [2] it is shown how to apply the maximum entropy principle to obtain s im-
+ilar Gaussian approximation formulas in related situations, such as to count 0-1
+vectors in a given polytope P .
+Finally, we remark that for a wider class of polytopes one can obtain [1 ] less
+precise large deviation approximation formulas
+ln vol(P ) ≈ f (z) and ln |P ∩ Zn| ≈ g(z).
+References
+[1] A. Barvinok, Asymptotic estimates for the number of contingency tables, integer ﬂows, and
+volumes of transportation polytopes , Int. Math. Res. Notices 2009 (2009), 348 – 385.
+[2] A. Barvinok and J.A. Hartigan, Maximum entropy Gaussian approximation for the number
+of integer points and volumes of polytopes , preprint arXiv 0903.5223 (2009).
+[3] A. Barvinok and J.A. Hartigan, An asymptotic formula for the number of non-negative
+integer matrices with prescribed row and column sums , preprint arXiv:0910.2477 (2009).
+[4] E.R. Canﬁeld and B.D. McKay, Asymptotic enumeration of contingency tables with constan t
+margins, preprint arXiv math.CO/0703600 (2007).
+[5] E.R. Canﬁeld and B.D. McKay, The asymptotic volume of the Birkhoﬀ polytope , preprint
+arXiv:0705.2422 (2007).
+[6] J.A. De Loera, Estimating the number of lattice points in polyhedra throug h convex opti-
+mization, manuscript, 2009.
+
+=== PDF PAGE 12 ===
+2862 Oberwolfach Report 53/2009
+[7] Yu. Nesterov and A. Nemirovskii, Interior-Point Polynomial Algorithms in Convex Pro-
+gramming, SIAM Studies in Applied Mathematics, 13, Society for Industrial and Applied
+Mathematics (SIAM), Philadelphia, PA, 1994.
+Stability of some inequalities related to the Pr´ ekopa-Lei ndler
+inequality
+K´aroly J. B ¨or¨oczky
+1 This is a truncated version of my talk, and discusses stability version s of the
+Brunn-Minkowski, Pr´ ekopa-Leindler and the Blaschke-Santal´ o inequalities. We
+work in Rn. K and M denote convex bodies (compact convex sets with non-
+empty interior), |K| and |M | denote their volumes, and o denotes the origin. Let
+γ always denote a constant depending only on the dimension n.
+The ”mother of all geometric inequalities”, is the Brunn-Minkowski in equality
+from the end of the 19th century (see [8], [16], [21]).
+THEOREM 1 (Brunn-Minkowski). If |K|= |M |= 1 and λ ∈ (0, 1), then
+|λK + (1 − λ)M )| ≥ 1,
+with equality if and only if K and M are translates.
+Already H. Minkowski himself provided some stability version in the plan e. In
+any dimension, the stability version in terms of “homothetic distance ” is known
+(see [15]).
+THEOREM 2 (Diskant). If |K|= |M |= 1 , o is the centroid of K and M , and
+λ ∈ (0, 1
+2 ], then for h = min{lnt : t− 1K ⊂ M ⊂ tK} ≤ n, we have
+|λK + (1 − λ)M )| ≥ 1 +γ ·λ
+n
+2 ·hn.
+Since the Brunn-Minkowski inequality is about volume, it is more natur al to
+have a stability version in terms of volume. The estimate of optimal or der is
+provided in [11] and [12].
+THEOREM 3 (Figalli, Maggi, Pratelli) . If |K|= |M |= 1 , o is the centroid of
+K and M , and λ ∈ (0, 1
+2 ], then
+|λK + (1 − λ)M )| ≥ 1 +γ ·λ · |K∆M |2.
+Now the Brunn-Minkowski inequality is intimately connected to the Pr ´ ekopa-
+Leindler inequality (see [4], [7], [14]).
+THEOREM 4 (Pr´ ekopa-Leindler). If λ ∈ (0, 1), and m,f,g are non-negative
+integrable functions on Rn satisfying m(λx + (1 − λ)y)) ≥ f (x)λg(y)1− λ for x,y ∈
+Rn, and
+∫
+Rnf =
+∫
+Rng = 1, then
+∫
+Rn
+m ≥ 1.
+1Author is supported by OTKA grants 068398 and 75016, and by th e FP7 IEF grant
+GEOSUMSETS.
+
+=== PDF PAGE 13 ===
+Convex Geometry and its Applications 2863
+Equality if and only if f , g and m are translates of the same log-concave function
+up to a set of measure zero.
+For a possible stability version (see Conjecture 1 and Theorem 5), w e ﬁx λ ∈
+(0, 1), and non-negative integrable functions functions f,g,m on Rn such that f,g
+are probability distributions with zero mean, and m(λx+(1−λ)y)) ≥ f (x)λg(y)1− λ
+for x,y ∈ Rn. In other words, we assume ∫
+Rnf = ∫
+Rng = 1 and ∫
+Rnxf (x)dx =∫
+Rnxg(x)dx = 0. A natural notion of distance is the truncated L1-metric
+δ1(f,g ) = min
+{
+1,
+∫
+Rn
+|f − g|
+}
+.
+Conjecture 1.
+∫
+Rn
+m ≥ 1 +γ ·λ ·δ1(f,g )2.
+If n = 1, probably
+∫
+Rm ≥ 1 + γ ·δ1(f,g ). The following partial results are
+proved in [5] and [6].
+THEOREM 5 (Ball, B¨ or¨ oczky). If m is log-concave, then
+∫
+R
+m ≥ 1 +γ ·λ 4 ·δ1(f,g )4 if n = 1,
+∫
+Rn
+m ≥ 1 +γ ·λ 8 ·δ1(f,g )8 if n ≥ 2 and f,g are even.
+As [2] observed, the Pr´ ekopa-Leindler inequality is in turn connect ed to the
+Blaschke-Santal´ o inequality (see [19] and [20] for ”modern treatm ent”, and [18]
+for relations to other geometric inequalities). For this, if o ∈ intK, then the polar
+ofK isKo = {x ∈ Rn : ⟨x,y ⟩ ≤ 1∀y ∈ K}. In addition B2,B∞ , and T denote an
+L2-ball, and L∞ ball, and a simplex, whose centroids are the origin.
+THEOREM 6 (Blaschke-Santal´ o). If o is the centroid of K, then
+|K| · |Ko| ≤ |B2|2,
+with equality if and only if K is an ellipsoid.
+[6] and [9] verify stability versions in terms of the Banach-Mazur dist ance
+δBM(K,M ) = min {lnλ : K −x ⊂ Φ(M −y) ⊂ λ(K −x) for Φ ∈ GL(n),x,y ∈ Rn}.
+THEOREM 7 (B¨ or¨ oczky). |K| · |Ko| ≤ (1 − γ ·δBM(K,Bn)5n) · |Bn|2
+Here the optimal exponent is probably ( n + 1)/ 2 instead of 5n. The subsequent
+papers [3], [1], [13] and [17] proved the following functional form of th e Blaschke-
+Santal´ o inequality.
+THEOREM 8 (Ball, Artstein-Klartag-Milman, Fradelizi-Meyer, Lehec). For any
+measurable f : Rn → R+ with positive integral there exists z ∈ Rn such that if
+measurable̺ : R+ → R+ and g : Rn → R+ with positive integrals satisfy
+f (x)g(y) ≤ ̺(⟨x − z,y − z⟩)2
+
+=== PDF PAGE 14 ===
+2864 Oberwolfach Report 53/2009
+for every x,y ∈ Rn with ⟨x − z,y − z⟩> 0, then
+∫
+Rn
+f (x)dx
+∫
+Rn
+g(x)dx ≤
+(∫
+Rn
+̺(|x|2)dx
+)2
+.
+The equality case is known (see [13] and [17]), and [10] even provides a weak
+stability version for log-concave functions in terms of δ1(f,g ). We note that the
+inequality is partially based on the Pr´ ekopa-Leindler inequality, and the argument
+in [10] uses the known stability version of the one dimensional Pr´ eko pa-Leindler
+inequality.
+References
+[1] S. Artstein, B. Klartag, V.D. Milman: On the Santal´ o poi nt of a function and a functional
+Santal´ o inequality, Mathematika 54 (2004), 33–48.
+[2] K.M. Ball: PhD thesis, University of Cambridge, 1988.
+[3] K.M. Ball: Logarithmically concave functions and secti ons of convex sets in Rn. Studia
+Math., 88 (1988), 69–84.
+[4] K.M. Ball: An elementary introduction to modern convex g eometry. In: Flavors of geometry,
+Cambridge University Press, 1997, 1–58.
+[5] K.M. Ball, K.J. B¨ or¨ oczky: Stability of the Pr´ ekopa-Leindler inequality. submitted.
+[6] K.M. Ball, K.J. B¨ or¨ oczky: Stability of some versions o f the Pr´ ekopa-Leindler inequality.
+submitted.
+[7] F. Barthe: Autour de l’in´ egalit´ e de Brunn-Minkowski. M´ emoire d’Habilitation, 2008.
+[8] T. Bonnesen, W. Fenchel: Theory of convex bodies. BCS Ass ociates, 1987.
+[9] K.J. B¨ or¨ oczky: Stability of the Blaschke-Santal´ o and the aﬃne isoperimetric inequality.
+Adv. Math., accepted.
+[10] K.J. B¨ or¨ oczky, M. Fradelizi: Stability of the functi onal version the Blaschke-Santal´ o in-
+equality. preprint.
+[11] A. Figalli, F. Maggi, A. Pratelli: A reﬁned Brunn-Minko wski inequality for convex sets.
+Annales de IHP, accepted.
+[12] A. Figalli, F. Maggi, A. Pratelli: A mass transportatio n approach to quantitative isoperi-
+metric inequalities. submitted.
+[13] M. Fradelizi, M. Meyer: Some functional forms of Blasch ke-Santal´ o inequality. Math. Z.,
+256 (2007), 379–395.
+[14] R.J. Gardner: The Brunn-Minkowski inequality. Bull. A MS, 29 (2002), 335-405.
+[15] Stability of geometric inequalities. In: Handbook of C onvex Geometry (eds P. M. Gruber &
+J. M. Wills), Vol. A, 125–150, North-Holland, Amsterdam, 19 93.
+[16] P.M. Gruber: Convex and discrete geometry. Springer, B erlin, 2007.
+[17] Joseph Lehec: Geometric and functional inequalities. PhD thesis, 2009.
+[18] E. Lutwak: Selected aﬃne isoperimetric inequalities. In: Handbook of convex geometry,
+North-Holland, Amsterdam, 1993, 151–176.
+[19] M. Meyer, A. Pajor: On the Blaschke-Santal´ o inequalit y. Arch. Math. (Basel) 55 (1990),
+82–93.
+[20] M. Meyer, S. Reisner: Shadow systems and volumes of pola r convex bodies. Mathematika,
+53 (2006), 129–148.
+[21] R. Schneider: Convex Bodies: The Brunn-Minkowski Theo ry. Cambridge University Press,
+1993.
+
+=== PDF PAGE 15 ===
+Convex Geometry and its Applications 2865
+How to make quermassintegrals diﬀerentiable: solving a pro blem by
+Hadwiger
+Eugenia Saor´ın G ´omez
+(joint work with M. A. Hern´ andez Cifre)
+Let Kn be the set of all convex bodies, i.e., compact convex sets in the Euclid ean
+space Rn. The subset of Kn consisting of all convex bodies with non-empty interior
+is denoted by Kn
+0 . Let Bn be the n-dimensional unit ball and Sn− 1 the (n − 1)-
+dimensional unit sphere of Rn. We denote by V( M ) the volume ( n-dimensional
+Lebesgue measure) of a set M ⊂ Rn and by cl M its closure.
+For two convex bodies K ∈ K n and E ∈ K n
+0 and a non-negative real number
+λ, the outer parallel body of K (relative to E) at distance λ is the Minkowski sum
+K +λE . On the other hand, for 0 ≤ λ ≤ r(K;E) the inner parallel body of K
+(relative to E) at distance λ is the set
+K ∼ λE = {x ∈ Rn :λE +x ⊂ K},
+where the relative inradius r(K;E) of K with respect to E is deﬁned by
+r(K;E) = sup {r : ∃x ∈ Rn with x +rE ⊂ K}.
+If E =Bn, r(K;Bn) = r(K) is the classical inradius. Notice that K ∼ r(K;E)E
+is the set of (relative) incenters of K, usually called kernel of K with respect to
+E. The dimension of ker( K;E) is strictly less than n. We will write Kλ to denote
+the (relative) inner/outer parallel bodies of K, i.e.,
+(1) Kλ :=
+{
+K ∼ |λ|E for − r(K;E) ≤ λ ≤ 0,
+K +λE for 0 ≤ λ< ∞ .
+The so called relative Steiner formula states that the volume of the outer parallel
+body K +λE is a polynomial of degree n in λ ≥ 0,
+V(K +λE ) =
+n∑
+i=0
+(n
+i
+)
+Wi(K;E)λi.
+The coeﬃcients W i(K;E) are called relative quermassintegrals of K and, in par-
+ticular, W 0(K;E) = V(K) and W n(K;E) = V(E). In [3] the following deﬁnition
+is introduced.
+Deﬁnition 1. Let E ∈ K n
+0 . A convex body K ∈ K n belongs to the class Rp,
+0 ≤ p ≤ n − 1, if for all 0 ≤ i ≤ p and for − r(K;E) ≤ λ< ∞ it holds
+′Wi(λ) = W ′
+i(λ) = (n − i)Wi+1(λ).
+Here ′Wi and W ′
+i denote, respectively, the left and right derivatives of the func-
+tion Wi(λ) := W i(Kλ ;E). It is a natural deﬁnition, since from the concavity of
+the family (1) and the general Brunn-Minkowski theorem for relat ive quermass-
+integrals (see e.g. [8, p. 339]), we get ′Wi(λ) ≥ W′
+i(λ) ≥ (n − i)Wi+1(λ) for
+i = 0,...,n − 1. Moreover, it holds (see e.g. [1]) that the volume is always diﬀer-
+entiable and V ′(λ) = nW1(λ). Last property implies that R0 = Kn and moreover,
+
+=== PDF PAGE 16 ===
+2866 Oberwolfach Report 53/2009
+Ri+1 ⊂ R i strictly, i = 0,...,n − 2. The problem of determining the convex
+bodies belonging to the class Rp was originally posed by Hadwiger in dimension 3
+and for E =B3 (see [2, §23]). In [3] the general n-dimensional problem is studied;
+in particular, it is shown that the smallest class is given by
+Rn− 1 =
+{
+K =L +λE :L ∈ Kn, dimL ≤ n − 1, λ ≥ 0
+}
+.
+We have determined the convex bodies lying in the class Rn− 2, which solves the
+original Hadwiger problem: to classify the convex bodies in R3 depending on the
+diﬀerentiability of their quermassintegrals.
+In order to state the result we need some further deﬁnitions. As u sual in the
+literature, we write h(K,u ) = sup
+{
+⟨x,u ⟩ :x ∈ K
+}
+, u ∈ Rn, to denote the support
+function ofK ∈ Kn. On the other hand, a vector u ∈ Sn− 1 is an r-extreme normal
+vector ofK, 0 ≤ r ≤ n − 1, if we cannot write u =u1 + · · ·+ur+2, with ui linearly
+independent normal vectors at one and the same boundary point o fK. We denote
+the set of r-extreme normal vectors of K by Ur(K). Then, the (relative) form body
+of a convex body K ∈ Kn
+0 with respect to E ∈ Kn
+0 , denoted by K ∗, is deﬁned as
+K ∗ =
+⋂
+u∈U 0(K)
+{
+x : ⟨x,u ⟩ ≤ h(E,u )
+}
+.
+Finally, a convex body K ∈ K n containing E ∈ K n
+0 is called a p-tangential body
+of E, p ∈ { 0,...,n − 1}, if each ( n − p − 1)-extreme support plane of K supports
+E [8, pp. 75–76]. Here a support plane is said to be p-extreme if its outer normal
+vector is a p-extreme normal vector of K.
+In [5] we prove the announced characterization theorem for the c lass Rn− 2.
+Theorem 1. Let E ∈ K n
+0 be regular and strictly convex. The only sets in Rn− 2
+are 1-tangential bodies of convex bodies lying in Rn− 1 which satisfy
+(2) cl U0(K) = U0(Kλ +K ∗)
+for − r ≤ λ ≤ 0, and their outer parallel bodies.
+In dimension n = 3, with E =B3 and with the original notation by Hadwiger
+for the classes Rp, namely, Rβ = R1 and Rγ = R2, the result is stated as follows.
+Corollary 1. The only sets in Rγ are outer parallel bodies ofk-dimensional convex
+bodies, for 0 ≤ k ≤ 2, i.e., Rγ =
+{
+K =L +λB 3 :L ∈ K 3, dimL ≤ 2, λ ≥ 0
+}
+.
+The only sets in Rβ are 1-tangential bodies of convex bodies lying in Rγ which
+satisfy condition (2) for − r ≤ λ ≤ 0, and their outer parallel bodies.
+In order to prove the characterization of Rn− 2, several lemmas concerning the
+geometry of tangential bodies satisfying condition (2), and in part icular of form
+bodies, are needed. The main steps in the proof consist of showing t hat condition
+(2) is necessary for a convex body lying in the class Rn− 2, and the following
+characterization theorem.
+Theorem 2 ([4]). LetK ∈ K n
+0 . Then K =Kλ + |λ|K ∗ for every − r ≤ λ ≤ 0 if
+and only if K is a tangential body of K− r + rE satisfying (2) for all − r ≤ λ ≤ 0.
+
+=== PDF PAGE 17 ===
+Convex Geometry and its Applications 2867
+Then the ﬁnal crucial steps are to show that every body lying in Rn− 2 can
+be decomposed as K = Kλ + |λ|K ∗, for every − r ≤ λ ≤ 0, and that the only
+tangential bodies lying in Rn− 2 are 1-tangential bodies.
+We can ask if there is some “geometry” behind condition (2), i.e., how d oes a
+convex body K ∈ R n− 2 look like? It is a 1-tangential body of an outer parallel
+body of a (strictly) lower dimensional convex body. But any 1-tang ential body
+is not valid: the additional points which determine the set when const ructing the
+convex hull with K− r + rE cannot lie anywhere. For instance, if dim K− r = 1
+and E =B2, i.e., if K− r + rB2 := S is a sausage, then those points should lie in
+the (inﬁnite) cylinder containing S with 2-dimensional spherical cross section r B2;
+otherwise the kernel K− r would not be a summand of K and, moreover, 1-extreme
+normal vectors would appear when taking K− r + rK ∗, contradicting condition (2).
+References
+[1] G. Bol, Beweis einer Vermutung von H. Minkowski, Abh. Math. Sem. Univ. Hamburg 15
+(1943), 37–56.
+[2] H. Hadwiger, Altes und Neues ¨ uber konvexe K¨ orper. Birkh¨ auser Verlag, Basel und Stuttgart,
+1955.
+[3] M. A. Hern´ andez Cifre, E. Saor ´ ın, On diﬀerentiability of quermassintegrals, to appear in
+Forum Math.
+[4] M. A. Hern´ andez Cifre, E. Saor ´ ın, On inner parallel bodies and quermassintegrals, to appear
+in Israel J. Math.
+[5] M. A. Hern´ andez Cifre, E. Saor ´ ın, How to make quermassintegrals diﬀerentiable: solving a
+problem by Hadwiger, Submitted
+[6] J. R. Sangwine-Yager, Inner Parallel Bodies and Geometric Inequalities . Ph.D. Thesis Dis-
+sertation, University of California Davis, 1978.
+[7] R. Schneider, On the Aleksandrov-Fenchel inequality, I n Discrete Geometry and Convexity
+(eds. J. E. Goodman, E. Lutwak, J. Malkevitch & R. Pollack), Ann. New York Acad. Sci.
+440 (1985), 132–141.
+[8] R. Schneider, Convex Bodies: The Brunn-Minkowski Theory , Cambridge University Press,
+Cambridge, 1993.
+On the monotonicity of the expected volume of a random simple x
+Luis Rademacher
+Let a random simplex in a d-dimensional convex body be the convex hull of d+1
+random points from the body. We study the following question: As a f unction of
+the convex body, is the expected volume of a random simplex monoto ne non-
+decreasing under inclusion? We show that this holds if d is 1 or 2, and does not
+hold if d ≥ 4. We also prove similar results for the second moment of the volume
+of a random simplex and the determinant of the covariance matrix of a convex
+body.
+In [8], Mark Meckes asked whether for any pair of convex bodies K,L ⊆ Rd,
+K ⊆ L implies
+EX0,...,X d∈K vol convX0,...,X d ≤ EX0,...,X d∈L vol convX0,...,X d.
+
+=== PDF PAGE 18 ===
+2868 Oberwolfach Report 53/2009
+His “strong conjecture” claims that this holds. He also stated the f ollowing “weak
+conjecture”: there exists c> 0 such that K ⊆ L implies
+EX0,...,X d∈K vol convX0,...,X d ≤ cd EX0,...,X d∈L vol convX0,...,X d.
+Clearly, the strong conjecture implies the weak conjecture. Also, Matthias Reitzner
+in [11] asked whether K ⊆ L implies
+EX0,...,X n∈K vol convX0,...,X n ≤ EX0,...,X n∈L vol convX0,...,X n
+for arbitrary n.
+While these are natural questions in the understanding of random p olytopes,
+one of their main motivations comes from their connection with the slic ing con-
+jecture (also known as hyperplane conjecture): All d-dimensional convex bodies
+of volume 1 have a hyperplane section of ( d − 1)-dimensional volume at least a
+universal positive constant. Meckes’s weak conjecture is equivale nt to the slicing
+conjecture.
+In this work we show that Meckes’s strong conjecture has a negat ive answer if
+d ≥ 4 and a positive answer if d is 1 or 2. More precisely, we show:
+Theorem 1 (random simplex) . If d is 1 or 2, and K, L are two d-dimensional
+convex bodies, then K ⊆ L implies
+EX0,...,X d∈K vol convX0,...,X d ≤ EX0,...,X d∈L vol convX0,...,X d.
+If d ≥ 4, then there exist two convex bodies K ⊆ L ⊆ Rd such that
+EX0,...,X d∈K vol convX0,...,X d > EX0,...,X d∈L vol convX0,...,X d.
+For the cased = 3, numerical integration suggests that the same counterexamp le
+used for d ≥ 4 works for d = 3. Certain approximations used in those integrals in
+the proof for higher d fail to give a proof for d = 3, while an exact evaluation of
+the integrals looks somewhat involved and is left as an open question.
+From the proof of Theorem 1 one can infer the following counterexa mple: In
+d dimensions, let L be the convex hull of a half-ball (say, the unit ball with the
+constraint x1 ≥ 0) and a point at distance ǫ > 0 from the center of the ball
+(say, the point ( −ǫ,0,..., 0)). That is, L is the union of a half-ball and a cone.
+Let K be L with the tip of the cone truncated at distance δ > 0 (say, K =
+L ∩ {x : x1 ≥ − ǫ +δ}). Then the proof of Theorem 1 shows that the pair K,
+L is a counterexample to the monotonicity for d ≥ 4 and ǫ, δ suﬃciently small.
+Numerical integration suggests the same for d = 3.
+The intuition for our answer to Meckes’s question came from our solu tion to
+another simpler but related question asked by Santosh Vempala: is t he determi-
+nant of the covariance matrix of a convex body monotone under inc lusion? (This
+was also motivated by the slicing conjecture.) Here we show:
+Theorem 2 (determinant of covariance) . If d is 1 or 2 and K,L are two d-
+dimensional convex bodies, then K ⊆ L implies detA(K) ≤ detA(L). If d ≥ 3,
+then there exist two convex bodies K ⊆ L ⊆ Rd such that detA(K)> detA(L).
+
+=== PDF PAGE 19 ===
+Convex Geometry and its Applications 2869
+(A(K) is the covariance matrix of the uniform distribution on K.)
+The high level idea of the proof of Theorem 2 is the following: To under stand the
+monotonicity it is enough to compute and understand the derivative of detA(·) as
+one intersects the convex body with a moving halfspace. We then ﬁn d conditions
+under which this derivative has always the right sign. In the proof of Theorem 2
+it is shown that understanding such a derivative is enough.
+In view of the following formula valid for any d-dimensional convex body K
+with centroid µ(K):
+detA(K) = d! EXi∈K
+(
+(vol convµ(K),X 1,...,X d)2)
+= d!
+d + 1 EXi∈K
+(
+(vol convX0,X 1,...,X d)2)
+,
+one would think that if a pair of convex bodies is a good example that th e mono-
+tonicity of det A(·) does not hold, then it could also be such an example for the
+functional
+K ↦→ EXi∈K
+(
+(vol convµ(K),X 1,...,X d)2)
+or even
+K ↦→ EXi∈K
+(
+(vol convX0,X 1,...,X d)
+)
+.
+Given these similarities, it should be no surprise that techniques and e xamples
+similar to those for det A(·) also work for the expected volume of a random simplex.
+For the proof of Theorem 1 we use a special case of Crofton’s theo rem1 [13,
+Chapter 5], [7, Chapter 2]. Crofton’s theorem has been formalized a t least twice,
+once with diﬀerential geometry [1] and another time with conditional probability
+[4]. It is likely that using either of these two versions one could prove T heorem 1
+in a simpler but less elementary way.
+References
+[1] A. Baddeley. Integrals on a moving manifold and geometri cal probability. Advances in Ap-
+plied Probability, 9(3):588–603, 1977.
+[2] K.-H. Borgwardt. Some distribution-independent resul ts about the asymptotic order of the
+average number of pivot steps of the simplex method. Mathematics of Operations Research ,
+7(3):441–462, 1982.
+[3] H. Busemann. Volume in terms of concurrent cross-sectio ns. Paciﬁc J. Math. , 3:1–12, 1953.
+[4] B. Eisenberg and R. Sullivan. Crofton’s diﬀerential equ ation. The American Mathematical
+Monthly, 107(2):129–139, 2000.
+[5] H. Groemer. On the mean value of the volume of a random poly tope in a convex set. Arch.
+Math. (Basel) , 25:86–90, 1974.
+[6] R. Kannan, L. Lov´ asz, and M. Simonovits. Isoperimetric problems for convex bodies and a
+localization lemma. Discrete Comput. Geom. , 13(3-4):541–559, 1995.
+[7] M. G. Kendall and P. A. P. Moran. Geometrical probability. Griﬃn’s Statistical Monographs
+& Courses, No. 10. Hafner Publishing Co., New York, 1963.
+[8] M. Meckes. Recent trends in convex geometry.
+http://math.gmu.edu/~vsoltan/SanAntonio_06.pdf, January 2006. AMS special session,
+San Antonio, Texas.
+1Sometimes called Crofton’s diﬀerential equation.
+
+=== PDF PAGE 20 ===
+2870 Oberwolfach Report 53/2009
+[9] V. D. Milman and A. Pajor. Isotropic position and inertia ellipsoids and zonoids of the unit
+ball of a normed n-dimensional space. In Geometric aspects of functional analysis (1987–88) ,
+volume 1376 of Lecture Notes in Math. , pages 64–104. Springer, Berlin, 1989.
+[10] R. E. Pﬁefer. The historical development of J. J. Sylves ter’s four point problem. Mathematics
+Magazine, 62(5):309–317, 1989.
+[11] M. Reitzner. Recent results on random polytopes.
+http://www.math.univ-toulouse.fr/Archive-LSP/Etats_Recherche/REITZNERnotes.pdf,
+May 2008. ´Etats de la recherche, G´ eom´ etrie et Probabilit´ es en interaction, Toulouse.
+[12] R. Schneider and W. W eil. Stochastic and integral geometry. Probability and its Applications
+(New York). Springer-Verlag, Berlin, 2008.
+[13] H. Solomon. Geometric probability . Society for Industrial and Applied Mathematics,
+Philadelphia, Pa., 1978. Ten lectures given at the Universi ty of Nevada, Las Vegas, Nev.,
+June 9–13, 1975, Conference Board of the Mathematical Scien ces—Regional Conference
+Series in Applied Mathematics, No. 28.
+[14] G. Sonnevend. Applications of analytic centers for the numerical solution of semiinﬁnite,
+convex programs arising in control theory. DFG report Nr. 170/1989, Univ. W¨ urzburg,
+Inst. f. angew. Mathematik , 1989.
+Iteration of intersection body operator
+Artem Zvavitch
+(joint work with A. Fish, F. Nazarov, D. Ryabogin)
+The notion of an intersection body of a star body was introduced by E. Lutwak:
+K is called the intersection body of L if the radial function of K in every direction
+is equal to the ( d − 1)-dimensional volume of the central hyperplane section of L
+perpendicular to this direction:
+ρK(ξ) = vold− 1(L ∩ ξ⊥ ), ∀ξ ∈ Sd− 1,
+whereρK(ξ) = sup {a :aξ ∈ K} is the radial function of the body K andξ⊥ = {x ∈
+Rd : (x,ξ ) = 0 } is the central hyperplane perpendicular to the vector ξ. Using the
+formula for the volume in polar coordinates in ξ⊥ , we derive the following analytic
+deﬁnition of an intersection body of a star body : K is the intersection body of L if
+ρK(ξ) = 1
+d − 1 Rρd− 1
+L (ξ) := 1
+d − 1
+∫
+Sd− 1∩ξ⊥
+ρd− 1
+L (θ)dθ.
+Here R stands for the spherical Radon transform. The notion of interse ction bodies
+turned to be extremely natural and useful in Convex Geometry an d Geometric
+Tomography.
+Let us denote by IL the intersection body of a body L. Let Sd be the set of
+all star-shaped origin symmetric bodies in Rd endowed with the Banach-Mazur
+distance
+dBM (K,L ) = Inf {b/a : ∃ T ∈ GL(d) such that aK ⊆ TL ⊆ bK}.
+We note that I(TL ) = |detT |(T ∗)− 1(IL), for all T ∈ GL(d), hence the action of
+I on Sd is well deﬁned, and dBM (I(TK ), I(TL )) = dBM (IK, IL).
+The action of I on S2 is quite simple; since IL is just L rotated by π/ 2 and
+stretched 2 times, we have IL =L in S2, so every point of S2 is a ﬁxed point of I.
+
+=== PDF PAGE 21 ===
+Convex Geometry and its Applications 2871
+Let Bd be the unit Euclidean ball. We have
+ρI(Bd)(ξ) = vold− 1(Bd ∩ ξ⊥ ) = vold− 1(Bd− 1).
+Thus,Bd is a ﬁxed point of I in Sd.
+Question: Do there exist any other ﬁxed or periodic points of I in Sd, d ≥ 3?
+In this talk we discussed that there are no such points in a small neigh borhood
+of the ball Bd. This will immediately follow from the following
+Theorem:
+ImL
+Sd
+− → Bd as m → ∞ ,
+for all L suﬃciently close to Bd in Banach-Mazur distance.
+We would like to note that a similar question for projection bodies is muc h
+better understood. It is quite easy to observe that the project ion body of a cube
+is again (a dilation of) a cube. W. Weil described the polytopes that ar e stable
+under the projection body operation. Still the general question o f the description
+of all ﬁxed points remains open.
+Unique determination of convex polytopes by non-central se ctions
+Vlad Yaskin
+A well-known classical result in geometric tomography states that o rigin-symmetric
+convex bodies are uniquely determined by the volumes of their centr al sections.
+That is, if K and L are origin-symmetric convex bodies in Rn such that
+(1) vol n− 1(K ∩ H) = voln− 1(L ∩ H),
+then
+K =L,
+see, for example, [4, Corollary 7.2.7]. Note that this result does not h old without
+the symmetry assumption.
+There are many results in the literature that deal with modiﬁcations of this
+theorem. Of particular interest are questions of unique determina tion of convex
+bodies that are not necessarily symmetric. For example, it is shown in dependently
+by Falconer [2] and Gardner [3] that any convex body is uniquely dete rmined by
+the volumes of hyperplane sections through any two points in the int erior of the
+body. A result of Groemer [5] says that convex bodies are uniquely d etermined by
+half-sections.
+In [1] Barker and Larman ask the following question. Let K and L be convex
+bodies in Rn containing a sphere of radius t in their interiors. Suppose that
+condition (1) holds for every hyperplane H tangent to the sphere. Does this mean
+that K =L?
+The problem is still open. Several partial results are obtained by th e authors
+of this problem in [1]. They show that in R2 the uniqueness holds if one of the
+bodies is a Euclidean disk centered at the origin. In Rn they prove that the answer
+to this conjecture is aﬃrmative if hyperplanes are replaced by plane s of a larger
+
+=== PDF PAGE 22 ===
+2872 Oberwolfach Report 53/2009
+codimension. However, the answer to the original question is still un known, even
+in dimension 2.
+In [7] we aﬃrmatively solve the problem for convex polytopes. Namely , we
+prove the following.
+Theorem 1. LetP andQ be convex polytopes in Rn containing a sphere of radius
+t in their interiors. If
+voln− 1(P ∩ H) = voln− 1(Q ∩ H)
+for every hyperplane H tangent to the sphere, then
+P =Q.
+Note that the case n = 2 of the latter theorem was recently settled by Xiong,
+Ma and Cheung [6].
+References
+[1] J. A. Barker, D. G. Larman, Determination of convex bodies by certain sets of sectional
+volumes, Discrete Mathematics 241 (2001), 79–96.
+[2] K. J. Falconer, X-ray problems for point sources, Proc. London Math. Soc. 46 (1983), 241–
+262.
+[3] R. J. Gardner, Symmetrals and X-rays of planar convex bodies , Arch. Math. 41 (1983),
+183–189.
+[4] R. J. Gardner, Geometric tomography, Cambridge University Press, 1995.
+[5] H. Groemer, On a spherical integral transform and sections of star bodie s,
+Monatsh. Math. 126 (1998), 117–124.
+[6] Ge Xiong, Yan-wei Ma, Wing-Sum Cheung, Determination of convex bodies from Γ-section
+functions, J. Shanghai Univ. 12 (2008), no. 3, 200–203.
+[7] V. Yaskin, Unique determination of convex polytopes by non-central se ctions, preprint.
+First steps in quaternionic integral geometry
+Andreas Bernig
+Consider a Euclidean vector space V . A convex valuation is a map µ on the
+space of convex bodies in V which is ﬁnitely additive in the sense that
+µ(K ∪ L) +µ(K ∩ L) = µ(K) +µ(L)
+wheneverK,L,K ∪ L are convex bodies.
+Let G be a subgroup of SO(V ). The space Val G of translation invariant, G-
+invariant continuous convex valuations on V has ﬁnite dimension if and only if G
+acts transitively on the unit sphere. Groups with this property are classiﬁed:
+SO(n),U (n),SU (n),Sp (n),Sp (n) ·U (1),Sp (n) ·Sp(1),G 2,Spin (7),Spin (9).
+ForG =SO(n), Hadwiger’s theorem describes Val G. The cases G =U (n) and
+G = SU (n) were studied in [1, 2, 6, 5, 4]. For the exceptional groups G2 and
+Spin(7), a Hadwiger-type theorem was shown in [3]. For the quaternionic groups,
+a Hadwiger-type theorem was previously unknown.
+
+=== PDF PAGE 23 ===
+Convex Geometry and its Applications 2873
+Let V = Hn be a quaternionic vector space. Each of the groups
+G =Sp(n), Sp(n) ·U (1), Sp(n) ·Sp(1)
+acts naturally on V , and this action is transitive on the unit sphere. Hence
+dim ValG
+k is ﬁnite, where 0 ≤ k ≤ 4n is the degree of homogeneity (recall that
+µ is k-homogeneous if µ(tK) = tkµ(K) for all t ≥ 0). We can describe these
+dimensions explicitly. It turns out that they behave in a rather irreg ular way. We
+do not know of any geometrically meaningful basis of Val G
+k .
+If we ﬁx the degree and let the dimension n go to inﬁnity (actually n ≥ k is
+enough), then the following formulas are obtained:
+Theorem 1. As formal power series,
+∞∑
+k=0
+dim ValSp(∞ )
+k xk = x4 − 3x3 + 6x2 − 3x + 1
+(1 − x)7(1 +x)3
+∞∑
+k=0
+dim ValSp(∞ )·U(1)
+k xk = x6 − 2x5 + 2x4 + 2x2 − 2x + 1
+(x2 + 1)(x2 +x + 1)(1 +x)2(1 − x)6
+∞∑
+k=0
+dim ValSp(∞ )·Sp(1)
+k xk = x5 + 2x4 +x3 + 1
+(x2 + 1)(x2 +x + 1)(1 +x)2(1 − x)4.
+Here we list the ﬁrst few values of these asymptotic dimensions.
+k dim ValSp(∞ )
+k dim ValSp(∞ )·U(1)
+k dim ValSp(∞ )·Sp(1)
+k
+0 1 1 1
+1 1 1 1
+2 7 3 2
+3 14 6 4
+4 42 14 8
+5 84 24 11
+6 182 44 17
+7 330 72 24
+8 603 117 34
+9 1001 177 44
+10 1645 265 58
+Our second theorem applies to all dimensions, but the resulting form ula is of a
+more combinatorial nature.
+First recall that a Young diagram (λ 1,...,λ j ) is an arrangement of a ﬁnite
+number of boxes into rows with λ 1,...,λ j boxes. Below are the Young diagrams
+(1, 1), (3, 2, 2, 1) and (2, 2, 1):
+
+=== PDF PAGE 24 ===
+2874 Oberwolfach Report 53/2009
+If the number of boxes in each row is even, we call the Young diagram even. The
+number of rows is the depth of λ, the number of boxes is its weight.
+A ﬁlling of a Young diagram by numbers {1, 2,...,m } is given by putting one
+of these numbers in each box such that in each row, the numbers ar e weakly
+increasing, and in each column, the numbers are strictly increasing. Some ﬁllings
+of the above diagrams with m = 4:
+1
+3
+1 1 2
+2 3
+3 4
+4
+1 1
+2 3
+4
+Given a ﬁlling T , we denote by xT the monomial xi1
+1 ...x im
+m , where ik is the
+number of times k appears in the ﬁlling. The Schur polynomial of a Young diagram
+λ is deﬁned as
+sλ (x1,...,x m) =
+∑
+T
+xT
+where T ranges over all ﬁllings.
+As an example, consider
+λ =
+which has weight 3 and depth 2. The possible ﬁllings with entries from {1, 2, 3}
+are given by
+1 1
+2
+1 2
+2
+1 3
+2
+1 1
+3
+1 2
+3
+1 3
+3
+2 2
+3
+2 3
+3 ,
+and hence
+sλ (x1,x 2,x 3) = x2
+1x2 +x1x2
+2 +x1x2x3 +x2
+1x3 +x1x2x3 +x1x2
+3 +x2
+2x3 +x2x2
+3
+=x2
+1x2 +x1x2
+2 +x2
+1x3 +x1x2
+3 +x2
+2x3 +x2x2
+3 + 2x1x2x3
+The Schur polynomials sλ , as λ ranges over all Young diagrams, give a basis
+for the vector space of symmetric functions in the variables x1,...,x m.
+We deﬁne polynomials by
+E(x) =
+∑
+λ
+sλ (x,x ),
+where the sum is over all even Young diagrams λ of depth ≤ 2 with λ 1 ≤ 2n. and
+Fm(x) :=
+∑
+λ
+sλ (x,x, 1, 1)
+where the sum is over all even Young diagrams λ of depth ≤ 4 with λ 1 ≤ 2n − 2
+and |λ|= 2m.
+
+=== PDF PAGE 25 ===
+Convex Geometry and its Applications 2875
+Theorem 2. The dimension of the space ValSp(n)
+k of k-homogeneous, Sp(n)-
+invariant, translation invariant continuous valuations o n Hn satisﬁes
+4n∑
+k=0
+dim ValSp(n)
+k xk =E(x) − F2n(x) − (1 +x)2F2n− 1(x)
++x(1 + 3x +x2)F2n− 2(x).
+Similar formulas exist for the groups Sp(n) ·U (1) and Sp(n) ·Sp(1).
+As an example, for n ≤ 5 we obtain the following dimensions:
+n dim ValSp(n)
+k ,k = 0,..., 4n
+1 1, 1, 6, 1, 1
+2 1, 1, 7, 13, 29, 13, 7, 1, 1
+3 1, 1, 7, 14, 41, 71, 111, 71, 41, 14, 7, 1, 1
+4 1, 1, 7, 14, 42, 83, 169, 259, 344, 259, 169, 83, 42, 14, 7, 1, 1
+5 1, 1, 7, 14, 42, 84, 181, 317, 532, 742, 903, 742, 532, 317, 181, 84, 42, 14, 7, 1, 1
+n dim ValSp(n)U(1)
+k ,k = 0,..., 4n
+1 1, 1, 2, 1, 1
+2 1, 1, 3, 5, 9, 5, 3, 1, 1
+3 1, 1, 3, 6, 13, 19, 25, 19, 13, 6, 3, 1, 1
+4 1, 1, 3, 6, 14, 23, 39, 53, 64, 53, 39, 23, 14, 6, 3, 1, 1
+5 1, 1, 3, 6, 14, 24, 43, 67, 98, 124, 141, 124, 98, 67, 43, 24, 14, 6, 3, 1, 1
+n dim ValSp(n)Sp(1)
+k ,k = 0,..., 4n
+1 1, 1, 1, 1, 1
+2 1, 1, 2, 3, 5, 3, 2, 1, 1
+3 1, 1, 2, 4, 7, 8, 9, 8, 7, 4, 2, 1, 1
+4 1, 1, 2, 4, 8, 10, 14, 16, 18, 16, 14, 10, 8, 4, 2, 1, 1
+5 1, 1, 2, 4, 8, 11, 16, 21, 26, 28, 30, 28, 26, 21, 16, 11, 8, 4, 2, 1, 1
+References
+[1] Alesker, S.: Hard Lefschetz theorem for valuations, com plex integral geometry, and unitarily
+invariant valuations. J. Diﬀerential Geom. 63 (2003), 63–95.
+[2] Alesker, S.: SU (2)-invariant valuations. Milman, V. D. (ed.) et al., Geome tric aspects of
+functional analysis. Papers from the Israel seminar (GAF A) 2002–2003. Berlin: Springer.
+Lecture Notes in Mathematics 1850, 21-29 (2004).
+[3] Bernig, A.: Integral Geometry under G2 and Spin(7). To appear in Israel Journal of Math-
+ematics.
+[4] Bernig, A., Fu, J. H. G.: Hermitian integral geometry. Pr eprint arXiv:0801.0711.
+[5] Bernig, A.: A Hadwiger type theorem for the special unita ry group. Geom. Funct. Anal. 19
+(2009), 356–372.
+[6] Bernig, A.: A product formula for valuations on manifold s with applications to the integral
+geometry of the quaternionic line. Comment. Math. Helv. 84 (2009), 1–19.
+
+=== PDF PAGE 26 ===
+2876 Oberwolfach Report 53/2009
+Positive deﬁnite functions and stable random vectors
+Alexander Koldobsky
+In 1930’s, Levy [Le] proved that, for any subspace ( Rn, ∥ · ∥ ) of Lp with 0 <
+p ≤ 2, the function exp( −∥ · ∥p) is positive deﬁnite on Rn and is the characteristic
+functional of a random vector X = (X1,...,X n) having a remarkable property - all
+linear combinations of the coordinates are identically distributed up t o a constant.
+This result gave a start to the theory of stable processes.
+The search for other examples of random vectors with the same pr operty started
+immediately after Levy’s discovery. In 1938 Schoenberg [S1] posed the problem
+of ﬁnding the exponents 0 <p ≤ 2 for which the function exp( −∥ · ∥ p
+q) is positive
+deﬁnite on Rn, where ∥x∥q = ( |x1|q +... + |xn|q)1/q is the norm of the space ℓn
+q
+with 2 < q≤ ∞ . This problem had been open for more than ﬁfty years and was
+solved for q = ∞ in 1989 by Misiewicz [M2], and for 2 < q <∞ in 1991 in [K1].
+The answers turned out to be the same in both cases: the function exp(−∥ · ∥ p
+q)
+is not positive deﬁnite for any p ∈ (0, 2] if n ≥ 3, and for n = 2 the function is
+positive deﬁnite if and only if 0 <p ≤ 1.
+The general situation was described by Eaton [E]. A random vector X =
+(X1,...,X n) is said to be an n-dimensional version of a random variable Y if
+there exists a function γ : Rn → R, called the standard of X, such that γ(a)> 0
+for every a ∈ Rn, a ̸= 0, and for every a ∈ Rn the random variables
+(1)
+n∑
+i=1
+aiXi and γ(a)Y
+are identically distributed. It is easy to see that γ = ∥ · ∥K is the Minkowski
+functional of some origin symmetric star body K in Rn.
+The main problem that has been studied by many people is to
+Problem 1. Characterize all n-dimensional versions and, in particular, ﬁnd all
+functions γ that can appear as the standard of an n-dimensional version.
+It is easily seen that a random vector is an n-dimensional version with standard
+∥·∥K if and only if the characteristic functional of this vector has the fo rmf (∥·∥K),
+where f is a non-constant continuous function on [0 , ∞ ). Let Φ(K) be the class
+of continuous functions f : [0, ∞ ) → R for which f (∥ · ∥K) is a positive deﬁnite
+function on Rn. In view of Bochner’s theorem, Problem 1 admits an equivalent
+formulation:
+Problem 2. Characterize the classes Φ(K) and, in particular, ﬁnd all star bodies
+K for which the classes Φ(K) are non-trivial, i.e. contain non-constant functions.
+The classes Φ( K) have been studied by a number of authors: Schoenberg
+[S2], Bretagnolle, Dacunha-Castelle and Krivine [BDK], Cambanis, Keen er and
+Simons [CKS], Richards [R], Gneiting [G], Aharoni, Maurey and Mityagin [AMM ].
+Misiewicz [M2] proved that for n ≥ 3 the classes Φ( ℓn
+∞ ) are trivial, and Lisitsky
+[Li1] and Zastavnyi [Z1], [Z2] showed the same for the classes Φ( ℓn
+q ), q >2, n≥ 3.
+
+=== PDF PAGE 27 ===
+Convex Geometry and its Applications 2877
+In all these results the classes Φ(K) appear to be non-trivial only if K is the unit
+ball of a subspace of Lp with 0 <p ≤ 2. An old conjecture, explicitly formulated
+for the ﬁrst time by Misiewicz [M1], is that the class Φ( K) can be non-trivial only
+in this case. A slightly weaker conjecture was formulated by Lisitsky [Li2]: if the
+class Φ(K) is non-trivial, then the space ( Rn, ∥ · ∥K) embeds in L0. The concept
+of embedding in L0 was introduced and studied in [KKYY]: a space ( Rn, ∥ · ∥K)
+embeds in L0 if there exist a ﬁnite Borel measure µ on the sphere Sn− 1 and a
+constantC ∈ R so that, for every x ∈ Rn,
+ln ∥x∥K =
+∫
+Sn− 1
+ln |(x,ξ )|dµ(ξ) +C.
+In this talk we prove the conjecture of Lisitsky (see [K2] for details ):
+Theorem 1. ([K2]) Let K be an origin symmetric star body in Rn, n ≥ 2 and
+suppose that there exists an even non-constant continuous f unctionf : R → R such
+that f (∥ · ∥K) is a positive deﬁnite function on Rn. Then the space (Rn, ∥ · ∥K)
+embeds in L0.
+Equivalently, if a function γ is the standard of an n-dimensional version of a
+random variable, then there exists an origin symmetric star body K in Rn such
+that γ = ∥ · ∥K and the space ( Rn, ∥ · ∥K) embeds in L0.
+Besides being almost optimal as a characterization of the standard s, this result
+also signiﬁcantly generalizes the solution to Schoenberg’s problem, a s there are
+many examples of spaces that do not embed in L0. For example, if a normed space
+contains the q-sum of two normed spaces, with q > 2 and dimension of one of
+the summands greater than 2, then no function of the norm of this space can be
+positive deﬁnite.
+References
+[AMM] I. Aharoni, B. Maurey and B. Mityagin, Uniform embeddi ngs of metric spaces and of
+Banach spaces into Hilbert spaces, Israel J. Math. 52 (1985), 251–265.
+[BDK] J. Bretagnolle, D. Dacunha-Castelle and J. L. Krivine , Lois stables et espaces Lp, Ann.
+Inst. H. Poincar´ e Probab. Statist. 2 (1966), 231–259.
+[CKS] S. Cambanis, R. Keener, and G. Simons, On α -symmetric multivariate distributions, J.
+Multivariate Analysis 13 (1983), 213–233.
+[D] L. Dor, Potentials and isometric embeddings in L1, Israel J. Math. 24 (1976), 260–268.
+[E] M. Eaton, On the projections of isotropic distributions , Ann. Stat. 9 (1981), 391–400.
+[G] T. Gneiting, On α -symmetric multivariate characteristic functions, J. Multivariate Anal.
+64 (1998), 131–147.
+[KKYY] N. J. Kalton, A. Koldobsky, V. Yaskin and M. Yaskina, T he geometry of L0, Canad.
+J. Math. 59 (2007), 1029–1049.
+[K1] A. Koldobsky, The Schoenberg problem on positive-deﬁn ite functions, Algebra i Analiz 3
+(1991), 78–85; translation in St. Petersburg Math. J. 3 (1992), 563–570.
+[K2] A. Koldobsky, Positive deﬁnite functions and multidim ensional versions of random variables,
+preprint, arXiv:0903.1433
+[Le] P. L´ evy,Th´eorie de l’addition de variable al ´eatoires, Gauthier-Villars, Paris, 1937.
+[Li1] A. Lisitsky, One more proof of Schoenberg’s conjectur e, unpublished manuscript , 1991.
+[Li2] A. Lisitsky, The Eaton problem and multiplicative pro perties of multivariate distributions,
+Theor. Probab. Appl. 42 (1997), 618–632.
+
+=== PDF PAGE 28 ===
+2878 Oberwolfach Report 53/2009
+[M1] J. Misiewicz, On norm dependent positive deﬁnite funct ions, Bull. Acad. Sci. Georgian
+SSR 130 (1988), 253–256.
+[M2] J. Misiewicz, Positive deﬁnite functions on ℓ∞, Stat. Probab. Let. 8 (1989), 255–260.
+[R] D. St. P. Richards, Positive deﬁnite symmetric function s on ﬁnite dimensional spaces. 1.Ap-
+plications of the Radon transform, J. Multivariate Analysis 19 (1986), 280–298.
+[S1] I. J. Schoenberg, Metric spaces and positive deﬁnite fu nctions, Trans. Amer. Math. Soc. 44
+(1938), 522–536.
+[S2] I. J. Schoenberg, Metric spaces and completely monoton e functions, Annals of Math. 39
+(1938), 811–841.
+[Z1] V. Zastavnyi, Positive deﬁnite norm dependent functio ns, Dokl. Russian Acad. Nauk. 325
+(1992), 901–903.
+[Z2] V. Zastavnyi, Positive deﬁnite functions depending on the norm, Russian J. Math. Phys. 1
+(1993), 511–522.
+Random conjunction matrices
+Mark Rudelson
+(joint work with Shiva Kasiviswanathan, Adam Smith, Jonathan Ullman )
+The current work is a part of a joint research [2] on minimal distortio n necessary
+for private release of statistical averages of data bases. This pr oblem is reduced to
+ﬁnding the lower bound for the smallest singular value of a random mat rix with
+correlated rows. The least singular value of random matrices with independent
+entries has been extensively studied, and a signiﬁcant progress wa s achieved in
+recent years. Much less is known in the situation, when the entries o f the matrix
+are interdependent. One type of such interdependency is analyze d in a new work
+Adamczak et al. [1]. Another type arises from random conjunction m atrices,
+which originate in privacy analysis. To obtain a lower bound for the last singular
+value of such matrix, the authors develop a new approach relying on geometric
+functional analysis and convex geometry methods.
+The goal of private data analysis is to provide global statistical pro perties of a
+data set of sensitive information, while protecting the privacy of th e individuals,
+whose records the data set contains. There is a vast body of work on this subject
+in statistics and computer science. However, until recently, most schemes proposed
+in literature lacked rigor.
+We consider a problem of releasing a contingency table of a large data base.
+A data base in our setting is a d × n {0, 1} matrix, whose columns represent the
+records of n individuals. Each individual has d binary attributes. For any set
+of k < dattributes we release the percentage of the individuals which have a ll
+k attributes. The list of these percentages forms the marginal, or c ontingency
+table, which is the method of choice for government agencies releas ing statistical
+summaries of categorical data.
+To analyze the contingency table, we generate a new matrix. Namely , let D
+be the original d × n data base. For each subset I = {i1,...,i k} ⊂ { 1,...,d } we
+generate a vector aI ∈ Rn which is the entry-wise product of the rows di1,...,d ik
+of the data base D. These vectors form a new
+(d
+k
+)
+× n matrix A, which is called
+
+=== PDF PAGE 29 ===
+Convex Geometry and its Applications 2879
+the conjunction matrix of D. The name comes from the fact that the rows of A
+can be viewed as conjunctions of the rows of D. The entries of the contingency
+table are percentages of ones in each row of the conjunction matr ix.
+Assume that the data base contains d − 1 publicly available attributes, and
+one private attribute for each individual. The case when the number of private
+attributes is more than one, can be easily reduced to this. If the co ntingency
+table is released precisely, one can form the conjunction matrix, an d after solving
+a linear system, reconstruct the vector of private attributes. T o avoid this breach
+of privacy, the contingency table should be released with some noise . However,
+adding a large amount of noise lowers the value of the the contingenc y tables for
+statistical analysis. Therefore, we are interested in estimating th e minimal amount
+of noise, which is necessary to ensure privacy. It can be shown tha t this amount
+is deﬁned by the least singular value of the conjunction matrix. Since we want to
+construct a bound which is valid for most data bases, we consider a r andom matrix
+D and strive to obtain a bound, which is valid with overwhelming probability .
+For matrices with independent entries such bound in full generality h as been
+recently obtained in [4]. It is shown that the least singular value of a d × n random
+matrix with centered subgaussian entries of variance 1 satisﬁes th e inequality
+sn(A) ≥ c(
+√
+d −
+√
+n − 1)
+with probability at least 1 − e− cn. For d ≫ n this boils down to sn(A) ≥ c
+√
+d.
+The entries of the conjunction matrix are obviously not independen t. Nevertheless,
+numerical experiments show that the least singular value of a rando m conjunction
+matrix behaves like for a matrix with independent entries, as long as t he number
+of rows is signiﬁcantly bigger than the number of columns. Our main th eorem
+provides a rigorous conﬁrmation of the results of these experimen ts.
+Deﬁne the iterated logarithm function by induction. For t ≥ 1 log (1)t := logt.
+If n >1, set log (l)t := max(log (l− 1)t, 1). For simplicity, we formulate the result
+for 2-conjunction matrices.
+Theorem 1. Letd,n and l be natural numbers such that
+d ≤ n ≤ c′d2
+log(l)d.
+and let D be an d × n matrix with independent entries taking values 0 and 1 with
+probability 1/ 2. Let A be the
+(d
+2
+)
+× n matrix whose rows a{i,j } are the entry-wise
+products of the rows di and dj of D. Then there exists a constant c< 1 such that
+P
+(
+sn(A) ≤ cld
+)
+≤ e− cd,
+provided that d is big enough ( d ≥ C(l)).
+The least singular value of the matrix A is the minimum of ∥Ax∥, over x in the
+unit sphere. An important tool in the proof is the small ball probability , which is
+the probability that ∥Ax∥ is small for a ﬁxed vectorx. The small ball probability
+depends on the direction of the vector x. To obtain the uniform estimate of
+∥Ax∥, we decompose the sphere into many pieces, and for each piece con struct
+
+=== PDF PAGE 30 ===
+2880 Oberwolfach Report 53/2009
+an epsilon-net tailored according to the small ball probability. The es timate is
+then extended to the whole unit sphere by approximation. A protot ype of this
+scheme was introduced in [3], and became since then one of major too ls in random
+matrices literature. However, its realization for random conjunct ion matrices is
+more diﬃcult, and requires new tools of probabilistic and geometric na ture. This
+is due to the fact that the rows of such matrix are correlated, whic h makes the
+methods based on independence unavailable.
+References
+[1] R. Adamczak, A. Ltivak, A. Pajor, N. Tomczak-Jaegermann , Quantitative estimates of the
+convergence of the empirical covariance matrix in Log-conc ave Ensembles , preprint.
+[2] S. Kasiwiswanathan, M. Rudelson, A. Smith, J. Ullman, The price of privately releasing
+contingency tables and the spectra of random matrices with c orrelated rows, preprint.
+[3] A. E. Litvak, A. Pajor, M. Rudelson and N. Tomczak-Jaeger mann, Smallest singular value of
+random matrices and geometry of random polytopes , Adv. Math. 195 (2005), no. 2, 491–523.
+[4] M. Rudelson, R. Vershynin, The smallest singular value of a random rectangular matrix , to
+appear in Comm. in Pure and Applied Math.
+On the behavior of random matrices with independent columns
+Alexander E. Litvak
+(joint work with R. Adamczak, O. Gu´ edon, A. Pajor, N. Tomczak- Jaegermann)
+In this talk we discuss behavior of several parameters of a random n × N matrix
+A, whose columns are independent random vectors in Rn satisfying some natural
+conditions. In particular, we obtain bounds for the operator norm ∥A :ℓN
+2 → ℓn
+2 ∥;
+i.e. the for the largest singular value of A; for the smallest singular value; for the
+norm of A on the set of all m-sparse vectors (i.e. vectors having at most m nonzero
+coordinates), which is denoted by Am. Our estimates hold with overwhelming
+probability, that is, with the probability tending to one as the dimensio n grows
+to inﬁnity. In particular, we obtain that for isotropic log-concave i.i.d . random
+vectorsXi’s
+Prob
+(
+∃m ≤ N : Am ≥ C
+(√
+n + √ m log 2N
+m
+))
+≤ exp
+(
+−c√ n
+)
+,
+where c and C are absolute positive constants. Note here that AN = ∥A∥.
+We apply our results to solve several problems. First, we provide as ymptotically
+sharp answer to the question posed by R. Kannan, L. Lov´ asz, M. Simonovits: Let
+K be an isotropic convex body in Rn. Given ε> 0, how many independent points
+Xi uniformly distributed on K are needed for the empirical covariance matrix to
+approximate the identity up to ε with overwhelming probability? Namely, we show
+that it is enough to take N ≈ C(ε)n vectors. Then we turn to applications to
+compressed sensing and convex geometry. We investigate RIP (Re stricted Isometry
+Property) of random matrices with independent columns and show t hat the matrix
+A, considered above, satisﬁes RIP. Thus, as was shown in works of E . Candes and
+T. Tao, and D. L. Donoho, such a matrix can be used to solve exact r econstruction
+
+=== PDF PAGE 31 ===
+Convex Geometry and its Applications 2881
+process of m-sparse vectors via ℓ1 minimization as well as to construct neighborly
+polytopes.
+The results mentioned in the talk are published in papers listed below.
+References
+[1] R. Adamczak, O. Guedon, A. E. Litvak, A. Pajor, N. Tomczak -Jaegermann, Condition
+number of a square matrix with i.i.d. columns drawn from a con vex body, submitted.
+[2] R. Adamczak, A. E. Litvak, A. Pajor, N. Tomczak-Jaegerma nn, Restricted isometry prop-
+erty of matrices with independent columns and neighborly po lytopes by random sampling ,
+submitted; http://arxiv.org/abs/0904.4723
+[3] R. Adamczak, A. E. Litvak, A. Pajor, N. Tomczak-Jaegerma nn, Quantitative estimates
+of the convergence of the empirical covariance matrix in Log -concave Ensembles , Journal
+of AMS, to appear, (posted online http://www.ams.org/jams /0000-000-00/S0894-0347-09-
+00650-X/home.html)
+[4] R. Adamczak, O. Guedon, A. E. Litvak, A. Pajor, N. Tomczak -Jaegermann, Smallest sin-
+gular value of random matrices with independent columns , C. R., Math., Acad. Sci. Paris,
+346 (2008), 853–856.
+On aﬃne invariants for smooth convex bodies
+Alina Stancu
+We construct one-parameter families of smooth convex bodies with everywhere
+positive Gauss curvature and whose interiors contain the origin. Ea ch one of these
+families is in fact a short-time solution to an aﬃne ﬂow on the boundarie s of
+the above convex bodies in the sense that the ﬂow commutes with an y origin-
+preserving aﬃne transformation. Consequently, any derivative o f a global aﬃne
+invariant associated to a smooth convex body with respect to this p arameter will
+result into another aﬃne invariant of the body. Most of these invar iants are new
+and a precise analytic description can be given even if it can be quite co mplex.
+Moreover, we also obtain in this way a geometric interpretation of kn own aﬃne
+invariants like the aﬃne surface area and the p-aﬃne surface areas.
+We will illustrate here some particular directions of interest in the stu dy of
+these invariants. Let K+
+0 be the set of smooth convex bodies in Rn containing the
+origin in their interior and having everywhere positive Gauss curvatu re.
+Let K ∈ K +
+0 deﬁned by the immersion X : Sn− 1 → Rn and impose on it the
+following deformations along its aﬃne normal vector N :
+(1) ∂X (u,t )
+∂t =k
+n(p− 1)
+(n+1)(n+p)
+0 (u,t ) N (u,t ), if p
+n +p > 0
+(p ̸=n) and
+(2) ∂X (u,t )
+∂t = −k
+n(p− 1)
+(n+1)(n+p)
+0 (u,t ) N (u,t ), if p
+n +p < 0,
+
+=== PDF PAGE 32 ===
+2882 Oberwolfach Report 53/2009
+where k0(u,t ) = k(u,t )
+(X(u,t ) ·u)n+1 is the centro-aﬃne curvature, k is the Gauss
+curvature.
+We denote by K(t) the convex body represented by X(u,t ), where t is suﬃ-
+ciently small as to insure the short time existence of solutions. Then
+Theorem 1. For any p ̸= −n,
+∆m
+p (K) :=|
+(dm
+dtmVol (K(t))
+)
+|t=0
+|
+are aﬃne invariants of K having an explicit integral representation over ∂K .
+In particular, one can see quite easily that ∆ 1
+p(K) = Ωp(K), where the p-aﬃne
+surface area is deﬁned as in [2] by
+Ωp(K(t)) :=
+∫
+∂K
+h
+n(1− p)
+n+p k
+p
+n+p dµK.
+A new aﬃne invariant, ∆ 2
+p(K) is then used to derive novel aﬃne inequalities.
+Among them, we present the following.
+Proposition 1. If K ∈ K +
+0 and K⋆ denotes the polar of K with respect to the
+origin, then
+n2Vol (K⋆ )Vol (K) ≤ Ω− 2n(K⋆ )Ω− 2n(K),
+with equality if and only if K is an ellipsoid.
+Other inequalities for the volume product were obtained under the a dditional
+assumption of p-ellipticity also due to Lutwak [2].
+However, we prefer to end with the following result which we can actu ally obtain
+for convex bodies only in C2
++ by considering an extension of the method presented
+here.
+Theorem 2. For any smooth, concave φ : [0, ∞ ) → [0, ∞ ) with limt→ 0φ(t) =
+limt→∞ φ(t)/t = 0 , there exists an aﬃne invariant ﬂow on K+
+0 such that, ∀K ∈
+K+
+0 :
+Φ(K) = lim
+ǫց 0
+|Vol (K(ǫ)) − Vol (K(0))
+ǫ |,
+whereK(0) = K and K(ǫ) is the solution to the ﬂow at time ǫ.
+The motivation of the latest result is based on Ludwig-Reitzner’s com plete
+characterization SL(n)-invariant, upper semicontinuous valuations Φ : Kn
+0 → R
+that vanish on polytopes as
+Φ(K) =
+∫
+∂K
+φ(k0)dµcK, ∀K ∈ Kn
+0,
+where φ : [0, ∞ ) → [0, ∞ ) concave, with lim t→ 0φ(t) = limt→∞ φ(t)/t = 0, [1].
+
+=== PDF PAGE 33 ===
+Convex Geometry and its Applications 2883
+References
+[1] M. Ludwig and M. Reitzner, A classiﬁcation of SL(n) invariant valuations , to appear in
+Annals of Mathematics.
+[2] E. Lutwak, The Brunn-Minkowski-Fiery theory II: Aﬃne and geominimal s urface areas,
+Advances in Mathematics 118 (1996), 244–294.
+Minkowski V aluations
+Franz E. Schuster
+A function φ deﬁned on convex bodies (convex, compact sets) in Rn and taking
+values in an Abelian semigroup is called a valuation if
+φ(K) +φ(L) = φ(K ∪ L) +φ(K ∩ L)
+wheneverK,L andK ∪L are convex. As a generalization of the notion of measure,
+valuations have always played a central role in geometry. A particula rly exciting
+new development in the theory of valuations explores the strong co nnections
+between convex body valued valuations and the theory of geometr ic and analytic
+inequalities (see, e.g., [3, 4, 9, 10, 11]). The following examples should p rovide
+a ﬁrst impression how the theory of valuations can shed new light on c lassical
+geometric inequalities and, at the same time, lead to important gener alizations.
+Let Kn denote the space of convex bodies in Rn, n ≥ 3, endowed with the
+Hausdorﬀ metric. A convex body K ∈ K n is uniquely determined by its support
+function h(K,u ) = max {u ·x :x ∈ K}, for u ∈ Sn− 1. For i ∈ { 1,...,n − 1}, let
+Gri,n be the Grassmannian of i-dimensional subspaces in Rn. The ith projection
+function voli(K| ·) ofK ∈ Kn is the continuous function on Gri,n deﬁned such that
+voli(K|E), for E ∈ Gri,n , is the i-dimensional volume of the orthogonal projection
+of K ontoE.
+Deﬁnition A map Φ : Kn → K n is called a Minkowski valuation if
+ΦK + ΦL = Φ(K ∪ L) + Φ(K ∩ L),
+whenever K ∪ L ∈ Kn and addition on Kn is Minkowski addition.
+Important examples of Minkowski valuations are the projection an d the diﬀer-
+ence operator: The projection body ΠK of K is the convex body deﬁned by
+h(ΠK,u ) = voln− 1(K|u⊥ ), u ∈ Sn− 1.
+The diﬀerence body DK of K is deﬁned by
+h(DK,u ) = vol 1(K|u), u ∈ Sn− 1.
+Through the seminal work of Ludwig [2, 6, 7] classiﬁcations of Minkow ski
+valuations have become the focus of increased attention. For exa mple, Ludwig
+established characterizations of the projection and the diﬀerenc e operator as unique
+Minkowski valuations which are compatible with aﬃne transformation s of Rn.
+The celebrated Blaschke–Santal´ o inequalityis by far the best known aﬃne
+isoperimetric inequality: The product of the volumes of polar recipro cal convex
+
+=== PDF PAGE 34 ===
+2884 Oberwolfach Report 53/2009
+bodies is maximized precisely by ellipsoids. In [11] Lutwak and Zhang obt ained an
+importantLp version of the Blaschke–Santal´ o inequality. Their inequality includes
+as a limiting case the classical inequality for origin-symmetric bodies. F or convex
+bodies which are not origin-symmetric this Lp extension yields a weaker inequality
+than the Blaschke–Santal´ o inequality. In a joint work with C. Haber l the author
+[4] established an Lp analog of the Blaschke–Santal´ o inequality that includes as a
+limiting case the classical inequality for all convex bodies. The discove ry of this
+new Lp Blaschke–Santal´ o inequality was made possible only by an Lp extension
+of Ludwig’s characterization of the projection operator establish ed in [7].
+Although a large part of the theory of convex body valued valuation s deals with
+SL(n) intertwining operators, considerable eﬀort has been invested in r ecent years
+to also classify all continuous rigid motion compatible Minkowski valuat ions. A
+Minkowski valuation Φ : Kn → K n is called O( n) equivariant if Φ(ϑK ) = ϑΦK
+for all K ∈ K n and every ϑ ∈ O(n). We denote by MV althe set of continuous
+translation invariant Minkowski valuations which are O( n) equivariant and we
+write MV al(+)
+i for its subset of all (even) Minkowski valuations of degree i. Here,
+a map Φ from Kn to Kn (or R) is said to have degreei if Φ(λK ) = λiΦK for
+K ∈ Kn and λ ≥ 0 and it is called even if Φ( −K) = ΦK for K ∈ Kn.
+A description of Minkowski valuations in MV al1 was recently obtained by
+Kiderlen [5] (extending previous results by Schneider [12]). The follow ing is a
+special case of [5, Theorem 1.3] for even valuations:
+Theorem ( Kiderlen [5] ). Suppose that Φ ∈ MV al+
+1 is smooth. Then there exists
+a unique smooth O(n − 1) invariant even measure µ on Sn− 1 such that for every
+K ∈ Kn,
+(1) h(ΦK, ·) = vol 1(K| ·) ∗µ.
+The convolution in (1) is induced from O( n) by identifying Sn− 1 and Gri,n with
+the homogeneous spaces O( n)/ O(n − 1) and O( n)/ O(i) × O(n − i), respectively.
+The notion of smooth translation invariant real-valued valuations wa s introduced
+by Alesker in [1]. In [14] this deﬁnition was extended to Minkowski valua tions
+which are translation invariant and intertwine orthogonal transfo rmations.
+In 2001, Alesker [1] has given a complete description of continuous t ranslation
+invariant valuations on convex bodies thereby conﬁrming, in a much s tronger form,
+a conjecture by McMullen. The proof of Alesker’s landmark result, k nown as
+the Irreducibility Theorem, draws on new methods from represent ation theory
+and diﬀerential geometry. From applications of this deep result and the new
+techniques introduced by Alesker to the theory of valuations, the author [14],
+was able to establish a description of smooth Minkowski valuations in MV al+
+i ,
+i ∈ { 1,...,n − 1}. This result provides a signiﬁcant extension of the earlier work
+by Schneider [12], Kiderlen [5], and the author [13].
+
+=== PDF PAGE 35 ===
+Convex Geometry and its Applications 2885
+Theorem 1 ( [14]). Suppose that Φ ∈ MV al+
+i is smooth. Then there exists a
+unique O(i) × O(n − i) invariant measure µ on Sn− 1 such that for every K ∈ Kn,
+h(ΦiK, ·) = voli(K| ·) ∗µ.
+Moreover, the author reduced in [14] the problem of describing all c ontinuous
+translation invariant and O( n) equivariant even Minkowski valuations to the
+description of smooth ones (which is provided by Theorem 1).
+Let ΠiK denote the projection body of order i deﬁned by
+h(ΠiK,u ) = Vi(K|u⊥ ), u ∈ Sn− 1.
+In [8] Lutwak obtained an array of geometric inequalities for intrinsic volumes of
+projection bodies. A special case of [8, Theorem 6.2] is the following: IfK,L ∈ Kn
+have non-empty interior and i ∈ { 2,...,n − 1}, then
+(2) Vi+1(Πi(K +L))1/i (i+1) ≥ Vi+1(ΠiK)1/i (i+1) +Vi+1(ΠiL)1/i (i+1),
+with equality if and only if K and L are homothetic.
+The classical Brunn–Minkowski inequalities for intrinsic volumes are a t the
+heart of the Brunn–Minkowski theory. As an application of Theore m 1 the author
+[14] obtained generalizations of both Lutwak’s inequality (2) and the classical
+Brunn–Minkowski inequalities for the intrinsic volumes:
+Theorem 2 ( [14]). Let Φi ∈ MV al+
+i , where i ∈ { 2,...,n − 1}. If K,L ∈ K n
+have non-empty interior, then
+Vi+1(Φi(K +L))1/i (i+1) ≥ Vi+1(ΦiK)1/i (i+1) +Vi+1(ΦiL)1/i (i+1).
+If Φi maps convex bodies with non-empty interiors to bodies with n on-empty
+interiors, then equality holds if and only if K and L are homothetic.
+References
+[1] S. Alesker, Description of translation invariant valuations on convex sets with solution of
+P. McMullen ’s conjecture, Geom. Funct. Anal. 11 (2001), 244–272.
+[2] C. Haberl and M. Ludwig, A characterization of Lp intersection bodies , Int. Math. Res.
+Not. (2006), Article ID 10548, 29 pages.
+[3] C. Haberl and F.E. Schuster, Asymmetric aﬃne Lp Sobolev inequalities , J. Funct. Anal.
+257 (2009), 641–658.
+[4] C. Haberl and F.E. Schuster, General Lp aﬃne isoperimetric inequalities , J. Diﬀerential
+Geom., in press.
+[5] M. Kiderlen, Blaschke- and Minkowski-Endomorphisms of convex bodies , Trans. Amer.
+Math. Soc. 358 (2006), 5539–5564.
+[6] M. Ludwig, Projection bodies and valuations , Adv. Math. 172 (2002), 158-168.
+[7] M. Ludwig, Minkowski valuations , Trans. Amer. Math. Soc. 357 (2005), 4191–4213.
+[8] E. Lutwak, Inequalities for mixed projection bodies , Trans. Amer. Math. Soc. 339 (1993),
+no. 2, 901-916.
+[9] E. Lutwak, D. Yang, and G. Zhang, Lp aﬃne isoperimetric inequalities , J. Diﬀerential
+Geom. 56 (2000), 111–132.
+[10] E. Lutwak, D. Yang, and G. Zhang, Sharp aﬃne Lp Sobolev inequalities , J. Diﬀerential
+Geom. 62 (2002), 17–38.
+
+=== PDF PAGE 36 ===
+2886 Oberwolfach Report 53/2009
+[11] E. Lutwak and G. Zhang, Blaschke–Santal´ o inequalities, J. Diﬀerential Geom. 47 (1997),
+1–16.
+[12] R. Schneider, Equivariant endomorphisms of the space of convex bodies , Trans. Amer. Math.
+Soc. 194 (1974), 53-78.
+[13] F.E. Schuster, Convolutions and multiplier transformations , Trans. Amer. Math. Soc. 359
+(2007), 5567–5591.
+[14] F.E. Schuster, Crofton measures and Minkowski valuations , Duke Math. J., in press.
+Phase retrieval for characteristic functions of convex bod ies and
+reconstruction from covariograms
+Gabriele Bianchi and Richard J. Gardner ∗
+(joint work with Markus Kiderlen)
+∗ Joint extended abstract for two talks arising from the same paper . Gabriele
+Bianchi spoke on “Phase retrieval for characteristic functions o f convex bodies”
+and Richard J. Gardner spoke on “Reconstruction from covariogr ams.”
+The Phase Retrieval Problem of Fourier analysis involves determining a function
+f on Rn from the modulus |ˆf | of its Fourier transform ˆf . This problem arises
+naturally and frequently in various areas of science, such as X-ray crystallogra-
+phy, electron microscopy, optics, astronomy, and remote sensin g, in which only
+the magnitude of the Fourier transform can be measured and the p hase is lost.
+(Sometimes, as when reconstructing an object from its far-ﬁeld d iﬀraction pat-
+tern, it is the squared modulus |ˆf |2 that is directly measured.) Indeed, as Rosen-
+blatt [6] remarks, the Phase Retrieval Problem “arises in all experim ental uses of
+diﬀracted electromagnetic radiation for determining the intrinsic de tailed struc-
+ture of a diﬀracting object.” It is no surprise, therefore, that th e literature is vast;
+see, for example, [3] and [4], and the references given there.
+Phase retrieval is fundamentally under-determined without additio nal constraints,
+which usually take the form of an a priori assumption that f has a particular
+support or distribution of values. An important example is when f = 1K, the
+characteristic function of a convex body K in Rn. In this setting, phase retrieval
+is very closely related to a geometric problem involving the covariogramof a convex
+body K in Rn. This is the function gK deﬁned by
+gK(x) = Vn (K ∩ (K +x)),
+for x ∈ Rn, where Vn denotes n-dimensional Lebesgue measure and K +x is the
+translate of K by the vector x. It is also sometimes called the set covariance and
+is equal to the autocorrelation of 1K, that is,
+gK = 1K ∗ 1− K,
+where ∗ denotes convolution and −K is the reﬂection of K in the origin. Taking
+Fourier transforms, we obtain the relation
+(1) ˆgK = ˆ1K ˆ1− K = ˆ1K
+ˆ1K =
+⏐
+⏐ ˆ1K
+⏐
+⏐2
+.
+
+=== PDF PAGE 37 ===
+Convex Geometry and its Applications 2887
+This connects the Phase Retrieval Problem, restricted to charac teristic functions of
+convex bodies, to the problem of determining a convex body from its covariogram.
+The covariogram was introduced by Matheron [5]. It has found applic ation
+in ﬁelds such as stereology, geometric tomography, pattern reco gnition, image
+analysis, and mathematical morphology, where information about a n unknown
+object is to be retrieved from chord length measurements. Baake and Grimm [1]
+explain how the problem of ﬁnding the atomic structure of a quasicry stal from
+its X-ray diﬀraction image involves recovering a subset of Rn called a window
+from its covariogram, and note that this window is in many cases a con vex body.
+The covariogram has also played an increasingly important role in analy tic convex
+geometry. For example, it was used by Rogers and Shephard in prov ing their
+famous diﬀerence body inequality, by Gardner and Zhang in the theo ry of radial
+mean bodies, and by Tsolomitis in his study of convolution bodies, which via the
+work of Schmuckenschl¨ ager and Werner allows a covariogram-bas ed deﬁnition of
+the fundamental notion of aﬃne surface area.
+We eﬀectively solve the following three problems. In each, K is a convex body
+in Rn.
+Problem 1 (Reconstruction from covariograms) . Construct an approxima-
+tion to K from a ﬁnite number of noisy (i.e., taken with error) measurements o f
+gK.
+Problem 2 (Phase retrieval for characteristic functions of convex bodies:
+squared modulus) . Construct an approximation to K (or, equivalently, to 1 K)
+from a ﬁnite number of noisy measurements of |ˆ1K|2.
+Problem 3 (Phase retrieval for characteristic functions of convex bodies:
+modulus). Construct an approximation to K from a ﬁnite number of noisy
+measurements of |ˆ1K|.
+In order to discuss our results, we must ﬁrst consider the corres ponding unique-
+ness problems. In view of (1), these are equivalent, so we shall foc us on the
+covariogram. It is easy to see that gK is invariant under translations of K and
+reﬂection of K in the origin. Let Kn
+o be the class of convex bodies in Rn and let Un
+be the class of convex bodies in Rn that are determined, up to translation and re-
+ﬂection in the origin, by their covariograms. Let Pn be the class of n-dimensional
+convex polytopes in Rn and let Kn
+s be the class of centrally symmetric convex
+bodies in Rn. Recently Averkov and Bianchi proved that U 2 = K2
+o, conﬁrming a
+1986 conjecture of Matheron, and Bianchi proved that P 3 ⊂ U 3. It is easy to see
+that Kn
+s ⊂ U n. Goodey, Schneider, and Weil proved that most (in the sense of
+Baire category) convex bodies in Rn belong to Un. Nevertheless, Bianchi has con-
+structed examples showing that Pn ̸⊂ U n for n ≥ 4. It is still unknown whether
+U 3 = K3
+o.
+None of the above uniqueness proofs provide a method for actually reconstruct-
+ing a convex body from its covariogram. We are aware of only two pap ers dealing
+with the reconstruction problem: Schmitt [7] gives an explicit recons truction pro-
+cedure for a convex polygon when no pair of its edges are parallel, an assumption
+
+=== PDF PAGE 38 ===
+2888 Oberwolfach Report 53/2009
+removed in an algorithm due to Benassi and D’Ercole [2]. In both these papers,
+all the exact values of the covariogram are supposed to be available .
+In contrast, our ﬁrst set of algorithms take as input only a ﬁnite nu mber of
+values of the covariogram of an unknown convex body K0. Moreover, these mea-
+surements are corrupted by errors, modeled by Gaussian noise of mean zero and
+a ﬁxed variance. It is assumed that K0 is determined by its covariogram, has its
+centroid at the origin, and is contained in a known bounded region of Rn, which
+for convenience we take to be the unit cube Cn
+0 = [ − 1/ 2, 1/ 2]n. We provide two
+diﬀerent methods for reconstructing, for each suitable k ∈ N, a convex polytope
+Pk that approximates K0 or its reﬂection −K0. Each method involves two algo-
+rithms, an initial algorithm that produces suitable outer unit normals to the facets
+of Pk, and a common main algorithm that goes on to actually construct Pk.
+In the ﬁrst method, the covariogram of K0 is measured, multiple times, at the
+origin and at vectors (1 /k )ui,i = 1,...,k , where the ui’s are mutually nonparallel
+unit vectors that span Rn. From these measurements, the initial Algorithm Noisy-
+CovBlaschke constructs an o-symmetric convex polytope Qk that approximates
+∇ K0, the Blaschke body of K0. The crucial property of ∇ K0 is that when K0 is
+a convex polytope, each of its facets is parallel to some facet of ∇ K0. It follows
+that the outer unit normals to the facets of Pk can be taken to be among those
+of Qk. Algorithm NoisyCovBlaschke utilizes the known fact that −∂gK0(tu)/∂t ,
+evaluated att = 0, equals the brightness function value bK0(u), that is, the (n− 1)-
+dimensional volume of the orthogonal projection of K0 in the direction u. This
+connection allows most of the work to be done by a very eﬃcient algor ithm de-
+signed earlier by Gardner and Milanfar that reconstructs a o-symmetric convex
+body from ﬁnitely many noisy measurements of its brightness funct ion.
+The second method achieves the same goal with a quite diﬀerent app roach.
+This time the covariogram of K0 is measured once at each point in a cubic ar-
+ray in 2 Cn
+0 = [ − 1, 1]n of side length 1 /k . From these measurements, the initial
+Algorithm NoisyCovDiﬀ(ϕ ) constructs an o-symmetric convex polytope Qk that
+approximates DK0 =K0 + (−K0), the diﬀerence body of K0. The set DK0 has
+precisely the same property as ∇ K0, that when K0 is a convex polytope, each of
+its facets is parallel to some facet of DK0. Furthermore, DK0 is just the sup-
+port of gK0. The known property that g1/n
+K0 is concave can therefore be combined
+with techniques from multiple regression. Algorithm NoisyCovDiﬀ( ϕ ) employs
+a Gasser-M¨ uller type kernel estimator for gK0, with suitable kernel function ϕ ,
+bandwidth, and threshold parameter.
+The output Qk of either initial algorithm forms part of the input to the main
+common Algorithm NoisyCovLSQ. The covariogram of K0 is now measured again,
+once at each point in a cubic array in 2 Cn
+0 = [ − 1, 1]n of side length 1 /k . Using
+these measurements, Algorithm NoisyCovLSQ ﬁnds a convex polyto pe Pk, each
+of whose facets is parallel to some facet of Qk, whose covariogram ﬁts best the
+measurements in the least squares sense.
+
+=== PDF PAGE 39 ===
+Convex Geometry and its Applications 2889
+Much eﬀort is spent in proving that these algorithms are strongly co nsistent.
+WheneverK0 ∈ U n, we show that, almost surely,
+min{δ(K0,Pk),δ (−K0,Pk)} → 0
+as k → ∞ , where δ denotes Hausdorﬀ distance. (If K0 ̸∈ U n, a rare situation
+in view of the uniqueness results discussed above, the algorithms st ill construct a
+sequence (Pk) whose accumulation points exist and have the same covariogram as
+K0.) From a theoretical point of view, this completely solves Problem 1. N aturally,
+the consistency proof leans heavily on results and techniques from analytic convex
+geometry, as well as a suitable version of the Strong Law of Large N umbers.
+With algorithms for Problem 1 in hand, we move to Problem 2, assuming
+that K0 is an unknown convex body satisfying the same conditions as before .
+The basic idea is simple enough: Use (1) and the measurements of |ˆ1K0|2 at
+points in a suitable cubic array to approximate gK0 via its Fourier series, and
+feed the resulting values into the algorithms for Problem 1. However , two major
+technical obstacles arise. The new estimates of gK0 are corrupted by noise that
+now involves dependent random variables, and a new deterministic er ror appears
+as well. A substitute for the Strong Law of Large Numbers must be p roved,
+and the deterministic error controlled using Fourier analysis and the fortunate
+fact that gK0 is Lipschitz. In the end the basic idea works, assuming that for
+suitable 1/ 2<γ < 1, measurements of |ˆ1K0|2 are taken at the points in (1 /k γ )Zn
+contained in the cubic window [ −k1− γ,k 1− γ ]n, whose size increases with k at a
+rate depending on the parameter γ. With suitable restrictions on γ, the three
+resulting algorithms, Algorithm NoisyMod 2LSQ, Algorithm NoisyMod 2Blaschke,
+and Algorithm NoisyMod 2Diﬀ(ϕ ), are proved to be strongly consistent under the
+same hypotheses as for Problem 1.
+Our ﬁnal three algorithms, Algorithm NoisyModLSQ, Algorithm NoisyM od-
+Blaschke, and Algorithm NoisyModDiﬀ( ϕ ) cater for Problem 3. Again there is a
+basic simple idea, namely, to take two independent measurements at each of the
+points in the same cubic array as in the previous paragraph, multiply t he two,
+and feed the resulting values into the algorithms for Problem 2. No se rious extra
+technical diﬃculties arise, and we are able to prove that the three n ew algorithms
+are strongly consistent under the same hypotheses as for Proble m 2. This provides
+a complete theoretical solution to the Phase Retrieval Problem for characteristic
+functions of convex bodies.
+To summarize:
+For Problem 1, use either Algorithm NoisyCovBlaschke or Algorithm
+NoisyCovDiﬀ(ϕ ) and then Algorithm NoisyCovLSQ.
+For Problem 2, use either Algorithm NoisyMod 2Blaschke or Algorithm
+NoisyMod2Diﬀ(ϕ ) and then Algorithm NoisyMod 2LSQ.
+For Problem 3, use either Algorithm NoisyModBlaschke or Algorithm
+NoisyModDiﬀ(ϕ ) and then Algorithm NoisyModLSQ.
+
+=== PDF PAGE 40 ===
+2890 Oberwolfach Report 53/2009
+References
+[1] M. Baake and U. Grimm, Homometric model sets and window co variograms, Z. Krist. 222
+(2007), 54–58.
+[2] C. Benassi and G. D’Ercole, An algorithm for reconstruct ing a convex polygon from its
+covariogram, Rend. Istit. Mat. Univ. Trieste 39 (2007), 457–476.
+[3] J. R. Fienup, Phase retrieval algorithms: a comparison, Appl. Opt. 21 (1982), 2758–2769.
+[4] M. V. Klibanov, P. E. Sacks, and A. V. Tikhonravov, The pha se retrieval problem, Inverse
+Problems 11 (1995), 1–28.
+[5] G. Matheron, Random Sets and Integral Geometry , Wiley, New York, 1975.
+[6] J. Rosenblatt, Phase retrieval, Commun. Math. Phys. 95 (1984), 317–343.
+[7] M. Schmitt, On two inverse problems in mathematical morp hology, in: Mathematical Mor-
+phology in Image Processing, ed. by E. R. Dougherty, Marcel Dekker, New York, pp. 151–169 .
+On the isotropy constant of polytopes
+David Alonso-Guti´
+errez
+(joint work with Jes´ us Bastero, Julio Bernu´ es, Pawel Wolﬀ)
+A convex body K ⊆ Rn is said to be isotropic if it satisﬁes the following conditions:
+• |K|= 1,
+•
+∫
+Kxdx = 0 and
+• ∀ θ ∈ Sn− 1 ∫
+K⟨x,θ ⟩2dx =LK2.
+This constant LK, independent of the vector θ is called the isotropy constant
+of K. It is clear from the deﬁnition that if U ∈ O(n) is an orthogonal map then
+UK is also isotropic with the same isotropy constant. It is very well know n that
+for any convex body K ⊆ Rn there exists a unique a ∈ Rn and a unique (up to
+orthogonal transformations) linear map T such that a +TK is isotropic.
+This allows us to deﬁne the isotropy constant for any convex body a s the
+isotropy constant of its isotropic image. It also admits the following d eﬁnition,
+as a solution of a minimization problem:
+nLK2 = min
+{ 1|TK |1+ 2
+n
+∫
+a+TK
+|x|2dx : a ∈ Rn,T ∈ GL(n)
+}
+.
+It is very well known that among all the n dimensional convex bodies, the Eu-
+clidean ball is the one with the smallest isotropy constant, whose valu e is bounded
+from below by an absolute constant independent of the dimension
+LK ≥ LB2n ≥ c.
+What is not known is if there exists an absolute constant bounding fr om above
+the isotropy constant of any convex body. This problem is known as the slicing
+problem.
+Conjecture (Slicing problem) There exists an absolute constant C such that for
+any convex body
+LK ≤ C
+Since any convex body can be approximated by polytopes this conje cture is
+true for any convex body if and only if it is true for polytopes. Thus w e study the
+
+=== PDF PAGE 41 ===
+Convex Geometry and its Applications 2891
+isotropy constant of polytopes. We give a simple proof of the followin g Junge’s
+result:
+Theorem[J] LetK ⊂ Rn be a symmetric convex polytope with 2 N vertices. Then
+LK ≤ C logN.
+We also prove the following theorem, which gives a positive answer for the
+slicing problem for polytopes with few vertices:
+Theorem[ABBW] Let K ⊆ Rn be a convex polytope with N vertices. Then
+LK ≤ C
+√
+N
+n.
+References
+[ABBW] D. Alonso-Guti ´errez, J. Bastero, J. Bernu ´es, P. Wolff On the isotropy constant
+of projections of polytopes. (To appear in Journal of Functional Analysis)
+[J] M. Junge , Hyperplane conjecture for quotient spaces of Lp, Forum Math. 6 (1994), pp. 617–
+635.
+A convex body whose centroid and Santal´ o point are far apart .
+Carsten Sch ¨utt
+(joint work with Mathieu Meyer, Elisabeth Werner)
+We are constructing convex bodies in Rn whose centroids and Santal´ o points
+are far apart.
+Theorem 1. There is an absolute constant c > 0 and n0 ∈ N such that for all
+n ≥ n0 there is a convex body C in Rn with
+(1) c ≤ ∥ g(C) − s(C)∥
+vol1(ℓ ∩ C) .
+l is the line through g(C) and s(C) and ∥ · ∥ is the Euclidean norm.
+The proof actually shows that we can asymptotically determine the c onstantc of
+the theorem.
+∥ g(C) − s(C)∥
+vol1(ℓ ∩ C)
+is asymptotically with respect to the dimension, greater than or equ al to
+(
+1 − 1
+e
+) √ eπ − 2√ eπ + 2
+e− 1
+= 0. 142673...
+For convex bodies K and L in Rn and real numbers a > 0 and b > 0, we
+construct a convex body Mn in Rn+1
+(2) Mn = co[(K, −a), (L,b )] = {t(x, −a) + (1 − t)(y,b )|x ∈ K,y ∈ L, 0 ≤ t ≤ 1}.
+
+=== PDF PAGE 42 ===
+2892 Oberwolfach Report 53/2009
+Thus the body Mn is the convex hull of two n-dimensional faces K and L. As
+K we choose the Euclidean ball with volume 1 and for L we choose the cube of
+volume 1. The bodies we are using in Theorem 1 will be the polar bodies to Mn.
+The Method of V oronoi
+Peter M. Gruber
+A classical criterion of Voronoi says that a positive deﬁnite quadra tic form on Ed
+is extreme if and only if it is perfect and eutactic. Equivalently, a lattic e packing
+of balls in Ed has locally maximum density if and only if it is perfect and eutactic.
+The idea of his proof was to identify quadratic forms on Ed with their coeﬃcient
+vectors in E
+1
+2d(d+1) and thus to transform the problem in Ed into a geometric
+problem in E
+1
+2d(d+1) which is easier to solve. During the last 50 years this idea or
+modiﬁcations of it saw a series of applications in the following areas:
+(i) lattice packings of balls and smooth convex bodies
+(ii) lattice coverings of balls
+(iii) Epstein zeta function
+(iv) closed geodesics on the Riemannian manifolds of a Teichm¨ uller spa ce
+(v) John type and minimum position problems
+In this articel new results in the areas (i), (ii), (iii) and (v) will be pres ented.
+1. Lattice Packings of Smooth Convex Bodies
+The classical criterion of Voronoi for balls can be extended as to co ver smooth
+convex bodies and more reﬁned extremum properties. Withouth giv ing precise
+deﬁnitions, we state two pertinent results which should give the rea der an idea of
+these extensions, where δ(C,L ) is the density of the lattice packing of (a suitable
+multiple of the smooth convex body) C by the lattice L.
+Theorem 1. There is no lattice L such that δ(C, ·) is stationary at L. δ(C, ·) is
+semi-stationary at L if and only if L is semi-eutactic.
+Theorem 2. δ(C, ·) is ultra extreme at L if and only if L is perfect and eutactic.
+Thus, in the special case where C =Bd is a ball, each lattice packing of extreme
+density is already ultra extreme. Using these criteria for balls, one c an determine
+the lattice packings of balls in E2 and E3 which have semi-stationary density:
+d = 2: square and regular hexagonal lattices
+d = 3: cubic primitive, cubic face centered, cubic body centered and s pecial
+hexagonal primitive and tetragonal body centered lattices.
+See, the author [5].
+
+=== PDF PAGE 43 ===
+Convex Geometry and its Applications 2893
+2. Lattice Coverings of Balls
+The criterion of Voronoi for extreme lattice packings has counter parts for lattice
+coverings. Again, we state two results for balls without giving precis e deﬁnitions.
+ϑ(Bd,L ) is the density of the lattice covering of (a suitable multiple of) C by the
+lattice L.
+Theorem 3. ϑ(Bd, ·) is stationary at L if and only L is nano polyeutactic.
+Theorem 4. ϑ(Bd, ·) is ultra maximum at L if and only if L is polyeutactic and
+polyperfect.
+The stationary lattices in E2, and E3 are the following:
+d = 2: regular hexagonal lattices
+d = 3: face centered cubic lattices.
+See, the author [6].
+3. Lattice Zeta Functions
+Let C be a smooth convex body with center at o and let ∥ · ∥C be the corre-
+sponding norm on Ed. The lattice zeta function ζC (L,s ) is deﬁned by
+ζC (L,s ) =
+∑
+l∈L\{o}
+1
+∥l∥s
+C
+for s>d.
+A major problem is to determine for given s>d or for all suﬃciently large s the
+lattices L of determinant 1 which minimize ζC . We state two results.
+Theorem 5. ζC (·,s ) is stationary at L for given s > dif and only if L is fully
+eutactic.
+Theorem 6. ζC (·,s ) is quadratic minimum at L for all suﬃciently large s if and
+only if L is perfect and each layer of L is strongly eutactic.
+See, the author [7].
+4. John Type Results
+Let C be o-symmetric. A pair ⟨E,̺E ⟩ of o-centered ellipsoids is a minimum
+ellipsoidal shell of C if E ⊆ C ⊆ ̺E and ̺ ≥ 1 is minimum. A counterpart of
+John’s characterizations of maximum volume ellipsoids in C is the following result
+where for u ∈ Ed the tensor product u ⊗ u is the d × d matrix uuT :
+Theorem 7. ⟨Bd,̺Bd⟩ is a minimum ellipsoidal shell of C if and only if the fol-
+lowing hold: There are contact points ±u1,..., ±un ∈ Bd∩ bdC and ±v1,..., ±vl ∈
+C ∩ bd̺Bd and reals λ 1,...,λ k,µ 1,...,µ l> 0 such that
+(i) 2 ≤ k,l and k +l ≤ 1
+2d(d + 1) + 1,
+(ii) ∑λi − ui ⊗ ui = ∑µjvj ⊗ vj ,
+(iii) lin {u1,...,u k} = lin{v1,...,v l}.
+See, the author [3].
+
+=== PDF PAGE 44 ===
+2894 Oberwolfach Report 53/2009
+References
+[1] P. M. Gruber, Minimal ellipsoids and their duals , Rend. Circ. Mat. Palermo (2) 7 (1988),
+35–64.
+[2] P. M. Gruber, Convex and discrete geometry , Springer, Berlin 2007.
+[3] P. M. Gruber, Application of an idea of Voronoi to John type problems , Adv. in Math. 218
+(2008), 309–351.
+[4] P. M. Gruber, Applications of an idea of Voronoi, a report , in print.
+[5] P. M. Gruber, Applications of an idea of Voronoi to lattice packing , in preparation.
+[6] P. M. Gruber, Applications of an idea of Voronoi to lattice covering , in preparation.
+[7] P. M. Gruber, Applications of an idea of Voronoi to lattice zeta functions , in preparation.
+[8] P. M. Gruber, F. Schuster, An arithmetic proof of John ’s ellipsoid theorem , Arch. Math.
+(Basel) 85 (2005), 82–88.
+Low dimensional geometry of polytopes
+Alain Pajor
+(joint work with R. Adamczak, A. E. Litvak, N. Tomczak-Jaegerma nn)
+Let 1 ≤ m ≤ n ≤ N be integers and let X1,...,X N ∈ Rn. Denote by A the
+n × N matrix with X1,...,X N as columns and by K(A) = K(X1,...,X N ) the
+convex hull of ±X1,..., ±XN . Thus K(A) = ABN
+1 where BN
+1 denotes the cross-
+polytope in RN . Recall that a centrally symmetric convex polytope is (centrally)
+m-neighborly if any set of m + 1 vertices not including an antipodal pair, is the
+vertex set of a face.
+A random vector X ∈ Rn is called isotropic if
+(1) E⟨X,y ⟩ = 0, E |⟨X,y ⟩|2 = |y|2 for all y ∈ Rn,
+in other words, if X is centered and its covariance matrix is the identity.
+A subset K ⊂ Rn is said to be isotropic if the random point X uniformly
+distributed in K is isotropic.
+We show the following result
+Theorem. Let 1 ≤ n ≤ N be integers. Let X1,...,X N be independent isotropic
+vectors with log-concave densities. This is for instance the case if X1,...,X N are
+i.i.d. random vectors uniformly distributed on an isotropic convex bod y. Then,
+for any N ≤ exp(cn1/ 2), with probability at least 1 − C exp(−cn1/ 2), the polytope
+K(A) is m-centrally-neighborly, for every m satisfying
+m ≤ cn
+/
+log 2(CN/n )
+where C,c> 0 are universal constants.
+
+=== PDF PAGE 45 ===
+Convex Geometry and its Applications 2895
+T owards an Orlicz Brunn-Minkowski theory: Orlicz projecti on bodies
+Erwin Lutwak
+(joint work with Deane Yang, Gaoyong Zhang)
+The Brunn-Minkowski theory had its origin at the turn of the 19th in to the 20th
+century, when Minkowski began his study of the volume of special c ombinations
+of convex bodies (which became known as Minkowski combinations ). One of the
+core concepts that Minkowski introduced to the Brunn-Minkowsk i theory is that
+of projection body. Four decades ago a highly inﬂuential paper of Bolker showed
+how Minkowski’s projection operator, its range (called the class of zonoids), and its
+polar were in fact objects of independent investigation in a number o f disciplines.
+Within the Brunn-Minkowski theory, the two classical inequalities th at con-
+nect the volume of a convex body with that of its polar projection body are the
+Petty and Zhang projection inequalities. In retrospect, it is intere sting to recall
+that these inequalities did not emerge out of Blaschke’s school, and t hat it took
+seven decades from Minkowski’s discovery of the projection opera tor, for the Petty
+projection inequality to appear. It took yet another two decades for the Zhang
+projection inequality to be discovered. Establishing the analogs of the Petty and
+Zhang projection inequalities for the projection operator (as opp osed to the polar
+projection operator) are today major open problems within the ﬁe ld of convex
+geometric analysis.
+Unlike the classical isoperimetric inequality, the Petty and Zhang pro jection in-
+equalities are aﬃne isoperimetric inequalities in that they are inequalitie s between
+a pair of geometric functionals whose ratio is invariant under aﬃne tr ansforma-
+tions. The Petty projection inequality is not only stronger than (i.e., directly
+implies) the classical isoperimetric inequality, but it can be viewed as an opti-
+mal isoperimetric inequality. In the same manner that the classical is operimetric
+inequality leads to (in fact is equivalent to) the Sobolev inequality, the Petty pro-
+jection inequality has lead to the Zhang-Sobolev inequality, an analytic inequality
+that is stronger than (directly implies) the classical Sobolev inequalit y and yet is
+independent of any underlying Euclidean structure.
+In the early 1960’s, Firey introduced an Lp-extension of Minkowski’s notion
+of combining convex bodies (now known as Firey-Minkowski Lp-combinations).
+Three decades later, it was shown that the study of the volume of t hese Firey-
+Minkowski Lp combinations leads to an embryonic Lp Brunn-Minkowski theory.
+This theory has expanded steadily.
+An early achievement of the new Lp Brunn-Minkowski theory was the discovery
+of the Lp-analogue of the projection operator which in turn led Lutwak, Yan g, and
+Zhang, and independently Campi and Gronchi, to establish the Lp Petty projection
+inequality. The new Lp inequality has found application in the ﬁeld of analytic
+inequalities where it led Lutwak, Yang, and Zhang to establish an aﬃne Lp Zhang-
+Sobolev inequalitiy and ultimately, Cianchi, Lutwak, Yang, and Zhang t o establish
+aﬃne Moser-Trudinger and aﬃne Morrey-Sobolev inequalities.
+
+=== PDF PAGE 46 ===
+2896 Oberwolfach Report 53/2009
+Work of Ludwig showed that the previously studied Lp extension of Minkowski’s
+projection operator is only one of a family of natural Lp extensions of their classical
+counterpart. Using this insight, Haberl and Schuster studied “as ymmetric” Lp-
+analogs of the projection operator and obtained “asymmetric” Lp-analogs of the
+Petty projection inequality. For bodies that are not symmetric abo ut the origin,
+the inequalities of Haberl and Schuster are stronger than the Lp Petty projection
+inequality. The operators considered by Haberl and Schuster are ideally suited for
+dealing with bodies that are not origin-symmetric.
+The work of Haberl and Schuster together with recent work of Lu dwig, and
+Ludwig and Reitzner, makes it apparent that the time is ripe for the n ext step in
+the evolution of the Brunn-Minkowski theory towards an Orlicz Bru nn-Minkowski
+theory.
+This talk presents the attempt of Lutwak, Yang, and Zhang to dev elop one
+of the elements of an Orlicz Brunn-Minkowski theory. Speciﬁcally, t o deﬁne an
+Orlicz projection operator and to present an Orlicz analog of the cla ssical Petty
+projection inequality. This new inequality has all its predecessors (in cluding the
+Haberl-Schuster version) as special cases.
+Aﬃne analytic inequalities
+Christoph Haberl
+(joint work with Franz E. Schuster, Jie Xiao)
+Forp ≥ 1 and n ≥ 2, let W 1,p (Rn) denote the space of real-valued Lp functions on
+Rn with weak Lp partial derivatives. We use | · |to denote the standard Euclidean
+norm on Rn. For f ∈ W 1,p (Rn), we set
+∥∇ f ∥p =
+(∫
+Rn
+|∇f |pdx
+)1/p
+.
+The symmetric decreasing rearrangement f ⋆ of a function f is deﬁned as follows.
+Forf ∈ W 1,p (Rn), denote by µf : [0, ∞ ) → [0, ∞ ] the distribution function of the
+absolute value of f . The decreasing rearrangement f ∗ : [0, ∞ ) → [0, ∞ ] of f is
+deﬁned to be zero for s ≥ µf (0) and
+f ∗(s) = sup {t> 0 : µf (t)>s } for s<µ f (0).
+Now, the symmetric decreasing rearrangement f ⋆ : Rn → [0, ∞ ] is given by
+f ⋆ (x) = f ∗ (κn|x|n),
+where κn =πn/ 2/ Γ(1 + n
+2 ) denotes the volume of the Euclidean unit ball in Rn.
+The classical P´ olya–Szeg¨ o principle [6] states that theLp norm of the gradient
+of a function on Rn does not increase under symmetric rearrangement. To be
+precise, if f ∈ W 1,p (Rn) for some p ≥ 1, then f ⋆ ∈ W 1,p (Rn) and
+(1) ∥∇ f ⋆ ∥p ≤ ∥∇ f ∥p.
+
+=== PDF PAGE 47 ===
+Convex Geometry and its Applications 2897
+Zhang [8], Lutwak, Yang, and Zhang [5] and Cianchi et al. [2] proved a n aﬃne
+version of the P´ olya–Szeg¨ o principle: For every functionf ∈ W 1,p (Rn)
+(2) Ep(f ⋆ ) ≤ E p(f ).
+Here, the Lp aﬃne energy Ep(f ) is deﬁned by
+Ep(f ) = cn,p
+(∫
+Sn− 1
+∥Duf ∥− n
+p du
+)− 1/n
+where cn,p = (nκn)1/n (nκ nκ p− 1
+2κ n+p− 2
+)1/p and Duf is the directional derivative of f in
+direction u. Note that the normalizing constant cn,p is chosen such that
+Ep(f ⋆ ) = ∥∇ f ⋆ ∥p.
+We emphasize that Ep(f ) is invariant under volume preserving aﬃne transforma-
+tions on Rn. In contrast, ∥∇ f ∥p is invariant only under rigid motions. It was
+shown in [5] that
+(3) Ep(f ) ≤ ∥∇ f ∥p.
+The last two relations immediately imply the remarkable fact that the a ﬃne in-
+equality (2) is signiﬁcantly stronger than its classical Euclidean coun terpart (1).
+In [4], the asymmetric Lp aﬃne energy E +
+p (f ) of a function f was deﬁned by
+E +
+p (f ) = dn,p
+(∫
+Sn− 1
+∥D+
+uf ∥− n
+p du
+)− 1/n
+wheredn,p = 2 1/p cn,p and D +
+uf (x) = max {Duf (x), 0} denotes the positive part of
+the directional derivative of f in direction u. The asymmetric Lp aﬃne energy is
+again invariant under volume preserving aﬃne transformations on Rn. In [4], it is
+shown that for every function f ∈ W 1,p (Rn) the inequality
+(4) E +
+p (f ⋆ ) ≤ E +
+p (f )
+holds. The aﬃne energies Ep and E +
+p are related by
+(5) E +
+p (f ) ≤ E p(f ) and E +
+p (f ⋆ ) = Ep(f ⋆ ),
+as was shown in [3]. Therefore, the asymmetric aﬃne P´ olya–Szeg¨ o inequality (4)
+is stronger than the symmetric one (2). In paricular, the asymmet ric aﬃne P´ olya–
+Szeg¨ o inequality strengthens and directly implies the classical P´ oly a–Szeg¨ o in-
+equality (1).
+The asymmetric aﬃne P´ olya–Szeg¨ o inequality (4) gives rise to aﬃne versions
+of several Sobolev inequalities. For example, for 1 <p<n , it is shown in [3] (see
+also [4]) that
+(6) ∥f ∥ np
+n− p
+≤ an,p E +
+p (f ),
+where an,p denotes the best constant in the sharp Lp Sobolev inequality
+(7) ∥f ∥ np
+n− p
+≤ an,p ∥∇ f ∥p
+due to Aubin [1] and Talenti [7]. From formulas (3) and (5) we infer tha t the
+aﬃne version (6) is again stronger than its classical counterpart ( 7). In [4], aﬃne
+
+=== PDF PAGE 48 ===
+2898 Oberwolfach Report 53/2009
+versions of other Sobolev type inequalities including the Moser-Trud inger and the
+Morrey-Sobolev inequality are established.
+References
+[1] T. Aubin, Probl` emes isop´ erim´ etriques et espaces de Sobolev, J. Diﬀerential Geom. 11 (1976),
+573–598.
+[2] A. Cianchi, E. Lutwak, D. Yang, and G. Zhang, Aﬃne Moser–Trudinger and Morrey–
+Sobolev inequalities, Calc. Var. Partial Diﬀer. Equ. 36 (2009), 419–436.
+[3] C. Haberl, F. E. Schuster, Asymmetric aﬃne Lp Sobolev inequalities , J. Funct. Anal. 257
+(2009), 641–658.
+[4] C. Haberl, F. E. Schuster, and J. Xiao, An asymmetric aﬃne P´ olya–Szeg¨ o principle, sub-
+mitted.
+[5] E. Lutwak, D. Yang, and G. Zhang, Sharp aﬃne Lp Sobolev inequalities , J. Diﬀerential
+Geom. 62 (2002), 17–38.
+[6] G. P´ olya and G. Szeg¨ o, Isoperimetric inequalities in Mathematical Physics , Ann. Math.
+Stud. 27 Princeton University Press, Princeton 1951.
+[7] G. Talenti, Best constant in Sobolev inequality , Ann. Math. Pura Appl. 110 (1976), 353–372.
+[8] G. Zhang, The aﬃne Sobolev inequality , J. Diﬀerential Geom. 53 (1999), 183–202.
+Mahler’s conjecture for convex bodies with many symmetries
+Franck Barthe
+(joint work with Matthieu Fradelizi)
+Mahler’s conjecture predicts that among n-dimensional convex bodies of given vol-
+ume, simplices minimize the volume of the polar body. The symmetric ver sion of
+the conjecture asks whether cubes are minimal among convex bod ies with a center
+of symmetry. It has been established for unconditional bodies by S aint-Raymond
+(a body is unconditional if it is invariant by the orthogonal symmetrie s with re-
+spect to all coordinate hyperplanes of some orthogonal basis). W e conﬁrm the
+conjecture for convex bodies having many hyperplane symmetries in the following
+sense: the intersection of the hyperplanes of symmetry is reduce d to a point.
+Asymptotic shape of a random polytope in a convex body
+Nikos Dafnis
+(joint work with A. Giannopoulos, A. Tsolomitis)
+Let K be a convex body of volume 1 in Rn. For every q ≥ 1 we consider the
+Lq–centroid body Zq(K) of K, deﬁned by its support function:
+(1) hZq(K)(x) = ∥⟨·,x ⟩∥q :=
+(∫
+K
+|⟨y,x ⟩|qdy
+)1/q
+.
+Our aim is to provide some precise quantitative information on the “as ymptotic
+shape” of a random polytope KN = conv{x1,...,x N } spanned by N independent
+random pointsx1,...,x N uniformly distributed in K. Our approach is to compare
+KN with the Lq-centroid body Zq(K) of K for q ≃ ln(N/n ).
+
+=== PDF PAGE 49 ===
+Convex Geometry and its Applications 2899
+The origin of our work is in a study of the behavior of symmetric rando m ± 1–
+polytopes (by Giannopoulos and Hartzoulaki) and the subsequent s harper and
+more general approach by Litvak, Pajor, Rudelson, and Tomczak –Jaegermann:
+they worked in a more general setting which contains the previous B ernoulli model
+and the Gaussian model; let Kn,N be the absolute convex hull of the rows of the
+random matrix Γ n,N = (ξij)1≤ i≤ N, 1≤ j≤ n, where ξij are independent symmetric
+random variables satisfying certain conditions ( ∥ξij∥L2 ≥ 1 and ∥ξij∥Lψ2 ≤ ρ
+for some ρ ≥ 1, where ∥ · ∥Lψ2 is the Orlicz norm corresponding to the function
+ψ 2(t) = et2
+− 1). For this class of random polytopes they proved that, for ever y
+0<β < 1,
+(2) Kn,N ⊇ c(ρ)
+(√
+β ln(N/n )Bn
+2 ∩ Bn
+∞
+)
+with probability greater than 1 − exp(−c1nβN 1− β ) − exp(−c2N ). The proof is
+based on a lower bound of the order of
+√
+N for the smallest singular value of the
+random matrix Γ n,N with probability greater than 1 − exp(−cN ).
+In a sense, both works correspond to the study of the size of a ra ndom polytope
+KN = conv {x1,...,x N } spanned by N independent random points x1,...,x N
+uniformly distributed in the unit cube Qn := [− 1/ 2, 1/ 2]n. The connection of the
+estimate (2) with Lq–centroid bodies comes from the following observation. For
+x ∈ Rn and t> 0, deﬁne
+(3) K1, 2(x,t ) := inf {∥u∥1 +t∥x − u∥2 : u ∈ Rn}.
+For any α ≥ 1 deﬁne C(α ) = αBn
+2 ∩ Bn
+∞ . Then, hC(α )(θ) = K1, 2(θ,α ) for every
+θ ∈ Sn− 1. On the other hand,
+(4) ∥⟨·,θ ⟩∥Lq(Qn) ≃
+∑
+j≤ q
+θ∗
+j + √ q
+
+ ∑
+q<j≤ n
+(θ∗
+j )2
+
+
+1/ 2
+for every q ≥ 1. Then, Holmstedt’s approximation formula for K1, 2(x,t ) shows
+that
+(5) C(√
+q) ≃ Zq(Qn)
+whereZq(K) is the Lq-centroid body of K. This shows that (2) can be written in
+the form
+(6) Kn,N ⊇ c(ρ)Zβ ln(N/n )(Qn).
+This observation leads us to consider a random polytope KN = conv{x1,...,x N }
+spanned by N independent random points x1,...,x N uniformly distributed in an
+isotropic convex body K and try to compare KN withZq(K) for a suitable value
+q =q(N,n ) ≃ ln(N/n ). Our ﬁrst main result states that an analogue of (2) holds
+true in full generality.
+Theorem 1 . Letβ ∈ (0, 1/ 2] and γ >1. If
+(7) N ≥ N (γ,n ) = cγn,
+
+=== PDF PAGE 50 ===
+2900 Oberwolfach Report 53/2009
+where c >0 is an absolute constant, for every isotropic convex body K in Rn we
+have
+(8) KN ⊇ c1Zq(K) for all q ≤ c2β ln(N/n ),
+with probability greater than
+(9) 1 − exp
+(
+−c3N 1− βnβ )
+− P(∥Γ : ℓn
+2 → ℓN
+2 ∥ ≥ γLK
+√
+N ),
+where Γ : ℓn
+2 → ℓN
+2 is the random operator Γ(y) = ( ⟨x1,y ⟩,... ⟨xN,y ⟩) deﬁned by
+the vertices x1,...,x N of KN .
+It should be emphasized that a reverse inclusion of the form KN ⊆ c4Zq(K)
+cannot be expected with probability close to 1, unless q is of the order of n. This
+follows by a simple volume argument which makes use of the upper estim ate of
+Paouris for the volume of Zq(K). However, one can easily see that KN is “weakly
+sandwiched” between Zqi(K) (i = 1, 2), where qi ≃ ln(N/n ), in the following
+sense:
+Proposition 2. For every α> 1 one has
+(10) E
+[
+σ (θ : (hKN (θ) ≥ αhZq(K)(θ))
+]
+≤ Nα − q.
+This shows that if q ≥ c5 ln(N/n ) then, for most θ ∈ Sn− 1, one has hKN (θ) ≤
+c6hZq(K)(θ). It follows that several geometric parameters of KN , e.g. the mean
+width, are controlled by the corresponding parameter of Z[ln(N/n )](K).
+As an application, we discuss the volume radius of KN : Let K be a convex
+body of volume 1 in Rn. The question to estimate the expected volume radius
+(11) E(K,N ) =
+∫
+K
+· · ·
+∫
+K
+|conv(x1,...,x N )|1/n dxN · · ·dx1
+of KN had been answered in the unconditional case; in this case,
+(12) E(K,N ) ≃ min
+{ √
+ln(2N/n )√ n , 1
+}
+for every N ≥ n + 1. Using a recent result of Paouris on the negative moments
+of the support function of hZq(K) we can give an answer to the question in full
+generality; for every convex body K and for the full range of values of N :
+Theorem 2 . For every N ≤ exp(n), one has
+(13) c4
+√
+ln(2N/n )√ n ≤ |KN |1/n ≤ c5LK
+√
+ln(2N/n )√ n
+with probability greater than 1 − 1
+N , where c4,c 5> 0 are absolute constants.
+
+=== PDF PAGE 51 ===
+Convex Geometry and its Applications 2901
+Relative entropy of cone measures and Lp centroid bodies
+Elisabeth Werner
+(joint work with Grigoris Paouris)
+The starting point of our investigation was the study of the asympt otic behavior
+of the volume of Lp centroid bodies as p tends to inﬁnity. This study resulted in
+the discovery of a new aﬃne invariant, Ω K. We then showed that the quantity
+ΩK is the relative entropy of the cone measure of K and the cone measure of K ◦ .
+Cone measures have been intensively studied in recent years (see e .g. works by
+Barthe, Guedon, Mendelson and Naor, Gromov and Milman, Naor and Romik and
+Schechtmann and Zinn. Finally, to our surprise, Ω K appeared again naturally in
+a third way, namely as a limit of normalized Lp-aﬃne surface areas. Thus, the
+invariant ΩK introduces a novel idea -relative entropy- into the theory of conv ex
+bodies and links concepts from classical convex geometry like Lp centroid bodies
+and Lp-aﬃne surface area with concepts from information theory. Such links
+have already been established. Guleryuz, Lutwak, Yang and Zhang use Lp Brunn
+Minkowski theory to develop certain entropy inequalities. Also, clas sical Brunn
+Minkowski theory is related to information theoretic concepts (se e e.g. the works
+by Artstein-Avidan, Barthe, Ball and Naor).
+The convex ﬂoating body Kδ of K [5] is the intersection of all halfspaces H +
+whose deﬁning hyperplanes H cut oﬀ a set of volume δ from K.
+It was shown by Milman and Pajor [4] that for “big” δKδ is isomorphic to the dual
+of the Binet ellipsoid from classical mechanics and consequently K ◦
+δ is homothetic
+to the Binet ellipsoid. Lutwak and Zhang [2] generalized the notion of B inet
+ellipsoid and introduced the Lp centroid bodies: For a convex body K in Rn of
+volume 1 and 1 ⩽ p ⩽ ∞ , the Lp centroid body Zp(K) is this convex body that
+has support function
+(1) hZp(K)(θ) =
+(∫
+K
+|⟨x,θ ⟩|pdx
+)1/p
+.
+We generalize the result by Milman and Pajor and show that the ﬂoatin g body
+Kδ is - up to a universal constant - homothetic to the centroid body Zlog 1
+δ
+(K):
+Theorem 1. Let K a symmetric convex body in Rn of volume 1. Let δ ∈ (0, 1).
+Then
+c1Zlog 1
+δ
+(K) ⊆ Kδ ⊆ c2Zlog 1
+δ
+(K),
+wherec1,c 2> 0 are universal constants.
+Lp-aﬃne surface area, an extension of classical aﬃne surface area (the case
+p = 1), was introduced by Lutwak in the ground breaking paper [1] for p> 1 and
+for general p by Sch¨ utt and Werner [6].
+From now on we will always assume that the centroid of a convex body K in
+Rn is at the origin. We write K ∈ C2
++, if K has C2 boundary with everywhere
+
+=== PDF PAGE 52 ===
+2902 Oberwolfach Report 53/2009
+strictly positive Gaussian curvature κK. For real p ̸= −n, we deﬁne the Lp-aﬃne
+surface area asp(K) of K as in [1] ( p> 1) and [6] ( p< 1,p ̸= −n) by
+(2) asp(K) =
+∫
+∂K
+κK(x)
+p
+n+p
+⟨x,NK (x)⟩
+n(p− 1)
+n+p
+dµK(x),
+provided the above integrals exist. NK(x) is the outer unit normal vector at x to
+∂K , the boundary of K, and µK is the usual surface area measure on ∂K .
+We use the Lp-aﬃne surface area to deﬁne a new aﬃne invariant:
+(3) Ω K = lim
+p→∞
+(asp(K)
+n|K ◦|
+)n+p
+.
+This is a ﬁrst way how Ω K appears. We describe properties of this new invariant.
+E.g., we prove the following remarkable identity (4), which is the secon d way how
+ΩK appears: It shows that the invariant Ω K is the exponential of the relative
+entropy or Kullback-Leibler divergence DKL of the cone measures cmK andcmK ◦
+of K and K ◦ .
+(4) Ω 1/n
+K = |K ◦ |
+|K| exp
+(
+− DKL(NKN − 1
+K ◦cm∂K ◦ ∥cm∂K )
+)
+.
+N − 1
+K is the inverse of the Gauss map.
+We show that an information inequality for the relative entropy of th e cone
+measures implies an “information inequality” for convex bodies
+ΩK ⩽
+( |K|
+|K ◦|
+)n
+with equality if and only if K is an ellipsoid. Independently, we can derive this
+inequality from properties of the Lp-aﬃne surface areas.
+We also show that many other inequalities that hold for the aﬃne invar iant ΩK,
+among them an isoperimetric inequality.
+Theorem 1 states that the ﬂoating body Kδ is - up to a universal constant -
+homothetic to the centroid body Zlog 1
+δ
+(K). This led us to investigate the Lp
+centroid bodies also in the context of aﬃne surface area. Note the similarities in
+bahavior of the ﬂoating body and the Lp centroid body. Both “approximate” K
+asδ → 0 respectively p → ∞ : If K is symmetric and of volume 1, Zp(K) → K as
+p → ∞ .
+We found an amazing connection between the Lp centroid bodies and the new
+invariant ΩK which is stated in the following theorem for convex bodies in C2
++. A
+forthcoming paper will address general convex bodies.
+Theorem 2. LetK be a symmetric convex body in Rn of volume 1 that is in C2
++.
+Then
+(i) limp→∞
+p
+logp
+(
+|Z ◦
+p (K)| − |K ◦ |
+)
+= n(n+1)
+2 |K ◦ |.
+
+=== PDF PAGE 53 ===
+Convex Geometry and its Applications 2903
+(ii) lim
+p→∞
+p
+(
+|Z ◦
+p (K)| − |K ◦| − n(n + 1)
+2p logp |K ◦ |
+)
+=
+− 1
+2
+∫
+Sn− 1
+hK(u)− n log
+(
+2n+1πn− 1hK(u)n+1fK(u)
+)
+dσ (u) =
+1
+2
+∫
+∂K
+κ(x)
+⟨x,N (x)⟩n log
+( κ(x)
+2n+1πn− 1⟨x,N (x)⟩n+1
+)
+dµ(x)
+In view of Theorem 1, the ﬁrst part of the Theorem 2 came as a surp rise to
+us because it reveals a diﬀerent behaviour of the bodies Kδ and Zlog 1
+δ
+(K) when
+δ → 0. Indeed, it was shown in [3] that lim δ→ 0 cn
+|(Kδ)◦ |−|K ◦ |
+δ
+2
+n+1
+=as− n(n+2)(K) =
+as− n
+n+2 (K ◦ ). where cn is a constant that depends on n only.
+Even more surprising is the second part of Theorem 2. We can show t hat
+lim
+p→∞
+2p
+n
+(
+(1 − n(n+1) logp
+2p )|Z ◦
+p (K)|
+|K ◦ | − 1
+)
+= − 1
+2 log Ω
+1
+n
+K
+2n+1πn− 1.
+This is the third way how Ω K appears.
+References
+[1] E. Lutw ak, The Brunn-Minkowski-Firey theory. II. Aﬃne and geominimal surface areas,
+Adv. Math. 118 (2 (1996), 244-294.
+[2] E. Lutw ak and G. Zhang , Blaschke-Santal´ o inequalities, J. Diﬀerential Geom. 47 (1997),
+1-16.
+[3] M. Meyer and E. Werner , On the p-aﬃne surface area. Advances in Math. 152 (2000),
+288-313.
+[4] V.D. Milman and A. Pajor , Isotropic positions and inertia ellipsoids and zonoids of t he
+unit ball of a normed n-dimensional space , GAF A Seminar 87-89, Springer Lecture Notes in
+Math. 1376 (1989), 64-104.
+[5] C. Sch ¨utt and E. Werner , The convex ﬂoating body , Math. Scand. 66 (1990), 275-290.
+[6] C. Sch ¨utt and E. Werner , Surface bodies and p-aﬃne surface area. Advances in Math.
+187 (2004), 98-145.
+Small ball probability estimates, ψ 2-behavior and the hyperplane
+conjecture
+Grigoris Paouris
+(joint work with Nikos Dafnis)
+A convex body K in Rn is called isotropic if it has volume |K| = 1, center of
+mass at the origin, and its inertia matrix is a multiple of the identity. Equ ivalently,
+if there is a constant LK > 0 such that
+∫
+K
+⟨x,θ ⟩2dx =L2
+K
+
+=== PDF PAGE 54 ===
+2904 Oberwolfach Report 53/2009
+for everyθ in the Euclidean unit sphere Sn− 1. A well known open question (known
+as the Hyperplane conjecture or the slicing problem) is the following: There exists
+an absolute constant C >0 such that LK ⩽C for every convex body K. We refer
+to the article [7] of Milman and Pajor for background information abo ut isotropic
+convex bodies. (see also [5]).
+Bourgain proved in [2] that LK ⩽ c 4√ n logn and, a few years ago, Klartag [6]
+obtained the estimate LK ⩽ c 4√ n. The approach of Bourgain in [2] is to reduce
+the problem to the case of convex bodies that satisfy a ψ 2-estimate (with constant
+β =O( 4√ n)). We say that K satisﬁes a ψ 2-estimate with constant β if
+(1) ∥⟨·,y ⟩∥ψ 2 ≤ β ∥⟨·,y ⟩∥2
+for all y ∈ Rn. Bourgain proved in [3] that, if (1) holds true, then
+LK ⩽Cβ logβ.
+The purpose of this paper is to introduce a diﬀerent method which lea ds to up-
+per bounds for LK. We prove that a positive answer to the hyperplane conjecture
+is equivalent to some very strong small probability estimates for the Euclidean
+norm on isotropic convex bodies; for −n<p ⩽ ∞ , p ̸= 0, we deﬁne
+Ip(K) :=
+(∫
+K
+∥x∥p
+2dx
+)1/p
+and, for δ ⩾ 1, we consider the parameter
+q− c(K,δ ) := max {p ⩾ 1 : I2(K) ≤ δI− p(K)}.
+Then, the hyperplane conjecture is equivalent to the following stat ement:
+There exist absolute constantsC,ξ >0 such that, for every isotropic
+convex body K in Rn,
+q− c(K,ξ ) ⩾Cn.
+The main idea in our approach is to start from an extremal isotropic c on-
+vex body K in Rn with maximal isotropic constant LK ≃ Ln := sup {LK :
+K is a convex body in Rn}. Building on ideas from the work [4] of Bourgain,
+Klartag and Milman, we construct a second isotropic convex body K1 which is
+also extremal and, at the same time, is in α -regular M -position in the sense of
+Pisier (see [10]). Then, we use the fact that small ball probability est imates are
+closely related to estimates on covering numbers. This gives the est imate
+LK1I− c n
+(2− α)tα (K1) ⩽Ct√ n,
+for t ⩾ C(α ), where c,C > 0 are absolute constants. The construction of K1
+from K can be done inside any subclass of isotropic log-concave measures w hich
+is stable under the operations of taking marginals or products. This leads us to
+the deﬁnition of a coherent class of probability measures: a subclass U of the class
+of probability measures P is called coherent if it satisﬁes two conditions:
+(1) If µ ∈ U is supported on Rn then, for all k ⩽n andF ∈ Gn,k ,πF (µ) ∈ U .
+(2) If m ∈ N and µi ∈ U , i = 1,...,m , then µ1 ⊗ · · · ⊗ µm ∈ U .
+
+=== PDF PAGE 55 ===
+Convex Geometry and its Applications 2905
+It should be noted that the class of isotropic convex bodies is not co herent. This is
+the reason for working with the more general class of log-concave measures. The
+basic tools that enable us to pass from one language to the other co me from K.
+Ball’s bodies (see [1]). In particular we show that the class of measure s that satisfy
+(1) are coherent.
+Our main result is the following:
+Theorem 1. Let U be a coherent subclass of isotropic log-concave measures and
+let n ⩾ 2 and δ ⩾ 1. Then,
+sup
+µ∈U [n]
+fµ(0)
+1
+n ⩽Cδ sup
+µ∈U [n]
+√
+n
+q− c(µ,δ ) log
+( en
+q− c(µ,δ )
+)
+,
+whereC >0 is an absolute constant and U[n] denotes the subclass of n-dimensional
+measures in U.
+The main results of [8] and [9] show that there exists a parameter q∗ := q∗ (K)
+(related to the Lq–centroid bodies of K) with the following properties: (i) q∗ (K) ⩾
+c√ n, (ii) q− c(K,ξ ) ⩾q∗ (K) for some absolute constant ξ ⩾ 1, and hence, I2(K) ⩽
+ξI− q∗ (K). Moreover if K satisﬁes (1) one has that q∗ (K) ⩾c n
+β 2 , Combining these
+results we immediately deduce two facts:
+(1) If a convex body K satisﬁes a ψ 2-estimate with constant β , then
+LK ⩽Cβ
+√
+logβ.
+(2) For every symmetric isotropic convex body K in Rn,
+LK ⩽C 4√ n
+√
+logn.
+References
+1. K. M. Ball, Logarithmically concave functions and sections of convex s ets in Rn, Studia
+Math. 88 (1988), 69–84.
+2. J. Bourgain, On the distribution of polynomials on high dimensional conv ex sets , Geom.
+Aspects of Funct. Analysis (Lindenstrauss-Milman eds.), L ecture Notes in Math. 1469
+(1991), 127–137.
+3. J. Bourgain, On the isotropy constant problem for ψ 2-bodies, Geom. Aspects of Funct.
+Analysis (Milman-Schechtman eds.), Lecture Notes in Math. 1807 (2003), 114–121.
+4. J. Bourgain, B. Klartag and V. D. Milman, Symmetrization and isotropic constants of
+convex bodies , Geometric Aspects of Functional Analysis, Lecture Notes i n Math. 1850
+(2004), 101–116.
+5. A. Giannopoulos, Notes on isotropic convex bodies , W arsaw University Notes (2003).
+6. B. Klartag, On convex perturbations with a bounded isotropic constant , Geom. and Funct.
+Anal. (GAF A) 16 (2006) 1274–1290.
+7. V.D. Milman and A. Pajor, Isotropic positions and inertia ellipsoids and zonoids of t he unit
+ball of a normed n-dimensional space , GAF A Seminar 87-89, Springer Lecture Notes in
+Math. 1376 (1989), pp. 64–104.
+8. G. Paouris, Concentration of mass on convex bodies , Geom. Funct. Anal. 16 (2006), 1021–
+1049.
+9. G. Paouris, Small ball probability estimates for log–concave measures , Preprint.
+10. G. Pisier, The Volume of Convex Bodies and Banach Space Geometry , Cambridge Tracts
+in Mathematics 94 (1989).
+
+=== PDF PAGE 56 ===
+2906 Oberwolfach Report 53/2009
+Recent Developments on the Polarization Problem
+Gergely Ambrus
+(joint work with Keith Ball)
+The original polarization problem states the following.
+Conjecture 1 (Polarization problem). For any collection u1,...,u n of unit vec-
+tors in a Hilbert space H, there exists a unit vector v ∈ H , such that
+(1)
+n∏
+i=1
+|⟨ui,v ⟩| ≥ n− n/ 2.
+The conjecture originates from the theory of Banach spaces as a variant of the
+polarization inequality. For complex Hilbert spaces, Arias-de-Reyna proved the
+statement in 1998 [2]. Later, K. Ball proved an even stronger resu lt, the com-
+plex plank theorem [3]. However, for real Hilbert spaces, the conje cture is still
+open. Several estimates have been obtained by using various meth ods, for exam-
+ple: using the natural complexiﬁcation of Rn; inequalities about the eigenvalues,
+determinants and permanents of Gram matrices; geometric metho ds.
+In our research, we devote our attention to a stronger conject ure.
+Conjecture 2 (Strong polarization problem). For any set u1,...,u n of unit vec-
+tors in Rd, there exists a unit vector v ∈ Rd, such that
+(2)
+∑ 1
+⟨ui,v ⟩2 ≤ n2.
+The AM-GM inequality immediately shows that this indeed implies the orig-
+inal polarization conjecture. One of the remarkable feature of th is statement is
+the following, pointed out by K. Ball and P. Frenkel. It is conjecture d that the
+only extremal vector system in the real polarization conjecture is the orthonormal
+system consisting of n unit vectors in Rn. Therefore, if the number of vectors
+is larger than the dimension of X, we expect a stronger inequality to hold. The
+simplest example of this phenomenon is obtained when X = R2: If (u1,...,u n) be
+a system of vectors on the unit circle, then, via the connection to t he Chebyshev
+constant, the best constant turns out to be 2 n− 1. This is obtained when the point
+set (u1, −u1,...,u n, −un) is equally distributed on the unit circle. The same ex-
+ample shows as well that the assertion of the aﬃne plank theorem is e ssentially
+sharp, and nothing close to the estimate of the complex plank proble m is true in
+the real setting.
+Considering the real polarization problem, the picture is entirely diﬀe rent. As it
+turns out, the best constant obtained for systems of n vectors on the unit circle is
+the same as the one we get for the n-dimensional orthonormal system! Therefore,
+we “don’t gain anything” by leaving the 2-dimensional space for Rn, although,
+intuitively, one would think that in the latter it is possible to go “much fa rther
+away” from the orthogonal subspaces than in the plane. This rath er remarkable
+
+=== PDF PAGE 57 ===
+Convex Geometry and its Applications 2907
+geometric property was the ﬁrst to suggest that the strong pola rization problem
+is a good deal more natural than its original version, and in some sen se it serves
+as the real analogue of the complex plank problem. We also show that there are
+extremal vector systems of any dimension up to n.
+We present a complex analytic proof for the planar, d = 2 case of the strong
+polarization problem, which appeared in [1]. We start by transforming the function∑1/ ⟨ui,v ⟩2 to a complex rational function deﬁned on the complex unit circle. If
+the set ( ui) is locally extremal with respect to Conjecture 2, then the resultin g
+rational function oscillates in maximal order between 0 and a consta nt. A centered
+shift of such functions is called equioscillating; their characterisation appeared ﬁrst
+in [4]. From this result we deduce that the rational function in questio n has a
+speciﬁc form. After some involved calculations, the comparison of t he leading
+coeﬃcients and the constant terms yields that for any locally extre mal case, the
+sharp estimate in (2) is indeed n2, and hence the result is true, moreover, every
+locally extremal set is extremal as well.
+For the higher dimensional cases, Conjectures 1 and 2 can be tran sformed to
+purely geometric forms, which then can be attacked by convex geo metric tools.
+In particular, using arguments similar to Fritz John’s maximal ellipsoid r esult, we
+proved that the only non-degenerate locally extremal system for both conjectures
+is the orthonormal system. For the lower dimensional extremal ca ses, technical
+diﬃculties arise, and hence the polarization problems are still unsett led.
+References
+[1] G. Ambrus, Analytic and Probabilistic Problems in Discrete Geometry. PhD Thesis, Uni-
+versity College London, 2009, 1–83.
+[2] J. Arias-de-Reyna, Gaussian variables, polynomials and permanents. Linear Algebra Appl.
+285 (1998), 395–408.
+[3] K. M. Ball, The complex plank problem , Bull. London Math. Soc. 33 (2001), 433–442.
+[4] C. Glader and G. H¨ ogn¨ as,An equioscillation characterization of ﬁnite Blaschke pro ducts,
+Complex Variables 42 (2000), 107–118.
+Simplices in the Euclidean ball
+Matthieu Fradelizi
+(joint work with Grigoris Paouris, Carsten Sch¨ utt)
+The starting point of this paper is the article [1], where it was shown th at if all
+the extreme points of a convex body K in Rn have Euclidean norm greater than
+r> 0, then
+(1) 1
+|K|
+∫
+K
+|x|2
+2dx ⩾ r2
+9n
+where |x|2 stands for the Euclidean norm of x and |K| for the volume of K.
+We improve here this inequality showing that the optimal constant is r2
+n + 2 ,
+with equality for the regular simplex, with vertices on the Euclidean sp here of
+
+=== PDF PAGE 58 ===
+2908 Oberwolfach Report 53/2009
+radius r. We also prove the same inequality under the diﬀerent condition that K
+is in L¨ owner position. More generally, we investigate upper and lower bounds on
+the quantity
+(2) C2(K) := 1
+|K|
+∫
+K
+|x|2
+2dx ,
+under various assumptions on the position of K. Some hypotheses on K are
+necessary because C2(K) is not homogeneous, one has C2(λK ) = λ 2C2(K).
+Let n ⩾ 2. We denote by Kn the set of all convex bodies in Rn, i.e. the set of
+compact convex sets with non empty interior and by ∆ n the regular simplex in
+Rn with vertices in Sn− 1, the Euclidean unit sphere. For K ∈ K n, we denote by
+gK, its centroid,
+gK = 1
+|K|
+∫
+K
+xdx.
+Under these notations we prove the following theorem.
+Theorem 1. Let r >0, K ∈ K n such that all its extreme points have Euclidean
+norm greater than r. Then
+C2(K) := 1
+|K|
+∫
+K
+|x|2
+2dx ⩾C2(r∆n) +
+(n + 1
+n + 2
+)
+|gK|22 = r2 + (n + 1)|gK|22
+n + 2 .
+Moreover, if K is a polytope there is equality if and only if K is a simplex with its
+vertices on the Euclidean sphere of radius r.
+In Theorem 1.1, for a general K, we don’t have a characterization of the equality
+case because we deduce it by approximation from the case of polyto pes. We
+conjecture that the equality case is still the same.
+Notice that the condition imposed on K that all its extreme points have Eu-
+clidean norm greater than r is unusual. For example, if K has positive curvature,
+it is equivalent to either K ⊃ rBn
+2 or K ∩ rBn
+2 = ∅. Moreover, this hypothesis
+is not continuous with respect to the Hausdorﬀ distance. Indeed, if we deﬁne
+P = conv (∆n,x ), where x /∈ ∆n is a point very close to the centroid of a facet
+of ∆n then the distance of ∆ n and P is very small but the point x will be an
+extreme point of P of Euclidean norm close to 1 /n , i.e. much smaller than 1, the
+Euclidean norm of the vertices of ∆ n.
+Other conditions on the position of K may be imposed. To state it, let us ﬁrst
+recall the classical deﬁnitions of John and L¨ owner position. Let K ∈ Kn. We say
+that K is in John position if the ellipsoid of maximal volume contained in K is
+Bn
+2 . We say that K is in L¨ owner positionif the ellipsoid of minimal volume that
+containsK is Bn
+2 .
+It was proved by Gu´ edon in [2] (see also [3]) that if K ∈ K n satisﬁes gK = 0
+and if K ∩ (−K) is in L¨ owner position (which is equivalent to say that Bn
+2 is
+the ellipsoid of minimal volume containing K and centered at the origin) then
+C2(K) ≥ C2(∆n). Using the same ideas, we prove the following theorem.
+
+=== PDF PAGE 59 ===
+Convex Geometry and its Applications 2909
+Theorem 2. LetK be a convex body in L¨ owner position. Then
+n
+n + 2 =C2(Bn
+2 ) ≥ C2(K) ≥ C2(∆n) + (n + 1)2
+n(n + 2) |gK|22 = n + (n + 1)2|gK|22
+n(n + 2) .
+Moreover, if K is symmetric, then
+n
+n + 2 =C2(Bn
+2 ) ≥ C2(K) ≥ C2(Bn
+1 ) = 2n
+(n + 1)(n + 2).
+References
+[1] K. B¨ or¨ oczky, K.J. B¨ or¨ oczky, C. Sch¨ utt and G. Wintsche, Convex bodies of minimal volume,
+surface area and mean width with respect to thin shells , Canadian Journal of Mathematics,
+60 (2008), 3–32.
+[2] O. Gu´ edon, Sections euclidiennes des corps convexes et in´ egalit´ es d e concentration volu-
+mique. Th` ese de Doctorat. Universit´ e Marne-la-Vall´ ee, 1998.
+[3] O. Gu´ edon and A. E. Litvak, On the symmetric average of a convex body , To appear in
+Adv. Geom.
+Maximal function for high-dimensional cubes
+Guillaume Aubrun
+Let K ⊂ Rn be a symmetric convex body. The maximal operator associated
+to K, denoted MK, is deﬁned for a positive Borel measure µ on Rn by
+MKµ(x) = sup
+r>0
+µ(x +rK)
+vol(x +rK) (x ∈ Rn).
+The operator MK maps positive measures to positive functions taking possibly
+the value + ∞ . Let Θ( K) be the best constant in the L1 → weakL1 inequality for
+MK. That is, Θ( K) is the smallest constant C so that, for every positive measure
+µ and any A ≥ 0,
+sup
+A>0
+A · vol{MKµ>A } ≤ Cµ(Rn).
+(a standard mollifying arguement shows that one can restrict ones elf to absolutely
+continuous measures, i.e. functions in L1). It turns out that Θ( K) is extremely
+hard to compute exactly. The only known value is for the one-dimens ional case,
+where Θ([ − 1, 1]) = 11+
+√
+61
+12 , a result by Melas [3]. Concerning higher dimensions,
+the following is known ( K denotes a convex body in Rn)
+• A standard application of Vitali’s covering lemma shows that Θ( K) ≤ 3n.
+• An argument by Stein and Str¨ omberg [5] shows that Θ(K) ≤ Cn logn for
+some absolute constant C. This argument can be seen as a randomized
+version of Vitali’s lemma (see [4]).
+• For the Euclidean ball, it is known that Θ( Bn
+2 ) ≤ Cn for some absolute
+constant C [5]. This is the only case where an upper bound better that
+Cn logn is known.
+
+=== PDF PAGE 60 ===
+2910 Oberwolfach Report 53/2009
+A recent breakthrough was achieved by Aldaz [1] who proved that t he sequence
+Θ([− 1, 1]n) is unbounded. The goal of my talk was to present a simpliﬁed version
+of Aldaz’s proof, using accurate probabilistic tools. This approach a llows also to
+derive a lower bound Θ([ − 1, 1]n) ≥ (log(n))1− o(1). Note that this lower bound is
+still far from the upper bound O(n logn).
+Let us sketch our approach (we refer to [2] for details). We relate the problem to
+couting integer points in high-dimensional cubes. Denote Q(x,r ) = x +r[− 1, 1]n.
+ForA> 0, let EA ⊂ [0, 1]n be the following set:
+EA = {x ∈ [0, 1]n s.t. ∃r> 0 s.t. #( Q(x,r ) ∩ Zn) ≥ A volQ(x,r )}.
+The key point is the following
+Proposition. For any A > 0, the set EA occupies almost all [0 , 1]n when the
+dimension is large. That is, vol( EA) = 1 − o(1) as n tends to inﬁnity. More
+precisely, we have vol(E(logn)η ) = 1 − o(1) for any η <1.
+It is straightforward to deduce from this the lower estimates for Θ ([− 1, 1]n):
+one chooses as a measure the counting measure on a large box inside Zn and uses
+the fact that for very large cubes, the number of integer points p er unit volume is
+close to 1, so that large values of r can be discarded.
+Let us give some examples to understand the structure of EA
+• The vertices of [0 , 1]n belong to EA for any A> 0 (take r = 0).
+• The point ( 1
+2,..., 1
+2 ) belongs to E2n (taker = 1/ 2).
+• One checks that the point (0 , 1
+n, 2
+n,..., n− 1
+n ) does not belong to E10.
+These examples suggest that belonging to EA for some large A is related to the
+irregularity of distributions of coordinates. This is indeed the case, but it may be
+surprising to notice that one has to consider cubes of large radius ( of order of √ n
+in Rn).
+Lemma 1. There is an absolute constant C so that the following holds for any
+K ≥ 1. Let x ∈ [0, 1]n and assume that, for some t ∈ [CK 2
+n , 1 − CK 2
+n ], the
+number of coordinates of x inside [ 1− t
+2 , 1+t
+2 ] exceeds nt +K
+√
+nt(1 − t) (that is,
+exceeds the average by more than K standard deviations). Then x ∈ EA for
+A = exp(K 2/ 2. 01).
+We now use a fact from statistics: with large probability a random poin t of
+[0, 1]n will satisfy the hypothesis of the lemma for some value of t when n be-
+comes large. The can be shown using Donsker’s theorem asserting t hat ﬂuctations
+around the cumulative distribution functions are asymptotatically d escribed by a
+Brownian bridge. The phenomenon can be made quantitative by invok ing the law
+of the iterated logarithm.
+Lemma 2. For any c > 0 the following holds. If ( Xi)1≤ i≤ n are i.i.d. random
+variables uniformly distributed on [0, 1], then with probability larger than 1 − o(1),
+there exists t ∈ [c
+n, 1 − c
+n ] so that
+#
+{
+i s.t. Xi ∈
+[ 1 − t
+2 , 1 +t
+2
+]}
+≥ nt +
+√
+1. 99 log logn
+√
+nt(1 − t).
+
+=== PDF PAGE 61 ===
+Convex Geometry and its Applications 2911
+Up to smaller order errors, we may apply Lemma 1 with K = √ 1. 99 log logn,
+giving that most points from the cube belong to EA for A = exp(K 2/ 2. 01) ≈
+(logn)0. 99.
+A very challenging open problem is the case of Euclidean balls instead of cubes:
+Is the sequence Θ(Bn
+2 ) bounded ? I don’t know whether a similar approach works.
+Here is a precise formulation:
+Question. Denote B(x,r ) = x +rBn
+2 . For A > 0, let ˜EA ⊂ [0, 1]n be the
+following set:
+˜EA = {x ∈ [0, 1]n s.t. ∃r> 0 s.t. #( B(x,r ) ∩ Zn) ≥ A volB(x,r )}.
+Is it true that for any A> 0, vol( ˜EA) = 1 − o(1) when n tends to inﬁnity ?
+References
+[1] J.M. Aldaz, The weak type (1, 1) bounds for the maximal function associated to cubes grow
+to inﬁnity with the dimension , preprint, arXiv:0805.1565
+[2] G. Aubrun, Maximal inequality for high-dimensional cubes , Conﬂuentes Mathematici 1
+(2009), 169–179.
+[3] A.D. Melas, The best constant for the centered Hardy-Littlewood maxima l inequality , Ann.
+of Math. (2) 157 (2003), no.2 , 647–688.
+[4] A. Naor and T. Tao, Title: Random Martingales and localization of maximal ineq ualities,
+preprint, arXiv:0912.1140
+[5] E.M. Stein and J.-O. Str¨ omberg, Behavior of maximal functions in Rn for large n, Ark.
+Mat. 21 (1983), no. 2, 259–269.
+A remark on the Mahler conjecture: local minimality of the un it cube
+Dmitry Ryabogin
+(joint work with F. Nazarov, F. Petrov, A. Zvavitch)
+In 1939 Mahler [Ma] asked the following question. Let K ⊂ Rn, n ≥ 2, be a
+convex origin-symmetric body and let
+K ∗ := {ξ ∈ Rn :x ·ξ ≤ 1 ∀x ∈ K}
+be its polar body. Deﬁne P(K) = vol n(K)voln(K ∗ ). Is it true that we always
+have
+P(K) ≥ P (Bn
+∞ ),
+where Bn
+∞ = {x ∈ Rn : |xi| ≤ 1, 1 ≤ i ≤ n}?
+Mahler himself proved in [Ma] that the answer is aﬃrmative when n = 2. There
+are several other proofs of the two-dimensional result, see for example the proof of
+M. Meyer, [Me2], but the question is still open even in the three-dimen sional case.
+In the n-dimensional case, the conjecture has been veriﬁed for some spe cial
+classes of bodies, namely, for bodies that are unit balls of Banach sp aces with
+1-unconditional bases, [SR], [R2], [Me1], and for zonoids, [R1], [GMR].
+Bourgain and Milman [BM] (see also [Pi]) proved the inequality
+P(K)1/n ≥ cP(Bn
+∞ )1/n ,
+
+=== PDF PAGE 62 ===
+2912 Oberwolfach Report 53/2009
+with some constant c> 0 independent of n. The best known constant c =π/ 4 is
+due to Kuperberg [Ku].
+Note that the exact upper bound for P(K) is known:
+P(K) ≤ P (Bn
+2 ),
+where Bn
+2 is the n-dimensional Euclidean unit ball. This bound was proved by
+Santalo [Sa]. In [Pe] and [MeP] it was shown that the equality holds only if K is
+an ellipsoid.
+Let dBM (K,L ) = inf {b/a : ∃T ∈ GL(n) such that aK ⊆ TL ⊆ bK} be the
+Banach-Mazur multiplicative distance between bodies K,L ⊂ Rn. In this talk I
+will present the following result.
+Theorem. LetK ⊂ Rn be an origin-symmetric convex body. Then
+P(K) ≥ P (Bn
+∞ ),
+provided that dBM (K,Bn
+∞ ) ≤ 1 +δ, and δ =δ(n)> 0 is small enough. Moreover,
+the equality holds only if dBM (K,Bn
+∞ ) = 1 , i.e., if K is a parallelepiped.
+The ﬁrst diﬃculty in proving local minimality of the unit cube is that ther e
+are plenty of small perturbations with the same volume product, na mely all close
+parallelepipeds. We overcome this diﬃculty by choosing a “canonical r epresenta-
+tive” in each class of aﬃnely equivalent convex bodies. More precisely , we consider
+only the bodies K for which the unit cube is a parallelepiped of the least volume
+containingK. In addition to taking care of all close parallelepipeds, it allows us to
+ﬁx 2n points on the boundary of K andK ∗ (the centers of the (n − 1)-dimensional
+faces of Bn
+∞ ). Our next step is to choose several additional points on the boun dary
+ofK andK ∗ and to construct two (not necessarily convex) polytopes P ⊂ K and
+Q ⊂ K ∗ such that
+voln(P )voln(Q) ≥ P (Bn
+∞ ) − Cδ2,
+where δ is the least positive number for which (1 − δ)Bn
+∞ ⊂ K. We conclude
+that Bn
+∞ is a lower semi-stationary point for the volume product functional P.
+This means that the perturbation of Bn
+∞ byδ in the Banach-Mazur distance may
+result in decreasing the product volume only by δ2, i.e., in the second order rather
+than in the ﬁrst. Our last step is to show that either K contains a point outside
+(1 +cδ)P orK ∗ contains a point outside (1 + cδ)Q for some small positive c. This
+allows us to conclude that P(K) exceeds vol n(P )voln(Q) by at least cδ and get
+the ﬁnal estimate
+P(K) ≥ P (Bn
+∞ ) +cδ − Cδ2
+from which the strict local minimality follows.
+References
+[BM] J. Bourgain, V. D. Milman, New volume ratio properties for convex symmetric bodies
+in Rn. Invent. Math. 88, no. 2 (1987) 319-340.
+[Gr] B. Grunbaum , Convex Polytopes . Graduate Texts in mathematics, 221, Springer, 2003.
+[GMR] Y. Gordon, M. Meyer and S. Reisner , Zonoids with minimal volume–product - a new
+proof. Proceedings of the American Math. Soc. 104 (1988), 273–276 .
+
+=== PDF PAGE 63 ===
+Convex Geometry and its Applications 2913
+[Ku] G. Kuperberg , From the Mahler Conjecture to Gauss Linking Integrals. Geometric And
+Functional Analysis, 18/ 3, (2008), 870-892.
+[Ma] K. Mahler, Ein Ubertragungsprinzip fur konvexe Korper. Casopis Pyest . Mat. Fys. 68,
+(1939). 93–102.
+[Me1] M. Meyer, Une caracterisation volumique de certains espaces normes d e dimension ﬁnie .
+Israel J. Math. 55 (1986), no. 3, 317-326.
+[Me2] M. Meyer, Convex bodies with minimal volume product in R2. Monatsh. Math. 112
+(1991), 297–301.
+[MeP] M. Meyer and A. Pajor, On Santalo inequality . Geometric aspects of functional analysis
+(1987–88), Lecture Notes in Math., 1376, Springer, Berlin, (1989) 261–263.
+[Pe] C. M. Petty, Aﬃne isoperimetric problems . Discrete geometry and convexity (New York,
+1982), 113–127, Ann. New York Acad. Sci., 440, New York Acad. Sci., New York, 1985.
+[Pi] G. Pisier, The volume of convex bodies and Banach space geometry . Cambridge Tracts in
+Mathematics, 94. Cambridge University Press, Cambridge, 1 989.
+[R1] S. Reisner, Zonoids with minimal volume–product . Math. Zeitschrift 192 (1986), 339–346.
+[R2] S. Reisner, Minimal volume product in Banach spaces with a 1-unconditio nal basis . J.
+London Math. Soc. 36 (1987), 126–136.
+[Sa] L. A. Santalo, An aﬃne invariant for convex bodies of n-dimensional space . (Spanish)
+Portugaliae Math. 8, (1949). 155–161.
+[SR] J. Saint Raymond, Sur le volume des corps convexes sym etriques . Seminaire d’initiation
+‘a l’Analyse, 1980/1981, Publ. Math. Univ. Pierre et Marie C urie, Paris, 1981.
+The Nazarov proof of the Bourgain-Milman theorem
+Dmitry Ryabogin
+Recently Fedor Nazarov gave a new complex-analytic proof of the B ourgain-
+Milman estimate
+vn(K)vn(K ◦ ) ≥ cn 4n
+n!
+where K is an origin-symmetric bounded convex body in Rn, K ◦ = {t ∈ Rn :
+⟨x,t ⟩ ≤ 1} is its polar body, vn stands for the n-dimensional volume measure in
+Rn, and c> 0 is a numeric constant (see [BM]).
+The best value of c he could get on this way is
+(π
+4
+)3
+. The current record c = π
+4
+is due to Kuperberg [Ku].
+In this talk I will present some ideas of Nazarov’s work. Fedor start s with
+recasting the question into the language of Hilbert spaces of analyt ic functions of
+several complex variables. He uses the Paley-Wiener theorem, whic h asserts that
+the following two classes of functions are the same:
+(1) The class of all entire ﬁnctions f : Cn → C of ﬁnite exponential type (i.e.,
+satisfying the bound f (z) ≤ CeC|z| for all z ∈ Cn with some C >0) such
+that their restriction to Rn belongs to L2 and such that |f (iy)| ≤ Ceρ K (y)
+with some C >0 for all y ∈ Rn where ρK(x) = inf {β >0 : x ∈ βK }.
+(2) The class of the Fourier transforms f (z) =
+∫
+K ◦ g(t)e− i⟨z,t ⟩dvn(t) of L2-
+functions g supported on K ◦.
+The class given by any of these conditions is denoted by PW( K). If f ∈ PW(K)
+is the Fourier transform of g, then, by Plancherel’s formula,
+∥f ∥2
+L2(Rn) = (2π )n∥g∥2
+L2(K ◦ ).
+
+=== PDF PAGE 64 ===
+2914 Oberwolfach Report 53/2009
+Now, using the Cauchy-Schwarz inequality, he has
+|f (0)|2 =
+⏐
+⏐
+⏐
+∫
+K ◦
+gdvn
+⏐
+⏐
+⏐
+2
+≤ vn(K ◦ )∥g∥2
+L2(K ◦ ) = 1
+(2π )nvn(K ◦ )∥f ∥2
+L2(Rn),
+and one can observe that the equality sign is attained when g = 1 in K ◦. Thus,
+vn(K ◦ ) = (2π )n sup
+f ∈ PW(K)
+|f (0)|2 · ∥f ∥− 2
+L2(Rn).
+Since the quantity on the right does not include any metric characte ristics of the
+polar body K ◦ we see that the problem of proving a lower bound for vn(K ◦)
+has been thus transformed into the problem of ﬁnding an example of an entire
+function f ∈ PW(K) that has not too small value at the origin and not too large
+L2(Rn)-norm.
+The construction of fast decaying on Rn analytic functions of several complex
+variables is quite a non-trivial task by itself and Nazarov’s approach would look
+rather hopeless if not for the remarkable theorem of H¨ ormander that allows one to
+conjure up such functions in Bergman type spaces L2(Cn,e − ϕ dv2n) with plurisub-
+harmonic ϕ .
+To use the Theorem of H¨ ormander Nazarov approximates the Pale y-Wiener
+space by some weighted Bergman space with a H¨ ormander type weig ht and then
+he carries out the relevant computations at that space.
+Finally Nazarov notes that there may be no ideal approximation of th e Paley-
+Wiener space by a Bergman-H¨ ormander one and, in order to get th e Mahler con-
+jecture itself on this way, one would have to work directly with the Pa ley-Wiener
+space by either ﬁnding a good analogue of the H¨ ormander theorem allowing to
+control the Paley-Wiener norm of the solution, or by ﬁnding some no vel way to
+construct decaying analytic functions of several variables.
+References
+[B] K. Ball, Flavors of geometry , MSRI publications, vol. 31 (1997), edited by Silvio Levy,
+Cambridge university press.
+[BM] J. Bourgain and V. D. Milman, New volume ratio properties for convex symmetric bodies
+in Rn, Invent.Math. vol. 88 (1987), no. 2, pp. 319–340.
+[Ho1] L. H¨ ormander,L2 estimates and existence theorems for the ¯∂ operator, Acta Math. vol.
+113 (1965), pp. 89–152
+[Ho2] L. H¨ ormander, A history of existence theorems for the Cauchy-Riemann comp lex in L2
+spaces, Journal of Geometric Analysis, vol. 13 (2003), no. 2, pp. 32 9–357.
+[Hs] C.-I. Hsin, The Bergman kernel on tube domains , Rev. Uni´ on Mat. Argentina vol. 46 (2005),
+no. 1, pp. 23–29.
+[Ku] G. Kuperberg, From the Mahler Conjecture to Gauss Linking Integrals , GAF A, vol. 18
+(2008), pp. 870–892.
+[Ko] A. Kor´ anyi, The Bergman kernel function for tubes over convex cones , Paciﬁc J. Math.,
+vol. 12 (1962), no. 4, pp. 1355–1359.
+[R] O. S. Rothaus, Domains of Positivity , Abh. Math. Semin. Hamburg, vol. 24 (1960), pp.
+189–235.
+
+=== PDF PAGE 65 ===
+Convex Geometry and its Applications 2915
+Jarn ´ ık’s convex lattice polygon for non-symmetric norms
+Imre B ´ar´any
+(joint work with Nathanael Enriquez)
+What is the minimal perimeter Ln that a convex lattice polygon with n vertices
+can have? In 1926 Jarn ´ ık [2] proved that Ln =
+√
+6π
+9 n3/ 2 +O(n3/ 4). The target
+here is to extend this result to all, not necessarily symmetric, norms in the plane.
+As usual, such a norm is deﬁned by a convex compact set D ⊂ R containing 0 in
+its interior, and the norm of x ∈ R is
+||x||= ||x||D = min{t ≥ 0 : x ∈ tD}.
+As usual let Z2 be the lattice of integer points in R, and write Pn (n ≥ 3) for the
+set of all convex lattice n-gons in R, that is, P ∈ Pn ifP = conv {z1,...,z n} where
+z1,...,z n ∈ Z2 are the vertices, in anticlockwise order, of P . The D-perimeter of
+P is deﬁned by
+PerP = PerDP =
+n∑
+i=1
+||zi+1 − zi||D
+where zn+1 =z1 by convention. Deﬁne
+Ln =Ln(D) = min {PerDP :P ∈ Pn}
+In the talk we describe the asymptotic behaviour of Ln(D) for all norms. It is
+also shown that, after suitable scaling, the minimizing polygons have a limiting
+shape. To state the results we need some preparations.
+Assume that the vertices of a minimizer Pn ∈ Pn arez1,...,z n in anticlockwise
+order (which is the orientation giving the minimal D-perimeter). Then En =
+{z2 − z1,...,z n − zn− 1,z 1 − zn} is the edge set of Pn. Deﬁne Cn = convEn. It is
+clear that En determines Pn uniquely (up to translation). It is also clear that En
+contains only primitive vectors, that is, z = (x,y ) ∈ En implies that x andy have
+no common divisor. Equally easy is to check that Ln ≤ Ln+1.
+We assume that Area D = 1. For convex sets K,L ⊂ R , dist (K,L ) denotes
+their Hausdorﬀ distance. Here come our main results.
+Theorem 1. Under the above conditions there is a unique convex set C ⊂ R
+such that lim dist ((AreaCn)− 1/ 2Cn,C ) = 0 . Moreover, AreaC = 1,g(C) = 0 and
+limn− 3/ 2Ln(D) exists and equals
+α (D) = π
+√
+6
+∫
+C
+||x||dx.
+Theorem 2. There is a convex set P ⊂ R such that the following holds. Let Pn be
+an arbitrary sequence of minimizers for Ln(D) translated so that min{x : (x,y ) ∈
+Pn} is reached at the origin. Then lim dist (n− 3/ 2Pn,P ) = 0 .
+
+=== PDF PAGE 66 ===
+2916 Oberwolfach Report 53/2009
+The uniqueness part of Theorem 1 is proved by considering the follow ing varia-
+tional problem, to be called VP (r0). Deﬁne F as the set of all positive continuous
+functions r : [0, 2π ] → R+ with r(0) = r(2π ). Such a function is the radial func-
+tion of a starshaped set in R; such a set contains the origin in its interior and
+the half-line starting at the origin in direction u(t) = (cos t, sint) intersects its
+boundary at a single point which is at distance r(t) from the origin. Every convex
+compact set K ⊂ R with 0 ∈ intK is, of course, starshaped. We denote by F c the
+set of the radial function of such convex compact sets.
+Let r0 ∈ Fc be the radial function of D. Here comes the variational problem
+VP (r0). We seek a radial function r ∈ F that minimizes
+∫ 2π
+0
+r3(t)/r 0(t)dt
+subject to
+∫ 2π
+0
+r3(t) costdt = 0,
+∫ 2π
+0
+r3(t) sintdt = 0,
+and 1
+2
+∫ 2π
+0
+r2(t)dt = 1.
+Assume r(t) is the radial function of a convex (or starshaped) compact set
+K ⊂ R . Then the ﬁrst condition says that the centre of gravity, g(K), of K is
+at the origin, and the second condition says that Area K = 1. The connection
+betweenLn and VP (r0) is given by
+Lemma 1. Assume K ⊂ R starshaped with AreaK = 1 , g(K) = 0 . Then
+the radial function of K, r, is a feasible solution to VP (r0). Moreover, there is
+Qn ∈ Pn (for every n ≥ 3) with
+limn− 3/ 2PerQn = π√
+6
+∫
+K
+∥z∥dz = π
+3
+√
+6
+∫ 2π
+0
+r3(t)
+r0(t)dt.
+The last identity follows from a simple integral transformation. Using the results
+concerning Ln we prove the following.
+Theorem 3. There is a unique solution r ∈ F to the variational problem. It is
+the radial function of the convex compact set C from Theorem 2. Moreover,
+1
+r = a
+r0
++b cost +c sint
+with unique a> 0, b,c ∈ R that satisfy the constraints of VP (r0).
+The main ingredient of the proof of the existence of C in Theorem 2 is the fact
+that almost all primitive points in Cn belong to En. More precisely the following
+holds.
+Lemma 2. For every ε >0 there is n0 = n0(ε,D ) such that for all n ≥ n0,
+every primitive point in (1 − ε)Cn belongs to En.
+Another important fact is the following:
+
+=== PDF PAGE 67 ===
+Convex Geometry and its Applications 2917
+Lemma 3. There are positive numbers r and R (depending only on D) such
+that for all n ≥ 3
+rB ⊂ (AreaCn)− 1/ 2Cn ⊂ RB.
+For the proof of the main theorems one establishes ﬁrst that lim inf n− 3/ 2Ln
+exists and equals a positive number, say α . The Blaschke selection theorem gives
+then a sequence of integers, n1<n 2<... , such that (Area Cnk )− 1/ 2Cnk tends to
+a ﬁxed convex set C and, further, that lim n− 3/ 2
+k Lnk = α . One checks next that
+the radial function of C is an optimal solution to VP (r0) with π√
+6
+∫
+c ||z||dz = α .
+It follows follows from Lemma 1 then that lim n− 3/ 2Ln =α .
+Once the existence of an optimal solution r to VP (r0) is established, the nec-
+essary conditions of optimality imply the equation in Theorem 3. Luckily , r is
+(almost) diﬀerentiable because it is the radial function of the conve x set C. To
+prove uniqueness further ideas are needed. Details can be found in [1].
+References
+[1] I. B´ ar´ any, N. Enriquez,Jarn ´ ık’s convex latticen-gon for non-symmetric norms , manuscript
+(2009), see also arXiv:0911.4361.
+[2] V. Jarn ´ ık, ¨Uber Gitterpunkte in konvexen Kurven , Math. Zeitschrift, 24 (1926), 500–518.
+V olume entropy of Hilbert geometries
+Gautier Berck
+(joint work with A. Bernig, C. Vernicos)
+Hilbert geometries are particularly simple examples of metric spaces d eﬁned on
+the interior of a convex set. Their construction mimics the Klein mode l of the
+hyperbolic space which is recovered provided the convex set is an ellis poid. Since
+the distance function is deﬁned using the cross-ratio only, projec tive maps between
+convex sets are isometries.
+The volume entropy of those geometries is a projective invariant wh ich was
+thought to be maximized by ellispoids. Together with A. Bernig and C. V ernicos,
+we proved this for the 2-dimensional case. The result for arbitrar y dimensions was
+however obtained only under quite restrictive assumptions on the s moothness of
+the boundary of the convex set. To achieve this, we designed a new projective
+invariant of pointed convex bodies that is very similar to the centro- aﬃne area.
+
+=== PDF PAGE 68 ===
+2918 Oberwolfach Report 53/2009
+Random embedding from ℓn
+p intoℓN
+1
+Olivier Gu ´
+edon
+(joint work with Omer Friedland)
+A famous result of Dvoretzky [1] tells that ℓn
+2 is uniformly represented in any
+inﬁnite dimensional Banach space X, which means that for any ε > 0 and any
+integer n, ℓn
+2
+1+ε
+֒→X. For any 1 ≤ p < 2, even if it is impossible to embed ℓn
+p
+uniformly in any Banach space, Maurey and Pisier [11] proved that ℓn
+p is uniformly
+represented in a Banach space X if and only if X is not of stable-type p. It is
+possible to quantify these results when X is of ﬁnite dimension. Milman [12] proved
+that ifE is a normed space of dimension N , then for any ε ∈ (0, 1],ℓn
+2
+1+ε
+֒→E, where
+n depends only on ε and on a geometric parameter associated to E. If it is applied
+in the case of E = ℓN
+1 , it tells that for any ε >0, ℓn
+2
+1+ε
+֒→ℓ N
+1 , where N = C(ε)n
+and C(ε) is a function depending only on ε. Johnson and Schechtman [6] proved
+that for any 0 < r ≤ 1 and 0 < r < p <2, for any ε ∈ (0, 1], ℓn
+p
+1+ε
+֒→ℓ N
+r , where
+N =C(ε)n. Later, Pisier [14] gave a diﬀerent proof and extended their result to
+the case of general ﬁnite dimensional normed space E of dimension N , proving
+that for any ε >0, ℓn
+p
+1+ε
+֒→E, where n depends only on ε and on the stable-type
+constant of E. All these proofs are random, typically for Euclidean subspaces, it
+is possible to use matrices deﬁned by Gaussian vectors, while for ℓn
+p subspaces, the
+matrices are more complicated and deﬁned by ”approximating” p-stable vectors,
+for which there is no hope to get good properties of concentration around their
+mean. However, even if ε is taken the largest possible, say equal to 1, it is not
+possible to deduce the existence of an operator of rank say [ N/ 2] satisfying the
+desired property. In the Euclidean case, this is a theorem of Kashin [9] who proved
+that for any η >0, for any integer n, ℓn
+2
+C(η )
+֒→ℓ N
+1 , where N = [(1 + η)n] and C(η)
+depends only on η. This result was generalized to the case of normed spaces with
+bounded volume ratio by Szarek [18], Szarek and Tomczak-Jaegerm ann [19].
+The main subject of the talk is to present a Kashin-type theorem fo r embedding
+from ℓn
+p into ℓN
+r , where 0 < r≤ 1, 0 < r < p <2, N = (1 + η)n and η >0. In
+the case r = 1, Naor and Zvavitch [13] proved that for any η ∈ (0, 1) ℓn
+p
+C(logn,η )
+֒→
+ℓ1+η )n
+1 , where C(logn,η ) = (c logn)(1− 1
+p )(1+ 1
+η ). It is important to note that they
+provide an explicit deﬁnition of a random operator, which satisﬁes th e desired
+property. Slightly after, Johnson and Schechtman [7] proved the existence of an
+operator T : ℓn
+p → ℓ(1+η )n
+1 , such that ∥T ∥∥T − 1
+|ImT ∥ ≤ C(η). However, the proof
+depends heavily on the Elton [2] theorem, which is valid only in ℓN
+1 and doesn’t
+give any explicit construction of the operator T .
+Our result asserts that for any 0 < r < p <2, with r ≤ 1, ℓn
+p
+C(η )
+֒→ℓ N
+r , where
+N = [(1 + η)n] and C(η) depends only on p,r and η. Surprisingly, the random
+operator that satisﬁes the desired conclusion is already deﬁned in P isier [14], for
+
+=== PDF PAGE 69 ===
+Convex Geometry and its Applications 2919
+the almost isometric result. It solves completely the question of ext ending the
+theorem of [6] to a Kashin-type setting.
+The proof is based on a splitting of the unit sphere of ℓn
+p into subsets. In the
+case p = 2, this idea appeared in [10, 17], and was deeply developed in [R, 4]
+to study the smallest singular value of some random operators. In a ny case, the
+main result concerns the study of a new type of small ball estimate. For a real
+random variable, it is common to use an inequality due to Esseen [3]. Sev eral
+multi-dimensional versions of this result are known (see [5, 4, 4]). Ho wever, in our
+situation, none of them seemed to be adapted. Another type of mu ltidimensional
+Esseen-type inequality is at the heart of our proof.
+References
+[1] Dvoretzky, A. Some results on convex bodies and Banach spaces . 1961 Proc. Internat. Sym-
+pos. Linear Spaces (Jerusalem, 1960) pp. 123-160 Jerusalem Academic Press, Jerusalem;
+Pergamon, Oxford.
+[2] Elton, J. Sign-embeddings of ln
+1 . Trans. Amer. Math. Soc. 279 (1983), no. 1, 113-124.
+[3] Esseen, C. G. On the concentration function of a sum of independent random variables. Z.
+W ahrscheinlichkeitstheorie und Verw. Gebiete 9 (1968), 29 0-308.
+[4] Friedland, O.; Sodin, S. Bounds on the concentration function in terms of the Diophan tine
+approximation. C. R. Math. Acad. Sci. Paris 345 (2007), no. 9, 513-518.
+[5] Hal´ asz, G. Estimates for the concentration function of combinatorial number theory and
+probability. Period. Math. Hungar. 8 (1977), no. 3-4, 197-211
+[6] Johnson, W. B.; Schechtman, G. Embedding lm
+p into ln
+1 . Acta Math. 149 (1982), no. 1-2,
+71-85.
+[7] Johnson, W. B.; Schechtman, G. Very tight embeddings of subspaces of Lp, 1 ≤p< 2, into
+ln
+p . Geom. Funct. Anal. 13 (2003), no. 4, 845-851.
+[8] Johnson, W. B.; Schechtman, G. Finite dimensional subspaces of Lp. Handbook of the
+geometry of Banach spaces, Vol. I, 837-870, North-Holland, Amsterdam, 2001.
+[9] Kashin, B. S. The widths of certain ﬁnite-dimensional sets and classes of smooth functions.
+(Russian) Izv. Akad. Nauk SSSR Ser. Mat. 41 (1977), no. 2, 334 -351, 478.
+[10] Litvak A. E.; Pajor A.; Rudelson M.; Tomczak-Jaegerman n N. Smallest singular value of
+random matrices and geometry of random polytopes . Adv. Math. 195 (2005), 491-523. .
+[11] Maurey, B.; Pisier, G. S´ eries de variables al´ eatoires vectorielles ind´ ependantes et propri´ et´ es
+g´ eom´ etriques des espaces de Banach. (French) Studia Math. 58 (1976), no. 1, 45-90.
+[12] Milman, V. D. A new proof of A. Dvoretzky’s theorem on cross-sections of co nvex bodies .
+(Russian) Funkcional. Anal. i Prilozen. 5 (1971), no. 4, 28- 37.
+[13] Naor, A.; Zvavitch, A. Isomorphic embedding of ln
+p , 1<p< 2, into l(1+ǫ)n
+1 . Israel J. Math.
+122 (2001), 371-380.
+[14] Pisier, G. On the dimension of the ln
+p -subspaces of Banach spaces, for 1 ≤ p < 2. Trans.
+Amer. Math. Soc. 276 (1983), no. 1, 201-211.
+[15] Rudelson, M. Invertibility of random matrices: norm of the inverse . Ann. of Math., 168
+(2008), 575-600
+[16] Rudelson, M.; Vershynin, R. The smallest singular value of a random rectangular matrix .
+To appear in Communications on Pure and Applied Mathematics .
+[17] Schechtman, G. Special orthogonal splittings of L2k
+1 . Israel J. Math. 189 (2004). 33-347.
+[18] Szarek, S. On Kashin ’s almost Euclidean orthogonal decomposition of l1
+n. Bull. Acad. Polon.
+Sci. S´ er. Sci. Math. Astronom. Phys. 26 (1978), no. 8, 691-6 94.
+[19] Szarek, S.; Tomczak-Jaegermann, N. On nearly Euclidean decomposition for some classes
+of Banach spaces . Compositio Math. 40 (1980), no. 3, 367-385.
+
+=== PDF PAGE 70 ===
+2920 Oberwolfach Report 53/2009
+A characterization of the mixed volume
+Rolf Schneider
+(joint work with Vitali Milman)
+The mixed volume V : (Kn)n → R is the unique symmetric function for which
+|λ 1K1 + · · · +λmKm|=
+∑
+1≤ i1,...,i n≤ m
+λi1 · · ·λinV (Ki1,...,K in)
+for m ∈ N, K1,...,K m ∈ K n, λ 1,...,λ m ≥ 0; here Kn is the space of convex
+bodies in Euclidean space Rn and | · | denotes the volume. The mixed volume
+is a central notion of the Brunn–Minkowski theory of convex bodie s; see [2], for
+example. While recent years have seen many new characterizations of the geo-
+metrically most signiﬁcant valuations on convex bodies, it is surprising that no
+axiomatic approach to the mixed volume has been suggested. Motiva ted by an
+attempt to extend the mixed volume to log-concave measures, we h ave become
+interested in characterizing the mixed volume by some of its function al properties,
+not taking recourse to the notion of volume. The following propertie s of a func-
+tion F : ( Kn)n → R, which are shared by the mixed volume, are certainly good
+candidates for ﬁguring in a characterization.
+(P1) F is Minkowski additive in each variable.
+(P2) F is increasing in each variable.
+(P3) F is symmetric.
+However, several diﬀerent classes of functions F : ( Kn)n → R can be con-
+structed which have these properties but are far from the mixed v olume. What
+is missing, seems to be some assumption which ties the variables of the function
+closer together. In this direction, we have tested the following con dition.
+(P4) If the n-tuple (K1,...,K n) of convex bodies is degenerate, which means that
+there are no segments Si ⊂ Ki, i = 1,...,n , with linearly independent directions,
+then F (K1,...,K n) = 0.
+If we restrict ourselves to the space Kn
+s of centrally symmetric convex bodies,
+then these conditions lead to a complete characterization of the mix ed volume; it
+is even possible to omit the symmetry condition (P3).
+Theorem 1. If the function F : (Kn
+s )n → R satisﬁes (P1), (P2), (P4), then
+F (K1,...,K n) = aV (K1,...,K n) for K1,...,K n ∈ Kn
+s,
+with a constant a ≥ 0.
+For non-symmetric bodies, this result cannot hold, because condit ion (P4) does
+not distinguish between a convex body K and its reﬂected image −K. In fact,
+if F (K1,...,K n) is deﬁned as a linear combination, with constant coeﬃcients, of
+V (±K1,..., ±Kn), then F satisﬁes (P1), (P2), (P4). One may conjecture that
+the converse is also true, but so far we can prove this only for n = 2.
+
+=== PDF PAGE 71 ===
+Convex Geometry and its Applications 2921
+Theorem 2. If F : (K2)2 → R satisﬁes (P1), (P2), (P4), then
+F (A,B ) = aV (A,αB − (1 − α )B)
+for A,B ∈ K 2, with constants a ≥ 0 and α ∈ [0, 1].
+For the proof of Theorem 2, we ﬁrst employ a result of Firey [1] to co nstruct
+a map T : K2 → K 2 with the property that F (A,B ) = V (A,TB ) for A,B ∈ K 2.
+From the properties of F we then deduce, with the aid of results of Weil [3], some
+properties of the map T , for example, that it is Minkowski additive and increasing.
+From Theorem 1 we conclude that on centrally symmetric convex bod ies the map
+T acts as a homothety. An investigation of the eﬀect of T on triangles ﬁnally
+yields the assertion.
+Modiﬁed assumptions, which would yield higher-dimensional versions o f Theo-
+rem 2, are still under investigation.
+References
+[1] W.J. Firey, A functional characterization of certain mixed volumes , Israel J. Math. 24
+(1976), 274–281.
+[2] R. Schneider, Convex Bodies: the Brunn–Minkowski Theory , Cambridge University Press,
+1993.
+[3] W. W eil, Decomposition of convex bodies , Mathematika 21 (1974), 19–25.
+Reporter: Eugenia Saor ´ ın
+
+=== PDF PAGE 72 ===
+2922 Oberwolfach Report 53/2009
+Participants
+Prof. Dr. David Alonso-Gutierrez
+Depto. de Matematicas
+Universidad de Zaragoza
+Facultad de Ciencias
+Campus Plza. San Francisco
+E-50009 Zaragoza
+Gergely Ambrus
+Alfred Renyi Institute of Mathematics
+Hungarian Academy of Sciences
+13-15 Realtanoda u.
+H-1053 Budapest
+Prof. Dr. Guillaume Aubrun
+Institut Camille Jordan
+Universite Claude Bernard Lyon 1
+43 blvd. du 11 novembre 1918
+F-69622 Villeurbanne Cedex
+Prof. Dr. Keith M. Ball
+Department of Mathematics
+University College London
+Gower Street
+GB-London WC1E 6BT
+Prof. Dr. Imre Barany
+Alfred Renyi Institute of
+Mathematics
+Hungarian Academy of Sciences
+P.O.Box 127
+H-1364 Budapest
+Prof. Dr. Franck Barthe
+Institut de Mathematiques
+Universite Paul Sabatier
+F-31062 Toulouse Cedex 9
+Prof. Dr. Alexander Barvinok
+Department of Mathematics
+The University of Michigan
+4835 East Hall
+Ann Arbor , MI 48109-1043
+USA
+Prof. Dr. Jesus Bastero
+Depto. de Matematicas
+Universidad de Zaragoza
+Facultad de Ciencias
+Campus Plza. San Francisco
+E-50009 Zaragoza
+Prof. Dr. Gautier Berck
+Departement de Mathematiques
+Universite de Fribourg
+Perolles
+Chemin du Musee 23
+CH-1700 Fribourg
+Prof. Andreas Bernig
+Institut f¨ ur Mathematik
+Universit¨ at Frankfurt
+Robert-Mayer-Str. 6-10
+60325 Frankfurt am Main
+Prof. Dr. Gabriele Bianchi
+Dipartimento Matematica ”U.Dini”
+Universita degli Studi
+Viale Morgagni, 67/A
+I-50134 Firenze
+Chiara Bianchini
+Dipartimento Matematica ”U.Dini”
+Universita degli Studi
+Viale Morgagni, 67/A
+I-50134 Firenze
+
+=== PDF PAGE 73 ===
+Convex Geometry and its Applications 2923
+Prof. Dr. Karoly B¨ or¨ oczky, Jr.
+Alfred Renyi Institute of
+Mathematics
+Hungarian Academy of Sciences
+P.O.Box 127
+H-1364 Budapest
+Dr. Andrea Colesanti
+Dipartimento di Matematica ”U.Dini”
+Universita di Firenze
+Viale Morgagni 67/A
+I-50134 Firenze
+Nikos Dafnis
+Dept. of Mathematics
+University of Athens
+Panepistemiopolis
+157 84 Athens
+GREECE
+Dr. Matthieu Fradelizi
+Laboratoire d’Analyse et Math. Appliq.
+Universite de Paris-Est Marne-la-Vallee
+Cite Descartes, 5 BD Descartes
+Champs-sur-Marne
+F-77454 Marne-La-Vallee Cedex
+Prof. Dr. Richard J. Gardner
+Dept. of Mathematics
+Western Washington University
+Bellingham , W A 98225-9063
+USA
+Prof. Dr. Apostolos A. Giannopou-
+los
+Dept. of Mathematics
+University of Athens
+Panepistemiopolis
+157 84 Athens
+GREECE
+Prof. Dr. Paul R. Goodey
+Dept. of Mathematics
+University of Oklahoma
+601 Elm Avenue
+Norman , OK 73019-0315
+USA
+Prof. Dr. Peter M. Gruber
+Institut f¨ ur Diskrete Mathematik
+und Geometrie
+Technische Universit¨ at Wien
+Wiedener Hauptstr. 8 - 10
+A-1040 Wien
+Dr. Olivier Guedon
+Laboratoire d’Analyse et Math. Appliq.
+Universite de Paris-Est Marne-la-Vallee
+Cite Descartes, 5 BD Descartes
+Champs-sur-Marne
+F-77454 Marne-La-Vallee Cedex
+Dr. Christoph Haberl
+Department of Mathematics
+Polytechnic Institute of NYU
+Six Metro Tech
+Brooklyn , NY 11201
+USA
+Prof. Dr. Martin Henk
+Institut f¨ ur Algebra und Geometrie
+Otto-von-Guericke-Universit¨ at
+Magdeburg
+Postfach 4120
+39016 Magdeburg
+Prof. Dr. Maria A. Hernandez
+Cifre
+Departamento de Matematicas
+Facultad de Matematicas
+Universidad de Murcia
+E-30100 Espinardo, MURCIA
+
+=== PDF PAGE 74 ===
+2924 Oberwolfach Report 53/2009
+Dr. Daniel Hug
+Institut f¨ ur Algebra und Geometrie
+Universit¨ at Karlsruhe
+Kaiserstr. 89-93
+76133 Karlsruhe
+Prof. Dr. Alexander Koldobsky
+Department of Mathematics
+University of Missouri-Columbia
+202 Mathematical Science Bldg.
+Columbia , MO 65211
+USA
+Prof. Dr. David G. Larman
+Department of Mathematics
+University College London
+Gower Street
+GB-London WC1E 6BT
+Joseph Lehec
+Laboratoire d’Analyse et Math. Appliq.
+Universite de Paris-Est Marne-la-Vallee
+Cite Descartes, 5 BD Descartes
+Champs-sur-Marne
+F-77454 Marne-La-Vallee Cedex
+Prof. Dr. Alexander Litvak
+Dept. of Mathematical Sciences
+University of Alberta
+Edmonton, Alberta T6G 2G1
+CANADA
+Prof. Dr. Monika Ludwig
+Department of Mathematics
+Polytechnic Institute of NYU
+Six Metro Tech
+Brooklyn , NY 11201
+USA
+Prof. Dr. Erwin Lutwak
+Department of Mathematics
+Polytechnic Institute of NYU
+Six Metro Tech
+Brooklyn , NY 11201
+USA
+Prof. Dr. Peter McMullen
+Department of Mathematics
+University College London
+Gower Street
+GB-London WC1E 6BT
+Prof. Dr. Ivan Netuka
+Mathematical Institute
+Charles University
+Sokolovska 83
+186 75 Praha 8
+CZECH REPUBLIC
+Prof. Dr. Alain Pajor
+Equipe d’Analyse et de
+Mathematiques Appliquees
+Universite de Paris Est Marne-la-Vallee
+5, bd Descartes
+F-77454 Marne-la-Vallee Cedex 2
+Prof. Dr. Grigoris Paouris
+Department of Mathematics
+Texas A & M University
+College Station , TX 77843-3368
+USA
+Prof. Dr. Carla Peri
+Istituto di Matematica generale,
+ﬁnanziaria ed economica
+Universita Cattolica d.Sacro Cuore
+Largo Gemelli 1
+I-20123 Milano
+Dr. Fedor Petrov
+St. Petersburg Branch of
+Mathematical Institute of
+Russian Academy of Science
+Fontanka 27
+191011 St. Petersburg
+RUSSIA
+
+=== PDF PAGE 75 ===
+Convex Geometry and its Applications 2925
+Prof. Dr. Luis Rademacher
+Department of Computer Science and
+Engineering
+Ohio State University
+2015 Neil Ave.
+Columbus , OH 43210-1277
+USA
+Prof. Dr. Matthias Reitzner
+FB Mathematik/Informatik
+Universit¨ at Osnabr¨ uck
+Albrechtstr. 28a
+49076 Osnabr¨ uck
+Prof. Dr. Mark Rudelson
+Department of Mathematics
+University of Missouri-Columbia
+202 Mathematical Science Bldg.
+Columbia , MO 65211
+USA
+Prof. Dr. Dmitry Ryabogin
+Dept. of Mathematical Sciences
+Kent State University
+P.O. Box 5190
+Kent OH 44242-0001
+USA
+Dr. Eugenia Saorin
+Institut f¨ ur Algebra und Geometrie
+Otto-von-Guericke-Universit¨ at
+Magdeburg
+Universit¨ atsplatz 2
+39106 Magdeburg
+Prof. Dr. Rolf Schneider
+Mathematisches Institut
+Universit¨ at Freiburg
+Eckerstr. 1
+79104 Freiburg
+Dr. Franz Schuster
+Institut f¨ ur Diskrete Mathematik
+und Geometrie
+TU Wien
+Wiedner Hauptstr. 8 - 10
+A-1040 Wien
+Prof. Dr. Carsten Sch¨ utt
+Mathematisches Seminar
+Christian-Albrechts-Universit¨ at Kiel
+Ludewig-Meyn-Str. 4
+24098 Kiel
+Prof. Dr. Alina Stancu
+Department of Mathematics
+Concordia University
+1455 De Maisonneuve Blvd. West
+Montreal , QC H3G 1M8
+CANADA
+Prof. Dr. Aljosa Volcic
+Dipartimento di Matematica
+Universita della Calabria
+P. Bucci c. 30 B
+I-87036 Arcavacata di Rende (CS)
+Prof. Dr. W olfgang W eil
+Institut f¨ ur Algebra und Geometrie
+Universit¨ at Karlsruhe
+Kaiserstr. 89-93
+76133 Karlsruhe
+Prof. Dr. Elisabeth W erner
+Dept. of Mathematics
+Case Western Reserve University
+Cleveland OH 44106
+USA
+Prof. Dr. Vlad Yaskin
+Department of Mathematical and
+Statistical Sciences
+University of Alberta
+632 Central Academic Building
+Edmonton T6G 2G1
+CANADA
+
+=== PDF PAGE 76 ===
+2926 Oberwolfach Report 53/2009
+Prof. Dr. Artem Zvavitch
+Dept. of Mathematical Sciences
+Kent State University
+P.O. Box 5190
+Kent OH 44242-0001
+USA

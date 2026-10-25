@@ -1,0 +1,74 @@
+{
+  "created_utc": "2026-10-25T06:20:29.011435+00:00",
+  "completion_estimate_percent": 35,
+  "independence": {
+    "entire_actual_pdf_4_pages_read_text_and_visual": true,
+    "entire_actual_tex_read": true,
+    "historical_support_opinions_read": false,
+    "sibling_opinions_read": false,
+    "author_metadata_description_read_for_custody_only": true,
+    "old_fps_article_content_read": false
+  },
+  "original_abstract": "Fradelizi, Paouris, and Schütt proved a sharp lower bound for the second moment of a convex body whose extreme points lie outside an open Euclidean ball. They characterized equality for polytopes and conjectured the same characterization for arbitrary convex bodies. We prove this conjecture: equality holds precisely for nondegenerate simplices whose vertices lie on the bounding sphere. The proof extends their simplex argument by an almost-everywhere partition into countably many simplices with extreme-point vertices. An exact nonnegative deficit identity retains the equality information for this partition.",
+  "claim": {
+    "universe": "Every integer n >= 1; r > 0; K compact convex subset R^n with nonempty interior; Euclidean norm anchored at the specified origin; all extreme points v satisfy ||v|| >= r. Lebesgue volume is positive.",
+    "moments": "g_K = |K|^-1 integral_K x dx; C2(K) = |K|^-1 integral_K ||x||^2 dx.",
+    "theorem": "C2(K) >= (r^2+(n+1)||g_K||^2)/(n+2). Equality iff K is a nondegenerate n-simplex all of whose vertices have norm r.",
+    "not_assumed": [
+      "g_K = 0",
+      "0 in K",
+      "regularity of the simplex",
+      "smoothness or strict convexity of K",
+      "finitely many extreme points"
+    ],
+    "weak_corollary": "C2(K) >= r^2/(n+2), equality iff the same inscribed simplex also has centroid zero.",
+    "strict_radius_boundary": "If every extreme norm is strictly greater than r, equality in the strengthened inequality is impossible.",
+    "not_claimed": [
+      "algorithmic triangulation of arbitrary infinite input",
+      "uniform quantitative stability in a shape metric",
+      "priority over all literature",
+      "formal proof-assistant certification"
+    ]
+  },
+  "dependency_reconstruction": [
+    {
+      "step": "Finite-dimensional extreme-point representation K = closure(conv(ext K)); existence of countable dense subset of ext K",
+      "role": "Load-bearing standard import; must verify exact finite-dimensional hypotheses from a primary body."
+    },
+    {
+      "step": "Every new enumerated extreme point lies outside the current full-dimensional finite hull; strictly visible facet pyramids give the new shell",
+      "role": "Main geometric construction; independently read ray-first-intersection proof, including coplanar invisible facets and shared lower-dimensional faces."
+    },
+    {
+      "step": "Facet triangulation uses only existing vertices; retain initial simplex and each shell simplex; no face conformity required",
+      "role": "Gives a finite/countable family of positive-volume simplices with disjoint interiors; must not assume face-to-face triangulation."
+    },
+    {
+      "step": "Closure of convex union is K; convex full-dimensional union contains int K; omitted boundary null",
+      "role": "Load-bearing passage to arbitrary bodies and countable integral decomposition."
+    },
+    {
+      "step": "Exact uniform simplex barycentric second moments",
+      "role": "Prior formula credited to FPS Lemma 3.2; verify in original body, not merely abstract."
+    },
+    {
+      "step": "Countable weighted moment/variance identity; bounded K gives absolute convergence",
+      "role": "Analytic equality retention. All positive weights and nonnegative summands force equal centroids and spherical vertices; disjoint simplex interiors allow only one."
+    },
+    {
+      "step": "Retained pair S,T supplies fixed positive variance lower bound ab||u-v_i||^2/((n+1)(n+2)|K|(a+b))",
+      "role": "Second finite-approximation route. Must retain the same positive-volume pair before taking m to infinity; merely strict finite deficits would be insufficient."
+    }
+  ],
+  "initial_assessment": {
+    "strongest_independently_reconstructed": "The written finite-shell and countable-variance mechanisms appear to cover the claimed general-body equality case; no material gap identified on first entire reading. This is provisional until primary imports and all support are checked.",
+    "critical_checks_remaining": [
+      "Fresh FPS Theorem 1.1 and Lemma 3.2, original general-body conjecture and hypothesis wording",
+      "Fresh OWR contribution actual body and scope wording",
+      "Finite-dimensional extreme-point theorem primary coverage",
+      "Read original support after this seal; distinguish archived verdicts and finite script evidence from proof",
+      "Bounded literature search with explicit non-exhaustiveness"
+    ],
+    "scope_warning": "Finite computational examples do not establish the all-dimensional analytic theorem. Prior publication metadata and archived author verdicts are not proof premises."
+  }
+}

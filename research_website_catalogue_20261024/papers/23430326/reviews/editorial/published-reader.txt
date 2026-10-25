@@ -1,0 +1,425 @@
+ An explicit noninduced Langlands quotient with vanishing unitary
+                             periods
+                                                Alec Kriebel
+                                           Independent researcher
+                                         ORCID: 0009-0001-9320-500X
+
+                           16 October 2026 Version 1.1, unrefereed note
+
+
+                                                    Abstract
+          Let F = Q3 and let E/F be its unramiﬁed quadratic extension. We give an explicit check-
+      able argument that the Langlands quotient with segments [4, 6], [2, 5], [3, 3], [1, 4], [0, 2] is Galois
+      invariant, is not an entire proper parabolic induction, and has no invariant linear form for any
+      Hermitian stabilizer in GL15 (E). The analytic proof assembles the period bases and functional
+      equations of Feigon–Lapid–Oﬀen: two invertible nested-segment swaps expose ﬁve necessary
+      opposite-lift conditions forming an odd cycle. Noninduction follows from the Lapid–Mínguez
+      ladder-side matching criterion, with all ﬁfteen partition obstructions displayed. The total mul-
+      tiplicity is zero rather than the two predicted by the historical k = 1 multiplicity conjecture.
+      Historical priority and overlap with Luo–Zha, DOI 10.1007/s11464-025-0256-0, remain UN-
+      KNOWN: their complete paper was unavailable for comparison. No ﬁrstness or worldwide
+      novelty claim is made.
+
+Status and attribution. This is an extensively AI-assisted mathematical note, not a record of
+conventional human peer review, journal acceptance, or formal proof-assistant certiﬁcation. AI tools
+were used in construction, literature comparison, adversarial mathematical checks, computations,
+and writing. The proof uses established theorems as dependencies; it does not reprove their deep
+source arguments. Preparation of this version is not an independent ﬁnal review. Authored text
+and code are oﬀered under CC BY 4.0; cited third-party works retain their own rights.
+
+
+1    Statement and conventions
+All representations are smooth admissible complex representations of general linear groups over
+the indicated characteristic-zero nonarchimedean local ﬁeld. Products × mean entire normalized
+parabolic induction. Write τ for the nonidentity automorphism of E/F , νK = | · |K , and η for the
+unramiﬁed quadratic character of F × , so η(3) = −1. Fix a nontrivial unramiﬁed additive character
+of F ; changing it alters only analytic units in the calculations below. For integral a ≤ b, put
+                                                                      (a+b)/2
+                                     DK [a, b] = Stb−a+1 (K)| det |K            .
+                                                                                           a × · · · × νb .
+In the conventions of [2, §1.5] and [4, §2.3], this is the unique irreducible quotient of νK            K
+The quotient convention, rather than the Zelevinsky segment socle convention, is essential. Let
+
+                     A = [0, 2],    B = [1, 4],    C = [3, 3],     D = [2, 5],      T = [4, 6].
+
+We use T for a segment to avoid confusion with the ﬁeld E. Set δS = DE [S] and δS′ = DF [S].
+
+                                                         1
+Theorem 1. The unique irreducible Langlands quotient π of
+
+                                    I1 = δT × δD × δC × δB × δA
+
+belongs to Irr(GL15 (E)), satisﬁes π τ ≃ π, and is not itself an entire normalized induction from any
+proper parabolic subgroup. For every nonsingular Hermitian space V of dimension 15 over E/F ,
+
+                                          HomU (V ) (π, C) = 0.
+
+    The factor lengths are 3, 4, 1, 4, 3, and their real central exponents in I1 are 5, 7/2, 3, 5/2, 1.
+Classiﬁcation gives the unique irreducible quotient. Each factor is τ invariant, so induction and
+its unique quotient are τ invariant. In particular, π is a quotient of an induction; the theorem
+separately excludes its being an entire proper induction.
+    There are two Hermitian isometry classes in this local setting, even when their stabilizer groups
+in odd dimension are isomorphic. The total in Lapid’s historical Conjecture 4 [1, p.734, §5.3]
+sums over these orbits. At k = 1 its single factor may be π itself, and its required entire-product
+irreducibility is automatic. The theorem therefore supplies total multiplicity 0 instead of 2 in the
+characteristic-zero p-adic smooth-complex interpretation. No assertion for all local ﬁelds or other
+coeﬃcient categories is needed.
+
+
+2    Published interfaces and complete period bases
+Fix an arbitrary nonsingular Hermitian matrix x, and let H = Gx . All arguments below take
+place for this ﬁxed x. The local quadratic base-change lifts of δS include the two distinct essentially
+square-integrable representations δS′ and δS′ η; η on a general linear group means η◦det. Distinctness
+follows from their distinct unramiﬁed cuspidal character lines.
+    We use the following exact interfaces from Feigon–Lapid–Oﬀen [2]. Their N is the Shahidi-
+normalized operator deﬁned in (1.10), pp.201–202, with meromorphic inverse and composition
+identities. Lemma 1.1(3),(4), p.202, gives chamber holomorphy and the linked rank-one identity
+
+                                    im(Nreverse ) = ker(Mforward ),
+
+where M is the unnormalized forward operator and this kernel is proper. Their (4.5), p.225 (def-
+inition beginning p.224), normalizes open periods by products of Rankin–Selberg gamma factors.
+Theorem 12.4(4), (12.5), p.283, gives the meromorphic normalized period-permutation equation for
+the generic-compatible individual inducing factors; our essentially square-integrable factors satisfy
+that hypothesis. We do not apply it to the quotient as a generic inducing factor.
+    For segments on this line, the FLO relation is
+
+                                [a, b] ≼ [c, d]   ⇐⇒    a ≤ c ≤ b ≤ d.
+
+It diﬀers from linkage. Consider the orders
+
+               O1 = (T, D, C, B, A),     O2 = (T, C, D, B, A),    O3 = (T, D, B, C, A),
+
+and denote their induced modules by Ir . No earlier segment in any of these orders satisﬁes ≼ with
+a later one. Indeed, endpoint-comparable pairs have larger endpoints ﬁrst; the changed pairs D, C
+and C, B are strict containments with both endpoints strict. Direct substitution checks all ten pairs
+in each order.
+
+
+                                                   2
+    By [2, Corollary 13.6, p.291], the unnormalized lift-labelled open periods are holomorphic at
+zero and form a basis of the entire space HomH (Ir , C). A label ϵS ∈ {0, 1} chooses δS′ η ϵS . Modulo
+simultaneous η twist, take ϵT = 0. This gives sixteen basis elements Jr,ϵ (0) for each ﬁxed x, not
+just after summing over x. Equation (12.1), p.283, gives independence of the corresponding Levi
+forms on the ﬁxed orbit. The common twist changes them by a nonzero ﬁxed-orbit factor; see
+(3.13), p.217. Thus every quotient functional pulls back to a unique expansion in these sixteen
+coordinates.
+    The unnormalized open-period restrictions to open-orbit sections are entire in twist parameters,
+and (6.6), p.242, identiﬁes their space with the relevant Levi-functional space. Together with (12.1),
+these restrictions are independent at zero in a swapped order even if the full swapped periods have
+poles or additional orbit functionals. This precise restricted-space statement is used below.
+
+
+3    The scalar identity and its exact specialization
+For adjacent factors i, j, let s interchange them, let u = λi − λj , and use the reverse normalized
+operator
+                              Rs (λ) = N (s−1 , sδ, sλ) : Isδ (sλ) −→ Iδ (λ).
+Canceling all unchanged factors in FLO (4.5), and applying (12.5) to this reverse operator, gives
+                                      Jδ,ϵ (λ)Rs (λ) = cij,ϵ (λ)Jsδ,sϵ (sλ),                        (1)
+where, up to a nonzero constant or analytic unit,
+                                      γ(−u, δi′ ∨ × δj′ ⊗ χ, ψ ′ )
+                        cij,ϵ (λ) =                                ,      χ = η 1+ϵi +ϵj .          (2)
+                                       γ(u, δi′ × δj′ ∨ ⊗ χ, ψ ′ )
+This is the orientation of FLO (13.3), p.293. Equal labels give χ = η; opposite labels give χ = 1.
+Labels follow segments under permutations.
+   For [a, b], [c, d] let r = min(b − a + 1, d − c + 1). The established segment formula of Jacquet–
+Piatetski-Shapiro–Shalika [3, Theorem 8.2, (5), pp.444–445], applying symmetry if the second seg-
+ment is longer, gives
+                                                              ∏
+                                                              r−1
+                    L(u, DF [a, b] × DF [c, d]∨ ⊗ χ) =              (1 − χ(3)3−u−b+c+j )−1 .        (3)
+                                                              j=0
+
+Their epsilon factors are invertible Laurent monomials [3, §2.9, p.396]. Consequently they cannot
+alter zeros, poles, or nonvanishing in (2). Deﬁne the lists
+                          P = (b − c − j)0≤j<r ,             Q = (d − a − j)0≤j<r .
+Writing z = q −u and ζ = χ(3), the epsilon-free part of (2) is exactly
+                                      ∏
+                                            (1 − ζq −h /z)(1 − ζq −1−h /z)
+                                      h∈Q
+                                       ∏                                     .                      (4)
+                                             (1 − ζq −h z)(1 − ζq −1−h z)
+                                       h∈P
+For q = 3 this is the F -side coeﬃcient. For q = 9, ζ = 1, its directional factors also check the E-side
+normalizers used for the nested swaps. Orders at z = 1 are the same as at u = 0. For ζ = −1 every
+factor is nonzero. For ζ = 1 the order is
+                               #Q(0) + #Q(−1) − #P (0) − #P (−1).
+Here #Q(t) counts occurrences of t in Q. The needed pairs give:
+
+                                                         3
+                         Pair (i, j)      P               Q       order for χ = 1
+                           T, D         4, 3, 2      1, 0, −1     2
+                           B, A         4, 3, 2      1, 0, −1     2
+                           T, C            3            −1        1
+                           D, B        4, 3, 2, 1   2, 1, 0, −1   2
+                           C, A            3            −1        1
+                           D, C            2             1        0
+                           C, B            2             1        0
+
+All entries have order zero and nonzero value for χ = η. The last two rows are units for either
+label parity. Their epsilon-free values are 9/13 and 9/7 for q = 3, and 81/91 and 81/73 for q = 9,
+respectively for ζ = 1, −1. These are values of (4), not an assertion that all normalization constants
+of the actual operator or period coeﬃcient have been ﬁxed. In the linked rows the coeﬃcients are
+holomorphic and vanish for opposite labels, and are units for equal labels. Merely adjacent segments
+(T, C and C, A) give a simple zero; overlap gives order two.
+
+
+4    Transport and vanishing of every quotient period
+Lemma 2. The swaps D, C in O1 and C, B in O1 specialize to actual isomorphisms I2 ≃ I1 and
+I3 ≃ I1 . Pullback on their complete period bases preserves each segment-labelled coordinate up to a
+nonzero scalar.
+
+Proof. Untwist each factor to its unitary Steinberg representation and absorb its real center in the
+twist parameter of FLO Lemma 1.1(3). Both forward center diﬀerences are 1/2 > 0. Thus forward
+M and reverse N are holomorphic near the point in question. The E-side forward scalar normalizer
+is a unit: its directional exponent lists are {2} and {1}, so neither its L(0) nor its dual L(1) has
+a singular factor. Forward N is therefore holomorphic too. The meromorphic inverse identities
+specialize to inverse operators at zero in both directions.
+    For the F -side period equation, the last two rows above show that every label has a unit coef-
+ﬁcient. Both complete bases are holomorphic at zero by Corollary 13.6. Specializing (1) therefore
+gives a nonzero scalar multiple of the basis vector with the same segment labels. There is no
+coordinate mixing or loss of support. T remains ﬁrst, so ϵT = 0 remains the same representative
+convention.
+
+    For r = 1, 2, 3, let pr : Ir ↠ π be p1 transported by these isomorphisms. Each Ir has a unique
+maximal proper submodule, either by its isomorphism to I1 or by the ordered-form classiﬁcation
+[4, Theorem 2.6]. Consider an adjacent linked pair in standard pair-order in Ir . Its forward real
+center diﬀerence is positive. FLO Lemma 1.1(4) identiﬁes the image of its holomorphic reverse N
+with a proper kernel of forward M . Induction with the remaining factors gives a proper submodule
+Kij ⊂ Ir and hence
+                                              Kij ⊆ ker pr .                                   (5)
+The properness assertion uses exactness and preservation of nonzero objects by smooth parabolic
+induction: the nonzero rank-one quotient remains nonzero after induction. These properties follow,
+for example, from the compact model and averaging over compact stabilizers over C. For ﬁxed open
+compact invariance there are ﬁnitely many double cosets; compact invariants are exact, so quotient-
+valued sections lift. A nonzero inducing vector ﬁxed by a small stabilizer produces a nonzero local
+section. Thus neither exactness nor faithfulness presumes irreducibility of the full module.
+
+
+                                                      4
+    Let ℓ ∈ HomH (π, C) be arbitrary. In the complete basis write
+                                                    ∑
+                                            ℓpr =           ar,ϵ Jr,ϵ (0).
+                                                    ϵT =0
+
+It annihilates Kij , so composition with the reverse operator at zero vanishes. Extend this expression
+using constant coeﬃcients and the holomorphic basis families; it is not claimed to vanish for nonzero
+parameters. Restrict (1) to the open-orbit subspace of the reverse operator’s domain. Those
+restricted periods are entire and independent at zero by FLO (6.6) and (12.1). The left side, reverse
+operator, and scalar ratios are holomorphic there. Evaluation at zero therefore gives separately
+
+                                              ar,ϵ cij,ϵ (0) = 0.
+
+The scalar is a unit for equal labels. Hence every nonzero coordinate requires ϵi ̸= ϵj at this linked
+adjacency. No completeness or full-period holomorphy is asserted in the order obtained after the
+linked swap.
+    In O1 the linked adjacencies T, D and B, A force opposite labels. In O2 the linked adjacencies
+T, C and D, B force opposite labels. In O3 the linked adjacency C, A does so. Lemma 2 identiﬁes the
+supports of their coordinate vectors. Thus a surviving coordinate would satisfy all ﬁve conditions
+along
+                              T − − D − − B − − A − − C − − T.
+Adding the ﬁve equations ϵi + ϵj = 1 over F2 gives 0 = 1. Every coeﬃcient is zero. Surjectivity of
+p1 gives ℓ = 0. Since x was arbitrary, this proves the period assertion for both Hermitian classes.
+    Only (5) was used. No equality between the maximal kernel and a sum of transported rank-one
+kernels is assumed, and no separate disproof of a kernel-generation conjecture is claimed.
+
+
+5    Excluding every entire proper induced realization
+Suppose π were an entire irreducible proper induction. Exactness and preservation of nonzero
+objects force the inducing data to be irreducible; otherwise a nonzero proper subobject and its
+nonzero quotient survive induction. Grouping any greater number of Levi blocks likewise gives a
+two-factor entire irreducible product L(m1 )×L(m2 ) of positive degrees. By the additive constituent
+property in [4, Proposition 2.5(5), Theorem 2.6], L(m1 +m2 ) occurs in this product with multiplicity
+one. Its irreducibility and injectivity of Langlands classiﬁcation force
+
+                                  m1 + m2 = A + B + C + D + T
+
+as multisets of segments, a stronger conclusion than equality of cuspidal supports. Thus it suﬃces
+to exclude all ﬁfteen unordered nonempty partitions of these ﬁve distinct occurrences.
+    For the matching criterion, deﬁne precedence by
+
+                          [a, b] ≺ [c, d]     ⇐⇒       a < c ≤ b + 1 and b < d.
+
+A ladder has strictly monotone starts and ends in the same direction; consecutive linkage is not
+required [4, Deﬁnition 5.13]. Each singleton is a ladder. Among pairs only BC and CD are not
+ladders; their complements ADT and ABT are ladders. Every partition therefore has at least one
+ladder side.
+   For lists of occurrences m = (ui ) and n = (vj ), let
+
+                   Xm,n = {(i, j) : ui ≺ vj },              Ym,n = {(i, j) : (ui − 1) ≺ vj }.
+
+                                                        5
+The shift subtracts one from both endpoints of the ﬁrst segment. An X vertex (i1 , j1 ) can be
+matched to (i2 , j2 ) ∈ Y exactly when
+
+                         (i1 = i2 and vj2 ≺ vj1 )   or (j1 = j2 and ui1 ≺ ui2 ).
+
+The condition LC(m, n) means an injection from X to Y using these edges. With one ladder
+side, [4, §5.3, Proposition 5.20] states that Z(m) × Z(n) is irreducible exactly when both directed
+conditions hold. The Zelevinsky ring involution [4, §A.5] permutes irreducible classes and sends
+Z(m) to L(m) with the same parameter. It preserves the length-one property of positive irreducible
+expansions of products. The same irreducibility equivalence consequently tests L(m) × L(n); we
+do not replace parameters by incorrectly dualized multisegments.
+    In the following table the indicated X vertex has no neighbor in the entire Y list in the stated
+direction. Each row is a singleton Hall obstruction. Labels concatenate to denote the subset of
+segments.
+
+             Partition     Failing direction   Isolated X vertex   Entire Y in that direction
+             A/BCDT        A → BCDT            (A, B)              (A, B), (A, D)
+             B/ACDT        B → ACDT            (B, D)              (B, D), (B, T )
+             C/ABDT        C → ABDT            (C, T )             ∅
+             D/ABCT        D → ABCT            (D, T )             (D, T )
+             T /ABCD       ABCD → T            (C, T )             (B, T ), (D, T )
+             AB/CDT        AB → CDT            (A, C)              (A, D), (B, D), (B, T )
+             AC/BDT        AC → BDT            (A, B)              (A, B), (A, D)
+             AD/BCT        AD → BCT            (A, B)              (A, B), (D, T )
+             AT /BCD       AT → BCD            (A, B)              (A, B), (A, D)
+             BC/ADT        BC → ADT            (B, D)              (B, D), (B, T )
+             BD/ACT        BD → ACT            (D, T )             (B, T ), (D, T )
+             BT /ACD       BT → ACD            (B, D)              (B, D)
+             CD/ABT        CD → ABT            (C, T )             (D, T )
+             CT /ABD       ABD → CT            (A, C)              (B, T ), (D, T )
+             DT /ABC       ABC → DT            (B, D)              (A, D), (B, D), (B, T )
+
+Every list is obtained by direct substitution in the displayed endpoint inequalities; the portable
+checker reconstructs all edges rather than trusting the table. Thus at least one necessary directed
+condition fails in every partition, and every putative two-factor entire product is reducible. This
+proves noninduction and completes Theorem 1.
+
+
+6    Consequences, antecedents, and the unknown comparison
+Theorem 1 contradicts the historical OWR Conjecture 4 at k = 1, with the source’s “imprimitive”
+meaning of noninduced [1, p.734]. Its individually τ -invariant cuspidal support has τ -Witt index
+zero, so the same example contradicts FLO Conjecture 6.12 [2, p.246]. Since it is τ invariant but
+has no period even for the quasi-split Hermitian stabilizer, it also disproves the unrestricted local
+unitary converse attributed to Jacquet in [1, Conjecture 1, p.729]. These are consequences of one
+example, not separate priority claims. The OWR page numbers here refer to the EMS copy; the
+MFO copy numbers the corresponding pages 736 and 731.
+    The period bases, functional equations, normalizations, and adjacent equal-label exclusion are
+due to FLO, especially pp.291–294. Classiﬁcation, matching, and the ring-involution argument use
+LM; moving rank-one kernels through invertible swaps already occurs in [5, §6.4]. JPSS supplies
+the segment L-factor computation. This note claims none of these general tools as a contribution.
+
+                                                     6
+    Gurevich–Ma–Mitra [6, §8] already constructed a ﬁve-segment imprimitive negative-distinction
+example of character-line degree 20, including an all-partitions noninduction strategy. Their sub-
+group is GLn (F ) (and its quadratic-character variant), not a Hermitian stabilizer. Mitra–Oﬀen–
+Sayag [7, Example 9.4] give an earlier negative symplectic-distinction example of degree 8, with
+six Langlands segments; their displayed Zelevinsky-dual data have three segments. These are sub-
+stantive antecedents, not solutions of the present unitary-period statement. Sharma [12, Theorem
+8.1, §9] treats a degree-8 ﬁve-segment endpoint-order obstruction and distinguishes combinatorial
+conditions from existence of symplectic periods. No unitary-period theorem is imported from it.
+The segment-length multiset here is {1, 3, 3, 4, 4}, diﬀering from these inspected examples and from
+the OWR degree-6 and LM degree-8 examples. A ﬁnite check of translation, contragredient, and
+reordering equivalence conﬁrms these stated nonidentities; it cannot establish absence of all prior
+results.
+    Beuzart-Plessis [8, Theorems 1–3] establishes tempered spectral results and generic multiplicity
+formulas; the generic conjectural formulation has already been resolved. Lu–Matringe [9, §5] proves
+induced-space completeness in its square-integrable/tempered setting. Neither result supplies de-
+scent of every standard-module period to an arbitrary nongeneric non-tempered quotient. Likewise,
+the general intertwining-period results of [10, 11] concern the displayed inducing hypotheses, and
+[10] explicitly notes quotient-descent limitations. Our conclusion does not contradict these positive
+classes. Unramiﬁed character-line data do not make this Langlands quotient spherical; nor does
+“unitary periods” assume the representation is unitarizable.
+Luo–Zha: overlap and historical priority UNKNOWN. Luo and Zha’s A Remark on
+Bernstein–Zelevinsky Classiﬁcation for General Linear Groups [13] is a material prior source. A
+public 13 May 2025 HKU workshop program [14, p.4] documents its kernel-generation counterex-
+ample claim. The complete Luo–Zha paper has not been inspected. Its exact segments, trans-
+lated/dual/twisted equivalences, kernel mechanism, and any unitary-period or conjecture conse-
+quences are all unknown here. Avoiding kernel-generation equality as a dependency does not prove
+lack of priority overlap. The present construction may overlap, be contained in, or be superseded by
+that work. The publisher date recorded in the earlier audit is 5 July 2026; a HEP mirror displays
+28 July 2026. Neither is substituted for the earlier public announcement. We credit the docu-
+mented prior claim without pretending to have veriﬁed its proof. This note makes no worldwide
+novelty, ﬁrstness, or current-open-status assertion and no separate kernel-generation disproof claim.
+A later full-body comparison may require reclassiﬁcation as an independently checked exposition
+of an earlier result.
+
+
+7    Reproducibility and limits of the veriﬁcation package
+The accompanying allowlisted archive contains this source, the PDF, scholarly metadata, selected
+authored proof and review reports, exact ﬁnite checks, an explicit source-credit ledger, and in-
+put/copy identities. It excludes all private raw third-party bodies, extracted source texts, images,
+API responses, runtime ﬁxtures, large historical harnesses, and recursive archives. The frozen orig-
+inal audit is preserved separately. Selected historical review conclusions are dated evidence, not
+independent reviews of this new paper and package.
+    With Python 3.10 or later and no external Python packages, run
+
+python3 scripts/verify_kit.py
+
+The veriﬁer checks the exact ﬁle allowlist and content identities, then reruns the analytic scalar,
+order, and parity diagnostics, full LC graphs and Hall/injection comparison, manuscript-table
+
+                                                 7
+consistency, and hostile graph controls in ordinary, -O, and -OO modes. It compares complete
+deterministic outputs. It checks forty rational germs, thirty pair-order conditions, ﬁfteen partitions
+in both directions, positive matching calibrations, and six incorrect-deﬁnition controls. Bare failure
+of all ﬁfteen partitions cannot calibrate the graph: several wrong arrow/shift conventions also fail
+on this example. The positive controls distinguish them. These programs do not compute any
+Hom space, prove the source theorems, or certify historical priority. The analytic derivation above
+is indispensable.
+    The archive is deterministic at the stored byte level. Rebuilding the PDF requires a TeX
+engine and packages; the supplied PDF identity is pinned, but byte-identical PDF recompilation
+across engines is not promised. Repository and deposit manifests identify the same PDF and archive
+objects. Review, adoption, and deposit disposition are recorded in separately dated external ROOT
+records and by the publication platform; immutable scholarly text is not a live workﬂow-status
+record.
+
+
+References
+ [1] E. Lapid, Unitary periods and distinction; representation-theoretic aspects (reporting joint work with
+     B. Feigon and O. Oﬀen), contribution to Automorphic Forms: New Directions, Oberwolfach Reports
+     14/2011, especially pp.729, 731, 734, §5.3, Conjecture 4. doi:10.4171/OWR/2011/14. EMS copy: http
+     s://ems.press/content/serial-article-files/46327.
+
+ [2] B. Feigon, E. Lapid, O. Oﬀen, On representations distinguished by unitary groups, Publ. Math. IHES
+     115 (2012), 185–323. doi:10.1007/s10240-012-0040-z.
+
+ [3] H. Jacquet, I. I. Piatetski-Shapiro, J. A. Shalika, Rankin–Selberg convolutions, Amer. J. Math. 105
+     (1983), 367–464. Author-hosted published scan: https://www.math.columbia.edu/~hj/Rankin%20S
+     elberg%20convolutions.pdf.
+
+ [4] E. Lapid, A. Mínguez, On parabolic induction on inner forms of the general linear group over
+     a non-archimedean local ﬁeld, Selecta Math. (N.S.) 22 (2016), 2347–2400. Inspected version:
+     arXiv:1411.6310v3, revised 14 December 2015.
+
+ [5] E. Lapid, A. Mínguez, On a determinantal formula of Tadić, Amer. J. Math. 136 (2014), 111–142.
+     Inspected 29-page author manuscript (revision date unveriﬁed): https://idus.us.es/bitstreams/
+     9d339eb9-03bf-4cac-bcc9-3ca8f34cf3a6/download.
+
+ [6] M. Gurevich, J.-J. Ma, A. Mitra, On two questions concerning representations distinguished by the
+     Galois involution, Forum Math. 30 (2018), 141–157. arXiv:1609.03155v1 (2016).
+
+ [7] A. Mitra, O. Oﬀen, E. Sayag, Klyachko models for ladder representations, Documenta Math. 22 (2017),
+     611–657. https://ems.press/content/serial-article-files/26354.
+
+ [8] R. Beuzart-Plessis, Multiplicities and Plancherel formula for the space of nondegenerate Hermitian
+     matrices, J. Number Theory 230 (2022), 5–63. arXiv:2008.05036v2 (2021).
+
+ [9] H. Lu, N. Matringe, On completeness of local intertwining periods, J. Funct. Anal. 291 (2026), 111486.
+     arXiv:2503.11988v2, revised 10 April 2026.
+
+[10] N. Matringe, O. Oﬀen, Intertwining periods and distinction for p-adic Galois symmetric pairs, Proc.
+     Lond. Math. Soc. 125 (2022), 1179–1252. arXiv:2102.00480v2.
+
+[11] N. Matringe, O. Oﬀen, C. Yang, On local intertwining periods, J. Funct. Anal. 286 (2024), 110293.
+     arXiv:2303.03663v2.
+
+
+
+                                                    8
+[12] H. Sharma, Duality, rigidity, and peeling for multisegments: on hypotheses of Mitra, Oﬀen, and Sayag,
+     preprint, arXiv:2609.21384v1, 18 September 2026.
+
+[13] C. Luo, J. Zha, A Remark on Bernstein–Zelevinsky Classiﬁcation for General Linear Groups, Front.
+     Math., online 2026. doi:10.1007/s11464-025-0256-0. Complete body uninspected; all substantive overlap
+     comparisons unknown.
+
+[14] CUHK(SZ)–HKU Representation Theory Workshop II, public program, 13 May 2025, pp.1,4 (Luo–
+     Zha-title abstract). https://hkumath.hku.hk/MathWWW/event/2025/Workshop_Program.pdf.
+
+
+
+
+                                                    9
+

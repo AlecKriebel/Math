@@ -1,0 +1,78 @@
+{
+  "utc": "2026-10-25T06:13:09.163721+00:00",
+  "exact_claim": {
+    "interval": "I=[-1/2,1/2], Lebesgue dx, equivalence modulo a.e.",
+    "density_space": "D={u in real L1(I):u>=0 a.e., integral_I u dx=1}; relative L1 metric",
+    "mean": "phi(u)=integral_I x u(x) dx",
+    "parameter_quantifiers": "For each fixed 0<A<=2/5 and 6<B<=16, set G(m)=A tanh(Bm/A); no A=0, B=6, or arbitrary feedback extension.",
+    "maps": "For |r|<=2/5, f_r(x)=((r+4)x+r+1)/(2rx+2); T_r=f_r for x<-r/4 and f_r-1 for x>-r/4; cut value irrelevant modulo absolutely continuous laws. P_r is pushforward density transfer, F(u)=P_{G(phi(u))}u.",
+    "basins": "W={u:F^n u ->1 in L1}; B_pm={u:F^n u->u_pm in L1}.",
+    "theorem": "W=closure_D(union_{n>=0} F^{-n}({1}))=boundary_D(B_plus)=boundary_D(B_minus).",
+    "new_intermediate": "For each fixed u in W, there exist densities v_n, for every n>=1, with F^n(v_n)=1 and ||v_n-u||_1->0. No attraction rate assumption.",
+    "regularity": "All probability densities, including unbounded densities and densities vanishing on sets of positive Lebesgue measure; no BV, L2(dx), positive lower bound, or L1 differentiable stable manifold assumed.",
+    "auxiliary_probability_space": "(I,u dx), every random variable X_j bounded in I even if u is not in L2(dx); inverse V defined for all J=[-1/2,3/2]-valued bounded random variables on any real probability-space L2.",
+    "kernel": "w_y(x)=(1-y^2/4)/(1-xy)^2 for |y|<=2/3, p_r(y)=1/2-(r+y)/(4+ry), sigma_r=2(y+r)/((r+1)y+r+4), tau_r=2(y+r)/((r-1)y-r+4); P_r w_y=p_r w_sigma+(1-p_r)w_tau, support in [-2/3,2/3], 1/2<=w_y<=2.",
+    "inverse_iteration": "r=G(E b_r(Z)), V(Z)=b_r(Z), b_r(z)=(2z-r-1)/(r+4-2rz), contraction21/25 in probability L2. Fix n, terminal H_n(y)=-1/2+integral_-1/2^y F^n(u)(t)dt; preserve original branch labels and lift backwards with self-consistent feedback.",
+    "key_limit_order": "epsilon_n=||F^n u-1||_1->0; first fix continuous g approximating fixed u and let n->infinity, then let ||u-g||_1->0. No interchange/uniform convergence over all u claimed.",
+    "topology_boundary_cases": "D relative boundary, full TV convention equals L1 for densities; flat cumulative maps allowed, branch zero fibers handled, endpoints/cuts are null for densities."
+  },
+  "dependencies": [
+    {
+      "result": "Exhaustive full-D L1 three-limit convergence and noncentral basin openness",
+      "actual_primary_locations": "OWR printed2714 Theorem2; BKZ author p8 Theorem2/Example1 and pp23–27 Proposition3 proof",
+      "status": "Correctly credited existing input; exact model/parameter match checked",
+      "not_new": true
+    },
+    {
+      "result": "1 is in both relative full-D stable-basin boundaries",
+      "actual_primary_locations": "BKZ author pp27–30 Proposition4, applied at1=w0 in analytic mixture core",
+      "status": "Correct existing seed; no full-D boundary theorem inferred from all core points alone",
+      "not_new": true
+    },
+    {
+      "result": "Inverse-expansion/rank-one mechanism and invariant mixtures",
+      "actual_primary_locations": "BKZ author pp10–12 Section3 and pp13–17 Section4.1–4.2",
+      "status": "Prior mechanisms correctly credited; probability-space full-density use and exact polynomial estimate are submission arguments",
+      "not_new": true
+    },
+    {
+      "result": "Open F on D and complete boundary pullback",
+      "actual_primary_locations": "Submitted pp2 Lemma2, full TeX proof",
+      "status": "Direct proof inspected, including positive sections on zero fibers; no ambient-L1 open mapping assertion",
+      "not_new": false
+    },
+    {
+      "result": "W equals L1 closure of finite preimages of1",
+      "actual_primary_locations": "Submitted pp3–6 Lemma3/Proposition4/equations1–10",
+      "status": "Central additional argument inspected; independent exact certificate checks support algebra; full theorem not inferred from finite controls",
+      "not_new": false
+    }
+  ],
+  "mechanism_families": [
+    {
+      "family": "Analytic mixture core alone",
+      "status": "BLOCKED as a full-D proof route",
+      "gap": "Core has1/2<=u<=2, compact and non-dense; exact central rough witness at distance>=1."
+    },
+    {
+      "family": "Continuous backward sections alone",
+      "status": "BLOCKED as a standalone closure proof",
+      "gap": "No uniform modulus for growing composition length; openness alone does not place allW in both boundaries."
+    },
+    {
+      "family": "Nonlinear L1 stable-manifold shortcut",
+      "status": "BLOCKED without new smoothness and uniform-control hypotheses",
+      "gap": "Directional/BV-to-L1 derivative statements do not supply same-space nonlinear L1 differentiability."
+    },
+    {
+      "family": "Self-consistent backward probability-space inverse",
+      "status": "Mechanism checked within submitted scope",
+      "evidence": "21/25 contraction; fixed branch labels; accumulated parameter error84epsilon; no independence assumption."
+    },
+    {
+      "family": "AC transport and full variation",
+      "status": "Mechanism checked within submitted scope",
+      "evidence": "Flat cumulative maps and unbounded densities allowed; derivative distortion213epsilon; unweighted P_sequence1<=2; correct sequential limit."
+    }
+  ]
+}

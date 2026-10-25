@@ -1,0 +1,126 @@
+# An explicit noninduced Langlands quotient with vanishing unitary periods
+
+By [Alec Kriebel](https://orcid.org/0009-0001-9320-500X), independent researcher.
+
+Manuscript and declared publication date: 16 October 2026 · Version 1.1 · Unrefereed preprint
+
+Canonical URL: https://aleckriebel.com/research/noninduced-langlands-quotient-vanishing-unitary-periods/
+
+Search description: A concrete GL15 Langlands quotient is presented with no Hermitian-stabilizer periods and no entire proper induced realization, with explicit classical dependencies and unknown priority overlap.
+
+[Research home](https://aleckriebel.com/research/) · [Zenodo record](https://zenodo.org/records/23430326) · [DOI](https://doi.org/10.5281/zenodo.23430326) · [CC BY4.0](https://creativecommons.org/licenses/by/4.0/)
+
+## Original abstract
+
+Let F=ℚ₃ and let E/F be its unramified quadratic extension. We give an explicit checkable argument that the Langlands quotient with segments [4,6],[2,5],[3,3],[1,4],[0,2] is Galois invariant, is not an entire proper parabolic induction, and has no invariant linear form for any Hermitian stabilizer in GL₁₅(E). The analytic proof assembles the period bases and functional equations of Feigon–Lapid–Offen: two invertible nested-segment swaps expose five necessary opposite-lift conditions forming an odd cycle. Noninduction follows from the Lapid–Mínguez ladder-side matching criterion, with all fifteen partition obstructions displayed. The total multiplicity is zero rather than the two predicted by the historical k=1 multiplicity conjecture. Historical priority and overlap with Luo–Zha, DOI 10.1007/s11464-025-0256-0, remain UNKNOWN: their complete paper was unavailable for comparison. No firstness or worldwide novelty claim is made.
+
+## The idea in plain English
+
+A representation can carry linear measurements that remain unchanged under a subgroup. This note presents a concrete representation for which every such unitary-group measurement vanishes, even though the representation is unchanged by the field’s Galois symmetry.
+
+The example is specified by five integer intervals. It is the unique irreducible quotient of a standard induced representation. The separate noninduction assertion says that this quotient cannot itself be the entire representation obtained by induction from a proper parabolic subgroup.
+
+The argument uses established period bases and functional equations to force five incompatible binary choices around an odd cycle. An established matching criterion, applied to every partition of the five intervals, excludes all entire proper induced realizations.
+
+The result is an attributed instance of classical representation-theoretic tools. Its exact overlap with Luo–Zha’s earlier announced work remains unknown, and no first-discovery claim is made.
+
+## The precise result
+
+Take F=ℚ₃ and its unramified quadratic extension E/F. Work with smooth admissible complex representations. For a≤b, D_K[a,b]=St_(b−a+1)(K)|det|_K^((a+b)/2), using the irreducible-quotient segment convention. Let π be the Langlands quotient of D_E[4,6]×D_E[2,5]×D_E[3,3]×D_E[1,4]×D_E[0,2].
+
+Theorem 1 states that π∈Irr(GL₁₅(E)), π^τ≅π, π is not itself an entire normalized induction from any proper parabolic subgroup, and Hom_(U(V))(π,ℂ)=0 for every nonsingular 15-dimensional Hermitian space V over E/F.
+
+There are two Hermitian isometry classes in this setting. The paper’s total multiplicity is zero rather than two in the historical OWR Conjecture 4 at k=1. The same example is presented as a counterexample to FLO Conjecture 6.12 and the historical unrestricted local unitary converse; established generic and unitarizable positive classes are kept distinct.
+
+## Why the result holds
+
+For each fixed Hermitian orbit, the FLO no-earlier-relation hypothesis supplies a complete holomorphic basis of periods on each of three induced orders. Two strict-containment swaps are actual isomorphisms with nonzero diagonal coefficients in these bases.
+
+The correctly oriented reverse-intertwiner functional equation and classical segment L-factors force opposite lift labels at five linked adjacencies. Entire independent open-orbit restrictions justify specialization even when unrestricted periods in a linked-swapped order need not be holomorphic. The resulting odd cycle has no consistent binary labels.
+
+Only containment of proper rank-one images in the quotient kernel is used. No general equality generating that kernel is assumed. Langlands classification and the additive constituent property reduce any entire induced realization to a partition of the five segment occurrences. Each partition has a ladder side and an explicit directed matching obstruction under the Lapid–Mínguez criterion.
+
+## Scope and limitations
+
+The stated example uses the specific characteristic-zero p-adic field F=ℚ₃, its unramified quadratic extension, and smooth complex coefficients. It is not an assertion for all fields or coefficient categories.
+
+Unitary periods refer to stabilizers of Hermitian forms. They do not assume π is unitarizable. Unramified character-line data do not assert that π is spherical. The quotient remains a quotient of parabolic induction; only an entire proper induction is excluded.
+
+The written proof uses deep classical FLO, JPSS and Lapid–Mínguez results as explicitly cited dependencies. Finite scalar and graph diagnostics do not compute Hom spaces or prove those source theorems.
+
+Complete periods for a fixed Hermitian orbit, normalized versus unnormalized operators, the extra quadratic-character twist, and the same-parameter ring involution are essential conventions. No separate kernel-generation disproof is claimed.
+
+Historical priority and all substantive overlap with Luo–Zha, DOI 10.1007/s11464-025-0256-0, remain UNKNOWN. Their publisher abstract and dated workshop announcement establish a prior kernel-generation counterexample claim, but not the exact segments, proof mechanism or period consequences. The present construction may overlap, be contained in, or be superseded by that work.
+
+No exhaustive literature absence, independent first discovery or current worldwide-open assertion is made. This is an unrefereed preprint prepared with extensive AI assistance, without external human or journal peer review or formal proof-assistant certification.
+
+## Status and AI use
+
+AI tools were used extensively in construction, research, checking and writing. Internal AI-assisted reviews do not constitute external human or journal peer review. This preprint is unrefereed and has no formal proof-assistant certification; the named author is responsible for its claims and citations.
+
+The manuscript and Zenodo’s declared publication date are 16 October 2026, version 1.1. Zenodo created the record on 17 October 2026 UTC. These edition dates do not establish historical priority.
+
+## Read the paper
+
+Read the complete 9-page paper in the on-page PDF reader.
+
+[Open the PDF](https://aleckriebel.com/research/noninduced-langlands-quotient-vanishing-unitary-periods/paper.pdf) · [Download the PDF](https://aleckriebel.com/research/noninduced-langlands-quotient-vanishing-unitary-periods/paper.pdf) · [Zenodo original PDF](https://zenodo.org/records/23430326/files/paper.pdf)
+
+## Supporting materials
+
+[Complete source and verification materials (ZIP)](https://aleckriebel.com/research/noninduced-langlands-quotient-vanishing-unitary-periods/pr1032_supportkit_v1.1.zip) · [Zenodo original ZIP](https://zenodo.org/records/23430326/files/pr1032_supportkit_v1.1.zip)
+
+## Collaborate on this result
+
+Substantive collaboration on independent verification, careful comparison with prior work, or development toward journal submission is welcome. Authorship and responsibilities would reflect actual research and writing contributions and mutual agreement.
+
+## Cite this paper
+
+Kriebel, Alec. (2026). An explicit noninduced Langlands quotient with vanishing unitary periods (Version 1.1, 16 October 2026) [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.23430326
+
+[Download BibTeX](https://aleckriebel.com/research/noninduced-langlands-quotient-vanishing-unitary-periods/citation.bib)
+
+```bibtex
+@misc{kriebel2026_23430326,
+  author = {Kriebel, Alec},
+  title = {An explicit noninduced Langlands quotient with vanishing unitary periods},
+  year = {2026},
+  month = oct,
+  doi = {10.5281/zenodo.23430326},
+  url = {https://aleckriebel.com/research/noninduced-langlands-quotient-vanishing-unitary-periods/},
+  version = {1.1},
+  publisher = {Zenodo},
+  note = {Unrefereed preprint; version 1.1, dated 16 October 2026. Zenodo record created 17 October 2026 UTC. Prepared with extensive AI assistance.}
+}
+```
+
+## Background and prior work
+
+- [Lapid, Unitary periods and distinction; representation-theoretic aspects, OWR14/2011](https://doi.org/10.4171/OWR/2011/14): Original historical unitary-period and imprimitive multiplicity formulations, including the k=1 case and orbit-sum convention.
+
+- [Feigon, Lapid and Offen, On representations distinguished by unitary groups](https://doi.org/10.1007/s10240-012-0040-z): Period bases, fixed-orbit lift forms, normalizations, functional equations, adjacent-label exclusion and positive classes are established prior work.
+
+- [Jacquet, Piatetski-Shapiro and Shalika, Rankin-Selberg Convolutions](https://www.math.columbia.edu/~hj/Rankin%20Selberg%20convolutions.pdf): Classical segment L-factors and invertible epsilon monomials supply the scalar calculation.
+
+- [Lapid and Mínguez, On parabolic induction on inner forms of the general linear group over a non-archimedean local field](https://arxiv.org/abs/1411.6310v3): Quotient classification, additive constituents, ladder-side matching and the Zelevinsky ring involution.
+
+- [Lapid and Mínguez, On a determinantal formula of Tadić](https://idus.us.es/bitstreams/9d339eb9-03bf-4cac-bcc9-3ca8f34cf3a6/download): Section 6.4 already transports rank-one kernels across invertible swaps and distinguishes known containment from conjectural kernel equality.
+
+- [Gurevich, Ma and Mitra, On two questions concerning representations distinguished by the Galois involution](https://arxiv.org/abs/1609.03155v1): Earlier five-segment degree 20 imprimitive negative-distinction example and all-partition strategy for GLn(F), a different subgroup.
+
+- [Mitra, Offen and Sayag, Klyachko Models for Ladder Representations](https://ems.press/content/serial-article-files/26354): Example 9.4 is an earlier degree 8 negative symplectic-distinction example, with six Langlands segments and separate three-segment Zelevinsky-dual data.
+
+- [Beuzart-Plessis, Multiplicities and Plancherel formula for the space of nondegenerate Hermitian matrices](https://arxiv.org/abs/2008.05036v2): Established tempered spectral and generic multiplicity results; generic equality is resolved and is not the unrestricted quotient assertion.
+
+- [Lu and Matringe, On completeness of local intertwining periods](https://arxiv.org/abs/2503.11988v2): The unitary-pair completeness discussion in §5 has square-integrable inducing hypotheses.
+
+- [Matringe and Offen, Intertwining periods and distinction for p-adic Galois symmetric pairs](https://arxiv.org/abs/2102.00480v2): Prior meromorphic induced-period framework; its introduction explicitly distinguishes induced distinction from quotient descent.
+
+- [Matringe, Offen and Yang, On local intertwining periods](https://arxiv.org/abs/2303.03663v2): Prior finite-length induced-period functional equations and sufficient distinction conditions under stated hypotheses.
+
+- [Sharma, Duality, rigidity, and peeling for multisegments](https://arxiv.org/abs/2609.21384v1): Theorem 8.1 gives a different degree 8 five-segment endpoint-order obstruction; §9 separates combinatorial and symplectic-period converses.
+
+- [Luo and Zha, A Remark on Bernstein–Zelevinsky Classification for General Linear Groups](https://doi.org/10.1007/s11464-025-0256-0): Material prior kernel-generation counterexample claim. Full-body segment, mechanism and unitary-period overlap remains UNKNOWN.
+
+- [CUHK(SZ)–HKU Representation Theory Workshop II program, 13 May 2025](https://hkumath.hku.hk/MathWWW/event/2025/Workshop_Program.pdf): The dated program documents Junwei Zha’s earlier talk and kernel-generation counterexample abstract; it does not resolve exact overlap.
+
