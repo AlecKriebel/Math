@@ -1,0 +1,20 @@
+--- sealed-auditor-driver
++++ own-output-and-new-checker-only
+@@ -3,8 +3,8 @@
+ from datetime import date
+ from html import escape
+ import builtins,io,json,runpy,sys,hashlib,re
+-E=Path(__file__).resolve().parent
+-P=E.parents[1]
++E=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/spanning-sos-gin-correction-recheck-sol-20261025/auditor')
++P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ S=P/'verification/local-spanning-sos-gin-stage-sol-20261025'
+ sys.path.insert(0,str(S));sys.path.insert(1,str(P/'scripts'))
+ rid,case,mode=sys.argv[1:4]
+@@ -53,5 +53,5 @@
+ out=E/mode;out.mkdir(exist_ok=True)
+ meta={'record':rid,'case':case,'mode':mode,'mutated_read_path':str(target),'original_sha256':hashlib.sha256(original).hexdigest(),'changed_read_sha256':hashlib.sha256(changed).hexdigest(),'actual_original_file_unchanged':True,'mutation_in_memory_only':True,'writes_guarded_to':str(E)}
+ (out/(rid+'-'+case+'-mutation.json')).write_text(json.dumps(meta,indent=2)+'\n')
+-sys.argv=[str(S/'stage_reader.py'),str(S/'final-content-check.stage.py'),rid,'--site',str(S/'public'),'--output-dir',str(out),'--output-stem',rid+'-'+case]
++sys.argv=[str(S/'stage_reader.py'),str(Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/spanning-sos-gin-correction-recheck-sol-20261025')/'final-content-check.stage.py'),rid,'--site',str(S/'public'),'--output-dir',str(out),'--output-stem',rid+'-'+case]
+ runpy.run_path(str(S/'stage_reader.py'),run_name='__main__')

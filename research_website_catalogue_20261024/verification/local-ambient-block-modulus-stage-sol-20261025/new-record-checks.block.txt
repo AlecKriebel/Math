@@ -1,0 +1,35 @@
+ if rid in ABM_IDS:
+  binding=c['source_binding'];contract=ABMBodyText(h)
+  test('exact_whole_approved_body_text',contract.bodies==1 and contract.text==expected_abm_body(c))
+  test('exact_visible_h1',contract.headings==[c['title']])
+  shown=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
+  from datetime import date
+  declared=date.fromisoformat(c['publication_date']);day=f'{declared.day} {declared.strftime("%B %Y")}'
+  entry=re.findall(r'<p class="entry-meta">(.*?)</p>',h,re.S)
+  expected_entry=f"By {c['author']}, independent researcher. {c['publication_date_label']} {day} · {c['edition_label']} · Unrefereed preprint"
+  test('exact_byline_date_header_edition',len(entry)==1 and shown(entry[0])==expected_entry and [a.get('datetime') for t,a in d.a if t=='time']==[c['publication_date']])
+  cite=re.search(r'<section id="cite">(.*?)</section>',h,re.S);paras=re.findall(r'<p>(.*?)</p>',cite.group(1),re.S) if cite else []
+  expected_cite=f"{c['author']}. ({declared.year}). {c['title']} ({c['citation_edition_label']}) [Preprint]. Zenodo. https://doi.org/{c['doi']}"
+  test('exact_citation_edition',len(paras)==2 and shown(paras[0])==expected_cite and shown(paras[1])=='Download BibTeX')
+  status=re.search(r'<section id="status">(.*?)</section>',h,re.S)
+  status_paragraphs=[unescape(x) for x in re.findall(r'<p>(.*?)</p>',status.group(1),re.S)] if status else []
+  test('exact_ordered_full_status_paragraphs',status_paragraphs==[c['status'],c['ai_disclosure']]+([c['edition_note']] if c.get('edition_note') else []))
+  test('whole_original_abstract',normalize_abm_abstract(rid,a)==c['abstract']==art['abstract'] and '<h2>Original abstract</h2><p>'+__import__('html').escape(c['abstract'])+'</p>' in h)
+  test('readable_body_math',not any(x in contract.text for x in ['\\','$']))
+  test('whole_original_receipt_transport_verdicts',raw_receipt==binding['source_receipt_original']==gate['source_receipt_original'] and json.loads((p/binding['transport_receipt_path']).read_text())==binding['transport_receipt_original']==gate['transport_receipt_original'] and all(x['verdict']==json.loads((p/x['verdict_file']).read_text()) for x in gate['reviews'].values()))
+  test('exact_literal_authenticated_root_status',gate['status']==ABM_STATUSES[rid] and gate['root_clearance_record']['status']==ABM_STATUSES[rid])
+  test('exact_full_prepared_BibTeX',bib==c['prepared_bibtex']==(p/binding['prepared_bibtex_path']).read_text())
+  test('complete_selected_reader',len(texts)==c['pdf_pages']=={'23333353':3,'23416806':4,'23441617':7}[rid] and c['reader_intro'] in contract.text)
+  test('exact_four_article_files',{x.name for x in f.parent.iterdir() if x.is_file()}=={'index.html','citation.bib',c['pdf_filename'],c['supplement_filename']})
+  original_urls={x['name']:x['url'] for x in receipt['files']}
+  def exact_anchor(url,label,download=None):
+   return sum(a.get('href')==url and text==label and (download is None or ('download' in a)==download) for a,text in contract.anchors)==1
+  test('exact_original_PDF_label_download',exact_anchor(original_urls[c['pdf_filename']],'Download the original from Zenodo',True))
+  test('exact_local_PDF_label_download',exact_anchor(c['pdf_filename'],'Download PDF',True) and exact_anchor(c['pdf_filename'],'Open PDF in a full window',False))
+  test('exact_original_complete_ZIP_label',exact_anchor(original_urls[c['supplement_filename']],'Zenodo original complete ZIP',False))
+  test('exact_local_ZIP_labels',sum(a.get('href')==c['supplement_filename'] and text==c['supplement_label'] and 'download' in a for a,text in contract.anchors)==2)
+  test('exact_BibTeX_and_predecessor_labels',exact_anchor('citation.bib','Download BibTeX',False) and all(exact_anchor(x['url'],x['title'],False) for x in c['background']))
+  test('CC_BY_header_schema',art['license']==c['license_url']=='https://creativecommons.org/licenses/by/4.0/' and exact_anchor(c['license_url'],'CC BY 4.0',False))
+  test('private_gates_unchanged',c['canonical_url'] is gate['canonical_url'] is c['AA'] is gate['AA'] is c['follow_up'] is gate['follow_up'] is None and all(gate[k] is False and c['review_metadata'][k] is False for k in ['rendered_public_copy_approved','local_http_verified','live_http_verified','browser_verified','native_sheet_publication_verified','public_page_published']))
+  if rid=='23441617':
+   test('bibliographic_defect_whole_and_public_181',gate['root_clearance_record']['noncentral_bibliographic_defect']==json.loads((p/'reviews/editorial/BIBLIOGRAPHIC_DISPOSITION.json').read_text())['root_original_disposition'] and 'Acta Math. 181 (1998), 1–61' in contract.text and binding['manuscript_version'] is None and binding['manuscript_version_printed'] is False and c['version']=='1.0')

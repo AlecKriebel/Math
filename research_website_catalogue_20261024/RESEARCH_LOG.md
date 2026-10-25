@@ -372,3 +372,15 @@ Root read all three full modulus final reports/custom verdicts and analytic deri
 ## 2026-10-25T08:23:56.479507+00:00 — native62 publication closure
 
 Exactly14 values-only native cells updated after pinned root scientific/browser authorities1555c027. All1348 captured full CellData records and all spreadsheet metadata preserved except exact native-generated hyperlink decoration on AA90/AA91; all previous60 URLs unchanged. Root actually viewed both raw native frames, including modulus citation typo and row100 status, restored Find/selection. Partition62published+6preparing+1review+126queued+6defects+2holds=203. Best guess finalized68/203=33.50%, scientific74/203=36.45%. All203 ongoing.
+
+## 2026-10-25T08:30:22.857707+00:00 — next-three exact copy adopted, final checker correction pending
+
+Root fully read original staged helper/renderer/changed checker and all three complete actual bodies; readonly357/1349/492/512 custody passed. Independent audit298/1708 passed while preserving14 demonstrated false-negative checker acceptances in both modes. Root additive13-line exact-visible-body/h1/TeXlabel correction is undergoing independent recheck; no original/source/site mutation or old61 suite repetition. Root adopted full98 editorial38/305 custody and97–99 negative legacy46bindings. Native62 remains authoritative, finalized68/203=33.50%; scientific74/203=36.45%. Overall203 ongoing.
+
+## 2026-10-25T08:39:52.890047+00:00 — three next articles deployed; odd-ear science cleared
+
+Root accepted complete private3stage +independentchecker correction after readonly357/298/564owned verifications and2011originalpreservation. Exactly17code/public files installed;1345otherprotected originals unchanged;14websitepaths committed/pushed ordinary master dcc259db, unrelatedindex preserved. Firebase1e686c160b865674 and17ordinaryliveGETs exact; browser/download/nativepending. Root full100reports/customverdicts+ownfullsourceproof+actualclassical/laterprimary reviewed;1973boundfiles/12members authenticated, fulltheoremcleared withlatercredit/prioritylimits. Root99editorial40/249accepted. Root103full7pp/source/conditionalmechanismearlysealed, essentialactualupstreamauthenticationpending. Bestguessscience75/203=36.95%;nativefinalized68/203=33.50% untilbrowser3/nativeclosure. All203ongoing.
+
+## 2026-10-25T14:48:01.766688+00:00 — low-space checkpoint recovery
+
+Original repository-wide temporary index write ran out of disk; no branch/sharedindex/source/evidence deletion occurred. New programme-only v4 isolated index uses1,769,361bytes, composes exactlyonechangedprogramme subtree into the authenticatedparent root, preserving all158 siblingroot entries. Actualdryrunfulltree1323changesareallprogramme-only; sharedindexhashunchanged and mainpreserved. Originalcheckpointscript unchanged. Browserconnection separatelyrestored to sameChromeextension/currentbrowser3, soleuserSheet963521366; pendingdownloads resumeadditively. Bestguessnativefinalized68/203=33.50%, scientific75/203=36.95%; all203ongoing.

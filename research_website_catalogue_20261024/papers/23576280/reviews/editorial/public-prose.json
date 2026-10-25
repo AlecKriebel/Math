@@ -1,0 +1,88 @@
+{
+  "title": "NP-completeness of the initial odd-ear prefix",
+  "description": "Deciding the initial consecutive odd-ear prefix is NP-complete, even for simple cones over connected bipartite graphs. Read the full paper and source.",
+  "abstract": "For a finite 2-vertex-connected graph G, let β(G) be the largest number of consecutive odd ears at the beginning of an open ear decomposition, counting its initial circuit and its one-edge ears. We prove that deciding β(G)≥ t, with t part of the input, is NP-complete even for simple graphs with a universal vertex whose deletion leaves a connected bipartite graph. This answers the variable-threshold complexity question posed by Sebő and by Benchetrit–Sebő. The reduction is from explicitly encoded Set Cover. It uses the classical factor-critical formulation of β, a cone identity, and a block-loss inequality that permits arbitrary partial blocks. In particular, it does not assume an optimal subgraph is a union of whole blocks.",
+  "plain_language": [
+    "A graph can be built by starting with a cycle and then adding paths whose endpoints are already present and whose internal vertices are new. This is an open ear decomposition. The question here asks how many odd-length ears can occur consecutively at the start, before the first even-length ear.",
+    "The initial cycle and paths consisting of a single edge both count. The paper proves that deciding whether this initial odd prefix reaches a requested threshold is NP-complete, even for a restricted family of simple graphs formed by adding a vertex adjacent to every vertex of a connected bipartite graph.",
+    "NP-completeness means that a proposed positive answer has a polynomially checkable certificate and that the problem captures the difficulty of all problems in NP through polynomial reductions. An exact polynomial-time algorithm would imply P=NP. The threshold is supplied as part of the input."
+  ],
+  "result": [
+    "Let G be a finite loopless undirected 2-vertex-connected graph with at least three vertices; explicitly listed parallel edges are allowed. An open ear decomposition partitions all edges into an initial circuit and subsequent paths with distinct old endpoints and new internal vertices. One-edge ears are allowed, and oddness means an odd number of edges.",
+    "Let β(G) be the largest number of consecutive odd ears at the beginning of such a decomposition, counting the initial circuit and one-edge ears. The first even ear ends the prefix. If no odd initial circuit exists, β(G)=0.",
+    "Given G and an integer t in binary, deciding whether β(G)≥t is NP-complete. Hardness holds even when G is simple and has a specified universal vertex z such that G−z is connected and bipartite. Every nonpositive threshold is immediate on valid graph inputs; invalid graph inputs can be rejected in polynomial time.",
+    "The proof gives a polynomial reduction from explicitly encoded Set Cover and a polynomial certificate for positive instances. It applies to arbitrary input sizes and arbitrary partial selections of the construction blocks."
+  ],
+  "why_it_works": [
+    "The proof uses the classical Lovász characterization of 2-connected factor-critical graphs by all-odd open ear decompositions, in the precise form stated by Benchetrit–Sebő. A graph is factor-critical when deleting any vertex leaves a perfect matching. Each ear contributes one to cycle rank, so β can be expressed by the ranks of suitable factor-critical subgraphs.",
+    "For the cone z*B over a connected bipartite graph B, this becomes β(z*B)=max |E(B[S])| over nonempty S for which B[S] is connected and has a perfect matching. The score counts all induced edges, so both connectedness and the choice of objective matter.",
+    "The Set Cover construction uses one complete bipartite block Kₖ,ₖ for the root and each universe element, together with a connector for each set. With T=Σⱼ(1+|Aⱼ|), k=T+n+3, M=(m+1)k² and threshold F=M−ks, a minimal cover supplies distinct private elements and an explicit perfect matching with enough induced edges.",
+    "The converse permits arbitrary partial blocks. If aᵢ and bᵢ count omitted vertices on the two sides, the lost internal edges satisfy dᵢ−k(aᵢ−bᵢ)=bᵢ(2k−aᵢ)≥0. Matching balance and the strict threshold gaps force the connector budget; connectedness forces coverage. The argument does not require a selection to be a union of whole blocks.",
+    "A positive-instance certificate consists of a suitable subgraph and a perfect matching after each of its vertex deletions. All required conditions can be checked in polynomial time. The accompanying exact finite diagnostics supplement the written universal proof."
+  ],
+  "limitations": [
+    "The threshold varies with the input. The result does not establish hardness for any fixed threshold and is consistent with the earlier fixed-parameter result of Benchetrit–Sebő. It does not assert P≠NP.",
+    "The parameter concerns the initial consecutive odd open ears, with the initial circuit and one-edge ears counted. Closed ears and the total number of odd ears throughout a decomposition are different parameters.",
+    "The stated restricted hardness class consists of simple universal-vertex cones over connected bipartite bases. This manuscript does not establish bounded-degree, high-girth or approximation results.",
+    "The factor-critical characterization and Set Cover NP-completeness are classical inputs. The exact Lovász statement is used through Benchetrit–Sebő; the original 1972 proof was not obtained. The comparison with Weighted Connected Matchings uses the 2022 arXiv v1 body; its final 2025 journal body was not obtained.",
+    "Alper Ferudun’s related preprint gives a different route to the same general classification, using 3-SAT, edge multiplicities and odd subdivisions, with different sparse and high-girth graph restrictions. It is credited as related work; no certification of all its external claims or support is implied.",
+    "The observed Zenodo creation dates are 22 October 2026 for this record and 23 October 2026 for Ferudun’s related record. These two bibliographic facts do not establish worldwide firstness or the relationship between the works. Historical priority and present worldwide openness are not certified."
+  ],
+  "background": [
+    {
+      "title": "András Sebő (2014), Problems about uniform covers, with tours and detours",
+      "url": "https://ems.press/content/serial-article-files/46541",
+      "note": "Question 4 asks for the complexity of β. The contribution credits joint work with Yohann Benchetrit and Matěj Stehlík; its β discussion identifies the work with Benchetrit."
+    },
+    {
+      "title": "Yohann Benchetrit and András Sebő (2015), Ear-decompositions and the complexity of the matching polytope, v1",
+      "url": "https://arxiv.org/abs/1509.05586v1",
+      "note": "Gives the open-ear conventions, factor-critical formulation, extension property and Question 3.3. Its fixed-parameter result is consistent with the variable-threshold classification here."
+    },
+    {
+      "title": "László Lovász (1972), factor-critical characterization, as stated in Benchetrit–Sebő Theorem 3.2",
+      "url": "https://arxiv.org/pdf/1509.05586v1#page=13",
+      "note": "The classical 2-connected factor-critical/all-odd open-ear theorem is an established input. The original 1972 proof was not obtained; the precise statement used is explicitly given in the cited author manuscript."
+    },
+    {
+      "title": "Richard M. Karp (1972), Reducibility among combinatorial problems",
+      "url": "https://doi.org/10.1007/978-1-4684-2001-2_9",
+      "note": "Supplies the classical NP-completeness of explicitly encoded Set Cover."
+    },
+    {
+      "title": "Firdovsi Sharifov (2010), Perfectly matchable subgraph problem on a bipartite graph",
+      "url": "https://doi.org/10.1051/ro/2010004",
+      "note": "Optimizes weights of all induced edges on a perfectly matchable selection without requiring connectedness. Connectedness is essential to the cone objective here."
+    },
+    {
+      "title": "Gomes, Masquio, Pinto, dos Santos and Szwarcfiter (2022), Weighted Connected Matchings, v1",
+      "url": "https://arxiv.org/abs/2202.04746v1",
+      "note": "The objective is the weight of matching edges under endpoint connectedness, whereas the cone identity here counts all induced edges. The 2022 v1 is the comparison body."
+    },
+    {
+      "title": "Gomes et al. (2025), Weighted connected matchings, journal citation",
+      "url": "https://doi.org/10.1016/j.tcs.2025.115149",
+      "note": "Published in Theoretical Computer Science 1036, article 115149. The journal citation is authenticated; the final journal body was not obtained or treated as identical to v1."
+    },
+    {
+      "title": "Frédéric Havet and Nicolas Nisse (2019), Constrained ear decompositions in graphs and digraphs",
+      "url": "https://doi.org/10.23638/DMTCS-21-4-3",
+      "note": "Studies other length and parity constraints with ear conventions that also allow closed cycle attachments."
+    },
+    {
+      "title": "Yuhang Bai, Kristóf Bérczi and Chaitanya Nalam (2026), Joins and ear decompositions beyond graphic matroids, v1",
+      "url": "https://arxiv.org/abs/2608.01059v1",
+      "note": "Studies joins and total-even-lobe parameters in matroids, rather than the initial odd open-ear prefix."
+    },
+    {
+      "title": "Alper Ferudun (2026), Computing the Odd-Ear Prefix Parameter Is NP-Complete, version 1.0",
+      "url": "https://doi.org/10.5281/zenodo.23592264",
+      "note": "Related preprint addressing the same general classification by a 3-SAT, multiplicity and odd-subdivision construction. It states hardness for different 2-degenerate apex-bipartite/high-girth classes. Its record was created on 23 October 2026; the current record was created on 22 October. These dates do not establish worldwide priority, independent origin or the relationship of the works, and this citation does not certify the external proof."
+    }
+  ],
+  "ai_disclosure": "AI tools were used extensively in mathematical research, proof development and reconstruction, literature work, computation, verification and writing. This is an unrefereed preprint without external human peer review, journal acceptance or formal proof-assistant certification. Alec Kriebel is the named human author and is responsible for the work. Finite diagnostics supplement the written proof.",
+  "collaboration": "Independent proof checks, counterexamples and precise comparisons with prior work are welcome. Developing a journal submission would require substantive research contributions. Authorship and acknowledgments would reflect actual contributions and mutual agreement; citations imply no participation or endorsement.",
+  "status": "Unrefereed preprint, version 1.0.0. Developed with extensive AI assistance; no external human peer review or formal proof certification.",
+  "edition_note": "Manuscript and declared publication date: 22 October 2026; version 1.0.0.",
+  "reader_intro": "Read the complete 6-page deposited paper in the on-page PDF reader."
+}

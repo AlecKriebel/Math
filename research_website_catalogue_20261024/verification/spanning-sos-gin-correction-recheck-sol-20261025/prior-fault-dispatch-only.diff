@@ -1,0 +1,21 @@
+--- immutable-prior35-fault-source
++++ own-output-and-new-checker-dispatch-only
+@@ -4,8 +4,8 @@
+ from datetime import date
+ import hashlib,json,runpy,sys
+ from spanning_sos_gin_source import display_sg_text
+-O=Path(__file__).resolve().parent;P=O.parents[1];rid,case,mode=sys.argv[1:4];out=O/mode
+-c=json.loads((P/'papers'/rid/'publication.json').read_text());article=O/'public/research'/c['slug'];target=article/'index.html';original=target.read_bytes();text=original.decode()
++O=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/spanning-sos-gin-correction-recheck-sol-20261025');P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024');S=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/local-spanning-sos-gin-stage-sol-20261025');rid,case,mode=sys.argv[1:4];out=O/mode
++c=json.loads((P/'papers'/rid/'publication.json').read_text());article=S/'public/research'/c['slug'];target=article/'index.html';original=target.read_bytes();text=original.decode()
+ def once(a,b):
+     global text
+     if text.count(a)!=1:raise RuntimeError(('expected_exact_one',case,a,text.count(a)))
+@@ -30,5 +30,5 @@
+ (out/('mutation-'+rid+'-'+case+'.json')).write_text(json.dumps({'record_id':rid,'case':case,'path':str(target),'original_SHA256':hashlib.sha256(original).hexdigest(),'changed_read_SHA256':hashlib.sha256(changed).hexdigest(),'in_memory_only':True},indent=2)+'\n')
+ Path.read_bytes=lambda p:changed if p==target else rb(p)
+ Path.read_text=lambda p,*a,**k:Path.read_bytes(p).decode(k.get('encoding') or 'utf-8')
+-sys.argv=[str(O/'stage_reader.py'),str(O/'final-content-check.stage.py'),rid,'--site',str(O/'public'),'--output-dir',str(out),'--output-stem','checker-'+rid+'-'+case]
+-runpy.run_path(str(O/'stage_reader.py'),run_name='__main__')
++sys.argv=[str(S/'stage_reader.py'),str(O/'final-content-check.stage.py'),rid,'--site',str(S/'public'),'--output-dir',str(out),'--output-stem','checker-'+rid+'-'+case]
++runpy.run_path(str(S/'stage_reader.py'),run_name='__main__')

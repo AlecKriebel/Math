@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-25T08:34:32.593499+00:00",
+  "early_seal_sha256": "5ffc71b0bc3be171b2537565248ae8bb7d5f45fac62790df9f54315935bbddcf",
+  "steps": [
+    {
+      "step": "Two-subdivision cover identity",
+      "check": "Q simple,n,m; each edgeu-v→u-b-c-v withuniqueb,c. TripartitionA=original,B=b,C=c, allcrossparttypes whenm>=1. AnyQcoverS lifts withoneb/c peredge, costm+|S|. AnyHcoverX uses>=1newvertexperedge, and2for eachQedgeuncoveredbyS=XcapV. Ifq such edges, |X|>=|S|+m+q; addingoneoriginalendpointforeach givesQcover<=|X|-m. ThusτH=m+τQ, no old Poljak result needed for proof; attribution interface pending."
+    },
+    {
+      "step": "Exact original geodesics in spoke graph",
+      "check": "Distinctterminals have disjointneighborhoodsA/B/C, no terminaledges⇒nolength1/2. Eachcrossparttype gives a 3edgepath. Any3edgea-bpath mustbe spokee_u, oneHedgeuv,spokee_v withu/vincorrespondingparts. AllHedges correspondtooneofdemandpairs; a thirdterminal cannotlieinside such3path."
+    },
+    {
+      "step": "Blocker-cover equality with arbitrary deletions",
+      "check": "HcoverX→delete its|X|spokes, hitsalloriginal3geodesics, soopt<=τ. ForANYblockerF, choosew fordeletedspokee_w andonearbitraryendpoint foreachdeletedHedge, giving|X|<=|F|. For eachHedgeuv correspondingoriginal3geodesic ishit, itsdeletededge contributioncoverseitheruorv. ThereforeXcoverH; middleedge deletionfullyaccounted, no terminalprotection assumption. opt=τH."
+    },
+    {
+      "step": "Total polynomial reduction and boundaries",
+      "check": "VertexCover(Q,k) chosen k>=0,m>=1; B=m+k, optG=m+τQ gives exactdecisionequivalence. Verticesn+2m+3, edgesn+5m, explicitlineargraphsize independentofbinarykvalue; additionpolybit. m0 alwaysYES and mapsfixedtriangleH withoneattachedspokepervertex,B2, allinitialdistances3. k0nonemptyQ mapsNO correctly. Isolatedvertices anddisconnectedQ harmless because terminalpairgeodesics suppliedbym>=1; allgraphs simple andpartpartitionexplicit."
+    },
+    {
+      "step": "NP membership including rational costs",
+      "check": "F list hasatmost|E|identities. Validate input/simplegraph/distinctterminals/finiteoriginalpairs, compute3before+3after BFSdistances with∞ convention, checkboundsandbudget. Positivebinaryrationalcostadditionexactpolynomialbitlength: productcommondenominatorbitlength boundedbysumofinputdenominatorbitlengths; comparebudgetbyintegercrossproducts. Unitcostsubclass givesrationalhardness. Exactoptimizerwoulddecidebudget."
+    },
+    {
+      "step": "Backups finite and exact4 variants",
+      "check": "Eachfreshinternalbackupvertex degree2 onlyonits4edgepath. Any simpleterminalpathusingone musttraverse wholebackup, hence nonewpath<=3 (shortestwalksimplebecauseunitpositive). Original3geodesicsremain. Any feasibledeletionstillhitsthem;discardbackupdeletionsandextractcover no largerthanF. Converselycover-spokedeletionsleaveallpairbackup4pathsintactandhitall3paths⇒eachafterdistanceexactly4, so bothnewoptimaτH. Mixedold/backuporotherterminalroutes cannotcreate<=3; no entire residualgraphconnectivitypromise. Fixedm0YES branch receivesbackupsaswell."
+    }
+  ],
+  "adversarial_boundaries": [
+    "Allthreepairs necessary: missingonecrossparttype invalidates common-distance3 premise, guardedm>=1 subdivision.",
+    "Terminalspokes are deletable; reverseextraction permitsarbitrarymixtureofspokeandmiddleedges.",
+    "Infinityallowedonlyoriginalvariant, notfinite/exactvariants; backupsprovideforwardwitnessesforeveryHcover.",
+    "Unittraversalversusdeletioncostattributesmustremainseparate.",
+    "Budgetbinaryk/B mayhuge; graphsize independentofbudgetvalue.",
+    "m0/k0/isolatedoriginalvertices/disconnectedQ included.",
+    "Exact4variantsrequirebackupsalsoonfixededgelessYESoutput.",
+    "No proof of universal statement fromfinitechecking."
+  ],
+  "expanded_check": "ANALYTIC_CHECK.md",
+  "all_original_main_and_corollaries_preserved": true,
+  "central_gap_detected": null,
+  "universal_from_finite_enumeration": false,
+  "positive_prior_mechanisms": [
+    "Poljak two-subdivision identity",
+    "Khachiyan tripartite attachment",
+    "Krause Section9.2 added-path exact-distance transfer"
+  ]
+}

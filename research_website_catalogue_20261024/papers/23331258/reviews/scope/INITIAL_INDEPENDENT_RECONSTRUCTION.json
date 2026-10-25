@@ -1,0 +1,56 @@
+{
+  "utc": "2026-10-25T08:27:14.750808+00:00",
+  "status": "EARLY_SUBSTANTIVE_INDEPENDENT_RECONSTRUCTION",
+  "independence": "Entire actual four-page PDF, all controlling TeX and four raw page renders read. No row101 foreign-primary body or archived/current target opinion read before this seal. The established Karp body had been read in prior completed unrelated lanes, but was not revisited for row101 before this reconstruction. Source-manuscript statements are original author claims, not accepted external audits.",
+  "original_full_abstract_TeX": "We prove that, in a finite simple undirected graph with unit edge lengths,\nfinding a minimum edge set whose deletion increases all three distances between\nthree specified terminals by at least one is NP-hard. The budget decision problem\nis NP-complete even when all deletion costs are one and all three original\nterminal distances are three. A direct reduction from Vertex Cover passes through\na tripartite graph and identifies its vertex-cover number with the minimum\nshortest-path blocker size. The construction also gives NP-completeness when\nthe terminal distances must remain finite, or must increase exactly from three\nto four. This provides a classification of the undirected triangle question\nposed by Krause in 2005, without asserting bibliographic first priority.",
+  "literal_claim": {
+    "input": "Finite simple undirected graphs, unit traversal lengths, three distinct initially pairwise connected terminals r,s,t; all three unordered pairs demanded. Unit deletioncosts and binary nonnegative integer budgetB; positivebinaryrational deletioncostvariant too.",
+    "goal": "Delete arbitrary edges F, includingterminalspokes/middleedges, so all d_after(x,y)>=d_original(x,y)+1. Originalfinite distances; terminaldisconnectionallowed∞>finite. EquivalentmeetingALLoriginalgeodesics.",
+    "main": "BudgetdecisionNPcomplete evenunitcost/allthreeoriginaldistances3; exactoptimizationNPhard.",
+    "corollaries": "Add9freshinternalvertices/12edges as pairwiseinternallydisjoint4edgebackuppaths; NPcompletewithallafterdistancesfinite or exactly3→4; each strengthened optimum equalsτ(H).",
+    "not_claimed": "No variabletraversallength/planarity/boundeddegree/globalresidualconnectivity/currentopenness/firstpriority certification."
+  },
+  "independent_derivation": [
+    {
+      "step": "Two-subdivision cover identity",
+      "check": "Q simple,n,m; each edgeu-v→u-b-c-v withuniqueb,c. TripartitionA=original,B=b,C=c, allcrossparttypes whenm>=1. AnyQcoverS lifts withoneb/c peredge, costm+|S|. AnyHcoverX uses>=1newvertexperedge, and2for eachQedgeuncoveredbyS=XcapV. Ifq such edges, |X|>=|S|+m+q; addingoneoriginalendpointforeach givesQcover<=|X|-m. ThusτH=m+τQ, no old Poljak result needed for proof; attribution interface pending."
+    },
+    {
+      "step": "Exact original geodesics in spoke graph",
+      "check": "Distinctterminals have disjointneighborhoodsA/B/C, no terminaledges⇒nolength1/2. Eachcrossparttype gives a 3edgepath. Any3edgea-bpath mustbe spokee_u, oneHedgeuv,spokee_v withu/vincorrespondingparts. AllHedges correspondtooneofdemandpairs; a thirdterminal cannotlieinside such3path."
+    },
+    {
+      "step": "Blocker-cover equality with arbitrary deletions",
+      "check": "HcoverX→delete its|X|spokes, hitsalloriginal3geodesics, soopt<=τ. ForANYblockerF, choosew fordeletedspokee_w andonearbitraryendpoint foreachdeletedHedge, giving|X|<=|F|. For eachHedgeuv correspondingoriginal3geodesic ishit, itsdeletededge contributioncoverseitheruorv. ThereforeXcoverH; middleedge deletionfullyaccounted, no terminalprotection assumption. opt=τH."
+    },
+    {
+      "step": "Total polynomial reduction and boundaries",
+      "check": "VertexCover(Q,k) chosen k>=0,m>=1; B=m+k, optG=m+τQ gives exactdecisionequivalence. Verticesn+2m+3, edgesn+5m, explicitlineargraphsize independentofbinarykvalue; additionpolybit. m0 alwaysYES and mapsfixedtriangleH withoneattachedspokepervertex,B2, allinitialdistances3. k0nonemptyQ mapsNO correctly. Isolatedvertices anddisconnectedQ harmless because terminalpairgeodesics suppliedbym>=1; allgraphs simple andpartpartitionexplicit."
+    },
+    {
+      "step": "NP membership including rational costs",
+      "check": "F list hasatmost|E|identities. Validate input/simplegraph/distinctterminals/finiteoriginalpairs, compute3before+3after BFSdistances with∞ convention, checkboundsandbudget. Positivebinaryrationalcostadditionexactpolynomialbitlength: productcommondenominatorbitlength boundedbysumofinputdenominatorbitlengths; comparebudgetbyintegercrossproducts. Unitcostsubclass givesrationalhardness. Exactoptimizerwoulddecidebudget."
+    },
+    {
+      "step": "Backups finite and exact4 variants",
+      "check": "Eachfreshinternalbackupvertex degree2 onlyonits4edgepath. Any simpleterminalpathusingone musttraverse wholebackup, hence nonewpath<=3 (shortestwalksimplebecauseunitpositive). Original3geodesicsremain. Any feasibledeletionstillhitsthem;discardbackupdeletionsandextractcover no largerthanF. Converselycover-spokedeletionsleaveallpairbackup4pathsintactandhitall3paths⇒eachafterdistanceexactly4, so bothnewoptimaτH. Mixedold/backuporotherterminalroutes cannotcreate<=3; no entire residualgraphconnectivitypromise. Fixedm0YES branch receivesbackupsaswell."
+    }
+  ],
+  "attack_boundaries": [
+    "Allthreepairs necessary: missingonecrossparttype invalidates common-distance3 premise, guardedm>=1 subdivision.",
+    "Terminalspokes are deletable; reverseextraction permitsarbitrarymixtureofspokeandmiddleedges.",
+    "Infinityallowedonlyoriginalvariant, notfinite/exactvariants; backupsprovideforwardwitnessesforeveryHcover.",
+    "Unittraversalversusdeletioncostattributesmustremainseparate.",
+    "Budgetbinaryk/B mayhuge; graphsize independentofbudgetvalue.",
+    "m0/k0/isolatedoriginalvertices/disconnectedQ included.",
+    "Exact4variantsrequirebackupsalsoonfixededgelessYESoutput.",
+    "No proof of universal statement fromfinitechecking."
+  ],
+  "primary_interfaces_pending": [
+    "Krause actualOWR2005 trianglequestion and2006dissertationundirectedSection4.3 vsdirectedTheorem9.3.",
+    "Karp actualNodeCoverNPcompleteness interface; existingignoredfacsimile reusableafterseal.",
+    "Poljak actual two-subdivision identity positivecredit.",
+    "Khachiyan actualSection6 model andtripartiteattachmentpriorcredit; further currentexacttarget scope search."
+  ],
+  "initial_assessment": "Whole original reduction/main/corollary reconstructed without detected central gap; only established VertexCoverNPcompleteness imported. Primary provenance/priorcredit/supportcode anddiagnostics remain tocheck. No novelty/openness certificate."
+}

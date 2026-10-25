@@ -1,0 +1,22 @@
+--- sealed-original-proposal
++++ root-additive-correction
+@@ -1161,6 +1161,19 @@
+    test('versioned_predecessor_link',any(t=='a' and x.get('href')=='https://arxiv.org/abs/2111.01241v2' for t,x in d.a) and 'Related source editions' in body)
+  if rid in SG_IDS:
+   binding=c['source_binding'];pin=SG_PINS[rid]
++  # Exact editorial body contract rejects added claims outside named sections.
++  body_fragments=re.findall(r'<body(?:\s[^>]*)?>(.*?)</body\s*>',h,re.S|re.I)
++  def approved_body_text(fragment):
++   fragment=re.sub(r'<!--.*?-->|<(script|style)\b[^>]*>.*?</\1\s*>','',fragment,flags=re.S|re.I)
++   return ' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
++  approved_body_hashes={'23181280': '3ec908901ee2f446b1a82edca9a692259580082024523ab2cd1c9cc0d4391329', '23442760': '7955b9484ed15889a65a524d708b42621003d692127d806ef4efe4a30c9a9428', '23395703': '230f8f21cd3ce51ce8f91b5a6fa7b7f0f7261a3db53e15c4ac2c273ba1cc60a6'}
++  body_fragment=body_fragments[0] if len(body_fragments)==1 else ''
++  test('exact_approved_whole_body_text',len(body_fragments)==1 and hashlib.sha256(approved_body_text(body_fragment).encode()).hexdigest()==approved_body_hashes[rid])
++  headings=re.findall(r'<h1>(.*?)</h1>',re.sub(r'<!--.*?-->','',body_fragment,flags=re.S),re.S)
++  test('exact_visible_h1',len(headings)==1 and approved_body_text(headings[0])==c['title'])
++  if rid=='23395703':
++   tex_anchors=re.findall(r'<a\b([^>]*)>(.*?)</a>',re.sub(r'<!--.*?-->','',body_fragment,flags=re.S),re.S)
++   test('exact_visible_original_TeX_link_label',sum('href="https://zenodo.org/api/records/23395703/files/seven_plane_gin.tex/content"' in attrs and approved_body_text(label)=='Zenodo original published TeX source' for attrs,label in tex_anchors)==1)
+   section_text={sid:' '.join(unescape(re.sub(r'<[^>]+>',' ',re.sub(r'<h2>.*?</h2>','',seg,flags=re.S))).split()) for sid,seg in re.findall(r'<section id="([^"]+)">(.*?)</section>',h,re.S)}
+   shown=lambda fragment:' '.join(unescape(re.sub(r'<[^>]+>',' ',fragment)).split())
+   from datetime import date

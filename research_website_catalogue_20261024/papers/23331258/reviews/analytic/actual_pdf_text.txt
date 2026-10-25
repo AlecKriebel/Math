@@ -1,0 +1,149 @@
+===ACTUAL PDF PAGE1===
+NP-completeness of three-terminal
+shortest-path blocking
+Alec Kriebel
+Independent researcher
+ORCID: 0009-0001-9320-500X
+12 October 2026 Version 1.0
+Unrefereed research note
+Abstract
+We prove that, in a ﬁnite simple undirected graph with unit edge lengths, ﬁnding a minimum
+edge set whose deletion increases all three distances between three speciﬁed terminals by at least
+one is NP-hard. The budget decision problem is NP-complete even when all deletion costs are one
+and all three original terminal distances are three. A direct reduction from Vertex Cover passes
+through a tripartite graph and identiﬁes its vertex-cover number with the minimum shortest-
+path blocker size. The construction also gives NP-completeness when the terminal distances
+must remain ﬁnite, or must increase exactly from three to four. This provides a classiﬁcation of
+the undirected triangle question posed by Krause in 2005, without asserting bibliographic ﬁrst
+priority.
+1 The question and its model
+Krause asked for the complexity of Blocking Shortest Paths (BSP) when the demand pairs are the
+three pairs among terminals r, s, t [1, pp. 2856–2858]. The same undirected triangle case appears
+in his dissertation [ 2, Section 4.3]; directed triangle hardness was already known [ 2, Theorem 9.3].
+We classify the undirected problem by a self-contained reduction, using only the classical NP-
+completeness of Vertex Cover [ 3] as an external complexity result.
+An earlier related construction attaches the three parts of a tripartite Vertex Cover instance to
+three vertices on a terminal path [ 4, Section 6]. That construction concerns protected vertices, ver-
+tex deletion, one terminal pair and zero/one traversal lengths. We retain the tripartite attachment
+mechanism but use three geodesic demands, unit traversal lengths, and unrestricted unit-cost edge
+deletion. The no-larger-cover extraction below explicitly accounts for deletion of the middle edges.
+All graphs below are ﬁnite, simple and undirected, and every edge has traversal length one.
+Write dG(x, y ) for shortest-path length, with dG(x, y ) = ∞ if there is no path. The three terminals
+are distinct and pairwise connected initially. A blocker is an edge set F satisfying
+dG− F (x, y ) ≥ dG(x, y ) + 1 for {x, y } ∈ {{r, s }, {r, t }, {s, t }}. (1)
+Terminal disconnection is allowed: inﬁnity exceeds every ﬁnite integer. Deleting edges cannot
+shorten a path, so ( 1) is equivalent to meeting every original shortest path for each demand pair.
+All edges, including terminal edges, may be deleted. Deletion costs and traversal lengths are
+diﬀerent input attributes.
+1
+===ACTUAL PDF PAGE2===
+The unit-cost decision problem supplies a nonnegative, binary-encoded integer budget B and
+asks whether |F | ≤ B. An edge-list certiﬁcate and three breadth-ﬁrst searches before and after
+deletion verify feasibility in polynomial time. With positive binary-encoded rational deletion costs
+and a rational budget, exact addition and comparison have polynomial bit complexity as well. Thus
+both decision versions belong to NP.
+2 Two cover identities
+For a graph J, let τ(J) be its minimum vertex-cover cardinality. The ﬁrst identity is the vertex-cover
+form of Poljak’s classical two-subdivision stable-set identity [ 5, p. 308]; we include its proof.
+Lemma 1. Let Q = (V, E ) have n vertices and m edges. Replace each edge e with ordered endpoints
+(ue, v e) by the path
+ue − be − ce − ve,
+using two new vertices unique to that edge. The resulting graph H is tripartite with parts A = V ,
+B = {be : e ∈ E} and C = {ce : e ∈ E}, and
+τ(H) = m + τ(Q).
+If m ≥ 1, there is an edge between each pair of parts.
+Proof. Given a cover S of Q, add one new vertex per edge: choose ce if only ue is in S, choose be
+if only ve is in S, and choose either if both are. The resulting set covers H and has size m + |S|.
+Conversely, let X cover H, and put S = X ∩V . Every middle edge requires at least one of be, c e
+in X. If neither original endpoint is in S, both new vertices are required. Writing q for the number
+of such uncovered Q-edges gives |X| ≥ |S|+ m + q. Adding one endpoint of each uncovered edge
+to S produces a cover S′ of Q with
+τ(Q) ≤ |S′| ≤ |S|+ q ≤ |X| −m.
+These inequalities prove the identity. Each edge gadget contributes one edge of each cross-part
+type, establishing the ﬁnal assertion.
+Lemma 2. Let H = ( W, J ) be tripartite with a supplied partition W = A ⊔ B ⊔ C, and with at
+least one edge of each cross-part type. Add new terminals r, s, t , adjacent respectively to all vertices
+in A, B, C , and no other new edges. Call the resulting graph GH . Its three terminal distances are
+three, and its minimum unit-cost blocker size satisﬁes
+opt(GH ) = τ(H).
+Proof. For w ∈ W , let ew be its unique terminal spoke. Terminals are nonadjacent and have disjoint
+neighborhoods, ruling out terminal paths of length one or two. A cross-part edge supplies a path
+of length three for each terminal pair. Moreover, for the terminals a, b of parts U, V , the complete
+family of shortest paths is
+a − u − v − b (u ∈ U, v ∈ V, uv ∈ J).
+Indeed, any three-edge path must use a spoke at each end and one H-edge between its two interior
+vertices.
+2
+===ACTUAL PDF PAGE3===
+If X covers H, deleting the spokes ew for w ∈ X meets every such geodesic. Therefore
+opt(GH ) ≤ τ(H).
+For the reverse inequality, let F be any blocker, allowing deletions of H-edges as well as spokes.
+Include w in a set X for every deleted spoke ew, and include one arbitrary endpoint of every
+deleted H-edge. Then |X| ≤ |F |. For each uv ∈ J, the corresponding terminal geodesic has edges
+eu, uv, e v. At least one is in F , and its contribution to X covers uv. Thus X is a vertex cover and
+τ(H) ≤ |F |.
+3 The complexity classiﬁcation
+Theorem 3. Undirected, unit-length three-terminal BSP is NP-complete in its budget decision
+form, even with unit deletion costs and all three original terminal distances equal to three. Exact
+optimization is NP-hard. The positive binary-encoded rational-cost decision version is also NP-
+complete.
+Proof. Take a Vertex Cover instance (Q, k ) with k ≥ 0 and m = |E(Q)| ≥ 1. Construct H and
+then GH by the two lemmas, and set B = m + k. They give
+τ(Q) ≤ k ⇐ ⇒ τ(H) ≤ m + k ⇐ ⇒ opt(GH ) ≤ B.
+The graph has n + 2m + 3 vertices and n + 5m edges. Construction is polynomial in the input
+length, and computing m + k takes polynomial bit time. The graph size does not depend on the
+magnitude of the binary budget. The hypotheses of Lemma 2 hold because m ≥ 1. In particular
+the terminals are pairwise nonadjacent, initially connected, and at distance three.
+Edgeless source instances are always yes-instances and can be sent to a ﬁxed yes-instance satis-
+fying the restrictions: use a triangle as H, attach one spoke per vertex, and set B = 2 . Thus the
+reduction is total. Vertex Cover NP-completeness and the NP-membership argument above prove
+the unit-cost claim. Unit costs are permitted positive rational costs, giving hardness of that version
+too. An exact optimizer decides the budget problem by comparing its optimum with the budget,
+proving optimization hardness.
+Corollary 4. The unit-cost decision problem remains NP-complete if all terminal distances must
+remain ﬁnite, or must increase exactly from three to four.
+Proof. Add to GH a fresh internally vertex-disjoint four-edge path between each terminal pair; the
+nine new internal vertices have no other incident edges. A simple terminal path using a new internal
+vertex must traverse a whole added path. Thus no new terminal path of length at most three is
+created, and the original terminal geodesics are unchanged.
+Any blocker in the augmented graph must still hit each original geodesic. Ignoring backup-path
+deletions, the extraction in Lemma 2 produces an H-cover of no greater size. Conversely, spoke
+deletions for an H-cover leave all three backup paths intact and block every length-three geodesic,
+so all terminal distances become exactly four. Both strengthened optima are therefore τ(H), and
+the same budget reduction applies. Their additional distance constraints are veriﬁable by BFS,
+proving NP membership. This asserts terminal connectivity, not connectivity of every remaining
+vertex.
+4 Veriﬁcation, priority and research status
+The accompanying source and veriﬁcation archive preserves the original proof packet and its hash
+manifests, along with independent mathematical, source-model, computational and priority audits.
+3
+===ACTUAL PDF PAGE4===
+The standard-library Python veriﬁcation checks include arbitrary edge-deletion subsets, cover ex-
+traction, tripartite optimum equality, all nonempty labelled source graphs through ﬁve vertices,
+binary budgets, and backup-path controls. Integrity mutations are rejected. Finite checks sup-
+port consistency and reproducibility; the universal theorem follows from the written lemmas, not
+enumeration or a proof assistant.
+The result answers the mathematical question recorded as open in the historical sources. A
+bounded current-literature audit is supplied separately. We make no claim that the problem re-
+mained open until this work, that our argument is the ﬁrst proof, or that the literature search is
+exhaustive. General length-bounded cuts, directed demands and full-disconnection multicuts re-
+quire separate model comparisons; their hardness alone does not establish this restricted theorem.
+AI tools were used extensively in constructing, verifying, adversarially auditing and preparing
+this work. Independent AI-agent review is disclosed as such. This is an unrefereed preprint: it
+has not undergone independent human peer review or journal review. No planar, bounded-degree,
+weighted-traversal-length or globally connected residual-graph classiﬁcation is claimed.
+References
+[1] S. Krause, Increasing distances in graphs, in Combinatorial Optimization , Oberwolfach
+Report 50/2005, pp. 2856–2858. Workshop 6–12 November 2005; report published 2006.
+doi:10.4171/OWR/2005/50.
+[2] S. Krause, Increasing Distances in Graphs , doctoral dissertation, Technische Universität Braun-
+schweig, 24 February 2006. Institutional-library copy .
+[3] R. M. Karp, Reducibility among combinatorial problems, in Complexity of Computer Compu-
+tations, 1972, pp. 85–103; Main Theorem and Node Cover entry, p. 94. doi:10.1007/978-1-4684-
+2001-2_9.
+[4] L. Khachiyan, E. Boros, K. Borys, K. Elbassioni, V. Gurvich, G. Rudolf and J. Zhao, On short
+paths interdiction problems: total and node-wise limited interdiction, Theory of Computing
+Systems 43 (2008), 204–233; published online 2007. doi:10.1007/s00224-007-9025-6.
+[5] S. Poljak, A note on stable sets and colorings of graphs, Commentationes Mathematicae Uni-
+versitatis Carolinae 15(2) (1974), 307–309. Czech Digital Mathematics Library .
+4
