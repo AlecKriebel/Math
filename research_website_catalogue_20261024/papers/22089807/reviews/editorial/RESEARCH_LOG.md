@@ -1,0 +1,4 @@
+# Editorial research log — Zenodo 22089807
+
+- 2026-10-25T04:45:00.541706+00:00: Checkpoint 1; editorial completion estimate 25%. Read goal, policy, complete scope/analytic/adversarial reports and custom verdicts, root clearance, frozen scope content, receipt and source metadata. Read all 21 actual standalone PDF pages via direct fresh extraction. Captured immutable input baseline before authoring. Exact scope and date distinction confirmed; no new mathematical clearance issued.
+- 2026-10-25T04:46:02.844070+00:00: Checkpoint 2; editorial completion estimate 75%. Created absent source-bound publication/promotion configs, full proposed public copy, complete two-paragraph abstract and proposed SEO metadata. Bound original custom verdicts without schema rewriting and preserved the original held-scope chronology under later root authority. Validation and sealed handoff remain.

@@ -1,0 +1,177 @@
+"""Prepare the reviewed copy and bindings; never render, mutate sources, or publish."""
+from pathlib import Path
+import datetime
+import hashlib
+import json
+import re
+
+P = Path(__file__).resolve().parents[2]
+E = Path(__file__).resolve().parent
+R = P.parents[1]
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def save(path, data):
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+
+
+now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+clearance_path = R / "verification/root-clearance-23203100-20261025.json"
+assert sha(clearance_path) == "e186543476c3a507b7ba5fc59df50432963efce03d6791015eb8f48becb61ca6"
+clearance = json.loads(clearance_path.read_text())
+assert clearance["status"] == "PASS"
+record_path = P / "sources/record/zenodo_record.json"
+receipt_path = P / "sources/record/transport_receipts.json"
+record = json.loads(record_path.read_text())
+raw_receipt = json.loads(receipt_path.read_text())
+assert isinstance(raw_receipt, list)
+tex_path = P / "sources/extracted/zenodo-upload-kit/manuscript/main.tex"
+tex = tex_path.read_text()
+abstract_tex = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", tex, re.S).group(1).strip()
+abstract = " ".join(abstract_tex.replace("--", "–").split())
+assert abstract == (P / "reviews/scope/ORIGINAL_ABSTRACT.txt").read_text().strip()
+files = []
+for item in raw_receipt:
+    if item["saved"].startswith("assets/"):
+        name = Path(item["saved"]).name
+        files.append({
+            "filename": name,
+            "url": item["url"],
+            "bytes": item["bytes"],
+            "md5": item["md5"],
+            "sha256": item["sha256"],
+            "api_checksum": item["record_checksum"],
+            "source_relative_path": "sources/" + item["saved"],
+            "receipt_saved_path": item["saved"],
+            "receipt_index": raw_receipt.index(item),
+        })
+assert len(files) == 2
+slug = "pure-loss-bosonic-dynamic-capacities-consumed-key-secrecy"
+edition_note = "The manuscript is dated 6 October 2026, matching Zenodo’s declared publication date. Zenodo records creation on 7 October 2026 UTC. Neither the manuscript nor Zenodo metadata supplies a version number. These dates do not establish first priority."
+c = {
+    "title": record["metadata"]["title"],
+    "slug": slug,
+    "description": "Pure-loss bosonic capacity regions from EPnI under an average photon budget, with a zero-energy consumed-key secrecy obstruction and an explicit correction.",
+    "abstract": abstract,
+    "plain_language": [
+        "A lossy optical channel can carry ordinary messages, quantum information and shared resources in different combinations. A capacity region describes every combination of rates that can be approached with errors tending to zero. This note identifies the trade-offs for a pure-loss channel under a finite average photon budget, using the cited entropy photon-number inequality (EPnI).",
+        "The private-communication part asks what a protocol should protect after it uses up a secret key. A one-time pad keeps a message secret from someone who sees the ciphertext, but the message and the used key are correlated with that ciphertext. Requiring them both to remain jointly secret rules out the one-time pad. The paper proves that this literal requirement also obstructs the claimed private capacity region at zero channel energy.",
+        "The positive private theorem therefore states its changed promise explicitly: the generated message and new key are secret, while the used key is discarded. With that convention, the paper establishes the public/private/secret-key trade-off formula. The formulas and their original EPnI-conditional route are credited to earlier work; the note supplies a consequence of the external entropy proof and an operational correction."
+    ],
+    "result": [
+        "Let Lη be the one-mode pure-loss bosonic channel with a fresh independent vacuum environment at each use, 1/2 ≤ η ≤ 1, and 0 ≤ N < ∞ average input photons per use. Arbitrary entanglement among the finitely many channel inputs is allowed. All logarithms are base two. Write g(u) = (u+1) log₂(u+1) − u log₂u, with g(0)=0. Rates are signed forward net rates: positive rates generate resources and negative rates consume them.",
+        "For classical communication C, quantum communication Q and entanglement E, the capacity region is the closed union over λ ∈ [0,1] of all triples satisfying the three inequalities simultaneously: C+2Q ≤ g(λN)+g(ηN)−g((1−η)λN); Q+E ≤ g(ηλN)−g((1−η)λN); C+Q+E ≤ g(ηN)−g((1−η)λN). The general equality uses the cited unrefereed finite-energy multimode EPnI proof, together with the named coding results.",
+        "For public communication R, private communication P and secret key S, under the explicit generated-secret convention, the capacity region is the closed union over λ ∈ [0,1] of all triples satisfying simultaneously: R+P ≤ g(ηN); P+S ≤ g(ηλN)−g((1−η)λN); R+P+S ≤ g(ηN)−g((1−η)λN). This is the corrected model’s region, rather than the region for the unchanged literal secrecy target in the cited source.",
+        "More precisely, the corrected convention requires ‖ω(W,X,Eⁿ)−π(W)⊗ω(X,Eⁿ)‖₁→0, where W=(M,T_A) denotes the jointly uniform generated message and key, X=(K,L) the public data, and Eⁿ Eve’s environment. Consumed private communication and key V=(J,S_B) are traced out and may correlate with W and X. Eve does not additionally receive the consumed key. Generated communication messages are fresh, uniform and initially independent of the preshared key; public common randomness is not counted as communication.",
+        "Separately, the literal source target protects U=(M,T_A,J,S_B) jointly and uniformly against Z=(K,L,Eⁿ). At N=0, its secrecy and reliability errors obey 1 ≤ 1/(d_M d_T_A)+(ε_sec+ε_rel)/2, where d_M and d_T_A are the generated message and key register sizes and the errors use the unhalved trace norm. Vanishing errors force d_M d_T_A=1 eventually. The one-time-pad rate vector (−1,1,−1) belongs to the displayed zero-energy private cone but violates this literal promise. For a uniform d-symbol one-time pad, the minimum unhalved trace norm against an independent uniform message/key pair is 2(1−1/d), even after optimizing the comparison public marginal. This obstruction does not depend on EPnI."
+    ],
+    "why_it_works": [
+        "The external finite-energy multimode EPnI gives H(L_t^{⊗n}(ρ))/n ≥ g(t g⁻¹(H(ρ)/n)) for every fixed finite n, every finite-energy n-mode input ρ and t ∈ [0,1], with an independent vacuum port. It permits arbitrary internal entanglement. The nondecreasing function f_t(s)=g(t g⁻¹(s)) is convex for 0≤t≤1 and concave for t≥1. This is a use of the cited theorem, not an independent proof of EPnI.",
+        "For an arbitrary input ensemble, thermal entropy maximization bounds the average receiver entropy. Choose one common λ by the ensemble’s conditional receiver entropy. Applying the vacuum entropy bound to the channel and its degrading map, followed by Jensen’s inequality, bounds both conditional environment entropy and conditional input entropy using that same λ. Substitution into the regularized dynamic capacity bounds gives the displayed outer regions. The private converse explicitly charges the consumed public, private and key registers; degradability justifies pure spectral refinement.",
+        "The known displaced thermal ensemble and classically enhanced father protocol attain the quantum-resource region. For generated-secret private coding, an outer public code is combined with key-indexed private codebooks: Bob decodes using the key, while averaging the unknown key hides the message from Eve. Coherent Gaussian inputs give the stated corner, and the charged noiseless resource conversions give its polyhedron.",
+        "Finite ensembles and photon cutoffs are fixed before taking coding limits. A strict mean-energy margin N′<N lets the expected-cost bound and vanishing error bounds select a code that meets the exact average budget. Approximation limits and N′↑N then give the region by closure. Compactness of λ establishes closedness; the entropy parameter gives convexity. The zero-energy refutation instead follows directly from the vacuum input and a decoder-success probability bound."
+    ],
+    "limitations": [
+        "The exact-region theorems concern the one-mode pure-loss channel with independent vacuum environments, 1/2 ≤ η ≤ 1 and finite N. They do not cover infinite energy, η<1/2, thermal-channel quantum capacity, amplifiers or confidential broadcast.",
+        "The photon budget is Tr(G_n ρ̄_n)≤nN, averaged over classical messages, shared key and encoder randomness; G_n is the sum of input photon-number operators. Quantum communication uses the maximally mixed logical source, equivalently half of a maximally entangled reference pair. No peak, per-codeword or arbitrary-source energy constraint, or strong converse, is asserted. Noiseless side resources are charged by rate rather than optical energy.",
+        "The resource model has forward communication without free feedback, finite gross generation and consumption rates, and finite resource registers with logarithmic dimensions O(n). Required finite seeds are charged. No free two-way assistance, superlinear catalysts or elimination of all gross seed input is established.",
+        "The positive private theorem protects uniform generated messages and keys after consumed registers are discarded. It gives no semantic-security guarantee for arbitrary message distributions and no secrecy guarantee after revealing consumed key. Vanishing trace secrecy gives the normalized information estimates used here; it does not promise dimension-free absolute leakage tending to zero.",
+        "At N=0 and at η=1 both complete regions follow without a nontrivial EPnI input. At η=1/2 the complete corrected-private region also does; the full classical/quantum/entanglement equality generally retains its EPnI dependence. At λ=0 and λ=1 the conditional thermal terms are interpreted at their zero and full values.",
+        "The general capacity equalities rely on the soundness and stated finite-energy multimode scope of the cited external unrefereed EPnI proof. The note does not supply a new EPnI proof, classify all entropy equality cases or prove uniqueness of Gaussian optimizers. Its finite computational checks supplement analytic arguments.",
+        "The upstream formal-source theorem interface was inspected as documentary evidence. Its Lean build and axiom closure were not reproduced, and the comparator’s intentional sorry is not proof evidence. No proof-assistant certification is claimed for the upstream theorem or these capacity consequences.",
+        "Wilde, Hayden and Guha already gave the formulas, Gaussian ensembles and original conditional converse route. The entropy result belongs to the cited OpenAI proof, with De Palma’s entropy-bound formulation and the earlier coding literature explicitly credited. No firstness, exhaustive novelty clearance, new ordinary single-resource capacity or general broadcast theorem is claimed."
+    ],
+    "background": [
+        {"title": "Wilde, Hayden and Guha — Quantum trade-off coding for bosonic communication (2012)", "url": "https://doi.org/10.1103/PhysRevA.86.062306", "note": "Source of both capacity formulas, the Gaussian ensembles and the original EPnI-conditional converses. The 2011 arXiv versions already contain these formulas and the conditional route."},
+        {"title": "De Palma — New lower bounds to the output entropy of multi-mode quantum Gaussian channels (2019)", "url": "https://arxiv.org/abs/1805.12469v3", "note": "Theorem 11 and Corollary 12 give the convex entropy-bound formulation of the capacity implication."},
+        {"title": "OpenAI — The entropy photon-number inequality (2026)", "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-entropy-photon-number-inequality-September-24-2026/paper.pdf", "note": "External unrefereed finite-energy multimode EPnI proof. Its independent-vacuum specialization supplies the sharp entropy bound used for the capacity equalities. The note gives a consequence of this proof."},
+        {"title": "Wilde and Hsieh — The quantum dynamic capacity formula of a quantum channel (2012)", "url": "https://arxiv.org/abs/1004.0458v3", "note": "Regularized classical/quantum/entanglement resource theorem and finite forward resource framework."},
+        {"title": "Wilde and Hsieh — Public and private resource trade-offs for a quantum channel (2012)", "url": "https://arxiv.org/abs/1005.3818v3", "note": "Section 5’s printed secrecy condition retains consumed private communication and key in the jointly protected tuple. The note refutes the literal target’s displayed region at zero energy and states a changed generated-secret criterion explicitly."},
+        {"title": "Wilde and Hsieh — Joint dynamic-capacity erratum (2012)", "url": "https://doi.org/10.1007/s11128-012-0451-2", "note": "Corrects generic optimization claims; it does not remove the consumed-key secrecy condition. No generic efficient optimization or additivity assertion is used here."},
+        {"title": "Hsieh and Wilde — Entanglement-assisted communication of classical and quantum information (2010)", "url": "https://arxiv.org/abs/0811.4227v4", "note": "Classically enhanced father coding and the expected-input properties needed for the quantum mean-cost selection."},
+        {"title": "Hsieh and Wilde — Public and private communication with a quantum channel and a secret key (2009)", "url": "https://arxiv.org/abs/0903.3920v1", "note": "Related public/private/key coding work; its printed key-retaining secrecy condition is distinguished from the generated-secret convention."},
+        {"title": "Hsieh, Luo and Brun — Secret-key-assisted private classical communication capacity over quantum channels (2008)", "url": "https://arxiv.org/abs/0806.3525", "note": "Prior secret-key-assisted private coding and generated-message secrecy."},
+        {"title": "Devetak — The private classical capacity and quantum capacity of a quantum channel (2005)", "url": "https://arxiv.org/abs/quant-ph/0304127", "note": "Classical-quantum packing and covering machinery used in the direct generated-secret construction."},
+        {"title": "Hayashi and Nagaoka — General formulas for capacity of classical–quantum channels (2003)", "url": "https://arxiv.org/abs/quant-ph/0206186v4", "note": "Lemma 2 supplies the operator inequality used in decoding. The coding mechanisms are credited to their sources."}
+    ],
+    "collaboration": "I welcome substantive collaboration in quantum information theory and bosonic communication on independent verification, careful comparison with prior work and development toward journal review. Coauthorship would reflect actual research contributions and mutual agreement.",
+    "follow_up": None,
+    "followup_rationale": "No precise, substantial, literature-supported follow-up has cleared the requested bar. No question is included merely to fill a section.",
+    "publication_date": "2026-10-06",
+    "version": None,
+    "doi": "10.5281/zenodo.23203100",
+    "author": "Alec Kriebel",
+    "orcid": "https://orcid.org/0009-0001-9320-500X",
+    "pdf_filename": "paper.pdf",
+    "supplement_filename": "zenodo-upload-kit.zip",
+    "supplement_label": "Published source and supporting materials (ZIP)",
+    "additional_assets": [],
+    "related_resources": [{"label": "Original source and supporting materials on Zenodo (ZIP)", "url": "https://zenodo.org/records/23203100/files/zenodo-upload-kit.zip"}],
+    "status": "Unrefereed preprint, manuscript dated 6 October 2026. No version number is supplied. Developed with extensive AI assistance; no independent human or journal peer review or formal proof-assistant certification is claimed.",
+    "ai_disclosure": "AI tools were used extensively in research, derivation, drafting, literature comparison and verification, including independent adversarial AI reviews. These reviews are not independent human or journal peer review. This is an unrefereed preprint; its external EPnI dependency is also unrefereed. No reproduced Lean build or proof-assistant certification is claimed. The named author is responsible for the claims and citations.",
+    "license": "CC BY 4.0",
+    "publication_date_label": "Manuscript dated",
+    "edition_label": "No version number supplied",
+    "citation_edition_label": "No version number supplied",
+    "edition_note": edition_note,
+    "bibtex_note": "Unrefereed preprint; manuscript dated 6 October 2026; no version number supplied in manuscript or Zenodo metadata. Zenodo record created 7 October 2026 UTC. Developed with extensive AI assistance.",
+    "canonical_url": "https://aleckriebel.com/research/" + slug + "/",
+    "pdf_pages": 7,
+    "keywords": record["metadata"]["keywords"],
+    "source_binding": {
+        "record_id": "23203100", "concept_record_id": "23203099", "record_url": "https://zenodo.org/records/23203100", "doi": "10.5281/zenodo.23203100",
+        "metadata_path": "sources/record/zenodo_record.json", "record_path": "sources/record/zenodo_record.json",
+        "metadata_sha256": sha(record_path), "record_sha256": sha(record_path),
+        "metadata_fields_path": "metadata", "zenodo_version": None, "manuscript_version": None,
+        "manuscript_date": "2026-10-06", "zenodo_publication_date": "2026-10-06",
+        "record_created_utc": record["created"], "record_updated_utc": record["updated"],
+        "page_date_basis": "Printed author date and declared Zenodo publication date agree on 6 October 2026; actual record creation is 7 October UTC. No manuscript or metadata version is supplied and no priority inference follows.",
+        "receipt_path": "sources/record/transport_receipts.json", "receipt_schema": "transport_receipt_list", "receipt_asset_selector": "saved begins assets/",
+        "receipt_sha256": sha(receipt_path), "source_receipt_sha256": sha(receipt_path), "source_retrieved_utc": raw_receipt[0]["retrieved_utc"],
+        "asset_root": "sources/assets", "pdf_source_path": "sources/assets/paper.pdf", "supplement_source_path": "sources/assets/zenodo-upload-kit.zip",
+        "pdf_sha256": clearance["pdf_sha256"], "supplement_sha256": clearance["supplement_sha256"], "files": files,
+        "source_tex_path": str(tex_path.relative_to(P)), "source_tex_sha256": sha(tex_path),
+        "abstract_source": str(tex_path.relative_to(P)), "abstract_source_sha256": sha(tex_path),
+        "abstract_tex_sha256": hashlib.sha256(abstract_tex.encode()).hexdigest(),
+        "abstract_sha256": hashlib.sha256(abstract.encode()).hexdigest(), "abstract_word_count": len(abstract.split()),
+        "abstract_normalization": "Complete original one-paragraph abstract; collapse whitespace and render Wilde--Hsieh as Wilde–Hsieh only. No text omitted; Zenodo description is not substituted.",
+        "reviewed_documents": [{"filename": "paper.pdf", "source_relative_path": "sources/assets/paper.pdf", "pages": 7, "read_scope": "Full seven-page published PDF text and complete source TeX read editorially with all five full final reports, verdicts, scope candidate/map and root clearance; all seven published pages visually inspected in the existing contact sheet. Fresh searchable-PDF extraction checked. No new scientific audit, submitted-code execution or formal build is claimed by this editorial task."}],
+        "unique_reader_pdf_count": 1, "additional_reader_pdfs": [], "archive_regular_file_count": 40, "archive_embedded_pdf_count": 0, "nested_archive_count": 0, "embedded_assets": [],
+        "archive_reader_note": "The ZIP contains 40 regular members and no additional PDF or nested archive; all 40 extracted members must match the archived bytes. The source tree contains 92 frozen files. The original layout and receipts remain unchanged.",
+        "frozen_scope_content_path": "reviews/scope/PAGE_CONTENT_CANDIDATE.json", "frozen_scope_content_sha256": sha(P/"reviews/scope/PAGE_CONTENT_CANDIDATE.json"), "frozen_scope_abstract_field": "abstract",
+        "claim_map_path": "reviews/scope/CLAIM_MAP.json", "claim_map_sha256": sha(P/"reviews/scope/CLAIM_MAP.json"),
+        "review_boundary": "All five original full reports and exact custom verdict objects remain bound in promotion.json. Original null/conditional dispositions are preserved. Later full-proof upstream audits and the separately bound root clearance resolve the central dependency; reviewer dispositions do not certify rendered or live pages.",
+        "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+        "source_layout_adapter_required": True, "source_layout_adapter_note": "reviews/editorial/SCHEMA_ADAPTER.md",
+        "publication_date_policy": {"publication_date": "2026-10-06", "publication_date_label": "Manuscript dated", "manuscript_version": None, "zenodo_version": None, "record_created_utc": record["created"], "required_note": edition_note},
+    },
+    "review_metadata": {"prepared_utc": now, "completion_percent": 100, "scientific_clearance_received": True, "root_clearance_file": str(clearance_path.relative_to(R)), "root_clearance_sha256": sha(clearance_path), "publication_state": "BINDINGS_READY_RENDERING_PENDING", "rendered": False, "deployed": False, "editor_authorization": "Only these paper-specific configs and new reviews/editorial artifacts. Root inspection of the exact copy, bounded adapter integration, rendering, HTTP/browser/native Sheet gates remain. No site/Git/Sheet/UI/deployment/release/outreach actions by this task."},
+}
+save(P/"publication.json", c)
+reviews = {}
+dispositions = {"scope": "SCOPE_COMPLETE", "analytic": "DOWNSTREAM_CONSEQUENCES_VERIFIED_WITH_EXTERNAL_DEPENDENCY", "adversarial": "DOWNSTREAM_CONSEQUENCES_VERIFIED_WITH_EXTERNAL_DEPENDENCY", "upstream_analytic": "PASS_REQUIRED_UPSTREAM_DEPENDENCY", "upstream_adversarial": "PASS_REQUIRED_UPSTREAM_DEPENDENCY"}
+for family, binding in clearance["reviews"].items():
+    report = R/binding["report"]
+    verdict = R/binding["verdict"]
+    assert sha(report) == binding["report_sha256"]
+    assert sha(verdict) == binding["verdict_sha256"]
+    reviews[family] = {"report": str(report.relative_to(P)), "sha256": sha(report), "verdict_file": str(verdict.relative_to(P)), "verdict_sha256": sha(verdict), "verdict": json.loads(verdict.read_text()), "root_disposition": dispositions[family]}
+g = {
+    "record_id": "23203100", "status": "PASS", "disposition_by": "root", "created_utc": now,
+    "approved_scope": clearance["approved_scope"], "root_clearance": clearance["authorization"], "root_clearance_file": str(clearance_path.relative_to(R)), "root_clearance_sha256": sha(clearance_path), "root_clearance_record": clearance,
+    "pdf_sha256": clearance["pdf_sha256"], "supplement_sha256": clearance["supplement_sha256"], "publication_sha256": sha(P/"publication.json"),
+    "source_receipt_path": "sources/record/transport_receipts.json", "source_receipt_schema": "transport_receipt_list", "source_receipt_sha256": sha(receipt_path),
+    "metadata_path": "sources/record/zenodo_record.json", "metadata_sha256": sha(record_path), "source_files": files,
+    "reviews": reviews, "scope_gate_resolution": clearance["scope_gate_resolution"],
+    "dependency_resolution": {"prior_downstream_assessments": "Original analytic/adversarial verdicts establish the downstream reductions conditionally on VE and expressly do not clear the full upstream proof. Their exact original dispositions remain unchanged.", "later_evidence": "The later independent upstream analytic and adversarial reviews substantively reconstruct the full pinned finite-energy two-input EPnI proof and identify no unresolved central gap. Root read all five reports, the actual capacity paper and the actual upstream central proof, and positively adjudicated the required arbitrary-finite-block vacuum consequence.", "current_mathematical_disposition": "Exact general CQE and explicit GEN private regions under the stated assumptions, using the credited external unrefereed theorem. This is not a substitute hypothetical-premise claim and is not a claim of a new independent EPnI proof.", "formal_limit": "No reproduced Lean kernel build, axiom closure or formal certification is claimed."},
+    "source_repair": False, "human_peer_review": False, "formal_machine_verification": False, "follow_up": None,
+    "preparation_state": "BINDINGS_READY_RENDERING_PENDING", "rendered_public_copy_approved": False, "live_http_verified": False, "browser_verified": False, "native_sheet_publication_verified": False,
+    "source_layout_adapter_required": True, "source_layout_adapter_note": "reviews/editorial/SCHEMA_ADAPTER.md",
+}
+save(P/"promotion.json", g)
+(E/"ABSTRACT.tex").write_text(abstract_tex+"\n")
+(E/"ABSTRACT.txt").write_text(abstract+"\n")
+print(json.dumps({"publication_sha256": sha(P/"publication.json"), "promotion_sha256": sha(P/"promotion.json"), "abstract_words": len(abstract.split()), "version": c["version"], "canonical_url": c["canonical_url"]}))

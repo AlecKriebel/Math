@@ -1,0 +1,213 @@
+{
+  "title": "A fitness-independent family of simultaneous amplifiers beyond relative fitness 3/2",
+  "slug": "simultaneous-amplifiers-beyond-three-halves",
+  "description": "A fitness-independent weighted graph sequence amplifies Moran fixation under both Birth–death and death–Birth updating for each fixed 1 < r < 1.5028569.",
+  "abstract": "We study fixation from a uniformly random single mutant on finite connected loopless undirected weighted graphs under both Birth–death (Bd) and death–Birth (dB) Moran updating. Let R_sim be the supremum of R for which one fitness-independent graph family eventually amplifies fixation under both rules for every fixed r ∈ (1,R). Let R_hyb be the unique root in (3/2,151/100) of R⁶ − 8R⁵ + 22R⁴ − 30R³ + 21R² − 6R + 1. We construct one fitness-independent family that simultaneously amplifies every fixed 1 < r < R_hyb for all sufficiently large members of the sequence. Therefore R_sim ≥ R_hyb = 1.5028569127905696… > 3/2.\n\nThe construction combines a large clique with dilute hub pendants and dilute, internally heavy two-vertex satellites. An exact finite-state derivation of the weak-cut limiting trace, together with uniform establishment, cleanup, and reciprocal-invasion estimates at the scale of the eventual gain, reduces the two normalized fixation corrections to explicit response functions. Optimizing their common positivity interval yields the displayed sextic. The same analysis proves that R_hyb is optimal among fixed positive (σ,λ) in the displayed first-order dilute pair–pendant response model; a specialization with entirely rational edge weights already crosses 3/2. Thus 3/2 is not the exact simultaneous-amplification threshold. The unrestricted value of R_sim, and even a finite universal upper bound, remain open.",
+  "plain_language": [
+    "In a structured population, a new mutation can disappear or eventually replace every resident. The probability of taking over depends on which individuals can replace which others. It also depends on whether reproduction is chosen before a replacement site, or a vacancy is chosen before its neighbors compete to fill it.",
+    "This paper constructs one sequence of weighted population graphs that improves takeover probability under each of these two pure update rules. The entire sequence is chosen independently of the beneficial mutation’s relative fitness. For each fixed fitness strictly between 1 and about 1.5028569, all sufficiently large members improve on a well-mixed population of the same size. The required size can depend on the fixed fitness.",
+    "The graph combines a large well-mixed clique with two sparse kinds of peripheral structure. Heavy pairs favor death–Birth fixation, while leaves attached to one hub favor Birth–death fixation. Their small contributions can be balanced to make both improvements positive. Earlier work by Svoboda and colleagues established simultaneous amplification below relative fitness 1.2; a separate earlier construction by the author reached the open interval below 1.5.",
+    "The improvement above 1.5 changes what thresholds are possible, although the advantage becomes small as the population grows. This is a mathematical construction with highly separated edge weights. It supplies no empirical prediction or practical population-size requirement."
+  ],
+  "result": [
+    "Let R_hyb be the unique root in (3/2,151/100) of R⁶ − 8R⁵ + 22R⁴ − 30R³ + 21R² − 6R + 1. There exists one fitness-independent sequence of finite connected loopless undirected weighted graphs G_t such that, for every fixed 1 < r < R_hyb, there exists t₀(r) for which every t ≥ t₀(r) strictly amplifies uniformly initialized single-mutant fixation under each pure Bd and dB process. Each comparison uses the complete graph on the same n_t vertices and the matching update rule. Hence R_sim ≥ R_hyb = 1.5028569127905696… > 3/2.",
+    "Bd chooses a fitness-weighted parent and then an edge-weighted replacement target. dB first chooses a uniformly random death site and then a neighboring parent with probability proportional to fitness times edge weight. Their finite complete-graph baselines differ: ρ_Bd(K_n,r) = (1−r⁻¹)/(1−r⁻ⁿ), whereas ρ_dB(K_n,r) = ((n−1)/n)(1−r⁻¹)/(1−r⁻⁽ⁿ⁻¹⁾). Initialization is uniform over all vertices, with exactly one mutant and resident fitness one.",
+    "The sequence uses a unit clique of C_t = t⁴ vertices, m_t = floor(λ_* t) unit hub leaves, and q_t = t two-vertex satellites with internal weight C_t/σ_*. Every satellite vertex connects to every clique vertex by a common positive dyadic weight selected by an exact compact-interval decision procedure. All weights are fixed before r is quantified.",
+    "At scale q_t/C_t, the two normalized fixation corrections are B(r) = 2(σ−1)/(1+σ(r²−1)) + λ/(r−1) and D(r) = 2{r(2−r)−σ}/(σ+2r(r−1)) − λ. Their simultaneous positivity produces the sextic threshold. The fixed parameters giving this response-model tangency are approximately σ_* = 0.1306772822870484 and λ_* = 0.7508064830318805.",
+    "Within this displayed first-order dilute response model, R_hyb is optimal among fixed positive σ and λ. The rational choice σ = 19/137 and λ = 20/27 already yields an entirely rational-edge graph sequence with threshold (5069 + 12√147001)/6439 = 1.50176815223369… > 3/2."
+  ],
+  "why_it_works": [
+    "For fixed finite module sizes, an exact finite-state Schur complement resolves rare migration between the center and satellites. It uses local fixation probabilities to obtain a limiting macro chain while retaining possible reversals of a partially completed sweep.",
+    "The center-module argument controls initial establishment, later cleanup, and reciprocal invasion to errors smaller than the eventual gain q_t/C_t. An ordinary approximation with an unspecified error tending to zero would not suffice because the claimed gain itself tends to zero.",
+    "The two module types have opposite response signs under the two update rules. The proof balances their densities, optimizes the shared positivity interval, and then selects one positive weak-edge weight for each t on an expanding compact fitness interval. This supplies the required order: one family, then every fixed fitness, then a fitness-dependent size threshold."
+  ],
+  "limitations": [
+    "The construction uses finite connected loopless undirected weighted graphs, uniform initialization of exactly one mutant, resident fitness one, a fixed mutant fitness r > 1, and the two specified pure Bd and dB rules. No guarantee is supplied for arbitrary initialization, directed or unweighted constructions, empirical evolutionary dynamics, or a process that randomly mixes the update rules.",
+    "The theorem concerns each fixed r in the open interval (1,R_hyb). Neutrality r = 1 and the upper endpoint r = R_hyb are excluded; no strict endpoint amplification is established. There is no size bound uniform near either endpoint and no guarantee for fitness varying with population size. The sequence need not contain a graph of every integer order.",
+    "For the unrestricted simultaneous-amplification threshold R_sim, the result is a lower bound. Exact optimality applies only to fixed positive σ and λ in the displayed first-order dilute pair–pendant response model. It does not establish optimality over all growing graph families, singular or size-dependent parameter choices, other modules, or higher-order boundary gains. This work supplies no universal upper bound.",
+    "For each fixed interior fitness, the normalized fixation gain has order Θ(t⁻³) = Θ(n_t⁻³/⁴) and tends to zero. Pair weights grow with the clique size, and the compact-interval construction may require very small positive weak edges. No useful finite-size onset, fixation-time bound, bounded weight ratio, or practical optimality is established.",
+    "The archived exact verifiers check finite labelled transition aggregation, symbolic response identities, rational margins, root isolation, and tangency. They do not machine-verify the manuscript’s weak-cut convergence or population asymptotics.",
+    "This is an unrefereed preprint developed with extensive generative-AI assistance. The author accepts responsibility for its claims and citations."
+  ],
+  "background": [
+    {
+      "title": "Svoboda, Joshi, Tkadlec and Chatterjee (2024), Amplifiers of selection for the Moran process with both Birth-death and death-Birth updating",
+      "url": "https://doi.org/10.1371/journal.pcbi.1012008",
+      "note": "Established simultaneous amplification on 1 < r < 1.2 using weakly connected weighted modules. Its uniform singleton initialization, update rules, and same-order complete-graph benchmarks agree with this paper’s model. The present construction improves the fitness interval."
+    },
+    {
+      "title": "Tkadlec, Pavlogiannis, Chatterjee and Nowak (2020), Limits on amplifiers of natural selection under death-Birth updating",
+      "url": "https://doi.org/10.1371/journal.pcbi.1007494",
+      "note": "Proved boundedness and fixed-graph transience for noncomplete structures, including weighted and directed edges. A graph-dependent strong-selection threshold does not impose one bound on every growing graph family."
+    },
+    {
+      "title": "Kriebel (2026), No universal death–Birth amplifier on a finite weighted population structure",
+      "url": "https://doi.org/10.5281/zenodo.21753405",
+      "note": "An earlier unrefereed release extends the fixed-graph obstruction to complete directed weighted support and identifies the exact baseline equality class. It addresses a different quantifier order."
+    },
+    {
+      "title": "Kriebel (2026), A fitness-independent family of simultaneous amplifiers below fitness three halves",
+      "url": "https://doi.org/10.5281/zenodo.21850042",
+      "note": "The separate center–triangle construction establishes R_sim ≥ 3/2 and suppresses at its own endpoint. The present result crosses that endpoint with a different family."
+    },
+    {
+      "title": "Brewster, Huang, Mitzenmacher and Nowak (2026), The Mixed Birth-Death/death-Birth Moran Process",
+      "url": "https://doi.org/10.4230/LIPIcs.ITCS.2026.29",
+      "note": "Studies a process that independently chooses an update rule at each step. Simultaneous amplification under each pure rule does not by itself prove amplification for every mixture."
+    }
+  ],
+  "collaboration": "I welcome substantive collaboration on independent verification of the stochastic comparison and weak-cut arguments, assessment of the gain-scale error estimates, or development of a journal submission. Authorship would reflect actual research and writing contributions.",
+  "follow_up": null,
+  "followup_rationale": "No follow-up is proposed. The unrestricted threshold, different modules, changing parameter scales, and useful finite-size or time bounds are substantial directions, but this focused reading supplies no new precise mechanism or evidence-supported conjecture that clears the requested publication bar. A bounded literature search cannot certify worldwide openness.",
+  "publication_date": "2026-08-25",
+  "publication_date_label": "Reviewed edition published",
+  "edition_label": "Zenodo version 2.0.4; earlier named release 8 August 2026",
+  "original_publication_date": "2026-08-08",
+  "reviewed_publication_date": "2026-08-25",
+  "version": "2.0.4",
+  "doi": "10.5281/zenodo.22089807",
+  "author": "Alec Kriebel",
+  "pdf_filename": "simultaneous_amplification_beyond_three_halves.pdf",
+  "supplement_filename": "simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz",
+  "status": "Unrefereed preprint; Zenodo version 2.0.4, published 25 August 2026. An earlier named release of the same work was published on 8 August 2026. Developed with extensive AI assistance; no independent human or journal peer review or formal proof-assistant certification is claimed.",
+  "ai_disclosure": "Generative AI was used extensively in mathematical exploration, derivation, adversarial analysis, software development, manuscript preparation and subsequent review. AI review is not independent human or journal peer review. This is an unrefereed preprint without formal proof-assistant certification. The named author is responsible for the claims, materials and citations.",
+  "source_binding": {
+    "record_id": "22089807",
+    "record_url": "https://zenodo.org/records/22089807",
+    "doi": "10.5281/zenodo.22089807",
+    "concept_doi": "10.5281/zenodo.22089806",
+    "version": "2.0.4",
+    "zenodo_publication_date": "2026-08-25",
+    "original_named_release": {
+      "record_id": 21852072,
+      "date": "2026-08-08",
+      "doi": "10.5281/zenodo.21852072",
+      "same_work_version_not_additional_completion": true
+    },
+    "standalone_manuscript_date": "August 2026",
+    "embedded_manuscript_date": "August 22, 2026",
+    "record_created_utc": "2026-08-25T04:10:23.911114+00:00",
+    "record_updated_utc": "2026-10-10T21:39:42.879238+00:00",
+    "source_retrieved_utc": "2026-10-25T04:32:36.298794+00:00",
+    "pdf_sha256": "1d6d1d31a782776b07b9240467f02d624b47dcde5c83f4740a192136c2dfb8e3",
+    "supplement_sha256": "e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae",
+    "files": [
+      {
+        "name": "simultaneous_amplification_beyond_three_halves.pdf",
+        "url": "https://zenodo.org/api/records/22089807/files/simultaneous_amplification_beyond_three_halves.pdf/content",
+        "bytes": 214040,
+        "sha256": "1d6d1d31a782776b07b9240467f02d624b47dcde5c83f4740a192136c2dfb8e3",
+        "zenodo_checksum": "md5:29a144c2d7e52baf9fea5fbc851f0a0d",
+        "retrieved_utc": "2026-10-25T04:32:37.397045+00:00"
+      },
+      {
+        "name": "simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz",
+        "url": "https://zenodo.org/api/records/22089807/files/simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz/content",
+        "bytes": 6952578,
+        "sha256": "e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae",
+        "zenodo_checksum": "md5:a58dc59ffbc4b3f76e36903855b79e60",
+        "retrieved_utc": "2026-10-25T04:32:50.703082+00:00"
+      }
+    ],
+    "reviewed_documents": [
+      {
+        "source": "embedded",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22089807/sources/published-source/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/output/pdf/simultaneous_amplification_beyond_three_halves.pdf",
+        "archive_filename": "simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz",
+        "archive_member": "universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/output/pdf/simultaneous_amplification_beyond_three_halves.pdf",
+        "bytes": 214136,
+        "sha256": "1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9",
+        "pdfinfo": "Title:           A fitness-independent family of simultaneous amplifiers beyond relative fitness 3/2\nSubject:         Simultaneous amplification under Birth–death and death–Birth Moran updating\nKeywords:        evolutionary graph theory, Moran process, fixation probability, simultaneous amplification, Birth–death updating, death–Birth updating\nAuthor:          Alec Kriebel\nCreator:         LaTeX with hyperref\nProducer:        xdvipdfmx (0.1)\nCreationDate:    Fri Aug 21 17:00:00 2026 PDT\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           21\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       214136 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "pages": 21,
+        "source_relative_path": "published-source/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/output/pdf/simultaneous_amplification_beyond_three_halves.pdf",
+        "editorial_read_scope": "Complete reader difference evidence and independent reviews read; embedded file independently rehashed and archive bytes checked editorially. No additional public reader advertised."
+      },
+      {
+        "source": "standalone",
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22089807/sources/simultaneous_amplification_beyond_three_halves.pdf",
+        "bytes": 214040,
+        "sha256": "1d6d1d31a782776b07b9240467f02d624b47dcde5c83f4740a192136c2dfb8e3",
+        "pdfinfo": "Title:           A fitness-independent family of simultaneous amplifiers beyond relative fitness 3/2\nSubject:         Simultaneous amplification under Birth–death and death–Birth Moran updating\nKeywords:        evolutionary graph theory, Moran process, fixation probability, simultaneous amplification, Birth–death updating, death–Birth updating\nAuthor:          Alec Kriebel\nCreator:         LaTeX with hyperref\nProducer:        xdvipdfmx (0.1)\nCreationDate:    Fri Aug 21 17:00:00 2026 PDT\nCustom Metadata: no\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           21\nEncrypted:       no\nPage size:       612 x 792 pts (letter)\nPage rot:        0\nFile size:       214040 bytes\nOptimized:       no\nPDF version:     1.5\n",
+        "pages": 21,
+        "source_relative_path": "simultaneous_amplification_beyond_three_halves.pdf",
+        "editorial_read_scope": "All 21 actual standalone pages read by fresh direct extraction; complete released abstract read in source. The second reader and source identity are bound by root and both mathematical review families; no new editorial rendered/live pass or submitted verifier execution."
+      }
+    ],
+    "abstract_source": "sources/published-source/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/main.tex",
+    "embedded_pdf_difference": "Embedded PDF is not byte-identical to standalone PDF. Complete text comparison shows only title-page date, Figure 1 label positioning/extracted order and whitespace differences; no mathematical claim or proof text difference found.",
+    "concept_record_id": "22089806",
+    "metadata_path": "sources/record.json",
+    "record_path": "sources/record.json",
+    "metadata_sha256": "4cddc3b454e3e5a7c653fa3711b209cd9c8b41b834ead10a57984ce0ed79fd88",
+    "record_sha256": "4cddc3b454e3e5a7c653fa3711b209cd9c8b41b834ead10a57984ce0ed79fd88",
+    "raw_record_path": "sources/record-raw.json",
+    "raw_record_sha256": "7bf65171d1b2237a7c516b213686de8e09de531fc4a7c12b450359daa466de39",
+    "zenodo_version": "2.0.4",
+    "manuscript_version": null,
+    "receipt_sha256": "6cfdd2ec0be534ac37db9572f6d215e9ed1add81b85e428cb5ec75fb6bfa0f13",
+    "source_receipt_sha256": "6cfdd2ec0be534ac37db9572f6d215e9ed1add81b85e428cb5ec75fb6bfa0f13",
+    "source_tex_path": "sources/published-source/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold/main.tex",
+    "source_tex_sha256": "bcc2a0e5f502105ac3d5539a1d2dd752e732463d89c2106f7e67ce4da27d7aac",
+    "abstract_source_sha256": "bcc2a0e5f502105ac3d5539a1d2dd752e732463d89c2106f7e67ce4da27d7aac",
+    "abstract_tex_sha256": "5212c4128e505c7b2a80f3152072c8b670376d3c4f18a2937ef0fe198c7fd7e5",
+    "abstract_word_count": 214,
+    "abstract_paragraphs": 2,
+    "abstract_normalization": "Complete original two-paragraph abstract, checked against standalone page 1 and released TeX. Only mathematical display/inline typography, TeX macros, en dashes and whitespace are normalized. No sentence or word omitted.",
+    "unique_reader_pdf_count": 2,
+    "archive_regular_file_count": 23,
+    "archive_embedded_pdf_count": 1,
+    "nested_archive_count": 2,
+    "nested_wheel_member_count": 1662,
+    "embedded_assets": [],
+    "additional_reader_pdfs": [],
+    "archive_reader_note": "The public primary reader is the deposited standalone PDF, unchanged. The complete deposited tar.gz retains a second PDF with the same basename and different bytes/date/layout. The embedded reader is documented under reviewed_documents, not registered as an additional public asset or substituted for the standalone. The two nested wheels are dependencies, not reader documents.",
+    "frozen_scope_content_path": "reviews/scope/content.json",
+    "frozen_scope_content_sha256": "9aca1ef864f1eca69aaf960aeae703873905237ee4e67b7411c3226814567069",
+    "frozen_scope_abstract_field": "abstract",
+    "frozen_scope_gate": "Held pending independent analytic and adversarial verdicts; this scope candidate grants no promotion or deployment approval.",
+    "review_boundary": "All original scope/analytic/adversarial report and verdict objects remain unchanged. The original scope hold is retained in its own evidence; the later separately bound root scientific clearance controls this publication draft. AI review is not human peer review or formal certification.",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "publication_date_policy": {
+      "publication_date": "2026-08-25",
+      "publication_date_label": "Reviewed edition published",
+      "original_publication_date": "2026-08-08",
+      "original_record_id": "21852072",
+      "reviewed_zenodo_version": "2.0.4",
+      "required_note": "The reviewed edition is Zenodo version 2.0.4, published on 25 August 2026. An earlier named release of this same work was published on 8 August 2026 at DOI 10.5281/zenodo.21852072. These are two releases of one paper; the earlier date is not the publication date of version 2.0.4. The standalone manuscript is dated August 2026, and the copy retained inside its supporting archive is dated 22 August 2026."
+    },
+    "abstract_pdf_source": "sources/simultaneous_amplification_beyond_three_halves.pdf#page=1",
+    "embedded_pdf_sha256": "1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9"
+  },
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "supplement_label": "Source and verification materials (tar.gz)",
+  "additional_assets": [],
+  "related_resources": [],
+  "citation_edition_label": "Zenodo version 2.0.4, published 25 August 2026",
+  "edition_note": "The reviewed edition is Zenodo version 2.0.4, published on 25 August 2026. An earlier named release of this same work was published on 8 August 2026 at DOI 10.5281/zenodo.21852072. These are two releases of one paper; the earlier date is not the publication date of version 2.0.4. The standalone manuscript is dated August 2026, and the copy retained inside its supporting archive is dated 22 August 2026.",
+  "bibtex_note": "Unrefereed preprint; Zenodo version 2.0.4, published 25 August 2026. Earlier named release of the same work: 8 August 2026, DOI 10.5281/zenodo.21852072. Developed with extensive AI assistance.",
+  "canonical_url": "https://aleckriebel.com/research/simultaneous-amplifiers-beyond-three-halves/",
+  "pdf_pages": 21,
+  "license": "CC BY 4.0",
+  "keywords": [
+    "evolutionary graph theory",
+    "Moran process",
+    "fixation probability",
+    "simultaneous amplification",
+    "Birth–death updating",
+    "death–Birth updating",
+    "weighted population graphs",
+    "fitness-independent graph sequence",
+    "pair–pendant construction"
+  ],
+  "review_metadata": {
+    "prepared_utc": "2026-10-25T04:46:02.844070+00:00",
+    "completion_percent": 100,
+    "scientific_clearance_received": true,
+    "root_clearance_file": "verification/root-clearance-22089807-20261025.json",
+    "root_clearance_sha256": "547296ed820667dfb47b36f796631c23f5eae67be7fb5c2ad898fb5d0bb72125",
+    "publication_state": "BINDINGS_READY_RENDERING_PENDING",
+    "rendered": false,
+    "deployed": false,
+    "editor_authorization": "Only absent paper-specific publication/promotion configs and new reviews/editorial artifacts. No source/review/seal edits, shared checker/renderer/public-site changes, Git, Sheet, browser, deployment, release or outreach. Root retains actual rendered-content, HTTP, browser and native-tracker gates. Live47/readiness51 remains frozen until browser verification."
+  }
+}
