@@ -18,7 +18,7 @@ for j,b in enumerate(Bb):
   wrong[i,q]+=prev-cur;wrong[q,i]+=prev-cur
  start+=abs(b)
 gi=ns['characteristic_inertia'](G)[0];wi=ns['characteristic_inertia'](wrong)[0]
-assert gi!=wi
+assert G.det()!=wrong.det()
 # Replay independently mutated certificate inputs in our dedicated scratch, never sources.
 cert=json.loads((P/'original_packet/original/certificate.json').read_text());fixtures={}
 fixtures['reversed_claimed_signature']=copy.deepcopy(cert);fixtures['reversed_claimed_signature']['signature']=2
@@ -33,6 +33,6 @@ for name,c in fixtures.items():
  p=subprocess.run(cmd,capture_output=True,text=True,timeout=30)
  assert p.returncode!=0 and p.stderr.startswith('REJECT:')
  results.append({'name':name,'returncode':p.returncode,'stderr':p.stderr.strip(),'fixture_sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'mutation':{'field':name,'fixture_is_private_copy':True}})
-r={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'after_helper_inspection':True,'mixed_parity_index_fixture':{'A':A,'B':Bb,'geometric_matrix':[[int(x) for x in G.row(i)] for i in range(n)],'geometric_inertia':gi,'printed_previous_index_matrix':[[int(x) for x in wrong.row(i)] for i in range(n)],'previous_index_inertia':wi},'negative_certificate_controls':results,'scope':'Checks corruption detection, not universal group/topology proofs. Historical expectation text is not evidence.'}
+r={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'after_helper_inspection':True,'mixed_parity_index_fixture':{'A':A,'B':Bb,'geometric_matrix':[[int(x) for x in G.row(i)] for i in range(n)],'geometric_inertia':gi,'geometric_determinant':str(G.det()),'printed_previous_index_matrix':[[int(x) for x in wrong.row(i)] for i in range(n)],'previous_index_inertia':wi,'previous_index_determinant':str(wrong.det()),'inertia_alone_detects_this_fixture':gi!=wi},'negative_certificate_controls':results,'scope':'Checks corruption detection, not universal group/topology proofs. Historical expectation text is not evidence.'}
 (O/'post-helper-controls.json').write_text(json.dumps(r,indent=2)+'\n')
 print(json.dumps(r,indent=2))

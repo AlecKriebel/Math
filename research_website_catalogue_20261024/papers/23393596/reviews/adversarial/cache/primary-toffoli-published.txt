@@ -1,0 +1,2040 @@
+               Proceedings of the Edinburgh Mathematical Society: page 1 of 37
+               doi:10.1017/S0013091522000153
+
+
+
+                            THE ATIYAH–PATODI–SINGER RHO INVARIANT AND
+                                        SIGNATURES OF LINKS
+
+
+                                                                 ENRICO TOFFOLI
+                           Fakultät für Mathematik, Universität Regensburg, Regensburg, Germany
+                                                   (enricotoﬀoli@gmail.com)
+
+                                                          (Received 19 November 2020)
+
+
+
+               Abstract Relations between the Atiyah–Patodi–Singer rho invariant and signatures of links have been
+               known for a long time, but they were only partially investigated. In order to explore them further, we
+               develop a versatile cut-and-paste formula for the rho invariant, which allows us to manipulate manifolds
+               in a convenient way. With the help of this tool, we give a description of the multivariable signature of a
+               link L as the rho invariant of some closed three-manifold YL intrinsically associated with L. We study
+               then the rho invariant of the manifolds obtained by the Dehn surgery on L along integer and rational
+               framings. Inspired by the results of Casson and Gordon and Cimasoni and Florens, we give formulas
+               expressing this value as a sum of the multivariable signature of L and some easy-to-compute extra terms.
+
+
+
+               Keywords: rho invariant; aps; Atiyah–Patodi–Singer; Levine–Tristram; Cimasoni–Florens; multivariable
+                         signature; cut-and-paste; Dehn surgery
+
+               2020 Mathematics subject classification Primary 57K10, 58J28;
+                                                       Secondary 57K31
+
+
+
+
+               1. Introduction
+
+               Given a closed, oriented manifold N of odd dimension, together with a representation
+               α : π1 (N ) → U (n) for some n ∈ N, we can consider the Atiyah–Patodi–Singer rho invari-
+               ant ρα (N ). This is a real number deﬁned as the diﬀerence between the eta invariant of
+               the twisted and the untwisted odd signature operator associated with any Riemannian
+               metric on N , and it turns out to be independent of the choice of the metric [1, 2]. The
+               rho invariant is thus deﬁned as a spectral invariant, but it has the following fundamental
+               property that relates it to well-studied topological invariants: if N is the boundary of a
+               compact, oriented manifold M such that the representation α extends to π1 (M ), then it
+               can be computed as
+
+                                                            ρα (N ) = nσ(M ) − σα (M ),                            (1.1)
+
+               © The Author(s), 2022. Published by Cambridge University Press on Behalf of The
+               Edinburgh Mathematical Society. This is an Open Access article, distributed under
+               the terms of the Creative Commons Attribution licence (https://creativecommons.org/
+               licenses/by/4.0/), which permits unrestricted re-use, distribution, and reproduction in
+               any medium, provided the original work is properly cited.                                               1
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                2                                                     Enrico Toﬀoli
+
+                where σ(M ) denotes the ordinary signature of M , and σα (M ) is the twisted signature
+                associated with the chosen extension α : π1 (M ) → U (n).
+                  In knot theory, rho invariants are used to give descriptions and generalizations of knot
+                and link signatures. One of the basic observations is that, if SK is the closed manifold
+                obtained by 0-framed surgery on K and α : π1 (SK ) → U (1) is the representation sending
+                the meridian of K to ω ∈ U (1), then
+                                                                  ρα (SK ) = −σK (ω),                   (1.2)
+                where σK is the Levine–Tristram signature function of K. Atiyah–Patodi–Singer rho
+                invariants associated with higher-dimensional non-abelian representations were used in
+                the knot theory by Levine [22, 23] and Friedl [16, 17] as obstructions to knot and link
+                concordance. Multivariable signatures of links, deﬁned by Cimasoni and Florens [9] using
+                generalized Seifert surfaces, were given a description as twisted signatures of four mani-
+                folds and also employed as concordance invariants [9, 12, 13]. However, a description of
+                them as Atiyah–Patodi–Singer rho invariants was not investigated thoroughly. One of the
+                goals of this paper is to ﬁll this gap.
+                   Given the diﬃculty in computing rho invariants directly, it can be very useful to study
+                their behaviour under modiﬁcations of the original manifold. One possible way to simplify
+                manifolds is what we will call cut-and-paste through the rest of the paper. If a closed
+                (2k + 1)-dimensional manifold is split by a codimension-one closed manifold Σ into a
+                union X1 ∪Σ X2 , we can often ﬁnd a manifold X0 with ∂X0 = −Σ such that X1 ∪Σ X0
+                and −X0 ∪Σ X2 are “simpler” than X1 ∪Σ X2 . Schematically, we write this modiﬁcation
+                as
+                                        X1 ∪Σ X2  X1 ∪Σ X0  −X0 ∪Σ X2 .
+                It is then useful to compare the rho invariant of X1 ∪Σ X2 with the sum of the rho
+                invariants of the two other manifolds. Recall that, when Xi is any of the three manifolds
+                X0 , X1 , or X2 , the subspace
+                                                     VXαi = ker(Hk (Σ; Cnα ) → Hk (Xi ; Cnα )).
+                is Lagrangian in Hk (Σ; Cnα ) with respect to the symplectic form given essentially by the
+                twisted intersection form (we will omit α from the notation when we are considering
+                the trivial one-dimensional representation). In particular, we can compute their Maslov
+                triple index τ (VXα0 , VXα1 , VXα2 ), which is an integer-valued function deﬁned on triples of
+                Lagrangian subspaces (see Deﬁnition 3.1). We prove the following cut-and-paste formula
+                for the Atiyah–Patodi–Singer rho invariant.
+
+                  Theorem 3.9. Let X1 , X2 and X0 be compact, oriented manifolds of dimension 2k + 1
+                with ∂X1 = −∂X0 = −∂X2 =: Σ, and let α : π1 (X1 ∪∂ X2 ) → U (n) be a representation
+                that extends to π1 (X0 ). Then, for every choice of such an extension, we have
+                                        ρα (X1 ∪Σ X2 ) = ρα (X1 ∪Σ X0 ) + ρα (−X0 ∪Σ X2 ) + C,
+                where
+                                                C = τ (VXα0 , VXα1 , VXα2 ) − n τ (VX0 , VX1 , VX2 ),
+                with the ﬁrst Maslov triple index performed on Hk (∂X1 ; Cnα ), and the second on
+                Hk (∂X1 ; C).
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links               3
+
+                  An analogous cut-and-paste formula for the untwisted eta invariant was proved by
+               Bunke [5, 2.5]. Formulas related to Theorem 3.9 were also discussed by Kirk and Lesch
+               in connection with their gluing formulas for eta invariants for manifolds with boundary
+               [21, Section 8.3]. In fact, our cut-and-paste formula can also be proved using their results
+               (see [28, Section 2.3.4]). Here, however, we give a simple proof which does not involve rho
+               invariants with manifolds with boundary, and it is based on Wall’s non-additivity for the
+               signature instead.
+                  The second part of the paper is made up of applications of Theorem 3.9 in the context
+               of link theory, which help relate multivariable signatures to rho invariants. We consider
+               from now on only rho invariants of three-manifolds with one-dimensional representations
+               of the fundamental group. As such representations factor through the ﬁrst homology in
+               a unique way, we can simply see them as representations of the ﬁrst homology group.
+               We recall that a k-component link L = K1 ∪ · · · ∪ Kk is said to be n-coloured if it is
+               considered together with a surjective map c : {1, . . . , k} → {1, . . . , n}, which partitions
+               it naturally into n sublinks L1 , . . . , Ln . A component Ki is then said to have colour c(i).
+               Given an n-coloured link L in S 3 , the Cimasoni–Florens signature is a function
+
+                                                                      σL : Tn∗ → Z,
+
+               where Tn∗ := (S 1 \ {1})n . If n = 1, σL coincides with the Levine–Tristram signature
+               function. Now, let XL be the exterior of L, i.e. the complement of an open tubular
+               neighbourhood of L in S 3 . Then, XL is a compact, oriented three manifolds with bound-
+               ary, whose ﬁrst homology group is a free abelian group generated by the meridians of L.
+               Observe that Tn∗ has a natural bijection with the set of representation H1 (XL ; Zn ) → U (1)
+               that send the meridians of components of the same colour s to a same value ωs ∈ S 1 \ {1}
+               (we call these coloured representations): given an element ω = (ω1 , . . . , ωn ) ∈ Tn∗ , we
+               have an associated coloured representation α deﬁned by sending the meridian of a com-
+               ponent Ki to to ωc(i) . The following result, which can be seen as a generalization of
+               (1.2), expresses the multivariable signature of L as the rho invariant of a suitable closed
+               three-manifold YL which only depends on L. This manifold YL is built by gluing the
+               link exterior XL together with a three-manifold with boundary obtained by plumbing
+               punctured disks in a way that is prescribed by the linking numbers of L. For a precise
+               deﬁnition of YL , see Construction 4.17.
+
+                  Proposition 4.18. Let L be an n-coloured link. Let ω ∈ Tn∗ , and let α : H1 (XL ; Z) →
+               U (1) be the associated coloured representation. Then, α can be extended to a represen-
+               tation of H1 (YL ; Z) and, for any choice of an extension, we have
+
+                                                                  ρα (YL ) = −σL (ω).
+
+                  The manifold YL has a very simple description in the case when L is colour-to-colour
+               algebraically split, i.e. when the total linking number lk(Ls , Lt ) is 0 for every pair of dis-
+               tinct colours s, t. Under this assumption, we prove two formulas relating the rho invariants
+               of the closed manifolds obtained by the Dehn surgery on L with the multivariable signa-
+               ture of L. Given a link L = K1 ∪ · · · ∪ Kk with a rational framing r = (r1 , . . . , rk ) ∈ Qk ,
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                4                                                     Enrico Toﬀoli
+
+                let Λr be the rational matrix with coeﬃcients
+                                                    
+                                                      lk(Ki , Kj ),                        if i = j,
+                                              Λij =
+                                                      ri ,                                 if i = j.
+
+                As Λr is a symmetric matrix, we can compute its signature sign Λr . Let SL (r) be the
+                closed three-manifold obtained by the Dehn surgery on L along the rational framing r.
+                We say that a representation α : H1 (XL ; Z) → U (1) is compatible with r, if it extends
+                to H1 (SL (r); Z). First, we focus on surgery along integral framings. In this context, a
+                fairly general formula was given by Cimasoni and Florens [9, Theorem 6.7], extending
+                to the multivariable setting a result of Casson and Gordon [7, Lemma 3.1] (see also [19,
+                Theorem 3.6]). These formulas only consider representations with a ﬁnite image and are
+                written in terms of the invariant σ(N, α) of Casson and Gordon (see § 2.3). Rewritten in
+                terms of the rho invariant, the result of Cimasoni and Florens reads as follows.
+
+                   Theorem 4.21 (Cimasoni–Florens). Let L be a k-coloured k-component link. Let
+                q ∈ N a positive integer and let n1 , . . . , nk ∈ {1, . . . , p − 1} be integers, each of which
+                is coprime with q. Let ω = (e2πin1 /q , . . . , e2πink /q ) ∈ Tn∗ , and let α : H1 (XL ; Z) → U (1)
+                be the associated coloured representation. Let g be a compatible integral framing on L.
+                Then, we have
+                                                                                                        k
+                                                                            2 
+                                  ρα (SL (g)) = −σL (ω) +     Λij + signΛg − 2    (q − ni )nj Λij .
+                                                          i<j
+                                                                            q i=1
+
+                   Theorem 4.21 applies to the signature associated with the maximal colouring, where
+                all distinct link components have diﬀerent colours, but a formula for any colouring can be
+                easily deduced from it. However, there are some restrictions on the values of ω that limit
+                its use. Under the assumption of L being colour-to-colour algebraically split, we prove
+                the following formula with no restrictions on the values of ω.
+
+                  Theorem 4.24. Let L be an n-coloured link which is colour-to-colour algebraically
+                split. Let ω ∈ Tn∗ , and let α : H1 (XL ; Z) → U (1) be the associated coloured representation.
+                Let g be a compatible integral framing on L. Then, we have
+                                                                                              n
+                                                                                              
+                                           ρα (SL (g)) = −σL (ω) + signΛg − 2                       hs θs (1 − θs ),
+                                                                                              s=1
+
+                where, for each colour s, the values hs and θs are determined by
+                                         
+                               hs :=            Λij ,    θs ∈ (0, 1) such that ωs = e2πiθs .
+                                               c(i)=c(j)=s
+
+                  Theorem 4.24 is proved by ﬁrst describing the multivariable signature as a rho invariant
+                using Proposition 4.18, and then applying the cut-and-paste formula (Theorem 3.9) to
+                modify YL into a disjoint union of SL (g) and lens spaces L(hs , 1), for which we can write
+                the rho invariant very explicitly. The proof is completed by a careful computation of the
+                Maslov triple index involved in the cut-and-paste formula.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                                5
+
+                  Suppose now that a stronger assumption on the linking numbers is satisﬁed, namely
+               that every link component Ki has total linking number 0 with all sublinks Ls such that
+               s = c(i). We say in this case that L is component-to-colour algebraically split. Then,
+               as it is easy to verify, there is a particular integer framing fL (the Seifert framing)
+               which is compatible with all coloured representations H1 (XL ; Z) → U (1). An immediate
+               consequence of Theorem 4.24 is the following.
+
+                 Corollary 4.28. Let L be an n-coloured link which is component-to-colour alge-
+               braically split. Let ω ∈ Tn∗ , and let α : H1 (XL ; Z) → U (1) be the associated coloured
+               representation. Then, α extends to H1 (SL (fL ); Z) and we have
+                                                       ρα (SL (fL )) = −σL (ω) + signΛfL .
+
+                 The analog to Corollary 4.28 for the onecoloured setting was used by Nagel and Powell
+               in studying concordance properties of the Levine–Tristram signature [25]. Besides being
+               a useful formula on its own, moreover, Corollary 4.28 is our starting point to prove a
+               result that takes into account (non-integral) rational framings. This is expressed by the
+               next and ﬁnal result of this paper.
+
+                 Theorem 4.31. Let L be an n-coloured, k-component link that is component-to-colour
+               algebraically split. Let ω ∈ Tn∗ , and let α : π1 (XL ) → U (1) be the associated coloured
+               representation. Let r be a compatible rational framing on L. Then, we have
+                                                                              k
+                                                                              
+                              ρα (SL (r)) = −σL (ω) + signΛr −                      (ρ(L(pi , qi ), ωc(i) ) + sgn(pi /qi )),
+                                                                              i=1
+
+               where pi , qi are coprime integers such that ri − fi = pi /qi (here, fi is the i-th coeﬃcient
+               of the Seifert framing).
+
+                 As in the proof Theorem 4.24, lens spaces arise from the cut-and-paste construction.
+               In this case, we do not spell out the values of their rho invariant in the statement of the
+               theorem, as this would make the formula more cumbersome. Note, however, that these
+               values can always be easily computed (see Proposition 2.10).
+                 Observe that onecoloured links are a special case of component-to-colour algebraically
+               split links. In particular, Theorem 4.31 gives a new formula relating rho invariants with
+               the Levine–Tristram signature.
+
+                  Remark. Whenever not stated otherwise, all manifolds are assumed to be smooth.
+
+               Outline of the paper
+               In §2, we review the basics about twisted signatures and Atiyah–Patodi–Singer rho
+               invariants. We illustrate then a formula for the rho invariant of a three-dimensional lens
+               space. In §3, we review the Maslov triple index of Lagrangian subspaces and Wall’s non-
+               additivity theorem for the signature. We prove then our cut-and-paste formula (Theorem
+               3.9). In §4, we develop the applications in the knot theory. We ﬁrst prove the basic for-
+               mula relating rho invariants and multivariable signatures (Proposition 4.18), and then
+               use it to show results about integer (Theorem 4.24) and rational (Theorem 4.31) Dehn
+               surgery.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                6                                                     Enrico Toﬀoli
+
+                2. Twisted signatures and rho invariants
+
+                In § 2.1, we review the deﬁnition of twisted homology and twisted signatures and set
+                notation for these. In § 2.2, we recall the basics about Atiyah–Patodi–Singer eta and rho
+                invariants. In § 2.3, we underline the relation between these invariants and an invariant
+                of Casson and Gordon. In § 2.4, we give a reinterpretation of a well-known computation
+                for the rho invariant of three-dimensional lens spaces.
+
+                2.1. Twisted intersection forms and signatures
+                   Let M be a connected, compact, oriented manifold of dimension 2k with a represen-
+                                                                                  be the universal cover
+                tation α : π1 (M ) → U (n) for some n ∈ N. Let π := π1 (M ). Let M
+                                                         
+                of M , so that π acts on the left on C∗ (M ) by deck transformations, and on Cn through
+                the representation α (we write Cnα for the left Z[π]-module coming from this action). We
+                consider the twisted homology groups
+                                                                                         )),
+                                                  Hi (M ; Cnα ) := Hi ((Cnα )t ⊗Z[π] C∗ (M
+                                                                                       ), Cnα )),
+                                                  H i (M ; Cnξα ) := H i (HomZ[π] (C∗ (M
+                where the t denotes the fact that we are turning the left Z[π]-module structure of Cn into
+                a right one by means of the involution g → g −1 in π. Relative homology and cohomology
+                groups are deﬁned in a similar manner, as well as twisted homology groups with diﬀerent
+                Z[π]-modules (see e.g [18, Deﬁnition A.2]).
+
+                  Remark 2.1. If M = M1  · · ·  MN is a disjoint union of connected manifolds Mj ,
+                we will make the abuse of notation of writing α : π1 (M ) → U (n) to denote a collection of
+                representations αj : π1 (Mj ) → U (n). In this case, we deﬁne then
+                                                                               N
+                                                                               
+                                                          Hi (M ; Cnα ) :=           Hi (Mj ; Cnα ).
+                                                                               j=1
+
+                    We recall the following facts.
+
+                    Fact 1. Given a subset N ⊆ M , there is a well-deﬁned cup product [18, Lemma A.11]
+                                  ∪ : H p (M, N ; Cnα ) × H q (M, N ; Cnα ) → H p+q (M, N ; Cnα ⊗Z Cnα ),
+                where α denotes the complex-conjugate representation of α.
+
+                  Fact 2. As the representation α is Hermitian, the standard Hermitian product of Cn
+                gives rise to a well-deﬁned map of Z[π]-modules Cnα ⊗Z Cnα → C (where C is the Z[π]-
+                module associated with the trivial one-dimensional representation). This induces a group
+                homomorphism
+                                       H p+q (M, N ; Cnα ⊗Z Cnα ) → H p+q (M, N ; C).
+                Composing the above map with the cup product of Fact 1, and observing that
+                H q (M, N ; Cnα ) coincides with the complex-conjugate vector space H q (M, N ; Cnα ), we
+                get a bilinear map
+                                       ∪C : H p (M, N ; Cnα ) × H q (M, N ; Cnα ) → H p+q (M, N ; C).
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links             7
+
+                  Fact 3. There are twisted Poincaré duality isomorphisms [18, Theorem A.15]
+                                                                                   ∼
+                                                  PD : H p (M, ∂M ; Cnα ) −
+                                                                          → H2k−p (M ; Cnα ).
+
+                 Fact 4. Since the representation α is unitary, the evaluation map in twisted homology
+               gives rise to an isomorphism [11, Lemma 2.7]
+                                                                          ∼
+                                                evC : H q (M ; Cnα ) −
+                                                                     → HomC (Hq (M ; Cnα ), C).
+
+                 Using the ﬁrst three facts, we deﬁne the twisted intersection form as the sesquilinear
+               form
+                                                      α
+                                                     IM : Hk (M ; Cnα ) × Hk (M ; Cnα ) → C,
+               given by
+                                                    α
+                                                   IM (a, b) = PD−1 (a) ∪C PD−1 (b), [M ]
+               (compare e.g. with [18, Section 13]). As for the ordinary intersection pairing, the proper-
+                                                         α
+               ties of the cup product make the form IM     Hermitian if k is even and skew-Hermitian if
+               k is odd. This leads to the following deﬁnition.
+
+                 Definition 2.2. Let M be a compact oriented manifold of dimension 2k with a
+               representation α : π1 (M ) → U (n). The signature of M twisted by α is the integer
+                                                     
+                                                             α
+                                                      sign(IM  ), if k is even,
+                                          σα (M ) :=          α
+                                                      sign(i IM ), if k is odd,
+
+               where sign denotes the signature of a Hermitian form.
+                                         α
+                  Observe that the form IM can be deﬁned alternatively using the sequence of maps
+
+                                          j∗                            PD−1
+                        Hk (M ; Cnα ) −→ Hk (M, ∂M ; Cnα ) −−−−→ H k (M ; Cnα ) −−→
+                                                                                                 ev
+                                                                                  C
+                                                                                    Hom(Hk (M ; Cnα ), C)
+
+               (see e.g. [12, Deﬁnition 2.7]), where evC is the map discussed in Fact 4. From this point of
+                                                  α
+               view, we see that the radical of IM   coincides with the kernel of j∗ , as the two other maps
+                                                                            α
+               in the composition are isomorphisms. As a consequence, IM       is non-degenerate whenever
+               M is closed.
+
+               2.2. Basics on the rho invariant
+                 Let N be a closed, oriented, Riemannian manifold of dimension 2k + 1, with a represen-
+               tation α : π1 (N ) → U (n). Let Eα → N be the associated ﬂat vector bundle, and consider
+               the subspace
+                                                                                k
+                                                                                
+                                                          Ωev (N, Eα ) :=              Ω2q (N, Eα )
+                                                                                q=0
+                                                                                                   α
+               of twisted diﬀerential forms of even degree (see [2, Section 2] for details). Let DN   be
+                                                                                                ev
+               the twisted odd signature operator, i.e. the ﬁrst-order diﬀerential operator on Ω (N, Eα )
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                8                                                     Enrico Toﬀoli
+
+                deﬁned by
+                                          α
+                                         DN φ := (−1)q+1 ik ( d − d )φ,                    for φ ∈ Ω2q (N, Eα ).
+                               α
+                The operator DN   can be extended to a self-adjoint elliptic operator with discrete spectrum
+                and, by the results of Atiyah, Patodi, and Singer [3, Theorem 4.5], its eta function
+                                                          
+                                              η(s) =              sgnλ |λ|−s
+                                                                             α
+                                                                     λ∈Spec(DN )
+                                                                        λ=0
+
+                has a meromorphic extension which is holomorphic at s = 0, leading to the eta invariant
+                                                                  ηα (N ) := η(0) ∈ R.
+                We say that a compact Riemannian manifold M has metric of product form near the
+                boundary, if there exists a neighbourhood of ∂M that is isometric to (−ε, 0] × ∂M with
+                the product metric. The main result about the eta invariant of the twisted signature
+                operator is the following [2, Theorem 2.2].
+
+                  Theorem 2.3 (Atiyah–Patodi–Singer). Let M be an even-dimensional compact,
+                oriented manifold with ∂M = N , equipped with Riemannian metric of product form
+                near N , and let α : π1 (M ) → U (n) be a representation. Then
+                                                           
+                                               σα (M ) = n    L(p) − ηα (N ),
+                                                                              M
+
+                where L(p) is the Hirzebruch L-polynomial in the Pontryagin forms of M .
+
+                  Note that both summands on the right-hand term depend on the Riemannian metric
+                on N . We shall not dwell upon the geometrical signiﬁcance of the integral of the L-
+                polynomial, as it is going to get simpliﬁed soon.
+
+                   Remark 2.4. The restriction of α : π1 (M ) → U (n) to a representation of π1 (N ) is
+                made by composing α with the natural map π1 (N ) → π1 (M ). If N is not connected,
+                a map π1 (N1 ) → π1 (M ) for each connected component Ni of N can be obtained by
+                choosing appropriate paths between base points. The restriction α : π1 (N ) → U (n) must
+                be interpreted as the collection of the representations π1 (Ni ) → U (n) for all connected
+                components Ni . The invariant ηα (N ) is deﬁned in this case as the sum of the eta invariants
+                of the Ni ’s.
+
+                   For the eta invariant associated with the untwisted odd signature operator DN on
+                Ωev (N, C), we use the notation η(N ) := η(DN ). Following Atiyah, Patodi, and Singer
+                [2], we are now going to deﬁne the rho invariant.
+
+                   Definition 2.5. Let N be a closed, oriented manifold of odd dimension, and let
+                α : π1 (N ) → U (n) be a representation. The Atiyah–Patodi–Singer rho invariant of N
+                associated with α is the real number
+                                                             ρα (N ) := ηα (N ) − n η(N ),
+                where the eta invariants are computed for an arbitrary Riemannian metric on N .
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                            9
+
+                 We shall see in a moment that the diﬀerence ηα (N ) − n η(N ) is independent of the
+               Riemannian metric, so that ρα (N ) is well deﬁned. Moreover, ρτ (N ) is 0 for trivial
+               representations τ , and it satisﬁes
+
+                                                                 ρα (−N ) = −ρα (N ).                                   (2.1)
+
+               The main theorem about the rho invariant is the following.
+
+                  Theorem 2.6 (Atiyah–Patodi–Singer).                                  (i) ρα (N ) is independent of the Rie-
+                    mannian metric on N .
+
+                  (ii) If M is a compact, oriented manifold with ∂M = N and α extends to M, then
+
+                                                                ρα (N ) = n σ(M ) − σα (M ).
+
+                  Proof. Both statements are easy consequences of Theorem 2.3. See [2, Theorem 2.4].
+                                                                                                  
+
+                  We state one more well-known result that will turn useful later on.
+
+                 Proposition 2.7. Let Σ be a closed, oriented surface, and let ψ : π1 (Σ × S 1 ) → U (1)
+               be a representation. Then ρψ (Σ × S 1 ) = 0.
+
+                  Proof. See e.g. [12, Lemma 4.2].                                                                         
+
+               2.3. Rho invariants and Casson–Gordon invariants
+                  We will now review the deﬁnition of an invariant of Casson and Gordon and relate it to
+               the Atiyah–Patodi–Singer rho invariant. Let N be a closed, oriented three manifolds, and
+               let α : H1 (N ; Z) → U (1) be a representation. Assume that the image of α is ﬁnite. Using
+               a bordism argument, Casson and Gordon observe that there exists a compact, oriented
+               four-manifold W such that the boundary of W is the disjoint union of r copies of N for
+               some r ∈ N (we will write ∂W = rN ) with a representation α : H1 (W ; Z) → U (1) that
+               restrict to α on each boundary component [8, p. 183]. They deﬁne then an invariant as
+                                                                          1
+                                                         σ(N, α) :=         (σα (W ) − σ(W )).                         (2.2)
+                                                                          r
+               By additivity of the signature and again some bordism theory, they show that the invari-
+               ant σ(N, α) is independent of the choice of W and of the extension α [8, p. 183–184] (see
+               also [12, Corollary 2.11] for a more detailed version of their proof). Using the Atiyah–
+               Patodi–Singer index theorem, their invariant can be immediately reinterpreted as an
+               Atiyah–Patodi–Singer rho invariant. We state this explicitly for further reference, albeit
+               it is surely known to the experts.
+
+                  Proposition 2.8. Let N be a closed, oriented three-manifold, and let α : H1 (N ; Z) →
+               U (1) be a representation with ﬁnite image. Then, we have
+
+                                                                 σ(N, α) = −ρα (N ).
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                10                                                    Enrico Toﬀoli
+
+                  Proof. Let W be a compact, oriented four-manifold with ∂W = rN , with a represen-
+                tation α : H1 (W ; Z) → U (1) that restricts to α as discussed above, so that σ(N, α) is
+                described by (2.2). Using Theorem 2.6, on the other hand, we have
+
+                                                     rρα (N ) = ρα (rN ) = σ(W ) − σα (W ).
+
+                Comparing this with (2.2), we obtain the desired statement.                                 
+
+                2.4. The rho invariant of lens spaces
+                   Given coprime integers p and q, the three-dimensional lens space L(p, q) can be built
+                as the union of two solid tori Y1 , Y2 along any orientation-reversing diﬀeomorphism
+                f : ∂Y2 → ∂Y1 such that
+                                                                f∗ (μ2 ) = −qμ1 + pλ1 ,
+                where μ1 , μ2 are the meridians, respectively, of Y1 , Y2 , and λ1 is a longitude of Y1 . This
+                construction is well deﬁned for both positive and negative values of p and q. For positive
+                p it coincides, up to some explicit orientation-preserving diﬀeomorphism, with the classi-
+                cal deﬁnition of L(p, q) as a quotient of S 3 (compare with [15, Lemma 91.3]). In general,
+                there are orientation-preserving diﬀeomorphisms
+
+                                                         L(−p, q) ∼
+                                                                  = L(p, −q) ∼
+                                                                             = −L(p, q).
+
+                In particular, for both positive and negative p, we have an identiﬁcation of π1 (L(p, q))
+                with Z/p, and under this identiﬁcation, the element [1] ∈ Z/p corresponds to the generator
+                of π1 (Y1 ).
+                   Rho invariants of three-dimensional lens spaces can be computed explicitly. As every
+                representation α : Z/p → U (n) can be written as a direct sum of one-dimensional repre-
+                sentations, we shall focus on one-dimensional representations. Moreover, we shall exclude
+                the case p = 0, as L(0, 1) is diﬀeomorphic to S 2 × S 1 and its rho invariant is 0 for any
+                choice of α. We observe in this case that the representations α : Z/p → U (1) are in a
+                natural bijection with the set of |p|th roots of unity: to each such root ω, we associate the
+                representation αω sending 1 to ω.
+
+                     Notation 2.9. Given a |p|th root of unity ω, we write
+
+                                                           ρ(L(p, q), ω) := ραω (L(p, q)).
+
+                  Formulas for the rho invariants of lens spaces were given since the original paper
+                of Atiyah, Patodi and Singer [2, Proposition 2.12]. Introducing the periodic sawtooth
+                function ((·)) : R → (− 12 , 12 ) deﬁned by
+                                                     ⎧
+                                                     ⎨x − x − 1 , if x ∈ R \ Z,
+                                            ((x)) :=          2                 ,
+                                                     ⎩0,          if x ∈ Z.
+
+                we give the following description.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                   11
+
+                 Proposition 2.10. Let p, q be two coprime integers with p = 0, and let ζ = e2πi/p .
+               Then, for k ∈ {0, 1, . . . , |p| − 1}, we have
+                                                                              k−1
+                                                                                      qj          qk
+                                                 ρ(L(p, q), ζ kq ) = −4                      −2         .
+                                                                               j=1
+                                                                                       p            p
+
+                  Proof. We ﬁrst suppose p, q > 0. Set z := e2πin/p , with n = gcd(p, k), and set r :=
+               k/n. Then, we have ζ kq = z rq . The representation sending 1 to ω q has as its image the
+               set of mth roots of unity, with m such that p = mn. In this setting, Casson and Gordon
+               [8, pp.187–188] proved that
+                                                                                      rq            rq
+                                        σ(L(p, q), αω ) = 4 areaΔ nr,                    − intΔ nr,         ,   (2.3)
+                                                                                      m             m
+               where Δ(x, y) is the triangle with vertices (0, 0), (x, 0) and (x, y) and the number
+               int(Δ(x, y)) is given by counting:
+
+                  • +1 for every point of Z2 that lies in the interior of Δ(x, y);
+
+                  • +1/2 for every point of Z2 that lies in the interior of its edges;
+
+                  • +1/4 for every point of Z2 \ {(0, 0)} that coincides with one of the vertices.
+
+               Using Proposition 2.8 and the deﬁnition of r, we rewrite (2.3) as
+
+                                                                                     kq             kq
+                                             ρ(L(p, q), ζ kq ) = 4(intΔ(k,              ) − areaΔ(k, )).        (2.4)
+                                                                                     p              p
+
+               We will now express the right-hand term of (2.4) in a more explicit way. First of all, it is
+                                      kq     2q 2
+               clear that 4 area Δ(k,    )=     k . Moreover, we can count the lattice points inside the
+                                      p       p
+               triangle by following vertical lines {(x, y) | x = j}, for j = 1, . . . , k, and then summing
+               over j. We obtain
+                                                                    k−1
+                                                                    
+                                                       kq                   1   jq                1 1 kq
+                                         4intΔ k,             =4              +             +4     +
+                                                       p            j=1
+                                                                            2   p                 4 2 p
+                                                                                 k−1
+                                                                                          jq    kq
+                                                              = 2k − 1 + 4                    +2    .
+                                                                                 j=1
+                                                                                           p     p
+
+               Taking the diﬀerence, we obtain thus
+                                                                                   k−1
+                                                                                   
+                                                                  2q 2                 jq    kq
+                                       ρ(L(p, q), ζ kq ) = −        k + 2k − 1 + 4        +2    .               (2.5)
+                                                                  p                j=1
+                                                                                       p     p
+
+               Expanding the expression in the statement, it is now immediate to see that it coincides
+               with (2.5). As the sawtooth function ((·)) is odd, we see that both sides of the identity
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                12                                                    Enrico Toﬀoli
+
+                change sign when either p or q is changed of sign. As a consequence, the result keeps
+                holding for non-positive choices of p and q.                                       
+
+                  Corollary 2.11. Let n be any integer, and let ω ∈ U (1) be an |n|th root of unity.
+                Then, we have
+                                       ρ(L(n, 1), ω) = 2nθ(1 − θ) − sgn(n),
+                where θ ∈ [0, 1) is such that ω = e2πiθ .
+
+                   Proof. For n = 0, we have ρ(L(n, 1), ω) = 0 for all ω ∈ U (1) because L(0, 1) = S 2 ×
+                  1
+                S , so that the result is trivially satisﬁed in this case. For n > 0, there has to be a
+                k ∈ {0, 1, · · · n − 1} such that θ = k/n, with k ∈ {0, 1, · · · n − 1}. From (2.5), we easily
+                see that
+                                                         2k 2
+                                       ρ(L(n, 1), ω) = −      + 2k − 1 = 2nθ(1 − θ) − 1,
+                                                          n
+                and the desired formula is satisﬁed in this case. For negative n, we obtain now from the
+                last equation that
+                                            ρ(L(n, 1), ω) = −ρ(L(−n, 1), ω) = 2nθ(1 − θ) + 1,
+                which leads to the general formula of the statement.                                               
+
+                  Remark 2.12. Proposition 2.10 can be used to write rho invariants of lens spaces as
+                a diﬀerence of Dedekind–Rademacher sums. See [28, Theorem 3.3.27].
+
+                3. The cut-and-paste formula
+
+                In § 3.1, we recall the deﬁnition of the Maslov triple index of three Lagrangian subspaces
+                in a complex symplectic space. In § 3.3, we review a (non-)additivity theorem of Wall
+                for signatures of manifolds under some fairly general notion of gluing. In Section 3.4, we
+                prove the cut-and-paste formula for the Atiyah–Patodi–Singer rho invariants (Theorem
+                3.9), which is the main result of this section.
+
+                3.1. Complex symplectic spaces and the Maslov triple index
+                  A complex symplectic space is a pair (H, ω) such that H is a ﬁnite-dimensional complex
+                vector space, and ω : H × H → C is a non-degenerate skew-Hermitian form, called the
+                symplectic form. We shall often omit ω from the notation and simply call H a complex
+                symplectic space. We recall that a subspace L ⊆ H is Lagrangian if it coincides with its
+                orthogonal complement with respect to the symplectic form ω. Let Lag(H) denote the
+                set of all Lagrangian subspaces of H. We are now going to deﬁne a function
+                                                    τ : Lag(H) × Lag(H) × Lag(H) → Z.
+                Given three Lagrangian subspaces L1 , L2 , L3 ∈ Lag(H), it is immediate to verify that
+                the sesquilinear form
+                                        ψL1 L2 L3 : (L1 + L2 ) ∩ L3 × (L1 + L2 ) ∩ L3 → C
+                                                                             (a1 + a2 , b1 + b2 ) → ω(a1 , b2 )
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                           13
+
+               (with a1 , b1 ∈ L1 and a2 , b2 ∈ L2 ) is well deﬁned and Hermitian. In particular, we can
+               give the following deﬁnition.
+
+                  Definition 3.1. The Maslov triple index of (L1 , L2 , L3 ) is the integer
+
+                                                          τ (L1 , L2 , L3 ) := signψL1 L2 L3 .
+
+                  The Maslov triple index satisﬁes several elementary properties, among which are the
+               following two.
+
+                  Proposition 3.2.
+
+                   (i) Let L1 , L2 , L3 ∈ Lag(H), and let α be a permutation of the set {1, 2, 3}. Then
+
+                                                    τ (Lα(1) , Lα(2) , Lα(3) ) = sgn(α) τ (L1 , L2 , L3 ).
+
+                        In particular, the Maslov triple index vanishes whenever two of the Lagrangians
+                        coincide.
+
+                  (ii) Let L1 , L2 , L3 , L4 ∈ Lag(H). Then, τ satisﬁes the cocycle equation
+
+                                     τ (L1 , L2 , L3 ) − τ (L1 , L2 , L4 ) + τ (L1 , L3 , L4 ) − τ (L2 , L3 , L4 ) = 0.
+
+                 Proof. See e.g. [6, Section 8] for proofs in the real symplectic setting. These can be
+               transferred verbatim to the complex symplectic one.                                   
+
+                 Example 3.3. Suppose that (H, ω) is a complex symplectic space   of dimension
+                                                                                                   2. Let
+               (μ, λ) be an ordered basis in which ω is represented by the matrix 01 −1
+                                                                                     0    , i.e. such that
+
+                                                    ω(μ, μ) = ω(λ, λ) = 0,                 ω(μ, λ) = −1
+
+               we shall call such pair a symplectic basis. Then, it is easy to verify that a one-dimensional
+               subspace is Lagrangian if and only if it is the span of some vector aμ + bλ with a, b ∈ R.
+               We set in this case the notation
+
+                                         τ (v1 , v2 , v3 ) := τ (SpanC {v1 }, SpanC {v2 }, SpanC {v3 }).
+
+               Using the deﬁnition of the Maslov triple index, we easily compute that
+
+                                                           τ (μ, λ, aμ + bλ) = −sgn(ab).
+
+               3.2. Complex symplectic spaces and twisted homology
+                 In the applications, complex symplectic spaces will arise from the following setting.
+               Let Σ be a 2k-dimensional closed, oriented manifold, and let α : π1 (Σ) → U (n) be a
+               representation. As we have seen, the twisted intersection form on H := Hk (Σ; Cnα ) is
+               Hermitian if k is even, and it is skew-Hermitian if k is odd. Moreover, it is non-degenerate
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                14                                                    Enrico Toﬀoli
+
+                because Σ is closed. We can thus always consider the non-degenerate, skew-Hermitian
+                form
+                                                  
+                                                    IΣα , if k is odd,
+                                             ω :=
+                                                    i IΣα , if k is even,
+
+                which makes the pair (H, ω) a complex symplectic space. We introduce the following
+                notation.
+
+                  Notation 3.4. Given a compact, connected (2k + 1)-dimensional manifold X with a
+                representation α : π1 (X) → U (n), we set
+
+                                                    VXα = ker(Hk (∂X; Cnα ) → Hk (X; Cnα )).
+
+                  A well-known argument based on Poincaré duality shows that VXα is a Lagrangian
+                subspace of Hk (∂X; Cnα ) with respect to ω (compare with [14, Lemma 2.14] and [28,
+                Proposition 1.4.6]). We can thus give the following deﬁnition.
+
+                   Definition 3.5. Let X be compact, connected manifold of dimension 2k + 1, and
+                let α : π1 (X) → U (n) be a representation. We refer to VXα as the canonical Lagrangian
+                associated with X and α.
+
+                3.3. Wall’s non-additivity of the signature
+                  We shall now review a result of Wall. We start with some notation that will be useful
+                throughout the paper.
+
+                     Notation 3.6. Given two topological spaces X, Y with a common subspace A, we set
+
+                                                              X ∪A Y := (X  Y ) / ∼,
+
+                where ∼ is the relation that identiﬁes every element in A ⊆ X with its copy in A ⊆ Y .
+                We say that X ∪A Y is obtained by gluing X and Y along A. If X and Y are manifolds
+                with ∂X = ∂Y , we also write X ∪∂ Y to denote the gluing along their common boundary.
+
+                     Suppose that M is a compact, oriented manifold of even dimension that is split as
+
+                                                                    M = M1 ∪X0 M2
+
+                along a properly embedded submanifold X0 of codimension 1, which is allowed to
+                have boundary Σ. Let X1 := ∂M1 \ int(X0 ) and X2 := ∂M2 \ int(X0 ). As unoriented
+                manifolds, we have then ∂X0 = ∂X1 = ∂X2 = Σ and
+
+                                     ∂M1 = X1 ∪Σ X0 ,              ∂M2 = X0 ∪Σ X2 ,        ∂M = X1 ∪Σ X2 .   (3.1)
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links         15
+
+
+
+
+                 We pick on X1 the orientation coming from being a codimension 0 submanifold of
+               ∂M1 , and we give Σ the orientation coming from being the boundary of X1 . Suppose now
+               that α : π1 (M ) → U (n) is a representation. In our setting, Σ is (up to orientation) the
+               common boundary of X0 , X1 and X2 , so that the canonical Lagrangians VXα0 , VXα1 and
+               VXα2 all live in the same space Hk (Σ; Cnα ). In particular, it makes sense to compute their
+               Maslov triple index. In fact, the following result holds.
+
+                 Theorem 3.7 (Wall’s non-additivity). Let M be a closed, oriented, even-
+               dimensional manifold, and let α : π1 (M ) → U (n) be a representation. Then, if M
+               decomposes as M = M1 ∪X0 M2 as above, we have
+
+                                             σα (M ) = σα (M1 ) + σα (M2 ) − τ (VXα0 , VXα1 , VXα2 ).
+
+                 Remark 3.8. Theorem 3.7 was originally proved by Wall for the untwisted signature
+               [30] (see also the paper of Py [27, (3.2)] for a more detailed proof), and it can be easily
+               checked that the result extends to twisted signatures. See [12–14] for further references
+               and uses of the twisted version of the theorem.
+
+               3.4. The cut-and-paste formula for the rho invariant
+                 Suppose to have a closed, oriented (2k + 1)-dimensional manifold that is split by a
+               codimension-one closed manifold Σ, yielding a decomposition X1 ∪Σ X2 . Let X0 be a
+               compact, oriented manifold with ∂X0 = −Σ. Then, we can replace X1 ∪Σ X2 with the
+               disjoint union of X1 ∪Σ X0 and −X0 ∪Σ X2 . We will call this manipulation cut-and-paste.
+               Schematically, we have
+
+                                                 X1 ∪Σ X2           X1 ∪Σ X0  −X0 ∪Σ X2 ,
+
+               and pictorially we can represent the operation as in the next ﬁgure.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                16                                                    Enrico Toﬀoli
+
+                   Suppose now that α : π1 (X1 ∪Σ X2 ) → U (n) is a representation. In particular, α is
+                deﬁned on π1 (X1 ) and on π1 (Σ). In order to have rho invariants of X1 ∪Σ X0 and
+                −X0 ∪Σ X2 to be compared to ρα (X1 ∪Σ X2 ), we need to extend α to the fundamental
+                groups of these manifolds. This is possible if and only if we can construct an exten-
+                sion of α from π1 (Σ) to π1 (X0 ): then, using Seifert–Van Kampen’s theorem, this will be
+                patched with α : π1 (X1 ) → U (n) to produce representations π1 (X1 ∪Σ X0 ) → U (n) and
+                π1 (−X0 ∪Σ X2 ) → U (n). For simplicity, we will use the same notation α for all of these
+                representations. Then, we want to compute the correction term C in the formula
+
+                                        ρα (X1 ∪Σ X2 ) = ρα (X1 ∪Σ X0 ) + ρα (−X0 ∪Σ X2 ) + C.                  (3.2)
+
+                Now, if X1 ∪Σ X0 and −X0 ∪Σ X2 bound manifolds W1 and W2 such that the represen-
+                tation extends, then Wall’s theorem, together with the Atiyah–Patodi–Singer signature
+                theorem, tells us how to compute the correction term. Namely, in that case, we have
+
+                                                C = τ (VXα0 , VXα1 , VXα2 ) − n τ (VX0 , VX1 , VX2 ).           (3.3)
+
+                The content of the main result of this section is that the correction term C of (3.2) is
+                always given by (3.3), no matter whether the manifolds W1 and W2 exist. This should
+                be compared with an analogous result for the untwisted eta invariant [5, 2.5].
+
+                  Theorem 3.9. Let X1 , X2 and X0 be compact, oriented manifolds of dimension 2k + 1
+                with ∂X1 = −∂X0 = −∂X2 =: Σ, and let α : π1 (X1 ∪∂ X2 ) → U (n) be a representation
+                that extends to π1 (X0 ). Then, for every choice of such an extension, we have
+
+                                        ρα (X1 ∪Σ X2 ) = ρα (X1 ∪Σ X0 ) + ρα (−X0 ∪Σ X2 ) + C,
+
+                where
+                                                C = τ (VXα0 , VXα1 , VXα2 ) − n τ (VX0 , VX1 , VX2 ),
+                with the ﬁrst Maslov triple index performed on Hk (∂X1 ; Cnα ), and the second on
+                Hk (∂X1 ; C).
+
+                     Proof. Consider the oriented manifolds
+
+                                      M1 := [0, 1] × (X1 ∪Σ X0 ),                M2 := [0, 1] × (−X0 ∪Σ X2 ).
+
+                We glue then M1 with M2 along {1} × X0 , obtaining a topological oriented manifold M
+                to which α extends.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                          17
+
+                  The boundary of M can be described topologically as
+
+                                        ∂M = (−(X1 ∪Σ X0 )  −(−X0 ∪Σ X2 ))  (X1 ∪Σ X2 ),                             (3.4)
+
+               and we can equip M with a smooth structure such that (3.4) is satisﬁed in the smooth
+               sense [29, 15.10.3]. Thanks to Theorem 2.6 (ii), we have then
+
+                                                           ρα (∂M ) = n σ(M ) − σα (M ).                               (3.5)
+
+               By (3.4), the left-hand term is given by
+
+                                 ρα (∂M ) = −ρα (X1 ∪Σ X0 ) − ρα (−X0 ∪Σ X2 ) + ρα (X1 ∪Σ X2 ).                        (3.6)
+
+               By Wall’s non-additivity (Theorem 3.7), we can compute the twisted and untwisted
+               signature of M as
+
+                                              σ(M ) = σ(M1 ) + σ(M2 ) − τ (VX0 , VX1 , VX2 ),
+                                             σα (M ) = σα (M1 ) + σα (M2 ) − τ (VXα0 , VXα1 , VXα2 ).
+
+                 The manifolds M1 and M2 are of the form [0, 1] × X, with X a closed manifold. In
+               particular, they admit an orientation-reversing self-diﬀeomorphism deﬁned by
+
+                                                               [0, 1] × X → [0, 1] × X
+                                                                      (t, x) → (1 − t, x).
+
+               As orientation-reversing diﬀeomorphisms have the eﬀect of changing sign to the signa-
+               ture, this shows that the ordinary signatures of M1 and M2 vanish. Since the above
+               diﬀeomorphism is trivial on the fundamental group, the same argument can be applied
+               to the twisted signatures, which therefore also vanish. The computation of σ(M ) and
+               σα (M ) is hence reduced to
+
+                                    σ(M ) = −τ (VX0 , VX1 , VX2 ),               σα (M ) = −τ (VXα0 , VXα1 , VXα2 ).   (3.7)
+
+               Substituting (3.6) and (3.7) into (3.5), we get the desired formula.                                       
+
+                  Remark 3.10. An alternative approach to proving Theorem 3.9 would be by using
+               gluing formulas for rho invariants for manifolds with boundary, as deﬁned by Kirk and
+               Lesch [20, 21] (the discussion in [21, Section 8.3] might be hinting in this direction).
+               This approach allows to prove the cut-and-paste formula at the level of eta invariants,
+               leading to a slightly stronger result, albeit at the cost of more sophisticated tools to be
+               introduced. See [28, Section 2.3.4] for details about this point of view.
+
+               4. Signatures of links and rho invariants
+
+               In § 4.1, we introduce rationally framed links and set up some notation and easy results. In
+               § 4.2, we introduce the multivariable signatures of Cimasoni and Florens and recall a four-
+               dimensional description for them. In § 4.3, we prove Proposition 4.18, which reinterprets
+               the multivariable signature of a coloured link as the rho invariants of some closed three-
+               manifold associated with the link. In § 4.4, we prove Theorem 4.24, which is a formula
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                18                                                    Enrico Toﬀoli
+
+                relating the multivariable signature of a link with the rho invariant of the three manifolds
+                obtained by integer surgery on the link. In § 4.5, we prove Theorem 4.31, which under
+                some additional hypotheses does the same for rational surgery.
+
+                  Remark 4.1. In this section, given a manifold X, we will only deal with one-
+                dimensional unitary representations of π1 (X). As U (1) is an abelian group, every repre-
+                sentation α : π1 (X) → U (1) factors through the abelianization ab : π1 (X) → H1 (X; Z),
+                and we can thus focus on representations α : H1 (X; Z) → U (1). We will normally write ρα
+                and Hα to denote rho invariants and twisted homology associated with the representation
+                α = α ◦ ab.
+
+                   Remark 4.2. A straightforward computation in twisted homology leads to the fol-
+                lowing well-known fact: for the two-dimensional torus T 2 , we have H∗ (T 2 ; Cnα ) = 0 for
+                all non-trivial representation α : H1 (T ; Z) → U (1). In this section, we will always use
+                Theorem 3.9 in the situation where Σ is a disjoint union of two-dimensional tori and
+                where the restriction of α to the ﬁrst homology of these is non-trivial. As a consequence,
+                the Maslov triple index in twisted homology will always be 0.
+
+                4.1. Links and framings
+                   Let L = K1 ∪ · · · ∪ Kk be an oriented link in S 3 (from now on, just a link ). By removing
+                from S 3 the interior of a closed tubular neighbourhood N (L), we get its link exterior
+
+                                                                XL := S 3 \ int(N (L)).
+
+                The link exterior XL is a compact, oriented three-manifold, whose boundary is a union
+                of tori: to each link component Ki ⊆ L, there corresponds a boundary component Ti =
+                −∂(N (Ki )) (this is the orientation coming from being part of the boundary of XL , and
+                it is the one we shall always consider). The link component Ki determines the following
+                two elements:
+
+                  • the meridian of Ki is the only element μi ∈ H1 (Ti ; Z) whose image in H1 (N (Ki ); Z)
+                    is 0 and such that lk(μi , Ki ) = 1;
+
+                  • the standard longitude of Ki is the only element λsi ∈ H1 (Ti ; Z) whose image in
+                    H1 (N (Ki ); Z) is homologous to Ki and such that lk(λsi , Ki ) = 0.
+
+                For a knot K, we shall often just use the notation T , μ and λ for the boundary torus,
+                the meridian and the standard longitude. Observe that the algebraic intersection of these
+                two elements is given by
+                                                                       μi · λsi = −1.                         (4.1)
+                We shall often consider the images of the above elements into homology with rational or
+                complex coeﬃcients without changing their names.
+
+                  Definition 4.3. A rational framing on a link L = K1 ∪ · · · ∪ Kk is a k-tuple of rational
+                numbers r = (r1 , . . . , rk ). The pair (L, r) is called a rationally framed link. If all ri ’s are
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links             19
+
+               integers, we say that r is an integer framing. The framed longitudes of a rationally framed
+               link (L, r) are the elements
+
+                                                           λi := λsi + ri μi ∈ H1 (Ti ; Q).
+
+                 Without changing notation for them, we shall now consider the images of the meridians
+               and framed longitudes in the homology of the link complement XL . It is an elementary
+               well-known fact that H1 (XL ; Z) is a free Z-module generated by the meridians, and that
+               each standard longitude satisﬁes
+                                                             
+                                                     λsi =          lk(Ki , Kj ) μj ∈ H1 (XL ; Z).        (4.2)
+                                                             j=i
+
+
+               Next, we deﬁne the following matrix associated with a rationally framed link.
+
+                 Definition 4.4. The framed linking matrix of a framed k-component link (L, r) is the
+               symmetric matrix Λr = (Λij )i,j ∈ Qk×k deﬁned by
+                                                                
+                                                                 lk(Ki , Kj ),               if i = j,
+                                                          Λij =
+                                                                 ri ,                        if i = j.
+
+                 Example 4.5. The Seifert framing on a link L = K1 ∪ · · · ∪ Kk is the integer framing
+               (f1 , · · · , fk ) deﬁned by
+                                                     
+                                             fi := −    lk(Ki , Kj ).
+                                                                            j=i
+
+               In particular, the coeﬃcients of its framed linking matrix satisfy
+                                                                                   
+                                                                     Λii = −              Λij .
+                                                                                   j=i
+
+
+               The framed longitudes λi = λsi + fi μi associated with the Seifert framing correspond to
+               the intersections of a Seifert surface with the boundary tori Ti .
+
+                  From (4.2), together with the deﬁnition of the framed longitudes and of the framed
+               linking matrix, it follows now immediately that the framed longitudes in the rational
+               homology of XL are equal to
+
+                                                                    k
+                                                                    
+                                                          λi =            Λij μj ∈ H1 (XL ; Q).           (4.3)
+                                                                    j=1
+
+
+                 For the computations involving the Maslov triple index, a good understanding of the
+               complex symplectic space H1 (∂XL ; C) is required. The next result summarizes some easy
+               facts that we will need later.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                20                                                    Enrico Toﬀoli
+
+                     Lemma 4.6. Let (L, r) be a k-component rationally framed link. Then:
+
+                     (i) the collection {μ1 , . . . μk , λ1 , . . . λk } forms a basis for H1 (∂XL ; C) which satisﬁes
+                                                    
+                                                      μi · μj = λi · λj = 0,
+                                                                                     for all i, j;
+                                                      μi · λj = −δij
+                  (ii) the canonical Lagrangian VXL can be described explicitly as
+                                                                                                        k
+                                                                                                        
+                                            VXL = SpanC {v1 , . . . , vk },           where vi = λi −         Λis μs ;
+                                                                                                        s=1
+
+                 (iii) the subspaces M := SpanC {μ1 , . . . , μk } and Lr = SpanC {λ1 , . . . , λk } are Lagran-
+                       gians, and their triple Maslov index with the canonical Lagrangian is given by
+                                                                   τ (M, Lr , VXL ) = signΛr .
+
+                  Proof. (i) is an immediate consequence of the deﬁnition of the framed meridians
+                together with (4.1). (ii) is an immediate consequence of (4.3). The fact that M and Lr
+                are Lagrangians is obvious from (i). In order to prove (iii), we compute the Maslov triple
+                index using the deﬁnition. As M and Lr are transverse, we have (M + Lr ) ∩ VXL = VXL ,
+                and every generator vi can be written in a unique, obvious way as the sum of an element
+                in M and one in Lr . By Deﬁnition 3.1, then, τ (M, Lr , VXL ) is the signature of the
+                Hermitian form ψ : VXL × VXL → C deﬁned on the basis elements of VXL by
+                                              k                    k
+                                                                   
+                                ψ(vi , vj ) = −    Λis μs · vj = −      Λis (μs · λj ) = Λij .
+                                                             s=1                           s=1
+
+                It follows that τ (M, Lr , VXL ) = sign Λr , as it was desired.                                          
+
+                  Given a rationally framed link (L, r), we can consider the closed manifold SL (r)
+                obtained by the Dehn surgery along the framing. This is done in the following way:
+                for each link component Ki , we choose coprime integers (pi , qi ) such that pi /qi = ri ,
+                and glue a solid torus Yi to XL along the boundary component Ti in such a way that
+                the meridian of the solid torus is identiﬁed with the element pi μi + qi λsi ∈ H1 (Ti ; Z). In
+                particular, H1 (SL (r); Z) can be described as a quotient of H1 (XL ; Z).
+
+                  Definition 4.7. Given a link L with a representation α : H1 (XL ; Z) → U (1), we say
+                that a rational framing r on L is compatible with α if α factors through H1 (SL (r); Z).
+
+                  Remark 4.8. From the deﬁnition of surgery, it is clear that a rational framing r =
+                (r1 , . . . , rk ) with ri = pi /qi as above is compatible with α if and only if α(pi μi + qi λsi ) = 1
+                for all i. Using (4.2), we see that in terms of the coeﬃcients of the framed linking matrix
+                we have
+                                                                         k
+                                          r is compatible with α ⇐⇒         α(μj )qi Λij = 1 ∀i.
+                                                                                      j=1
+
+                   Note that, in general, given a representation α, there might be no rational framing that
+                is compatible with it.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links               21
+
+               4.2. Coloured links and signatures
+                 A n-colouring on a link L, for n ∈ N, is a partition of its components into n non-empty
+               sublinks. Given a k-component link L = K1 ∪ · · · ∪ Kk , we identify the colouring with a
+               surjective function c : {1, . . . , k} → {1, . . . , n}. The latter is the set of colours, and for
+               every 1 ≤ s ≤ n, we deﬁne
+                                                                    
+                                                         Ls :=          Kj
+                                                                              c(j)=s
+
+               to be the sublink of colour s. The pair (L, c) is called an n-coloured link. We shall
+               systematically omit c (which has to be considered as ﬁxed) and simply call L an n-coloured
+               link.
+
+                  Notation 4.9. For n ∈ N, set Tn := (U (1))n and Tn∗ := (U (1) \ {1})n .
+
+                 Using a generalization of the concept of Seifert surfaces (called C-complexes), Cimasoni
+               and Florens deﬁned a multivariable version of the Levine–Tristram signature of a link [9].
+               Given an n-coloured link L, their multivariable signature is a function
+
+                                                                      σL : Tn∗ → Z,
+
+               which coincides for n = 1 with the Levine–Tristram signature function. We recall now
+               the following four-dimensional description of the multivariable signature. We ﬁrst need a
+               deﬁnition.
+
+                   Definition 4.10. A bounding surface for an n-coloured link L is a union F = F1 ∪
+               · · · ∪ Fn of properly embedded, locally ﬂat, compact, oriented surfaces Fi ⊆ D4 with
+               ∂Fi = Li ∈ ∂D4 = S 3 and that only intersect each other transversally in double points.
+
+                 A bounding surface for L can be obtained for example by pushing the interior of a
+               C-complex into the interior of D4 (see e.g. [10, Section 3] for details). Given a bounding
+               surface F = F1 ∪ · · · ∪ Fn ⊆ D4 for a link L, we can take a small tubular neighbourhood
+               N (Fi ) of each surface Fi and deﬁne the exterior of F in D4 as the four-manifold with
+               boundary
+                                           WF := D4 \ (N (F1 ) ∪ · · · ∪ N (Fn )).
+               It is easy to show that H1 (WF ; Z) is freely generated by the meridians of the surfaces
+               F1 , . . . , Fn (the meridian of Fi being the image in H1 (WF ; Z) of any of the meridi-
+               ans of Li ). The following description of the Cimasoni–Florens signature is known [12,
+               Proposition 3.5].
+
+                 Proposition 4.11. Let L be a an n-coloured link in S 3 and let F = F1 ∪ · · · ∪ Fn be
+               a bounding surface for L. Let ω = (ω1 , . . . , ωn ) ∈ Tn∗ , and let α : H1 (WF ; Z) → U (1) be
+               the representation that sends the meridian of Fi to ωi . Then, we have
+
+                                                                   σL (ω) = σα (WF ).
+
+                  We conclude this part with a couple of deﬁnitions.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                22                                                    Enrico Toﬀoli
+
+                   Definition 4.12. Let L = K1 ∪ · · · ∪ Kk be an n-coloured link. The coloured Seifert
+                framing on L is the integer framing fL = (f1 , . . . , fk ) given by
+                                                        
+                                               fi := −          lk(Ki , Kj ).
+                                                                        j=i s.t.
+                                                                       c(j)=c(i)
+
+                In other words, it is the framing obtained by providing each coloured sublink Li with its
+                Seifert framing (see e.g. 4.5).
+
+                   Observe that the coloured Seifert framing on L needs not coincide with the Seifert
+                framing of the underlying link. In fact, its framed longitudes correspond to the intersection
+                of ∂XL with a C-complex. From the deﬁnition of the coloured Seifert framing, it is
+                immediate to see that the coeﬃcients of the associated framed linking matrix satisfy
+                                                                 
+                                             ∀1≤i≤k :                  Λij = 0.                         (4.4)
+                                                                                  j s.t.
+                                                                                c(j)=c(i)
+
+
+                   Definition 4.13. Given an n-coloured link L, a representation α : H1 (XL ; Z) → U (1)
+                is said to be coloured if it sends meridians of the same colour to the same value, i.e. if
+
+                                                         c(i) = c(j) =⇒ α(μi ) = α(μj ).
+
+                Given an element ω = (ω1 , . . . , ωn ) ∈ Tn , the coloured representation α deﬁned by
+                α(μi ) := ωc(i) is said to be the representation associated to ω.
+
+                   It is immediate to see that the above association gives a natural bijection between
+                elements ω = (ω1 , . . . , ωn ) ∈ Tn and coloured representations α : H1 (XL ; Z) → U (1).
+
+                4.3. Multivariable signatures as rho invariants
+                  As the untwisted signature of WF is 0 (see for example [12, Proposition 3.3]),
+                Proposition 4.11 is equivalent to the formula
+
+                                                            σL (ω) = σα (WF ) − σ(WF ).
+
+                In particular, by the Atiyah–Patodi–Singer theorem, we have
+
+                                                                 σL (ω) = −ρα (∂WF ).                   (4.5)
+
+                We will give now a more explicit description of ∂WF , and see how to replace it with a
+                manifold which is independent of the choice of F .
+                  We start by recalling the following construction, which is a special case of plumbing.
+                Let Γ be a graph whose set of vertices is {1, . . . , n} and such that:
+
+                  • each vertex i is decorated by a compact, oriented surface Σi (or, equivalently, by
+                    pair of natural numbers [gi , ri ] corresponding to the genus and number of boundary
+                    components of Σi );
+
+                  • each edge is decorated by a number ε = ±1.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links        23
+
+               In the following, we shall refer to a graph with the decorations described above as
+               a plumbing graph. We construct then an oriented three-manifold PΓ by the following
+               process.
+
+                  (1) For each edge with endpoints i and j, remove a small open disk from Σi and one
+                      from Σj . Let Σ1 , . . . , Σj be the resulting surfaces.
+
+                  (2) For each edge with endpoints i and j and decoration ε = ±1, glue the three-
+                      manifolds Σi × S 1 and Σj × S 1 along the boundary components coming from the
+                      two corresponding removed disks, according to the diﬀeomorphism ϕ : S 1 × S 1 →
+                      S 1 × S 1 given by ϕ(x, y) = (y ε , xε ).
+
+                  (3) Set
+                                                                              n
+                                                                              
+                                                                  PΓ :=             Σi × S 1 / ∼,
+                                                                              i=1
+
+                        where ∼ is the equivalence relation given by the above gluings.
+
+               This construction coincides with that of [12, Section 4]. With respect to the general
+               plumbing construction [26], it corresponds to the special case of all Euler numbers equal
+               to 0, and our deﬁnition of plumbing
+                                                  graph also reﬂects this specialization. The boundary of
+               PΓ is a disjoint union of r = i ri tori. These tori maintain a preferred product structure,
+               and we can describe the boundary of PΓ as
+                                                                            n
+                                                                            
+                                                                 ∂PΓ =           ∂Σi × S 1 .         (4.6)
+                                                                           i=1
+
+               As in [12], we give the following deﬁnition.
+
+                  Definition 4.14. Given a plumbing graph Γ, the total weight of a pair of vertices
+               {s, t}, denoted by pΓ (s, t), is the integer obtained as the sum of the ±1-decorations of
+               all the edges with endpoints s and t. If all total weights of Γ are 0, the plumbing graph
+               Γ is called balanced.
+
+                 Example 4.15. Let F = F1 ∪ · · · ∪ Fn ⊆ D4 be a bounding surface for L. The
+               boundary of WF then is given up to orientation-preserving diﬀeomorphism as
+
+                                                               ∂WF = XL ∪∂ (−PΓF ),                  (4.7)
+
+               where ΓF is a graph whose vertices {1, . . . , n} are decorated by the surfaces Fi ’s, and
+               whose edges correspond to the intersection points between them, with the sign of the
+               intersection as decoration (see [12, Example 4.12]). Observe that the total weights of ΓF
+               are given by
+                                                         pΓF (s, t) = Fs · Ft = lk(Ls , Lt ).
+               The boundary of −PΓF , which can be described as in (4.6), is identiﬁed in the gluing (4.7)
+               with ∂XL as follows. The boundary piece −∂Fs × S 1 is identiﬁed with the boundary tori
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                24                                                    Enrico Toﬀoli
+
+                of colour s in ∂XL , in such a way that:
+
+                  (1) the classes of the S 1 -factors are glued to the meridians;
+                  (2) the classes of the boundary components of Fs are glued to the framed longitudes
+                      associated with the coloured Seifert framing.
+
+                  As we have seen in (4.5), the multivariable signature of L can be expressed up to sign as
+                the rho invariant of ∂WF . In turn, as it appears from Example 4.15, ∂WF can be described
+                as the union of XL with some plumbed three-manifold which depends on the choice of
+                a bounding surface for L. In the next construction, we will build a plumbing graph ΓL
+                associated with L. The associated closed three-manifold YL , obtained by gluing PΓL with
+                XL , will play the role of ∂WF with the advantage of being unequivocally determined by
+                the link L.
+
+                     Notation 4.16. Given a link L in S 3 , let |L| ∈ N be its number of components.
+
+                  Construction 4.17. Given an n-coloured link L, we construct the associated
+                plumbing graph ΓL in the following way:
+
+                  • the set of vertices is {1, . . . n}, and the vertex i is decorated by a genus-0 surface
+                    with |Li | boundary components;
+
+                  • between each pair of distinct vertices i, j there are exactly |lk(Li , Lj )| edges, and
+                    they are all decorated by ε = sign(lk(Li , Lj )).
+
+                In other words, we are plumbing spheres with the appropriate number of punctures along
+                the smallest graph Γ whose total weights satisfy the condition pΓ (i, j) = lk(Li , Lj ). Then,
+                we form a closed three-manifold YL as
+
+                                                                YL := XL ∪∂ (−PΓL ).
+
+                The identiﬁcation along the boundary is deﬁned in the exact same way as the one arising
+                in Example 4.15, i.e. identifying the classes corresponding to the S 1 -factors of −∂PΓL
+                with the meridians of L of the appropriate colour, and the classes corresponding to the
+                boundary components of the punctured sphere with the longitudes associated with the
+                coloured Seifert framing.
+
+                  Using some of the ideas of [12] together with the cut-and-paste formula of § 2, we will
+                now show that the multivariable signature can be written as the rho invariant of YL .
+
+                   Proposition 4.18. Let L be an n-coloured link. Let ω ∈ Tn∗ , and let α : H1 (XL ; Z) →
+                U (1) be the associated coloured representation. Then, α can be extended to a represen-
+                tation of H1 (YL ; Z) and, for any choice of an extension, we have
+
+                                                                   ρα (YL ) = −σL (ω).
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                        25
+
+                 Proof. Let F = F1 ∪ · · · ∪ Fn ⊆ D4 be a bounding surface for L. Then, as α is a
+               coloured representation, it extends to a representation H1 (WF ; Z) → U (1) that, for all
+               colour s, sends the meridian of Fs to ωs ∈ U (1). By (4.5), we have hence
+
+                                                                ρα (∂WF ) = −σL (ω).                                 (4.8)
+
+               As we have seen in Example 4.15, we have ∂WF = XL ∪∂ (−PΓF ), where ΓF is a plumbing
+               graph determined by F . We perform now cut-and-paste by replacing PΓF with PΓL .
+               Schematically, this is
+
+                                      XL ∪∂ (−PΓF )                    XL ∪∂ (−PΓL )  PΓL ∪∂ (−PΓF ).              (4.9)
+
+               The manifold PΓL ∪∂ (−PΓF ) can be seen as the plumbing along the graph Γ whose
+               vertices {1, . . . , n} are decorated by the closed surfaces Σs ∪∂ (−Fs ) and whose set of
+               edges is the union of all edges of ΓL and ΓF , with the decorations of the edges of ΓF
+               changed of sign. In particular, (4.9) can be rewritten as
+
+                                                               ∂WF               YL  PΓ .                         (4.10)
+
+               Observe that, by construction, for each pair of vertices {s, t} we have
+
+                                                                 pΓL (s, t) = pΓF (s, t),                           (4.11)
+
+               so that
+                                                       pΓ (s, t) = pΓL (s, t) − pΓF (s, t) = 0
+               i.e. Γ is balanced.
+                  We will now prove that the representation α can be extended to H1 (YL ; Z). In the
+               gluings, the boundary of XL is identiﬁed with the boundaries of PΓF and PΓL , leading
+               to natural maps
+
+                                  ϕ : H1 (∂XL ; Z) → H1 (PΓF ; Z),                ψ : H1 (∂XL ; Z) → H1 (PΓL ; Z)   (4.12)
+
+               induced by the inclusions. Standard Mayer–Vietoris computations, together with the
+               equality (4.11), show that ker ϕ and ker ψ coincide, as both are generated by the following
+               elements (compare with [12, Lemma 4.7]):
+
+                   (i) the diﬀerences μi − μj with c(i) = c(j);
+
+                  (ii) for each colour s, the element
+                                                                               
+                                                                         λi −          lk(Ls , Lt )μjt ,
+                                                               c(i)=s           t=s
+
+                        where μjt is any meridian of colour t.
+
+               As α extends to H1 (WF ; Z), it is also deﬁned on H1 (∂WF ; Z) = H1 (PΓF ; Z). In particular,
+               α has to be trivial on ker ϕ (this can be veriﬁed using the explicit description of the
+               generators). From the fact that ker ϕ = ker ψ, we see then that α also admits an extension
+               to H1 (PΓL ; Z), because U (1) is divisible.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                26                                                    Enrico Toﬀoli
+
+                  Pick any extension α : H1 (PΓL ; Z) → U (1) of α. We can now apply the cut-and-paste
+                formula of Theorem 3.9 to (4.10), obtaining
+                                           ρα (∂WF ) = ρα (YL ) + ρα (PΓ ) − τ (VPΓL , VXL , VPΓF )        (4.13)
+                (the Maslov triple index in twisted homology is 0 because all ωi ’s are non-trivial by
+                assumption; see Remark 4.2). As we have seen, the plumbing graph Γ is balanced. As
+                a consequence, we have ρα (PΓ ) = 0 by a computation of Conway, Nagel and the author
+                [12, Proposition 4.10]. The Lagrangians VPΓF and VPΓL are identiﬁed under the gluing to
+                                                     VPΓF = ker ϕ ⊗ C,             VPΓ = ker ψ ⊗ C,
+                where ϕ and ψ are the maps deﬁned in (4.12). From the fact that ker ϕ = ker ψ it follows
+                then that VPΓF = VPΓ , and hence we have τ (VXL , VPΓF , VPΓL ) = 0. The equality (4.13)
+                gets thus rewritten as
+                                                 ρα (∂WF ) = ρα (YL ).
+                Substituting this into (4.8), the proof is complete.                                            
+
+                   We introduce now the following deﬁnitions.
+
+                     Definition 4.19. Let L = K1 ∪ · · · ∪ Kk be an n-coloured link. Then
+
+                     (i) if lk(Ls , Lt ) = 0 for all pairs (s, t) of distinct colours, we say that L is colour-to-
+                         colour algebraically split;
+                  (ii) if every link component Ki satisﬁes lk(Ki , Ls ) = 0 for all s = c(i), we say that L
+                       is component-to-colour algebraically split.
+
+                  Of course, being component-to-colour algebraically split is a stronger condition than
+                being colour-to-colour algebraically split. Any onecoloured link is component-to-colour
+                algebraically split, and so is any link with vanishing linking numbers, no matter what
+                colouring it is assigned.
+
+                  Remark 4.20. If L is colour-to-colour algebraically split, then YL has a very simple
+                description. In fact, in this case, ΓL is a graph with no edges, and thus the associated
+                plumbed three-manifold is
+                                                            n
+                                                            
+                                                    PΓL =      Σs × S 1 ,
+                                                                            s=1
+                where Σs is a sphere with |Ls | punctures. As a consequence of Proposition 4.18, the
+                multivariable signature is hence (up to sign) just the rho invariant of the closed three-
+                manifold obtained by gluing these products Σs × S 1 to the link exterior XL . This holds,
+                in particular, if L is onecoloured, so that we can always express the Levine–Tristram
+                signature of L as
+                                            σL (ω) = −ρα (XL ∪∂ (−Σ × S 1 )),
+                where Σ is a punctured sphere. In the case of a knot, this gives the well-known description
+                of the Levine–Tristram signature as the rho invariant of the manifold obtained by 0-
+                framed surgery. In the next two sections, we will study the relationship between rho
+                invariants and the Dehn surgery in higher generality.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                        27
+
+               4.4. Integral surgery
+                  We will now study the value of the rho invariant of manifolds obtained by integral
+               surgery on a link L. We start by recalling the following result of Cimasoni and Florens
+               [9, Theorem 6.7].
+
+                  Theorem 4.21 (Cimasoni–Florens). Let L be a k-coloured k-component link. Let
+               q ∈ N a positive integer and let n1 , . . . , nk ∈ {1, . . . , p − 1} be integers, each of which is
+               coprime with q. Let ω = (e2πin1 /q , . . . , e2πink /q ) ∈ (S 1 \ {1})n , and let α : H1 (XL ; Z) →
+               U (1) be the associated coloured representation. Let g be a compatible integral framing
+               on L. Then, we have
+                                                                                                    k
+                                                                            2 
+                                  ρα (SL (g)) = −σL (ω) +     Λij + signΛg − 2    (q − ni )nj Λij .
+                                                          i<j
+                                                                            q i=1
+
+                 Remark 4.22. The result of Cimasoni and Florens was originally written in terms of
+               the Casson–Gordon invariant of § 2.3. We have translated it into a result about the rho
+               invariant by using Proposition 2.8.
+
+                  Remark 4.23. Observe that formulas about any colouring of L can be extracted
+               from Theorem 4.21, as the signature function associated with any colouring can be easily
+               deduced from the one associated with the maximal colouring [9, Proposition 2.5]. For the
+               onecolouring, this gives back a result of Casson and Gordon [7, Lemma 3.1] about the
+               Levine–Tristram signature.
+
+                 We would like to remove the restrictions on the values of ω in the statement of Theorem
+               4.21. In order to be able to do so, we need to assume some conditions about the linking
+               numbers between components of diﬀerent colours.
+                 The main result of this section is the following, which holds in the case of colour-to-
+               colour algebraically split links.
+
+                 Theorem 4.24. Let L be an n-coloured link which is colour-to-colour algebraically
+               split. Let ω ∈ Tn∗ , and let α : H1 (XL ; Z) → U (1) be the associated coloured representation.
+               Let g be a compatible integral framing on L. Then, we have
+                                                                                           n
+                                                                                           
+                                          ρα (SL (g)) = −σL (ω) + signΛg − 2                     hs θs (1 − θs ),
+                                                                                           s=1
+
+               where, for each colour s, θs ∈ (0, 1) is such that ωs = e2πiθs , and hs is the sum of all the
+               coeﬃcients of the framed linking matrix of the sublink Ls .
+
+                 Proof. Set P := PΓL . Let k be the number of components of L. We perform the
+               cut-and-paste illustrated schematically by
+
+                                                 XL ∪∂ Y                 XL ∪∂ (−P )  P ∪∂ Y,                     (4.14)
+
+               where Y = Y1  · · ·  Yk is a disjoint union of k solid tori, glued along the framing g, and
+               P is glued as prescribed by Construction 4.17. As L is colour-to-colour algebraically split,
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                28                                                    Enrico Toﬀoli
+
+                by Remark 4.20, we have
+                                                                           n
+                                                                           
+                                                                    P =          Σs × S 1 ,
+                                                                           s=1
+                where, for each colour s, Σs is a sphere with |Ls | punctures. The manifold P ∪∂ Y is
+                thus the disjoint union of the n closed manifolds obtained by capping all of the Σs × S 1 ’s
+                appropriately with solid tori.
+
+                     Claim 1. Up to an orientation-preserving diﬀeomorphism, we have
+                                                                                 n
+                                                                                 
+                                                              P ∪∂ Y = −               L(hs , 1),
+                                                                                 s=1
+
+                in such a way that the element 1 ∈ Z/hs = π1 (L(hs , 1)) is given by the class [S 1 ] ∈
+                H1 (Σs × S 1 ; Z).
+
+                  We postpone for the moment the proof of this claim. As a consequence of Claim 1,
+                (4.14) can be rewritten up to orientation-preserving diﬀeomorphism as
+                                                                                        n
+                                                                                        
+                                                        SL (g)       YL  −                 L(hs , 1).
+                                                                                       s=1
+
+                Observe that the restriction of α to H1 (Σs × S 1 ) sends the class [S 1 ] to ωs , as the
+                boundary circles of the form {pi } × S 1 are identiﬁed with the meridians of the link.
+                The representation α extends thus to L(hs , 1) in such a way that, for each colour s, the
+                element 1 ∈ Z/hs = H1 (L(hs , 1); Z)) is sent to ωs . We can now apply Theorem 3.9 and
+                get
+                                                       n
+                              ρα (SL (g)) = ρα (YL ) −    ρ(L(hs , 1), ωs ) − τ (VP , VXL , VY )   (4.15)
+                                                                       s=1
+                (as usual, there is no Maslov triple index in twisted cohomology because of Remark 4.2).
+                The ﬁrst summand in the right-hand term of (4.15) is minus the multivariable signature
+                of L thanks to Proposition 4.18. Using Corollary 2.11 to describe the rho invariant of the
+                lens spaces at hand, and swapping the second and third variables of the Maslov triple
+                index (see Proposition 3.2 (i)), we can rewrite (4.15) as
+                                                           n
+                                                           
+                        ρα (SL (g)) = −σL (ω) −                  (2hs θs (1 − θs ) − sgn(hs )) + τ (VP , VY , VXL ).   (4.16)
+                                                           s=1
+
+                Hence, in order to conclude, we need to identify the Maslov triple index term in (4.16).
+                The rest of the proof is devoted to this.
+                  Instead of trying to calculate the Maslov triple index directly, we use the cocycle
+                property of our three Lagrangians together with M := SpanC {μ1 , . . . , μk } to simplify
+                this task. Namely, using Proposition 3.2 (ii), we ﬁnd
+                          τ (VP , VY , VXL ) = τ (M, VP , VY ) − τ (M, VP , VXL ) + τ (M, VY , VXL ).                  (4.17)
+                We set the following notation. Let λ1 , . . . , λk be the framed longitudes associated with the
+                surgery framing g = (g1 , . . . , gk ), and let λ1 , . . . , λk bet the framed longitudes associated
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                                               29
+
+               with the coloured Seifert framing fL = (f1 , . . . , fk ). By deﬁnition, then, we have
+
+                                                 λi = λi + (fi − gi )μi           for all i = 1, . . . , k.                            (4.18)
+
+               We also use the notation Λij for the coeﬃcients of the framed linking matrix Λg , and
+               Λij for those of the frame linking matrix ΛfL (these two matrices only diﬀer on the
+               diagonal). We have the following description of the four Lagrangian subspaces appearing
+               in the right-hand term of (4.17):
+
+                       M = SpanC {μ1 , . . . , μk },
+                                                                                                                               
+                       VP = SpanC {μi − μj | c(i) = c(j)} ⊕ SpanC {v1 , . . . , vn },                      where vs =                 λi ,
+                                                                                                                             c(i)=s
+
+                       VY = SpanC {λ1 , . . . , λk },
+                                                                                           k
+                                                                                                                 k
+                                                                                                                  
+                     VXL = SpanC {w1 , . . . , wk },             where wi = λi −                 Λij μj = λi −         Λij μj .
+                                                                                           j=1                    j=1
+
+
+               We compute now the three summands separately. We will prove the following.
+                                                               n
+                  Claim 2. τ (M, VP , VY ) = −                     s=1 sgn(hs ).
+
+
+                  Claim 3. τ (M, VP , VXL ) = 0.
+
+                  Claim 4. τ (M, VY , VXL ) = sign(Λg ).
+
+                 These three claims, together with (4.16) and (4.17), lead to the desired formula. In
+               order to conclude, we are only left with proving Claim 1 to 4.
+               Proof of Claim 2. Write τ (M, VP , VY ) = τ (VY , M, VP ). Clearly, we have
+
+                                                               (VY + M) ∩ VP = VP .
+
+               In fact, the generators of VP of the form μi − μj are in M, and the generators vs can be
+               written as
+                                                            
+                                            vs =       λi +      (fi − gi )μi ,                   (4.19)
+                                                                c(i)=s         c(i)=s
+
+               where the ﬁrst summand is in VY , and the second summand is in M. Let
+
+                                                                   ψ : VP × VP → C
+
+               be the Hermitian form associated with the triple (VY , M, VP ), whose signature is
+               τ (VY , M, VP ). The generators of the form μi − μj are clearly in the radical of ψ, as
+               they belong to the Lagrangian M. As a consequence, it is enough to study ψ on the span
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                30                                                    Enrico Toﬀoli
+
+                of v1 , . . . , vn . Using the deﬁnition of ψ and the decomposition (4.19), we compute
+                                       ⎛           ⎞ ⎛                      ⎞ ⎧ 
+                                                                               ⎪
+                                                                               ⎨      (fi − gi ), if s = t,
+                                                         
+                       ψ(vs , vt ) = ⎝          λi ⎠ · ⎝       (fj − gj )μj ⎠ = c(i)=s
+                                                                               ⎪
+                                                                               ⎩0,
+                                         c(i)=s          c(j)=t                                   otherwise.
+
+                As a consequence, we have
+                                                                              ⎛                      ⎞
+                                                                   n
+                                                                                  
+                                                       signψ =           sgn ⎝             (fi − gi )⎠ .
+                                                                   s=1            c(i)=s
+
+                By deﬁnition of the coloured Seifert framing, together with the fact that gi = Λii , we can
+                now compute that, for each colour s, we have
+                                         ⎛                    ⎞
+                                             ⎜              ⎟                                             
+                           (fi − gi ) =        ⎜−
+                                               ⎝   lk(Ki , Kj )⎟
+                                                               ⎠−   gi = −                                               Λij = −hs .
+                     c(i)=s                 c(i)=s        c(j)=s                           c(i)=s          c(i)=c(j)=s
+                                                            j=i
+
+                Putting these computations together, we ﬁnd the equation in the statement of the claim.
+                Proof of Claim 3. The space (M + VP ) ∩ VXL is the n-dimensional subspace generated
+                by the terms
+                                                       k              
+                                    zs :=     wi = −           Λij μj +    λi              (4.20)
+                                                        c(i)=s             c(i)=s j=1                c(i)=s
+
+                where the ﬁrst summand is in M and the second summand is in VP . Let
+
+                                              ϕ : SpanC {z1 , . . . , zn } × SpanC {z1 , . . . , zn } → C
+
+                be the Hermitian form associated with the triple (M, VP , VXL ). Then, from the
+                decomposition (4.20), we can compute
+                                            ⎛                ⎞ ⎛         ⎞
+                                                 k                        
+                              ϕ(zs , zt ) = ⎝−       Λij μj ⎠ · ⎝   λi ⎠ =   Λij .
+                                                            c(i)=s j=1                      c(i)=t         c(i)=s
+                                                                                                           c(j)=t
+
+                For s = t, this is 0 by deﬁnition of the coloured Seifert framing. For s = t, instead, it is
+                equal to lk(Ls , Lt ), which is 0 because the link is colour-to-colour algebraically split. In
+                particular, the form ϕ is trivial and the Maslov triple index is 0 as claimed.
+                Proof of Claim 4. This follows immediately from Lemma 4.6 (iii), as VY = Lg .
+                Proof of Claim 1. As we have observed, PΓL is the disjoint union of manifolds of the form
+                Σs × S 1 , where Σs is a punctured sphere. By construction, in the gluing XL ∪∂ Y , the
+                meridian mi of the solid torus Yi is identiﬁed with the framed longitude λi of the surgery
+                framing g. On the other hand, when −PΓL is glued to XL , a boundary component Ci ×
+                S 1 ⊆ ∂Σs × S 1 is identiﬁed with the boundary torus Ki in such a way that, homologically,
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                     31
+
+               the class [Ci ] coincides with the framed longitude λi of the coloured Seifert framing, and
+               [S 1 ] coincide with the meridian μi . The “by-product” gluing PΓL ∪∂ Y is the result of
+               capping the boundary Σs × S 1 with solid tori. As a consequence of this and (4.18), these
+               cappings are given by the identiﬁcations
+
+                                            mi = λi = λi + (gi − fi )μi = [Ci ] + (gi − fi )[S 1 ].
+
+               In particular, for each s, this construction leads to the lens space L(−hs , 1) or equivalently
+               to −L(hs , 1), with
+                                                            
+                                                     hs :=     (gi − fi ).
+                                                                          c(i)=s
+
+               It is also easy to see that the element 1 ∈ Z/hs corresponds to [S 1 ] as desired. The proof
+               is concluded by proving that hs = hs . This follows from the deﬁnition of the coloured
+               Seifert framing and the sequence of equalities
+                                                                              
+                             (gi − fi ) =      gi +             lk(Ki , Kj ) =              Λij = hs .
+                          c(i)=s                  c(i)=s         c(i)=s j=i s.t.                  c(i)=c(j)=s
+                                                                        c(j)=s
+
+                                                                                                                    
+
+                 Remark 4.25. Applying Theorem 4.24 in the onecoloured setting, where the ﬁrst
+               hypothesis is always satisﬁed, we get the following formula relating the rho invariant of
+               the manifold obtained by surgery and the Levine–Tristram signature:
+                                                                     
+                                 ρα (SL (g)) = −σL (ω) + signΛg − 2(    Λij )θ(1 − θ),            (4.21)
+                                                                                           i,j
+
+               where θ ∈ (0, 1) is such that ω = e2πiθ and the sum is over the coeﬃcients of Λg . For
+               θ ∈ Q, this coincides with a formula of Casson and Gordon [7, Lemma 3.1].
+
+                 Example 4.26. Let r, s be positive coprime integers, and let T (r, s) denote the (r, s)-
+               torus knot. The (rs − 1)-Dehn surgery on T (r, s) gives a manifold which is orientation-
+               preserving diﬀeomorphic to the lens space L(rs − 1, s2 ) [24, Proposition 3.2]. Let ζ :=
+               e2πi/(rs−1) , and let 0 ≤ k ≤ rs − 2. Keeping track of the induced map on the fundamental
+               group under this diﬀeomorphism, by (4.21) (applied with ω = ζ k ) we obtain
+                                                                 2                               2k(rs − 1 − k)
+                                    ρ(L(rs − 1, s2 ), ζ krs ) = −σT (r,s) (ζ k ) + 1 −                          .
+                                                                                                     rs − 1
+               It might be interesting to compare this formula to other known computations for
+               the Levine–Tristram signature of torus knots (see e.g. the paper of Borodzik and
+               Oleszkiewicz [4]).
+
+                 Suppose now that the n-coloured link L is component-to-colour algebraically split.
+               Observe that, under this assumption, the coloured Seifert framing coincides with the usual
+               Seifert framing, i.e. with the coloured Seifert framing associated with the onecolouring of
+               the same underlying link. As explained by the next result, this framing has the important
+               property of being compatible with all U (1)-representations of H1 (XL ; Z) → U (1).
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                32                                                    Enrico Toﬀoli
+
+                   Lemma 4.27. Let L be an n-coloured link which is component-to-colour algebraically
+                split. Then, the coloured Seifert framing fL is compatible with all coloured representations
+                α : H1 (XL ; Z) → U (1).
+
+                     Proof. By Remark 4.8, we need to prove that
+                                                           k
+                                                           
+                                                                 α(μj )Λij = 1             for all i.                       (4.22)
+                                                           j=1
+
+
+                Let ω ∈ Tn be the element determined by the relations α(μi ) = ωc(i) for all i. We can
+                write then
+                                           k
+                                                         n
+                                                            
+                                                                     Λij
+                                              α(μj )Λij =   ωs c(j)=s .                          (4.23)
+                                                          j=1                   s=1
+
+                Since L is component-to-colour algebraically split, for every s diﬀerent from si := c(i) we
+                have
+                                               
+                                                    Λij = lk(Ki , Ls ) = 0.
+                                                            c(j)=s
+
+                As a consequence, (4.23) can be rewritten as
+
+                                                            k
+                                                                                   
+                                                                                        c(j)=si Λij
+                                                                  α(μj )Λij = ωsi                     .                     (4.24)
+                                                            j=1
+
+
+                By (4.4), moreover, the exponent in the right-hand term of (4.24) is 0, and thus (4.22) is
+                satisﬁed.                                                                               
+
+                  Corollary 4.28. Let L be an n-coloured link which is component-to-colour alge-
+                braically split. Let ω ∈ Tn∗ , and let α : H1 (XL ; Z) → U (1) be the associated coloured
+                representation. Then, α extends to H1 (SL (fL ); Z) and we have
+
+                                                        ρα (SL (fL )) = −σL (ω) + signΛfL .
+
+                  Proof. The representation α extends to H1 (SL (fL ); Z) thanks to Lemma 4.27, so that
+                we can apply Theorem 4.24. The desired formula follows then from the observation that,
+                for the coloured Seifert framing, thanks to (4.4) for any colour s we have
+
+                                               def
+                                                                                                        
+                                          hs =                     Λij =                    Λij =                  0 = 0.
+                                                     c(i)=c(j)=s           c(i)=s c(j)=s                  c(i)=s
+
+
+                                                                                                                                
+
+                   Remark 4.29. Both Lemma 4.27 and Corollary 4.28 hold in particular in the one-
+                coloured setting, where they were proved by Nagel and Powell [25, Section 5]. Our work
+                is a generalization of this to the multivariable setting.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links             33
+
+               4.5. Rational surgery
+                  We now want to study the rho invariant of the closed manifold obtained by surgery
+               along a rational framing on a link. We start from the case of a knot, as the statement and
+               the proof are a bit simpler in this setting. Observe that, for a knot K, a representation
+               ψ : H1 (XK ) → U (1), extends to MK (p/q) if and only if ψ(μ)p = 1, i.e. if and only if
+               ω := ψ(μ) is a pth root of unity.
+
+                 Proposition 4.30. Let K be a knot, and let α : H1 (XK ; Z) → U (1) be the represen-
+               tation deﬁned by α(μ) = ω, with ω being a pth root of unity. Then, we have
+
+                                                   ρα (SK (p/q)) = −σK (ω) − ρ(L(p, q), ω).
+
+                  Proof. We perform cut-and-paste on SK (p/q) in the following way: we cut out the
+               solid torus Y = D2 × S 1 of the ﬁlling, and we replace it with another copy Y  = D2 × S 1 ,
+               this time glued along the 0 framing. It is convenient to actually glue −Y  instead of Y  :
+               in such a way, we can deﬁne an orientation-reversing diﬀeomorphism between −∂Y  and
+               ∂XK which gives the identiﬁcations
+
+                                                                    m = λ,        l = μ
+
+               between the standard basis (m , l ) of H1 (Y  ; Z) and the basis (μ, λ) of H1 (∂XL ; Z). On
+               the other hand, the meridian m of Y is identiﬁed with pμ + qλ. Schematically, we write
+
+                                                XK ∪∂ Y                  XK ∪∂ (−Y  )  Y  ∪∂ Y.      (4.25)
+
+               The union of solid tori Y  ∪δ Y is now given along a diﬀeomorphism which gives the
+               identiﬁcation of m with qm + pl , so that the resulting manifold is the lens space
+               L(p, −q) ∼
+                        = −L(p, q) (see § 2.4). In particular, (4.25) can be rewritten as
+
+                                                      SK (p/q)               SK (0)  −L(p, q).
+
+               Observe that the generator 1 ∈ Z/p = π1 (L(p, q)) corresponds by construction to the
+               longitude l . In turn, l is glued in the surgery with the meridian μ of K. As a consequence,
+               the extension of the representation α to H1 (L(p, q); Z) is the representation Z/p → U (1)
+               given by 1 → ω. Before applying the cut-and-paste formula, we observe that the result is
+               trivially true for ω = 1. We shall hence suppose ω = 1. Thanks to Theorem 3.9, we can
+               now compute
+
+                                    ρα (SK (p/q)) = ρα (SK (0)) − ρ(L(p, q), ω) − τ (VY  , VXK , VY )   (4.26)
+
+               (as usual, the Maslov triple index in twisted homology is 0 thanks to Remark 4.2 and the
+               assumption ω = 1). Now, we know that the ﬁrst summand in the right-hand term of (4.26)
+               is minus the Levine–Tristram signature (see Remark 4.20), while the second summand
+               coincides with the one of the statement. As a consequence, to complete the proof, it
+               is enough to show that τ (VY  , VXK , VY ) = 0. We are going to describe the Lagrangians
+               explicitly. Considering the identiﬁcations given by the gluings, in terms of the basis (μ, λ)
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                34                                                    Enrico Toﬀoli
+
+                of H1 (∂XK ; C) we have
+
+                                   VY  = SpanC (λ),           VXK = SpanC (λ),               VY = SpanC (pμ + qλ).
+
+                As the ﬁrst two subspaces coincide, the Maslov triple index is 0, and the proof is complete.
+                                                                                                          
+
+                  We shall now prove the general version of Proposition 4.30, which holds for all
+                component-to-colour algebraically split links. As we have seen, a special case of these
+                are onecoloured links. In particular, this gives a general formula relating the Levine–
+                Tristram signature of a link L with the Atiyah–Patodi–Singer rho invariant of the closed
+                three-manifold obtained by rational surgery on L.
+
+                  Theorem 4.31. Let L be an n-coloured, k-component link that is component-to-colour
+                algebraically split. Let ω ∈ Tn∗ , and let α : π1 (XL ) → U (1) be the associated coloured
+                representation. Let r be a compatible rational framing on L. Then, we have
+                                                                               k
+                                                                               
+                              ρα (SL (r)) = −σL (ω) + signΛr −                        (ρ(L(pi , qi ), ωc(i) ) + sgn(pi /qi )),
+                                                                                i=1
+
+                where pi , qi are coprime integers such that ri − fi = pi /qi (here, fi is the i-th coeﬃcient
+                of the Seifert framing).
+
+                   Proof. We generalize the cut-and-paste construction of Proposition 4.30, removing the
+                union of solid tori Y coming from the r-framed ﬁlling of XL , and replacing them with a
+                union of solid tori Y  glued along the coloured Seifert framing. As the diﬀerence between
+                these framings is now given by the k-tuple (p1 /q1 , . . . , pk /qk ), the same argument used
+                in the proof of Proposition 4.30 (repeated now for each link component) implies that this
+                cut-and-paste can be written as
+                                                                  k                
+                                                                   
+                                          SL (r)  SL (fL )          −L(pi , qi ) .
+                                                                                        i=1
+
+                In particular, Theorem 3.9 gives in this case
+                                                                          k
+                                                                          
+                                   ρα (SL (r)) = ρα (SL (fL )) −                ρα (L(pi , qi )) − τ (VY  , VXL , VY ).
+                                                                          i=1
+
+                Applying Corollary 4.28 and rearranging the variables of the Maslov triple index with
+                Proposition 3.2 (i), we can rewrite the last equation as
+                                                                         k
+                                                                         
+                       ρα (SL (r)) = −σL (ω) + signΛfL −                       ρ(L(p, q), ωc(i) ) + τ (VY  , VY , VXL ).        (4.27)
+                                                                         i=1
+
+                The computation of the Maslov triple index is more involved than in the case of knots. As
+                we did in the proof of Theorem 4.24, instead of trying to calculate it directly, we use the
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links                             35
+
+               cocycle property of our three Lagrangians together with M := {μ1 , . . . , μk } to simplify
+               this task. Namely, using Proposition 3.2 (ii), we ﬁnd
+
+                        τ (VY  , VY , VXL ) = τ (M, VY  , VY ) − τ (M, VY  , VXL ) + τ (M, VY , VXL ).                (4.28)
+
+
+                                                                k
+                  Claim 1. τ (M, VY  , VY ) = −                    i=1 sgn(pi /qi ).
+
+                  Claim 2. τ (M, VY  , VXL ) = sign ΛfL and τ (M, VY , VXL ) = sign Λr .
+
+                 Thanks to (4.28), the two claims (whose proof we postpone for the moment) combine
+               to give
+                                                     k
+                                                     
+                              τ (VY , VY , VXL ) = −
+                                                      sgn(pi /qi ) − signΛfL + signΛr .
+                                                                      i=1
+
+               Substituting this value into (4.27), we obtain the formula in the statement of the theorem.
+               Proof of Claim 1. Let λ1 , . . . , λk be the framed longitudes corresponding to the
+               framing r, and let λ1 , . . . , λk be the framed longitudes of the Seifert framing. Then,
+               it is clear that
+
+                                      VY = SpanC {λ1 , · · · , λk },                VY  = SpanC {λ1 , · · · , λk }.
+
+               Moreover, by deﬁnition, we have λi = λsi + ri μi and λi = λsi + fi μi , so that the two sets
+               of longitudes are related by
+                                                                                                pi
+                                                       λi = λi + (ri − fi )μi = λi +             μi .
+                                                                                                qi
+               In particular, the three Lagrangians in the ﬁrst summand of (4.28) all split according to
+               the symplectic decomposition
+                                                                             k
+                                                                             
+                                                       H1 (∂XL ; C) =               SpanC {μi , λi }.
+                                                                              i=1
+
+               As the pair (μi , λi ) is a symplectic basis for (H1 (Ti ; C), ·) (see Example 3.3), it is
+               immediate to compute
+                                                             k
+                                                                                                 k
+                                                                                        pi
+                                   τ (M, VY  , VY ) =             τ μi , λi , λi +      μi = −     sgn(pi /qi ).
+                                                             i=1
+                                                                                        qi        i=1
+
+
+               Proof of Claim 2. The claim follows immediately from Lemma 4.6 (iii), as we have VY = Lr
+               and VY  = LfL .                                                                       
+
+                  Remark 4.32. The hypothesis of L being component-to-colour algebraically split
+               allows us to obtain a single nice explicit formula, because, in this case, we can always apply
+               the cut-and-paste formula after performing the Dehn surgery along the Seifert framing,
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                36                                                    Enrico Toﬀoli
+
+                which is compatible with all representations thanks to Lemma 4.27. More general cases
+                of rational surgery can be faced by ﬁnding an appropriate compatible integral framing
+                (together with Theorem 4.21 or Theorem 4.24) and then modifying it into the desired
+                rational framing in the same way as in the proof of Theorem 4.31. However, this is better
+                dealt with on a case-by-case basis, as a general formula would be quite cumbersome.
+
+                   Remark 4.33. If L is component-to-colour algebraically split and g is an integer
+                framing on L which is compatible with the given ω ∈ Tn∗ , we can apply either Theorem
+                4.24 or Theorem 4.31. The fact that the resulting formulas are compatible can be veriﬁed
+                by a quick computation using Corollary 2.11.
+
+                   Acknowledgements. This project was supported by the collaborative research cen-
+                ter SFB 1085 ’Higher Invariants’, funded by the Deutsche Forschungsgemeinschaft. Part
+                of the article is based on the author’s PhD thesis, which was written under the support
+                of the graduate school GRK 1692 ’Curvature, Cycles, and Cohomology’, also funded by
+                the Deutsche Forschungsgemeinschaft. The author would like to thank Stefan Friedl for
+                several interesting discussions.
+
+                References
+                 1.     M. F. Atiyah, V. K. Patodi and I. M. Singer, Spectral asymmetry and Riemannian
+                        geometry. I, Math. Proc. Cambridge Philos. Soc. 77 (1975), 43–69.
+                 2.     M. F. Atiyah, V. K. Patodi and I. M. Singer, Spectral asymmetry and Riemannian
+                        geometry. II, Math. Proc. Cambridge Philos. Soc. 78 (1975), 405–432.
+                 3.     M. F. Atiyah, V. K. Patodi and I. M. Singer, Spectral asymmetry and Riemannian
+                        geometry. III, Math. Proc. Cambridge Philos. Soc. 79 (1976), 71–99.
+                 4.     M. Borodzik and K. Oleszkiewicz, On the signatures of torus knots, in Bulletin of the
+                        Polish Academy of Sciences Mathematics, Volume 58 (2010).
+                 5.     U. Bunke, On the gluing problem for the η-invariant, J. Diﬀerential Geom. 41(2) (1995),
+                        397–448.
+                 6.     S. E. Cappell, R. Lee and E. Y. Miller, On the Maslov index, Comm. Pure Appl.
+                        Math. 47(2) (1994), 121–186.
+                 7.     A. J. Casson and C. McA. Gordon, On slice knots in dimension three, Proc. Sympos.
+                        Pure Math. 32 (1978), 339–53.
+                 8.     A. J. Casson and C. McA. Gordon, Cobordism of classical knots. In À la recherche de
+                        la topologie perdue, pp. 181–199, Progress in Mathematics, volume 62 (Birkhäuser, Boston,
+                        MA, 1986).
+                 9.     D. Cimasoni and V. Florens, Generalized Seifert surfaces and signatures of colored
+                        links, Trans. Amer. Math. Soc. 360(3) (2008), 1223–1264.
+                10.     A. Conway, S. Friedl and E. Toffoli, The Blanchfield pairing of colored links, Indiana
+                        Univ. Math. J. 67 (2018), 2151–2180.
+                11.     A. Conway and M. Nagel, Twisted signatures of fibered knots, Algebr. Geom. Topol.
+                        21 (2021), 1973–2036.
+                12.     A. Conway, M. Nagel and E. Toffoli, Multivariable signatures, genus bounds and
+                        0.5-solvable cobordisms, Mich. Math. J. 69(2) (2020).
+                13.     A. Degtyarev, V. Florens and A. G. Lecuona, The signature of a splice, Int. Math.
+                        Res. Not. 8 (2017), 2249–2283.
+                14.     A. Degtyarev, V. Florens and A. G. Lecuona, Slopes and signatures of links. 2018,
+                        available at https://arxiv.org/abs/1802.01836.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+                                 The Atiyah–Patodi–Singer rho invariant and signatures of links             37
+
+               15.     S. Friedl, Algebraic Topology I-V.
+               16.     S. Friedl, Eta invariants as sliceness obstructions and their relation to Casson–Gordon
+                       invariants, Algebr. Geom. Topol. 4(2) (2004), 893–934.
+               17.     S. Friedl, Link concordance, boundary link concordance and eta-invariants, Math. Proc.
+                       Cambridge Philos. Soc. 138(3) (2005), 437–460.
+               18.     S. Friedl, M. Nagel, P. Orson and M. Powell, A survey of the foundations of
+                       four-manifold theory in the topological category, 2020
+               19.     P. M. Gilmer, Configuration of surfaces in 4-manifolds, Trans. Amer. Math. Soc. 264(2)
+                       (1981), 333–380.
+               20.     P. Kirk and M. Lesch, On the rho invariant for manifolds with boundary, Algebr. Geom.
+                       Topol. 3 (2003), 623–675.
+               21.     P. Kirk and M. Lesch, The η-invariant, Maslov index, and spectral flow for Dirac-type
+                       operators on manifolds with boundary, Forum Math. 16(4) (2004), 553–629.
+               22.     J. P. Levine, Link invariants via the eta invariant, Comment. Math. Helv. 69(1) (1994),
+                       82–119.
+               23.     J. P. Levine, Concordance of boundary links, J. Knot Theory Ramiﬁcations 16(9) (2007),
+                       1111–1120.
+               24.     L. Moser, Elementary surgery along a torus knot, Paciﬁc J. Math. 38(3) (1971), 737–745.
+               25.     M. Nagel and M. Powell, Concordance invariance of Levine–Tristram signatures of
+                       links, Doc. Math. 22 (2017), 25–43.
+               26.     W. D. Neumann, Signature related invariants of manifolds. I. Monodromy and γ-
+                       invariants, Topology 18(2) (1979), 147–172.
+               27.     P. Py, Indice de Maslov et théorème de Novikov-Wall, Bol. Soc. Mat. Mexicana 11(2)
+                       (2005), 303–331.
+               28.     E. Toffoli, Rho invariants for manifolds with boundary and low-dimensional topology.
+                       PhD thesis, University of Regensburg, 2019, available at https://epub.uni-regensburg.de/
+                       40688/.
+               29.     T. tom Dieck, Algebraic topology. EMS Textbooks in Mathematics. European Mathe-
+                       matical Society (EMS), Zürich, 2008.
+               30.     C. T. C. Wall, Non-additivity of the signature, Invent. Math. 7 (1969), 269–274.
+
+
+
+
+https://doi.org/10.1017/S0013091522000153 Published online by Cambridge University Press
+

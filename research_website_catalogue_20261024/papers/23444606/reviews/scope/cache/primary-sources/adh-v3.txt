@@ -1,0 +1,969 @@
+                                                THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD
+
+
+
+
+arXiv:1512.02267v3 [math.LO] 11 Aug 2016
+                                           MATTHIAS ASCHENBRENNER, LOU VAN DEN DRIES, AND JORIS VAN DER HOEVEN
+
+
+                                                   Abstract. We show that the natural embedding of the differential field of
+                                                   transseries into Conway’s field of surreal numbers with the Berarducci-Mantova
+                                                   derivation is an elementary embedding. We also prove that any Hardy field
+                                                   embeds into the field of surreals with the Berarducci-Mantova derivation.
+
+
+
+
+                                                                                Introduction
+                                           Berarducci and Mantova [3, Theorem B] have recently constructed a derivation
+                                           (denoted by ∂BM below) on Conway’s ordered field No of surreal numbers that
+                                           makes the latter a Liouville closed H-field with constant field R. The standard
+                                           example of such an object is the ordered differential field T of transseries, and the
+                                           question arises whether No with ∂BM is elementarily equivalent to T. Below we
+                                           give a positive answer in a stronger form: Theorem 1. Throughout this paper we
+                                           consider No as a differential field with derivation ∂BM .
+                                              Both No and T are also exponential fields; the exponential function exp on No
+                                           is defined in Gonshor [9]. We refer to [2, Appendix A] for the precise construction
+                                           of T, but the “generating element” x of T there will be denoted by xT here, since
+                                           we prefer to have x range here over arbitrary surreal numbers. It is folklore (but
+                                           see Section 5 for a proof) that there is a unique embedding ι : T → No of ordered
+                                           exponential fields with ι(xT ) = ω that is the identity on R and respects infinite
+                                           sums. It follows easily from Wilkie’s theorem [13] and other known facts that ι is
+                                           an elementary embedding of ordered exponential fields; see Section 5 for details.
+                                           The analogue for the derivation instead of the exponentiation requires more effort:
+                                           Theorem 1. The mapping ι : T → No is an elementary embedding of ordered
+                                           differential fields.
+                                           This answers a question posed in [3]. The main tools for proving this result come
+                                           from [2, Theorems 15.0.1 and 16.0.1]. These tools enable us to reduce the proof
+                                           of Theorem 1 to exhibiting No as a directed union of subfields R[[ω Γ ]] that are
+                                           closed under ∂BM and where Γ is an ordered additive subgroup of No having a
+                                           smallest nontrivial archimedean class; exhibiting No as such a directed union makes
+                                           up an important part of our paper. (As a byproduct we get a new proof that
+                                           ∂BM (No) = No.) We use the same kind of reduction to obtain:
+
+                                           Theorem 2. The surreals of countable length form a subfield of No closed un-
+                                           der ∂BM . As a differential subfield of No it is an elementary submodel of No.
+                                           This also uses a result of Esterle [8] and its consequence that for any countable
+                                           ordinal α, any well-ordered set of surreals of length < α is countable: Lemma 4.3.
+                                              Finally, we establish an embedding result for H-fields:
+
+                                             Date: August 2016.
+                                                                                         1
+2             ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+Theorem 3. Every H-field with small derivation and constant field R can be em-
+bedded over R as an ordered differential field into No.
+Thus every Hardy field extending R embeds over R as an ordered differential field
+into No. Despite these excellent properties of ∂BM , Schmeling’s thesis [12] gives us
+reason to believe that ∂BM is not yet the “best” derivation on No. We expect to
+address this issue in later papers.
+We thank Philip Ehrlich and Elliot Kaplan for giving us useful information about
+initial substructures of No of various kinds. We also thank the referee for pointing
+out places where more detail was needed and for debunking our initial attempt to
+prove Lemma 4.3.
+
+                                  1. Preliminaries
+Here we fix notation and terminology and summarize the results from [2, 3, 9] that
+we need as background material and as tools in our proofs.
+
+Notations and terminology. Below, m, n range over N = {0, 1, 2, . . . }, and α, β
+and µ, ν range over ordinals. (The letter λ will serve another purpose, as in [3].)
+    As in [9], a surreal number is by definition a function a : µ → {−, +} on an
+ordinal µ = {α : α < µ}. For such a we let l(a) := µ be the length of a. From
+now on we let a, b, x, y be surreal numbers. The class No of surreal numbers
+carries a canonical linear ordering <: a < b iff a is lexicographically less than b,
+where by convention we set a(µ) := 0 for µ ⩾ l(a) and linearly order {−, 0, +} by
+− < 0 < +. We also have the canonical partial ordering <s on No given by: a <s b
+(“a is simpler than b”) iff a is a proper initial segment of b, that is, l(a) < l(b), and
+a|µ = b|µ for µ := l(a). For sets A, B ⊆ No with A < B (that is, a < b for all a ∈ A
+and b ∈ B) we let x = A|B mean that x is the simplest surreal with A < x < B,
+as in [9] and [3]. We also use the terms “canonical representation” and “monomial
+representation” (of a surreal number) as in [3].
+    The ordinal α is identified with the surreal a : α → {−, +} with a(β) = + for
+all β < α. A useful fact is the equivalence α < x ⇐⇒ α+̇1 ⩽s x, where α+̇1 is the
+successor ordinal to α. The subclass of No consisting of the ordinals is denoted
+by On. A set S ⊆    No is said to be initial if x ∈ S whenever x <s y ∈ S. As in [5]
+we set No(α) = x : l(x) < α , an initial subset of No.
+    We refer to [9] or [3] for the inductive definitions of the binary operations of
+addition and multiplication on No that make No into a real closed field, with the
+ordinal 0 as its zero element and the ordinal 1 as its multiplicative identity. The
+field ordering of this real closed field is the above lexicographic linear ordering <.
+This field No contains R as an initial subfield in the way specified in [9]. The
+field sum α + n equals the ordinal sum α+̇n. Each initial set No(ω α ) underlies an
+additive subgroup of No; see [5].
+    Let Γ be an (additively written) ordered abelian group. Then we set
+                               Γ> := {γ ∈ Γ : γ > 0}.
+We use this notation also for the underlying additive groups of No and R, so
+No> = {a : a > 0}, and R> := {r ∈ R : r > 0}. For γ ∈ Γ we define
+                  
+           [γ] := δ ∈ Γ : |δ| ⩽ n|γ| and |γ| ⩽ n|δ| for some n ⩾ 1 ,
+                    THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                                    3
+
+
+the archimedean class of γ (in Γ). The archimedean classes of elements of Γ partition
+the set Γ, and we totally order this set of archimedean classes by
+                    [γ1 ] < [γ2 ]    :⇐⇒       n|γ1 | < |γ2 | for all n ⩾ 1.
+Thus the least archimedean class is [0] = {0}, the trivial archimedean class.
+   The convex hull of R in No is a valuation ring V of the field No. We consider No
+accordingly as a valued field whose (Krull) valuation v has V as its valuation ring.
+For any (Krull) valued field K with valuation v and elements f, g ∈ K we let f 4 g,
+f ≺ g, f ≍ g, f ∼ g abbreviate v(f ) ⩾ v(g), v(f ) > v(g), v(f ) = v(g), and
+v(f − g) > vf . (See [2, Section 3.1].) We shall use these notations in particular for
+the valued field No.
+The omega map, the Conway normal form, and summability. We assume
+familiarity with Conway’s omega map x 7→ ω x : No → No> . Recall that ω x is the
+simplest positive element in its archimedean class; so ω x ≺ ω y whenever x < y.
+See [9] for details, including the proof that each a has a unique representation
+                        X
+                 a =        ax ω x   (the Conway normal form of a)
+                           x
+with real coefficients ax such that E(a) := {x : ax 6= 0} is a subset of No (not just
+a subclass) and is reverse well-ordered. This will be the meaning of E(a) and ax
+throughout. The leading monomial of a is ω x with x = max E(a), for a 6= 0. The
+terms of a are the ax ω x with ax 6= 0. The omega map extends the usual ordinal
+exponentiation α 7→ ω α . Given any set S ⊆ No we let R[[ω S ]] denote the additive
+subgroup of No consisting of the surreals a with E(a) ⊆ S.
+Let (ai )i∈I be a family   P of surreals; S  this includes I being a set. We say that (ai ) is
+summable (or that i ai exists) if i E(ai ) is reverse well-ordered, and for              Peach x
+there
+P P   are    only   finitely    many  i ∈  I with   x ∈ E(a i ); in that case we  set      i ai :=
+                    x                                                                           S
+  x (     a
+        i P i,x ) ω   . If S is a subset of No,  then for any  summable   family (a i ) in R[[ω   ]]
+                             S
+we have i ai ∈ R[[ω ]].
+As in [3], we let M denote the class of monomials ω x ; so M is a multiplicative
+subgroup of No× . The Conway normal form allows us to consider any surreal
+number a as a generalized series
+                                       X
+                                 a =      am m
+                                               m∈M
+with coefficients am ∈ R, monomials m ∈ M, and reverse well-ordered support
+supp a := {m ∈ M : am 6= 0} = ω E(a) . This makes the above notion of summability
+for surreal numbers coincide with the corresponding notion for generalized series
+from [12, Section
+               1.5].
+   Next, J := a : E(a) ⊆ No> is the class of purely infinite surreals, an additive
+subgroup of No that is moreover closed under multiplication. Thus M ∩ J = M≻1 ,
+and No = J ⊕ R ⊕ No≺1 .
+Exponentiation, and the functions g and h. Gonshor [9] gave an inductive
+definition of the exponential function exp : No → No> , and established its basic
+properties. These include exp being an order-preserving isomorphism from the
+additive group of No onto its multiplicative group of positive elements. The inverse
+of exp is of course denoted by log : No> → No. The nth iterate of the map
+exp : No → No is denoted by expn , so exp0 is the identity map on No, and
+4             ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+exp1 (x) = exp(x). Also ex := exp(x). The logarithmic map log maps No>N into
+itself; the nth iterate of the restriction of log to a map No>N → No>N is denoted
+by logn , so log0 is the identity map on No>N and log1 (x) = log(x) for x > N.
+   The exponential map exp and the omega-map x 7→ ω x are related by the order
+preserving bijection g : No> → No, which satisfies
+                                                      g(x)
+                         exp(ω x ) = ω ω                      for all x > 0.
+We have g(n) = n for all n. More generally, Theorem 10.14 in [9] says that g(α) = α
+unless ε ⩽ α < ε + ω for some ε-number, in which case g(α) = α + 1. (An ε-number
+is an ordinal ε such that ω ε = ε.) We shall need g(x) mainly in the other extreme
+case where x has the form ω −α . Here Theorem 10.15 in [9] gives g(ω −α ) = −α + 1.
+We also use the inverse h : No → No> of g. Note that
+                                   y
+                              ωω        = exp(ω h(y) )           for all y.
+The result above for g(ω −α ) yields h(−α + 1) = ω −α , from which we get
+                                                 −α+1               −α
+                                       log ω ω               = ωω        .
+Applying this to the ordinal α + 1 instead of α we get
+                                                 −α            −(α+1)
+                                       log ω ω         = ωω                  .
+
+From [9] we have exp(J) = M. Thus besides the Conway normal form and the
+series representation, any surreal number a also has a unique representation
+                       X
+                 a =       aj ej    (exponential normal form of a)
+                        j∈J
+
+with real coefficients aj and reverse well-ordered {j ∈ J : aj 6= 0}; this is also called
+the Ressayre form of a. For nonzero a with leading monomial eb , b ∈ J, we set
+ℓ(a) := b. Then −ℓ : No× → J is a (Krull) valuation on the field No, and
+                                 
+              a : −ℓ(a) ⩾ 0 = a : |a| ⩽ r for some r ∈ R⩾0 = V,
+so we may consider −ℓ as the valuation of our valued field No. Important in [3] is
+also the class A of log-atomic surreals, consisting of the a > N all whose iterated
+logarithms logn a lie in M. We have A ⊆ M≻1 and exp(A) = log(A) = A. It follows
+from A ⊆ M that if x, y ∈ A and x < y, then x ≺ y. (In [3] the class of log-atomic
+surreals is denoted by L, but this notation conflicts with ours in other papers.)
+
+Surreal derivations. We summarize here some results from [3] as needed, and
+add a few remarks. A surreal derivation is a derivation ∂ on the field No such that
+        
+ (SD1) a : ∂(a) = 0 = R;
+ (SD2) ∂(a) > 0 for all a > R;
+ (SD3) ∂ exp(a) = ∂(a) exp(a) for all a;                            
+ (SD4) for any summable
+                    P         P (ai ) of surreals, the family ∂(ai ) is also summa-
+                            family
+        ble, and ∂ ( i ai ) = i ∂(ai ).
+The ordered field No equipped with any surreal derivation is an H-field; this doesn’t
+need (SD3) or (SD4). The particular derivation ∂BM is surreal, maps A into M,
+and is obtained in [3] as a special case of a rather general construction. Before we
+get to that, we mention Proposition 6.5 and Theorem 6.32 from that paper:
+                 THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                          5
+
+
+(BM1) If ∂ is a surreal derivation, then for all x, y > N with x − y > N we have
+                            log ∂(x) − log ∂(y) ≺ x − y.
+(BM2) Any map D : A → R> M such that for all x, y ∈ A,
+          D(exp x) = D(x) exp x,       log D(x) − log D(y) ≺ max(x, y),
+        extends to a surreal derivation.
+Thus (BM2) is a partial converse to (BM1), although the condition in (BM2) that D
+takes only values in R> M seems a rather severe restriction. We define a pre-
+derivation to be a map D : A → R> M as in (BM2). Note that if D is a pre-
+derivation, then
+                                !
+                     Y
+           D(a) =        logm a · D(logn a)      for all a ∈ A and all n.      (∗)
+                     m<n
+
+A pre-derivation D actually extends canonically to a surreal derivation ∂D . To
+define ∂D in terms of D we rely on the notion of path derivatives, introduced in [10],
+further developed in [12], and adapted to the surreal setting in [3]. A path is a
+function P : N → R× M such that P (n + 1) is a term of ℓ(P (n)), for all n. Given x,
+the paths P such that P (0) is a term of x are the elements of a set P(x). For
+x ∈ A there is a unique path P ∈ P(x); it is given by P (n) = logn x. Thus if P is
+a path and P (m) ∈ A, then P (n) = logn−m P (m) for all n ⩾ m, so P (n) ∈ A for
+all n ⩾ m.
+Let D be a pre-derivation. The path derivative ∂D (P ) ∈ RM for a path P is defined
+as follows, with (∗) guaranteeing independence of n in (1):
+                                       Q           
+    (1) if P (n) ∈ A, then ∂D (P ) :=     m<n P (m) · D(P (n));
+                 / A for all n, then ∂D (P ) := 0.
+    (2) if P (n) ∈
+The rationale behind path derivatives is the following proposition:
+                                       
+(BM3) For each a the family ∂D (P ) P ∈P(a) is summable.
+This result is stated in [3, Proposition 6.20] only for one particular pre-derivation,
+but, as the authors mention, the proof extends to any pre-derivation. In view of
+(BM3) we can now define ∂D : No → No by
+                                           X
+                               ∂D (a) :=         ∂D (P ).
+                                         P ∈P(a)
+
+It follows from (∗) that ∂D extends D, and the arguments in [3, Section 6] show
+that ∂D is a surreal derivation.
+
+Results from [2]. To state the relevant facts, we recall from [1] or [2] that an H-
+field is bydefinition an ordered differential field K with derivation ∂ and constant
+field C = f ∈ K : ∂(f ) = 0 such that:
+   (H1) ∂(f ) > 0 for all f ∈ K with f > C;
+   (H2) O = C + O, where O is the convex hull of C in K, and O is the maximal
+         ideal of the valuation ring O.
+Let K be an H-field, and let O and O be as in (H2). Thus K is a valued field with
+valuation ring O. We consider K in the natural way as an L-structure, where
+                           L := { 0, 1, +, −, ×, ∂, ⩽, 4 }
+6             ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+is the language of ordered valued differential fields; in particular,
+
+             f 4 g ⇐⇒ f ∈ Og ⇐⇒ |f | ⩽ c|g| for some c ⩾ 0 in C.
+
+Given f ∈ K we also write f ′ instead of ∂(f ), and we set f † := f ′ /f for f 6= 0,
+so (f g)† = f † + g † and (1/f )† = −f † for f, g ∈ K × . A useful subset of the value
+group Γ := v(K × ) of the valued field K is
+                                                     
+      Ψ := ΨK := v(f † ) : f ∈ K × , f 6≍ 1 = v(f † ) : f ∈ K, f > C .
+
+As in [2] we call K grounded if Ψ has a largest element. For the convenience of the
+reader we include a proof of the following wellknown fact.
+
+Lemma 1.1. Assume K has constant field C = R. Then K is grounded iff Γ has
+a smallest nontrivial archimedean class.
+                                                                                
+Proof. Let f, g ∈ K, f, g > C. Suppose the archimedean class v(f ) = v(1/f ) of
+v(f ) is greater than v(g) . This means: v(f ) < nv(g) = v(g n ) < 0 for all n ⩾ 1.
+Hence f † > (g n )† = ng † > 0 for all n ⩾ 1, by [1, Lemma 1.4], so v(f †
+                                                                       )< v(g
+                                                                                 †
+                                                                                ). A
+similar argument (which doesn’t need C = R) shows that if v(f      ) = v(g) , then
+v(f † ) = v(g † ). Thus we have an order-reversing bijection v(f ) 7→ v(f † ) (f ∈ K,
+f > C) from the set of nontrivial archimedean classes of Γ onto Ψ.                   
+
+An H-subfield of K is by definition an ordered differential subfield of K that is
+an H-field. In [2] we axiomatized the elementary (= first-order) theory of the H-
+                                                           nl
+field T of transseries. This (complete) theory is called Tsmall there and its models
+are exactly the H-fields K satisfying the following (first-order) conditions:
+    (1) the derivation of K is small, that is, ∂O ⊆ O;
+    (2) K is Liouville closed;
+    (3) K is ω-free;
+    (4) K is newtonian.
+(An H-field K is said to be Liouville closed if it is real closed and for all f ∈ K there
+exists g ∈ K with g ′ = f and an h ∈ K × such that h† = f ; for the definition of “ω-
+free” and “newtonian” we refer to the Introduction of [2].) Dropping the smallness
+axiom (1), we get the incomplete but model complete theory T nl; see [2, Chapter 16].
+The H-field T satisfies (3) and (4) by [2, Corollary 11.7.15 and Theorem 15.0.1],
+which for an arbitrary H-field K amount to the following:
+    If ∂K = K and K is a directed union of spherically complete grounded H-sub-
+fields, then K is ω-free and newtonian.
+    The condition ∂K = K is automatically satisfied if K is a directed union of
+spherically complete grounded H-subfields E such that for some φ ∈ E we have
+v(φ) = max ΨE and φ ∈ ∂K, by [2, Corollary 15.2.4].
+
+
+               2. Infinite Products and Log-atomic Surreals
+The pre-derivation D in [3] with ∂D = ∂BM is defined by a certain identity. Towards
+the end of this section we give this identity a more suggestive form, which we found
+useful. But we begin with some remarks on ε-numbers, which play an important
+role in the next sections.
+                 THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                                7
+
+
+Remarks on ε-numbers. Throughout this paper ε will denote an ε-number, that
+is, ε is an ordinal such that ω ε = ε.
+Lemma 2.1. For any α there is a least ε-number ε(α) ⩾ α. Moreover, if α is
+infinite, then card(ε(α)) = card(α).
+Proof. The recursion defining ω α as a function of α easily yields that this func-
+tion is strictly increasing, with ω α ⩾ α, card(ω α ) = max ℵ0 , card(α) , and thus
+card(ω α ) = card(α) if α is infinite. Now define αn as a function of n by the recur-
+sion α0 = α and αn+1 = ω αn . Then supn αn is clearly the least ε-number ⩾ α, and
+it has the same cardinality as α if the latter is infinite.                        
+
+If κ is an uncountable cardinal, then by the remarks in the proof above we have
+ω α < κ for all α < κ. Thus uncountable cardinals are ε-numbers. The least ε-
+number is denoted by ε0 , as usual, so ε0 = supn ωn where the ωn are defined by
+the recursion ω0 = ω and ωn+1 = ω ωn .
+
+Infinite products of monomials. Recall that M isQthe multiplicative
+                                                                  P group of
+monomials ω a . For a family (mi ) in M we say that i mi exists if i ai exists,
+with mi = ω ai for all i, and in that case, we set
+                                Y            P
+                                   mi := ω i ai ∈ M.
+                                 i
+
+The rules for manipulating these infinite products are easy consequences of those
+for infinite sums, and Q
+                       we shall freely use them
+                                           Q below. Note in particularQ that    if (mi )
+is a family in M and i mi exists, then i m−1    i  exists and equals ( i m i )−1
+                                                                                 .
+   In our definition of infinite products we could have represented monomials as
+exponentials of elements in J instead of as powers of ω. Indeed, the equivalence
+between these options follows from the next two lemmas:
+                                                            Q
+Lemma 2.2. Let (ai ) be a summable family in J. Then i exp(ai ) exists, and
+                                         !
+                                   X           Y
+                            exp        ai =       exp(ai ).
+                                       i        i
+                      P                x
+Proof. We have ai =       x>0 ai,x ω
+                                  , so by [9, Theorem 10.13],
+                                                X
+                       exp(ai ) = ω bi , bi :=      ai,x ω g(x) ,
+                                                    x>0
+                               P                      P               Q
+so E(bi ) = g(E(ai )). Since i ai P   exists, so does i bi , and hence i exp(ai ) =
+Q bi                Q                                        P       P
+               and i exp(ai ) = ω i bi . Moreover, with i ai = x>0 ax ω x , we
+  i ω Pexists, P
+have i bi = x>0 ax ω g(x) . Hence again by [9, Theorem 10.13],
+                                                           !             !
+       Y                P        g(x)            X                   X
+           exp(ai ) = ω x>0 ax ω       = exp         ax ω x = exp      ai ,
+        i                                       x>0                      i
+
+as claimed.                                                                               
+                                                          Q                     P
+Lemma 2.3. Q   Let (mi ) P
+                         be a family in M such that       i mi exists.   Then       i log mi
+exists, and log i mi = i log mi .
+8                ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+                                                 P
+Proof. We have mi = exp(ai ) with ai ∈ J, so ai = x>0 ai,x ω x , hence
+                                              X
+                      mi = ω bi ,     bi :=      ai,x ω g(x)
+                                                         x>0
+                                                     Q         P
+by
+P [9, Theorem
+         P       10.13]. Since the product i mi exists, so does i bi , and therefore
+  i ai =   i log mi exists. Moreover, and again by [9, Theorem 10.13],
+     Y            P          P
+                                                                     X
+                      bi           ax ω g(x)         P     x
+         mi = ω     i    = ω   x>0           = exp     ax ω , ax :=        ai,x ,
+      i                                                    x>0                     i
+             Q        P         x
+                                       P
+and so log   i mi =       x>0 ax ω =        i ai .                                     
+
+Log-atomic surreals. Recall that A ⊆ M≻1 is the class of log-atomic surreals.
+See [3, Sections 1, 5] for the order-preserving bijection x 7→ λx : No → A and for
+                                                                   g(x)
+the fact that λx ⩽s λy iff x ⩽s y. It follows from exp(ω x ) = ω ω      that A ⊆ ω M .
+Thus for anyQwell-ordered index set I and strictly decreasing map i 7→ λi : I → A
+the product i λi exists. We shall use Proposition 2.6 and Corollary 2.9 below to
+define the pre-derivation ∂BM |A .
+Lemma 2.4. Let m = A|B be a monomial representation with m ≻ 1. Then
+                                          
+                   exp(m) = mN ∪ exp(A) exp(B).
+Proof. For m′ < m with m′ <s m we have m′ ⩽ a for some a ∈ A (since A < m′ <
+m < B gives m ⩽s m′ ). Likewise, for m < m′′ <s m, we have b ⩽ m′′ for some
+b ∈ B. It follows that for m′ as above and k ∈ N⩾1 we have exp(m′ )k ⩽ exp(a) for
+some a ∈ A, and that for m′′ as above and k ∈ N⩾1 we have exp(b) ⩽ exp(m′′ )1/k
+for some b ∈ B. This yields the desired result in view of [3, Theorem 3.8 (1)]. 
+The monomial representation ω = N|∅ shows that in the conclusion of Lemma 2.4
+we cannot drop mN . Below we use the binary relations ≍L and ≺L from [3]. Let
+x = {x′ }|{x′′ } be the canonical representation of x, and let j, k range over N⩾1 .
+Then by [3, Definition 5.12], the defining representation of λx is given by
+                                                                 
+                 λx = k, expj k logj (λx′ )     expj k1 logj (λx′′ ) .
+Proposition 2.5. We have λx+1 = exp(λx ), and thus λx−1 = log(λx ).
+Proof. Let x = {x′ }|{x′′ } be the canonical representation of x. Then 1 = 0|∅
+gives x + 1 = {x, x′ + 1}|{x′′ + 1}. Assume inductively that λx′ +1 = exp(λx′ ) and
+λx′′ +1 = exp(λx′′ ) for all x′ and x′′ . With j, k ranging over N⩾1 , [3, 5.15] gives
+                                                                                
+   λx+1 = k, expj k logj (λx ) , expj k logj (λx′ +1 )       expj k1 logj (λx′′ +1 )
+                                                                                 
+          = k, expj k logj (λx ) , expj k logj−1 (λx′ )      expj k1 logj−1 (λx′′ ) .
+The defining representation λx = A|B is monomial, and the above gives λx+1 =
+                                                                       L
+N ∪ S ∪ exp(A)| exp(B) where S includes λNx and all elements of S are ≍ λx . Since
+λx ≺L exp(λx ), it follows easily from Lemma 2.4 that λx+1 = exp(λx ).          
+                                       −α
+Lemma 2.6. We have λ−α = ω ω                .
+Proof. By induction on α. The case α = 0 holds since λ0 = ω. Assuming it holds
+for a certain α, we have
+                                                          −α          −(α+1)
+                    λ−(α+1) = log λ−α = log ω ω                = ωω            .
+                   THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                     9
+
+
+Next, let µ be an infinite limit ordinal. Then −µ = ∅|{−α : α < µ}, and so by [3,
+5.15] and with j, k ranging over N⩾1 we have
+                                                     
+                          λ−µ = N expj k1 logj λ−α .
+                      
+Now expj k1 logj λ−α ≍L λ−α ≻L λ−β when α < β, so by cofinality and the
+inductive assumption we have
+                                         −α
+                             λ−µ = N ω ω : α < µ .
+              −µ        −α                                          −µ
+From N < ω ω < ω ω        for all α < µ, we get λ−µ ⩽s ω ω . Take a such that
+        ω −a                  −α
+λ−µ = ω      . Then λ−µ < ω ω for α < µ gives ω −a < ω −α for all α < µ, and thus
+                                                     −µ
+a > α for all α < µ. This yields µ ⩽s a, and thus ω ω ⩽s λ−µ , hence a = µ.    
+Lemma 2.7. For λ ∈ A we have: λ < λ−α ⇐⇒ λ−(α+1) ⩽s λ.
+Proof. For λ = λx we have the equivalences
+         λx < λ−α ⇐⇒ x < −α ⇐⇒ α < −x ⇐⇒ α + 1 ⩽s −x
+                       ⇐⇒ −(α + 1) ⩽s x ⇐⇒ λ−(α+1) ⩽s λx .                       
+Transfinitely iterating the logarithm function. In view of λ−n = logn ω and
+the proof of Lemma 2.6 it is suggestive to think of λ−α as the α times iterated
+function log evaluated at ω. Accordingly we set logα ω := λ−α . We note that for
+β < α we have −β <s −α, so ω −β <s ω −α , and thus logβ ω <s logα ω.
+Lemma 2.8. Suppose α is an infinite limit ordinal. Then logα ω is the simplest
+surreal x > N such that x < logβ ω for all β < α.
+Proof. First, N < logα ω < logβ ω for all β < α. Let x be the simplest surreal > N
+such that x < logβ ω for all β < α. Then x is the simplest positive element in its
+                                                                −β
+archimedean class, so x = ω y with y > 0. Then x = ω y < ω ω for β < α gives
+y < ω −β for all β < α. Then y is the simplest positive element in its archimedean
+class: if 0 < y0 ⩽s y and y0 ⩽ ny, then ω y0 ⩽s ω y = x and N < ω y0 ⩽ xn < logβ ω
+for all β < α, so ω y0 = ω y , and thus y0 = y. Hence y = ω z with z < −β for all
+β < α, and thus z ⩽ −α ⩽s z. Therefore, ω −α ⩽s ω z = y, so
+                                              −α
+                               logα ω = ω ω        ⩽s ω y = x,
+and thus logα ω = x.                                                             
+The surreals logα ω occur in the definition of ∂BM later in this section.
+The κ-numbers. The definition of ∂BM in [3] also involves the surreals κx ∈ A
+defined by Kuhlmann and Matusinski [11]. This is only needed for x = −α, and it
+                                                −ωα
+follows from the results in [11] that κ−α = ω ω     , where ωα is the usual ordinal
+product. Thus in view of Lemma 2.6:
+                                                      −ωα
+Corollary 2.9. We have κ−α = λ−ωα = ω ω                      = logωα ω.
+                                      K
+We also use the binary relations 4 , ≻ , and ≍K        K
+                                                            on No>N defined by
+                     x 4K y         ⇐⇒    x ⩽ expn (y) for some n,
+                     x ≻K y         ⇐⇒    x > expn (y) for all n,
+                           K
+                     x ≍        y   ⇐⇒    x 4K y and y 4K x.
+10            ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+We refer to [3, 5.3] for proofs of some basic facts about these relations and the κx
+such as: ≍K is an equivalence relation on No>N with convex equivalence classes,
+every ≍K -equivalence class has a unique element κx in it, and this element is the
+simplest element of this equivalence class. Also, κx ⩽s κy iff x ⩽s y.
+
+Defining the pre-derivation for ∂BM . The pre-derivation D with ∂D = ∂BM is
+denoted by ∂L in [3, Definition 6.7], and by ∂A in this paper. It is given by
+                                      Y       Y
+                         ∂A (λ) :=      logn λ      logα ω
+                                          n                  α
+
+with α in the denominator ranging over the ordinals such that logα ω ⩾ logn λ
+for some n; to facilitate comparison with [3] we note that this condition on α is
+equivalent to λ 4K logα ω. (The products on the right exist, since logn λ and logα ω
+are strictly decreasing as functions of n and α, respectively.) The above defining
+identity for ∂A simplifies the expression in [3] by our use of infinite products (instead
+of exponentials of infinite sums), and of Lemma 2.6 and Corollary 2.9 (to get rid of
+κ-numbers). As [3, Section 9] shows, ∂A is in a certain technical sense the simplest
+pre-derivation.                                   Q
+   If λ > expnω for all n, then ∂A (λ) =           n logn λ. Another special case is
+                   Q
+∂A (logα ω) = 1      β<α logβ ω, in particular, ∂A (ω) = 1. For ε-numbers we get
+the following (not needed later, but included as an example):
+                                          ε−n
+Lemma 2.10. We have logn ε = ω ω                . Hence ε ∈ A and
+                                  ε      ε−1
+                                               +ω ε−2 +···                −1
+                    ∂A (ε) = ω ω +ω                          = ω ε/(1−ω        )
+                                                                                   .
+Proof. From [9, pp. 179, 180] we get that if b, as a sequence of pluses and minuses,
+equals ε followed by εωn minuses, with n ⩾ 1 and εωn being the ordinal product,
+then b = ω ε−n , and g(b) = ε − (n − 1). In other words,
+                               
+                       g ω ε−n = ε − (n − 1)          (n ⩾ 1).
+Using this we prove the lemma by induction on n. The case n = 0 is clear. Assume
+                             ε−n
+inductively that logn ε = ω ω . Since g ω ε−(n+1) = ε − n, this gives
+                                     ε−(n+1)      ε−n
+                             exp ω ω           = ωω ,
+                                      ε−(n+1)
+from which we get logn+1 ε = ω ω                , as desired.                          
+
+              3. Exhibiting No as a Suitable Directed Union
+At the end of Section 1 we explained how proving T ≡ No (as differential fields)
+reduces to representing No as a directed union of spherically complete grounded H-
+subfields. In this section we obtain such a representation. The reader should beware
+of considering No itself as spherically complete, even though the Conway normal
+                                                  No
+form is sometimes summarized as “No  P =−αR((ω ))”. This is misleading, however,
+since it suggests that a series like α ω , where the sum is over all ordinals α,
+is a surreal number. It might perhaps be viewed as a surreal number in a strictly
+larger set-theoretic universe, but not in the one we are (tacitly) workingS in. A
+better way of understanding No as a valued field is as the directed union Γ R[[ω Γ ]]
+with Γ ranging over the subsets of No that underly an additive subgroup of No; for
+example, any α gives No(ω α ) as such a Γ. For any such Γ the corresponding R[[ω Γ ]]
+                   THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                               11
+
+
+is indeed a spherically complete valued subfield of No, but in general R[[ω Γ ]] is not
+closed under ∂BM , and even if it is, it might not be grounded.
+    In this section we show that for S = No(ε) ∪ {−ε}, with ε any ε-number, the
+Hahn subgroup Γ = R[[ω S ]] of No gives rise to a spherically complete valued
+subfield R[[ω Γ ]] that is closed under ∂BM and grounded as an H-subfield of No.
+A length bound for h. This very useful bound is as follows:
+                 
+Lemma 3.1. l h(y) ⩽ ω l(y)+1 .
+Proof. By [9, p. 172] the canonical representation y = {y ′ }|{y ′′ } yields
+                                          
+                        h(y) = 0, h(y ′ )    h(y ′′ ), ω y /2n .
+We can assume inductively that the lemma holds for the y ′ and y ′′ instead of y,
+                             ′
+and thus l h(y ′ ) ⩽ ω l(y )+1 < ω l(y)+1 for all y ′ , and likewise with y ′′ instead of y ′ .
+Also, l(ω y /2n ) ⩽ l(ω y )l(1/2n ) < ω l(y) ω = ω l(y)+1 , using [5, Lemmas 3.6 and 4.1].
+Now appeal to [9, Theorem 2.3].                                                            
+Recall from Section 1 that h(−α) = ω −(α+1) , and so h(0) = ω −1 shows that for
+y = 0 the upper bound in Lemma 3.1 is attained.
+Some spherically complete initial subfields of No. In this subsection we fix
+an initial subset I of No. Then Γ := R[[ω I ]] is an initial additive subgroup of No
+by the proof of Theorem 18 in [7]. (That theorem considers Hahn fields rather than
+the Hahn group Γ, but the same ideas work; we stress that it is the proof of that
+theorem rather than its statement that matters here.) Moreover, as Philip Ehrlich
+mentioned to one of us:
+Lemma 3.2. Suppose I has a least element a. Then a = −α for some α, and Γ
+has a least nontrivial archimedean class represented by ω a .
+Proof. Taking the longest initial segment of a consisting of minus signs we get the
+largest ordinal α with −α ⩽s a. Then −α ∈ I and −α ⩽ a, so −α = a.               
+Since Γ is initial and an ordered additive group it leads to the initial subfield
+K := R[[ω Γ ]] of PNo. Note that K is        Pspherically complete, and ifI (ai ) is a family
+in K for which         a
+                     i i   exists,    then     i ai ∈ K. Now Γ = R[[ω     Q ]] is also closed
+under
+Q       infinite sums,  so  if (m i )  is a family   in M ∩ K  such  that   i mi exists, then
+     m
+   i i  ∈ K.   Thus K   is closed   under    infinite sums, and also under infinite products
+of monomials. This is very useful in showing that for suitable choices of I the
+field K is closed under certain surreal derivations. Note however, that if I has a
+least element, then K >N is not closed under log: if −α is the least element of I,
+                   −α
+then logα ω = ω ω ∈ K, but logα+1 ω ∈            / K, as −(α + 1) ∈/ I.
+    In order to discuss examples we set ar := exp(r log a) for a > 0 and r ∈ R, and
+note agreement with the previously defined ω r when a = ω. Moreover,
+                                                −α
+                            (logα ω)r = ω rω               (r ∈ R),
+                        r                  −(α+1)
+                                                    
+by the definition of a , using also g ω                 = −α and [9, Theorem 10.13].
+Examples. For I = {0} we get Γ = R and K = R[[ω R ]]; note that K is closed
+under ∂BM , but ω ∈ K and log ω = ω 1/ω ∈    / K.
+   For I = {0, −1} we have Γ = R + Rω −1 , so ω Γ = ω R (log ω)R , and thus K =
+R[[ω R (log ω)R ]], which is again closed under ∂BM .
+12            ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+                                       ε
+   Let I = {α : α ⩽ ε}. Then ε = ω ω ∈ K, but Lemma 2.10 gives log ε ∈  / K, since
+ε−1∈  / I and so ω ε−1 ∈/ Γ. Likewise we get ∂BM (ε) ∈
+                                                     / K.
+                                            
+Lemma 3.3. If I = a : l(a) < α or I = a : l(a) ⩽ α , then I ⊆ Γ ⊆ K.
+                                                   
+Proof. Suppose I = a : l(a) < α P   . (The case I = a : l(a) ⩽ α is handled in the
+same way.) Let a ∈ I. Then a = x ax ω x , and if x ∈ E(a), then l(x) ⩽ l(ω x ) ⩽
+                         P 4.1, and 4.2], so x ∈ I. Thus a ∈ Γ. This proves I ⊆ Γ.
+l(a) < α by [5, Lemmas 3.4,
+Next, if b ∈ Γ, then b = x∈I bx ω x , and so b ∈ K in view of I ⊆ Γ.            
+The next lemma will also be crucial:
+Lemma 3.4. Suppose h(I) ⊆ Γ. Then log K > ⊆ K and for each a ∈ K and term t
+of a we have: t and all terms of ℓ(t) lie in K.
+                                                                     P
+Proof. Let a ∈ K > have leading monomial m = ω b with b = y∈I by ω y ; to get
+                                                                           P
+log a ∈ K, it is enough that log m ∈ K; the latter holds because log m = y by ω h(y) .
+This proves log K > ⊆ K.
+   Next, let a ∈ K and let t be a term of a; we have to show that t and all
+terms of ℓ(t) lie in K. As K ⊇ R is initial, it does contain     P the term t of its
+element a. We have t = rω b with r ∈ R× and b ∈ Γ, so b = y∈I by ω y , and thus
+             P                                          P
+ω b = exp       y∈I by ω
+                         h(y)
+                                . Hence ℓ(t) = ℓ(rω b ) = y∈I by ω h(y) and each of its
+terms by ω h(y) lies obviously in K.                                                 
+Corollary 3.5. If h(I) ⊆ Γ and D is a pre-derivation with D(K ∩ A) ⊆ K, then
+∂D (K) ⊆ K.
+Proof. Use the definition of ∂D from Section 1, the fact that K is closed under
+infinite sums, and Lemma 3.4.                                                
+Corollary 3.6. Suppose h(I) ⊆ Γ. Then ∂BM (K) ⊆ K.
+Proof. Let λ ∈ K ∩ A; by Corollary 3.5 we just need to get ∂A (λ) ∈ K. Since K
+is closed under infinite products, it is enough for this to get logn λ ∈ K for all n
+(which is the case by Lemma 3.4), and λ−α ∈ K for all α such that λ 4K λ−α .
+Given such α, take n with logn λ < λ−α . Then λ−α ⩽s λ−(α+1) ⩽s logn λ ∈ K by
+Lemma 2.7, and so λ−α ∈ K because K is initial.                                    
+It can happen that h(I) 6⊆ Γ and that K is nevertheless closed under ∂BM . The
+next lemma gives a useful criterion for that. To see why that lemma holds, consider
+                                                y
+a surreal derivation ∂, and note that from ω ω = exp(ω h(y) ) we get
+                                    y       y
+                             ∂ ωω       = ω ω · ∂(ω h(y) ),
+                                                  P
+so for any monomial m = ω b ∈ K we have b = y∈I by ω y , and thus
+                                      
+                          X                                 X            
+            m = exp         by ω h(y)  ,    ∂(m) = m ·      by ∂ ω h(y) .
+                         y∈I                              y∈I
+
+This leads to:
+Lemma 3.7. Given a surreal derivation ∂, the following are equivalent:
+   (1) K is closed under ∂;
+            y
+   (2) ∂(ω ω ) ∈ K for all y ∈ I;
+   (3) ∂(ω h(y)
+                ) ∈ K for all y ∈ I.
+                 THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                         13
+
+
+The surreal fields Kε . Given the ε-number ε, we have the initial set I := No(ε),
+with the corresponding Γ := R[[ω I ]] and K := R[[ω Γ ]]. In view of Lemmas 3.1
+and 3.3 we have h(I) ⊆ I ⊆ Γ, so ∂BM (K) ⊆ K by Corollary 3.6. Thus K is a
+spherically complete initial H-subfield of No. However, I has no least element, so K
+is not grounded. We repair this by just augmenting I by −ε: set Iε := I ∪ {−ε}.
+Then Iε is still initial, with least element −ε, and so we have the corresponding
+Γε := R[[ω Iε ]] and Kε := R[[ω Γε ]]. To get ∂BM (Kε ) ⊆ Kε we note that K ⊆ Kε ,
+                                              −ε              −ε
+and so it suffices by Lemma 3.7 that ∂A (ω ω ) ∈ Kε . But ω ω = logε ω, and
+                                             Y
+                             ∂A (logε ω) = 1       logα ω,
+                                                α<ε
+
+which lies in K, and hence in Kε . Thus Kε is a grounded H-subfield of No, and
+                                         [
+                                  No =      Kε .
+                                            ε
+
+Note that Corollary 3.6 does not apply to Iε , since h(−ε) = ω −(ε+1) ∈
+                                                                      / Γ; this is
+why we did the less direct construction via I = No(ε).
+Since ω −ε represents the smallest archimedean class of Γε , we have
+                                         −ε                  
+                     max ΨKε = v (ω ω )† = v (logε ω)†
+by the proof of Lemma 1.1. In view of (logε ω)† = (logε+1 ω)′ and the Sremarks
+at the end of Section 1, the representation of No as an increasing union ε Kε of
+spherically complete grounded H-subfields now gives ∂BM (No) = No. (The proof
+of ∂BM (No) = No in [3, Section 7] is different.) Thus by the results stated at the
+end of Section 1 we conclude that No ≡ T, as differential fields.
+
+                     4. The Case of Restricted Length
+A set S ⊆ No is said to be of countable type if l(a) is countable for all a ∈ S,
+and all well-ordered subsets of S as well as all reverse well-ordered subsets of S are
+countable. (Note that l(a) is countable for every a ∈ No(ω1 ), but that No(ω1 ) is
+not of countable type, since it has the set of countable ordinals as an uncountable
+well-ordered subset.)
+Proposition 4.1. Suppose the subset S of No is of countable type. Then the
+additive subgroup R[[ω S ]] of No is also of countable type.
+Proof. The case α = 1 of Esterle [8, Lemme 2.2] and the remarks following it
+yield that every well-ordered subset of R[[ω S ]] is countable. Hence every reverse
+well-ordered
+P               subset of R[[ω S ]] is countable as well. Let a ∈ R[[ω S ]]. Then a =
+              s
+   s∈E(a) as ω . Now E(a) ⊆ S is countable, so the well-ordered set −E(a) has
+order type µ < ω1 . Since ω1 is regular, we have a countable ordinal ν such that
+l(s) ⩽ ν for all s ∈ E(a). Then l(ω s ) ⩽ ω ν for all s ∈ E(a) by [5, Lemma 4.1],
+hence l(as ω s ) ⩽ ω ν+1 for all s ∈ E(a) by [5, Proposition 3.6]. Thus
+                              l(a) ⩽ µ · ω ν+1 < ω1 ,
+by [9, Theorem 5.12], or [5, Lemma 4.2, (3)].                                       
+As an example, consider S := No(ω), the set of of dyadic numbers. Then S is
+of countable type, and so R[[ω S ]] is of countable type. Nevertheless, l R[[ω S ]] is
+14            ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+cofinal in ω1 : given any countable
+                            P       ordinal µ, take an order reversing injective map
+α 7→ sα : µ → S; then a := α ω sα ∈ R[[ω S ]] has l(a) ⩾ µ, by [9, p. 63].
+Let κ be any infinite cardinal. Esterle [8, Lemme 2.2] actually tells us for any
+set S ⊆ No: if all well-ordered subsets and all reverse well-ordered subsets of S
+have size ⩽ κ, then this remains true for the set R[[ω S ]] ⊆ No. The next cardinal κ+
+is regular, so the arguments in the proof of Proposition 4.1 go through to give the
+following, where we call S ⊆ No of type κ if l(a) ⩽ κ for all a ∈ S and all well-
+ordered subsets of S and all reverse well-ordered subsets of S have size ⩽ κ.
+Corollary 4.2. If S ⊆ No is of type κ, then so is R[[ω S ]].
+Next we show that for countable µ the set No(µ) is of countable type. Every element
+of No(µ) has clearly countable length, for countable µ, and No(µ) is closed under
+x 7→ −x, so the assertion above reduces to:
+Lemma 4.3. Suppose the ordinal µ is countable. Then every well-ordered subset
+of No(µ) is countable.
+This may remind the reader of the well-known property of the ordered set R that
+every well-ordered subset of R is countable. Here is a quick proof using that R has
+a countable dense subset Q: given any embedding α 7→ rα of an infinite cardinal κ
+into R, pick for each α < κ a rational qα such that rα < qα < rα+1 ; it follows that
+κ = ℵ0 . However, such a countable density argument cannot be used for ordered
+sets No(µ) when µ is a countable limit ordinal > ω:
+Lemma 4.4. Let µ be an infinite limit ordinal. Then the ordered set No(µ) is
+dense without endpoints. If µ > ω, then there exists a collection of 2ℵ0 pairwise
+disjoint open intervals in No(µ), which has therefore no countable dense subset.
+Proof. The ordinals α < µ are cofinal in this ordered set, and there is no largest
+such α. For a < b in this ordered set, take α ⩽ l(a), l(b) such that a|α = b|α and
+a(α) < b(α). If l(b) > α, then b(α) = +, so a < b− < b. If l(a) > α, then a(α) = −,
+so a < a+ < b. Note that b−, a+ ∈ No(µ), as µ is a limit ordinal,
+   Next, assume µ > ω. For each nondyadic r ∈ R ⊆ No, we have the surreals r−
+and r+ of length ω+1, and so we obtain the pairwise disjoint open intervals (r−, r+)
+in No(µ).                                                                          
+Proof of Lemma 4.3. For a ∈ No(µ) we define a
+                                            b : µ → R by
+                                
+                                
+                                −1 if a(α) = −,
+                         b(α) = 0
+                         a             if a(α) = 0,
+                                
+                                
+                                  1    if a(α) = +,
+For S = {α : α < µ} this yields an order-preserving injective map
+                          X
+                    a 7→      a(α)ω −α : No(µ) → R[[ω S ]].
+                              b
+                           α<µ
+
+It remains to appeal to Proposition 4.1.                                            
+Essentially the same argument yields the following generalization:
+Corollary 4.5. If κ is an infinite cardinal and µ is an ordinal of cardinality ⩽ κ,
+then each well-ordered subset of No(µ) has cardinality ⩽ κ.
+                 THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                           15
+
+
+Note that for a countable ε-number ε the initial set Iε = No(ε) ∪ {−ε} is of
+countable type by Lemma 4.3, and hence Γε and Kε are as well by Proposition 4.1.
+Taking the union over all such countable ε we obtain the set No(ω1 ) of all surreals
+of countable length as an increasing union of spherically complete grounded H-
+subfields Kε of No. As in Section 3 and using also the model completeness of
+  nl
+Tsmall = Th(T) this yields Theorem 2. The results above lead moreover to the
+following generalization:
+Corollary 4.6. Let κ be any uncountable cardinal. Then the subfield No(κ) of No
+is closed under ∂BM , and No(κ) ≺ No, as ordered differential fields.
+Proof. If κ is regular we can argue as for ω1 , using Corollaries 4.2 and 4.5 instead
+of Proposition 4.1 and Lemma 4.3. If κ is singular, use that it is the supremum of
+the uncountable regular cardinals below it.                                         
+
+                          5. Constructing Embeddings
+So far we have just worked inside No and established Theorem 2. In this section
+we turn to T and prove the embedding results: Theorems 1 and 3.
+Embedding T into No. Given a Hahn field R[[G]] over R we define a map
+F : R[[G]] → No to  be strongly additive if for every
+                                                   P summableP family (fi ) in R[[G]]
+the family F (fi ) is summable in No and F ( i fi ) = i F (fi ). We refer to [2,
+Appendix A] for the construction of T as an exponential ordered field. In this con-
+struction T is a subfield of a Hahn field R[[GLE ]]: in fact, GLE is a certain directed
+union of ordered subgroups Gm ↓n , and T is the corresponding directed union of
+the Hahn fields R[[Gm ↓n ]]. A map F : T → No is said to be strongly additive if its
+restriction to each R[[Gm ↓n ]] is strongly additive.
+Proposition 5.1. There is a unique strongly additive embedding ι : T → No of
+exponential ordered fields that is the identity on R and such that ι(xT ) = ω.
+Proof. We use the notations from [2, Appendix A] except that the x there is xT
+here. The construction of T there begins with the Hahn field E0 = R[[xR        T ]], and
+there is clearly a (unique) strongly additive ordered field embedding i0 : E0 → No
+such that i0 (r) = r and i0 (xrT ) = ω r for all r ∈ R. Moreover, i0 (eb ) = exp(i0 (b))
+for all b ∈ B0 , and exp(i0 (a)) > i0 (E0 ) for all a ∈ A>    0 . Assume inductively
+that we have an extension of i0 to a strongly additive ordered field embedding
+im : Em = R[[Gm ]] → No such that im (eb ) = exp(im (b)) for all b ∈ Bm , and
+exp(im (a)) > im (Em ) for all a ∈ A>   m . Then one checks easily that im extends
+(uniquely) to a strongly additive ordered field embedding im+1 : Em+1 → No such
+that im+1 (eb ) = exp(im+1 (b)) for all b ∈ Bm+1 , and exp(im+1 (a)) > im+1 (Em+1 )
+for all a ∈ A>
+             m+1 . Taking a union over all m we obtain an embedding
+                          [                        [
+                                              E
+                    ι0 :=     im : R[[xR T ]]   =    R[[Gm ]] → No
+                           m                      m
+of ordered exponential fields. Replacing in the above ℓ0 = xT , Gm , ω, by ℓn =
+logn xT , Gm ↓n , logn ω, respectively, we obtain likewise an embedding
+                                           [
+                                       E
+                         ιn : R[[ℓR
+                                  n ]]   =    R[[Gm ↓n ]] → No
+                                           m
+of ordered exponential fields with ιn (ℓn ) = logn ω. Each ιn+1 extends ιn , so we
+can take the union over all n to get an embedding ι : T → No as claimed. The
+16            ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+uniqueness holds because the smallest subfield of T that contains R(xT ) and is closed
+under exponentiation, taking logarithms of positive elements, and summation of
+summable families is T itself.                                                      
+Next we apply the model completeness of the theory of the exponential ordered field
+of real numbers (Wilkie [13]). By [6] and [5], respectively, the ordered exponential
+fields T and No are models of this theory, and so ι : T → No is an elementary
+embedding of ordered exponential fields.
+    It is easy to check that ι : T → No is also an embedding of ordered differential
+fields. In view of T ≡ No (as differential fields), and the model completeness
+      nl
+of Tsmall   mentioned at the end of Section 1 we conclude that ι is an elementary
+embedding of ordered differential fields: Theorem 1.
+    Is ι an elementary embedding of ordered differential exponential fields? We don’t
+know; this is related to the open problem from [2] to extend the model-theoretic
+results there about T as a differential field to T as a differential exponential field.
+    It follows easily from the construction of T and ι that all surreal derivations ∂
+with ∂(ω) = 1 agree on ι(T).
+Proposition 5.2. Here are some further properties of the map ι:
+   (1) ι(GLE ) = M ∩ ι(T);
+   (2) ι(T) is truncation closed;
+   (3) ι(T) is of countable type; in particular, ι(T) ⊆ No(ω1 ).
+Proof. Induction on m gives ι(Gm ) ⊆ M, where we use at the inductive step that
+Gm+1 = exp(Am )Gm and ι(Am ) ⊆ J, the latter being a consequence of ι(Gm ) ⊆ M.
+Likewise, ι(Gm ↓n ) ⊆ M for all m, n, and thus ι(GLE ) ⊆ M. Since ι respects infinite
+sums of monomials, this yields (1), and (2) is then an immediate consequence using
+also that T is truncation closed in R[[GLE ]]. As to (3), using the results in Section 4
+one shows by induction on m that ι(Gm ), and likewise each ι(Gm ↓n ), has countable
+type. Hence ι(GLE ) has countable type, and so does ι(T).                             
+Question (Elliot Kaplan): can (2) be improved to ι(T) being initial?
+Embedding H-fields into No. Let ε be an ε-number; for example, ε could be
+any uncountable cardinal. We recall from [5] that No(ε) is a real closed subfield
+of No containing R. We consider
+                              No(ε) as a valued subfield of No with (divisible)
+ordered value group v No(ε)× . We shall need an easy auxiliary result:
+Lemma 5.3. Let κ be a regular
+                           uncountable cardinal. Then the underlying ordered
+sets of No(κ) and v No(κ)× are κ-saturated.
+Proof. Let A, B ⊆ No(κ) have cardinality < κ, with A < B. The regularity of κ
+yields an ordinal α < κ such that l(A ∪ B) < α. By [9, Theorem 2.3] this gives a
+surreal a with l(a) ⩽ α such that A < a < B, and then a ∈ No(κ). Thus No(κ)
+is κ-saturated as an ordered set. Next, let P, Q ⊆ No(κ)> have cardinality < κ,
+with v(P ) > v(Q). Set A := {np : n ⩾ 1, p ∈ P } and B := {q/n : n ⩾ 1, q ∈ Q}.
+Then A < B, and so the above givesa ∈ No(κ) with A < a < B. Then v(P ) >
+v(a) > v(Q), showing that v No(κ)× is κ-saturated as an ordered set.          
+For Theorem 3 we need a sharpening of the model completeness of the theory T nl of
+ω-free newtonian Liouville closed H-fields, namely, the quantifier elimination (QE)
+explained in [2, Introduction to Chapter 16]. The relevant first-order language for
+                   THE SURREAL NUMBERS AS A UNIVERSAL H-FIELD                               17
+
+
+QE has in addition to L extra unary predicate symbols I, Λ, Ω, to be interpreted in
+a model L of T nl as sets I(L), Λ(L), Ω(L) ⊆ L according to their defining axioms:
+                        I(a) ⇐⇒ a = y ′ for some y ≺ 1 in L,
+                       Λ(a) ⇐⇒ a = −y †† for some y ≻ 1 in L,
+                      Ω(a) ⇐⇒ 4y ′′ + ay = 0 for some y ∈ L× .
+The sets I(L), Λ(L), Ω(L) ⊆ L are convex; their role with respect to QE is like that
+of the set of squares in a real closed field. For more on this, see [2, Introduction].
+A ΛΩ-field is a substructure K = (K, I, Λ, Ω) of such an expanded model (L, . . . )
+of T nl for which K is an H-subfield of L. This notion of a ΛΩ-field is studied in
+detail in [2, Section 16.3], from which we take in particular the fact that any ω-free
+H-field K has a unique expansion to a ΛΩ-field K = (K, I, Λ, Ω). The proof below
+assumes familiarity with several other results from [2, Section 16.3].
+Proof of Theorem 3. Let NoΛΩ be the expansion of No to a ΛΩ-field, and let K
+be any H-field with small derivation and constant field R. In order to embed K
+over R into No, we first expand K to a ΛΩ-field K = (K, I, Λ, Ω) with 1 ∈    / I;
+this can be done in at least one way, and at most two ways, and 1 ∈/ I guarantees
+that all ΛΩ-field extensions of K have small derivation. We claim that K can be
+embedded into NoΛΩ . The ordered field R with the trivial derivation
+                                                                    is an H-field
+and expands to the ΛΩ-field R := R, {0}, (−∞, 0], (−∞, 0] . The inclusion of R
+into K and into No are embeddings of R into K and NoΛΩ , respectively. By
+taking E := R, our claim reduces therefore to proving the following more general
+statement:
+Claim. Let E ⊆ K be an extension of ΛΩ-fields with R as their common constant
+field, and let i : E → NoΛΩ be an embedding of ΛΩ-fields that is the identity on R.
+Then i extends to an embedding K → NoΛΩ of ΛΩ-fields.
+To prove this we first extend K to make it ω-free, newtonian, and Liouville closed;
+by [2, 16.4.1 and 14.5.10] this can be done without changing its constant field. Next
+we apply [2, 16.4.1] again, but this time to E, to arrange that E is ω-free. Take a
+regular uncountable cardinal κ > card(K) such that i(E) ⊆ No(κ), where E is the
+underlying set of E. By Corollary 4.6 we have No(κ) ≺ No. In view of Lemma 5.3
+and [2, 16.2.3] we can then extend i to an embedding K → No(κ).                    
+Final remarks. Suppose the H-field K has small derivation and constant field R.
+Then Theorem 3 yields an embedding i : K → No over R. Under some reasonable
+further conditions, like K being ω-free and newtonian, can we take i such that i(K)
+is truncation closed, or even initial? The interest of such a result would depend on
+how canonical the derivation ∂BM is deemed to be. As already mentioned at the end
+of the introduction, we doubt that ∂BM is optimal: the condition on pre-derivations
+to take values in R> M seems too narrow. But even with this restriction one can
+construct pre-derivations D 6= ∂A such that Theorems 1 and 3 go through for No
+equipped with ∂D instead of with ∂BM , with only minor changes in the proofs.
+
+                                       References
+ [1] M. Aschenbrenner, L. van den Dries, H-fields and their Liouville extensions, Math. Z. 242
+     (2002), 543–588.
+ [2] M. Aschenbrenner, L. van den Dries, J. van der Hoeven, Asymptotic Differential Algebra and
+     Model Theory of Transseries, arXiv:1509.02588, Ann. of Math. Stud., to appear.
+18              ASCHENBRENNER, VAN DEN DRIES, AND VAN DER HOEVEN
+
+
+ [3] A. Berarducci, V. Mantova, Surreal numbers, derivations, and transseries, J. Eur. Math.
+     Soc. (JEMS), to appear.
+ [4] J. Conway, On Numbers and Games, London Mathematical Society Monographs, vol. 6,
+     Academic Press, London, 1976.
+ [5] L. van den Dries and P. Ehrlich, Fields of surreal numbers and exponentiation, Fund. Math.
+     167 (2001), 173–188, and Erratum, Fund. Math. 168 (2001), 295–297.
+ [6] L. van den Dries, A. Macintyre, and D. Marker, Logarithmic-exponential power series, J.
+     London Math. Soc. 56 (1997), 417–434.
+ [7] P. Ehrlich, Number systems with simplicity hierarchies: a generalization of Conway’s theory
+     of surreal numbers, J. Symbolic Logic 66, (2001), 1231–1258.
+ [8] J. Esterle, Solution d’un problème d’Erdös, Gillman et Henriksen et application à l’étude des
+     homomorphismes de C(K), Acta Math. (Hungarica) 30 (1977), 113–127.
+ [9] H. Gonshor, An Introduction to the Theory of Surreal Numbers, London Mathematical So-
+     ciety Lecture Note Series, vol. 110, Cambridge University Press, Cambridge, 1986.
+[10] J. van der Hoeven, Asymptotique Automatique, Ph. D. thesis, École Polytechnique, 1997.
+[11] S. Kuhlmann and M. Matusinski, The exponential-logarithmic equivalence classes of surreal
+     numbers, Order 32 (2015), 53–68.
+[12] M. C. Schmeling, Corps de Transséries, Ph. D. thesis, Université Paris-VII, 2001.
+[13] A. Wilkie, Some model completeness results for expansions of the ordered field of real numbers
+     by Pfaffian functions and the exponential function, J. Amer. Math. Soc. 9 (1996), 1051–1094.
+
+  Department of Mathematics, University of California, Los Angeles, Los Angeles,
+CA 90095, U.S.A.
+  E-mail address: matthias@math.ucla.edu
+
+   Department of Mathematics, University of Illinois at Urbana-Champaign, Urbana,
+IL 61801, U.S.A.
+   E-mail address: vddries@math.uiuc.edu
+
+     École Polytechnique, 91128 Palaiseau Cedex, France
+     E-mail address: vdhoeven@lix.polytechnique.fr
+

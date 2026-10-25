@@ -1,0 +1,939 @@
+                                            NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES:
+                                              A GENERALIZATION OF CONWAY’S THEORY OF
+                                                        SURREAL NUMBERS II
+
+                                                              PHILIP EHRLICH AND ELLIOT KAPLAN
+
+
+
+
+arXiv:1512.04001v1 [math.LO] 13 Dec 2015
+                                                 Abstract. In [15], the algebraico-tree-theoretic simplicity hierarchical
+                                                 structure of J. H. Conway’s ordered field No of surreal numbers was
+                                                 brought to the fore and employed to provide necessary and sufficient
+                                                 conditions for an ordered field to be isomorphic to an initial subfield
+                                                 of No, i.e. a subfield of No that is an initial subtree of No. In this
+                                                 sequel to [15], analogous results for ordered abelian groups and ordered
+                                                 domains are established which in turn are employed to characterize the
+                                                 convex subgroups and convex subdomains of initial subfields of No that
+                                                 are themselves initial. It is further shown that an initial subdomain of
+                                                 No is discrete if and only if it is an initial subdomain of No’s canonical
+                                                 integer part Oz of omnific integers. Finally, extending results of [15], the
+                                                 theories of divisible ordered abelian groups and real-closed ordered fields
+                                                 are shown to be the sole theories of ordered abelian groups and ordered
+                                                 fields all of whose models are isomorphic to initial subgroups and initial
+                                                 subfields of No.
+
+                                              Primary 06A05, 03C64; Secondary 12J15, 06F20, 06F25
+                                              Surreal Numbers, Ordered Abelian Groups, Ordered Domains, Ordered
+                                           Fields
+
+                                                                               Contents
+                                             1. Introduction                                                                     1
+                                             2. Preliminaries I: Lexicographically ordered binary trees and
+                                                 Surreal Numbers                                                                 3
+                                             3. Preliminaries II: Conway names                                                   4
+                                             4. Preliminaries III: s-hierarchical ordered structures                             7
+                                             5. Initial subgroups and submodules of No                                           8
+                                             6. Initial subdomains of No                                                        12
+                                             7. Initial subgroups and subdomains that are convex                                14
+                                             8. Optimality results and an open question                                         16
+                                             9. Further open questions                                                          18
+                                             References                                                                         18
+
+
+
+                                                                           1. Introduction
+                                              J. H. Conway [9] introduced a real-closed field of surreal numbers em-
+                                           bracing the reals and the ordinals as well as a great many less familiar
+                                                                                      1
+2                   PHILIP EHRLICH AND ELLIOT KAPLAN
+                                     √
+numbers including −ω, ω/2, 1/ω, ω and eω , to name only a few. This par-
+ticular real-closed field, which Conway calls No, is so remarkably inclusive
+that, subject to the proviso that numbers—construed here as members of
+ordered fields—be individually definable in terms of sets of von Neumann-
+Bernays-Gödel set theory with global choice (NBG) [23], it may be said to
+contain “All Numbers Great and Small.” In this respect, No bears much
+the same relation to ordered fields that the ordered field R of real numbers
+bears to Archimedean ordered fields ([13], [15], [19]).
+    In addition to its inclusive structure as an ordered field, No has a rich
+simplicity hierarchical ( or s-hierarchical) structure [15], [14], that depends
+upon its structure as a lexicographically ordered full binary tree and arises
+from the fact that the sums and products of any two members of the tree
+are the simplest possible elements of the tree consistent with No’s structure
+as an ordered group and an ordered field, respectively, it being understood
+that x is simpler than y just in case x is a predecessor of y in the tree.
+    Among the striking s–hierarchical features of No that emerged from [15]
+is that much as the surreal numbers emerge from the empty set of surreal
+numbers by means of a transfinite recursion that provides an unfolding of
+the entire spectrum of numbers great and small (modulo the aforementioned
+provisos), the recursive process of defining No’s arithmetic in turn provides
+an unfolding of the entire spectrum of ordered abelian groups (ordered fields)
+in such a way that an isomorphic copy of every such system either emerges
+as an initial subtree of No or is contained in a theoretically distinguished
+instance of such a system that does. In particular, it was shown that every
+divisible ordered abelian group (real-closed ordered field) is isomorphic to
+an initial subgroup (initial subfield) of No.
+    The divisible ordered abelian groups and real-closed ordered fields, how-
+ever, do not exhaust the ordered abelian groups and ordered fields that are
+isomorphic to initial subgroups and subfields of No. For example, every 2-
+divisible Archimedean ordered abelian group has an initial isomorphic copy
+in No, as does and every Archimedean ordered field [15, Theorem 8], and
+these groups and fields of course are not in general divisible or real-closed.
+In the case of ordered fields, more generally, in [15, Theorem 18] it was
+shown that:
+An ordered field is isomorphic to an initial subfield of No if and only if it is
+isomorphic to a truncation closed, cross sectional subfield of a power series
+field R((tΓ ))On where Γ is isomorphic to an initial subgroup of No.
+    The present paper is a sequel to [15]. Following some preliminary ma-
+terial, in §5 and §6 we generalize for ordered abelian groups and ordered
+domains the just-said result for ordered fields, and in §7 we employ these
+generalizations to characterize the convex subgroups and convex subdo-
+mains of initial subfields of No that are themselves initial. We further show
+that an initial subdomain of No is discrete if and only if it is an initial sub-
+domain of No’s canonical integer part Oz of omnific integers. And, in §8,
+we extend results of [15] by showing that the theories of divisible ordered
+abelian groups and real-closed ordered fields are the sole theories of ordered
+            NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                    3
+
+abelian groups and ordered fields all of whose models are isomorphic to
+initial subgroups and initial subfields of No. Finally, in §9 we state a pair
+of open questions regarding s-hierarchical ordered algebraic systems that
+supplement another open question raised in §8.
+    Throughout the paper, the underlying set theory is assumed to be NBG
+and as such by class we mean set or proper class, the latter of which, in
+virtue of the axioms of global choice and foundation, always has the “car-
+dinality” of the universe of sets. For additional information on formalizing
+the theory of surreal numbers in NBG, we refer the reader to [12].
+
+ 2. Preliminaries I: Lexicographically ordered binary trees
+                      and Surreal Numbers
+    A tree hA, <s i is a partially ordered class such that for each x ∈ A, the
+class {y ∈ A : y <s x} of predecessors of x, written ‘prA (x)’, is a set well
+ordered by <s . A maximal subclass of A well ordered by <s is called a
+branch of the tree. Two elements x and y of A are said to be incomparable
+if x 6= y, x 6<s y and y 6<s x. An initial subtree of hA, <s i is a subclass A′
+of A with the induced order such that for each x ∈ A′ , prA′ (x) = prA (x).
+The tree-rank of x ∈ A, written ‘ρA (x)’, is the ordinal corresponding to the
+well-ordered set hprA (x) , <s i; the αth level of A is hx ∈ A : ρA (x) = αi ;
+and a root of A is a member of the zeroth level. If x, y ∈ A, then y is said
+to be an immediate successor of x if x <s y and ρA (y) = ρA (x) + 1; and if
+(xα )α<β is a chain in A (i.e., a subclass of A totally ordered by <s ), then y
+is said to be an immediate successor of the chain if xα <s y for all α < β
+and ρA (y) is the least ordinal greater than the tree-ranks of the members
+of the chain. The length of a chain (xα )α<β in A is the ordinal β.
+    A tree hA, <s i is said to be binary if each member of A has at most two
+immediate successors and every chain in A of limit length has at most one
+immediate successor. If every member of A has two immediate successors
+and every chain in A of limit length (including the empty chain) has an
+immediate successor, then the binary tree is said to be full. Since a full
+binary tree has a level for each ordinal, the universe of a full binary tree is
+a proper class.
+    Following [15, Definition 1], a binary tree hA, <s i together with a to-
+tal ordering < defined on A will be said to be lexicographically ordered if
+for all x, y ∈ A, x is incomparable with y if and only if x and y have a
+common predecessor lying between them (i.e. there is a z ∈ A such that
+z <s x, z <s y and either x < z < y or y < z < x). The appellation
+“lexicographically ordered” is motivated by the fact that: hA, <, <s i is a
+lexicographically ordered binary tree if and only if hA, <, <s i is isomorphic
+to an initial ordered subtree of the lexicographically ordered canonical full
+binary tree hB, <lex(B) , <B i, where B is the class of all sequences of −s and
++s indexed over some ordinal, x <B y signifies that x is a proper initial
+subsequence of y, and (xα )α<µ <lex(B) (yα )α<σ if and only if xβ = yβ for all
+β < some δ, but xδ < yδ , it being understood that − < undefined < + [15,
+Theorem 1].
+4                       PHILIP EHRLICH AND ELLIOT KAPLAN
+
+Notational Conventions. Let hA, <, <s i be a lexicographically ordered
+binary tree. If (L, R) is a pair of subclasses of A for which every mem-
+ber of L precedes every member of R, then we will write ‘L < R’. Also,
+if x and y are members of A, then ‘x <s y’ will be read “x is simpler
+than y”; and if there is an x ∈ I = {y ∈ A : L < {y} < R} such that
+x <s y for all y ∈ I − {x}, then we will denote this simplest member of
+A lying between the members of L and the members of R by ‘{L | R}’. Fi-
+nally, by ‘Ls(x) ’ we mean {a ∈ A : a <s x and a < x} and by ‘Rs(x) ’ we mean
+{a ∈ A : a <s x and x < a}.
+    The following three propositions collects together a number of proper-
+ties of, or results about, lexicographically ordered binary trees that will be
+appealed to in subsequent portions of the paper.
+Proposition 1. [15, Theorem 2] Let hA,     <, <s i be a lexicographically or-
+dered binary tree. (i) For all x ∈ A, x = Ls(x) | Rs(x) ; (ii) for all x, y ∈ A,
+x <s y if and only if Ls(x) < {y} < Rs(x) and y 6= x; (iii) for all x ∈ A
+and all L, R ⊆ A, x = {L | R} if and only if L is cofinal with Ls(x) and R
+is coinitial with Rs(x) if and only if L < {x} < R and {y ∈ A : L < {y} <
+R} ⊆ {y ∈ A : Ls(x) < {y} < Rs(x) }.
+   Let hNo, <, <s i be the lexicographically ordered binary tree of surreal
+numbers constructed in any of the manners found in the literature ([14],
+[15], [16], [19], [10], [24]), including simply letting hNo, <, <s i = hB, <lex(B)
+, <B i.1 Central to the development of the s-hierarchical theory of surreal
+numbers is the following result where a lexicographically ordered binary
+tree hA, <, <s i is said to be complete [15, Definition 6], if whenever L and
+R are subsets of A for which L < R, there is an x ∈ A such that x = {L | R}.
+Proposition 2. [15, Theorem 4][17] A lexicographically ordered binary tree
+is complete if and only if it is full if and only if it is isomorphic to hNo, <, <s i.
+    An immediate consequence of Proposition 2 is
+Proposition 3. Let hA, <, <s i be a lexicographically ordered binary tree.
+hA, <s i is full if and only if hA, <i is an ηOn -ordering (i.e. whenever L
+and R are subsets of A for which L < R, there is an x ∈ A such that
+L < x < R).
+                     3. Preliminaries II: Conway names
+    Let D be the set of all surreal numbers having finite tree-rank, and
+              R = D ∪ {{L | R} : (L, R) is a Dedekind gap in D} .
+    1Conway’s cut construction [9] and the related construction based on Cuesta Dutari
+cuts introduced in [11] (and adopted in [2] and [3]), do not include No’s lexicographi-
+cally ordered binary tree structure. However, as was noted in [14, page 257], they ad-
+mit relational extensions to the ordered tree structure vis-á-vis the definition: for all
+x = (L, R), y ∈ No, x <s y if and only if L < {y} < R and y 6= x.
+   The identification hNo, <, <s i = hB, <lex(B) , <B i, which is employed in [15], [10],[22]
+and [5], is simply a relational extension of the familiar (non tree-theoretic) construction
+of No based on sign-expansions—the members of B—introduced by Conway [9, page
+65], and made popular by Gonshor [20].
+            NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                      5
+
+  The following result regarding the structure of R is essentially due to
+Conway [9, pages 12, 23-25].
+
+Proposition 4. R (with +, −, · and < defined à la No) is isomorphic to
+the ordered field of real numbers defined in any of the more familiar ways, D
+being No’s ring of dyadic rationals (i.e., rationals of the form m/2n where
+m and n are integers); n = {0, . . . , n − 1 | ∅} for each positive integer n,
+−n = {∅ | − (n − 1) , . . . , 0} for each positive integer n, 0 = {∅ | ∅}, and
+the remainder of the dyadics are the arithmetic means of their left and
+right predecessors of greatest tree-rank; e.g., 1/2 = {0 | 1}. The systems of
+natural numbers and integers so defined are henceforth denoted N and Z,
+respectively.
+
+    No’s canonical class On of ordinals consists of the members of the “right-
+most” branch of hNo, <, <s i, i.e. the unique branch of hNo, <, <s i whose
+members satisfy the condition: x < y if and only if x <s y. In those formu-
+lations where surreal numbers are pairs (L, R) of sets of previously defined
+surreal numbers ([9], [19], [2]), the ordinals are the surreal numbers of the
+form (L, ∅); and in the formulation [20] where surreal numbers are sign-
+expansions (see §2), the ordinals are the sequences (including the empty
+sequence) consisting solely of +s.
+    A striking s–hierarchical feature of No is that every surreal number can
+be assigned a canonical “proper name” (or normal form) that is a reflection
+of its characteristic s–hierarchical properties. TheseP Conway names, as we
+call them, are expressed as formal sums of the form α<β ω yα .rα where β is
+an ordinal, (yα )α<β is a strictly decreasing sequence of surreals, and (rα )α<β
+is a sequence of nonzero real numbers, the Conway name of an ordinal being
+just its Cantor normal form [9, pages 31-33],[15, §3.1 and §5].
+    The surreal numbers having Conway names of the form ω y are called
+leaders since they denote the simplest positive members of the various
+Archimedean classes of No. More formally, they may be inductively de-
+fined by formula
+
+                                          
+                            y      yL 1 yR
+(1)                       ω = 0, nω | n ω    ,
+                                      2
+
+where n ranges over the positive integers, and aL and aR range over the
+elements of Ls(y) and Rs(y) , respectively.
+   There are a number of significant relations between surreal numbers that
+are reflected in terms of relations between their respective Conway names.
+The following collection of such results, which are known from the literature,
+will be appealed to in the subsequent discussion.
+
+Proposition 5. [15, Theorems               (i) For all x, y ∈ No, ω x <s ω y
+                                11 and 15] P
+                                 yα
+if and only if x <s y; (ii) α<µ ω · rα <s α<β ω yα · rα whenever µ <s β;
+                           P
+6                                   PHILIP EHRLICH AND ELLIOT KAPLAN
+
+                                    (                                
+            X
+                      yα
+                                     X
+                                               yα            yµ     1
+    (iii)         ω        · rα =          ω        · rα + ω · rµ − n
+            α<β                      α<µ
+                                                                   2
+                                                                                                 )
+                                                                  X                             1
+                                                                      ω y α · rα + ω y µ · rµ + n    ,
+                                                                  α<µ
+                                                                                               2
+if β is a limit ordinal (where n and µ range over all positive integers and
+all ordinals less than β, respectively).
+   We shall also appeal to the following compilation of results regarding
+Conway names which, while new to the literature, essentially consists of
+corollaries of results from the first author’s analysis of the surreal number
+tree [18] or improvements (based on that analysis) of a result of Gonshor
+[20, Lemma 5.8(a)].
+Lemma 1. Suppose a, b, r ∈ R and x, y ∈ No. Then: (i) ω y · a <s ω y · b
+whenever a <s b. (ii) If either r ∈ R − D, or r ∈ D − Z and Ls(y) = ∅, then
+                                        ω y · r = {ω y · r L | ω y · r R };
+moreover, in virtue of (i), ω y · r L <s ω y · r and ω y · r R <s ω y · r for all
+r L ∈ Ls(r) and r R ∈ Rs(r) . (iii) If r ∈ D − Z and Ls(y) 6= ∅, then
+                                                         L                      L
+                            ω y · r = {ω y · r L + ω y · n | ω y · r R − ω y · n},
+                                                                        L
+where n ranges over N; moreover, ω y · r L + ω y · n <s ω y · r and ω y · r R −
+   L
+ω y · n <s ω y · r, for all y L ∈ Ls(y) , r L ∈ Ls(r) and r R ∈ Rs(r) . (iv) For all
+n ∈ N, 21n ω y <s ω x if y ∈ Rs(x) .
+Proof. (i) follows immediately from [18, Theorems 3.13 and 3.16], by con-
+sidering a number c ∈ R − D such that b = c or b <s c. Necessarily,
+ω y · c is the immediate successor of a chain of limit length having a cofi-
+nal subchain of the form (ω y · cn )n<ω where c is the immediate successor
+of (cn )n<ω . As a ∈ (cn )n<ω and either b ∈ (cn )n<ω or b = c, it is the case
+that ω y · a ∈ (ω y · cn )n<ω and either ω y · b ∈ (ω y · cn )n<ω or ω y · b = ω y · c.
+In either case, ω y · a <s ω y · b. For (ii), if r ∈ R − D, the result can be
+proved from (i) by simply forming the specified cut in the just-said cofinal
+subchain; and if Ls(y) = ∅ and r ∈ D − Z, the result follows from (i) and the
+second part of Gonshor’s Lemma 5.8(a) from [20]. (iii) follows from the first
+part of Gonshor’s Lemma 5.8(a) from [20] and repeated applications of [18,
+Theorem 3.18(ii)]. For (iv), suppose without loss of generality that x is the
+immediate left successor of y; for if it is not, the immediate left successor
+of y is in Rs(x) and if we show that 21n ω y is simpler than the immediate
+left successor of y for each n, then it follows that 21n ω y is simpler than x
+as well. Consider the chain prNo (ω x ) of predecessors of ω x . Clearly, this is
+a chain of limit length, as ω x is the immediate successor of another surreal
+number if and only if x = 0, in which case Rs(x) = ∅. By [18, Theorems
+3.13 and 3.16], we may conclude that prNo (ω x ) contains a cofinal chain of
+the form (ω y · an )n<ω where an = 21n for each n. As this chain is contained
+in prNo (ω x ), 21n ω y <s ω x for each n.                                           
+             NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                       7
+
+    Let R((tΓ ))On be the ordered group (ordered domain; ordered field) of
+power series P(defined á la Hahn [21]) consisting of all formal power series
+of the form α<β rα tyα where (yα )α<β∈On is a possibly empty descending
+sequence of elements of an ordered class (ordered monoid; ordered abelian
+group) Γ and rα ∈ R − {0} for each α < β. R((tΓ ))On is a set (often simply
+written R((tΓ ))) if Γ is a set, and a proper classP    otherwise. An element
+x ∈ R((tΓ ))On is said to be a proper truncation of α<β rα tyα ∈ R((tΓ ))On
+if x = α<σ rα tyα for some σ < β. A subgroup (subdomain; subfield) A of
+       P
+R((tΓ ))On is said to be truncation closed if every proper truncation of every
+member of A is itself a member of A. A subgroup (subdomain; subfield) A of
+R((tΓ ))On is said to be cross sectional if {ty : y ∈ Γ} ⊆ A. For a truncation
+closed, cross sectional subgroup (subdomain; subfield) A of R((tΓ ))On , the
+set Ry = {r ∈ R : rty ∈ A} is an Archimedean ordered group (domain;
+field) which we will call the y-coefficient group (domain; field) of A.
+Proposition 6 ([15], [19]). There is an isomorphism ofPordered groups
+from No onto R((tNo ))On that sends each surreal number α<β ω yα · rα to
+           yα
+P
+   α<β rα t . The isomorphism is in fact an isomorphism of ordered domains
+and, hence, of ordered fields.
+
+    4. Preliminaries III: s-hierarchical ordered structures
+    Following [15, Definition 2], hA, +, <, <s , 0i is said to be an s-hierarchical
+ordered group if (i) hA, +, <, 0i is an ordered abelian group; (ii) hA, <, <s i
+is a lexicographically ordered binary tree; and (iii) for all x, y ∈ A
+                 x + y = xL + y, x + y L | xR + y, x + y R .
+                           
+
+    hA, +, ·, <, <s, 0, 1i will be said to be an s-hierarchical ordered domain
+if (i) hA, +, ·, <, 0, 1i is an ordered domain; (ii) hA, +, <, <s, 0i is an s-
+hierarchical ordered group; and (iii) for all x, y ∈ A
+  xy = {xL y + xy L − xL y L , xR y + xy R − xR y R |
+                               xL y + xy R − xL y R, xR y + xy L − xR y L }.
+Moreover, hA, +, ·, <, <s, 0i will be said to be an s-hierarchical ordered K-
+module if (i) K is an s-hierarchical ordered domain, (ii) A is an s-hierarchical
+ordered group, and (iii) A is an ordered K-module in which for all x ∈ K
+and all y ∈ A
+  xy = {xL y + xy L − xL y L , xR y + xy R − xR y R |
+                               xL y + xy R − xL y R, xR y + xy L − xR y L }.
+   s-hierarchical ordered domains and modules are generalizations of the s-
+hierarchical ordered fields and vector spaces introduced in [15]. In virtue of
+Conway’s field operations, hNo, +, ·, <, <s, 0, 1i is an s-hierarchical ordered
+domain. In fact, it is (up to isomorphism) the unique universal and unique
+maximal s-hierarchical ordered domain (in the sense of [15, page 1239]).
+Moreover, if K is an s-hierarchical ordered subdomain of No, then No is an
+s-hierarchical ordered K-module. Furthermore, extending the argument for
+8                   PHILIP EHRLICH AND ELLIOT KAPLAN
+
+s-hierarchical ordered subfields and subspaces of No from [15, page 1236],
+it is evident that
+Proposition 7. The s-hierarchical ordered subdomains and submodules of
+No coincide with the initial subdomains and the initial submodules of No,
+respectively.
+    Extending the notation employed in [15], if A is an ordered module and
+B ⊆ A, then by (B)A we mean the ordered submodule of A generated by B.
+    The next preparatory result is a modest generalization of [15, Theorem
+6].
+Lemma 2. Let M ′ be an s-hierarchical ordered K-module and M be an
+                                                                         ′
+initial submodule of M ′ . If (L, R) is a partition of M and b = {L | R}M ,
+then (M ∪ {b})M ′ is an initial submodule of M ′ .
+Proof. Except for replacing the references to “K-vector spaces” and “sub-
+spaces” with references to “K-modules” and “submodules”, the proof is the
+same as the proof of [15, Theorem 6].                                  
+
+            5. Initial subgroups and submodules of No
+    To fully characterize the initial subgroups of No, we must first charac-
+terize the initial subgroups of R.
+Lemma 3. An ordered group G is an initial subgroup of R if and only if
+either G = {0}, D ⊆ G or G = { 2zm : z ∈ Z} for some m ∈ N.
+Proof. It follows from the definition of R and Proposition 4 that the sub-
+groups of R specified in the statement of the lemma are initial. Now suppose
+G is a nontrivial initial subgroup of R that does not contain D. Then there
+is a greatest m ∈ N such that 2zm ∈ G for some z ∈ Z. Using closure under
+subtraction and the fact that we must always have 1 and, therefore Z in any
+nontrivial initial subgroup of No, it follows that 21m ∈ G and, by closure
+under addition and subtraction, { 2zm : z ∈ Z} ⊆ G. But since m is the
+greatest member of N for which 2zm ∈ G for some z ∈ Z, the inclusion is not
+proper, thereby proving the lemma.                                        
+    Our final preparatory result follows immediately from the definitions.
+Proposition 8. If G is a cross sectional, truncation closed subgroup of
+R((tΓ ))On and
+          (                                                          )
+            X
+     Z=        rµ tyµ ∈ G : ν is an infinite limit ordinal and r0 = 1 ,
+            µ<ν
+
+then {rty : y ∈ Γ, r ∈ Ry } ∪ Z constitutes a class of generators for G
+considered as a Z-module.
+   As is noted above, No is isomorphic to R((tNo ))On . We now prove more
+generally
+             NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                           9
+
+Theorem 1. An ordered abelian group is isomorphic to an initial subgroup
+of No if and only if it is isomorphic to a truncation closed, cross sectional
+subgroup G of a power series group R((tΓ ))On , where (i) Γ is isomorphic to
+an initial ordered subclass of No, (ii) every y-coefficient group Ry of G is
+an initial subgroup of R, and (iii) D ⊆ Ry for all x, y ∈ Γ where y ∈ Rs(x) .
+
+Proof. Let A be an initial subgroup of No, Lead(A) be the class of leaders
+in A, and Γ = {y : ω y ∈ Lead(A)}. Following [15, Definition       P 14], ayαclass B of
+surreal numbers        is said to be approximation complete if α<σ ω · rα ∈ B
+whenever α<β ω yα · rα ∈ B and σ < β. Since A is initial, it follows from
+            P
+
+parts (i) and (ii) of Proposition 5 that A is approximation complete and
+Γ is initial. Moreover, since A is a group, for each y ∈ Γ the set Ry =
+{r ∈ R : ω y · r ∈ A} is a subgroup of R. Furthermore, since A is initial, it
+follows from Lemma 1(i) that Ry is itself initial. Now suppose x, y ∈ Γ where
+y ∈ Rs(x) . In virtue of Lemma 1(iv), 21n ω y <s ω x for each n ∈ N. Therefore,
+ 1
+2n
+    ∈ Ry for each n ∈ N; and thus, since groups are closed under addition
+and subtraction, D ⊆ Ry . Accordingly, by appealing to the restriction to
+APof the isomorphism specified        P in Proposition 6, it is evident that G =
+{ α<β rα tyα ∈ R((tΓ ))On : α<β ω yα · rα ∈ A} is a truncation complete,
+cross sectional subgroup of R((tΓ ))On having the requisite properties listed
+in the statement of the theorem, thereby establishing the “only if” portion
+of the theorem.
+    Aspects of the “if” portion of the proof borrow from the first author’s
+proof of [15, Theorem 18]. However, whereas the latter proof concerns an
+ordered subfield F of R((tΓ ))On , which is treated as an ordered vector space
+over the Archimedean ordered field {r ∈ R : rt0 ∈ F }, here we are concerned
+with an ordered subgroup G of R((tΓ ))On that we may only assume to be an
+ordered Z-module, which complicates the argument. To keep the argument
+largely self-contained, however, we repeat with modifications portions of the
+earlier proof.
+    Let G be a subgroup of R((tΓ ))On satisfying the conditions specified in
+the statement of the theorem and let A be the isomorphic copy of G in No
+that is the image of the restriction to G of     Pthe inverse of the mapping
+                                                                       P referred
+                                                         yα
+to in Proposition 6. That is, let A = { α<β ω · rα ∈ No : α<β rα tyα ∈
+G}. To show that A is an initial subgroup of No, it suffices to show that
+hA, <s |Ai is an initial subtree of hNo, <s i. We do this by induction on Γ.
+    Let a0 , . . . , aα , . . . (α < β) be a well-ordering of Γ such that ρNo (aµ ) ≤
+ρNo (aν ) whenever µ < ν < β. We consider A as an ordered Z-module. Let
+Aα be the submodule of A containing 0 as well as all of the elements in
+A with exponents only from Γα S            = {aδ : δ ≤ α}. We see that, considered
+as an ordered Z-module, A = α<β Aα . Notice also that since a0 = 0,
+A0 = R0 , which, by condition (ii), is an initial subgroup of No. Therefore,
+hA0 , <s |A0 i is an initial subtree of No. To complete the proof that A is an
+initial subtree of No, it remainsSto show that for     S all 0 < α < β, hAα , <s |Aα i
+is an initial subtree of No, if h µ<α Aµ , <s | µ<α Aµ i is an initial subtree
+of No.
+10                     PHILIP EHRLICH AND ELLIOT KAPLAN
+                                                S              S
+    Accordingly, let 0 < α < β and suppose h µ<α Aµ , <s | µ<α Aµ i is an
+initial subtree of No. Also, let Zα =:
+  (                                                                      )
+    X                   [
+          yµ
+        ω · rµ ∈ Aα −      Aµ : ν is an infinite limit ordinal and r0 = 1 ,
+     µ<ν                   µ<α
+
+and let b0 , . . . , bσ , . . . (σ < τ ) be a well-ordering of {ω aα · rα : rα ∈ Raα } ∪ Zα
+such that for all γ, δ < τ :
+     (1) if bγ , bδ ∈ {ω aα · rα : rα ∈ Raα }, then bγ < bδ only if ρNo (bγ ) ≤
+         ρNo (bδ );
+     (2) if bγ ∈ {ω aα · rα : rα ∈ Raα } and bδ ∈ Zα , then bγ < bδ ;
+     (3) if bγ , bδ ∈ Zα and the initial sequence of ordinals over which the
+         exponents in bγ are indexed is contained in the initial sequence of
+         ordinals over which the exponents in bδ are indexed, then bγ < bδ .
+    By appealing to Proposition 8 (and recalling that (X)A denotes the or-
+                                                                      aα
+dered submodule S of A generated by X), it is easy to see that {ω · rα : rα ∈
+Raα } ∪ Zα ∪ µ<α Aµ is a class of generators for Aα , and hence that, Aα =
+S                                  S                            S        
+   σ<τ B σ , where   B0 =   {b0 } ∪       A
+                                      µ<α µ      and Bσ = {bσ } ∪ δ<σ Bδ A for
+                                              A
+0 < σ < τ . Thus to show that Aα is an initial subtree of No, it suffices to
+show that
+        S Bσ is an initial subtree   S of No for each σ < τ . Moreover, since
+Bσ = δ<σSBδ , whenever bσ ∈ δ<σ Bδ , henceforth we need only consider
+those bσ ∈  / δ<σ Bδ .
+    First, note that b0 = ω aα . Moreover, since Γ is assumed to be initial,
+both Ls(aα ) and Rs(aα ) ⊆ {aδ : δ < α}. Let aL and aR be typical elements of
+Ls(aα ) and Rs(aα ) , respectively. It follows from Equation (1) (see §3) that
+                                                       
+                                  aα           aL  1 aR
+                           b0 = ω = 0, nω | n ω
+                                                   2
+                                                                       S
+where n ranges over the positive integers. As every element of µ<α Aµ −
+                                                                 aδ
+{0}
+S is Archimedean equivalent to a unique member of {ωS : δ < α} ⊆
+   µ<α Aµ − {0}, there is be a unique partition (Lα , Rα ) of       µ<α Aµ where
+                    aL                             1 aR
+Lα < Rα , {0, nω } is cofinal with Lα and { 2n ω } is coinitial with Rα . In
+                                           L                             R
+virtue of the well ordering, each nω a is in µ<α Aµ as is each ω a . Plainly
+                                                  S
+             L
+then, {nω a } ⊆ Lα . Moreover, in virtue of the well ordering and the fact that
+condition (iii) in the statement of the theorem requires D ⊆ RaR for each aR ,
+                         R
+it follows that { 21n ω a } ⊆ Rα . But then by Proposition 1, b0 = {Lα | Rα };
+and so, by Lemma 2, B0 is an initial subtree of No.
+    If {ω aα · rα : rα ∈ Raα − Z} = ∅, we turn to Zα . Otherwise,Swe take the
+first remaining bσ ∈ {ω aα · rα : rα ∈ Raα − Z} for which bσ ∈   / δ<σ Bδ and
+observe that, in virtue of the nature of our well ordering, bσ = ω aα · rα for
+some rα ∈ D−Z since every rα ∈ R−D has predecessors in D−Z. Moreover,
+either Ls(aα ) = ∅ or Ls(aα ) 6= ∅. If Ls(aα ) = ∅, then by the relevant portion
+of Lemma 1(ii), we have
+                              bσ = {ω aα · rαL | ω aα · rαR },
+             NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                       11
+
+where ω aα · rαL , ω aα · rαR <s bσ ; and thisStogether with the nature of our well
+ordering implies ω aα · rαL , ω aα · rαR ∈ δ<σ Bδ . Furthermore, if Ls(aα ) 6= ∅,
+then by Lemma 1(iii), we have
+                                          L                      L
+                 bσ = {ω aα · rαL + ω aα · n | ω aα · rαR − ω aα · n},
+                    L                                        L
+where ω y · r L + ω y · n <s ω y · r and ω y · r R − ω y · n <s ω y · r, for all
+y L ∈ Ls(y) , r L ∈ Ls(r) , r R ∈ Rs(r) and n ∈ N; and, again, this together with
+theSnature of our well ordering implies that all those options are contained
+in δ<σ Bδ . Thus, in S     virtue of Proposition 1 (iii), in both cases there is a
+partition (L′σ , Rσ′ ) of δ<σ Bδ such that bσ = {L′σ | Rσ′ }; and so, by Lemma
+2, Bσ is an initial subtree of No. This portion of the proof is repeated until
+each ω aα · rα for some rα ∈ D − Z has been dealt with.
+    Next, if {ω aα · rα : rα ∈ Raα − D} = ∅, we turn to Zα . If not,Swe take the
+first remaining bσ ∈ {ω aα · rα : rα ∈ Raα − D} for which bσ ∈     / δ<σ Bδ and
+argue exactly as we did in the case where rα ∈ D − Z and Ls(aα ) = ∅ except
+we appeal to the relevant portion of Lemma 1(ii) concerned with members
+of R − D. This portion of the proof is repeated until each ω aα · rα for some
+rα ∈ R − D has been dealt with.
+    Finally, if Zα = ∅, we are finished;
+                                      S       if not, let 0 < σ < τ and, as our
+induction hypothesis, suppose δ<σ Bδ is an initial           subtree of No. Since
+0 < σ < τ , bσ has a Conway name of the form α< π ω yα .rα , where π is an
+                                                     P
+infinite limit ordinal and r0 = 1. Moreover, by part (ii) of Proposition 5,
+bσ = {L | R} where
+                     X                                
+                                  yα       yµ         1
+                L=               ω .rα + ω . rµ − n
+                            α< µ                     2      0<n<ω,µ<π
+
+and
+                  X                             
+                               yα             yµ1
+             R=                ω .rα + ω . rµ + n
+                          α< µ                  2    0<n<ω,µ<π.
+                                        S               S
+But since, by construction,
+                         S      L ∪ R ⊆ δ<σ Bδ and bσ ∈
+                                                      / δ<σ Bδ , there is a
+partition (L′σ , Rσ′ ) of δ<σ Bδ such that
+
+                                    bσ = {L′σ | Rσ′ } .
+
+Therefore, by virtue of the induction hypothesis and Lemma 2, Bσ is an
+initial subtree of No. Thus, by induction, Bσ is an initial subtree of No for
+each σ < τ , and so Aα and, hence, hA, <s |Ai are initial subtrees of No;
+thereby proving the theorem.                                               
+
+Remark. Using the axiom of choice or global choice (if the class is a proper
+class), it is a routine matter to prove that every ordered class is isomorphic
+to an initial ordered subclass of No. This might seem to suggest that in the
+statement of Theorem 1 one may omit the assumption that Γ is isomorphic
+to an initial ordered subclass of No. However, the presence of condition (iii)
+precludes the omission of that statement.
+12                   PHILIP EHRLICH AND ELLIOT KAPLAN
+
+5.1. Densely and discretely ordered initial subgroups of No. A non-
+trivial ordered group hG, <, +, 0i is said to be discrete or discretely ordered
+if it contains a least positive member, and it is said to be dense or densely
+ordered if for all a, b ∈ G where a < b there is a c ∈ G such that a < c < b. A
+nontrivial ordered group hG, <, +, 0i is dense if and only if it is not discrete.
+    The following proposition provides a simple means of distinguishing be-
+tween nontrivial initial subgroups of No that are discrete and those that
+are dense.
+Proposition 9. An initial subgroup G of No is discrete if and only if there
+is a member of G of the form 21n ω −α (where n ∈ N and α ∈ On) having no
+left immediate successor in G.
+Proof. Note that elements of No of the form 21n ω −α are precisely those
+having 0 as their sole left predecessor. We must show that for any g ∈ G,
+g is the least positive element of G if and only if Ls(g) = {0} and g has no
+left immediate successor.
+    First, suppose there is a least positive g ∈ G for which Ls(g) 6= {0}. If
+0 ∈/ Ls(g) , then g is not positive, a contradiction. If there is an a ∈ Ls(g)
+where a 6= 0, then a is a positive element less than g, another contradiction.
+    Next, notice that any least positive g ∈ G must have no immediate left
+successor, since, if g has a left immediate successor, this successor must be
+a positive element less than g.
+    To show the other direction, suppose G is initial. Further suppose g
+has no left immediate successor, Ls(g) = {0} and there is an a ∈ G where
+0 < a < g. Since G is lexicographically ordered, it follows that for any
+x, y ∈ G where x < y, x is incomparable with y if and only if x and y have
+a common predecessor z such that x < z < y (see §2). Clearly, a must be
+incomparable with g, as the only surreal less than g and comparable with
+g is zero. Therefore, they must have a common predecessor z such that
+a < z < g, but by the assumption that Ls(g) = {0}, z must equal 0 and a
+must be negative, which is impossible.                                      
+
+                      6. Initial subdomains of No
+   We now turn to the characterization of initial subdomains of No begin-
+ning with the initial subdomains of R.
+Lemma 4. The initial subdomains of R are Z and the subdomains of R
+containing D. Every initial subdomain of No is an extension of an initial
+subdomain of R.
+Proof. Let K be a subdomain of R. If K = Z, then by Proposition 4 K is
+initial. Now suppose K 6= Z. If K is initial, then Z ⊂ K and, by Proposi-
+tion 4, K must contain some element of the form z + 21 where z ∈ Z. By
+subtracting z, we see that 12 ∈ K. But since the domain D is generated by
+1
+2
+  , D ⊆ K. Finally, if D ⊆ K, then K is initial since every every predecessor
+of a member of R − D is a member of D, and D is initial. The second part
+of the lemma is trivial.                                                   
+             NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                      13
+
+Theorem 2. An ordered domain is isomorphic to an initial subdomain of
+No if and only if it is isomorphic to a truncation closed, cross sectional
+subdomain K of a power series domain R((tΓ ))On , where Γ is isomorphic to
+an initial submonoid of No, every y-coefficient domain Ry of K is an initial
+ordered subdomain of R, and D ⊆ Ry for any x, y ∈ Γ where y ∈ Rs(x) .
+Proof. First note that the above conditions are precisely the conditions for
+initial groups, with the exception of the stipulation that Γ must be form a
+monoid. The latter condition is necessary since, if the image of the domain
+K is cross sectional, then for all x, y ∈ Γ, tx and ty are in K, so tx · ty = tx+y
+is in K and x + y is in Γ. Of course, the rest of the conditions are necessary
+for integral domains as well, as they are necessary for abelian groups. In
+order to show that the conditions are also sufficient, we may treat K as a
+Z-module and repeat the second part of the proof of Theorem 1.                  
+
+6.1. Densely ordered initial subdomains of No. An ordered domain
+is said to be dense if its ordered additive group is dense.
+Corollary 1. A densely ordered domain is isomorphic to an initial sub-
+domain of No if and only if it is isomorphic to a truncation closed, cross
+sectional subdomain K of a power series domain R((tΓ ))On where Γ is iso-
+morphic to an initial submonoid of No and D is an initial subdomain of
+K.
+Proof. Let K be a dense initial subdomain of No. In light of Theorem 2,
+to prove the corollary it suffices to show that D is an initial subdomain of
+K if and only if (i) every y-coefficient domain Ry of K is an initial ordered
+subdomain of R, and (ii) D ⊆ Ry for any x, y ∈ Γ where y ∈ Rs(x) . Suppose
+D is an initial subdomain of K. Then D ⊆ R0 . Moreover, since K is cross
+sectional, R0 ⊆ Ry for all y ∈ Γ, since ty ∈ K and r · t0 ∈ K for all r ∈ R0 ,
+which implies r · ty ∈ K for all r ∈ R0 . This implies (ii) is satisfied, which
+along with Lemma 4 implies (i) is satisfied as well. Now suppose (i) and (ii)
+are the case. If D is not an initial subdomain of K, then by (i) and Lemma
+4, R0 = Z. Moreover, since K is both dense and initial, the simplest member
+of No lying between 0 and 1, namely 21 , is in K. But this implies D is an
+initial subdomain of K, contrary to assumption.                              
+
+    The following result, which is a special case of Corollary 1, is the afore-
+mentioned result (see §1) categorizing the initial subfields of No established
+in [15]. Since the special case is about ordered fields, the ordered monoid Γ
+must be an ordered abelian group and the reference to D may be deleted
+since every ordered field is an extension of an isomorphic copy of D, the
+latter of which is initial in No.
+Corollary 2. An ordered field is isomorphic to an initial subfield of No if
+and only if it is isomorphic to a truncation closed, cross sectional subfield of
+a power series field R((tΓ ))On where Γ is isomorphic to an initial subgroup
+of No.
+14                   PHILIP EHRLICH AND ELLIOT KAPLAN
+
+6.2. Discretely ordered initial subdomains of No. An ordered domain
+is said to be discrete if its additive group is discrete. Accordingly, an ordered
+domain is discrete if and only if it is not dense. The least positive member
+of an ordered domain is its multiplicative identity 1.
+    A discrete subdomain A of an ordered field B is said to be an integer
+part if every member of B is at most a distance 1 from a member of A.
+Conway introduced a canonical integer part Oz of No consisting of the
+surreal numbers of the form x = {x − 1 | x + 1}. These omnific integers, as
+Conway callsPthem, are precisely the surreal numbers having Conway names
+of the form α<β ω yα · rα where yα ≥ 0 for all α < β, and rα is an integer
+if yα = 0.
+    As we will now see, Oz is in fact (up to isomorphism) the unique discrete
+s-hierarchical ordered domain containing an initial isomorphic copy of every
+discrete s-hierarchical ordered domain.
+Theorem 3. An initial subdomain of No is discrete if and only if it is an
+initial subdomain of Oz.
+Proof. Suppose K is an initial subdomain of Oz. As Oz is an initial subdo-
+main of No [18, p. 3: Note 2], K must be as well. To see that K is discrete,
+suppose on the contrary there is an element in K between 0 and 1. Since
+1
+2
+    = {0 | 1}, it follows that 12 ∈ K. But this is impossible since 21 ∈
+                                                                       / Oz, as
+   1      1
+{ 2 − 1 | 2 + 1} = 0. For the converse, suppose that there is Pa discrete initial
+subdomain K of No containing some element a ∈       / Oz. Let α<β ω yα · rα be
+                                                yα
+                                        P
+the Conway name of a. Also let b = α<β ω · rα′ where rα′ = rα if yα > 0,
+rα′ = 0 if yα < 0 and rα′ is largest integer less than rα if yα = 0. Note that
+b ∈ Oz, so b = {b − 1 | b + 1}. Moreover, since b − 1 < a < b + 1, b <s a;
+and so, as K is initial and a ∈ K, b ∈ K. As K is a domain, a − b ∈ K; but
+0 < a − b < 1, so 21 <s a − b and, therefore, 12 ∈ K, which contradicts the
+assumption that K is discrete.                                                 
+
+      7. Initial subgroups and subdomains that are convex
+    Among the important subgroups and subdomains of ordered groups and
+fields are those that are convex. Using Theorems 1 and 2, we now identify
+the convex subgroups of initial subgroups of No that are themselves initial
+as well as the convex subdomains (i.e. the valuation rings) of initial subfields
+of No that are likewise initial. As we shall see, unlike the convex subgroups
+and subdomains of ordinary ordered groups and ordered fields, the initial
+convex subgroups and subdomains of initial subgroups and subfields of No
+are always well ordered by inclusion.
+    Let A be a nontrivial initial subgroup of No and On(A) =: On ∩ A
+be its subtree of ordinals. Following [15, Definition 19], A is said to be
+α-Archimedean if α is the height of On(A). A nontrivial initial subgroup of
+No is α-Archimedean if and only if for each x ∈ A there is a β ∈ On(A)
+such that −β < x < β [15, Theorem 24].
+    Ordinals of the form ω φ are said to be additively indecomposable since
+they are precisely the ordinals λ such that µ+ν < λ for all ordinals µ, ν < λ,
+            NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                     15
+
+                             φ
+and ordinals of the form ω ω are said to be multiplicatively indecomposable
+since they are precisely the ordinals λ > 1 such that µν < λ for all ordinals
+µ, ν < λ, where the just-said sums and products of ordinals are the familiar
+Cantorian operations. Every nontrivial initial subgroup (resp. initial subdo-
+main) is ω φ -Archimedean for some nonzero ordinal (resp. nonzero additively
+indecomposable ordinal) φ; moreover, A is Archimedean if and only if A is
+ω-Archimedean [15, Theorem 24].
+    Let A be an ω φ -Archimedean initial subgroup of No and for each nonzero
+ordinal τ ≤ φ, let
+             A[ω τ ] =: {x ∈ A : −α < x < α for some α < ω τ }.
+Proposition 10. Let A be an ω φ -Archimedean initial subgroup of No and
+τ be a nonzero ordinal ≤ φ ≤ On.
+(i) A[ω τ ] = A if and only if τ = φ.
+(ii) A[ω τ ] = {x ∈ A : −nα < x < nα for some n ∈ N and some α < ω τ }.
+(iii) The class of ordinals < ω τ is a cofinal subclass of A[ω τ ].
+(iv) For each leader ω y ∈ A there is a unique leader ω α ∈ A where α is an
+ordinal < φ such that ω y ≤ ω α and ω α ≤s ω y . If ω y 6= ω α , then ω α is the
+least ordinal > ω y . Moverover, if ω x <s ω y , then ω x ≤ ω α .
+Proof. (i) is trivial, (ii) follows from the additively indecomposable nature
+of ω τ , and (iii) follows from the definition of A[ω τ ] and the initial nature
+of A. For (iv), note that for each z > 0 in No, there is a unique ordinal
+α such that z ≤ α and α ≤s z; moreover, if y 6= α, then α is the least
+ordinal > y. But by [15, Theorem 11] and [18, Proposition 3.6 (i)] for all
+z, y ∈ No, z <s y if and only if ω z <s ω y , which implies the first two
+parts of (iv). Finally, suppose ω z <s ω y . If z is an ordinal, then plainly
+ω z ≤ ω α ; and if z is not an ordinal, then its sign-expansion begins with ω α
+pluses followed by a minus, which implies it is < ω α , thereby completing
+the proof.                                                                    
+Theorem 4. Let A be an ω φ -Archimedean initial subgroup of No. Then
+K is a nontrivial initial convex subgroup of A if and only if K = A[ω τ ] for
+some additively indecomposable infinite ordinal ω τ ≤ ω φ .
+Proof. First suppose K is a nontrivial initial convex subgroup of A. Since K
+is a nontrivial initial subgroup of A, K is ω τ -Archimedean for some nonzero
+ordinal τ ≤ φ. Moreover, since K is a convex subgroup of A, A[ω τ ] ⊆ K.
+Furthermore, if A[ω τ ] 6= K, there is an x ∈ K such that A[ω τ ] < {x} < ω τ .
+But then ω τ <s x, which implies K is not initial, since ω τ ∈    / K; and so
+K = A[ω τ ].
+    Now suppose K = A[ω τ ] for some additively indecomposable infinite
+ordinal ω τ ≤ ω φ . If τ = φ, then K = A, which is a trivial initial convex
+subgroup of A. Now suppose 1 ≤ τ < φ. In virtue of the definition of A[ω τ ],
+K is a convex subclass of A. Moreover, by Proposition 10(ii) and the convex
+nature of K, every element of A that is Archimedean equivalent to some
+x ∈ K is likewise in K. Plainly then, x + y ∈ K whenever x, y ∈ K, since
+x + y is in the Archimedean class containing ω z , where z is the maximal
+16                  PHILIP EHRLICH AND ELLIOT KAPLAN
+
+member in the supports of x and the supports of y, which shows K is a
+group. To establish K is initial, first note that since A is cross sectional
+and closed under truncation, it follows from the fact that K is a convex
+subgroup of A (in which every element of A that is Archimedean equivalent
+to some x ∈ K is likewise in K) that K is also cross sectional and closed
+under truncation. In addition, since K is a convex subgroup of A and A
+is initial, the y-coefficient groups of K satisfy conditions (ii) and (iii) of
+Theorem 1. Therefore, in virtue of Theorem 1, to complete the proof it
+remains to show {y ∈ No : ω y ∈ K} is an initial subtree of No. For this
+purpose, suppose ω y ∈ K and further suppose ω x <s ω y . Since x <s y if
+and only if ω x <s ω y for all x, y ∈ No, it suffices to show ω x ∈ K. To this
+end, note that by Proposition 10(iii), there is an ordinal β ∈ K such that
+ω y < β < ω τ . Moreover, by Proposition 10(iv), there is an ordinal ω α such
+that either ω α = ω y or ω α is the least ordinal > ω y and ω x ≤ ω α . Plainly
+then, ω x ≤ ω α ≤ β. And so, since K is a convex subgroup of A, ω x ∈ K. 
+Theorem 5. Let A be an ω φ -Archimedean initial subfield of No. Then K
+is an initial convex subdomain of A if and only if K = A[ω τ ] for some
+multiplicatively indecomposable ordinal ω τ ≤ ω φ .
+Proof. Since A is a field, it follows that for each ω y ∈ K, {r ∈ R : ω y .r ∈
+K} = {r ∈ R : ω 0.r ∈ K} and so, for each leader ω y ∈ K, D is a subdomain
+of {r ∈ R : ω y .r ∈ K}. Accordingly, in virtue of Theorem 4 and Theorem
+2, to complete the proof it suffices to show that K (which is convex) is a
+subdomain of A if and only if K = A[ω τ ] for some multiplicatively indecom-
+posable ordinal ω τ ≤ ω φ . If ω τ is not multiplicatively indecomposable, there
+are ordinals α, β ∈ K where αβ > ω τ and, hence, αβ ∈         / K, which shows
+                                         τ
+K is not a domain. Now suppose ω is multiplicatively indecomposable. If
+τ = 1, K consists of the finitely bounded members of A, in which case K is
+obviously a subdomain of A. Moreover, if 1 < τ < φ, then {ω β : β < τ } is a
+cofinal subclass of K without a greatest member. Accordingly, if x, y ∈ K,
+|x| ≤ some ω β ∈ K and |y| ≤ some ω γ ∈ K, where β, γ are ordinals < τ ,
+and so |xy| ≤ ω β+γ < ω τ . But then ω β+γ and, hence, |xy| are in K, which
+suffices to show K is a domain.                                               
+Remark. Since every real-closed ordered field is isomorphic to an initial
+subfield of No, it is natural to inquire if this is true for real-closed or-
+dered domains more generally, the latter of which coincide with the con-
+vex subdomains of real-closed ordered fields [7]. However, since the convex
+subdomains of real-closed ordered fields are not in general well-ordered by
+inclusion, Theorem 5 implies this is not the case.
+
+            8. Optimality results and an open question
+    As we mentioned above, in [15] it was shown that every divisible ordered
+abelian group (real-closed ordered field) is isomorphic to an initial subgroup
+(initial subfield) of No. The following result shows that in a important sense
+these results are optimal.
+            NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                    17
+
+   Let T OAG and T DOAG be the theories of ordered abelian groups and
+divisible ordered abelian groups in the language {≤, +, 0} of ordered addi-
+tive groups, and let T OF and T RCF be the theories of ordered fields and
+real-closed ordered fields in the language {≤, +, ·, 0, 1} of ordered fields.
+
+Theorem 6. (i) If T OAG ⊆ T ⊆ T DOAG , then every model of T is isomor-
+phic to an initial subgroup of No if and only if T = T DOAG .
+(ii) If T OF ⊆ T ⊆ T RCF , then every model of T is isomorphic to an initial
+subfield of No if and only if T = T RCF .
+Proof. In light of the above-mentioned results on divisible ordered abelian
+groups and real-closed fields from [15], it remains to consider the cases where
+T 6= T DOAG and T 6= T RCF . Let T OAG ⊆ T ⊂ T DOAG and M be a countable
+model of T . There is an elementary chain Mα (α < On) of models of T such
+that for each α, Mα is an ωα+1 -saturated elementary extension of M of power
+2ωα [8, Lemma 5.1.4]. Since each Mα is an ηα+1 -ordering ([8, Page 369]; also
+see [4]), the union M ′ of the chain is a model of T that is an ηOn -ordering
+(see Proposition 3). However, since No is a lexicographically ordered full
+binary tree and no lexicographically ordered binary tree contains a proper
+initial ordered subtree that is isomorphic to itself [15, Lemmas 1 and 2], it
+follows from Propositions 2 and 3 that an initial ordered subtree of No is
+an ηOn -ordering if and only if it is No itself. But since No is divisible and
+M ′ is not, there is no isomorphism of M ′ onto an initial subgroup of No.
+Except for trivial modifications, the same argument applies to (ii), which
+suffices to prove the theorem.                                               
+   The above proof of Theorem 6 makes critical use of class models. Using
+a classical result from the theory of saturated models [8, Lemma 5.1.5] to-
+gether with a natural generalization of Theorem 4 of ([15], [17]), a variation
+of the above proof shows that an analog of Theorem 6 that applies solely
+to structures whose universes are sets can be established in NBG supple-
+mented with the existence of an inaccessible cardinal < On or an instance
+of GCH. This naturally suggests:
+Question 1. Can an analog of Theorem 6 that applies solely to ordered
+abelian groups and ordered fields whose universes are sets be established in
+NBG?
+    An ordered field K is said to be n-real-closed [6, page 327] if every
+polynomial of degree at most n admitting a root in a real closure of K
+admits a root in K. Boughattas [6] has shown that, for each positive integer
+n, there is a model of the theory of n-real-closed fields whose universe is a
+set that does not have an integer part. Therefore, since every initial subfield
+of No has a canonical integer part [15, Theorem 25], it follows that for
+each positive integer n, there is a model of the theory of n-real-closed fields
+whose universe is a set that is not isomorphic to an initial subfield of No.
+This, however, does not provide a positive answer to the field portion of
+Question 1 since there are theories of ordered fields that are not equivalent
+to the theory of n-real-closed fields for any n. One can also find theories
+18                      PHILIP EHRLICH AND ELLIOT KAPLAN
+
+of ordered abelian groups having models whose universe are sets that are
+not isomorphic to initial subgroups of No. For example, if we say that an
+ordered abelian group is n-divisible if every element is divisible by n, then
+for each prime p > 2 the p-divisible ordered abelian group generated by 1 is
+not isomorphic to an initial subgroup of No. However, we are not aware of
+a proof that applies to every theory of ordered abelian groups lacking full
+divisibility, which leaves the group portion of Question 1 open as well.
+
+
+                          9. Further open questions
+    Unlike discrete initial subdomains of No, discrete initial subgroups of
+No need not be subgroups of Oz. A case in point is the subgroup of No
+consisting of all elements of the form d + (a/ω), where d ∈ D and a ∈ Z.
+On the other hand, this discrete initial subgroup of No is isomorphic to an
+initial subgroup of Oz, as is evident from the mapping f (d+(a/ω)) = ω.d+a
+for all d ∈ D and all a ∈ Z. This motivates
+Question 2. Is every discrete initial subgroup of No isomorphic to an
+initial subgroup of Oz?
+Question 3. What is a set of conditions that are individually necessary and
+collectively sufficient for an arbitrary ordered monoid to be isomorphic to
+an initial submonoid of No?
+
+
+                                     References
+ [1] N. Alling, Foundations of Analysis Over Surreal Number Fields, North-Holland Pub-
+     lishing Company, Amsterdam (1987).
+ [2] N. Alling and P. Ehrlich, Sections 4.02 and 4.03 of [1]
+ [3] N. Alling and P. Ehrlich, An Alternative Construction of Conway’s Surreal Numbers,
+     C. R. Math. Rep. Acad. Sci. Canada VIII (1986), pp. 241-246.
+ [4] N. Alling and S. Kuhlmann, On ηα -groups and fields, Order 11 (1994), pp. 85-92.
+ [5] A. Berarducci and V. Mantova, Surreal numbers, derivations and transseries, J. Eur.
+     Math. Soc. (forthcoming).
+ [6] S. Boughattas, Résultats optimaux sur l’existence d’une partie entière dans les corps
+     ordonnés, J. Symbolic Logic 58 (1993), pp. 326-333.
+ [7] G. Cherlin and M. Dickmann, Real Closed Rings II. Model Theory, Ann. Pure Appl.
+     Logic 25 (1983), pp. 213-231.
+ [8] C. C. Chang and H. J. Keisler, Model Theory, Third Edition, North-Holland Pub-
+     lishing Company, Amsterdam, New York (1990); reprinted Dover Publications, Inc.,
+     Mineola, New York (2012)
+ [9] J. H. Conway, On Numbers and Games, Academic Press, London (1976); Second
+     Edition, A K Peters, Ltd., Natick, Massachusetts (2001)
+[10] L. van den Dries and P. Ehrlich, Fields of Surreal Numbers and Exponentiation,
+     Fund. Math. 167 (2001), pp. 173-188; erratum, ibid. 168 (2001), pp. 295-297.
+[11] P. Ehrlich, An Alternative Construction of Conway’s Ordered Field No, Algebra
+     Universalis 25 (1988), pp. 7-16; errata, ibid. 25 (1988), p. 233.
+[12] P. Ehrlich, Absolutely Saturated Models, Fund. Math. 133 (1989), pp. 39-46.
+[13] P. Ehrlich, Universally Extending Arithmetic Continua, in Hourya Sinaceur and
+     Jean-Michel Salanskis (eds.), Le Labyrinthe du Continu, Colloque de Cerisy,
+     Springer-Verlag France, Paris (1992), pp. 168-177.
+              NUMBER SYSTEMS WITH SIMPLICITY HIERARCHIES II                          19
+
+[14] P. Ehrlich, All Number Great and Small, in Real Numbers, Generalizations of the
+     Reals, and Theories of Continua, Philip Ehrlich (editor), Kluwer Academic Publish-
+     ers, Dordrecht, Netherlands, (1994), pp. 239-258.
+[15] P. Ehrlich, Number Systems with Simplicity Hierarchies: A Generalization of Con-
+     way’s Theory of Surreal Numbers, J. Symbolic Logic 66 (2001), pp. 1231-1258.
+[16] P. Ehrlich, Surreal Numbers: An Alternative Construction (Abstract), Bull. Symbolic
+     Logic 8 (2002), p. 448.
+[17] P. Ehrlich, Corrigendum to “Number Systems with Simplicity Hierarchies: A Gen-
+     eralization of Conway’s Theory of Surreal Numbers”, J. Symbolic Logic 70 (2005),
+     p. 1022.
+[18] P. Ehrlich, Conway Names, the Simplicity Hierarchy and the Surreal Number Tree,
+     J. Logic and Analysis 3 (2011), no. 1, pp. 1-26.
+[19] P. Ehrlich, The absolute arithmetic continuum and the unification of all numbers
+     great and small, Bull. Symbolic Logic 18 (2012), pp. 1-45.
+[20] H. Gonshor, An Introduction to the Theory of Surreal Numbers, Cambridge Univer-
+     sity Press, Cambridge (1986)
+[21] H. Hahn, Über die nichtarchimedischen Grössensysteme, Sitzungsberichte
+     der Kaiserlichen Akademie der Wissenschaften, Wien, Mathematisch-
+     Naturwissenschaftliche Klasse 116 (Abteilung IIa) (1907), pp. 601-655.
+[22] S. Kuhlmann and M. Matusinski. The Exponential-Logarithmic Equivalence Classes
+     of Surreal Numbers Order 32 (2015), pp. 53-68.
+[23] E. Mendelson, An Introduction to Mathematical Logic, fifth ed., CRC Press, Boca
+     Raton (2010)
+[24] D. Schleicher and M. Stoll An introduction to Conway’s games and numbers, Moscow
+     Math. J. 6 (2006), pp. 359-358.
+
+   Department of Philosophy, Ohio University, Athens, OH 45701, U.S.A.
+   E-mail address: ehrlich@ohio.edu
+
+   Department of Mathematics, University of Illinois, Urbana-Champaign,
+IL 61801, U.S.A.
+   E-mail address: eakapla2@illinois.edu
+

@@ -1,0 +1,4 @@
+# Independent adversarial review
+
+2026-10-25T03:18:37.941374+00:00 — 5%: active attachment objective read. Full current seven-page manuscript TeX read; exact source hashes checked. No sibling/historical opinion bodies read. Current manuscript status summaries incidentally visible, not adopted. Fresh controls precede supplied helpers.
+2026-10-25T03:20:59.639626+00:00 — 60%: full current proof and appendix independently reconstructed; exact EK normal-form/pure-cut/criterion bodies and original question inspected, including the literal sufficiency proof. Fresh controls completed before any supplied program reading: 1,402,192 sign-map pairs, 677 initial exponent trees, 676 initial-sum pairs, 1,500 rational Hahn pairs and 51,200 unit-cut inequalities; all four negative controls triggered. No ordinal/class theorem inferred from these computations. No substantive gap identified so far. Supplied verifier code now inspected statically, isolated replay next.

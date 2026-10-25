@@ -1,0 +1,2133 @@
+                                                 STRONG TOPOLOGICAL ROKHLIN PROPERTY,
+                                                 SHADOWING, AND SYMBOLIC DYNAMICS OF
+                                                          COUNTABLE GROUPS
+
+
+
+
+arXiv:2211.08145v3 [math.DS] 8 Mar 2024
+                                                                            MICHAL DOUCHA
+
+                                                        To the memory of my father František Doucha (1952-2022)
+
+
+                                                  Abstract. A countable group G has the strong topological Rokhlin
+                                                  property (STRP) if it admits a continuous action on the Cantor space
+                                                  with a comeager conjugacy class. We show that having the STRP is a
+                                                  symbolic dynamical property. We prove that a countable group G has
+                                                  the STRP if and only if certain sofic subshifts over G are dense in the
+                                                  space of subshifts. A sufficient condition is that isolated shifts over G
+                                                  are dense in the space of all subshifts.
+                                                      We provide numerous applications including the proof that a group
+                                                  that decomposes as a free product of finite or cyclic groups has the
+                                                  STRP. We show that finitely generated nilpotent groups do not have the
+                                                  STRP unless they are virtually cyclic; the same is true for many groups
+                                                  of the form G1 × G2 × G3 where each factor is recursively presented. We
+                                                  show that a large class of non-finitely generated groups do not have the
+                                                  STRP, this includes any group with infinitely generated center and the
+                                                  Hall universal locally finite group.
+                                                      We find a very strong connection between the STRP and shadowing,
+                                                  a.k.a. pseudo-orbit tracing property. We show that shadowing is generic
+                                                  for actions of a finitely generated group G if and only if G has the STRP.
+
+
+
+
+                                                                                Contents
+                                            1. Introduction                                                                     2
+                                            2. Cantor and symbolic dynamics                                                     5
+                                            3. Strong topological Rokhlin property                                             16
+                                            4. Free products with the strong topological Rokhlin property                      20
+                                            5. Groups without the strong topological Rokhlin property                          27
+                                            6. Shadowing                                                                       38
+                                            7. Remarks, problems, and questions                                                44
+                                            References                                                                         44
+
+
+                                             Key words and phrases. countable groups, Cantor dynamics, symbolic dynamics, sub-
+                                          shifts of finite type, generic actions, shadowing.
+                                             The author was supported by by the GAČR project 22-07833K and RVO: 67985840.
+                                                                                      1
+2                              MICHAL DOUCHA
+
+                              1. Introduction
+   This paper presents and explores certain connections between generic
+group actions on the Cantor space and the structure of subshifts of finite
+type and sofic subshifts over these groups.
+   Let us start with some history and motivation. One of the earliest oc-
+curencies of ‘genericity results’ in measurable and topological dynamics was
+Halmos’ paper [34], following the previous result of Oxtoby and Ulam in
+[49], where he showed that ergodicity and weak mixing are generic proper-
+ties among p.m.p. bijections of the standard probability space, removing
+the fears that such useful properties might actually be rare among general
+p.m.p. bijections (see [4] for the connections betwen Halmos’s and Oxtoby-
+Ulam’s papers). He also showed that the conjugacy class of any aperiodic
+p.m.p. bijection is dense, a result which is also attributed to Rokhlin and
+often identified with the Rokhlin lemma. This also explains why the name
+‘Rokhlin’ is attached to results of this kind, we refer to the survey [28]. We
+refer to monographs [3] and [2] for more historical background and many
+results of this sort and to [35] for some more recent developments in the
+topological case.
+   It is our aim here to investigate these problems, but not only for single
+invertible transformations, or in the language that we shall use, for actions
+of the group of integers, but for general countable group actions. This con-
+nects this area of research with combinatorial and geometric group theory
+and reveals sometimes surprising and beautiful differences between dynam-
+ical properties of geometrically different groups. We continue with more
+examples.
+   In topological dynamical category, Glasner and Weiss showed in [27] that
+there is an action of the integers on the Cantor space with a dense conjugacy
+class. This has been extended to actions of Zd by Hochman [37] and his proof
+works for any countable group, so density of conjugacy classes is not an
+interesting phenomenon in this case although interesting differences occur
+if we require a dense conjugacy class that is computable, see again [37].
+Glasner, Thouvenot, and Weiss in [26] also showed that for any countable
+group G, a generic p.m.p. action has a dense conjugacy class (this is also
+an unpublished and indepedently proved result of Hjorth).
+   It is then of particular interest whether in a given setting or given category
+there is an action which itself is generic, meaning its conjugacy class is
+comeager, thereby reducing the investigation of generic properties in that
+category to the properties of that particular action. This is known to be false
+for the integer actions on the standard probability space by del Junco [18]
+and actually for actions of all countable amenable groups by Foreman and
+Weiss [22]. It was therefore of surprise when Kechris and Rosendal showed
+in [39] that there is a generic action of the integers on the Cantor space.
+This result sparked such an interest that it has been since then re-proved
+several times by different authors, see e.g. [1], [12], [45].
+                  STRONG TOPOLOGICAL ROKHLIN PROPERTY                            3
+
+   Another remarkable result of Hochman [37] came few years later showing
+that this fails for Zd , for d ≥ 2, i.e. these groups do not admit a generic action
+on the Cantor space. Hochman also attached the adjective ‘strong topolog-
+ical Rokhlin’ to countable groups, as opposed to the previous usage when
+it was attached to topological groups or actions, to denote those countable
+groups that do admit a generic action on the Cantor space. Kwiatkowska in
+[45] later showed that free groups on finitely many generators do have this
+strong topological Rokhlin property in contrast to the result of Kechris and
+Rosendal from [39] that free groups on countably infinitely many generators
+do not.
+   The case of other countable groups has not been known and it is the
+aim of this paper to fill this gap. We show that the strong topological
+Rokhlin property, i.e. having a generic action on the Cantor space, is a
+property that is visible on the symbolic dynamical level. Indeed we show
+it is tightly connected with the structure of sofic subshifts over the corre-
+sponding group. Before continuing further, let us mention that symbolic
+dynamics is another area of dynamics traditionally reserved for actions of Z
+which has recently seen a tremendous progress in investigating more general
+group actions, where again substantial differences occur when the acting
+group varies. Early and by now classical results where these differences first
+occurred, between Z and Z2 , are related to the domino problem and the
+existence of weakly and strongly aperiodic subshifts of finite type (see [11]
+for these early results and see [17] for a recent breakthrough, where geomet-
+ric group theory was beautifully blended into symbolic dynamics). Another
+important early occurrence is related to the Gottschalk surjunctivity con-
+jecture ([31]) which later gave rise to sofic groups ([32]). We refer to [14] for
+general introduction into symbolic dynamics over countable groups.
+   The second main aim of this paper is to the strong topological Rokhlin
+property with the genericity of the shadowing property, also known as the
+pseudo-orbit tracing property. Shadowing is by now one of the fundamental
+notions in dynamical systems, closely related to hyperbolicity and topo-
+logical stability. We refer to the monograph [50] for an introduction and
+historical background. Although it was originally defined for single home-
+omorphisms (in fact, diffeomorphisms) it makes perfect sense for general
+discrete group actions and it was for the first time defined in this generality
+in [48] and investigated since then in numerous publications, see e.g. [16],
+[47], [9], [46]. Genericity of shadowing has been also already extensively
+studied, see e.g. [52], [13], [42], [43], [12], and references therein. In [12],
+genericity of shadowing for homeomorphisms on the Cantor space has been
+derived as the property of the generic integer action. We continue in this line
+of research for more general groups and discover a very strong relation with
+the strong topological Rokhlin property; in fact, an equivalence between the
+STRP and genericity of shadowing.
+   We start the presentation of our results. For the sake of the next theorem
+we informally define a projectively isolated subshift X ⊆ AG , where G is a
+4                              MICHAL DOUCHA
+
+countable group and A a finite set with at least two elements, as a closed
+subshift such that there exists a subshift of finite type Y ⊆ B G , for some
+finite B, and a factor map φ : Y → X such that φ[Y ′ ] = X for every
+subshift Y ′ ⊆ Y that is sufficiently close to Y with respect to the Hausdorff
+distance. A precise definition is provided later as Definition 2.22. Also for
+two subshifts X, Y ⊆ AG and a finite set F ⊆ G we write X ⊆F Y to denote
+that X ⊆ Y and moreover the F -patterns of X coincide with the F -patterns
+of Y .
+Theorem A. Let G be a countable group. If G is finitely generated, then
+the following are equivalent.
+    (1) G has the strong topological Rokhlin property.
+    (2) For every closed subshift X ⊆ AG , for some finite set with at least
+        two elements, and every ε > 0 there is a projectively isolated subshift
+        X ′ ⊆ AG whose Hausdorff distance to X is at most ε.
+    (3) Shadowing is generic for continuous actions of G on the Cantor
+        space.
+
+  For a general countable G, we have the equivalence between (1) and (2),
+and moreover (3) implies (1) and (2).
+  A sufficient condition that guarantees the strong topological Rokhlin
+property, and therefore also the genericity of shadowing for finitely gener-
+ated groups, is that for every subshift of finite type X ⊆ AG , for some finite
+A, and for every finite F ⊆ G there are a subshift of finite type Y ⊆F X
+and a finite set E ⊆ G so that Y is ⊆E -minimal.
+   We remark that there have been few similar results where the density
+of isolated points in some spaces was equivalent to genericity of certain
+actions, see [29] for actions of groups on countable sets (and another proof
+and related results in [19]) and [41] for representations of C ∗ -algebras and
+unitary representations of groups (see also [20] for another proof).
+  Theorem A is then exploited to produce new examples and non-examples.
+From the positive side we show:
+Theorem B. Let G = ⋆i≤n Gi be a free product of the groups (Gi )i≤n ,
+each of them being either finite or cyclic. Then G has the strong topological
+Rokhlin property.
+   From the negative side we have more results and the following is a selection
+of some of them.
+Theorem C. Let G be one of the following groups:
+    • finitely generated infinite nilpotent group that is not virtually cyclic;
+    • G1 × G2 × G3 , where Gi , for i ∈ {1, 2, 3} is finitely generated and
+      recursively presented, and G1 is indicable;
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                           5
+
+    • an infinitely generated group such that for every finitely generated
+      subgroup H there is either g ∈ G \ H that centralizes H, or has no
+      relation with H whatsoever.
+Then G does not have the strong topological Rokhlin property.
+   The paper is organized as follows. Section 2 consists of preliminaries and
+basic results on group actions on the Cantor space and symbolic dynamics
+over general groups. Most of the definition, crucial for the rest of the paper,
+are also contained there. Section 3 contains the proof of the equivalence
+between (1) and (2) of Theorem A. Section 4 introduces new notions and
+techniques that are jointly with Theorem A necessary to prove Theorem B.
+Section 5 is focused on providing new non-examples of groups with the strong
+topological Rokhlin property and the proof of Theorem C is contained there,
+and Section 6 shows the equivalence of (3) with (2) of Theorem A. Finally,
+in Section 7 we collect few open problems.
+   Let us also mention that our standard monographs concerning symbolic
+dynamics over general groups, topological dynamics of general group actions,
+and (geometric) group theory respectively are [14] (and also [6]), [40], and
+[21] respectively, to which we refer in case the reader finds any unexplained
+notion from these areas in the sequel.
+
+                   2. Cantor and symbolic dynamics
+  Let C denote the Cantor space. Denote by Homeo(C) the topological
+group of all self-homeomorphisms of C equipped with the uniform topology.
+2.1. Spaces of actions and shifts.
+
+2.1.1. Spaces of actions.
+Definition 2.1. For a countable group G, denote by ActG (C) the Polish
+space of all continuous actions of G on C. Formally, ActG (C) is iden-
+tified with the space of all homomorphisms from G into the topological
+group Homeo(C), which can be further identified with a closed subset of
+Homeo(C)G with the product topology.
+   Recall that by the Stone duality there is a one-to-one correspondence be-
+tween homeomorphisms of C and Boolean algebra isomorphisms of Clopen(C),
+the algebra of clopen sets of C. Notice also that this correspondence is a topo-
+logical group isomorphism between Homeo(C) and Aut Clopen(C) , where
+the latter is equipped with the pointwise convergence topology. This obser-
+vation immediately gives the following description of basic open subsets of
+ActG (C) whose proof is left to the reader.
+Lemma 2.2. Let G be a countable group and α ∈ ActG (C). The following
+sets form basic open neighborhoods of α:
+NαF,P := β ∈ ActG (C) : ∀f ∈ F ∀x ∈ C ∀P ∈ P α(f )x ∈ P ⇔ β(f )x ∈ P ,
+                                                                   
+6                              MICHAL DOUCHA
+
+where F ⊆ G is a finite subset and P is a partition of C into disjoint non-
+empty clopen sets.
+  Notice that for any countable group G the group Homeo(C) naturally acts
+on ActG (C) by conjugation, where for φ ∈ Homeo(C) and α ∈ ActG (C) the
+action φαφ−1 is naturally defined by
+                    φαφ−1 (g) := φα(g)φ−1 , for g ∈ G.
+                          
+
+  Although informally defined already in the abstract, for the sake of formal
+soundness let us provide a precise definition of the strong topological Rokhlin
+property.
+Definition 2.3. Let G be a countable group. We say that G has the strong
+topological Rokhlin property if there exists α ∈ ActG (C) such that the set
+                    {φαφ−1 : φ ∈ Homeo(C)} ⊆ ActG (C)
+is comeager.
+  We state the following important fact that any invariant subset in ActG (C)
+with the Baire property is either meager, or comeager.
+Fact 2.4. Let G be a countable group and let A ⊆ ActG (C) be a subset
+with the Baire property that is closed under conjugation, i.e. for any φ ∈
+Homeo(C), φAφ−1 = A. Then A is either meager, or comeager.
+Proof. We apply [38, Theorem 8.46] with G equal to Homeo(C) and X equal
+to ActG (C). We only need to check that the action of Homeo(C) on ActG (C)
+is topologically transitive. This is equivalent with the existence of an element
+α ∈ ActG (C) with a dense conjugacy class. This is proved in [37, Proposition
+1.2] - notice that the proposition is stated only for Zd , however the first
+paragraph of the proof mentions it works for any countable group.             
+
+2.1.2. Subshits and their spaces. Let A be a finite set with at least two
+elements and G be a countable group. Consider the set AG equipped with
+the product topology with which it is either finite discrete if G is finite, or
+homeomorphic to the Cantor space if G is infinite. The group G acts on AG
+by shift, i.e. for x ∈ AG and g, h ∈ G we have
+                              gx(h) := x(g −1 h).
+When we need a symbol for the shift action, we shall use σ : G y AG . Any
+closed and G-invariant subspace of AG will be called a subshift.
+   If F ⊆ G is a finite set, elements from AF will be called patterns. If
+X ⊆ AG is a subshift, a pattern p ∈ AF is called forbidden in X if there is
+no x ∈ X such that x ↾ F = p; otherwise, the pattern p is called allowed in
+X.
+   Set
+                  XF := {p ∈ AF : ∃x ∈ X (x ↾ F = p)}
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                           7
+
+  and for any pattern p ∈ XF we shall also set
+                       Cp (X) := {x ∈ X : x ↾ F = p}.
+Then {Cp (X) : p ∈ XF } is a clopen partition of X. Sometimes, when the
+subshift X is clear from the context, we may write just Cp instead of Cp (X).
+   By SG (A), we shall denote the compact space of all subshifts of AG
+equipped with the Vietoris topology - or equivalently, with the topology
+induced by the Hausdorff metric coming from a compatible metric on AG ,
+and by SG (n) we denote the space SG ({1, . . . , n}). When there is no danger
+of confusion, we may identify the spaces SG (A) and SG (n) for |A| = n.
+   In the sequel, we shall use the wording ‘non-trivial finite set’ to emphasize
+that the set in question has at least two elements.
+  There is a convenient form of basic open neighborhoods of subshifts in
+SG (A). The proof of the following lemma is similar to the proof of Lemma 2.2
+and left to the reader.
+Lemma 2.5. Let G be a countable group, A a non-trivial finite set, and
+X ⊆ AG a subshift. Basic open neighborhoods of X in SG (A) are of the
+form
+                       NXF := {Y ⊆ AG : YF = XF },
+where F ⊆ G is a finite set.
+  Notice that the set of the form NXF as above is actually clopen in SG (A).
+Remark 2.6. Since the spaces of subshifts SG (A) will play a major role
+in this paper, we feel obliged to provide few comments on them. They
+closely resemble the spaces of subgroups of a given countable group with
+the Chabauty topology (see [15]) and surely any reader familiar with the
+latter will also feel comfortable with the former. We could not track the
+origin of when these spaces appeared for the first time and apparently at
+least for the group Z, and also for Zd , they have been in a folklor use for
+some time. For more general groups the oldest references we could find were
+[25] and [23]. Since then these spaces, for general groups, e.g. played a
+major role in characterizing strongly amenable countable groups in [24].
+Construction 2.7. Let P = {P1 , . . . , Pn } be a partition of a compact
+metrizable zero-dimensional space X into disjoint non-empty clopen sets
+and let α : G y X be a continuous action of a countable group G on X.
+We denote by QαP the continuous G-equivariant map from X to P G , freely
+identified with nG , which is defined as follows. For any x ∈ X, g ∈ G and
+i≤n
+               QαP (x)(g) := i if and only if α(g −1 )x ∈ Pi .
+   The verification that QαP is continuous and G-equivariant is straightfor-
+ward.
+   By Q(α, P) we shall denote the subshift of nG , an element of SG (n), which
+is the image of QαP .
+8                               MICHAL DOUCHA
+
+   The following basic lemma, which is a generalization of the well-known
+Curtis-Hedlund-Lyndon theorem from symbolic dynamics, shows that every
+continuous equivariant map from a zero-dimensional compact metrizable
+space X, equipped with an action α : G y X, onto a subshift is of the form
+QαP , for some clopen partition P of X.
+Lemma 2.8. Let G be a countable group acting continuously on a zero-
+dimensional compact metrizable space X. Let us denote the action by α.
+Let φ : (X, α) → AG be a continuous G-equivariant map into the shift space
+AG , for some non-trivial finite A. Then there is a clopen partition P of X
+such that φ = QαP .
+Proof. Let Y ⊆ AG be the image of X via φ, which is a subshift. Enumerate
+A as {a1 , . . . , an } and assume without loss of generality that for every i ≤ n
+there is y ∈ Y with y(1G ) = ai . We leave to the reader to check that the
+clopen partition
+                            n                                  o
+                       P := φ−1 {y ∈ Y : y(1G ) = ai } : i ≤ n
+                                                      
+
+is as desired.                                                                  
+    The following standard result can be derived as a corollary.
+Corollary 2.9 (The Curtis-Hedlund-Lyndon theorem). Let G be a count-
+able group, A and B be two non-trivial finite sets, and φ : X → Y be a
+continuous G-equivariant map between two subshifts X ⊆ AG and Y ⊆ B G .
+Then there exist a finite set F ⊆ G and a map f : XF → B such that for
+every x ∈ X and g ∈ G
+                            φ(x)(g) = f (g −1 x ↾ F ).
+    The following simple lemma will also prove to be useful in the sequel.
+Lemma 2.10. Let A be a finite set with at least two elements, G a countable
+group and let X ⊆ AG be a subshift. Let F ⊆ G be a finite subset. Then for
+the partition
+                        P := {Cp ⊆ X : p ∈ XF },
+            σ
+the map QP , where σ is the shift action on X, is one-to-one.
+Proof. The image is clearly a closed G-invariant subset of P G , i.e. a subshift,
+so we only need to check the map is injective. This is however obvious since
+if x 6= y ∈ X then there is g ∈ G such that σ(g)x and σ(g)y lie in different
+elements of the partition P and thus QσP (x)(g −1 ) 6= QσP (y)(g−1 ).          
+  We continue with two propositions connecting the spaces and topologies of
+ActG (C) and SG (n) which will be instrumental in proving the main theorem.
+Proposition 2.11. Let G be a countable group and P a partition of C into
+disjoint non-empty clopen sets. Then the map
+                          Q(·, P) : ActG (C) → SG (P)
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                            9
+
+defined as
+                                 α → Q(α, P)
+                                      {1 }
+is continuous and onto the set NP GG = {X ∈ SG (P) : ∀P ∈ P ∃x ∈
+X (x(1G ) = P )} consisting of all subshifts of P G that contain each letter
+from P.
+Proof. We fix G and P as in the statement. Take α ∈ ActG (C) and set
+X := Q(α, P). Let U be an open neighborhood of X which we may assume
+is of the form NXF , for some finite symmetric set F ⊆ G, which, without loss
+of generality, contains the unit. We shall find an open neighborhood V of α
+so that Q(·, P)[V ] ⊆ U . We claim that V := NαF,P is such a neighborhood.
+Indeed, pick β ∈ V and set Y := Q(β, P). Let us show that Y ∈ U = NXF ,
+i.e. YF = XF . Let p ∈ XF be a pattern allowed in X, so there is x ∈ X such
+that x ↾ F = p. Let z ∈ C be an arbitrary element such that QαP (z) = x. By
+the definition of the neighborhood V = NαF,P
+                                                           
+                 ∀f ∈ F ∀P ∈ P α(f )z ∈ P ⇔ β(f )z ∈ P .
+It follows that for y := QβP (z) ∈ Y we have
+                              p = x ↾ F = y ↾ F,
+thus p is allowed in Y as well. We proved that XF ⊆ YF , the other direction
+is proved symmetrically. This finishes the proof that Q(·, P) is continuous.
+                                            {1 }                {1 }
+   Let us show that the map is onto NP GG . Pick X ∈ NP GG and and for
+each P ∈ P, let ψP : C{1G ,P } (X) × C → P be a homeomorphism. Here
+C{1G ,P } (X) := {x ∈ X : x(1G ) = P }, which corresponds to the notation
+Cp (X), where p = {1G , P } ∈ P {1G } . We take the product of C{1G ,P } (X)
+with C to ensure that it has no isolated points.
+   Since {C` {1G ,P } (X) × C : P ∈ P} is a clopen partition of X × C, it follows
+that ψ :=  P ∈P ψP : X × C → C is a homeomorphism. We define γ :=
+ψ ◦ σ × Id ◦ ψ −1 ∈ ActG (C), where σ × Id is the action of G on X × C,
+which acts as the shift on the first coordinate and as the identity on the other.
+We claim that Q(γ, P) = X. This follows since ψ is a homeomorphism and
+for every x ∈ X and y, z ∈ C such that z = ψ(x, y), and for every g ∈ G and
+P ∈ P we have
+    QγP (z)(g) = P ⇔ γ(g −1 )z ∈ P
+                       ⇔ σ(g−1 ) × Id (x, y) ∈ C{1G ,P } (X) × C ⇔ x(g) = P.
+                                      
+
+                                                                               
+Proposition 2.12. Let G be a countable group and P ′  P two clopen
+partitions of C, one refining the other.
+    (1) For every α ∈ ActG (C), finite symmetric set F ⊆ G containing 1G
+        and X ∈ Q(·, P)[NαF,P ] we have
+                             Q(·, P)[NαF,P ] = NXF .
+10                             MICHAL DOUCHA
+
+     (2) For every α ∈ ActG (C) we have Q(α, P) = φ Q(α, P ′ ) , where φ :
+                                                                
+
+         (P ′ )G → P G is the map induced by the inclusion map ι : P ′ → P,
+         i.e. satisfying P ⊆ ι(P ) for every P ∈ P ′ .
+     (3) For every α ∈ ActG (C), a finite symmetric set F ⊆ G containing
+         1G , and a subshift Y ⊆ (P ′ )G such that φ[Y ] = Q(α, P), where
+         φ : (P ′ )G → P G is a map induced by the inclusion map ι : P ′ → P,
+         there exists β ∈ NαF,P such that Q(β, P ′ ) = Y .
+Proof. Let us fix G and P ′  P as in the statement.
+  We first prove (1). Fix additionally α, F ⊆ G and X as in the statement.
+Since for every Y ∈ NXF we have NYF = NXF , we can without loss of generality
+assume that X = Q(α, P). We first prove that Q(·, P)[NαF,P ] ⊆ NXF . Pick
+β ∈ NαF,P and set Y := Q(β, P). We need to prove that XF = YF . Take
+some p ∈ XF and let x ∈ C be such that for every f ∈ F and P ∈ P
+                          α(f −1 )x ∈ P ⇔ p(f ) = P,
+thus QαP (x) ↾ F = p. Since by definition for every f ∈ F and P ∈ P we have
+                        α(f −1 )x ∈ P ⇔ β(f −1 )x ∈ P,
+it follows that QβP (x) ↾ F = p as well. We showed that XF ⊆ YF , the
+inclusion YF ⊆ XF is proved symetrically.
+   Now we prove the reverse inclusion NXF ⊆ Q(·, P)[NαF,P ]. Take any Y ∈
+NXF . We define a clopen partition P ′′ := {Rp : p ∈ XF }  P, where for
+p ∈ XF ,
+     Rp := {x ∈ C : ∀f ∈ F α(f −1 )(x) ∈ P if and only if p(f ) = P }.
+                                                                   
+
+For each p ∈ XF , since YF = XF , we have that Cp (Y ) 6= ∅ and let ψp :
+Cp (Y ) × C → Rp be
+                 ` a fixed homeomorphism and set ψ : Y × C → C to be the
+homeomorphism p∈XF ψp . We define the action β ∈ ActG (C) by setting
+for g ∈ G and x ∈ C
+                    β(g)(x) := ψ ◦ σ(g) × Id ◦ ψ −1 (x).
+                                            
+
+   The verification that Q(β, P) = Y is straightforward and similar as in
+the proof of Proposition 2.11. We check that β ∈ NαF,P . Pick x ∈ C,
+f ∈ F , and P ∈ P. We need to verify that α(f −1 )x ∈ P if and only if
+β(f −1 )x ∈ P . Without loss of generality, assume that α(f −1 )x ∈ P and
+it suffices now to verify that β(f −1 )x ∈ P . Let p ∈ XF be such that
+x ∈ Rp . Then by definition, p(f ) = P and we verify that β(f −1 )x =
+ψ ◦ (σ(f −1 ) × Id) ◦ ψ −1 (x) ∈ P . We have ψ −1 (x) ∈ Cp (Y ) × C and so
+(σ(f −1 ) × Id) ◦ ψ −1 (x) ∈ Cp′ (Y ) × C, for some p′ ∈ XF where p′ (1G ) = P .
+Consequently, β(f −1 )x ∈ Rp′ , thus, by the definition of Rp′ ,
+                  β(f −1 )x = α(1−1         −1
+                                               )x ∈ p′ (1G ) = P,
+                                                 
+                                   G ) β(f
+which is what we were supposed to show.
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                        11
+
+   We now prove (2). Fix α ∈ ActG (C) and consider the map φ : (P ′ )G → P G
+as in the statement. Set X := Q(α, P ′ ) and Y := Q(α, P). We need to
+show that φ[X] = Y . Pick an arbitrary z ∈ C and set x := QαP ′ (z) ∈ X,
+y := QαP (z) ∈ Y . Now let g ∈ G and we check that φ(x)(g) = y(g), which
+will finish the proof. For P ∈ P we have
+       y(g) = P ⇔ α(g −1 )z ∈ P ⇔ ∃P ′ ∈ P ′ P ′ ⊆ P ∧ α(g −1 )z ∈ P ′
+                                                                       
+
+                ⇔ x(g) = P ′ ⇔ φ(x)(g) = P,
+which shows the equality.
+   Finally, we prove (3). Fix α, F ⊆ G, and Y as in the statement. Set
+X := Q(α, P). The proof is similar to the proof of (1). We again define a
+clopen partition P ′′ := {Rp : p ∈ XF }  P, where for p ∈ XF ,
+     Rp := {x ∈ C : ∀f ∈ F α(f −1 )(x) ∈ P if and only if p(f ) = P }.
+                                                                   
+
+Consider now the clopen partition refining P ′ and P ′′ , i.e. the partition
+{Rp ∩ P : p ∈ XF , P ∈ P ′ , Rp ∩ P 6= ∅}. For every p ∈ XF and P ∈ P ′ we
+also define
+                                         
+Dp := y ∈ Y : ∀f ∈ F φ0 (y(f )) = p(f ) and CP := {y ∈ Y : y(1G ) = P }.
+Since φ[Y ] = X we get that for each p ∈ XF , Dp 6= ∅, and {Dp : p ∈ XF } is a
+clopen partition of Y . Consequently, {Dp ∩CP : p ∈ XF , P ∈ P ′ , Rp ∩P 6= ∅}
+is a clopen partition of Y as well. As in the proof of (1), for every p ∈ XF
+and P ∈ P ′ such that Rp ∩ P 6= ∅, let ψp,P : (Dp ∩ CP ) × C → Rp ∩ P be a
+fixed homeomorphism. We set ψ : Y × C → C to be the homeomorphism
+                                    a
+                                              ψp
+                            p∈XF ,P ∈P ′ ,Rp ∩P 6=∅
+
+and we define the action β ∈ ActG (C) by setting for g ∈ G and x ∈ C
+                   β(g)(x) := ψ ◦ σ(g) × Id ◦ ψ −1 (x).
+                                            
+
+The verification that β ∈ NαF,P is as in the proof of (1). To check that
+Q(β, P ′ ) = Y , notice that for every x ∈ C, g ∈ G, and P ∈ P ′ we have
+β(g −1 )(x) ∈ P if and only if y(g) = P , where ψ(y, z) = x for some z ∈ C.
+Thus QβP ′ (x) = y and by definition, y ∈ Y . It follows that Q(β, P ′ ) ⊆
+Y . Conversely, for every y ∈ Y , pick any z ∈ C and set x := ψ(y, z).
+It is straightforward and left to the reader that QβP ′ (x) = y, thus Y ⊆
+Q(β, P ′ ).                                                              
+2.2. Isolated subshifts, subshifts of finite type, and sofic subshifts.
+Definition 2.13. Let G be a countable group and A be a finite set with at
+least two elements. A subshift X ⊆ AG is of finite type, shortly an SFT, if
+there exists a finite set F ⊆ G, called the defining window of X, and a set
+F ⊆ AF of patterns such that for x ∈ AG we have
+                x ∈ X if and only if ∀g ∈ G (gx ↾ F ∈ F).
+12                               MICHAL DOUCHA
+
+The set F is called the set of allowed patterns for X, while its complement
+F A \ F is called the set of forbidden patterns for X.
+   We also say that a subshift X ⊆ AG is sofic if it is a factor of a subshift
+of finite type (possibly defined over different finite set, i.e. subshift of B G
+for some non-trivial finite B).
+  Subshifts of finite type play also a prominent role in the topology of the
+space SG (A). The proof of the following simple but useful lemma is left to
+the reader.
+Lemma 2.14. Let G be a countable group and A be a non-trivial finite set.
+Then the subshifts of finite type are dense in SG (A). Moreover, for every
+subshift of finite type X ⊆ AG there is a finite set F ⊆ G so that all subshifts
+in the basic open neighborhood NXF are subshifts of X.
+   In particular, every open set in SG (A) contains an open subset which has
+a subshift that is maximal with respect to inclusion, it is of finite type, and
+all other subshifts in the open set are its subshifts.
+Definition 2.15. Let G be a countable group, F ⊆ G \ {1G } a finite subset,
+and V a finite (vertex) set. We call the collection VF = (V, (Ef )f ∈F ) an F -
+Rauzy graph if for each f ∈ F , (V, EF ) is a directed graph with no sources
+and no sinks. That is, Ef is a set of oriented edges between the vertices V
+such that for every v ∈ V there are at least one incoming and one outgoing
+edge to v, resp. from v.
+  Having VF as above we define a subshift XVF ⊆ V G as follows. For
+x ∈ V G we set
+                                                                     
+       x ∈ XVF if and only if ∀g ∈ G ∀f ∈ F (x(g), x(gf )) ∈ Ef .
+It is clear that XVF is of finite type.
+  Notice that alternatively and equivalently one can require to have the
+edge set Ef for all f ∈ G with the requirement that for all but finitely many
+f ∈ G, Ef is a complete directed graph on V .
+   Conversely, it is well-known fact (at least in case G = Z) that any SFT
+X ⊆ AG , for any G and A, is conjugate to an SFT of the form XVF for
+some F -Rauzy graph. We refer to [6, Proposition 1.6] for the proof of the
+following proposition.
+Proposition 2.16. Let G be a countable group and A a finite set with at
+least two elements. Let X ⊆ AG be a subshift of finite type whose defining
+window is a finite set F ⊆ G. Let S be a finite symmetric set (not containing
+1G ) such that hF i = hSi ≤ G. Then there exists an S-Rauzy graph VS , such
+that X is conjugate to XVS .
+   We remark that the isomorphism between XVS and X may be by con-
+struction chosen so that it is induced by a map f : V → A, where V is the
+vertex set of VS .
+     A special subclass of subshifts of finite type will be of crucial importance.
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                         13
+
+Definition 2.17. Let G and A be as in Definition 2.13. A subshift X ∈
+SG (A) is called isolated if any of the following equivalent conditions hold:
+    (1) X is isolated in the topology of SG (A).
+    (2) X is of finite type and there exists a finite set F ⊆ G such that there
+        is no proper subshift Y ( X satisfying YF = XF .
+Remark 2.18. Notice that the implication from (1) to (2) follows from
+Lemma 2.14. The same lemma implies that if X is not isolated and is of
+finite type there exist a finite set F ⊆ G and Y ∈ NXF \ {X} such that
+Y ⊆ X, thus Y ( X while YF = XF , hereby showing the implication from
+(2) to (1).
+   Notice also that every minimal subshift of finite type is isolated.
+Lemma 2.19. Let A be a finite set having at least two elements and G a
+countable group. A subshift X ⊆ AG is isolated if and only if it is of finite
+type and there exists a partition P of X into disjoint non-empty clopen sets
+such that there is no proper non-empty subshift Y ⊆ X which intersects
+every element of P.
+Proof. If X is isolated then by definition it is of finite type and there is a
+finite set F ⊆ G so that NXF = {X}. Then the partition
+            P := {Cp ⊆ X : p ∈ AF is an allowed pattern in X}
+is as desired.
+   Conversely, suppose that X ⊆ AG is of finite type and has the prop-
+erty as in the statement with respect to a partition P. It is clear that
+then it has the same property with respect to any refinement P ′  P.
+Thus we can find a refinement P ′  P which is of the form {Cp : p ∈
+AF is an allowed pattern in X}, for some finite set F ⊆ G. It is clear that
+then NXF = {X}, so X is isolated.                                        
+   The following corollary that being isolated is a conjugacy invariant im-
+mediately follows from Lemma 2.19 and the fact that being of finite type is
+a conjugacy invariant (see e.g. [6, Proposition 1.5]).
+Corollary 2.20. Let A and B be finite sets with at least two elements, and
+G a countable group. Suppose that X ⊆ AG is isolated and Y ⊆ B G is a
+subshift such that there is a G-equivariant homeomorphism between X and
+Y . Then Y is isolated as well.
+Lemma 2.21. Let A and B be two finite sets with at least two elements and
+let G be a countable group. Let X ∈ SG (A) and Y ∈ SG (B) be two shifts
+and φ : X → Y a continuous G-equivariant map. Then there exists a finite
+set F ⊆ G such that for every Z ⊆ Z ′ ∈ NXF , φ is defined on Z.
+Proof. Fix X, Y and φ : X → Y as in the statement. By the Curtis-
+Hedlund-Lyndon theorem, φ is induced by some map φ0 : XF → B, where
+F ⊆ G is a finite subset, so that for every x ∈ X and g ∈ G we have
+                          φ(x)(g) := φ0 g−1 x ↾ F .
+                                                 
+14                             MICHAL DOUCHA
+
+Now if Z ⊆ Z ′ ∈ NXF then ZF ⊆ ZF′ = XF , thus φ can be defined on Z
+using φ0 exactly in the same way.                                  
+     The previous lemma makes sense of the following definition.
+Definition 2.22. Let A be a finite set with at least two elements and G
+be a countable group. A subshift X ∈ SG (A) is called projectively isolated
+if there exist a subshift Y ∈ SG (B), for some finite set B, a finite set
+F ⊆ G, and a continuous G-equivariant map φ : Y → X such that the set
+{Z ∈ NYF : φ[Z] = X} has a non-empty interior containing Y .
+   We shall call any such map φZ an isolated factor map.
+   If X is a factor of an isolated subshift, then we call X strongly projectively
+isolated.
+   We collect several basic observations and lemmas about projectively iso-
+lated subshifts.
+Lemma 2.23. If X ∈ SG (A) is an isolated subshift, then it is also strongly
+projectively isolated, and a strongly projectively isolated subshift is projec-
+tively isolated.
+Proof. Let X be strongly projectively isolated, i.e. it is a factor of some
+isolated subshift Y . Using the notation of Definition 2.22, we take NYF to
+be the neighborhood {Y } and we take the identity as φ.
+   If X is isolated, then it is obviously a factor of an isolated subshift, thus
+strongly projectively isolated.                                               
+Lemma 2.24. Every projectively isolated subshift is sofic. In particular,
+there are at most countably many projectively isolated subshifts - for each
+alphabet.
+Proof. Suppose that X is projectively isolated. Then by definition there is
+an open set of subshifts all of them projecting onto X. Since by Lemma 2.14
+subshifts of finite type are dense, we get that X is a factor of a subshift of
+finite type, thus it is sofic.                                              
+     The following lemma is clear.
+Lemma 2.25. Let X be a projectively isolated subshift and let Y be a subshift
+witnessing that X is projectively isolated - as in Definition 2.22. Then every
+subshift that is a factor of X is also projectively isolated and every subshift
+that factors onto Y also witnesses that X is projectively isolated.
+  Since an isomorphism is a special case of a factor map, Lemma 2.25
+immediately gives.
+Corollary 2.26. Being projectively isolated is a conjugacy invariant.
+  The content of the following lemma is that the map projecting onto a
+projectively isolated subshift is without loss of generality induced by a map
+between their respective alphabets.
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                          15
+
+Lemma 2.27. Let X ⊆ AG , for some A and G, be a projectively isolated
+subshift and let Y be a subshift factoring onto X witnessing that. Then
+there exists a subshift Y ′ ⊆ B G isomorphic to Y which witnesses that X
+is projectively isolated via a map P : Y ′ → X which is defined by a map
+P0 : B → A.
+Proof. Let X and Y be as in the statement and suppose that the projective
+isolatedness is witnessed by a map φ : Y → X induced by a map φ0 : YF →
+A between the alphabets, where F ⊆ G is finite. Consider the partition
+P := {Cp ⊆ Y : p ∈ YF } of Y as in Lemma 2.10. Using the notation of
+Lemma 2.10, QσP : Y → P G induces an isomorphism between Y and its
+image denote Y ′ ⊆ B G , where B is identified with P. It is then clear that
+the map P := φ ◦ (QσP )−1 : Y ′ → X is induced by a map P0 : B → A,
+finishing the proof.                                                      
+Example 2.28. Let us provide an example of a subshift that is strongly
+projectively isolated, however it is not isolated. Let X ⊆ {0, 1}Z be the shift
+                        {x ∈ {0, 1}Z : |x−1 ({1})| ≤ 1}.
+X cannot be isolated since it is not even a subshift of finite type. Let
+Y ⊆ {−1, 0, 1}Z be a subshift of finite type whose defining window is an
+interval of length 2 and the allowed patterns are {−1 − 1, −11, 10, 00}. Let
+P : Y → X be a factor map induced by the map P0 : {−1, 0, 1} → {0, 1}
+defined by P0 (−1) = P0 (0) = 0 and P0 (1) = 1. One easily checks that
+   {0,1}
+NY       = {Y }, i.e. Y is isolated, thus Y and P witness that X is projectively
+isolated.
+  We conclude this section with one more notion of a subshift, weaker than
+being sofic, yet still obtained given finite data.
+Definition 2.29. Let G be a finitely generated and recursively presented
+group and let A be a non-trivial finite set. Fix a finite symmetric generating
+set S ⊆ G for G. We say that a subshift X ⊆ AG is effective if there exists
+an algorithm (formally, a Turing machine) that given a pattern p ∈ AF ,
+which is presented to the algorithm in the form {(wi , ai ) : i ≤ n}, where
+each ai ∈ A and wi is a word in letters from S, decides whether p is allowed
+in X, or not.
+Remark 2.30. The notion of an effective subshift was introduced by Hochman
+for Zd -subshifts in [36]. A general notion for general finitely generated groups
+was given in [5]. The definition above corresponds to their definition jointly
+with [5, Proposition 2.1 and Lemma 2.3] for recursively presented groups.
+In particular, notice that, without loss of generality, the set of forbidden
+patterns can be taken recursive instead of only recursively enumerable. We
+will restrict to this case in this paper.
+  The following follows from the definition.
+16                              MICHAL DOUCHA
+
+Lemma 2.31. Let 1 → N → G → H → 1 be a short exact sequence of
+groups where G and H are finitely generated and recursively presented. We
+assume that N ⊆ G. Let A be a non-trivial finite set, let X ⊆ AG be a
+subshift on which N acts trivially, and let X ′ ⊆ AH be the corresponding
+subshift over H. Then X is effective if and only if X ′ is.
+
+               3. Strong topological Rokhlin property
+  This section is devoted to proving the equivalence between (1) and (2) of
+Theorem A from Introduction. We restate it more precisely below.
+Theorem 3.1. Let G be a countable group. Then G has the strong topolog-
+ical Rokhlin property if and only if for every n ≥ 2, the set of projectively
+isolated subshifts in SG (n) is dense.
+     We prove the two implications separately.
+3.1. Failure of the strong topological Rokhlin property.
+Proposition 3.2. Let G be a countable group. If there exists n ≥ 2 such
+that the projectively isolated subshifts are not dense in SG (n), then G does
+not have the strong topological Rokhlin property. In fact, every conjugacy
+class in ActG (C) is meager.
+Proof. We fix a countable group G without the STRP.
+   Let n ≥ 2 be such that the set of projectively isolated subshifts is not
+dense in SG (n). That is, there is a non-empty open set U ⊆ SG (n) that
+contains no projectively isolated subshifts. By passing to an open subset
+of U if necessary, we may without loss of generality assume that there is
+a subset I ⊆ {1, . . . , n} such that for every X ∈ U we have {i ≤ n : ∃x ∈
+X (x(1G ) = i)} = I, and by passing to SG (m), for some m < n, if necessary,
+we may without loss of generality assume that I = {1, . . . , n}. For every
+X ∈ U set
+ A(X) := {α ∈ ActG (C) :
+              for no clopen partition P = {P1 , . . . , Pn } of C, Q(α, P) = X}.
+Lemma 3.3. For every X ∈ U , A(X) is a dense Gδ set.
+Proof of Lemma 3.3. Fix a clopen partition P = {P1 , . . . , Pn } and we show
+that the set
+                    AP
+                     X := {α ∈ ActG (C) : Q(α, P) 6= X}
+is open and dense. In order to show that it is open, we use Proposition 2.11
+telling us that the map Q(·, P) is continuous. It follows that
+                                                     
+                      APX =  Q −1
+                                  (·, P)  Sg (n) \ {X}
+is open as a preimage of an open set.
+   We now show that AP   X is dense. Fix some open set V ⊆ ActG (C). We
+claim that there is α ∈ V such that Q(α, P) 6= X.
+                  STRONG TOPOLOGICAL ROKHLIN PROPERTY                          17
+
+                                                  ′
+   We may suppose that V is of the form NβF,P , for some β ∈ ActG (C), finite
+symmetric F ⊆ G containing the unit 1G , and a clopen partition P ′  P. By
+Proposition 2.12 (1), setting Y := Q(β, P ′ ), we have Q(·, P ′ )[V ] = NYF . Let
+φ : (P ′ )G → P G be the factor map induced by the inclusion map φ0 : P ′ → P
+defined so that for every P ∈ P ′ we have P ⊆ φ0 (P ). Since X is not
+projectively isolated, there exists Y ′ ∈ NYF such that φ[Y ′ ] 6= X. Again by
+Proposition 2.12 (1), there is some γ ∈ V satisfying Q(γ, P ′ ) = Y ′ . However,
+then by Proposition 2.12 (2) we get
+                     Q(γ, P) = φ Q(γ, P ′ ) = φ[Y ′ ] 6= X,
+                                           
+
+which finishes the proof that AP
+                               X is dense since V was arbitrary.
+   Now we just notice that there are only countably many partitions P of C
+into disjoint non-empty clopen n-many sets, the set of such denoted by Pn ,
+and therefore                         \
+                             A(X) =        AP
+                                            X,
+                                         P∈Pn
+which is dense Gδ by the Baire category theorem.
+  This finishes the proof of the lemma.                                        
+   In order to reach a contradiction, suppose now that G does have the strong
+topological Rokhlin property, i.e. there is α ∈ ActG (C) whose conjugacy
+class is comeager in ActG (C). Since the conjugacy class is dense it has to
+intersect the open set
+                              U := Q−1 (·, P) U ,
+                                                
+
+where P := {P1 , . . . , Pn } is an arbitrary partition of C into disjoint non-
+empty clopen n-many sets. Without loss of generality, we assume that
+α ∈ U . Set X := Q(α, P) ∈ U . Since by Lemma 3.3, A(X) is dense Gδ , it
+has to intersect the conjugacy class of α. So there is some ϕ ∈ Homeo(C)
+such that
+                              α′ := ϕαϕ−1 ∈ A(X).
+Set P ′ := {ϕP1 , . . . , ϕPn }. By definition, we have
+                           Q(α′ , P ′ ) = Q(α, P) = X,
+which contradicts that α′ ∈ A(X).
+  Applying Fact 2.4, we get that actually every conjugacy class is meager.
+This finishes the proof.                                                
+
+3.2. Establishing the strong topological Rokhlin property.
+  This subsection is devoted to the proof of the other implication of Theo-
+rem 3.1.
+   We assume that for each n ≥ 2, the set of projectively isolated subshifts
+in Sn (G) is dense and we prove that G has the strong topological Rokhlin
+property.
+18                                     MICHAL DOUCHA
+
+   We shall use the following proposition from [10] that is attributed to
+Rosendal. We are grateful to the anonymous referee for suggesting to apply
+this result in order to simplify the proof.
+Proposition 3.4 (Proposition 3.2 in [10]). Let G be a Polish group acting
+continuously and topologically transitively on a Polish space X. Then the
+action has a comeager orbit if and only if for every open 1G ∈ V ⊆ G and
+every open U ⊆ X there exists an open subset U ′ ⊆ U such that for all pairs
+of further open subsets W1 , W2 ⊆ U ′ , we have V · W1 ∩ W2 6= ∅.
+  In our case, G = Homeo(C), X = ActG (C), and the action is by conju-
+gation which is topologically transitive, as mentioned in Introduction and
+proved in [37, Proposition 1.2] (we recall that the proposition is stated for
+Zd but works for any countable group).
+  Fix an open neighborhood Id ∈ V ⊆ Homeo(C) and an open set U ⊆
+ActG (C). Since the topology of uniform convergence on Homeo(C) coincides
+with the topology of pointwise convergence on Clopen(C) and by Lemma 2.2,
+without loss of generality we may assume that there are a clopen partition
+P of C, a finite symmetric subset F ⊆ G containing the unit, and an action
+α ∈ ActG (C) such that
+         V = {φ ∈ Homeo(C) : ∀P ∈ P (φ[P ] = P )}      and   U = NαF,P .
+Set X ′ := Q(α, P) ⊆ P G . Applying Proposition 2.12(1) we get that Q(·, P)[NαF,P ] =
+NXF ′ . By the assumption, there exists a projectively isolated subshift X ∈
+NXF ′ . Using Proposition 2.12(1) we get α′ ∈ NαF,P such that Q(α′ , P) = X.
+Since NαF,P = NαF,P
+                  ′  , we may without loss of generality assume that α = α′ .
+  By definition and using Lemma 2.14 there exists a subshift of finite type
+Y ⊆ B G , for some non-trivial finite set B, a finite symmetric set F ′ ⊇ F ,
+and a factor map φ : Y → X such that
+                           ′
+      • for every Y ′ ∈ NYF we have Y ′ ⊆ Y ;
+                           ′
+      • for every Y ′ ∈ NYF we have φ[Y ′ ] = X.
+By Lemma 2.27, without loss of generality, we may assume that φ is induced
+by a map φ0 : B → P between the alphabets. We may identify B with a
+clopen partition P ′  P where for Q ∈ P ′ and P ∈ P we have Q ⊆ P if and
+only if φ0 (Q) = P .
+   By Proposition 2.12(3) we get β ∈ ActG (C) such that Q(β, P ′ ) = Y and
+                                                                     ′ ′
+β ∈ NαF,P . Moreover, by Proposition 2.12(1) we have Q(·, P ′ )[NβF ,P ] =
+                               ′   ′
+NYF . Let us set U ′ := NβF ,P . Since β ∈ NαF,P = U , F ′ ⊇ F , and P ′  P,
+     ′
+
+
+we get that U ′ ⊆ U .
+  To finish the proof, using Proposition 3.4, we need to check that for all
+open sets W1 , W2 ⊆ U ′ we have V · W1 ∩ W2 6= ∅. Choose therefore some
+open W1 , W2 ⊆ U ′ . By Lemma 2.2 and by refining the sets if necessary we
+may assume, without loss of generality, that there are a clopen partition
+                  STRONG TOPOLOGICAL ROKHLIN PROPERTY                             19
+
+P ′′  P ′ , a finite symmetric set F ′′ ⊇ F ′ , and actions γ1 , γ2 ∈ ActG (C) such
+that
+                                 ′′ ′                     ′′ ′′
+                        W1 = NγF1 ,P and W2 = NγF2 ,P .
+Since γ1 , γ2 ∈ U ′ observe that Q(γ1 , P) = Q(γ2 , P) = X.
+    Consider now γ1 × γ2 , the diagonal action of G on C × C. Denote by
+P1 : C × C → C, resp. P2 : C × C → C the projection onto the first, resp. the
+second coordinate and let us consider the closed G-invariant subspace
+              W := {(x, y) ∈ C × C : QγP1 (x) = QγP2 (y)} ⊆ C × C.
+The set W is non-empty. In fact, we have P1 [W ] = P2 [W ] = C, therefore
+QγP1 ◦ P1 [W ] = QγP2 ◦ P2 [W ] = X. Indeed, for any x ∈ C set z := QγP1 (x) ∈ X
+and find, since Q(γ2 , P) = X, an element y ∈ C such that QγP2 (y) = z. Then
+(x, y) ∈ W .
+   Enumerate the partition P ′′ as {P1 , . . . , Pn }. In what follows we shall
+without loss of generality assume that W has no isolated points, thus it is
+homeomorphic to C, as otherwise we could consider the product of W with
+C equipped with the trivial action of G. We shall consider several clopen
+partitions of W and C respectively.
+   First, for every i ≤ n set
+          [                                      [
+  Ui :=        (Pi × Pj ) ∩ W : j ≤ n and Vi :=        (Pj × Pi ) ∩ W : j ≤ n .
+  Notice that both {Ui : i ≤ n} and {Vi : i ≤ n} are clopen partitions of W .
+Set Z1 := Q(γ1 , P ′′ ) and Z2 := Q(γ2 , P ′′ ). For each p ∈ (Z1 )F ′′ set
+ Dp1 := (x, y) ∈ W : ∀f ∈ F ′′ γ1 (f −1 )(x) ∈ Pi if and only if p(f ) = Pi ,
+                                                                           
+
+which is a clopen subset of W and
+   Rp1 := z ∈ C : ∀f ∈ F ′′ γ1 (f −1 )(z) = Pi if and only if p(f ) = Pi ,
+                                                                       
+
+which is a clopen subset of C. Then {Dp1 : p ∈ (Z1 )F ′′ }, resp. {Rp1 : p ∈
+(Z1 )F ′′ } are clopen partitions of W , resp. of C.
+   For each p′ ∈ (ZF )F ′′ we define analogously the clopen sets Dp2′ and Rp2′
+of W and C respectively.
+   Let ψ1 : W → C be any homeomorphism satisfying ψ1 [Dp1 ] = Rp1 , for every
+p ∈ (Z1 )F ′′ . We define λ1 ∈ ActG (C) by conjugating γ1 × γ2 ↾ W by ψ1 , i.e.
+for g ∈ G and z ∈ C we have λ1 (g)(x) := ψ1 ◦ (γ1 × γ2 (g)) ◦ ψ1−1 (z). We
+analogously define ψ2 : W → C using the clopen partitions {Dp2 : p ∈ (Z2 )F ′′ }
+and {Rp2 : p ∈ (Z2 )F ′′ } of W and C respectively, and the action λ2 which is
+the conjugate of γ1 × γ2 ↾ W by ψ2 . The same arguments as in the proof of
+                                                                     ′′  ′′
+Proposition 2.12, which are left to the reader, show that λ1 ∈ NγF1 ,P = W1 ,
+                 ′′ ′′
+resp. λ2 ∈ NγF2 ,P = W2 . Since clearly ψ2 ◦ ψ1−1 λ1 ψ1 ◦ ψ2−1 = λ2 , if we show
+that ψ2 ◦ ψ1−1 ∈ V we will have verified that V · W1 ∩ W2 6= ∅.
+  Pick any z ∈ C and let A ∈ P be such that z ∈ A. We show that
+ψ2 ◦ ψ1−1 (z) ∈ A. Set (x, y) := ψ1−1 (z) ∈ W . Let p ∈ (Z1 )F ′′ be such that
+z ∈ Rp1 and let Pi ∈ P ′′ be such that p(1G ) = Pi . It follows that Pi ⊆ A. We
+20                             MICHAL DOUCHA
+
+have z ∈ Pi and therefore, by the choice of ψ1 , we have that x ∈ Dp1 , thus
+also x ∈ Pi ⊆ A ∈ P. Since QγP1 (x) = QγP2 (y), it follows that y ∈ A. This
+implies that there is p′ ∈ (Z2 )F ′′ such that p′ (1G ) = Pj ⊆ A, for some j ≤ n,
+and that y ∈ Dp2′ . Then again, by definition of ψ2 , we get ψ2 (x, y) ∈ Rp2′ .
+So in total we get
+                   ψ2 ◦ ψ1−1 (z) = ψ2 (x, y) ∈ Rp2′ ⊆ Pj ⊆ A
+which is what we wanted to prove. This finishes the proof. 
+
+   Theorem 3.1 jointly with the recent paper [51] give yet another proof
+of the existence of a generic action of Z on the Cantor space. Indeed, in
+[51, Theorem 3.6] they prove that isolated subshifts are dense in SZ (n), for
+n ≥ 2. Notice also that by Theorem 3.1, every finite group has the strong
+topological Rokhlin property since actually every subshift over a finite group
+is isolated.
+
+     4. Free products with the strong topological Rokhlin
+                            property
+   With this section we start with our applications of Theorem 3.1. Our goal
+is to prove Theorem B. For this we need to introduce some new notions.
+Definition 4.1. Let A be a finite non-trivial set (thought of as a set of
+colors in this context) and let G = ⋆i≤n Gi , where each for each i ≤ n, Gi is
+either finite or infinite cyclic. Let S ⊆ G be a finite symmetric set consisting
+of the generator gi ∈ Gi and its inverse gi−1 if Gi is infinite cyclic, and of
+Gj \ {1} if Gj is finite. A coloring automaton is a map Ω : S × A → A.
+Construction 4.2. A coloring automaton Ω over G as above and A pro-
+duces an element x ∈ AG which is uniquely defined by chosing the starting
+element g ∈ G and the starting color a ∈ A, and then coloring the rest of the
+elements by the fixed rule given by the map Ω. Moreover, the automaton
+keeps track on how it moves along the Cayley graph of G with respect to S.
+   More formally, we proceed as follows. We define
+                            B := A × {←, →, ∅}S .
+For any b ∈ B, we denote by b1 , resp. b2 its projection to the first coordinate,
+which is an element of A, resp. its projection to the second coordinate, which
+is an element of {←, →, ∅}S . Upon choosing the initial group element and
+color, we define an element x ∈ AG and an element x̃ ∈ B G such that for all
+g ∈ G, x̃(g)1 = x(g).
+
+Step 1. Pick any g ∈ G and a ∈ A. We set x(g) = a. For every s ∈ S we
+set
+                          x(gs) := Ω(s, a),
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                         21
+
+and in order to keep track of how the automaton moves, we set x̃(g)1 = a
+and for each s ∈ S we set x̃(g)2 (s) =→. Then for each s ∈ S we set
+                   x̃(gs)1 := x(gs) and x̃(gs)2 (s−1 ) =← .
+Additionally, for every other s′ 6= s−1 ∈ S we set
+                      (
+                ′      ∅   if s, s′ belong to the same finite group Gj ;
+      x̃(gs)2 (s ) :=
+                       → otherwise.
+
+
+General Step 2. Assume that the automaton has defined x(h) and x̃(h),
+for some h ∈ G, arriving to h from some h′ in the direction of some s′ ∈ S,
+i.e. h = h′ s′ . Then we have two cases.
+   (1) The element s′ does not belong to any finite group Gj , i.e. it is the
+       generator or its inverse of some infinite cyclic group Gi . Then for
+       every s 6= (s′ )−1 ∈ S we set
+                             x(hs) := Ω(s, x(h)),
+
+                  x̃(hs)1 := x(hs) and x̃(hs)2 (s−1 ) :=← .
+        Moreover, for every s′′ 6= s−1 ∈ S we set
+                      (
+                ′′     ∅   if s, s′′ belong to the same finite group Gj ;
+      x̃(hs)2 (s ) :=
+                       → otherwise.
+
+   (2) The element s′ belongs to some finite group Gj . Then for every
+       s ∈ Gj , x(hs) and x̃(hs) have already been defined since hs = h′ s′′
+       for s′′ = s′ s ∈ Gj . For s ∈
+                                   / Gj we set as before
+                             x(hs) := Ω(s, x(h)),
+
+                  x̃(hs)1 := x(hs) and x̃(hs)2 (s−1 ) :=← .
+        Moreover, for every s′′ 6= s ∈ S we set
+                        (
+                         ∅ if s, s′′ belong to the same finite group Gk ;
+      x̃(hs)2 (s′′ ) :=
+                         → otherwise.
+
+   Let us denote by XΩ , resp. X̃Ω the closure of the subset of AG of all
+those elements of AG , resp. closure of the subset of B G of all those elements
+of B G , produced by the coloring automaton by the procedure above. The
+coordinate projection p : B → A induces a factor map P : B G → AG .
+Theorem 4.3. Let A be a non-trivial finite set, and G and Ω be a group
+and an automaton as in Definition 4.1. Then X̃Ω is an isolated subshift
+and XΩ is a strongly projectively isolated subshift which is witnessed by the
+isolated factor map P , i.e. P [X̃Ω ] = XΩ .
+22                             MICHAL DOUCHA
+
+Proof. Fix the notation as in the statement. We also follow the notation
+from Construction 4.2; in particular, we set B := A × {←, →, ∅}S . The map
+P is therefore induced by the projection map p : B → A. It is clear that
+P [X̃Ω ] = XΩ , so we only need to prove that X̃Ω is isolated.
+   First we notice that X̃Ω is of finite type. We define a subshift of finite
+type X ⊆ B G and show that X = X̃Ω . We set the defining window to
+be F := S ∪ {1}. A pattern p ∈ B F is allowed if it is produced by the
+automaton Ω, i.e. if and only if p ∈ (X̃Ω )F . Clearly, X̃Ω ⊆ X. We show the
+converse. Pick x ∈ X. We distinguish two cases.
+Case 1. We have that there is g ∈ G such that x(g)2 (s) =→ for all s ∈ S.
+Then it is straightforward to check that the rules imposed by the allowed
+patterns of X force x to correspond to an element produced by Ω when
+the starting vertex is g ∈ G and the starting color is x(g)1 . It follows by
+definition that x ∈ X̃Ω .
+Case 2. For every g ∈ G there is one, and consequently by the rules
+imposed by allowed patterns exactly one, s ∈ S such that x(g)2 (s) =←.
+Pick an arbitrary g ∈ G and set g1 := g. By the assumption there is unique
+s ∈ S such that x(g)2 (s) =←. Set g2 := gs. Assuming that gn−1 , for n ∈ N
+has been defined, we set gn := gn−1 s, where s is the unique element of
+S such that x(gn−1 )2 (s) =←. This defines an infinite path (gn )n∈N . This
+path is unique up to finite initial segment. Indeed, choosing a different
+starting element h ∈ G there is a unique path h1 = h, . . . , hn = g such that
+h−1
+  i hi ∈ S, for 1 < i ≤ n, and such that either for each i < n we have
+x(hi )2 (h−1                                                    −1
+          i+1 hi ) =←, or for each i < n we have x(hi )2 (hi+1 hi ) =→. Notice
+that such a path between h and g is unique although there may be more
+than one path h′1 = h, . . . , h′m = g such that (h′i )−1 h′i ∈ S, for 1 < i ≤ m.
+   Now for every n ∈ N we define an element xn ∈ X̃Ω , which is an element
+of B G produced by Ω with the starting element gn and the starting color
+x(gn )1 . It is again straightforward to check that limn→∞ xn = x, so we get
+that x ∈ X̃Ω as desired.
+  It remains to show that X̃Ω = X is isolated. We claim that NXF = {X}.
+Indeed, this follows from the facts that
+     • for every X ′ ∈ NXF we have X ′ ⊆ X;
+     • every X ′ ⊆ X that contains the pattern pa ∈ B F , which is defined
+       as xa ↾ F , where xa ∈ X̃Ω is the element of B G produced by Ω
+       with the starting element 1G and the starting color a, must be equal
+       to X. Indeed, X = X̃Ω is by definition the closure of the set of
+       configurations produced by Ω, which is equal to the smallest subshift
+       containing configurations produced by Ω with the starting element
+       1G and all possible colors a ∈ A.
+                                                                          
+Lemma 4.4. Let A and B be non-trivial finite sets, G be a countable group,
+and X ⊆ AG and Y ⊆ B G be two subshifts of finite type such that there is an
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                       23
+
+isomorphism φ : X → Y . Then φ canonically induces a bijection Φ between
+an open neighborhood NX of X and NY so that for every Z ∈ NX , Z is
+isomorphic to Φ(Z).
+Proof. Let us fix A, B, G, X, Y , and φ : X → Y as in the statement. We
+may suppose that there is a finite set F ⊆ G such that F is the defining
+window for X and φ is determined by a map f : XF → B. Set NX := NXF
+and for Z ∈ NX set
+                              Φ(Z) := φ[Z].
+We leave to the reader the straightforward verification that for every Z ∈
+NX , Φ(Z) is isomorphic to Z, and that NY := Φ[NX ] is an open neighbor-
+hood of Y .                                                              
+Definition 4.5. Let G and H be countable groups, A be a non-trivial finite
+set, and X ⊆ AG , Y ⊆ AH subshifts. The free product X ∗ Y of X and Y is
+a subshift of AG∗H defined as
+           {x ∈ AG∗H : ∀g ∈ G ∗ H (gx ↾ G ∈ X ∧ gx ↾ H ∈ Y )}.
+Equivalently, if PX , resp. PY are the set of forbidden patterns of X, resp.
+of Y , then X ∗ Y is defined as the subshift of AG∗H whose set of forbidden
+patterns is PX ∪ PY .
+   In particular, if X and Y are subshifts of finite type, then so is X ∗ Y .
+Definition 4.6. Let G be a countable group, A and B be non-trivial finite
+sets, and let X ⊆ AG and Y ⊆ B G be subshifts. Say that a continuous
+G-equivariant map φ : Y → X is basic if it is induced by a map φ0 : B → A
+between the respective alphabets.
+Lemma 4.7. Let G and H be countable groups, A be a non-trivial finite
+set, and X ⊆ AG∗H be a subshift of finite type. Then there are a non-trivial
+finite set B and a basic isomorphism φ between a free product V ∗ W and
+X, where V ⊆ B G and W ⊆ B H are subshifts of finite type. Moreover, if
+N is an open neighborhood of X, then φ may be chosen so that it induces
+                                                         {1}
+a bijection Φ between the open neighborhoods N ′ := NV ∗W of V ∗ W and
+Φ[N ′ ] ⊆ N of X such that for all Y ∈ N ′ , Y and Φ(Y ) are isomorphic.
+Proof. Fix G H, A, and X as in the statement. By Proposition 2.16, there
+are finite sets SG ⊆ G and SH ⊆ H, a non-trivial finite set B, and a subshift
+X ′ ⊆ B G∗H isomorphic to X so that for x ∈ B G∗H we have x ∈ X ′ if and
+only if for every g ∈ G ∗ H and for each s ∈ SG ∪ SH
+                     gx ↾ {1, s} is an allowed pattern.
+The set of allowed patterns defined on the subsets {1, s}, where s ∈ SG ,
+resp. s ∈ SH , will be denoted by PG , resp. by PH .
+   We define V ⊆ B G to be the subshift of finite type, where for x ∈ B G we
+have x ∈ V if and only if for every g ∈ G and s ∈ SG
+                             gx ↾ {1, s} ∈ PG .
+24                             MICHAL DOUCHA
+
+We define a subshift W ⊆ B H of finite type analogously, with SH and PH
+instead of SG and PG . We leave to the reader the straightforward verification
+that X ′ = V ∗ W , and thus X is isomorphic to V ∗ W .
+   For the ‘moreover’ part, assume without loss of generality, that N = NXF ,
+for some finite F ⊆ G ∗ H containing the unit. Then, using Lemma 2.10 the
+map XF → A defined by p ∈ XF → p(1) induces an isomorphism ψ between
+                                                {1}
+a subshift Z ⊆ (XF )G∗H and X such that ψ[NZ ] = N . Therefore, without
+                                               {1}
+loss of generality, we may assume that N = NX . Now since φ is induced by
+a map B → A (see the remark following the statement of Proposition 2.16),
+the conclusion follows from Lemma 4.4.                                       
+Definition 4.8. Let G and H be countable groups and let A, B, C be non-
+trivial finite sets. Let φ0 : B → A and ψ0 : C → A be maps and denote
+by B ×φ,ψ C the restricted direct product {(b, c) ∈ B × C : φ0 (b) = ψ0 (c)}.
+Denote also by pB , resp. pC the projection from B × C on the first, resp.
+the second coordinate, and by PB , resp. PC the corresponding induced
+maps from (B × C)G onto B G , resp. from (B × C)H onto C H . Suppose
+that X ⊆ B G and Y ⊆ C H are subshifts. Then the restricted free product
+X ∗φ,ψ Y of X and Y with respect to the maps φ0 and ψ0 is a subshift of
+(B ×φ,ψ C)G∗H defined as
+ {x ∈ (B ×φ,ψ C)G∗H : ∀g ∈ G ∗ H PB (gx ↾ G) ∈ X ∧ PC (gx ↾ H) ∈ Y }.
+                                                                        
+
+Lemma 4.9. Let G and H be countable groups and let A, B, C be non-trivial
+finite sets. Let φ0 : B → A and ψ0 : C → A be maps which induce maps
+φ : B G → AG , resp. ψ : C H → AH . Suppose that X ⊆ AG and X ′ ⊆ B G ,
+resp. Y ⊆ AH and Y ′ ⊆ C H are subshifts such that φ, resp. ψ induces an
+isomorphism between X ′ and X, resp. between Y ′ and Y . Then the map
+(φ0 , ψ0 ) : B ×φ,ψ C → A induces an isomorphism between X ′ ∗φ,ψ Y ′ and
+X ∗Y.
+Proof. Fix the notation as in the statement. The canonical map (φ0 , ψ0 ) :
+B ×φ,ψ C → A induces a map η : (B ×φ,ψ C)G∗H → AG∗H . We need to show
+that η[X ′ ∗φ,ψ Y ′ ] = X ∗ Y and η ↾ X ′ ∗φ,ψ Y ′ is one-to-one.
+  First we check that η[X ′ ∗φ,ψ Y ′ ] ⊆ X ∗ Y . Pick x ∈ X ′ ∗φ,ψ Y ′ and let
+us show that η(x) ∈ X ∗ Y . We need to verify that for every g ∈ G ∗ H we
+have η(gx) ↾ G ∈ X and η(gx) ↾ H ∈ Y . Fix g ∈ G ∗ H. By definition, we
+have PB (gx ↾ G) ∈ X ′ and PC (gx ↾ H) ∈ Y ′ . Notice however that we have
+                    η(gx) ↾ G = φ PB (gx ↾ G) ∈ φ[X ′ ] = X.
+                                               
+
+The case of η(gx) ↾ H is analogous.
+   Next we show injectivity and surjectivity of the map η : X ′ ∗φ,ψ Y ′ →
+X ∗ Y . Let us start with the injectivity. Pick x 6= y ∈ X ′ ∗φ,ψ Y ′ . Without
+loss of generality we can assume that x(1) 6= y(1). It follows that either
+PB (x ↾ G) 6= PB (y ↾ G) or PC (x ↾ H) 6= PC (x ↾ H). Assume the former,
+the latter is treated analogously. Then
+                                                    
+            η(x) ↾ G = φ PB (x ↾ G) 6= φ PB (y ↾ G) = η(y) ↾ G,
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                          25
+
+since φ is injective. However, the inequality η(x) ↾ G 6= η(y) ↾ G implies the
+inequality η(x) 6= η(y).
+   Finally, we show the surjectivity. First we notice that since φ and ψ
+are isomorphisms, the maps φ−1 : X → X ′ , resp. ψ −1 : Y → Y ′ are also
+isomorphisms induced, by the Curtis-Hedlund-Lyndon theorem, by some
+maps fX : XF → B, resp. fY : YE → C, where F ⊆ G and E ⊆ H are finite
+sets. Let y ∈ X ∗ Y . Let us define x ∈ X ′ ∗φ,ψ Y ′ as follows. For g ∈ G ∗ H
+we set x(g) := (b, c), where
+                     b := fX (gy ↾ F ), c := fY (gy ↾ E).
+                                                    
+Since φ0 fX (gy ↾ F ) = y(g) = ψ0 fY (gy ↾ E) , we have that (b, c) ∈
+B ×φ,ψ C. In order to check that x ∈ X ′ ∗φ,ψ Y ′ we need to verify that for
+every g ∈ G ∗ H we have PB (gx ↾ G) ∈ X ′ and PC (gx ↾ H) ∈ Y ′ . We
+verify the former, the latter is analogous, and without loss of generality, we
+assume that g = 1. However, then
+                  PB (x ↾ G) = φ−1 (y ↾ G) ∈ φ−1 [X] = X ′ .
+It remains to check that η(x) = y, which is straightforward and left to the
+reader.                                                                  
+Proposition 4.10. Let G and H be countable groups of the form allowed
+in Definition 4.1. Suppose that for any subshift of finite type X, resp. Y ,
+over G, resp. over H, and every open neighborhood NX of X, resp. NY
+of Y , there is a subshift X ′ ∈ NX , resp. Y ′ ∈ NY isomorphic via a basic
+isomorphism to a subshift produced by a coloring automaton. Then the same
+holds true for every open neighborhood of any subshift of finite type over
+G ∗ H.
+Proof. Fix G, H, and let V be a subshift of finite type over G ∗ H and N
+be an open neighborhood of V . By Lemma 4.7, there exist a finite non-
+trivial set A, subshifts of finite type X ⊆ AG and Y ⊆ AH , and a basic
+isomorphism φ : X ∗ Y → V that induces a bijection between an open
+                    {1}
+neighborhood NX∗Y and open neighborhood N ′ ⊆ N of V . Consequently,
+                                                                          {1}
+without loss of generality, we may assume that V = X ∗ Y and N = NX∗Y ,
+i.e. for Z ⊆ AG∗H we have Z ∈ N if and only if Z is fully colored, i.e. for
+every a ∈ A there is z ∈ Z with z(1) = a. By the assumption there are
+X ′ ⊆ X and Y ′ ⊆ Y that are fully colored, i.e. for every a ∈ A there are
+x ∈ X ′ , resp. y ∈ Y ′ satisfying x(1) = a = y(1), and moreover X ′ and
+Y ′ are isomorphic to subshifts X ′′ ⊆ B G , resp. Y ′′ ⊆ C H , for some non-
+trivial finite sets B and C that are produced by some coloring automata ΩX
+and ΩY defined on finite symmetric generating sets SX ⊆ G and SY ⊆ H.
+Moreover, the isomorphisms φ : X ′′ → X ′ , resp. ψ : Y ′′ → Y ′ are basic, i,e.
+induced by finite (surjective) maps φ0 : B → A, resp. ψ0 : C → A.
+   We define a new coloring automaton on G ∗ H with the set of colors
+B ×φ,ψ C and with respect to the finite symmetric generating set S :=
+26                              MICHAL DOUCHA
+
+SX ∪ SY . For (b, c) ∈ B ×φ,ψ C and s ∈ S we set
+                (
+                 (ΩX (s, b), c′ ) if s ∈ SX so that (ΩX (s, b), c′ ) ∈ B ×φ,ψ C;
+Ω(s, (b, c)) :=
+                 (b′ , ΩY (s, c)) if s ∈ SY so that (b′ , ΩY (s, c)) ∈ B ×φ,ψ C.
+In other words, if s belongs to, say, SX , Ω(s, (b, c)) is (b′ , c′ ), where b′ is
+produced by the automaton ΩX and c′ is arbitrary so that (b′ , c′ ) ∈ B ×φ,ψ C.
+   Denote by Z ⊆ (B ×φ,ψ C)G∗H the subshift produced by the coloring
+automaton Ω. Clearly we have Z ⊆ X ′′ ∗φ,ψ Y ′′ . By Lemma 4.9, we have an
+isomorphism η : X ′′ ∗φ,ψ Y ′′ → X ′ ∗ Y ′ . Therefore Z ′ := η[Z] ⊆ X ′ ∗ Y ′ ⊆
+X ∗ Y . Since Z is fully colored, i.e. for every (b, c) ∈ B ×φ,ψ C there is z ∈ Z
+such that z(1) = (b, c), also Z ′ is fully colored. Therefore Z ∈ N .           
+Corollary 4.11. Let G and H be countable groups such that for each F ∈
+{G, H} and every non-trivial finite set A the set of those subshifts that are
+isomorphic to subshifts produced by coloring automata is dense in SF (A).
+Then the same is true for F = G ∗ H and any non-trivial finite set A.
+   In particular, the set of strongly projectively isolated subshifts is dense in
+SF (A), for every non-trivial finite set A, and F has the strong topological
+Rokhlin property.
+Proof. Fix the groups G and H and a non-trivial finite set A. Let N ⊆
+SG∗H (A) be an open neighborhood. By Lemma 2.14, we may suppose that
+N is an open neighborhood of some subshift of finite type X. Then we apply
+Proposition 4.10. The ‘in particular’ part follows then from Theorems 4.3
+and 3.1.                                                                
+   We have already remarked that in [51, Theorem 3.6] they prove that
+isolated subshifts are dense in SZ (n), for n ≥ 2. In fact, they prove that
+subshifts that are isomorphic to subshifts of finite type given by Rauzy
+graphs with no middle cycles property are isolated and dense. Here a Rauzy
+graph (V, E) (in our previous notation from Definition 2.15, an {1}-Rauzy
+graph) has no middle cycles property if it has no cycle that has both incoming
+and outgoing edge from outside of the cycle - we refer to [51, Definition 3.1
+and Lemma 3.3] for more details.
+Theorem 4.12. Let (Gi )i≤n be a finite sequence of groups where each of
+them is either finite or cyclic. Then ⋆i≤n Gi has the strong topological
+Rokhlin property.
+   In fact, the set of strongly projectively isolated subshifts is dense in the
+spaces of subshifts over ⋆i≤n Gi .
+Proof. In order to apply Corollary 4.11 it suffices to show that for any group
+G that is either finite or infinite cyclic and every non-trivial finite set A the
+set of those subshifts produced by coloring automata is dense in SG (A).
+Case 1. G is finite. Fix a non-trivial finite set A and a subshift X ⊆ AG .
+Set B := XG and define a subshift Y ⊆ B G isomorphic to X via a map
+φ : Y → X which induced by the map φ0 : B = XG → A defined by p ∈
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                         27
+
+XG → p(1G ). Now we define an automaton Ω with respect to S = G \ {1G }
+and B as the set of colors as follows. For b ∈ B = XG and g ∈ G \ {1G } we
+set
+                               Ω(g, b) := g −1 b.
+It is straighforward that the subshift produced by Ω is equal to Y .
+Case 2. G is infinite cyclic.
+  Since G is isomorphic to Z, we shall use the additive notation for group
+operations. We fix a non-trivial finite set A and a subshift of finite type
+X ⊆ AZ and some nighborhood N od X. By [51, Theorem 3.6], N contains
+an NMC (no middle cycle) subshift Y , where Y has NMC if there exists
+n ∈ N such that the Rauzy graph on Y[0,n] (i.e. the graph where Y[0,n] is
+the set of vertices and the set of edges is defined in the obvious way as in
+Proposition 2.16) has no middle cycles property. By increasing n we may
+moreover assume that the graph, which we shall denote (V, E), has no vertex
+that has both more than one incoming edges and more than one outgoing
+edges. We let P : V → {0, 1} to be the characteristic function of the set of
+those vertices of V that belong to a simple cycle.
+  We shall now define the automaton as follows, with respect to S = {−1, 1}
+and V as the set of colors. Pick v ∈ V . We define
+               (
+                 w if P (v) = 0 and w is arbitrary such that (v, w) ∈ E;
+   Ω(1, v) :=
+                 w if P (v) = 1, P (w) = 1 and (v, w) ∈ E.
+In words, we set Ω(1, v) to be the unique successor of v on a simple cycle
+provided that v lies on a simple cycle, otherwise we set Ω(1, v) to be an
+arbitrary successor ov v in the graph. We define Ω(−1, v) symmetrically.
+  It is clear that the subshift generated by Ω is a subshift Y ′ of Y[0,n]
+                                                                      Z    iso-
+                                ′
+morphic to Y via a map φ : Y → Y induced by φ0 : Y[0,n] → A defined by
+p ∈ Y[0,n] → p(0).                                                           
+
+ 5. Groups without the strong topological Rokhlin property
+   In this section we initiate the production of negative examples, i.e. we
+find many new examples of groups without the strong topological Rokhlin
+property. We prove here Theorem C. We start with one more characteriza-
+tion of the strong topological Rokhlin property that is useful especially for
+proving the negative results.
+   When X is a subshift and A is a collection of closed subsets of X, not
+necessarily a partition, we say that X is A-minimal if there is no non-empty
+proper subshift Y ⊆ X that intersects every element from A.
+Theorem 5.1. A countable group G has the strong topological Rokhlin
+property if and only if for every non-trivial finite set A, any sofic subshift
+X ⊆ AG , which is a factor of a subshift of finite type Z ⊆ B G , for some
+non-trivial finite B, via a factor map φ : Z → X, and any open neighborhood
+N of X in SG (A), there are
+28                             MICHAL DOUCHA
+
+     • a sofic subshift Y ⊆ Z satisfying φ[Y ] ∈ N ,
+     • a subshift of finite type V ⊆ C G , for some non-trivial finite set C,
+       factoring on Y via some ψ : V → Y ,
+     • and a clopen partition P of V such that φ[Y ] is A-minimal, where
+       A = φ ◦ ψ(P).
+Proof. Fix a countable group G.
+   Suppose first that there are a non-trivial finite set A, a sofic subshift
+X ⊆ AG , which is a factor of a subshift of finite type Z ⊆ B G , for some
+non-trivial finite B, via a factor map φ : Z → X, and an open neighborhood
+N of X in SG (A) such that no sofic subshift Y ⊆ Z satisfying φ[Y ] ∈ N is
+A-minimal for any A := φ ◦ ψ[P], where V ⊆ C G , for some non-trivial finite
+set C, factors onto Y via ψ : V → Y and P is a clopen partition of V .
+   The open neighborhood of X is without loss of generality of the form NXF
+for some finite set F ⊆ G. Each pattern p ∈ XF determines a basic clopen
+set Cp ⊆ X so that R := {Cp : p ∈ XF } is a clopen partition of X. The
+preimage of R via φ is a clopen partition P ′ of Z. We may refine P ′ to
+a clopen partition P ′′ that consists of basic clopen sets Cp (Z) indexed by
+patterns p ∈ ZE , where E ⊆ G is a finite set, and so that for every Z ′ ∈ NZE
+we have that Z ′ ⊆ Z - the latter claim by Lemma 2.14. We now claim
+that NZE contains no projectively isolated subshift. If we show it, applying
+Proposition 3.2, we get that G does not have the strong topological Rokhlin
+property.
+   Suppose on the contrary that Z ′ ∈ NZE is projectively isolated. In par-
+ticular, it is a sofic subshift of Z. Let V ⊆ C G be a subshift, for some
+finite non-trivial set C, such that there are an open neighborhood N of V
+in SG (C) and a map ψ defined on every subshift from N so that for every
+V ′ ∈ N we have ψ[V ′ ] = Z ′ . We may suppose that V is of finite type and
+that N = NVJ , for some finite set J ⊆ G, so that for every V ′ ∈ NVJ we have
+V ′ ⊆ V , again by applying Lemma 2.14. Set
+                               Y := φ ◦ ψ[V ].
+Since ψ[V ] = Z ′ ∈ NZE we get ψ[V ] ⊆ Z, and thus Y = φ[Z ′ ] ⊆ φ[Z] = X.
+Second, since ψ[V ] ∈ NZE we get that ψ[V ] intersects every clopen subset
+from P ′ , and thus Y = φ ◦ ψ[V ] intersects every clopen subset of R, so
+Y ∈ NXF . Set now
+                                             
+                       A := {φ ◦ ψ Cp (V ) : p ∈ VJ }.
+               S
+We have Y = A and by the assumption, Y is not A-minimal. Therefore
+there is a proper subshift Y ′ ⊆ Y that non-trivially intersects every set from
+A. However then
+                              V ′ := (φ ◦ ψ)−1 (Y ′ )
+is a proper subshift of V that non-trivially intersects every set Cp (V ), for
+p ∈ VJ . In other words, V ′ ∈ NVJ . But then by the assumption on the
+                  STRONG TOPOLOGICAL ROKHLIN PROPERTY                            29
+
+projective isolation of Z ′ we get ψ[V ′ ] = Z ′ . Therefore
+                    Y ′ = φ ◦ ψ[V ′ ] = φ[Z ′ ] = φ ◦ ψ[V ] = Y,
+which is a contradiction as the inclusion Y ′ ⊆ Y is strict.
+
+   Now we prove the converse. Using Theorem 3.1, it suffices to show that
+projectively isolated subshifts are dense in SG (A), for any non-trivial finite
+set A. Fix such A and an open set N ⊆ SG (A). We may suppose that N is
+of the form NXF , where X ⊆ AG is a subshift of finite type, F ⊆ G is a finite
+set, and moreover for every X ′ ∈ NXF we have X ′ ⊆ X. Now we use the
+assumption. Notice that since X is of finite type, we have Z = X and φ = id
+in the notation of the statement. By the assumption, there is a sofic subshift
+Y ∈ NXF that is A-minimal, where A is an image of a clopen partition P
+of some subshift of finite type V ⊆ C G , for some non-trivial finite set C,
+that factors onto Y . We claim that Y is projectively isolated. Denote by ψ
+the factor map from V onto Y . We may refine the clopen partition P to a
+clopen partition
+                           P ′ := {Cp (V ) : p ∈ VE },
+where E ⊆ G is a finite set. We can assume that E is big enough so that
+for every V ′ ∈ NVE we have V ′ ⊆ V . The image of P ′ is a family of closed
+sets A′ that refines A, i.e. for every R′ ∈ A′ there is R ∈ A such that
+R′ ⊆ R. It is clear that since Y is A-minimal it is also A′ -minimal. In order
+to show that Y is projectively isolated it is enough to show that for every
+V ′ ∈ NVE we have φ[V ′ ] = Y . Pick V ′ ∈ NVE . First of all notice that since
+V ′ ⊆ V , ψ is indeed defined on V ′ . Second, since V ′ ∈ NVE , by definition
+V ′ ∩ Cp (V ) 6= ∅ for every p ∈ VE . Thus φ[V ′ ] ∩ φ[Cp (V )] 6= ∅, for every
+p ∈ VE , so V ′ intersects non-trivially every element of A′ . However, since Y
+is A′ -minimal, it follows that φ[V ′ ] = Y .                                 
+
+5.1. Finitely generated groups without the STRP. We start with re-
+sults that concern finitely generated groups. As we shall see it is much
+harder to disprove the strong topological Rokhlin property for finitely gen-
+erated groups. Before stating the main result, we ask the reader to pay
+attention to the following facts that play an important role in the proof be-
+low. If A is some non-trivial finite set, G is a finitely generated recursively
+presented group, N is its finitely generated normal subgroup, X ⊆ AG/N is
+a subshift, and X ′ ⊆ AG is the corresponding subshift over G where N acts
+trivially, then
+     • X is effective if and only if X ′ is (this follows from Lemma 2.31);
+     • if X is of finite type, resp. sofic, then so is X ′ (this will be proved
+       below);
+     • if X ′ is sofic, then X is effective, but not necessarily sofic (this is the
+       point of the so-called simulation theorems, we refer to [7] for more
+       details).
+30                             MICHAL DOUCHA
+
+These facts are behind the reason why some of the subshifts in the theorem
+below are chosen to be effective, resp. sofic, resp. of finite type.
+Theorem 5.2. Let G be a countable group. Suppose that for some non-
+trivial finite set A there is a sofic subshit X ⊆ AG , being a factor of a
+subshift of finite type Z ⊆ B G , for some non-trivial finite set B, via a map
+φ : Z → X, such that for every effective subshift Y ⊆ Z, φ[Y ] is a disjoint
+union of infinitely many proper subshifts.
+   Suppose also that there is a short exact sequence of groups
+                           1 → N → H → G → 1,
+where H is finitely generated and recursively presented, and N is finitely
+generated. Then H, and in particular also G, does not have the strong
+topological Rokhlin property.
+Proof. Fix the groups G, N , and H, the non-trivial finite sets A and B,
+and the subshifts X ⊆ AG , Z ⊆ B G , and the factor map φ : Z → X
+- as in the statement. Notice first that since H is finitely generated and
+recursively presented, and N is finitely generated, it follows that G is also
+finitely generated and recursively presented, so the use of effective subshifts
+over G is in accordance with Definition 2.29.
+   Let V ⊆ AH be the subshift
+                 {v ∈ AH : ∀g ∈ H ∀h ∈ N v(g) = v(gh) },
+                                                          
+
+and W ⊆ B H be the subshift
+                {w ∈ B H : ∀g ∈ H ∀h ∈ N w(g) = w(gh) }.
+                                                     
+
+Clearly, there are a 1-1 correspondence
+                             Y ⊆ AG → Y ′ ⊆ V
+between subshifts of AG and subshifts of V , and a 1-1 correspondence
+                            Y ⊆ B H → Y ′ ⊆ W.
+Let therefore X ′ ⊆ V be the subshift of V , and so of AH , that corresponds
+to X, and let Z ′ ⊆ W be the subshift of W , and so of B H , that corresponds
+to Z. Assuming without loss of generality, by applying Lemma 2.8, that
+φ : Z → X is induced by a map f : B → A between the alphabets, the same
+map f also induces a factor map φ′ : Z ′ → X ′ . We claim that Z ′ is of finite
+type. To see this, let S ⊆ N be a finite symmetric generating set of N . Let
+F be the finite set of forbidden patterns for Z. We may suppose that they
+are all defined on a finite set T ⊆ G. For each t ∈ T choose one t′ ∈ H such
+that Q(t′ ) = t, where Q : H → G is the quotient map. For each pattern
+p ∈ P define a pattern p′ : T ′ → A by
+                          p′ (t′ ) = p(t) for t′ ∈ T ′ ,
+                   STRONG TOPOLOGICAL ROKHLIN PROPERTY                               31
+
+and denote by F ′ the set of such patterns. Moreover, for every s ∈ S and
+a 6= b ∈ A define a pattern ps,a,b : {1, s} → A by
+                          ps,a,b (1) = a and ps,a,b (s) = b,
+and denote by F ′′     the set of patterns {ps,a,b : s ∈ S, a 6= b ∈ A}. It is
+now straightforward to verify and left to the reader that the set F ′ ∪ F ′′ of
+forbidden patterns defines the subshift Z ′ . It also follows that X ′ as a factor
+of Z ′ is sofic. Now we show that for no sofic subshift Y ′ ⊆ Z ′ , φ′ [Y ′ ] is φ′ [A]-
+minimal for A being an image of clopen partition of some subshift of finite
+type factoring onto Y ′ . Once this claim is shown, we apply Theorem 5.1 to
+conclude that H does not have the strong topological Rokhlin property.
+    Let us therefore prove the claim. Suppose on the contrary that Y ′ ⊆ Z ′
+is a sofic subshift which is a factor of a subshift of finite type V ⊆ C H ,
+for some non-trivial finite set C, via some ψ : V → Y ′ , and that there is
+a clopen partition P of V such that for A := ψ[P] we have that φ′ [Y ′ ] is
+φ′ [A]-minimal. As in the proof of Theorem 5.1, we may suppose that P
+is of the form {Cp (V ) : p ∈ VF }, for some finite set F ⊆ H, and moreover
+for every V ′ ∈ NVF we have V ′ ⊆ V . Suppose that Y , the subshift of Z
+corresponding to Y ′ , is effective. We show how to finish the proof then.
+For each D ′ ∈ φ′ [A], which is a closed subset of φ′ [Y ′ ], denote by D the
+corresponding closed subset of φ[Y ].
+    Since by the assumption φ[Y ] is a disjoint union of infinitely many proper
+subshifts, for each D corresponding to D ′ ∈ φ′ [A] we can find a proper
+subshift YD ⊆ φ[Y ] with YD ∩ D 6= ∅, and moreover that for D1 6= D2 where
+D1′ 6= D2′ ∈ φ′ [A] either YD1 = YD2 or YD1 ∩YD2 = ∅. Also S by the assumption
+there is a proper subshift Y0 ⊆ φ[Y ] such that Y0 ∩ D′ ∈φ′ [A] YD = ∅. It
+follows that                             [
+                                W :=          YD
+                                         D ′ ∈φ′ [A]
+is a proper subshift of φ[Y ] that intersects non-trivially every set D corre-
+sponding to D ′ ∈ φ′ [A]. Thus the corresponding W ′ ⊆ φ′ [Y ′ ] is a proper
+subshift of φ[Y ′ ] that intersects non-trivially every set from φ′ [A], thus φ′ [Y ]
+is not φ′ [A]-minimal, a contradiction.
+   So it remains to show that Y is effective. Notice however that Y ′ is sofic,
+thus effective, so we finish by the application of Lemma 2.31.                     
+Corollary 5.3. No infinite finitely generated nilpotent group that is not
+virtually cyclic has the strong topological Rokhlin property.
+Proof. Let H be a finitely generated nilpotent group that is not virtually
+cyclic. Recall that H is then finitely presented (see e.g. [21, Propositions
+13.75 and 13.84]) and every subgroup of H is finitely generated (see e.g. [21,
+Theorem 13.57]). Moreover, H has Z2 as a quotient since considering the
+upper central series 1 = Z1 E Z2 E . . . E Zn = H/Tor(H), the quotient
+(H/Tor(H))/Zn−1 is a finitely generated torsion-free abelian group (see [21,
+Lemma 13.69]) that cannot be cyclic. In particular, both H and Z2 are
+32                             MICHAL DOUCHA
+
+finitely generated and recursively presented, and moreover the kernel of the
+quotient map from H onto Z2 is finitely generated. So in order to apply
+Theorem 5.2 it is enough to show that Z2 satisfies the conditions imposed
+on G in the statement of the theorem. This follows from the results in
+                                             2
+[37]. The desired sofic subshift X ⊆ AZ is the subshift denoted by Z in
+[37, Theorem 5.3]. We shall use the following properties of X: (1) X is a
+disjoint union of minimal subshifts (see [37, Construction 5.2]); (2) for every
+effective subshift Y ⊆ X, every minimal subshift of Y is an accumulation
+point of minimal subshifts of Y (see [37, Lemma 5.5]).
+   Now suppose that Z is a subshift of finite type factoring on X via some
+factor map φ. To show that for every effective subshift Y ⊆ Z, φ[Y ] ⊆ X
+is a disjoint union of infinitely many subshifts, notice first that φ[Y ] is then
+itself effective. Since by (1) X is a disjoint union of minimal subshifts, so is
+φ[Y ] ⊆ X. Since every minimal subshift of φ[Y ] is an accumulation point of
+other minimal subshifts of φ[Y ] by (2), this shows that this union must be
+infinite. This finishes the proof.                                              
+
+  We now need few notations. First, if H ≤ G are a group and a subgroup,
+A is a non-trivial finite set, and X ⊆ AG is a subshift, the H-projective
+subdynamics of X is the subshift
+                            {x ↾ H : x ∈ X} ⊆ AH .
+  Moreover, we say that an element x ∈ AG is Toeplitz if for every g ∈ G
+the set
+                       {g−1 h : x(h) = x(g)} ⊆ G
+is a finite-index subgroup. We refer the reader to [44] for details on Toeplitz
+elements in subshifts over general countable groups.
+   Recall also that a group is indicable if it admits an epimorphism onto Z.
+   We shall also need the notion of (a non-trivial) Medvedev degree (see
+[37, Section 3.2]). Let X ⊆ 2N be a set. We say that it is effective if its
+complement is a recursive set of cylinders (cf. with Defintion 2.29). We
+say that an effective set X ⊆ 2N has non-trivial Medvedev degree if there
+is no computable function computing an element of X. Let X, Y ⊆ 2N be
+effective sets. If there is a computable function from X into Y and Y has
+non-trivial Medvedev degree, then clearly so does X.
+   In the following result we use the simulation theorem of Barbieri from [7]
+where we ‘simulate’ certain effective subshifts as projective subdynamics of
+sofic subshifts
+Theorem 5.4. Let G be a finitely generated recursively presented indicable
+group. Let H1 , H2 be finitely generated recursively presented groups. Then
+G × H1 × H2 does not have the strong topological Rokhlin property.
+Proof. Fix G, and H1 and H2 as in the statement. Fix also an epimorphism
+f : G ։ Z. We show that G × H1 × H1 satisfies the requirement on the
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                        33
+
+group G from the statement of Theorem 5.2. The conclusion will then follow
+by Theorem 5.2.
+   Let g ∈ G be an arbitrary element satisfying f (g) = 1 ∈ Z. Notice that
+G splits as a semi-direct product hgi ⋉ K, where K ⊆ G is the kernel of
+the epimorphism f and hgi is infinite cyclic. We also fix a finite symmetric
+generating set S of G containing g. We now follow Hochman’s argument
+from [37, Section 5.2] to code effectively closed subsets of 2N by effectively
+closed subshifts of 3G . We also correct a mistake that appeared in that cod-
+ing in [37, Section 5.2] (notice that the map defined there cannot distinguish
+between the elements 10000 . . . and 01111 . . .). Let ω ∈ 2N , where again 2
+is here identified with the two-element set {1, 2}. We define zω ∈ 3G as
+follows. We choose an arithmetic progression A1 ⊆ Z of period 3 passing
+through 0 and we set zω (gi ) = ω(1) for i ∈ A1 . We also set zω (gi ) = 3 for
+i ∈ 1 + A1 := {j + 1 : j ∈ A1 }. Next let A2 be an arithmetic progression
+of period 9 passing through 2 and we set zω (gi ) = ω(2) for i ∈ A2 and
+zω (gj ) = 3 for j ∈ 3 + A2 . Next we take an arithmetic progression A3 of
+period 27 passing through 8 and set zω (gi ) = ω(3) for i ∈ A3 , etc. Finally,
+we set zω (h) = zω (gi ) if and only if h = g i k, where k ∈ K.
+   Clearly, zω is a Toeplitz configuration, so
+                             Zω := G · zω ⊆ 3G
+is a minimal subshift by [44, Corollary 3.4]. Moreover, for every z ∈ Zω there
+is an algorithm that computes ω with z as an input. Indeed, zω is invariant
+under the shift by the subgroup K, therefore so is z, and the algorithm only
+reads the data from z ↾ {g i : i ∈ Z}. The element ω can then be recovered
+as in [7, Section 3.1].
+   Moreover, if Ω ⊆ 2N is an effectively closed subset, defining
+                                       [
+                                 Z :=      Zω ,
+                                     ω∈Ω
+we claim that
+       • the Medvedev degree of Z is at least that of Ω; in particular, if Ω
+         has non-trivial Medvedev degree, then so does Z;
+       • Z is an effectively closed subshift of 3G .
+The argument from the paragraphs above show that Ω is computable from
+Z, so the Medvedev degree is at least the Medvedev degree of Ω and if Ω
+has non-trivial Medvedev degree, so does Z.
+   We clearly have that Z is closed under the shift action of G, so we need
+to show it is effective, i.e. we need to show that there is an algorithm that
+given a finite pattern p ∈ 3F , for some finite F ⊆ G, decides whether it
+is forbidden in Z. Given such a pattern p ∈ 3F , the algorithm first checks
+whether p is invariant under f , i.e. whether for h 6= h′ ∈ F such that
+f (h) = f (h′ ) we have p(h) = p(h′ ). This is verifiable by an algorithm and
+if p is not f -invariant, then the algorithm considers p to be forbidden. If
+on the other hand p is f -invariant, the algorithm decides whether p is a
+34                             MICHAL DOUCHA
+
+fragment of a coding of some ω ∈ 2N into zω . If not, then p is considered as
+forbidden. If yes, then the algorithm appeals to the algorithm computing
+that Ω is effectively closed to semi-decide whether p is forbidden.
+   Now let Z ′ ⊆ Z be an effectively closed subshift. We claim that it is a
+disjoint union of infinitely many proper subshifts. Since Z is a disjoint union
+of minimal subshifts, so is Z ′ . Therefore we just need to show that Z ′ is
+a union of infinitely many of them. This however follows from [37, Lemma
+5.4] - notice it was proved there for G = Zd , but it works generally.
+   Now we apply [7, Theorem 4.2] with G, H1 , H2 , and the effectively closed
+subshift Z ⊆ 3G to obtain a sofic subshift Y ⊆ B G×H1 ×H2 , for some non-
+trivial finite set B, such that the restriction of the shift action of G to Y
+is conjugate to X and the G-projective subdynamics of Y is equal to Z,
+and H1 × H2 acts trivially. Since Y is sofic, let X ⊆ D G×H1 ×H2 , for some
+non-trivial finite set D, be a subshift of finite type that factors via some
+φ : X ։ Y onto Y . In order to finish the proof, we need to show that for
+every effective subshift X ′ ⊆ X, φ[X ′ ] ⊆ Y is a disjoint union of infinitely
+many proper subshifts. Let X ′ ⊆ X be effective. Then since symbolic factors
+of effective subshifts are effective, φ[X ′ ] ⊆ Y is effective as well. Since G-
+projective subdynamics is Z, subshifts of Y are in 1 − 1 correspondence with
+subshifts of Z, so φ[X ′ ] corresponds to an effective subshift of Z which is
+by the argument above a disjoint union of infinitely many disjoint minimal
+subshifts.                                                                    
+
+5.2. STRP for groups that are not finitely generated. In this sec-
+tion we investigate the strong topological Rokhlin property for groups that
+are not finitely generated. We have already mentioned that Kechris and
+Rosendal noticed in [39] that the free group on countably infnitely many
+generators does not have the strong topological Rokhlin property. It is
+plausible, although we cannot prove it at the moment, that finite generation
+is a necessary condition for having the strong topological Rokhlin property.
+One however cannot immediately dismiss the idea that a non-finitely gen-
+erated group with the STRP could exist. Interesting recent observations of
+Barbieri [8] point out that the problem of existence of a strongly aperiodic
+subshift of finite type for groups that are not finitely generated also looks
+impossible on the first sight, however he shows that the ‘first sight’ is wrong
+in this case.
+   Our most general result is the following.
+Theorem 5.5. Let G be a countable group. If for every finitely generated
+subgroup H ≤ G there exists g ∈ G \ H such that one of the conditions below
+holds:
+     (1) g centralizes H, i.e. gh = hg for all h ∈ H;
+     (2) The subgroup hg, Hi is equal to the free product hgi ∗ H;
+then G does not have the strong topological Rokhlin property.
+                  STRONG TOPOLOGICAL ROKHLIN PROPERTY                           35
+
+Proof. We shall show something much stronger. We show that for such G
+and for any finite A with at least two elements, the only projectively isolated
+subshifts in SG (A) are the singletons, i.e. the monochromatic configurations.
+An application of Proposition 3.2 then immediately gives that G does not
+have the strong topological Rokhlin property.
+   Fix G and A. Assume that X ⊆ AG is a projectively isolated subshift
+which is witnessed by some subshift of finite type Y ⊆ B G , for some finite
+alphabet B, some open neighborhood N of Y and a factor map φ defined on
+every Z ∈ N so that φ[Z] = X. Applying Lemma 2.27 and Proposition 2.16
+we may and will without loss of generality suppose that
+      • φ is induced by a map φ0 : B → A between the alphabets;
+      • N is of the form NYF for some finite F and Y is of the form XVF for
+        some F -Rauzy graph VF = (V, (Ef )f ∈F ). In particular, B = V .
+   Let H := hF i ≤ G be the subgroup of G generated by F . By our as-
+sumption, there exists g ∈ G \ H such that either g centralizes H or has no
+relations with H, i.e. hg, Hi is equal to the free product hgi ∗ H.
+  Let us at first assume the latter. We define a new F ′ -Rauzy graph VF′ ′ :=
+(V, (Ef′ )f ∈F ′ ), where
+      • F ′ := F ∪ {g};
+      • Ef′ = Ef , for f ∈ F ;
+      • Eg′ is {(v, v) : v ∈ V }, the directed graph on V consisting of all loops.
+   Set Z := XV ′ ′ . It is immediate that ZF ⊆ YF . We need to check that Z
+                 F
+is non-empty, ZF = YF so that Z ∈ N , and that φ[Z] 6= X.
+   Denote by H̄ the subgroup hg, Hi. Let p1 be the identity map on H and
+let p2 : hgi :→ {1G } be the map sending g to the unit. Set
+                             p := p1 ∗ p2 : H̄ → H.
+Notice that every h ∈ H̄ can be uniquely written as a word h1 h2 . . . hn ,
+where for i < n, hi ∈ H and hi+1 ∈ hgi, or vice versa, and assuming for
+concreteness that e.g. h1 ∈ H and hn ∈ hgi we have in that case
+                        p(h1 h2 . . . hn ) = h1 h3 . . . hn−1 .
+   To check that Z is non-empty, pick any y ∈ Y . Let (gn )n∈N be an arbitrary
+set of left coset representatives for H̄ in G. We define z ∈ B G as follows.
+Any g ∈ G can be uniquely written as gn · h for some n ∈ N and h ∈ H̄ and
+we set
+                               z(g) := y(p(h)).
+We claim that z ∈ Y witnesses that Z is non-empty since z contains only
+allowed patterns as defined by VF′ ′ . This needs to be checked only on the left
+cosets of H̄ since the forbidden patterns are determined by a finite subset
+of H̄. We check it for the coset H̄.
+   We need to check that for every h ∈ H̄ and f ∈ F ′ , (z(h), z(hf )) is
+allowed. We do it by induction on the length of h as a word h1 h2 . . . hn ,
+36                              MICHAL DOUCHA
+
+where for i < n, hi ∈ H and hi+1 ∈ hgi, or vice versa. Suppose first that
+n = 1. Either h ∈ H, or h ∈ hgi. In the former case, if moreover f ∈ F ⊆ H,
+then (z(h), z(hf )) = (y(h), y(hf )), and if f = g, then z(h) = y(h) and
+z(hf ) = y(p(hf )) = y(h) = z(h)) which is again allowed. In the latter case,
+i.e. h ∈ hgi we have z(h) = y(p(h)) = z(1G ). If f ∈ H then arguing as
+before we have (z(h), z(hf )) = (y(1G ), y(f )) which is allowed, or if f = g we
+have z(h) = z(hf ) = y(1G ) which is again allowed. The general induction
+step is verified similarly and left to the reader. Moreover, by varying y ∈ Y
+in the construction above we guarantee that ZF = YF .
+   Now we check that φ[Z] ( X. Notice first that since for every z ∈ Z and
+h ∈ G we have z(h) = z(hg) and since φ is induced by φ0 : B → A we get
+φ(z)(h) = φ(z)(hg). Thus in order to show that φ[Z] ( X it is enough to
+find x ∈ X and h ∈ G such that x(h) 6= x(hg).
+   Denote by (vn )n∈N some left coset representatives for H in G, where
+v1 = 1G and v2 = g. For y ∈ B G we have y ∈ Y if and only if there exist
+(zn )n∈N ⊆ Y such that for any n ∈ N
+                                                
+                         ∀h ∈ H y(vn h) = zn (h) .
+Find arbitrarily some (zn )n∈N ⊆ Y such that
+                                                  
+                         φ0 z1 (1G ) 6= φ0 z2 (1G ) ,
+and define y ∈ B G so that for any n ∈ N
+                                                 
+                          ∀h ∈ H y(vn h) = zn (h) .
+Then by above, we have y ∈ Y , however by definition
+                                                 
+            φ(y)(1G ) = φ0 z1 (1G ) 6= φ0 z2 (1G ) = φ(y)(g).
+Since φ(y) ∈ X, this is the desired contradiction.
+
+   Now we assume that there exists g ∈ G \ H that centralizes H. We
+distinguish two cases.
+    (1) Either H̄ := hg, Hi is equal to the direct product H × hgi,
+    (2) or g is a root of a non-trivial element of H, i.e. there exist h ∈
+        H \ {1G } and n ≥ 2 such that g n = h (where h must be in the center
+        of H).
+   In the first case, we can define Z to be XV ′ ′ , where VF′ ′ is exactly the
+                                                 F
+same as above and we leave to the reader to verify that again Z ∈ N , Z is
+non-empty, and φ[Z] ( X.
+   So we now consider the case that there are h ∈ H \ {1G } and n ≥ 2
+such that gn = h. We also assume that n is the minimal m ≥ 2 such that
+gm ∈ H. We then set Z ⊆ Y to be the subshift of finite type where for any
+z ∈ B G , in order to be in Z, we require that (obviously) z ∈ Y and there
+are no h ∈ G and 1 ≤ i < j < k ≤ n − 1 such that
+                          z(hg i ) 6= z(hg j ) 6= z(hg k ).
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                       37
+
+We check that Z is non-empty and ZF = YF , so that Z ∈ N . Clearly,
+ZF ⊆ YF . Pick any p ∈ YF and y ∈ Y such that y ↾ F = p. Let (gm )m∈N
+be some set of left coset representatives of H̄ in G. We define z ∈ B G by
+setting for any m ∈ N, h ∈ H and 1 ≤ i ≤ n − 1
+                             z(gm hg i ) = y(h).
+Clearly, z ∈ Y . Moreover, one can easily read off the definition that there
+are no m ∈ N, h ∈ H and 1 ≤ i < j < k ≤ n − 1 such that z(gm hg i ) 6=
+z(gm hg j ) 6= z(gm hg k ), thus z ∈ Z, which shows both that Z is non-empty
+and that ZF = YF , so Z ∈ N .
+   We are left to check that φ[Z] ( X. Since the defining window of Y is
+F and g ∈  / hF i one can construct an element y ∈ Y such that φ0 (y(1G )) 6=
+φ0 (y(g)) 6= φ0 (y(g2 )), thus X contains an element x such that x(1G ) 6=
+x(g) 6= x(g 2 ). By definition, there is no such an element in φ[Z]. This
+finishes the proof.                                                         
+   The following immediate corollary is another proof of the fact proved in
+[39, 2nd remark on page 331].
+Corollary 5.6. Let G be the free group on countably many generators. Then
+G does not have the strong topological Rokhlin property.
+  The next result also immediately follows from Theorem 5.5. It is perhaps
+not so surprising that the free abelian group on countably many generators
+does not have the strong topological Rokhlin property since already Zd , for
+d ≥ 2, does not have it, however we get that even ‘one-dimensional’ groups
+such as Q do not have the strong topological Rokhlin property.
+Corollary 5.7. Let G be a group that contains a center that is not finitely
+generated. Then G does not have the strong topological Rokhlin property.
+In particular, non-finitely generated abelian groups do not have the strong
+topological Rokhlin property.
+   One of the possible candidates for a non-finitely generated group that has
+the strong topological Rokhlin property could be the Hall universal locally
+finite group. Recall that the Hall group is defined as the unique countably
+infinite locally finite group which contains every finite group as a subgroup
+and where any two finitely generated subgroups are conjugated (see [33]).
+Corollary 5.8. The Hall universal locally finite group does not have the
+strong topological Rokhlin property.
+Proof. We apply Theorem 5.5. Denote by G the Hall group and let H ≤
+G be some finitely generated subgroup. We verify that condition (2) of
+Theorem 5.5 is satisfied. Since G contains every finite group as a subgroup
+the direct product H ×Z2 embeds via some monomorphism φ into G. Denote
+by f ∈ Z2 the non-trivial element of order 2. Set H ′ := φ[H × {1}]. Since
+H ′ ≤ G is isomorphic   to H there exists g ∈ G such that gH ′ g−1 = H. It
+                       −1
+follows that gφ 1, f ) g is a non-trivial element commuting with H. This
+finishes the proof.                                                       
+38                              MICHAL DOUCHA
+
+                                6. Shadowing
+   This section contains the proof of the equivalence between (2) and (3)
+from Theorem A.
+   As mentioned in Introduction, shadowing has been originally defined for
+actions of Z, however now the notion is available for any countable group
+(see [48] and [16]).
+Definition 6.1. Let G be a countable group acting on a compact metrizable
+space X. Let d be a compatible metric on X. For δ > 0 and finite set S ⊆ G,
+a G-indexed set (xg )g∈G ⊆ X is called a (δ, S)-pseudo-orbit if for every g ∈ G
+and s ∈ S we have
+                               d(s · xg , xsg ) < δ.
+  We say that the action has the shadowing, or the pseudo-orbit tracing
+property, if for any ε > 0 there are δ > 0 and finite set S ⊆ G such that for
+any (δ, S)-pseudo-orbit (xg )g∈G ⊆ X there exists x ∈ X whose orbit ε-traces
+the pseudo-orbit, i.e. for every g ∈ G
+                                d(xg , g · x) < ε.
+   It is straightforward to verify that shadowing does not depend on the
+choice of the compatible metric and moreover that if G is finitely generated
+then the finite set S from the definition can be always taken to be some
+fixed finite generating set of G.
+   The following definition has its origin in [30] where it turned out to be
+crucial for describing inverse limits with shadowing for actions of Z. The
+version for general countable groups appeared in [46].
+Definition 6.2. Let G be a countable group. Let (Xn )n be an inverse
+system of subshifts over G, where the bonding maps (φm n : Xn → Xm )n≥m∈N
+are not necessarily onto, however for every n0 ∈ N there exists n ∈ N such
+that for every m ≥ n we have φnm0 [Xm ] = φnn0 [Xn ]. Then we say that the
+inverse system satisfies the Mittag-Leffler condition.
+   The main results of [30] and [46] characterize actions with the shadowing
+property of some fixed group G on the Cantor space as precisely those that
+are conjugate to inverse limits of inverse systems of subshifts of finite type
+over G satisfying the Mittag-Leffler property. They will be applied in the
+following theorem.
+Theorem 6.3. Let G be a finitely generated group with the strong topological
+Rokhlin property. Then the generic action of G on the Cantor space has
+shadowing. In particular, shadowing is generic in ActG (C).
+     Before proceding to the proof we shall need the following proposition.
+Proposition 6.4. Let G be a countable group admitting a generic action
+α ∈ ActG (C). Then α is an inverse limit of projectively isolated subshifts
+with isolated factor maps as the bonding maps.
+                  STRONG TOPOLOGICAL ROKHLIN PROPERTY                           39
+
+Proof. Let G and α be as in the statement. By Theorem 3.1, projectively
+isolated subshifts are dense in SG (n), for all n ≥ 2. Denote now by P the
+countable set of all clopen partitions of C and set
+    G := β ∈ ActG (C) : ∀P ∈ P ∃P ′ ∈ P ∃X ∈ SG (P ′ )∃F ⊆fin G
+         
+
+                                                P     ′           ′
+           P ′  P ∧ ∀Z, Z ′ ∈ NXF (φP                                  F
+                                                                          
+                                     P ′ [Z] = φP ′ [Z ]) ∧ Q(β, P ) ∈ NX   .
+We claim that G is a dense Gδ set consisting of (all the) actions from ActG (C)
+that are inverse limits of projectively isolated subshifts. To check that G is
+Gδ , it suffices to show that for fixed partitions P and P ′ such that P ′  P,
+for fixed X ∈ SG (P ′ ) and its neighborhood NXF with the property that
+φP            P    ′               ′   F
+  P ′ [Z] = φP ′ [Z ], for all Z, Z ∈ NX (notice that this last condition does
+not depend on β), the set {β ∈ ActG (C) : Q(β, P ′ ) ∈ NXF } is open. This
+however follows since the map Q(·, P ′ ) is continuous by Proposition 2.11.
+   Next we show that every β ∈ G is an inverse limit of projectively isolated
+subshifts. In fact, the converse is true as well, i.e. every β ∈ ActG (C) that
+is an inverse limit of projectively isolated subshifts belongs to G. Since we
+do not need this, it is left to the reader. Fix β ∈ G and some compatible
+metric d on C, and let P1 be an arbitrary clopen partition of C whose all
+elements have diameter less than 1/2 with respect to d. Since β ∈ G1
+there exists a refinement P2  P1 such that Q(β, P2 ) and the map φP        P2 :
+                                                                             1
+
+Q(β, P2 ) → Q(β, P1 ) between the subshifts defined by the inclusion map
+P2 → P1 witnesses that Q(β, P1 ) is projectively isolated. By Lemma 2.25,
+refining P2 if necessary, without loss of generality we may assume that all
+elements of P2 have diameter less than 1/22 .
+   We repeat the argument with P2 to obtain P3  P2 , whose elements
+we may assume have diameter less than 1/23 , such that Q(β, P3 ) and the
+map φP   P3 : Q(β, P3 ) → Q(β, P2 ), defined again by the inclusion P3 → P2 ,
+          2
+
+witnesses that Q(β, P2 ) is projectively isolated. We continue analogously to
+obtain partitions Pn  Pn−1 , whose elements have diameter less than 1/2n ,
+for all n ∈ N.
+   We claim that the inverse limit of
+                            P              P               P
+                          φP 1            φP 2            φP 3
+                                2              3       4
+               Q(β, P1 ) ←−− Q(β, P2 ) ←−− Q(β, P3 ) ←−− ...
+is equal to β. Indeed, it is clear that the map
+                             x ∈ C 7→ QβPn (x) n∈N
+                                              
+
+is a factor map onto the inverse limit. So it suffices to check that it is one-to-
+one. Pick x 6= y ∈ C. Since the diameters of the elements of the partitions
+(Pn )n∈N tend to 0, there exists n ∈ N such that x and y lie in different
+elements of the partition Pn , so QβPn (x) 6= QβPn (y), and therefore the map
+above is one-to-one.
+   Notice that in the previous paragraphs we did not use that projectively
+isolated subshifts are dense which we will do now when proving that G is
+40                             MICHAL DOUCHA
+
+
+dense. Let U ⊆ ActG (C) be open and we may suppose it is of the form NγF,P
+for some γ ∈ ActG (C), finite symmetric F ⊆ G containing 1G , and a clopen
+partition P. Set X := Q(γ, P) and recall that by Proposition 2.12(1) we
+have Q(·, P)[NγF,P ] = NXF . Since projectively isolated subshifts are dense
+there is a projectively isolated subshift X1 ∈ NXF which is witnessed by
+some isolated factor map φ12 : Y → X, for some subshift Y ⊆ B G , and
+some neighborhood NYF2 such that for all Y ′ ∈ NYF2 we have φ12 [Y ′ ] = X1 .
+Pick a projectively isolated subshift X2 ∈ NYF2 . Continuing analogously, we
+                                 φ1
+                                 2       φ2
+                                         3       φ3
+                                                 4
+obtain an inverse sequence X1 ←−   X2 ←−   X3 ←−   . . . of projectively isolated
+subshifts whose inverse limit λ is, without loss of generality by taking a
+product with a trivial action on C, an action on C. Since by Lemma 2.10
+and Corollary 2.26, we may assume that the maps φnn−1 are induced by maps
+          n corresponding alphabets Ano, resp. An−1 , for each n ∈ N the
+between the
+partition x ∈ Xn : x(1G ) = a} : a ∈ An induces a partition Pn of C such
+that Pn+1  Pn , for each n ∈ N, and limn→∞ max{diamd (P ) : P ∈ Pn } = 0.
+It is plain to check that λ ∈ G then. It is also straightforward to check
+that a conjugate of λ is in NγF,P by the same arguments as in the proof of
+Proposition 2.12. Since G is clearly conjugacy invariant, it follows that this
+conjugate is in G, so since U was arbitrary, G is dense.
+   The proof is finished by noticing that the conjugacy class of α must in-
+tersect the conjugacy invariant set G, since both are dense Gδ , thus α ∈ G
+and we are done.                                                                
+
+Proof of Theorem 6.3. Let G be as in the statement and let α ∈ ActG (C)
+be the generic action. By Proposition 6.4, α is an inverse limit of some
+sequence (Xn )n∈N of projectively isolated subshifts Xn ⊆ AG
+                                                           n with respect
+to isolated factor maps (φm
+                          n : Xn →  X  m )n≥m∈N .
+
+   We define a sequence (Yn )n∈N of subshifts of finite type. Let Y1 be any
+subshift of AG1 that is of finite type and such that X1 ⊆ Y1 . Pick now n ≥ 2.
+By definition, the isolated factor map φnn−1 : Xn → Xn−1 is defined on
+some neighborhood NXFnn , where Fn ⊆ G is a finite set, such that for every
+Y ∈ NXFnn , we have φnn−1 [Y ] = Xn−1 . Notice that by Lemma 2.14 and the
+assumption, NXFnn contains a subshift of finite type Yn such that Xn ⊆ Yn
+and φnn−1 [Yn ] = Xn−1 .
+   We claim that the system (Yn )n∈N with bonding maps (φm      n )n≥m∈N is an
+inverse system satisfying the Mittag-Leffler condition and the inverse limit
+is equal to α. The former is straightforward, we show that the inverse
+limits of the sequences (Xn )n , resp. (Yn )n are equal. Pick (xn )n ∈ lim Xn .
+                                                                       ←−
+                                                                      n→∞
+Since for every n ∈ N, Xn ⊆ Yn , clearly (xn )n ∈ lim Yn . Conversely,
+                                                          ←−
+                                                         n→∞
+pick (yn )n ∈ lim Yn . We claim that for every n ∈ N, yn ∈ Xn , and thus
+                ←−
+              n→∞
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                          41
+
+(yn )n ∈ lim Xn . Indeed, for any n ∈ N we have φnn+1 (yn+1 ) = yn . Since
+          ←−
+         n→∞
+yn+1 ∈ Yn+1 and φnn+1 [Yn+1 ] = Xn , we get yn ∈ Xn .
+   Finally, we apply [46, Theorem 1.2] with (Yn )n to get that α has shadow-
+ing.                                                                      
+
+  As a corollary of Theorems 6.3 and 4.12 we get the following.
+Corollary 6.5. Let G = ⋆i≤n Gi , where for i ≤ n, Gi is finite or cyclic.
+Then shadowing is generic in ActG (C).
+   The next step is to prove the converse, i.e. actions with shadowing form a
+meager set in ActG (C) for groups G without the strong topological Rokhlin
+property. First we reformulate the original definition of pseudo-orbit trac-
+ing property to an equivalent definition for zero-dimensional spaces that is
+more convenient for us as it employs clopen partitions instead of compatible
+metrics.
+Lemma 6.6. Let G be a countable group acting continuously on a zero-
+dimensional compact metrizable space X. Then the action has shadowing
+if and only if for every clopen partition P of X there exist a refinement
+P ′  P and a finite set S ⊆ G so that for every (xg )g∈G ⊆ X satisfying that
+for all g ∈ G and s ∈ S we have xsg and sxg lie in the same element of the
+partition P ′ , there is x ∈ X such that gx and xg lie in the same element of
+P for every g ∈ G.
+Proof. The straightforward proof is similar to the proof of Lemma 2.2 and
+left to the reader.                                                     
+
+   By definition, every symbolic factor of a subshift of finite type is sofic.
+Since subshifts of finite type are precisely those subshifts with shadowing
+(this is easy to check, a formal proof can be found in [16]), the following
+proposition is a generalization of this fact - that a factor of an SFT is sofic.
+Proposition 6.7. Let G be a countable group acting continuously on a zero-
+dimensional compact metrizable space X so that the action has shadowing.
+Then every symbolic factor of the action is sofic.
+Proof. Fix the group G and the zero-dimensional compact metrizable space
+X on which G acts continuously with the shadowing property. Denote the
+action by α. Let φ : α → Y be a factor map, where Y ⊆ AG is a subshift for
+some non-trivial finite set A. We show that Y is sofic. By Lemma 2.8 there
+exists a clopen partition P of X, with |P| = |A|, so that φ = QαP . By the
+assumption and Lemma 6.6, there exist a refinement P ′  P and a finite
+set S ⊆ G, which we may assume to be symmetric and containing 1G , so
+that for every (xg )g∈G ⊆ X satisfying that for all g ∈ G and s ∈ S we have
+xsg and sxg lie in the same element of the partition P ′ , there is x ∈ X such
+that gx and xg lie in the same element of P for every g ∈ G.
+42                            MICHAL DOUCHA
+
+   We define a subshift Z ⊆ (P ′ )G of finite type with defining window S as
+follows. A pattern p ∈ (P ′ )S is allowed if and only if there exists x ∈ X
+such that for every s ∈ S and P ∈ P ′
+                           p(s) = P ⇔ s−1 x ∈ P.
+Let f0 : P ′ → P be the inclusion map, i.e. P ⊆ f0 (P ) for every P ∈ P ′ .
+It induces a continuous G-equivariant map ψ : Z → P G . We claim that
+ψ[Z] = Y . The proof of the claim will finish the proof of the proposition
+since Y will then be a factor of a subshift of finite type, therefore sofic.
+  Let us first show that Y ⊆ ψ[Z]. This is a general argument where the
+shadowing property is not yet used. Set φ′ := QαP ′ and notice that
+      • φ = ψ ◦ φ′ ,
+      • φ′ [X] ⊆ Z ⊆ (P ′ )G since by the definition of Z, we have (φ[X])S =
+         ZS .
+  Pick y ∈ Y and x ∈ X such that φ(x) = y. For z := φ′ (x) ∈ φ′ [X] ⊆ Z
+we then have
+                         ψ(z) = ψ ◦ φ′ (x) = φ(x) = y.
+  Finally we show that ψ[Z] ⊆ Y . Pick z ∈ Z and let us show that ψ(z) ∈ Y .
+For every g ∈ G, pg := gz ↾ S ∈ (P ′ )S is an allowed pattern of Z, so by the
+definition of pg there exists xg ∈ X such that for every s ∈ S and P ∈ P ′
+                           p(s) = P ⇔ s−1 xg ∈ P.
+It follows that (xg )g∈G ⊆ X has the property that for every g ∈ G and s ∈ S
+we have xsg and sxg lie in the same element of the partition of P ′ . Then,
+applying the pseudo-orbit tracing property with respect to P ′ and P, there
+exists x ∈ X such that for every g ∈ G we have that gx and xg lie in the
+same element of P. We claim that φ(x) = ψ(z). Pick g ∈ G and let us show
+that φ(x)(g) = ψ(z)(g). For P ∈ P we have
+         φ(x)(g) = P ⇔ g −1 x ∈ P ⇔ xg−1 ∈ P ⇔ pg−1 (1G ) ⊆ P ⇔
+         g−1 z(1G ) ⊆ P ⇔ z(g) ⊆ P ⇔ ψ(z)(g) = P.
+                                                                            
+Proposition 6.8. Let G be a countable group that does not have the strong
+topological Rokhlin property. Then the set
+     A := {α ∈ ActG (C) : ∃P clopen partition (Q(α, P) is not sofic)}
+is non-meager.
+Proof. Fix G without the strong topological Rokhlin property. By Proposi-
+tion 3.2, there exist a non-trivial finite set A and an open set N ⊆ SG (A)
+that contains no projectively isolated subshift and must be therefore infinite
+as isolated points are projectively isolated. Applying Lemma 2.14, without
+loss of generality, we may assume that N = NXF , where X ⊆ AG is a sub-
+shift of finite type, F ⊆ G is a finite subset, and for every X ′ ∈ N we have
+                 STRONG TOPOLOGICAL ROKHLIN PROPERTY                           43
+
+X ′ ⊆ X. By Proposition 2.11, there exist α ∈ ActG (C) and a clopen parti-
+tion P of C such that Q(α, P) = X. Moreover, again by Proposition 2.11,
+by the continuity of Q(·, P) there exists an open neighborhood of α, which
+                                            ′
+we may suppose to be of the form NαE,P , for some finite set E ⊆ G and a
+                                                    ′
+clopen partition P ′  P such that Q(·, P)[NαE,P ] ⊆ NXF . In particular, for
+                  ′
+every β ∈ NαE,P we have Q(β, P) ⊆ X.
+   Let {Xn : n ∈ N} be an enumeration of all sofic subshifts inside N . Notice
+that the set is indeed infinite since otherwise, as N does not contain isolated
+points, N would contain an open subset without any sofic subshift which
+is a contradiction as subshifts of finite type are dense - recall Lemma 2.14.
+Let m = |A| and for each n ∈ N set
+  An :={α ∈ ActG (C) :
+        for no clopen partition R = {R1 , . . . , Rm } of C, Q(α, R) = Xn }.
+  By Lemma 3.3, An is dense Gδ . Suppose now that A is meager, so
+ActG (C) \ A is comeager, and we reach a contradiction. There exists an
+action
+                             ′            \
+                   γ ∈ NαE,P ∩ ActG \ A ∩       An ,
+                                                  n∈N
+since the set on the right-hand side is non-meager, so non-empty. Since γ ∈
+       ′
+NαE,P we get that Q(γ, P) ⊆ X. Since γ ∈  / A we get that Y := Q(γ, P) ⊆ X
+is sofic. However, then Y = Xn for some n ∈ N. Since γ ∈ An it follows
+that Q(γ, P) 6= Xn , a contradiction.                                     
+Theorem 6.9. Let G be a countable group that does not have the strong
+topological Rokhlin property. Then the set
+                   S := {α ∈ ActG (C) : α has shadowing}
+is dense, but meager. In particular, shadowing is not generic for actions of
+G.
+Proof. Fix G as in the statement. Density of S follows from the fact that sub-
+shifts of finite type have shadowing (see e.g. [16]) and actions α ∈ ActG (C)
+conjugate to subshifts of finite type are dense by Proposition 2.11 and
+Lemma 2.14. To get meagerness, applying Fact 2.4, it suffices to show that
+S is not comeager. To reach a contradiction, suppose that S is comeager.
+Then it has a non-empty intersection with the set A from the statement of
+Proposition 6.8, so there is α ∈ S ∩ A. It follows that there is a clopen parti-
+tion P of C such that Q(α, P) is not sofic. That is however in contradiction
+with Proposition 6.7.                                                         
+  The following is an immediate corollary (cf. with e.g. [42]).
+Corollary 6.10. Generically, Cantor space actions of Zd , for d ≥ 2, or
+more generally of finitely generated nilpotent groups that are not virtually
+cyclic, do not have shadowing.
+44                                 MICHAL DOUCHA
+
+                   7. Remarks, problems, and questions
+  It is our hope that this paper will stimulate further research in this area,
+even among researchers working in symbolic dynamics over general groups,
+and more applications of Theorem 3.1 will be found. The following is the
+most general problem that we state and believe it is worth of attention.
+Problem 7.1. Apply Theorem 3.1 to a wider class of groups. That is, find
+more groups for which (strongly) projectively isolated subshifts are dense in
+the spaces of subshifts.
+  We know very little about the permanence properties of the class of count-
+able groups satisfying the STRP. We even do not know whether every vir-
+tually cyclic group satisfies the STRP. Inspired by the results from [17] we
+ask the following.
+Question 7.2. Is the class of countable groups satisfying the STRP closed
+under commensurability? Under virtual isomorphism? Under quasi-isometry?
+  The following is based on the fact we do not know any projectively isolated
+subshift that is not strongly projectively isolated.
+Question 7.3. Do there exist a group G and a subshift X ⊆ AG , for
+some non-trivial finite A, such that X is projectively isolated, however not
+strongly projectively isolated?
+     We conclude with a question related to the results of Section 5.
+Question 7.4. Does there exist a countable group that is not finitely gen-
+erated, yet it still has the STRP?
+
+Acknowledgements. We would like to thank to Sebastián Barbieri for ex-
+plaining us the different notions of effective subshifts over general countable
+groups and to Alexander Kechris and Steve Alpern for several comments.
+We are also grateful to the anonymous referee for many useful comments,
+especially the suggestion to use Proposition 3.4 in the proof of Theorem 3.1.
+
+                                    References
+ [1] E. Akin, E. Glasner, and B. Weiss, Generically there is but one self homeomor-
+     phism of the Cantor set, Trans. Amer. Math. Soc., 360 (2008), pp. 3613–3630.
+ [2] E. Akin, M. Hurley, and J. A. Kennedy, Dynamics of topologically generic home-
+     omorphisms, Mem. Amer. Math. Soc., 164 (2003), pp. viii+130.
+ [3] S. Alpern and V. S. Prasad, Typical dynamics of volume preserving homeomor-
+     phisms, vol. 139 of Cambridge Tracts in Mathematics, Cambridge University Press,
+     Cambridge, 2000.
+ [4]        , Properties generic for Lebesgue space automorphisms are generic for measure-
+     preserving manifold homeomorphisms, Ergodic Theory Dynam. Systems, 22 (2002),
+     pp. 1587–1620.
+ [5] N. Aubrun, S. Barbieri, and M. Sablik, A notion of effectiveness for subshifts on
+     finitely generated groups, Theoret. Comput. Sci., 661 (2017), pp. 35–55.
+                    STRONG TOPOLOGICAL ROKHLIN PROPERTY                                  45
+
+ [6] S. Barbieri, Shift spaces on groups: computability and dynamics, PhD thesis, Uni-
+     versité de Lyon, 2017.
+ [7]       , A geometric simulation theorem on direct products of finitely generated groups,
+     Discrete Anal., (2019), pp. Paper No. 9, 25.
+ [8] S. Barbieri, Aperiodic subshifts of finite type on groups which are not finitely gen-
+     erated, Proc. Am. Math. Soc., 151 (2023), pp. 3839–3843.
+ [9] S. Barbieri, F. Garcı́a-Ramos, and H. Li, Markovian properties of continuous
+     group actions: algebraic actions, entropy and the homoclinic group, Adv. Math., 397
+     (2022), pp. Paper No. 108196, 52.
+[10] I. Ben Yaacov, J. Melleray, and T. Tsankov, Metrizable universal minimal flows
+     of Polish groups have a comeagre orbit, Geom. Funct. Anal., 27 (2017), pp. 67–77.
+[11] R. Berger, The undecidability of the domino problem, Mem. Amer. Math. Soc., 66
+     (1966), p. 72.
+[12] N. C. Bernardes, Jr. and U. B. Darji, Graph theoretic structure of maps of the
+     Cantor space, Adv. Math., 231 (2012), pp. 1655–1680.
+[13] W. Brian, J. Meddaugh, and B. Raines, Shadowing is generic on dendrites, Dis-
+     crete Contin. Dyn. Syst. Ser. S, 12 (2019), pp. 2211–2220.
+[14] T. Ceccherini-Silberstein and M. Coornaert, Cellular automata and groups,
+     Springer Monographs in Mathematics, Springer-Verlag, Berlin, 2010.
+[15] C. Chabauty, Limite d’ensembles et géométrie des nombres, Bull. Soc. Math. France,
+     78 (1950), pp. 143–151.
+[16] N.-P. Chung and K. Lee, Topological stability and pseudo-orbit tracing property of
+     group actions, Proc. Amer. Math. Soc., 146 (2018), pp. 1047–1057.
+[17] D. B. Cohen, The large scale geometry of strongly aperiodic subshifts of finite type,
+     Adv. Math., 308 (2017), pp. 599–626.
+[18] A. del Junco, Disjointness of measure-preserving transformations, minimal self-
+     joinings and category, in Ergodic theory and dynamical systems, I (College Park,
+     Md., 1979–80), vol. 10 of Progr. Math., Birkhäuser, Boston, Mass., 1981, pp. 81–89.
+[19] M. Doucha and M. Malicki, Generic representations of countable groups, Trans.
+     Amer. Math. Soc., 372 (2019), pp. 8249–8277.
+[20] M. Doucha, M. Malicki, and A. Valette, Property (T), finite-dimensional rep-
+     resentations, and generic representations, J. Group Theory, 22 (2019), pp. 1–13.
+[21] C. Druţu and M. Kapovich, Geometric group theory, vol. 63 of American Math-
+     ematical Society Colloquium Publications, American Mathematical Society, Provi-
+     dence, RI, 2018. With an appendix by Bogdan Nica.
+[22] M. Foreman and B. Weiss, An anti-classification theorem for ergodic measure
+     preserving transformations, J. Eur. Math. Soc. (JEMS), 6 (2004), pp. 277–292.
+[23] J. Frisch and O. Tamuz, Symbolic dynamics on amenable groups: the entropy of
+     generic shifts, Ergodic Theory Dynam. Systems, 37 (2017), pp. 1187–1210.
+[24] J. Frisch, O. Tamuz, and P. V. Ferdowsi, Strong amenability and the infinite
+     conjugacy class property, Invent. Math., 218 (2019), pp. 833–851.
+[25] S. Gao, S. Jackson, and B. Seward, Group colorings and Bernoulli subflows,
+     Mem. Amer. Math. Soc., 241 (2016), pp. vi+241.
+[26] E. Glasner, J.-P. Thouvenot, and B. Weiss, Every countable group has the weak
+     Rohlin property, Bull. London Math. Soc., 38 (2006), pp. 932–936.
+[27] E. Glasner and B. Weiss, The topological Rohlin property and topological entropy,
+     Amer. J. Math., 123 (2001), pp. 1055–1070.
+[28]       , Topological groups with Rokhlin properties, Colloq. Math., 110 (2008), pp. 51–
+     80.
+[29] Y. Glasner, D. Kitroser, and J. Melleray, From isolated subgroups to generic
+     permutation representations, J. Lond. Math. Soc. (2), 94 (2016), pp. 688–708.
+[30] C. Good and J. Meddaugh, Shifts of finite type as fundamental objects in the theory
+     of shadowing, Invent. Math., 220 (2020), pp. 715–736.
+46                                 MICHAL DOUCHA
+
+[31] W. Gottschalk, Some general dynamical notions, in Recent advances in topological
+     dynamics (Proc. Conf. Topological Dynamics, Yale Univ., New Haven, Conn., 1972;
+     in honor of Gustav Arnold Hedlund), 1973, pp. 120–125. Lecture Notes in Math., Vol.
+     318.
+[32] M. Gromov, Endomorphisms of symbolic algebraic varieties, J. Eur. Math. Soc.
+     (JEMS), 1 (1999), pp. 109–197.
+[33] P. Hall, Some constructions for locally finite groups, J. London Math. Soc., 34
+     (1959), pp. 305–319.
+[34] P. R. Halmos, In general a measure preserving transformation is mixing, Ann. of
+     Math. (2), 45 (1944), pp. 786–792.
+[35] M. Hochman, Genericity in topological dynamics, Ergodic Theory Dynam. Systems,
+     28 (2008), pp. 125–165.
+[36]       , On the dynamics and recursive properties of multidimensional symbolic sys-
+     tems, Invent. Math., 176 (2009), pp. 131–167.
+[37]       , Rohlin properties for Zd actions on the Cantor set, Trans. Amer. Math. Soc.,
+     364 (2012), pp. 1127–1143.
+[38] A. S. Kechris, Classical descriptive set theory, vol. 156 of Graduate Texts in Math-
+     ematics, Springer-Verlag, New York, 1995.
+[39] A. S. Kechris and C. Rosendal, Turbulence, amalgamation, and generic automor-
+     phisms of homogeneous structures, Proc. Lond. Math. Soc. (3), 94 (2007), pp. 302–350.
+[40] D. Kerr and H. Li, Ergodic theory, Springer Monographs in Mathematics, Springer,
+     Cham, 2016. Independence and dichotomies.
+[41] D. Kerr, H. Li, and M. Pichot, Turbulence, representations, and trace-preserving
+     actions, Proc. Lond. Math. Soc. (3), 100 (2010), pp. 459–484.
+[42] P. Kościelniak, Generic properties of Z2 -actions on the interval, Topology Appl.,
+     154 (2007), pp. 2672–2677.
+[43] P. Kościelniak, M. Mazur, P. Oprocha, and P. Pilarczyk, Shadowing is
+     generic—a continuous map case, Discrete Contin. Dyn. Syst., 34 (2014), pp. 3591–
+     3609.
+[44] F. Krieger, Toeplitz subshifts and odometers for residually finite groups, in École
+     de Théorie Ergodique, vol. 20 of Sémin. Congr., Soc. Math. France, Paris, 2010,
+     pp. 147–161.
+[45] A. Kwiatkowska, The group of homeomorphisms of the Cantor set has ample gener-
+     ics, Bull. Lond. Math. Soc., 44 (2012), pp. 1132–1146.
+[46] Z. Lin, E. Chen, and X. Zhou, Shadowing and mixing on systems of countable
+     group actions, Adv. Math., 405 (2022), pp. Paper No. 108521, 27.
+[47] T. Meyerovitch, Pseudo-orbit tracing and algebraic actions of countable amenable
+     groups, Ergodic Theory Dynam. Systems, 39 (2019), pp. 2570–2591.
+[48] A. V. Osipov and S. B. Tikhomirov, Shadowing for actions of some finitely gen-
+     erated groups, Dyn. Syst., 29 (2014), pp. 337–351.
+[49] J. C. Oxtoby and S. M. Ulam, Measure-preserving homeomorphisms and metrical
+     transitivity, Ann. of Math. (2), 42 (1941), pp. 874–920.
+[50] K. Palmer, Shadowing in dynamical systems, vol. 501 of Mathematics and its Ap-
+     plications, Kluwer Academic Publishers, Dordrecht, 2000. Theory and applications.
+[51] R. Pavlov and S. Schmieding, On the structure of generic subshifts, arXiv preprint
+     arXiv:2203.15159, (2022).
+[52] S. Y. Pilyugin and O. B. Plamenevskaya, Shadowing is generic, Topology Appl.,
+     97 (1999), pp. 253–266.
+
+  Institute of Mathematics, Czech Academy of Sciences, Žitná 25, 115 67
+Praha 1, Czechia
+  Email address: doucha@math.cas.cz
+  URL: https://users.math.cas.cz/~doucha/
+

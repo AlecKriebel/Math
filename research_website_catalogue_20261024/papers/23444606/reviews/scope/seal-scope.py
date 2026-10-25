@@ -1,0 +1,27 @@
+from pathlib import Path
+from datetime import datetime,timezone
+import hashlib,json,re,zipfile
+B=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23444606');S=B/'sources';R=B/'reviews/scope';X=S/'published-source/initial-omnific-models-source-and-verification';G=Path('/Users/alec/.codex/attachments/97d02095-52a0-400f-a038-cbc727c7c885/goal-objective.md')
+def now():return datetime.now(timezone.utc).isoformat()
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def inf(p):return {'path':str(p),'bytes':p.stat().st_size,'sha256':h(p)}
+def save(p,d):p.write_text(json.dumps(d,indent=2,ensure_ascii=False)+'\n')
+receipt=json.loads((S/'receipt.json').read_text());ex=json.loads((S/'extraction-integrity.json').read_text());prim=json.loads((R/'primary-source-receipts.json').read_text());candidate=json.loads((R/'candidate.json').read_text())
+assert len(ex['members'])==145 and not ex['hidden_members'] and not ex['nested_archives']
+for f in receipt['files']:
+ p=S/f['name'];assert h(p)==f['sha256'] and p.stat().st_size==f['bytes'];assert hashlib.md5(p.read_bytes()).hexdigest()==f['md5']
+assert h(S/'record.json')==receipt['record_sha256']
+for m in ex['members']:assert h(Path(m['path']))==m['sha256']
+with zipfile.ZipFile(S/'initial-omnific-models-source-and-verification.zip') as z:
+ for i in z.infolist():
+  if not i.is_dir():assert (X/i.filename).read_bytes()==z.read(i)
+for p in prim['sources']:assert h(Path(p['path']))==p['sha256']
+abstract=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',(X/'main.tex').read_text(),re.S).group(1).strip();assert re.sub(r'\s+',' ',abstract)==candidate['abstract'];assert candidate['candidate_only'] and candidate['follow_up'] is None
+custody=json.loads((R/'source-custody.json').read_text());custody['final_rechecked_utc']=now();custody['post_interruption_all_sources_unchanged']=True;save(R/'source-custody.json',custody)
+with (R/'RESEARCH_LOG.md').open('a') as f:f.write('\n'+now()+' — 100% of acquisition/scope complete. Read the active attached objective on resume and inspected existing files/process state: no acquisition or writer process remained; existing artifacts were complete. No download or published mathematical helper rerun. Full report, exact abstract/candidate, all145-member reader/custody map and7-primary-source ledger finalized. Fresh final rehash confirms both public assets, metadata, every extracted member and all primary PDFs unchanged. Scope verdict grants no mathematical PASS or publication clearance. Prior sealed audits/drafts unchanged.\n')
+evidence={'created_utc':now(),'active_objective':inf(G),'read_current_paper_pages':7,'read_main_tex_lines':463,'source_files_regular':145,'distinct_reader_pdfs':1,'published_helper_execution':False,'scope_only':True,'source_receipt':inf(S/'receipt.json'),'extraction_manifest':inf(S/'extraction-integrity.json'),'primary_receipts':inf(R/'primary-source-receipts.json'),'primary_read_ledger':inf(R/'primary-read-ledger.json'),'reader_map':inf(R/'reader-support-map.json'),'custody':inf(R/'source-custody.json'),'abstract_check':inf(R/'abstract-check.json'),'candidate':inf(R/'candidate.json'),'report':inf(R/'REVIEW.md'),'completion_percent':100,'limits':['No universal mathematical proof certification or finite helper replay.','No worldwide-priority, journal acceptance or independent human-peer-review certification.','Final publisher body and deeper foundational predecessors remain distinguished from the exact inspected author/arXiv versions.','All dedicated historical assessment and sibling findings excluded; necessary incidental exposure disclosed in report.']};save(R/'evidence.json',evidence)
+verdict={'record_id':'23444606','created_utc':now(),'status':'SCOPE_COMPLETE_PENDING_MATHEMATICAL_REVIEW','scope_complete':True,'mathematical_pass':None,'root_publication_clearance':False,'candidate_only':True,'completion_percent':100,'source_binding':{'receipt':inf(S/'receipt.json'),'record':inf(S/'record.json'),'assets':[inf(S/f['name']) for f in receipt['files']],'main_tex':inf(X/'main.tex')},'report':inf(R/'REVIEW.md'),'candidate':inf(R/'candidate.json'),'evidence':inf(R/'evidence.json'),'strongest_completed_result':'Complete public-source authentication, single-reader and support map, exact original-question/central-primary interface alignment, restrained full-abstract candidate; no mathematical verdict.','remaining_gate':'Independent analytic/adversarial mathematical reviews and root scientific disposition before any promotion or rendering.','no_mathematical_helpers_executed':True,'no_source_repairs_or_publication_actions':True};save(R/'verdict.json',verdict)
+files=[inf(p) for p in sorted(R.iterdir()) if p.is_file() and p.name not in ['artifact-manifest.json','FINAL_HASHES.json']]
+save(R/'artifact-manifest.json',{'sealed_utc':now(),'status':'SCOPE_COMPLETE_PENDING_MATHEMATICAL_REVIEW','files':files,'cache_bindings':'Primary PDF/text identities in primary-source-receipts.json; immutable archive members in source-custody.json.'})
+save(R/'FINAL_HASHES.json',{'sealed_utc':now(),'files':[inf(R/n) for n in ['REVIEW.md','verdict.json','candidate.json','source-custody.json','artifact-manifest.json']],'source_receipt':inf(S/'receipt.json')})
+print(json.dumps({'authored_artifacts':len(files),'report_sha256':h(R/'REVIEW.md'),'verdict_sha256':h(R/'verdict.json'),'candidate_sha256':h(R/'candidate.json'),'manifest_sha256':h(R/'artifact-manifest.json'),'source_receipt_sha256':h(S/'receipt.json')},indent=2))

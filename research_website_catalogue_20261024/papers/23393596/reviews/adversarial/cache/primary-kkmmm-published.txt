@@ -1,0 +1,2989 @@
+                                      AG
+                                      T
+Algebraic & Geometric
+   Topology
+             Volume 25 (2025)
+
+
+
+   The space of nonextendable quasimorphisms
+               M ORIMICHI K AWASAKI
+                 M ITSUAKI K IMURA
+                S HUHEI M ARUYAMA
+               TAKAHIRO M ATSUSHITA
+                 M ASATO M IMURA
+
+
+
+
+                    msp
+                                                         Algebraic & Geometric Topology 25:2 (2025) 1169–1226
+ msp                                                                                   DOI : 10.2140/agt.2025.25.1169
+                                                                                             Published: 16 May 2025
+
+                       The space of nonextendable quasimorphisms
+                                            M ORIMICHI K AWASAKI
+                                              M ITSUAKI K IMURA
+                                             S HUHEI M ARUYAMA
+                                            TAKAHIRO M ATSUSHITA
+                                              M ASATO M IMURA
+
+
+     For a pair .G; N / of a group G with normal subgroup N, we consider the space of quasimorphisms and
+     quasicocycles on N nonextendable to G. To treat this space, we establish the five-term exact sequence of
+     cohomology relative to the bounded subcomplex. As an application, we study the spaces associated with
+     the kernel of the (volume) flux homomorphism, the IA-automorphism group of a free group, and certain
+     normal subgroups of Gromov-hyperbolic groups.
+     Furthermore, we employ this space to prove that the stable commutator length is equivalent to the stable
+     mixed commutator length for certain pairs of a group and normal subgroup.
+
+     20J06; 20F65, 20J05, 57M07
+
+
+         1.   Introduction                                                                             1169
+         2.   Other applications of the main theorem                                                   1175
+         3.   Preliminaries                                                                            1179
+         4.   The spaces of nonextendable quasimorphisms                                               1183
+         5.   Cohomology classes induced by the flux homomorphism                                      1192
+         6.   Proof of the main theorem                                                                1194
+         7.   Proof of equivalences of sclG and sclG;N                                                 1202
+         8.   Aut.Fn / and Mod.†l /                                                                    1209
+         9.   Open problems                                                                            1217
+         References                                                                                    1222
+
+
+
+1 Introduction
+1.1 Motivations
+A quasimorphism on a group G is a real-valued function f W G ! R on G satisfying
+                             D.f / WD supfjf .xy/      f .x/   f .y/j W x; y 2 Gg < 1:
+© 2025 MSP (Mathematical Sciences Publishers). Distributed under the Creative Commons Attribution License 4.0 (CC BY).
+Open Access made possible by subscribing institutions via Subscribe to Open.
+1170       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+We call D.f / the defect of the quasimorphism f. A quasimorphism f on G is said to be homogeneous if
+f .x n / D n  f .x/ for every x 2 G and every integer n. Let Q.G/ denote the real vector space consisting
+of homogeneous quasimorphisms on G. The (homogeneous) quasimorphisms are closely related to the
+second bounded cohomology group H2b .G/ D H2b .GI R/, and have been extensively studied in geometric
+group theory and symplectic geometry (see Calegari [26], Frigerio [40] and Polterovich and Rosen [88]).
+
+In this paper, we consider a pair .G; N / of a group G with normal subgroup N. Let i W N ! G be the
+inclusion map. In this setting, we can construct the following two real vector spaces:
+      the space Q.N /G of all G-invariant homogeneous quasimorphisms on N , where f W N ! R is
+       said to be G-invariant if f .gxg 1 / D f .x/ for every g 2 G and every x 2 N ;
+      the space H1 .N /G C i  Q.G/, where H1 .N /G is the space of all G-invariant homomorphisms
+       from N to R and i  is the linear map from Q.G/ to Q.N / induced by i W N ,! G.
+
+An element f 2 Q.N / belongs to i  Q.G/ if and only if there exists fO 2 Q.G/ such that fOjN  f ; in
+this case, we say that f is extendable to G. Since a homogeneous quasimorphism is conjugation-invariant
+(see Lemma 3.1), the space i  Q.G/ is contained in Q.N /G. The extendability problem asks whether
+there exists f 2 Q.N /G that is not extendable to G or, equivalently, whether the quotient vector space
+
+                                            Q.N /G = i  Q.G/
+
+is nonzero. A stronger version of this problem asks whether the quotient space
+
+                                     Q.N /G =.H1 .N /G C i  Q.G//
+
+is nonzero. We have some reasons to take the quotient vector space over H1 .N /G C i  Q.G/, instead
+of one over i  Q.G/. Elements in H1 .N /G seem “trivial” as quasimorphisms in Q.N /G ; also, when
+we apply the Bavard duality theorem for stable mixed commutator lengths (see Theorem 7.1), precisely
+the elements in H1 .N /G behave trivially. An example of a pair .G; N / such that Q.N /G =i  Q.G/ is
+nonzero is provided by Shtern [90], and an example of a pair such that Q.N /G =.H1 .N /G C i  Q.G// is
+nonzero is provided by the first and second authors [58]. Some of the authors generalize the result of [58]
+and provide an extrinsic application in [61] (see Theorem 1.3).
+
+Here we show that, under a certain condition on  D G=N and a mild condition on G, the quotient real
+vector space Q.N /G =.H1 .N /G C i  Q.G// is finite-dimensional. For example, amenability of  and
+finite presentability of G suffice. We exhibit here two such examples: one corresponds to a surface group
+(Theorem 1.1), and the other to the fundamental group of a hyperbolic mapping torus (Theorem 1.2). We
+discuss this point in more detail in the latter part of this subsection. We remark that in Theorem 1.2 the
+group quotient  D G=N is nonabelian solvable in general. The main novel point of these theorems is that
+we obtain nonzero finite-dimensionality of vector spaces associated with quasimorphisms: the (quotient)
+spaces of homogeneous quasimorphisms modulo genuine homomorphisms tend to be either zero- or
+infinite-dimensional for groups naturally appearing in geometric group theory. To be more precise, if a
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                  1171
+
+group admits hyperbolicity in a certain weak sense, then the space is infinite-dimensional (see Bestvina
+and Fujiwara [12]); the space vanishes for higher-rank lattices (see Burger and Monod [22; 23]). We also
+mention that there are some exceptions in the world of one-dimensional dynamics to the aforementioned
+tendency, such as certain Thompson-type groups; see Fournier-Facio and Lodha [36] and Calegari [26,
+Chapter 5].
+
+Theorem 1.1 (nonzero finite-dimensionality in surface groups) Let l be an integer greater than 1,
+G D 1 .†l / the surface group with genus l, and N the commutator subgroup Œ1 .†l /; 1 .†l / of 1 .†l /.
+Then
+        dim.Q.N /G =i  Q.G// D l.2l 1/ and dim Q.N /G =.H1 .N /G C i  Q.G// D 1:
+                                                                                          
+
+
+For l 2 N, let Mod.†l / be the mapping class group of the surface †l and sl W Mod.†l / ! Sp.2l; Z/ the
+symplectic representation. For a mapping class 2 Mod.†l /, we take a diffeomorphism f representing
+and let Tf denote the mapping torus of f. The fundamental group of Tf is isomorphic to the semidirect
+product 1 .†l / Ìf Z and surjects onto Z2l Ìsl . / Z via the abelianization map 1 .†l / ! H1 .†l I Z/.
+Note that the kernel of the surjection is equal to the commutator subgroup of 1 .†l /.
+
+Theorem 1.2 (nonzero finite-dimensionality in hyperbolic mapping tori) Let l be an integer greater
+than 1, 2 Mod.†l / a pseudo-Anosov element and f a diffeomorphism representing . Let G be the
+fundamental group of the mapping torus Tf and N the kernel of the surjection G ! Z2l Ìsl . / Z. Then
+                                                                              V2
+            dim.Q.N /G = i  Q.G// D dim Ker.I2l sl . // C dim Ker I.2l /        sl . /
+                                                                                       
+                                                                          2
+and
+                 dim Q.N /G =.H1 .N /G C i  Q.G// D dim Ker.I2l sl . // C 1:
+                                                   
+                                                                 V2             V2           V2
+Here, for n 2 N, In denotes the identity matrix of size n, and        sl . /W        R2l !        R2l is the map
+induced by sl . /.
+In particular, ifis in the Torelli group (that is, sl . / D I2l ), then
+                                      2l 
+      dim.Q.N /G =i  Q.G// D 2l C           and dim Q.N /G =.H1 .N /G C i  Q.G// D 2l C 1:
+                                                                                  
+                                       2
+In Theorem 1.2, the pseudo-Anosov property for        is assumed to ensure hyperbolicity of G; see
+Theorem 4.8. In Theorems 4.5 and 4.11, we also obtain results analogous to Theorems 1.1 and 1.2 in the
+free group setting.
+In study of quasimorphisms, it is often quite hard to obtain nonzero finite-dimensionality. For instance, if
+a group G can act nonelementarily in a certain good manner on a Gromov-hyperbolic geodesic space,
+then the dimension of Q.G/ is of the cardinal of the continuum [12]; contrastingly, a higher-rank lattice G
+has zero Q.G/ [22]. For a group G such that the dimension of Q.G/ is of the cardinal of the continuum,
+understanding all quasimorphisms on G might have been considered an impossible subject. Our study
+of the space of nonextendable quasimorphisms might have some possibility of shedding light on this
+problem modulo “trivial or extendable” quasimorphisms.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1172       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Theorems 1.1 and 1.2 treat the case where G is a nonelementary Gromov-hyperbolic group and N a
+subgroup with solvable quotient. In this case, a result of Epstein and Fujiwara [34] implies that the
+dimension of Q.G/ is the cardinal of the continuum. The kernel of the restriction i  W Q.G/ ! Q.N /G can
+be identified with Q./. Since  is now finitely generated solvable, the dimension of Q./ D H1 ./ is
+finite. This implies that the dimension of Q.N /G is also the cardinal of the continuum. Nevertheless, our
+results (Theorems 1.9 and 1.10) imply that the spaces Q.N /G =i  Q.G/ and Q.N /G =.H1 .N /G Ci  Q.G//
+are always both finite-dimensional. Theorems 1.1 and 1.2 provide nonvanishing examples, and it might
+be an interesting problem to understand all quasimorphism classes in these examples.
+
+We outline how we deduce finite-dimensionality of Q.N /G = i  Q.G/ and Q.N /G =.H1 .N /G C i  Q.G//
+under certain conditions in our results. Our main theorem, Theorem 1.5 (stated in Section 1.2), establishes
+the five-term exact sequence of the cohomology H=b associated with a short exact sequence of groups
+
+                                         1 ! N ! G !  ! 1:
+
+Here, H=b relates the bounded cohomology Hb with the ordinary cohomology H ; see Section 1.2 for
+the precise definition of H=b . In Theorems 1.9 and 1.10, we assume that  is boundedly 3-acyclic,
+meaning that H2b .I R/ D 0 and H3b .I R/ D 0 (Definition 1.8). Then the five-term exact sequence
+enables us to relate Q.N /G =i  Q.G/ and Q.N /G =.H1 .N /G C i  Q.G//, respectively, to the ordinary
+second cohomology H2 ./ D H2 .I R/ and H2 .G/ D H2 .GI R/. Since second ordinary cohomology
+is finite-dimensional under certain mild conditions, we obtain the desired finite-dimensionality results.
+In this point of view, our main theorem (Theorem 1.5) might be regarded as filling in a missing piece
+between the bounded cohomology theory and the ordinary cohomology theory.
+
+We also note that the extendability and nonextendability of invariant quasimorphisms themselves have
+applications. See Section 2.1 for an application to the stable (mixed) commutator lengths, and Section 2.3
+for one to symplectic geometry. As a notable extrinsic application, we recall our following theorem:
+
+Theorem 1.3 [61, Theorem 1.1] Let †l be a closed orientable surface whose genus l is at least
+two and  an area form on S. Let Diff0 .†l ; / denote the identity component of the group of dif-
+feomorphisms of †l that preserve . Assume that a pair f; g 2 Diff0 .†l ; / satisfies fg D gf. Let
+Flux W Diff0 .†l ; / ! H1 .†l I R/ be the volume flux homomorphism and ^W H1 .†l I R/H1 .†l I R/ !
+H2 .†l I R/ Š R the cup product. Then
+
+                                      Flux .f / ^ Flux .g/ D 0:
+
+The statement of Theorem 1.3 might not seem to have any relation to quasimorphisms. Nevertheless,
+the key to the proof is comparison between vanishing and nonvanishing of Q.N /G =i  Q.G/, where
+G D Flux1 .hFlux .f /; Flux .g/=ki/ for a sufficiently large integer k and N D Ker.Flux /; see
+Section 2.3 for basic concepts around volume flux homomorphisms. (We discuss a related example in
+Example 7.15.)
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                                                                                     1173
+
+1.2 Main theorem
+To treat the spaces of nonextendable quasimorphisms, we establish the five-term exact sequence of group
+cohomology H=b relative to bounded cochain complexes. Throughout the paper, the coefficient module
+of the cohomology groups is the field R of real numbers unless otherwise specified. The main reason we
+are interested in this cohomology H=b is that H1=b .G/ and Q.G/ are isomorphic (see Remark 1.6).
+Now we start the definition of H=b . Let V be a left normed G-module, and C n .GI V / the space of
+functions from the n-fold direct product G n of G to V. The group cohomology is defined by the
+cohomology group of C n .GI V / with a certain differential (see Section 3 for the precise definition).
+Recall that the spaces Cbn .GI V / of the bounded functions form a subcomplex of C  .GI V /, and its
+cohomology group is the bounded cohomology group of G. We write C=b   
+                                                                        .GI V / to indicate the quotient
+complex C .GI V /=Cb .GI V /, and write H=b .GI V / to mean its cohomology group.
+                                          
+
+
+Our main result is the five-term exact sequence of the cohomology H=b . Before stating our main theorem,
+we first recall the five-term exact sequence of ordinary group cohomology.
+                                                                                                                                                          p
+Theorem 1.4 (see for example Brown [19, Corollary VII.6.4]) Let 1 ! N i! G !  ! 1 be an
+exact sequence of groups and V a left RŒ-module. Then there exists an exact sequence
+                                       p                                                                                           p
+              0 ! H1 .I V / ! H1 .GI V / i! H1 .N I V /G ! H2 .I V / ! H2 .GI V /:
+                                                                       
+
+
+
+The following theorem is the main result in this paper:
+                                                                                   p
+Theorem 1.5 (main theorem) Let 1 ! N i! G !  ! 1 be an exact sequence of groups and V a
+left Banach RŒ-module equipped with a -invariant norm k  k. Then there exists an exact sequence
+                                      p                                                                                               p
+(1-1)       0 ! H1=b .I V / ! H1=b .GI V / i! H1=b .N I V /G =b
+                                                              ! H2=b .I V / ! H2=b .GI V /:
+Moreover, the exact sequence above is compatible with the five-term exact sequence of group cohomology;
+that is, the following diagram commutes:
+                                           p                               i                                                                      p
+        0       / H1 .I V /                     / H1 .GI V /                     / H1 .N I V /G                          / H2 .I V /                        / H2 .GI V /
+
+(1-2)                        1                               2                                    3                                   4                              5
+                                                                                                             =b
+                                                                                                                                                                    
+                                           p                               i                                                                       p
+        0       / H1 .I V /                    / H1 .GI V /                     / H1 .N I V /G                           / H2 .I V /                        / H2 .GI V /
+                    =b                               =b                             =b                                         =b                               =b
+
+Here the i are the maps induced from the quotient map C  ! C=b
+                                                              
+                                                                 .
+
+Remark 1.6 By the definition of H=b , there exists a natural map Q.G/ ! H1=b .G/ D H1=b .GI R/, and it
+is known that this is an isomorphism (see the proof of [26, Theorem 2.50]). Then diagram (1-2) gives
+rise to
+                                p                             / 2      p
+              0        / H1 ./    / H1 .G/ i / H1 .N /G           H ./        / H2 .G/
+
+(1-3)                                 1                          2                       3                             4                             5
+                                                                                                      =b
+                                                                                                                                                    
+                                                p                         i                                                       p
+                0            / Q./                  / Q.G/                      / Q.N /G                      / H2 ./                       / H2 .G/
+                                                                                                                 =b                             =b
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1174       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Note that the exactness of the sequence
+                                               p          
+                                   0 ! Q./ ! Q.G/ i! Q.N /G
+is well known (see [26, Remark 2.90]).
+
+Remark 1.7 It is straightforward to show that the quotient space H1=b .N I V /G = i  H1=b .GI V / is iso-
+            y I V /QG =i  QZ.GI
+morphic to Q.N             y       V /, where QZ.GI
+                                              y      V / and Q.N
+                                                             y I V /QG are the spaces of quasicocycles
+on G and G-quasiequivariant V -valued quasimorphisms on N, respectively (see Definition 6.1 and
+Section 8.2; see also Remark 6.4). In Section 8.2, we will apply Theorem 1.5 to the extension problem
+of G-quasiequivariant quasimorphisms on N to quasicocycles on G. We also mention that, for a group–
+subgroup pair .G; H / for H (not being normal in G, but) being hyperbolically embedded into G, certain
+extension theorems of quasicocycles have been obtained by Hull and Osin [49] and Frigerio, Pozzetti and
+Sisto [41].
+
+This theorem provides several arguments to estimate the dimensions of the spaces Q.N /G = i  Q.G/ and
+Q.N /G =.H1 .N /G C i  Q.G// as follows. Here we recall the definition of bounded k-acyclicity of groups
+from Ivanov [53] and Moraschini and Raptis [82].
+
+Definition 1.8 (bounded k-acyclicity) Let k be a positive integer. A group G is said to be boundedly
+k-acyclic if Hib .G/ D 0 for every positive integer i with i  k.
+
+We note that H1b .G/ D 0 for every group G. We recall properties and examples of boundedly k-acyclic
+groups in Theorem 3.6. In particular, we recall that amenable groups, such as abelian groups, are
+boundedly k-acyclic for all k (Theorem 3.5(5)).
+
+Theorem 1.9 If the quotient group  D G=N is boundedly 3-acyclic, then
+                                 dim.Q.N /G =i  Q.G//  dim H2 ./:
+Moreover, if G is Gromov-hyperbolic, then
+                                 dim.Q.N /G = i  Q.G// D dim H2 ./:
+
+In fact, the assumption of Gromov-hyperbolicity of G can be weakened to the surjectivity of the comparison
+map cG W H2b .G/ ! H2 .G/; see Theorem 4.1.
+On the space Q.N /G =.H1 .N /G C i  Q.G//, we also obtain the following:
+
+Theorem 1.10 If  D G=N is boundedly 3-acyclic, then the map p  ı .4 / 1 ı =b induces an iso-
+morphism
+                    Q.N /G =.H1 .N /G C i  Q.G// Š Im.p  / \ Im.cG /;
+where cG W H2b .G/ ! H2 .G/ is the comparison map. In particular, if  is boundedly 3-acyclic, then
+                         dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 .G/:
+                                                            
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                 1175
+
+When N D ŒG; G, we have a more precise calculation of dim Q.N /G =.H1 .N /G C i  Q.G// (see
+                                                                                                 
+
+Corollary 4.3). As we mentioned in the previous subsection, there are many examples of a finitely
+presented group whose space of homogeneous quasimorphisms is infinite-dimensional, for instance any
+nonelementary Gromov-hyperbolic group [34]. Nevertheless, if we assume that  D G=N is boundedly
+3-acyclic, then we have the following two statements: the space Q.N /G =.H1 .N /G C i  Q.G// is finite-
+dimensional if G is finitely presented (following from Theorem 1.10); and the space Q.N /G =i  Q.G/ is
+finite-dimensional if  is finitely presented (following from Theorem 1.9).
+There are several known conditions that guarantee Q.N /G D i  Q.G/, ie every G-invariant quasimorphism
+is extendable (see Malyutin [67], Ishida [50; 51] Shtern [90] and Kawasaki, Kimura, Matsushita and
+Mimura [60]). We say that a group homomorphism p W G !  virtually splits if there exist a subgroup ƒ
+of finite index in  and a group homomorphism s W ƒ ! G such that f ı s.x/ D x for every x 2 ƒ. The
+first, second, fourth and fifth authors showed that, if the group homomorphism p W G !  virtually splits,
+then Q.N /G D i  Q.G/ [60]. Thus the space Q.N /G = i  Q.G/, which we consider in Theorem 1.9, can
+be seen as a space of obstructions to the existence of virtual splittings.
+
+
+2 Other applications of the main theorem
+In this section, we provide several other applications of our main theorem (Theorem 1.5); we also use its
+corollaries, Theorems 1.9 and 1.10. To conclude the section, we briefly describe the organization of the
+rest of the paper.
+
+2.1 On equivalences of sclG and sclG;N
+As an application of the spaces of nonextendable quasimorphisms, we treat the equivalence problems
+of the stabilizations of usual and mixed commutator lengths. For two nonnegative-valued functions 
+and  on a group G, we say that  and  are bi-Lipschitzly equivalent (or equivalent in short) if there
+exist positive constants C1 and C2 such that C1     C2 . By Theorem 1.10, H2 .G/ D 0 implies
+that Q.N /G =.H1 .N /G C i  Q.G// D 0 if  D G=N is boundedly 3-acyclic. We show that the condition
+Q.N /G =.H1 .N /G C i  Q.G// D 0 implies that certain two stable word lengths related to commutators
+are bi-Lipschitzly equivalent.
+Let G be a group and N a normal subgroup. A .G; N /-commutator is an element of G of the form
+Œg; x D gxg 1 x 1 for some g 2 G and x 2 N. Let ŒG; N  be the group generated by the set of
+.G; N /-commutators. Then ŒG; N  is a normal subgroup of G and is included in N. For an element
+x in ŒG; N , the .G; N /-commutator length or the mixed commutator length of x is defined to be the
+minimum number n such that there exist n .G; N /-commutators c1 ; : : : ; cn such that x D c1    cn , and is
+denoted by clG;N .x/. Then there exists a limit
+                                                       clG;N .x n /
+                                    sclG;N .x/ WD lim
+                                                 n!1        n
+and we call sclG;N .x/ the stable .G; N /-commutator length of x.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1176       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+When N D G, clG;G .x/ and sclG;G .x/ equal the commutator length and stable commutator length of x,
+respectively. We write clG .x/ and sclG .x/ instead of clG;G .x/ and sclG;G .x/. The commutator lengths
+and stable commutator lengths have a long history (see [26]), for instance in the study of theory of
+mapping class groups (see [32; 27; 10]) and diffeomorphism groups (see [21; 95; 96; 97; 17]). The
+celebrated Bavard duality theorem [6] describes the relationship between homogeneous quasimorphisms
+and the stable commutator length. In particular, for an element x 2 ŒG; G, sclG .x/ is nonzero if and only
+if there exists a homogeneous quasimorphism f on G with f .x/ ¤ 0.
+In [58; 60], we construct a pair .G; N / such that sclN and sclG;N are not bi-Lipschitzly equivalent
+on ŒN; N . Contrastingly, in several cases it is known that sclG and sclG;N are bi-Lipschitzly equivalent on
+ŒG; N . For example, if the map p W G !  D G=N virtually splits, then sclG and sclG;N are bi-Lipschitzly
+equivalent on ŒG; N . In this paper, the vanishing of Q.N /G =.H1 .N /G Ci  Q.G// implies the equivalence
+of sclG and sclG;N as follows. We note that H2 .G/ D 0 implies Q.N /G =.H1 .N /G C i  Q.G// D 0 by
+Theorem 1.10 when  D G=N is boundedly 3-acyclic.
+
+Theorem 2.1 Assume that Q.N /G D H1 .N /G C i  Q.G/. Then:
+ (1) sclG and sclG;N are bi-Lipschitzly equivalent on ŒG; N .
+ (2) If  D G=N is amenable, then sclG .x/  sclG;N .x/  2  sclG .x/ for all x 2 ŒG; N .
+ (3) If  D G=N is solvable, then sclG .x/ D sclG;N .x/ for all x 2 ŒG; N .
+
+Remark 2.2 Recently, several examples of nonamenable boundedly acyclic groups have been constructed
+(see [38; 37; 79; 78]; we also recall some of them in Theorem 3.6). However, our proof of Theorem 2.1(2)
+does not work if the assumption of amenability of  in (2) is replaced with bounded 3-acyclicity. Indeed,
+in our proof, we use the fact that H2b .G/ ! H2b .N /G is isometric, which is deduced from the amenability
+of  [74, Proposition 8.6.6].
+
+By Theorem 1.10, when G=N is boundedly 3-acyclic, H2 .G/ D 0 implies Q.N /G D H1 .N /G C i  Q.G/,
+and hence sclG;N and sclG are equivalent on ŒG; N . There are plenty of examples of groups whose
+second cohomology groups vanish, as follows:
+      The free groups Fn .
+      Let l be a positive integer. Let Nl be the nonorientable closed surface with genus l, and set
+       G D 1 .Nl /. Then, G D ha1 ; : : : ; al j a21    a2l i and H2 .G/ D H2 .Nl / D 0.
+      Let K be a knot in S 3 . Then the knot group G of K is defined to be the fundamental group
+       of the complement S 3 n K. Since S 3 n K is an Eilenberg–Mac Lane space, we have H2 .G/ D
+       H2 .S 3 n K/ D H
+                      z 0 .K/ D 0.
+      The braid group Bn . Akita and Liu [1, Corollary 3.21] gave sufficient conditions on a labeled
+       graph  for the real second cohomology group of the Artin group A./ to vanish.
+      The Baumslag–Solitar groups BS.m; n/ D ha; b j bam b 1 D an i with m ¤ n (see [13], for example).
+      Free products of the above groups.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                             1177
+
+For other examples satisfying Q.N /G D H1 .N /G C i  Q.G/, see Example 4.13 and Corollaries 4.12,
+4.14 and 4.16.
+Finally, we discuss pairs .G; N / with nonequivalent sclG and sclG;N . In [58], the first and second authors
+provided the first example of such .G; N / (Example 7.14); we obtain another example with smaller G in
+Example 7.15, which follows from [61]. These two examples may be seen as one example, coming from
+symplectic geometry. Unfortunately, in the present paper, we are unable to provide any new example from a
+different background. We remark that some of the authors [69] provided new examples after our work here;
+see the discussion below Problem 9.9. By Theorem 2.1, the vanishing of Q.N /G =.H1 .N /G C i  Q.G//
+implies the equivalence of sclG and sclG;N . After this work, the authors proved that its converse holds if
+N D ŒG; G [59]. We discuss problems on this equivalence/nonequivalence in more detail in Section 9.2.
+
+2.2 The case of IA-automorphism groups of free groups
+
+Here we provide an example where Q.N /G D H1 .N /G C i  Q.G/ but  is not amenable. Our example
+comes from the automorphism group of a free group and the IA-automorphism group. The group of
+automorphisms of a group G is denoted by Aut.G/. Let IAn be the IA-automorphism group of the free
+group Fn , ie the kernel of the natural homomorphism Aut.Fn / ! GL.n; Z/. Let Aut.Fn /C denote the
+preimage of SL.n; Z/ in Aut.Fn /. The following theorem will be proved in Section 8; see Theorems 8.9
+and 8.17 for more general statements.
+
+Theorem 2.3 (1) For every n  2, we have Q.IAn /Aut.Fn / D i  Q.Aut.Fn // and Q.IAn /AutC .Fn / D
+     i  Q.AutC .Fn //.
+ (2) For every n  6 and every subgroup G of Aut.Fn / of finite index, Q.N /G D i  Q.G/. Here,
+     N D IAn \ G.
+
+Remark 2.4 (1) The bound n  6 in Theorem 2.3(2) comes from Theorem 8.6(1), which treats an
+effective bound of the Borel stable range for second ordinary cohomology with the trivial real coefficients
+of SLn .
+In fact, by appealing to a recent result of Bader and Sauer [3], we are able to improve this bound to n  4.
+We will see this in Theorem 8.17.
+(2) Corollary 3.8 of [43] implies that H2 .Aut.Fn // D 0 for n  5. However, H2 .ƒ/ for a subgroup ƒ
+of finite index in Aut.Fn / is mysterious in general. Even on H1 , only quite recently it has been proved
+that H1 .ƒ/ D 0 if n  4; the proof is based on Kazhdan’s property (T) for Aut.Fn / for n  4. See
+[55; 54; 86]. We refer to [8] for a comprehensive treatise on property (T). Contrastingly, by [71], there
+exists a subgroup ƒ of finite index in Aut.F3 / such that H1 .ƒ/ ¤ 0.
+(3) The same conclusions as in Theorem 2.3 hold if we replace Aut.Fn / and IAn with Out.Fn / and IAn ,
+respectively. Here, IAn denotes the kernel of the natural map Out.Fn / ! GL.n; Z/. Indeed, the proofs
+which will be presented in Section 8 work without any essential change.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1178       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+(4) If n  3 and G is a subgroup of Aut.Fn / of finite index, then the real vector space i  Q.G/ is
+infinite-dimensional. Indeed, we can apply [12] to the acylindrically hyperbolic group Out.Fn /, whose
+amenable radical is trivial. Moreover, thanks to [39, Corollary 4.3], we may construct an infinite
+collection of homogeneous quasimorphisms on Out.Fn / which is linearly independent even when these
+quasimorphisms are restricted to ŒIAn \G; IAn \G. Here G is the image of G under the natural projection
+Aut.Fn / ! Out.Fn /. Then consider the restriction of this collection on G, and take the pullback of it
+under the projection G ! G.
+
+In fact, Corollary 1.2 of [9] treats quasicocycles into unitary representations. Then the following may be
+deduced in a similar manner to the above: Let G be a subgroup of Aut.Fn / of finite index with n  3
+and  WD G=.IAn \ G/. Let .; H/ be a unitary -representation, and . N   ; H/ the pullback of it under the
+projection G ! . Then the vector space i QZ.G; N
+                                               y       ; H/ of the quasicocycles is infinite-dimensional.
+Furthermore, Corollary 1.2 of [9] and its proof can be employed to obtain the corresponding result in the
+setting where G is a subgroup of Mod.†l / of finite index with l  3 and .; H/ is a unitary representation
+of G=.I.†l / \ G/. Here I.†l / denotes the Torelli group.
+
+If .G; N / equals .Mod.†l /; I.†l // or its analogue for the setting of subgroups of finite index, then the
+situation is subtle. See Theorems 8.10 and 8.14 for our results. We remark that the question on the
+extendability of quasimorphisms might be open; see Problem 8.18.
+
+2.3 Applications to volume flux homomorphisms
+
+In Section 5, we will provide applications of Theorem 1.10 to diffeomorphism groups.
+
+We study the problem to determine which cohomology class admits a bounded representative. Notably,
+the problem on (subgroups of) diffeomorphism groups is interesting and has been studied in view of
+characteristic classes of fiber bundles. However, the problem is often quite difficult and, in fact, there are
+only a few cohomology classes that are known to be bounded or not. Here we restrict our attention to the
+case of degree two cohomology classes. The best-known example is the Euler class of DiffC .S 1 /, which
+has a bounded representative. The Godbillon–Vey class integrated along the fiber defines a cohomology
+class of DiffC .S 1 /, which has no bounded representatives [91]. It was shown in [25] that the Euler class
+of Diff0 .R2 / is unbounded. In the case of three-dimensional manifolds, the identity components of the
+diffeomorphism groups of several closed Seifert-fibered three-manifolds admit cohomology classes of
+degree two which do not have bounded representatives [68].
+
+Let M be an m-dimensional manifold and  a volume form. Then we can define the flux homo-
+                                        e e
+morphism (on the universal covering) Flux W Diff0 .M; / ! Hm 1 .M /, the flux group  , and the flux
+homomorphism Flux W Diff0 .M; / ! Hm 1 .M /=  ; see Section 5 for the precise definitions.
+
+As applications of Theorem 1.10, we have a few results related to the comparison maps H2b .Diff0 .M; // !
+                            e                      e
+H2 .Diff0 .M; // and H2b .Diff0 .M; // ! H2 .Diff0 .M; //.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                         1179
+
+                                                       e
+It is known that the spaces H2 .Diff0 .M; // and H2 .Diff0 .M; // can be very large (see for instance
+the following proposition in Kotschick and Morita [65]). Note that Hn .Rm I R/ is isomorphic to
+HomZ nZ .Rm /I R .
+        V           
+
+
+Proposition 2.5 [65] The homomorphisms
+   Flux W H2 .Hm 1 .M /=  / ! H2 .Diff0 .M; //;    e   
+                                                                                      e
+                                                       Flux W H2 .Hm 1 .M // ! H2 .Diff0 .M; //
+induced by the flux homomorphisms are injective.
+
+As an application of Theorem 1.10, we have the following theorem:
+
+Theorem 2.6 Let .M; / be an m-dimensional closed manifold with volume form . Then the following
+hold :
+ (1) If m D 2 and the genus of M is at least 2, then there exists at least one nontrivial element of
+     Im.Flux / represented by a bounded 2-cochain.
+                                                                    e   
+ (2) Otherwise, every nontrivial element of Im.Flux / and Im.Flux / cannot be represented by a
+     bounded 2-cochain.
+
+Note that in case (1) it is known that 1 .Diff0 .M; // D 0 (see for example [87, Section 7.2.B]); in
+particular, the flux group  is zero.
+In the proof of Theorem 2.6(1), we essentially prove the nontriviality of the cohomology class cP 2
+Im.Flux /, called the Py class. In Section 9.1, we provide some observations on the Py class.
+
+Organization of the paper
+Section 3 collects preliminary facts. In Section 4, we first prove Theorems 1.9 and 1.10, assuming
+Theorem 1.5. Secondly, we show Theorems 1.1 and 1.2. In Section 5, we provide applications of
+Theorem 1.5 to the volume flux homomorphisms. Section 6 is devoted to the proof of Theorem 1.5. In
+Section 7, we prove Theorem 2.1. In Section 8, we prove Theorem 2.3, as well as Theorems 8.9 and 8.10
+(and furthermore Theorems 8.17 and 8.14). In Section 9, we provide several open problems.
+
+
+3 Preliminaries
+Before proceeding to the main part of this section, we collect basic properties of quasimorphisms and
+state them as Lemmas 3.1 and 3.2; see [26, Sections 2.2 and 2.4] for more details. Lemma 3.1 follows
+from the equality .ghg 1 /n D ghn g 1 for every g; h 2 G and every n 2 Z.
+
+Lemma 3.1 A homogeneous quasimorphism is conjugation-invariant.
+
+In particular, the restriction of a homogeneous quasimorphism f of G to a normal subgroup N is
+G-invariant.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1180          Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+For a quasimorphism f W G ! R, the Fekete lemma guarantees that the limit
+                                                                    f .x /     n
+                                                        fN.x/ D lim
+                                                               n!1     n
+exists. The function fN defined by the above equation is called the homogenization of f .
+
+Lemma 3.2           (1) fN is a homogeneous quasimorphism.
+ (2) jfN.x/   f .x/j  D.f / for every x 2 G.
+  (3) [26, Lemma 2.58] D.fN/  2D.f /.
+
+In this section, we recall definitions and facts related to the ordinary and bounded cohomology of groups.
+For a more comprehensive introduction to this subject, we refer to [45; 26; 40].
+Let V be a left RŒG-module and C n .GI V / the vector space consisting of functions from the n-fold
+direct product G n to V. Let ı W C n .GI V / ! C nC1 .GI V / be the R-linear map defined by
+                                                      n
+                                                      X
+.ıf /.g0 ; : : : ; gn / D g0 f .g1 ; : : : ; gn /C     . 1/i f .g0 ; : : : ; gi 1 gi ; : : : ; gn /C. 1/nC1 f .g0 ; : : : ; gn 1 /:
+                                                      iD1
+
+Then ı 2 D 0 and its nth cohomology is the ordinary group cohomology Hn .GI V /.
+Next, suppose that V is equipped with a G-invariant norm k  k, ie kg  vk D kvk for every g 2 G and
+v 2 V. Define Cbn .GI V / to be the subspace
+                  Cbn .GI V / D f W G n ! V j             kf .g1 ; : : : ; gn /k < 1
+                                ˚
+                                                  sup
+                                                                .g1 ;:::;gn /2G n
+
+of C n .GI V /. Then Cb .GI V / is a subcomplex of C  .GI V /, and we call the nth cohomology of Cb .GI V /
+the nth bounded cohomology of G, and denote it by Hnb .GI V /. The inclusion Cb .GI V / ! C  .GI V /
+induces a map cG W Hb .GI V / ! H .GI V /, called the comparison map.
+Let H=b .GI V / denote their relative cohomology, that is, the cohomology of the quotient complex
+ 
+C=b .GI V / D C  .GI V /=Cb .GI V /. Then the short exact sequence of cochain complexes
+                                   0 ! Cb .GI V / ! C  .GI V / ! C=b
+                                                                    
+                                                                       .GI V / ! 0
+induces the cohomology long exact sequence
+                                            c
+(3-1)                                    ! Hn .GI V / ! Hn=b .GI V / ! HnC1
+                        ! Hnb .GI V / G                              b
+                                                                            .GI V / !    :
+If we need to specify the G-representation , we may use the symbols H .GI ; V /, Hb .GI ; V / and
+H=b .GI ; V / instead of H .GI V /, Hb .GI V / and H=b .GI V /, respectively. Let R denote the field of real
+numbers equipped with the trivial G-action. In this case, we write Hn .G/, Hnb .G/ and Hn=b .G/ instead of
+Hn .GI R/, Hnb .GI R/ and Hn=b .GI R/, respectively.
+Let N be a normal subgroup of G. Then G acts on N by conjugation, and hence G acts on C n .N I V /.
+This G-action is described by
+                                  .gf /.x1 ; : : : ; xn / D g  f .g 1 x1 g; : : : ; g 1 xn g/:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                          1181
+
+The action induces G-actions on Hn .N I V /, Hnb .N I V / and Hn=b .N I V /. When N D G, these G-actions
+on Hn .GI V /, Hnb .GI V / and Hn=b .GI V / are trivial. Indeed, for h 2 G, the conjugation by h on C  .GI V /
+is homotoped to the identity map by the chain homotopy ˆh W C n .GI V / ! C n 1 .GI V / defined by
+                                             n
+                                             X1
+            .ˆh .c//.g1 ; : : : ; gn 1 / D         . 1/i c.g1 ; : : : ; gi ; h; h 1 giC1 h; : : : ; h 1 gn 1 h/:
+                                             iD0
+
+This chain homotopy induces ones between the conjugations by h and the identity maps on Cb .GI V /
+      
+and C=b  .GI V /. By definition, a cocycle f W N ! V in C=b
+                                                         1
+                                                            .N I V / defines a class of H1=b .N I V /G if and
+only if the function f f W N ! V is bounded for every g 2 G.
+                     g
+
+
+Until the end of Section 5, we consider the case of trivial real coefficients. Let f W G ! R be a homogeneous
+quasimorphism. Then f is considered as an element of C 1 .G/, and its coboundary ıf is
+                                    .ıf /.x; y/ D f .x/           f .xy/ C f .y/:
+Since f is a quasimorphism, the coboundary ıf is a bounded cocycle. Hence we obtain a map ı W Q.G/ !
+H2b .G/ given by f 7! Œıf . Then the following lemma is well known:
+
+Lemma 3.3 The following sequence is exact:
+                               0 ! H1 .G/ ! Q.G/ ı! H2b .G/ G
+                                                                             c
+                                                            ! H2 .G/:
+
+Let ' W G ! H be a group homomorphism. A virtual section of ' is a pair .ƒ; x/ consisting of a
+subgroup ƒ of finite index in H and a group homomorphism s W ƒ ! G satisfying '.s.x// D x for
+every x 2 ƒ. The group homomorphism ' is said to virtually split if ' admits a virtual section. As
+mentioned at the end of the introduction, some of the authors showed the following proposition. For a
+further generalization of this result, see [61, Theorem 1.4].
+
+Proposition 3.4 [60, Proposition 6.4] If the projection p W G !  virtually splits, then the map
+i  W Q.G/ ! Q.N /G is surjective.
+
+In this paper, we often consider amenable groups and boundedly acyclic groups. Here we review basic
+properties related to them. First we collect those for amenable groups (see for example [40] for more
+details).
+
+Theorem 3.5 (known results for amenable groups)                    (1) Every finite group is amenable.
+ (2) Every abelian group is amenable.
+ (3) Every subgroup of an amenable group is amenable.
+ (4) Let 1 ! N ! G !  ! 1 be an exact sequence of groups. Then G is amenable if and only if N
+     and  are amenable.
+ (5) Every amenable group is boundedly k-acyclic for all k  1.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1182      Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Secondly, we collect known results on bounded k-acyclicity for k  3 due to various researchers; these
+results are not used in this paper, but it might be convenient to the reader to have some examples of
+boundedly 3-acyclic groups that are nonamenable. See also Remark 8.8 for one more example.
+
+Theorem 3.6 (known results for boundedly acyclic groups) (1) [70] Let n 2 N. Then the group
+     Homeoc .Rn / of homeomorphisms on Rn with compact support is boundedly acyclic.
+ (2) [75; 80] For n  3, every lattice in SL.n; R/ is 3-boundedly acyclic.
+ (3) [20] Burger–Mozes groups [24] are 3-boundedly acyclic.
+ (4) (see [82]) Let k 2 N. Let 1 ! N ! G !  ! 1 be a short exact sequence of groups. Assume
+     that N is boundedly k-acyclic. Then G is boundedly k-acyclic if and only if  is.
+ (5) [38] Every binate group (see [38, Definition 3.1]) is boundedly acyclic.
+ (6) [37] There exist continuum many nonisomorphic 5-generated nonamenable groups that are bound-
+     edly acyclic. There exists a finitely presented nonamenable group that is boundedly acyclic.
+ (7) [78] Thompson’s group F is boundedly acyclic.
+ (8) [78] Let L be an arbitrary group. Let  be an infinite amenable group. Then the wreath product
+     Lo D       L Ì  is boundedly acyclic.
+             L      
+
+ (9) [79] For every integer n at least two, the identity component Homeo0 .S n / of the group of
+     orientation-preserving homeomorphisms of S n is boundedly 3-acyclic. The group Homeo0 .S 3 / is
+     boundedly 4-acyclic.
+
+On (7), we remark that it is a major open problem whether Thompson’s group F is amenable.
+The seven-term exact sequence and the calculation of first cohomology mentioned below will be used in
+the proof of Theorem 4.11.
+                                                                                      p
+Theorem 3.7 (seven-term exact sequence; see [31] for example) Let 1 ! N i! G !  ! 1 be an
+exact sequence. Then we have the exact sequence
+            p           
+0 ! H1 ./ ! H1 .G/ i! H1 .N /G ! H2 ./
+                                                                         
+                                          ! Ker.i  W H2 .G/ ! H2 .N // ! H1 .I H1 .N // ! H3 ./:
+Here H1 .N / is regarded as a left RŒ-module by the -action induced from the conjugation G-action
+on N.
+
+Lemma 3.8 For a left RŒZ-module V, let  W Z ! Aut.V / be the representation. Then the first
+cohomology group H1 .ZI V / is isomorphic to V =Im.idV .1//.
+
+Proof By definition, the set Z 1 .ZI V / of cocycles on Z with coefficients in V is equal to the set of
+crossed homomorphisms, that is,
+                  fhW Z ! V j h.n C m/ D .n/.h.m// C h.n/ for every n; m 2 Zg:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                         1183
+
+Since every crossed homomorphism on Z is determined by its value on 1 2 Z, we have Z 1 .ZI V / Š V.
+The set B 1 .ZI V / of coboundaries on Z with coefficients in V is equal to
+                          fhW Z ! V j h.1/ D v     .1/.v/ for some v 2 V g:
+Hence, B 1 .ZI V / Š Im.idV    .1//, and the lemma follows.
+
+4 The spaces of nonextendable quasimorphisms
+The purpose of this section is to provide several applications of our main theorem (Theorem 1.5) to
+the spaces Q.N /G =i  Q.G/ and Q.N /G =.H1 .N /G C i  Q.G//. In Section 4.1 we prove Theorems 1.9
+and 1.10 modulo Theorem 1.5, and in Sections 4.2–4.4 we provide several examples of pairs .G; N / such
+that the space Q.N /G =.H1 .N /G C i  Q.G// does not vanish (Theorems 1.1, 1.2 and 4.18).
+Here we restate Theorems 1.9 and 1.10 for the convenience of the reader.
+
+Theorem 1.9 If the quotient group  D G=N is boundedly 3-acyclic, then
+                                 dim.Q.N /G =i  Q.G//  dim H2 ./:
+Moreover, if G is Gromov-hyperbolic, then
+                                 dim.Q.N /G =i  Q.G// D dim H2 ./:
+
+Theorem 1.10 If  D G=N is boundedly 3-acyclic, then the map p  ı .4 / 1 ı =b induces an iso-
+morphism
+                    Q.N /G =.H1 .N /G C i  Q.G// Š Im.p  / \ Im.cG /;
+where cG W H2b .G/ ! H2 .G/ is the comparison map. In particular, if  is boundedly 3-acyclic, then
+                         dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 .G/:
+                                                            
+
+4.1 Proofs of Theorems 1.9 and 1.10
+The goal of this section is to prove Theorems 1.9 and 1.10 modulo Theorem 1.5.
+First we prove Theorem 1.9. Recall that, if G is Gromov-hyperbolic, then the comparison map H2b .G/ !
+H2 .G/ is surjective [73; 46; 84]. Hence, Theorem 1.9 follows from the following:
+
+Theorem 4.1 Let 1 ! N ! G !  ! 1 be an exact sequence of groups. Assume that  is boundedly
+3-acyclic. Then
+                          dim.Q.N /G =i  Q.G//  dim H2 ./:
+Moreover, if the comparison map cG W H2b .G/ ! H2 .G/ is surjective, then
+                                 dim.Q.N /G = i  Q.G// D dim H2 ./:
+
+Proof By Theorem 1.5, we have the exact sequence
+                                                     
+                                    Q.G/ i! Q.N /G =b
+                                                   ! H2=b ./:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1184       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Hence,
+                                dim.Q.N /G =i  Q.G//  dim H2=b ./:
+
+Since  is boundedly 3-acyclic, the map 4 W H2 ./ ! H2=b ./ is an isomorphism by (3-1), and therefore
+
+                                 dim.Q.N /G =i  Q.G//  dim H2 ./:
+Next we show the latter assertion. Suppose that the comparison map cG W H2b .G/ ! H2 .G/ is surjective.
+Then 5 W H2 .G/ ! H2=b .G/ is the zero map. Since 4 W H2 ./ ! H2=b ./ is an isomorphism, the map
+p  W H2=b ./ ! H2=b .G/ is also zero. Hence,
+                         dim.Q.N /G =i  Q.G// D dim H2=b ./ D dim H2 ./:
+
+To prove Theorem 1.10, we use the following lemma in homological algebra:
+
+Lemma 4.2 For a commutative diagram of R-vector spaces
+                                                                          C
+                                                                               c
+                                                        b2          b3     
+                                             B2              / B3        / B4
+
+                                                   c2        Š c3              c4
+                                        a1             a2         a3     
+                                  A1         / A2            / A3        / A4
+
+where the rows and the last column are exact and c3 is an isomorphism, the map b3 ı c3 1 ı a2 induces an
+isomorphism
+                               A2 =.Im.a1 / C Im.c2 // Š Im.b3 / \ Im.c/:
+
+Because the proof of Lemma 4.2 is done by a standard diagram chase, we omit it.
+
+Proof of Theorem 1.10 If  D G=N is boundedly 3-acyclic, 4 W H2 ./ ! H2=b ./ is an isomorphism.
+Therefore, Theorem 1.10 follows by applying Lemma 4.2 to the commutative diagram (1-3).
+
+The following corollary of Theorem 1.10 will be used in the proof of Theorem 1.1:
+
+Corollary 4.3 Assume that N is contained in the commutator subgroup ŒG; G of G, and  is boundedly
+3-acyclic. Then
+                dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 ./ dim H1 .N /G :
+                                                   
+
+Moreover, if the comparison map H2b .G/ ! H2 .G/ is surjective, then
+                  dim Q.N /G =.H1 .N /G C i  Q.G// D dim H2 ./ dim H1 .N /G :
+                                                   
+
+
+Proof Since N is contained in the commutator subgroup of G, the map i  W H1 .G/ ! H1 .N /G is zero
+and hence dim Im.p  / D dim H2 ./ dim H1 .N /G. Therefore, Theorem 1.10 implies the corollary.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                              1185
+
+Remark 4.4 Let 1 ! N ! G !  ! 1 be an exact sequence and suppose that the group N is amenable.
+Then it is known that the map 3 W H1 .N /G ! Q.N /G in (1-3) is an isomorphism. Hence, Lemma 4.2
+implies that the composite  ı 3 1 ı i  induces an isomorphism
+                              Q.G/=.H1 .G/ C p  Q.// Š Im. / \ Im.c /:
+This isomorphism was obtained in [62] in a different way and applied to study boundedness of characteristic
+classes of foliated bundles.
+
+4.2 Proof of Theorem 1.1
+The goal of this subsection is to prove Theorem 1.1 by using the results proved in the previous subsection.
+This theorem treats surface groups. Before proceeding to this case, we first prove the following theorem
+for free groups:
+
+Theorem 4.5 (computations of dimensions for free groups) For n  1, set G D Fn and N D ŒFn ; Fn .
+Then
+      dim.Q.N /G = i  Q.G// D 21 n.n 1/ and dim Q.N /G =.H1 .N /G C i  Q.G// D 0:
+                                                                                  
+
+
+Proof By Theorem 4.1,
+                  dim.Q.N /G =i  Q.G// D dim H2 .G=N / D dim H2 .Zn / D 21 n.n        1/:
+By Theorem 1.10, we obtain
+                         dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 .G/ D 0:
+                                                          
+
+
+Next we show Theorem 1.1. In the proof, we need the precise description of the space H1 .ŒFn ; Fn /Fn of
+Fn -invariant homomorphisms on the commutator subgroup ŒFn ; Fn  of the free group Fn . Throughout
+this subsection, we write a1 ; : : : ; an to mean the canonical basis of Fn .
+
+Lemma 4.6 Let i and j be integers such that 1  i < j  n. Then there exist Fn -invariant homo-
+morphisms ˛i;j W ŒFn ; Fn  ! R such that, for k; l 2 Z with 1  k < l  n,
+                                                       1 if .i; j / D .k; l/;
+                                                     
+(4-1)                            ˛i;j .Œak ; al / D
+                                                       0 otherwise:
+Moreover, the ˛i;j are a basis of H1 .ŒFn ; Fn /Fn . In particular,
+                                     dim H1 .ŒFn ; Fn /Fn D 12 n.n    1/:
+
+Proof When G D Fn and N D ŒFn ; Fn , the five-term exact sequence (Theorem 1.4) implies that the
+dimension of H1 .ŒFn ; Fn /Fn is 21 n.n 1/. Hence it suffices to construct ˛i;j satisfying (4-1).
+We first consider the case n D 2. Since dim.H1 .ŒF2 ; F2 /F2 / D 1, it suffices to show that there exists an
+F2 -invariant homomorphism ˛ W ŒF2 ; F2  ! R with ˛.Œa1 ; a2 / ¤ 0. Let ' W ŒF2 ; F2  ! R be a nontrivial
+F2 -invariant homomorphism. Then there exists a pair x and y of elements of F2 such that '.Œx; y/ ¤ 0.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1186        Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Let f W F2 ! F2 be the group homomorphism sending a1 to x and a2 to y. Since ' is F2 -invariant, we
+have
+                         ' ı f .gxg 1 / D '.f .g/f .x/f .g/ 1 / D ' ı f .x/
+for every g 2 F2 and every x 2 ŒF2 ; F2 . Hence, ' ı .f jŒF2 ;F2  /W ŒF2 ; F2  ! R is an F2 -invariant
+homomorphism satisfying ' ı f .Œa1 ; a2 / ¤ 0. This completes the proof of the case n D 2.
+Suppose that n  2. Then, for i; j 2 f1; : : : ; ng with i < j, define a homomorphism qi;j W Fn ! F2
+which sends ai to a1 , aj to a2 , and ak to the unit element of F2 for k ¤ i; j. Then qi;j induces a
+surjection ŒFn ; Fn  to ŒF2 ; F2 , and induces a homomorphism qi;j  
+                                                                        W H1 .ŒF2 ; F2 /F2 ! H1 .ŒFn ; Fn /Fn .
+Set ˛i;j D ˛1;2 ı qi;j . Then ˛i;j clearly satisfies (4-1), and this completes the proof.
+
+Theorem 1.1 follows from Corollary 4.3 and the following proposition:
+
+Proposition 4.7 For l  1,
+                                                         .† /
+                             dim H1 Œ1 .†l /; 1 .†l / 1 l D l.2l                   1/   1:
+
+Proof Recall that 1 .†l / has the presentation
+                                   ha1 ; : : : ; a2l j Œa1 ; a2     Œa2l 1 ; a2l i:
+Let f W F2l ! 1 .†l / be the natural epimorphism sending ai to ai , and K the kernel of f, ie K
+is the normal subgroup generated by Œa1 ; a2     Œa2l 1 ; a2l  in F2l . Then f induces an epimorphism
+f jŒF2l ;F2l  W ŒF2l ; F2l  ! Œ1 .†l /; 1 .†l / between their commutator subgroups, and its kernel coincides
+with K since K is contained in ŒF2l ; F2l . This means that, for a homomorphism ' W ŒF2l ; F2l  ! R,
+' induces a homomorphism 'x W Œ1 .†l /; 1 .†l / ! R if and only if
+                                        '.Œa1 ; a2     Œa2l 1 ; a2l / D 0:
+It is straightforward to show that ' is F2l -invariant if and only if 'x is 1 .†l /-invariant. Hence the image
+                                                 .† /
+of the monomorphism H1 Œ1 .†l /; 1 .†l / 1 l ! H1 .ŒF2l ; F2l /F2l is the subspace consisting of
+elements                                          X
+                                                      kij ˛ij
+                                                      i<j
+such that
+                                      k1;2 C k3;4 C    C k2l 1;2l D 0:
+Since the dimension of H1 .ŒF2l ; F2l /F2l is l.2l         1/ (see Lemma 4.6), this completes the proof.
+
+Proof of Theorem 1.1 Since the abelianization  D 1 .†l /=Œ1 .†l /; 1 .†l / of the surface group is
+isomorphic to Z2l , we have dim H2 ./ D l.2l 1/. Thus the first assertion follows from Theorem 4.1.
+Since the comparison map H2b .1 .†l // ! H2 .1 .†l // is surjective, we obtain
+                              dim Q.N /G =.H1 .N /G C i  Q.G// D 1
+                                                                    
+
+by Corollary 4.3 and Proposition 4.7.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                           1187
+
+4.3 Proof of Theorem 1.2 and a related example
+
+To prove Theorem 1.2, we now recall some terminology of mapping class groups.
+Let l be an integer at least 2 and †l the oriented closed surface with genus l. The mapping class group
+Mod.†l / of †l is the group of isotopy classes of orientation-preserving diffeomorphisms on †l . By
+considering the action on the first homology group, Mod.†l / has a natural epimorphism sl W Mod.†l / !
+Sp.2lI Z/, called the symplectic representation.
+For 2 Mod.†l /, we take a diffeomorphism f that represents . The mapping torus Tf is an orientable
+closed 3-manifold equipped with a natural fibration structure †l ! Tf ! S 1 . The following is known:
+
+Theorem 4.8 [93] A mapping class                   is a pseudo-Anosov element if and only if the mapping torus Tf
+is a hyperbolic manifold.
+
+Set  D Z2l Ìsl . / Z and
+
+(4-2)   G D 1 .Tf / D 1 .†l /Ìf Z
+          D ha1 ; : : : ; a2lC1 j Œa1 ; a2     Œa2l 1 ; a2l  D 1G ; a2lC1 ai D .f ai /a2lC1 for every 1  i  2li;
+where f W 1 .†l / ! 1 .†l / is the pushforward of f.
+                                                                                           V2
+                (1) dim H2 ./ D dim Ker.I2l               sl . // C dim Ker I.2l /             sl . / .
+                                                                                                      
+Lemma 4.9
+                                                                                   2
+
+ (2) dim H2 .G/ D dim Ker.I2l            sl . // C 1.
+
+Proof Let T 2l be the 2l-dimensional torus. By the natural inclusion Sp.2lI Z/ ! Homeo.T 2l /, we regard
+the element sl . / as a homeomorphism of T 2l . Let Msl . / be the mapping torus of sl . / 2 Homeo.T 2l /.
+Since Msl . / is a K.; 1/-manifold, we have dim H2 ./ D dim H2 .Msl . / /.
+For the mapping torus Msl . / , we have the long exact sequence
+                                ı                                                      ı
+(4-3)          ! H1 .T 2l / !
+                               1
+                                 H1 .T 2l / ! H2 .Msl . / / ! H2 .T 2l / !
+                                                                         2
+                                                                           H2 .T 2l / !    ;
+
+where the map ın is given by
+
+                                    idHn .T 2l /     sl . / W Hn .T 2l / ! Hn .T 2l /
+
+(see [48, Example 2.48]). This, together with (4-3) and the fact that H 2 .T 2l / Š 2 H 1 .T 2l /, implies
+                                                                                                    V
+
+that
+                                                                                    V2
+          dim H2 ./ D dim H2 .Msl . / / D dim Ker.I2l sl . // C dim Ker I.2l /        sl . / :
+                                                                                              
+                                                                                                2
+
+The computation of dim H2 .G/ is done in a similar manner.
+
+Let N be the kernel of the natural epimorphism G ! . Note that N is isomorphic to the commutator
+subgroup of 1 .†l /.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1188        Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+                                                                      V2
+                               dim H1 .N /G  dim Ker I.2l /               sl . /
+                                                                                 
+Lemma 4.10                                                                           1:
+                                                                2
+
+                                                                 V2
+Proof We set H D H1 .†l I Z/. Let W H1 .N /G ! Hom
+                                                                          
+                                                                      H; R be the map defined by
+                                          .h/.q.x/ ^ q.y// D h.Œx; y/;
+where x; y 2 1 .†l / and q W 1 .†l / ! H is the abelianization map. We claim that this map  is well
+defined. To verify this, let h 2 H1 .N /G. By commutator calculus, Œx1 x2 ; y D x1 Œx2 ; yx1 1  Œx1 ; y for
+every x1 ; x2 ; y 2 1 .†l /. Since h is G-invariant, this implies that
+                                      h.Œx1 x2 ; y/ D h.Œx1 ; y/ C h.Œx2 ; y/:
+In a similar manner to the above, we can see that
+                                              h.Œxz; yw/ D h.Œx; y/
+for every x; y 2 1 .†l / and every z; w 2 N D Œ1 .†l /; 1 .†l /. Now it is straightforward to confirm
+that  is well defined. Moreover, since N is normally generated by fŒai ; aj g1i<j 2l in G, the map  is
+injective.
+We set                                V2 sl . /
+                          V2
+                                        D h 2 Hom 2 H; R j h ı 2 sl . / D h :
+                                           ˚           V              V
+                   Hom         H; R
+                                               V2 sl . /
+Then the image of  is contained in Hom 2 H; R            . Indeed, for 1  i < j  2l and h 2 H1 .N /G,
+                                        V
+
+
+              .h/ 2 sl . /.q.ai / ^ q.aj // D h.Œf ai ; f aj /
+                    V                       
+
+                                                                         1                    1
+                                                     D h.Œa2lC1  ai  a2lC1 ; a2lC1  aj  a2lC1 /
+                                                     D h.Œai ; aj / D .h/.q.ai / ^ q.aj //;
+where the second equality comes from the relation in (4-2) and the third equality comes from the
+G-invariance of h.
+                      V2 sl . /
+Since dim Hom 2 H; R
+                                                            V2
+                                                               sl . / , it suffices to show that the map
+                V                                                     
+                                 is equal to dim Ker I.2l /
+                                                       2
+
+                                                            V2 sl . /
+                                W H1 .N /G ! Hom 2 H; R
+                                                     V
+
+is not surjective. We set v1 D q.a1 / ^ q.a2 / C    C q.a2l 1 / ^ q.a2l / 2 2 H. Then the map
+                                                                                           V
+V2
+    sl . /W 2 HV!
+                     V2
+                         H preserves v1 . Hence, for a suitable basis containing v1 , the dual v1 is contained in
+            V
+        V2       2 sl . /
+Hom        H; R            . However, v1 is not contained in the image of . Indeed, for every h 2 H1 .N /G,
+                            .h/.v1 / D h.Œa1 ; a2     Œa2l 1 ; a2l / D 0:
+                                          V2 sl . /
+Hence the map W H1 .N /G ! Hom 2 H; R
+                                  V
+                                                         is not surjective, and the lemma follows.
+
+Proof of Theorem 1.2 The group G is Gromov-hyperbolic by Theorem 4.8 and  is amenable by
+Theorem 3.5(4). Hence, Theorem 1.9, together with Lemma 4.9(1), asserts that
+                                                                                V2
+     dim.Q.N /G = i  Q.G// D dim H2 ./ D dim Ker.I2l sl . // C dim Ker I.2l /    sl . / :
+                                                                                         
+                                                                             2
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                              1189
+
+By Theorem 1.10 and Lemma 4.9(2), we obtain
+          dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 .G/ D dim Ker.I2l             sl . // C 1:
+                                           
+
+On the other hand,
+    dim Q.N /G =.H1 .N /G C i  Q.G// D dim H2 ./          dim H1 .N /G  dim Ker.I2l      sl . // C 1
+                                     
+
+by Corollary 4.3 and Lemmas 4.9(1) and 4.10.
+
+As we mentioned in the introduction, we obtain an analogue (Theorem 4.11) of Theorem 1.2 in the free
+group setting. For n 2 N, let Aut.Fn / be the automorphism group of Fn . Let tn W Aut.Fn / ! GL.n; Z/ be
+the representation induced by the action of Aut.Fn / on the abelianization of Fn . Then the group Fn Ì Z
+naturally surjects onto Zn Ì tn . / Z via the abelianization of Fn . We say that an automorphism of Fn is
+atoroidal if it has no periodic conjugacy classes, that is, there does not exist a pair .a; k/ 2 Fn  Z with
+a ¤ 1Fn and k ¤ 0 such that k .a/ is conjugate to a. Bestvina and Feighn [11] showed that 2 Aut.Fn /
+is atoroidal if and only if Fn Ì Z is Gromov-hyperbolic.
+
+Theorem 4.11 (computations of dimensions for free-by-cyclic groups) Let n be an integer greater
+than 1 and 2 Aut.Fn / an atoroidal automorphism. Set G D Fn Ì Z and let N be the kernel of the
+surjection G ! Zn Ì tn . / Z defined via the abelianization map Fn ! Zn . Then
+                                                                             V2
+             dim.Q.N /G = i  Q.G// D dim Ker.In tn . // C dim Ker I.n/         tn . /
+                                                                                      
+                                                                          2
+and
+                    dim Q.N /G =.H1 .N /G C i  Q.G// D dim Ker.In tn . //;
+                                                          
+
+        V2
+where        tn . / is the map induced by tn . /.
+
+Proof Since G=N is isomorphic to  D Zn Ì tn . / Z, Theorem 1.9 implies that dim.Q.N /G =i  Q.G// D
+dim H2 ./. Moreover,
+                                                                       V2
+                  dim H2 ./ D dim Ker.In tn . // C dim Ker I.n/           tn . /
+                                                                                 
+                                                                       2
+
+by the same argument as in the proof of Lemma 4.9(1). Hence the former statement holds.
+We set H D H1V.Fn I Z/ D Fn =ŒFn ; Fn . As in Lemma 4.10, we can define a monomorphism W H1 .N /G !
+     V       2t . /
+                n
+Hom H; R              . Hence, together with Corollary 4.3, we obtain
+                     dim Q.N /G =.H1 .N /G C i  Q.G//  dim Ker.In tn . //:
+                                                         
+
+On the other hand,
+                             dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 .G/
+                                                              
+
+by Theorem 1.10. By the seven-term exact sequence (Theorem 3.7) applied to the short exact sequence
+1 ! Fn ! G ! Z ! 1,
+                                    H2 .G/ Š H1 .ZI H1 .Fn //:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1190       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+By Lemma 3.8, H1 .ZI H1 .Fn // is isomorphic to
+                                     H1 .Fn /=Im.idH1 .Fn /    
+                                                                   /;
+where    W H1 .F / ! H1 .F / is the pullback of   . Hence,
+                 n         n
+
+                       dim H2 .G/ D dim H1 .ZI H1 .Fn // D dim Ker.In     tn . //
+and the theorem follows.
+
+4.4 Other examples
+It follows from Theorem 1.10 that H2 .G/ D 0 implies Q.N /G D H1 .N /G C i  Q.G/, and we provide
+several examples of groups G with H2 .G/ D 0 in Section 2.1.
+As an application of [42, Theorem 2.4], we provide another example of a group G satisfying Q.N /G D
+H1 .N /G C i  Q.G/.
+
+Corollary 4.12 Let L be a hyperbolic link in S 3 such that the number of the connected components of L
+is two. Let G be the link group of L (ie the fundamental group of the complement S 3 n L of L) and N
+the commutator subgroup of G. Then Q.N /G D H1 .N /G C i  Q.G/.
+
+Proof By Theorem 1.10, it suffices to show that the comparison map cG W H2b .G/ ! H2 .G/ is equal to
+zero. Theorem 2.4 of [42] gives Im.cG / ¤ H2 .G/. Since the number of the connected components of L
+is two, the second cohomology group H2 .G/ is isomorphic to R. Hence, Im.cG / D 0.
+
+Here we provide other examples .G; N / such that H2 .G/ ¤ 0 and Q.N /G D H1 .N /G C i  Q.G/.
+
+Example 4.13 Let n 2 N. For i D 1; 2; : : : ; n, let Hi be a boundedly 2-acyclic group and assume that
+H2 .H1 / ¤ 0 (for example, we can take H1 D Z2 ). Set G D H1  H2      Hn and N D ŒG; G. Then
+H2 .G/ D H2 .H1 / ˚ H2 .H2 / ˚    ˚ H2 .Hn / ¤ 0 but the comparison map cG W H2b .G/ ! H2 .G/ is the
+zero map. It follows from Theorem 1.10 that Q.N /G =.H1 .N /G C i  Q.G// D 0.
+
+We considered free products in Example 4.13, but the comparison map in degree 2 is also trivial for graph
+products of amenable groups (such as RAAGs) and graphs of groups with amenable vertex groups (see [66,
+Example 4.7]). See [28, Corollary 5.4] for more cases in which the comparison map in degree 2 is trivial.
+
+Corollary 4.14 Let E ! †l be a nontrivial orientable circle bundle over a closed oriented surface of
+genus l > 1. For the fundamental group G D 1 .E/ and its normal subgroup N D ŒG; G,
+         dim.Q.N /G =i  Q.G// D l.2l 1/ and dim Q.N /G =.H1 .N /G C i  Q.G// D 0:
+                                                                                     
+
+Remark 4.15 (1) The dimension of Q.G/ (and hence the dimension of Q.N /G ) is the cardinal of the
+    continuum since G surjects onto the surface group 1 .†l /.
+ (2) The dimension of H2 .G/ is equal to 2l. Indeed, H2 .G/ is isomorphic to H2 .E/ since E is a
+     K.G; 1/-space. Moreover, H2 .E/ is isomorphic to H1 .†l / by the Thom–Gysin sequence.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                       1191
+
+Proof of Corollary 4.14 Let n be the Euler number of the bundle E ! †l . Note that n is nonzero since
+the bundle is nontrivial (see [40, Theorem 11.16]). Since the group G has a presentation
+                                                                       n
+G D 1 .E/ D ha1 ; : : : ; a2lC1 j Œa1 ; a2     Œa2l 1 ; a2l  D a2lC1 ; Œai ; a2lC1  D 1G for every 1  i  2li;
+the abelianization  D G=N is isomorphic to Z2l  .Z=nZ/. Hence, dim H2 ./ D l.2l 1/. By the
+relation Œai ; a2lC1  D 1G for each i and the fact that N is normally generated by fŒai ; aj g1i<j 2lC1
+in G, we obtain dim H1 .N /G D l.2l C 1/ 2l D l.2l 1/ by an argument similar to the proof of
+Proposition 4.7. Hence Corollary 4.3 asserts that
+                  dim Q.N /G =.H1 .N /G C i  Q.G//  dim H2 ./ dim H1 .N /G D 0:
+                                                       
+
+Since N is the commutator subgroup of G, the space H1 .N /G injects into Q.N /G =i  Q.G/. Hence,
+                                      dim.Q.N /G = i  Q.G//  l.2l          1/:
+On the other hand, Theorem 4.1 asserts that
+                                 dim.Q.N /G =i  Q.G//  H2 ./ D l.2l             1/:
+
+For elements r1 ; : : : ; rm 2 G, we write hhr1 ; : : : ; rm ii to mean the normal subgroup of G generated by
+r1 ; : : : ; rm .
+
+Corollary 4.16 Let r1 ; : : : ; rm 2 ŒFn ; ŒFn ; Fn  and set
+                                             G D Fn =hhr1 ; : : : ; rm ii:
+Then Q.ŒG; G/G D H1 .ŒG; G/G C i  Q.G/.
+
+Proof Let q be the natural projection Fn ! G. Then the image of the monomorphism q  W H1 .ŒG; G/G !
+H1 .ŒFn ; Fn /Fn is the space of Fn -invariant homomorphisms f W ŒFn ; Fn  ! R satisfying f .r1 / D    D
+f .rm / D 0. Since every Fn -invariant homomorphism of ŒFn ; Fn  vanishes on ŒFn ; ŒFn ; Fn , we conclude
+that q  is an isomorphism, and hence dim H1 .ŒG; G/G D 12 n.n 1/. Since  D G=ŒG; G D Zn , we
+have dim H2 ./ D 12 n.n 1/. Hence Corollary 4.3 implies that Q.ŒG; G/G =.H1 .ŒG; G/G C i  Q.G// is
+trivial.
+
+Remark 4.17 Suppose that N is the commutator subgroup of G. As will be seen in Corollaries 6.20
+and 7.11, the sum H1 .N /G C i  Q.G/ is actually a direct sum in this case, and the map H1 .N /G !
+Q.N /G = i  Q.G/ is an isomorphism. Hence, if G is a group as provided in Corollary 4.16 and N
+is the commutator subgroup of G, then the basis of Q.N /G = i  Q.G/ is provided by the G-invariant
+homomorphism ˛i;j0
+                    W N ! R for 1  i < j  n, which is the homomorphism induced by ˛i;j W ŒFn ; Fn  ! R
+described in Lemma 4.6.
+
+As an example of a pair .G; N / satisfying Q.N / ¤ H1 .N /G C i  Q.G/, we provide a certain family of
+one-relator groups. Recall that a one-relator group is a group isomorphic to Fn =hhr ii for some positive
+integer n and an element r of Fn .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1192        Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Theorem 4.18 Let n and k be integers at least 2 and r an element of ŒFn ; Fn  n ŒFn ; ŒFn ; Fn . Set
+G D Fn =hhr k ii and N D ŒG; G: Then
+                              dim Q.N /G =.H1 .N /G C i  Q.G// D 1:
+                                                               
+
+
+Note that r 2 ŒFn ; Fn nŒFn ; ŒFn ; Fn  is equivalent to the existence of f0 2 H1 .ŒFn ; Fn /Fn with f0 .r / ¤ 0.
+
+Proof of Theorem 4.18 By Newman’s spelling theorem [85], every one-relator group with torsion is
+hyperbolic, and hence G is hyperbolic. Indeed, r does not belong to hhr k ii since f0 .x/ belongs to kf0 .r /Z
+for every element x of hhr k ii. Since  D G=N is abelian,  is boundedly 3-acyclic. By Corollary 4.3, it
+suffices to show
+                 dim Q.N /G =.H1 .N /G C i  Q.G// D dim H2 ./ dim H1 .N /G D 1:
+                                                    
+
+Since r k 2 ŒFn ; Fn , we have  D Zn , and dim H2 ./ D 12 n.n               1/. Hence, it only remains to show that
+(4-4)                                    dim H1 .N /G D 12 n.n           1/    1:
+Let q W Fn ! G D Fn =hhr k ii be the natural quotient. Then q induces a monomorphism q  W H1 .N /G !
+H1 .ŒFn ; Fn /Fn . As in the proof of Proposition 4.7, it is straightforward to show that the image of
+q  W H1 .N /G ! H1 .ŒFn ; Fn /Fn is the space of Fn -invariant homomorphisms f W ŒFn ; Fn  ! R such that
+f .r / D 0. Since there exists an element f0 of H1 .ŒFn ; Fn /Fn with f0 .r / ¤ 0, the codimension of the
+image of q  W H1 .N /G ! H1 .ŒFn ; Fn /Fn is 1, which implies (4-4).
+
+After the authors completed this work, they obtained a generalization of Theorem 4.18; see [59,
+Theorem 11.15].
+
+Remark 4.19 Let k be a positive integer. Here we construct a finitely presented group G satisfying
+                       dim Q.ŒG; G/G =.H1 .ŒG; G/G C i  Q.G// D k:
+                                                                    
+(4-5)
+Let F2k D ha1 ; : : : ; a2k i be a free group and define G by
+                              G D ha1 ; : : : ; a2k j Œa1 ; a2 2 ; : : : ; Œa2k 1 ; a2k 2 i:
+Set H D ha1 ; a2 j Œa1 ; a2 2 i. Then G is the k-fold free product of H. Since H is a one-relator group with
+torsion, H is hyperbolic. Since a finite free product of hyperbolic groups is hyperbolic, G is hyperbolic.
+Hence the comparison map H2b .G/ ! H2 .G/ is surjective.
+Let q W F2k ! G be the natural quotient. Then q  W H1 .ŒG; G/G ! H1 .ŒF2k ; F2k /F2k is a monomorphism
+whose image comprises the F2k -invariant homomorphisms ' W ŒF2k ; F2k  ! R such that '.Œa2i 1; a2i / D 0
+for i D 1; : : : ; k. Therefore Corollary 4.3 implies (4-5).
+
+
+5 Cohomology classes induced by the flux homomorphism
+First we review the definition of the (volume) flux homomorphism (see for instance [5]).
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                 1193
+
+Let Diff.M; / denote the group of diffeomorphisms on an m-dimensional smooth manifold M which
+                                                                                           e
+preserve a volume form  on M, Diff0 .M; / the identity component of Diff.M; /, and Diff0 .M; /
+                                                                                        e e
+the universal cover of Diff0 .M; /. Then the .volume/ flux homomorphism Flux W Diff0 .M; / !
+Hm 1 .M / is defined by
+                                    e
+                                                      Z 1
+                                               t
+                                   Flux .Œf       g t 2Œ0;1 / D       ŒX t  dt;
+
+                                                                                        e
+                                                                     0
+
+where  is the inner product, f t g t 2Œ0;1 is a path representing an element of Diff0 .M; /, and X t is
+                                                                                        e
+the time-dependent vector field generating the isotopy f t g t 2Œ0;1 . The value Flux .Œf t g t 2Œ0;1 / does
+                                                                                  e
+not depend on the choice of the isotopy f t g t 2Œ0;1 and thus the map Flux is well defined. Moreover,
+e                                                                                e
+Flux is a homomorphism. The image of 1 .Diff0 .M; // under Flux is called the flux group of the
+                                                                         e
+pair .M; / and denoted by  . The flux homomorphism Flux descends to a homomorphism
+                                  Flux W Diff0 .M; / ! Hm 1 .M /=  :
+These homomorphisms are fundamental objects in theory of diffeomorphism groups and have been
+extensively studied (see for example [63; 52]).
+As we wrote in Section 2.3, Proposition 2.5 is essentially in [65]; we prove it for the reader’s convenience.
+
+Proof of Proposition 2.5 Suppose that the pair .G; N / of groups is .Diff0 .M; /; Ker.Flux // or
+ e                   e                                                                  e
+.Diff0 .M; /; Ker.Flux //. Since the kernels of the homomorphisms Flux and Flux are perfect (see
+[92; 4] and also [5, Theorems 4.3.1 and 5.1.3]), we have H1 .N / D 0. Hence this proposition follows
+from the five-term exact sequence (Theorem 1.4).
+
+To prove Theorem 2.6(1), we use Py’s Calabi quasimorphism fP W Ker.Flux / ! R, which was introduced
+in [89]. For an oriented closed surface whose genus l is at least 2 and a volume form  on M, Py
+constructed a Diff0 .M; /-invariant homogeneous quasimorphism fP W Ker.Flux / ! R on Ker.Flux /.
+
+Proof of Theorem 2.6 First we prove (1). Suppose that †l is an oriented closed surface whose genus l
+is at least 2, and let  be its volume form. Since in this case  is trivial (as mentioned just after
+Theorem 2.6), the two flux homomorphisms Flux and Flux coincide.   e
+Set G D Diff0 .†l ; / and N D Ker.Flux /. Since N is perfect [4, théorème II.6.1], we have H1 .N / D
+H1 .N /G D 0. Since G=N is abelian, Theorem 1.10 implies that
+               Q.N /G = i  Q.G/ D Q.N /G =.H1 .N /G C i  Q.G// Š Im.Flux / \ Im.cG /:
+Since Py’s Calabi quasimorphism fP is not extendable to G D Diff0 .†l ; !/ [58, Theorem 1.11],
+Q.N /G =i  Q.G/ is not trivial. Hence, Flux ı 4 1 ı =b .ŒfP / 2 Im.Flux! / \ Im.cG / is nonzero.
+Now we show (2). Suppose that m D 2. The case that M is a 2-sphere is clear since H1 .M / D 0 and hence
+the flux homomorphisms are trivial. The case of M a torus follows from the fact that both Flux and Fluxe
+have section homomorphisms: hence, by Proposition 3.4, Im.Flux / \ Im.cG / Š Q.N /G =i  Q.G/ D 0.
+Suppose that m  3. Then Proposition 5.1 below implies that Flux has a section homomorphism. Hence,
+by Proposition 3.4, Im.Flux / \ Im.cG / Š Q.N /G =i  Q.G/ D 0.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1194       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Proposition 5.1 [35, Proposition 6.1] Let m be an integer at least 3, M an m-dimensional differential
+manifold , and  a volume form on M. Then there exists a section homomorphism of the reduced
+flux homomorphism Flux W Diff0 .M; / ! Hm 1 .M; /=  . In addition, there exists a section
+                        e e
+homomorphism of Flux W Diff0 .M; / ! Hm 1 .M; /.
+
+The idea of Theorem 2.6 is also useful in (higher-dimensional) symplectic geometry. For notions in
+symplectic geometry, see for example [5; 88]. For a symplectic manifold .M; !/, let Ham.M; !/ denote
+the group of Hamiltonian diffeomorphisms with compact support. For an exact symplectic manifold
+.M; !/, let Cal! W Ham.M; !/ ! R denote the Calabi homomorphism. We note that the map Cal! is
+injective, where Cal! W H2 .RI R/ ! H2 .Ham.M; !/I R/ is the homomorphism induced by Cal! . Here
+H2 .RI R/ denotes the group cohomology of R (as a discrete group) with trivial real coefficients and is
+isomorphic to HomZ 2Z .R/I R due to the discussion before Proposition 2.5. Indeed, because Ker.Cal! /
+                      V          
+
+is perfect [4], we can prove the injectivity of Cal! similarly to the proof of Proposition 2.5. Then we
+have the following theorem:
+
+Theorem 5.2 For an exact symplectic manifold .M; !/, every nontrivial element of Im.Cal! / cannot
+be represented by a bounded 2-cochain.
+
+Note that Cal! W Ham.M; !/ ! R has a section homomorphism. Indeed, for a (time-independent)
+Hamiltonian function whose integral over M is 1 and its Hamiltonian flow f t g t 2R , the homomorphism
+t 7!  t is a section of the Calabi homomorphism Cal! . Hence, the proof of Theorem 5.2 is similar to
+Theorem 2.6.
+
+
+6 Proof of the main theorem
+The goal in this section is to prove Theorem 1.5, which is the five-term exact sequence of the cohomology
+of groups relative to the bounded subcomplex; we restate it for the convenience of the reader:
+                                                           p
+Theorem 1.5 (main theorem) Let 1 ! N i! G !  ! 1 be an exact sequence of groups and V a
+left Banach RŒ-module equipped with a -invariant norm k  k. Then there exists an exact sequence
+                             p                                                             p
+           0 ! H1=b .I V / ! H1=b .GI V / i! H1=b .N I V /G =b
+                                                             ! H2=b .I V / ! H2=b .GI V /:
+Moreover, the exact sequence above is compatible with the five-term exact sequence of group cohomology;
+that is, the following diagram commutes:
+                             p                   i                                              p
+       0     / H1 .I V /         / H1 .GI V /         / H1 .N I V /G             / H2 .I V /          / H2 .GI V /
+
+                        1                   2                    3                        4                    5
+                                                                         =b
+                                                                                                              
+                             p                   i                                               p
+       0     / H1 .I V /         / H1 .GI V /         / H1 .N I V /G             / H2 .I V /          / H2 .GI V /
+               =b                   =b                   =b                         =b                    =b
+
+Here the i are the maps induced from the quotient map C  ! C=b
+                                                              
+                                                                 .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                              1195
+
+Notation Throughout this section, V denotes a Banach space equipped with the norm k  k and an
+isometric G-action whose restriction to N is trivial. For a nonnegative real number D  0 and v; w 2 V,
+the symbol v D w means that kv wk  D. For functions f; g W S ! V on a set S, the symbol f D g
+means that f .s/ D g.s/ for every s 2 S.
+
+6.1 N -quasicocycle
+
+To define the map =b W H1=b .N I V /G ! H2=b .I V / in Theorem 1.5, it is convenient to introduce the
+notion of an N -quasicocycle. First, we recall the definition of quasicocycles.
+
+Definition 6.1 Let G be a group and V a left RŒG-module with a G-invariant norm k  k. A function
+F W G ! V is called a quasicocycle if there exists a nonnegative number D such that
+
+                                    F.g1 g2 / D F.g1 / C g1  F.g2 /
+
+for every g1 ; g2 2 G. The smallest such D is called the defect of F and denoted by D.F /. Let y
+                                                                                               QZ.GI V /
+denote the R-vector space of all quasicocycles on G.
+
+Remark 6.2 If we need to specify the G-representation , we write QZ.GI
+                                                                  y     ; V / instead of QZ.GI
+                                                                                          y     V /.
+
+We introduce the concept of N -quasicocycles, which is a generalization of the concept of partial quasi-
+morphisms introduced in [33] (see also [81; 56; 64; 18; 60]).
+
+Definition 6.3 Let N be a normal subgroup of G. A function F W G ! V is called an N -quasicocycle if
+there exists a nonnegative number D 00 such that
+
+(6-1)               F.ng/ D 00 F.n/ C F.g/ and         F.gn/ D 00 F.g/ C g  F.n/
+
+for every g 2 G and n 2 N. The smallest such D 00 is called the defect of the N -quasicocycle F and
+denoted by D 00 .F /. Let QZ
+                          y N .GI V / denote the R-vector space of all N -quasicocycles on G.
+
+If the G-action on V is trivial, then a quasicocycle is also called a V -valued quasimorphism. In this case,
+                    y
+we use the symbol Q.GI    V / instead of QZ.GI
+                                          y      V / to denote the space of V -valued quasimorphisms. A
+V -valued quasimorphism F is said to be homogeneous if F.g k / D k  F.g/ for every g 2 G and every
+k 2 Z. The homogenization of V -valued quasimorphisms is well defined, as in the case of (R-valued)
+quasimorphisms. We write Q.GI V / for the space of V -valued homogeneous quasimorphisms.
+Recall that in our setting the restriction of the G-action on V to N is always trivial. Then a left G-action
+on Q.N I V / is defined by
+                                           .gf /.n/ D g  f .g 1 ng/
+
+for every g 2 G and every n 2 N. We call an element of Q.N I V /G a G-equivariant V -valued homogeneous
+quasimorphism.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1196       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Remark 6.4 An element f 2 Q.N I V / belongs to Q.N I V /G if and only if
+                                         g  f .n/ D f .gng 1 /
+for every g 2 G and every n 2 N. This is why we call an element of Q.N I V /G G-equivariant.
+
+Remark 6.5 The isomorphism H1=b .N I V / ! Q.N I V / given by the homogenization is compatible with
+the G-actions. In particular, this isomorphism induces an isomorphism H1=b .N I V /G ! Q.N I V /G.
+
+The elements of Q.N I V /G D H1=b .N I V /G are G-invariant (as cohomology classes). However, respecting
+the condition g  f .n/ D f .gng 1 / for f 2 Q.N I V /G, we call the elements of Q.N I V /G G-equivariant
+V -valued homogeneous quasimorphisms.
+
+Lemma 6.6 Let N be a normal subgroup of G and V a left RŒG-module. Assume that the induced
+                                                            y N .GI V /, there exists a bounded cochain
+N -action on V is trivial. Then, for an N -quasicocycle F 2 QZ
+b 2 Cb .GI V / such that the restriction .F C b/jN is in Q.N I V /G.
+      1
+
+
+Proof By the definition of N -quasicocycles, the restriction F jN W N ! V is a quasimorphism. Let F jN
+be the homogenization of F jN . Then the map
+                                       b 0 D F jN   F jN W N ! V
+is bounded. Define b W G ! V by
+                                              b .g/ if g 2 N;
+                                              0
+                                      b.g/ D
+                                              0     otherwise:
+Then the map b is also bounded. Set ˆ D F C b; then ˆjN D .F C b/jN D F jN . Since ˆ is an
+N -quasicocycle, we have
+       .g ˆ/.n/ D g  ˆ.g 1 ng/ D 00 .ˆ/ ˆ.g  g 1 ng/    ˆ.g/ D ˆ.ng/      ˆ.g/ D 00 .ˆ/ ˆ.n/
+for g 2 G and n 2 N. Hence the difference g ˆ ˆ is in Cb1 .N I V /. Since .g ˆ/jN and ˆjN are
+homogeneous quasimorphisms, we have g ˆjN ˆjN D 0, and this implies that the element ˆjN D
+.F C b/jN belongs to Q.N I V /G.
+
+If V is the trivial G-module R, then N -quasicocycles are also called N -quasimorphisms (this word was
+first introduced in [57]). In this case, Lemma 6.6 reads as follows:
+
+Corollary 6.7 Let N be a normal subgroup of G. For an N -quasimorphism F 2 Q  y N .G/, there exists a
+bounded cochain b 2 Cb1 .G/ such that the restriction .F C b/jN is in Q.N /G.
+
+6.2 The map =b
+
+Now we proceed to the proof of Theorem 1.5. The goal in this subsection is to construct the map
+=b W H1=b .N /G ! H2=b .G/. Here we only present the proofs in the case where the coefficient module V
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                               1197
+
+is the trivial module R. When V ¤ R, the proofs work without any essential change (see Remarks 6.5,
+6.8, 6.14 and 6.16).
+                                                                                  p
+First we define the map =b W H1=b .N /G ! H2=b ./. Let 1 ! N i! G !  ! 1 be a group extension.
+As a special case of Remark 6.5, we have isomorphisms H1=b .N / ! Q.N / and H1=b .N /G ! Q.N /G. By
+using these, we identify H1=b .N / and H1=b .N /G with Q.N / and Q.N /G, respectively.
+Let QN .G/ D QN .GI R/ be the R-vector space of all N -quasimorphisms whose restrictions to N are
+homogeneous quasimorphisms on N ; that is,
+       QN .G/ D fF W G ! R j F is an N -quasimorphism such that F jN 2 Q.N /G g  Q
+                                                                                  y N .G/:
+
+By definition, the restriction of the domain defines a map
+                                            i  W QN .G/ ! Q.N /G :
+
+Remark 6.8 When the G-action on V is nontrivial, we need to replace the space QN .G/ by
+           1
+         QZN .GI V / D fF W G ! V j F is an N -quasicocycle such that F jN 2 Q.N I V /G g:
+
+Lemma 6.9 The map i  W QN .G/ ! Q.N /G is surjective.
+
+Proof Let s W  ! G be a set-theoretic section of p satisfying s.1 / D 1G . For f 2 Q.N /G, define a
+map Ff;s W G ! R by
+                                    Ff;s .g/ D f .g  sp.g/ 1 /
+for g 2 G. Then Ff;s jN D f since sp.n/ D 1G for every n 2 N. Moreover, Ff;s is an N -quasimorphism.
+Indeed,
+Ff;s .ng/ D f .ng  sp.ng/ 1 / D f .ng  sp.g/ 1 / D.f / f .n/ C f .g  sp.g/ 1 / D Ff;s .n/ C Ff;s .g/
+and
+              Ff;s .gn/ D Ff;s .gng 1 g/ D.f / Ff;s .gng 1 / C Ff;s .g/
+                          D f .gng 1 / C Ff;s .g/ D f .n/ C Ff;s .g/ D Ff;s .n/ C Ff;s .g/
+by the definition of quasimorphisms and the G-invariance of f . This means i  .Ff;s / D f, and hence the
+map i  is surjective.
+
+Lemma 6.10 For F 2 QN .G/ and gi ; gi0 2 G satisfying p.gi / D p.gi0 / 2 ,
+                                       ıF.g1 ; g2 / 4D 00 .F / ıF.g10 ; g20 /:
+
+Proof By the assumption, there exist n1 ; n2 2 N satisfying g10 D n1 g1 and g20 D g2 n2 . Therefore,
+        ıF.g10 ; g20 / D F.g2 n2 /   F.n1 g1 g2 n2 / C F.n1 g1 /
+                     4D 00 .F / F.g2 / C F.n2 /      .F.n1 / C F.g1 g2 / C F.n2 // C F.n1 / C F.g1 /
+                     D ıF.g1 ; g2 /:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1198       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+For F 2 QN .G/ and a section s W  ! G of p, we set ˛F;s D s  ıF 2 C 2 ./. By Lemma 6.10, the
+element Œ˛F;s  2 C=b
+                    2
+                      ./ D C 2 ./=Cb2 ./ is independent of the choice of the section s. Therefore we
+set ˛F D Œ˛F;s  2 C=b
+                     2
+                       ./.
+
+Lemma 6.11 The cochain ˛F is a cocycle on C=b
+                                           
+                                              ./.
+
+Proof It suffices to show that the coboundary ı˛F;s belongs to Cb3 ./. For f; g; h 2 ,
+ı˛F;s .f; g; h/ D ıF.s.g/; s.h//      ıF.s.fg/; s.h// C ıF.s.f /; s.gh//        ıF.s.f /; s.g//
+                8D 00 .F / ıF.s.g/; s.h//    ıF.s.f /s.g/; s.h// C ıF.s.f /; s.g/s.h//      ıF.s.f /; s.g//
+                D ı.ıF /.s.f /; s.g/; s.h// D 0
+by Lemma 6.10.
+
+By Lemmas 6.9 and 6.11, we obtain a map
+(6-2)                                  QN .G/ ! H2=b ./I F 7! Œ˛F :
+
+Lemma 6.12 The cohomology class Œ˛F  2 H2=b ./ depends only on the restriction F jN .
+
+Proof Let s W  ! G be a section of p and ˆ an element of QN .G/ satisfying ˆjN D F jN . Then, for
+every g; h 2 ,
+.˛F;s ˛ˆ;s /.g; h/ D ıF.s.g/; s.h// ıˆ.s.g/; s.h//
+                                                             ˆ.s.h// ˆ.s.g/s.h//Cˆ.s.g//
+                                                                                        
+                    D F.s.h// F.s.g/s.h//CF.s.g//
+                    D ı.F ıs/.g; h/ ı.ˆıs/.g; h/CF.s.gh// F.s.g/s.h//               ˆ.s.gh// ˆ.s.g/s.h// :
+                                                                                                        
+
+Since F and ˆ are N -quasimorphisms, we have
+                        F.s.gh//      F.s.g/s.h// D 00 .F / F.s.gh/s.h/ 1 s.g/ 1 /;
+                        ˆ.s.gh//      ˆ.s.g/s.h// D 00 .ˆ/ ˆ.s.gh/s.h/ 1 s.g/ 1 /:
+Together with F.s.gh/s.h/ 1 s.g/ 1 / D ˆ.s.gh/s.h/ 1 s.g/ 1 /, we have
+                               ˛F;s    ˛ˆ;s D 00 .F /CD 00 .ˆ/ ı.F ı s   ˆ ı s/;
+and this implies Œ˛F  D Œ˛ˆ  2 H2=b ./.
+
+By Lemma 6.12, the map defined in (6-2) descends to a map =b W Q.N /G ! H2=b ./; that is, =b is
+defined by
+                                        =b .f / D Œ˛F ;
+where F is an element of QN .G/ satisfying F jN D f . Under the isomorphism Q.N /G Š H1=b .N /G, we
+obtain the map
+                                     =b W H1=b .N /G ! H2=b ./:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                             1199
+
+6.3 Proof of the exactness
+
+Now we proceed to the proof of the exactness of the sequence
+                                   p                                     p
+(6-3)               0 ! H1=b ./ ! H1=b .G/ i! Q.N /G =b
+                                                      ! H2=b ./ ! H2=b .G/;
+
+where we identify Q.N /G with H1=b .N /G.
+
+Lemma 6.13 The sequence (6-3) is exact at H1=b ./ and H1=b .G/.
+
+Remark 6.14 In the case of trivial real coefficients, this proposition is well known (see [26]). Indeed,
+the spaces H1=b ./ and H1=b .G/ are isomorphic to Q./ and Q.G/, respectively, and exactness of the
+sequence
+                                     0 ! Q./ ! Q.G/ ! Q.N /G
+
+follows from the homogeneity of the elements of Q./. However, in general, the spaces H1=b .I V / and
+H1=b .GI V / are not isomorphic to the spaces of V -valued homogeneous quasimorphisms Q.I V / and
+Q.GI V /, respectively. Therefore, we present a proof of Lemma 6.13 which can be modified to the case
+of nontrivial coefficients without any essential change.
+
+Proof of Lemma 6.13 We first show the exactness at H1=b ./. Let a 2 H1=b ./ and suppose p  a D 0.
+Let f 2 C 1 ./ be a representative of a. Since p  a D 0 in H1=b .G/, there exists c 2 R Š C 0 ./ such
+that p  f ıc D p  f is bounded. Since p is surjective, f is bounded, and hence a D 0. This implies
+the exactness at H1=b ./.
+
+Next we prove the exactness at H1=b .G/. Since the map p ı i is zero, the composite i  ı p  is also
+zero. For a 2 H1=b .G/ satisfying i  a D 0, it follows from Lemma 6.6 that there exists a representative
+f 2 C 1 .G/ of a satisfying f jN D 0. For a section s W  ! G of p, set fs D s  f W  ! R. Then fs is a
+quasimorphism on . Indeed, since f is a quasimorphism on G,
+
+           fs .g1 g2 / D f .s.g1 g2 // D f .s.g1 g2 /s.g2 / 1 s.g1 / 1 s.g1 /s.g2 //
+                     D.f / f .s.g1 g2 /s.g2 / 1 s.g1 / 1 / C f .s.g1 /s.g2 // D f .s.g1 /s.g2 //
+                     D.f / f .s.g2 // C f .s.g1 // D fs .g2 / C fs .g1 /
+
+by the triviality f jN D 0. Hence the cochain fs is a cocycle on C=b
+                                                                  1
+                                                                     ./; let as 2 H1=b ./ denote the
+relative cohomology class represented by fs . For g 2 G,
+
+            p  fs .g/ D f .sp.g// D f .sp.g/g 1 g/ D.f / f .sp.g/g 1 / C f .g/ D f .g/:
+
+Therefore, the cochain p  fs is equal to f as relative cochains on G, and this implies p  as D a.
+
+Lemma 6.15 The sequence (6-3) is exact at Q.N /G.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1200       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Proof Note that every  2 Q.G/ is an N -quasimorphism. Hence, by the definition of =b W Q.N /G !
+H2=b ./,
+                                   =b .i  .// D Œ˛  D ŒŒ˛;s 
+for a section s W  ! G. Since  is a quasimorphism, ˛;s D s  ı is an element of Cb2 ./ and hence
+˛ D Œ˛;s  2 C=b2
+                    ./ is zero. This implies =b ı i  D 0.
+Suppose that f 2 Q.N /G satisfies =b .f / D 0. By Lemma 6.9, we obtain F 2 QN .G/ satisfying F jN D f .
+Let s W  ! G be a section of p. The triviality of Œ˛F  D =b .f / D 0 implies that there exist ˇ 2 C 1 ./
+and b 2 Cb2 ./ satisfying
+                                               ˛F;s ıˇ D b:
+For gi 2 G,
+                    ıF.g1 ; g2 / 4D 00 .F / ıF.sp.g1 /; sp.g2 // D ˛F;s .p.g1 /; p.g2 //
+by Lemma 6.10. Hence,
+(6-4)          ı.F    p  ˇ/.g1 ; g2 / 4D 00 .F / .˛F;s   ıˇ/.p.g1 /; p.g2 // D p  b.g1 ; g2 /:
+Since the cochain b is bounded, the function F p  ˇ is a quasimorphism. By the fact that the restriction
+.F p  ˇ/jN is equal to the homogeneous quasimorphism f, the homogenization F p  ˇ of F p  ˇ
+satisfies i  .F p  ˇ/ D f. This implies Ker =b  Im i  .
+
+Remark 6.16 The last step of the proof of Lemma 6.15 uses the homogenization of a quasimorphism. In
+the case where the G-action on V is nontrivial (in particular, where we cannot use the homogenization),
+we replace the argument of the last step with the following: we have shown that the cochain F p  ˇ
+                 1
+is a cocycle in C=b .G/ by (6-4). Since F jN D f , the restriction .F p  ˇ C ˇ.1 //jN is equal to f .
+Therefore, i  ŒF p  ˇ C ˇ.1 / D f , and this implies Ker =b  Im i  .
+                                  
+
+
+Lemma 6.17 The sequence (6-3) is exact at H2=b ./.
+
+Proof For f 2 Q.N /G, we have F 2 QN .G/ satisfying F jN D f by Lemma 6.9. Then a representative
+of p  .=b .f // 2 H2=b .G/ is given by p  ˛F;s 2 C 2 .G/ for some section s W  ! G of p. For gi 2 G,
+          p  ˛F;s .g1 ; g2 / D s  ıF.p.g1 /; p.g2 // D ıF.sp.g1 /; sp.g2 // 4D 00 .F / ıF.g1 ; g2 /
+by Lemma 6.10. This implies p  .=b .f // D 0.
+For a 2 H2=b ./ satisfying p  a D 0, let ˛ 2 C 2 ./ be a representative of a. We can assume that the
+cochain satisfies
+(6-5)                                           ˛.1 ; 1 / D 0:
+Indeed, if ˛.1 ; 1 / D c 2 R, then the cochain ˛ c satisfies (6-5) and is also a representative of a since
+the constant function c is bounded. Note that the cocycle condition of C=b
+                                                                             ./ implies that there exists a
+nonnegative constant D such that
+                                                 ı˛ D 0:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                        1201
+
+Hence, for     1 ; 2 2 ,
+                                   0 D ı˛. 1 ; 1 ; 2 / D ˛.1 ; 2 /    ˛. 1 ; 1 /:
+In particular,
+
+(6-6)                  ˛.1 ; / D ˛.1 ; 1 / D 0        and   ˛. ; 1 / D ˛.1 ; 1 / D 0
+
+for every 2 . The equality p  a D 0 implies that there exists ˇ 2 C 1 .G/ and a nonnegative constant D 0
+satisfying
+
+(6-7)                                              p˛    ıˇ D 0 0:
+
+Define a cochain  W G ! R by
+
+(6-8)                                        .g/ D ˇ.g/     ˛.p.g/; 1 /I
+
+then it is an N -quasimorphism. Indeed, by using p.n/ D 1 , we have
+
+     ı.n; g/ D ıˇ.n; g/ ˛.p.g/; 1 / ˛.p.g/; 1 / C ˛.1 ; 1 / D .ıˇ                    p  ˛/.g; n/ D 0 0
+                                                                   
+
+and
+
+        ı.g; n/ D ıˇ.g; n/        ˛.1 ; 1 /   ˛.p.g/; 1 / C ˛.p.g/; 1 / D .ıˇ       p  ˛/.g; n/ D 0 0
+                                                                            
+
+by (6-6) and (6-7). By Lemma 6.6, there exists a bounded cochain b 2 Cb1 .G/ such that the restriction
+. C b/jN is in Q.N / . Set ˆ D  C b 2 QN .G/; then a representative of =b .ˆjN / is given by ˛ˆ;s for
+some section s W  ! G of p. For g1 ; g2 2 ,
+
+               .˛ˆ;s    ˛/.g1 ; g2 / D .ıˆ       p  ˛/.s.g1 /; s.g2 // D 0 .ıˆ   ıˇ/.s.g1 /; s.g2 //
+
+by (6-7). By (6-8),
+                              .ˆ     ˇ/.g/ D . C b      ˇ/.g/ D b.g/     ˛.p.g/; 1 /:
+
+Together with (6-6) and the boundedness of b, the cochain ˆ ˇ W G ! R is bounded. Hence the cochain
+˛ˆ;s ˛ is also bounded, and this implies a D Œ˛ˆ  D =b .ˆjN /.
+
+Proof of Theorem 1.5 The exactness is obtained from Lemmas 6.13, 6.15 and 6.17. Commutativity of
+the first, second and fourth squares is obtained from the cochain level calculations. The commutativity of
+the third square follows from the definition of the map =b and Proposition 6.18 below.
+
+Proposition 6.18 [83, Proposition 1.6.6] Let 1 ! N ! G !  ! 1 be an exact sequence and V an
+-module. For a G-invariant homomorphism f 2 H1 .N I V /G, there exists a map F W G ! V such that
+the restriction F jN is equal to f and the coboundary ıF descends to a group two cocycle ˛F 2 C 2 .I V /;
+that is, p  ˛F D ıF . Then the map  W H1 .N I V /G ! H2 .I V / in the five-term exact sequence of group
+cohomology is obtained by  .f / D Œ˛F .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1202       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+We conclude this section with the following applications of Theorem 1.5 to the extendability of G-invariant
+homomorphisms:
+
+Proposition 6.19 Let  D G=N. Assume that H2b ./ D 0 and f W N ! R is a G-invariant homomorphism
+on N. If f is extended to a quasimorphism on G, then f is extended to a homomorphism on G.
+
+Proof Note that the assumption H2b ./ D 0 implies that the map H2 ./ ! H2=b ./ is injective. By
+diagram chasing on (1-3), the proposition holds.
+
+This proposition immediately implies the following corollary:
+
+Corollary 6.20 Let  D G=N. Assume that H2b ./ D 0 and N is a subgroup of ŒG; G. Then every
+nonzero G-invariant homomorphism f W N ! R cannot be extended to G as a quasimorphism. Namely,
+H1 .N /G \ i  Q.G/ D 0.
+
+Proof Assume that a homomorphism f W N ! R can be extended to G as a quasimorphism. Then
+Proposition 6.19 implies that there exists a homomorphism f 0 W G ! R with f 0 jN D f. Since f 0 vanishes
+on ŒG; G, we have f D f 0 jN D 0.
+
+Without the assumption H2b ./ D 0, there exists a G-invariant homomorphism which is extendable
+to G as a quasimorphism but is not extendable to G as a (genuine) homomorphism. To see this,
+          B
+let G D HomeoC .S 1 / and N D 1 .HomeoC .S 1 //. Then  D HomeoC .S 1 / and hence H2b ./ Š
+                                           B
+R ¤ 0. Poincaré’s rotation number  W HomeoC .S 1 / ! R is an extension of the homomorphism
+                                                                                        B
+1 .HomeoC .S 1 // Š Z ,! R. However, this homomorphism cannot be extendable to HomeoC .S 1 / as a
+                       B
+homomorphism since HomeoC .S 1 / is perfect.
+
+
+7 Proof of equivalences of sclG and sclG;N
+
+The goal of this section is to prove Theorem 2.1. Here we recall its precise statement.
+
+Theorem 2.1 Assume that Q.N /G D H1 .N /G C i  Q.G/. Then:
+
+ (1) sclG and sclG;N are bi-Lipschitzly equivalent on ŒG; N .
+ (2) If  D G=N is amenable, then sclG .x/  sclG;N .x/  2  sclG .x/ for all x 2 ŒG; N .
+ (3) If  D G=N is solvable, then sclG .x/ D sclG;N .x/ for all x 2 ŒG; N .
+
+In this section, in order to specify the domain of a quasimorphism, we use the symbols DG and DN
+to denote the defect of a quasimorphism on G and N, respectively. The main tool in this section is the
+Bavard duality theorem for sclG;N , which was proved by the first, second, fourth and fifth authors:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                           1203
+
+Theorem 7.1 (Bavard duality theorem for stable mixed commutator lengths [60]) Let N be a normal
+subgroup of a group G. Then, for every x 2 ŒG; N ,
+                                           1                    jf .x/j
+                             sclG;N .x/ D            sup                :
+                                           2 f 2Q.N /G H1 .N /G DN .f /
+
+Here we set the supremum in the right-hand side of the above equality to be zero if Q.N /G D H1 .N /G.
+
+This theorem yields the following criterion to show the equivalence of sclG;N and sclG :
+
+Proposition 7.2 Let C be a real number such that, for every f 2 Q.N /G, there exists f 0 2 Q.G/
+satisfying f 0 jN f 2 H1 .N /G and DG .f 0 /  C  DN .f /. Then, for every x 2 ŒG; N ,
+                                  sclG .x/  sclG;N .x/  C  sclG .x/:
+
+The existence of a C as in the assumption of Proposition 7.2 is equivalent to saying that Q.N /G D
+H1 .N /G C i  Q.G/. See Section 7.1 for details.
+
+Proof Let x 2 ŒG; N . It is clear that sclG .x/  sclG;N .x/. Let " > 0. Then Theorem 7.1 implies that
+there exists f 2 Q.N /G such that
+                                                           f .x/
+                                       sclG;N .x/ "              :
+                                                         2DN .f /
+By assumption, there exists f 0 2 Q.G/ such that f 00 D f 0 jN f 2 H1 .N /G and DG .f 0 /  C  DN .f /.
+Since f 00 is a G-invariant homomorphism and x 2 ŒG; N , we have f 00 .x/ D 0 and hence f 0 .x/ D f .x/.
+Hence,
+                                          f .x/             f 0 .x/
+                         sclG;N .x/ "            C                C  sclG .x/:
+                                        2DN .f /         2DG .f 0 /
+Here we use the original Bavard duality theorem [6] to prove the last inequality. Since " is an arbitrary
+number, we complete the proof.
+
+In the proofs of Theorem 2.1(2)–(3), we use the following corollary of Proposition 7.2:
+
+Corollary 7.3 Assume that Q.N /G D H1 .N /G Ci  Q.G/ and that there exists C  1 such that f 0 2 Q.G/
+implies that DG .f 0 /  C  DN .f 0 jN /. Then, for every x 2 ŒG; N ,
+                                  sclG .x/  sclG;N .x/  C  sclG .x/:
+
+Proof Let f 2 Q.N /G. Then, by the assumption that Q.N /G D H1 .N /G C i  Q.G/, there exists
+f 0 2 Q.G/ such that f 0 jN f is a G-invariant homomorphism. Note that DN .f 0 jN / D DN .f /. Indeed,
+for every a; b 2 N,
+                            f .ab/ f .a/ f .b/ D f 0 .ab/ f 0 .a/ f 0 .b/
+since f 0 jN f is a homomorphism. Hence, C DN .f / D C DN .f 0 jN /  DG .f 0 /. Hence, Proposition 7.2
+implies that
+                                sclG .x/  sclG;N .x/  C  sclG .x/
+for every x 2 ŒG; N .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1204       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+                concept                   defect                        definition                  vector space
+          quasimorphism on G           D                 f .g1 g2 / D f .g1 /Cf .g2 /                 y
+                                                                                                       Q.G/
+ G-quasi-invariant quasimorphism on N D; D 0 f .x1 x2 / D f .x1 /Cf .x2 /, f .gxg 1 / D 0 f .x/    Q.N /QG
+                                                                                                     y
+       N -quasimorphism on G           D 00 f .gx/ D 00 f .g/Cf .x/, f .xg/ D 00 f .x/Cf .g/       Qy N .G/
+
+                             Table 1: The concepts and symbols on quasimorphisms.
+
+7.1 Proof of Theorem 2.1(1)
+
+The main difficulty in the proof of Theorem 2.1 is distilled in Theorem 7.4, stated below. Note that the
+defect DN defines a seminorm on Q.N /G, and its kernel is H1 .N /G.
+
+Theorem 7.4 The normed space .Q.N /G =H1 .N /G ; DN / is a Banach space.
+
+To show this theorem, we recall some concepts introduced in [60]. Let Q     y N .G/ D Q
+                                                                                      y N .GI R/ denote
+the R-vector space of N -quasimorphisms (see Definition 6.3 and Table 1). We call f 2 Q      y N .G/ an
+N -homomorphism if D 00 .f / D 0, and let H1N .G/ denote the space of N -homomorphisms on G. It is clear
+                                      y N .G/, and, in fact, the norm space Q
+that the defect D 00 is a seminorm on Q                                     y N .G/=H1 .G/ is complete:
+                                                                                     N
+
+Proposition 7.5 [60, Corollary 3.6] The normed space .Q
+                                                      y N .G/=H1 .G/; D 00 / is a Banach space.
+                                                               N
+
+A quasimorphism f W N ! R is said to be G-quasi-invariant if the number
+                                   D 0 .f / D      sup    jf .gxg 1 /     f .x/j
+                                                g2G;x2N
+
+               y /QG denote the space of G-quasi-invariant quasimorphisms on N. The function
+is finite. Let Q.N
+DN C D 0, which assigns DN .f / C D 0 .f / to f 2 Q.N
+                                                   y /QG, defines a seminorm on Q.Ny /QG. For an
+N -quasimorphism f on G, the restriction f jN is a G-quasi-invariant quasimorphism [60, Lemma 2.3].
+Conversely, for every G-quasi-invariant quasimorphism f on N, there exists an N -quasimorphism
+f 0 W G ! R satisfying f 0 jN D f [60, Proposition 2.4]. We summarize the concepts and symbols on
+quasimorphisms in Table 1.
+
+Lemma 7.6 The normed space .Q.N
+                            y /QG =H1 .N /G ; DN C D 0 / is a Banach space.
+
+Proof In what follows, we will define bounded operators
+          y N .G/=H1 .G/ ! Q.N
+       AW Q                y /QG =H1 .N /G ;                    y /QG =H1 .N /G ! Q
+                                                            B W Q.N               y N .G/=H1 .G/
+                   N                                                                       N
+
+such that AıB is the identity of yQ.N /QG =H1 .N /G. First, we define A by the restriction, ie A.f / D f jN .
+Then the operator norm of A is at most 3 since DN  D 00 and D 0  2D 00. Indeed, DN  D 00 follows by
+definition, and D 0  2D 00 follows from the estimate
+                          f .gxg 1 / C f .g/ D 00 .f / f .gx/ D 00 .f / f .g/ C f .x/
+for g 2 G and x 2 N.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                             1205
+
+Let S be a subset of G such that 1G 2 S and the map
+                                      S  N ! G;        .s; x/ 7! sx;
+is bijective. For an f 2 Q.N
+                          y /QG, define a function B.f /W G ! R by B.f /.sx/ D f .x/ for s 2 S and
+x 2 N. Then B.f / is an N -quasimorphism on G satisfying D 00 .B.f //  DN .f / C D 0 .f /. Hence, the
+map B induces a bounded operator y   Q.N /QG =H1 .N /G ! y   QN .G/=H1N .G/ whose operator norm is at
+                             Q.N /QG =H1 .N /G is isomorphic to B. y
+most 1, and we conclude that y                                        Q.N /QG =H1 .N /G /. Proposition 7.5
+implies that Q                                                                        Q.N /QG =H1 .N /G /
+              y N .G/=H1 .G/ is a Banach space. Therefore, it suffices to show that B. y
+                        N
+                      y N .G/=H1 .G/, which follows from the well-known Lemma 7.7, given below.
+is a closed subset of Q         N
+
+Lemma 7.7 Let X be a topological subspace of a Hausdorff space Y. If X is a retract of Y, then X is a
+closed subset of Y.
+
+Proof Let r W Y ! X be a retraction of the inclusion map i W X ! Y. Since X D fy 2 Y j i ı r .y/ D yg
+and Y is a Hausdorff space, we conclude that X is a closed subset of Y.
+
+Proof of Theorem 7.4 For n 2 Z and x 2 N, define a function ˛n;x W Q.N
+                                                                   y /QG ! R by
+
+                                      ˛n;x .f / D f .x n /   n  f .x/:
+Since j˛n;x .f /j  .n 1/DN .f /, we conclude that ˛n;x is bounded with respect to the norm DN C D 0,
+and hence ˛n;x induces a bounded operator ˛      Q.N /QG =H1 .N /G ! R. Since
+                                          xn;x W y
+                                                     \
+                             Q.N /G =H1 .N /G D                 ˛n;x /;
+                                                            Ker.x
+                                                      n2Z;x2N
+
+the space Q.N /G =H1 .N /G is a closed subspace of the Banach space Q.N
+                                                                    y /QG =H1 .N /G (see Lemma 7.6).
+Since D 0 D 0 on Q.N /G [60, Lemma 2.1], .Q.N /G =H1 .N /G ; DN / is a Banach space.
+
+Proof of Theorem 2.1(1) It is clear that sclG .x/  sclG;N .x/ for every x 2 ŒG; N . Hence, it suffices to
+show that there exists C > 1 such that, for every x 2 ŒG; N , we have sclG;N .x/  C  sclG .x/.
+It follows from Theorem 7.4 that .Q.G/=H1 .G/; DG / and .Q.N /G =H1 .N /G ; DN / are Banach spaces.
+Let T W Q.G/=H1 .G/ ! Q.N /G =H1 .N /G be the bounded operator induced by the restriction Q.G/ !
+Q.N /G. Let X be the kernel of T. Then T induces a bounded operator
+                              T W .Q.G/=H1 .G//=X ! Q.N /G =H1 .N /G :
+The assumption Q.N /G D H1 .N /G C i  Q.G/ implies that the map T is surjective, and hence T is a
+bijective bounded operator. By the open mapping theorem, the inverse S D T 1 is a bounded operator, and
+we set C D kSk C 1, where kS k denotes the operator norm of S. Then, for every Œf  2 Q.N /G =H1 .N /G,
+there exists f 0 2 Q.G/ such that DG .f 0 /  C  DN .f / and f 0 jN f 2 H1 .N /G. Hence, Proposition 7.2
+implies that
+                                        sclG  sclG;N  C  sclG
+on ŒG; N .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1206       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+7.2 Proof of Theorem 2.1(2)
+
+Here we recall the definition of the seminorm on Hnb .G/. The space Cbn .GI R/ of bounded n-cochains
+on G is a Banach space with respect to the 1-norm
+
+                             k'k1 D supfj'.x1 ; : : : ; xn /j W x1 ; : : : ; xn 2 Gg:
+
+Since Hnb .G/ D Hnb .GI R/ is a subquotient of Cbn .GI R/, it has a seminorm induced by the norm
+on Cbn .GI R/. Namely, for ˛ 2 Hnb .G/, the seminorm k˛k on Hnb .G/ is defined by
+
+                k˛k D inffk'k1 j ' is a bounded n-cocycle on G satisfying Œ' D ˛g:
+
+Theorem 7.8 (see [74, Proposition 8.6.6]) If  D G=N is amenable, then the map H2b .G/ ! H2b .N /G
+is an isometric isomorphism.
+
+We recall the following estimate of the defect of the homogenization:
+
+Lemma 7.9 [26, Lemma 2.58] Let ı W Q.G/ ! H2b .G/ be the natural map. Then
+
+                                       kŒıf k  DG .f /  2  kŒıf k:
+
+Proof of Theorem 2.1(2) Suppose that  D G=N is amenable and Q.N /G D H1 .N /G C i  Q.G/. Let
+f 2 Q.G/. By Corollary 7.3, it suffices to show that 2DN .f jN /  DG .f / for every f 2 Q.G/. This
+follows from
+                         2DN .f jN /  2kŒıf jN k D 2kŒıf k  DG .f /;
+
+where the equality and the inequalities are deduced from Theorem 7.8 and Lemma 7.9, respectively.
+
+7.3 Proof of Theorem 2.1(3)
+
+Lemma 7.10 Let f W N ! R be an extendable homogeneous quasimorphism on N. Then, for each
+a; b 2 G satisfying Œa; b 2 N,
+                                 jf .Œa; b/j  DN .f /:
+
+Proof We first prove
+
+(7-1)                   Œan ; b D an 1 Œa; ba .n 1/  a.n 2/ Œa; ba .n 2/    Œa; b:
+
+Indeed,
+
+Œan ; b D an ba n b 1 D an 1  aba 1 b 1  a .n 1/  an 1 ba .n 1/ b 1 D an 1 Œa; ba .n 1/  Œan 1 ; b:
+
+By induction on n, (7-1) follows. Since f is G-invariant, we have
+
+            f .Œan ; b/ .n 1/DN .f / f .an 1 Œa; ba .n 1/ / C    C f .Œa; b/ D n  f .Œa; b/:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                           1207
+
+Therefore,
+                                 jf .Œan ; b/j  n  jf .Œa; b/j   DN .f / :
+                                                                            
+
+Suppose that jf .Œa; b/j > DN .f /. Then the right side of the above inequality can be unbounded with
+respect to n. However, since f is extendable, the left side of the above inequality is bounded. This is a
+contradiction.
+
+In Corollary 6.20, we provide a condition that ensures a G-invariant homomorphism f W N ! R cannot
+be extended to G as a quasimorphism. Here we present another condition:
+
+Corollary 7.11 Let f W N ! R be a G-invariant homomorphism and assume that N is generated by
+simple commutators of G. If f is nonzero, then f is not extendable.
+
+Proof If f is extendable, then Lemma 7.10 implies that f .c/ D 0 for every simple commutator c of G
+contained in N. Since N is generated by simple commutators of G, this means that f D 0.
+
+Lemma 7.12 Let f be a homogeneous quasimorphism on G, and assume that  D G=N is solvable.
+Then DG .f / D DN .f jN /.
+
+Proof We first assume that  is abelian. It is known that DG .f / D supa;b2G jf .Œa; b/j (see [26,
+Lemma 2.24]). Applying Lemma 7.10 to f jN , we have
+
+                           DG .f / D sup jf .Œa; b/j  DN .f jN /  DG .f /;
+                                      a;b2G
+
+and, in particular, DG .f / D DN .f jN /.
+Next we consider the general case. Let G .n/ denote the nth derived subgroup of G. Then there exists a
+positive integer n such that G .n/  N since  is solvable. By the previous paragraph,
+
+               DG .f / D DG .1/ .f jG .1/ / D    D DG .n/ .f jG .n/ /  DN .f jN /  DG .f /:
+
+Proof of Theorem 2.1(3) Combine Lemma 7.12 and Corollary 7.3.
+
+Next we provide some applications of Theorem 2.1(3):
+
+Corollary 7.13 If one of the following conditions holds, then sclG D sclG;N on ŒG; N  (here  D G=N ):
+ (1)  is a finite solvable group.
+ (2)  is a finitely generated abelian group whose rank is at most 1.
+
+Proof This clearly follows from Proposition 3.4 and Theorem 2.1(3).
+
+In Section 9.2, we propose several problems on the coincidence and equivalence of sclG and sclG;N .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1208       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+7.4 Examples with nonequivalent sclG and sclG;N
+
+To conclude this section, we provide some examples of group pairs .G; N / for which sclG and sclG;N
+fail to be bi-Lipschitzly equivalent on ŒG; N .
+
+Example 7.14 Let l be an integer at least 2, and  be an area form of †l . In this case, the flux group 
+is known to be trivial; thus we have the volume flux homomorphism Flux W Diff0 .†; / ! H1 .†l /.
+In [58], the authors proved that, for the pair
+
+                                 .G; N / D .Diff0 .†l ; /; Ker.Flux //;
+
+sclG and sclG;N are not bi-Lipschitzly equivalent on ŒG; N . More precisely, we found an element
+in ŒG; N  such that
+                                sclG . / D 0 but sclG;N . / > 0:
+
+Example 7.15 We can provide the following example, which is related to Example 7.14 with smaller G,
+from results in [61]. We stick to the setting of Example 7.14. Take an arbitrary pair .v; w/ with
+v; w 2 H1 .†l / that satisfies
+
+(7-2)                                            v ^ w ¤ 0:
+
+Here, recall from Theorem 1.3 that ^W H1 .†l /  H1 .†l / ! H2 .†l / Š R denotes the cup product. Then,
+from results in [61], we can deduce the following: there exists a positive integer k0 , depending only on w
+and the area of †l , such that, for every k  k0 , if we set
+
+                                               ƒk D hv; w=ki;
+
+namely the subgroup of H1 .†l / generated by v and w=k, and
+
+                                 .G; N / D .Flux1 .ƒk /; Ker.Flux //;
+
+then sclG and sclG;N are not bi-Lipschitzly equivalent on ŒG; N . To see this, by following arguments in
+[61, Section 4], we construct a sequence . m /m2N in ŒG; N . Then [61, Proposition 4.6], together with
+Bavard’s duality theorem, implies that
+
+                                              sup sclG . m /  32 :
+                                             m2N
+
+Contrastingly, Proposition 4.7(3) in [61], together with Theorem 7.1, implies that
+                                     sclG;N . m /         1
+                           lim inf                               jbI .v; w/j > 0:
+                           m!1            m         2k  DN .fP /
+Here bI .v; w/ D hv ^ w; Œ†l i†l 2 R is the intersection number of v and w, where Œ†l  is the fundamental
+class of †l and h  ;  i†l W H2 .†l /H2 .†l / ! R denotes the Kronecker pairing of †l . The map fP W N ! R
+is Py’s Calabi quasimorphism (recall Section 5; see also [61, Sections 2.4 and 2.5]). We also note that v,
+w and fP here correspond to Nv, w      x and P in [61], respectively.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                            1209
+
+8 Aut.Fn / and Mod.†l /
+
+8.1 Proof of Theorem 2.3
+
+An IA-automorphism of a group G is an automorphism f on G which acts as the identity on the
+abelianization H1 .GI Z/ of G. We write IAn to indicate the group of IA-automorphisms on Fn . Then we
+have exact sequences
+
+          1 ! IAn ! Aut.Fn / ! GL.n; Z/ ! 1;         1 ! IAn ! AutC .Fn / ! SL.n; Z/ ! 1:
+
+Theorem 2.3(1) claims that Q.IAn /Aut.Fn / D i  Q.Aut.Fn // and Q.IAn /AutC .Fn / D i  Q.AutC .Fn //. To
+show it, we use the following facts, which can be derived from the computation of the second integral
+homology H2 .SL.n; Z/I Z/:
+
+Theorem 8.1 (see [72]) For n  3, H2 .SL.n; Z// D 0 and H2 .GL.n; Z// D 0.
+
+The following is obtained from [77, Corollary 1.4; 75, Theorem 1.2]:
+
+Theorem 8.2 Let n be an integer at least 3 and 0 a subgroup of finite index in SL.n; Z/. Then
+H3b .0 / D 0.
+
+The following theorem is a special case of [74, Proposition 8.6.2]:
+
+Theorem 8.3 Let N be a subgroup of finite index in G and V a Banach G-module; then the restriction
+Hnb .GI V / ! Hnb .N I V / is injective for every n  0.
+
+Now we proceed to the proof of Theorem 2.3(1). First we show the following lemma:
+
+Lemma 8.4 Let n be an integer at least 3 and 0 a subgroup of finite index in GL.n; Z/. Then
+H3b .0 / D 0.
+
+Proof Since 0 \ SL.n; Z/ is a subgroup of finite index in SL.n; Z/, we have H3b .0 \ SL.n; Z// D 0
+by Theorem 8.2. Since 0 \ SL.n; Z/ is a subgroup of finite index in 0 , we obtain H3b .0 / D 0 by
+Theorem 8.3.
+
+Proof of Theorem 2.3(1) Suppose that n D 2. Then GL.n; Z/ and SL.n; Z/ have a subgroup of finite
+index which is isomorphic to a free group. Therefore this case is proved by Proposition 3.4. So suppose
+that n > 2. Let  be either GL.n; Z/ or SL.n; Z/. By Theorem 8.1, Lemma 8.4 and the cohomology long
+exact sequence, we have H2=b ./ D 0. Hence, Theorem 1.5 implies that Q.IAn /Aut.Fn / =i  Q.Aut.Fn // D 0
+and Q.IAn /AutC .Fn / = i  Q.AutC .Fn // D 0.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1210       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Next we prove Theorem 2.3(2). First we recall the following application of the transfer:
+
+Lemma 8.5 (see [19, Proposition III.10.4]) Let N be a normal subgroup of finite index in G, V a real G-
+module and q a positive integer. Then the restriction induces an isomorphism Hq .GI V / Š! Hq .N I V / ,
+where  D G=N.
+
+In the proof of Theorem 2.3(2), we furthermore use the following theorem, due to Borel [14; 15; 16] and
+Hain [47] (and Tshishiku [94]):
+
+Theorem 8.6      (1) For every n  6 and every subgroup 0 of finite index in GL.n; Z/, H2 .0 / D 0.
+ (2) For every l  3 and every subgroup 0 of finite index in Sp.2l; Z/, the inclusion map 0 ,! Sp.2l; Z/
+     induces an isomorphism of cohomology H2 .Sp.2l; Z// Š H2 .0 /. In particular, the cohomology
+     H2 .0 / is isomorphic to R.
+
+For the convenience of the reader, we describe the deduction of Theorem 8.6 from the work of Borel,
+Hain and Tshishiku.
+
+Proof First we discuss (2). This is stated in [47, Theorem 3.2]; see [94] for the complete proof.
+
+Next we treat (1). Let ƒ D 0 \SL.n; Z/. Then ƒ is a subgroup of finite index both in 0 and in SL.n; Z/.
+By Lemma 8.5, the restriction H2 .0 / ! H2 .ƒ/ is injective. Hence, to prove (1), it suffices to show that
+H2 .ƒ/ D 0. In what follows, we sketch the deduction of H2 .ƒ/ D 0 from the work of Borel; see also the
+discussion in the introduction of [94].
+
+We appeal to Borel’s theorem [15, Theorem 1], with G D SLn ,  D ƒ and r the trivial complex
+representation. (See also [14, Theorem 11.1].) Then there exists a natural homomorphism Hq .g; kI C/ƒ !
+Hq .ƒI C/ and, if q  minfc.SLn /; rankR .SL.n; R// 1g, then this map is an isomorphism. Here
+Hq .g; kI C/ƒ is a Lie algebraic cohomology (g and k stand for the Lie algebras of SL.n; R/ and SO.n/,
+respectively); it is known that H2 .g; kI C/ƒ D 0; see [14, 11.4]. For the definition of the constant
+c.G/ D c.G; 0/ for G being a connected semisimple group defined over Q, see [14, 7.1]. We remark
+that, for the trivial complex representation r , c.G; r / D .c.G; 0/ D/c.G/. Since SLn is of type An 1 ,
+the constant c.SLn / equals 12 .n 2/ ; see [15] (and [14, 9.1]). Here, b  c denotes the floor function.
+                                      ˘
+
+The number rankR .SL.n; R// means the real rank of SL.n; R/; it equals n 1. Since n  6, we hence
+have minfc.SLn /; rankR .SL.n; R// 1g  2. Therefore, H2 .ƒI C/ D 0. This immediately implies
+that H2 .ƒ/ D 0, as desired. (Borel [16] considered a better constant C.G/ than c.G/ in general, but
+C.SLn / D 12 .n 2/ ; see [16; 94].)
+                      ˘
+
+
+Remark 8.7 In the proof of Theorem 2.3(2), we only use Theorem 8.6(1). We will use Theorem 8.6(2)
+in the proofs of claims in the next subsection.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                    1211
+
+          concept          defect                           definition                            vector space
+     quasicocycle on G      D                   F.g1 g2 / D F.g1 / C g1  F.g2 /                 y
+                                                                                                  QZ.GI V/
+     G-quasiequivalent
+                           D; D 0    f .x1 x2 / D f .x1 / C f .x2 /, f .gxg 1 / D 0 g  f .x/   y I V /QG
+                                                                                                  Q.N
+    quasimorphism on N
+    N -quasicocycle on G    D 00    F.gx/ D 00 F.g/ C g  F.x/, F.xg/ D 00 F.x/ C F.g/          y N .GI V /
+                                                                                                  QZ
+
+                            Table 2: The concepts and symbols on quasicocycles.
+
+Proof of Theorem 2.3(2) Let n be an integer at least 6. Let G be a group of finite index in Aut.Fn /. Set
+N D G \ IAn and  D G=N. Then we have an exact sequence
+                                             1!N !G! !1
+and  is a subgroup of finite index in GL.n; Z/. By Lemma 8.4 and Theorem 8.6(1), the second relative
+cohomology group H2=b ./ is trivial. Therefore, by Theorem 1.5, Q.N /G = i  Q.G/ D 0.
+
+Remark 8.8 By [80, Theorem 1.4] and Theorem 8.2, for every n  3, every subgroup of finite index in
+SL.n; Z/ is boundedly 3-acyclic.
+
+8.2 Quasicocycle analogues of Theorem 2.3: finite-dimensional unitary coefficients
+
+To state our next result, we need some notation. In Section 7.1, we introduced the notion of G-
+quasiequivariant quasimorphism. Let V be an RŒG-module whose G-action on V is trivial at N. The
+G-quasi-invariance can be extended to the V -valued quasimorphisms as the G-quasiequivariance. Recall
+from Remark 6.4 that a V -valued quasimorphism f W N ! V is G-equivariant if f .gxg 1 / g f .x/ D 0.
+A V -valued quasimorphism f W N ! V is said to be G-quasiequivariant if the number
+                                D 0 .f / D     sup     kf .gxg 1 /    g  f .x/k
+                                             g2G;x2N
+
+               y I V /QG denote the R-vector space of all G-quasiequivariant V -valued quasimorphisms.
+is finite. Let Q.N
+Let F W G ! V be a quasicocycle; then the restriction F jN belongs to Q.Ny I V /QG by definition. It is
+straightforward to show that y    Q.N I V / =i y
+                                           QG   QZ.GI V / is isomorphic to Q.N I V /G = i  H1=b .GI V / D
+H1=b .N I V /G =i  H1=b .GI V /. We summarize the concepts and symbols on quasicocycles in Table 2.
+Our main results in this section are the following two theorems. In fact, in Section 8.3, we will deduce
+further generalizations (Theorems 8.17 and 8.14) of Theorems 8.9 and 8.10, respectively, from a recent
+result of Bader and Sauer [3].
+
+Theorem 8.9 (result for Aut.Fn /) Let n be an integer at least 6 and G a subgroup of finite index in
+Aut.Fn /. Then, for every finite-dimensional unitary representation  of ,
+                                      Q.N I H/QG D i  y
+                                      y                    ; H/:
+                                                      QZ.GI N
+Here . N
+      ; H/ is the pullback to G of the representation .; H/ of .
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1212       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Theorem 8.10 (result for Mod.†l /) Let l be an integer at least 3 and G a subgroup of finite index in
+Mod.†l /. Set N D G \ I.†l / and  D G=N. Let .; H/ be a finite-dimensional unitary -representation
+such that  6 1, ie H./ D 0. Then
+                                     Q.N I H/QG D i  y
+                                     y                    ; H/:
+                                                     QZ.GI N
+Here N is the pullback of  by the quotient homomorphism G ! .
+
+Before proceeding to the proofs of Theorems 8.9 and 8.10, we mention some known results we need in
+the proofs. The following theorem is well known (see [7, Corollaries 4.C.16 and 4.B.6]):
+
+Theorem 8.11 Let 0 be a subgroup of finite index in GL.n; Z/ for n  3 or Sp.2l; Z/ for l  3, and
+.; H/ a finite-dimensional unitary 0 -representation. Then 0 ./ WD Ker. W 0 ! U.H// is a subgroup
+of finite index in 0 , where U.H/ denotes the group of unitary operators on H.
+
+Theorem 8.12 [77, Corollary 1.6] Let l be an integer at least 2 and 0 a subgroup of finite index in
+Sp.2l; Z/. Let .; H/ be a unitary 0 -representation with H separable and  6 1. Then H3b .0 I ; H/ D 0.
+
+Corollary 8.13 (1) Let n be an integer at least 6 and 0 a subgroup of finite index in GL.n; Z/. Let
+      .; H/ be a finite-dimensional unitary 0 -representation. Then H2 .0 I ; H/ D 0.
+ (2) Let l be an integer at least 3, 0 a subgroup of finite index in Sp.2l; Z/, and .; H/ a finite-
+     dimensional unitary 0 -representation such that  6 1. Then H2 .0 I ; H/ D 0.
+
+Proof We first prove (2). Set 0 ./ D Ker./. Then Theorem 8.11 implies that 0 ./ is of finite index
+in 0 . Hence, by Lemma 8.5, H2 .0 I ; H/ Š H2 .0 ./I H/0 = 0 ./ .
+We now show the following claims:
+
+Claim The conjugation action by 0 on the cohomology H2 .0 .// is trivial.
+
+Proof By Theorems 8.11 and 8.6(2), the inclusion i W 0 ./ ,! 0 induces an isomorphism i  W H2 .0 / Š
+H2 .0 .//. Lemma 8.5 implies that the map i in fact induces an isomorphism H2 .0 / Š H2 .0 .//0 .
+Therefore, the 0 -action on H2 .0 .// is trivial.                                                    G
+
+Claim There exists a canonical isomorphism H2 .0 ./I H/ Š H, and this induces an isomorphism
+H2 .0 ./I H/0 = 0 ./ Š H0 = 0 ./ .
+
+Proof By Theorem 8.6(2), the cohomology H2 .0 .// is isomorphic to R; hence, by the universal
+coefficient theorem, the cohomology H2 .0 ./I H/ is isomorphic to H (here, note that H is a trivial
+RŒ0 ./-module of finite dimension). In what follows, we exhibit a concrete isomorphism. For ˛ 2 H,
+we define a cochain c˛ 2 C 2 .0 ./I H/ by
+                                     c˛ . 1 ; 2 / D c. 1 ; 2 /  ˛ 2 H;
+where c 2 C 2 .0 .// is a cocycle whose cohomology class corresponds to 1 2 R under the isomorphism
+H2 .0 .// Š R. This cochain c˛ is a cocycle since the 0 ./-action on H is trivial. Then the map
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                        1213
+
+sending ˛ to Œc˛  gives rise to an isomorphism H Š! H2 .0 ./I H/. For               2 0 and    1 ; 2 2 0 ./,
+                                   1           1
+   . c˛ /. 1 ; 2 / D . /  c˛ .       1   ;       2   / D . /  .. c/. 1 ; 2 /  ˛/ D . c/. 1 ; 2 /  .. /  ˛/:
+Moreover, by the claim above, there exists a cochain b 2 C 1 .0 .// satisfying c D c C ıb. Hence,
+   . c˛ /. 1 ; 2 / D . c/. 1 ; 2 /  .. /  ˛/ D .c C ıb/. 1 ; 2 /  .. /  ˛/ D .c C ıb/. /˛ . 1 ; 2 /:
+Therefore the cohomology class Œc˛  corresponds to the element . /  ˛ under the isomorphism, and
+this implies the claim.                                                                           G
+
+By the claims above and the assumption that  does not contain the trivial representation, we have
+H2 .0 I ; H/ D 0. This completes the proof of (2).
+We can deduce (1) by the same arguments as above with Lemma 8.5 and Theorems 8.6 and 8.11.
+
+Proof of Theorem 8.9 Let n be an integer at least 6. Let G be a group of finite index in Aut.Fn /. Set
+N D G \ IAn and  D G=N. Then we have an exact sequence
+                                               1!N !G! !1
+and  is a subgroup of finite index in GL.n; Z/. Let .; H/ be a finite-dimensional unitary -representation.
+Set ./ D Ker./. By Theorem 8.11, ./ is a normal subgroup of finite index in . By using
+Lemma 8.4, we can show that H3b ../I H/ D 0. Here, we use [74, Corollary 8.2.10]; see also the proof
+of Theorem 8.17 in the next subsection. Together with Theorem 8.3, we obtain H3b .I ; H/ D 0. Hence,
+by Corollary 8.13(1), H2=b .I ; H/ D 0. Therefore, the quotient H1=b .N I H/=i  H1=b .GI ; H/ is trivial
+by Theorem 1.5. Since H1=b .N I H/=i  H1=b .GI ; H/ is isomorphic to Q.Ny I H/QG =i  QZ.GI
+                                                                                          y       ; H/, this
+completes the proof.
+
+Proof of Theorem 8.10 Let l be an integer at least 3. Let G be a subgroup of finite index in Mod.†l /.
+Set N D G \ I.†l / and  D G=N. Let .; H/ be a finite-dimensional unitary -representation not
+containing the trivial representation. Then Theorem 8.12 and Corollary 8.13(2) imply that the second
+relative cohomology group H2=b .I ; H/ is trivial. Hence, by arguments similar to those in the proof of
+Theorem 8.9, we obtain the theorem.
+
+8.3 Quasicocycle analogues of Theorem 2.3: including infinite-dimensional unitary
+    coefficients
+
+After the submitted version of this paper was completed, work of Bader and Sauer [3] on vanishing of
+higher group cohomology with unitary coefficients for higher-rank Lie groups and their lattices has come
+out. This work enables us to improve Theorems 8.10 and 8.9 to the following Theorems 8.14 and 8.17,
+respectively. For the reader’s convenience, we add this subsection to state and deduce these two theorems.
+We are grateful to one of the referees for informing us of [3]. We start with the following strengthening
+of Theorem 8.10:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1214        Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Theorem 8.14 (stronger result for Mod.†l /) Fix an integer l at least 3. Then, for every subgroup G of
+finite index in Mod.†l / and every unitary representation .; H/ of  such that  6 1,
+                                      Q.N I H/QG D i  y
+                                      y                    ; H/:
+                                                      QZ.GI N
+Here we set N D G \ I.†l / and  D G=N ; the representation . N
+                                                             ; H/ of G is the pullback of the
+representation .; H/ of .
+
+For the proof of Theorem 8.14, we employ the following definitions and theorem:
+
+Definition 8.15 Let H be a locally compact second countable group. Let k be a positive integer.
+ (1) The group H is said to be strongly k-Kazhdan [30] or, alternatively, to have property ŒTk  [2; 3] if,
+     for every (strongly continuous) unitary H -representation .; H/ and every positive integer i with
+     i  k, the continuous cohomology Hic .H I ; H/ vanishes.
+ (2) [2; 3] The group H is said to have property .Tk / if, for every (strongly continuous) unitary
+     H -representation .; H/ with  6 1 and every positive integer i with i  k, the continuous
+     cohomology Hic .H I ; H/ vanishes.
+
+The celebrated Delorme–Guichardet theorem states that property ŒT1  (the strong 1-Kazhdan property)
+and property .T1 / (for a locally compact second countable group) are both equivalent to Kazhdan’s
+property (T); see [8] for details. By definition, for positive integers k1 and k2 with k1  k2 , property .Tk1 /
+implies property .Tk2 /, and property ŒTk1  implies property ŒTk2  (we also remark that, if ƒ is a discrete
+group, then, for a unitary ƒ-representation .; H/, continuous cohomology Hc .ƒI ; H/ coincides with
+H .ƒI ; H/). The main motivation in [30] comes from their theorem [30, Theorem 1.2], which states
+that a finitely presented group with property ŒT2  is Frobenius stable. For applications of property .T2 / to
+the Frobenius stability, see [2].
+
+Theorem 8.16 [3, Theorem B and Appendix A] Let H be a connected semisimple Lie group with a
+finite center. Then H has property .Tr0 .H / 1 / (as a topological group), where r0 .H / is the invariant
+given in [3, Appendix A]. Let ƒ be an irreducible lattice in H. Then ƒ has property .Tr 1 /, where
+r D minfr0 .H /; rankR .H /g.
+Here, both for H D SL.n C 1; R/ with n at least 2 and for H D Sp.2n; R/ with n at least 3, we have
+r0 .H / D n D rankR .H /.
+
+We note that H2 .Sp.2n; Z// D R for every integer n at least 2; see [14]. In particular, Sp.2.n C 1/; Z/
+with n  2 fails to have property ŒTn , whereas Theorem 8.16 ensures property .Tn / for this group.
+
+Proof of Theorem 8.14 using Theorem 8.16 First we prove the theorem under the additional assumption
+that H is separable. We appeal to Theorem 8.16 by setting H D Sp.2l; R/ and ƒ D  (recall that l
+is assumed to be at least 3). Then  has property .T2 /. Therefore, H2 .I ; H/ D 0. Since  6 1,
+Theorem 8.12 (Monod’s theorem) shows that H3b .I ; H/ D 0. Now Theorem 1.5, together with the
+exact sequence (3-1) and Remark 1.7, ends our proof for the case where H is separable.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                               1215
+
+Now we treat the general case; here, we use the following trick to reduce to the separable case. Suppose
+that
+                                  y I H/QG n i  QZ.GI
+                                 Q.N               y      ; H/ ¤ ∅:
+                                                           N
+Take some f from the left-hand side. Let K be the closure of the linear span of f. /f .x/ j 2 ; x 2 N g
+in H. Then K is a closed ./-invariant subspace in H that is separable (note that  and N are both
+countable). Hence, we can view K as a unitary -subrepresentation space of H; we write .; K/ for this
+representation. We define a unitary G-representation .N ; K/ by taking the pullback of . Thus, we can
+view f as an element in Q.N y I K/QG, where we view .N ; K/ as an RŒG-module. Since K is separable
+and  6 1, the first paragraph of this proof implies that
+                                       y I K/QG D i  QZ.GI
+                                       Q.N            y     N ; K/:
+                                  QZ.GI N ; K/ such that f D i  F. However, since F may be seen as
+Hence, we can find an element F 2 y
+an element in y
+              QZ.GI N; H/, we have f D i  F 2 i  y
+                                                   QZ.GI N; H/, a contradiction.
+
+Next we state the following strengthening of Theorem 8.9:
+
+Theorem 8.17 (stronger result for Aut.Fn /) Fix an integer n at least 4. Then, for every subgroup G of
+finite index in Aut.Fn / and every unitary representation .; H/ of  such that H is finite-dimensional ,
+                                       Q.N I H/QG D i  y
+                                       y                    ; H/:
+                                                       QZ.GI N
+Here we set N D G \ IAn and  D G=N ; the representation . N
+                                                          ; H/ of G is the pullback of the
+representation .; H/ of .
+In particular, the assumptions of n  6 in Theorems 2.3(2) and 8.9 can both be weakened to n  4.
+
+Proof of Theorem 8.17 using Theorem 8.16 By employing the same trick as in the final part of the
+proof of Theorem 8.14, we may assume that H is separable throughout this proof. By Theorem 1.5
+and the exact sequence (3-1), it suffices to prove that H2 .I ; H/ D 0 and H3b .I ; H/ D 0. Note
+that  is a subgroup of finite index in GL.n; Z/. First we prove that H3b .I ; H/ D 0. Decompose the
+-representation space H as H D H ˚ .H /? , where .H /? is the orthogonal complement of H in H.
+Then the restriction of  on H is trivial, and it is finite-dimensional by assumption; the restriction  orth
+of  on .H /? does not admit a nonzero -invariant vector. Now we claim that H3b .I  inv ; H / D 0.
+Indeed, by Lemma 8.4, H3b ./ D 0. Since we assume that H is finite-dimensional, we can decompose
+H as a finite direct sum of the one-dimensional trivial module; then [74, Corollary 8.2.10] ends the
+proof of the claim above. We also claim that H3b .I  orth ; .H /? / D 0. Indeed, this follows from another
+theorem of Monod [76, Theorem 2]; see [77, Corollary 1.6] for a more general statement and Theorem 8.3.
+Again by [74, Corollary 8.2.10],
+                         H3b .I ; H/ Š H3b .I  inv ; H / ˚ H3b .I  orth ; .H /? /I
+hence H3b .I ; H/ D 0, as desired.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1216       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Next we will show that H2 .I ; H/ D 0 by appealing to Theorem 8.16; the proof of this part works
+without the assumption that H is finite-dimensional. Let 0 D  \SL.n; Z/, which is a subgroup of finite
+index both of  and of SL.n; Z/. First, apply Theorem 8.16 with H D SL.n; R/ and ƒ D SL.n; Z/ (recall
+that n is assumed to be at least 4). Then SL.n; Z/ has property .T2 /. Together with Theorem 8.1 and
+the universal coefficient theorem, we conclude that SL.n; Z/ has property ŒT2 . By [30, Proposition 4.4],
+property ŒT2  passes to a subgroup of finite index. (Strictly speaking, it follows that property ŒT2  passes
+to a normal subgroup of finite index; then we employ [19, Proposition III.10.4] to have the full heredity.
+Or, alternatively, we may apply the Shapiro lemma.) Hence, 0 also has property ŒT2 . By Lemma 8.5,
+ has property ŒT2  as well, and thus H2 .I ; H/ D 0.
+
+As we explained in the proof above, the main result of [3] in particular improves the Borel stable
+range for second ordinary cohomology with the trivial coefficients of SLn from n  6 to n  4. We
+also note that the assumption of the finite-dimensionality of H in Theorem 8.17 is used to deduce
+H3b .I  inv ; H / D 0 from H3b ./ D 0. As we mentioned in the proof, for ordinary cohomology we do
+not need this finite-dimensionality assumption thanks to the universal coefficient theorem. For a Banach
+space V, the following question might be of interest: (for a fixed q, say 2 or 3) when does the vanishing
+     q                       q
+of Hb .G/ imply that of Hb .GI V / for a group G, where V is viewed as an RŒG-module with the trivial
+action? For results in this direction, we refer the reader to [44; 82, Proposition 2.39].
+The counterpart of Theorem 8.14 in the case of the trivial real coefficients is an open problem.
+
+Problem 8.18 Let G be a subgroup of finite index in Mod.†l /. Set N D G \ I.†l / and  D G=N.
+Then does Q.N /G D i  Q.G/ hold ?
+
+Cochran, Harvey and Horn [29] constructed Mod.†/-invariant quasimorphisms on I.†/ for a surface †
+with at least one boundary component. The problem asking whether their quasimorphisms are extendable
+may be of special interest.
+
+8.4 Extension theorem of quasicocycles
+As an appendix to this section, we present the following extension theorem of quasicocycles. In this
+subsection we treat a general theory, and the topic has no specific relation to Aut.Fn / or Mod.†l /. Recall
+that every G-quasi-invariant quasimorphism on N is extendable to G if the projection G ! G=N virtually
+splits (Proposition 3.4). This can be generalized as follows:
+                                       p
+Theorem 8.19 Let 1 ! N ! G !  ! 1 be an exact sequence and V an RŒ-module with a
+-invariant norm k  k. Assume that the exact sequence virtually splits. Then, for every V -valued G-
+quasiequivariant quasimorphism f 2 Q.N
+                                     y I V /QG, there exists a quasicocycle F 2 QZ.GI
+                                                                                  y      V / such that
+F jN D f and D.F /  D.f / C 3D .f /.
+                                  0
+
+
+The proof is parallel to that of [60, Proposition 6.4] (Proposition 3.4 above). For the sake of completeness,
+we include the proof; see [loc. cit.] for more details.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                  1217
+
+Proof Let .s; ƒ/ be a virtual section of p W G !  (see Section 2). Let B be a finite subset of  such
+that the map ƒ  B ! , .; b/ 7! b, is bijective. Let s 0 W B ! G be a map satisfying p ı s 0 .b/ D b for
+every b 2 B. Define a map t W  ! G by setting t.b/ D s./s 0 .b/. Note that t is a (set-theoretic) section
+of p. Given f 2 Q.N
+                 y I V /QG , define a function F W G ! V by
+                                       1 X
+                                               f g  t.b  p.g// 1  t.b/ :
+                                                                         
+                               F.g/ D
+                                      #B
+                                              b2B
+
+Then F jN D f . Moreover, for g1 ; g2 2 G, by using that f .h1 h2 / D 0 .f / p.h1 /  f .h2 h1 / and
+f .h1 h2 / D 0 .f / p.h2 / 1  f .h2 h1 / for every h1 ; h2 2 G with h1 h2 2 N, we have
+              1 X
+F.g1 g2 / D              f .g1 g2 t.bp.g1 g2 // 1 t.b//
+             #B
+                   b2B
+                      1 X 1
+                               b f t.b/g1 g2 t.bp.g1 g2 // 1
+                                                                   
+           D 0 .f /
+                     #B
+                          b2B
+              1 X 1
+                         b f t.b/g1 t.bp.g1 // 1 t.bp.g1 //g2 t.bp.g1 g2 // 1
+                                                                                       
+           D
+             #B
+                   b2B
+                      1 X 1
+                              b  f t.b/g1 t.bp.g1 // 1 Cf t.bp.g1 //g2 t.bp.g1 g2 // 1
+                                                                                                   
+           D.f /
+                     #B
+                         b2B
+                        1 X                                   1 X
+                                f .g1 t.bp.g1 // 1 t.b//C         p.g1 /f g2 t.bp.g1 g2 // 1 t.bp.g1 //
+                                                                                                               
+           2D 0 .f /
+                       #B                                    #B
+                           b2B                                   b2B
+                                                                               
+                               1    X                             1
+           D F.g1 /Cg1                 f g2 t .bp.g1 //p.g2 / t.bp.g1 // :
+                                                                               
+                              #B
+                                b2B
+
+By the arguments in the proof of [60, Proposition 6.4],
+                    1 X                                   1
+                           f g2  t .b  p.g1 //  p.g2 /     t.b  p.g1 // D F.g2 /:
+                                                                            
+                   #B
+                          b2B
+
+Therefore, F.g1 g2 / D.f /C3D 0 .f / F.g1 / C g1  F.g2 /.
+
+
+9 Open problems
+
+9.1 Mystery of the Py class
+
+Let †l be a closed connected orientable surface whose genus l is at least 2 and  a volume form
+on †l . Recall that Py [89] constructed a Calabi quasimorphism fP on Ker.Flux / which is Diff0 .†l ; /-
+invariant, and the first and second authors showed that fP is not extendable to Diff0 .†l ; / (recall
+Section 5 and Example 7.15). We define cNP 2 H2 .H1 .†l // and cP 2 H2 .Diff0 .†l ; // by cNP D
+4 1 ı =b .fP / and cP D Flux .cNP /, respectively. We call cP the Py class. Note that we essentially
+proved the nontriviality of the Py class in the proof of Theorem 2.6(1).
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1218        Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+
+                                 ˇ1                     ˇ2                                    ˇl
+
+
+
+
+                                  ˛1                    ˛2                                    ˛l
+                                    Figure 1: ˛1 ; : : : ; ˛l ; ˇ1 ; : : : ; ˇl W Œ0; 1 ! †l .
+
+
+When we constructed the class cNP 2 H2 .H1 .†l //, we used the morphism 4 W H2 .H1 .†l // ! H2=b .H1 .†l //.
+Here we apply the exact sequence
+
+                             1 ! Ker.Flux / ! Diff0 .†l ; / Flux!
+                                                                  
+                                                                    H1 .†l / ! 1
+
+to diagram (1-3). Since the bounded cohomology groups of an amenable group are zero, the map 4 is an
+isomorphism and we have the inverse 4 1 W H2=b .H1 .†l // ! H2 .H1 .†l //. Because the vanishing of the
+bounded cohomology of amenable groups is shown by a transcendental method, we do not have a precise
+description of the map 4 1 .
+
+Remark 9.1 If we fix a (right-)invariant mean m on the amenable group , then we have the following
+description of the map 4 1 . For a cocycle Œc 2 C=b
+                                                   2
+                                                      ./, a cocycle f 2 C 2 ./ representing the class
+4 1 .ŒŒc/ can be given by
+                                    f . 1 ; 2 / D c. 1 ; 2 /          m.ıc.  ; 1 ; 2 //:
+
+However, we have the following observations on the Py class. Here we consider H1 .†l / as a symplectic
+vector space by the intersection form.
+
+Theorem 9.2 Let †l be a closed connected orientable surface whose genus l is at least 2 and  a
+volume form on †l . For a subgroup ƒ of H1 .†l /, let ƒ W ƒ ! H1 .†l / be the inclusion map.
+
+ (1) Let v and w be elements in H1 .†l / with v ^ w ¤ 0. Then there exists a positive integer k0 such
+     that, for every integer k at least k0 , for the subgroup ƒ D hv; w=ki of H1 .†l /, we have ƒ cNP ¤ 0.
+     Here ^ denotes the cup product.
+ (2) If a subgroup ƒ of H1 .†l / is contained in a linear subspace hŒ˛1  ; : : : ; Œ˛l  i or hŒˇ1  ; : : : ; Œˇl  i,
+     then ƒ cNP D 0, where ˛1 ; : : : ; ˛l ; ˇ1 ; : : : ; ˇl are the curves described in Figure 1.
+
+To prove Theorem 9.2, we use the following observation.
+                      p
+Let 1 ! N i! G !  ! 1 be an exact sequence of groups such that  is amenable. For a subgroup  0
+                          p
+of , 1 ! N i! p 1 . 0 / !  0 ! 1 is also an exact sequence and  0 is also amenable (Theorem 3.5(3)).
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                                                                               1219
+
+Then, by Theorem 1.5, we have the commuting diagrams
+                                                 p                                                                          p
+                   0             / H1 ./              / H1 .G/ i / H1 .N /G                              / H2 ./                       / H2 .G/
+
+(9-1)                                      1                        2                  3                          4                             5
+                                                                                                 =b
+                                                                                                                                               
+                                                 p                       i                                                   p
+                   0             / Q./                    / Q.G/              / Q.N /G                   / H2 ./                       / H2 .G/
+                                                                                                            =b                             =b
+
+                                  p                                                                       0                             p
+        0       / H1 . 0 /                / H1 .p 1 . 0 // i / H1 .N /p 1 . 0 /                                   / H2 . 0 /                     / H2 .p 1 . 0 //
+
+(9-2)                      10                             20                                30                                  40                            50
+                                                                                                         0
+                                                                                                           =b                                               
+                                  p                                      i                                                               p
+        0        / Q. 0 /                  / Q.p 1 . 0 //                    / Q.N /p 1 . 0 /                     / H2 . 0 /                     / H2 .p 1 . 0 //
+                                                                                                                          =b                             =b
+
+Since  and  0 are boundedly 3-acyclic (Theorem 3.5(5)), 4 W H2 ./ ! H2=b ./ and 40 W H2 . 0 / !
+H2=b . 0 / are isomorphisms. The following lemma can be deduced from the definitions of =b and =b
+                                                                                                   0
+                                                                                                     :
+
+Lemma 9.3 We have
+                                                  .40 / 1 ı =b
+                                                              0
+                                                                 ı I1 D I2 ı .4 / 1 ı =b ;
+                                                1 . 0 /
+where I1 W Q.N /G ! Q.N /p                                and I2 W H2 ./ ! H2 . 0 / are the homomorphisms induced from
+the inclusion I W  0 ! .
+
+We employ the following theorem, which is related to Example 7.15, in order to prove Theorem 9.2:
+
+Theorem 9.4 [61, Theorems 1.6 and 1.10] Let †l be a closed connected orientable surface whose
+genus l is at least 2 and  a volume form on †l . Let ƒ be a subgroup of H1 .†l / and set G D Flux 1 .ƒ/
+and N D Ker.Flux /. Then:
+ (1) Let v and w be elements in H1 .†l / with v ^ w ¤ 0. Then there exists a positive integer k0
+     such that, for every integer k at least k0 , for ƒ D hv; w=ki, ŒfP  is a nontrivial element of
+     Q.N /G = i  Q.G/.
+ (2) If ƒ is contained in a linear subspace hŒ˛1  ; : : : ; Œ˛l  i or hŒˇ1  ; : : : ; Œˇl  i, then ŒfP  is the trivial
+     element of Q.N /G = i  Q.G/, where ˛1 ; : : : ; ˛l ; ˇ1 ; : : : ; ˇl are the curves described in Figure 1.
+
+On (2), see also [61, Remark 4.8].
+
+Proof of Theorem 9.2 Set  D H1 .†l /,  0 D ƒ and G D Flux1 .ƒ/. We use the notation in the
+diagrams (9-1) and (9-2).
+First, to prove (1), suppose that the dimension of ƒ is larger than l. Then, since ŒfP  is a nontrivial
+element of Q.N /G =i  Q.G/, by Theorem 1.10, .40 / 1 ı =b   0
+                                                                 ı I1 .fP / is also a nontrivial element of
+H2 . 0 / D H2 .ƒ/. Hence, by Lemma 9.3, ƒ cNP D I2 ı .4 / 1 ı =b .fP / D .40 / 1 ı =b
+                                                                                           0
+                                                                                              ı I1 .fP / is also
+a nontrivial element of H2 . 0 / D H2 .ƒ/.
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1220         Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+Next, to prove (2), suppose that ƒ is contained in linear subspaces hŒ˛1  ; : : : ; Œ˛l  i or hŒˇ1  ; : : : ; Œˇl  i.
+Then, since ŒfP  is the trivial element of Q.N /G =i  Q.G/, by Theorem 1.10 and Proposition 2.5,
+.40 / 1 ı =b
+            0
+               ı I1 .fP / is also the trivial element of H2 . 0 / D H2 .ƒ/. Hence, by Lemma 9.3, ƒ cNP D
+I2 ı .4 / 1 ı =b .fP / D .40 / 1 ı =b
+                                         0
+                                           ı I1 .fP / is also the trivial element of H2 . 0 / D H2 .ƒ/.
+Finally, we pose the following problems on the Py class:
+Problem 9.5 Give a precise description of a cochain representing cNP 2 H2 .H1 .†l // and a bounded
+cochain representing cP 2 H2 .Diff0 .M; //.
+Problem 9.6 Let †l be a closed connected orientable surface whose genus l is at least 2 and  a volume
+form on †l . Is the vector space Im.Flux / \ Im.cDiff0 .†l ;/ / spanned by cP ?
+By Theorem 1.10, Problem 9.6 is rephrased as follows.
+Problem 9.7 Let †l be a closed connected orientable surface whose genus l is at least 2 and  a volume
+form on †l . Is the vector space Q.Ker.Flux //Diff0 .†l ;/ =i  Q.Diff0 .†l ; // spanned by ŒfP ?
+
+9.2 Problems on equivalences and coincidences of sclG and sclG;N
+By Theorem 2.1, Q.N /G D H1 .N /G C i  Q.G/ implies that sclG and sclG;N are equivalent on ŒG; N .
+Moreover, if N is the commutator subgroup of G and Q.N /G D H1 .N /G C i  Q.G/, then sclG and
+sclG;N coincide on ŒG; N . Since H2 .G/ D 0 implies Q.N /G D H1 .N /G C i  Q.G/ (Theorem 1.10),
+there are several examples of pairs .G; N / such that sclG;N and sclG are equivalent (see Section 2.1). In
+Section 3, we provided several examples of groups G with Q.N /G ¤ H1 .N /G C i  Q.G/ (see Theorems
+1.1, 1.2 and 4.18), but we were unable to determine whether sclG and sclG;N are equivalent on ŒG; N  in
+these examples. Hence, the example of G D Diff.†l ; !/ with l  2 and N D ŒG; G raised by [58] (see
+also [61]) has remained essentially the only known example where sclG and sclG;N are not equivalent
+on ŒG; N . In fact, this is the only example where sclG and sclG;N do not coincide on ŒG; N . Here we
+provide several problems on equivalences and coincidences of sclG and sclG;N .
+Problem 9.8 Is it true that Q.N /G D H1 .N /G C i  Q.G/ implies that sclG D sclG;N on ŒG; N ?
+Problem 9.9 Find a pair .G; N / such that G is finitely generated and sclG and sclG;N are not equivalent.
+In particular, are scl1 .†l / and scl1 .†l /;Œ1 .†l /;1 .†l / equivalent on Œ1 .†l /; Œ1 .†l /; 1 .†l / for
+l  2?
+After the current work, Problem 9.9 was solved by some of the authors [69]: for l  2, scl1 .†l / and
+scl1 .†l /;Œ1 .†l /;1 .†l / are not equivalent. Moreover, the authors proved in [59] that sclG and sclG;ŒG;G
+are not equivalent if Q.ŒG; G/G ¤ H1 .ŒG; G/G C i  Q.G/.
+We also pose the following problem. Let Bn be the nth braid group and Pn the nth pure braid group.
+Problem 9.10 For n  3, does sclBn D sclBn ;ŒPn ;Pn  hold on ŒBn ; ŒPn ; Pn ?
+In light of the following proposition, we can regard Problem 9.10 as a special case of Problem 9.8:
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                              1221
+
+Proposition 9.11 For n  2, let G D Bn and N D ŒPn ; Pn . Then Q.N /G D H1 .N /G C i  Q.G/. In
+particular, sclG .x/  sclG;N .x/  2  sclG .x/ for all x 2 ŒG; N .
+
+Proof Consider the exact sequence
+                              1 ! Pn =ŒPn ; Pn  ! Bn =ŒPn ; Pn  ! Sn ! 1;
+where Sn is the symmetric group. By Theorem 3.5(1)–(2), Sn and Pn =ŒPn ; Pn  are amenable. Hence,
+Theorem 3.5(4) implies that Bn =ŒPn ; Pn  is also amenable. As pointed out in Section 2.1, the second co-
+homology of the braid group Bn vanishes. Hence, Theorem 1.10 implies that Q.N /G D H1 .N /G Ci  Q.G/.
+The equivalence between sclBn and sclBn ;ŒPn ;Pn  follows from Theorem 2.1(2).
+
+As another special case of Problem 9.8, we provide the following problem:
+
+Problem 9.12 For n  2, does sclAut.Fn / D sclAut.Fn /;IAn hold on ŒAut.Fn /; IAn ?
+
+Even the following weaker variant of Problem 9.12 seems open. We note that Theorem 2.1(2) does not
+apply to the setting of Theorem 2.3.
+
+Problem 9.13 Let n  3. Find an explicit real constant C  1 such that sclAut.Fn /;IAn  C  sclAut.Fn /
+on ŒAut.Fn /; IAn .
+
+In [60], the first, second, fourth and fifth authors considered the equivalence problem between clG
+and clG;N . We provide the following problem:
+
+Problem 9.14 Is it true that Q.N /G D H1 .N /G C i  Q.G/ implies the bi-Lipschitz equivalence of clG
+and clG;N on ŒG; N ?
+
+We note that Theorem 2.1(1) states that Q.N /G D H1 .N /G Ci  Q.G/ implies the bi-Lipschitz equivalence
+of sclG and sclG;N . To the best knowledge of the authors, Problem 9.14, even for the case where
+1 ! N ! G !  ! 1 virtually splits, might be open in general.
+In light of Proposition 9.11 and Theorem 2.3, we can regard the following problem as special cases of
+Problem 9.14:
+
+Problem 9.15 For .G; N / either .Bn ; ŒPn ; Pn / with n  3 or .Aut.Fn /; IAn / with n  2, are clG and
+clG;N equivalent on ŒG; N ?
+
+Note that clG and clG;N are bi-Lipschitzly equivalent when .G; N / D .Bn ; Pn \ŒBn ; Bn  D ŒPn ; Bn / [60].
+
+Acknowledgments
+We thank Toshiyuki Akita, Tomohiro Asano, Masayuki Asaoka, Nicolas Monod, Yuta Nozaki, Takuya
+Sakasai, Masatoshi Sato and Takao Satoh for fruitful discussions on applications of our results and for
+providing several references. We are grateful to the referees for important comments and references.
+Specially, we are indebted to one of the referees for bringing to our attention the recent result [3]; we
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1222       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+present the outcomes in Section 8.3. Mimura is grateful to Andrew Putman and Bena Tshishiku for the
+bound of n in Theorem 8.6(1) and Masatoshi Sato for the discussion on Corollary 8.13(2).
+Kawasaki is supported in part by JSPS KAKENHI grants JP18J00765 and JP21K13790. Kimura
+and Maruyama are supported by JSPS KAKENHI grants JP20H00114 and JP21J11199, respectively.
+Matsushita is partially supported by JSPS KAKENHI grant JP19K14536. Mimura is partially supported
+by JSPS KAKENHI grants JP17H04822 and JP21K03241.
+
+
+References
+  [1] T Akita, Y Liu, Second mod 2 homology of Artin groups, Algebr. Geom. Topol. 18 (2018) 547–568 MR
+      Zbl
+  [2] U Bader, A Lubotzky, R Sauer, S Weinberger, Stability and instability of lattices in semisimple groups, J.
+      Anal. Math. 151 (2023) 1–23 MR Zbl
+  [3] U Bader, R Sauer, Higher Kazhdan property and unitary cohomology of arithmetic groups, preprint (2023)
+      arXiv 2308.06517
+  [4] A Banyaga, Sur la structure du groupe des difféomorphismes qui préservent une forme symplectique,
+      Comment. Math. Helv. 53 (1978) 174–227 MR Zbl
+  [5] A Banyaga, The structure of classical diffeomorphism groups, Math. Appl. 400, Kluwer, Dordrecht (1997)
+      MR Zbl
+  [6] C Bavard, Longueur stable des commutateurs, Enseign. Math. 37 (1991) 109–150 MR Zbl
+  [7] B Bekka, P de la Harpe, Unitary representations of groups, duals, and characters, Math. Surv. Monogr.
+      250, Amer. Math. Soc., Providence, RI (2020) MR Zbl
+  [8] B Bekka, P de la Harpe, A Valette, Kazhdan’s property (T), New Math. Monogr. 11, Cambridge Univ.
+      Press (2008) MR Zbl
+  [9] M Bestvina, K Bromberg, K Fujiwara, Bounded cohomology with coefficients in uniformly convex Banach
+      spaces, Comment. Math. Helv. 91 (2016) 203–218 MR Zbl
+ [10] M Bestvina, K Bromberg, K Fujiwara, Stable commutator length on mapping class groups, Ann. Inst.
+      Fourier (Grenoble) 66 (2016) 871–898 MR Zbl
+ [11] M Bestvina, M Feighn, A combination theorem for negatively curved groups, J. Differential Geom. 35
+      (1992) 85–101 MR Zbl
+ [12] M Bestvina, K Fujiwara, Bounded cohomology of subgroups of mapping class groups, Geom. Topol. 6
+      (2002) 69–89 MR Zbl
+ [13] R Bieri, Mayer–Vietoris sequences for HNN-groups and homological duality, Math. Z. 143 (1975) 123–130
+      MR Zbl
+ [14] A Borel, Stable real cohomology of arithmetic groups, Ann. Sci. École Norm. Sup. 7 (1974) 235–272 MR
+      Zbl
+ [15] A Borel, Stable and L2 -cohomology of arithmetic groups, Bull. Amer. Math. Soc. 3 (1980) 1025–1027 MR
+      Zbl
+ [16] A Borel, Stable real cohomology of arithmetic groups, II, from “Manifolds and Lie groups”, Progr. Math.
+      14, Birkhäuser, Boston, MA (1981) 21–55 MR Zbl
+ [17] J Bowden, S W Hensel, R Webb, Quasi-morphisms on surface diffeomorphism groups, J. Amer. Math.
+      Soc. 35 (2022) 211–231 MR Zbl
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                                1223
+
+ [18] M Brandenbursky, J K˛edra, Fragmentation norm and relative quasimorphisms, Proc. Amer. Math. Soc.
+      150 (2022) 4519–4531 MR Zbl
+ [19] K S Brown, Cohomology of groups, Graduate Texts in Math. 87, Springer (1982) MR Zbl
+ [20] M Bucher, N Monod, The bounded cohomology of SL2 over local fields and S-integers, Int. Math. Res.
+      Not. 2019 (2019) 1601–1611 MR Zbl
+ [21] D Burago, S Ivanov, L Polterovich, Conjugation-invariant norms on groups of geometric origin, from
+      “Groups of diffeomorphisms”, Adv. Stud. Pure Math. 52, Math. Soc. Japan, Tokyo (2008) 221–250 MR Zbl
+ [22] M Burger, N Monod, Bounded cohomology of lattices in higher rank Lie groups, J. Eur. Math. Soc. 1
+      (1999) 199–235 MR Zbl
+ [23] M Burger, N Monod, Continuous bounded cohomology and applications to rigidity theory, Geom. Funct.
+      Anal. 12 (2002) 219–280 MR Zbl
+ [24] M Burger, S Mozes, Finitely presented simple groups and products of trees, C. R. Acad. Sci. Paris Sér. I
+      Math. 324 (1997) 747–752 MR Zbl
+ [25] D Calegari, Circular groups, planar groups, and the Euler class, from “Proceedings of the Casson Fest”,
+      Geom. Topol. Monogr. 7, Geom. Topol. Publ., Coventry (2004) 431–491 MR Zbl
+ [26] D Calegari, scl, MSJ Memoirs 20, Math. Soc. Japan, Tokyo (2009) MR
+ [27] D Calegari, N Monden, M Sato, On stable commutator length in hyperelliptic mapping class groups,
+      Pacific J. Math. 272 (2014) 323–351 MR Zbl
+ [28] P Capovilla, C Löh, M Moraschini, Amenable category and complexity, Algebr. Geom. Topol. 22 (2022)
+      1417–1459 MR Zbl
+ [29] T D Cochran, S Harvey, P D Horn, Higher-order signature cocycles for subgroups of mapping class
+      groups and homology cylinders, Int. Math. Res. Not. 2012 (2012) 3311–3373 MR Zbl
+ [30] M De Chiffre, L Glebsky, A Lubotzky, A Thom, Stability, cohomology vanishing, and nonapproximable
+      groups, Forum Math. Sigma 8 (2020) art. id. e18 MR Zbl
+ [31] K Dekimpe, M Hartl, S Wauters, A seven-term exact sequence for the cohomology of a group extension, J.
+      Algebra 369 (2012) 70–95 MR Zbl
+ [32] H Endo, D Kotschick, Bounded cohomology and non-uniform perfection of mapping class groups, Invent.
+      Math. 144 (2001) 169–175 MR Zbl
+ [33] M Entov, L Polterovich, Quasi-states and symplectic intersections, Comment. Math. Helv. 81 (2006)
+      75–99 MR Zbl
+ [34] D B A Epstein, K Fujiwara, The second bounded cohomology of word-hyperbolic groups, Topology 36
+      (1997) 1275–1289 MR Zbl
+ [35] A Fathi, Structure of the group of homeomorphisms preserving a good measure on a compact manifold,
+      Ann. Sci. École Norm. Sup. 13 (1980) 45–93 MR Zbl
+ [36] F Fournier-Facio, Y Lodha, Second bounded cohomology of groups acting on 1-manifolds and applications
+      to spectrum problems, Adv. Math. 428 (2023) art. id. 109162 MR Zbl
+ [37] F Fournier-Facio, C Löh, M Moraschini, Bounded cohomology and binate groups, J. Aust. Math. Soc.
+      115 (2023) 204–239 MR Zbl
+ [38] F Fournier-Facio, C Löh, M Moraschini, Bounded cohomology of finitely presented groups: vanishing,
+      non-vanishing, and computability, Ann. Sc. Norm. Super. Pisa Cl. Sci. 25 (2024) 1169–1202 MR Zbl
+ [39] F Fournier-Facio, R D Wade, Aut-invariant quasimorphisms on groups, Trans. Amer. Math. Soc. 376
+      (2023) 7307–7327 MR Zbl
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1224       Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+ [40] R Frigerio, Bounded cohomology of discrete groups, Math. Surv. Monogr. 227, Amer. Math. Soc., Provi-
+      dence, RI (2017) MR Zbl
+ [41] R Frigerio, M B Pozzetti, A Sisto, Extending higher-dimensional quasi-cocycles, J. Topol. 8 (2015)
+      1123–1155 MR Zbl
+ [42] K Fujiwara, T Soma, Bounded classes in the cohomology of manifolds, Geom. Dedicata 92 (2002) 73–85
+      MR Zbl
+ [43] S M Gersten, A presentation for the special automorphism group of a free group, J. Pure Appl. Algebra 33
+      (1984) 269–279 MR Zbl
+ [44] L Glebsky, A Lubotzky, N Monod, B Rangarajan, Asymptotic cohomology and uniform stability for
+      lattices in semisimple groups, preprint (2023) arXiv 2301.00476
+ [45] M Gromov, Volume and bounded cohomology, Inst. Hautes Études Sci. Publ. Math. 56 (1982) 5–99 MR
+      Zbl
+ [46] M Gromov, Hyperbolic groups, from “Essays in group theory”, Math. Sci. Res. Inst. Publ. 8, Springer
+      (1987) 75–263 MR Zbl
+ [47] R Hain, Infinitesimal presentations of the Torelli groups, J. Amer. Math. Soc. 10 (1997) 597–651 MR Zbl
+ [48] A Hatcher, Algebraic topology, Cambridge Univ. Press (2002) MR Zbl
+ [49] M Hull, D Osin, Induced quasicocycles on groups with hyperbolically embedded subgroups, Algebr. Geom.
+      Topol. 13 (2013) 2635–2665 MR Zbl
+ [50] T Ishida, Quasi-morphisms on the group of area-preserving diffeomorphisms of the 2-disk, PhD thesis,
+      University of Tokyo (2013) Available at http://hdl.handle.net/2261/56009
+ [51] T Ishida, Quasi-morphisms on the group of area-preserving diffeomorphisms of the 2-disk via braid groups,
+      Proc. Amer. Math. Soc. Ser. B 1 (2014) 43–51 MR Zbl
+ [52] T Ishida, Homomorphisms on groups of volume-preserving diffeomorphisms via fundamental groups, from
+      “Geometry, dynamics, and foliations”, Adv. Stud. Pure Math. 72, Math. Soc. Japan, Tokyo (2017) 387–393
+      MR Zbl
+ [53] N V Ivanov, Leray theorems in bounded cohomology theory, preprint (2020) arXiv 2012.08038
+ [54] M Kaluba, D Kielak, P W Nowak, On property (T) for Aut.Fn / and SLn .Z/, Ann. of Math. 193 (2021)
+      539–562 MR Zbl
+ [55] M Kaluba, P W Nowak, N Ozawa, Aut.F5 / has property .T /, Math. Ann. 375 (2019) 1169–1191 MR
+ [56] M Kawasaki, Relative quasimorphisms and stably unbounded norms on the group of symplectomorphisms
+      of the Euclidean spaces, J. Symplectic Geom. 14 (2016) 297–304 MR Zbl
+ [57] M Kawasaki, Bavard’s duality theorem on conjugation-invariant norms, Pacific J. Math. 288 (2017)
+      157–170 MR Zbl
+                            O
+ [58] M Kawasaki, M Kimura, G-invariant quasimorphisms and symplectic geometry of surfaces, Israel J. Math.
+       247 (2022) 845–871 MR Zbl
+ [59] M Kawasaki, M Kimura, S Maruyama, T Matsushita, M Mimura, Coarse group theoretic study on
+      stable mixed commutator length, preprint (2023) arXiv 2306.08618
+ [60] M Kawasaki, M Kimura, T Matsushita, M Mimura, Bavard’s duality theorem for mixed commutator
+      length, Enseign. Math. 68 (2022) 441–481 MR Zbl
+ [61] M Kawasaki, M Kimura, T Matsushita, M Mimura, Commuting symplectomorphisms on a surface and
+      the flux homomorphism, Geom. Funct. Anal. 33 (2023) 1322–1353 MR Zbl
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+The space of nonextendable quasimorphisms                                                               1225
+
+ [62] M Kawasaki, S Maruyama, On boundedness of characteristic class via quasi-morphism, J. Topol. Anal.
+      (online publication July 2024)
+ [63] J K˛edra, D Kotschick, S Morita, Crossed flux homomorphisms and vanishing theorems for flux groups,
+      Geom. Funct. Anal. 16 (2006) 1246–1273 MR Zbl
+ [64] M Kimura, Conjugation-invariant norms on the commutator subgroup of the infinite braid group, J. Topol.
+      Anal. 10 (2018) 471–476 MR Zbl
+ [65] D Kotschick, S Morita, Characteristic classes of foliated surface bundles with area-preserving holonomy,
+      J. Differential Geom. 75 (2007) 273–302 MR Zbl
+ [66] K Li, Bounded cohomology of classifying spaces for families of subgroups, Algebr. Geom. Topol. 23 (2023)
+      933–962 MR Zbl
+ [67] A V Malyutin, Operators in the spaces of pseudocharacters of braid groups, Algebra i Analiz 21 (2009)
+      136–165 MR Zbl In Russian; translated in St. Petersburg Math. J. 21 (2010) 261–280
+ [68] K Mann, Unboundedness of some higher Euler classes, Algebr. Geom. Topol. 20 (2020) 1221–1234 MR
+      Zbl
+ [69] S Maruyama, T Matsushita, M Mimura, Invariant quasimorphisms for groups acting on the circle and
+      non-equivalence of SCL (2022) arXiv 2203.09221 To appear in Israel J. Math.
+ [70] S Matsumoto, S Morita, Bounded cohomology of certain groups of homeomorphisms, Proc. Amer. Math.
+      Soc. 94 (1985) 539–544 MR Zbl
+ [71] J McCool, A faithful polynomial representation of Out F3 , Math. Proc. Cambridge Philos. Soc. 106 (1989)
+      207–213 MR Zbl
+ [72] J Milnor, Introduction to algebraic K-theory, Ann. of Math. Stud. 72, Princeton Univ. Press (1971) MR
+ [73] I Mineyev, Straightening and bounded cohomology of hyperbolic groups, Geom. Funct. Anal. 11 (2001)
+      807–839 MR Zbl
+ [74] N Monod, Continuous bounded cohomology of locally compact groups, Lecture Notes in Math. 1758,
+      Springer (2001) MR Zbl
+ [75] N Monod, Stabilization for SLn in bounded cohomology, from “Discrete geometric analysis”, Contemp.
+      Math. 347, Amer. Math. Soc., Providence, RI (2004) 191–202 MR
+ [76] N Monod, Vanishing up to the rank in bounded cohomology, Math. Res. Lett. 14 (2007) 681–687 MR Zbl
+ [77] N Monod, On the bounded cohomology of semi-simple groups, S-arithmetic groups and products, J. Reine
+      Angew. Math. 640 (2010) 167–202 MR Zbl
+ [78] N Monod, Lamplighters and the bounded cohomology of Thompson’s group, Geom. Funct. Anal. 32 (2022)
+      662–675 MR Zbl
+ [79] N Monod, S Nariman, Bounded and unbounded cohomology of homeomorphism and diffeomorphism
+      groups, Invent. Math. 232 (2023) 1439–1475 MR Zbl
+ [80] N Monod, Y Shalom, Cocycle superrigidity and bounded cohomology for negatively curved spaces, J.
+      Differential Geom. 67 (2004) 395–455 MR Zbl
+ [81] A Monzner, N Vichery, F Zapolsky, Partial quasimorphisms and quasistates on cotangent bundles, and
+      symplectic homogenization, J. Mod. Dyn. 6 (2012) 205–249 MR Zbl
+ [82] M Moraschini, G Raptis, Amenability and acyclicity in bounded cohomology, Rev. Mat. Iberoam. 39
+      (2023) 2371–2404 MR Zbl
+
+Algebraic & Geometric Topology, Volume 25 (2025)
+1226         Morimichi Kawasaki, Mitsuaki Kimura, Shuhei Maruyama, Takahiro Matsushita and Masato Mimura
+
+ [83] J Neukirch, A Schmidt, K Wingberg, Cohomology of number fields, 2nd edition, Grundl. Math. Wissen.
+      323, Springer (2008) MR Zbl
+ [84] W D Neumann, L Reeves, Central extensions of word hyperbolic groups, Ann. of Math. 145 (1997)
+      183–192 MR Zbl
+ [85] B B Newman, Some results on one-relator groups, Bull. Amer. Math. Soc. 74 (1968) 568–571 MR Zbl
+ [86] M Nitsche, Computer proofs for property (T), and SDP duality, preprint (2020) arXiv 2009.05134
+ [87] L Polterovich, The geometry of the group of symplectic diffeomorphisms, Birkhäuser, Basel (2001) MR
+      Zbl
+ [88] L Polterovich, D Rosen, Function theory on symplectic manifolds, CRM Monogr. Ser. 34, Amer. Math.
+      Soc., Providence, RI (2014) MR Zbl
+ [89] P Py, Quasi-morphismes et invariant de Calabi, Ann. Sci. École Norm. Sup. 39 (2006) 177–195 MR Zbl
+ [90] A I Shtern, Extension of pseudocharacters from normal subgroups, III, Proc. Jangjeon Math. Soc. 19 (2016)
+      609–614 MR Zbl
+ [91] W Thurston, Noncobordant foliations of S 3 , Bull. Amer. Math. Soc. 78 (1972) 511–514 MR Zbl
+ [92] W P Thurston, On the structure of the group of volume preserving diffeomorphisms, preprint (1973)
+ [93] W P Thurston, Hyperbolic structures on 3-manifolds, II: Surface groups and 3-manifolds which fiber over
+      the circle, preprint (1986) arXiv math/9801045 Reprinted as pages 79–110 in his Collected works with
+      commentary, II, Amer. Math. Soc., Providence, RI (2022)
+ [94] B Tshishiku, Borel’s stable range for the cohomology of arithmetic groups, J. Lie Theory 29 (2019)
+      1093–1102 MR Zbl
+ [95] T Tsuboi, On the uniform perfectness of diffeomorphism groups, from “Groups of diffeomorphisms”, Adv.
+      Stud. Pure Math. 52, Math. Soc. Japan, Tokyo (2008) 505–524 MR Zbl
+ [96] T Tsuboi, On the uniform perfectness of the groups of diffeomorphisms of even-dimensional manifolds,
+      Comment. Math. Helv. 87 (2012) 141–185 MR Zbl
+ [97] T Tsuboi, Several problems on groups of diffeomorphisms, from “Geometry, dynamics, and foliations”,
+      Adv. Stud. Pure Math. 72, Math. Soc. Japan, Tokyo (2017) 239–248 MR Zbl
+
+MKa: Department of Mathematics, Faculty of Science, Hokkaido University
+Sapporo, Japan
+MKi: Department of Mathematics, Osaka Dental University
+Hirakata, Japan
+SM: School of Mathematics and Physics, College of Science and Engineering, Kanazawa University
+Kanazawa, Japan
+TM: Department of Mathematical Sciences, Faculty of Science, Shinshu University
+Matsumoto, Japan
+MM: Mathematical Institute, Tohoku University
+Sendai, Japan
+kawasaki@math.sci.hokudai.ac.jp, kimura-m@cc.osaka-dent.ac.jp,
+smaruyama@se.kanazawa-u.ac.jp, matsushita@shinshu-u.ac.jp,
+m.masato.mimura.m@tohoku.ac.jp
+
+Received: 16 August 2023            Revised: 1 February 2024
+
+
+Geometry & Topology Publications, an imprint of mathematical sciences publishers                          msp
+                                       A LGEBRAIC & G EOMETRIC T OPOLOGY
+                                                                msp.org/agt
+
+
+                                                                    EDITORS
+                                                       P RINCIPAL ACADEMIC E DITORS
+                                    John Etnyre                                             Kathryn Hess
+                             etnyre@math.gatech.edu                                     kathryn.hess@epfl.ch
+                           Georgia Institute of Technology                    École Polytechnique Fédérale de Lausanne
+
+
+                                                             B OARD OF E DITORS
+          Julie Bergner    University of Virginia                                       Markus Land      LMU München
+                           jeb2md@eservices.virginia.edu                                                 markus.land@math.lmu.de
+          Steven Boyer     Université du Québec à Montréal                           Christine Lescop    Université Joseph Fourier
+                           cohf@math.rochester.edu                                                       lescop@ujf-grenoble.fr
+         Tara E Brendle    University of Glasgow                                    Norihiko Minami      Yamato University
+                           tara.brendle@glasgow.ac.uk                                                    minami.norihiko@yamato-u.ac.jp
+        Indira Chatterji   CNRS & Univ. Côte d’Azur (Nice)                              Andrés Navas     Universidad de Santiago de Chile
+                           indira.chatterji@math.cnrs.fr                                                 andres.navas@usach.cl
+Alexander Dranishnikov     University of Florida                                        Robert Oliver    Université Paris 13
+                           dranish@math.ufl.edu                                                          bobol@math.univ-paris13.fr
+         Tobias Ekholm     Uppsala University, Sweden                                Jessica S Purcell   Monash University
+                           tobias.ekholm@math.uu.se                                                      jessica.purcell@monash.edu
+  Mario Eudave-Muñoz       Univ. Nacional Autónoma de México                            Birgit Richter   Universität Hamburg
+                           mario@matem.unam.mx                                                           birgit.richter@uni-hamburg.de
+            David Futer    Temple University                                          Jérôme Scherer     École Polytech. Féd. de Lausanne
+                           dfuter@temple.edu                                                             jerome.scherer@epfl.ch
+        John Greenlees     University of Warwick                                    Vesna Stojanoska     Univ. of Illinois at Urbana-Champaign
+                           john.greenlees@warwick.ac.uk                                                  vesna@illinois.edu
+         Ian Hambleton     McMaster University                                          Zoltán Szabó     Princeton University
+                           ian@math.mcmaster.ca                                                          szabo@math.princeton.edu
+       Matthew Hedden      Michigan State University                                  Maggy Tomova       University of Iowa
+                           mhedden@math.msu.edu                                                          maggy-tomova@uiowa.edu
+     Hans-Werner Henn      Université Louis Pasteur                                      Chris Wendl     Humboldt-Universität zu Berlin
+                           henn@math.u-strasbg.fr                                                        wendl@math.hu-berlin.de
+         Daniel Isaksen    Wayne State University                                      Daniel T Wise     McGill University, Canada
+                           isaksen@math.wayne.edu                                                        daniel.wise@mcgill.ca
+       Thomas Koberda      University of Virginia                                       Lior Yanovski    Hebrew University of Jerusalem
+                           thomas.koberda@virginia.edu                                                   lior.yanovski@gmail.com
+
+
+See inside back cover or msp.org/agt for submission instructions.
+The subscription price for 2025 is US $760/year for the electronic version, and $1110/year (C$75, if shipping outside the US) for print and
+electronic. Subscriptions, requests for back issues and changes of subscriber address should be sent to MSP. Algebraic & Geometric Topology is
+indexed by Mathematical Reviews, Zentralblatt MATH, Current Mathematical Publications and the Science Citation Index.
+Algebraic & Geometric Topology (ISSN 1472-2747 printed, 1472-2739 electronic) is published 9 times per year and continuously online, by
+Mathematical Sciences Publishers, c/o Department of Mathematics, University of California, 798 Evans Hall #3840, Berkeley, CA 94720-3840.
+Periodical rate postage paid at Oakland, CA 94615-9651, and additional mailing offices. POSTMASTER: send address changes to Mathematical
+Sciences Publishers, c/o Department of Mathematics, University of California, 798 Evans Hall #3840, Berkeley, CA 94720-3840.
+                                   AGT peer review and production are managed by EditFlow® from MSP.
+                                                               PUBLISHED BY
+                                                  mathematical sciences publishers
+                                                       nonprofit scientific publishing
+                                                              https://msp.org/
+                                                   © 2025 Mathematical Sciences Publishers
+A LGEBRAIC                                   &             G EOMETRIC T OPOLOGY
+                         Volume 25              Issue 2 (pages 645–1264)                   2025
+
+An upper bound conjecture for the Yokota invariant                                                      645
+     G IULIO B ELLETTI
+
+Arithmetic representations of mapping class groups                                                      677
+     E DUARD L OOIJENGA
+
+The geometry of subgroup embeddings and asymptotic cones                                                699
+     A NDY JARNEVIC
+
+On k-invariants for .1; n/-categories                                                                   721
+    YONATAN H ARPAZ , J OOST N UITEN and M ATAN P RASMA
+
+Circular-orderability of 3-manifold groups                                                              791
+     I DRISSA BA and A DAM C LAY
+
+On the involutive Heegaard Floer homology of negative semidefinite plumbed 3-manifolds with b1 D 1      827
+     P ETER K J OHNSON
+
+Localization of a KO .pt/-valued index and the orientability of the Pin .2/ monopole moduli space      887
+     J IN M IYAZAWA
+
+Verdier duality on conically smooth stratified spaces                                                   919
+     M ARCO VOLPE
+
+Toward a topological description of Legendrian contact homology of unit conormal bundles                951
+    Y UKIHIRO O KAMOTO
+
+Enriched quasicategories and the templicial homotopy coherent nerve                                    1029
+    W ENDY L OWEN and A RNE M ERTENS
+
+Closures of T-homogeneous braids are real algebraic                                                    1075
+     B ENJAMIN B ODE
+
+A new invariant of equivariant concordance and results on 2-bridge knots                               1117
+     A LESSIO D I P RISA and G IOVANNI F RAMBA
+
+Recipes to compute the algebraic K -theory of Hecke algebras of reductive p-adic groups                1133
+     A RTHUR BARTELS and W OLFGANG L ÜCK
+
+All known realizations of complete Lie algebras coincide                                               1155
+    Y VES F ÉLIX , M ARIO F UENTES and A NICETO M URILLO
+
+The space of nonextendable quasimorphisms                                                              1169
+     M ORIMICHI K AWASAKI , M ITSUAKI K IMURA , S HUHEI M ARUYAMA , TAKAHIRO M ATSUSHITA and M ASATO
+     M IMURA
+
+Synthetic approach to the Quillen model structure on topological spaces                                1227
+     S TERLING E BEL and K RZYSZTOF K APULKIN
+

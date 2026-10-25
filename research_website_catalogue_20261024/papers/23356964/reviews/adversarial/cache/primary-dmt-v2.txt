@@ -1,0 +1,2489 @@
+                                                        DENSE AND COMEAGER CONJUGACY CLASSES IN
+                                                               ZERO-DIMENSIONAL DYNAMICS
+
+
+                                                          MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+                                                    Abstract. Given a countable group G, we initiate a systematic study of the Polish
+                                                    spaces of all minimal and topologically transitive actions of G on the Cantor space
+
+
+
+
+arXiv:2507.05474v2 [math.DS] 10 Apr 2026
+                                                    by homeomorphisms, with a focus on the existence of comeager conjugacy classes
+                                                    in these spaces. We develop a general model-theoretic framework to study this and
+                                                    related questions, recovering on the way many existing results from the literature.
+                                                        A substantial part of the paper is devoted to actions of free groups. We show
+                                                    that in that case, there is a comeager conjugacy class in the space of minimal
+                                                    actions, as well as in the space of minimal, probability measure-preserving actions.
+                                                    The first one is the Fraïssé limit of all sofic minimal subshifts and the second,
+                                                    the universal profinite action. The case of the integers was already treated by
+                                                    Hochman and there the two actions coincide with the universal odometer. In the
+                                                    non-abelian case, they are substantially different and new techniques are required.
+                                                        In the opposite direction, if G is an amenable group which is not finitely
+                                                    generated, we show that there is no comeager conjugacy class in the space of all
+                                                    actions, and if G is locally finite, also in the space of minimal actions.
+                                                        Finally, we study the question of existence of a dense conjugacy class in the
+                                                    space of topologically transitive actions. We show that if G is hyperbolic or
+                                                    virtually polycyclic, then such a dense conjugacy class exists iff G is virtually
+                                                    cyclic, suggesting that the case of the integers may be exceptional.
+
+
+
+
+                                                                                       Contents
+                                              1. Introduction                                                                                1
+                                              2. Preliminaries                                                                               5
+                                              3. Fraïssé theory for Cantor actions                                                          10
+                                              4. Neighborhoods of actions of the free group                                                 13
+                                              5. Sofic minimal subshifts of the free group                                                  18
+                                              6. Measure-preserving actions of the free group                                               22
+                                              7. Non-finitely generated groups                                                              25
+                                              8. Transitive actions                                                                         31
+                                              Appendix A. Topological Fraïssé classes                                                       39
+                                              References                                                                                    45
+
+
+
+                                                                                  1. Introduction
+                                               Understanding generic behavior of dynamical systems is a problem with long
+                                           history that, in ergodic theory, goes back at least to Oxtoby and Ulam [OU], and
+                                           was later extensively studied by Halmos. One way of formalizing the question
+                                           is to consider a Polish space of dynamical systems of interest and ask about the
+
+                                              2020 Mathematics Subject Classification. Primary 37B05, 37B10; Secondary 03C25.
+                                              Key words and phrases. Cantor dynamics, generic actions, symbolic dynamics, sofic subshifts, free
+                                           groups, hyperbolic groups, non-finitely generated groups.
+                                              M. Doucha was supported by the GAČR project 25-15366S and by the Czech Academy of Sciences
+                                           (RVO 67985840). T. Tsankov was partially supported by Institut Universitaire de France.
+                                                                                             1
+2                MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+properties of the “typical system” in the sense of Baire category. Often spaces
+of this type satisfy a topological zero–one law: for every isomorphism-invariant,
+sufficiently definable property, either it or its negation is generic.
+   In this paper, we are interested in actions of countable groups on the Cantor
+space, which we denote by Ω. For a fixed group G, it is natural to parametrize all
+such actions by homomorphisms from G to the Polish group Homeo(Ω); these
+form a Polish space that we denote by Ξ( G ). The group Homeo(Ω) acts on
+Ξ( G ) by conjugation and we call its orbits conjugacy classes. Two systems are in
+the same conjugacy class iff they are isomorphic in the usual dynamical sense.
+The space Ξ( G ) always has a dense conjugacy class (see Proposition 2.3) and
+thus the topological zero–one law applies. In particular, every conjugacy class
+is meager or comeager and there are two possibilities for the global structure of
+Ξ( G ), depending on the group G: either there is a comeager conjugacy class or all
+classes are meager. The existence of a comeager conjugacy class is a very strong
+property which implies that the generic dynamical behavior for the group G is
+determined by a single system. This is quite unusual in other dynamical contexts
+such as ergodic theory.
+   The first rather striking result of this type in topological dynamics was proved
+by Kechris and Rosendal in [KR]. They established the existence of a comeager
+conjugacy class in Ξ(Z) (see also [AGW] for a more concrete construction). This
+was generalized to the finitely generated free groups Fd by Kwiatkowska [K2].
+Doucha [D] further extended Kwiatkowska’s result to free products of finite and
+cyclic groups. In the opposite direction, Hochman [H2] showed that there is no
+comeager conjugacy class in Ξ(Zd ) for d ≥ 2 and this result was extended in [D]
+to finitely generated nilpotent groups which are not virtually cyclic.
+   From a dynamical perspective, the systems in the comeager conjugacy classes
+in the cases discussed above are rather degenerate: for example, they are never
+topologically transitive. In order to find more interesting generic behavior, it is
+therefore natural to look for generic conjugacy classes in the spaces Ξmin ( G ) and
+Ξtr ( G ) of minimal and topologically transitive actions, respectively. Here, the only
+results in the literature, due to Hochman [H1], are for G = Z: there is a generic
+conjugacy class in Ξmin (Z), which is isomorphic to the universal odometer and
+Ξmin (Z) is dense in Ξtr (Z). The tools used to prove these results are specific to Z
+and do not generalize to other groups.
+   It turns out that for studying the existence of a comeager conjugacy class in this
+and related situations, the most general and flexible tools come from logic. Fraïssé
+theory is a branch of model theory that studies generic structures and variations
+of these techniques have already been used by Kechris and Rosendal [KR]. In its
+most basic form, Fraïssé’s theorem and its extension proved by Ivanov [I], gives a
+necessary and sufficient condition for the existence of a comeager isomorphism
+class, based on the family of allowed finitely generated substructures, when this
+family is countable: it has to be hereditary and satisfy the joint embedding and
+weak amalgamation properties. Group actions on the Cantor space fall naturally
+in the Fraïssé framework if one uses Stone duality to represent them as actions
+on a Boolean algebra (which is a countable structure). Then finitely generated
+substructures correspond to finitely generated Boolean G-algebras (or, dually,
+subshifts), which are the main objects of study of symbolic dynamics. So, for
+example, if one wants to study the space Ξ( G ), one considers the collection of all
+subshifts, for Ξmin ( G ), the collection of minimal subshifts, etc. The correspondence
+between the topology on the space of subshifts and the one on Ξ( G ) was already
+observed by Hochman in [H1].
+                         DENSE AND COMEAGER CONJUGACY CLASSES                               3
+
+
+    The classes of all subshifts and minimal subshifts are hereditary and satisfy
+joint embedding and (full) amalgamation but, crucially, fail to be countable, which
+prevents the application of classical Fraïssé theory. They do, however, come with a
+Polish topology, which can be viewed either as the Stone topology on the space
+of quantifier-free types or, more traditionally, as the Vietoris topology on the space
+of subshifts. This is reminiscent of the situation in model theory, where there is
+also a notion of genericity coming from the omitting types theorem: a countable
+model is generic iff it is atomic, i.e., it realizes only isolated types, and such a
+model exists iff the isolated types are dense. However, this theory is based on
+types with quantifiers and a different topology. The main novelty of our abstract
+approach is to combine the two and develop a theory for topological Fraïssé classes of
+quantifier-free types. Isolated types are replaced by the projectively isolated ones (see
+Definition A.8), a notion which generalizes the projectively isolated subshifts from
+[D]. With this in hand, we prove a general model-theoretic criterion: a topological
+Fraïssé class of structures admits a comeager isomorphism class iff projectively
+isolated types are dense (see Theorem A.9). Moreover, we show that when a
+comeager conjugacy class exists, the corresponding structure can be represented
+as the usual Fraïssé limit of the projectively isolated quantifier-free types (note
+that these always form a countable class). It is also worth noting that we do
+not assume compactness (because for our main application, the space Ξmin ( G )
+is not compact), and this leads to a more delicate proof and makes apparent a
+surprising topological condition that is not present in previous work (condition
+(iii) in Definition A.1).
+    The choice to put these results in an appendix does not reflect their relative
+importance but rather the fact that they require more model-theoretic background.
+Our goal is to make the paper more accessible to readers interested in the dy-
+namical content and willing to take some model theory on faith. While it would
+be possible to translate the proofs into a more familiar dynamical language, they
+cannot be substantially simplified, and we believe that the benefit of the general
+applicability of the criterion outweighs the cost of abstraction. Another advantage
+of the abstract approach is that it is not sensitive to the parametrization space
+and can be adapted for example to the space of “generalized subshifts” used by
+Hochman in [H1].
+    The model-theoretic results apply in particular to the space Ξmin ( G ), but also
+to Ξ( G ) (recovering the result of [D]), to the space of marked groups (recovering
+a result of [GKEL]; see Subsection A.1), and to the space of G-sets (recovering a
+result of [GKM]; see Subsection A.2).
+    Applying the criterion to Ξmin ( G ), we obtain the following (see Corollary 3.5).
+
+Theorem 1.1. Let G be a countable, infinite group. Then the following are equivalent:
+     (i) There is a comeager conjugacy class in Ξmin ( G ).
+    (ii) Minimal subshifts which are projectively isolated in Smin ( AG ) are dense in
+         Smin ( AG ) for every A.
+
+Minimal actions of the free group. A sufficient condition for a minimal subshift
+to be projectively isolated in Smin ( AG ) is for it to be sofic, i.e., a factor of a subshift
+of finite type (or SFT, for short); see Section 2 for the precise definitions. We do not
+know whether this condition is also necessary (see Question 3.7). The first of our
+main results for free groups is the following (see Theorem 5.9 and Corollary 6.7;
+the case G = Z is due to [BDK] and [H1]).
+
+Theorem 1.2. Let G be a finitely generated free group and let A be a finite alphabet. Then
+the set of sofic minimal subshifts is dense in Smin ( AG ).
+4                MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+   While the existence of a comeager conjugacy class in Ξmin (Z) is established
+more easily than that in Ξ(Z), for non-abelian free groups, the situation is reversed.
+For Z, the sofic minimal subshifts are the finite subshifts, and it is relatively
+straightforward to show that they are dense in Smin ( AZ ). This fails dramatically
+for non-abelian free groups. For example, the boundary action Fd ↷ ∂Fd can be
+realized as an SFT, which must be isolated because it is minimal. We construct
+somewhat similar SFTs that factor inside any open subset of Smin ( AFd ).
+   Combining Theorem 1.2 with Theorem 1.1, we obtain the following.
+Corollary 1.3. The space Ξmin (Fd ), for d ≥ 1, has a comeager conjugacy class, elements
+of which are isomorphic to the Fraïssé limit of the sofic minimal subshifts.
+   Our main tool for constructing sofic minimal subshifts is a certain family of
+graphs, inspired by the Rauzy graphs used for studying SFTs for Z, where the
+edges are labeled by the generators of the free group, and which we use for
+describing open neighborhoods in the space of subshifts. We call these graphs
+again Rauzy graphs. We start by characterizing the Rauzy graphs whose associated
+neighborhood contains a minimal subshift (see Theorem 4.8). This characterization
+is not obvious and several natural attempts fail (see Example 4.9). Then for
+each of these graphs, we construct a sofic minimal subshift in the corresponding
+neighborhood. On the way, we also recover Kwiatkowska’s result on the existence
+of a generic class in Ξ(Fd ) (see Corollary 5.4).
+   We remark that these techniques cannot work for Zd when d ≥ 2: it follows
+from the work of Hochman [H2] that sofic minimal subshifts are not dense in this
+case and the following problem remains open.
+Question 1.4. Does there exist a comeager conjugacy class in Ξmin (Zd ) for d ≥ 2?
+    Next we turn to finding the correct generalization of Hochman’s result that the
+generic minimal Z-action is isomorphic to the universal odometer. We recall that
+the universal odometer (or the universal profinite action of Z) is the action of Z on
+its profinite completion by translation (the profinite completion of a group is the
+compact group obtained by taking the inverse limit of all of its finite quotients).
+There is a natural generalization of this action to the free group (namely, the
+profinite completion of Fd ) but there is an obvious obstruction to its being generic:
+profinite actions are pmp (i.e., preserve a Borel probability measure), and the subset
+of minimal pmp actions is closed in Ξmin ( G ) and it is proper if G is not amenable.
+It turns out that this is the only obstruction (see Theorem 6.5).
+Theorem 1.5. The following hold:
+    • Finite Fd -subshifts are dense in the space of all minimal, pmp Fd -subshifts.
+    • The space of minimal, pmp actions of Fd has a comeager conjugacy class whose
+      elements are isomorphic to the universal profinite action of Fd .
+Non-finitely generated groups. Our next results concern actions of groups that are
+not finitely generated, which exhibit a number of interesting dynamical properties.
+For example, the generic behavior of their dynamical systems is markedly different
+from the finitely generated case. A simple instance of this is that a generic
+element of Ξ( G ) is topologically transitive iff G is not finitely generated (see
+Proposition 7.4). It is thus natural to ask whether the generic action in Ξ( G )
+is minimal. We have the following characterization for amenable groups (see
+Corollary 7.13).
+Theorem 1.6. Let G be a countably infinite amenable group. Then the following are
+equivalent:
+     • G is locally finite;
+                         DENSE AND COMEAGER CONJUGACY CLASSES                              5
+
+
+      • Ξmin ( G ) is comeager in Ξ( G ).
+  For locally finite groups, we also obtain more detailed information about the
+generic properties of the action and its invariant measures (see Theorem 7.11).
+  The next theorem is the basis of our results concerning the existence of a generic
+conjugacy class in Ξ( G ) for non-finitely generated groups.
+Theorem 1.7. Let G be a countable group which is not finitely generated. Then a subshift
+is projectively isolated in the space of all subshifts iff it is minimal and sofic.
+   From this and Theorem 1.1, we obtain the following.
+Corollary 1.8. Let G be a countable group which is not finitely generated. If there exists
+a comeager conjugacy class in Ξ( G ), then the generic element of Ξ( G ) is minimal.
+   Combining the above results and the fact that locally finite groups admit no
+sofic, minimal subshifts (see Proposition 7.16), we get the following partial answer
+to a question from [D].
+Corollary 1.9. Let G be a countable amenable group which is not finitely generated.
+Then there is no comeager conjugacy class in Ξ( G ). If G is locally finite, there is also no
+comeager conjugacy class in Ξmin ( G ).
+The space Ξtr ( G ) of topologically transitive actions. For Ξtr ( G ), even the more
+basic question of the existence of a dense conjugacy class is quite delicate and
+interesting. First, for G = Z, it follows from [H1] that Ξmin (Z) is dense in Ξtr (Z),
+so Ξtr (Z) admits even a comeager conjugacy class. It is easy to generalize this to
+virtually cyclic groups (see Proposition 8.4) but these are all the finitely generated
+examples we know.
+Question 1.10. Let G be a finitely generated group which is not virtually cyclic.
+    (i) Is it possible that Ξmin ( G ) is dense is Ξtr ( G )?
+   (ii) Can Ξtr ( G ) have a dense conjugacy class?
+   In [H2], Hochman claims that there is a dense conjugacy class in Ξtr ( G ) for
+G = Zd and provides a general argument that does not depend on the structure of
+the group. However, this argument is incorrect and we have the following theorem.
+See Section 8 for more details.
+Theorem 1.11. Let G be a group which is hyperbolic or virtually polycyclic. Then Ξtr ( G )
+has a dense conjugacy class iff G is virtually cyclic.
+   The proof of this theorem proceeds through a general criterion, again based on
+subshifts, for the (non-)existence of a dense conjugacy class in Ξtr ( G ) that we are
+able to verify in the above cases using a relativized version of the special symbol
+property introduced by Dahmani and Yaman in [DY]. The proof for hyperbolic
+groups is based on finite automata.
+Acknowledgments. We are grateful to Alekos Kechris for asking questions which
+prompted some of this work, to Yves Cornulier for some advice in group theory,
+and to Andrew Marks, Denis Osin, and Ville Salo for useful discussions.
+
+                                    2. Preliminaries
+2.1. Minimal and transitive actions. In this section, we fix some terminology and
+notation.
+   Let G be a countable group and let Ω denote the Cantor space. We denote by
+Ξ( G ) the space of all actions G ↷ Ω by homeomorphisms, that is,
+                            Ξ( G ) = Hom G, Homeo(Ω) .
+                                                       
+(2.1)
+6                   MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+We equip Homeo(Ω) with the uniform convergence topology and note that Ξ ⊆
+Homeo(Ω)G is a closed subset, so a Polish space.
+   If Z is a compact, zero-dimensional space, we denote by B( Z ) the Boolean
+algebra of clopen subsets of Z and if B is a Boolean algebra, we denote by S(B)
+the space of ultrafilters of B. By Stone duality, an element f ∈ Homeo(Ω) can be
+viewed as an automorphism of B(Ω), and the topology on Homeo(Ω) is given by
+pointwise convergence on B(Ω) (seen as a discrete space). This gives a convenient
+way to view the topology on Ξ( G ): a subbasis consisting of clopen subsets is given
+by the collection of sets of the form
+(2.2)             { ξ ∈ Ξ ( G ) : a = ξ ( g ) · b },    for g ∈ G, a, b ∈ B(Ω).
+Another useful subbasis is given by the clopen subsets
+(2.3)          { ξ ∈ Ξ ( G ) : a ∩ ξ ( g ) · b = ∅ },     for g ∈ G, a, b ∈ B(Ω).
+To see this, note that a = ξ ( g) · b iff a ∩ (ξ ( g) · ¬b) = ∅ and ¬ a ∩ ξ ( g) · b = ∅. If G
+is generated by a subset S, then in (2.2) and (2.3), it is enough to consider elements
+g ∈ S.
+Definition 2.1. Let G be a group. A G-flow is an action G ↷ Z on a non-empty,
+compact, Hausdorff space Z by homeomorphisms. A subflow of Z is a subset
+which is a G-flow, i.e., a subset which is non-empty, closed, and G-invariant.
+   If G ↷ Z1 and G ↷ Z2 are G-flows, a factor map π : Z1 → Z2 is a G-equivariant,
+continuous, surjective map. In this situation, we will say that Z2 is a factor of Z1 or
+that Z1 is an extension of Z2 .
+   The space Ξ( G ) is equipped with a continuous action of Homeo(Ω) by conju-
+gation:
+
+           ( f · ξ )( g) = f ξ ( g) f −1 ,   for ξ ∈ Ξ( G ), f ∈ Homeo(Ω), g ∈ G.
+An orbit of this action is called a conjugacy class and we say that two actions are
+conjugate if they are in the same class. The following two facts are well-known.
+Proposition 2.2. Let G be a countable group, and ξ 1 , ξ 2 ∈ Ξ( G ) be such that ξ 2 is a
+factor of ξ 1 . Then ξ 2 belongs to the closure of the conjugacy class of ξ 1 .
+Proof. Choose a neighborhood of ξ 2 , which we may assume to be of the form
+                 O = { ξ ∈ Ξ ( G ) : ∀ g ∈ K ∀ a ∈ A ξ ( g ) · a = ξ 2 ( g ) · a },
+where K is a finite subset of G and A is a clopen partition of Ω. Let π : Ω → Ω
+witness that ξ 2 is a factor of ξ 1 . Then π −1 induces an isomorphism from the (finite)
+Boolean subalgebra of B(Ω) generated by the sets ξ 2 ( g) · a ( a ∈ A) onto the
+subalgebra generated by the sets ξ 1 ( g) · a (a ∈ A). By homogeneity of   B(Ω) and
+Stone duality, there exists f ∈ Homeo(Ω) such that f π −1 (ξ 2 ( g) · a) = ξ 1 ( g) · a
+for all a ∈ A and all g ∈ K. Then f · ξ 1 ∈ O.                                        □
+
+   Recall that a subset of a topological space is Baire measurable if it differs from an
+open set by a meager set. In particular, all Borel sets are Baire measurable. We
+refer the reader to [K1] for basic facts about Baire category (note however that in
+that book, the terminology sets with the Baire property is used to denote what we
+call here Baire measurable sets).
+Proposition 2.3. Let G be a countable group. Then Ξ( G ) admits a dense conjugacy class.
+In particular, every conjugacy invariant, Baire measurable subset of Ξ( G ) is meager or
+comeager.
+                       DENSE AND COMEAGER CONJUGACY CLASSES                            7
+
+
+Proof. If {ξ i : i ∈ N} is a countable dense subset of Ξ( G ), then the conjugacy class
+of the action ∏i ξ i is dense by Proposition 2.2. The second claim follows from
+[K1, 8.46].                                                                          □
+
+Definition 2.4. Let G ↷ Z be a G-set. A subset L ⊆ Z is called syndetic if finitely
+many G-translates of L cover Z. It is called thick if it intersects every syndetic set,
+equivalently, if every finite set of translates of L has non-empty intersection. A
+subset L ⊆ G is called left syndetic if it is syndetic for the action G ↷ G by left
+translation and it is called left thick if it is thick for this action. Similarly, right
+syndetic and right thick for the action by right translation.
+
+Definition 2.5. A G-flow G ↷ Z is called topologically transitive (or simply transi-
+tive), if for all non-empty, open U, V ⊆ Z, there is g ∈ G such that g · U ∩ V ̸= ∅.
+It is called minimal if every non-empty, open U ⊆ Z is syndetic. Equivalently,
+G ↷ Z is minimal if it does not have any proper subflows.
+    For a G-flow G ↷ Z and H ≤ G, we say that a point z ∈ Z is H-fixed if H · z = z.
+We say that z is periodic if it is H-fixed for some H ≤ G of finite index. Z is periodic
+if it is finite.
+
+    We note that the two properties of being transitive or being minimal are pre-
+served under factors. It is clear that every minimal action is transitive. An action is
+minimal iff every orbit is dense in Z and if Z is metrizable, an action is transitive
+iff it admits a dense orbit. If G ↷ Z is minimal, then Z is either finite or perfect,
+but this is not true for transitive actions: it is possible to have an infinite dense
+orbit consisting of isolated points.
+    If Z = Ω, in Definition 2.5, we can take U and V to be elements of B(Ω). We
+will denote by Ξtr ( G ) and Ξmin ( G ) the set of ξ ∈ Ξ( G ), which are transitive and
+minimal, respectively.
+
+Proposition 2.6. Let G be a countable group. The sets Ξtr ( G ) and Ξmin ( G ) are Gδ
+subsets of Ξ( G ) and, therefore, Polish spaces. Moreover, they are invariant under the
+conjugation action of Homeo(Ω).
+
+Proof. For Ξtr , this follows from the countability of B(Ω) and the fact that for
+fixed a, b ∈ B(Ω) and g ∈ G, the condition ξ ( g) · a ∩ b ̸= ∅ defines an open subset
+of Ξ( G ) (see (2.3)). Similarly, for Ξmin , use the fact that for a fixed a ∈ B(Ω), the
+existence of some finite F ⊆ G such that g∈ F ξ ( g) a = Ω is an open condition. □
+                                              S
+
+
+   Let µ be a Borel probability measure (or just a measure, for short) on Ω. We
+note that, by regularity, µ is determined by its values on B(Ω) and it follows from
+Carathéodory’s theorem that any finitely additive measure on B(Ω) extends to a
+Borel measure on Ω. The measure µ is called invariant under an action G ↷ Ω
+if µ( g · a) = µ( a) for all g ∈ G and a ∈ B(Ω) (and thus, for all Borel sets). We
+will denote by Ξpmp ( G ) the elements of Ξ( G ) which admit an invariant measure,
+and by Ξmin-pmp ( G ) the intersection Ξmin ( G ) ∩ Ξpmp ( G ). Note that the property
+of having an invariant measure is preserved under factors.
+
+Proposition 2.7. Let G be a countable group. The set Ξpmp ( G ) is closed in Ξ( G ).
+Therefore Ξmin-pmp ( G ) is a Gδ subset of Ξ( G ).
+
+Proof. Let (ξ n )n∈N be a sequence of elements of Ξ( G ) which converges to some
+ξ ∈ Ξ( G ); let also µn be an invariant measure for ξ n for every n. Then any
+limit point µ of the µn in the compact space of probability measures on Ω is
+ξ-invariant.                                                                   □
+8                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+2.2. Subshifts. Let G ↷ Z be a G-flow. We will denote by S( Z ) the set of all
+subflows of Z. It is a closed subspace of the space of all closed subsets of Z,
+equipped with the Vietoris topology, and thus a compact space (metrizable if Z is
+metrizable). We recall that the Vietoris topology is generated by sets of the form
+{K ∈ S( Z ) : K ⊆ U } and {K ∈ S( Z ) : K ∩ U ̸= ∅} with U an open subset of Z.
+    We will denote by Str ( Z ), Smin ( Z ), and Sper ( Z ) the collections of transitive,
+minimal, and periodic subflows, respectively. We also let Sper-tr ( Z ) = Sper ( Z ) ∩
+Str ( Z ).
+Proposition 2.8. Let G ↷ Z be a G-flow with G countable and Z metrizable. Then
+Str ( Z ) and Smin ( Z ) are Gδ subsets of S( Z ).
+Proof. Let {Un : n ∈ N} be a basis for Z. For X ∈ S( Z ), we have that X is
+transitive iff for all i, j, X ∩ Ui = ∅ or X ∩ Uj = ∅ or there is g ∈ G such that
+X ∩ Ui ∩ g · Uj ̸= ∅. For fixed i, j this is a Gδ condition since in a metrizable space
+closed subsets are Gδ , and a finite union of Gδ subsets is a Gδ subset. Similarly, X
+is minimal iff for every i, Ui ∩ X = ∅ or X ⊆ G · Ui . Both conditions are Gδ (one
+is closed and the other is open).                                                    □
+Proposition 2.9. Let G ↷ Z be a G-flow. The collection
+                       { X ∈ Smin ( Z ) : X ⊆ U } : U ⊆ Z open
+                     
+
+forms a basis of open sets of Smin ( Z ). If Z is zero-dimensional, one can take the sets U to
+be clopen.
+Proof. Let X0 ∈ Smin ( Z ). A basic open neighborhood of X0 in the Vietoris topology
+is given by the collection of all X ∈ Smin ( Z ) such that X ⊆ U and X ∩ Vi ̸= ∅,
+i = 1, . . . , n for some non-empty, open U, V1 , . . . , Vn ⊆ Z. We claim that the set
+(2.4)               { X ∈ Smin ( Z ) : X ⊆ U ∩ G · V1 ∩ · · · ∩ G · Vn }
+contains X0 and is contained in this open neighborhood. First, by minimality of
+X0 , X0 ⊆ G · Vi for every i. Second, if X ∈ Smin ( Z ) and X ⊆ G · Vi , it is clear that
+X ∩ Vi ̸= ∅.
+   For the last statement, note that by compactness and 0-dimensionality, if X
+is closed, U is open and X ⊆ U then there exists a clopen subset V such that
+X ⊆ V ⊆ U. So we can replace U ∩ G · V1 ∩ · · · ∩ G · Vn in (2.4) by a clopen
+subset.                                                                                □
+    Let A be a finite set. The group G acts on the compact space AG by left shift:
+                                  ( g · x )(h) = x ( g−1 h).
+A subshift is an element of S( AG ). We note that for any x ∈ AG , the subshift G · x
+is minimal iff for any finite F ⊆ G the set { g : ( g · x )| F = x | F } is left syndetic.
+   Let F ⊆ G be finite. An F-pattern is a function p : F → A and F is called the
+support of p. Each F-pattern p defines a clopen cylinder
+(2.5)                           C p := { x ∈ AG : x | F = p}
+and two clopen subsets of S( G )
+                  U+              G
+                   p := { X ∈ S( A ) : X ∩ C p ̸ = ∅ } and
+
+                  U−        G     +              G
+                   p := S( A ) \ U p = { X ∈ S( A ) : X ∩ C p = ∅ }.
+
+We say that the pattern p occurs in a subshift X if X ∈ U+p . The pattern p occurs in
+              G
+a point x ∈ A if there is g ∈ G such that g · x ∈ C p . The collection
+                                       −
+                                {U+
+                                  p , U p : p is a pattern}
+                         DENSE AND COMEAGER CONJUGACY CLASSES                               9
+
+
+forms a subbasis for the topology of S( AG ). If P is a finite set of patterns, we
+                                  −
+denote U+                                −
+          P = p∈ P U p and U P = p∈ P U p . A subshift X ∈ S( A ) is of finite type
+                        +                                        G
+               T                       T
+
+(or SFT, for short) if it is of the form
+
+                                 X = AG \
+                                             [ [
+(2.6)                                                    g · Cp ,
+                                             p∈ P g∈ G
+
+where P is a finite collection of forbidden patterns. In other words, X is the largest
+subshift in which none of the forbidden patterns occur. It follows that if X is the
+SFT given by (2.6), then the set
+
+                                        S ( X ) = U−
+                                                   P
+
+is open in S( AG ). It is also clear that SFTs are dense in S( AG ). If X is defined as
+in (2.6) and F is finite and contains dom( p) for every p ∈ P, then we say that F is
+a defining window for X.
+   We record the following corollary of Proposition 2.9.
+Corollary 2.10. The collection
+
+                            {S( X ) ∩ Smin ( AG ) : X is an SFT}
+forms an open basis for the topology of Smin ( AG ).
+
+   A subshift X ∈ S( AG ) is sofic if there exists a finite alphabet B, an SFT Y ∈ S( BG )
+and a factor map Y → X. It is well known that, by enlarging the alphabet B, one
+can always assume that this factor map is induced by a surjection from B to A
+(hence extends to a factor map BG → AG ).
+   A subshift X ∈ S( AG ) is isolated in S( AG ) if it is an isolated point in the topology
+of S( AG ). It is projectively isolated in S( AG ) (see [D]) if there exists a finite alphabet
+B, a factor map Φ : BG → AG , and a non-empty open subset U ⊆ S( BG ) such that
+Φ[Y ] = X for every Y ∈ U. (Here and in what follows, if f : Z → W is a function
+and Y ⊆ Z, we denote by f [Y ] the image of Y by f , that is, the set { f (y) : y ∈ Y }.)
+Without loss of generality, we may assume that Φ comes from a map ϕ : B → A.
+As SFTs are dense, it follows that every isolated subshift is an SFT and every
+projectively isolated subshift is sofic.
+   We have the following easy sufficient condition for a subshift to be isolated in
+S( A G ).
+
+Lemma 2.11. Let X ∈ S( AG ) be an SFT that has an isolated point with a dense orbit.
+Then X is isolated in S( AG ).
+
+Proof. Let x0 ∈ X be isolated and let U ⊆ AG be open with U ∩ X = { x0 }. Then
+                            { X } = {Y ∈ S ( X ) : Y ∩ U ̸ = ∅ } .                         □
+
+   Similarly, if X is sofic and has an isolated point with a dense orbit, then X is
+projectively isolated in S( AG ).
+   Another operation on subshifts that we will need is the disjoint union: if X ∈
+S( AG ) and Y ∈ S( B G ), then X ⊔ Y is a naturally a subshift of ( A ⊔ B)G . Here
+A ⊔ B means that if A and B are not disjoint, we take the union of two disjoint
+copies.
+
+Lemma 2.12. Suppose that G is finitely generated and X ∈ S( AG ) and Y ∈ S( BG ) are
+subshifts. If X and Y are SFT/sofic/isolated/projectively isolated, then so is X ⊔ Y.
+   If X, Y are sofic/projectively isolated in S( AG ) then so is X ∪ Y.
+10              MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+Proof. First we note that AG ⊔ BG is an SFT (as a subshift of ( A ⊔ B)G ). Indeed,
+if S is a finite, symmetric generating set of G not containing 1G , it is enough to
+forbid the patterns p : S ∪ {1G } → A ⊔ B with p(1G ) ∈ A and p(s) ∈ B for s ∈ S.
+Now the statements for disjoint unions of SFT and sofic subshifts are immediate,
+and the other two follow after observing that S( AG ⊔ B G ) is an open subset of
+S(( A ⊔ B)G ).
+   The second statement follows from the first and the fact that there is a natural
+factor map X ⊔ Y → X ∪ Y.                                                        □
+   Now let A be a (clopen) partition of Ω, that is, a finite set of elements of B(Ω)
+which are pairwise disjoint and whose union is Ω. If all of the elements of A are
+non-empty, we will say that the partition is non-degenerate. If A is a partition of
+Ω and ω ∈ Ω, we will denote by A(ω ) the element a ∈ A such that ω ∈ a. For a
+fixed ξ ∈ Ξ, we can define a map ΠξA : Ω → AG by
+
+(2.7)            ΠξA (ω )( g) = A(ξ ( g)−1 · ω )           for ω ∈ Ω, g ∈ G
+
+and we note that ΠξA is continuous and G-equivariant. Using this, we define the
+map π A : Ξ( G ) → S( AG ) by:
+(2.8)                             π A (ξ ) = ΠξA [Ω]
+and note that it is continuous. Moreover, the topology on Ξ( G ) is induced by the
+maps π A as A varies over non-degenerate partitions of Ω.
+  Every X ∈ S( AG ) admits a canonical generating partition Â( X ) given by
+                                
+                      Â( X ) := { x ∈ X : x (1G ) = a} : a ∈ A ,
+which is in a bijection with a subset of A.
+
+                     3. Fraïssé theory for Cantor actions
+   As was first observed by Ivanov [I] and more systematically exploited by
+Kechris and Rosendal in [KR], Fraïssé theory provides a convenient framework for
+studying the existence of dense and comeager conjugacy classes. In Appendix A,
+we prove a general criterion for the existence of a comeager conjugacy class and
+here we provide the necessary translations to apply this result in the context of
+Cantor dynamics.
+   First, we use Stone duality to convert dynamical systems into algebraic objects.
+Definition 3.1. A Boolean G-algebra is a Boolean algebra A equipped with an action
+of G by automorphisms. A Boolean G-algebra A is finitely generated if there is a
+finite subset A ⊆ A that generates A as a Boolean G-algebra.
+  It is easy to see that if a Boolean G-algebra is finitely generated, then the
+generating set A can be taken to be a partition of 1. In that case, every element of
+A can be written as a finite union of elements of the form
+                                     \
+                                            g · p ( g ),
+                                     g∈ F
+
+where p : F → A is a pattern.
+   Using the Stone functors Z 7→ B( Z ), A 7→ S(A), we see that zero-dimensional
+G-flows correspond to Boolean G-algebras and subshifts of AG correspond to
+Boolean G-algebras generated by the finite partition Â. More precisely, B( AG )
+is the free Boolean G-algebra generated by the partition Â and subshifts of AG
+correspond to its quotients. A subshift is of finite type if the corresponding ideal
+                           DENSE AND COMEAGER CONJUGACY CLASSES                              11
+
+
+in B( AG ) is finitely generated (over G). Factor maps of G-flows correspond to
+embeddings of Boolean G-algebras.
+   Next we explain how to see the space of subshifts as a type space in the sense of
+Appendix A to which we refer for the relevant definitions. Let L be the language
+of Boolean algebras {0, 1, ∩, ∪, ¬} and let LG be L augmented with unary function
+symbols for all elements of G. Let F be the hereditary L-class of Boolean algebras
+and let F ( G ) be the LG -class of all G-Boolean algebras. For a finite set of variables
+x, it is easy to see that Sx (F ) is finite and Sx (F ( G )) is compact (the theory of
+G-Boolean algebras is first-order, universal). We let A = 2x and
+                    part
+                   S A (F ( G )) = { p ∈ S A (F ( G )) : p |=
+                                                                G
+                                                                       α = 1 },
+                                                                α∈ A
+that is, the set of types where the variables form a partition of 1. For α ∈ A,
+we let tα ( x ) be the L-term v∈ x vα(v) , where v1 = v and v0 = ¬v. There is a
+                             T
+                                     part
+homeomorphism Φ : Sx (F ( G )) → S A (F ( G )) given by
+          Φ(q) |= ϕ( A) ⇐⇒ q |= ϕ (tα ( x ) : α ∈ A)    for q ∈ Sx (F ( G )),
+                                                     
+
+                                                      part
+and another homeomorphism Ψ : S( AG ) → S A (F ( G )) given by
+                      Ψ( X ) |=          g · p( g) ̸= 0 ⇐⇒ X ∩ U p ̸= ∅
+                                  \
+
+                                  g∈ F
+
+for X ∈ S( AG ) and for every pattern p : F → A with F ⊆ G finite. Moreover, using
+these identifications, if y is a finite set of variables disjoint from x and B = 2x∪y ,
+then the projection map π x : Sxy (F ( G )) → Sx (F ( G )) can be represented as the
+projection S( BG ) → S( AG ) given by the map B → A, α 7→ α| x . This shows that
+for all intents and purposes, we may identify the type space Sx (F ( G )) and the
+space of subshifts S( AG ). In particular, it makes sense to say that a certain class of
+subshifts is a topological Fraïssé class in the sense of Definition A.1.
+   Next we consider coding models of F ( G ), i.e., Boolean G-algebras. We use a
+coding by expansions. Let u be a countable set of variables and let c ∈ B(Ω)u be a
+tuple that bijectively enumerates B(Ω). Following Example A.12, we let
+                           Ξ( G ) = {ξ ∈ Ξ0 (F ( G )) : ξ |L = tp c}.
+There is an obvious identification between the space defined above and the one
+defined by (2.1).
+Proposition 3.2. Let G be a countable group. Then the class F ( G ) of G-subshifts is a
+topological Fraïssé class and Ξ( G ) is an admissible coding for models of F ( G ) in the sense
+of Definition A.5.
+Proof. To check amalgamation, let X, Y1 , Y2 be G-subshifts and let π1 : Y1 → X,
+π2 : Y2 → X be factor maps. Then
+                  Y1 × X Y2 = {(y1 , y2 ) ∈ Y1 × Y2 : π1 (y1 ) = π2 (y2 )}
+is a G-subshift which amalgamates Y1 and Y2 over X. The other two items of
+Definition A.1 are satisfied because each S( AG ) is compact.
+   That the coding Ξ( G ) is admissible follows from Example A.12.      □
+   We also note that the notion of a projectively isolated type (as in Definition A.8)
+coincides with the notion of a projectively isolated subshift discussed in Subsec-
+tion 2.2. From Corollary A.10, we obtain the following.
+Corollary 3.3 ([D, Theorem 3.1]). Let G be a countable group. Then the following are
+equivalent:
+    (i) Ξ( G ) admits a comeager conjugacy class.
+12                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+     (ii) Projectively isolated subshifts in S( AG ) are dense in S( AG ) for every A.
+   Next we turn to the class of minimal subshifts that we denote by Fmin ( G ). We
+also let Ξmin ( G ) = Ξ( G ) ∩ Ξ0 (Fmin ( G )) and again, there is an obvious identifica-
+tion with the previous definition.
+Proposition 3.4. Let G be a countable group. Then the class Fmin ( G ) is a topological
+Fraïssé class. If G is infinite, then Ξmin ( G ) is an admissible coding for models of Fmin ( G ).
+Proof. We verify the conditions of Definition A.1.
+   (i) The proof is the same as in Proposition 3.2, except that now we have to take
+a minimal subshift of Y1 × X Y2 .
+   (ii) This follows from Proposition 2.8.
+   (iii) Let A, B be finite alphabets and fix some surjective map B → A. Let
+Π : BG → AG denote the corresponding projection. We define π : S( BG ) → S( AG )
+by π ( X ) = Π[ X ]. Let Smin ( Z ), where Z ∈ S( B G ) is an SFT, be a basic open set in
+Smin ( BG ) (see Corollary 2.10). We claim that
+                                 π [Smin ( Z )] = Smin (π ( Z )),
+which is a closed set. The ⊆ inclusion is obvious. For the other, let X ⊆ π ( Z )
+be a minimal subshift and let Y be any minimal subshift of Z ∩ Π−1 ( X ). Then
+π (Y ) = X.
+   To verify that Ξmin ( G ) is an admissible coding, according to Example A.12, we
+only have to check that every minimal G-subshift X can be realized as a factor
+of a minimal action G ↷ Ω. If X is infinite, then the underlying space of X is
+homeomorphic to Ω, so we may assume that X is finite. Let G ↷ Z be any minimal
+action on a Cantor space. Then any minimal subset of Z × X is homeomorphic to
+the Cantor set and has X as a factor.                                             □
+     Applying Corollary A.10 to this situation, we obtain the following.
+Corollary 3.5. Let G be a countable, infinite group. Then the following are equivalent:
+    (i) There is a comeager conjugacy class in Ξmin ( G ).
+   (ii) Minimal subshifts which are projectively isolated in Smin ( AG ) are dense in
+        Smin ( AG ) for every A.
+   We have the following characterization of minimal subshifts which are projec-
+tively isolated in Smin ( AG ).
+Proposition 3.6. Let G be a countable group and let A be a finite alphabet. Then the
+following are equivalent:
+      (i) X ∈ Smin ( AG ) is projectively isolated in Smin ( AG ).
+     (ii) There exists a sofic Y ∈ S( AG ) such that X is the unique minimal subshift of Y.
+In particular, every sofic minimal subshift is projectively isolated in Smin ( AG ).
+Proof. (i) ⇒ (ii). Suppose that X is projectively isolated. Then there exists a finite
+alphabet B, a map ϕ : B → A, and a non-empty open set U ⊆ S( B G ) such that,
+denoting by Φ the G-map induced by ϕ, Φ[ Z ] = X for every Z ∈ U ∩ Smin ( BG ).
+By Corollary 2.10, we may assume that U = S( Z0 ) for some SFT Z0 . Then we can
+take Y = Φ[ Z0 ]. It is clear that X ⊆ Y and if X ′ is another minimal subshift of Y,
+then any minimal subshift of Φ−1 ( X ′ ) ∩ Z0 does not map to X, contradicting the
+choice of Z0 .
+   (ii) ⇒ (i). Let Z ∈ S( B G ) be an SFT and let Φ : BG → AG be a factor map such
+that Φ[ Z ] = Y. Now Φ must map every minimal subshift from the open set S( Z )
+to a minimal subshift of Y, i.e., to X.                                             □
+                         DENSE AND COMEAGER CONJUGACY CLASSES                                13
+
+
+Question 3.7. Do there exist a countable group G and a subshift in Smin ( AG ) which
+is projectively isolated in Smin ( AG ) but not sofic?
+    A negative answer to this question for Zd would also imply a negative answer
+to Question 1.4.
+    We finally consider the classes of periodic subshifts and periodic, transitive
+subshifts, that we will denote by Fper ( G ) and Fper-tr ( G ), respectively. We also
+denote Ξper ( G ) = Ξ( G ) ∩ Ξ0 (Fper ( G )) and Ξper-tr ( G ) = Ξ( G ) ∩ Ξ0 (Fper-tr ( G )).
+Actions in Ξper ( G ) are often called profinite actions and they are exactly the
+equicontinuous actions on Ω. A profinite action is in Ξper-tr ( G ) iff it is transitive
+iff it is minimal (an equicontinuous action preserves a metric, so if one orbit is
+dense, then all orbits are). We note that Ξper ( G ) is a Gδ set in Ξ( G ).
+Proposition 3.8. Let G be a finitely generated group. Then:
+     (i) Each X ∈ Sper ( AG ) is isolated in S( AG ).
+    (ii) Fper ( G ) and Fper-tr ( G ) are topological Fraïssé classes.
+   (iii) Ξper ( G ) is an admissible coding for models of Fper ( G ).
+   (iv) If G has arbitrarily large finite quotients, then Ξper-tr ( G ) is an admissible coding
+         for models of Fper-tr ( G ).
+Proof. (i) Let X ∈ Sper ( AG ). There is a finite index subgroup G0 ≤ G which fixes
+the generating partition Â( X ) of B( X ). As G is finitely generated, G0 is also
+finitely generated and “G0 fixes Â( X )” is an open condition on X. Now it remains
+to notice that AG contains only finitely many G0 -fixed points, so there are only
+finitely many subshifts in this open set (including X).
+   (ii) It follows from (i) that each Sper ( AG ) is open and discrete, so we only have
+to check amalgamation. Note that if Y1 , Y2 are periodic subshifts then Y1 × X Y2 is
+also periodic. This allows us to amalgamate periodic subshifts.
+   Similarly, to amalgamate two periodic transitive subshifts Y1 , Y2 , simply con-
+sider an orbit of Y1 × X Y2 .
+   (iii) This is clear as every periodic flow G ↷ Z is a factor of the flow G ↷ Z × Ω,
+where the action on the second coordinate is trivial.
+   (iv) Let Γ be the profinite completion of G. By our assumptions, Γ is infinite
+and metrizable, and therefore, homeomorphic to Ω. Moreover, every transitive
+periodic G-flow is a factor of the left translation action G ↷ Γ.                    □
+   The next result is a direct application of Theorem A.9.
+Corollary 3.9. Let G be a finitely generated group and let Γ be its profinite completion.
+Then the isomorphism class of the action G ↷ Γ × Ω, where the action on the first
+coordinate is left translation and on the second, is trivial, is comeager in Ξper ( G ). If G
+has arbitrarily large finite quotients, then the isomorphism class of the action G ↷ Γ is
+comeager in Ξper-tr ( G ).
+
+                 4. Neighborhoods of actions of the free group
+4.1. Rauzy graphs. Let G be the free group freely generated by a finite set of
+generators S0 . In this section, we will give a description of neighborhood bases of
+the spaces Ξ( G ) and Ξmin ( G ). We let S = S0 ∪ S0−1 .
+Definition 4.1. A Rauzy graph (for G) is a tuple G = (V, E, σ, ρ, ℓ, ¯·), where V is a
+set of vertices, E is a set of edges, σ, ρ : E → V are the source and range maps,
+ℓ : E → S is a labeling of the edges, and ·¯ : E → E is an involution, satisfying the
+following for all e ∈ E:
+      • σ(ē) = ρ(e), ρ(ē) = σ(e);
+14                   MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+        • ℓ(ē) = ℓ(e)−1 ;
+        • the map E → V × V × S, e 7→ (σ(e), ρ(e), ℓ(e)) is injective;
+        • for every v ∈ V and s ∈ S, there exists e ∈ E with σ(e) = v and ℓ(e) = s.
+                                                                          s
+If there is an edge labeled s from v1 to v2 , we will write v1 −    → v2 . A morphism
+between two Rauzy graphs G1 and G2 is a map π : V (G1 ) → V (G2 ) such that for
+                                       s                        s
+all v1 , v2 ∈ V (G1 ) and s ∈ S, if v1 −
+                                       → v2 , then π (v1 ) −   → π (v2 ). A morphism
+                                                                            s
+π : G1 → G2 induces a map E(G1 ) → E(G2 ) (because the edge π (v1 ) −      → π (v2 ) is
+unique), which we will also denote by π. We will say that the morphism π is
+surjective if the induced map on the edges is surjective. When the Rauzy graph
+G is given, we denote by V (G) and E(G) its vertex and edge set, respectively. A
+subgraph G′ of G is given by V ′ ⊆ V (G), E′ ⊆ E(G) such that G′ = (V ′ , E′ , σ, ρ, ℓ, ·¯)
+satisfies the axioms of a Rauzy graph. If G1 , G2 are Rauzy graphs and π : G1 → G2
+is a morphism, then π [G1 ] = (π [V (G1 )], π [ E(G1 )]) is a subgraph of G2 . A Rauzy
+graph is connected if the underlying graph (forgetting the labeling) is connected. A
+Rauzy graph is deterministic if the map E → V × S, e 7→ (σ(e), ℓ(e)) is injective.
+   We note that a deterministic Rauzy graph defines an action G ↷ V by s · v =
+ρ(e), where e is the unique edge with σ (e) = v and ℓ(e) = s−1 . In that case, the
+Rauzy graph is often called the Schreier graph of the action.
+   An example of a deterministic Rauzy graph is the Cayley graph of G Cay( G )
+given by
+        • V = G, E = G × S;
+        • σ( g, s) = g, ρ( g, s) = gs, ( g, s) = ( gs, s−1 );
+        • ℓ( g, s) = s.
+The action defined by this graph is the right translation action G ↷ G, g · x = xg−1 .
+  Every finite Rauzy graph G defines a non-empty SFT X (G) ∈ S(V (G)G ) by
+(4.1)           X (G) = {π : G → V (G) : π is a morphism Cay( G ) → G}.
+To see that X (G) is an SFT, note that one can obtain it by forbidding the patterns
+p : {1G , s} → V (G) (for s ∈ S) where there is no edge labeled s from p(1G ) to
+p(s). To construct a point x ∈ X (G), one can choose x (1G ) arbitrarily and then
+                                                               s
+inductively choose x ( gs) (for g ∈ G, s ∈ S) such that x ( g) −
+                                                               → x ( gs).
+    Let now A be a non-degenerate partition of Ω. A Rauzy graph on A is a Rauzy
+graph with vertex set A. Every ξ ∈ Ξ( G ) defines a labeled graph G(ξ, A) on A by
+                        s
+(4.2)                 → b ⇐⇒ a ∩ ξ (s) · b ̸= ∅
+                     a−                                  for a, b ∈ A, s ∈ S.
+The following lemma is immediate.
+Lemma 4.2. For every ξ ∈ Ξ( G ) and every non-degenerate partition A, G(ξ, A) is a
+Rauzy graph.
+   If B is a partition of Ω that refines A, then there is a surjective morphism
+π : G(ξ, B) → G(ξ, A) defined by
+                                     π (b) = a ⇐⇒ b ⊆ a.
+     Every Rauzy graph G on A defines a clopen subset N(G) ⊆ Ξ( G ) by
+                             N(G) = {ξ ∈ Ξ( G ) : G(ξ, A) = G}.
+These definitions give us an encoding of a basis of open sets for Ξ( G ).
+Proposition 4.3. Each N(G) is non-empty and the collection
+        {N(G) : A is a non-degenerate partition of Ω and G is a Rauzy graph on A}
+                               DENSE AND COMEAGER CONJUGACY CLASSES                                         15
+
+
+forms a basis of open sets for the topology of Ξ( G ). More precisely, for ξ ∈ Ξ( G ), the
+collection
+                  {N(G(ξ, A)) : A is a non-degenerate partition of Ω}
+is a basis at ξ.
+Proof. N(G) is non-empty because (a conjugate of) the product of X (G) with a
+trivial action on Ω belongs to it.
+   Let now ξ 0 ∈ Ξ( G ) and consider its basic neighborhood U consisting of all ξ
+such that ai ∩ ξ (si ) · bi = ∅ for i = 0, . . . , n − 1, where the si are elements of S and
+the ai , bi are elements of B(Ω) (see (2.3)). Let A be the partition of Ω generated
+by the ai and the bi . It is easy to check that N(G(ξ 0 , A)) ⊆ U: the condition
+ai ∩ ξ (si ) · bi = ∅ is witnessed by the absence of edges labeled si between the
+elements of the partition contained in ai and the ones contained in bi .                   □
+   Rauzy graphs can also be defined from subshifts as follows. If A is a finite
+alphabet and F is a finite subset of G containing 1G , we can define the graph
+G( AG , A F ) on A F in a way similar to (4.2):
+                   s
+           p1 −
+              → p2 ⇐⇒ p1 and s · p2 are compatible,                                   for p1 , p2 ∈ A F ,
+where s · p2 is the pattern sF → A defined by (s · p2 )( f ) = p2 (s−1 f ) and two
+patterns are compatible if they agree on the intersection of their supports. If
+X ∈ S( AG ), we can similarly define G( X, A F ), which is a subgraph of G( AG , A F ),
+by
+                     V (G( X, A F )) = { p ∈ A F : p occurs in X }
+and
+           s
+      p1 −
+         → p2 ⇐⇒ p1 and s · p2 are compatible and p1 ∪ s · p2 occurs in X.
+   We have a natural equivariant map ι F : X G( AG , A F ) → AG defined by
+                                                            
+
+             ι F ( x )( g) = x ( g)(1G ) for x ∈ X G( AG , A F ) , g ∈ G.
+                                                                
+(4.3)
+
+Lemma 4.4. Suppose that F −1 is a connected subset of Cay( G ). Then:
+    (i) ι F ( x )| F = x (1G ) for all x ∈ X G( AG , A F ) .
+                                                          
+
+   (ii) The map ι F is an isomorphism from X G( AG , A F ) to AG . More generally, if
+                                                              
+
+        Z ⊆ A G is an SFT and F is a defining    window for Z, then the map ι F defines an
+        isomorphism between X G( Z, A F ) and Z.
+Proof. (i) Fix f ∈ F. We have to show that
+(4.4)                                     x ( f )(1G ) = x (1G )( f ).
+Write f = s0 · · · sn−1 as a reduced word with si ∈ S for all i. By the connectedness
+of F −1 , si · · · sn−1 ∈ F for all i ≤ n − 1. Note that for all i,
+                                                            s i
+                                      x ( s 0 · · · s i −1 ) −
+                                                             →  x ( s0 · · · s i ),
+so, by the definition of the graph G( AG , A F ),
+                                                                             
+                   x (s0 · · · si−1 )(si · · · sn−1 ) = si · x (s0 · · · si ) (si · · · sn−1 )
+                                                        = x (s0 · · · si )(si+1 · · · sn−1 ).
+Applying this consecutively for i = 0,. . . , n − 1, we obtain (4.4), as desired.
+  (ii) Define jF : AG → X G( AG , A F ) by
+
+                       jF ( x )( g)( f ) = x ( g f )      for x ∈ AG , g ∈ G, f ∈ F.
+16                    MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+We will check that jF is an inverse of ι F . By definition, for any x ∈ AG , one
+has (ι F ◦ jF )( x )( g) = jF ( x )( g)(1G ) = x ( g). Conversely, given x ∈ X G( AG , A F ) ,
+                                                                                                              
+
+g ∈ G, and f ∈ F, using (i), we have:
+
+      jF ι F ( x ) ( g)( f ) = ι F ( x )( g f ) = ι F ( g−1 · x )( f ) = ( g−1 · x )(1G )( f ) = x ( g)( f ).
+                  
+
+      For any Z ∈ S( AG ) we have jF [ Z ] ⊆ X G( Z, A F ) . If Z is an SFT with a defining
+                                                                        
+
+window F, then ι F [ X G( Z, A F ) ] ⊆ Z since no forbidden F-pattern can occur in
+                                               
+
+ι F [ X G( Z, A F ) ]. So, in this situation, ι F [ X G( Z, A F ) ] = Z.
+                                                                          
+                                                                                                              □
+
+  This lemma allows us,     for any SFT Z ⊆ A G with defining window F, to view
+subshifts of X G( Z, A F ) as elements of S( Z ).
+                          
+
+
+4.2. Minimal Rauzy graphs.
+Definition 4.5. Let G be a Rauzy graph. A reduced path in G is a sequence of edges
+(e0 , . . . , en ) such that ρ(ei ) = σ(ei+1 ) and ℓ(ei ) ̸= ℓ(ei+1 )−1 for all i < n. The graph
+G is called minimal if for all edges e, f ∈ E(G), there exists a reduced path whose
+first edge is e and whose last edge is f or f¯.
+  For fixed ξ ∈ Ξ( G ) and partition A of Ω, every ω ∈ Ω defines a morphism
+Cay( G ) → G(ξ, A), g 7→ A( g−1 · ω ). This gives a natural way to obtain reduced
+paths from elements of the free group. More precisely, let ξ ∈ Ξ( G ), let A be a
+non-degenerate partition of Ω, and let G = G(ξ, A). Let g ∈ G and ω ∈ Ω. Write
+g = s1 · · · sn as a reduced word in S and let ωi = (s1 · · · si )−1 · ω. Then the path
+                                    s −1            s −1       s −1
+(4.5)                             1
+                           A(ω ) −−          2
+                                   → A(ω1 ) −−         → A ( g −1 · ω )
+                                                       n
+                                              → · · · −−
+is reduced.
+Lemma 4.6. For every ξ ∈ Ξmin ( G ) and every non-degenerate partition A of Ω, G(ξ, A)
+is a minimal Rauzy graph.
+Proof. That G(ξ, A) is a Rauzy graph follows from Lemma 4.2. To check minimality,
+let e, f ∈ E be given. Let a = σ (e), s = ℓ(e), and a0 = a ∩ ξ (s) · ρ(e). Similarly, let
+b = σ ( f ), t = ℓ( f ), and b0 = b ∩ ξ (t) · ρ( f ). By the definition of G(ξ, A), a0 ̸= ∅
+and b0 ̸= ∅. Let ω ∈ a0 . Let
+                      L = { g ∈ G : g is a reduced word ending in s−1 }
+and note that L is infinite and for every g ∈ G, the set gL△ L is finite. This implies
+that L is left thick, so it intersects the set { g ∈ G : g · ω ∈ b0 }, which is left syndetic
+since ξ is minimal. Let g−1 be in this intersection and consider the reduced path
+constructed in (4.5), whose first edge is equal to e (because ω ∈ a0 and g−1 ∈ L).
+Denoting by sn the label of the last edge of this path, there are two possibilities.
+If sn = t, then the last edge of the path is f¯ (because g−1 · ω ∈ b0 ). If not, we can
+add f to the end of the path and it will still be reduced.                                 □
+
+Lemma 4.7. Let G be a Rauzy graph and let x : Cay( G ) → G be a morphism such that
+for every e ∈ E(G), the set
+(4.6)                           {σ( f ) : f ∈ E(Cay( G )), x ( f ) = e}
+is right syndetic in G. Then every y ∈ G · x is a surjective morphism Cay( G ) → G.
+(Here we view the morphism x : Cay( G ) → G as an element of the subshift X (G) defined
+by (4.1).)
+                         DENSE AND COMEAGER CONJUGACY CLASSES                                 17
+
+
+Proof. Let y ∈ G · x. Let e ∈ E(G) and let L be the set defined in (4.6). As L
+is right syndetic, there is a finite F ⊆ G such that LF −1 = G. Let g ∈ G be
+such that y| F∪ FS = ( g · x )| F∪ FS . Then there is h ∈ F such that g−1 ∈ Lh−1 , i.e.,
+g−1 h ∈ L. Together with the fact that y(h) = x ( g−1 h) and y(hℓ(e)) = x ( g−1 hℓ(e)),
+                                           ℓ(e)
+this implies that y maps the edge h −−→ hℓ(e) to e.                                          □
+   If G is a minimal Rauzy graph on a partition A of Ω, we denote
+                               Nmin (G) = N(G) ∩ Ξmin ( G ).
+Theorem 4.8. If G is minimal, the set Nmin (G) is non-empty and the collection
+
+  {Nmin (G) : A is a non-degenerate partition of Ω
+                                                  and G is a minimal Rauzy graph on A}
+forms a basis of open sets of the space Ξmin ( G ).
+Proof. We start by showing that Nmin (G) is non-empty. For each v ∈ V (G) and
+s ∈ S, let Pv,s be a reduced path starting from v with an edge labeled s, which
+contains e or ē for every e ∈ E(G). Such a path is easy to construct, visiting each
+edge consecutively, using the minimality of G. We will construct by induction a
+morphism x : Cay( G ) → G which satisfies the hypothesis of Lemma 4.7. Start
+with x0 with dom x0 = {1G } and x0 (1G ) = v0 , where v0 is an arbitrary vertex of
+G. Enumerate all edges of Cay( G ) as e0 , e1 , . . . (taking only one edge of each pair
+{e, ē}). Suppose that xn has been constructed and let Tn = dom xn . Let ei be the
+first edge of the enumeration which is not in E(Tn ) but is adjacent to Tn . We may
+assume that v := σ (ei ) ∈ V (Tn ). Let ( f 0 , . . . , f k ) be the edges of the path Pv,ℓ(ei )
+and define xn+1 to be equal to xn on Tn and set
+                                              
+                 xn+1 vℓ( f 0 ) · · · ℓ( f j ) = ρ( f j ) for all j = 0, . . . , k.
+                    S
+Finally, set x = n xn . It is clear that x is defined everywhere. Let N be the
+maximum length of the paths Pv,s , for v ∈ V (G), s ∈ S and let B be the ball in G
+around 1G of radius N. For e ∈ E(G), let Le be the set defined in (4.6). It follows
+from the construction that Le B = G for all e, so the hypothesis of Lemma 4.7 is
+satisfied for x.
+   Let Y be any minimal subshift of G · x and consider first the case where Y is
+perfect. Recall that A is a non-degenerate partition of Ω, V (G) = A and thus
+Y ⊆ AG . Denote by η the shift action on Y. By Lemma 4.7, every y ∈ Y is
+surjective on A, so Â(Y ) is a non-degenerate partition of Y. Let ϕ : Y → Ω be
+a homeomorphism sending the partition Â to the partition A. It is clear that
+ϕηϕ−1 ∈ Nmin (G). If Y is finite, we can consider instead a minimal action G ↷ Ω
+which admits Y as a factor (see the proof of Proposition 3.4).
+   For the second part, it follows from Proposition 4.3 that the sets Nmin (G(ξ, A)),
+for A a non-degenerate partition of Ω, form a basis at ξ and by Lemma 4.6, the
+graphs G(ξ, A) are minimal.                                                       □
+
+Example 4.9. We give two examples showing that some natural variants of Defini-
+tion 4.5 do not characterize minimality. We consider the following three conditions
+on a Rauzy graph G:
+     (i) For any two vertices v, w ∈ V (G), there exists a reduced path (e0 , . . . , en )
+         with σ(e0 ) = v and ρ(en ) = w.
+    (ii) G is minimal in the sense of Definition 4.5.
+   (iii) For any two edges e, f ∈ E(G), there exists a reduced path (e0 , . . . , en ) with
+         e0 = e and en = f .
+18                    MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+                 s         s         t                   s           s        t                t       t       s
+                                                                                      t
+                           t                                         t                                 s
+             s       t           t       s           s       t            t       s       t        s       s       t
+                          t                                          t                                 s
+                 t        s          s                   t           s        s                s       t       t
+                     (ii) ⇏ (iii)                                                 (i) ⇏ (ii)
+
+                               Figure 1. Two examples of Rauzy graphs
+
+  It is clear that (iii) ⇒ (ii) ⇒ (i). The two examples in Figure 1 (for the free group
+on two generators s, t) illustrate that both implications are strict.
+
+                         5. Sofic minimal subshifts of the free group
+  In this section, we set to prove that for free groups, sofic minimal subshifts are
+dense among all minimal subshifts. We retain the notation of the previous section.
+  We start by describing a device that produces sofic subshifts.
+Definition 5.1. Let G be a Rauzy graph for G. An edge selector for G is a triple
+T = (v0 , T0 , T1 ), where v0 ∈ V (G), T0 : S → E(G), T1 : E(G) × S → E(G) are such
+that σ ( T0 (s)) = v0 , ℓ( T0 (s)) = s, σ ( T1 (e, s)) = ρ(e), and ℓ( T1 (e, s)) = s for all
+(e, s) ∈ E(G) × S.
+   If T = (v0 , T0 , T1 ) is an edge selector, the function T1 can be extended inductively
+to a function E(G) × G → E(G) by:
+                     T1 (e, 1G ) = e
+                 T1 (e, ws) = T1 ( T1 (e, w), s)                         for a reduced word ws.
+An edge selector T defines a morphism x T : Cay( G ) → G by
+                     x T (1 G ) = v0
+                                                                 
+                     x T (sw) = ρ T1 ( T0 (s), w)                        for a reduced word sw.
+This morphism defines a subshift X ( T ) ⊆ X (G) by
+                                                    X (T ) = G · xT .
+We note that while for simplicity of notation, the map T1 is defined everywhere
+on E(G) × S, the values T1 (e, s) with s = ℓ(e)−1 will never be used and can be
+arbitrary.
+   We also observe that edge selectors exist in abundance for any Rauzy graph G:
+in particular, there is one with v0 = v for every v ∈ V (G).
+Proposition 5.2. Let G be a Rauzy graph and let T be an edge selector for G. Then the
+subshift X ( T ) is projectively isolated in S V (G)G and, in particular, sofic.
+Proof. Let ∗ be a new letter and let B = E(G) ∪ {∗}. Define a word z0 ∈ B G as
+follows: z0 (1G ) = ∗, z0 (s) = T0 (s) for s ∈ S, z0 (ws) = T1 (z0 (w), s) for a reduced
+word ws. We note that
+(5.1)                          ℓ(z0 (ws)) = s            for all reduced words ws.
+Also, if w1 w2 is a reduced word, then
+                                                                          
+(5.2)                                        z0 (w1 w2 ) = T1 z0 (w1 ), w2 .
+   Let ϕ : B → V (G) be given by ϕ(∗) = v0 , ϕ(e) = ρ(e) for e ∈ E(G), and let
+Φ : BG → V (G)G be the corresponding G-map. It follows from the definitions
+                        DENSE AND COMEAGER CONJUGACY CLASSES                            19
+
+
+                                                                               •
+                                                                    s
+                                                                        p(s)
+                                  ?                s                   t
+                         •                 •               •                   •
+                             p ( s −1 )         p (1 G )            p(t)
+                                                                        t −1
+                                                             p ( t −1 )
+                                                                               •
+
+                   Figure 2. The rules for Z if ∗ does not appear
+
+of x T and z0 that Φ(z0 ) = x T . Now let Z ∈ S( BG ) be the SFT defined by the
+following rules for patterns p : S ∪ {1G } → E(G) (see Figure 2):
+      (i) ran p ⊆ ran z0 ;
+     (ii) if p(1G ) ̸= ∗ and p(s) ̸= ∗, then ℓ( p(s)) ̸= ℓ( p(1G ))−1 for s ∈ S;
+    (iii) if p(1G ) = ∗, then p(s) = T0 (s) for s ∈ S;
+    (iv) if ℓ( p(1G )) = s, then for all t ∈ S \ {s−1 }, p(t) = T1 ( p(1G ), t), and
+          p(s−1 ) = ∗ or p(1G ) = T1 ( p(s−1 ), s).
+    We will show that Z = G · z0 . A direct verification shows that z0 satisfies the
+rules, so we only have to prove that G · z0 is dense in Z. Let z ∈ Z. Suppose first
+that the symbol ∗ occurs in z. By translating by an appropriate element of G, we
+may assume that z(1G ) = ∗. But then, as z0 is constructed inductively using rules
+(iii) and (iv), we conclude that z = z0 . This shows that z0 is an isolated point in Z.
+    Next suppose that the symbol ∗ does not occur in z. Define inductively se-
+quences (sn )n∈N of elements of S and (hn )n∈N of elements of G by:
+                     h0 = 1 G ,       sn = ℓ(z(hn ))−1 ,
+                                                      h n +1 = h n s n .
+                                                 −1
+It follows from rule (ii) that for all n, sn ̸= sn+1 , and therefore, hn is a reduced
+word of length n. It also follows, using rule (iv), that for all n and for all g ∈ G
+that do not start with sn ,
+(5.3)                                 z(hn g) = T1 (z(hn ), g).
+Let now F ⊆ G be a finite set, let n be larger than the length of all elements of F,
+                                            −1
+and fix f ∈ F. The word h−  1
+                           n f starts with sn−1 , so by (5.3),
+
+                    z( f ) = z hn ( h− 1                   −1
+                                                              
+                                     n f ) = T1 z ( hn ), hn f .
+By rule (i), there exists g0 ∈ G such that z0 ( g0 ) = z(hn ). It follows from (5.1) that
+the last letter of g0 is s−   1                                         −1
+                            n , so we can apply (5.2) to the word g0 ( hn f ) and obtain
+
+             z 0 g0 ( h − 1                    −1                  −1
+                                                                    
+                        n f ) = T1 z0 ( g0 ), hn f = T1 z ( hn ), hn f = z ( f ).
+
+Thus (hn g0−1 ) · z0 agrees with z on F and as F was arbitrary, we conclude that
+z ∈ G · z0 .
+   Therefore X ( T ) = Φ[ Z ] and Z is an isolated SFT by Lemma 2.11. This implies
+that X ( T ) is projectively isolated.                                          □
+Theorem 5.3 ([D]). Let G be a finitely generated free group and let A be a finite alphabet.
+Then projectively isolated subshifts are dense in S( AG ).
+Proof. A basic open set in S( AG ) is given by S( Z ) ∩ U+ ( P), where Z ∈ S( AG ) is an
+SFT, F ⊆ G is finite, and P is the collection of F-patterns occurring in Z. We may
+further assume that F −1 is connected. Let G0 = G( Z, A F ) and recallSthat V (G0 ) = P.
+For every p ∈ P, let Tp be an edge selector with v0 = p. Let X = p∈ P X ( Tp ) and
+20                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+note that by Proposition 5.2 and Lemma 2.12, X is projectively isolated. There
+is a natural map Φ : X → A G , which is given by ι F (as defined in (4.3)) on each
+X ( Tp ). It follows from the definition of X ( Tp ) and Lemma 4.4 that p occurs in
+Φ[ X ] for every p ∈ P. Thus Φ[ X ] belongs to the neighborhood S( Z ) ∩ U+ ( P) and
+it is projectively isolated.                                                       □
+   The following corollary is due to Kechris and Rosendal [KR] for G = Z (see also
+[AGW] for a different proof) and to Kwiatkowska [K2] in general. It implies that
+the group Homeo(Ω) has ample generics, which has many further consequences.
+See [K2] for more details.
+Corollary 5.4 ([K2]). Let G be a finitely generated free group. Then the space Ξ( G ) has
+a comeager conjugacy class.
+Proof. This follows from Theorem 5.3 and Corollary 3.3.                                          □
+   Next we isolate a special type of edge selectors T for which the shift X ( T )
+is minimal. Let G be a Rauzy graph for G. A sequence of distinct edges C =
+(e0 , . . . , en−1 ) of G is called a simple reduced cycle if (e0 , . . . , en−1 , e0 ) is a reduced
+path. We denote by C̄ the cycle (ēn−1 , . . . , ē0 ). Sometimes, we will abuse notation
+and also use the letter C for the set of edges of the cycle. We will say that an edge
+selector T follows the cycle C if
+                                               
+                               T1 ei , ℓ(ei+1 ) = ei+1 for all i < n.
+Here and below all calculations with the indices of the cycle are done mod n.
+Definition 5.5. Let G be a minimal Rauzy graph for G, let T = (v0 , T0 , T1 ) be an
+edge selector for G, and let C = (e0 , . . . , en−1 ) be a simple reduced cycle. We say
+that T is recurrent for C if the following conditions hold:
+       (i) T follows C and C̄.
+      (ii) v0 = σ (e0 ) = ρ(en−1 ).
+     (iii) T0 ℓ(e0 ) = e0 and T0 ℓ(en−1 )−1 = ēn−1 .
+                                                    
+
+     (iv) T1 (ei , s) = T1 (ēi+1 , s) for all i < n and s ̸= ℓ(ei )−1 , ℓ(ei+1 ).
+      (v) for every edge e ∈ E(G), there exists a reduced word w such that ℓ(e)w is
+           reduced and T1 (e, w) ∈ C ∪ C̄.
+Proposition 5.6. Let G be a Rauzy graph, let C = (e0 , . . . , en−1 ) be a simple reduced
+cycle in G, and let T be an edge selector for G that is recurrent for C. Then the subshift
+X ( T ) is minimal.
+Proof. Let Bk denote the set of elements of G that can be written as a reduced
+word of length at most k. As X ( T ) = G · x T , it suffices to show that for every k,
+the set of h ∈ G such that (h−1 · x T )| Bnk = x T | Bnk is right syndetic. To that end,
+let k be given. Let g0 = s0 w0 be some non-identity element of G (with s0 ∈ S
+and s0 w0 reduced). Let e = T1 ( T0 (s0 ), w0 ). By the definition of x T , we have that
+x T ( g0 ) = ρ(e) and the last letter of g0 is ℓ(e). By Definition 5.5 (v), there exists
+w1 such that ℓ(e)w1 is reduced and T1 (e, w1 ) ∈ C ∪ C̄. By prolonging w1 to follow
+the cycle if necessary, we may assume that w1 is non-empty and T1 (e, w1 ) = e0 or
+T1 (e, w1 ) = ē0 . Suppose that T1 (e, w1 ) = e0 (the other case is treated analogously).
+For i < n, let ti = ℓ(ei ) and note that the last letter of w1 is t0 , i.e., w1 = w1′ t0 . Let
+c = t0 · · · tn−1 and
+                                         h = s0 w0 w1′ ck
+and note that the word on the right-hand side above is reduced. We claim that
+(h−1 · x T )| Bnk = x T | Bnk . This is enough because the length of the word w1′ ck is
+                         DENSE AND COMEAGER CONJUGACY CLASSES                                 21
+
+
+uniformly bounded (w1′ depends only on the edge e and there are only finitely
+many edges).
+   We aim to show that for every u ∈ Bnk , x T (u) = x T (hu). First consider the case
+u = 1G . Then
+                x T (h) = T1 T0 (s0 ), w0 w1′ ck = T1 e, w1′ ck
+                                                               
+(5.4)
+                        = T1 e0 , (t1 · · · tn−1 )ck−1 = v0 = x T (1G ),
+                                                      
+
+where the next-to-last equality uses the fact that T follows C. The same argument
+shows that x T (hu) = x T (u) if there is no cancellation in the concatenation of h and
+u, i.e., if the first letter of u is not t−     1
+                                             n−1 . Suppose, finally, that there is cancellation.
+Recall that the length of u is at most nk and write u = t−             1
+                                                                     n−1 u0 u1 as a reduced word
+so that
+                                  hu = s0 w0 w1′ cq t0 · · · tm−1 u1
+and the right-hand side of the equation above is a reduced word, where 0 ≤ q < k
+and 0 ≤ m < n. Note that the last letter of u0 is t−               1
+                                                                m and the first letter of u1 is
+                    −1
+neither tm nor tm−1 . On the one hand, using Definition 5.5 (iii), we have
+                                                                                        
+(5.5)      x T (u) = ρ T1 T0 (t−   1
+                                 n −1 ), u 0 u 1    = ρ T1 (ēn−1 , u0 u1 ) = ρ T1 (ēm , u1 ) .
+On the other, using the same calculation as in (5.4), we get
+                                                                              
+(5.6)       x T (hu) = x T (s0 w0 w1′ cq t0 · · · tm−1 u1 ) = ρ T1 (em−1 , u1 ) .
+We conclude by noticing that, by Definition 5.5 (iv), the expressions on the right in
+(5.5) and (5.6) are equal.                                                         □
+  Next we turn to the existence of recurrent edge selectors. From this point onward,
+we assume that |S0 | ≥ 2, i.e., G is non-abelian.
+Lemma 5.7. Let G be a non-abelian, finitely generated free group, let G be a minimal Rauzy
+graph for G, and let v ∈ V (G). Then there exists a simple reduced cycle (e0 , . . . , en−1 )
+with σ(e0 ) = ρ(en−1 ) = v.
+Proof. First note that if we find a cycle that is reduced but not necessarily simple
+(i.e., one with possibly non-distinct edges), then we can convert it to a simple one
+by repeatedly replacing subcycles of the form (e, . . . , e) with the edge e. So for the
+rest of the proof, we will ignore the requirement that the edges be distinct.
+    Let s ∈ S and let e, f ∈ E(G) with σ (e) = ρ( f ) = v and ℓ(e) = ℓ( f ) = s. By
+minimality of G, there exists a reduced path (e0 , . . . , en ) with e0 = e and en = f or
+en = f¯. In the first case, (e0 , . . . , en ) is a reduced cycle and we are done. In the
+second, ρ(en−1 ) = v and if ℓ(en−1 ) ̸= s−1 , then (e0 , . . . , en−1 ) is a reduced cycle
+from v to v. So we may assume that ℓ(en−1 ) = s−1 .
+    Let t ∈ S \ {s, s−1 } and repeat the same argument as above to produce either
+a reduced cycle or a reduced path (e0′ , . . . , em      ′                           ′
+                                                           −1 ) from v to v with ℓ( e0 ) = t and
+             − 1                            ′          ′
+ℓ(em−1 ) = t . Then (e0 , . . . , en−1 , e0 , . . . , em−1 ) is a reduced cycle.               □
+Lemma 5.8. Let G be a minimal Rauzy graph for G and let C be a simple reduced cycle
+in G. Then there exists an edge selector for G recurrent for C.
+Proof. Write C = (e0 , . . . , en−1 ). We will construct T = (v0 , T0 , T1 ) according to
+Definition 5.5. First use (ii) and (iii) to define v0 and T0 (condition (iii) gives only
+partial constraints for T0 ; for the other letters, define it arbitrarily). Next define T1
+on C and C̄ in order to satisfy conditions (i) and (iv).
+  We will build collections of edges E0 ⊂ E1 ⊂ · · · and inductively extend the
+definition of T1 , so that at step k, condition (v) is satisfied for all edges in Ek and
+22                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+the projection of dom T1 on E(G) is contained in Ek . Set E0 = C ∪ C̄ and note that
+for edges in E0 , (v) holds trivially (one can take w to be the empty word). Suppose
+now that Ek has been defined and that Ek ̸= E(G). Let e ∈ E(G) \ Ek and using the
+minimality of G, let ( f 0 , . . . , f q ) be a reduced path such that f 0 = e and f q ∈ E0 .
+Let m be the least such that f m ∈ Ek . By the inductive assumption, condition
+(v) is satisfied for f m , so there exists a word w such that ℓ( f m )w is reduced and
+T1 ( f m , w) ∈ E0 . Moreover, T1 is not defined on f i for any        letter for any i < m. Now
+define Ek+1 = Ek ∪ { f i : i < m} and set T1 f i , ℓ( f i+1 ) = f i+1 for i < m. Then for
+all i < m,                                                
+                       T1 f i , ℓ( f i+1 ) · · · ℓ( f m )w = T1 ( f m , w) ∈ E0
+and the word ℓ( f i )ℓ( f i+1 ) · · · ℓ( f m )w is reduced, thus verifying (v) for the edges
+in Ek+1 .
+   As E(G) is finite, for some k, Ek = E(G). At this point, condition (v) is satisfied
+for all e ∈ E(G) and we can extend T1 arbitrarily to obtain a fully defined edge
+selector.                                                                                       □
+Theorem 5.9. Let G be a non-abelian, finitely generated free group and let A be a finite
+alphabet. Then the set of sofic minimal subshifts is dense in Smin ( AG ).
+Proof. Using Corollary 2.10, it suffices to find a sofic subshift in all neighborhoods
+of the form Smin ( Z ), where Z ∈ S( A G ) is an SFT. Let F ⊆ G be a defining window
+for Z with 1G ∈ F and F −1 connected. Let X0 ∈ Smin ( Z ) and let G0 = G( X0 , A F ).
+By Lemma 4.6, G0 is minimal. Moreover, as X0 ⊆ Z, the patterns in V (G0 ) are
+allowed in Z and using the map ι F from Lemma 4.4, we can identify X (G0 ) with a
+subshift of Z.
+   Let v ∈ V (G0 ) be arbitrary and use Lemma 5.7 to produce a simple reduced
+cycle starting at v. By Lemma 5.8, there exists an edge selector T for G0 recurrent
+for C. Then by Proposition 5.2 and Proposition 5.6, the subshift X ( T ) is sofic and
+minimal. We have that X ( T ) ⊆ X (G0 ) ⊆ Z and thus X ( T ) ∈ Smin ( Z ), completing
+the proof.                                                                          □
+Remark 5.10. It follows from Theorem 5.9 that for a non-abelian free group G, the
+minimal subshifts which are projectively isolated among minimal subshifts are
+precisely the sofic minimal subshifts. Indeed, let X ⊆ AG be projectively isolated
+among minimal subshifts; then there exists a non-empty open subset U of some
+Smin ( BG ) and a factor map π : BG → AG such that π [Y ] = X for every Y ∈ U.
+Since U contains a sofic subshift, X is itself sofic.
+Corollary 5.11. Let G be a non-abelian, finitely generated free group. Then the sofic
+minimal subshifts of G form a Fraïssé class.
+Proof. This follows from Remark 5.10 and Corollary A.11.                                      □
+Corollary 5.12. Let G be a non-abelian, finitely generated free group. Then the space
+Ξmin ( G ) has a comeager conjugacy class elements of which are isomorphic to the Fraïssé
+limit of the sofic minimal subshifts.
+Proof. This follows from Theorem 5.9, Proposition 3.6, and Corollary 3.5.                     □
+Remark 5.13. Theorem 5.9, Corollary 5.11, and Corollary 5.12 also hold for G = Z.
+One just has to notice that in this case, the sofic minimal subshifts are precisely
+the periodic transitive subshifts. See Corollary 6.7.
+
+                6. Measure-preserving actions of the free group
+  We keep the notation of the previous two sections; we allow again the case
+G = Z.
+                             DENSE AND COMEAGER CONJUGACY CLASSES                                      23
+
+
+6.1. Measured Rauzy graphs.
+Definition 6.1. A measured Rauzy graph is a Rauzy graph G, equipped with two
+functions µ : V (G) → R+ and m : E(G) → R+ (where R+ is the set of non-negative
+reals) such that m(e) = m(ē) for all e ∈ E(G) and
+(6.1)          ∑            m(e) =          ∑            m(e) = µ(v)           for all v ∈ V (G), s ∈ S.
+        {e:σ(e)=v,ℓ(e)=s}            {e:ρ(e)=v,ℓ(e)=s}
+
+We say that a measured Rauzy graph has full support if m(e) > 0 for all e ∈ E(G).
+   If an action ξ ∈ Ξ( G ) admits a finite invariant measure µ and A is a partition
+of Ω, then the graph G(ξ, A) becomes a measured Rauzy graph by defining
+                                                for all e ∈ E(G(ξ, A)).
+                                             
+(6.2)           m(e) = µ σ (e) ∩ ℓ(e) · ρ(e)
+If ξ is minimal, then G(ξ, A) is minimal by Lemma 4.6 and m and µ are strictly
+positive because in a minimal, measure-preserving system, every non-empty open
+set has positive measure (as it is syndetic).
+Lemma 6.2. Let (G, µ, m) be a measured Rauzy graph with full support. Then there exist
+µ′ and m′ , which take integer values, such that (G, µ′ , m′ ) is again a measured Rauzy
+graph with full support.
+Proof. The equations in (6.1) form a homogeneous system of linear equations with
+unknowns µ(v), m(e) for v ∈ V (G), e ∈ E(G). Let M be the matrix of this system
+and note that it has integer entries. It follows from Gaussian elimination that
+ker M has a rational basis, so rational solutions of the system are dense in all
+solutions. It follows that it has a strictly positive rational solution, which can be
+converted into an integer one by multiplying it by an appropriate integer.         □
+6.2. Density of the periodic flows.
+Lemma 6.3. Let G be a finitely generated free group and let (G, µ, m) be a measured
+Rauzy graph for G with full support. Then there exists an action G ↷η W with W finite
+and a partition A of W such that G(η, A) ∼
+                                         = G.
+Proof. By Lemma 6.2, we may assume that m and µ take integer values. For an
+integer n, we denote [n] := {0, . . . , n − 1} and we let
+                                              G
+(6.3)                                W=                {v} × [µ(v)].
+                                            v ∈V (G)
+
+We define π : W → V (G) by π (v, i ) = v and our goal is to define a deterministic
+Rauzy graph with vertex set W such that π becomes a surjective morphism. A
+partial edge relation is a subset E ⊆ W × W × S such that:
+     (i) for all w1 ∈ W, s ∈ S, |{w2 ∈ W : (w1 , w2 , s) ∈ E}| ≤ 1;
+    (ii) for all w1 , w2 ∈ W, s ∈ S, (w1 , w2 , s) ∈ E =⇒ (w2 , w1 , s−1 ) ∈ E;
+                                                                    s
+   (iii) for all w1 , w2 ∈ W, s ∈ S, (w1 , w2 , s) ∈ E =⇒ π (w1 ) −
+                                                                  → π ( w2 ) ;
+   (iv) for all v1 , v2 ∈ V (G), s ∈ S,
+                                                                                      s
+              |{(w1 , w2 , s) ∈ E : π (w1 ) = v1 , π (w2 ) = v2 }| ≤ m(v1 −
+                                                                          → v2 ).
+A partial edge relation is total if the inequalities in (iv) are equalities. For a total E
+and v ∈ V (G), s ∈ S, we have that
+           |{(w1 , w2 , s) ∈ E : π (w1 ) = v}| ≤ |{w1 ∈ W : π (w1 ) = v}|
+                                                   = µ(v)
+                                                                           s
+                                                   =        ∑             → v′ )
+                                                                      m(v −
+                                                         v ′ ∈V (G)
+                                                   = |{(w1 , w2 , s) ∈ E : π (w1 ) = v}|,
+24                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+so we must have equality also in (i).
+   Thus a total edge relation makes (W, E) into a deterministic Rauzy graph by
+defining σ (w1 , w2 , s) = w1 , ρ(w1 , w2 , s) = w2 , and ℓ(w1 , w2 , s) = s. The map π is a
+morphism because of (iii). It is also surjective because of the equality in (iv) and
+the fact that (G, µ, m) has full support.
+   To finish the proof, it suffices to check that to any partial edge relation which is
+not total, we can add an edge. Let E be such a relation and let v1 , v2 ∈ V (G) and
+s ∈ S be such that we have strict inequality in (iv). Then
+                                    s
+                   ∑                → v′ ) > |{(w1 , w2 , s) ∈ E : π (w1 ) = v1 }|
+                             m ( v1 −
+                v ′ ∈V (G)
+
+and, using the same computations as above, we conclude that there exists w1 ∈
+π −1 (v1 ) such that {w2′ ∈ W : (w1 , w2′ , s) ∈ E} = ∅. Using (ii) and applying the
+same reasoning to {(w2 , w1 , s−1 ) : π (w2 ) = v2 }, we find w2 ∈ π −1 (v2 ) such that
+{w1′ ∈ W : (w1′ , w2 , s) ∈ E} = ∅. Then E ∪ {(w1 , w2 , s), (w2 , w1 , s−1 )} is still a
+partial edge relation.                                                                 □
+Lemma 6.4. Let G be a finitely generated free group and let (G, µ, m) be a connected,
+measured Rauzy graph for G with full support. Then there exists a transitive action
+G ↷η W with W finite and a partition A of W such that G(η, A) ∼= G.
+Proof. We define W as in (6.3) and π : W → V (G) as above. Let E be a total edge
+relation on W as constructed in Lemma 6.3. Our goal is to modify E to become a
+connected total edge relation. Note that for E to be connected, it suffices that for
+every v ∈ V (G), the vertices in π −1 (v) are in the same E-connected component.
+Indeed, assume this holds and let R be the equivalence relation on W generated
+by E and suppose that R has at least two classes C1 and C2 . Then, by assumption,
+π −1 (π [C1 ]) = C1 and π −1 (π [C2 ]) = C2 , and by surjectivity of π, there is no edge
+in G between π [C1 ] and π [C2 ]. This contradicts the connectedness of G.
+   Fix now t ∈ S and let τ : W → W be the bijection with graph {(w1 , w2 ) :
+(w1 , w2 , t) ∈ E}. Suppose that there is v ∈ V (G) such that π −1 (v) intersects two
+distinct τ-orbits, say in the points w1 , w2 . Define τ ′ : W → W by τ ′ (w) = τ (w)
+for all w ̸= w1 , w2 , τ ′ (w1 ) = τ (w2 ), τ ′ (w2 ) = τ (w1 ). Then τ ′ is a bijection which
+merges the τ-orbits of w1 and w2 . Moreover,
+                E \ (τ × {t} ∪ τ −1 × {t−1 }) ∪ τ ′ × {t} ∪ τ ′−1 × {t−1 }
+                                                                                 
+
+is a total edge relation. By iterating this procedure, we obtain a total edge relation
+such that for every v, all vertices in π −1 (v) are in the same t-cycle. By our
+observation above, this is enough.                                                   □
+Theorem 6.5. Let G be a finitely generated free group. Then:
+    (i) Ξmin-pmp ( G ) has a comeager conjugacy class whose elements are isomorphic to
+        the left translation action of G on its profinite completion.
+   (ii) For every A, Sper-tr ( AG ) is dense in Smin-pmp ( AG ).
+Proof. (i) By Corollary 3.9, it suffices to prove that Ξper-tr ( G ) is dense in Ξmin-pmp ( G ).
+Let ξ ∈ Ξmin-pmp ( G ) and let N(G) ∩ Ξmin-pmp ( G ) be a neighborhood of ξ, where
+G is a minimal Rauzy graph on some partition B of Ω (see Theorem 4.8). As ξ
+admits an invariant measure, we can use (6.2) to convert G into a measured Rauzy
+graph (G, µ, m). As ξ is minimal, (G, µ, m) is connected and has full support. Let
+G ↷η W and the partition A of W be as given by Lemma 6.4. We can realize η
+as a factor of a profinite action ξ ′ of G on Ω, so that A can be identified with a
+partition of Ω. Now if f ∈ Homeo(Ω) is such that f · A = B, we have that f · ξ ′ is
+profinite and belongs to N(G).
+                       DENSE AND COMEAGER CONJUGACY CLASSES                         25
+
+
+   (ii) This follows from (i) and the facts that the map π A from Ξmin-pmp ( G ) to
+Smin-pmp ( AG ) defined by (2.8) is continuous and surjective and that for a profinite
+ξ, π A (ξ ) is periodic.                                                            □
+
+Remark 6.6. Lemma 6.4 only requires that the graph G be connected, so the proofs
+above imply the following more precise result: if ξ is a transitive action of G on Ω
+and µ is any G-invariant measure with full support, then there exists a sequence
+of profinite actions (ξ n )n such that ξ n → ξ and µn → µ, where µn denotes the
+unique ξ n -invariant measure on Ω.
+   Moreover, it follows that, for measured Rauzy graphs with full support, the
+three conditions in Example 4.9 are all equivalent to being connected.
+  Applying Theorem 6.5 to G = Z and using the fact that Ξmin-pmp (Z) = Ξmin (Z)
+and Smin-pmp ( AZ ) = Smin ( AZ ) (because Z is amenable), we obtain the following.
+Corollary 6.7 ([H1]). The following hold:
+    (i) Ξmin (Z) has a comeager conjugacy class whose elements are isomorphic to the
+        universal odometer.
+   (ii) For every A, Sper-tr ( AZ ) is dense in Smin ( AZ ).
+Remark 6.8. Periodic subshifts of free groups have also been studied by Pianta-
+dosi [P]. Among other results, he has a combinatorial characterization of the SFTs
+containing a periodic point. It is a consequence of the results of this section that
+SFTs defined by measured Rauzy graphs contain periodic points; it follows that
+measured Rauzy graphs satisfy the combinatorial condition of [P, Theorem 3.4].
+Conversely, any SFT with a periodic point admits an invariant measure, so its
+corresponding graph can be made measured (but the measure may not have full
+support). We are grateful to Ville Salo for making us aware of the paper [P].
+
+                       7. Non-finitely generated groups
+7.1. Co-induction. If G is a group and H ≤ G, the restriction functor takes a G-flow
+and produces the H-flow which is the restriction of the action to H. Co-induction
+is the right adjoint functor to restriction. It takes an H-flow and it produces a
+G-flow whose restriction to H is an extension of the given H-flow and which is
+universal with respect to this property. The construction is similar to the classical
+notion of induced representation in representation theory.
+   Co-induction is particularly useful for understanding properties in Ξ( G ) when
+G is not finitely generated: the topology on Ξ( G ) is defined by looking at finitely
+many elements of G at a time, which implies that actions co-induced from finitely
+generated subgroups are dense (see the proof of Proposition 7.4).
+   We briefly recall the construction and some of its basic properties. Let H ↷ Z be
+an H-flow. Then G acts on Z G via left-shift on the coordinates. Define π : Z G → Z
+by π (z̃) = z̃(1G ) and consider the set
+
+               Z̃ = {z̃ ∈ Z G : ∀ g ∈ G ∀h ∈ H   z̃( gh) = h−1 · z̃( g)},
+where the symbol · refers to the action of H on Z. By definition, Z̃ is a closed,
+G-invariant subset of Z G ; furthermore, π : Z̃ → Z is H-equivariant. The co-induced
+action of H ↷ Z (from H to G) is the action G ↷ Z̃.
+   Let T be a transversal for the left cosets of H in G. Then any z̃ ∈ Z̃ is uniquely
+determined by its values on T, since for all h ∈ H, we have z̃(th) = h−1 · z̃(t); and
+conversely, any element z̃ of Z T can be extended to an element of Z̃ by the same
+formula. In particular, Z̃ is homeomorphic to Z T .
+26                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+Lemma 7.1. Let H ≤ G and let H ↷ Z be a flow which is not minimal. Then the
+co-induced flow G ↷ Z̃ is not minimal either.
+Proof. Let U be an H-invariant, non-empty, open subset of Z and let z0 ∈ Z \ U.
+We claim that G · π −1 (U ) is a proper subset of Z̃, where π : Z̃ → Z denotes
+the natural projection. Let T be a transversal for the left H-cosets in G and set
+z̃0 (th) = h−1 · z0 for all t ∈ T, h ∈ H. Then it is clear that z̃0 ∈ Z̃ \ G · π −1 (U ). □
+   It is straightforward to check that the co-induced action X̃ of an H-subshift
+X ∈ S( A H ) is a G-subshift in the same alphabet. Indeed, in that case X̃ can be
+identified with
+                       { x ∈ AG : ∀ g ∈ G h 7→ x ( gh) ∈ X }
+                                                      
+
+via the G-equivariant, continuous, injective map τ : X̃ → A G defined by τ ( x̃ )( g) =
+x̃ ( g)(1G ). In other words, elements of X̃ are obtained by copying independently
+elements of X inside each left H-coset. It follows that the co-induced action of an
+SFT is an SFT (with the same forbidden patterns) and the co-induced action of a
+sofic subshift is sofic (because of functoriality).
+Definition 7.2. Let G be a group and n ∈ N. A G-flow G ↷ Z is topologically
+n-transitive (or simply n-transitive) if the diagonal action G ↷ Z n is transitive.
+Proposition 7.3. Let G be a group, let H be a subgroup of G of infinite index, and let
+H ↷ Z be an H-flow. Then the co-induced action G ↷ Z̃ is n-transitive for all n.
+Proof. Fix n and two non-empty open subsets U, V of Z̃ n . Let T be a transversal
+for the left H-cosets in G. Identifying T with G/H, the transitive action G ↷ G/H
+gives us a transitive action G ↷ T (explicitly, g · t1 = t2 if gt1 H = t2 H).
+   We may assume that there exist a finite subset F of T and two finite families of
+open subsets Ui, f , Vi, f , for i < n, f ∈ F, of X such that
+                       U = {z̃ ∈ Z̃ n : ∀ f ∈ F ∀i < n x̃i ( f ) ∈ Ui, f }
+                        V = {z̃ ∈ Z̃ n : ∀ f ∈ F ∀i < n x̃i ( f ) ∈ Vi, f }.
+Pick some ỹ ∈ U and z̃ ∈ V. Since G/H is infinite, Neumann’s lemma gives
+us g ∈ G such that gFH ∩ FH = ∅. Then we can define w̃ ∈ Z̃ n by setting
+w̃i ( f ) = ỹi ( f ) and w̃i ( g f ) = z̃i ( f ) for all f ∈ F, and extending w̃ arbitrarily to the
+other cosets. By definition, w̃ ∈ U and g−1 · w̃ ∈ V.                                             □
+     This has the following immediate consequence.
+Proposition 7.4. Let G be a countable group which is not finitely generated. Then a
+generic element of Ξ( G ) is n-transitive for all n.
+Proof. Being n-transitive is a Gδ condition, so we only need to prove that n-
+transitive actions are dense in Ξ( G ). Consider a basic open set U in Ξ( G ) of the
+form
+                  U = {ξ ∈ Ξ( G ) : ∀ f ∈ F ∀ a ∈ A ξ ( f ) a = ξ 0 ( f ) a}
+where ξ 0 ∈ Ξ( G ), F is a finite subset of G, and A is a finite subalgebra of B(Ω).
+   Let η be the restriction of ξ 0 to the subgroup H of G generated by F, and
+denote by η̃ : G ↷ Ω̃ the co-induced action of η | H . Note that Ω̃ is homeomorphic
+to Ω. Denoting by π : Ω̃ → Ω the H-equivariant factor               map, we may pick a
+homeomorphism ϕ : Ω̃ → Ω such that ϕ π −1 (ξ 0 ( f ) a) = ξ 0 ( f ) a for all a ∈ A and
+                                                            
+
+all f ∈ F.
+   Then for every f ∈ F and every a ∈ A, we have (ϕη̃ϕ−1 )( f ) a = ξ 0 ( f ) a, which
+shows that ϕη̃ϕ−1 belongs to U. On the other hand, by Proposition 7.3, η̃ is
+n-transitive for all n and we are done.                                               □
+                        DENSE AND COMEAGER CONJUGACY CLASSES                             27
+
+
+   As pointed out in [FKSV, Corollary 4.4.7], Proposition 7.4 admits a converse.
+Indeed, let G be finitely generated and let { a1 , a2 } be a non-degenerate partition
+of Ω. Then the set of ξ ∈ Ξ( G ) satisfying the condition “a1 is ξ-invariant” is
+open, disjoint from the set of transitive actions, and non-empty (because the trivial
+action belongs to it). Thus we obtain a dynamical characterization of finitely
+generated groups: a group G is finitely generated iff a generic element of Ξ( G ) is
+not transitive.
+
+7.2. Density of minimality. We saw above that the density of Ξtr ( G ) in Ξ( G ) is
+characterized by G not being finitely generated. It is natural to ask for which
+groups G, Ξmin ( G ) is dense in Ξtr ( G ) (this problem was brought to our attention
+by A. S. Kechris). For instance, it is easy to see that this is the case when G is a free
+group on infinitely many generators. While we do not have a general criterion, we
+provide an answer for the class of non-finitely generated amenable groups (see
+Corollary 7.13). Before turning to that, we point out the following obstruction.
+Proposition 7.5. Let G be a countable group such that its center Z ( G ) contains an
+element of infinite order. Then Ξmin ( G ) is not dense in Ξ( G ).
+Proof. We fix a clopen partition { a1 , a2 , a3 } of Ω, with each ai non-empty, as well as
+a homeomorphism ϕ of Ω such that ϕ( a1 ) ∩ a2 ̸= ∅, ϕ( a2 ) = a3 , and ϕ( a3 ) ⊂ a2 .
+    We first observe that the centralizer C (ϕ) ⊂ Homeo(Ω) does not act minimally
+on Ω. To see this, consider b = a1 ∩ ϕ−1 ( a2 ), which is clopen and non-empty.
+Assume that C (ϕ) acts minimally; then there exists a finite F ⊆ C (ϕ) such that
+for all ω ∈ Ω there exists f ∈ F with f · ω ∈ b. Now pick some ω ∈ b; since F is
+finite, there exists f ∈ F such that f · ϕn (ω ) ∈ b for infinitely many n ∈ N. Since
+f · ϕn ( x ) = ϕn ( f · x ) for all n, we see that as soon as ϕn ( f · x ) ∈ b, we must have
+ϕm ( f · x ) ∈ a2 ∪ a3 for all m ≥ n + 1, a contradiction.
+    Now let h ∈ Z ( G ) be of infinite order and consider the action ⟨h⟩ ↷ Ω given
+by h · ω = ϕ(ω ). Using co-induction, we see that the open set U of all actions
+ξ ∈ Ξ( G ) such that ξ (h)( ai ) = ϕ( ai ) for i = 1, 2, 3 is non-empty. For any ξ ∈ U,
+ξ [ G ] ⊆ Homeo(Ω) is contained in the centralizer of ξ (h), which does not act
+minimally by the argument given in the previous paragraph. Hence no element of
+U acts minimally.                                                                         □
+  Now we focus on amenable groups and we consider two cases depending on
+whether the group is locally finite or not. We start with the latter.
+Definition 7.6. Let G be a countable group and let G ↷ Z be a zero-dimensional
+flow. We say that a ∈ B( Z ) is shrinkable if it can be equidecomposed with a
+proper subset of itself, i.e.,Fif there exist a clopen partition a0 , . . . , an−1 of a and
+g0 , . . . , gn−1 ∈ G such that i gi · ai ⊊ a.
+    We say that the flow is shrinking if there exists a shrinkable a ∈ B(Ω).
+  We note that being shrinking is an open condition in Ξ( G ).
+  The shrinking condition is an obstruction to the existence of an invariant
+measure with full support. In particular, we have the following.
+Lemma 7.7. Assume that G is an amenable group and G ↷ Z is a minimal, zero-
+dimensional flow. Then it is not shrinking.
+Proof. Suppose that a ∈ BF      ( Z ) is shrinkable, as witnessed by a0 , . . . , an−1 and
+g0 , . . . , gn−1 . Then b = a \ gi · ai is open, non-empty. Let µ be a FG-invariant
+probability measure on Z. On the one hand, by invariance, µ( a) = µ( i gi · ai ), so
+µ(b) = 0. On the other, by minimality, finitely many translates of b cover Z, so
+µ( Z ) = 0, contradiction.                                                               □
+28                MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+     We also need the following well-known fact.
+Lemma 7.8 (Kőnig). Let Γ be a connected, infinite, locally finite graph and let v0 be a
+vertex of Γ. Then Γ has an infinite ray starting at v0 .
+Proposition 7.9. Let G be a non-locally finite, countable group. Then the set of shrinking
+actions of G is an open, dense subset of Ξ( G ). If G is moreover amenable, then Ξmin ( G )
+is not dense in Ξ( G ).
+Proof. The set of shrinking actions is open and conjugacy-invariant, so by Proposi-
+tion 2.3, we only need to build one shrinking action on a Cantor space. Let H be a
+finitely generated, infinite subgroup of G and fix a finite, symmetric generating set
+S of H. Consider the left Cayley graph Γ for H and S: that is, the graph with vertex
+set H and edges between h and sh for every h ∈ H and s ∈ S. Then we can apply
+                                        ∈N in Γ. Let T = { hn : n ∈ N } and for s ∈ S,
+Lemma 7.8 to find an infinite ray (hn )nF
+    Ts = { hn ∈ T : hn+1 = shn }. Then s∈S Ts = T and sTs = { hn+1 : hn+1 = shn },
+let F
+so s∈S sTs = T \ { h0 }.
+    Now consider the flow G ↷ βG, where βG denotes the Stone–Čech compactifi-
+cation of G. It follows from the calculation above that T, which is a clopen subset
+of βG, is shrinkable. Let A be a countable, G-invariant subalgebra of B( βG ) which
+contains all Ts . Then the Stone space of A gives us a metrizable, shrinking G-flow
+Z, with the same witnesses as in βG. If Z has isolated points, we can take the
+product of Z with the trivial action on the Cantor space to obtain an action on Ω
+that is still shrinking.
+   The second claim follows from the first and Lemma 7.7.                           □
+     Next we turn to the locally finite case. We start with a simple observation.
+Lemma 7.10. Let K ≤ H be finite groups and let K ↷ A be an action on a finite set with
+| A| ≤ [ H : K ]. Then there exists a free, transitive action H ↷ B and a K-factor map
+B → A.
+Proof. Set B = H and let T be a transversal for the right cosets of K in H. Let
+π : T → A be an arbitrary surjection and extend it to all of H by K-equivariance:
+define π (kt) = k · π (t) for all k ∈ K, t ∈ T.                                □
+   For locally finite groups, we also obtain information about the invariant mea-
+sures for a generic action. In order to state the theorem, we recall that the clopen
+value set of a Borel probability measure µ on Ω is the countable set
+                              {µ( a) : a ∈ B(Ω)} ⊆ [0, 1].
+Following Akin, we say that a probability measure µ on Ω is good if it is atomless,
+has full support, and is such that for any two a, b ∈ B(Ω) with µ( a) < µ(b), there
+exists c ∈ B(Ω) such that c ⊆ b and µ(c) = µ( a). Using results of Akin and
+Giordano–Putnam–Skau, the clopen value sets of good invariant measures can be
+used to characterize orbit equivalence (see Corollary 7.12).
+Theorem 7.11. Let G be a countably infinite, locally finite group. Then a generic element
+of Ξ( G ) is minimal and uniquely ergodic, its unique invariant measure is good, and the
+clopen value set of the measure is equal to
+                     
+              VG = i/|K | : i ∈ {0, . . . , |K |}, K is a finite subgroup of G .
+Proof. We first show that the set of ξ ∈ Ξ( G ) satisfying the condition
+    (∗) for any non-degenerate partition A of Ω and any finite set F ⊆ G, there
+        exist a finite subgroup H ≤ G containing F and a non-degenerate partition
+        B refining A such that B is ξ ( H )-invariant and ξ | H is free and transitive
+        on B
+                         DENSE AND COMEAGER CONJUGACY CLASSES                                29
+
+
+is dense Gδ .
+   By the Baire category theorem, it suffices to see that the condition (∗) for fixed
+A and F is dense (it is obviously open). Let U be a non-empty open set in Ξ( G ).
+By refining A if necessary, we may assume that there is a finite subgroup K ≤ G
+such that A is K-invariant and U is given by the action of K on A. Let H be a finite
+subgroup of G containing K and F such that [ H : K ] ≥ | A|. Apply Lemma 7.10
+to produce a free transitive action H ↷ B that factors onto K ↷ A. Let B0 be a
+partition of Ω refining A that realizes the factor map B → A. Let η0 be the action
+of G co-induced from H ↷ B on the space B̃. Let ϕ : B̃ → Ω be a homeomorphism
+sending B to B0 (here we view B as a partition of B̃ using the canonical factor map
+B̃ → B). Then ϕηϕ−1 belongs to U and satisfies (∗) for A and F.
+   We have established that set of ξ ∈ Ξ( G ) satisfying (∗) is dense Gδ . Let now ξ
+satisfy (∗) and let µ be any ξ-invariant measure. Let a ∈ B(Ω) be arbitrary and
+apply (∗) to the partition { a, Ω \ a} to obtain H and B. As the action H ↷ B is
+transitive, we get that H · a = Ω, which proves the minimality of ξ. As this action
+is moreover free and µ is H-invariant, we must have µ(b) = 1/| H | for all b ∈ B.
+Since a is a union of elements of B, this determines µ( a) uniquely and µ( a) ∈ VG .
+To see that every element of VG is realized, let K and i be given and apply (∗) to
+the trivial partition and K to obtain H ≥ K and B. Then the union of i | H |/|K |
+elements of B has measure i/|K |.
+   Finally, to check that µ is good, let a, b ∈ B(Ω) with µ( a) < µ(b). Let B and H
+be given by (∗) such that a and b can be written as unions of elements of B. Now
+we can take c to be the union of | H |µ( a) elements of B contained in b.           □
+   Akin [A] has shown that if µ1 and µ2 are two good measures with the same
+clopen value sets, then there is f ∈ Homeo(Ω) with f ∗ µ1 = µ2 . By the work of
+Giordano–Putnam–Skau, this is connected with the notion of orbit equivalence.
+Recall that two actions G ↷ Ω, H ↷ Ω are orbit equivalent if there exists f ∈
+Homeo(Ω) such that f [ G · ω ] = [ H · f (ω )] for all ω ∈ Ω.
+Corollary 7.12. Let G be a countable, locally finite group. Then a generic pair of actions
+in Ξ( G ) are orbit equivalent. More generally, if G and H are locally finite, a generic action
+of G is orbit equivalent to a generic action of H iff VG = VH .
+Proof. We prove the more general statement. One direction follows directly from
+Theorem 7.11. For the other, let ξ and η be actions of G and H, respectively,
+satisfying condition (∗) in the proof of Theorem 7.11. In particular, they are free.
+To show that they are orbit equivalent, we will employ [GPS, Theorem 2.3]. Using
+Akin’s result mentioned above and the conclusion of Theorem 7.11, we only need
+to check that the orbit equivalence relations of ξ and η are generated by AF actions
+in the terminology of [GPS]. We will do this for ξ, the argument for η being
+analogous.
+   Let JξK be the topological full group of ξ, i.e., the group of all homeomorphisms
+f of Ω for which there exists a clopen partition A of Ω such that for all a ∈ A,
+there is ga ∈ G with f | a = ξ ( ga )| a . It is clear that JξK generates the same orbit
+equivalence relation as ξ. As ξ is free, the set {ω ∈ Ω : f (ω ) = ω } is clopen for
+every f ∈ JξK. The only remaining condition to check is that JξK is locally finite.
+To simplify notation, we will identify G with its copy in JξK. Let F ⊆ JξK be finite
+and let L = ⟨ F ⟩. Let A be a clopen partition of Ω and K ≤ G be finite such that
+for every f ∈ F and a ∈ A, there exists g ∈ K with f | a = g| a . Let A be a finite
+K-invariant subalgebra of B(Ω) containing A and note that A is L-invariant. By
+(∗), we may further assume that the action of K on the atoms of A is free. We
+claim that the map L → Aut(A), f 7→ f |A is injective, which will complete the
+proof. Indeed, let f belong to the kernel of this map and let a be an atom of A.
+30                MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+By the construction of A, there exists ga ∈ K such that f | a = ga | a . In particular,
+ga ( a) = f ( a) = a, and by the freeness of the action of K, we must have that
+ga = 1G , i.e., f | a = id | a . As this holds for all atoms a, we are done.        □
+   In view of Corollary 7.12, it is natural to ask whether there is a comeager
+conjugacy class in Ξ( G ) for G locally finite. This is not the case by Corollary 7.17.
+   Combining Theorem 7.11 with Proposition 7.9 we obtain the following charac-
+terization.
+Corollary 7.13. Let G be a countably infinite, amenable group. Then the following are
+equivalent:
+     • G is locally finite;
+     • Ξmin ( G ) is dense in Ξ( G ).
+7.3. Comeager conjugacy classes in Ξ( G ). It was asked in [D] whether there
+exists a non-finitely generated group G such that Ξ( G ) has a comeager conjugacy
+class. In the end of this subsection, we provide an answer for amenable groups.
+We know from Corollary 3.3 that this is equivalent to the density of projectively
+isolated subshifts in S( AG ) for every finite A.
+Theorem 7.14. Let G be a countable group which is not finitely generated, let A be a
+finite alphabet, and let X ∈ S( AG ) be a subshift. Then X is projectively isolated iff it is
+minimal and sofic.
+Proof. One implication is obvious, since minimal sofic subshifts are projectively
+isolated for any group. Similarly, a projectively isolated subshift is always sofic.
+So we only need to prove that a projectively isolated subshift in S( AG ) is minimal.
+   If X ∈ S( AG ) and F ⊆ G is finite, we denote by X F the collection of F-patterns
+that occur in X. For H ≤ G, denote by X | H the image of the restriction map
+AG → A H and note that X | H ∈ S( A H ).
+   Let X ∈ S( AG ) be projectively isolated. Then there exist a finite set F ⊆ G, a
+finite alphabet B, a map π : B → A giving rise to a map Π : BG → AG , and an SFT
+Y ⊆ BG such that Π[ Z ] = X for any Z ∈ S( B G ) with ZF = YF . Suppose, towards a
+contradiction, that X is not minimal. By enlarging F if necessary, we may assume
+that there is an F-pattern p0 occurring in X, and x0 ∈ X such that p0 does not
+occur in x0 .
+   Let
+                             Q = { q ∈ B F : π ◦ q = p0 }
+and let y0 ∈ Y be such that Π(y0 ) = x0 . No element of Q occurs in y0 .
+   Let H = ⟨ F ⟩ and note that Y is the subshift co-induced of Y | H , i.e., elements of
+Y are obtained by copying independently elements of Y | H on each left H-coset.
+As Π is defined using a map on the alphabets, the same is also true for X.
+   Let Z ⊆ Y be the subshift consisting of all y such that patterns in Q occur in y
+in at most one left H-coset. Explicitly,
+       Z = y ∈ Y : ∀ g1 , g2 ( g1−1 · y)| F , ( g2−1 · y)| F ∈ Q =⇒ g1 H = g2 H .
+                                                                               
+
+For each p ∈ YF , pick some y p ∈ Y | H such that y p | F = p. Let T be a transversal
+for the left cosets of H in G with 1G ∈ T. For each p ∈ P, define z p ∈ Y by setting,
+for t ∈ T and h ∈ H,                   (
+                                         y p (h) if t = 1G ,
+                            z p (th) =
+                                         y0 (h) otherwise.
+Since patterns in Q do not occur in y0 , z p belongs to Z. Thus Z realizes all the
+patterns in YF , whence ZF = YF .
+                          DENSE AND COMEAGER CONJUGACY CLASSES                                31
+
+
+   On the other hand, Π[ Z ] is a proper subshift of X: indeed, let x1 ∈ X | H be
+a point in which p0 occurs and copy x1 on every H-coset to obtain an element
+of X which is not in Π[ Z ] (note that as H is finitely generated and G is not, we
+must have H ⪇ G). This contradicts our choice of neighborhood that projectively
+isolates X.                                                                      □
+Corollary 7.15. Let G be a countable group which is not finitely generated. If there exists
+a comeager conjugacy class in Ξ( G ), then the generic element of Ξ( G ) is minimal.
+Proof. A generic element of Ξ( G ), if it exists, is obtained as an inverse limit of
+projectively isolated subshifts (see Theorem A.9 and Section 3 or [D]). We just
+proved that if G is not finitely generated then projectively isolated subshifts must
+be minimal. An inverse limit of minimal flows is minimal.                         □
+Proposition 7.16. Let G be an infinite, locally finite group. Then the only minimal sofic
+G-subshifts are singletons.
+Proof. Let X be a minimal sofic subshift. As in the proof of Theorem 7.14 and
+adopting the notation thereof, we see that there exists a finitely generated (so,
+finite) subgroup H ≤ G such that X is co-induced of X | H . Furthermore for any
+finite K such that H ≤ K ≤ G, X is co-induced of X |K (from K to G) and X |K is
+co-induced of X | H (from H to K). It follows from Lemma 7.1 that X |K is minimal,
+which, as K is finite, implies that X |K ≤ |K |. We have that
+                                                                 |K |/| H |
+                       |K | ≥ X |K = ( X | H )[K:H ] = X | H                  ,
+which, applied for big enough K, implies that X | H , and therefore, X is a singleton.
+                                                                                    □
+Corollary 7.17. Let G be a countable amenable group which is not finitely generated.
+Then there is no comeager conjugacy class in Ξ( G ).
+Proof. If G is not locally finite, then Ξmin ( G ) is not dense in Ξ( G ) by Proposition 7.9,
+so Corollary 7.15 applies and there is no comeager conjugacy class in Ξ( G ).
+   If G is locally finite, then by Theorem 7.14 and Proposition 7.16, projectively
+isolated subshifts are not dense, whence there is no comeager conjugacy class in
+Ξ( G ) by Corollary 3.3.                                                                  □
+Question 7.18. Does there exist a non-finitely generated group which admits:
+    (i) non-trivial, minimal SFTs?
+   (ii) non-trivial, minimal, sofic subshifts?
+
+                                  8. Transitive actions
+8.1. Some general criteria. We turn to the study of the space Ξtr ( G ) of transitive
+actions of a countable group G. It is claimed by Hochman in [H2] that there is a
+dense conjugacy class in Ξtr ( G ) for G = Zd (see Proposition 4.4 of [H2]). However,
+the argument given there is incorrect, and the statement is not true for d ≥ 2 (see
+Theorem 8.10). Hochman’s approach, which is general and does not depend on
+particular properties of Zd , is as follows. Let {ξ n : n ∈ N} be a dense set in Ξtr ( G )
+and let xn be a transitive point for ξ n . Then the closure Z of the orbit of ( x0 , x1 , . . . )
+in the product ∏n ξ n is a transitive system whose conjugates can approximate all
+of the ξ n . While this is indeed true, the problem is that the point ( x0 , x1 , . . . ) may
+be isolated in Z and even worse, sometimes Z cannot even be realized as a factor
+of a flow on a perfect space. We are thus led to characterize the flows which can
+be realized in such a way.
+32                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+     If G is a group, G ↷ Z is a G-flow, z ∈ Z, and U ⊆ Z is open, we denote
+(8.1)                        Ret(z, U ) := { g ∈ G : g · z ∈ U }.
+We say that a point z ∈ Z is recurrent if Ret(z, U ) is infinite for every open U ∋ z.
+We note that if G is infinite, then every flow contains recurrent points because
+every point belonging to a minimal subflow is recurrent. A basic observation is
+that a transitive point which is not isolated is necessarily recurrent (because all of
+its neighborhoods have infinitely many disjoint, non-empty, open subsets). This
+leads to the following criterion.
+Proposition 8.1. Let G be a countable group, let G ↷ Z be a zero-dimensional, metrizable
+G-flow, and let z0 ∈ Z be a transitive point. Then the following are equivalent:
+     (i) The flow Z is a factor of a transitive flow on a Cantor space;
+    (ii) The point z0 is recurrent;
+   (iii) The point z0 is not isolated or it has infinite stabilizer.
+Proof. (i) ⇒ (ii) ⇒ (iii). Suppose that π : Ω → Z is a factor map for some transitive
+flow G ↷ Ω. If z0 is not isolated, we are done by the observation above. Suppose
+now that z0 is isolated. Let U0 = π −1 ({z0 }). Then U0 is open in Ω and therefore
+contains a transitive point ω0 . Then π (ω0 ) = z0 and Ret(ω0 , U0 ) is infinite and is
+contained in the stabilizer Gz0 .
+   (iii) ⇒ (i). Assume that z0 is isolated with infinite stabilizer H (otherwise, there
+is nothing to prove). The shift action H ↷ 2G is transitive; let x0 ∈ 2G be a point
+with dense orbit. Let Y = G · ( x0 , z0 ) ⊆ 2G × Z. We prove that Y is perfect, which
+amounts to showing that ( x0 , z0 ) is not isolated in Y. Since 2G is perfect and x0
+has a dense orbit, there exists a sequence (hn )n∈N of elements of H such that
+hn · x0 ̸= x0 for all n, and hn · x0 converges to x0 . Then hn · ( x0 , z0 ) = (hn · x0 , z0 )
+converges to ( x0 , z0 ), and we are done.                                                 □
+Theorem 8.2. Let G be an infinite countable group. Then the following are equivalent:
+    (i) Ξtr ( G ) has a dense conjugacy class;
+   (ii) For all SFTs X1 ∈ S( A1G ), X2 ∈ S( A2G ), and all patterns p1 , p2 , if there exist
+        recurrent points xi ∈ Xi such that pi occurs in xi for i = 1, 2, then there exist
+        xi′ ∈ Xi such that pi occurs in xi′ for i = 1, 2, and ( x1′ , x2′ ) is recurrent in
+        X1 × X2 .
+Proof. (i) ⇒ (ii). Let ξ 0 ∈ Ξtr ( G ) have a dense conjugacy class. Let Xi , pi , xi for
+i = 1, 2 be given. Identify A1 and A2 with some arbitrary non-degenerate partitions
+of Ω. Let
+(8.2)      Ui = {ξ ∈ Ξtr ( G ) : π Ai (ξ ) ⊆ Xi , pi occurs in π Ai (ξ )},   i = 1, 2,
+where the maps π Ai are defined as in (2.8), and note that U1 and U2 are open.
+They are also non-empty by the assumptions and Proposition 8.1. Then there exist
+ϕi ∈ Homeo(Ω) such that ϕi · ξ 0 ∈ Ui . If ω0 is any transitive point for ξ 0 , we can
+               A
+take xi′ = Πϕ i·ξ ϕi (ω0 ) , where the maps Π are defined by (2.7).
+                             
+                i 0
+    (ii) ⇒ (i). Let U1 and U2 be two non-empty open subsets of Ξtr ( G ), which, we
+may assume are given by (8.2). Let ξ i ∈ Ui and let ωi be a transitive point for ξ i .
+                                                  A
+Then it follows from Proposition 8.1 that Πξ i (ωi ) witnesses that the hypotheses of
+(ii) are satisfied. Let x1′ , x2′ be as in the conclusion of (ii). By Proposition 8.1, there
+exists an action ξ ∈ Ξtr ( G ) which factors onto G · ( x1′ , x2′ ) . Then ξ has conjugates
+in both U1 and U2 .                                                                       □
+     Next we study how this property behaves with respect to finite index subgroups.
+                        DENSE AND COMEAGER CONJUGACY CLASSES                            33
+
+
+Lemma 8.3. Let G ↷ Z be a G-flow and let H ≤ G be a subgroup of finite index. If the
+point z ∈ Z is recurrent for G, then it is also recurrent for H.
+Proof. Without loss of generality, we may assume that Z = G · z and apply Propo-
+sition 8.1. If z is isolated, then the stabilizer Gz is infinite, and Hz = Gz ∩ H is also
+infinite. Suppose now that z is not isolated. Then Z is perfect. Let T be a set of
+representatives for the left cosets of H. We have that Z = TH · z = t∈T tH · z, so
+                                                                          S
+
+H · z has non-empty interior. Therefore H · z contains a perfect open subset and z
+cannot be isolated in H · z. It is therefore H-recurrent.                              □
+Proposition 8.4. Let G be an infinite countable group and let H ≤ G be a subgroup of
+finite index. If Ξtr ( H ) has a dense conjugacy class, then so does Ξtr ( G ).
+Proof. We use Theorem 8.2. Let Xi ∈ S( AiG ), pi , and xi be as in Theorem 8.2 (ii).
+Let T be a set of representatives for the right cosets of H in G and consider the
+map Φ : AiG → ( AiT ) H given by
+                                  Φ( x )(h)(t) = x (ht).
+Note that Φ is an isomorphism of H-flows and it is not difficult to see that Φ[ Xi ] is
+an SFT as an H-shift (see, e.g., [B, Lemma 1.5.11]). It follows from Lemma 8.3 that
+xi is recurrent for H. Thus there exist x1′ , x2′ such that pi occurs in xi′ for i = 1, 2
+and ( x1′ , x2′ ) is recurrent for H and therefore also for G.                        □
+  We do not know whether Proposition 8.4 works in the other direction: that is,
+whether the property of having a dense conjugacy class in Ξtr ( G ) goes down to
+subgroups of finite index.
+8.2. The special symbol property and polycyclic groups.
+Definition 8.5. Let G be a group and let H ≤ G. We denote by χ H ∈ 2G the
+characteristic function of H and we say that G has the special symbol property relative
+to H if the subshift G · χ H ∈ S(2G ) is sofic. We say that G has the special symbol
+property if G has the special symbol property relative to the trivial subgroup.
+   We note that the point χ H is isolated in G · χ H because it is the only point in its
+orbit which belongs to the open set { x ∈ 2G : x (1G ) = 1}. Its stabilizer is equal to
+H and therefore it is recurrent iff H is infinite.
+   The special symbol property (in its non-relative version) was introduced by
+Dahmani and Yaman in [DY]; the equivalent formulation that we use here comes
+from [ABS]. It was proved in [DY] that hyperbolic groups have the special symbol
+property and that this property is stable under group extensions. All groups that
+have the special symbol property are finitely generated.
+   The following gives a simple criterion for the non-existence of a dense con-
+jugacy class in Ξtr ( G ), which applies, for example, to hyperbolic groups (see
+Theorem 8.17).
+Proposition 8.6. Let G be a countable group and let H1 , H2 be two infinite subgroups of
+G such that:
+     • G has the special symbol property relative to H1 and to H2 ;
+     • for every g ∈ G, gH1 g−1 ∩ H2 is finite.
+Then there is no dense conjugacy class in Ξtr ( G ).
+Proof. Let yi = χ Hi for i = 1, 2. We verify that Theorem 8.2 (ii) fails. We let
+πi : Xi → G · yi witness the soficity of G · yi , where Xi is an SFT. Consider the set
+πi−1 ({yi }) ⊆ Xi . It is closed and Hi -invariant and, as Hi is infinite, it must contain
+a recurrent point xi . Let pi be a pattern which occurs in xi and such that if pi occurs
+34                MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+in xi′ , then πi ( xi′ ) ∈ G · yi , and in particular, πi ( xi′ ) is isolated (here we use that
+yi is isolated in G · yi ). Now Xi , xi , pi witness the hypothesis of Theorem 8.2 (ii).
+On the other hand, if pi occurs in xi′ for i = 1, 2, then Ret xi′ , πi−1 ({πi ( xi′ )}) is
+                                                                                            
+
+equal to the stabilizer of πi ( xi′ ), which is a conjugate of Hi . As the intersection of a
+conjugate of H1 and a conjugate of H2 is always finite by hypothesis, we conclude
+that ( x1′ , x2′ ) cannot be recurrent.                                                       □
+  Next we give a different sufficient condition for the non-existence of a dense
+conjugacy class in Ξtr ( G ) that applies to some group extensions.
+Lemma 8.7. Let G be a group and let H ⊴ G be finitely generated. If G/H has the special
+symbol property, then G has the special symbol property relative to H.
+Proof. Let X ⊆ AG/H be an SFT that witnesses the soficity of ( G/H ) · χ{1G/H } via
+a map AG/H → 2G/H induced from a map π : A → {0, 1}. Define the embedding
+ι : AG/H → AG by ι( x )( g) = x ( gH ) and let X ′ = ι[ X ]. It is clear that the map
+AG → 2G induced by π sends X ′ onto G · χ H , so we only have to check that X ′
+is an SFT. This follows from the fact that H is finitely generated: we just have to
+copy the rules for X (using arbitrary representatives of the cosets) and add the
+rules that x (s) = x (1G ) for all and all s from a finite generating set for H, thus
+ensuring that all x ∈ X are constant on H-cosets.                                   □
+     The following fact is a relativized version of [DY, Proposition 4.2].
+Proposition 8.8. Assume that K ≤ H ⊴ G are finitely generated groups such that H has
+the special symbol property relative to K and the quotient G/H has the special symbol
+property. Then G has the special symbol property relative to K.
+Proof. Let X1 ⊆ A1H be an SFT that witnesses the soficity of H · χK via a map
+Φ1 : A1H → 2 H induced from a map ϕ1 : A1 → {0, 1}. Let E1 be a finite defining
+window for X1 ; we may assume that E1 generates H and contains 1G .
+  Similarly, let X2 ⊆ A2G/H be an SFT witnessing the soficity of ( G/H ) · χ{1G/H }
+via a map Φ2 : A2G/H → 2G/H induced from a map ϕ2 : A2 → {0, 1}. Let E2 be
+a finite defining window for X2 which generates G/H and contains 1G/H = H.
+We pick a map r : E2 → G such that r ( H ) = 1G and for every e ∈ E2 , one has
+e = r (e) H.
+   We set B = A1 × A2 and denote by α1 , α2 the coordinate projections. Consider
+the SFT Z ⊆ BG , with defining window { gh : g ∈ r [ E2 ], h ∈ E1 } for which a
+pattern p is allowed iff it satisfies the following conditions:
+      • For every g ∈ r [ E2 ], the pattern h 7→ α1 ◦ p( gh) (with support equal to
+         E1 ) is an allowed pattern for X1 . This ensures that for any z ∈ Z and any
+         g ∈ G the map h 7→ α1 ◦ z( gh) belongs to X1 .
+      • For every h ∈ E1 , α2 ◦ p(h) = α2 ◦ p(1G ). This implies that for any z ∈ Z
+         the map gH 7→ α2 ◦ z( g) is well-defined.
+      • The pattern f 7→ α2 ◦ p(r ( f )) (with support E2 ) is an allowed pattern for
+         X2 . Along with the previous condition, this guarantees that for all z ∈ Z
+         and all g ∈ G the map gH 7→ α2 ◦ z( g) is an element of X2 .
+  We define ϕ : B → {0, 1} by ϕ( a1 , a2 ) = ϕ1 ( a1 )ϕ2 ( a2 ) and denote by Φ : B      G →
+
+2G the associated factor map. We now prove that Φ[ Z ] = G · χK .
+   Choose x1 ∈ X1 such that Φ1 ( x1 ) = χK and x2 ∈ X2 such that Φ2 ( x2 ) = χ1G/H .
+Let S ⊆ G be a transversal for the H-cosets of G which contains 1G and define
+z ∈ BG by setting
+          α1 ◦ z(sh) = x1 (h) and α2 ◦ z(sh) = x2 (sH )       for all s ∈ S, h ∈ H.
+                        DENSE AND COMEAGER CONJUGACY CLASSES                              35
+
+
+It is straightforward to check that z ∈ Z and Φ(z) = χK .
+    Finally, we prove that Φ[ Z ] ⊆ G · χK . Pick z ∈ Z. Since gH 7→ α2 ◦ z( gH )
+belongs to X2 , there is at most one H-coset on which Φ(z) is non-zero. If Φ(z)
+is the constant 0, necessarily 0 must belong to H · χK in 2 H or 0 belongs to
+( G/H ) · χ{1G/H } , hence K has infinite index in G and 0 belongs to G · χK in 2G .
+We are left with the case where there exists a unique coset gH on which Φ(z)
+is not identically 0. Since h 7→ α1 ◦ z( gh) ∈ X1 , h 7→ Φ( g−1 · z)(h) belongs to
+the closure of H · χK in 2 H . Since g−1 · Φ(z) is equal to 0 on all H-cosets other
+than H, it follows that g−1 · Φ(z) belongs to the closure of H · χK in 2G . Hence
+Φ(z) ∈ G · χK .                                                                  □
+Proposition 8.9. Let G be a group and let H ≤ G satisfy the following conditions:
+     • H is normal, finitely generated, infinite, and of infinite index;
+     • H and G/H have the special symbol property.
+Then there is no dense conjugacy class in Ξtr ( G ).
+Proof. We check the failure of Theorem 8.2 (ii). First, using Lemma 8.7, as in the
+proof of Proposition 8.6, we find an SFT X1 ∈ S( A1G ), a recurrent point x1 ∈ X1
+and a pattern p1 which occurs in x1 such that for all x1′ ∈ X1 in which p1 occurs,
+there is an open set U1 such that Ret( x1′ , U1 ) is a subset of a conjugate of H. As H
+is normal, we can replace this by simply
+(8.3)                               Ret( x1′ , U1 ) ⊆ H.
+     Next let Y = H · χ{1 H } and let X2 be an SFT witnessing the soficity of Y. Let Ỹ
+and X̃2 be the corresponding subshifts co-induced to G and recall that X̃2 is an
+SFT. The subshift Ỹ has a simple description: it contains all ỹ ∈ 2G which have
+at most one occurrence of the symbol 1 in each left H-coset. Let π̃ : X̃2 → Ỹ be
+the map co-induced from X2 → Y. Let p2 be a pattern occurring in X̃2 such that
+if p2 occurs in x̃ ∈ X̃2 , then 1 occurs in π̃ ( x̃ ). By the remarks before Lemma 7.1
+and Proposition 7.3, X̃2 is perfect and transitive, so recurrent points are dense,
+and in particular, there exists a recurrent point x̃2 ∈ X̃2 in which p2 occurs. Now
+let x̃2′ be any point in X̃2 in which p2 occurs. Then there exists g ∈ G such that
+π̃ ( x̃2′ )( g) = 1. Let U2 = π̃ −1 {ỹ ∈ Ỹ : ỹ( g) = 1} . We claim that
+                                                          
+
+(8.4)                           Ret( x̃2′ , U2 ) ∩ H = {1G }.
+Indeed, let h ∈ H be such that h · x̃2′ ∈ U2 . Then π̃ ( x̃2′ )(h−1 g) = 1. However,
+π̃ ( x̃2′ )( g) = 1 and there is at most one occurrence of 1 in each right H-coset (as H
+is normal, left and right cosets coincide). This implies that h = 1G .
+     Combining (8.3) and (8.4), we see that whenever p1 occurs in x1′ and p2 occurs
+in x̃2′ , the point ( x1′ , x̃2′ ) cannot be recurrent, which concludes the proof.     □
+Theorem 8.10. Let G be a virtually polycyclic, infinite group. Then there is a dense
+conjugacy class in Ξtr ( G ) iff G is virtually cyclic.
+Proof. One direction follows from the fact that Ξtr (Z) has a dense conjugacy class
+(see [H1]) and Proposition 8.4.
+   For the other, note that, by [DY, Proposition 4.2], virtually polycyclic groups
+have the special symbol property. By [S, p. 16, Lemma 6], there exists a short exact
+sequence
+                                  1 → Zd → G → Q → 1
+with d ≥ 1. We have two cases. If Q is infinite, then we are done by Proposition 8.9.
+So assume that Q is finite. As G is not virtually cyclic, we have that d ≥ 2. Let
+a = (1, 0, . . . ) ∈ Zd and let { a0 , . . . , an−1 } ⊆ Zd be the (finite) conjugacy class of
+36               MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+a in G. As d ≥ 2, Zd is not the union of finitely many cyclic subgroups, so there
+exists b ∈ Zd which does not belong to i<n ⟨ ai ⟩. We claim that the subgroups
+                                              S
+
+⟨ a⟩ and ⟨b⟩ of G satisfy the hypotheses of Proposition 8.6, which allows us to
+conclude. First, by Lemma 8.7, Zd has the special symbol property relative to both
+⟨ a⟩ and ⟨b⟩ and, by Proposition 8.8, so does G. Second, ⟨b⟩ ∩ ⟨ ai ⟩ = {1G } for all
+i because ai is the image of a by an automorphism of Zd , so if bk = ain for some
+k, n ∈ Z, then k |n and b ∈ ⟨ ai ⟩, contradicting the choice of b.                 □
+
+8.3. Hyperbolic groups. We recall some facts about finite automata and hyperbolic
+groups. Given a finite alphabet S, we denote by S∗ the set of all finite words on S;
+for a word w ∈ S∗ , we denote its length by |w|.
+
+Definition 8.11. A finite automaton is a tuple A = (Σ, S, µ, e, P), where Σ is a finite
+set of states, S is a finite alphabet, µ : Σ × S → Σ is the transition function, e ∈ A is
+the initial state, and P ⊆ Σ is the set of accepting states.
+   The transition function µ extends to a map Σ × S∗ → Σ, which we still denote
+by µ, defined by induction as follows:
+
+          µ( p, ∅) = p; µ( p, ws) = µ µ( p, w), s , for p ∈ Σ, w ∈ S∗ , s ∈ S.
+                                                   
+
+A word w ∈ S∗ is accepted by A if µ(e, w) ∈ P. A language L ⊆ S∗ is called regular
+if it is the set of words accepted by some finite automaton.
+
+Definition 8.12. Let (S, ≤) be a finite linearly ordered set. The shortlex order ⪯ on
+S∗ is defined by setting u ⪯ v iff |u| < |v| or |u| = |v| and u is smaller than v for
+the lexicographic order on S|u| associated to ≤.
+
+   Note that, as a linear order, (S∗ , ⪯) is isomorphic to (N, ≤).
+   Let G be a finitely generated group and fix a finite, symmetric generating set
+S ⊆ G which does not contain 1G . There is a natural surjective evaluation map
+π : S∗ → G, mapping the word s1 · · · sn ∈ S∗ to the product s1 · · · sn ∈ G (and ∅
+to 1G ). To avoid clutter, we will often suppress the map π from the notation. For
+g ∈ G, we denote by | g| the shortest length of a word w ∈ S∗ such that π (w) = g.
+In particular, |1G | = 0 and | g−1 | = | g| for every g ∈ G. We view G as a metric
+space endowed with the left-invariant word metric d given by d( g, h) = | g−1 h|.
+   Let now S be endowed with some arbitrary fixed linear order. Given g ∈ G,
+there are in general many words from S∗ that evaluate to g; however, there is
+always a least one with respect to the shortlex order, which we denote by g. Notice
+that for every g ∈ G, | g| = | g|, so the word g represents a shortlex minimal
+geodesic connecting 1G and g in the Cayley graph of G. We will say that a word
+w ∈ S∗ is shortlex if w = g for some g ∈ G. It follows from the definition that any
+subword of a shortlex word is also shortlex.
+   The triple ( G, S, ≤), where G is a group, S is a finite, symmetric generating
+set for G, and ≤ is a linear order on S, is called shortlex automatic if the language
+{ g : g ∈ G } is regular.
+   Recall that the finitely generated group G is hyperbolic if there exists a hyper-
+bolicity constant δ ≥ 0 such that each side of any geodesic triangle in G is in
+the δ-neighborhood of the union of the other two sides. The property of being
+hyperbolic does not depend on the generating set S; we refer to [BH, Chapter III.Γ]
+for an introduction to hyperbolic groups. Typical examples are free groups as well
+as the fundamental groups of surfaces of genus at least 2 and many 3-manifolds.
+By [C] (see also [HRR, Section 5.8] for a modern treatment), ( G, S, ≤) is shortlex
+automatic whenever G is hyperbolic, for any generating set S and any linear order
+≤ on S.
+                       DENSE AND COMEAGER CONJUGACY CLASSES                            37
+
+
+Definition 8.13. Let G be a hyperbolic group generated by a finite, symmetric
+set S. A subgroup H ≤ G is quasi-convex if there exists a constant K such that for
+every h ∈ H, the geodesic represented by h is in the K-neighborhood of H. This
+property does not depend on the choice of S.
+   The following generalizes [DY, Proposition 4.1], but the proof is different.
+Proposition 8.14. Let G be a hyperbolic group and let H ≤ G be a quasi-convex subgroup.
+Then G has the special symbol property relative to H.
+   To prove Proposition 8.14, we will require some preparation. We fix a finite,
+symmetric, generating set S for G and a linear order on S. By [GS, Theorem
+2.2] (see also [HRR, Section 8.1]), the language {h : h ∈ H } is regular. So we fix
+automata A = (Σ, S, µ, e, P) and A′ = (Σ′ , S, µ′ , e′ , P′ ) which accept the languages
+{ g : g ∈ G } and {h : h ∈ H }, respectively. It follows from the properties of
+shortlex words that e ∈ P and for all p, q ∈ P, if µ( p, w) = q, then w is shortlex.
+   Set B = S × P × Σ′ and C = B ∪ {∗}, where ∗ = (†, e, e′ ) and † is a new symbol
+which does not belong to S. For c ∈ C, we write c = (c1 , c2 , c3 ) with c1 ∈ S ∪ {†},
+c2 ∈ P and c3 ∈ Σ′ .
+   In order to prove the special symbol property, we define a point x ∈ C G such
+that G · x ⊆ C G is an SFT of which G · χ H is
+                                             a factor. The word x has the property
+that for every g ∈ G, the sequence x ( g|i ) i<| g| records the runs of the automata
+A and A′ on the word g. More formally, set x (1G ) = ∗ and for g ∈ G \ {1G } such
+that g = ws with w ∈ S∗ , s ∈ S, define
+                                 x ( g )1 = s −1 ,
+                                                           
+(8.5)                            x ( g )2 = µ x ( w )2 , s ,
+                                 x ( g )3 = µ ′ x ( w )3 , s .
+                                                            
+
+It follows that x ( g)2 = µ(e, g) and x ( g)3 = µ′ (e′ , g) for all g ∈ G. Note also that
+x ( g)2 ∈ P for all g because g is a word accepted by A.
+Lemma 8.15. The subshift G · x is an SFT.
+Proof. Let δ ≥ 1 be a hyperbolicity constant for ( G, S) and let
+                                D = { g ∈ G : | g | ≤ δ }.
+In particular, S ∪ {1G } ⊆ D. We denote by X ⊆ C G the SFT defined by the
+D-patterns that appear in x. In other words, the finite set of forbidden patterns for
+X is C D \ {( g · x )| D : g ∈ G }.
+   Our goal is to show that X = G · x. The inclusion ⊇ being clear, we prove the
+other. We start with two claims that allow us to make calculations along shortlex
+geodesics in elements of X.
+Claim 1. Let y ∈ X, g ∈ G, and let s = y( g)1 ∈ S. Then:
+             y( g)2 = µ y( gs)2 , s−1   and y( g)3 = µ′ y( gs)3 , s−1 .
+                                                                    
+
+Proof. By the definition of X, there exists g′ ∈ G \ {1G } such that y( g) = x ( g′ )
+and y( gs) = x ( g′ s). Denoting g′ = wt with w ∈ S∗ , t ∈ S, we observe that
+s = y( g)1 = x ( g′ )1 = t−1 . We also have µ x (w)2 , t = x ( g′ )2 . Since
+                       y( gs)2 = x ( g′ s)2 = x ( g′ t−1 )2 = x (w)2 ,
+we get y( g)2 = µ y( gs)2 , s−1 . The argument for y( g)3 is analogous.
+                               
+                                                                                      □
+                                                                       
+Claim 2. Let y ∈ X, g ∈ G, s ∈ S, and suppose that µ y( g)2 , s ∈ P. Then:
+           y( gs)1 = s−1 , y( gs)2 = µ y( g)2 , s , y( gs)3 = µ′ y( g)3 , s .
+                                                                          
+38                  MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+Proof. Choose g′ ∈ G such that y( g) = x ( g′ ) and y( gs) = x ( g′ s). Since µ y( g)2 , s ∈
+                                                                                          
+
+P and x ( g′ )2 = y( g)2 , the word g′ s is shortlex,     ′       ′
+                                                    so g s =′ g s. Thus,   by the defini-
+tion of x, x ( g s)1 = s , x ( g s)2 = µ y( g)2 , s , and x ( g s)3 = µ′ y( g)3 , s . Since
+                 ′        − 1     ′
+
+y( gs) = x ( g′ s), the claim follows.                                                    □
+    Let now y ∈ X in order to show that y ∈ G · x. Suppose first that there is g ∈ G
+such that y( g) = ∗. Then it is enough to consider the case g = 1G and by applying
+Claim 1 and (8.5) inductively, we conclude that y = x in this case.
+    So suppose that the symbol ∗ does not occur in y and let F = { g ∈ G : | g| ≤ k }
+for some k ∈ N. Our goal is to find the pattern y| F in some translate of x. The
+word x is set up in such a way that when y ∈ G · x and ∗ does not occur in y,
+we may think of ∗ as pushed to the boundary of G along a geodesic. To see
+this, we define inductively an infinite word α ∈ SN and the corresponding ray
+γ ∈ G N . Set γ0 = 1G . Assuming that γi has been defined, we set αi = y(γi )1
+and γi+1 = γi αi . By Claim 1, µ y(γi+1 )2 , αi−1 = y(γi )2 for all i. It follows that
+                                                     
+
+µ y(γi+1 )2 , αi−1 · · · α0−1 = y(1G )2 . As y(γi+1 )2 , y(1G )2 ∈ P, the word αi−1 · · · α0−1
+                             
+
+is shortlex. In particular, |γi−+11 | = i + 1, and hence also |γi+1 | = i + 1. We conclude
+that the ray γ is geodesic.
+    Let n ≥ k + δ + 1. By the definition of X, there exists g0 ∈ G such that
+y(γn d) = x ( g0 d) for all d ∈ D. Let ϕ : G → G be the isometry defined by
+ϕ( g) = g0 γn−1 g for g ∈ G. Let F ′ = ϕ[ F ] and note that ϕ[γn D ] = g0 D.
+   We prove by induction, going backwards from n to 0, that
+(8.6)                        y(γi ) = x (ϕ(γi ))            for all i = n, . . . , 0.
+For i = n, this is true by the choice of g0 (as 1G ∈ D). Suppose it is true for i + 1
+in order to prove it for i. By the definition of α, y(γi )1 = αi . Then by Claim 1,
+y(γi )2 = µ(y(γi+1 )2 , αi−1 ), and similarly, for y(γi )3 .
+    In particular, setting ℓ = ϕ(1G ), we get x (ℓ) = y(1G ). Consider the shortlex
+geodesic ℓ connecting 1G and ℓ. Let m = |ℓ|, define t0 = x (ℓ)1 and then, induc-
+tively, ti+1 = x (ℓt0 · · · ti )1 for all i < m. By the definition of the automaton A and
+x, ℓ = t−  1          −1
+         m −1 . . . t 0 .
+   We prove by induction that ϕ(γi ) = ℓt0 · · · ti−1 and ti = αi for all i < n. For
+i = 0, we have that ϕ(γ0 ) = ϕ(1G ) = ℓ and t0 = x (ℓ)1 = y(1G )1 = α0 . Suppose it
+is true for i in order to prove it for i + 1. Then
+               ϕ ( γi + 1 ) = ϕ ( γ i α i ) = ϕ ( γ i ) α i = ℓ t 0 · · · t i − 1 α i = ℓ t 0 · · · t i ,
+and ti+1 = x (ℓt0 · · · ti )1 = x (ϕ(γi )) = y(γi ), by (8.6). In particular, g0 = ϕ(γn ) lies
+on the geodesic ℓ.
+    Let f ∈ F be arbitrary and set f ′ = ϕ( f ). Consider the geodesic triangle with
+vertices 1G , ℓ, and f ′ , where the geodesic between 1G and ℓ is the shortlex word
+ℓ, the one between 1G and f ′ is the shortlex word f ′ , and the one between ℓ and
+f ′ is the image by ϕ of the shortlex geodesic between 1G and f . In particular, the
+latter one is contained in ϕ[ F ]. Note that, by the triangle inequality, d( g0 , ϕ[ F ]) =
+d(γn , F ) ≥ n − k ≥ δ + 1. It follows from the δ-hyperbolicity of G that g0 must be
+δ-close to some h′ lying on the geodesic f ′ .
+    Pick such an h′ . By the definition of D and the word metric, we have h′ ∈ g0 D.
+Let h = ϕ−1 (h′ ). The word w := (h′ )−1 f ′ is a shortlex geodesic connecting h′ to f ′
+as well as h to f . Denoting w = s1 · · · sm , we prove by induction on i that
+(8.7)                    y(hs1 · · · si ) = x (h′ s1 · · · si )          for all i ≤ m.
+For i = 0, note that h ∈ γn D (because h′ ∈ g0 D), so, by the choice of g0 , y(h) =
+x (h′ ). Suppose that (8.7) has been proved for i in order to prove it for i + 1.
+                           DENSE AND COMEAGER CONJUGACY CLASSES                                    39
+
+
+We have that µ y(hs1 · · · si )2 , si+1 = µ x (h′ s1 · · · si )2 , si+1 ∈ P. So, by Claim 2,
+                                                                                  
+
+y(hs1 · · · si+1 )1 = si−+11 = x (h′ s1 · · · si+1 )1 ,
+                                                                       
+               y(hs1 · · · si+1 )2 = µ y(hs1 · · · si )2 , si+1
+                                   = µ x ( h ′ s 1 · · · s i )2 , s i +1 = x ( h ′ s 1 · · · s i +1 ),
+                                                                        
+
+and similarly for y(hs1 · · · si+1 )3 . Applying (8.7) for i = m, we conclude that
+y( f ) = x ( g0 γn−1 f ). As f ∈ F was arbitrary, this completes the proof.     □
+Proof of Proposition 8.14. By definition of the automaton A′ , for every g ∈ G, we
+have g ∈ H ⇐⇒ x ( g)3 ∈ P′ . Therefore, the map ϕ : C → {0, 1} defined by
+ϕ(c) = 1 ⇐⇒ c3 ∈ P′ , induces a continuous equivariant map Φ : C G → {0, 1}G
+such that Φ( x ) = χ H . In particular, Φ[ G · x ] = G · χ H . By Lemma 8.15, G · x is an
+SFT and therefore G · χ H is sofic.                                                     □
+   We recall that a subgroup of a hyperbolic group G is called elementary if it is
+virtually cyclic. It is maximal elementary if it is not properly contained in any other
+elementary subgroup. The following is well-known and we include its proof for
+completeness.
+Lemma 8.16. Let G be a non-elementary hyperbolic group. Then there exist two maximal
+elementary subgroups H1 , H2 ≤ G such that gH1 g−1 ∩ H2 is finite for every g ∈ G.
+Proof. It follows from [G, Corollary 8.2.G] that there exist maximal elementary
+subgroups of G which are not conjugate. Let H1 and H2 be two such subgroups.
+Suppose, towards a contradiction, that gH1 g−1 ∩ H2 is infinite for some g ∈ G.
+Then the intersection contains an element γ of infinite order and by [G, Corollary
+8.2.C], γ is contained in a unique maximal elementary subgroup. This implies that
+gH1 g−1 = H2 , contradicting the fact that H1 and H2 are not conjugate.         □
+Theorem 8.17. Let G be an infinite hyperbolic group. Then there is a dense conjugacy
+class in Ξtr ( G ) iff G is virtually cyclic.
+Proof. We only have to prove that if G is not virtually cyclic, then there is no
+dense conjugacy class in Ξtr ( G ). Apply Lemma 8.16 to find H1 , H2 ≤ G maximal
+elementary such that gH1 g−1 ∩ H2 is finite for all g ∈ G. If γi ∈ Hi is of infinite
+order, then the centralizer of γi is contained in Hi and has finite index therein; it
+follows from [BH, Proposition 3.9] and the fact that quasi-convexity is preserved
+under finite extensions that H1 and H2 are quasi-convex in G. By Proposition 8.14,
+G has the special symbol property relative to both H1 and H2 . Now we can
+conclude by Proposition 8.6.                                                      □
+
+                       Appendix A. Topological Fraïssé classes
+   The classical Fraïssé theorem ensures that every countable amalgamation class
+F has a Fraïssé limit, i.e., a homogeneous structure with age F. It is well known
+that the isomorphism class of this Fraïssé limit is comeager in the space of all
+countable structures with age included in F (in an appropriate Polish topology).
+Here, we establish a criterion for the existence of a comeager isomorphism class
+in the case where F is no longer countable but is equipped with a natural Polish
+topology. The theorem below is inspired by classical results about model-theoretic
+forcing and atomic models, however, it differs in two important points. First, we
+do not assume compactness, and second, we work exclusively with quantifier-free
+types. The lack of compactness assumption is important because the spaces of
+minimal subshifts, to which we apply the theorem, are not compact. A version of
+this criterion for general Cantor actions was proved in [D].
+40                MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+     We quickly recall some definitions from model theory. A language L is a
+collection of function and relation symbols, together with their arities. An L-
+structure is a set equipped with interpretations for the L-symbols. A term is
+an expression using variables and function symbols. An atomic formula ϕ is an
+expression of the form R(t0 , . . . , tk−1 ), where R is a relation symbol of arity k and
+t0 , . . . , tk−1 are terms. A quantifier-free formula (or simply a formula in the sequel)
+is a Boolean combination of atomic formulas. If ϕ is a formula and x is a set
+of variables, we will write ϕ( x ) to mean that all variables that appear in ϕ are
+in x. Two formulas ϕ1 ( x ) and ϕ2 ( x ) are equivalent if for all L-structures M and
+tuples a ∈ M x , M |= ϕ1 ( a) ⇐⇒ M |= ϕ2 ( a). Formulas in the variables x modulo
+equivalence form a Boolean algebra and the compact space of ultrafilters of this
+algebra, denoted by Sx (L), is called the space of quantifier-free L-types (which we
+will call simply types in what follows). A type in Sx (L) can be viewed as an
+isomorphism type of an L-structure with generators x. A type p ∈ Sx (L) satisfies
+a formula ϕ( x ) (in symbols: p |= ϕ) if ϕ ∈ p. A clopen basis of the topology on
+Sx (L) is given by sets of the form
+                              JϕK = { p ∈ Sx (L) : p |= ϕ}.
+If M is an L-structure and a ∈ M x , the type of a, denoted by tp a, is the element of
+Sx (L) defined by
+                 tp a |= ϕ ⇐⇒ M |= ϕ( a),         for all formulas ϕ( x ).
+   If L is countable, the type spaces are Polish. If t( x ) is a y-tuple of terms, then
+there is a natural projection πt : Sx (L) → Sy (L) defined by
+                           πt ( p) |= ϕ(y) ⇐⇒ p |= ϕ(t( x )).
+We will use this most often when y ⊆ x and t is the inclusion map, and then we
+will denote the projection by πy .
+   Let L be a countable language. A hereditary L-class F is a collection of non-
+empty subsets Sx (F ) ⊆ Sx (L), for all finite x, such that for all x, y, all y-tuples
+of terms t( x ), and all p ∈ Sx (F ), we have that πt ( p) ∈ Sy (F ). If u is a countable
+set of variables, we will denote by Su (F ) the collection of types p ∈ Su (L) such
+that π x ( p) ∈ Sx (F ) for all finite x ⊆ u. A model of F is an L-structure M such
+that tp a ∈ Sx (F ) for all finite x and a ∈ M x . Every type p ∈ Sx (F ) defines a
+structure generated by x, which is a model of F. In the case where the sets Sx (F )
+are Borel (which is the case which will interest us), a hereditary class is given by a
+universal Lω1 ω (L)-theory. For a formula ϕ( x ), we will denote JϕKF := JϕK ∩ Sx (F ).
+A formula ϕ( x ) is consistent with F if JϕKF is non-empty.
+Definition A.1. Let L be a countable language and let F be a hereditary L-class.
+We say that F is a topological Fraïssé class if the following conditions are satisfied:
+    (i) F has the amalgamation property: for all disjoint sets of variables x, y1 , y2 ,
+        and all p ∈ Sx (F ), q1 ∈ Sxy1 (F ), q2 ∈ Sxy2 (F ) with π x (q1 ) = π x (q2 ) = p,
+        there exists s ∈ Sxy1 y2 (F ) with π xy1 (s) = q1 , π xy2 (s) = q2 . (Here, as usual,
+        xy1 is a shortcut for x ∪ y1 , etc.)
+   (ii) For all finite x, Sx (F ) is a Gδ subset of Sx (L) (and therefore a Polish space).
+  (iii) For all finite x ⊆ y and all open U ⊆ Sy (F ), the set π x [U ] is Fσ in Sx (F ).
+Remark A.2. In condition (i) above, we allow x = ∅, so the amalgamation property
+includes the joint embedding property. For a classical Fraïssé class, one also
+requires that each Sx (F ) is countable. Each classical Fraïssé class can be made into
+a topological one by modifying the language, so that each Sx (F ) becomes discrete.
+Finally, condition (iii) is automatically satisfied if π x is open or closed, but also in
+other situations. In particular, if F is given by a universal, first-order theory (i.e., a
+                         DENSE AND COMEAGER CONJUGACY CLASSES                                 41
+
+
+collection of finitary forbidden configurations) then Sx (F ) is compact and the only
+remaining condition is amalgamation.
+   The notion of an existentially closed model is inspired from algebra and is key
+in Robinson’s theory of model-theoretic forcing.
+Definition A.3. Let F be a topological Fraïssé class. A model M |= F is existentially
+closed if for all formulas ϕ( x, y) and a ∈ M x , if there exist N ⊇ M, N |= F, and
+b ∈ N y such that N |= ϕ( a, b), then there exists b′ ∈ My such that M |= ϕ( a, b′ ).
+   The following proposition summarizes some of the basic properties of existen-
+tially closed models.
+Proposition A.4. Let F be a topological Fraïssé class. Then:
+     (i) Let M |= F, a ∈ M x , and q ∈ Sxy (F ) be such that a |= π x (q). Then there exist
+         N ⊇ M, N |= F, and b ∈ N y such that ( a, b) |= q.
+    (ii) A model M is existentially closed iff for every formula ϕ( x, y), for every a ∈ M x ,
+         and every q ∈ Sxy (F ) such that π x (q) = tp( a) and q |= ϕ, there exists b ∈ My
+         satisfying M |= ϕ( a, b).
+   (iii) Every model of F embeds into an existentially closed one.
+Proof. (i) This follows from repeated amalgamation and the fact that models of F
+are closed under unions of chains.
+   (ii) Suppose that M is existentially closed and let a, q, and ϕ be given. By (i),
+there is a model N ⊇ M and b ∈ N y with ( a, b) |= q. Now by the fact that M is
+existentially closed, we have that there is b′ ∈ My with M |= ϕ( a, b′ ). The other
+direction is obvious.
+   (iii) This follows by a standard argument from (i), (ii), and taking unions of
+chains.                                                                          □
+  Next we turn to different ways to code models of F as elements of a Polish
+space. Let u be a countable set of variables. Define
+(A.1) Ξ0 (L) = {ξ ∈ Su (L) : for every finite x ⊆ u and function symbol F ( x ),
+                                                      there exists v ∈ u ξ |= F ( x ) = v}.
+Every ξ ∈ Ξ0 (L) defines an L-structure as follows. Let a ∈ Mu be a realization
+of ξ (where M is arbitrary). Then { a(v) : v ∈ u} is a substructure of M whose
+isomorphism class depends only on ξ and which we denote by Mξ . We let
+                                 Ξ 0 (F ) = Ξ 0 (L ) ∩ Su (F ),
+so that each element of Ξ0 (F ) codes a model of F. We note that if F is a topological
+Fraïssé class, then Ξ0 (F ) is a Gδ subset of Su (L) and therefore a Polish space. In
+an abstract setting, the elements of Ξ0 (F ) are perhaps the most natural way to
+code models of F. However, in concrete situations, sometimes different codings
+are desirable. The framework we propose below is quite flexible and includes
+most codings that appear in the literature.
+Definition A.5. Let F be a topological Fraïssé class. We say that a set Ξ ⊆ Ξ0 (F )
+is an admissible coding for models of F if the following conditions are satisfied:
+      (i) Ξ is a non-empty Gδ subset of Ξ0 (F ).
+     (ii) For every finite x ⊆ u, π x [Ξ] is an open subset of Sx (F ).
+    (iii) If x ⊆ u is finite, y is a finite set of variables, and ϕ( x ) and ψ( x, y) are
+          formulas such that JϕKF ⊆ π x [Ξ] and ϕ( x ) ∧ ψ( x, y) is consistent, then
+          there is ξ ∈ Ξ and y′ ⊆ u with |y′ | = |y| such that ξ |= ϕ( x ) ∧ ψ( x, y′ ).
+   The following is clear.
+42                 MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+Lemma A.6. Let F be a topological Fraïssé class. Then Ξ = Ξ0 (F ) is an admissible
+coding.
+     For an admissible coding Ξ, we denote
+                      Ξec := {ξ ∈ Ξ : Mξ is existentially closed}.
+   Note that we do not require that the models coded by Ξ meet every isomorphism
+class. However, it follows from the following proposition that there are many
+existentially closed models in Ξ.
+Proposition A.7. Let F be a topological Fraïssé class. If Ξ is an admissible coding for
+models of F, then Ξec is a dense Gδ subset of Ξ.
+Proof. By Proposition A.4 (ii), we have that
+
+     ξ ∈ Ξec ⇐⇒ ∀ x ⊆ u ∀ϕ( x, y) ∃q ∈ JϕKF π x (ξ ) = π x (q)
+                                                                     
+
+                                                              =⇒ ∃y′ ⊆ u ξ |= ϕ( x, y′ ).
+This condition is Gδ because the left side of the implication can be rewritten as
+                                                  
+                               π x (ξ ) ∈ π x JϕKF ,
+which is an Fσ set by condition (iii) in Definition A.1. To verify density, by the
+Baire category theorem, it suffices to check that for fixed ϕ and x, the set of
+ξ ∈ Ξ satisfying the implication is dense. Let z ⊆ u be finite and let ψ( x, z) be a
+formula such that JψK ∩ Ξ is non-empty. Let ξ 0 ∈ JψK ∩ Ξ. We may assume that
+there is q ∈ JϕKF with π x (ξ 0 ) = π x (q) (otherwise ξ 0 satisfies the implication). By
+Definition A.5 (ii), we may also assume that JψKF ⊆ πyz [Ξ]. By amalgamation, the
+formula ψ( x, z) ∧ ϕ( x, y) is consistent, so by Definition A.5 (iii), there is ξ ∈ Ξ and
+y′ ⊆ u such that ξ |= ψ( x, z) ∧ ϕ( x, y′ ).                                            □
+Definition A.8. Let F be a hereditary L-class. A type p ∈ Sx (F ) is called isolated if p
+is an isolated point in Sx (F ) (in the relative topology). It is called projectively
+                                                                                    isolated
+if there exists a set of variables y and a formula ϕ( x, y) such that π x JϕKF = { p}.
+In that case, we will say that ϕ isolates p. A model M |= F is called projectively
+atomic if for all finite x and all a ∈ M x , tp a is projectively isolated in Sx (F ).
+   We recall that a model M is homogeneous if for all n and a, b ∈ Mn with
+tp a = tp b, there exists an automorphism f of M such that f ( a) = b.
+   In classical model theory (where formulas are allowed to have quantifiers), the
+type projection maps π x are open and being projectively isolated is equivalent to
+being isolated. In that case, it follows from the omitting types theorem that the
+generic model (if it exists) is the atomic one, that is, the model that only realizes
+isolated types. Moreover, atomic models are always homogeneous. The following
+theorem can be considered a generalization of these facts to the quantifier-free
+setting. Being existentially closed provides a sufficient “quantifier elimination”
+condition.
+Theorem A.9. Let L be a countable language, let F be a topological Fraïssé L-class, and
+let Ξ be an admissible coding for models of F. Then:
+      (i) An existentially closed, projectively atomic model of F exists iff the projectively
+          isolated types are dense in Sx (F ) for every x.
+     (ii) If it exists, the existentially closed, projectively atomic model of F is unique up to
+          isomorphism and it is homogeneous.
+    (iii) Let M0 |= F. The following are equivalent:
+             • M0 is existentially closed, projectively atomic;
+             • { ξ ∈ Ξ : Mξ ∼   = M0 } is dense Gδ in Ξ;
+                         DENSE AND COMEAGER CONJUGACY CLASSES                             43
+
+
+           • { ξ ∈ Ξ : Mξ ∼
+                          = M0 } is non-meager in Ξ.
+Proof. (ii) Let M1 and M2 be existentially closed, projectively atomic. We will show
+that
+                       {( a, b) ∈ M1n × M2n : tp a = tp b},     n∈N
+is a back-and-forth system, thus proving both statements simultaneously. Suppose
+that a ∈ M1x , b ∈ M2x , tp a = tp b, and let c ∈ M1 . As tp ac is projectively isolated,
+there is a formula ϕ( x, y, z) such that for every q |= ϕ, π xy (q) = tp ac. As M2 is
+existentially closed, by Proposition A.4 (ii), there are d ∈ M2 , d′ ∈ M2z such that
+M2 |= ϕ(b, d, d′ ). Then tp bd = tp ac and we are done.
+    The direction from left to right of (i) follows from the fact that the types realized
+in any existentially closed model are dense (because of Proposition A.4 (ii) applied
+to x = ∅). For the other direction and the first implication of (iii), we will show
+that if projectively isolated types are dense, then the set of ξ such that Mξ is
+existentially closed, projectively atomic is dense Gδ . For existentially closed, this is
+given by Proposition A.7. To complete the proof using the Baire category theorem,
+it suffices to check that for every finite x ⊆ u, the set
+(A.2)                  {ξ ∈ Ξec : π x (ξ ) is projectively isolated}
+is open dense in Ξec . To see that it is open, let ξ 0 belong to this set and let ϕ( x, y)
+be a formula that isolates π x (ξ 0 ). As Mξ 0 is existentially closed, there exists
+y′ ⊆ u with |y′ | = |y| such that ξ 0 |= ϕ( x, y′ ). Then every ξ satisfying ξ |= ϕ( x, y′ )
+belongs to the set (A.2). We finally check that the set (A.2) is dense. Let y ⊆ u
+and let ψ( x, y) be a formula such that JψK ∩ Ξ is non-empty. By Definition A.5
+(ii), we may assume that JψKF ⊆ π xy (Ξ). Let q ∈ JψKF be projectively isolated
+and let ϕ( x, y, z) be a formula that isolates q. Then, in particular, ϕ( x, y, z) implies
+ψ( x, y). By Definition A.5 (iii), there is z′ ⊆ u with |z′ | = |z| and ξ ∈ Ξ such that
+ξ |= ϕ( x, y, z′ ). By Proposition A.7, we may also assume that ξ ∈ Ξec . Then π x (ξ )
+is projectively isolated and ξ ∈ JψK ∩ Ξec .
+    The second implication of (iii) being trivial, we prove the third. It follows from
+Proposition A.7 that M0 is existentially closed. We will show that if x ⊆ u is finite
+and p ∈ Sx (F ) is not projectively isolated, then the closed set
+                                   {ξ ∈ Ξ : π x (ξ ) = p}
+is nowhere dense in Ξ. Suppose to the contrary that it has non-empty interior.
+Then there exist y ⊆ u and a formula ϕ( x, y) such that Ξ ∩ JϕK ̸= ∅ and for all
+ξ ∈ Ξ ∩ JϕK, π x (ξ ) = p. By Definition A.5 (ii), we may assume that JϕKF ⊆ π xy [Ξ].
+We claim that ϕ isolates p. Indeed, let q ∈ JϕKF . Then there exists ξ ∈ Ξ with
+π xy (ξ ) = q and it follows that π x (q) = π x (ξ ) = p. This is a contradiction.
+   The same argument shows that for any z ⊆ u with |z| = | x |, the set {ξ ∈ Ξ :
+πz,x (ξ ) = p} is nowhere dense. Thus the set {ξ ∈ Ξ : Mξ realizes p} is meager
+and it follows that M0 does not realize p. As this is true for all non-projectively
+isolated p, we conclude that M0 is projectively atomic.                            □
+
+Corollary A.10. Let F be a topological Fraïssé class and let Ξ be an admissible coding for
+models of F. Then the following are equivalent:
+     (i) The set Ξ admits a comeager isomorphism class;
+    (ii) The set of projectively isolated types in Sx (F ) is dense for every x.
+Corollary A.11. Let F be a topological Fraïssé class. If the projectively isolated types are
+dense, then they form a classical Fraïssé class and their Fraïssé limit is the projectively
+atomic model of F.
+44               MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+Proof. It is clear that the set of projectively isolated types is countable (as there
+are only countably many formulas) and they form an amalgamation class by the
+classical Fraïssé theorem (as the projectively atomic model is homogeneous). □
+Example A.12 (Admissible codings and expansions). A common way to code
+structures is as expansions of a fixed infinite homogeneous structure M0 . Let L0 be
+the language of M0 and let F0 be its age. Assume that Sx (F0 ) is discrete for every
+finite x. Let L ⊇ L0 and let F be a topological Fraïssé class with the property that
+every type in Sx (F ) can be realized in a model whose L0 -reduct is isomorphic to
+M0 . Let u be a countable set of variables and let c ∈ M0u be a tuple that bijectively
+enumerates M0 . Then
+                           Ξ = {ξ ∈ Ξ0 (F ) : ξ |L0 = tp c}
+is an admissible coding for F. Via the bijection c, we can think of the variables u
+as indexed by M0 . Then the group Aut( M0 ) acts on Ξ by permuting the variables
+and its orbits are exactly the isomorphism classes.
+   The simplest special case of this is where L0 is the language consisting only
+of equality and M0 is an infinite set. Then Ξ is the collection of all bijective
+enumerations of models of F and it is equipped with an S∞ -action.
+     We conclude the appendix with two concrete examples.
+A.1. Groups. Let L be the language of groups, containing function symbols for
+multiplication, inverse, and the identity, and let F be the hereditary class given by
+the (universal, first-order) theory of groups. Then Sx (F ) is the compact space of
+marked groups with generators x. The class F has the amalgamation property by
+the construction of free product with amalgamation. Also, the maps π x are closed
+(because Sx (F ) is compact), so F is a topological Fraïssé class.
+   The following characterization of projectively isolated groups is essentially due
+to Rips and it is based on a theorem of Boone and Higman which states that
+every finitely generated group with a solvable word problem embeds into a simple
+subgroup of a finitely presented group.
+Proposition A.13 (Rips). Let G be a finitely generated marked group (that is, an element
+of Sx (F ) for some finite x). The following are equivalent:
+     (i) G is projectively isolated;
+    (ii) G has a solvable word problem.
+Proof. This follows from the proof of the main theorem of [R]. One only needs to
+observe that the formula P( x̄ ) that isolates G can be taken to be existential. □
+   Miller III [M] has constructed a finitely presented group G0 = ⟨ x ⟩ such that
+all of its non-trivial quotients have an unsolvable word problem. Thus the set of
+quotients of G0 forms a non-empty open neighborhood in Sx (F ) which contains
+no projectively isolated group. (This example has already been used in [dCGP] to
+show that isolated groups are not dense.) Applying Corollary A.10, we recover
+the result of [GKEL] that there is no generic isomorphism class in the space of
+countable groups. The proof of [GKEL] uses the construction of [M]; this is perhaps
+not surprising, as both Proposition A.13 and Corollary A.10 are equivalences, so
+computability theory seems intrinsic to the problem. Similar questions were also
+considered by Ivanov and Majcher in [IM].
+A.2. G-sets. Let G be a fixed countable group and let L be the language consisting
+of unary function symbols for each element of G. Let F be the hereditary class
+given by the (universal, first-order) theory that says that the function symbols are
+interpreted by bijections that compose according to the law of G. The models of
+                               DENSE AND COMEAGER CONJUGACY CLASSES                                              45
+
+
+F are the G-sets. The type of a singleton a is determined by the stabilizer of a in
+G and one can identify the type space S1 (F ) with the compact space Sub( G ) of
+subgroups of G. The amalgamation property is easy to check. The projection maps
+π x are open, so a type is projectively isolated iff it is isolated. Finally, it is easy
+to see that a type p ∈ Sx (F ) is isolated iff πy ( p) is isolated for all y ⊆ x, |y| = 1.
+Combining all of this with Corollary A.10, we recover the result of [GKM] that the
+group G admits a generic action iff isolated subgroups are dense in Sub( G ).
+
+                                                 References
+        [A] E. Akin, Good measures on Cantor space, Trans. Amer. Math. Soc. 357 (2005), no. 7, 2681–2722
+              (electronic).
+   [ABS] N. Aubrun, S. Barbieri, and M. Sablik, A notion of effectiveness for subshifts on finitely generated
+              groups, Theoret. Comput. Sci. 661 (2017), 35–55.
+ [AGW] E. Akin, E. Glasner, and B. Weiss, Generically there is but one self homeomorphism of the Cantor set,
+              Trans. Amer. Math. Soc. 360 (2008), no. 7, 3613–3630.
+         [B] N. Bitar, Subshifts of finite type on groups: emptiness and aperiodicity, Ph.D. Thesis, 2024.
+  [BDK] S. Bezuglyi, A. H. Dooley, and J. Kwiatkowski, Topologies on the group of homeomorphisms of a
+              Cantor set, Topol. Methods Nonlinear Anal. 27 (2006), no. 2, 299–331.
+    [BH] M. R. Bridson and A. Haefliger, Metric spaces of non-positive curvature, Grundlehren der
+              mathematischen Wissenschaften [Fundamental Principles of Mathematical Sciences], vol. 319,
+              Springer-Verlag, Berlin, 1999. MR1744486
+        [C] J. W. Cannon, The combinatorial structure of cocompact discrete hyperbolic groups, Geom. Dedicata
+              16 (1984), no. 2, 123–148. MR758901
+[dCGP] Y. de Cornulier, L. Guyot, and W. Pitsch, On the isolated points in the space of groups, J. Algebra
+              307 (2007), no. 1, 254–277.
+        [D] M. Doucha, Strong topological Rokhlin property, shadowing, and symbolic dynamics of countable
+              groups, 2022. Preprint arXiv:2211.08145, to appear in J. Eur. Math. Soc.
+    [DY] F. Dahmani and A. Yaman, Symbolic dynamics and relatively hyperbolic groups, Groups Geom.
+              Dyn. 2 (2008), no. 2, 165–184.
+ [FKSV] J. Frisch, A. S. Kechris, F. Shinko, and Z. Vidnyánszky, Realizations of countable Borel equivalence
+              relations, 2022. Preprint arXiv:2109.12486.
+        [G] M. Gromov, Hyperbolic groups, Essays in group theory, 1987, pp. 75–263. MR919829
+[GKEL] I. Goldbring, S. Kunnawalkam Elayavalli, and Y. Lodha, Generic algebraic properties in spaces of
+              enumerated groups, Trans. Amer. Math. Soc. 376 (2023), no. 9, 6245–6282.
+ [GKM] Y. Glasner, D. Kitroser, and J. Melleray, From isolated subgroups to generic permutation representa-
+              tions, J. Lond. Math. Soc. (2) 94 (2016), no. 3, 688–708.
+   [GPS] T. Giordano, I. F. Putnam, and C. F. Skau, Topological orbit equivalence and C ∗ -crossed products, J.
+              Reine Angew. Math. 469 (1995), 51–111.
+     [GS] S. M. Gersten and H. B. Short, Rational subgroups of biautomatic groups, Ann. of Math. (2) 134
+              (1991), no. 1, 125–158. MR1114609
+     [H1] M. Hochman, Genericity in topological dynamics, Ergodic Theory Dynam. Systems 28 (2008),
+              no. 1, 125–165.
+     [H2]              , Rohlin properties for Zd actions on the Cantor set, Trans. Amer. Math. Soc. 364 (2012),
+              no. 3, 1127–1143.
+  [HRR] D. F. Holt, S. Rees, and C. E. Röver, Groups, languages and automata, London Mathematical
+              Society Student Texts, vol. 88, Cambridge University Press, Cambridge, 2017. MR3616303
+          [I] A. A. Ivanov, Generic expansions of ω-categorical structures and semantics of generalized quantifiers,
+              J. Symbolic Logic 64 (1999), no. 2, 775–789.
+     [IM] A. Ivanov and K. Majcher, Generic groups and WAP, 2024. Preprint arXiv:2402.02143.
+      [K1] A. S. Kechris, Classical descriptive set theory, Graduate Texts in Mathematics, vol. 156, Springer-
+              Verlag, New York, 1995.
+      [K2] A. Kwiatkowska, The group of homeomorphisms of the Cantor set has ample generics, Bull. Lond.
+              Math. Soc. 44 (2012), no. 6, 1132–1146.
+     [KR] A. S. Kechris and C. Rosendal, Turbulence, amalgamation and generic automorphisms of homoge-
+              neous structures, Proc. Lond. Math. Soc. 94 (2007), no. 2, 302–350.
+       [M] C. F. Miller III, The word problem in quotients of a group, Aspects of effective algebra (Clayton,
+              1979), 1981, pp. 246–250.
+    [OU] J. C. Oxtoby and S. M. Ulam, Measure-preserving homeomorphisms and metrical transitivity, Ann.
+              of Math. (2) 42 (1941), 874–920.
+         [P] S. T. Piantadosi, Symbolic dynamics on free groups, Discrete Contin. Dyn. Syst. 20 (2008), no. 3,
+              725–738.
+46                    MICHAL DOUCHA, JULIEN MELLERAY, AND TODOR TSANKOV
+
+
+      [R] E. Rips, Another characterization of finitely generated groups with a solvable word problem, Bull.
+          London Math. Soc. 14 (1982), no. 1, 43–44.
+      [S] D. Segal, Polycyclic groups, Cambridge Tracts in Mathematics, vol. 82, Cambridge University
+          Press, Cambridge, 1983.
+
+     Institute of Mathematics, Czech Academy of Sciences, Žitná 25, 115 67 Praha 1, Czechia
+     Email address: doucha@math.cas.cz
+
+     Université Claude Bernard Lyon 1, Institut Camille Jordan, Lyon, France
+     Email address: melleray@math.univ-lyon1.fr
+
+     Université Claude Bernard Lyon 1, Institut Camille Jordan, Lyon, France
+     Email address: tsankov@math.univ-lyon1.fr
+

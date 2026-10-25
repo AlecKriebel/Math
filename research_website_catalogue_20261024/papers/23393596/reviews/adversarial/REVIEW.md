@@ -1,0 +1,78 @@
+# Independent adversarial review: Zenodo 23393596
+
+**Disposition: PASS at the manuscript's stated hypotheses.** No substantive mathematical defect or unresolved load-bearing source gap was found. This is an AI-assisted review, not human peer review, a proof-assistant certification, a novelty/priority certificate, or authorization to publish.
+
+The strongest verified claim is: for every integer m≥3 and every finite integer k≥1, the ordinary derived subgroup P_m^(k) contains a pure braid whose standard oriented closure is not integrally smoothly 1-solvable in Otto Definition 2.3. Consequently P_m^(n+2) is not contained in F_n^m for every m≥3 and integer n≥1. The explicit 104-crossing witness is certified at k=3. The arbitrary-depth argument is existential, with witnesses allowed to depend on depth.
+
+## Source identity and coverage
+
+- Current published manuscript: *Deep derived pure braids need not be 1-solvable*, version 1.0, October 15, 2026; four pages. SHA256 `6547831e57c6eb01e7f4632ff67230f1e93d4ca6fec353e128b9c97a1f2c8b89`.
+- Public source/verification ZIP SHA256 `a123728e0e8e8c6160738d6703bb757fe285a04c29872d2441d168c33bb2f106`.
+- Fresh record/receipt, both asset sizes and Zenodo MD5s, ZIP CRCs, all 213 regular members, extracted copies and the embedded `note.pdf` were independently authenticated. The embedded PDF equals the separate public PDF byte for byte. See `evidence/custody.json`.
+- Read the complete four-page PDF text and current `note.tex`, viewed all four published pages, and read both necessary mathematical supports: `strengthening/PROOF.md` and `original_packet/original/PROOF.md`. The current source and PDF agree on the claims reviewed.
+- The source metadata publication date and record creation are both October 15, 2026. These are provenance observations, not an inference of first discovery or priority.
+- All seven named primary PDF hashes were checked against fresh acquisition receipts. Their text was independently regenerated and matched the raw text used for reading. Full books/articles were not all read: the exact theorem/definition passages and relevant proof interfaces are enumerated below. The four-page current manuscript and its mathematical supports were read in full.
+
+## Independence and scope of exposure
+
+Fresh reconstruction and a provisional conclusion were sealed at `2026-10-25T03:04:43.544654+00:00`, before any submitted helper was inspected or executed; see `evidence/pre-helper-seal.json`. The independent code imports no submitted program or certificate. No current sibling review or dedicated historical assessment/priority body was read. Shared raw-primary receipts supply provenance only.
+
+The current manuscript and necessary mathematical PROOF supports contain author status, prior-review, priority-search and attempt-count language. These were incidentally encountered and not adopted. After the independent seal, the finite checker source also exposed descriptive historical scope/count strings; they are not evidence for correctness. Historical files were handled as opaque names and bytes during archive authentication. No claim of complete historical replay is made.
+
+## Adversarial proof audit
+
+### Derived depth, group domain and quantifiers
+
+The series used is G^(0)=G and G^(j+1)=[G^(j),G^(j)], not powers, a lower central series, or a completed/intersected derived series. The proof works with the discrete pure braid group, then with its represented string-link concordance classes. It does not identify the derived series of the full concordance group with that of P_m.
+
+For a homogeneous quasimorphism f vanishing on N=G^(k), normality supplies (gu)^r=g^r u_r with u_r∈N. A single defect inequality, together with homogeneity, bounds r|f(gu)−f(g)| by a constant independent of r. Thus f is exactly constant on cosets of N, not merely approximately constant. The descended map is still homogeneous with bounded defect. G/G^(k) is solvable for every fixed finite k, so amenable rigidity makes the descended map a homomorphism. Pullback contradicts the stated nonhomomorphism hypothesis. No finite generation, uniform derived length in k, or exchange of an infinite intersection with a quotient is used. The stronger credited KKMMM defect identity also applies, but is not needed to fill a gap in this argument.
+
+The proof that q restricted to P_3 is not a homomorphism is valid. With a=x², b=y², h=yx²y⁻¹ and z=(xy)³, all four elements are pure and the Artin relation gives ahb=z. The elementary two-strand signatures, split-strand addition and conjugacy give q(a)=q(b)=q(h)=−2. The specifically three-strand full-twist formula gives q(z)=−4. A homomorphism would instead assign−6. Fresh short-word Artin-action checks confirm the relation; the proof itself is the symbolic braid relation, not a matrix test alone.
+
+Once v∈P_3^(k) has q(v)≠0, the manuscript correctly takes a positive power r with r|q(v)|>6. Homogeneity and the uniform bound |q−s|≤6 force s(v^r)≠0. Nonzero homogenization alone would not establish nonzero ordinary signature on the unpowered word; the manuscript expressly avoids that invalid step.
+
+Pairwise linking numbers are additive on pure-braid composition because the endpoint permutation is identity. They vanish on the first derived subgroup and all deeper terms. Powering preserves membership. Adding split vertical strands is a homomorphism and adds split unknots to the closure, preserving signature. This is not a change to a plat closure or a knot-only convention. The filtration inclusion F_n⊂F_1 for n≥1 yields the claimed historical-question corollary.
+
+Boundary checks: m=1,2 have trivial positive derived terms and are excluded; k is a finite positive integer; no single witness in the intersection of all derived terms is asserted; the explicit witness does not purport to supply every depth. The proof does not claim an explicit search or word-length bound for arbitrary k.
+
+### The pointwise topological obstruction
+
+The manuscript uses precisely the integral smooth 1-solution definition: zero surgery M_L, H1(M_L;Z)→H1(W;Z) an isomorphism with Z^m, a full integral hyperbolic basis of framed embedded surfaces, and both families of surface fundamental groups contained in π1(W)'. These conditions are present in Otto Definition 2.3, including ordinary derived series and standard closure for string links.
+
+The meridian character with values−1 extends over W through H1. In the finite cellular chain complex, the rational twisted boundary matrices have integer entries; their reduction modulo2 is the ordinary mod2 boundary matrix. Each odd nonzero minor stays nonzero overQ, giving the stated rank inequalities and consequently the H2 dimension upper bound. Integral universal coefficients give dim H2(W;F2)=2r because H2 is free of rank2r and H1 has no 2-torsion. Torsion-freeness is essential, not decorative: the fresh chain-complex control C2 --2--> C1 has H2(Z)=0 but H2(F2) of dimension1.
+
+The character restricts trivially to every basis surface, so each supplies a local-coefficient fundamental class. Disjointness, framing and the single dual intersections give a hyperbolic pairing matrix with nonzero±1 off-diagonal entries. Thus these 2r classes are independent even before asserting nondegeneracy of the ambient absolute intersection form. The dimension bound makes them a full basis, eliminating any additional radical or unmatched signature directions. Ordinary and twisted signatures both vanish. The r=0 case is included. This reasoning needs both halves of the basis to lift; it does not silently weaken1-solvability to a half-step or rational variant.
+
+Toffoli's bounding identity applies because the character extends over a compact oriented bounding manifold. His one-colour surgery formula is genuinely pointwise on U(1)\{1}; at−1 it has no Alexander-root avoidance or averaging hypothesis. For algebraically split zero framing, the entire framed linking matrix is zero, including all correction terms. Therefore rho=−sigma_L(−1)=0. No acyclicity assumption, averaged signature, higher-order rho invariant, or knot restriction has replaced the required invariant. The use of rank-one rational coefficients is justified specifically by the±1 character; no extension of the cellular reduction argument to arbitrary complex characters is claimed.
+
+### Explicit witness and numerical independence
+
+Fresh code reconstructed the nested commutators from the definition, freely reduced to 104 letters, and tracked actual strand labels. All pairwise signed crossing sums are zero. The expression tree proves c,d,e∈P_3', u,v∈P_3'' and beta∈P_3'''; zero linking or exponent sums alone are not taken as a proof of third-derived membership.
+
+The fresh crossing-incidence construction yields a 48×48 symmetric Goeritz matrix with zero correction. Its characteristic polynomial, computed exactly, has 23 positive and 25 negative roots and no zero roots. Sign variations for the positive/negative characteristic polynomials are exact here: symmetry gives only real roots, and the variation totals equal the full degree. This provides an exact inertia calculation distinct from the submitted rational-pivot implementation. The determinant is−7154819319988224.
+
+Separately, fresh code implements the actual Meyer definition using the intersection im(A⁻¹−I)∩im(I−B), solves for lifts overQ and evaluates the resulting quadratic form. The104 cocycle contributions sum to 2, yielding ordinary signature−2. The final Burau matrix has determinant 1 and equals the displayed matrix in the support. Calibration includes positive/negative trefoils, identity, Delta_3^4, inverse and mirror, small one-/two-region Goeritz cases,40 selected relation/conjugacy/cancellation/inversion checks, and changed-crossing linking. No floating-point eigenvalue threshold is used.
+
+A real source-indexing limitation was independently inspected in Erle's printed pages163–164: the displayed off-diagonal index conflicts with the block diagram/current-crossing convention. The present package uses the actual crossing construction. For the 104-letter witness the wrong index happens to yield a sign-congruent matrix, so its unchanged signature is not a validation of the index. The fresh pre-helper mutant records this insensitivity. A separate mixed-parity fixture after the seal changes determinant−5 to−9 while leaving inertia unchanged, emphasizing the same limitation. The published planar rotation-system replay checks crossing geometry, not merely final inertia. The independent Meyer calculation provides another mechanism. This is a documented source-interface issue already handled by the current mathematical support, not a defect requiring repair of this release.
+
+Two reviewer-control failures are preserved: an initially sparse dictionary omitted a zero crossing pair, and an initially stronger expectation that a mixed-parity mutation must change inertia was false. The former was corrected locally to initialize all label pairs; the latter was replaced by the actually sensitive determinant comparison and explicitly recorded. Neither involved changes to published sources or a failed manuscript claim.
+
+## Exact primary interfaces
+
+1. [Harvey–Park–Ray workshop contribution](https://ems.press/content/serial-article-files/46709?nt=1), printed 3020–3021: read the full contribution through Question 3 and surrounding ordinary-derived-series definition. Its question is (P_m)^(n+2)⊂F_n^m for n≥1. The report is the 2017 workshop, published 2018. Other questions and the Whitney-tower theorem are not being answered here.
+2. [Gambaudo–Ghys](https://www.numdam.org/item/10.24033/bsmf.2496.pdf), printed 542–545,567–569 and574–575: closure/link signature and split-strand conventions; Meyer definition; TheoremA and Remarks1–3; specifically n=3 in Lemma4.1; homogenization and the2n error bound. The−1 Burau representation on B3 is nondegenerate and two-dimensional. No general-n full-twist formula is needed for this proof.
+3. [Otto](https://msp.org/agt/2014/14-5/agt-v14-n5-p05-s.pdf), printed 2631–2632: closure convention, descending filtration and full Definition 2.3. This is the exact smooth integral model; the argument is not extended here to arbitrary rational or topological variants.
+4. [Toffoli](https://epub.uni-regensburg.de/52299/1/the-atiyahpatodisinger-rho-invariant-and-signatures-of-links.pdf), internal pp 1–2,9,20–22 and27–31: bounding identity/Theorem2.6(ii), coloured domain and compatibility, one-colour reduction, Theorem4.24 with its proof and Remark4.25 equation(4.21). At−1, with zero framed linking matrix, its hypotheses and correction terms match exactly. The article's stated APS theorem is used as the standard imported theorem; this review does not claim a fresh proof of the underlying analytic index theorem.
+5. [Calegari, author-hosted scl](https://math.uchicago.edu/~dannyc/books/scl/scl.pdf), printed 27 and33: solvable amenability and Proposition 2.65 with proof. The fresh byte-bound author copy is not asserted byte-identical to a publisher edition. Homogeneous real quasimorphisms on discrete amenable groups are homomorphisms; all required hypotheses are met.
+6. [Kawasaki–Kimura–Maruyama–Matsushita–Mimura](https://msp.org/agt/2025/25-2/agt-v25-n2-p15-p.pdf), printed 1206–1207: Lemmas 7.10 and 7.12 with proof. The quoted stronger defect equality is correctly credited and applies to the normal subgroup with solvable quotient. It is corroborating attribution, not an unsupported new lemma in this manuscript.
+7. [Erle](https://da.lib.kobe-u.ac.jp/da/kernel/E0003685/E0003685.pdf), printed 161–165: standard closed 3-braid orientation, checkerboard rule, small-region cases, matrix description and correction sum. The critical printed 163–164 diagrams were viewed. The source-index issue was checked as above; the full classification theorem later in Erle is not used.
+
+PDF SHA256s, URLs, versions and fresh text-derivative hashes are bound in the evidence ledger. No load-bearing primary body needed for these interfaces remained inaccessible.
+
+## Published replay and limits
+
+The release entry point was run against independently authenticated manifest SHA256 `497295cd857a48bd767bf92a2c7b3390005a72f756cadd8b9b4581e0d703f447`, with the separate public PDF supplied and all working files confined to this review's scratch directory. It passed the original certificate replay, full planar Goeritz reconstruction and Burau–Meyer reconstruction, with isolated nonoptimized Python and exact JSON/type comparisons. The original verifier reported 286 additional finite controls. All213 source members and both public assets remained unchanged afterward.
+
+Four private certificate mutations were rejected: reversed claimed signature, overstated derived depth, one reversed Artin letter, and a diagonal matrix perturbation. These establish appropriate sensitivity of the finite replay; an expected-depth field rejection is not an independent membership algorithm. The universal group and topology arguments are checked analytically above. Historical transport/recovery suites and priority searches were not re-executed or treated as established facts.
+
+**Exact remaining gap for the stated mathematical claim: none identified in this review.** Remaining limits are the ordinary limits of an AI-assisted mathematical review and the explicitly existential arbitrary-depth construction. No first-priority, continued-openness, journal suitability, or human verification claim is made. No follow-up conjecture is proposed as part of this gate. No source, website, spreadsheet, publication record or Git state was changed by this assignment.
