@@ -1880,7 +1880,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1869 | 2299 / EP-776 | Erdős Problem #776 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1870 | 2401 / EP-949 | Erdős Problem #949 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1871 | 3000040 / AMR-029-0040 | Gonality and edge subdivisions | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1872 | 3000062 / AMR-029-0062 | Orientation-compatible w-vertex cover | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1872 | 3000062 / AMR-029-0062 | Orientation-compatible w-vertex cover | 0.0495 | 5.0 | 3 | unknown | UNSOLVED | 5/5 |  | Exact epsilon<1/n approximate-fixed-point rounding reduction and restricted checks; finding that fixed point in polynomial binary-input time remains missing. Prior existence/indegree-one results attributed; no general solver or exact hardness. [Audit package](attempts/3000062/README.md). |  |
 | 1873 | 30006522 / OWR-14299904-004 | Weak-Order Growth of Grothendieck Schubert Supports | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1874 | 30006595 / OWR-14299909-010 | Modularity of Higher-$t$ Generating-Function Coefficients | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1875 | 3154 / OPG-36933 | Asymptotic Distribution of Form of Polyhedra | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
