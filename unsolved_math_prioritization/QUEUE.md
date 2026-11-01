@@ -1908,7 +1908,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1897 | 20000726 / AIM-ANALYTIC_NUMBER_THEORY-0090 | A rational j-equation for a mixed mock Kaneko-Zagier solution | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1898 | 20000750 / AIM-ANALYTIC_NUMBER_THEORY-0114 | Alternative GPY weights: exact perturbation geometry and a radial escape | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1899 | 20001232 / AIM-COMPUTATION-0070 | Arbitrary logistic cell gaps with positive margins and ordinary-margin obstructions | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1900 | 20002401 / AIM-PDES-0013 | A two-level validated certificate for Maslov indices of planar elliptic problems | 0.0450 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
+| 1900 | 20002401 / AIM-PDES-0013 | A two-level validated certificate for Maslov indices of planar elliptic problems | 0.0450 | 5.0 | 4 | unknown | unsolved | 5/5 |  | Five partial approaches certify an elementary nonseparable planar Dirichlet benchmark: exactly one crossing and Maslov index -1 under the stated convention. Not a general validated solver, novelty claim, or original-programme closure; live original-source verification remains unavailable. [Audited packet](attempts/20002401_planar_maslov_20261021/README.md). |  |
 | 1901 | 20002454 / AIM-PDES-0066 | Branch-aware well balancing and a resonance obstruction for oscillatory forcing | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1902 | 2308019 / AMR-022-8019 | Research Problems in Function Theory — Problem 8.19 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1903 | 2361 / EP-881 | Erdős Problem #881 | 0.0450 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
