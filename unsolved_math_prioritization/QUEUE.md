@@ -1909,7 +1909,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1898 | 20000750 / AIM-ANALYTIC_NUMBER_THEORY-0114 | Alternative GPY weights: exact perturbation geometry and a radial escape | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1899 | 20001232 / AIM-COMPUTATION-0070 | Arbitrary logistic cell gaps with positive margins and ordinary-margin obstructions | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1900 | 20002401 / AIM-PDES-0013 | A two-level validated certificate for Maslov indices of planar elliptic problems | 0.0450 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
-| 1901 | 20002454 / AIM-PDES-0066 | Branch-aware well balancing and a resonance obstruction for oscillatory forcing | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1901 | 20002454 / AIM-PDES-0066 | Branch-aware well balancing and a resonance obstruction for oscillatory forcing | 0.0450 | 5.0 | 3 | unknown | unsolved | 5/5 |  | 2026-10-21: five approaches completed; UNSOLVED. Strict-gap fixed-branch invariant scheme, N-independent CFL and weighted L1 contraction; narrow near-equilibrium transient bound; quadratic critical BV equilibria; specified aligned-mesh averages-only obstruction and quadrature aliasing/defect. No general resonant transient convergence or novelty claim. Authored scoped audit and offline verification: attempts/20002454_oscillatory_forcing/. |  |
 | 1902 | 2308019 / AMR-022-8019 | Research Problems in Function Theory — Problem 8.19 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1903 | 2361 / EP-881 | Erdős Problem #881 | 0.0450 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1904 | 2464 / EP-1063 | Erdős Problem #1063 | 0.0450 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
