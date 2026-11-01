@@ -1,0 +1,121 @@
+# Betti posets and Stanley depth in a finite colon class
+
+## Result and scope
+
+The ideal assertion in Katthän's Conjecture 3.5 holds for every squarefree monomial ideal with exactly five minimal generators in the ring K[x1,x2,x3,x4,x5,x6], over every field K. More precisely, within this finite class,
+
+B(I) is isomorphic to B(I:x6) implies sdepth(I) = sdepth(I:x6).
+
+This is a computationally verified finite result supported by exhaustive certificates retained outside this public report. The present publication contains the authored mathematical reduction and certification arguments, audit findings, citations, and integrity metadata. It does not include the exhaustive case records, certificate data, or executable code. Consequently it is not a self-contained public proof of the finite computation: readers can verify the reduction and the soundness of the described certification procedures from the text, but cannot replay or inspect every certified case using this publication alone. A hash authenticates supplied bytes; it is not a mathematical proof. It neither proves nor disproves the general conjecture, does not address arbitrary numbers of variables, and makes no novelty claim. The specified finite search is exhausted; no counterexample was found. The quotient assertion for at most five generators was already covered by prior work and is not claimed as new here.
+
+The underlying retained artifacts, whose identities are recorded in INTEGRITY_METADATA.json, certify:
+
+- 2,146 five-element antichains on five labelled variables.
+- 48 antichain types under permutations of those five variables.
+- 68,672 labelled lifts, covered by 1,536 representative lifts.
+- 702 eligible representative pairs, corresponding to 29,857 labelled pairs.
+- 546 representative pairs with both ideal Stanley depths equal to 4; 156 with both equal to 5.
+- 606 eligible representative lifts after excluding the two uniform lifts for each base.
+- 51 eligible representative pairs whose lcm-lattices have different cardinalities.
+- 704 distinct crosscut complexes, all with characteristic-independent homology as certified below.
+- 702 exact ideal-depth certificates, containing complete lower-bound partitions and 9,402 states in upper-bound obstruction DAGs.
+
+The independent checker also computed 1,156 distinct actual open-interval order complexes over F2. This direct check agreed with the crosscut calculation in every case. The extension to every field comes from integral Smith forms, not from extrapolation from F2 or Q.
+
+## Source statement and known direction
+
+The starting source is Lukas Katthän, [Betti posets and the Stanley depth, arXiv:1509.08275v2](https://arxiv.org/abs/1509.08275v2), dated February 5, 2016; the [published article](https://armj.math.stonybrook.edu/pdf-Springer-final/016-0039-5.pdf) appeared in Arnold Mathematical Journal 2 (2016), 267–276. Source hashes and inspection scope are recorded separately.
+
+Conjecture 3.5 concerns a squarefree ideal I and its variable colon I'=(I:xn) in the same polynomial ring over the same field, under B(I)≅B(I'). Proposition 3.6 identifies it with Conjecture 2.4. Remark 3.7 gives sdepth(I)≤sdepth(I') and the same inequality for the quotients; the reverse inequality is the issue. Remark 2.5 already covers quotients with at most five generators and ideals with at most four.
+
+The earlier [five-generator computation](https://arxiv.org/abs/1408.4255v2), Theorem 1.2, proves depth(S/I)=sdepth(S/I)<sdepth(I). Its ideal inequality alone does not establish Betti-poset invariance of the ideal Stanley depth. The [lcm-lattice paper, v4](https://arxiv.org/abs/1405.3602v4) establishes invariance under lcm-lattice isomorphism, a stronger hypothesis than Betti-poset isomorphism. In particular, the 51 unequal-cardinality cases are not dismissed by that isomorphism result.
+
+Targeted public searches on October 11, 2026 found no later primary source settling the general Betti-poset conjecture. That search result is not proof of current open status or priority. SOURCE_METADATA.json records the historical search scope, primary links, and retrieval limits. No source-author code was executed.
+
+## Why this enumeration is exhaustive
+
+We use the positive-degree Betti support, omitting the common degree-zero summand of S/I. If a convention adjoins a minimum to the Betti poset, adjoining or deleting that common minimum does not change the isomorphism question here.
+
+Every minimal monomial generator is in the Betti poset: its open lower lcm interval is empty, with reduced homology K in degree -1. Conversely, every non-generator lcm degree lies above at least one generator. Hence the minimal elements of the positive-degree Betti poset are exactly the minimal generators. A poset isomorphism therefore preserves their number. Equivalently, with an adjoined minimum, it preserves the elements covering that minimum.
+
+Let I have five minimal squarefree generators g1,...,g5. Its colon by x6 is generated by the five monomials hi obtained by removing x6 from gi when present. If the Betti posets are isomorphic, the colon also has five minimal generators. Thus no hi is redundant, no two coincide, and the hi form a five-element antichain of nonempty subsets of {x1,...,x5}. A unit hi would instead make the colon principal and is impossible.
+
+Conversely, from any such antichain H and any subset T of its five generators, form I by multiplying exactly the generators in T by x6. The resulting five generators remain incomparable, and (I:x6)=H extended to the six-variable ring. All eligible pairs occur in this manner.
+
+`search.py` enumerates the 2,146 antichains and reduces them under all 120 permutations of the first five variables. For each of the 48 representatives it examines all 32 lift masks. These 1,536 cases are a covering set of representatives, not necessarily distinct orbits of the entire pairs: stabilizers of a base can identify some lifts. Orbit weights recover the labelled totals correctly because every variable permutation bijects the 32 possible lifts.
+
+The checker independently rebuilds all antichains recursively and verifies the full set of case keys. It rejects missing or duplicate cases and incorrect orbit weights. Ideals whose colon loses a generator are excluded by the preceding argument, not by a heuristic filter.
+
+## Exact Betti support and characteristic independence
+
+A monomial is encoded by a six-bit mask; bit i-1 represents xi. Generator-subset masks use a separate five-bit convention. Every lcm is computed as a union of generator supports. Each nonzero lattice element m is represented, for isomorphism testing, by the subset of generators below it. In an atomistic lattice this representation is injective and reflects order.
+
+For each m, the crosscut complex consists of the generator subsets T whose lcm is strictly below m. This computes the homology of the actual open interval (0,m). To see this, cover the order complex of (0,m) by the subcomplexes on elements above each atom below m. Every chain belongs to at least one such subcomplex. A nonempty intersection indexed by T has least element lcm(T), provided lcm(T)<m, and is therefore contractible. The nerve is exactly the stated crosscut complex. The empty interval at an atom is handled explicitly.
+
+The augmented simplicial chain complex includes the degree -1 empty-face basis. Its boundary matrices have integral entries 0,1,-1. For each matrix, `search.py` performs only unimodular integral row and column operations at unit pivots and requires a zero residual. This exhibits an identity block plus zeros. The independent checker reconstructs the matrices and computes their Smith normal forms with SymPy; every nonzero invariant factor is 1. Therefore every boundary matrix has the same rank over every field. The reduced homology dimensions are
+
+number of q-faces minus rank(boundary q) minus rank(boundary q+1),
+
+and hence are characteristic-independent for every complex actually used. General Betti posets can depend on the field; no general field-independence claim is made.
+
+Two Betti-support families are isomorphic exactly when some permutation of the five generator atoms carries one family to the other. All 120 permutations are considered. Every eligible case includes an explicit atom permutation. In this run the identity permutation works in all eligible cases; the algorithm did not assume that beforehand.
+
+As an additional independent check, `verify.py` builds all chains of each distinct proper open lcm interval and computes its reduced homology directly over F2, without the crosscut conversion. All 1,156 direct interval calculations match.
+
+## Exact Stanley-depth certificates
+
+For a squarefree ideal J, let P(J) be the subsets A of {1,...,6} for which x^A belongs to J. An interval [A,B] in P(J) gives the Stanley space x^A K[xi : i in B]. A disjoint interval partition covers every monomial of J, according to its support, and has Stanley depth equal to the smallest |B|.
+
+Conversely, restricting an arbitrary Stanley decomposition to squarefree monomials gives an interval partition. A summand with nonsquarefree base contributes nothing; a squarefree base with support A and variable set Z contributes [A,A union Z], whose top cardinality is at least |Z|. Thus Stanley depth at least d is equivalent to an interval partition with all tops of cardinality at least d. This is the squarefree instance of the [Herzog–Vladoiu–Zheng computation theorem](https://arxiv.org/abs/0712.2308).
+
+For the lower bound, each certificate lists every interval of a complete partition. The checker verifies endpoints, containment, pairwise disjointness, full coverage, and all top cardinalities.
+
+For the upper bound at d+1, the search branches on an uncovered element with cardinality below d+1. Every interval that can contain that element and has a top of cardinality at least d+1 is considered. Such an interval necessarily has a low-cardinality bottom. If all remaining elements have high cardinality, singleton intervals finish a partition; that is the only success base case.
+
+An unsuccessful search produces a DAG whose node is the remaining set of monomials and whose stored pivot is an uncovered low-cardinality element. The checker independently enumerates all legal intervals containing each pivot and requires the residual state of every branch to occur in the DAG. Each edge strictly decreases the remaining set. A leaf has no legal interval. Induction on remaining cardinality proves impossibility at the root. The checker also rejects missing roots, missing branches, invalid pivots, and unreachable stored states. This is an exhaustive finite impossibility certificate, not an unverified solver verdict.
+
+A lower witness at d and impossibility at d+1 establish exact depth d, since a partition at any larger depth would also qualify at d+1.
+
+## One nontrivial worked pair
+
+In S=K[x1,...,x6], the authored example is
+
+I = (x1, x2*x3*x6, x2*x4, x3*x5, x4*x5),
+
+I' = (I:x6) = (x1, x2*x3, x2*x4, x3*x5, x4*x5).
+
+Their lcm-lattices have respectively 22 and 20 elements, so they are not isomorphic. The recorded computation finds that the identity on the five listed generator atoms induces a Betti-poset isomorphism, and that both ideal Stanley depths equal 4. These are example-level computational findings, not a complete public certificate for this pair.
+
+The retained lower-bound partitions contain respectively 12 and 9 intervals. The retained impossibility DAGs at threshold 5 contain respectively 14 and 12 states. The independent audit checked both complete certificates against the master records. This section omits the atom-mask family, interval endpoint lists, and obstruction data. Those are certificate contents and are not included in the public package. The mathematical methods for interpreting and checking them remain fully stated in the preceding sections; verification of this particular pair depends on the excluded certificates or a fresh computation from its displayed generators. The displayed generators alone let a reader independently recompute the pair, but do not supply that computation's complete proof.
+
+## Precise remaining obstruction
+
+The attempted counterexample route is exhausted in the stated six-variable/five-generator class. The numerical evidence supplies no way to extend the construction to arbitrary numbers of variables, to arbitrary five-atom lcm-lattices, or to ideals with more generators. Even within a fixed Betti class, extending a colon decomposition to the original ideal remains the general missing argument. This attempt ends with a certified finite negative search, not a solution of Conjecture 2.4 or 3.5.
+
+## Enumeration proof and precise computational dependency
+
+The preceding reductions are mathematical statements independent of the reported totals. For clarity, here is a complete enumeration rule and proof of coverage. Identify a nonempty squarefree support on n variables with an integer from 1 through 2^n-1, ordered numerically. For an increasing, pairwise incomparable prefix A, let C be the larger supports incomparable with every member of A. To enumerate five-element antichains extending A, choose each a in C in increasing order and recurse with prefix A followed by a, retaining only candidates larger than a and incomparable with a. A prefix of length five is output once. A branch with fewer than 5-|A| available candidates is empty and may be discarded.
+
+Every output is an antichain by construction. Every five-element antichain has a unique increasing order; at each stage its next element remains a candidate because it is larger than, and incomparable with, all preceding elements. Induction on prefix length therefore proves both completeness and absence of duplicates. This argument works for n=5 and n=6. Equivalently, the count obeys the exact recurrence F(A,C)=1 when |A|=5, F(A,C)=0 when |C|<5-|A|, and otherwise F(A,C)=sum over a in C of F(A followed by a, {b in C: b>a and b incomparable with a}). Starting with empty A and all nonempty supports determines the counts without a heuristic stopping rule. The numerical evaluations of this recurrence are computational findings, not separately derived closed-form identities.
+
+The creator applied the five-variable rule to obtain 2,146 bases, formed their 48 orbits under all 120 variable permutations, and considered all 32 lifts of each orbit representative. Thus its representative covering set has 1,536 records and its labelled lift class has 68,672 members. A variable permutation preserves divisibility, lcm intervals and Boolean interval partitions, so it preserves eligibility and both ideal Stanley depths. The lift reduction already proves that this is a covering set of every eligible six-variable ideal. Its possible stabilizer duplicates do not invalidate coverage; the full 32-lift family, rather than an individual lift, is transported bijectively between labelled bases.
+
+Separately, the independently implemented audit applied the six-variable rule before imposing any colon condition. It obtained 304,752 antichains, minimized each colon, and found 68,672 with five minimal colon generators. It then compared this actual labelled set with the expansion of the creator's covering set. Equality of those sets is an audited computational result. The total 304,752 belongs to the independent six-variable enumeration; it is not the creator's five-variable base count. The other minimized-colon counts, excluded by the atom argument, were 2,145 with one generator, 19,515 with two, 93,035 with three, and 121,385 with four; these add with 68,672 to 304,752. A unit colon is included among the one-generator outcomes of that minimization, but is ineligible for the required Betti-poset isomorphism.
+
+To specify exactly what must be checked after enumeration, form each lcm-lattice by repeatedly taking unions of generator supports, beginning with the empty support and generators. This process terminates because the Boolean lattice is finite; its final set is exactly the joins of generator subsets. For every nonzero join m, form every strict chain of the proper open interval (0,m), including the empty chain as the augmented face. Delete vertices with alternating signs to obtain its integral boundary matrices. The usual lcm-interval formula identifies the positive multigraded Betti support with those m for which at least one reduced homology dimension is nonzero. This is the standard formula stated in Katthän's Section 2.2, which cites Gasharov, Peeva and Welker. It is a cited background theorem; the report does not reprove that general resolution theorem.
+
+Each lcm element is the join of its lower atoms, so the lower-atom subset determines it uniquely and inclusion of these subsets is equivalent to the original order. All five atoms are retained in Betti support. An abstract Betti-poset isomorphism must permute them and must transport the lower-atom subset of every other element accordingly. Therefore two support families are isomorphic if and only if one of the 120 atom permutations maps one family exactly onto the other. This supplies both directions of the isomorphism test. An equality of numerical Betti tables or unstructured Betti numbers alone is not the hypothesis being tested.
+
+For any fixed boundary matrix D over the integers, unimodular integer matrices U and V with UDV diagonal remain invertible after base change to any field. If every nonzero diagonal entry is a unit, the rank of D is therefore the same over every field. Applied to all adjacent matrices in the augmented complex, the dimension formula dim H_q = dim C_q - rank D_q - rank D_(q+1) proves field-independence of its reduced homology. The independent audit recomputed the integral Smith forms of all actual open-interval complexes, as well as the crosscut complexes; it also checked that consecutive boundaries compose to zero. Its 30,583 nonzero factors, across 5,403 cached boundary calculations, were all units. Those factor counts and unit checks are computational findings based on the excluded input records and exact recomputation, not deductions from their published digests.
+
+The Stanley-depth certificates use all six ambient variables on both sides. For an interval [A,B], the monomials in x^A K[x_i: i in B] are exactly the monomials whose supports lie between A and B. Distinct partition intervals therefore give disjoint monomial bases, and their union covers the ideal because membership in a squarefree ideal depends only on support. Conversely a fine-graded Stanley summand has a monomial base up to a nonzero scalar. If that base is squarefree with support A, the squarefree supports in the summand form [A,A union Z]; if the base is not squarefree, there are none. Taking these intersections produces a disjoint partition, with each surviving top of size at least |Z|. This proves both implications of the interval characterization used here.
+
+For the upper-bound certificate at threshold t=d+1, let R be a remaining subset of the characteristic poset. If every element of R has size at least t, singleton intervals finish a valid partition, so R cannot be an impossibility node. Otherwise choose a recorded pivot p in R of size below t. Every putative partition has exactly one interval containing p. Consider every Boolean interval [A,B] contained in R, containing p, and with |B| at least t. There are only 3^6=729 Boolean intervals in the ambient lattice: each variable is absent from B, optional in B\A, or mandatory in A. Enumerating all ternary choices is therefore complete. If no such interval is available, impossibility is immediate. If each such interval leads to a smaller remainder already proved impossible, then R is impossible as well. Induction on |R| proves the root obstruction. A legal interval is nonempty, so every child has smaller cardinality; cycles and circular justifications are impossible. Requiring every stored node to be reachable also rules out unused certificate entries. These arguments establish the soundness of complete lower partitions and negative DAGs without assuming the search program is correct.
+
+In the recorded computation, the exact tests just described classified 702 eligible representative pairs, checked all their required certificates, and found equality of ideal depths in every pair. The distribution is 546 pairs at depth 4 and 156 at depth 5. The independently checked labelled distribution is 24,257 and 5,600, respectively. There are 702 distinct ideal certificates after reuse across pairs, not a claim that only one side of each pair was checked. The integral support checks make eligibility uniform over fields, while the characteristic-poset depth calculation itself is combinatorial. Together, the coverage proof, sound certification rules, and verified finite evaluations establish the stated computer-assisted finite conclusion in the retained complete evidence set. The present public text supplies the first two parts and reports the third; it does not supply the excluded evidence needed to recheck every finite evaluation.
+
+## What the public text does and does not establish on its own
+
+A reader can check from this text the five-generator colon reduction, the enumeration recurrence and uniqueness argument, the variable-orbit coverage argument, the atom-permutation criterion, the crosscut nerve argument, the Smith-unit implication for all fields, and the exact Stanley-depth certificate logic. The report states explicitly where standard background results are invoked. It also supplies a small algebraic example that can be recomputed separately.
+
+A reader cannot verify all reported totals, every unit Smith factor, all 702 exact-depth certificates, or the full nonexistence-of-counterexample computation from the published files alone. Doing that requires obtaining the retained code and data through a separately authorized release or writing a fresh independent implementation and generating the evidence. No availability or future release of the excluded artifacts is promised. Integrity metadata can detect mismatched bytes if the referenced artifacts are later supplied; it cannot recover them or establish mathematical truth. The audit was an independently implemented check within this work, not external peer review or a formal proof-assistant verification. The general Betti-poset conjecture remains unresolved by this work, and no claim of novelty or current literature-wide priority is made.
