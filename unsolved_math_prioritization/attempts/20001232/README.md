@@ -1,0 +1,9 @@
+# Row 1899 / 20001232: partial mathematical progress
+
+LOCAL-ONLY FROZEN PACKAGE. The ordinary positive-two-margin arbitrary-gap question remains UNRESOLVED. No novelty or five historical turns claim. Five residual approaches are investigations, not solutions. Logistic varying-design gaps are known complete; ordinary 2×J×K spectra are intervals; fixing two dimensions bounds gaps uniformly; the particular scaled/padded family cannot supply arbitrary gaps.
+
+Run `python -B validate.py` and `python -B -O validate.py`. Standard library only. The independent Fraction checker verifies all 169 integer witnesses, 10 positive-offset intervals, and the active system rank 25. The theorem arguments remain human mathematics; replay is not a general proof assistant.
+
+The original audit verifier is preserved as inert verifier_original.txt. The replay replaces every Assert node by an explicit RuntimeError conditional and relocates only src to this package. The validator verifies this transformation against the ENTIRE original and replay AST, not selected function bodies. Normal and optimized complete outputs are recorded and compared. Original audit receipt hashes bind authored source bytes; the three excluded discovery generators are not replay inputs. Numerical infeasibility flags in the witness JSON are diagnostics, not exclusion proofs. Exact affine rank and endpoint inequalities establish zero-offset completeness instead.
+
+No copied papers, extracted source text, private corpus, or private coordination included. Source metadata is a selected public projection. Original report's remaining acceptance gate was fulfilled by the included independent review; it remains unchanged to preserve its audited hash. The receipt outside this folder anchors validate.py and MANIFEST.json; a self-contained checker cannot authenticate arbitrary coordinated replacement of itself and its trust roots.
