@@ -1918,7 +1918,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1907 | 8800088 / AMR-087-0088 | Converting between divisor-class and infrastructure discrete logarithms | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1908 | 30005119 / OWR-10252930-032 | Uncommon Pairs of Linear Equations | 0.0442 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1909 | 30001941 / OWR-11453-002 | Sharp Free-Energy Decay for Fast Diffusion | 0.0441 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 1910 | 30002271 / OWR-12330-013 | Counterexamples to Averaged Local Fractional-Coloring Bounds | 0.0440 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 1910 | 30002271 / OWR-12330-013 | Counterexamples to Averaged Local Fractional-Coloring Bounds | 0.0440 | 5.0 | 3 | 2013 | already_solved1 | 1/5 |  | Credited prior King (joint with Edwards) clique-plus-pendants example answers the exact existential unrounded closed-neighborhood-average question: chi_f=k, average=3k/4+1, strict for k>=5. All-k proof and exact certificates audited; not a novel result, minimum-order claim, or resolution of maximal-clique, outer-subgraph, or local-demand variants. Audit: attempts/30002271_fractional_coloring. |  |
 | 1911 | 30003699 / OWR-15987-008 | Coefficient Complexity of Braid-Matroid Kazhdan–Lusztig Polynomials | 0.0434 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1912 | 30004105 / OWR-16775-009 | Theta Invariants and New Families of MRD Codes | 0.0432 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1913 | 30004511 / OWR-1703875-003 | Sharp Waiting-Time Estimates for Variational PDE Discretizations | 0.0431 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
