@@ -1,0 +1,380 @@
+{
+  "scope": "Full outputs of direct normal and optimized runs, mathematical mutations, explicit-guard rejection, and recursive inventory controls. Temporary paths normalized.",
+  "runs": [
+    {
+      "label": "normal exact_check.py",
+      "command": [
+        "python",
+        "-B",
+        "exact_check.py"
+      ],
+      "returncode": 0,
+      "stdout": "t 1 [(5, 3), (10, 5), (15, 8), (20, 10), (25, 13), (30, 15), (35, 18), (40, 20), (45, 23), (50, 25)]\nt 2 [(5, 4), (10, 7), (15, 10), (20, 12), (25, 15), (30, 17), (35, 21), (40, 23), (45, 26), (50, 28)]\nt 3 [(5, 5), (10, 7), (15, 10), (20, 13), (25, 16), (30, 18), (35, 21), (40, 23), (45, 26), (50, 28)]\nt 4 [(5, 5), (10, 8), (15, 11), (20, 14), (25, 17), (30, 19), (35, 22), (40, 24), (45, 27), (50, 30)]\nt 5 [(5, 5), (10, 9), (15, 12), (20, 14), (25, 18), (30, 20), (35, 23), (40, 25), (45, 28), (50, 30)]\nt 6 [(5, 5), (10, 10), (15, 13), (20, 15), (25, 19), (30, 21), (35, 24), (40, 27), (45, 30), (50, 32)]\nt2 first construction mismatch:\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "normal independent_audit.py",
+      "command": [
+        "python",
+        "-B",
+        "independent_audit.py"
+      ],
+      "returncode": 0,
+      "stdout": "Verified 305 witnesses; 108 independent exhaustive optima.\nVerified 232 spaced-valuation constructions.\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "normal structure_checks.py",
+      "command": [
+        "python",
+        "-B",
+        "structure_checks.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"counts\": {\"oddpart\": 3200, \"power_paths\": 280, \"threshold\": 85280, \"transfer_edges\": 1022}, \"cycle_mean_t2\": \"1/2\", \"passed\": true, \"scope\": \"Bounded formula checks and t=2 cycle mean only; no larger-t coefficient certified.\"}\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "optimized exact_check.py",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "exact_check.py"
+      ],
+      "returncode": 0,
+      "stdout": "t 1 [(5, 3), (10, 5), (15, 8), (20, 10), (25, 13), (30, 15), (35, 18), (40, 20), (45, 23), (50, 25)]\nt 2 [(5, 4), (10, 7), (15, 10), (20, 12), (25, 15), (30, 17), (35, 21), (40, 23), (45, 26), (50, 28)]\nt 3 [(5, 5), (10, 7), (15, 10), (20, 13), (25, 16), (30, 18), (35, 21), (40, 23), (45, 26), (50, 28)]\nt 4 [(5, 5), (10, 8), (15, 11), (20, 14), (25, 17), (30, 19), (35, 22), (40, 24), (45, 27), (50, 30)]\nt 5 [(5, 5), (10, 9), (15, 12), (20, 14), (25, 18), (30, 20), (35, 23), (40, 25), (45, 28), (50, 30)]\nt 6 [(5, 5), (10, 10), (15, 13), (20, 15), (25, 19), (30, 21), (35, 24), (40, 27), (45, 30), (50, 32)]\nt2 first construction mismatch:\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "optimized independent_audit.py",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "independent_audit.py"
+      ],
+      "returncode": 0,
+      "stdout": "Verified 305 witnesses; 108 independent exhaustive optima.\nVerified 232 spaced-valuation constructions.\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "optimized structure_checks.py",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "structure_checks.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"counts\": {\"oddpart\": 3200, \"power_paths\": 280, \"threshold\": 85280, \"transfer_edges\": 1022}, \"cycle_mean_t2\": \"1/2\", \"passed\": true, \"scope\": \"Bounded formula checks and t=2 cycle mean only; no larger-t coefficient certified.\"}\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "mutation threshold normal",
+      "command": [
+        "python",
+        "-B",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 34, in main\n    require(edge(a,b,t)==expected,'threshold');counts['threshold']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: threshold\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation threshold optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 34, in main\n    require(edge(a,b,t)==expected,'threshold');counts['threshold']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: threshold\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation oddpart normal",
+      "command": [
+        "python",
+        "-B",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 37, in main\n    require(free==(oddpart(x)<t),'oddpart');counts['oddpart']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: oddpart\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation oddpart optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 37, in main\n    require(free==(oddpart(x)<t),'oddpart');counts['oddpart']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: oddpart\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation power_paths normal",
+      "command": [
+        "python",
+        "-B",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 41, in main\n    require(best==power_count(n,t),'power_paths');counts['power_paths']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: power_paths\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation power_paths optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 41, in main\n    require(best==power_count(n,t),'power_paths');counts['power_paths']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: power_paths\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation transfer_edges normal",
+      "command": [
+        "python",
+        "-B",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 47, in main\n    require(transfer_edge(m,n,g)==edge((1<<K)*m,(1<<(K+g))*n,t),'transfer_edges');counts['transfer_edges']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: transfer_edges\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation transfer_edges optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 47, in main\n    require(transfer_edge(m,n,g)==edge((1<<K)*m,(1<<(K+g))*n,t),'transfer_edges');counts['transfer_edges']+=1\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: transfer_edges\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation cycle_mean normal",
+      "command": [
+        "python",
+        "-B",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 51, in main\n    require(rho==Fraction(1,2),'cycle_mean')\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: cycle_mean\n",
+      "expected": "failure"
+    },
+    {
+      "label": "mutation cycle_mean optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "structure_checks.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./structure_checks.py\", line 53, in <module>\n    if __name__=='__main__':main()\n                            ^^^^^^\n  File \"./structure_checks.py\", line 51, in main\n    require(rho==Fraction(1,2),'cycle_mean')\n  File \"./structure_checks.py\", line 6, in require\n    if not condition:raise RuntimeError(message)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: cycle_mean\n",
+      "expected": "failure"
+    },
+    {
+      "label": "corrupt witness count normal",
+      "command": [
+        "python",
+        "-B",
+        "independent_audit.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./independent_audit.py\", line 11, in <module>\n    raise RuntimeError('verification guard failed')\nRuntimeError: verification guard failed\n",
+      "expected": "failure"
+    },
+    {
+      "label": "corrupt witness count optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "independent_audit.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./independent_audit.py\", line 11, in <module>\n    raise RuntimeError('verification guard failed')\nRuntimeError: verification guard failed\n",
+      "expected": "failure"
+    },
+    {
+      "label": "baseline inventory normal",
+      "command": [
+        "python",
+        "-B",
+        "verify_inventory.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"files\": 17, \"passed\": true}\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "baseline inventory optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "verify_inventory.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"files\": 17, \"passed\": true}\n",
+      "stderr": "",
+      "expected": "success"
+    },
+    {
+      "label": "recursive extra file normal",
+      "command": [
+        "python",
+        "-B",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 13, in verify\n    if set(actual)!=set(expected):raise RuntimeError('recursive inventory mismatch')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: recursive inventory mismatch\n",
+      "expected": "failure"
+    },
+    {
+      "label": "recursive extra file optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 13, in verify\n    if set(actual)!=set(expected):raise RuntimeError('recursive inventory mismatch')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: recursive inventory mismatch\n",
+      "expected": "failure"
+    },
+    {
+      "label": "nested manifest extra file normal",
+      "command": [
+        "python",
+        "-B",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 13, in verify\n    if set(actual)!=set(expected):raise RuntimeError('recursive inventory mismatch')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: recursive inventory mismatch\n",
+      "expected": "failure"
+    },
+    {
+      "label": "nested manifest extra file optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 13, in verify\n    if set(actual)!=set(expected):raise RuntimeError('recursive inventory mismatch')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: recursive inventory mismatch\n",
+      "expected": "failure"
+    },
+    {
+      "label": "missing file normal",
+      "command": [
+        "python",
+        "-B",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 13, in verify\n    if set(actual)!=set(expected):raise RuntimeError('recursive inventory mismatch')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: recursive inventory mismatch\n",
+      "expected": "failure"
+    },
+    {
+      "label": "missing file optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 13, in verify\n    if set(actual)!=set(expected):raise RuntimeError('recursive inventory mismatch')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: recursive inventory mismatch\n",
+      "expected": "failure"
+    },
+    {
+      "label": "byte mutation normal",
+      "command": [
+        "python",
+        "-B",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 16, in verify\n    if len(b)!=row['bytes'] or hashlib.sha256(b).hexdigest()!=row['sha256']:raise RuntimeError('content mismatch: '+name)\n                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: content mismatch: README.md\n",
+      "expected": "failure"
+    },
+    {
+      "label": "byte mutation optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 16, in verify\n    if len(b)!=row['bytes'] or hashlib.sha256(b).hexdigest()!=row['sha256']:raise RuntimeError('content mismatch: '+name)\n                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: content mismatch: README.md\n",
+      "expected": "failure"
+    },
+    {
+      "label": "symlink normal",
+      "command": [
+        "python",
+        "-B",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 11, in verify\n    if p.is_symlink():raise RuntimeError('symlink rejected')\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: symlink rejected\n",
+      "expected": "failure"
+    },
+    {
+      "label": "symlink optimized",
+      "command": [
+        "python",
+        "-B",
+        "-O",
+        "verify_inventory.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"./verify_inventory.py\", line 18, in <module>\n    if __name__=='__main__':verify(Path(__file__).parent)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"./verify_inventory.py\", line 11, in verify\n    if p.is_symlink():raise RuntimeError('symlink rejected')\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: symlink rejected\n",
+      "expected": "failure"
+    }
+  ]
+}
