@@ -1883,7 +1883,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1872 | 3000062 / AMR-029-0062 | Orientation-compatible w-vertex cover | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1873 | 30006522 / OWR-14299904-004 | Weak-Order Growth of Grothendieck Schubert Supports | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1874 | 30006595 / OWR-14299909-010 | Modularity of Higher-$t$ Generating-Function Coefficients | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
-| 1875 | 3154 / OPG-36933 | Asymptotic Distribution of Form of Polyhedra | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1875 | 3154 / OPG-36933 | Asymptotic Distribution of Form of Polyhedra | 0.0495 | 5.0 | 1 | unknown | ALREADY_SOLVED | 1/5 |  | Existing fixed-edge uniform-unlabelled polyhedron CLT/concentration/variance attributed to Lachlan Bridges, arXiv:2609.22402v1; classical enumeration dependencies retained. No novelty or journal certification. [Acceptance](attempts/polyhedron_form_3154/ACCEPTANCE.md). |  |
 | 1876 | 3321 / OPG-322 | Drawing disconnected graphs on surfaces | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1877 | 30001258 / OWR-3476-007 | Sublinear Lane–Emden Ground-State Asymptotics | 0.0492 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 1878 | 30001414 / OWR-4209-004 | Boundary Conditions Preserving Optimal Hardy–Sobolev Constants | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
