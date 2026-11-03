@@ -1,0 +1,27 @@
+# Independent mathematical audit
+
+21 October 2026. Independent review of `FIVE_APPROACHES.md` and the supplied source-status gate. No publication or queue changes. This audit checks the stated deductions and their scope; it does not certify a solution of the original problem or the September 2026 announcement.
+
+## Verdicts
+
+1. **Crossing-budget bound: accept.** A finite drawing leaves a disk in its complement, so placing a plane-optimal component there gives the stated upper bound. Subtracting the individual surface minima gives exactly
+   `m + (x-a) + (y-b) <= min(delta_H,delta_K)`.
+   The zero-saving exclusion is valid on either orientability type. Positive saving is a necessary condition, not sufficient evidence for a counterexample.
+
+2. **One mixed crossing and forest exclusion: accept on orientable surfaces.** After internal planarization, the sole mixed crossing is a cut vertex of a vertex amalgamation. Orientable genus additivity therefore supplies enough genus for disjoint embeddings of the planarized graphs. At every internal planarization vertex the prescribed two pairs of half-edges can be reconnected in a disk with zero or one crossing, irrespective of the embedding's rotation. This recovers the original abstract graphs with at most the original internal crossing count and strictly improves the drawing. No fixed-rotation or fixed-homotopy hypothesis may be imposed. The forest extension uses successive vertex amalgamations and is valid. For two connected components, the resulting necessary conditions `m >= 2` and `delta_H, delta_K >= 2` follow. Do not substitute ordinary nonorientable genus additivity without a separate argument.
+
+3. **Positive lattice equality: accept exactly.** With two copies of `u=(1,2)` and one of `v=(2,-1)`, the four ordered nonzero determinant terms each contribute 5, hence `L=20`. For a nonzero row, `p=a+2b` and `q=2a-b` satisfy `q = 2p-5b`. The integer norm `2|p|+|q|` is at least 4. Equality requires `(p,q)=+(1,2)` or `-(1,2)`, hence row `+(1,0)` or `-(1,0)`. Independent integer rows cannot both attain 4, so a unimodular matrix has product at least `4*5`; the identity attains it. Thus `M=20`. This is an exact obstruction to the blanket strict lattice inequality, not a graph counterexample. No finite search is needed for this certificate.
+
+4. **Higher-genus homology obstruction: accept.** In the stated genus-two construction, a bigon between the separating curve and the second curve would make one of the chosen properly embedded arcs boundary-parallel. The no-bigon criterion consequently certifies geometric intersection 2, whereas the separating curve has zero integral homology class. This disproves an exact replacement of geometric intersection by the symplectic homology pairing. It does not disprove free-homotopy methods, the graph conjecture, or useful lower bounds obtained from homology.
+
+5. **Amplification and extraction: accept with the stated unrestricted drawing convention.** Choose one parallel copy independently for each original edge. A crossing between copies of distinct originals survives with probability `1/r^2`; a crossing between different copies of the same original never survives. Thus the expected crossing count is exactly `T/r^2` for ordinary parallel-edge drawings, and is an upper bound after any necessary cleanup. This proves the amplified optimum equals `r^2` times the original optimum, since close parallel copies attain the reverse bound. If parallel edges are subdivided to make a simple graph, choose an entire subdivided copy, suppress its degree-two vertices, and remove any resulting self-intersections without increasing crossings. The same optimum equality follows. A nonstrict separated redraw then gives only a nonstrict extracted bound. Strictness requires a separately established loss, not multiplication or averaging alone.
+
+## Equality and remaining obligations
+
+For an amplified redraw with `r^2 C` crossings, let `R` count crossings between distinct copies of the same original edge. Its extraction expectation is `(r^2 C-R)/r^2`. A positive `R`, a smaller total, or another certified cleanup loss is sufficient for strict improvement. If `R=0` and the total is exactly `r^2 C`, averaging itself has no strict slack; every extracted drawing can have `C` crossings. This is the missing implication that must not be silently assumed.
+
+The two positive results are limited exclusions. The other three results rule out particular proof shortcuts. None supplies an intersecting optimum with a matching global lower bound, or eliminates all such optima on every remaining surface. The source gate's existential-versus-universal distinction remains necessary.
+
+## Optional bridge strengthening
+
+The forest exclusion can safely be strengthened: in an optimal drawing on an orientable surface, the mixed-crossing multigraph of the original connected components has no bridge. If a mixed-crossing edge is a bridge, partition its crossing cluster at that bridge and planarize every other crossing. The remaining crossing becomes a cut vertex of a vertex amalgamation; other crossing clusters contribute disconnected planarized graphs. Orientable genus additivity, including disconnected components, permits their separate embeddings within the original genus. Restoring all planarized crossings costs at most their original number, while the bridge crossing disappears. This is again only a necessary-condition exclusion and does not address cycles in the crossing multigraph.
