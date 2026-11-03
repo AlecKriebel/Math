@@ -1885,7 +1885,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1874 | 30006595 / OWR-14299909-010 | Modularity of Higher-$t$ Generating-Function Coefficients | 0.0495 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1875 | 3154 / OPG-36933 | Asymptotic Distribution of Form of Polyhedra | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1876 | 3321 / OPG-322 | Drawing disconnected graphs on surfaces | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1877 | 30001258 / OWR-3476-007 | Sublinear Lane–Emden Ground-State Asymptotics | 0.0492 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 1877 | 30001258 / OWR-3476-007 | Sublinear Lane–Emden Ground-State Asymptotics | 0.0492 | 5.0 | 3 | 2009 | UNSOLVED | 5/5 |  | Smooth connected-domain, weight-one Dirichlet scoped partial: O(p-q) spectral gap and nonzero finite C1 subsequential resonant least-nodal limits. No unique general-p direction/amplitude, full-family convergence, novelty, or full closure. Integrity checks are not PDE proof certificates. [Report](attempts/sublinear_lane_emden_30001258/RESONANT_NODAL_ANALYSIS.md). |  |
 | 1878 | 30001414 / OWR-4209-004 | Boundary Conditions Preserving Optimal Hardy–Sobolev Constants | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1879 | 30001553 / OWR-4425-008 | Sharp Bounds for Alternating Involution Periods | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1880 | 30001558 / OWR-4425-014 | Fragile and Robust Squarefree Infinite Words | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
