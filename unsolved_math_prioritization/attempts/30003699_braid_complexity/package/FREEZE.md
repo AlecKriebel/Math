@@ -1,0 +1,9 @@
+# Frozen standalone audit
+
+Problem 30003699, row 1911. The seven original public-safe authored files are preserved byte-for-byte; the original manifest is named ORIGINAL_MANIFEST.json. No copied source PDFs, source text, dataset contents, private paths, or coordination records are included. The recovery gate was consulted for scope, not copied.
+
+Run python -B replay.py and python -B -O replay.py. Both must reproduce REPLAY_NORMAL.json and REPLAY_OPTIMIZED.json respectively. These contain all coefficients from the Z route through n=60 and both other routes through n=18, plus all checked leading coefficients. Run python -B mutation_tests.py and python -B -O mutation_tests.py for disposable negative controls. No sockets or network operations are used. No original mathematical code was changed; its AST contains zero assert nodes. Explicit exceptions remain active under optimization.
+
+validate.py inventories every entry using lstat before reading any manifest or payload content. Only a flat inventory of single-link regular files is accepted; links, directories, FIFOs and other special entries are rejected. JSON byte counts and identifiers require exact int types, excluding booleans. SHA-256 inventory is integrity evidence, not an adversarial signature. Mutation tests operate only on writable temporary copies. This is an ordinary local audit, not a defense against concurrent filesystem replacement.
+
+The public audit retains both parity leading formulas, the all-coefficient prior results and PXY2025 enumeration, and the explicitly scoped PREFIX-KL(N) upper bound: O(N³) integer operations, O(N log(N+1)) bits per integer, conservative O(N⁵ log²(N+1)) schoolbook bit time. It neither claims novelty nor resolves an unspecified original complexity target. No publication or queue modification is performed.
