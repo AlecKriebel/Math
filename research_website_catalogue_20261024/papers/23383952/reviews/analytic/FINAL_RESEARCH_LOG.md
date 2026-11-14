@@ -1,0 +1,5 @@
+# Analytic progress after the immutable initial seal
+
+2026-10-25T16:27:40.898134+00:00 — 85%: Actual source151+manifest/seal and prior-stage761 owned files remain unchanged. Complete recursive142-occurrence/four-container custody checked. Deposited pure arithmetic and distinct own23-check exact program each passed normal/-O. Own closed-form/domain, all-index min–max, theta, full-time partition and attainment derivations completed. Actual OWR/AJ bodies and bounded Morpurgo author-transcription interfaces read; no prior/current review opinions used. Final report/verdict/read-only verifier and seal remain.
+
+2026-10-25T16:29:52.303651+00:00 — 100% of this analytic lane: Full original finite theorem/attainment supported, exact arithmetic and original/primary custody complete, report/custom verdict and read-only verifier written. No central analytic gap identified; priority/final-external-version limits remain explicit. Sealing follows the actual read-only check. Root cross-family scientific/public authority remains separate; all203 programme ongoing.

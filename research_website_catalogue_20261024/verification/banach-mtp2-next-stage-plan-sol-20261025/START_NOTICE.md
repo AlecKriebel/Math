@@ -1,0 +1,7 @@
+# Subsequent root start authority
+
+After the planning body was drafted, root explicitly authorized the separate private stage at verification/local-banach-mtp2-stage-sol-20261025. The100/101 installation was identified by website commit262f0f4f3eafd513e1bd549960020678307d6c67, Firebase94da777a28cd8941,524public files/70index articles/71sitemap URLs, renderer SHA256be622123717473cf174c10bfe22b254cb5d57abff9d0e192d15e3c87206ec85f and checker SHA256f743459809e21a8a590a368c52585023c5bf16f77ddac4f21879fa9bbb7daffb.
+
+The stage must select only23217863 and23146753. Its explicit old69configured IDs are the prior odd-ear/blocking stage's67old IDs plus23576280 and23331258; the manual pilot remains separate.106/107and every other preparation config are excluded. Root requires exactly one old69checker suite and one paired old69renderer comparison,138complete renderer executions, with full output-dictionary byte equality before hash metadata. No old site/source fixture or tree is copied. All source/config/shared/site/native/UI/Git/HTTP writes and scientific source-programme execution remain unauthorized. Proposed code and outputs are private only.
+
+The separate stage has taken its fresh observed baseline. That baseline is not part of this planning packet and is not retroactively substituted into an older packet. Root's integration receipt was still being written at dispatch; no missing receipt path was guessed as authority. All planning originals remain independently bound and this completed plan is preserved before candidate implementation.

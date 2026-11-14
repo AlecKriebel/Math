@@ -1,0 +1,752 @@
+Supplementary Information: Amplifiers for both Birth-death and death-Birth
+                              updating
+                Jakub Svoboda1 , Soham Joshi1 , Josef Tkadlec2 , and Krishnendu Chatterjee1
+                                     1
+                                     IST Austria, Klosterneuburg, Austria
+                  2
+                      Computer Science Institute, Charles University, Prague, Czech Republic
+
+
+
+Contents
+1 Preliminaries                                                                                                      1
+
+2 Negative result 2                                                                                                  2
+
+3 Negative result 3                                                                                                  3
+
+4 Positive result                                                                                                    5
+  4.1 Auxiliary statements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+  4.2 Construction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+  4.3 Proof of Amplification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   7
+
+    This is a supplementary information to the manuscript Amplifiers for both Birth-death and death-Birth updating.
+It contains formal proofs of the theorems listed in the main text.
+
+
+1    Preliminaries
+Given an undirected graph GN = (V, E) on N nodes, the degree of a node u, denoted P       deg(u), is the number of
+neighbors of u in GN . When the edges are weighted, we define the degree deg(u) = v:(u,v)∈E w(u, v) as the
+sum of the weights of all the adjacent edges. As a direct extension of [3, 4, 10] and as noted in [1] we obtain the
+following formula for fixation probability under neutral drift (r = 1). For completeness, we include a proof.
+
+Lemma 1 (Fixation probability on edge-weighted undirected graphs when r = 1). Let GN = (V, E) be an
+edge-weighted undirected graph on N nodes and S ⊂ V any set of vertices occupied by mutants. Then
+                                   P                                         P
+                                     u∈S 1/ deg(u)                                 deg(u)
+                     Bd
+                   ρr=1 (GN , S) = P                and      ρr=1 (GN , S) = Pu∈S
+                                                              dB
+                                                                                          .
+                                    v∈V 1/ deg(v)                              v∈V deg(v)
+
+Proof. Let pu→v be the probability that, in a single step, an individual at node u produces an offspring that
+replaces an individual at node v. For Birth-death updating, it suffices to check that for any subset S ⊂ V of
+mutant nodes and any edge (u, v) connecting a mutant node u ∈ S and a non-mutant node v ̸∈ S we have
+
+                                             1/ deg(v)                   1/ deg(u)
+                                 pu→v · P                ′
+                                                            = pv→u · P               ′
+                                                                                        .
+                                          v ′ ∈V 1/ deg(v )           v ′ ∈V 1/ deg(v )
+
+Since for Birth-death updating and r = 1 we have pu→v = N1 · w(u,v)
+                                                             deg(u) , both sides rewrite as
+
+                                                   1        w(u,v)
+                                                   N · deg(u) deg(v)
+                                                  P                 ′
+                                                                      ,
+                                                    v ′ ∈V 1/ deg(v )
+
+
+                                                           1
+and so the claim is proved. Likewise, for death-Birth updating it suffices to check that
+
+                                                deg(v)                   deg(u)
+                                     pu→v · P            ′
+                                                            = pv→u · P            ′
+                                                                                     .
+                                             v ′ ∈V deg(v )           v ′ ∈V deg(v )
+
+Since for death-Birth updating and r = 1 we have pu→v = N1 · w(u,v)
+                                                             deg(v) , this time both sides rewrite as
+
+                                                              w(u,v)
+                                                                N
+                                                  pu→v · P             ′
+                                                                            .
+                                                           v ′ ∈V deg(v )
+
+    The proof of our positive result relies on three existing results. For convenience, we list them here. First, there
+exist unweighted graphs called Incubators that are strong amplifiers under Birth-death updating [8, Theorem 2].
+
+Lemma 2. There exists a family of graphs ABd
+                                          N such that for all r > 1, we have
+
+                                                                   −1/3
+                                                ρBd  Bd
+                                                 r (AN ) ≥ 1 − O(N      ).
+
+   Second, there exist edge-weighted graphs called Separated Hubs that are substantial amplifiers under death-
+Birth updating [2, Theorem 3].
+
+Lemma 3. There exists a family of graphs AdB
+                                          N such that for all r > 1, we have
+
+                                                            N     1 − r13
+                                            ρdB
+                                             r (GN ) =          ·      1 .
+                                                          2N + 1 1 − r3N
+
+   Third, the evolutionary dynamics terminates polynomially quickly in terms of the population size N , under
+both the Birth-death updating [5, Theorem 9] and the death-Birth updating [7, Theorem 1].
+
+Lemma 4. Fix r > 1. For Bd and dB process on an undirected graph with N vertices with the highest ratio
+                                                                4
+between edge weights 1ε , the expected fixation time is in O( Nε ).
+
+
+2     Negative result 2
+In this section, we show that one fixed neutral mutant cannot have a better fixation probability in both processes
+than on a complete graph. This means that even if we can choose the starting position, we are not guaranteed to
+increase the fixation probability for both processes.
+
+Theorem 1. Let GN be a graph and v an initial mutant node. Then at least one of the following is true:
+
+    1. ρBd              Bd
+        r=1 (GN , v) < ρr=1 (KN );
+
+    2. ρdB              dB
+        r=1 (GN , v) < ρr=1 (KN );
+
+    3. ρBd              Bd             dB              dB
+        r=1 (GN , v) = ρr=1 (KN ) and ρr=1 (GN , v) = ρr=1 (KN ).
+
+Proof. First, note that ρBd           dB
+                         r=1 (KN ) = ρr=1 (KN ) = 1/N . Next, recall the known formulas for the fixation probability
+on undirected graphs under neutral drift (see Lemma 1 and [4, 10]], namely:
+
+                                           1/ deg(v)                                  deg(v)
+                        ρBd
+                         r=1 (GN , v) = P                    and ρdB
+                                                                  r=1 (GN , v) = P              .
+                                          u∈V 1/ deg(u)                              u∈V deg(u)
+
+As the final ingredient, note that for any N non-negative numbers x1 , . . . , xN we have a bound
+                                                    
+                                  1     1          1
+                                     +    + ··· +      · (x1 + x2 + · · · + xN ) ≥ N 2 .
+                                  x1 x2           xN
+
+
+
+
+                                                             2
+This follows e.g. from the inequality between the arithmetic and harmonic mean of numbers x1 , . . . , xN (called
+AM-HM), or from Cauchy-Schwarz inequality. Moreover, the equality occurs if and only if x1 = x2 = · · · = xN .
+Applying this bound to xi = deg(vi ) we obtain
+
+                                      1/ deg(v)       deg(v)                    1                  1
+     ρBd              dB
+      r=1 (GN , v) · ρr=1 (GN , v) = P             ·P           = P              P             ≤ 2.
+                                     u∈V 1/ deg(u)   u∈V deg(u)    u∈V 1/ deg(u) ·  u∈V deg(u)    N
+
+If equalities occur everywhere then deg(v1 ) = · · · = deg(vN ), thus ρBd              dB
+                                                                       r=1 (GN , v) = ρr=1 (GN , v) = 1/N . Otherwise,
+                                      2                            Bd                 dB
+the product is strictly less than 1/N , thus at least one of ρr=1 (GN , v) and ρr=1 (GN , v) is strictly less than
+1/N .
+
+    The following example illustrates that there exists a graph and a subset S = {u, v} of k = 2 nodes, such that
+the fixation probability starting from mutants at both u and v is strictly greater than fixation probability starting
+from k = 2 mutant nodes on a well-mixed population, both for the Birth-death and for the death-Birth updating.
+
+a Complete graph K5                      b Dart graph D5                       c
+
+        S       v                                  S
+        u                                      u        v
+
+
+
+                        2                                  15   2
+        ρBd
+         r=1 (K5 , S) = 5                  ρBd
+                                            r=1 (D5 , S) = 31 > 5
+                                                            5   2
+        ρdB             2
+         r=1 (K5 , S) = 5                  ρdB
+                                            r=1 (D5 , S) = 12 > 5
+
+Figure 1: Mutant subset that amplifies for both Bd and dB. a, With two neutral mutants (r = 1) on a
+complete graph KN , the fixation probability is equal to 2/N under both Birth-death and death-Birth updating. b,
+When two neutral mutants initially occupy vertices u and v of the so-called dart graph D5 , the fixation probability
+under both Birth-death and death-Birth updating is increased. c, As r increases above roughly r ≈ 1.24, the
+fixation probability on the Dart graph under death-Birth updating drops below the reference value of two mutants
+on a complete graph K5 . Under Birth-death updating, the effect persists for r ≥ 1. (Data obtained by numerically
+solving the underlying Markov chains.)
+
+    The intuition behind the result is that node u is a really good initial mutant node for Birth-death updating,
+and node v is a really good initial mutant node for death-Birth updating. Together, they form an above-average
+set of two mutant nodes, even when compared to a complete graph with two initial mutants.
+
+
+3     Negative result 3
+In this section, we prove that for any fixed vertex, in the first step, the ratio between increasing and decreasing
+the number of mutants cannot be better than in the complete graph in both processes. This means we cannot
+find a vertex from which both processes spread better than in the complete graph. To achieve amplification for
+both processes, we know that some vertices will be better for Bd and some for dB amplification.
+    Recall that given Moran Birth-death process run on graph GN with an initial mutant node u, the quantity
+γrBd (GN , u) is the probability that the first reproduction event that changes the size of the mutant subpopulation is
+the initial mutant reproducing (as opposed to the initial mutant being replaced by one of its neighbors). Similarly,
+we define γrdB (GN , u) for the death-Birth process.
+
+Theorem 2. Let GN be a graph, u an initial mutant node, and r ≥ 1. Then at least one of the following is true:
+
+    1. γrBd (GN , u) < γrBd (KN );
+
+                                                            3
+  2. γrdB (GN , u) < γrdB (KN );
+
+   3. γrBd (GN , u) = γrBd (KN ) and γrdB (GN , u) = γrdB (KN ).
+
+Proof. Denote by T (u) = v : (u,v)∈E w(u,v)
+                             P
+                                          deg v the so-called temperature of node u, that is, the rate at which node u
+is replaced by its neighbors in the neutral case.
+    Denote by p+            +
+                  Bd,r = pBd,r (GN , u) the probability that in a single step of the Moran Birth-death process the
+mutant reproduces, and by p−            −
+                                Bd,r = pBd,r (GN , u) the probability that it gets replaced by a resident. Denoting the
+total fitness by F = N + (r − 1) we have
+
+                                                   r                             X          1 w(u, v)
+                                      p+
+                                       Bd,r =            and p−
+                                                              Bd,r =                          ·       ,
+                                                   F                                        F   deg v
+                                                                              v : (u,v)∈E
+
+and thus
+                                                       p+
+                                                        Bd,r                         r                    r
+                           γrBd (GN , u) =               −    =                        =           .
+                                                p+
+                                                 Bd,r + pBd,r   r + v : (u,v)∈E w(u,v)   r + T (u)
+                                                                   P
+                                                                                deg v
+
+In particular, in the complete graph KN each node has temperature 1, and thus
+                                                                               r
+                                                               γrBd (KN ) =       .
+                                                                              r+1
+
+If T (u) ≥ 1 then r/(r + T (u)) ≤ r/(r + 1) and hence γrBd (GN , u) ≤ γrBd (KN ) with equality if and only if T (u) = 1.
+From now on, suppose T (u) ≤ 1.
+                                                                                +                  −       −
+    Consider Moran death-Birth process and define the quantities p+    dB,r = pdB,r (GN , u) and pdB,r = pdB,r (GN , u)
+as above. Then
+                                     X      1         r · w(u, v)                          1
+                          p+
+                           dB,r =             ·                             and p− dB,r = N ,
+                                            N (r − 1)w(u, v) + deg(v)
+                                     v : (u,v)∈E
+
+therefore                                                        P                 r·w(u,v)
+                                                                  v : (u,v)∈E (r−1)w(u,v)+deg(v)
+                                      γrdB (GN , u) =             P                  r·w(u,v)
+                                                                                                  .
+                                                               1 + v : (u,v)∈E (r−1)w(u,v)+deg(v)
+In particular, for the complete graph KN and any its node u we have
+                               X                 r · w(u, v)                          r
+                                                                  = (N − 1) ·                   .
+                                          (r − 1)w(u, v) + deg(v)             (r − 1) + (N − 1)
+                            v : (u,v)∈E
+
+
+Hence in order to prove γrdB (GN , u) ≤ γrdB (KN ), it suffices to prove
+                                     X                 r · w(u, v)            (N − 1)r
+                                                                        ≤                   .
+                                                (r − 1)w(u, v) + deg(v)   (r − 1) + (N − 1)
+                                  v : (u,v)∈E
+
+   We rearrange
+                                                               w(u,v)
+                                                 X             deg(v)            1
+                                                                 w(u,v)
+                                                                            ≤ r−1     .
+                                                         (r − 1)        + 1   N −1 +1
+                                             v : (u,v)∈E         deg(v)
+
+When r = 1, the desired claim reduces precisely to T (u) ≤ 1. Suppose r > 1, that is r − 1 > 0, and consider a
+                                                    x
+function f : (0, ∞) → (0, ∞) defined by f (x) = (r−1)x+1 . Then f is concave and increasing, therefore by Jensen’s
+inequality we have
+                              w(u,v)                            1    P               w(u,v)
+               X              deg(v)                         |N (u)|   v : (u,v)∈E deg(v)                  T (u)
+                                w(u,v)
+                                           ≤ |N (u)| ·                                w(u,v)
+                                                                                                 = r−1                 ,
+                                                                  1                                        · T (u) + 1
+                                                                       P
+            v : (u,v)∈E (r − 1) deg(v) + 1             (r − 1) |N (u)|    v : (u,v)∈E deg(v) + 1   |N (u)|
+
+
+where |N (u)| = |{v : (u, v) ∈ E}| is the number of neighbors of u in G.
+
+                                                                        4
+   Finally, since the function f is increasing, using bounds T (u) ≤ 1 and |N (u)| ≤ N − 1, the right-hand side is
+at most
+                                             T (u)               1           1
+                                       r−1                ≤ r−1         ≤ r−1
+                                      |N (u)| · T (u) + 1   |N (u)| + 1   N −1 + 1
+
+as desired. For the equality to occur in the first step, we must in particular have T (u) = 1, in which case the other
+equality γrBd (GN , u) = γrBd (KN ) holds too.
+
+
+4     Positive result
+In this section, we prove the main positive result which states that there exists an undirected, edge-weighted graph
+that is simultaneously an amplifier of selection for Birth-death Moran process and for death-Birth Moran process
+(under uniform mutant initialization). We first bound the number of steps until fixation or extinction for both
+processes (Bd and dB) and any graph. Second, we show that for any graph, there is a good starting vertex where
+a mutant has fixation probability at least N1 . Then we construct the graph and we prove that it is indeed an
+amplifier for both processes.
+
+4.1   Auxiliary statements
+Lemma 5. For Bd and dB process for any r on an undirected graph with N vertices with the ratio between edge
+weights at most 1ε , the probability that the process is not completed after O(N 5 /ε) steps is in O( 21N ).
+Proof. From Lemma 4, we can take constant c such that for both processes and all graphs with N vertices, the
+expected time is at most cN 4 /ε. From Markov’s inequality [9], the probability that the process takes more than
+2cN 4 /ε steps is at most 21 . If the process does not finish, the expected time is again cN 4 /ε. That means we can
+take N epochs of size 2cN 4 /ε each, and the probability that the process does not finish in any epoch is at most
+ 1
+2N
+   .
+
+Lemma 6. For any graph GN with N vertices any r ≥ 1, and a process p ∈ {Bd, dB} there exists a vertex v such
+that ρpr (GN , v) ≥ N1 .
+Proof. It suffices to prove the statement for r = 1, since increasing the mutant fitness advantage r increases its
+fixation probability [6, Theorem 6].    P
+    In the neutral case (r = 1), we have v∈V ρr=1 (GN , v) = 1, thus there exists at least one vertex with fixation
+probability at least N1 .
+
+    Note that in some cases, no starting vertex v satisfies both ρBd                        dB
+                                                                      r (GN , v) ≥ 1/N and ρr (GN , v) ≥ 1/N simul-
+taneously. An example is a Star graph S3 on N = 3 vertices with center c and leaves l1 , l2 when r = 1. Then
+ρBd                          dB              dB
+ r (S3 , c) = 1/5 < 1/3 and ρr (S3 , l1 ) = ρr (S3 , l2 ) = 1/4 < 1/3.
+
+
+4.2   Construction
+For given N and γ ∈ (0, 1), we describe how to construct graph AN,γ . We show that for some γ, this graph is
+an amplifier for both processes for r ∈ (1, 1.2). The graph AN,γ has two parts. The first part is a graph ABd  (1−γ)N
+(from Lemma 2) on (1 − γ)N vertices, the second part is a graph AdB   γN (from Lemma 3) on γN vertices. Let ε be
+the smallest weight among edges when both graphs are independently scaled such that the largest edge weight is
+1.
+    We will connect the two parts by a single edge. To that end, we select a vertex v from ABd   (1−γ)N such that the
+                                            Bd                                1
+fixation probability starting from v in A(1−γ)N in dB-process is at least N , (such vertex exists from Lemma 6).
+Similarly, we select a vertex v ′ from AdB                                                       ′
+                                          γN such that the fixation probability starting from v in the graph under
+Bd-process is at least N1 , (existence follows from Lemma 6). Then, we connect v and v ′ by an edge of weight
+       3
+w = Nε 9 .
+                                                                          ε
+    Finally, we scale all edges in the first part ABd                                                         dB
+                                                   (1−γ)N by a factor of N 3 . That is, the heaviest edge in AγN has
+                                                          ε
+weight 1, and the heaviest edge in ABd                                                                Bd
+                                      (1−γ)N has weight N 3 . Observe that the scaling of edges in A(1−γ)N does not
+influence the fixation time.
+
+                                                          5
+   Before we turn to the main proof, we show several properties of the graph we AN,γ we have just constructed.
+The first property is that the two parts ABd           dB
+                                           (1−γ)N and AγN interact so rarely that most of the time they interact,
+the population on either part is already homogeneous (all mutants or all residents). Then we show Lemma 8 and
+Lemma 9. The lemmas show that in both processes, the probability of an individual reproducing over the edge
+between v and v ′ is unbalanced and in both processes, the individual in the respective amplifier is more likely to
+spread to the other graph.
+
+Lemma 7. For any N , γ, both processes, and a randomly placed mutant in AN,γ , the probability that mutants
+become extinct or fixate on their part of AN,γ before any reproduction over edge v, v ′ is at least
+
+                                                          1 − O(1/N 2 ).
+
+Proof. First, we bound the probability that edge v, v ′ is selected in both processes and then we use the union
+bound.
+    For Bd, the edge v, v ′ is used either by (i) selecting the individual at v and spreading over v, v ′ , or (ii) selecting
+                                                                                                              3    9
+the individual at v ′ and spreading over v ′ , v. Event (i) happens with probability at most N +(r−1)
+                                                                                                r
+                                                                                                      · ε3 /Nε 9/N
+                                                                                                                +ε /N 3
+                                                                                                                   2    < Nrε7 .
+                                                                        3       9          2
+                                               r
+Event (ii) happens with probability at most N +(r−1) · ε3ε/N/N9 +ε < Nrε10 . The sum of these probabilities is at most
+2rε
+N7
+    .
+    For dB, the edge v, v ′ is used either if (i) individual at v dies and is replaced individual at v ′ , or (ii) individual
+                                                                                                            rε3 /N 9
+at v ′ dies and is replaced by individual at v. Event (i) happens with probability at most N1 · ε3 /N                      rε
+                                                                                                              9 +ε2 /N 3 < N 7 .
+                                                            3       9               2
+Event (ii) happens with probability at most N1 · εrε       /N      rε                                                   2rε
+                                                       3 /N 9 +ε < N 10 . The sum of these probabilities is at most N 7 .
+
+    From Lemma 5, we know that with high probability the process ends in O(N 5 /ε) steps. In every step the
+probability of using edge v, v ′ is at most 2rε
+                                            N7
+                                                , that gives probability of using v, v ′ at most O( N12 ) at first N 5 /ε steps
+from union bound. Since the probability that the process does not end during these steps is also in O( N12 ), we
+have that the randomly placed mutant resolves on one part of the graph before using edge v, v ′ with a probability
+at least 1 − O( N12 )
+                                                                                                                              2
+Lemma 8. In the graph AN,γ under the Bd process, if edge v, v ′ is used, then with probability at least 1 − Nr 2
+occupant of v spreads to v ′ .
+                                                                                          ε /N         3   9    2
+Proof. At one step, individual at v spreads to v ′ with probability at least rN
+                                                                              1
+                                                                                · ε3 /N 9 +(N −1)·ε/N 3
+                                                                                                           ε
+                                                                                                        > rN 8 . Individual
+                                                                            3       9          2
+at v ′ spreads to v with probability at most N +(r−1)
+                                                   r
+                                                      · ε3ε/N/N9 +ε < Nrε10 . Conditioned that the spread over v, v ′
+happens, it is from v ′ to v with probability at most
+                                                             rε2
+                                                             N 10                   r2
+                                                       ε2           rε2
+                                                                            <          .
+                                                                +                   N2
+                                                      rN 8          N 10
+                                                                                                   2
+The opposite event, v spreading to v ′ happens with probability at least 1 − Nr 2 .
+                                                                                                                              2
+Lemma 9. In the graph AN,γ under the dB process, if edge v, v ′ is used, then with probability at least 1 − Nr 2
+occupant of v ′ spreads to v.
+                                                                                           ε /N        3   9    2
+Proof. At one step, individual at v ′ spreads to v with probability at least N1 · ε3 /N 9 +r(N −1)·ε/N 3
+                                                                                                            ε
+                                                                                                         > rN 8 . Individual
+                                                            3       9               2
+at v ′ spreads to v with probability at most N1 · rεrε3 /N/N9 +ε < Nrε10 . Conditioned that the spread over v, v ′ happens,
+it is from v to v ′ with probability at most
+                                                         rε2
+                                                         N 10         r2
+                                                     2          2 <        .
+                                                  rε
+                                                     8 +
+                                                              rε
+                                                               10
+                                                                     N2
+                                                      N             N
+                                                                                                   2
+The opposite event, v spreading to v ′ happens with probability at least 1 − Nr 2 .
+
+
+
+
+                                                                        6
+4.3    Proof of Amplification
+Lemma 10 (Amplification under Bd). For every r and Bd updating, the fixation probability on AN,γ is at least
+                                                    1 − γ − O(N −1/3 ) .
+Proof. For Bd, we first bound the probability that mutants conquer ABd
+                                                                    (1−γ)N . For this to happen, it suffices if:
+
+   1. The initial mutant appears at the correct part of the graph (that is, ABd
+                                                                             (1−γ)N ).
+
+   2. In the next N 5 /ε steps, the process ends in ABd                      ′
+                                                     (1−γ)N without edge v, v being used.
+
+   3. Mutants conquer ABd             5
+                       (1−γ)N within N /ε steps.
+    The first condition is fulfilled with probability 1 − γ since the initialization is uniformly random. The process
+resolves on ABd                           ′                                        1
+              (1−γ)N without edges v, v interference with probability 1 − O( N 2 ), from Lemma 7. If the process is
+finished, the mutants spread with probability at least 1 − O(N −1/3 ), from Lemma 2.
+    Putting these probabilities together gives a probability at least
+                                                                 
+                         (1 − γ) · 1 − O N −2 · 1 − O(N −1/3 ) > 1 − γ − O(N −1/3 )
+
+that the mutants conquer ABd(1−γ)N .
+                      Bd
+    After the graph A(1−γ)N is occupied by mutants, we bound from below the probability that the mutants fixate
+in the rest of the graph. We wait until the edge (v, v ′ ) is used for reproduction, in one of its two directions. For
+fixation on the whole graph to occur, it suffices if:
+   1. The edge v, v ′ was used in the right direction (from v to v ′ ).
+   2. In the next N 5 /ε steps, edge v, v ′ is not used for reproduction.
+   3. Mutants fixate on AdB         5
+                         γN within N /ε steps.
+                                                                    2
+    The first condition happens with probability at least 1 − Nr 2 , from Lemma 8. The edge v, v ′ is not used within
+N /ε steps with probability at least 1 − O(N −2 ), again from Lemma 7. If both of those occur, the mutants fixate
+  5
+
+with probability at least N1 , from Lemma 6 and since the process finishes within N 5 /ε steps with probability at
+least 1 − 2−N , by Union Bound the fixation probability is at least N1 − 2−N .
+    This gives the probability at least
+                                      r2
+                                                                       
+                                                     −2
+                                                             1        −N     1    1
+                                  1 − 2 · 1 − O(N ) ·             −2        >   − 2
+                                     N                        N               N   N
+that if the edge (v, v ′ ) is used, the process finishes with mutant fixation on the whole graph without edge (v, v ′ )
+being used again.
+    In contrast, if condition 1. fails, that is, the edge (v, v ′ ) is instead used in the wrong direction (from v ′ to v), we
+declare a failure (even though some of those evolutionary trajectories might eventually lead to mutant fixation).
+                                                             2
+By Lemma 8, this happens with probability at most Nr 2 . Similarly, we declare a failure if condition 2. fails, that
+is, when the edge (v, v ′ ) is used (in either direction) during the N 5 /ε steps, potentially interrupting the process.
+Note that when condition 3. fails, that is, the mutants do not fixate in AdB                               ′
+                                                                                     γN (but the edge v, v is not used), we
+are in the same state as before, where we can compute the fixation versus failure probability.
+    The failure probability is in O(N −2 ), the immediate fixation probability is at least N1 − N12 , otherwise, we can
+retry. This gives the fixation probability at least
+                                                   1    1
+                                                   N − N2
+                                                                                
+                                                                                 1
+                                                                      =  1 − O       .
+                                          O(N −2 ) + N1 − N12
+                                                                   
+                                                                                 N
+   Overall, the fixation probability of a randomly placed mutant on AN,γ is thus at least
+                                                       
+                                                           1
+                             1 − γ − O(N   −1/3
+                                                ) · 1−O         ≥ 1 − γ − O(N −1/3 ).
+                                                           N
+
+
+
+                                                              7
+Lemma 11 (Amplification under dB). For every r and dB updating, the fixation probability on AN,γ is at least
+                                                            
+                                       1        −3       −1
+                                         γ(1 − r ) − O(N ) .
+                                       2
+
+Proof. For dB, we proceed similarly as in the previous lemma. First, we again bound the probability that mutants
+conquer AdB
+          γN . For this to happen, it suffices if:
+
+   1. The initial mutant appears at the correct part of the graph: AdB
+                                                                    γN .
+
+   2. In the next N 5 /ε steps, the process ends in AdB                  ′
+                                                     γN without edge v, v being used.
+
+   3. Mutants conquer AdB         5
+                       γN within N /ε steps.
+
+    The first condition is fulfilled with probability γ since the initialization is uniformly random. The process
+resolves on AdB                      ′                                        1
+              γN without edges v, v interference with probability 1 − O( N 2 ), from Lemma 7. If the process has
+                                                                    N               1− 1
+                                                                                     −N ), from Lemma 3 and
+resolved on AdB                                                               r3
+             γN , the mutants conquer it with probability at least 2N +1 · 1− 1 − O(2
+                                                                                      r 3N
+Union Bound.
+   Putting these probabilities together gives a probability at least
+                                                                           !
+                                                  N     1 − r13                 1
+                                  −2                                −N
+                                                                               > γ(1 − r−3 ) − O(N −1 )
+                                       
+                   γ· 1−O N                 ·         ·      1 − O(2   )
+                                                2N + 1 1 − r3N                  2
+
+that the mutants conquer AdB
+                           γN .
+                     dB
+   After the graph AγN is occupied by mutants, we bound the probability that the mutants fixate in the rest of
+the graph. Conditioned on the fact that the edge v, v ′ is used, it happens when
+
+   1. The edge v, v ′ was used in the right direction (from v ′ to v).
+
+   2. In the next N 5 /ε steps, edge v, v ′ is not used.
+
+   3. Mutants fixate on ABd             5
+                         (1−γ)N within N /ε steps.
+                                                                                                                  2
+    If the edge v, v ′ is used in the wrong direction, we call it a fail, this happens with probability at most Nr 2 , from
+Lemma 9 (if the edge is used).
+                                                                    2
+    The first condition happens with probability at least 1 − Nr 2 , from Lemma 9. The edge v, v ′ is not used within
+N 5 /ε steps with probability at least 1 − O(N −2 ), again from Lemma 7. The mutants fixate with probability at
+least N1 , from Lemma 6 and since process finishes within N 5 /ε steps with probability at least 1 − 2−N , the fixation
+is at least N1 − 2−N .
+    This gives the probability at least
+
+                                        r2
+                                                                           
+                                                         −2
+                                                                  1       −N      1    1
+                                    1 − 2 · 1 − O(N ) ·               −2        >    − 2
+                                        N                         N               N    N
+
+that if the edge v, v ′ is used, the process finishes without edge v, v ′ being used again.
+    However, when the mutants do not fixate in ABd                               ′
+                                                       (1−γ)N (but the edge v, v is not used), we are in the same state
+as before, where we can compute the fixation versus fail probability.
+    The fail probability is in O(N −2 ), the immediate fixation probability is at least N1 − N12 , otherwise, we can
+retry. This gives total fixation 1 − O( N1 ).
+    Overall, the fixation probability of a randomly placed mutant on AN,r is at least
+                                                                                            
+                          1                                   1          1
+                            γ(1 − r−3 ) − O(N −1 ) · 1 − O( ) ≥            γ(1 − r−3 ) − O(N −1 ) .
+                          2                                   N          2
+
+
+
+
+                                                              8
+   The following theorem shows that for a particular γ, our construction is an amplifier for both processes for
+r ∈ (1, 1.2).
+
+Theorem 3 (Simultaneous Bd- and dB-amplifier). For every large enough population size N , for graph AN,γ ,
+            2·1.23
+where γ = 3·1.23 −1 = 0.826004 we have
+
+
+
+                              ρBd           Bd
+                               r (AN,γ ) > ρr (KN )     and     ρdB           dB
+                                                                 r (AN,γ ) > ρr (KN )
+
+for every r ∈ (1, 1.2).
+                                   1−r−1                  N −1 1−r   −1                           1
+Proof. We know that ρBd                       dB
+                       r (KN ) = 1−r−N and ρr (KN ) = N 1−r−N +1 . Setting N so big that 1−r−N +1 < 1.00001,
+we have that ρBd                −1                            dB             −1
+               r (KN ) < (1 − r ) · 1.00001 < 0.16667 and ρr (KN ) < (1 − r ) · 1.00001.
+    From Lemma 10, plugging γ, we have that the fixation probability is at least 1 − 0.826004 − O(N −1/3 ) =
+0.173996 − O(N −1/3 ) for the Birth-death process which is bigger than the maximal fixation probability for KN
+(0.16667).
+    From Lemma 11, plugging γ, we have that the fixation probability is at least 21 0.826004(1 − r−3 ) − O(N −1 )
+                                                                                                                 
+
+for the death-Birth process. We have
+                                                                              
+                                −1               1                −3        −1
+                          (1 − r ) · 1.00001 <     0.826004(1 − r ) − O(N )
+                                                 2
+                                                                         
+                                                 1
+                                     1.00001 <     0.826004(1 + r + r ) − O(N −1 )
+                                                                  −1   −2
+                                                 2
+                                                                    
+                                                 1
+                                     1.00001 <     0.826004 · 2.52778 − O(N −1 )
+                                                 2
+                                     1.00001 < 1.04 − O(N −1 ) ,
+
+
+which proves the theorem.
+
+    The following theorem shows how to choose γ to achieve the best amplification so that the fixation probability
+of the amplifier is at least 1.04 times better than the complete graph for both processes.
+
+Theorem 4 (Optimal Bd- and dB-amplifier). For any r ∈ (1, 1.2), and every large enough population size N , for
+                             3
+graph AN,γ , where γ = 3r2r3 −1 we have
+
+                          ρBd               Bd
+                           r (AN,γ ) > X · ρr (KN )    and      ρdB               dB
+                                                                 r (AN,γ ) > X · ρr (KN ).
+
+for X = 1.04.
+                           1−r −1                N −1 1−r       −1                           1
+Proof. Again, ρBd                      dB
+               r (KN ) = 1−r−N and ρr (KN ) = N 1−r−N +1 . Setting N so big that 1−r−N +1 < 1.00001, we
+have that ρBd              −1                dB              −1
+           r (KN ) < (1 − r ) · 1.00001 and ρr (KN ) < (1 − r ) · 1.00001.
+                                                                                 r3 −1        −1/3 ) for the Birth-
+   From Lemma 10, plugging γ, we have that the fixation probability is at least 3r 3 −1 − O(N
+death process. We have
+
+                                                          r3 − 1
+                               (1 − r−1 ) · 1.00001 · X <        − O(N −1/3 )
+                                                         3r3 − 1
+                                                         r(1 + r + r2 )
+                                           1.00001 · X <                − O(N −1/3 )
+                                                            3r3 − 1
+                                           1.00001 · X < 1.04398 − O(N −1/3 ) .
+                                                                                                                 
+                                                                                       1 2r3          −3       −1 )
+   From Lemma 11, plugging γ, we have that the fixation probability is at least        2 3r3 −1 (1 − r ) − O(N        for
+
+
+
+
+                                                            9
+the death-Birth process. We have
+
+                                                          1 2r3
+                                                                                      
+                                 −1                                       −3        −1
+                        (1 − r        ) · 1.00001 · X <             (1 − r ) − O(N )
+                                                          2 3r3 − 1
+                                                          1 2r3
+                                                                                           
+                                                                          −1   −2        −1
+                                          1.00001 · X <             (1 + r + r ) − O(N )
+                                                          2 3r3 − 1
+                                                          r(1 + r + r2 )
+                                                                                 
+                                                                              −1
+                                          1.00001 · X <                  − O(N )
+                                                             3r3 − 1
+                                        1.00001 · X < 1.04398 − O(N −1 ) .
+
+
+
+
+References
+ [1] Benjamin Allen and Alex McAvoy. A mathematical formalism for natural selection with arbitrary spatial and
+     genetic structure. Journal of mathematical biology, 78(4):1147–1210, 2019.
+
+ [2] Benjamin Allen, Christine Sample, Robert Jencks, James Withers, Patricia Steinhagen, Lori Brizuela, Joshua
+     Kolodny, Darren Parke, Gabor Lippner, and Yulia A Dementieva. Transient amplifiers of selection and
+     reducers of fixation for death-birth updating on graphs. PLoS computational biology, 16(1):e1007529, 2020.
+
+ [3] Tibor Antal, Sidney Redner, and Vishal Sood. Evolutionary dynamics on degree-heterogeneous graphs.
+     Physical review letters, 96(18):188104, 2006.
+
+ [4] M Broom, C Hadjichrysanthou, J Rychtář, and BT Stadler. Two results on evolutionary processes on general
+     non-directed graphs. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences,
+     466(2121):2795–2798, 2010.
+
+ [5] Josep Dı́az, Leslie Ann Goldberg, George B Mertzios, David Richerby, Maria Serna, and Paul G Spirakis.
+     Approximating fixation probabilities in the generalized moran process. Algorithmica, 69:78–91, 2014.
+
+ [6] Josep Dı́az, Leslie Ann Goldberg, David Richerby, and Maria Serna. Absorption time of the moran process.
+     Random Structures & Algorithms, 49(1):137–159, 2016.
+
+ [7] Loke Durocher, Panagiotis Karras, Andreas Pavlogiannis, and Josef Tkadlec. Invasion dynamics in the biased
+     voter process. In Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence,
+     pages 265–271, 2022.
+
+ [8] Leslie Ann Goldberg, John Lapinskas, Johannes Lengler, Florian Meier, Konstantinos Panagiotou, and Pascal
+     Pfister. Asymptotically optimal amplifiers for the moran process. Theoretical Computer Science, 758:73–93,
+     2019.
+
+ [9] Zhengyan Lin. Probability inequalities. Springer, 2010.
+
+[10] Wes Maciejewski. Reproductive value in graph-structured populations. Journal of Theoretical Biology,
+     340:285–293, 2014.
+
+
+
+
+                                                            10
+

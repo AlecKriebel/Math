@@ -156,6 +156,9 @@ def verify():
         private=STAGE/('render_page.stage.py' if kind=='renderer' else 'final-content-check.stage.py')
         need(''.join(difflib.unified_diff((STAGE/proposal).read_text().splitlines(keepends=True),private.read_text().splitlines(keepends=True),fromfile='proposed',tofile='private-execution'))==(STAGE/(kind+'-private-overrides.diff')).read_text(),'exact_'+kind+'_private_overrides')
     own=Path(__file__).resolve().parent;own_count=None
+    if (own/'INPUT_BINDINGS.json').exists():
+        for x in json.loads((own/'INPUT_BINDINGS.json').read_text())['entries']:
+            q=Path(x['path']);need(q.is_file() and q.stat().st_size==x['bytes'] and sha(q)==x['sha256'],'fixed_audit_input:'+str(q))
     if (own/'SEAL.json').exists():
         seal=json.loads((own/'SEAL.json').read_text());need(sha(own/'MANIFEST.json')==seal['manifest']['sha256'],'own_manifest_seal')
         m=json.loads((own/'MANIFEST.json').read_text());own_count=len(m['files'])

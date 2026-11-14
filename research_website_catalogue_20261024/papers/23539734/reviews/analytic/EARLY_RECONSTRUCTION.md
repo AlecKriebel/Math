@@ -1,0 +1,53 @@
+# Independent early reconstruction — row 110, record 23539734
+
+This is an initial analytic reconstruction, not a final acceptance. It was written after reading every actual page of the eight-page version1.1 PDF and the entire25497-byte controlling TeX, before foreign primary bodies, supplied programmes, triage, historical/current scientific opinions or archived reviews. The manuscript's own bibliography and self-reported execution counts were necessarily encountered as manuscript text; those counts are not adopted as proof. Original source bytes were hashed for custody without semantically opening other archive members.
+
+## Exact hypothesis and success criterion
+
+The fixed rational self-map is L(u,v)=(u,(u²+1)v), with rational inverse (u,v/(u²+1)). Over Q it is birational, not a polynomial automorphism over C, and has infinite order because the generic multiplier has infinite order. It preserves the rational coordinate u, whose generic fibre has genus0. The full-affine finite permutation assertion is exactly for primes S={p≡3mod4}; no all-prime permutation or elliptic-fibre claim is made.
+
+For p∈S, each of the p² affine points is given mass1/p², at its least positive period divided by p. Thus μ_p is a probability measure, D_p(x)=μ_p([0,x]), and cycles are weighted by their number of points. The three main claims are: for each fixed x∈[1/2,1), an eventual error at most1/p+64p^-1/4 from1−θ_p, θ_p=φ(p−1)/(p−1); limsupD=1 and liminfD≤23/24 alongS; and no CDF/weak-measure convergence along any subset ofS of positive upper relative prime density. The last is strictly stronger than merely finding two incompatible subsequences.
+
+The supplementary proposition keeps all regular points for every odd prime and allows only uniform-point deletion/assignment conventions on the at-most2p exceptional points. It excludes convergence on every positive-upper-density set of all primes for each permitted convention, including arbitrarily large finite nonnegative assigned periods. It does not identify those assignments with actual periods of nonperiodic points, choose a unique source convention, permit deleting regular points, or allow arbitrary reweighting.
+
+Success requires the complete original theorem and proposition, all fixed-x and density quantifiers, actual primary applicability and interpretation of the original finite-field question. A finite set of primes cannot prove the infinite-prime statements. No repaired map, narrower theorem or silent replacement of its arithmetic input is permitted.
+
+## Exact finite dynamics and analytic bridge
+
+For p≡3mod4 the quadratic has no roots, so every vertical fibre is multiplication by a_u=u²+1∈F_p*. Its v=0 point has period1; all other p−1points have period ord(a_u), dividingN=p−1. This gives invertibility on the whole plane and excludes tails. It is an exact fibre formula, with no probabilistic model of typical orders.
+
+For fixed x≥1/2 all proper divisors ofN are≤N/2<p/2≤px. Primitive orderN remains above the cutoff precisely when p(1−x)>1. Hence eventually D_p(x)=1−(p−1)P_p/p², where P_p counts u with primitive multiplier. The threshold excludes moving x approaching1 without this condition; at x=N/p all points count. D_p(0)=0,D_p(1)=1. At p=3,x=1/2 the formula predicts5/9 (three fixed points on the multiplier1fibre and two zero sections); this supplies a small normalization diagnostic.
+
+I independently reconstruct the character route: the primitive indicator in a cyclic group of orderN is θΣ_{d|N}μ(d)/φ(d)Σ_{ordχ=d}χ(a), proved by a squarefree Euler-product factorization on a=g^k. Extend every character by0at0. For nonprincipalχ, Σ_uχ(u²+1)=η(−1)J(η,χ): the unweighted translated χ-sum is0 and the square-root multiplicity is1+η. The generic Jacobi sum has modulus√p, and χ=η is the exceptional inverse-pair case with modulus1; in fact the quadratic polynomial sum is−1. The principal contribution is exactlypθ onS. Triangle inequality over squarefree divisors yields |P_p/p−θ|≤θ(2^ω(N)−1)/√p.
+
+The crude inequality2^ω(N)≤64N^1/4 follows from paying a factor2for each of the six small primes2,3,5,7,11,13and using2≤ℓ^1/4 forℓ≥17. Combining the exact CDF identity gives error θ/p+(1−1/p)|P/p−θ|≤1/p+64p^-1/4. The displayed bound is weak at smallp but tends to0. The written Gauss/Jacobi proof appears sufficient to make this particular primitive-value estimate self-contained; the older general theorem must nevertheless receive credit and its claimed specialization should be checked against its actual statement.
+
+The continuous ramp h(t)=max(0,min(1,2t−1)) vanishes on all proper-divisor periods/p and on zero sections. Primitive fibres give h(N/p)=1−2/p, yielding the exact moment (1−2/p)(p−1)P_p/p²=θ_p+o(1). This avoids the invalid inference that weak convergence must imply CDF convergence at an arbitrarily chosen discontinuity. It is bounded and continuous on all[0,∞), which matters for exceptional assignments abovep.
+
+## The two arithmetic mechanisms are separate
+
+To force θ→0 on some increasing sequence inS, impose p≡1modQ_j and p≡3mod4, Q_jthe firstjodd-prime product. CRT gives a reduced class; Dirichlet supplies arbitrarily large primes in each fixed class. Selecting them increasingly and using Euler's vanishing odd-prime product gives θ≤(1/2)∏_{ℓ|Q_j}(1−1/ℓ)→0. No uniform prime-size bound is needed and no density is claimed for this sequence.
+
+For the second sequence the mean over all primes is Artin's constant A=∏ℓ(1−1/[ℓ(ℓ−1)]), an unconditional shifted-prime totient mean, not a fixed-base primitive-root conjecture. The manuscript's Möbius sum can be justified with a splitK=(logX)^6. The trivial countπ(X;1,d)≤X/d makes the tail≤XΣ_{d>K}1/d²=O(X/K). Uniform Siegel–Walfisz for moduli up toK gives a total weighted error O(XlogK/log⁴X). Absolute convergence follows fromφ(d)≥√(d/2), checked prime-powerwise. This is an import of Siegel–Walfisz and standard PNT, not a new arithmetic proof from finite data.
+
+A≥(1/2)(1−5/12)=7/24, whereas if all but finitely manyS-primes hadθ<1/24, the two mod4prime densities and θ≤1/2 would force the mean≤1/4+1/48=13/48. The strict gap is1/48. Hence infinitely manyS-primes haveθ≥1/24, giving the stated≤23/24CDFliminf bound. Both chosen prime sequences can be fixed independently ofx; the identity is eventual separately for eachfixedx.
+
+These two subsequences do not imply the positive-density-selection clause. That clause requires an actual atomless limiting empirical distribution for the scalar θ_p indexed by all primes. This is presently an unverified named-primary input. If true, an arbitrary convergent positive-upper-density subsequenceθ_p→c places densityδinside every fixed[c−ε,c+ε]. At endpoints where the scalar limiting law is continuous, interval frequencies converge. Shrinkingεforces an atom≥δatc, contradiction. Full atomlessness, rather than a mean, nonconstancy or absence of a specified atom, is essential. If a source is phrased over distinct prime powers≤X, properpowers numberO(√XlogX)=o(πX), but the exact source weighting/normalization and permissionn=1must be checked; a theorem over a different sampling convention is not automatically the needed input.
+
+Positive upper relative density inS gives positive upper density among all primes becauseπ_S(X)/π(X)→1/2. Therefore no conditional scalar law on the residue class is necessary. The same atomless input separately obstructs convergence of the ramp moment and hence of the probability measures. Compact support onS permits weakly convergent zero-density selections; none are excluded by this argument.
+
+## Every-odd-prime proposition
+
+For p≡1mod4 the two zero-multiplier fibres do not give permutations of the full plane. Removing them gives Ω_p of sizeR=p(p−r), r∈{0,2}. The principal primitive-character term becomes(p−r)θ; the same nonprincipal bound remains valid for every oddp, so |P/p−θ|≤rθ/p+64p^-1/4. Normalizing byR gives CDF1−(p−1)P/R and ramp moment(1−2/p)(p−1)P/R; since(p−1)/(p−r)=1+O(1/p), the same bridges hold uniformly. The zero sections still count at any fixedx≥1/2 for allp≥3.
+
+If e≤rp exceptional points are retained, their total mass after uniform renormalization is e/(R+e)≤r/p. Any[0,1]-valued statistic changes by≤r/p; any bounded signed statistic by≤2||f||∞r/p. Thus arbitrary finite nonnegative assignments, even with normalized periods exceeding1, cannot alter the CDF/ramp conclusions. This is a total-mass estimate, not uniform integrability of an unbounded moment. It would fail for adversarial reweighting or deleting a substantial regular set, which are excluded conventions.
+
+## Pending imports, interpretations and attack plan
+
+The exact original2004 question must be read in its actual body: does its existence assertion really cover genus0birational maps with this point weighting/scale and fixed extension degree1, and does it permit only suitable positive-density reductions? An elliptic-fibre or polynomial-automorphism restriction could invalidate the asserted application without refuting the dynamics theorem; such a mismatch must be recorded as a scope/import gap, not silently repaired. The later scalep²prime-average question is separate.
+
+The atomless scalar theorem is load-bearing for every-positive-density-selection claims and all-odd-prime robustness; inspect actual Deshouillers–Hassani and Aivazidis–Sofos theorem bodies, includingn=1, primepowers→primes, continuity and unconditional status. Mean/primitive-value/triangular-family credit should be checked at actual passages. The unresolved2011Neumärker–Roberts–Viallet–Vivaldi lead concerns historical overlap, not a mathematical assumption of absence. No negative search proves novelty.
+
+Meaningful independent diagnostics should use rational arithmetic and a distinct path: enumerate small full affine permutations/cycles and compare both point and deliberately incorrect cycle weighting; verify the primitive-onlyCDFidentity/ramp directly; independently count orders/fixed points using gcd(d,N), including p=3 and zero multipliers atp=5; test moving endpoint failure, omitted normalization, and arbitrarily large exceptional assignments. A finite exact cyclotomic calculation could check the character identity with zero extension. None of these finite checks prove the classical scalar law or all-prime conclusion. Supplied programmes, if inspected later at all, must be read in full before isolated execution; no need to rerun historical large counts.
+
+Initial disposition: exact dynamics and universal deductions have a coherent reconstruction, but primary theorem/interface checks, original-question applicability and actual diagnostics remain open. No final scientific verdict, publication authority or firstness is supplied by this early seal.

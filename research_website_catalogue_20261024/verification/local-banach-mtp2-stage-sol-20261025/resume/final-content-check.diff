@@ -1,0 +1,23 @@
+--- installed/final-content-check.py
++++ proposed/final-content-check.py
+@@ -17,6 +17,8 @@
+ from abm_body_contract import BodyText as ABMBodyText, expected_body as expected_abm_body
+ from odd_ear_blocking_source import OEB_IDS, STATUSES as OEB_STATUSES, odd_ear_blocking_source_view, normalize_oeb_abstract, approved_material_note
+ from oeb_body_contract import BodyText as OEBBodyText, expected_body as expected_oeb_body, MATERIAL_NOTES as OEB_MATERIAL_NOTES
++from banach_mtp2_source import BM_IDS
++from bm_body_contract import check_bm_page
+ parser=argparse.ArgumentParser(description='Read-only generated research-page checks; only QA reports are written.')
+ parser.add_argument('record_ids',nargs='*',default=['23539283','23577484'])
+ parser.add_argument('--site',type=Path,default=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com/public'))
+@@ -279,6 +281,11 @@
+ result={'time':datetime.datetime.now(datetime.timezone.utc).isoformat(),'papers':{},'issues':[]}
+ index=(S/'research/index.html').read_text(); sitemap=(S/'research/sitemap.xml').read_text()
+ for rid in args.record_ids:
++ if rid in BM_IDS:
++  item=check_bm_page(R,S,rid,index,sitemap)
++  result['papers'][rid]=item
++  result['issues'] += [rid+': '+key for key,value in item['checks'].items() if not value]
++  continue
+  p=R/'papers'/rid;c=json.loads((p/'publication.json').read_text());f=S/'research'/c['slug']/'index.html';h=f.read_text();d=Doc(f);base='https://aleckriebel.com/research/'+c['slug']+'/';checks={}
+  def test(k,v):
+   checks[k]=bool(v)

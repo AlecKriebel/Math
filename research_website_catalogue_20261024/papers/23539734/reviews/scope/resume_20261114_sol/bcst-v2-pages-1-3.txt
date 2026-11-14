@@ -1,0 +1,145 @@
+                                           Primitive values of quadratic polynomials in a finite field
+                                                    Andrew R. Booker∗                                    Stephen D. Cohen
+
+
+
+
+arXiv:1803.01435v2 [math.NT] 22 Mar 2018
+                                                  School of Mathematics                        School of Mathematics and Statistics,
+                                               University of Bristol, England                     University of Glasgow, Scotland
+                                               andrew.booker@bristol.ac.uk                         stephen.cohen@glasgow.ac.uk
+                                                                                  Nicole Sutherland
+                                                                           Computational Algebra Group,
+                                                                        School of Mathematics and Statistics,
+                                                                           University of Sydney, Australia
+                                                                          nicole.sutherland@sydney.edu.au
+                                                                                 Tim Trudgian†
+                                                        School of Physical, Environmental and Mathematical Sciences
+                                                          The University of New South Wales Canberra, Australia
+                                                                            t.trudgian@adfa.edu.au
+                                                                                       March 23, 2018
+
+
+                                                                                            Abstract
+                                                     We prove that for all q > 211, there always exists a primitive root g in the finite field
+                                                     Fq such that Q(g) is also a primitive root, where Q(x) = ax2 + bx + c is a quadratic
+                                                     polynomial with a, b, c ∈ Fq such that b2 − 4ac 6= 0.
+
+
+                                           1         Introduction
+                                           For q a prime power, let Fq denote the finite field of order q, and let g1 , g2 , . . . , gφ(q−1)
+                                           denote the primitive roots of q. Recently [6] the following conjecture of Cohen and Mullen
+                                           [5] was established: that an arbitrary element of Fq can be written as a linear sum of two
+                                           primitive roots provided q > 61. In fact, Cohen’s survey of such problems [4] offered a
+                                           preliminary treatment of a further result wherein the linear sum would be replaced by a
+                                               ∗
+                                                   Partially supported by EPSRC Grant EP/K034383/1.
+                                               †
+                                                   Supported by Australian Research Council Future Fellowship FT160100094.
+
+
+                                                                                                1
+quadratic function of primitive roots. It is the purpose of this paper to develop this theme
+and provide one complete existence result on the topic.
+   Let
+                            a, b, c ∈ Fq , a 6= 0, b2 − 4ac 6= 0.                         (1)
+Is there some q0 such that there is always at least one representation
+                                                 2
+                                          gn = agm + bgm + c,                                             (2)
+
+for all q > q0 ? We insist that a be non-zero, since otherwise the result follows from the work
+already quoted in [6]. We also insist that b2 − 4ac be non-zero so that gn (given by (2)) is
+not of the form a(gm + b/(2a))2 .
+    Han [7] showed under the assumption1 of (1), and with the additional restriction that q
+be odd, that one could choose q0 = 266 . This was improved to q0 = 262 by Chou et al. [3].
+Moreover, Chou et al. provided a list of 24 genuine exceptions to (2), all of which were
+not greater than 211. Upon verifying that all odd values of q ∈ [223, 457] satisfy (2), they
+conjectured that all q ≥ 223 satisfy (2).
+    This was improved substantially by Cohen [4, §3] who showed that assuming (1) a rep-
+resentation of the form (2) always exists provided q > 109 . We refine this result in Theorem
+1 below.
+Theorem 1. Let a, b, c ∈ Fq with a 6= 0 and with b2 − 4ac 6= 0. Then there are primitive
+roots gn and gm such that
+                                         2
+                                 gn = agm  + bgm + c,                                (3)
+for all q with the exception of the values listed in (4).
+        The following values of q are genuine exceptions to (3) (for some triple (a, b, c)).
+
+  {2, 3, 4, 5, 9, 7, 11, 13, 16, 19, 23, 25, 29, 31, 37, 41, 43, 49, 61, 67, 71, 73, 79, 121, 127, 151, 211}
+                                                                                                           (4)
+Note that this list of exceptions agrees with that of Chou et al. [3] (after noting that they
+only considered q odd).
+    The outline of this paper is as follows. In §2 we develop the necessary character sum
+machinery. In §3 we use a sieve to prove that there are at most 1528 exceptions to Theorem
+1. We introduce a more refined sieve in §4 to reduce the number of possible exceptions to
+1453. We then turn to computation in §5 to complete the proof of Theorem 1.
+
+
+2         A cast of character sums
+Given a positive integer m, let ω(m) denote the number of distinct prime factors
+                                                                               Q of m so that
+           ω(m)
+W (m) = 2       is the number of square-free divisors of m. Also, let θ(m) = p|m(1 − p−1 ).
+For any integer m define its radical Rad(m) as the product of all distinct prime factors of m.
+    1
+     Han and Chou et al. considered the additional restriction that c be non-zero. We see no reason to make
+this distinction.
+
+                                                      2
+    Let e be a divisor of q − 1. Call g ∈ Fq e-free if g 6= 0 and g = hd , where h ∈ Fq and
+d | e, implies d = 1. The notion of e-free depends (among divisors of q − 1) only on Rad(e).
+Moreover, in this terminology a primitive root of Fq is a (q − 1)-free element.
+    The definition of any multiplicative character χ on F× q is extended to the whole of Fq by
+setting χ(0) = 0. For any divisor d of φ(q − 1), there are φ(d) characters of order d, a typical
+character being denoted by χd . In particular χ1 , the principal character, takes the value 1
+at all non-zero elements of Fq (whereas χ1 (0) = 0). A convenient shorthand notation to be
+employed for any divisor e of q − 1 is
+                                     Z       X µ(d) X
+                                           =             ,
+                                       d|e       φ(d) χ
+                                                 d|e              d
+
+
+
+where the sum over χd is the sum over all φ(d) multiplicative characters χd of Fq of exact
+order d. Its significance is that, for any g ∈ Fq ,
+                           Z              
+                                            1, if g is non-zero and e-free,
+                      θ(e)       χd (g) =
+                             d|e            0, otherwise.
+
+In this expression (and throughout) only characters χd with d square-free contribute (even
+if e is not square-free).
+    Let e1 , e2 be divisors of q − 1. Given a triple (a, b, c) satisfying (1) define N(e1 , e2 ) to
+be the number of e1 -free elements g ∈ F×                                                  ×
+                                               q such that Q(g) is an e2 -free element in Fq . We
+wish to investigate when N(q − 1, q − 1) is positive. The value of N(e1 , e2 ) can be expressed
+explicitly in terms of character sums over Fq as follows. We have
+                                                     Z  Z
+                          N(e1 , e2 ) = θ(e1 )θ(e2 )         S(χd1 , χd2 ),                     (5)
+                                                        d1 |e1   d2 |e2
+
+where                                            X
+                               S(χd1 , χd2 ) =          χd1 (g)χd2 (Q(g))                      (6)
+                                                 g∈Fq
+
+with Q(x) = ax2 + bx + c. We first estimate S(χd1 , χd2 ) according as the triple (a, b, c)
+satisfies the former or latter condition in (1).
+
+Lemma 1. Assume the triple (a, b, c) ∈ Fq satisfies (1). Suppose e1 , e2 are divisors of q − 1,
+d1 | e1 and d2 | e2 . In (6), if d1 = d2 = 1 then S(χ1 , χ1 ) ≥ q − 3. Otherwise,
+                                            
+                                                2,     if d1 > 1, d2 = 1,
+                                              √
+                                            
+                          |S(χd1 , χd2 )| ≤    q + 1, if d1 = 1, d2 > 1,
+                                                √
+                                               2 q,    if d1 > 1, d2 > 1.
+                                            
+
+Proof. This follows from Weil’s theorem [8, Thm 5.41], taking into account (up to) 3 zeros
+of gQ(g).
+
+
+                                                   3
+

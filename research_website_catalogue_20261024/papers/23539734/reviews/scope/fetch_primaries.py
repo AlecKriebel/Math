@@ -1,0 +1,34 @@
+"""Only after EARLY_SEAL: actual primary bodies in preignored cache.
+Independent ordinary HTTPS requests; no author-code execution or source edits.
+"""
+from pathlib import Path
+from datetime import datetime,timezone
+import json,hashlib,urllib.request,urllib.error,concurrent.futures,subprocess
+from pypdf import PdfReader
+E=Path(__file__).resolve().parent;assert (E/'INITIAL_SEAL.json').is_file();C=E/'cache/primary';C.mkdir(parents=True,exist_ok=True)
+tasks=[
+('vivaldi-owr2004.pdf','https://webspace.maths.qmul.ac.uk/f.vivaldi/research/Oberwolfach.pdf'),
+('ostafe-shparlinski-v3.pdf','https://arxiv.org/pdf/0902.3884v3'),
+('bcst-v2.pdf','https://arxiv.org/pdf/1803.01435v2'),
+('menici-pehlivan-published.pdf','https://www.impan.pl/shop/en/publication/transaction/download/product/91625'),
+('aivazidis-sofos-v2.pdf','https://arxiv.org/pdf/1308.5701v2'),
+('deshouillers-hassani-published.pdf','https://www.cambridge.org/core/services/aop-cambridge-core/content/view/85266A1CBFB0DE0E70C723D2EDF847AB/S1446788712000250a.pdf/a-note-on-the-distribution-function-of-varphi-lowercase-p-1lowercase-p-1.pdf'),
+('roberts2011.pdf','https://www.dma.uvigo.es/~eliz/pdf/Roberts.pdf')]
+
+def now():return datetime.now(timezone.utc).isoformat()
+def get(task):
+ name,url=task;p=C/name;assert not p.exists();start=now()
+ try:
+  req=urllib.request.Request(url,headers={'User-Agent':'IndependentResearchPrimaryCustody/1.0'})
+  try:r=urllib.request.urlopen(req,timeout=45)
+  except urllib.error.HTTPError as err:r=err
+  with r:b=r.read(12*1024*1024+1);status=r.status;headers=list(r.headers.items());final=r.url
+  assert len(b)<=12*1024*1024;p.write_bytes(b)
+  rec={'requested_url':url,'started_utc':start,'completed_utc':now(),'HTTP_status':status,'final_url':final,'response_headers':headers,'path':str(p),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'PDF_magic':b.startswith(b'%PDF-')}
+  if rec['PDF_magic']:
+   rec['pages']=len(PdfReader(p).pages);out=subprocess.run(['/opt/homebrew/bin/pdftotext','-layout',str(p),'-'],capture_output=True,check=True,timeout=40).stdout;txt=p.with_suffix('.full-text.txt');txt.write_bytes(out);rec['text_extract']={'path':str(txt),'bytes':len(out),'sha256':hashlib.sha256(out).hexdigest()}
+  return rec
+ except Exception as err:return {'requested_url':url,'started_utc':start,'completed_utc':now(),'error_type':type(err).__name__,'error':str(err),'no_actual_PDF_asserted':True}
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:receipts=list(pool.map(get,tasks))
+out=E/'primary-fetch-receipts.json';assert not out.exists();out.write_text(json.dumps({'utc':now(),'acquired_after_own_early_seal':True,'requests_in_listed_order':receipts},indent=2,ensure_ascii=False)+'\n')
+print(json.dumps(receipts,indent=2,ensure_ascii=False))
