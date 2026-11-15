@@ -1,0 +1,189 @@
+         An elementary counterexample to a Nullstellensatz
+                   for ﬁnite-type link invariants
+                                          Alec Kriebel
+                                    Independent researcher
+                                  ORCID: 0009-0001-9320-500X
+
+                                       12 October 2026
+                                    Unrefereed research note
+
+
+
+                                            Abstract
+         Let V be the ordinary, uncompleted complex algebra of all ﬁnite-order ﬁnite-type
+     invariants of links. We give a principal ideal with a nonempty actual-link zero set whose
+     vanishing ideal strictly contains its radical. The generator is g(4g − 1), where g is the
+     sum of squared pairwise linking numbers. The obstruction is a character on the entire
+     algebra, obtained by evaluating the standard twist-restriction polynomial at a noninte-
+     gral parameter. This gives a negative answer to the arbitrary-ideal formulation of Bar-
+     Natan’s Problem 2.27, as recorded by Ohtsuki; the separate linking-number-generated
+     ideal question is not decided.
+
+
+1    The question and the algebra
+Bar-Natan asks whether an ideal in the algebra of ﬁnite-type link invariants has the same
+radical as the ideal of invariants vanishing on its common zeros among actual links [1,
+Problem 2.27, p. 422]. The present note records an elementary counterexample to that
+literal arbitrary-ideal assertion.
+    Fix m ≥ 2, and let Xm consist of oriented, unordered m-component links in S 3 , including
+split links. Let Vm be the unital complex algebra of their ordinary ﬁnite-type invariants of
+some ﬁnite order, with pointwise operations. An invariant has order at most d when its
+positive-minus-negative crossing extension vanishes on every link with d + 1 double points.
+Each element has a ﬁnite order; there is no common cutoﬀ on all elements and no inﬁnite-
+order completion. Products of invariants of orders d, e have order at most d + e: on a
+crossing-resolution cube their multilinear representatives have degrees at most d, e, and the
+product has degree at most d + e.
+    For an ideal A ⊂ Vm , set
+
+      Zact (A) = {L ∈ Xm : a(L) = 0 for all a ∈ A},          Jact (S) = {v ∈ Vm : v|S = 0}.
+
+Always rad(A) ⊆ Jact (Zact (A)), because a power vanishing at a complex-valued evaluation
+forces its base to vanish there. The same deﬁnitions apply to the algebra V on all ﬁnite-
+component links, with each invariant having a ﬁnite order on that whole domain.
+
+
+
+
+                                                1
+Theorem 1. In Vm , put
+                            ∑
+                  g(L) =          lk(Li , Lj )2 ,    f = g(4g − 1),           A = f Vm .
+                            i<j
+
+Then Zact (A) is the nonempty set of algebraically split links, and
+
+                                        g ∈ Jact (Zact (A)) \ rad(A).
+
+Thus Jact (Zact (A)) 6= rad(A). The same construction gives a counterexample in V .
+
+
+2    Polynomial restriction on the whole algebra
+The polynomial behavior of ﬁnite-type invariants on twist or braid sequences is established
+prior work; see, for example, Stanford–Trapp [2, Theorem E], Eisermann [3], and Stoimenow
+[4, Theorem 2.1, pp. 690–691]. Stoimenow explicitly credits his earlier braiding-sequence
+work. We give the particular diﬀerence argument needed here, including split components,
+so that no extension of a character from a smaller algebra is assumed.
+    Let σ be the positive generator of the two-strand braid group. For integers n ≥ 0, let
+Ln be the coherently oriented closure of σ 2n , together with m − 2 split unknots. Its two
+braid components have linking number n, all other pairwise linking numbers vanish, and
+consequently g(Ln ) = n2 .
+
+Lemma 1. For every v ∈ Vm of order at most d, there is a unique Pv (t) ∈ C[t], of degree at
+most d, satisfying Pv (n) = v(Ln ) for all n ≥ 0. The map v 7→ Pv is a unital complex-algebra
+homomorphism.
+
+Proof. Write a(n) = v(Ln ) and ∆a(n) = a(n + 1) − a(n). Changing one crossing in an added
+block σ 2 gives σσ −1 = 1, by a Reidemeister II cancellation. Doing this in r disjoint blocks
+realizes                                          ( )
+                                      ∑ r
+                               r               r−j r
+                             ∆ a(n) =     (−1)         v(Ln+j )
+                                      j=0
+                                                    j
+
+as the alternating resolution of an r-singular link. Equivalently, the braid expression for that
+resolution is
+                               σ 2n (σ 2 − 1)r = σ 2n+r (σ − σ −1 )r .
+Each factor σ −σ −1 resolves one designated double point. Every resolution has an even braid
+exponent and closes to two components; the additional split components stay ﬁxed. Finite
+type therefore gives ∆d+1 a(n) = 0.
+   The usual diﬀerence recurrence yields the Newton polynomial
+                                  ( )                 ( )
+                            ∑
+                            d
+                                   t                     t       t(t − 1) · · · (t − r + 1)
+                 Pv (t) =            ∆r a(0),                =                              ,
+                            r=0
+                                   r                     r                    r!
+
+which agrees with a(n) at all nonnegative integers. Its uniqueness follows because a nonzero
+complex polynomial cannot vanish at inﬁnitely many distinct integers. The restrictions of
+u + v, uv, and 1 agree there with Pu + Pv , Pu Pv , and 1, respectively. Polynomial uniqueness
+proves the asserted homomorphism property.
+
+
+
+
+                                                     2
+3    The counterexample
+Proof of Theorem 1. Pairwise linking numbers are integer-valued and have order at most
+one. On any prescribed crossing-resolution cube, each is aﬃne in the binary resolution
+variables: an intercomponent crossing change changes the relevant linking number by one
+up to sign, and a self-crossing change does not change it. Its square has degree at most two
+on that cube. Hence g has order at most two and f = 4g 2 − g has order at most four. The
+sum deﬁning g is unchanged by relabeling components or reversing their orientations.
+    For every actual link, g(L) is a nonnegative integer. Thus
+
+              f (L) = 0   ⇐⇒     g(L) = 0     ⇐⇒      lk(Li , Lj ) = 0 for all i < j.
+
+Since f generates A, this is precisely its actual-link zero set. It contains the unlink, and g
+vanishes on it.
+   By Lemma 1,
+                             χ : Vm −→ C,        χ(v) = Pv (1/2)
+is a character on the entire ﬁnite-order algebra. As Pg (t) = t2 , we have
+
+                                         1
+                                   χ(g) = ,        χ(f ) = 0.
+                                         4
+If g N = f h for some N ≥ 1 and h ∈ Vm , applying χ would give 4−N = 0, a contradiction.
+Therefore g ∈  / rad(A).
+     For V , restrict every invariant to the same ﬁxed-component family. The same character
+proof applies; the linking-square invariant and its order bound are deﬁned uniformly on all
+ﬁnite-component links.
+
+   The character is not evaluation at an actual link, since its g-value is 1/4. In particular,
+formal evaluation at n = 1/2 is not evaluation on the one-component closure of σ. The
+obstruction concerns the use of actual links as the evaluation set, and does not contradict
+the classical Hilbert Nullstellensatz.
+
+
+4    Scope, attribution, and veriﬁcation
+The same construction and diﬀerence proof apply to ordered, labelled links as well. The
+source’s separate ideal generated by the indexed pairwise linking numbers is understood
+in that labelled theory. There it diﬀers from our principal ideal although their actual-link
+zero sets coincide; its radical/vanishing-ideal question is not decided here. The symmetric
+witness and the proof also apply after labels are forgotten, as in Theorem 1. No conclusion
+about completed invariant algebras, homogeneous-ideal variants, or positive characteristic
+is claimed. The proof also works over any characteristic-zero ﬁeld and, by pulling back
+invariants to oriented links, after forgetting orientations.
+    The contribution recorded here is the explicit principal ideal and its nonempty actual-link
+zero-set obstruction, as an elementary application of older polynomiality. No new polyno-
+miality method is claimed. A bounded primary-source priority audit located no explicit
+equivalent earlier counterexample in the bodies examined; it does not establish historical
+ﬁrstness. The accompanying audit states its source/version access limits and records other
+older routes, including the connected-sum polynomiality of Jeong–Park [5].
+    The accompanying exact-rational veriﬁcation checks braid resolutions, Newton identities,
+linking-square symmetries, and the character calculation. These ﬁnite controls support the
+written proof; they do not replace the argument for every ﬁnite-order invariant.
+
+
+                                               3
+AI and review disclosure. AI tools were used extensively in developing, drafting, source
+auditing, and adversarially checking this result and its veriﬁcation materials. The work has
+not undergone conventional human peer review or refereeing at the time of this preprint.
+
+
+References
+[1] T. Ohtsuki (editor), Problems on invariants of knots and 3-manifolds, Geometry & Topol-
+    ogy Monographs 4 (volume year 2002), 377–572, Problem 2.27, p. 422; published 1 June
+    2004. https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf.
+
+[2] T. Stanford and R. Trapp, On knot invariants which are not of ﬁnite type,
+    arXiv:math/9903057 (1999), Theorem E. https://arxiv.org/abs/math/9903057.
+
+[3] M. Eisermann, A geometric characterization of Vassiliev invariants, Transactions of the
+    American Mathematical Society 355 (2003), 4825–4846.
+
+[4] A. Stoimenow, Application of braiding sequences, I: On the characterization of Vassiliev
+    and polynomial link invariants, Communications in Contemporary Mathematics 12(5)
+    (2010), 681–726. https://doi.org/10.1142/S0219199710003944.
+
+[5] M.-J. Jeong and C.-Y. Park, Polynomial invariants and Vassiliev invariants, Ge-
+    ometry & Topology Monographs 4 (2002), 89–101. https://msp.org/gtm/2002/04/
+    gtm-2002-04-007p.pdf.
+
+
+
+
+                                             4
+

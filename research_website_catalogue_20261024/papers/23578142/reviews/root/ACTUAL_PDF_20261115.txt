@@ -1,0 +1,324 @@
+                      A singleton-supported cycle correction
+                       to Byrnes’s diﬀerential-poset bound
+                                             Alec Kriebel
+                                       Independent researcher
+                                     ORCID: 0009-0001-9320-500X
+
+                                Version 1.0.0 — 22 October 2026
+                                          Unrefereed preprint
+
+
+
+                                               Abstract
+         For every ordinary unweighted r-diﬀerential poset and n ≥ 2, we subtract an explicit non-
+     negative term from Byrnes’s cumulative upper bound for the nth rank size. The term is the
+     cycle rank of the preceding incidence subgraph supported on elements with a singleton succes-
+     sor. Singleton witnesses transfer these cycles into the next incidence graph by replacing stars
+     with trees having the same terminals. The correction can be positive and attained on standard
+     reﬂected Young-preﬁx examples, and its coeﬃcient one is sharp. A singleton-successor condition
+     gives the conjectured local recurrence; two such successors give a conditional equality charac-
+     terization. The result answers the printed request for an improvement of Byrnes’s inequality in
+     an incidence-dependent form. It does not prove the general local recurrence, improve the global
+     Fibonacci envelope, or give a combinatorial proof of strict rank growth.
+
+
+1    The improvement question and attribution
+Majumder’s problem in Oberwolfach Report 23/2018, printed p. 1452 [3], asks whether Byrnes’s
+bound
+                                                   X
+                                                   n−2
+                                pn ≤ Un := 1 + r         pk + (r − 1)pn−1                              (1)
+                                                   k=0
+
+can be improved toward Stanley’s proposed local inequality
+
+                                         pn ≤ rpn−1 + pn−2 .                                           (2)
+
+The same contribution separately asks for a combinatorial strict-growth proof. Our claim concerns
+the improvement request only. The correction uses incidences of the preceding ranks; no rank-
+number-only restriction is imposed in the printed request.
+    The operator framework, common-cover restrictions and reﬂection construction are classical
+[1]. Byrnes proves (1) on the way to the global Fibonacci envelope and states (2) separately [2,
+Chapter 5]. Incidence and hypergraph dimension sums already appear in [4, Remark 8]; the cycle
+identities below repackage these counts. Cycle-space monotonicity and terminal-preserving tree
+replacement are elementary graph facts. The substantive assertion proved here is the simultaneous
+transfer of the singleton-supported cycle rank, not a new general graph method.
+
+
+
+
+                                                   1
+2    Incidence graphs and exact slack
+An ordinary r-diﬀerential poset is a locally ﬁnite N-graded poset P with a unique minimum b 0, ﬁnite
+ranks Pj , and ordinary unweighted up and down operators over Q satisfying DU − U D = rI, where
+r is a positive integer. Write pj = |Pj |, and let d(x) and u(x) count the lower and upper covers of
+x. Equivalently, the integer incidence counts satisfy
+
+                  u(x) = d(x) + r,          | pred(x) ∩ pred(y)| = | succ(x) ∩ succ(y)|             (3)
+
+for distinct elements in a common rank. We do not interpret this identity only modulo a charac-
+teristic. The terminal equality to one in the OWR common-cover axiom is a typographical error:
+zero common covers are allowed under the standard deﬁnition [1, 5].
+
+Lemma 2.1. Distinct same-rank elements have at most one common lower cover and at most one
+common upper cover. Every consecutive-rank incidence graph is connected.
+
+Proof. If a pair has two common upper covers, (3) gives two common lower covers. This lower pair
+has the original pair as common upper covers. Iterating down the ranks contradicts the unique
+rank-zero element. The common lower count is equal to the upper count.
+   Let Bj be the bipartite incidence graph on Pj−1 ⊔Pj . The graph B1 is a star with r leaves. If Bj is
+connected, its projection on Pj , joining elements with a common predecessor, is connected (including
+the one-vertex case). By (3) each such adjacency has a common successor, so all Pj vertices lie in
+one component of Bj+1 . Every vertex of Pj+1 has a lower cover, proving the induction.
+
+   For a ﬁnite graph H, retaining isolated vertices, deﬁne β(H) = |E(H)| − |V (H)| + c(H), where
+c(H) is its component count. This is its cycle-space dimension over any ﬁxed ﬁeld; it is nonnegative
+and monotone under subgraph inclusion. Put bj = β(Bj ) for j ≥ 1.
+                                                                        Pj−1
+Proposition 2.2. For j ≥ 1, the number of edges of Bj is ej = r           k=0 pk , and
+
+                                   X
+                                   j−1
+                          bj = r         pk − pj−1 − pj + 1,                                        (4)
+                                   k=0
+                          pn = Un − bn                                         (n ≥ 2),             (5)
+                  bn − bn−1 = rpn−1 + pn−2 − pn                                (n ≥ 2).             (6)
+
+Proof. Summing the degree identity gives ej = ej−1 + rpj−1 , with e0 = 0. Connectivity gives (4);
+rearranging and subtracting gives the remaining identities.
+
+   Thus Byrnes’s bound is bn ≥ 0, whereas (2) requires bn ≥ bn−1 . Nonnegative cycle rank alone
+does not give monotonicity.
+
+
+
+
+                                                      2
+3    The supported-cycle theorem
+Fix n ≥ 2 and set Z = Pn−2 , X = Pn−1 . Deﬁne
+
+                           S = {z ∈ Z : some a ∈ X has pred(a) = {z}}.
+
+Such an a is a singleton successor of z; it does not mean that z has only one successor. Let HS
+retain all vertices of X, precisely S on the other side of Bn−1 , and all corresponding incidence edges.
+Set                                          X
+                             qn = β(HS ) =      (u(z) − 1) − pn−1 + c(HS ).                          (7)
+                                             z∈S
+
+Theorem 3.1. For every ordinary r-diﬀerential poset and every n ≥ 2,
+
+                                     0 ≤ qn ≤ bn−1 ,        b n ≥ qn .                              (8)
+
+Consequently
+
+                                             X
+                                             n−2
+                                pn ≤ 1 + r         pk + (r − 1)pn−1 − qn ,                          (9)
+                                             k=0
+                                pn ≤ rpn−1 + pn−2 + bn−1 − qn .                                    (10)
+
+The correction is determined by the two preceding ranks, before Pn is constructed, with no further
+hypothesis on the poset.
+
+Proof. The ﬁrst two inequalities follow from HS ⊆ Bn−1 . For each z ∈ S, choose az ∈ X with
+predecessor set {z} and put Nz = succ(z) ⊆ X. For every y ∈ Nz \ {az }, the pair az , y has unique
+common predecessor z, hence unique common successor t ∈ Pn . Every lower cover w of t lies in Nz :
+if w ̸= az , its common successor with az forces a common predecessor, which must be z.
+    Take every nonsingleton upper vertex t covering az , with all its incidence edges, and all terminals
+Nz . Two diﬀerent such t cannot share another terminal, by Lemma 2.1. Each terminal other than
+az occurs exactly once. Thus these stars, joined at az , form a tree Tz connecting precisely Nz . If
+|Nz | = 1, take the one-vertex tree. A rank-n internal vertex cannot belong to both Tz and Tw for
+z ̸= w: it would cover the witnesses az , aw , whose predecessor sets are disjoint, contrary to (3).
+Diﬀerent trees can share only X terminals.
+    Let K be their union together with every vertex of X, including isolates. Replace each star of
+HS centered at z by Tz . If Tz has a internal vertices, it has |Nz | + a − 1 edges. The replacement
+changes both vertex and edge counts by a − 1 and preserves the connections among terminals. In-
+ternal vertices from diﬀerent replacements are disjoint, so components and cycle rank are preserved:
+β(K) = β(HS ) = qn . Since K ⊆ Bn , cycle-space inclusion gives bn ≥ qn . Equations (5) and (4)
+now prove the bounds.
+
+
+
+
+                                                      3
+4    When the local bound and equality follow
+Corollary 4.1. If every z ∈ Pn−2 has a singleton successor in Pn−1 , then pn ≤ rpn−1 + pn−2 .
+In particular this holds for every admissible next extension whenever rank n − 1 was formed by
+reﬂection-extension.
+
+Proof. Here S = Z, so qn = bn−1 . Reﬂection creating rank n − 1 adds r singleton successors of
+every rank-(n − 2) element; see the construction in Section 5. The extension to rank n may be
+arbitrary.
+
+Theorem 4.2. Suppose n ≥ 3 and every z ∈ Pn−2 has at least two distinct singleton successors in
+Pn−1 . Equality in the local bound holds if and only if the extension to rank n is reﬂection-extension,
+up to relabeling that rank.
+
+Proof. Choose one witness per z in the main proof. Now K is connected and contains all X
+vertices. Each unused upper vertex t attaches by its complete star to X, adding d(t) − 1 to cycle
+rank. Equality means bn = bn−1 = β(K), so every unused upper vertex is singleton.
+    For a ﬁxed z, take distinct singleton successors a = az , b. Every nonsingleton upper vertex
+covering b belongs to K and speciﬁcally to Tz : if it belonged to Tw , its common predecessor with
+the witness aw would force w = z. Every internal vertex of Tz covers a. Let h be the unique
+common successor of a, b. For each y ∈ Nz \ {b}, its common successor with b is nonsingleton, lies
+in Tz , and covers a. Uniqueness for a, b forces it to be h. Hence h covers all Nz , and no second
+nonsingleton internal vertex can share a pair of terminals.
+    Since n ≥ 3, each z has a predecessor and u(z) ≥ r + 1 ≥ 2. There is therefore precisely one
+nonsingleton vertex hz over each Nz . They are distinct by the witness argument. Each x ∈ X
+belongs to exactly d(x) of these neighborhoods; the degree identity leaves exactly r singleton
+successors over x. This is reﬂection-extension. Conversely reﬂection has |Z| + r|X| upper vertices
+and gives equality.
+
+  The following established lemma is [5, Proposition 3.4]; its short counting proof is included to
+make the consequence self-contained.
+
+Lemma 4.3 (Gaetz–Venkataramana). Every rank-one element has at least two singleton succes-
+sors.
+
+Proof. There are r rank-one elements, each with r + 1 successors. At a ﬁxed z, nonsingleton
+successors use disjoint nonempty subsets of the other r − 1 rank-one elements; otherwise a pair
+would have two common successors. There are at most r − 1 nonsingleton successors, leaving at
+least two.
+
+    Thus, for every r ≥ 1, p3 ≤ rp2 + r, with equality precisely for reﬂection from rank two. This
+is a consequence of the transfer/equality theorem and the credited lemma, not a claim that the
+lemma is new.
+
+
+
+
+                                                  4
+5    Standard examples giving strictness and sharpness
+We recall Wagner reﬂection, as presented in [1, Proposition 6.1 and the following paragraph]. Given
+a valid preﬁx through rank m ≥ 1, add one vertex over the entire successor set in Pm of each element
+of Pm−1 , and add r distinct singleton successors over each element of Pm . Each current x gets
+d(x) + r successors; a current pair gets one common new successor for each common predecessor.
+Every new vertex has a predecessor and the rank is ﬁnite. Thus the preﬁx prolongs indeﬁnitely to
+an ordinary diﬀerential poset. Its next rank has pm−1 + rpm elements. The constructions below
+use this classical operation and classical Young preﬁxes, rather than new poset families.
+    For r = 3, take rank one {a, b, c}. Put one rank-two element over each of {a, b}, {a, c}, {b, c} and
+two singleton successors over each rank-one element. Each rank-one element has four successors
+and every pair has one. This is the preﬁx of Y 3 through rank two, with ranks (1, 3, 9). Reﬂect to
+rank three and continue reﬂecting. Then
+
+               (p0 , p1 , p2 , p3 ) = (1, 3, 9, 30),     e2 = 12,      e3 = 39,   b2 = b3 = q3 = 1.
+
+Byrnes’s rank-three bound is 31 and (9) gives the attained bound 30.
+    For r = 1, use Young’s lattice Y through rank ﬁve and reﬂect twice, then continue reﬂecting.
+Young’s lattice consists of integer partitions, ordered by addition of one box. Its ﬁrst six rank sizes
+are (1, 1, 2, 3, 5, 7), so the extended ranks are
+
+                                                (1, 1, 2, 3, 5, 7, 12, 19).
+           P
+Here e6 = 5k=0 pk = 19 and p5 + p6 = 19, hence b6 = 1. Reﬂection at rank six gives a singleton
+successor for each rank-ﬁve element, so q7 = b6 = 1; reﬂection at rank seven gives b7 = 1. Byrnes’s
+bound 20 is reduced to the attained bound 19. The standard reﬂection argument proves inﬁnite
+realization in both cases.
+    In either example pn = Un − qn with qn = 1. Replacing the coeﬃcient one in (9) by any c > 1
+would yield a false bound pn ≤ Un − cqn < pn . This proves coeﬃcient sharpness, not optimality of
+every possible use of the preceding incidence data.
+
+Boundary cases and the exact remaining gap
+No b0 is needed: b1 = 0. At n = 2, Z = {b 0} and every rank-one element is a singleton successor, so
+q2 = 0 and p2 ≤ r2 + 1. If also r = 1, the replacement tree has one terminal and no internal vertex.
+For empty S, HS is the isolated vertex set X and qn = 0.
+    Always Un − (rpn−1 + pn−2 ) = bn−1 , so the reﬁned right side lies between Byrnes’s and the
+proposed local right sides. The unremoved allowance is exactly bn−1 − qn . It can be positive:
+Young’s lattice at n = 6 has b5 = 1, q6 = 0, reﬁned bound 13, local bound 12, and actual p6 = 11.
+The general recurrence still requires bn ≥ bn−1 . No combinatorial strict-growth argument follows
+here; the standard strict-growth statement also has the exception r = n = 1, when p0 = p1 = 1.
+
+
+
+
+                                                            5
+6    Veriﬁcation, related work, and research status
+The companion archive contains the complete LATEX source, all eight unchanged submitted artifacts,
+the independently written standard-library exact checker, complete expected outputs, a portable
+oﬄine reproduction runner, source/attribution records and content manifests. No third-party full
+text, ledger data or private coordination is included.
+    The checker reconstructs predecessor sets, veriﬁes every integer commutator, connectivity, exact
+cycle identities and the actual witness-tree replacements. Its edge-clique partition enumeration gives
+labeled preﬁx counts 1, 1, 1, 1, 2, 7, 60 for r = 1 through rank seven, 1, 1, 4 for r = 2 through rank
+three, and 1, 2, 288 for r = 3 through rank three. These are not isomorphism counts. It checks
+reﬂected preﬁxes for 1 ≤ r ≤ 5 through rank ﬁve, Young’s lattice through rank twelve, and both
+sharp examples. The 5764 witness selections use ﬁrst and last choices in every reﬂection-only run,
+irrespective of product size. Enumerated-preﬁx, Young-lattice and separate sharp-example runs
+exhaust products of at most 2000 choices and use ﬁrst/last above 2000. The proof establishes
+arbitrary witness choice.
+    Negative controls reject deletion of a top vertex and a false minimum degree, and refute subtract-
+ing 2qn in the sharp examples. The relaxed layer sizes (1, 3, 3, 7) satisfy the two middle commutators
+for r = 1 but violate the rank-zero commutator; they do not form a diﬀerential-poset preﬁx. Their
+pair-block projection has a triangle and their bipartite incidence graph a six-cycle. Normal, -O,
+and -OO runs agree byte for byte. These ﬁnite computations support implementation and example
+correctness; the universal theorem and inﬁnite realization rest on the written proofs.
+    Singleton and crown techniques have earlier antecedents [6, 7]; the exact rank-one two-singleton
+lemma used here is [5, Proposition 3.4]. Reﬂection of arbitrary Young preﬁxes is already cov-
+ered by [1]. Related upper-extremal investigations include Qing’s 2008 thesis and Wright’s 2019
+slides/abstract [8, 9]; their global-envelope or restricted-preﬁx scope is distinct from the supported-
+cycle assertion. Byrnes also uses cycle arguments under other hypotheses, so this note asserts no
+new general use of cycles in the subject.
+    A dated bounded primary-source comparison, completed 22 October 2026, found no earlier
+equivalent supported-cycle upper-bound theorem in the inspected material. Historical ﬁrstness, ﬁrst
+application and present worldwide openness are not certiﬁed. Source versions, inspected portions
+and access limits are recorded in the companion attribution dossier. The ﬁnal publisher bodies
+of Gaetz–Venkataramana and Miller were not obtained; their versioned primary preprints were
+inspected. No subsequent full proof corresponding to Wright’s talk was located, and subscription
+indexing and unpublished work remain coverage limits. The classiﬁcation of this result concerns
+the literal printed improvement request, not every stronger rank question.
+
+AI involvement, review, and licenses
+AI tools were extensively involved in research planning, mathematical exploration and proof devel-
+opment/reconstruction, code and exact computations, literature and source investigation, writing,
+editing, and adversarial mathematical and priority auditing. Alec Kriebel is the named human au-
+thor. This manuscript is unrefereed and has not undergone professional independent human peer
+review, journal acceptance or formal proof-assistant certiﬁcation. Internal AI reviews do not sup-
+ply those certiﬁcations. A fresh whole-package review is a separate release gate. Original prose is
+oﬀered under CC BY 4.0; the companion code is MIT licensed. Cited works retain their respective
+rights.
+
+
+
+
+                                                  6
+References
+ [1] R. P. Stanley, Diﬀerential posets, J. Amer. Math. Soc. 1 (1988), 919–961.
+     doi:10.1090/S0894-0347-1988-0941434-9.
+
+ [2] P. Byrnes, Structural Aspects of Diﬀerential Posets, Ph.D. thesis, University of Minnesota, 2012,
+     Chapter 5. https://conservancy.umn.edu/server/api/core/bitstreams/
+     45a1bae8-402f-42a7-ad67-4caa7b55d104/content.
+
+ [3] P. Majumder, Rank sizes of Diﬀerential Posets, in Open Problem Session, Oberwolfach Reports
+     23/2018, printed pp. 1452–1453. Report doi:10.4171/OWR/2018/23.
+     https://ems.press/content/serial-article-files/46745.
+
+ [4] R. P. Stanley and F. Zanello, On the rank function of a diﬀerential poset, Electron. J. Combin. 19(2)
+     (2012), P13. doi:10.37236/2258.
+
+ [5] C. Gaetz and P. Venkataramana, Path counting and rank gaps in diﬀerential posets, Order 37 (2020),
+     279–286 (online 2019). doi:10.1007/s11083-019-09504-4. Inspected primary preprint:
+     https://arxiv.org/abs/1806.03509v3.
+
+ [6] J. B. Lewis, On Diﬀerential Posets, undergraduate thesis, Harvard University, 2007, Section 3.
+     https://bpb-us-e1.wpmucdn.com/blogs.gwu.edu/dist/5/693/files/2018/04/
+     JBLHarvardSeniorThesis-20drube.pdf.
+
+ [7] A. R. Miller and V. Reiner, Diﬀerential posets and Smith normal forms, Order 26 (2009), 197–228.
+     Inspected preprint: https://arxiv.org/abs/0811.1983v1.
+
+ [8] Y. Qing, Diﬀerential Posets and Dual Graded Graphs, S.M. thesis, Massachusetts Institute of
+     Technology, September 2008, Chapters 2–3. https://web.math.utk.edu/~yqing/MasterThesis.pdf.
+
+ [9] B. Wright, Maximal Extensions of Diﬀerential Posets, MIT PRIMES conference slides, 19 May 2019,
+     and conference abstract, p. 12.
+     https://math.mit.edu/research/highschool/primes/materials/2019/conf/9-1-Wright.pdf.
+
+[10] A. R. Miller, Diﬀerential posets have strict rank growth: a conjecture of Stanley, Order 30 (2013),
+     657–662. Inspected preprint: https://arxiv.org/abs/1202.3006v1.
+
+
+
+
+                                                    7
+
