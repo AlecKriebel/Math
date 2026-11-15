@@ -1,0 +1,3 @@
+# Authorized baseline checkpoint log
+
+- 2026-11-15T19:50:01.499280+00:00 — 40% overall audit: Fresh actual46773fd3… master baseline614public/92typed+visibleindex/93sitemap captured before writer exposure. Source-only aggregate locator resolved to actual research/sitemap.xml; initial expectation payloads unchanged. Fresh58552 protected records derived from58554 current raw index entries excluding only two currently present authorized aggregate entries. Temporary initial-log append restored to its exact sealed bytes; phase log is separate. Original17 core files plus authorized405b checkpoint qualification intact. Await writer FINAL.
