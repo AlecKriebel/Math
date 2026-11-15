@@ -1,0 +1,80 @@
+{
+  "schema": "independent-supported-cycle-focal-actual-review-execution-record-v1",
+  "UTC": "2026-11-15T23:01:32.920196+00:00",
+  "executions": [
+    {
+      "code": "freeze_initial_sources.py",
+      "exit": 0,
+      "stdout": "INITIAL_FREEZE_RESULT.json",
+      "stderr": "INITIAL_FREEZE_RESULT.stderr",
+      "writer_website_Git_exposure": false
+    },
+    {
+      "code": "verify_initial_read_only.py",
+      "arguments": [
+        "--preseal"
+      ],
+      "exit": 0,
+      "stdout": "INITIAL_PRESEAL_CLOSURE.json",
+      "stderr": "INITIAL_PRESEAL_CLOSURE.stderr"
+    },
+    {
+      "code": "capture_actual_baseline.py",
+      "after_explicit_root_GO_SHA256": "0d7371f227e608c79d7f79135cb78cecd2fee4e190c7952bebb3afa7c0c639c2",
+      "exit": 0,
+      "stdout": "ACTUAL623_CAPTURE_RESULT.json",
+      "stderr": "ACTUAL623_CAPTURE_RESULT.stderr",
+      "actual_readonly_Git_calls": 15
+    },
+    {
+      "code": "verify_baseline_read_only.py",
+      "arguments": [
+        "--preseal"
+      ],
+      "exit": 0,
+      "stdout": "BASELINE_PRESEAL_CLOSURE.json",
+      "stderr": "BASELINE_PRESEAL_CLOSURE.stderr"
+    },
+    {
+      "code": "verify_integration_read_only.py",
+      "arguments": [
+        "--preseal"
+      ],
+      "exit": 1,
+      "stdout": "INDEPENDENT_COMPARISON.json",
+      "stderr": "INDEPENDENT_COMPARISON.stderr",
+      "failure": "REVIEWER_HARNESS_FAILURE_01.json"
+    },
+    {
+      "code": "verify_integration_read_only_v2.py",
+      "arguments": [
+        "--preseal"
+      ],
+      "exit": 0,
+      "stdout": "INDEPENDENT_COMPARISON_V2.json",
+      "stderr": "INDEPENDENT_COMPARISON_V2.stderr",
+      "result": "completed review with two confirmed adapter findings"
+    },
+    {
+      "code": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/supported-cycle-focal-private-stage-sol-20261115/verify_stage.py",
+      "arguments": [],
+      "exit": 0,
+      "stdout": "WRITER_PURE_CLOSURE.json",
+      "stderr": "WRITER_PURE_CLOSURE.stderr",
+      "full_current5code_and_actual_diff_read_before_execution": true
+    },
+    {
+      "code": "verify_audit_read_only.py",
+      "arguments": [
+        "--preseal"
+      ],
+      "exit": 0,
+      "stdout": "AUDIT_PRESEAL_CLOSURE.json",
+      "stderr": "AUDIT_PRESEAL_CLOSURE.stderr",
+      "checks": 9570
+    }
+  ],
+  "sealed_initial_and_baseline_direct_pure_outputs": "Returned directly after their seals with no postseal edits; final full manifest includes all historical payloads.",
+  "no_owner_renderer_controls_or_scientific_campaign_replay": true,
+  "no_production_authority": true
+}

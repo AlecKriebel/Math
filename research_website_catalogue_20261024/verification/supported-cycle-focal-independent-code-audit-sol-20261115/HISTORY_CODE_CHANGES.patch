@@ -1,0 +1,54 @@
+--- history/001-xml-tail-check/verify_stage.py
++++ history/001-xml-tail-check/verify_stage_after_tail.py
+@@ -294,7 +294,9 @@
+         old_tree = ET.fromstring(old_xml); new_tree = ET.fromstring(new_xml)
+         need(len(old_tree) == 95 and len(new_tree) == 97, 'actual candidate97 sitemap')
+         for old,new in zip(old_tree,list(new_tree)[:95]):
+-            need(ET.tostring(old) == ET.tostring(new), 'all original95 sitemap objects unchanged')
++            need(not (old.tail or '').strip() and not (new.tail or '').strip()
++                 and ET.tostring(old).rstrip() == ET.tostring(new).rstrip(),
++                 'all original95 sitemap URL contents unchanged; only sibling whitespace tails differ')
+         restored_xml = new_xml
+         for publication in publications:
+             line = ('  <url><loc>' + publication['proposed_canonical_url'] + '</loc><lastmod>2026-11-15</lastmod></url>\n').encode()
+--- history/001-xml-tail-check/verify_stage_after_tail.py
++++ verify_stage.py
+@@ -218,6 +218,12 @@
+     need(sha(read(O / 'ACTUAL_BASELINE_GO.json')) == seal['root_GO_SHA256'] ==
+          '0d7371f227e608c79d7f79135cb78cecd2fee4e190c7952bebb3afa7c0c639c2', 'actual separate root GO')
+     baseline = json.loads(body)
++    go = obj(O / 'ACTUAL_BASELINE_GO.json')
++    need(baseline['Git']['HEAD'] == baseline['Git']['master'] == go['actualWebsiteHEAD']
++         and baseline['Git']['tree'] == go['actualWebsiteTree']
++         and baseline['Git']['index_SHA256'] == go['actualIndexSHA256']
++         and baseline['Git']['actual_remote_advertisement'].split() == [go['actualWebsiteHEAD'], 'refs/heads/master'],
++         'actual root623 HEAD/master/tree/index/remote identities')
+     closed_namespace(O / 'baseline-blobs', seal['exact_baseline_blob_names'], seal['baseline_blob_directories'])
+     for row in baseline['files']:
+         pin(O / row['blob'], row)
+@@ -314,6 +320,14 @@
+     baseline = baseline_fences() if (O / 'WEBSITE_BASELINE.json').exists() else None
+     paths = output_fences(inputs,baseline) if baseline and (O / 'candidate-a').exists() and (O / 'candidate-b').exists() else None
+     if (O / 'OWNED_MANIFEST.json').exists():
++        need(paths is not None, 'FINAL or preseal requires complete paired exact10 outputs')
++        need(obj(O / 'POST_AUTHORING_GUARD.json')['status'] ==
++             'PASS_ALL_ACTUAL_SOURCE_WEBSITE_CONFIG_CORE_RAW_INDEX_HEAD_MASTER_REMOTE_UNCHANGED',
++             'actual final live read-only guard receipt required')
++        need(obj(O / 'NAMESPACE_CONTROLS.stdout.json')['status'] == 'PASS_NEW_FINITE_NAMESPACE_CONTROLS',
++             'actual new bounded namespace controls required')
++        for row in obj(O / 'CURRENT_CODE_MANIFEST.json')['files']:
++            pin(O / row['path'], row)
+         manifest_body = read(O / 'OWNED_MANIFEST.json'); manifest = json.loads(manifest_body)
+         terminals = {'OWNED_MANIFEST.json'} if sys.argv[1:] == ['--preseal'] else {'OWNED_MANIFEST.json','FINAL_SEAL.json'}
+         closed_namespace(O,list(manifest['payloads']),manifest['directories'],terminals)
+--- history/first-namespace-controls/controls.py
++++ controls.py
+@@ -20,6 +20,8 @@
+ 
+ 
+ def main():
++    if (O / 'FINAL_SEAL.json').exists():
++        raise RuntimeError('Immutable FINAL: controls may run only before sealing')
+     tree = ast.parse((O / 'verify_stage.py').read_bytes())
+     definitions = [n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in {'need','extent','closed_namespace'}]
+     environment = {'Path':Path,'os':os,'stat':stat,'CHECKS':0}
