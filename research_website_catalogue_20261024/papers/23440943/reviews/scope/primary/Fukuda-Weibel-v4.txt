@@ -1,0 +1,653 @@
+                                            On f-vectors of Minkowski additions of convex polytopes∗
+                                                               Komei Fukuda†                          Christophe Weibel
+                                                            Mathematics Institute                   Mathematics Institute
+                                                              EPFL, Lausanne                           EPFL, Lausanne
+                                                                Switzerland                               Switzerland
+
+
+
+
+arXiv:math/0510470v4 [math.CO] 2 Nov 2006
+                                                            komei.fukuda@epfl.ch                   christophe.weibel@epfl.ch
+                                                                                   October 21, 2005
+                                                                               Revised October 24, 2006
+
+
+                                                                                           Abstract
+                                                        The objective of this paper is to present two types of results on Minkowski sums
+                                                    of convex polytopes. The first is about a special class of polytopes we call perfectly
+                                                    centered and the combinatorial properties of the Minkowski sum with their own dual.
+                                                    In particular, we have a characterization of face lattice of the sum in terms of the face
+                                                    lattice of a given perfectly centered polytope. Exact face counting formulas are then
+                                                    obtained for perfectly centered simplices and hypercubes. The second type of results
+                                                    concerns tight upper bounds for the f-vectors of Minkowski sums of several polytopes.
+
+
+                                            1       Introduction
+                                            Minkowski sums of polytopes in Rd naturally arise in many domains, ranging from mechan-
+                                            ical engineering [6] to algebra [7, 8]. These applications have triggered recent algorithmic
+                                            advances [2] and an efficient implementation [9]. Despite the new developments, we are still
+                                            very far from understanding the combinatorial structure (i.e. the face lattice) of a Minkowski
+                                            sum of several polytopes. In particular, it is in general difficult to estimate the number of
+                                            k-dimensional faces (k-faces) of the result for each 0 ≤ k ≤ d − 1, even if we know the face
+                                            lattices of the summands. One special case of the problem which is relatively well under-
+                                            stood is when the summands are m line segments in Rd . The resulting sum is known as a
+                                            zonotope given by m generators, see e.g. [10, Lecture 7]. The goal of the paper is to study
+                                            the problem, first in the particular case of a certain class of polytopes summed with their
+                                            own dual, and then to prove tight upper bounds on the number of k-faces.
+                                                ∗
+                                                 Supported by the Swiss National Science Foundation Project 200021-105202, “Polytopes, Matroids and
+                                            Polynomial Systems”.
+                                               †
+                                                 Also affiliated with Institute for Operations Research and Institute of Theoretical Computer Science
+                                            ETH Zentrum, Zurich, Switzerland.
+
+
+
+                                                                                               1
+    We call a polytope centered if it contains the origin in its relative interior. Nesterov [5]
+has recently proved that the sum of a centered full-dimensional polytope (and more generally
+a centered full-dimensional compact convex body) with its dual, if properly scaled, gives a set
+whose asphericity is at most the square root of that of the initial polytope. The asphericity
+of a set is here defined as the ratio of the diameter of its smallest enclosing ball to that of
+its largest enclosed ball. Thus, summing a polytope with its own dual has a strong rounding
+effect. For this reason, the Minkowski sum P + αP ∗ , will be called a Nesterov rounding of
+a polytope P for any positive scalar α.
+    Of special interest is the combinatorial aspect of Nesterov rounding. The first observation
+is that the combinatorial structure of P + αP ∗ does not depend on α. Thus we can set
+the scaling factor to be 1 without loss of generality. We shall say “the” Nesterov rounding
+instead of “a” Nesterov rounding to mean the class of all Nesterov roundings with the unique
+combinatorial type. While the scaling factor is irrelevant for our study, the position of the
+origin in P does affect the combinatorial structure of the Nesterov rounding. In other words,
+the combinatorial structure of the Nesterov rounding of P is not uniquely determined by
+that of the polytope. However, it is the case when the polytope has the perfectly centered
+property, by which we mean that every nonempty face intersects with its outer normal cone,
+see Section 2 for the formal definition.
+    The first result characterizes the face lattice of the Nesterov rounding of a perfectly
+centered polytope. For this, we use the natural bijection between the faces of P and those
+of the dual: F D denotes the dual face associated with a face F of P . We call a face F of a
+polytope P trivial if it is either the empty set ∅ or the polytope P itself. In particular, the
+trivial faces are dual to each other: P D = ∅.
+
+Theorem 1 Let P be a perfectly centered polytope. A subset H of P + P ∗ is a nontrivial
+face of P + P ∗ if and only if H = G + F D for some ordered nontrivial faces G ⊆ F of P .
+    This theorem can be considered as a natural extension of a theorem in [1] which was
+restricted to the facets of the sum.
+    As a corollary, we obtain face counting formulas for perfectly centered simplices (Theorem
+6) and hypercubes (Theorem 7).
+    Any face of a Minkowski sum of polytopes can be decomposed uniquely into a sum of
+faces of the summands. We will say that the decomposition is exact when the dimension of
+the sum is equal to the sum of the dimensions of the summands. When all facets have an
+exact decomposition, we will say the summands are relatively in general position.
+    This provides us with a trivial upper bound for the number of faces, i.e. the number of
+possible distinct decompositions. As usual, we denote by fk (P ) the number of k-faces of a
+d-polytope P . For each k = 0, . . . , d − 1 and n ≥ 1, the number of k-faces of P1 + · · · + Pn
+is bounded by:
+                                                                  n           
+                                                    X            Y    f0 (Pi )
+                 fk (P1 + · · · + Pn ) ≤                                         ,
+                                                                         si
+                                                                 i=1
+                                            1 ≤ si ≤ f0 (Pi )
+                                         s1 + · · · + sn = k + n
+where si ’s are integral.
+   The next theorem shows that this bound can be achieved in some cases.
+
+                                               2
+Theorem 2 In dimension d ≥ 3, it is possible to choose d − 1 polytopes so that the trivial
+upper bound for the number of vertices is attained.
+  Tight upper bounds on the number of facets appear to be harder to obtain in general.
+However, the following result on 3-polytopes holds.
+
+Theorem 3 Let P1 , . . . , Pn be 3-dimensional polytopes relatively in general position, and P
+their sum. Then the following equations hold:
+                                                  n
+                                                  X
+                           2f2 (P ) − f1 (P ) =         (2f2 (Pi ) − f1 (Pi )),
+                                                  i=1
+
+                                                  n
+                                                  X
+                        f2 (P ) − f0 (P ) + 2 =         (f2 (Pi ) − f0 (Pi ) + 2),
+                                                  i=1
+                                                  n
+                                                  X
+                       f1 (P ) − 2f0 (P ) + 4 =         (f1 (Pi ) − 2f0 (Pi ) + 4).
+                                                  i=1
+
+As a corollary (Corollary 4), we obtain tight upper bounds for the number of facets (and
+edges) of the sum of two 3-polytopes.
+    Furthermore, by using the fact that the Nesterov rounding of a perfectly centered poly-
+tope is again perfectly centered (Theorem 5), we also analyze the asymptotic behavior of
+repeated Nesterov roundings in dimension 3 (Theorem 8) that in fact shows a combinatorial
+rounding effect: the ratio of the number of vertices over that of facets approaches 1.
+    When the dimension d is large enough relative to the number of polytopes, it is possible
+for faces of lower dimensions to attain the trivial upper bounds.
+
+Theorem 4 In dimension d ≥ 4, it is possible to choose n ≤ ⌊ d2 ⌋ polytopes P1 , P2 , . . ., Pn
+so that the trivial upper bound for the number of k-faces of P1 + · · · + Pn is attained for all
+0 ≤ k ≤ ⌊ d2 ⌋ − n.
+   Throughout this paper, we assume that the reader is familiar with the basic results on
+convex polytopes. For a general introduction to polytopes, please refer to [3, 10].
+
+
+2     Perfectly Centered Polytopes
+We will assume in this section that all polytopes are full-dimensional. A polytope P is said
+to be centered if its relative interior relint(P ) contains the origin. For any centered polytope
+P , its dual, denoted by P ∗, is defined by
+
+                                P ∗ = {x : hx, yi ≤ 1, ∀y ∈ P }.
+
+For each face of P , we define the associated dual face as
+
+                          F D = {x | x ∈ P ∗ : hx, f i = 1, ∀f ∈ F } .
+
+We will define now two notions central to Minkowski sums.
+
+                                                  3
+    For a polytope P in Rd and any vector c ∈ Rd , we denote by S(P ; c) the set of maximizers
+of the linear function h·, ci:
+                                                                
+                            S(P ; c) = x ∈ P | hx, ci = maxhy, ci .
+                                                          y∈P
+
+For any face F of P , the outer normal cone of P at F , denoted by N (F ; P ), is the set of
+vectors c such that F = S(P ; c). Normal cones are relatively open. Also, if F and G are
+nonempty faces of a polytope P ,
+                             G ⊆ F ⇔ cl(N (F ; P )) ⊆ cl(N (G; P )),
+where cl(S) denotes the topological closure of a set S.
+
+Lemma 1 Let P be a centered polytope. For a face F of P , F D is a face of P ∗ . Furthermore,
+if F is nontrivial, N (F ; P ) is the cone generated by the points in the relative interior of the
+dual face F D . Namely,
+                           N (F ; P ) = {λx : λ > 0, x ∈ relint(F D )}.
+Consequently,
+                            cl(N (F ; P )) = {λx : λ ≥ 0, x ∈ F D }.
+Proof.     The proof is straightforward, and left to the reader.
+
+Corollary 1 Let F be a nontrivial face of a polytope P . The affine spaces spanned by F
+and F D are orthogonal to each other, meaning, the linear subspaces obtained from the affine
+spaces by translations are orthogonal.
+   The study of Nesterov rounding of polytopes has led to a new class of polytopes, that
+we introduce now. A polytope is called perfectly centered if
+                   relint(F ) ∩ N (F ; P ) 6= ∅ for any nonempty face F of P.
+Observe that if the intersection is nonempty, then it consists of a single point, since a face
+is orthogonal to its normal cone.
+
+
+
+                       0                     0
+                                                                          0
+
+
+
+          Figure 1: A perfectly centered and two non-perfectly-centered polytopes
+
+    For instance, the polytope on the left in Figure 1 is perfectly centered, and the two others
+are not. The one in the center can be made perfectly centered by moving the origin, but the
+one on the right cannot be. Note that the perfectly centered property was previously studied
+in [1] where it was called the projection condition. Advantages of using the term “perfectly
+centered” over the old term become evident when we state theorems such as Corollary 2 and
+Theorem 5 below.
+
+                                                 4
+Lemma 2 A polytope P is perfectly centered if and only if P is centered and N (F ; P ) ∩
+N (F D ; P ∗ ) 6= ∅, for every nontrivial face F of P .
+Proof. By Lemma 1, for any nontrivial face F ,
+
+                         N (F D ; P ∗ ) = {λx : λ > 0, x ∈ relint(F )}.
+
+Thus, for every nontrivial face F of a polytope P , the relations relint(F ) ∩ N (F ; P ) 6= ∅
+and N (F D ; P ∗ ) ∩ N (F ; P ) 6= ∅ are equivalent. Since N (P ; P ) = {0}, two statements
+relint(P ) ∩ N (P ; P ) 6= ∅ and 0 ∈ relint(P ) are also equivalent.
+   This immediately implies the following duality that was proved in [1] by a different (and
+longer) argument.
+
+Corollary 2 ([1], Lemma 4.4) The dual of a perfectly centered polytope is perfectly cen-
+tered.
+   The following theorem is equivalent to a theorem due to Broadie.
+
+Lemma 3 ([1], Theorem 2.1) If P is a perfectly centered polytope, then H is a facet of
+the Minkowski sum P + P ∗ if and only if H is the sum of a face F of P with its associated
+dual face F D in P ∗ .
+    Our first goal is to extend the characterization of facets to all faces and to determine the
+face lattice of the Nesterov rounding P + P ∗ of a perfectly centered polytope.
+
+Lemma 4 ([2], Proposition 2.1) Let P1 , . . . , Pk be polytopes in Rd and let P = P1 + · · · +
+Pk . Then a nonempty subset F of P is a face of P if and only if F = F1 + · · · + Fk for some
+faces Fi of Pi such that there exists c ∈ Rd (not depending on i) with Fi = S(Pi ; c) for all i.
+Furthermore, the decomposition F = F1 + · · · + Fk of any nonempty face F is unique.
+
+Lemma 5 Let P be a perfectly centered polytope. If a facet of P + P ∗ is decomposed into
+two faces F ⊆ P and F D ⊆ P ∗ , then any nonempty subface G of F generates with F D a
+subface of F + F D of dimension dim(G) + dim(F D ).
+Proof. This is the case because the faces G and F D span affine spaces which are orthogonal
+to each other.
+   In other words, for any two faces F and G of P with G ⊆ F , G and F D sum to a face of
+P + P ∗. We will show that there are no other faces in P + P ∗ .
+
+Lemma 6 Let P be a polytope. Let two nonempty faces of its Nesterov rounding P + P ∗ be
+decomposed as G1 + F1D and G2 + F2D . Then
+
+                      G1 + F1D ⊆ G2 + F2D      ⇔     G1 ⊆ G2 , F1 ⊇ F2 .
+
+Proof. Let two nonempty faces of its Nesterov rounding P +P ∗ be decomposed as G1 +F1D
+and G2 + F2D .
+   If G1 ⊆ G2 and F1 ⊇ F2 , we have F1D ⊆ F2D , and thus G1 + F1D ⊆ G2 + F2D .
+
+
+                                               5
+   For the converse direction, observe that for two faces A and B of a polytope P , A * B if
+and only if cl(N (A; P ))∩N (B; P ) = ∅. Assume G1 * G2 , that is, cl(N (G1 ; P ))∩N (G2; P ) =
+∅. This implies
+
+              cl(N (G1 + F1D ; P + P ∗ )) ∩ N (G2 + F2D ; P + P ∗ )
+               = cl(N (G1 ; P ) ∩ N (F1D ; P ∗)) ∩ N (G2 ; P ) ∩ N (F2D ; P ∗ )
+               ⊆ cl(N (G1 ; P )) ∩ N (G2 ; P ) ∩ cl(N (F1D ; P ∗ )) ∩ N (F2D ; P ∗ ) = ∅.
+
+Consequently, G1 + F1D * G2 + F2D . The same holds if F1 + F2 by symmetry.
+   Now we are ready to prove:
+
+      Theorem 1 Let P be a perfectly centered polytope. A subset H of P + P ∗ is a
+      nontrivial face of P + P ∗ if and only if H = G + F D for some ordered nontrivial
+      faces G ⊆ F of P .
+
+Proof.      By Lemma 3, the facets of P + P ∗ are of form F + F D for some nontrivial face
+F of P . Lemma 5 says that if F and G are nontrivial faces of P with G ⊆ F , then G + F D
+is a face of the sum polytope. Finally, Lemma 6 shows that all the faces are of that kind,
+since it proves that there are no other subfaces to the facets.
+
+Corollary 3 The face lattice of the Nesterov rounding P +P ∗ of a perfectly centered polytope
+is determined by that of P .
+
+Theorem 5 The Nesterov rounding of a perfectly centered polytope is also perfectly centered.
+Proof.        Le P be a perfectly centered polytope. Let F and G be nontrivial faces of P
+with G ⊆ F . We’ll denote by mF and mG the unique points in their intersections with their
+respective normal cones. By Theorem 1, it suffices to show that mG + mF D ∈ N (G; P ) ∩
+N (F D ; P ∗ ). By Lemma 2, mG ∈ N (G; P )∩N (GD ; P ∗). Also, mF D ∈ N (F ; P )∩N (F D ; P ∗ ).
+Since G ⊆ F , N (F ; P ) ⊆ cl(N (G; P )). Since mG ∈ N (G; P ) and mF D ∈ cl(N (G; P )),
+mG + mF D ∈ N (G; P ). By symmetry, mG + mF D ∈ N (F D ; P ∗ ), completing the proof.
+
+Note 1 The sum of two perfectly centered polytopes is not always perfectly centered. For
+example, in Figure 2, both rectangles are perfectly centered, but their sum is not, since the
+sum of the two marked vertices is not in its normal cone.
+
+
+
+
+                                          +            =
+
+
+
+
+          Figure 2: A non-perfectly-centered sum of perfectly centered polytopes
+
+
+
+                                                  6
+2.1    The f-vector of the Nesterov rounding of a simplex
+Here we apply Theorem 1 to perfectly centered simplices.
+
+Theorem 6 Let ∆d be a perfectly centered simplex of dimension d. Then, the f -vector of
+the Nesterov rounding of ∆d is given by
+                                       
+                          ∗       d+1
+                                          2k+2 − 2 ,
+                                                  
+                fk (∆d + ∆d ) =                       for 0 ≤ k ≤ d − 1.
+                                  k+2
+
+Proof.     Let ∆d be a perfectly centered simplex of dimension d. The f -vector of ∆d is
+given by                                      
+                                         d+1
+                        fk (∆d ) =                 ,   for 0 ≤ k ≤ d − 1.
+                                         k+1
+By Theorem 1, the faces of ∆d + ∆∗d can be characterized as the sums F D + G, with G ⊆ F
+non-trivial faces of ∆d .
+    Let S and T be the vertex sets of respectively G and F , with S ⊆ T , and denote
+U = T \ S. The dimension k of F D + G is dim(F D ) + dim(G) = d − 1 + dim(G) − dim(F ) =
+d − 1 + |S| − |T | = d − 1 − |U|.
+    So the number of faces of dimension k can be written as pq, where p is the number of
+possible choices of U with |U| = d − 1 − k, and q is the number of choices of S non-empty,
+so that S ∩ U = ∅ and |T | = |S ∪ U| < d + 1. Thus we have
+                                     
+                                  d+1
+                          p=                 and      q = 2k+2 − 2.
+                                  k+2
+
+
+
+2.2    The f-vector of the Nesterov rounding of a cube
+Theorem 7 Let d be a cube of dimension d. Then, the f -vector of the Nesterov rounding
+of d is given by
+                                  
+                       ∗        d
+                                     2d−k−1 3k+1 − 1 ,
+                                                    
+             fk (d + d ) =                             for 0 ≤ k ≤ d − 1.
+                               k+1
+
+Proof. Let d be a cube of dimension d. Then d has 3n − 1 nontrivial faces, which can
+be decomposed as:               
+                                n
+                    fk (d ) =      2n−d , for 0 ≤ k ≤ d − 1.
+                                d
+By Theorem 1, the faces of d + ∗d can be characterized as the sums F D + G, with G ⊆ F
+non-trivial faces of d .
+   Let S and T be the sets of fixed coordinates of respectively G and F , with T ⊆ S, and
+denote U = S \ T . The dimension k of F D + G is dim(F D ) + dim(G) = d − 1 + dim(G) −
+dim(F ) = d − 1 + (d − |S|) − (d − |T |) = d − 1 − |U|.
+   So the number of faces of dimension k can be written as pqr, where p is the number of
+possible choices of U with |U| = d − 1 − k, q is the number of ways to fix the coordinates in
+
+                                                   7
+U, and r is the number of choices of G, so that S ∩ U = ∅ and |T | = |S ∪ U| < d + 1. We
+have                        
+                         d
+                 p=            ,     q = 2d−k−1     and    r = 3k+1 − 1.
+                      k+1
+
+
+
+2.3      Repeated Nesterov rounding in dimension 3
+                                           (i)
+We’ll use the following notation: fk (P ) denotes the number of k-dimensional faces in a
+polytope P after executing the Nesterov rounding i times.
+
+Theorem 8 Let P be a perfectly centered 3-dimensional polytope P . Then the following
+relations hold:
+                                   (n)        (1)
+                                  f0 = 4n−1 f0 ,
+                                         (n)                        (1)
+                                      f1         = 2 · 4n−1 f0 , and
+                                   (n)              (1)                          (1)
+                                f2         = f2 + (4n−1 − 1)f0 .
+Proof.     Let P be a perfectly centered three-dimensional polytope. By Corollary 3,
+                                (n)              (n−1)            (n−1)      (n−1)
+                              f2        = f0               + f1           + f2           .
+It is a general property of face lattices that for two faces G ⊆ F so that dim(G)+2 = dim(F )
+there are exactly two faces H1 and H2 of dimension dim(G) + 1 so that G ⊆ H1 ⊆ F and
+G ⊆ H2 ⊆ F . In a Nesterov rounding, it means that all (d − 3)-dimensional faces, which
+are sums of a face G and F D , G ⊆ F so that dim(G) + 2 = dim(F ) are contained in four
+(d − 2)-dimensional faces, which are G + H1D , G + H2D , H1 + F D and H2 + F D , and four
+(d − 1)-dimensional faces, which are G + GD , H1 + H1D , H2 + H2D and F + F D . In the
+3-dimensional case, it means that all vertices are contained in four incident edges and four
+facets. Since each edge contains exactly two vertices, we have:
+                                           (n)              (n)
+                                        f1        = 2f0 , ∀n ≥ 1.
+Since the number of vertices in the next Nesterov rounding is equal to the number of pairs
+of a vertex and its containing facets, it also means that:
+                                        (n+1)                (n)
+                                      f0            = 4f0 , ∀n ≥ 1.
+Thus we have the following equations:
+                                                 (n)                 (1)
+                                               f0         = 4n−1 f0 ,
+                                         (n)                        (1)
+                                      f1         = 2 · 4n−1 f0 , and
+                                     (n)            (n−1)                        (1)
+                                   f2       = f2             + 3 · 4n−2 f0
+                                        (n)           (1)                          (1)
+                              ⇒ f2            = f2 + (4n−1 − 1)f0 .
+
+
+   Note that the ratio of the number of facets to that of vertices tends towards 1.
+
+                                                            8
+3     Maximizing faces
+It is natural to explore possible bounds for the number of faces in Minkowski sums of poly-
+topes. The description of a Minkowski sum can be exponential in terms of the descrip-
+tion (binary) size of the summands. For instance, the sum of d orthogonal segments in
+d-dimensional space is the d-hypercube, which has 2d vertices, but only 2d facets.
+    In this section, we obtain some tight bounds on the number of faces in Minkowski sums,
+in terms of number of vertices in the summands, and of the dimension.
+
+3.1    Bounds on vertices
+We will show an upper bound for the number of vertices in a Minkowski sum, then we will
+show this bound is attainable provided the dimension is big enough in relation to the number
+of polytopes.
+    Each vertex in a Minkowski sum is decomposed into a sum of vertices of the summands.
+Since each vertex has a different decomposition, we arrive to the following trivial upper
+bound:
+
+Lemma 7 (Trivial upper bound) Let P1 , . . . , Pn be polytopes. Then the following gives
+an upper bound on the number of vertices of their Minkowski sum:
+                                                          n
+                                                          Y
+                                f0 (P1 + · · · + Pn ) ≤         f0 (Pi ).
+                                                          i=1
+
+    Now we are ready to prove:
+
+      Theorem 2 In dimension d ≥ 3, it is possible to choose (d − 1) polytopes so
+      that the trivial upper bound for vertices is attained.
+
+Proof.        Let Pi , i = 1, . . . , d − 1, be d-dimensional polytopes, and vi,j their vertices,
+j = 1, . . . , ni where ni ≥ 1 is the number of vertices of the polytope Pi . We set the
+coordinates of the vertices to be:
+                                                                    
+                                            j                     j
+                         vi,j = cos             π · ei + sin          π · ed.
+                                         ni + 1                ni + 1
+
+Where ej ’s are the unit vectors of an orthonormal basis of the d-dimensional space. So the
+vertices of Pi are placed on the unit half-circle in the space generated by ei and ed. Observe
+that the polytopes are two-dimensional for now. By the construction, one can easily verify
+that
+                                      vi,j ∈ N ({vi,j }; Pi ).
+This stays true if we add anything to those vectors in the spaces orthogonal to that of the
+half-circle:                    X
+                         vi,j +    αk ek ∈ N ({vi,j }; Pi ), ∀αk ∈ R.
+                                 k6=i,d
+
+
+
+
+                                                 9
+So for any choice of S = {ji }d−1
+                              i=1 , ji = 1, . . . , ni , we can build this vector:
+
+                                       d−1                    
+                                       X                 ji
+                                vS =         cot              π · ei + ed.
+                                       i=1
+                                                       ni + 1
+                                                                                          
+This vector vS , projected to the space generated by ed and any ei, is equal to cot nij+1
+                                                                                       i
+                                                                                          π ·
+                                                             
+ei + ed which is collinear with cos nij+1 i
+                                            π · ei + sin nij+1
+                                                            i
+                                                               π · ed, and thus belongs to
+N ({vi,ji }; Pi ). So we have that:
+                                              d−1
+                                              \
+                                       vS ∈         N ({vi,ji }; Pi ),
+                                              i=1
+
+and since this intersection is not empty, it means that vj1 , . . . , vjd−1 is a vertex of the
+Minkowski sum P1 +     · · · + Pd−1 . This stays true for any choice of S = {ji }d−1
+                     Qd−1                                                          i=1 , so the
+Minkowski sum has i=1 ni vertices. The polytopes Pi thus defined are 2-dimensional. The
+property still stands if we add small perturbations to the vertices to make the polytopes
+full-dimensional.
+
+3.2     Bounds on facets
+It appears to be much harder to find tight upper bounds on facets of Minkowski sums than
+on vertices. This is due to the fact that vertices of the sum decompose only in sum of vertices
+of the summands, while facets decompose in faces that can have any dimension. Results are
+therefore limited for now to low-dimensional cases.
+    Let us recall now Theorem 3, which gives the number of facets in a 3-dimensional
+Minkowski sum of polytopes relatively in general position:
+
+      Theorem 3 Let P1 , . . . , Pn be 3-dimensional polytopes relatively in general
+      position, and P their sum. Then the following equations hold:
+                                                       n
+                                                       X
+                             2f2 (P ) − f1 (P ) =            (2f2 (Pi ) − f1 (Pi )),
+                                                       i=1
+
+                                                       n
+                                                       X
+                         f2 (P ) − f0 (P ) + 2 =             (f2 (Pi ) − f0 (Pi ) + 2),
+                                                       i=1
+                                                       n
+                                                       X
+                        f1 (P ) − 2f0 (P ) + 4 =             (f1 (Pi ) − 2f0 (Pi ) + 4).
+                                                       i=1
+
+
+Proof.     Let P1 , . . . , Pn be 3-dimensional polytopes relatively in general position and P
+their sum. A facet of P can be either pure, which means its decomposition contains exactly
+one facet of one of the summands and vertices otherwise, or it can be mixed, which means
+the decomposition contains exactly two edges and vertices otherwise.
+
+
+                                                        10
+   In terms of normal cones, the normal ray of a pure facet is the intersection of the normal
+ray of a single facet with 3-dimensional normal cones of vertices. This means each facet in
+the summands will generate exactly one pure facet of the sum:
+
+                               f2pure (P ) = f2 (P1 ) + · · · + f2 (Pn ).
+
+    The normal ray of a mixed facet is the intersection of the 2-dimensional normal cones
+of exactly two edges with 3-dimensional normal cones of vertices. This means that each of
+those two normal cones are split into two non-connected sets by removal of the intersection.
+This creates in effect four normal cones of four different edges in the Minkowski sum. So
+every occurence of a mixed facet augments by exactly two the number of edges in the sum:
+
+                        2f2mix (P ) = f1 (P ) − (f1 (P1 ) + · · · + f1 (Pn )).
+
+   Combining the two equations, we get the first part of the theorem. The two other parts
+are deduced using Euler’s equation: f0 + f2 = f1 + 2.
+
+This result allows us to find tight upper bounds on the number of edges and facets when
+summing two 3-dimensional polytopes:
+
+Corollary 4 Let P1 and P2 be polytopes in dimension 3, and P = P1 + P2 their Minkowski
+sum. Then we have the following tight bounds:
+
+                        f2 (P ) ≤ f0 (P1 )f0 (P2 ) + f0 (P1 ) + f0 (P2 ) − 6,
+
+                        f1 (P ) ≤ 2f0 (P1 )f0 (P2 ) + f0 (P1 ) + f0 (P2 ) − 8.
+Proof. We first need to prove that the maximum number of facets can be attained if P1
+and P2 are relatively in general position.
+    Let P1 and P2 be polytopes in dimension 3, so that their Minkowski sum P has the
+maximal number of facets. They are not relatively in general position if and only if a facet
+of the summands is summing with a facet or an edge. Suppose we perturb P2 by a small
+well-chosen rotation. The facets previously contained in a non-exact decomposition will now
+sum to a facet with an exact decomposition. Therefore, there will be at least as many facets
+as before in the sum, and the summands will now be relatively in general position.
+    We now find what the maximum is when summands are relatively in general position.
+By Theorem 3, it is sufficient to maximize f0 (P ) and f2 (Pi ) − f0 (Pi ) for each i. We can do
+this by using simplicial polytopes disposed as indicated in Theorem 2. Since vertices and
+facets are maximized in the sum, so are edges.
+
+3.3    Sums of cyclic polytopes
+We will show here an upper bound for the number of faces of each dimension a Minkowski
+sum of polytopes can have. We will then show this bound is attained for lower dimensions
+by certain sums of cyclic polytopes.
+
+
+
+                                                  11
+Lemma 8 (Trivial upper bound 2) Let P1 , . . . , Pn be d-dimensional polytopes. For each
+k = 0, . . . , d − 1 and n ≥ 1, the number of k-faces of P1 + · · · + Pn is bounded by:
+                                                                     n           
+                                                       X            Y    f0 (Pi )
+                    fk (P1 + · · · + Pn ) ≤                                         ,
+                                                                            si
+                                                                    i=1
+                                               1 ≤ si ≤ f0 (Pi )
+                                            s1 + · · · + sn = k + n
+
+where si ’s are integral.
+Proof.       Let P1 , . . . , Pn be d-dimensional polytopes, and F a k-dimensional face of P1 +
+· · · + Pn . Let Fi ⊆ Pi , i = 1, . . . , n be the decomposition of F . Let k1 , . . . , kn be the
+dimensions of respectively F1 , . . . , Fn . Then k1 + · · · + kn ≥ k. The minimal number of
+vertices for a face of dimension ki is ki + 1. So the total number of vertices contained in faces
+of the decomposition of F is at least k + n. For any fixed k1 , . . . , kn , the number of possible
+choices of si vertices for each Pi is:
+                                             n            
+                                            Y     f0 (Pi )
+                                                             .
+                                                     si
+                                         i=1
+
+
+
+
+Note that the above lemma is an extension of Lemma 7.
+    Cyclic polytopes are known to have the maximal number of faces for any fixed number
+of vertices. This property is somewhat carried on to their Minkowski sum. We define the
+moment curve as the curve in the d-dimensional space which is the set of points of form
+(x, x2 , x3 , . . . , xd ). We call P a cyclic polytope if its vertices are all on the moment curve.
+Cyclic polytopes have the following properties: Their number of faces is maximal, for faces of
+all dimensions, over all polytopes with this dimension and this number of vertices [4]. They
+are also simplicial, i.e. all their faces are simplices. Moreover, they are ⌊ d2 ⌋-neighbourly,
+which means that the convex hull of any set of ⌊ d2 ⌋ vertices of a cyclic polytope P is a face
+of P [3, 4.7]. Since each face is a simplex, this also means that any set of ⌊ d2 ⌋ vertices are
+affinely independent. For more details concerning cyclic polytopes, please refer to [3].
+    Note that if we choose a set S of points on the moment curve, with |S| ≤ ⌊ d2 ⌋, conv(S)
+will form a face of any polytope P having S as a subset of its vertices, no matter how
+the other vertices are chosen. That is, there is always a linear function hmS , xi so that
+S(P ; mS ) = conv(S).
+    Let us now recall:
+      Theorem 4 In dimension d ≥ 4, it is possible to choose n ≤ ⌊ d2 ⌋ polytopes
+      P1 , P2 , . . ., Pn so that the trivial upper bound for the number of k-faces of
+      P1 + · · · + Pn is attained for all 0 ≤ k ≤ ⌊ d2 ⌋ − n.
+
+Proof. Let P be the Minkowski sum of polytopes P1 , . . . , Pn whose vertices are all distinct
+on the moment curve, with k = ⌊ d2 ⌋ − n, k ∈ N.
+    Let S1 ⊆ V(P1 ), . . . , Sn ⊆ V(Pn ) be subsets of the vertices of the polytopes such that
+Si 6= ∅, ∀i and |S1 |+· · ·+|Sn | = k+n. Since k+n ≤ ⌊ d2 ⌋, there is a linear function maximized
+at S1 , . . . , Sn on the moment curve. Therefore, conv(Si ) is an (|Si | − 1)-dimensional face of
+
+                                                12
+Pi , ∀i = 1, . . . , n. Since the same linear function is maximized over each Pi on these faces,
+they sum up to a face of P . Since the set of vertices S1 ∪ . . . ∪ Sn is affinely independant,
+dim(conv(S1 )+· · ·+conv(Sn )) = dim(conv(S1 ))+· · ·+dim(conv(Sn )) = |S1 |+· · ·+|Sn |−n =
+n + k − n = k.
+
+Acknowledgements.         We would like to thank one of the referees for bringing Broadie’s
+paper [1] to our attention. We are also grateful to Günther Ziegler who provided us with
+much simpler proofs for Theorems 6 and 7.
+
+
+References
+ [1] M. N. Broadie. A theorem about antiprisms. Linear Algebra Appl., 66:99–111, 1985.
+
+ [2] K. Fukuda. From the zonotope construction to the Minkowski addition of convex poly-
+     topes. J. Symbolic Comput., 38(4):1261–1272, 2004.
+
+ [3] B. Grünbaum. Convex polytopes, volume 221 of Graduate Texts in Mathematics.
+     Springer-Verlag, New York, second edition, 2003. Prepared and with a preface by
+     Volker Kaibel, Victor Klee and Günter M. Ziegler.
+
+ [4] P. McMullen. The maximum numbers of faces of a convex polytope. Mathematika,
+     17:179–184, 1970.
+
+ [5] Y. Nesterov. Complementary symmetry of conjugate sets. preprint, 2004.
+
+ [6] J.-P. Petit. Spécification géométrique des produits : Méthode de détermination des
+     tolérances. Application en conception assistée par ordinateur. PhD thesis, Université de
+     Savoie, 2004.
+
+ [7] B. Sturmfels. Gröbner bases and convex polytopes, volume 8 of University Lecture Series.
+     American Mathematical Society, Providence, RI, 1996.
+
+ [8] B. Sturmfels. Polynomial equations and convex polytopes. Amer. Math. Monthly,
+     105(10):907–922, 1998.
+
+ [9] C. Weibel. Minksum version 1.1. Mathematics Institute, EPF Lausanne, 2005. available
+     from http://roso.epfl.ch/cw/poly/public.php.
+
+[10] G. M. Ziegler. Lectures on polytopes, volume 152 of Graduate Texts in Mathematics.
+     Springer-Verlag, New York, 1995.
+
+
+
+
+                                              13
+

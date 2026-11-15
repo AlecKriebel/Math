@@ -1,0 +1,288 @@
+                Five outgoing centers in a 16-realization cube move
+                                                    Alec Kriebel∗
+
+                                                 15 October 2026
+                                              Unrefereed research note
+
+
+
+
+                                                     Abstract
+              We specify six algebraic boundary points, an incoming center, and at least ﬁve distinct outgo-
+          ing centers for a cube move of 16-realizations. Existence follows from strict rational sign bounds
+          for two continuous one-variable residuals. The boundary parameters are uniquely deﬁned real
+          roots of monotone polynomials. This contradicts the at-most-three expectation for construc-
+          tion curves sharing a focus in Remark 4.8 of Melotti–Ramassamy–Thévenin, in the realization
+          setting allowing crossings. The ﬁxed boundary is crossed, so the example concerns no proper
+          embedding. Neither the exact number of centers for this boundary nor a universal maximum is
+          determined.
+
+
+1        Statement and setting
+A quadrilateral P QRS is an α-quad when
+
+                                 |P − Q|α + |R − S|α = |P − S|α + |Q − R|α .
+
+We use the realization setting of [1, Deﬁnitions 2.1, 2.4–2.5]: crossed faces are permitted. For ﬁxed
+distinct A1 , . . . , A6 , an incoming center Z must make
+
+                                      A1 A2 A3 Z,    A3 A4 A5 Z,    A 5 A6 A1 Z
+
+α-quads; an outgoing center X must make
+
+                                      A2 A3 A4 X,    A4 A5 A6 X,    A 6 A1 A2 X
+
+α-quads. Both alternating boundary triples must be noncollinear.
+
+Theorem 1. There exist six ﬁxed distinct boundary points, with both alternating triples non-
+collinear, that admit an incoming 16-realization and at least ﬁve distinct outgoing 16-realization
+centers. Each selected center is distinct from every boundary point.
+
+    The construction also gives at least ﬁve intersections of two construction curves with a common
+focus. Thus it contradicts the α > 1 expectation in [1, Remark 4.8, p. 811], and the maximum-
+three conjecture in the crossing-permitted setting of [2, p. 1785]. The boundary itself has a strict
+crossing, as veriﬁed below. The result makes no claim about proper embeddings, the exact total
+count, a universal maximum, or α < 1.
+    ∗
+        ORCID: https://orcid.org/0009-0001-9320-500X.
+
+
+                                                          1
+2     Five common-focus solutions
+Put
+                                                        2073        4719        64                 27
+    A = (0, 0),   B = (b, 0),     C = (c, d),      b=         , c=       , d=       ,       λ=         .   (1)
+                                                        10000      10000      10000               1250
+First seek solutions of
+
+                   ∥X − B∥16 − ∥X − A∥16 = λ,               ∥X − C∥16 − ∥X − A∥16 = 1.                     (2)
+
+For s ≥ 0, all roots below denote the nonnegative real eighth root:
+
+                                u = s1/8 ,   v = (s + λ)1/8 ,   w = (s + 1)1/8 ,
+
+                 b2 + u − v           c2 + d2 + u − w − 2cx
+              x=            ,   y=                          ,              G(s) = x2 + y 2 − u.            (3)
+                     2b                         2d
+These functions are continuous on [0, ∞).
+
+Lemma 1. Zeros of G correspond bijectively to solutions of (2), with s = ∥X − A∥16 .
+
+Proof. The two coordinate equations are the invertible linear system
+
+                          2bx = b2 + u − v,         2cx + 2dy = c2 + d2 + u − w;
+
+its determinant is 4bd > 0. If G(s) = 0, these equations give |X − A|2 = u, |X − B|2 = v, and
+|X − C|2 = w. Taking eighth powers gives (2). Conversely, a solution determines s = |X − A|16 ;
+taking the unique nonnegative eighth roots of its three distance powers gives the same linear system
+and G(s) = 0. No extra solutions are introduced by squaring or a branch choice. Distinct s give
+distinct X.
+
+   The accompanying exact veriﬁer establishes the strict bounds in Table 1; every terminating
+decimal here and below denotes an exact rational.
+
+                                       s          interval containing G(s)
+                                    9/10000             (0.38, 0.39)
+                                   11/10000            (−0.28, −0.27)
+                                   13/10000             (0.51, 0.52)
+                                      1/2              (−0.91, −0.90)
+                                       1                   (9, 10)
+                                      1016            (−4.766, −4.765)
+
+      Table 1: Strict rational sign bounds. The last row also has the analytic derivation below.
+
+    The ﬁve open intervals between successive cutpoints are disjoint and have opposite endpoint
+signs. The intermediate value theorem and Lemma 1 therefore give at least ﬁve distinct solutions.
+No uniqueness within any interval is assumed.
+    For the last row, u = 100 exactly. Concavity gives, for a > 0,
+                                                                      a
+                                     0 < (1016 + a)1/8 − 100 ≤             .
+                                                                  8 · 1014
+
+
+                                                        2
+Set δv = v − u, δw = w − u, and
+                               b   2073                 c2 + d2 − bc   1249057
+                        x0 =     =       ,       y0 =                =         .
+                               2   20000                     2d        128000
+Then (3) gives the rational boxes
+                                         λ
+                                 x0 −          ≤ x ≤ x0 ,
+                                      16b 1014
+                                         1                 (c/b)λ
+                                 y0 −          ≤ y ≤ y0 +          .
+                                      16d 1014            16d 1014
+Both coordinates are positive in these boxes. Squaring their endpoints and subtracting 100 proves
+the last row, hence in particular G(1016 ) < −4.7. For scale,
+                                              39007985196121
+                                x20 + y02 =                  < 95.235.
+                                               409600000000
+This argument avoids subtracting nearly equal large radicals. More generally v − u, w − u → 0 as
+s → ∞, so G(s) → −∞; the ﬁfth IVT interval nevertheless gives a ﬁnite point.
+
+
+3    One ﬁxed admissible boundary
+Let J(qx , qy ) = (−qy , qx ). For q ̸= 0 and the nonzero heights used below, deﬁne T (q, h, ℓ) as the
+real solution of                      ((            )8 (        )8 )
+                                 |q|16 (t − 1)2 + h2 − t2 + h2       = ℓ.                          (4)
+This is a unique, unambiguous algebraic speciﬁcation for rational inputs. Indeed, for g(t) = (t2 +
+h2 )8 ,
+                             g ′′ (t) = 16(t2 + h2 )6 (h2 + 15t2 ) > 0.
+Thus g(t − 1) − g(t) is strictly decreasing. Its leading term is −16t15 , so it tends to +∞ and −∞
+at the respective ends of the real line. Existence and uniqueness follow.
+    Deﬁne
+                t1 = T (C, 10, 1),    t3 = T (B, 1, λ),    t5 = T (C − B, −10, 1 − λ),
+            A1 = t1 C + 10JC, A2 = A,                           A3 = t3 B + JB,
+                                                                                                  (5)
+            A4 = B,           A5 = B + t5 (C − B) − 10J(C − B), A6 = C.
+Their deﬁning equations give exactly
+
+ ∥A1 −C∥16 −∥A1 −A∥16 = 1,       ∥A3 −B∥16 −∥A3 −A∥16 = λ,         ∥A5 −C∥16 −∥A5 −B∥16 = 1−λ. (6)
+
+In particular, writing a = ∥A1 − A∥16 , f = ∥A3 − A∥16 and g = ∥A5 − B∥16 , the six successive
+boundary edge powers are
+                               (a, f, f + λ, g, g + 1 − λ, a + 1).                         (7)
+The odd and even sums both equal a + f + g + 1. This exact telescope will supply the dependent
+third face equations.
+    Rational bisection of (4), with strict polynomial signs at the endpoints, yields
+
+                                    x                     y
+                        A1  (0.17194, 0.17196)    (4.72219, 4.72221)
+                        A3 (−0.55229, −0.55227)      2073/10000
+                        A5  (0.40359, 0.40361)  (−2.64281, −2.64279).
+
+                                                    3
+Together with (1), these give six distinct boundary points. The exact veriﬁer also gives
+
+                                      det(A4 − A2 , A6 − A2 ) = 0.00132672 > 0,
+                            6.37 < det(A3 − A1 , A5 − A1 ) < 6.39.
+
+Both alternating triples are noncollinear. In fact all twenty boundary triples are noncollinear.
+    No solution of (2) is a boundary point. Positivity of λ implies |X −B| > |X −A|, hence x < b/2;
+this excludes A1 , A5 , whose certiﬁed x coordinates exceed b/2. The point A fails because b16 ̸= λ.
+The points B, C fail the ﬁrst and second equations, respectively, by positivity of their right-hand
+sides. Finally exact intervals give
+
+                               ∥A3 − C∥16 − ∥A3 − A∥16 − 1 ∈ (0.98, 0.99),
+
+which excludes A3 .
+
+
+4    An incoming center and the six face equations
+Deﬁne the ﬁxed algebraic constants
+
+    L = ∥B − A5 ∥16 − ∥B − A3 ∥16 = g − f − λ,              M = ∥A − A1 ∥16 − ∥A − A3 ∥16 = a − f.   (8)
+
+Exact boundary enclosures prove L, M > 0. Put b′ = A5 − A3 , c′ = A1 − A3 , and D′ = det(b′ , c′ ).
+This determinant equals the positive odd determinant above. For s ∈ [1/100, 11/1000] let
+
+           u′ = s1/8 ,                        v ′ = (s + L)1/8 ,               w′ = (s + M )1/8 ,
+          R1 = |b′ |2 + u′ − v ′ ,              R2 = |c′ |2 + u′ − w′ ,
+
+                   R1 c′y − R2 b′y         b′x R2 − c′x R1
+               Yx =                , Y y =                 , H(s) = Yx2 + Yy2 − u′ .
+                         2D′                     2D′
+The boundary roots and L, M are ﬁxed constants throughout, not values selected anew from interval
+boxes. All radical arguments are positive and D′ ̸= 0, so H is continuous. Rational interval
+propagation through these formulas proves
+
+             H(1/100) ∈ (0.00037, 0.00038),             H(11/1000) ∈ (−0.00081, −0.00080).
+
+The intermediate value theorem gives a root. The same squared-distance argument as in Lemma 1,
+translated by A3 , shows that Z = A3 + Y satisﬁes
+
+                ∥Z − A5 ∥16 − ∥Z − A3 ∥16 = L,              ∥Z − A1 ∥16 − ∥Z − A3 ∥16 = M.           (9)
+
+For the whole retained s interval, interval arithmetic encloses Z in
+
+                                     (0.1677, 0.1717) × (−0.0036, −0.0026),
+
+which is disjoint from every boundary point.
+   For completeness, all six face identities are displayed here. Write ri = ∥Z − Ai ∥16 and qP =
+∥X − P ∥16 for any of the ﬁve selected X. Equations (2), (7), (8) and (9) give
+
+                             incoming face      opposite-side identity
+                               A1 A2 A3 Z       a + r3 = r1 + f
+                               A3 A4 A5 Z       (f + λ) + r5 = r3 + g
+                               A5 A6 A1 Z       (g + 1 − λ) + r1 = r5 + (a + 1)
+
+                                                        4
+                               outgoing face    opposite-side identity
+                                A2 A3 A4 X      f + qB = qA + (f + λ)
+                                A4 A5 A6 X      g + qC = qB + (g + 1 − λ)
+                                A6 A1 A2 X      (a + 1) + qA = qC + a.
+The third incoming equation uses exactly M − L = a − g + λ; it is not inferred from an interval
+containing zero. This proves Theorem 1 without invoking a ﬂip-existence theorem.
+
+
+5    Exact veriﬁcation and scope
+The support ﬁle verify_five_centers.py uses only Python’s standard library. All validity de-
+cisions use integers and Fraction; no ﬂoating-point value decides a sign. For q ≥ 0, it bounds
+q 1/8 between consecutive points k/1036 and (k + 1)/1036 , found by binary search and checked by
+integer eighth powers. Ordinary outward rational interval operations then establish the displayed
+bounds. The three boundary roots use 128 exact bisections from [−8, 8], with strict endpoint signs.
+Dependence lost in repeated interval occurrences only enlarges an enclosure; the signs remain strict
+for the same ﬁxed algebraic boundary.
+     The ﬁle exact_certificate.json records the full rational enclosures. A default veriﬁer run
+recomputes and compares it without writing. Each of ﬁve sign brackets is reﬁned by 100 sign-
+preserving bisections, retaining ﬁve disjoint zero brackets without assuming uniqueness. The re-
+sulting center boxes and the whole incoming box avoid every line through a boundary pair. Internal
+check counts are implementation bookkeeping, not counts of independent mathematical proposi-
+tions.
+     To see concretely why this is not an embedding example, let or(P, Q, R) = det(Q − P, R − P ).
+The exact certiﬁcate proves the sign pattern
+
+                     or(A1 , A2 , A3 ) or(A1 , A2 , A4 ) or(A3 , A4 , A1 ) or(A3 , A4 , A2 )
+                sign        −                 +                 +                 −
+
+so the ﬁxed boundary segments [A1 , A2 ] and [A3 , A4 ] cross in their interiors. No central-point choice
+can make that ﬁxed drawing a proper embedding. Exact total root counts and a global maximum
+remain undetermined, and no conclusion for α < 1 is drawn.
+
+Earlier weighted-distance families and priority. The curves themselves belong to earlier
+weighted-distance families. Ash–Bolker [3] study costs φ(|x − P |) + w(P ), including φ(t) = t4 ;
+their separate oscillatory example φ(t) = t + k sin t is not a pure power and does not itself settle
+the present count. Bourne–Peletier–Roper [4, Deﬁnition 4.12 in the author manuscript] explicitly
+deﬁne p-power cells by comparison of |x − xi |p − wi ; Bourne–Roper [5, Section 5, p. 2568] repeat
+this family. With p = 16 and weights wA = 0, wB = λ, wC = 1, equality of the three costs is
+exactly (2). No new family of curves is claimed here.
+    A bounded search of primary texts and public records completed on 15 October 2026 located
+no earlier pure-power shared-focus counterexample with at least four intersections in the checked
+corpus. That bounded negative ﬁnding does not establish historical priority. No ﬁrstness, indepen-
+dence from unknown work, or contemporaneous public-awareness claim is made.
+
+AI assistance and review status. AI systems were used extensively in proof exploration,
+drafting, code generation and adversarial mathematical checks. This preprint is unrefereed and has
+not received conventional human peer review.
+
+
+                                                     5
+License. This note and its accompanying original support ﬁles are oﬀered under Creative Com-
+mons Attribution 4.0 International (CC BY 4.0), https://creativecommons.org/licenses/by/
+4.0/. Primary-source PDFs are not included.
+
+
+References
+[1] P. Melotti, S. Ramassamy and P. Thévenin, Cube moves for s-embeddings and α-realizations,
+    Ann. Inst. H. Poincaré D Comb. Phys. Interact. 10 (2023), 781–817. doi:10.4171/AIHPD/163.
+    See in particular Remark 4.8, p. 811.
+
+[2] P. Melotti (joint work with S. Ramassamy and P. Thévenin), Cube ﬂips in s-embeddings and
+    α-immersions, in Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case, Ober-
+    wolfach Report 35/2020, p. 1785. doi:10.4171/OWR/2020/35.
+
+[3] P. F. Ash and E. D. Bolker, Generalized Dirichlet tessellations, Geometriae Dedicata 20 (1986),
+    209–243. doi:10.1007/BF00164401.
+
+[4] D. P. Bourne, M. A. Peletier and S. M. Roper, Hexagonal patterns in a simpliﬁed model for
+    block copolymers, SIAM J. Appl. Math. 74 (2014), 1315–1337. doi:10.1137/130922732. Author
+    manuscript: https://arxiv.org/abs/1305.6540.
+
+[5] D. P. Bourne and S. M. Roper, Centroidal power diagrams, Lloyd’s algorithm and applications to
+    optimal location problems, SIAM J. Numer. Anal. 53 (2015), 2545–2569. doi:10.1137/141000993.
+
+
+
+
+                                                6
+

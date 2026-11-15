@@ -1,0 +1,915 @@
+                                                  ELIMINATION THEORY FOR TROPICAL VARIETIES
+
+
+
+
+arXiv:0704.3471v1 [math.AG] 26 Apr 2007
+                                                                  BERND STURMFELS AND JENIA TEVELEV
+
+
+                                                  Abstract. Tropical algebraic geometry offers new tools for elimination theory
+                                                  and implicitization. We determine the tropicalization of the image of a subvariety
+                                                  of an algebraic torus under any homomorphism from that torus to another torus.
+
+
+
+
+                                                                               1. Introduction
+                                             Elimination theory is the art of computing the image of an algebraic variety under
+                                          a morphism. Our set-up is as follows. Let Tn be the n-dimensional algebraic torus
+                                          over an algebraically closed field k. Given any closed subvariety X ⊂ Tn and any
+                                          homomorphism of tori α : Tn → Td , our objective is to compute the Zariski closure
+                                          of the image of X under α. Abusing notation, we denote this closure by α(X).
+                                             In tropical elimination theory, the varieties X ⊂ Tn and α(X) ⊂ Td are replaced
+                                          by their tropicalizations. The tropicalization of X is the following subset of Qn :
+                                                                     T (X) = v ∈ Qn | 1 6∈ inv (IX ) .
+                                                                              
+                                          (1.1)
+                                          Here IX is the ideal of X in the Laurent polynomial ring k[Tn ], and inv (IX ) ⊂ k[Tn ]
+                                          is the ideal of all initial forms inv (f ) for f ∈ IX . The set T (X) has the structure
+                                          of a tropical variety of dimension dimk (X). The following definition clarifies what
+                                          this means for us: an (abstract) tropical variety is a pair (T , m), where T ⊂ Qn and
+                                          m : T 0 → Z>0 is a locally constant function (called multiplicity) which satisfies:
+                                                • There exists a pure-dimensional rational polyhedral fan supported on T .
+                                                • T 0 ⊂ T is the open subset of regular points, where v ∈ T is called regular if
+                                                  there exists a vector subspace Lv ⊂ Qn such that T = Lv locally near v.
+                                                • The function m satisfies the balancing condition (see Definition 3.3) for one
+                                                  (and hence for any) fan supported on the set T .
+                                             There is generally no canonical (or coarsest) fan structure on T (X); see Exam-
+                                          ple 5.2. However, T (X) carries a poset of tropical fans that have desirable algebro-
+                                          geometric properties [10, 21]. Example 3.10 shows that not all fans on T (X) are
+                                          tropical in the sense of Definition 2.11. A particular tropical fan on T (X), arising
+                                          from the Gröbner fan of a homogenization of IX , was used for the algorithms in [4].
+                                             The multiplicity mv of a point v in T (X)0 can be computed as the sum of the
+                                          multiplicities of all minimal associate primes of the initial ideal inv (IX ). This recipe
+                                          was proposed in [6, §2] and it satisfies the balancing condition by [17, §2.5]. A self-
+                                          contained derivation of the multiplicities on tropical fans will be given in Section 3.
+                                             Returning to our tropical elimination theory, let T1 ⊂ Qn and T2 ⊂ Qd be abstract
+                                          tropical varieties. We say that a map f : T1 → T2 is generically finite of degree δ if
+                                                • f is the restriction of a linear map A : Zn → Zd ;
+                                                • f is surjective and dim T1 = dim T2 ;
+                                                                                          1
+2                       BERND STURMFELS AND JENIA TEVELEV
+
+      • for any point w ∈ T20 such that f −1 (w) ⊂ T10 and |f −1 (w)| < ∞, we have
+                        1 X
+(1.2)           mw =              my · index(Lw ∩ Zd : A(Lv ∩ Zn )).
+                        δ    −1
+                           v∈f   (w)
+
+    We shall prove the following general result about morphisms of tropical varieties.
+Theorem 1.1. Let α : Tn → Td be a homomorphism of tori and let A : Zn → Zd be
+the corresponding linear map of lattices of one-parameter subgroups. Suppose that
+α induces a generically finite morphism of degree δ from X onto α(X). Then A
+induces a generically finite map of tropical varieties from T (X) onto T (α(X)).
+Remark 1.2. Theorem 1.1 constitutes a refinement of the known identity
+(1.3)                         T (α(X))     =   A(T (X)).
+Equation (1.3) appeared in different guises in [21, Proposition 3.1] and in [6, Theorem
+3.1]. What is new here is the formula (1.2) for the push-forward of multiplicities.
+   This paper rests on the foundations of tropical algebraic geometry which were laid
+by Hacking, Keel, and Tevelev in [10, 21]. We review these foundations in Section 2.
+A particularly important ingredient is the normal crossing construction in Theo-
+rem 2.6 which characterizes tropical varieties in terms of resolutions of singularities.
+   In Section 3 we discuss multiplicities on tropical varieties, and we highlight the
+connections to intersection theory on toric varieties. To be precise, we equate the
+balancing condition with the axiom for Minkowski weights introduced by Fulton and
+Sturmfels [9]. Theorem 1.1 will then be restated and proved in Theorem 3.12.
+   In Section 4 we examine the case when X is a generic complete intersection. This
+case was also studied by Khovanskii and Esterov [13], and we extend some of their
+results. In our view, the mixed volumes in [13] are best thought of as multiplicities on
+tropical varieties. Theorem 4.6 gives a formula for the tropical complete intersection
+T (X) and its multiplicities in terms of mixed volumes. Our push-forward formula
+for complete intersections (Corollary 4.8) is particularly interesting when α(X) is a
+hypersurface, in which case it computes McMullen’s mixed fiber polytopes [15].
+   A special case of elimination is implicitization, which transforms a parametrization
+of an algebraic variety into its representation as the zero set of polynomials. To
+model implicitization, we take X to be the graph of the parametrization and α the
+projection onto the image coordinates. This leads to the implicitization formula in
+Theorem 5.1. This formula was announced in our paper with Yu [20]. Its proof is
+now completed in Section 5 below. Our results generalize the earlier work on A-
+discriminants by Dickenstein, Feichtner and Sturmfels [6], who studied the tropical
+implicitization problem for Kapranov’s Horn uniformization. Software for tropical
+implicitization, which offers an implementation of Theorem 5.1, is described in [11].
+   We close the introduction with an explicit example which illustrates Theorem 1.1.
+Example 1.3. Let X denote the curve in T3 defined by the two equations
+(1.4)            x3 + y 3 + z 3 = 5      and    x−2 + y −2 + z −2 = 7.
+We compute the image of X under the map α : T3 → T2 , (x, y, z) 7→ (u, v) given by
+                                                                       
+                         2                                      1 1 1
+      u = xyz and v = yz or, in matrix notation, A =                      .
+                                                                0 1 2
+                   ELIMINATION THEORY FOR TROPICAL VARIETIES                            3
+
+We demonstrate how one constructs the Newton polygon of the plane curve α(X) ⊂
+T2 prior to knowing its equation. Theorem 4.6 tells us that the tropicalization T (X)
+of the space curve X ⊂ T3 is the one-dimensional fan consisting of the six rays
+spanned by ±(1, 1, 0), ±(1, 0, 1), ±(0, 1, 1), where each ray has multiplicity 6. By
+(1.3), the tropical curve T (α(X)) consists of the rays spanned by the six columns of
+                                    
+              1 1 0 −1 −1          0                                          
+                                                 12 12 12 −12 −12 −12
+     6 · A · 1 0 1 −1
+                              0 −1      =                                      .
+                                                  6 12 18 −6 −12 −18
+              0 1 1       0 −1 −1
+We multiply each vector by 6 as a way of recording the information that each ray has
+multiplicity 6. To obtain the Newton polygon of the plane curve α(X), we rotate
+the six vectors by 90 degrees, and concatenate them to form a hexagon with vertices
+(1.5)            (0, 36), (6, 24), (18, 12), (36, 0), (30, 12), (18, 24).
+Each of the 213 lattice points in this hexagon contributes one term to the equation:
+u36 + v 36 + 15625u6 v 24 + 15625u18 v 12 − 40353607u30 v 12 − 40353607u18 v 24 + · · · .
+In Section 4 we shall see how the hexagon is constructed as a mixed fiber polytope.
+
+Acknowledgments. We are grateful to Igor Dolgachev, Paul Hacking, Sean Keel,
+David Speyer, and Josephine Yu for useful discussions. The first author was sup-
+ported by the National Science Foundation (DMS-0456960). The second author was
+supported by a Sloan Research Fellowship.
+
+                         2. Geometric Tropicalization
+   Let T be an algebraic torus over k and X ⊂ T an irreducible closed subvariety.
+By geometric tropicalization of X we mean the characterization of T (X) given in
+[10, 21] in terms of constructions of algebraic geometry. We start out by reviewing
+the connections between the geometric tropicalization and descriptions of T (X)
+using valuations of the coordinate ring of X and degenerations of X inside torus T.
+Notation 2.1. Throughout this paper we fix the following notation related to toric
+varieties. We write M for the lattice of characters of T and N := M ∨ for the dual
+lattice. The tropical variety T (X) will live in NQ . For any fan F ⊂ NQ , we denote
+by P(F) the corresponding toric variety and by X(F) the closure of X in P(F).
+   To streamline our logic, our point of departure will be the valuative definition of
+T (X), called the Bieri–Groves set in [7], and not the ideal-theoretic definition (1.1).
+Let K/k be the field of Puiseux series with parameter ε and with the valuation
+              ord : K → Q ∪ {∞},       αεu + (higher order terms) 7→ u.
+Let K[X] = k[X] ⊗k K. A ring valuation val : K[X] → Q ∪ {∞} is, by definition,
+any map that can be written as a composition v ◦ f , where f : K[X] → L is a
+homomorphism to a field and v : L → Q ∪ {∞} is a field valuation.
+Definition 2.2 ([2]). Let V(X) be the set of valuations of K[X] that restrict to ord
+on K. Any val ∈ V(X) specifies an element [val] of NQ = Hom(M, Q) by formula
+                      [val](m) := val(m|X )     for any    m ∈ M.
+4                        BERND STURMFELS AND JENIA TEVELEV
+
+We define the tropical variety of X set-theoretically as follows:
+                                 
+                       T (X) := [val] | val ∈ V(X) ⊂ NQ .
+  The next two theorems emphasize that not all valuations in V(X) are needed but
+we may restrict to valuations defined by germs of curves or to divisorial valuations.
+Theorem 2.3 (Einsiedler–Kapranov–Lind [7]). Any K-valued point γ ∈ X(K) de-
+fines a valuation on K[X] by the formula valγ (f ) := ord f (γ) and we have
+                                
+                       T (X) = [valγ ] | γ ∈ X(K) ⊂ NQ .
+Theorem 2.4 (Hacking-Keel-Tevelev [10, §2]). Let W(X) be the set of divisorial
+discrete valuations of the function field k(X), i.e. valuations of the form c · valD ,
+where c ∈ Q and valD is the order of zero-poles along an irreducible divisor D on a
+normal variety birationally isomorphic to X. Then
+                                   
+                          T (X) = [v] | v ∈ W(X) ⊂ NQ .
+Instead of W(X), one can use the set of all discrete valuations of k(X) trivial on k.
+   In [10], Theorem 2.4 is deduced from Theorem 2.6 and Proposition 2.8 using
+resolution of singularities (or alteration of singularities in prime characteristic). We
+here give a more straightforward proof which does not require the use of resolution
+of singularities. Our argument is based on the following characterization of T (X).
+Lemma 2.5 ([21, Lemma 2.2]). Let w ∈ N \{0} and let F be the one-dimensional
+fan in NQ with just one maximal cone Q≥0 w. Let D the unique toric divisor on
+P(F). Then w lies in the tropical variety T (X) if and only if D intersects X(F).
+Proof of Theorem 2.4. Consider any discrete valuation v of the function field k(X)
+trivial on k. We claim that v induces a ring valuation v of K[X] by the formula
+                             X
+                                 aq εq = min{v(aq ) + q},
+                                      
+(2.6)                     v
+                                                 q∈Q
+                                 q∈Q
+
+where aq ∈ k[X]. There exist p1 , . . . , ps ∈ K and b1 , . . . , bs ∈ k[X] such that
+                               X                 s
+                                                 X
+                                           q
+                                     aq (x)ε =         pi (ε)bi (x),
+                               q∈Q               i=1
+
+This identity shows that any aq is a k-linear combination of b1 , . . . , bs and therefore
+v(aq ) ≥ inf si=1 v(bi ). It follows that v is well-defined. The proof that v is a valuation
+goes literally as in [5, VI.10.1]. It follows from (2.6) that the restriction of v to K
+coincides with ord, and hence v ∈ V(X). Therefore, [v] = [v] ∈ T (X).
+   It remains to prove that any point w ∈ T (X) has the form [v] for some divisorial
+discrete valuation v ∈ W(X). We use Lemma 2.5 and its notation. Note that
+P(F) = A1x1 × Txn−1   2 ,...,xn
+                                where the coordinates x1 , x2 , . . . , xn of T = Tn are chosen
+appropriately. By Lemma 2.5, the divisor D = {x1 = 0} of P(F) intersects the
+closure X(F) of X. Let ν : X̃(F) → X(F) be the normalization and let Z be an
+irreducible component of ν −1 (X(F) ∩ D). For i ≥ 2, the coordinate function xi is
+invertible on P(F) and hence so is its restriction xi to X(F) and its pull-back to
+X̃(F). This shows that valZ (x2 ) = · · · = valZ (xn ) = 0. Since ν ∗ (x1 ) vanishes on Z,
+                    ELIMINATION THEORY FOR TROPICAL VARIETIES                            5
+
+we have valZ (x1 ) = λ for some positive integer λ. This implies that w = λ · [valZ ]
+in N = M ∨ . Now if we set v := (1/λ) · valZ then v ∈ W(X) and [v] = w.           
+  The description of T (X) using divisorial valuations becomes absolutely explicit if
+X is smooth and has a known compactification with normally crossing boundary:
+Theorem 2.6 (Hacking-Keel-Tevelev [10, §2]). Assume that X is smooth and X ⊃
+X is any compactification whose boundary D = X\X is a divisor with simple normal
+crossings. Let D1 , . . . , Dm denote the irreducible components of D, and write ∆X,D
+for the simplicial complex on {1, . . . , m} with {i1 , . . . , il } ∈ ∆X,D if and only if
+Di1 ∩ · · · ∩ Dil is non-empty. Define [Di ] := [valDi ] ∈ N , and, for any σ ∈ ∆X,D ,
+let [σ] be the cone in NQ spanned by {[Di ] : i ∈ σ}. Then
+                                                [
+(2.7)                              T (X) =            [σ].
+                                             σ∈∆X,D
+
+Remark 2.7. The proof in [10] shows that T (X) is contained in the right hand side
+of (2.7) if X is just normal, without any smoothness or normal crossings conditions.
+But this containment can be strict: if too many boundary divisors pass through a
+point then the right hand side can contain cones of dimension greater than dim X.
+But T (X) does not contain such cones because dim T (X) = dim X.
+  Later we will discuss ways of weakening the normal crossing assumptions. But
+our main technique is to use Theorem 2.6 together with the following basic result.
+Proposition 2.8 ([21, 3.2]). Consider a commutative diagram of elimination theory
+                                            f
+                                      X −−−−→ Y
+                                             
+(2.8)                                 
+                                      y
+                                              
+                                              y
+                                            α
+                                  T −−−−→ T̃
+where vertical arrows are closed embeddings in tori, f is dominant, and α is a
+homomorphism of tori. Let M̃ be the character lattice of T̃ and Ñ its dual. Then α
+induces a Z-linear map A : NQ → ÑQ and we have A(T (X)) = T (Y ) as in (1.3).
+Proof. We derive this from Theorem 2.4. Let y ∈ T (Y ) and let ṽ be a discrete
+valuation of k(Y ) such that [ṽ] = y. Let v be a discrete valuation of k(X) such that
+v|k(Y ) = ṽ. We claim that A([v]) = y. We have to check that m̃(A([v])) = m̃(y) for
+any m̃ ∈ M̃ . This means that v(α∗ m) = ṽ(m), which is obvious.                    
+  Combining Theorem 2.6 and Proposition 2.8 gives the following corollary.
+Corollary 2.9. Suppose that the hypotheses of Proposition 2.8 and Theorem 2.6
+hold. Then the tropical variety T (Y ) in ÑQ is the union of the cones A([σ]) where
+σ runs over all maximal simplices of ∆X,D . The rays A([Di ]) of these cones are the
+linear forms on M̃ given by A([Di ])(χ) := valDi (χ ◦ f ).
+Remark 2.10 (Intrinsic Torus [21, §3]). We wish to explain why only monomial
+maps are considered in our elimination problem. Recall that an irreducible algebraic
+variety X is called very affine if it is isomorphic to a closed subvariety of an algebraic
+torus. Intrinsically this means that X is affine and its coordinate algebra k[X]
+6                       BERND STURMFELS AND JENIA TEVELEV
+
+is generated by its units k[X]∗ . In this case any choice of invertible generators
+x1 , . . . , xn ∈ k[X] gives a closed embedding X ⊂ Tn . By a theorem of Samuel [16],
+the group of units k[X]∗ /k∗ is finitely generated. Hence any very affine variety is
+a closed subvariety of a canonical intrinsic torus T with character lattice k[X]∗ /k∗ .
+Moreover, any morphism to the algebraic torus f : X → T̃ is the restriction of the
+homomorphism α : T → T̃ defined as follows: the pull-back α∗ is the composition
+                          k[T̃]∗ /k∗ → k[X]∗ /k∗ ≃ k[T]∗ /k∗ .
+It follows that any elimination problem is monomial, at least in principle.
+   All of the above results characterize the tropical variety T (X) only as a subset of
+a vector space over Q. Next we recall the definition of tropical fans. In Section 3,
+this will furnish us with a convenient framework for defining multiplicities on T (X).
+Definition 2.11 ([21]). Let F be any fan in NQ and X a very affine variety in T.
+We say that F is a tropical fan for X if X(F) is proper and the multiplication map
+(2.9)                          Ψ : T × X(F) → P(F)
+is flat and surjective. Note that this property depends on both X and F.
+Theorem 2.12 ([21, 1.2, 2.5]). Tropical fans have the following properties:
+  (1) If F is a tropical fan (for X) then the support of F equals the tropical variety
+      T (X). Any fan F supported on T (X) has a tropical refinement F ′ .
+  (2) If F is tropical and F ′ is any refinement of F then F ′ is tropical as well.
+  (3) Let Γ ⊂ F be a maximal-dimensional cone and let Z ⊂ P(F) be the corre-
+      sponding toric stratum. If F is tropical then dim X(F)∩Z = 0. If, moreover,
+      P(F) is smooth then X(F) is Cohen-Macaulay at any point of X(F) ∩ Z.
+   The notion of a tropical fan is a very flexible generalization of the Gröbner fan
+structure on T (X) used in [4, 6, 18]. We briefly review this connection. To keep the
+notation simple, we assume from now on that the normalizer of X in T is trivial.
+Theorem 2.13 ([21, 1.7]). Let G be any complete fan in NQ . Consider the action
+of T on the Hilbert scheme of P(G) by the formula t · [S] = [t−1 S] for any subscheme
+S ⊂ P(G). The normalization of the orbit closure T · [X(G)] in the Hilbert scheme is
+a toric variety for T. Let F̃ be the complete fan of this toric variety. The intersection
+of F̃ with T (X) is a subfan of F̃ , and that subfan is a tropical fan for X.
+   Now we relate Theorem 2.13 to Gröbner fans using the Cox coordinate ring.
+Let m be the number of rays of G and let f : Zm → N be a linear map that
+sends the i-th basis vector ei to the generator of the i-th ray of G. This induces a
+surjective homomorphism Tm → T. Consider the standard embedding Tm ⊂ Am
+and let U ⊂ Am be a Tm -toric open subset obtained by throwing away coordinate
+subspaces hei : i ∈ Ii for each collection of boundary divisors {Di : i ∈ I} with
+empty intersection. Then we have a morphism of toric varieties π : U → P(G)
+extending the homomorphism Tm → T. Let R = k[Am ], the Cox ring of P(G). Let
+X̂ ⊂ Am be the closure of π −1 (X) and let I ⊂ R be its ideal. The Gröbner fan
+F̂ ⊂ Qm is, by definition, supported on the first octant Qm  ≥0 , and two vectors w1
+and w2 are in the relative interior of the same cone if and only if the initial ideals
+                    ELIMINATION THEORY FOR TROPICAL VARIETIES                             7
+
+inw1 (I) and inw2 (I) in R are equal. It is not hard to prove (using the fact that initial
+ideals compute flat limits of one-parameter subgroups) that f induces the map of
+fans F̂ → F̃. Moreover, σ = f −1 (f (σ)) for any cone σ ∈ F̂ . Since a refinement
+of a tropical fan is tropical (Theorem 2.12), it is possible to define a tropical fan
+supported on T (X) by taking images of cones in F̂ that intersect (= are contained
+in) T (X). It is this fan that was “the tropical variety” in the earlier papers [4, 6, 18].
+Note that this fan can be finer than the fan F defined in Theorem 2.13 because initial
+ideals inw I can have embedded components supported on the unstable locus Am \U .
+
+                       3. Push-Forward of Multiplicities
+   We now turn our attention to the multiplicities attached to a tropical variety. A
+tropical fan structure will used to define multiplicities, but that definition turns out
+to be equivalent to the one given in the introduction (see Corollary 3.15) and thus
+independent of the particular choice of tropical fan. Our main result is Theorem 1.1,
+which describes what happens to the multiplicities under a morphism α : Tn → Td .
+   We retain the notation from Section 2, in particular, X is a closed subvariety of
+an algebraic torus T and T (X) ⊂ NQ is its tropicalization. If F ⊂ NQ is any fan,
+with corresponding toric variety P(F), then X(F) denotes the closure of X in P(F).
+Definition 3.1. Suppose that F is a tropical fan for X. Let Γ ⊂ F be a maximal-
+dimensional cone (i.e. of dimension dim(X)) and let Z ⊂ P(F) be the torus orbit that
+corresponds to Γ. Note that the scheme X(F)∩Z is 0-dimensional by Theorem 2.12.
+We define the multiplicity mΓ of the cone Γ to be the length of the scheme X(F)∩Z.
+Lemma 3.2. Let F be any tropical fan for X.
+  (1) If P(F) is smooth then mΓ equals the intersection number deg([Z] · [X(F)]).
+  (2) If F ′ is any fan that refines the given tropical fan F then mΓ′ = mΓ for any
+      pair of maximal-dimensional cones Γ′ in F ′ and Γ in F such that Γ′ ⊆ Γ.
+Proof. Statement (1) follows from [8, Proposition 7.1]. Recall that, in general, the
+intersection number of a proper intersection can be less than the length of an inter-
+section subscheme. However, such bad intersections do not happen in our case since
+X(F) is Cohen-Macaulay at any point of X(F) ∩ Z, by Theorem 2.12 (3).
+   To prove (2), let Z ⊂ P(F) and Z ′ ⊂ P(F ′ ) be the torus orbits that correspond
+to Γ and Γ′ respectively. We consider the commutative diagram
+                                               Ψ′
+                                 T × X(F ′ ) −−−−→ P(F ′ )
+                                                    
+                       g:=(id,f |X(F ′ ) )y
+                                                    f
+                                                     y
+                                               Ψ
+                                T × X(F) −−−−→ P(F)
+where Ψ and Ψ′ are multiplication morphisms (2.9), and f is the proper morphism
+of toric varieties that corresponds to the refinement of fans. This is a fiber diagram
+by [21, Proposition 2.5]. Let p′ ∈ Z ′ be any point. Since Ψ is flat, we have
+                                  ∗
+                             g∗ Ψ′ ([p′ ]) = Ψ∗ f∗ ([p′ ]) ,
+                                                         
+(3.10)
+where we use push-forward and flat pull-back of cycles as in [8, 1.4 and 1.7]. Let
+p = f (p′ ), and let H and H ′ denote the stabilizers in T of p and p′ respectively.
+8                      BERND STURMFELS AND JENIA TEVELEV
+
+Since P(F ′ ) and P(F) are normal, the subgroups H and H ′ are subtori of T. Since
+Γ and Γ′ have the same dimension, namely dim(X), we conclude that H = H ′ .
+   It follows from the T-invariance of the multiplication map Ψ that the scheme-
+theoretic fiber (Ψ)−1 (p) is isomorphic to H × (X(F) ∩ Z). This product is a torus
+times a zero-dimensional scheme. Similarly, the scheme-theoretic fiber (Ψ′ )−1 (p′ ) is
+isomorphic to H × (X(F ′ ) ∩ Z ′ ), with the same torus H. The identity (3.10) implies
+that the length mΓ of X(F) ∩ Z coincides with the length mΓ′ of X(F ′ ) ∩ Z ′ .      
+Definition 3.3 (Fulton–Sturmfels [9]). Given a rational polyhedral cone σ ⊂ NQ ,
+we write Nσ for the sublattice of N generated by σ ∩ N . For a facet τ of σ let nσ,τ
+be any representative in σ for the generator of the 1-dimensional lattice Nσ /Nτ . A
+multiplicity function mσ defined on k-dimensional cones of some fan F is said to
+satisfy the balancing condition if, for any cone τ of F of dimension k − 1, we have
+                                  X
+                                       mσ · nσ,τ ∈ Nτ
+                                 σ⊃τ
+
+Here the sum over all k-dimensional cones σ in F that contain τ .
+Corollary 3.4. If F is a tropical fan for X whose toric variety P(F) is smooth then
+the multiplicity function mσ in Definition 3.1 satisfies the balancing condition.
+Proof. Let k = dim X. Since we wish to cite [9], we fix a complete strictly simplicial
+fan G that contains F as a subfan. Since X(F) is proper, X(F) does not intersect
+toric strata parametrized by cones in G\F. We set mσ = 0 for k-dimensional cones σ
+of G that are not in F. Lemma 3.2 (1) implies that the multiplicities mσ determine
+a class in the operational Chow cohomology Ak (P(G)), representing the intersection
+with X(F). Therefore mσ satisfies the balancing condition by [9, Theorem 2.1]. 
+Remark 3.5. From this perspective, a tropical variety is the same as an operational
+Chow cohomology class on an appropriate toric variety. See also [12, Remark 1.7].
+Lemma 3.6. Suppose p ∈ T (X) is a regular point (see Introduction) and suppose
+F is a fan supported on T (X) and endowed with a multiplicity function mσ that
+satisfies the balancing condition. Then mσ is constant on all cones σ containing p.
+Proof. Restricting to Lp and taking the link G in F of the cone containing p in its
+relative interior, we reduce to the following statement: If G is a complete fan and
+its top-dimensional cones are endowed with multiplicities that satisfy the balancing
+condition then these multiplicities are constant. This holds because the operational
+Chow cohomology group A0 of a complete toric variety P(G) has rank one.            
+Definition 3.7. The multiplicity of a regular point p ∈ T (X) as the multiplicity
+mσ of any top-dimensional cone σ of any tropical fan that contains p in its closure.
+Corollary 3.8. The multiplicity is a well-defined locally constant function on the
+open subset of regular points of T (X). For any (not necessarily tropical) fan F sup-
+ported on T (X), the induced multiplicity function satisfies the balancing condition.
+Proof. This follows from Lemma 3.6, Corollary 3.4, Lemma 3.2, and the fact that
+any two tropical fans have a common strictly simplicial refinement.          
+                   ELIMINATION THEORY FOR TROPICAL VARIETIES                            9
+
+  The balancing condition implies that many complete fans can play the role of the
+Gröbner fans in Theorem 2.13 when computing tropical varieties set-theoretically:
+Proposition 3.9. Let G ⊂ NQ be any complete fan such that X(G) does not intersect
+toric strata of P(G) of codimension greater than k = dim X. Then T (X) equals the
+union of all k-dimensional cones in G whose toric strata intersect X(G).
+Proof. Let F denote the subfan of G consisting of all cones whose toric strata inter-
+sect X(G). By Theorem 2.12, there exists a tropical fan F̃ for X which admits a
+map of fans F̃ → G. By [21, Lemma 2.2], the support |F̃ | = T (X) is contained in
+|F| and intersects the relative interior of every cone in F. Let C be a k-dimensional
+cone in F and let F̃C be the set of cones in F̃ contained in C. Note that F̃C is a
+k-dimensional fan. We claim that its support |F̃C | equals C. Arguing by contradic-
+tion, suppose that it is not. Then there exists a k-dimensional cone σ in F̃C and a
+facet τ of σ such that τ intersects the interior of C and lies in the boundary of |F̃C |.
+But this contradicts the balancing condition, and we conclude |F| = T (X).            
+Example 3.10. The fan F in the proof of Proposition 3.9 is not necessarily tropical.
+We construct a variety X ⊂ T that admits a non-tropical fan F supported on T (X).
+Consider a projective variety Y ⊂ Pr−1 which is not locally Cohen-Macaulay at
+some point p ∈ Y . Then k := dim X ≥ 2. Let H1 , . . . , Hk ⊂ Pr−1 be general
+hyperplanes passing through p and let Hk+1 , . . . , Hr ⊂ Pr−1 be general hyperplanes.
+The intersection of ∩i∈I Hi with Y is non-empty if |I| = k and empty if |I| >
+k. Then X := Y \{H1 , . . . , Hr } is a very affine variety with intrinsic torus T =
+Pr−1 \{H1 , . . . , Hr }. Let F be a fan obtained by taking the k-skeleton of the fan of
+Pr−1 . By Proposition 3.9, F is supported on T (X). If F is a tropical fan then Y
+has to be Cohen-Macaulay at p by Theorem 2.12 (3). Therefore F is not tropical.
+Remark 3.11. This example has to be compared with [10, Theorem 1.9] which
+concerns the (Mori-theoretically significant) class of hübsch very affine varieties. If
+X is hübsch then any fan supported on T (X) is tropical, and there exists a coarsest
+fan supported on T (X). The latter property also fails in general, see Example 5.2.
+   We now explain how multiplicities behave under a map of tropical varieties as
+discussed in the Introduction. Our setting is that of the commutative diagram
+(2.8), where vertical arrows are closed embeddings in algebraic tori, f : X → Y is
+dominant, and α is the homomorphism of tori specified by a Z-linear map A : NQ →
+ÑQ . By Proposition 2.8, we have A(T (X)) = T (Y ), which is the identity in (1.3).
+To prove Theorem 1.1, it suffices to prove the following more technical statement.
+Theorem 3.12. Let F be a fan in NQ whose support equals T (X), and let F̃ be a
+fan in ÑQ whose support equals T (Y ). We further assume the following conditions:
+      • The map f is generically finite of degree δ (hence dim F̃ = dim F).
+      • The fan F is tropical for X and the fan F̃ is tropical for Y .
+      • For any cone Γ of F, the image A(Γ) is a union of cones of F̃.
+Then the multiplicity mΠ of any maximal-dimensional cone Π of F̃ satisfies
+                                 1      X
+(3.11)               mΠ =          ·          mΓ · index(Γ, Π),
+                                 δ
+                                     Γ∈F :A(Γ)⊇Π
+10                     BERND STURMFELS AND JENIA TEVELEV
+
+
+where index(Γ, Π) denotes the index of the sublattice of Ñ generated by the semi-
+group A(Γ ∩ N ) inside the sublattice generated by the semigroup Π ∩ Ñ .
+Proof. Let k := dim(X). By Lemma 3.2 (2) we can replace F̃ by any refinement.
+We will thus assume from now on that F̃ is strictly simplicial, i.e. P(F̃) is smooth.
+  Our next goals are to make P(F) smooth and the morphism P(F) → P(F̃) flat.
+These goals are incompatible but the following lemma provides a compromise.
+Lemma 3.13. There exists a strictly simplicial refinement F ′ of F such that
+   • A : F ′ → F̃ is a map of fans, and
+   • if Γ is any k-dimensional cone of F ′ and Π is the minimal cone of F that
+     contains A(Γ) then either dim Π < dim Γ or Π = A(Γ).
+Proof of Lemma 3.13. We construct F ′ in two steps. First we define a refinement
+F ′′ as follows. For any cone in Γ (of any dimension), the image A(Γ) is a union
+of cones in F̃ . We subdivide Γ by preimages of these cones. Since F is a fan, this
+subdivision yields a fan F ′′ . Moreover, if Γ ∈ F ′′ and dim Γ = dim A(Γ) then Γ
+is strictly simplicial since A(Γ) is. To finish the construction of F ′ , it remains to
+subdivide all cones Γ ∈ F ′′ with dim Γ > dim ḡ(Γ) into strictly simplicial subcones.
+But we have to make sure that the collection of new cones is still a fan. Arguing
+by induction on dim Γ, this construction reduces to the following fact which is well-
+known in geometric combinatorics: if Γ is a rational polyhedral cone and ∂H is
+a strictly simplicial fan supported on the boundary ∂Γ, then there is a strictly
+simplicial fan H supported on Γ such that the restriction of H to ∂Γ equals ∂H. 
+   By Lemma 3.2 (2), to prove (3.11) it suffices to prove the analogous formula
+                               1       X
+(3.12)            mΠ =            ·            mΓ · index(Γ, Π)
+                               δ      ′
+                                    Γ∈F :A(Γ)=Π
+
+for any d-dimensional cone Π of F̃. To simplify notation we redenote F ′ by F.
+   Consider the smooth toric varieties P(F) and P(F̃). The map of fans A : F → F̃
+defines a morphism α : P(F) → P(F̃) that extends the homomorphism of tori
+α : T → T̃. The d-dimensional cone Γ ⊂ F̃ defines a torus orbit Z̃ of codimension
+d in P(F̃). Our hypotheses imply that the fiber α−1 (Z̃) is the disjoint union of
+torus orbits Z1 , . . . , Zr of codimension d in P(F). These orbits correspond to the
+cones Γ1 , . . . , Γr in F that satisfy A(Γi ) = Π. Moreover, it is known (see e.g. [9,
+Prop. 2.7]) that the multiplicity of the scheme α−1 (Z̃) along Zi is index(Γi , Π).
+   By Theorem 2.12, the closure X(F) of X in P(F) is Cohen-Macaulay along the
+subscheme W := α−1 (Z̃) ∩ X(F). Therefore, we have a fiber diagram
+                                         i′
+                                  W −−−−→ X(F)
+                                          
+                                  qy      αy
+                                          
+
+                                         i
+                                   Z −−−−→ P(F̃)
+where i and i′ are regular embeddings of codimension d. By Lemma 3.2 we have
+mΠ = deg([X(F̃ )] · [Z̃]). Since the morphism α is proper, the push-forward property
+                   ELIMINATION THEORY FOR TROPICAL VARIETIES                           11
+
+of [8, Theorem 6.2 (a) and Remark 6.2.2] implies that
+                                        
+                     1                       1                  1
+        mΠ = deg       α∗ ([X(F)]) · [Z̃]  =   deg(q∗ ([W ])) =   deg[W ].
+                     δ                       δ                  δ
+From the irreducible decomposition of α−1 (Z̃) discussed above, we obtain
+                   Xr                                   r
+                                                        X
+      deg[W ] =       index(Γi , Π) · deg([X̃] · Zi ) =   index(Γi , Π) · mΓi .
+                    i=1                                   i=1
+This completes the proof of Theorem 3.12, and hence also of Theorem 1.1.               
+Example 3.14. The special case of our construction when X is defined by linear
+equations appears in [6, §3]. Here T (X) is the Bergman fan of a matroid. This is ap-
+plied in [6, §4] to tropicalize Kapranov’s Horn uniformization of the A-discriminant.
+   At this point we wish to note that the definition of multiplicity used here (Defi-
+nitions 3.1 and 3.7) agrees with the formulation in the Introduction (and in [6, 20]):
+Corollary 3.15 ([6, Remark 2.1]). Let X be a subvariety of a torus T and IX its
+ideal in k[T]. If w is any regular point in the tropical variety T (X) then mσ equals
+the sum of multiplicities of all minimal associate primes of the initial ideal inw (IX ).
+Proof. This can be derived from the proof of part (2) in Lemma 3.2.                    
+Example 3.16. Consider an irreducible hypersurface X in T with principal ideal
+IX = hGi. The Laurent polynomial G is unique up to multiplication by a unit. Its
+Newton polytope Q ⊂ MQ is unique up to translation. For any w ∈ NQ , inw (G) is
+the sum of all terms in G that belong the face of Q at which w is minimized. This face
+is denoted facew (Q), and we have inw (IX ) = hinw (G)i. The tropical hypersurface
+T (X) is the set of w ∈ NQ such that facew (Q) has dimension ≥ 1, i.e. T (X) is a
+normal fan of Q with top-dimensional cones removed. A point w ∈ T (X) is regular
+when facew (Q) is an edge. In this case we regard inw (G) as a univariate polynomial.
+Its roots correspond to minimal associate primes of inw (IX ). Counting multiplicities,
+the number mσ of roots equals the number of lattice points on the edge facew (Q).
+Remark 3.17. In Example 3.16, the Newton polytope of Q can be recovered (up
+to translation) from the tropical hypersurface T (X). Vertices of Q correspond bi-
+jectively to connected components of NQ \T (X). Let u ∈ NQ be a general vector in
+such a component. We compute the corresponding vertex, which is faceu (Q), using
+the following formula from [6, Theorem 2.2]. Consider the halflines Li = u + Q≥0 ei
+where {e1 , . . . , en } is some fixed basis of N . Each halfline Li intersects T (X) in
+finitely many points v, and with each of these we associate the nonnegative integer
+                                                     
+                                   N : Zei + (Lw ∩ N ) · mv .
+The i-th coordinate of the vertex is the sum of these integers, for all v ∈ Li ∩ T (X).
+
+               4. Complete Intersections and Mixed Volumes
+   In this section we study the case when X is a generic complete intersection in a
+torus T = Tn . Our tropical approach recovers and refines the elimination theory
+based on Newton polytopes which was developed by Khovanskii and Esterov [13].
+12                      BERND STURMFELS AND JENIA TEVELEV
+
+                                             polytopes in MQ . Let P := P1 + · · · + Pc
+Notation 4.1. Let P1 , . . . , Pc be lattice P
+be their Minkowski sum and write PI := i∈I Pi for any I ⊆ {1, 2, . . . , c}. We shall
+always assume that dim P = n. The normal fan N of P is a complete fan in NQ .
+  For each i = 1, . . . , c, let fi be a Laurent polynomial in k[T] whose Newton
+polytope equals Pi and whose coefficients are generic subject to this property. We
+are interested in the generic complete intersection X = {f1 = · · · = fc = 0} in T.
+Remark 4.2. The variety X need not be irreducible because the Pi can be one-
+dimensional even if n ≥ 2. This poses some notational difficulties since irreducibility
+of X was assumed in the previous two sections. However, as we shall see, all irre-
+ducible (= connected) components of X have exactly the same tropicalization and
+multiplicities. Thus by T (X) we will mean the tropicalization of any irreducible
+component, with multiplicities multiplied by the number of components. This is
+consistent with the interpretation of the tropical variety as a cohomology class.
+   As before in Example 3.16, for any w ∈ NQ = Hom(MQ , Q) and any polytope Q,
+we write facew (Q) for the face of Q at which w attains its minimum. Note that
+                                           X
+(4.13)                       facew (PI ) =    facew (Pi ).
+                                             i∈I
+
+Theorem 4.3 ([20, Prop. 2.4]). The tropical variety T (X) is supported on a subfan
+of the normal fan N of the Minkowski sum P = P1 +· · ·+Pc . A point w ∈ NQ lies in
+T (X) if and only if the polytope (4.13) has dimension ≥ |I| for any I ⊆ {1, 2, . . . , c}.
+     For w = 0 we obtain the following criterion for when the variety X is non-empty:
+Corollary 4.4. X is not empty if and only if dim PI ≥ |I| for every I ⊆ {1, 2, . . . , c}.
+  In [20] we proved Theorem 4.3 using combinatorial convexity. Here we present
+an alternative derivation using following general lemma, which is a mixed version of
+the Kodaira–Fujita Lemma [14, VI.2.16] that characterizes big and nef line bundles.
+Lemma 4.5. Let L1 , L2 , . . . , Lc be globally generated line bundles on a c-dimensional
+integral scheme Z. For K ⊆ {1, . . . , c} let ZK be the image of Z under the map given
+by ⊗i∈K Li . Then L1 · L2 · . . . · Lc ≥ 0 and this number is positive if and only if
+(4.14)                 dim ZK ≥ |K|     for any    K ⊆ {1, . . . , c}.
+Proof. By the Projection Formula [14, VI.2.11], we can replace Z with its resolution
+of singularities. So, we may assume that Z is smooth. By Bertini’s Theorem, we
+can choose smooth divisors Ei ∈ |Li | that intersect transversally. The number of
+intersection points equals our intersection number L1 · . . . · Lc . In particular, the
+number is nonnegative and it is positive if and only if E1 ∩· · ·∩Ec 6= ∅. The condition
+(4.14) is necessary because dim ZK < |K| implies ∩i∈K Ei = ∅ for general divisors
+Ei ∈ |Li |. Now assume (4.14) is satisfied. We use induction on c. The case c = 1 is
+obvious. Assume that c > 1. Let x ∈ Z be a general point. By Bertini Theorem,
+we can assume that x lies in a smooth divisor from |Lc |. Let Z ′ be the connected
+component of Z that contains x. It suffices to check the condition (4.14) for Z ′ and
+all subsets K ⊆ {1, . . . , c−1}. Arguing by contradiction, suppose that dim ZK ′ < |K|
+
+for some K. Let F be the irreducible component of the fiber of Z → ZK that passes
+                    ELIMINATION THEORY FOR TROPICAL VARIETIES                           13
+
+through x. Then dim(F ∩ Z ′ ) ≥ c − |K|. By our assumptions (and genericity of x),
+it follows that dim F = c − |K| and F ⊂ Z ′ . As this holds for any component Z ′ ,
+the map Z → Z{c} given by Lc contracts F to a point. Therefore, F is contained in
+a fiber of the map Z → ZK × Z{c} . Since the image of |LK | ⊗ |L{c} | in |LK∪{c} | is a
+base-point-free linear subsystem, F is contained in a fiber of the map Z → ZK∪{c} .
+This contradicts our assumption that dim ZK∪{c} ≥ |K| + 1.                           
+Proof of Theorem 4.3. Let Ai be the set of monomials in fi , each regarded as a lat-
+tice point in Pi , and consider the morphism T → P|Ai |−1 defined by these monomials.
+Let Ñ be a strictly simplicial refinement of N . There is a sequence of morphisms
+(4.15)                   P(Ñ ) → P(N ) → P|Pi |−1 99K P|Ai |−1 ,
+where P|Pi |−1 99K P|Ai |−1 is a linear projection. We have similar toric morphisms
+(4.16)          P(Ñ ) → P(N ) → P|PK |−1       for any K ⊆ {1, . . . , c}.
+                                                               r
+                                                               S
+The toric variety P(Ñ ) is smooth and its toric boundary            Di has simple normal
+                                                               i=1
+crossings. Consider the hypersurface Ei := {fi = 0} ⊂ T and its closure E i in
+                 α
+P(Ñ ). Let {E i }α∈Ji be the irreducible components of E i . Then E i is a pullback
+of a general hyperplane divisor in P|Ai |−1 for the morphism (4.15). It follows from
+Bertini’s Theorem that each E i is smooth, Eiα ∩ Eiβ = ∅ for α 6= β, and the union
+                                                         α
+of all divisors (both of toric type Di and of type E i ) has simple   normal crossings.
+   Recall that our very affine variety X is the intersection ci=1 Ei in T. It follows
+                                                                 T
+
+that its closure X(Ñ ) in P(N ) is smooth, of codimension c, and intersects toric
+boundary divisors D1 , . . . , Dr transversally. It follows that the multiplication map
+                                  T × X(Ñ ) → P(Ñ )
+is smooth, and in particular flat. By Theorem 2.12, the tropicalization of any irre-
+ducible component X ′ of X is equal to the union of cones of Ñ that correspond to
+c-dimensional toric strata Z which intersect the closure X ′ (Ñ ) of X ′ in P(Ñ ).
+   Let Z be such a toric stratum and w any vector in the relative interior of the
+corresponding cone in Ñ . Lemma 4.5 states that X ′ (Ñ ) intersects the toric stratum
+Z
+P if and only if the image of Z under the morphism given by the sum of divisors
+   i∈K E i has dimension at least |K| for all K ⊆ {1, . . . , c}. This image is the toric
+stratum in the toric variety of PK corresponding to facew (PK ). We conclude that
+w lies in T (X ′ ) = T (X) if and only if dim(facew (PK )) is at least |K|, for all K. 
+  We now describe the multiplicities on the tropical complete intersection T (X)
+specified by P1 , . . . , Pc . The following theorem is the main result in this section.
+Theorem 4.6. The multiplicity of T (X) at a regular point w is the mixed volume
+                                                                  
+(4.17)       mw = MV facew (P1 ), facew (P2 ), . . . , facew (Pc ) .
+Here the volume is normalized with respect to the sublattice of M orthogonal to Lw .
+Proof. We fix a tropical fan on T (X) which refines the restriction of the normal fan
+N of P1 + · · · + Pc . Since both sides of the equation (4.17) are locally constant on the
+14                       BERND STURMFELS AND JENIA TEVELEV
+
+regular points w of T (X), it suffices to prove (4.17) only for points w ∈ T (X) that
+lie in the relative interior of a maximal cone Γ of the chosen tropical fan structure.
+   Let TΓ be the c-dimensional torus corresponding to MΓ . The polytope facew (Pi )
+is the Newton polytope of the initial form inw (fi ). Consider the subscheme
+(4.18)                 Xw := {inw (f1 ) = · · · = inw (fc ) = 0} ⊂ T.
+The equations inw (fi ) are equivariant under the action of Ker[T → TΓ ] and therefore
+we can regard (4.18) as a system of c equations on TΓ defining a zero-dimensional
+subscheme X̃w of TΓ . By Bernstein’s Theorem [1], the length of the generic complete
+intersection X̃w equals the mixed volume on the right hand side of (4.17).
+   We claim that X̃w coincides with the scheme-theoretic intersection of X(N ) with
+the toric stratum Z of P(N ) that corresponds to Γ. Indeed, since X(N ) does not
+intersect strata of P(N ) of codimension c + 1, the intersection X(N ) ∩ Z lies in the
+open orbit in Z. That open orbit is isomorphic to TΓ and the defining equations of
+X(N ) ∩ Z are precisely the w-initial forms of the fi . Definition 3.1 now implies
+                        mw = length(X(N ) ∩ Z) = length(X̃w ).
+With this, the conclusion of the previous paragraph now completes the proof.          
+Remark 4.7. The multiplicity formula (4.17) makes sense for all w ∈ NQ since the
+right hand side is zero unless the condition of Theorem 4.3 holds. Thus, T (X) is
+characterized as the set of all w for which the mixed volume in (4.17) is nonzero.
+   We now apply our elimination theory of Section 3 to the generic complete inter-
+section X. The goal is to compute the image of X under the morphism α : Tn → Td
+given by a linear map A : Zn → Zd . We assume that the induced map f : X → Y
+is generically finite of degree δ. This assumption implies in particular that d ≥ n − c.
+The tropical variety of Y = α(X) in Qd is characterized by the following formula.
+Corollary 4.8. The tropicalization of the image Y = α(X) is the image of T (X)
+under the linear map A : Qn → Qd . Its multiplicity function is given by the formula
+               1 X
+                       MV facew (P1 ), . . . , facew (Pc ) ·index(Lv ∩Zd : A(Lw ∩Zn )),
+                                                          
+(4.19) mv =
+               δ    −1
+                 w∈A    (v)
+
+for all points v ∈ T (Y )0 such that A−1 (v) ∩ T (X) is finite and contained in T (X)0 .
+Proof. This follows by combining Theorems 1.1 and 4.6.                                
+   These results will be of particular interest for applications when d = n − c + 1. In
+this case Y = α(X) is a hypersurface in the torus Td , and one wishes to compute
+the irreducible Laurent polynomial g ∈ k[Td ] which vanishes on Y . Using Corollary
+4.8 we obtain the tropical hypersurface T (Y ) in Qd together with its multiplicities.
+By applying the technique described in Example 3.17, we can construct the Newton
+polytope Q of the unknown Laurent polynomial g. Knowledge of its Newton poly-
+tope Q greatly facilitates the computation of g from the given equations of X. See
+Example 1.3 for an illustration of how this works when n = 3, c = 2 and d = 2.
+   A construction of the Newton polytope Q from the given Newton polytopes
+P1 , . . . , Pc and the linear map A was recently given by Khovanskii and Esterov
+[13]. Their construction is based on what they call mixed fiber bodies. These turn
+                        ELIMINATION THEORY FOR TROPICAL VARIETIES                              15
+
+out to be equivalent to the mixed fiber polytopes introduced earlier by McMullen
+[15]. This representation constitutes a geometric refinement of Corollary 4.8, and it
+leads to a simplified derivation (in Theorem 4.9 below) of the main results in [13].
+   Let π be the canonical map from the lattice Zn onto coker(AT ) = Zn /ker(A)⊥ .
+We use the same letter π also for the induced map of vector spaces Qn → coker(AT )Q .
+The kernel of π is the vector space dual to ker(A), and we identify it with Qd above.
+   Consider the Minkowski sum Pλ = λ1 P1 + · · · + λc Pc where λ = (λ1 , . . . , λc ) is a
+vector of positive unknowns. The map π projects Pλ onto the (n − d)-dimensional
+polytope π(Pλ ). Almost all fibers of this map are polytopes of dimension d, and,
+by integrating them in the Minkowski sense of [3], we obtain a d-dimensional fiber
+polytope Σπ (Pλ ) ⊂ ker(π) = Qd . In fact, Σπ (Pλ ) is a homogeneous polynomial of
+degree n − d + 1 whose coefficients are certain lattice polytopes Qi1 i2 ···ic in Qd :
+                                                       X
+(4.20) Σπ (Pλ ) = Σπ ( λ1 P1 + · · · + λc Pc ) =             λi11 λi22 · · · λicc · Qi1 i2 ···ic .
+                                                             i1 +···+ic =n−d+1
+
+This decomposition is due to McMullen [15], and it was rediscovered in [13, §3].
+Now, if n − d + 1 = c then the formula (4.20) defines the mixed fiber polytope
+(4.21)                            Σπ (P1 , P2 , . . . , Pc ) := Q11···1 .
+It is this polytope which is computed by our Corollary 4.8 in the hypersurface case:
+Theorem 4.9 (Khovanskii and Esterov [13]). If c = n − d + 1 then the Newton
+polytope of the hypersurface Y = α(X) ⊂ Td equals the mixed fiber polytope (4.21).
+Proof. We consider the Minkowski weight [9] of codimension c defined by the n-
+dimensional polytope λ1 P1 + · · · + λc Pc . As a tropical variety, this is the union of
+the cones of codimension ≥ c in the normal fan of this polytope, with weights
+                            w 7→ Vol(facew (P1 ) + · · · + facew (Pc )).
+Here Vol is the normalized c-dimensional volume on L⊥                                ∗
+                                                             w . The image in ker(π) = Q
+                                                                                          d
+
+of this c-dimensional fan under the linear map A is the union of the codimension
+one cones in the normal fan of the fiber polytope Σπ ( λ1 P1 + · · · + λc Pc ). It supports
+the Minkowski weight of codimension 1 of Σπ ( λ1 P1 + · · · + λc Pc ), which is given by
+          X
+              Vol λ1 facew (P1 ) + · · · + λc facew (Pc ) · index(Lv ∩ Zd : A(Lw ∩ Zn )).
+                                                         
+ v 7→
+         w∈A−1 (v)
+
+This expression is a homogeneous polynomial of degree c in the unknowns λ1 , . . . , λc .
+The coefficient of the squarefree monomial λ1 λ2 · · · λc in this polynomial equals the
+right hand side of (4.19), up to the global constant δ. This proves Theorem 3.2 in [13],
+which states that the mixed fiber body actually exists as a polytope, and we conclude
+that (1/δ)·Σπ (P1 , P2 , . . . , Pc ) equals the Newton polytope of the hypersurface Y . 
+Example 4.10. In Example 1.3 we are given two tetrahedra in three-space, namely
+P1 = conv{0, 3e1 , 3e2 , 3e3 } and P2 = conv{0, −2e1 , −2e2 , −2e3 }. Their Minkowski
+sum P1 + P2 is a 3-polytope with 12 vertices, 24 edges and 14 facets. The map
+π : Q3 → Q1 is given in coordinates by (x, y, z) 7→ x − 2y + z. The fiber polytope
+                     Σπ (λ1 P1 + λ2 P2 ) = λ21 · Q20 + λ1 λ2 · Q11 + λ22 · Q02
+16                       BERND STURMFELS AND JENIA TEVELEV
+
+is a polygon with ten vertices. Its summands Q20 and Q02 are quadrangles, while
+the mixed fiber polytope Q11 = Σπ (P1 , P2 ) is a hexagon, affinely isomorphic to (1.5).
+Example 4.11. The Newton polytopes of resultants in [19] are mixed fiber poly-
+topes. Here f1 , . . . , fc are Laurent polynomials in c − 1 variables whose coefficients
+are distinct unknowns. See also [6, §6] for the case of fewer than c − 1 variables.
+   We close this section with the remark that (ordinary) fiber polytopes are special
+instances of mixed fiber polytopes. Suppose that P1 = P2 = · · · = Pc are all equal
+to the same fixed polytope P in Qn . Then the polytope Σπ (Pλ ) in (4.20) equals
+               Σ(λ1 P1 + · · · + λc Pc ) = (λ1 + · · · + λc )c · Σπ (P ) ⊂ Qd .
+Hence the mixed fiber polytope Σπ (P, · · · , P ) is the fiber polytope Σπ (P ) times 1/c!.
+  We conclude that the study of fiber polytopes, which is an active area in geometric
+combinatorics, can be regarded as a very special case of tropical elimination theory.
+Corollary 4.12. If X is a generic complete intersection in Tn defined by n − d + 1
+Laurent polynomials that share the same full-dimensional Newton polytope P , then
+the Newton polytope of the hypersurface Y = α(X) ⊂ Td is the fiber polytope Σπ (P ).
+
+                             5. Tropical Implicitization
+  We now turn our attention to the problem of implicitization [20]. Let f1 , . . . , fs
+be Laurent polynomials in unknowns t1 , . . . , tr and consider the rational map
+                               f = (f1 , . . . , fs ) : Tr 99K Ts
+defined by these Laurent polynomials. Let Y be the closure of the image of f in Ts .
+For simplicity, we assume from the beginning that the fiber of f over a generic point
+of Y is finite, and consists of δ points. Computing Y is generally a hard problem in
+computer algebra. Our goal is to compute instead the tropical variety T (Y ), with the
+aim of recovering (information about) the variety Y from its tropicalization T (Y ).
+   Let P1 , . . . , Ps ⊂ Qr be the Newton polytopes of f1 , . . . , fs . We first consider the
+generic case, when fi has generic coefficients relative to its Newton polytope Pi , and
+later we address the case when the fi have special coefficients. A rule for computing
+T (Y ) from P1 , . . . , Ps was stated (with proof) in [20, Theorem 2.1], and a formula
+for the multiplicities on T (Y ) was stated (without proof) in [20, Theorem 4.1]. In
+Theorem 5.1 below we give a complete derivation for both of these results. Let
+                              Ψ = (Ψ1 , . . . , Ψs ) : Qr → Qs
+be the tropicalization of the map f . Its ith coordinate Ψi (w) = min{w ·v : v ∈ Pi } is
+the support function of Pi . The image of Ψ is contained in T (Y ) but this containment
+is usually strict. Our construction will explain the set difference T (Y )\image(Ψ).
+   Let C be any cone in the normal fan of the Minkowski sum P = P1 + · · · + Ps and
+J any subset of {1, . . . , s}. Consider the sublattice of Zs spanned by Ψ(C ∩Zr )+ZJ .
+If the rank of this sublattice is r then index(C, J) denotes its index in the maximal
+rank r sublattice of Zs that contains it. Otherwise we set index(C, J) = 0. Write
+faceC (Pj ) for the face of Pj at which the linear forms in the relative interior of C
+are minimized. The |J|-dimensional normalized mixed volume
+                                                          
+(5.22)                            MV faceC (Pj ) : j ∈ J
+                      ELIMINATION THEORY FOR TROPICAL VARIETIES                                 17
+                               P
+is positive if and only if dim( i∈K faceC (Pi )) ≥ |K| for all subsets K ⊆ J.
+Theorem 5.1. The tropical variety T (Y ) is the union of the cones Ψ(C) + RJ≥0
+over all pairs (C, J) such that (5.22) is positive. The multiplicity mw at any regular
+point w of T (Y ) is the sum of the scaled mixed volumes
+                       1                                        
+(5.23)                   · index(C, J) · MV faceC (Pj ) : j ∈ J
+                       δ
+where (C, J) runs over all pairs such that Ψ(C) + RJ≥0 contains w.
+Proof. The graph of the map f is a generic complete intersection of codimension s
+in Tr+s . Namely, writing (t1 , . . . , tr , y1 , . . . , ys ) for the coordinates on Tr+s , by the
+graph of f we mean the subvariety X of Tr+s which is defined by the equations
+                    f1 (t) − y1 = f2 (t) − y2 = · · · = fs (t) − ys = 0.
+These are s generic Laurent polynomials in r+s unknowns. Their Newton polytopes
+in Qr ⊕ Qs have the form Pi′ := conv(Pi ∪ {ei }) for i = 1, 2, . . . , s, where e1 , . . . , es
+are the standard basis vectors of Qs . We shall apply the results of Section 4 (with
+d = s and n = s+t) to the polytopes P1′ , . . . , Ps′ and to the linear map A which takes
+vectors (u, v) in Qr ⊕ Qs to their second component v ∈ Qs . The corresponding
+homomorphism of tori is α : Tr+s → Ts , (t, y) 7→ y and we have Y = α(X).
+   The tropical variety T (Y ) equals the set of all vectors v ∈ Qs such that
+                         MV face(u,v) (P1′ ), . . . , face(u,v) (Ps′ )
+                                                                      
+(5.24)
+is positive for some u ∈ Qr . Suppose this is the case where (u, v) is a regular
+point of T (X). Let C be the cone in the normal fan of P which contains u in its
+relative interior. The vector v − Ψ(u) is non-negative, for if its i-th coordinate were
+negative then face(u,v) (Pi′ ) would be a point {ei }. Let J be the set of all indices j
+with vj > Ψj (u). For j ∈ J we have face(u,v) (Pj′ ) = faceu (Pj ) = faceC (Pj ). For
+i ∈ {1, . . . , s}\J, facev (Pi ) must be a single point pi in Qr , since (u, v) is regular
+on T (X), and hence face(u,v) (Pi′ ) is the primitive line segment with vertices pi and
+ei . Since the lattice spanned by these segments is a direct summand of Zr+s , the
+normalized mixed volume in (5.24) remains unchanged if we extract these segments:
+                 MV face(u,v) (P1′ ), . . . , face(u,v) (Ps′ ) = MV faceC (Pj ) : j ∈ J .
+                                                                                      
+(5.25)
+The linear space L(u,v) for the neighborhood of (u, v) on T (X)0 is spanned by the
+vectors (u′ , v ′ ) where u′ runs over C and v ′ satisfies vi′ = Ψ(u′ )i for i ∈ {1, . . . , s}\J.
+This implies that A(L(u,v) ∩ Zr+s ) equals the lattice generated by Ψ(C ∩ Zr ) + ZJ .
+The maximal rank r sublattice of Zs that contains this lattice is Lv ∩Zs . We conclude
+(5.26)                 [Lv ∩ Zs : A(L(u,v) ∩ Zr+s )] = index(C, J).
+Theorem 5.1 now follows by combining (5.25) and (5.26) with Corollary 4.8.    
+                                                                     
+                                                1 0 0 0       1     1
+Example 5.2. Consider the matrix (mij ) = 0 1 0 1
+                                                             0 −1 and let
+                                                0 0 1 −1 −1 0
+f : T3 99K T6 be a rational map defined by six Laurent polynomials, with generic
+18                        BERND STURMFELS AND JENIA TEVELEV
+
+coefficients, with Newton polytopes given by the six parallelopipeds
+                             Pi = [m1i , 2] × [m2i , 2] × [m3i , 2].
+Let Y = f (T3 ). A simple calculation using Theorem 5.1 (that can be performed us-
+ing the software TrIm developed by Huggins and Yu [11]) shows that T (Y ) contains
+the cone C which is spanned by e1 , e2 , and e3 , and the only other cone intersecting
+its interior is the cone D spanned by rows of the matrix (mij ). Moreover, C ∩ D is
+the ray spanned by e1 + e2 + e3 . It follows that the set of regular points of T (Y ) is
+not convex. In particular, there does not exist a coarsest fan supported on T (Y ).
+   We now discuss the implicitization problem for maps f which are not necessarily
+generic. The s hypersurfaces Ei := {fi = 0} ⊂ Tr are assumed to be reduced,
+irreducible, and different. We focus on computing T (Y ) as a set, leaving the question
+of multiplicities for future work. Let X := Tr \∪si=1 Ei , so that f induces a morphism
+X → Y ⊂ Ts . We can thus apply Theorem 2.9 to compute T (Y ). We introduce
+the following notation and terminology. For any compactification X ⊂ X and any
+irreducible boundary divisor D, let [D] be the vector [valD (f1 ), . . . , valD (fs )] ∈ Qs .
+By Theorem 2.4, [D] ∈ T (Y ) for any D. We define the simplicial complex ∆(X)
+that describes the combinatorics of the boundary of X as in Theorem 2.6. As in
+Remark 2.7, the tropical variety T (Y ) is contained in the union of cones with rays
+given by [D] and cones described by ∆(X). We say that X computes T (X) if T (Y )
+is equal to this union of cones. For example, if X is smooth with a normally crossing
+boundary then X computes T (X) by Corollary 2.9. But Proposition 3.9 suggests
+that it may suffice to assume that X has “combinatorial normal crossings”, i.e. to
+assume that k boundary divisors intersect in codimension k. Below we describe how
+this works for surfaces, the case r = 2. In what follows we assume r = 2.
+   We construct a compactification X of X in two steps. First we compactify X by a
+toric surface P(Ñ ), where Ñ is some strictly simplicial refinement of the normal fan
+N of the Minkowski sum of Newton polygons of f1 , . . . , fr . By Theorem 2.4, the rays
+of T (Y ) that we see on this stage are [Ei ] = ei for i = 1, . . . , s and [Dj ] = Q≥0 Ψ(ρj ),
+where ρi ⊂ Ñ for j = 1, . . . , p are the rays that correspond to the toric divisors Dj .
+   Consider a morphism X → P(Ñ ) which is a composition of blow-ups with smooth
+centers. Let Ẽ1 , . . . , Ẽs , D̃1 , . . . , D̃p be the proper transforms and F1 , . . . , Fq the
+exceptional divisors. We determine the simplicial complex ∆(X; E, D, F ) as in
+Theorem 2.6. Let uij (resp. vij ) be the coefficient of Fi in the pullback of Ej
+(resp. Dj ). Note that on P(Ñ ) the divisor of the rational function fi is given by
+             P
+(fi ) = Ei + j Ψi (ρj )Dj . It follows that on X we have
+                                 X                     X         X             
+                (fi ) = Ẽi +          Ψi (ρj )D̃j +       uki +    Ψi (ρj )vkj Fk .
+                                j                    k            j
+
+It follows that the vectors [Fk ] in Qs are given by the formula
+(5.27)               [Fk ] = (uk1 , . . . , uks ) + Ψ (vk1 ρ1 + · · · + vkp ρp ) .
+Proposition 5.3. Let r = 2 and let X → P(N ′ ) be a morphism, constructed as a
+composition of blow-ups of points, such that no three divisors from the collection Ẽ,
+D̃, and F have a common point. Then X computes the tropical surface T (Y ).
+                      ELIMINATION THEORY FOR TROPICAL VARIETIES                                   19
+
+Proof. It suffices to observe, using (5.27), that new exceptional divisors added by a
+                              ′
+resolution of singularities X → X do not change the tropicalization: each time we
+blow-up a point p that belongs to a unique boundary divisor ∆, we obviously have
+[Fp ] = [∆] and the only new simplex created is a pair {Fp , ∆}, which gives rise to the
+same ray [∆] on the tropicalization. Similarly, the blow-up of a point p that belongs
+to two boundary divisors ∆1 and ∆2 creates a new ray [Fp ] = m1 [∆1 ] + m2 [∆2 ],
+where mi is the multiplicity of ∆i at p, and the tropicalization stays the same. 
+
+                                          References
+ [1] D. Bernstein, The number of roots of a system of equations, Functional Analysis and its Ap-
+     plications 9 (1975) 183–185.
+ [2] R. Bieri and J. R. J. Groves, The geometry of the set of characters induced by valuations, J.
+     Reine Angew. Math. 347 (1984), 168–195
+ [3] L. Billera and B. Sturmfels, Fiber polytopes, Annals of Math. 135 (1992) 527–549.
+ [4] T. Bogart, A. Jensen, D. Speyer, B. Sturmfels and R. Thomas, Computing tropical varieties,
+     Journal of Symbolic Computation 42 (2007) 54–73.
+ [5] N. Bourbaki: Commutative Algebra, Springer, Berlin, 1989.
+ [6] A. Dickenstein, E.-M. Feichtner and B. Sturmfels, Tropical discriminants, to appear in: Journal
+     of the American Mathematical Society, math.AG/0510126.
+ [7] M. Einsiedler, M. Kapranov, D. Lind, Non-archimedean amoebas and tropical varieties, to
+     appear in: Journal fur die reine und angewandte Mathematik, math.AG/0408311.
+ [8] W. Fulton, Intersection theory, Springer Verlag, New York, 1984.
+ [9] W. Fulton and B. Sturmfels: Intersection theory on toric varieties, Topology 36 (1997) 335–353.
+[10] P. Hacking, S. Keel, and J. Tevelev, Stable pair, tropical, and log canonical compact moduli of
+     del Pezzo surfaces, math.AG/0702505.
+[11] P. Huggins, B. Sturmfels and J. Yu, TrIm: Software for tropical implicitization, in preparation.
+[12] E. Katz and S. Payne: Piecewise polynomials, Minkowski weights, and localization on toric
+     varieties, math.AG/0703672.
+[13] A. Khovanskii and A. Esterov: Elimination theory and Newton polyhedra, math.AG/0611107.
+[14] J. Kollár: Rational Curves on Algebraic Varieties, Springer Verlag, 1996.
+[15] P. McMullen, Mixed fibre polytopes, Discrete Comput. Geom. 32 (2004) 521–532.
+[16] P. Samuel, À propos du théorème des unités, Bull. Sci. Math. (2) 90, 1966, 89–96.
+[17] D. Speyer, Tropical Geometry, Ph.D. Dissertation, UC Berkeley, 2005.
+[18] D. Speyer and B. Sturmfels, The tropical Grassmannian, Adv. in Geometry 4 (2004) 389–411.
+[19] B. Sturmfels, On the Newton polytope of the resultant, J. Alg Combinatorics 3 (1994) 207–236.
+[20] B. Sturmfels, J. Tevelev, and J. Yu, The Newton polytope of the implicit equation, to appear
+     in: Moscow Mathematical Journal, math.CO/0607368.
+[21] J. Tevelev, Compactifications of suvbarieties of tori, to appear in: American Journal of Math-
+     ematics, math.AG/0412329.
+
+Authors’ addresses:
+Bernd Sturmfels, Department of Mathematics, University of California, Berkeley,
+CA 94720-3840, USA, bernd@math.berkeley.edu
+Jenia Tevelev, Department of Mathematics, University of Massachusetts, Amherst,
+MA 01003-9305, USA, tevelev@math.umass.edu
+

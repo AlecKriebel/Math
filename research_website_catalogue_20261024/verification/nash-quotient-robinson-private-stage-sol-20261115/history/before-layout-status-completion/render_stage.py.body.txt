@@ -1,0 +1,333 @@
+"""Render this exact adopted triplet privately; no legacy/source imports.
+
+Pure render_buffers/validate_buffers work in memory. The CLI writes exactly
+14 files beneath a fresh candidate-a/public or candidate-b/public only.
+All guards use explicit exceptions, including under Python -O.
+"""
+import copy
+import datetime
+import hashlib
+import html
+import json
+import pathlib
+import re
+import sys
+import xml.etree.ElementTree as ET
+
+A = pathlib.Path(__file__).resolve().parent
+P = A.parent.parent
+IDS = ['23578599', '23423736', '23333002']
+CONFIGS = ['config/publication.json', 'configs/publication.json', 'publication.json']
+BUILD_DATE = '2026-11-15'
+EXTRA_CSS = ('main .math{white-space:pre-wrap;overflow-wrap:anywhere}'
+             'main pre{white-space:pre-wrap;overflow-wrap:anywhere}'
+             'main iframe{display:block;width:100%;height:80vh;min-height:500px;'
+             'max-height:1000px;border:1px solid #ccc;box-sizing:border-box}')
+HEAD_END = '</head>\n<body>\n<a class="skip-link" href="#main">Skip to content</a>\n'
+HEADER = ('<header>\n<p class="site-title"><a href="/">Alec Kriebel</a></p>\n'
+          '<nav aria-label="Main navigation"><a href="/research/">Research</a> | '
+          '<a href="/blog/">Blog</a> | <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a></nav>\n'
+          '</header>\n')
+FOOTER = ('\n<footer>\n<hr>\n<p><a href="/research/">Research home</a></p>\n'
+          '<p class="copyright">© 2013–2026 Kriebel LLC.</p>\n</footer>\n</body>\n</html>\n')
+
+
+def need(ok, why):
+    if not ok:
+        raise ValueError(why)
+
+
+def sha(b):
+    return hashlib.sha256(b).hexdigest()
+
+
+def equal(a, b):
+    if type(a) is not type(b):
+        return False
+    if isinstance(a, dict):
+        return list(a) == list(b) and all(equal(a[k], b[k]) for k in a)
+    if isinstance(a, list):
+        return len(a) == len(b) and all(equal(x, y) for x, y in zip(a, b))
+    return a == b
+
+
+def read_manifests():
+    source = json.loads((A / 'SOURCE_INPUTS.json').read_bytes())
+    website = json.loads((A / 'WEBSITE_BASELINE.json').read_bytes())
+    rows = source['files'] + website['public_files'] + website['site_configs'] + [website['installation_receipt']]
+    by_path = {}
+    for r in rows:
+        b = (A / r['blob']).read_bytes()
+        need(len(b) == r['bytes'] and sha(b) == r['SHA256'], 'whole frozen input blob: ' + r['path'])
+        need(pathlib.Path(r['path']).read_bytes() == b, 'fresh original input: ' + r['path'])
+        by_path[r['path']] = b
+    for n in source['namespaces']:
+        actual = sorted(str(p) for p in pathlib.Path(n['root']).rglob('*') if p.is_file())
+        need(actual == n['files'], 'complete source/review namespace ' + n['root'])
+    original = source['fresh_guarded_originals_613']['files']
+    need(len(original) == 613, 'all613 original adoption boundary')
+    for r in original:
+        need(sha(by_path[r['path']]) == r['SHA256'], 'whole original613 subset')
+    w = pathlib.Path(website['website_root'])
+    need(sorted(str(p) for p in (w / 'public').rglob('*') if p.is_file()) ==
+         sorted(r['path'] for r in website['public_files']), 'whole593 public namespace')
+    need(website['public_count'] == 593 and website['index_count'] == 87 and
+         website['sitemap_count'] == 88 and website['root_GO_commit'] ==
+         'e2e064c48755452a56c2a31207fb12d7e55074fb', 'authorized current baseline only')
+    return source, website, by_path
+
+
+def raw(by_path, path):
+    return by_path[str(path)]
+
+
+def schema_block(text):
+    matches = list(re.finditer(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', text, re.S))
+    need(len(matches) == 1, 'exactly one JSONLD script')
+    return matches[0], json.loads(matches[0][1])
+
+
+def main_block(text):
+    matches = list(re.finditer(r'<main(?:\s+id="main")?>.*?</main>', text, re.S))
+    need(len(matches) == 1 and text.count('<main') == 1 and text.count('</main>') == 1,
+         'one actual complete main body')
+    return matches[0][0]
+
+
+def adopted_main(text):
+    value = main_block(text)
+    return value.replace('<main>', '<main id="main">', 1) if value.startswith('<main>') else value
+
+
+def body_contract(main, rid):
+    # This scanner checks actual lexical tags without HTMLParser iframe raw-text
+    # version differences. No serialization or rewriting of the main occurs.
+    allowed = {'main','nav','article','header','h1','h2','p','a','time','section','ul','li',
+               'table','thead','tbody','tr','th','td','iframe','pre','em','br','hr','strong'}
+    attributes = {'id','class','href','src','title','datetime','download','target','rel',
+                  'loading','width','height','aria-label'}
+    stack, frames = [], []
+    tokens = list(re.finditer(r'<(/?)([a-z][a-z0-9]*)([^<>]*)>', main))
+    need(''.join(main[m.start():m.end()] for m in tokens).count('<') == main.count('<'),
+         'all main markup recognized, no comments or declarations')
+    for token in tokens:
+        close, tag, tail = token.groups()
+        need(tag in allowed, 'allowed nonhiding main element ' + tag)
+        if close:
+            need(not tail.strip() and stack and stack.pop() == tag, 'balanced exact main tags')
+            continue
+        found, pos = {}, 0
+        for at in re.finditer(r'\s+([a-z][a-z0-9-]*)(?:="([^"]*)")?', tail):
+            need(not tail[pos:at.start()].strip(), 'exact quoted attribute grammar')
+            name, value = at.groups()
+            need(name in attributes and name not in found, 'unique allowed main attribute ' + name)
+            found[name] = value
+            pos = at.end()
+        need(not tail[pos:].strip(), 'no unparsed attribute')
+        if 'class' in found:
+            need(set(found['class'].split()) <= {'byline','math','paper-pdf','entry-meta'}, 'known visible classes')
+        if tag == 'iframe':
+            frames.append(found)
+            need(found.get('loading') == 'lazy' and bool(found.get('title')) and
+                 found.get('src', '').startswith('assets/') and '.pdf' in found['src'], 'complete PDF reader contract')
+            if rid == '23333002':
+                need(found.get('width') == '100%' and found.get('height') == '850' and
+                     found.get('class') == 'paper-pdf', 'actual125 iframe width100percent height850 preserved')
+            else:
+                need('width' not in found and 'height' not in found, 'exact123124 reader attributes')
+        for key in ('href','src'):
+            if key in found:
+                value = html.unescape(found[key])
+                need(value.startswith(('https://','/','#','assets/')), 'safe existing URL scheme')
+                need('..' not in pathlib.PurePosixPath(value.split('#')[0]).parts, 'no parent path')
+        if tag not in {'br','hr'}:
+            stack.append(tag)
+    need(not stack and len(frames) == 1, 'one balanced complete PDF iframe')
+    if rid == '23578599':
+        need(main.count('<table>') == main.count('</table>') == 1 and main.count('<tbody>') == 1,
+             'actual123 source-convention table retained')
+
+
+def rows_for(by_path):
+    result = []
+    for rid, config in zip(IDS, CONFIGS):
+        ed = P / 'papers' / rid / 'reviews/editorial'
+        c = json.loads(raw(by_path, ed / config))
+        authority = json.loads(raw(by_path, P / ('verification/root-editorial-' + rid + '-20261115.json')))
+        candidate = raw(by_path, ed / 'candidate/index.html').decode()
+        _, scholarly = schema_block(candidate)
+        main = adopted_main(candidate)
+        body_contract(main, rid)
+        need(c['canonical_url'] is None and c['AA'] is None and c['follow_up'] is None,
+             'original private null gates remain unchanged')
+        url = 'https://aleckriebel.com/research/' + c['slug'] + '/'
+        need(authority['proposed_canonical_url'] == url and authority['production_installation_authorized'] is False,
+             'adopted canonical proposal, separate installation still pending')
+        abstract = re.search(r'<h2>Original abstract</h2>\s*<p(?: class="math")?>(.*?)</p>', main, re.S)
+        need(abstract is not None and html.unescape(abstract[1]) == c['abstract'], 'one exact full original abstract')
+        need(scholarly['abstract'] == c['abstract'] and scholarly['datePublished'] == c['publication_date'] and
+             scholarly['version'] == c['version'], 'original scholarly abstract/date/version')
+        ready = json.loads(raw(by_path, P / 'papers' / rid / 'sources/SOURCE_READY.json'))
+        assets = ready['all_native_assets_in_original_order']
+        need(len(assets) == 2, 'both original native assets')
+        for q in assets:
+            name = q['original_api_file_object']['key']
+            need(raw(by_path, pathlib.Path(q['path'])) == raw(by_path, ed / 'candidate/assets' / name),
+                 'whole candidate/native asset identity ' + name)
+        result.append({'rid': rid, 'ed': ed, 'config': c, 'scholarly': scholarly,
+                       'main': main, 'url': url, 'assets': assets})
+    return result
+
+
+def dump(data):
+    return json.dumps(data, ensure_ascii=False).replace('<', '\\u003c')
+
+
+def document(row):
+    c, url = row['config'], row['url']
+    article = copy.deepcopy(row['scholarly'])
+    article.update({'@id': url + '#article', 'url': url, 'mainEntityOfPage': {'@id': url + '#page'},
+                    'inLanguage': 'en', 'isAccessibleForFree': True})
+    article['encoding'] = [{'@type': 'MediaObject', 'encodingFormat':
+                           'application/pdf' if q['path'].endswith('.pdf') else 'application/zip',
+                           'contentUrl': url + 'assets/' + q['original_api_file_object']['key'],
+                           'sameAs': q['original_api_file_object']['links']['self'],
+                           **({'license': 'https://creativecommons.org/licenses/by/4.0/'}
+                              if row['rid'] != '23578599' or q['path'].endswith('.pdf') else {})}
+                           for q in row['assets']]
+    graph = {'@context': 'https://schema.org', '@graph': [
+        {'@type': 'WebPage', '@id': url + '#page', 'url': url, 'name': c['title'],
+         'dateCreated': BUILD_DATE, 'dateModified': BUILD_DATE, 'mainEntity': {'@id': url + '#article'}}, article]}
+    fields = [('description', c['description']), ('author', 'Alec Kriebel'), ('robots', 'index,follow'),
+              ('citation_title', c['title']), ('citation_author', 'Alec Kriebel'),
+              ('citation_author_orcid', 'https://orcid.org/0009-0001-9320-500X'),
+              ('citation_publication_date', c['publication_date'].replace('-', '/')),
+              ('citation_version', c['version']), ('citation_doi', c['doi']),
+              ('citation_pdf_url', url + 'assets/' + c['pdf_filename']), ('citation_language', 'en'),
+              ('twitter:card', 'summary')]
+    h = html.escape
+    head = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+    head += '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+    head += '<title>' + h(c['title']) + ' | Alec Kriebel</title>\n'
+    head += ''.join('<meta name="' + k + '" content="' + h(v) + '">\n' for k, v in fields)
+    head += '<link rel="canonical" href="' + url + '">\n<link rel="icon" href="/favicon.ico">\n'
+    head += '<link rel="stylesheet" href="/research/research.css">\n'
+    for k, v in [('type','article'),('title',c['title']),('description',c['description']),('url',url),('site_name','Alec Kriebel')]:
+        head += '<meta property="og:' + k + '" content="' + h(v) + '">\n'
+    head += '<meta property="article:published_time" content="' + c['publication_date'] + '">\n'
+    head += '<script type="application/ld+json">' + dump(graph) + '</script>\n'
+    head += '<style>' + EXTRA_CSS + '</style>\n'
+    return (head + HEAD_END + HEADER + row['main'] + FOOTER).encode()
+
+
+def additions(rows):
+    entries, nodes = '', ''
+    for row in rows:
+        c = row['config']
+        d = datetime.date.fromisoformat(c['publication_date'])
+        display = str(d.day) + ' ' + d.strftime('%B %Y')
+        local = '/research/' + c['slug'] + '/'
+        h = html.escape
+        entries += ('      <li><a href="' + local + '">' + h(c['title']) + '</a><br><span class="entry-meta">'
+                    + display + ' · Unrefereed preprint</span><p>' + h(c['description']) + '</p><p><a href="'
+                    + local + 'assets/' + c['pdf_filename'] + '">PDF</a> · <a href="https://doi.org/' + c['doi']
+                    + '">Zenodo</a></p></li>\n')
+        nodes += '  <url><loc>' + row['url'] + '</loc><lastmod>' + BUILD_DATE + '</lastmod></url>\n'
+    return entries, nodes
+
+
+def render_buffers(by_path, website, rows):
+    buffers = {}
+    w = pathlib.Path(website['website_root'])
+    for row in rows:
+        base = 'research/' + row['config']['slug'] + '/'
+        buffers[base + 'index.html'] = document(row)
+        for name in [row['config']['pdf_filename'], row['config']['supplement_filename'], 'citation.bib']:
+            buffers[base + 'assets/' + name] = raw(by_path, row['ed'] / 'candidate/assets' / name)
+    index = raw(by_path, w / 'public/research/index.html').decode()
+    m, schema = schema_block(index)
+    updated = copy.deepcopy(schema)
+    items = updated['mainEntity']['itemListElement']
+    for row in rows:
+        items.append({'@type':'ListItem','position':len(items)+1,'url':row['url'],'name':row['config']['title']})
+    updated['mainEntity']['numberOfItems'] = 90
+    index = index[:m.start(1)] + dump(updated) + index[m.end(1):]
+    entries, nodes = additions(rows)
+    need(index.count('    </ul>') == 1, 'single exact visible index insertion')
+    buffers['research/index.html'] = index.replace('    </ul>', entries + '    </ul>', 1).encode()
+    sitemap = raw(by_path, w / 'public/research/sitemap.xml').decode()
+    need(sitemap.count('</urlset>') == 1, 'single exact sitemap insertion')
+    buffers['research/sitemap.xml'] = sitemap.replace('</urlset>', nodes + '</urlset>', 1).encode()
+    return buffers
+
+
+def validate_buffers(buffers, by_path, website, rows):
+    expected = render_buffers(by_path, website, rows)
+    need(set(buffers) == set(expected) and len(buffers) == 14, 'whole exact14 overlay paths')
+    need(all(buffers[k] == v for k, v in expected.items()), 'whole14 rendered buffers and assets exact')
+    w = pathlib.Path(website['website_root'])
+    old_index = raw(by_path, w / 'public/research/index.html').decode()
+    old_m, old_schema = schema_block(old_index)
+    index = buffers['research/index.html'].decode()
+    m, new_schema = schema_block(index)
+    need(equal(new_schema['mainEntity']['itemListElement'][:87], old_schema['mainEntity']['itemListElement']),
+         'all87 prior typed ordered ListItems intact')
+    need(new_schema['mainEntity']['numberOfItems'] == len(new_schema['mainEntity']['itemListElement']) == 90,
+         'actual90 index entries')
+    entries, nodes = additions(rows)
+    need(index.count(entries) == 1, 'one new visible triplet')
+    restored = index.replace(entries, '', 1)
+    rm, _ = schema_block(restored)
+    restored = restored[:rm.start(1)] + old_m[1] + restored[rm.end(1):]
+    need(restored == old_index, 'all prior visible index bytes and non-JSON scaffolding unchanged')
+    old_sitemap = raw(by_path, w / 'public/research/sitemap.xml')
+    sitemap = buffers['research/sitemap.xml']
+    need(sitemap.count(nodes.encode()) == 1 and sitemap.replace(nodes.encode(), b'', 1) == old_sitemap,
+         'all88 prior whole sitemap nodes and raw bytes intact')
+    need(len(ET.fromstring(sitemap)) == 91, 'actual91 sitemap nodes')
+    details = []
+    for row in rows:
+        c = row['config']
+        text = buffers['research/' + c['slug'] + '/index.html'].decode()
+        need(main_block(text) == row['main'], 'entire adopted main exact except permitted missing id')
+        body_contract(main_block(text), row['rid'])
+        need(text.count('<style>' + EXTRA_CSS + '</style>') == 1 and text.count('<style>') == 1,
+             'exact nonhiding supplemental stylesheet only')
+        need('<meta name="robots" content="index,follow">' in text and 'noindex' not in text,
+             'real indexfollow document')
+        need('<link rel="canonical" href="' + row['url'] + '">' in text, 'exact real canonical')
+        need(text.count('<h2>Original abstract</h2>') == 1 and 'href="#main"' in text,
+             'one visible whole abstract and working main target')
+        _, graph = schema_block(text)
+        page, article = graph['@graph']
+        need(page['dateCreated'] == page['dateModified'] == BUILD_DATE and
+             article['datePublished'] == c['publication_date'] and article['abstract'] == c['abstract'],
+             'build dates separate from original publication and exact whole abstract')
+        details.append({'record_id': row['rid'], 'url': row['url'], 'main_bytes': len(row['main'].encode()),
+                        'main_sha256': sha(row['main'].encode()), 'only_main_id_added': row['rid'] != '23423736',
+                        'original_publication_date': c['publication_date'], 'PDF_pages': c['pdf_pages']})
+    baseline = {str(pathlib.Path(r['path']).relative_to(w / 'public')) for r in website['public_files']}
+    need(len(baseline | set(buffers)) == 605 and len(baseline - set(buffers)) == 591,
+         'virtual605; all591 unrelated public files protected')
+    need(set(buffers) & baseline == {'research/index.html', 'research/sitemap.xml'}, 'only two existing aggregate overlays')
+    return {'overlay_files': 14, 'new_leaf_files': 12, 'aggregate_overlays': 2, 'virtual_public_files': 605,
+            'index_entries': 90, 'sitemap_nodes': 91, 'prior_typed_ItemList_records_preserved': 87,
+            'prior_sitemap_nodes_preserved_whole': 88, 'unrelated_public_files_unchanged': 591,
+            'native_PDF_ZIP_assets_equal_whole': 6, 'BibTeX_assets_equal_whole': 3, 'articles': details}
+
+
+if __name__ == '__main__':
+    need(sys.argv[1:] in (['candidate-a'], ['candidate-b']), 'only fresh private candidate outputs allowed')
+    name = sys.argv[1]
+    source, website, by_path = read_manifests()
+    rows = rows_for(by_path)
+    buffers = render_buffers(by_path, website, rows)
+    report = validate_buffers(buffers, by_path, website, rows)
+    destination = A / name / 'public'
+    need(not destination.exists(), 'refuse overwriting candidate output')
+    for relative, value in buffers.items():
+        path = destination / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(value)
+    print(json.dumps({'candidate': name, 'optimization_level': sys.flags.optimize,
+                      'rendered_all14_buffers_and_wrote_exact_bytes': True, **report}, ensure_ascii=False, indent=2))

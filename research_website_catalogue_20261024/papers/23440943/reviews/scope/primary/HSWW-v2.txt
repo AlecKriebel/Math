@@ -1,0 +1,1468 @@
+                                                TOPOLOGY AND EULER CHARACTERISTICS OF
+                                                          TROPICAL VARIETIES
+
+                                              SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+
+                                                   Abstract. We study Euler characteristics of tropical subvarieties of
+                                                   tropical abelian varieties. We prove that every H-regular subvariety, lo-
+                                                   cally modeled on tropicalizations of sufficiently well-behaved very affine
+                                                   varieties, has nonnegative signed Euler characteristic. This gives a trop-
+                                                   ical analogue of a theorem of Green–Lazarsfeld for subvarieties of com-
+                                                   plex abelian varieties. The main input is a local vanishing theorem for
+
+
+
+
+arXiv:2606.10817v2 [math.AG] 24 Jul 2026
+                                                   H-regular tropical fans, which also yields a Lefschetz-type theorem for
+                                                   affine H-regular tropical varieties. We further show that the signed Euler
+                                                   characteristic inequality fails for general tropical subvarieties of tropical
+                                                   abelian varieties, and we construct a 3-dimensional tropical fan whose
+                                                   link is not homotopy equivalent to a bouquet of 2-spheres.
+
+
+
+
+                                                                             1. Introduction
+                                              Let X be a smooth subvariety of a complex abelian variety. A theorem
+                                           of Green and Lazarsfeld ([GL87]) states that the Euler characteristic of OX
+                                           satisfies
+                                                                    (−1)dim X χ(X, OX ) ≥ 0.
+                                              In this paper, we seek an analog of the above inequality for subvarieties
+                                           of tropical abelian varieties. A tropical abelian variety is a real torus with
+                                           a positive definite quadratic form. Our main result concerns H-regular sub-
+                                           varieties, which are locally isomorphic to tropicalizations of certain nice
+                                           subvarieties of the affine torus (see Definitions 2.1 and 2.3). We prove that
+                                           the analog of the theorem of Green–Lazarsfeld holds for such tropical sub-
+                                           varieties.
+                                           Theorem 1.1. Let A be a tropical abelian variety (see Definition 2.9) and
+                                           let X be a subvariety of A of pure dimension d. If X is H-regular, then
+                                                                          (−1)d χ(X ) ≥ 0.
+                                                                                             q
+                                                                                    P
+                                              By [Ite+19, Example 17], χ(X ) =        q (−1) h0,q (X ), where h0,q (X ) are
+                                           the tropical homology Hodge numbers. When X is defined by a nice degen-
+                                           eration of subvarieties of abelian varieties, our theorem is a consequence of
+                                           [GL87] and [Ite+19, Theorem 1].
+                                              The proof of Theorem 1.1 (Section 7) is motivated by the approach in
+                                           [LMW21] and uses Morse theory. The Morse-theoretic argument rests upon
+                                           the following local property of H-regular tropical varieties.
+                                                                                        1
+2     SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+Theorem 1.2. (Theorem 2.8) Let T be a d-dimensional H-regular tropical
+fan in Rn . Let ℓ : Rn → R be a linear function that does not vanish on any
+of the rays of T . Let T≤0 = T ∩ {ℓ ≤ 0} be the nonpositive part of T and
+let L(T≤0 ) be its link. Then the reduced homology of L(T≤0 ) satisfies
+                   H
+                   e k (L(T≤0 ); Q) = 0   for all k ̸= d − 1.
+   To prove Theorem 1.2, we generalize the argument of [Hac08] (see also
+[Pay13]). Instead of studying the mixed Hodge structures on the cohomology
+groups of an affine variety, we study a quasi-projective variety that admits
+a proper birational map to an affine variety.
+   As explained in Example 2.6, the Bergman fan and the augmented Bergman
+fan of a matroid realizable over C are both H-regular. Hence we obtain a
+different proof of a slightly weaker version of [AB21, Theorem 2.1], and
+thereby answer a question of Mikhalkin–Ziegler for matroids realizable over
+C (see [MZ08b]).
+Corollary 1.3. Let T be the Bergman fan of a rank d+1 matroid realizable
+over C, or the augmented Bergman fan of a rank d matroid realizable over
+C. With the notation of Theorem 2.8, we have
+                  e k (L(T≤0 ); Q) = 0 for all k ̸= d − 1.
+                  H
+   Another consequence of Theorem 2.8 is the following Lefschetz-type re-
+sult, comparable to [AB21, Theorem 7.4].
+Theorem 1.4. Let X ⊂ Rn be an affine H-regular tropical variety of di-
+mension d. Let H ⊂ Rn be a general affine hyperplane, that is, an affine
+hyperplane that is not parallel to any 1-dimensional face of X . Then
+                    Hk (X , X ∩ H; Q) = 0    for all k ̸= d.
+   Finally, in Example 2.11, we demonstrate that the inequality of Theo-
+rem 1.1 does not hold for arbitrary pure-dimensional subvarieties. In Sec-
+tion 8, using similar ideas, we construct a Schön subvariety of (C∗ )8 whose
+tropicalization has a link that is not homotopy equivalent to a bouquet of
+spheres. This shows that the question in [Hac08, Remark 2.11] has a nega-
+tive answer, even among Schön subvarieties.
+Outline of the paper. In Section 2, we introduce H-regular tropical va-
+rieties. Section 3 develops a notion of transversality in toric varieties and
+establishes its stability under toric modifications. In Section 4, we prove a
+vanishing theorem for the top weights of cohomology using mixed Hodge
+modules and the decomposition theorem. Section 5 relates the cohomology
+of complements of divisors to the homology of their dual complexes.
+   In Section 6, we prove the local vanishing theorem for H-regular tropical
+varieties. In Section 7, we deduce the main theorem on the signed Eu-
+ler characteristic of tropical subvarieties of tropical abelian varieties via a
+Morse-theoretic argument. In Section 8, we construct an explicit example
+of a non-H-regular affine tropical variety and show that it does not exhibit a
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                 3
+
+vanishing property proved by Hacking for H-regular affine tropical varieties.
+Finally, in Section 9, we discuss further questions and possible generaliza-
+tions of our results.
+
+Acknowledgements. We are grateful to Kris Shaw for many valuable com-
+ments. We also thank Dima Arinkin and Farbod Shokrieh for helpful dis-
+cussions.
+
+                   2. H-regular tropical varieties
+  The following condition was introduced by Hacking [Hac08].
+Definition 2.1. Let U ⊂ (C∗ )n be a closed irreducible subvariety. We say
+that U is H-regular if there exists a smooth projective toric variety X∆ such
+that the closure U of U in X∆ is smooth and intersects every torus orbit
+O ⊂ X∆ transversely. Moreover, for every torus orbit O, the intersection
+U ∩ O is either empty or connected.
+  If such an X∆ is fixed, we say that U is H-regular with respect to X∆ .
+Remark 2.2. Condition (∗) in [Hac08, Theorem 2.5] only requires connect-
+edness when the intersection U ∩ O is positive dimensional. We need the
+stronger condition because we will pass to new compactifications by per-
+forming weighted blowups along toric boundary strata.
+Definition 2.3. By a tropical fan, we mean a weighted rational polyhe-
+dral fan satisfying the balancing condition. In particular, tropicalizations of
+subvarieties of complex affine tori are tropical fans.
+   A tropical fan T ⊂ Rn is called H-regular if T = trop(U ) for some H-
+regular subvariety U ⊂ (C∗ )n . More generally, a tropical variety X is called
+H-regular if, for every vertex P of X , there is an integral-affine isomorphism
+from a small neighborhood of P in X to a neighborhood of the origin in
+some H-regular tropical fan.
+Remark 2.4. If U is an H-regular subvariety of (C∗ )n with respect to a
+smooth projective toric variety X∆ , then trop(U ) is the union of all cones
+σ ∈ ∆ such that Oσ ∩U ̸= ∅ [MS15, Proposition 6.4.7]. Moreover, if U meets
+a torus orbit Oσ ⊂ X∆ of complementary dimension, then H-regularity
+implies that U ∩ Oσ consists of a single point and that the intersection is
+transverse. It follows that σ is a top-dimensional cone of trop(U ) with weight
+one. Therefore, every top-dimensional cone of an H-regular tropical fan has
+weight one [MS15, Proposition 6.7.2].
+Remark 2.5. Because of the connectedness assumption, H-regularity is strictly
+stronger than being Schön. Hacking’s result is sometimes cited as if it im-
+plied that, for every Schön subvariety U ,
+              H
+              e k (L(trop(U )); Q) = 0   for all k ̸= dim U − 1.
+However, we give a counterexample to this statement in Section 8.
+4       SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+Example 2.6. Let M be a loopless matroid realizable over C. Then the
+Bergman fan ΠM and the augmented Bergman fan ΠM are both H-regular.
+   Indeed, since M is realizable over C, there exists a C-vector space V
+and an essential hyperplane arrangement H1 , . . . , Hn ⊂ V whose associated
+matroid is M . Choose an embedding V ⊂ Cn such that Hi is the restriction
+of the i-th coordinate hyperplane to V . Let
+                             U = P(V ) ∩ (C∗ )n−1
+and let ∆ = ∆P be the (n − 1)-dimensional permutohedral fan. Then U is
+H-regular with respect to X∆ , and
+                                trop(U ) = ΠM .
+    Similarly, let V ′ ⊂ Cn be the translation of V by a general vector. Let
+                               U ′ = V ′ ∩ (C∗ )n
+and let ∆ = ∆S be the n-dimensional stellahedron fan. Then U ′ is H-regular
+with respect to X∆ , and
+                            trop(U ′ ) = ΠM .
+Example 2.7. Let T be a one-dimensional tropical fan in R2 , and assume that
+every ray of T has weight one. If T is not contained in a one-dimensional
+linear subspace of R2 , then T is H-regular.
+   Indeed, choose a complete unimodular fan ∆ in R2 that contains T as
+a subfan. The tropical fan T determines a divisor class D on the smooth
+projective toric surface X∆ . Since the cone of effective divisors of X∆ is
+generated by the torus-invariant divisors, and since D has nonnegative in-
+tersection with every torus-invariant divisor, the divisor class D is nef. Hence
+D is base-point-free.
+   Moreover, the self-intersection number D2 is equal to the stable self-
+intersection number of T , which is strictly positive by the assumption that
+T is not contained in a one-dimensional linear subspace. Hence D is big and
+base-point-free. It follows, by Bertini’s theorem, that a general member of
+the linear system |D| is irreducible and smooth, and meets the torus orbits
+transversely. Since all rays of T have weight one, each nonempty intersec-
+tion with a one-dimensional torus orbit consists of a single reduced point.
+Thus, if U denotes the restriction of such a general member to the dense
+torus (C∗ )2 , then U is H-regular with respect to X∆ , and
+                                 T = trop(U ).
+  Let T be a tropical fan in Rn , and let ℓ : Rn → R be a linear function.
+Set
+                           T≤0 = T ∩ {ℓ ≤ 0},
+and denote the links of T and T≤0 at the origin by L(T ) and L(T≤0 ), re-
+spectively.
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES               5
+
+Theorem 2.8. Let T be a d-dimensional H-regular tropical fan. If the
+linear function ℓ does not vanish on any of the rays of T , then
+                   H
+                   e k (L(T≤0 ); Q) = 0   for all k ̸= d − 1.
+  This theorem will be proved in Section 6.
+Definition 2.9. A tropical abelian variety A is a real torus Rn /Zn with a
+positive definite quadratic form on Rn called the polarization. A tropical
+d-cycle X on A is a weighted, embedded, rational polyhedral d-complex in
+A with integral slopes and satisfying the balancing condition.
+Remark 2.10. See [MS15, Definition 3.3.1] for the definition of the balancing
+condition. In this paper, we will not use balancing conditions explicitly.
+Furthermore, our main results concern tropical varieties whose weights are
+all one (see Remark 2.4).
+   By our main theorem, the sign of the Euler characteristic of an H-regular
+tropical cycle on a tropical abelian variety is determined by its dimension.
+Following the idea of [BW15], we construct pure-dimensional subvarieties of
+a tropical abelian variety that violate the inequality in Theorem 1.1. This
+shows that the H-regularity assumption in Theorem 1.1 is necessary.
+Example 2.11. Let C ⊂ A′ be a theta-type genus 2 curve embedded in
+its Jacobian (see Figure 1, reproduced from [MZ08a, Figure 11]). After
+translating C, we may assume that one of its vertices is the origin and that
+C contains no nonzero 2-torsion points of A′ . Let
+                   Ae = A′ × A′    and Xe = C × C ⊂ A.
+                                                    e
+Let Γ be the subgroup of 2-torsion points of A′ . Then
+                            Γ∼= Z/2Z × Z/2Z.
+Consider the diagonal action of Γ on Ae = A′ × A′ . Let
+                                  A = A/Γ
+                                      e
+and let
+                                π : Ae → A
+be the quotient map. Set X = π(Xe). Then X is a 2-cycle in A. We will
+show that χ(X ) < 0.
+  Assume the curve C in A′ is represented in Figure 1. Translation by one
+nonzero 2-torsion point σ1 ∈ A′ exchanges A and B, that is,
+                     σ1 + B = A,     and σ1 + A = B.
+The other two nonzero 2-torsion points σ2 , σ3 similarly exchange the pairs
+(A, C) and (B, C), respectively. Then,
+                          
+             Xe ∩ σ1 + Xe = {(A, A), (A, B), (B, A), (B, B)}
+and analogous formulas hold for Xe ∩ (σ2 + Xe) and Xe ∩ (σ3 + Xe).
+6     SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+
+  The image X = π(Xe) is the quotient of Xe by the equivalence relation
+x ∼ y generated by
+                    y = σi + x,      i = 1, 2, 3.
+By the preceding discussion, apart from the reflexive relations, the only
+nontrivial identifications are
+(A, A) ∼ (B, B) ∼ (C, C), (A, B) ∼ (B, A), (A, C) ∼ (C, A), (B, C) ∼ (C, B).
+Therefore, we have
+               χ(X ) = χ(Xe) − 5 = χ(C)2 − 5 = 1 − 5 = −4.
+
+
+
+
+                                           (0, 0)
+
+                                           A
+                                                    C
+
+                                       B
+
+
+
+
+         Figure 1. A genus two curve embedded in its Jacobian.
+
+
+
+                3. Transversality in toric varieties
+   Let σ ⊂ Rn be a strongly convex rational polyhedral cone of codimension
+m = n − dim σ. Then Xσ is an affine normal toric variety with dense
+torus T = (C∗ )n . The minimal-dimensional T -orbit of Xσ , denoted O, is
+isomorphic to (C∗ )m . After choosing a noncanonical splitting of the ambient
+lattice, we may write
+                             Xσ ∼= (C∗ )m × Xσ′ ,
+where σ ′ denotes the same cone σ, viewed as a full-dimensional cone in
+span(σ). The minimal torus orbit of Xσ′ is a point, which we denote by P .
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                 7
+
+Definition 3.1. With the notation above, let Y ⊂ Xσ be a locally closed
+analytic subvariety of pure codimension k. We say that Y intersects O
+transversely if, for any point x ∈ Y ∩O, there exist an analytic neighborhood
+Ux of x in Xσ , an analytic neighborhood UP of P in Xσ′ , and an isomorphism
+of analytic varieties
+                                 Ux ≃ B m × UP                             (1)
+such that:
+   (1) B m is a complex ball of dimension m;
+   (2) under the isomorphism (1), we have
+                            Y ∩ Ux ≃ B m−k × UP
+       for a closed (m − k)-dimensional complex ball B m−k ⊂ B m ;
+   (3) the product stratification induced by the torus-orbit stratification of
+       Xσ′ agrees, via (1), with the restriction of the torus-orbit stratifica-
+       tion of Xσ to Ux .
+Remark 3.2. By definition, if Y intersects O transversely and Y ∩ O ̸= ∅,
+then k ≤ m. Equivalently, if Y ⊂ Xσ is a locally closed analytic subvariety
+of codimension larger than m, then Y intersects O transversely if and only
+if Y ∩ O = ∅.
+Definition 3.3. Let X be a normal toric variety with dense torus T =
+(C∗ )n . For every torus orbit O ⊂ X, let X≥O be the unique affine open toric
+subvariety of X whose minimal orbit is O. Let Y ⊂ X be a closed analytic
+subvariety. We say that Y intersects all torus orbits of X transversely if, for
+every torus orbit O ⊂ X, the subvariety Y ∩ X≥O intersects O transversely
+in X≥O in the sense of Definition 3.1.
+Remark 3.4. When O is the dense torus orbit, the above transversality
+condition requires that Y ∩ O is smooth. More generally, if Y intersects all
+torus orbits of X transversely, then Y ∩ O is a closed complex submanifold
+of O for every torus orbit O ⊂ X.
+Lemma 3.5. Let X be a smooth toric variety. Then an equidimensional
+closed analytic subvariety Y ⊂ X intersects all torus orbits transversely if
+and only if Y is smooth and intersects every torus orbit O ⊂ X transversely
+in the usual sense, that is, for every x ∈ Y ∩ O,
+                             Tx Y + Tx O = Tx X.
+Proof. Since both conditions are local on X, we may assume that X is a
+smooth affine toric variety,
+                            X = (C∗ )m × Cn−m .
+It suffices to check the equivalence near a point x ∈ Y ∩ O, where
+                    O = (C∗ )m × {0} ⊂ (C∗ )m × Cn−m .
+8      SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+In this case both Ux and UP are smooth. Hence the condition that Y ∩ Ux
+is equal to B m−k × UP under the product decomposition Ux ≃ B m × UP
+implies that Y intersects O transversely in the usual sense.
+   Conversely, assume that Y intersects O transversely in the usual sense.
+We need to show that Y intersects O transversely in the sense of Defini-
+tion 3.1. Let z1 , . . . , zn−m be the coordinates of Cn−m , so that the divisors
+zi = 0 are the toric divisors of Cn−m . We regard the zi as holomorphic func-
+tions on X = (C∗ )m × Cn−m . Since Y is smooth, for every point x ∈ Y ∩ O,
+there exist local holomorphic functions y1 , . . . , yk near x such that, schemat-
+ically,
+                               Y = {y1 = · · · = yk = 0}
+near x. Since Y intersects O transversely in the usual sense, the cotangent
+vectors
+                       dz1 , . . . , dzn−m , dy1 , . . . , dyk
+are linearly independent at x. Therefore, by the implicit function theorem,
+we can find local holomorphic functions yk+1 , . . . , ym near x such that
+                            y1 , . . . , ym , z1 , . . . , zn−m
+form local coordinates of X at x. These coordinates define a product de-
+composition
+                             Ux ≃ B m × UP .
+In B m , choose
+                         B m−k = {y1 = · · · = yk = 0}.
+Then the two conditions in Definition 3.1 are satisfied. Therefore Y inter-
+sects O transversely in the sense of Definition 3.1.                     □
+Lemma 3.6. Let X be a normal toric variety, and let Y ⊂ X be an ir-
+reducible closed analytic subvariety that intersects every torus orbit trans-
+versely in the sense of Definition 3.3. Let
+                                       e →X
+                                     π:X
+be a weighted blowup along a toric subvariety of X. Then π −1 (Y ) is irre-
+ducible and intersects every torus orbit of X
+                                            e transversely.
+
+Proof. The statement is local on X. To prove the claim near a point
+e ∈ π −1 (Y ), we may replace X by the smallest affine open toric subva-
+x
+riety containing x := π(e
+                        x). Thus, we may assume that X is affine and that
+x lies in the minimal torus orbit of X. With the notation of Definition 3.1,
+we have
+                          X = Xσ ≃ (C∗ )m × Xσ′ ,
+where Xσ′ is an affine toric variety whose minimal torus orbit is a point P .
+  By Definition 3.1, there exists a neighborhood Ux of x in X such that
+                                 Ux ≃ B m × UP ,
+        TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                9
+
+where UP is a neighborhood of P in Xσ′ , and such that this isomorphism
+restricts to
+                               Y ∩ Ux ≃ B m−k × UP .
+Moreover, for any closed toric subvariety Z ⊂ X, the same product decom-
+position gives
+                             Z ∩ Ux ≃ B m × (UP ∩ Z ′ ),
+where Z ′ ⊂ Xσ′ is a closed toric subvariety.
+  Both claims now follow from the fact that toric weighted blowups com-
+mute with products with a smooth factor. More precisely, the isomorphism
+Ux ≃ B m × UP induces
+               BlZ X ∩ π −1 (Ux ) ≃ BlZ∩Ux Ux ≃ B m × BlZ ′ ∩UP UP ,
+where the weighted blowups are taken with the corresponding toric weights.
+Thus,
+                        π −1 (Y ∩ Ux ) ≃ B m−k × BlZ ′ ∩UP UP .
+This shows that π −1 (Y ) is locally irreducible. Since π is an isomorphism over
+the dense torus T , we regard Y ∩ T as an open subset of π −1 (Y ). The local
+product description shows that every neighborhood of a point of π −1 (Y )
+meets Y ∩ T . Hence Y ∩ T is dense in π −1 (Y ). Since Y ∩ T is irreducible
+and π −1 (Y ) is locally irreducible, it follows that π −1 (Y ) is irreducible.
+  Finally, the same local product description gives the product structures
+required in Definition 3.1 for the torus orbits of X.e Hence π −1 (Y ) intersects
+every torus orbit of X e transversely.                                          □
+Lemma 3.7. With the notation of Lemma 3.6, assume in addition that the
+intersection of Y with every torus orbit of X is either empty or connected.
+Then the intersection of π −1 (Y ) with every torus orbit of X
+                                                             e is either empty
+or connected.
+Proof. Given any torus orbit O of eX, its image O′ := π(O) is a torus orbit
+of X. Moreover, the restriction π|O : O → O′ is a trivial affine torus bundle.
+In particular, π|O has connected fibers. Hence the lemma follows.           □
+Corollary 3.8. Let ∆ be a complete unimodular fan in Rn , and let X∆ be
+the associated complete toric variety with dense torus T = (C∗ )n . Let U ⊂ T
+be an irreducible smooth algebraic subvariety. Assume that the closure U ∆
+of U in X∆ is smooth and intersects every torus orbit transversely in the
+usual sense. Then, for any iterated star subdivision ∆   e of ∆, the closure
+    ∆
+    e
+U       of U in X∆
+                 e intersects every torus orbit transversely. Moreover, the
+                    ∆
+                    e
+intersection of U       with any toric subvariety of X∆
+                                                      e is rationally smooth.
+
+Proof. Since each star subdivision corresponds locally to a toric weighted
+blowup, the first statement follows from Lemmas 3.5 and 3.6.
+10     SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+                                            ∆
+                                            e
+  For the second statement, denote U by Y and let Z ⊂ X∆        e be a toric
+subvariety. Since Y ⊂ X∆ e intersects every torus orbit transversely, for any
+x ∈ Y ∩ Z, there exists a neighborhood Ux of x in X∆  e such that
+                                Ux ≃ B m × UP ,
+where UP is an open neighborhood in a simplicial affine toric variety Xσ′ .
+Furthermore, this isomorphism restricts to
+                             Y ∩ Ux ≃ B m−k × UP
+and
+                         Z ∩ Ux ≃ B m × (UP ∩ Z ′ )
+where Z ′ ⊂ Xσ′ is a toric subvariety. Hence
+                       (Y ∩ Z) ∩ Ux ≃ Bm−k × (UP ∩ Z ′ ).
+Since Xσ′ is simplicial, the toric variety Z ′ is also simplicial, hence rationally
+smooth. It follows that B m−k × (UP ∩ Z ′ ) is rationally smooth. Therefore
+Y ∩ Z is rationally smooth.                                                      □
+
+                   4. Vanishing in the weight filtration
+   In this section, we prove the following vanishing theorem. Although our
+main interest is the case where X is rationally smooth and the vanishing
+of the top weight piece Gr2dW , we state the result in greater generality for
+
+independent interest.
+Proposition 4.1. Let X be an irreducible complex algebraic variety of
+dimension d. Assume there exists a proper birational map π : X → Y
+where Y is an affine variety. Then
+                    W i
+                  Gr2d H (X, Q) = 0   and         W
+                                                Gr2d−1 H i (X, Q) = 0          (2)
+for any i ̸= d.
+Proof. The proof relies on Saito’s theory of mixed Hodge modules [Sai89].
+An overview of the main definitions and results can be found in [Sai90].
+First, for M ∈ Db MHM(X), we define
+                       p(M) = min{p : GrpF DR(M) ̸≃ 0}.
+Since the Hodge filtration on H i (X, DR(M)) is dependent on the Hodge
+filtration on the de Rham complex DR(M), we have
+             GrpF H i (X, DR(M)) = 0        for p < p(M) and i ∈ Z.
+   Note that we are using the Hodge filtration as an increasing filtration, in
+line with Saito’s convention, rather than a decreasing filtration. Thus, the
+(p, q)-graded component of the mixed Hodge structure
+                   H i (X, DR(M)) ∼= H i (X, rat(M)) ⊗Q C
+is trivial whenever p < p(M) or q < p(M). In particular, the (p, q)-graded
+component is trivial if p + q < 2p(M). With Saito’s convention that the
+      TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                11
+
+Hodge filtration is increasing, the (p, q)-graded component has weight −(p +
+q). Thus, for j ≥ −2p(M) + 1 and i ∈ Z,
+
+                           GrjW H i (X, rat(M)) = 0.                         (3)
+
+   Since QH         b             H
+           X [d] ∈ D MHM(X) and ICX ∈ HMX (X, d), by [Sai00, Corol-
+lary 0.3] we have
+
+                    p(QH            H
+                       X [d]) = p(ICX ) = −d = − dim X,
+
+and
+                       F
+                     Gr−d DR(QH          F       H
+                              X [d]) ≃ Gr−d DR(ICX ).
+
+By [Sai89, Proposition 1.14], we have the identity
+
+                           GrdW H 0 (QH          H
+                                      X [d]) = ICX .
+
+Therefore, there exists N ∈ Db MHM(X) such that we have the following
+distinguished triangle in Db MHM(X),
+                                                  +1
+                        N −→ QH          H
+                              X [d] −→ ICX −−→ .
+
+This triangle induces a long exact sequence of mixed Hodge structures
+· · · → H i−d (X, rat(N )) → H i (X, Q) → IH i (X, Q) → H i+1−d (X, rat(N )) → · · · ,
+where the intersection cohomology groups IH i (X, Q) = H i−d (X, ICX (Q)).
+Because the map
+                                                 H
+                       F
+                     Gr−d DR(QH          F
+                              X [d]) → Gr−d DR(ICX )
+
+is a quasi-isomorphism, we must have
+                      GrpF DR(N ) ≃ 0     for p < −d + 1.
+This implies
+           GrjW H i−d (X, rat(N )) = 0    for j ≥ 2d − 1 and i ∈ Z.
+Thus by the long exact sequence, we have
+                      GrjW H i (X, Q) ∼
+                                      = GrjW IH i (X, Q),                    (4)
+for j ≥ 2d − 1 and i ∈ Z. Therefore, it suffices to prove that
+         W
+       Gr2d IH i (X, Q) = 0    and     W
+                                     Gr2d−1 IH i (X, Q) = 0    for i ̸= d.
+   Since π : X → Y is proper and birational, by the decomposition theorem
+([Sai89, Theorem 1.12]), we have
+                                        M
+                            H      Y
+                      π+ ICX  ≃ ICX  ⊕      Mℓ [−ℓ],
+                                           ℓ∈Z
+12      SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+where each Mℓ is a pure Hodge module whose support is a proper closed
+subset of Y . Furthermore, Mℓ = 0 for all but finitely many ℓ. Taking
+cohomology, we have
+
+           IH i (X, Q) ∼
+                                       M
+                       = IH i (Y, Q) ⊕   H i−d Y, rat(Mℓ [−ℓ])
+                                                              
+
+                                            ℓ∈Z
+                         ∼
+                                           M
+                         = IH i (Y, Q) ⊕          H i−d−ℓ Y, rat(Mℓ ) .
+                                                                     
+
+                                            ℓ∈Z
+
+By [Sai91, Proposition 2.6], we have
+                 GrpF DR(Mℓ ) = 0       for p < −d + 1 and ℓ ∈ Z.
+Thus,
+                          p(Mℓ ) ≥ −d + 1         for ℓ ∈ Z.
+By (3),
+             GrjW H i (Y, rat(Mℓ )) = 0    for j ≥ 2d − 1 and i, ℓ ∈ Z.
+Therefore,
+        GrjW IH i (X, Q) ∼
+                         = GrjW IH i (Y, Q),       for j ≥ 2d − 1 and i ∈ Z.    (5)
+  Since Y is affine, by Artin’s vanishing theorem (see [BBD82, Théorème 4.1.1]),
+we have
+                          IH i (Y, Q) = 0 for i > d.
+By the following lemma, we have
+                 GrjW IH i (Y, Q) = 0     for i < d and j ≥ 2d − 1.
+Therefore, we have
+            W
+          Gr2d IH i (Y, Q) = 0   and      W
+                                        Gr2d−1 IH i (Y, Q) = 0    for i ̸= d.
+Thus, by (4) and (5), we obtain the desired vanishing result (2).                □
+Lemma 4.2. Let Y be an irreducible complex quasi-projective variety.
+Then,
+                GrjW IH i (Y, Q) = 0 for j > 2i.
+
+Proof. Let Ye → Y be a resolution of singularities. Then, by the decom-
+position theorem, the Hodge structure IH i (Y, Q) is a direct summand of
+H i (Ye , Q). Since Ye is a smooth quasi-projective variety, it follows from
+[Del71, Corollaire 3.2.15] that
+
+                         GrjW H i (Ye , Q) = 0     for j > 2i.
+
+Since IH i (Y, Q) is a direct summand of H i (Ye , Q) as Hodge structures, the
+same vanishing holds for the weight graded components of IH i (Y, Q).       □
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                       13
+
+       5. The cohomology of the dual complex of divisors
+   The following theorem is a generalization of [Hac08, Theorem 3.1], where
+the projective variety is smooth and the divisors have simple normal cross-
+ings. In the rationally smooth setting, instead of using differential forms as
+in loc. cit., we use constructible sheaves to deduce that the Gysin sequence
+computes the cohomology of a rationally smooth quasi-projective variety.
+For more details about the Gysin sequence, see [DP14, Example 5.3].
+Proposition 5.1. Let X be a rationally smooth projective variety of di-
+mension d. Let D1 , . . . , DlTbe a collection of divisors on X such that for
+any I ⊂ {1, . . . , l}, DI := j∈I Dj is connected, rationally smooth and of
+codimension |I| (when |I| > d, DI is empty). Let K be the dual complex of
+D = D1 ∪ · · · ∪ Dl . Denote X \ D by U . Then,
+                        He i (K; Q) ∼
+                                    = GrW     2d−(i+1)
+                                         2d H          (U, Q).
+Proof. For 1 ≤ k ≤ d, let D(k) = |I|=k DI , and let D       e (k) be the normaliza-
+                                       S
+
+tion of D(k) . Denote by ιk : D  e (k) → X the composition of the normalization
+map D e (k) → D(k) and the closed embedding D(k) → X. Let j : U → X be
+the open embedding. Then, we have a Čech-type exact sequence
+   0 → j! QU → QX → ι1∗ (QDe (1) ) → ι2∗ (QDe (2) ) → · · · → ιd∗ (QDe (d) ) → 0.
+Then the hypercohomology spectral sequence satisfies
+E1pq = H q X, ιp∗ (QDe (p) ) ∼ H (DI , Q) ⇒ H p+q (X, j! QU ) ∼
+                             M q
+                             =                                = Hcp+q (U, Q),
+                              |I|=p
+
+where we set D e (0) = D∅ = X, and ι0 : X → X is the identity map. More-
+over, all the arrows in the spectral sequence are maps of Hodge structures.
+Hence, it degenerates at the E2 -page (see [Del71, Lemme (3.2.10)]). Denote
+the p-th cohomology of the complex
+  0 → H q (X, Q) → H q (De (1) , Q) → · · · → H q (D
+                                                   e (d−1) ) → H q (D
+                                                                    e (d) , Q) → 0
+by N p,q , where H q (X, Q) is in degree 0. Then, the degeneration of the above
+spectral sequence at the E2 -page implies that
+                             Hck (U, Q) ∼
+                                            M
+                                        =      N p,q .
+                                             p+q=k
+
+Since H q (DI , Q) is a pure Hodge structure of weight q and
+                             e (i) , Q) ∼
+                                            M
+                        H q (D          =           H q (DI , Q),
+                                            |I|=i
+
+N p,q is a pure Hodge structure of weight q. Hence,
+                      GrW     2d−k
+                        2d−m Hc    (U, Q) ∼
+                                          = N m−k,2d−m .
+By Poincaré duality,
+                          H 2d−k (U, Q) ∼
+                                        = Hck (U, Q)∨ .
+14    SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+Since the Poincaré duality is compatible with mixed Hodge structures, we
+have
+                                                       ∨
+                GrW 2d−m H
+                           2d−k
+                                (U, Q) ∼
+                                       = GrW    k
+                                            m Hc (U, Q) .
+Therefore,
+                                                      ∨          ∨
+        GrW2d H
+                2d−(i+1)
+                         (U, Q) ∼= GrW0 Hc
+                                          (i+1)
+                                                (U, Q) ∼ = N i+1,0 .
+                       ∨
+By definition, N i+1,0      is isomorphic to the (i + 1)-th homology of the
+complex
+         e (d) , Q)∨ → H 0 (D
+0 → H 0 (D                  e (d−1) , Q)∨ → · · · → H 0 (D
+                                                         e (1) , Q)∨ → H 0 (X, Q)∨ → 0
+
+where H 0 (X, Q)∨ is in degree 0. The above complex is isomorphic to
+      M                      M
+ 0→        H 0 (DI , Q)∨ →        H 0 (DI , Q)∨ → · · ·
+       |I|=d                 |I|=d−1
+                                           M
+                                       →           H 0 (DI , Q)∨ → H 0 (X, Q)∨ → 0.
+                                           |I|=1
+
+Since H 0 (DI , Q)∨ ∼
+                    = Q for all I with |I| ≤ d, the (i + 1)-th homology of the
+above complex is equal to the i-th reduced homology of the dual complex
+K.                                                                          □
+
+  Combining Propositions 4.1 and 5.1, we immediately have the following
+corollary.
+Corollary 5.2. Let X, D and U be as in Proposition 5.1. Assume further
+that U admits a proper birational map to an affine variety. Then, the dual
+complex K of D satisfies
+                              H
+                              e i (K; Q) = 0
+unless i = d − 1.
+
+      6. Vanishing result for H-regular tropical varieties
+   In this section, we prove Theorem 2.8. Given an H-regular tropical va-
+riety T , by definition it is the tropicalization of an H-regular subvariety
+U ⊂ (C∗ )n . By taking closures in appropriately chosen toric varieties, we
+construct (partial) compactifications,
+                                 U ⊂ U+ ⊂ U,
+where U is projective, and U + admits a proper birational map to an affine
+variety. We then show that L(T≤0 ) is homotopy equivalent to the dual com-
+plex of the divisor U \ U + . Theorem 2.8 then follows from Corollary 5.2.
+The following result will help us to construct appropriate (partial) compact-
+ifications of U .
+      TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                     15
+
+Proposition 6.1. Let ∆ be a complete simplicial fan in Rn , and let ℓ :
+Rn → R be a linear functional that is non-constant on all rays of ∆. Let
+Σ ⊂ ∆ be a subfan with support S := |Σ|, and let Σ≤ be the subfan of Σ
+consisting of cones on which ℓ is non-positive.
+   There exists a rational simplicial cone σS ⊂ {ℓ > 0} ∪ {0} such that L(S \
+σS ) deformation retracts onto both L(S ∩ {ℓ ≤ 0}) and L(Σ≤ ). Moreover,
+there is a simplicial refinement ∆′ of ∆, obtained by a sequence of stellar
+subdivisions, with a subfan ∆+ ⊂ ∆′ such that |∆+ | = σS .
+  Our proof of Proposition 6.1 is inspired by [Cha+26, Proof of Lemma 4.3].
+
+Proof. Let ( , ) be the standard inner product on Rn , and let v ∈ Rn be the
+unit vector such that (v, −) is a positive multiple of ℓ. Choose rational unit
+vectors v1 , . . . , vn ∈ Rn such that the cone
+                     σS := {u ∈ Rn : (u, vi ) ≥ 0, 1 ≤ i ≤ n}
+contains v in its relative interior. By choosing v1 , . . . , vn sufficiently close to
+v, we may further assume that σS \ {0} is contained in {ℓ > 0} and that any
+ray of ∆ that lies in {ℓ > 0} is in the relative interior of σS .
+   We now show that L(S \ σS ) deformation retracts as claimed. Let S≤ :=
+S ∩ {ℓ ≤ 0}. Write conv(A) for the convex hull of a set A ⊂ Rn , and for
+each ray ρ of ∆, let uρ ∈ Rn be the unit vector generating ρ. For a cone
+σ ∈ ∆, define
+              C − (σ) := conv(uρ : ℓ(uρ ) < 0 and ρ is a ray of σ)
+              C + (σ) := conv(uρ : ℓ(uρ ) > 0 and ρ is a ray of σ)
+                C(σ) := conv(uρ : ρ is a ray of σ)
+Observe that L(∆) is homeomorphic to ∪σ∈∆ C(σ), and that restricting this
+homeomorphism yields homeomorphisms of L(S \ σS ), L(S≤0 ), and L(Σ≤ )
+with
+                   C(S \ σS ) := ∪σ∈Σ (C(σ) \ σS ),
+                      C(S≤0 ) := ∪σ∈Σ (C(σ) ∩ {ℓ ≤ 0}), and
+                       C(Σ≤ ) := ∪σ∈Σ≤ C(σ),
+respectively. Accordingly, it suffices to show that C(S \ σS ) deformation
+retracts onto both C(S≤0 ) and C(Σ≤ ). We will accomplish this by defining
+homotopies pieceswise on cones of Σ.
+   Let σ ∈ Σ be a cone not contained in σS . If σ ⊂ {ℓ < 0}, then define
+Hσ : C(σ) × [0, 1] → C(σ) by HσS (x, s) = x, and set HσΣ := HσS .
+   Otherwise, σ has rays in both {ℓ > 0} and {ℓ < 0}. Recall that the join
+of C − (σ) and C + (σ) is
+         C − (σ) ∗ C + (σ) := C − (σ) × C + (σ) × [0, 1]/ ∼, where
+                           (x, y, 0) ∼ (x, y ′ , 0) and (x, y, 1) ∼ (x′ , y, 1).
+16    SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+Since σ is simplicial, we may identify C − (σ) ∗ C + (σ) with C(σ) via the
+homeomorphism
+          hσ : C − (σ) ∗ C + (σ) → C(σ),       (x, y, t) 7→ (1 − t)x + ty.
+For each (x, y) ∈ C − (σ) × C + (σ) there is a unique mxy ∈ (0, 1) such that
+ℓ(hσ (x, y, mxy )) = 0. Moreover, mxy is continuous in x and y. Define maps
+     HσS : (C(σ) \ C + (σ)) × [0, 1] → C(σ) \ C + (σ)
+                     (hσ (x, y, t), s) 7→ hσ (x, y, min{t, st + (1 − s)mxy })
+     HσΣ : (C(σ) \ C + (σ)) × [0, 1] → C(σ) \ C + (σ)
+                     (hσ (x, y, t), s) 7→ hσ (x, y, st) .
+We note several properties of HσS and HσΣ .
+     • The restrictions HσS (−, 1) and HσΣ (−, 1) are the identity.
+     • If hσ (x, y, t) ̸∈ σS , then for all s ∈ [0, 1], neither HσS (hσ (x, y, t), s)
+       nor HσΣ (hσ (x, y, t), s) lies in σS .
+     • If hσ (x, y, t) ∈ {ℓ ≤ 0}, then for all s ∈ [0, 1],
+                         HσS hσ (x, y, t), s = hσ (x, y, t).
+                                            
+
+     • If τ is a face of σ not contained in σS , then the restrictions of HσS and
+       HσΣ to C(τ ) \ C + (τ ) × [0, 1] are equal to HτS and HτΣ , respectively.
+These properties imply that the maps {HσS : σ ∈ Σ, σ ̸⊂ σS } and {HσΣ : σ ∈
+Σ, σ ̸⊂ σS } glue, and that the glued maps restrict to deformation retractions
+                  H S , H Σ : C(S \ σS ) × [0, 1] → C(S \ σS ),
+of C(S \ σS ) onto C(S≤0 ) and C(Σ≤ ), respectively.
+   To complete the proof, it remains to establish the “moreover” statement.
+Let ∆′′ be any complete rational simplicial fan in which σS is a cone. By
+[AP24, Theorem 1.1], ∆ and ∆′′ have a common rational simplicial refine-
+ment ∆′ , obtainable from both ∆ and ∆′′ by a sequence of stellar subdi-
+visions. We may take ∆+ to be the subfan of ∆′ consisting of all cones
+contained in σS .                                                        □
+
+   Given a d-dimensional H-regular tropical fan T in Rn , there exists an
+H-regular subvariety U ⊂ (C∗ )n such that T = trop(U ). By the definition
+of H-regular variety, there is a complete unimodular fan ∆ such that the
+closure U of U in X∆ satisfies the conditions of Definition 2.1. Let Σ ⊂ ∆
+be the subfan consisting of cones C whose corresponding orbit OC intersects
+U . By [ST08, Proposition 3.9] and Lemma 3.7, we have
+                              |Σ| = trop(U ) = T .
+   Let ∆′ be an iterated weighted star subdivision of ∆ and ∆+ ⊂ ∆′ be a
+subfan satisfying the properties of Proposition 6.1 with S = T . Denote by
+U + the closure of U in X∆+ .
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                17
+
+Lemma 6.2. Under the above notations, X∆+ admits a proper map to an
+affine toric variety, which restricts to an isomorphism on the open torus
+(C∗ )n .
+Proof. The support |∆+ | is a convex rational polyhedral cone, with associ-
+ated affine toric variety X|∆+ | . The identity map Rn → Rn induces a proper
+toric map X∆+ → X|∆+ | , which is an isomorphism on dense tori (see, e.g.
+[CLS11, Theorem 3.4.11]).                                                 □
+Corollary 6.3. The partial compactification U + of U admits a proper bi-
+rational map to an affine variety.
+Proof. Consider the composition U + → X∆+ → X|∆+ | . The first map is
+a closed embedding, and the second is a proper map. Thus, U + admits a
+proper map to an affine variety. Moreover, since X∆+ → X|∆+ | restricts to
+an isomorphism between the open tori, and since U + intersects the open
+torus of X∆+ nontrivially, the composition induces a birational map from
+U + to its image, which is an affine variety.                           □
+  Let K be the dual complex of the divisor U \ U + . Then, by Corollary 5.2,
+we have
+                             H
+                             e i (K; Q) = 0                              (6)
+unless i = d − 1.
+Proposition 6.4. Under the above notations, we have a homotopy equiv-
+alence
+                         K ≃ L(T \ σT ) ≃ L(T≤0 ),
+where σT is a rational simplicial cone associated to T as in Proposition 6.1.
+Proof. Since our construction satisfies Proposition 6.1, the inclusion
+                             L(T≤0 ) ⊂ L(T \ σT )
+is a homotopy equivalence. Hence, we have proved the second homotopy
+equivalence.
+   Let Σ′ be the subfan of ∆′ whose support is equal to T . Then, Σ′ is a
+refinement of Σ. Denote by Σc the subfan of Σ′ generated by all the rays
+not contained in σT . First, we notice that the rays of Σc correspond to
+the irreducible components of the boundary divisor U \ U + . It follows from
+[ST08, Proposition 3.9] that as simplicial complexes K ∼     = L(|Σc |) where as
+                                   c
+the link of a simplicial fan, L(|Σ |) is naturally a simplicial complex.
+   Furthermore, notice that there is a strong deformation retract from L(|Σ′ |\
+σT ) to L(|Σc |). In fact, both L(|Σ′ | ∩ σT ) and L(Σc ) are simplicial subcom-
+plexes of L(|Σ′ |), and they are generated by vertices that form a partition
+of the vertices of L(∆). Given any simplex σ and a face τ of σ, there is a
+standard linear retract of σ to τ . Using such a retract, we can construct
+a deformation retract from L(|Σ′ |) \ L(|Σ′ | ∩ σT ) = L(|Σ′ | \ σT ) to L(Σc ).
+Therefore, we have
+                  K ≃ L(|Σc |) ≃ L(|Σ′ | \ σT ) = L(T \ σT ).
+18      SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+Thus, the first homotopy equivalence follows.                                 □
+     Finally, we can deduce Theorem 2.8.
+Proof of Theorem 2.8. The desired statement follows from Proposition 6.4
+and the vanishing property (6).                                       □
+
+                      7. Morse theory arguments
+   We now prove Theorem 1.1 via an argument similar to the one in [LMW21]
+(see also [EGM18]).
+   Let X be a d-dimensional tropical subvariety of an n-dimensional tropical
+abelian variety A. For every vertex v in X , we say that a linear function
+ℓ defined on some neighborhood of v is Morse if it is not constant on any
+1-simplex containing v. Given any Morse linear function ℓ near a vertex v,
+let Lv be the link of X at v, and let
+                      L≤
+                       ℓ,v = Lv ∩ {x ∈ Uv | ℓ(x) ≤ ℓ(v)},
+
+where Uv is a neighborhood of v which contains Lv and on which ℓ is defined.
+Theorem 1.1 will be deduced from the following theorem.
+Theorem 7.1. Under the above notations, suppose that for all vertices v
+of X , and any local Morse linear function ℓ near v,
+                     e i L≤ ; Q = 0 for all i ̸= d − 1,
+                               
+                     H    ℓ,v                                       (7)
+or more generally,
+                          (−1)d−1 χ(L≤
+                                              
+                                     ℓ,v ) − 1 ≥ 0.
+Then we have
+                               (−1)d χ(X ) ≥ 0.
+Remark 7.2. When d = 1, the assumption of Theorem 7.1 is trivially true,
+and the conclusion is valid as well because if G is a finite graph with positive
+number of edges and without leaf, then χ(G) ≤ 0.
+   Let f : X → S 1 = R/Z be a circle-valued function from a topological
+space X. Given any a ∈ R and interval [a, b] ⊂ R with a ≤ b < a + 1, by
+abusing notation, we also use them to denote their images in S 1 , and we
+denote f −1 (a) and f −1 ([a, b]) by Xa and X[a,b] , respectively. The following
+is a basic fact in circle-valued Morse theory. We include the proof for the
+reader’s convenience.
+Lemma 7.3. Let X be a finite CW complex. Let f : X → S 1 = R/Z be
+a circle-valued function such that the preimage of any point or interval has
+finite-dimensional cohomology over Q. Assume that away from a finite set
+W ⊂ S 1 , f is a fiber bundle. Then,
+                                X                      
+                        χ(X) =     χ X[c−ϵ,c+ϵ] , Xc−ϵ
+                                c∈W
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                   19
+
+for sufficiently small ϵ > 0, where the relative Euler characteristic is defined
+by
+                              X
+                                   (−1)i dim H i X[c−ϵ,c+ϵ] , Xc−ϵ ; Q .
+                                                                      
+          χ X[c−ϵ,c+ϵ] , Xc−ϵ =
+                                 i≥0
+
+Proof. If W = ∅, then X is a fiber bundle over S 1 . The Euler characteristic
+of a fiber bundle is equal to the product of the Euler characteristics of the
+fiber and the base. Hence, χ(X) = 0, and the desired equation holds. For
+the rest of the proof, we assume that W ̸= ∅.
+   Fix b ∈ S 1 \ W , and sufficiently small ϵ > 0. Then, by the long exact
+sequence of relative cohomology, we have
+                                                        
+                  χ(X) = χ X, X[b−ϵ,b+ϵ] + χ X[b−ϵ,b+ϵ] .                 (8)
+By excision and the long exact sequence of relative cohomology, we have
+                                                          
+          χ X, X[b−ϵ,b+ϵ] = χ X[b+ϵ,b+1−ϵ] , Xb+ϵ ∪ Xb+1−ϵ
+                                                                     (9)
+                           = χ X[b+ϵ,b+1−ϵ] , Xb+ϵ − χ Xb+1−ϵ .
+Since f is a fiber bundle over [b − ϵ, b + ϵ], we have
+                         X[b−ϵ,b+ϵ] ≃ Xb−ϵ = Xb+1−ϵ .
+Thus, combining equations (8) and (9), we have
+                                                    
+                        χ(X) = χ X[b+ϵ,b+1−ϵ] , Xb+ϵ .                       (10)
+   By excision and the long exact sequences of relative cohomology, for any
+a1 , a2 , a3 with a1 < a2 < a3 < a1 + 1, we have
+                                                                               
+             χ X[a1 ,a3 ] , Xa1 = χ X[a1 ,a3 ] , X[a1 ,a2 ] + χ X[a1 ,a2 ] , Xa1
+                                                                            
+                                 = χ X[a2 ,a3 ] , Xa2 + χ X[a1 ,a2 ] , Xa1 .
+Therefore, breaking [b + ϵ, b + 1 − ϵ] into smaller closed intervals containing
+exactly one point of W each, and using the fact that f is a fiber bundle
+away from W , we have
+                                    X                          
+              χ X[b+ϵ,b+1−ϵ] , Xb+ϵ =        χ X[c−ϵ,c+ϵ] , Xc−ϵ .         (11)
+                                         c∈W
+Now, the desired equation follows from (10) and (11).                           □
+Proof of Theorem 7.1. Since the statement is topological, we may identify
+the tropical abelian variety A with Rn /Zn . Given a d-dimensional tropical
+cycle X of A, we may choose a general real Lie group map fA : A → S 1 =
+R/Z such that all vertices of X have distinct images. In particular, any local
+lift of fA is a Morse function. Denote the restriction by f = fA |X : X → S 1 .
+    Let V ⊂ X be the set of vertices, and let W = f (V ). Then, f is ob-
+viously a fiber bundle over S 1 \ W . Given c ∈ W , we consider the pair
+(X[c−ϵ,c+ϵ] , Xc−ϵ ) for sufficiently small ϵ > 0. By our assumption, there is a
+unique v ∈ V such that f (v) ∈ [c − ϵ, c + ϵ]. Notice that for 1 ≫ δ ≫ ϵ > 0,
+the inclusions
+                         Xc−ϵ ⊂ X[c−ϵ,c+ϵ] \ Bδ◦ (v) ∪ Xc−ϵ
+                                                    
+20      SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+and
+                        X[c−ϵ,c+ϵ] ∩ Bδ (v) ⊂ X ∩ Bδ (v)
+are both deformation retracts, where Bδ (v) ⊂ A is the ball centered at v
+with radius δ and Bδ◦ (v) is its interior. Therefore, using excision we can
+deduce that for any i ≥ 0,
+      H i X[c−ϵ,c+ϵ] , Xc−ϵ ; Q
+                               
+
+    ∼
+    =H i X[c−ϵ,c+ϵ] , X[c−ϵ,c+ϵ] \ Bδ◦ (v) ∪ Xc−ϵ ; Q
+                                                    
+
+    ∼
+    =H i X[c−ϵ,c+ϵ] ∩ Bδ (v), X[c−ϵ,c+ϵ] ∩ ∂Bδ (v) ∪ Xc−ϵ ∩ Bδ (v) ; Q
+                                                                  
+
+    ∼
+    =H i X ∩ Bδ (v), X[c−0.5,c+ϵ] ∩ ∂Bδ (v); Q
+                                               
+
+where ∂Bδ (v) is the boundary of Bδ (v). Therefore, by the long exact se-
+quence of relative cohomology,
+                                                               
+      χ X[c−ϵ,c+ϵ] , Xc−ϵ = χ X ∩ Bδ (v), X[c−0.5,c+ϵ] ∩ ∂Bδ (v)
+                                                                     
+                           = χ(X ∩ Bδ (v)) − χ X[c−0.5,c+ϵ] ∩ ∂Bδ (v) .
+Notice that X ∩ Bδ (v) is contractible and X[c−0.5,c+ϵ] ∩ ∂Bδ (v) is homotopy
+equivalent to X[c−0.5,c] ∩ ∂Bδ (v), which can be regarded as the half link L≤
+                                                                            ℓ,v .
+Therefore,
+                       χ X[c−ϵ,c+ϵ] , Xc−ϵ = 1 − χ(L≤
+                                          
+                                                     ℓ,v ).
+Thus, by (7), we have
+                         (−1)d χ X[c−ϵ,c+ϵ] , Xc−ϵ ≥ 0
+                                                  
+
+for any c ∈ W . Now, we can apply Lemma 7.3 and conclude that
+                                 (−1)d χ(X ) ≥ 0.                              □
+Proof of Theorem 1.1. By Theorem 2.8, the vanishing assumption (7) in
+Theorem 7.1 holds for H-regular tropical varieties. Therefore, by Theorem
+7.1, we conclude that
+                            (−1)d χ(X ) ≥ 0
+for any d-dimensional H-regular tropical subvariety of a tropical abelian
+variety.                                                                □
+     Theorem 1.4 can be proved using similar arguments.
+Proof of Theorem 1.4. Let ℓ : Rn → R be a linear function such that the
+restriction of ℓ to any one-dimensional face of X is non-constant, and assume
+that H = {ℓ = c} for some constant c ∈ R. For any t ∈ R and any closed
+interval [a, b], set
+              Xt = X ∩ {ℓ = t}     and   X[a,b] = X ∩ {a ≤ ℓ ≤ b}.
+   Assume that {ℓ = b} contains exactly one vertex v of X . Denote the link
+of X at v by Lv and let
+                     L≤
+                      ℓ,v = Lv ∩ {x ∈ Uv | ℓ(x) ≤ ℓ(v)}.
+      TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                                  21
+
+Then, for any a < b and 1 ≫ δ ≫ ϵ > 0, we have
+      Hk (X[a, b] , X[a, b−ϵ] ; Q) ∼
+                                   = Hk (X[a, b] ∩ Bδ (v), X[a, b−ϵ] ∩ Bδ (v); Q)
+                                   ∼
+                                   = Hk (X ∩ Bδ (v), X[a, b−ϵ] ∩ ∂Bδ (v); Q)
+                                   ∼
+                                   =He k−1 (X[a, b−ϵ] ∩ ∂Bδ (v); Q)
+                                   ∼
+                                   =He k−1 (L≤ ; Q),
+                                             ℓ,vi
+
+where the first isomorphism follows from the same arguments as the proof
+of Theorem 7.1, the third isomorphism follows from X ∩ Bδ (v) being con-
+tractible.
+   In general, if {ℓ = b} contains more than one vertex of X , then the above
+formula can be replaced by
+                  Hk (X[a, b] , X[a, b−ϵ] ; Q) ∼   e k−1 (L≤ ; Q),
+                                                 M
+                                               =   H       ℓ,vi
+                                                      i
+
+where the sum is over all vertices vi of X in {ℓ = b}.
+  In any case, it follows from the H-regular assumption of X and Theo-
+rem 2.8 that
+                     He k−1 (L≤ ; Q) = 0 for all k ̸= d.
+                              ℓ,vi
+Hence for any a < b and sufficiently small ϵ > 0,
+                     Hk (X[a, b] , X[a, b−ϵ] ; Q) = 0       for all k ̸= d.
+  Now, let a1 , . . . , aµ , b1 , . . . , bν be the values of ℓ on the set of vertices of
+X that are different from c such that
+                           aµ < · · · a1 < c < b1 < · · · < bν .
+Then, for sufficiently small ϵ > 0, the inclusion Xc ⊂ X[c, b1 −ϵ] is a homotopy
+equivalence. In particular,
+                  Hk (X[c, b ] , Xc ; Q) ∼
+                               1         = Hk (X[c, b ] , X[c, b −ϵ] ; Q)
+                                                            1       1
+
+which vanishes except when k = d.
+  Similarly, for any 1 ≤ i ≤ ν − 1, the inclusion X[c, bi ] ⊂ X[c, bi+1 −ϵ] is also
+a homotopy equivalence. Hence,
+            Hk (X[c, b ] , X[c, b ] ; Q) ∼
+                         i+1        i    = Hk (X[c, b ] , X[c, b −ϵ] ; Q)
+                                                             i+1        i+1
+
+which also vanishes except when k = d.
+  Consider the long exact sequence on relative homology groups
+
+  · · · → Hk (X[c, bi ] , Xc ; Q) → Hk (X[c, bi+1 ] , Xc ; Q)
+                      → Hk (X[c, bi+1 ] , X[c,bi ] ; Q) → Hk−1 (X[c, bi ] , Xc ; Q) → · · · .
+We have proved that both Hk (X[c, b1 ] , Xc ; Q) and Hk (X[c, bi+1 ] , X[c, bi ] ; Q) van-
+ish except when k = d. Thus, using induction on i, we can conclude that
+for any 1 ≤ i ≤ ν
+                        Hk (X[c, bi ] , Xc ; Q) = 0       for all k ̸= d.
+22       SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+In particular,
+                      Hk (X[c, bν ] , Xc ; Q) = 0        for all k ̸= d.        (12)
+  Replacing ℓ by −ℓ and applying similar arguments, we can inductively
+show that
+                Hk (X[ai , bν ] , X[c,bν ] ; Q) = 0 for all k ̸= d.
+In particular,
+                   Hk (X[aµ , bν ] , X[c,bν ] ; Q) = 0     for all k ̸= d.      (13)
+By (12) and (13), and the long exact sequence of relative homology groups,
+we conclude that
+                     Hk (X[aµ , bν ] , Xc ; Q) = 0       for all k ̸= d.
+Since X has no vertex in {ℓ > bν } ∪ {ℓ < aµ }, the inclusion X[aµ , bν ] ⊂ X is
+a homotopy equivalence. Therefore, we obtain the desired vanishing
+                        Hk (X , Xc ; Q) = 0         for all k ̸= d.               □
+
+                 8. A Schön but non-H-regular variety
+     In this section, we construct a 3-dimensional schön subvariety
+                                       U ⊂ (C∗ )8
+admitting a tropical compactification with a disconnected positive-dimensional
+torus-orbit intersection. We then prove that the link L(trop(U )) has nontriv-
+ial first homology, which implies that trop(U ), and hence U , is not H-regular.
+Consequently, the connectedness assumption in H-regularity is essential for
+both Theorem 2.8 and [Hac08, Theorem 2.5]. In [Hac08, Remark 2.11],
+Hacking suggested that there should exist tropical fans violating this van-
+ishing property, although no such example was known at the time. Our
+construction provides such an example.
+   We first construct the toric ambient        space. Let e1 , . . . , e9 ∈ R9 be the
+standard basis of R9 , and let e0 = − 9i=1 ei . The fan with cones generated
+                                           P
+by proper subsets of {e0 , . . . , e9 } has associated toric variety P9 . Let Σ0 be
+the 3-dimensional fan obtained from the 3-skeleton of this fan by performing
+stellar subdivision at the cones spanned by {e1 , e2 , e3 } and {e4 , e5 , e6 }. The
+rays of Σ0 are generated by the vectors e0 , . . . , e9 and
+                   a = e1 + e2 + e3        and       b = e 4 + e5 + e6 .
+Its maximal cones have generators
+       • {ei , ej , ek } with 0 ≤ i < j < k ≤ 9, except for {e1 , e2 , e3 } and
+         {e4 , e5 , e6 },
+       • {a, ei , ej } with 1 ≤ i < j ≤ 3, and
+       • {b, ei , ej } with 4 ≤ i < j ≤ 6.
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                  23
+
+Write ρa and ρb for the rays generated by a and b.
+  The surjection of lattices Z9 → Z9 /(a − b) ∼= Z8 induces a linear map
+Q : R → R /(a − b) ∼
+     9     9
+                     = R . Consider the 3-dimensional fan in R8 :
+                         8
+
+                             Σ := {Q(σ) : σ ∈ Σ0 }.
+Proposition 8.1. The collection of cones Σ is a fan with |Σ| = Q(|Σ0 |).
+Every cone in Σ0 maps isomorphically onto its image, and distinct cones in
+Σ0 have distinct images, except for ρa and ρb , which are mapped onto the
+same ray of Σ.
+  Consequently, Q induces a map of toric varieties
+                                  q : XΣ0 → XΣ .
+Each torus orbit Oσ of XΣ0 is mapped onto a torus orbit OQ(σ) in XΣ with
+1-dimensional fibers that are the orbits of the 1-parameter subgroup
+                       λ(t) = (t, t, t, t−1 , t−1 , t−1 , 1, 1, 1)          (14)
+on Oσ .
+Proof. The toric statements follow from the polyhedral ones by standard
+results on toric varieties.
+   No cone in the 3-skeleton of the fan of P9 contains a nonzero vector
+with exactly three coordinates equal to zero. Therefore, the 1-dimensional
+subspace (a − b) intersects every cone of Σ0 only at the origin, proving that
+Q maps every cone of Σ0 isomorphically onto its image.
+   The claim about which cones have distinct images is verified by the
+Macaulay2 code in Appendix A.                                              □
+   We now construct a schön subvariety of XΣ that is not H-regular. Let
+G ⊂ Gr(4, C10 ) be the open set of subspaces realizing the uniform matroid
+of rank 4 on 10 elements. If V ∈ G, then the projection 3-plane P(V ) meets
+all torus orbits of P9 transversely, hence is contained in the non-compact
+toric variety obtained from P9 be removing all torus orbits of codimension
+greater than 3.
+   By definition, Σ0 is the refinement of a subfan of the fan of P9 . The
+induced toric variety map
+                                    π : XΣ0 → P9
+is the composition of a blow-down map and an open embedding. The ar-
+gument in the previous paragraph implies that if V ∈ G, then P(V ) is
+contained in the image of π, and we denote by YV the proper transform of
+P(V ) under π. Let x1 , . . . , x9 be coordinates on the toric chart of P9 corre-
+sponding to the cone generated by {e1 , . . . , e9 }. Then YV is isomorphic to
+the blow-up of P(V ) at two points: pa := P(V ) ∩ {x1 = x2 = x3 = 0} and
+pb := P(V ) ∩ {x4 = x5 = x6 = 0}.
+Proposition 8.2. For a general choice of V ∈ G, the restriction
+                                  q|YV : YV → XΣ
+24    SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+is a closed immersion. Its image meets every torus orbit of XΣ transversely,
+hence U := q(V ∩ (C∗ )9 ) is schön. However, there is a torus orbit of XΣ
+whose intersection with U = q(YV ) is disconnected.
+  For a map f : A → B of smooth varieties, we denote by fx : Tx A → Tf (x) B
+the induced map on the tangent space at x ∈ A.
+Lemma 8.3. Let V ∈ G, let x ∈ XΣ0 and let v ∈ Tx XΣ0 be a tangent
+vector.
+    (1) x ∈ YV if and only if π(x) ∈ P(V ).
+    (2) If x ∈ YV , then v ∈ Tx YV if and only if πx (v) ∈ Tπ(x) P(V ).
+    (3) If x ∈ YV and v ∈ Tx XΣ0 is a nonzero tangent vector to the curve
+        t 7→ λ(t) · x, then πx (v) ̸= 0. Here, the action λ(t) is defined as in
+        (14).
+Proof. Statement (1) is equivalent to the equality
+                              π −1 (P(V )) = YV .
+Since P(V ) intersects all the torus orbits transversely, the above equality
+follows from Lemma 3.6.
+   Notice that the argument in Lemma 3.6 is schematic. More precisely, it
+implies that π −1 (P(V )) is reduced and irreducible, and π −1 (P(V )) = YV as
+subschemes of XΣ0 . Thus, for v ∈ Tx XΣ0 ,
+ v ∈ Tx Yv ⇐⇒ Z(v) ⊂ Yv ⇐⇒ π(Z(v)) ⊂ P(V ) ⇐⇒ πx (v) ∈ Tπ(x) P(V )
+where Z(v) denotes the Artinian subscheme of length 2 corresponding to v.
+Therefore, (2) follows.
+  Notice that the action C∗ -actions on π(XΣ0 ) induced by λ : C∗ → (C∗ )9
+has no fixed points. Hence, for any x ∈ XΣ0 , the map
+                               t 7→ π(λ(t) · x)
+induces a locally closed embedding C∗ → P9 . Therefore, in the following
+commutative diagram,
+                                              (π|YV )x
+                                  Tx Y _ V            / Tπ(x) P(V )
+                                                               _
+
+                                                              
+                                                  πx
+                     T1 C∗      / Tx XΣ                  / Tπ(x) P9
+                                              0
+
+
+the composition of the bottom row is injective. By definition, v ∈ Tx YV
+is nonzero and (as an element in Tx XΣ0 ) in the image of T1 C∗ . Thus, the
+image of v in Tπ(x) P(V ) is nonzero, and hence (3) follows.             □
+Lemma 8.4. For a general V ∈ G, q|YV is injective.
+Proof. Let Oσ and Oτ be torus orbits in XΣ0 that map onto the same torus
+orbit O in XΣ . By Proposition 8.1, either σ = τ , or, after possibly swapping
+σ and τ , we have σ = ρa and τ = ρb .
+     TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                  25
+
+  Now consider the correspondence
+          Rσ,τ = {(W, x, y) ∈ G × (Oσ ×O Oτ ) | x, y ∈ YW , x ̸= y}.
+We claim that π(x) ̸= π(y) for all (W, x, y) ∈ Rσ,τ . Indeed, the images
+π(Oρa ) and π(Oρb ) are disjoint torus orbits in P9 . Hence, it suffices to treat
+the case σ = τ . In that situation, since x and y have the same image in
+O, they lie in the same orbit of the C∗ -action defined by λ : C∗ → (C∗ )9 .
+Any C∗ -fixed points on P9 has at least 6 zero projective coordinates, and
+no such point lies in the image of π. Thus, the C∗ -action on π(XΣ0 ) has no
+fixed points, and hence the C∗ -action on XΣ0 has no fixed points either. In
+particular, the restriction of π to any C∗ -orbit is injective. Since x and y
+belong to the same C∗ -orbit, x ̸= y implies that π(x) ̸= π(y), proving the
+claim.
+   By the claim and Lemma 8.3(1), if (x, y) ∈ Oσ ×O Oτ , then the fiber of
+Rσ,τ over (x, y) ∈ Oσ ×O Oτ has dimension at most dim Gr(2, C8 ) = 12. The
+base Oσ ×O Oτ has dimension at most dim(XΣ0 ) + 1 = 10. Hence,
+                 dim Rσ,τ ≤ 10 + 12 < 24 = dim Gr(4, C10 ).
+   It follows that the image of the projection Rσ,τ → Gr(4, C10 ) is contained
+in a Zariski closed proper subset. Since there are only finitely many pairs
+of orbits Oσ , Oτ , for a general choice of W ∈ Gr(4, C10 ), the restriction map
+q|YW is injective .                                                            □
+Lemma 8.5. For a general V ∈ G, q|YV is injective on all tangent spaces.
+Proof. Let Oσ be a torus orbit in XΣ0 . Let
+        Kσ = {(x, v) ∈ T XΣ0 | x ∈ Oσ , 0 ̸= v ∈ Tx XΣ0 , qx (v) = 0}.
+The projection Kσ → Oσ has 1-dimensional fibers. Hence,
+                         dim Kσ ≤ dim XΣ0 + 1 = 10.
+Now, consider
+             Rσ = {(W, (x, v)) ∈ G × Kσ | x ∈ YW , v ∈ Tx YW }.
+By Lemma 8.3 (3), the fiber of Rσ over a point (x, v) ∈ Kσ has dimension
+at most dim Gr(2, C8 ) = 12. Hence,
+                   dim Rσ ≤ dim Kσ + 12 ≤ 10 + 12 = 22.
+It follows that the image of the projection Rσ → G is contained in a Zariski
+closed proper subset. Since there are finitely many orbits Oσ , q|YW is injec-
+tive on tangent spaces for a general choice of W .                          □
+Proof of Proposition 8.2. By Lemmas 8.4 and 8.5, we can pick a general
+V ∈ G such that
+   (1) P(V ) meets all torus orbits of P9 transversely;
+   (2) q|YV is injective;
+   (3) q|YV is injective on tangent spaces.
+26    SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+For such V , q|YV : YV → XΣ is a closed immersion.
+  Since q : XΣ0 → XΣ is a locally a principal C∗ -fibration, q is a submersion.
+For any torus orbit Oσ ⊂ XΣ0 , a general choice of V ∈ G, and any x ∈
+YV ∩ O σ ,
+ Tq(x) q(YV ) + Tq(x) q(Oσ ) = qx (Tx YV + Tx Oσ ) = qx (Tx XΣ0 ) = Tq(x) XΣ , (15)
+where the first equality follows from q|YV being an immersion, the second
+follows from the intersection of YV and Oσ being transverse, and the last
+follows from q being a submersion. Since for any torus orbit Oσ′ ⊂ Xσ
+and x′ ∈ q(YV ) ∩ Oσ′ , there exist a torus orbit Oσ ⊂ XΣ0 and x ∈ YV ∩
+Oσ , the equality (15) implies that q(YV ) intersects every torus orbit of XΣ
+transversely.
+   Finally, for the statement on disconnectedness, observe that
+                                                               
+                 q(YV ) ∩ q(Oρa ) = q (YV ∩ Oρa ) ∪ (YV ∩ Oρb )
+is not connected.                                                                □
+Remark 8.6. If we apply the same construction with V a general element
+of Gr(4, C9 ), the image of the point P(V ) ∩ {x0 = x7 = x8 = 0} in U is a
+singular point. In this case, we do not know whether U is schön. In our
+construction, we do not have this issue because
+                    P(V ) ∩ {x0 = x7 = x8 = x9 = 0} = ∅.
+Proposition 8.7. The link L of trop(U ) at the origin is homotopy equiv-
+alent to a wedge of eighty-four 2-spheres with a pair of points identified.
+Consequently,                       
+                                    
+                                     Z,    i=0
+                                    
+                                    Z,     i=1
+                        Hi (L, Z) =     84
+                                    
+                                     Z , i=2
+                                    
+                                      0,    i≥3
+                                    
+
+Proof. The set trop(V ∩(C∗ )9 ) is the support of the Bergman fan of a uniform
+matroid of rank 4 on 10 elements. This set contains both ρa and ρb . By
+[AK06, Corollary following Theorem 1], the link of trop(V ∩ (C∗ )9 ) at the
+origin is homotopy equivalent to a wedge of eighty-four 2-spheres.
+   By [MS15, Corollary 3.2.13],
+        trop(U ) = trop(q)(trop(V ∩ (C∗ )9 )) = Q(trop(V ∩ (C∗ )9 )).
+Hence, L is homotopy equivalent to a wedge of eighty-four 2-spheres with a
+pair of points identified, which has the described homology groups.     □
+
+                  9. Further discussion and questions
+Generalizations to arbitrary matroids. A geometric proof of a state-
+ment about realizable matroids often suggests a purely combinatorial proof,
+which would extend the statement to arbitrary matroids. This leads to the
+following question.
+      TOPOLOGY AND EULER CHARACTERISTICS OF TROPICAL VARIETIES                27
+
+Question 9.1. Can the conclusion of Corollary 1.3 be proved for arbitrary
+matroids using combinatorial Hodge theory?
+   In the current proof of Corollary 1.3, we use refinements of (augmented)
+Bergman fans and the decomposition theorem. Both of these ingredients
+have combinatorial counterparts, namely [ADH23] and [AHL25]. However,
+it is not clear to us how to formulate a combinatorial analogue of Artin
+vanishing for perverse sheaves on an affine variety.
+Euler characteristics of Ωp . As discussed after Theorem 1.1, the Euler
+characteristic of a tropical variety X can be expressed in terms of the tropical
+homology Hodge numbers introduced in [Ite+19],
+                                     X
+                           χ(X ) =      (−1)q h0,q (X ).
+                                    q
+
+On the other hand, the generic vanishing theorem ([GL87, Theorem 2])
+implies that for a d-dimensional smooth subvariety X of an abelian variety,
+                                   X
+               (−1)d−p χ(X, Ωp ) =   (−1)d−p−q hp,q (X) ≥ 0.
+                                        q
+
+This suggests the following tropical analogue.
+Question 9.2. Let X be a d-dimensional H-regular subvariety of a tropical
+abelian variety. Do the tropical homology Hodge numbers of X satisfy
+                                    X
+                 (−1)d−p χp (X ) :=  (−1)d−p−q hp,q (X ) ≥ 0
+                                        q
+
+for all p?
+Fourier–Mukai transformations. Recently, Ghosh and Shokrieh [GS25]
+constructed a cohomological Fourier–Mukai transform for tropical abelian
+varieties. Since the theorem of Green–Lazarsfeld that
+                           (−1)dim X χ(X, OX ) ≥ 0
+for smooth closed subvarieties X of complex abelian varieties can be proved
+using Fourier–Mukai transformations [PP11], it is natural to ask whether
+there is a tropical counterpart of this approach.
+Question 9.3. Can the cohomological Fourier–Mukai transform of [GS25]
+be used to give an alternative proof of Theorem 1.1? More generally, can
+it be used to identify classes of cycles in tropical abelian varieties with
+nonnegative signed Euler characteristic?
+Non-abelian analogues. Some non-abelian analogues of the Green–Lazarsfeld
+theorem, and of its topological counterpart, the Franecki–Kapranov theorem
+[FK00], have recently been established (see [DW25; AW25; DW24]). In the
+classical setting, non-abelian analogues of subvarieties of abelian varieties
+include smooth projective varieties with negative sectional curvature, and
+more generally smooth projective varieties with large fundamental group,
+28    SCOTT HIATT, CONNOR SIMPSON, BOTONG WANG, AND CHENXI WU
+
+such as compact smooth Shimura varieties. It would be interesting to de-
+velop a corresponding theory in tropical geometry.
+Question 9.4. Is there a natural class of “negatively curved” or “hy-
+perbolic” tropical varieties, or of tropical varieties with large fundamental
+group, that is closed under Cartesian products and passage to smooth sub-
+varieties? Moreover, does every H-regular tropical variety in such a class
+have nonnegative signed Euler characteristic?
+Chern classes. For a compact complex manifold, the topological Euler
+characteristic is equal to the integral of the top Chern class, or equivalently
+to the degree of the zero-dimensional homology Chern class. Thus the other
+Chern classes may be viewed as refinements of the Euler characteristic.
+   The Chern classes of smooth subvarieties of abelian varieties satisfy signed
+positivity properties. For example, if X is a smooth subvariety of a complex
+abelian variety, then Ω1X is globally generated. Consequently, the signed
+Chern classes of X are effective. More precisely, if ck (X) denotes the k-th
+cohomological Chern class of TX , then (−1)k ck (X) is effective.
+   The Chern–Schwartz–MacPherson (CSM) classes of tropical manifolds
+were introduced in [MRS23]. Here a tropical manifold is a tropical variety lo-
+cally isomorphic to Bergman fans of matroids (see [MRS23, Definition 2.3]).
+For a d-dimensional smooth subvariety X of a tropical abelian variety, its
+tropical CSM classes satisfy the signed positivity property (−1)d−k csmk (X )
+is effective.
+Question 9.5. Can one define suitable Chern or CSM classes for H-regular
+tropical varieties, and do they satisfy the same signed positivity property?
+More generally, can the signed Euler characteristic inequality of Theorem 1.1
+be refined to a signed positivity statement for tropical Chern classes?
+
+       Appendix A. M2 code for verifying Proposition 8.1
+   The following Macaulay2 [GS] code verifies portions of Proposition 8.1.
+It requires roughly 80 seconds with peak memory usage 95MB in Macaulay2
+1.22 on an Intel Core i5-1240P (a pretty common laptop processor).
+restart
+needsPackage "Polyhedra"
+
+-*
+A: linear transform
+F: a fan
+returns: image of F under A as a fan.
+If the images of the cones do not form a fan, an error is thrown per M2 doc
+macaulay2.com/doc/Macaulay2-1.22/share/doc/Macaulay2/Polyhedra/html/_fan.html
+*-
+imgFan = (A, F) -> fan((maxCones F) / (C -> coneFromVData(A * (rays F)_C)));
+                              REFERENCES                                 29
+
+-*
+S: a subset of {1...n}
+n: a positive integer
+returns: \sum_{i \in S} e_i
+*-
+std = (S,n) -> transpose matrix {
+                 for i from 1 to n list if member(i,S) then 1 else 0
+               }
+
+
+a = std({1,2,3}, 9);
+b = std({4,5,6},9);
+l = a-b; pr = transpose gens ker transpose l;
+Sigma0 = skeleton(3, normalFan simplex 9);
+Sigma0 = stellarSubdivision(stellarSubdivision(Sigma0, a), b);
+
+-- no error thrown here means the images of the cones form a fan
+Sigma = imgFan(pr, Sigma0);
+
+-- proves that the only two cones of Sigma0 that map to the same cone
+-- downstairs are \rho_a and \rho_b
+print((for i from 1 to 3 list #cones(i, Sigma0) - #cones(i, Sigma)) == {1,0,0})
+
+                             References
+[AB21]    Karim Adiprasito and Anders Björner. Filtered geometric lattices
+          and Lefschetz Section Theorems over the tropical semiring. 2021.
+          arXiv: 1401.7301 [math.AG] (cit. on p. 2).
+[ADH23]   Federico Ardila, Graham Denham, and June Huh. “Lagrangian
+          geometry of matroids”. In: J. Amer. Math. Soc. 36.3 (2023),
+          pp. 727–794. issn: 0894-0347,1088-6834 (cit. on p. 27).
+[AHL25]   Omid Amini, June Huh, and Matt Larson. A decomposition the-
+          orem for Lefschetz modules. 2025. arXiv: 2511.02026 [math.AG]
+          (cit. on p. 27).
+[AK06]    Federico Ardila and Caroline J. Klivans. “The Bergman Complex
+          of a Matroid and Phylogenetic Trees”. In: Journal of Combina-
+          torial Theory, Series B 96.1 (2006), pp. 38–49 (cit. on p. 26).
+[AP24]    Karim Adiprasito and Igor Pak. All triangulations have a com-
+          mon stellar subdivision. 2024. arXiv: 2404 . 05930 [math.CO]
+          (cit. on p. 16).
+[AW25]    Donu Arapura and Botong Wang. “Perverse sheaves on varieties
+          with large fundamental groups”. In: J. Differential Geom. 129.1
+          (2025), pp. 1–15. issn: 0022-040X,1945-743X (cit. on p. 27).
+30                              REFERENCES
+
+[BBD82]  A. A. Beilinson, J. Bernstein, and P. Deligne. “Faisceaux per-
+         vers”. In: Analysis and topology on singular spaces, I (Luminy,
+         1981). Vol. 100. Astérisque. Soc. Math. France, Paris, 1982, pp. 5–
+         171 (cit. on p. 12).
+[BW15]   Nero Budur and Botong Wang. “The signed Euler characteris-
+         tic of very affine varieties”. In: Int. Math. Res. Not. IMRN 14
+         (2015), pp. 5710–5714. issn: 1073-7928,1687-0247 (cit. on p. 5).
+[Cha+26] Melody Chan et al. “Piecewise-exponential functions and Ehrhart
+         fans”. In: J. Lond. Math. Soc. (2) 113.1 (2026), Paper No. e70434,
+         49. issn: 0024-6107,1469-7750 (cit. on p. 15).
+[CLS11]  David A. Cox, John B. Little, and Henry K. Schenck. Toric
+         varieties. Vol. 124. Graduate Studies in Mathematics. American
+         Mathematical Society, Providence, RI, 2011, pp. xxiv+841. isbn:
+         978-0-8218-4819-7 (cit. on p. 17).
+[Del71]  Pierre Deligne. “Théorie de Hodge. II”. In: Inst. Hautes Études
+         Sci. Publ. Math. 40 (1971), pp. 5–57. issn: 0073-8301,1618-1913
+         (cit. on pp. 12, 13).
+[DP14]   Alexandru Dimca and Stefan Papadima. “Non-abelian cohomol-
+         ogy jump loci from an analytic viewpoint”. In: Commun. Con-
+         temp. Math. 16.4 (2014), pp. 1350025, 47. issn: 0219-1997,1793-
+         6683 (cit. on p. 13).
+[DW24]   Ya Deng and Botong Wang. Linear Chern-Hopf-Thurston con-
+         jecture. 2024. arXiv: 2405.12012 [math.AG] (cit. on p. 27).
+[DW25]   Ya Deng and Botong Wang. L2 -vanishing theorem and a con-
+         jecture of Kollár. 2025. arXiv: 2409.11399 [math.AG] (cit. on
+         p. 27).
+[EGM18] Eva Elduque, Christian Geske, and Laurentiu Maxim. “On the
+         signed Euler characteristic property for subvarieties of abelian
+         varieties”. In: J. Singul. 17 (2018), pp. 368–387. issn: 1949-2006
+         (cit. on p. 18).
+[FK00]   Joseph Franecki and Mikhail Kapranov. “The Gauss map and a
+         noncompact Riemann-Roch formula for constructible sheaves on
+         semiabelian varieties”. In: Duke Math. J. 104.1 (2000), pp. 171–
+         180. issn: 0012-7094,1547-7398 (cit. on p. 27).
+[GL87]   Mark Green and Robert Lazarsfeld. “Deformation theory, generic
+         vanishing theorems, and some conjectures of Enriques, Catanese
+         and Beauville”. In: Invent. Math. 90.2 (1987), pp. 389–407. issn:
+         0020-9910,1432-1297 (cit. on pp. 1, 27).
+[GS]     Daniel R. Grayson and Michael E. Stillman. Macaulay2, a soft-
+         ware system for research in algebraic geometry. Available at
+         http://www2.macaulay2.com (cit. on p. 28).
+[GS25]   Soham Ghosh and Farbod Shokrieh. Tropical Poincaré bundle,
+         Fourier-Mukai transform, and a generalized Poincaré formula.
+         2025. arXiv: 2503.12835 [math.AG] (cit. on p. 27).
+                             REFERENCES                              31
+
+[Hac08]  Paul Hacking. “The homology of tropical varieties”. In: Collect.
+         Math. 59.3 (2008), pp. 263–273. issn: 0010-0757,2038-4815 (cit.
+         on pp. 2, 3, 13, 22).
+[Ite+19] Ilia Itenberg et al. “Tropical homology”. In: Math. Ann. 374.1-2
+         (2019), pp. 963–1006. issn: 0025-5831,1432-1807 (cit. on pp. 1,
+         27).
+[LMW21] Yongqiang Liu, Laurentiu Maxim, and Botong Wang. “Topol-
+         ogy of subvarieties of complex semi-abelian varieties”. In: Int.
+         Math. Res. Not. IMRN 14 (2021), pp. 11169–11208. issn: 1073-
+         7928,1687-0247 (cit. on pp. 1, 18).
+[MRS23] Lucı́a López de Medrano, Felipe Rincón, and Kris Shaw. Chern
+         Classes of Tropical Manifolds. 2023. arXiv: 2309.00229 [math.CO]
+         (cit. on p. 28).
+[MS15]   Diane Maclagan and Bernd Sturmfels. Introduction to tropical
+         geometry. Vol. 161. Graduate Studies in Mathematics. American
+         Mathematical Society, Providence, RI, 2015, pp. xii+363. isbn:
+         978-0-8218-5198-2 (cit. on pp. 3, 5, 26).
+[MZ08a] Grigory Mikhalkin and Ilia Zharkov. “Tropical curves, their Ja-
+         cobians and theta functions”. In: Curves and abelian varieties.
+         Vol. 465. Contemp. Math. Amer. Math. Soc., Providence, RI,
+         2008, pp. 203–230. isbn: 978-0-8218-4334-5 (cit. on p. 5).
+[MZ08b] Grigory Mikhalkin and Günter M. Ziegler. “Connectivity of weighted
+         rank 3 matroids”. In: Oberwolfach Reports 5.4 (2008). Problem
+         Session edited by J. Pach, pp. 2477–2556 (cit. on p. 2).
+[Pay13]  Sam Payne. “Boundary complexes and weight filtrations”. In:
+         Michigan Math. J. 62.2 (2013), pp. 293–322. issn: 0026-2285,1945-
+         2365 (cit. on p. 2).
+[PP11]   Giuseppe Pareschi and Mihnea Popa. “GV-sheaves, Fourier-Mukai
+         transform, and generic vanishing”. In: Amer. J. Math. 133.1
+         (2011), pp. 235–271. issn: 0002-9327,1080-6377 (cit. on p. 27).
+[Sai00]  Morihiko Saito. “Mixed Hodge complexes on algebraic varieties”.
+         In: Math. Ann. 316.2 (2000), pp. 283–331. issn: 0025-5831,1432-
+         1807 (cit. on p. 11).
+[Sai89]  Morihiko Saito. “Introduction to mixed Hodge modules”. In:
+         179-180. Actes du Colloque de Théorie de Hodge (Luminy, 1987).
+         1989, pp. 10, 145–162 (cit. on pp. 10, 11).
+[Sai90]  Morihiko Saito. “Mixed Hodge modules”. In: Publ. Res. Inst.
+         Math. Sci. 26.2 (1990), pp. 221–333. issn: 0034-5318,1663-4926
+         (cit. on p. 10).
+[Sai91]  Morihiko Saito. “On Kollár’s conjecture”. In: Several complex
+         variables and complex geometry, Part 2 (Santa Cruz, CA, 1989).
+         Vol. 52, Part 2. Proc. Sympos. Pure Math. Amer. Math. Soc.,
+         Providence, RI, 1991, pp. 509–517. isbn: 0-8218-1490-7 (cit. on
+         p. 12).
+32                                 REFERENCES
+
+[ST08]        Bernd Sturmfels and Jenia Tevelev. “Elimination theory for trop-
+              ical varieties”. In: Math. Res. Lett. 15.3 (2008), pp. 543–562.
+              issn: 1073-2780 (cit. on pp. 16, 17).
+     University of Wisconsin-Madison
+     Email address: shiatt@wisc.edu
+
+     Sydney Mathematics Research Institute & University of Sydney
+     Email address: connorgs@connorgs.net
+
+     University of Wisconsin-Madison
+     Email address: wang@math.wisc.edu
+
+     University of Wisconsin-Madison
+     Email address: cwu367@math.wisc.edu
+

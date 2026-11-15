@@ -1,0 +1,842 @@
+                                                   COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND
+                                                           GENERALIZED GALE TRANSFORMS
+
+                                                     KARIM ADIPRASITO, PHILIP BRINKMANN, ARNAU PADROL, PAVEL PATÁK,
+                                                                 ZUZANA PATÁKOVÁ, AND RAMAN SANYAL
+
+
+                                                  Abstract. The colorful simplicial depth of a collection of d + 1 finite sets of points in
+
+
+
+
+arXiv:1607.00347v1 [math.CO] 1 Jul 2016
+                                                  Euclidean d-space is the number of choices of a point from each set such that the origin
+                                                  is contained in their convex hull. We use methods from combinatorial topology to prove a
+                                                  tight upper bound on the colorful simplicial depth. This implies a conjecture of Deza et
+                                                  al. (2006). Furthermore, we introduce colorful Gale transforms as a bridge between colorful
+                                                  configurations and Minkowski sums. Our colorful upper bound then yields a tight upper
+                                                  bound on the number of totally mixed facets of certain Minkowski sums of simplices. This
+                                                  resolves a conjecture of Burton (2003) in the theory of normal surfaces.
+
+
+
+
+                                                                                     1. Introduction
+
+                                          The classical Carathéodory theorem states that for any point p in the convex hull of a finite
+                                          set V ⊂ Rd , there is a subset S ⊆ V of at most d + 1 points with p ∈ conv(S). Of course, this
+                                          is is invariant under translation and for all practical purposes one can always assume p = 0.
+                                          In 1982, Imre Bárány [3] gave a beautiful colored version of this result.
+                                          Theorem 1.1 (Colorful Carathéodory Theorem). Let C0 , . . . , Cd ⊂ Rd be finite sets such that
+                                          0 is in the relative interior of conv(Ci ) for all 0 ≤ i ≤ d. Then there is some S ⊆ C0 ∪ · · · ∪ Cd
+                                          with |S ∩ Ci | = 1 for all i such that 0 ∈ conv(S).
+
+                                          The sets Ci are thought of as color classes and C = {C0 , . . . , Cd } is called a colorful config-
+                                          uration. We call C centered if 0 ∈ relint conv(Ci ) for all 0 ≤ i ≤ d. The assumption that C
+                                          is centered can be considerably weakened (see, for example, [2, 3, 13, 20]) but in thisS paper we
+                                          will only consider centered configurations; see Question 1. We call a subset S ⊆ i Ci a col-
+                                          orful simplex if |S ∩ Ci | ≤ 1 for all i and we call the simplex S hitting if dim S = |S| − 1 = d
+                                          and 0 ∈ conv(S).
+                                          Inspired by the simplicial depth introduced in [15], Deza, Huang, Stephen, Terlaky [7] intro-
+                                          duced the colorful simplicial depth, depth(C), of a colorful configuration C as the number
+                                          of hitting simplices of C. In particular, they initiated a systematic study of the extremal values
+                                          of depth(C) as C ranges over all colorful configurations in Rd . The Colorful Carathéodory
+                                          Theorem asserts that for any centered configuration, there is at least one hitting simplex. For
+                                          lower bounds on the colorful simplicial depth, T   Deza et al. confine themselves to the case of
+                                          colorful configurations in Rd such that the core i conv(Ci ) is of full-dimension d and contains
+
+                                            Date: September 18, 2018.
+                                            2010 Mathematics Subject Classification. 52C45, 52A35, 05E45, 52Bxx, 52B35.
+                                            Key words and phrases. Colorful simplicial depth, Colorful point configuration, Minkowski sum of polytopes,
+                                          Gale duality, Cayley trick.
+                                                                                               1
+2              ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+
+the origin in its interior. In particular, they conjectured that if |Ci | = d + 1, then
+                                      1 + d2 ≤ depth(C).
+The initial lower bound of 2d from [7] was improved in a series of papers [4, 8, 9, 26] culminating
+in the resolution of the conjectured lower bound by Sarrabezolles [24]. In [7] also a conjectured
+upper bound was proposed.
+Conjecture 1 ([7, Conj. 4.4.]). Let C = {C0 , . . . , Cd } be a centered colorful configuration in
+Rd with |Ci | = d + 1 for all 0 ≤ i ≤ d and 0 in the interior of the core. Then
+
+                                     depth(C) ≤ 1 + dd+1 .
+
+1.1. Upper Bounds on colorful simplicial depth. The first goal of this paper is to prove
+this conjecture in the following stronger form. We say that a colorful configuration C in Rd is
+in relative general position if no colorful simplex S of C of dimension d − 1 contains the
+origin in its convex hull.
+Theorem 1.2. Let C = {C0 , . . . , Cd } be a centered colorful configuration in relative general
+position in Rd with |Ci | ≥ 2 for all 0 ≤ i ≤ d. Then
+                                                    d
+                                                    Y
+                                 depth(C) ≤ 1 +           (|Ci | − 1).
+                                                    i=0
+
+The relative general position assumption is natural as otherwise
+                                                            Q        for a colorful configuration
+with C1 = {0}, we would have the trivial upper bound of i |Ci |. In general, even if the origin
+is contained in the interior of the full-dimensional core, adding several copies of 0 to the color
+classes produces configurations with a much larger colorful simplicial depth than the expected
+bound. This behavior can happen even if all classes avoid the origin; for example, by adding
+several copies of a point p to C0 and several of −p to C1 . To avoid these artifacts that arise
+from non-generic configurations, one could alternatively require hitting simplices to contain
+the origin in its interior. The upper bound is then also attained at colorful configurations in
+relative general position and our result applies. The requirement that |Ci | ≥ 2 is subsumed
+by centered and relative general position and is therefore redundant.
+Let us first note that the bound of Theorem 1.2 is tight.
+
+
+
+
+                 Figure 1. Configuration from Example 1.3 for n = (2, 3, 4).
+    COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                          3
+
+Example 1.3. Let v0 , . . . , vd ∈ Rd be the vertices of a simplex containing the origin in its
+interior and for n0 , . . . , nd ≥ 2 define
+                              Ci := {vi , −vi , −2vi , . . . , −(ni − 1)vi }
+for 0 ≤ i ≤ d. Then C = {C0 , . . . , Cd } is a centered colorful configuration. The vertices of any
+colorful d-simplex S of C are minimally affinely dependent and hence the coefficients of this
+dependence are unique up to scaling. It follows that the coefficients are all of the same sign
+if and only if S = {v0 , . . . , vd } or S = {−α0 v0 , . . . , −αd vd } for some 1 ≤ αi < ni . This yields
+exactly 1 + (n0 − 1) · · · (nd − 1) hitting simplices.
+
+We will prove Theorem 1.2 in Section 2 by means of combinatorial topology. More precisely,
+we show that for centered colorful configurations in relative general position, the number of
+hitting simplices is related to the reduced Betti numbers of an associated simplicial complex,
+the avoiding complex. In particular, Theorem 1.2 follows from a result that shows that a certain
+Betti number is independent of the configuration. To show this, we introduce the notion of
+flips between colorful configurations, and we prove our result by ‘flipping’ any configuration
+to the configuration given in Example 1.3.
+
+1.2. Colorful Gale transforms of Minkowski sums. The second goal of this paper is
+to highlight a connection between colorful configurations and faces of Minkowski sums. The
+Minkowski sum of convex polytopes P0 , . . . , Ps ⊂ Rd is the polytope
+                  P = P0 + · · · + Ps = {p0 + · · · + ps : pi ∈ Pi for 0 ≤ i ≤ s}
+and this operation is key to many deep results in many areas, notably convex geometry [25] and
+computational commutative algebra (eg. [10]). The combinatorial complexity of Minkowski
+sums of polytopes has been subject of several studies [1, 18, 22].
+Using Gale transforms and Cayley embeddings, we define in Section 3 colorful Gale transforms
+associated to a collection P0 , . . . , Ps that, similar to ordinary Gale transforms, capture the
+facial structure of Minkowski sums in the combinatorics of colorful configurations.
+A particularly interesting case is that of Minkowski sums of simplices. A face F of the
+Minkowski sum P is of the form F = F0 + · · · + Fs for faces Fi ⊆ Pi . A face is mixed
+if dim Fi > 0 for all i and totally mixed if each Fi ⊂ Pi is an inclusion-maximal face, that
+is, Fi is a facet of Pi . If each Pi is a simplex, then we show in Lemma 3.7 that totally mixed
+facets are exactly the hitting simplices containing 0 in their interior of the associated colorful
+Gale transform. In particular, this allows us to prove the following.
+Theorem 1.4. For n0 , . . . , ns ≥ 1, set n = n0 + · · · + ns and let Pi ⊂ Rn−s−1 for 0 ≤ i ≤ s
+be ni -dimensional simplices whose Minkowski sum is full-dimensional. Then the number of
+totally mixed facets of P0 + · · · + Ps is at most
+                                            1 + n0 n1 · · · ns .
+
+1.3. A motivation from normal surface theory. This dictionary between Minkowski sums
+and colorful configurations allows us to resolve a conjecture of Ben Burton [6] about the com-
+plexity of projective edge weight solution spaces in normal surface theory. We only describe
+the geometric formulation of the problem and refer to [6, Ch. 5] for the topological connections
+and implications. Using the terminology of [6], a d-fan F is the collection of three polyhedral
+cones L1 , L2 , L3 ⊂ Rd such that Li is linearly isomorphic to Rd−2 × R≥0 , i.e, each Li is a
+halfplane, and such that Li ∩ Lj = L1 ∩ L2 ∩ L3 ∼= Rd−2 for all i 6= j. This is called the axis of
+4               ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+
+the fan, the cones Li are called leafs. The fan is balanced if it partitions Rd into three convex
+components and no two halfplanes are coplanar. In the following all our fans will be balanced.
+Given fans F 0 , . . . , F s with leafs Lrj , their intersection is the collection of cones
+                                           L0i0 ∩ · · · ∩ Lsis ,
+for i0 , . . . , is = 1, 2, 3. Define U (d, k) to be the maximum of the number of inclusion-maximal
+cones for the intersection of k fans in general position in Rd . Burton conjectured the following.
+Conjecture 2 ([6, Conj. 5.5.14]). For d ≥ 2, U (d, d − 1) = 1 + 2d−1 .
+
+To see why Theorem 1.4 settles Conjecture 2, let P = conv(u1 , u2 , u3 ) ⊂ Rd be a triangle.
+The normal fan of P is the collection of cones Ni = {` ∈ (Rd )∗ : `(ui ) ≥ `(uj ) for all j}
+for i = 1, 2, 3. These are polyhedral cones given as the intersection of exactly two distinct
+linear halfspaces and and hence the intersections Ni ∩ Nj for i 6= j are halfplanes. Thus, every
+triangle furnishes a fan in the sense of Burton and it is easy to see that every balanced fan
+arises this way. Thus every collection of fans in relative general position corresponds to a
+collection of triangles P0 , P1 , . . . , Ps ⊂ Rd in relative general position. The totally mixed faces
+of the Minkowski sum P0 + · · · + Ps are exactly the faces that arise as the Minkowski sum of
+an edge from each Pr . Every linear function maximizing on such a totally mixed face is thus
+in the intersection of one leave from each Pi .
+Corollary 1.5. The number of inclusion-maximal cones in the intersection of d − 1 fans in
+Rd is at most 1 + 2d−1 .
+
+1.4. Minkowski transforms. We close in Section 4 with an alternative construction of col-
+orful configurations associated to Minkowski sums via projections of polytopes. These are
+constructed using McMullen’s transforms [19]. In contrast to the colorful Gale transforms,
+these Minkowski transforms are realized in lower dimensional spaces but at the expense of
+not containing information about Minkowski subsums. In particular, their construction uses
+inequality descriptions of polytopes and not vertex sets, as in the case of colorful Gale trans-
+forms.
+Acknowledgements. The topological part of this paper started in Berlin in 2014 and was
+independently completed in Berlin/Paris and Jerusalem. This paper is an amalgamation of
+our efforts. K. Adiprasito was supported by NSF Grant DMS 1128155 and ERCAG 320924.
+P. Brinkmann was supported by DFG within the research training group “Methods for Dis-
+crete Structures” (GRK1408). A. Padrol thanks the support of the INSMI (CNRS) through
+the program PEPS Jeunes Chercheur-e-s 2016. P. Paták’s research was supported by the ERC
+Advanced grant no. 320924. Z. Patáková’s work was supported by the Israel Science Founda-
+tion grant ISF-768/12. R. Sanyal was supported by the DFG Collaborative Research Center
+SFB/TR 109 “Discretization in Geometry and Dynamics”.
+
+                   2. An upper bound for colorful simplicial depth
+
+In this section we will cast the problem of finding tight upper bounds on the colorful sim-
+plicial depth into one of combinatorial topology. More precisely, we will relate the bound of
+Theorem 1.2 to the Betti numbers of certain simplicial complexes (Proposition 2.2). To set
+the stage, fix some n = (n0 , . . . , nd ) ∈ Zd+1 with ni ≥ 2 and define the n-colorful complex
+as the simplicial complex
+                                     K = K(n) := V0 ∗ · · · ∗ Vd ,
+    COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                         5
+
+where Vi is a 0-dimensional complex on ni vertices and ∗ denotes the join. We identify Vi
+with its set of vertices and we assume that Vi ∩ Vj = ∅. This way, the vertex set of K is
+V := V0 ∪ · · · ∪ Vd . The simplices σ ∈ K, called colorful simplices, are exactly the subsets
+σ ⊂ V with |σ ∩ Vi | ≤ 1 for all 0 ≤ i ≤ d.
+In this language, a colorful n-configuration corresponds to a map C : V → Rd , which
+induces a map C : K → Rd that linearly interpolates on each simplex σ ∈ K and thus
+                                     C(σ) := conv(C(v) : v ∈ σ).
+Conversely, any map C : K → Rd that is linear on each simplex gives a colorful configuration by
+setting Ci := {C(v) : v ∈ Vi } and we will identify colorful configurations and affine maps from
+K to Rd . Thus C is a centered colorful configuration if 0 ∈ relint conv C(Vi ) for 0 ≤ i ≤ d,
+and C is in relative general position if 0 ∈  / C(τ ) for any simplex τ ∈ K of dimension < d.
+The avoiding complex associated to C is the simplicial subcomplex
+                              A = A(C) := {σ ∈ K : 0 6∈ C(σ)}.
+We define the hitting set H = H(C) of C to be the set of inclusion-minimal faces of K \ A. If
+C is in general position, then H = K \ A and H = {η1 , . . . , ηm } is a collection of d-dimensional
+simplices of K, the hitting d-simplices of C. In particular, the colorful simplicial depth of a
+configuration C in relative general position is depth(C) = |H(C)|.
+For a simplicial complex S, we write C∗ (S) for the chain complex of S with coefficients
+in Z2 . That is, for −1 ≤ k ≤ dim S, Ck (S) is the Z2 -vector space with basis given by the
+k-dimensional faces σ of S. We will freely abuse notation and treat k-chains of S as collections
+of k-dimensional faces. The boundary map is given by
+                                                X
+                                         ∂σ =       τ,
+where the sum is over all faces τ ⊂ σ with dim τ = dim σ − 1. The k-th homology group is
+denoted by H̃k (S) = ker ∂k / im ∂k+1 and we write β̃k (S) = dimZ2 H̃k (S) for the k-th reduced
+Betti number of S. We will write Sd for the sphere of dimension d.
+Proposition 2.1. Let n = (n0 , . . . , nd ) with ni ≥ 2 for all 0 ≤ i ≤ d. Then
+    β̃k (K(n)) = 0       for k < d        and          β̃d (K(n)) = (n0 − 1)(n1 − 1) · · · (nd − 1).
+
+Proof. For 0 ≤ i ≤ d, the complex Vi is a wedge of ni − 1 spheres of dimension 0. The complex
+K is by construction a join of V0 , . . . , Vd and, since the join distributes over wedge (see [17,
+Ex. 6.2.1]), we have
+                                                    _
+                                     K ≃                    Sd .
+                                                (n0 −1)···(nd −1)
+This proves the claim.                                                                                 
+
+The main connection between the colorful simplicial depth of C and the topology of A(C) is
+the following lemma.
+Lemma 2.2. For n = (n0 , . . . , nd ) with ni ≥ 2, let C be a centered colorful n-configuration
+in relative general position. Then
+                                         d
+                                         Y
+                              depth(C) ≤   (ni − 1) + β̃d−1 (A).
+                                                 i=0
+6              ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+
+Proof. Let A = A(C) be the avoiding complex of C. Using the Euler-Poincaré formula, we
+compute the reduced Euler characteristic χ̃(A) in two different ways. The avoiding complex
+A and the colorful complex K = K(n) agree on all faces up to dimension d − 1 and A is only
+missing the hitting simplices H = H(C). Thus, by Proposition 2.1,
+                                                    d
+                                                    Y
+                                   d−1                         d
+           χ̃(A) = χ̃(K) + (−1)          |H| = (−1)   (ni − 1) + (−1)d−1 depth(C).
+                                                                   i=0
+
+On the other hand, H̃k (A) = H̃k (K) for k < d − 1 and from Proposition 2.1 we get
+                           χ̃(A) = (−1)d−1 β̃d−1 (A) + (−1)d β̃d (A).
+This yields
+                                              d
+                                              Y
+                         depth(C) =                 (ni − 1) + β̃d−1 (A) − β̃d (A).              
+                                              i=0
+
+By way of Lemma 2.2, Theorem 1.2 follows from the main result of this section.
+Theorem 2.3. Let n = (n0 , . . . , nd ) with ni ≥ 2. Then β̃d−1 (A(C)) = 1 for any centered
+colorful n-configuration C in relative general position.
+
+We note that β̃d−1 (A(C)) is never trivial for centered configurations in relative general position
+because A(C) retracts onto the boundary of any hitting simplex.
+Proposition 2.4. Let C be a centered colorful configuration in relative general position. Then
+                                         β̃d−1 (A(C)) ≥ 1.
+
+Proof. By construction, the avoiding complex A = A(C) satisfies C(A) ⊂ Rd \ {0}. Hence, if
+C is followed by the radial projection of Rd \ {0} onto the (d − 1)-sphere Sd−1 , we obtain a
+continuous map Ĉ : A → Sd−1 . By the colorful Carathéodory Theorem 1.1, there is at least
+one colorful d-simplex η ∈ H = K \ A. The assumption of relative general position yields
+0 ∈ int C(η). Let Σ be the boundary complex of η. Since the skeleta of K and A coincide
+in all dimensions ≤ d − 1, we have that Σ ⊆ A is a subcomplex and Ĉ restricted to Σ is a
+homeomorphism. Thus,
+                                                        Ĉ∗
+                                   H̃d−1 (A)                  / H̃d−1 (Sd−1 )
+                                          O                        8
+                                                       id
+
+
+                                   H̃d−1 (Σ)
+commutes and, in particular, Ĉ is surjective in homology. This shows that β̃d−1 (A) > 0.        
+
+The proof of Proposition 2.4 actually shows that the boundary of any hitting simplex yields
+a non-trivial class in H̃d−1 (A(C)). The following proposition shows that the hitting simplices
+even generate.
+Proposition 2.5. Let C be a centered colorful configuration in relative general position with
+avoiding complex A = A(C) and hitting set H = H(C). Then H̃d−1 (A) is generated by the
+cycles ∂η for η ∈ H.
+      COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                 7
+
+
+Proof. Since H̃d−1 (K) = 0, we have, by definition, im ∂d = ker ∂d−1 . Since Ck (K) = Ck (A) for
+k ≤ d − 1 and
+                                  Cd (K) = Cd (A) ⊕ Z2 H
+the result follows.                                                                           
+
+As a consequence of Proposition 2.5 and Proposition 2.4, we note the following useful refor-
+mulation of Theorem 2.3.
+Corollary 2.6. Let C be a centered colorful configuration in relative general position with
+avoiding complex A = A(C). Then β̃d−1 (A) = 1 if and only if any two hitting simplices
+η1 , η2 ∈ H(C) are homologous. That is, there is some B ∈ Cd (A) such that
+(1)                                    ∂η1 + ∂η2 = ∂B.
+
+Let C, C 0 : K → Rd be two centered colorful configurations in relative general position. We
+say that C 0 is obtained from C by a flip if there is a continuous family (Ct : K → Rd )−1≤t≤1
+of centered configurations such that C−1 = C and C1 = C 0 and Ct is in relative general
+position at all times except for t = 0. At time t = 0, the unique minimal face ρ ∈ K with
+0 ∈ relint C0 (ρ) is of dimension d − 1. To emphasize ρ, we shall say that C and C 0 are related
+                                   ρ
+by a flip over ρ and we write C      C 0 . Informally, think of a flip as a continuous motion of C
+     0
+to C such that the origin passes through the ridge ρ.
+
+
+
+
+         Figure 2. One can sometimes think of a ρ-flip as if the origin moved contin-
+         uously through ρ without crossing any other colorful ridge. Colorful simplices
+         containing ρ change their status, the remaining are not affected.
+
+                            ρ
+Proposition 2.7. Let C         C 0 be two configurations in relative general position related by
+a flip in ρ and let A, A0 and H, H0 be the respective avoiding complexes and hitting sets. A
+colorful d-simplex σ is in the symmetric difference H 4 H0 = (H \ H0 ) ∪ (H0 \ H) if and only
+if ρ ⊂ σ. Thus, a colorful d-simplex σ ∈ A ∪ A0 is contained in A ∩ A0 if and only if ρ is not
+a face of σ.
+
+Proof. Let (Ct )−1≤t≤1 be the continuous family that realizes the flip over ρ. For ε > 0
+sufficiently small, every colorful d-simplex σ that contains ρ is hitting for C−ε if and only if
+it is not hitting for C+ε . Hence, the colorful simplices in the symmetric difference H 4 H0 are
+exactly the colorful d-simplices that contain ρ.                                              
+8              ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+
+The benefit of working with flips is that we can pass from one colorful configuration to another.
+Proposition 2.8. Any two centered colorful n-configurations in relative general position are
+connected by a sequence of flips.
+
+Proof. Let us denote by F ⊂ {C : V → Rd } the space of all centered colorful configurations.
+This is an open semialgebraic set of full dimension d(n0 + · · · + nd ). The set X ⊂ RV of
+colorful configurations C such that 0 ∈ C(ρ1 ) ∩ C(ρ2 ) for two distinct colorful (d − 1)-simplices
+ρ1 , ρ2 ∈ K is of codimension 2. Indeed, if we forget about containment and only require that
+0 ∈ aff C(ρ1 ) ∩ aff C(ρ2 ), then the dimension can only increase. For two fixed ρ1 and ρ2 , pick
+a1 ∈ ρ1 \ ρ2 and a2 ∈ ρ2 \ ρ1 . We can choose C(p) ∈ Rd freely for any p ∈ V \ {a1 , a2 } and
+we have to choose C(ai ) in the linear span of {f (p) : p ∈ ρi , p 6= ai }, which is a linear space of
+dimension at most of dimension d − 2. This yields d(n0 + · · · + nd ) − 2 degrees of freedom and
+X is contained in a finite union of these sets as ρ1 and ρ2 vary over all distinct (d−1)-simplices
+of K. It follows that F \ X is path connected, which proves the claim.                              
+
+The crucial insight now is that β̃d−1 (A(C)) is invariant as C undergoes a flip.
+                       ρ
+Lemma 2.9. Let C          C 0 be two centered colorful configurations in general position that are
+related by a flip in ρ. If βd−1 (A(C)) = 1, then βd−1 (A(C 0 )) = 1.
+
+Proof. Let A, A0 be the avoiding complexes of C and C 0 , respectively, and write H and H0 for
+their hitting sets. In light of Corollary 2.6, we want to show that for any η1 , η2 ∈ H0 there is
+a d-chain B 0 ∈ Cd (A0 ) such that ∂η1 + ∂η2 = ∂B 0 . For the proof, let us call a hitting simplex
+η old if η ∈ H ∩ H0 and new if η ∈ H0 \ H. By Proposition 2.7, a hitting simplex η is new if
+and only if ρ ⊆ η. Without loss of generality, ρ = {a1 , a2 , . . . , ad } with ai ∈ Vi for 1 ≤ i ≤ d.
+That is, ρ is a colorful ridge that avoids V0 . Our proof distinguishes three cases, depending on
+whether η1 and η2 are new or old. It follows from the (polyhedral) Morse Lemma that only
+new hitting simplices can create homology and, strictly speaking, we only need to consider the
+‘new/new’ case. However, to have a self-contained proof, we include all cases.
+New/New: Assume that η1 , η2 ∈ H0 \ H. Then there are a0 , b0 ∈ V0 such that η1 = a0 ∗ ρ =
+{a0 , a1 , . . . , ad } and η2 = b0 ∗ ρ. Let us consider the critical configuration Ct at time t = 0.
+Let H be the linear hyperplane spanned by C0 (ρ) and denote by H + the closed halfspace
+containing C0 (a0 ) and C0 (b0 ). The points must lie in the same halfspace, because η1 and η2
+are hitting in Cε for ε > 0. Since C is centered, there are bi ∈ Vi such that C0 (bi ) ∈ H + for
+all 1 ≤ i ≤ d. Define the subcomplex
+                      O(η1 , η2 ) := {a0 , b0 } ∗ {a1 , b1 } ∗ · · · ∗ {ad , bd } ⊂ K,
+which, as an abstract simplicial complex, is the boundary of a (d + 1)-dimensional crosspoly-
+tope. Except for η1 and η2 , every simplex σ ∈ O(η1 , η2 ) belongs to A ∩ A0 . Indeed, they are
+avoiding already in C0 by construction, because they lie all in the same linear halfspace and
+only ρ contains 0 in its relative interior. Moreover, every avoiding simplex of C0 is also an
+avoiding simplex of Ct for −1 ≤ t ≤ 1, since only the simplices that contain ρ as a face change
+their status in the course of the flip. We call the d-chain
+                            X
+             Z(η1 , η2 ) :=    {σ : σ ∈ O(η1 , η2 ) \ {η1 , η2 }, dim(σ) = d} ∈ Cd (A0 )
+a cylinder of η1 and η2 and we observe that
+                           0 = ∂O(η1 , η2 ) = ∂Z(η1 , η2 ) + ∂η1 + ∂η2 ,
+    COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                       9
+
+which shows that ∂η1 + ∂η2 is a boundary and finishes the first case.                               
+Old/Old: Assume that η1 , η2 ∈ H0 ∩ H and thus ρ is not a face of neither η1 nor η2 . Since η1
+and η2 are hitting for C, the assumption and Corollary 2.6 assure us that there is a d-chain
+B ∈ Cd (A) such that
+                                                                   !
+                                                X           X
+(2)                    ∂η1 + ∂η2 = ∂B = ∂             σ+          σ .
+                                             σ∈B∩A0     σ∈B∩H0
+                                              0
+We claim that the number of simplices in B ∩ H is even. To this end, consider the cochain
+ρ∗ : Cd−1 (K) → Z2 with ρ∗ (ρ) = 1 and = 0 otherwise. The coboundary δρ∗ = ρ∗ ◦ ∂ satisfies
+that for a colorful d-simplex σ ∈ K
+                δρ∗ (σ) = 1       if ρ ⊂ σ        and      δρ∗ (σ) = 0         otherwise.
+Since neither η1 nor η2 contain ρ, we compute from (2)
+                                                  X                            X
+             0 = ρ∗ (∂η1 + ∂η2 ) = δρ∗ (B) =           δρ∗ (σ) +                      δρ∗ (σ).
+                                              σ∈B∩A0       σ∈B∩H0
+Because δρ evaluates to 0 on the simplices of B ∩ A ⊆ A ∩ A0 and to 1 on the simplices
+          ∗                                        0
+
+of B ∩ H0 ⊂ H0 \ H (cf. Proposition 2.7), this shows that |B ∩ H0 | is even. Let B ∩ H0 =
+{σ1 , . . . , σ2k }. Since each σi is a new hitting simplex, we can use the previous case to find
+cylinders Z(σ2i−1 , σ2i ) ∈ Cd (A0 ) such that
+                         X             k
+                                       X                         k
+                                                                 X
+                    ∂            σ =         ∂(σ2i−1 + σ2i ) =         ∂Z(σ2i−1 , σ2i ),
+                        σ∈B∩H0         i=1                       i=1
+
+which together with (2) shows that ∂η1 + ∂η2 is a boundary in A0 .                                  
+Old/New: Assume that η1 ∈ H0 ∩ H and η2 ∈ H0 \ H and thus ρ * η1 but ρ ⊆ η2 . Again, let
+a ∈ V0 such that η2 = a ∗ ρ. Let H be the linear hyperplane parallel to aff(C 0 (ρ)). Since C 0 is
+in relative general position, C 0 (η2 ) is a d-simplex and H separates C 0 (a) from C 0 (ρ). By the
+centeredness, there must be some b ∈ V0 such that H separates C 0 (a) and C 0 (b). In particular,
+the colorful simplex η20 := b ∗ ρ is contained in H \ H0 ; that is, η20 an element of A0 containing ρ.
+Hence, η1 , η20 is a pair of hitting simplices for C and, by the assumption and Corollary 2.6,
+there is a chain B ∈ Cd (A) such that ∂η1 + ∂η20 = ∂B. Define B 0 := B + η2 + η20 . This is a
+chain in Cd (K) and
+                              ∂B 0 = ∂B + ∂η2 + ∂η20 = ∂η1 + ∂η2 .
+Using the cochain ρ∗ , we observe that ρ∗ (∂η1 + ∂η20 ) = 1 and hence B ∩ H0 contains an odd
+number of elements. Since η2 ∈ H0 and η20 ∈     / H0 , it follows that B 0 = B + η2 + η20 contains
+                                        0
+an even number of elements in H and, by pairing them up with cylinders, there is some
+B 00 ∈ Cd (A0 ) such that ∂B 0 = ∂B 00 .                                                        
+
+Proof of Theorem 2.3. By Lemma 2.9 and Proposition 2.8, it suffices to produce a single in-
+stance of a centered colorful configuration in relative general position for every n whose avoid-
+ing complex satisfies β̃d−1 (A) = 1.
+Note that the centered configurations of Example 1.3 are in relative general position. From
+the description of the hitting simplices in Example 1.3, we can get their avoiding complexes.
+For 0 ≤ i ≤ d, let Vi be the 0-dimensional complex with vertices ai , bi1 , . . . , bini −1 . Then
+σ ∈ K(n) = V0 ∗ · · · ∗ Vn is an avoiding d-simplex if and only if it contains at least one ai and
+at least one bjl for i 6= j and 1 ≤ l < nj . We call the vertices ai special and we set Ad+1 to be
+10             ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+
+the boundary complex of the hitting simplex {a0 , . . . , ad }. We will show that A is homotopy
+equivalent to Ad+1 and hence H̃∗ (A) = H̃∗ (Sd−1 ).
+Recall that if σ is an inclusion-maximal face of a simplicial complex ∆, and τ ⊂ σ is a face
+with dim τ < dim σ that is not contained in any other inclusion-maximal face of ∆, then τ is
+called a free face of σ. If τ is a free face of σ, the removal of all the simplices τ ⊆ γ ⊆ σ of ∆
+is called a collapse, and denoted by ∆ & ∆0 , where ∆0 = ∆ \ {γ : τ ⊆ γ ⊆ σ}. We will use
+the same notation to denote a sequence of collapses. If ∆ & ∆0 then ∆ and ∆0 are homotopy
+equivalent; cf. [5, Sect. 11.1].
+For 1 ≤ k ≤ d, let Ak ⊆ A be the subcomplex generated by the d-simplices with at least k
+special vertices. We will show that
+(3)                  A = A1 & A2 & · · · & Ad & Ad+1 ∼
+                                                     = Sd−1 .
+
+For 1 ≤ k ≤ d − 1, let σ ∈ Ak be a d-simplex containing exactly k special vertices and let
+τ ⊂ σ be any ridge containing k −1 special vertices. Since every Vi contains exactly one special
+vertex and τ misses only one color class Vi , τ is a free face of σ. Hence, it can be collapsed.
+Continuing this way shows Ak & Ak+1 . In the last step, the simplices σ ∈ Ad contain a single
+non-special vertex, which is itself a free face of σ and can be collapsed. What remains are the
+(d − 1)-simplices spanned by special vertices, which is exactly Ad+1 .                        
+
+
+
+
+       Figure 3. Scheme of A for Example 1.3 for d = 2. The large nodes on the
+       outer triangle should be thought of as representatives of the non-special vertices
+       of that color. Since no simplex of A has two vertices of the same color, this
+       depicts the whole complex. Lightly shaded triangles belong to A1 and darkly
+       shaded triangles to A2 . The boundary of the interior triangle, drawn thicker,
+       is A3 . The collapses for the proof of Theorem 2.3 are also depicted.
+
+The Universal Coefficient Theorem together with Hurewicz’ theorem (cf. [12]) shows that all
+homotopy groups of A(C) up to dimension d − 1 agree with that of the (d − 1)-sphere.
+Conjecture. For a centered colorful configuration C in relative general position, the avoiding
+complex A(C) d-collapses (in the sense of Wegner [27]) onto the boundary of a hitting simplex.
+
+For the Colorful Carathéodory Theorem, the assumption of centeredness can be replaced by
+a weaker assumption (see, for example, [2, 3, 13, 20]). This prompts the following question.
+
+Question 1. Under which conditions other than centeredness is β̃d−1 (A) = 1?
+    COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                     11
+
+                 3. From colorful configurations to Minkowski sums
+
+In this section we will show how to use Gale duality and the Cayley trick to translate between
+colorful configurations and Minkowski sums. Although we are mainly interested in the case
+of polytopes, our setup works with arbitrary point configurations (not necessarily in convex
+position). Let V be a finite set. A point configuration in Rd indexed by V is a map
+A : V → Rd . Note that our point configurations can have multiple points. A subset U ⊆ V is
+a face of A if there is an affine function ` : Rd → R such that `(A(v)) ≥ 0 and > 0 if and only
+if v 6∈ U. That is, we identify faces of the convex hull conv A(V) with the indices of points
+contained in them.
+If we further assume that the affine span of A(V) is full-dimensional, then A induces a surjective
+linear map A b : RV → Rd+1 by sending ev 7→ (A(v), 1) for v ∈ V and extending by linearity.
+The map A  b has a (possibly trivial) kernel ker(Â) ∼
+                                                     = R|V|−d−1 and let ι : ker(A)
+                                                                                 b ,→ RV denote
+the inclusion map. The adjoint to ι is a linear map
+                                         ι∗ : (RV )∗  (ker(A))
+                                                            b ∗.
+                 b ∗ with R|V|−d−1 , we get another configuration G : V → R|V|−d−1 , the Gale
+Identifying (ker(A))
+transform of A given by G(v) = ι∗ (e∗v ) for v ∈ I.
+            1
+
+
+Lemma 3.1 (Gale duality). Let A : V → Rd be a (full-dimensional) point configuration and
+G : V → R|V|−d−1 a Gale transform of A. Then U ⊆ V is a face of A if and only if
+                                    0 ∈ relint conv(G(i) : i ∈ V \ U).
+
+Gale transforms and Gale duality are powerful tools in discrete geometry and we refer to [16,
+Section 5.6] for a very accessible treatment in terms of matrices and to [28, Lecture 5] for its
+relation to oriented matroids. In particular, the faces of the polytope conv A(V) are completely
+described by the Gale transform G.
+Let us assume that V = V0 ∪V1 ∪· · ·∪Vs for some s > 0 and Vi ∩Vj = ∅ for i 6= j. Then, similar
+to Section 2, we consider the point configuration A as a family of s + 1 separate configurations
+Ai : Vi → Rd . Their Minkowski sum is the point configuration:
+                        X
+                              A : V0 × · · · × Vs → Rd
+                               V
+                                        (v0 , . . . , vs ) 7→ A(v0 ) + · · · + A(vs ).
+We can restrict this configuration
+                         P          to any subset
+                                            P     U ⊂ V with Ui = U ∩ Vi 6= ∅. It is easy to
+check that every face of   A is of the form U A for some U ⊆ V such that Ui is a face of Ai .
+We may adapt the notion of Gale transforms to Minkowski sums by way of Cayley embeddings.
+The Cayley embedding of A : V → Rd is the configuration CayV (A) : V → Rs × Rd that
+takes vi ∈ Vi to (ei , A(vi )) for 0 ≤ i ≤ s. Here, e0 := 0 and e1 , . . . , es is the standard basis
+of Rs . Alternatively, you can also replace e0 , . . . , es with the vertices of any full-dimensional
+simplex in Rs .
+          1
+Let b = s+1  (e0 + · · · + es ) be the barycenter of e0 , . . . , es and consider the affine subspace
+Λ = {(x, y) ∈ Rs × Rd : x = b}. Then it is straightforward to check that
+                                                               X       
+                              conv(CayV (A)) ∩ Λ ∼= conv               A .
+                                                                          V
+
+  1Actually, G is typically treated as a vector configuration.
+12              ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+                                                                      P
+In particular, this induces a bijection between faces of CayV (A) and V A. Cayley embed-
+dings have many favorable properties, in particular in relation to triangulations and mixed
+subdivisions; see [14].
+Lemma 3.2. Let U = U0 ∪ · · · ∪ Us ⊆ V be such that UiP      6= ∅ for all 0 ≤ i ≤ s. Then U is a
+face of CayV (A) if and only if U0 × · · · × Us is a face of V A.
+
+Let G be a Gale transform of CayV (A). By construction, G is a colorful point configuration
+and we refer to it as a colorful Gale transform. If A is a configuration of N = |V| =
+|V0 | + · · · + |Vs | points in Rd , then G is a colorful configuration of N points in (N − d − s − 1)-
+dimensional space. Since V \ Vj is a face for all 0 ≤ j ≤ s, it follows from Lemma 3.1 that
+0 ∈ relint conv G(Vj ) and hence G is actually a centered        P configuration. This allows us to
+construct a dictionary between the facial structure of V A and properties of the colorful
+configuration G. We start with a characterization that shows that every centered colorful
+configuration can be thought as a colorful Gale transform.
+A configuration G : V → Rd is positively spanning if G(V) is not contained in a closed linear
+halfspace; and it is positively 2-spanning if for any v ∈ V, the restriction of G to V \ {v}
+is positively spanning. A configuration G0 : V → Rd is a positive rescaling of G if there is
+λ : V → R>0 such that G0 (v) = λ(v)G(v) for all v ∈ V. We say that G and G0 are positively
+equivalent if they are related by a positive rescaling. Notice that in this case G0 is centered,
+positively spanning or positively 2-spanning whenever G is. The Gale transform G and G0
+of A and A0 are positively equivalent if and only if A and A0 are projectively isomorphic [11,
+5.4.vi].
+The following characterization of colorful Gale transforms is implicit in [21, Prop. 2.9].
+Lemma 3.3. For V = V0 ∪ · · · ∪ Vs . The Gale transform G : V → R|V|−d−s−1 of a
+(full-dimensional) Cayley embedding A : V → Rs+d is centered. Conversely, every (full-
+dimensional) centered configuration is positively equivalent to the Gale transform of a Cayley
+embedding.
+Moreover, the points A(Vj ) are in convex position for every 0 ≤ j ≤ s if and only if G is
+positively 2-spanning.
+
+As in the case of ordinary Gale duality, the facial structure of the Minkowski sum of a colorful
+configuration can be read from the colorful Gale dual. The following dictionary follows the
+same reasoning as for classical Gale duality and we therefore omit the proof.
+Proposition 3.4 (Colorful Gale duality). Fix V = V0 ∪ · · · ∪ Vs . Let A : V → Rd be a con-
+figuration such that V A is full-dimensional and let G : V → R|V|−d−s−1 be a corresponding
+                     P
+colorful Gale transform. For U ⊆ V such that Ui 6= ∅ for all 0 ≤ i ≤ d the following holds
+            X                   X
+                 A is a face of     A     if and only if      0 ∈ relint G(V \ U).
+                 U                     V
+
+Note that the colorful Gale transform actually encodes also the faces of all subsums of
+                                                              S Indeed, for U S
+A0 , . . . , As , which are in bijection to the faces of CayV (A).              ⊆ V let I ⊂ {0, . . . , s}
+be the set of indices such that    P i U  =  ∅ and  set  VI =      V
+                                                                i∈I i and U I =  i∈I Ui . Then UI is a
+face of the Minkowski sum VI A if and only if 0 ∈ relint G(V \ U).
+In the next section we will see another way to associate a colorful configuration to a Minkowski
+sum. In contrast to the colorful Gale transform, that colorful configuration is realized in lower
+    COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                     13
+
+dimensions but it will only remember faces of the full Minkowski sums and, for example, will
+not contain the face structure of the summands.
+The following result, which is obtained from the duality between deletions and contractions
+of Gale transforms [28, Section 6.3(d)], gives a glimpse at this connection by showing how to
+recover the Gale transform of each of the summands from the colorful Gale transform.
+Proposition 3.5. For V = V0 ∪ · · · ∪ Vs , let A : V → Rd be a configuration and let G :
+V → R|V|−d−s−1 be an associated colorful Gale transform. For 0 ≤ i ≤ s, a Gale transform of
+Ai : Vi → Rd is given by the projection Gi : Vi → R|V|−d−s−1 /L, where L is the linear span of
+G(V \ Vi ).
+In particular, the points Ai are affinely independent if and only if G(V \ Vi ) is spanning.
+
+Notice that this last property is always fulfilled by colorful configurations in relative general po-
+sition. Indeed, if G(V \Vi ) was not full dimensional, we could apply the Colorful Carathéodory
+Theorem to find a colorful ridge containing the origin.
+            ≤ i ≤ s the points of Ai are affinely independent, then Pi := conv A(Vi ) is a simplex
+If for all 0P
+and conv A = P1 + · · · + Ps is a Minkowski sum of simplices.
+Corollary 3.6. Let V = V0 ∪ · · · ∪ Vd with ni = |Vi | ≥ 2 for all 0 ≤ i ≤ d and set n =
+n0 + · · · + nd . Then every centered colorful configuration of G : V → Rd in relative P
+                                                                                       general
+position is the colorful Gale transform of a configuration A : V → Rn−2d−1 such that      A is
+full-dimensional and Ai is affinely independent for all 0 ≤ i ≤ d.
+
+A converse statement also holds, for the adequate notion of general position of Minkowski
+sums of simplices. For example, if all the simplices are in relative general position in the sense
+of [1], then their colorful Gale dual is in relative general position. We do not elaborate further
+because we will only need Corollary 3.6 in this direction.
+                                              P
+We are interested in the face structure of V A. We will call a face U = U0 ∪ · · · ∪ Us mixed
+if dim(A(Ui )) ≥ 1 for all 1 ≤ i ≤ s. A facet is totally mixed if Ui is a facet of Ai for all
+0 ≤ i ≤ s.
+Proposition 3.4 allows to easily translate many properties between the two setups. In par-
+ticular information on facets. Notice that, since facets of A are inclusion-maximal faces, the
+corresponding sub-configuration of G is Pan inclusion minimal subset containing the origin in
+its convex hull. In particular, facets of V A correspond to subsets S = S0 ∪ · · · ∪ Ss with
+Si Vi such that G(S) is affinely independent and 0 ∈ relint(G(S)).
+Lemma 3.7. Let V = V0 ∪· · ·∪Vd with ni = |Vi | ≥ 2, and let G : V → Rd be a centered colorful
+                                                             Rn−2d−1 . Let σ = {v0 , . . . , vs } be
+configuration that is the colorful Gale transform of A : V → S
+a hitting
+   P      colorful simplex of G such that 0 ∈ int G(σ). Then Vi \ {vi } is a totally mixed facet
+of V A.
+                                                   for all 0 ≤ i ≤ d, the converse holds:
+If moreover each of the Ai isPaffinely independent S
+each totally mixed facet is of V A is of the form Vi \ {vi } for a hitting colorful simplex
+σ = {v0 , . . . , vs } with 0 ∈ int G(σ).
+
+Observe
+P       that the reciprocal does not hold in the general case, since such a totally mixed facet
+  U A exists if and only if each A(Vi ) is a pyramid with basis A(Ui ). However, the case in
+which we are most interested in is the Minkowski sum of simplices, in which every facet is a
+pyramidal base.
+14             ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+
+In particular, in light of Corollary 3.6, centered colorful n-configurations in relative general
+position can be interpreted as the Cayley embedding of a collection of simplices A0 , . . . , Ad in
+  D
+                      P
+R , where D = 1 + (dim(Ai ) − 1). The dimensions are not arbitrary: The only possibility
+thatPa generic collection of polytopes in RD can have a totally mixed facet is that D =
+1 + (dim(Ai ) − 1) (and then such a facet is isomorphic to a product of facets of each Ai ).
+Then Theorem 1.4 is just a result of translating Theorem 1.2 to Minkowski sums.
+
+Proof of Theorem 1.4. Let G  Pbe the colorful Gale transform of A. By Lemma 3.7, the number
+of totally mixed facets of      V A is the number of hitting simplices of G that contain the
+origin in its relative interior. Since this is an open condition, the maximum is is clearly
+attained by a colorful configuration in general position, and the Corollary follows directly
+from Theorem 1.2.                                                                         
+
+                4. Minkowski sums and generalized Gale transforms
+
+In this final section we wish to outline an alternative way to associate a colorful configuration
+to a Minkowski sums. This is by way of generalized Gale transforms that were first described
+by McMullen [19]. He presented several applications in the study of zonotopes and centrally
+symmetric polytopes, and one purpose of this section is to show new applications of this
+construction. This is best done for polytopes and this section differs from the previous ones
+in that we focus on polytopes and their vertex sets.
+Let P ⊂ Rd be a full-dimensional polytope. We are interested in the facial structure of π(P ),
+where π : Rd → Re is a linear projection with e ≤ d. We may assume that 0 is in the interior
+of P and thus there are linear forms `0 , . . . , `m : Rd → R such that
+                         P = {x ∈ Rd : `(x) ≤ 1 for all i = 0, . . . , m}.
+
+For a face F ⊆ P , let I(F ) = {i ∈ [m] : `i (x) = 1 for all x ∈ F }, where [m] = {0, . . . , m}, and
+set
+                             I = I(P ) := {I(F ) : F ⊆ P face}.
+Since I(F ) 6= I(F 0 ) if and only if F 6= F 0 , I ordered by inclusion is isomorphic to (the opposite
+of) the face lattice of P and we consider this to be the combinatorial information obtained
+from P .
+Now, if π : Rd → Re is a linear projection, then its adjoint is an injection π ∗ : (Re )∗ ,→ (Rd )∗
+and let L ⊆ (Rd )∗ be its image. Finally, let φ : (Rd )∗  (Rd )∗ /L ∼ = Rd−e be the canonical
+projection. We define the P -transform of π as the point configuration GP : [m] → Rd−e by
+GP (i) = φ(`i ) for i = 0, . . . , m. This, in a strong way, depends on the geometry of P . The
+following lemma is the analog of Lemma 3.1 that has been discovered in different contexts.
+See [29, 23] for strengthenings.
+Lemma 4.1. Let P ⊂ Rd be a full-dimensional polytope. For π : Rd → Re , let GP be the
+associated P -transform. For a proper face F ⊂ P the following are equivalent
+  (i) F 0 = π(F ) is a proper face of π(P ) and π −1 (F 0 ) ∩ P = F ,
+ (ii) 0 ∈ relint conv GP (I(F )).
+
+Proof. Let `0 ∈ (Re )∗ be a linear function such that `0 is maximized on F 0 over π(P ). This
+is the case if ` = π ∗ (`0 ) is maximized on F over P . That is, if there are scalars λi ≥ 0 for
+      COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                          15
+
+i ∈ I(F ) such that
+                                                    X
+(4)                                           `=             λi `i .
+                                                   i∈I(F )
+
+Since ` is in the image of π ∗ , it follows that φ(`) = 0 and hence, after applying φ to (4)
+                    P
+and scaling by 1/ λi we get that 0 ∈ conv GP (I(F )). If there is no face Fb ⊃ F such that
+π(Fb) = F 0 , then all the λi must be strictly positive, and hence the origin is in the relative
+interior of conv GP (I(F )).
+                                                                                 P
+For the converse, note that if there are λi > 0 for i ∈ I(F ) such that ` = i∈I(F ) λi `i , then
+F is the inclusion-maximal face that maximizes `. Moreover, if ` is in the kernel of φ, then,
+by definition, it is in the image of π ∗ and hence ` = π ∗ (`0 ) for some `0 ∈ (Re )∗ . That is, π(F )
+maximizes `0 over π(P ).                                                                            
+
+The following example shows the connection to usual Gale transforms.
+Example 4.2. For n ≥ 1 fixed, let ∆ ⊂ Rn−1 be the (n − 1)-dimensional simplex with
+vertices v1 , v1 , . . . , vn vn = −(v1 + · · · + vn−1 ). Its n facet-defining linear inequalities `i (x) ≤ 1
+satisfy `i (vj ) = 1 if i 6= j and < 1 otherwise. If we write FJ = conv(vi : i ∈ J) for the face
+corresponding to a subset J ⊆ [n], then the convention above yields I(FJ ) = [n] \ J.
+For a given polytope Q = conv(q1 , . . . , qn ) ⊂ Rd on n vertices whose barycenter is the origin,
+there is a canonical surjective linear projection π : Rn−1 → Rd that takes vi to qi for all 1 ≤ i ≤
+n. The corresponding ∆-transform is then a point configuration G∆ : [n] → (Rn−1 )∗ / im(π ∗ ) ∼   =
+Rn−1−d and Lemma 4.1 yields that for any J ⊆ [n] we have that
+                                   π(FJ ) = conv(qi : i ∈ J) ⊆ Q
+is a face of Q if and only if 0 ∈ relint conv(G∆ (i) : i ∈ [n] \ J).
+
+This is exactly the statement of Lemma 3.1. Actually, for a careful choice of the simplex
+∆, ordinary Gale transforms are exactly ∆-transforms. In general P -transforms are a very
+powerful tool to study polytopes under projections; cf. [22]. In particular, the (well-)known
+cs transforms for centrally-symmetric polytopes and zonal transforms for zonotopes are P -
+transforms for crosspolytopes and cubes, respectively [19].
+Of course, we may also fix the projection π : Rd → Re and vary the polytope P ⊂ Rd . This
+approach directly allows us to associate a colorful configuration to a Minkowski sum. For fixed
+s and d, the Minkowski projection is the linear map µ : (Rd )s+1 → Rd given by
+                                    (x0 , . . . , xs ) 7→ x0 + · · · + xs .
+For polytopes P0 , . . . , Ps ⊂ Rd it is obvious that µ(P0 ×· · ·×Ps ) = P0 +· · ·+Pd . If Pi has facet-
+defining linear forms indexed by Fi , then the facet-defining linear forms of P = P0 +· · ·+Ps are
+indexed by F = F0 ∪ · · · ∪ Fs . The Minkowski transform M : F → R(s−1)d of P0 , . . . , Ps
+is then the (P0 × · · · × Ps )-transform for the Minkowski projection µ. This is a colorful
+configuration. It is also centered, because the normal vectors to the facets of each polytope
+are positively spanning in their linear span. For faces Fj ⊆ Pj , 0 ≤ j ≤ s, write I(Fj ) ⊆ Fj .
+Then Lemma 4.1 yields that F0 + · · · + Fs is a proper face of P0 + · · · + Ps if and only if
+                               0 ∈ relint conv M (I0 (F0 ) ∪ · · · ∪ Is (Fs )).
+
+Note that M is a colorful configuration in (s + 1)d-dimensional space and thus typically of
+much lower dimension than the colorful Gale transform of Section 3. However, as we pointed
+16              ADIPRASITO, BRINKMANN, PADROL, PATÁK, PATÁKOVÁ, AND SANYAL
+                                                                                     P
+out in Section 3, the colorful Gale transform also contains information about subsums i∈I Pi
+for any I ⊆ [s], and in particular, of each of the individual summands. This is not true any
+more for the Minkowski transform M . In general, the number of points in the two transforms
+does not coincide either: The Minkowski transform is indexed by facets and the colorful Gale
+transform by vertices.
+Yet, these two approaches are strongly related. Consider the case where Pi ⊂ Rd is an
+(ni − 1)-dimensional simplex for all 0 ≤ i ≤ s. If Vi and Fi index the facets and the vertices
+of Pi , respectively, then |Vi | = |Fi | = ni and we can identify both by matching each facet
+with the only vertex it does not contain. Then, as in Example 4.2, for Ji ⊂ Vi the face
+FJi = conv(qj : j ∈ Ji ) belongs to the facets indexed by I(Fj ) = Fi \ Ji .
+The Minkowski transform M : F → Rn−s−d−1 , where n = n0 + · · · + ns is a centered colorful
+configuration, because the normal vectors to the facets of each polytope are positively spanning
+in their linear span. Lemma 4.1 yields that for any collection Ji ⊆ Vi for 0 ≤ i ≤ s, the sum
+FJ0 + · · · + FJs is a face of P0 + · · · + Ps if and only if
+                            0 ∈ conv(M (F0 \ J0 ) ∪ · · · ∪ M (Fs \ Js )).
+Notice how this is exactly the condition of Proposition 3.4. This shows that the Minkowski
+transformation M and the colorful Gale transform G of P0 , . . . , Ps are both colorful configura-
+tions in (n − s − d − 1)-dimensional space with the same combinatorics. A careful computation
+shows that these actually coincide.
+Proposition 4.3. For any collection of simplices P0 , . . . , Ps ⊂ Rd , the Minkowski transfor-
+mation and the colorful Gale transformation coincide up to a choice of coordinates.
+
+
+                                             References
+ [1] K. A. Adiprasito and R. Sanyal, Relative Stanley–Reisner theory and upper bound theorems for
+     Minkowski sums, Publications mathématiques de l’IHÉS, (2016), pp. 1–65. 3, 13
+ [2] J. L. Arocha, I. Bárány, J. Bracho, R. Fabila, and L. Montejano, Very colorful theorems,
+     Discrete Comput. Geom., 42 (2009), pp. 142–154. 1, 10
+ [3] I. Bárány, A generalization of Carathéodory’s theorem, Discrete Mathematics, 40 (1982), pp. 141–152.
+     1, 10
+ [4] I. Bárány and J. Matoušek, Quadratically many colorful simplices, SIAM J. Discrete Math., 21 (2007),
+     pp. 191–198. 2
+ [5] A. Björner, Topological methods, in Handbook of combinatorics, Vol. 1, 2, Elsevier, Amsterdam, 1995,
+     pp. 1819–1872. 10
+ [6] B. Burton, Minimal triangulations and normal surfaces, PhD thesis, The University of Melbourne, 2003.
+     3, 4
+ [7] A. Deza, S. Huang, T. Stephen, and T. Terlaky, Colourful simplicial depth, Discrete & Computa-
+     tional Geometry, 35 (2006), pp. 597–615. 1, 2
+ [8] A. Deza, F. Meunier, and P. Sarrabezolles, A combinatorial approach to colourful simplicial depth,
+     SIAM J. Discrete Math., 28 (2014), pp. 306–322. 2
+ [9] A. Deza, T. Stephen, and F. Xie, More colourful simplices, Discrete & Computational Geometry, 45
+     (2011), pp. 272–278. 2
+[10] P. Gritzmann and B. Sturmfels, Minkowski addition of polytopes: computational complexity and
+     applications to Gröbner bases, SIAM J. Discrete Math., 6 (1993), pp. 246–269. 3
+[11] B. Grünbaum, Convex polytopes, vol. 221 of Graduate Texts in Mathematics, Springer-Verlag, New York,
+     second ed., 2003. 12
+[12] A. Hatcher, Algebraic topology, Cambridge University Press, Cambridge, 2002. 10
+[13] A. Holmsen, J. Pach, and H. Tverberg, Points surrounding the origin., Combinatorica, 28 (2008),
+     pp. 633–644. 1, 10
+    COLORFUL SIMPLICIAL DEPTH, MINKOWSKI SUMS, AND GENERALIZED GALE TRANSFORMS                            17
+
+[14] B. Huber, J. Rambau, and F. Santos, The Cayley trick, lifting subdivisions and the Bohne-Dress
+     theorem on zonotopal tilings, J. Eur. Math. Soc. (JEMS), 2 (2000), pp. 179–198. 12
+[15] R. Y. Liu, On a notion of data depth based on random simplices, Ann. Statist., 18 (1990), pp. 405–414. 1
+[16] J. Matoušek, Lectures on discrete geometry, vol. 212 of Graduate Texts in Mathematics, Springer-Verlag,
+     New York, 2002. 11
+[17]       , Using the Borsuk-Ulam theorem, Universitext, Springer-Verlag, Berlin, 2003. Lectures on topolog-
+     ical methods in combinatorics and geometry, Written in cooperation with Anders Björner and Günter M.
+     Ziegler. 5
+[18] B. Matschke, J. Pfeifle, and V. Pilaud, Prodsimplicial-neighborly polytopes, Discrete Comput.
+     Geom., 46 (2011), pp. 100–131. 3
+[19] P. McMullen, Transforms, diagrams and representations, in Contributions to Geometry, J. Tölke and
+     J. M. Wills, eds., Birkhäuser Basel, 1979, pp. 92–130. 4, 14, 15
+[20] F. Meunier and A. Deza, A further generalization of the colourful Carathéodory theorem, in Discrete
+     geometry and optimization. Selected papers based on the presentations at the conference and workshop,
+     Toronto, Canada, September 19–23, 2011, vol. 69 of Fields Institute Communications, Springer, New York,
+     2013, pp. 179–190. 1, 10
+[21] B. Nill and A. Padrol, The degree of point configurations: Ehrhart theory, Tverberg points and almost
+     neighborly polytopes, European Journal of Combinatorics, 50 (2015), pp. 159 – 179. 12
+[22] T. Rörig and R. Sanyal, Non-projectability of polytope skeleta, Adv. Math., 229 (2012), pp. 79–101. 3,
+     15
+[23] R. Sanyal and G. M. Ziegler, Construction and Analysis of Projected Deformed Products., Discrete
+     & Computational Geometry, 43 (2010), pp. 412–435. 14
+[24] P. Sarrabezolles, The colourful simplicial depth conjecture, Journal of Combinatorial Theory, Series
+     A, 130 (2015), pp. 119 – 128. 2
+[25] R. Schneider, Convex bodies: the Brunn-Minkowski theory, vol. 151 of Encyclopedia of Mathematics
+     and its Applications, Cambridge University Press, Cambridge, expanded ed., 2014. 3
+[26] T. Stephen and H. Thomas, A quadratic lower bound for colourful simplicial depth, Journal of Combi-
+     natorial Optimization, 16 (2008), pp. 324–327. 2
+[27] G. Wegner, d-collapsing and nerves of families of convex sets, Arch. Math. (Basel), 26 (1975), pp. 317–
+     321. 10
+[28] G. M. Ziegler, Lectures on Polytopes., vol. 152 of Graduate Texts in Mathematics, Springer, New York,
+     1995. 11, 13
+[29] G. M. Ziegler, Projected products of polygons, Electron. Res. Announc. Amer. Math. Soc., 10 (2004),
+     pp. 122–134 (electronic). 14
+
+Einstein Institute for Mathematics, Hebrew University of Jerusalem, Jerusalem, Israel
+E-mail address: adiprasito@math.huji.ac.il
+
+Fachbereich Mathematik und Informatik, Freie Universität Berlin, Berlin, Germany
+E-mail address: pbrinkmann@math.fu-berlin.de
+
+Sorbonne Universités, Université Pierre et Marie Curie (Paris 6), Institut de Mathématiques
+de Jussieu - Paris Rive Gauche (UMR 7586), Paris, France
+E-mail address: arnau.padrol@imj-prg.fr
+
+Einstein Institute for Mathematics, Hebrew University of Jerusalem, Jerusalem, Israel
+E-mail address: ppatak@seznam.cz
+
+Einstein Institute for Mathematics, Hebrew University of Jerusalem, Jerusalem, Israel
+E-mail address: zuzka@kam.mff.cuni.cz
+
+Fachbereich Mathematik und Informatik, Freie Universität Berlin, Berlin, Germany
+E-mail address: sanyal@math.fu-berlin.de
+

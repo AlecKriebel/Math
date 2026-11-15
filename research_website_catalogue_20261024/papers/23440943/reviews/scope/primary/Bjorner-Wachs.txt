@@ -1,0 +1,1599 @@
+ TRANSACTIONS OF THE
+ AMERICAN MATHEMATICAL SOCIETY
+ Volume 348, Number 4, April 1996
+
+
+
+
+       SHELLABLE NONPURE COMPLEXES AND POSETS. I
+
+
+                    ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+         Abstract. The concept of shellability of complexes is generalized by deleting
+         the requirement of purity (i.e., that all maximal faces have the same dimen-
+         sion). The usefulness of this level of generality was suggested by certain ex-
+         amples coming from the theory of subspace arrangements. We develop several
+         of the basic properties of the concept of nonpure shellability.
+             Doubly indexed f -vectors and h-vectors are introduced, and the latter are
+         shown to be nonnegative in the shellable case. Shellable complexes have the
+         homotopy type of a wedge of spheres of various dimensions, and their Stanley-
+         Reisner rings admit a combinatorially induced direct sum decomposition.
+             The technique of lexicographic shellability for posets is similarly extended
+         from pure posets (all maximal chains of the same length) to the general case.
+         Several examples of nonpure lexicographically shellable posets are given, such
+         as the k-equal partition lattice (the intersection lattice of the k-equal subspace
+         arrangement) and the Tamari lattices of binary trees. This leads to simplified
+         computation of Betti numbers for the k-equal arrangement. It also determines
+         the homotopy type of intervals in a Tamari lattice and in the lattice of num-
+         ber partitions ordered by dominance, thus strengthening some known Möbius
+         function formulas.
+             The extension to regular CW complexes is briefly discussed and shown to
+         be related to the concept of lexicographic shellability.
+
+
+
+
+                                        CONTENTS
+
+    Part I
+ 1. Introduction
+ 2. Shellable simplicial complexes
+ 3. Face numbers and the h-triangle
+ 4. Topological properties
+ 5. Lexicographically shellable posets
+ 6. The k-equal partition lattice
+ 7. Other posets of set partitions
+    Part II
+ 8. Interval-generated lattices and dominance order
+ 9. The Tamari lattices
+10. Constructions that preserve shellability
+11. Shifting, vertex-decomposability and CL-shellability
+    Received by the editors October 26, 1994.
+    1991 Mathematics Subject Classification. Primary 05E99, 06A08; Secondary 52B20, 55U15,
+ 57Q05.
+    Research of the second author partially supported by NSF grants DMS 9102760 and DMS
+ 9311805.
+
+                                                                 c 1996 American Mathematical Society
+
+                                               1299
+ 1300                  ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+12. Decomposition of the Stanley-Reisner ring
+13. Regular cell complexes
+
+                                     1. Introduction
+     A simplicial complex is said to be pure if all facets (i.e., maximal faces) are
+ of equal dimension. According to the standard definition a complex is shellable
+ if it is pure and its facets can be ordered so that each one (other than the first)
+ intersects the union of its predecessors in a nonempty union of maximal proper
+ faces. Shellability is a well-known concept in combinatorics and combinatorial
+ topology and geometry with several useful consequences of algebraic, combinatorial
+ and topological nature.
+     In this paper we drop the requirement of purity from the definition and explore
+ a more general concept of shellability. Most of the properties known from the pure
+ case generalize, although the combinatorial analysis is in some parts more involved
+ and there are some new phenomena that provide for a richer theory.
+     We were led to consider shellability for nonpure complexes in a search for com-
+ binatorial tools to analyze intersection lattices of subspace arrangements. The first
+ example obtained, the intersection lattice of the k-equal subspace arrangement (Sec-
+ tion 6), convinced us that the general concept is worth developing. In Sections 7–9
+ we present several other nontrivial examples of nonpure shellability. Further exam-
+ ples are likely to be found for instance among posets of subgroups of a finite group,
+ see the survey of Welker [We] for the role of pure shellability in that area.
+     The rest of this introduction will consist of sectionwise descriptions of content
+ and additional comments.
+     Sections 8–13 are contained in PartII, which will appear in a later issue of this
+ journal. Section 2 deals with some elementary combinatorial properties of shella-
+ bility, closely related to the definition. There are different ways to view the concept
+ and these lead to different characterizations.
+     In Section 3 we consider the enumeration of faces of nonpure complexes. Doubly
+ indexed numbers fi,j are defined that refine the usual f -vector. There are corre-
+ sponding hi,j numbers, parallel to the usual h-vector, and these are shown to be
+ nonnegative in the shellable case.
+     The topological properties of shellable complexes are treated in Section 4. The
+ basic fact here is that a shellable complex has the homotopy type of a wedge of
+ spheres (of various dimensions), and the diagonal h-numbers hi,i give the Betti
+ numbers. We also show how bases for homology and for cohomology are combina-
+ torially induced.
+     Section 5 develops the theory of lexicographic shellability for nonpure posets.
+ This is a method to obtain the shellability of the order complex of a poset by
+ labeling the edges of its Hasse diagram subject to some simple combinatorial rules.
+ In a weaker version (R-labelings) one obtains a formula for the Möbius function.
+ The task of computing Betti numbers for a lexicographically shellable poset is
+ reduced to that of counting maximal chains with nonincreasing label sequence.
+ Lexicographic shellability has a useful alternative version as a recursively defined
+ ordering of the atoms of a poset. Several examples of nonpure lexicographically
+ shellable posets are given in Sections 6–9.
+     The k-equal partition lattices consist of partitions of {1, . . . , n} with all blocks of
+ size 1 or of size ≥ k. Alternatively it is the lattice of intersections of the subspaces
+                 SHELLABLE NONPURE COMPLEXES AND POSETS. I                        1301
+
+
+in Rn defined by setting k coordinates equal. We show that it is lexicographically
+shellable in Section 6 and derive formulas for its Betti numbers, one previously
+known from [BWe] and one new.
+    In Section 7 we consider a number of other lattices of set partitions, related to
+other subspace arrangements and to hypergraphs. We show that some are shellable
+and others not.
+    Section 8 deals with lattices of sets that arise as unions of members from some
+given family of integer intervals. We show that a natural class of such lattices are
+lexicographically shellable. Using an idea of Greene [G] we can from this transfer
+topological information to the lattice Pn of all number partitions of the integer
+n ordered by dominance. Intervals in Pn are shown to be either contractible or
+homotopy spheres.
+    The Tamari lattices Tn , discussed in Section 9, are also called rotation lattices
+of binary trees. We show that they are lexicographically shellable, from which we
+deduce that all intervals are either contractible or homotopy spheres. For both
+Tn and the dominance lattice Pn these topological facts strengthen known results
+about their Möbius function. In a somewhat different direction we show that Tn
+is induced on the set of binary trees as a quotient of weak order of the symmetric
+group Sn . Also, the set of 312-free permutations is shown to form a sublattice of
+weak order which is isomorphic to Tn .
+    In Section 10 we discuss various ways that shellability is preserved under oper-
+ations on complexes and posets. It is one of the useful properties of shellability,
+somewhat surprising in view of its rigid definition, that the concept is so flexible
+and adaptable. We spend some time discussing “nonpure rank-selection”, i.e., how
+shellability is inherited by various vertex-induced subcomplexes and subposets.
+    Section 11 continues the discussion of technical properties of nonpure shellable
+complexes and posets. The class of nonpure vertex-decomposable complexes is in-
+troduced, extending a definition of Provan and Billera [PB] from the pure case.
+It is shown that “shifted” =⇒ “vertex-decomposable” =⇒ “shellable”, and that
+“CL-shellable” =⇒ “vertex-decomposable”. The analysis reveals some special dis-
+mantling properties of CL-shellable posets.
+    In the pure case the notion of shellability implies Cohen-Macaulayness of the
+Stanley-Reisner ring of a complex, and this connection has given much (but cer-
+tainly not all) of the motivation for studying pure shellability. In its most combi-
+natorial version this implication takes the form of a direct sum decomposition of
+the ring, which in the pure case was discovered by Garsia [Ga] and Kind and Klein-
+schmidt [KK]. In Section 12 we prove the corresponding type of decomposition for
+nonpure shellable complexes.
+    Some of the theory of nonpure shellability extends to regular CW complexes,
+and for this we are able to partially fall back on lexicographic shellability via face
+lattices. This material is briefly outlined in Section 13.
+    The basic results of this paper (Sections 2–6) were obtained in November 1992,
+and the rest of the paper was also drafted at that time. For various reasons it has
+taken us almost two years to get it into writing. In the meanwhile we have presented
+these results orally in several places, which has led to some interesting further de-
+velopments. Sundaram and Wachs [SW] have used the lexicographic shellability
+of the k-equal partition lattice (the actual labeling plays a fundamental role) to
+determine the representations of the symmetric group on its homology. Building
+1302                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+on this, Sundaram and Welker [SWe] have obtained the representations of Sn on
+the cohomology of the complement of the k-equal arrangement. The intersection
+lattices of k-equal subspace arrangements of type Bn were shown to be lexicograph-
+ically shellable by Björner and Sagan [BS], which was then used to compute their
+homology. Linusson [L1], Sundaram [Su] and Sanders and Wachs [SaW] have stud-
+ied the partition lattices Π0n,k of Section 7 and other posets defined by forbidden
+block sizes. The Möbius function of Π0n,k is applied to a complexity problem in
+[L1], the virtual representation of Sn induced on the alternating sum of its homol-
+ogy is determined in [Su], and bases for homology and cohomology together with
+representation-theoretic consequences are given in [SaW]. The topological results
+about interval-generated lattices in Section 8 have been generalized by Linusson
+[L2]. Stanley [S5] has introduced the concept of “sequential Cohen-Macaulayness”
+as an algebraic counterpart (for the Stanley-Reisner ring) to nonpure shellability.
+Finally, Björner [B7] has used nonpure shellability as a part of proving a charac-
+terization of f -vectors for complexes whose Stanley-Reisner ring has depth ≥ k.
+
+                       2. Shellable simplicial complexes
+  We begin with some basic definitions. A complex (or abstract simplicial complex)
+∆ on a vertex set V is a finite collection of subsets of V , called faces, such that
+A ⊆ B ∈ ∆ implies A ∈ ∆. Dimension is defined by dim A = |A| − 1 and
+dim ∆ = max dim A. The prefix “k-” in k-face and k-complex denotes dimension.
+The empty set is a face of every nonempty complex. We allow also the degenerate
+(−1)-dimensional complex {∅}.
+  For sets A ⊆ B we have the Boolean interval [A, B] = {C | A ⊆ C ⊆ B}. Let
+A = [∅, A]. A complex of the form A is called a simplex.
+  The inclusionwise maximal faces of a complex are called facets. A complex is
+pure if all facets are of equal dimension.
+2.1. Definition. A complex ∆ is shellable if its facets can be arranged in linear
+                                                              Sk−1
+order F1 , F2 , . . . , Ft in such a way that the subcomplex ( i=1 F i ) ∩ F k is pure and
+(dim Fk − 1)-dimensional for all k = 2, . . . , t. Such an ordering of facets is called a
+shelling .
+   The idea with this definition is that ∆ can be built stepwise by introducing the
+facets one at a time and attaching each new facet Fk to the complex previously
+built in the nicest possible fashion. See Figure 1 for examples of shellable and
+nonshellable complexes.
+2.2. Lemma. If F1 , F2 , . . . , Ft is a shelling of ∆, then dim F1 = dim ∆.
+                                                                 hS           i
+                                                                    k−1
+Proof. If dim Fi < dim Fk for all 1 ≤ i < k, then dim ( i=1             Fi ∩ Fk ≤
+dim Fk − 2.                                                                      
+   The following is a straightforward restatement of Definition 2.1, that is often
+useful.
+2.3. Lemma. An order F1 , F2 , . . . , Ft of the facets of ∆ is a shelling if and only
+if for every i and k with 1 ≤ i < k ≤ t there is a j with 1 ≤ j < k and an x ∈ Fk
+such that Fi ∩ Fk ⊆ Fj ∩ Fk = Fk − {x}.
+   There is another reformulation of the concept of shellability (Proposition 2.5)
+that brings out a very important partitioning property. We have chosen to define
+                  SHELLABLE NONPURE COMPLEXES AND POSETS. I                           1303
+
+
+
+
+              1               2
+
+
+
+
+                     (a)                                                  (b)
+
+
+                                  3
+                     2
+          1                                 4
+
+                                  5
+                     (c)                                                  (d)
+
+                  Shellable                                           Not shellable
+
+                                           Figure 1
+
+the concept as was done in Definition 2.1 rather than in terms of partitioning,
+because this is the geometric version of the idea that generalizes to cell complexes,
+see Section 13 for this.
+
+2.4. Lemma. Let F be a facet of a complex ∆, R ⊆ F , and let ∆0 be the subcomplex
+generated by the other facets of ∆. Then the following statements are equivalent:
+  (1) F − ∆0 = [R, F ],
+                S
+  (2) F ∩ ∆0 = x∈R F − {x}.
+                                                                 S
+Proof. F is clearly the disjoint union of [R, F ] and                x∈R F − {x}.       
+
+  Given a shelling F1 , F2 , . . . , Ft of ∆, with successively generated subcomplexes
+     Sj
+∆j = i=1 F i , define the restriction of facet Fk by
+
+(2.1)                    R(Fk ) = {x ∈ Fk | Fk − {x} ∈ ∆k−1 }.
+
+   Lemma 2.4 shows that F k − ∆k−1 = [R(Fk ), Fk ], in other words: R(Fk ) is the
+unique minimal new face introduced in the k-th shelling step. Hence, when adding
+the new facet Fk to ∆k−1 we in fact add a Boolean interval of new faces, so by
+induction ∆ splits up into a disjoint union of Boolean intervals:
+
+                                            t
+                                           
+                                           [
+(2.2)                                 ∆=        [R(Fi ), Fi ].
+                                           i=1
+
+
+Shellability can be characterized in terms of such decompositions.
+1304                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+2.5. Proposition. Given an ordering F1 , . . . , Ft of the facets of ∆ and a map
+R : {F1 , . . . , Ft } → ∆, the following are equivalent:
+   (1) F
+       (1 , . . . , Ft is a shelling and R its restriction map,
+                            S
+                            
+   (2) (α)            ∆ = ti=1 [R(Fi ), Fi ], and
+          (β)         R(Fi ) ⊆ Fj implies i ≤ j, for all i, j.
+Proof. The implication (1) ⇒ (2) is already proved. The opposite implication
+follows from Lemma 2.4.                                                    
+  The first facet of a shelling is always of maximal dimension, as was shown in
+Lemma 2.2. In fact, if ∆ is shellable there is always a shelling in which the facets
+appear in order of decreasing dimension.
+2.6. Rearrangement lemma. Let F1 , F2 , . . . , Ft be a shelling of ∆ with restric-
+tion map R. Let Fi1 , Fi2 , . . . , Fit be the rearrangement obtained by taking first all
+facets of dimension d − 1 = dim ∆ in the induced order, then all facets of dimension
+d − 2 in the induced order, and continuing this way in order of decreasing dimen-
+sion. Then this rearrangement is also a shelling, and its restriction map R0 is the
+same: R0 (F ) = R(F ) for all facets F .
+Proof. Using Proposition 2.5 one sees that it suffices to verify that
+
+(∗)                            R(Fij ) ⊆ Fik =⇒ j ≤ k.
+
+If (∗) is violated, there must exist indices a and b such that
+
+(∗∗)                    a < b, |Fa | < |Fb | , and R(Fa ) ⊆ Fb .
+
+Suppose that (∗) fails, and choose a and b with b minimal in (∗∗). We have that
+R(Fa ) 6= Fb , since Fb 6⊆ Fa . Then R(Fa ) ⊆ A ⊂ Fb for some A = Fb − {x}, and
+from the shelling property of F1 , . . . , Ft it follows that A ⊂ Fc for some c < b.
+Then R(Fa ) ⊂ Fc , so a < c, and also |Fc | ≥ |Fb |. Hence there is a violation of the
+choice of b as being minimal in (∗∗).                                               
+2.7. Second rearrangement lemma. Let F1 , F2 , . . . , Ft be a shelling of ∆ with
+restriction map R. Let Fi1 , Fi2 , . . . , Fit be the rearrangement obtained by taking
+first all facets F such that R(F ) 6= F in the induced order, and then all remaining
+facets in arbitrary order. Then this rearrangement is also a shelling with the same
+restriction map R.
+Proof. Immediate from either Definition 2.1 or Proposition 2.5.                        
+2.8. Definition. Let ∆ be a complex, and let 0 ≤ r ≤ s ≤ dim ∆.
+  (1) ∆ is (r, s)-pure if r ≤ dim F ≤ s for all facets F .
+  (2) ∆(r,s) = {A ∈ ∆ | dim A ≤ s and A ⊆ F for some facet F with dim F ≥ r}.
+  For example, ∆(0,s) is the s-skeleton of ∆, and ∆(s,s) is the subcomplex of ∆
+generated by all s-faces. Clearly, ∆(r,s) is (r, s)-pure.
+2.9. Theorem. If ∆ is shellable, then so is ∆(r,s) , for all r ≤ s.
+Proof. By Lemma 2.6 we may take a shelling of ∆ in which the facets appear in
+order of decreasing dimension. In this shelling the facets of dimension less than r
+                  SHELLABLE NONPURE COMPLEXES AND POSETS. I                                1305
+
+
+all appear at the end. This tail may be cut off, which leaves us with a shelling of
+∆(r,d−1) , d − 1 = dim ∆.
+   Suppose that r < d − 1. It will suffice to prove that ∆(r,d−2) is shellable. Let
+
+                                                    t
+                                                   
+                                                   [
+(∗)                               ∆(r,d−1) =            [Ri , Fi ]
+                                                   i=1
+
+
+be the Boolean interval partition induced by the shelling. Let F1 , . . . , Fk be the
+facets of dimension d − 1. For each i, 1 ≤ i ≤ k, choose arbitrarily an order
+x1 , x2 , . . . , xgi of the elements of Fi – Ri , and let Ri,j = Ri ∪ {x1 , . . . , xj−1 },
+Fi,j = Fi − {xj }, for j = 1, 2, . . . , gi . Then we obtain a disjoint union
+
+                                                   gi
+                                                   
+                                                   [
+                              [Ri , Fi ] = {Fi }         [Ri,j , Fi,j ],
+                                                j=1
+
+
+and hence a Boolean interval partition
+                                                                                   
+                                k gi
+                                 [
+                                                         !           t
+                                                                     
+                                [                                  [               
+(∗∗)             ∆(r,d−2) =            [Ri,j , Fi,j ]        ∪            [Ri , Fi ] .
+                                i=1j=1                           i=k+1
+
+
+From the fact that property (β) of Proposition 2.5 holds for (∗) it is easy to deduce
+that it holds for (∗∗). Hence, the lexicographic order of the indices induces a shelling
+order of the facets Fi,j and Fi of ∆(r,d−2) .                                         
+   Lemma 2.6 and Theorem 2.9 can be interpreted as providing a kind of “structure
+theorem”, describing how a general shellable complex ∆ is put together from pure
+shellable complexes. First there is the pure shellable complex ∆1 = ∆(d−1,d−1)
+generated by all facets of maximal size. Then ∆1 ’s (d − 2)-skeleton, which is also
+shellable, is extended by shelling steps in dimension d−2 to obtain ∆2 = ∆(d−2,d−1) .
+Then ∆2 ’s (d−3)-skeleton is extended by shelling steps in dimension d−3 to obtain
+∆(d−3,d−1) , and so on until all of ∆ = ∆(0,d−1) has been constructed.
+   The general concept of shellability considered here can easily be extended to infi-
+nite simplicial complexes. See Section 1 and Remark 4.21 of [B3] for this extension
+in the pure case.
+2.10. Remark. According to Chari [C] an S-partition of a simplicial complex ∆ is
+                                             S
+                                                                   S
+                                                                    
+an ordered Boolean interval partition ∆ = ti=1 [Ri , Si ] such that ki=1 [Ri , Si ] is a
+complex for all k. An S-partition is induced by a shelling as in Proposition 2.5 if
+and only if all sets Si are facets of ∆. Such S-partitions are called full by Chari;
+they are mentioned in passing on p. 57 of [C]. Note that every complex has an
+S-partition, namely the trivial partition into singleton intervals.
+   One of the main results of [C] is that certain complexes called “Steiner com-
+plexes” of matroids admit nontrivial S-partitions. An example of a Steiner complex
+is the complex of nonspanning sets of a matroid [C, p. 48], so Example 3.2 below
+shows that Steiner complexes are not shellable in our sense.
+1306                ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+                     3. Face numbers and the h-triangle
+   For a (d−1)-dimensional complex ∆, let fi be the number of i-dimensional faces.
+The numbers fi are called the face numbers of ∆, and f (∆) = (f0 , f1 , . . . , fd−1 )
+its f -vector. The h-vector h(∆) = (h0 , h1 , . . . , hd ) is defined by
+
+(3.1)                              H(y) = F (y − 1),
+               Xd                          Xd
+where H(y) =          hi y d−i and F (y) =        fi−1 y d−i , f−1 = 1.
+                  i=0                        i=0
+   The h-vector plays an important role in the theory of Cohen-Macaulay complexes
+(Stanley [S3, S4, S5]), including pure shellable complexes. To extend part of this
+to the nonpure case we are led to introduce doubly indexed f - and h-numbers.
+   For A ∈ ∆, let the size of A be its cardinality and the degree of A be defined by
+
+                           δ(A) = max{|F | A ⊆ F ∈ ∆}.
+
+Thus, |A| ≤ δ(A), with equality if and only if A is a facet. Also, dim lk∆ (A) =
+δ(A) − |A| − 1, where lk∆ (A) = {B | B ∩ A = ∅, B ∪ A ∈ ∆}.
+3.1. Definition. For a (d − 1)-complex ∆, let
+   (i) fi,j = number of faces of degree i and size j,
+              Xj                
+                             i−k
+  (ii) hi,j =    (−1)j−k           fi,k ,
+                             j−k
+              k=0
+ (iii) the triangular integer arrays f = (fi,j )0≤j≤i≤d and h = (hi,j )0≤j≤i≤d are
+       called the f -triangle and h-triangle of ∆, respectively.
+   With the convention that indices (i, j) denote row i and column j we get the
+following representation of f , and similarly for h:
+
+                                  f0,0
+                                  f1,0   f1,1
+                                   ..           ..
+                                    .             .
+                                  fd,0   fd,1   ...   fd,d
+
+Here are a few immediate observations. If ∆ is pure, then only the last row of f
+and of h have nonzero entries, and these last rows are then the ordinary f - and
+h-vectors, up to reindexing. In the general case it is impossible to deduce f from
+the ordinary f -vector, and similarly for h. For instance, there are 1-dimensional
+complexes with f -triangles
+
+                           0                          0
+                           0 1              and       0 0
+                           1 3 3                      1 4 3
+
+and both have f -vector (4, 3).
+  It is clear that
+
+(3.2)           fi,j = number of size j faces in ∆(i−1,i−1) \ ∆(i,i) .
+                     SHELLABLE NONPURE COMPLEXES AND POSETS. I                    1307
+
+
+   Further, the diagonal entries (fi,i ) of the f -triangle give the numbers of facets
+of various sizes. The column sums give the ordinary face numbers:
+                                            X
+(3.3)                             fj−1 =        fi,j .
+                                                 i≥j
+
+
+Expressing the ordinary h-vector in terms of the h-triangle is best done using gen-
+erating functions.
+   Define the two-variable polynomials
+                                       X
+                            F (x, y) =     fi,j xi y i−j ,
+                                             0≤j≤i
+                                              X
+                                H(x, y) =            hi,j xi y i−j .
+                                             0≤j≤i
+
+
+Then relation (ii) of Definition 3.1 can be rewritten as
+
+(3.4)                               H(x, y) = F (x, y − 1),
+
+and relation (3.3) as
+                                                              
+                                                           1
+(3.5)                                  F (y) = y d F         ,y .
+                                                           y
+
+From this and equation (3.1) we deduce
+                                                                
+                                                            1
+(3.6)                          H(y) = (y − 1) H d
+                                                               ,y ,
+                                                           y−1
+
+which is equivalent to
+
+                                    Xi           X
+                                                d−i+j           
+                                                             d−s
+(3.7)                        hi =       (−1)i−j       hs,j        ,
+                                    j=0          s=j
+                                                             i−j
+
+for i = 0, 1, . . . , d.
+3.2. Example. Let ∆ be the complex whose facets are (omitting commas and set
+brackets): 123, 345, 14, 15, 24 and 25. Then
+
+                              0                           0
+                              0 0                         0 0
+                           f=                          h=
+                              0 0    4                    0 0 4
+                              1 5    6 2                  1 2 −1 0
+
+This is the complex of nonspanning sets in the matroid of the graph in Figure 2
+(i.e., sets of edges not containing a spanning tree). It is not shellable, since the
+pure complex ∆(2,2) generated by 123 and 345 is not shellable; see Theorem 2.9.
+Being non-shellable is also revealed by the occurrence of a negative entry in the
+h-triangle, as will be shown in Theorem 3.4.
+1308                ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+
+                                   1                4
+
+
+                                              3
+
+
+                                   2                5
+
+
+
+                                         Figure 2
+   As further examples, here are the h-triangles of the complexes shown in Figure 1:
+                         0                        0
+                         0 1                      0 0
+                         1 0 0                    1 2 −1
+
+                         0                        0
+                         0 0                      0 0
+                         0 3 1                    0 0 1
+                         1 0 0 0                  1 3 −3 1
+   The following lemma gives a few more elementary properties of the h-triangle
+(hs,j )0≤j≤s≤d of a (d − 1)-complex ∆.
+3.3. Lemma. (i) hd,0 = 1 and hs,0 = 0 for 0 ≤ s < d.
+       Xs
+  (ii)        hs,j equals the number of (s − 1)-dimensional facets.
+          j=0
+               Xd
+       e(∆) =
+ (iii) χ               (−1)j−1 hj,j .
+                   j=0    
+ (iv) The h-vector h0s,j 0≤j≤s≤c of the (c − 1)-skeleton ∆(0,c−1) is given by
+
+                                        Xd   Xj           
+                                                  s−c−1+j−i
+                    h0c,j = hc,j +                          hs,i ,
+                                       s=c+1 i=0
+                                                     j−i
+                and h0s,j = hs,j for all 0 ≤ j ≤ s < c.
+
+                        
+ (v) The h-vector h00s,j 0≤j≤s≤c of ∆(c−1,c−1) is given by
+
+                            h00c,j = h0c,j    (defined in part (iv)),
+                   and      h00s,j = 0        for all 0 ≤ j ≤ s < c.
+
+Proof. These facts follow from Definition 3.1 by straightforward computation. The
+formula (iii) for the reduced Euler characteristic can also be obtained by substi-
+tuting x = −1 and y = 0 in (3.4), or by taking i = d in (3.7) and using that
+hd = (−1)d−1 χ e(∆).                                                            
+  The h-triangle of a shellable complex is computed by any shelling in the following
+way. In the pure case this result goes back to McMullen [Mc], who seems to have
+been first to discover the Boolean interval decomposition (2.2) of a pure shellable
+complex and its connection with the h-vector.
+                  SHELLABLE NONPURE COMPLEXES AND POSETS. I                          1309
+
+
+3.4. Theorem. Let ∆ be a shellable complex with h-triangle (hs,j )0≤j≤s≤d , and let
+R be the restriction map induced by a shelling. Then
+
+            hs,j = number of facets F such that |F | = s and |R(F )| = j.
+
+
+Proof. It follows from Lemma 2.6 that
+
+                                                              
+                                                              [
+                        ∆(s−1,s−1) \ ∆(s,s) =                         [R(F ), F ],
+                                                             |F |=s
+
+
+for all 1 ≤ s ≤ d. Because of (3.2) this implies that
+
+                           X
+                           s                          X
+                                                      s
+                                 fs,j y s−j =               h̃s,j (y + 1)s−j ,
+                           j=0                        j=0
+
+
+where h̃s,j is defined as the number of facets F of ∆ such that |F | = s and |R(F )| =
+j. But extracting the coefficient of xs in the identity F (x, y) = H(x, y+1), obtained
+from (3.4), we get
+                           Xs               X
+                                            s
+                                      s−j
+                               fs,j y     =   hs,j (y + 1)s−j .
+                           j=0                        j=0
+
+
+Hence, hs,j = h̃s,j .                                                                  
+
+   It follows that the h-triangle of a shellable complex has nonnegative entries.
+More can in fact be said about such h-triangles by drawing on known facts about
+the pure case. For this we must first review some terminology.
+   For integers n, k ≥ 1 there exists a unique expansion
+                                                              
+                                     ak           ak−1            ai
+                           n=                 +          + ... +
+                                     k            k−1             i
+
+such that ak > ak−1 > . . . > ai ≥ i ≥ 1. This given, let
+                                                             
+                   k           ak − 1    ak−1 − 1           ai − 1
+                 ∂ (n) =              +            + ... +         .
+                               k−1        k−2                i−1
+
+Also put ∂ k (0) = 0. A sequence of nonnegative integers (c0 , c1 , . . . ) is called an
+M -sequence if c0 = 1 and ∂ k (ck ) ≤ ck−1 for all k ≥ 2.
+
+3.5. Theorem (Stanley [S3]). A sequence (h0 , h1 , . . . , hd ) is the h-vector of a pure
+shellable complex if and only if it is an M -sequence.
+
+   Using this result we can derive some necessary conditions for the h-triangle of
+arbitrary shellable complexes.
+1310                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+3.6. Theorem. Let (hs,j )0≤j≤s≤d be the h-triangle of a shellable complex. Then
+                                                       
+hs,j ≥ 0 and the sequence h0c,0 , h0c,1 , . . . , h0c,c is an M -sequence for all 1 ≤ c ≤ d,
+where
+                                  X d     X s − c − 1 + j − i
+                                            j
+                    0
+                  hc,j = hc,j +                                      hs,i .
+                                s=c+1 i=0
+                                                         j−i
+
+
+Proof. The complex ∆(c−1,c−1) is pure and shellable by Theorem 2.9. Its h-vector
+is described in part (v) of Lemma 3.3. The result then follows from Theorem 3.5.
+    Can Stanley’s characterization be extended from the pure to the general case?
+It is conceivable that the necessary conditions of Theorem 3.6 are also sufficient for
+h-triangles of shellable complexes. We leave this question open.
+    Stanley’s Theorem 3.5 gives a characterization of the f -vectors of pure shellable
+complexes, since the f -vector and the h-vector determine each other. A character-
+ization of the f -vectors (but not the f -triangles) of (r, s)-pure shellable complexes
+is given in [B7]. Another natural question is to seek a characterization of the tri-
+angular arrays that arise as f -triangles of simplicial complexes. Since this contains
+as a special case the characterization of f -vectors of pure complexes, this is likely
+to be a difficult problem.
+
+                            4. Topological properties
+   It is well known that a pure shellable (d − 1)-complex has the homotopy type of
+a wedge of (d − 1)-spheres. This simplicity of topological structure generalizes, and
+just as in the pure case a shelling induces bases for homology and cohomology. See
+e.g. Munkres [M] for definitions and background concerning the topological notions
+used. We will not differentiate notationally between a complex ∆ (a set system)
+and its geometric realization (a topological space).
+4.1. Theorem. Let ∆ be a shellable (d−1)-complex. Then ∆ has the homotopy type
+of a wedge of spheres, consisting of hj,j copies of the (j − 1)-sphere for 1 ≤ j ≤ d.
+
+   It follows that homology H e ∗ (∆, Z) and cohomology H
+                                                        e ∗ (∆, Z) are torsion-free,
+with Betti numbers (hj,j ) that are combinatorially computed by any shelling of ∆,
+as shown by Theorem 3.4.
+                e j−1 (∆, Z) ∼
+4.2. Corollary. H            = Zhj,j ∼
+                                     =He j−1 (∆, Z), for all j.
+
+Proof of Theorem 4.1. For some fixed shelling of ∆, let Γ = {facets F such that
+R(F ) = F } and ∆∗ = ∆\Γ. Then by Lemma 2.7 the induced order of the remaining
+facets is a shelling of ∆∗ , whose restriction map is R.
+                                                    S
+   Let Fk be the k-th facet of ∆∗ and set ∆∗k = ki=1 F i . The facet Fk has a free face
+in ∆∗k (i.e., a face contained in no other facet), namely R(Fk ). This is a proper face,
+since R(Fk ) 6= Fk . Thus, removing R(Fk ) and all faces containing it collapses ∆∗k
+to ∆∗k \ [R(Fk ), Fk ] = ∆∗k−1 . It follows that ∆∗k−1 and ∆∗k are homotopy equivalent.
+(In fact, ∆∗k−1 is a strong deformation retract of ∆∗k .) Since ∆∗1 is a simplex, we
+conclude that ∆∗ is contractible.
+   Now use the fact that passing to the quotient space modulo a contractible sub-
+space does not alter homotopy type: ∆ ≃ ∆/∆∗ (see [BWa] or [Sp, Coroll. 3.2.5]).
+The space ∆ is obtained from ∆∗ by attaching the cells (simplices) in Γ, each one
+                 SHELLABLE NONPURE COMPLEXES AND POSETS. I                         1311
+
+
+along its entire boundary. Thus when ∆∗ is contracted to a point, each closed
+(j − 1)-cell F ∈ Γ is deformed into a (j − 1)-sphere with a distinguished point
+∆∗ /∆∗ . There are hj,j = card{F ∈ Γ |F | = j} such cells F , and the result-
+ing spheres are topologically independent outside the common point ∆∗ /∆∗ (the
+wedge point). Thus we conclude that ∆/∆∗ is homeomorphic to a wedge of spheres
+with the required distribution of dimensions.                                
+   Let us call the set Γ of facets F such that R(F ) = F the homology facets of the
+shelling. Their crucial property is that the subcomplex ∆∗ = ∆ \ Γ is contractible,
+and that consequently their enumeration determines the Betti numbers of ∆. They
+also induce dual bases for homology and cohomology, as we will now see.
+   Let Ck (∆) denote the k-th simplicial chain group, whose elements are formal
+linear combinations of k-faces of ∆ with integer coefficients. Also, let C k (∆) =
+Hom (Ck (∆), Z) be the k-th group of simplicial cochains. The boundary operator
+∂ : Ck (∆) → Ck−1 (∆) and the coboundary operator δ : C k−1 (∆) → C k (∆) are
+defined in the standard fashion, as are (co)cycles and (co)boundaries; see Munkres
+[M].
+   Let Γj = {F ∈ Γ |F | = j}. For each F ∈ Γj define a (j −1)-cochain σ F in terms
+of its values on the basis elements A ∈ ∆j−1 = {(j − 1)-faces of ∆} as follows:
+                                        
+                                          1,    A = F,
+                              σ F (A) =
+                                          0,    A 6= F.
+Since F is a facet of ∆, one sees that σ F is a cocycle. Hence it determines a
+cohomology class σ F ∈ H   e j−1 (∆, Z).
+4.3. Theorem. Let Γj be the set of homology facets of size j induced by a shelling
+                       
+                                                         e j−1 (∆, Z).
+of ∆. Then the classes σ F , for F ∈ Γj , are a basis of H
+Proof. Let ρ be any cocycle in C j−1 (∆). Consider the cocycle
+                                       X
+                              τ =ρ−        ρ(F )σ F .
+                                          F ∈Γj
+
+We have that τ (F ) = 0 for all F ∈ Γj , so τ is in fact a cocycle in C j−1 (∆∗ ).
+    e j−1 (∆∗ , Z) = 0, since ∆∗ is contractible. Hence τ = δ∆∗ (τ 0 ) for some
+But H                                             P
+τ ∈ C j−2 (∆∗ ). This implies that δ∆ (τ 0 ) = τ + F ∈Γj aF σ F , and hence
+ 0
+
+                                 X                  
+                           [ρ] =      (ρ(F ) − aF ) σ F .
+                                  F ∈Γj
+
+We know from Corollary 4.2 that H e j−1 (∆, Z) is a free Abelian group of rank hj,j ,
+                                                                               
+and it has just been shown that it is generated by the |Γj | = hj,j elements σ F .
+Hence, these elements form a basis.                                               
+   Since the homology of a shellable complex is free, the isomorphism between
+homology and cohomology (Corollary 4.2) takes the form of a certain duality pair-
+ing hσ, τ i (see
+                Munkres
+                          [M, pp. 276–277]). Hence, corresponding to the cohomol-
+ogy classes σ F there are dual homology classes [σF ], F ∈ Γj , determined by
+hσ G , σF i = δG,F . In concrete terms this means that (j − 1)-cycles σF , F ∈ Γj , are
+uniquely determined (modulo boundaries) by the property that σF has coefficient
++1 at the (j − 1)-face F and coefficient 0 at all other homology facets Γj . The
+following is a consequence of (and in fact equivalent to) Theorem 4.3.
+1312                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+                                                           e j−1 (∆, Z).
+4.4. Corollary. The classes [σF ], F ∈ Γj , are a basis of H
+
+   For a direct and elementary proof of Corollary 4.4 in the case of pure shellable
+complexes, see Theorem 7.7.2 of [B4]. The details of that proof can be adapted to
+the nonpure case as well.
+   The only property of a shellable complex ∆ that has been used in this section is
+the existence of a set Γ of facets whose removal leaves a contractible subcomplex
+∆∗ = ∆ \ Γ. Hence, all results are valid for the larger class of all complexes with
+this property.
+
+                    5. Lexicographically shellable posets
+   With any finite poset P we associate the order complex ∆(P ) whose k-faces
+are the chains (totally ordered subsets) x0 < x1 < . . . < xk of P . Properties of
+complexes, such as purity, shellability and topological type, can be transferred to
+posets via order complexes.
+   A special method for the study of ∆(P ) for pure posets via certain labelings of
+the cover relations (R-labelings, EL-labelings, CL-labelings) have been introduced
+and developed in a series of papers by the authors [B1, BW1, BW2]. The resulting
+theory of “lexicographic shellability” will here be generalized to the case of nonpure
+posets.
+   A poset is called bounded if it has a top element 1̂ and a bottom element 0̂. If
+P is bounded, let P = P \ {0̂, 1̂}. Conversely, for any poset P let P̂ = P ∪ {0̂, 1̂},
+where 0̂ and 1̂ are new elements adjoined so that 0̂ < x < 1̂ for all x ∈ P . If x ≤ y,
+we have the closed interval [x, y] = {z ∈ P | x ≤ z ≤ y} and the open interval
+(x, y) = {z ∈ P | x < z < y}. We say that y covers x, and write x → y, if x < y
+and (x, y) = ∅. Let E(P ) = {(x, y) ∈ P × P | x → y} be the covering relation,
+which is the same thing as the edges of the Hasse diagram of P . The length of a
+chain c : x0 < x1 < . . . < xk is k, written `(c) = k, and the length of P , denoted
+`(P ), is the length of the longest chain in P .
+   A chain in P is maximal if it is inclusionwise maximal. Thus, the set M(P )
+of maximal chains is the set of facets of ∆(P ). A chain x0 < x1 < . . . < xk is
+unrefinable if it is maximal in the interval [x0 , xk ].
+   For a bounded poset P let ME(P ) be the set of pairs (m, x → y) ∈ M(P )×E(P )
+consisting of a maximal chain m and an edge x → y along that chain (i.e., x, y ∈ m).
+
+5.1. Definition.       (i) An edge labeling of P is a map λ : E(P ) → Λ, where Λ is
+some poset.
+   (ii) A chain-edge labeling of P is a map λ : ME(P ) → Λ, where Λ is some poset,
+satisfying:
+       Axiom CE: If two maximal chains m : 0̂ = x0 → x1 → . . . → xk = 1̂ and
+       m0 : 0̂ = x00 → x01 → . . . → x0n = 1̂ coincide along their first d edges, then their
+       labels also coincide along these edges. That is, if xi = x0i for i = 0, 1, . . . , d,
+       then λ(m, xi−1 → xi ) = λ(m0 , x0i−1 → x0i ) for i = 1, . . . , d.
+
+    An edge labeling λ naturally induces a chain-edge labeling λ0 by letting
+λ0 (m, x → y) = λ(x → y) for all maximal chains m containing the edge x → y.
+Examples of both kinds of labelings for the pure case can be found in [BW2]. Two
+examples of edge labelings of nonpure posets are given in Figure 3.
+                   SHELLABLE NONPURE COMPLEXES AND POSETS. I                                             1313
+
+
+
+
+                                                                             4
+                                                                                         2
+
+
+          1        1                                             3                                   2
+                                    1                                4               2
+                                                                                 1               1
+
+                                1                                                            0
+      1                 2                                        2   3               2
+           2   1                                                                 2
+
+                   3        2                                                        2       2   2
+           1                        2                                    1                           2
+
+
+
+                   (a)                                                                   (b)
+
+                                                    Figure 3
+
+  Let λ be a chain-edge labeling of a bounded poset P . With each maximal chain
+m : 0̂ = x0 → x1 → . . . → xn = 1̂ we associate the ordered string
+
+                       λ(m) = [λ(m, x0 → x1 ), . . . , λ(m, xn−1 → xn )].
+
+Note that the length of the tuple λ(m) depends on the length of the chain m.
+   If [x, y] is an interval and r is an unrefinable chain from 0̂ to x, then the pair
+([x, y], r) will be called a rooted interval with root r, and will be denoted [x, y]r . If
+m is any maximal chain of [x, y], we shall also consider it a maximal chain of the
+rooted interval [x, y]r . Then r ∪ m is a maximal chain of [0̂, y].
+   Let λ be a chain-edge labeling of P and [x, y]r a rooted interval. By axiom CE, if
+m is a maximal chain of [x, y]r and m0 and m00 are maximal chains of P that contain
+r ∪ m, then the first d entries of λ(m0 ) and λ(m00 ) coincide, where d = `(r ∪ m).
+Hence, if we remove the first `(r) entries from this d-tuple (the part belonging to
+r), we get a (d − `(r))-tuple λr (m) associated with m, and uniquely induced by any
+maximal chain in P that contains r ∪ m. See Figure 4.
+   The labels λr (m) that we are working with are ordered strings of elements from
+the poset Λ. Their lengths may vary. Let Λ∗ denote the set of all such strings (or
+“words in the partially ordered alphabet Λ”). We will use the lexicographic partial
+order on Λ∗ , defined by
+
+                                        (a1 , . . . , ap ) ≤L (b1 , . . . , bq )
+
+if and only if either
+   (i) ai = bi for i = 1, . . . , p and p ≤ q, or,
+  (ii) ai 6= bi for some i and ai < bi for the least such i.
+5.2. Definition. Let λ : ME(P ) → Λ be a chain-edge labeling of a bounded poset
+P.
+   1. λ is called a CR-labeling (chain rising labeling) if in every rooted interval [x, y]r
+1314                ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+                                            1̂
+
+
+                                 m´                       m´´
+
+
+
+
+                                                 y
+
+
+
+                                        m
+
+
+
+
+                                        x
+
+
+
+                                                      r
+
+
+
+                                                 0̂
+
+                                      Figure 4
+
+      of P there is a unique maximal chain m whose label λr (m) = (a1 , . . . , ap )
+      satisfies a1 < a2 < . . . < ap in Λ. We call m the rising chain in [x, y]r .
+   2. A CR-labeling λ is called a CL-labeling (chain lexicographic labeling) if for
+      every [x, y]r the unique rising chain m is lexicographically strictly first, that
+      is, λr (m) < λr (m0 ) for all other maximal chains m0 in [x, y]r .
+   3. A CR- or CL-labeling that comes from an edge labeling λ : E(P ) → Λ will
+      be called an ER- or EL-labeling, respectively. (For edge rising/lexicographic
+      labeling.)
+   4. A bounded poset that admits an EL- or CL-labeling will be called EL- or
+      CL-shellable (edge/chain lexicographically shellable).
+
+    Some variation is possible in the concept of “rising chain” used in this definition.
+Most importantly, one could require nonstrict inequalities instead: a1 ≤ a2 ≤ . . . ≤
+ap . See Remark 5.14 for more about this. Figure 3 (a) shows an “alternative” EL-
+labeling whose rising chains are weakly increasing, while (b) shows a “standard”
+EL-labeling with strictly increasing rising chains.
+    Let us say a few words about the history of these definitions in the pure case.
+Stanley defined the concept of an admissible lattice [S1, S2] as a pure lattice L
+with a map ω : I(L) → Z from the join-irreducibles I(L) such that the induced
+edge labeling
+
+                  λ(x → y) = min{ω(z) | z ∈ I(L), x < x ∨ z = y}
+                   SHELLABLE NONPURE COMPLEXES AND POSETS. I                              1315
+
+
+has exactly one increasingly labeled chain in every interval. The motivation was
+to combinatorially interpret and prove nonnegativity of the rank-selected Möbius
+invariants (−1)|J|+1 µ(LJ ). The two main examples of admissible lattices were
+semimodular and supersolvable lattices [S2]. Stanley also conjectured in [S3] that
+admissible lattices are Cohen-Macaulay. This conjecture was proved by Björner
+[B1] using shellability. In [B1] the step was taken to consider labelings of edges
+of a poset (rather than labeling of join-irreducibles of a lattice) as the primitive
+operation, and the concepts of R-labeling (for Möbius function results à la Stanley)
+and L-labeling (for shellability and Cohen-Macaulayness) were introduced. This is
+the pure case of what is here called ER- and EL-labeling. The step to the greater
+generality of chain-edge labelings was taken by the authors in [BW1] to prove the
+shellability (and hence Cohen-Macaulayness) of Bruhat order of Coxeter groups. A
+more detailed treatment of pure CL-labelings followed in [BW2].
+   CL-labelings can be recognized among CR-labelings by the following criterion.
+5.3. Lemma. A CR-labeling λ is a CL-labeling if and only if the following holds
+for every rooted interval [x, y]r : if a1 , a2 , . . . , ak are the atoms of [x, y] and a1 lies
+on the unique rising chain of [x, y]r , then λ(x → a1 ) < λ(x → ai ), i = 2, . . . , k.
+Here λ(x → ai ) are the edge-labels induced by the chain-edge labeling λ and the root
+r.
+Proof. See the proof of Proposition 2.5 in [B1].                                            
+   Let λ : ME(P ) → Λ be a CR-labeling of a bounded poset P . We need the
+following concepts.
+5.4. Definition. For a maximal chain m : 0̂ = x0 → x1 → . . . → xk+1 = 1̂,
+  (a) D(m) = {i | λ(m, xi−1 → xi ) ≮ λ(m, xi → xi+1 )} is called the descent set of
+      m,
+  (b) R(m) = {xi ∈ m | i ∈ D(m)} is the restriction of m,
+  (c) m is said to be falling if D(m) = {1, 2, . . . , k}.
+   Let ∆(P ) be the order complex of the proper part P = P \ {0̂, 1̂} of our bounded
+poset. Let m̄ = m \ {0̂, 1̂} for maximal chains m in P . Note that R(m) ⊆ m̄. We
+get a Boolean interval partition as follows.
+5.5. Proposition. A CR-labeling of P induces a partition
+                                            
+                                            [
+                                 ∆(P ) =         [R(m), m̄].
+                                           m∈M
+
+Proof. Let c : y1 < y2 < . . . < ye be a chain in P . Construct a maximal chain
+containing c as follows. Let m1 be the unique rising chain in [0̂, y1 ]. Then let
+m2 be the rising chain in the rooted interval [y1 , y2 ]m1 . We continue by letting
+mi+1 be the rising chain in [yi , yi+1 ]m1 ∪...∪mi , until we obtain a maximal chain
+m = m1 ∪ . . . ∪ me+1 . Then by construction R(m) ⊆ c ⊆ m̄.
+    If R(m0 ) ⊆ c ⊆ m̄0 for some maximal chain m0 , then there is no descent along
+m ∩ [yi−1 , yi ], i = 1, 2, . . . . Hence, m0 ∩ [yi−1 , yi ] is the unique rising chain in the
+  0
+
+rooted interval [yi−1 , yi ]m0 ∩[0̂,yi−1 ] . This determines m0 uniquely.                   
+   Before going further, let us formally state the simple fact that CR/CL-labelings
+are hereditary on intervals. Therefore, all facts we will prove about posets P with
+such a labeling are automatically true for all intervals [x, y] in P .
+1316                  ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+5.6. Lemma. Let λ : ME(P ) → Λ be a CR- or CL-labeling of P and let [x, y]r
+be a rooted interval. Then λr : ME([x, y]) → Λ is a CR- resp. CL-labeling of the
+interval [x, y].
+Proof. Directly from Definition 5.2.                                                         
+     In agreement with this and Definition 5.4 a chain m in a rooted interval [x, y]r
+is called falling if m is maximal in [x, y] and λr (m) = (a1 , . . . , ap ) with a1 6< a2 6<
+. . . 6< ap .
+     The Möbius function of a bounded poset can be computed from a CR-labeling
+in the following way. Here the root r can be chosen arbitrarily. If we have an
+ER-labeling, or if x = 0̂, the dependence on r disappears.
+5.7. Proposition. µ(x, y) = number of even length falling chains in [x, y]r
+                           − number of odd length falling chains in[x, y]r .
+Proof. Lemma 5.6 shows that it suffices to consider x = 0̂, y = 1̂. By the theorem
+of Ph. Hall [S5, p. 120] µP 0̂, 1̂ equals the number of chains of even length minus
+the number of chains of odd length in P . The contribution to this sum from each
+interval [R(m), m̄] in Proposition 5.5 is = 0 if R(m) 6= m̄, and = (−1)`(m) if
+R(m) = m̄, i.e. if m is falling.                                                  
+   For example, the poset
+                          P1 in Figure 3 (a) has 2 falling maximal chains, of lengths
+2 and 3, so µP1 0̂, 1̂ = 0. The poset P2 in Figure 3 (b) also has 2 falling chains,
+                                         
+but now of lengths 2 and 4, so µP2 0̂, 1̂ = 2.
+                                                                    
+5.8. Theorem. If a bounded poset P is CL-shellable, then ∆ P is shellable. More
+precisely, given a CL-labeling of P any ordering of the maximal chains of P that
+extends the lexicographic partial order of their labels is a shelling, whose restriction
+map coincides with the map R of Definition 5.4.
+Proof. In view of Propositions 2.5 and 5.5 it remains to be shown that if R(m) ⊆ m0 ,
+for m 6= m0 ∈ M(P ), then λ(m) < λ(m0 ) in lexicographic order.
+   Let m : 0̂ = x0 → x1 → . . . and m0 : 0̂ = x00 → x01 → . . . , and let i be minimal
+such that xi+1 6= x0i+1 . Then let y be minimal such that y ∈ m∩m0 and xi = x0i < y.
+Since R(m) ⊆ m ∩ m0 , it follows that there is no descent along m ∩ [xi , y]. Hence,
+m ∩ [xi , y] is the rising chain in the rooted interval [xi , y]m∩[0̂,xi ] , and it follows from
+                                                            
+Lemma 5.3 that λ(m, xi → xi+1 ) < λ m0 , x0i → x0i+1 .                                         
+   Theorem 5.8 can also be proven directly from the definition of shellability. For
+this argument in the pure case (which
+                                        generalizes straightforwardly), see [BW1,
+Theorem 3.3]. A property of ∆ P that is stronger than shellability will be proven
+in Theorem 11.6.
+   It follows that the homology facets of a CL-shellable poset (for some fixed CL-
+labeling) are the falling chains. Hence we can summarize the following conclusions
+from the results of Section 4.
+5.9. Theorem. If a bounded poset P is CL-shellable, then ∆(P ) has the homotopy
+type of a wedge of spheres. Furthermore, for any fixed CL-labeling:
+   (i) He i ∆(P ), Z ∼
+                     = Z#falling chains of length i+2 ,
+  (ii) bases for i-dimensional homology and cohomology are induced by the falling
+       chains of length i + 2, as explained in connection with Theorem 4.3.
+                  SHELLABLE NONPURE COMPLEXES AND POSETS. I                             1317
+
+
+    For instance, we obtain the nonzero Betti numbers β̃0 = β̃1 = 1 for the poset in
+Figure 3 (a), and β̃0 = β̃2 = 1 for the one in Figure 3 (b).
+    An alternative approach to lexicographic shellability, via so-called “recursive
+atom orderings” was introduced in [BW2]. This extends without difficulty to non-
+pure posets. Recall that the atoms of a bounded poset are the elements that cover
+0̂.
+5.10. Definition. A bounded poset P is said to admit a recursive atom ordering
+if the length of P is 1, or if `(P ) > 1 and there is an ordering a1 , a2 , . . . , at of the
+atoms of P that satisfies:
+   (i) For all j = 1, 2, . . . , t the interval [aj , 1̂] admits a recursive atom ordering in
+       which the atoms of [aj , 1̂] that belong to [ai , 1̂] for some i < j come first.
+  (ii) For all i < j, if ai , aj < y, then there is a k < j and an atom z of [aj , 1̂] such
+       that ak < z ≤ y.
+A recursive coatom ordering is a recursive atom ordering of the dual poset (P ∗ , ≤) =
+(P, ≥).
+  The proof of Theorem 3.2 of [BW2] goes through with only notational adjust-
+ments in the nonpure case, and we obtain the following.
+5.11. Theorem. A bounded poset P admits a recursive atom ordering if and only
+if P is CL-shellable.
+  The proof of sufficiency produces an integer CL-labeling. Hence the following
+conclusion can be drawn, just as in the pure case.
+5.12. Corollary. If P admits a CL-labeling ME → Λ, for any poset Λ, then P
+admits a CL-labeling ME → (Z, <).
+    Let L̂(∆) be the face lattice of a complex ∆, i.e., the set of all faces ordered by
+inclusion and with a top element 1̂ adjoined. Say that a poset P is dual CL-shellable
+if its dual poset P ∗ obtained by reversing the order relation is CL-shellable. The
+following generalizes Theorem 4.3 of [BW2].
+5.13. Theorem. For any complex ∆ the following are equivalent:
+   (i) ∆ is shellable,
+  (ii) L̂(∆) admits a recursive coatom ordering,
+ (iii) L̂(∆) is dual CL-shellable.
+Proof. The equivalence (i) ⇐⇒ (ii) has the same proof as in the pure case; see The-
+orem 4.3 of [BW2]. The equivalence (ii) ⇐⇒ (iii) is a special case of Theorem 5.11.
+
+5.14. Remark. In Definition 5.2 we have required that the label λr (m) = (a1, . . . ,ap )
+of a rising chain is strictly increasing: a1 < a2 < . . . < ap . We could instead require
+that it is weakly increasing: a1 ≤ a2 ≤ . . . ≤ ap . The results of this section still hold,
+except that the notion of descent set D(m) of a maximal chain m (Definition 5.4)
+must be altered to mean D(m) = {i | λ(m, xi−1 → xi )  λ(m, xi → xi+1 )}. The
+definition of restriction R(m) and of falling chain must be altered accordingly.
+   To reduce the “weakly increasing” version to the “strictly increasing” version,
+used in Definition 5.2, just take as new poset of labels the direct product Λ0 = Λ×Z
+and relabel m : 0̂ = x0 → x1 → . . . → xk = 1̂ by
+                       λ0 (m, xi−1 → xi ) = (λ(m, xi−1 → xi ), i).
+1318                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+Note that this relabeling will convert a “weakly increasing” EL-labeling to a “strictly
+increasing” CL-labeling in the nonpure case.
+    To convert a “strictly increasing” CL-labeling to a “weakly increasing” CL-
+labeling, take as the label poset lexicographical order on Λ × Z and relabel m :
+0̂ = x0 → x1 → . . . → xk = 1̂ by
+                      λ0 (m, xi−1 → xi ) = (λ(m, xi−1 → xi ), −i).
+Note that D(m) and R(m) are unchanged by these conversions. This correspon-
+dence between the “strictly increasing” version and the “weakly increasing” version
+in the pure case is discussed in [W].
+    The possibility to generalize the concept of “rising chain” is actually much wider.
+Instead of a poset, we can take as label set Λ the vertices of an acyclic directed
+graph, with loops allowed. Write a ⇒ b for edges of the graph Λ. Then a chain-
+edge labeling λ : ME(P ) → Λ is a CR-labeling if in every rooted interval [x, y]r
+there is a unique maximal chain m whose label λr (m) = (a1 , a2 , . . . , ap ) is a path,
+i.e. satisfies a1 ⇒ a2 ⇒ . . . ⇒ ap . It is a CL-labeling if in addition if m0 is
+any other maximal chain in [x, y]r and λr (m0 ) = (b1 , b2 , . . . , bq ), then aj 6= bj for
+some j ≤ min(p, q) and aj ⇒ bj for the least such j. All results of this section,
+suitably modified notationally, go through in this generality. The acyclic graph
+used in Definition 5.2 is the comparability graph of a poset Λ, and for the “weakly
+increasing” version discussed above we have just added loops at the vertices of that
+comparability graph.
+
+                        6. The k-equal partition lattice
+   Let Πn be the lattice of partitions of the set [n] = {1, 2, . . . , n} ordered by
+refinement, and for 2 ≤ k ≤ n let
+            Πn,k = {π ∈ Πn | no block of π has size 2, 3, . . . , or k − 1}.
+Then Πn,k is a lattice in the induced order, called the k-equal partition lattice. It
+is isomorphic to the intersection lattice of the arrangement of subspaces given by
+xi1 = xi2 = . . . = xik , 1 ≤ i1 < . . . < ik ≤ n, in Rn .
+    The lattices Πn,k were first studied in connection with a problem in complexity
+theory in [BLY, BL]. Then their homotopy type and Betti numbers were determined
+in [BWe]. In this section we will show that nonpure lexicographic shellability gives
+an effective approach to the analysis of Πn,k .
+    We will now describe an edge-labeling λ : E(Πn,k ) → Λ, where Λ is the linearly
+ordered set
+                            1̄ < 2̄ < . . . < n̄ < 1 < 2 < . . . < n.
+   There are three kinds of coverings in Πn,k , described in the following labeling
+rule:
+              Covering π → σ                            Label λ(π → σ)
+              A new k-block B is
+(6.1)                                                   λ = max B
+              created from singletons
+              A nonsingleton block B is
+(6.2)                                                   λ=a
+              merged with a singleton {a}
+              Two nonsingleton blocks B1
+(6.3)                                                   λ = max(B1 ∪ B2 )
+              and B2 are merged
+                     SHELLABLE NONPURE COMPLEXES AND POSETS. I                                      1319
+
+
+6.1. Theorem. The labeling λ of Πn,k is an EL-labeling.
+Proof. Consider first an upper interval [π, 1̂]. Suppose that π has nonsingleton
+blocks B1 , B2 , . . . , Bp , p ≥ 1, listed so that their maximal elements bi = max Bi
+satisfy b1 < b2 < . . . < bp . Let {a1 }, {a2 }, . . . , {aq } be the singleton blocks of π,
+a1 < a2 < . . . < aq .
+    Construct a maximal chain m of length p + q − 1 in [π, 1̂] as follows. First merge
+B1 ∪ B2 . Then add successively B3 , B4 , . . . , Bp to this special block, followed by
+adding a1 , a2 , . . . , and finally aq . This creates a chain m with rising label λ(m) =
+ b̄2 , b̄3 , . . . , b̄p , a1 , a2 , . . . , aq ). It is easy to see that λ(m) is lexicographically first
+among the labels of all maximal chains of [π, 1̂], and also that no other such label
+is rising.
+    If π has no nonsingleton blocks, i.e. if π = 0̂, then the canonical rising chain is
+constructed by first creating the k-block {1, 2, . . . , k} and then successively adding
+the singletons k + 1, k + 2, . . . to this special block. This chain has label (k, k +
+1, . . . , n), is lexicographically first and unique with rising label.
+    Consider now a general interval [π, σ] in Πn,k . Suppose that σ has nonsingleton
+blocks C1 , C2 , . . . , Cr . Let πi be the partition obtained from π by merging all blocks
+contained in Ci and leaving all other blocks unchanged, for i = 1, . . . , r. Then each
+interval [π, πi ] is isomorphic to an upper interval in the k-equal partition lattice on
+the set Ci , and with the preceding construction we can create a maximal chain
+mi in [π, πi ] whose label λ(mi ) is unique rising and lexicographically first. Note
+that the labels λ(mi ) and λ(mj ) are disjoint if i 6= j, since the entries in λ(mi ) are
+elements of Ci .
+    Let {x1 , x2 , . . . , xs } be the total set of all entries appearing in any label λ(mi ),
+i = 1, . . . , r, and suppose that x1 < x2 < . . . < xs . We can create a maximal
+chain m in [π, σ] with label λ(m) = (x1 , x2 , . . . , xs ) by building the chains mi in
+parallel. The rule for the j-th step of m is to find i such that xj ∈ λ(mi ), and then
+to perform the merging of blocks that created a covering with label xj in mi . This
+chain m is the canonical rising chain — we leave to the reader the easy verification
+that it is unique rising and lexicographically first.                                                  
+   As a first consequence of lexicographic shellability we can determine the topo-
+logical properties of Πn,k .
+                                                                                     
+6.2. Corollary (Björner and Welker [BWe]). The order complex ∆n,k = ∆ Πn,k
+                                                   d
+has the homotopy type of a wedge of spheres. Let β̃n,k be the rank of the free Abelian
+        e
+group Hd (∆n,k ). Then β̃n,k 6= 0 if and only if d = n − 3 − t(k − 2) for some t,
+                             d
+
+1 ≤ t ≤ b nk c, and
+
+                                         X            Y
+                                                      t−1
+                                                             n − jk − ij − 1
+                                                                            
+                                                                              (j + 1)ij+1 −ij .
+      n−3−t(k−2)
+    β̃n,k           = (t − 1)!
+                                                                  k−1
+                                 0=i0 ≤...≤it =n−tk j=0
+
+
+                                                                                     d
+Proof. The general result follows from Theorem 5.9, which also shows that β̃n,k
+equals the number of falling chains of length d + 2.
+   Let the maximal chain m be falling, that is, its label λ(m) satisfies λ1 ≥ λ2 ≥ . . . .
+Then all unbarred labels must precede all barred ones. This means that in the
+formation of m there is a first stage consisting of creations of k-blocks and mergings
+1320                  ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+with singletons, and a second stage consisting entirely of mergings of non-singleton
+blocks. Suppose that t k-blocks are created during the first stage. Then t is also the
+number of non-singleton blocks at the beginning of the second stage. The creation
+of a k-block reduces the number of blocks in the current partition by k − 1, and all
+other steps reduce this number by one. Hence the length of m is n − 1 − t(k − 2).
+    Let us now count the number of falling chains of length n − 1 − t(k − 2). The
+first stage in the formation of such a chain consists in the creation of t k-blocks
+interspersed with mergings with singletons. It begins with creating the first k-
+block, which must contain n, and after the t-th k-block is created, the remaining
+singletons (if any) are merged until none remain.
+    Let 0 = i0 ≤ . . . ≤ it = n − tk. We claim that
+
+                           Y
+                           t−1
+                                 n − jk − ij − 1
+                                                
+                                                 (j + 1)ij+1 −ij
+                           j=0
+                                      k−1
+
+is the number of initial segments, corresponding to the first stage (unbarred labels)
+of falling maximal chains of length n − 1 − t(k − 2) such that ij+1 − ij singletons
+are merged between the creation of the (j + 1)-st and the (j + 2)-nd k-block, for
+j = 0, 1, . . . , t − 2, and after the creation of the t-th k-block for j = t − 1. This is
+so, because when creating the (j + 1)-st k-block one must use the largest available
+singleton together with k − 1 of the other n − jk − ij − 1 available singletons.
+Then for the following ij+1 − ij singleton merges one must use the ij+1 − ij largest
+currently available singletons in decreasing order. They must each be merged with
+one of the j + 1 available non-singleton blocks. There are (j + 1)ij+1 −ij ways to
+carry out this process.
+    The second stage (barred labels) in the formation of a falling chain of length
+n − 1 − t(k − 2) starts from a partition having exactly t blocks, all of them of
+size ≥ k. Let these blocks be B1 , B2 , . . . , Bt , ordered according to their maximal
+elements: max B1 < . . . < max Bt . To maintain a falling label it is necessary to
+first merge Bt with one of the t − 1 earlier blocks, then merge this union with one
+of the remaining t − 2 blocks, and so on. There are (t − 1)! ways to carry this out.
+
+    We can get a simpler formula for the Betti numbers by counting the falling chains
+in another way. First we describe the falling chains in terms of standard tableaux
+of hook shape.
+    For j ≥ 0, let Dk,1j be the hook shaped Ferrers diagram with k cells in the
+first row (which we call the arm) and one cell in each of the remaining j rows
+(which we call the leg). For j1 , j2 , . . . , jt ≥ 0 and t ≥ 1, let Dk (j1 , j2 , . . . , jt )
+be the skew diagram that consists of hook diagrams Dk,1ji , i = 1, 2, . . . , t, where
+the northeast corner of Dk,1ji is attached to the southwest corner of Dk,1ji+1 , for
+i = 1, 2, . . . , t − 1. We will refer to a skew diagram of this form as a broken hook
+diagram of type (n, k, t), where n is the number of cells, i.e. n = kt+j1 +j2 +. . .+jt .
+A tableau of broken hook shape D, is defined to be a filling of the cells of D with
+distinct entries from {1, 2, . . . , n}. The tableau is said to be standard if the entries
+decrease along each row (from left to right) and along each column (from top to
+bottom). We shall say that a standard tableaux T is left standard if T also has the
+property that n is in the leftmost possible cell of D, i.e. in the northwest corner cell
+                     SHELLABLE NONPURE COMPLEXES AND POSETS. I                           1321
+
+
+
+                                                            12      5      4
+
+
+                                                             7
+
+
+                                                             2
+
+
+                                      14      8       1
+
+
+                                      11
+
+
+                 16     15     13
+
+
+                 10
+
+
+                 9
+
+
+                 6
+
+
+                 3
+
+
+
+                                           Figure 5
+
+of the leftmost hook. For example, a left standard tableau of broken hook shape
+D3 (4, 1, 2) is given in Figure 5.
+    Let T be a left standard tableau of broken hook shape D = Dk (j1 , j2 , . . . , jt ) and
+size n. We shall associate a falling chain mT with T . It has length n−1−t(k−2) and
+is constructed from top to bottom in two stages (which are the reverse of the stages
+of the construction used in the proof of Corollary 6.2). Let Ti be the hook tableau
+obtained by restricting T to the ith hook, Dk,1ji . In the first stage we split off blocks
+consisting of the entries of Ti from the remaining entries of Dk (j1 , j2 , . . . , ji−1 ), in
+the order i = t, t − 1, . . . , 2. That is, the first partition below 1̂ has two blocks, one
+consisting of the entries of Tt . The next partition has three blocks, one consisting
+of the entries of Tt and another consisting of the entries of Tt−1 . At the end of
+the first stage we reach a partition with t nonsingleton blocks corresponding to the
+hook tableaux T1 , T2 , . . . , Tt .
+    In the second stage, we continue down the chain mT by either peeling a singleton
+from the bottom of the leg of one of the Ti or by decomposing the arm of one of
+the Ti into k singletons after the leg has already been peeled away. At each step we
+choose either the smallest entry on the bottom of a leg or the arm with the smallest
+maximum, whichever is smaller.
+    It is easy to see that the maximal chain mT constructed above is falling, and
+that all falling chains can be uniquely obtained in this way. Indeed, the labels
+on the covering relations formed during the first stage of the construction are all
+1322                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+equal to n̄. The labels on the covering relations formed during the second stage are
+unbarred and are equal to the entry that is peeled away from the bottom of the leg
+or the maximum of the arm that is decomposed.
+   Recall from Section 4 that any maximal chain m corresponds to a cocycle σ m
+which determines a cohomology class [σ m ].
+6.3. Corollary. For 1 ≤ t ≤ b nk c, let Tn,k,t be the set of all left standard tableaux
+with broken hook diagram of type (n, k, t). Then the set {[σ mT ] | T ∈ Tn,k,t }
+is a basis for the free Abelian group He n−3−t(k−2) (∆n,k ). Consequently, the Betti
+numbers are given by
+
+                                    X                                   Yt       
+             n−3−t(k−2)                                 n−1                   ji − 1
+           β̃n,k          =                                                          .
+                              j1 +j2 +...+jt =n
+                                                  j1 − 1, j2 , . . . , jt i=1 k − 1
+                                    ji ≥k
+
+
+
+Proof. The first statement follows from the correspondence between falling chains
+and left standard tableaux of broken hook shape, and from Theorems 4.3 and
+5.9. Since the correspondence is one to one we can count left standard tableaux
+of broken hook shape to obtain the Betti numbers. The summand counts left
+standard tableaux of shape Dk (j1 − k, j2 − k, . . . , jt − k). Indeed, the multinomial
+coefficient is the number of ways of distributing the numbers 1, 2, . . . , n − 1 among
+the t tableaux. Once this has been done, k − 1 numbers are selected for the arm
+of each tableaux. The binomial coefficients count the number of ways of making
+these selections.                                                                    
+   The basis for cohomology given in Corollary 6.3 is used in [SW] to obtain an
+expression for the representation of the symmetric group acting on the cohomology
+of ∆n,k in terms of a plethysm of the representation of the symmetric group on the
+cohomology of ∆(Πn ) with irreducible representations of hook shape. There is also
+an explicit description of the dual basis for the homology of ∆n,k in terms of left
+standard tableaux which will be discussed in a future paper.
+
+                        7. Other posets of set partitions
+   The k-equal partition lattice can be characterized in several ways: via forbidden
+block sizes, as induced by the complete k-uniform hypergraph, or via its nature
+as intersection lattice for a highly symmetric subspace arrangement. It is natural
+to ask whether shellability can serve as a tool in the analysis of more general
+situations (other block sizes, other hypergraphs, other subspace arrangements). In
+this section we will provide some partial answers, positive as well as negative. For
+the connection with subspace arrangements see Section 3 of [B5].
+   Let T be a set of positive integers containing n, and let
+
+                   Πn,T = {π ∈ Πn | all block sizes of π are in T }.
+
+If 1 ∈
+     / T , we add the discrete partition to Πn,T , so that Πn,T is a bounded poset in
+all cases. For T = {1, k, k + 1, . . . , } this specializes to the k-equal partition lattice
+Πn,k considered in the previous section.
+                  SHELLABLE NONPURE COMPLEXES AND POSETS. I                            1323
+
+
+  Here we will discuss the shellability of Πn,T for some other choices of T . In
+particular, the nonpure lattice
+
+                                  Π0n,k = Πn,{k,k+1, ... }
+
+will be analyzed from this point of view. Π0n,k is the intersection lattice of a certain
+subspace arrangement embedded in the braid arrangement. For its analysis we will
+need a lemma about the CL-shellability of filters in geometric lattices.
+   A subset A of a poset P is called a filter if x ≥ y ∈ A implies that x ∈ A. If P
+is bounded and A 6= P , we will consider A ∪ {0̂}, which is again a bounded poset.
+The atoms of A ∪ {0̂} are the minimal elements of A.
+   A poset P is totally semimodular if it is bounded and whenever two distinct
+elements u and v both cover x, and u, v < y, there exists z ∈ P such that z covers
+u and v and z ≤ y. Examples are semimodular lattices, in particular geometric
+lattices.
+7.1. Lemma. Let A be a filter in a totally semimodular poset P . Then an ordering
+a1 , a2 , . . . , at of the minimal elements of A is a recursive atom ordering of A ∪ {0̂}
+if and only if property (ii) of Definition 5.10 holds.
+Proof. The intervals [aj , 1̂] are totally semimodular, hence for them every atom
+ordering is recursive, by [BW2, Theorem 5.1]. For this reason property (i) of Defi-
+nition 5.10 is superfluous.                                                     
+   We will apply this lemma and Theorem 5.11 to obtain the lexicographic shella-
+bility of Π0n,k , which (apart from 0̂) is a filter in the geometric lattice Πn .
+   An atom of Π0n,k is a partition π such that k ≤ b < 2k for every block size b. Let
+B1 , . . . , Bp be the blocks of π ordered by increasing order of minimum elements.
+Represent the atom π by the p-tuple wπ = (w1 , . . . , wp ), where wi is the word
+obtained by listing the elements of Bi increasingly. For example,
+
+                                wπ = (135, 2679, 4810),
+                                wσ = (12368, 457910)
+
+represent two atoms π and σ of Π010,3 .
+   The tuples wπ can be ordered lexicographically, that is, both individual words
+wi and tuples of words wπ are compared in lexicographic order. This induces a
+total order on the set of atoms of Π0n,k .
+7.2. Theorem. The lexicographic order of the atoms of Π0n,k is recursive. Conse-
+quently Π0n,k is CL-shellable.
+Proof. By Lemma 7.1 it suffices to verify the following:
+
+                  if wσ < wπ and σ, π < α for two atoms σ and π,
+(∗)               then there exists an atom τ and an element β
+                  be covering π such that wτ < wπ and τ < β ≤ α.
+
+Let π = B1 |B2 | . . . |Bp and σ = B10 |B20 | . . . |Bq0 , with blocks ordered by increasing
+minimal elements. Assume that Bj 6= Bj0 and Bi = Bi0 for i < j. Since wσ < wπ ,
+we must have that wj0 < wj , which leads to two cases.
+1324                 ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+Case 1. wj0 is a prefix in wj . Say that wj = wj0 u, the concatenation of words wj0
+and u 6= ∅. Choose an element x ∈ u, and let Bf0 , f > j, be the block of σ that
+contains x. Then Bj0 ∪ Bf0 ⊆ C, where C is the block of α that contains Bj , since
+π, σ < α. Since |u| ≤ k − 1 and |Bf0 | ≥ k, there exists some element y ∈ Bf0 that is
+not in u. Let Bg , g > j, be the block of π that contains y. Then Bj ∪ Bg ⊆ C, so
+β ≤ α, where β is the partition obtained from π by merging Bj and Bg . It remains
+to create an atom τ < β such that wτ < wπ . This is done by splitting the block
+Bj ∪ Bg of β into one block Bj0 and one or two other blocks that can be arbitrarily
+chosen.
+Case 2. wj0 is not a prefix of wj . Let wj0 = x01 x02 . . . and wj = x1 x2 . . . , and let
+s be minimal such that xs 6= x0s . Then x0s < xs since wj0 < wj , and s ≥ 2 by
+construction since Bi = Bi0 for i < j. Let Bg , g > j, be the block of π that contains
+x0s . Then Bj ∪ Bg ⊆ C, where C is the block of α that contains Bj . Let β be
+the partition obtained from π by merging Bj and Bg . Then create an atom τ < β
+by splitting the new block of β into Bj \ {xs } ∪ {x0s } and Bg \ {x0s } ∪ {xs }. This
+satisfies condition (∗).                                                                
+   The result shows that the homology of Π0n,k is torsion-free and gives (at least in
+principle) a method for computing its Betti numbers. We have not attempted to
+carry out this computation. A combinatorial description of the Betti numbers is
+derived in [SaW] by another method.
+   We have seen that the nonpure lattices Πn,T are shellable for T = {1, k, k+1, . . . }
+and T = {k, k + 1, . . . }. For T = {k, 2k, 3k, . . . } we get a pure lattice which
+was first shown to be CL-shellable by Wachs; see Sagan [Sa] and Wachs [W]. For
+T = {1, k + 1, 2k + 1, . . . } we get a pure poset which is totally semimodular and
+hence CL-shellable. This prompts the question: is Πn,T shellable for all choices T
+of allowed block sizes? The answer is no.
+7.3. Example. Let T = {3, 5, 6, 9, 10, 12, 15}. Then the proper part Π15,T is the
+disjoint union of the connected pieces Π15,{5, 10, 15} and Π15,{3, 6, 9, 12, 15} . Each such
+connected component is shellable, by the result of Wachs mentioned above, but
+their union is not, since it does not have the homotopy type of a wedge of spheres.
+    It doesn’t help if T is additive, meaning that a, b ∈ T , a + b ≤ n implies that
+a + b ∈ T . Let T be as before and T 0 = {3, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15}. Then
+T 0 is additive but Π15, T 0 = Π15, T , since the new allowed block sizes 8, 11, 13, 14
+don’t make any additional partitions legal. So, neither Π15, T nor Π15, T 0 is shellable.
+   Another class of partition posets are the lattices Πλ defined in Björner [B5,
+§ 3.3]. Here λ = (λ1 , . . . , λp ) is a partition of the integer n, λ1 ≥ . . . ≥ λp > 0,
+λ1 + . . . + λp = n. The atoms of Πλ are the partitions of the set [n] whose block
+sizes (decreasingly arranged) are λ1 , . . . , λp , and Πλ consists of those partitions
+                                                                                     
+that are joins in Πn of collections of such atoms. For instance, for λ = k, 1n−k we
+                                                      
+get the k-equal lattice Πn,k , and for λ = kn/k we get Πn,{k,2k,3k, ... } . The Πλ ’s
+are intersection lattices of certain subspace arrangements. We will now show that
+they are not shellable in general.
+7.4. Example. Let λ = (3, 3, 2, 2, 2), and let π ∈ Πλ be the coatom with blocks
+B1 = {1, 2, 3, 4, 5, 6} and B2 = {7, 8, 9, 10, 11, 12}. If 0̂ < σ < π in Πλ , then B1
+must be partitioned
+                     “mod 3” in σ and B2 “mod 2”, or vice versa. Hence, the open
+interval 0̂, x is isomorphic to a disjoint union:
+                  SHELLABLE NONPURE COMPLEXES AND POSETS. I                            1325
+
+                                                                           
+              0̂, x ∼
+                    = Π          e (23 ) \ 1̂, 1̂ ∪ Π
+                       e (32 ) × Π                    e (23 ) × Π
+                                                                e (32 ) \ 1̂, 1̂ ,
+
+                                                                                
+where eΠλ = Πλ \ {0̂}. Being the disjoint union of two posets of length 2, 0̂, x is
+not shellable, and hence so is not Πλ .
+   A similar idea was used by Ziegler [Z1] to show that there exist disconnected
+intervals in the refinement poset of integer partitions.
+   By a hypergraph H we mean a collection of subsets
+                                                  S     of [n]. To avoid trivialities
+we will assume that |A| ≥ 2 for all A ∈ H, that A∈H A = [n], and that there are
+no proper inclusions among the members of H. A hypergraph H is intersecting if
+A ∩ B 6= ∅ for all A, B ∈ H.
+   For subsets A ⊆ [n] let πA be the partition of [n] having A as its only non-
+singleton block, and let ΠH be the set of partitions obtainable as joins of elements
+πA , A ∈ H. Then ΠH is a lattice isomorphic to the intersection lattice of the
+hypergraph subspace arrangement AH introduced in [B5, § 3.1].
+   If H is the complete k-uniform hypergraph, we find that ΠH is the k-equal
+lattice Πn,k , and if H is any 2-uniform hypergraph (i.e., “ordinary” graph), ΠH
+is a geometric lattice and hence EL-shellable. We will give an example of a 3-
+uniform hypergraph whose lattice ΠH is not shellable. The construction will use
+the simplicial complex H∗ = {B ⊂ [n] | B ∩ A = ∅ for some A ∈ H} and the
+following technical fact.
+7.5. Proposition. If the hypergraph H is intersecting, then ΠH and H∗ are homo-
+topy equivalent.
+   The proof for this is based on the following lemma, which will be needed also
+later in the paper. For a proof of the lemma see Corollary 10.14 in [B6].
+7.6. Lemma. Let L be a finite lattice and K the subset of elements ∧-generated by
+its coatoms. Then L̄ and K ∩ L̄ are homotopy equivalent.
+Proof of Proposition 7.5. Since H is intersecting, we have that πA ∨ πB = πA∪B . It
+follows that ΠH is isomorphic to the family of sets obtainable as unions of members
+of H and ordered by inclusion, a subposet of the Boolean algebra 2[n] . Passing to
+the set complements within [n] we see that ΠH is antiisomorphic to the lattice K
+of sets obtainable as intersections of facets of the complex H∗ . The facets of H∗
+are the coatoms of its face lattice L, and H∗ ∼
+                                              = L̄ is a homeomorphism (barycentric
+subdivision). Now apply Lemma 7.6.                                               
+7.7. Example. Consider the intersecting hypergraph
+
+               H = {123, 125, 136, 145, 146, 234, 246, 256, 345, 356}.
+
+It can be checked that H∗ triangulates the real projective plane. Hence, by Propo-
+sition 7.5 and Theorem 4.1, the lattice ΠH cannot be shellable.
+
+                                       References
+[BaG] K. Baclawski and A. Garsia, Combinatorial decompositions of a class of rings, Advances
+      in Math. 39 (1981), 155–184. MR 84a:06003a
+[Be]  C. Berge, Principles of Combinatorics, Academic Press, New York, 1971. MR 42:5805
+1326                  ANDERS BJÖRNER AND MICHELLE L. WACHS
+
+
+[BiS] L.J. Billera and B. Sturmfels, Iterated fiber polytopes, Mathematika 41 (1994), 348–363.
+      CMP 95:08
+[B1]  A. Björner, Shellable and Cohen-Macaulay partially ordered sets, Trans. Amer. Math. Soc.
+      260 (1980), 159–183. MR 81i:06001
+[B2]          , Posets, regular CW complexes and Bruhat order, European J. Combinatorics 5
+      (1984), 7–16. MR 86e:06002
+[B3]          , Some combinatorial and algebraic properties of Coxeter complexes and Tits build-
+      ings, Advances in Math. 52 (1984), 173–212. MR 85m:52003
+[B4]          , The homology and shellability of matroids and geometric lattices, Matroid Appli-
+      cations (N. White, ed.), Cambridge Univ. Press, 1992, pp. 226–283. MR 94a:52030
+[B5]          , Subspace arrangements, First European Congress of Mathematics, Paris 1992 (A.
+      Joseph et al., eds.), Progress in Math., vol. 119, Birkhäuser, 1994, pp. 321-370.
+[B6]          , Topological Methods, Handbook of Combinatorics (R. Graham, M. Grötschel and
+      L. Lovász, eds.), North-Holland, 1995, pp. 1819–1872.
+[B7]          , Face numbers, Betti numbers and depth, in preparation.
+[BK] A. Björner and G. Kalai, On f -vectors and homology, Combinatorial Mathematics: Proc.
+      3rd Intern. Conf., New York, 1985 (G. Bloom, R. Graham and J. Malkevitch, eds.), Annals
+      of N. Y. Acad. Sci., vol. 555, New York Acad. Sci., 1989, pp. 63–80. MR 90i:52008
+[B+] A. Björner, M. Las Vergnas, B. Sturmfels, N. White and G.M. Ziegler, Oriented Matroids,
+      Cambridge Univ. Press, 1993. MR 95e:52023
+[BL] A. Björner and L. Lovász, Linear decision trees, subspace arrangements and Möbius func-
+      tions, Journal Amer. Math. Soc. 7 (1994), 677–706. MR 95e:52024
+[BLY] A. Björner, L. Lovász and A. Yao, Linear decision trees: volume estimates and topological
+      bounds, Proc. 24th ACM Symp. on Theory of Computing (May 1992), ACM Press, New
+      York, 1992, pp. 170–177.
+[BS]  A. Björner and B. Sagan, Subspace arrangements of type Bn and Dn , preprint 1994, J.
+      Algebraic Combinatorics (to appear).
+[BW1] A. Björner and M. Wachs, Bruhat order of Coxeter groups and shellability, Advances in
+      Math. 43 (1982), 87–100. MR 83i:20043
+[BW2]         , On lexicographically shellable posets, Trans. Amer. Math. Soc. 277 (1983), 323–
+      341. MR 84f:06004
+[BW3]         , Generalized quotients in Coxeter groups, Trans. Amer. Math. Soc. 308 (1988),
+      1–37. MR 89c:05012
+[BW4]         , Permutation statistics and linear extensions of posets, J. Combinatorial Theory,
+      Ser. A 58 (1991), 85–114. MR 92m:06010
+[BWa] A. Björner and J. Walker, A homotopy complementation formula for partially ordered
+      sets, European J. Combinatorics 4 (1983), 11–19. MR 84f:06003
+[BWe] A. Björner and V. Welker, The homology of “k-equal” manifolds and related partition
+      lattices, Advances in Math. 110 (1995), 277–313.
+[Bo]  K. Bogart, The Möbius function of the domination lattice, unpublished manuscript, 1972.
+[Br]  T. Brylawski, The lattice of integer partitions, Discrete Math. 6 (1973), 201–219. MR
+      48:3752
+[C]   M.K. Chari, Steiner complexes, matroid ports and shellability, J. Combinatorial Theory,
+      Ser. B 59 (1993), 41–68. MR 94e:05071
+[Ga]  A. Garsia, Combinatorial methods in the theory of Cohen-Macaulay rings, Advances in
+      Math. 38 (1980), 229–266. MR 82f:06002
+[G]   C. Greene, A class of lattices with Möbius function ±1, 0, European J. Combinatorics 9
+      (1988), 225–240. MR 89i:06012
+[HT] S. Huang and D. Tamari, Problems of associativity: A simple proof for the lattice property
+      of systems ordered by a semi-associative law, J. Combinatorial Theory, Ser. A 13 (1972),
+      7–13. MR 46:5191
+[KK] B. Kind and P. Kleinschmidt, Schälbare Cohen-Macauley-Komplexe und ihre Parametrisie-
+      rung, Math. Z. 167 (1979), 173–179. MR 80k:13010
+[K]   D.E. Knuth, Computer Musings: The associative law, or The anatomy of rotations in
+      binary trees, Distinguished Lecture Series VII (Stanford, CA: University Video Commu-
+      nications, 1993), 68 minutes (videotape).
+                    SHELLABLE NONPURE COMPLEXES AND POSETS. I                                 1327
+
+
+[L1]  S. Linusson, Partitions with restricted block sizes, Möbius functions and the k-of-each
+      problem, preprint 1994.
+[L2]           , A class of lattices whose intervals are spherical or contractible, preprint, 1995.
+[Mc] P. McMullen, The maximum numbers of faces of a convex polytope, Mathematika 17
+      (1970), 179–184. MR 44:921
+[M]   J.R. Munkres, Elements of Algebraic Topology, Addison-Wesley, Menlo Park, 1984. MR
+      85m:55001
+[P1]  J.M. Pallo, Enumerating, ranking and unranking binary trees, Computer J. 29 (1986),
+      171–175. CMP 18:13
+[P2]           , Some properties of the rotation lattice of binary trees, Computer J. 31 (1988),
+      564–565. MR 89k:68122
+[P3]           , An algorithm to compute the Möbius function of the rotation lattice of binary
+      trees, Informatique Théor. et Applic./Theor. Informatics and Applic. 27 (1993), 341–348.
+      MR 94i:68235
+[PB] J.S. Provan and L.J. Billera, Decompositions of simplicial complexes related to diameters
+      of convex polyhedra, Math. of Operations Research 5 (1980), 576–594. MR 82c:52010
+[Q]   D. Quillen, Homotopy properties of the poset of nontrivial p-subgroups of a group, Ad-
+      vances in Math. 28 (1978), 101–128. MR 80k:20049
+[R]   M. Rees, A basis theorem for polynomial modules, Proc. Cambridge Philos. Soc. 52 (1956),
+      12–16. MR 17:573i
+[Sa]  B. Sagan, Shellability of exponential structures, Order 3 (1986), 47–54. MR 87j:05020
+[SaW] A. Sanders and M.L Wachs, The (co)homology of the lattice of partitions with lower
+      bounded block size, in preparation.
+[Sp]  E.W. Spanier, Algebraic Topology, McGraw-Hill, New York, 1966. MR 35:1007
+[S1]  R.P. Stanley, Supersolvable lattices, Algebra Universalis 2 (1972), 197–217. MR 46:8920
+[S2]           , Finite lattices and Jordan-Hölder sets, Algebra Universalis 4 (1974), 361–371.
+      MR 50:6951
+[S3]           , Cohen-Macaulay complexes, Higher Combinatorics (M. Aigner, ed.), NATO Ad-
+      vanced Study Institute Series, Reidel, Dordrecht/Boston, 1977, pp. 51–62. MR 58:28010
+[S4]           , Balanced Cohen-Macaulay complexes, Trans. Amer. Math. Soc 249 (1979), 139–
+      157. MR 81c:05012
+[S5]           , Combinatorics and Commutative Algebra, 2nd Ed. Progress in Mathematics,
+      vol. 41, Birkhäuser, Boston, 1995. MR 85b:05002
+[Su]  S. Sundaram, Applications of the Hopf trace formula to computing homology representa-
+      tions, Proceedings of Jerusalem Combinatorics Conference, 1993 (H. Barcelo and G. Kalai,
+      eds.), Contemporary Math., vol. 178, Amer. Math. Soc., 1994, pp. 277-309. CMP 95:06
+[SW] S. Sundaram and M.L. Wachs, The homology representations of the k-equal partition
+      lattice, preprint 1994.
+[SWe] S. Sundaram and V. Welker, Group actions on arrangements of linear subspaces and
+      applications to configuration spaces, preprint 1994.
+[W]   M.L. Wachs, A basis for the homology of the d-divisible partition lattice, preprint 1992,
+      Advances in Math. (to appear).
+[Wa] J.W. Walker, Canonical homeomorphisms of posets, Europ. J. Combinatorics 9 (1988),
+      97–107. MR 89g:06012
+[We] V. Welker, Shellability in the lattice of subgroups of a finite group, Proceedings Jerusalem
+      Combinatorics Conference, 1993 (H. Barcelo and G. Kalai, eds.), Contemporary Math.,
+      vol. 178, Amer. Math. Soc., Providence, RI, 1994, pp. 335–360. CMP 95:06
+[YO] T. Yanagimoto and M. Okamoto, Partial orderings of permutations and monotonicity of
+      a rank correlation statistic, Ann. Inst. Statist. Math. 21 (1969), 489–506. MR 41:2856
+[Z1]  G.M. Ziegler, On the poset of partitions of an integer, Journal of Combinatorial Theory,
+      Ser. A 42 (1986), 215–222. MR 87k:06009
+[Z2]           , Shellability of chessboard complexes, Israel J. Math. 87 (1994), 97–110. MR
+      95e:06010
+  Department of Mathematics, Royal Institute of Technology, S-100 44 Stockholm,
+Sweden
+  E-mail address: bjorner@math.kth.se
+   Department of Mathematics, University of Miami, Coral Gables, Florida 33124
+   E-mail address: wachs@math.miami.edu
+

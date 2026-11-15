@@ -1,0 +1,34 @@
+# Root manuscript-only initial —23440943
+
+UTC: 2026-11-15T17:16:13.727Z. Completion estimate30% scientificreview. Root131 gate becomes OPEN only after this initial seal. No final clearance.
+
+Personally read all4actualPDFpages/all243controllingTeXlines and all4ownfreshindividual page rasters before foreign scientificprimarybodies, suppliedscientificprogrammes/results, inventorytriage or currentpeer/archivedopinions. Onlyneutral sourceandindependentinitial/finalcustodymetadatareceived. Printed/nativev1.0.0 and17October2026 preserved.
+
+## Independent reconstruction and attack families
+
+1. **Exact hypothesis/question.** The filterselects nonemptycanonicalMinkowski-sumfacepairs with bothsummanddimensionspositive and exact dimensionadditivity. This is more restrictive than eachpositivedimensionpluslowerboundsforallsubsets. Posetrealizationmeansordercomplexofnonemptystrictchainswithoutadjoinedmin/max. Full-dimensional latticecounterexampleP1=D4×I,P2=(−D4)×I inR5, deliberatelynongeneric. ActualprintedPaynequestion/generalpositionabsence mustbecheckedfromsource, notassumedfromtitle.
+
+2. **Canonical decomposition and existential ambiguity.** IfsumoffacesG1+G2 equals exposedF=P1^u+P2^u, everyg1+g2 mustmaximizeu, forcingGi⊆Pi^u (anystrictdeficitwouldcontradict theentire exposedset). Foranyotherfunctionalv, nonnegative supportdeficits h(Pi^u;v)−h(Gi;v) sumtozero; hsum equalitythereforeforces eachzero. EqualityofsupportfunctionsforcesGi=Pi^u. This verifiesuniquenessoftheseactualsummandfaces, notuniquenessofarbitraryMinkowskidecompositionoffreepolytopes.
+
+3. **Complete baseface classification.** FornonzerouonD4, thefivevertexvaluescan'tallcoincide because0,e1,…,e4 affinelyspanR4. Nonemptydisjointmaximum/minimumindexsetsA,B specifyF(A,B). Converselyprescribedvalues1onA,−1onB,0else, minusvalueatv0, areachievablebyalinearfunctionalonR4 withthoseexactextrema. Soeachnonemptyproperfacecorrespondstoexactlyoneordereddisjointnonemptypair. Thewholefaceu0 isseparate.
+
+4. **Dimensionadditivity fromaffine independence.** DirectionspacesofconvAandconvB intersecttrivially: equalityoftwozerocoefficientsum combinations on disjointvertices givesanaffinedependenceonE, whichiszero. Hence dimensions|A|−1,|B|−1,sum|A|+|B|−2. Positivityforces|A|,|B|≥2; disjointnessin5indicesleavesonly(2,2),(2,3),(3,2). No genericpositionassumptionabouttheproductisneededforthisbasecalculation.
+
+5. **Faceorder and exactgraphincidence.** F(A,B)⊆F(C,L) implieseachvi−vj,i∈A,j∈B,maximizesafunctionalexposingF(C,L). Since(maxu−uvi)+(uvj−minu)=0 withbothtermsnonnegative, i∈C,j∈L. Conversebyconvexhullinclusion. Therearechoose(5,2)choose(3,2)=30minimaand2choose(5,2)=20maxima. Eachmaxhas3minima/eachmin2maxima, giving60edges. No3elementchainbecauseonlytworanks, thuspuregraphwith50vertices,nounobservedhighersimplices.
+
+6. **Connectedness with explicitpaths.** Suppressingdegree2minimayieldsabipartitegraphon10positiveand10negativetwo-subsets. Oppositesignsareadjacentiffdisjoint. Distinctintersectingsame-signsets haveunion3andthereforea2elementcomplementofoppositesignasanexplicitcommonneighbor. Fordisjointsame-signsets, choosea2setcontainingoneelementfromeach; itintersectsboth, givingapathbythepreviousconstruction. Everyvertexhasanopposite-signneighbor, hencegraphconnected. Subdivisionpreservesconnectednessandcyclenumber. ThereforeKhasb0=1,b1=60−50+1=11,higherhomologyzero;contractingspanningtreealsogiveswedge11circles.
+
+7. **Sharedinterval dimensiondefect andexhaustion.** Allfacesof(D−D)×[0,2] areexposedby(u,t). t>0or<0 givesendpointfaceswhosecanonical summands eachhaveintervalendpoints, soqualificationisexactlythebasefilter. t0givesGi=baseGi×I andsumF=baseF×[0,2], withdimensionsa+1,b+1,c+1 andc≤a+b; exactadditivitywouldrequirec+1=a+b+2, impossible. Thisalsohandlesu0,t0 wholeface(5,5,5). Additionalu0,t≠0horizontalendfacehasdimension4buttwo4dimensionalsummands,sorejected. Emptyfacerejectedbypositivity. Thusno omittedverticalfacereconnectstheendpointcopies.
+
+8. **Twoindependentcopies/homology/nonshellability.** Endpointheights0and2 forbidcrosscomparisonsbetweennonemptyfaces. Qualifyingordercomplex isexactlyK⊔K,100vertices120edges2components, b0=2,b1=120−100+2=22. Foranyedgefacetordering, firstedgeofthesecondcomponenthasemptyintersectionwithearlierfacets. A pure1dimensional/standardnonpure1dimensionalfacetshellingrequires0dimensionalintersectionatthatstep, notdimension−1. This rulesoutbothconventions; thesourceactualdefinitionstilltobechecked. Everywedgeof3spheres(includingzero-foldpoint)isconnectedwithH1zero; evenn−3wouldbe2spheresandfailbothhomologyfeatures.
+
+9. **Independent allface/reproduction counts.** Countingordereddisjointnonemptybasepairsbythreewaymembership(A,B,unused) gives3^5−2*2^5+1=180propernonemptyfaces, pluswhole=181. Productwiththe3nonemptyintervalfacesgives543nonempty sumfaces. Eachsimplexhas2^5−1=31nonemptyfaces; eachsummandproducthas31*3=93, soallorderedpairs93²=8649. These derive printednativecounts independentlybeforecode/results. Signedgraphboundaryrankmust100−2=98; allhigherboundarieszero. Codeisnonessentialtotheanalyticproof, butactualsupportingprogrammeandoutputsremainpending.
+
+10. **Lowdimensionalanddefinitionboundaries.** ForD3−D3, fourindicesallowonlyordered(2,2)partitions, giving6incomparablequalifiers/sixpoints, whichis0dimensionalshellablebutfailsconnectedwedgecircleshomology. Thatclassicalgeometryiscredited, notnew. Understablemixedlowerbounddefinition, vertical(2,2)facehasdimensions2,2,3,soallnonemptysubsetsmeetlowerbounds1,1,2whileexactadditivityfails3≠4. Thereforethatbroaderposetincludesthebridgingfacesmissinghere; nocontradictiontoitsdifferenttheorem/shellabilityquestionfollows. NoristhisautomaticallyHiattetal'sdifferentSchönobject in(C*)8.
+
+11. **Source/priorityandfalsifierburden.** VerifytheactualPayneProblem3wording/hypotheses; Minkowskifaceuniquenessandclassicalsimplexdifferencecredits; actualBjörner–Wachsshellingdefinition; publishedfacetcountdefinitionvsauthor2020stableintersectiondefinition; actualversionandlimitedrelationofHiattetal. Sourcefinal2024bodyisuninspectedasdeclared, no borrowededitionequivalence. Numericalranksalonecannotjustifytopologicalclaimwithoutcompletefilter/chainenumeration, whiletheabovestructuralproofdoes. Adjoiningartificialextrema, silentlyimposinggenericity, countingallpositive-summandfacesorconflatingmixeddefinitionswouldalterthequestion. Followupdefaultnone; nofirstness/currentopennesscertificatefromnegativebibliographicsearch.
+
+## Initial disposition
+
+No internal defectidentified in thecomplete analyticcounterexample. Finalsourcequestionmapping, actualcriticalclassicaldefinitions/editioncomparison, independentpeercomparisonandselectedsupportingcodereproductionresultsremainpending. Rootdidnotreadorrunanyscientificchecker beforethisseal. Norepair/narrowing/publicationauthorized; actualcentralgapwouldtriggerDeferred — defect foundandmoveon.
+

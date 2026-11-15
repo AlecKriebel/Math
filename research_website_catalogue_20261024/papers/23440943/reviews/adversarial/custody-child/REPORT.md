@@ -1,0 +1,9 @@
+# Row131 independent metadata custody child
+
+**PASS_METADATA_ONLY_SOURCE_NATIVE_AND_ZIP_CUSTODY.** No custody error found. Independently hashed every81-file source entry and checked the exact source namespace,21 literal native copy byte pairs,4 whole raw API objects and7 complete transport receipts. Reconstructed all499 JSON-pointer type rows with exact key/list order and5 explicit empty/null values. Record/latest swh remain empty objects; the version hit swh remains null. The files API entries remain a list, its order an empty list and default_preview null. Two asset receipts retain duplicate ordered content-type headers.
+
+The single original ZIP and all29 members were independently read as opaque bytes: whole container SHA/size, directory order/names, CRC32, uncompressed/compressed sizes, compression method, flags, external attributes, create system, timestamps, member SHA and complete extracted-byte equality all match. No nested archive was present. No manuscript, scientific code, results or archived audit prose was semantically read, and no source programme, network, replay, site/source/Git/Sheet/contact or outside-folder write occurred. Root131gate remains CLOSED and no scientific conclusion is offered.
+
+The helper performs only metadata comparisons and opaque-byte custody. Two initial own-harness assumptions were corrected transparently in HARNESS_CORRECTIONS.json: retaining explicit empty/null schema metadata, and using the actual row-native list-shaped files entries. These were checker implementation issues; no original/source/parent custody object changed. Final fresh RESULT.json has an empty errors list.
+
+AUTHORITY_BINDINGS.json pins the parent INPUT_MANIFEST and SOURCE_CUSTODY whole bytes and literal copies. MANIFEST.json and FINAL_SEAL.json bind the owned evidence. Completion100% refers solely to this metadata custody subtask, with no publication authority.
