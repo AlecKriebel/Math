@@ -1,0 +1,3941 @@
+{
+  "title": "Negative answers to the printed totally mixed face questions",
+  "description": "Two lattice 5-polytopes refute Payne’s printed totally mixed face claims: a disconnected, nonshellable order complex with rational Betti numbers (2,22).",
+  "plain_language": [
+    "A Minkowski sum adds every point of one polytope to every point of another. Each exposed face has canonical faces from the two summands. The printed question keeps only faces where both summands have positive dimension and their dimensions add exactly.",
+    "For two explicit lattice polytopes in five dimensions, the resulting face-inclusion complex splits into two loop-filled graphs. This gives negative answers to both the shellability and sphere-wedge homology assertions in the printed question."
+  ],
+  "result": [
+    "Let D = conv(0,e₁,e₂,e₃,e₄) be the standard four-simplex and I = [0,1]. Both P₁ = D × I and P₂ = (−D) × I are full-dimensional lattice 5-polytopes.",
+    "Retain F = F₁ + F₂ when its canonical summands, exposed by the same functional, satisfy dim F₁ > 0, dim F₂ > 0 and dim F = dim F₁ + dim F₂. Form the ordinary order complex: its vertices are qualifying faces and its simplices are nonempty strict chains. No artificial minimum or maximum is adjoined.",
+    "This complex is K ⊔ K. Each K is a connected pure graph with 50 vertices and 60 edges, homotopy equivalent to a wedge of eleven circles. The ordinary rational homology is H₀ = ℚ², H₁ = ℚ²² and Hⱼ = 0 for j ≥ 2. The complex is not shellable under either pure or standard nonpure shellability, and it does not have the homology of a wedge of three-spheres."
+  ],
+  "why_it_works": [
+    "Proper nonempty faces of the simplex difference D−D are indexed by nonempty disjoint subsets A,B of its five vertex labels. Their dimensions add, and inclusion is exactly containment in each label set. The positive-dimension filter keeps the size pairs (2,2), (2,3) and (3,2): 30 minimal faces and 20 maximal faces, with 60 comparabilities and no three-element strict chains. Their graph K is connected.",
+    "The common interval factor is decisive. Qualifying faces with a nonzero interval coefficient in their exposing functional form the two endpoint copies of K. With zero coefficient, each summand gains an interval direction but the sum gains only one, so exact dimension additivity fails. The full-base end faces and the whole sum fail the filter too; no qualifying face links the two copies.",
+    "Each connected graph has 60−50+1 = 11 independent cycles. In any proposed shelling, the first edge from the second component meets the earlier edges only in the empty face, rather than the required zero-dimensional intersection. This rules out both shellability conventions. Two components and nonzero first homology also rule out the printed sphere-wedge target.",
+    "The paper gives the complete analytic face argument. Two exact standard-library checkers accompany it as supplementary verification; the proof does not depend on running them."
+  ],
+  "definitions_and_limits": [
+    "The shared interval deliberately makes this example nongeneric. Payne’s printed Problem 3 states no general-position condition. No generic-perturbation theorem, minimum-dimension claim, historical firstness or present worldwide openness is asserted.",
+    "The exact-additivity filter is different from Adiprasito’s public 2020 manuscript underlying a 2024 article, which requires dim(Σ_{i∈J} Fᵢ) ≥ |J| for every nonempty index subset J. A vertical face with summand dimensions 2 and 2 and sum dimension 3 passes those lower bounds but fails exact additivity. This note does not contradict that stable-intersection theorem or settle its shellability question.",
+    "Adiprasito and coauthors’ colorful-Gale “totally mixed” convention instead requires facets of the summands. Hiatt–Simpson–Wang–Wu v2, Section 8, concerns a different Schön subvariety of (ℂ*)⁸ and its tropical link; no identification with this two-summand face poset is supplied."
+  ],
+  "background": [
+    "Canonical Minkowski face decomposition and simplex-difference geometry are classical. Fukuda–Weibel provide the general decomposition statement, and Sturmfels–Tevelev’s scaled opposite tetrahedra give the earlier six-point homology control. That zero-dimensional complex is shellable, so it does not by itself prove nonshellability. The common-interval construction supplies the positive-dimensional disconnected example here."
+  ],
+  "collaboration": "Independent verification, a substantive comparison of the face definitions or work toward a journal submission would be welcome. Collaboration and authorship would reflect actual contributions.",
+  "ai_disclosure": "AI tools were used extensively in developing, checking, researching and writing this note and its supporting materials. This is an unrefereed preprint; adversarial AI checks are not external human peer review, journal acceptance or formal proof-assistant certification.",
+  "rights_notice": "The note and original authored supporting materials, including verification code, are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). Cited third-party works retain their own rights.",
+  "reader_intro": "Read the complete unchanged four-page paper below, open or download its original PDF, or download the complete original source-and-verification ZIP.",
+  "related_resources": [
+    {
+      "label": "Payne: The complex of totally mixed faces",
+      "url": "https://doi.org/10.4171/OWR/2019/39",
+      "context": "Problem 3, Oberwolfach Report 39/2019, p. 2464: the printed positive/exact-additivity question."
+    },
+    {
+      "label": "Fukuda–Weibel: On f-vectors of Minkowski additions of convex polytopes",
+      "url": "https://arxiv.org/abs/math/0510470v4",
+      "context": "Lemma 4 of arXiv v4: canonical Minkowski face decomposition."
+    },
+    {
+      "label": "Sturmfels–Tevelev: Elimination theory for tropical varieties",
+      "url": "https://arxiv.org/abs/0704.3471v1",
+      "context": "Examples 1.3 and 4.10: the classical opposite-tetrahedron and six-ray antecedent."
+    },
+    {
+      "label": "Björner–Wachs: Shellable nonpure complexes and posets. I",
+      "url": "https://doi.org/10.1090/S0002-9947-96-01534-6",
+      "context": "The standard nonpure shellability and strict-chain order-complex conventions."
+    },
+    {
+      "label": "Adiprasito and coauthors: Colorful simplicial depth, Minkowski sums, and generalized Gale transforms",
+      "url": "https://doi.org/10.1093/imrn/rnx184",
+      "context": "The distinct facet-based “totally mixed” convention."
+    },
+    {
+      "label": "Adiprasito: A note on the topology of polyhedral hypersurfaces and complete intersections",
+      "url": "https://webusers.imj-prg.fr/~karim.adiprasito/cint.pdf",
+      "context": "Public manuscript, 27 July 2020, Corollary 1.3: the broader subset lower-bound criterion. The related 2024 publication has a different title.",
+      "publication_url": "https://doi.org/10.4310/PAMQ.2024.v20.n1.a2"
+    },
+    {
+      "label": "Hiatt–Simpson–Wang–Wu: Topology and Euler characteristics of tropical varieties",
+      "url": "https://arxiv.org/abs/2606.10817v2",
+      "context": "Revised v2, 24 July 2026, Section 8: a different Schön variety in (ℂ*)⁸."
+    }
+  ],
+  "schema": "private_editorial_23440943_v1",
+  "slug": "totally-mixed-face-posets",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "abstract": "For two polytopes, retain the faces of their Minkowski sum whose two canonical summands have positive dimensions and whose dimension is the sum of those dimensions. This is the definition in Payne’s printed Oberwolfach question. Let D be the standard four-simplex and I = [0,1]. For the full-dimensional lattice polytopes D × I and (−D) × I in ℝ⁵, the qualifying-face order complex is a disjoint union of two connected pure graphs, each with 50 vertices and 60 edges. Its rational Betti numbers are (2,22,0,…). Thus both printed assertions, shellability and the homology of a wedge of three-spheres, fail. The shared interval factor deliberately produces a nongeneric example. The argument concerns the printed additive-dimension definition; it does not settle shellability for the different mixed faces used in stable tropical intersections.",
+  "abstract_is_original": true,
+  "publication_date": "2026-10-17",
+  "publication_date_label": "17 October 2026",
+  "version_field_present": true,
+  "version": "1.0.0",
+  "printed_version_field_present": true,
+  "printed_version": "1.0.0",
+  "printed_date": "October 17, 2026",
+  "native_record_created": "2026-10-17T19:04:32.905992+00:00",
+  "native_record_updated": "2026-10-17T19:04:33.294068+00:00",
+  "doi": "10.5281/zenodo.23440943",
+  "pdf_filename": "totally-mixed-face-posets.pdf",
+  "pdf_pages": 4,
+  "supplement_filename": "totally-mixed-face-posets-source-and-verification.zip",
+  "supplement_label": "Complete original source-and-verification ZIP",
+  "additional_assets": [],
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "authored_package_license": "CC BY 4.0",
+  "code_license": null,
+  "code_license_basis": "Broad original authored-material CC BY4.0 grant; no separate code-specific instrument.",
+  "status": "Unrefereed preprint",
+  "follow_up": null,
+  "canonical_url": null,
+  "AA": null,
+  "native_sheet_aa_url": null,
+  "proposed_canonical_url": null,
+  "seo": {
+    "title": "Negative answers to the printed totally mixed face questions — Alec Kriebel",
+    "description": "Two lattice 5-polytopes refute Payne’s printed totally mixed face claims: a disconnected, nonshellable order complex with rational Betti numbers (2,22).",
+    "robots_private_candidate": "noindex,nofollow,noarchive"
+  },
+  "keywords": [
+    "totally mixed faces",
+    "Minkowski sums",
+    "shellability",
+    "order complex",
+    "Payne Problem 3",
+    "polytope homology"
+  ],
+  "citation_text": "Alec Kriebel. Negative answers to the printed totally mixed face questions. Version 1.0.0. Zenodo, 17 October 2026. doi:10.5281/zenodo.23440943.",
+  "prepared_bibtex": "@misc{kriebel2026totallymixed,\n  author = {Kriebel, Alec},\n  title = {Negative answers to the printed totally mixed face questions},\n  year = {2026},\n  month = oct,\n  day = {17},\n  version = {1.0.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23440943},\n  url = {https://doi.org/10.5281/zenodo.23440943},\n  note = {Unrefereed preprint}\n}\n",
+  "source_binding": {
+    "source_ready_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/SOURCE_READY.json",
+    "source_ready_SHA256": "928fb2b26bd31a0678fc3954c29f8a7897a3d6352e9b5dab791224a72a828235",
+    "whole_original_source_ready": {
+      "schema": "fresh_source_only_native_custody_126_128_v1",
+      "status": "SOURCE_READY",
+      "UTC": "2026-11-15T07:43:03.173771+00:00",
+      "record_id": 23440943,
+      "sheet_row": 131,
+      "title": "Negative answers to the printed totally mixed face questions",
+      "DOI": "10.5281/zenodo.23440943",
+      "version_field_present": true,
+      "version": "1.0.0",
+      "publication_date": "2026-10-17",
+      "created": "2026-10-17T19:04:32.905992+00:00",
+      "updated": "2026-10-17T19:04:33.294068+00:00",
+      "native_conceptrecid_whole_field": {
+        "present": true,
+        "original_value": "23440942"
+      },
+      "native_version_whole_field": {
+        "present": true,
+        "original_value": "1.0.0"
+      },
+      "native_license_metadata_whole_field": {
+        "present": true,
+        "original_value": {
+          "id": "cc-by-4.0"
+        }
+      },
+      "native_resource_type_whole_field": {
+        "present": true,
+        "original_value": {
+          "title": "Preprint",
+          "type": "publication",
+          "subtype": "preprint"
+        }
+      },
+      "latest_record_id": 23440943,
+      "all_enumerated_version_ids": [
+        23440943
+      ],
+      "version_enumeration_exhaustive_no_next_link": true,
+      "all_versions_total_original_fields": [
+        1
+      ],
+      "whole_native_API_objects": [
+        {
+          "role": "record",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/record.response.body",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+        },
+        {
+          "role": "latest",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body.redirect-01",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+        },
+        {
+          "role": "versions-page001",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/versions-page001.response.body",
+          "bytes": 7206,
+          "SHA256": "12ee391581aa5511f5e51bb63122e217635615e8d398d635b617de42f260888e"
+        },
+        {
+          "role": "files",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/files.response.body",
+          "bytes": 2200,
+          "SHA256": "ec7237abb9b71b014c72374a624aaf923b8a6f48729562f62009aa3468649c20"
+        }
+      ],
+      "all_native_assets_in_original_order": [
+        {
+          "ordinal_zero_based": 0,
+          "original_api_file_object": {
+            "id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+            "key": "totally-mixed-face-posets-source-and-verification.zip",
+            "size": 157431,
+            "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+            "links": {
+              "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content"
+            }
+          },
+          "whole_original_native_files_entry": {
+            "created": "2026-10-17T19:04:32.952083+00:00",
+            "updated": "2026-10-17T19:04:32.973167+00:00",
+            "mimetype": "application/zip",
+            "version_id": "2622b835-5d13-4430-a4d8-352652916ff8",
+            "file_id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+            "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+            "metadata": {
+              "zip_toc_position": 155205
+            },
+            "access": {
+              "hidden": false
+            },
+            "links": {
+              "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip",
+              "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content",
+              "container": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/container"
+            },
+            "key": "totally-mixed-face-posets-source-and-verification.zip",
+            "transfer": {
+              "type": "L"
+            },
+            "status": "completed",
+            "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+            "size": 157431,
+            "storage_class": "L"
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets-source-and-verification.zip",
+          "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-001.response.body",
+          "bytes": 157431,
+          "SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+          "native_checksum_verified": true,
+          "fresh_ordinary_native_GET": true,
+          "cached_bytes_reused": false
+        },
+        {
+          "ordinal_zero_based": 1,
+          "original_api_file_object": {
+            "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+            "key": "totally-mixed-face-posets.pdf",
+            "size": 66369,
+            "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+            "links": {
+              "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+            }
+          },
+          "whole_original_native_files_entry": {
+            "created": "2026-10-17T19:04:32.982074+00:00",
+            "updated": "2026-10-17T19:04:32.999726+00:00",
+            "mimetype": "application/pdf",
+            "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+            "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+            "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+            "metadata": {
+              "width": 612,
+              "height": 792
+            },
+            "access": {
+              "hidden": false
+            },
+            "links": {
+              "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+              "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+              "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+              "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+              "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+              "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+            },
+            "key": "totally-mixed-face-posets.pdf",
+            "transfer": {
+              "type": "L"
+            },
+            "status": "completed",
+            "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+            "size": 66369,
+            "storage_class": "L"
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+          "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+          "bytes": 66369,
+          "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+          "native_checksum_verified": true,
+          "fresh_ordinary_native_GET": true,
+          "cached_bytes_reused": false
+        }
+      ],
+      "actual_transport_receipts": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/ALL_TRANSPORT_RECEIPTS.json",
+        "bytes": 18155,
+        "SHA256": "f5338f1c8373244a0a03c64a798693c63ee6c958f0ad5acd20804bbaebf7fe7e"
+      },
+      "HTTP_status_sequence": [
+        200,
+        301,
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "actual_ordinary_native_HTTP_requests": 7,
+      "logical_requests": 6,
+      "raw_non_200_response_bodies": [
+        {
+          "started_UTC": "2026-11-15T07:35:26.900554+00:00",
+          "completed_UTC": "2026-11-15T07:35:27.467899+00:00",
+          "logical_role": "latest",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943/versions/latest",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "application/json"
+            ]
+          ],
+          "HTTP_status": 301,
+          "HTTP_reason": "MOVED PERMANENTLY",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:27 GMT"
+            ],
+            [
+              "content-type",
+              "application/json"
+            ],
+            [
+              "content-length",
+              "99"
+            ],
+            [
+              "location",
+              "https://zenodo.org/api/records/23440943"
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "127"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "25"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "x-source",
+              "api"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body",
+          "bytes": 99,
+          "SHA256": "e0044f82093f9e0ef28270537d141d3df3812aae398bfe1ddd2c1975f9507f35",
+          "error_type": null
+        }
+      ],
+      "failed_transports_preserved_whole": [],
+      "native_redirect_followed_from_actual_Location_only": true,
+      "native_schema_types": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/NATIVE_SCHEMA_TYPES.json",
+        "bytes": 54982,
+        "SHA256": "c56cd5be497cca40347ced74d6fb245d9601cf36e809f75fa1208f59a9ac9054"
+      },
+      "native_schema_distinctions": {
+        "record_swh": {
+          "present": true,
+          "original_value": {}
+        },
+        "latest_swh": {
+          "present": true,
+          "original_value": {}
+        },
+        "versions_swh_fields": [
+          {
+            "present": true,
+            "original_value": null
+          }
+        ],
+        "versions_total_original_fields": [
+          1
+        ],
+        "files_entries_original_type": "list",
+        "files_order": {
+          "present": true,
+          "original_value": []
+        },
+        "files_default_preview": {
+          "present": true,
+          "original_value": null
+        },
+        "original_header_order_and_duplicates_preserved": true
+      },
+      "current_native_sheet_identity_subset": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/NATIVE_IDENTITY_MATCH.json",
+        "bytes": 5195,
+        "SHA256": "c0c8a74536dadaeb8e445a6ed70309cbfd92cbe31202872d67be62e5d3a4632b"
+      },
+      "current_sheet_tab_and_bounds": {
+        "title": "Full List",
+        "sheetId": 1052646184,
+        "rowCount": 1000,
+        "columnCount": 30
+      },
+      "queue_binding": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/QUEUE_BINDING.json",
+        "bytes": 1307,
+        "SHA256": "3fa5b584887b7236a8e16ca26d3a5ca1aa9c4d871b1179844f833dd31dd2b985"
+      },
+      "current_native_sheet_and_fresh_published_record_identity_match": true,
+      "selected_actual_PDF": {
+        "ordinal_zero_based": 1,
+        "original_api_file_object": {
+          "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+          "key": "totally-mixed-face-posets.pdf",
+          "size": 66369,
+          "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+          }
+        },
+        "whole_original_native_files_entry": {
+          "created": "2026-10-17T19:04:32.982074+00:00",
+          "updated": "2026-10-17T19:04:32.999726+00:00",
+          "mimetype": "application/pdf",
+          "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+          "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+          "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+          "metadata": {
+            "width": 612,
+            "height": 792
+          },
+          "access": {
+            "hidden": false
+          },
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+            "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+            "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+            "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+            "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+            "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+          },
+          "key": "totally-mixed-face-posets.pdf",
+          "transfer": {
+            "type": "L"
+          },
+          "status": "completed",
+          "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+          "size": 66369,
+          "storage_class": "L"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+        "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+        "bytes": 66369,
+        "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+        "native_checksum_verified": true,
+        "fresh_ordinary_native_GET": true,
+        "cached_bytes_reused": false,
+        "pages": 4,
+        "text_extracted": false,
+        "pages_visually_or_scientifically_read": false,
+        "actual_standalone_API_asset": true
+      },
+      "actual_standalone_readers": [
+        {
+          "ordinal_zero_based": 1,
+          "original_api_file_object": {
+            "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+            "key": "totally-mixed-face-posets.pdf",
+            "size": 66369,
+            "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+            "links": {
+              "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+            }
+          },
+          "whole_original_native_files_entry": {
+            "created": "2026-10-17T19:04:32.982074+00:00",
+            "updated": "2026-10-17T19:04:32.999726+00:00",
+            "mimetype": "application/pdf",
+            "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+            "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+            "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+            "metadata": {
+              "width": 612,
+              "height": 792
+            },
+            "access": {
+              "hidden": false
+            },
+            "links": {
+              "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+              "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+              "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+              "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+              "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+              "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+            },
+            "key": "totally-mixed-face-posets.pdf",
+            "transfer": {
+              "type": "L"
+            },
+            "status": "completed",
+            "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+            "size": 66369,
+            "storage_class": "L"
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+          "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+          "bytes": 66369,
+          "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+          "native_checksum_verified": true,
+          "fresh_ordinary_native_GET": true,
+          "cached_bytes_reused": false,
+          "pages": 4,
+          "text_extracted": false,
+          "pages_visually_or_scientifically_read": false,
+          "actual_standalone_API_asset": true
+        }
+      ],
+      "controlling_TeX": {
+        "container_id": "container-001",
+        "container_depth": 0,
+        "ordinal_zero_based": 23,
+        "original_member_name": "main.tex",
+        "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/main.tex",
+        "bytes": 12609,
+        "SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+        "safe_regular_body": true,
+        "nested_archive_kind": null,
+        "CRC32": "67e0668a",
+        "compressed_bytes": 5622,
+        "compression_method": 8,
+        "native_external_attr": 27525120,
+        "native_create_system": 3,
+        "native_flags": 0,
+        "native_date_time": [
+          2026,
+          10,
+          17,
+          0,
+          0,
+          0
+        ],
+        "opaque_byte_splitlines_count": 243,
+        "preamble_or_mathematical_body_read": false
+      },
+      "controlling_TeX_selection_basis": "sole archived TeX occurrence in original source container with byte-identical embedded native PDF elsewhere in the same archive; structural association only, no source body or build correspondence certified",
+      "all_TeX_candidates": [
+        {
+          "container_id": "container-001",
+          "container_depth": 0,
+          "ordinal_zero_based": 23,
+          "original_member_name": "main.tex",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/main.tex",
+          "bytes": 12609,
+          "SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+          "safe_regular_body": true,
+          "nested_archive_kind": null,
+          "CRC32": "67e0668a",
+          "compressed_bytes": 5622,
+          "compression_method": 8,
+          "native_external_attr": 27525120,
+          "native_create_system": 3,
+          "native_flags": 0,
+          "native_date_time": [
+            2026,
+            10,
+            17,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "actual_standalone_TeX_assets": [],
+      "embedded_PDFs": [
+        {
+          "container_id": "container-001",
+          "container_depth": 0,
+          "ordinal_zero_based": 24,
+          "original_member_name": "output/pdf/totally-mixed-face-posets.pdf",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/output/pdf/totally-mixed-face-posets.pdf",
+          "bytes": 66369,
+          "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+          "safe_regular_body": true,
+          "nested_archive_kind": null,
+          "CRC32": "ae043be7",
+          "compressed_bytes": 64444,
+          "compression_method": 8,
+          "native_external_attr": 27525120,
+          "native_create_system": 3,
+          "native_flags": 0,
+          "native_date_time": [
+            2026,
+            10,
+            17,
+            0,
+            0,
+            0
+          ],
+          "pages": 4,
+          "identical_to_standalone_published_PDF": true,
+          "body_or_pixels_scientifically_read": false
+        }
+      ],
+      "manuscript_custody": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/MANUSCRIPT_CUSTODY.json",
+        "bytes": 9455,
+        "SHA256": "04d37dd482f5644462a9fb2a6a09774dca560e4c8312ef810f0dbe52736f6509"
+      },
+      "fresh_page_rasters": [
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-1.png",
+          "bytes": 293326,
+          "SHA256": "caaf9b3609dd1a0e9fbd8c8d3ccb8cf6cb74f148b4d885097dccd6aae38e1100",
+          "width": 1233,
+          "height": 1595,
+          "visually_read": false
+        },
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-2.png",
+          "bytes": 372803,
+          "SHA256": "3f65a5410123f5993ccc876a442721e537bb3fb59f19b4bea41e4a76a9385485",
+          "width": 1233,
+          "height": 1595,
+          "visually_read": false
+        },
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-3.png",
+          "bytes": 391381,
+          "SHA256": "db9f71a18f792c6cef4af86c31dab36640c2e588afa5698bb1709d1a6f6579ff",
+          "width": 1233,
+          "height": 1595,
+          "visually_read": false
+        },
+        {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-4.png",
+          "bytes": 198250,
+          "SHA256": "289795c1a58818639a12f92431c1dfd0801b40fc352984836d8833897b84fa0a",
+          "width": 1233,
+          "height": 1595,
+          "visually_read": false
+        }
+      ],
+      "whole_archive_custody": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/ARCHIVE_CUSTODY.json",
+        "bytes": 73233,
+        "SHA256": "afb8807928b6c4b386532578ce5589a94e4d82810882b7a12b7acd6362676afd"
+      },
+      "top_level_archive_count": 1,
+      "recursive_archive_container_count": 1,
+      "nested_archive_count": 0,
+      "whole_regular_payload_occurrences": 29,
+      "expanded_bytes_all_depths": 347616,
+      "unsafe_names": [],
+      "duplicate_or_case_colliding_names": [],
+      "nonregular_payloads": [],
+      "unsupported_nested_magic": [],
+      "native_CRC_size_SHA_and_whole_extracted_bytes_verified": true,
+      "support_program_bindings": [
+        {
+          "container_id": "container-001",
+          "container_depth": 0,
+          "ordinal_zero_based": 25,
+          "original_member_name": "verification/check_geometry.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/verification/check_geometry.py",
+          "bytes": 22030,
+          "SHA256": "4785407e1f5fc842cfa71593b00aee485deff20a67d2aba618e06573d3efd02e",
+          "safe_regular_body": true,
+          "nested_archive_kind": null,
+          "CRC32": "3b704cea",
+          "compressed_bytes": 6731,
+          "compression_method": 8,
+          "native_external_attr": 27525120,
+          "native_create_system": 3,
+          "native_flags": 0,
+          "native_date_time": [
+            2026,
+            10,
+            17,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "container_id": "container-001",
+          "container_depth": 0,
+          "ordinal_zero_based": 26,
+          "original_member_name": "verification/check_topology.py",
+          "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/verification/check_topology.py",
+          "bytes": 11179,
+          "SHA256": "31c4004a656ef767280f1841f81086a0e471240f7c2ecd483b7375e1f75c1c4c",
+          "safe_regular_body": true,
+          "nested_archive_kind": null,
+          "CRC32": "22729c3b",
+          "compressed_bytes": 3766,
+          "compression_method": 8,
+          "native_external_attr": 27525120,
+          "native_create_system": 3,
+          "native_flags": 0,
+          "native_date_time": [
+            2026,
+            10,
+            17,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "printed_title_date_version_inspected": false,
+      "printed_date": null,
+      "printed_version": null,
+      "target_PDF_text_extracted": false,
+      "target_PDF_pages_rendered": true,
+      "target_PDF_rasters_visually_read": false,
+      "mathematical_PDF_TeX_or_pixels_read": false,
+      "TeX_preamble_or_mathematical_body_read": false,
+      "source_scientific_proofs_code_results_triage_reviews_or_opinions_read": false,
+      "source_programmes_executed": [],
+      "cached_bytes_reused": false,
+      "all_original_assets_received_by_actual_fresh_native_GET": true,
+      "explicit_standard_request_headers_recorded_in_sent_order": true,
+      "custom_auth_proxy_query_retry_or_bypass_tricks_used": false,
+      "ignored_assets_and_extraction_paths_established_before_acquisition": true,
+      "source_directory_preexisting": false,
+      "originals_overwritten": false,
+      "old_source_collectors_builders_or_scientific_campaigns_executed": false,
+      "queue_Sheet_Git_site_or_old_packet_changes": [],
+      "exposure_limit": "Fresh native identity/availability/status Sheet fields, raw Zenodo metadata structures, opaque archive/file/CRC/hash custody, PDF metadata/page count and unread rasters, and TeX opaque byte line count only. No target PDF text/pixels, TeX preamble/body, scientific programmes/results, triage opinions or current reviewer findings interpreted. The original126 acquisition helper code was fully inspected and adapted only inside these new source namespaces; no original old collector or supplied scientific programme executed.",
+      "scientific_verdict": null,
+      "publication_authority": false,
+      "completion_percent_at_preseal": 100
+    },
+    "whole_native_API_objects": [
+      {
+        "role": "record",
+        "whole_original_binding": {
+          "role": "record",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/record.response.body",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+        },
+        "copy": "inputs/record.response.body",
+        "original": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/record.response.body",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+        },
+        "bytes": 7071,
+        "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd",
+        "whole_literal_object": {
+          "created": "2026-10-17T19:04:32.905992+00:00",
+          "modified": "2026-10-17T19:04:33.294068+00:00",
+          "id": 23440943,
+          "conceptrecid": "23440942",
+          "doi": "10.5281/zenodo.23440943",
+          "conceptdoi": "10.5281/zenodo.23440942",
+          "doi_url": "https://doi.org/10.5281/zenodo.23440943",
+          "metadata": {
+            "title": "Negative answers to the printed totally mixed face questions",
+            "doi": "10.5281/zenodo.23440943",
+            "publication_date": "2026-10-17",
+            "description": "<p>A full-dimensional lattice-polytopal counterexample to both unrestricted assertions in Sam Payne's printed 2019 totally mixed face-poset question. For the standard four-simplex D and I=[0,1], the Minkowski sum of D×I and (-D)×I has a positive-dimensional, dimension-additive face poset whose order complex is two connected pure graphs, each with 50 vertices and 60 edges. Its rational Betti numbers are (2,22,0,...), so it is nonshellable and fails the printed sphere-wedge homology assertion. The shared interval factor deliberately gives a nongeneric example.</p><p>Four-page research note with self-contained proof, TeX source and two independently authored standard-library exact verification programs. Classical simplex-difference and exact-decomposition geometry and the lower-dimensional six-point control are credited to prior work. The different mixed-face criteria in Adiprasito et al. and Adiprasito's stable-intersection work are distinguished explicitly. The revised July 2026 Hiatt–Simpson–Wang–Wu tropical-fan counterexample is credited as a different object, without assuming a two-summand exact-poset representation. No generic or stable tropical shellability problem is claimed resolved. A bounded current primary-source priority audit is included, with the uninspected paywalled 2024 article-body limitation disclosed; no exhaustive literature or first-ever priority certification is claimed. AI tools were used extensively in development, verification, literature review and writing. Unrefereed; no external human peer review or formal proof-assistant certification is claimed.</p>",
+            "access_right": "open",
+            "creators": [
+              {
+                "name": "Kriebel, Alec",
+                "affiliation": "Independent researcher",
+                "orcid": "0009-0001-9320-500X"
+              }
+            ],
+            "keywords": [
+              "Minkowski sums",
+              "totally mixed faces",
+              "exact decompositions",
+              "face posets",
+              "shellability",
+              "rational homology",
+              "Sam Payne open problem",
+              "Oberwolfach Report 39/2019"
+            ],
+            "related_identifiers": [
+              {
+                "identifier": "10.4171/OWR/2019/39",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "10.1007/s00454-007-1310-2",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "https://arxiv.org/abs/0704.3471",
+                "relation": "references",
+                "scheme": "url"
+              },
+              {
+                "identifier": "10.1093/imrn/rnx184",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "10.4310/PAMQ.2024.v20.n1.a2",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "https://arxiv.org/abs/2606.10817v2",
+                "relation": "references",
+                "scheme": "url"
+              },
+              {
+                "identifier": "https://github.com/AlecKriebel/Math/pull/1118",
+                "relation": "isSupplementTo",
+                "scheme": "url"
+              }
+            ],
+            "version": "1.0.0",
+            "language": "eng",
+            "resource_type": {
+              "title": "Preprint",
+              "type": "publication",
+              "subtype": "preprint"
+            },
+            "license": {
+              "id": "cc-by-4.0"
+            },
+            "relations": {
+              "version": [
+                {
+                  "index": 0,
+                  "is_last": true,
+                  "parent": {
+                    "pid_type": "recid",
+                    "pid_value": "23440942"
+                  }
+                }
+              ]
+            }
+          },
+          "title": "Negative answers to the printed totally mixed face questions",
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943",
+            "self_html": "https://zenodo.org/records/23440943",
+            "preview_html": "https://zenodo.org/records/23440943?preview=1",
+            "doi": "https://doi.org/10.5281/zenodo.23440943",
+            "self_doi": "https://doi.org/10.5281/zenodo.23440943",
+            "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23440943",
+            "reserve_doi": "https://zenodo.org/api/records/23440943/draft/pids/doi",
+            "parent": "https://zenodo.org/api/records/23440942",
+            "parent_html": "https://zenodo.org/records/23440942",
+            "parent_doi": "https://doi.org/10.5281/zenodo.23440942",
+            "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23440942",
+            "self_iiif_manifest": "https://zenodo.org/api/iiif/record:23440943/manifest",
+            "self_iiif_sequence": "https://zenodo.org/api/iiif/record:23440943/sequence/default",
+            "files": "https://zenodo.org/api/records/23440943/files",
+            "media_files": "https://zenodo.org/api/records/23440943/media-files",
+            "thumbnails": {
+              "10": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E10,/0/default.jpg",
+              "50": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E50,/0/default.jpg",
+              "100": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E100,/0/default.jpg",
+              "250": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E250,/0/default.jpg",
+              "750": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E750,/0/default.jpg",
+              "1200": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E1200,/0/default.jpg"
+            },
+            "latest": "https://zenodo.org/api/records/23440943/versions/latest",
+            "latest_html": "https://zenodo.org/records/23440943/latest",
+            "versions": "https://zenodo.org/api/records/23440943/versions",
+            "draft": "https://zenodo.org/api/records/23440943/draft",
+            "access_links": "https://zenodo.org/api/records/23440943/access/links",
+            "access_grants": "https://zenodo.org/api/records/23440943/access/grants",
+            "access_users": "https://zenodo.org/api/records/23440943/access/users",
+            "access_request": "https://zenodo.org/api/records/23440943/access/request",
+            "access": "https://zenodo.org/api/records/23440943/access",
+            "communities": "https://zenodo.org/api/records/23440943/communities",
+            "communities-suggestions": "https://zenodo.org/api/records/23440943/communities-suggestions",
+            "request_deletion": "https://zenodo.org/api/records/23440943/request-deletion",
+            "file_modification": "https://zenodo.org/api/records/23440943/file-modification",
+            "quota_increase": "https://zenodo.org/api/records/23440943/quota-increase",
+            "requests": "https://zenodo.org/api/records/23440943/requests"
+          },
+          "updated": "2026-10-17T19:04:33.294068+00:00",
+          "recid": "23440943",
+          "revision": 3,
+          "files": [
+            {
+              "id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+              "key": "totally-mixed-face-posets-source-and-verification.zip",
+              "size": 157431,
+              "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content"
+              }
+            },
+            {
+              "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+              "key": "totally-mixed-face-posets.pdf",
+              "size": 66369,
+              "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+              }
+            }
+          ],
+          "swh": {},
+          "owners": [
+            {
+              "id": "1789874"
+            }
+          ],
+          "status": "published",
+          "stats": {
+            "downloads": 20,
+            "unique_downloads": 19,
+            "views": 34,
+            "unique_views": 31,
+            "version_downloads": 20,
+            "version_unique_downloads": 19,
+            "version_unique_views": 31,
+            "version_views": 34
+          },
+          "state": "done",
+          "submitted": true
+        }
+      },
+      {
+        "role": "latest",
+        "whole_original_binding": {
+          "role": "latest",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body.redirect-01",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+        },
+        "copy": "inputs/latest.response.body.redirect-01",
+        "original": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body.redirect-01",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+        },
+        "bytes": 7071,
+        "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd",
+        "whole_literal_object": {
+          "created": "2026-10-17T19:04:32.905992+00:00",
+          "modified": "2026-10-17T19:04:33.294068+00:00",
+          "id": 23440943,
+          "conceptrecid": "23440942",
+          "doi": "10.5281/zenodo.23440943",
+          "conceptdoi": "10.5281/zenodo.23440942",
+          "doi_url": "https://doi.org/10.5281/zenodo.23440943",
+          "metadata": {
+            "title": "Negative answers to the printed totally mixed face questions",
+            "doi": "10.5281/zenodo.23440943",
+            "publication_date": "2026-10-17",
+            "description": "<p>A full-dimensional lattice-polytopal counterexample to both unrestricted assertions in Sam Payne's printed 2019 totally mixed face-poset question. For the standard four-simplex D and I=[0,1], the Minkowski sum of D×I and (-D)×I has a positive-dimensional, dimension-additive face poset whose order complex is two connected pure graphs, each with 50 vertices and 60 edges. Its rational Betti numbers are (2,22,0,...), so it is nonshellable and fails the printed sphere-wedge homology assertion. The shared interval factor deliberately gives a nongeneric example.</p><p>Four-page research note with self-contained proof, TeX source and two independently authored standard-library exact verification programs. Classical simplex-difference and exact-decomposition geometry and the lower-dimensional six-point control are credited to prior work. The different mixed-face criteria in Adiprasito et al. and Adiprasito's stable-intersection work are distinguished explicitly. The revised July 2026 Hiatt–Simpson–Wang–Wu tropical-fan counterexample is credited as a different object, without assuming a two-summand exact-poset representation. No generic or stable tropical shellability problem is claimed resolved. A bounded current primary-source priority audit is included, with the uninspected paywalled 2024 article-body limitation disclosed; no exhaustive literature or first-ever priority certification is claimed. AI tools were used extensively in development, verification, literature review and writing. Unrefereed; no external human peer review or formal proof-assistant certification is claimed.</p>",
+            "access_right": "open",
+            "creators": [
+              {
+                "name": "Kriebel, Alec",
+                "affiliation": "Independent researcher",
+                "orcid": "0009-0001-9320-500X"
+              }
+            ],
+            "keywords": [
+              "Minkowski sums",
+              "totally mixed faces",
+              "exact decompositions",
+              "face posets",
+              "shellability",
+              "rational homology",
+              "Sam Payne open problem",
+              "Oberwolfach Report 39/2019"
+            ],
+            "related_identifiers": [
+              {
+                "identifier": "10.4171/OWR/2019/39",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "10.1007/s00454-007-1310-2",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "https://arxiv.org/abs/0704.3471",
+                "relation": "references",
+                "scheme": "url"
+              },
+              {
+                "identifier": "10.1093/imrn/rnx184",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "10.4310/PAMQ.2024.v20.n1.a2",
+                "relation": "references",
+                "scheme": "doi"
+              },
+              {
+                "identifier": "https://arxiv.org/abs/2606.10817v2",
+                "relation": "references",
+                "scheme": "url"
+              },
+              {
+                "identifier": "https://github.com/AlecKriebel/Math/pull/1118",
+                "relation": "isSupplementTo",
+                "scheme": "url"
+              }
+            ],
+            "version": "1.0.0",
+            "language": "eng",
+            "resource_type": {
+              "title": "Preprint",
+              "type": "publication",
+              "subtype": "preprint"
+            },
+            "license": {
+              "id": "cc-by-4.0"
+            },
+            "relations": {
+              "version": [
+                {
+                  "index": 0,
+                  "is_last": true,
+                  "parent": {
+                    "pid_type": "recid",
+                    "pid_value": "23440942"
+                  }
+                }
+              ]
+            }
+          },
+          "title": "Negative answers to the printed totally mixed face questions",
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943",
+            "self_html": "https://zenodo.org/records/23440943",
+            "preview_html": "https://zenodo.org/records/23440943?preview=1",
+            "doi": "https://doi.org/10.5281/zenodo.23440943",
+            "self_doi": "https://doi.org/10.5281/zenodo.23440943",
+            "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23440943",
+            "reserve_doi": "https://zenodo.org/api/records/23440943/draft/pids/doi",
+            "parent": "https://zenodo.org/api/records/23440942",
+            "parent_html": "https://zenodo.org/records/23440942",
+            "parent_doi": "https://doi.org/10.5281/zenodo.23440942",
+            "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23440942",
+            "self_iiif_manifest": "https://zenodo.org/api/iiif/record:23440943/manifest",
+            "self_iiif_sequence": "https://zenodo.org/api/iiif/record:23440943/sequence/default",
+            "files": "https://zenodo.org/api/records/23440943/files",
+            "media_files": "https://zenodo.org/api/records/23440943/media-files",
+            "thumbnails": {
+              "10": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E10,/0/default.jpg",
+              "50": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E50,/0/default.jpg",
+              "100": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E100,/0/default.jpg",
+              "250": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E250,/0/default.jpg",
+              "750": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E750,/0/default.jpg",
+              "1200": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E1200,/0/default.jpg"
+            },
+            "latest": "https://zenodo.org/api/records/23440943/versions/latest",
+            "latest_html": "https://zenodo.org/records/23440943/latest",
+            "versions": "https://zenodo.org/api/records/23440943/versions",
+            "draft": "https://zenodo.org/api/records/23440943/draft",
+            "access_links": "https://zenodo.org/api/records/23440943/access/links",
+            "access_grants": "https://zenodo.org/api/records/23440943/access/grants",
+            "access_users": "https://zenodo.org/api/records/23440943/access/users",
+            "access_request": "https://zenodo.org/api/records/23440943/access/request",
+            "access": "https://zenodo.org/api/records/23440943/access",
+            "communities": "https://zenodo.org/api/records/23440943/communities",
+            "communities-suggestions": "https://zenodo.org/api/records/23440943/communities-suggestions",
+            "request_deletion": "https://zenodo.org/api/records/23440943/request-deletion",
+            "file_modification": "https://zenodo.org/api/records/23440943/file-modification",
+            "quota_increase": "https://zenodo.org/api/records/23440943/quota-increase",
+            "requests": "https://zenodo.org/api/records/23440943/requests"
+          },
+          "updated": "2026-10-17T19:04:33.294068+00:00",
+          "recid": "23440943",
+          "revision": 3,
+          "files": [
+            {
+              "id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+              "key": "totally-mixed-face-posets-source-and-verification.zip",
+              "size": 157431,
+              "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content"
+              }
+            },
+            {
+              "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+              "key": "totally-mixed-face-posets.pdf",
+              "size": 66369,
+              "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+              }
+            }
+          ],
+          "swh": {},
+          "owners": [
+            {
+              "id": "1789874"
+            }
+          ],
+          "status": "published",
+          "stats": {
+            "downloads": 20,
+            "unique_downloads": 19,
+            "views": 34,
+            "unique_views": 31,
+            "version_downloads": 20,
+            "version_unique_downloads": 19,
+            "version_unique_views": 31,
+            "version_views": 34
+          },
+          "state": "done",
+          "submitted": true
+        }
+      },
+      {
+        "role": "versions-page001",
+        "whole_original_binding": {
+          "role": "versions-page001",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/versions-page001.response.body",
+          "bytes": 7206,
+          "SHA256": "12ee391581aa5511f5e51bb63122e217635615e8d398d635b617de42f260888e"
+        },
+        "copy": "inputs/versions-page001.response.body",
+        "original": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/versions-page001.response.body",
+          "bytes": 7206,
+          "SHA256": "12ee391581aa5511f5e51bb63122e217635615e8d398d635b617de42f260888e"
+        },
+        "bytes": 7206,
+        "SHA256": "12ee391581aa5511f5e51bb63122e217635615e8d398d635b617de42f260888e",
+        "whole_literal_object": {
+          "hits": {
+            "hits": [
+              {
+                "created": "2026-10-17T19:04:32.905992+00:00",
+                "modified": "2026-10-17T19:04:33.294068+00:00",
+                "id": 23440943,
+                "conceptrecid": "23440942",
+                "doi": "10.5281/zenodo.23440943",
+                "conceptdoi": "10.5281/zenodo.23440942",
+                "doi_url": "https://doi.org/10.5281/zenodo.23440943",
+                "metadata": {
+                  "title": "Negative answers to the printed totally mixed face questions",
+                  "doi": "10.5281/zenodo.23440943",
+                  "publication_date": "2026-10-17",
+                  "description": "<p>A full-dimensional lattice-polytopal counterexample to both unrestricted assertions in Sam Payne's printed 2019 totally mixed face-poset question. For the standard four-simplex D and I=[0,1], the Minkowski sum of D×I and (-D)×I has a positive-dimensional, dimension-additive face poset whose order complex is two connected pure graphs, each with 50 vertices and 60 edges. Its rational Betti numbers are (2,22,0,...), so it is nonshellable and fails the printed sphere-wedge homology assertion. The shared interval factor deliberately gives a nongeneric example.</p><p>Four-page research note with self-contained proof, TeX source and two independently authored standard-library exact verification programs. Classical simplex-difference and exact-decomposition geometry and the lower-dimensional six-point control are credited to prior work. The different mixed-face criteria in Adiprasito et al. and Adiprasito's stable-intersection work are distinguished explicitly. The revised July 2026 Hiatt–Simpson–Wang–Wu tropical-fan counterexample is credited as a different object, without assuming a two-summand exact-poset representation. No generic or stable tropical shellability problem is claimed resolved. A bounded current primary-source priority audit is included, with the uninspected paywalled 2024 article-body limitation disclosed; no exhaustive literature or first-ever priority certification is claimed. AI tools were used extensively in development, verification, literature review and writing. Unrefereed; no external human peer review or formal proof-assistant certification is claimed.</p>",
+                  "access_right": "open",
+                  "creators": [
+                    {
+                      "name": "Kriebel, Alec",
+                      "affiliation": "Independent researcher",
+                      "orcid": "0009-0001-9320-500X"
+                    }
+                  ],
+                  "keywords": [
+                    "Minkowski sums",
+                    "totally mixed faces",
+                    "exact decompositions",
+                    "face posets",
+                    "shellability",
+                    "rational homology",
+                    "Sam Payne open problem",
+                    "Oberwolfach Report 39/2019"
+                  ],
+                  "related_identifiers": [
+                    {
+                      "identifier": "10.4171/OWR/2019/39",
+                      "relation": "references",
+                      "scheme": "doi"
+                    },
+                    {
+                      "identifier": "10.1007/s00454-007-1310-2",
+                      "relation": "references",
+                      "scheme": "doi"
+                    },
+                    {
+                      "identifier": "https://arxiv.org/abs/0704.3471",
+                      "relation": "references",
+                      "scheme": "url"
+                    },
+                    {
+                      "identifier": "10.1093/imrn/rnx184",
+                      "relation": "references",
+                      "scheme": "doi"
+                    },
+                    {
+                      "identifier": "10.4310/PAMQ.2024.v20.n1.a2",
+                      "relation": "references",
+                      "scheme": "doi"
+                    },
+                    {
+                      "identifier": "https://arxiv.org/abs/2606.10817v2",
+                      "relation": "references",
+                      "scheme": "url"
+                    },
+                    {
+                      "identifier": "https://github.com/AlecKriebel/Math/pull/1118",
+                      "relation": "isSupplementTo",
+                      "scheme": "url"
+                    }
+                  ],
+                  "version": "1.0.0",
+                  "language": "eng",
+                  "resource_type": {
+                    "title": "Preprint",
+                    "type": "publication",
+                    "subtype": "preprint"
+                  },
+                  "license": {
+                    "id": "cc-by-4.0"
+                  },
+                  "relations": {
+                    "version": [
+                      {
+                        "index": 0,
+                        "is_last": true,
+                        "parent": {
+                          "pid_type": "recid",
+                          "pid_value": "23440942"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "title": "Negative answers to the printed totally mixed face questions",
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943",
+                  "self_html": "https://zenodo.org/records/23440943",
+                  "preview_html": "https://zenodo.org/records/23440943?preview=1",
+                  "doi": "https://doi.org/10.5281/zenodo.23440943",
+                  "self_doi": "https://doi.org/10.5281/zenodo.23440943",
+                  "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23440943",
+                  "reserve_doi": "https://zenodo.org/api/records/23440943/draft/pids/doi",
+                  "parent": "https://zenodo.org/api/records/23440942",
+                  "parent_html": "https://zenodo.org/records/23440942",
+                  "parent_doi": "https://doi.org/10.5281/zenodo.23440942",
+                  "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.23440942",
+                  "self_iiif_manifest": "https://zenodo.org/api/iiif/record:23440943/manifest",
+                  "self_iiif_sequence": "https://zenodo.org/api/iiif/record:23440943/sequence/default",
+                  "files": "https://zenodo.org/api/records/23440943/files",
+                  "media_files": "https://zenodo.org/api/records/23440943/media-files",
+                  "thumbnails": {
+                    "10": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E10,/0/default.jpg",
+                    "50": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E50,/0/default.jpg",
+                    "100": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E100,/0/default.jpg",
+                    "250": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E250,/0/default.jpg",
+                    "750": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E750,/0/default.jpg",
+                    "1200": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/%5E1200,/0/default.jpg"
+                  },
+                  "latest": "https://zenodo.org/api/records/23440943/versions/latest",
+                  "latest_html": "https://zenodo.org/records/23440943/latest",
+                  "versions": "https://zenodo.org/api/records/23440943/versions",
+                  "draft": "https://zenodo.org/api/records/23440943/draft",
+                  "access_links": "https://zenodo.org/api/records/23440943/access/links",
+                  "access_grants": "https://zenodo.org/api/records/23440943/access/grants",
+                  "access_users": "https://zenodo.org/api/records/23440943/access/users",
+                  "access_request": "https://zenodo.org/api/records/23440943/access/request",
+                  "access": "https://zenodo.org/api/records/23440943/access",
+                  "communities": "https://zenodo.org/api/records/23440943/communities",
+                  "communities-suggestions": "https://zenodo.org/api/records/23440943/communities-suggestions",
+                  "request_deletion": "https://zenodo.org/api/records/23440943/request-deletion",
+                  "file_modification": "https://zenodo.org/api/records/23440943/file-modification",
+                  "quota_increase": "https://zenodo.org/api/records/23440943/quota-increase",
+                  "requests": "https://zenodo.org/api/records/23440943/requests"
+                },
+                "updated": "2026-10-17T19:04:33.294068+00:00",
+                "recid": "23440943",
+                "revision": 3,
+                "files": [
+                  {
+                    "id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+                    "key": "totally-mixed-face-posets-source-and-verification.zip",
+                    "size": 157431,
+                    "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+                    "links": {
+                      "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content"
+                    }
+                  },
+                  {
+                    "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+                    "key": "totally-mixed-face-posets.pdf",
+                    "size": 66369,
+                    "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+                    "links": {
+                      "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+                    }
+                  }
+                ],
+                "swh": null,
+                "owners": [
+                  {
+                    "id": "1789874"
+                  }
+                ],
+                "status": "published",
+                "stats": {
+                  "downloads": 20,
+                  "unique_downloads": 19,
+                  "views": 34,
+                  "unique_views": 31,
+                  "version_downloads": 20,
+                  "version_unique_downloads": 19,
+                  "version_unique_views": 31,
+                  "version_views": 34
+                },
+                "state": "done",
+                "submitted": true
+              }
+            ],
+            "total": 1
+          },
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/versions?page=1&size=25&sort=version"
+          }
+        }
+      },
+      {
+        "role": "files",
+        "whole_original_binding": {
+          "role": "files",
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/files.response.body",
+          "bytes": 2200,
+          "SHA256": "ec7237abb9b71b014c72374a624aaf923b8a6f48729562f62009aa3468649c20"
+        },
+        "copy": "inputs/files.response.body",
+        "original": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/files.response.body",
+          "bytes": 2200,
+          "SHA256": "ec7237abb9b71b014c72374a624aaf923b8a6f48729562f62009aa3468649c20"
+        },
+        "bytes": 2200,
+        "SHA256": "ec7237abb9b71b014c72374a624aaf923b8a6f48729562f62009aa3468649c20",
+        "whole_literal_object": {
+          "enabled": true,
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files"
+          },
+          "entries": [
+            {
+              "created": "2026-10-17T19:04:32.952083+00:00",
+              "updated": "2026-10-17T19:04:32.973167+00:00",
+              "mimetype": "application/zip",
+              "version_id": "2622b835-5d13-4430-a4d8-352652916ff8",
+              "file_id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+              "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+              "metadata": {
+                "zip_toc_position": 155205
+              },
+              "access": {
+                "hidden": false
+              },
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip",
+                "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content",
+                "container": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/container"
+              },
+              "key": "totally-mixed-face-posets-source-and-verification.zip",
+              "transfer": {
+                "type": "L"
+              },
+              "status": "completed",
+              "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+              "size": 157431,
+              "storage_class": "L"
+            },
+            {
+              "created": "2026-10-17T19:04:32.982074+00:00",
+              "updated": "2026-10-17T19:04:32.999726+00:00",
+              "mimetype": "application/pdf",
+              "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+              "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+              "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+              "metadata": {
+                "width": 612,
+                "height": 792
+              },
+              "access": {
+                "hidden": false
+              },
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+                "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+                "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+                "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+                "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+                "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+              },
+              "key": "totally-mixed-face-posets.pdf",
+              "transfer": {
+                "type": "L"
+              },
+              "status": "completed",
+              "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+              "size": 66369,
+              "storage_class": "L"
+            }
+          ],
+          "default_preview": null,
+          "order": []
+        }
+      }
+    ],
+    "whole_ordered_transport_receipts": {
+      "copy": "inputs/ALL_TRANSPORT_RECEIPTS.json",
+      "original": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/ALL_TRANSPORT_RECEIPTS.json",
+        "bytes": 18155,
+        "SHA256": "f5338f1c8373244a0a03c64a798693c63ee6c958f0ad5acd20804bbaebf7fe7e"
+      },
+      "bytes": 18155,
+      "SHA256": "f5338f1c8373244a0a03c64a798693c63ee6c958f0ad5acd20804bbaebf7fe7e",
+      "whole_literal_object": [
+        {
+          "started_UTC": "2026-11-15T07:34:52.003159+00:00",
+          "completed_UTC": "2026-11-15T07:34:52.594761+00:00",
+          "logical_role": "record",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "application/json"
+            ]
+          ],
+          "HTTP_status": 200,
+          "HTTP_reason": "OK",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:34:52 GMT"
+            ],
+            [
+              "content-type",
+              "application/json"
+            ],
+            [
+              "content-length",
+              "7071"
+            ],
+            [
+              "vary",
+              "Accept-Encoding"
+            ],
+            [
+              "etag",
+              "\"3\""
+            ],
+            [
+              "link",
+              "<https://zenodo.org/api/records/23440943> ; rel=\"linkset\" ; type=\"application/linkset+json\""
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "130"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "60"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "x-source",
+              "api"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/record.response.body",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd",
+          "error_type": null
+        },
+        {
+          "started_UTC": "2026-11-15T07:35:26.900554+00:00",
+          "completed_UTC": "2026-11-15T07:35:27.467899+00:00",
+          "logical_role": "latest",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943/versions/latest",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "application/json"
+            ]
+          ],
+          "HTTP_status": 301,
+          "HTTP_reason": "MOVED PERMANENTLY",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:27 GMT"
+            ],
+            [
+              "content-type",
+              "application/json"
+            ],
+            [
+              "content-length",
+              "99"
+            ],
+            [
+              "location",
+              "https://zenodo.org/api/records/23440943"
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "127"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "25"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "x-source",
+              "api"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body",
+          "bytes": 99,
+          "SHA256": "e0044f82093f9e0ef28270537d141d3df3812aae398bfe1ddd2c1975f9507f35",
+          "error_type": null
+        },
+        {
+          "started_UTC": "2026-11-15T07:35:27.468694+00:00",
+          "completed_UTC": "2026-11-15T07:35:28.017407+00:00",
+          "logical_role": "latest",
+          "redirect_hop": 1,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "application/json"
+            ]
+          ],
+          "HTTP_status": 200,
+          "HTTP_reason": "OK",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:27 GMT"
+            ],
+            [
+              "content-type",
+              "application/json"
+            ],
+            [
+              "content-length",
+              "7071"
+            ],
+            [
+              "vary",
+              "Accept-Encoding"
+            ],
+            [
+              "etag",
+              "\"3\""
+            ],
+            [
+              "link",
+              "<https://zenodo.org/api/records/23440943> ; rel=\"linkset\" ; type=\"application/linkset+json\""
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "124"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "25"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "x-source",
+              "api"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body.redirect-01",
+          "bytes": 7071,
+          "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd",
+          "error_type": null
+        },
+        {
+          "started_UTC": "2026-11-15T07:35:28.018785+00:00",
+          "completed_UTC": "2026-11-15T07:35:28.571116+00:00",
+          "logical_role": "versions-page001",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943/versions",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "application/json"
+            ]
+          ],
+          "HTTP_status": 200,
+          "HTTP_reason": "OK",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:28 GMT"
+            ],
+            [
+              "content-type",
+              "application/json"
+            ],
+            [
+              "content-length",
+              "7206"
+            ],
+            [
+              "vary",
+              "Accept-Encoding"
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "121"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "24"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "x-source",
+              "api"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/versions-page001.response.body",
+          "bytes": 7206,
+          "SHA256": "12ee391581aa5511f5e51bb63122e217635615e8d398d635b617de42f260888e",
+          "error_type": null
+        },
+        {
+          "started_UTC": "2026-11-15T07:35:28.572619+00:00",
+          "completed_UTC": "2026-11-15T07:35:29.078664+00:00",
+          "logical_role": "files",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943/files",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "application/json"
+            ]
+          ],
+          "HTTP_status": 200,
+          "HTTP_reason": "OK",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:29 GMT"
+            ],
+            [
+              "content-type",
+              "application/json"
+            ],
+            [
+              "content-length",
+              "2200"
+            ],
+            [
+              "vary",
+              "Accept-Encoding"
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "118"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "23"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "x-source",
+              "api"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/files.response.body",
+          "bytes": 2200,
+          "SHA256": "ec7237abb9b71b014c72374a624aaf923b8a6f48729562f62009aa3468649c20",
+          "error_type": null
+        },
+        {
+          "started_UTC": "2026-11-15T07:35:29.080299+00:00",
+          "completed_UTC": "2026-11-15T07:35:30.182594+00:00",
+          "logical_role": "asset-001",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "*/*"
+            ]
+          ],
+          "HTTP_status": 200,
+          "HTTP_reason": "OK",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:29 GMT"
+            ],
+            [
+              "content-type",
+              "application/octet-stream"
+            ],
+            [
+              "content-length",
+              "157431"
+            ],
+            [
+              "content-disposition",
+              "attachment; filename=totally-mixed-face-posets-source-and-verification.zip"
+            ],
+            [
+              "oc-checksum",
+              "MD5:fd9ae8e92bd60a212bd8a9021aef71a7"
+            ],
+            [
+              "accept-ranges",
+              "bytes"
+            ],
+            [
+              "content-type",
+              "application/octet-stream"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "x-download-options",
+              "noopen"
+            ],
+            [
+              "x-permitted-cross-domain-policies",
+              "none"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "115"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "23"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-source",
+              "files-primary"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-001.response.body",
+          "bytes": 157431,
+          "SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+          "error_type": null
+        },
+        {
+          "started_UTC": "2026-11-15T07:35:30.185068+00:00",
+          "completed_UTC": "2026-11-15T07:35:31.122518+00:00",
+          "logical_role": "asset-002",
+          "redirect_hop": 0,
+          "method": "GET",
+          "request_URL": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+          "actual_request_headers_in_sent_order": [
+            [
+              "Host",
+              "zenodo.org"
+            ],
+            [
+              "User-Agent",
+              "Python-http.client (source-only custody)"
+            ],
+            [
+              "Accept",
+              "*/*"
+            ]
+          ],
+          "HTTP_status": 200,
+          "HTTP_reason": "OK",
+          "response_headers_in_received_order": [
+            [
+              "server",
+              "nginx"
+            ],
+            [
+              "date",
+              "Sun, 15 Nov 2026 07:35:30 GMT"
+            ],
+            [
+              "content-type",
+              "application/octet-stream"
+            ],
+            [
+              "content-length",
+              "66369"
+            ],
+            [
+              "content-disposition",
+              "attachment; filename=totally-mixed-face-posets.pdf"
+            ],
+            [
+              "oc-checksum",
+              "MD5:490c92a8043a4c061e6dcbfa272425c1"
+            ],
+            [
+              "accept-ranges",
+              "bytes"
+            ],
+            [
+              "content-type",
+              "application/octet-stream"
+            ],
+            [
+              "content-security-policy",
+              "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+            ],
+            [
+              "x-content-type-options",
+              "nosniff"
+            ],
+            [
+              "x-download-options",
+              "noopen"
+            ],
+            [
+              "x-permitted-cross-domain-policies",
+              "none"
+            ],
+            [
+              "x-frame-options",
+              "sameorigin"
+            ],
+            [
+              "x-xss-protection",
+              "1; mode=block"
+            ],
+            [
+              "x-ratelimit-limit",
+              "133"
+            ],
+            [
+              "x-ratelimit-remaining",
+              "112"
+            ],
+            [
+              "x-ratelimit-reset",
+              "1794728153"
+            ],
+            [
+              "retry-after",
+              "22"
+            ],
+            [
+              "strict-transport-security",
+              "max-age=31556926; includeSubDomains"
+            ],
+            [
+              "referrer-policy",
+              "strict-origin-when-cross-origin"
+            ],
+            [
+              "access-control-allow-origin",
+              "*"
+            ],
+            [
+              "access-control-expose-headers",
+              "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+            ],
+            [
+              "x-source",
+              "files-primary"
+            ]
+          ],
+          "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+          "bytes": 66369,
+          "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+          "error_type": null
+        }
+      ]
+    },
+    "native_assets_in_original_order": [
+      {
+        "ordinal_zero_based": 0,
+        "original_api_file_object": {
+          "id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+          "key": "totally-mixed-face-posets-source-and-verification.zip",
+          "size": 157431,
+          "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content"
+          }
+        },
+        "whole_original_native_files_entry": {
+          "created": "2026-10-17T19:04:32.952083+00:00",
+          "updated": "2026-10-17T19:04:32.973167+00:00",
+          "mimetype": "application/zip",
+          "version_id": "2622b835-5d13-4430-a4d8-352652916ff8",
+          "file_id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+          "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+          "metadata": {
+            "zip_toc_position": 155205
+          },
+          "access": {
+            "hidden": false
+          },
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip",
+            "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content",
+            "container": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/container"
+          },
+          "key": "totally-mixed-face-posets-source-and-verification.zip",
+          "transfer": {
+            "type": "L"
+          },
+          "status": "completed",
+          "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+          "size": 157431,
+          "storage_class": "L"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets-source-and-verification.zip",
+        "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-001.response.body",
+        "bytes": 157431,
+        "SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+        "native_checksum_verified": true,
+        "fresh_ordinary_native_GET": true,
+        "cached_bytes_reused": false
+      },
+      {
+        "ordinal_zero_based": 1,
+        "original_api_file_object": {
+          "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+          "key": "totally-mixed-face-posets.pdf",
+          "size": 66369,
+          "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+          }
+        },
+        "whole_original_native_files_entry": {
+          "created": "2026-10-17T19:04:32.982074+00:00",
+          "updated": "2026-10-17T19:04:32.999726+00:00",
+          "mimetype": "application/pdf",
+          "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+          "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+          "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+          "metadata": {
+            "width": 612,
+            "height": 792
+          },
+          "access": {
+            "hidden": false
+          },
+          "links": {
+            "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+            "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+            "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+            "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+            "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+            "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+          },
+          "key": "totally-mixed-face-posets.pdf",
+          "transfer": {
+            "type": "L"
+          },
+          "status": "completed",
+          "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+          "size": 66369,
+          "storage_class": "L"
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+        "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+        "bytes": 66369,
+        "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+        "native_checksum_verified": true,
+        "fresh_ordinary_native_GET": true,
+        "cached_bytes_reused": false
+      }
+    ],
+    "protocol": "SOURCE_PROTOCOL_BINDINGS.json",
+    "source_historical_flags_unchanged": true
+  },
+  "review_metadata": {
+    "role": "Informed editorial preparation, not a new scientific review",
+    "root_authority": {
+      "copy": "inputs/ROOT_CLEARANCE.json",
+      "original": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/root-clearance-23440943-20261115.json",
+        "bytes": 49928,
+        "SHA256": "2778005501abc4ae691c0b17e75915edf91917f36c8180021b1a3030c5553da1"
+      },
+      "bytes": 49928,
+      "SHA256": "2778005501abc4ae691c0b17e75915edf91917f36c8180021b1a3030c5553da1",
+      "whole_literal_object": {
+        "schema": "root_full_scientific_clearance_23440943_v1",
+        "UTC": "2026-11-15T18:57:29.015785+00:00",
+        "record_id": 23440943,
+        "sheet_row": 131,
+        "title": "Negative answers to the printed totally mixed face questions",
+        "literal_root_scientific_disposition": "PASS — complete original additive-filter counterexample; both printed shellability and sphere-wedge homology expectations fail, with definition and priority limits",
+        "full_original_claim_supported": true,
+        "substantive_defect": null,
+        "mathematical_remaining_gap": null,
+        "source_repair_or_narrowed_replacement": false,
+        "root_paper_first_initial": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/root-science-initial-23440943-20261115.json",
+          "bytes": 3103,
+          "SHA256": "afd5cadd212d87e849385d1e123e57330d4fde54ec3da5d5d706f98502d8b102"
+        },
+        "root_actual_PDF_pages_read": 4,
+        "root_actual_controlling_TeX_lines_read": 243,
+        "root_own_fresh_manuscript_rasters_personally_viewed": 4,
+        "root_initial_distinct_approach_families": 11,
+        "root_initial_sealed_before_foreign_science_native_code_results_current_peer_or_triage_opinions": true,
+        "root_review": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/root/ROOT_REVIEW_20261115.md",
+          "bytes": 11208,
+          "SHA256": "543128f968f616314b2aa0a676b45a82ce49248f4ceb62264d3b7ef1a60f2ab1"
+        },
+        "root_primary_reading_checkpoint": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/root/ROOT_READING_FINAL_20261115.json",
+          "bytes": 6596,
+          "SHA256": "02afbdf4a35796cd02d51c83eb5ba2212ab62640b4e35669f2ffc1a9dba1a419"
+        },
+        "root_actual_whole_native_comparison": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/root/ROOT_NATIVE_COMPARISON_20261115.json",
+          "bytes": 6001,
+          "SHA256": "c1c27aa6ed6fe3fcdf30253a8f9f1bebc92f2581b4174d2d65fa7efa6feb9c1a"
+        },
+        "root_actual_peer_pure_closures": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/root/ACTUAL_PEER_PURE_CLOSURES_20261115.json",
+          "bytes": 1363,
+          "SHA256": "bb7e3cb53ea800cad99a9754872e93a958bdbd3639422bd0f3c29092f53dcb0d"
+        },
+        "root_primary_bodies_bound": [
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/OWR2019-39.pdf",
+            "bytes": 805201,
+            "SHA256": "1992a28d6ae76764ae6ec0426b31c1c3409a640fc9ecbb8fec3f58f622e2a2a2",
+            "actual_reading_scope": "Full preceding open-problems context and complete Payne Problem3, physical69–71/printed2463–2465; no stated general-position condition."
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/Bjorner-Wachs.pdf",
+            "bytes": 404090,
+            "SHA256": "df20c1795029ab9dd65fb882f19998f46de5f01560fd78df397b2672960d5634",
+            "actual_reading_scope": "Definition2.1/empty-face dimension and surrounding context, physical3–4; complete Section5 opening/strict-chain definition, printed1312."
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/Fukuda-Weibel-v4.pdf",
+            "bytes": 167108,
+            "SHA256": "46240d10f3004e637fdbdb508da954a3825977e731eb40a55ae5a6ab6094fd0b",
+            "actual_reading_scope": "Physical4–5, general Lemma4 and its distinction from surrounding perfectly-centered lemmas; original2004 cited body not newly read."
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/Adiprasito-2020.pdf",
+            "bytes": 240174,
+            "SHA256": "a6d9d816613e3882d211b96153f0776f2a22f28c243c1c4470c9b73ff290e102",
+            "actual_reading_scope": "Actual public27July2020 manuscript, physical1–2 subset-sum mixed criterion/Corollary1.3; final2024 body not newly read."
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/AB-arxiv.pdf",
+            "bytes": 579408,
+            "SHA256": "7c78c288164f89b4a61a51807ef161ad49a295f60a0421cef5fbea0f27bfc159",
+            "actual_reading_scope": "Actual public marginv1 1July2016/internal18September2018, physical1/3 Section1.2 facet convention; root final publisher body not newly read."
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/Sturmfels-Tevelev.pdf",
+            "bytes": 293439,
+            "SHA256": "eccf07cf4d5a4b3330d355601581ed2b9d25e3e5245ff4958d4ee92b7eb3948d",
+            "actual_reading_scope": "Actualv1 Examples1.3/4.10, complete selected text/context physical2–3/15–16; scaled opposite tetrahedra and six rays, no firstness claim."
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/primary/HSWW-v2.pdf",
+            "bytes": 410046,
+            "SHA256": "eef59d8ec20601addb6c243b64b23b84ef64726b7e78acc444e045c9068c6d53",
+            "actual_reading_scope": "Actualv2 complete Section8 physical22–26, ambient(C*)8 and Proposition8.7; different object, no Macaulay2 execution/full foreign proof certification."
+          }
+        ],
+        "source_ready": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/SOURCE_READY.json",
+          "bytes": 25044,
+          "SHA256": "928fb2b26bd31a0678fc3954c29f8a7897a3d6352e9b5dab791224a72a828235"
+        },
+        "source_ready_whole_original": {
+          "schema": "fresh_source_only_native_custody_126_128_v1",
+          "status": "SOURCE_READY",
+          "UTC": "2026-11-15T07:43:03.173771+00:00",
+          "record_id": 23440943,
+          "sheet_row": 131,
+          "title": "Negative answers to the printed totally mixed face questions",
+          "DOI": "10.5281/zenodo.23440943",
+          "version_field_present": true,
+          "version": "1.0.0",
+          "publication_date": "2026-10-17",
+          "created": "2026-10-17T19:04:32.905992+00:00",
+          "updated": "2026-10-17T19:04:33.294068+00:00",
+          "native_conceptrecid_whole_field": {
+            "present": true,
+            "original_value": "23440942"
+          },
+          "native_version_whole_field": {
+            "present": true,
+            "original_value": "1.0.0"
+          },
+          "native_license_metadata_whole_field": {
+            "present": true,
+            "original_value": {
+              "id": "cc-by-4.0"
+            }
+          },
+          "native_resource_type_whole_field": {
+            "present": true,
+            "original_value": {
+              "title": "Preprint",
+              "type": "publication",
+              "subtype": "preprint"
+            }
+          },
+          "latest_record_id": 23440943,
+          "all_enumerated_version_ids": [
+            23440943
+          ],
+          "version_enumeration_exhaustive_no_next_link": true,
+          "all_versions_total_original_fields": [
+            1
+          ],
+          "whole_native_API_objects": [
+            {
+              "role": "record",
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/record.response.body",
+              "bytes": 7071,
+              "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+            },
+            {
+              "role": "latest",
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body.redirect-01",
+              "bytes": 7071,
+              "SHA256": "e2ae52d9167b8a42559f1410f9349b8bf04c3b6c1abfd5f61f5893d303820abd"
+            },
+            {
+              "role": "versions-page001",
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/versions-page001.response.body",
+              "bytes": 7206,
+              "SHA256": "12ee391581aa5511f5e51bb63122e217635615e8d398d635b617de42f260888e"
+            },
+            {
+              "role": "files",
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/files.response.body",
+              "bytes": 2200,
+              "SHA256": "ec7237abb9b71b014c72374a624aaf923b8a6f48729562f62009aa3468649c20"
+            }
+          ],
+          "all_native_assets_in_original_order": [
+            {
+              "ordinal_zero_based": 0,
+              "original_api_file_object": {
+                "id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+                "key": "totally-mixed-face-posets-source-and-verification.zip",
+                "size": 157431,
+                "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content"
+                }
+              },
+              "whole_original_native_files_entry": {
+                "created": "2026-10-17T19:04:32.952083+00:00",
+                "updated": "2026-10-17T19:04:32.973167+00:00",
+                "mimetype": "application/zip",
+                "version_id": "2622b835-5d13-4430-a4d8-352652916ff8",
+                "file_id": "888ef4d0-3b01-4f8b-be4e-fc1642b651c9",
+                "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+                "metadata": {
+                  "zip_toc_position": 155205
+                },
+                "access": {
+                  "hidden": false
+                },
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip",
+                  "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/content",
+                  "container": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets-source-and-verification.zip/container"
+                },
+                "key": "totally-mixed-face-posets-source-and-verification.zip",
+                "transfer": {
+                  "type": "L"
+                },
+                "status": "completed",
+                "checksum": "md5:fd9ae8e92bd60a212bd8a9021aef71a7",
+                "size": 157431,
+                "storage_class": "L"
+              },
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets-source-and-verification.zip",
+              "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-001.response.body",
+              "bytes": 157431,
+              "SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+              "native_checksum_verified": true,
+              "fresh_ordinary_native_GET": true,
+              "cached_bytes_reused": false
+            },
+            {
+              "ordinal_zero_based": 1,
+              "original_api_file_object": {
+                "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+                "key": "totally-mixed-face-posets.pdf",
+                "size": 66369,
+                "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+                }
+              },
+              "whole_original_native_files_entry": {
+                "created": "2026-10-17T19:04:32.982074+00:00",
+                "updated": "2026-10-17T19:04:32.999726+00:00",
+                "mimetype": "application/pdf",
+                "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+                "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+                "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+                "metadata": {
+                  "width": 612,
+                  "height": 792
+                },
+                "access": {
+                  "hidden": false
+                },
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+                  "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+                  "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+                  "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+                  "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+                  "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+                },
+                "key": "totally-mixed-face-posets.pdf",
+                "transfer": {
+                  "type": "L"
+                },
+                "status": "completed",
+                "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+                "size": 66369,
+                "storage_class": "L"
+              },
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+              "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+              "bytes": 66369,
+              "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+              "native_checksum_verified": true,
+              "fresh_ordinary_native_GET": true,
+              "cached_bytes_reused": false
+            }
+          ],
+          "actual_transport_receipts": {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/ALL_TRANSPORT_RECEIPTS.json",
+            "bytes": 18155,
+            "SHA256": "f5338f1c8373244a0a03c64a798693c63ee6c958f0ad5acd20804bbaebf7fe7e"
+          },
+          "HTTP_status_sequence": [
+            200,
+            301,
+            200,
+            200,
+            200,
+            200,
+            200
+          ],
+          "actual_ordinary_native_HTTP_requests": 7,
+          "logical_requests": 6,
+          "raw_non_200_response_bodies": [
+            {
+              "started_UTC": "2026-11-15T07:35:26.900554+00:00",
+              "completed_UTC": "2026-11-15T07:35:27.467899+00:00",
+              "logical_role": "latest",
+              "redirect_hop": 0,
+              "method": "GET",
+              "request_URL": "https://zenodo.org/api/records/23440943/versions/latest",
+              "actual_request_headers_in_sent_order": [
+                [
+                  "Host",
+                  "zenodo.org"
+                ],
+                [
+                  "User-Agent",
+                  "Python-http.client (source-only custody)"
+                ],
+                [
+                  "Accept",
+                  "application/json"
+                ]
+              ],
+              "HTTP_status": 301,
+              "HTTP_reason": "MOVED PERMANENTLY",
+              "response_headers_in_received_order": [
+                [
+                  "server",
+                  "nginx"
+                ],
+                [
+                  "date",
+                  "Sun, 15 Nov 2026 07:35:27 GMT"
+                ],
+                [
+                  "content-type",
+                  "application/json"
+                ],
+                [
+                  "content-length",
+                  "99"
+                ],
+                [
+                  "location",
+                  "https://zenodo.org/api/records/23440943"
+                ],
+                [
+                  "access-control-allow-origin",
+                  "*"
+                ],
+                [
+                  "access-control-expose-headers",
+                  "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+                ],
+                [
+                  "x-ratelimit-limit",
+                  "133"
+                ],
+                [
+                  "x-ratelimit-remaining",
+                  "127"
+                ],
+                [
+                  "x-ratelimit-reset",
+                  "1794728153"
+                ],
+                [
+                  "retry-after",
+                  "25"
+                ],
+                [
+                  "x-frame-options",
+                  "sameorigin"
+                ],
+                [
+                  "x-xss-protection",
+                  "1; mode=block"
+                ],
+                [
+                  "x-content-type-options",
+                  "nosniff"
+                ],
+                [
+                  "content-security-policy",
+                  "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+                ],
+                [
+                  "strict-transport-security",
+                  "max-age=31556926; includeSubDomains"
+                ],
+                [
+                  "referrer-policy",
+                  "strict-origin-when-cross-origin"
+                ],
+                [
+                  "x-source",
+                  "api"
+                ]
+              ],
+              "body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/latest.response.body",
+              "bytes": 99,
+              "SHA256": "e0044f82093f9e0ef28270537d141d3df3812aae398bfe1ddd2c1975f9507f35",
+              "error_type": null
+            }
+          ],
+          "failed_transports_preserved_whole": [],
+          "native_redirect_followed_from_actual_Location_only": true,
+          "native_schema_types": {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/NATIVE_SCHEMA_TYPES.json",
+            "bytes": 54982,
+            "SHA256": "c56cd5be497cca40347ced74d6fb245d9601cf36e809f75fa1208f59a9ac9054"
+          },
+          "native_schema_distinctions": {
+            "record_swh": {
+              "present": true,
+              "original_value": {}
+            },
+            "latest_swh": {
+              "present": true,
+              "original_value": {}
+            },
+            "versions_swh_fields": [
+              {
+                "present": true,
+                "original_value": null
+              }
+            ],
+            "versions_total_original_fields": [
+              1
+            ],
+            "files_entries_original_type": "list",
+            "files_order": {
+              "present": true,
+              "original_value": []
+            },
+            "files_default_preview": {
+              "present": true,
+              "original_value": null
+            },
+            "original_header_order_and_duplicates_preserved": true
+          },
+          "current_native_sheet_identity_subset": {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/NATIVE_IDENTITY_MATCH.json",
+            "bytes": 5195,
+            "SHA256": "c0c8a74536dadaeb8e445a6ed70309cbfd92cbe31202872d67be62e5d3a4632b"
+          },
+          "current_sheet_tab_and_bounds": {
+            "title": "Full List",
+            "sheetId": 1052646184,
+            "rowCount": 1000,
+            "columnCount": 30
+          },
+          "queue_binding": {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/QUEUE_BINDING.json",
+            "bytes": 1307,
+            "SHA256": "3fa5b584887b7236a8e16ca26d3a5ca1aa9c4d871b1179844f833dd31dd2b985"
+          },
+          "current_native_sheet_and_fresh_published_record_identity_match": true,
+          "selected_actual_PDF": {
+            "ordinal_zero_based": 1,
+            "original_api_file_object": {
+              "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+              "key": "totally-mixed-face-posets.pdf",
+              "size": 66369,
+              "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+              }
+            },
+            "whole_original_native_files_entry": {
+              "created": "2026-10-17T19:04:32.982074+00:00",
+              "updated": "2026-10-17T19:04:32.999726+00:00",
+              "mimetype": "application/pdf",
+              "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+              "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+              "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+              "metadata": {
+                "width": 612,
+                "height": 792
+              },
+              "access": {
+                "hidden": false
+              },
+              "links": {
+                "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+                "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+                "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+                "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+                "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+                "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+              },
+              "key": "totally-mixed-face-posets.pdf",
+              "transfer": {
+                "type": "L"
+              },
+              "status": "completed",
+              "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+              "size": 66369,
+              "storage_class": "L"
+            },
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+            "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+            "bytes": 66369,
+            "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+            "native_checksum_verified": true,
+            "fresh_ordinary_native_GET": true,
+            "cached_bytes_reused": false,
+            "pages": 4,
+            "text_extracted": false,
+            "pages_visually_or_scientifically_read": false,
+            "actual_standalone_API_asset": true
+          },
+          "actual_standalone_readers": [
+            {
+              "ordinal_zero_based": 1,
+              "original_api_file_object": {
+                "id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+                "key": "totally-mixed-face-posets.pdf",
+                "size": 66369,
+                "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content"
+                }
+              },
+              "whole_original_native_files_entry": {
+                "created": "2026-10-17T19:04:32.982074+00:00",
+                "updated": "2026-10-17T19:04:32.999726+00:00",
+                "mimetype": "application/pdf",
+                "version_id": "21c43ffe-188e-4fd0-9536-97fb3f3f3dd3",
+                "file_id": "d5a8fc7b-f947-4009-a6d4-1fb279f62c14",
+                "bucket_id": "effc3f59-72e7-4195-8084-dd6c0191e053",
+                "metadata": {
+                  "width": 612,
+                  "height": 792
+                },
+                "access": {
+                  "hidden": false
+                },
+                "links": {
+                  "self": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf",
+                  "content": "https://zenodo.org/api/records/23440943/files/totally-mixed-face-posets.pdf/content",
+                  "iiif_canvas": "https://zenodo.org/api/iiif/record:23440943/canvas/totally-mixed-face-posets.pdf",
+                  "iiif_base": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf",
+                  "iiif_info": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/info.json",
+                  "iiif_api": "https://zenodo.org/api/iiif/record:23440943:totally-mixed-face-posets.pdf/full/full/0/default.png"
+                },
+                "key": "totally-mixed-face-posets.pdf",
+                "transfer": {
+                  "type": "L"
+                },
+                "status": "completed",
+                "checksum": "md5:490c92a8043a4c061e6dcbfa272425c1",
+                "size": 66369,
+                "storage_class": "L"
+              },
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/assets/totally-mixed-face-posets.pdf",
+              "transport_body_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/asset-002.response.body",
+              "bytes": 66369,
+              "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+              "native_checksum_verified": true,
+              "fresh_ordinary_native_GET": true,
+              "cached_bytes_reused": false,
+              "pages": 4,
+              "text_extracted": false,
+              "pages_visually_or_scientifically_read": false,
+              "actual_standalone_API_asset": true
+            }
+          ],
+          "controlling_TeX": {
+            "container_id": "container-001",
+            "container_depth": 0,
+            "ordinal_zero_based": 23,
+            "original_member_name": "main.tex",
+            "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/main.tex",
+            "bytes": 12609,
+            "SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+            "safe_regular_body": true,
+            "nested_archive_kind": null,
+            "CRC32": "67e0668a",
+            "compressed_bytes": 5622,
+            "compression_method": 8,
+            "native_external_attr": 27525120,
+            "native_create_system": 3,
+            "native_flags": 0,
+            "native_date_time": [
+              2026,
+              10,
+              17,
+              0,
+              0,
+              0
+            ],
+            "opaque_byte_splitlines_count": 243,
+            "preamble_or_mathematical_body_read": false
+          },
+          "controlling_TeX_selection_basis": "sole archived TeX occurrence in original source container with byte-identical embedded native PDF elsewhere in the same archive; structural association only, no source body or build correspondence certified",
+          "all_TeX_candidates": [
+            {
+              "container_id": "container-001",
+              "container_depth": 0,
+              "ordinal_zero_based": 23,
+              "original_member_name": "main.tex",
+              "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/main.tex",
+              "bytes": 12609,
+              "SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+              "safe_regular_body": true,
+              "nested_archive_kind": null,
+              "CRC32": "67e0668a",
+              "compressed_bytes": 5622,
+              "compression_method": 8,
+              "native_external_attr": 27525120,
+              "native_create_system": 3,
+              "native_flags": 0,
+              "native_date_time": [
+                2026,
+                10,
+                17,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "actual_standalone_TeX_assets": [],
+          "embedded_PDFs": [
+            {
+              "container_id": "container-001",
+              "container_depth": 0,
+              "ordinal_zero_based": 24,
+              "original_member_name": "output/pdf/totally-mixed-face-posets.pdf",
+              "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/output/pdf/totally-mixed-face-posets.pdf",
+              "bytes": 66369,
+              "SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+              "safe_regular_body": true,
+              "nested_archive_kind": null,
+              "CRC32": "ae043be7",
+              "compressed_bytes": 64444,
+              "compression_method": 8,
+              "native_external_attr": 27525120,
+              "native_create_system": 3,
+              "native_flags": 0,
+              "native_date_time": [
+                2026,
+                10,
+                17,
+                0,
+                0,
+                0
+              ],
+              "pages": 4,
+              "identical_to_standalone_published_PDF": true,
+              "body_or_pixels_scientifically_read": false
+            }
+          ],
+          "manuscript_custody": {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/MANUSCRIPT_CUSTODY.json",
+            "bytes": 9455,
+            "SHA256": "04d37dd482f5644462a9fb2a6a09774dca560e4c8312ef810f0dbe52736f6509"
+          },
+          "fresh_page_rasters": [
+            {
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-1.png",
+              "bytes": 293326,
+              "SHA256": "caaf9b3609dd1a0e9fbd8c8d3ccb8cf6cb74f148b4d885097dccd6aae38e1100",
+              "width": 1233,
+              "height": 1595,
+              "visually_read": false
+            },
+            {
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-2.png",
+              "bytes": 372803,
+              "SHA256": "3f65a5410123f5993ccc876a442721e537bb3fb59f19b4bea41e4a76a9385485",
+              "width": 1233,
+              "height": 1595,
+              "visually_read": false
+            },
+            {
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-3.png",
+              "bytes": 391381,
+              "SHA256": "db9f71a18f792c6cef4af86c31dab36640c2e588afa5698bb1709d1a6f6579ff",
+              "width": 1233,
+              "height": 1595,
+              "visually_read": false
+            },
+            {
+              "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/rasters/page-4.png",
+              "bytes": 198250,
+              "SHA256": "289795c1a58818639a12f92431c1dfd0801b40fc352984836d8833897b84fa0a",
+              "width": 1233,
+              "height": 1595,
+              "visually_read": false
+            }
+          ],
+          "whole_archive_custody": {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/ARCHIVE_CUSTODY.json",
+            "bytes": 73233,
+            "SHA256": "afb8807928b6c4b386532578ce5589a94e4d82810882b7a12b7acd6362676afd"
+          },
+          "top_level_archive_count": 1,
+          "recursive_archive_container_count": 1,
+          "nested_archive_count": 0,
+          "whole_regular_payload_occurrences": 29,
+          "expanded_bytes_all_depths": 347616,
+          "unsafe_names": [],
+          "duplicate_or_case_colliding_names": [],
+          "nonregular_payloads": [],
+          "unsupported_nested_magic": [],
+          "native_CRC_size_SHA_and_whole_extracted_bytes_verified": true,
+          "support_program_bindings": [
+            {
+              "container_id": "container-001",
+              "container_depth": 0,
+              "ordinal_zero_based": 25,
+              "original_member_name": "verification/check_geometry.py",
+              "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/verification/check_geometry.py",
+              "bytes": 22030,
+              "SHA256": "4785407e1f5fc842cfa71593b00aee485deff20a67d2aba618e06573d3efd02e",
+              "safe_regular_body": true,
+              "nested_archive_kind": null,
+              "CRC32": "3b704cea",
+              "compressed_bytes": 6731,
+              "compression_method": 8,
+              "native_external_attr": 27525120,
+              "native_create_system": 3,
+              "native_flags": 0,
+              "native_date_time": [
+                2026,
+                10,
+                17,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "container_id": "container-001",
+              "container_depth": 0,
+              "ordinal_zero_based": 26,
+              "original_member_name": "verification/check_topology.py",
+              "extracted_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/verification/check_topology.py",
+              "bytes": 11179,
+              "SHA256": "31c4004a656ef767280f1841f81086a0e471240f7c2ecd483b7375e1f75c1c4c",
+              "safe_regular_body": true,
+              "nested_archive_kind": null,
+              "CRC32": "22729c3b",
+              "compressed_bytes": 3766,
+              "compression_method": 8,
+              "native_external_attr": 27525120,
+              "native_create_system": 3,
+              "native_flags": 0,
+              "native_date_time": [
+                2026,
+                10,
+                17,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "printed_title_date_version_inspected": false,
+          "printed_date": null,
+          "printed_version": null,
+          "target_PDF_text_extracted": false,
+          "target_PDF_pages_rendered": true,
+          "target_PDF_rasters_visually_read": false,
+          "mathematical_PDF_TeX_or_pixels_read": false,
+          "TeX_preamble_or_mathematical_body_read": false,
+          "source_scientific_proofs_code_results_triage_reviews_or_opinions_read": false,
+          "source_programmes_executed": [],
+          "cached_bytes_reused": false,
+          "all_original_assets_received_by_actual_fresh_native_GET": true,
+          "explicit_standard_request_headers_recorded_in_sent_order": true,
+          "custom_auth_proxy_query_retry_or_bypass_tricks_used": false,
+          "ignored_assets_and_extraction_paths_established_before_acquisition": true,
+          "source_directory_preexisting": false,
+          "originals_overwritten": false,
+          "old_source_collectors_builders_or_scientific_campaigns_executed": false,
+          "queue_Sheet_Git_site_or_old_packet_changes": [],
+          "exposure_limit": "Fresh native identity/availability/status Sheet fields, raw Zenodo metadata structures, opaque archive/file/CRC/hash custody, PDF metadata/page count and unread rasters, and TeX opaque byte line count only. No target PDF text/pixels, TeX preamble/body, scientific programmes/results, triage opinions or current reviewer findings interpreted. The original126 acquisition helper code was fully inspected and adapted only inside these new source namespaces; no original old collector or supplied scientific programme executed.",
+          "scientific_verdict": null,
+          "publication_authority": false,
+          "completion_percent_at_preseal": 100
+        },
+        "actual_native_version_field_present": true,
+        "actual_native_version": "1.0.0",
+        "printed_version_present": true,
+        "printed_version": "1.0.0",
+        "original_publication_date": "2026-10-17",
+        "actual_native_asset_order": [
+          "ZIP",
+          "PDF"
+        ],
+        "PDF_pages": 4,
+        "complete_original_ZIP_regular_payloads": 29,
+        "standalone_PDF_equals_archived_copy": true,
+        "whole_original_scientific_verdicts": {
+          "scope": {
+            "schema": "literal_scope_primary_verdict_23440943_v1",
+            "UTC": "2026-11-15T08:30:56.859290+00:00",
+            "record_id": 23440943,
+            "printed_native_version": "1.0.0",
+            "recommended_disposition": "Pass — both literal printed assertions refuted by the full stated example; priority unestablished",
+            "full_original_claim_assessed": true,
+            "substantive_defect_found": false,
+            "exact_defect": null,
+            "mathematical_remaining_gap": null,
+            "narrowing_or_repair_proposed": false,
+            "construction": "D4×[0,1] and (-D4)×[0,1], full-dimensional lattice polytopes in R5",
+            "exact_filter": {
+              "canonical_summands_same_exposing_functional": true,
+              "both_summand_dimensions_positive": true,
+              "dimension_of_sum_equals_sum_of_dimensions": true
+            },
+            "realization": "ordinary order complex of nonempty strict chains; no artificial extrema",
+            "complete_result": {
+              "components": 2,
+              "each_component_pure_dimension": 1,
+              "each_component_vertices": 50,
+              "each_component_edges": 60,
+              "each_component_connected": true,
+              "ordinary_rational_Betti_numbers": [
+                2,
+                22
+              ],
+              "all_higher_homology_zero": true,
+              "not_shellable_pure": true,
+              "not_shellable_standard_nonpure": true,
+              "not_rational_homology_of_wedge_of_3_spheres": true
+            },
+            "printed_source_actual_body_checked": {
+              "OWR_report": "39/2019",
+              "printed_page": 2464,
+              "physical_page": 70,
+              "problem": 3,
+              "stated_general_position_assumption": false
+            },
+            "boundary_scopes": {
+              "nongeneric_common_interval_deliberate": true,
+              "stable_intersection_shellability_resolved": false,
+              "competing_mixed_face_definitions_identified": true,
+              "six_point_classical_control_shellable_dimension_zero": true,
+              "smallest_possible_dimension_claim": false
+            },
+            "reproduction_here": {
+              "own_exact_controls": "PASS; own exposed-coordinate ranks, all32400 base incidences, explicit graph tree/cycles and rational boundary rank98",
+              "native_scientific_code_imported_or_executed": false,
+              "sole_selected_native_replay_owner": "sol_110_adversarial",
+              "historical_expected_outputs_read_after_own_freeze": true
+            },
+            "bibliography_limits": [
+              "OriginalFukuda2004 Prop2.1 identified through actualFukuda–Weibelv4 citation, not independently read.",
+              "Adiprasito2024 final journal body not read; actual public2020 manuscript comparison kept explicit.",
+              "PublishedAdiprasito-et-al definition read via actual publisher web-search body; native publisherGET403 and web-open failure retained; rawarXiv edition kept distinct.",
+              "No exhaustive earlier-proof/nonshellability search, firstness or independence/influence inference."
+            ],
+            "current_peer_or_root_scientific_packets_read": false,
+            "root_comparison_gate_at_verdict": "CLOSED",
+            "scientific_findings_released": false,
+            "followup": null,
+            "publication_authority": false,
+            "completion_percent": 100
+          },
+          "adversarial": {
+            "schema": "independent_adversarial_scientific_verdict_v1",
+            "record_id": 23440943,
+            "sheet_row": 131,
+            "completed_UTC": "2026-11-15T08:36:59.577512+00:00",
+            "completion_percent": 100,
+            "literal_custom_verdict": "PASS_FULL_PRINTED_ADDITIVE_DIMENSION_COUNTEREXAMPLE_AND_BOTH_SHELLABILITY_HOMOLOGY_NEGATIONS_WITH_CONVENTION_AND_PRIORITY_LIMITS",
+            "substantive_mathematical_defect_found": false,
+            "exact_mathematical_gap": null,
+            "whole_original_claim_verified": {
+              "P1": "conv(0,e1,e2,e3,e4)×[0,1]",
+              "P2": "(−conv(0,e1,e2,e3,e4))×[0,1]",
+              "ambient": "R5; both full-dimensional lattice polytopes",
+              "filter": "Nonempty sum faces with canonical summand dimensions>0 and exact sum-dimension additivity.",
+              "poset": "Geometric face inclusion; ordinary order complex of strict nonempty chains; no artificial extrema; labeled summands.",
+              "entire_order_complex": "K disjoint union K; each connected pure graph with50vertices,60edges and first Betti number11.",
+              "ordinary_rational_homology": {
+                "H0": "Q²",
+                "H1": "Q²²",
+                "Hj_j_at_least2": "0"
+              },
+              "shellability": "Not shellable under either pure or standard nonpure shellability.",
+              "printed_question": "Both shellability and wedge-of-(n−2)-spheres homology assertions fail for the printed unrestricted positive/additive filter; actual official Problem3/p2464 authenticated.",
+              "degeneracy": "Shared interval deliberately nongeneric; no generic-position assumption added or inferred.",
+              "variants": [
+                "Six-point opposite-tetrahedron control is shellable dimension0 and fails printed circle-wedge homology.",
+                "Replacing n−2 by n−3 does not eliminate the main R5 obstruction.",
+                "Canonical decomposition uniqueness closes existential alternative-face ambiguity.",
+                "Proper vertical dimensions(2,2,3) separate broader stable lower bounds from exact additivity.",
+                "Facet-based mixed terminology and HSWWv2 tropical link are different objects."
+              ],
+              "not_claimed": [
+                "stable-intersection shellability failure",
+                "generic perturbation theorem",
+                "minimum dimension or order",
+                "worldwide firstness/exclusive historical priority",
+                "present-day openness",
+                "formal or human peer-review certification"
+              ]
+            },
+            "independent_deductions": [
+              "Maximum/minimum coordinate exposures exhaust all proper difference faces.",
+              "Affine-independence proves transverse base directions and dimension formula.",
+              "Geometric containment proves exact ordered-set face order.",
+              "Shared interval adds2to total summand dimensions but only1to sum dimension.",
+              "Signed two-subset double cover connected via explicit odd5cycle; subdivision gives K.",
+              "Exact graph boundary rank98, ordinary/reduced H0 distinguished.",
+              "First edge from a new component violates codimension-one attachment in every facet ordering."
+            ],
+            "own_frozen_exact_controls": {
+              "explicit_predicates": 446,
+              "all_nonempty_sum_faces": 543,
+              "nonempty_faces_each_summand": 93,
+              "qualifiers": 100,
+              "order_edges": 120,
+              "rational_boundary_rank": 98,
+              "ordinary_Betti": [
+                2,
+                22,
+                0
+              ],
+              "complete_qualifying_coordinate_records_and_comparisons_retained": true,
+              "controls": [
+                "signed disjointness double cover and oddcycle",
+                "30 proper vertical lower-bound-only witnesses",
+                "whole/empty/endpoints and full dimension",
+                "six-point opposite tetrahedra",
+                "artificial-top cone fvector101,220,120 and exact rational ranks100,120"
+              ],
+              "completed_before_native_or_foreign_scientific_exposure": true
+            },
+            "native_reproduction": {
+              "selected": [
+                "verification/check_geometry.py",
+                "verification/check_topology.py"
+              ],
+              "entire_original_bodies_read_before_execution": true,
+              "whole_original_payloads_isolated": 29,
+              "runs_once_each": [
+                "geometry normal",
+                "geometry optimized",
+                "topology normal",
+                "topology optimized"
+              ],
+              "all_exit_codes": 0,
+              "all_stderr_empty": true,
+              "whole_original_expected_wrapper_bytes": 6908,
+              "EXPECTED_ORIGINAL_SHA256": "0e337b9ade805e930bd48ec74788dc0cc86ecd3cd05c422a69c604b241ec4806",
+              "entire_expected_subobjects_and_exact_stdout_encoding_compared": true,
+              "normal_optimized_whole_bytes_identical_each_checker": true,
+              "geometry_stdout_bytes": 2752,
+              "geometry_STDOUT_SHA256": "d3f510f119525a1e85d8bb1421a9257e8bdff07d05d3e5f41a8b76c87d789283",
+              "topology_stdout_bytes": 3473,
+              "topology_STDOUT_SHA256": "4958c5d22fe23e121088cb96eb2816dd233a4e4fa7e52d56978f52deb07e9ea8",
+              "geometry_all_nonempty_summand_pairs": 8649,
+              "all_source_and_isolated_bytes_unchanged": true,
+              "wrapper_builder_driver_or_archived_campaign_executed": false,
+              "requirements_failure": null,
+              "dependency_installation": false
+            },
+            "actual_primary_interfaces_read": [
+              "Official OWR39/2019 full printedProblem3 plus nearby context and freshpage70pixels.",
+              "Björner–Wachs actualDefinition2.1 and strict-chain order-complex convention.",
+              "Fukuda–Weibel exactv4 generalLemma4.",
+              "Sturmfels–Tevelev exactv1 Examples1.3/4.10 opposite scaled tetrahedra and six rays.",
+              "Adiprasito actualpublic2020 page2 subset-sum criterion/Corollary1.3.",
+              "Actualcolorful-Gale publicmanuscript Section1.2 facet convention, printed18September2018/arXivv1margin1July2016.",
+              "HSWW actualv2 Section8 pages22–26, Schön ambient(C*)8 and Proposition8.7."
+            ],
+            "edition_priority_limits": [
+              "Final2019 OUP body not personally read in this lane; ordinary DOI GET403 retained. Public manuscript terminology corroborates comparison, with exact edition distinguished.",
+              "Final2024 PAMQ body not obtained; ordinary DOI GET403 retained. Target explicitly compares public2020 manuscript, which was personally read.",
+              "No exhaustive prior-counterexample or exclusive-priority search; related alternative tropical object is not identified with exact target poset.",
+              "Classical Minkowski uniqueness/simplex geometry and older opposite-tetrahedron antecedent credited."
+            ],
+            "independence": {
+              "initial_whole_PDF_TeX_own4fresh_rasters_before_foreign_code_results_opinions": true,
+              "initial_distinct_families": 11,
+              "own_controls_frozen_before_foreign_native_science": true,
+              "sibling_or_root_scientific_bodies_read": false,
+              "inventory_triage_or_archived_audit_report_bodies_read": false,
+              "deposited_README_author_summary_read_only_after_own_freeze": true,
+              "child_scope": "Independent opaque native/schema/ZIP custody only, no scientific body/result or finding.",
+              "root131_gate_at_completion": "CLOSED",
+              "science_release_authorized_only_after_explicit_root_open": true
+            },
+            "source_custody": {
+              "SOURCE_READY_SHA256": "928fb2b26bd31a0678fc3954c29f8a7897a3d6352e9b5dab791224a72a828235",
+              "SOURCE_SEAL_SHA256": "0fed874ecff807d3250957b196f39902b124825dd0c5fa90bd1efa2bf406679e",
+              "actual_PDF_SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+              "controlling_TeX_SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+              "original_ZIP_SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+              "source_files": 81,
+              "original_ZIP_payloads": 29,
+              "native_API_objects": 4,
+              "native_transports": 7,
+              "native_literal_copies": 21,
+              "native_schema_pointer_rows_independently_checked_by_metadata_child": 499,
+              "types_nulls_order_duplicate_headers_and_historical_flags_preserved": true
+            },
+            "dates_version_license": {
+              "printed_version": "1.0.0",
+              "API_version": "1.0.0",
+              "printed_date": "October17,2026",
+              "declared_publication_date": "2026-10-17",
+              "created": "2026-10-17T19:04:32.905992+00:00",
+              "updated": "2026-10-17T19:04:33.294068+00:00",
+              "actual_license": "CC BY4.0 for original authored materials; third-party works retain licenses.",
+              "MIT_default_inferred": false
+            },
+            "followup": null,
+            "publication_authority": false,
+            "canonical_AA_authority": false,
+            "external_human_peer_review_or_formal_certification": false,
+            "source_oldpacket_site_core_Sheet_Git_deploy_redirect_or_external_contact_changes": []
+          }
+        },
+        "current_scientific_family_seals": [
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/FINAL_SEAL.json",
+            "bytes": 1807,
+            "SHA256": "0431d4117bf35705b825f5bfe4ea40dea6df4c4a88372e37f7b16685e043bbfe"
+          },
+          {
+            "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/adversarial/SEAL.json",
+            "bytes": 2065,
+            "SHA256": "e3b1073615a7a18dba866c1504f7a2a82b4a0fd8e57b53b4b3e69a5a818fd71e"
+          }
+        ],
+        "independent_scientific_families": 2,
+        "root_actual_pure_closure_results": {
+          "schema": "root_actual_peer_read_only_closure_results_23440943_v1",
+          "UTC": "2026-11-15T18:52:57.782Z",
+          "root_personally_read_entire_helper_bodies_before_execution": true,
+          "native_scientific_or_archived_campaign_execution": false,
+          "results": [
+            {
+              "status": "fulfilled",
+              "value": {
+                "chunk_id": "f4b86c",
+                "wall_time_seconds": 0.273174541,
+                "exit_code": 0,
+                "original_token_count": 66,
+                "output": "{\n  \"status\": \"PASS\",\n  \"errors\": [],\n  \"input_files\": 84,\n  \"owned_files\": 61,\n  \"original_acquisition_manifest_files\": 78,\n  \"ZIP_regular_occurrences\": 29,\n  \"semantic_checks\": 33,\n  \"science_executed_or_imported\": false,\n  \"writes\": false,\n  \"network\": false\n}\n"
+              }
+            },
+            {
+              "status": "fulfilled",
+              "value": {
+                "chunk_id": "d14985",
+                "wall_time_seconds": 0.442772916,
+                "exit_code": 0,
+                "original_token_count": 83,
+                "output": "{\n  \"status\": \"PASS_READ_ONLY_SAVED_CUSTODY\",\n  \"mode\": \"final\",\n  \"checks\": 1175,\n  \"source_inputs\": 81,\n  \"original_ZIP_payloads\": 29,\n  \"owned_payloads\": 138,\n  \"successful_primary_bodies\": 7,\n  \"actual_primary_access_failures_retained\": 2,\n  \"scientific_code_imported_or_executed\": false,\n  \"network_or_file_writes\": false\n}\n"
+              }
+            }
+          ]
+        },
+        "strict_actual_namespaces": {
+          "scope": 64,
+          "adversarial": 140,
+          "source": 81
+        },
+        "native_stdout_comparisons": [
+          {
+            "checker": "geometry",
+            "mode": "normal",
+            "bytes": 2752,
+            "SHA256": "d3f510f119525a1e85d8bb1421a9257e8bdff07d05d3e5f41a8b76c87d789283",
+            "whole_typed_object_and_entire_encoder_bytes_equal": true
+          },
+          {
+            "checker": "geometry",
+            "mode": "optimized",
+            "bytes": 2752,
+            "SHA256": "d3f510f119525a1e85d8bb1421a9257e8bdff07d05d3e5f41a8b76c87d789283",
+            "whole_typed_object_and_entire_encoder_bytes_equal": true
+          },
+          {
+            "checker": "topology",
+            "mode": "normal",
+            "bytes": 3473,
+            "SHA256": "4958c5d22fe23e121088cb96eb2816dd233a4e4fa7e52d56978f52deb07e9ea8",
+            "whole_typed_object_and_entire_encoder_bytes_equal": true
+          },
+          {
+            "checker": "topology",
+            "mode": "optimized",
+            "bytes": 3473,
+            "SHA256": "4958c5d22fe23e121088cb96eb2816dd233a4e4fa7e52d56978f52deb07e9ea8",
+            "whole_typed_object_and_entire_encoder_bytes_equal": true
+          }
+        ],
+        "sole_native_reproducer": "adversarial scientific family, four bounded normal/optimized standalone CLI runs",
+        "root_replayed_native_scientific_or_archived_campaigns": false,
+        "whole_original_native_objects_types_order_nulls_absences_and_historical_flags_preserved": true,
+        "exact_complete_result": {
+          "polytopes": "D4×[0,1] and (-D4)×[0,1] in R5, both full-dimensional lattice polytopes",
+          "filter": "positive canonical summand dimensions and exact dimension additivity",
+          "realization": "ordinary strict-chain order complex with no artificial extrema",
+          "components": 2,
+          "vertices_per_component": 50,
+          "edges_per_component": 60,
+          "each_connected": true,
+          "each_homotopy_type": "wedge of eleven circles",
+          "ordinary_rational_Betti_numbers": [
+            2,
+            22
+          ],
+          "higher_homology_zero": true,
+          "pure_and_standard_nonpure_shellability": false,
+          "rational_homology_of_wedge_of_3_spheres": false,
+          "boundary_rank": 98,
+          "nongeneric_shared_interval_intentional": true
+        },
+        "authored_note_and_support_license": "CC BY4.0; third-party rights retained",
+        "separate_code_instrument": null,
+        "original_license": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/LICENSE.txt",
+          "bytes": 193,
+          "SHA256": "43427fef8eb0aa410c60d76436d09f0f6463eec1797a216587b6e629043b2d68"
+        },
+        "original_README": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/sources/published-source/asset-001/README.md",
+          "bytes": 4524,
+          "SHA256": "dde525035fef54c09d8da394c0cd3cf0f519719296babd544faa40ad6149fab3"
+        },
+        "stable_tropical_or_generic_perturbation_or_minimum_dimension_claim": false,
+        "firstness_exhaustive_predecessor_absence_or_present_worldwide_openness_claim": false,
+        "human_peer_review_or_formal_certification": false,
+        "follow_up": null,
+        "follow_up_rationale": "No precise follow-up meets the required substantial-contribution and primary-literature bar.",
+        "editorial_preparation_authorized": true,
+        "production_installation_authorized": false,
+        "public_page_published": false,
+        "canonical_url": null,
+        "AA": null,
+        "native_tracker_transition_pending": true,
+        "bounded_root_science_completion_percent": 100,
+        "root_distinct_science_decisions_after_this": 102,
+        "eligible_distinct_papers": 203,
+        "overall_science_percent": 50.24630541871922
+      }
+    },
+    "whole_original_scientific_verdicts": {
+      "scope": {
+        "schema": "literal_scope_primary_verdict_23440943_v1",
+        "UTC": "2026-11-15T08:30:56.859290+00:00",
+        "record_id": 23440943,
+        "printed_native_version": "1.0.0",
+        "recommended_disposition": "Pass — both literal printed assertions refuted by the full stated example; priority unestablished",
+        "full_original_claim_assessed": true,
+        "substantive_defect_found": false,
+        "exact_defect": null,
+        "mathematical_remaining_gap": null,
+        "narrowing_or_repair_proposed": false,
+        "construction": "D4×[0,1] and (-D4)×[0,1], full-dimensional lattice polytopes in R5",
+        "exact_filter": {
+          "canonical_summands_same_exposing_functional": true,
+          "both_summand_dimensions_positive": true,
+          "dimension_of_sum_equals_sum_of_dimensions": true
+        },
+        "realization": "ordinary order complex of nonempty strict chains; no artificial extrema",
+        "complete_result": {
+          "components": 2,
+          "each_component_pure_dimension": 1,
+          "each_component_vertices": 50,
+          "each_component_edges": 60,
+          "each_component_connected": true,
+          "ordinary_rational_Betti_numbers": [
+            2,
+            22
+          ],
+          "all_higher_homology_zero": true,
+          "not_shellable_pure": true,
+          "not_shellable_standard_nonpure": true,
+          "not_rational_homology_of_wedge_of_3_spheres": true
+        },
+        "printed_source_actual_body_checked": {
+          "OWR_report": "39/2019",
+          "printed_page": 2464,
+          "physical_page": 70,
+          "problem": 3,
+          "stated_general_position_assumption": false
+        },
+        "boundary_scopes": {
+          "nongeneric_common_interval_deliberate": true,
+          "stable_intersection_shellability_resolved": false,
+          "competing_mixed_face_definitions_identified": true,
+          "six_point_classical_control_shellable_dimension_zero": true,
+          "smallest_possible_dimension_claim": false
+        },
+        "reproduction_here": {
+          "own_exact_controls": "PASS; own exposed-coordinate ranks, all32400 base incidences, explicit graph tree/cycles and rational boundary rank98",
+          "native_scientific_code_imported_or_executed": false,
+          "sole_selected_native_replay_owner": "sol_110_adversarial",
+          "historical_expected_outputs_read_after_own_freeze": true
+        },
+        "bibliography_limits": [
+          "OriginalFukuda2004 Prop2.1 identified through actualFukuda–Weibelv4 citation, not independently read.",
+          "Adiprasito2024 final journal body not read; actual public2020 manuscript comparison kept explicit.",
+          "PublishedAdiprasito-et-al definition read via actual publisher web-search body; native publisherGET403 and web-open failure retained; rawarXiv edition kept distinct.",
+          "No exhaustive earlier-proof/nonshellability search, firstness or independence/influence inference."
+        ],
+        "current_peer_or_root_scientific_packets_read": false,
+        "root_comparison_gate_at_verdict": "CLOSED",
+        "scientific_findings_released": false,
+        "followup": null,
+        "publication_authority": false,
+        "completion_percent": 100
+      },
+      "adversarial": {
+        "schema": "independent_adversarial_scientific_verdict_v1",
+        "record_id": 23440943,
+        "sheet_row": 131,
+        "completed_UTC": "2026-11-15T08:36:59.577512+00:00",
+        "completion_percent": 100,
+        "literal_custom_verdict": "PASS_FULL_PRINTED_ADDITIVE_DIMENSION_COUNTEREXAMPLE_AND_BOTH_SHELLABILITY_HOMOLOGY_NEGATIONS_WITH_CONVENTION_AND_PRIORITY_LIMITS",
+        "substantive_mathematical_defect_found": false,
+        "exact_mathematical_gap": null,
+        "whole_original_claim_verified": {
+          "P1": "conv(0,e1,e2,e3,e4)×[0,1]",
+          "P2": "(−conv(0,e1,e2,e3,e4))×[0,1]",
+          "ambient": "R5; both full-dimensional lattice polytopes",
+          "filter": "Nonempty sum faces with canonical summand dimensions>0 and exact sum-dimension additivity.",
+          "poset": "Geometric face inclusion; ordinary order complex of strict nonempty chains; no artificial extrema; labeled summands.",
+          "entire_order_complex": "K disjoint union K; each connected pure graph with50vertices,60edges and first Betti number11.",
+          "ordinary_rational_homology": {
+            "H0": "Q²",
+            "H1": "Q²²",
+            "Hj_j_at_least2": "0"
+          },
+          "shellability": "Not shellable under either pure or standard nonpure shellability.",
+          "printed_question": "Both shellability and wedge-of-(n−2)-spheres homology assertions fail for the printed unrestricted positive/additive filter; actual official Problem3/p2464 authenticated.",
+          "degeneracy": "Shared interval deliberately nongeneric; no generic-position assumption added or inferred.",
+          "variants": [
+            "Six-point opposite-tetrahedron control is shellable dimension0 and fails printed circle-wedge homology.",
+            "Replacing n−2 by n−3 does not eliminate the main R5 obstruction.",
+            "Canonical decomposition uniqueness closes existential alternative-face ambiguity.",
+            "Proper vertical dimensions(2,2,3) separate broader stable lower bounds from exact additivity.",
+            "Facet-based mixed terminology and HSWWv2 tropical link are different objects."
+          ],
+          "not_claimed": [
+            "stable-intersection shellability failure",
+            "generic perturbation theorem",
+            "minimum dimension or order",
+            "worldwide firstness/exclusive historical priority",
+            "present-day openness",
+            "formal or human peer-review certification"
+          ]
+        },
+        "independent_deductions": [
+          "Maximum/minimum coordinate exposures exhaust all proper difference faces.",
+          "Affine-independence proves transverse base directions and dimension formula.",
+          "Geometric containment proves exact ordered-set face order.",
+          "Shared interval adds2to total summand dimensions but only1to sum dimension.",
+          "Signed two-subset double cover connected via explicit odd5cycle; subdivision gives K.",
+          "Exact graph boundary rank98, ordinary/reduced H0 distinguished.",
+          "First edge from a new component violates codimension-one attachment in every facet ordering."
+        ],
+        "own_frozen_exact_controls": {
+          "explicit_predicates": 446,
+          "all_nonempty_sum_faces": 543,
+          "nonempty_faces_each_summand": 93,
+          "qualifiers": 100,
+          "order_edges": 120,
+          "rational_boundary_rank": 98,
+          "ordinary_Betti": [
+            2,
+            22,
+            0
+          ],
+          "complete_qualifying_coordinate_records_and_comparisons_retained": true,
+          "controls": [
+            "signed disjointness double cover and oddcycle",
+            "30 proper vertical lower-bound-only witnesses",
+            "whole/empty/endpoints and full dimension",
+            "six-point opposite tetrahedra",
+            "artificial-top cone fvector101,220,120 and exact rational ranks100,120"
+          ],
+          "completed_before_native_or_foreign_scientific_exposure": true
+        },
+        "native_reproduction": {
+          "selected": [
+            "verification/check_geometry.py",
+            "verification/check_topology.py"
+          ],
+          "entire_original_bodies_read_before_execution": true,
+          "whole_original_payloads_isolated": 29,
+          "runs_once_each": [
+            "geometry normal",
+            "geometry optimized",
+            "topology normal",
+            "topology optimized"
+          ],
+          "all_exit_codes": 0,
+          "all_stderr_empty": true,
+          "whole_original_expected_wrapper_bytes": 6908,
+          "EXPECTED_ORIGINAL_SHA256": "0e337b9ade805e930bd48ec74788dc0cc86ecd3cd05c422a69c604b241ec4806",
+          "entire_expected_subobjects_and_exact_stdout_encoding_compared": true,
+          "normal_optimized_whole_bytes_identical_each_checker": true,
+          "geometry_stdout_bytes": 2752,
+          "geometry_STDOUT_SHA256": "d3f510f119525a1e85d8bb1421a9257e8bdff07d05d3e5f41a8b76c87d789283",
+          "topology_stdout_bytes": 3473,
+          "topology_STDOUT_SHA256": "4958c5d22fe23e121088cb96eb2816dd233a4e4fa7e52d56978f52deb07e9ea8",
+          "geometry_all_nonempty_summand_pairs": 8649,
+          "all_source_and_isolated_bytes_unchanged": true,
+          "wrapper_builder_driver_or_archived_campaign_executed": false,
+          "requirements_failure": null,
+          "dependency_installation": false
+        },
+        "actual_primary_interfaces_read": [
+          "Official OWR39/2019 full printedProblem3 plus nearby context and freshpage70pixels.",
+          "Björner–Wachs actualDefinition2.1 and strict-chain order-complex convention.",
+          "Fukuda–Weibel exactv4 generalLemma4.",
+          "Sturmfels–Tevelev exactv1 Examples1.3/4.10 opposite scaled tetrahedra and six rays.",
+          "Adiprasito actualpublic2020 page2 subset-sum criterion/Corollary1.3.",
+          "Actualcolorful-Gale publicmanuscript Section1.2 facet convention, printed18September2018/arXivv1margin1July2016.",
+          "HSWW actualv2 Section8 pages22–26, Schön ambient(C*)8 and Proposition8.7."
+        ],
+        "edition_priority_limits": [
+          "Final2019 OUP body not personally read in this lane; ordinary DOI GET403 retained. Public manuscript terminology corroborates comparison, with exact edition distinguished.",
+          "Final2024 PAMQ body not obtained; ordinary DOI GET403 retained. Target explicitly compares public2020 manuscript, which was personally read.",
+          "No exhaustive prior-counterexample or exclusive-priority search; related alternative tropical object is not identified with exact target poset.",
+          "Classical Minkowski uniqueness/simplex geometry and older opposite-tetrahedron antecedent credited."
+        ],
+        "independence": {
+          "initial_whole_PDF_TeX_own4fresh_rasters_before_foreign_code_results_opinions": true,
+          "initial_distinct_families": 11,
+          "own_controls_frozen_before_foreign_native_science": true,
+          "sibling_or_root_scientific_bodies_read": false,
+          "inventory_triage_or_archived_audit_report_bodies_read": false,
+          "deposited_README_author_summary_read_only_after_own_freeze": true,
+          "child_scope": "Independent opaque native/schema/ZIP custody only, no scientific body/result or finding.",
+          "root131_gate_at_completion": "CLOSED",
+          "science_release_authorized_only_after_explicit_root_open": true
+        },
+        "source_custody": {
+          "SOURCE_READY_SHA256": "928fb2b26bd31a0678fc3954c29f8a7897a3d6352e9b5dab791224a72a828235",
+          "SOURCE_SEAL_SHA256": "0fed874ecff807d3250957b196f39902b124825dd0c5fa90bd1efa2bf406679e",
+          "actual_PDF_SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+          "controlling_TeX_SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+          "original_ZIP_SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+          "source_files": 81,
+          "original_ZIP_payloads": 29,
+          "native_API_objects": 4,
+          "native_transports": 7,
+          "native_literal_copies": 21,
+          "native_schema_pointer_rows_independently_checked_by_metadata_child": 499,
+          "types_nulls_order_duplicate_headers_and_historical_flags_preserved": true
+        },
+        "dates_version_license": {
+          "printed_version": "1.0.0",
+          "API_version": "1.0.0",
+          "printed_date": "October17,2026",
+          "declared_publication_date": "2026-10-17",
+          "created": "2026-10-17T19:04:32.905992+00:00",
+          "updated": "2026-10-17T19:04:33.294068+00:00",
+          "actual_license": "CC BY4.0 for original authored materials; third-party works retain licenses.",
+          "MIT_default_inferred": false
+        },
+        "followup": null,
+        "publication_authority": false,
+        "canonical_AA_authority": false,
+        "external_human_peer_review_or_formal_certification": false,
+        "source_oldpacket_site_core_Sheet_Git_deploy_redirect_or_external_contact_changes": []
+      }
+    },
+    "current_scientific_verdict_copies": {
+      "scope": {
+        "copy": "inputs/scope-VERDICT.json",
+        "original": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/scope/VERDICT.json",
+          "bytes": 2887,
+          "SHA256": "f49dd69da1f3c0b3859b691fc30732f18613462bcf5fbfc82f117cd877a4e634"
+        },
+        "bytes": 2887,
+        "SHA256": "f49dd69da1f3c0b3859b691fc30732f18613462bcf5fbfc82f117cd877a4e634",
+        "whole_literal_object": {
+          "schema": "literal_scope_primary_verdict_23440943_v1",
+          "UTC": "2026-11-15T08:30:56.859290+00:00",
+          "record_id": 23440943,
+          "printed_native_version": "1.0.0",
+          "recommended_disposition": "Pass — both literal printed assertions refuted by the full stated example; priority unestablished",
+          "full_original_claim_assessed": true,
+          "substantive_defect_found": false,
+          "exact_defect": null,
+          "mathematical_remaining_gap": null,
+          "narrowing_or_repair_proposed": false,
+          "construction": "D4×[0,1] and (-D4)×[0,1], full-dimensional lattice polytopes in R5",
+          "exact_filter": {
+            "canonical_summands_same_exposing_functional": true,
+            "both_summand_dimensions_positive": true,
+            "dimension_of_sum_equals_sum_of_dimensions": true
+          },
+          "realization": "ordinary order complex of nonempty strict chains; no artificial extrema",
+          "complete_result": {
+            "components": 2,
+            "each_component_pure_dimension": 1,
+            "each_component_vertices": 50,
+            "each_component_edges": 60,
+            "each_component_connected": true,
+            "ordinary_rational_Betti_numbers": [
+              2,
+              22
+            ],
+            "all_higher_homology_zero": true,
+            "not_shellable_pure": true,
+            "not_shellable_standard_nonpure": true,
+            "not_rational_homology_of_wedge_of_3_spheres": true
+          },
+          "printed_source_actual_body_checked": {
+            "OWR_report": "39/2019",
+            "printed_page": 2464,
+            "physical_page": 70,
+            "problem": 3,
+            "stated_general_position_assumption": false
+          },
+          "boundary_scopes": {
+            "nongeneric_common_interval_deliberate": true,
+            "stable_intersection_shellability_resolved": false,
+            "competing_mixed_face_definitions_identified": true,
+            "six_point_classical_control_shellable_dimension_zero": true,
+            "smallest_possible_dimension_claim": false
+          },
+          "reproduction_here": {
+            "own_exact_controls": "PASS; own exposed-coordinate ranks, all32400 base incidences, explicit graph tree/cycles and rational boundary rank98",
+            "native_scientific_code_imported_or_executed": false,
+            "sole_selected_native_replay_owner": "sol_110_adversarial",
+            "historical_expected_outputs_read_after_own_freeze": true
+          },
+          "bibliography_limits": [
+            "OriginalFukuda2004 Prop2.1 identified through actualFukuda–Weibelv4 citation, not independently read.",
+            "Adiprasito2024 final journal body not read; actual public2020 manuscript comparison kept explicit.",
+            "PublishedAdiprasito-et-al definition read via actual publisher web-search body; native publisherGET403 and web-open failure retained; rawarXiv edition kept distinct.",
+            "No exhaustive earlier-proof/nonshellability search, firstness or independence/influence inference."
+          ],
+          "current_peer_or_root_scientific_packets_read": false,
+          "root_comparison_gate_at_verdict": "CLOSED",
+          "scientific_findings_released": false,
+          "followup": null,
+          "publication_authority": false,
+          "completion_percent": 100
+        }
+      },
+      "adversarial": {
+        "copy": "inputs/adversarial-VERDICT.json",
+        "original": {
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23440943/reviews/adversarial/VERDICT.json",
+          "bytes": 8216,
+          "SHA256": "554d55f41e282e8d1686cc83ec080b3d6c9f05b5c093b59d64c078fdee9fa3bf"
+        },
+        "bytes": 8216,
+        "SHA256": "554d55f41e282e8d1686cc83ec080b3d6c9f05b5c093b59d64c078fdee9fa3bf",
+        "whole_literal_object": {
+          "schema": "independent_adversarial_scientific_verdict_v1",
+          "record_id": 23440943,
+          "sheet_row": 131,
+          "completed_UTC": "2026-11-15T08:36:59.577512+00:00",
+          "completion_percent": 100,
+          "literal_custom_verdict": "PASS_FULL_PRINTED_ADDITIVE_DIMENSION_COUNTEREXAMPLE_AND_BOTH_SHELLABILITY_HOMOLOGY_NEGATIONS_WITH_CONVENTION_AND_PRIORITY_LIMITS",
+          "substantive_mathematical_defect_found": false,
+          "exact_mathematical_gap": null,
+          "whole_original_claim_verified": {
+            "P1": "conv(0,e1,e2,e3,e4)×[0,1]",
+            "P2": "(−conv(0,e1,e2,e3,e4))×[0,1]",
+            "ambient": "R5; both full-dimensional lattice polytopes",
+            "filter": "Nonempty sum faces with canonical summand dimensions>0 and exact sum-dimension additivity.",
+            "poset": "Geometric face inclusion; ordinary order complex of strict nonempty chains; no artificial extrema; labeled summands.",
+            "entire_order_complex": "K disjoint union K; each connected pure graph with50vertices,60edges and first Betti number11.",
+            "ordinary_rational_homology": {
+              "H0": "Q²",
+              "H1": "Q²²",
+              "Hj_j_at_least2": "0"
+            },
+            "shellability": "Not shellable under either pure or standard nonpure shellability.",
+            "printed_question": "Both shellability and wedge-of-(n−2)-spheres homology assertions fail for the printed unrestricted positive/additive filter; actual official Problem3/p2464 authenticated.",
+            "degeneracy": "Shared interval deliberately nongeneric; no generic-position assumption added or inferred.",
+            "variants": [
+              "Six-point opposite-tetrahedron control is shellable dimension0 and fails printed circle-wedge homology.",
+              "Replacing n−2 by n−3 does not eliminate the main R5 obstruction.",
+              "Canonical decomposition uniqueness closes existential alternative-face ambiguity.",
+              "Proper vertical dimensions(2,2,3) separate broader stable lower bounds from exact additivity.",
+              "Facet-based mixed terminology and HSWWv2 tropical link are different objects."
+            ],
+            "not_claimed": [
+              "stable-intersection shellability failure",
+              "generic perturbation theorem",
+              "minimum dimension or order",
+              "worldwide firstness/exclusive historical priority",
+              "present-day openness",
+              "formal or human peer-review certification"
+            ]
+          },
+          "independent_deductions": [
+            "Maximum/minimum coordinate exposures exhaust all proper difference faces.",
+            "Affine-independence proves transverse base directions and dimension formula.",
+            "Geometric containment proves exact ordered-set face order.",
+            "Shared interval adds2to total summand dimensions but only1to sum dimension.",
+            "Signed two-subset double cover connected via explicit odd5cycle; subdivision gives K.",
+            "Exact graph boundary rank98, ordinary/reduced H0 distinguished.",
+            "First edge from a new component violates codimension-one attachment in every facet ordering."
+          ],
+          "own_frozen_exact_controls": {
+            "explicit_predicates": 446,
+            "all_nonempty_sum_faces": 543,
+            "nonempty_faces_each_summand": 93,
+            "qualifiers": 100,
+            "order_edges": 120,
+            "rational_boundary_rank": 98,
+            "ordinary_Betti": [
+              2,
+              22,
+              0
+            ],
+            "complete_qualifying_coordinate_records_and_comparisons_retained": true,
+            "controls": [
+              "signed disjointness double cover and oddcycle",
+              "30 proper vertical lower-bound-only witnesses",
+              "whole/empty/endpoints and full dimension",
+              "six-point opposite tetrahedra",
+              "artificial-top cone fvector101,220,120 and exact rational ranks100,120"
+            ],
+            "completed_before_native_or_foreign_scientific_exposure": true
+          },
+          "native_reproduction": {
+            "selected": [
+              "verification/check_geometry.py",
+              "verification/check_topology.py"
+            ],
+            "entire_original_bodies_read_before_execution": true,
+            "whole_original_payloads_isolated": 29,
+            "runs_once_each": [
+              "geometry normal",
+              "geometry optimized",
+              "topology normal",
+              "topology optimized"
+            ],
+            "all_exit_codes": 0,
+            "all_stderr_empty": true,
+            "whole_original_expected_wrapper_bytes": 6908,
+            "EXPECTED_ORIGINAL_SHA256": "0e337b9ade805e930bd48ec74788dc0cc86ecd3cd05c422a69c604b241ec4806",
+            "entire_expected_subobjects_and_exact_stdout_encoding_compared": true,
+            "normal_optimized_whole_bytes_identical_each_checker": true,
+            "geometry_stdout_bytes": 2752,
+            "geometry_STDOUT_SHA256": "d3f510f119525a1e85d8bb1421a9257e8bdff07d05d3e5f41a8b76c87d789283",
+            "topology_stdout_bytes": 3473,
+            "topology_STDOUT_SHA256": "4958c5d22fe23e121088cb96eb2816dd233a4e4fa7e52d56978f52deb07e9ea8",
+            "geometry_all_nonempty_summand_pairs": 8649,
+            "all_source_and_isolated_bytes_unchanged": true,
+            "wrapper_builder_driver_or_archived_campaign_executed": false,
+            "requirements_failure": null,
+            "dependency_installation": false
+          },
+          "actual_primary_interfaces_read": [
+            "Official OWR39/2019 full printedProblem3 plus nearby context and freshpage70pixels.",
+            "Björner–Wachs actualDefinition2.1 and strict-chain order-complex convention.",
+            "Fukuda–Weibel exactv4 generalLemma4.",
+            "Sturmfels–Tevelev exactv1 Examples1.3/4.10 opposite scaled tetrahedra and six rays.",
+            "Adiprasito actualpublic2020 page2 subset-sum criterion/Corollary1.3.",
+            "Actualcolorful-Gale publicmanuscript Section1.2 facet convention, printed18September2018/arXivv1margin1July2016.",
+            "HSWW actualv2 Section8 pages22–26, Schön ambient(C*)8 and Proposition8.7."
+          ],
+          "edition_priority_limits": [
+            "Final2019 OUP body not personally read in this lane; ordinary DOI GET403 retained. Public manuscript terminology corroborates comparison, with exact edition distinguished.",
+            "Final2024 PAMQ body not obtained; ordinary DOI GET403 retained. Target explicitly compares public2020 manuscript, which was personally read.",
+            "No exhaustive prior-counterexample or exclusive-priority search; related alternative tropical object is not identified with exact target poset.",
+            "Classical Minkowski uniqueness/simplex geometry and older opposite-tetrahedron antecedent credited."
+          ],
+          "independence": {
+            "initial_whole_PDF_TeX_own4fresh_rasters_before_foreign_code_results_opinions": true,
+            "initial_distinct_families": 11,
+            "own_controls_frozen_before_foreign_native_science": true,
+            "sibling_or_root_scientific_bodies_read": false,
+            "inventory_triage_or_archived_audit_report_bodies_read": false,
+            "deposited_README_author_summary_read_only_after_own_freeze": true,
+            "child_scope": "Independent opaque native/schema/ZIP custody only, no scientific body/result or finding.",
+            "root131_gate_at_completion": "CLOSED",
+            "science_release_authorized_only_after_explicit_root_open": true
+          },
+          "source_custody": {
+            "SOURCE_READY_SHA256": "928fb2b26bd31a0678fc3954c29f8a7897a3d6352e9b5dab791224a72a828235",
+            "SOURCE_SEAL_SHA256": "0fed874ecff807d3250957b196f39902b124825dd0c5fa90bd1efa2bf406679e",
+            "actual_PDF_SHA256": "6d278166edb67e3244429d20573c93c95d426e43ba9c23d2b6be7b8abc616b0e",
+            "controlling_TeX_SHA256": "3768c84cf676fb5a13665b7bec564583cbe5e00aa5a6a1ad4f94c2313173a1e3",
+            "original_ZIP_SHA256": "8fa686dc2484647f2cb5523919ea3eaf7f23590991052a6f93cb48d8b21a582e",
+            "source_files": 81,
+            "original_ZIP_payloads": 29,
+            "native_API_objects": 4,
+            "native_transports": 7,
+            "native_literal_copies": 21,
+            "native_schema_pointer_rows_independently_checked_by_metadata_child": 499,
+            "types_nulls_order_duplicate_headers_and_historical_flags_preserved": true
+          },
+          "dates_version_license": {
+            "printed_version": "1.0.0",
+            "API_version": "1.0.0",
+            "printed_date": "October17,2026",
+            "declared_publication_date": "2026-10-17",
+            "created": "2026-10-17T19:04:32.905992+00:00",
+            "updated": "2026-10-17T19:04:33.294068+00:00",
+            "actual_license": "CC BY4.0 for original authored materials; third-party works retain licenses.",
+            "MIT_default_inferred": false
+          },
+          "followup": null,
+          "publication_authority": false,
+          "canonical_AA_authority": false,
+          "external_human_peer_review_or_formal_certification": false,
+          "source_oldpacket_site_core_Sheet_Git_deploy_redirect_or_external_contact_changes": []
+        }
+      }
+    },
+    "root_full_copy_config_adoption_pending": true
+  }
+}
