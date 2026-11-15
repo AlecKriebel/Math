@@ -166,11 +166,13 @@ def main():
     exact(binding['whole_original_transport_aggregate'], receipts, 'whole transport aggregate')
     exact(binding['whole_original_seven_transport_objects'], receipts['receipts'], 'all seven actual receipts')
     exact(promotion['whole_original_seven_transport_objects'], receipts['receipts'], 'promotion seven transports')
+    exact(promotion['whole_original_transport_aggregate'], receipts, 'promotion complete transport aggregate')
     need([r['HTTP_status'] for r in receipts['receipts']] == [200, 301, 200, 200, 200, 200, 200], 'native success/redirect history')
     for row in binding['raw_original_byte_copies']:
         need(pin(row['original']) == pin(row['owned_byte_identical_copy']), 'original metadata bytes changed during copy')
     exact(binding['whole_original_archive_custody'], read(S / 'ARCHIVE_CUSTODY.json'), 'complete archive custody')
     exact(binding['whole_original_native_schema_types'], read(S / 'NATIVE_SCHEMA_TYPES.json'), 'heterogeneous native schemas')
+    exact(binding['whole_original_source_terminal_seal'], read(S / 'SOURCE_READY_SEAL.json'), 'literal source terminal seal')
     reviews = pub['review_metadata']['whole_actual_original_scientific_review_records']
     need(len(reviews) == promotion['actual_scientific_review_cardinality'] == 2, 'actual two peer verdicts')
     for i, review in enumerate(reviews):
@@ -178,6 +180,8 @@ def main():
         exact(review['whole_original_custom_verdict'], read(review['verdict_file']['path']), 'literal complete scientific verdict')
         exact(promotion['whole_original_custom_scientific_verdicts'][i], review['whole_original_custom_verdict'], 'promotion literal verdict')
         exact(review['whole_original_review_seal'], read(review['seal_file']['path']), 'literal complete review seal')
+        exact(promotion['whole_original_scientific_review_seals'][i], review['whole_original_review_seal'], 'promotion literal seal')
+    need(promotion['publication_sha256'] == hashlib.sha256((A / 'publication.json').read_bytes()).hexdigest(), 'exact private publication config binding')
     tex = (S / 'published-source/note.tex').read_text()
     raw = re.search(r'\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}', tex).group(1)
     abstract = ' '.join(raw.split())
