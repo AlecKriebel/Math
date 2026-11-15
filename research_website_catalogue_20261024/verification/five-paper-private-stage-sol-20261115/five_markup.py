@@ -76,7 +76,9 @@ class Math:
   if cmd in {'mathbb','mathcal'}:
    a=self.raw_atom();tables={'mathbb':{'R':'ℝ','Z':'ℤ','N':'ℕ','Q':'ℚ','C':'ℂ'},'mathcal':{'A':'𝒜','B':'ℬ','G':'𝒢','M':'ℳ','N':'𝒩'}}
    need(a in tables[cmd],'explicit_TeX_alphabet:'+cmd+':'+a);return tables[cmd][a]
-  if cmd in {'bar','overline'}:return self.atom()+'\u0304'
+  if cmd in {'bar','overline'}:
+   a=self.atom();need(re.fullmatch(r'[^<](?:<sub>.*</sub>)?',a) is not None,'explicit_single_base_overbar')
+   return a[0]+'\u0304'+a[1:]
   if cmd=='frac':return '('+self.atom()+')/('+self.atom()+')'
   if cmd in {'begin','end'}:
    a=self.raw_atom();need(a=='cases','only_explicit_cases_environment')

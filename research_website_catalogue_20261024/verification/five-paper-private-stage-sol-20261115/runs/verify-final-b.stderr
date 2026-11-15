@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/five-paper-private-stage-sol-20261115/verify_stage_read_only.py", line 64, in <module>
+    print(json.dumps(verify(a.stage_root,a.build_date,current_base=a.current_base,dlab_homepage=not a.original_dlab_link),indent=2,sort_keys=True))
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/five-paper-private-stage-sol-20261115/verify_stage_read_only.py", line 47, in verify
+    output[b['rid']]=check_page(b,files['index.html'],files,build_date,dlab_homepage=dlab_homepage)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/five-paper-private-stage-sol-20261115/five_contract.py", line 101, in check_page
+    for key,val in [('@type','ScholarlyArticle'),('@id',base+'#article'),('url',base),('sameAs','https://doi.org/'+b['doi']),('name',b['title']),('headline',b['title']),('description',b['description']),('abstract',b['abstract']),('datePublished',b['publication_date']),('version',b['version']),('creativeWorkStatus',b['kind'])]:need(article.get(key)==val,'complete_scholarly_value:'+key)
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/five-paper-private-stage-sol-20261115/five_common.py", line 19, in need
+    if not ok:raise ValueError('five_stage:'+label)
+ValueError: five_stage:complete_scholarly_value:description

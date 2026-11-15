@@ -1,0 +1,185 @@
+                      Vanishing of the cellularization map for
+                        non-p-nilpotent component groups
+                                               Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                           17 October 2026         (version 1.0.0; unrefereed)
+
+                                                Abstract
+          Let G be a compact Lie group whose component group is not p-nilpotent, and let k be any
+      ﬁeld of characteristic p. For R = C∗ (Ω((BG)∧
+                                                  p ); k), we prove that the canonical k-cellularization
+      map Γk R → R induces zero in every homotopy degree. This answers Greenlees’s Question 2.2 in
+      Oberwolfach Report 9/2026. No adjoint-orientability, component-action, or spectral-sequence-
+      collapse assumption is needed. The proof combines classical proxy-smallness and the ﬁnite-ideal
+      theorem for Hopf algebras: each homotopy class in a cellular source factors through a module
+      with ﬁnite total homology, whose image in an inﬁnite-dimensional graded Hopf algebra must
+      vanish.
+
+
+1    The question and its answer
+Fix a prime p and a ﬁeld k of characteristic p. Write
+                                    X = (BG)∧
+                                            p,            R = C∗ (ΩX; k),
+where completion is Bousﬁeld–Kan completion and is taken before looping. We regard R as an aug-
+mented diﬀerential graded k-algebra, equivalently an Hk-algebra; π∗ denotes its homology. Modules
+are left modules. The k-cellular objects form LocR (k), the smallest localizing subcategory contain-
+ing the augmentation module k. The canonical cellular approximation is denoted ν : Γk R → R. A
+ﬁnite group is p-nilpotent if it has a normal subgroup of order prime to p and p-power index.
+Theorem 1. For every compact Lie group G with non-p-nilpotent component group π0 G, the map
+                                        πn (ν) : πn (Γk R) −→ πn R
+is zero for every integer n.
+    Greenlees asks precisely this vanishing question for positive-dimensional G in [1, Question 2.2,
+p. 594]. The theorem also includes ﬁnite groups. We do not assert that ν is a null morphism in
+the derived category. The proof avoids the untwisted Gorenstein-duality description of its source,
+so orientability does not enter.
+    The Hopf-algebra ﬁniteness input is classical, credited to Sweedler in [4, §2.4]; compact proxies
+and the Morita machinery are due to Dwyer–Greenlees–Iyengar [3]. Filtered approximation by
+ﬁnite constructions is also explicitly developed in [6]. Our use of these ingredients is to answer the
+stated question. Greenlees’s ﬁnite-group result and restricted compact-Lie conclusions remain prior
+work: see [2, Lemmas 6.2 and 6.5, Remark 6.6]. In particular, the latter compact-Lie statements
+use a nilpotent-action hypothesis, a restricted image, or an additional tensor-collapse hypothesis.
+No novelty is asserted for the constituent ﬁniteness and approximation results.
+
+                                                      1
+2    Finite ideals in graded Hopf algebras
+Lemma 2. An inﬁnite-dimensional graded Hopf algebra over a ﬁeld, with the Koszul sign symmetry,
+has no nonzero ﬁnite-dimensional graded left or right ideal.
+
+Proof. We ﬁrst recall the ordinary Hopf-algebra argument. Let B be an ordinary Hopf algebra, S
+its antipode, and I 6= 0 a ﬁnite-dimensional right ideal. Set
+
+                                 J = span{(1 ⊗ f )∆(i) : i ∈ I, f ∈ B ∗ }.
+
+This is ﬁnite-dimensional: ﬁnitely many ﬁrst tensor factors from the coproducts of a basis of I span
+it. The counit shows I ⊆ J, and coassociativity shows ∆(J) ⊆ J ⊗ B. It is a right ideal, since
+                                          ∑
+                     ((1 ⊗ f )∆(i))b =        (1 ⊗ fb(2) )∆(ib(1) ),       fc (z) = f (zS(c)).
+                                      ∑                                    ∑
+Indeed, the right side expands to i(1) b(1) f (i(2) b(2) S(b(3) )) = i(1) bf (i(2) ).
+   Since J 6= 0 and ∆(J) ⊆ J ⊗ B, the identity (ε ⊗ 1)∆(j) = j implies ε(J) 6= 0. Choose j ∈ J
+with ε(j) = 1. The antipode identity gives
+                                                 ∑
+                                           1=        j(1) S(j(2) ) ∈ J.
+
+Thus J = B, forcing B to be ﬁnite-dimensional. Applying the argument to B op,cop , with the same
+antipode, proves the left-ideal version. Bijectivity of S is unnecessary.
+    Now let H be graded. In characteristic two, forgetting the grading yields an ordinary Hopf
+algebra. Otherwise reduce the grading modulo two and use the standard parity bosonization
+B = H#kC2 , where g 2 = 1. For homogeneous h, a and i, j ∈ {0, 1}, its formulas are
+
+                            (h#g i )(a#g j ) = (−1)i|a| ha#g i+j ,
+                                                 ∑
+                                 ∆B (h#g i ) =       (h(1) #g |h(2) |+i ) ⊗ (h(2) #g i ),
+                                 εB (h#g i ) = εH (h),
+                                 SB (h#g i ) = (1#g i+|h| )(SH (h)#1).
+
+Here parity exponents are modulo two. These give an ordinary Hopf algebra: for example the
+multiplicativity sign is (|h(2) | + i)|a(1) | + i|a(2) | = |h(2) ||a(1) | + i|a|. The graded antipode identities
+give both ordinary antipode identities. If I is a graded one-sided ideal of H, then I#kC2 is the
+corresponding one-sided ideal of B. Its dimension is 2 dim I, whereas dim B = 2 dim H. The
+ordinary result proves the assertion.
+
+
+3    A cellular vanishing criterion
+For an augmented diﬀerential graded k-algebra A, write thickA (K) for ﬁnite construction from K
+using shifts, ﬁnite sums, cones and retracts. The augmentation module k is proxy-small if some K
+satisﬁes
+                           K ∈ thickA (A) ∩ thickA (k),   k ∈ LocA (K).
+Then K is compact and LocA (K) = LocA (k); see [3, Deﬁnition 4.6, Remark 4.8].
+
+Lemma 3. If k is proxy-small over A, every class in the homology of a k-cellular A-module M is
+the image of a class in some P ∈ thickA (K). Each such P has ﬁnite-dimensional total homology
+over k.
+
+                                                         2
+Proof. Put E = REndA (K). Compact Morita theory identiﬁes right E-modules with LocA (K),
+with inverse N 7→ N ⊗L E K; this is the compact-generator case of [3, Theorem 4.9]. Every diﬀerential
+graded E-module is a ﬁltered homotopy colimit of perfect modules. For completeness, choose a semi-
+free resolution with a well-ordered basis whose diﬀerentials use ﬁnitely many earlier generators. The
+dependency closure of a ﬁnite set of generators is ﬁnite: a ﬁnitely branching inﬁnite dependency tree
+would have an inﬁnite branch, contradicting strict descent in a well-order. The ﬁnite dependency-
+closed submodules are ﬁnite semi-free, form a ﬁltered system, and exhaust the resolution. Their
+union computes its homotopy colimit.
+    Derived tensor with K preserves these colimits and carries these stages to thickA (K). Homology
+commutes with ﬁltered homotopy colimits, so every class comes from a stage. Finally K ∈ thickA (k),
+and ﬁnite total homology is preserved under shifts, ﬁnite sums, cones and retracts. Thus all stages
+have ﬁnite total homology. See also [6, Lemma 4.1 and its proof].
+
+Proposition 4. Suppose k is proxy-small over A, and the multiplication on H∗ (A) admits a graded
+Hopf-algebra structure over k of inﬁnite total dimension. Then every A-linear map f : M → A
+with M ∈ LocA (k) induces zero on homology.
+Proof. Given x ∈ Hn (M ), Lemma 3 provides P ∈ thickA (K), a map u : P → M , and y ∈ Hn (P )
+with u∗ (y) = x. The image of H∗ (f u) is a graded left ideal of H∗ (A), by A-linearity, and has ﬁnite
+total dimension. Lemma 2 makes this ideal zero. Hence f∗ (x) = 0, in every degree.
+
+    The approximation is class by class. It does not say that a cellular module itself has ﬁnite
+homology, or that k is compact. The inﬁnite-dimensional hypothesis is essential: when A = k, its
+cellularization is the identity.
+
+
+4    Application to completed loop chains
+Proof of Theorem 1. Set R0 = C∗ (ΩX; Fp ). Dwyer–Greenlees–Iyengar [3, §5.7, p. 382] prove that
+Fp is proxy-small over R0 for every compact Lie group G. Their argument embeds G in SU (n), uses
+the ﬁnite homogeneous space SU (n)/G to construct a cochain proxy, and transfers it to completed
+loop chains by their double-centralizer and Morita results. It does not require orientability or a
+nilpotent action of π0 G on the identity component.
+    Chains commute with scalar extension:
+                                           R ≃ R0 ⊗Fp k.
+Extending a compact proxy K0 gives K = K0 ⊗Fp k. Scalar extension preserves ﬁnite constructions
+and arbitrary homotopy colimits, so K is compact, ﬁnitely built from k, and builds k. Thus k is
+proxy-small over R. This uses chains, and does not interchange an inﬁnite cochain dual with scalar
+extension.
+   Pontryagin multiplication, diagonal and inversion in a loop-group model give H∗ (ΩX; k) its
+graded Hopf structure. Künneth over a ﬁeld identiﬁes homology of a product with the graded
+tensor product. Neither connectedness of ΩX nor ﬁnite total homology is needed.
+   Ishiguro [5, Proposition 1.3(a), p. 199] proves the necessary implication
+                             BG is p-compact =⇒ π0 G is p-nilpotent.
+Here p-compactness of BG means ﬁnite total mod-p homology of Ω((BG)∧      p ). Taking the contra-
+positive under our hypothesis gives dimFp H∗ (ΩX; Fp ) = ∞. Flat ﬁeld extension preserves inﬁnite
+dimension, so dimk H∗ (R) = ∞. Proposition 4 applies to the canonical R-linear map Γk R → R
+and proves the theorem.
+
+                                                  3
+   The coeﬃcient is a ﬁeld; no coeﬃcient-ring extension of the theorem is asserted. The map in
+question is the full cellularization map on all homotopy groups, not its projection to component-
+group homology.
+
+Veriﬁcation and review status. The proof is analytic and does not depend on ﬁnite computa-
+tions. The accompanying veriﬁcation package records the precise source locators and independent
+adversarial checks, and includes exact, bounded tests of the bosonization conventions with an odd-
+sign negative control. These tests support the formulas and do not certify an inﬁnite theorem. This
+is an unrefereed preprint; no external human peer review or formal proof-assistant certiﬁcation is
+claimed.
+
+AI-use disclosure. AI tools were used extensively in developing and checking the argument,
+inspecting mathematical sources, conducting adversarial reviews, preparing reproducibility materi-
+als, and drafting this note. The independent reviews described here are AI reviews. They do not
+constitute human peer review.
+
+
+References
+[1] J. P. C. Greenlees, The singularity category and duality for complete intersection groups, in
+    Cohomology of Finite Groups: Interactions and Applications, Oberwolfach Report 9/2026, 592–
+    595. doi:10.4171/owr/2026/9.
+
+[2] J. P. C. Greenlees, The singularity category and duality for complete intersection groups, Bull.
+    London Math. Soc. 58 (2026), e70405. doi:10.1112/blms.70405; arXiv:2504.03050v3.
+
+[3] W. G. Dwyer, J. P. C. Greenlees and S. Iyengar, Duality in algebra and topology, Adv. Math.
+    200 (2006), 357–402. doi:10.1016/j.aim.2005.11.004.
+
+[4] C. Lomp, Integrals in Hopf algebras over rings, arXiv:math/0307046, especially §2.4.
+
+[5] K. Ishiguro, Classifying spaces of compact Lie groups that are p-compact for all prime numbers,
+    Geom. Topol. Monogr. 10 (2007), 195–211. doi:10.2140/gtm.2007.10.195.
+
+[6] B. Briggs, S. B. Iyengar and G. Stevenson, Proxy-small objects present compactly generated
+    categories, New York J. Math. 31 (2025), 701–721. Published article; arXiv:2411.07328v2.
+
+
+
+
+                                                 4
+

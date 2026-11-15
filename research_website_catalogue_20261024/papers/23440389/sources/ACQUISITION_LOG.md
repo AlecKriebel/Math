@@ -1,3 +1,7 @@
 # Source-only acquisition122
 
 2026-11-15T04:13:09.850055+00:00 —45%. Exactly one ordinary initial recordGET returned200 without custom headers/auth/query/proxy. Then ordinary sequential latest/versions/files and original assets acquired; native latest301 and its99B body/ordered headers retained before following the native Location. All one version accounted; both original assets match native MD5 and complete SHA256. No mathematics/code/results/opinions scientifically read; no121request yet.
+
+2026-11-15T04:16:54.847613+00:00 —90%. Whole61-payload ZIP/386822B safely authenticated and extracted, no nested/unsupported archive magic or embedded PDF. Actual standalone PDF3pages/52194B, sole TeX9402B/201lines; printed17October2026/version1.0. All seven sequential ordinary HTTP responses, including native301 body and ordered headers, retained. SOURCE_READY prepared from complete native custody; no mathematical body/code/results/opinions read. Read-only closure and terminal seal pending before any121resumption.
+
+2026-11-15T04:19:38.095159+00:00 —100% source-only custody. Read-only preflight PASS: two complete native assets, all61 ZIP payloads/386822B/CRC/hash/extracted identity, four whole native API objects/all one version, seven ordinary HTTP responses including preserved301, actual3-page PDF and sole9402B/201-line TeX. No mathematics/code/results/opinions reading or scientific replay. Final manifest/closure/seal follow before authorized121resumption.

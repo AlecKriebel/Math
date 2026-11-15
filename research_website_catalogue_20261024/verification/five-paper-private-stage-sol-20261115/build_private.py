@@ -66,6 +66,8 @@ def article_bytes(b,build_date,*,dlab_homepage):
   original=Tree(b['source_html'],source_math_style=True);head=copy.deepcopy(original.find('head')[0])
   head['children']=[n for n in head['children'] if not(isinstance(n,dict) and n['tag'] in {'style','script'})]
   article=copy.deepcopy(strict_json(text(original.find('script')[0])));article.pop('@context',None)
+ if 'abstract' in article:need(article['abstract']==b['abstract'],'original_scholarly_abstract_matches_complete_copy')
+ else:article['abstract']=b['abstract']
  article['@id']=base+'#article';article['url']=base;article['sameAs']=doi
  enc=article['encoding'];encodings=enc if isinstance(enc,list) else [enc]
  for e in encodings:
