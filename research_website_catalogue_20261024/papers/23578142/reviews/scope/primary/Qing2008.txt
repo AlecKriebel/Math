@@ -1,0 +1,1413 @@
+      Differential Posets and Dual Graded Graphs
+                                            by
+                                                                                   MASSACHUSETTS INST   E
+                                                                                       OF TECHNOLOGY
+                                       Yulan Qing
+                                                                                         SEP 2 9 2008
+                       B.A. in Mathematics and Physics
+                         Colorado College, May 2006                                      LIBRARIES
+               Submitted to the Department of Mathematics
+         in partial fulfillment of the requirements for the degree of
+
+                         Master of Science in Mathematics
+
+                                          at the
+
+          MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+
+                                      September 2008
+
+                  @Yulan Qing, MMVIII. All rights reserved.
+
+    The author hereby grants MIT permission to reproduce and to
+distribute publicly paper and electronic copies of this thesis document
+ in whole or in part in any medium now known or hereafter created.
+
+
+
+
+Author ....................                              ... .   . . . . .   . . . . .   . .   .
+
+
+                                                    Department of Mathematics
+                                                          -I August 08, 2008
+Certified by.......................
+                                                                 Richard Stanley
+                                                       Professor of Mathematics
+                                                               Thesis Supervisor
+
+Accepted by ....
+                                       S.              David Jerison
+                 Chairman, Department Committee on Graduate Students
+
+                                                                                         Afth$W4
+            Differential Posets and Dual Graded Graphs
+
+                                           by
+                                     Yulan Qing
+
+                       B.A. in Mathematics and Physics
+                           Colorado College, May 2006
+
+
+                    Submitted to the Department of Mathematics
+                   on August 08, 2008, in partial fulfillment of the
+                           requirements for the degree of
+                         Master of Science in Mathematics
+
+
+Abstract
+In this thesis I study r-differential posets and dual graded graphs. Differential posets
+are partially ordered sets whose elements form the basis of a vector space that satisfies
+DU-UD=rI, where U and D are certain order-raising and order-lowering operators.
+New results are presented related to the growth and classification of differential posets.
+In particular, we prove that the rank sequence of an r-differential poset is bounded
+above by the Fibonacci sequence and that there is a unique poset with such a max-
+imum rank sequence. We also prove that a 1-differential lattice is either Young's
+lattice or the Fibonacci lattice. In the second part of the thesis, we present a series
+of new examples of dual graded graphs that are not isomorphic to the ones presented
+in Fomin's original paper.
+
+Thesis Supervisor: Richard Stanley
+Title: Professor of Mathematics
+Acknowledgments
+
+My deepest gratitude goes to my advisor Richard Stanley for guiding me in my
+research with great knowledge and great compassion, to Tan Fucheng and Xiao Liang
+for countless insightful discussions and to Ruoxia for her laughter.
+THIS PAGE INTENTIONALLY LEFT BLANK
+Contents
+
+
+1 Introduction                                                                                                                            11
+    1.1   Differential Posets . ...................                                                     .......                  ..       11
+    1.2   Properties of r-Differential Posets .............                                                   .....                   .   12
+
+2 Differential Posets                                                                                                                     17
+    2.1   Statistics on the Growth of Differential Posets ......                                        .......                           17
+
+3 Differential Lattices                                                                                                                   23
+    3.1   1-Differential Lattices .................                                                ........                      ..       23
+    3.2   A Singular Case . ...................                                                    ........                      ..       28
+    3.3   Conclusion ......           ................                                        .......             ...                     33
+
+4 Dual Graded Graphs                                                                                                                      35
+    4.1   Linear Operators on r-Differential Posets and Dual Graded Graphs                                                                35
+    4.2   Dual Graded Graphs ....                ..............                                    .      ......                          38
+          4.2.1    Example 1: The Catalan Tree ........                                            ........                  ..           39
+          4.2.2    Example 2: Binary Trees ........                              .........                                  ..            41
+          4.2.3    Example 3: Graph Coverings                     .....          ....           ....      . .....                         42
+          4.2.4    Example 4: Hex Variation . .... ......                                     ......               ...                    43
+          4.2.5    Example 5: The Path-Sum . .. . ...                            ..........                             .             .   43
+    4.3   Conclusion..... . . . .             . .        .....................                                                            44
+
+5   Higher Dimensional Lattices and Lower bounds on Rank Sequences
+    of Differential Posets                                                                                                                47
+5.1   A Lower Bound for Differential Posets        . ...   .....   . ..   . ...    .   47
+5.2   Higher Dimensional Lattices . . ................                    .... .       48
+5.3   A Lattice Decomposition Algorithm on a 2-differential Lattice . . . .            49
+
+
+
+
+                                          8
+List of Figures
+
+ 1-1    Young's lattice
+ 1-2    the Fibonacci lattice
+
+
+ 2-1 A unit of a differential poset .
+ 2-2 Case 2               ................
+ 2-3 First 5 ranks of 1-differential posets
+ 2-4    First 6 rank
+ 2-5
+
+ 3-1    Type I and Type II .......
+ 3-2    Not a lattice .....            . ......
+ 3-3
+ 3-4
+ 3-5 for each of a, b, c, d down edges, there can   most   up edges that
+        (D2)-correspondence with each.
+ 3-6
+ 3-7
+ 3-8
+ 3-9
+ 3-10          ..................
+ 3-11          ..................
+ 3-12          ..................
+ 3-13          ..................
+ 3-14     .                                                                32
+3-15    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                                                       . ..    .   32
+
+3-16    ..................                                           .................                                          .. ..       33
+
+4-1    U graph. .            .....................                                                      .........                       .   39
+4-2    D graph . ..........                                ..................                                       ..        . .. .        40
+4-3    U graph ...........                             .         ..................                                       ...           .   41
+4-4    D graph ...........                                    ..................                                              .. .      .   42
+4-5    G .................                                          ...            ..................                                       42
+4-6    U graph and D graph . ..................                                                                      .......                43
+4-7    Hex Variation . . ...                           ....         . . . ....           ......                     .......             .   43
+4-8    Examples of two posets ..................                                                                     .......                44
+4-9    Path-Sum .....                   . .............                                   ..............                                    44
+
+5-1     .................                                              ......................                                               48
+5-2    The smallest, lowest complemented interval                                         .......                    .......                49
+5-3     ......................                                                        .................                                     50
+5-4     .............                              ...........                         .....            ..     .      ......                50
+5-5     .......                  ...................                                                .....                .......            50
+Chapter 1
+
+Introduction
+
+Richard Stanley(1988) has defined and studied a class of partially ordered sets called
+"differential posets," In this thesis, we state and prove some basic properties of r-
+differential posets and focus on two specific constructions of r-differential posets,
+namely Yr and Z(r). We follow the notation of [3] and refer to [3] for basic definitions
+of partially ordered sets. In Chapter 2, we give one main result of this thesis that gives
+upper bound on the rank sequences of r-differential posets. In Chapter 3 we settle the
+conjecture that a 1-differential lattice is either Y or Z(1). Richard Stanley studied
+properties of operators U and D which move up and down by one rank in the poset.
+In Chapter 4 we present some of these properties and introduce dual graded graphs.
+Dual graded graphs has been developed independently by Fomin(1992), which used a
+similar approach of functions of U and D, in a more general context. We provide newly
+found examples of dual graded graphs according to Fomin's definition. In Chapter
+5, we will discuss in detail the future research methods related to higher dimensional
+differential lattices and lower bound on growth of rank sequences of 1-differential
+posets.
+
+
+
+1.1       Differential Posets
+
+Let r be a positive integer. A poset P is called r-difffe'rential if it satisfies the following
+three conditions [1]:
+  1. (Dl) P is locally finite and graded and has a 0 element,
+
+  2. (D2) If x 4 y in P and there are exactly k elements of P which are covered by
+      both x and y, then there are exactly k elements of P which cover both x and y.
+
+
+  3. (D3) If x E P and x covers exactly k elements of P, then x is covered by exactly
+      k + r elements of P.
+
+
+   For x and y in a poset P, if x < p and y < p, then p is an upper bound of x and
+y. If for all upper bounds of x and y, there exists an element z such that z < p for
+all of them, then z is the least upper bound of x and y, denoted x V y = z.
+An interval [z, y] in a poset is subposet consists of the set of points z satisfying
+x < z < y. A chain is a totally ordered set. A finite chain of cardinality n + 1 has
+rank n. A poset has rank(or height) n if the longest maximal chain is finite of rank
+n. The rank of an interval is its rank as a poset. A poset is graded if every maximal
+chain has the same finite rank.
+If P is an r-differential poset for some r, then we call P a differential poset. If P has
+a unique minimal element 0, the rank of x E P is the maximal length of a saturated
+chain with largest element x. Thus, 0 is rank 0, every elements which covers an el-
+ement of rank n has rank (n- 1). A rank function p(x) maps each element to its rank.
+
+
+
+
+1.2      Properties of r-Differential Posets
+
+There are a number of properties concerning r-differential posets.
+
+
+Proposition 1 (Stanley). If P is a poset satisfying (Dl) and (D2), then for cz         y
+in P the integer k of (D2) is equal to 0 or 1.
+
+Proof. Suppose the contrary. Let x and y be elements of minimal rank for which
+k > 1. Thus x and y both cover elements x1 - qlr of P. But then x1 and yq arc
+elements of smaller rank with k > 1, a contradiction.                                  L]
+Proposition 2 (Stanley). In any differential poset P, The number of closed paths
+of length 2n starting and ending at 0 is equal to n!. We will prove this in Chapter 4.
+
+   Let's see some examples of differential posets. One type of 1-differential posets
+is the poset of partition of integers, ordered by inclusion of diagrams. Given a non-
+negative integer n, a partition of n is a finite, non increasing sequence of positive
+integers, A = (Al, A2 , ... \kk), such thatAl + A2 + ...
+                                                       Ak = n. We denote this by A    n.i-
+For example, there are five partitions of 4: (4), (3,1), (2,2), (2,1,1) and (1,1,1,1).
+There is one partition of 1. We define an order on the partition as follows: given two
+partitions A = (A,, A, ...Ak) and t = (t1, /2, ...p1 ), A < it if and only if k < 1 and
+
+Ai < pi for 1 < i < k. The poset whose elements are partition of integers, ordered by
+this relation, is called Young's lattice and denoted by Y. Below is the first few levels
+of Young's lattice.
+                              1111         211   22    31       4
+
+
+                                     111         21         3
+
+
+
+                                           11          2
+
+
+
+                                                 1
+
+
+                                                 0
+
+                                Figure 1-1: Young's lattice
+
+
+   Another type of 1-differential posets is denoted Z(r) and is constructed as follows.
+Let A, be an alphabet of r + 1 letters. We will regard the letters as consisting of the
+number 1 with r different "colors", denoted 11, 12, ---1, together with the number 2.
+Thus Ar = 1 i 12,          2. Let A*, consists of all finite words ala2a3 ...ak (including
+                       r...1,
+
+the empty word 0) of elements of A,.
+   Let r E N. Define a poset Z(r) as follows. As a set, Z(r) coincides with A*r. If
+w e Z(r), then define w' to be covered by w in Z(r) if either:
+
+
+   1. (a) w' is obtained from w by changing a 2 to some li, provided that the only
+      letters to the left of this 2 are also 2's, or
+
+
+   2. (b) w' is obtained from w by deleting the first letter of the form li.
+
+
+   This defines the cover relations in Z(r), and hence by transitivity a partial ordering
+of Z(r). We call Z(r) the Fibonacci r-differential poset. Below is the first few levels
+of the Fibonacci lattice.
+   A lattice is a non-empty poset L such that, for all x, y E L, the least upper bound
+x V y and the greatest lower bound x A y exists. A lattice is modular if, for all
+r, y, z E L such that :r < ., xV (y A z) = (rx V y) A z. If L has a        iniiiiiial and a
+maximal element. denloted 0 and 1. it is comrtpl tr etcd if, for all x C L., there exists
+1 11           21 1      1211     2211121 122                12        1 12
+
+
+
+          1                                              12       21
+                                                         12
+
+
+
+
+                                    0
+                        Figure 1-2: the Fibonacci lattice'
+
+y e L such that x v = 1 and x A y = 0.
+THIS PAGE INTENTIONALLY LEFT BLANK
+Chapter 2
+
+Differential Posets
+
+
+2.1      Statistics on the Growth of Differential Posets
+
+This chapter focuses on the growth of rank numbers of differential posets. By def-
+inition, every 1-differential poset has a unique minimal element. It is shown in [1]
+that the number of elements of rank 0, 1, ,2... is non-decreasing. In fact, we prove
+in this chapter that it is strictly increasing. More specifically, the rank number pi is
+the number of elements of rank i in P. The rank sequence is the infinite sequence
+
+(Po, P1,P2...). In this chapter we are going to show that the rank sequence is strictly
+increasing. We prove that the rank sequences are bounded above by the Fibonacci
+sequence. The proof also shows that there is a unique poset that realizes this tight
+upper bound. It is conjectured in [1] that the rank sequence is bounded below by the
+sequence of integer partitions. We will discuss this conjecture more in Chapter 5.
+   Let x be an element in the poset P. With P we associate a graph representation
+of the poset called Hasse Diagram. In a Hasse Diagram, each vertex represents an
+element of P. There is a vertical line segment between two vertices x and y, with x
+below y, if and only if x < y in P, and there is no z such that x < z < y. In this
+case, we say y covers x, and denote y \ x or x / y. Any such diagram (with labeled
+vertices) uniquely determines a partial order.
+Moreover, in the Hasse Diagram, each vertex may have line segments between it-
+self and elenments that covers it , which are called ip)-edges. Likewise line segments
+between itself and elements covered by it are called down-edges. The number of up-
+edges of x is denoted deg(,)(x) and is called up-degree. the number of down-edges
+of x is denoted deg(d) (x) and is called down-degree.    If a vertex in Hasse diagram
+has deg(d)(x) = 1, we call the vertex, as well as the corresponding poset element, a
+singleton.
+
+Lemma 1. If any element of rank i is a singleton, then pi > pi-1, for i > 1.
+
+Proof. This is a straight forward observation. Suppose a is a singleton, p(a) = i.
+Then there exists a set of 6 elements such that (a \ b / c \ d/      e and b \ f      d)
+as shown below.
+
+
+                            a                             e
+
+
+
+                                  bY                d
+
+
+
+                                          f
+
+                       Figure 2-1: A unit of a differential poset
+
+
+   If the Hasse diagram above contains all the elements of rank i and i - 1 in P, then
+pi > Pi-1 and the proof is complete. Otherwise, other elements belong to one of the
+following cases:
+
+   1. x covers b or x covers d.    If x is a singleton, then pi > pi-1.     If x is not
+      a singleton, x covers a new element that is different from b or d, or else we
+      contradict Proposition 1.
+
+  2. x is covered by c or x is covered by e. If x is covered by c, then at least two
+      other elements are force to cover x, See Figure 2-2. If x is covered by c, then at
+      least one other element is forced to cover .. simply by definition.
+
+   HVe can "trace out" the rest of the elements in these two cases. Applying (D2)
+                                                                  I;   /
+
+
+
+                                                          -   /
+
+
+
+
+                                 f
+                                     Figure 2-2: Case 2
+
+
+and (D3) repeatedly, we get that each unit that we trace out add on at least as many
+
+elements in rank i as in rank i - 1.                                                    E1
+
+Lemma 2. There exists at least one singleton of rank i for each i > 2.
+
+Proof. By the definition of r-differential posets, the first few ranks of a 1-differential
+
+poset are unique as shown:
+
+
+
+
+                   Figure 2-3: First 5 ranks of 1-differential posets
+
+
+   Therefore. there exist at least one singleton of rank 3. We observe that in any
+1-differential poset, such an element is always covered by an element of the same
+property, i.e.   a singleton that covers an element of up-degree 2, from which we
+conclude that there is always a singleton of each rank.                                 O
+
+   Leiimma 1 and Lemma 2 together give rise to the following resullt:
+Theorem 1. The rank sequence of any 1-differential poset is strictly increasing, i.e.
+
+pi < Pi+:I, .fori     1.
+
+Next, we give a partial order between two rank sequences a = (o1, a2 , o:3...),
+(bl, b2, b3 ....) by a < 1 if any only if ai < bi for all i. We show now that the maximum
+element of this poset of all rank sequences is the Fibonacci sequence, and Z(1) is the
+poset uniquely corresponds with the sequence.
+
+Theorem 2. The rank sequence of any 1-differentialposet cannot grow faster than the
+Fibonaccisequence, and there is only one poset with the rank sequence (1,1,2,3,5,8,...)
+namely, the Fibonacci lattice.
+
+Proof. Since the partial order is lexicographic order, i.e. for the smallest i such
+that ai > bi,       = (bl, b2 , b3 ..., bi, ...) is eliminated from the set of candidates for the
+maximum element, since 3 is either less than, or incomparable to a. Since we are
+searching for a maximum element, if it exists, we then disregard 3.
+Any 1-differential poset up to rank 5 is uniquely determined. At rank 6, there are
+two possibilities, shown as follows.
+
+
+
+
+                                    Figure 2-4: First 6 rank
+
+
+By the previous principle we disregard the choice on the left. To develop the poset
+upward to include as many elements as possible, we have the following three cases:
+
+   1.deg(.,)(x)= 2;
+
+   2.d ig(,,)(X
+           ) = 3:
+
+
+   3. d(-g(,, (X)> 4.
+   When deg(,,)(x) > 4, we refer to Lemma 6 in Chapter 3. The lemma shows that
+in this case x will be reflected as if in Z(1). The case of deg(,,)(x) = 2 is trivial, the
+element x will be reflected as well. Then we are left with the case of dcg(,,) (x) = 3.
+When every other element is isomorphic to elements in Z(1), x will be a choice between
+the following two. Since we are asking for the highest number of elements in each
+rank, we choose Type II.
+
+
+
+
+              x            y         z              x          y         z
+
+
+
+
+                    Type I                                 Type II
+
+                                      Figure 2-5:
+
+
+
+
+   It is conjectured that the rank sequence of a differential poset grows at least as
+fast as the sequence of integer partition. Young's lattice is an example of a poset with
+such a rank sequence. It is unclear if there are other differential posets that also has
+the same rank sequence. We will discuss more on this topic in Chapter 5.
+THIS PAGE INTENTIONALLY LEFT BLANK
+Chapter 3
+
+Differential Lattices
+
+
+3.1       1-Differential Lattices
+
+A lattice is a partially ordered set in which every pair of elements has a least upper
+bound, called their join, and a greatest lower bound, called their meet. The following
+fact is easy to verify.
+
+Proposition 3 (Stanley). The two types of 1-differential posets introduced in Chap-
+ter 1, Y and Z(r), are both lattices.
+
+Proposition 4 (Stanley). Let L be a lattice satisfying (Dl) and (D3). Then L is
+r-differential if and only if L is modular.
+
+Proof. It is known that a locally finite lattice is modular if and only if the following
+condition is satisfied:
+
+       For all x, y E L, x and y cover x A y if and only if x V y covers x and y.
+
+But this condition is equivalent to (D2).                                             E]
+
+   We would like to settle the following conjecture by Richard Stanley:
+
+
+Theorem 3. The only 1-d/ferential lattices are Young's lattice Y and the Fibonacci
+lattice Z(1).
+    We start by defining two types of local orders of up-degree 3. Let z,y and z be
+three elements of a poset, p(x) = p(y) = p(z) = i and x, y and z all covers a same
+fourth element of a rank i - 1. There are two possibilities for the join of x, y and z
+of rank i + 1. We will call them type I and II. In type I x, covers y,z,Yl covers x, z
+zl covers x, y, and x1 # y1 # z. In type II,s covers x, y and z. See the following
+diagram:
+
+                  z                X
+
+
+
+
+                  x        y           z          x            y         z
+
+
+
+                      Type I                                Type II
+
+                            Figure 3-1: Type I and Type II
+
+
+We can quickly establish the following necessary condition:
+
+Lemma 3. The three elements of type I has to have a common cover of the next rank.
+
+Proof. The elements pairwise has meets at the lower rank, therefore they have joins
+at the higher rank that is either one element covers all three of them or three element
+each cover a pair of them. If it were the latter then we have a Hasse diagram of the
+following case where element x2, Y2 does not have a meet, contradicting the fact that
+P is a lattice.                                                                      []
+
+    Next we again refer to the fact that there is only one 1-differential poset up
+to rank 5, and only two non-isomorphic 1-differential posets up to rank 6. One of
+them is isomorphic to Young's lattice up to rank 6, the other is isomorphic to the
+Young-Fibonacci lattice up to rank 6. Our main theorem is an inductive result of the
+following two lemmas.
+
+Lemma 4. If a 1-difereti l lattice is isomorphic to Young s lattice up till rank n - 1,
+uh icr   > 6, then it is isonowh)/ic to Young's lattice jp to ro'nk n.
+                              x2               y2        Z2
+
+
+                              ZI                yi       x
+
+
+
+                              x               y          z
+
+
+                                  Figure 3-2: Not a lattice
+
+
+Lemma 5. If a 1-differential lattice is isomorphic to the Fibonacci lattice up till rank
+
+n - 1, where n > 6, then it is isomorphic to the Fibonacci lattice up to rank n.
+
+
+To prove Lemma 4, we need the following proposition.
+
+
+Proposition 5. If L is isomorphic to Young's lattice up to rank n, n > 6, then for
+
+the elements of rank n, if a, b, c covers the same element x, then a, b, c do NOT have
+
+a same cover in rank n + 1. i.e. it is a type I.
+
+
+Proof. Since L is isomorphic to Young's lattice up to rank n, elements of rank up
+
+to n have a one-to-one bijection with elements of Young's lattice, thus we can label
+
+them with Young's diagram, and use terms such as outer corner and inner corner.
+
+   The following diagram illustrates the proof. The Hasse Diagram with filled line
+
+shows the lattice up till rank n, and the dashed line shows the lattice beyond rank n.
+
+Since x has up-degree at least 3, then it has at least two outer corner. Since n > 5,
+
+at least one of the the two outer corners does not belong to either the first or the last
+
+row of the Young's diagram. Then for b, c, they can each delete a same outer corner
+to get b', c' which has a cover d. By Lemma 4, b, c, d has a common cover z, but a
+and d does not cover an element by way of construction, therefore z cannot cover a,
+which proves the statement.
+
+                                                                                       LO
+                                                           ,z
+
+
+
+
+                            I                          i
+
+
+
+
+                                    ab'                           c'
+
+   Since P is a differential poset, every triple of Y1 V Y2 = x, there is a unique
+corresponding yi A y2
+
+
+
+
+                                     x
+
+                                         Figure 3-3:
+
+
+   Since P is same at the Young's lattice for ranks up to n, one of the following
+occurs if P    Y at rank n + 1:                \
+
+
+   1. Three pairwise different joint in Young's lattice versus a same joint in P.
+      In this case, since yi, Y2, Y3 must cover a same element on a lower level, but if
+      they are covered by a same joint in P then they contradict Proposition 5.
+
+   2. A same joint of three elements in P versus three pairwise different joints in
+      Young's lattice.
+      In this case, They must have three different meets which gives a contradiction
+      to Lemmna 3.
+
+   Therefore, both cases are impossible which implies P = Y.
+Next, we would like to prove Lemma 5. Assume that P is isomorphic to the Fibonacci
+lattice up to rank n. there is a bijection between the elements of P and elemeits of
+the Fibonacci lattice ut)   to rank n.    First, by way of construction, for any i. there
+does not exists a set of 3 vertices of rank i in the Hasse diagram of the Fibonacci
+lattice such that there are three different meet of rank i - 1 for the three two-element
+subsets. See bellow Figure 3-3.
+
+
+
+
+                                         Figure 3-4:
+
+
+   Thus for any element x E Z(1), for every element covered by x, there is at least
+one distinct element that covers x to satisfy (D2). Therefore, for every edge in the up-
+degree of x, there is a unique edge in the down-degree of x that corresponds with it.
+Since (D3), there can be two up-edges that correspond with at most one down-edge.
+Therefore given an element x of rank i - 1, let it have up-degree r,
+
+                           a-       bb               c           -d
+
+
+
+
+                           a        b                    c           d
+
+Figure 3-5: for each of a, b, c, d down edges, there can be at most 2 up edges that
+(D2)-correspondence with each.
+
+
+   There can be at most two up-edges from each of {x,                    2,X3...}.
+
+                           \         \   \                           I
+
+
+
+
+                               \I            '\   \I /       \   /
+
+
+
+                           X             X 2X4
+
+
+                                                    X
+
+                                         Figure 3-6:
+   Suppose xl has two up-edges that will be part of this part of the diagram, yi and
+
+Y2. The other elements {12.,X3, X4...} are partitioned into two sets, one is covered by
+
+yi, the other set covered by Y2. Then an element that is covered by yl, say x2, has
+a distinct common cover with each of the elements in set 2. The covers has to be
+distinct to not contradict Proposition 1. Therefore we conclude there are at most
+1 element in set 2, likewise there is at most 1 element in set 1. Therefore if the
+up-degree of x is greater than 3, we are force to have a reflection.
+In fact what we just proved is not dependent upon the lattice condition. It can be
+stated formally as following:
+
+Lemma 6. If a 1-differential poset is isomorphic to Z(1) up till rank n where n > 5,
+then for an element x of rank n, if deg() (x) > 4, then there is exactly one element
+that will cover the covers of x.
+
+
+
+
+                                      Figure 3-7:
+
+
+
+
+3.2      A Singular Case
+
+If there exists an element of rank n, whose up-degree is exactly 3, and the 1-differential
+lattice is the Fibonacci lattice up till rank n, it is impossible to continue to grow the
+poset into a lattice beyond rank (n + 5). This will be illustrated as follows.
+   Throughout the rest of the proof, we will use aij to denote elements of the i"t
+level. For convenience, we start with the element of up-degree 3, and label it all. We
+also assume that the 1-differential lattice is isomorphic to Z(1) for elements of label
+ 2)j and all elements below
+1. If deg(,)(all) = 3, let a 21 , a 22 and a 2 3 covers all. In the Fibonacci lattice, each
+   element is covered by exactly one singleton. Thus one of a 21 , a 22 and a23 can
+   have down degree 1. By construction of the Fibonacci lattice, at least one of
+   a 21 , a 22 and a23 will have down degree 3, so let a23 covers a 11 , a12 and al13 . By the
+   structure of the Fibonacci lattice, all , a 1 2 and a 13 have one cover in common,
+   thus again by definition only one of all, a 12 and a 13 can have up-degree 2, the
+   others have up-degree at least 3. Therefore let a12 be covered by a 23, a 24 and
+   let a 13 be covered by a 23 , a25 and a 26 . Likewise, we let a 20o and a 21 covers al 0
+
+             a20              a21 a22 a2 3 a2 4 a25                              a26
+
+                     al0                 all      a12 a 13
+                                           Figure 3-8:
+
+
+2. Since we are interested in the case when a 21 , a 22 and a23 has three distinct covers.
+   We apply Lemma 3 and Proposition 5 to uniquely determine the left side of the
+   lattice
+
+
+
+
+                           a2               a2 1 a22 a23 a 4 a25 a26
+
+
+                                   alo              a     a 12    a,3
+
+                                         Figure 3-9:
+
+
+3. Consider the     jup-degree of a2 3 .     dC('Y,)(a 2 ) = dqd) (a                        r are
+                                                                               - 1 = 4. Thei'
+                                                                        2 3)
+   two elements a 12 and 013 that needs elements to cover a 23 correspondingly to
+   satisfy (D2). Since a12 : a 25 4 a26, the corresponding covers a 35 and a37 are
+
+   also distinct. a 3 6 , aa3 8 and a39 exist by (D3).
+
+
+
+
+     40            41      42          4   a45
+
+
+             0                     2        3    34      5     6   7   8        9
+
+
+                 a20            a21 a22 a2 3 a24 a25 a26
+
+
+                        alo0               a11 a12       a13
+                                       Figure 3-10:
+
+
+4. Now consider the up-degree of a 33 .
+
+   First we complete the fifth rank. In the diagram following, we use different line
+   styles for to distinguish between the different reasons that uniquely determines
+   the corresponding edge.
+
+    (a) The modularity of differential lattices. For cases that are relevant to this
+          section, whenever there is a sublattice isomorphic to the figure below, the
+          elements a, b, c, d have a common cover: dotted line.
+
+    (b) Lemma 3: filled line
+
+    (c) (D2) and (D3):dashed line
+                                         Figure 3-11:
+
+
+
+
+We   start   by   complete   some   of   the   edges   by    Lemma           3.
+                                                            iI       u   e         -
+
+
+
+
+                                                                -            I,-
+
+
+
+
+                                         Figure 3-12:
+
+
+
+
+                                         Figure 3-13:
+Then add more edges according to (D2) and (D3)
+
+
+                            iN~.          /                     /\
+                                              -
+                        /             /                    A,
+
+
+                /
+                    /
+                              /
+                                  /
+                                                  'I
+                                                       /
+                                                            -
+                                                                      /1
+
+
+
+                                                                             ~
+                                                                            /\      ~      c z .'l                  /       /    /i
+                                                                                                                                       /   /
+                                                                                                                                                   /
+
+                                                                            "."         .../ I 'I    'I .       t               l.ff           /
+
+
+
+
+                                                                                                            /
+                                                                                              //                        \
+
+                                                                                                      ¢                     \
+
+
+
+
+                                                                     Figure 3-14:
+
+
+
+
+                                                                                                                                       ,               ;0.
+
+
+
+
+                                                                     Figure 3-15:
+
+
+
+
+We realize that even a50 already has maximal up-degree 5, it still does not have
+covers with a5s or a 52 , hence the contradiction.
+                                                                  A/
+
+
+
+
+                                     Figure 3-16:
+
+3.3      Conclusion
+
+We used enumerative methods to prove that a 1-differential lattice can only be either
+Young's lattice or the Fibonacci lattice. The one special case in last section does
+not have to be an induced sublattice. There can be other covering relations between
+these elements and other elements of the lattice. One can easily derive the higher
+dimensional generalization of Lemma 6, however, that approach can leave many spe-
+cial cases. In Chapter 5 we are going to discuss a different approach to study higher
+dimensional differential lattices that uses edge labeling.
+THIS PAGE INTENTIONALLY LEFT BLANK
+Chapter 4
+
+Dual Graded Graphs
+
+4.1      Linear Operators on r-Differential Posets and
+         Dual Graded Graphs
+
+Given a locally finite poset P and x E P, define
+
+
+
+
+                              C-(x) = y      P: x covers y
+
+
+                              C + (x) = y    P : y covers x
+
+
+Let P be a locally finite poset such that for all x E P the set C-(x), C+(x) are finite.
+Define two linear transformations U, D by the condition that for x E P:
+
+
+
+
+                                    Ux=      E     Y
+
+
+
+                                    Dx=       >        Y'
+                                            yeC- (2)
+   We are going to state and prove two most important results regarding the pair of
+linear transforinatiions:
+Theorem 4 (Stanley). Let P be a locally finite graded poset with 0, with finitely
+many elements of each rank. Let r be a positive integer. The following two conditions
+are equivalent:
+
+
+   1. P is r-differential.
+
+   2. DU - UD = rI
+
+
+Proof. Let x E P. Then DUx = E c,y, where cy = #(C+(x) n C+(y)). Moreover,
+UDx = >E dyy, where dy = #(C-(x) n C-(y)). Hence DU - UD = rI if and only
+if for all x, y E P,
+
+
+
+
+                   #(c+(x) n c+(y)) = #(c- (x) nC (y)), if x = y
+
+
+
+
+                   #(C+(x) n C+(y)) = #(C-(x) n C-(y)), if x # y
+
+
+and
+
+
+
+
+                               #(C+(x)   = r + #(C-(x)
+
+
+
+
+which are precisely the conditions for P to be r-differential.                    D
+
+
+    Another fundamental result states:
+
+Proposition 6 (Stanley). For a diffe.rential poset P, we have DU" = nU"      +U'"D
+for all n    1.
+Proof. The case n = 1 follows immediately. In general, if DUk = kU" -- + UA D, then
+
+
+                            DU'+ I        (DU)Uk
+
+                                      = (I + UD) Uk
+
+                                      =   Uk +U(DUk)
+
+                                      =   U + U(kUk - 1 + UkD)
+
+                                      =Uk + kUk + Uk+1D
+
+                                      =   (k + 1)U k    Uk+1D
+
+
+
+
+    Now we can state and prove the result mentioned in the last section.
+
+
+Proposition 7. In any differential poset P, The number of closed paths of length 2n
+starting and ending at 0 is equal to n!.
+
+
+Proof. The number of such closed paths exactly euqals to the coefficient of 0 in
+D"U"O. We have trivially DOUOO = 0, so the claim is valid for n = 0. Inductively,
+
+
+
+
+                      Dk+1lUk+lO = Dk(DUk+10 = (k + 1)DkUkO)
+
+
+
+
+And the result follows.                                                             []
+
+
+    There are many directions in which one can generalize tihe concept of a graded
+poset such that DU - UD = I. One way is to have the D and I operate on two
+(tiffer'ent s't of edges, which results iMl the study of dual graded 'lraph..s.
+4.2      Dual Graded Graphs
+
+Defined by Fomin in [5], an r-dval graded graph is a pair of graded graphs (C1,G 2)
+such that
+
+   1. G1 and G2 have the same vertex set and rank function p
+
+   2. Gi has edge set E. Edges in El are directed upward, i.e. in the direction of
+      increasing rank, and G2 edges downward. We introduce the U and D operator
+      as before. and the relations hold that:
+
+
+                                   Dn+ I Un= Un-I Dn + r I
+
+
+      where r = r, is a sequence of constants, i.e. r c K.
+
+An r-differential poset is an r-dual graded graph where El = E2 and r = r, r,r, ... We
+refer to [5] [4] and [6] for studies on graded algebras. We will focus on enumerative
+properties of these dual grades graphs. We will present graphs that satisfy one of the
+following commutation relations [5]:
+
+
+                                    DU = qUD + rI
+
+
+where q = {qu} and r = {r,} are elements of K". Differential posets are dual
+graded graphs with q = {1, 1, 1, ...} and r = {1, 11, , ... } It is shown that if a pair
+
+of dual graded graphs satisfies the above relation, then we have the following path
+enumeration [5]:
+
+Theorem 5. Assume the up and down operators in an oriented graded graph G with
+
+zero satisfy the above relations. Then for any x C Pk:
+
+                                                      s-1
+
+
+                   YCPA-+                             i=0
+
+
+   Where e(xr --+ y) denotes the number of paths between x and y. In a graph with
+zero, let c(y) = e(O --     !y). The studies of enumerative properties of dual graded
+graphs give rise to combinatorial identities involving c(x). A typical example is the
+Young-Frobenius identity
+
+                                                Z c(x)' = n!
+                                                .rGP"
+
+We will present new examples of dual graded graphs that are not analyzed in [5].
+
+
+4.2.1      Example 1: The Catalan Tree
+
+Let the vertex set be number string of the form x = a1 a2 a3 a4 ...a,,, with 1 = al <
+a 2 < a 3 < ...a, < n and p(x) = n
+
+U-edges: x / y if and only if y can be obtained from x by adding a number to the
+right end of x.
+D-edges: x \       y if and only if y can be obtained from x = by deleting ai from
+ala 2a3a 4 ...an only if ai- 1 = ai
+These are the first few ranks:
+    1112      13       14 122     123             124 13
+                                                        3     134     22   23   224
+                                                                                      f     34
+
+
+    111                   112                           113         122               123
+
+
+
+
+                                      1     1                       12
+
+
+
+
+                                            0
+
+                                           U graph
+                                          Figure 4-1: U graph
+                             12     1 3         11 43312
+                                                                             k           12     ]?                 33   1 34
+
+
+
+
+    111                 112                             113              122                                 123
+                                                                     0                                       0
+
+
+
+
+                                                0
+
+                                                D graph
+                                            Figure 4-2: D graph
+
+
+
+   It can be checked that this is a pair of dual graded graphs with DU - UD = I.
+By Theorem 5,
+
+                                                                            s-1
+
+                    S e(-- y -- X) = e(X)Ii
+                    EPk +l                                                  i=0
+                                                                                               l qj
+
+
+
+
+Because in this case we have q = {1, 1, 1,...} and r = {1, 1, 1, ...}, we have
+
+
+
+                              E c(6 --+ y -- x) = e(x)r'(k + 1)!/k!
+                         Y (Pk +l
+
+
+
+
+   In the case of a Catalan tree, e(x) = Ifor all x, so we have for any x E Pk:
+
+
+                                  E e(0 - y -- x) = (k + 1)!/k!
+                                  e & ±+
+
+
+   Let kh-   I1,                                                                                 (1
+                             (0            -.       )   >LqEP/ +I   c(0 -         y --    0)
+                                                                                                 ( + 1)!.
+                                                                                                      1)!.
+4.2.2     Example 2: Binary Trees
+
+Let the vertex set be a strings of Is and Os of finite length. The length of the string
+is the rank of the element.
+U edges: x /      y if and only if y can be obtained from x by adding a number to the
+right end of x.
+the D edges: x \ y if and only if y can be obtained from :x by the following process:
+
+
+   1. If x ends with 1, delete 1
+
+
+   2. If x ends with 0, find the right most 1, i.e. x = aa 2 ...ak100...0, then y can be
+
+      any vertex that starts with ala 2 ...ak
+
+
+
+
+       11
+     1101 101
+          011101 0  0
+                   0101  0
+                        01 110  01
+                               00 0000
+   11110
+           O           %                   "             I             I            1        %/
+
+    11            10                                          11            0           01        0 0
+
+
+
+
+                              1                                                 0
+
+
+                                           Figure 4-3: U graph
+
+
+
+Proposition 8. This is a pair of dual graded graphs with DU - UD = I
+
+
+
+
+                                      c(   -   y-    x) = c(x)r'( + 1)!/
+                           ye PA +1
+
+
+
+
+Again we have (.:r)        1 and >],EtPj            O-
+                                                    (0       y -(0 )       (1+ 1)!
+                                    Figure 4-4: D graph
+
+4.2.3     Example 3: Graph Coverings
+
+Let G be a graph,define a covering of G to be a graded graph such that
+
+   1. At each level, the vertex set is the vertex set of G
+
+   2. x / y if and only if x is adjacent to y in G
+
+   3. x \ y if and only if x is adjacent to y in G
+
+
+
+
+                                       Figure 4-5: G
+
+
+
+Proposition 9. The covering of G is a self-dual graph with DU - UD = 0, where
+self-dual means GI = G2 in the definition of dual graded graphs.
+
+
+   This is an example of a pair of dual graded graphs that is infinite in both the
+positive and and the inegative direction. Locally it satisfies the condition DU - UD
+0, and any initerval of this situbset is graded.
+                                             C         D        E
+
+
+
+                                             C         D        E
+
+
+
+
+                                             C         D        E
+                           Figure 4-6: U graph and D graph
+
+4.2.4     Example 4: Hex Variation
+
+The Hex graph is presented in [5]. It is interesting because its e(x) for ranks 2n and
+2n + 1 are the ordinary binomial coefficients (),     1 < k < n. One can substitute the
+"wall" of the hexagon for a finite chain of n elements for any n. Here is an example
+when n = 1:
+
+
+
+
+            U   graph                                               D   graph
+
+                                Figure 4-7: Hex Variation
+
+
+
+
+4.2.5     Example 5: The Path-Sum
+
+We learned that differential posets are dual graded graph,s with q         {1, 1, 1, ... } and
+r =   1, 1. 1, ... . II every differential poset. there are exactlY two paths in which every
+element has deg(,,) = 2. We can take any two differential posets, and identify such a
+path, and then path-sum them into a bigger dual graded graph. We take an example
+of the following two differential posets:
+
+
+
+
+                           Figure 4-8: Examples of two posets
+
+   In the following figure, the filled lines are both up-edges and down edges, the dash
+lines are only down edges:
+
+
+
+
+                                  Figure 4-9: Path-Sum
+
+
+
+
+4.3      Conclusion
+
+The dual graded graphs are tools to study one of' the most important algorithin in
+algebraic (:om11Iinat oriis. the Robinson-Schensted correspondence, as well as a varietly
+of algebras. We mainly search for examples that either has interesting enumerative
+properties, or ones whose vertex set as the Weyl group of algebras. This chapter
+listed some of the non trial examples found, of which the Catalan tree is the most
+interesting and is worth further study.
+THIS PAGE INTENTIONALLY LEFT BLANK
+Chapter 5
+
+Higher Dimensional Lattices and
+Lower bounds on Rank Sequences
+of Differential Posets
+
+In this chapter we discuss the next step in this research. The directions of future
+research will concentrate on two topics: searching for a lower bound for rank sequence
+of 1-differential posets and generalizing the result of Chapter 3 to higher dimensional
+lattices.
+
+
+
+5.1         A Lower Bound for Differential Posets
+
+The minimal growth of a differential poset is conjectured to be the integer partition
+sequence. To studying this conjecture. Let's first relax (D3). In the definition of
+differential posets, if we only consider (Dl), (D2) and develop the poset along the
+two side edges, together with Proposition 1, we get Figure 5-1.
+    Each time we add a singleton to satisfy (D3), we introduce another copy of Figure
+5-1. As we start to add them into the diagram, some of the new elements coincide
+with others. The Fibonacci lattice is the arrangement in which such coincidence
+happens least. It will be helpful to show that Young's lattice is the arrangements in
+which the coincidence happens Imost.
+                                      Figure 5-1:
+
+5.2      Higher Dimensional Lattices
+
+To study r-dimensional lattices where r > 1, we introduce the concept of comple-
+mented interval. let's remind us from Chapter 1 that an interval ix,y] in a poset is
+a subposet consists of the set of points z satisfying x < z < y. It contains at least
+the points x and y. A lattice L with 6 and i is complemented if for all x E L there
+is a y E L such taht x A y = 0 and       V y = 1. If every interval [x,y] of L is itself
+complemented, then L is relatively complemented. We present two propositions on
+complemented intervals in differential lattices. The proofs are found in [1].
+
+Proposition 10 (Stanley). Let L be a lattice satisfying (Dl) and (D3). Then L is
+r-differential if and only if L is modular.
+
+Proposition 11 (Stanley). Let r be a positive integer. The following two conditions
+on a poset P are equivalent.
+
+   1. P is an r-differential lattice (necessarily modular) such that every complemented
+      interval has length < 2.
+
+  2. P is isomorphic to Z(r).
+
+   If a 2-differential lattice is such that every complemented interval has length <
+2, then it is isomorphic to Z(r). If not, then suppose P is a 2-differential lattice in
+which there is at least one complemented interval of length 3 or higher. Let's assign
+such complemented intervals a rank of its minimal element. Since there is at least
+one comiplemented interval of length 3 or higher, let Abe such an interval with the
+smallest rank. By definition, there exists a sub)-lattice of a,denoted 3. that satisfies
+the following two properties:
+   1. 0   0 = 0 E3
+
+
+
+   2. length(3) = 3
+
+
+   Thus 13 is isomorphic to:
+
+
+
+
+                                             X            z
+
+
+
+
+                               a           b              c
+                 Figure 5-2: The smallest, lowest complemented interval
+
+
+Given a 2-differential lattice, if two complemented interval base at rank 1 are both of
+length > 3, we introduce an algorithm that labels the edges of the lattice r(red) or
+b(blue), such that the r-labeled edges consist a differential lattice of lower dimension,
+likewise for the b-labeled edges. Moreover, they are put together such that the lattice
+is a product of the two lattices of lower dimension. For higher dimensional lattices,
+we recursively apply the decomposition through labeling until the resulting lattices
+are of dimension 1, or one such that all its complemented intervals are of length < 2.
+
+
+
+5.3       A Lattice Decomposition Algorithm on a 2-
+          differential Lattice
+
+Let z and y that both cover 6. label the respective edges r and b. Since x A9 = 6,x
+and y are covered by a same element of rank 2, which will give a set of four elements
+with a diamond relations:
+   For every diamo(ndl relation with a pair of adjacent edges labeled. we have one of
+the two following ways of developing it:
+                                      Figure 5-3:
+
+  1. If the labeled edges are of a same label, then label the rest two edges with the
+     same label.
+
+  2. If the labeled edges are different labels, then label the opposite edges the same
+     way.
+
+
+
+
+                   r              r                                 r
+
+
+
+
+                       r          r                 r               b
+
+
+
+                                      Figure 5-4:
+
+
+
+
+                                      Figure 5-5:
+
+
+   In the next stage of this research, we aim at studying and refining such a labeling,
+so that it beconies well defined, i.e., each edge is assigned to exactly one kind of
+labeling, and can be generalized to other type of 2-differential lattices. More over, we
+hope to prove that the labeling has some if not all of the following characteristics:
+
+                                 deg(,,r) = dcg(d,r) + 1
+
+                                 deg(,b) = deg(d,b) + 1.
+
+
+   If such a labeling exists, consider the sublattice that consists of all r-edges and
+the set of elements A incident to these edges. For x, y E A, then it will be helpful to
+show:
+
+                          x A y E A if and only if x A y E A
+
+   To sum up, these kinds of labeling are aiming at to prove or disprove the following
+conjecture of Richard Stanley:
+
+  An r-differential lattice P where r > 1 is a product of Young's lattices and the
+                                  Fibonacci lattices.
+
+   If P and Q are posets, then the direct (or Cartesian)product of P and Q is the
+poset P x Q on the set {(x, y) : x E P,y C Q} such that (x, y) < (x', y') in P x Q if
+x < x' in P and y < y' in Q.
+THIS PAGE INTENTIONALLY LEFT BLANK
+Bibliography
+
+[1] Richard Stanley, "Differential Posets," . Amer. Math. Soc., vol. 1, pp. 919-961,
+   1988.
+
+[2] Richard Stanley,    "Variations on differential posets"   Invariant Theory and
+   Tableaux (D. Stanton, ed.) The IMA Volumes in Mathematics and Its Appli-
+   cations, vol. 19, pp. 145-165, 1990.
+
+[3] Richard Stanley, Enumerative Combinatorics,vol. 1, Cambridge, 1973.
+
+[4] Sergey Fomin, "The Generalized Robinson-Schensted-Knuth Correspondence"
+   J.Soviet Math. , vol. 41, pp. 979-991, 1988.
+
+[5] Sergey Fomin, "Duality of Graded Graphs" J.Algebraic Combinatorics, vol. 3,
+   pp. 357-404, 1994.
+
+[6] Sergey Fomin, "Schensted algorithms for dual graded graphs" J.Algebraic Com-
+   binatorics , vol. 4, pp. 5-45, 1995.
+
+[7] Jonathan David Farley, Stefan E. Schmidt, "Posets that locally resemble dis-
+   tributive lattices" J. Combinatorial Theory , vol. 92, pp. 119-137, 2000.
+

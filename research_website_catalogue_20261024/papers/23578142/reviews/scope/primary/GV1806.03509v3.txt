@@ -1,0 +1,435 @@
+                                          PATH COUNTING AND RANK GAPS IN DIFFERENTIAL
+                                                            POSETS
+
+
+
+
+arXiv:1806.03509v3 [math.CO] 3 Jan 2020
+                                                                        CHRISTIAN GAETZ
+
+
+                                              Department of Mathematics, Massachusetts Institute of Technology,
+                                                                     Cambridge, MA.
+
+
+                                                                 PRAVEEN VENKATARAMANA
+
+
+                                          Division of Physics, Mathematics, and Astronomy, California Institute of
+                                                                Technology, Pasadena, CA.
+
+                                                  Abstract. We study the gaps ∆pn between consecutive rank sizes in
+                                                  r-differential posets by introducing a projection operator whose matrix
+                                                  entries can be expressed in terms of the number of certain paths in the
+                                                  Hasse diagram. We strengthen Miller’s result that ∆pn ≥ 1, which
+                                                  resolved a longstanding conjecture of Stanley, by showing that ∆pn ≥
+                                                  2r. We also obtain stronger bounds in the case that the poset has many
+                                                  substructures called threads.
+
+
+
+
+                                                                          1. Introduction
+                                            Differential posets are a class of partially ordered sets, originally defined
+                                          by Stanley [6], which generalize many of the enumerative and combinatorial
+                                          properties of Young’s lattice Y , the lattice of integer partitions. We refer
+                                          the reader to [7] for definitions and basic facts about posets.
+                                            If P is a graded poset and S ⊆ P , let QS denote the Q-vector space with
+                                          basis S. Let Pn denote the n-th rank of P and define the up and down
+
+
+                                             E-mail addresses: gaetz@mit.edu, pvenkata@caltech.edu.
+                                             Date: January 6, 2020.
+                                             Key words and phrases. Differential poset; rank growth; thread element; Hasse dia-
+                                          gram; path counting.
+                                             C.G. was supported by the National Science Foundation Graduate Research Fellowship
+                                          under Grant No. 1122374.
+                                                                                    1
+2        PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS
+
+
+
+
+       Figure 1. The Hasse diagram of the Fibonacci lattice Z(2),
+       a 2-differential poset, up to rank 3. The thread elements (see
+       Section 3) are unfilled.
+
+operators Un : QPn → QPn+1 and Dn : QPn → QPn−1 by
+                                   X
+                            Un x =    y
+                                          x⋖y
+                                          X
+                                 Dn x =         z
+                                          z⋖x
+where x ∈ Pn and ⋖ denotes the covering relation in P . We often omit
+the subscripts and write U, D when no confusion can result. For r ∈ Z>0
+a locally-finite N-graded poset P with b
+                                       0 is an r-differential poset if, for all
+n ≥ 0 we have
+(1)                      Dn+1 Un − Un−1 Dn = r · I
+as linear operators.
+Example 1.1. Young’s lattice Y is a 1-differential poset (see Figure 2).
+More generally the product poset Y r is an r-differential poset.
+   Another family of examples are the Fibonacci lattices Z(r) (see Figure
+1). They are produced by the following iterative procedure:
+    (1) Having defined a differential poset P up to rank n, add an element
+        b to Pn+1 for each element x ∈ Pn−1 so that x
+        x                                             b covers exactly those
+        y ∈ Pn which cover x.
+    (2) For each y ∈ Pn , add an additional r singletons covering y.
+The r-differential poset Z(r) is obtained by iterating this procedure begin-
+ning with a single point [6].
+
+
+
+   One of the most basic properties of differential posets that one might hope
+to study are the possible rank functions pn = |Pn |, not least because the rank
+functions for the examples Y and Z(1) from Example 1.1 are the integer
+partition numbers and Fibonacci numbers respectively, two sequences of
+         PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS                3
+
+
+
+
+       Figure 2. The Hasse diagram of Young’s lattice Y , a 1-
+       differential poset, up to rank 5. The thread elements (see
+       Section 3) are unfilled.
+
+
+integers which have received an immense amount of study. The first general
+result obtained about pn was the following:
+
+Proposition 1.2 (Stanley [6]). For any differential poset P the rank sizes
+p0 , p1 , p2 , ... weakly increase.
+
+  Two main lines of research about the rank function have developed, both
+motivated by the intuition that Y r should be the “smallest” r-differential
+poset, and Z(r) the “largest”.
+  The first concerns the asymptotic behavior of pn . Stanley and Zanello [8]
+have shown that in an r-differential poset,
+                                         √
+                              pn ≫ na · e 2rn
+
+a bound which is fairly close to the well-known asymptotics for pr (n) =
+|(Y r )n |:
+                                            √
+                        pr (n) ≫ c · nb · eπ 2rn/3
+where a, b, c are constants. On the other hand, Byrnes ([2], Theorem 1.2)
+has shown that for any r-differential poset
+
+                               pn ≤ |Z(r)n |.
+
+From the recursive definition of Z(r) in Example 1.1 it is immediate that
+|Z(r)|n = r · |Z(r)|n−1 + |Z(r)|n−2 . Standard techniques allow us to solve
+4          PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS
+
+this recurrence and observe that
+                                √              √
+                           r + r2 + 4 n          r2 + 4 − r
+                 |Z(r)|n = √            · ϕr + √            · ψrn
+                             2 r2 + 4            2 r2 + 4
+(2)                      ≤ 2 · ϕnr
+                   √                          √
+where ϕr = (r + r 2 + 4)/2 and ψr = (r − r 2 + 4)/2.
+   The second, more difficult, line of research has sought explicit bounds on
+the rank gaps ∆pn = pn − pn−1 , which, by Proposition 1.2 are nonnegative.
+These rank gaps are the eigenvalue multiplicities of DUn (see [6]) and also
+appear in the study of the finer algebraic structure of differential posets (see
+[1, 4]). It was conjectured in 1988 in Stanley’s original paper [6] that, except
+when r = n = 1, the rank gaps ∆pn are strictly positive. This conjecture
+was proven by Miller only as recently as 2013, who showed:
+Theorem 1.3 (Miller [5]). For any r-differential poset, ∆pn ≥ 1, unless
+r = n = 1.
+   Despite the fact that Stanley’s conjecture was open for so long, it seems
+that much stronger results may be true. For example, Stanley and Zanello
+[8] have asked whether all iterated partial differences ∆t pn are eventually
+positive for large n, and whether this is already true for n = 2 in the case
+t = r. One implication of a positive answer to this question would be that
+(3)                       lim       min          ∆pn = ∞
+                          r→∞ P r-differential
+                                   n≥2
+
+and that
+(4)                               lim ∆pn = ∞
+                                  n→∞
+
+for any differential poset P .
+   Our main theorem is the first improvement on Miller’s bound for general
+differential posets, and resolves (3). In addition, it seems plausible that the
+new methods we use to prove this result might lead to a resolution of (4),
+see Remark 2.
+Theorem 1.4. For any r-differential poset, ∆pn ≥ 2r for n ≥ 4 if r = 1,
+n ≥ 3 if r = 2 and for n ≥ 2 if r > 2.
+  In Theorem 3.3 we also prove a stronger result in the case where P has
+many threads (see Section 3).
+
+              2. Projection matrices and path counting
+  Let h, i denote the inner product on QP which makes the elements of
+P into an orthonormal basis. It is easy to see that the operators U, D are
+adjoint with respect to this inner product:
+                                hU x, yi = hx, Dyi.
+         PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS                  5
+
+Formulas for counting paths in the Hasse diagram of P (viewed as a graph)
+can often be expressed in terms of the inner product. For example e(x) :=
+hU nb0, xi for x ∈ Pn is easily seen to be the number of paths in the Hasse
+diagram of P from 0 b to x using only upward steps. We will make use of the
+following enumerative identity:
+
+Proposition 2.1 (Stanley [6]). Let P be an r-differential poset, then
+                             X
+                                    e(x)2 = r n n!.
+                             x∈Pn
+
+  The following linear algebraic facts will also be used:
+
+Proposition 2.2 (Stanley [6]). Let P be a differential poset and n ≥ 0,
+then:
+   (a) Un : QPn → QPn+1 is injective, and
+   (b) DUn is invertible.
+
+   Our main tool will be to study the projection operator onto im(U ), whose
+entries can be expressed in terms of path counting in the Hasse diagram of
+P.
+
+Proposition 2.3. Let Mn = U (DU )−1 Dn , then:
+   (a) M is the orthogonal projection QPn ։ im(Un−1 ).
+   (b) In the standard basis Pn for QPn , the entries for Mn = (mxy )x,y∈Pn
+       are given by
+                            n
+                            X         hD k x, D k yi
+                      mxy =   (−1)k−1                .
+                                          r k k!
+                             k=1
+
+       Futhermore hD k x, D k yi counts the number of pairs of paths of length
+       k beginning at x and y and ending at a common element of Pn−k .
+
+Proof. We have
+
+                   M 2 = U (DU )−1 DU (DU )−1 D = M,
+
+so M is a projection. Since D and (DU )−1 are surjective by Proposition 2.2
+(D is the transpose of an injective map), im(Mn ) = im(Un−1 ), so M is a
+projection onto im(Un−1 ). Orthogonality follows easily from the adjointness
+of U, D, so (a) is proven. For (b), we first show that
+
+                                    n−1
+                                    X             U k Dk
+                   (DUn−1 )−1 =           (−1)k k+1       .
+                                               r (k + 1)!
+                                    k=0
+6        PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS
+
+Indeed, let R denote the right-hand side, then:
+                             n−1
+                             X           DU U k D k
+             DUn−1 · R =           (−1)k k+1
+                                        r (k + 1)!
+                             k=0
+                             n−1
+                             X             U k+1 D k+1 + r(k + 1)U k D k
+                         =         (−1)k
+                                                   r k+1 (k + 1)!
+                             k=0
+                                              U n Dn
+                         = I + (−1)n−1
+                                               r n n!
+                         = I.
+where the second equality follows from applying (1), the third from collaps-
+ing the telescoping sum, and the last from observing that D n = 0 on QPn−1 .
+Now, by definition we have
+                                   n−1
+                                   X           U k+1 D k+1
+                         Mn =            (−1)k k+1         .
+                                              r (k + 1)!
+                                   k=0
+Reindexing and taking matrix entries by applying adjointness, we obtain the
+desired result.                                                          
+Remark 1. The formula for (DUn+1 )−1 , which plays a key role in the proof of
+Proposition 2.3, was suggested to us in personal communication by Alexan-
+der Miller, who more generally gave a formula for (U Dn+1 + kI)−1 (our
+formula is the case where k = r). The expression for mxy is also similar to
+an expression obtained by Miller in [5] for some of the entries in (DU +kI)−1 .
+Motivated by an earlier representation-theoretic proof of strict rank growth
+in the case of differential towers of groups [4] (see also [3]), Miller studied the
+denominators in (DU + kI)−1 , rather than the eigenvalues of submatrices
+of M , as we do.
+   We will always think of Mn as a matrix in the standard basis for QPn .
+Given S ⊆ Pn , let MS denote the principal submatrix of Mn with rows and
+columns indexed by the elements of S.
+Lemma 2.4. Let S ⊆ Pn and suppose MS has no eigenvalue equal to 1,
+then ∆pn ≥ |S|.
+Proof. If MS has no eigenvalue equal to 1, then QS must intersect im(Un−1 )
+trivially. Since Un−1 is injective, this means that
+                    dim(QPn ) ≥ dim(QPn−1 ) + dim(QS).
+And so ∆pn ≥ |S|.                                                                
+
+                   3. Thread elements and rank gaps
+  It seems very difficult to estimate the entries mxy for arbitrary x, y ∈
+Pn using the formula in Proposition 2.3, since the sum is alternating and
+individual terms can be much larger than the sum (it follows from the fact
+          PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS                           7
+
+that M 2 = M that |mxy | ≤ 1, however individual terms in the sum can be
+much larger than 1). We therefore define special elements for which mxy
+can be more easily analyzed.
+   An element x ∈ P is called a singleton if x = b  0 or x covers a unique
+element of P . A thread element is a singleton x ∈ P which covers another
+singleton. A key property of thread elements is the following:
+Proposition 3.1 (Miller and Reiner [4]). Let t0 ∈ P be a thread element.
+Then there exist thread elements
+                                t0 ⋖ t1 ⋖ t2 ⋖ · · ·
+We call this infinite sequence a thread.
+   Given a differential poset P , let τn denote the number of thread elements
+in Pn . Proposition 3.1 implies that τ is a nondecreasing function of n.
+Example 3.2. If P = Y r , then the thread elements in ranks n ≥ 2 are the
+elements (∅, ..., ∅, λ, ∅, ..., ∅) where λ = (n) or (1n ). Thus τn = 2r for n ≥ 2.
+   If P = Z(r), we get r thread elements in rank n for each singleton in
+Pn−1 , and there are r of these singletons for each element of Pn−2 . Thus
+τn = r 2 pn−2 ; in particular, τ grows exponentially in n by (2).
+Theorem 3.3. Let P be an r-differential poset. Then for N ≥ 4n:
+                                    ∆pN ≥ τn .
+Proof. Assume n ≥ 1, since τ0 = 0. Let T ⊂ Pn be the set of thread elements
+in Pn , so |T | = τn . Suppose N ≥ 4n and for each element t ∈ T , extend t
+to a thread via Proposition 3.1, and let b t be the element of this thread at
+rank N . It is clear from the definition of threads that sb 6= tb for s 6= t. Let
+Tb = {tb | t ∈ T }. We now want to show that MTb has no eigenvalue equal to
+1, and apply Lemma 2.4.
+   Let s, t ∈ T . We first bound the tail of the sum formula for msbbt given in
+Proposition 2.3. We have
+(5)
+      N
+      X                                     N
+                                            X
+                  hD k sb, D k b
+                               ti                           hD k−N +n s, D k−N +n ti
+          (−1)k−1       k
+                                    =             (−1)k−1
+                      r k!                                           r k k!
+  k=N −n+1                              k=N −n+1
+                                           N
+                                           X      r n n!
+(6)                                 ≤
+                                                  r k k!
+                                        k=N −n+1
+                                             r n n!
+(7)                                 ≤n·                 .
+                                           r 3n (3n)!
+The equality (5) follows because sb, b
+                                     t are thread elements, so D N −n sb = s and
+D N −n tb = t. The inequality (6)
+                                √ uses Proposition 2.1: the number of paths
+                  b
+down from s to 0 is at most r n n!, and thus the number of paths down
+from s and ending in any particular rank is at most this number; as this
+8         PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS
+
+also holds for t, the bound follows. Letting a(r, n) denote the expression on
+the right-hand side of (7), all off-diagonal entries of MTb satisfy
+                                |msbtb| ≤ a(r, n),
+
+since sb and tb lie on separate threads and have no common lower bounds
+above rank n. The diagonal entries satisfy
+                                                      
+                        1   1                   1
+              mtbtb ≤     −    + · · · ± N −n            + a(r, n)
+                        r 2r 2           r    (N − n)!
+                                      
+                        1   1      1
+                    <     −    +         + a(r, n)
+                        r 2r 2 6r 3
+                      2
+                    ≤ + a(r, n).
+                      3
+                    √
+Let ϕr = 21 (r + r 2 + 4). By Byrnes’ result (2), pn ≤ 2ϕnr , and so Tb has
+at most this size. By Gershgorin’s Circle Theorem, in order to see that MTb
+has no eigenvalue equal to 1, it suffices to show that
+                              2
+                                + 2ϕnr a(r, n) ≤ 1.
+                              3
+If r > 1, then r 2n > ϕnr and 2nn!/(3n)! ≤ 1/3. If r = 1, we have τ1 = 1, so
+Theorem 1.3 gives the result when n = 1; for n ≥ 2 it is easy to see that
+2ϕn1 a(1, n) < 1/3.                                                       
+
+    We now give the proof of Theorem 1.4.
+Proposition 3.4. Let P be an r-differential poset. Then at least two thread
+elements cover each x ∈ P1 .
+Proof. In any r-differential poset P , Equation (1) implies that there are r
+elements in P1 , and all of these are singletons, so they must each be covered
+by r + 1 elements. Given x ∈ P1 , for each y in P1 different from x, there is at
+most one element covering both x, y, as can easily be seen from the defining
+relation (1). Thus there are at most r − 1 elements covering x which are not
+singletons, and so at least two thread elements cover x.                      
+
+Proof of Theorem 1.4. This proof is similar to the proof of Theorem 3.3,
+except that we can be more precise, since the threads involved begin in
+ranks 0 or 1. We prove the case r ≥ 3 here, the other cases are nearly
+identical, except that the different values of r in the denominators imply
+that larger ranks n must be considered in order for the Gershgorin bound
+to hold.
+   Let r ≥ 3, n ≥ 2 and let T = {t1 , ..., tr , s1 , ..., sr } ⊂ P2 be a set of 2r
+thread elements, with ti , si covering each element xi of P1 ; such elements
+exist by Proposition 3.4. Extend each t ∈ T to an infinite thread, and let
+Tb = {bt | t ∈ T } be the elements of rank n in these threads. Then MTb has
+           PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS                             9
+
+diagonal elements:
+          n−1
+          X             hD k+1 tb, D k+1 tbi  1  1                       1     1  1
+mtbtb =         (−1)k     k+1
+                                             = −    2
+                                                      + · · · + (−1)n−1     n
+                                                                              < ≤
+                         r (k + 1)!           r 2!r                     n!r    r  3
+          k=0
+   for some k. For off-diagonal entries we have
+                                       1                1                1           1
+                |mtbi ,sbi | =                    −            ≤                    ≤ ,
+                                 r n−1 (n − 1)!       r n n!       r n−1 (n − 1)!    3
+and all other off-diagonal entries satisfy
+                                                    1      1
+                                      |msbtb| =          ≤ 2.
+                                                  r n n!  2r
+The sum of the absolute values of the matrix entries of MTb across a row is
+thus at most 1/3 + 1/3 + (2r − 2)/2r 2 < 1. Therefore by the Gershgorin
+Circle Theorem, MTb has no eigenvalue equal to 1. Applying Lemma 2.4
+completes the proof.
+                                                                         
+Remark 2. One can obtain stronger bounds in an ad-hoc manner using
+Lemma 2.4. For example, it is possible to show that when r = 1 we have
+∆pn ≥ 3 for n ≥ 6 by letting sn , tn be the elements of rank n in the
+two threads which begin in rank 2, and letting un be a certain sequence
+of elements which are “close” to sn so that the entries of M{sn ,tn ,un } can
+be well approximated by exhaustively considering all possible paths. What
+is needed to progress further on this problem is identify families Sn ⊂ Pn
+whose size grows with n for which the entries of MSn can be estimated.
+Conjecture 3.5. In any differential poset limn→∞ ∆pn = ∞.
+
+                                     Acknowledgements
+   The authors wish to thank Fabrizio Zanello for helping to initiate this
+joint project and Richard Stanley for his helpful conversations. We are
+also grateful to Patrick Byrnes for making his computer code available and
+Alexander Miller for providing useful references.
+
+                                           References
+[1] Ayush Agarwal and Christian Gaetz. Differential posets and restriction in critical
+    groups. Algebr. Comb., 2(6):1311–1327, 2019.
+[2] Patrick Byrnes. Structural Aspects of Differential Posets. ProQuest LLC, Ann Arbor,
+    MI, 2012. Thesis (Ph.D.)–University of Minnesota.
+[3] Christian Gaetz. Dual graded graphs and Bratteli diagrams of towers of groups. Elec-
+    tron. J. Combin., 26(1):Paper 1.25, 12, 2019.
+[4] Alexander Miller and Victor Reiner. Differential posets and Smith normal forms. Order,
+    26(3):197–228, 2009.
+[5] Alexander R. Miller. Differential posets have strict rank growth: a conjecture of Stan-
+    ley. Order, 30(2):657–662, 2013.
+[6] Richard P. Stanley. Differential posets. J. Amer. Math. Soc., 1(4):919–961, 1988.
+10        PATH COUNTING AND RANK GAPS IN DIFFERENTIAL POSETS
+
+[7] Richard P. Stanley. Enumerative combinatorics. Volume 1, volume 49 of Cambridge
+    Studies in Advanced Mathematics. Cambridge University Press, Cambridge, second
+    edition, 2012.
+[8] Richard P. Stanley and Fabrizio Zanello. On the rank function of a differential poset.
+    Electron. J. Combin., 19(2):Paper 13, 17, 2012.
+

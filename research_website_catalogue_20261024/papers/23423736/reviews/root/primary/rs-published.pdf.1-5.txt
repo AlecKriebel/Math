@@ -1,0 +1,234 @@
+                                             COMPOSITIO MATHEMATICA
+
+
+                                    Some projective surfaces of GK-dimension 4
+
+                                                                       D. Rogalski and Susan J. Sierra
+
+
+
+
+                                                              Compositio Math. 148 (2012), 1195–1237.
+
+
+                                                                           doi:10.1112/S0010437X12000188
+
+
+
+
+                                     FOUNDATION
+                                     COMPOSITIO
+                                     MATHEMATICA
+
+
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+                                    Compositio Math. 148 (2012) 1195–1237
+                                    doi:10.1112/S0010437X12000188
+
+
+
+
+                                    Some projective surfaces of GK-dimension 4
+
+                                                                        D. Rogalski and Susan J. Sierra
+
+                                                                                           Abstract
+                              We construct an interesting family of connected graded domains of Gel’fand–Kirillov
+                              dimension 4, and show that the general member of this family is noetherian. The
+                              algebras we construct are Koszul and have global dimension 4. They fail to be Artin–
+                              Schelter Gorenstein, however, showing that a theorem of Zhang and Stephenson for
+                              dimension 3 algebras does not extend to dimension 4. The Auslander–Buchsbaum
+                              formula also fails to hold for these algebras. The algebras we construct are birational
+                              to P2 , and their existence disproves a conjecture of the first author and Stafford. The
+                              algebras can be obtained as global sections of a certain quasicoherent graded sheaf on
+                              P1 × P1 , and our key technique is to work with this sheaf. In contrast to all previously
+                              known examples of birationally commutative graded domains, the graded pieces of the
+                              sheaf fail to be ample in the sense of Van den Bergh. Our results thus require significantly
+                              new techniques.
+
+                                                                                           Contents
+                               1 Introduction                                                                      1195
+                               2 Review of pullback by a birational map                                            1198
+                               3 Establishing notation                                                             1199
+                               4 Geometrizing R                                                                    1203
+                               5 Presentation, Hilbert series and free resolution of k                             1212
+                               6 Critical density                                                                  1217
+                               7 Cohomology modules                                                                1220
+                               8 Noetherianness of Q(O(a, b), m)                                                   1225
+                               9 Completing the proof of Theorem 3.5                                               1233
+                               Acknowledgements                                                                    1236
+                               References                                                                          1236
+
+
+                                                                                     1. Introduction
+                       Let k be an uncountable algebraically closed field, and let R be an N-graded k-algebra. We
+                       assume also that R is connected graded: i.e. R0 = k and dimk Rn < ∞ for all n. Recall that
+                       R is Artin–Schelter (AS) regular if R has global dimension d < ∞, finite Gel’fand–Kirillov
+                       dimension (henceforth GK-dimension), and RHomR (k, R) = k[`] for some `. In general, AS-
+                       regular algebras of dimension d which are also Koszul (in which case ` = d) are considered to be
+                       the noncommutative analogues of polynomial rings in d variables.
+
+                       Received 15 April 2011, accepted in final form 19 October 2011, published online 15 May 2012.
+                       2010 Mathematics Subject Classification 16S38 (primary); 14A22, 16P40, 16S80, 16W50 (secondary).
+                       Keywords: noncommutative projective geometry, noncommutative surfaces, noetherian graded rings, ample
+                       sequence.
+                       This journal is c Foundation Compositio Mathematica 2012.
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+                                                                    D. Rogalski and S. J. Sierra
+
+                      The condition RHomR (k, R) = k[`] is the Artin–Schelter Gorenstein condition, and it is the
+                  most mysterious of the three conditions for regularity. It has been shown in many cases to
+                  imply that the algebra R is well behaved, and in fact all known examples of AS-regular algebras
+                  are noetherian domains. Conversely, Stephenson and Zhang [SZ00] proved that if a connected
+                  graded algebra R is noetherian, Koszul, and has global dimension 3, it is AS-Gorenstein. In
+                  fact, there has been speculation [SV01, p. 195] that this is true if R has arbitrary finite global
+                  dimension.
+                      In this paper we show, surprisingly, that the results of [SZ00] fail in dimension 4. We prove
+                  the following theorem.
+                  Theorem 1.1. There is a connected graded noetherian domain R with GKdim R = gl. dim R =
+                  4 such that R is Koszul but not AS-Gorenstein.
+
+                      The algebra R above has other surprising homological properties. In particular, the
+                  Auslander–Buchsbaum equality fails for R: we have depth k + p.dim k = 0 + 4 > depth R = 2.
+                  (See § 3 for definitions.) It is worth noting that R is not only Koszul, but the trivial module has
+                  a resolution of the form
+                                                  0 → R[−4] → R[−3]4 → R[−2]6 → R[−1]4 → R → k → 0,             (1.2)
+                  so that R has many properties of a polynomial ring in four variables.
+                      The algebra R is interesting in another way, as well: it is a counterexample to a conjecture
+                  in the classification of noncommutative projective surfaces. This classification is one of the most
+                  important open problems in the subject of noncommutative projective geometry, and is far
+                  from complete. An important special case, however, is well understood: birationally commutative
+                  surfaces, defined here as connected graded noetherian domains R whose graded quotient ring is
+                  isomorphic to K[t, t−1 ; ϕ] for some field K of transcendence degree 2.
+                      If such R have GK-dimension 3 or 5, then they have been classified [RS09, Sie11, Sie].
+                  In fact, in [RS09] the first author and Stafford conjecture that this classification is complete:
+                  all birationally commutative surfaces have GK-dimension 3 or 5. The algebra R above is a
+                  counterexample to this conjecture, and shows that there is still unexplored territory in the study
+                  of birationally commutative surfaces.
+                      Let us explain the conjecture of [RS09] further. We begin by summarizing their results on
+                  birationally commutative graded algebras. If S is a connected graded noetherian domain (or
+                  Ore domain, more generally) we may invert the homogeneous elements of S to obtain the
+                  graded quotient ring Qgr (S). We have Qgr (S) ∼   = D[t, t−1 ; ϕ], where D is a division ring and
+                  ϕ ∈ Autk (D). If D is commutative, and thus D ∼   = k(X) for some projective variety X, then we
+                  say that S is birational to X, or more generally birationally commutative. If ϕ is induced from
+                  an automorphism of X, we say that S and ϕ are geometric.
+                      Subject to the condition that S is geometric and generated in degree 1, [RS09] classifies
+                  birationally commutative projective surfaces: in other words those graded algebras birational
+                  to a commutativeLsurface. The prototypical example is a twisted homogeneous coordinate
+                  ring B(X, L, σ) = n∈N H0 (X, L ⊗ σ ∗ L ⊗ · · · ⊗ (σ n−1 )∗ L) for some projective surface X with
+                  automorphism σ : X → X and invertible sheaf L on X (see [AV90] for more details about this
+                  construction). They show the following theorem.
+                  Theorem 1.3 [RS09, Theorem 1.1]. Let S be a connected graded noetherian domain that
+                  is generated in degree 1, birational to a commutative surface, and geometric. Then up to a
+
+
+                                                                                           1196
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+                                                         Some projective surfaces of GK-dimension 4
+
+                       finite-dimensional vector space, S is either a twisted homogeneous coordinate ring B(X, L, σ) or
+                       else a closely related subring R(X, Z, L, σ) of such (called a naı̈ve blowup algebra).
+                           More generally, the second author has obtained in [Sie11, Sie] a similar classification result
+                       without the generation in degree 1 hypothesis. Possibly after passing to a Veronese subring, all
+                       such algebras are again (special kinds of) subrings of twisted homogeneous coordinate rings. In
+                       all cases the rings involved may be written explicitly in terms of commutative geometric data.
+                           The first author and Stafford conjectured [RS09, p. 6] that the conclusions of Theorem 1.3
+                       hold without the assumption that S is geometric. The conjecture was motivated by the following
+                       theorem of the first author, using work of Diller and Favre [DF01].
+                       Theorem 1.4 [Rog09]. Let Q := K[t, t−1 ; ϕ], where K is a finitely generated field extension of
+                       k of transcendence degree 2. Then every connected graded Ore domain S with graded quotient
+                       ring Q has the same GK-dimension d ∈ {3, 4, 5, ∞}. If d = ∞, then no such S is noetherian. If
+                       d < ∞, then d ∈ {3, 5} if and only if ϕ is geometric.
+                         It follows from this result that the hypotheses of Theorem 1.3 imply restrictions on the
+                       GK-dimension of S. Thus we may restate the first author and Stafford’s conjecture as follows.
+                       Conjecture 1 (Rogalski–Stafford). Suppose that S is a connected graded domain of GK-
+                       dimension 4, generated in degree 1, that is birational to a commutative surface. Then S is
+                       not noetherian.
+                           We note that it is not hard to write down examples of connected graded domains of GK-
+                       dimension 4 that are birational to commutative surfaces; some of these are even finitely presented
+                       and Koszul. However, analyzing their ring-theoretic structure is nontrivial, and the examples
+                       known until now are not noetherian.
+                           We begin with one of these nonnoetherian examples, and examine a family of (nonformal)
+                       deformations of it. Namely, let K := k(u, v) be a rational function field and define σ : K → K
+                       by σ(u) = uv, σ(v) = v. Setting E := k + ku + kv + kuv, the k-subalgebra A of K[t, t−1 ; σ]
+                       generated by Et is a nonnoetherian Koszul algebra of GK-dimension 4; it has appeared before
+                       in the literature, for example in [YZ06, Proposition 7.6].
+                           To deform A, we perturb σ by a two-parameter family of automorphisms of K. Given ρ, θ ∈ k∗ ,
+                       let τ = τ (ρ, θ) : K → K be given by
+                                                                   (ρ + 1)u + (ρ − 1)                   (θ + 1)v + (θ − 1)
+                                                       τ (u) =                        ,       τ (v) =                      .
+                                                                   (ρ − 1)u + (ρ + 1)                   (θ − 1)v + (θ + 1)
+                       Let G := {τ (ρ, θ) | ρ, θ ∈ k∗ }. We may naturally identify G with the subgroup of Aut(P1 × P1 )
+                       that fixes each of the four points [±1 : 1][±1 : 1]. Given τ ∈ G, define ϕ := σ ◦ τ ∈ Autk (K). Let
+                                                                         R(τ ) := khEti ⊆ k(u, v)[t, t−1 ; ϕ].                 (1.5)
+                       The family of algebras of interest is then {R(τ ) | τ ∈ G}.
+                          We may now state our main result.
+                       Theorem 1.6. Let R = R(τ ) be as in (1.5), where τ = τ (ρ, θ) ∈ G. For any pair (ρ, θ) which is
+                       algebraically independent over the prime subfield of k, the algebra R(τ ) is a noetherian domain
+                       of GK-dimension 4 that is birational to P2 . Further, the results of Theorem 1.1 hold for this R.
+                          It is not hard to show using the growth criterion underlying Theorem 1.4 that the rings R(τ )
+                       have GK-dimension 4 for the very general choices of (ρ, θ) in the theorem (interestingly, though,
+
+
+                                                                                           1197
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+                                                                    D. Rogalski and S. J. Sierra
+
+                  the GK-dimension of R(τ ) is 3 instead for some sporadic nongeneral choices). It is also fairly
+                  straightforward that they have global dimension 4 and are Koszul but not AS-Gorenstein. The
+                  fact that the rings R(τ ) are noetherian for general τ is the deeper content of the result. The proof
+                  of this requires techniques that differ substantially from past work on birationally commutative
+                  algebras and occupies most of the second half of the paper.
+                      The ring R = R(τ ) in Theorem 1.6 must be nongeometric by Theorem 1.4. Thus there is no
+                  rational projective surface X for which ϕ : K → K corresponds to an automorphism φ : X → X.
+                  This certainly precludes the possibility that R has the same graded quotient ring as any twisted
+                  homogeneous coordinate ring, so Theorem 1.3 fails completely in this case. We conjecture that
+                  the augmentation ideal R+ is the only nontrivial graded prime ideal of R and thus that R has
+                  no nontrivial map to any twisted homogeneous coordinate ring.
+                      To conclude the introduction, we give an overview of the ideas behind the proofs. Let
+                  R = R(τ ) where τ = τ (ρ, θ) for a pair (ρ, θ) algebraically independent over the prime subfield
+                  of k. As in past work on birationally commutative algebras, we would like to work as far as
+                  possible with sheaves on a projective variety, rather than R-modules. We work on T := P1 × P1 .
+                  Let φ : T 99K T be the birational self-map induced by ϕ = στ . We have R ⊆ k(T )[t, t−1 ; ϕ]. Let
+                  Rn be the subsheaf of the constant sheaf of rational functions generated L 0      by Rn t−n ⊆ k(T ).
+                  Much of the first half of the paper is devoted to proving that R =          H (T, Rn ) for general τ .
+                  The proof requires a careful analysis of how the properties of the birational maps φn change
+                  as τ varies. The proof that kR has a resolution as in (1.2) is intertwined and must be done
+                  simultaneously.
+                      Writing the ring R as a ring of sections is crucial to the proof of the noetherian property,
+                  but working with the sheaves Rn is quite delicate. In all past work on birationally commutative
+                  algebras, the main idea has been to show that the sequence of sheaves Rn is an ample sequence
+                  in the sense of [Van96]. There is then a purely formal category equivalence between the category
+                  of tails of R-modules and the category of tails of (appropriately defined) R-modules. This allows
+                  one to translate questions about properties of R (including the noetherian property) to more
+                  tractable geometric questions about R. Unfortunately, in our case the sheaves Rn do not form
+                  an ample sequence. This requires us to develop new methods  L to      show the ring R is noetherian.
+                  More specifically, if F is a coherent sheaf on T , then          H 1 (T, F ⊗ R ) may not be finite-
+                                                                                 n              n
+                  dimensional; however, this graded vector space carries a natural R-action and a key step in our
+                  proof is showing that such an R-module, which we call a cohomology module, is noetherian.
+
+
+                                                        2. Review of pullback by a birational map
+
+                  Throughout the paper, we will work with an automorphism ϕ of K = k(u, v) and the induced
+                  birational self-map φ of T = P1 × P1 . Explicitly, ϕ is equal to the pullback action of φ on
+                  K = k(T ). In this section, we review basic facts about pullback of divisors under a birational
+                  self-map of a surface. See [Rog09] for a longer discussion of this, which closely follows the ideas
+                  in [DF01]. In this paper we will only need a few selected results.
+                       Fix an algebraically closed base field k. Suppose that ψ : U → T is a regular morphism
+                  of nonsingular varieties over k. Then there is a standard pullback map of (Weil) divisors
+                  ψ ∗ : Div T → Div U . Now let ψ : S 99K T be a birational map of nonsingular varieties. Then
+                  the domain of definition of ψ is an open set U = S r Z, where Z has codimension at least
+                  2 (see [Har77, Lemma V.5.1]). Since Div S = Div U (see [Har77, Proposition II.6.5]) we get a
+                  pullback map ψ ∗ : Div T → Div U = Div S. We define ψ∗ : Div S → Div T as (ψ −1 )∗ .
+
+
+                                                                                           1198
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+

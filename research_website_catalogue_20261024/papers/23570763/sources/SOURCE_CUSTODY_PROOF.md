@@ -1,0 +1,11 @@
+# Source-only custody: 23570763
+
+Native identity: A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic. DOI 10.5281/zenodo.23570763, version 1.0.0; declared date 2026-10-22. Native creation 2026-10-22T16:11:19.267654+00:00 and update 2026-10-22T16:11:19.600939+00:00 are distinct metadata. Printed date/version remain unread and null. This is acquisition/integrity readiness, not a mathematical verdict or publication approval.
+
+The preserved203queue and fresh bounded native Full List identity columns agree. Record/latest/all versions/files were obtained by fresh ordinary HTTPS GETs. All 2 native assets were received unchanged, in original order, with actual native size/checksum authentication. All received bodies, including the actual301redirect, ordered/duplicate headers and heterogeneous object/array/null distinctions are retained. Failed transport responses, if any, are retained literally. No custom authentication/proxy/query/retry bypass was used.
+
+The complete original ZIP has 18 regular payload occurrences, 0 nested containers and 129597 expanded bytes. Native CRC, safe regular namespace and every extracted byte/SHA were checked. No supplied source, builder, audit or scientific programme was executed. The controlling TeX was selected from filename/byte identity, not reading the manuscript.
+
+Actual selected PDF: 4 pages. TeX: 13429 bytes, 265 opaque byte lines. Fresh individual page PNGs were generated and hashed without opening, displaying or scientifically interpreting them. No PDF text extraction, mathematical TeX reading, native results, archived/current opinions or foreign scientific body reading occurred. All science gates are outside this source-only role.
+
+SOURCE_READY_MANIFEST.json binds every file except its three terminal envelopes. verify_custody.py is a standard-library-only, pure offline read-only checker: no network, writes, project-code imports or scientific execution. It validates original transport/assets, whole ZIP occurrence CRC/SHA, extracted bytes, source/PDF/raster identities and source-only flags. Root/reviewers should authenticate the final seal before interpreting any scientific body. The earlier queue, Sheet, site, core, redirects, old source/review packets and Git state were not changed.

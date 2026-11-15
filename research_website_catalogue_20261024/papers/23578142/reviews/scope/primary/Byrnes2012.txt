@@ -1,0 +1,3191 @@
+     Structural Aspects of Differential Posets
+
+
+
+
+                 A DISSERTATION
+SUBMITTED TO THE FACULTY OF THE GRADUATE SCHOOL
+        OF THE UNIVERSITY OF MINNESOTA
+                         BY
+
+
+
+
+                   Patrick Byrnes
+
+
+
+
+   IN PARTIAL FULFILLMENT OF THE REQUIREMENTS
+               FOR THE DEGREE OF
+                 Doctor of Philosophy
+
+
+
+
+                Victor Reiner, advisor
+
+
+
+
+                   December, 2012
+ c Patrick Byrnes 2012
+ °
+ALL RIGHTS RESERVED
+Acknowledgements
+
+I would like to thank the many people who have helped me along the way. Vic Reiner
+has helped me as an advisor and with many suggestions for editing this thesis. The rest
+of my committee consists of John Gunnar Carlsson, Dennis Stanton, and Dennis White.
+Thank you all.
+    Alex Miller introduced me to differential posets and has participated in many use-
+ful conversations on the topic. I would also like to thank Thomas Lam, Joel Lewis,
+Richard Stanley, and Fabrizio Zanello for helpful conversations, email correspondence,
+and general encouragement along the way.
+    Jack Lutz and Steve Kautz are probably the two people most responsible for teach-
+ing me how to think mathematically. Without them I most likely would have never
+considered graduate school.
+    I would like to thank Century College for being supportive of me finishing this thesis.
+Sue Ehlers has been particularly encouraging. The students at Century College have
+also been fantastic inspiration. I wish I could strive as hard as some of them to overcome
+life’s obstacles.
+    I would like to thank my family for support throughout my life. I most likely would
+not have finished this thesis without the encouragement, support, and editing of Alicia.
+My parents created a great environment for my and my siblings’ academic (and other)
+growth. Chris has provided lots of companionship but also a great measuring stick and
+person to compete against. Sarah, Liz, and Emily have reminded me to keep some
+silliness; maybe a coloring book will come out of this eventually.
+    Finally, I would like to thank all of the people I have forgotten to mention. In
+particular there were lots of people who encouraged me to finish this thesis.
+
+
+
+                                             i
+                                       Abstract
+
+
+   This thesis investigates some structural properties of differential posets and answers
+some open questions. There are three main results.
+   First, a proof is given that the largest rank size of the nth rank of an r-differential
+poset is given by the nth rank of the Fibonacci r-differential poset. This solves a
+question of Stanley.
+   Second, a proof is given that the only 1-differential lattices are Young’s lattice and
+the Fibonacci 1-differential poset. This also solves a question of Stanley.
+   Third, it is shown that any quantized r-differential poset has the Fibonacci r-
+differential poset as its underlying r-differential poset. This negatively answers a ques-
+tion of Lam.
+   Further, a method for computing all partial 1-differential posets up to a given rank
+is described. The results of this computation up to rank 9 are also included.
+
+
+
+
+                                            ii
+Contents
+
+Acknowledgements                                                                             i
+
+Abstract                                                                                    ii
+
+List of Tables                                                                              v
+
+List of Figures                                                                             vi
+
+1 Introduction                                                                               1
+   1.1   Summary of Chapter 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . .        4
+   1.2   Summary of Chapter 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . .        4
+   1.3   Summary of Chapter 4 . . . . . . . . . . . . . . . . . . . . . . . . . . . .        4
+   1.4   Summary of Chapter 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . .        4
+   1.5   Summary of Chapter 6 . . . . . . . . . . . . . . . . . . . . . . . . . . . .        5
+   1.6   Summary of Chapter 7 . . . . . . . . . . . . . . . . . . . . . . . . . . . .        5
+
+2 Background                                                                                 6
+   2.1   Partitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    6
+   2.2   Graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    7
+   2.3   Posets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    7
+
+3 Definitions                                                                               10
+   3.1   Cover Definition of Differential Posets . . . . . . . . . . . . . . . . . . .      10
+         3.1.1   Young’s Lattice . . . . . . . . . . . . . . . . . . . . . . . . . . . .    12
+         3.1.2   Fibonacci Differential Poset . . . . . . . . . . . . . . . . . . . . .     14
+
+
+                                              iii
+         3.1.3   Properties of differential posets . . . . . . . . . . . . . . . . . . .     16
+   3.2   U , D Definition of Differential Posets . . . . . . . . . . . . . . . . . . . .     22
+   3.3   Hypergraph Definition of Differential Posets . . . . . . . . . . . . . . . .        23
+         3.3.1   Hypergraphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       24
+         3.3.2   Differential posets as hypergraphs . . . . . . . . . . . . . . . . .        25
+
+4 Computing 1-Differential Posets                                                            33
+   4.1   The algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     33
+   4.2   Running times of the algorithm . . . . . . . . . . . . . . . . . . . . . . .        34
+   4.3   Results of the algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . .      35
+   4.4   Uses of results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   36
+
+5 Rank Sizes of Differential Posets                                                          37
+   5.1   Further directions and conjectures . . . . . . . . . . . . . . . . . . . . .        41
+
+6 Differential Lattices                                                                      43
+   6.1   Young’s lattice case . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    44
+   6.2   Fibonacci lattice case . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    46
+         6.2.1   Notations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     46
+         6.2.2   Proof of Fibonacci lattice case . . . . . . . . . . . . . . . . . . .       47
+   6.3   Further directions and conjectures . . . . . . . . . . . . . . . . . . . . .        64
+
+7 Variations on Differential Posets                                                          66
+   7.1   Sequential differential posets    . . . . . . . . . . . . . . . . . . . . . . . .   66
+   7.2   Dual graded graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      67
+   7.3   Signed differential posets . . . . . . . . . . . . . . . . . . . . . . . . . . .    68
+   7.4   Quantized dual graded graphs . . . . . . . . . . . . . . . . . . . . . . . .        69
+   7.5   Quantized differential posets . . . . . . . . . . . . . . . . . . . . . . . . .     70
+
+References                                                                                   79
+
+
+
+
+                                              iv
+List of Tables
+
+ 3.1   Correspondence of vertices of G∗ and edges of G . . . . . . . . . . . . .    25
+ 4.1   Running times to find all partial 1-differential posets up to rank n . . .   35
+ 4.2   Number of partial 1-differential posets up to rank n . . . . . . . . . . .   35
+
+
+
+
+                                         v
+List of Figures
+
+ 1.1    Bottom 4 ranks of a 1-differential poset . . . . . . . . . . . . . . . . . .        1
+ 1.2    Ranks 3 through 5 of Y      . . . . . . . . . . . . . . . . . . . . . . . . . . .    2
+ 1.3    Ranks 3 through 5 of Z(1) . . . . . . . . . . . . . . . . . . . . . . . . . .        2
+ 2.1    Hasse diagram example . . . . . . . . . . . . . . . . . . . . . . . . . . .          8
+ 3.1    Bottom 6 ranks of a 1-differential poset . . . . . . . . . . . . . . . . . .        11
+ 3.2    Bottom 3 ranks of a 2-differential poset . . . . . . . . . . . . . . . . . .        11
+ 3.3    Picture for proof of Proposition 3.2 . . . . . . . . . . . . . . . . . . . . .      12
+ 3.4    Bottom 9 ranks of Young’s lattice . . . . . . . . . . . . . . . . . . . . . .       13
+ 3.5    Bottom 6 ranks of the Fibonacci 1-differential poset . . . . . . . . . . .          15
+ 3.6    A subposet not induced in any differential poset        . . . . . . . . . . . . .   17
+ 3.7    A partial 1-differential poset up to rank 6 . . . . . . . . . . . . . . . . .       19
+ 3.8    Building toward a partial 1-differential poset up to rank 7 . . . . . . . .         20
+ 3.9    Building toward a partial 1-differential poset up to rank 7 . . . . . . . .         21
+ 3.10 Completed partial 1-differential poset up to rank 7 . . . . . . . . . . . .           21
+ 3.11 Example for up and down maps . . . . . . . . . . . . . . . . . . . . . . .            22
+ 3.12 G, an example of a hypergraph . . . . . . . . . . . . . . . . . . . . . . .           24
+ 3.13 The skeleton of G . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       24
+ 3.14   G∗ , the dual of G . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    25
+ 3.15 Hasse diagram of P[3,5] . . . . . . . . . . . . . . . . . . . . . . . . . . . .       26
+ 3.16   G4 and G′4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    26
+ 3.17 Hasse diagram of P[4,6] . . . . . . . . . . . . . . . . . . . . . . . . . . . .       27
+ 3.18 G5 and G′5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      27
+ 3.19 Hasse diagram of P[1,3] . . . . . . . . . . . . . . . . . . . . . . . . . . . .       27
+ 3.20 G2 and G′2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      28
+
+                                             vi
+3.21 Hasse diagram of P[2,4] . . . . . . . . . . . . . . . . . . . . . . . . . . . .         28
+3.22   G′3   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   28
+3.23 G4 and G′5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        32
+3.24 Skeleton of G5        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   32
+3.25 Two possible G5 ’s . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          32
+6.1    A crown covering a crown . . . . . . . . . . . . . . . . . . . . . . . . . .          44
+7.1    Two examples of sequential differential posets . . . . . . . . . . . . . . .          67
+
+
+
+
+                                             vii
+Chapter 1
+
+Introduction
+
+Differential posets are combinatorial objects that were introduced independently by
+Stanley [17] and Fomin [5] (actually, Fomin introduced dual graded graphs which are
+a more general concept). A poset is r-differential if it is locally finite, has a 0̂, and its
+Hasse diagram exhibits the following two properties.
+
+   • There is a 2 edge path that goes down from a vertex and then up to another vertex
+      if and only if there is a 2 edge path that goes up from the first vertex and then
+      down to the second vertex.
+
+   • Each vertex has r more edges going up than going down.
+
+   A picture of the bottom 4 ranks of a 1-differential poset is given in Figure 1.1.
+
+
+
+
+                  Figure 1.1: Bottom 4 ranks of a 1-differential poset
+
+
+
+   It turns out that the structure of the bottom 4 ranks of a 1-differential poset is
+forced by the definition. After that there are options to create different 1-differential
+
+                                             1
+                                                                                           2
+posets. For instance, ranks 3 through 5 could look like either Figure 1.2 or Figure 1.3.
+
+
+
+
+                           Figure 1.2: Ranks 3 through 5 of Y
+
+
+
+
+                         Figure 1.3: Ranks 3 through 5 of Z(1)
+
+
+   Surprisingly, this simple definition leads to relatively simple questions that appear
+hard to answer. An example of this is:
+
+Question 1.1. What is the fewest possible number of vertices in the nth rank of a
+1-differential poset?
+
+   Question 1.1 was actually asked in Stanley’s original paper [17]. The conjecture
+is still open even though the numbers in question are conjectured to be well known
+numbers (specifically, the number of partitions of n).
+   Besides being inherently mathematically interesting, the study of differential posets
+also has other motivations. One of the initial motivations was that differential posets
+are a generalization of Young’s lattice. It turns out that many of the combinatorial
+properties of Young’s lattice are true of all differential posets. So, one can hope to obtain
+simpler proofs and/or a better understanding of some of the properties of Young’s lattice
+by only considering Young’s lattice as a differential poset. From this point of view, the
+hope is that the definition of differential posets encapsulates some of the “important”
+properties of Young’s lattice. Further, there is some hope that new properties of Young’s
+lattice may be found by only focusing on the properties of differential posets. An
+example of this is Proposition 3.1 in [17].
+                                                                                            3
+    Another motivation for studying differential posets is based on certain operators U
+and D defined on certain vector spaces. The defining equation for differential posets
+turns out to be DU − U D = rI. This equation seems fairly natural to consider since it
+is a commutator relation. Further, it turns out that equations with the same or similar
+form to DU − U D = rI have been studied in other contexts. So, one may hope to shed
+light on these situations by studying differential posets. One particular example is in
+representation theory where U can be thought of as induction on representations and
+D as restriction on representations. Another area where such equations have been used
+is in studying convergence rates of Markov chains [6].
+    In this thesis, some of the structural properties of differential posets are investigated.
+Much of the existing work on differential posets has focused on algebraic techniques.
+This thesis will instead use more elementary and straightforward techniques. Not only
+has this approach seemed to be productive, but the hope is that the results will also be
+more accessible.
+    This thesis contains three main theorems.
+    The first result deals with the largest possible rank sizes of r-differential posets. The
+statement of the result will use r-Fibonacci numbers which are recursively defined by
+Fr (0) = 1, Fr (1) = r, and Fr (n) = Fr (n − 2) + rFr (n − 1). Note that the 1-Fibonacci
+numbers are the usual Fibonacci numbers.
+
+Theorem 1.2. Let p0 , p1 , . . . be the rank sizes of an r-differential poset. Then, pi ≤
+Fr (i).
+
+    Theorem 1.2 was first conjectured by Stanley in [17] (see Problem 6 in Section 6).
+    The second result deals with which 1-differential posets are lattices. Recall that a
+lattice is a poset such that greatest lower bounds and least upper bounds are defined.
+
+Theorem 1.3. The only 1-differential lattices are Young’s lattice and the 1-differential
+Fibonacci poset.
+
+    Theorem 1.3 answers a question of Stanley in [17] (see Problem 2 in Section 6). It
+should be noted that a proof of Theorem 1.3 appears in [14]. However, this proof is
+incorrect.
+    The third result deals with quantized differential posets which are a generalization
+of differential posets introduced by Thomas Lam [8].
+                                                                                         4
+Theorem 1.4. Every quantized r-differential poset has the the r-differential Fibonacci
+poset as its underlying differential poset.
+
+    Theorem 1.4 resolves a question of Lam (see Problem 1 in [9]). Actually, Lam asked
+for a quantization of Young’s lattice. Theorem 1.4 shows that no such quantization
+exists.
+
+
+1.1       Summary of Chapter 2
+Chapter 2 provides information on background material.          This includes partitions,
+posets, and graphs.
+
+
+1.2       Summary of Chapter 3
+In this chapter three equivalent definitions of differential posets are introduced. One
+of the definitions is new, but is really just a different way of looking at an existing
+definition. This chapter also discusses some basic terminology related to differential
+posets. Young’s lattice and the Fibonacci 1-differential poset are also introduced.
+
+
+1.3       Summary of Chapter 4
+This chapter discusses an algorithm that has been used to find all partial 1-differential
+posets up to rank ten. The chapter starts with a discussion of how the algorithm works.
+Next is a discussion about the amount of time needed to run the algorithm (note that
+there are not proven asymptotic running times, only actual running times). Then, the
+number of differential posets found at each rank is discussed. The chapter concludes
+with a discussion about some of the uses that have been found for a library of partial
+1-differential posets.
+
+
+1.4       Summary of Chapter 5
+Chapter 5 discusses results dealing with the rank sizes of differential posets. The primary
+result in this chapter is a proof of Theorem 1.2. Known results dealing with rank sizes
+                                                                                         5
+of differential posets are also covered. Further, the chapter includes a discussion about
+conjectures dealing with rank sizes of differential posets and to what extent the data
+from Chapter 4 support these conjectures.
+
+
+1.5     Summary of Chapter 6
+Chapter 6 examines under what conditions a differential poset is a lattice. The primary
+result in this section is Theorem 1.3. Finally, what is known about the existence of
+r-differential lattices for r > 1 is discussed.
+
+
+1.6     Summary of Chapter 7
+Chapter 7 examines various generalizations and variations of differential posets. These
+include sequential differential posets, dual-graded graphs, signed differential posets, and
+quantized differential posets. The primary result in this section is Theorem 1.4.
+Chapter 2
+
+Background
+
+In this chapter some of the basic combinatorial objects that will be used in this thesis
+are covered.
+
+
+2.1     Partitions
+A partition of n is a vector of non-increasing integers that add up to n. More formally,
+
+Definition 2.1. A partition of n is a sequence λ = (λ1 , λ2 , . . . , λk ) ∈ Nk>0 such that
+λi ≥ λi+1 and ki=1 λi = n. One says that λ has k parts.
+             P
+
+
+    Sometimes one writes (λ1 , . . . , λk ) as λ1 + . . . + λk . Other times one writes λ =
+(λ1 , . . . , λk ) as be11 be22 . . . bet t where λ begins with e1 entries equal to b1 followed by e2
+entries of b2 and so on.
+    As an example, the 7 partitions of 5 using the three notations are:
+
+   • (5) = 5 = 5
+
+   • (4, 1) = 4 + 1 = 41
+
+   • (3, 2) = 3 + 2 = 32
+
+   • (3, 1, 1) = 3 + 1 + 1 = 312
+
+   • (2, 2, 1) = 2 + 2 + 1 = 22 1
+
+
+                                                 6
+                                                                                            7
+   • (2, 1, 1, 1) = 2 + 1 + 1 + 1 = 213
+
+   • (1, 1, 1, 1, 1) = 1 + 1 + 1 + 1 + 1 = 15
+
+   Often one wishes to add or subtract 1 from one of the entries in the sequence defining
+a partition. For this, one can use the following notation.
+
+Definition 2.2. Let λ = (λ1 , . . . , λk ) be a partition. Let λ a+ be the vector defined as
+λ a+ = (µ1 , . . . , µk ) where µi = λi for i 6= a and µa = λa + 1. Similarly, let λ a− be the
+vector defined as λ a− = (τ1 , . . . , τk ) where τi = λi for i 6= a and τa = λa − 1.
+
+   In short, λ a+ means 1 is added to the ath entry of λ and λ a− means 1 is subtracted
+from the ath entry of λ. Similarly, one can use notation such as λ a+,c+,b− to be the
+vector that results from adding 1 to the ath and cth entries of λ and subtracting 1 from
+the bth entry of λ. Some examples:
+
+   • (5, 4, 4, 3, 2, 1)2+ = (5, 5, 4, 3, 2, 1)
+
+   • (5, 4, 4, 3, 2, 1)4− = (5, 4, 4, 2, 2, 1)
+
+   • (5, 4, 4, 3, 2, 1)2+,4−,6+ = (5, 5, 4, 2, 2, 2)
+
+
+2.2     Graphs
+Let V be a finite set. Let E be a set of subsets of V all of which have cardinality 2.
+Then, G = (V, E) will be called a graph. An element of V is called a vertex. An element
+of E is called an edge.
+   Let v ∈ V . The degree of v will be |{e ∈ E | v ∈ e}|. The degree of v will be denoted
+dG (v) or just d(v) if the underlying G is understood by context. If w is another element
+of V , then v and w are adjacent if {v, w} ∈ E.
+   Further information of graphs can be found in [2].
+
+
+2.3     Posets
+A poset is a partially ordered set. The idea is to impose an order on some set of elements,
+but not require that every pair of elements is comparable. More formally,
+                                                                                       8
+Definition 2.3. A poset is a pair P = (A, B) where A is a set and B ⊂ A × A such
+that:
+
+   • (A, B) is reflexive: (x, x) ∈ B for all x ∈ A.
+
+   • (A, B) is antisymmetric: if (x, y) ∈ B with x 6= y, then (y, x) ∈
+                                                                     / B.
+
+   • (A, B) is transitive: if (x, y) ∈ B and (y, z) ∈ B, then (x, z) ∈ B.
+
+   Given a poset P = (A, B), (x, y) ∈ B will often be denoted as x ≤P y. In this
+way a poset gives a ≤ comparison on A that behaves in the way one expects. The only
+potential exception is that it is possible for x, y ∈ A to be incomparable, which means
+that neither x ≤P y nor y ≤P x.
+   One can say that x covers y in P if x 6= y and x ≥ z ≥ y implies that either z = x
+or z = y. Sometimes the notation x ⋗ y will be used for “x covers y ′′ . Further, let
+dP (x) = {y ∈ P | x ⋗ y}.
+   One can say that x is covered by y in P if x 6= y and x ≤ z ≤ y implies that either
+z = x or z = y. Sometimes the notation x ⋖ y will be used for “x is covered by y”.
+Further, let uP (x) = {y ∈ P | x ⋖ y}.
+   The Hasse diagram of a poset is a pictorial way of looking at a poset. A Hasse
+diagram of a poset P is a realization of a graph where there is a vertex for each element
+of P . If x <P y, then y is drawn above x. Also, if x is covered by y, then there is an
+edge (x, y) in the graph. An example is Figure 2.1 where the cover relations are x ⋖ z,
+x ⋖ w, and y ⋖ z. Further note that in Figure 2.1 y and w are incomparable (despite w
+being drawn above y).
+
+                                         z    w
+
+                                         x    y
+
+
+
+                            Figure 2.1: Hasse diagram example
+
+
+   Let P be a poset. For x, y ∈ P the greatest lower bound or meet of x and y is an
+element z such that if w ≤ x and w ≤ y, then z ≥ w. Similarly, the least upper bound
+or join of x and y is an element r such that if s ≥ x and s ≥ y, then r ≤ s. Note
+                                                                                         9
+that meets and joins do not always exist (there may be maximal lower bounds that are
+incomparable, for instance). If P is a poset such that the meet of x and y and the join
+of x and y exist for all x and y, then P is called a lattice. If P is a poset such that the
+meet of x and y exists for all x and y (but possibly joins do not exist), then P is called
+a meet semi-lattice.
+   Further information on posets can be found in Chapter 3 of [19].
+Chapter 3
+
+Definitions
+
+In this chapter differential posets are defined in three (equivalent) ways.
+
+
+3.1     Cover Definition of Differential Posets
+The first definition of differential posets is based directly on the cover relations of the
+poset in question.
+
+Definition 3.1. An r-differential poset is a locally finite poset with a 0̂ such that:
+
+  1. If x covers k elements, then x is covered by k + r elements.
+
+  2. If x 6= y are vertices that both cover exactly t vertices, then there are exactly t
+      vertices that cover both x and y.
+
+   Stanley made the observation that in Definition 3.1 t must be either 0 or 1 [17].
+   Figure 3.1 is an example of the bottom 6 ranks of a 1-differential poset.
+
+
+
+
+                                            10
+                                                                                               11
+
+
+
+
+                   Figure 3.1: Bottom 6 ranks of a 1-differential poset
+
+
+
+   Figure 3.2 is an example of the bottom 3 ranks of a 2-differential poset.
+
+
+
+
+                   Figure 3.2: Bottom 3 ranks of a 2-differential poset
+
+
+   Throughout this thesis “differential posets” will mean “r-differential posets”. Gen-
+erally, this will be done in a setting where the r is arbitrary. It should be noted that
+Definition 3.1 is slightly different than what is usually found in the literature. In the
+literature, differential posets are generally defined to be graded. But, it turns out that
+Definition 3.1 implies that the poset in question is graded.
+
+Proposition 3.2. All r-differential posets are graded.
+
+Proof. Let P be an r-differential poset. Choose a ∈ P so that 0̂, x1 , x2 , . . . , xn , a and
+0̂, y1 , y2 , . . . , yk , a are maximal chains in P such that n > k and k is minimal amongst
+all such possible choices. Since a covers both xn and yk , there exists b ∈ P with xn and
+yk covering b.
+   Let 0̂, z1 , z2 , . . . , zt , b be a maximal chain from 0̂ to b. A picture of the situation is
+given in Figure 3.3.
+                                                                                                      12
+                                                   a
+                                         xn                yk
+
+                                         xn−1
+                                                   b      yk−1
+
+
+                                                  zt
+                                          ..                ..
+                                           .       ..        .
+                                                    .
+                                                  z2
+                                         x2                y2
+                                                  z1
+                                         x1                y1
+
+                                                   0̂
+
+
+                       Figure 3.3: Picture for proof of Proposition 3.2
+
+
+    If t 6= k − 2, then 0̂, z1 , z2 , . . . , zt , b, yk is a maximal chain from 0̂ to yk that is of
+a different length than 0̂, y1 , y2 , . . . , yk . This cannot happen since k was chosen to be
+minimal. So, t = k − 2.
+    But that means that 0̂, z1 , z2 , . . . , zt , b, xn and 0̂, x1 , x2 , . . . , xn are maximal chains
+from 0̂ to xn of different lengths with the shorter chain of length less than k. This is a
+contradiction.
+    So, a ∈ P cannot be chosen with maximal chains from 0̂ to a of different length.
+That is, P must be graded.
+
+    There are two examples of 1-differential posets that have received attention in the
+literature. The most well known is Young’s lattice.
+
+
+3.1.1     Young’s Lattice
+
+Young’s lattice is a frequently studied combinatorial object that is sometimes denoted as
+Y . Y is a poset defined on the set of all partitions. In Y one has that ~λ = (λ1 , . . . , λt ) ≤a
+
+µ = (µ1 , . . . , µtb ) if and only if ta ≥ tb and λi ≥ µi for all 1 ≤ i ≤ tb . Figure 3.4 is a
+~
+picture of the bottom 9 ranks of Y :
+                                                                                                    13
+      6       51          42   411   33   321   222   3111        2211     21111       111111
+
+
+          5               41   32         311          221        2111             11111
+
+
+               4               31         22           211                 1111
+
+
+                   3                      21                      111
+
+
+                               2                       11
+
+
+                                           1
+
+
+                                           0
+
+
+
+
+                       Figure 3.4: Bottom 9 ranks of Young’s lattice
+
+
+   Y has many nice properties which is a reason that Y has been well studied. Some
+of the properties of Young’s lattice are the following.
+                                                                                           Pn
+   • Young’s lattice is ranked. The rank of a partition λ = (λ1 , . . . , λn ) is |λ| =         i=1 λi .
+
+   • Young’s lattice is locally finite.
+
+   • Young’s lattice is a 1-differential poset.
+
+   • Young’s lattice is, in fact, a lattice. Given two partitions λ = (λ1 , . . . , λn ) and
+     µ = (µ1 , . . . , µk ) with n ≥ k, the least upper bound (or join) of λ and µ is
+     τ = (τ1 , . . . , τn ) where τi = max{λi , µi } for 1 ≤ i ≤ k and τi = λi for i > k.
+     Likewise the greatest lower bound (or meet) of λ and µ is γ = (γ1 , . . . , γk ) where
+     γi = min{λi , µi } for 1 ≤ i ≤ k.
+
+   • Young’s lattice is distributive. In fact, every r-differential distributive lattice is
+     isomorphic to Y r . See Proposition 5.5 in [17].
+
+   • Young’s lattice plays a role in the representation theory of the symmetric group.
+     In particular, the irreducible characters of Σn can be indexed by elements of Yn .
+     If x is an element of Y , the character associated to x will be written χx . Further,
+     it turns out that:
+                                                       X
+                                          χλ ↑S
+                                              Sn−1 =
+                                               n
+                                                             χµ
+                                                       µ⋗λ
+                                                                                                    14
+      and
+                                                         X
+                                            χλ ↓S
+                                                Sn−1 =
+                                                 n
+                                                               χµ
+                                                         µ⋖λ
+
+
+    • There is a well known bijection, known as the Robinson-Schensted correspondence,
+      between pairs of saturated chains of length n staring at 0̂ in Young’s lattice and
+      permutations on n letters.
+
+
+3.1.2     Fibonacci Differential Poset
+
+The Fibonacci r-differential poset is a less often studied combinatorial object.
+
+Definition 3.3. The Fibonacci r-differential poset, denoted Z(r), is the poset whose
+ground set is {11 , 12 , . . . , 1r , 2}∗ and where x = x1 x2 . . . xt is covered by y = y1 y2 . . . yk
+if and only if one of the following is true:
+
+    • k = t and there exists a with xi = yi for i 6= a, xi = 2 for i < a, xa ∈ {11 , . . . , 1r },
+      and ya = 2.
+
+    • k = t + 1 and there exists a with xi = yi = 2 for i < a, ya ∈ {11 , . . . , 1r }, and
+      xj = yj+1 for j ≥ a.
+
+    Less formally, x is covered by y if either:
+
+    • y is formed from x by changing the first 1 to a 2.
+
+    • y is formed from x by inserting a 1 somewhere before the first 1.
+
+    Thinking about the cover relations the opposite way is also sometimes useful. It
+turns out that x is covered by y if either:
+
+    • x is formed from y by changing any 2 before the first 1 into a 1.
+
+    • x is formed from y by removing the first 1.
+
+    Figure 3.5 is a picture of the bottom 6 ranks of the Fibonacci 1-differential poset:
+                                                                                                              15
+ 111111       21111     12111   11211      2211     1221    2121        11121   222   1122   1212   2112          11112
+
+
+      11111                     2111              1211     221      1121        122          212           1112
+
+
+                      1111                        211            121             22                 112
+
+
+                                 111                               21                        12
+
+
+                                                  11                             2
+
+
+                                                                   1
+
+
+                                                                   λ
+
+
+
+
+               Figure 3.5: Bottom 6 ranks of the Fibonacci 1-differential poset
+
+
+   There is another way to build the Fibonacci r-differential poset first discovered by
+Wagner. Let P[0,n] be a graded poset up to rank n. Reflection-extension creates a new
+poset P ′   where P[0,n] ∼
+          [0,n+1]         = P ′ , P ′ = {y ′ | y ∈ Pn−1 } ∪ {x1 , . . . , xr | x ∈ Pn }, and
+                                        [0,n]     n+1
+                         ′
+the cover relations of P[n,n+1] are given by:
+
+   • If x ∈ Pn and 1 ≤ i ≤ r, then x ⋖P ′ xi .
+
+   • If y ∈ Pn−1 and x ∈ Pn with x ⋖P y, then y ⋖P ′ y ′ .
+
+   The Fibonacci r-differential poset can be created by starting with P0 being a single
+element and repeatedly applying reflection-extensions. Note that given y in the Fi-
+bonacci r-differential poset that y ′ is created by adding a 2 to the front of y. Also, xi
+is created by adding 1i to the front of x.
+   Many of the properties of Young’s lattice are also true of the Fibonacci 1-differential
+poset. Some of these are the following.
+
+   • The Fibonacci 1-differential poset is ranked. The rank of an element x1 x2 . . . xn
+     is ni=1 xi .
+       P
+
+
+   • The Fibonacci 1-differential poset is locally finite.
+
+   • The Fibonacci r-differential poset is, in fact, an r-differential poset.
+
+   • The Fibonacci 1-differential poset is a lattice. A proof is given in [17]. However,
+      it does not seem that there is a known way to construct the least upper bound or
+                                                                                       16
+     greatest lower bound of two elements of Z(1). The proof in [17] only shows that
+     least upper bounds and greatest lower bounds exist.
+
+   • The Fibonacci 1-differential poset is modular. Actually, every r-differential lattice
+     must be modular. Further, any r-differential lattice such that every complemented
+     interval has length at most two is isomorphic to Z(r). See Proposition 1.3 and
+     Proposition 5.4 in [17].
+
+   • In [13] Okada showed that for each n there exists a semisimple algebra, Fn , whose
+     irreducible representations are indexed by the elements of Z(1)n . Further, if Vx is
+     the representation that corresponds to element x ∈ Z(1)
+
+                                                    X
+                                       Vx ↑F
+                                           Fn−1 =
+                                            n
+                                                          Vy
+                                                    y⋗x
+
+     and
+                                                    X
+                                       Vx ↓F
+                                           Fn−1 =
+                                            n
+                                                          Vz
+                                                    z⋖x
+
+   • Roby showed that as for Young’s lattice there is a bijection between pairs of sat-
+     urated chains of length n staring at 0̂ in Z(1) and permutations on n letters [15].
+     Cameron and Killpatrick showed that a similar correspondence can be extended
+     to Z(2) [3]. In a later paper, Cameron and Killpatrick showed that such a corre-
+     spondence can be extended to Z(r) for any r [4].
+
+
+3.1.3    Properties of differential posets
+
+One of the first facts one tends to discover about differential posets is that the k in
+Definition 3.1 must be either 0 or 1. Another way to state this is that a certain induced
+subposet is forbidden in a differential poset.
+
+Proposition 3.4 (Stanley [17]). Let P be an r-differential poset. Let x, y ∈ Pn . Then
+there do not exist two distinct elements w and z of Pn+1 such that w and z each cover
+both of x and y.
+
+Proof. In short one needs to show that the poset in Figure 3.6 does not occur as an
+induced subposet in a differential poset.
+                                                                                    17
+                                          w       z
+
+                                          x       y
+
+
+              Figure 3.6: A subposet not induced in any differential poset
+
+
+   Suppose that the subposet in Figure 3.6 exists in an r-differential P . Choose n so
+that n is minimal amongst all such possibilities. Once n is chosen, choose x, y, z, and
+w as in the statement of the proposition. By Definition 3.1 there must be at least two
+elements, a and b, that are covered by both x and y. But, then a, b, x, and y would
+form an induced subposet of P isomorphic to Figure 3.6 that occurs at a lower rank
+than n. This contradicts the minimality of n. Thus, no induced subposet isomorphic to
+Figure 3.6 exists in P .
+
+
+
+   There are two induced subposets that do occur in differential posets that will be
+important when considering the possible rank sizes of differential posets.
+
+Definition 3.5. A crown is an induced subposet of the following form:
+                                      x       y       z
+
+                                      a       b       c
+
+One can also say that {x, y, z} is a crown covering {a, b, c}.
+
+Definition 3.6. A cap is an induced subposet of the following form:
+                                              x
+
+                                      a       b       c
+
+One can also say that x is a cap covering {a, b, c}.
+
+   The term “crown” is due to Joel Lewis in [10]. The author believes the term “cap”
+is new in this thesis.
+   Caps and crowns appear to play central roles in both of the well known examples of
+r-differential posets.
+                                                                                       18
+Proposition 3.7. The Fibonacci r-differential poset does not have a crown as an in-
+duced subposet.
+
+Proof. Clearly Z(r)[0,1] does not have an induced crown. Since each successive Z(r)[n,n+1]
+is created by reflection-extension, the result follows.
+
+   In fact, one could define Z(r) as the unique r-differential poset that does not have an
+induced crown. Young’s lattice turns out to have a property that is somewhat opposite.
+
+Proposition 3.8. In Young’s lattice every crown is covered by a cap and every cap
+covers a crown.
+
+Proof. Suppose the following is a crown in Young’s lattice with a, b, and c at a minimal
+rank amongst all such choices.
+                                       x     y     z
+
+                                       a     b     c
+
+   Since the rank of a, b, and c is minimal the picture must actually look like the
+following.
+                                       x     y     z
+
+                                       a     b     c
+
+                                             w
+
+   Thus, the Young diagrams corresponding to a, b, and c arise from the Young diagram
+for w by adding a single box. Since any of the boxes added to get to a, b, or c could
+independently be added to w it turns out that one must get the following induced
+boolean subposet.
+
+
+
+                                       x     y     z
+
+                                       a     b     c
+
+                                             w
+                                                                                         19
+   Thus, every crown must be covered by a cap.
+   The same induced boolean subposet argument also shows that every cap in Young’s
+lattice must cover a crown.
+
+   When discussing differential posets it is often useful to talk about truncating a
+differential poset after n ranks. Such a situation will be called an r-differential poset up
+to rank n.
+
+Definition 3.9. An r-differential poset up to rank n is a graded, locally finite poset
+with a minimum element 0̂ and with n ranks such that:
+
+  1. If x ∈ P[0,n−1] covers k elements, then x is covered by k + r elements.
+
+  2. If x ∈ P[0,n−1] and y ∈ P[0,n−1] both cover w, then there exists z that covers both
+      x and y.
+
+   One of the primary uses of differential posets up to rank n is to build differential
+posets rank-by-rank. Generally, this can be done by determining in what ways a differ-
+ential poset up to rank n can be extended to a differential poset up to rank n + 1. Here
+is an example using Definition 3.9.
+
+                       a      b c d     e   f g h i j k            l
+
+
+
+
+                 Figure 3.7: A partial 1-differential poset up to rank 6
+
+
+
+   Suppose one wishes to extend Figure 3.7 from a partial differential poset up to rank
+6 to a partial differential poset up to rank 7. The first thing to consider is which nodes
+at rank 6 need to be covered by a common element at rank 7. The following is a list
+                                                                                     20
+of the common covers. A set of size greater than 2 means that each pair of elements in
+the set must be covered by a common element at rank 7.
+
+   • {a, b}
+
+   • {b, c, e}
+
+   • {d, e, f }
+
+   • {e, g, h}
+
+   • {f, h, i}
+
+   • {h, j, k}
+
+   • {k, l}
+
+   Each set of size 2 must be covered by a node at rank 7 that covers no other elements.
+For a set of size greater than 2, choices can be made. The only requirements are that
+each pair in a set must be covered by exactly one common element and that each node
+at rank 6 is covered by exactly 1 (or r) more nodes than it covers. Two possible choices
+for how to deal with the sets {b, c, e} and {h, j, k} are given in Figure 3.8. Note that
+{b, c, e} is covered by a cap and {h, j, k} is covered by a crown.
+
+
+                      a       b c d     e   f g h i j k              l
+
+
+
+
+        Figure 3.8: Building toward a partial 1-differential poset up to rank 7
+                                                                                         21
+   One can then continue for the other sets of size 3 with the only requirement to be
+sure that the number of potential covers of any element of rank 6 is not exceeded. One
+possibility for the new extension is as in Figure 3.9.
+
+
+                        a     b c d     e   f g h i j k            l
+
+
+
+
+        Figure 3.9: Building toward a partial 1-differential poset up to rank 7
+
+
+
+   The last step to extend from a partial 1-differential poset up to rank 6 to a partial
+1-differential poset up to rank 7 is to possibly add one or more vertices covering each
+of the vertices at rank 6. Such a vertex is only added if the vertex at rank 6 does not
+already have 1 more vertex covering it than it covers. In Figure 3.9 this means a vertex
+needs to be added to cover each of a, b, c, d, e, f , g, i, and l. The finished extension is
+shown in Figure 3.10.
+
+
+                        a     b c d     e   f g h i j k            l
+
+
+
+
+            Figure 3.10: Completed partial 1-differential poset up to rank 7
+                                                                                   22
+   It turns out that there are at least two other ways that differential posets can be
+defined. The next two sections will discuss the other definitions.
+
+
+3.2       U , D Definition of Differential Posets
+One such definition involves what are referred to as “up maps” and “down maps” of
+posets.
+   Let (P, <P ) be a poset such that U(x) = {y ∈ P | y covers x} and D(x) = {y ∈ P |
+y covered by x} are both finite. Let CP be the complex vector space whose basis is P .
+Define linear maps U , D, and I on CP by letting U , D, and I act on x ∈ P by:
+
+                                             X
+                                      Ux =         y,
+                                             y⋗x
+                                             X
+                                      Dx =         y,
+                                             y⋖x
+
+                                         Ix = x.
+
+   For an example, consider Figure 3.11. For Figure 3.11 some example up and down
+map results are as follows.
+
+   • Ua = d + e + f
+
+   • Ub = e + g
+
+   • Dd = a
+
+   • Df = a + c
+
+                                 d   e     f        g   h
+
+                                     a      b       c
+
+                      Figure 3.11: Example for up and down maps
+
+
+
+   U is often called an “up map” and D is often called a “down map”. I is the identity
+map. Up maps and down maps lead to an alternative way to define differential posets.
+                                                                                      23
+Definition 3.10. Let P be a locally finite poset with a 0̂. Let CP be the complex vector
+space with basis P . P is called an r-differential poset if:
+
+                                       DU − U D = rI.
+
+   One can now check that the two definitions of differential posets agree.
+
+Proposition 3.11 (Stanley [17]). Let P be a locally finite poset with a 0̂. Then the
+following are equivalent:
+
+   • P is an r-differential poset according to Definition 3.1.
+
+   • P is an r-differential poset according to Definition 3.10.
+
+Proof. A proof can be found as Theorem 2.2 in [17]. Essentially the idea is to look at
+the y coordinate of (DU − U D)x and rIx for x and y of the same rank.
+   If x 6= y, then the y coordinate of rIx is 0. So for DU − U D = rI to be true, the
+y coordinates of DU x and U Dx must be the same. That is if x and y both cover k
+elements, then x and y are both covered by k elements.
+   If x = y, then the y coordinate of rIx is r. The y coordinate of (DU − U D)x is then
+the difference between the number of elements covering x and the number of elements
+covered by x.
+
+
+
+   Differential posets as defined in Definition 3.10 are a somewhat natural object to
+study because the defining equation, DU − U D = rI is a commutator relation. For a
+more in depth study of similar relations see [7].
+   It should be noted that Definition 3.10 is the reason behind differential posets being
+called “differential”. This is because the D operator acts as a derivative from a certain
+point of view. See [17] for details.
+
+
+3.3     Hypergraph Definition of Differential Posets
+A third way to define differential posets involves hypergraphs. A review of hypergraphs
+is in order before the differential poset definition.
+                                                                                     24
+3.3.1    Hypergraphs
+
+Roughly speaking, a hypergraph is a graph where the edges are allowed to be any size.
+   Let V be a finite set. Let E be a set of subsets of V (of any size). Then, G = (V, E)
+will be called a hypergraph. An element of V is called a vertex. An element of E is
+called an edge. Edges with exactly one element are called loops. Note that graphs
+are hypergraphs where each edge has cardinality two. Figure 3.12 gives a picture of a
+hypergraph. Shaded regions denote edges. Rectangular vertices denote that the vertex
+is a loop.
+
+                                        h       i
+
+                                            e       f       g
+
+                                 a      b       c       d
+
+
+                      Figure 3.12: G, an example of a hypergraph
+
+
+   Most of the terminology for graphs carries through to hypergraphs. Let G = (V, E)
+be a hypergraph. Let v ∈ V . The degree of v will be |{e ∈ E | v ∈ e}|. The degree of
+v will be denoted dG (v) or just d(v) if the underlying G is understood by context. In
+Figure 3.12, dG (c) = 2 and dG (i) = 3. If w is another element of V , then v and w are
+adjacent if there exists e ∈ E with {v, w} ⊂ e. Note that in Figure 3.12 d and f are
+adjacent since they are both part of edge {c, d, f, g}.
+   The skeleton of a hypergraph H will be the graph G with the same vertex set and
+where {u, v} is an edge of G if and only if u and v are adjacent in H. Figure 3.13 shows
+the skeleton of G from Figure 3.12.
+
+                                        h       i
+
+                                            e       f       g
+
+                                 a      b       c       d
+
+
+                             Figure 3.13: The skeleton of G
+                                                                                                        25
+    The dual of a hypergraph G = (V, E) is another hypergraph that will be denoted as
+G∗ = (V ∗ , E ∗ ). Here, V ∗ = E. Also, e∗ ∈ E ∗ if and only if there exists v ∈ V                such that
+e∗ = {e ∈ E | v ∈ e}. Figure 3.14 shows the dual of the hypergraph G from Figure 3.12.
+Table 3.1 shows how the vertices of G∗ correspond to the edges of G.
+
+                                                                  7
+
+                                                     4       5        6
+
+                                             1           2        3
+
+
+                                    Figure 3.14: G∗ , the dual of G
+
+
+
+                 Table 3.1: Correspondence of vertices of G∗ and edges of G
+                                       vertex of G∗              edge of G
+                                                 1                 {a, b}
+                                                 2                {b, c, e}
+                                                 3               {c, d, f, g}
+                                                 4                 {e, h}
+                                                 5                {e, f, i}
+                                                 6                 {g, i}
+                                                 7                    {i}
+
+
+
+    For further details on hypergraphs see [1].
+
+
+3.3.2      Differential posets as hypergraphs
+
+Now a definition of differential posets using hypergraphs can be given.
+
+Definition 3.12. An r-differential poset is a pair of sequences of hypergraphs G0 =
+(V0 , E0 ), G1 = (V1 , E1 ), . . . and G′0 = (V0′ , E0′ ), G′1 = (V1′ , E1′ ), . . . such that:
+
+    • G∗n ∼
+          = G′n+1
+                                                                                                  26
+   • Vn = Vn′
+
+   • Gn and G′n have the same skeleton.
+
+   • dGn (v) = dG′n (v) + r
+
+   • |V0 | = 1
+
+   • E0′ = ∅
+
+    Given a differential poset, P , by Definition 3.1, the idea behind Definition 3.12 is
+that Gi is a hypergraph whose vertices are the elements of Pi and where an element
+y ∈ Pi+1 covering elements {x1 , . . . , xd } ∈ Pi gives rise to the edge {x1 , . . . , xd } of Gi .
+Thus, Gi is keeping track of Ui . Similarly, an element z ∈ Pi−1 covered by elements
+{w1 , . . . , wd } ∈ Pi gives rise to the edge {w1 , . . . , wd } of G′i . Thus, G′i is keeping track
+                                                                                 t ).
+of Di . Note that one could omit either G or G′ from the definition (since Di = Ui−1
+However, both are included for later notational simplicity.
+    An example of G4 and G′4 for a 1-differential poset according to Definition 3.12 is
+as follows. Figure 3.15 gives the Hasse diagram of P[3,5] . P[3,4] determines G′4 and P[4,5]
+determines G4 . Figure 3.16 shows G4 and G′4 . A shaded region indicates that all of the
+edges in that region form an edge of the hypergraph. A rectangular node indicates that
+there is a loop (edge of cardinality 1) consisting of that node.
+
+
+
+                             1               2       3       4               5
+
+
+
+
+                             Figure 3.15: Hasse diagram of P[3,5]
+
+
+                                     3                               3
+
+                         1       2       4       5       1       2       4       5
+                                 (a) G4                          (b) G′4
+
+
+
+                                     Figure 3.16: G4 and G′4
+                                                                                               27
+   Similarly, an example of G5 and G′5 for a 1-differential poset according to Defini-
+tion 3.12 is as follows. Figure 3.17 gives the Hasse diagram of P[4,6] . P[4,5] determines
+G′5 and P[5,6] determines G5 . Figure 3.18 shows G5 and G′5 . Again, a shaded region
+indicates that all of the edges in that region form an edge of the hypergraph. A rect-
+angular node indicates that there is a loop (edge of cardinality 1) consisting of that
+node.
+
+
+
+             1            2        3           4                   5           6           7
+
+
+
+
+                           Figure 3.17: Hasse diagram of P[4,6]
+
+
+                          3       5                                3           5
+
+                 1    2       4        6   7           1       2           4       6   7
+                          (a) G5                                       (b) G′5
+
+
+
+                                   Figure 3.18: G5 and G′5
+
+
+   An example of G2 and G′2 for a 2-differential poset according to Definition 3.12 is
+as follows. Figure 3.19 gives the Hasse diagram of P[1,3] . P[1,2] determines G′2 and P[2,3]
+determines G2 . Figure 3.20 shows G2 and G′2 . A shaded region indicates that all of the
+edges in that region form an edge of the hypergraph. A rectangular node indicates that
+there is at least one loop (edge of cardinality 1) consisting of that node.
+
+
+
+                                       1   2       3       4           5
+
+
+
+
+                           Figure 3.19: Hasse diagram of P[1,3]
+                                                                                                                 28
+                                         2       5                   2             5
+
+                                 1           3           4       1         3           4
+                                         (a) G2                          (b) G′2
+
+
+
+                                         Figure 3.20: G2 and G′2
+
+
+   An example of G3 and G′3 for a 2-differential poset according to Definition 3.12 is
+as follows. Figure 3.21 gives the Hasse diagram of P[2,4] . P[2,3] determines G′3 and P[3,4]
+determines G3 . Figure 3.22 shows G3 and G′3 . A shaded region indicates that all of the
+edges in that region form an edge of the hypergraph. A rectangular node indicates that
+there is at least one loop (edge of cardinality 1) consisting of that node.
+
+
+
+             1      2       3            4        5          6       7          8          9           10   11
+
+
+
+
+                             Figure 3.21: Hasse diagram of P[2,4]
+
+
+                             11                                          11
+
+                            10       8       7       3               10        8       7       3
+
+                        9        6           4           5       9         6           4           5
+
+                                         1       2                                 1       2
+                                  (a) G3                                      (b) G′3
+
+
+
+                                                 Figure 3.22: G′3
+
+
+   One can show that the three different definitions of differential posets presented in
+this chapter are equivalent.
+
+Proposition 3.13. Let P be a locally finite poset with a 0̂. Then the following are
+                                                                                                     29
+equivalent:
+
+   1. P is an r-differential poset according to Definition 3.1.
+
+   2. P is an r-differential poset according to Definition 3.10.
+
+   3. P is an r-differential poset according to Definition 3.12.
+
+Proof. 1 and 2 are equivalent by Proposition 3.11.
+    Let G0 = (V0 , E0 ), G1 = (V1 , E1 ), . . . and G′0 = (V0′ , E0′ ), G′1 = (V1′ , E1′ ), . . . be two
+sequences of linear hypergraphs that satisfy Definition 3.12.
+   For each n ≥ 0, let fn : V (G′n+1 ) → V (G∗n ) = E(Gn ) be a bijection that determines
+the isomorphism G′     ∼
+                       = G∗ .
+                      n+1       n
+  Build a poset to satisfy Definition 3.1 as follows. Let the ground set of the poset be
+A= ∞
+   S
+     i=0 Vi . Let x ⋖ y if and only if the following are true.
+
+   • x ∈ Vi and y ∈ Vi+1 for some i ≥ 0.
+
+   • x ∈ fi (y)
+
+    Let x be in Vn . The number of elements that cover x is |{y ∈ Vn+1 | x ∈ fn (y)}|.
+Since fn is a bijection this means that the number of elements that cover x is dGn (x).
+    The number of elements covered by x is |{z ∈ Vn−1 | z ∈ fn−1 (x)}| = |fn−1 (x)| =
+dG′n (x). Since dGn (x) = dG′n (x) + r one gets that the number of elements that cover x
+is r more than the number of elements that x covers. Thus, part 1 of Definition 3.1 is
+satisfied.
+    Suppose x and y are both in Vn . Then for z ∈ Vn−1 :
+
+
+
+             x and y both cover z ⇔ z ∈ fn (x) ∩ fn (y)
+                                    ⇔ x and y are adjacent in G∗
+                                    ⇔ x and y are adjacent in G′
+                                    ⇔ x and y are adjacent in G
+                                    ⇔ ∃e ∈ En such that x, y ∈ e
+                                    ⇔ ∃w ∈ V (G′n+1 ) such that x, y ∈ fn (w)
+                                    ⇔ ∃w ∈ Vn+1 such that w covers both x and y
+                                                                                                 30
+    Thus, part 2 of Definition 3.1 is satisfied.
+    Let P be an r-differential poset by Definition 3.1. Create a sequence of linear
+hypergraphs G0 = (V0 , E0 ), G1 = (V1 , E1 ), . . . as follows. Let Vi be the set of all elements
+of P at rank i. Let B be an edge in Ei if and only if B is exactly the set of elements
+that cover some element, x, of rank i. Also, create a sequence of linear hypergraphs
+G′0 = (V0′ , E0′ ), G′1 = (V1′ , E1′ ), . . . as follows. Let Vi′ be the set of all elements of P at
+rank i. For i ≥ 1 Let B be an edge in Ei′ if and only if B is exactly the elements that
+are covered by some element, x, of rank i. Let E0′ = ∅.
+    Now the conditions of Definition 3.12 need to be checked. It is clear that Vi = Vi′ ,
+|V0 | = 1, and E0′ = ∅. Two vertices of Gn are adjacent if they are covered by a common
+vertex in P . Also, two vertices of G′n are adjacent if they both cover a common vertex
+in P . Thus, Gn and G′n have the same skeletons.
+    Note that dGn (v) is the number of elements that cover v. Also, dG′n (v) is the number
+of elements that are covered by v. Thus, dGn (v) = dG′n (v) + r.
+    Finally, it needs to be shown that G∗ ∼= G′ . Let f : V (G∗ ) → V (G′
+                                                n       n+1                   n            n+1 ) be
+defined as follows. Suppose A ∈ V (G∗n ). That means, A is an edge of Gn . So, A is a
+subset of Vn such that all elements of A are covered by a common element, x of P . Let
+fn (A) = x. Now it needs to be shown that fn is a hypergraph isomorphism of G∗n and
+G′n+1 . Clearly fn is a bijection between V (G∗n ) to V (G′n+1 ). Suppose that A and B
+are adjacent vertices of G∗n . That means that as edges of Gn , A and B both contain a
+common v in V (Gn ). Thus, fn (A) and fn (B) both cover v. So, fn (A) and fn (B) are
+adjacent in G′n+1 . This process is reversible. So the proof is complete.
+
+
+
+    The advantage of having three equivalent ways to define differential posets is that
+sometimes one definition is easier to work with than another. Generally speaking,
+Definition 3.1 will be viewed as the standard definition and will be used unless there
+is a reason to use another definition. Definition 3.10 will tend to be used in algebraic
+situations. Definition 3.12 is useful when one thinks of building differential posets and
+wants to visualize the structure of the bipartite graphs P[n,n+1] of Definition 3.1. The
+primary example of the usefulness of Definition 3.12 in this thesis will be Chapter 6
+where the constructions involved are more difficult to understand as bipartite graphs.
+                                                                                              31
+    As with the cover definition of differential posets, one can consider only differential
+posets up to a certain rank using the hypergraph definition.
+
+Definition 3.14. A (partial) r-differential poset up to rank k is a pair of sequences
+of hypergraphs G0 = (V0 , E0 ), G1 = (V1 , E1 ), . . . , Gn−1 = (Vk−1 , Ek−1 ) and G′0 =
+(V0′ , E0′ ), G′1 = (V1′ , E1′ ), . . . , G′n = (Vk′ , Ek′ ) such that:
+
+    • G∗n ∼
+          = G′n+1 for 0 ≤ n ≤ k − 1.
+
+    • Vn = Vn′ for 0 ≤ n ≤ k.
+
+    • Gn and G′n have the same skeleton for 0 ≤ n ≤ k − 1.
+
+    • dGn (v) = dG′n (v) + r for all v ∈ Vn = Vn′ .
+
+    • |V0 | = 1
+
+    • E0′ = ∅
+
+    Building differential posets up to rank n is relatively straightforward using Def-
+inition 3.9, but building a differential poset up to rank n using Definition 3.14 is
+somewhat more complicated. Suppose G0 = (V0 , E0 ), . . . , Gk−1 = (Vk−1 , Ek−1 ) and
+G′0 = (V0′ , E0′ ), . . . G′k = (Vk′ , Ek′ ) form a 1-differential poset up to rank k. One method
+of finding a possible extension to a 1-differential poset up to rank k + 1 is as follows.
+
+   1. Draw the skeleton of Gk . This is the same as the skeleton of G′k .
+
+   2. Note the degree of each vertex of Gk . This is known by the equation dGn (v) =
+       dG′n (v) + r.
+
+   3. Find any covering of the skeleton of Gk that gives the correct degrees and skeleton.
+       Note that edges of size 1 (loops) may be used.
+
+   4. Let G′k+1 be the dual of Gk .
+
+    As an example consider the potential G4 and G′5 shown in Figure 3.23.
+                                                                                             32
+                                3                                3       5
+
+                    1       2       4        5       1       2       4       6       7
+                            (a) G4                                (b) G′5
+
+
+
+                                     Figure 3.23: G4 and G′5
+
+
+   The skeleton of G5 is shown in Figure 3.24.
+
+                                                 3       5
+
+                                     1       2       4       6       7
+
+
+                                    Figure 3.24: Skeleton of G5
+
+
+   Since dG′5 (v) = 1 for v ∈ {1, 7} the covering of G5 ’s skeleton must give vertices 1
+and 7 degree 2. Since dG′5 (v) = 2 for v ∈ {2, 3, 4, 5, 6} the covering of G5 ’s skeleton must
+give vertices 2, 3, 4, 5, 6 degree 3. Two possible such coverings are given in Figure 3.25.
+
+                            3       5                                3       5
+
+                1       2       4        6       7       1       2       4       6       7
+                        (a) Possible G5                      (b) Another possible G5
+
+
+
+                                Figure 3.25: Two possible G5 ’s
+
+
+   All that is left to do is let G′6 be the dual of the chosen G5 .
+Chapter 4
+
+Computing 1-Differential Posets
+
+In this chapter a computation to find all partial 1-differential posets up to rank ten
+is described. The chapter starts with a discussion of the algorithm used. Then, the
+experimental running times of the algorithm are discussed. The chapter concludes with
+a discussion of the results of the computation and some of the ways the results have
+been used.
+
+
+4.1      The algorithm
+This section describes an algorithm used to compute all partial 1-differential posets up
+to rank ten.
+   The rough idea of the algorithm is to start with a partial 1-differential poset up to
+rank n, P[0,n] . Next, find all possible extensions to P[0,n+1] . Recursively repeating this
+procedure until n = 9 will lead to a list of all partial 1-differential posets up to rank
+ten.
+   Suppose P[0,n] is a partial 1-differential poset up to rank n. To find all possible
+partial 1-differential P[0,n+1] one can do the following:
+
+   • Build a graph G. The vertices of G are the elements of Pn . Include an edge {v, w}
+       in G if v and w are adjacent in P[0,n] . To check this, just check to see if there
+       exists a vertex x ∈ Pn−1 such that both v and w cover x.
+
+   • Find all complete subgraphs of G.
+
+
+                                            33
+                                                                                                34
+   • Find all sets of complete subgraphs of G that cover G and have no common edges.
+      Call such a covering set of complete graphs an independent cover of G.
+
+   • Check if each independent cover leads to a 1-differential extension of P[0,n] to a
+      P[0,n+1] .
+
+      Given an independent cover {H1 , H2 , . . . , Ht } where each Hi is a complete sub-
+      graph of G check if {H1 , . . . , Ht } extends to a 1-differential P[0,n+1] as follows:
+
+         – Place one element hi in Pn+1 for each Hi .
+         – If Hi = {v1 , . . . , vk }, then let hi cover v1 , . . . , vk in Pn .
+         – For each v ∈ Pn do the following. Let c be the number of elements that v
+            covers. If v is covered by more than c + 1 elements, then {H1 , . . . , Ht } will
+            not extend to a 1-differential P[0,n+1] . Otherwise, if necessary add one or
+            more vertices that cover v so that v is covered by c + 1 elements.
+
+   Note that the algorithm was not designed to be as fast as possible. One research
+direction would be to examine the asymptotic running time of the algorithm. Further,
+the author suspects that the running time of the algorithm could be improved by simple
+techniques such as being more judicious in memory allocation for arrays. Hopefully, such
+an improvement in running time would lead to more data being collected.
+
+
+4.2     Running times of the algorithm
+Note that all partial 1-differential posets are identical up to rank 4. The running time
+of the algorithm for 5 ≤ n ≤ 9 can be found in Table 4.1. A running time of 0 seconds
+means the computation took less than 1 second.
+                                                                                          35
+
+      Table 4.1: Running times to find all partial 1-differential posets up to rank n
+                                       n   time (sec)
+                                       5       0
+                                       6       0
+                                       7       0
+                                       8       0
+                                       9       27
+
+
+
+
+4.3      Results of the algorithm
+The result of the algorithm is a list of all partial 1-differential posets up to rank n for a
+given n. The posets are listed out using notation compatible with Stembridge’s posets
+package for Maple [20].
+   One of the basic sets of data from the algorithm is the number of non-isomorphic
+partial 1-differential posets up to rank n. These data can be found in Table 4.2.
+
+
+             Table 4.2: Number of partial 1-differential posets up to rank n
+                   n   Number of non-isomorphic 1-differential posets
+                   1                           1
+                   2                           1
+                   3                           1
+                   4                           1
+                   5                           2
+                   6                           5
+                   7                           35
+                   8                          643
+                   9                         44,606
+                                                                                         36
+4.4     Uses of results
+One of the useful aspects of having a list of all partial 1-differential posets up to a rank
+is the ability to check conjectures. Examples where the data from this chapter have
+been used as such include the following.
+
+   • In [12] Miller and Reiner study Smith normal forms for the map DU + kI for
+      a differential poset where k is any integer. One question that arose was about
+      the first differences of rank sizes of differential posets. It was asked whether
+      pn+1 −pn ≥ pn −pn−1 for all 1-differential posets. The data from this chapter were
+      able to show that there are 1-differential posets with pn+1 −pn < pn −pn−1 . Based
+      on the counterexamples, it seems unclear how one would find such 1-differential
+      posets without an extensive list of examples.
+
+   • In the proof of Theorem 1.3 one must start with a poset up to rank n. The proof
+      looks at details of ranks all the way up to rank n + 6. One might wonder if this
+      proof could be simplified to not consider as many ranks. However, amongst the
+      data for 1-differential posets is a poset that is isomorphic to Z(1) up to rank 5
+      and is a meet semi-lattice up to rank 9. This example indicates that a proof in
+      the same spirit as that in Chapter 6 must go up to at least rank n + 6.
+Chapter 5
+
+Rank Sizes of Differential Posets
+
+One area of inquiry into differential posets deals with rank sizes occur for differential
+posets. In this chapter what is known about the rank sizes is discussed. The main result
+will be a proof of Theorem 1.2.
+   Perhaps the first result dealing with the rank sizes of differential posets was Stanley’s
+Corollary 4.3 in [17]. The theorem is restated here:
+
+Theorem 5.1 (Stanley [17]). Let p0 , p1 , . . . be the rank sizes of an r-differential poset.
+Then, pi ≥ pi−1 for all i ≥ 1.
+
+   In order to prove Theorem 5.1, Stanley used the following proposition (in slightly
+different language).
+
+Proposition 5.2 (Stanley [17]). Let P be an r-differential poset. Then, ri is an eigen-
+value of U Dn with multiplicity ∆pn−i = pn−i − pn−i−1 .
+
+   Recently, Miller was able to extend Theorem 5.1 to the following theorem [11].
+
+Theorem 5.3 (Miller [11]). Let p0 , p1 , . . . be the rank sizes of an r-differential poset.
+Then, pi > pi−1 for all i ≥ 1 except when r = i = 1.
+
+   One of the remarkable things about Theorems 5.1 and 5.3 is that the data on 1-
+differential posets seem to indicate that the rank sizes are growing much more quickly.
+From the data for 1-differential posets it seems likely that for any constant A there
+exists N such that pn − pn−1 > A for all n ≥ N . It would be interesting to find a
+stronger bound on the increase in rank sizes.
+
+                                             37
+                                                                                        38
+    A recent result of Stanley and Zanello [16] does make some progress in this direction.
+
+Theorem 5.4 (Stanley, Zanello [16]). Let P be an r-differential poset with rank sizes
+p0 , p1 , . . .. Then, there exists a constant a such that
+                                                    √
+                                       pn >> na e2 rn .
+
+    While Theorem 5.4 does not explicitly show any growth for consecutive ranks, it does
+indicate that the long term pattern is for rank sizes of differential posets to increase.
+Clearly, there are basic questions about the rank sizes of differential posets that remain
+to be solved.
+    The main objective of this section will be to prove an upper bound on the rank sizes
+of r-differential. In fact, the bound is tight. Here is a restatement of Theorem 1.2.
+
+    Theorem 1.2. Let p0 , p1 , . . . be the rank sizes of an r-differential poset. Then,
+pi ≤ Fr (i).
+
+    Theorem 1.2 was conjectured by Stanley in [17] (see Problem 6 in Section 6).
+    The proof is a relatively straightforward induction proof and will use three lemmas.
+    The first lemma shows that if P is a differential poset, then P[n,n+1] is “connected”
+in a particular sense. To state the lemma one needs to define a graph for each rank of
+a differential poset.
+    Let Gn (P ) be the graph whose vertices are Pn and where there is an edge between two
+vertices u,v if and only if u and v both cover a common element of Pn−1 . Equivalently,
+there is an edge between two vertices u, v if and only if u and v are both covered by a
+common element of Pn+1 . Say that a vertex of Gn (P ) covers (is covered by) a vertex
+of Gn−1 (P ) (Gn+1 (P )) if the corresponding element of Pn covers (is covered by) the
+corresponding element of Pn−1 (Pn+1 ).
+    The first lemma can now be stated.
+
+Lemma 5.5. For n ≥ 0 and P an r-differential poset, Gn (P ) is connected.
+
+Proof. Let k be the smallest rank for which Gk (P ) is not connected. Let C be a
+connected component of Gk (P ). Let A be the set of vertices of Gk−1 (P ) covered by the
+vertices in C.
+                                                                                                            39
+    Suppose A does not contain all of the vertices of Pk−1 . Since Gk−1 (P ) is connected
+there exists an edge {v, w} in Gk−1 (P ) with v ∈ A and w ∈
+                                                          / A. Let x ∈ C cover v and
+y∈
+ / C cover w. Since v and w are adjacent in Gk−1 (P ) there exists z ∈ Pk that covers
+both x and y. So, there are edges {x, z} and {z, y} in Gk (P ). Since x ∈ C and y ∈
+                                                                                  / C,
+this contradicts C being a component of Gk (P ).
+    So, A = Pk−1 . Let s ∈ Pk − C. Let a ∈ Pk−1 be covered by s. So a ∈ A and there
+exists t ∈ C that covers a. But, that means {s, t} is an edge in Gk (P ). Since t ∈ C and
+s∈
+ / C this contradicts C being a component of Gk (P ).
+    So, no minimum k exists with Gk (P ) disconnected. Thus, Gn (P ) is connected for
+all n.
+
+
+
+    The second lemma is an identity involving r-Fibonacci numbers.
+
+Lemma 5.6. For n ≥ 1,
+                                                Ãn−2           !
+                                                 X
+                             Fn−1 (r) = 1 + r           Fk (r)       − Fn−2 (r)
+                                                 k=0
+
+
+Proof. The proof will be by induction. The case when n = 1 is clear (take Fk (r) = 0
+for k < 0).
+                                  ³P             ´
+                                      n−2
+    Suppose Fn−1 (r) = 1 + r          k=0 Fk (r)      − Fn−2 (r). Then,
+
+         Ãn−1        !                        Ãn−1         !         Ã         Ãn−2        !            !
+          X                                    X                                X
+1+r             Fk (r)   − Fn−1 (r) = 1 + r           Fk (r)     −       1+r          Fk (r)   − Fn−2 (r)
+          k=0                                   k=0                             k=0
+
+                                   = rFn−1 (r) + Fn−2 (r)
+                                   = Fn (r)
+
+
+
+
+    The third lemma is an identity involving two different ways of looking at rank sizes
+of a differential poset. Here dup (v) is used to denote the number of elements that cover
+v and ddown (v) is used to denote the number of elements that are covered by v.
+                                                                                     40
+Lemma 5.7. For P an r-differential poset and n ≥ 0,
+
+                                   X                    n
+                                                        X
+                                          dup (v) = r         pk
+                                  v∈Pn                  k=0
+
+
+Proof. The proof is by induction. For the n = 0 case one gets r = r since every
+r-differential poset has p0 = 1 and p1 = r. Suppose v∈Pn dup (v) = r nk=0 pk . Then,
+                                                   P                P
+
+                       X                   X
+                              dup (v) =            (ddown (v) + r)
+                     v∈Pn+1               v∈Pn+1
+                                                                  
+                                               X
+                                     =                ddown (v) + rpn+1
+                                              v∈Pn+1
+                                          Ã                  !
+                                              X
+                                     =             dup (v)       + rpn+1
+                                            v∈Pn
+                                           Ã n          !
+                                            X
+                                     =r            pk       + rpn+1
+                                             k=0
+                                           n+1
+                                           X
+                                     =r          pk
+                                           k=0
+
+
+
+
+   Now the proof of Theorem 1.2 can be completed.
+
+Proof. The proof is by induction on n. The base case holds since p0 = F0 = 1. Since
+Gn (P ) is connected by Lemma 5.5 one can order the vertices of Gn−1 (P ) such that each
+vertex is adjacent to a previous vertex in the ordering. Thus, the number of vertices
+at rank n in P is at most the sum of dup (v) for v ∈ Pn−1 minus (pn−1 − 1) since each
+                                                                                         41
+vertex added after the first vertex has one of its covers already accounted for. So,
+                                               
+                               X
+                   pn ≤               dup (v) − (pn−1 − 1)
+                              v∈Pn−1
+                           Ãn−1         !
+                            X
+                      =r           pk       − pn−1 + 1                                 (5.1)
+                               k=0
+                                 n−2
+                                 X
+                      =1+r              pk + (r − 1)pn−1
+                                 k=0
+                                 Ãn−2            !
+                                  X
+                      ≤1+r               Fk (r)        + (r − 1)Fn−1 (r)               (5.2)
+                                   k=0
+                          Ã        Ãn−2             !             !
+                                     X
+                      =    1+r                Fk (r)    − Fn−1 (r)    + rFn−1 (r)      (5.3)
+                                        k=0
+
+                      = Fn−2 (r) + rFn−1 (r)
+                      = Fn (r)
+
+   Note that (5.1) is true due to Lemma 5.7, (5.3) is true due to Lemma 5.6, and (5.2)
+holds by induction.
+
+
+
+
+5.1    Further directions and conjectures
+There are many remaining questions about rank sizes of differential posets.
+   One of the more prominent conjectures is the following which was originally asked
+by Stanley in [17] (see Problem 6).
+
+Conjecture 5.8. Y r has the smallest nth rank of any r-differential poset for all n.
+
+   The data from Chapter 4 show that Conjecture 5.8 is true for r = 1 up to n = 9.
+Interestingly, there exist 1-differential posets with the same rank size as Y for some n.
+However, all of the known examples of such 1-differential posets eventually are forced
+to have larger rank sizes than Y .
+   Even more appears to be true from the upper bound perspective than Theorem 1.2.
+The following conjecture was introduced by Stanley in [17] (see Problem 6).
+                                                                                         42
+Conjecture 5.9. Let P be an r-differential poset with rank sizes p0 , p1 , . . .. Then,
+pn ≤ rpn−1 + pn−2 .
+
+    Note that Conjecture 5.9 asks if the r-Fibonacci recurrence relation holds as an
+upper bound for arbitrary rank sizes.
+    The data from Chapter 4 show that Conjecture 5.9 is true for r = 1 up to n = 9.
+Also, it appears that there is a unique extension of a partial 1-differential poset P[0,n−1]
+that satisfies the inequality of Conjecture 5.9 at equality. This unique extension can be
+achieved via reflection-extension.
+    Another conjecture is that the possible rank sizes for partial 1-differential posets up
+to rank n actually form the lattice points of a polytope.
+
+Conjecture 5.10. Let n ≥ 0. Let A be defined as
+
+            A = {(p0 , p1 , . . . , pn ) | P is a 1-differential poset up to rank n}.
+
+Then, there exists a polytope Qn such that A = Qn ∩ Zn .
+
+    The author believes Conjecture 5.10 is new. However, similar ideas have been studied
+in [16].
+    The data from Chapter 4 show that Conjecture 5.10 is true for 0 ≤ n ≤ 9. On
+the other hand, the analog of Conjecture 5.10 is not true for 4-differential posets (see
+Theorem 2.7 in [16]).
+    If Conjecture 5.10 is true, then it would be interesting to determine the facets of
+Qn . Based on computer experiments it appears that one facet is given by the inequality
+pn ≤ pn−1 + pn−2 . Note that this is the inequality from Conjecture 5.9.
+Chapter 6
+
+Differential Lattices
+
+The two known “natural” examples of 1-differential posets are both lattices. One might
+wonder if there are any more 1-differential lattices. A proof that there are no additional
+1-differential lattices is the content of this chapter. This proposition has a bit of history.
+The question of if there were any additional 1-differential lattices was first asked by
+Stanley [17]. In 2008, Yulan Qing showed in a master’s thesis that there were no
+additional 1-differential lattices [14]. However, the proof is not correct. This chapter
+patches the holes in the proof. The same general outline of Qing’s proof is followed, but
+the proof in this chapter provides the needed details.
+   The outline of the proof is as follows:
+
+   1. Show that if P is a 1-differential lattice that is isomorphic to Young’s lattice up
+      to rank n, then P is isomorphic to Young’s lattice up to rank n + 1.
+
+   2. Show that if P is a 1-differential lattice that is isomorphic to Z(1) up to rank n,
+      then P is isomorphic to Z(1) up to rank n + 1.
+
+   The difficulty in the proof is the latter part. In that part, the ramifications of the
+lattice property end up being traced all the way up to rank n + 6. With an example,
+it can also be shown that one does need to consider the effects of being a 1-differential
+lattice up to at least that rank. So, there is not much hope that a similar proof could
+be simplified by looking at fewer ranks, as in the proof of Qing which only considers
+implications up to rank n + 4.
+
+
+                                             43
+                                                                                                  44
+    The following lemma from Qing’s thesis [14] will be helpful throughout the proof
+and is the only fact used in the proof that distinguishes 1-differential lattices from
+1-differential posets.
+
+Lemma 6.1 (Qing [14]). If P is a 1-differential lattice with a crown of {x, y, z} covering
+{a, b, c}, then there cannot be a crown covering {x, y, z}.
+
+Proof. Suppose that P is a 1-differential poset such that {x, y, z} is a crown covering
+{a, b, c} and such that {p, q, r} is a crown covering {x, y, z}. The induced subposet of
+P is shown in Figure 6.1.
+                                           p      q     r
+
+                                          x      y      z
+
+                                           a      b     c
+
+                            Figure 6.1: A crown covering a crown
+
+
+    Suppose k was the greatest lower bound of p and z. Since b < p and b < z one gets
+that b ≤ k. Since c < p and c < z one gets that c ≤ k. Since k ≤ z this forces k = z.
+But, z 6< p. This is a contradiction which completes the proof.
+
+
+6.1     Young’s lattice case
+In this section it will be shown that a 1-differential lattice that is isomorphic to Young’s
+lattice up to rank 5 will be isomorphic to Young’s lattice for all ranks. The proof is
+pretty straightforward, but some technicalities are needed before beginning the proof.
+    Let λ = (λ1 , λ2 , . . . , λk , 0, 0, . . .) be a partition of n. For 1 ≤ t ≤ k + 1 define
+λt+ = (µ1 , µ2 , . . . , µk+1 , 0, 0, . . .) where µt = λt + 1 (taking λk+1 = 0) and µi = λi for
+i 6= t. For 1 ≤ t ≤ k define λt− = (µ1 , µ2 , . . . , µk , 0, 0, . . .) where µt = λt − 1 and µi = λi
+for i 6= t. Note that λt+ and λt− need not be partitions.
+    The following is a lemma that will be needed for the proof.
+
+Lemma 6.2. Let n ≥ 4 and λ = (λ1 , λ2 , . . . , λk , 0, 0, . . .) be a partition of n such that
+λa+ , λb+ , and λc+ are all partitions with a, b, c distinct. Then, there exists {x, y} ⊂
+                                                                                      45
+{a, b, c} with x 6= y and 1 ≤ z ≤ k with z ∈
+                                           / {x, y} such that the following are all
+partitions:
+
+   • λx+,z−
+
+   • λy+,z−
+
+   • λx+,y+,z−
+
+Proof. Note that λ must have at least 2 distinct part sizes in order for λa+ , λb+ , and
+λc+ to be partitions. Without loss of generality assume that a < b < c. Consider the
+following cases:
+
+   1. λ has at least 3 distinct part sizes.
+
+      Let x = a and y = b. Choose z so that λz > λz+1 and λz = λc .
+
+   2. λ has 2 distinct part sizes and λi − λi+1 > 1 for some i.
+
+      Let x = i + 1, y = k + 1, and z = i.
+
+   3. λ has 2 distinct part sizes and λk ≥ 2.
+
+      Let x = 1, y = k + 1, and z = k.
+
+   4. λ has 2 distinct part sizes, λ1 = 2, and λk = 1.
+
+      If λ2 = 2, then let x = 1, y = k + 1, and z be such that λz = 2, λz+1 = 1.
+
+      If λ2 = 1, then let x = 1, y = 2, and z = k. Note that k ≥ 3 because n ≥ 4.
+
+Note that if λ has 2 distinct part sizes, then |{t | λt+ is a partition}| = 3. This means
+that since λx+ is a partition and λy+ is a partition one gets that {x, y} ⊂ {a, b, c} for
+all the cases that did not set x and y explicitly to one of {a, b, c}.
+
+   The main result of this section can now be introduced.
+
+Proposition 6.3. If P is a 1-differential lattice that is isomorphic to Young’s lattice
+up to rank n for n ≥ 5, then P is isomorphic to Young’s lattice (at all ranks).
+                                                                                         46
+Proof. Let λ ∈ Pn−1 be covered by at least 3 vertices in Pn . Let a, b, c be distinct
+and such that λa+ , λb+ , and λc+ are partitions. Without loss of generality let {a, b} =
+{x, y} as in Lemma 6.2. Also, let z be as in Lemma 6.2. By Lemma 6.2, λa+,z− ,
+λb+,z− , and λa+,b+,z− are all partitions. Now, {λa+ , λb+ , λa+,b+,z− } is a crown covering
+{λ, λa+,z− , λb+,z− }. Thus, since P is a 1-differential lattice Lemma 6.1 shows that there
+exists w ∈ Pn+1 that covers {λa+ , λb+ , λa+,b+,z− }. The following is a picture of the
+situation.
+                                            w
+
+                            λc+    λb+     λa+     λa+,b+,z−
+
+                                     λ    λb+,z−     λa+,z−
+
+
+   Note that λc+ and λa+,b+,z− are not adjacent in Young’s lattice. So, w cannot cover
+λc+ . This means there must be a crown covering {λa+ , λb+ , λc+ } by Proposition 3.4.
+   Note that it has been shown that any set of 3 vertices of Pn that are mutually adja-
+cent and cover a common element must be covered by a crown. Thus, P is isomorphic
+to Young’s lattice up to rank n + 1. By induction, P is isomorphic to Young’s lattice
+(at all ranks).
+
+
+6.2     Fibonacci lattice case
+It now needs to be shown that if P is a 1-differential lattice that is isomorphic to Z(1)
+up to rank 5, then P will be isomorphic to Z(1). The proof for this case will be more
+complicated than the proof for the Young’s lattice case. Before beginning with the
+Fibonacci lattice part of the proof, a review of notations is included.
+
+
+6.2.1    Notations
+
+Let P be a poset. The up degree of a vertex x is the number of elements that cover x.
+The up degree of x will be denoted dup (x). Similarly, the down degree of a vertex y is
+the number of elements covered by y. The down degree of y will be denoted ddown (y).
+Note that in an r-differential poset dup (x) = ddown (x) + r.
+                                                                                         47
+   The set of elements that cover a vertex x is called the up set of x. The up set of x
+will be denoted as U(x). Similarly, the set of elements covered by y is called the down
+set of y and will be denoted as D(y). Note that |U(x)| = dup (x) and |D(y)| = ddown (y).
+   Further if A is a set of vertices of a poset P , then denote the set of all elements of P
+that cover at least one element of A as U(A). Similarly, denote the set of all elements
+of P that are covered by at least one element of A as D(A).
+
+
+6.2.2     Proof of Fibonacci lattice case
+
+A lemma that restricts the possibilities to consider will be helpful. This lemma appears
+in [14], however the proof there is incorrect.
+
+Lemma 6.4. Let P be a 1-differential poset such that P[0,n] ∼
+                                                            = Z(1)[0,n] . Let x ∈ Pn−1
+with dup (x) ≥ 4. Then, there exists w ∈ Pn+1 such that D(w) = U(x).
+
+Proof. The proof will be somewhat complicated/technical. The basic outline is as fol-
+lows.
+
+   • For each element, y, covering x find a sufficient number of distinct elements that
+        cover y and do not cover any other element that covers x.
+
+   • That will leave y with only 2 remaining up edges.
+
+   • Eliminate the possibility that y uses both remaining up edges to cover other ele-
+        ments that cover x.
+
+   • Setting w to be the unique element that covers y and all the other elements that
+        cover x completes the proof.
+
+   Let φ : P[0,n] → Z(1)[0,n] be an isomorphism. Let {y1 , y2 , . . . , yp } = U(x). Choose
+1 ≤ m ≤ p. Let {x, x1 , x2 , x3 , . . . , xt−1 } = D(ym ). So far the picture looks like the
+following.
+
+                                       ym    y 1 · · · yp
+                                  x1 · · · xt−1   x
+
+
+   For 1 ≤ i ≤ t − 1 choose ai ∈ U(xi ) \ {ym }. The new picture looks like the following.
+                                                                                             48
+                               a1 · · · at−1         ym    y1 · · · y p
+                                   x1 · · · xt−1                   x
+
+
+   Suppose there exists c ∈ D(ai ) ∩ D(aj ) for 1 ≤ i < j ≤ t − 1. Then, {ai , aj , ym } is a
+crown covering {c, xi , xj }. The crown can be seen by the dashed lines in the following
+picture.
+
+                                 ai        aj         ym        y 1 · · · yp
+                           c          xi        xj                     x
+
+
+   But, this means {φ(ai ), φ(aj ), φ(ym )} is a crown covering {φ(c), φ(xi ), φ(xj )} in Z(1).
+This is a contradiction since Z(1) has no crowns by Prop 3.7. So, such a c could not
+have been chosen. This means that D(ai ) ∩ D(aj ) = ∅ for i 6= j.
+   Since D(ai ) ∩ D(aj ) = ∅ for any choices of ai and aj , it must be that U(U(xi ) \
+{ym }) ∩ U(U(xj ) \ {ym }) = ∅ for i 6= j by the definition of differential posets.
+   For 1 ≤ i ≤ t − 1 let ei (m) ∈ U(U(xi ) \ {ym }) ∩ U(ym ). Note that such ei (m)’s exist
+(and are actually uniquely determined) since P is differential and xi ∈ D(U(xi )\{y)m})∩
+D(ym ). Also note that ei (m) 6= ej (m) for i 6= j since U(U(xi )\{ym })∩U(U(xj )\{ym }) =
+∅. The picture with the ei (m)’s added looks like the following.
+
+                                 e1 (m) · · ·        et−1 (m)
+                               a1 · · · at−1         ym    y1 · · · y p
+                                   x1 · · · xt−1                   x
+
+
+   Suppose ei (m) ∈ U(yk ) for some 1 ≤ i ≤ t − 1 and 1 ≤ k ≤ p with k 6= m. Then,
+ai , ym , and yk are mutually adjacent in P because ei (m) covers all 3 of them. Since
+xi ∈ D(ai ) ∩ D(ym ) and x ∈ D(ym ) ∩ D(yk ), one element cannot be covered by all 3 of
+ai , ym , and yk . This means that there exists v ∈ D(ai ) ∩ D(yk ). But, this means that
+{ai , ym , yk } is a crown covering {x, xi , v} in P . The picture looks like the following with
+the crown edges dashed.
+                                                                                         49
+                                         ei (m)
+
+                                    ai          ym        y1
+
+                                          xi      v       x
+
+
+   So, {φ(ai ), φ(ym ), φ(yk )} is a crown covering {φ(x), φ(xi ), φ(v)} in Z(1). This is a
+contradiction since Z(1) has no crowns. Thus, U(U(xi ) \ {ym }) ∩ U(ym ) ∩ U(yk ) = ∅ for
+any m, k, and i with m 6= k, 1 ≤ i ≤ t − 1, and 1 ≤ m, k ≤ p. Thus, ei (m) ∈
+                                                                           / U(yk ) for
+1 ≤ i ≤ t − 1 and 1 ≤ k ≤ p with k 6= m.
+   Let C(m) = U(ym ) ∩ pi=1,i6=m U(yi ). Since ei (m) 6= ej (m) for 1 ≤ i < j ≤ t − 1,
+                         S
+
+ei (m) ∈
+       / U(yh ) for h 6= m, and |U(yh )| = t + 1 for 1 ≤ h ≤ p; it must be that |C(h)| ≤ 2
+for 1 ≤ h ≤ p. |C(h)| 6= 0 since x ∈ D(yh ) ∩ D(yi ) for any i 6= h and P is a differential
+poset.
+   If |C(h)| = 1 for any 1 ≤ h ≤ p, then letting w ∈ C(h) satisfies the requirements of
+the lemma. So, it needs to be shown that |C(h)| 6= 2 for at least one h.
+   Suppose |C(h)| = 2 for all h with 1 ≤ h ≤ p.                   For j ∈ {1, 2} let C(m) =
+{z1 (m), z2 (m)}. Let Aj = {i 6= m | yi ∈ D(zj (m))}. Note that Aj 6= ∅ since |C(m)| = 2
+and that A1 ∩ A2 = ∅ by Prop 3.4. So, {A1 , A2 } is a partition of [p] \ {m}. Since
+p = |D(x)| ≥ 4 one can assume that |A1 | ≥ 2 without loss of generality. Let h1 , h2 ∈ A1
+with h1 6= h2 . Let h3 ∈ A2 . The picture now looks like the following.
+
+                                       z1 (m)         z2 (m)
+
+                                  ym     y h1     y h2     yh 3
+
+                                                      x
+
+
+   Since x ∈ D(yh1 ) ∩ D(yh3 ), U(yh1 ) ∩ U(yh3 ) 6= ∅ (since P is differential). Let z ∈
+U(yh1 ) ∩ U(yh3 ). The picture now looks like the following.
+                                                                                             50
+                                      z1 (m)      z2 (m)      z
+
+                                 ym      y h1   yh 2   y h3
+
+                                                 x
+
+
+   It has been shown that C(h3 ) = {z2 (m), z}. Also, x ∈ D(yh2 ) ∩ D(yh3 ) so U(yh2 ) ∩
+U(yh3 ) 6= ∅. Thus, one of z2 (m) or z is in U(yh2 ). If z2 (m) ∈ U(yh2 ), then {z1 (m), z2 (m)} ⊂
+U(ym )∩U(yh2 ). This is a contradiction since by Prop 3.4 |U(ym )∩U(yh2 )| ≤ 1. Similarly,
+if z ∈ U(yh2 ) we have that {z1 (m), z} ⊂ U(yr1 ) ∩ U(yh2 ) which is also a contradiction.
+Thus, it is not true that |C(h)| = 2 for all 1 ≤ h ≤ p.
+   Now pick any h with |C(h)| = 1 (actually what has been shown implies that |C(h)| =
+1 for all h). Choosing w ∈ C(h) completes the proof.
+
+   Note that the previous lemma does not require that P be a 1-differential lattice,
+only that P is a 1-differential poset.
+   The impact of the previous lemma is as follows. Suppose one is looking for a 1-
+differential lattice, P , that starts out being isomorphic to Z(1) and that eventually
+differs from Z(1). The lemma states that the first difference between P and Z(1) must
+be “caused” by a vertex of up degree exactly 3. It is now time to begin the (tedious)
+proof of this section’s main proposition.
+
+Proposition 6.5. Let P be a 1-differential lattice such that P[0,n] ∼
+                                                                    = Z(1)[0,n] for n ≥ 5.
+        ∼
+Then, P = Z(1).
+
+Proof. Suppose the proposition is false. By Lemma 6.4 this means that there must exist
+x ∈ Pn−1 with |U(x)| = 3 such that there is a crown covering U(x). Let φ : P[0,n] →
+Z(1)[0,n] be an isomorphism. As an element in Z(1) of rank at least 4 and with up
+degree exactly 3, φ(x) must be one of the following:
+
+   1. 212s with s ∈ {1, 2}∗
+
+   2. 22
+
+   3. 211s with s ∈ {1, 2}∗
+                                                                                          51
+   The structure of the proof is as follows. For each of the 3 possibilities for φ(x) build
+up part of P up to some rank k. Then, try to extend P[0,k] to P[0,k+1] . To do this let
+Γi , Λi ⊂ Pi where one can think of Γi as the part of Pi where one knows most (or even
+all) of the structure of P |Γ and ∆i as another part of Pi for which one does not know
+as much about the total structure of P |∆ . But, it turns out that one will know enough
+of the structure of P |∆ to be able to complete the proof. Generally, one finds Γi , Γi+1 ,
+∆i , and ∆i+1 and then determines what one needs to make Γi+2 and ∆i+2 . The general
+tool used to do this is looking at the hypergraphs G and G′ of P restricted to Γ ∪ ∆.
+Eventually, one can show that one cannot continue these extensions. But, one will need
+to go up several levels from n − 1 to reach this contradiction.
+   Suppose φ(x) = 212s with s ∈ {1, 2}∗ . For simplicity identify φ(y) ∈ P with y.
+So, instead of writing φ(x), we will just write x for the element of P that maps to
+x ∈ Z(1). Let Γn−1 = {122s, 212s, 1112s}, Γn = {1122s, 222s, 1212s, 2112s, 11112s},
+∆n−1 = {221s}, and ∆n = {1221s, 2121s, 2211s}. The bipartite graph of P[n−1,n]
+restricted to Γ ∪ ∆ is:
+
+
+
+
+   1221s     2121s     2211s     1122s    222s     1212s     2112s             11112s
+
+                          221s            122s      212s              1112s
+
+
+   Note that the dashed edge may not be the only edge(s) of P[n−1,n] that goes from Γ
+to P \ Γ. Depending on what s is 222s could cover additional elements of Pn−1 . Call
+these additional elements x1 , . . . , xk . Let Xi = {v ∈ Pn | v covers xi , v 6= 222s}. Note
+that Xi ∩ Xj = ∅ for i 6= j by Proposition 3.4. Similarly, Proposition 3.4 shows that
+Xi ∩ ∆n = ∅.
+   From the graph of P[n−1,n] restricted to Γ ∪ ∆ the adjacency relationships of Γn ∪ ∆n
+can be deduced. Thus, the skeleton of the hypergraph Gn of P restricted to Γ ∪ ∆ is:
+                                                                                              52
+
+                              2121s                 2211s
+
+                                          1221s     1212s
+
+                     1122s                222s                2112s          11112s
+
+   Since it has been assumed that there is a crown covering {222s, 1212s, 2112s} we get
+that {222s, 1212s}, {222s, 2112s}, and {1212s, 2112s} are maximal edges of Gn (P |Γ∪∆ ).
+Since dup (222s) = dGn (222s) = 4 + k and {222s, 1122s} is a maximal edge,
+{222s, 2121s, 2211s, 1221s} and Xi for 1 ≤ i ≤ k must also be maximal edges. Thus,
+the hypergraph Gn (P |Γ∪∆ ) is:
+                              2121s                 2211s
+
+                                          1221s     1212s
+
+                     1122s                222s                2112s          11112s
+
+   Let Γn+1 = {Ai | 1 ≤ i ≤ 7} and ∆n+1 = {A8 }. So, the bipartite graph of P[n,n+1]
+restricted to Γ ∪ ∆ is:
+
+
+
+
+           A8                A1            A2     A3           A4       A5      A6    A7
+
+2211s     2121s      1221s        1122s           222s        1212s    2112s         11112s
+
+   From the graph of P[n,n+1] restricted to Γ ∪ ∆ one can deduce the adjacency rela-
+tionships of Γn+1 ∪ ∆n+1 . Thus, the skeleton of the hypergraph Gn+1 (P |Γ∪∆ ) is:
+                      A3           A5
+                      A8
+  A1            A2           A4            A6            A7
+
+   Lemma 6.1 tells us that {A3 , A4 , A5 } must be a maximal edge. Then, since dup (A4 ) =
+3, we get that {A2 , A4 , A8 } is also a maximal face. So, Gn+1 (P |Γ∪∆ ) is:
+                                                                                            53
+
+                     A3              A5
+                     A8
+  A1          A2           A4             A6             A7
+
+   Let Γn+2 = {Bi | 1 ≤ i ≤ 11} and ∆n+2 = {B12, B13, B14}. So, the bipartite graph
+of P[n+1,n+2] restricted to Γ ∪ ∆ is:
+
+
+
+ B12 B13 B14         B1    B2        B3   B4   B5        B6   B7   B8        B9   B10 B11
+
+
+
+
+        A8           A1              A2        A3        A4        A5        A6       A7
+
+   From the graph of P[n+1,n+2] restricted to Γ ∪ ∆ one can deduce the adjacency
+relationships of Γn+2 ∪ ∆n+2 . Thus, the skeleton of Gn+2 (P |Γ∪∆ ) is:
+
+
+
+
+                                          B3                  B7
+       B13
+         B12                    B4                  B6                  B9
+       B14
+  B1             B2                B5                 B8               B10 B11
+   Lemma 6.1 shows that the following are subsets of edges of the hypergraph:
+
+   • {B6, B8, B9}
+
+   • {B3, B4, B5}
+
+   • {B3, B5, B6}
+
+Since {B3, B4, B5} and {B3, B5, B6} are subsets of edges one gets that {B3, B4, B5, B6}
+are all contained in one edge. So, an updated picture of the hypergraph is:
+                                                                                          54
+
+
+
+
+                                          B3                  B7
+        B13
+          B12                   B4                  B6                  B9
+        B14
+  B1               B2               B5               B8               B10 B11
+   Since dup (B5) = 4 one gets that {B5, B12, B13, B14} is contained within an edge
+of the hypergraph. Now, B3 must belong to edges of {B3, B4, B5, B6}, {B3, B12},
+{B3, B13}, and {B3, B14}. But, dup (B3) = 3 and one cannot combine any of the faces
+containing B3. So, one gets a contradiction and x cannot be 212s.
+   Suppose x = 22. One gets the following bipartite graph of P[4,5] :
+
+
+
+
+   11111                 2111     1211     1121      221       122       212              1112
+
+                1111              211                121           22               112
+
+
+   Let Γ4 = {22, 121, 112}, Γ5 = {1121, 221, 122, 212, 1112}, ∆4 = {211}, and ∆5 =
+{2111, 1211}.
+   Recall that we are assuming that the covers of x are covered by a crown. So, we get
+the following partial bipartite graph of P[5,6] restricted to Γ ∪ ∆:
+
+
+
+
+                                     A3        A4        A5
+
+       2111       1211     1121      221       122       212                 1112
+
+
+   Adjacencies between edges and dup (221) = 4 forces the following bipartite graph of
+P[5,6] restricted to Γ ∪ ∆:
+                                                                                     55
+
+
+
+
+                A8        A1      A2 A3        A4        A5        A6           A7
+
+       2111      1211      1121      221       122       212            1112
+
+
+   Let Γ6 = {Ai | 1 ≤ 1 ≤ 7} and ∆6 = {A8}. From the graph of P[5,6] restricted to
+Γ ∪ ∆ one can deduce the adjacency relationships amongst the vertices of Γ5 ∪ ∆5 . This
+gives rise to the skeleton of G6 (P |Γ∪∆ ):
+
+
+
+                               A3                   A5
+
+
+                               A8
+  A1                 A2                   A4                  A6           A7
+
+   Lemma 6.1 forces {A3, A4, A5} to be covered by a single vertex. This gives the
+following updated picture of the hypergraph G6 :
+
+
+
+                               A3                   A5
+
+
+                               A8
+  A1                 A2                   A4                  A6           A7
+
+   Since dup (A4) = 3, {A2, A4, A8} must be a subset of an edge of the hypergraph. So,
+one gets an updated picture of:
+                                                                                            56
+
+
+
+                                   A3                  A5
+
+
+                                   A8
+  A1                     A2                  A4                  A6                  A7
+
+   So, one gets a partial bipartite graph of P[6,7] of:
+
+
+
+ B12 B13       B1             B2   B4   B3        B5   B6   B7        B8   B9         B10 B11
+
+
+
+
+       A8           A1             A2             A3   A4             A5        A6        A7
+
+   Let Γ7 = {Bi | 1 ≤ i ≤ 11} and ∆7 = {B12, B13}. From the graph of P[6,7]
+restricted to Γ ∪ ∆ one can deduce the adjacency relationships amongst the vertices of
+Γ7 ∪ ∆7 . This gives rise to the skeleton of G7 (P |Γ∪∆ ):
+
+
+
+                                             B3                  B7
+
+              B13                  B4                  B6                  B9
+              B12
+  B1                     B2                  B5                  B8              B10      B11
+
+   Lemma 6.1 forces {B6, B8, B9} to be covered by a single vertex. Also, {B3, B4, B5}
+and {B3, B5, B6} are both covered by a single vertex. Thus, by Lemma 6.1 one gets
+that {B3, B4, B5, B6} are covered by a single vertex. This updates G7 as follows:
+                                                                                                                57
+
+
+
+                                                 B3                   B7
+
+                 B13                  B4                   B6                         B9
+                 B12
+  B1                        B2                   B5                   B8                       B10          B11
+
+   Now, dup (B5) = 4. This forces {B5, B12, B13} to be contained in an edge of the
+hypergraph. So, the final picture of G7 (P |Γ∪∆ ) is:
+
+
+
+                                                 B3                   B7
+
+                 B13                  B4                   B6                         B9
+                 B12
+  B1                        B2                   B5                   B8                       B10          B11
+
+   So, one gets a partial bipartite graph of P[7,8] of:
+
+
+
+  C16   C17    C18   C1     C2        C3 C4 C6 C5          C7 C8 C9    C10      C11    C12   C13   C14    C15
+
+
+
+
+  B12    B13           B1        B2   B3    B4        B5   B6    B7        B8         B9     B10    B11
+
+
+
+   Let Γ8 = {Ci | 1 ≤ i ≤ 15} and ∆8 = {C16, C17, C18}. From the graph of P[7,8]
+restricted to Γ ∪ ∆ one can deduce the adjacency relationships amongst the vertices of
+Γ8 ∪ ∆8 . This gives rise to the skeleton of G8 (P |Γ∪∆ ):
+                                                                                    58
+
+                          C6                     C10        C11
+
+
+                                                 C8
+                    C3               C5                C9         C13
+
+
+
+  C1          C2                                            C12         C14   C15
+
+                               C16         C17
+
+
+
+                                     C18
+
+                    C4                                 C7
+
+
+
+   Crowns in P[7,8] give rise to the following subsets such that each subset must be
+contained in an edge of G8 :
+
+   • {C3, C4, C5}
+
+   • {C5, C7, C9}
+
+   • {C9, C10, C11}
+
+   • {C9, C12, C13}
+
+   So, one gets an updated G8 of:
+                          C6                     C10        C11
+
+
+                                                 C8
+                    C3               C5                C9         C13
+
+
+
+  C1          C2                                            C12         C14   C15
+
+                               C16         C17
+
+
+
+                                     C18
+
+                    C4                                 C7
+
+
+
+   One gets the following additional subsets of edges by considering up degrees:
+
+   • dup (C8) = 2 forces {C5, C8, C10} to be contained in an edge.
+
+   • dup (C4) = 3 forces {C4, C7, C18} to be contained in an edge.
+
+   • dup (C5) = 5 forces {C5, C16, C17, C18} to be contained in an edge.
+                                                                                                                                            59
+   So, G8 (P |Γ∪∆ ) is:
+                                         C6                     C10                   C11
+
+
+                                                                C8
+                              C3                    C5                     C9                C13
+
+
+
+  C1                C2                                                                C12           C14                 C15
+
+                                              C16         C17
+
+
+
+                                                    C18
+
+                              C4                                           C7
+
+
+
+   So, one get a partial bipartite graph of P[8,9] of:
+
+
+
+  D22   D1   D2    D3    D4   D5    D6    D7    D8        D9    D10   D11       D12    D13   D14   D15    D16    D17    D18     D19    D20       D21
+
+
+
+
+  C16    C17      C18    C1        C2    C3         C4         C5     C6        C7      C8    C9    C10    C11        C12     C13     C14    C15
+
+
+
+   Let Γ9 = {Di | 1 ≤ i ≤ 21} and ∆9 = {D22}. From the graph of P[8,9] restricted
+to Γ ∪ ∆ one can deduce the adjacency relationships amongst the vertices of Γ9 ∪ ∆9 .
+This gives rise to the skeleton of G9 (P |Γ∪∆ ):
+
+
+                                                                D22                   D14           D16
+
+
+
+                                         D7         D8                     D9                D13                D18
+                                                                                 D11
+
+
+                              D3                    D4                 D10                   D15                D19
+
+
+
+  D1                D2                   D5                     D6                    D12           D17                 D20                  D21
+
+
+
+
+   Crowns in P[8,9] force the following subsets to be contained in edges of G9 :
+
+   • {D3, D4, D5}
+
+   • {D4, D6, D10}
+                                                                                    60
+   • {D4, D7, D8}
+
+   • {D10, D12, D15}
+
+   • {D15, D17, D19}
+
+   • {D13, D15, D18}
+
+   • {D9, D10, D11, D13}
+
+   So, one gets an updated G9 of:
+
+
+                                     D22          D14          D16
+
+
+
+                          D7    D8         D9           D13          D18
+                                                 D11
+
+
+                    D3          D4         D10          D15          D19
+
+
+
+  D1          D2          D5          D6          D12          D17         D20      D21
+
+
+
+
+   Note that D22 is adjacent to each of the vertices in {D4, D6, D10}. If one takes
+{D4, D6, D10, D22} as a subset of an edge of G9 , then up degree considerations give:
+
+   • dup (D8) = 3 forces {D8, D9, D22} to be contained in an edge.
+
+   In this case the updated picture of the hypergraph G9 is:
+
+
+                                D8         D9     D14          D16
+
+
+
+                          D7                            D13          D18
+                                                 D11
+
+                                     D22
+                    D3          D4         D10          D15          D19
+
+
+
+  D1          D2          D5          D6          D12          D17         D20      D21
+
+
+
+
+   If one does not take {D4, D6, D10, D22} to be contained in an edge of G9 , then up
+degree considerations give:
+                                                                                                                                                      61
+     • dup (D4) = 4 forces {D4, D9, D22} to be contained in an edge.
+
+     • dup (D10) = 4 forces {D8, D10, D22} to be contained in an edge.
+
+     In this case G9 is updated to:
+
+
+                                                     D8                    D9         D14                    D16
+
+
+
+                                           D7                                                    D13                    D18
+                                                                                  D11
+
+                                                               D22
+                                 D3                  D4                    D10                   D15                    D19
+
+
+
+    D1                 D2                  D5                  D6                     D12                    D17                   D20                   D21
+
+
+
+
+     Note that in either case if one removes D22 from G9 one gets the following picture:
+
+
+                                                                                      D14                    D16
+
+
+
+                                           D7        D8                    D9                    D13                    D18
+                                                                                  D11
+
+
+                                 D3                  D4                    D10                   D15                    D19
+
+
+
+    D1                 D2                  D5                  D6                     D12                    D17                   D20                   D21
+
+
+
+
+     So, one gets a partial bipartite graph of P[9,10] of (here 5 means E5):
+
+
+
+1    2   3    4    5    6   7    8    9    10   11   12   13   14    15    16    17   18    19   20    21    22    23   24    25   26    27    28   29   30
+
+
+
+
+    D1   D2   D3       D4   D5   D6       D7    D8   D9    D10       D11    D12       D13    D14       D15    D16       D17    D18       D19    D20      D21
+
+
+
+     Let Γ10 = {i | 1 ≤ i ≤ 30} and ∆10 = ∅. From the graph of P[9,10] restricted to Γ ∪ ∆
+one can deduce the adjacency relationships amongst the vertices of Γ10 . This gives rise
+to the skeleton of G10 (P |Γ∪∆ ):
+                                                                                          62
+
+                     8                  14   16    20          23          25
+
+
+                                                               22
+              6           11   10            15          19                26
+                                                   17
+                               12
+              3            4            9          18          24          28
+
+
+
+   1    2            5              7        13          21          27              29    30
+
+
+
+   Crowns in P[9,10] force the following subsets to be contained in edges of G10 :
+
+   • {E3, E4, E5}
+
+   • {E4, E6, E11}
+
+   • {E4, E7, E9}
+
+   • {E9, E13, E18}
+
+   • {E15, E16, E20}
+
+   • {E18, E21, E24}
+
+   • {E22, E23, E25}
+
+   • {E22, E24, E26}
+
+   • {E24, E27, E28}
+
+   So, one gets an updated G10 of:
+                     8                  14   16    20          23          25
+
+
+                                                               22
+              6           11   10            15          19                26
+                                                   17
+                               12
+              3            4            9          18          24          28
+
+
+
+   1    2            5              7        13          21          27              29    30
+
+
+
+   Consider E22. Since dup (E22) = 4, E22 can be in at most 4 edges of G10 . The
+subsets of edges {E22, E23, E25} and {E22, E24, E26} cannot be extended. {E20, E22}
+                                                                                         63
+must also be an edge since there is no way it can be extended. Thus, in order for E22
+to be in only 4 edges {E15, E18, E19, E22} must be an edge of G10 .
+   Since E15 and E19 are both contained in an edge that does not contain E17 this
+means one also gets edges {E15, E17} and {E17, E19}.
+   {E15, E23} cannot be extended and is thus also an edge.
+   {E15, E16, E20} also cannot be extended and is thus also an edge.
+   This gives us 4 edges containing E15:
+
+   • {E15, E18, E19, E22}
+
+   • {E15, E17}
+
+   • {E15, E23}
+
+   • {E15, E16, E20}
+
+   Since dup (E15) = 5, this means that one must get an edge of {E9, E10, E12, E14, E15}.
+But, E9 and E14 are not adjacent. So, one (finally) gets a contradiction.
+   So, one now knows that x could not have been 22.
+   Note: there is an example of a 1-differential poset that is isomorphic to the Fibonacci
+lattice up to rank 5 and is a meet semi-lattice up to rank 10. Thus, the number of ranks
+we considered is the minimal number necessary.
+   One can now continue with the third and last possibility for x from the beginning
+of the proof. Suppose x = 211s with s ∈ {1, 2}∗ . Let Γn−1 = {121s, 211s, 1111s}, Γn =
+{1121s, 221s, 1211s, 2111s, 11111s}, ∆n−1 = {22s}, and ∆n = {122s, 212s}. The bipar-
+tite graph of P[n−1,n] restricted to Γ ∪ ∆ is:
+
+
+
+
+       122s      212s              1121s     221s   1211s     2111s             11111s
+
+                           22s               121s    211s              1111s
+
+
+   Note that depending on s, 22s could be covered by additional vertices of Pn . But,
+Lemma 6.4 states that one will get the following partial bipartite graph of P[n,n+1]
+regardless of any additional vertices above 22s:
+                                                                                         64
+
+
+
+
+                A8      A1       A2 A3          A4     A5        A6                 A7
+
+       122s      212s    1121s      221s    1211s     2111s              11111s
+
+
+   Now, one has an isomorphic situation as to when x = 22. Thus, one knows that P
+cannot extend to be a 1-differential lattice.
+
+
+
+   Note that the proof of Theorem 1.3 is now complete.
+
+
+6.3     Further directions and conjectures
+Theorem 1.3 states that there are only two 1-differential lattices, but what about r-
+differential lattices for r ≥ 2? Stanley has conjectured that the only r-differential
+lattices are direct products of Z(k) and Y (all such direct products will be r-differential
+lattices for some r). However, it is not clear how to extend the above proof in a simple
+manner. It is likely that even for 2-differential lattices the complicated part of the proof
+would become even more complicated (though, perhaps not). There would at least be
+more cases to consider. It should further be mentioned that the data from Chapter 4
+is not nearly as good for 2-differential posets when compared to 1-differential posets.
+This opens the possibility that there’s some not too complicated 2-differential poset
+that doesn’t fit in Stanley’s conjecture.
+   There are also other results that could be studied that generalize the idea of lattice
+for differential posets. Conjecture 6.6 is one step in that direction.
+
+Conjecture 6.6. An r-differential poset P is a lattice if and only if P does not contain
+a crown covering a crown.
+
+   Note that Conjecture 6.6 is true for r = 1. Also, Lemma 6.1 shows that a differential
+lattice does not have a crown covering a crown.
+                                                                                      65
+   Further, one could consider differential posets that have a crown covering a crown,
+but not a crown covering the upper of those two crowns.
+
+Question 6.7. What are all the 1-differential posets that do not contain the following
+induced subposet?
+
+
+
+
+   If there were not too many 1-differential posets in the answer to Question 6.7, then
+perhaps such posets would be good candidates for which to try and find a “nice” combi-
+natorial definition. The rationale here is that the only known 1-differential posets with
+a “nice” combinatorial definition are Young’s lattice and the Fibonacci 1-differential
+poset.
+Chapter 7
+
+Variations on Differential Posets
+
+There are several generalizations of differential posets that have been studied. This
+chapter will discuss several of these generalizations. This chapter will also include a
+proof of Theorem 1.4 which states that any quantized r-differential poset has the r-
+differential Fibonacci poset as its underlying differential poset.
+
+
+7.1       Sequential differential posets
+Sequential differential posets were introduced by Stanley in [18]. The idea is to allow
+different r’s at each rank. The following is a definition that closely resembles Definition
+3.1
+
+Definition 7.1. Let ~r = (r0 , r1 , r2 , . . .) be a sequence of integers.
+      A sequential ~r-differential poset is a graded, locally finite poset with a 0̂ such that:
+
+   1. If x is at rank n and covers k elements, then x is covered by k + rn elements.
+
+   2. If x 6= y are vertices that both cover exactly t vertices, then there are exactly t
+        vertices that cover both x and y.
+
+      There are many more well known examples of sequential differential posets than
+differential posets. One example of a sequential differential poset is any finite chain
+such as that in Figure 7.1a. For a chain of n elements one has r0 = 1, rn−1 = −1, and
+ri = 0 for all other i. Another example of a sequential differential poset is a boolean
+
+
+                                                66
+                                                                                           67
+algebra such as that in Figure 7.1b. For a boolean algebra of rank n one has that
+rk = n − 2k for 0 ≤ k ≤ n and ri = 0 for i > n.
+
+
+
+
+                 (a) Chain of length 4          (b) Boolean algebra of rank 4
+
+
+
+               Figure 7.1: Two examples of sequential differential posets
+
+
+
+7.2     Dual graded graphs
+Dual graded graphs were introduced by Fomin [5] concurrently with Stanley’s introduc-
+tion of differential posets. Basically, a dual graded graph has one vertex set and two
+different posets. One poset defines up maps. The other poset defines down maps. A
+differential poset is when the two posets coincide. A definition is as follows:
+
+Definition 7.2. A dual graded graph is a pair of graded, locally finite posets (P 1 , P 2 )
+such that
+
+  1. If x covers k elements in P 2 , then x is covered by k + r elements in P 1 .
+
+  2. If x 6= y are vertices that both cover exactly t vertices in P 2 , then there are exactly
+      t vertices that cover both x and y in P 1 .
+
+   In Definition 7.2 P 1 defines the up maps and P 2 determines down maps. If P 1 ∼
+                                                                                  = P 2,
+then P 1 is an r-differential poset. Note that the r in the term “dual graded graph” is
+suppressed.
+   Similarly to differential posets, there is an alternative definition of dual graded
+graphs involving up and down maps. Let V be the common set of vertices of posets P 1
+                                                                                        68
+and P 2 . Let CV be the complex vector space with basis V . Define linear maps U , D,
+and I on CV by letting U , D, and I act on x ∈ V as:
+
+                                                 X
+                                         Ux =             y,
+                                                y⋗P 1 x
+                                                 X
+                                         Dx =             y,
+                                                y⋖P 2 x
+
+                                            Ix = x.
+
+Definition 7.3. Let P 1 and P 2 be graded, locally finite posets with 0̂ and vertex set V .
+Let r be a positive integer. Let CV be the complex vector space with basis V . The triple
+(P 1 , P 2 , r) is is called a dual graded graph if:
+
+                                       DU − U D = rI.
+
+    Let P be an r-differential poset. Then, (P, P, r) is a dual graded graph. So, the set
+of dual graded graphs contains all differential posets. There are also examples of dual
+graded graphs that are not differential posets.
+
+
+7.3     Signed differential posets
+Signed differential posets were introduced by Lam in [8]. The idea is to replace the
+relation DU − U D = rI in Definition 3.10 with the relation DU + U D = rI. In order to
+make this work, one also needs to give a sign (either + or -) to each covering relation.
+Lam achieves this by putting a sign on each vertex and determining the signs on the
+cover relations from the vertex signs. The following is a slight generalization of Lam’s
+definition.
+
+Definition 7.4. Let r be a positive integer. Let P be a locally finite poset with a 0̂.
+Let V (P ) be the vector space with basis P . Let s : P × P → {+1, −1}. Define linear
+operators U , D, and I on V (P ) by:
+                                             X
+                                      Ux =         s(x, y)y,
+                                             y⋗x
+                                                                                        69
+                                           X
+                                    Dx =         s(y, x)y,
+                                           y⋖x
+
+                                          Ix = x.
+
+   (P, s) is called a signed r-differential poset if:
+
+                                     DU + U D = rI.
+
+   Definition 7.4 differs from Lam’s definition in [8] in two ways. First, Lam fixed r = 1
+and Definition 7.4 allows for arbitrary r. Second, Lam’s definition actually requires that
+s(x, y) = s(y, x). But, Lam also puts signs on the vertices of P . The vertex weights are
+then used in the definition of U to mimic Definition 7.4.
+   One example of a signed 1-differential poset is a signed version of Young’s lattice.
+In fact, Lam gives two different ways to create a signed version of Young’s lattice in [8].
+
+
+7.4     Quantized dual graded graphs
+In [9] Lam introduced quantized dual graded graphs. The definition of quantized dual
+graded graphs differs from dual graded graphs by replacing the equation DU −U D = rI
+with DU − qU D = rI where q is a parameter.
+
+Definition 7.5. A quantized dual graded graph is a quadruple (P1 , P2 , w1 , w2 ) where P1
+and P2 are graded, locally finite posets that both have vertex set V and wi : V ×V → N[q]
+such that DU − qU D = rI. Here,
+                                         X
+                                 Ux =            w1 (x, y) · y,
+                                        y⋗P1 x
+
+
+and
+                                         X
+                                 Dx =            w2 (y, x) · y.
+                                        y⋖P2 x
+
+   There are many examples of quantized dual graded graphs. For instance, Lam gives
+examples on plane binary trees, Young tableaux, and permutations.
+                                                                                          70
+7.5      Quantized differential posets
+Lam also introduced quantized differential posets in [9]. A quantized differential poset
+is a quantized dual graded graph where the two posets in question are isomorphic.
+
+Definition 7.6. A quantized r-differential poset is a triple: (P, m, m′ ) where P is an
+r-differential poset, m : E(P ) → R+ [q α | α ∈ R], and m′ : E(P ) → R+ [q α | α ∈ R]; such
+that DU − qU D = rI and m(x, y)|q=1 = m′ (x, y)|q=1 = 1 for all (x, y) ∈ E(P ). Here
+E(P ) denotes the edges of the Hasse diagram of P ,
+                                            X
+                                 Ux =                  m(x, y) · y,
+                                        y covering x
+
+
+and
+                                           X
+                                Dx =                    m′ (y, x) · y.
+                                       y covered by x
+
+   Definition 7.6 is more general than the definition of quantized differential posets in
+[9]. Lam only allows m(x, y) and m′ (x, y) to be q i for i a non-negative integer.
+   Note that if one sets q = 1 in (P, m, m′ ), then one gets the r-differential poset P . So
+in the definition of a quantized r-differential poset, it could have been assumed that P
+was locally finite, graded, with a 0̂, and with finitely many elements of each rank (see
+Theorem 2.2 in [17]). Further, setting q = −1 in (P, m, m′ ) gives a signed differential
+poset.
+   Much of the terminology for differential posets extends to quantized differential
+posets. Given a quantized differential poset (P, m, m′ ), (P[0,n] , m, m′ ) will be called a
+partial quantized differential poset up to rank n (or sometimes just a quantized differential
+poset up to rank n).
+   In [9] Lam showed that any partial quantized r-differential poset (P, m, m′ ) up to
+rank n can be extended to a partial quantized r-differential poset up to rank n + 1 by
+q-reflection extension as follows:
+
+   • Pn+1 = {x′ | x ∈ Pn−1 } ∪ {y1 , . . . , yr | y ∈ Pn }
+
+   • for y ∈ Pn , m(y, x′ ) = qm′ (x, y) and m′ (y, x′ ) = m(x, y)
+
+   • for y ∈ Pn , m(y, yi ) = m′ (y, yi ) = 1
+                                                                                            71
+   Note that q-reflection extension mimics reflection-extension for (non-quantized) dif-
+ferential posets except that m and m′ need to be updated for the quantized case. There
+are other such definitions that could also have been chosen. For instance, it could have
+been chosen to have m(y, x′ ) = m′ (x, y) and m′ (y, x′ ) = qm(x, y). However, one needs
+to fix one choice in order to precisely define quantized Fibonacci r-differential posets.
+   Starting with P0 = {0}, P1 = {x1 , . . . , xr }, m(0, xi ) = m′ (0, xi ) = 1 one can build a
+quantized r-differential poset by continually applying q-reflection extensions. Call the
+resulting poset the quantized Fibonacci r-differential poset. Note that the quantized
+Fibonacci r-differential poset is a quantization of the Fibonacci r-differential poset (set-
+ting q = 1 gives a Fibonacci r-differential poset with up-weight and down-weight 1 on
+each edge).
+   A somewhat surprising result is that there is not nearly as much flexibility in building
+quantized r-differential posets as might be hoped.
+
+   Theorem 1.4. If (P, m, m′ ) is a quantized r-differential poset, then P is isomorphic
+to the Fibonacci r-differential poset.
+
+   Theorem 1.4 solves a problem of Lam. Actually, Lam asked for a quantization of
+Young’s lattice allowing weights of edges in N[q 1/2 , q −1/2 ]. Theorem 1.4 shows that no
+quantization exists in a more general setting. And further, Theorem 1.4 shows that no
+quantization exists for any r-differential poset other than the Fibonacci r-differential
+poset even in this more general setting.
+   A natural question arising from Theorem 1.4 is if the definition of quantized r-
+differential posets is “wrong” in some sense. More precisely
+
+Question 7.7. Is there an alternative definition for a q version of a differential poset
+with the following properties:
+
+   • Evaluating at q = 1 gives a differential poset.
+
+   • Evaluating at q = −1 gives a signed differential poset.
+
+   • Every differential poset arises by evaluating at q = 1 for some q version of a
+      differential poset.
+                                                                                        72
+    • The commutator relationship DU − U D = rI is replaced with something similar
+      involving adding some q’s.
+
+    The remainder of this section is devoted to a proof of Theorem 1.4. One of the
+key ideas of the proof is to replace the edge weights m and m′ with their product on
+each edge. This greatly reduces the possibilities to be considered and turns out to have
+enough power to complete the proof.
+    In order to use the idea of looking at the product of edge weights, the following
+definition of n(x, y) will be used for the remainder of this section. Given a quantized
+r-differential poset (P, m, m′ ), let n(x, y) = m(x, y) · m′ (x, y).
+    The following lemma will be useful for the proof of Theorem 1.4.
+
+Lemma 7.8. Suppose that (P, m, m′ ) is a quantized r-differential poset with w, x, y, z ∈
+P , w covered by x and y, and z covering x and y. Then, n(x, z)n(y, z) = q 2 n(w, x)n(w, y).
+
+Proof. The picture looks like this:
+                                               z
+                                          x         y
+                                               w
+
+    The y coordinate of DU x is: m(x, z) · m′ (y, z). Note that there are no other vertices
+in P that cover both x and y by Proposition 3.4. The y coordinate of (qU D + rI)x
+is: q · m′ (x, z) · m(y, z). Since DU = qU D + rI this means that m(x, z) · m′ (y, z) =
+q · m′ (x, z) · m(y, z).
+    The x coordinate of DU y is: m′ (x, z) · m(y, z). The x coordinate of (qU D + rI)y
+is: q · m(x, z) · m′ (y, z). Since DU = qU D + rI this means that m′ (x, z) · m(y, z) =
+q · m(x, z) · m′ (y, z).
+    Multiplying the corresponding sides of the given equations gives: n(x, z) · n(y, z) =
+q 2 · n(w, x) · n(w, y).
+
+    The next lemma shows that even though m(x, y) and m′ (x, y) can take values in
+R+ [q α | α ∈ R] it turns out that n(x, y) can only take values in R+ [q].
+
+Lemma 7.9. Let (P, m, m′ ) be a quantized r-differential poset. Then, n(x, y) ∈ R+ [q]
+for all x, y ∈ V (P ).
+                                                                                            73
+Proof. Suppose not. Choose x, y ∈ V (P ) with n(x, y) 6∈ R+ [q] and with ρ(x) minimal
+(here ρ(x) is the rank of x in P ).
+    Now, the x coordinate of DU x is:
+                                          X
+                                                     n(x, z).
+                                      z covering x
+
+
+The x coordinate of (qU D + rI)x is:
+                                              X
+                                         r+         n(w, x).
+                                              w⋖x
+
+                            P                        P                         P
+    Since DU = qU D+rI,        z⋗x n(x, z) = r+                        w⋖x n(w, x) ∈
+                                                       w⋖x n(w, x). Note that r+
+ +                                                                         / R+ [q].
+R [q] since x has minimum rank amongst all elements of P such that n(a, b) ∈
+                         / R+ [q] since n(x, y) ∈
+                                                / R+ [q] and all coefficients are nonnega-
+           P
+However,     z⋗x n(x, z) ∈
+tive.
+    This is a contradiction since the right-hand-side is in R+ [q], but the left-hand-side
+is not in R+ [q]. So, no such x exists which completes the proof.
+
+
+
+    The next step in the proof of Theorem 1.4 is to create an order on R+ [q]. Define an
+order ≻ on R+ [q] by f (q) ≻ g(q) if and only if the leading coefficient of f (q) − g(q) is
+positive. An equivalent formulation is as follows.
+   Let f (q) = ki=0 ai q i and g(q) = ki=0 bi q i . Then, f ≻ g if and only if there exists
+               P                     P
+
+t with ai = bi for i < t and at > bt .
+    Some technical lemmas for dealing with ≻ will be useful.
+
+Lemma 7.10. Let f, g, h ∈ R+ [q]. If g ≻ h, then f g ≻ f h.
+
+Proof. Note that f g −f h = f (g −h). So, the leading coefficient of f g −f h is the product
+of the leading coefficient of f and the leading coefficient of g − h. Since f ∈ R+ [q], the
+leading coefficient of f is positive. Since g ≻ h, the leading coefficient of g −h is positive.
+Thus, the leading coefficient of f g − gh is positive.
+
+Lemma 7.11. Let f1 , f2 , g1 , g2 ∈ R+ [q]. If f1 ≻ g1 and f2 ≻ g2 , then f1 f2 ≻ g1 g2 .
+                                                                                            74
+Proof. By Lemma 7.10 f1 f2 ≻ f1 g2 . Using Lemma 7.10 again gives f1 g2 ≻ g1 g2 . Thus,
+f1 f2 ≻ g1 g2 .
+
+Lemma 7.12. Let f1 , f2 , g1 , g2 ∈ R+ [q]. If f1 ≻ g1 and f2 º g2 , then f1 + f2 ≻ g1 + g2 .
+
+Proof. (f1 + f2 ) − (g1 + g2 ) = (f1 − g1 ) + (f2 − g2 ). The result follows since the leading
+coefficient of f1 − g1 is nonnegative and the leading coefficient of f2 − g2 is positive.
+
+Lemma 7.13. If f ∈ R+ [q] and f (1) = 1, then f º 1.
+
+Proof. If f is constant, then f = 1. If f is not constant, then the leading coefficient of
+f − 1 is the leading coefficient of f .
+
+    With the technical lemmas out of the way, it is now time to discuss the general idea
+behind the proof of Theorem 1.4. The main idea is to assume that (P[0,n] , m, m′ ) is a
+partial quantized r-differential poset up to rank n. Then, one can show that P must,
+in fact, be isomorphic to Z(r).
+    The following are lemmas for the proof of Theorem 1.4.
+
+Lemma 7.14. Let (P, m, m′ ) be a quantized r-differential poset such that P[0,n] ∼
+                                                                                 =
+Z(r)[0,n] . Let w ∈ Pn−1 , x ∈ Pn , y ∈ Pn , and z ∈ Pn+1 with x and y covering w
+and z covering both x and y. Suppose that n(y, z) ≻ qn(w, y). Then, there exists
+y ′ , w′ , z ′ ∈ P such that:
+
+    • z ′ covers both y and y ′ .
+
+    • w′ is covered by both y and y ′ .
+
+    • n(y ′ , z ′ ) ≻ qn(w′ , y ′ ).
+
+Proof. For clarity, here is a picture of the situation:
+                                              z
+                                          x       y
+                                              w
+
+    Let w, a1 , . . . , ak be the complete set of elements of Pn−1 that are covered by y. An
+updated picture is as follows:
+                                                                                               75
+                                    z
+                               x            y
+                                    w           a1     ···        ai     ···       ak
+
+    For 1 ≤ i ≤ k, choose ci ∈ Pn with ai covered by ci and ai 6= y (such ai can be
+chosen since each element, except for 0̂, of an r-differential poset is covered by at least
+2 elements). The picture now looks like:
+                              z
+                         x         y                   c1        ···     ci       ···     ck
+                              w        a1       ···      ai       ···        ak
+
+    Note that for i 6= j, ci 6= cj by Proposition 3.4 since y covers both ai and aj .
+    For 1 ≤ i ≤ k choose bi ∈ Pn+1 with bi covering y and bi covering ci . Such an
+element exists since P is a differential poset and since y and ci both cover ai . The
+picture now looks like:
+
+                              z        b1       ···         bi    ···        bk
+                         x         y                   c1        ···     ci       ···     ck
+                              w        a1       ···      ai       ···        ak
+
+Claim 7.15. If i 6= j, then bi 6= bj .
+
+(Proof of Claim 7.15). Suppose not. Let b = bi = bj . Than, b covers all of y, ci , and
+cj . So, y, ci , and cj are mutually adjacent. ai is covered by both ci and y. aj is covered
+by both y and cj . Since ai 6= aj this means we mush get a crown covered by {y, ci , cj }
+in P[n−1,n] . But, P[0,n] ∼
+                          = Z(r)[0,n] and Z(r) has no crowns.
+
+    (Continuing the proof of Lemma 7.14) For k + 1 ≤ i ≤ k + r choose bi ∈ Pn+1 such
+that bi covers y and bi 6∈ {z, b1 , . . . , bi−1 }.
+    Now, the y coordinate of DU y is:
+
+                                            k
+                                            X                          k+r
+                                                                       X
+                               n(y, z) +             n(y, bi ) +             n(y, bi ).
+                                            i=1                    i=k+1
+                                                                                                             76
+    The y coordinate of (qU D + rI)y is:
+
+                                                   k
+                                                   X
+                                     qn(w, y) +          qn(ai , y) + r.
+                                                   i=1
+
+
+    Since n(y, bi )|q=1 = 1, we get that n(y, bi ) º 1. Also, by assumption n(y, z) ≻
+qn(w, y).
+    Suppose that n(y, bj ) º qn(aj , y) for all j with 1 ≤ j ≤ k. Then,
+
+
+                      Pk                    Pk+r
+DU y = n(y, z) +          i=1 n(y, bi ) +    i=k+1 n(y, bi )
+                                                                              k
+                                                                              X                   k+r
+                                                                                                  X
+                                 ≻                               qn(w, y) +         n(y, bi ) +           n(y, bi )
+                                                                              i=1                 i=k+1
+                                                                              k
+                                                                              X
+                                 º                               qn(w, y) +         n(y, bi ) + r
+                                                                              i=1
+                                                                              Xk
+                                 º                               qn(w, y) +         qn(ai , y) + r
+                                                                              i=1
+                          = (qU D + rI)y
+
+    Since DU = qU D + rI this is a contradiction. So for some j with 1 ≤ j ≤ k,
+qn(aj , y) ≻ n(y, bj ).
+    Taking z ′ = bj , y ′ = cj , and w′ = aj completes the proof.
+
+
+
+Lemma 7.16. Let (P, m, m′ ) be a quantized r-differential poset such that P[0,n] ∼
+                                                                                 =
+Z(r)[0,n] . Let w ∈ Pn−1 , x ∈ Pn , y ∈ Pn , and z ∈ Pn+1 with x and y covering w
+and z covering both x and y. Then, n(x, z) = qn(w, x) and n(y, z) = qn(w, y).
+
+Proof. Suppose the lemma is false. By Lemma 7.8, n(x, z)·n(y, z) = q 2 ·n(w, x)·n(w, y).
+Thus, it can be assumed without loss of generality that n(y, z) ≻ qn(w, y). Note that
+x, y, w, and z satisfy the conditions of Lemma 7.14. The goal is to build sequences
+{xi }, {yi }, {zi }, and {wi } such that for any i, xi , yi , zi , and wi satisfy the conditions
+of Lemma 7.14.
+                                                                                                      77
+   Let x0 = x, y0 = y, w0 = w, z0 = z. Given xi , yi , zi , and wi satisfying the conditions
+of Lemma 7.14 let xi+1 = yi , yi+1 = y ′ , zi+1 = z ′ , and wi+1 = w′ . Here, y ′ , z ′ , and w′
+are the outputs of Lemma 7.14 given the inputs xi , yi , zi , and wi .
+   Since Pn is finite, the xi ’s must eventually repeat. But, this means there is a cycle
+in the bipartite graph formed by P[n−1,n] . This is a contradiction by Proposition 3.7
+since P[0,n] ∼
+             = Z(r)[0,n] .
+
+
+
+   All of the necessary lemmas for the proof of Theorem 1.4 are now in place.
+
+Proof of Theorem 1.4. Let {z1 , z2 , z3 } be a crown over {x1 , x2 , x3 } of minimal rank in
+P . Without loss of generality, let z1 and z2 cover x1 . Let w be the element of P that
+is covered by all of x1 , x2 , x3 . Let {w, a1 , . . . , ak } be the complete set of elements of
+P that are covered by x1 . Choose b1 , . . . , bk analogously to as chosen in the proof of
+Lemma 7.14 with x1 taking the role of y and z1 taking the role of z. Let bk+1 , . . . , bk+r−1
+be the remaining elements of P that cover x1 .
+   A picture is as follows:
+
+                                   b1        ···         bi · · ·       bk      z1 z2 z3
+                      c1     ···        ci         ···         ck              x1 x2 x3
+                                    a1        ···          ai         ···    ak        w
+
+   Now, the x1 coordinate of DU x1 is:
+
+                                                     k
+                                                     X                         k+r−1
+                                                                                X
+                   n(x1 , z1 ) + n(x1 , z2 ) +                 n(x1 , bi ) +           n(x1 , bi ).
+                                                         i=1                   i=k+1
+
+
+The x1 coordinate of (qU D + rI)x1 is:
+
+                                                                k
+                                                                X
+                                   r + qn(w, x1 ) +                   qn(ai , x1 ).
+                                                                i=1
+
+
+   Lemma 7.16 shows that n(x1 , z1 ) = n(x1 , z2 ) = qn(w, x1 ) and n(x1 , bi ) = qn(ai , x1 )
+                                                                                     78
+for 1 ≤ i ≤ k. Thus, from DU = qU D + rI:
+
+                                           k+r−1
+                                            X
+                            qn(w, x1 ) +           n(x1 , bi ) = r.
+                                           i=k+1
+
+
+   But, the degree of the left-hand-side is at least 1 and the degree of the right-hand-
+side is 0. This is a contradiction. So, P must not have any crowns which means that
+P ∼= Z(r).
+References
+
+ [1] Claude Berge. Hypergraphs : combinatorics of finite sets. Elsevier Science Pub.
+    Co, 1989.
+
+ [2] Béla Bollobás. Modern graph theory, volume 184 of Graduate Texts in Mathematics.
+    Springer-Verlag, New York, 1998.
+
+ [3] Naiomi Cameron and Kendra Killpatrick. Domino Fibonacci tableaux. Electron.
+    J. Combin., 13(1):Research Paper 45, 29 pp. (electronic), 2006.
+
+ [4] Naiomi Cameron and Kendra Killpatrick. k-ribbon Fibonacci tableaux. Discrete
+    Math., 309(4):721–740, 2009.
+
+ [5] Sergey Fomin. Duality of graded graphs. J. Algebraic Combin., 3(4):357–404, 1994.
+
+ [6] Jason Fulman. Commutation relations and Markov chains. Probab. Theory Related
+    Fields, 144(1-2):99–136, 2009.
+
+ [7] M. E. Hoffman. Updown Categories. ArXiv Mathematics e-prints, February 2004.
+
+ [8] Thomas Lam. Signed differential posets and sign-imbalance. J. Combin. Theory
+    Ser. A, 115(3):466–484, 2008.
+
+ [9] Thomas Lam. Quantized dual graded graphs. Electron. J. Combin., 17(1):Research
+    Paper 88, 11, 2010.
+
+[10] Joel Lewis. On differential posets. Harvard University Senior Thesis, 2007.
+
+[11] A. Miller. Differential posets have strict rank growth: a conjecture of Stanley.
+    ArXiv e-prints, February 2012.
+
+                                          79
+                                                                                    80
+[12] Alexander Miller and Victor Reiner. Differential posets and Smith normal forms.
+    Order, 26(3):197–228, 2009.
+
+[13] Soichi Okada. Algebras associated to the Young-Fibonacci lattice. Trans. Amer.
+    Math. Soc., 346(2):549–568, 1994.
+
+[14] Yulan Qing. Differential posets and dual graded graphs. Master’s thesis, Mas-
+    sachusetts Institute of Technology, 2008.
+
+[15] Thomas Walton Roby, V. Applications and extensions of Fomin’s generalization of
+    the Robinson-Schensted correspondence to differential posets. ProQuest LLC, Ann
+    Arbor, MI, 1991. Thesis (Ph.D.)–Massachusetts Institute of Technology.
+
+[16] R. P. Stanley and F. Zanello. On the rank function of a differential poset. ArXiv
+    e-prints, November 2011.
+
+[17] Richard P. Stanley. Differential posets. J. Amer. Math. Soc., 1(4):919–961, 1988.
+
+[18] Richard P. Stanley. Variations on differential posets. In Invariant theory and
+    tableaux (Minneapolis, MN, 1988), volume 19 of IMA Vol. Math. Appl., pages 145–
+    165. Springer, New York, 1990.
+
+[19] Richard P. Stanley. Enumerative combinatorics. Volume 1, volume 49 of Cambridge
+    Studies in Advanced Mathematics. Cambridge University Press, Cambridge, second
+    edition, 2012.
+
+[20] John R. Stembridge.          posets,   a package for maple.         Available at
+    http://www.math.lsa.umich.edu/ jrs/maple.html.
+

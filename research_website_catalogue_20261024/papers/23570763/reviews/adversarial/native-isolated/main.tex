@@ -1,0 +1,265 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\WLP}{\mathrm{WLP}}
+\newcommand{\SLP}{\mathrm{SLP}}
+\title{A symmetric ideal chain with periodic Lefschetz\\ behavior in positive characteristic}
+\author{Alec Kriebel\\ \small Independent researcher\\
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID 0009-0001-9320-500X}}
+\date{22 October 2026 \quad Version 1.0.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+For each fixed field of positive characteristic $p$, we construct a single
+compatible symmetric chain of Artinian ideals in two rows of variables, generated
+from width three. At every width $n\geq2$, its quotient has both the weak and
+strong Lefschetz properties exactly when $p\nmid n-1$. The quadratic quotient is
+free over the integers, and a determinant for an arbitrary linear form gives the
+classification over every field extension. In particular, over the fixed infinite
+field $\mathbb F_p(t)$ both properties hold and fail at unbounded widths.
+This gives a negative answer to the unrestricted eventual dichotomies posed by
+R\"omer. It gives no negative answer in characteristic zero or in one row.
+\end{abstract}
+
+\section{The question and the chain}
+Let $K$ be a fixed field and $c\geq1$ a fixed integer. In the setup of
+R\"omer~\cite[pp.~1594--1596]{romer},
+$R_n=K[X_{i,j}:1\leq i\leq c,\ 1\leq j\leq n]$ and $\Sym(n)$
+permutes the column index $j$, simultaneously in every row.
+A symmetric invariant chain consists of ideals $I_n\subseteq R_n$ such that
+each $I_n$ is $\Sym(n)$-invariant and
+\[
+ \Sym(n+1)\bigl(I_nR_{n+1}\bigr)\subseteq I_{n+1}.
+\]
+For Artinian homogeneous quotients, R\"omer asks whether each Lefschetz property
+eventually always holds or eventually always fails. His contribution fixes an
+arbitrary field and $c\geq1$; the separate one-row monomial working-group
+discussion on pp.~1544--1545 is a special setting.
+
+We use the usual definitions: a standard graded Artinian $K$-algebra $A$
+has $\WLP$ if some $\ell\in A_1$ makes every map
+$\ell:A_d\to A_{d+1}$ have rank $\min(\dim A_d,\dim A_{d+1})$.
+It has $\SLP$ if one $\ell$ has this property for every
+$\ell^s:A_d\to A_{d+s}$, $d\geq0$, $s\geq1$.
+These are existence definitions over $K$. Over an infinite field the
+successful forms form a nonempty Zariski-open set, when they exist,
+since the conditions are finitely many nonvanishing minors. Standard
+background on characteristic-sensitive Lefschetz maps is given in~\cite{cook}.
+Our successful forms are already defined over the prime field.
+
+Set $c=2$, write the variables as $x_1,\ldots,x_n,y_1,\ldots,y_n$, and put
+$\mathcal m_n=(x_1,\ldots,x_n,y_1,\ldots,y_n)$. Define
+\begin{equation}\label{ideal}
+ I_n=\mathcal m_n^3+
+ (x_ix_j:i\ne j)+(y_iy_j:1\leq i,j\leq n)+(x_iy_i:1\leq i\leq n)
+ +(x_iy_j-x_iy_k:i,j,k\text{ pairwise distinct}).
+\end{equation}
+Here $\mathcal m_n^3$ means all cubic monomials; in particular repeated
+variables are included. Empty index conditions contribute no generators.
+All generators are homogeneous and the entire list is preserved by column
+permutations. Every injection of column sets carries a displayed generator
+to one of the same type. This proves the chain compatibility, including
+the first two widths. Since $\mathcal m_n^3\subseteq I_n$, every
+$A_n=R_n/I_n$ is Artinian.
+
+For $n\geq3$, in fact $I_n=(\Sym(n)I_3)R_n$.
+One containment follows from compatibility. For the other, every generator
+in~\eqref{ideal} involves at most three columns, including every cubic.
+Inject those distinct supporting columns into $\{1,2,3\}$, without changing
+which indices repeat. The resulting generator belongs to $I_3$.
+The reverse injection on its support extends to a permutation of
+$\{1,\ldots,n\}$ by bijecting the unused columns. Thus the generator is a
+translate of one at width three. This uses one fixed finite list of orbits,
+rather than choosing ideals according to the residue of $n$.
+
+\begin{theorem}\label{main}
+For every field $K$, the quotients in~\eqref{ideal} satisfy the following.
+At $n=1$, $A_1$ has $\SLP$. At every $n\geq2$, its Hilbert function is
+$(1,2n,2n)$, and
+\[
+ A_n\text{ has }\SLP
+ \ \Longleftrightarrow\ A_n\text{ has }\WLP
+ \ \Longleftrightarrow\ (n-1)\,1_K\ne0.
+\]
+These assertions remain true after any field extension.
+\end{theorem}
+
+\section{Integral basis and multiplication}
+The same generators define an ideal over $\mathbb Z$. In degree two first
+remove the monomials $x_ix_j$ with $i\ne j$, all $y_iy_j$, and all $x_iy_i$.
+For $n\geq2$ the remaining symbols are $x_i^2$ and $x_iy_j$ with $j\ne i$.
+Fix $i$ and choose one reference $j_i\ne i$. The $n-1$ symbols
+$x_iy_j$ have relations precisely all their pairwise differences.
+The reference symbol, together with
+$x_iy_j-x_iy_{j_i}$ for $j\ne i,j_i$, is a unimodular basis for their
+free abelian group. The relation subgroup is exactly the span of those
+differences. Its quotient is therefore free of rank one, with basis
+$v_i=[x_iy_{j_i}]$. When $n=2$ there is one symbol and no differences.
+Different $i$ do not interact, and the $u_i=[x_i^2]$ are unrestricted.
+Consequently the degree-two quotient has the integral basis
+\[
+ u_1,\ldots,u_n,v_1,\ldots,v_n.
+\]
+There are no linear relations, and all degrees at least three vanish.
+Thus the whole integral graded quotient is torsion free and has graded
+ranks $(1,2n,2n)$. Base change to any field gives exactly the claimed
+basis and Hilbert function, without a characteristic-dependent dimension
+argument.
+
+Fix $n\geq2$ and an arbitrary linear form
+\[
+ \ell=\sum_{i=1}^n(a_ix_i+b_iy_i),\qquad B=\sum_{i=1}^n b_i.
+\]
+The defining products give, for each $j$,
+\[
+ \ell x_j=a_j u_j+(B-b_j)v_j,\qquad
+ \ell y_j=\sum_{i\ne j}a_i v_i.
+\]
+Let $D(a)$ and $D(B-b)$ denote the corresponding diagonal matrices and
+let $J$ be the $n$ by $n$ all-ones matrix. In the ordered source basis
+$(x_1,\ldots,x_n,y_1,\ldots,y_n)$ and target basis $(u_1,\ldots,u_n,
+v_1,\ldots,v_n)$, multiplication is
+\begin{equation}\label{matrix}
+ M_\ell=
+ \begin{pmatrix}
+ D(a)&0\\
+ D(B-b)&D(a)(J-I)
+ \end{pmatrix},\qquad
+ \det M_\ell=(-1)^{n-1}(n-1)\prod_{i=1}^n a_i^2 .
+\end{equation}
+For completeness, expand $\det(J-I)$ multilinearly in its columns over
+$\mathbb Z$. Choosing no column from $J$ contributes $(-1)^n$.
+Choosing exactly one contributes $(-1)^{n-1}$ for each of the $n$ choices.
+Choosing at least two gives equal columns and determinant zero.
+Their sum is $(-1)^{n-1}(n-1)$. This proves~\eqref{matrix}
+over every field, without division by $n$ or an eigenbasis assumption.
+
+\section{Bad widths, good widths, and the initial width}
+If $(n-1)1_K=0$, equation~\eqref{matrix} is zero for \emph{every}
+choice of coefficients. Since $(A_n)_1$ and $(A_n)_2$ both have dimension
+$2n$, no multiplication between them can have maximal rank.
+There is also a direct obstruction independent of the determinant:
+\[
+ z=\sum_{j=1}^n y_j\ne0,\qquad
+ y_i z=0,\qquad x_i z=(n-1)v_i=0.
+\]
+The nonzero element $z$ is in the degree-one socle, so every linear form
+annihilates it. Its nonvanishing follows from the degree-one basis,
+regardless of whether the characteristic divides $n$. This obstruction
+also survives every field extension. In particular, failure is not inferred
+merely from testing one invariant form.
+
+If $(n-1)1_K\ne0$, take $\ell=x_1+\cdots+x_n$.
+Then $M_\ell=\operatorname{diag}(I,J-I)$ is invertible.
+The map $(A_n)_0\to(A_n)_1$ is injective, and maps with zero target
+have maximal rank. Thus $\ell$ is weak Lefschetz.
+Furthermore,
+\[
+ \ell^2=\sum_{i=1}^n u_i\ne0,
+\]
+since all off-diagonal $x_ix_j$ vanish and the $u_i$ are independent.
+This remains valid in characteristic two; it does not rely on a
+nonzero cross-term coefficient. The only additional map with nonzero
+source and target needed for $\SLP$ is
+$\ell^2:(A_n)_0\to(A_n)_2$, which is injective.
+All other positive powers either were checked or have zero target.
+Thus $\ell$ is strong Lefschetz. Conversely, $\SLP$ includes the
+maps for $s=1$ and implies $\WLP$.
+
+At $n=1$, the quotient is
+$K[x,y]/(xy,y^2,(x,y)^3)$, with basis $1,x,y,x^2$ and Hilbert
+function $(1,2,1)$. Multiplication by $x$ from degree zero is injective,
+from degree one to two is surjective, and multiplication by $x^2$
+from degree zero to two is nonzero. All remaining positive-power maps
+have zero target. Hence $x$ is strong Lefschetz. This completes the
+proof of Theorem~\ref{main}.
+
+\begin{corollary}
+For each prime $p$, over the single fixed infinite field $K=\mathbb F_p(t)$,
+the chain~\eqref{ideal} has both $\WLP$ and $\SLP$ at every width
+$n=2+kp$ with $k\geq0$, and neither property at every width
+$n=1+kp$ with $k\geq1$. Consequently neither unrestricted eventual
+dichotomy in R\"omer's question holds.
+\end{corollary}
+\begin{proof}
+The theorem applies to all widths of this one chain over this one field.
+Both displayed sequences are unbounded. Thus neither eventual constant
+truth value is possible for either property.
+\end{proof}
+For $n\geq2$ the full pattern has period $p$: only $n\equiv1\pmod p$
+is bad. In characteristic two, even widths are good and odd widths
+at least three are bad. In characteristic zero this construction is strong
+Lefschetz at every width. No conclusion about all characteristic-zero
+chains or the one-row question follows. If desired, for a fixed $c>2$
+one can add every variable in each extra row as a linear generator;
+the quotient is the same. The two-row example alone disproves the
+formulation allowing arbitrary fixed $c\geq1$.
+
+\section{Related work, provenance, and verification limits}
+Seceleanu and \c Sega's \emph{General symmetric ideals}~\cite{ss}
+studies general ideals in a single row. Its Theorem B proves $\WLP$
+under the hypothesis $\operatorname{char}K=0$ or
+$\operatorname{char}K>n$, together with its stated size conditions.
+Its chain result, Theorem 9.2 (summarized in Theorem C), assumes
+characteristic zero. A fixed positive characteristic cannot remain larger
+than unbounded $n$. These results therefore do not give the two-row
+fixed-characteristic construction above. The underlying use of ranks,
+socles, and characteristic-sensitive determinants is standard; no new
+general Lefschetz mechanism is claimed.
+
+The original primary question, pp.~1594--1596 of~\cite{romer}, and
+the introduction, Theorem B, chain setup, and Theorem 9.2 of the
+18 June 2025 arXiv version of~\cite{ss} were read for this comparison.
+The latter paper's entire proof was not audited and none of its theorems
+is needed in the proof here. Bounded literature and public-record searches
+on 22 October 2026 authenticated no earlier publication of this exact
+construction. This is not an exhaustive novelty or exclusive-priority
+certificate, and no claim about the present open status of stronger
+variants is made. The project's earlier proof is the unpublished
+\href{https://github.com/AlecKriebel/Math/pull/1337}{PR1337},
+head \texttt{aa737e6}; it is a source of this note, not an earlier
+published solution. The internal catalog identifier is 30004534;
+the original-question DOI is not a solution DOI.
+
+The accompanying source and verification archive contains a new
+standard-library exact checker. It independently constructs small
+quadratic relation quotients by integral unit-pivot elimination and checks
+multiplication ranks over finite fields, including exhaustive small
+coefficient sets, injection compatibility, width-three generation, and
+deliberately false controls. These finite checks supplement the universal
+written proof; they do not certify priority or replace a proof for arbitrary
+widths and fields. Source hashes, exact read scope, licenses, expected
+outputs, and offline reproduction instructions are included.
+
+\paragraph{Authorship and review disclosure.}
+AI tools were used extensively in all phases: planning, mathematical
+exploration, proof development and reconstruction, computation,
+literature investigation, writing, editing, and adversarial verification.
+Alec Kriebel is the named human author. This preprint is unrefereed,
+with no conventional independent human peer review, journal acceptance,
+or formal proof-assistant certification. Internal AI audits do not provide
+those certifications. Authored prose is licensed CC BY 4.0; authored
+verification and packaging code is MIT licensed. Third-party works
+retain their own rights and are cited rather than redistributed.
+
+\begin{thebibliography}{9}\small
+\bibitem{romer} T.~R\"omer, \emph{Asymptotic properties of invariant chains},
+in \emph{Lefschetz Properties in Algebra, Geometry and Combinatorics},
+Oberwolfach Reports \textbf{17} (2020), report 31, 1594--1596.
+\href{https://doi.org/10.4171/OWR/2020/31}{doi:10.4171/OWR/2020/31}.
+\bibitem{ss} A.~Seceleanu and L.~\c Sega,
+\emph{General symmetric ideals}, arXiv:2506.15459v1, 18 June 2025.
+\href{https://arxiv.org/abs/2506.15459v1}{arxiv.org/abs/2506.15459v1}.
+\bibitem{cook} D.~Cook II,
+\emph{The Lefschetz properties of monomial complete intersections in positive characteristic},
+J.~Algebra \textbf{369} (2012), 42--58.
+\href{https://doi.org/10.1016/j.jalgebra.2012.07.015}{doi:10.1016/j.jalgebra.2012.07.015}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,1609 @@
+                                               DIFFERENTIAL POSETS AND SMITH NORMAL FORMS
+
+
+
+
+arXiv:0811.1983v1 [math.CO] 12 Nov 2008
+                                                                 ALEXANDER MILLER AND VICTOR REINER
+
+
+                                                   Abstract. We conjecture a strong property for the up and down maps U
+                                                   and D in an r-differential poset: DU + tI and U D + tI have Smith normal
+                                                   forms over Z[t]. In particular, this would determine the integral structure of
+                                                   the maps U, D, U D, DU , including their ranks in any characteristic.
+                                                      As evidence, we prove the conjecture for the Young-Fibonacci lattice YF
+                                                   studied by Okada and its r-differential generalizations Z(r), as well as verifying
+                                                   many of its consequences for Young’s lattice Y and the r-differential Cartesian
+                                                   products Y r .
+
+
+
+
+                                                             1. Introduction and the main conjecture
+                                             The focus of this paper is Conjecture 1.1 below. We provide here some back-
+                                          ground and motivation before stating it.
+                                             For a positive integer r, an r-differential poset is a graded poset P with a min-
+                                          imum element, having all intervals and all rank cardinalities finite, satisfying two
+                                          crucial extra conditions:
+                                            (D1) If an element of P covers m others, then it will be covered by m + r others.
+                                            (D2) If two elements of P have exactly m elements that they both cover, then
+                                                   there will be exactly m elements that cover them both.
+                                          Favorite examples include the 1-differential poset Young’s lattice Y of all number
+                                          partitions ordered by inclusion of their Ferrers diagrams, the r-differential Cartesian
+                                          product order Y r , and the Fibonacci posets Z(r) discussed in below. See Stanley
+                                          [19, 20] for more on differential posets, and Fomin [4, 5] for the more general notion
+                                          of dual graded graphs.
+                                             There is an important rephrasing of the properties (D1, D2) above. Let Pn
+                                          denote the nth rank of P , say with rank size pn := |Pn |. For any ring R, consider
+                                          the free R-module Rpn having basis indexed by the elements of Pn , and define the
+                                          up and down maps
+                                                                                t
+                                                                       Un (= Dn+1   ) : Rpn → Rpn+1
+                                                                                 t
+                                                                          Dn (= Un−1 ) : Rpn → Rpn−1
+                                          in which a basis element is sent by Un (resp. Dn ) to the sum, with coefficient 1, of
+                                          all elements that cover (resp. are covered by) it. Using the abbreviated notations
+                                                                                 U Dn := Un−1 Dn
+                                                                                 DUn := Dn+1 Un
+
+                                             Key words and phrases. invariant factors, Smith normal form, differential poset, dual graded
+                                          graphs.
+                                              The authors thank Janvier Nzeutchap, John Shareshian, and Richard Stanley for helpful
+                                          conversations, and they particularly thank Patrick Byrnes for helpful computations as well as
+                                          conversations.
+                                                                                           1
+2                       ALEXANDER MILLER AND VICTOR REINER
+
+
+the conditions (D1, D2) can be rephrased as saying that, for each n ≥ 1,
+                                  DUn − U Dn = rI
+or equivalently, that
+(1.1)                             DUn = U Dn + rI.
+   This turns out to imply that, working over rings R of characteristic zero, Un , Dn
+are of maximal rank, via a simple calculation of the eigenvalues and multiplicities
+for the nonnegative definite operators DUn , U Dn ; see Proposition 2.1 below. The
+main conjecture of this paper, Conjecture 1.1 below, gives further information about
+the maps DUn , U Dn (as well as Un , Dn themselves) which is independent of the
+ring R.
+   For a ring R and an m × n matrix A in Rm×n say that A
+      • is in Smith form if it is diagonal in the sense that aij = 0 for i 6= j, and its
+         diagonal entries si := aii have si dividing si+1 in R for each i.
+      • has a Smith form over R if it can be brought into Smith form by change-
+         of-bases in the free modules Rm , Rn , that is, if there exist matrices P in
+         GLm (R) and Q in GLn (R) for which P AQ is in Smith form.
+      • has a parametrized Smith form for A + tI if A is square and the matrix
+         A + tI in R[t]n×n has a Smith form over R[t].
+   We will mainly be interested in the case where R = Z. In this situation, since
+Z is a principal ideal domain (PID), having a Smith form for a matrix A over R is
+guaranteed, but most square matrices A over R will not have a parametrized Smith
+form for A + tI, as Z[t] is not a PID. Having such a parametrized Smith form leads
+to very strong consequences, including a prediction for the Smith forms over Z for
+all specializations A + kI; see the Appendix (Section 8) below.
+Conjecture 1.1. In an r-differential poset, for every n ≥ 0, DUn in Zpn ×pn has
+a parametrized Smith form for DUn + tI over Z[t].
+   Note that due to equation (1.1), it would be equivalent to conjecture that U Dn
+when n ≥ 1 has a parametrized Smith form for U Dn +tI, as the ring automorphism
+of Z[t] that maps t 7→ t + r would convert one Smith form to the other.
+   The paper is structured as follows.
+   Section 2 discusses two conjectures (Conjectures 2.3 and 2.4) on r-differential
+posets that are closely related to Conjecture 1.1.
+   Section 3 discusses some computer experiments checking consequences of Con-
+jecture 1.1.
+   Section 4 discusses two standard constructions for producing r-differential posets,
+and their behavior with respect to the conjectures.
+   Section 5 proves all of the conjectures for the Young-Fibonacci poset YF and
+its r-differential generalizations Z(r).
+   Section 6 discusses Young’s lattice Y and the r-fold Cartesian products Yr .
+Although we have not been able to prove Conjecture 1.1 in these cases, some of its
+predictions are verified here.
+   Section 7 discusses some remarks and questions regarding attempts to generalize
+parts of the conjecture to the dual graded graphs of Fomin [4].
+   The appendix Section 8 discusses general facts about Smith forms over rings
+which are not necessarily PID’s, and the consequences of having a parametrized
+Smith form for A + tI.
+                 DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                             3
+
+
+                          2. Two related conjectures
+   In all of the conjectures in this section, P is an r-differential poset, with rank
+sizes pn , up maps Un and down maps Dn+1 = Unt for n ≥ 0.
+2.1. On the rank sizes. It turns out that in the presence of a certain numerical
+condition on the rank sizes pn (Conjecture 2.3 below), the main Conjecture 1.1
+implies and is closely related to a weaker conjecture (Conjecture 2.4 below).
+   We recall here an observation of Stanley concerning how the rank sizes pn in a
+differential poset determine the spectra of the operators DUn and U Dn .
+Proposition 2.1. [19, §4] Let P be an r-differential poset. Then
+                                           n
+                                           Y
+                       det(DUn + tI) =           (t + r(i + 1))∆pn−i
+                                           i=0
+                                           Yn
+                       det(U Dn + tI) =          (t + ri)∆pn−i
+                                           i=0
+where ∆pn := pn − pn−1 .
+  In particular, as DU has all positive integer eigenvalues,
+     • DUn is nonsingular if R has characteristic zero,
+     • the up maps Un are injective if R has characteristic zero,
+     • the down maps Dn are surjective if R has characteristic zero, and
+     • the rank sizes weakly increase: p0 ≤ p1 ≤ p2 ≤ · · · .
+    Since one knows the eigenvalues of U Dn , and they lie in Z, Proposition 8.4
+below shows that whenever Conjecture 1.1 holds, the Smith normal form entries
+s1 (t), . . . , spn (t) for DUn + tI take the following explicit form in terms of the rank
+sizes pn :
+                                               Yn
+(2.1)                          spn +1−j (t) =       (t + r(i + 1))
+                                           i=0
+                                         ∆pn−i ≥j
+
+for j = 1, 2, . . . , pn , where an empty product is taken to be 1. In particular, this
+predicts for any chosen element k in the ring R the structure of the kernel or
+cokernel of DUn + kI or U Dn + kI, and if R is a field, will predict the ranks of
+DUn + kI, U Dn + kI in terms of the characteristic of the field.
+   In light of Proposition 2.1, an affirmative answer to the following question of
+Stanley on the strict increase of the pn , or positivity of the first differences ∆pn ,
+would determine the support of the spectra of the operators DUn and U Dn , and
+hence determine the last Smith entry spn (t) of DUn + tI.
+Question 2.2. (Stanley [19, §6, end of Problem 6.])
+ In an r-differential poset P , do the rank sizes pn satisfy
+                               (r =)p1 < p2 < p3 < · · ·?
+  We make the following conjecture on the rank sizes.
+Conjecture 2.3. For every n ≥ 1 and 1 ≤ j ≤ n, one has
+                          (
+                            ∆pn−j−1 if P is 1-differential,
+      ∆pn ≥ ∆pn−j−δr,1 =
+                            ∆pn−j      if P is r-differential for r ≥ 2.
+4                     ALEXANDER MILLER AND VICTOR REINER
+
+
+In other words, for r ≥ 2, one has
+(2.2)                              ∆p1 ≤ ∆p2 ≤ · · ·
+and for r = 1 one has
+                        ∆p1 , ∆p2 , . . . , ∆pn−3 , ∆pn−2 ≤ ∆pn .
+Conjecture 2.3 has the following useful rephrasing, which is equivalent via Propo-
+sition 2.1: the zero eigenvalue of U Dn achieves the largest multiplicity among all
+of its non-unit eigenvalues.
+   We remark that for many known examples of r-differential posets P (but not
+all; see Section 3 below), the stronger condition (2.2) also holds for r = 1. In other
+words, the second differences
+                   ∆2 pn := ∆pn − ∆pn−1 = pn − 2pn−1 + pn−2
+are nonnegative. In this case, one can conveniently recompile the Smith entries
+of DUn + tI over Z[t] from (2.1) and express their multiplicities in terms of these
+second differences:
+                            entry                               multiplicity
+          (
+            (n + 1)!r,t                   if r ≥ 2
+                                                                       1
+            (n + 1 + t) · (n − 1)!1,t if r = 1
+                         (i + 1)!r,t                 ∆2 pn−i for 0 ≤ i ≤ n − 1
+                              1                                      pn−1
+where
+                    ℓ!r,t := (r · ℓ + t)(r · (ℓ − 1) + t) · · · (r · 1 + t)
+and where by convention we set pk = 0 if k is negative.
+
+2.2. On the up and down maps themselves.
+Conjecture 2.4. For every n, the matrix Un in Zpn+1 ×pn has only ones and zeroes
+in its Smith form over Z, that is, coker(Un : Zpn → Zpn+1 ) is free abelian.
+Note that it would be equivalent to conjecture that Dn+1 has free cokernel, or only
+ones and zeroes in its Smith form of Z, since Dn+1 = Unt .
+Proposition 2.5. Whenever Conjecture 2.3 holds, then Conjecture 1.1 implies
+Conjecture 2.4.
+Proof. One can be more precise about the relationship: whenever Conjecture 2.3
+holds, one has equivalence between the assertion of Conjecture 2.4 and the cor-
+rectness of the Smith form over Z for U Dn which is predicted by setting t = 0
+in the Smith form over Z[t] for U Dn + tI that follows from Conjecture 1.1 and
+Proposition 8.4.
+   To see this, recall that Proposition 2.1 allows one to rephrase Conjecture 2.3
+as saying that the the zero eigenvalue for U Dn achieves the largest multiplicity
+among all of its non-unit eigenvalues. Thus whenever this holds, Proposition 8.4
+says that the Smith form over Z for U Dn predicted by Conjecture 1.1 will have
+only zeroes and ones as the diagonal entries. This is equivalent to coker(U Dn ) =
+Zpn −pn−1 , which by Proposition 8.3 is equivalent to coker(U ) = Zpn −pn−1 , that is,
+to Conjecture 2.4.                                                                  
+                 DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                           5
+
+
+Remark 2.6. Note that Conjecture 2.4 is equivalent (via Proposition 8.1) to saying
+that the gcd of all of the maximal minor subdeterminants in Un or Dn+1 is 1.
+In fact, many examples exhibit a strictly stronger property: Un has at least one
+maximal minor subdeterminant equal to ±1. We suspect that this stronger property
+does not hold for all r-differential posets, although we have not yet encountered any
+counterexamples
+
+                                   3. Computer tests
+   We report here on a few numerical experiments.
+   The first author and P. Byrnes used a computer to find all possible partial 1-
+differential posets (in the sense described in Section 4.1 below)
+      • of rank 8, coming in 643 poset isomorphism classes, and
+      • of rank 9, coming in 44605 poset isomorphism classes.
+Any of these partial 1-differential posets can be extended to a full 1-differential
+poset by Wagner’s construction from the next section, and therefore represent all
+the possibilities for the first 8 or 9 ranks.
+   The data up through rank 9 exhibits three isomorphism classes where the first
+differences of the rank numbers are not weakly increasing; see the remark at the
+end of Section 2.1 for the significance. All three of these isomorphism classes classes
+have rank sizes
+                  (p0 , p1 , p2 , . . . , p9 ) = (1, 1, 2, 3, 5, 7, 11, 15, 26, 36)
+whose first differences are
+                   (∆p1 , ∆p2 , . . . , ∆p9 ) = (0, 1, 1, 2, 2, 4, 4, 11, 10)
+so that ∆8 = 11 > 10 = ∆9 .
+   Regarding Conjecture 1.1, if it were correct, then the Smith form over Z[t] would
+have its diagonal Smith entries si (t) given explicitly by (2.1), via Proposition 2.1
+and Proposition 8.4. As mentioned in Remark 8.7 of the Appendix, this then
+predicts the Smith form over Z (which always exists) for DUn + kI when k is any
+chosen integer. For each of the 643 non-isomorphic partial 1-differential posets of
+rank 8, considering DUn + kI with n = 0, 1, 2, . . . , 7, this predicted Smith form over
+Z was checked to be correct for all integers k in the range [−10, +10]. In addition,
+in Young’s lattice Y, the Smith form for DUn (= DUn + 0 · I) was checked to obey
+the prediction up through n = 20.
+
+                4. Constructions for r-differential posets
+  We recall here two known ways to construct new differential posets from old
+ones, and discuss how these constructions respect Conjectures 1.1, 2.3, and 2.4.
+4.1. Wagner’s reflection-extension construction. Wagner’s construction pro-
+duces an r-differential posets from a partial r-differential poset of some finite rank
+(see [19, §6]). Let P be a finite graded poset of rank n with a minimum element,
+and assume that for i = 0, 1, . . . , n − 1 one has
+                                      DUi − U Di = rI.
+One calls P a partial r-differential poset of rank n. Let P + be the poset of rank
+n + 1 obtained from P in the following way: for each v ∈ Pn−1 , add a vertex v ∗ of
+rank n + 1 to P that covers exactly those x ∈ Pn covering v. Finally, above each
+6                     ALEXANDER MILLER AND VICTOR REINER
+
+
+x ∈ Pn we adjoin r new elements covering only x in P + . It is not hard to see that
+iterating this construction produces an r-differential poset.
+   An important example of this construction are the posets Z(r) described ex-
+plicitly in Section 5 below, but which can also be obtained by applying Wagner’s
+construction to the partial poset of rank zero having only one element. As an
+example, see Figure 1 for Z(2).
+
+
+
+
+                  Figure 1. Part of the 2-differential poset Z(2).
+
+
+Proposition 4.1. Let P̂ be a partial r−differential poset of rank n, and P the
+differential poset obtained from P̂ by Wagner’s construction.
+     (i) If the inequalities of Conjecture 2.3 are satisfied by P̂ up through rank n,
+         then P satisfies Conjecture 2.3.
+    (ii) If Conjecture 2.4 is satisfied by P̂ , in the sense that coker(Uj ) is free for
+         all 0 ≤ j ≤ n − 1, then P satisfies Conjecture 2.4.
+Proof. For (i), note that
+                                  pn+1 = pn−1 + rpn
+and hence
+                             ∆pn+1 = (r − 1)pn + pn−1 .
+Therefore if r ≥ 2 then
+                                 ∆pn+1 ≥ pn ≥ ∆pn
+giving Conjecture 2.3 in this case. If r = 1 then it says
+                            ∆pn+1 = pn−1 ≥ pn−j ≥ ∆pn−j
+for j ≥ 1, which gives Conjecture 2.3 in this case.
+   For (ii), note that by Wagner’s construction, the pn+1 × pn matrix for Un will
+contain a pn × pn (maximal) minor equal to the identity matrix, and hence have
+free cokernel.                                                                
+Remark 4.2. The proof of Theorem 5.1 below will show that, for r ≥ 2, Wagner’s
+construction also respects Conjecture 1.1, in the following sense: if one has a partial
+r-differential poset with ranks 0, 1, . . . , n−1, and one applies Wagner’s construction
+twice producing the two new ranks Pn , Pn+1 , then one has the following relation
+(see (5.3) below):
+    DUn + tI    ∼    In−1 ⊕ (t + r)I(r−2)·pn−1 +pn−2 ⊕ (t + r) (DUn−1 + (t + r)I)
+where A ⊕ B denotes block direct sum of matrices, and A ∼ B for matrices A, B in
+Z[t]m×n means that P (t) · A · Q(t) = B for some P (t), Q(t) in GLm (Z[t]), GLn (Z[t])
+                         DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                             7
+
+
+        respectively. Thus DUn + tI has Smith form over Z[t] if and only if DUn−1 + tI
+        does.
+           Unfortunately the part of the proof of Theorem 5.1 which treats the case r = 1
+        does not have this nice property.
+
+        4.2. The Cartesian product construction. If P and P ′ are posets, their Carte-
+        sian product P × P ′ is endowed with the componentwise partial order.
+
+        Example 4.3. The following is a small example for the Cartesian product of two
+        posets.
+
+
+PSfrag replacements              ×                   ∼
+                                                     =
+
+
+
+           Stanley observed that if P and P ′ are r- and r′ -differential posets, then P × P ′
+        is an (r + r′ )-differential poset.
+
+        Proposition 4.4. If P, P ′ are any r-, r′ -differential posets, then Conjecture 2.3
+        holds for the (r + r′ )-differential poset P × P ′ .
+
+        Proof. As r + r′ ≥ 2, one needs to show that the rank sizes rn′′ := |(P × P ′ )n | satisfy
+        ∆2 rn′′ ≥ 0. If
+                                                   X
+                                          P (t) :=    rn tn
+                                                         n
+                                                         X
+                                                 ′
+                                             P (t) :=            rn′ tn
+                                                         n
+                                                         X
+                                             ′
+                              then (P × P )(t) :=                rn′′ tn = P (t)P ′ (t).
+                                                         n
+                         ′
+        Since both P, P have their rank sizes weakly increasing by Proposition 2.1, both
+        (1 − t)P (t) and (1 − t)P ′ (t) lie in N[[t]]. Hence their product
+                                                                     X
+                              (1 − t)2 P (t)P ′ (t) = (1 − 2t + t2 )   rn′′ tn
+                                                                               n
+
+        also lies in N[[t]], which means that ∆2 rn′′ ≥ 0.                                      
+
+        Proposition 4.5. Let P and P ′ be differential posets. If Conjecture 2.4 holds for
+        either P or P ′ then it also holds for P × P ′ .
+
+        Proof. We begin by noting that one can identify
+                                       ′      M             ′
+                                 Z(P ×P )n =       Zpi ⊗Z Zpj .
+                                                     i+j=n
+
+                                                             ′
+                                                 P ×P                      ′               ′
+        Under this identification, the up map Un−1    : Z(P ×P )n−1 → Z(P ×P )n is given by
+                                     M                        
+        (4.1)                             Ipi ⊗ Uj′ ⊕ Ui ⊗ Ip′j
+                                     i+j=n
+8                      ALEXANDER MILLER AND VICTOR REINER
+
+
+or in block matrix terms:
+                              ′                                                          
+                      Ip0 ⊗ Un−1
+                                                 ′
+                      U0 ⊗ Ip′n−1        Ip1 ⊗ Un−2                                  
+                                                                                     
+                                                        ..                           
+                 ′
+                                         U1 ⊗ Ip′n−2         .                       
+            P ×P                                                                     
+           Un−1    =                                    ..        ..                 .
+                     
+                                                             .         .             
+                                                                                      
+                                                                  ..                 
+                                                                                     ′
+                                                                       .   Ipn−1 ⊗U 0
+                                                                            Un−1 ⊗ Ip′0
+Assume Conjecture 2.4 holds for P (respectively, for P ′ ). Then one can perform
+row and column operations to arrive at a matrix with the same zero blocks, but
+                                            ′
+where the (i, i) block of the form Ipi ⊗ Un−i−1   (respectively, the (i + 1, i) block of
+the form Ui ⊗ Ip′n−i−1 ) has been changed to
+                                                                   
+                      Ip′n−i−1                          
+(4.2)         Ipi ⊗              .   respectively, Ipi 0 ⊗ Ip′n−i−1 . .
+                          0
+One can then see that no matter how the factor below it (respectively, to the right
+of it) has been altered during this process, one can then use the new block in (4.2)
+to eliminate it with row (respectively, column) operations. Thus the whole matrix
+has only zeroes and ones in its Smith form over Z, and hence has free cokernel, as
+desired.                                                                          
+Remark 4.6. The expression (4.1) for the up map in P × P ′ can also be used to
+give the following block tridiagonal form for DUn in the Cartesian product P × P ′ :
+               ′                                            
+      DUnP ×P = Dn ⊗ Un′ ⊕          Ipn ⊗ DUn′ + DUn ⊗ Ip′n    ⊕ Un ⊗ Dn′ .
+However, we have not seen how to use this to show that the Cartesian product
+construction respects Conjecture 1.1 in some way.
+
+                         5. The Young-Fibonacci posets
+   As a set, the Fibonacci r-differential poset Z(r) consists of all finite words using
+    PSfrag{1replacements
+alphabet                                                 ′                              ′
+             1 , 12 , . . . , 1r , 2}. For two words w, w ∈ Z(r), we define w to cover w if
+either
+    (1) w′ is obtained from w by changing a 2 to some 1i , as long as only 2’s occur
+        to its left, or
+    (2) w′ is obtained from w by deleting its first letter of the form 1i .
+
+                          112      22       121         211         1111
+                                     12           21              111
+                                             2          11
+                                                  1
+                                                  ∅
+
+                    Figure 2. The Young-Fibonacci lattice YF .
+
+  It is known and not hard to show [19, §6] that Z(r) is obtained using Wagner’s
+construction from a single point and hence an r-differential poset; see The reason
+                DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                                                              9
+
+
+for its name is that the rank sizes of Z(1) = YF (the Young-Fibonacci lattice) are
+the Fibonacci numbers; see Figure 2.
+
+
+
+5.1. Proof of all conjectures for YF and Z(r).
+
+Theorem 5.1. All of the Conjectures 1.1, 2.3, 2.4 hold for the Young-Fibonacci
+r-differential posets Z(r) with r ≥ 1.
+
+Proof. It follows from Proposition 4.1 that Conjectures 2.3 and 2.4 hold. For Con-
+jecture 1.1, one begins with the following recursive descriptions of Un and Dn :
+                     
+                  Dn
+                 Ipn                                                                          
+                  
+(5.1)       Un =  .         and          Dn+1 = Un−1                     Ipn        ···     Ipn .
+                  .. 
+                     Ipn
+
+Note that each block matrix above contains exactly r blocks of Ipn . Using this, one
+can write
+                                                                                                                   
+          Dn−1        Ipn−2                                            Ipn−2
+          Ipn−1
+                             Ipn−1                                                       Ipn−1                     
+                                                                                                                    
+  Dn+1 =  .                          ..                    ···                                    ..               
+          ..                              .                                                            .           
+             Ipn−1                             Ipn−1                                                        Ipn−1
+
+and multiplying it by its transpose Un , one obtains the following (r + 1) × (r + 1)
+block matrix for n ≥ 2:
+
+         DUn + (t − r)Ipn =
+                                                                                                             
+           DUn−2 + tIpn−2       Dn−1              ···             ···            ···              Dn−1
+         
+              U n−2        (t + 1)Ipn−1         Ipn−1            ···            ···              Ipn−1       
+                                                                                                              
+                 ..                              ..              ..                                ..        
+(5.2)    
+                  .            Ipn−1                .               .                               .        
+                                                                                                              
+                  ..             ..               ..             ..             ..                  ..       .
+         
+                   .              .                    .              .              .               .       
+                                                                                                              
+                   ..             ..                             ..             ..                           
+                    .              .                               .           .               Ipn−1         
+                 Un−2             Ipn−1           ···             ···        Ipn−1          (t + 1)Ipn−1
+
+   We now use this description of DUn + (t − r)Ipn together with elementary row
+and column operations to show that it has a Smith form in Z[t]. Given two matrices
+A, B in Z[t]m×n , say that A ∼ B if there exist P (t), Q(t) in GLm (Z[t]), GLn (Z[t])
+with P AQ = B.
+Case 1. r ≥ 2
+Because r ≥ 2, in (5.2) there is a copy of Ipn−1 in the second row and last column.
+Use it to first clear out the blocks in the second row, then to clear out the blocks
+10                     ALEXANDER MILLER AND VICTOR REINER
+
+
+in the last columns, and lastly, negate the second column:
+ DUn + (t − r)Ipn
+                                                                                     
+       tIpn−2      −tDn−1             0     ···     ···       0               Dn−1
+                                                               ..                    
+      0
+                      0              0                          .            Ipn−1   
+                                                                                      
+                                           . ..               .
+                                                               ..                     
+      0
+                  −tIpn−1         tIpn−1                                     Ipn−1   
+                                                                                      
+  ∼                                       ..      ..        ..                ..    
+      0           −tIpn−1            0        .       .       .                 .    
+                                                                                      
+         ..           ..             ..    ..                                        
+     
+          .            .              .       .  tIpn−1      0         Ipn−1         
+                                                                                      
+      0           −tIp     n−1       0     ···      0     tIp n−1      I pn−1
+                                                                                      
+       −tUn−2     −t(t + 2)Ipn−1 −tIpn−1 · · · −tIpn−1 −tIpn−1 (t + 1)Ipn−1
+                                                                        
+        tIpn−2        tDn−1         0   ···      ···      0          0
+                                                           ..           
+       0                0          0                        .     Ipn−1 
+                                                                        
+                                       ..                 ..            
+       0
+                     tIpn−1     tIpn−1     .               .        0  
+     ∼                                 ..       ..       ..         .. 
+       0
+                     tIpn−1        0       .       .      .          . 
+          ..            ..         ..  ..                               
+      
+           .             .          .      .  tIpn−1     0          0  
+       0             tIpn−1        0   ···       0    tIpn−1        0 
+        −tUn−2    t(t + 2)Ipn−1 −tIpn−1 · · · −tIpn−1 −tIpn−1        0
+After rearranging the rows and columns, this yields
+                                                                               
+                    tDn−1         0       0     ···              0       tIpn−2
+                tIpn−1
+                              tIp n−1    0     ·  ··            0          0  
+                                       . .      . ..            ..         ..  
+                tIpn−1           0         .                     .          .  
+       Ipn−1 ⊕        ..         ..
+                                                                                
+                                       ..       ..                             
+               
+                       .          .        .       .            0          0  
+                tIp
+                        n−1       0    ·  · ·      0          tIpn−1        0 
+                t(t + 2)Ipn−1 −tIpn−1 · · · −tIpn−1           −tIpn−1    −tUn−2
+Subtracting columns 2, 3, . . . , r − 1 each from the first column yields
+                                                                             
+                       tDn−1              0      ··· ···      0        tIpn−2
+                 
+                         0            tIpn−1      0 ···      0           0  
+                           ..                   ..    ..     .
+                                                              ..          ..  
+                            .            0          .     .               .  
+      Ipn−1 ⊕   
+                           ..             ..                              .
+                                                                              
+                                                 . .   . .                .
+                                                                              
+                 
+                           .              .         .     .  0           .   
+                                                                              
+                         0               0      ···     0 tIpn−1         0 
+                   t(r + t)Ipn−1          0      ··· ···      0       −tUn−2
+                                                                       
+                                                    tDn−1        tIpn−2
+              ∼ Ipn−1 ⊕ tI(r−2)·pn−1 ⊕
+                                               t(r + t)Ipn−1 −tUn−2
+                                                                                  
+                 ∼ Ipn−1 ⊕ tI(r−2)·pn−1 ⊕ tIpn−2 ⊕ t (r + t)Ipn−1 + U Dn−1
+                 = Ipn−1 ⊕ tI(r−2)·pn−1 +pn−2 ⊕ t(DUn−1 + tIpn−1 ),
+for n ≥ 2.
+   That is, when r ≥ 2, one has for n ≥ 2 that
+(5.3) DUn + tI ∼ Ipn−1 ⊕ (t + r)I(r−2)·pn−1 +pn−2 ⊕ (t + r) (DUn−1 + (t + r)I) .
+This shows that DUn + tI has a Smith form over Z[t] by induction on n.
+                 DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                        11
+
+
+Case 2. r = 1
+For r = 1, one proceeds slightly differently. One can check that DUn + tI has a
+Smith form over Z[t] in the base cases of n = 0, 1, 2, 3 directly. Then for n ≥ 4,
+starting with (5.2) for r = 1, one has
+                 DUn + (t − 1)Ipn
+                                                
+                     DUn−2 + tIpn−2     Dn−1
+                 =
+                          Un−2      (t + 1)Ipn−1
+                                                               
+                     DUn−2 + tIpn−2     Un−3           Ipn−2
+                 =       Dn−2      (t + 1)Ipn−3         0      
+                          Ipn−2           0        (t + 1)Ipn−2
+in which the second step used the recursive descriptions (5.1) of Un , Dn . Use the
+Ipn−2 in the upper-right block to clear out the first row, and then the first column:
+        DUn + (t − 1)Ipn
+                                                                              
+                                0                        0             Ipn−2
+        ∼              Dn−2                       (t + 1)Ipn−3          0     
+            −(t + 1)DUn−2 − (t2 + t − 1)Ipn−2      −(t + 1)Un−3   (t + 1)Ipn−2
+                                                                        
+                          0                              0        Ipn−2
+        ∼              Dn−2                       (t + 1)Ipn−3      0 
+            −(t + 1)DUn−2 − (t2 + t − 1)Ipn−2      −(t + 1)Un−3      0
+        ∼ Ipn−2 ⊕ A
+where                                                                     
+                                    Dn−2                    (t + 1)Ipn−3
+             A :=
+                        −(t + 1)DUn−2 − (t2 + t − 1)Ipn−2   −(t + 1)Un−3
+Next perform the column operation which subtracts from the first column the result
+of right-multiplying the second column by Dn−2 . Using the fact that U Dn−2 =
+DUn−2 − Ipn−2 , this yields a matrix
+                                                           
+                                   −tDn−2      (t + 1)Ipn−3
+                     An (t) :=
+                                −t(t + 2)Ipn−2 −(t + 1)Un−3
+   It only remains to show that An (t) has a Smith form over Z[t], which we do by
+induction on n. Start by using the recursive descriptions (5.1) of Dn , Un to rewrite
+An (t) as
+                                                                   
+                        −tUn−4          −tIpn−3        (t + 1)Ipn−3
+          An (t) := −t(t + 2)Ipn−4         0         −(t + 1)Dn−3 
+                            0        −t(t + 2)Ipn−4 −(t + 1)Ipn−3
+                                                                         
+                       −tUn−4          −tIpn−3               Ipn−3
+                 ∼ −t(t + 2)Ipn−4         0            −(t + 1)Dn−3 
+                           0        −t(t + 2)Ipn−4 −(t2 + 3t + 1)Ipn−3
+where the latter equivalence comes from adding the second column to the third.
+Now one can use the Ipn−3 in the upper right block to clear out the first row, and
+then clear out the last column. The end result shows that
+                                                                          
+                            (t + 2)Ipn−4 + (t + 1)DUn−4    (t + 1)Dn−3
+      An (t) ∼ In3 ⊕ (−t)                                                    .
+                                  (t2 + 3t + 1)Un−4     (t2 + 4t + 3)Un−3
+12                     ALEXANDER MILLER AND VICTOR REINER
+
+
+If one now subtracts from the first column the result of right-multiplying the second
+column by Un−4 , one concludes that
+                                                                      
+                                     (t + 2)Ipn−4      (t + 1)Dn−3
+             An (t) ∼ In3 ⊕ (−t)
+                                    −(t + 2)Un−4 (t + 1)(t + 3)Un−3
+                     ∼ In3 ⊕ (−t)An−1 (t + 1).
+Since An−1 (t) (and hence also An−1 (t+1)) has a Smith form over Z[t] by induction,
+so does An (t).                                                                  
+
+               6. Young’s lattice and its Cartesian products
+
+
+
+
+     PSfrag replacements
+                                            ∅
+
+                              Figure 3. Young’s lattice.
+
+   The prototypical example of a 1-differential poset is Young’s lattice, denoted by
+Y. This is the set of all number partitions, ordered by inclusion of Young diagrams;
+see Figure 3. Its r-fold Cartesian product Yr is then an r-differential poset. These
+give the primary example of a set-up which we define next.
+Definition 6.1. For r a positive integer, define an r-differential tower of groups
+to be an infinite tower of finite groups 1 = G0 ≤ G1 ≤ G2 ≤ · · · such that the
+branching rules for restricting irreducibles from Gn to Gn−1 are multiplicity-free,
+and satisfy
+                         G       G
+(6.1)                ResGnn+1 IndGnn+1 − IndG       Gn
+                                            Gn−1 ResGn−1 = r · id.
+                                              n
+
+
+
+Here the maps in question are considered as operators on the Z-module of virtual
+characters ClZ [Gn ], that is, the C-valued class functions on Gn that are Z-linear
+combinations of irreducible characters for Gn .
+   Each r-differential tower of groups gives rise to an r-differential poset P , whose
+nth rank Pn is labelled by Irr(Gn ), the set of irreducible representations of Gn . One
+includes a covering relation between a Gn−1 -irreducible χ and a Gn -irreducible ψ
+exactly when ResG  Gn−1 ψ contains χ (with multiplicity one) as an irreducible con-
+                    n
+
+
+stituent. Identifying ZPn with ClZ [Gn ], equation (6.1) becomes DUn − U Dn = rI.
+Example 6.2. Let G be a finite abelian group of order r, and let Gn be the
+wreath product G ≀ Sn = Sn [G] of G and the symmetric group Sn . An irreducible
+representation of Gn can naturally be indexed by an element of Yr P      at rank n, that
+is, by an r-tuple (λ(1) , . . . , λ(r) ) of partitions whose total weight i |λ(i) | equals
+n. Furthermore, the branching rule from Gn to Gn−1 is multiplicity free: one
+obtains a sum of irreducibles indexed by all r-tuples obtained by removing one
+                DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                                               13
+
+
+box from any of the λ(i) ; see Macdonald [11, Chapter 1, Appendix B], Okada [17,
+Corollary to Theorem 4.1], and Stembridge [23, Lemma 7.1]. Thus the irreducibles
+and branching in this tower of groups are described by the r-differential poset Yr ,
+and hence this is an r-differential tower of groups.
+Remark 6.3. A recent result of Bergeron, Lam, and Li [1] implies that every r-
+differential tower of groups that satisfies some mild extra hypotheses will have
+|Gn | = rn n!. This means that these structures are more rigid than one might
+expect.
+   For the purposes of some of the proofs in this section, we briefly review in the
+case r = 1, so that Gn = Sn , some facts about bases of ClZ [Sn ] and their labelling
+by symmetric functions as in [11] and [22, Chapter 7]; see these references for more
+details, as well as [19, Remark on p. 926]
+   The irreducible (complex) characters of Sn are indexed by partitions λ of n, and
+are associated via Frobenius’ characteristic map to the Schur functions sλ . The
+above discussion says that the branching map Dn sends the basis element indexed
+by sλ to the sum of all sµ where µ is obtained from λ by removing one cell from the
+Ferrers diagram. On the other hand, there is another Z-basis for ClZ [Sn ] indexed
+by partitions λ of n, given by the characters of the coset representations for Young
+subgroups Sλ := Sλ1 × · · · × Sλℓ inside Sn . The characters of these coset repre-
+sentations correspond under the Frobenius characteristic map with the symmetric
+functions hλ := hλ1 · · · hλℓ where hr is the complete homogeneous symmetric func-
+tion of degree r. In this basis, since the induction map Un multiplies by s1 = h1 , it
+sends hλ to h(λ,1) . Also, the branching rule Dn sends hn to hn−1 and then extends
+as a derivation on products. From this one can derive the following special case of
+the Mackey formula: if λ = (λ, . . . , λℓ ) ⊢ n, then
+
+(6.2)
+                                 ℓ
+                                 X                                       ℓ
+                                                                         X
+DU (hλ ) = D(h1 hλ ) = hλ + h1         h(λ1 ,...,λi −1,...,λℓ ) = hλ +         h(λ1 ,...,λi −1,...,λℓ ,1) .
+                                 i=1                                     i=1
+
+6.1. Proof of Conjectures 2.3 and 2.4 for Yr .
+Proposition 6.4. Conjecture 2.3 holds for Yr
+Proof. By Proposition 4.4, it is enough to check it for r = 1, that is, for Y. We
+will show the stronger assertion that
+(6.3)                            ∆p1 ≤ ∆p2 ≤ · · · .
+Recall that pn counts the number of partitions of n. One can inject the partitions
+of n − 1 into the partitions of n by adding a part of size 1. Hence ∆pn = pn − pn−1
+counts the number of partitions of n that contain no parts of size 1.
+   One can then inject such partitions with no parts of size 1 for n − 1 into those
+for n, by adding 1 to the largest part. This shows ∆pn−1 ≤ ∆pn .                 
+Proposition 6.5. Conjecture 2.4 holds for Yr
+Proof. By Proposition 4.5, it is enough to check it for Y. But when one uses
+the Z-basis for ClZ (Sn ) indexed by {hλ } as discussed above, then the fact that
+Un (hλ ) = h(λ,1) shows that Un has free cokernel.                             
+14                    ALEXANDER MILLER AND VICTOR REINER
+
+
+6.2. Ones in the Smith form of DU + kI in Y. Conjecture 1.1 predicts for
+each integer k the Smith normal form over Z for DU + kI; see Proposition 8.4. In
+particular, it predicts the number of ones that should appear in these Smith normal
+forms. We check here that those predictions are correct for Young’s lattice Y.
+Proposition 6.6. In Young’s lattice Y, for every integer k, the number of ones in
+the Smith normal form over Z of DUn + kI is
+                     (
+                       pn−1                 for k 6= 0, −2
+(6.4)
+                       pn − pn−1 + pn−2 for k = 0, −2,
+which agrees with the prediction from Conjecture 1.1.
+Proof. Let ones(A) for an integer matrix A denote the number of ones in its Smith
+normal form over Z.
+    First we check that the numbers given in (6.4) are the same as the ones predicted
+by the conjecture. Proposition 8.4 predicts that ones(DUn + kI) should be the
+difference between pn and the highest multiplicity attained by a non-unit (that
+is, not ±1) eigenvalue of DUn + kI. Because Y satisfies the inequalities (6.3),
+Proposition 2.1 shows that the highest multiplicity of a non-unit eigenvalue will
+either be the multiplicity
+      • pn − pn−1 attained by k + 1 whenever k + 1 6= ±1, or
+      • pn−1 − pn−2 attained by k + 2.
+Thus the predictions agree with (6.4).
+   To show that the numbers in (6.4) actually match ones(DUn + kI), we express
+DUn + kI with respect to two different (ordered) bases of ClZ (Sn ).
+   First use the {sλ } or irreducible character basis, with the partitions ordered
+lexicographically. One can see that it contains a pn−1 × pn−1 lower unitriangular
+submatrix whose rows (resp. columns) are indexed by the partitions (µ1 , . . . , µℓ , 1)
+(resp. (µ1 + 1, µ2 , µ3 , . . . , µℓ )) where µ runs through all partitions of n − 1. For
+example, when n = 5, the matrix looks as follows, with the rows and columns of
+the aforementioned submatrix indicated by asterisks:
+                      5      41∗      32     311∗    221∗    2111∗   11111∗
+                                                                        
+            5∗      k+2      1   0   0   0                   0        0
+            41∗ 
+                   1       k+3  1   1   0                   0        0 
+            32∗ 
+                   0        1  k+3  1   1                   0        0 
+            311∗ 
+                   0        1   1  k+3  1                   1        0 
+            221 
+                   0        0   1   1  k+3                  1        0 
+            2111∗   0       0   0   1   1                  k+3       1 
+            11111    0       0   0   0   0                   1       k+2
+Note that this shows, via Proposition 8.1, that for any integer k one has the in-
+equality ones(DUn + kI) ≥ pn−1 .
+   Alternatively, one can express DUn + kI in the {hλ }-basis, ordered so that the
+partitions λ having no part of size 1 come first. Then equation 6.2 shows that it
+will have this block upper-triangular form:
+                                                              
+                     (k + 1)Ipn −pn−1             0
+(6.5)                                                         .
+                            ∗          [DUn−1 ] + (k + 1)Ipn−1
+                  DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                       15
+
+
+For n = 5, this looks as follows:
+                     5      32      41    22 1    312     213     15
+                                                                      
+            5      k+1
+                  0      k+1
+            32                                                        
+                                                                       
+                  1       0  k+2
+            41                                                        
+                                                                       
+                  0       1   0  k+2
+            22 1                                                      ,
+                                                                       
+            312 
+                  0       1   1   0             k+3                   
+                                                                       
+            213    0      0   0   2              1     k+4            
+            15      0      0   0   0              0      1      k+6
+Since the first pn − pn−1 rows of the matrix for DUn + kI in (6.5) have every entry
+divisible by k + 1, any minor subdeterminant of size pn−1 + 1 will be divisible by
+k+1. Consequently, by Proposition 8.1, the Smith entry spn−1 +1 6= 1 as long as k+1
+is not a unit of Z, that is, as long as k 6= 0, −2. This shows ones(DUn + kI) ≤ pn−1
+in this case, and hence ones(DUn + kI) = pn−1 in light of the above lower bound.
+   Now if k = 0 or −2 then (6.5) shows
+                ones(DU + kI) = pn − pn−1 + ones(DUn−1 + (k + 1)I).
+Therefore it only remains to check that for k = 0 and for k = −2 one has
+ones(DUn−1 + (k + 1)I) = pn−2 :
+     • For k = 0 this was just proven above, replacing n by n−1 and taking k = 1.
+     • For k = −2 one has
+                      ones(DUn−1 − I) = ones(U Dn−1 ) = pn−2
+        where the second equality holds because Propositions 6.5 and 8.3 tell us
+        that U Dn−1 has only zeroes and ones in its Smith form.
+                                                                                   
+
+Remark 6.7. It seems likely that one can extend the statement of Proposition 6.6
+and its proof from Y to Yr , using the analogues of the {hλ } basis for ClZ (Gn )
+where Gn = Z/rZ ≀ Sn , as discussed in [11, Chapter 1, Appendix B, §8]. However,
+we have not seriously attempted to carry this out.
+   One slight annoyance is that the general prediction implied by Conjecture 1.1
+for the number of ones when r ≥ 2 will have a further special case in its statement:
+when r = 2 and k = −3, the two eigenvalues r + k = −1 and 2r + k = +1 achieving
+the highest multiplicities both turn out to be units in Z× . Thus Conjecture1.1
+predicts, via Proposition 8.4, that
+                     
+                     pn−1
+                                          for r + k 6= ±1
+     ones(DUn + kI) pn − pn−1 + pn−2 for r + k = ±1 and (r, k) 6= (2, −3)
+                     
+                     
+                       pn − pn−2 + pn−3 for (r, k) = (2, −3).
+Remark 6.8. Is there hope to extend the previous results to r-differential towers of
+group algebras, or to r-differential self-dual Hopf algebras, as discussed in [1]?
+   In fact, Conjecture 2.4 is essentially asking for something like an {hλ } basis in
+these contexts. Un having free cokernel is equivalent to saying that there exists a
+choice of bases in the source and target so that that map Un : ZPn → ZPn+1 sends
+basis elements into basis elements, as in Un (hλ ) = h(λ,1) .
+16                       ALEXANDER MILLER AND VICTOR REINER
+
+
+6.3. Last Smith entry of DU + kI in Yr and towers of group algebras.
+We wish to show that for Yr , and more generally, for any r-differential poset
+coming from a tower of finite groups, the last Smith invariants spn for either of the
+operators DUn + kI or U Dn + kI match the prediction provided by Conjecture 1.1
+via Proposition 8.4.
+   The idea is to use Corollary 8.2. We start with some facts about the spectrum
+                                                     G
+and inverse of U D when D := ResG   H and U = IndH are restriction and induction
+of class functions for any pair of nested finite groups H ⊆ G. Part (i) of the
+next proposition is a generalization of Stanley’s [19, Proposition 4.7] that was first
+observed by Okada [17, Appendix, Theorem A].
+Proposition 6.9. Let G be a finite group, and H ⊆ G a subgroup.
+   (i) The operator U D on ClZ (G) has a complete system of orthogonal eigenvec-
+       tors given by
+                                      X
+                           v (g) :=        χ(g) · χ
+                                           χ∈Irr(G)
+          as g ranges through a set of representatives for the G-conjugacy classes.
+          The associated eigenvalue equation is
+(6.6)                            DU v (g) = U (1H )(g) · v (g) .
+     (ii) Assume the integer k makes the operator A := U D + kI nonsingular, that
+          is, the class function φ on G defined by
+                                    φ(g) := U (1H )(g) + k
+          is nonvanishing. Then the matrix for the inverse operator A−1 has the
+          following (χ, ψ)-entry for any G-irreducibles χ, ψ:
+                                    
+                         −1        ψ
+                      Aχ,ψ = χ,
+                                   φ G
+                                                  
+                                       1        χ
+                           ( = χ · ψ,      =      ,ψ     = A−1ψ,χ )
+                                      φ G       φ     G
+           where h−, −iG denotes the usual inner product for class functions on G.
+     (iii) Let s|Irr(G)| be the last Smith normal form entry over Z for U D + kI. Then
+           s|Irr(G)| = 0 when U D + kI is singular, and when U D + kI is nonsingular,
+           s|Irr(G)| , it is the smallest positive integer s for which the class function s· φ1
+           is a virtual character (that is, an element of ClZ (G)).
+Proof. For (i), see the very simple proof in Okada [17, Appendix, Theorem A].
+   For (ii), note that A := U D + kI is diagonalizable, with the same complete
+system of eigenvectors v (g) having eigenvalues φ(g) = U 1H (g) + k. Since any class
+function α on G satisfies
+                              X
+                                 hχ, αiG · χ(g) = α(g),
+                                   χ
+
+one can apply this to the class function α = ψφ where ψ is some G-irreducible
+character, and conclude that
+                           X ψ               ψ(g)
+                                χ,      χ(g) =      .
+                             χ
+                                   φ  G        φ(g)
+                  DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                           17
+
+
+In other words, letting B be the square matrix with rows and columns indexed by
+G-irreducibles, and having entries
+                                             
+                                            ψ
+                                Bχ,ψ := χ,       ,
+                                            φ G
+one concludes that, for each g in G,
+                        X
+                           Bχ,ψ · (v (g) )χ = φ(g)−1 · (v (g) )ψ .
+                           χ
+
+In other words, Bv (g) = φ(g)−1 v (g) . Since this is true for every g in G, one concludes
+that B = A−1 .
+   For (iii), note that Corollary 8.2 and part (ii) above imply that s|Irr(G)| is the
+smallest positive integer that makes
+                                                        
+                                        1                s
+                            s χ · ψ,         = χ · ψ,
+                                       φ G               φ G
+an integer for all G-irreducibles χ, ψ. By taking ψ = 1, one can see that it is
+necessary for s to make hχ, φs iG an integer for all G-irreducibles, that is, φs is a
+virtual character. However, this is also a sufficient condition on s, since χ · ψ is the
+character of a genuine (and hence also virtual) G-representation.                     
+   We wish to apply the previous proposition with H = Gn−1 and G = Gn in an
+r-differential tower of groups 1 = G0 < G1 < · · · as in Definition 6.1. In this
+                                                                  1
+case, there is a nice recurrence for the class function φ = U(1n−1  )+k on Gn that
+appears in the proposition, where here 1n is the trivial character of Gn , and U, D
+denote induction IndG                         Gn
+                      Gn−1 and restriction ResGn−1 of class functions. In particular,
+                       n
+
+
+transitivity of induction/restriction means that U j = IndG         j     Gn
+                                                          Gn−j and D = ResGn−j
+                                                            n
+
+
+for all j and n.
+Proposition 6.10. In an r-differential tower of groups, one has for every n and
+every k in C the following equality among class functions in Cl(Gn ):
+                                            n
+                               1           X         U j (1n−j )
+                                         =     (−1)j             .
+                       U (1n−1 ) + r + k   j=0
+                                                     (j + 1)!r,k
+
+where we recall that j!r,k := (r + k)(2r + k)(3r + k) · · · (jr + k).
+Proof. We begin with two simple facts. First note that (6.1) implies
+                                      
+                               1                   1
+                   D                     =
+                       U (1n ) + r + k     DU (1n ) + r + k
+                                                   1
+(6.7)                                    =
+                                           U D(1n ) + 2r + k
+                                                    1
+                                         =                    .
+                                           U (1n−1 ) + 2r + k
+   Next, note that if G is a finite group, and H a subgroup, then for any class
+functions ψ, φ on H, G, respectively, one can use Frobenius reciprocity to show
+(6.8)                       IndG         G          G
+                               H (ψ · ResH φ) = (IndH ψ) · φ.
+
+  We now show the asserted equality by induction on n. In the base case n = 0,
+                                                             1
+one can see that both sides are the constant class function r+k .
+18                       ALEXANDER MILLER AND VICTOR REINER
+
+
+  In the inductive step, assume that the assertion holds for n, and manipulate the
+sum on the right side of the proposition for n + 1 as follows:
+       n+1                           n+1
+       X
+                jU
+                     j
+                  (1n+1−j )     1    X        U j (1n+1−j )
+           (−1)             =      −    (−1)j
+       j=0
+                (j + 1)!r,k   r + k j=1        (j + 1)!r,k
+                                                          n
+                                                                                     !
+                                (ℓ:=j−1)    1             X
+                                                                    ℓ  U ℓ (1n−ℓ )
+                                   =               1−U          (−1)
+                                           r+k                       (ℓ + 1)!r,k+r
+                                                          ℓ=0
+                                                                               
+                                (induction)    1                      1
+                                     =              1−U
+                                             r+k             U (1n−1 ) + 2r + k
+                                                                              
+                                (6.7)   1                                1
+                                  =            1 − U 1n · D
+                                      r+k                        U (1n ) + r + k
+                                                                   
+                                (6.8)   1              U (1n )
+                                  =            1−
+                                      r+k          U (1n ) + r + k
+                                                           
+                                      1           r+k
+                                =
+                                    r + k U (1n ) + r + k
+                                            1
+                                =
+                                    U (1n ) + r + k
+finishing the induction.                                                                    
+   We need one further general fact about r-differential posets that does not involve
+groups.
+Proposition 6.11. Let P be an r-differential poset P , and jm−1 ⋖ jm any covering
+pair in P with the property that jm−1 , jm both cover at most one element of P .
+   Then for any integer n ≥ m one can extend this to a saturated chain
+                           jm−1 ⋖ jm ⋖ jm+1 ⋖ · · · ⋖ jn−1 ⋖ jn
+in which each jℓ covers at most one element of P .
+Proof. Induct on n, with base case n = m trivial. Since jn covers exactly one
+element, it is covered by exactly r + 1 distinct elements, say a1 , a2 , . . . , ar+1 . We
+wish to show that some ai covers only jn , and hence plays the role of jn+1 in
+extending our chain.
+   So assume not, that is, there exists elements a−                −
+                                                      1 , . . . , ar+1 all distinct from jn
+with the property that ai covers ai for each i. For each i, since a−
+                                      −
+                                                                                i and jn are
+covered by at least one element in common, namely ai , they must both cover some
+element in common, which must be jn−1 . Thus jn , a−                       −
+                                                              1 , . . . , ar+1 all cover jn−1 ,
+and our inductive hypothesis says that jn−1 covers at most one element, so it is
+covered by at most r + 1 elements. This forces a−            −
+                                                    i = aj for some i 6= j. But then
+since jn , a−     −
+            i (= aj ) cover only one element jn−1 , they must be covered by a unique
+element, forcing ai = aj , a contradiction.                                                 
+Theorem 6.12. Given an r-differential tower of groups, its r-differential poset has
+the last Smith entry for A := DUn + kI equal to 0 when A is singular, and given
+by the formula            (
+                            (n + 1)!r,k               if r ≥ 2
+                    spn =
+                            (n − 1)!1,k · (n + 1 + k) if r = 1
+                  DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                             19
+
+
+when A is nonsingular.
+Proof. By Proposition 6.9(iii), it suffices to show that when DUn +kI is nonsingular,
+the integers shown on the right side of the theorem are the smallest positive integers
+s for which the class function φs , where φ(g) = IndG     Gn−1 (1n−1 ) + k is a virtual
+                                                           n
+
+
+character of Gn .
+   By Proposition 6.10, this is same as saying that
+                                    Xn
+                                              IndG n
+                                                  Gn−j 1n−j
+                               s·       (−1)j
+                                    j=0
+                                                (j + 1)!r,k
+
+is a virtual Gn -character. Because j!r,k divides (j + 1)!r,k , it is clear that (n + 1)!r,k
+is one such positive integer s, for any r. Thus spn will divide (n + 1)!r,k . Also, since
+when r = 1 one has G0 = G1 = 1, and since
+                       1          1                    1
+                           −             =                            ,
+                     n!1,k   (n + 1)!1,k    (n − 1)!1,k (n + 1 + k)
+one finds that (n − 1)!1,k (n + 1)1,k is one such positive integer s for r = 1. Thus
+spn will divide (n − 1)!1,k (n + 1 + k) when r = 1.
+   We wish to show that these divisibilities are actually equalities. First note every
+irreducible Gn -character appears in the irreducible decomposition of IndG  G0 10 since
+                                                                             n
+
+
+G0 = 1 is the trivial subgroup of Gn . Likewise for IndG     G1 11 when r = 1 since
+                                                               n
+
+
+G1 = G0 = 1 when r = 1. Hence, it suffices to show that there is at least one
+irreducible Gn -character χ which does not appear in the irreducible decomposition
+of IndGGℓ 1ℓ for ℓ ≥ 1 if r ≥ 2, and for ℓ ≥ 2 if r = 1.
+         n
+
+
+   This is provided by Proposition 6.11: find a Gn -irreducible jn := χ lying atop a
+saturated chain j0 ⋖ j1 ⋖ · · · ⋖ jn , each of whose elements covers a unique element
+of P , and which starts
+       • for r ≥ 2, in ranks 0, 1 with j0 = 10 ⋖ j1 = ψ for some nontrivial G1 -
+          irreducible ψ,
+       • for r = 1, in ranks 0, 1, 2 with j0 = 10 ⋖ j1 = 11 ⋖ j1 = ψ for the unique
+          nontrivial G2 -irreducible ψ.
+In both cases, one can see that this character χ will have the desired property of
+not appearing in the appropriate inductions IndG    Gℓ 1ℓ .
+                                                     n
+                                                                                     
+Corollary 6.13. Given an r-differential tower of groups,
+    (i) the associated r-differential poset has affirmative answer to Stanley’s Ques-
+        tion 2.2, that is, its rank numbers pn satisfy ∆pn > 0 for n ≥ 2, and
+   (ii) for all integers k the last Smith invariant spn of DUn + kI obeys the predic-
+        tion of Conjecture 1.1: it is zero when DUn + kI is singular, and equal to
+        the product of the distinct eigenvalues of DUn + kI when it is nonsingular.
+In particular, these assertions apply to the r-differential Cartesian products Yr of
+Young’s lattice.
+Proof. For a fixed n ≥ 2, to show that ∆pn > 0, apply Theorem 6.12 with the
+integer k chosen so that r + k is a prime that divides none of
+                            2r + k, 3r + k, . . . , (n + 1)r + k
+(e.g. pick p to be a prime larger than (n + 1)r and take k = p − r). Theorem 6.12
+tells us that the prime r + k divides the last Smith form entry spn for DUn + kI
+20                    ALEXANDER MILLER AND VICTOR REINER
+
+
+over Z, and hence it also divides
+     det(DUn + kI) = (r + k)∆pn (2r + k)∆pn−1 · · · (nr + k)∆p1 ((n + 1)r + k)p0
+according to Proposition 2.1. Since r + k is a prime that can only divide the first
+factor on the right, it must be that ∆pn > 0.
+   The last assertion of the corollary is now an immediate consequence of Theo-
+rem 6.12, Proposition 2.1, and Proposition 8.4                                   
+
+Remark 6.14. When G is a nonabelian finite group, the up and down maps for
+the towers of wreath products Gn = Sn [G] = G ≀ Sn were also studied by Okada
+[17]. In this situation, one can see that the branchings are not multiplicity-free,
+already from G1 = G down to the trivial group G0 . Hence one does not have an
+r-differential tower of groups as we have defined it, and our proof of Corollary 6.13
+does not quite apply. However, its conclusions for the up and down maps are still
+valid, as we now explain.
+   In this situation, Irr(Gn ) can be naturally indexed by the elements at rank n in
+Ym where m = |Irr(G)| is the number of complex irreducible G-characters, or the
+number of conjugacy classes in G. Okada shows [17, Corollary to Proposition 5.1]
+that one still has DUn − U Dn = rI in general.
+   Thus by placing the branching multiplicities on the edges of Ym , one obtains
+the structure of a self-dual graded graph in the sense of Fomin [4, 5]. Our results
+such as Proposition 2.1, 6.9 still apply, with the same proofs. However, in the proof
+of Theorem 6.12 one needs a substitute for Proposition 6.11, which we currently
+don’t know how to generalize to all self-dual graded graphs.
+   Nevertheless, for the wreath products Gn , one can easily produce such a sub-
+stitute as follows. Take any nontrivial G-irreducible ψ 6= 1G acting on a vector
+space V . Let χ be the representation of Gn acting on the n-fold tensor product
+V ⊗ · · ·⊗ V , in which the the subgroup Sn of Gn acts by permuting tensor positions
+and the Cartesian product subgroup Gn acts as by ψ within each component. This
+representation χ turns out to be a Gn -irreducible, and its restriction to G1 (= G) is a
+multiple of ψ. Hence by Frobenius reciprocity, χ is not contained in the irreducible
+support of IndG   G1 1G1 , as desired.
+                   n
+
+
+
+
+                      7. Remarks on dual graded graphs
+   Our conjectures deal only with differential posets, not dual graded graphs, be-
+cause it has not been clear to us what the general setting should be.
+   In particular, Remark 6.14 perhaps suggests that one should consider as an
+intermediate level of generality the self-dual graded graphs. We have not tested this
+extensively.
+   When considering dual graded graphs which are not self-dual, one finds that
+the naive generalizations of Conjectures 1.1, 2.3 and 2.4 fail; we present specific
+counterexamples below. However, we also present some examples in which Conjec-
+ture 2.4 holds for at least one of the two graphs in a pair of dual graded graphs.
+   Conjecture 2.4 fails already for the up and down maps in the left graph out of
+the pair of dual graded graphs pictured in Figure 4.
+   Conjecture 2.3 fails for the dual graded graphs SY of shifted shapes considered
+by Fomin [4, 5]: they have rank size pn equal to the number of partitions of n into
+distinct parts, for which ∆p4 = 0 < 1 = ∆p3 .
+                DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                          21
+
+
+
+
+                   Figure 4. Counterexample for Conjecture 2.4
+
+   The dual graphs of shifted shapes also provide a counterexample to Conjec-
+ture 1.1, when one considers DU7 .
+
+
+
+
+                         Figure 5. Ranks 6 and 7 of SY.
+
+  One finds that
+                                                               
+                        4     2   2   0   0      1
+                      1
+                             3   2   0   0
+                                            
+                                                  1              
+                                                                  
+                      1
+                DU7 =        2   5   2   0 ∼
+                                            
+                                                      1          ,
+                                                                  
+                      0      0   2   4   2              2      
+                        0     0   0   1   3                    120
+while its eigenvalues 1, 2, 3, 5, 8 would have predicted the diagonal Smith entries as
+1, 1, 1, 1, 240.
+   On the other hand, we list in the next proposition a number of known graded
+graphs, each a part of a pair of dual graded graphs, having coker Un free for all n;
+see Nzeutchap [15, 16] for definitions and background on these objects.
+Proposition 7.1. In the following graded graphs, coker Un is free for all n:
+(1) the lifted binary tree,
+(2) the bracket tree,
+(3) Binword,
+(4) the lattice of binary trees, and
+(5) the lattice of shifted shapes from the pair SY with all edges labelled one.
+Proof. For (1) and (2) this is clear because the graded graphs in question are trees.
+It therefore remains to check this for (3),(4),(5). For each of these posets P , one
+can exhibit
+      • a natural way to linearly order each rank Pn , and
+                                              φ
+     • a (P -)order-preserving injection Pn ֒→ Pn+1 , so that
+     • φ(x) is always the earliest element in the linear order on Pn+1 which lies
+        above x in P .
+From this it follows that Un has free cokernel, because the sets Pn and φ(Pn ) will
+index the columns and rows of a pn × pn unitriangular submatrix.
+   22                    ALEXANDER MILLER AND VICTOR REINER
+
+
+      For (3), let w = w1 w2 · · · wn be a binary word of rank n in Binword, and linearly
+   order them by the usual integer order on the numbers they represent in binary.
+   Then let φ(w) be obtained from w by inserting a 0 into the second position:
+
+                                   φ(w) = w1 0w2 · · · wn .
+
+     For (4), linearly order each rank in the lattice of binary trees by saying say
+   T ≥ T ′ if the leftmost vertex in which they differ is in T . For example, one has
+
+   PSfrag replacements
+                              ≥         ≥          ≥          ≥
+
+
+   Given a tree T , let φ(T ) be obtained by adding a left leaf in the leftmost available
+   position.
+      For the lattice of shifted shapes, the linear order on each rank is the natural
+   lexicographic ordering. For example,
+PSfrag replacements
+                               ≥            ≥          ≥          ≥
+
+
+   Given a shifted shape λ of rank n, let φ(λ) be obtained from it by removing the
+   bottom, rightmost box.                                                       
+
+   Question 7.2. How should the conjectures in this paper generalize to dual graded
+   graphs?
+
+      We have noticed that in a large number of examples, the torsion part of the
+   group coker(Un ) is killed by some power of the product of all edge-multiplicities for
+   the edges between ranks n and n + 1. However, this also does not hold in general:
+   the following partial dual graded graphs
+
+
+
+
+   have coker U2 ∼= Z/3Z, which is not killed by any power of 2 (the only nontrivial
+   edge multiplicity between ranks 2 and 3). One can extend this partial pair to a
+   genuine pair of dual graded graphs by a fairly obvious dual graded graph analogue
+   of Wagner’s construction.
+
+
+             8. Appendix: On Smith and parametrized Smith forms
+      This appendix discusses Smith forms over rings R which are unique factorization
+   domains (UFD’s), but not necessarily principal ideal domains (PID’s). See also
+   Kuperberg [9] for other useful facts about this, and interesting examples where
+   such Smith forms exist. Also discussed here is the significance of a square matrix
+   having a parametrized Smith form, as defined in the Introduction.
+                  DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                               23
+
+
+8.1. Smith forms. Let R be a commutative ring. Recall that a matrix A in
+Rm×n is in Smith form if it is diagonal in the sense that its off-diagonal entries
+vanish, and its diagonal entries si = aii have si+1 divisible by si in R for each
+i = 1, 2, . . . , min{m, n} − 1. Recall also that A has a Smith form over R if there
+exists change-of-bases P, Q in GLm (R), GLn (R), respectively, such that P AQ is in
+Smith form.
+   It is well-known that when R is a PID, every matrix A in Rm×n has a Smith
+form, but this is not guaranteed for an arbitrary ring R. The following proposition
+characterizing the diagonal entries in the Smith form is well-known in the case
+where R is a PID, but holds more generally when R is a UFD.
+Proposition 8.1. Let R be a UFD, and assume that A in Rm×n has a Smith
+form over R, with diagonal entries s1 , s2 , . . .. Then for each i, the partial product
+s1 s2 · · · si can be interpreted as the greatest common divisor di (A) of all determi-
+nants of i × i minors of A.
+    Consequently, the entries si are determined uniquely up to units in R× by the
+formula
+                                               di (A)
+(8.1)                                  si =            ,
+                                              di−1 (A)
+where d0 (A) is taken to be 1.
+Proof. Since greatest common divisors in a UFD are well-defined up to units in
+R× , the second assertion about unique determination follows once one has shown
+the formula (8.1)
+   To show formula (8.1), first note that it is trivial when A itself is in Smith form,
+due to the divisibility relations among the diagonal entries si .
+   Secondly, note that d1 (P AQ) = d1 (AQ) = d1 (A) since invertible row or column
+operations over R cannot affect the set of common divisors of the entries of a matrix.
+Since we assumed that one can find P, Q with P AQ in Smith form, the assertion
+holds for i = 1.
+   For i ≥ 2, recall that A represents an R-module homomorphism between free
+R-modules
+                                    A : Rn → Rm .
+                                                                        m       n
+Apply the ith exterior power functor to obtain a matrix ∧i A in R( i ) × R( i ) , rep-
+resenting the R-module homomorphism between the free R-modules
+                                  ∧i A : ∧i Rn → ∧i Rm ,
+with respect to the standard basis of decomposable wedges eI := ∧j∈I ei indexed by
+i-element subsets I of {1, 2, . . . , n} or {1, 2, . . . , m} for the source and target. Since
+the (I, J) entry of ∧i A is the determinant of the i × i minor AI,J , one concludes
+that di (A) = d1 (∧i A). As functoriality implies that
+                              ∧i (P AQ) = ∧i P · ∧i A · ∧i Q,
+and also implies the invertibility of ∧i P, ∧i Q, one concludes that
+        di (P AQ) = d1 (∧i (P AQ)) = d1 (∧i P · ∧i A · ∧i Q) = d1 (∧i A) = di (A).
+Since it was assumed that one can find P, Q with P AQ in Smith form, the assertion
+holds for all i.                                                                 
+24                     ALEXANDER MILLER AND VICTOR REINER
+
+
+   The following corollary characterizing the last Smith form entry is used in Sec-
+tion 6.3.
+Corollary 8.2. Let R be a UFD, with field of fractions K. Assume that a square
+matrix A in Rn×n has a Smith form over R. Then the last diagonal entry sn in its
+Smith form is
+     • zero if and only if A is singular, and
+     • the smallest denominator for A−1 in K n×n , in the sense that any s in R
+        for which sA−1 lies in Rn×n will have sn dividing s.
+Proof. For the first assertion, note that since A is square and has a Smith form
+P AQ with diagonal entries s1 , s2 , . . . , sn , one has
+                     s1 · · · sn = det P AQ = det P · det A · det Q.
+Note that det P, det Q lie in R× since P, Q invertible. Hence A is singular if and
+only if det A = 0 if and only if s1 · · · sn = 0 if and only if some si = 0 if and only if
+sn = 0.
+   For the second assertion, recall that
+                                           (−1)i+j
+                              (A−1 )ij =           det(Aij )
+                                            det A
+where Aij is the (n − 1) × (n − 1) minor of A obtained by removing row i and
+column j. Thus one has
+                          det Aij
+       sA−1 ∈ Rn×n ⇔ s             ∈ R for all i, j
+                           det A
+                       ⇔ det A | s det Aij for all i, j
+                       ⇔ det A | gcd(s det Aij ) = s gcd(det Aij )
+                                   i,j                    i,j
+                       ⇔ s1 s2 · · · sn−1 sn = det A | sdn−1 (A) = s · s1 s2 · · · sn−1
+                       ⇔ sn | s,
+where Proposition 8.1 was used in the second-to-last equivalence.                         
+
+    Assume R is an integral domain with fraction field K, and let A in Rm×n have
+rank r when considered as a matrix in K m×n . If A also has a Smith form over R,
+then in its diagonal entries, the first r of them s1 , s2 , . . . , sr will be nonzero, and
+the rest zero. Note that the simplest possible Smith form in this situation, where
+s1 , . . . , sn ∈ {0, 1}, occurs if and only if the cokernel
+                           cokerA := Rm /im(A : Rn → Rm )
+is free, and isomorphic to Rm−r . The following equivalent characterization when
+rank r = n is useful in the context of Conjecture 2.4.
+Proposition 8.3. Let R be an integral domain. Assume U in Rm×n has rank n
+over the fraction field K of R, so in particular, n ≤ m. Then coker(U ) ∼
+                                                                        = Rm−n if
+                       t ∼   m−n
+and only if coker(U U ) = R      .
+Proof. For the forward implication, if coker(U ) ∼
+                                                 = Rm−n then the short exact se-
+quence
+                        0 → imU → Rm → coker(U ) → 0
+                 DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                          25
+
+
+will split, since coker(U ) is free, and hence projective. Therefore
+                              Rm = im(U ) ⊕ coker(U )
+which means
+          that there exist change-of-bases P, Q in GLm (R), GLn (R) so that
+         I
+P U Q = n . This gives
+          0
+                                       −1         −1           
+                     In     −1            Q            Q         0   In
+             PU =        Q          =           =                       .
+                      0                     0             0   Im−n    0
+                                             
+                  In                     Q    0
+Therefore P̂ U =        where P̂ :=               P is unimodular. This implies
+                   0                     0 Im−n
+                                                          
+                                         I            I   0
+                        P̂ U U t P̂ t = n In 0 = n             .
+                                          0              0 0
+Hence coker(U U t ) is also free.
+    For the reverse implication, assume coker(U U t ) ∼= Rm−n . This implies that
+           t                         t
+rankK U U = n. Note that im(U U ) ⊆ imU , which has two implications. Firstly,
+it implies
+                              (n =)rankK U U t ≤ rankK U
+and since U has dimensions m × n, this forces
+                             rankK U = n = rankK U U t .
+  Secondly, it gives a surjection
+                                            π
+                              coker(U U t ) ։ coker(U )
+between two R-modules of the same rank. Since this implies that ker π has K-
+dimension 0, it must be all R-torsion as an R-module, and hence zero because it is
+a submodule of the free module coker(U U t ) ∼
+                                             = Rm−n . Thus π is an isomorphism,
+              ∼
+and coker(U ) = R m−n
+                      .                                                         
+
+8.2. Parametrized Smith forms. Recall that a square matrix A in Rn×n is said
+to have a parametrized Smith form if A + tI in R[t]n×n has a Smith form over R[t].
+This has strong consequences.
+Proposition 8.4. Let R be an integral domain, with field of fractions K, and K
+the algebraic closure of K.
+   Assume A in Rn×n has a parametrized Smith form for A + tI with the diagonal
+entries s1 (t), . . . , sn (t) in R[t].
+     (i) The si (t) can all chosen with leading coefficient 1 (monic) in R[t].
+    (ii) For each λ in K, the (geometric) eigenvalue multiplicity
+                               dimK ker(A − λI) = m
+        can be read off of the si (t) as follows: t + λ is a factor in K[t] of the last
+        m entries
+                           sn (t), sn−1 (t), . . . , sn−(m−1)(t)
+        but no other si (t).
+                                                n×n
+  (iii) A is semisimple (=diagonalizable in K       ) if and only the si (t) have no
+        repeated factors when split competely in K[t].
+26                     ALEXANDER MILLER AND VICTOR REINER
+
+
+     (iv) In the situation where A is semisimple, the si (t) factor as follows:
+                                            Y
+                          sn+1−i (t) =               (t + λ).
+                                              λ∈K:
+                                        dimK ker(A−λI)≥i
+
+         So, for example, the last parametrized Smith entry factors as
+                                         Y
+                        sn (t) =                    (t + λ).
+                                    eigenvalues λ∈K for A
+
+Proof. By assumption, there exist P (t), Q(t) lying in GLn (R[t]) for which
+(8.2)                  P (t)(A + tI)Q(t) = diag(s1 (t), . . . , sn (t))
+where here diag(a1 , . . . , an ) denotes the n × n square diagonal matrix with eigen-
+values a1 , . . . , an . Since R is an integral domain, the units of R[t] are exactly the
+units R× , that is, independent of t, and hence det P (t), det Q(t) both lie in R× .
+Thus one has
+(8.3)                det P (t) det(A + tI) det Q(t) = s1 (t) · · · sn (t)
+where det P (t), det Q(t) lie in R× .
+   Assertion (i) now follows: up to scalars in R× , the leading terms of the si (t)
+multiply to give the leading term of det(A + tI), which is 1. Hence these leading
+terms are all in R× , and can be scaled away.
+   For assertion (ii), note that for any λ in K, one can set t = −λ in (8.2) to obtain
+(8.4)             P (−λ)(A − λI)Q(−λ) = diag(s1 (−λ), . . . , sn (−λ))
+where both P (−λ), Q(−λ) lie in GLn (K) since their determinants are independent
+                              ×
+of λ and lie in R× (⊂ K × ⊂ K ). Consequently, one has
+             m = dimK ker(A − λI) = dimK ker diag(s1 (−λ), . . . , sn (−λ))
+if and only if t = −λ is a root of exactly m of the polynomials si (t), that is, if and
+only if t + λ is a factor in K[t] of sn (t), sn−1 (t), . . . , sn−(m−1) (t) and no others.
+    For assertions (iii) and (iv), recall that one has A semisimple if and only if
+for each λ the (geometric) multiplicity m = dimK ker(A − λI) is the same as the
+multiplicity of t = −λ as a root of det(A + tI). We claim that the latter is the same
+as its multiplicity as a root of s1 (t) · · · sn (t), due to (8.3). Since we know t = −λ
+is always a root of the last m factors in this product and no others, it is a root of
+multiplicity m if and only if it is a simple root for each of these last m factors. This
+gives all the remaining assertions.                                                        
+   We illustrate, by way of examples, that having A in Rn×n with a parametrized
+Smith form for A + tI in R[t] implies neither that A is semisimple, nor that its
+eigenvalues lie in R or K.
+Example 8.5. Let R = Z and
+                                                      
+                                            0      1
+                                        A=
+                                            0      0
+which is not semisimple. Nevertheless, one can bring A + tI into Smith form over
+Z[t] by these row and column operations:
+                                                          
+                          t 1      0    1       0    1     1 0
+               A + tI =        ∼           ∼            ∼          .
+                          0 t     −t2 t        −t2 0       0 t2
+                 DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                           27
+
+
+Note that one of the diagonal entries s2 (t) = t2 has a double root in this case, as
+predicted by Proposition 8.4 above.
+Example 8.6. Let R = K = Q and
+                                                    
+                                         0 1
+                                      A=
+                                         −1 0
+which is semisimple, but with eigenvalues ±i that do not lie in R = K. However,
+since R is a field and hence R[t] is a PID, one can certainly bring A + tI into Smith
+form over Q[t] by these row and column operations:
+                                                                     
+                      t 1        0 t2 + 1         0 t2 + 1        1     0
+        A + tI =            ∼                ∼                ∼               .
+                     −1 t      −1       t        −1      0        0 t2 + 1
+Note that each of the eigenvalues is at most a simple root of the last Smith entry
+s2 (t) = t2 + 1 = (t + i)(t − i).
+Remark 8.7. Note that if R is itself a P ID, then for every value k in R, the matrix
+A + kI in Rn×n will have a Smith form over R. Thus whenever A + tI also has a
+Smith form in R[t], it will predict these Smith forms over R by setting t = k.
+  Note also that for any integral domain R, since its field of fractions K always
+has K[t] a PID, a Smith form for A + tI in K[t] is guaranteed to exist. Thus
+whenever A + tI also has a Smith form in R[t], it will predict the Smith form in
+K[t]. However, knowledge of the eigenvalues of A in K will already predict this
+Smith form for A + tI in K[t], by the argument in Proposition 8.4.
+Remark 8.8. To give some sense of how rarely one finds a parametrized Smith form
+for A + tI when R is not a field and A lies in Rn×n , we note its scarcity among
+among diagonal matrices.
+Proposition 8.9. Let A = diag(λ1 , . . . , λn ) be a diagonal matrix in Rn×n . If A + tI
+has a Smith form in R[t] then every nonzero difference λi − λj is a unit in R× .
+   In particular, for R = Z, a diagonal matrix A has a parametrized Smith form
+for A + tI in Z[t] if and only if the diagonal entries take on at most two values in
+Z, and those two values differ by 1.
+Proof. Let λ be among the diagonal entries {λ1 , . . . , λn }. We will show that λi − λ
+lies in R× for all i using downward induction on the multiplicity m with which λ
+occurs in the list. Reindex so that λ occurs as the last m diagonal entries in A.
+Let P (t)(A + tI)Q(t) = diag(s1 (t), . . . , sn (t)), where we know from Proposition 8.4
+how to factor si (t) over R. Setting t = −λ one obtains
+                P (−λ)diag(λ1 − λ, . . . , λn−m − λ, 0, 0, · · · , 0)Q(−λ)
+                                                     | {z }
+                                                           m times
+                   = diag(s1 (−λ), . . . , sn−m (−λ), 0, 0, · · · , 0).
+                                                      | {z }
+                                                          m times
+However the exact form of each of the nonzero terms si (−λ) on the right shows that
+it is a product of factors of the form λj − λ where λj has larger multiplicity than
+m. Thus by induction, each such factor λj − λ is a unit, and hence so is si (−λ).
+    Taking cokernels of both sides now gives an R-module isomorphism
+                                    n−m
+                                    M
+                             Rm ⊕          R/(λi − λ) ∼
+                                                      = Rm .
+                                     i=1
+28                      ALEXANDER MILLER AND VICTOR REINER
+
+
+This forces each R/(λi − λ) = 0 (and hence λi − λ is forced to be a unit): any x
+in R/(λi − λ) gives rise to an element (x, 0, 0, . . .) killed by λi − λ on the left, but
+since only 0 is killed by it in Rm on the right, this forces x = 0.
+   The assertion for R = Z then follows easily from the fact that Z× = {±1}, and
+the difference +1 − (−1) = 2 is not in Z× .                                            
+Example 8.10. The following examples illustrate some of the previous remarks.
+                                          
+                                    −1 0
+                              A=
+                                    0 0
+in Z2×2 has a parametrized Smith form, as
+                                                                              
+             t−1 0       t−1 0       −1 −t     −1                   −t       1     0
+  A + tI =           ∼            ∼          ∼                            ∼
+              0   t       t    t      t   t     0                 t − t2     0 t(t − 1)
+Consequently, it has the same Smith form over Q[t], and for any integer k, the
+matrix A + kI will have Smith form over Z given by setting t = k. In particular,
+the cokernel Z2 /im(A + kI) is always isomorphic to the cyclic group Z/k(k − 1)Z,
+interpreting this as Z/0Z = Z when k = 0, 1.
+   On the other hand, the matrix
+                                             
+                                         −1 0
+                                  A=
+                                         0 1
+has no Smith form in Z[t] for
+                                                      
+                                                t−1  0
+                                 A + tI =
+                                                 0  t+1
+according to Proposition 8.9. The Smith form for A+ tI in Q[t] has diagonal entries
+1, (t − 1)(t + 1), but requires dividing by 2 in order to put it into this form. One
+also sees a wider range of behaviors for the cokernel of A + kI over Z as the integer
+k varies:
+                               (
+                            ∼    Z/(k − 1)Z ⊕ Z/(k + 1)Z if k is odd,
+             coker(A + kI) =
+                                 Z/(k − 1)(k + 1)Z           if k is even.
+
+                                       References
+[1] N. Bergeron, T. Lam, and H. Li Combinatorial Hopf algebras and Towers of Algebras,
+ arXiv:0710.3744.
+[2] V. Chari and A. Pressley, A Guide to Quantum Groups, Cambridge University Press, 1994.
+[3] D.S. Dummit and R.M. Foote, Abstract Algebra, Prentice Hall, Englewood Cliffs, NJ, 1991.
+[4] S. Fomin, Duality of graded graphs, J. of Alg. Combin., 3 (1994), 357-404.
+[5] S. Fomin, Schensted algorithms for dual graded graphs, J. of Alg. Combin., 4 (1995), 5-45.
+[6] W. Fulton, Young Tableaux, Cambridge Univ. Press, London, 1997.
+[7] W. Fulton and J. Harris, Representation Theory, a First Course, Springer GTM 129, 1991.
+[8] F. M. Goodman, P. de la Harpe, and V. F. R. Jones, Coxeter Graphs and Towers of Algebras,
+ Math. Sci. Res. Inst. Publ., no. 14, Springer-Verlag, New York, 1989.
+[9] G. Kuperberg, Kasteleyn cokernels, Electron. J. Combin. 9 (2002), 30pp.
+[10] J. L. Loday and M. O. Ronco, Hopf algebra and the planar binary trees, Adv. Math., 139
+ (1998), no. 2, 293-309.
+[11] I. G. Macdonald, Symmetric Functions and Hall Polynomials, Oxford Univ. Press, 1979.
+[12] A. Miller, Smith invariants of U D and DU linear operators in differential posets, REU
+ report.
+[13] M. Newman, Integral Matrices, Vol. 45 in Pure and App. Math. Academic press, N.Y. and
+ London, 1972.
+                   DIFFERENTIAL POSETS AND SMITH NORMAL FORMS                                   29
+
+
+[14] Y. Numata, Pieri’s formula for generalized Schur polynomials, FPSAC, 2006.
+[15] J. Nzeutchap, Dual graded graphs and Fomin’s r-correspondences associated to the Hopf al-
+ gebras of planar binary trees, quasi-symmetric functions and noncommutative symmetric func-
+ tions, FPSAC, 2006.
+[16] J. Nzeutchap, Binary search tree insertion, the hypoplactic insertion, and dual graded graphs,
+ arXiv:0705.2689.
+[17] S. Okada, Wreath products by the symmetric groups and product posets of Young’s lattices,
+ J. Combin. Theory Ser. A, 55 (1990), 14–32.
+[18] S. Okada, Algebras associated to the Young-Fibonacci lattice, Trans. Amer. Math. Soc., 346
+ (1994), no. 2, 549-568.
+[19] R. P. Stanley, Differential posets, J. Amer. Math. Soc., 1 (1988), 919-961.
+[20] R. P. Stanley, Variations on differential posets, Invariant Theory and Tableaux (D. Stanton,
+ ed.), IMA Vol. Math. Appl., no. 19, Springer, New York, 1988, pp. 145-165.
+[21] R. P. Stanley, Enumerative Combinatorics, Volume 1, Cambridge University Press, 1997.
+[22] R. P. Stanley, Enumerative Combinatorics, Volume 2, Cambridge University Press, 1999.
+[23] J. Stembridge, On the eigenvalues of representations of reflection groups and wreath products
+ Pac. J. Math., 140 (1989), 353–396.
+[24] R. M. Wilson, A diagonal form for the incidence matrices of t-subsets vs. k-subsets, Europ.
+ J. Comb., 11 (1990), 609-615.
+    E-mail address: mill1966@math.umn.edu
+
+   E-mail address: reiner@math.umn.edu
+
+   School of Mathematics, University of Minnesota, Minneapolis, MN 55455
+

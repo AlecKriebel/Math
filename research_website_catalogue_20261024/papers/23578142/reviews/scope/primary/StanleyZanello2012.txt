@@ -1,0 +1,775 @@
+ On the rank function of a differential poset
+              Richard P. Stanley                              Fabrizio Zanello
+            Department of Mathematics              Department of Mathematical Sciences
+                      MIT                                    Michigan Tech
+            Cambridge, MA 02139-4307                    Houghton, MI 49931-1295
+               rstan@math.mit.edu                            zanello@math.mit.edu
+
+         Submitted: Nov 19, 2011; Accepted: Apr 15, 2012; Published: Apr 27, 2012
+    Mathematics Subject Classifications: Primary: 06A07; Secondary: 06A11, 51E15, 05C05.
+
+
+                                              Abstract
+           We study r-differential posets, a class of combinatorial objects introduced in 1988
+       by the first author, which gathers together a number of remarkable combinatorial
+       and algebraic properties, and generalizes important examples of ranked posets, in-
+       cluding the Young lattice. We first provide a simple bijection relating differential
+       posets to a certain class of hypergraphs, including all finite projective planes, which
+       are shown to be naturally embedded in the initial ranks of some differential poset.
+       As a byproduct, we prove the existence, if and only if r ⩾ 6, of r-differential posets
+       nonisomorphic in any two consecutive ranks but having the same rank function. We
+       also show that the Interval Property, conjectured by the second author and collabo-
+       rators for several sequences of interest in combinatorics and combinatorial algebra,
+       in general fails for differential posets. In the second part, we prove that the rank
+       function pn√of any arbitrary r-differential poset has nonpolynomial growth; namely,
+       pn  na e2 rn , a bound very close to the Hardy-Ramanujan asymptotic formula
+       that holds in the special case of Young’s lattice. We conclude by posing several
+       open questions.
+
+       Keywords: Partially ordered set, Differential poset, Rank function, Young lattice,
+       Young-Fibonacci lattice, Hasse diagram, Hasse walk, Hypergraph, Finite projective
+       plane, Steiner system, Interval conjecture.
+
+
+1      Introduction
+The first author introduced r-differential posets in 1988 ([20]), as a class of ranked posets
+enjoying a number of important combinatorial and algebraic properties. The best known
+examples of differential posets are the Young lattice Y , and the Fibonacci r-differential
+posets Z(r); these latter are a generalization of the Young-Fibonacci lattice, which corre-
+sponds to the case r = 1. Many authors have since provided interesting generalizations,
+in several directions, of the concept of a differential poset; see [1, 6, 7, 11, 12, 13, 21].
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                       1
+    Despite their relevance, a number of basic questions concerning these posets remain
+open. For instance, it is unknown what the structure of a differential poset P can be,
+even in low rank; it is still a conjecture that the rank function, pn , of P must be strictly
+increasing (that it weakly increases was proved in [20], by means of a linear algebra
+argument); and, no nontrivial lower bounds were known until now on the growth of pn
+(see [3] for a sharp upper bound). The object of this note is to start addressing some
+of the above or related structural questions, by also drawing some interesting, natural
+connections to other combinatorial areas.
+    The first part of our paper is devoted to proving a natural bijection relating differential
+posets to such other combinatorial objects as hypergraphs, Steiner systems and finite
+projective planes. These latter are shown to be all naturally embedded in the first two
+ranks of some differential poset. It follows that a characterization of the initial portion
+of differential posets would already imply, for instance, a complete classification of finite
+projective planes, one of the major open questions in geometry. As a consequence of our
+correspondence, we establish the existence, if and only if r ⩾ 6, of r-differential posets
+with the same rank function but nonisomorphic in any two consecutive ranks, and we
+also show that the Interval Property — a (still mostly conjectural) property of interest in
+other areas of combinatorial algebra and combinatorics — in general fails for differential
+posets.
+    In the second part of the paper, we prove that, for any r-differential poset, its rank
+function pn has nonpolynomial growth. The conjectural lower bound for pn is given by
+the rank function pr (n) of Y r , the Cartesian product of r copies of the Young lattice.
+This latter function, using the Hardy-Ramanujan asymptotic formula for the partition
+function p(n) = p1 (n), and some standard properties
+                                                   √     of the Riemann zeta function, can
+                                                α π 2rn/3
+be proved to be asymptotically equal to Cn e              , for suitable constants
+                                                                                √
+                                                                                     C and α.
+                                                                             a 2 rn
+Our main result is p  that, for any arbitrary r-differential poset, pn  n e        , for some
+constant a. Since π 2/3 = 2.56..., this bound is close to being optimal, and in the much
+greater generality of arbitrary differential posets.
+    We conclude our note by listing some of the main open questions on the rank function
+of a differential poset.
+    We refer to [20, 23] for any unexplained terminology, and for the basic facts of the
+theories of posets and differential posets.
+                                                       S
+Definition 1. Let r be a positive integer, and P = n⩾0 Pn a locally finite, graded poset
+with a unique element of rank zero. Then P is r-differential if:
+
+  (i) two distinct elements x, y ∈ P cover k common elements if and only if they are
+      covered by k common elements; and
+
+ (ii) an element x ∈ P covers m elements if and only if it is covered by m + r elements.
+
+    The next lemma will be of great (and often implicit) use. Its proof is easy to see by
+induction, given that a differential poset has a unique least element (see [23], Proposition
+1.2).
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                   2
+Lemma 2. The integer k of Definition 1(i) equals 0 or 1. In other words, any two distinct
+elements of a differential poset can cover, or be covered by, at most one common element.
+
+    The following construction, which generalizes that of the Fibonacci r-differential poset
+Z(r), is due to D. Wagner (see [20, 23]), and is still the main general tool known today
+to construct new differential posets. In particular, it was used by J.B. Lewis [14] to prove
+the existenceS of uncountably many nonisomorphic differential posets.
+    Let P = jn=0 Pn be an r-differential poset up to rank j; that is, P 0 is a graded poset
+          0
+
+of rank j with a unique element of rank zero, satisfying Definition 1 in all ranks up to
+j − 1. Let Pj−1 = {y1 , . . . , yt }. Wagner’s construction adds a next rank, Pj+1 , to P 0 ,
+as follows. For each i = 1, . . . , t, place an element wi in Pj+1 such that it covers some
+element x ∈ Pj if and only if x covers yi . Also, for each x ∈ Pj , placeS r new elements in
+                                                                       0
+Pj+1 , each covering only x. It is easy to check that the new poset P      Pj+1 thus defined is
+r-differentialSup to rank j + 1. Infinitely iterating this construction yields an r-differential
+poset, P = n⩾0 Pn .
+    It immediately follows from Wagner’s construction that the rank function of P is given
+by pn = rpn−1 + pn−2 , for all indices n ⩾ j + 1.
+
+
+2     (Negative) structural results
+In this section, we present a very natural correspondence between differential posets and a
+suitable family of hypergraphs, which allows us to shed some more light on the complicated
+structure of a differential poset. In the concluding section of [20], the first author asked
+for a classification of differential posets, and pointed out how difficult this problem is by
+noticing that, in light of Wagner’s construction, it is even “unlikely that [the problem]
+has a reasonable answer”. We see in this section that, in fact, even a characterization
+of ranks one and two of a differential poset would imply, as particular cases, results of
+remarkable interest in finite geometry and design theory — including a classification of
+all finite projective planes.
+    As a consequence of our correspondence, we also show that there exist r-differential
+posets that are nonisomorphic in any two consecutive ranks but have the same rank
+function, if and only if r ⩾ 6. Further, we prove that the Interval Property fails for the
+set X of all rank functions of differential posets, by showing that 1, 4, 14, 60, 254, p5 , p6 , . . .
+and 1, 4, 17, 60, 254, p5 , p6 , . . . belong to X for a suitable choice of the pi , while no sequence
+in X can begin 1, 4, 16, . . . .
+    Recall that a hypergraph H is a pair H = (V, E), where V = {1, . . . , r} is a vertex set,
+and E is a collection of nonempty subsets of V , called the hyperedges of H. Borrowing
+a term from algebraic combinatorics, we define the dimension of a hyperedge F of H as
+dim F = |F | − 1. We say that H is k-uniform if all of its hyperedges have dimension
+k − 1. The (r − 1)-simplex is the hypergraph over V whose only hyperedge is V itself.
+    The complete graph over the vertex set V is the graph, denoted by Kr , where all
+vertices of V are connected by an edge. Therefore, Kr can be identified with the 2-
+uniform hypergraph H over V where every cardinality two subset of V is a hyperedge of
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                          3
+                                                       S
+H. Finally, following [23], given a graded poset P = n⩾0 Pn and a set S of nonnegative
+integers, define the rank-selectedSsubposet PS of P as the poset of elements of P whose
+ranks belong to S; that is, PS = n∈S Pn . If S is the interval {a, a + 1, . . . , b}, one usually
+writes S = [a, b].
+    We have:
+
+Proposition 3.
+ (1) The rank-selected subposets P[1,2] of r-differential posets are in bijection with the
+     hypergraphs H over V = {1, . . . , r}, such that all hyperedges of H have positive
+     dimension and any 2-subset of V is contained in exactly one hyperedge of H.
+
+ (2) Fix an r-differential poset P with rank function p : p0 = 1, p1 = r, p2 , . . . , and let
+     T1 denote the sum of the dimensions of the hyperedges of the hypergraph associated
+     with P[1,2] , as from part (1). Then
+
+                                             p2 = r(r + 1) − T1 .
+
+ (3) The maximum value that p2 may assume for an r-differential poset is r2 + 1; it is
+     achieved by Z(r), whose associated hypergraph is the (r − 1)-simplex.
+
+ (4) If r > 1, the next largest value p2 may assume is r2 − r + 3, corresponding to a
+     hypergraph with one (r − 2)-dimensional hyperedge and r − 1 1-dimensional hyper-
+     edges.
+
+ (5) The smallest value p2 may assume is r+2
+                                                
+                                              2
+                                                  − 1; it is achieved by Y r (the Cartesian
+     product of r copies of the Young lattice Y ), whose associated hypergraph is Kr .
+
+Proof. (1). Given an r-differential poset P , identify the elements of P1 with the integers
+1, . . . , r, and an element x ∈ P2 with the subset {a1 , . . . , at } of V = {1, . . . , r}, if and only
+if t ⩾ 2 and a1 , . . . , at are the elements of P1 covered by x. (Thus, notice that we are
+not considering here elements of rank 2 covering a unique element.) That such subsets
+of V are the hyperedges of a hypergraph with the desired properties is immediate to
+check, using the two axioms of Definition 1. The fact that this is a bijection follows from
+axiom (ii), since every rank one element of an r-differential poset P is covered by exactly
+r + 1 elements. This easily determines uniquely the structure of P[1,2] corresponding to a
+hypergraph as in the statement.
+     (2). Since every element of P1 is covered by exactly r + 1 elements, p2 equals r(r +
+1) minus a sum of contributions coming from the elements of P2 covering at least two
+elements, i.e., by part (1), the hyperedges of the hypergraph H associated with P[1,2] . But
+it is immediate to see that each hyperedge of H contributes to that sum by exactly its
+cardinality minus 1, that is, its dimension.
+     (3) and (4). If r = 1, part (3) is trivial. Hence suppose r > 1. In order to prove
+both statements, it is enough to show that the value of T1 for the (r − 1)-simplex is
+r(r + 1) − (r2 + 1) = r − 1, and the value of T1 for any other admissible hypergraph is at
+least r(r + 1) − (r2 − r + 3) = 2r − 3.
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                             4
+    The first fact is entirely obvious. As for the second, it is a simple exercise to check,
+using axiom (i) of Definition 1, that if an admissible hypergraph contains a hyperedge of
+cardinality c, then it must contribute to T1 by at least (c − 1) + c(r − c). But (c − 1) +
+c(r − c) ⩾ 0 if and only if
+
+                       c2 − (r + 1)c + 2r − 2 = (c − (r − 1))(c − 2) ⩽ 0,                  (1)
+
+which is true for all admissible hypergraphs except the (r − 1)-simplex.
+    Since equality (1) is satisfied for c = r − 1, it follows that p2 = r2 − r + 3 can
+(only) be achieved by a hypergraph H with a unique (r − 2)-dimensional hyperedge and
+r − 1 hyperedges of dimension one; that is, up to isomorphism, H is the hypergraph with
+hyperedges: {1, 2, . . . , r − 1}, {1, r}, {2, r}, . . . , {r − 1, r}.
+    (5). A simple computation gives that the value of p2 for Y r is p2 = r+2
+                                                                                 
+                                                                               2
+                                                                                   − 1, while
+the fact that the hypergraph associated with Y r is Kr follows by noticing that no rank
+two element in Y r can cover more than two elements. In order to show that Y r yields
+the smallest possible value for p2 , or equivalently, the largest possible value for T1 =
+r(r + 1) − p2 , consider any admissible hypergraph having a hyperedge of cardinality c.
+It is easy to see that this hyperedge can be replaced by 2c 1-dimensional hyperedges
+covering the same set of c vertices, and leaving the rest of the hypergraph unchanged.
+Since 2c · 1 ⩾ 1 · (c − 1) for any c ⩾ 2, the result easily follows by induction.
+
+Example 4. When r = 2, it is clear that there is (up to isomorphism) a unique possible
+rank-selected subposet P[1,2] for an r-differential poset, where the two rank one elements
+are covered by three elements each, one of which is in common. The hypergraph associated
+with P[1,2] is the 1-simplex,   which is isomorphic to K2 . Notice that, when r = 2, r2 + 1 =
+                r+2
+ 2
+                    
+r − r + 3 = 2 − 1 = 5, which is indeed the only possible value of p2 .
+    As for r = 3, there are, according to Proposition 3, part (1), only two nonisomorphic
+admissible hypergraphs: the 2-simplex, giving p2 = 10; and K3 , giving p2 = 9.
+    When r = 4, there are up to isomorphism three admissible hypergraphs over V =
+{1, 2, 3, 4}: the 3-simplex; K4 ; and (see Figure 1) the hypergraph H whose hyperedges
+are {1, 2, 3}, {1, 4}, {2, 4}, {3, 4}. The corresponding values of p2 , which are therefore the
+only ones allowed for a 4-differential poset, are 17, 14, and 15, respectively.
+    When r = 5, there are up to isomorphism five admissible hypergraphs. The corre-
+sponding values of p2 are: 20, 21, 22, 23, 26.
+    As for r = 6, the admissible nonisomorphic hypergraphs are ten. The corresponding
+values of p2 are: 27, 28, 29 (occurring twice), 30 (twice), 31 (twice), 33, 37.
+
+Remark 5. Since, by Proposition 3, the hypergraphs H, associated with the rank-selected
+subposets P[1,2] of our r-differential posets, are precisely those (with all hyperedges of
+positive dimension) for which every 2-subset of the vertex set is contained in exactly one
+hyperedge, the posets P[1,2] can also be given, as a special case, a natural interpretation
+in terms of objects of particular interest in design theory and finite geometries.
+    Recall that a Steiner system S(l, m, r) is an r-element set V , together with a collection
+of m-subsets of V (called blocks) having the property that every l-subset of V is contained
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                   5
+Figure 1: The Hasse diagram, up to rank two, of a 4-differential poset with rank function
+starting 1, 4, 15, . . . , corresponding to the hypergraph H of Example 4.
+
+in exactly one block. Perhaps the best known family of examples is that of finite projective
+planes, which are the Steiner systems S(2, q + 1, q 2 + q + 1), where q ⩾ 2 is called the order
+of the plane. A major open problem in geometry is a classification of all finite projective
+planes, or even of the possible values that q can assume. (Conjecturally, q may only be
+the power of a prime.) We refer to, e.g., [4] for an introduction to this area.
+    It follows from Proposition 3 that classifying the rank-selected subposets P[1,2] of r-
+differential posets will imply a characterization of all Steiner systems S(2, m, r) — which
+correspond to the very special case where the hypergraphs associated with the P[1,2] are
+uniform — and in particular, it will imply a characterization of all finite projective planes.
+Corollary 6. If and only if r ⩾ 6, there exist r-differential posets, say P and Q, having
+the same rank function, but such that all corresponding rank-selected subposets P[a,a+1]
+and Q[a,a+1] are nonisomorphic, for any a > 0.
+Proof. Let us consider two posets P[1,2] and Q[1,2] corresponding, by Proposition 3, to
+nonisomorphic hypergraphs over the same vertex set, whose sum of the dimensions of
+the hyperedges is the same (i.e., they give the same value of p2 ). As we have seen in
+Example 4, such hypergraphs exist when r = 6, and for no value of r ⩽ 5. For any r > 6,
+they can be constructed inductively as follows. Suppose that H and H 0 are admissible
+nonisomorphic hypergraphs over {1, 2, . . . , r − 1}. Then it is easy to see that we obtain
+two admissible nonisomorphic hypergraphs over {1, 2, . . . , r} simply by adding, to both
+H and H 0 , the 1-dimensional hyperedges {1, r}, {2, r}, . . . , {r − 1, r}.
+    If we now construct two r-differential posets, P and Q, by infinitely iterating Wagner’s
+construction starting with the nonisomorphic posets P[1,2] and Q[1,2] , it is clear that no
+P[a,a+1] is isomorphic to Q[a,a+1] , for any a > 0, while of course the two rank functions
+coincide, as desired.
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                   6
+Remark 7. The proof of Corollary 6 implies, in light of Remark 5, the existence of very
+interesting families of nonisomorphic differential posets with the same rank functions,
+namely those obtained by infinitely iterating Wagner’s construction starting with noniso-
+morphic projective planes of the same order. For instance, the smallest order q allowing
+the existence of nonisomorphic projective planes is 9, where the four possible distinct
+classes of isomorphism were already known to Veblen [24]. This gives rise to four 91-
+differential posets having the same rank function which are nonisomorphic in any corre-
+sponding rank-selected subposets.
+Remark 8. (i) Given an r-differential poset P , one can associate inductively, in an en-
+    tirely similar fashion, a hypergraph Hn , having all hyperedges of positive dimension,
+    to any rank-selected subposet P[n,n+1] of P . The elements of Pn make the vertex set
+    Vn of Hn , a 2-subset of Vn is contained in a hyperedge of Hn if and only if the cor-
+    responding elements of Pn cover a common element of Pn−1 , and thanks to Lemma
+    2, no 2-subset of Vn belongs to more than one hyperedge of Hn .
+      Obviously however, handling the hypergraphs Hn for higher values of n is generally
+      even more complicated than it is for n = 1, in that the structure of P[n,n+1] also
+      heavily depends on the structure of the previous rank-selected subposets. We only
+      notice here that, if we let Tn denote the sum of the dimensions of the hyperedges of
+      the hypergraph associated with P[n,n+1] , from the simple equality
+                                                                              
+                        X                                          X
+         pn+1 =                    (|F | + r) + (r + 1) · pn −               1 − Tn ,
+                   F hyperedge of Hn−1                                   F hyperedge of Hn−1
+
+      by induction one easily obtains
+                                                     n
+                                                     X
+                                            Tn = r         pj − pn+1 .                         (2)
+                                                     j=0
+
+
+      Notice that formula (2) generalizes the formula for T1 of part (2) of Proposition 3.
+      Also, if following the notation of [20], we define α(n → n + 1) to be the number of
+      pairs (x, y) ∈ Pn+1 × Pn such that x covers y, one moment’s thought gives that:
+
+                                         pn+1 = α(n → n + 1) − Tn .
+
+      In particular, this latter equality, combined with formula (2), yields another proof
+      of the following useful fact (which will be employed in a different context in the next
+      section):
+                                                       Xn
+                                     α(n → n + 1) = r      pj .                           (3)
+                                                                 j=0
+
+      This result was first proved by the first author (it is essentially the case k = 1 of
+      equality (16) of [20], Theorem 3.2, after equating the coefficients of the generating
+      functions).
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                       7
+ (ii) By formula (2), given p1 , . . . , pn , minimizing the value of pn+1 is tantamount to
+      maximizing that of Tn . Notice, however, that the argument of Proposition 3, part
+      (5), cannot in general translate straightforwardly to the case n > 1. Indeed, it is
+      easy to see that, unlike for H1 , replacing a hyperedge of cardinality c of Hn with
+      hyperedges of lower cardinality — an operation always consistent with axiom (i) of
+      Definition 1 — can in general violate axiom (ii).
+    The Interval Property was first introduced by the second author [25] in the context
+of combinatorial commutative algebra, where he conjectured its existence for the set of
+Hilbert functions of level — and, in a suitably symmetric fashion, Gorenstein — algebras
+(we refer to [25] for the relevant definitions). This property says that if two sequences,
+h and h0 , of a given class S of integer sequences, coincide in all entries but one, say
+h = (h0 , . . . , hi−1 , hi , hi+1 , . . . ) and h0 = (h0 , . . . , hi−1 , hi + α, hi+1 , . . . ) for some index i
+and some positive integer α, then the sequence (h0 , . . . , hi−1 , hi + β, hi+1 , . . . ) is also in S,
+for each β = 0, 1, . . . , α.
+    The Interval Property, which is still wide open for level and Gorenstein algebras, has
+then also been conjectured in [2] for other important sequences arising in combinatorics
+or combinatorial algebra, namely for pure O-sequences and for the f -vectors of pure
+simplicial complexes. As for pure O-sequences, in [2] the property has been shown to hold
+for all sequences of length 4 (a result that also led to a proof of the first author’s matroid
+h-vector conjecture in rank 3; see [9]), while most recently, it has been disproved in the
+four variable case by A. Constantinescu and M. Varbaro; for pure f -vectors, the property
+is still wide open, and little progress has been made to date. The Interval Property
+is well-known to hold, for instance, for the Hilbert functions of graded algebras of any
+Krull dimension, for the f -vectors of arbitrary simplicial complexes, or for the h-vectors
+of Cohen-Macaulay (or shellable) simplicial complexes, while it fails, e.g., for matroid
+h-vectors (see [2, 22] for details). In the contexts where the Interval Property has been
+conjectured, an explicit characterization of the desired sequences seems to be out of reach,
+and although it is often very challenging to prove or disprove, when confirmed it appears
+to be both a consequential property and one of the strongest structural results that one
+might hope to achieve for the set of such sequences.
+    Notice that rank functions of differential posets can be identified with Hilbert functions
+of certain graded vector spaces (see [20], Section 2), and that, as we have seen earlier in
+this section, an explicit characterization of the set X of all possible rank functions of
+differential posets seems nearly impossible. Therefore it would be extremely interesting
+if the Interval Property might somehow extend to this context. Unfortunately however,
+the following result shows that, at least in general, rank functions of differential posets
+do not enjoy the Interval Property. (On the other hand, see Question 18 below and the
+comment following it.)
+
+Theorem 9. The Interval Property does not hold for the set X. More precisely, the two
+sequences
+                    p0 : 1, 4, 14, p3 = 60, p4 = 254, p5 , p6 , . . .
+
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                                      8
+and
+                            p00 : 1, 4, 17, p3 = 60, p4 = 254, p5 , p6 , . . . ,
+where pi = 4pi−1 + pi−2 for all i ⩾ 5, belong to X, while
+
+                            p000 : 1, 4, 16, p3 = 60, p4 = 254, p5 , p6 , . . .
+
+does not.
+
+Proof. In order to show that p0 ∈ X, it suffices to consider a differential poset whose
+rank function begins 1, 4, 14, . . . , which exists from Proposition 3 (see also Example 4).
+Then, by infinitely iterating Wagner’s construction starting in rank two, we clearly obtain
+a differential poset with rank function p0 . That p000 ∈    / X follows from the fact that no
+rank function of a differential poset can begin 1, 4, 16, . . . (see again Proposition 3 and
+Example 4). Therefore, it remains to construct a differential poset having rank function
+p00 .
+      In order to do this, let us start by considering the Fibonacci 4-differential poset, Z(4),
+up to rank three. Its rank function is 1, 4, 17, 72. We want to replace a suitable portion of
+the Hasse diagram of Z(4) between ranks two and three with another diagram so that the
+resulting poset has the same elements in rank two, and 12 fewer elements in rank three.
+Notice that the new Hasse diagram thus constructed will be the Hasse diagram of some
+differential poset up to rank three if and only if, for any element of rank two, the number
+of elements of rank three covering it is unchanged (using axiom (ii) of Definition 1), and
+two elements of rank two have some common cover if and only if they had some common
+cover in Z(4) (using axiom (i)).
+      How to perform this operation is described in Figure 2, where the first diagram is
+the portion of Z(4) being removed, and the second diagram is its replacement. (The
+convention adopted in Figures 2 and 3 is that the elements of higher rank do not cover
+other elements outside of those displayed in the diagrams, while the elements of lower
+rank may also be covered by other elements.)
+      Hence we have now obtained a new differential poset up to rank three, with rank
+function 1, 4, 17, 60. By Wagner’s construction, this poset can be extended by one rank
+to a differential poset up to rank four, say F , having rank function 1, 4, 17, 60, 257. If,
+similarly, we can now replace a portion of the Hasse diagram of F between ranks three and
+four and obtain a new differential poset up to rank four, say G, having 3 fewer elements
+of rank four than F , then we are done. Indeed, G will have rank function 1, 4, 17, 60, 254,
+hence by infinitely iterating Wagner’s construction we will get a differential poset with
+rank function p00 , as desired.
+      The operation transforming F into G in ranks three and four is described in Figure 3;
+notice that the first diagram does indeed represent a portion of the Hasse diagram of F ,
+as it is easy to check. This completes the proof of the theorem.
+
+
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                    9
+Figure 2: The Hasse diagram of the portion of Z(4) being replaced in Theorem 9 (above),
+and that of its replacement (below).
+
+
+
+
+Figure 3: The Hasse diagram of the portion of the differential poset F being replaced in
+Theorem 9 (left), and that of its replacement (right), giving rise to G.
+
+3     The nonpolynomial growth of pn
+The object of this section is to prove that the rank function of any differential poset has
+nonpolynomial growth. Recall the well-known Hardy-Ramanujan asymptotic formula for
+the partition function [10],
+                                                1    √
+                                     p(n) ∼ √ eπ 2n/3 .
+                                             4n 3
+   More generally, for any given
+                              P r ⩾ 1, the     rank function pr (n) of Y r is clearly determined
+by the functional equation n⩾0 pr (n)q n = ( n⩾0 p(n)q n )r . Using a classical theorem of
+                                                  P
+asymptotic combinatorics due to Meinardus [15] and some basic properties of the Riemann
+zeta function, it is then a fairly standard task, of which we omit the details, to prove that
+                                                    √
+                                     pr (n) ∼ Cnα eπ 2rn/3 ,
+
+for some suitable constants C and α.
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                   10
+   The main goal of this section is to show that, for any arbitrary r-differential poset, its
+rank function satisfies the asymptotic lower bound
+                                                        √
+                                           pn  na e2 rn ,
+                                           p
+for some constant a. Notice that π 2/3 = 2.56..., which implies that our result is
+very close to being optimal, and in the much greater level of generality of differential
+posets. Notice also that the above asymptotic formula for p(n) was first proved by Hardy
+and Ramanujan using modular forms and the circle method of additive number theory,
+while in a famous Annals of Math. paper [5], Erdős was able to reprove the Hardy-
+Ramanujan formula, up to a multiplicative constant, without making use of complex
+analytic techniques.
+                   S
+     Let P = n⩾0 Pn be any r-differential poset with rank function p : p0 = 1, p1 =
+r, p2 , . . . . Following the notation of [20], define κ(n → n + 1 → n → n + 1 → n) to be
+the number of closed Hasse walks x1 < x2 > x3 < x4 > x5 = x1 , where x1 , x3 ∈ Pn and
+x2 , x4 ∈ Pn+1 . Also, denote by α(n → n+1 → n) the number of Hasse walks x1 < x2 > x3 ,
+where x1 , x3 ∈ Pn and x2 ∈ Pn+1 , and let α(n → n + 1), as in the previous section, be the
+number of Hasse walks x1 < x2 , where x1 ∈ Pn and x2 ∈ Pn+1 . Finally, for any x ∈ Pn ,
+denote by c(x) the number of covers of x.
+     Our first key lemma is:
+Lemma 10. For any r-differential poset P and any nonnegative integer n,
+  X
+    c(x)2 = κ(n → n + 1 → n → n + 1 → n) − α(n → n + 1 → n) + α(n → n + 1).
+   x∈Pn
+
+Proof. Among the closed Hasse walks in P enumerated by κ(n → n+1 → n → n+1 → n),
+it is easy to see that c(x)2 is the number of those walks starting at x = x1 ∈ Pn such that
+x3 = x1 . Otherwise, if x3 6= x1 , clearly x2 is a common cover of x1 and x3 . Similarly, from
+the uniqueness of the common cover, it follows that x4 = x2 .
+     Therefore one moment’s thoughtP      now gives that, in order to obtain κ(n → n + 1 →
+n → n + 1 → n), we need to add to x∈Pn c(x)2 a contribution of exactly
+                                   X
+            α(n → n + 1 → n) −          c(x) = α(n → n + 1 → n) − α(n → n + 1),
+                                      x∈Pn
+
+which concludes the proof of the lemma.
+   The following lemma is also of independent interest, and appears to be new even for
+the Young lattice (so when r = 1 and pn = p(n), the partition function).
+Lemma 11. For any r-differential poset P with with rank function p : p0 , p1 , p2 , . . . and
+any nonnegative integer n, we have:
+                              X             n
+                                            X
+                                         2
+                                     c(x) =   (r2 (n − j + 1) + r)pj ,
+                              x∈Pn           j=0
+
+where  is the remainder of n − j modulo 2.
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                 11
+Proof. We will make extensive use, in this proof, of the notation of [20]. We begin by
+evaluating κ(nP → n + 1 → n → n + 1 → n). By [20], Theorem 3.12, we easily have that, if
+we set F (q) = n⩾0 pn q n , then κ(n → n + 1 → n → n + 1 → n) is the degree n coefficient
+of F (q)Bf (q), where
+
+                            f = f (U, D) = (DU )2 = U 2 D2 + 3rU D + r2 ,
+
+and
+                                               2r2 q 2   3r2 q
+                                   Bf (q) =            +       + r2 .                          (4)
+                                              (1 − q)2 1 − q
+   An equally standard computation gives that α(n → n + 1 → n) is the degree n
+coefficient of F (q)Aw (q) in Corollary 3.4 of [20]. In the notation of that corollary, the
+word w is w = DU , gU (z) = z, and
+
+                                              dgU (z)
+               gw (z) = (r + z)gU (z) + r             = (r + z)z + r · 1 = z 2 + rz + r.
+                                                dz
+   Therefore, using the rational functions Ak (q) of [20], Theorem 3.2 (see page 930 for
+some explicit computations), Aw (q) can be written as:
+
+                                      r(r + 1)q 2 + r(r − 1)q 3    r2 q
+                           Aw (q) =                             +       + r.                   (5)
+                                          (1 − q)(1 − q 2 )       1−q
+
+    Finally, by [20], Theorem 3.2, or by our equality (3) above, we have that α(n → n + 1)
+is the degree n coefficient of F (q)A1 (q), where
+                                                        r
+                                            A1 (q) =       .                                   (6)
+                                                       1−q
+
+P Hence, 2employing Lemma 10 and equations (4), (5) and (6), we easily obtain that
+ x∈Pn c(x) is the degree n coefficient of:
+
+                    2r2 q 2     3r2 q         r(r + 1)q 2 + r(r − 1)q 3    r2 q
+                                                                                          
+                                          2                                          r
+       F (q)                2
+                              +       + r   −                   2
+                                                                        −       −r+
+                   (1 − q)      1−q               (1 − q)(1 − q )         1−q       1−q
+
+                                              −rq 2 + (r2 + r)q + r2
+                                   = F (q)                           .                         (7)
+                                                (1 − q)(1 − q 2 )
+    Notice that if dae as usual denotes the smallest integer ⩾ a, then we have:
+                                            !           !
+             F (q)                 X           X
+                         = F (q)         qi        q 2i
+       (1 − q)(1 − q 2 )            i⩾0        i⩾0
+                                        X i + 1
+                                                               n         !
+                           X                               X X      n−j+1
+                         =     pn q n ·               qi =                 pj q n .
+                           n⩾0          i⩾0
+                                               2           n⩾0 j=0
+                                                                      2
+
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                      12
+    Thus, from (7), it follows that x∈Pn c(x)2 is r2 times the degree n coefficient of the
+                                    P
+right hand side of the last equation, plus r2 + r times its degree n − 1 coefficient, minus
+r times its degree n − 2 coefficient.
+    Therefore,
+                         n                             n−1                    n−2        
+   X
+             2       2
+                         X   n−j+1               2
+                                                         X     n−j                X     n−j−1
+          c(x) = r                        pj + (r + r)                   pj − r                   pj ,
+   x∈Pn                  j=0
+                                2                        j=0
+                                                                 2                j=0
+                                                                                         2
+
+which is a simple exercise to check that it coincides with the formula in the statement.
+This completes the proof of the lemma.
+   Finally, we need an asymptotic estimate for α(0 → n), the number of chains in P from
+rank 0 to rank n.
+
+Lemma 12. For any fixed positive integer r and any r-differential poset P , we have:
+                                         √            √
+                                           n! · rn/2 e rn
+                           α(0 → n) ∼                     .
+                                         (8πe3r−2 n)1/4
+
+Proof. From the exponential generating function of [20], Proposition 3.1 (formula (12)),
+namely
+                             X            qn          2
+                                 α(0 → n) = erq+rq /2 ,
+                             n⩾0
+                                          n!
+
+it is a standard task to determine estimates for α(0→n)
+                                                     n!
+                                                        , and in particular the desired
+asymptotic value for α(0 → n). (See e.g. [19], Example 3.2, where the case r = 1 is
+worked out in detail, using the saddle point method.)
+    Given two functions f, g : N −→ R+ , we say that f (n)  g(n) if f (n) ⩾ Cg(n) for n
+large, for some positive constant C (i.e., if g(n) = O(f (n))).
+
+Theorem 13. Let P be any arbitrary r-differential poset with rank function p                               :
+p0 , p1 , p2 , . . . . Then there exists a constant a such that
+                                                         √
+                                            pn  na e2 rn .
+
+Proof. For any x ∈ PP
+                    n , let e(x) be the number of maximal chains in P ending at x. Hence,
+clearly, α(0 → n) = x∈Pn e(x), and
+                                                       X
+                                    α(0 → n + 1) =           c(x)e(x).                                   (8)
+                                                      x∈Pn
+
+    Thus, from the Cauchy-Schwarz inequality, we obtain
+                                               P              2
+                                                x∈Pn c(x)e(x)
+                                    X
+                                            2
+                                        c(x) ⩾  P          2
+                                                                 .                                       (9)
+                                    x∈P
+                                      n
+                                                  x∈Pn e(x)
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                                13
+    By [20], Corollary 3.9, we have that x∈Pn e(x)2 = rn n!. Also, since by [20], Corollary
+                                        P
+4.3, the pj are nondecreasing, Lemma 11 yields the trivial estimate
+
+                                   X               n
+                                                   X
+                                             2
+                                          c(x)          npn  n2 pn .
+                                   x∈Pn            j=0
+
+
+    Therefore, from (8), (9) and Lemma 12, we have
+                                                                       √
+                                          2     a0              (n+1) 2 r(n+1)
+                            α(0 → n  + 1)     n    (n + 1)! · r      e
+                    n2 pn                                                    ,
+                                rn n!                       rn n!
+and the theorem follows.
+
+
+4     Open problems
+We wrap up this note by gathering together a few open questions specifically on the rank
+function of a differential poset, some of which were previously posed in [20].
+   As we saw in the last section, it is well known from [20], Corollary 4.3, that the rank
+function pn of any differential poset is weakly increasing. However, it is reasonable to
+conjecture that, in fact, strict inequality always holds (see also [17, 20]).
+
+Question 14. Is it true that, for any differential poset and any positive integer n, pn <
+pn+1 ?
+
+     Note that the inequality pn ⩽ pn+1 was proved in [20] using a linear algebra argument.
+Determining a combinatorial proof might very well help answer positively Question 14.
+     Define the first difference ∆p of a sequence p : 1, p1 , p2 , . . . as the sequence ∆p :
+ 1, (∆p)1 = p1 − 1, (∆p)2 = p2 − p1 , . . . . Recursively, define the t-th difference ∆t as the
+first difference of the (t − 1)-st difference. Motivated by all examples we are aware of (and
+the name itself of a differential poset!), more boldly we ask:
+
+Question 15. (i) Is it true that, for any r-differential poset with rank function p, ∆r p > 0
+in any “rank” n ⩾ 2?
+(ii) Is it true that, for any differential poset with rank function p and any integer t,
+∆t p > 0 in any “rank” n large enough (depending on t)?
+
+    Notice that Question 15 is known to have an affirmative answer for both the Young
+lattice and the Fibonacci r-differential posets. As for Z(r), both parts (i) and (ii) are easy
+to check, and so is part (i) for Y . Part (ii) for Y was proved by H. Gupta [8], in response
+to a problem raised by G. Andrews (see also A.M. Odlyzko [18], for a sharper estimate
+using the Rademacher convergent series expansion for p(n)). Of course, for 1-differential
+posets, Question 14 is equivalent to Question 15, part (i). See also Miller-Reiner’s [17],
+Conjecture 2.3, for a related conjecture.
+    Conversely, we ask (see also [20]):
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                  14
+Question 16. Is it true that, for any r-differential poset and any integer n ⩾ 2,
+
+                                         pn ⩽ rpn−1 + pn−2 ?
+
+    Answering a question posed in [20], P. Byrnes [3] recently proved that the rank function
+of any r-differential poset is bounded from above, rankwise, by that of Z(r), which satisfies
+the equality in Question 16 for all n.
+    As for a lower bound, in [20] the first author asked the following:
+
+Question 17. Is the rank function of any r-differential poset bounded from below, rank-
+wise, by that of Y r ?
+
+    For both Questions 16 and 17, see part (ii) of Remark 8. Note that, even though the
+asymptotic lower bound we have proved for pn in the previous section is close to being
+optimal, our approach does not appear to be of help in settling Question 17.
+    As we have seen, a characterization of all rank functions of differential posets seems
+entirely out of reach. Thus, even though the Interval Property has been shown to fail
+in general in Theorem 9, it would be helpful to recover it for some important families of
+differential posets, for it would at least imply a natural and very strong structural result
+on the set of their rank functions. For instance, we ask:
+
+Question 18. Do 1-differential posets enjoy the Interval Property?
+
+    P. Byrnes [3] has computed the sequences that may occur as rank functions of
+1-differential posets up to rank ten (there are 44,606 nonisomorphic 1-differential posets
+up to rank nine, and 29,199,636 up to rank ten). Such sequences suggest that, at least
+for the initial ranks, Question 18 could very well have a positive answer.
+
+Note added after acceptance.               By means of a nice algebraic argument, A.
+Miller [16] recently proved that Question 4.1 has a positive answer; that is, the rank
+function of any r-differential poset is strictly increasing, with the only exception p0 = p1
+when r = 1. It remains a very interesting (and possibly consequential) open problem to
+determine a combinatorial proof of this result.
+
+Acknowledgements
+The second author warmly thanks the first author for his terrific hospitality during
+calendar year 2011, the MIT Mathematics Department for partial financial sup-
+port, and Dr. Mark Gockenbach and the Michigan Tech Mathematics Department,
+from which the second author was on partial leave, for extra summer support. We
+also thank David Cook II and Joel Lewis for comments, and Pat Byrnes for kindly
+sharing an early draft of the results on differential posets that will be part of his Thesis [3].
+
+
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                    15
+References
+ [1] G. Benkart and T. Roby. Down-up algebras. J. Algebra, 209:305–344, 1998.
+ [2] M. Boij, J. Migliore, R. Miró-Roig, U. Nagel, and F. Zanello. “On the shape of a pure
+     O-sequence”. Mem. Amer. Math. Soc., 218, no. 2024, vii + 78 pp., 2012. Available
+     on the arXiv.
+ [3] P. Byrnes. Ph.D. Thesis. University of Minnesota, in preparation.
+ [4] P. Dembowski. “Finite geometries”. Reprint of the 1968 original, Classics in Math-
+     ematics, Springer-Verlag, xii + 375 pp., 1997.
+ [5] P. Erdős. On an elementary proof of some asymptotic formulas in the theory of
+     partitions. Ann. of Math. (2), 43:437–450, 1942.
+ [6] S. Fomin. Duality of graded graphs. J. Algebraic Combin., 3:357–404, 1994.
+ [7] S. Fomin. Schensted algorithms for dual graded graphs. J. Algebraic Combin., 4:5–45,
+     1995.
+ [8] H. Gupta. Finite differences of the partition function. Math. Comp., 32(144):1241–
+     1243, 1978.
+ [9] H.T. Hà, E. Stokes, and F. Zanello.             Pure O-sequences and matroid h-vectors.
+     Preprint. Available on the arXiv.
+[10] G.H. Hardy and S. Ramanujan. Asymptotic formulae in combinatory analysis. Proc.
+     London Math. Soc. (2), 17:75–115, 1918.
+[11] M.E. Hoffman. Updown categories. Preprint. Available on the arXiv.
+[12] T. Lam. Signed differential posets and sign-imbalance. J. Combin. Theory Ser. A,
+     115:466–484, 2008.
+[13] T. Lam. Quantized dual graded graphs. Electron. J. Combin., 17, Research Paper
+     88, 2010.
+[14] J.B. Lewis. On differential posets. Undergraduate Thesis, Harvard University, 2007.
+     Available at http://math.mit.edu/∼jblewis/JBLHarvardSeniorThesis.pdf.
+[15] G. Meinardus. Assymptotische Aussagen über Partitionen. Math. Z., 59:388–398,
+     1954.
+[16] A. Miller. Differential posets have strict rank growth: a conjecture of Stanley.
+     Preprint. Available on the arXiv.
+[17] A. Miller and V. Reiner. Differential Posets and Smith Normal Forms. Order,
+     26(3):197–228, 2009.
+[18] A.M. Odlyzko. Differences of the partition function. Acta Arith., 49(3):237–254,
+     1988.
+[19] R. Pemantle. “Analytic combinatorics in more than one variable”. Chapter 3, 2009.
+[20] R.P. Stanley. Differential posets. J. Amer. Math. Soc., 1(4):919–961, 1988.
+
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                                 16
+[21] R.P. Stanley. Variations on differential posets. In “Invariant Theory and Tableaux”
+     (D. Stanton, ed.), The IMA Volumes in Mathematics and Its Applications, 19:145–
+     165, Springer-Verlag, New York, 1990.
+[22] R.P. Stanley. “Combinatorics and commutative algebra”. Second Ed., Progress in
+     Mathematics 41, Birkhäuser Boston, Inc., Boston, MA, x + 164 pp., 1996.
+[23] R. Stanley. “Enumerative Combinatorics”. Vol. I, Second Ed., Cambridge University
+     Press, Cambridge, U.K., 2012.
+[24] O. Veblen and J.H.M. Wedderburn. Non-Desarguesian and non-Pascalian geometries.
+     Trans. Amer. Math. Soc., 8(3):379–388, 1907.
+[25] F. Zanello. Interval Conjectures for level Hilbert functions. J. Algebra, 321(10):2705–
+     2715, 2009.
+
+
+
+
+the electronic journal of combinatorics 19(2) (2012), #P13                               17
+

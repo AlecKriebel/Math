@@ -1,0 +1,1091 @@
+                    ON DIFFERENTIAL POSETS
+
+                                JOEL LEWIS
+                            HARVARD UNIVERSITY
+
+        Abstract. We study diﬀerential posets, a family of partially or-
+        dered sets discovered by Richard Stanley. In the ﬁrst half of this
+        paper we present an introduction to poset theory as relevant to dif-
+        ferential posets and theorems on the structure and combinatorial
+        properties of diﬀerential posets, culminating in the explicit deﬁn-
+        ition of a new diﬀerential poset. In the second half we focus on
+        Young’s lattice, the most well-studied diﬀerential poset, and the
+        RSK algorithm.
+
+
+
+                               0. Introduction
+   In this paper, we study the properties of diﬀerential posets, a family
+of structures introduced by Richard Stanley in [5] and since generalized
+in various diﬀerent ways (see, for example, [6, 2]).1 Diﬀerential posets
+are those which share certain structural properties of Young’s lattice Y,
+an extremely well-studied object of combinatorics and algebra.2 Thus,
+they provide a route for generalizing results about Y to a much broader
+family of posets.
+   In Section 1 we present the terminology which will be used through-
+out the rest of the paper, most of which comes from [7]. For the sake
+of simplicity we have in some instances diﬀered slightly from the con-
+ventional deﬁnition of a term (e.g. locally ﬁnite), but in no case does
+this change the content of the theorems which result.
+   In Section 2 we introduce diﬀerential posets and two linear trans-
+formations D, U which are extremely powerful tools in the study of
+diﬀerential posets. For much more on their uses, see [5, 1].
+   Section 3 deals with the construction of new diﬀerential posets, in-
+cluding the Fibonacci-Young lattice FY, via recursive processes called
+reﬂections. This culminates in what is believed to be the ﬁrst explicit
+   Date: April 2, 2007.
+   1
+    In terms of Stanley’s deﬁnition ([5]), we actually concern ourselves only with 1-
+diﬀerential posets rather than the broader family of r-diﬀerential posets. However,
+it seems likely that most of the interesting properties of r-diﬀerential posets are
+captured by the 1-diﬀerential case.
+   2See, for example, the note following Proposition 4.5.
+                                         1
+2                  JOEL LEWIS HARVARD UNIVERSITY
+
+deﬁnition of a diﬀerential poset other than Young’s lattice and the
+Fibonacci-Young lattice.
+   Section 4 deals primarily with Young’s lattice and the famous RSK
+algorithm. We deﬁne and prove the basic properties of the classical in-
+sertion version of RSK. We then outline an alternative approach based
+on Fomin’s work in [2] that applies for all diﬀerential posets and show
+that this truly coincides with RSK on Y. (A tableau-based insertion
+algorithm is also known for FY – for a proof that the generalized RSK
+presented here also generalizes that algorithm, see [3].)
+   Where possible, citations to the literature have been provided. Some
+results are extremely well-known but do not often appear in the form
+shown (e.g. Theorem 1.1, actually a corollary of Proposition 4.2; Y is
+often taken by deﬁnition to be a poset of order ideals and so automat-
+ically a distributive lattice). Other content is known but unpublished
+(e.g., the reﬂection and crown reﬂection operations, which were dis-
+covered by David Wagner – see [5], Section 6). What little remains
+(notably Theorem 3.5), as well as the exposition, we believe to be orig-
+inal.
+   We have tried to write this paper in an entirely self-contained man-
+ner, with references representing potential sources for further reading
+rather than presumed knowledge. Thus, we hope that this paper should
+be accessible to an advanced undergraduate with no previous knowl-
+edge of the subject.
+
+
+                          1. Preliminaries
+  A partially ordered set P , or poset for short, is a pair P = (S, ≤) of
+a set S together with an order relation ≤ which satisﬁes the following
+conditions for all x, y, z ∈ S:
+    (1) x ≤ x (Reﬂexivity)
+    (2) x ≤ y and y ≤ x imply x = y (Anti-symmetry)
+    (3) x ≤ y and y ≤ z imply x ≤ z (Transitivity)
+   For brevity and because it does not harm comprehensibility, we will
+often omit speciﬁc mention of the order relation and will frequently
+refer to the “elements of a poset,” rather than the elements of the
+underlying set. If x and y are elements of some poset P and x ≤ y or
+y ≤ x we say that x and y are comparable. Note, in particular, that
+we do not require that two diﬀerent elements of P be comparable. We
+sometimes write y ≥ x for x ≤ y and x < y or y > x for x ≤ y and
+x = y. An element x is minimal if there is no y such that y < x and x
+is maximal if there is no y such that x < y.
+                       ON DIFFERENTIAL POSETS                            3
+
+
+
+
+                   Figure 1. Two Hasse diagrams.
+
+   Given a poset P and elements x, y ∈ P , we say that y covers x if
+x < y and there is no z such that x < z < y. Then y is a cover
+of x and x is covered by y, and we denote this relationship by x  y
+or y  x. We will also use the notations C − (x) = {y | y  x} and
+C + (x) = {y | x  y}.
+   For many posets, including all of those we will consider, all order
+relations follow from the cover relations and transitivity. A poset with
+this property is called locally ﬁnite.
+   A wide variety of objects exhibit poset structure. We provide a few
+examples here:
+     • The non-negative integers N together with the usual order rela-
+        tion ≤ form a poset. This poset is totally ordered ; that is, every
+        two elements are comparable. Each element n ∈ N is covered
+        uniquely by n + 1. This poset has a minimal element, 0.
+     • The non-negative integers N together with the order relation ≤
+        deﬁned by a ≤ b if and only if there is some k ∈ N such that
+        b = a · k form a poset. This poset has a minimal element, 1,
+        and a maximal element, 0. An element n = 0 is covered by all
+        integers of the form p · n for primes p.
+     • Given an arbitrary set S, we can form the Boolean lattice BS
+        on S. The elements of BS are the subsets of S, ordered so that
+        X ≤ Y if and only if X ⊆ Y as sets. This poset has a minimal
+        element, ∅, and a maximal element, S. An element X ∈ BS is
+        covered by all those sets of the form X ∪ {x} for x ∈ S \ X.
+   Every locally ﬁnite poset has a naturally associated Hasse diagram, a
+graph whose vertices are elements of the poset and whose edges denote
+cover relations, where if x  y we draw x below y. Figure 1 shows the
+Hasse diagram of two posets; the graph on the left is the Hasse diagram
+of the Boolean lattice on a three-element set.
+   A chain in a poset P is a set of elements of P which are pairwise
+comparable while an anti-chain is a set of points which are pairwise
+4                    JOEL LEWIS HARVARD UNIVERSITY
+
+incomparable. A ﬁnite chain x0 < x1 < . . . < xn is saturated if xi−1 is
+covered by xi for i ∈ {1, . . . , n}. The length of a chain is one less than
+the number of elements in the chain, so the trivial chain {x} for any x
+has length 0.
+   We will call a locally ﬁnite poset P graded if P = n Pn is the disjoint
+union of antichains Pn , indexed by a set of consecutive integers, such
+that x ∈ Pn and y  x imply y ∈ Pn+1 and all minimal elements (if any
+exist) belong to the same Pi . If P has a unique minimal element 0̂, the
+rank of x ∈ P is the maximal length of a saturated chain with largest
+element x. Thus, 0̂ is rank 0, every element which covers 0̂ has rank 1,
+and so on.
+   Two posets are isomorphic if there exists a bijection between their
+elements which is order-preserving in both directions. Typically, we
+will be interested in studying posets up to isomorphism and also in
+ﬁnding “nice” members of particular isomorphism classes. Usually,
+this means ﬁnding a poset in which both the underlying set and the
+order relations, or at least cover relations, can be given in a compact,
+explicit form. For ﬁnite posets this goal is trivial, since the elements
+and order relations could in principle be listed out, but for inﬁnite
+posets this may be more challenging.
+   We provide one more example of a poset. In order to deﬁne it, we
+need ﬁrst to introduce some associated terminology.
+   Given a non-negative integer n, a partition of n is a ﬁnite, nonincreas-
+ing list of positive integers, λ = (λ1 , λ2 , . . . , λk ), such that λ1 +. . .+λk =
+n. We denote this by λ n. For example, there are ﬁve partitions of
+4: (4), (3, 1), (2, 2), (2, 1, 1) and (1, 1, 1, 1). There is one partition of 0,
+the empty list. We deﬁne an order on the partitions as follows: given
+two partitions, λ = (λ1 , . . . , λk ) and µ = (µ1 , . . . , µj ), λ ≤ µ if and
+only if k ≤ j and λi ≤ µi for 1 ≤ i ≤ k. The poset composed of all
+integer partitions, ordered in this way, is known as Young’s lattice and
+is denoted Y.
+  Given any two elements in a poset, we can ask whether there are
+any elements smaller than both or larger than both. In particular, we
+can ask if they have a greatest lower bound and least upper bound. In
+general, the answer to this question will be “no.” For example, consider
+in the poset represented on the right in Figure 1 the two elements of
+rank 2. If in a poset P , for every pair x, y ∈ P we have that there exist
+w, z ∈ P such that w ≤ x, y ≤ z and for all u, v, u ≤ x, y ≤ v implies
+u ≤ w and z ≤ v, we say that P is a lattice. In this case, we write
+w = glb(x, y) and z = lub(x, y). Every poset we have seen so far is a
+                       ON DIFFERENTIAL POSETS                             5
+
+
+
+
+       Figure 2. Both possibilities for the ﬁrst six ranks of a
+       diﬀerential poset
+
+lattice: for example, in any totally ordered poset glb(x, y) = min(x, y)
+and lub(x, y) = max(x, y) while in a Boolean lattice, glb(x, y) = x ∩ y
+and lub(x, y) = x ∪ y.
+Theorem 1.1. Young’s lattice is a lattice.
+Proof. We prove only that Y is an upper semi-lattice, that is that least
+upper bounds exist. Given two partitions λ, µ, we can pad the shorter
+list with 0s so that both are of the same length k. Any partition ν
+such that ν ≥ λ and ν ≥ µ must certainly satisfy νi ≥ max(λi , µi ) for
+1 ≤ i ≤ k. Thus, if
+              M(λ, µ) = ((max(λ1 , µ1 ), . . . , max(λk , µk ))
+we have ν ≥ λ and ν ≥ µ imply ν ≥ M(λ, µ). Surely M(λ, µ) ≥ λ
+and M(λ, µ) ≥ µ, so M(λ, µ) is the least upper bound of µ and λ. The
+proof that greatest lower bounds exist is nearly identical.       
+
+                       2. Differential posets
+   We call a poset P diﬀerential if it satisﬁes the following three axioms:
+  (D1) P is locally ﬁnite and graded with a unique minimal element
+       (often denoted 0̂).
+  (D2) If x = y are two elements of P and there are k elements of
+       P covered by both x and y, there are exactly k elements of P
+       which cover both x and y.
+  (D3) If x ∈ P covers k elements of P then x is covered by exactly
+       k + 1 elements of P .
+These conditions are enough to completely determine the number of
+elements and the cover relations among them in the zeroth through
+fourth ranks of every diﬀerential poset. Above the fourth rank, both
+the cover relations and the number of elements at each rank vary among
+the diﬀerent posets. Figure 2 shows the two possibilities for the ﬁrst
+six ranks of the Hasse diagram of a diﬀerential poset.
+6                 JOEL LEWIS HARVARD UNIVERSITY
+
+  We may consolidate our deﬁnition in the following way. Given any
+poset P , we may deﬁne an abstract vector space CP = ⊕x∈P Cx of
+ﬁnite linear combinations of elements of P with complex coeﬃcients,
+where no additive relations hold among the elements of P . (In fact,
+any ﬁeld of characteristic 0 would suﬃce in place of the complex num-
+bers.) If in addition P is locally ﬁnite and each element of P is a
+member of only ﬁnitely many cover relations, we may deﬁne two linear
+transformations D and U on CP as follows: for x ∈ P , we deﬁne
+                                                
+                Dx =       y      and     Ux =       y,
+                      yx                       xy
+
+
+and we extend both to all of CP by linearity. In essence, Ux keeps
+track of all possible steps “up” the Hasse diagram from x and Dx keeps
+track of all the steps “down.”
+  Now we investigate the behavior of certain combinations of D, U on
+an arbitrary x ∈ P . Applying our deﬁnitions directly gives
+                                      
+                            DUx =             z.
+                                     y,z
+                                 zy and xy
+
+
+An element z ∈ P appears in this sum exactly k times, where k is
+the number of elements of P which cover both x and z. In particular,
+x appears the same number of times as the number of elements that
+cover x.
+  Similarly, we have
+                                  
+                        UDx =            z.
+                                     y,z
+                                 yz and yx
+
+
+An element z ∈ P appears in this sum exactly k times, where k is the
+number of elements of P which are covered by both x and z. In partic-
+ular, x appears the same number of times as the number of elements
+that x covers.
+  Thus, we see that (DU − UD)x = x if and only if x is covered by
+exactly one more element than it covers and for each z = x ∈ P ,
+the number of elements covering both x and z is equal to the number
+of elements covered by both x and z. It follows immediately that
+DU − UD = I if and only if P is diﬀerential ([5], Theorem 2.2).
+
+Proposition 2.1. For a diﬀerential poset P , we have DU n = nU n−1 +
+U n D for all n ≥ 1.
+                         ON DIFFERENTIAL POSETS                              7
+
+Proof. The case n = 1 follows immediately from the discussion above.
+In general, assuming DU k = kU k−1 + U k D gives
+                     DU k+1 = (DU)U k
+                            = (I + UD)U k
+                               = U k + U(DU k )
+                               = U k + kU k + U k+1 D
+                               = (k + 1)U k + U k+1 D,
+so we have our claim by induction.                                          
+   Thus, the action of D on U has a distinct resemblance to that of a
+diﬀerential operator. The resemblance is even more clear if we apply the
+operator to our minimal element 0̂, since D 0̂ = 0 so DU n 0̂ = nU n−1 0̂.
+It is from a generalization of this result ([5], Corollary 2.4) that the
+name “diﬀerential poset” arises.
+   The transformations U and D have been studied in great detail.
+They provide an extremely useful tool for enumerating various sorts
+of paths (Hasse walks, in which each step consists of a move from
+the present element to an element which it covers or is covered by) in
+diﬀerential posets. For example, if x, y ∈ P and the rank of y is k
+greater than the rank of x, then the number of minimal Hasse walks
+from x to y (also the number of saturated chains joining x and y) is just
+the coeﬃcient of y in U k x. The total number of paths from x which
+consist of k upward steps is the sum of all coeﬃcients in U k x. Similarly,
+paths with other structures are enumerated by sums of coeﬃcients in
+other combinations of U and D. We provide one simple example here:
+Proposition 2.2 ([5]). In any diﬀerential poset P , the number of
+“loops” of length 2n beginning and ending at 0̂ (the number of Hasse
+walks consisting of n steps up the Hasse diagram followed by n steps
+down) is equal to n!.
+   We will discuss this result further in the context of Young’s lattice
+in Section 4.
+Proof. The number of such loops is exactly equal to the coeﬃcient of
+0̂ in D n U n 0̂. We have trivially that D 0 U 0 0̂ = 0̂, so our proposition is
+correct for n = 0. Then
+              D k+1 U k+1 0̂ = D k (DU k+1 0̂) = (k + 1)D k U k 0̂,
+and the result follows by induction.                                        
+  We now introduce a general method for building diﬀerential posets
+and with it one of the two most important diﬀerential posets.
+8                   JOEL LEWIS HARVARD UNIVERSITY
+
+                     3. Posets from reflections
+   A ﬁnite poset P is said to look diﬀerential if P is graded with a mini-
+mal element, every element of non-maximal rank is covered by one more
+element than it covers and each pair of elements of non-maximal rank
+both cover the same number of elements which cover both. That is,
+our poset satisﬁes (D1), (D2) and (D3) except for elements of maximal
+rank: it looks like the ﬁrst n ranks of a diﬀerential poset.
+   Given a poset P of maximal rank n which looks diﬀerential, we
+construct a new poset P  as follows: each of the elements of P is an
+element of P  and all the order relations among the elements of P hold
+also as elements of P . In addition, for each element x of rank n − 1
+in P , P  contains an element 2x which covers every element covering x
+and no others, and for every element y of rank n in P , P  contains an
+element 1y which covers y and no other elements. Geometrically, this
+operation is equivalent to reﬂecting the top level in the Hasse diagram
+of P , which guarantees that each pair of elements of rank n that cover
+elements in common are now covered by the same number of common
+elements, and adding one additional element covering each element of
+rank n of P , which ensures that every element of the n-th level is now
+covered by one more element than it covers.
+   From what we have said, one can see that the resulting poset P 
+also looks diﬀerential, but in this case up to the (n + 1)-st rank. Also,
+this operation does not alter the poset in any way below the n-th
+rank. Thus, given a poset P of rank n which looks diﬀerential, we can
+generate from it a diﬀerential poset F (P ) as follows: the underlying set
+of F (P ) is the union of the underlying sets of P, P , P  , . . .. Given any
+two elements x, y ∈ F (P ), there exists some n such that x, y ∈ P (n) ,
+and we have x ≤ y in F (P ) if and only if x ≤ y in P (n) . This is well-
+deﬁned because the reﬂection operation does not alter the comparisons
+between elements of P and so the relation between x and y does not
+depend on the choice of n.
+   Since conditions (D2) and (D3) are local constraints on the poset,
+they are satisﬁed for any x, y ∈ F (P ) because they are satisﬁed for
+x, y ∈ P (n) for some suﬃciently large n. (D1) is a global property, but
+it is possible to check that all three of its conditions are met without
+diﬃculty.
+   This tells us that any ﬁnite structure which looks diﬀerential can
+be extended to a complete diﬀerential poset in a canonical way. In
+particular, the poset P0 with only one element looks diﬀerential. The
+poset F (P0 ) which results from applying the above construction to P0
+                       ON DIFFERENTIAL POSETS                           9
+
+is known as the Fibonacci-Young lattice and denoted FY; it is in some
+sense the canonical diﬀerential poset.
+  We can say more about FY than just its existence. If we take the
+lone element of P0 to be the empty string ∅ then the elements of FY
+are {1, 2}∗, the set of all ﬁnite strings composed entirely of 1s and 2s.
+We can also deduce the cover relations of FY:
+Theorem 3.1. Given two such strings x and y, y  x in FY if and
+only if y can be formed either by adding a 1 to x so that the new 1 is
+the leftmost in x or by changing the leftmost 1 in x to a 2.
+   Equivalently, x  y if and only if x can be formed by removing the
+leftmost 1 from y or by changing a 2 in y into a 1 so that the new 1 is
+the leftmost 1 in x.
+   For example, Theorem 3.1 implies that 22121 is covered by 122121,
+212121, 221121 and 22221, and no other elements of FY.
+Proof. The proof of this theorem is inductive. It can be veriﬁed by
+hand that the cover relation of FY, formed according to the rules of
+the reﬂection, follows the pattern described for the ﬁrst few ranks.
+Suppose it holds up to the k-th rank and consider an arbitrary element
+x of rank k. We work in several cases:
+      • If x = 1w for any string w, then by assumption x covers only
+        w. Thus by the properties of the reﬂection x is covered by 1x
+        and 2w, as needed.
+      • If x = 2n , where exponentiation represents repetition, by as-
+        sumption x covers those strings of the form 2m−1 12n−m for
+        1 ≤ m ≤ n. Then x is covered by 1x and those strings of
+        the form 2m 12n−m , as needed.
+      • If x = 2n 1w for some string w with n ≥ 1, then by assumption
+        x covers 2n w and 2m−1 12n−m 1w for 1 ≤ m ≤ n, so x is covered
+        by 1x, 2n+1 w and 2m 12n−m 1w, as needed.
+Since every x ∈ {1, 2}∗ falls into one of these categories, our explicit
+form corresponds exactly to the recursive construction of the Fibonacci
+poset.                                                                
+Theorem 3.2 ([5], Proposition 5.4). The Fibonacci-Young lattice is a
+lattice.
+Proof. First, we prove the existence of greatest lower bounds in FY. It
+is clear that glb(∅, ∅) = ∅. We proceed by induction on the sum of the
+ranks of the two elements x, y, whose lower bound we seek. If x and
+y are comparable, then their greatest lower bound is simply whichever
+of the two is smaller. Now, suppose x and y are incomparable. Since
+10                      JOEL LEWIS HARVARD UNIVERSITY
+
+C − (1w) = {w}, any lower bound on x and y is a lower bound on 1x and
+y and vice versa, so we have glb(x, y) = glb(1x, y), and so in particular
+the latter is deﬁned if the former is. With the inductive hypothesis,
+we are only left with to consider the case that x = 2x and y = 2y  for
+some x , y .
+   Note that for any u, v ∈ FY we have u ≤ v if and only if 2u ≤ 2v.
+In addition, if 1u ≤ 2v then we have either 2u ≤ 2v or 11u ≤ 2v, so
+either 2u ≤ 2v or 21u ≤ 2v or 111u ≤ 2v, and so on. Thus 21n u ≤ 2v
+for some n, so 1n u ≤ v and u ≤ v.
+   It follows that 2glb(x , y ) ≤ 2x = x and 2glb(x , y ) ≤ 2y  = y. In
+addition, the comments of the previous paragraph show that if w  is
+the result of removing the leftmost digit of w (so w = 1w  or w = 2w )
+then w ≤ x and w ≤ y imply w  ≤ x and w  ≤ y  , so w  ≤ glb(x , y )
+and 2w  ≤ 2glb(x , y ). Since 1w  ≤ 2w , in either case we can say that
+w ≤ 2glb(x , y ) and so 2glb(x , y ) is the greatest lower bound of x and
+y. Then we have by induction that every pair of elements of FY have
+a greatest lower bound.
+   Note that being able to take a pairwise greatest lower bound auto-
+matically gives us the ability to take a setwise greatest lower bound
+over any ﬁnite set,
+       glb(x1 , . . . , xk−1 , xk ) = glb(x1 , glb(x2 , . . . , glb(xk−1 , xk ) . . .)).
+Now, we construct a least upper bound of arbitrary x and y. Let z
+be the string that is the same length as the longer of x and y but is
+composed entirely of 2s. It is easy to see that z is an upper bound on
+x, y. Consider the set S of all zi ∈ FY such that zi ≥ x, zi ≥ y and
+the rank of zi is at most that of z, and take the greatest lower bound
+z  of all elements of this set. Since x ≤ zi and y ≤ zi for all i, we have
+x, y ≤ z  .
+    Consider any w such that x, y ≤ w. Then x, y ≤ glb(w, z  ) ≤ z  , so
+glb(w, z  ) has rank at most that of z  . Then by construction glb(w, z  )
+must be one of the zi and so z  ≤ glb(w, z  ), so z  = glb(w, z  ) and
+z  ≤ w. Thus z  = lub(x, y) and FY is a lattice.                       
+     We now give two theorems on the structure of diﬀerential posets:
+Theorem 3.3 ([5], Proposition 1.2). Given any poset P which satisﬁes
+(D1) and (D2) and two elements x = y ∈ P , there is at most one
+element which covers both. In other words, the constant k in (D2) is
+always 0 or 1.
+Proof. Suppose the contrary. Then choose elements x1 , x2 , y1, y2 ∈ P
+such that both xi are covered by both yj and the xi are of minimal
+rank. But then by (D2), there must be two elements which are both
+                        ON DIFFERENTIAL POSETS                            11
+
+covered by x1 and x2 . These elements are of rank one less than the xi ,
+contradicting the assumption of minimal rank.                        
+
+  Equivalently, we may say that the Hasse diagram of any diﬀerential
+poset P does not admit an induced K2,2 subgraph. There are also some
+substructures which must occur in every diﬀerential poset.
+Theorem 3.4. Every diﬀerential poset P contains saturated chains
+{an }n≥0 and {bn }n≥1 which satisfy the following conditions:
+   (1) a0 = 0̂, b1 = a1 and bn = an for k ≥ 2.
+   (2) For n ≥ 0, C − (an+1 ) = {an } and C − (bn+2 ) = {an+1 , bn+1 }. (In
+       the case n = 0, this says C − (b2 ) = {a1 }.)
+
+Proof. We will build the desired chains recursively. There is only one
+possible choice for a0 , a1 and b1 . There are two choices for a2 so b2 will
+be the other element of rank 2. Our conditions certainly hold for these
+elements. Now, suppose we have constructed ﬁnite chains {an }0≤n≤k
+and {bn }0≤n≤k which satisfy our conditions. We can ﬁnd ak+1 , bk+1 as
+follows:
+   We know by assumption that C − (ak−1 ) = {ak−2 }, so by (D3), ak−1
+is covered by exactly two elements. We also know by assumption that
+ak  ak−1 and bk  ak−1 , so these are the unique two elements which
+cover ak−1 . Thus some element x must cover both ak and bk , and ak
+must be covered by one additional element y = x. Then C − (y) = {ak }
+and C − (x) = {ak , bk }, so bk+1 = x and ak+1 = y satisfy conditions (i)
+and (ii).                                                                
+
+  Note that for a ﬁxed poset P , the only choice we made in this process
+was which of the two elements of rank 2 to label a2 ; after that choice,
+the ai and bi were entirely determined by condition (ii). Deﬁne fP (x)
+to be the number of minimal-length Hasse walks in a diﬀerential poset
+P from 0̂ to x, or equivalently the number of saturated chains in P
+with minimal element 0̂ and maximal element x. Then we can count
+these paths by summing over possible penultimate elements to get
+                                    
+                           fP (x) =    fP (y).
+                                     yx
+
+It follows by induction that fP (ak ) = 1 for all k. Moreover, since
+fP (x) ≥ 1 for all x, if x = 0̂ and fP (x) = 1 then C − (x) must have
+exactly one element y and fP (y) = 1. Thus, the an of the Theorem
+3.4 (over both possible choices for a2 ) represent all elements of P for
+which fP (x) = 1.
+12                   JOEL LEWIS HARVARD UNIVERSITY
+
+  We can use Theorem 3.4 together with the process of reﬂection from
+which we built the Fibonacci-Young lattice to construct a more varied
+family of diﬀerential posets. In Figure 2, the only diﬀerence between
+the two given structures occurs among those vertices covering the three
+vertices of rank four which cover a common vertex. In the image on
+the left, these three are all covered by a single vertex and each has in
+addition a vertex which covers it alone. This is exactly the structure we
+would get if we performed a reﬂection to the ﬁnite poset composed of
+the ﬁrst ﬁve ranks pictured. In the image on the right, however, those
+three vertices have been covered pairwise by three vertices – there is a
+“crown” structure in the graph. This change preserves the number of
+covers of each vertex as well as the number of covers of each pair.
+  In fact, in a poset P which looks diﬀerential we can always switch be-
+tween these two situations: if there are elements x1 , x2 , x3 , y0 , y1 , y2 , y3,
+such that the yi are of maximal rank,
+         C − (y0 ) = {x1 , x2 , x3 } and C − (yi ) = {xi } for i = 1, 2, 3
+then there is a poset Q whose elements are the elements of P excluding
+the four yi but including new elements z1 , z2 , z3 , and whose cover re-
+lations are those of P excluding those involving the yi -s but including
+the six relations xi  zj for i = j.
+   Note that the proof Theorem 3.4 applies equally well to posets which
+look diﬀerential as it does to diﬀerential posets. In addition, the bi of
+Theorem 3.4 each cover exactly two elements for i ≥ 3 and so they are
+each covered by exactly three elements. Thus, in every poset which
+looks diﬀerential of maximal rank greater than 3, we can ﬁnd elements
+x0 , x1 , x2 , x3 such that C + (x0 ) = {x1 , x2 , x3 } and the x1 , x2 , x3 are of
+maximal rank. Performing a reﬂection to this poset creates elements
+y0 = 2x0 , y1 = 1x1 , y2 = 1x2 and y3 = 1x3 which together with x1 , x2 , x3
+meet the conditions of the previous paragraph. Thus, we can replace
+these four elements with new elements z1 , z2 , z3 as above, and the re-
+sulting poset will look diﬀerential. We will refer to this operation (re-
+ﬂection together with addition and deletion of elements) as a crown
+reﬂection or as crowning above x0 .
+   In the process of building a poset by repeated reﬂections we may
+substitute crown reﬂections as many times as we wish and in particular
+we have at each level the option to reﬂect or to crown reﬂect above the
+relevant bi . Then to each inﬁnite binary string we can associate a
+sequence of posets which look diﬀerential, where the (n + 1)-st poset
+is formed from the n-th by a reﬂection if the corresponding digit of
+our sequence is 0, and by a crown reﬂection if the corresponding digit
+in the sequence is 1. Just as in the construction of F (P ), for a ﬁxed
+                       ON DIFFERENTIAL POSETS                          13
+
+
+
+
+       Figure 3. The two circled vertices have no greatest
+       lower bound.
+
+binary string we can take the union of all the posets in the associated
+sequence to give a diﬀerential poset.
+   Two diﬀerential posets are isomorphic only if they have the same
+number of elements of each rank. If we follow our construction from
+the same initial poset which looks diﬀerential (say, the unique such
+poset of maximal rank 4) with two diﬀerent binary strings, we see that
+the ﬁrst time the sequences diﬀer, the poset produced by reﬂecting
+will have one more element of maximal rank then the poset produced
+by crown reﬂection. Thus, the two diﬀerential posets that eventually
+result will have diﬀering numbers of elements at that rank and so will
+be non-isomorphic. It follows that we can assign to each inﬁnite binary
+string a distinct isomorphism class of diﬀerential posets and so there
+are inﬁnitely (in fact uncountably) many non-isomorphic diﬀerential
+posets.
+   Unfortunately, the crown reﬂection has a number of downsides. Al-
+though it produces a huge family of diﬀerential posets, it certainly does
+not contain them all. In particular, Young’s lattice Y cannot be pro-
+duced in this manner. (We will prove that Young’s lattice is diﬀerential
+in Theorem 4.1.) In addition, the posets produced here will never be
+lattices: the Hasse diagram of every poset other than FY produced in
+this fashion will contain as an induced subgraph the structure shown
+in Figure 3, and the two circled vertices cannot have a greatest lower
+bound as elements of our poset. (In fact, no diﬀerential lattices are
+known other than Y and FY.)
+   Finally, unlike the reﬂection we used to generate FY, this process
+does not obviously produce a canonical labeling of the new elements.
+Thus, it is somewhat more diﬃcult to produce “nice” labelings for these
+posets, a problem that is endemic to discussions of large, complicated
+structures. We provide here the explicit form for one poset produced
+in this manner; as far as we know, it is the ﬁrst such expression for any
+diﬀerential poset other than Y or FY.
+Theorem 3.5. Consider the poset P deﬁned on the set of ﬁnite strings
+composed of 1s and 2s (including the empty string) except those strings
+14                 JOEL LEWIS HARVARD UNIVERSITY
+
+which end in 2211n , n ≥ 0, such that given two such strings x and y,
+y  x if and only if one of the following holds for some m, n ≥ 0:
+     (i) y can be formed by inserting a 1 to the left of the leftmost 1 in
+         x, except in the following subcases:
+          (a) x = 2m 1n 22 and y = 2m 1n 122
+          (b) x = 2m 1n 121 and y = 2m 1n 1121
+          (c) x = 2111n and y = 12111n
+    (ii) y can be formed by replacing the leftmost 1 in x with a 2, except
+         in the following subcases:
+          (a) x = 2m 1n 122 and y = 2m+1 1n 22
+          (b) x = 2m 1n 1121 and y = 2m+1 1n 121
+   (iii) x = 2111n and y = 1n 122 or y = 1n 1121
+   (iv) x = 2m 1n 22 and y = 2m 1n 1121
+    (v) x = 2m 1n 1121 and y = 2m 21n 22
+   (vi) x = 2m 1n 22 and y = 2m 12111n
+  (vii) x = 2m 12111n and y = 2m 21n 22
+ (viii) x = 2m 1n 121 and y = 2m 1n 122
+   (ix) x = 2m 1n 122 and y = 2m 21n 121
+    (x) x = 2m 1n 121 and y = 2m 12111n
+   (xi) x = 2m 12111n and y = 2m 21n 121
+This poset is diﬀerential. (We make no claims about the elegance,
+relative or absolute, of this description.)
+   In fact, we will prove the following more detailed result: P arises
+from the process described above by applying standard reﬂections and
+crown reﬂections in a particular combination. Beginning with the one-
+element poset P0 with element ∅, we apply the standard reﬂection four
+times. We then apply the crown reﬂection at every level above the
+element 21n+1 , which will always be covered by exactly three elements,
+x1 , x2 , x3 , such that the new element zi has the same name as the
+element yi which it replaces for i = 1, 2, 3. (That is, a reﬂection would
+give us the relations xi  yi , but for our crown reﬂection we take xi  yj
+for j = i. Note that this is independent of which of the covers we
+happen to call x1 , etc.)
+   Figure 4 shows the ﬁrst six ranks of this poset. Several edges are
+labeled, showing the ﬁrst application of each of the rules.
+
+Proof. It is clear from the deﬁnition that P has a minimum element,
+∅, that it is locally ﬁnite and graded, and that the n-th rank consists
+of all elements of P whose entries sum to n.
+   Let Pk be the diﬀerential-looking poset whose elements are those of
+the ﬁrst k ranks of P and whose order relations are the same as the
+                                    ON DIFFERENTIAL POSETS                                   15
+
+
+111111   21111   11121       1122    12111     2121       222           11211   1212       2112      11112
+
+                                                                     (vii)
+                                                        (v)      (xi)
+                                        (ix)
+         11111        2111           122          1121                  1211         212          1112
+
+                                     (iii)                              (vi)
+                                               (viii) (x)            (iv)
+                 1111                211           121                  22                 112
+
+
+
+
+                          111                     21                            12
+
+
+                                     11                                 2
+                                                              (ii)
+                                                  1
+                                                  (i)
+                                                  ∅
+                 Figure 4. A new diﬀerential poset. Some edges are
+                 labeled with the rules that were used to generate them.
+
+
+          order relations between those elements as members of P . In order to
+          prove our result, it is enough to show that Pk+1 is identical to the
+          poset Qk+1 which arises from applying the appropriate transformation
+          (reﬂection or crown reﬂection) to Pk .
+             It is certainly true that Qk = Pk for k ≤ 4 since only rules (i) and (ii)
+          apply to elements of P of rank four or less and on these elements they
+          describe exactly the same relations as we see in the Fibonacci-Young
+          lattice and so exactly the relations that arise from reﬂection. (The
+          higher-numbered rules and the exceptions to rules (i) and (ii) apply
+          when one of the elements is of rank at least ﬁve.)
+             For all k ≥ 4, taking covers in Pk we have
+
+                             C + (21k−3 ) = {21k−2, 1k−422, 1k−221}
+16                 JOEL LEWIS HARVARD UNIVERSITY
+
+and so in particular it is possible to apply a crown reﬂection above
+21k−1. Thus Qk+1 is indeed well-deﬁned. Consider any element x of
+rank k in Qk+1 . Then by the nature of the crown reﬂection we have
+the following possibilities.
+  Case 1: x = 21k−2. Then one can verify (by inverting and checking
+each possible rule; in this case, rules (i) and (ii) apply) that C − (x) =
+{21k−3, 1k−1} and so after crowning above 21k−3 we get
+                   C + (x) = {1k−322, 1k−221, 21k−1}.
+These are exactly the set of covers of x in Pk+1 , where they are a result
+of rules (i) and (iii).
+   Case 2: x = 1k−4 22. If k = 4, C − (x) = {21, 12} (rule (i) twice)
+and so crown reﬂecting, C + (x) = {1211, 1121, 212}, which match what
+we want in Pk+1 (rules (i), (iv) and (vi)). If k > 4 then C − (x) =
+{21k−3, 1k−421} (rules (iii), (viii)) and by crown reﬂection, C + (x) =
+{121k−2, 1k−221, 21k−421}. This matches the covers in Pk+1 which fol-
+low from rules (iv), (vi) and (ix).
+   Case 3: x = 1k−321. If k = 4 then C − (x) = {21} and so C + (x) =
+{1211, 122}, which matches Pk+1 (rules (viii), (x)). If k > 4 then
+C − (x) = {21k−1, 1k−522} (rules (iii), (iv)) and by reﬂection, C + (x) =
+{21k−522, 1k−322, 121k−2} which matches the set of covers of x in Pk+1
+(rules (v), (viii), (x)).
+   Case 4: x is not one of these three elements. Then we have by rule
+(i) that x  1x. In addition, rules (iv) through (xi) come in pairs for
+which it is evident that if w  x as a consequence of one such rule then
+x  2w as a consequence of the paired rule. For example, (vi) and (vii)
+tell us that for any m, n ≥ 0 we have
+                   2m 1n 22  2m 12111n  2m+1 1n 22,
+and so on. In addition, the exceptions to rules (i) and (ii) correspond
+in such a way that if w does not fall into the exceptions and w  x as a
+consequence of one of these rules then x will not fall into the exceptions
+either and x  2w just as in the case of FY. Thus, Qk+1 coincides with
+Pk+1 around those elements not involved in the crown part of a crown
+reﬂection.
+   These cases are comprehensive. It follows that P can be formed
+through the sequence of reﬂections and crown reﬂections described and
+so in particular P is diﬀerential, as desired.                          
+  We now leave our discussion of the broader family of diﬀerential
+posets and turn our focus to one particular member, Young’s lattice.
+                                   ON DIFFERENTIAL POSETS                                                 17
+
+                                     4. Young’s lattice
+   We deﬁned Young’s lattice in terms of integer partitions, certain lists
+of positive integers. Rather than dealing with partitions directly, it is
+often useful to consider instead a certain picture associated with the
+given partition. The Young diagram of a partition λ = (λ1 , . . . , λk ) is
+a ﬁgure composed of |λ| = λ1 + . . . + λk boxes, upper-left justiﬁed, so
+that the number of boxes in the i-th row is λi . For example, the Young
+diagrams of the partitions (5, 4, 3) and (6, 2, 2, 2) are given below.
+
+
+
+
+  The ordering of Young’s lattice is such that for two partitions λ, µ,
+we have λ ≤ µ if and only if λi ≤ µi for all i. In terms of Young
+diagrams, this says that λ ≤ µ if and only if the Young diagram of
+λ ﬁts entirely inside the Young diagram of µ when the two diagrams
+are arranged so their upper-left corners coincide. Then it is clear, for
+example, that λµ if and only if the Young diagram of µ can be formed
+by adding exactly one square to the Young diagram of λ so that the
+result is still a valid Young diagram. In terms of integer sequences,
+λ  µ if and only if µ arises by adding 1 to exactly one of the λi so that
+the result is still properly ordered, or by adding a new entry of 1 to λ.
+Theorem 4.1 ([5], Corollary 1.4). Young’s lattice is diﬀerential.
+Proof. Suppose for some partition λ that
+           λ1 = . . . = λa1 > λa1 +1 = . . . = λa1 +a2 > λa1 +a2 +1 = . . .
+for some positive integers a1 , a2 , . . .. If we let i1 = 1, in+1 = in + an ,
+then we can write
+           λ = (λai11 , λai22 , . . . , λaikk ), ai ≥ 1, λi1 > λi2 > . . . > λik > 0
+where exponentiation represents multiplicities. Then λ is covered by
+exactly the k + 1 partitions
+    (λi1 + 1, λia11 −1 , λai22 , . . . , λaikk ), (λai11 , λi2 + 1, λia22 −1 , . . . , λaikk ), . . .
+        . . . , (λai11 , λai22 , . . . , λaikk , 1).
+Conversely, λ covers the k partitions
+      (λia11 −1 , λi1 − 1, λai22 , . . . , λaikk ), (λai11 , λia22 −1 , λi2 − 1, . . . , λaikk ), . . .
+ . . . , (λai11 , λai22 , . . . , λiakk −1 , λik − 1)
+18                 JOEL LEWIS HARVARD UNIVERSITY
+
+where in the last case if λik = 1 we simply omit the last entry. This
+establishes (D3) for Young’s lattice.
+   (D1) follows from the nature of the cover relation: the empty par-
+tition ∅ is the minimal element of Y, Y is locally ﬁnite because we
+can move from any partition to any partition larger than it by repeat-
+edly adding 1s, and Y is graded, with the n-th rank consisting of all
+partitions of n.
+   Finally, if two partitions λ and µ have common cover, there is some
+partition ν such that λ and µ arise from adding 1 at two diﬀerent
+locations in ν. Then adding both 1s to ν gives a partition which is
+easily seen to cover both λ and µ, so (D2) holds as well and Y is
+diﬀerential.                                                         
+   A lower order ideal in a locally ﬁnite poset P with a minimal element
+is a ﬁnite set I of elements of P such that y ∈ I, x ∈ P and x < y imply
+that x ∈ I. These order ideals have a natural poset structure through
+inclusion as sets, and the poset of order ideals of P so ordered is denoted
+J(P ). A poset is a distributive lattice if it is isomorphic to J(P ) for
+some poset P . That distributive lattices are lattices is straightforward:
+least upper bounds are set unions and greatest lower bounds are set
+intersections. The term distributive lattice arises because these lattices
+are exactly those for which the lattice operations glb and lub distribute
+over each other, a result we will not prove. For example, the Boolean
+lattice BS discussed earlier is the poset of lower order ideals of the poset
+whose underlying set is S and which has no order relations among its
+elements.
+   We mentioned earlier that Young’s lattice and the Fibonacci-Young
+lattice are the only two known diﬀerential lattices, and others may
+exist. In the case of diﬀerential distributive lattices, though, an actual
+result is known.
+Proposition 4.2 (Folklore). Young’s lattice is a distributive lattice.
+Proof. Consider the poset P on N × N with (a, b) ≤ (c, d) in P if and
+only if a ≤ c and b ≤ d as members of N with the conventional ordering.
+If we arrange the Hasse diagram of P so that (0, 0) is in the upper-left
+corner, it becomes immediately clear that order ideals correspond to
+Young diagrams, so that J(P ) ∼= Y and Y is a distributive lattice. 
+Theorem 4.3 ([7], p.180). Any diﬀerential distributive lattice is iso-
+morphic to Young’s lattice.
+Proof. Suppose L is a diﬀerential distributive lattice. Thus, in particu-
+lar, L is a graded, locally ﬁnite distributive lattice with a least element
+                       ON DIFFERENTIAL POSETS                          19
+
+0̂ such that every element is covered by one more element than it cov-
+ers. Call an element x ∈ L irreducible if there do not exist y, z ∈ L
+such that y, z < x and x = lub(y, z), and let Sk be the set (in fact,
+poset) of irreducible elements of L of rank k or less. We can extend
+this set to a sublattice Lk of L by taking the least upper bounds of
+every subset of Sk . Every element of L of rank k or less is either in
+Sk or can be written as the least upper bound of smaller elements of
+L. Thus, every element of L of rank k or less is also an element of
+Lk . It follows that L is the union of the Lk ; if we can show that the
+Lk are unique (up to isomorphism), it will follow that L is the unique
+diﬀerential distributive lattice and so L ∼= Y.
+   S0 = {0̂} so L0 is the single-element poset, and thus unique. Suppose
+that Lk can be constructed in a unique manner. Consider any element
+x ∈ Lk of rank k, and suppose x covers n elements and is covered by
+m elements in Lk . The elements x covers in Lk are the same as the
+elements x covers in L, so x has n − m + 1 additional covers in L.
+These new covers are of rank k + 1 and so must be irreducible, since
+otherwise we would be able to express them as the least upper bound of
+elements of rank k or less and so as the least upper bound of elements
+of Lk , which would also make them elements of Lk , a contradiction.
+These new elements, together with Sk , are therefore included in Sk+1 .
+In addition, this must exhaust all of Sk+1 , since any other irreducibles
+would by necessity be of rank k+1 and so would cover some element of L
+of rank k, which is impossible. Thus Sk+1 can be uniquely constructed.
+The structure of Lk+1 follows uniquely from the structure of Sk+1 , so
+by induction L is uniquely determined and Y is the only diﬀerential
+distributive lattice.                                                  
+  It is interesting to note that we could substitute for (D3) in this
+proof the fact that whenever x covers n vertices, it is covered by f (n)
+vertices for any function f , and the result (that there exists at most
+one distributive lattice with this property, although it would certainly
+not be Young’s lattice) would still be valid.
+   A semi-standard Young tableau, or SSYT, is a ﬁlling of the boxes of
+a Young diagram with positive integers so that rows weakly increase
+from left to right while columns strictly increase from top to bottom.
+The shape sh(T ) of a SSYT T is the shape of its associated Young
+diagram and the type type(T ) is the sequence of multiplicities of its
+entries. Thus, if
+                                1 1 1 3 4
+                           T = 2 2 4 5 5
+                                3 4 5
+20                 JOEL LEWIS HARVARD UNIVERSITY
+
+we have sh(T ) = (5, 5, 3) and type(T ) = (3, 2, 2, 3, 3).
+   The basic unit of the RSK algorithm is an insertion algorithm on
+tableaux. Given a SSYT T and an integer a1 , the tableau T ← a1 is
+constructed as follows:
+    (0) To begin, n = 1 and a1 is “active.”
+    (1) If the active number is at least as large as all elements of the
+         n-th row (and especially if the n-th row is empty), insert it as
+         the rightmost element in this row and stop. Otherwise, proceed
+         to step (2).
+    (2) Let a2 be the smallest member of the n-th row which is larger
+         than a1 . Replace a2 with a1 in the n-th row, make a2 active,
+         increment n and go back to step (1).
+It is clearly the case that the resulting diagram is a SSYT. In this
+SSYT, we may consider those entries which were at some point active;
+they are called the insertion path of a1 in T . For example, the image
+below shows one example of an insertion with the insertion path in
+bold.
+                                                 1 1 1 2 4
+                    1 1 1 3 4
+               T = 2 2 4 5 5          T ←2= 2 2 3 5 5
+                                                 3 4 4
+                    3 4 5
+                                                 5
+It is straightforward to show that insertion paths move only down and
+to the left, never to the right, and that if a ≤ b then the insertion path
+of b in (T ← a) ← b lies strictly to the right and not below the insertion
+path of a.
+   The RSK algorithm consists of a particular sequence of repeated
+insertions. Consider a ﬁnite matrix A = (aij )i,j≥1 of natural numbers
+                
+and let n = i,j aij . We associate to A its 2 × n scheme matrix as
+                                           
+follows: the columns of the scheme are ji , appearing aij times, sorted
+ﬁrst along the top row and then along the bottom row. For example,
+the scheme of the matrix
+                             ⎛               ⎞
+                                 1 0 1 2
+                             ⎝ 0 0 2 0 ⎠
+                                 0 1 0 0
+is
+                          1 1 1 1 2 2 3
+                                               .
+                          1 3 4 4 3 3 2
+Since we may reconstruct the matrix A given its scheme we consider
+the two to be interchangeable.
+it Given
+          a matrix A with a 2 × n scheme matrix whose t-th column is
+ jt
+     , let P (0) = Q(0) = ∅ be two empty SSYTs and deﬁne recursively
+                      ON DIFFERENTIAL POSETS                          21
+
+P (t + 1) = P (t) ← jt+1 . Q(t + 1) is formed by augmenting Q(t)
+by one box so that Q(t) and P (t) are of the same shape and giving
+this box the entry it+1 . The output of the algorithm is the ﬁnal pair
+                                          RSK
+(P, Q) = (P (n), Q(n)), and we write A −→ (P, Q). P is called the
+insertion tableau and Q is the recording tableau.
+Theorem 4.4 ([8], Theorem 7.11.5). This algorithm is a bijection be-
+tween scheme matrices of the desired form, or equivalently ﬁnite ma-
+trices over N, and pairs of SSYT of the same shape.
+Proof. We have two things to show: ﬁrst, that Q is in fact an SSYT,
+and second, that this algorithm is invertible and so a bijection.
+   Note that the elements of Q are added in weakly increasing order,
+and each new entry is along the outermost edge of the diagram at the
+time it is inserted. Thus the rows and columns of Q must be weakly
+increasing. That the columns of Q are strictly increasing follows from
+our observation above that if b ≥ a then the insertion path of b in
+(T ← a) ← b is to the right and cannot pass below the insertion path
+of a: the copies of i in Q were added consecutively, and later additions
+are associated with larger insertions into P . Thus, a copy of i added
+to Q must occur in a column to the right of the preceding copy of i, so
+the copies of i in Q are in diﬀerent columns. Then the columns of Q
+strictly increase and Q is indeed an SSYT.
+   Now, we must show how to invert the algorithm. Take any two
+SSYTs (P, Q) of the same shape λ n and consider the right-most
+instance of the largest entry in Q. The order of insertion together with
+the observations on why Q is a SSYT show that this must have been
+the last entry added to Q = Q(n) and so the corresponding entry in
+P = P (n) was the last to be inserted. Reversing the insertion algorithm
+is straightforward: an active number must have been bumped from the
+previous row by the right-most entry smaller than it, so we can trace
+the insertion path upwards until we discover exactly which number was
+inserted into P (n − 1) to get P . The numbers removed from P and
+Q in this fashion give us the rightmost column of the scheme matrix,
+and we can repeat the process with the new matrices P (n − 1) and
+Q(n − 1). After n iterations we will have completely constructed the
+scheme matrix, thus inverting RSK.                                     
+  One particular interesting class of SSYTs is the set of standard Young
+tableaux, or SYTs. An SYT of shape λ n is an SSYT in which the
+diagram of λ is ﬁlled with the integers from 1 to n, each appearing
+exactly once. There is a particularly nice relationship between SYTs
+and Young’s lattice. Suppose we have an SYT Tn of shape λ n and
+22                     JOEL LEWIS HARVARD UNIVERSITY
+
+we remove the box labeled n. This gives a new SYT Tn−1 of shape
+µ n − 1. Then µ  λ as elements of Y. We can perform the same
+operation to µ to ﬁnd a new element of Y covered by µ, and so on.
+Thus, an SYT of shape λ has a natural interpretation as a Hasse walk
+in Y joining λ to ∅.
+   It is natural to ask at this point what RSK does when applied to a
+pair of SYTs.
+Proposition 4.5 ([8], Theorem 7.11.5). The RSK algorithm gives a bi-
+jection between pairs (P, Q) of SYT of the same shape and permutation
+matrices.
+Proof. By deﬁnition, P and Q are SYTs if and only if type(P ) =
+type(Q) = (1, 1, . . . , 1). The entries of P and Q are the elements of
+the bottom and top rows of the scheme matrix, respectively, and from
+the construction
+                 of the scheme we see that i appears in  the top row
+exactly j aij times while j appears in the bottom row i aij times.
+Thus,if A is the
+               matrix associated via RSK with (P, Q) then we must
+have i aik = j akj = 1 for all k = 1, . . . , n, so A must have exactly
+one 1 in each row and column and 0s elsewhere. Conversely, if A is a
+permutation matrix then P and Q will have type (1, . . . , 1) and so be
+SYTs. Since RSK is invertible, this is a bijection.                  
+  Denote by f λ the number of SYT of shape λ. From the comments
+above, this is equal to fY (λ), the number of minimal Hasse walks from
+∅ to λ in Y. Then the number of pairs of SYTs of shape λ is (f λ )2 .
+Proposition 4.5 gives a bijection between n × n permutations matri-
+ces and pairs of SYT of the same shape with n boxes, so as a direct
+consequence                   
+                                  (f λ )2 = n!.
+                                   λn
+In other words, we now have a bijective proof of Proposition 2.2 in the
+case P = Y.3
+  Surprisingly, this algorithm, which appears to rely quite heavily on
+a particular representation of the elements of Y, can be extended to
+     3This result has an entirely diﬀerent signiﬁcance to algebraists. The conjugacy
+classes of the symmetric group Sn are classiﬁed by their cycle structure, so in fact
+they are indexed by integer partitions. Thus, the irreducible representations of Sn
+can be similarly indexed, and the sum of the squares of their dimensions is the size
+of the group, n! ([4], Prop. 1.10.1). These dimensions turn out to be exactly the
+f λ , so our theorem is in fact a special case of a more general theorem on group
+representations. For much more on this topic, including a proof that the f λ are the
+dimensions of the irreducible representations, see [8], chapter 7, or [4].
+                       ON DIFFERENTIAL POSETS                          23
+
+all diﬀerential posets. Here we describe the general algorithm due to
+Fomin ([2]). We will not prove that this alorithm applies in the general
+setting, but we will use it to establish two results on Hasse walks in
+diﬀerential posets and will show that it coincides with RSK when we
+take Y to be our diﬀerential poset.
+   First, ﬁx a diﬀerential poset P and choose n ∈ N. At each element
+y ∈ P , choose a bijection φy : C − (y) ∪ {y} → C + (y). (There is in
+general no canonical way to make this choice, and the resulting bijection
+will depend on the choices of the maps φy .) Now, we construct a growth
+diagram for P : for a given π ∈ Sn , draw an n × n table and place an
+X in the i, j-th box of the table if and only if π(i) = j. (Here we are
+using Cartesian coordinates: the box in the lower-left corner is (1, 1)
+and the box in the lower-right is (n, 1).) Next, label each vertex along
+the left and bottom edges with our minimal element 0̂, as in Figure 5.
+Given a box whose three corners are labeled as shown below, we ﬁll it
+in according to the following rules:
+                                y1
+
+                                x    y2
+   (1) If there is no X in the box and x = y1 (or x = y2 ) then we label
+       the upper-right corner with y2 (respectively y1 ).
+   (2) If there is no X in the box and x  y1 = y2 then we label the
+       upper-right corner with φy1 (x)
+   (3) If there is no X in the box and x  y1 = y2  x then we label
+       the upper-right corner with the unique z covering y1 and y2 .
+   (4) If there is an X in the box then x = y1 = y2 and we label the
+       upper-right corner with φx (x).
+  Note in particular that the last rule describes the only situation
+which can possibly arise: if a given box has an X in it then since π is
+a permutation none of the boxes directly to its left or below it have
+an X. This ensures that only rules (1) and (2) were called upon in the
+labeling of the edges of our box and so the three corners of the box will
+have the same label.
+  We use these rules to label every vertex of the grid, starting in the
+lower-left corner and working our way up and right. Reading along
+the right and top edges of the resulting diagram gives us two saturated
+chains connecting 0̂ to the element in the upper-right corner of the
+diagram. This sends permutations to pairs of Hasse walks in P . Given
+an element x ∈ P and two paths between 0̂ and x, we can invert
+the algorithm by labeling the top and right edges with the paths and
+moving down and left. Given the functions φy , the labels on the three
+24                 JOEL LEWIS HARVARD UNIVERSITY
+
+                          0̂
+                                         X
+                          0̂
+                               X
+                          0̂
+                                                   X
+                          0̂
+                                              X
+                          0̂
+                                    X
+                          0̂   0̂   0̂   0̂   0̂   0̂
+       Figure 5. The initial setup of a geometric RSK gener-
+       alization for the permutation π = 41523.
+
+right and upper corners of a box uniquely determine the label in the
+lower-left and establish whether or not the box contains an X, allowing
+us to reconstruct the permutation which corresponds to the paths.
+That this actually represents a bijection is not obvious, and we do not
+provide the proof.
+   This algorithm immediately extends the bijective proof of Proposi-
+tion 2.2 to all diﬀerential posets. It also has another important conse-
+quence: given two minimal Hasse walks connecting 0̂ to some element
+x in a diﬀerential poset P , swtiching the order of the walks reﬂects
+the growth diagram across its diagonal. Then if the original output
+of the algorithm was the permutation π, the new output will be the
+inverse permutation π −1 . In terms of the insertion version of RSK
+                                                         RSK
+for Y, this says that for permutation matrices, if A −→ (P, Q) then
+    RSK
+A −→ (Q, P ). This fact (which extends to all matrices) is a far-from-
+obvious property of RSK.
+   As an additional consequence in the general case, we have that the
+two paths are the same if and only if the resulting permutation satisﬁes
+π = π −1 , i.e. is an involution. Since the number of pairs of paths such
+that the two paths are the same is simply the number of paths, we have
+that
+                      
+                          fP (x) = #{π ∈ Sn | π 2 = 1}
+                     x
+
+where the sum is over all x of rank n in P .
+  In order to show that the two algorithms correspond in the case
+P = Y, it is necessary to choose the functions φλ for each partition λ.
+The following seems to be a natural choice:
+     • φλ (λ) is the partition that arises from adding 1 to the largest
+       part of λ.
+                          ON DIFFERENTIAL POSETS                                25
+
+      • If λ arises from adding 1 to part µi of µ then φλ (µ) is the
+        partition which arises from adding 1 to λi+1 .
+Theorem 4.6 ([8], Theorem 7.13.5). In case P = Y with φλ as above,
+the growth diagram version of RSK corresponds to the standard version
+after identiﬁcation of Hasse walks with SYTs.
+Proof. Coordinatize the vertices of our diagram so that each box has the
+same coordinates as its upper-right corner. Then at each vertex (i, j)
+of our complete growth diagram is a partition λ(i, j), with λ(0, j) =
+λ(i, 0) = ∅. By the nature of the construction rules for the growth
+diagram, we have for any j that
+                       λ(i, 0) ≤ λ(i, 1) ≤ . . . ≤ λ(i, n)
+and for each j either
+                λ(i, j) = λ(i, j + 1) or λ(i, j)  λ(i, j + 1).
+Then replace each partition with a SYT T (i, j) such that sh(T (i, j)) =
+λ(i, j) and if λ(i, j)  λ(i, j + 1) then T (i, j + 1) arises from T (i, j) by
+ﬁlling the new box with j + 1.
+   For ﬁxed i, j, let (i1 , j1 ), . . . , (ik , jk ) be the coordinates of the X-ed
+boxes below and to the left of (i, j), so il ≤ i and jl ≤ j, ordered so
+that i1 < . . . < ik . We claim that
+                T (i, j) = (. . . ((∅ ← j1 ) ← j2 ) ← . . .) ← jk .
+   If i = 0 or j = 0 this claim is obvious. Suppose that the statement
+is true of T (i − 1, j − 1), T (i − 1, j) and T (i, j − 1). There are several
+cases to verify for a full inductive proof, each corresponding to a local
+rules by which we built the growth diagram, and we provide proofs for
+three of them.
+    (1) If box (i, j) does not contain an X and λ(i−1, j −1) = λ(i−1, j)
+         then λ(i, j − 1) = λ(i, j) and there are no Xs directly to the
+         left of the (i, j)-th box. Since there are no such Xs, our claim
+         predicts that T (i, j) is formed by the same sequence of insertions
+         as T (i, j − 1). But λ(i, j − 1) = λ(i, j) implies that T (i, j) =
+         T (i, j − 1), so this case is done.
+    (2) If box (i, j) does not contain an X and λ(i−1, j −1) = λ(i, j −1)
+         then λ(i − 1, j) = λ(i, j) and there are no Xs directly below the
+         (i, j)th box. Since there are no such Xs, our claim predicts that
+         T (i, j) should be formed by the same sequence of insertions as
+         T (i − 1, j). We also have by hypothesis that T (i − 1, j − 1) =
+         T (i, j −1), so T (i−1, j) and T (i, j) arise from T (i−1, j −1) and
+         T (i, j − 1) by identical additions of a box. Thus T (i − 1, j) =
+         T (i, j) and this case is done as well.
+26                    JOEL LEWIS HARVARD UNIVERSITY
+
+      (3) If box (i, j) contains an X then no box in the same row or
+          column does so T (i − 1, j − 1) = T (i − 1, j) = T (i, j − 1) arise
+          according to hypothesis from insertions of a collection of jl < j.
+          Since λ(i, j) is formed from λ(i, j−1) by addition of a box to the
+          ﬁrst row, T (i, j) arises from T (i, j −1) by placing j at the end of
+          the ﬁrst row. Since j > jl , this is equivalent to T (i, j − 1) ← j,
+          as desired.
+     From this claim it is immediately clear that
+                   T (i, n) = (. . . (∅ ← π(1)) ← . . .) ← π(i)
+and so in particular the chain λ(0, n)  λ(1, n)  . . .  λ(n, n) corre-
+sponds to the recording tableau while T (n, n) is the insertion tableau
+associated with the permutation matrix for π.                          
+                          5. Acknowledgements
+  We would like to thank Professor Thomas Lam, under whose guid-
+ance this thesis was written, for all his help from start to ﬁnish. We
+would also like to thank Yan Zhang for his edits and suggestions.
+                                 References
+ [1] S. Fomin: Duality of graded graphs, J. Algebraic Combin. 3 (1994), 357–404.
+ [2] S. Fomin: Schensted algorithms for dual graded graphs, J. Algebraic Combin.
+     4 (1995), 5–45.
+ [3] K. Killpatrick: Evacuation and a geometric construction for Fibonacci
+     tableaux, Journal of Combinatorial Theory, Series A, 110 (2005), 337–351
+ [4] B. Sagan, The Symmetric Group, Wadsworth and Brooks, 1991.
+ [5] R. Stanley: Diﬀerential posets, J. Amer. Math. Soc. 1 (1988), 919–961.
+ [6] R. Stanley: ”Variations on diﬀerential posets,” Invariant Theory and
+     Tableaux, D. Stanton, Ed., Springer- Verlag, 1990, 145–165.
+ [7] R. Stanley, Enumerative Combinatorics, Vol 1, Cambridge, 1997.
+ [8] R. Stanley, Enumerative Combinatorics, Vol 2, Cambridge, 1999.
+

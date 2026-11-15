@@ -1,0 +1,96 @@
+                                                  THE LEFSCHETZ PROPERTIES OF MONOMIAL COMPLETE
+                                                      INTERSECTIONS IN POSITIVE CHARACTERISTIC
+
+                                                                                       DAVID COOK II
+
+
+
+
+arXiv:1111.4979v1 [math.AC] 21 Nov 2011
+                                                  Abstract. Stanley proved that, in characteristic zero, all artinian monomial complete in-
+                                                  tersections have the strong Lefschetz property. We provide a positive characteristic comple-
+                                                  ment to Stanley’s result in the case of artinian monomial complete intersections generated
+                                                  by monomials all of the same degree, and also for arbitrary artinian monomial complete
+                                                  intersections in characteristic two.
+                                                     To establish these results, we first prove an a priori lower bound on the characteristics
+                                                  that guarantee the Lefschetz properties. We then use a variety of techniques to complete
+                                                  the classifications.
+
+
+
+                                                                                    1. Introduction
+                                             Let K be an infinite field of arbitrary characteristic, and let I be a homogeneous artinian
+                                          ideal in R = K[x0 , . . . , xn ]. The algebra A = R/I is said to have the strong Lefschetz
+                                          property, if there exists a linear form ℓ ∈ A such that for all integers d and k, with k ≥ 1,
+                                          the map ×ℓk : [A]d → [A]d+k has maximal rank. In this case, ℓ is called a strong Lefschetz
+                                          element of A. If the property holds for k = 1, then A is said to have the weak Lefschetz
+                                          property, and ℓ is called a weak Lefschetz element of A.
+                                             The Lefschetz properties have been studied extensively; the recent manuscript by Harima,
+                                          Maeno, Morita, Numata, Wachi, and Watanabe [12] provides a wonderfully comprehensive
+                                          exploration of the Lefschetz properties. In particular, the presence of the properties provides
+                                          interesting constraints on the Hilbert functions of the algebras (see, e.g., [1, 13, 22]).
+                                             The theorem below which motivates our results was first proven by Stanley [26] using
+                                          algebraic topology. It has since been proven in many different ways, most notably by Watan-
+                                          abe [27] using representations of gl2 , and later by Reid, Roberts, and Roitman [25] using
+                                          purely algebraic techniques.
+                                          Theorem 1.1. ([26, Theorem 2.4], [27, Corollary 3.5], [25, Theorem 10]) Every artinian
+                                          monomial complete intersection over a polynomial ring has the strong Lefschetz property in
+                                          characteristic zero.
+                                             For a brief, but extensive overview of the depth with which Theorem 1.1 has inspired
+                                          explorations of the Lefschetz properties, see the survey [21] by Migliore and Nagel.
+                                             We emphasise that the above result, and most related results, are specific to characteristic
+                                          zero. However, there has been a great deal of recent interest in positive characteristic (see,
+                                          e.g., [5, 7, 16]). Specifically, Brenner and Kaid [4] (for three variables) and Kustin and
+                                          Vraciu [15] (for at least four variables) completely characterised the characteristics in which
+                                            2010 Mathematics Subject Classification. 13A35, 13C40, 13D02.
+                                            Key words and phrases. Complete intersections, Lefschetz properties, Syzygies, Positive characteristic.
+                                            Part of the work for this paper was done while the author was partially supported by the National Security
+                                          Agency under Grant Number H98230-09-1-0032.
+                                                                                               1
+2                                            D. COOK II
+
+the weak Lefschetz property is present for monomial complete intersections generated by
+monomials all having the same degree. Although the failure of the weak Lefschetz property
+implies the failure of the strong Lefschetz property, we must do more work to establish the
+presence of the strong Lefschetz property.
+   The goal of this note is to provide complements to Theorem 1.1 in characteristic two (see
+Theorem 7.1) and further in the case of generation by monomials of the same degree (see
+Theorem 7.2). The remainder of the manuscript is organised as follows: In Section 2 we
+describe a few old and new ways to establish the Lefschetz properties, specifically in the case
+of monomial complete intersections. In Section 3 we describe the characteristics in which
+the Lefschetz properties may fail, and prove they are bounded linearly in the degrees of the
+generating monomials. The proofs involve an analysis of the prime divisors of an associated
+determinant.
+   As demonstrated in [15], when fewer variables are used, exploring the presence of the
+Lefschetz properties becomes more interesting. In Sections 4 and 5 we consider monomial
+complete intersections in two and three variables, respectively. In Section 6 we handle
+the case of at least four variables. Throughout these three sections, we use a variety of
+techniques to establish the presence and failure of the Lefschetz properties. These techniques
+include determining syzygy gaps (see Subsection 4.1), using basic number theory (e.g., see
+Lemma 4.6), and finding explicit syzygies of small degree (see Subsection 5.1).
+   Finally, in Section 7 we close with the desired classifications and a few comments.
+
+                      2. Establishing the Lefschetz properties
+   Let K be an infinite field of arbitrary characteristic. All artinian monomial complete
+intersections over the polynomial ring R = K[x0 , . . . , xn ] are of the form R/Id , where
+                                    Id = (xd00 , xd11 , . . . , xdnn ),
+d = (d0 , d1 , . . . , dn ) ∈ Nn+1 , and, without loss of generality, d0 ≥ d1 ≥ · · · ≥ dn ≥ 2.
+Throughout the remainder of the manuscript we use the above definition of Id .
+2.1. The weak Lefschetz property. Notice that the socle degree of R/Id is t := d0 + . . . +
+dn − (n + 1). Moreover, if the largest generating degree is sufficiently large (relative to the
+socle degree), then the weak Lefschetz property always holds.
+                                                         n+1
+Proposition 2.1. [19, Proposition      t 5.2] Let d ∈ N , d0 ≥ d1 ≥ · · · ≥ dn ≥ 2, and
+t = d0 + · · · + dn − (n + 1). If d0 > 2 , then R/Id has the weak Lefschetz property, regardless
+of the characteristic of K.
+   We recall that for level algebras if multiplication by a general linear form is injective in a
+fixed degree, then it is injective for all the previous degrees.
+Proposition 2.2. [20, Proposition 2.1(b-c)] Let A = R/I be a level artinian standard graded
+K-algebra, and let ℓ be a general linear form. Consider the homomorphisms ϕd : [A]d →
+[A]d+1 defined by multiplication by ℓ for d ≥ 0.
+     (i) If ϕd is injective for some d ≥ 1, then ϕd−1 is injective.
+    (ii) In particular, if dimK [A]d = dimK [A]d+1 , then A has the weak Lefschetz property if
+         and only if ϕd is injective (or, equivalently, surjective).
+  Moreover, a monomial algebra has the weak (strong) Lefschetz property exactly when the
+sum of the variables is a weak (strong) Lefschetz element.
+

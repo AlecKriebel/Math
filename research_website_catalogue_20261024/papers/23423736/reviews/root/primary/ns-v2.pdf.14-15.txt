@@ -1,0 +1,117 @@
+  The map θ induces homomorphisms θ′ : R → B ′ and θe : R → B e . We obtain immediately the following
+universal property of θ′ :
+Corollary 4.8. Let R be a connected graded k-algebra generated in degree 1, and define θ′ : R → B ′ as
+above. Then
+           \
+  ker θ′ =    AnnR (M0 ) | M is an RA -point module for some commutative k-algebra A
+                      \
+                    =      AnnR (M ) | M is an RA -point module for some commutative k-algebra A .
+
+Proof. The first equality follows immediately from Lemma 4.7 and the definition of Yn′ .
+   For the second, let M be an RTA -point moduleTand let a ∈ ker θ′ . Then Mk a = (Ψk M )0 a = 0 for any
+k ∈ N, so M a = 0. Thus ker θ′ ⊆ M AnnR M ⊆ M AnnR (M0 ) = ker θ′ .                                    
+  We are most interested in the ring B e and the map θe : R → B e . Here we have an important universal
+property, which holds in very large generality: we do not even need R to be noetherian.
+  We define:
+Definition 4.9. A birationally commutative algebra is a graded subalgebra of a skew polynomial extension
+A[t; τ ], where A is a commutative noetherian k-algebra (concentrated in degree 0) and τ ∈ Aut(A).
+   Note that for our purposes here, we will require the commutative algebra in Definition 4.9 to be noetherian,
+although we caution that this is non-standard.
+   Then we have:
+Theorem 4.10. Let R be a connected graded k-algebra, generated in degree 1, and define θe : R → B e as
+above. Let α : R → ∆ be a homomorphism of graded k-algebras, where ∆ is birationally commutative. Then
+α factors through θe up to finite dimension; that is, there is some n ∈ N so that ker α ⊇ (ker θe )≥n .
+Proof. Without loss of generality, we may assume that ∆ = A[t; τ ], where A is a commutative noetherian
+k-algebra and τ ∈ Autk (A). Let S := α(R), and let I := A(S1 t−1 ) ⊆ A. Adopt Notation 2.9.
+     First suppose that I = A. Then the natural map RA → ∆ is surjective, so ∆ is an RA -point module.
+Since Y∞ parameterizes point modules, there is a morphism δ : Spec A → Y∞ , so that Atn = (δn )∗ Mn =
+δ ∗ (Φn )∗ Mn for all n ∈ N.
+     Since ∆[1]≥0 ∼
+                  = ∆τ (as an RA -module), the diagram
+                                                          δn+m
+                                                 Spec A          / Y′
+                                                                   n+m
+
+                                                 τm                     ψm
+                                                                    
+                                                 Spec A           / Yn′
+                                                           δn
+                                                                                                 e
+T m ′ for all n, m ∈ N. Note that this shows the (scheme-theoretic) image of δn is contained in Yn =
+commutes
+  ψ (Yn+m ), as τ ∈ Aut(A). From the map
+                            L 0 e             / L H 0 (Spec A, (δn )∗ Me ) = ∆,
+                      Be =     H (Yn , Men )                           n
+
+we see that α factors through θe .
+    Now suppose that I is a proper ideal of A. Let (0) = J1 ∩ · · · ∩ Js be a minimal primary decomposition
+in A, where Jj is Pj -primary. Reorder the Pj so that P1 , . . . , Pr are the primes containing some τ i (I), and
+Pr+1 , . . . , Ps are the primes that do not contain any τ i (I). Let K := J1 ∩· · ·∩Jr , and let K ′ := Jr+1 ∩· · ·∩Js ;
+we may have K = A or K ′ = A. However, K ∩ K ′ = 0, and K and K ′ are τ -invariant.
+    Since τ permutes the finite set P1 , . . . , Pr , there is some N so that Iτ (I) · · · τ N −1 (I) ⊆ K. Thus Sn t−n ∩
+K ⊆ K ∩ K ′ = 0 for n ≥ N . If K ′ = A then this means that S is finite-dimensional, so the result holds.
+  ′
+
+Otherwise, let τ̄ be the induced automorphism of A/K ′ , and let π : A[t; τ ] → (A/K ′ )[t; τ̄ ] be the natural
+map. We see that (ker α)n = (ker πα)n for n ≥ N , and we have reduced to the case that K ′ = A.
+    It thus suffices to prove the proposition in the case that I is not contained in any associated prime of A.
+Assume this is so. Let A′ := Q(A), the total ring of quotients of A. By prime avoidance [Eis95, Lemma 3.3],
+I is not contained in the union of the associated primes of A, and so by [Eis95, Theorem 3.1(b)], I contains
+                                                           14
+a regular element of A. Thus IA′ = A′ . Note that τ extends to an automorphism τ ′ of A′ . There is an
+induced map α′ : R → A′ [t; τ ′ ]; and as IA′ = A′ this factors through θe by the first part of the proof. But
+A ⊆ A′ , so ker α = ker α′ and α also factors through θe .                                                  
+   We note that in the situation of the last paragraph of the proof, A′ [t; τ ′ ] is torsion-free. For, if 0 6= a ∈ A′ ,
+then A′ atk · Rn = aA′ tn+k 6= 0, for any n, k. Thus we have shown:
+Proposition 4.11. Let R be a connected graded k-algebra generated in degree 1. Let g : R → A[t; τ ] be
+a map of graded rings, where A is commutative noetherian and τ ∈ Autk (A). Let I := ker g. Then there
+is a map π : A[t; τ ] → A′ [t; τ ′ ] of commutative graded k-algebras, where A′ is a noetherian total ring of
+quotients with an automorphism τ ′ extending τ , so that ker πg is equal to the saturation of I. Further,
+π(g(R))A′ = A′ [t; τ ′ ].                                                                                  
+   Theorem 4.10 shows that θe is universal for maps from R to birationally commutative algebras. We do
+not believe this has been observed before. Motivated by this result, we (loosely) refer to the image θe (R) as
+the canonical birationally commutative factor of R; but note Example 4.12 by way of caution.
+Example 4.12. Let V be a d + 1-dimensional    Lk-vector   space and let R := T (V ) be the free algebra on
+V . Then Yn ∼ = (P d ×n
+                    )   , and B = B ′
+                                      = B e
+                                            =  n H 0
+                                                     (Y                   ∼          e
+                                                       n O(1, . . . , 1)) = R. Thus θ (R) itself may not be
+                                                        ,
+birationally commutative. We thank Chelsea Walton for pointing out this example.
+   The differences between B e , B ′ and B, or alternatively between θe , θ′ and θ, are fairly subtle. If R is
+strongly noetherian, then the Yn stabilize, as mentioned. Then [RZ08, Theorem 1.1] shows that B (and
+therefore B ′ and B e ) is equal in large degree to a twisted homogeneous coordinate ring on the projective
+scheme Y∞ , and that the map g : R → B is surjective in large degree. In fact, we have:
+Theorem 4.13. Let R be a connected graded strongly noetherian algebra generated in degree 1, and let
+g : R → B(X, L, σ) be the map constructed in Theorem 1.1. Then g is universal for maps from R to
+birationally commutative algebras, and ker g, ker θe , ker θ′ , and ker θ are all equal in large degree. Likewise,
+B, B ′ , B e , and B(X, L, σ) are all equal in large degree.
+Proof. We certainly have ker θ ⊆ ker θ′ ⊆ ker θe . Since B(X, L, σ) is birationally commutative, (ker θe )n ⊆
+(ker g)n for n ≫ 0. By [AZ01, Corollary E4.12], for n ≫ 0 we have that φn , ψn : Yn → Yn−1 are isomorphisms.
+                                                         e
+It follows that Yn = Yne for n ≫ 0 and that Y∞ = Y∞        is a projective scheme, isomorphic to Yn for n ≫ 0.
+The construction in the proof of [RZ08, Theorem 1.1] gives X = Y∞ , so B(X, L, σ) and B are equal in large
+degree. Thus ker g and ker θ are equal in large degree. Since by [RZ08, Theorem 1.1] g is surjective in large
+degree, B, B ′ , B e , and B(X, L, σ) are equal in large degree.
+   The universal property of θe clearly also applies to g.                                                  
+   In fact, Theorem 4.13 holds more generally: it is enough to assume that R has subexponential growth
+and that φn and ψn are isomorphisms for n ≫ 0. See [RZ08, Theorem 4.4].
+   We suspect that if R is noetherian, then ker θ and ker θe are equal in large degree; we will see later that,
+in the situation of Theorem 1.2, ker θ′ and ker θe are in fact equal. It is possible that θe is always surjective
+(in large degree); we do not know of an example of a ring generated in degree 1 where this fails. Even under
+the hypotheses of Theorem 1.2, however, we have not proved these statements.
+
+                                     5. Coarse moduli: first properties
+   We now begin to work towards the proof of Theorem 1.2. In this section, we assume the existence of
+a scheme X that corepresents H: that is, X is a coarse moduli space for H. We construct an induced
+automorphism σ of X and study some of its properties. For simplicity, we assume in the next result that X
+is a variety, although this is not strictly necessary.
+   Let R be a connected graded noetherian k-algebra generated in degree 1, and adopt Notation 2.9.
+   We will say that p : Y∞ → X is an isomorphism in codimension d if p−1 is defined at all points in X of
+codimension d.
+Proposition 5.1. Let R be a connected graded noetherian k-algebra generated in degree 1, and adopt Nota-
+tion 4.1. Further suppose that the projective variety X corepresents H.
+                                                          15
+

@@ -1,0 +1,692 @@
+      Global Optimization of Polynomials Using Generalized
+              Critical Values and Sums of Squares ∗
+
+                           Feng Guo                                 Mohab Safey EI Din                             Lihong Zhi
+                  Key Laboratory of                             UPMC, Univ Paris 06, INRIA,                   Key Laboratory of
+              Mathematics Mechanization,                        Paris-Rocquencourt Center,                Mathematics Mechanization,
+                        AMSS                                    SALSA Project, LIP6/CNRS                            AMSS
+                Beijing 100190, China                               UMR 7606, France                        Beijing 100190, China
+                fguo@mmrc.iss.ac.cn                                Mohab.Safey@lip6.fr                      lzhi@mmrc.iss.ac.cn
+
+
+ABSTRACT                                                                             General Terms
+Let X̄ = [X1 , . . . , Xn ] and f ∈ R[X̄]. We consider the prob-                     Theory, algorithms.
+lem of computing the global infimum of f when f is bounded
+below. For A ∈ GLn (C), we denote by f A the polynomial
+f (A X̄). Fix a number M ∈ R greater than inf x∈Rn f (x).                            1. INTRODUCTION
+We prove that there exists a Zariski-closed subset A (                                 We consider the global optimization problem
+GLn (C) such that for all A ∈ GLn (Q) \ A , we have f A ≥ 0
+on Rn if and only if for all  > 0, there exist sums of squares                                     f ∗ := inf{f (x) | x ∈ Rn } ∈ R ∪ {−∞}      (1)
+of polynomials s and t in R[X̄] and polynomials φi ∈ R[X̄]                           where f ∈ R[X̄] := R[X1 , . . . , Xn ]. The problem is equiva-
+                                            P                A
+such that f A +  = s + t M − f A + 1≤i≤n−1 φi ∂f           ∂Xi
+                                                                .                    lent to compute
+Hence we can formulate the original optimization problems
+as semidefinite programs which can be solved efficiently in                                   f ∗ = sup{a ∈ R | f − a ≥ 0 on Rn } ∈ R ∪ {−∞}.
+Matlab. Some numerical experiments are given. We also
+                                                                                     It is well known that this optimization problem is NP-hard
+discuss how to exploit the sparsity of SDP problems to over-
+                                                                                     even when deg(f ) ≥ 4 and is even [13]. There are many
+come the ill-conditionedness of SDP problems when the in-
+                                                                                     approaches to approximate f ∗ . For example, we can get a
+fimum is not attained.
+                                                                                     lower bound by solving the sum of squares (SOS) problem:
+
+Keywords                                                                              f sos     = sup{a ∈ R | f − a is a sum of squares in R[X̄]}
+Global optimization, polynomials, generalized critical val-                                     ∈   R ∪ {−∞}.
+ues, sum of squares, semidefinite programing, moment ma-
+trix.                                                                                The SOS problem can be solved efficiently by algorithms in
+                                                                                     GloptiPoly [4], SOSTOOLS [15], YALMIP [12], SeDuMi [22]
+                                                                                     and SparsePOP [24]. An overview about SOS and nonneg-
+Categories and Subject Descriptors                                                   ative polynomials is given in [17]. However, it is pointed
+G.1.6 [Numerical Analysis]: Optimization; I.1.2 [Symbolic                            out in [1] that for fixed degree d ≥ 4, the volume of the
+and Algebraic Manipulation]: Algorithms: algebraic al-                               set of sums of squares of polynomials in the set of nonneg-
+gorithms; F.2.2 [Analysis of Algorithms and Problem                                  ative polynomials tends to 0 when the number of variable
+Complexity]: Non numerical algorithms and problems: ge-                              increases.
+ometrical problems and computation                                                     In recent years, a lot of work has been done in proving
+                                                                                     existence of SOS certificates which can be exploited for op-
+∗Feng Guo and Lihong Zhi are supported by the Chi-                                   timization, e.g., the “Big ball” method proposed by Lasserre
+nese National Natural Science Foundation under grant                                 [10] and “Gradient perturbation” method proposed by Ji-
+NSFC60821002/F02 and 10871194.                                                       betean and Laurent [6]. These two methods solve the prob-
+Feng Guo, Mohab Safey El Din and Lihong Zhi are sup-                                 lem by perturbing the coefficients of the input polynomials.
+ported by the EXACTA grant of the National Science Foun-
+dation of China (NSFC 60911130369) and the French Na-                                However, small perturbations of coefficients might generate
+tional Research Agency (ANR-09-BLAN-0371-01).                                        numerical instability and lead to SDPs which are hard to
+                                                                                     solve. The “Gradient variety” method by Nie, Demmel and
+                                                                                     Sturmfels [14] is an approach without perturbation. For a
+                                                                                     polynomial f ∈ R[X̄], its gradient variety is defined as
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are                             V (∇f ) := {x ∈ Cn | ∇f (x) = 0}
+not made or distributed for profit or commercial advantage and that copies
+bear this notice and the full citation on the first page. To copy otherwise, to      and its gradient ideal is the ideal generated by all partial
+republish, to post on servers or to redistribute to lists, requires prior specific   derivatives of f :
+                                                                                                        D ∂f               ∂f E
+permission and/or a fee.
+ISSAC 2010, 25–28 July 2010, Munich, Germany.                                                                   ∂f
+                                                                                              h∇f i :=        ,    ,··· ,       ⊆ R[X̄].
+Copyright 2010 ACM 978-1-4503-0150-3/10/0007 ...$10.00.                                                  ∂X1 ∂X2          ∂Xn
+It is shown in [14] that if the polynomial f ∈ R[X̄] is nonneg-                 (i) f ≥ 0 on Rn ;
+ative on V (∇f ) and h∇f i is radical then f is an SOS mod-
+ulo its gradient ideal. If the gradient ideal is not necessarily               (ii) f ≥ 0 on S(∇f );
+radical, the conclusion still holds for polynomials positive
+                                                                              (iii) For every  > 0, there are sums of squares of polyno-
+on their gradient variety. However, if f does not attain the
+                                                                                    mials s and t in R[X̄], such that
+infimum, the method outlined in [14] may provide a wrong
+                                                                                                                              
+answer. For example, consider f := (1 − xy)2 + y 2 . The in-                                                            2    2
+                                                                                             f +  = s + t 1 − k∇f (X̄)k kX̄k .
+fimum of f is f ∗ = 0, but V (∇f ) = {(0, 0)} and f (0, 0) = 1.
+This is due to the fact that any sequence (xn , yn ) such that
+f (xn , yn ) → 0 when n → ∞ satisfies ||(xn , yn )|| → ∞ (here                For fixed k ∈ N, let us define
+and throughout the paper we use the l2 -norm). Roughly                                                                            
+                                                                                fk∗ := sup a ∈ R | f − a = s + t 1 − k∇f (x)k2 kxk2 .
+speaking the infimum is not reached at finite distance but
+“at infinity”. Such phenomena are related to the presence                     where s, t are sums of squares of polynomials and the degree
+of asymptotic critical values, which is a notion introduced in                of t is at most 2k. If the assumptions in the above theorem
+[9].                                                                          are satisfied, then {fk∗ }k∈N converges monotonically to f ∗
+   Recently, there are some progress in dealing with these                    (see [21, Theorem 30]). The shortage of this method is that
+hard problems for which polynomials do not attain a min-                      it is not clear that these technical assumptions are necessary
+imum on Rn . Let us outline Schweighofer’s approach [21].                     or not. To avoid it, the author proposed a collection of
+We recall some notations firstly.                                             higher gradient tentacles ([21, Definition 41]) defined by the
+                                                                              polynomial inequalities
+   Definition 1.1. For any polynomial f ∈ R[X̄] and sub-
+set S ∈ Rn , the set R∞ (f, S) of asymptotic values of f on                            1 − k∇f (x)k2N (1 + kxk)N +1 ≥ 0, N ∈ N.
+S consists of all y ∈ R for which there exists a sequence                     Then for sufficiently large N , for all f ∈ R[X̄] bounded below
+(xk )k∈N of points xk ∈ S such that limk→∞ ||xk || = ∞ and                    we have an SOS representation theorem ([21, Theorem 46]).
+limk→∞ f (xk ) = y.                                                           However, the corresponding SDP relaxations get very large
+   Definition 1.2. The preordering generated by polynomi-                     for large N and one has to deal for each N with a sequence of
+als g1 , g2 , . . . , gm ∈ R[X̄] is denoted by T (g1 , g2 , . . . , gm ):     SDPs. To avoid this disadvantage, another approach using
+                               P                                            truncated tangency variety is proposed in [3]. Their results
+                                   δ∈{0,1}m sδ g1 g2 . . . gm | sδ
+                                                δ1 δ2        δm
+                                                                              are mainly based on Theorem 1.3. For nonconstant polyno-
+ T (g1 , g2 , . . . , gm ) :=                                             .   mial function f ∈ R[X̄], they define
+                                is a sum of squares in R[X̄]
+                                                                                                       ∂f        ∂f
+  Theorem 1.3. ([21, Theorem 9]). Let f, g1 , g2 , . . . , gm ∈                       gij (X̄) := Xj       − Xi     , 1 ≤ i < j ≤ n.
+R[X̄] and set                                                                                          ∂Xi      ∂Xj
+
+ S := {x ∈ Rn | g1 (x) ≥ 0, g2 (x) ≥ 0, . . . , gm (x) ≥ 0}. (2)              For a fixed real number M ∈ f (Rn ), the truncated tangency
+                                                                              variety of f is defined to be
+Suppose that
+                                                                              ΓM (f ) := {x ∈ Rn | M − f (x) ≥ 0, gi,j (x) = 0, 1 ≤ i, j ≤ n}.
+  (i) f is bounded on S;
+                                                                              Then based on Theorem 1.3, the following result is proved.
+ (ii) R∞ (f, S) is a finite subset of ]0, +∞[;
+                                                                                Theorem 1.6. [3, Theorem 3.1] Let f ∈ R[X̄] and M
+(iii) f > 0 on S;                                                             be a fixed real number. Then the following conditions are
+Then f ∈ T (g1 , g2 , . . . , gm ).                                           equivalent:
+                                                    T                           (i) f ≥ 0 on Rn ;
+The idea in [21] is to replace the real part V (∇f ) Rn of
+the gradient variety by several larger semialgebraic sets on
+                                                                               (ii) f ≥ 0 on ΓM (f );
+which the partial derivatives do not necessarily vanish but
+get very small far away from the origin. For these sets two                   (iii) For every  > 0, there are sums of squares of polyno-
+things must hold at the same time:                                                  mials s and t in R[X̄] and polynomials φij ∈ R[X̄], 1 ≤
+                                                                                    i < j ≤ n, such that
+    • There exist suitable SOS certificates for nonnegative
+                                                                                                                      X
+      polynomials on the set.                                                               f +  = s + t (M − f ) +        φij gij .
+    • The infimum of f on Rn and on the set coincide.                                                                 1≤i<j≤n
+
+
+   Definition 1.4. For a polynomial f ∈ R[X̄], we call                        Fix k ∈ N and let
+                                                                                                                                              
+          S(∇f ) := {x ∈ R |1 − k∇f (x)k kxk ≥ 0}
+                                n                 2     2                                                                    X                
+                                                                               ∗
+                                                                              fk := sup a ∈ R|f − a = s + t (M − f ) +               φij gij       .
+the principal gradient tentacle of f .                                                                                                        
+                                                                                                                           1≤i<j≤n
+
+   Theorem 1.5. ([21, Theorem 25]) Let f ∈ R[X̄] be boun-                     where s, t, φij are polynomials of degree at most 2k and s, t
+ded below. Furthermore, suppose that f has only isolated                      are sums of squares of polynomials in R[X̄], then the se-
+singularities at infinity (which is always true in the case n =               quence {fk∗ }k∈N converges monotonically increasing to f ∗
+2) or the principal gradient tentacle S(∇f ) is compact, then                 ([3, Theorem 3.2]). This approach does not require the as-
+the following conditions are equivalent:                                      sumptions of [21, Theorem 25]. However, the number of
+equality constraints in ΓM (f ) is n(n−1)
+                                       2
+                                           which is very large          In [18], the above theorem is stated in the complex case and
+as n increases.                                                         proved for this case. It relies on properness properties of
+   In this paper, based on Theorem 1.3 and the computation              some critical loci. Since these properness properties can be
+of generalized critical values of a polynomial mapping in [18,          transfered to the real part of these critical loci, its proof can
+19], we present a method to solve optimization problem (1)              be transposed mutatis mutandis to the real case.
+without requiring f attains the infimum on Rn . Our method
+does not require assumptions as in [21] and use the simpler                Remark 2.5. ([19], Remark 1) Note also that the curve
+variety which only contains n − 1 equality constraints.                 defined as the Zariski-closure of the complex solution set of
+                                                                                      A
+                                                                                                   ∂f A        ∂f A
+   Although approaches in [21] and [3] can handle polyno-               f A − T = ∂f∂X1
+                                                                                        = · · · = ∂X     = 0, ∂X  n
+                                                                                                                    6= 0 has a degree
+mials which do not attain a minimum on Rn , numerical
+                                                                                                     n−1
+
+                                                                        bounded by (d − 1)(n−1) , where d is the total degree of f .
+problems occur when one solves the SDPs obtained from
+                                                                        Thus the set of the non-properness of the projection on T
+SOS relaxations, see [3, 6, 21]. The numerical problems are
+                                                                        restricted to this curve has a degree bounded by (d − 1)(n−1) .
+mainly caused by the unboundness of the moments. It hap-
+pens often when one deals with this kind of polynomial opti-               Remark 2.6. In [18], a criterion for choosing A is given.
+mization problem using SOS relaxations without exploiting               It is sufficient that the restriction of the projection
+the sparsity structure. We propose some strategies to avoid             (x1 , . . . , xn , t) → (xn−i+2 , . . . , xn , t) to the Zariski-closure
+ill-conditionedness of moment matrices.                                                                                    A
+                                                                                                                                        ∂f A
+   The paper is organized as follows. In section 2 we present           of the constructible set f A − T = ∂f           ∂X1
+                                                                                                                             = · · · = ∂X n−i
+                                                                                                                                              =
+                                                                                 A
+some notations and preliminaries used in our method. The                0, ∂X∂f
+                                                                              n−i+1
+                                                                                     6= 0 is proper. An algorithm, based on Gröbner
+main result and its proof are given in section 3. In section 4,         bases or triangular sets computations, that computes sets of
+some numerical experiments are given. In section 5, we focus            non-properness is given in [20].
+on two polynomials which do not attain the infimum and try
+to solve the numerical problems. We draw some conclusions                  Theorem 2.7. ([19, Theorem 5]) Let f ∈ R[X1 , . . . , Xn ]
+in section 6.                                                           and ε = {e1 , . . . , el } (with e1 < · · · < el ) be the set of real
+                                                                        generalized critical values of the mapping x ∈ Rn → f (x).
+2. PRELIMINARIES AND NOTATIONS                                          Then inf x∈Rn f (x) > −∞ if and only if there exists 1 ≤ i0 ≤
+                                                                        l such that inf x∈Rn f (x) = ei0 .
+   Definition 2.1. [9] A complex (resp. real) number c ∈ C
+(resp. c ∈ R) is a critical value of the mapping feC : x ∈                Remark 2.8. Combined with Lemma 2.3, the above the-
+Cn → f (x) (resp. feR : x ∈ Rn → f (x)) if and only if                  orem leads to f ∗ = inf x∈Rn f A (x).
+there exists z ∈ Cn (resp. z ∈ Rn ) such that f (z) = c and
+ ∂f
+∂X1
+     = · · · = ∂X
+                ∂f
+                  n
+                    = 0.                                                3. MAIN RESULTS
+  A complex (resp. real) number c ∈ C (resp. c ∈ R) is                    For A ∈ GLn (Q), we denote by W1A the constructible set
+an asymptotic critical value of the mapping feC (resp. feR ) if         defined by
+there exists a sequence of points (zl )l∈N ⊂ Cn (resp. (zl )l∈N                    A                                
+⊂ Rn ) such that:                                                                  ∂f           ∂f A        ∂f A
+                                                                                       = ··· =         = 0,      6= 0 ,
+                                                                                   ∂X1         ∂Xn−1        ∂Xn
+  (i) f (zl ) tends to c when l tends to ∞.
+                                                                        and by W0A the algebraic variety defined by
+ (ii) ||zl || tends to +∞ when l tends to ∞.                                      A                                
+                                                                                   ∂f              ∂f A      ∂f A
+(iii) ||Xi (zl )|| · || ∂X
+                         ∂f
+                             (zl )|| tends to 0 when l tends to ∞ for                    = ··· =          =       =0 .
+                           j                                                       ∂X1           ∂Xn−1       ∂Xn
+      all (i, j) ∈ {1, . . . , n}2 .
+                                                                        We set W A := W1A ∪ W0A , which is the algebraic variety
+We denote by K0 (f ) the set of critical values of f , by K∞ (f )
+                                                                        defined by
+the set of asymptotic critical values of f , and by K(f ) the
+                                                                                      A                      
+set of generalized critical values which is the union of K0 (f )                      ∂f            ∂f A
+and K∞ (f ).                                                                               = ··· =         =0 .
+                                                                                      ∂X1          ∂Xn−1
+   Definition 2.2. A map φ : V → W of topological spaces
+                                                                          Lemma 3.1. If inf x∈R f (x) > −∞, then there exists a
+is said to be proper at w ∈ W if there exists a neighborhood
+                                                                        Zariski-closed subset A ( GLn (C) such that for all A ∈
+B of w such that φ−1 (B) is compact (where B denotes the
+                                                                        GLn (Q) \ A ,
+closure of B).
+  Recall that for A ∈ GLn (C) and f ∈ R[X̄], f A the poly-                 f ∗ = inf{f (x) |x ∈ Rn } = inf{f A (x) |x ∈ W A ∩ Rn }.
+nomial f (A X̄).                                                        Moreover R∞ (f A , W A ) is a finite set.
+  Lemma 2.3. ([18], Lemma 1) For all A ∈ GLn (Q), we
+                                                                         Proof. We start by proving that f ∗ = inf{f A (x) | x ∈
+have K0 (f ) = K0 (f A ) and K∞ (f ) = K∞ (f A ).
+                                                                        W A }. Remark first that f ∗ ≤ inf{f A (x) | x ∈ W A ∩ Rn }.
+   Theorem 2.4. ([18, Theorem 3.6]) There exists a Zaris-
+ki-closed subset A ( GLn (C) such that for all A ∈ GLn (Q)\                • Suppose first that the infimum f ∗ is reached over Rn .
+A , the set of real asymptotic critical values of x → f (x) is               Then, it is reached at a critical point x ∈ W0A . Since
+contained in the set of non-properness of the projection on                  W0A ⊂ W A , f ∗ = inf{f A (x) | x ∈ W A ∩ Rn }.
+T restricted to the Zariski-closure of the semi-algebraic set              • Suppose now that the infimum f ∗ is not reached over
+                         A
+                                      ∂f A        ∂f A
+defined by f A − T = ∂f∂X1
+                           = · · · = ∂Xn−1
+                                            = 0, ∂X  n
+                                                       6= 0.                 Rn . Then, by Theorems 2.4 and 2.7, f ∗ belongs to the
+     set of non-properness of the restriction of the projec-                fk∗ ∈ R ∪ {±∞} as the supremum over all a ∈ R such that
+     tion (x, t) → t to the Zariski-closure of the set defined              f A − a can be written as a sum
+     by                                                                                                      X        ∂f A
+                     ∂f          ∂f         ∂f                                      fA − a = s + t M − fA +          φi         (4)
+         fA − T =       = ··· =       = 0,     6= 0.                                                                    ∂Xi
+                                                                                                                    1≤i≤n−1
+                    ∂X1         ∂Xn−1      ∂Xn
+                                                                            where t, φi , 1 ≤ i ≤ n − 1 are polynomials of degree at most
+     This implies that for all ε > 0, there exists (x, t) ∈                 2k, for k ∈ N and s, t are sums of squares of polynomials in
+     Rn × R such that x ∈ W1A ∩ Rn and f ∗ ≤ t ≤ f ∗ + ε.                   R[X̄].
+     This implies that f ∗ ≥ inf{f A (x) | x ∈ W A ∩ Rn }. We
+     conclude that f ∗ = inf{f A (x) | x ∈ W A ∩Rn } since we                  Theorem 3.5. Let f ∈ R[X̄] be bounded below. Then
+     previously proved that f ∗ ≤ inf{f A (x) | x ∈ W A ∩Rn }               there exists a Zariski-closed subset A ( GLn (C) such that
+                                                                            for all A ∈ GLn (Q) \A , the sequence {fk∗ }, k ∈ N converges
+We prove now that R∞ (f A , W A ) is finite. Remark that                    monotonically increasing to the infimum (f A )∗ which equals
+R∞ (f A , W A ) = R∞ (f A , W0A ) ∪ R∞ (f A , W1A ). The set                to f ∗ by Lemma 2.8.
+         R∞ (f A , W0A ) ⊂ {f A |x ∈ W0A } = K0 (f A )
+                                                                            4. NUMERICAL RESULTS
+is finite. Moreover, by Definition 1.1 and 2.2, R∞ (f A , W1A )                Examples below are cited from [3, 6, 10, 14, 21]. We use
+is a subset of the non-properness set of the mapping fe re-                 Matlab package SOSTOOLS [15] to compute optimal values
+stricted to W1A , which by Remark 2.5 is a finite set. Hence                fk∗ by relaxations of order k over
+R∞ (f A , W A ) is a finite set.                                                                                                     
+                                                                                                              ∂f A
+                                                                            WM A
+                                                                                 = x ∈ Rn |M − f A (x) ≥ 0,         = 0, 1 ≤ i ≤ n − 1 .
+   Fix a real number M ∈ f (Rn ) and for all A ∈ GLn (Q),                                                      ∂Xi
+consider the following semi-algebraic set
+                                                                            In the following test, we set A := In×n be an identity matrix,
+                                                          
+                                   ∂f A                                     and without loss of generality, we let M := f A (0) = f (0).
+WM  A
+      = x ∈ Rn |M − f A (x) ≥ 0,        = 0, 1 ≤ i ≤ n − 1 .                The set WM  A
+                                                                                            is very simple and the results we get are very
+                                   ∂Xi
+                                                                            similar to or better than the given results in literatures [3,
+  Lemma 3.2. There exists a Zariski-closed subset                           6, 10, 14, 21].
+A ( GLn (C) such that for all A ∈ GLn (Q) \ A , if
+                                                                              Example 4.1. Let us consider the polynomial
+                 inf{f   A
+                             (x) | x ∈ WM
+                                        A
+                                          } > 0,                                          f (x, y) := (xy − 1)2 + (x − 1)2 .
+then f A can be written as a sum                                            Obviously, f ∗ = f sos = 0 which can be reached at (1, 1).
+                                       X                                  The computed optimal values are f0∗ ≈ 0.34839 · 10−8 , f1∗ ≈
+                                                      ∂f A
+         fA = s + t M − fA +                     φi        ,          (3)   0.21183 · 10−8 and f2∗ ≈ 0.69594 · 10−8 .
+                                                      ∂Xi
+                                       1≤i≤n−1
+                                                                              Example 4.2. Let us consider the Motzkin polynomial
+where φi ∈ R[X̄] for 1 ≤ i ≤ n − 1, and s, t are sums of
+squares in R[X̄].                                                                       f (x, y) := x2 y 4 + x4 y 2 − 3x2 y 2 + 1.
+                                                                            It is well known that f ∗ = 0 but f sos = −∞. The computed
+  Proof. By Lemma 3.1, f A is bounded, positive on WM                       optimal values are f0∗ ≈ −6138.2, f1∗ ≈ −0.52508, f2∗ ≈
+                                                        A
+                                                          .
+                                                                            −0.19588 and f3∗ ≈ 0.37327 · 10−8 .
+                      A    A
+By Lemma 3.1, R∞ (f , WM ) is a finite set. Then, Theorem
+1.3 implies that f A can be written as a sum (3).       
+                                                                              Example 4.3. Let us consider the Berg polynomial
+   Theorem 3.3. Let f ∈ R[X̄] be bounded below, and M ∈
+                                                                                            f (x, y) := x2 y 2 (x2 + y 2 − 1).
+f (Rn ). There exists a Zariski-closed subset A ( GLn (C)
+such that for all A ∈ GLn (Q) \ A , the following conditions                We know that f ∗ = −1/27 ≈ −0.037037037. But f sos =
+are equivalent:                                                             −∞. Our computed optimal values are f0∗ ≈ −563.01, f1∗ ≈
+                                                                            −0.056591, f2∗ ≈ −0.047805 and f3∗ ≈ −0.037037.
+  (i) f A ≥ 0 on Rn ;
+                                                                              Example 4.4. Let
+ (ii) f A ≥ 0 on WM
+                  A
+                    ;
+                                                                                 f (x, y) := (x2 + 1)2 + (y 2 + 1)2 − 2(x + y + 1)2 .
+(iii) For every  > 0, there are sums of squares of polyno-                 Since f is a bivariate polynomial of degree 4, f − f ∗ must be
+      mials s and t in R[X̄] and polynomials φi ∈ R[X̄], 1 ≤                a sum of squares. By computation, we obtain f0∗ , f1∗ , f2∗ all
+      i ≤ n − 1, such that                                                  approximately equal to −11.458.
+                                            X              ∂f A
+          fA +  = s + t M − fA +                       φi        .           Example 4.5. Consider the polynomial of three variables:
+                                                             ∂Xi
+                                           1≤i≤n−1
+                                                                                          f (x, y, z) := (x + x2 y + x4 yz)2 .
+  Proof. By Lemma 3.2 and Theorem 1.3.                                     As mentioned in [21], this polynomial has non-isolated singu-
+                                                                            larities at infinity. It is clear that f ∗ = 0. Our computed op-
+  Definition 3.4. For all polynomials f ∈ R[X̄], denote                     timal values are: f0∗ ≈ −0.36282·10−8 , f1∗ ≈ −0.12725·10−7 ,
+by d the total degree of f . Then for all k ∈ N, we define                  f2∗ ≈ −0.1346 · 10−7 and f3∗ ≈ −0.62199 · 10−8 .
+  Example 4.6. Let us consider the homogenous Motzkin                    # iter.    prec.         gap         lower bound r   M1      M2
+polynomial of three real variables:                                       50         75        .74021e-17     .46519e-1       103     103
+                                                                          50         75        .12299e-11     .47335e-2       103     105
+           f (x, y, z) := x2 y 2 (x2 + y 2 − 3z 2 ) + z 6 .               50         75        .68693e-12     .47335e-2       105     105
+                                                                          50         75        .38601e-10     .47424e-3       103     107
+It is known that f ∗ = 0 but f sos = −∞. By computation,
+                                                                          70         75        .76145e-18     .47424e-3       107     107
+we get optimal values: f0∗ ≈ −0.27651, f1∗ ≈ −.15039 · 10−2 ,
+                                                                          50         75        .43114e-10     .47433e-4       103     109
+f2∗ ≈ −0.31073·10−3 , f3∗ ≈ −0.10552· 10−3 , f4∗ ≈ −0.66181·
+10−4 , f5∗ ≈ −0.3114 · 10−4 and f6∗ ≈ −0.29321 · 10−4 .                   70         75        .33233e-12     .47433e-4       109     109
+                                                                          75         90        .86189e-10     .47426e-5       103     1011
+  Example 4.7. Consider the polynomial from [11]                        Table 1: Lower bounds with md (X̄) = [1, x, y, x2 , xy, y 2 ]T
+              X
+              5 Y
+       f :=      (Xi − Xj ) ∈ R[X1 , X2 , X3 , X4 , X5 ].               form:
+              i=1 j6=i                                                                                                          
+                                                                                    sup       rb − M2 z                         
+                                                                                                                                
+It is shown in [11] that f ∗ = 0 but f sos = −∞. In [21], the                          c
+                                                                                   b∈R,W                                        
+                                                                                                                                
+                                                                                   r
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+results computed using gradient tentacles are f0∗ ≈ −0.2367,                         s.t.     f (X̄) − rb + z(md (X̄) · md (X̄))
+                                                                                                                     T
+                                                                                                                                
+                                                                                                                                
+f1∗ ≈ −0.0999 and f2∗ ≈ −0.0224. Using truncated tangency                                                 T c                           (6)
+variety in [3], we get f0∗ ≈ −1.9213, f1∗ ≈ −0.060899 and                                      = md (X̄) · W · md (X̄),         
+                                                                                                                                
+                                                                                                                                
+f2∗ ≈ −0.012281. The optimal values we computed are better:                                                                     
+                                                                                              W  0, W = W , z ≥ 0, 
+                                                                                              c           c T    c              
+                                                                                                                                
+f0∗ ≈ −4.4532, f1∗ ≈ −0.59884 · 10−8 , f2∗ ≈ −0.7685 · 10−7 .                                                                   
+                                                                                                                                
+                                                                                                  c                             
+The number of equality constraints in [3] is 10 while we only                                 Tr(W ) ≤ M1 .
+add 4 equality constrains.                                              The dual form of (6) is
+                                                                                         X                                    
+  Example 4.8. Let us consider the following example of                           inf        fα yα + M1 t                     
+                                                                                                                              
+                                                                                    yα ,t∈R                                   
+                                                                                                                              
+Robinson [17].                                                                                     α
+                                                                                                                                        (7)
+                                                                                       s.t.    Momentd (y) + tI  0,     t ≥ 0
+                                                                                                                              
+               6    6        4 2    2 4     4    2
+R(x, y, 1) := x +y +1−(x y +x y +x +x +y +y )+3x y .  4       2   2 2                                                         
+                                                                                                                              
+                                                                                               Tr(Momentd (y)) ≤ M2 .
+
+ It is proved that f ∗ = 0 but f sos = −∞. Our computed                    Assuming the primal and dual problems are both bounded,
+lower bounds are: f0∗ ≈ −0.9334, f1∗ ≈ −0.23419, f2∗ ≈                  suppose M1 and M2 are chosen larger than the upper bounds
+−0.70394 × 10−2 and f3∗ ≈ 0.65325 × 10−9 .                              on the traces of the Gram matrix and the moment matrix re-
+                                                                        spectively, then this entails no loss of generality. In practice,
+                                                                        these upper bounds are not known, and we can only guess
+5. UNATTAINABLE INFIMUM VALUE                                           some appropriate values for M1 , M2 from the given polyno-
+                                                                        mials. If we can not get the right results, we will increase
+                                                                        M1 , M2 and solve the SDPs again.
+  Example 5.1. Consider the polynomial                                     In Table 1, we choose md (X̄) := [1, x, y, x2 , xy, y 2 ]T and
+                                                                        solve (6) and (7) for different M1 and M2 .
+                    f (x, y) := (1 − xy)2 + y 2 .                          The first column is the number of iterations and the sec-
+                                                                        ond column is the number of digits we used in Maple. The
+The polynomial f does not attain its infimum f ∗ = 0 on
+                                                                        third column is the gap of the primal and dual SDPs at the
+R2 . Since f is a sum of squares, we have f sos = 0 and
+                                                                        solutions. It is clear that the corresponding SDPs can be
+therefore fk∗ = 0 for all k ∈ N. However, as shown in [3, 6,
+                                                                        solved quite accurately with enough number of iterations.
+21], there are always numerical problems. For example, the
+                                                                        However, the lower bounds we get are not so good. If we
+results given in [3] are f sos ≈ 1.5142 · 10−12 , f0∗ ≈ −0.12641 ·
+                                                                        choose larger M2 , the lower bound becomes better. As men-
+10−3 , f1∗ ≈ 0.12732 · 10−1 , f2∗ ≈ 0.49626 · 10−1 .
+                                                                        tioned earlier, the number M2 is chosen as the upper bound
+                                                                        on the trace of the moment matrix at the optimizers. So it
+  For polynomials which do not attain their infimum values,             implies that the trace of the corresponding moment matrix
+we investigate the numerical problem involved in solving the            may be unbounded. Let us consider the primal and dual
+SOS relaxation:                                                         SDPs obtained from SOS relaxation of (1):
+    n                                                     o                                           X
+sup a | f − a = md (X̄)T · W · md (X̄), W  0, W T = W ,                                     inf          f α yα
+                                                                                               yα ∈R
+                                                             (5)                       P 7→             α                              (8)
+                                                                                            
+where md (X̄) is a vector of monomials of degree less than or                                   s.t. Momentd (y)  0.
+equal to d, W is also called the Gram matrix.
+                                                                                    
+   SDPTools is a package for solving SDPs in Maple [2]. It in-                       sup      r
+                                                                                    
+                                                                                     r∈R
+cludes an SDP solver which implements the classical primal-
+dual potential reduction algorithm [23]. This algorithm re-                 P∗ 7→     s.t.     f (X̄) − r = md (X̄)T · W · md (X̄),     (9)
+                                                                                    
+                                                                                    
+quires initial strictly feasible primal and dual points. Usu-                       
+                                                                                               W  0,     W   T
+                                                                                                                  = W.
+ally, it is difficult to find a strictly feasible point for (5).
+According to the Big-M method, after introducing two big                For Example 5.1, f is a sum of squares, so P∗ has a feasible
+positive numbers M1 and M2 , we convert (5) to the following            solution. By proposition 3.1 in [10], P∗ is solvable and inf P =
+max P∗ = 0. We show that for md (X̄) = [1, x, y, x2 , xy, y 2 ]T ,
+P does not attain the minimum. To the contrast, if y ∗ is a
+minimizer of the SDP problem P, then we have
+                     1 − 2y1,1 + y2,2 + y0,2 = 0,                             (10)
+and
+                                                                          
+                           1      y1,0   y0,1     y2,0     y1,1       y0,2
+               y1,0              y2,0   y1,1     y3,0     y2,1       y1,2 
+                                                                          
+               y                 y1,1   y0,2     y2,1     y1,2       y0,3 
+ Moment2 (y) =  0,1                                                         0.
+               y2,0              y3,0   y2,1     y4,0     y3,1       y2,2 
+               y                 y2,1   y1,2     y3,1     y2,2       y1,3 
+                                                                                     Figure 1: Newton polytope for the polynomial f
+                  1,1
+                                                                                     (left), and the possible monomials in its SOS de-
+                 y0,2             y1,2   y0,3     y2,2     y1,3       y0,4
+                                                                                     composition (right).
+Since Moment2 (y) is a positive semidefinite matrix, we have
+y0,2 ≥ 0 and |2y1,1 | ≤ (1 + y2,2 ). Combining with (10), we                          # iter.    prec.          gap             lower bound r      M1     M2
+must have y0,2 = 0 and                                                                 50         75         .97565e-27         -.38456e-28        103    103
+
+                                2y1,1 = 1 + y2,2 .                            (11)   Table 2: The lower bounds using md (X̄) = [1, y, xy]T
+Because Moment2 (y) is positive semidefinite, from y0,2 = 0,
+we can derive y1,1 = 0. Therefore, by (11), we have y2,2 =
+−1. It is a contradiction.                                                             Let A = I2×2 , md1 (X̄) = md2 (X̄) := [1, x, y, x2 , xy, y 2 ],
+   Let us show that the dual problem of (9) is not bounded                           and symmetric semidefinite positive matrices W, V satisfying
+if we choose md (X̄) = [1, x, y, x2 , xy, y 2 ]T . The infimum of                      f +     =     md1 (X̄)T · W · md1 (X̄)
+f (x, y) can only be reached at “infinity”: p∗ = (x∗ , y ∗ ) ∈
+                                                                                                                                                         ∂f
+{R ∪ ±∞}2 . The vector                                                                                 + md2 (X̄)T · V · md2 (X̄) · (M − f ) + φ            .
+                                                                                                                                                         ∂x
+        [x∗ , y ∗ , x∗2 , x∗ y ∗ , y ∗2 , x∗3 , x∗2 y ∗ , x∗ y ∗2 ,                  Hence
+                  ∗3       ∗4     ∗3 ∗   ∗2 ∗2       ∗ ∗3      ∗4
+                y ,x ,x y ,x y ,x y ,y ]                                                f +    ≡      md1 (X̄)T · W · md1 (X̄)                            (12)
+                                                                ∗ ∗
+is a minimizer of (8) at “infinity”. Since x y → 1 and                                                 +md2 (X̄) · V · md2 (X̄) · (M − f ) mod J,
+                                                                                                                     T
+
+y ∗ → 0, when k(x∗ , y ∗ )k goes to ∞, any moment yi,j with
+                                                                                     where J = h    i.
+                                                                                                     ∂f
+i > j tends to ∞. So the trace of the moment matrix tends                                            ∂x
+                                                                                      If we do not exploit the sparsity 
+                                                                                                                       structure, 
+                                                                                                                                  the associated
+to ∞.
+                                                                                                                           P 0
+   If we increase the bound M2 , we can get better results as                        moment matrix is a diagonal matrix             , where
+                                                                                                                            0 Q
+shown in Table 1. For example, by setting M1 = 103 , M2 =
+1011 , we get f ∗ = 0.4743306 × 10−5 . However this method                                                                            
+                                                                                                    y0,0 y1,0 y0,1 y2,0 y1,1 y0,2
+converges very slowly at the beginning and needs large amou-                                      y1,0 y2,0 y1,1 y3,0 y2,1 y1,2 
+nt of computations.                                                                                                                   
+                                                                                                  y      y1,1 y0,2 y2,1 y1,2 y0,3 
+                                                                                             P =  0,1                                 
+                                                 P                                                y2,0 y3,0 y2,1 y4,0 y3,1 y2,2 
+   Theorem 5.2. [16] For a polynomial p(x) =             α
+                                                   α pα x ,
+                                                                                                  y      y2,1 y1,2 y3,1 y2,2 y1,3 
+                                                                                                     1,1
+we define C(p) as the convex hull of sup(p) = {α| pα 6= 0},                                         y0,2 y1,2 y0,3 y2,2 y1,3 y0,4
+then we have C(p2 ) = 2C(p); for any positive Psemidefinite
+polynomials f and g, C(f ) ⊆ C(f + g); if f = j gj2 then                             and Q =
+                                                                                     
+C(gj ) ⊆ 21 C(f ).                                                                      4y0,2 − y2,4 + 2y1,3 − y0,4             4y1,1 − y3,3 − y1,3 + 2y2,2
+                                                                                      −y0,5 + 4y0,3 + 2y1,4 − y2,5             4y1,2 − y3,4 − y1,4 + 2y2,3
+                                                                                      4y1,2 − y3,4 − y1,4 + 2y2,3              4y2,1 + 2y3,2 − y2,3 − y4,3
+   For the polynomial f in Example 5.1, C(f ) is the con-                            
+                                                                                      −y0,6 + 4y0,4 + 2y1,5 − y2,6             2y2,4 + 4y1,3 − y3,5 − y1,5
+vex hull of the points (0, 0), (1, 1), (0, 2), (2, 2); see Figure 1.                  2y + 4y − y − y                          −y4,4 − y2,4 + 2y3,3 + 4y2,2
+                                                                                          2,4     1,3    3,5    1,5
+According to Theorem 5.2, the SOS decomposition of f con-                              −y4,4 − y2,4 + 2y3,3 + 4y2,2             4y3,1 + 2y4,2 − y3,3 − y5,3
+tains only monomials whose supports are (0, 0), (0, 1), (1, 1).
+Hence, if we choose a sparse monomial vector md (X̄) =                                 2y3,1 + 4y2,0 − y4,2 − y2,2              2y1,1 + 4y0,0 − y0,2 − y2,2
+[1, y, xy]T , for M1 = 1000 and M2 = 1000, from Table 2,                               4y2,1 + 2y3,2 − y2,3 − y4,3              2y1,2 + 4y0,1 − y0,3 − y2,3
+we can see a very accurate optimal value is obtained. This                             4y3,0 − y3,2 − y5,2 + 2y4,1              2y2,1 − y1,2 + 4y1,0 − y3,2
+                                                                                       −y4,4 − y2,4 + 2y3,3 + 4y2,2             4y0,2 − y2,4 + 2y1,3 − y0,4
+is due to the fact that the trace of the moment matrix at the                          4y3,1 + 2y4,2 − y3,3 − y5,3              4y1,1 − y3,3 − y1,3 + 2y2,2
+optimizer (x∗ , y ∗ ) now is 1 + y ∗2 + x∗2 y ∗2 , which is bounded                    4y4,0 − y4,2 + 2y5,1 − y6,2              2y3,1 + 4y2,0 − y4,2 − y2,2
+when x∗ y ∗ goes to 1 and y ∗ goes to 0. That is the main
+reason that we get very different results in Table 1 and 2.
+We can also verify the above results by using solvesos in                                                   md (X̄)              lower bounds r
+YALMIP[12]; see Table 3.                                                                                  [1, y, xy]T                .14853e-11
+  In the following, in order to remove the monomials which                                              [1, x, y, xy]T               .414452e-4
+cause the ill-conditionedness of the moment matrix, we also                                         [1, x, y, x2 , xy, y 2 ]T          .15952e-2
+try to exploit the sparsity structure when we compute opti-
+mal values fk∗ by SOS relaxations of order k over WMA
+                                                      .                              Table 3: The lower bounds using solvesos in Matlab
+                                                            
+    2y1,2 + 4y0,1 − y0,3 − y2,3 2y2,1 − y1,2 + 4y1,0 − y3,2             corresponding to md1 (X̄) = [1, y, xy, y 2 ] and md2 (X̄) =
+    4y0,2 − y2,4 + 2y1,3 − y0,4 4y1,1 − y3,3 − y1,3 + 2y2,2 
+    4y1,1 − y3,3 − y1,3 + 2y2,2 2y3,1 + 4y2,0 − y4,2 − y2,2 
+                                                            
+                                                                        [1, y, xy] respectively.
+   −y0,5 + 4y0,3 + 2y1,4 − y2,5 4y1,2 − y3,4 − y1,4 + 2y2,3          • The moment matrices corresponding to md1 (X̄) and
+    4y1,2 − y3,4 − y1,4 + 2y2,3 4y2,1 + 2y3,2 − y2,3 − y4,3 
+    4y2,1 + 2y3,2 − y2,3 − y4,3 4y3,0 − y3,2 − y5,2 + 2y4,1             md2 (X̄) are
+                                                                                                          
+ We can see that the moment matrix has lots of terms yi,j                              y0,0 y0,1 y1,1 y0,2
+for i > j which tend to infinity when we get close to the                             y0,1 y0,2 y1,2 y0,3 
+                                                                                                          
+optimizer.                                                                            y1,1 y1,2 y2,2 y1,3  ,
+   In the following we will try to remove these terms. At                              y0,2 y0,3 y1,3 y0,4
+first, we compute the normal form of (12) modulo the ideal
+J, and then compare the coefficients of xi y j of both sides                                                                    
+                                                                            4y0,0 + y1,1 − y0,2    5y0,1 − y0,3     5y1,1 − y0,2
+to obtain the monomial vectors md1 (X̄) and md2 (X̄) which                    5y0,1 − y0,3        5y0,2 − y0,4     5y0,1 − y0,3  .
+exploit the sparsity structure.
+                                                                               5y1,1 − y0,2        5y0,1 − y0,3     5y1,1 − y0,2
+   • The normal form of two sides of (12) modulo the ideal J
+     −xy + 1 + y 2 +  = w1,1 − v1,1 + v1,1 M                           We can see that these moment matrices only consist
+     + (w2,1 + w1,2 − v2,1 + v2,1 M − v1,2 + v1,2 M )x                  of terms yi,j for i ≤ j which will go to 1 (i = j) or 0
+     + (w3,5 + w5,3 − v3,4 − v2,1 + v2,6 M + w6,2                       (i < j) when xy goes to 1 and y goes to 0. Therefore
+     − v1,2 + v3,5 M + w2,6 − v2,5 + v1,3 M − v4,3                      the elements of the moment matrices which may cause
+     − v5,2 + w3,1 + w1,3 + v3,1 M + v5,3 M + v6,2 M )y                 the ill-conditionedness are removed.
+     + (w1,4 + w4,1 − v4,1 + v4,1 M − v2,2 + v2,2 M − v1,4
+     + w2,2 + v1,4 M )x2 + (v3,2 M + v6,4 M + w5,5 + w4,6            For k = 2, M = 5, A = I2×2 , M1 = 1000, M2 = 1000, the
+     + v2,3 M + v5,5 M + w2,3 − v2,2 + w1,5 + w3,2                 matrices W and V computed by our SDP solver in Maple
+     + v4,6 M − v1,4 + w6,4 + v5,1 M − v5,4 + v1,1
+                                                                   for Digits = 60 are
+     + w5,1 + v1,5 M − v4,5 − v4,1 )xy + (v3,3 M + v6,1 M
+                                                                                                                    
+     − v2,3 + w6,5 − v5,5 − v4,6 + w6,1 + w1,6 − v1,1                           0.50804    0.0       0.0   −0.50804
+     + w3,3 − v3,2 − v1,5 + v1,6 M − v5,1 − v6,4 + v6,5 M                                                           
+     + v5,6 M + w5,6 )y 2 + (w4,2 − v2,4 + v4,2 M − v4,2                         0.0    0.33126     0.0       0.0   
+                                                                                                                    
+     + v2,4 M + w2,4 )x3 + (−v2,4 + w4,3 + v5,2 M + v1,2               W =                                          ,
+     + v3,4 M + w3,4 + v2,1 + v4,3 M + w2,5 − v4,2 + v2,5 M                      0.0      0.0     0.13374     0.0   
+                                                                                                                    
+     + w5,2 )x2 y + (w3,6 + w6,3 − v3,5 − v2,6 − v3,1
+     + v6,3 M − v6,2 − v5,3 − v1,3 + v3,6 M )y 3                               −0.50804     0        0.0     0.50804
+     + (−v4,4 + v4,4 M + w4,4 )x4                                                                                       
+     + (w5,4 + v2,2 + v1,4 + v4,1 + v4,5 M + v5,4 M                                    0.12298      0.0       −0.12298
+     + w4,5 − v4,4 )x3 y + (−v6,5 − v6,1 − v5,6 − v3,3                                                                  
+     + v6,6 M − v1,6 + w6,6 )y 4 + (v4,2 + v2,4 )x4 y                         V =       0.0      0.13374         0.0    .
+                                                                                                                        
+     + (−v6,3 − v3,6 )y 5 − v6,6 y 6 + v4,4 x5 y.
+                                                                                       −0.12298     0.0       0.12298
+   • The coefficients of y 6 and x5 y are −v6,6 and v4,4 respec-
+     tively. Therefore v4,4 = v6,6 = 0. The matrix V is pos-       The associated moment matrices are
+                                                                                           
+     itive semidefinite, we have v4,i = vi,4 = v6,i = vi,6 = 0              1 0.0 0.0 1.0
+     for 1 ≤ i ≤ 6.                                                                                           
+                                                                          0.0 0.0 0.0 0.0          5.0 0.0 5.0
+                                                                                           
+   • The coefficient of x4 is −v4,4 + v4,4 M + w4,4 , we have                                0.0 0.0 0.0  .
+                                                                          0.0 0.0 0.0 0.0  ,
+     w4,4 = 0. Since W is also positive semidefinite, we have                                      5.0 0.0 5.0
+                                                                                           
+     wi,4 = w4,i = 0 for 1 ≤ i ≤ 6. From the coefficients                  1.0 0.0 0.0 1.0
+     of x3 y and x2 , we can obtain that v2,2 = w2,2 = 0 and
+     v2,i = vi,2 = w2,i = wi,2 = 0 for 1 ≤ i ≤ 6.                  The lower bound we get is f2∗ ≈ 4.029500408 × 10−24 . More-
+   • After eliminating all zero terms obtained above, we           over, by SDPTools in Maple [2], we can obtain the certified
+     have                                                          lower bound
+     −xy + 1 + y 2 +  = w1,1 − v1,1 + v1,1 M
+     + (w3,5 + w5,3 + v3,5 M + v1,3 M + w3,1
+                                                                   f2∗∗ = −4.029341206383157355520229568612510632 × 10−24
+     + w1,3 + v3,1 M + v5,3 M )y + (w5,5 + v5,5 M                  by writing f − f2∗∗ as an exact rational SOS over WM
+                                                                                                                      A
+                                                                                                                        [7, 8].
+     + w1,5 + v5,1 M + v1,1 + w5,1 + v1,5 M )xy
+     + (v3,3 M + w6,5 − v5,5 + w6,1 + w1,6 − v1,1                    Example 5.3. Consider the following polynomial
+     + w3,3 − v1,5 − v5,1 + w5,6 )y 2
+     + (w3,6 + w6,3 − v3,5 − v3,1 − v5,3                              f (x, y) = 2y 4 (x + y)4 + y 2 (x + y)2 + 2y(x + y) + y 2 .
+     − v1,3 )y 3 + (−v3,3 + w6,6 )y 4 .
+                                                                   As mentioned in [3], we have f ∗ = − 85 and f does not attain
+   • Deleting all zero rows and columns, one gets the sim-
+                                                                   its infimum. It is also observed in [3] that there are obviously
+     plified Gram matrices
+                                                                 numerical problems since the output of their algorithm are
+                       w1,1 w1,3 w1,5 w1,6                         f0∗ = −0.614, f1∗ = −0.57314, f2∗ = −0.57259, and f3∗ =
+                      w3,1 w3,3 w3,5 w3,6                        −0.54373.
+               W =   w5,1 w5,3 w5,5 w5,6  ,
+                                              
+                                                                      In fact, we have f ∗ = f sos = − 85 since
+                       w6,1 w6,3 w6,5 w6,6                                                                2                   2
+                                                                               5         (2y 2 + 2xy + 1) (2y 2 + 2xy − 1)
+                                                                        f+       =
+                          v1,1     v1,3   v1,5                                 8                          8
+                    V =  v3,1     v3,3   v3,5                                            (2y 2 + 2xy + 1)
+                                                                                                            2
+
+                          v5,1     v5,3   v5,5                                           +                    + y2 .
+                                                                                                    2
+If we take xn = −( n1 + n2 ), yn = n1 − n13 , it can be verified                      sums-of-squares of rational functions with rational
+that − 58 is a generalized critical value of f . For k = 4, if we                     coefficients, 2009. Accepted for publication in J.
+do not exploit the sparsity structure, and choose                                     Symbolic Comput.
+                                                                                  [9] K. Kurdyka, P. Orro, and S. Simon. Semialgebraic
+ md1 (X̄) = md2 (X̄) := [1, x, y, x2 , xy, y 2 , x3 , x2 y, xy 2 ,                    sard theorem for generalized critical values. J.
+                                    y 3 , x4 , x3 y, x2 y 2 , xy 3 , x4 ]T ,          Differential Geom, 56(1):67–92, 2000.
+                                                                                 [10] J. B. Lasserre. Global optimization with polynomials
+then numerical problems will appear.
+                                                                                      and the problem of moments. SIAM J. on
+  By exploiting the sparsity structure of the SOS problem,
+                                                                                      Optimization, 11(3):796–817, 2001.
+we get
+                                                                                 [11] A. Lax and P. D. Lax. On sums of squares. Linear
+ md1 (X̄) = md2 (X̄) := [1, y, y 2 , xy, y 3 , xy 2 , y 4 , xy 3 , x2 y 2 ]T ,        Algebra and its Applications, 20:71–75, 1978.
+                                                                                 [12] J. Löfberg. YALMIP : A toolbox for modeling and
+the terms which cause ill-conditionedness of the moment ma-                           optimization in MATLAB. In Proc. IEEE
+trix are removed. The lower bound computed by our SDP                                 CCA/ISIC/CACSD Conf., Taipei, Taiwan, 2004.
+solver in Maple is f4∗ = −0.625000000000073993. It is very                            Available at
+close to the true infimum −0.625.                                                     http://users.isy.liu.se/johanl/yalmip/.
+                                                                                 [13] Y. Nesterov. Squared functional systems and
+6.    CONCLUSIONS                                                                     optimization problems. In H. Frenk, K. Roos,
+  We use important properties in the computation of gen-                              T. Terlaky, and S. Zhang, editors, High Performance
+eralized critical values of a polynomial mapping [18, 19] and                         Optimization, pages 405–440. Kluwer Academic
+Theorem 1.3 to given a method to solve optimization (1).                              Publishers, 2000.
+We do not require that f attains the infimum in Rn and                           [14] J. Nie, J. Demmel, and B. Sturmfels. Minimizing
+use a much simpler variety in the SOS representation. We                              polynomials via sum of squares over the gradient ideal.
+try to investigate and fix the numerical problems involved in                         Mathematical Programming, 106(3):587–606, May
+computing the infimum of polynomials in Example 5.1 and                               2006.
+5.3. The strategies we propose here are just a first try. We                     [15] S. Prajna, A. Papachristodoulou, P. Seiler, and P. A.
+hope to present a more general method to overcome these                               Parrilo. SOSTOOLS: Sum of squares optimization
+numerical problems in future.                                                         toolbox for MATLAB. 2004. Available at
+                                                                                      http://www.cds.caltech.edu/sostools.
+Acknowledgments                                                                  [16] B. Reznick. Extremal PSD forms with few terms. Duke
+                                                                                      Mathematical Journal, 45(2):363–374, 1978.
+We thank Markus Schweighofer for showing us [3], and the
+                                                                                 [17] B. Reznick. Some concrete aspects of Hilbert’s 17th
+reviewers for their helpful comments.
+                                                                                      problem. In In Contemporary Mathematics, pages
+                                                                                      251–272. American Mathematical Society, 1996.
+7.    REFERENCES                                                                 [18] M. Safey El Din. Testing sign conditions on a
+ [1] G. Blekherman. There are significantly more                                      multivariate polynomial and applications. Mathematics
+     nonegative polynomials than sums of squares. Israel                              in Computer Science, 1(1):177–207, 2007.
+     Journal of Mathematics, 153(1):355–380, December                            [19] M. Safey El Din. Computing the global optimum of a
+     2006.                                                                            multivariate polynomial over the reals. In Jeffrey [5],
+ [2] F. Guo. SDPTools: A high precision SDP solver in                                 pages 71–78.
+     Maple. MM-Preprints, 28:66–73, 2009. Available at                           [20] M. Safey El Din and É. Schost. Properness defects of
+     http://www.mmrc.iss.ac.cn/mmpreprints.                                           projections and computation of at least one point in
+ [3] H. V. Hà and T. S. Pham. Global optimization of                                 each connected component of a real algebraic set.
+     polynomials using the truncated tangency variety and                             Discrete and Computational Geometry, 32(3):417–430,
+     sums of squares. SIAM J. on Optimization,                                        September 2004.
+     19(2):941–951, 2008.                                                        [21] M. Schweighofer. Global optimization of polynomials
+ [4] D. Henrion and J. B. Lasserre. GloptiPoly: Global                                using gradient tentacles and sums of squares. SIAM J.
+     optimization over polynomials with Matlab and                                    on Optimization, 17(3):920–942, 2006.
+     SeDuMi. ACM Trans. Math. Softw., 29(2):165–194,                             [22] J. F. Sturm. Using SeDuMi 1.02, a MATLAB toolbox
+     2003.                                                                            for optimization over symmetric cones. Optimization
+ [5] D. Jeffrey, editor. ISSAC 2008, New York, N. Y., 2008.                           Methods and Software, 11/12:625–653, 1999.
+     ACM Press.                                                                  [23] L. Vandenberghe and S. Boyd. Semidefinite
+ [6] D. Jibetean and M. Laurent. Semidefinite                                         programming. SIAM Review, 38(1):49–95, 1996.
+     approximations for global unconstrained polynomial                          [24] H. Waki, S. Kim, M. Kojima, M. Muramatsu, and
+     optimization. SIAM J. on Optimization,                                           H. Sugimoto. Algorithm 883: SparsePOP—a sparse
+     16(2):490–514, 2005.                                                             semidefinite programming relaxation of polynomial
+ [7] E. Kaltofen, B. Li, Z. Yang, and L. Zhi. Exact                                   optimization problems. ACM Trans. Math. Softw.,
+     certification of global optimality of approximate                                35(2):1–13, 2008.
+     factorizations via rationalizing sums-of-squares with
+     floating point scalars. In Jeffrey [5], pages 155–163.
+ [8] E. Kaltofen, B. Li, Z. Yang, and L. Zhi. Exact
+     certification in global polynomial optimization via
+

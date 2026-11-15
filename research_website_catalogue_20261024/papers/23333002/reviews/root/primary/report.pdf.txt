@@ -1,0 +1,3171 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                  Report No. 14/2007
+
+                      Reelle Algebraische Geometrie
+                                       Organised by
+                                  Michel Coste (Rennes)
+                               Claus Scheiderer (Konstanz)
+                                 Niels Schwartz (Passau)
+
+
+                          March 11th – March 17th, 2007
+
+         Abstract. This workshop was organized by Michel Coste (Rennes), Claus
+         Scheiderer (Konstanz) and Niels Schwartz (Passau). The talks focussed on
+         recent developments in real enumerative and tropical geometry, positivity and
+         sums of squares, real aspects of classical algebraic geometry, semialgebraic
+         and tame geometry, and topology and singularities of real varieties.
+
+
+
+Mathematics Subject Classification (2000): 13J30, 14N10, 14P05, 14P10, 14P25.
+
+
+                        Introduction by the Organisers
+
+This workshop was the seventh of its kind held in Oberwolfach (after 1984, 1987,
+1990, 1993, 1997 and 2002) and was attended by 52 participants from Europe and
+North America, among them 20 young post- docs and graduate students. The
+meeting comprised 25 talks of 50 minutes each, with a strong emphasis on recent
+progress and new directions. We try to give a brief overview of the topics involved:
+1) Real enumerative geometry and tropical geometry
+   Enumerative geometry is concerned with counting the number of solutions to
+algebro-geometric problems. One very active topic is counting the number of
+rational curves passing through prescribed points (and variations thereof). The
+Welschinger invariants are the real analogue of Gromov-Witten invariants in com-
+plex geometry. Calculating both the complex invariants and their real counter-
+parts was related to tropical geometry by Grigory Mikhalkin in his celebrated
+correspondence theorem. The talks of Erwan Brugallé, Ilia Itenberg and Jean-
+Yves Welschinger were devoted to these problems. Frédéric Bihan reported about
+improved fewnomial bounds, i.e. bounds on the number of solutions to sparse
+polynomial systems that depend only on the number of monomials involved. Alex
+754                                                    Oberwolfach Report 14/2007
+
+Degtyarev and Andrej Gabrielov gave talks on applications and generalisations of
+Grothendieck’s dessins d’enfant.
+2) Positivity and Sums of Squares
+   Representations of positive polynomials involving sums of squares of polynomi-
+als provide certiﬁcates for positivity that are interesting both theoretically and for
+numerical purposes. On the other hand, a classical result of Hilbert states that
+not every positive polynomial in more than one variable is a sum of squares. A
+constructive approach to this theorem was presented at the workshop by Bruce
+Reznick. Recent developments in this ﬁeld were presented by Salma Kuhlmann,
+Vicky Powers, Marie-Françoise Roy, and Markus Schweighofer. The talk of Igor
+Klep was concerned with positivity and sums of squares in a non-commutative
+setting, relating such questions to a famous conjecture by Alain Connes about von
+Neumann algebras.
+3) Topology and singularities of real varieties
+   Much research in this area is concerned with ﬁnding topological properties that
+characterise real algebraic sets or particular classes of varieties. Wojciech Kucharz
+spoke about the question which homotopy types of maps between real varieties are
+represented by algebraic morphisms. The talk of Benoı̂t Bertrand was devoted to
+generalizations of Viro’s patchworking method for constructing real varieties with
+a prescribed topology, and Nicolai Vorobjov reported on an eﬀective version with
+explicit bounds of a theorem due to Coste and van den Dries that bounds the
+number of homotopy types of semialgebraic sets in terms of the complexity of the
+polynomial description. Riccardo Ghiloni spoke about semialgebraic deformations
+of real algebraic sets and presented a proof of the fact that every real algebraic
+set is semialgebraically homeomorphic to an irreducible one. Johannes Huisman
+addressed the problem of determining all rational real algebraic models of a topo-
+logical surface, proving the uniqueness of such models for a large class of surfaces.
+Frédéric Mangolte spoke about real singular Del Pezzo surfaces and threefolds ﬁ-
+bred by rational curves. Adam Parusiński reported on a complete classiﬁcation of
+blow-analytic equivalence classes of function germs in two variables.
+   Other topics included a talk by Daniel Schaub on the Pierce-Birkhoﬀ conjec-
+ture, which asks whether every piecewise polynomial function can be expressed as
+a surpremum of inﬁma of polynomials. José Fernando spoke about semialgebraic
+analogues to classical results on rings of continuous functions and Andreas Fischer
+about analytic approximation results in o-minimal structures. Jean-Philippe Mon-
+nier presented a real version of the Riemann-Hurwitz inequality for the number of
+ﬁxed points of an automorphism of an algebraic curve, allowing for more precise
+results in the real case that involve the number of connected components of the real
+locus. Vladimir Kostov’s talk was concerned with the Schur-Szego composition for
+polynomials in one variable, especially those that have only real roots. Krzysztof
+Kurdyka spoke on trajectories of subriemmanian gradients of polynomials.
+   The schedule of the meeting left plenty of time for numerous discussions among
+the participants. There was no oﬃcial programme beyond the talks (except the
+traditional hike on Wednesday afternoon) but many participants worked together
+Reelle Algebraische Geometrie                                                 755
+
+in small groups in the seminar rooms until late in the evening. Several collabora-
+tions were continued and some new ones were started.
+   We cordially thank the Oberwolfach Institute and its staﬀ for the splendid
+atmosphere they provided and gratefully acknowledge the ﬁnancial support for
+young researchers.
+Reelle Algebraische Geometrie                                                                                          757
+
+
+
+
+Workshop: Reelle Algebraische Geometrie
+
+Table of Contents
+
+
+Benoı̂t Bertrand
+   Algebraic and pseudoholomorphic patchworking . . . . . . . . . . . . . . . . . . . . . . 759
+Frédéric Bihan (joint with Frank Sottile)
+    New Fewnomial Bounds . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 761
+Erwan Brugallé (joint with Grigory Mikhalkin)
+   Floor decompositions of tropical curves . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 763
+Alex Degtyarev
+   Zariski k-plets via dessins d’enfants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 765
+José F. Fernando (joint with J.M. Gamboa)
+   Rings of semialgebraic functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 768
+Andreas Fischer
+  Smooth approximation of definable continuously differentiable functions
+  in some in o-minimal structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 770
+Andrej Gabrielov
+  Non-algebraic dessins d’enfants and zeros of eigenfunctions of
+  anharmonic oscillators . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 771
+Riccardo Ghiloni
+   Topology and irreducibility of real algebraic varieties — Deformations of
+   real algebraic varieties in irreducible models . . . . . . . . . . . . . . . . . . . . . . . . . 772
+Johannes Huisman (joint with I. Biswas)
+   Rational real algebraic models of topological surfaces . . . . . . . . . . . . . . . . . 776
+Ilia Itenberg (joint with Viatcheslav Kharlamov and Eugenii Shustin)
+    Tropical Welschinger invariants . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 777
+Igor Klep (joint with Markus Schweighofer)
+   Sums of hermitian squares, Connes’ embedding problem and the BMV
+   Conjecture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 779
+Vladimir Petrov Kostov (joint with Boris Shapiro)
+   On the Schur-Szegö composition of polynomials in one variable . . . . . . . . 782
+Wojciech Kucharz (joint with Jacek Bochnak)
+  Real algebraic morphisms represent few homotopy classes . . . . . . . . . . . . . 784
+Salma Kuhlmann
+   Positive polynomials and fibre products of varieties . . . . . . . . . . . . . . . . . . 785
+758                                                                            Oberwolfach Report 14/2007
+
+Krzysztof Kurdyka (joint with Din Si-Tiep, Patrice Orro)
+   Trajectories of Subriemannian gradients of polynomials . . . . . . . . . . . . . . . 786
+Frédéric Mangolte (joint with Fabrizio Catanese)
+    Real singular Del Pezzo surfaces and threefolds fibred by rational curves                                        788
+Jean-Philippe Monnier
+   Fixed points of automorphisms of real algebraic curves . . . . . . . . . . . . . . . 791
+Adam Parusiński (joint with Satoshi Koike)
+  Blow-analytic equivalence of two variable real analytic function germs . . 792
+Victoria Powers
+   Pólya’s Theorem with Zeros . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 795
+Bruce Reznick
+   Hilbert’s construction of psd polynomials that are not a sum of squares . 797
+Marie-Françoise Roy (joint with Fatima Boudaoud, Fabrizio Caruso,
+  Richard Leroy)
+  Certificates of Positivity in the Bernstein basis . . . . . . . . . . . . . . . . . . . . . . 800
+Daniel Schaub (joint with Frano̧is Lucas, James J. Madden, Mark
+  Spivakovsky)
+  A connectedness theorem for real spectra of polynomial rings, in
+  connection with Pierce-Birkhoff conjecture . . . . . . . . . . . . . . . . . . . . . . . . . . 805
+Markus Schweighofer
+  Gradient tentacles and sums of squares . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 810
+Nicolai Vorobjov (joint with Saugata Basu)
+   Upper bounds on the number of homotopy types of sets defined by
+   fewnomials . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 813
+Jean-Yves Welschinger
+   Lower bounds, sharpness in real enumerative geometry . . . . . . . . . . . . . . . 815
+Reelle Algebraische Geometrie                                                    759
+
+                                   Abstracts
+
+
+             Algebraic and pseudoholomorphic patchworking
+                           Benoı̂t Bertrand
+
+   The results presented here were obtained jointly with Erwan Brugallé and are
+contained in [BB06] and [BB07] from which this note is adapted.
+   Viro’s patchworking was applied in the proof of a lot of meaningful results in
+topology of real algebraic varieties. It is one of the most important method in this
+ﬁeld. We consider here the case of curves in CP 2 and in rational geometrically
+ruled surfaces Σn .
+   Viro Method allows to construct an algebraic curve A out of simpler curves Ai
+so that the topology of A can be deduced from the topology of the initial curves
+Ai . Namely one gets a curve with Newton polytope ∆ out of curves whose Newton
+polytopes are the 2-simplices of a subdivision σ of ∆, and one can see the curve
+A as a gluing of the curves Ai . Moreover, if all the curves Ai are real, so is the
+curve A (see [Vir84] and [Vir89]).
+   One of the hypotheses of the Viro Method is that σ should be convex (i.e. the
+2-simplices of σ are the domains of linearity of a piecewise linear convex function).
+In the original Patchworking Theorem, one also requires the curves Ai to be totally
+nondegenerate. In particular, one can only glue nonsingular curves. E. Shustin
+proved in [Shu98] that, under some numerical conditions depending on the types
+and number of the singularities, it is possible to patchwork singular curves keeping
+the singular points.
+   On the other hand, I. Itenberg and E. Shustin proved in [IS02] a pseudoholo-
+morphic patchworking theorem: they showed that applying the Viro Patchworking
+with any subdivision (non necessarily convex) and with reduced curves Ai with
+arbitrary singularities, one can glue the Ai ’s, keeping singular points, to obtain a
+real pseudoholomorphic curve. More precisely, given some (maybe singular) curves
+Ai whose Newton polygons are the 2-simplices of a subdivision of the quadran-
+gle with vertices (0, 0), (k, 0), (k, l) and (l + nk, 0), Itenberg and Shustin gave a
+way to construct a pseudoholomorphic curve C of bidegree (k, l) in the rational
+geometrically ruled surface Σn , whose position with respect to the pencil of lines
+can be deduced from the initial curves Ai . Isotopy types realizable by (algebraic
+or pseudoholomorphic) curves obtained via a patchworking procedure are called
+patchworked curves.
+
+   Pseudoholomorphic curves were introduced by M. Gromov in [Gro85] to study
+symplectic 4-manifolds. A real pseudoholomorphic curve C on CP 2 or Σn is an
+immersed Riemann surface which is a J-holomorphic curve in some tame almost
+complex structure J such that the exceptional section (in Σn with n ≥ 1) is J-
+holomorphic, conj(C) = C, and conj∗ ◦ Jp = −Jp ◦ conj∗ (where conj is the
+standard complex conjugation and p is any point of C). It as been realized since
+760                                                       Oberwolfach Report 14/2007
+
+then that real pseudoholomorphic curves share a lot of properties with real alge-
+braic ones (see for example [OS02], [OS] and [FLTO02]). It is still unknown if there
+exist nonsingular real pseudoholomorphic curves in CP 2 which are equivariantly
+isotopic to no homologous real algebraic curves (this is the so called real symplec-
+tic isotopy problem). However, S. Orekov gave an example of a nonsingular real
+pseudoholomorphic curve in Σ4 which is not istopic to any real algebraic curve
+of the same bidegree ([Ore]). Note that, not requiring the exceptional section in
+Σn to be J-holomorphic, J-Y. Welschinger constructed in [Wel02] examples of real
+pseudoholomorphic curves on Σn for n ≥ 2 which are not isotopic to any real
+algebraic curve realizing the same homology class in H2 (Σn ; Z).
+
+   In the surfaces RΣn , there is a natural pencil of lines L, and one can study
+curves there up to ﬁberwise isotopy. Two curves C1 and C2 in RΣn are said to be
+L-isotopic if there exists an isotopy φ(t, x) of RΣn mapping C1 to C2 such that for
+any t ∈ [0; 1], for any p ∈ C1 and for any ﬁber F of RΣn , φ(t, F ) is a ﬁber of RΣn ,
+and the intersection multiplicity of C1 and F at p is the intersection multiplicity
+of φ(t, C1 ) and φ(t, F ) at φ(t, p).
+   There are several examples of nonsingular real pseudoholomorphic curves in
+RΣn which are L-isotopic to no homologous real algebraic curves (see for example
+[OS02], [OS], [Bru]). However, as far as we know, none of those examples are
+constructed with the pseudoholomorphic patchworking of Itenberg and Shustin,
+and the question of the existence of a patchworked pseudoholomorphic curves
+with any kind of non-algebraic behaviour was open.
+
+   In [BB06] we proved that in the case of curves of bidegree (3, 0) in Σn , the
+patchworked pseudoholomorphic curve is always isotopic to a real algebraic one in
+the same homology class.
+   On the other hand we constructed the ﬁrst examples of patchworked real pseu-
+doholomorphic curves in Σn whose position with respect to the pencil of lines
+cannot be realised by any homologous real algebraic curve.
+Theorem 1. For any d ≥ 3 there exists a smooth real pseudoholomorphic patch-
+worked curve of bidegree (d, 0) in Σ2 which is not L-isotopic to any real algebraic
+curve in Σ2 of the same bidegree.
+   To prove this theorem we patwork, for any d ≥ 3, a pseudoholomorphic curve in
+Σ2 of bidegree (d, 0) which has, in particular, four points of maximal tangency with
+respect to L. The nonalgebraicity follows from the fact that a given subresultant
+would have too many roots if the curve were algebraic.
+
+                                     References
+[BB06]   Benoı̂t Bertrand and Erwan Brugallé. A Viro Theorem without convexity hypothesis
+         for trigonal curves. IMRN, 2006:Article ID 87604, 2006.
+[BB07]   Benoı̂t    Bertrand     and   Erwan     Brugallé.  A    nonalgebraic   Patchwork.
+         arXiv:math.AG/0701246, 2007.
+[Bru]    E. Brugallé. Symmetric plane curves of degree 7 : pseudo-holomorphic and algebraic
+         classiﬁcations. arXiv : math.GT/0404030.
+Reelle Algebraische Geometrie                                                             761
+
+[FLTO02] S. Fiedler-Le Touzé and S. Yu. Orevkov. A ﬂexible aﬃne M -sextic which is alge-
+         braically unrealizable. J. Algebraic Geom., 11(2):293–310, 2002.
+[Gro85]  M. Gromov. Pseudoholomorphic curves in symplectic manifolds. Invent. Math.,
+         82(2):307–347, 1985.
+[IS02]   I. Itenberg and E. Shustin. Combinatorial patchworking of real pseudo-holomorphic
+         curves. Turkish J. Math., 26(1):27–51, 2002.
+[Ore]    Stepan Orevkov. unpublished.
+[OS]     S. Yu. Orevkov and E. Shustin. Pseudoholomorphic, algebraically unrealizable curves.
+         to appear in Moscow Math. J.
+[OS02]   S. Yu. Orevkov and E. I. Shustin. Flexible, algebraically unrealizable curves: reha-
+         bilitation of Hilbert-Rohn-Gudkov approach. J. Reine Angew. Math., 551:145–172,
+         2002.
+[Shu98]  E. Shustin. Gluing of singular and critical points. Topology, 37(1):195–217, 1998.
+[Vir84]  O. Ya. Viro. Gluing of plane real algebraic curves and constructions of curves of
+         degrees 6 and 7. In Topology (Leningrad, 1982), volume 1060 of Lecture Notes in
+         Math., pages 187–200. Springer, Berlin, 1984.
+[Vir89]  O. Ya. Viro. Real plane algebraic curves: constructions with controlled topology.
+         Leningrad Math. J., 1(5):1059–1134, 1989.
+[Wel02]  J. Y. Welschinger. Courbes algébriques réelles et courbes ﬂexibles sur les surfaces
+         réglées de base CP 1 . Proc. London Math. Soc. (3), 85(2):367–392, 2002. (French).
+
+
+
+                               New Fewnomial Bounds
+                                    Frédéric Bihan
+                             (joint work with Frank Sottile)
+
+   In this talk, we present results obtained with Frank Sottile in [5]. Consider
+a polynomial system f1 = · · · = fn = 0 deﬁned by n Laurent real polynomials
+in n variables. We are interested in the number of complex or real solutions
+with non-zero coordinates. Let W denotes the support of this system, that is, the
+subset of Zn consisting of all the exponent vectors (a1 , . . . , an ) corresponding to the
+monomials xa1 1 · · · xann of the system. Kouchnirenko [6] showed that the number of
+non-degenerate complex solutions to the system is at most the normalized volume
+of the convex hull of W. This volume gives thus a bound on the number of real
+solutions. However, the resulting bound appears to be far from being sharp for
+systems having few monomials. For n = 1, this is a consequence of Descartes rule
+of signs. In general, this is due to Khovanskii [7] who showed that if the cardinality
+if W is n + k + 1 (we can assume that k ≥ 0), then the number of positive solutions
+to the system is at most
+                                     2( 2 ) (n + 1)n+k
+                                       n+k
+
+
+
+(Multiplying by 2n gives then a bound on the number of real solutions.) The ﬁrst
+concrete result showing that Khovanskii’s bound is likely overstated was due to
+Li, Rojas, and Wang [9] who showed that two trinomials in two variables have at
+most 5 positive solutions (and this is sharp). Such systems are particular cases
+of systems with n = k = 2 (we can assume that both trinomials have a common
+monomial), so that the Khovansky bound in this case is 5184. More recently,
+upper bounds have been obtained for systems with k = 1, that is, when W forms
+762                                                            Oberwolfach Report 14/2007
+
+what is called a circuit (see [1] and [2]). The main idea was to reduce the study
+of such a system to that of particular univariate polynomial. In [5], we generalize
+this for any k and obtain the following new fewnomial bounds.
+
+Theorem. A system of n polynomials in n variables having a total of n+k+1
+distinct monomials has fewer than
+                                                  k
+                                          e2 +3 (2 ) k
+                                            4 2     n
+
+non-degenerate solutions in the positive orthant.
+
+   In fact, the paper [5] contains better bounds, but which are more diﬃcult to
+state. Like the Khovansky bound, our bound also works for systems with real
+exponent vectors. In the case n = k = 2, we obtain the new upper bound of
+15. A construction based on a sharpness result of [2] shows that our bound is
+nearly asymptotically optimal for k ﬁxed and n → +∞, see [3]. The proof of our
+new fewnomial upper bound goes as follows. We generalize the reduction step
+which was done for k = 1 by reducing the study of the original system to that of
+a special k by k system called Gale dual system. Precisely, we show a bijection
+between the positive solutions to the original system to the solutions to the Gale
+system which are contained in a certain polyhedron. We use then what is called
+the Khovansky-Rolle theorem, see [8], toric tricks and a bit of combinatorics of
+polytopes. Other bounds have also been been obtained recently and which concern
+a fewnomial hypersurface of the positive orthant. Namely, bounds for the number
+of compact connected components [5], for the number of (possibly non compact)
+connected components [3], and ﬁnally for the total sum of the Betti numbers [4].
+
+
+                                        References
+[1] Benoit Bertrand, Frédéric Bihan, and Frank Sottile, Polynomial systems with few real zeroes,
+    Mathematisches Zeitschrift 253 (2006), no. 2, 361–385.
+[2] F. Bihan, Polynomial systems supported on circuits and dessins d’enfants, 2005, Journal of
+    the London Mathematical Society, to appear.
+[3] F. Bihan, J. M. Rojas, and F. Sottile, Sharpness of fewnomial bound and the number of
+    components of a fewnomial hypersurface, 2007, IMA Volume on Algorithms in Algebraic
+    Geometry, to appear.
+[4] F. Bihan, J. M. Rojas, and F. Sottile, New Betti bounds for fewnomial hypersurfaces via
+    stratified Morsee theory, 2007, in preparation.
+[5] F. Bihan and F. Sottile, New fewnomial upper bounds from Gale dual polynomial systems,
+    2006, Moscow Mathematical Journal, to appear. math.AG/0609544.
+[6] A.G. Kouchnirenko, A Newton polyhedron and the number of solutions of a system of k
+    equations in k unknowns, Usp. Math. Nauk. 30 (1975), 266–267.
+[7] A.G. Khovanskii, A class of systems of transcendental equations, Dokl. Akad. Nauk. SSSR
+    255 (1980), no. 4, 804–807.
+[8]          , Fewnomials, Trans. of Math. Monographs, 88, AMS, 1991.
+[9] T.-Y. Li, J. M. Rojas, and X. Wang, Counting real connected components of trinomial curve
+    intersections and m-nomial hypersurfaces, Discrete Comput. Geom. 30 (2003), no. 3, 379–
+    414.
+Reelle Algebraische Geometrie                                                      763
+
+                   Floor decompositions of tropical curves
+                              Erwan Brugallé
+                      (joint work with Grigory Mikhalkin)
+
+
+             1. Enumerative invariants of projective spaces
+                                                                                     n
+    Let n ≥ 2, d ≥ 1 and g ≥ 0 be some integers and c = (c0 , . . . , cn−2 ) ∈ N∪{0}
+            Pn−2
+such that i=0 (n − 1 − i)ci = (n + 1)d + (n − 3)(1 − g). Moreover, throughout
+the text we assume that g = 0 if n ≥ 3. Consider ω a generic conﬁguration of
+ci linear spaces of CP n of dimension i with i varying from 0 to n − 2, and consider
+the set C of algebraic irreducible curves of degree d and genus g in CP n passing
+through all elements of ω The set C is ﬁnite, and if n, d, g and c are ﬁxed, then the
+cardinal of C does not depend on ω. Let us deﬁne Ncn,g (d) = ♯C. If n = 2 (resp.
+                                                                              2,g
+n ≥ 3), then we will simply write N 2,g (d) (resp. Ncn (d)) instead of N(3d−1+g)   (d)
+           n,0                      n,0
+(resp. Nc (d)). The numbers Nc (d) were ﬁrst computed by Kontsevich, and
+Caporaso and Harris gave in an algorithm to compute the numbers N 2,g (d).
+    When all the elements of ω are real, then one can consider the set
+                        RC = {real algebraic curves in C}
+Now the cardinal of RC depends on ω. However, Welschinger proved that counting
+curves in RC with respect to some sign, one obtain an invariant when c1 = . . . =
+cn−2 = 0. We denote by W n (d) this invariant. Welschinger invariants of RP 2
+were ﬁrst computed by Itenberg, Kharlamov and Shustin.
+   Computations of Itenberg, Kharlamov and Shustin are based on a previous
+paper by Mikhalkin, where he gave, in particular, an algorithm to compute the
+numbers ♯C and ♯RC for some special conﬁgurations of points in the plane.
+   In this talk, we present a generalisation to dimension 3 of this algorithm, and we
+exhibit new formulas for the numbers Nc3 (d) and W 3 (d) in terms of floor diagrams.
+The main tool in the proof of our results is tropical geometry, thanks to Mikhalkin’s
+Correspondence Theorems.
+   Notation. Given D a ﬁnite oriented graph, we denote the set of vertices (resp.
+edges) of D by D0 (resp. D1 ). We also denote by D0∞ the set of sinks, and by D1∞
+the set of edges adjacent to a sink. Finally we put D0 = D0 \ D0∞ .
+   Given v ∈ D0 , we denote by A(v) the set of edges adjacent to v, and we deﬁne
+the function ǫv : A(v) → {±1} by ǫv (e) = 1 if v is the origin of e, and ǫv (e) = −1
+otherwise.
+   By convention, we deﬁne N 1,0 (1) = W 1 (1) = 1 and N 1,0 (d) = W 1 (d) = 0 if
+d ≥ 2.
+
+                                2. Floor diagrams
+Definition 1. A ﬂoor diagram of degree d and of genus g is a triple (D, w0 , w1 )
+where D is a connected ﬁnite oriented graph of genus g with no oriented cycle,
+and where wi : Di → N are two functions satisfying the following conditions
+764                                                        Oberwolfach Report 14/2007
+
+           P
+        i.   v∈D0 w0P(v) = d,
+       ii. ∀v ∈ D0 ,   e∈A(v) ǫ(e)w1 (e) = w0 (v),
+      iii. ∀e ∈ D1∞ , w1 (e) = 1.
+   Let (D, w0 , w1 ) be a ﬂoor diagram of degree d and genus g, n = 2 or 3 and
+                                  n          Pn−2
+c = (c0 , . . . , cn−2 ) ∈ N ∪ {0} such that i=0 (n − 1 − i)ci = (n + 1)d + (n −
+                                  Pn−2
+3)(1 − g). Put Ec = {1, . . . , i=0 ci } and let m : Ec → D a map injective on
+m−1 (D1 ). We deﬁne the dimension of l ∈ Ec as the integer dim(l) such that
+cdim(l)−1 < l ≤ cdim(l) (with the convention that c−1 = 0), the rank of v ∈ D0
+as the integer rk(v) = dim(max{l     P| m(l) = v}), and the freedom of e ∈ D1
+as the integer f r(e) = n − 1 − l∈m−1 (e) (n − 1 − dim(l)). For e ∈ D1 , we
+denote by ∂ 0 e the set of its adjacent vertices in D0 . Finally, we deﬁne Ec,m =
+m−1 (D1 ) ∪v∈D0 max{l |m(l) = v}.
+Definition 2. A map Π which associate to any e ∈ D1 a subset of ∂ 0 e of cardinal
+f r(e) is called a reconstruction map for m if for any v ∈ D0 one has
+                                                                               
+                                                       X
+(n − 2) ♯m−1 (v) − rk(v) + ♯f r−1 (0) ∩ A(v) +                (1 − ♯Π(E) ∩ {v})
+                                                      e∈f r −1 (1)∩A(v)
+
+                                   = nw0 (v) + n − 4
+Definition 3. The quadruplet (D, w0 , w1 , m) is called an n-dimensional marked
+ﬂoor diagram of type c if the following conditions hold
+      i. m|Ec,m : Ec,m → D is an increasing map,
+     ii. if dim(l) = 0 and m(l) ∈ D0 , then m−1 (m(l)) = {l},
+    iii. there exists a reconstruction map for m.
+Remark 4. For an n-dimensional marked ﬂoor diagram, the reconstruction map
+is unique.
+   Two n-marked ﬂoor diagrams of type c, (D, w0 , w1 , m) and (D′ , w0′ , w1′ , m′ ),
+are said to be isomorphic if there exists a homeomorphism of oriented graphs
+φ : D → D′ such that wi = wi′ ◦ φ and m = m′ ◦ φ. We call without distinction
+a marked ﬂoor diagram either an isomorphism class of marked ﬂoor diagrams, or
+one of its representative.
+   To each marked ﬂoor diagram D of type c, we associate now a complex multi-
+plicity µC
+         c (D) deﬁned by
+                                                                               
+             Y h                              i Y            −1   Y
+ µCc (D) =        N n−1,0 (w0 (v))w0 (v)rk(v)     w1 (e)1+♯m (e)    w0 (v ′ ) .
+            v∈D0                               e∈D1                       v ′ ∈Π(e)
+
+If g = 0 and ci = 0 for i ≥ 1 then we also associate a real multiplicity µR (D) to D
+deﬁned by
+           Y
+ µR (D) =       W n−1 (w0 (v)) if w1 (D1 ) ∩ 2N = ∅ and µR (D) = 0 otherwise.
+            v∈D0
+Reelle Algebraische Geometrie                                                      765
+
+    Note that for n = 2, both real and complex multiplicities take a very simple
+form: one has f r(e) = 0 for any e ∈ D1 and w0 (v) = 1 for any v ∈ D0 , so
+µC                                                                         R
+  c (D) is the square of the product of the weight of all edges of D, and µ (D) =
+  C
+µc (D) mod 2.
+
+                                 3. Main results
+Theorem 5. For (n, g) = (2, g) or (n, g) = (3, 0), the number Ncn,g (d) is equal to
+the sum of the complex multiplicity of all n-dimensional marked floor diagrams of
+degree d, genus g, and type c.
+Theorem 6. For n = 2 or n = 3, the Welschinger invariant W n (d) is equal to
+(−1)nǫ(d) times the sum of the real multiplicity of all n-dimensional marked floor
+diagram of degree d, genus 0, and type (c0 , 0, . . . , 0).
+   As said in the introduction, Theorems 5 and 6 are obtained via tropical geom-
+etry. Let us state the main ingredient in our tropical computations. Take n, d, g
+and c as in section 1, and take elements of ω to be linear tropical subspaces of Rn .
+Theorem 7. Let HC be a hypercube containing all vertices of all elements of ω.
+Then HC contains all the vertices of any tropical curve of degree d and genus g
+in Rn passing through elements of ω.
+
+
+                     Zariski k-plets via dessins d’enfants
+                              Alex Degtyarev
+
+   We apply the techniques of Grothendieck’s dessins d’enfants, which has already
+proved useful in the study of real trigonal curves (joint work with I. Itenberg and
+V. Kharlamov), to the study of singular complex plane curves. As a ﬁrst appli-
+cation, we construct asymptotically large collections of non-equivalent irreducible
+curves sharing the same set of singularities.
+   For the purpose of this paper, by a type of a singular point we mean its PL-
+homeomorphism class, and by an equisingular deformation (of plane curves) we
+mean a PL-equisingular deformation.
+   The deﬁnition below was suggested by E. Artal. For the sake of simplicity, we
+conﬁne ourselves to the case of irreducible curves.
+Definition 1. A collection C1 , . . . , Ck of irreducible (complex) plane curves is
+said to form a Zariski k-plet if all curves Ci have the same degree and the same
+combinatorial set of singularities but no two curves Ci , Cj , i 6= j, can be connected
+by an equisingular deformation.
+  Historically, the ﬁrst example of Zariski pairs was found by O. Zariski, who
+constructed two distinct families of irreducible six cuspidal sextics. Later, more
+examples were found by E. Artal. A. Degtyarev, C. Eyrol, M. Oka, H. Tokunaga,
+M. Uludağ, and others. In most examples known, there are just a few (usually,
+766                                                     Oberwolfach Report 14/2007
+
+two) families of curves sharing the same set of singularities, and the curves are dis-
+tinguished by the fundamental group of the complement or even by the Alexander
+polynomial (which is an easily computable invariant of the fundamental group).
+   The principal result of this talk is the following theorem.
+Theorem 2. For each integer m ≥ 8, there is a set of singularities shared by
+                                                  
+                            1 2k − 2       k      [k/2]
+                  N (m) =
+                            k k−1        [k/2]      ǫ
+pairwise not deformation equivalent irreducible plane curves Ci ⊂ P2 of degree m,
+where k = [(m + 2)/3] and ǫ = 3k − m ∈ {0, 1, 2}. The fundamental groups of all
+curves Ci are abelian: one has π1 (P2 r Ci ) = Zm .
+Remark 3. It is easy to see that asymptotically the count N (m) given by the
+theorem grows faster than am for any a < 2.
+Remark 4. The set of singularities that is actually constructed below consists of
+two points, one point of type A5k−2 and one point of ‘transversal’ intersection of
+(k − 1) ‘blocks’: ǫ cusps A2 , one block of type E12 (in Arnol′ d’s notation), [k/2]− ǫ
+blocks of type J2,1 , and [(k − 3)/2] blocks of type J2,0 .
+Remark 5. In fact, the notion of Zariski pair/k-plet changes from paper to paper.
+Often, the condition that the curves Ci are not deformation equivalent is replaced
+by the stronger requirement that the pairs (P2 , Ci ) (or even spaces P2 r Ci ) should
+not be homeomorphic. At present, I do not know whether this stronger require-
+ment holds for all/some of the curves given by the theorem.
+   The proof of the main theorem is based on the study of curves of degree m
+with a singular point O of multiplicity (m − 3). (Note that curves of degree m
+with a singular point of multiplicity ≥ (m − 2) can easily be classiﬁed; they never
+form Zariski pairs.) Blowing O up converts such a curve C to a curve in the
+Hirzebruch surface Σ1 , and after a series of elementary transformations one arrives
+at a trigonal curve B in a certain Hirzebruch surface Σk ; one can assume that B
+does not intersect the exceptional section of the surfaces and has no triple points.
+The deformation type of B (decorated with a number of distinguished points/ﬁbers
+recording the converse transformation) determines that of C. Thus, essentially the
+problem reduces to the deformation classiﬁcation of trigonal curves.
+   A trigonal curve B can be described by its functional j-invariant j : P1 → P1 .
+The j-invariant has three special values, 0, 1, and ∞; typically, the value j = ∞
+corresponds to the singular ﬁbers of B (in particular, its singular points), and the
+values j = 0 and 1 correspond to the ﬁbers of B admitting complex multiplication.
+Generically, the pull-backs of 0 and 1 consist, respectively, of double and triple
+ramiﬁcation points. Points of smaller multiplicity correspond to the singular ﬁbers
+of B of types Ã∗∗     ∗         ∗
+                 0 , Ã1 , and Ã2 .
+   In the special case when B is maximally singular, its j-invariant has no critical
+values other than 0, 1, or ∞ and its topology and, hence, analytic structure is
+uniquely described by its classical dessin d’enfants, which is deﬁned as the plane
+Reelle Algebraische Geometrie                                                     767
+
+graph Γj = j −1 [0, 1] ⊂ P1 whose vertices are marked according to whether they
+project to 0 or 1. Assuming, further, that B has no singular ﬁbers of type Ã∗1 ,
+one can disregard the vertices projecting to 0.
+   All vertices of the resulting graph Γj have valency at most 3, 1- and 2-valent
+vertices corresponding to the singular ﬁbers of B of type Ã∗∗       ∗
+                                                            0 and Ã2 , respectively.
+All other singular ﬁbers of B are of type Ãp ; they are in a one-to-one correspon-
+dence with the p-gonal faces of Γj . Conversely, any graph Γj ⊂ P2 with at most
+3-valent vertices gives rise to a trigonal curve.
+
+
+Proof of the theorem. All curves are constructed from trigonal curves in Σk having
+one singular ﬁber of type Ã∗∗
+                             0 , one singular ﬁber of type Ã5k−2 , and k singular
+ﬁbers of type Ã0 . Any such trigonal curve is obtained from a graph Γ ⊂ P1
+                 ∗
+
+constructed as follows: one starts with a binary tree with (k − 1) vertices, marks
+its root by adding an edge and a 1-valent vertex (in particular, this procedure
+rules out the possible symmetries of the graph), and completes the valency of each
+remaining vertex to three by attaching k ‘leaves’, each leaf consisting of a loop
+connected to the rest of the graph by an edge.
+   The number of such graphs (hence, the number of trigonal curves) is Catalan’s
+number
+                                                  
+                                          1 2k − 2
+                             C(k − 1) =              .
+                                          k k−1
+
+Note that all singular ﬁbers of the resulting curves are diﬀerent, i.e., no pair of
+singular ﬁbers can be interchanged by a deformation. Now, in order to obtain a
+plane curve, one needs to perform (k − 1) elementary transformations, convert-
+ing Σk to Σ1 , and blow down the exceptional section of Σ1 . The elementary
+transformations are chosen as follows:
+
+    (1) the only type Ã∗∗
+                         0 singular ﬁber contracts to a singular point of type E6 ;
+    (2) [k/2] of the k type Ã∗0 singular ﬁbers contract to singular points of type A2
+        or D5 (depending on whether the blow-up center is chosen on the curve);
+    (3) [(k − 3)/2] generic ﬁbers contract to singular points of type D4 .
+
+The extra counts
+                                             
+                                 k         [k/2]
+                                      and
+                               [k/2]         ǫ
+
+in the statement of the theorem are due, respectively, to the choice of [k/2] of the
+k singular ﬁbers to be contracted and the choice of ǫ of them to be contracted
+to A2 instead of D5 .
+   The fundamental groups of the resulting plane curves can easily be controlled.
+Essentially, they are all abelian due to the existence of type Ã∗∗
+                                                                 0 singular ﬁbers. 
+768                                                    Oberwolfach Report 14/2007
+
+                       Rings of semialgebraic functions
+                               José F. Fernando
+                         (joint work with J.M. Gamboa)
+
+
+   The study of rings of continuous functions is a diﬃcult matter which has de-
+served a lot of attention from specialists in analysis, topology and algebra. The
+history of this theory is long and rich and its main development goes back to the
+50’s and 60’s of XX century. This subject contributed in an important way to the
+appearance and evolution of well-known tools in Mathematics like the Stone–Cěch
+compactiﬁcation, the theory of nets and ﬁlters, the spectrum and the maximal
+spectrum of a commutative ring, . . . We refer the reader to [GH1], [GJ], [K1], [K2]
+and [M] for more details. See also the surveys [Ve1] and [Ve2].
+   Later in the 80’s, after the birth and development of Real Algebraic Geometry,
+most results concerning rings of continuous functions were reviewed and studied
+from a diﬀerent view-point which involves the use of some tools proper of this
+theory. We refer the reader to [ChD1], [ChD2], [S1], [S2], [Tr1] and [Tr2].
+   In this work, we study the main properties of rings of a smaller class of contin-
+uous functions, namely (continuous) semialgebraic functions over a semialgebraic
+subset of Rn , continuing some previous work of the second author and Ruiz which
+goes to the 90’s (see [GR] and [G], and also [CC]). Recall that a semialgebraic
+subset of Rn is a set which can be described as a ﬁnite boolean combination of poly-
+nomial equalities and inequalities. A semialgebraic function on a semialgebraic set
+M is a continuous function f : M → R whose graph is a semialgebraic set. As
+it is well-known, the set S(M ) of semialgebraic functions on M is an R-algebra
+and the set S ∗ (M ) of bounded semialgebraic functions on M is an R-subalgebra
+of S(M ). To refer to properties of both rings simultaneously, we will write S ⋄ (M )
+to allude either S(M ) or S ∗ (M ).
+   Our purpose is to study the topological and algebraic properties of the spectra
+and maximal spectra of such rings. Since the usual notations for these objects
+become cumbersome, we replace them by the following ones. Let M ⊂ Rn be a
+semialgebraic set. We denote
+        Specs (M ) = Spec(S(M ))            Spec*s (M ) = Spec(S ∗ (M )),
+              βs M = Specmax (S(M ))              βs*M = Specmax (S ∗ (M )).
+Again we may allude to the respective spectra of both rings simultaneously by
+setting Spec⋄s (M ) equals Specs (M ) or Spec*s (M ) and βs⋄M equals βs M or βs*M . As
+we will show in section 2.1 the real spectra and real maximal spectra of S ⋄ (M )
+coincide with its classical Zariski spectra and maximal spectra. Consequently we
+will not be concerned about real spectra.
+   We point out here the most remarkable results of this memoir. We are in-
+terested in analyzing until what extend the rings of semialgebraic functions on a
+semialgebraic set determines it up to homeomorphism, and how much information
+they provide about its semialgebraic compactiﬁcations. Namely,
+Reelle Algebraische Geometrie                                                             769
+
+(1) It is shown that the ring S(M ) classiﬁes the semialgebraic set M up to
+semialgebraic homeomorphism. On the other hand, the ring S ∗ (M ) classiﬁes the
+semialgebraic set M , up to semialgebraic homeomorphism and outside a ﬁnite
+subset η(M ) ⊂ M depending only on M . Moreover, the spectra Specs (M ) and
+Spec*s (M ) are homeomorphic if and only if the rings S(M ) and S ∗ (M ) are iso-
+morphic, and this is so if and only if M is compact, or equivalently if both rings
+coincide. In contrast, the maximal spectra βs M and βs*M are always homeomor-
+phic; hence they will be denoted by βs M . Unfortunately, this last homeomorphism
+has no functorial character.
+(2) Although these rings S ⋄ (M ) do not enjoy some of the nice properties of rings
+of Nash or polynomial functions, namely, they are not noetherian, their ideals do
+not have in general primary decomposition,. . . however they are Gelfand rings and
+they have ﬁnite Krull dimension equal to the dimension of M . Recall that a ring
+is Gelfand if each prime ideal is contained just in one maximal ideal. As to the
+dimension, we also prove that the height of the maximal ideal consisting of all
+functions vanishing at a point p ∈ M equals the local dimension of M at p.
+(3) In the same vein as the classical Stone–Cěch compactiﬁcation, we prove that
+βs M is the smallest compactiﬁcation of M such that each bounded semialgebraic
+function on M extends continuously to βs M . This is why we will call βs M the semi-
+algebraic Stone–Cěch compactification of M . Moreover, it can be characterized as
+the smallest compactiﬁcation that dominates all the semialgebraic compactiﬁca-
+tions of M . These results suggest that the topology of βs M can be rescued from
+the semialgebraic compactiﬁcations of M . In fact, we will be interested in deter-
+mining the main topological properties of the residue ∂M = βs M \ M and we
+prove ﬁrst that it has ﬁnitely many connected components, whose number equals
+the number of connected components of the residue of a suitable semialgebraic
+compactiﬁcation of M . Other remarkable properties of ∂M are that it is locally
+connected and that its local compactness can be characterized just in terms of
+the topology of M . We also describe and use in a crucial way some distinguished
+subsets of the residue ∂M , which have a deep geometric meaning.
+
+
+                                       References
+[CC]   M. Carral, M. Coste: Normal spectral spaces and their dimensions. Journal of Pure and
+       Applied Algebra, 30, 227-235, (1983).
+[ChD1] G.-L. Cherlin, M.A. Dickmann: Real closed rings. I. Residue rings of rings of continuous
+       functions. Fund. Math. 126 (1986), no. 2, 147–183.
+[ChD2] G.-L. Cherlin, M.A. Dickmann: Real closed rings. II. Model theory. Ann. Pure Appl.
+       Logic 25 (1983), no. 3, 213–231.
+[G]    J. M. Gamboa: On prime ideals in rings of semialgebraic functions. Proc. American
+       Math. Soc. 118, no. 4, 1034–1041, (1993).
+[GR]   J. M. Gamboa, J. M. Ruiz: On rings of semialgebraic functions. Math. Z. 206 no. 4,
+       527–532, (1991)
+[GH1] L. Gillman, M. Henriksen: Concerning rings of continuous functions. Trans. Amer.
+       Math. Soc. 77, (1954) 340–362.
+770                                                                     Oberwolfach Report 14/2007
+
+[GJ]      L. Gillman, M. Jerison: Rings of continuous functions. The Univ. Series in Higher
+          Nathematics 1, D. Van Nostrand Company, Inc. 1960.
+[K1]      C.W. Kohls: Prime ideals in rings of continuous functions. Illinois J. Math. 2 (1958)
+          505–536.
+[K2]      C.W. Kohls: Prime ideals in rings of continuous functions. II. Duke Math. J. 25 (1958)
+          447–458.
+[M]       M. Mandelker: Prime ideal structure of rings of bounded continuous functions. Proc.
+          Amer. Math. Soc. 19 (1968) 1432–1438.
+[S1]      N. Schwartz: Real closed spaces. Ordered ﬁelds and real algebraic geometry (Boulder,
+          Colo., 1983). Rocky Mountain J. Math. 14 (1984), no. 4, 971–972.
+[S2]      N. Schwartz, The basic theory of real closed spaces. Memoirs of the American Mathe-
+          matical Society, 97, 1989
+[Tr1]     M. Tressl: Computation of the z-radical in C(X). Adv. Geom. 6 (2006), no. 1, 139–175.
+[Tr2]     M. Tressl: Super real closed rings. Preprint (2007).
+          http://www.uni-regensburg.de/Fakultaeten/nat Fak I/RAAG/preprints/0177.html
+[Ve1]     E. M. Vechtomov: Rings of continuous functions. Algebraic aspects. J. Math. Sci. 71
+          (1994), no. 2, 2364–2408.
+[Ve2]     E. M. Vechtomov: Rings and sheaves. Topology, 1. J. Math. Sci. 74 (1995), no. 1,
+          749–798.
+
+
+
+
+        Smooth approximation of definable continuously differentiable
+                 functions in some in o-minimal structures
+                             Andreas Fischer
+
+
+   Whitney’s approximation theorem, cf. [4], states that every continuously dif-
+ferentiable function f can be approximated by an analytic function g, such that
+the diﬀerence between f and g and their derivatives is less than any given positive
+continuous function ε.
+   M. Shiota proved in [3] the semi-algebraic version of this theorem, that is, if f
+and ε are semi-algebraic, the statement remains valid and we can claim g to be
+semi-algebraic.
+   Recall that an o-minimal structure on R is a collection of boolean algebras Sn
+of deﬁnable sets, n ∈ N, where Sn is a subset of the power set of Rn which contains
+all semi-algebraic sets, such that linear projections of deﬁnable sets are deﬁnable
+and all deﬁnable subsets of R are semi-algebraic. If the graph of a function f
+belongs to some Sn , then f is called deﬁnable.
+   Shiota’s method does not apply to any other o-minimal structure.
+   Here we prove the following approximation theorem for a certain subclass of
+o-minimal structures in which the exponential function is deﬁnable.
+Theorem 1. Let M be an o-minimal expansion of the real exponential field with
+smooth cell decomposition. Let U ⊂ Rn be definable and open, and let f : U → R
+be definable and continuously differentiable. Then, for every definable continuous
+function ε : U → (0, ∞), there is a definable smooth function g : U → R such that
+                   |Dα f (u) − Dα g(u)| < ε(u), u ∈ U, α1 + ... + αn ≤ 1.
+Reelle Algebraische Geometrie                                                                771
+
+   Analogous to analytic approximation, we can conclude that deﬁnable open sets
+are deﬁnably C ∞ diﬀeomorph if and only if they are C 1 diﬀeomorph, and also that
+we can separate deﬁnable disjoint closed sets by deﬁnable smooth functions.
+   Contrary to analytic approximation, our methods imply that the functions f
+and g coincide outside of any pregiven deﬁnable open neighbourhood of the clo-
+sure of the set of non-smooth points. Therefore the separation argument can be
+strengthened as follows.
+   If A, B are deﬁnable closed disjoint subsets of Rn , there is a deﬁnable smooth
+function ϕ : Rn → R such that A ⊂ {ϕ = 1} and B ⊂ {ϕ = 0}.
+   This implies the following two consequences.
+   Firstly, if U ⊂ Rn is a deﬁnable open set, then the deﬁnable sheaf consisting of
+the smooth deﬁnable functions from U to R is ﬁne.
+   Secondly, if A is a closed deﬁnable set, U a deﬁnable open neighbourhood of
+A and f : U → R a deﬁnable smooth function, then there is a deﬁnable smooth
+function F : Rn → R which coincides with f in A.
+
+                                        References
+[1] Fischer, A. Peano differentiable functions in o-minimal structures doctoral thesis, University
+    of Passau, 2006
+[2] van den Dries, L. ,Miller, C. Geometric categories and o-minimal structures. Duke Math. J.
+    84 (1996), no. 2, 497–540
+[3] Shiota, M. The extension theorem for Nash functions. Real algebraic geometry and quadratic
+    forms (Rennes, 1981), pp. 343–357, Lecture Notes in Math., 959, Springer, Berlin-New York,
+    1982.
+[4] Whitney, H. Analytic extensions of differentiable functions defined in closed sets. Trans Am.
+    Math. Soc. 36, 63-89 (1934)
+
+
+
+      Non-algebraic dessins d’enfants and zeros of eigenfunctions of
+                         anharmonic oscillators
+                           Andrej Gabrielov
+
+   Consider an eigenvalue problem
+(1)                    −y ′′ + P (z)y = λy,      y(−∞) = y(∞) = 0.
+                d
+Here P = cz + . . . is a real polynomial of even degree d with c > 0. This is
+known as a (quantum) anharmonic oscillator. It is well known that the spectrum
+is discrete, the eigenvalues λ0 < λ1 < . . . are real and simple, and λn → ∞
+as n → ∞. Eigenfunctions are real entire functions of the order (d + 2)/2, an
+eigenfunction φn with the eigenvalue λn has n real zeros.
+   If P is even, each eigenfunction φ is either even or odd, and can be normalized
+either as φ(0) = 1 or as φ′ (0) = 1. Let ψ be another solution of −y ′′ + P y = λy
+(without boundary conditions) with the same eigenvalue λ as φ, normalized as
+ψ(0) = 0, ψ ′ (0) = 1 if φ(0) = 1 and as ψ(0) = 1, ψ ′ (0) = 0 if φ(0) = 0. Then
+f = φ/ψ is an odd meromorphic function of the order (d + 2)/2 without critical
+points. At inﬁnity, f has asymptotic values aj in each of d + 2 Stokes sectors Sj
+772                                                     Oberwolfach Report 14/2007
+
+separated by the Stokes directions θ = π(2j − 1)/(d + 2). Here j is considered
+a residue modulo d + 2. These values satisfy aj+1 6= aj and a0 = ad/2+1 = 0.
+They are also symmetric with respect to the real and imaginary axes: a−j =
+āj , aj+d/2+1 = −aj .
+     Let d = 4. Then
+(2)                   a2 = −ā1 , a4 = a1 , a5 = ā1 a0 = a3 = 0.
+One can show that, a1 in 2 is neither real or pure imaginary, so f has 5 distinct
+asymptotic values. Let us choose 4 disjoint loops Γ1 , . . . , Γ4 with the ends at ∞
+passing around the non-zero asymptotic values of f and such that their union is
+symmetric with respect to the real and imaginary axes. Then preimage f −1 (Γ1 ∪
+· · · ∪ Γ4 deﬁnes a partition of C that has 6 unbounded domains (corresponding to
+the Stokes sectors) and each zero of f is inside one of its bounded domains. The
+set of edges of this partition is a planar graph which, after contraction of loops
+and some additional reduction, becomes a double-symmetric planar tree with 6
+inﬁnite ends. From the classiﬁcation of such trees, we derive the following result
+Theorem 1. Any eigenfunction φ of the eigenvalue problem 1 for an even poly-
+nomial P of degree 4 has all its zeros either real or pure imaginary.
+   A theorem by Nevanlinna allows one to recover f from a given planar graph
+and a set of asymptotic values. This allows us to derive analytic properties of
+eigenfunctions of anharmonic oscillators from the the combinatorial properties of
+planar trees, similar to representation of algebraic functions by dessins d’enfants.
+
+
+Topology and irreducibility of real algebraic varieties — Deformations
+           of real algebraic varieties in irreducible models
+                          Riccardo Ghiloni
+
+1. Introduction and main theorem
+
+    In complex algebraic and analytic geometry, the usual notion of irreducibility
+deﬁnes a topological invariant on varieties equipped with the euclidean topology.
+This follows easily from the equivalence between irreducibility and connectedness
+of the nonsingular locus, and from the fact that the topological codimension of the
+singular locus is ≥ 2.
+    The aim of this paper is to show that, in the real case, the situation is completely
+diﬀerent. In fact, we prove that every real algebraic variety of positive dimension
+is irreducible up to a semialgebraic homeomorphism. More precisely, given a real
+algebraic variety X of positive dimension, we construct a semialgebraically trivial
+family {ξt : Xt −→ X}t∈R of semialgebraic homeomorphisms between real al-
+gebraic varieties such that X0 = X, ξ0 is the identity map on X and, for each
+t ∈ R \ {0}, Xt is irreducible. In the case X is nonsingular, the preceding family
+{ξt : Xt −→ X}t∈R can be choosen in such a way that, for each t ∈ R \ {0}, Xt is
+an irreducible nonsingular real algebraic variety and ξt is a Nash isomorphism.
+Reelle Algebraische Geometrie                                                      773
+
+   In what follows, by a real algebraic set, we mean an algebraic subset of some Rn .
+Unless otherwise indicated, all real algebraic sets are equipped with the euclidean
+topology. The notion of irreducibility is refered to the Zariski topology. Let
+X be a real algebraic set. We indicate by Nonsing(X) the set of nonsingular
+points of X of maximum dimension and by Sing(X) the set X \ Nonsing(X). If
+X = Nonsing(X), then X is called nonsingular. We deﬁne the Zariski dimension
+of X as the maximum dimension of the Zariski tangent spaces of X. Let Y be
+another real algebraic set and let h : X −→ Y be a semialgebraic homeomorphism.
+We say that h is good if h(Sing(X)) = Sing(Y ), the restriction of h from Sing(X)
+to Sing(Y ) is a biregular isomorphism and the restriction of h from Nonsing(X)
+to Nonsing(Y ) is a Nash isomorphism.
+   Let us introduce the notion of semialgebraic deformation of a real algebraic set.
+Definition. Let X and X ∗ be real algebraic sets and let π : X ∗ −→ R be a regular
+function. A continuous semialgebraic map ξ : X ∗ −→ X is called semialgebraic
+deformation of X parametrized by π if the restriction of ξ to π −1 (0) is a biregular
+isomorphism and the map h := (ξ, π) : X ∗ −→ X × R is a semialgebraic home-
+omorphism. Furthermore, if h is good (resp. h is a Nash isomorphism), then ξ
+is said to be a good semialgebraic deformation (resp. a Nash deformation) of X
+parametrized by π.
+   Let X be a real algebraic set, let ξ : X ∗ −→ X be a semialgebraic deformation of
+X parametrized by π : X ∗ −→ R and let t ∈ R. It is immediate to verify that the
+restriction of ξ to π −1 (t) is a semialgebraic homeomorphism and, if ξ is good, the
+following hold: the restriction of ξ from π −1 (t)∩Sing(X ∗ ) to Sing(X) is a biregular
+isomorphism, π −1 (t) \ Sing(X ∗ ) ⊂ Nonsing(π −1 (t)) and the restriction of ξ from
+π −1 (t) \ Sing(X ∗ ) to Nonsing(X) is a Nash isomorphism. The reader observes
+that, when X is nonsingular, the notions of good semialgebraic deformation and
+of Nash deformation of X coincide.
+   We are now in position to state our main theorem.
+
+Theorem 1. Let X be a real algebraic set of positive dimension r and let z be
+its Zariski dimension. Then there exist an integer N = N (r, z) depending only on
+r and z, an algebraic subset X ∗ of RN × R and, denoting by π : X ∗ −→ R the
+restriction to X ∗ of the natural projection of RN × R onto the last factor R, a good
+semialgebraic deformation ξ : X ∗ −→ X of X parametrized by π such that, for
+each t ∈ R \ {0}, π −1 (t) is irreducible.
+
+  As a consequence, we obtain:
+
+Corollary 2. Every real algebraic set of positive dimension is irreducible up to a
+good semialgebraic homeomorphism.
+
+  In the nonsingular case, the preceding results can be restated as follows:
+774                                                     Oberwolfach Report 14/2007
+
+Theorem 3. For each nonsingular real algebraic set X of positive dimension,
+there exists a Nash deformation ξ : X ∗ −→ X of X parametrized by a regular
+submersion π : X ∗ −→ R such that, for each t ∈ R \ {0}, π −1 (t) is an irreducible
+nonsingular real algebraic set.
+
+Corollary 4. Every nonsingular real algebraic set of positive dimension is Nash
+isomorphic to an irreducible nonsingular real algebraic set.
+
+  The compact case of the latter result was originally proved by Tognoli in [5].
+  We have a conjecture:
+
+Conjecture. In Theorem 3, the adjective “nonsingular” can be omitted. In
+particular, every real algebraic set of positive dimension is Nash isomorphic to
+an irreducible real algebraic set.
+
+
+2. Sketch of the proof
+
+  Our proof of the main theorem is quite long and technical. Here, we sketch the
+proof of Corollary 2. The ideas presented below to prove this corollary are the
+same we use to prove the main theorem.
+
+Sketch of the proof of Corollary 2. We organize the proof into six steps.
+   Step I: compactification. Let X be an algebraic subset of Rn of dimension r > 0
+and let S := Sing(X). Since the Alexandrov compactiﬁcation of X can be made
+algebraic, we may suppose that X is compact.
+   Step II: resolution of singularities. By Hironaka’s resolution theorem, there
+exist a compact nonsingular real algebraic set e   X, a ﬁnite union A of nonsingular
+hypersurfaces of X   e in general position and a regular map π : X     e −→ X such that
+       −1                                    e
+A = π (S) and the restriction of π from X \A to X \S is a biregular isomorphism.
+   Step III: Tognoli’s approximation technique. By a classical approximation tech-
+nique due to Tognoli [5], we may suppose that X    e is irreducible.
+   Step IV: adding a tail. Making use of a translation if needed, we may suppose
+that S is contained in the half space {x̄ = (x1 , . . . , xn ) ∈ Rn | x1 ≤ −2}. Let q be
+a polynomial in R[x̄] such that S = q −1 (0). Identify Rn with Rn × {0}       P⊂  Rn+1 .
+                                                                                n
+For each t ∈ R, deﬁne Qt ∈ R[x̄, y] by the formula (y + q (x̄))(y + i=1 x2i −
+                                                              2    4      2
+
+1) + t(y 2 + 2q 4 (x̄)). Observe that Q−1 0  is equal to the disjoint union of S and
+of the standard sphere S n of Rn+1 . Moreover, for each t ∈ R, S is contained
+in Q−1
+     t (0). It is easy to see that, for each t ∈ R \ {0}, Qt is irreducible as
+element of C[x̄, y]. Choosing a small positive real number t, the algebraic subset
+T := Q−1t (0) of R
+                      n+1
+                          is irreducible and equal to the disjoint union of S and of
+a Nash submanifold M of Rn+1 arbitrarily close to S n . Since S is algebraic and
+disjoint from M , there is a regular map ρ : T ′ −→ T from a nonsingular real
+algebraic set T ′ to T such that ρ(T ′ ) = M and the restriction of ρ from T ′ to
+M is a Nash isomorphism. Consider the product variety X           e × Rn+1−r (which is
+Reelle Algebraische Geometrie                                                                 775
+
+irreducible) and let ψ : T ′ −→ X e × Rn+1−r be a Nash embedding whose image is
+contained in a contractible open subset of (X e \A)×(Rn+1−r \{0}). Such a ψ exists
+because dim(X  e × Rn+1−r ) = n + 1 and T ′ is Nash diﬀeomorphic to S n . Improving
+Theorem 4 and Lemma 5 of [1], we may suppose that T ′′ := ψ(T ′ ) is a nonsingular
+algebraic subset of X  e × Rn+1−r and ψ : T ′ −→ T ′′ is a biregular isomorphism.
+Indicate by g : T −→ T the regular map ρ ◦ ψ −1 . Applying an improved version
+                  ′′
+
+of the Real Algebraic Blowing Down Lemma (see Proposition 2.6.1 of [2]) to the
+                           g
+data Xe × Rn+1−r ⊃ T ′′ −→    T , we obtain an irreducible algebraic subset P of some
+  N
+R homeomorphic to (X      e × Rn+1−r )∪g T , containing (A× Rn+1−r )∪(X    e × {0}) and
+equal to the disjoint union of S and of a Nash submanifold P ′ of RN arbitrarily
+         e × Rn+1−r .
+close to X
+   Step V: Dubois–Efroymson cut. In 1974, Dubois and Efroymson [3] proved the
+following dimension theorem: “Let W be an irreducible real algebraic set and let
+Z be an algebraic subset of W such that c := dim(W ) − dim(Z) ≥ 2. Then there
+exists an irreducible algebraic subset of W of codimension 1 containing Z”. In [4],
+we improve this result as follows: “Let e ∈ {1, . . . , c − 1} and let F : W −→ Re
+be a regular map vanishing on Z. Suppose there is a nonsingular point p of W
+such that F (p) = 0 and the rank of the diﬀerential of F at p is equal to e. Then
+there exists a regular map G : W −→ Re such that, for each t ∈ (−1, 1) \ {0},
+the set {w ∈ W | F (w) + tG(w) = 0} is an irreducible algebraic subset of W of
+codimension e containing Z”. Applying the latter result to the real algebraic sets
+P ⊃ S, we obtain an irreducible real algebraic set X ∗ equal to the disjoint union
+of S and of a Nash submanifold M ∗ of RN arbitrarily close to X       e × {0}. Observe
+that the set A∗ := (A × Rn+1−r ) ∩ M ∗ is algebraic and the natural projection
+µ : A∗ −→ A is a Nash isomorphism.
+   Step VI: real algebraic blowing down. Deﬁne the regular map f : A∗ ⊔ S −→ S
+by f (x) := π(µ(x)) if x ∈ A∗ and f (x) := x if x ∈ S. By the above–mentioned
+Real Algebraic Blowing Down Lemma, X ∗ ∪f S is homeomorphic to an irreducible
+real algebraic set X ′ . By construction of X ∗ and of X ′ , it follows the existence of
+a good semialgebraic homeomorphism from X to X ′ . 
+
+
+
+
+                                         References
+ [1] Akbulut, S., King, H.C.: A resolution theorem for homology cycles of real algebraic varieties,
+     Invent. Math. 79 (1985), no. 3, 589–601.
+ [2] Akbulut S., King H.C.: Topology of Real Algebraic Sets, Mathematical Sciences Research
+     Institute Publications, no. 25, Springer–Verlag, New York, 1992.
+ [3] Dubois D., Efroymson G.: A dimension theorem for real primes, Canad. J. Math. 26 (1974),
+     no. 1, 108–114.
+ [4] Ghiloni, R.: Equations and complexity for the Dubois–Efroymson dimension theorem, (to
+     appear).
+ [5] Tognoli, A.: Une remarque sur les approximations en géométrie algébrique réelle. (French)
+     [A remark on approximations in real algebraic geometry], C. R. Acad. Sci. Paris Sér. I Math.
+     296 (1983), no. 17, 745–747.
+776                                                     Oberwolfach Report 14/2007
+
+          Rational real algebraic models of topological surfaces
+                            Johannes Huisman
+                         (joint work with I. Biswas)
+
+
+Let X be a nonsingular rational real projective surface. Then the set X(R) of
+real points of X is a compact connected topological surface. Comessatti showed
+that X(R) is either nonorientable, or it is diﬀeomorphic to one of S 2 and S 1 ×S 1 [2].
+Conversely, each of these topological surfaces admits a rational real algebraic model,
+or rational model for short. In other words, if S is a compact connected topological
+surface which is either nonorientable or diﬀeomorphic to one of S 2 and S 1 × S 1 ,
+then there is a nonsingular rational real projective surface X such that X(R) is
+diﬀeomorphic to S.
+   Two rational models X and Y of S are said to be isomorphic if there is a
+birational map
+                                     f : X 99K Y
+such that X(R) is contained in the domain of deﬁnition of f , and
+
+                               f|X(R) : X(R) −→ Y (R)
+
+is a diﬀeomorphism. Equivalently, X and Y are isomorphic models if and only if
+the real algebraic varieties X(R) and Y (R) are biregularly isomorphic in the sense
+of [1] (see [5, p. 517–518]).
+   We address the following question. Given a compact connected topological
+surface S, what is the number of nonisomorphic rational models of S?
+   It is known that the topological surfaces S 2 , S 1 × S 1 and P2 (R) have exactly
+one rational model, up to isomorphism. Mangolte has shown that the same holds
+for the Klein bottle (the 2-fold connected sum of the real projective plane) [4,
+Theorem 1.3].
+   Mangolte asked how large n should be so that the n-fold connected sum of the
+real projective plane admits more than one rational model, up to isomorphism;
+see the comments following Theorem 1.3 in [4]. The following theorem shows that
+there is no such integer n.
+
+Theorem 1. Let S be a compact connected real two-manifold. Assume that S is
+either nonorientable, or it is diffeomorphic to one of S 2 and S 1 × S 1 . Then there
+is exactly one rational model of S, up to isomorphism. In other words, any two
+rational models of S are isomorphic.
+
+   Our proof is based on the Minimal Model Program for real algebraic surfaces
+developed in [3], and some explicit constructions of birational maps between real
+algebraic surfaces whose restrictions to the real points are diﬀeomorphisms.
+
+  Acknowledgement. The author thanks the Tata Institute of Fundamental
+Research for its hospitality.
+Reelle Algebraische Geometrie                                                                777
+
+                                        References
+ [1] Bochnak, J., Coste, M., Roy, M.-F.: Géométrie algébrique réelle, Ergeb. Math. 3.Folge,
+     Bd. 12, Springer Verlag, 1987
+ [2] Comessatti, A.: Sulla connessione delle superﬁzie razionali reali, Annali di Math. 23 (1914),
+     215–283
+ [3] Kollár, J.: The topology of real algebraic varieties. Current developments in mathematics,
+     Int. Press, Somerville (2001), 197–231
+ [4] Mangolte, F.: Real algebraic morphisms on 2-dimensional conic bundles, Adv. Geom. 6
+     (2006), no. 2, 199–213, arXiv:math.AG/0310325
+ [5] Ronga, F., Vust, T.: Diﬀeomorﬁsmi birazionali del piano proiettivo reale, Comm. Math.
+     Helv. 80 (2005), 517–540
+
+
+
+
+                       Tropical Welschinger invariants
+                                Ilia Itenberg
+          (joint work with Viatcheslav Kharlamov and Eugenii Shustin)
+
+
+The talk is devoted to an enumeration of real rational curves interpolating ﬁxed
+collections of real points in a real algebraic surface Σ, more precisely, to the fol-
+lowing question: given a real divisor D and a generic collection w of c1 (Σ) · D − 1
+real points in Σ, how many of the complex rational curves belonging to the linear
+system |D| and passing through the points of w are real ? By rational curves we
+mean irreducible genus zero curves and their degenerations, so that they form in
+|D| a projective subvariety S(Σ, D); this subvariety is called the Severi variety. A
+curve on a real surface Σ is called real, if the curve is invariant under the involution
+c : Σ → Σ deﬁning the real structure of Σ.
+    While, under mild conditions on Σ and D, the number of complex curves in ques-
+tion is the same for all generic collections w (it equals to the degree of S(Σ, D)),
+it is no more the case for real curves (except few very particular situations).
+    J.-Y. Welschinger [8, 9] discovered a way to attribute weights ±1 to the real
+solutions in question so that the number of real solutions counted with weights
+becomes independent of the choice of a generic collection of real points. As an
+immediate consequence, the absolute value of the Welschinger invariant WΣ,D
+provides a lower bound on the number RΣ,D (w) of real solutions: RΣ,D (w) ≥
+|WΣ,D |.
+    In some cases (for example, in the case of toric Del Pezzo surfaces; recall
+that there are ﬁve toric Del Pezzo surfaces: the projective plane P2 , the prod-
+uct P1 × P1 of projective lines, and P2 with k blown up points in general position,
+where k = 1, 2 or 3) Welschinger invariants can be calculated using Mikhalkin’s
+approach [5, 6] which deals with a corresponding count of tropical curves. In trop-
+ical geometry, complicated non-linear algebro-geometric objects are replaced by
+simpler piecewise-linear ones. For example, tropical plane curves are piecewise-
+linear graphs whose edges have rational slopes. Tropical curves can be seen as
+algebraic curves over the tropical semiring (max, +).
+778                                                         Oberwolfach Report 14/2007
+
+   Using the tropical approach, we proved (see [1]) the logarithmic equivalence
+for the Welschinger and Gromov-Witten invariants of any toric Del Pezzo sur-
+face equipped with its tautological real structure, i.e., the real structure which is
+provided by the toric structure.
+Theorem 1 (see [1]). Let Σ be a toric Del Pezzo surface equipped with its tauto-
+logical real structure, and D an ample divisor on Σ. The sequences log WΣ,nD and
+log GWΣ,nD , n ∈ N, of the Welschinger invariants and the corresponding Gromov-
+Witten invariants are asymptotically equivalent. More precisely, log WΣ,nD =
+log GWΣ,nD + O(n) and log GWΣ,nD = (c1 (Σ) · D) · n log n + O(n).
+
+   We also deﬁned (see [2]) a series of relative tropical Welschinger-type invariants
+of real toric surfaces. In the Del Pezzo case, these invariants can be seen as real
+tropical analogs of relative Gromov-Witten invariants, and are subject to recursive
+formulas of Caporaso-Harris type.
+   In the present talk, we consider generic collections of real points on the pro-
+jective plane blown up at 4 real points in general position and prove that the
+logarithmic equivalence of the Welschinger and Gromov-Witten invariants holds
+in this situation as well.
+Theorem 2. Let Σ be the projective plane P2 blown up at 4 real points in general
+position, and D an ample divisor on Σ. The sequences log WΣ,nD and log GWΣ,nD ,
+n ∈ N, of the Welschinger invariants and the corresponding Gromov-Witten in-
+variants are asymptotically equivalent.
+
+   The proof is based on a new version of the correspondence theorem, whose proof
+in turn uses an appropriate tropical Caporaso-Harris type formulas. In particular,
+we get recursive formulas that allow one to calculate Welschinger invariants of P2
+blown up at 4 real points in general position.
+
+
+                                       References
+ [1] I. Itenberg, V. Kharlamov, and E. Shustin, Logarithmic equivalence of Welschinger and
+     Gromov-Witten invariants, Russian Math. Surveys 59 (2004), no. 6, 1093–1116.
+ [2] I. Itenberg, V. Kharlamov, and E. Shustin, A Caporaso-Harris type formula for Welschinger
+     invariants of real toric Del Pezzo surfaces. Preprint math.AG/0608549, 2006, 1 - 39 (to
+     appear in Commentarii Math. Helvetici).
+ [3] M. Kapranov Amoebas over non-Archimedean fields, Preprint, 2000.
+ [4] M. Kontsevich and Ya. Soibelman Homological mirror symmetry and torus fibrations,
+     Preprint, arXiv: math.SG/0011041, 2000.
+ [5] G. Mikhalkin, Counting curves via the lattice paths in polygons, Comptes Rend. Acad. Sci.
+     Paris, Sér. I, 336 (2003), no. 8, 629–634.
+ [6] G. Mikhalkin, Enumerative tropical algebraic geometry in R2 , J. Amer. Math. Soc. 18
+     (2005), 313–377.
+ [7] O. Viro, Dequantization of Real Algebraic Geometry on a Logarithmic Paper, Proceedings of
+     the 3rd European Congress of Mathematicians, Birkhäuser, Progress in Math. 201, (2001),
+     135–146.
+ [8] J.-Y. Welschinger, Invariants of real rational symplectic 4-manifolds and lower bounds in
+     real enumerative geometry, C. R. Acad. Sci. Paris, Sér. I, 336 (2003), 341–344.
+Reelle Algebraische Geometrie                                                             779
+
+ [9] J.-Y. Welschinger, Invariants of real symplectic 4-manifolds and lower bounds in real enu-
+     merative geometry, Invent. Math. 162 (2005), no. 1, 195–234.
+
+
+   Sums of hermitian squares, Connes’ embedding problem and the
+                           BMV Conjecture
+                              Igor Klep
+                 (joint work with Markus Schweighofer)
+
+    Throughout this note R will denote an associative ring with 1. If R is endowed
+with an involution x 7→ x∗ , we denote byP         Sym(R) := {x ∈ R | x = x∗ } the set
+                                                     m
+of hermitian elements and by Σ2 (R) := { i=1 x∗i xi | m ∈ N, xi ∈ R} ⊆ Sym(R)
+the set of sums of hermitian squares. We introduce an equivalence relation (cyclic
+                                               cyc
+equivalence) on R by declaring that x ∼ y means that x − y is a sum of commu-
+tators in R.
+    Let k ∈ {R, C} and let ks×s be the k-algebra of square matrices over k of
+size s ∈ N := {1, 2, . . . } with the involution A 7→ A∗ , where A∗ is the conjugate
+transpose of A. It is easy to show that for all A ∈ Sym(ks×s ),
+(a) A is positive semideﬁnite ⇔ A ∈ Σ2 (ks×s );
+                           cyc
+(b) tr(A) = 0 ⇔ A ∼ 0;
+(c) tr(A) ≥ 0 ⇔ ∃B ∈ Σ2 (ks×s ) : A ∼ B,
+                                             cyc
+
+where tr denotes the trace of a matrix. Let n ∈ N, X̄ := (X1 , . . . , Xn ) be variables
+(or symbols) and let hX̄i be the semigroup generated freely by X̄ whose elements
+are words in the n letters X1 , . . . , Xn (including the empty word 1). Let khX̄i
+denote the corresponding semigroup algebra, i.e., the free associative k-algebra
+over X̄ consisting of polynomials in n noncommuting variables X̄ with coeﬃcients
+in k. We endow this ring with the involution p 7→ p∗ given by Xi∗ = Xi and a∗ = a
+for a ∈ k. For each word w ∈ hX̄i, w∗ is thus the reverse word. Given f ∈ khX̄i,
+we say that:
+(a),(a)’ f is positive semideﬁnite everywhere (on the hypercube) if
+          f (A1 , . . . , An ) is positive semideﬁnite for all s ∈ N and (contractions)
+          Ai ∈ Sym(ks×s );
+(b),(b)’ the trace of f vanishes everywhere (on the hypercube) if
+          tr(A1 , . . . , An ) = 0 for all s ∈ N and (contractions) Ai ∈ Sym(ks×s );
+ (c),(c)’ the trace of f is nonnegative everywhere (on the hypercube) if
+          tr(A1 , . . . , An ) ≥ 0 for all s ∈ N and (contractions) Ai ∈ Sym(ks×s ).
+A contraction is a matrix A with kAk ≤ 1 and the hypercube is the set
+                   {(A1 , . . . , An ) ∈ Sym(Rs×s )n | s ∈ N, kAi k ≤ 1}.
+    One can ask if these geometric conditions can be translated into algebraic iden-
+tities in the algebra khX̄i which are analogous to the case of the algebra ks×s .
+Despite the huge activity in the commutative case, these “noncommutative ques-
+tions” have been hardly examined before the breakthrough work of Helton [Hel]
+in 2002 (cf. McCullough and Putinar [MP]):
+780                                                   Oberwolfach Report 14/2007
+
+(a) f ∈ Sym(khX̄i) is positive semideﬁnite everywhere ⇔ f ∈ Σ2 (khX̄i).
+Later Helton and McCullough [HM] studied (a)’, proving:
+(a)’ f ∈ Sym(khX̄i) is positive semideﬁnite on the hypercube ⇔
+     ∀ε > 0 : f + ε ∈ MkhX̄i .
+Here MkhX̄i denotes the quadratic module generated by {1 − X12 , . . . , 1 − Xn2 } in
+                          P
+khX̄i, i.e., MkhX̄i = {σ + i,j gij∗ (1 − Xi2 )gij | σ ∈ Σ2 , gij ∈ khX̄i}.
+
+   In our joint work [KS1, KS2] we study (b), (b)’, (c) and (c)’. We prove that for
+all f ∈ Sym(khX̄i),
+(b), (b)’ the trace of f vanishes everywhere (on the hypercube) ⇔ f ∼ 0.
+  We also prove the following variant of (c):
+Theorem. For f ∈ ChX̄i, τ (f (A1 , . . . , An )) ≥ 0 for every separable II1 -factor
+F with trace τ and all contractions A1 , . . . , An ∈ Sym(F ) ⇔ for every ε ∈ R>0 ,
+      cyc
+f + ε ∼ g ∈ MChX̄i for some g ∈ ChX̄i.
+   We were able to show that the matrix variant of (c) is equivalent to a problem
+of Alain Connes [Con] concerning von Neumann algebras and dating back to 1976.
+Connes’ Conjecture. Let R denote the hyperfinite and let F be a separable type
+II1 factor. If U is a free ultrafilter on N, then F can be embedded (as a ring with
+involution) in the ultraproduct RU .
+   Here RU is an ultraproduct in the sense of von Neumann algebras with trace
+and is itself a factor of type II1 . This embedding problem has recently gained a
+lot of attention: Kirchberg [Kir] has shown in 1993 that it is equivalent to some
+interesting problems in the theory of operator algebras and Banach spaces.
+Algebraic reformulation of Connes’ Conjecture. If f ∈ Sym(RhX̄i) and
+the trace of f is nonnegative on the hypercube, then for every ε > 0 there is a
+                           cyc
+g ∈ MRhX̄i such that f + ε ∼ g.
+   This algebraic formulation entails entirely new approaches to Connes’ problem.
+Under the hypothesis that the conjecture holds, we were for example able to prove
+a version with bounds on the degree of the representation using the theory of
+real closed ﬁelds, valuation theory and model theory. Moreover, it is possible to
+systematically consider polynomials in few variables or of small degree to obtain
+ideas. We could already show that the conjecture holds for a certain class of
+polynomials in two variables. Finally, one can do numerical experiments to test
+special classes of polynomials. It is in fact possible to maximize λ ∈ R such that
+f − λ has the desired representation by solving a sequence of SDPs.
+
+   For the remainder of this note let n = 2 and write (X, Y ) instead of (X1 , X2 ).
+In [KS2] we give examples of polynomials f ∈ Sym(khX, Y i) such that the trace
+of f is nonnegative everywhere, but there are no g ∈ Σ2 (khX, Y i) with f ∼ g.
+                                                                             cyc
+Reelle Algebraische Geometrie                                                                  781
+
+(One may even replace f by f + λ for λ > 0 and still get the same conclusion.)
+One particular example of such a polynomial is
+    f     := X 6 Y 6 + X 4 Y 2 X 2 Y 4 + X 4 Y 4 X 2 Y 2 + X 4 Y 6 X 2 + X 2 Y 2 X 4 Y 4 +
+                X 2 Y 2 X 2Y 2 X 2 Y 2 + X 2 Y 2 X 2 Y 4 X 2 + X 2Y 4 X 4 Y 2 +
+                X 2 Y 4 X 2Y 2 X 2 + X 2 Y 6 X 4 + Y 2 X 6 Y 4 + Y 2 X 4 Y 2 X 2Y 2 +
+                Y 2 X 4 Y 4 X 2 + Y 2 X 2 Y 2 X 4Y 2 + Y 2 X 2Y 2 X 2 Y 2 X 2 +
+                Y 2 X 2 Y 4 X 4 + Y 4 X 6 Y 2 + Y 4 X 4 Y 2 X 2 + Y 4 X 2Y 2 X 4 + Y 6 X 6 .
+   This polynomial is related to the so-called Bessis-Moussa-Villani (BMV) conjec-
+ture [BMV] from theoretical physics. An easily accessible equivalent formulation
+due to Lieb and Seiringer [LS] is the following:
+Bessis-Moussa-Villani Conjecture. Whenever        A, B ∈ Sym(ks×s ) are positive
+                                        m
+semidefinite, the polynomial tr (A + tB)    ∈ R[t] has nonnegative coefficients.
+   The coeﬃcient of tk in p is the trace of Sm,k (A, B), the sum of all words of
+length m in A and B, in which exactly k B’s appear. It is known that the trace of
+Sm,k (A, B) is nonnegative for all positive semideﬁnite A, B in the following cases:
+    (1) k ≤ 2 or m − k ≤ 2       (2) s ≤ 2
+    (3) m = 6 [Hi]               (4) m = 7 [Hae].
+   In [KS2] we use sums of hermitian squares to study the conjecture, e.g. with
+                      f1    :=    3X 3 Y 4 X 2 ∈ khX, Y i,
+                      f2    :=    3X 5 Y 4 + 3X 3 Y 2 X 2 Y 2 + 3XY 2 X 4 Y 2 ∈ khX, Y i,
+                      f3    :=    3XY 2 X 2 Y 2 X 2 + 3XY 4 X 4 ∈ khX, Y i,
+                            cyc
+        S9,4 (X 2 , Y 2 )   ∼     f1∗ f1 + f2∗ f2 + f3∗ f3 ,
+showing that the trace of S9,4 (A, B) is nonnegative for positive semideﬁnite A, B.
+On the other hand, S9,3 (X 2 , Y 2 ) is not cyclically equivalent to an element of
+Σ2 (khX, Y i). Nevertheless, we were able to prove:
+Theorem. The BMV conjecture holds for m ≤ 9.
+
+                                            References
+[BMV] D. Bessis, P. Moussa, M. Villani: Monotonic converging variational approximations to
+      the functional integrals in quantum statistical mechanics, J. Math. Phys. 16, 2318–2325
+      (1975).
+[Con] A. Connes: Classiﬁcation of injective factors. Cases II1 , II∞ , IIIλ , λ 6= 1, Ann. Math.
+      (2) 104, 73–115 (1976)
+[Hae] D. Hägele: Proof of the cases p ≤ 7 of the Lieb-Seiringer formulation of the Bessis-
+      Moussa-Villani conjecture, preprint (2007) http://arxiv.org/abs/math.FA/0702217
+[Hel] J.W. Helton:       “Positive” noncommutative polynomials are sums of squares, Ann.
+      Math. (2) 156, 675–694 (2002)
+[HM] J.W. Helton, S. McCullough: A positivstellensatz for non-commutative polynomials,
+      Trans. Amer. Math. Soc. 356, (2004) 3721–3737
+[Hi]  C. Hillar: Advances on the Bessis-Moussa-Villani Trace Conjecture, preprint (2006)
+      http://www.math.tamu.edu/~ chillar/
+782                                                          Oberwolfach Report 14/2007
+
+[Kir]     E. Kirchberg: On non-semisplit extensions, tensor products and exactness of group
+          C ∗ -algebras, Invent. Math. 112, 449–489 (1993)
+[KS1]     I. Klep, M. Schweighofer: Connes’ embedding conjecture and sums of hermitian
+          squares, preprint (2006) http://arxiv.org/abs/math.OA/0607615
+[KS2]     I. Klep, M. Schweighofer: Sums of hermitian squares and the BMV conjecture, in
+          preparation.
+[LS]      E.H. Lieb, R. Seiringer: Equivalent forms of the Bessis-Moussa-Villani conjecture, J.
+          Stat. Phys. 115, 185–190 (2004).
+[MP]      S. McCullough, M. Putinar: Non-commutative sums of squares, Paciﬁc J. Math. 218,
+          167–171 (2005)
+
+
+
+
+        On the Schur-Szegö composition of polynomials in one variable
+                         Vladimir Petrov Kostov
+                        (joint work with Boris Shapiro)
+
+
+
+Definition 1. A polynomial in one variable is called hyperbolic if it has only real
+roots. We write HP for “hyperbolic polynomial”.
+                                                                          Pn     i    i
+   The Schur-Szegö
+         Pn                composition of two polynomials
+                                                      P       P (x) =      i=0 Cn ai x and
+                   i       i                             n    i        i
+Q(x) =      i=0 Cn bi x is given by P ∗ Q(x) =           i=0 Cn ai bi x . Let P oln denote
+the linear space of all polynomials in x of degree ≤ n. We always use its basis
+B := (xn , xn−1 , . . . , 1). To P ∈ P oln one can associate the operator TP determined
+by the condition: TP (1+x)n = P (x). One has TP (xi ) = ai , i = 0, 1, . . . , n. We refer
+to the sequence {ai } as to the diagonal sequence of P . Any two such operators TP
+and TQ commute and their product TP TQ corresponds to P ∗ Q. The Schur-Szegö
+composition theorem reads:
+
+Theorem 2. Given any linear-fractional image K of the unit disk containing all
+the roots of P one has that any root of P ∗ Q is the product of some root of Q by
+−γ where γ ∈ K.
+
+   Denote by Hypn ⊂ P oln the set of all HPs and by Hyp+              −
+                                                         n (resp. Hypn ) its subset
+of HPs with all positive (resp. all negative) roots. Denote by Hu,v,w ⊂ Hypn
+(u, v, w ∈ N ∪ 0, u + v + w = n) the set of all HPs with u negative and w positive
+roots and a v-fold zero root.
+
+Proposition 3. If P, Q ∈ Hypn and if Q ∈ Hyp+                  −
+                                                 n or Q ∈ Hypn , then P ∗ Q ∈
+Hypn . Moreover, all roots of P ∗ Q lie in [−M, −m] where M is the maximal and
+m is the minimal pairwise product of roots of P and Q.
+
+   A diagonal sequence, (or an operator T : P oln → P oln acting diagonally in B) is
+called a finite multiplier sequence (FMS), if it sends Hypn into Hypn . The set Mn
+of all FMS is a semigroup. The following theorem deﬁnes a linear diﬀeomorphism
+                 +          −
+of Mn and Hypn ∪ Hypn .
+Reelle Algebraische Geometrie                                                           783
+
+Theorem 4. For T ∈End(P olkR ) the following two conditions are equivalent:
+    (i) T is a finite multiplier sequence;
+                                                             P
+   (ii) All different from 0 roots of the polynomial PT (x) = kj=0 Ckj γj xj are of
+        the same sign.
+
+Proposition 5. (see [KoSh]) Given P , Q ∈ P olnC such that xP , xQ are roots
+respectively of P , Q of multiplicity mP , mQ with mP + mQ ≥ n, one has that
+−xP xQ is a root of P ∗ Q of multiplicity mP + mQ − n. (If mP + mQ = n, then
+−xP xQ is not a root of P ∗ Q.)
+
+Remark 6. If mP > 0, mQ > 0 and mP + mQ < n, then −xP xQ might or might
+not be a root of P ∗ Q. Example: −1 is a root of ((x − 1)(x − 2)(x − 3)) ∗ ((x −
+1)(x − 4)(x − d)) iﬀ d = 17/23.
+
+Proposition 7. (see [KoSh]) For any P ∈ Hu,v,w and any Q ∈ Hyp− n one has
+P ∗ Q ∈ Hu,v,w . In particular, Hyp−
+                                   n is a semigroup w.r.t. the Schur-Szegö
+composition.
+
+   The roots of P , Q and P ∗ Q involved in Proposition 5 (i.e. of the form −xP xQ
+where mP + mQ > n) are called A-roots, the remaining roots of P , Q, P ∗ Q are
+called B-roots. With one exception – if 0 is a root of P , then it is considered as
+A-root of P ∗ Q. Associate to P ∈ Hypn its multiplicity vector (i.e. the vector
+whose components are the multiplicities of the distinct roots of P listed in the
+increasing order). For a root α of P ∈ Hypn denote by [α]− (resp. [α]+ ) the total
+number of roots of P to the left (resp. to the right) of α and by sign(α) the sign
+of α.
+
+Theorem 8. (see [KoSh]) For any P ∈ Hypn and Q ∈ Hyp−         n the multiplicity
+vector of P ∗ Q is uniquely determined by Proposition 7 and the following condi-
+tions:
+    (i) For any A-root α 6= 0 of P and any A-root β of Q one has [−αβ]− =
+        [α]− + [β]sign(α) .
+   (ii) Every B-root of P ∗ Q is simple.
+
+Corollary 9. The Schur-Szegö composition restricted to Hyp−              n induces a semi-
+group structure on the set of all multiplicity vectors considered as ordered partitions
+of n. E.g. (2, 14, 1) ∗ (5, 6, 6) = (1, 1, 2, 1, 1, 1, 3, 1, 1, 1, 3, 1).
+
+
+
+
+                                      References
+[KoSh]   V.P. Kostov, B.Z. Shapiro, On the Schur-Szegö composition of polynomials, C.R.A.S.
+         Sér. I 343 (2006) 81 – 86.
+784                                                    Oberwolfach Report 14/2007
+
+       Real algebraic morphisms represent few homotopy classes
+                            Wojciech Kucharz
+                      (joint work with Jacek Bochnak)
+
+
+   Let Y be a compact nonsingular real algebraic set. We deﬁne a numerical
+invariant β(Y ) to be the supremum of all nonnegative integers n with the following
+property: for every n-dimensional compact connected nonsingular real algebraic
+set X, every continuous map from X into Y is homotopic to a regular map. One
+easily sees that if d is an integer satisfying 0 ≤ d ≤ β(Y ), then every continuous
+map from any d-dimensional compact connected nonsingular real algebraic set
+into Y is homotopic to a regular map. There is a subtle connection between β(Y )
+and the subgroups Hialg (Y, Z/2) of Hi (Y, Z/2), i ≥ 0, generated by the homology
+classes represented by i-dimensional algebraic subsets of Y .
+                                   alg
+Theorem 1. If dim Y = p and Hp−k       (Y, Z/2) 6= 0 for some k ≥ 1, then β(Y ) ≤ k.
+In particular, β(Y ) ≤ dim Y , provided dim Y ≥ 1.
+
+  This result has the following two consequences.
+
+Corollary 2. If the k-th Stiefel-Whitney class of Y is nonzero for some k ≥ 1,
+then β(Y ) ≤ k. In particular, β(Y ) = 0 or β(Y ) = 1, provided Y is nonorientable.
+
+Corollary 3. If dim Y = p and Hk (Y, Z/2) 6= 0 for some k satisfying 0 < k < p,
+then
+                      
+                        max{k, p − k} − 1 ≤ p − 2 for k 6= p2
+              β(Y ) ≤   p
+                        2                            for k = p2
+
+   The computation of the exact value of β(Y ) is hard, except in some special
+cases. If dim Y = 0, then β(Y ) = ∞. For dim Y = 1, we have β(Y ) = 1 if Y is
+rational, and β(Y ) = 0 otherwise. The case dim(Y ) = 2 is more complicated.
+
+Theorem 4. Assume dim Y = 2. Then β(Y ) = 0 or β(Y ) = 1, and either value
+can occur. If Y is either rational or homeomorphic to the 2-sphere, then β(Y ) = 1.
+
+   There are several conjectures related to the problem under consideration. We
+only mention two of them.
+
+Conjecture 5. If dim Y ≥ 2, then β(Y ) ≤ dim Y −1. In particular, β(S n ) = n−1
+for n ≥ 2, where S n is the unit n-sphere.
+
+  It follows from Theorem 1 and [2] that β(S n ) = n − 1 if n is even.
+
+Conjecture 6. For any pair (n, p) of nonnegative integers, every continuous map
+from S n into S p is homotopic to a regular map.
+
+  This conjecture is true for some pairs (n, p), c.f. [1, 5, 6]
+Reelle Algebraische Geometrie                                                            785
+
+                                      References
+ [1] J. Bochnak, M. Coste and M.-F. Roy, Real Algebraic Geometry, Ergebnisse der Math. und
+     ihrer Grenzgeb. Folge (3) 36, Berlin, Heidelberg, New York, Springer (1998).
+ [2] J. Bochnak and W. Kucharz, On real algebraic morphisms into even-dimensional spheres,
+     Ann. of Math. 128 (1988), 415–433.
+ [3] J. Bochnak and W. Kucharz, The Weierstrass approximation theorem for maps between
+     real algebraic varieties, Math. Ann. 314 (1999), 601–612.
+ [4] R. Ghiloni, Second order homological obstructions and global Sullivan-type conditions on
+     real algebraic varieties, preprint.
+ [5] J. Peng and Z. Tang, Algebraic maps from spheres to spheres, Science in China (Series A)
+     4(11) (1999), 1147–1154.
+ [6] R. Wood, Polynomial maps from spheres to spheres, Invent. Math. 5 (1968), 163–168.
+
+
+
+
+            Positive polynomials and fibre products of varieties
+                            Salma Kuhlmann
+
+
+Approximation of positive polynomials by sums of squares originates around
+Hilbert’s 17th problem, and has today important applications to polynomial opti-
+misation.
+   In the ﬁrst part of my talk, I will survey the main recent results achieved on that
+topic: I will consider positive (respectively, non-negative) polynomials on compact
+(respectively, unbounded) semi-algebraic sets. I will discuss representations in
+the associated preorderings (respectively, linear representations in the associated
+quadratic module). The representation often depends on the dimension of the
+semi-algebraic set; I will present stronger results in the low dimensional case.
+   In the second part of the talk, I will consider two special situations: (i) when
+the positive polynomials under consideration are invariant under the action of a
+linear reductive group (ii) when the positive polynomials under consideration are
+sparse (that is, satisfy some separation and overlap conditions on the variables
+appearing in the monomials).
+   The problem of representing invariant polynomials by sums of squares is re-
+duced to the usual representation problem by virtue of the orbit map. We discuss
+examples where the orbit map is exploited to this end.
+   The problem of sparse representations of sparse polynomials was ﬁrst consid-
+ered by Kojima and Lasserre. They were interested in optimization under the
+sparsity relaxation. They were able to give a sparse version of Putinar’s theorem
+for Archimedean modules, provided that the overlap of the variables satisﬁes the
+so-called running intersection property. We present an algebraic interpretation
+(in the language of ﬁbre products of algebraic varieties) of the Kojima-Lasserre
+results. We give a sparse version of the moment problem, and of the various other
+approximations of the cone of positive semi-deﬁnite polynomials.
+   We present some open problems.
+786                                                             Oberwolfach Report 14/2007
+
+                                          References
+       [1] J. Cimpric, S. Kuhlmann and C. Scheiderer: Sums of squares and moment problems
+           in equivariant situations, submitted (2006).
+       [2] W. Fan: Non-negative polynomials on compact semi-algebraic sets in one variable case
+           M.Sc. Thesis, Saskatoon (December 2006).
+       [3] T. Jacobi, A. Prestel: Distinguished representations of strictly positive polynomials, J.
+           reine angew. Math. 532, 223–235 (2001).
+       [4] S. Kuhlmann, M. Marshall, N. Schwartz: Positivity, sums of squares and the multi-
+           dimensional moment problem II, Adv. Geom. 5, 583-607, (2005).
+       [5] S. Kuhlmann – M. Putinar: Positive Polynomials on Fibre Products, submitted
+           (2006).
+       [6] J.B. Lasserre: Convergent semidefinite relaxations in polynomial optimization with
+           sparsity, SIAM J. Optim. 17, 796-817, (2006).
+       [7] T. Netzer: Doublegagger not equivalent to moment problem, unpublished note (2006)
+       [8] V. Powers, C. Scheiderer: The moment problem for non-compact semialgebraic sets,
+           Adv. Geom. 1, 71–88 (2001).
+       [9] M. Putinar: Positive polynomials on compact sets, Ind. Univ. Math. J. 42 (1993),
+           969–984
+      [10] C. Scheiderer: Sums of squares of regular functions on real algebraic varieties, Trans.
+           Amer. Math. Soc. 352, 1030–1069 (1999)
+      [11] C. Scheiderer: Sums of squares on real algebraic curves , Math. Zeit. 245 (2003),
+           725–760
+      [12] C. Scheiderer: Distinguished representations of non-negative polynomials , J. Algebra
+           289 (2005), 558–573
+      [13] C. Scheiderer: Sums of squares on real algebraic surfaces, Manuskripta Math. 119
+           (2006), 395–410
+      [14] K. Schmüdgen: The K-moment problem for compact semi-algebraic sets, Math. Ann.
+           289, 203–206 (1991)
+      [15] K. Schmüdgen: On the moment problem for closed semi-algebraic sets, J. reine angew.
+           Math. 558, 225–234 (2003)
+
+
+
+           Trajectories of Subriemannian gradients of polynomials
+                              Krzysztof Kurdyka
+                    (joint work with Din Si-Tiep, Patrice Orro)
+
+   Let X1 , . . . , Xn−1 be polynomial vector ﬁelds on Rn . Assume that they are
+linearly independent at any x ∈ Rn . We denote by ∆x the hyperplane generated
+by X1 (x), . . . , Xn−1 (x). We deﬁne now the powers of ∆ in the following way
+                ∆1 = ∆, ∆r+1 = span({[X, Y ], X ∈ ∆r , Y ∈ ∆} ∪ ∆r ),
+where [X, Y ] stands for Lie brackets. We say that the distribution ∆ is totally non-
+holonomic (or that it satisﬁes Hörmander’s condition) if there exists an integer r
+such that
+                                 ∆rx = Rn , x ∈ Rn .
+A subriemannian metric g (see e.g. [2]) on the distribution ∆ is a scalar product gx
+on each ∆x which varies smoothly with x. In the case we consider it will be chosen
+in such a way that X1 (x), . . . , Xn−1 (x) is an orthonormal basis. For ξ ∈ ∆x we
+Reelle Algebraische Geometrie                                                       787
+
+write |ξ| = gx (ξ, ξ)1/2 . We say that an absolutely continuous curve γ : [a, b] → Rn
+is horizontal if
+                                     γ ′ (t) ∈ ∆γ(t) ,
+for any t ∈ (a, b) such that γ ′ (t) exists. We deﬁne subriemannian length of a
+horizontal curve γ as
+                                        Z b
+                               l(γ) =       |γ ′ (t)|dt.
+                                             a
+Suppose that f : Rn → R be a polynomial, we deﬁne horizontal gradient of f as
+                                          n−1
+                                          X   ∂f
+                             ∇h f (x) =            (x)Xi (x).
+                                          i=1
+                                              ∂X i
+
+Of course ∇h f is a vector ﬁeld on Rn . It depends on the distribution ∆ and
+the metric g. We study some properties of trajectories of ∇h f that is the curves
+γ : [a, b] → Rn such that
+                             γ ′ (t) = ∇h f (γ(t)), t ∈ (a, b).
+Finally we deﬁne horizontal critical set of f as Vf = {∇h f = 0}.
+Example 1. Heisenberg’s distribution on R3 is deﬁned by
+                              ∂    x2 ∂          ∂    x1 ∂
+                     X1 =        −       , X2 =     +
+                             ∂x1   2 ∂x3        ∂x2   2 ∂x3
+   For f (x) = x3 trajectories of ∇h f are spiraling around Vf = {x1 = x2 = 0}.
+When we consider their length between two levels of f , say between {x3 = 0} and
+{x3 = 1}, we can compute that their length equals r2 , where r is distance of γ(t)
+to Vf ,which is constant in this case. Hence, unlike the Riemannian case studied
+by Lojasiewicz [4] and others [3], [1], these lengths are not uniformly bounded.
+   For any γ > 0 we deﬁne a subriemannian metric gγ (x) = dist(x, Vf )γ g(x) which
+is degenerate on Vf . It induces a distance δγ on Rn \ Vf , as inﬁmum of length (in
+gγ metric) of horizontal curves joining two given points. For general distribitions
+of the above type we have
+Theorem 2. For a given polynomial f : Rn → R there exists γ > 0 such that if
+x(t), t ∈ [t1 , t2 ] is a trajectory of ∇h f in compact subset B of Rn , then the length
+(in gγ metric) of x(t) is finite. Precisely is bounded by c|f (x(t2 )) − f (x(t1 ))| for
+some c = c(B) > 0.
+  We obtain more precise results for some special type of distributions deﬁned by
+                         ∂                         ∂
+(1)              Xi =       + P1 (x1 , .., xn−1 )     , i = 1, . . . , n − 1,
+                        ∂x1                       ∂xn
+where Pi are polynomials such that (P1 , . . . , Pn−1 ) is not a gradient. Note that
+the classical Heisenberg’s and Martinet’s ﬂat distribution are of that type. Let
+Rd [x] denote the space of polynomials in n variables od degree ≤ d.
+788                                                         Oberwolfach Report 14/2007
+
+Theorem 3. There is an open dense semialgebraic set Ld ⊂ Rd [x] such that if
+f ∈ Ld , then Vf is a smooth algebraic curve (or an empty set) moreover f is a
+Morse function on Vf . Clearly Ld depends on the distribution (1).
+Theorem 4. If f ∈ Ld , then Theorem 1 holds with γ = 1, moreover the distance
+δ1 extends to a distance on Rn .
+Theorem 5. Assume f ∈ Ld , if x(t), t ∈ [t1 , t2 ) is a trajectory of ∇h f in a
+compact subset B of Rn , then lim x(t) = x0 exists. Moreover, x0 ∈ Vf if and only
+                                  t→t2
+if t2 = ∞.
+    We have also an exemple of a distribution of type (1) with a polynomial function
+f ∈/Ld such that some trajectory ∇h f has no limit, it accumulates on a cycle. This
+cannot happen in the Riemmnnian case [4].
+
+                                         References
+[1] D.D’Acunto, K.Kurdyka, Bounds for gradient trajectories of polynomial and definable func-
+    tions, submitted to J. Diﬀ. Geometry, (2004).
+[2] M.Gromov, Carnot-Caratheodory spaces seen from within. Sub-Riemannian geometry, 79–
+    323, Progr. Math., 144, Birkhäuser, Basel, (1996).
+[3] K.Kurdyka, T.Mostowski, A.Parusinski, Proof of the Gradient Conjecture of R. Thom,
+    Annals of Maths. 152, 163–792, (2000).
+[4] S.Lojasiewicz, Une propriété topologique des sous-ensembles analytiques réels, Colloques
+    internationaux du CNRS. Les équations aux dérivées partielles, vol 117, ed. B.Malgrange.
+    Publications du CNRS, Paris, (1963).
+
+
+
+  Real singular Del Pezzo surfaces and threefolds fibred by rational
+                                  curves
+                          Frédéric Mangolte
+                   (joint work with Fabrizio Catanese)
+
+
+
+                                    1. Introduction
+   Let f : W → X be a real smooth projective threefold ﬁbred by rational curves.
+Suppose that W (R) is orientable. Then, by [3, Theorem 1.1], a connected compo-
+nent M ⊂ W (R) is obtained from a Seifert ﬁbred manifold or a connected sum of
+lens spaces by taking connected sums with a ﬁnite number of copies of P3 (R) and
+a ﬁnite number of copies of S 1 × S 2 .
+   Let ν := ν(M ) be the integer deﬁned as follows:
+    (1) If g : M → F is a Seifert ﬁbration, ν denotes the number of multiple ﬁbres
+        of g
+    (2) If M is a connected sum of lens spaces, ν denotes the number of lens spaces
+Theorem 1. If X is a geometrically rational surface, then ν ≤ 4.
+Reelle Algebraische Geometrie                                                      789
+
+  This result answers in aﬃrmative a question of Kollár who proved in 1999 that
+ν ≤ 6 and suggested that 4 would be the sharp bound.
+
+   We derive Theorem 1 from a careful study of real singular Del Pezzo surfaces
+with only rational double points as singularities (see Theorem 2).
+
+    Thanks to the Minimal Model Program over R, the original setting f : W → X
+is replaced by the following: W is a real projective 3-fold with terminal singularities
+such that KW is Cartier along W (R) and f : W → X is a rational curve ﬁbration
+over R such that −KW is f -ample.
+    Let M be a connected component of the topological normalization W (R) (see
+next section) and assume that M is a Seifert ﬁbred 3-dimensional manifold or
+a connected sum of lens spaces. Then, by [2, Thm. 2.6], there exists a Werther
+ﬁbration g : M → F over a 2-manifold with boundary. Werther ﬁbrations are
+deﬁned in [2], but for our purpose it is suﬃcient to recall that g|g−1 (F \∂F ) is
+a Seifert ﬁbration. Now there is an injection from the set of multiple ﬁbres of
+g|g−1 (F \∂F ) to the set of singular points of X contained in f (M ) which are of
+type A+ and globally separating (see next section). Under this injection, the
+multiplicity of the Seifert ﬁbre equals µ + 1 if the singular point is of type A+µ.
+    Theorem 1 is now a corollary of the following:
+Theorem 2. Let X be a projective surface deﬁned over R. Suppose that X is
+geometrically rational with Du Val singularities. Then a connected component M
+of X(R) contains at most 4 Du Val singular points which are not of type A− and
+globally nonseparating.
+
+             2. Rational surfaces with Du Val singularities
+   On a surface, a rational double point is called a Du Val singularity. Over C,
+these singularities are classiﬁed by their Dynkin diagrams, namely Aµ , µ ≥ 1, Dµ ,
+µ ≥ 4, E6 , E7 , E8 .
+   Over R, there are more possibilities. In particular, a surface singularity will be
+said to be of type A+ µ if it is real analytically equivalent to
+
+                            x2 + y 2 − z µ+1 = 0, µ ≥ 1 ;
+and of type A−
+             µ if it is real analytically equivalent to
+
+                            x2 − y 2 − z µ+1 = 0, µ ≥ 1 .
+The type A+                                      −
+           1 is real analytically isomorphic to A1 ; otherwise, singularities with
+diﬀerent names are not isomorphic.
+Definition 1. Let V be a symplicial complex with only a ﬁnite number of points
+x ∈ V where V is not a manifold. Deﬁne the topological normalization
+                                     n: V → V
+as the unique proper continuous map such that n is a homeomorphism over the set
+of points where V is a manifold and n−1 (x) is in one-to-one correspondence with
+the connected components of a good punctured neighborhood of x in V otherwise.
+790                                                   Oberwolfach Report 14/2007
+
+Definition 2. Let X be a real algebraic surface with isolated singularities, and
+let x ∈ X(R) be a singular point of type A±   µ with µ odd. The topological nor-
+malization X(R) has two connected components locally near x. We will say that
+x is globally separating if these two local components are on diﬀerent connected
+components of X(R) and globally nonseparating otherwise.
+
+Definition 3. Let X be a projective surface with Du Val singularities, let
+                    
+       P := Sing X \ x is of type A−
+                                   µ , and x is globally nonseparating      .
+
+Lemma 1 (Kollár). Let n : X(R) → X(R) be the topological normalization, and
+deﬁne M1 , M2 , . . . , Mr be the connected components of X(R). The unordered
+sequence of numbers #(n−1 (P) ∩ Mi ) := mi , i = 1, 2, . . . , r is an invariant of
+extremal birational contractions of projective surfaces with Du Val singularities.
+
+
+
+
+   Applying the Minimal Model Program over R to a geometrically rational surface
+with Du Val singularities, we reduce the proof of Theorem 2 to the study of singular
+Del Pezzo surfaces of degree one.
+   Recall that a Del Pezzo surface X is by deﬁnition a surface whose anticanonical
+divisor is ample. We add the adjective Du Val to emphasize that we allow X
+to have Du Val singularities. Let X be a real Du Val Del Pezzo surface and let
+S → X be the minimal resolution of singularities. The smooth surface S has nef
+anticanonical divisor and is called a weak Del Pezzo surface by many authors.
+   We obtain a Del Pezzo surface X of degree 1 by blowing up a ﬁnite number
+of pairs of conjugate imaginary smooth points and some real smooth point (there
+are several choices to do this).
+   The anticanonical model of a Del Pezzo surface X of degree 1 is a ramiﬁed
+double covering q : X → Q of a quadric cone Q ⊂ P3 whose branch locus is the
+union of the vertex of the cone and a cubic section not passing through the vertex
+(see e.g. [1, Exposé V]).
+   Let X ′ be the singular elliptic surface obtained from X by blowing up the
+pull-back by q of the vertex of the cone.
+   The surface X ′ is a ramiﬁed double covering of the Hirzebruch surface F2 whose
+branch curve is the union of the unique section of negative selﬁntersection, the
+section at inﬁnity Σ∞ , and a trisection B disjoint from Σ∞ .
+   If the trisection is irreducible, then it has at most 4 singular points because it
+has genus 4. The heart of the proof is the study of normal forms for the reducible
+B. After studying the normal forms for the reducible branch curves, it appears
+that in almost all cases, the number of singular points is less than or equal to
+4. There will remain only two cases to examine separately. In one case, the ﬁfth
+point turns out to be of type A+     ∼ −
+                                  1 = A1 globally nonseparating and in the second
+case, the ﬁfth point turns out to be of type A−  2.
+Reelle Algebraische Geometrie                                                                 791
+
+                                          References
+ [1] M. Demazure, Surfaces de Del Pezzo, II, III, IV et V, In: Séminaire sur les singularités des
+     surface (Demazure, Pinkham, Teissier eds.) Lecture Notes in Math. 777, Springer-Verlag
+     1980
+ [2] J. Huisman, F. Mangolte, Every connected sum of lens spaces is a real component of a
+     uniruled algebraic variety, Ann. Fourier 55 (2005) 2475–2487
+ [3] J. Kollár, Real algebraic threefolds. III. Conic bundles, J. Math. Sci. (New York) 94 (1999)
+     996–1020
+
+
+          Fixed points of automorphisms of real algebraic curves
+                          Jean-Philippe Monnier
+In this note, a real algebraic curve X is a proper geometrically integral scheme
+over R of dimension 1. Let g denote the genus of X; throughout the paper we
+assume g ≥ 2 and X(R) 6= ∅.
+   An automorphism ϕ of X is an isomorphism of schemes of X with itself. Seeing
+X as a compact Klein surface, May proved in that the order of a group of auto-
+morphisms of X is bounded above by 12(g − 1). Moreover, he also proved that the
+maximum possible order of an automorphism of X is 2g + 2. The corresponding
+results for Riemann surfaces are well-known; Hurwitz proved that a compact Rie-
+mann surface of genus g ≥ 2 cannot have more than 84(g − 1) automorphisms and
+Wiman showed that the order of a cyclic group of automorphisms of a compact
+Riemann surface of genus g ≥ 2 is at most 4g + 2.
+   If ϕ ∈ Aut(X) then ϕ extends to an automorphism ϕC of XC = X ×Spec R Spec C
+such that ϕC (Q) = ϕC (Q̄) for any closed point Q of XC . We will denote by
+µ(ϕC ) (resp. µR (ϕ)) the number of closed (resp. real closed) ﬁxed points of ϕC
+(resp. ϕ). The Riemann-Hurwitz inequality for the number of ﬁxed points of an
+automorphism gives
+                                          2g − 2|ϕ|g ′
+                             µ(ϕC ) ≤ 2 +              .
+                                            |ϕ| − 1
+Let s be the number of coonected components of X(R), we give new Riemann-
+Hurwitz inequalities for real curves depending on g and s.
+Theorem 1. Let ϕ be a non-trivial automorphism of order N of a real curve. If π :
+                                                                                              N
+
+X → X/hϕi has at least one real ramification point then µ(ϕC ) ≤ 2+ 2g−2s+µ R (ϕ              2 )
+                                                                        |ϕ|−1                       .
+                                  N
+Consequently, µ(ϕC ) − µR (ϕ      2   ) ≤ 2 + 2g−2s
+                                              |ϕ|−1 ≤ 2(g + 1 − s). If |ϕ| ≥ g + 2 − s then
+                N
+µ(ϕC ) − µR (ϕ 2 ) ≤ 2.
+Theorem 2. Let ϕ be a non-trivial automorphism of X such that π : X → X ′ =
+X/hϕi is without real ramification points. Then
+                                       g+1−s
+                        µ(ϕC ) ≤ 4 + 2            if s > 1
+                                        |ϕ| − 1
+and
+                                         g−1
+                         µ(ϕC ) ≤ 4 + 2         if s = 1.
+                                        |ϕ| − 1
+792                                                     Oberwolfach Report 14/2007
+
+Consequently, µ(ϕC ) ≤ 4 if |ϕ| ≥ g + 3 − s (resp.|ϕ| ≥ g + 1) and if s > 1 (resp.
+s = 1).
+  We give some nice consequences of the previous theorems.
+Corollary 3. Let ϕ be an automorphism of order N > 1 of an M-curve.
+   (1) If one of the fixed points of ϕC is real then all are real.
+   (2) If N > 2 and if π : X → X/hϕi has at least one real ramification point
+       then ϕC is fixed point free.
+   (3) If π : X → X ′ = X/hϕi is without real ramification points then µ(ϕC ) ≤ 4.
+   Using these new Riemann-Hurwitz inequalities , we derive some consequences
+concerning the maximum order of an automorphism and the maximum order of
+an abelian group of automorphisms of a real curve. We also bound the full group
+of automorphisms of a real hyperelliptic curve.
+Theorem 4. Let G be a group of automorphisms of X of order N > 1 such that
+π : X → X/G has at least one real ramification point.
+    (1) If G is cyclic then |G| ≤ 2s ≤ 2g + 2.
+    (2) If G is abelian then |G| ≤ inf {4s, 2g + 2 + 4(g + 1 − s)} ≤ 3g + 3.
+Theorem 5. Let G be a group of automorphisms of X of order N > 1 such that
+π : X → X/G is without real ramification point.
+    (1) If G is cyclic then |G| ≤ sup{2g+4−s, 2g+2− 32 s} if s > 1 and |G| ≤ 2g+2
+        if s = 1.
+    (2) If G is abelian then |G| ≤ g + 3 + 2(g + 1 − s) ≤ 3g + 3.
+Theorem 6. Let X be a real hyperelliptic curve.
+  (1) If the hyperelliptic involution ı has at least a real fixed point (e.g. if s ≥ 3)
+      then |Aut(X)| ≤ 4s ≤ 4g + 4.
+  (2) If the hyperelliptic involution ı does not have any real fixed point then
+      |Aut(X)| ≤ 4g + 4.
+
+
+
+Blow-analytic equivalence of two variable real analytic function germs
+                           Adam Parusiński
+                     (joint work with Satoshi Koike)
+
+We give a complete characterisation of blow-analytic equivalence classes of 2 vari-
+able function germs.
+Theorem 1. Let f : (R2 , 0) → (R, 0) and g : (R2 , 0) → (R, 0) be real analytic
+function germs. Then the following conditions are equivalent
+    (1) f and g are blow-analytically equivalent.
+    (2) f and g have weakly isomorphic minimal resolution spaces.
+    (3) The real tree models of f and g are isomorphic.
+Reelle Algebraische Geometrie                                                        793
+
+   This theorem can be stated in the oriented and non-oriented case. In this report
+we consider only the non-oriented case.
+   We say that f (x, y) and g(x, y) have weakly isomorphic resolution spaces if there
+exist resolutions µ : (M, µ−1 (0)) → (R2 , 0), µ̃ : (M̃ , µ̃−1 (0) → (R2 , 0) of f (x, y)
+and g(x, y), respectively, and a homeomorphism Φ : M → M̃ such that:
+    (1) Φ(µ−1 (0)) = µ̃−1 (0) and Φ((f ◦ µ)−1 (0)) = (g ◦ µ̃)−1 (0).
+    (2) If C is a component of (f ◦ µ)−1 (0) then mult C f ◦ µ = mult φ(C) g ◦ µ̃.
+    (3) f ◦ µ(p) > 0 iﬀ g ◦ µ̃(Φ(p)) > 0.
+Blow-analytic equivalence. The blow-analytic equivalence was introduced by
+Tzee-Char Kuo at the end of 1970’s [5], [6], [7]. For survey articles see [1], [2].
+  We say that two real analytic function germs f : (Rn , 0) → (R, 0) and g :
+  n
+(R , 0) → (R, 0) are blow-analytically equivalent if there exist real modiﬁcations µ :
+(M, µ−1 (0)) → (Rn , 0), µ′ : (M ′ , µ′−1 (0)) → (Rn , 0) and an analytic isomorphism
+Φ : (M, µ−1 (0)) → (M ′ , µ′−1 (0)) which induces a homeomorphism h : (Rn , 0) →
+(Rn , 0) such that f = g ◦ h, that is the following diagram is commutative:
+                                                µ         f
+                           (M, µ−1 (0)) −
+                                        → (Rn , 0) −
+                                                   → (R, 0)
+                                           
+                                           
+                              Φy           hy
+
+                                                µ̃        g
+                           (M̃ , µ̃−1 (0)) −
+                                           → (Rn , 0) −
+                                                      → (R, 0)
+   Let X, Y be a real analytic connected manifolds of pure dimension n. We say
+that a proper real analytic mapping σ : X → Y is a real modification if there exist
+complexiﬁcations XC , YC of X and Y , respectively, and a holomorphic extension
+σC : XC → YC of σ, such that σC is an isomorphism in the complement of a closed
+nowhere dense subset B of XC . (That is σC resticted to XC \ B is open and an
+isomorphism onto its image.)
+   Note that a real analytic map that is an isomorphism in the complement of a
+closed nowhere dense subset is not necessarily a real modiﬁcation, as for instance
+σ : R → R, σ(x) = x3 . Using an argument similar to the classical elimination of
+indeterminacy of the rational maps between algebraic surfaces, we show that
+Theorem 2. Let X, Y be connected nonsingular real analytic surfaces and let
+σ : X → Y be a proper surjective real analytic map. Then σ is a real modification
+if and only if it is a composition of point blowings-up.
+Idea of proof of Theorem 1.          If f (x, y) and g(x, y) are blow-analytically
+equivalent then, by Theorem 2, there exists a commutative diagram
+                                            ′
+                               −1    µ              π
+                                          f2 , E1 ) −          f
+                   (M, µ′    (E1 )) −→ (R           → (R2 , 0) −
+                                                               → R
+                                                      
+                                                      
+                          Φy           ∃ h1 ? y        hy
+                                            ′
+                               −1            µ̃            π̃         g
+                   (M̃ , µ̃′                    f2 , Ẽ1 ) −
+                                    (Ẽ1 )) −→ (R          → (R2 , 0) −
+                                                                      → R
+where π and π̃ denote the blowing-up of the origin, µ′ and µ̃′ are compositions
+of point blowings-up, Φ is an analytic isomorphism and h is a homeomorphism
+794                                                              Oberwolfach Report 14/2007
+
+such that f = g ◦ h. Using the combinatorial properties of dual graphs of real
+resolutions we show the existence a homeomorphism h1 .
+   Therefore, by induction, f and g are cascade blow-analytic equivalent, i. e.
+                         b            bk−1         b         b         f
+                      k
+                   M −→                  2
+                        Mk−1 −−−→ · · · −→     1
+                                           M1 −→ R2 −
+                                                    → R
+                                              
+(1)                     h                h    
+                  Φy     y k−1             y 1   yh
+                         b̃           b̃k−1        b̃        b         g
+                       k
+                   M̃ −→                   2
+                         M̃k−1 −−−→ · · · −→      1
+                                             M̃1 −→ R2 −
+                                                       → R,
+where bi , b̃i are point blowings-up and hi are homeomorphisms.
+    A function blow-analytically equivalent to normal crossings is normal crossings
+(we show it for two variable function germs, the general case is open) and hence
+we may get rid of unnecessary blowings-up and assume that both b1 ◦ · · · ◦ bk and
+b̃1 ◦ · · ·◦ b̃k are the minimal resolutions of f and g resp.. This shows the implication
+(1) =⇒ (2) of Theorem 1. The implication (2) =⇒ (1) is fairly standard.
+    The following properties of cascade blow-analytic homeomorphisms (i.e. the
+homeomorphisms like h in (1)), are used in the proof of (1)⇐⇒ (3) of Theorem 1.
+Theorem 3. Let h : (R2 , 0) → (R2 , 0) be a cascade blow-analytic homeomorphism
+that does not change the orientation. Then
+      (a) h preserves the Puiseux characteristics sequence of real analytic demi-bran-
+          ches γ : [0, ε) → R2 , the signs of coefficients at the Puiseux characteris-
+          tic exponents, and the order of contact between two real analytic demi-
+          branches.
+      (b) There exists a constant C > 0 such that for (x, y) close to the origin
+         C −1 k(x, y)k ≤ kh(x, y)k ≤ Ck(x, y)k,            C −1 ≤ Jac(h)(x, y) ≤ C.
+Remark 1. Kobayashi and Kuo [3] constructed an example of a blow-analytic
+homeomorphism that sends a smooth curve to a singular one and vice versa. By
+Theorem 3 such a homeomorphism cannot be a cascade one.
+
+Real tree model. The real tree model is an analog of the tree model of [8] of a
+complex analytic function germ and, for a given real analytic f (x, y), encodes the
+information about the order contact and the Puiseux characteristic exponents of
+the Newton-Puiseux roots of f . For a complex root of f
+            x = λ(y) = a1 y n1 /N + a2 y n2 /N , + · · ·     N ≤ n1 < n2 < · · · .
+it takes into account its part up to the ﬁrst non-real coeﬃcient. The real tree
+model contains also the information about the signs of coeﬃcients at the Puiseux
+characteristic exponents. Thanks to Theorem 3 the proof of (1) ⇐⇒ (3) of The-
+orem 1 is based on a fairly straightforward computation of the change of the tree
+model by a blowing-up.
+Examples. Abderrahmane showed that blow-analytically equivalent weighted ho-
+mogeneous singular f (x, y) and g(x, y) have the same weights. The blow-analytic
+classiﬁcation of Brieskorn two variable singularities ±xp ± y q was obtained in [4].
+Reelle Algebraische Geometrie                                                                795
+
+These results can be also easily veriﬁed by Theorem 1. Here are examples that
+cannot be distinguished by the previously known methods
+   (1) x3 + y 5 and x3 − y 5 are not blow-analytically equivalent by an orientation
+       preserving homeomorphism.
+   (2) x(x3 − y 5 )(x3 + y 5 ), x(x3 − y 5 )(x3 − 2y 5 ) are not blow-analytically equiv-
+       alent.
+
+                                        References
+ [1] T. Fukui, S. Koike, T.-C. Kuo : Blow-analytic equisingularities, properties, problems and
+     progress, Real Analytic and Algebraic Singularities (T. Fukuda, T. Fukui, S. Izumiya and
+     S. Koike, ed), Pitman Research Notes in Mathematics Series, 381 (1998), pp. 8–29.
+ [2] T. Fukui, L. Paunescu, On Blow-analytic Equivalence, in ”Arc Spaces and Additive In-
+     variants in Real Algebraic Geometry”, Proceedings of Winter School ”Real algebraic and
+     Analytic Geometry and Motivic Integration”, Aussois 2003, M. Coste, K. Kurdyka, A.
+     Parusiński, eds., Panoramas et Synthèses, SMF, to appear
+ [3] M. Kobayashi, T.-C. Kuo : On Blow-analytic equivalence of embedded curve singularities,
+     Real Analytic and Algebraic Singularities (T. Fukuda, T. Fukui, S. Izumiya and S. Koike,
+     ed), Pitman Research Notes in Mathematics Series, 381 (1998), pp. 8–29.
+ [4] S. Koike, A. Parusiński, Motivic-type invariants of blow-analytic equivalence, Ann. Inst.
+     Fourier 53 (2003), 2061–2104.
+ [5] T.-C. Kuo : Une classification des singularités réells, C.R.A.S. Paris 288 (1979), 809–812.
+ [6] T.-C. Kuo, The modified analytic trivialization of singularities, J. Math. Soc. Japan 32
+     (1980), 605–614.
+ [7] T.-C. Kuo, On classification of real singularities, Invent. math. 82 (1985), 257–262.
+ [8] T.-C. Kuo, Y.C. Lu, On analytic function germs of complex variables, Topology 16 (1977),
+     299–310.
+
+
+                             Pólya’s Theorem with Zeros
+                                   Victoria Powers
+Let R[X] := R[x1 , . . . , xn ] and let R+ [X] denote polynomials in R[X] with non-
+negative coeﬃcients.
+   Pólya’s Theorem [2] says that if p is a homogeneous polynomial in n variables
+which is positive on the standard n-simplex, then for a suﬃciently large exponent
+N , (x1 + · · · + xn )N p ∈ R+ [X]. This elegant and beautiful result has many
+applications, both in pure and applied mathematics.
+   In [3], the second and third authors gave an explicit bound for the exponent
+N in terms of the size of the coeﬃcients and the minimum value of p on the
+simplex. This result has been used by other authors in applications; for example
+M. Schweighofer [5] used this quantitative Pólya’s Theorem to give an algorithmic
+proof of Schmüdgen’s Positivstellensatz, and de Klerk and Pasechnik [1] used it to
+give results on approximating the stability number of a graph.
+   One can ask the following: When does Pólya’s Theorem holds if the condition
+“positive on ∆n ” is relaxed to “nonnegative on ∆n ”? Previously, in joint work
+with B. Reznick [4], we extended Pólya’s theorem with bound to forms which are
+positive on the simplex apart from a certain type of zero on the corners of the
+simplex.
+796                                                         Oberwolfach Report 14/2007
+
+   In recent joint work with M. Castle and B. Reznick (unpublished), we study
+the question further. In particular, we give a constructive version, with degree
+bounds, of a result of M. Schweighofer from [6] which is, roughly speaking, a
+localized version of Pólya’s Theorem:
+Proposition 1. Given p ∈ R[X] and suppose there exists closed S ⊆ ∆n such
+that there are homogeneous g1 , . . . , gm ∈ R[X], and h1 , ..., hm ∈ R[X]+ with
+    (1) p = g1 h1 + · · · + gm hm
+    (2) gi (x) > 0 for all x ∈ S.
+   Suppose further that there exists a closed set T with T ⊆ S ⊆ ∆n and B ∈ N
+                                                                   α
+with the following property: Whenever α, β, γ ∈ Nn with |α|          ∈ T , β + γ = α,
+                                                  β
+γ ∈ supp(hi ) for some i, and |β| ≥ B, then |β|      ∈ S. Then there exists N ∈ N
+                                 α
+such that for all α ∈ N with |α| ∈ T , the coefficient of X α in (X1 + ... + Xn )N f
+                        n
+
+is nonnegative.
+   In particular, for each i, let k(i) be the bound from Lemma 1 for gi on S, i.e.,
+                                di (di − 1) L(gi )
+                              k(i) =               − di ,
+                                     2       λi
+where λi is the minimum of gi on S and di = deg gi . Then we can take
+                          N = max{k(g1 ), . . . , k(gm ), B}.
+      We can apply the proposition to give an improvement of the results in [4]:
+    Suppose p is positive on ∆n except for a zero at one v1 := (1, 0, . . . 0). Let
+pd (x2 , . . . , xn ) be the leading coeﬃcient of p as a polynomial in x1 and e = degx1 p,
+so that
+                               p = pd (x2 , . . . , xn )xe1 + q(x1 , . . . , xn )
+where degx1 q < e. Note that our assumptions on p imply that pd is positive
+deﬁnite. Let R[X̃] denote R[x2 , . . . , xn ] and for α = (α2 , . . . , αn ) ∈ Nn−1 , let X̃ α
+denote xα                 αn
+             2 · · · · · xn .
+                2
+
+
+Theorem 1. Given p as above, suppose that supp(pd ) contains a multiple of every
+monomial in supp(q) which appears with a negative coefficient. Then p satisfies the
+conclusion of Pólya’s Theorem if and only if every coefficient in pd is nonnegative.
+   In particular, suppose every coefficient of pd is nonnegative. Then we can find
+an expression
+                                  Xm
+                              p=      X̃ γi (ci xe1 + φi ),
+                                       i=1
+with γi ∈ Nn−1 , 0 < ci ∈ R, and φi ∈ R[X] with degx1 φi < e. Let c = mini {ci }
+                                                                                  c
+and U the sum of the absolute values of the coefficients of p. Now let r := c+2U
+                   e
+and s := 2c c+2Uc
+                       and let λ be the minimum of p on the closure of ∆n \ ∆n (1, r).
+Then for                                                       
+                                    e(e − 1) L(p) d(d − 1) L(p)
+                      N > max                     ,               ,
+                                         2     s       2    λ
+all coefficients of (x1 + · · · + xn )n p are nonnegative.
+Reelle Algebraische Geometrie                                                              797
+
+                                        References
+ [1] E. de Klerk and D. Pasechnik, Approximation of the stability number of a graph via copos-
+     itive programming, SIAM J. Optimization 12 (2002), 875-892.
+ [2] G. Pólya, Über positive Darstellung von Polynomen Vierteljschr, Naturforsch. Ges. Zürich
+     73 (1928 141–145, in Collected Papers 2 (1974), MIT Press, 309-313.
+ [3] V. Powers and B. Reznick, A new bound for Pólya’s Theorem with applications to polyno-
+     mials positive on polyhedra, J. Pure Appl. Alg. 164 (2001), 221-229.
+ [4] V. Powers and B. Reznick, A quantitative Pólya’s Theorem with corner zeros, in Proceed-
+     ings of the 2006 International Symposium on Symbolic and Algebraic Computations, J.-G.
+     Dumas, editor, New York, NY, ACM Press, pp. 285–290.
+ [5] M. Schweighofer, An algorithmic approach to Schmüdgen’s Positivstellensatz, J. Pure and
+     Appl. Alg. 166 (2002), 307-319.
+ [6] M. Schweighofer, Certificates for nonnegativity of polynomials with zeros on compact semi-
+     algebraic sets, Manuscripta Math. 117 (2005), 407-428.
+
+
+
+    Hilbert’s construction of psd polynomials that are not a sum of
+                                squares
+                            Bruce Reznick
+
+    Summary: In 1888, Hilbert described how to ﬁnd real polynomials which take
+only non-negative values but which are not a sum of squares of polynomials. His
+construction was so restrictive that no explicit examples appeared until the late
+1960s. We revisit and generalize Hilbert’s construction and discuss old and new
+examples.
+    A real (not necessarily homogeneous) polynomial p(x1 , . . . , xn ) is psd or positive
+if p(a) ≥ 0 for P    all a ∈ Rn ; it is sos or a sum of squares if there exist polynomials
+hj so that p = h2j . Let Pn,m denote the cone of real psd forms of degree m in n
+variables and Σn,m its subcone of sos forms and let ∆n,m = Pn,m r Σn,m . It was
+well-known by the mid-19th century that ∆2,m = ∆n,2 = ∅. Hilbert showed in
+1888 that P3,4 = Σ3,4 , and that this is the only other case in which Pn,m = Σn,m :
+it suﬃces to ﬁnd forms in ∆3,6 and ∆4,4 and multiply them by powers of linear
+forms if necessary. Throughout this talk, we toggle between forms in n variables
+and polynomials in n − 1 variables. We ﬁrst present Hilbert’s construction in ∆3,6 ,
+dehomogenized to two variables.
+    Suppose f1 (x, y) and f2 (x, y) are two real cubic polynomials with precisely nine
+distinct real common zeros – {πi }, indexed arbitrarily – so that no three of the
+πi ’s lie on a line and no six lie on a quadratic. Then there exists a quadratic
+φ(x, y) with zeros at {π1 , . . . , π5 } and a quartic ψ(x, y) with the same zeros and
+which is singular at {π6 , π7 , π8 }; the sextic φψ is singular at {π1 , . . . , π8 }. Hilbert
+showed that we can take (φψ)(π9 ) P         > 0 and that there exists c > 0 so that p =
+f12 + f22 + cφψ is positive. If p =            h2j , then each hj is a cubic which vanishes
+on {π1 , . . . , π8 }, so that (by Cayley-Bacharach) hj (π9 ) = 0 as well. It follows that
+0 = p(π9 ) = c(φψ)(π9 ), a contradiction.
+    Hilbert’s restriction on the common zeros of the polynomials meant that no very
+simple example could be constructed, and the ﬁrst explicit element in any ∆n,m
+798                                                               Oberwolfach Report 14/2007
+
+was not produced for many decades. In 1965, Motzkin presented a speciﬁc sextic
+polynomial m(x, y) which is positive by the arithmetic-geometric inequality and
+which is not sos by the arrangement of monomials in its Newton polytope. (Olga
+Taussky-Todd, who had a lifelong interest in sums of squares and was Hilbert’s
+last assistant, heard Motzkin speak, and informed him that m(x, y) was the ﬁrst
+example.) After homogenization,
+
+(1)                 M (x, y, z) = x4 y 2 + x2 y 4 + z 6 − 3x2 y 2 z 2 ∈ ∆3,6 .
+
+Around the same time and independently, R. M. Robinson wrote that he saw “an
+unpublished example of a ternary sextic worked out recently by W. J. Ellison
+using Hilbert’s method. It is, as would be expected, very complicated. After
+seeing this, I discovered that an astonishing simpliﬁcation would be possible by
+dropping some unnecessary assumptions made by Hilbert.” Robinson observed
+that the cubics f1 (x, y) = x3 − x and f2 (x, y) = y 3 − y have nine common zeros;
+namely, the 3 × 3 square {−1, 0, 1}2. There are eight diﬀerent lines which contain
+three of these points. Nonetheless, the sextic (x2 −1)(y 2 −1)(1−x2 −y 2 ) is singular
+at the outer eight points and is positive at (0, 0). By taking the maximum value
+for c in Hilbert’s construction and homogenizing, Robinson showed that
+
+(2) R(x, y, z) = x6 + y 6 + z 6 − x4 y 2 − x4 z 2 − x2 y 4 − x2 z 4 − y 4 z 2 − y 2 z 4 + 3x2 y 2 z 2
+
+is in ∆3,6 . The papers of Motzkin and Robinson renewed interest in the subject,
+leading to more examples, including one by M. D. Choi and T. Y. Lam:
+
+(3)                S(x, y, z) = x4 y 2 + y 4 z 2 + z 4 x2 − 3x2 y 2 z 2 ∈ ∆3,6 .
+
+   The talk presented an analysis of the underlying part of Hilbert’s Method, al-
+lowing for considerable generalization. There are two main parts to the Method:
+a general perturbation of a given positive polynomial with ﬁxed zeros by an arbi-
+trary form which is singular at those zeros. We need the zeros to be “singular non
+troppo” or “round”: the lowest order terms in the Taylor series at each zero must
+be a positive deﬁnite quadratic form. This perturbation preserves positivity and
+the zeros, but the perturbed polynomial might not be sos. The key point of the
+argument is that, under certain circumstances, there are polynomials of degree 2d
+which are singular on a set A ⊆ Rn , but are not in the vector space generated by
+products of polynomials of degree d which vanish on A.
+   As a result, we are able to show that Robinson’s simpliﬁcation always works;
+that is, the Hilbert construction is valid when f1 and f2 are ternary cubics with
+exactly nine real intersections, whether or not three are on a line or not. We also
+show that if seven points are chosen in the plane, no four on a line, not all on a
+quadratic, then there is a positive polynomial p which is not sos and has those
+seven points as zeros. The proofs require Bezout’s Theorem and a considerable
+amount of old-fashioned curve theory.
+Reelle Algebraische Geometrie                                                                 799
+
+   For example, let
+(4)
+     A = {(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1), (1, 1, −1), (1, −1, 1), (1, −1, −1)},
+  F1 (x, y, z) = x(y 2 − z 2 ),    F2 (x, y, z) = y(z 2 − x2 ),     F3 (x, y, z) = z(x2 − y 2 ),
+                         G(x, y, z) = (x2 − y 2 )(x2 − z 2 )(y 2 − z 2 ).
+It is easy to show that the Fk ’s span the set of ternary cubics which vanish on A
+and that G is singular on A and not in the span of the Fj Fk ’s. It follows that
+for some c > 0, Pc := F12 + F22 + F32 + cG is psd and not sos. In fact, P1 = 2S,
+providing a new derivation of (3).
+   Choi, Lam and Reznick showed in 1980 that if P ∈ ∆3,6 , then P has ﬁnitely
+many zeros, and the maximum possible number is 10. At that time, the Robinson
+form R was essentially the only known example of such a sextic. Using Hilbert’s
+Method, we are able to construct many new examples.
+   For t > 0, let
+                                 Rt (x, y, z) :=
+         4    2
+                                                 
+(5)      t + 2t − 3     3    2 2     1 + 2t2 − 3t4
+                      (x − xz ) +                    (y 3 − yz 2 )2 + R(x, y, z);
+             3                             3t4
+Rt is psd with ten zeros and not sos. For t2 < 21 , let
+
+                Mt (x, y, z) = (1 − 2t2 )(x4 y 2 + x2 y 4 ) + t4 (x4 z 2 + y 4 z 2 )
+(6)
+                     −(3 − 8t2 + 2t4 )x2 y 2 z 2 − 2t2 (x2 + y 2 )z 4 + z 6 ;
+Mt is psd with ten zeros and not sos. Let
+            St (x, y, z) = t4 (x6 + y 6 + z 6 ) + (1 − 2t6 )(x4 y 2 + y 4 z 2 + z 4 x2 )
+(7)
+        +(t8 − 2t2 )(x2 y 4 + y 2 z 4 + z 2 x4 ) − 3(1 − 2t2 + t4 − 2t6 + t8 )x2 y 2 z 2 ;
+St is always psd and not sos; it has ten zeros if t > 0. Note that S0 = M , S1 = S,
+so St provides a “homotopy” between S and M in ∆3,6 in the class of positive
+forms with ten zeros. Finally, though it only has seven zeros, we note that
+(8) Uc (x, y, z) = x2 y 2 (x−y)2 +y 2 z 2 (y−z)2 +z 2 x2 (z−x)2 +cxyz(x−y)(y−z)(z−x)
+                     p√
+is psd when |c| ≤ 4        2 − 1 and sos only if c = 0.
+   As one example in higher degree, for m ∈ N, let
+                                               m−1
+                                               Y
+(9)                                   (t)m =         (t − j).
+                                               j=0
+
+Then for d ≥ 3 and some cd > 0, the polynomial
+(10)          (x)2d + (y)2d + cd (x)2 (y)2 (x + y − 2)d−1 (x + y − 4)d−3
+                                             
+is psd and not sos, and has at least d+2   2   − 2 zeros.
+800                                                           Oberwolfach Report 14/2007
+
+   We can also answer a question of Robinson, and √    show that (ax2 + by 2 +
+  2
+                                                    √     √
+cz )R(x, y, z) is sos if and only if a, b, c ≥ 0 and a, b, c are the sides of a
+(possibly degenerate) triangle.
+   Further examples and proofs will soon appear in a much longer publication.
+
+
+               Certificates of Positivity in the Bernstein basis
+                            Marie-Françoise Roy
+       (joint work with Fatima Boudaoud, Fabrizio Caruso, Richard Leroy)
+
+    Let P ∈ Z[X] be a polynomial of degree p with coeﬃcients of bitsize bounded by
+τ . If P is positive on [−1, 1], we obtain a certiﬁcate of positivity (i.e. a description
+of the polynomial making obvious that it is positive) of bitsize O(p4 (τ + log2 p)).
+Previoussimilar results had a bitsize complexity exponential in p and τ . We extend
+this technique to the multivariate case (no complexity estimate so far).
+
+      1. What is a certificate of positivity in the Bernstein basis?
+
+                                             
+                                             p (X − ℓ)i (r − X)p−i
+(1)                        Bernp,i (ℓ, r) =                        ,
+                                             i      (r − ℓ)p
+   for i = 0, . . . , p.
+   Think of                                              p
+                                         r−X     X −ℓ
+                                  1=          +
+                                         r−ℓ      r−ℓ
+       − take positive values on (ℓ, r),
+       − Bernp,0 (ℓ, r) is positive at ℓ, Bernp,p (ℓ, r) is positive at r,
+       − basis of the vector-space of polynomials of degree ⩽ p
+    b(P, p, ℓ, r) is the ordered list of coeﬃcients of P in the Bernstein basis.
+    b(P, p, ℓ, r)0 is the value of P at ℓ and b(P, p, ℓ, r)p is the value of P at r.
+    Cert(P, d, ℓ, r) : all the elements of b(P, d, ℓ, r) are non negative, with
+b(P, d, ℓ, r)0 > 0, b(P, d, ℓ, r)d > 0.
+    Cert(P, d, ℓ, r) guarantees the existence of a certificate of positivity for P on
+[ℓ, r], i.e. a description of P making obvious that it is positive on [ℓ, r]: b(P, d, ℓ, r)
+    If Cert(P, p, −1, 1) holds, P is positive on [−1, 1].
+    Reciprocal not true !
+                                    P = 5X 2 − 4X + 1.
+P is positive on [−1, 1], but b(P, 2, −1, 1) = [10, −4, 2] and Cert(P, 2, −1, 1) does
+not hold. However, since b(P, 21, −1, 1) is
+
+(2)    [210, 182, 156, 132, 110, 90, 72, 56, 42, 30, 20, 12, 6, 2, 0, 0, 2, 6, 12, 20, 30, 42]
+   Cert(P, 21, −1, 1) does hold. 21 is the smallest natural number with this prop-
+erty.
+Reelle Algebraische Geometrie                                                       801
+
+   Bernstein (1915): if P is positive on [−1, 1], there exists d ⩾ p such that
+Cert(P, d, −1, 1) holds. Bernstein degree: smallest natural number d such that
+Cert(P, d, −1, 1) holds:
+   Powers and Reznick (2001): quantitative bound on the Bernstein degree expo-
+nential in p and τ .
+   Wanted: diﬀerent , smaller, certiﬁcate of positivity for P on [−1, 1] using also
+the Bernstein basis.
+   Idea: keep the initial degree, reﬁne the interval; look for certiﬁcates of positivity
+on subintervals.
+   Cert(P, d, L) means: L: −1 = ℓ0 < ℓ1 < . . . < ℓn−1 < ℓn = 1 is a subdivision:
+for each i = 1, . . . , n Cert(P, d, ℓi−1 , ℓi ) holds.
+   If P is positive on [−1, 1], find a subdivision L such that Cert(P, p, L)
+holds.
+   Tool: a litte geometry
+   Notation: Var is the number of sign changes in a sequence of numbers
+Theorem 1. P square free
+  If P has no root in the circle of diameter (ℓ, r), then Var(b(P, p, ℓ, r)) = 0.
+   Why shorter ? Adaptativity ! Subintervals of diﬀerent length, short intervals
+being concentrated on parts of | − 1, 1] where the sign of P is less obvious.
+   Consider P = 5X 2 − 4X + 1, its certiﬁcate of positivity is:
+   [[[−1, 0] , 1, [10, 3, 1]] , [[0, 1/2] , 4, [4, 0, 1]] , [[1/2, 1] , 4, [1, 2, 8]]]
+   which reads as
+      − subdivision −1 < 0 < 1/2 < 1
+      − b(P, 2, −1, 0) = [10, 3, 1],
+      − b(4P, 2, 0, 1/2) = [4, 0, 1],
+      − b(4P, 2, 1/2, 1) = [1, 2, 8].
+
+                          2. Certificate of positivity
+    − certiﬁcate of positivity if Q positive on [−1, 1],
+    − or point x of [−1, 1] such that Q(x) ⩽ 0 otherwise.
+  Idea: try to isolate real roots of Q, no roots implies proof of positivity (or
+negativity).
+Algorithm 1. (De Casteljau)
+     • Input: ([ℓ, r], b(P, p, ℓ, r)) and m.
+     • Output: ([ℓ, m], b(P, p, ℓ, m)) and ([m, r], b(P, p, m, r)).
+     • Procedure:
+                                (0)
+          – Initialization: bj := b(cP, p, ℓ, r)j , for j = 0, . . . , p.
+          – For i = 1, . . . , p,
+               − For j = 0, . . . , p − i, compute
+                    (i)               (i−1)                    (i−1)
+                   bj := ((r − m)bj           + (m − ℓ)bj+1 )/(r − ℓ).
+               − Output
+                                  (0)     (j)           (p)
+                     b ′ = b 0 , . . . , b0 , . . . , b0 ,
+                                  (p)     (p−j)             (0)
+                     b′′ = b0 , . . . , bj       , . . . , bp
+802                                                            Oberwolfach Report 14/2007
+
+
+
+Algorithm 2. [Square free certificate of positivity]
+      • Input: square-free Q ∈ Z[X] of degre q.
+      • Output:
+          − POS if Q > 0 on [−1, 1], certiﬁed by b(Q, q, L) where L is a rational
+            subdivision of [−1, 1] of length n,
+          − NEG similar
+          − NO and a point x such that Q(x) = 0, or a segment [ℓ, r] such that
+            Q(ℓ)Q(r) < 0.
+      • Procedure:
+                             M := {([−1, 1], b(Q, q, −1, 1))},
+          – Initialization:
+                             Pos(Q) := ∅, Neg(Q) := ∅.
+          – While M is non-empty,
+               − Remove an element ([ℓ, r], b) from M .
+               − If b0 = 0 return NO and [ℓ].
+               − If bp = 0 return NO and [r].
+               − If b0 bp < 0, return NO and [ℓ, r].
+               − If Var(b) = 0,
+                     → if b0 > 0 and bp > 0, add ([ℓ, r], b) to Pos(Q),
+                     → if b0 < 0 and bp < 0, add ([ℓ, r], b) to Neg(Q).
+               − Else m = (ℓ + r)/2, compute b′ and b′′ , using Algorithm 2 with
+                   input b(Q, ℓ, r), add
+
+                                 ([ℓ, m], b′ ), ([mr], b′′ )
+
+                   to M .
+           – If Pos(Q) := ∅, return NEG and Neg(Q).
+           – If Neg(Q) := ∅, return POS and Pos(Q).
+
+
+
+Proposition 2. The number of nodes of the binary tree output by Algorithm 2 is
+at most 2(2τ + 3ν + 3)q.
+
+  Example of P = X 4 + 64X 2 − 16X + 1.
+      − Var(b(3P/2, 4, −1, 1) = [123, 12, −29, −12, 752]) = 2: reﬁne [−1, 1].
+      − Var(b(3P, 4, −1, 0) = [246, 135, 59, 15, 3]) = 0,
+        Var(b(3P, 4, 0, 1) = [3, −9, 11, 63, 150])=2: reﬁne [0, 1].
+      − Var(b(324 P, 4, 0, 1/2) = [48, −48, −16, 144, 435]) = 2: reﬁne [0, 1/2], while
+        Var(b(324 P, 4, 1/2, 1) = [435, 726, 1148, 1704, 2400]) = 0.
+      − Var(b(328 P, 4, 0, 1/4) = [768, 0, −256, 0, 771]) = 2: reﬁne [0, 1/4], while
+        Var(b(328 P, 4, 1/4, 1/2) = [771, 1542, 2828, 4632, 6960]) = 0.
+      − Isolation phase stops: Var(b(3212 P, 4, 0, 1/8) = [12288, 6144, 2048, 0, 3]) =
+        0, and Var( b(3212 P, 4, 1/8, 1/4) = [3, 6, 2060, 6168, 12336]) = 0.
+Reelle Algebraische Geometrie                                                                     803
+
+                                        3. Comparison
+3.1. Minimum of a polynomial.
+Theorem 3. The minimum of P is at least 2−2p(1+τ +ν)+(τ +1) .
+  Proof (indication): Use resultants to estimate the bitsize of the polynomial
+whose roots are the values of P at the roots of P ′
+  Is this bound accurate ?
+  Bugeaud and Mignotte:
+                                 A(k, p) = X 2p + (2k X − 1)2 .
+minimum close to the estimation of Theorem 3 [3]: if τ = 2k, the minimum of
+A(k, p) smaller than the value 2−pτ obtained at x = 2−k , depends exponentially
+on p and τ .
+
+3.2. Size of certificates of positivity. Bernstein degree is estimated by
+(3)                                p(p − 1)2p(2τ +3ν+3)+ν−2 ,
+quantitative bound on the Bernstein degree
+                                               p(p − 1) L
+(4)                                        ⩽
+                                                  2     λ
+where λ minimum of P (x) on [−1, 1], L maximum value of the elements of
+b(P, p, −1, 1): estimation on λ given by Theorem 3, estimation on L by bitsize of
+Bernstein coeﬃcients.
+
+3.2.1. With respect to the bit size. Powers and Reznick’s bound is sharp
+   For the family of polynomials of degree 2 indexed by k ∈ N, Pk = (2k −1)X 2 +1,
+the Bernstein degree is precisely 2k − 1. Our certiﬁcate of positivity for Pk : linear
+      − b(Pk , 2, −1, 0) = [2k , 1, 1],
+      − b(Pk , 2, 0, 1) = [1, 1, 2k ].
+
+3.2.2. With respect to the degree. Consider A(k, p) = X 2p + (2k X − 1)2 Numerical
+experiments performed using SARAG
+      − when p = 1, A(1, 1) = 5X 2 − 4X + 1, ﬁrst example
+      − when p = 2, the Bernstein degree is 82, while our certiﬁcate of positivity
+        is much smaller
+
+
+  [[[−1, 0], 3, [30, 18, 11, 6, 3]], [[0, 1/2], 48, [48, 24, 8, 0, 3]],
+                                                                [[1/2, 1], 48, [3, 6, 20, 48, 96]]].
+
+  Bernstein degree of A(1, p) exponential in p, bigger than 22p + 2p − 1 . It is
+not hard to prove that b(A(1, p), 2N, 0, 1)N < 0 for any N < 22p−1 + p.
+804                                                          Oberwolfach Report 14/2007
+
+                           4. Multivariate polynomials
+   Bersntein’s basis exists: k variables, L simplexdeﬁned by k+1 linear inequalities
+ℓi ⩾ 0, i = 0, . . . , k, normalized by 1 = ℓ0 + . . . + ℓk . Let i = (i0 , . . . , ik ),
+                                                    Qk    i
+i0 + . . . + ik = p, pi multinomial coeﬃcient, ℓi = j=0 ℓjj
+                                                
+                                                 p i
+(5)                              Bernp,i (L) =     ℓ
+                                                 i
+Think of                                              p
+                                   1 = ℓ0 + . . . + ℓk
+      − take positive values on L,
+      − gives values at the vertices of the simples
+      − basis of the vector-space of polynomials of degree ⩽ p
+Global and local certiﬁcates of positivity exist. Bernstein theorem holds: increase
+degree. Local certiﬁcates exist: subdivide until there are no sign variations
+  Generalizaiton of De Casteljau exists.
+Algorithm 3. (Multivariate De Casteljau)
+      • Input: (L, b(P, p, L)) and m, a baryrenter of the vertices with weight
+        α = (α0, . . . , αk ), L0 , . . . , Lk the k + 1 simplices subdivided
+      • Output: L0 , . . . , Lk the k + 1 simplices after subdivision, (Li , b(P, p, Li )),
+        i = 0, . . . , k.
+      • Procedure:
+                                  (0)
+           – Initialization: bj := b(P, p, ℓ, r)j , for j = (j0 , . . . , jk ), j0 +. . .+jk = p
+             .
+           – For i = 1, . . . , p,
+                   − Let es = (0, . . . , 0, 1, 0, . . . , 0), 1 at place number s.
+                   − For j = (j0 , . . . , jk ), j0 + . . . + jk = p-j, compute
+                         (i)    Pk           (i−1)
+                        bj := s=0 αs bj+es .
+                   − Output coeﬃcients on right face
+                                  (js )
+                          bs,j = bj−j  s es
+
+
+
+
+   Algorithm for certiﬁcate of positivity exisits: subdivide until all coeﬃcients are
+positive.
+   Problem : quantitative bounds ? in the univariate case, polynomial in d and τ ,
+here ?
+
+                                       References
+  [1] S. Basu, R. Pollack, M.-F. Roy, Algorithms in real algebraic geometry, Springer-Verlag,
+      second edition (2006). On line at http://perso.univ-rennes1.fr/marie-francoise.roy/
+  [2] S. Bernstein, Sur la représentation des polynômes positifs, Soobshch. Kharkov matem.
+      ob-va, ser. 2, 14 227-228.(1915).
+  [3] Y. Bugeaud, M. Mignotte, Private communication, (2005).
+Reelle Algebraische Geometrie                                                         805
+
+  [4] A. Eigenwillig, V. Sharma, C. K. Yap, Almost Tight Recursion Tree Bounds for the
+      Descartes Method, Proceedings of the 2006 International Symposium on Symbolic and
+      Algebraic Computation, Geona, Italy, ACM, New York, 2006, 71-78.(2005).
+  [5] V. Powers, B. Reznick, A new bound for Polya’s Theorem with applications to polyno-
+      mials positive on polyhedra, Journal of Pure and Applied Algebra 164, 221-229 (2001)
+  [6] V. Powers, B. Reznick, Private communication, (2006)
+
+
+
+
+   A connectedness theorem for real spectra of polynomial rings, in
+              connection with Pierce-Birkhoff conjecture
+                               Daniel Schaub
+    (joint work with Frano̧is Lucas, James J. Madden, Mark Spivakovsky)
+
+
+  Throughout, R will denote a real closed ﬁeld and A the polynomial ring
+R[x1 , . . . , xn ].
+   The Pierce-Birkhoﬀ conjecture asserts that any piecewise-polynomial function
+f : Rn → R can be expressed as a maximum of minima of a ﬁnite family of
+polynomials. In this lecture we describe where we are in our program for a proof
+of the Pierce-Birkhoﬀ conjecture in its full generality (the best results up to now
+are due to Louis Mahé [13], who proved the conjecture for n = 2, as well as some
+partial results for n = 3).
+   We start by stating the Pierce–Birkhoﬀ conjecture in its original form as it was
+ﬁrst stated by M. Henriksen and H. Isbell in the early nineteen sixties.
+Definition 1. A function f : Rn → R is said to be piecewise polynomial if Rn
+can be covered by a ﬁnite collection of closed semi-algebraic sets Pi such that for
+each i there exists a polynomial fi ∈ A satisfying f |Pi = fi |Pi . If f is a piecewise
+polynomial function, we say that f is defined by r polynomials if r is the number
+of distinct polynomials among the fi above.
+   Clearly, any piecewise polynomial function is continuous. Piecewise polynomial
+functions form a ring, containing A, which is denoted by P W (A).
+   On the other hand, one can consider the (lattice-ordered) ring of all the func-
+tions obtained from A by iterating the operations of sup and inf. Since applying
+the operations of sup and inf to polynomials produces functions which are piece-
+wise polynomial, this ring is contained in P W (A) (the latter ring is closed under
+sup and inf). It is natural to ask whether the two rings coincide. The precise
+statement of the conjecture is:
+Conjecture 2. (Pierce-Birkhoff ) If f : Rn → R is in P W (A), then there exists
+a finite family of polynomials gij ∈ A such that f = sup inf (gij ) (in other words,
+                                                            i   j
+for all x ∈ Rn , f (x) = sup inf (gij (x))).
+                           i   j
+806                                                  Oberwolfach Report 14/2007
+
+   In 1989 J.J. Madden [11] reformulated this conjecture in terms of the real spec-
+trum of A and separating ideals. Let us recall Madden’s formulation together with
+the relevant deﬁnitions.
+   First, we need to recall the notion of a point of the real spectrum of a ring.
+Let B be a ring. A point α in the real spectrum of B is, by deﬁnition, the data
+of a prime ideal p of B, and a total ordering ≤ of the quotient ring B/p, or,
+equivalently, of the ﬁeld of fractions of B/p. Another way of deﬁning the point α
+is as a homomorphism from B to a real closed ﬁeld, where two homomorphisms
+are identiﬁed if they have the same kernel p and induce the same total ordering
+on B/p.
+
+  The ideal p is called the support of α and denoted by pα , the quotient ring
+B/pα by B[α], its ﬁeld of fractions by B(α) and the real closure of B(α) by k(α).
+The total ordering of B(α) is denoted by ≤α . Sometimes we write α = (pα , ≤α ).
+
+Definition 3. The real spectrum of B, denoted by Sper B, is the collection of all
+pairs α = (pα , ≤α ), where pα is a prime ideal of B and ≤α is a total ordering of
+B/pα .
+
+   The real spectrum Sper B is endowed with two natural topologies, the spectral
+(or Harrison) topology and the constructible topology.
+
+Next we deﬁne the notion of separating ideal, introduced by Madden in [11] :
+
+Definition 4. Let B be a ring. For γ, δ ∈ Sper B, the separating ideal of γ and
+δ, denoted by < γ, δ >, is the ideal of B generated by all the elements f ∈ B which
+change sign between γ and δ, that is, all the f such that f (γ) ≥ 0 and f (δ) ≤ 0
+(or vice versa).
+
+   Let f be a piecewise polynomial function on RnS and α ∈ Sper A. Let the
+notation be as in Deﬁnition 1. The covering Rn = Pi induces a corresponding
+                                                  i
+                   S
+covering Sper A = P̃i of the real spectrum. Pick and ﬁx an i such that α ∈ P̃i .
+                    i
+We set fα := fi . We refer to fα as a local polynomial representative of f at α. In
+general, the choice of i is not uniquely determined by α. Implicit in the notation
+fα is the fact that one such choice has been made.
+
+   In [11], Madden reduced the Pierce–Birkhoﬀ conjecture to a purely local state-
+ment about separating ideals and the real spectrum. Namely, he showed that the
+Pierce-Birkhoﬀ conjecture is equivalent to
+
+Conjecture 5. (Pierce-Birkhoff conjecture, the abstract version) Let f
+be a piecewise polynomial function and α, β points in Sper A. Let fα ∈ A be a
+local representative of f at α and fβ ∈ A a local representative of f at β. Then
+fα − fβ ∈< α, β >.
+
+  We now state a conjecture which implies the Pierce-Birkhoﬀ conjecture:
+Reelle Algebraische Geometrie                                                               807
+
+Conjecture 6. (the Connectedness conjecture) Let α, β ∈ Sper A and let
+g1 , . . . , gs be a finite collection of elements of A, not belonging to < α, β >. Then
+there exists a connected set C ⊂ Sper A such that α, β ∈ C and C ∩ {gi = 0} = ∅
+for i ∈ {1, . . . , s} (in other words, α and β belong to the same connected component
+of the set Sper A \ {g1 . . . gs = 0}).
+   The special case when s = 1 is Madden’s “separation conjecture”; it is equiv-
+alent to the special case of Pierce-Birkhoﬀ conjecture when the number of semi-
+algebraic pieces deﬁning the piecewise polynomial function f is precisely 2.
+This reduces the Pierce-Birkhoﬀ conjecture to constructing, for each α, β ∈ Sper A,
+connected sets in Sper A having certain properties.
+The following theorem, though not in itself enough for the proof of the Pierce-
+Birkhoﬀ conjecture, is the ﬁrst and simplest example of the sort of connected sets
+we really need.
+   We ﬁrst deﬁne the valuation να of B(α) associated to a point α of the real
+spectrum. The valuation να is deﬁned using the order ≤α . It has the following
+properties :
+   (1) να (B[α]) ≥ 0
+   (2) given positive elements x, y ∈ B(α),
+(1)                        να (x) < να (y) ⇒ x > N y, ∀N ∈ N.
+   Finally, we state the main theorem. Let A = R[x1 , . . . , xn ] be a polynomial
+ring and denote by νδ be the valuation associated to the point δ ∈ Sper(A).
+Let ωij , θil ∈ Q, i ∈ {1, . . . , n}, j ∈ {1, . . . , q}, l ∈ {1, . . . , u}.
+                     P
+                     n                                                         P
+                                                                               n
+Let hj (νδ (x)) =       ωij νδ (xi ) for j ∈ {1, . . . , q} and zl (νδ (x)) =    θil νδ (xi ) for
+                    i=1                                                      i=1
+l ∈ {1, . . . , u}, where we write x in place of (x1 , . . . , xn ) and νδ (x) for the n-tuple
+(νδ (x1 ), . . . , νδ (xn )).
+Theorem 7. The set
+      S = {δ ∈ Sper(A) | xi >δ 0, i ∈ {1, . . . , n}, hj (νδ (x)) > 0, j ∈ {1, . . . , q}
+
+(2)                            zl (νδ (x)) = 0, l ∈ {1, . . . , u}}
+is connected in the spectral topology.
+  In other words, subsets of Sper A deﬁned by ﬁnitely many Q-linear equations
+and strict inequalities on ν(x1 ), . . . , ν(xn ) are connected.
+   To understand the relation between this theorem and the Connectedness Con-
+jecture, we need to introduce the theory of approximate roots of a valuation. Given
+a ring A and a valuation ν, non-negative on A, a family of approximate roots is
+a collection {Qi }, ﬁnite or countable, of elements of A. A generalized monomial
+                              Q γ {Qi } of approximate roots) is, by deﬁnition,
+(with respect to a given collection
+an element of A of the form Qj j , γj ∈ N. The main deﬁning properties of the
+                                   j
+808                                                         Oberwolfach Report 14/2007
+
+approximate roots are the fact that every ν-ideal I in A is generated
+                                                                 Q γjby general-
+ized monomials contained in it, that is, generalized monomials     Qj satisfying
+P                                                                j
+   γj ν(Qj ) ≥ ν(I), and the fact that for each i, Qi is described by an explicit
+j
+formula in terms of Q1 , ..., Qi−1 . In particular, the valuation ν is completely de-
+termined by the set {Qi } and the values ν(Qi ).
+   We then show that every element g ∈ A can be written as a ﬁnite sum of the
+form
+
+                                           N
+                                           X
+(3)                            g = cQθ +         cj Qδj ,
+                                           j=1
+
+
+where c and cj are elements of A such that ν(c) = ν(cj ) = 0 and Qθ and Qδj are
+generalized monomials such that
+                                    
+(4)                      ν Qθ < ν Qδj for 1 ≤ j ≤ N.
+
+   Now let δ ∈ Sper(A) and let ν = νδ . Then, by (1) and (4) the sign of g with
+respect to ≤δ is determined by the sign of its leading coeﬃcient c.
+
+   Let α, β ∈ Sper(A) having a common specialization. We will give in [10] an ex-
+plicit description of the set of generalized monomials (with respect to approximate
+roots Qi common to να and νβ ) which generate the separating ideal < α, β >. Fur-
+thermore we show that all the approximate roots Qi for να such that Qi ∈/ < α, β >
+are also approximate roots for νβ and vice versa.
+
+   Now let g ∈ Sper(A)\ < α, β >, as in the separation conjecture. The fact that
+g∈/ < α, β > implies the existence of an expression (3) in which all the approximate
+roots Qi are common for να and νβ and the inequalities (4) hold for both ν = να
+and ν = νβ .
+   The inequalities (4) can be viewed as linear inequalities on ν(Q1 ), . . . , ν(Qt )
+with integer coeﬃcients.
+   To prove this conjecture, one of our main ideas is to look for a connected set
+C ⊂ Sper(A) having the following properties :
+   (1) α, β ∈ C;
+   (2) the Qi appearing in (3) are approximate roots simultaneously for all the νδ ,
+δ ∈ C;
+   (3) the inequalities (4) hold for ν = νδ , for all δ ∈ C;
+   (4) the leading coeﬃcient c keeps a constant sign on C.
+   Once such a C is found, (1) and (4) imply that the sign of g on C is constant,
+which proves that α and β lie in the same connected component of Sper(A) \ {g =
+0}.
+Reelle Algebraische Geometrie                                                                          809
+
+
+                                  
+(5) The set C(g, α, β) =           δ ∈ Sper(A)        Qi > 0, i ∈ {1, . . . , t},
+               t
+               X                                             t
+                                                             X                                         
+                     ωij νδ (Qi ) > 0, j ∈ {1, . . . , q},         λij νδ (Qi ) = 0, j ∈ {1, . . . , l} ,
+               i=1                                           i=1
+
+where ωij , λij ∈ Z, all the inequalities (4) described above appear among the
+Pt
+   ωij νδ (Qi ) > 0 and the remaining equalities and inequalities on the right hand
+i=1
+side of (5) encode the fact that Q1 , . . . , Qt are approximate roots for νδ for
+all δ belonging to C(g, α, β). If g1 , . . . , gs is a ﬁnite collection of elements of
+                                                 Ts
+A \ < α, β >, we put C(g1 , . . . , gs , α, β) =    C(gi , α, β). By construction, both
+                                                        i=1
+sets C(g, α, β) and C(g1 , . . . , gs , α, β) contain α and β, the element g does not
+change sign on C(g, α, β) and none of the elements g1 , . . . , gs change sign on
+C(g1 , . . . , gs , α, β). Thus to prove the separation conjecture it is suﬃcient to prove
+that
+C(g, α, β) is connected and to prove the Pierce–Birkhoﬀ conjecture it is suﬃ-
+cient to prove that C(g1 , . . . , gs , α, β) is connected. This makes that the set S of
+theorem 7 is a special case of the kind of connected sets we are looking for.
+
+                                            References
+ [1] D. Alvis, B. Johnston, J.J. Madden, Local structure of the real spectrum of a surface,
+     infinitely near points and separating ideals. Preprint.. J. Reine Angew. Math. 167, 160-196
+     (1931).
+ [2] R. Baer, Uber nicht-archimedisch geordnete Körper (Beitrage zur Algebra). Sitz. Ber. Der
+     Heidelberger Akademie, 8 Abhandl. (1927).
+ [3] G. Birkhoﬀ and R. Pierce, Lattice-ordered rings. Annales Acad. Brasil Ciênc. 28, 41–69
+     (1956).
+ [4] J. Bochnak, M. Coste, M.-F. Roy, Géométrie algébrique réelle. Springer–Verlag, Berlin 1987.
+ [5] C. N. Delzell, On the Pierce–Birkhoff conjecture over ordered fields, Rocky Mountain J.
+     Math. 19 (1989), no. 3, 651–668.
+ [6] M. Henriksen and J. Isbell, Lattice-ordered rings and function rings. Paciﬁc J. Math. 11,
+     533–566 (1962).
+ [7] I. Kaplansky, Maximal fields with valuations I. Duke Math. J., 9:303–321 (1942).
+ [8] I. Kaplansky, Maximal fields with valuations II. Duke Math. J., 12:243–248 (1945).
+ [9] W. Krull, Allgemeine Bewertungstheorie,
+[10] F. Lucas, J. J. Madden, D. Schaub, M. Spivakovsky A proof of the separation conjecture in
+     dimension 3, in preparation.
+[11] J. J. Madden, Pierce–Birkhoff rings. Arch. Math. 53, 565–570 (1989).
+[12] J. J. Madden, The Pierce-Birkhoff conjecture for surfaces, unpublished preprint.
+[13] L. Mahé, On the Pierce–Birkhoff conjecture. Rocky Mountain J. Math. 14, 983–985 (1984).
+[14] M. Marshall The Pierce–Birkhoff conjecture for curves. Can. J. Math. 44, 1262–1271 (1992).
+[15] N. Schwartz, Real closed spaces. Habilitationsschrift, München 1984.
+[16] M. Spivakovsky, A solution to Hironaka’s polyhedra game. Arithmetic and Geometry, Vol
+     II, Papers dedicated to I. R. Shafarevich on the occasion of his sixtieth birthday, M. Artin
+     and J. Tate, editors, Birkhäuser, 1983, pp. 419–432.
+810                                                    Oberwolfach Report 14/2007
+
+                   Gradient tentacles and sums of squares
+                          Markus Schweighofer
+
+
+  This report is mainly based on [Sch] where more details can be found.
+
+  Let always f ∈ R[X̄] := R[X1 , . . . , Xn ]. Our motivation is the problem to
+compute (numerically to a given precision) the inﬁmum
+                           f ∗ := inf f (Rn ) ∈ R ∪ {−∞}
+of a polynomial f on Rn . This problem is anyway very hard but it seems to be
+even harder if f is bounded from below but does not attain a minimum on Rn ,
+e.g. n = 2, X̄ = (X, Y ) and f = (1 − XY )2 + Y 2 . Whereas
+                        f ∗ = sup{a ∈ R | f − a ≥ 0 on Rn },
+is very diﬃcult to compute,
+                                                X
+                          sup{a ∈ R | f − a ∈       R[X̄]2 }
+
+can easily be computed by solving a semideﬁnite program (SDP). The problem is
+however that for ﬁxed degree and large number of variables, very few nonnegative
+f are sums of squares. The idea in this talk is to combine sums of squares with
+calculus. This idea is originally due to Demmel, Nie and Sturmfels who proved
+the following theorem [NDS].
+Theorem 1 (Demmel, Nie, Sturmfels). Consider the gradient ideal
+                                             
+                                ∂f         ∂f
+                        I :=        ,...,
+                               ∂X1        ∂Xn
+of f and suppose f ∗ ∈ f (Rn ). Denoting by V (I) ⊆ Cn the reduced affine variety
+defined by I (the gradient variety of f ), we have that the following are equivalent:
+  (i) f ≥ 0 on Rn
+ (ii) f ≥ 0 on V (I) ∩√Rn
+          P
+(iii) f ∈ R[ P X̄]2 + I
+(iv) f + ε ∈     R[X̄]2 + I for all ε > 0
+                                                               P
+   As a corollary, we get that f ∗ = sup{a ∈ R | f − a ∈          R[X̄]2 + I} can be
+computed by solving a sequence of SDPs provided that f ∈ f (Rn ). In the very
+                                                             ∗
+
+hard case that f ∗ 6∈ f (Rn ), this method might however yield to completely wrong
+results. For example, this method would output 1 for f = (1 − XY )2 + Y 2 since
+the only critical point of f is the origin and f (0) = 1. But in fact, we have f ∗ = 0
+for this f .
+   A way out of this problem would be to prove the following conjecture. In all
+practical examples we computed the corresponding SDP relaxations worked very
+well and led quickly to f ∗ .
+Reelle Algebraische Geometrie                                                    811
+
+Conjecture 2. In Theorem 1, the assumption f ∗ ∈ f (Rn ) can be removed if one
+replaces the gradient ideal by
+                                                                 
+                           ∂f                ∂f
+                   I :=        Xj , . . . ,     Xi | 1 ≤ i < j ≤ n .
+                          ∂Xi               ∂Xj
+  In the following, we will replace the real part of the gradient variety by larger
+semialgebraic subsets deﬁned by polynomial inequalities depending only on ∇f .
+Definition 3. The polynomial
+                                  n     2     ! n
+                                  X   ∂f         X
+                      g := 1 −                          Xi2 ∈ R[X̄]
+                                  i=1
+                                        ∂Xi       i=1
+deﬁnes the gradient tentacle
+                    S(∇f ) := {x ∈ Rn | k∇f (x)kkxk ≤ 1} ⊆ Rn .
+Theorem 4. Suppose the condition (∗) below holds and f is bounded from below
+on Rn . Then the following are equivalent:
+   (i) f ≥ 0 on Rn
+  (ii) f ≥ 0 onPS(∇f )     P
+ (iii) f + ε ∈   R[X̄]2 + g R[X̄]2
+   Here (∗) is a condition from Parusiński [Par], namely that there are only ﬁnitely
+many z ∈ Pn−1 (C) such that ∇fd (z) = fd−1 (z) = 0 where d := deg f and fk is the
+k-homogeneous part of f . This condition is true generically. In fact, generically
+there is even no such z. Of course, (∗) is always satisﬁed for n = 2. Moreover, we
+do not know if (∗) is really necessary for Theorem 4 to hold.
+Definition 5. For S ⊆ Rn , we introduce the set R∞ (f, S) of asymptotic values of
+f on S which consists of all y ∈ R such that there is a sequence (xk )k∈N of points
+xk ∈ S with limk→∞ kxk k = ∞ and limk→∞ f (xk ) = y.
+   We now can formulate one of the ingredients of the proof of Theorem 4, namely
+the following theorem which relies on the theory of iterated rings of bounded
+elements [Sch].
+Theorem 6. Let f, g1 , . . . , gm ∈ R[X̄] and set
+                     S := {x ∈ Rn | g1 (x) ≥ 0, . . . , gm (x) ≥ 0}.
+Suppose that
+(a) f is bounded on S,
+(b) R∞ (f, S) is a finite subset of R>0 and
+(c) f > 0 on S.
+Then f is in the preordering generated by g1 , . . . , gm in R[X̄].
+   We will apply this
+                    P theorem  only
+                                P for the case m = 1. In this case, the preordering
+in question is just   R[X̄]2 + g R[X̄]2 where g := g1 . To prove Theorem 4 from
+Theorem 6, it suﬃces to show that f is bounded on S(∇f ) (we refer to [Spo]),
+812                                                     Oberwolfach Report 14/2007
+
+(A) R∞ (f, S(∇f )) is ﬁnite if (∗) holds and that
+(B) f ∗ ∈ R∞ (f, S(∇f )) if f is bounded from below and f ∗ 6∈ f (Rn ).
+
+Definition 7. Denote by B(f ) the bifurcation set of f , i.e., the smallest subset of
+R such that for its complement A in R, f |f −1 (A) : f −1 (A) → A is a locally trivial
+C ∞ ﬁber bundle. The set K(f ) of generalized critical values of f consists of all
+y ∈ R for which there exists a sequence (xk )k∈N in Rn such that
+
+             lim k∇f (xk )k(1 + kxk k) = 0       and       lim f (xk ) = y.
+            k→∞                                           k→∞
+
+  We make use the following well-known theorem (see, e.g., [KOS, Theorem 3.1]).
+
+Theorem 8. Suppose f ∈ R[X̄]. Then B(f ) ⊆ K(f ) and K(f ) is finite.
+
+   From this follows easily (B) above. The following result is surprising and can
+be derived from [Par, Theorem 1.4].
+
+Theorem 9. (∗) =⇒ R∞ (f, S(∇f )) ⊆ K(f )
+
+   This implies of course (A) above. Without (∗), the previous theorem is in
+general not true. As already said, it is an open problem if one can avoid assumption
+(*) in Theorem 4. Anyway, there is a way of getting rid of this condition by
+using what we call higher gradient tentacles. These gradient tentacles have the
+computational disadvantage that the degree of the deﬁning inequality can be much
+bigger. Also it is not a priori clear how big the degree has to be chosen.
+
+Definition 10. The polynomial
+
+                    gN := 1 − k∇f (x)k2N (1 + kxk2 )N +1 ∈ R[X̄]
+
+where N ∈ N deﬁnes the N -th higher gradient tentacle of f
+
+              S(∇f, N ) := {x ∈ Rn | k∇f (x)k2N (1 + kxk2 )N +1 ≤ 1}.
+
+  Clearly, we have
+
+                 V (I) ∩ Rn ⊆ S(∇f, 1) ⊆ S(∇f, 2) ⊆ · · · ⊆ S(∇f )
+
+where I is the gradient ideal of f . Now the analog of (A) is easier to show than
+before but for (B) we now need results of Kurdyka, Orro and Simon [KOS].
+
+Theorem 11. Suppose f is bounded from below. Then there is N0 ∈ N such that
+for all N ≥ N0 , the following are equivalent:
+  (i) f ≥ 0 on Rn
+ (ii) f ≥ 0 onPS(∇f, N )    P
+(iii) f + ε ∈   R[X̄]2 + gN   R[X̄]2 for all ε > 0
+If f ∗ ∈ f (Rn ), then these conditions are equivalent for all N .
+Reelle Algebraische Geometrie                                                              813
+
+                                        References
+[KOS] K. Kurdyka, P. Orro and S. Simon: Semialgebraic Sard theorem for generalized critical
+      values. J. Diﬀer. Geom. 56, No.1, 67-92 (2000)
+[NDS] J. Nie, J. Demmel, and B. Sturmfels. Minimizing polynomials via sum of squares over the
+      gradient ideal. Math. Prog., Ser. A, 106, No. 3, 587–606 (2006)
+[Par] A. Parusiński. On the bifurcation set of a complex polynomial with isolated singularities
+      at inﬁnity. Compos. Math. 97, No. 3, 369–384 (1995)
+[Rab] P. Rabier. Ehresmann ﬁbrations and Palais-Smale conditions for morphisms of Finsler
+      manifolds. Ann. Math. (2) 146, No. 3, 647–691 (1997)
+[Spo] S. Spodzieja. Lojasiewicz inequalities at inﬁnity for the gradient of a polynomial. Bull.
+      Pol. Acad. Sci., Math. 50, No. 3, 273–281 (2002)
+[Sch] M. Schweighofer. Iterated rings of bounded elements and generalizations of Schmüdgen’s
+      Positivstellensatz. J. Reine Angew. Math. 554, 19–45 (2003). Erratum available at
+      http://arxiv.org/abs/math.AC/0510675
+[Tho] R. Thom. Ensembles et morphismes stratiﬁes. Bull. Am. Math. Soc. 75, 240–284 (1969)
+
+
+  Upper bounds on the number of homotopy types of sets defined by
+                              fewnomials
+                          Nicolai Vorobjov
+                    (joint work with Saugata Basu)
+
+We understand the complexity of a polynomial P ∈ R[X1 , . . . , Xm ] as a measure of
+the size of its deﬁning formula. There are several natural measures, among them:
+     (i) the degree d = deg(P );
+    (ii) the number r of monomials in P ;
+   (iii) the additive complexity a of P .
+(We say that P has additive complexity a if, starting with variables X1 , . . . , Xm
+and constants in R, and applying additions and multiplications, a formula repre-
+senting P can be obtained using at most a additions and an unlimited number of
+multiplications, see the formal deﬁnition in [2, 4, 1].)
+   In their book [2], Benedetti and Risler, generalizing examples (i)–(iii), intro-
+duced an axiomatic deﬁnition of the complexity of a polynomial, and consequently,
+of a semi-algebraic set. Axioms include the analogy of Bezout inequality, i.e., an
+upper bound on the number of non-degenerate isolated solutions of any system of
+m polynomial equations, as an explicit function of the complexity of polynomials.
+In the case (i), this is the usual Bezout inequality, in the case (ii) this is the Kho-
+vanskii’s bound [6], the latter also easily implies an upper bound in the additive
+complexity case (iii) (see [2]).
+   Benedetti and Risler conjectured that there is a ﬁnite number of of homeomor-
+phism types of semi-algebraic sets of the given complexity. They also formulated
+their conjecture for particular cases (ii) and (iii) above (the truth of the conjec-
+ture in the case (i) easily follows from Hardt’s triviality theorem [5]). In these
+cases the conjecture was proved independently by van den Dries [4] and Coste [3]
+using o-minimality, without producing any explicit upper bounds on the number
+of homeomorphism types as functions of the complexity.
+814                                                       Oberwolfach Report 14/2007
+
+   We prove a weaker but eﬀective versions of cases (ii), (iii) of the conjecture.
+Namely, we give explicit, single exponential upper bounds on the number of pos-
+sible homotopy types of semi-algebraic sets.
+   Let φ be a Boolean formula with variables in {ai , bi , ci | 1 ≤ i ≤ s}. For an
+ordered list P = (P1 , . . . , Ps ) of polynomials Pi ∈ R[X1 , . . . , Xm ], we denote by
+φP the formula obtained from φ by replacing for each i, 1 ≤ i ≤ s, the variable ai
+(respectively, bi and ci ) by Pi = 0 (respectively, by Pi > 0 and by Pi < 0).
+Definition 1. We say that two ordered lists P = (P1 , . . . , Ps ), Q = (Q1 , . . . , Qs )
+of polynomials Pi , Qi ∈ R[X1 , . . . , Xm ] have the same homotopy type if for any
+Boolean formula φ, the semialgebraic sets deﬁned by φP and φQ are homotopy
+equivalent.
+   Let Mm,r be the family of ordered lists P = (P1 , . . . , Ps ) of polynomials Pi ∈
+R[X1 , . . . , Xm ] with the total number of monomials in all polynomials in P not
+exceeding r.
+Theorem 2 ([1]). The number of different homotopy types of ordered lists in
+Mm,r does not exceed
+                                                4
+(1)                                     2O(mr) .
+In particular, the number of different homotopy types of semi-algebraic sets defined
+by a fixed formula φP , where P varies over Mm,r , does not exceed (1).
+   A similar bound is true for the additive complexity.
+   The proof of Theorem 1 is based on a new single exponential upper bound on
+the number of homotopy types of ﬁbres of the projection map of a semi-Pfaﬃan
+set. To simplify the notations we formulate here this bound for a special case of
+semi-algebraic sets.
+   Let P ⊂ R[X1 , . . . , Xm , Y1 , . . . , Yn ], and let φ be a Boolean formula with atoms
+of the form P = 0, P > 0, P < 0, where P ∈ P. We call the semi-algebraic set
+S ⊂ Rm+n deﬁned by φ, a P-semi-algebraic set. Let πS be the restriction to S of
+the projection map π : Rm+n → Rn .
+Theorem 3 ([1]). Let the cardinality #P = s, and for every P ∈ P, the degree
+deg(P ) < d. Then there exists a finite set A ⊂ Rn , with
+                                 #A ≤ (2m snd)O(mn) ,
+such that for every y ∈ Rn there exists z ∈ A such that for every P-semi-algebraic
+set S ⊂ Rm+n , the set πS−1 (y) is homotopy equivalent to πS−1 (z). In particular, for
+any fixed P-semi-algebraic set S, the number of different homotopy types of fibres
+πS−1 (y) for various y ∈ π(S) is also bounded by
+                                     (2m snd)O(mn) .
+    A similar theorem is true for ﬁnite families P of real Pfaﬃan functions, and
+projections πS of P-semi-Pfaﬃan sets S. It implies Theorem 1, using a technique
+for representing fewnomials as Pfaﬃan functions, introduced in § 3, Chapter 9 of
+[4].
+Reelle Algebraische Geometrie                                                             815
+
+                                       References
+ [1] S. Basu, N. Vorobjov, On the number of homotopy types of fibres of a definable map,
+     arXiv:math.AG/0605517v2, to appear in J. London Math. Soc.
+ [2] R. Benedetti, J.-J. Risler, Real Algebraic and Semi-algebraic Sets, Hermann (1990).
+ [3] M. Coste, Topological types of fewnomials, in: Singularities Symposium – Lojasiewicz 70,
+     Banach Center Pub. 44 (1998), 81–92.
+ [4] L. van den Dries, Tame Topology and O-minimal Structures. London Mathematical Society
+     Lecture Notes Series 248 (1998).
+ [5] R. M. Hardt, Semi-algebraic local triviality in semi-algebraic mappings, Am. J. Math. 102
+     (1980), 291–302.
+ [6] A. Khovanskii, Fewnomials, Amer. Math. Soc., Translations of Mathematical Monographs
+     88 (1991).
+
+
+          Lower bounds, sharpness in real enumerative geometry
+                        Jean-Yves Welschinger
+
+   Complex plane rational curves are images of holomorphic maps from the Rie-
+mann sphere to the complex projective plane. Plane rational curves of a given
+degree form a (3d − 1)-parameter family. It is a classical result of complex enu-
+merative geometry that the number Nd of degree d rational curves passing through
+3d−1 generic points in the plane does not depend on the choice of the points. These
+curves are all immersed with only ordinary double points as singularities. This
+is no more true over the real numbers, basically because the ﬁeld of real number
+is not algebraically closed. Namely, choose r generic points x1 , . . . , xr in the real
+projective plane and s generic pairs of complex conjugated points ξ1 , ξ 1 , . . . , ξs , ξ s ,
+where r + 2s = 3d − 1. Denote by Rd (x, ξ) the ﬁnite set of degree d real ra-
+tional curves containing x, ξ. The cardinality of this set depends on the choice
+of x, ξ. However these real rational curves have two kinds of real double points.
+Non-isolated real double points are local intersection of two real branches, like
+x2 − y 2 = 0, whereas isolated real double points are local intersection of two com-
+plex conjugated branches, like x2 + y 2 = 0. For C ∈ Rd (x, ξ), denote by m(C) its
+number of real isolated double points and set
+                                       X
+                         χdr (x, ξ) =        (−1)m(C) ∈ Z.
+                                        C∈Rd (x,ξ)
+
+Theorem 1. The integer χdr (x, ξ) does not depend on the generic choice of x, ξ.
+
+  Hence, the complex projective plane together with its complex conjugation
+comes with a family of enumerative invariants (χdr )d∈N∗ ,0≤r≤3d−1,r=3d−1 mod (2) .
+They provide lower bounds in real enumerative geometry, namely.
+Corollary 2. |χdr | ≤(∗) #Rd (x, ξ) ≤ Nd .
+  I did obtain these results couple of years ago. They hold more generally for any
+symplectic four-manifold equipped with an antisymplectic involution, see [1]. The
+main result I did explain here was the following sharpness result.
+816                                                          Oberwolfach Report 14/2007
+
+Theorem 3. For every d ∈ N∗ and 0 ≤ r ≤ 1, the lower bounds (∗) is sharp.
+                            (d−1)(d−2)
+Moreover, sign(χdr ) = (−1)     2      .
+   This means that there exists a conﬁguration x, ξ of points such that all elements
+of Rd (x, ξ) are counted with respect to the same sign in χdr , the parity of the smooth
+genus (d−1)(d−2)
+            2    . Such conﬁguration of points are obtained when ξ is very closed
+to a real imaginary conic -of equation x2 + y 2 + z 2 = 0-. This sharpness result also
+holds in a much more general situation, it is announced in [2]. The tool to prove it
+comes from symplectic ﬁeld theory, one stretches the manifold near its real locus.
+
+                                       References
+ [1] J.-Y. Welschinger, Invariants of real symplectic 4-manifolds and lower bounds in real enu-
+     merative geometry, Invent. Math. 162, no. 1, (2005) 195-234.
+ [2] J.-Y. Welschinger, Invariant count of holomorphic disks in the cotangent bundles of the
+     two-sphere and real projective plane, C. R. Acad. Sci. Paris I, 344 (2007) 313-316.
+
+
+
+
+                                                              Reporter: Daniel Plaumann
+Reelle Algebraische Geometrie                                                  817
+
+                                     Participants
+
+
+Prof. Dr. Francesca Acquistapace           Prof. Dr. Erwan Brugalle
+Dip. di Matematica ”L.Tonelli”             Inst. de Mathematiques de Jussieu
+Universita di Pisa                         Universite Paris VI
+Largo Bruno Pontecorvo,5                   175 rue du Chevaleret
+I-56127 Pisa                               F-75013 Paris
+
+Prof. Dr. Carlos Andradas                  Prof. Dr. Fabrizio Catanese
+Facultad de Matematicas                    Lehrstuhl für Mathematik VIII
+Depto. de Algebra                          Universität Bayreuth
+Universidad Complutense de Madrid          NW - II
+E-28040 Madrid                             95440 Bayreuth
+
+Doris Augustin                             Prof. Dr. Jaka Cimpric
+Naturwissenschaftliche Fakultät I         FMF - Matematika
+Mathematik                                 University of Ljubljana
+Universität Regensburg                    Jadranska 19
+93040 Regensburg                           1111 Ljubljana
+                                           SLOVENIA
+Prof. Dr. Benoit Bertrand
+Departement de Mathematiques               Prof. Dr. Michel Coste
+Universite de Geneve                       Departement de Mathematiques
+Case Postale 64                            Universite de Rennes I
+2-4 rue du Lievre                          Campus de Beaulieu
+CH-1211 Geneve 4                           F-35042 Rennes Cedex
+
+Prof. Dr. Frederic Bihan                   Prof. Dr. Alexander Degtyarev
+Lab. de Mathematiques                      Department of Mathematics
+Universite de Savoie                       Bilkent University
+F-73376 Le Bourget du Lac Cedex            06800 Bilkent, Ankara
+                                           TURKEY
+Prof. Dr. Ludwig Bröcker
+Mathematisches Institut                    Prof. Dr. Max A. Dickmann
+Universität Münster                      U. F. R. de Mathematiques
+Einsteinstr. 62                            Case 7012
+48149 Münster                             Universite Paris VII
+                                           2, Place Jussieu
+                                           F-75251 Paris Cedex 05
+Prof. Dr. Fabrizio Broglia
+Dip. di Matematica ”L.Tonelli”
+Universita di Pisa
+Largo Bruno Pontecorvo,5
+I-56127 Pisa
+818                                             Oberwolfach Report 14/2007
+
+Prof. Dr. Jose F. Fernando           Dr. Tobias Kaiser
+Facultad de Matematicas              Naturwissenschaftliche Fakultät I
+Depto. de Algebra                    Mathematik
+Universidad Complutense de Madrid    Universität Regensburg
+E-28040 Madrid                       93040 Regensburg
+
+Prof. Dr. Andreas Fischer            Prof. Dr. Igor Klep
+Dept. of Mathematics                 FMF - Matematika
+University of Saskatchewan           University of Ljubljana
+106 Wiggins Road                     Jadranska 19
+Saskatoon Sask. S7N 5E6              1111 Ljubljana
+CANADA                               SLOVENIA
+
+Prof. Dr. Andrei Gabrielov           Prof. Dr. Manfred Knebusch
+Department of Mathematics            Naturwissenschaftliche Fakultät I
+Purdue University                    Mathematik
+150 N. University Street             Universität Regensburg
+West Lafayette IN 47907-2067         93040 Regensburg
+USA
+
+                                     Prof. Dr. Vladimir Kostov
+Prof. Dr. Riccardo Ghiloni           Laboratoire J.-A. Dieudonne
+Dipartimento di Matematica           Universite de Nice
+Universita di Trento                 Sophia Antipolis
+Via Sommarive 14                     Parc Valrose
+I-38050 Povo (Trento)                F-06108 Nice Cedex 2
+
+Prof. Dr. Joost van Hamel            Prof. Dr. Wojciech Kucharz
+Departement Wiskunde                 Dept. of Mathematics and Statistics
+Faculteit der Wetenschappen          University of New Mexico
+Katholieke Universiteit Leuven       Albuquerque , NM 87131
+Celestijnenlaan 200B                 USA
+B-3001 Leuven
+                                     Prof. Dr. Salma Kuhlmann
+Prof. Dr. Johannes Huisman           Dept. of Mathematics
+Dept. de Mathematiques               University of Saskatchewan
+Universite de Bretagne Occidentale   106 Wiggins Road
+6, Avenue Victor Le Gorgeu           Saskatoon Sask. S7N 5E6
+F-29287 Brest Cedex                  CANADA
+
+Prof. Dr. Ilia Itenberg              Prof. Dr. Krzysztof Kurdyka
+Institut de Mathematiques            Lab. de Mathematiques
+Universite Louis Pasteur             Universite de Savoie
+7, rue Rene Descartes                F-73376 Le Bourget du Lac Cedex
+F-67084 Strasbourg Cedex
+Reelle Algebraische Geometrie                                               819
+
+Richard Leroy                         Prof. Dr. Adam Parusinski
+I.R.M.A.R.                            Dept. de Mathematiques
+Universite de Rennes I                Faculte des Sciences
+Campus de Beaulieu                    Universite d’Angers
+F-35042 Rennes Cedex                  2, Boulevard Lavoisier
+                                      F-49045 Angers Cedex
+Prof. Dr. Louis Mahe
+U. F. R. Mathematiques                Prof. Dr. Dmitrii V. Pasechnik
+I. R. M. A. R.                        School of Physical and Mathematical
+Universite de Rennes I                Sciences
+Campus de Beaulieu                    Nanyang Technological University
+F-35042 Rennes Cedex                  1 Nanyang Walk, Blk 5
+                                      Singapore 637616
+Prof. Dr. Valery Mahe                 SINGAPORE
+School of Mathematics
+University of East Anglia             Daniel Plaumann
+GB-Norwich NR4 7TJ                    Fachbereich Mathematik u. Statistik
+                                      Universität Konstanz
+Dr. Frederic Mangolte                 Universitätsstr. 10
+Lab. de Mathematiques                 78457 Konstanz
+Universite de Savoie
+F-73376 Le Bourget du Lac Cedex       Prof. Dr. Victoria Powers
+                                      Dept. of Mathematics and
+                                      Computer Science
+Prof. Dr. Murray Marshall
+                                      Emory University
+Dept. of Mathematics
+                                      400, Dowman Dr.
+University of Saskatchewan
+                                      Atlanta , GA 30322
+106 Wiggins Road
+                                      USA
+Saskatoon Sask. S7N 5E6
+CANADA
+                                      Prof. Dr. Alexander Prestel
+                                      Fachbereich Mathematik u. Statistik
+Prof. Dr. Jean-Philippe Monnier
+                                      Universität Konstanz
+Dept. de Mathematiques
+                                      Universitätsstr. 10
+Faculte des Sciences
+                                      78457 Konstanz
+Universite d’Angers
+2, Boulevard Lavoisier
+F-49045 Angers Cedex                  Prof. Dr. Nicolas Puignau
+                                      Institut Camille Jordan
+                                      Universite Claude Bernard Lyon 1
+Tim Netzer
+                                      43 blvd. du 11 novembre 1918
+Fachbereich Mathematik u. Statistik   F-69622 Villeurbanne Cedex
+Universität Konstanz
+Universitätsstr. 10
+78457 Konstanz
+820                                              Oberwolfach Report 14/2007
+
+Prof. Dr. Bruce Reznick               Alexandre Sine
+Dept. of Mathematics, University of   Dept. de Mathematiques
+Illinois at Urbana-Champaign          Faculte des Sciences
+273 Altgeld Hall MC-382               Universite d’Angers
+1409 West Green Street                2, Boulevard Lavoisier
+Urbana , IL 61801-2975                F-49045 Angers Cedex
+USA
+                                      Prof. Dr. Luis Felipe Tabera
+Prof. Dr. Marie-Francoise Roy         Departamento de Matematicas
+U. F. R. Mathematiques                Facultad de Ciencias
+I. R. M. A. R.                        Universidad de Cantabria
+Universite de Rennes I                Avda. de los Castros, s/n
+Campus de Beaulieu                    E-39005 Santander
+F-35042 Rennes Cedex
+                                      Marcus Tressl
+Prof. Dr. Daniel Schaub               Fakultät für Mathematik
+Dept. de Mathematiques                Universität Regensburg
+Faculte des Sciences                  Universitätsstr. 31
+Universite d’Angers                   93053 Regensburg
+2, Boulevard Lavoisier
+F-49045 Angers Cedex
+                                      Prof. Dr. Nicolai N. Vorobjov
+                                      Dept. of Computer Sciences
+Prof. Dr. Claus Scheiderer            University of Bath
+Fakultät für Mathematik             GB-Bath BA2 7AY
+Universität Konstanz
+78457 Konstanz
+                                      Prof. Dr. Jean-Yves Welschinger
+                                      Unite de Mathematiques Pures et
+Prof. Dr. Niels Schwartz              Appliquees
+Fakultät für Mathematik             Ecole Normale Superieure de Lyon
+und Informatik                        46 Allee d’Italie
+Universität Passau                   F-69364 Lyon Cedex 07
+Innstr. 33
+94032 Passau
+                                      Etienne Will
+                                      Institut de Mathematiques
+Markus Schweighofer                   Universite Louis Pasteur
+Fachbereich Mathematik und            7, rue Rene Descartes
+Statistik                             F-67084 Strasbourg Cedex
+Universität Konstanz
+78457 Konstanz
+
+Prof. Dr. Boris Shapiro
+Department of Mathematics
+Stockholm University
+S-10691 Stockholm
+

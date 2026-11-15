@@ -1,0 +1,249 @@
+      Global Optimization of Polynomials Using Generalized
+              Critical Values and Sums of Squares ∗
+
+                           Feng Guo                                 Mohab Safey EI Din                             Lihong Zhi
+                  Key Laboratory of                             UPMC, Univ Paris 06, INRIA,                   Key Laboratory of
+              Mathematics Mechanization,                        Paris-Rocquencourt Center,                Mathematics Mechanization,
+                        AMSS                                    SALSA Project, LIP6/CNRS                            AMSS
+                Beijing 100190, China                               UMR 7606, France                        Beijing 100190, China
+                fguo@mmrc.iss.ac.cn                                Mohab.Safey@lip6.fr                      lzhi@mmrc.iss.ac.cn
+
+
+ABSTRACT                                                                             General Terms
+Let X̄ = [X1 , . . . , Xn ] and f ∈ R[X̄]. We consider the prob-                     Theory, algorithms.
+lem of computing the global infimum of f when f is bounded
+below. For A ∈ GLn (C), we denote by f A the polynomial
+f (A X̄). Fix a number M ∈ R greater than inf x∈Rn f (x).                            1. INTRODUCTION
+We prove that there exists a Zariski-closed subset A (                                 We consider the global optimization problem
+GLn (C) such that for all A ∈ GLn (Q) \ A , we have f A ≥ 0
+on Rn if and only if for all  > 0, there exist sums of squares                                     f ∗ := inf{f (x) | x ∈ Rn } ∈ R ∪ {−∞}      (1)
+of polynomials s and t in R[X̄] and polynomials φi ∈ R[X̄]                           where f ∈ R[X̄] := R[X1 , . . . , Xn ]. The problem is equiva-
+                                            P                A
+such that f A +  = s + t M − f A + 1≤i≤n−1 φi ∂f           ∂Xi
+                                                                .                    lent to compute
+Hence we can formulate the original optimization problems
+as semidefinite programs which can be solved efficiently in                                   f ∗ = sup{a ∈ R | f − a ≥ 0 on Rn } ∈ R ∪ {−∞}.
+Matlab. Some numerical experiments are given. We also
+                                                                                     It is well known that this optimization problem is NP-hard
+discuss how to exploit the sparsity of SDP problems to over-
+                                                                                     even when deg(f ) ≥ 4 and is even [13]. There are many
+come the ill-conditionedness of SDP problems when the in-
+                                                                                     approaches to approximate f ∗ . For example, we can get a
+fimum is not attained.
+                                                                                     lower bound by solving the sum of squares (SOS) problem:
+
+Keywords                                                                              f sos     = sup{a ∈ R | f − a is a sum of squares in R[X̄]}
+Global optimization, polynomials, generalized critical val-                                     ∈   R ∪ {−∞}.
+ues, sum of squares, semidefinite programing, moment ma-
+trix.                                                                                The SOS problem can be solved efficiently by algorithms in
+                                                                                     GloptiPoly [4], SOSTOOLS [15], YALMIP [12], SeDuMi [22]
+                                                                                     and SparsePOP [24]. An overview about SOS and nonneg-
+Categories and Subject Descriptors                                                   ative polynomials is given in [17]. However, it is pointed
+G.1.6 [Numerical Analysis]: Optimization; I.1.2 [Symbolic                            out in [1] that for fixed degree d ≥ 4, the volume of the
+and Algebraic Manipulation]: Algorithms: algebraic al-                               set of sums of squares of polynomials in the set of nonneg-
+gorithms; F.2.2 [Analysis of Algorithms and Problem                                  ative polynomials tends to 0 when the number of variable
+Complexity]: Non numerical algorithms and problems: ge-                              increases.
+ometrical problems and computation                                                     In recent years, a lot of work has been done in proving
+                                                                                     existence of SOS certificates which can be exploited for op-
+∗Feng Guo and Lihong Zhi are supported by the Chi-                                   timization, e.g., the “Big ball” method proposed by Lasserre
+nese National Natural Science Foundation under grant                                 [10] and “Gradient perturbation” method proposed by Ji-
+NSFC60821002/F02 and 10871194.                                                       betean and Laurent [6]. These two methods solve the prob-
+Feng Guo, Mohab Safey El Din and Lihong Zhi are sup-                                 lem by perturbing the coefficients of the input polynomials.
+ported by the EXACTA grant of the National Science Foun-
+dation of China (NSFC 60911130369) and the French Na-                                However, small perturbations of coefficients might generate
+tional Research Agency (ANR-09-BLAN-0371-01).                                        numerical instability and lead to SDPs which are hard to
+                                                                                     solve. The “Gradient variety” method by Nie, Demmel and
+                                                                                     Sturmfels [14] is an approach without perturbation. For a
+                                                                                     polynomial f ∈ R[X̄], its gradient variety is defined as
+Permission to make digital or hard copies of all or part of this work for
+personal or classroom use is granted without fee provided that copies are                             V (∇f ) := {x ∈ Cn | ∇f (x) = 0}
+not made or distributed for profit or commercial advantage and that copies
+bear this notice and the full citation on the first page. To copy otherwise, to      and its gradient ideal is the ideal generated by all partial
+republish, to post on servers or to redistribute to lists, requires prior specific   derivatives of f :
+                                                                                                        D ∂f               ∂f E
+permission and/or a fee.
+ISSAC 2010, 25–28 July 2010, Munich, Germany.                                                                   ∂f
+                                                                                              h∇f i :=        ,    ,··· ,       ⊆ R[X̄].
+Copyright 2010 ACM 978-1-4503-0150-3/10/0007 ...$10.00.                                                  ∂X1 ∂X2          ∂Xn
+It is shown in [14] that if the polynomial f ∈ R[X̄] is nonneg-                 (i) f ≥ 0 on Rn ;
+ative on V (∇f ) and h∇f i is radical then f is an SOS mod-
+ulo its gradient ideal. If the gradient ideal is not necessarily               (ii) f ≥ 0 on S(∇f );
+radical, the conclusion still holds for polynomials positive
+                                                                              (iii) For every  > 0, there are sums of squares of polyno-
+on their gradient variety. However, if f does not attain the
+                                                                                    mials s and t in R[X̄], such that
+infimum, the method outlined in [14] may provide a wrong
+                                                                                                                              
+answer. For example, consider f := (1 − xy)2 + y 2 . The in-                                                            2    2
+                                                                                             f +  = s + t 1 − k∇f (X̄)k kX̄k .
+fimum of f is f ∗ = 0, but V (∇f ) = {(0, 0)} and f (0, 0) = 1.
+This is due to the fact that any sequence (xn , yn ) such that
+f (xn , yn ) → 0 when n → ∞ satisfies ||(xn , yn )|| → ∞ (here                For fixed k ∈ N, let us define
+and throughout the paper we use the l2 -norm). Roughly                                                                            
+                                                                                fk∗ := sup a ∈ R | f − a = s + t 1 − k∇f (x)k2 kxk2 .
+speaking the infimum is not reached at finite distance but
+“at infinity”. Such phenomena are related to the presence                     where s, t are sums of squares of polynomials and the degree
+of asymptotic critical values, which is a notion introduced in                of t is at most 2k. If the assumptions in the above theorem
+[9].                                                                          are satisfied, then {fk∗ }k∈N converges monotonically to f ∗
+   Recently, there are some progress in dealing with these                    (see [21, Theorem 30]). The shortage of this method is that
+hard problems for which polynomials do not attain a min-                      it is not clear that these technical assumptions are necessary
+imum on Rn . Let us outline Schweighofer’s approach [21].                     or not. To avoid it, the author proposed a collection of
+We recall some notations firstly.                                             higher gradient tentacles ([21, Definition 41]) defined by the
+                                                                              polynomial inequalities
+   Definition 1.1. For any polynomial f ∈ R[X̄] and sub-
+set S ∈ Rn , the set R∞ (f, S) of asymptotic values of f on                            1 − k∇f (x)k2N (1 + kxk)N +1 ≥ 0, N ∈ N.
+S consists of all y ∈ R for which there exists a sequence                     Then for sufficiently large N , for all f ∈ R[X̄] bounded below
+(xk )k∈N of points xk ∈ S such that limk→∞ ||xk || = ∞ and                    we have an SOS representation theorem ([21, Theorem 46]).
+limk→∞ f (xk ) = y.                                                           However, the corresponding SDP relaxations get very large
+   Definition 1.2. The preordering generated by polynomi-                     for large N and one has to deal for each N with a sequence of
+als g1 , g2 , . . . , gm ∈ R[X̄] is denoted by T (g1 , g2 , . . . , gm ):     SDPs. To avoid this disadvantage, another approach using
+                               P                                            truncated tangency variety is proposed in [3]. Their results
+                                   δ∈{0,1}m sδ g1 g2 . . . gm | sδ
+                                                δ1 δ2        δm
+                                                                              are mainly based on Theorem 1.3. For nonconstant polyno-
+ T (g1 , g2 , . . . , gm ) :=                                             .   mial function f ∈ R[X̄], they define
+                                is a sum of squares in R[X̄]
+                                                                                                       ∂f        ∂f
+  Theorem 1.3. ([21, Theorem 9]). Let f, g1 , g2 , . . . , gm ∈                       gij (X̄) := Xj       − Xi     , 1 ≤ i < j ≤ n.
+R[X̄] and set                                                                                          ∂Xi      ∂Xj
+
+ S := {x ∈ Rn | g1 (x) ≥ 0, g2 (x) ≥ 0, . . . , gm (x) ≥ 0}. (2)              For a fixed real number M ∈ f (Rn ), the truncated tangency
+                                                                              variety of f is defined to be
+Suppose that
+                                                                              ΓM (f ) := {x ∈ Rn | M − f (x) ≥ 0, gi,j (x) = 0, 1 ≤ i, j ≤ n}.
+  (i) f is bounded on S;
+                                                                              Then based on Theorem 1.3, the following result is proved.
+ (ii) R∞ (f, S) is a finite subset of ]0, +∞[;
+                                                                                Theorem 1.6. [3, Theorem 3.1] Let f ∈ R[X̄] and M
+(iii) f > 0 on S;                                                             be a fixed real number. Then the following conditions are
+Then f ∈ T (g1 , g2 , . . . , gm ).                                           equivalent:
+                                                    T                           (i) f ≥ 0 on Rn ;
+The idea in [21] is to replace the real part V (∇f ) Rn of
+the gradient variety by several larger semialgebraic sets on
+                                                                               (ii) f ≥ 0 on ΓM (f );
+which the partial derivatives do not necessarily vanish but
+get very small far away from the origin. For these sets two                   (iii) For every  > 0, there are sums of squares of polyno-
+things must hold at the same time:                                                  mials s and t in R[X̄] and polynomials φij ∈ R[X̄], 1 ≤
+                                                                                    i < j ≤ n, such that
+    • There exist suitable SOS certificates for nonnegative
+                                                                                                                      X
+      polynomials on the set.                                                               f +  = s + t (M − f ) +        φij gij .
+    • The infimum of f on Rn and on the set coincide.                                                                 1≤i<j≤n
+
+
+   Definition 1.4. For a polynomial f ∈ R[X̄], we call                        Fix k ∈ N and let
+                                                                                                                                              
+          S(∇f ) := {x ∈ R |1 − k∇f (x)k kxk ≥ 0}
+                                n                 2     2                                                                    X                
+                                                                               ∗
+                                                                              fk := sup a ∈ R|f − a = s + t (M − f ) +               φij gij       .
+the principal gradient tentacle of f .                                                                                                        
+                                                                                                                           1≤i<j≤n
+
+   Theorem 1.5. ([21, Theorem 25]) Let f ∈ R[X̄] be boun-                     where s, t, φij are polynomials of degree at most 2k and s, t
+ded below. Furthermore, suppose that f has only isolated                      are sums of squares of polynomials in R[X̄], then the se-
+singularities at infinity (which is always true in the case n =               quence {fk∗ }k∈N converges monotonically increasing to f ∗
+2) or the principal gradient tentacle S(∇f ) is compact, then                 ([3, Theorem 3.2]). This approach does not require the as-
+the following conditions are equivalent:                                      sumptions of [21, Theorem 25]. However, the number of
+equality constraints in ΓM (f ) is n(n−1)
+                                       2
+                                           which is very large          In [18], the above theorem is stated in the complex case and
+as n increases.                                                         proved for this case. It relies on properness properties of
+   In this paper, based on Theorem 1.3 and the computation              some critical loci. Since these properness properties can be
+of generalized critical values of a polynomial mapping in [18,          transfered to the real part of these critical loci, its proof can
+19], we present a method to solve optimization problem (1)              be transposed mutatis mutandis to the real case.
+without requiring f attains the infimum on Rn . Our method
+does not require assumptions as in [21] and use the simpler                Remark 2.5. ([19], Remark 1) Note also that the curve
+variety which only contains n − 1 equality constraints.                 defined as the Zariski-closure of the complex solution set of
+                                                                                      A
+                                                                                                   ∂f A        ∂f A
+   Although approaches in [21] and [3] can handle polyno-               f A − T = ∂f∂X1
+                                                                                        = · · · = ∂X     = 0, ∂X  n
+                                                                                                                    6= 0 has a degree
+mials which do not attain a minimum on Rn , numerical
+                                                                                                     n−1
+
+                                                                        bounded by (d − 1)(n−1) , where d is the total degree of f .
+problems occur when one solves the SDPs obtained from
+                                                                        Thus the set of the non-properness of the projection on T
+SOS relaxations, see [3, 6, 21]. The numerical problems are
+                                                                        restricted to this curve has a degree bounded by (d − 1)(n−1) .
+mainly caused by the unboundness of the moments. It hap-
+pens often when one deals with this kind of polynomial opti-               Remark 2.6. In [18], a criterion for choosing A is given.
+mization problem using SOS relaxations without exploiting               It is sufficient that the restriction of the projection
+the sparsity structure. We propose some strategies to avoid             (x1 , . . . , xn , t) → (xn−i+2 , . . . , xn , t) to the Zariski-closure
+ill-conditionedness of moment matrices.                                                                                    A
+                                                                                                                                        ∂f A
+   The paper is organized as follows. In section 2 we present           of the constructible set f A − T = ∂f           ∂X1
+                                                                                                                             = · · · = ∂X n−i
+                                                                                                                                              =
+                                                                                 A
+some notations and preliminaries used in our method. The                0, ∂X∂f
+                                                                              n−i+1
+                                                                                     6= 0 is proper. An algorithm, based on Gröbner
+main result and its proof are given in section 3. In section 4,         bases or triangular sets computations, that computes sets of
+some numerical experiments are given. In section 5, we focus            non-properness is given in [20].
+on two polynomials which do not attain the infimum and try
+to solve the numerical problems. We draw some conclusions                  Theorem 2.7. ([19, Theorem 5]) Let f ∈ R[X1 , . . . , Xn ]
+in section 6.                                                           and ε = {e1 , . . . , el } (with e1 < · · · < el ) be the set of real
+                                                                        generalized critical values of the mapping x ∈ Rn → f (x).
+2. PRELIMINARIES AND NOTATIONS                                          Then inf x∈Rn f (x) > −∞ if and only if there exists 1 ≤ i0 ≤
+                                                                        l such that inf x∈Rn f (x) = ei0 .
+   Definition 2.1. [9] A complex (resp. real) number c ∈ C
+(resp. c ∈ R) is a critical value of the mapping feC : x ∈                Remark 2.8. Combined with Lemma 2.3, the above the-
+Cn → f (x) (resp. feR : x ∈ Rn → f (x)) if and only if                  orem leads to f ∗ = inf x∈Rn f A (x).
+there exists z ∈ Cn (resp. z ∈ Rn ) such that f (z) = c and
+ ∂f
+∂X1
+     = · · · = ∂X
+                ∂f
+                  n
+                    = 0.                                                3. MAIN RESULTS
+  A complex (resp. real) number c ∈ C (resp. c ∈ R) is                    For A ∈ GLn (Q), we denote by W1A the constructible set
+an asymptotic critical value of the mapping feC (resp. feR ) if         defined by
+there exists a sequence of points (zl )l∈N ⊂ Cn (resp. (zl )l∈N                    A                                
+⊂ Rn ) such that:                                                                  ∂f           ∂f A        ∂f A
+                                                                                       = ··· =         = 0,      6= 0 ,
+                                                                                   ∂X1         ∂Xn−1        ∂Xn
+  (i) f (zl ) tends to c when l tends to ∞.
+                                                                        and by W0A the algebraic variety defined by
+ (ii) ||zl || tends to +∞ when l tends to ∞.                                      A                                
+                                                                                   ∂f              ∂f A      ∂f A
+(iii) ||Xi (zl )|| · || ∂X
+                         ∂f
+                             (zl )|| tends to 0 when l tends to ∞ for                    = ··· =          =       =0 .
+                           j                                                       ∂X1           ∂Xn−1       ∂Xn
+      all (i, j) ∈ {1, . . . , n}2 .
+                                                                        We set W A := W1A ∪ W0A , which is the algebraic variety
+We denote by K0 (f ) the set of critical values of f , by K∞ (f )
+                                                                        defined by
+the set of asymptotic critical values of f , and by K(f ) the
+                                                                                      A                      
+set of generalized critical values which is the union of K0 (f )                      ∂f            ∂f A
+and K∞ (f ).                                                                               = ··· =         =0 .
+                                                                                      ∂X1          ∂Xn−1
+   Definition 2.2. A map φ : V → W of topological spaces
+                                                                          Lemma 3.1. If inf x∈R f (x) > −∞, then there exists a
+is said to be proper at w ∈ W if there exists a neighborhood
+                                                                        Zariski-closed subset A ( GLn (C) such that for all A ∈
+B of w such that φ−1 (B) is compact (where B denotes the
+                                                                        GLn (Q) \ A ,
+closure of B).
+  Recall that for A ∈ GLn (C) and f ∈ R[X̄], f A the poly-                 f ∗ = inf{f (x) |x ∈ Rn } = inf{f A (x) |x ∈ W A ∩ Rn }.
+nomial f (A X̄).                                                        Moreover R∞ (f A , W A ) is a finite set.
+  Lemma 2.3. ([18], Lemma 1) For all A ∈ GLn (Q), we
+                                                                         Proof. We start by proving that f ∗ = inf{f A (x) | x ∈
+have K0 (f ) = K0 (f A ) and K∞ (f ) = K∞ (f A ).
+                                                                        W A }. Remark first that f ∗ ≤ inf{f A (x) | x ∈ W A ∩ Rn }.
+   Theorem 2.4. ([18, Theorem 3.6]) There exists a Zaris-
+ki-closed subset A ( GLn (C) such that for all A ∈ GLn (Q)\                • Suppose first that the infimum f ∗ is reached over Rn .
+A , the set of real asymptotic critical values of x → f (x) is               Then, it is reached at a critical point x ∈ W0A . Since
+contained in the set of non-properness of the projection on                  W0A ⊂ W A , f ∗ = inf{f A (x) | x ∈ W A ∩ Rn }.
+T restricted to the Zariski-closure of the semi-algebraic set              • Suppose now that the infimum f ∗ is not reached over
+                         A
+                                      ∂f A        ∂f A
+defined by f A − T = ∂f∂X1
+                           = · · · = ∂Xn−1
+                                            = 0, ∂X  n
+                                                       6= 0.                 Rn . Then, by Theorems 2.4 and 2.7, f ∗ belongs to the
+

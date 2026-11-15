@@ -1,0 +1,171 @@
+                                                         Some projective surfaces of GK-dimension 4
+
+                           We are interested in deforming σ by composing it with a automorphism of T . For any
+                       τ ∈ Auto (T ) = PGL2 × PGL2 , we define φ := τ ◦ σ : T 99K T . Since τ is an automorphism acting
+                       as the identity on the Picard group of T , note that we also have
+
+                                                                                 O(a, b)φ ∼
+                                                                                          = O(a, a + b).                           (3.4)
+
+                          In fact, it will be convenient to work only with τ coming from a more restricted (two-
+                       dimensional) algebraic subgroup of automorphisms. Let
+
+                                          G := {τ ∈ Aut(T ) | τ fixes each of the points [±1 : 1][±1 : 1]} ⊆ Auto (T ).
+
+                       It is easy to see that G ∼
+                                                = k∗ × k∗ as algebraic groups (an explicit isomorphism is given later in
+                       this section), and we write τ (ρ, θ) for the element of G which corresponds to (ρ, θ) ∈ k∗ × k∗ .
+                            We now define the rings that are the main subject of the paper. Let
+
+                                        L := OT (Y + W ) ∼
+                                                         = O(1, 1)                     and E := k + ku + kv + kuv ⊆ K = k(u, v).
+
+                       We canonically identify E with H 0 (T, L). Now for given τ ∈ G, we denote the pullback action
+                       of φ = τ σ : T 99K T on rational functions by ϕ, so ϕ(f ) = f φ , and we form the skew-Laurent ring
+                       K[t, t−1 ; ϕ]. Let
+                                                                         R := R(τ ) := khEti ⊆ K[t, t−1 ; ϕ]
+                       be the k-subalgebra generated in degree 1 by Et.
+                           Let us say that τ is a general element of G if τ lies in the complement of a countable union of
+                       proper closed subvarieties of G. The goal of this paper is to understand the algebras R(τ ) = R,
+                       at least for general τ . We recall here the definitions of some homological properties of interest.
+                       The connected graded k-algebra R is Artin–Schelter (AS) Gorenstein if R has finite left and
+                       right injective dimension d and we have
+                                                                         (
+                                                              i            0      if i 6= d,
+                                                          ExtR (k, R) =
+                                                                           k[`] if i = d
+
+                       (for some shift `), where k = R/R⩾1 is the trivial graded module. If in addition R has finite global
+                       dimension d and finite GK-dimension, then R is AS-regular. The algebra R satisfies (right) χi
+                       if dimk ExtjR (k, M ) < ∞ for all j ⩽ i and for all finitely generated MR , and R satisfies χ if it
+                       satisfies χi for all i ⩾ 0.
+                           Recall [Jør98] that the depth of a graded R-module M is defined to be min{i | ExtiR (k, M ) 6=
+                       0}. For commutative noetherian graded rings and for some classes of noncommutative graded
+                       rings, including AS-Gorenstein algebras [Jør98, Theorem 3.2], the Auslander–Buchsbaum formula
+                       holds: that is, for a graded module M of finite projective dimension we have pd M + depth M =
+                                                         L
+                       depth R. Recall also that if R = n∈N Rn is a connected graded algebra, then the Hilbert series
+                       of R is the formal power series hR (s) = n∈N (dimk Rn )sn .
+                                                                 L
+
+                            The main goal of the remainder of the paper will be to prove the following result.
+
+                       Theorem 3.5. Let the pair (ρ, θ) be algebraically independent over the prime subfield F of k,
+                       and let R = R(τ (ρ, θ)).
+
+
+                                                                                           1201
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+                                                                    D. Rogalski and S. J. Sierra
+
+                        (1) The algebra R is noetherian.
+                        (2) There is a presentation R ∼
+                                                      = khx1 , x2 , x3 , x4 i/(f1 , . . . , f6 ), where
+                                       f1 = x1 (cx1 − x3 ) + x3 (x1 − cx3 ),                     f2 = x1 (cx2 − x4 ) + x3 (x2 − cx4 ),
+                                       f3 = x2 (cx1 − x3 ) + x4 (x1 − cx3 ),                     f4 = x2 (cx2 − x4 ) + x4 (x2 − cx4 ),
+                                       f5 = x1 (dx1 − x2 ) + x4 (x1 − dx2 ),                     f6 = x1 (dx3 − x4 ) + x4 (x3 − dx4 ),
+                  for c = (θ − 1)/(θ + 1), d = (ρ − 1)/(ρ + 1).
+                        (3) The trivial module k has a graded free resolution of the form
+                                                  0 → R[−4] → R[−3]4 → R[−2]6 → R[−1]4 → R → k → 0.
+                     (4) The Hilbert series of R is hR (s) = 1/(1 − s)4 and R is Koszul of global dimension 4.
+                  However, R is not AS-Gorenstein and therefore not AS-regular, and the Auslander–Buchsbaum
+                  equality fails for R.
+
+                     We use the notation 1 := τ (1, 1) for the identity map of G, and we give the special case of
+                  R(τ ) where τ = 1 its own name:
+                                                             A := R(1) = kht, ut, vt, uvti ⊆ K[t, t−1 ; σ].
+                  (Note that here we denote σ : T 99K T and the induced pullback action on K by the same symbol;
+                  we will do likewise for τ . We hope this will not induce confusion.) The ring A has appeared in the
+                  literature before (see [YZ06, Proposition 7.6]) and it has certain bad properties. Most notably,
+                  it is not noetherian on either side (we sketch the simple proof in 4.13 below). However, several
+                  other properties we desire to prove for R, such as finite global dimension, hold for A and the
+                  main strategy of our proofs in these cases is to show that these properties deform to hold also
+                  for R(τ ) for general τ .
+                      In the remainder of this section, we give some further formulas and subsidiary results which
+                  will be useful in the following. Although the coordinate system we have been using is the one in
+                  which σ is simplest, occasionally we will want to change coordinates so that the automorphisms
+                  τ ∈ G are diagonalized. We use round brackets ( : ) for the coordinate system of P1 which is
+                  related to the original one by the change of coordinate formulas [x : y] = (x − y : x + y) and
+                  (a : b) = [a + b : −a + b]. Then [1 : 1] = (0 : 1) and [1 : −1] = (1 : 0), and the group of
+                  automorphisms of P1 fixing both of these points is isomorphic to k∗ , where we let ρ ∈ k∗
+                  correspond to the diagonal automorphism (a : b) 7→ (ρ−1 a : b). An automorphism in G has the
+                  form µ × ν where µ, ν ∈ Aut(P1 ) correspond to elements ρ, θ ∈ k∗ respectively; this makes explicit
+                  the isomorphism τ : k∗ × k∗ → G already mentioned.
+                        We define the useful abbreviations
+                                                       γ := ρ + 1,          δ := ρ − 1,           := θ + 1,         ζ := θ − 1.
+                  Then in our two coordinate systems we have the following formulas for τ (ρ, θ) : T → T :
+                                                     (a : b)(c : d) 7→ (ρ−1 a : b)(θ−1 c : d),
+                                                     [x : y][z : w] 7→ [γx + δy : γy + δx][z + ζw : w + ζz].
+                  In terms of the action on rational functions, we record the formulas
+                                                  γu + δ                   v + ζ               −1       γu − δ             −1        v − ζ
+                                          uτ =           ,         vτ =           ,        uτ        =           ,     vτ        =           .   (3.6)
+                                                  δu + γ                   ζv +                         −δu + γ                     −ζv + 
+
+
+                                                                                           1202
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+                                                         Some projective surfaces of GK-dimension 4
+
+                          For future reference we also record the following formulas for the action of φ and its inverse
+                       on rational functions. Recalling that we write ϕ(f ) = f φ , we have
+                                        γuv + δ                        v + ζ                      (γu − δ) (−ζv + )                 v − ζ
+                            ϕ(u) =              ,          ϕ(v) =             ,       ϕ−1 (u) =                       ,   ϕ−1 (v) =           .
+                                        δuv + γ                        ζv +                      (−δu + γ) (v − ζ)                  −ζv + 
+                                                                                                                                             (3.7)
+                            We note here the following symmetry in our main setup.
+
+                       Lemma 3.8. Let ψ := τ (−1, −1), so ψ([x : y][z : w]) = [y : x][w : z] is the automorphism of T that
+                       switches the coordinates in both copies of P1 . Then ψ commutes with φ = τ σ for all τ ∈ G. Also,
+                       ψ interchanges X and Y and interchanges the points F and Q.
+
+                           We close this section with an analysis of the opposite ring of R(τ ). We show that the opposite
+                       ring lives in the same family of examples, and so we will be able to focus our attention on right
+                       ideals and right modules.
+
+                       Proposition 3.9. Let τ ∈ G and let R = R(τ ). Then Rop ∼
+                                                                              = R(τ −1 ).
+
+                       Proof. We define an automorphism ω : K → K by ω(u) = u, ω(v) = v −1 . In other words, ω is
+                       pullback by τ (1, −1) ∈ G. Note that ω 2 = 1.
+                           All compositions in this proof are compositions of automorphisms of K. Now, R is the
+                       subalgebra of K[t; ϕ] generated by H 0 (T, O(1, 1)) · t. The map K[t; ϕ] → K[t; ϕ−1 ] given by
+                       P i P φ−i+1 i
+                          ai t 7→     ai     t is an anti-isomorphism, so thePsubalgebra P of τ K[t; ϕ−1 ] generated by
+                         0                                   op
+                       H (T, O(1, 1)) · t is isomorphic to R . Next, the map         i
+                                                                                 ai t 7→         i
+                                                                                          ω(ai )t gives an isomorphism
+                       K[t; ϕ ] → K[t; ωτ ϕ τ ω ], so R is isomorphic to the subalgebra of K[t; ωτ ϕ−1 τ −1 ω −1 ]
+                               −1                 −1 −1 −1      op
+
+                       generated by ωτ (H 0 (T, O(1, 1))) · t. Since ωτ : K → K is induced by an automorphism of
+                       T = P1 × P1 which fixes linear equivalence classes of divisors, we have ωτ (H 0 (T, O(1, 1))) =
+                       aH 0 (T, O(1, 1)) for some 0 6= a ∈ K. Finally, putting t0 = at, we have K[t; ωτ ϕ−1 τ −1 ω −1 ] =
+                       K[t0 ; ωτ ϕ−1 τ −1 ω −1 ], and now Rop is isomorphic to the subalgebra of K[t0 ; ωτ ϕ−1 τ −1 ω −1 ]
+                       generated by H 0 (T, O(1, 1)) · t0 .
+                          We consider the automorphism ωτ ϕ−1 τ −1 ω −1 of K. Since σ and τ act via pullback on
+                       K, we have φ∗ = ϕ = στ ∈ Aut(K). Thus ωτ ϕ−1 τ −1 ω −1 = ωσ −1 τ −1 ω −1 = ωσ −1 ωτ −1 , as G is
+                       abelian and ω 2 = 1. A trivial computation shows that ωσ −1 ω = σ, and so we conclude that
+                       ωτ ϕ−1 τ −1 ω −1 = στ −1 .
+                          It follows that R(τ )op ∼
+                                                  = R(τ −1 ), as claimed.                                            2
+
+                       Corollary 3.10. The algebras A and Aop are isomorphic.
+
+                                                                                  4. Geometrizing R
+
+                       We want to describe the rings R(τ ) defined in the previous section in a way analogous to the
+                       construction of a twisted homogeneous coordinate ring or a naı̈ve blowup. In particular, we would
+                       like to show that each graded piece of R can be identified with the global sections of a certain
+                       sheaf on T . This will require using pullback by a birational map instead of an automorphism,
+                       and so some sensitive calculations will be needed.
+                          All of the notation developed in the previous section will be in force in this section. Fix τ ∈ G.
+                       Recall that we defined φ = τ σ as a birational self-map of T , and we put E := H0 (T, L) ⊆ K = k(T )
+
+
+                                                                                           1203
+
+https://doi.org/10.1112/S0010437X12000188 Published online by Cambridge University Press
+

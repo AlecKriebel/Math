@@ -1,0 +1,156 @@
+20                                MARKUS SCHWEIGHOFER
+
+
+The deﬁnition of S(∇f, N ) is motivated by the following deﬁnition which is taken
+from [KOS, page 79].
+                                                             N
+Definition 42. Suppose f ∈ R[X̄] and N ∈ N. The set K∞          (f ) consists of all
+                                                     n
+y ∈ R for which there exists a sequence (xk )k∈N in R such that
+                                                       1
+(18) lim ||xk || = ∞,           lim k∇f (xk )kkxk k1+ N = 0 and          lim f (xk ) = y.
+       k→∞                     k→∞                                       k→∞
+
+     Clearly, we have
+                         1         2         3
+                        K∞ (f ) ⊆ K∞ (f ) ⊆ K∞ (f ) ⊆ · · · ⊆ K∞ (f ).
+The next lemma says that this chain actually gets stationary and reaches K∞ (f ).
+For the proof, we refer to [KOS, Lemma 3.1].
+Lemma 43 (Kurdyka, Orro and Simon). For all f ∈ R[X̄], there exists N ∈ N
+such that
+                                     N
+                          K∞ (f ) = K∞ (f ).
+   Now we prove for suﬃciently large gradient tentacles what was Corollary 19 for
+the principal gradient tentacle (which contains all higher gradient tentacles).
+Theorem 44. Suppose f ∈ R[X̄] is bounded from below. Then f ∗ ∈ K(f ) and
+there is N0 ∈ N such that for all N ≥ N0 ,
+(19)                          f ∗ = inf{f (x) | x ∈ S(∇f, N )}.
+Proof. We know already from Theorem 19 that f ∗ ∈ K(f ). By Proposition 13,
+at least one of the following two cases therefore must occur. The ﬁrst case is that
+f ∗ ∈ K0 (f ). Then f ∗ is attained by f on its gradient variety and therefore on the
+N -th gradient tentacle for actually all N ∈ N. Hence we can set N0 := 1. In the
+second case f ∗ ∈ K∞ (f ), we can choose some N0 ∈ N such that f ∗ ∈ K∞      N
+                                                                               (f ) by
+                                ∗     N
+the previous Lemma. Then f ∈ K∞ (f ) for any N ≥ N0 . This means that there
+exists a sequence (xk )k∈N satisfying (18). Therefore k∇f (x)kkxk k1+1/N ≤ 12 and
+consequently
+             k∇f (xk )k2N (1 + kxk k2 )N +1 ≤ k∇f (xk )k2N (2kxk k2 )N +1 ≤ 1
+for all large k since kxk k ≥ 1 and 2N +1 ≤ 22N . This shows that xk ∈ S(∇f, N ) for
+all large k which implies our claim.                                              
+
+    The great advantage of the higher gradient tentacles over the principal one is
+that they are always small enough to admit only ﬁnitely many asymptotic values,
+i.e., there is no counterpart to Example 34.
+Theorem 45. For every f ∈ R[X̄], R∞ (f, S(∇f )) ⊆ K∞ (f ). In particular, every
+f ∈ R[X̄] has only finitely many asymptotic values on each of its higher gradient
+tentacles, i.e., the set R∞ (f, S(∇f, N )) is finite for all N ∈ N.
+Proof. Let y ∈ R be such that (7) holds for some sequence (xk )k∈N of points
+xk ∈ S(∇f, N ). By Deﬁnition 41,
+                                              1
+                    k∇f (xk )kN kxk kN ≤           →0       for k → ∞
+                                             kxk k
+implying (13). This shows y ∈ K∞ (f ).                                                  
+                     GLOBAL OPTIMIZATION OF POLYNOMIALS                            21
+
+
+4.1. Higher gradient tentacles and sums of squares. We are now able to
+prove the third important sums of squares representation theorem of this article
+besides Theorems 9 and 25.
+Theorem 46. For all f ∈ R[X̄] bounded from below, there is N0 ∈ N such that for
+all N ≥ N0 , the following are equivalent.
+  (i) f ≥ 0 on Rn
+ (ii) f ≥ 0 on S(∇f, N )
+(iii) For every ε > 0, there are sums of squares of polynomials s and t in R[X̄]
+      such that
+(20)                f + ε = s + t(1 − k∇f k2N (1 + kX̄k2 )N +1 ).
+Moreover, these conditions are equivalent for all f attaining a minimum on Rn and
+all N ∈ N. Finally, (ii) and (iii) are equivalent for all f ∈ R[X̄] and N ∈ N.
+Proof. We ﬁrst show that (ii) and (iii) are always equivalent. To see this, observe
+that g1 := 1 − k∇f k2N kX̄k2N +2 is a polynomial that deﬁnes the set S := {x ∈
+Rn | g1 ≥ 0} = S(∇f, N ). Because sums of squares of polynomials are globally
+nonnegative on Rn , identity (20) can be viewed as a certiﬁcate for f ≥ −ε on
+S. Hence it is clear that (iii) implies (ii). For the reverse implication, we apply
+Theorem 9 to f + ε instead of f . We only have to check the hypotheses. Condition
+(a) is clear from Lemma 24. By Corollary 45, we have that R∞ (f, S) is a ﬁnite set.
+Since f ≥ 0 on S by hypothesis, this set contains clearly only nonnegative numbers.
+This shows condition (b), i.e., R∞ (f + ε, S) = ε + R∞ (f, S) is a ﬁnite subset of
+R>0 . Finally, the hypothesis f ≥ 0 on S gives f + ε > 0 on S which is condition
+(c).
+   Now suppose that f ∈ R[X̄] attains a minimum f (x∗ ) = f ∗ in a point x∗ ∈ Rn .
+Then ∇f (x∗ ) = 0 and therefore x∗ ∈ S(∇f, N ) for all N ∈ N. This shows that (i)
+and (ii) are in this case equivalent for all N ∈ N.
+   By what has already been proved, it remains only to show that (i) and (ii)
+are equivalent for large N ∈ N when f ∈ R[X̄] is bounded from below but does
+not attain a minimum. But in this case, (19) holds by Theorem 44 yielding the
+equivalence of the ﬁrst two conditions.                                          
+   Without needing it for our application, we draw the following immediate corol-
+lary. Taking N = 1 in the second part of this corollary yields Theorem 6 above of
+Nie, Demmel and Sturmfels.
+Corollary 47. Suppose f ∈ R[X̄] and f ≥ 0 on V (∇f ) ∩ Rn . Then f + ε is for
+all ε > 0 a sum of squares modulo any principal ideal generated by a power of the
+polynomial k∇f k2 (1 + kX̄k2 ), i.e., for every ε > 0 and N ∈ N, there is a sum of
+squares s in R[X̄] and a polynomial p ∈ R[X̄] such that
+                          f = s + p(k∇f k2 (1 + kX̄k2 ))N .
+In particular, f + ε is for all ε > 0 a sum of squares modulo each power of its
+gradient ideal, i.e., for every ε > 0 and N ∈ N, there is a sum of squares s in R[X̄]
+such that
+                                    f ∈ s + (∇f )N .
+Proof. The second claim follows from the ﬁrst one. The ﬁrst claim follows im-
+mediately from implication (i) =⇒ (iii) in Theorem 46 which always holds for all
+N ∈ N.                                                                        
+22                               MARKUS SCHWEIGHOFER
+
+
+4.2. Optimization using higher gradient tentacles and sums of squares.
+The following deﬁnition can be motivated in the same way than Deﬁnition 29 in
+Section 3.
+Definition 48. For all polynomials f ∈ R[X̄], all N ∈ N and all k ∈ N0 , we deﬁne
+ ∗
+fN,k ∈ R ∪ {±∞} as the supremum over all a ∈ R such that f − a can be written
+as a sum
+(21)                f − a = s + t(1 − k∇f k2N (1 + kX̄k2 )N +1 )
+where s and t are sums of squares of polynomials with deg t ≤ 2k.
+  Again, like in Section 3 outlined, computation of fN,k amounts to solving an
+SDP for each ﬁxed N ∈ N and k ∈ N0 . Recalling the deﬁnition of f sos in (4), we
+have for each ﬁxed N ∈ N,
+                          f sos ≤ fN,0
+                                   ∗      ∗
+                                       ≤ fN,1    ∗
+                                              ≤ fN,2 ≤ ...
+                                            ∗
+and if f is bounded from below, then all fN,k  are lower bounds of f ∗ by Theorem
+44. It would be desirable to have also information how the fN,k are related to each
+other when not only k but also N varies. All we know about that is the following
+proposition.
+Proposition 49. For all f ∈ R[X̄], N ∈ N and k ∈ N0 ,
+                                      ∗         ∗
+                                     fN +1,k ≤ fN,k+d .
+
+Proof. Let us deﬁne the polynomials hN like in (11) and substitute in the identity
+proved in Lemma 11, the polynomials k∇f k2 for Y and kX̄k2 for X̄. Then we get
+
+(22)    1 − k∇f k2(N +1) (1 + kX̄k2 )N +2 = p + q(1 − k∇f k2N (1 + kX̄k2 )N +1 ).
+where p and
+                                           
+                                        1
+                          q :=       1+         k∇f k2 (1 + kX̄k2 )
+                                        N
+are sums of squares of polynomials. The degree of q is no higher than 2(d − 1) + 2 =
+2d. Now if for a ∈ R we have an identity
+                  f − a = s + t(1 − k∇f k2(N +1)(1 + kX̄k2 )N +2 )
+for sums of squares s and t with deg t ≤ 2k, then for the same a
+                f − a = (s + tp) + tq(1 − k∇f k2N (1 + kX̄k2 )N +1 )
+and deg(tq) ≤ 2(k + d).                                                             
+
+   We conclude by interpreting Theorem 46 as a convergence result concerning the
+                ∗
+optimal values fN,k of the proposed relaxations. This is the counterpart to Theorem
+30 from Section 2.
+                                                           ∗
+Theorem 50. For all f ∈ R[X̄] bounded from below, (fN,k       )k∈N converges mono-
+tonically increasing to f ∗ provided that N ∈ N is sufficiently large (depending on
+f ). If f attains a minimum on Rn , (fN,k∗
+                                           )k∈N converges monotonically increasing
+to f ∗ no matter what N ∈ N is.
+

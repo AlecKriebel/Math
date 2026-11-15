@@ -1,0 +1,210 @@
+4                               MARKUS SCHWEIGHOFER
+
+
+cannot be modeled by an SDP of a reasonable size so that you have to look for
+good relaxations of the problem which can easier be dealt with and to which the
+techniques of mathematical optimization can be applied.
+   The second obstacle is much more severe. It is the fact that the unknown poly-
+nomial s ∈ R[X̄] is multiplied with the unknown a ∈ R on the left hand side of
+the constraint s(f − a) = 1 + t. This makes the formulation as an SDP (even after
+having imposed a restriction on the degree of s and t) impossible (or at least highly
+non-obvious). Of course, if you fix a ∈ R and a degree bound 2d for s and t, then
+the question whether there exist sums of squares s and t of degree at most 2d such
+that s(f − a) = 1 + t is equivalent to the feasibility of an SDP. But this plays
+(at least currently) only a role as a criterion that might help to decide whether a
+certain ﬁxed (or guessed) a ∈ R is a strict lower bound of f . We refer to [PS] for
+more details. What one needs are representation theorems for positive polynomials
+that are better suited for optimization than the Positivstellensatz (even if they are
+sometimes less aesthetic).
+
+1.4. “Big ball” method proposed by Lasserre [L1]. In the last 15 years, a lot
+of progress has been made in proving existence of sums of squares certiﬁcates which
+can be exploited for optimization (although most of the new results were obtained
+without having in mind the application in optimization which has been established
+more recently). The ﬁrst breakthrough was perhaps Schmüdgen’s theorem [Sch,
+Corollary 3] all of whose proofs use the Positivstellensatz. In this article, we will
+prove a generalization of Schmüdgen’s theorem, namely Theorem 9 below. In [L1],
+Lasserre uses the following special case of Schmüdgen’s theorem which has already
+been proved by Cassier [Cas, Théorème 4] and which can even be derived easily
+from [Kri, Théorème 12].
+
+Theorem 4 (Cassier). For f ∈ R[X̄] and R ≥ 0, the following are equivalent.
+     (i) f ≥ 0 on the closed ball centered at the origin of radius R
+    (ii) For all ε > 0, there are sums of squares s and t in R[X̄] such that
+
+                               f + ε = s + t(R2 − kX̄k2 ).
+
+     Here and in the following, we use the notation
+
+                            kX̄k2 := X12 + · · · + Xn2 ∈ R[X̄].
+
+Similar to Subsection 1.2, it can be seen that for any ﬁxed d ∈ N0 , computing the
+supremum over all a ∈ R such that f −a = s+t(R2 −kX̄k2 ) for some sums of squares
+s, t ∈ R[X̄] of degree at most 2d amounts to solving an SDP. Therefore you get a
+sequence of SDPs parametrized by d ∈ N0 . Theorem 4 can now be interpreted as a
+convergence result, namely the sequence of optimal values of these SDPs converges
+to the minimum of f on the closed ball around the origin with radius R. If one
+has a polynomial f ∈ R[X̄] attaining a minimum on Rn and for which one knows
+moreover a big ball on which this minimum is attained, this method is good for
+computing f ∗ . Of course, if you do not know such a big ball in advance you might
+choose larger and larger R. But at the same time you might have to choose a bigger
+and bigger degree restriction d ∈ N0 and it is not really clear how to get a sequence
+of SDPs that converges to f ∗ .
+                      GLOBAL OPTIMIZATION OF POLYNOMIALS                              5
+
+
+1.5. Lasserre’s high order perturbation method [L2]. Recently, Lasserre used
+in [L2] a theorem of Nussbaum from operator theory to prove the following result
+that can be exploited in a similar way for global optimization of polynomials.
+Theorem 5 (Lasserre). For every f ∈ R[X̄], the following are equivalent:
+  (i) f ≥ 0 on Rn
+ (ii) For all ε > 0, there is r ∈ N0 such that
+                         n X
+                           r
+                         X   X 2k  i
+                  f +ε                  is a sum of squares in R[X̄].
+                         i=1 k=0
+                                   k!
+
+   Note that (ii) implies that f (x) + ε ni=1 exp(xi ) ≥ 0 for all x ∈ Rn and ε > 0
+                                         P
+which in turn implies (i). In condition (ii), r depends on ε and f . Using real algebra
+and model theory, Netzer showed that in fact r depends only on ε, n, the degree of
+f and a bound on the size of the coeﬃcients of f [Net, LN].
+1.6. “Gradient perturbation” method proposed by Jibetean and Laurent
+[JL]. The most standard idea for ﬁnding the minimum of a function everybody
+knows from calculus is to compute critical points, i.e., the points where the gradient
+vanishes. It is a natural question whether the power of classical diﬀerential calculus
+can be combined with the relatively new ideas using sums of squares. Fortunately,
+it can and the rest of the article will be about how to merge both concepts, sums
+of squares and diﬀerential calculus.
+   If a polynomial f ∈ R[X̄] attains a minimum in x ∈ Rn , i.e., f (x) ≤ f (y) for
+all y ∈ Rn , then the gradient ∇f of f vanishes at x, i.e., ∇f (x) = 0. However,
+there are polynomials that are bounded from below on Rn and yet do not attain a
+minimum on Rn . The simplest example is perhaps
+(6)                       f := (1 − XY )2 + Y 2 ∈ R[X, Y ]
+for which we have f > 0 on Rn but f ∗ = 0 since limx→∞ f (x, x1 ) = 0. In the
+following,                                          
+                                     ∂f          ∂f
+                         (∇f ) :=        ,...,         ⊆ R[X̄]
+                                    ∂X1         ∂Xn
+denotes the ideal generated by the partial derivatives of f in R[X̄]. We call this
+ideal the gradient ideal of f .
+   Without going into details, the basic idea of Jibetean and Laurent in [JL] is
+again to apply a perturbation to f . Instead of adding a truncated exponential like
+                          Pn      2(d+1)
+Lasserre, they just add ε i=1 Xi         for small ε > 0 when deg f = 2d. If f > 0 on
+R , then the perturbed polynomial fε := f + εkX̄k2(d+1) is again a sum of squares
+  n
+
+but this time only modulo its gradient ideal (∇fε ). In this case, this is quite easy
+to prove since it turns out that this ideal will be zero-dimensional, i.e., R[X̄]/(∇fε )
+is a ﬁnite-dimensional real algebra. We will later see in Theorems 6 and 46 that
+this ﬁnite-dimensionality is not needed for the sums of squares representation. But
+the work of Jibetean and Laurent exploits the ﬁnite-dimensionality in many ways.
+We refer to [JL] for details.
+1.7. “Gradient variety” method by Nie, Demmel and Sturmfels [NDS].
+The two perturbation methods just sketched rely on introducing very small coeﬃ-
+cients in a polynomial. This small coeﬃcients might lead to SDPs which are hard
+to solve because of numerical instability. It is therefore natural to think of another
+6                              MARKUS SCHWEIGHOFER
+
+
+method which avoids perturbation at all. Nie, Demmels and Sturmfels considered,
+for a polynomial f ∈ R[X̄], its gradient variety
+                          V (∇f ) := {x ∈ Cn | ∇f (x) = 0}.
+This is the algebraic variety corresponding to the radical of the gradient ideal (∇f ).
+It can be shown that a polynomial f ∈ R[X̄] is constant on each irreducible compo-
+nent of the gradient variety (see [NDS] or use an unpublished algebraic argument
+of Scheiderer based on Kähler diﬀerentials). This is the key to show that a polyno-
+mial f ∈ R[X̄] nonnegative on its gradient variety is a sum of squares modulo its
+gradient ideal in the case where the ideal is radical. In the general case where the
+gradient ideal is not necessarily radical, the same thing still holds for polynomials
+positive on their gradient variety. The following is essentially [NDS, Theorem 9]
+(confer also the recent work [M2]). We will later prove a generalization of this
+theorem as a byproduct. See Corollary 47 below.
+Theorem 6 (Nie, Demmel and Sturmfels). For every f ∈ R[X̄] attaining a mini-
+mum on Rn , the following are equivalent.
+  (i) f ≥ 0 on Rn
+ (ii) f ≥ 0 on V (∇f ) ∩ Rn
+(iii) For all ε > 0, there exists a sum of squares s in R[X̄] such that
+                                  f + ε ∈ s + (∇f ).
+Moreover, (ii) and (iii) are equivalent for all f ∈ R[X̄].
+  For each degree restriction d ∈ N0 , the problem of computing the supremum
+over all a ∈ R such that
+                                        ∂f               ∂f
+                        f − a = s + p1     + · · · + pn
+                                       ∂X1              ∂Xn
+for some sum of squares s in R[X̄] and polynomials p1 , . . . , pn of degree at most
+d, can be expressed as an SDP. Theorem 6 shows that the optimal values of the
+corresponding sequence of SDPs (indexed by d) tend to f ∗ provided that f attains
+a minimum on Rn . However, if f does not attain a minimum on Rn , the computed
+sequence still tends to the inﬁmum of f on its gradient variety which might however
+now be very diﬀerent from f ∗ . Take for example the polynomial f from (6). It is
+easy to see that V (∇f ) = {0} and therefore the method computes f (0) = 1 instead
+of f ∗ = 0. In [NDS, Section 7], the authors write:
+         “This paper proposes a method for minimizing a multivariate poly-
+         nomial f (x) over its gradient variety. We assume that the inﬁmum
+         f ∗ is attained. This assumption is non-trivial, and we do not ad-
+         dress the (important and diﬃcult) question of how to verify that
+         a given polynomial f (x) has this property.”
+1.8. Our “gradient tentacle” method. The reason why the method just de-
+scribed might fail is that the global inﬁmum of a polynomial f ∈ R[X̄] is not
+always a critical value of f , i.e., a value that f takes on at least one of its critical
+points in Rn . Now there is a well-established notion of generalized critical values
+which includes also the asymptotic critical values (a kind of critical values at inﬁnity
+we will introduce in Deﬁnition 12 below).
+   In this article, we will replace the real part V (∇f )∩Rn of the gradient variety by
+several larger semialgebraic sets on which the partial derivatives do not necessarily
+                      GLOBAL OPTIMIZATION OF POLYNOMIALS                             7
+
+
+vanish but get very small far away from the origin. These semialgebraic sets often
+look like tentacles, and that is how we will call them. All tentacles we will consider
+are deﬁned by a single polynomial inequality that depends only on the polynomial
+                                            2                     2
+                                        ∂f                      ∂f
+                       k∇f k2 :=                  + ···+
+                                       ∂X1                     ∂Xn
+
+and expresses that this polynomial gets very small. Given a polynomial f for which
+you want to compute f ∗ , the game will consist in ﬁnding a tentacle such that two
+things will hold at the same time:
+     • There exist suitable sums of squares certiﬁcates for nonnegativity on the
+       tentacle.
+     • The inﬁmum of f on Rn and on the tentacle coincide.
+One can imagine that these two properties are hardly compatible. Taking Rn as
+a tentacle, would of course ensure the second condition but we have discussed
+in Subsection 1.2 that the ﬁrst one would be badly violated. The other extreme
+would be to take the empty set as a tentacle. Then the ﬁrst condition would
+trivially be satisﬁed whereas the second would fail badly. How we will roughly
+be able to ﬁnd the balancing act between the two requirements is as follows: The
+second condition will be satisﬁed by known non-trivial theorems about asymptotic
+behaviour of polynomials at inﬁnity. The existence of suitable sums of squares
+certiﬁcates will be based on the author’s (real) algebraic work [Sr1] on iterated
+rings of bounded elements (also called real holomorphy rings).
+
+1.9. Contents of the article. The article is organized as follows. In Section
+2, we prove a general sums of squares representation theorem which generalizes
+Schmüdgen’s theorem we have mentioned in Subsection 1.4. This representation
+theorem is interesting in itself and will be used in the subsequent sections. In
+Section 3, we introduce a gradient tentacle (see Deﬁnition 17) which is deﬁned by
+the polynomial inequality
+                                   k∇f k2 kX̄k2 ≤ 1.
+We call this gradient tentacle principal since we can prove that it does the job in
+a large number of cases (see Theorem 25) and there is hope that it works in fact
+for all polynomials f ∈ R[X̄] bounded from below. Indeed, we have not found
+any counterexamples (see Open Problem 33). In case this hope were disappointed,
+we present in Section 4 a collection of other gradient tentacles (see Deﬁnition 41)
+deﬁned by the polynomial inequalities
+
+                     k∇f k2N (1 + kX̄k2 )N +1 ≤ 1              (N ∈ N).
+
+Their advantage is that if f ∈ R[X̄] is bounded from below and N is large enough
+for this particular f , then we can prove that the corresponding tentacle does the
+job (see Theorems 46 and 50). We call these tentacles higher gradient tentacles
+since the degree of the deﬁning inequality gets unfortunately high when N gets big
+which has certainly negative consequences for the complexity of solving the SDPs
+arising from these tentacles. However, if f attains a minimum on Rn , then any
+choice of N ∈ N will be good. Conclusions are drawn in Section 5.
+
