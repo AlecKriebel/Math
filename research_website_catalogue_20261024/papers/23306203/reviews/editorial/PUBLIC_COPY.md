@@ -26,13 +26,13 @@ For every integer r≥1, an r-fold traversal gives (Dₙ±)ʳ. Positivity makes 
 
 ## Why least period controls the product
 
-The proof uses Stachel’s classical Jacobi parametrization P(u)=(−a sn u,b cn u), with modulus k=c/A∈(0,1), K=K(k), cn(v)=B/b and 0<v<K. Here a=A dn(v)/cn(v), and successive vertices are separated by δ=2v=4Kτ/n, where gcd(τ,n)=1 and 0<τ<n/2. Reversing orientation gives the same cyclic subgroup.
+The proof uses Stachel’s classical Jacobi parametrization P(u)=(−a sn u,b cn u), with modulus k=c/A∈(0,1), K=K(k), K′=K(√(1−k²)), cn(v)=B/b and 0<v<K. Here a=A dn(v)/cn(v), and successive vertices are separated by δ=2v=4Kτ/n, where gcd(τ,n)=1 and 0<τ<n/2. Reversing orientation gives the same cyclic subgroup.
 
 The manuscript checks that the tangent contacts lie inside the actual chords and that the two inward rays satisfy elastic reflection across the normal. Real injectivity modulo 4K makes n the true vertex period. The geometric calculation gives the positive ordinary-distance factors g±(u)=a±c sn u; a>c prevents a hidden sign or square-root convention.
 
 On the sn torus ℂ/(4Kℤ+2iK′ℤ), the factor g₊ has two simple poles p=iK′ and p+2K, and two distinct simple zeros p−K±v. These are complete, because zero and pole degrees agree. This torus is used for the focal factor; the full complex boundary map need not have the same imaginary period.
 
-Translating the complete divisor through the n-element orbit gives one double zero coset, represented by z=−1/4+τ/(2n), and pole cosets H and 1/2+H. For odd n there are 2n uncancelled simple poles. For even n there are n double poles, cancelled exactly when (−n+2τ)/4 is an integer: precisely n≡2 (mod 4).
+Writing H=⟨δ⟩ for the n-element orbit subgroup, translating the complete divisor through H gives one double zero coset, represented by z=−1/4+τ/(2n), and pole cosets H and 1/2+H. For odd n there are 2n uncancelled simple poles. For even n there are n double poles, cancelled exactly when (−n+2τ)/4 is an integer: precisely n≡2 (mod 4).
 
 A divisor-free meromorphic function on the compact connected torus is constant. In the other classes a pole remains; the identity theorem transfers that nonconstancy to the physical real family. The half-period identity g₋(u)=g₊(u+2K) gives the second focus and the even-period pointwise equality. This is an all-period proof, rather than an extrapolation from finite checks.
 

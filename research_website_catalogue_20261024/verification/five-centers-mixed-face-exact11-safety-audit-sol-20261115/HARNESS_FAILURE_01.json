@@ -1,0 +1,16 @@
+{
+  "schema": "own-toy-control-harness-failure-history-v1",
+  "UTC": "2026-11-15T21:04:04.743876+00:00",
+  "failed_source": {
+    "path": "audit_controls.py",
+    "bytes": 11842,
+    "SHA256": "ab531ea30fcd86666a51fe2ae94da90742d9792d3437b9a2abdcc3bb04369369"
+  },
+  "actual_exit_code": 1,
+  "complete_stdout": "CONTROL_RESULTS.json",
+  "complete_stderr": "CONTROL_RESULTS.stderr",
+  "cause": "The private os proxy omitted SEEK_SET. This is a reviewer fixture error before the group2 publication validation completed, not a reviewed helper failure.",
+  "correction": "New additive audit_controls_v2.py adds only SEEK_SET to the private os proxy; original source and complete streams retained.",
+  "source_or_production_changes": false,
+  "expected_next_control_source": "audit_controls_v2.py"
+}

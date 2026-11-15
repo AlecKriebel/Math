@@ -101,7 +101,7 @@ def main():
     need(old_dirs == reuse['prior_exact_directories'], 'closed prior directories')
     check(reuse['prior_packet_seal'])
 
-    for prefix in ['opening', 'closing']:
+    for prefix in ['opening', 'closing', 'final']:
         ref, commit, root = [native(prefix + '-' + suffix) for suffix in ['main', 'commit', 'root']]
         need(ref['ref'] == 'refs/heads/main' and ref['object']['type'] == 'commit', 'actual main ref')
         need(ref['object']['sha'] == commit['sha'] and commit['tree']['sha'] == root['sha'], 'actual commit/root chain')
@@ -139,11 +139,14 @@ def main():
         rid = target['record_id']
         source = json.loads(check(target['SOURCE_READY_pin']))
         record = json.loads(check(target['native_record_pin']))
+        source_seal = json.loads(check(target['source_seal_pin']))
+        need(source_seal['SOURCE_READY_SHA256'] == target['SOURCE_READY_pin']['SHA256'], 'original source READY seal')
         need(target['title'] == source['title'] == record['metadata']['title'], 'native title')
         need(target['DOI'] == source['DOI'] == record['metadata']['doi'], 'native DOI')
         need(target['whole_native_metadata'] == record['metadata'], 'whole native metadata retained')
         need(target['native_version_whole_field'] == source['native_version_whole_field'] == {'present': True, 'original_value': '1.0.0'}, 'native version')
         need(target['whole_original_native_assets_in_original_order'] == source['all_native_assets_in_original_order'], 'whole original asset order/objects')
+        need([x['original_api_file_object'] for x in source['all_native_assets_in_original_order']] == record['files'], 'native API whole asset objects/order')
         for asset in target['whole_original_native_assets_in_original_order']:
             raw = check(asset)
             need(hashlib.md5(raw).hexdigest() == asset['original_api_file_object']['checksum'].split(':')[1], 'native checksum')

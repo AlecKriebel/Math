@@ -1,0 +1,3 @@
+# Checkpoint 01
+
+2026-11-15T20:21:29.966587+00:00: Parent explicitly permitted the new root private-integration reading receipt while the new helper packet remains forbidden. Read the complete 16,506-byte receipt and authenticated its exact SHA256. Preserved the full typed object and all eleven exact relative paths in POSTINITIAL_ROOT_STAGE_CONTEXT.json. It grants source-only helper preparation; production installation and native AA remain false. Initial seal and initial log are unchanged. New preparation has still not been listed, read, or executed. Audit completion estimate: 15%; production execution: 0%.

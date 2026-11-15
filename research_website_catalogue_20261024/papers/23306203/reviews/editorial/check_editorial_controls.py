@@ -11,7 +11,7 @@ E=Path(__file__).resolve().parent
 CC='https://creativecommons.org/licenses/by/4.0/'
 def issues(main,sg,p,native):
  text=html.unescape(main);bad=[]
- fragments={'least_period':'let n be its primitive least period','even_foci_not_constancy':'This includes n≡0 (mod 4), when the equal products still vary with phase.','circle_separate':'the noncircular pole argument is not continued through c=0.','physical_triangle':'90ac=180√30>0','final_credit':'final 2021 Arnold Mathematical Journal article, Fifty New Invariants','coverage_gap':'the full billiard body of the related Dragović–Gajić article remained unavailable'}
+ fragments={'least_period':'let n be its primitive least period','even_foci_not_constancy':'This includes n≡0 (mod 4), when the equal products still vary with phase.','circle_separate':'the noncircular pole argument is not continued through c=0.','physical_triangle':'90ac=180√30>0','final_credit':'final 2021 Arnold Mathematical Journal article, Fifty New Invariants','coverage_gap':'The full billiard body of the related Dragović–Gajić article remained unavailable'}
  for k,v in fragments.items():
   if v not in text:bad.append(k)
  fragment=(E/'ORIGINAL_PRINTED_ABSTRACT.tex').read_text()
@@ -38,7 +38,7 @@ def main():
   elif want=='circle_separate':text=text.replace('the noncircular pole argument is not continued through c=0.','the pole argument continues through c=0.')
   elif want=='physical_triangle':text=text.replace('90ac=180√30&gt;0','90ac=0')
   elif want=='final_credit':text=text.replace('final 2021 Arnold Mathematical Journal article, Fifty New Invariants','unspecified article')
-  elif want=='coverage_gap':text=text.replace('the full billiard body of the related Dragović–Gajić article remained unavailable','all cited bodies were fully cleared')
+  elif want=='coverage_gap':text=text.replace('The full billiard body of the related Dragović–Gajić article remained unavailable','all cited bodies were fully cleared')
   elif want=='whole_printed_abstract':sg['abstract']=p['native_deposit_description_html']
   elif want=='native_order':sg['encoding'].reverse()
   elif want=='native_whole_bytes':native['focal_product_period_criterion.pdf']+=b'changed'
