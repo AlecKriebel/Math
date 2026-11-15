@@ -1,0 +1,143 @@
+Reelle Algebraische Geometrie                                                              797
+
+                                        References
+ [1] E. de Klerk and D. Pasechnik, Approximation of the stability number of a graph via copos-
+     itive programming, SIAM J. Optimization 12 (2002), 875-892.
+ [2] G. Pólya, Über positive Darstellung von Polynomen Vierteljschr, Naturforsch. Ges. Zürich
+     73 (1928 141–145, in Collected Papers 2 (1974), MIT Press, 309-313.
+ [3] V. Powers and B. Reznick, A new bound for Pólya’s Theorem with applications to polyno-
+     mials positive on polyhedra, J. Pure Appl. Alg. 164 (2001), 221-229.
+ [4] V. Powers and B. Reznick, A quantitative Pólya’s Theorem with corner zeros, in Proceed-
+     ings of the 2006 International Symposium on Symbolic and Algebraic Computations, J.-G.
+     Dumas, editor, New York, NY, ACM Press, pp. 285–290.
+ [5] M. Schweighofer, An algorithmic approach to Schmüdgen’s Positivstellensatz, J. Pure and
+     Appl. Alg. 166 (2002), 307-319.
+ [6] M. Schweighofer, Certificates for nonnegativity of polynomials with zeros on compact semi-
+     algebraic sets, Manuscripta Math. 117 (2005), 407-428.
+
+
+
+    Hilbert’s construction of psd polynomials that are not a sum of
+                                squares
+                            Bruce Reznick
+
+    Summary: In 1888, Hilbert described how to ﬁnd real polynomials which take
+only non-negative values but which are not a sum of squares of polynomials. His
+construction was so restrictive that no explicit examples appeared until the late
+1960s. We revisit and generalize Hilbert’s construction and discuss old and new
+examples.
+    A real (not necessarily homogeneous) polynomial p(x1 , . . . , xn ) is psd or positive
+if p(a) ≥ 0 for P    all a ∈ Rn ; it is sos or a sum of squares if there exist polynomials
+hj so that p = h2j . Let Pn,m denote the cone of real psd forms of degree m in n
+variables and Σn,m its subcone of sos forms and let ∆n,m = Pn,m r Σn,m . It was
+well-known by the mid-19th century that ∆2,m = ∆n,2 = ∅. Hilbert showed in
+1888 that P3,4 = Σ3,4 , and that this is the only other case in which Pn,m = Σn,m :
+it suﬃces to ﬁnd forms in ∆3,6 and ∆4,4 and multiply them by powers of linear
+forms if necessary. Throughout this talk, we toggle between forms in n variables
+and polynomials in n − 1 variables. We ﬁrst present Hilbert’s construction in ∆3,6 ,
+dehomogenized to two variables.
+    Suppose f1 (x, y) and f2 (x, y) are two real cubic polynomials with precisely nine
+distinct real common zeros – {πi }, indexed arbitrarily – so that no three of the
+πi ’s lie on a line and no six lie on a quadratic. Then there exists a quadratic
+φ(x, y) with zeros at {π1 , . . . , π5 } and a quartic ψ(x, y) with the same zeros and
+which is singular at {π6 , π7 , π8 }; the sextic φψ is singular at {π1 , . . . , π8 }. Hilbert
+showed that we can take (φψ)(π9 ) P         > 0 and that there exists c > 0 so that p =
+f12 + f22 + cφψ is positive. If p =            h2j , then each hj is a cubic which vanishes
+on {π1 , . . . , π8 }, so that (by Cayley-Bacharach) hj (π9 ) = 0 as well. It follows that
+0 = p(π9 ) = c(φψ)(π9 ), a contradiction.
+    Hilbert’s restriction on the common zeros of the polynomials meant that no very
+simple example could be constructed, and the ﬁrst explicit element in any ∆n,m
+798                                                               Oberwolfach Report 14/2007
+
+was not produced for many decades. In 1965, Motzkin presented a speciﬁc sextic
+polynomial m(x, y) which is positive by the arithmetic-geometric inequality and
+which is not sos by the arrangement of monomials in its Newton polytope. (Olga
+Taussky-Todd, who had a lifelong interest in sums of squares and was Hilbert’s
+last assistant, heard Motzkin speak, and informed him that m(x, y) was the ﬁrst
+example.) After homogenization,
+
+(1)                 M (x, y, z) = x4 y 2 + x2 y 4 + z 6 − 3x2 y 2 z 2 ∈ ∆3,6 .
+
+Around the same time and independently, R. M. Robinson wrote that he saw “an
+unpublished example of a ternary sextic worked out recently by W. J. Ellison
+using Hilbert’s method. It is, as would be expected, very complicated. After
+seeing this, I discovered that an astonishing simpliﬁcation would be possible by
+dropping some unnecessary assumptions made by Hilbert.” Robinson observed
+that the cubics f1 (x, y) = x3 − x and f2 (x, y) = y 3 − y have nine common zeros;
+namely, the 3 × 3 square {−1, 0, 1}2. There are eight diﬀerent lines which contain
+three of these points. Nonetheless, the sextic (x2 −1)(y 2 −1)(1−x2 −y 2 ) is singular
+at the outer eight points and is positive at (0, 0). By taking the maximum value
+for c in Hilbert’s construction and homogenizing, Robinson showed that
+
+(2) R(x, y, z) = x6 + y 6 + z 6 − x4 y 2 − x4 z 2 − x2 y 4 − x2 z 4 − y 4 z 2 − y 2 z 4 + 3x2 y 2 z 2
+
+is in ∆3,6 . The papers of Motzkin and Robinson renewed interest in the subject,
+leading to more examples, including one by M. D. Choi and T. Y. Lam:
+
+(3)                S(x, y, z) = x4 y 2 + y 4 z 2 + z 4 x2 − 3x2 y 2 z 2 ∈ ∆3,6 .
+
+   The talk presented an analysis of the underlying part of Hilbert’s Method, al-
+lowing for considerable generalization. There are two main parts to the Method:
+a general perturbation of a given positive polynomial with ﬁxed zeros by an arbi-
+trary form which is singular at those zeros. We need the zeros to be “singular non
+troppo” or “round”: the lowest order terms in the Taylor series at each zero must
+be a positive deﬁnite quadratic form. This perturbation preserves positivity and
+the zeros, but the perturbed polynomial might not be sos. The key point of the
+argument is that, under certain circumstances, there are polynomials of degree 2d
+which are singular on a set A ⊆ Rn , but are not in the vector space generated by
+products of polynomials of degree d which vanish on A.
+   As a result, we are able to show that Robinson’s simpliﬁcation always works;
+that is, the Hilbert construction is valid when f1 and f2 are ternary cubics with
+exactly nine real intersections, whether or not three are on a line or not. We also
+show that if seven points are chosen in the plane, no four on a line, not all on a
+quadratic, then there is a positive polynomial p which is not sos and has those
+seven points as zeros. The proofs require Bezout’s Theorem and a considerable
+amount of old-fashioned curve theory.
+Reelle Algebraische Geometrie                                                                 799
+
+   For example, let
+(4)
+     A = {(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1), (1, 1, −1), (1, −1, 1), (1, −1, −1)},
+  F1 (x, y, z) = x(y 2 − z 2 ),    F2 (x, y, z) = y(z 2 − x2 ),     F3 (x, y, z) = z(x2 − y 2 ),
+                         G(x, y, z) = (x2 − y 2 )(x2 − z 2 )(y 2 − z 2 ).
+It is easy to show that the Fk ’s span the set of ternary cubics which vanish on A
+and that G is singular on A and not in the span of the Fj Fk ’s. It follows that
+for some c > 0, Pc := F12 + F22 + F32 + cG is psd and not sos. In fact, P1 = 2S,
+providing a new derivation of (3).
+   Choi, Lam and Reznick showed in 1980 that if P ∈ ∆3,6 , then P has ﬁnitely
+many zeros, and the maximum possible number is 10. At that time, the Robinson
+form R was essentially the only known example of such a sextic. Using Hilbert’s
+Method, we are able to construct many new examples.
+   For t > 0, let
+                                 Rt (x, y, z) :=
+         4    2
+                                                 
+(5)      t + 2t − 3     3    2 2     1 + 2t2 − 3t4
+                      (x − xz ) +                    (y 3 − yz 2 )2 + R(x, y, z);
+             3                             3t4
+Rt is psd with ten zeros and not sos. For t2 < 21 , let
+
+                Mt (x, y, z) = (1 − 2t2 )(x4 y 2 + x2 y 4 ) + t4 (x4 z 2 + y 4 z 2 )
+(6)
+                     −(3 − 8t2 + 2t4 )x2 y 2 z 2 − 2t2 (x2 + y 2 )z 4 + z 6 ;
+Mt is psd with ten zeros and not sos. Let
+            St (x, y, z) = t4 (x6 + y 6 + z 6 ) + (1 − 2t6 )(x4 y 2 + y 4 z 2 + z 4 x2 )
+(7)
+        +(t8 − 2t2 )(x2 y 4 + y 2 z 4 + z 2 x4 ) − 3(1 − 2t2 + t4 − 2t6 + t8 )x2 y 2 z 2 ;
+St is always psd and not sos; it has ten zeros if t > 0. Note that S0 = M , S1 = S,
+so St provides a “homotopy” between S and M in ∆3,6 in the class of positive
+forms with ten zeros. Finally, though it only has seven zeros, we note that
+(8) Uc (x, y, z) = x2 y 2 (x−y)2 +y 2 z 2 (y−z)2 +z 2 x2 (z−x)2 +cxyz(x−y)(y−z)(z−x)
+                     p√
+is psd when |c| ≤ 4        2 − 1 and sos only if c = 0.
+   As one example in higher degree, for m ∈ N, let
+                                               m−1
+                                               Y
+(9)                                   (t)m =         (t − j).
+                                               j=0
+
+Then for d ≥ 3 and some cd > 0, the polynomial
+(10)          (x)2d + (y)2d + cd (x)2 (y)2 (x + y − 2)d−1 (x + y − 4)d−3
+                                             
+is psd and not sos, and has at least d+2   2   − 2 zeros.
+

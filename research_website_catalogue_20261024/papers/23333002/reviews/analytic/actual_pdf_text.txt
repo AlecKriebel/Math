@@ -1,0 +1,206 @@
+                                  A Robinson counterexample to
+                                  ideal-only tangency certiﬁcates
+                                                    Alec Kriebel
+                                              Independent researcher
+                                            ORCID: 0009-0001-9320-500X
+
+                                         12 October 2026         Version 1.0
+                                              Unrefereed research note
+
+
+
+                                                      Abstract
+              The classical Robinson sextic is nonnegative, but adding any nonnegative constant does not
+          make it a sum of polynomial squares modulo the ideal of polynomials vanishing on its real
+          tangency variety. This rules out both the exact radical certiﬁcate and the positive-constant
+          certiﬁcate in the proposed unrestricted replacement of the gradient ideal. The same obstruction
+          applies to the separate-cross-product ideal printed in the original report. Ten zero lines force the
+          low-degree homogeneous parts of all square summands to vanish; an additional coordinate axis
+          then makes the certiﬁcate impossible. The proof allows arbitrarily many summands of arbitrary
+          degree and is entirely elementary. We credit the classical form and zero-set method, and make
+          no claim of ﬁrst bibliographic priority.
+
+
+1        The proposed certiﬁcates
+                              ∑
+For S = R[x, y, z], let         S 2 denote ﬁnite sums of squares of elements of S. For f ∈ S, write
+fx , fy , fz for its partial derivatives and set
+
+              Jf = (yfx − xfy , zfx − xfz , zfy − yfz ),          Kf = (yfx , xfy , zfx , xfz , zfy , yfz ).
+
+For an ideal L ⊆ S, deﬁne
+
+             VR (L) = {u ∈ R3 : h(u) = 0 for every h ∈ L},             IR (L) = {h ∈ S : h|VR (L) = 0}.
+                        √                                                      √
+The ordinary radical is L = {h : hN ∈ L for some N ≥ 1}. In particular L ⊆ L ⊆ IR (L).
+    Schweighofer’s Conjecture 2 [1, p. 811] proposes removing the minimum-attainment assumption
+from the gradient-ideal equivalence in Theorem 1 [1, p. 810] by replacing that ideal. The four√
+                                                                                      ∑
+conditions are global nonnegativity, nonnegativity on the real variety, membership in S 2 + L,
+                            ∑
+and membership of f + ε in S 2 + L for every ε > 0. The printed replacement displays separate
+products, giving Kf in three variables. The later catalogue formulation (UnsolvedMath record
+30000717)1 uses the tangency minors, giving Jf . We treat both explicit readings; we do not assert
+an author-approved correction of the printed formula. Removing an attainment assumption includes
+polynomials whose minimum is attained.
+
+
+    1
+        https://huggingface.co/datasets/ulamai/UnsolvedMath.
+
+
+                                                           1
+Theorem 1. Let
+
+                            R = x6 + y 6 + z 6 − x4 y 2 − x2 y 4 − x4 z 2 − x2 z 4
+                                                                − y 4 z 2 − y 2 z 4 + 3x2 y 2 z 2 .
+
+Then R ≥ 0 on R3 , but for L = JR or L = KR and every real ε ≥ 0,
+                                                         ∑
+                                              R+ε∈
+                                                 /              S 2 + IR (L).
+                   ∑          √                       ∑
+Consequently R ∈
+               /       S2 +       L, and R + ε ∈
+                                               /          S 2 + L for every ε > 0.
+
+    Thus both proposed certiﬁcate implications from global nonnegativity fail. Robinson’s form is
+classical; it already appears in the same report [1, p. 798, equation (2)]. Our purpose is its explicit
+application to these ideal-only certiﬁcates. The classical non-SOS property alone would not suﬃce,
+since an ideal remainder could change a representation.
+
+
+2    The elementary zero-set obstruction
+Put a = x2 , b = y 2 , c = z 2 and write R = F (a, b, c). Direct expansion gives
+
+                                    F = (a − b)2 (a + b − c) + c(a − c)(b − c).
+
+The symmetric polynomial F may be evaluated after ordering a ≥ b ≥ c ≥ 0; both displayed terms
+are then nonnegative. Hence R ≥ 0, and its inﬁmum is zero, attained at the origin.
+    Let Z consist of the ten vectors
+
+                       (1, s, t),     (1, s, 0),   (1, 0, t),      (0, 1, t),        s, t ∈ {−1, 1},
+
+where each applicable sign varies independently. Substitution gives R(v) = 0 for every v ∈ Z, and
+homogeneity gives R(uv) = 0 for every real u.
+
+Lemma 2. A homogeneous cubic vanishing on Z is zero. The same holds in degrees zero, one and
+two.
+
+Proof. The six vectors with a zero coordinate force the cubic to have the form
+
+               p = Ax(x2 − y 2 − z 2 ) + By(y 2 − x2 − z 2 ) + Cz(z 2 − x2 − y 2 ) + Dxyz.
+
+At (1, s, t) its value is −A − Bs − Ct + Dst. Summing these four values against the sign characters
+1, s, t, st gives −4A, −4B, −4C, 4D, respectively. Thus all four coeﬃcients vanish. If a homogeneous
+degree-d polynomial pd , with 0 ≤ d < 3, vanishes on Z, then x3−d pd is such a cubic. Since S is an
+integral domain, pd = 0.
+
+   The ten-zero cubic obstruction is classical; Reznick gives the same ten directions and cubic
+argument in [2, Section 4(b), p. 259]. We include the full argument, then use whole zero lines and
+an additional axis to address the ideal remainder and positive constant perturbations.
+   Every point of the lines Rv, v ∈ Z, is a global minimizer of R. Its gradient is therefore zero,
+and each line lies in both VR (JR ) and VR (KR ). Both varieties also contain the axis (u, 0, 0): there
+∇R = (6u5 , 0, 0), all cross-products vanish, and R = u6 .
+
+
+
+                                                            2
+Proof of Theorem 1. Fix ε ≥ 0 and either ideal L. Suppose
+                                     ∑
+                                     m
+                           R+ε=            qj2 + h,            qj ∈ S,      h ∈ IR (L).
+                                     j=1
+                                               ∑
+On every zero line, h vanishes and ε = j qj (uv)2 for all real u. Hence each real univariate
+                                                  √
+polynomial qj (uv) is bounded in absolute value by ε on R, and must be constant. Write qj =
+∑
+  d qj,d in homogeneous parts. Comparing powers of u gives qj,d (v) = 0 for every d ≥ 1 and v ∈ Z.
+Lemma 2 yields qj,1 = qj,2 = qj,3 = 0.
+    On the coordinate axis the certiﬁcate gives
+                                                      ∑
+                                      u6 + ε =                qj (u, 0, 0)2 .
+                                                      j
+
+Every nonzero restriction on the right has degree at most three. Indeed, if D > 3 is the largest
+such degree, the coeﬃcient of u2D is a nonempty sum of squares of nonzero real leading coeﬃcients,
+which cannot cancel. But the degree-one, degree-two and degree-three homogeneous parts have all
+vanished identically. The restrictions must therefore be constant, contradicting the nonconstant
+left side. The inclusions preceding the theorem give its remaining conclusions.
+
+   Constants were retained throughout: when ε > 0 the qj need not vanish on the zero lines.
+The proof imposes no global degree bound on the summands, radicality hypothesis, or ﬁniteness
+condition on the varieties.
+
+
+3    Formulation boundaries
+The following standard sphere-minimization argument also underlies the tangency-set inﬁmum iden-
+tity in Laurent’s updated manuscript of 6 February 2010 [5, Section 7.2.3, Lemma 7.21, manuscript
+pp. 117–118]. For any polynomial f in n variables, nonnegativity on all of Rn is equivalent to
+nonnegativity on the real variety of its tangency minors. If f (w) < 0 and w = 0, the origin already
+belongs to that variety. Otherwise minimize f on the sphere of radius ∥w∥. At a minimizer v,
+Lagrange multipliers give ∇f (v) = λv and f (v) ≤ f (w) < 0, so all tangency minors vanish. This
+proves the reverse implication without any assumption about the global inﬁmum. For the Robinson
+example, the ﬁrst two proposed conditions therefore hold and both certiﬁcates fail.
+    The literal product reading has a further, separate defect. We use a constant shift of the
+standard nonattaining example in [3, Section 1.6, equation (6)] and [1, p. 810]:
+
+                       Q(x, y) = (1 − xy)2 + y 2 − 12 ,                KQ = (yQx , xQy ).
+
+Here yQx = 2y 2 (xy − 1) and xQy = 2x(x(xy − 1) + y). The ﬁrst equation forces y = 0 or xy = 1.
+The second then forces x = 0 in the former case, and equals 2, a contradiction, in the latter.
+Thus VR (KQ ) = {(0, 0)}. Nevertheless Q(0, 0) = 1/2 and Q(2, 1/2) = −1/4. Its inﬁmum −1/2
+is not attained: equality would require both y = 0 and xy = 1, whereas Q(1/u, u) = u2 − 1/2
+approaches the inﬁmum. This diagnostic applies only to the product reading; it does not negate
+the tangency-minor equivalence just proved.
+    For the actual gradient ideal GR = (Rx , Ry , Rz ), Euler’s identity gives 6R = xRx + yRy + zRz ,
+hence R ∈ GR . There is no contradiction with the gradient-ideal theorem. Likewise the gradient-
+tentacle inequalities [3] and truncated tangency certiﬁcates [4, 6] use additional inequalities and
+SOS-multiplier terms; they are diﬀerent certiﬁcates, which this note does not refute.
+
+                                                          3
+Veriﬁcation, attribution and review status
+The accompanying source archive preserves the original candidate and its historical audits, fresh
+independent reviews, and exact reproduction controls. The cubic evaluation determinant is −128
+in the stated monomial order in the original proof. Symbolic checks supplement the universal proof;
+no numerical SDP failure or ﬁxed SOS-degree cutoﬀ is used as evidence of nonexistence. Robinson’s
+form and the classical zero-set method retain their prior attribution. A bounded priority audit is
+provided separately; ﬁrst priority and continued open status through 2026 are not established or
+asserted. Complete 2008 and 2009 Hà–Pham article texts were not obtained; comparisons with
+truncated certiﬁcates rely on later primary statements, and the access gaps remain in the audit.
+    AI tools were used extensively in developing, checking and presenting this argument, including
+independent AI-assisted adversarial reviews. This note is unrefereed and has not received indepen-
+dent human or journal peer review. Alec Kriebel is the author of the submitted note. The authored
+note and veriﬁcation materials are released under CC BY 4.0; cited source documents retain their
+own terms and are not redistributed.
+
+
+References
+[1] M. Schweighofer, Gradient tentacles and sums of squares, pp. 810ﬀ.; B. Reznick, Hilbert’s con-
+    struction of psd polynomials that are not a sum of squares, pp. 797–799; in Reelle Algebraische
+    Geometrie, Oberwolfach Reports 14/2007, pp. 753–820. doi:10.4171/owr/2007/14.
+
+[2] B. Reznick, Some concrete aspects of Hilbert’s 17th problem, Contemporary Mathematics 253
+    (2000), 251–272. doi:10.1090/conm/253/03936. Author-hosted published reprint.
+
+[3] M. Schweighofer, Global optimization of polynomials using gradient tentacles and sums of
+    squares, SIAM J. Optim. 17 (2006), 920–942. arXiv:math/0511617.
+
+[4] Hà Huy Vui and Pham Tien Son, Global optimization of polynomials using the truncated tan-
+    gency variety and sums of squares, SIAM J. Optim. 19 (2008), 941–951. doi:10.1137/080719212.
+
+[5] M. Laurent, Sums of squares, moment matrices and optimization over polynomials, updated
+    manuscript, 6 February 2010. Author manuscript, Section 7.2.3, Lemma 7.21, pp. 117–118.
+    Earlier published chapter: in M. Putinar and S. Sullivant (eds.), Emerging Applications of
+    Algebraic Geometry, IMA Volumes 149, Springer, 2009, pp. 157–270, doi:10.1007/978-0-387-
+    09686-5_7. The cited tangency locator belongs to the updated manuscript.
+
+[6] F. Guo, M. Safey El Din and L. Zhi, Global optimization of polynomials using generalized critical
+    values and sums of squares, ISSAC 2010. Author manuscript.
+
+
+
+
+                                                 4
+

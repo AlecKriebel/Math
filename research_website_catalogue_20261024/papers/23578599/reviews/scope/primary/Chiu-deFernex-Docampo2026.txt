@@ -1,0 +1,2126 @@
+J. Eur. Math. Soc. 28, 1489–1531 (2026)                                    DOI 10.4171/JEMS/1500
+© 2024 European Mathematical Society
+Published by EMS Press and licensed under a CC BY 4.0 license
+
+
+
+
+Christopher Chiu · Tommaso de Fernex · Roi Docampo
+
+On arc fibers of morphisms of schemes
+Received June 16, 2022; revised December 19, 2022
+
+Abstract. Given a morphism f W X ! Y of schemes over a field, we prove several finiteness results
+about the fibers of the induced map f1 W X1 ! Y1 on arc spaces. Assuming that f is quasi-finite
+and X is separated and quasi-compact, our theorem states that f1 has topologically finite fibers of
+bounded cardinality and its restriction to X1 n R1 , where R is the ramification locus of f , has
+scheme-theoretically finite reduced fibers. We also provide an effective bound on the cardinality of
+the fibers of f1 when f is a finite morphism of varieties over an algebraically closed field, describe
+the ramification locus of f1 , and prove a general criterion for f1 to be a morphism of finite type.
+We apply these results to further explore the local structure of arc spaces. One application is that
+the local ring at a stable point of the arc space of a variety has finitely generated maximal ideal
+and topologically Noetherian spectrum, something that should be contrasted with the fact that these
+rings are not Noetherian in general; a lower bound on the dimension of these rings is also obtained.
+Another application gives a semicontinuity property for the embedding dimension and embedding
+codimension of arc spaces which extends to this setting a theorem of Lech on Noetherian local rings
+and translates into a semicontinuity property for Mather log discrepancies. Other applications are
+also discussed.
+
+Keywords: arc space, generically finite morphism, embedding dimension, stable point.
+
+
+
+
+1. Introduction
+
+1.1. Results on arc fibers
+For every morphism f W X ! Y of schemes over a field k, there is a diagram
+                                                         f1
+                                                 X1             / Y1
+
+
+                                                         f       
+                                                  X             /Y
+
+Christopher Chiu: Department of Mathematics and Computer Science,
+Eindhoven University of Technology, 5612 AZ Eindhoven, Netherlands; c.h.chiu@tue.nl
+Tommaso de Fernex: Department of Mathematics, University of Utah, Salt Lake City, UT 48112,
+USA; defernex@math.utah.edu
+Roi Docampo: Department of Mathematics, University of Oklahoma, Norman, OK 73019, USA;
+roi@ou.edu
+Mathematics Subject Classification 2020: 14E18 (primary); 14B25 (secondary).
+C. Chiu, T. de Fernex, R. Docampo                                                        1490
+
+
+where X1 and Y1 are the respective arc spaces over k. We use the term arc fibers to refer
+to the (scheme-theoretic) fibers of f1 .
+    One of the first properties one learns about arc spaces is that if f is étale then the
+diagram is Cartesian and f1 is étale. What other properties of f lift to f1 ?
+    This question is the starting point of this paper. Our answer takes a particularly clean
+form when we restrict attention to quasi-finite morphisms.
+Theorem A (Theorem 6.1). Let f W X ! Y be a quasi-finite morphism of schemes over a
+perfect field k, and assume that X is separated and quasi-compact. Let R WD Supp X=Y
+denote the ramification locus of f . Then the induced morphism f1 W X1 ! Y1 satisfies
+the following properties:
+(1) f1 has topologically finite fibers of bounded cardinality.
+(2) The restriction of f1 to X1 n R1 has finite reduced fibers.
+    If we further restrict attention to finite morphisms of varieties and assume that the
+ground field is algebraically closed, then we obtain an effective bound on the cardinality
+of the arc fibers in terms of the separable degree of f .
+Theorem B (Theorem 6.3). Let f W X ! Y be a finite surjective morphism between vari-
+eties over an algebraically closed field k, and assume that Y is normal. Then
+
+                       jf11 .ˇ/j  sep:deg f      for every ˇ 2 Y1 :
+
+     One should compare these results to the basic fact that if f is proper and birational
+with exceptional locus E then f1 induces a bijection from X1 n E1 to Y1 n .f .E//1 ,
+a property that follows directly from the valuative criterion of properness.
+     Theorem A is obtained from more precise results holding under weaker assumptions
+on f , which can be useful in applications (see Theorems 5.4 and 5.5). The proof broadly
+involves three different techniques. First, the topological conclusions drawn in Theorem A
+are derived from an argument based on classical ramification theory (see in particular
+Theorem 3.1 which is used to prove finiteness of the residue field extension on the level
+of arc spaces for quasi-finite morphisms). Second, to establish separability in positive
+characteristic we rely on a technical result on the cotangent map of f1 at ˛ (see The-
+orem 4.3) which uses the structure of the sheaf X1 of differentials on and generalizes
+previous results from [11, 14, 21]. Finally, in order to prove reducedness of arc fibers in
+part (2) of Theorem A, a separate argument involving deformation theory is needed (see
+Proposition 5.10).
+     In general f1 can fail to be locally of finite type at points where the arc fibers are of
+finite type. This already occurs in the simplest possible example where f W A1k ! A1k is
+the double cover given by y D x 2 (see Example 7.2). Such pathology of f1 is related to
+another interesting phenomenon occurring in this example, namely, the fact that the sheaf
+X1 =Y1 of relative differentials has trivial fibers but nontrivial stalks at arcs stemming
+from the ramification locus of f (see Example 7.1).
+On arc fibers of morphisms of schemes                                                    1491
+
+
+   The next result describes the ramification locus of f1 and tells us when and where
+exactly f1 fails to be locally of finite type. The theorem also shows that the conclusions
+drawn in Theorem A are optimal.
+Theorem C (Theorem 7.3). Let f W X ! Y be a morphism of finite type between schemes
+over a perfect field k, and let f1 W X1 ! Y1 be the induced morphism of arc spaces. For
+any ˛ 2 X1 , the following are equivalent:
+(1) f1 is unramified at ˛;
+(2) f1 is quasi-finite at ˛;
+(3) f1 is locally of finite type at ˛;
+(4) f is unramified at ˛.0/.
+Moreover, the fiber of f1 through ˛ is locally of finite type at ˛ if and only if f is
+unramified at ˛./.
+    This theorem implies in particular that f is unramified if and only if all fibers of f1
+are of finite type (see Corollary 7.4).
+    The results on arc fibers discussed above provide new tools to study arc spaces using
+projections to infinite-dimensional affine spaces. Looking at such projections is not new:
+for instance, it is the approach followed in [17], where the Weierstrass preparation the-
+orem is applied to eliminate variables after passing to completion; for later applications
+of this approach, see also, e.g., [7–9, 40, 42, 46]. What is new here is that we have gained
+more control on these projections before restricting to formal neighborhoods.
+    Several applications about the structure of arc spaces are collected in Sections 8 to 11.
+We review some of them here.
+
+
+1.2. Local rings at stable points
+Our first application concerns stable points of arc spaces, which are defined when X
+is a variety. The notion of stable point traces back to [16], and their properties have been
+studied in [4,14,15,19,40,44,45,48]. According to one of the many equivalent definitions,
+a point ˛ 2 X1 is stable if it is the generic point of a constructible set of X1 and is not
+contained in the arc space of the singular locus of X. Stable points are related to divisorial
+valuations on the variety, and among them an important class consists of the maximal
+divisorial arcs, which provide the link between the geometry of X1 and the birational
+geometry of X.
+    A crucial result about stable points is the curve selection lemma established in [44,45],
+which provides the main tool to study the Nash problem [41] – see for instance [6, 13, 24,
+37] where the curve selection lemma is used to solve several cases of the Nash problem.
+
+     2
+Reguera’s proof of the curve selection lemma relies on showing that the completed local
+ring OX1 ;˛ at a stable point is Noetherian. This, in turn, was proved by showing that the
+maximal ideal of the reduced local ring O.X1 /red ;˛ is finitely generated, and the question
+whether O.X1 /red ;˛ may actually be Noetherian was raised in [45]. Note, by contrast,
+C. Chiu, T. de Fernex, R. Docampo                                                        1492
+
+
+that the local ring OX1 ;˛ (before reduction and completion) is not Noetherian in general;
+explicit examples are computed in Examples 5.12 and 5.13 (cf. [45, Example 3.16]).
+    Here we establish new finiteness properties of local rings at stable points. In the fol-
+lowing statement, we denote by dim.A/ the Krull dimension of a local ring A and by
+edim.A/ its embedding dimension.
+Theorem D (Section 8). Let X be a variety over a perfect field k and ˛ 2 X1 a stable
+point.
+(1) The maximal ideal of the local ring OX1 ;˛ is finitely generated.
+(2) The scheme Spec OX1 ;˛ is topologically Noetherian and
+                                 dim.OX1 ;˛ /  edim.OX1 ;˛ /:
+    If ˛ D ˛v is the maximal divisorial arc associated to a divisorial valuation v on X ,
+then the embedding dimension of the local ring is computed by
+                                    edim.OX1 ;˛v / D ayv .X /
+where the right-hand-side is the Mather log discrepancy of v defined in [15]. This formula
+follows from the results of [40,46] in characteristic zero, and was proved in full generality
+in [14].
+
+                                                                            2
+    There is no general formula computing the Krull dimension of OX1 ;˛v and the only
+exact formula we are aware of is for the dimension of the completion OX1 ;˛v when X
+is a toric variety [4, 48]. In general, it is a theorem of [40] that if the ground field has
+
+                                         2
+characteristic zero then
+                                  dim.OX1 ;˛v /  avMJ .X /
+where the right-hand side is the Mather–Jacobian log discrepancy of v, an invariant of sin-
+gularities studied in [12, 18, 32]. A different proof of this formula was later given in [11].
+   Here we remove the characteristic zero assumption in this last result of Mourtada and
+Reguera and extend the above formulas to all stable points.
+Theorem E (Section 11). Let X be a variety over a perfect field k and ˛ 2 X1 a stable
+point. Assume that ˛.0/ is not the generic point of X.
+(1) The valuation v D v˛ defined by ˛ is divisorial.
+(2) If ˛v 2 X1 is the maximal divisorial arc associated to v and c D codim.˛; ˛v /, then
+                      edim.OX1 ;˛ / D c C edim.OX1 ;˛v / D c C ayv .X /
+
+
+                                        2
+    and
+                                    dim.OX1 ;˛ /  c C avMJ .X /:
+    Moreover, codim.˛; ˛v / is birationally invariant, in the sense that for every proper
+    birational morphism X 0 ! X, if ˛ 0 and ˛v0 are the lifts of ˛ and ˛v to X1    0
+                                                                                     then
+             0  0
+    codim.˛ ; ˛v / D codim.˛; ˛v /.
+   A key ingredient in the proof of Section 1.2 is the semicontinuity property of embed-
+ding dimension, which is discussed next.
+On arc fibers of morphisms of schemes                                                     1493
+
+
+1.3. Semicontinuity properties
+In our recent papers [11, 14], we proposed to look at two invariants of local rings as tools
+to study the local structure of arc spaces: the embedding dimension edim.OX1 ;˛ / of the
+local ring at a point ˛ 2 X1 (which we already encountered in this introduction), and its
+embedding codimension ecodim.OX1 ;˛ /.
+    It was proved in [14] that the embedding dimension of OX1 ;˛ measures the jet codi-
+mension of ˛, and its finiteness characterizes stable points. Since in general the local
+ring OX1 ;˛ is not Noetherian, the notion of embedding codimension is more subtle in this
+context compared to the more familiar Noetherian setting. It was recently studied in [11],
+where it is shown that its finiteness characterizes arcs that are not entirely contained in the
+singular locus of X .
+    These invariants were studied for Noetherian local rings in [36], where it was proved
+that they satisfy a certain semicontinuity property. To the best of our knowledge, the
+question whether Lech’s result extends beyond the Noetherian setting remains open.
+    The next result extends Lech’s semicontinuity theorem to local rings of arc spaces
+of schemes of finite type, a setting that provides many interesting examples of non-
+Noetherian rings. This is particularly relevant if one wants to consider these invariants
+as measures of singularities of arc spaces, a point of view that was adopted in [11].
+Theorem F (Theorem 10.1). Let X be a scheme locally of finite type over a perfect field
+k. Let ˛; ˛ 0 2 X1 be two points with ˛ 0 specializing to ˛, and let c D codim.˛; ˛ 0 /.
+(1) We have
+                              edim.OX1 ;˛ /  c C edim.OX1 ;˛0 /:
+(2) If edim.OX1 ;˛ / < 1 and dim.gr.OX1 ;˛ //  c C dim.gr.OX1 ;˛0 //, then
+
+                             ecodim.OX1 ;˛ /  ecodim.OX1 ;˛0 /:
+
+    We recover from Section 1.3 the fact that the Mather log discrepancy is upper-semi-
+continuous with respect to the order among divisorial valuations on a variety X deter-
+mined by specialization in X1 of the associated maximal divisorial arcs (see Corol-
+lary 11.7), a property that can also be deduced from the results of [14, 15]. Such order
+among divisorial valuations is at the heart of the Nash problem [24, 41] and its general-
+ized formulation [10, 19, 25, 31], and for this reason it has been referred to as the Nash
+order [6]; it is furthermore implicit in the applications of arc spaces to problems of lower-
+semicontinuity for minimal log discrepancies [20, 23] and minimal Mather–Jacobian log
+discrepancies [12, 32]. The fact that Mather log discrepancies are upper-semicontinuous
+with respect to this order is in line with Ishii’s lower bound on minimal Mather log dis-
+crepancies proved in [32].
+    It is unclear what should replace the condition imposed in part (2) of Section 1.3
+if edim.OX1 ;˛ / D 1 (i.e., when ˛ is not stable), and it is natural to wonder about the
+behavior of the embedding codimension in this range. As a partial result in this direc-
+tion, we prove that the embedding codimension defines a function on the k-rational
+C. Chiu, T. de Fernex, R. Docampo                                                       1494
+
+                         ı
+points of the open set X1   WD X1 n .Sing X /1 that is locally constructible and is lower-
+semicontinuous on each stratum of a natural stratification of this space (see Section 10 for
+details). The proof uses results from [11, 17, 27].
+
+
+1.4. Closing remarks
+The arc space X1 of a scheme X captures, in a way that is not yet fully understood,
+certain features of the singularities of X. Over the years, the geometry of arc spaces has
+been investigated from many different points of view, especially when X is a variety,
+and several discoveries have shown that X1 , while in general an infinite-dimensional
+object that is far from being Noetherian or of finite type, still manifests subtle finiteness
+properties. Notable examples are: Greenberg’s theorem implying the constructibility of
+the sets of liftable jets [26]; the theorems of Nash and Kolchin on the topology of X1 and
+the families of arcs through the singularities of X [34,41]; Drinfeld–Grinberg–Kazhdan’s
+theorem on the structure of the formal neighborhoods of X1 at its nondegenerate rational
+points [17, 27]; and the aforementioned result of Reguera on the formal neighborhoods
+of X1 at its stable points [44, 45]. The results of this paper provide new manifestations
+of finiteness in arc spaces.
+
+
+2. Preliminaries on arc spaces
+
+Let X be a scheme over a field k. The arc space X1 of X is the scheme over k represent-
+ing the functor of points given, for any k-algebra R, by R 7! limm Xm .R/ where Xm .R/ D
+Homk .Spec RŒt =.t mC1 /; X / is the functor of points of the m-th jet scheme of X over k.
+By [3, Remark 4.6], the functor X1 .R/ is naturally isomorphic to Homk .Spec RŒŒt ; X /.
+                                                                                     1
+If X D Spec A where A is a k-algebra, then X1 D Spec A1 where A1 WD HSA=k                is
+the algebra of (Hasse–Schmidt) higher differentials of A over k. For a comprehensive
+introduction to the subject we refer the reader to [22, 53].
+     When we want to specify the ground field in the notation, we write .X=k/1 for the
+arc space of X over k. Given a point x 2 X on a scheme over a field k, if the ground field
+is clear from the context then we will denote by x1 the arc space of Spec kx over k. For a
+field extension L=K we denote by .L=K/1 the arc space of Spec L regarded as a scheme
+over K.
+     A point ˛ 2 X1 is called an arc on X and corresponds to a morphism
+Spec k˛ ŒŒt  ! X where k˛ is the residue field of ˛. Conversely, any k-morphism
+˛W Spec KŒŒt  ! X , where K=k is a field extension, will be regarded as a K-valued
+point of X1 and will be called a K-valued arc (or simply an arc) on X .
+     Given an arc ˛W Spec KŒŒt  ! X, we consider the morphisms ˛0 W Spec K ! X and
+˛ W Spec K..t // ! X induced by restriction, and let ˛.0/; ˛./ 2 X be their images. We
+call ˛.0/ the special point of ˛ and ˛./ the generic point of ˛.
+     Any arc ˛W Spec KŒŒt  ! X defines a semivaluation ord˛ on the local ring OX;˛.0/ ,
+and hence on OX .U / for any open set U  X containing ˛.0/, by setting ord˛ .g/ WD
+On arc fibers of morphisms of schemes                                                       1495
+
+
+ord t .˛ ] .g//. Note that if X is a variety and ˛./ is the generic point of X, then ord˛
+extends to a Z-valued valuation of the function field of X, which will be denoted by v˛ .
+We say that an arc ˛ 2 X1 has order of contact q with a closed subscheme Z  X if
+ord˛ .IZ / D q where IZ  OX is the ideal sheaf of Z; if the set of such arcs is irreducible,
+then we refer to its generic point as the generic arc with order of contact q with Z.
+
+
+3. Finiteness of residue field extensions
+
+The purpose of this section is to establish a finiteness result at the level of residue fields in
+Theorem 3.1. Loosely speaking, it states that given a morphism of schemes f W X ! Y and
+an arc ˛ 2 X1 , certain finiteness properties of the residue field extension of the generic
+point of the arc ˛./ over its image in Y lift to analogous properties of the residue field
+extension of ˛ over its image in Y1 . The theorem lays the foundations for results about
+finiteness of arc fibers that are proved in the following sections.
+Theorem 3.1. Let f W X ! Y be a morphism of schemes over a perfect field k. Let
+˛ 2 X1 and ˇ D f1 .˛/, and write x D ˛./, y D ˇ./.
+(1) If kx =ky is algebraic, then so is k˛ =kˇ .
+(2) If kx =ky is finite separable, then so is k˛ =kˇ .
+    We note that assertion (1) holds over any field (see Proposition 3.6); the assumption
+that k be perfect is needed to prove (2). The following example shows that in (2) of
+Theorem 3.1 the extension k˛ =kˇ can fail to be finite if kx =ky is finite but not separable.
+Example 3.2. Let k be a field of characteristic p > 0. Let X D Y D A1k D Spec kŒx
+and f W X ! Y be the k-morphism given by x 7! x p . Consider the generic arc ˛ of X,
+defined by x 7! n0 xn t n where xn 2 k˛ is the n-th higher derivative of x. Its image
+                 P
+
+ˇ D f1 .˛/ is defined by x 7! n0 xnp t np . Thus the extension of residue fields k˛ =kˇ
+                              P
+               p
+is given by k.xn j n 2 N/  k.xn j n 2 N/, which is not finitely generated.
+    The proof of Theorem 3.1, which will be finished in the next section, proceeds as fol-
+lows: we will first prove assertion (1) in Proposition 3.6; we will then prove the finiteness
+part in assertion (2) in Proposition 3.7; finally, the separability part in (2) will follow from
+Theorem 4.3, whose proof depends on Proposition 3.7 but also requires results from [14]
+and in particular the base field k to be perfect. We start with a lemma.
+                                                      z be the relative algebraic closure of L
+                            A
+Lemma 3.3. Let K=L be a field extension. Let L
+in K, and similarly write L..t // for the relative algebraic closure of L..t // inside K..t //.
+
+                                               A
+Then                          [
+                                   L0 ..t //  L..t //  z
+                                                         L..t //;                         (3.1)
+                                L0
+
+where the union is taken over all intermediate field extensions L  L0  K that are finite
+                                                            A
+over L. In particular, if K=L is finitely generated then L..t // D z
+                                                                   L..t //.
+C. Chiu, T. de Fernex, R. Docampo                                                              1496
+
+
+Proof. Regarding the first inclusion in (3.1), it suffices to observe that for any extension
+L./=L where  2 K algebraic over L, we have L./..t // D L..t //./, which is a finite
+extension of L..t //.
+     To prove the second inclusion in (3.1), let f D an0 t n0 C an1 t n1 C    be an element
+of K..t // that is algebraic over L..t //, where ani ¤ 0 and ni < niC1 . We want to show that
+       z for all i . Let P .X / 2 L..t //ŒX  be a monic polynomial such that P .f / D 0. Con-
+an i 2 L
+sider the t -expansion P .f / D mm0 Pm t m with Pm0 ¤ 0. Then Pm0 is a polynomial
+                                   P
+
+in an0 with coefficients in L, showing that an0 2 z     L. This implies that f1 D f an0 t n0
+is also algebraic over L..t //, and the same argument shows that an1 2 z    L. Recursively, we
+                  z
+see that ani 2 L for all i , as required.
+
+                                                                          A
+     Finally, if K is any finitely generated extension of L, then so is any intermediate field
+K  L0  L. In particular, z     L=L is finite, and so the equality L..t // D z  L..t // follows
+from (3.1).
+
+Remark 3.4. If K=L is not finitely generated, then the second inclusion in (3.1) is strict
+in general. To see this, let L D Q and consider an infinite chain of algebraic exten-
+sions Kn  KnC1 where K0 D L and for each n there exists xn 2 Kn whose minimal
+                                                         S
+polynomial over Kn 1 has degree n. Let then K D Kn . We consider the series f D
+           n  z
+P
+   n0 xn t 2 L..t //. Assume that f is algebraic over L..t //. Let P .X / 2 L..t //ŒX  be
+the minimal polynomial of f and let d be its degree. Taking the t-adic expansion of P .f /
+we get                              X
+                           P .f / D    Pi .x1 ; : : : ; xi /t i D 0;
+                                         i 0
+
+where Pi 2 LŒX1 ; : : : ; Xi  is of degree d again. Choose i such that Pi .X1 ; : : : ; Xi / has a
+nonzero term involving some Xm with m > d . Let n be the largest such integer m. Then
+Pi .x1 ; : : : ; xi / D 0 gives a contradiction to the assumption that the minimal polynomial
+of xn over Kn 1 has degree n > d .
+Remark 3.5. The first inclusion in (3.1) is also strict in general, at least when L is a field
+of positive characteristic. For an example, let
+
+                          L D k.xip j i 2 N/  K D k.xi j i 2 I /;
+
+where k is a field of characteristic p > 0, and consider the element f D i0 xi t i , whose
+                                                                        P
+
+coefficients generate K and thus do not belong to a subfield that is finite over L. We do
+not know any characteristic zero example where the first inclusion in (3.1) is strict.
+Proposition 3.6. Let f W X ! Y be a morphism of schemes over a field k. Let ˛ 2 X1
+and ˇ D f1 .˛/, and write x D ˛./, y D ˇ./. If kx =ky is algebraic, then so is k˛ =kˇ ,
+and ˛ is a closed point of the fiber f11 .ˇ/.
+
+Proof. With the same notation as in Lemma 3.3, let k        fˇ be the relative algebraic closure
+of kˇ in k˛ , so that kˇ ..t // contains the relative algebraic closure of kˇ ..t // in k˛ ..t //. We
+                      f
+have the solid arrows in the following diagram:
+On arc fibers of morphisms of schemes                                                      1497
+
+                                               ]
+                                              ˛
+                                        kOx            / k˛ ..t //
+                                                          O
+                                               '
+
+                                                   #
+                                    f]                 kˇ ..t //
+                                                         O
+                                                       f
+
+                                               ]
+                                              ˇ
+                                        ky             / kˇ ..t //
+
+By hypothesis f ] gives an algebraic extension, and we see that the image ˛] .kx / is alge-
+braic over kˇ ..t //, hence contained in k
+                                         fˇ ..t //. In other words, the dashed arrow ' making
+the diagram commutative exists. Since ˛] is induced by an arc ˛W Spec k˛ ŒŒt  ! X, we
+see that ' is of the form ' D ] for some arc W Spec k        fˇ ŒŒt  ! X. At the level of arc
+spaces we get a factorization Spec k˛ ! Spec kˇ ! X1 , showing that k˛ D k
+                                                     f                               fˇ.
+    The last assertion in the proposition is a standard fact about morphisms of schemes;
+see [52, Tag 01TE].
+
+Proposition 3.7. Let f W X ! Y be a morphism of schemes over a field k. Let ˛ 2 X1
+and ˇ D f1 .˛/, and write x D ˛./, y D ˇ./. If kx =ky is finite separable, then k˛ =kˇ
+is finite.
+
+Proof. After replacing X and Y by the closures of x and y, we can assume that X and Y
+are integral schemes with generic points x and y. We identify x and y with the schemes
+Spec kx and Spec ky , and consider their arc spaces x1 and y1 over k. Since the extension
+kx =ky is finite separable, the map x ! y is finite étale and we have x1 D y1 y x. In
+particular, the map x1 ! y1 is also finite étale.
+     Consider the map '˛ W Spec k˛ ŒŒs; t  ! X given by '˛ .s; t / WD ˛.s C t /. Thinking of
+'˛ as an arc Spec k˛ ŒŒs ! X1 on the arc space of X, we consider its generic point ˛ 0 D
+'˛ ./ 2 X1 . Its residue field comes equipped with an inclusion k˛0  k˛ ..s//. Moreover,
+'˛ gives a local ring map OX1 ;˛ ! k˛ ŒŒs which induces an isomorphism on residue
+fields, and whose image is contained in k˛0 . Therefore the ring Ov D k˛0 \ k˛ ŒŒs is
+a valuation ring of k˛0 with residue field Ov =mv D k˛ , with the valuation v being the
+restriction of ords to k˛0 . Notice that ˛ 0 .0/ D ˛ 0 ./ D x, so in fact ˛ 0 2 x1 .
+     We construct in a similar way a point ˇ 0 2 y1 such that f1 .˛ 0 / D ˇ 0 , and we get an
+extension k˛0 =kˇ 0 compatible with the extension k˛ ..s//=kˇ ..s//. Moreover, kˇ 0 comes
+equipped with a valuation ring Ow D kˇ 0 \ kˇ ŒŒs with residue field Ow =mw D kˇ , and
+Ow is the restriction of Ov to kˇ 0 .
+     Since ˛ 0 2 x1 , ˇ 0 2 y1 , f1 .˛ 0 / D ˇ 0 , and the map x1 ! y1 is étale, we see that
+the extension k˛0 =kˇ 0 is finite separable by [52, Tag 02GL].
+     To conclude, notice that k˛0 =kˇ 0 is finite and that Ov is an extension of Ow , so the
+finiteness of the extension of residue fields k˛ =kˇ follows from [52, Tag 0ASH] or [54,
+Chapter VI, Section 6, Corollary 2].
+C. Chiu, T. de Fernex, R. Docampo                                                      1498
+
+
+4. Cotangent maps at the level of arc spaces
+
+The main result of this section aims to describe the cotangent map of f1 at ˛ when
+f is either smooth or unramified at ˛./. We will use this result to complete the proof
+of Theorem 3.1. The result generalizes [21, Theorem 1.2], [14, Theorem 9.2] and [11,
+Theorem 8.1]. A specific extension of the latter is given in Corollary 4.6, which will be
+used to provide an analogous extension of [11, Theorem 8.5] in Theorem 9.8.
+    Before stating the main result, we recall the definition of unramified morphism, in
+which we follow [52, Tag 02G4].
+Definition 4.1. A morphism of schemes f W X ! Y is unramified at a point x 2 X if f is
+locally of finite type at x and X=Y;x D 0. The morphism is unramified if it is unramified
+at every point.
+Remark 4.2. The above definition is weaker than the one given in [30, (17.3.1)], where
+an unramified morphism is assumed to be locally of finite presentation. In particular, any
+closed immersion is unramified in our sense.
+Theorem 4.3. Let f W X ! Y be a morphism of schemes over a perfect field k. Let
+˛ 2 X1 and ˇ D f1 .˛/, and consider the cotangent map
+
+                          T˛ f1 W mˇ =m2ˇ ˝kˇ k˛ ! m˛ =m2˛ :
+
+(1) If f is unramified at ˛./, then the residue field extension k˛ =kˇ is finite separable
+    and T˛ f1 is surjective.
+(2) If X and Y are locally of finite type over k and f is smooth at ˛./, then
+
+                            dim.ker T˛ f1 /  ord˛ .Fittr X=Y /;
+
+    where r D dim.X=Y ˝ k˛./ /, and equality holds if X is smooth at ˛.0/ and f is
+    étale at ˛./.
+    We now have all the pieces in place to complete the proof of the main theorem from
+the previous section.
+
+Proof of Theorem 3.1. As we already mentioned, part (1) follows by Proposition 3.6 and
+the finiteness of k˛ =kˇ stated in (2) is proved in Proposition 3.7. As for the separability
+of k˛ =kˇ , we reduce as in the proof of Proposition 3.7 to the case where X is an integral
+scheme and x is its generic point. Then by [52, Tag 090W] the assumption that kx =ky is
+finite separable implies that f is unramified at x, hence separability follows from (1) of
+Theorem 4.3.
+
+    As we mentioned in Section 3, part (1) of Theorem 4.3 requires Proposition 3.7 for
+the finiteness of the extension k˛ =kˇ . The other main ingredient is the description of
+the sheaf of differentials of the arc space established in [14]. Let us review the results
+there needed for the proof of Theorem 4.3. For ˛ 2 X1 we are interested in the fiber
+On arc fibers of morphisms of schemes                                                       1499
+
+
+X1 =k ˝ k˛ . Clearly we may assume X D Spec A is affine. Set B˛ D k˛ ŒŒt  and P˛ D
+k˛ ..t //=t  k˛ ŒŒt . Then by [14, Remark 5.4] we have
+
+                          X1 =k ˝ k˛ ' .X=k ˝ B˛ / ˝B˛ P˛ ;
+
+where B˛ is an A-module via the universal arc X1 b Spf kŒŒt  ! X given by the ring map
+A ! A1 ŒŒt . As an intermediate step we will compute X=k ˝ B˛ first. A key ingredient
+in the computation is the structure theorem for modules over principal ideal domains,
+which implies that for any finitely generated A-module M we have M ˝ B˛ ' F˛ ˚ T˛
+where F˛ is free of rank d D dimk˛./ .M ˝ k˛./ / and T˛ is torsion, of dimension over
+k˛ equal to ord˛ .Fittd M / where Fittd M denotes the d -th Fitting ideal of M . We refer
+the reader to [14, Section 6] for more details.
+
+Proof of Theorem 4.3. We may assume that X and Y are affine. Consider the following
+diagram over k˛ where rows and columns are exact:
+
+     0       / mˇ =m2 ˝ k˛              / Y          ˝ k˛    / k =k ˝ k˛          /0
+                      ˇ                        1 =k               ˇ
+
+
+                       T˛ f1                         ˆ˛                   ‚˛
+                                                                     
+     0           / m˛ =m2               / X          ˝ k˛       / k =k            /0
+                         ˛                     1 =k                   ˛
+
+                                                                                           (4.1)
+                                                                     
+                                        X1 =Y1 ˝ k˛             / k =k            /0
+                                                                      ˛     ˇ
+
+
+
+                                                                      
+                                                 0                    0
+
+   Note that exactness of the middle row follows from the assumption that k is perfect.
+By naturality of the formula in [14, Theorem 5.3] we can compute the map ˆ˛ from the
+exact sequence
+                                       '
+                         Y =k ˝ OX ! X=k ! X=Y ! 0                            (4.2)
+by tensoring first with B˛ D k˛ ŒŒt  and then with P˛ D k˛ ..t //=t  k˛ ŒŒt . Tensoring with
+B˛ yields
+                                 '˛
+                    Y =k ˝ B˛ ! X=k ˝ B˛ ! X=Y ˝ B˛ ! 0;                                 (4.3)
+and tensoring with P˛ yields
+                                  ˆ˛
+                    Y =k ˝ P˛ ! X=k ˝ P˛ ! X=Y ˝ P˛ ! 0;                                (4.4)
+
+which agrees with the middle column in the diagram (4.1).
+    To prove assertion (1), assume that f is unramified at ˛./. We claim that it is suffi-
+cient to prove that the map ˆ˛ in (4.1) is surjective. Indeed, observe that then ‚˛ is surjec-
+tive as well and hence k˛ =kˇ D 0. Since the field extension k˛./ =kˇ ./ is finite separa-
+ble, it follows by Proposition 3.7 that the extension k˛ =kˇ is finite. Using [52, Tag 090W]
+C. Chiu, T. de Fernex, R. Docampo                                                            1500
+
+
+we see that k˛ =kˇ is separable, hence ‚˛ is injective by [39, Theorem 26.6]. We conclude
+by the snake lemma that T˛ f1 is surjective.
+     In order to show that ˆ˛ is surjective, first note that the assumption that f is unrami-
+fied at ˛./ implies that X=Y ˝ B˛ is torsion, hence X=Y ˝ P˛ D 0. Then the surjec-
+tivity of ˆ˛ follows by (4.4).
+     We now address (2), and henceforth assume that X and Y are of finite type and f
+is smooth at ˛./. By (4.1), dim ker T˛ f1  dim ker ˆ˛ , hence it suffices to prove that
+dim ker ˆ˛  ord˛ .Fitte X=Y /. The key point it to show that even though (4.3) in general
+does not extend to a short exact sequence to the left (since we are not assuming f to be
+smooth at ˛.0/), we can still extend (4.4) on the left to an exact sequence
+                                             ˆ˛
+      TorA
+         1 .X=Y ; P˛ / ! Y =k ˝ P˛ ! X=k ˝ P˛ ! X=Y ˝ P˛ ! 0;                            (4.5)
+
+which will assist us in controlling the kernel of ˆ˛ .
+    To see this, write Y =k ˝ B˛ D FY ˚ TY , X=k ˝ B˛ D FX ˚ TX and X=Y ˝ B˛ D
+FX=Y ˚ TX=Y , where FY , FX , FX=Y are free and TY , TX , TX=Y are torsion modules. Since
+f is smooth at ˛./, pulling back (4.2) along the generic point of the arc ˛ yields a short
+exact sequence – that is, the first map becomes injective. This implies that the restriction
+of '˛ to the free part FY is injective, hence ker '˛ is contained in the torsion part TY .
+Setting for short TxY D TY =ker '˛ , we obtain a short exact sequence
+                               ˛    '
+                                    x
+                  0 ! FY ˚ TxY ! FX ˚ TX ! FX=Y ˚ TX=Y ! 0:
+
+Note that by definition of P˛ we have an exact sequence
+                                        t
+                             0 ! B˛ ! k˛ ..t // ! P˛ ! 0:                                    (4.6)
+
+Thus P˛ is a divisible B˛ -module and tensoring with P˛ kills torsion. Therefore we get a
+long exact sequence
+
+           TorB˛
+              1 .TX=Y ; P˛ / ! FY ˝ P˛ ! FX ˝ P˛ ! FX=Y ˝ P˛ ! 0:                            (4.7)
+
+This sequence agrees with (4.5), and shows that dim ker ˆ˛  dim TorB           ˛
+                                                                               1 .TX=Y ; P˛ /.
+                                            B˛
+From the sequence (4.6) we see that Tor1 .TX=Y ; P˛ / ' TX=Y , which is of dimension
+ord˛ .Fittr X=Y /. This proves the first assertion of (2).
+    For the second assertion of (2), first note that as we are now assuming that f is étale
+at ˛./ the map ‚˛ in (4.1) is injective, hence dim ker T˛ f1 D dim ker ˆ˛ . To conclude,
+note that if X is smooth at ˛.0/ then TX D 0. This implies that the first map in (4.7) is
+injective, hence we have dim ker ˆ˛ D dim TorB      ˛
+                                                  1 .TX=Y ; P˛ / in this case.
+
+Remark 4.4. In the setting of (2) of Theorem 4.3, by writing more terms of the long exact
+sequence (4.7) one can also see that the following bound holds:
+
+      dim ker T˛ f1  ord˛ .Fittr X=Y /         ord˛ .Fittd X=k / C ordˇ .Fitte Y =k /
+
+where d D dim.X=k ˝ k˛./ / and e D dim.Y =k ˝ kˇ ./ /.
+On arc fibers of morphisms of schemes                                                        1501
+
+
+   Given a finite morphism of varieties f W X ! Y , Theorem 4.3 says that for any ˛
+such that f is étale at ˛./ the cotangent map T˛ f1 is surjective with finite-dimensional
+kernel. By contrast, the next example shows that if f is only unramified at ˛./ then the
+kernel of T˛ f1 can be infinite-dimensional.
+Example 4.5. Consider the nodal curve singularity Y given by y 2 x 2 .x C 1/ D 0
+in A2k . Let f W X ! Y be the normalization, which is given in coordinates by u 7!
+.u2 2u; .u 1/.u2 2u//. Note that f is unramified. Let ˇ 2 Y1 .k/ be the constant
+arc centered at the node and ˛ 2 X1 .k/ a constant arc on X mapping to ˇ. To compute
+the cotangent map we proceed as in the proof of Theorem 4.3. Adopting the same notation
+as in that proof, the map ˆ˛ in (4.1) is given by
+
+                        .Y =k ˝ k/ ˝k P˛ ! .X=k ˝ k/ ˝k P˛ :
+
+Here Y =k ˝ k is a free module of rank 2, generated by dx, dy, and X=k ˝ k is free of
+rank 1 generated by du, with ˆ˛ determined by dx 7! 2du, dy 7! 2du. In particular,
+the kernel of ˆ˛ is infinite-dimensional over k. As the map ‚˛ in (4.1) is clearly an
+isomorphism in this example, we see that ker T˛ f1 ' ker ˆ˛ .
+    Theorem 4.3 allows us to remove the assumption on the characteristic in [11, The-
+orem 8.1], which in the case of positive characteristics was restricted to k-rational arcs
+˛ 2 X1 .k/. Here we deal explicitly only with the case where X is smooth at ˛./, but
+the general case can be obtained similarly.
+Corollary 4.6. Let X  Ank be an affine scheme over a perfect field k. Let ˛ 2 X1 and
+assume that X is smooth at ˛./. Then there exists a morphism f W X ! Adk that is étale
+at ˛./ and such that the cotangent map
+
+                            T˛ f1 W mˇ =m2ˇ ˝kˇ k˛ ! m˛ =m2˛ ;
+
+where ˇ D f1 .˛/, is an isomorphism.
+
+Proof. Let d D dim˛./ X, and let f1 ; : : : ; fm 2 kŒx1 ; : : : ; xn  be generators of the ideal
+of X. Then Fittd X=k is generated by the .n d /  .n d /-minors of the Jacobian
+matrix J associated to .f1 ; : : : ; fm /. After reordering, we may assume that ord˛ JacX D
+ord˛  where  is a minor of J involving only @fi =@xj for j > d . Consider now the
+morphism f W X ! Adk D Spec kŒx1 ; : : : ; xd . By construction,
+
+                          ord˛ .Fittd X=k / D ord˛ .Fitt0 X=Ad /:
+                                                                   k
+
+
+Furthermore, dim.X=k ˝ k˛./ / D d , hence the above number is finite. In particular,
+this means that f is unramified at ˛./. Since Y is smooth, it follows that f is étale
+at ˛./ (see for example [30, (18.10.1)]). The assertion then follows from Theorem 4.3
+and Remark 4.4.
+
+Remark 4.7. In Corollary 4.6, any morphism f induced by a general linear projection
+Ank ! Adk will do. Indeed, the condition ord˛ .Fitt0 X=Ad /  ord˛ .Fittd X=k / defines
+                                                               k
+C. Chiu, T. de Fernex, R. Docampo                                                            1502
+
+
+an open subset of Gr.d; n/, and the argument in the proof of Corollary 4.6 applies for any
+such choice of projection.
+Remark 4.8. The surjectivity of the cotangent map T˛ f1 stated in Theorem 4.3 (1) was
+obtained in the proof of [45, Proposition 4.5 (iii)] in the special case where ˛ is a stable
+point and char k D 0. Note that in [45, Proposition 4.5 (iii)] it is also stated that if OX1 ;˛ is
+Noetherian then f1 is unramified at ˛, but the definition of unramified morphism adopted
+there is weaker than the standard one as it omits the requirement that the morphism is
+locally of finite type at ˛ (cf. [52, Tag 02FM]). We will see later, in Example 7.1, that this
+last property can actually fail, hence f1 can fail to be unramified at ˛, even assuming
+that OX1 ;˛ is Noetherian.
+    Recall that if f W X ! Y is a morphism of varieties over k, then f is unramified at
+a point x 2 X if and only if the cotangent map Tx f is surjective and the residue field
+extension kx =ky , where y D f .x/, is finite separable [52, Tag 02FM]. At first glance,
+Theorem 4.3 seems to suggest that in the setting of part (1) of the theorem the morphism
+f1 is unramified at ˛ (or at least formally unramified), but this is not true in general.
+In fact, as we will discuss in Section 7, in general X1 =Y1 does not vanish at ˛ if f is
+ramified at ˛.0/, even when f is unramified at ˛./. It turns out however that the comple-
+tion of X1 =Y1 with respect to the m˛ -adic topology on OX1 ;˛ does. Equivalently, the
+morphism f1 is formally unramified at ˛ in a weaker sense, which holds more generally
+whenever f is formally unramified at ˛./. To finish this section, we give a proof of this
+fact in Proposition 4.10 and sketch how this can be used to obtain an alternative proof for
+Theorem 4.3 (1) without making use of the results of [14].
+    To start, let us recall the necessary definition from [29].
+Definition 4.9. We say that a continuous map R ! S between topological rings is for-
+mally unramified if, for all discrete rings A and ideals J  A with J 2 D 0 fitting into a
+diagram with continuous maps
+
+                                         SO       / A=J
+                                                     O
+                                                                                            (4.8)
+                                                    !
+                                         R              /A
+
+there exists at most one continuous S ! A making the diagram commute.
+    Equivalently, by [29, (20.7.4)] any continuous map R ! S is formally unramified if
+and only if y S=R D 0, where y S=R denotes the separated completion of S=R .
+    If R and S are rings endowed with the discrete topology, this agrees with the usual
+definition of formally unramified ring maps. However, applying it to the case of a local
+map 'W .R; m/ ! .S; n/ with each side regarded with the adic topology translates to
+restricting to only those diagrams (4.8) where 'W R ! A satisfies '.mn / D 0 for some
+n > 0; and similarly for the map S ! A=J .
+On arc fibers of morphisms of schemes                                                          1503
+
+
+Proposition 4.10. Let ˛ 2 X1 and f W X ! Y be a morphism of schemes over a perfect
+field k that is formally unramified at ˛./. Then the induced map of local rings
+                                     ]
+                                    f1;˛ W OY1 ;ˇ ! OX1 ;˛ ;
+
+where ˇ D f1 .˛/, is formally unramified as a map of topological rings.
+
+Proof. Let us first show that, for any ˛ 2 X1 and for any continuous map of the form
+  W OX1 ;˛ ! A where A is a discrete k-algebra, the corresponding A-valued arc on X
+induces a diagram
+                                   OX;˛.0/    / AŒŒt 
+
+
+                                                          
+                                      OX;˛./         / A..t //
+
+Indeed, take an f 2 OX;˛.0/ not contained in the kernel of ˛ ] W OX;˛.0/ ! k˛ ŒŒt . Then
+˛ ] .f / D fe t e C t eC1 .: : :/ with fe 2 k˛ . Writing f .i / for the i -th higher derivative of f
+in OX1 ;˛ , this means that f .j / 2 m˛ for j < e and f .e/ 2 .OX1 ;˛ / . Thus .f .e/ / 2 A ,
+and since is continuous, .f .j / / is nilpotent for j < e. This implies that .f / 2 A..t //
+[33, Proposition 1.3.1].
+     Now, any diagram of the form (4.8) for R D OY1 ;ˇ , S D OX1 ;˛ induces a diagram
+
+                                    OX;˛./          / A=J..t //
+                                       O                  O
+
+                                                        %
+                                    OY;ˇ ./          / A..t //
+
+As f is formally unramified at ˛./, there is at most one diagonal arrow OX;˛./ ! A..t //.
+But AŒŒt  ! A..t // is injective and therefore there is at most one lift OX1 ;˛ ! A.
+
+    Let us finally sketch how one can derive Theorem 4.3 (1) from Proposition 4.10. Set-
+ting R D OY1 ;ˇ and S D OX1 ;˛ , by [29, (20.7.17)] we have a sequence
+                                                    
+                                R=k Ő Ry Sy ! y
+                                y               S=k ! y
+                                                       S=R :
+
+                                              y S=k ; instead, we just know that Im  is dense
+Of note is that this sequence is not exact at 
+in ker . From Proposition 4.10 it follows that  has dense image. Writing
+
+                                        K D OX1 ;˛ =m˛
+
+we see that yR=k Ő Ry K is discrete and isomorphic to R=k ˝R K; and similarly for
+y
+S=k Sy K. Hence  Ő K is surjective and agrees with the map R=k ˝R K !
+       Ő
+S=k ˝S K. We can thus proceed as in the proof of Theorem 4.3 (1), using Theo-
+rem 3.1 (2) for the finiteness of the field extension k˛ =kˇ .
+C. Chiu, T. de Fernex, R. Docampo                                                                1504
+
+
+5. Finiteness of arc fibers
+
+In this section we look at morphisms of varieties that have finite fibers and ask whether
+the same property holds for the induced map on the level of arc spaces. As the notion of
+having finite fibers is more subtle for morphisms which are not of finite type, we start by
+introducing the following definition.
+Definition 5.1. We say that a scheme X is topologically finite if its underlying topological
+space is finite discrete; in this case, we denote the cardinality of the latter by jXj. If
+f W X ! Y is a morphism of schemes we say that f has topologically finite fibers if for
+every y 2 Y the fiber f 1 .y/ is topologically finite.
+   Let us compare this with the more familiar notion of a quasi-finite morphism of
+schemes, which we recall here.
+Definition 5.2. A morphism of schemes f W X ! Y is quasi-finite at a point x 2 X if it
+is locally of finite type at x and x is isolated in its fiber. The morphism is quasi-finite if it
+is of finite type and is quasi-finite at every point.
+Remark 5.3. Clearly a morphism is quasi-finite if and only if it is of finite type and
+has topologically finite fibers. Moreover, for a morphism of finite type, it is equivalent to
+require the fibers to be finite set-theoretically, topologically, or scheme-theoretically (cf.
+[52, Tag 02NG]). This is no longer true, however, if the morphism is not of finite type.
+For example, for any discrete valuation ring R over a field k the fiber of Spec R ! Spec k
+is obviously finite but not discrete. For an example of a topologically finite fiber that
+is not scheme-theoretically finite, consider any zero-dimensional k-algebra A that is not
+Noetherian – e.g., take A D Spec kŒxi j i 2 N=.xi j i 2 N/2 , which is a fat point in AN .
+    Let us summarize the main results of this section in the following two theorems.
+Theorem 5.4. Let f W X ! Y be a morphism of schemes over a perfect field k, and
+assume that X is separated. Let ˛ 2 X1 and ˇ D f1 .˛/, and write x D ˛./ and
+y D ˇ./.
+           1
+(1) If f       .y/red is quasi-finite at x over ky , then ˛ is an isolated point of f11 .ˇ/.
+(2) If f is unramified at x, then f11 .ˇ/ is reduced at ˛ and k˛ =kˇ is finite separable.
+Theorem 5.5. Let f W X ! Y be a morphism of schemes over a perfect field k, and
+assume that X is separated. Let ˇ 2 Y1 and denote y D ˇ./.
+           1
+(1) If f       .y/red is finite over ky , then f11 .ˇ/ is topologically finite.
+                                                                       1
+(2) If f is quasi-compact and unramified at each point of f                .y/, then f11 .ˇ/ is finite
+    over kˇ and reduced.
+
+Proof of Theorems 5.4 and 5.5. First note that assertion (1) in Theorem 5.4 follows from
+Proposition 3.6. The latter clearly implies that ˛ is a closed point of f11 .ˇ/. To see
+that this point is in fact isolated, assume that it is a specialization of some other point ˛ 0
+in f11 .ˇ/. The point x 0 D ˛ 0 ./ specializes to x and f .x 0 / D y, hence x 0 D x since x is
+On arc fibers of morphisms of schemes                                                     1505
+
+
+an isolated point of f 1 .y/. Then Proposition 3.6, applied this time to ˛ 0 , implies that ˛ 0
+is a closed point of f11 .ˇ/ and hence ˛ 0 D ˛.
+     The proof of the other assertions in these theorems proceeds as follows: we prove
+Theorem 5.5 (1) in Proposition 5.9, and Theorem 5.4 (2) in Proposition 5.10. To con-
+clude, we just observe that if f is quasi-compact and unramified at each point of f 1 .y/,
+then f 1 .y/ is finite over ky and hence Theorem 5.5 (2) follows directly from the other
+assertions.
+
+    Recall that for any algebraic field extension K=L the separable closure Lsep of L in
+K is an intermediate extension K=Lsep =L such that Lsep =L is separable algebraic and
+K=Lsep is purely inseparable. The separable degree of a finite extension K=L is then
+given by
+                                 ŒK W Lsep WD ŒLsep W L:
+We want to introduce a similar notion for schemes that are finite over a field.
+Definition 5.6. Let X be a finite scheme over a field k. The separable degree of X is
+defined as                                X
+                             sep:deg X WD     Œkx W ksep :
+                                               x2X
+
+Remark 5.7. For any finite k-scheme X D Spec A we have
+
+                                 jXj  sep:deg X  deg X;
+
+where the degree of X over k is given by deg X WD dimk A.
+Lemma 5.8. Given a finite field extension K=L of separable degree d and an arbitrary
+extension K 0 =L, there are at most d embeddings of K in K 0 over L.
+
+Proof. Consider the relative separable closure L  Lsep  K. By the primitive element
+theorem, Lsep D LŒz D LŒZ=.P .Z//, where z 2 Lsep is algebraic with minimal poly-
+nomial P .Z/ over L. Then an embedding Lsep ,! K 0 over L is determined by the image
+of z, which must be a root of P .Z/ in K 0 . Since deg.P .Z// D ŒK W Lsep  D d , there are
+at most d such roots.
+    It is sufficient to show that given a fixed embedding Lsep  K 0 , there is at most one
+embedding K ,! K 0 extending Lsep  K 0 . For this, notice that since K=Lsep is purely
+inseparable, every element w 2 K has a minimal polynomial over Lsep that has only one
+distinct root. This means that the image of w in K 0 , if it exists, is unique.
+
+Proposition 5.9. Let f W X ! Y be a morphism of schemes over a field k, and assume
+that X is separated. Let ˇ 2 Y1 and let y D ˇ./ 2 Y . If f 1 .y/red is finite over ky , then
+f11 .ˇ/ is topologically finite of cardinality at most sep:deg f 1 .y/.
+
+Proof. Write f 1 .y/red D Spec.K1      Kn / where each Ki =ky is a finite field exten-
+sion and set di D ŒKi W ky sep , so that sep:deg f 1 .y/ D niD1 di . Let x 2 f 1 .y/
+                                                            P
+
+with kx D Ki . Fix an algebraic closure kˇ of kˇ and let ˛ 2 f11 .ˇ/ with ˛./ D x.
+C. Chiu, T. de Fernex, R. Docampo                                                         1506
+
+
+By Proposition 3.6 there exists an embedding ˛ W k˛ ! kˇ . Note that the composition
+Spec kˇ ! Spec k˛ ! X1 defines the same point independently of the choice of embed-
+ding ˛ . Thus any diagram of the form
+
+                                      X1 c
+                                    f1                                                   (5.1)
+                                               x̌
+                                      Y1 o              Spec kˇ
+
+determines a point in the fiber f11 .ˇ/, and conversely every point ˛ in f11 .ˇ/ with
+˛./ D x arises in this way. The diagram (5.1) yields a diagram of field extensions
+
+                                         kOx
+                                       ]
+                                     fx                                                  (5.2)
+                                               x̌]      "
+                                         ky            / kˇ ..t //
+
+As X is separated, any such diagram gives rise to at most one kˇ -valued arc on X, which
+in turn gives an ˛ 2 f11 .ˇ/. Thus it suffices to show that there exist at most di interme-
+diate extensions of the form (5.2).
+    By hypothesis the extension fx] is finite with separable degree di , and by Lemma 5.8
+we see that there are at most di possible embeddings kx ! kˇ ..t // fitting into (5.2). This
+shows that there are at most di points ˛ 2 X1 such that f1 .˛/ D ˇ and ˛./ D x. Varying
+x over f 1 .y/ (i.e., over the Ki ) we see that the fiber f11 .ˇ/ is finite with cardinality at
+most d .
+    To conclude, notice that f11 .ˇ/ is a finite topological space in which, by Proposi-
+tion 3.6, all points are closed. This means that f11 .ˇ/ is discrete.
+
+Proposition 5.10. Let f W X ! Y be a morphism of schemes over a perfect field k. Let
+˛ 2 X1 and ˇ D f1 .˛/, and assume that f is unramified at ˛./. Then ˛ is reduced in
+f11 .ˇ/ and k˛ =kˇ is finite separable.
+
+Proof. Write x D ˛./, and y D ˇ./. The fact that f is unramified at ˛./ implies that
+the extension kx =ky of residue fields is finite separable, hence k˛ =kˇ is finite separable
+by Theorem 3.1. By the same argument as in the proof of Theorem 5.4 (1), we see by
+Proposition 3.6 that ˛ is an isolated point in its fiber. Thus we may pass to suitable affine
+open sets and assume that X D Spec S and Y D Spec R. As f is locally of finite type at
+˛./, we can write
+                             S ' RŒx1 ; : : : ; xn =.fi j i 2 I /:
+    We first show that n  jI j. Writing
+                                                                    ˇ      
+                                                      ı X @fi        ˇ
+                     S=R D hdx1 ; : : : ; dxn i                 dxj ˇ i 2 I ;
+                                                                     ˇ
+                                                              @x     j
+                                                          j
+On arc fibers of morphisms of schemes                                                            1507
+
+
+we have a free presentation of S=R of the form
+                                          
+                                    S I ! S n ! S=R ! 0:
+
+Since f is unramified at ˛./ we see that S=R ˝S k˛ ..t // D 0. Hence  ˝ idk˛ ..t // is a
+surjection, and thus n  jI j.
+    The next step is to reduce to the case where jI j D n. Since S=R ˝ k˛ ..t // D 0, there
+exist i1 ; : : : ; in 2 I such that the image of det .@fie =@xj /e;j n in k˛ ..t // is invertible. The
+factorization
+                              R ! RŒx1 ; : : : ; xn =.fi1 ; : : : ; fin / ! S
+corresponds to a factorization X ! X 0 ! Y where X ! X 0 is a closed immersion and
+the induced map f 0 W X 0 ! Y is unramified at ˛ 0 ./, where ˛ 0 is the image of ˛ in X1    0
+                                                                                               .
+                         0
+By Proposition 3.6, ˛ is an isolated point of its fiber. Then it clearly suffices to prove that
+˛ 0 is reduced in its fiber, hence we may assume without loss of generality that jI j D n.
+     Let kˇ be an algebraic closure of kˇ . We look at the fiber F D X1 Y1 kˇ and
+the geometric fiber Fx D X1 Y1 Spec kˇ over ˇ. We aim to show that Fx is reduced
+at every point ˛ x lying over ˛. By [52, Tag 035W], this will imply that the scheme Fx˛ D
+Spec OX1 ;˛ ˝ kˇ is reduced, thus F is geometrically reduced at ˛ and hence in particular
+reduced at ˛.
+                                               x is just kˇ and thus, by [52, Tag 01TE], ˛
+     First note that the residue field of each ˛                                            x is
+             x
+isolated in F˛ . In particular, the local ring OFx ;x˛ is of dimension 0. Let A be the category
+whose objects are local kˇ -algebras .A; m/ with m D Nil.A/ and A=m D kˇ and whose
+morphisms are local ring maps. The geometric fiber over ˇ at ˛          x is determined by its
+A-points, which in turn correspond to diagrams of the form
+
+                                       Spec AŒŒt 
+                                                         ˛
+                                                         z     /X
+
+                                                                     f
+                                                         x̌     
+                                      Spec kˇ ŒŒt            /Y
+
+where A 2 A and precomposing ˛       z with Spec kˇ ŒŒt  ! Spec AŒŒt  gives ˛ x. In order to
+           x
+prove that F is reduced at ˛x it suffices to show that for any A 2 A there exists at most one
+morphism ˛ z making the above diagram commute; as kˇ is clearly the initial object in A
+we are done. Note that for every A there exists such a morphism az given by ˛         zD˛  x ı ,
+where W Spec AŒŒt  ! Spec kˇ ŒŒt  is the natural inclusion.
+   Write f D .f1 ; : : : ; fn / and x D .x1 ; : : : ; xn /. Then ˛
+                                                                 x corresponds to
+
+                             x.t / D .x
+                             ˛                         xn .t // 2 kˇ ŒŒt n ;
+                                      ˛1 .t /; : : : ; ˛
+
+              ˛ .t // D 0. Since f is unramified at ˛./, we know that det M.x
+satisfying f .x                                                                ˛ .t // ¤ 0,
+                                                      d
+where M D .@fi =@xj /i;j n . Write det M.x˛ .t // D t u.t / with d  0 and u.t / 2 kˇ ŒŒt 
+invertible. Let .A; m/ 2 A. Then an A-point ˛ z of the fiber at ˛
+                                                                x is given by
+
+                               x.t / C v.t / 2 AŒŒt n ;
+                       z.t / D ˛
+                       ˛                                         v.t / 2 mŒŒt n ;
+C. Chiu, T. de Fernex, R. Docampo                                                            1508
+
+
+              ˛ .t // D 0. Taking Taylor expansion we get
+satisfying f .z
+
+                                ˛ / CM.x
+                         0 D f .x      ˛ .t //  v.t / C N.t /  v.t /;
+                             „ƒ‚…
+                                 D0
+
+where N.t / has its coefficients in mŒŒt . Multiplying with the adjugate matrix of M.x
+                                                                                       ˛ .t //
+we have
+                              0 D .t d u.t / idn CNe .t //  v.t /:
+
+By Lemma 5.11 we see that .t d u.t / idn CN    e .t // is invertible considered as a matrix with
+coefficients in A..t //. As AŒŒt  ! A..t // is injective we have v.t / D 0. This finishes the
+proof.
+
+Lemma 5.11. Let .A; m/ be a k-algebra with A=m D k and m D Nil.A/. Consider a
+matrix M 2 Mnn .AŒŒt / of the form M D t d u.t / idn CN where u.t / 2 AŒŒt  is invert-
+ible and N 2 Mnn .mŒŒt /. Then there exists M 0 2 Mnn .AŒŒt / such that M 0  M D
+t e U.t / for some U.t / 2 GLn .AŒŒt /.
+
+Proof. We write N D N1 C N2 where each entry of N1 has order  d C 1 and each entry
+of N2 is a polynomial of degree at most d . In particular, each entry of N2 is nilpotent
+and by the Cayley–Hamilton theorem N2 is nilpotent itself. Write t d u.t / idn CN1 D
+t d U 0 .t / where U 0 .t / is invertible modulo m, hence invertible. Then there exists M 0 2
+Mnn .AŒŒt / such that M 0  M D .t d U 0 /e .
+
+    In the following examples we demonstrate the statement of Proposition 5.10 by explic-
+itly showing nontrivial nilpotent elements in the local ring OX1 ;˛ vanishing along the
+fiber of f1 at ˛. As we will see later in Proposition 8.3, this implies that OX1 ;˛ is not
+Noetherian.
+Example 5.12. Let X  A2k be the node defined by the equation h D xy D 0, and let
+˛ 2 X1 be an arc of the form ˛ D . a.t /; 0/ where a.t / D m1 am t m . We assume that
+                                                                  P
+
+am ¤ 0 for all m  1. As usual, we write .A2k /1 D Spec kŒxn ; yn j n  0 where xn and yn
+denote the n-th higher derivatives of x and y. Consider the element x0 y1 and its image g
+in the local ring OX1 ;˛ . It is easy to check that g 2 D 0 (cf. [49, Example 7]), and we
+claim that g ¤ 0; [49, Example 7] shows that the element x0 y1 does not vanish on X1 ,
+but it is not clear how to deduce that the element remains nonzero after localization. In
+fact, we claim that all higher derivatives g .i / of g are nonzero in OX1 ;˛ . Note that all
+these elements are nilpotent because they are the coefficients in the image of g under the
+map OX1 ;˛ ! OX1 ;˛ ŒŒt  obtained by localizing at ˛ the prolongation OX1 ! OX1 ŒŒt 
+of the universal arc OX ! OX1 ŒŒt .
+    We prove that g .i / ¤ 0 for all i  0 using a test ring similar to that in [14, Example 9.6].
+Specifically, let  D Z ˚ Z with the lexicographic order, and let R  k˛ .r; s/ be the
+rank 2 valuation ring with value group  associated to the monomial valuation v defined
+by v.r/ D  and v.s/ D 1. Consider the map kŒx; y=.xy/ ! .R=.rs//ŒŒt  defined by
+                                         s        s          s
+             x 7! r     a.t /;   y 7! s C a.t / C 2 a.t /2 C 3 a.t /3 C    :
+                                         r       r          r
+On arc fibers of morphisms of schemes                                                           1509
+
+
+The induced map OX1 ;˛ ! R=.rs/ sends g .i / to saiC1 , which can be easily checked
+by observing that .x0 y1 /.i / D h.i C1/ xi C1 y0 (where h.i C1/ is the .i C 1/-th higher
+derivative of h), hence g .i / D xi C1 y0 in OX1 ;˛ . This shows that g .i / ¤ 0.
+    Now, let f W X ! Y D A1k be the projection given by z D x y, and let ˇ D
+f1 .˛/ 2 Y1 . Explicitly, ˇ is given by z D a.t /. Using the equalities z0 D h.1/ D 0,
+which hold on f11 .ˇ/, we see that x0 .y1 C x1 / D 0 on the fiber, and since y1 C x1 does
+not vanish at ˛, this implies that x0 D 0 in S D OX1 ;˛ =mˇ  OX1 ;˛ . As g .i / D xiC1 y0
+in OX1 ;˛ and y0 D x0 on f11 .ˇ/, we conclude that the image of g .i / in S is zero.
+Example 5.13. Let X be the cuspidal plane curve singularity given by h D x 3 y 2 D 0
+and assume that char k ¤ 2; 3. Let W X 0 ! X be the normalization and p 2 X 0 the
+preimage of the cusp, and let ˛ 2 X1 be the image of the generic arc on X 0 with order
+of contact 1 with p. It is claimed in [45, Remark 3.16] that the element g 2 OX1 ;˛ defined
+by 2x0 y1 3x1 y0 , and all its higher derivatives g .i / , are nontrivial nilpotent elements.
+A proof that 2x0 y1 3x1 y0 does not vanish globally on X1 is given in [49, Example 8],
+but this does not imply directly the nonvanishing of its image g in the localization.
+    We give a proof that g ¤ 0 by reducing to a computation similar to the one carried
+out in Example 5.12. Consider the map kŒx; y ! kŒu; v given by x 7! u2 .v C 1/, y 7!
+u3 .v C 1/2 . This corresponds to an affine chart of the minimal embedded log resolution
+of the cusp centered at the intersection of the proper transform of the cusp (which is given
+by v D 0 and can be identified with the normalization X 0 ) with the exceptional divisor
+extracted by the third blow-up (given by u D 0). Under this map, y 2 x 3 7! u6 .v C 1/3 v.
+In particular, if V is the scheme defined in this chart by u6 v D 0, then we have a morphism
+W V ! X. Note that X 0  V . The arc can be written as D . a.t /; 0/ in the coordinates
+.u; v/, with a.t / D m1 am t m . We regard as a point in V1 . Let R be the valuation
+                       P
+
+ring defined as in Example 5.12, and consider the map kŒu; v=.u6 v/ ! .R=.r 6 s//ŒŒt 
+given by
+                                                                               6
+                                           1          1      2    1      3
+           u 7! r a.t /; v 7! s 1 C a.t / C 2 a.t / C 3 a.t / C    :
+                                           r         r           r
+Then
+                   2x0 y1    3x1 y0 7! u50 .v0 C 1/2 v1 7! 6r 4 .s C 1/2 sa1 ;
+which is nonzero in R=.r 6 s/. This implies that the image of g under the induced map
+OX1 ;˛ ! R=.r 6 s/ is nonzero, hence g ¤ 0.
+    Now, consider the morphism f W X ! Y D A1k induced by the projection .x; y/ 7! x.
+We look at the vanishing of the elements g .i / on the fiber of f1 at ˛, which we expect by
+Proposition 5.10. We carry out the computation showing the vanishing of the restriction
+of g .i/ to the fiber at ˛ for i  5. To that avail, let h.i / denote the i -th higher derivative
+of h, and write h.i / for its image in the fiber ring over the ideal .x0 ; x1 /. Similarly, let g .i /
+be the image of g .i / in the quotient ring S D OX1 ;˛ =mˇ  OX1 ;˛ . By computing h.i / for
+i  6, we see that y0 D y1 D y2 D 0 in S . Thus g .i / D 0 for i  4. For i D 5 we have
+
+                                     g .5/ D 2x2 y4     3x3 y3 :
+C. Chiu, T. de Fernex, R. Docampo                                                      1510
+
+
+Note that h.6/ D x23   y32 and h.7/ D 3x22 x3       2y3 y4 . Then we have
+
+                             g .5/ D 3y3 1 x23 x3     3x3 y3 D 0
+
+by the vanishing of h.7/ and h.6/ , respectively. In a similar fashion, one can use the van-
+ishing of h.8/ to conclude that g .6/ D 0 in S, and so on.
+Remark 5.14. The results of this section can be equivalently regarded as results about
+Greenberg schemes. On the one hand, every arc fiber is a Greenberg scheme, since given
+f W X ! Y and ˇ 2 Y1 we have a canonical isomorphism of f11 .ˇ/ with the Greenberg
+scheme of X Y Spec kˇ ŒŒt  over Spec kˇ ŒŒt . On the other hand, if R is an equicharac-
+teristic complete discrete valuation ring and X is a scheme over R, then the Greenberg
+scheme of X is isomorphic to X1 .Spec R/1 Spec k where the arc spaces are taken over
+a coefficient field k of R and 2 .Spec R/1 is the arc given by a choice of uniformizer t
+for R.
+
+
+6. Arc fibers of quasi-finite morphisms
+
+Here we look more closely at the case of quasi-finite morphisms. Our first theorem shows
+that the arc fibers of quasi-finite morphisms are bounded and scheme-theoretically finite
+away from the arc space of the ramification locus. This can be viewed as a global analogue
+of the results of Section 5.
+Theorem 6.1. Let f W X ! Y be a quasi-finite morphism of schemes over a perfect field k,
+and assume that X is separated and quasi-compact. Let R WD Supp X=Y denote the ram-
+ification locus of f . Then the induced morphism f1 W X1 ! Y1 satisfies the following
+properties:
+(1) f1 has topologically finite fibers of bounded cardinality.
+(2) The restriction of f1 to X1 n R1 has finite reduced fibers.
+
+Proof. By [52, Tag 03JA] and Remark 5.7, for any quasi-finite morphism X ! Y with X
+quasi-compact there exists d  0 such that sep:deg f 1 .y/  d for all y 2 Y . Then (1)
+follows from Proposition 5.9; and (2) follows directly from Theorem 5.4 (2).
+
+    We now focus on the case of finite morphisms between varieties over an algebraically
+closed field. By Theorem 6.1 the cardinality of the arc fibers of such morphisms are
+bounded, and the goal here is to provide an effective bound in this special case.
+    Let us first recall the following well-known result which, for a finite morphism
+f W X ! Y of varieties over an algebraically closed field, provides an explicit bound for
+the cardinality of closed fibers when Y is normal.
+Theorem 6.2 ([50, Chapter 2, Section 6.3, Theorem 2.28]). Let f W X ! Y be a finite
+surjective morphism of varieties over an algebraically closed field k, and assume that Y
+is normal. Then jf 1 .y/j  deg f for every y 2 Y .k/.
+On arc fibers of morphisms of schemes                                                  1511
+
+
+    Our next theorem can be viewed as an analogue of Theorem 6.2 for the induced map
+at the level of arc spaces f1 W X1 ! Y1 . Notice that replacing the degree of f with its
+separable degree provides a sharper bound on the cardinality of the fibers.
+Theorem 6.3. Let f W X ! Y be a finite surjective morphism between varieties over an
+algebraically closed field k, and assume that Y is normal. Then jf11 .ˇ/j  sep:deg f
+for every ˇ 2 Y1 .
+    The main new ingredient in the proof of Theorem 6.3 is to show that the bound estab-
+lished in Theorem 6.2 works for all (possibly nonclosed) fibers of f . For char k > 0 we
+need the following auxiliary construction in order to replace degree with separable degree.
+Lemma 6.4. Let f W X ! Y be a finite surjective morphism between varieties over a
+field k and assume that Y is normal. Let W X 0 ! X be the normalization of X. Then
+there exists a diagram of varieties
+                                                   g
+                                            YO o       YO 0
+                                        f                 h
+
+                                            X o
+                                                   
+                                                       X0
+
+such that g is finite surjective with k.Y /  k.Y 0 / separable and deg g D sep:deg f , and
+h is a universal homeomorphism.
+
+Proof. We will only prove the assertion for X D Spec R and Y D Spec S affine; the
+general case follows in much the same way. Write L D Quot S and K D Quot R and
+let Lsep be the separable closure of L in K. Let S 0 be the integral closure of S inside
+Lsep and Y 0 D Spec S 0 . By [52, Tag 032L], gW Y 0 ! Y is a finite surjective morphism of
+varieties and clearly k.Y 0 / D Lsep . Moreover, h is universally injective (see for example
+[38, Exercise 5.3.9]) and thus a universal homeomorphism.
+
+   We obtain the following improvement of Theorem 6.2.
+Proposition 6.5. Let f W X ! Y be a finite surjective morphism of varieties over an alge-
+braically closed field, and assume that Y is normal.
+                                        1
+(1) For every y 2 Y .k/ we have jf          .y/j  sep:deg f .
+(2) There exist nonempty open sets V  Y and U  f 1 .V /  X such that for the
+    restriction fU W U ! V we have jfU 1 .y/j D sep:deg f for every y 2 V .k/.
+
+Proof. We keep the notation of Lemma 6.4. For short, let d D sep:deg f . To prove (1), by
+Theorem 6.2 we know that jg 1 .y/j  d for every y 2 Y 0 .k/ and hence the same holds
+for the composition gh. Since the normalization W X 0 ! X is finite surjective we get the
+assertion.
+    For (2), note that since  is birational and h is a homeomorphism it suffices to prove
+the statement for g. Hence we may assume that k.Y /  k.X / is separable of degree d .
+Thus f is generically unramified and there exists a nonempty open set U 00  X such that
+C. Chiu, T. de Fernex, R. Docampo                                                        1512
+
+
+U 00 ! Y is unramified. Moreover, since the rank of f OX is upper-semicontinuous, we
+can find a nonempty open set V  Y where f OX is of rank d . Set U 0 D f 1 .V / and
+U D U 0 \ U 00 . Now consider the fiber f 1 .y/ \ U of y 2 Y .k/ with respect to U ! V .
+As U ! V is unramified the fiber decomposes into a product of copies of k, which implies
+that jf 1 .y/ \ U j D d .
+
+   Now we can prove that the separable degree of every fiber of f is bounded by the
+separable degree of the map, provided of course that Y is normal.
+Corollary 6.6. Let f W X ! Y be a finite surjective morphism of varieties over an alge-
+braically closed field k, and assume that Y is normal. Then sep:deg f 1 .y/  sep:deg f
+for every y 2 Y .
+
+Proof. Write f 1 .y/ D ¹x1 ; : : : ; xr º and let di D Œk.xi / W k.y/sep . Furthermore, write
+Zi D ¹xi º and W D ¹yº. For each i the restriction fi W Zi ! W of f is finite of separable
+degree di . By Proposition 6.5 (2) there exist nonempty open sets Ui  Zi and Wi  W
+such that for fi W Ui ! Wi and y 2 Wi .k/ we have jfi 1 .y/j  di . Since f is finite,
+Zi \ Zj is a proper closed subset of Zi for j ¤ i . Therefore the set Ui0 D Ui n j ¤i Uj
+                                                                                     S
+
+is dense in Ui and so is the image of U 0 D i Ui0 in W . The set W 0 D f .U 0 / \ i Wi
+                                               S                                       T
+
+is nonempty and constructible and thus contains a k-rational point y. Therefore the
+fiber f 1 .y/ contains at least i di points and hence, by Proposition 6.5 (1), we have
+                                P
+P
+   i di  d .
+
+Proof of Theorem 6.3. This follows from Corollary 6.6 and Proposition 5.9.
+
+Remark 6.7. As a related result we want to mention [2, Lemma 4.2], which states that if
+f W X ! Y is a finite and radicial morphism of varieties over a perfect field k of positive
+characteristic, then f1 is integral and radicial. We thank Devlin Mallory for bringing this
+result to our attention. It is not known whether the analogous property holds in character-
+istic zero [2, Remark 4.3].
+     Uniform bounds on the cardinality of the fibers of f1 also hold for more general
+morphisms f if we restrict attention to fibers over arcs ˇ whose image is dense in Y , that
+is, such that ˇ./ is the generic point of Y . Let us first recall the following definition.
+Definition 6.8. A morphism of varieties f W X ! Y is said to be generically finite if f
+is dominant and quasi-finite at the generic point of X. In this case, in analogy to Defini-
+tion 5.6, we define the separable degree of f as
+
+                              sep:deg f WD Œk.Y / W k.X /sep :
+
+Proposition 6.9. Let f W X ! Y be a generically finite morphism of varieties over a
+field k. Then jf11 .ˇ/j  sep:deg f for every ˇ 2 Y1 such that ˇ./ is the generic point
+of Y .
+
+Proof. This follows immediately by Proposition 5.9.
+On arc fibers of morphisms of schemes                                                                1513
+
+
+7. The ramification locus of f1
+
+In this section we aim to understand the ramification locus of f1 , characterize where f1
+is locally of finite type, and determine under which conditions f1 is globally a morphism
+of finite type.
+     We know by the base-change property of arc spaces along étale morphisms that if f
+is étale then so is f1 , and in particular f1 is locally of finite type. By contrast, even in
+the very simple case of a ramified double cover f W A1k ! A1k the morphism f1 presents
+interesting pathologies.
+Example 7.1. Let k be a field of characteristic ¤ 2 and X D Y D A1k . Consider the
+morphism f W X ! Y given by y D x 2 and let ˛ be the generic arc on X with order of
+contact 1 with the origin. Writing X1 D Spec kŒx0 ; x1 ; x2 ; : : :  where xi is the i-th higher
+derivative of the coordinate x on X, we see that ˛ corresponds to the prime ideal .x0 / of
+kŒx0 ; x1 ; x2 ; : : :. The image ˇ D f1 .˛/ is the generic arc on Y with order of contact 2
+with the origin; writing Y1 D Spec kŒy0 ; y1 ; y2 ; : : : , ˇ corresponds to the prime .y0 ; y1 /.
+                           ]
+Note that the map f1         W OY1 ! OX1 is given by the higher derivatives of y D x 2 , that is,
+                    y0 D x02 ;   y1 D 2x0 x1 ;          y2 D x12 C 2x0 x2 ;     :::                  (7.1)
+Using this presentation, we can compute the module X1 =Y1 of relative differentials and
+get
+              X1 =Y1 ' hdxi j i 2 Z0 i=hx0 dx0 ; x1 dx0 C x0 dx1 ; : : :i:
+We want to compute the stalk of X1 =Y1 over ˛. Denote for short S WD OX1 ;˛ and
+M WD X1 =Y1 ˝ S , and define
+                                                 i          ˇ
+                                              ıD X                            E
+                Mn WD hdxi j i D 0; : : : ; ni     xj dxi j ˇ i D 0; : : : ; n :
+                                                            ˇ
+                                                       j D0
+
+Note that S is a discrete valuation ring with uniformizer x0 . Since xj 2 S is invertible for
+j > 0, we have Mn ' hdxn i=hx0nC1 dxn i. Moreover, by the structure theorem for modules
+over principal ideal domains, M is the colimit of the system
+                    u1 x0                   u2 x 0           un   1 x0                  un x 0
+  M0 ' S=.x0 /         ! M1 ' S=.x02 /           !                 ! Mn ' S=.x0nC1 /        ! 
+where uj 2 S are units. This shows that dx0 ¤ 0 in Mn for all n 2 N and so dx0 ¤ 0
+in M . Therefore f1 is not unramified at ˛ (and in fact it is not formally unramified in
+any neighborhood of ˛ [52, Tag 00UO]), even though Theorem 4.3 implies that T˛ f1 is
+an isomorphism.
+    In Example 7.1, the morphism f1 actually fails to be locally of finite type at ˛, despite
+the fact that by Theorem 6.1 the fiber of f1 through ˛ and all nearby fibers are of finite
+type. This follows by observing that if the morphism f1 were locally of finite type at ˛,
+then it would be unramified by [52, Tag 02FM], which we just saw is not the case. To
+better understand the failure of f1 to be locally of finite type at ˛, we revisit the example
+from this point of view.
+C. Chiu, T. de Fernex, R. Docampo                                                         1514
+
+
+Example 7.2. Continuing with the same notation as in Example 7.1, let R D Supp X=Y
+be the ramification locus of f , which consists of the origin of A1k . By looking at the
+equations (7.1) of f1 , it is clear that the only way to get a finitely generated extension out
+of this system is to localize at x0 , which corresponds to restricting f1 to .X n R/1 . Here
+we observe that if x0 is not inverted, its differential dx0 is precisely the nonzero element
+of X1 =Y1 found in Example 7.1. Note that the open set .X n R/1 is much smaller
+compared to X1 n R1 ; for instance, it does not contain the point ˛ 2 X1 corresponding
+to the prime ideal .x0 /.
+     Another way to see that f1 is not locally of finite type at ˛ relies on the following
+argument. It is a straightforward computation to check that both the residue field extension
+kˇ  k˛ (where ˇ D f1 .˛/) and the extension of function fields k.Y1 /  k.X1 / are
+finite of degree 2, and it is clear that the fiber of f over ˇ consists only of ˛ as a reduced
+                             ]
+point. If the local map f1     W OY1 ;ˇ ! OX1 ;˛ were essentially of finite type, it would
+follow by [52, Tag 052V] and the going-down theorem that the morphism Spec OX1 ;˛ !
+Spec OY1 ;ˇ is surjective. However, clearly the generic arc on Y with order of contact 1
+with the origin belongs to Spec OY1 ;ˇ but not to the image of Spec OX1 ;˛ .
+     The example discussed above suggests that given a morphism of finite type f W X ! Y
+with ramification locus R, the map f1 W X1 ! Y1 on arc spaces can only be locally of
+finite type at points ˛ 2 .X n R/1 . The next theorem establishes this fact in full generality,
+and provides the precise link between the ramification locus of f1 and that of f .
+Theorem 7.3. Let f W X ! Y be a morphism of finite type between schemes over a perfect
+field k, and let f1 W X1 ! Y1 be the induced morphism of arc spaces. For any ˛ 2 X1 ,
+the following are equivalent:
+(1) f1 is unramified at ˛;
+(2) f1 is quasi-finite at ˛;
+(3) f1 is locally of finite type at ˛;
+(4) f is unramified at ˛.0/.
+Moreover, the fiber of f1 through ˛ is locally of finite type at ˛ if and only if f is
+unramified at ˛./.
+    We deduce the following criterion for f1 to be a morphism of finite type.
+Corollary 7.4. With the same assumptions as in Theorem 7.3, the following are equiva-
+lent:
+(1) f1 is unramified;
+(2) f1 is quasi-finite;
+(3) f1 is of finite type;
+(4) every fiber of f1 is of finite type;
+(5) f is unramified.
+On arc fibers of morphisms of schemes                                                    1515
+
+
+Proof. First note that as f W X ! Y is quasi-compact, so is f1 W X1 ! Y1 . Indeed, there
+exists a cover by open affine sets V of Y such that the scheme-theoretic preimage V Y X
+is quasi-compact. By [43, Proposition 2.3 (2)] we have .V Y X /1 ' V1 Y1 X1 , and
+this is quasi-compact since Z1 ! Z is affine for any k-scheme Z. As V1 is an affine
+open subset of Y1 , we are done.
+    Therefore the implications (1))(2))(3) follow from the definitions, and (3))(4)
+from the fact that being of finite type is stable under base change. Finally, the implications
+(4))(5))(1) follow directly from Theorem 7.3.
+
+    The proof of Theorem 7.3 relies on the description of the sheaf of differentials of X1
+from [14]. Assuming for simplicity that X D Spec A is affine where A is a k-algebra, and
+writing X1 D Spec A1 , the formula states that
+
+                                  X1 =k ' X=k ˝ P1                                    (7.2)
+
+where
+                                               A1 ..t //
+                                    P1 WD                  :                            (7.3)
+                                             t  A1 ŒŒt 
+We already used this formula in Section 4. Adopting the same notation used there, for
+every arc ˛ 2 X1 we denote P˛ WD P1 ˝ k˛ and similarly if B1 WD A1 ŒŒt  then we
+set B˛ WD B1 ˝ k˛ .
+Lemma 7.5. With the above notation, let M be a finitely generated A-module, and con-
+sider the A1 -module M ˝ P1 .
+(1) M ˝ P˛ ¤ 0 if and only if M˛./ ¤ 0, and if this occurs then dimk˛ .M ˝ P˛ / D 1.
+(2) .M ˝ P1 /˛ ¤ 0 if and only if M˛.0/ ¤ 0.
+
+Proof. Assume M˛.0/ ¤ 0, the lemma being trivial otherwise.
+     By the structure theorem for modules over principal ideal domains, the B˛ -module
+M ˝ B˛ is presented by a diagonal matrix with entries t ai along the diagonal, and the
+rank of the free part of M ˝ B˛ (which is the same as the number of zero rows in the
+presentation matrix) is equal to the rank of M at ˛./. As P˛ is t-divisible, tensoring by
+it kills the torsion part of M ˝ B˛ , hence M ˝ P˛ ¤ 0 if and only if M˛./ ¤ 0. Note
+furthermore that if this occurs then M ˝ P˛ contains a direct summand isomorphic to P˛ ,
+which is infinite-dimensional over k˛ . This proves part (1).
+     To prove (2), we consider the k˛ ŒŒs-valued arc ' on X given by '.s; t / WD ˛.s C t /.
+We can regard ' as an arc on X1 , an infinitesimal deformation of ˛. Let B' WD
+B1 ˝ k˛ ŒŒs and P' WD P1 ˝ k˛ ŒŒs. Note that M ˝ B' is now presented by a diagonal
+matrix with entries .s C t /ai along the diagonal, and tensoring with P' no longer kills
+the cokernel since this module is not .s C t /-divisible. This shows that if M˛.0/ ¤ 0 then
+.M ˝ P1 /˛ ¤ 0.
+
+Proof of Theorem 7.3. The implications (1))(2))(3) hold by definition. To prove that
+(4) implies (1), assume that f is unramified at ˛.0/. By [52, Tag 0395] there exist an open
+neighborhood U  X of ˛.0/ and a factorization U ! Z ! Y where U ! Y is a closed
+C. Chiu, T. de Fernex, R. Docampo                                                         1516
+
+
+immersion and Z ! Y is étale. In particular, Z1 ' Z Y Y1 and thus U1 ! Y1 is
+the composition of a closed immersion and the base change of an étale morphism, hence
+is unramified. As being unramified is a local property, it follows that f1 W X1 ! Y1 is
+unramified at ˛.
+    It remains to prove that (3) implies (4). We reduce to the case where X D Spec A
+is affine, and write X1 D Spec A1 . Let P1 be as defined in (7.3). The first step is to
+observe that
+                               X1 =Y1 ' X=Y ˝ P1 ;
+which follows from the formula in (7.2) by tensoring the exact sequence
+
+                           Y =k ˝ OX ! X=k ! X=Y ! 0
+
+with P1 and using the fact that this operation is left exact.
+   Assume that f is ramified at ˛.0/. Then X=Y;˛.0/ ¤ 0, hence
+
+                                      X1 =Y1 ;˛ ¤ 0                                     (7.4)
+
+by Lemma 7.5 (2). We distinguish two cases. If f is unramified at ˛./, then
+
+                            X1 =Y1 ˝ k˛ D X=Y ˝ P˛ D 0
+
+by Lemma 7.5 (1), and contrasting this with (7.4) shows that f1 cannot be locally of finite
+type at ˛ by [52, Tag 02FM]. If f1 is ramified at ˛./, then X1 =Y1 ˝ k˛ is infinite-
+dimensional over k˛ (again by Lemma 7.5 (1)), and this implies that f1 is not locally of
+finite type at ˛.
+     Note that the last part of the argument also implies that if f is ramified at ˛./ then
+the fiber of f1 over ˇ D f1 .˛/ is not locally of finite type at ˛, since in this case
+
+                           f11 .ˇ /=kˇ ˝ k˛ ' X1 =Y1 ˝ k˛ ;
+
+which is infinite-dimensional over k˛ . On the other hand, if f1 is unramified at ˛./
+then we already proved in Theorem 6.1 that f 1 .ˇ/ is locally of finite type at ˛, so this
+finishes the proof of the theorem.
+
+Remark 7.6. The proof of Theorem 7.3 shows that the support of X1 =Y1 is equal
+to the inverse image of the support of X=Y under the truncation map X1 ! X. By
+Theorem 7.3, this implies that Supp X1 =Y1 is exactly the ramification locus of f1 ,
+meaning that if f1 fails to be unramified at a point ˛, it fails both because it is not locally
+of finite type at ˛ and because X1 =Y1 ;˛ ¤ 0.
+
+
+8. Finiteness properties of local rings at stable points
+
+We now turn to applications. In this section, we begin by looking at local rings at stable
+points, whose definition is recalled next. We refer to [14, Section 10] for a discussion
+of the equivalence of the following definition with the original one given in [45] and for
+generalities on constructible subsets of arbitrary schemes (see also [52, Tag 005G]).
+On arc fibers of morphisms of schemes                                                   1517
+
+
+Definition 8.1. Let X be a scheme of finite type over a field k. A point ˛ 2 X1 is said
+to be constructible if it is the generic point of a constructible subset of X1 . Assuming
+that X is a variety and k is a perfect field, we say that a point ˛ 2 X1 is stable if it is
+constructible and ˛./ 2 Xsm .
+    Let henceforth X be a variety over a perfect field k. A systematic study of the local
+
+                                                                 2
+rings at stable points started in [44, 45], where it was proved among other things that if
+char k D 0 and ˛ 2 X1 is a stable point, then the completion OX1 ;˛ of the local ring of
+˛ is Noetherian (specifically, this property follows from [44, Corollary 4.6] and [45, The-
+orem 3.13]; see also [47, Theorem 4.1]). This result was used in [44] to establish a curve
+selection lemma in the space of arcs, a result that plays a major role in all known proofs
+of the Nash problem [13,24,37]. As observed later, the condition on the characteristic can
+be dropped, and the result extends to all varieties over a perfect field. A different proof
+
+                                            2
+was given in [14].
+    Reguera’s proof that the completion OX1 ;˛ of the local ring at a stable point is
+Noetherian relies on showing that the maximal ideal of O.X1 /red ;˛ is finitely generated
+and that the completion of the reduced local ring agrees with that of OX1 ;˛ . A differ-
+ent proof was later given in [14, Corollary 10.13]. These results led Reguera to raise the
+following question.
+Question 8.2 ([45, Question 4.8]). If ˛ 2 X1 is a stable point, is the reduced local
+ring O.X1 /red ;˛ Noetherian?
+    It should be noted that restricting the question to the reduced local ring is a necessary
+step, since in general the local ring OX1 ;˛ at a stable point can fail to be Noetherian.
+This was already observed in a concrete example in [45, Example 3.16] by looking at the
+nilpotent elements of the local ring when X is a cuspidal curve and ˛ is the generic arc
+giving the parameterization of the cusp; see also Examples 5.12 and 5.13. In fact, it is a
+general fact that local rings of X1 are never Noetherian if they are nonreduced. In the
+following proposition we restrict attention to stable points since local rings at nonstable
+points are clearly not Noetherian.
+Proposition 8.3. For any stable point ˛ 2 X1 , if the local ring OX1 ;˛ is not reduced
+then it is not Noetherian.
+
+Proof. By [45, Theorem 3.13] (when char k D 0) and [5] (in general), the nilradical of
+OX1 ;˛ is contained in n mn˛ . If OX1 ;˛ is not reduced, then its m˛ -adic topology is not
+                      T
+
+separated and so, by Krull’s intersection theorem, the ring cannot be Noetherian.
+
+    Using the results on arc fibers from previous sections, we can prove that if ˛ is a
+stable point then Spec OX1 ;˛ is Noetherian as a topological space and the maximal ideal
+of OX1 ;˛ is finitely generated. The first property can be viewed as an intermediate step
+toward a positive answer to Question 8.2. The second property is claimed in [44, The-
+orem 4.1], but the proof given there requires restricting to .X1 /red , so the result only
+applies to O.X1 /red ;˛ (cf. [47]). While it is quite possible that Reguera’s proof could
+C. Chiu, T. de Fernex, R. Docampo                                                              1518
+
+
+be adjusted so that one can avoid having to restrict to the reduced subscheme, we pro-
+pose here an alternative approach which provides a quick proof based on general linear
+projections and our previous results on jet fibers. This is quite different from Reguera’s
+approach, which involves looking at the truncation maps to the jet schemes.
+    For convenience, we introduce the following terminology.
+Definition 8.4. A scheme is said to be topologically Noetherian if its underlying topo-
+logical space is Noetherian.
+   In the following, we denote by dim.A/ the Krull dimension of a local ring A and by
+edim.A/ its embedding dimension.
+Theorem 8.5. Let X be a variety over a perfect field k and ˛ 2 X1 a stable point.
+(1) The maximal ideal of the local ring OX1 ;˛ is finitely generated.
+(2) The scheme Spec OX1 ;˛ is topologically Noetherian and
+
+                                   dim.OX1 ;˛ /  edim.OX1 ;˛ /:
+
+Proof. We may assume X  Ank is affine. Let d D dim X. Since k is perfect, the extension
+k  k.X / is separable and hence there exists a transcendence basis x1 ; : : : ; xd for k.X /
+such that k.x1 ; : : : ; xd /  k.X / is finite separable. We may assume that x1 ; : : : ; xd 2 kŒX 
+and thus they define a generically finite morphism f W X ! Y D Adk that is generically
+étale by [52, Tag 090W].
+    Now let ˛ 2 X1 be a stable point and set ˇ D f1 .˛/, which is again stable (e.g., see
+Corollary 9.5). Since Y is smooth, the local ring OY1 ;ˇ is the localization of a polynomial
+algebra over a regular ring at a prime of finite height, hence it is regular and its maximal
+ideal mˇ is finitely generated. Using Proposition 5.10 we see that m˛ D mˇ  OX1 ;˛ , and
+this proves (1).
+    We now address (2). By Corollary 4.6, the cotangent map
+
+                             T˛ f1 W mˇ =m2ˇ ˝kˇ k˛ ! m˛ =m2˛
+
+is an isomorphism, and hence
+
+                                edim.OY1 ;ˇ / D edim.OX1 ;˛ /:
+
+Furthermore, as we may assume that f is quasi-finite, Theorem 6.1 implies that the
+induced map Spec OX1 ;˛ ! Spec OY1 ;ˇ has topologically finite fibers.
+   Since OY1 ;ˇ is a regular ring of dimension dim.OY1 ;ˇ / D edim.OY1 ;ˇ /, Lemma 8.6
+implies that Spec OX1 ;˛ is topologically Noetherian and
+
+                                 dim.OX1 ;˛ /  edim.OY1 ;ˇ /:
+
+The stated bound on the dimension follows by combining the last two displayed formulas.
+On arc fibers of morphisms of schemes                                                       1519
+
+
+Lemma 8.6. Let f W X ! Y be a morphism of schemes, and assume that Y is topologi-
+cally Noetherian. If f has topologically finite fibers, then X is topologically Noetherian
+and dim X  dim Y .
+
+Proof. Let us first show that dim X  dim Y . To that end, let d D dim X and let x0 ; : : : ; xd
+be distinct points in X with xi a specialization of xi 1 for all i D 1; : : : ; d . Then f .xi /
+is a specialization of f .xi 1 /, and since each point xi is isolated in its fiber, the points
+f .x0 /; : : : ; f .xd / are all distinct, showing that dim Y  d .
+    To show that X is topologically Noetherian, it remains to prove that each closed subset
+Z  X has only finitely many irreducible components. Assume on the contrary that there
+exists a closed subset Z  X with infinitely many irreducible components Zi , i 2 I . For
+each i let zi 2 Zi denote the generic point. As f has topologically finite fibers, there
+exists an infinite subset I 0  I such that the points f .zi / for i 2 I 0 are pairwise distinct.
+For every i 2 I 0 , let Wi D ¹f .zi /º. As dim Y < 1, all possible chains between the sets Wi
+have finite length and thus there exists an infinite subset I 00  I 0 such that Wi 6 Wj for
+all distinct i; j 2 I 00 . Then I 00 parameterizes infinitely many irreducible components Wi
+of f .Z/, which is impossible if Y is topologically Noetherian.
+
+Remark 8.7. Section 8 gives a new proof of the fact, originally due to [45, Proposi-
+tion 3.7 (iv)], that local rings at stable points have finite Krull dimension.
+
+
+9. On embedding dimension and codimension of arc spaces
+
+Given a variety X over a perfect field k, the embedding dimension of the local ring of the
+arc space X1 at a point ˛ was used in [14] as a way of measuring the ‘codimension’ of ˛
+in X1 . For a precise statement see [14, Theorems C], where the embedding dimension
+at ˛ was shown to equal the jet codimension of ˛, which in turn is computed from the
+truncations of ˛ in the jet schemes of X. The following characterization of stable points
+in terms of the embedding dimension of their local rings was also established there.
+Theorem 9.1 ([14, Theorem E]). Let X be a variety over a perfect field k. For any
+˛ 2 X1 , we have edim.OX1 ;˛ / < 1 if and only if ˛ is a stable point.
+Remark 9.2. More generally, if X is any scheme of finite type over a perfect field k,
+the condition that the embedding dimension is finite characterizes constructible points
+˛ 2 X1 whose generic points ˛./ are contained in the smooth locus of X (see [14,
+Theorem 10.8]).
+    An application of the results of Section 4 gives us the next theorem. One should com-
+pare the theorem and its corollary to [14, Theorem D] and [45, Propositions 4.1 and 4.5].
+Theorem 9.3. Let f W X ! Y be a morphism of schemes over a perfect field k. Let
+˛ 2 X1 and ˇ D f1 .˛/.
+C. Chiu, T. de Fernex, R. Docampo                                                        1520
+
+
+(1) If f is unramified at ˛./, then
+
+                                edim.OX1 ;˛ /  edim.OY1 ;ˇ /:
+
+(2) If X and Y are locally of finite type over k and f is smooth at ˛./, then
+
+                     edim.OY1 ;ˇ /  edim.OX1 ;˛ / C ord˛ .Fittr X=Y /;
+
+    where r D dim.X=Y ˝ k˛./ /, and equality holds if X is smooth at ˛.0/ and f is
+    étale at ˛./.
+
+Proof. This follows directly from Theorem 4.3.
+
+Remark 9.4. Just as in Remark 4.4, in the setting of Theorem 9.3 (2) we also have the
+bound
+
+                edim.OY1 ;ˇ /  edim.OX1 ;˛ / C ord˛ .Fittr X=Y /
+                                     ord˛ .Fittd X=k / C ord˛ .Fitte Y =k /
+
+where d D dim.X=k ˝ k˛./ / and e D dim.Y =k ˝ kˇ ./ /.
+    As an immediate consequence of Theorem 9.3, we obtain the following property.
+Part (1) was proved in [45, Proposition 4.5(i)] assuming char k D 0, and part (2) answers
+[45, Question 4.8].
+Corollary 9.5. Let f W X ! Y be a dominant morphism of varieties over a perfect field k.
+Let ˛ 2 X1 and ˇ D f1 .˛/ 2 Y1 .
+(1) If f is generically finite and separable, then ˛ is stable if and only if ˇ is stable.
+(2) If f is generically smooth and ˛ is stable, then ˇ is stable.
+
+Proof. This follows from Theorems 9.1 and 9.3.
+
+Remark 9.6. More generally, we see by Remark 9.2 that if f W X ! Y is a dominant mor-
+phism of schemes that is locally of finite type over a field k and ˛ 2 X1 is a constructible
+point such that both X and f are smooth at ˛./, then ˇ D f1 .˛/ is a constructible point
+of Y1 .
+    In [11], we look at the embedding codimension of the local rings of X1 as a way
+of measuring its singularities. Since we are dealing with non-Noetherian rings, where the
+notion of embedding codimension was only introduced recently, we recall the definition
+from [11].
+Definition 9.7. The embedding codimension of a local ring .A; m; k/ is defined by
+
+                           ecodim.A/ WD ht.ker /
+
+where W Symk .m=m2 / ! gr.A/ D n0 mn =mnC1 is the natural homomorphism.
+                               L
+On arc fibers of morphisms of schemes                                                        1521
+
+
+    If A is Noetherian, then ecodim.A/ D edim.A/ dim.A/, which justifies the termi-
+nology, but the definition clearly needed to be modified beyond the Noetherian case since
+the right-hand-side of this equation may be negative or even be a difference of infinities.
+The interpretation of the above definition is that as the embedding dimension is the dimen-
+sion of the tangent space, the embedding codimension is the codimension of the tangent
+cone in the tangent space. For a more in-depth discussion, see [11, Section 6].
+    Just as the embedding dimension is used to characterize stable points, the embedding
+codimension characterizes arcs that are not fully contained in the singular locus. The
+following result is established in [11] under the assumption that either char k D 0 or
+˛ 2 X1 .k/.1
+Theorem 9.8. Let X be a scheme of finite type over a perfect field k. For any ˛ 2 X1 , we
+have ecodim.OX1 ;˛ / < 1 if and only if X is smooth at ˛./. Furthermore, if this occurs
+and X 0  X is the irreducible component containing ˛./, then
+
+                               ecodim.OX1 ;˛ /  ord˛ .JacX 0 /
+
+where JacX 0 is the Jacobian ideal of X 0 .
+
+Proof. This is proven in the same way as [11, Theorem 8.5 and Corollary 8.8], with
+Corollary 4.6 substituting [11, Theorem 8.1].
+
+
+10. Semicontinuity and constructibility properties
+
+Embedding dimension and embedding codimension of Noetherian local rings were stud-
+ied by Lech [36]. One of the main results proved there (see [36, Theorem 3]) is that if p
+is a prime ideal of a Noetherian local ring .A; m/, then
+
+                             edim.A/  dim.A=p/ C edim.Ap /:
+
+He deduces from this formula that if dim.A/ D dim.A=p/ C dim.Ap /, then
+
+                                  ecodim.A/  ecodim.Ap /:
+
+Such results are important because they show that these invariants satisfy expected semi-
+continuity properties. This becomes particularly relevant when we want to consider the
+embedding codimension as a measure of singularities. Lech’s proof of these results uses
+in an essential way the assumption that the local ring is Noetherian, and does not extend
+beyond this case.
+    Here we apply the results of the previous sections to prove that the embedding dimen-
+sion and embedding codimension of arc spaces satisfy similar semicontinuity properties.
+
+
+    1 This assumption was omitted in part (2) of [11, Theorem B]; the result is correctly stated in
+
+[11, Theorem 8.5].
+C. Chiu, T. de Fernex, R. Docampo                                                     1522
+
+
+It may be worthwhile to note that the proof of the following theorem does not depend
+on [36], but rather uses the theorems on arc fibers to reduce the problem to polynomial
+rings where embedding dimensions and embedding codimensions are easily computable.
+Theorem 10.1. Let X be a scheme locally of finite type over a perfect field k. Let
+˛; ˛ 0 2 X1 be two points with ˛ 0 specializing to ˛, and let c D codim.˛; ˛ 0 /.
+(1) We have
+                             edim.OX1 ;˛ /  c C edim.OX1 ;˛0 /:
+(2) If edim.OX1 ;˛ / < 1 and dim.gr.OX1 ;˛ //  c C dim.gr.OX1 ;˛0 //, then
+
+                             ecodim.OX1 ;˛ /  ecodim.OX1 ;˛0 /:
+
+Proof. Clearly (1) holds if edim.OX1 ;˛ / D 1, so we can assume that edim.OX1 ;˛ / < 1.
+Remark 9.2 implies that ˛./ is contained in the smooth locus of X. Therefore there is an
+irreducible component X0 and an open set U  X0 such that ˛./ 2 U and X is smooth
+along U , which in particular implies that U does not intersect any other irreducible com-
+ponent of X. Note that for every point 2 Spec OX1 ;˛ we have ./ 2 Spec OX;˛./ D
+Spec OU;˛./ , hence ./ 2 U .
+    We can assume without loss of generality that X  Ank is an affine scheme. Denoting
+d D dim X0 , it follows by Corollary 4.6 and Remark 4.7 that if f W X ! Adk is a general
+linear projection then the induced maps T˛ f1 and T˛0 f1 on tangent spaces are both
+isomorphisms. Setting ˇ D f1 .˛/ and ˇ 0 D f1 .˛ 0 /, this means that
+
+     edim.OX1 ;˛ / D edim.OY1 ;ˇ /      and   edim.OX1 ;˛0 / D edim.OY1 ;ˇ 0 /:     (10.1)
+
+Additionally, we may assume that f induces a finite map X0 ! Adk . In particular, f
+is quasi-finite at every point of U , hence at every point of the form ./ 2 X where
+  2 Spec OX1 ;˛ . We can therefore apply Theorem 5.4 (1), which implies that f1 restricts
+to a topologically finite map Spec OX1 ;˛ ! Spec OY1 ;ˇ .
+    Denoting by p˛0  OX1 ;˛ the ideal of ˛ 0 , let
+
+                       p˛0 D p0 ¨ p1 ¨    ¨ pl D m˛  OX1 ;˛
+
+be a chain of prime ideals of OX1 ;˛ computing the height of p˛0 . Setting qi Dpi \OY1 ;ˇ ,
+we obtain a chain of prime ideals
+
+                      qˇ 0 D q0 ¨ q1 ¨    ¨ ql D mˇ  OY1 ;ˇ ;
+
+the inclusions remaining strict because the map Spec OX1 ;˛ ! Spec OY1 ;ˇ has topolog-
+ically finite fibers. Here we are denoting by qˇ 0 the ideal of ˇ 0 in OY1 ;ˇ .
+    Now, by (10.1) we have edim.OY1 ;ˇ / < 1, hence Theorem 9.1 implies that ˇ is
+a stable point of Y1 , which is the arc space of an affine space. It follows that OY1 ;ˇ is
+isomorphic to the localization at the maximal ideal of a finitely generated polynomial ring
+over a field. In particular, this ring is catenary, hence
+
+                          dim.OY1 ;ˇ =pˇ 0 /  l D codim.˛; ˛ 0 /:                  (10.2)
+On arc fibers of morphisms of schemes                                                   1523
+
+
+Furthermore, for such a ring we have
+
+                     edim.OY1 ;ˇ / D codim.ˇ; ˇ 0 / C edim.OY1 ;ˇ 0 /;
+
+and (1) follows by combining this formula with (10.1) and (10.2).
+   Turning now to (2), by [11, Proposition 6.2] we have
+
+                  edim.OX1 ;˛ / D dim.gr.OX1 ;˛ // C ecodim.OX1 ;˛ /:                 (10.3)
+
+As we are assuming that edim.OX1 ;˛ / < 1, we can solve for ecodim.OX1 ;˛ /. Similarly,
+(1) implies that edim.OX1 ;˛0 / < 1 as well, hence the same argument can be repeated
+for OX1 ;˛0 and (2) follows from (1).
+
+Remark 10.2. When X is a variety, Theorem 10.1 can alternatively be proved by using
+the interpretation of embedding dimension as jet-codimension from [14], which makes
+use of the structure of the truncation maps to the jet schemes. Each proof gives a different
+perspective on semicontinuity and provides a unique set of tools that can be used to further
+investigate this property.
+Remark 10.3. In view of the characterization of stable points given in Theorem 9.1,
+Theorem 10.1 yields a new proof of the fact that every generalization of a stable point is
+itself a stable point, a property first established in [45, Proposition 3.7 (vi)].
+    The condition that dim.gr.OX1 ;˛ //  codim.˛; ˛ 0 / C dim.gr.OX1 ;˛0 // imposed in
+Theorem 10.1 (2) can be viewed as a generalization of the condition that dim.A/ D
+dim.A=p/ C dim.Ap / appearing in Lech’s theorem, which guarantees that p belongs
+to a chain of primes in A computing the dimension; they are clearly the same condi-
+tion if OX1 ;˛ is Noetherian. It is not clear how the condition should be formulated if
+edim.OX1 ;˛ / D 1, which prompts the question whether anything can be said about
+semicontinuity of the embedding codimension at arcs of infinite embedding dimension.
+    We want to present here a complementary result in this direction which sheds some
+light on the behavior of the embedding codimension at the k-rational points of X1 .
+The proof uses the existence of finite-dimensional formal models as established in the
+Drinfeld–Grinberg–Kazhdan theorem [17, 27] in combination with an explicit formula
+for the embedding dimension of Drinfeld models obtained in [11]. We first recall the
+following definition [28, Définition (9.3.1)].
+Definition 10.4. A function h from a topological space X to a set T is constructible if
+it has finite image and h 1 .t / is constructible for every t 2 T . The function h is locally
+constructible if every point x 2 X admits an open neighborhood V  X such that hjV is
+constructible.
+                                                                                ı
+Theorem 10.5. Let X be a scheme of finite type over a perfect field k, and let X1 WD
+                                   ı             ˛
+X1 n .Sing X /1 . For every ˛ 2 X1 denote by X the unique irreducible component of
+X containing ˛./, and for every integer e  0 define
+                           e          ı
+                          X1 WD ¹˛ 2 X1 j ord˛ .JacX ˛ / D eº:
+C. Chiu, T. de Fernex, R. Docampo                                                                    1524
+
+
+Then the function
+                              ı
+                             X1 .k/ ! Z;          ˛ 7! ecodim.OX1 ;˛ /;
+                                                                              e
+is locally constructible and restricts to a lower-semicontinuous function on X1 .k/ for
+every e.
+
+Proof. First note that
+                              1
+                              G
+                     ı              e
+                    X1 D           X1 D ¹˛ 2 X1 j ecodim.OX1 ;˛ / < 1º;
+                             eD0
+
+the second equality following by Theorem 9.8; in particular, the embedding codimen-
+                                                                                                 e
+sion defines a function on this set with values in Z. Note that each set X1                         is con-
+                   ı
+structible in X1 . Therefore it suffices to prove that the function is lower-semicontinuous
+on X e .k/ for every e, as this implies that the function is constructible on the open sets
+Fr 1 e                   ı                                           ı
+   eD0 X1 .k/  X1 .k/ and hence locally constructible on X1 .k/.
+                                        n                                   e
+     We may assume that X  Ak is affine. Fix e  0, let ˛ 2 X1                .k/ be any point, and
+set d D dim X and c D n d . Proceeding as in [11, Section 10], let X 0  X ˛ be the
+                    ˛
+
+complete intersection scheme defined by the vanishing of c general linear combinations
+p1 ; : : : ; pc of a set of generators of the ideal of X ˛ in An . As discussed in [11], we have
+2 2 2
+OX1 ;˛ ' OX1      ˛ ;˛ ' O 0
+                                                                                                          n
+                            X1 ;˛ . Pick general affine coordinates x1 ; : : : ; xd ; y1 ; : : : ; yc in Ak
+and let  D det .@pi =@yj /i;j m .
+     With the above choices, we have
+                          ord˛ ./ D ord˛ .JacX 0 / D ord˛ .JacX ˛ / D e:
+In fact, the same equations hold if we replace ˛ by any other k-rational point in some
+                         ;e            e
+open neighborhood X1         of ˛ in X1    , without changing the choice of coordinates and of
+the linear combinations of the set of generators of the ideal of X ˛ made above. We can
+                                                                                              ;e
+therefore assume without loss of generality that ˛ is an arbitrary k-rational point of X1         .
+                         ;e                                    e
+Since the open sets X1 constructed in this way cover X1 , it suffices to prove that the
+                                                                     ;e
+embedding codimension function is lower-semicontinuous on X1             .k/.
+     Following the construction outlined in [11, Section 10], let Z  Ae.1C2d k
+                                                                                       Cc/
+                                                                                            be the
+scheme defined by the equations listed in [11, equation (10a)]. Consider the morphism
+                    ;e                                                                 ;e
+of schemes wW X1        ! Z defined as follows: if is an R-valued point of X1                given
+                           d         c                                    e
+by .x.t /; y.t // 2 RŒŒt   RŒŒt  , then w. / is given by the tuple .t ; Nx.t /; N
+                                                                                    y.t // where
+Nx.t /  x.t / mod t 2e and Ny.t /  y.t / mod t e . By the theorem of Drinfeld, Grinberg and
+                                     ;e
+Kazhdan [17, 27], for each ˛ 2 X1         .k/ we have an isomorphism of completions
+                               2 2
+                               OX1 ;˛ ' OZ;w.˛/ Ő kŒŒti j i 2 N;
+and by [11, Proposition 7.6] we find that ecodim.OX1 ;˛ / D ecodim.OZ;w.˛/ /.
+   Let f W X ! Y WD Ad be the morphism induced by the projection .x; y/ 7! x. Let
+ˇ D f1 .˛/ and write ˇn 2 Yn for the image of ˇ in Yn . By [11, Theorem 10.2 (2)], for
+            ;e
+each ˛ 2 X1     .k/ the composition
+                         2              2 2 5
+                        OZ;w.˛/ ,! OX1 ;˛ ! OY1 ;ˇ ! OY2e 1 ;ˇ2e 1
+On arc fibers of morphisms of schemes                                                 1525
+
+
+gives an efficient formal embedding, that is, a closed embedding whose induced map on
+cotangent spaces is an isomorphism. In particular, edim.OZ;w.˛/ / D edim.OY2e 1 ;ˇ2e 1 /.
+As Y is smooth and ˇ2e 1 is a k-rational point, it follows that the function
+                          ;e
+                         X1   .k/ ! Z;      ˛ 7! edim.OZ;w.˛/ /;
+
+is constant. On the other hand, since Z is of finite type over k, the function
+                             ;e
+                            X1   .k/ ! Z;      ˛ 7! dimw.˛/ Z;
+
+is upper-semicontinuous, as it is the composition of a continuous map and an upper-
+semicontinuous map. Since ecodim.OZ;z / D edim.OZ;z / dimz Z for all z 2 Z, we get
+the assertion.
+
+
+11. Divisorial valuations and log discrepancies
+
+Let X be a variety over a perfect field k. In this paper, we adopt the following definition
+of divisorial valuation.
+Definition 11.1. A divisorial valuation on X is a valuation v of the function field of X
+with values in Z and center in X, whose residue field kv has transcendence degree over k
+equal to d 1 where d D dim X.
+    We stress that we are not requiring that Z is the value group of v; for instance, we
+distinguish a valuation v from 2v. According to the definition, a divisorial valuation is
+a valuation of the form v D q ordE where q 2 N and E is a prime divisor on a normal
+variety Y equipped with a proper birational morphism f W Y ! X (cf. [35, Lemma 2.45]).
+Definition 11.2. For any divisorial valuation v D q ordE as above, we define the Mather
+log discrepancy
+                             ayv .X / WD q.ordE .Jacf / C 1/
+and the Mather–Jacobian log discrepancy
+
+                      avMJ .X / WD q.ordE .Jacf /   ordE .JacX / C 1/:
+
+    The definitions of Mather log discrepancy and Mather–Jacobian log discrepancy are
+clearly independent of the choice of the model f W Y ! X. These invariants of singularities
+were studied for instance in [12, 15, 18, 32].
+    Next, we recall the definitions of divisorial arc and maximal divisorial arc, follow-
+ing [14]. These notions trace back at least to [19].
+Definition 11.3. A point ˛ 2 X1 is a divisorial arc if ord˛ extends to a divisorial valu-
+ation v˛ of the function field of X. A divisorial arc ˛ is a maximal divisorial arc if ˛ is
+maximal (with respect to specialization) among all divisorial arcs 2 X1 with v D v˛ .
+   We recall the following property of maximal divisorial arcs.
+C. Chiu, T. de Fernex, R. Docampo                                                      1526
+
+
+Theorem 11.4 ([14, Theorem 11.4]). Let X be a variety over a perfect field k. For every
+divisorial valuation v on X there exists a unique maximal divisorial arc ˛v 2 X1 whose
+associated valuation is equal to v, and
+
+                                edim.OX1 ;˛v / D ayv .X /:
+
+     In concrete terms, if v D q ordE and f W Y ! X is as in Definition 11.1, then the
+associated maximal divisorial arc ˛v is the image of the generic arc on Y with order of
+contact q with E.
+     By Theorems 9.1 and 11.4 every maximal divisorial arc is a stable point of X1 . Con-
+versely, the next theorem proves that every stable point whose special point is not the
+generic point of X is a divisorial arc. When char k D 0, this property follows from the
+results of [19] (when X is smooth) and [15] (in general). We give here a new, characteris-
+tic-free proof and use the property to establish lower bounds on the embedding dimension
+at a stable point and the dimension of the completed local ring.
+Theorem 11.5. Let X be a variety over a perfect field k and ˛ 2 X1 a stable point.
+Assume that ˛.0/ is not the generic point of X .
+(1) The valuation v D v˛ defined by ˛ is divisorial.
+(2) If ˛v 2 X1 is the maximal divisorial arc associated to v and c D codim.˛; ˛v /, then
+
+                     edim.OX1 ;˛ / D c C edim.OX1 ;˛v / D c C ayv .X /               (11.1)
+
+
+                                        2
+    and
+                                    dim.OX1 ;˛ /  c C avMJ .X /:                    (11.2)
+    Moreover, codim.˛; ˛v / is birationally invariant, in the sense that for every proper
+    birational morphism X 0 ! X, if ˛ 0 and ˛v0 are the lifts of ˛ and ˛v to X1    0
+                                                                                     then
+             0  0
+    codim.˛ ; ˛v / D codim.˛; ˛v /.
+
+Proof. We may assume that X  Ank is affine. Let f W X ! Y D Adk be a general linear
+projection, where d D dim X. Every stable point ˛ 2 X1 defines a valuation v˛ of the
+function field of X, and its image ˇ D f1 .˛/ 2 Y1 is stable by Corollary 9.5. Note that
+since ˛.0/ is not the generic point of X, the valuation v˛ is nontrivial; similarly, ˇ.0/ is
+not the generic point of Y , hence the valuation vˇ defined by ˇ is nontrivial.
+     We claim that ˇ is a divisorial arc. Note that this implies that ˛ is also divisorial.
+Indeed, by construction vˇ is the restriction of v˛ to the function field of Y , hence
+kvˇ  kv˛ . Since divisorial valuations over a d -dimensional variety are characterized
+among nontrivial valuations by having residue fields of maximal transcendence degree
+d 1, this implies that tr:degk .kv˛ /  tr:degk .kvˇ / D d 1 and thus v˛ is divisorial.
+     We prove the claim by induction on the embedding dimension of OY1 ;ˇ , which is
+finite by Theorem 9.1. For this, we rely on the fact that Y is smooth at ˇ.0/. First note
+that the claim is clear if ˇ.0/ has codimension 1 in Y , as this is the center of vˇ in Y .
+Assume therefore that ˇ.0/ has codimension  2 in Y . Let gW Y 0 ! Y be the blow-
+up of the closure B of ˇ.0/, and let ˇ 0 2 Y1  0
+                                                  denote the lift of ˇ. Since B is smooth
+On arc fibers of morphisms of schemes                                                          1527
+
+
+at ˇ.0/, there is an open neighborhood U  Y of ˇ.0/ such that B \ U is smooth. Then
+g 1 .U /  Y 0 is the blow-up of a smooth subscheme of U , hence it is smooth, and since
+g.ˇ 0 .0// D ˇ.0/ 2 U , we have ˇ 0 .0/ 2 g 1 .U / and Y 0 is smooth at ˇ 0 .0/. Note that g is
+ramified at ˇ 0 .0/, since the fiber of g over ˇ.0/ is positive-dimensional. Then it follows
+by [14, Theorem 9.2] (equivalently, one can use Theorem 9.3 (2)) that edim.OY1            0
+                                                                                            ;ˇ 0 / <
+edim.OY1 ;ˇ /, and induction applies. This settles assertion (1).
+    We now address (2). Let hW X 0 ! X be a proper birational morphism where X 0 is a
+normal variety with a prime divisor E such that v D q ordE for some q  1. We denote
+by ˛ 0 and ˛v0 the lifts of ˛ and ˛v to X1    0
+                                                . Note that ˛ 0 .0/ D ˛v0 .0/ is the generic point
+of E, which is contained in the smooth locus of X 0 . In particular, the local rings OX1       0 ;˛ 0
+
+and OX1  0 ;˛ 0 are regular, with the latter of dimension q.
+             v
+    It was observed in [40, Remark 3.5] that, in this setting,
+
+                          edim.OX1 ;˛ / D dim.OX1
+                                                0 ;˛ 0 / C v.Jach /:                          (11.3)
+
+In [40] the characteristic is assumed to be zero, but this is not necessary; in
+fact, since dim.OX1    0
+                         ;˛ 0 / D edim.OX1
+                                         0
+                                           ;˛ 0 /, the formula also follows directly from
+Theorem 9.3 (2), which does not require any assumption on the characteristic. As
+                               0  0
+dim.OX1  0
+           ;˛ 0 / D codim.˛ ; ˛v / C q (which holds because q D dim.OX1        0
+                                                                                 ;˛v0 /) and
+v.Jach / D edim.OX1 ;˛v / q (which follows by Theorem 11.4), we deduce from (11.3)
+that
+                      edim.OX1 ;˛ / D codim.˛ 0 ; ˛v0 / C edim.OX1 ;˛v /:
+                                                     0   0
+As h1 is injective on Spec OX1
+                             0
+                               ;˛ 0 , we have codim.˛ ; ˛v /  codim.˛; ˛v /, hence we end
+up with the inequality
+
+                      edim.OX1 ;˛ /  codim.˛; ˛v / C edim.OX1 ;˛v /:
+
+On the other hand, Theorem 10.1 (along with Theorem 11.4) yields the opposite inequality
+
+                      edim.OX1 ;˛ /  codim.˛; ˛v / C edim.OX1 ;˛v /;
+
+hence the first equality stated in (11.1) holds, and with Theorem 11.4 already
+giving edim.OX1 ;˛v / D ayv .X /, this settles (11.1). The argument also shows that
+codim.˛ 0 ; ˛v0 / D codim.˛; ˛v /, and since any proper birational model X 0 ! X can be
+dominated by a model as the one used above, this implies the last assertion of the theo-
+rem.
+    Finally, the formula in (11.2) is proved using the same argument as in [11, Theo-
+rem 11.1], by combining (11.1) and Theorem 9.8 with [11, Proposition 7.4].
+
+Remark 11.6. As discussed in the proof, one inequality in the formula stated in (11.1)
+already follows from [40, Remark 3.5] (at least when char k D 0), and our main contribu-
+tion is to establish the opposite inequality. The inequality stated in (11.2) was proved in
+[40, Theorem 4.1] for maximal divisorial arcs (i.e., when ˛ D ˛v ) assuming char k D 0,
+and our result extends Mourtada and Reguera’s theorem in two ways, by removing the
+assumption on the characteristic and by including all stable points in the statement.
+C. Chiu, T. de Fernex, R. Docampo                                                         1528
+
+
+    We close this section by mentioning the following semicontinuity property of Mather
+log discrepancies. The property already follows from [15, Theorem 3.8] (if char k D 0)
+and [14, Corollary 11.6] (in general), and is probably known to experts; a more precise
+formulation when X D A2k appears for instance in [25, Corollary 4.19]. We give here a
+different proof based on the semicontinuity property of embedding dimension discussed
+earlier.
+Corollary 11.7. Let X be a variety over a perfect field k. Let v and v 0 be two divisorial
+valuations on X and ˛v ; ˛v0 2 X1 be the associated maximal divisorial arcs. If ˛v is a
+specialization of ˛v0 then ayv .X /  ayv0 .X /, and the inequality is strict if v ¤ v 0 .
+
+Proof. The assertion follows from Theorem 11.4 and the fact that, by Theorem 10.1, if
+˛v is a specialization of ˛v0 then edim.OX1 ;˛v /  edim.OX1 ;˛v0 / and the inequality is
+strict if ˛v ¤ ˛v0 .
+
+Remark 11.8. The condition in Corollary 11.7 that ˛v is a specialization of ˛v0 can be
+seen as defining a notion of specialization among divisorial valuations. The upper topol-
+                                  Z
+ogy this defines on the set DivValX  of divisorial valuations on X agrees with the topology
+                                                                          Z
+induced from the Zariski topology of X1 via the inclusion map DivValX        ,! X1 defined
+by mapping a divisorial valuation v to the associated maximal divisorial arc av . There are
+                                               Z                                        Z
+of course other natural ways to equip DivValX     with a topology. For instance, DivValX   is
+a subset of the valuation space ValX parameterizing real valuations of the function field
+of X, and hence of the Berkovich analytification X an of X over k regarded as a triv-
+ially valued field. These spaces have interesting topologies, but the induced topology on
+        Z
+DivValX   is discrete, which is not particularly interesting for our purpose. Similarly one
+                                  Z
+can look at the map from DivValX     to the Riemann–Zariski space RZ.X / sending a divi-
+sorial valuation v to the corresponding valuation ring Ov . The fibers of this map are given
+by rescaling valuations, and pulling back the Zariski topology of RZ.X / again does not
+produce any interesting notion of specialization.
+     Questions about semicontinuity properties of log discrepancies are certainly not new.
+Shokurov and Ambro’s conjectures on the semicontinuity of minimal log discrepancies
+[1, 51] and their solutions in the locally complete intersection case [20, 23] immediately
+come to mind, and so does the semicontinuity property of minimal Mather–Jacobian log
+discrepancies on arbitrary varieties [12, 32]. It should be stressed, however, that while
+these properties are about lower-semicontinuity, Corollary 11.7 gives an upper-semicon-
+tinuity property of Mather log discrepancies, which is more in line with Ishii’s lower
+bound on this invariant [32, Theorem 1.1]. One should also be aware that Corollary 11.7
+does not imply – at least in an obvious way – that minimal Mather log discrepancies are
+upper-semicontinuous on X.
+Acknowledgments. We thank David Bourqui, Devlin Mallory and Johannes Nicaise for useful com-
+ments. We also want to thank the referee for many valuable comments and especially for bringing
+to our attention [40, Remark 3.5], which allowed us to strengthen Section 1.2.
+On arc fibers of morphisms of schemes                                                            1529
+
+
+Funding. The research of the first author was partially supported by the NWO Vici grant
+639.033.514. The research of the second author was partially supported by NSF Grant DMS-
+2001254. The research of the third author was partially supported by a grant from the Simons
+Foundation (638459, RD).
+
+
+References
+
+ [1] Ambro, F.: On minimal log discrepancies. Math. Res. Lett. 6, 573–580 (1999)
+     Zbl 0974.14007 MR 1739216
+ [2] Benito, A., Piltant, O., Reguera, A. J.: Small irreducible components of arc spaces in positive
+     characteristic. J. Pure Appl. Algebra 226, article no. 107110, 25 pp. (2022) Zbl 1493.13014
+     MR 4414842
+ [3] Bhatt, B.: Algebraization and Tannaka duality. Cambridge J. Math. 4, 403–461 (2016)
+     Zbl 1356.14006 MR 3572635
+ [4] Bourqui, D., Morán Cañón, M., Sebag, J.: On the behavior of formal neighborhoods in the
+     Nash sets associated with toric valuations: a comparison theorem. arXiv:2202.11681 (2022)
+ [5] Bourqui, D., Haiech, M.: On the nilpotent functions at a non-degenerate arc. Manuscripta
+     Math. 165, 227–238 (2021) Zbl 1458.14020 MR 4242568
+ [6] Bourqui, D., Langlois, K., Mourtada, H.: The Nash problem for torus actions of complexity
+     one. arXiv:2203.13109 (2022)
+ [7] Bourqui, D., Sebag, J.: Smooth arcs on algebraic varieties. J. Singul. 16, 130–140 (2017)
+     Zbl 1366.14019 MR 3670512
+ [8] Bouthier, A.: Cohomologie étale des espaces d’arcs. arXiv:1509.02203v6 (2020)
+ [9] Bouthier, A., Ngô, B. C., Sakellaridis, Y.: On the formal arc space of a reductive monoid.
+     Amer. J. Math. 138, 81–108 (2016) Zbl 1346.14039 MR 3462881
+[10] Budur, N., de la Bodega, J., de Lorenzo Poza, E., Fernández de Bobadilla, J., Pełka, T.: On the
+     embedded Nash problem. arXiv:2208.08546 (2022)
+[11] Chiu, C., de Fernex, T., Docampo, R.: Embedding codimension of the space of arcs. Forum
+     Math. Pi 10, article no. e4, 37 pp. (2022) Zbl 1492.14022 MR 4386350
+[12] de Fernex, T., Docampo, R.: Jacobian discrepancies and rational singularities. J. Eur. Math.
+     Soc. 16, 165–199 (2014) Zbl 1334.14022 MR 3141731
+[13] de Fernex, T., Docampo, R.: Terminal valuations and the Nash problem. Invent. Math. 203,
+     303–331 (2016) Zbl 1345.14020 MR 3437873
+[14] de Fernex, T., Docampo, R.: Differentials on the arc space. Duke Math. J. 169, 353–396 (2020)
+     Zbl 1465.14019 MR 4057146
+[15] de Fernex, T., Ein, L., Ishii, S.: Divisorial valuations via arcs. Publ. Res. Inst. Math. Sci. 44,
+     425–448 (2008) Zbl 1162.14023 MR 2426354
+[16] Denef, J., Loeser, F.: Germs of arcs on singular algebraic varieties and motivic integration.
+     Invent. Math. 135, 201–232 (1999) Zbl 0928.14004 MR 1664700
+[17] Drinfeld, V.: On the Grinberg–Kazhdan formal arc theorem. arXiv:math/0203263 (2002)
+[18] Ein, L., Ishii, S.: Singularities with respect to Mather-Jacobian discrepancies. In: Commuta-
+     tive algebra and noncommutative algebraic geometry. Vol. II, Math. Sci. Res. Inst. Publ. 68,
+     Cambridge University Press, New York, 125–168 (2015) Zbl 1359.14020 MR 3496863
+[19] Ein, L., Lazarsfeld, R., Mustaţǎ, M.: Contact loci in arc spaces. Compos. Math. 140, 1229–
+     1244 (2004) Zbl 1060.14004 MR 2081163
+[20] Ein, L., Mustaţǎ, M.: Inversion of adjunction for local complete intersection varieties. Amer.
+     J. Math. 126, 1355–1365 (2004) Zbl 1087.14012 MR 2102399
+[21] Ein, L., Mustaţă, M.: Generically finite morphisms and formal neighborhoods of arcs. Geom.
+     Dedicata 139, 331–335 (2009) Zbl 1168.14005 MR 2481855
+C. Chiu, T. de Fernex, R. Docampo                                                              1530
+
+
+[22] Ein, L., Mustaţă, M.: Jet schemes and singularities. In: Algebraic geometry—Seattle 2005,
+     Part 2, Proc. Sympos. Pure Math. 80, American Mathematical Society, Providence, RI, 505–
+     546 (2009) Zbl 1181.14019 MR 2483946
+[23] Ein, L., Mustaţă, M., Yasuda, T.: Jet schemes, log discrepancies and inversion of adjunction.
+     Invent. Math. 153, 519–535 (2003) Zbl 1049.14008 MR 2000468
+[24] Fernández de Bobadilla, J., Pe Pereira, M.: The Nash problem for surfaces. Ann. of Math. (2)
+     176, 2003–2029 (2012) Zbl 1264.14049 MR 2979864
+[25] Fernández de Bobadilla, J., Pe Pereira, M., Popescu-Pampu, P.: On the generalized Nash prob-
+     lem for smooth germs and adjacencies of curve singularities. Adv. Math. 320, 1269–1317
+     (2017) Zbl 1376.32033 MR 3709136
+[26] Greenberg, M. J.: Rational points in Henselian discrete valuation rings. Inst. Hautes Études
+     Sci. Publ. Math. 31, 59–64 (1966) Zbl 0146.42201 MR 0207700
+[27] Grinberg, M., Kazhdan, D.: Versal deformations of formal arcs. Geom. Funct. Anal. 10, 543–
+     555 (2000) Zbl 0966.14002 MR 1779611
+[28] Grothendieck, A.: Éléments de géométrie algébrique. III. Étude cohomologique des faisceaux
+     cohérents. I. Inst. Hautes Études Sci. Publ. Math. 11, 349–511 (1961) Zbl 0118.36206
+     MR 0217085
+[29] Grothendieck, A.: Éléments de géométrie algébrique. IV. Étude locale des schémas et des
+     morphismes de schémas. I. Inst. Hautes Études Sci. Publ. Math. 20, 101–355 (1964)
+     Zbl 0136.15901 MR 0173675
+[30] Grothendieck, A.: Éléments de géométrie algébrique. IV. Étude locale des schémas et des
+     morphismes de schémas IV. Inst. Hautes Études Sci. Publ. Math. 32, 1–361 (1967)
+     Zbl 0153.22301 MR 0238860
+[31] Ishii, S.: Maximal divisorial sets in arc spaces. In: Algebraic geometry in East Asia—Hanoi
+     2005, Adv. Stud. Pure Math. 50, Mathematical Society of Japan, Tokyo, 237–249 (2008)
+     Zbl 1162.14022 MR 2409559
+[32] Ishii, S.: Mather discrepancy and the arc spaces. Ann. Inst. Fourier (Grenoble) 63, 89–111
+     (2013) Zbl 1360.14048 MR 3089196
+[33] Kapranov, M., Vasserot, E.: Vertex algebras and the formal loop space. Publ. Math. Inst.
+     Hautes Études Sci. 100, 209–269 (2004) Zbl 1106.17038 MR 2102701
+[34] Kolchin, E. R.: Differential algebra and algebraic groups. Pure Appl. Math. 54, Academic
+     Press, New York (1973) Zbl 0264.12102 MR 0568864
+[35] Kollár, J., Mori, S.: Birational geometry of algebraic varieties. Cambridge Tracts in Math. 134,
+     Cambridge University Press, Cambridge (1998) Zbl 0926.14003 MR 1658959
+[36] Lech, C.: Inequalities related to certain couples of local rings. Acta Math. 112, 69–89 (1964)
+     Zbl 0123.03602 MR 0161876
+[37] Lejeune-Jalabert, M., Reguera, A. J.: Exceptional divisors that are not uniruled belong to the
+     image of the Nash map. J. Inst. Math. Jussieu 11, 273–287 (2012) Zbl 1244.14003
+     MR 2905305
+[38] Liu, Q.: Algebraic geometry and arithmetic curves. Oxf. Grad. Texts Math. 6, Oxford Univer-
+     sity Press, Oxford (2002) Zbl 0996.14005 MR 1917232
+[39] Matsumura, H.: Commutative ring theory. 2nd ed., Cambridge Stud. Adv. Math. 8, Cambridge
+     University Press, Cambridge (1989) Zbl 0666.13002 MR 1011461
+[40] Mourtada, H., Reguera, A. J.: Mather discrepancy as an embedding dimension in the space of
+     arcs. Publ. Res. Inst. Math. Sci. 54, 105–139 (2018) Zbl 1406.14012 MR 3749346
+[41] Nash, J. F., Jr.: Arc structure of singularities. Duke Math. J. 81, 31–38 (1995)
+     Zbl 0880.14010 MR 1381967
+[42] Ngô, B. C.: Weierstrass preparation theorem and singularities in the space of non-degenerate
+     arcs. arXiv:1706.05926 (2017)
+On arc fibers of morphisms of schemes                                                         1531
+
+
+[43] Nicaise, J., Sebag, J.: Greenberg approximation and the geometry of arc spaces. Comm. Al-
+     gebra 38, 4077–4096 (2010) Zbl 1222.14032 MR 2764852
+[44] Reguera, A. J.: A curve selection lemma in spaces of arcs and the image of the Nash map.
+     Compos. Math. 142, 119–130 (2006) Zbl 1118.14004 MR 2197405
+[45] Reguera, A. J.: Towards the singular locus of the space of arcs. Amer. J. Math. 131, 313–350
+     (2009) Zbl 1188.14010 MR 2503985
+[46] Reguera, A. J.: Coordinates at stable points of the space of arcs. J. Algebra 494, 40–76 (2018)
+     Zbl 1388.13001 MR 3723170
+[47] Reguera, A. J.: Corrigendum: A curve selection lemma in spaces of arcs and the image of the
+     Nash map. Compos. Math. 157, 641–648 (2021) Zbl 1469.14003 MR 4236197
+[48] Reguera, A. J.: Arc spaces and wedge spaces for toric varieties. Ann. Inst. Fourier (Grenoble)
+     73, 2135–2183 (2023) Zbl 07748429 MR 4655387
+[49] Sebag, J.: Arcs schemes, derivations and Lipman’s theorem. J. Algebra 347, 173–183 (2011)
+     Zbl 1239.14027 MR 2846404
+[50] Shafarevich, I. R.: Basic algebraic geometry. 1. Varieties in projective space. Springer, Hei-
+     delberg (2013) Zbl 1273.14004 MR 3100288
+[51] Shokurov, V. V.: Problems about Fano varieties. In: Birational geometry of algebraic varieties:
+     Open problems (Katata, 1988), 30–32 (1988)
+[52] The Stacks Project. http://stacks.math.columbia.edu, visited on June 16, 2024
+[53] Vojta, P.: Jets via Hasse–Schmidt derivations. In: Diophantine geometry, CRM Series 4, Edi-
+     zioni della Normale, Pisa, 335–361 (2007) Zbl 1194.13027 MR 2349665
+[54] Zariski, O., Samuel, P.: Commutative algebra. Vol. II. Grad. Texts in Math. 29, Springer, New
+     York (1975) Zbl 0313.13001 MR 0389876
+

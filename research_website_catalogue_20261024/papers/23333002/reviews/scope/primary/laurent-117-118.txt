@@ -1,0 +1,104 @@
+      Sums of Squares, Moment Matrices and Polynomial Optimization            117
+
+     Schweighofer [151] shows the following representation theorem,
+     Theorem 7.19. [151] Assume pmin > −∞. Furthermore assume that,
+either p has only isolated singularities at infinity (which is always true if
+n = 2), or K∇p is compact. Then the following assertions are equivalent.
+  (i) p ≥ 0 on Rn ;
+ (ii) p ≥ 0 on K∇p ;                                                        
+                                                P                 P
+(iii) ∀ǫ > 0 ∃s0 , s1 ∈ Σ p + ǫ = s0 + s1 1 − ( ni=1 (∂p/∂xi )2 )( ni=1 x2i ) .
+    Thus, under the conditions of the theorem, pmin = inf x∈K∇p p(x) can
+thus be approximated using the SOS hierarchy (applied to K∇p ). When
+nothing is known about the singularities at infinity, Schweighofer [151]
+proposes to use modified gradient tentacles of the form
+             n               n 
+                            X   ∂p         2N  X
+                                                   n     N +1   o
+                 x ∈ Rn |                (x)         x2i       ≤1 ,
+                             i=1
+                                   ∂xi            i=1
+
+for various N ∈ N. He shows some SOS representation results for positive
+polynomials over such sets, but these SOS approximations are too costly
+to compute to be useful practically.
+     Theorem 7.19 relies in particular on Theorem 7.20 below, a non trivial
+generalization of Schmüdgen’s theorem (Theorem 3.16), which will also
+play a central role in the approach of Vui and Son described below. We
+need a definition. Given a polynomial p and a subset S ⊆ Rn , a scalar
+y ∈ R is an asymptotic value of p on S if there exists a sequence (xk )k of
+points of S for which limk→∞ kxk k = ∞ and limk→∞ f (xk ) = y.
+     Theorem 7.20. [151] Let p ∈ R[x], let K be a semi-algebraic set de-
+fined by polynomial inequalities gj ≥ 0 (j = 1, . . . , m) (as in (1.2)), and let
+T (g1 , . . . , gm ) be the associated preordering (as in (3.12)). Assume that (i)
+p is bounded on K, (ii) p > 0 on K, and (iii) p has finitely many asymp-
+totic values on K and all of them are positive. Then p ∈ T (g1 , . . . , gm ).
+
+Strategy 3: Vui and Son [170] propose yet another strategy for computing
+pmin , which applies to arbitrary polynomials p. It is based on considering
+the tangency variety
+                      n              ∂p                 ∂p
+                                                                   o
+                                                 ...
+                 Γp := x ∈ Rn | rank ∂x1                ∂xn       ≤1 ,
+                                      x1         ...    xn
+
+and the truncated tangency variety
+
+                            Γ0p := {x ∈ Γp | p(x) ≤ p(0)}
+
+of the polynomial p. A first basic observation is as follows.
+     Lemma 7.21. For p ∈ R[x], pmin = inf x∈Γp p(x) = inf x∈Γ0p p(x).
+118                             Monique Laurent
+
+
+     Proof. It suffices to show inf x∈Γ0p p(x) ≤ pmin . As 0 ∈ Γ0p , this is
+obvious if pmin = p(0). Suppose now pmin < p(0). Pick ǫ with 0 < ǫ <
+p(0) − pmin . There exists xǫ ∈ Rn for which p(xǫ ) ≤ pmin + ǫ. Without
+loss ofPgenerality we can assume that p(xǫ ) = minx|kxk=kxǫ k p(x). Setting
+         n
+h := i=1 x2i − kxǫ k2 and applying the first order optimality conditions,
+we deduce that λ∇p(xǫ ) + µ∇h(xǫ ) = 0 for some scalars (λ, µ) 6= (0, 0). As
+∇h(xǫ ) = 2xǫ , this shows that xǫ ∈ Γ0p . Therefore, inf x∈Γ0p p(x) ≤ pmin + ǫ
+which, letting ǫ → 0, implies inf x∈Γ0p p(x) ≤ pmin .
+     Next note that Γp is a variety, as Γp can be defined by the polynomial
+                        ∂p       ∂p
+equations: gij := xj ∂x   i
+                            − xi ∂x j
+                                      = 0 for 1 ≤ i < j ≤ n. Vui and Son
+[170] show the following representation result for positive polynomials on
+the semi-algebraic set Γ0p .
+     Theorem 7.22. For p ∈ R[x], the following assertions are equivalent.
+  (i) p ≥ 0 on Rn .
+ (ii) p ≥ 0 on Γ0p .
+(iii) ∀ǫ > 0 ∃s, t ∈ Σ ∃uij ∈ R[x] for 1 ≤ i < j ≤ n such that
+                                                  X
+                      p + ǫ = s + t(p(0) − p) +         uij gij .
+                                                  1≤i<j≤n
+
+      Proof. (i) =⇒ (ii) and (iii) =⇒ (i) are obvious. We show (ii) =⇒ (iii).
+For this, assume p > 0 on Γ0p ; we show the existence of a decomposition as
+in (iii) with ǫ = 0. We can apply Theorem 7.20 applied to Γ0p , since [170]
+shows that p has finitely many asymptotic values on Γp and that all are
+positive. Thus p lies in the preordering defined by the polynomials p(0)− p,
+gij and −gij , which immediately gives the desired decomposition for p.
+      Therefore, in view of Lemma 7.21 and Theorem 7.22, the infimum pmin
+of an arbitrary polynomial p over Rn can be approximated using the SOS
+hierarchy applied to the semi-algebraic set Γ0p .
+    7.3. Positive polynomials over the gradient ideal. We give here
+the proofs for Theorems 7.15 and 7.16 which give sums of squares represen-
+tations modulo the gradient ideal for positive polynomials on the gradient
+variety; we mostly follow Nie et al. [116] although our proof slightly differs
+at some places. We begin with the following lemma which can be seen as
+an extension of Lemma 2.3 about existence of interpolation polynomials.
+Recall that a set V ⊆ Cn is a variety if V = VC ({p1 , . . . , ps }) for some
+polynomials pi ∈ C[x]. When all pi ’s are real polynomials, i.e. pi ∈ R[x],
+then V = V := {v | v ∈ V }, i.e. v ∈ V ⇔ v ∈ V .
+     Lemma 7.23. Let V1 , . . . , Vr be pairwise disjoint varieties in Cn such
+that Vi = V i := {v | v ∈ Vi } for all i. There exist polynomials p1 , . . . , pr ∈
+R[x] such that pi (Vj ) = δi,j for i, j = 1, . . . r; that is, pi (v) = 1 if v ∈ Vi
+and pi (v) = 0 if v ∈ Vj (j 6= i).
+     Proof. TheT ideal Ii := I(Vi ) ⊆ C[x]
+                                         T is radical with VCS(Ii ) = Vi . We
+have VC (Ii + j6=i Ij ) = VC (Ii ) ∩ VC ( j6=i Ij ) = VC (Ii ) ∩ ( j6=i VC (Ij )) =
+

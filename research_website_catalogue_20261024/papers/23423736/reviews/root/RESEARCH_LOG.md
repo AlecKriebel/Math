@@ -1,0 +1,1 @@
+2026-11-15T06:04:02.440685+00:00 — initial40%; full4PDF263TeX4freshindividualrasters personallyread andsubstantive9familyproofreconstructionsealedbeforeforeign/scientificcode/results/opinions. Exactpublishedpresentation/assertioncontextstillpending; no scientificapproval.
