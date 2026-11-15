@@ -1,0 +1,1 @@
+2026-11-14T23:52:42.430658+00:00 — 35% adversarial review: entire actual reader/TeX and all four rendered pages read; independent full-claim reconstruction, four distinct falsification families, exact derivations and outside-hypothesis boundary attacks sealed before foreign/code/data/triage/opinion exposure. Primary interfaces and exact noncommuting reproducibility remain.

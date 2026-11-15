@@ -428,3 +428,15 @@ Re-read the complete saved goal. Previous interrupted turn yielded current Mac/b
 ## 2026-11-14T23:42:38.272846+00:00 — Five live presentation/download gates closed
 
 Root personally viewed27 accepted desktop/mobile/reader/index frames, preserved one initial loading frame, and authenticated ten actual browser-saved PDF/ZIP downloads against native originals and local site. Correct seven ordinary current GETs exact; actual sitemap is research/sitemap.xml. The five canonical URLs are eligible for native tracker after checkpoint. Scientific dispositions82/20340.39%; native finalized72/20335.47% until write/readback. Full203ongoing.
+
+## 2026-11-14T23:51:26.946924+00:00 — Native70 publication and review82 transition verified
+
+Applied23 precisely guarded values-only changes; compared1390fullCellData,1367untouched,allmetadataexact. Onlyfivecanonicalcells gained Google-generated exactURL link/blue/underline decorations. Nativevisual showed two lowercase stale pending phrases and redundant display links; fiveAD-only concise refinements preserve every original scientific fact/link and all nonvaluefields, then finalGoogle100%render verified. Five newURLsenteredonlyafter allseparategates. Counts70published+5preparing+2review+117queue+7deferrals+2holds=203;36excluded+6aliases separate. Scientific82/20340.39%;finalized77/20337.93%. Fullrawbefore/aftergzips,notesdelta,andthreeactualnativeframes preserved in verification/sheet-published70-review82-20261114. Programme-only checkpointf34beb00d01ed8cd40bbf2bfd424a9ce63879277 preserved159siblings/sharedindex/localmain; newnativeevidence awaitsnextcheckpoint. All203 goalongoing.
+
+## 2026-11-15T00:00:52.513819+00:00 — Exact named amplifier deferred for auxiliary proof/scope gap
+
+Root actual18pp/full1264lineTeX/all18renders and nine-family owninitial preceded currentopinions; priortriage exposure explicit. All3complete final reports/customverdicts and exact supporting theorem read. Root independent atomic raw-dB-rate derivation verifies nonvanishing2r-vs4r error in admitted fixedB,H growing-type domain; no graph-level counterexample to central theorem/no-go conclusion claimed. Undefined manuscript singular-load exclusion does not reconcile broader support. Wholepaper deferred, no source repair/narrowed page.498small sourcebindings plus all3owned final packets rehashed; authenticated479MB original not redundantly replayed. Science83/20340.89%; native deferral pending (then78finalized/20338.42%). Full203scope maintained.
+
+## 2026-11-15T00:04:39.398802+00:00 — Active goal re-established without scope change
+
+New objective file /Users/alec/.codex/attachments/90621d13-992e-4dc9-b897-1e6237f7c667/goal-objective.md read in full and byte-compared with previous objective: identical. Previous goalturn classified progress: native70publication/visual/readback closed and fullnamed109auxiliarydeferralwritten; native109dispositionpendingcheckpoint. Fourinterruptedlanesresumedinplace; completedpacketsnotrestarted. Checkpointwhitespacefailure traced to unignored localSymPy dependencycache; laneaddeddependency-onlyignore, preservinginstalledbytes/no sourcechanges. Full203scope retained.

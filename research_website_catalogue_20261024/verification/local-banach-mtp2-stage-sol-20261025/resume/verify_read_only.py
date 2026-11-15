@@ -21,7 +21,7 @@ base=json.loads((OLD/'BASELINE_ACTUAL_524.json').read_bytes());bindings(base['pu
 actual={str(p) for p in LIVE.rglob('*') if p.is_file()};require(actual=={r['path'] for r in base['public_files']},'production file set changed')
 require(subprocess.check_output(['git','-C',str(LIVE.parent),'rev-parse','HEAD'],text=True).strip()==base['website_commit_read_only_observed'],'website HEAD changed')
 overlay=E/'public';files=[p for p in overlay.rglob('*') if p.is_file()];require(len(files)==10,'overlay ten files')
-index=(overlay/'research/index.html').read_text();sitemap=(overlay/'research/sitemap.xml').read_text();require(len(re.findall(r'<li><a href="/research/[^"/]+/">',index))==72,'index72');require(sitemap.count('<loc>')==73,'sitemap73')
+index=(overlay/'research/index.html').read_text();sitemap=(overlay/'research/sitemap.xml').read_text();require(len(re.findall(r'href="/research/[^"/]+/"',index))==72,'index72');require(sitemap.count('<loc>')==73,'sitemap73')
 for mode in ['normal','optimized']:
     fault=json.loads((E/('FAULTS_'+mode+'.json')).read_bytes());require(fault['status']=='PASS' and fault['case_count']==fault['passed']==204,'fault suite '+mode)
     require(all(H(E/name)==pin for name,pin in fault['code_bindings'].items()),'fault code bindings '+mode)

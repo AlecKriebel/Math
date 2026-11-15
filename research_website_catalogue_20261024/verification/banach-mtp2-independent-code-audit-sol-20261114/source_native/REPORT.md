@@ -1,0 +1,33 @@
+# Independent native-source and authority audit
+
+Assessment: **NATIVE_CUSTODY_AUTHORITY_AND_LICENSE_INTERFACES_SUPPORTED** for exactly Zenodo records 23217863 and 23146753. No defect was found in these examined source-consumer interfaces. This is a code/editorial custody audit, not a fresh mathematical review or an authorization to install, publish or update the spreadsheet.
+
+I read the actual complete proposed `banach_mtp2_source.py`, the separate original root scientific/editorial authority objects at their identity/qualification fields, the actual native ready/source/metadata/transport/inventory objects and the actual license/attribution/README notices. I independently compared all fields and types of the whole source originals and six custom verdict/root entries, including dictionary key order and array order. Those comparisons, together with complete file-byte bindings, preserve fields that were not individually discussed in this report. The mathematical report bodies were authenticated in full as bytes; this audit does not claim to reread their mathematical proofs. The PDF assets were read as whole bytes, authenticated and inspected for page counts, not semantically or visually reviewed afresh. No parent page-fault findings were consulted.
+
+The independent read-only verifier completed 834 explicit checks and 16 in-memory rejection controls. A subsequent rehash confirmed all 152 bound original input files unchanged. The actual candidate helper passed its pristine complete source-view call for both records. Generic `PASS`, an unrecognized qualified status suffix, absent status, altered whole custom verdict, reversed asset order, boolean size, absent/null version alias and rewritten opaque checksum headers were rejected. These mutations do not alter actual source objects or files. Status/verdict mutations fail at the helper's complete passed-object guard; the separate independent audit also checks the literal qualified statuses and complete original objects directly.
+
+The preserved scientific statuses are:
+
+| Record | Exact root status | Native edition | Declared/manuscript date |
+|---|---|---|---|
+| 23217863 | `PASS_AT_DECLARED_EXTERNAL_THEOREM_LEVEL` | Raw metadata version key absent; config/derivative version null | 2026-10-07 |
+| 23146753 | `PASS_WITH_EXPLICIT_PRIMARY_AND_PRIORITY_LIMITS` | Zenodo API 1.0; manuscript version null and not printed | 2026-10-04 |
+
+Each promotion keeps the entire original root scientific clearance and each original custom family verdict beside its entire corresponding root-authority entry. The native status/assessment shapes remain distinct: Banach scope is `COMPLETE` with qualified assessment, analytic has its full-scope mathematical assessment, and adversarial is `COMPLETE_BOUNDED_REVIEW`; MTP2 scope has the qualified root-like status, analytic has `SUPPORTED_AT_FULL_LITERAL_SCOPE`, and adversarial has `COMPLETE` plus its separate full-scope disposition. None was rewritten to a common status. The separate later editorial authority authorizes only private staging; its production-integration flag is false. Historical config/promotion publication, browser and native gates remain false, with canonical/AA/follow-up null.
+
+The native file sets are exact: 54 source files for Banach and 27 for MTP2. Banach's `SOURCE_FINAL_MANIFEST.json` retains a dictionary of 52 entries and a nested manifest object in its final seal. MTP2's `SOURCE_MANIFEST.json` retains a list of 25 entries and its flat `manifest_sha256` seal. Original readiness controls remain distinct and byte-identical. All source file bindings were checked; neither `receipt.json`/`record.json` nor the other record's final-manifest aliases have been persisted. Seventeen editorial original-object custody copies per record equal their actual originals byte-for-byte.
+
+The two assets and the five genuine transport events remain in native order: Banach PDF then ZIP, MTP2 ZIP then PDF, following record/latest/versions. Full raw API file objects, status codes, header maps, saved payload hashes, paths and sizes are preserved. Both record/latest bodies have `swh:{}`, while their genuine sole version-list hit has `swh:null`; every other field of that hit equals the actual record. This distinction is retained. MTP2's PDF transport header remains the literal `MD5:afc4fd82272a87b678e0efce8beea0d`, while its actual full API/local MD5 remains `0afc4fd82272a87b678e0efce8beea0d`. The header has not been padded, and full asset MD5/SHA-256 validation has not been weakened.
+
+| Record / asset | Bytes | SHA-256 |
+|---|---:|---|
+| 23217863 / paper.pdf | 83877 | `64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b` |
+| 23217863 / source-and-verification.zip | 617532 | `c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0` |
+| 23146753 / mtp2-edge-closure-verification.zip | 103495 | `4db75ce0da0b35abb6e7734190b895a5966ec878e89d624a9891538730542ca5` |
+| 23146753 / mtp2-edge-closure-note.pdf | 76891 | `c64228c64ce3ed187e2a58335926dbf29abe45b4468c24d1c457980bcd941ad3` |
+
+Every original ZIP member was checked in native order, with safe path/type, complete uncompressed bytes, CRC, compressed size, SHA-256 and byte-identical retained extraction. The Banach complete ZIP has 41 members and its embedded 28-page OpenAI manuscript is distinct from the selected seven-page reader. MTP2's complete ZIP has 13 members and its embedded five-page PDF is byte-identical to the selected reader. These roles have not been confused or counted as additional target readers.
+
+Original authored material is declared CC BY 4.0 in the retained notices. Banach's unchanged OpenAI material keeps the complete Apache License 2.0, original OpenAI attribution, manuscript-specific README citation and pin `adc7f1241b42e322a6451854ab7e4b4c146bf78a`. The authored license notice expressly does not relicense that material or infer permission for other acquired literature. The complete source ZIP retains every notice byte. MTP2's original notice covers manuscript, supplement, verification code and generated results under CC BY 4.0, retaining third-party terms. No alternate blanket license was introduced.
+
+The helper examined has SHA-256 `2d6be6eb82dfc8bd81b057ad8bed23bdfa620f74af5292d1ebdaa4ebead138be`. Its full positive and negative interface behavior is recorded in `RESULT.json`; the complete original input binding set is embedded there. Parent code/editorial reconciliation, final-stage seal inspection and any installation remain separate. No old69 campaign, renderer, production file, Sheet, Git operation, release, network request, outside communication or source mutation was performed. Completion estimate: 100% of this bounded native-interface audit.
