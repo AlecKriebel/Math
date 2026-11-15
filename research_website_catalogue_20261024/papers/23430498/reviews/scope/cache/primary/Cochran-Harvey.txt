@@ -1,0 +1,1032 @@
+                                                     THE GEOMETRY OF THE KNOT CONCORDANCE SPACE
+
+                                                                          TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+                                                 Abstract. Most of the 50-years of study of the set of knot concordance classes, C, has focused on
+                                                 its structure as an abelian group. Here we take a different approach, namely we study C as a metric
+                                                 space admitting many natural geometric operators, especially satellite operators. We consider
+                                                 several knot concordance spaces, corresponding to different categories of concordance, and two
+                                                 different metrics. We establish the existence of quasi-n-flats for every n, implying that C admits no
+
+
+
+
+arXiv:1404.5076v2 [math.GT] 11 Jul 2014
+                                                 quasi-isometric embedding into a finite product of (Gromov) hyperbolic spaces. We show that every
+                                                 satellite operator is a quasi-homomorphism P : C → C. We show that winding number one satellite
+                                                 operators induce quasi-isometries with respect to the metric induced by slice genus. We prove that
+                                                 strong winding number one patterns induce isometric embeddings for certain metrics. By contrast,
+                                                 winding number zero satellite operators are bounded functions and hence quasi-contractions. These
+                                                 results contribute to the suggestion that C is a fractal space. We establish various other results
+                                                 about the large-scale geometry of arbitrary satellite operators.
+
+
+
+
+                                                                                        1. Introduction
+                                              A classical knot is an embedded oriented S 1 in S 3 . We are interested in the “4-dimensional”
+                                          equivalence relation on knots, called concordance, due to Fox and Milnor [12, 13]. Two knots,
+                                          K0 ,→ S 3 × {0} and K1 ,→ S 3 × {1}, are concordant if there is an annulus smoothly and properly
+                                          embedded in S 3 × [0, 1] which restricts on its boundary to the given knots. Knot concordance is an
+                                          important microcosm for the general study of 4-dimensional manifolds [6]. Our over-arching goal
+                                          is to discover more about the set, C, of concordance classes of knots.
+                                              Most of the 50-year history of the study of C has focused on its structure as an abelian group
+                                          under the operation of connected sum. Here we take a decidely different approach, namely we
+                                          study C as a metric space admitting many natural geometric operators called satellite operations.
+                                          Since the simplest example of a satellite operator is connected-sum with a fixed knot, this approach
+                                          can be argued to be more general than focusing on C as an abelian group. In particular we address
+                                          to what extent satellite operations are isometries, quasi-isometries, self-similarities or approximate
+                                          self-similarities, and whether they are quasi-homomorphisms. Moreover, it was conjectured in [10]
+                                          that C is a fractal space. A fractal space is a metric space that admits systems of natural self-
+                                          similarities, which in the weakest context (without a metric) are merely injective functions [3, Def.
+                                          3.1]. By endowing C with a metric we are able to address this conjecture in a more meaningful way.
+                                              We will, in fact, consider four different “concordance” equivalence relations on K (corresponding
+                                          to different categories), with the sets of equivalence classes being denoted by C, C top , C ex , and
+                                            1
+                                          C n . Here C top is the (usual) set of topological knot concordance classes wherein two knots are
+                                          equivalent if there exists a collared proper topological embedding of an annulus into a topological
+                                          manifold homeomorphic to S 3 × [0, 1] which restricts on its boundary to the given knots. C ex , short
+                                          for C exotic , is the set of equivalence classes of knots where two are equivalent if they cobound a
+                                          properly, smoothly embedded annulus in a smooth manifold homeomorphic to S 3 × [0, 1]; that is to
+                                          say they are concordant in S 3 × [0, 1] equipped with a possibly exotic smooth structure (see [4][25,
+
+                                            Date: July 15, 2014.
+                                            2000 Mathematics Subject Classification. Primary 57M25.
+                                            †
+                                              Partially supported by the National Science Foundation DMS-1309081.
+                                            ††
+                                               Partially supported by the National Science Foundation DMS-0748458 (CAREER) and DMS-1309070.
+                                                                                                  1
+2                              TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+Def. 2][8]). If the smooth 4-dimensional Poincaré Conjecture is true then C ex = C. Finally, for
+                                    1
+a fixed non-zero integer n, let C n denote the set of equivalence classes of knots in S 3 where two
+are equivalent if they cobound a smoothly embedded annulus in a smooth 4-manifold that is Z[ n1 ]-
+                                                                                                       1
+homology cobordant to S 3 × [0, 1]. For odd n it seems to be unknown whether or not C = C n !
+For economy we will sometimes often the notation C ∗ to denote either ∗ = ∅ (i.e. C), ∗ = top,
+∗ = ex or ∗ = n1 . Each of these is an abelian group under connected sum, with identity the class
+of the trivial knot U , and where the inverse of K, denoted −K, is the reverse of the mirror image
+                                                                         1
+of K, denoted rK. If K = 0 = U in C (respectively: C ex , C top , C n ) then K is called a (smooth)
+slice knot (respectively: pseudo-slice, topologically slice, Z[ n1 ]-slice). This is equivalent to saying
+that K bounds a smoothly embedded disk in a manifold diffeomorphic to B 4 (respectively: bounds
+a smoothly embedded disk in an exotic B 4 , bounds a collared, topologically embedded disk in a
+manifold homeomorphic to B 4 , bounds a smoothly embedded disk in a smooth manifold that is
+Z[ n1 ]-homology equivalent to B 4 ).
+    In Section 2 we define a norm and a metric on a group. In Section 3, we define several natural
+metrics on C ∗ , each induced by a norm. To motivate these, consider that are two strategies to
+measure how far a knot is from the trivial knot, which is to say how far it is from bounding a
+disk in B 4 . One could ask what is the least genus among all surfaces that it does bound in B 4 .
+Alternatively, one could ask what is the simplest 4-manifold in which it bounds an embedded 2-
+disk. For us these two types will be referred to as “slice genus norms” or “homology norms”,
+respectively. Specifically, on C the most natural and well-studied norm is that given by the slice
+genus of K, kKks ≡ gs (K), which is the minimum genus among all compact oriented surfaces
+smoothly embedded in B 4 with boundary K. The homology norm, denoted k − kH is essentially
+the minimal β2 of a certain class of 4-manifolds whose boundary is the zero-framed surgery on K
+(see Section 3 for details). The homology norm is only known to be a pseudo-norm on C. One of
+our first results is that these two really are quite different.
+Proposition 3.19. The identity map i : (C, ds ) → (C, dH ) is not a quasi-isometry.
+On C ex these notions yield two norms. One, k − kex is give by the “slice genus” in a 4-ball with a
+potentially exotic smooth structure. The other is the homology norm which is a true norm on C ex .
+                                                                                   1
+There are also analogues of these two metrics for the other categories C top and C n ) but we leave
+the precise definitions to the body of the paper.
+  In Section 4 we show the existence of quasi-n-flats for most of these metric spaces. Recall this
+means:
+Theorem 4.1. For each n ≥ 1 there are subspaces of (C, ds ) and (C, dH ) that are quasi-isometric
+to Rn . The same holds for (C ex , dex     ex ex       top , dtop ), and (C top , dtop ).
+                                    s ), (C , dH ), (C        s                    H
+
+   It follows that (C, ds ) cannot be isometrically embedded in any finite product of δ-hyperbolic
+spaces.
+   The proposed self-similarities are classical satellite operations. Let P be a knot in a solid torus,
+K be a knot in S 3 and P (K) be the satellite knot of K with pattern P . The algebraic intersection
+number of P with a cross-sectional disk of the solid torus is called the winding number w of P . It
+is known that any such operator induces a satellite operator P : C ∗ → C ∗ on the various sets of
+concordance classes of knots. The importance of satellite operations extends beyond knot theory.
+Such operations have been generalized to operations on 3 and 4-manifolds where they produce very
+subtle variations while fixing the homology type [14, Sec. 5.1]. In particular winding number one
+satellites are closely related to Mazur 4-manifolds and Akbulut corks [1]. These can be used to
+alter the smooth structure on 4-manifolds (see for example [2]).
+   Satellite operators seem to almost never be homomorphisms, but the presence of a metric allows
+one to ask whether they are “close to being homomorphisms”.
+                        THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                     3
+
+
+Definition 1.1. Suppose G is a group and A is an abelian group equipped with a (group) norm
+k − k. A function f : X → A is called an quasi-homomorphism if there exists a constant Df ≥ 0,
+called the defect of f , such that, for all x, y ∈ X,
+                                    kf (xy) − f (x) − f (y)k ≤ Df .
+Theorem 7.1. Any satellite operator P : C → C is a quasi-homorphism with respect to either the
+norm given by the slice genus or the pseudo-norm dH .
+  Moreover,
+Proposition 7.3. Suppose that q : C → R is a quasi-homomorphism whose absolute value gives a
+lower bound for some positive multiple of the slice genus. Then, for any satellite operator P , the
+composition q ◦ P : C → R is a quasi-homomorphism.
+   There are many concordance invariants, such as Levine-Tristram signatures, τ , s and  that
+provide such q.
+   There has been considerable interest in whether satellite operators are injective (especially in
+light of the fractal conjecture). For example, it is a famous open problem as to whether or not
+the Whitehead double operator is weakly injective (an operator is called weakly injective if
+P (K) = P (0) implies K = 0 where 0 is the class of the trivial knot) [16, Problem 1.38](see [15] for
+a survey). In [10] large classes of winding number zero operators, called “robust doubling operators”
+were introduced and evidence was presented for their injectivity. It was recently shown by Cochran-
+Davis-Ray that certain winding number ±1 satellite operators, called strong winding number ±1
+operators (see Section 5), induce injective satellite operators on C ex , C top , and on C, modulo the
+smooth 4-dimensional Poincaré conjecture; while an arbitrary (non-zero) winding number n satellite
+                             1
+operator is injective on C n [8, Thm. 5.1]. We generalize their injectivity result to the following
+rather striking result with regard to the homology norm:
+Theorem 6.6. If P is a strong winding number ±1 pattern then
+                                        P : (C, dH ) → (C, dH )
+preserves the pseudo-norm dH and is quasi-surjective (defined just below); so that if the 4D-Poincaré
+conjecture is true then P is a quasi-surjective isometric embedding of C. Moreover
+                                       P : (C ∗ , d∗H ) → (C ∗ , d∗H )
+is an isometric embedding for ∗ = ex, top or n1 and is quasi-surjective.
+   This result, taken together with the recent result of A. Levine that some of these operators are
+far from surjective [18], means that these operators and their iterates map the concordance space
+isometrically onto proper subspaces. This establishes that (C ex , dH ) is a fractal metric space, as is
+(C, dH ) if the 4D-Poincaré conjecture is true.
+   What can be said using the very important slice genus norm? Recall:
+Definition 1.2. If (X, d) and (Y, d0 ) are metric spaces then a function f : X → Y is a quasi-
+isometry if there are constants A ≥ 1, B ≥ 0 and C ≥ 0 such that
+                          1
+(1.1)                       d(x, y) − B ≤ d0 (f (x), f (y)) ≤ A d(x, y) + B;
+                          A
+and, for every z ∈ Y there exists some x ∈ X such that
+(1.2)                                       d0 (z, f (x) ≤ C.
+A function that satisfies the second condition is called quasi-surjective. A function that satisfies
+only the first condition is called a quasi-isometric embedding of X into Y . Note the definitions
+make sense even if one has only pseudo-metrics.
+4                               TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+Theorem 6.5. If P is a winding number ±1 pattern then P : C → C is a quasi-isometry with
+respect to the metric ds . In fact, P is a quasi-isometry for each of the metrics we discuss on each
+C∗.
+  By contrast, we show that any winding number zero operator is an approximate contraction.
+This follows from the much stronger:
+Proposition 6.11. Any winding number zero satellite operator on (C ∗ , d∗ ) is a bounded function,
+where (C ∗ , d∗ ) is any of the metric spaces we define.
+   Certain of our results follow from the basic result that any winding number n satellite operator
+is within a bounded distance of the (n, 1)-cable operator, which leads to:
+Proposition 6.14. Suppose m 6= ±n. Then no winding number m satellite operator is within a
+bounded distance of any winding number n satellite operator.
+
+                                 2. Norms and metrics on groups
+Definition 2.1. A metric on a set X is a function d : X × X → R such that, for all x, y, z ∈ X
+ (M1) d(x, y) ≥ 0, and d(x, y) = 0 if and only if x = y (Positivity),
+ (M2) d(x, z) ≤ d(x, y) + d(y, z) (triangle inequality),
+ (M3) d(x, y) = d(y, x) (Symmetry).
+A function that only satisfies the first part of (M 1) is called a pseudo-metric.
+    If the set X has a group structure then often metrics induced from group norms.
+Definition 2.2. A norm on a group G is a function k − k : G → R such that, for all x, y ∈ G
+(GN1) kxk ≥ 0, and kxk = 0 if and only if x = e (Positivity),
+(GN2) kxyk ≤ kxk + kyk (sub-additivity),
+(GN3) kx−1 k = kxk (Symmetry).
+A function that satisfies only the first part of (GN 1) is called a pseudo-norm or a semi-norm .
+  Beware that, even for abelian groups G, we do not have the usual property (for normed vector
+spaces): knxk = nkxk for n ∈ Z. This is assumed only when n is a unit, as in (GN 3).
+  It follows easily that:
+Proposition 2.3. If k − k is a norm (respectively, pseudo-norm) on the group G then d(x, y) =
+kxy −1 k is a metric (respectively, pseudo-metric) on the underlying set G, called the metric induced
+by the norm k−k. This metric is right-invariant, meaning that d(xg, yg) = d(x, y) for all g ∈ G.
+Proof. If d(x, y) = 0 then kxy −1 k = 0 so x = y by (GN1). This gives (M1). For (M2) we have
+             d(x, z) ≡ kxz −1 k = k(xy −1 )(yz −1 )k ≤ kxy −1 k + kyz −1 k ≡ d(x, y) + d(y, z),
+using GN2. For (M3) we have
+                                 d(x, y) ≡ kxy −1 k = kyx−1 k ≡ d(y, x)
+using GN3.                                                                                         
+    We also have the following well-known consequence:
+Proposition 2.4. If the metric d is induced from a group norm k − k on G then
+                                    −d(x, y) ≤ kxk − kyk ≤ d(x, y).
+Proof. By sub-additivity,
+                          kxk = k(xy −1 )yk ≤ kxy −1 k + kyk = d(x, y) + kyk.
+The other inequality follows from reversing the roles of x and y and using (M 3).                  
+                         THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                     5
+
+
+  The reader may easily verify the following, which will not be used in the paper.
+Proposition 2.5. A metric on the underlying set of a group G is induced from a group norm on
+G if and only if it is right-invariant.
+
+                 3. Norms and metrics on concordance classes of knots
+    In this section, we will define various pseudo-norms on K, the monoid of ambient isotopy classes
+of knots. These will induce norms (and metrics) on the four different concordance groups: C, C ex ,
+              1
+C top , and C n respectively. We will abuse notation and use K for both the knot and its concordance
+class. We then discuss what is known about how these pseudo-metrics compare. In particular we
+establish that the slice genus norm and the homology norm are quite different.
+3.1. The slice genus norm and the homology pseudo-norm on C.
+Definition 3.1. The slice genus of K, denoted by kKks or gs (K), is the minimum g such that
+K is the boundary of a smoothly embedded compact oriented surface of genus g in B 4 .
+  The following is well-known.
+Proposition 3.2. k − ks is a norm on the group C and so ds (K, J) = kK − Jks is a metric on the
+set C.
+  It is also easy to see that ds has an alternative definition:
+Proposition 3.3. ds (K, J) is equal to the mimimal genus of a compact oriented surface properly
+embedded in S 3 ×[0, 1], whose boundary is the disjoint union of K ,→ S 3 ×{0} and −J ,→ −S 3 ×{1}.
+Proof. Suppose Σ is such a surface in S 3 × [0, 1]. Choose an arc on Σ going from K to J. Deleting
+a neighborhood of this arc leaves a 4-ball containing an embedded surface Σ0 of the same genus,
+whose boundary is K# − J. Hence ds (K, J) ≤ genus(Σ). This process is reversible so the other
+inequality follows.                                                                             
+  Next we define the so-called homology norm on C, which is only known to be pseudo-norm.
+Definition 3.4. kKkH , the homology norm of K, has two equivalent definitions:
+   (1) kKkH is the minimum of 21 (β2 (V ) + |σ(V )|) where V ranges over all smooth, oriented,
+       compact, simply-connected 4-manifolds with ∂V = S 3 in which K is slice, that is, in which
+       K bounds a smoothly embedded disk that represents 0 in H2 (V, ∂V ) (compare [26]);
+   (2) kKkH is the minimum of 21 (β2 (W )+|σ(W )|) where W ranges over over all smooth, compact,
+       oriented 4-manifolds W whose boundary is MK (zero-framed surgery of S 3 along K), whose
+       π1 is normally generated by the meridian of K and for which H1 (MK ) → H1 (W ) is an
+       isomorphism.
+   We sketch the proof of the equivalence. Suppose that K = ∂∆ is slice in a 4-manifold V satisfying
+the first part of Definition 3.4 with 21 (β2 (V ) + |σ(V )|) = n. Let W be the exterior in V of a tubular
+neighborhood of ∆. Then ∂W = MK and one can easily check that W has the properties of part
+two of Definition 3.4 and 21 (β2 (W ) + |σ(W )|) = n. For the other direction, one simply adds a
+2-handle to W along the meridian of K to arrive at a suitable V .
+   Remark: It might seem more natural to the reader to minimize the quantity β2 (V ) and indeed
+this gives another pseudo-metric dH 0 . But the inequalities:
+                                 1            1
+                                   β2 (V ) ≤ (β2 (V ) + |σ(V )|) ≤ β2 (V )
+                                 2            2
+show that these metrics are quite closely related. For example it is easy to show that the identity
+map is a quasi-isometry (C, dH ) → (C, dH 0 ), and that Theorem 6.6 holds for dH 0 . Our choice has
+the property that it gives a better approximation to ds (see Proposition 3.20 below).
+6                                 TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+Proposition 3.5. k − kH is a pseudo-norm on the group C and so dH (K, J) = kK − JkH is a
+pseudo-metric on C. If the 4-dimensional smooth Poincaré conjecture is true then k − kH is a norm
+on C and dH (K, J) is a metric on C.
+Proof. First we establish (GN 1). Clearly kKkH ≥ 0 with equality if and only if K is slice in a
+contractible manifold, which is, by the work of Freedman, a possibly exotic 4-ball. It follows that
+if the 4-dimensional Poincaré is true then K = 0 in C.
+   Next, suppose K and J are slice in 4-manifolds VK and VJ satisfying the first part of Definition 3.4
+with 12 (β2 (Vk ) + |σ(VK )|) = kKkH and 12 (β2 (VJ ) + |σ(VJ )|) = kJkH . Then K#J is slice in the
+boundary connected sum of VK and VJ . Hence kK#JkH ≤ kKkH + kJkH , establishing (GN 2).
+   The homology norm of K is clearly the same as that of its mirror image (by reversing the
+orientation of W ) and that of its reverse. Thus (GN 3) holds.                                       
+    As for ds , dH has an alternative definition, whose proof we leave to the reader:
+Proposition 3.6. dH (K, J) is equal to the mimimum of 21 (β2 (Z) + |σ(Z)|) where Z ranges over
+all smooth, oriented, compact, simply-connected 4-manifolds with ∂Z = S 3 −S 3 in which K and
+                                                                         Q
+J are concordant, that is in which K ,→ S 3 × 0 and −J ,→ −S 3 × 1 cobound a null-homologous
+smoothly embedded annulus.
+    We will need the following:
+Proposition 3.7. If the zero framed surgeries MJ and MK are homology cobordant via a cobordism
+whose fundamental group is normally generated by either meridian then kKkH = kJkH .
+Proof. Suppose C is the homology cobordism and WK is a manifold with boundary MK which
+realizes the minimum 21 (β2 (WK ) + |σ(WK )|) as in the second version of Definition 3.4. Then let
+WJ = WK ∪ C. Then ∂(WJ ) = MJ and H∗ (WK ) ∼      = H∗ (WJ ), so kJkH ≤ kKkH . The result follows
+by symmetry.                                                                                    
+3.2. The exotic slice genus norm and the homology norm on C ex . We will discuss two
+norms on C ex , defined as above.
+Definition 3.8. The exotic slice genus of K, denoted by kKkex s or by gex (K) and is the minimum
+n such that K is the boundary of a smoothly embedded compact oriented surface of genus n in a
+smooth manifold that is homeomorphic to B 4 . If the 4-dimensional smooth Poincaré conjecture is
+true then k − kex
+               s = k − ks .
+
+Proposition 3.9. k − kex
+                      s is a norm on the group C
+                                                 ex and so dex (K, J) = kK − Jkex is a metric
+                                                            s                  s
+            ex
+on the set C .
+Proof. Clearly kKkex s ≥ 0, with equality if and only if K is slice in a smooth 4-manifold that is
+homeomorphic to B 4 . This is equivalent to K = 0 in C ex . This establishes (GN 1).
+   Suppose K1 and K2 bound embedded surfaces F1 and F2 of genera n1 and n2 in 4-manifolds B1 ,
+B2 , respectively, that are homeomorphic to B 4 . Then K1 #K2 bounds in the boundary connected
+sum B1 \B2 , the boundary connected sum of F1 and F2 . The latter has genus n1 + n2 . This
+establishes (GN 2).
+   Since the exotic slice genus of K is clearly the same as that of its mirror image and that of its
+reverse, (GN 3) holds.                                                                            
+   The metric dex
+               s has an alternative definition whose verification is the same as that of Proposi-
+tion 3.3.
+Proposition 3.10. dexs (K, J) is equal to the mimimal genus of a compact oriented surface properly
+embedded in a smooth 4-manifold homeomorphic to S 3 × [0, 1], whose boundary is the disjoint union
+of K ,→ S 3 × {0} and −J ,→ S 3 × {1}.
+                        THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                     7
+
+
+Proposition 3.11. The homology norm, as defined in Definition 3.4 induces a norm on the group
+C ex and so dH (K, J) = kK − JkH induces a metric on C ex .
+Proof. First we establish (GN 1). Clearly kKkH ≥ 0 with equality if and only if K is slice in a
+possibly exotic 4-ball so K = 0 in C ex . Otherwise the proof is identical to that of Proposition 3.5. 
+  The metric dH has an alternative definition, whose proof we leave to the reader:
+Proposition 3.12. dH (K, J) is equal to the mimimum of 12 (β2 (Z) + |σ(Z)|) where Z ranges over
+all smooth, oriented, compact, simply-connected 4-manifolds with ∂Z = S 3 −S 3 in which K and
+                                                                         Q
+J are concordant, that is in which K ,→ S 3 × 0 and −J ,→ S 3 × 1 cobound a null-homologous
+smoothly embedded annulus.
+3.3. The topological slice genus norm and the homology norm on C top . Just as in the
+smooth category, there are norms on C top given by the “slice genus” and the “homology norm”.
+The proofs that these are indeed norms are straightforward.
+Definition 3.13. kKktops , also denoted gtop (K), the topological slice genus of K, and is the
+minimum n such that K is the boundary of a compact oriented surface of genus n topologically and
+flatly embedded in a topological manifold that is homeomorphic to B 4 . This induces the metric
+dtop
+  s .
+
+Definition 3.14. kKktop
+                    H , the topological homology norm of K, has two equivalent definitions:
+   (1) kKktop                     1
+           H is the minimum of 2 (β2 (V ) + |σ(V )|) where V ranges over all oriented, compact,
+       simply-connected topological 4-manifolds with ∂V = S 3 in which K is a slice, that is, in
+       which K bounds a topologically flatly embedded disk that represents 0 in H2 (V, ∂V );
+   (2) kKktop                   1
+           H is the minimum of 2 (β2 (W )+|σ(W )|) where W ranges over over all compact, oriented
+       topological 4-manifolds W whose boundary is MK , whose π1 is normally generated by the
+       meridian of K and for which H1 (MK ) → H1 (W ) is an isomorphism.
+This induces the metric dtop
+                         H .
+
+  By the same proof as in Proposition 3.7 we have:
+Proposition 3.15. If the zero framed surgeries MJ and MK are topologically homology cobordant
+via a cobordism whose fundamental group is normally generated by either meridian then kKktop
+                                                                                         H =
+    top
+kJkH .
+                                                                     1
+3.4. The slice genus norm and the homology norm on C n . The reader may note that we
+                                        1
+could have defined another version of C n , in the topological category, but we resist doing so. We
+                            1
+will discuss two norms on C n . The proofs that these are norms are straightforward.
+Definition 3.16. The Z[1/n]-slice genus of K, denoted by kKk1/n or by g1/n (K) is a norm given
+by the minimum n such that K is the boundary of a smoothly embedded compact oriented surface
+                                                                                  1/n
+of genus n in a smooth manifold that is Z[ n1 ]-homology equivalent to B 4 . Let ds denote the
+induced metric.
+                        1
+Definition 3.17. kKkH
+                    n
+                      , the Z[1/n]-homology norm of K, has two equivalent definitions:
+   (1) the minimum of 21 (β2 (V ) + |σ(V )|) where V ranges over all smooth, oriented, compact,
+       4-manifolds with H1 (V ; Z[ n1 ]) = 0 and ∂V = S 3 , in which K is a slice, that is, in which K
+       bounds a smoothly embedded disk that represents 0 in H2 (V, ∂V );
+   (2) the minimum of 21 (β2 (W )+|σ(W )|) where W ranges over over all smooth, compact, oriented
+       4-manifolds W whose boundary is MK , whose for which H1 (MK ; Z[ n1 ]) → H1 (W ; Z[ n1 ]) is
+       an isomorphism.
+8                              TIM D. COCHRAN† AND SHELLY HARVEY††
+
+      1/n
+Let dH denote the induced metric.
+    By the same proof as in Proposition 3.7 we have:
+Proposition 3.18. If the zero framed surgeries MJ and MK are smoothly Z[1/n]-homology cobor-
+             1/n       1/n
+dant then kKkH = kJkH .
+3.5. Comparison of metrics. The homology metric is not only different from ds and dex      s , but is
+very different, as quantified by the following result. Surprisingly, the elements of this proof have
+only very recently come to light.
+Proposition 3.19. Neither of the functions i : (C, ds ) → (C, dH ) and j : (C ex , dex      ex
+                                                                                    s ) → (C , dH ),
+induced by the identity map, is a quasi-isometry.
+Proof. It suffices to exhibit a family of knots {Ki | i ∈ Z+ } on which both the slice genus, gs ,
+and the exotic slice genus, gex are unbounded functions of i, but on which the homology norm is a
+bounded function. For then there can be no constants A and B satisfying
+                        1               1
+(3.1)                     g∗ (Ki ) − B ≡ d∗s (Ki , U ) − B ≤ dH (Ki , U ) ≡ kKi kH
+                       A                A
+for ∗ = s or ∗ = ex since the right-hand side is a bounded function of i whereas the left-hand side
+is not.
+   Such a family of knots was exhibited in [24, Prop. 3.4] (building on [9]). There it was shown
+that for a fixed satellite operator P (in fact the mirror image of the one shown in of Figure 5.1),
+and for T the right-handed trefoil knot, the family Ki = P i (T ), i ≥ 0 has the property that the
+slice genus and the exotic slice genus of Ki are equal to i + 1. Therefore both k − ks and k − kex
+                                                                                                s are
+unbounded on this family. On the other hand, since P is a strong winding number one operator
+with P (U ) unknotted, by [8, Corollary 4.4], for any knot J, the zero framed surgeries MJ and
+MP (J) , are smoothly homology cobordant via a cobordism whose fundamental group is normally
+generated by either meridian. Thus, by Proposition 3.7, kJkH = kP (J)kH for any knot J. In
+particular, kT kH = kP (T )kH = kP (P (T )kH , et cetera. Thus kKi kH = kT kH for each i.          
+  We now compare all of the metrics. Since each d∗ defined above has a well-defined meaning for
+any pair of (isotopy classes of) knots, their values can be compared, even though the functions d∗
+only give metrics on the appropriate set of concordance classes. Below, an inequality means for
+every pair of knots J and K, while a strict inequality means that, in addition, there exist knots K
+and J for which the metrics differ.
+Proposition 3.20.
+                                        dtop       ex
+                                         H ≤ dH < ds ≤ ds ,
+                                         top  top
+                                        dH ≤ ds < dex
+                                                    s ,
+                                         1/n   1/n
+                                        dH < ds ≤ dexs ,
+                                         1/n
+                                        dH ≤ dH
+Proof. The first and third inequalities in the first row are obvious. For the second inequality in the
+first row, it suffices to show that kKkH ≤ kKkex                                    ex
+                                                  s for all K. Suppose that kKks = g, so that K is
+the boundary of a smoothly embedded compact oriented surface Σ of genus g in a smooth manifold
+B that is homeomorphic to B 4 . Choose disjoint simple closed curves, {γ1 , ..., γg }, on Σ representing
+half of a symplectic basis for H1 . There exist framings of the normal bundles of these circles
+whose first vector field is tangent to Σ. Performing surgery on these circles using these framings
+transforms B to V , in which Σ can be ambiently surgered to a disk. Hence K is smoothly slice in V .
+Since each γi is null-homotopic, the collection {γ1 , ..., γg } bounds a disjoint collection of smoothly
+embedded disks in B. Hence surgery on these circles alters the manifold by a connected-sum with
+either S 2 × S 2 or S 2 ×S
+                         e 2 . In either case V is simply-connected, has β2 (V ) = 2g and σ(V ) = 0.
+                         THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                     9
+
+
+Thus kKkH ≤ kKkex      s . The second inequality in the second row is obvious. For the first inequality
+in the second row, repeat the argument of the previous paragraph. The second inequality in the
+third row is obvious. For the first inequality in the third row, repeat the argument of the previous
+paragraph. The inequality in the fourth row is obvious.
+   To see that dH can be strictly less than dex s , let T be the right-handed trefoil and let P be the
+mirror image of the satellite operator in Figure 5.1. It was shown in [8, Corollary 4.4] that the
+zero framed surgeries on T and P (T ) are homology cobordant via a cobordism whose fundamental
+group is normally generated by either meridian. hence by Proposition 3.7, kP (T )kH = kT kH = 1.
+Thus dH (P (T ), U ) = 1. But in [9, Section 3] it is shown that τ (P (T )) > τ (T ) = 1. This implies
+                                  top
+that dex                                                       ex
+       s (P (T ), U ) ≥ 2. That ds can be strictly less than ds is well-known (the Whitehead double
+                                                                               1/n     1/n
+of the trefoil knot is topologically slice but not exotic slice). To see that dH < ds , consider T
+and its (n, 1)-cable as explained in [9, Thm. 5.1].                                                  
+                                                  1/n
+  Additionally, it is known that for n even, ds < dex    s , since the figure eight knot is slice in a
+Z[1/2]-homology ball but is not even a topologically slice knot. This same example shows that, for
+         1/n
+n even, dH < dH .
+                                                                                    1/n
+  The others could be equalities! In particular the question of whether or not ds = ds for n an
+                                                       top      top
+odd prime is fascinating. It ought to be true that dH < ds , but [9, Section 3] was unable to
+show that T and P (T ) are not topologically concordant. As mentioned above, if the 4-dimensional
+smooth Poincare conjecture is true then ds = dex
+                                               s .
+
+3.6. Other metrics. There are many other norms on C that we will not consider. For exam-
+ple there is the minimal number of crossing changes necessary to change a knot to a slice knot
+(sometimes called the slicing number [20]). There is the smallest 3-genus among all knots in the
+concordance class of K (called the concordance genus of K) [21]. The stable 4-genus is an interesting
+pseudo-norm [22].
+
+                                   4. Existence of quasi-flats
+   If (X, d) is a metric space then a quasi-n-flat in X is a subspace of X that is quasi-isometric
+to Rn , using the Euclidean metric on Rn . We will show that (C, ds ) has quasi-n-flats for each n.
+Theorem 4.1. For each n ≥ 1 there are subspaces of (C, ds ) that are quasi-isometric to Rn . The
+same holds for (C, dH ), (C ex , dex     ex          top , dtop ), and (C top , dtop ).
+                                  s ), (C , dH ), (C        s                    H
+
+Proof. First consider the case of (C, ds ). It is well-known (and easy to see) that the inclusion of the
+integer lattice Zn ,→ Rn with the taxicab (or `1 ) metric, dt , on Zn , is a quasi-isometry. Hence it
+suffices to exhibit a quasi-isometric embedding (Zn , dt ) ,→ (C, ds ). It is well known that C contains
+free abelian subgroups of arbitrarily large rank. Specifically, suppose that K1 , ..., Kn are linearly-
+independent concordance classes, each of slice genus one, that are detected by homomorphisms
+σj : C → Z, 1 ≤ j ≤ n, meaning that σj (Ki ) = 2δij . These homomorphisms show that the free
+abelian group on {Ki } is a subgroup of C. Assume also that these σj give lower bounds on the slice
+genus in the sense that
+                                                          1
+(4.1)                                      gs (Ki ) ≥ |σj (Ki )|.
+                                                          2
+Such classes Ki can easily be found by taking a certain family of (genus one) twist-knots and
+considering certain Tristram signature functions as the σj (see [27, Theorem 2.27]).
+   We will show that the embedding (Zn , dt ) ,→ (C, ds ) given by the Ki , is a quasi-isometric em-
+bedding. Suppose ~x, ~y ∈ Zn where ~x = (x1 , ..., xn ) and ~y = (y1 , ..., yn ). It now suffices to show
+that
+                                   1
+                                     dt (~x, ~y ) ≤ ds (~x, ~y ) ≤ ndt (~x, ~y ).
+                                   n
+10                               TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+Using the definitions of the metrics this is equivalent to:
+                      1X                       X                    X
+(4.2)                       (|xi − yi |) ≤ gs ( (xi − yi )Ki ) ≤ n     (|xi − yi |).
+                      n
+By the subadditivity and symmetry of Definition 2.2,
+               X                  X                           X                 X
+           gs ( (xi − yi )Ki ) ≤       (|xi − yi |)gs (Ki ) =  (|xi − yi |) ≤ n     (|xi − yi |),
+which verifies the right-hand side of inequality (4.2). On the other hand, by (4.1), for each j:
+                          X                 1    X               
+                      gs ( (xi − yi )Ki ) ≥ |σj       (xi − yi )Ki | = |xj − yj |.
+                                            2
+Hence
+                                    X                  1X
+                                gs ( (xi − yi )Ki ) ≥        |xi − yi |,
+                                                       n
+which confirms the left-hand side of inequality (4.2).
+   Thus we have shown that (C, ds ) admits a quasi-n-flat. The same proof works for the other cases
+since inequality (4.1) is known to hold for all these other norms [26, Section 1]                
+
+                    5. Satellite operators and other natural operators
+   In this section we review some natural operators on C ∗ given by taking the reverse, taking the
+mirror image, the connected sum with a fixed class, satellite operators, and multiplication by an
+integer with respect to the group structure.
+   Let ST ≡ S 1 × D2 where both S 1 and D2 have their usual orientations. We will always think
+of ST as embedded in S 3 in the standard unknotted fashion. Suppose P ⊂ ST is an embedded
+oriented circle, called a pattern knot, that is geometrically essential (even after isotopy P has
+non-trivial intersection with a meridional 2-disk). The geometric winding number of P , denoted
+gw(P ) is the minimum number of these intersecion points over all patterns isotopic to P . The
+winding number of P is the algebraic number of such intersections. We say that P has strong
+winding number ±1 if the meridian of the solid torus ST normally generates π1 (S 3 − P̃ ), where
+P̃ is the knot P ⊂ ST ⊂ S 3 [8, Def. 1.1]. Note that if P̃ is unknotted then winding number
+one is the same as strong winding number one. Suppose K is an oriented knot in S 3 given as the
+image of the embedding fK : S 1 → S 3 . Then there is an orientation-preserving diffeomorphism
+f˜K : S 1 × D2 → N (K), where N (K) is a tubular neighborhood of K, such that f˜K = f on S 1 × {0}
+and f˜K takes the oriented meridian η of ST to the oriented meridian of K, and takes a preferred
+longitude of ST , S 1 × {1}, to a preferred oriented longitude of K. The (oriented) knot type of the
+image of P under f˜K : ST → N (K) ,→ S 3 is called the (untwisted) satellite of K with pattern knot
+P [19, p. 10]. In this paper this will be denoted P (K). Note that P̃ = P (U ). In this paper P will
+denote, depending on the context, either a knot in the solid torus or the corresponding induced
+function on a set of equivalence classes of knots in S 3 :
+                                             P : K/ ∼→ K/ ∼
+given by K 7→ P (K). Such functions seem rarely to be additive with respect to the monoidal
+structure on K given by connected sum. It is well known that satellite functions descend to yield
+what we call satellite operators, on K/ ∼ for various important equivalence relations on knots,
+In particular any such operator descends to P : C ∗ → C ∗ on the various sets of “concordance classes
+of knots” as defined in Section 1. For a fixed pattern knot P , we will use the same notation for
+each of these satellite operators.
+   Some examples are of particular importance.
+Definition 5.1. If J is a knot then the connected-sum operator (corresponding to J), denoted
+CJ : C ∗ → C ∗ , is the function given by CJ (K) = J#K.
+                        THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                  11
+
+
+
+
+                                                                      η
+
+
+
+
+                                                 P
+
+
+
+
+                      Figure 5.1. A strong winding number one pattern P
+
+   Note that if P is a pattern whose geometric winding number is +1, then the operator P : C ∗ → C ∗
+is CPe . In particular a connected-sum operator is a satellite-operator.
+Definition 5.2. The reverse operator, denoted r : C ∗ → C ∗ , is the function that sends each
+knot J to the class represented by, rJ, the reverse of the knot.
+   The reverse operator is a satellite operator whose pattern knot is the core of ST, oriented so that
+its winding number is −1.
+Definition 5.3. If n is an integer then the (n,1)-cable operator, denoted Cn,1 : C ∗ → C ∗ , is the
+satellite operator given by the pattern which is the (n, 1)-torus knot. When n = 0 it is understood
+that Cn,1 : C ∗ → C ∗ is the zero operator Z : C ∗ → C ∗ that sends every class to the class of the
+unknot.
+  There are other natural operators on C ∗ that are not necessarily satellite operators, but which
+we will consider.
+Definition 5.4. The mirror image operator is the function J 7−→ J, where J is the mirror
+image.
+Definition 5.5. The times m operator is the function J 7−→ mJ, where mJ denotes the con-
+nected sum of |m| copies of J if m ≥ 0 or |m| copies of −J if m < 0.
+
+                               6. Metric aspects of operators
+  The simplest operators are bijective isometries. For example:
+Proposition 6.1. Any connected sum operator P induces a bijective isometry P : C ∗ → C ∗ with
+respect to any metric induced from a group norm. This is a quasi-isometry with respect to A = 1,
+B = 0 and C = 0. The same holds for the “reverse” operator J 7→ rJ and the mirror image
+operator, J 7→ J, as long as krJk = kJk (which holds for all the norms we are discussing).
+Proof. Clearly any connected sum operator, P , has an inverse which is also a connected sum
+operator. Thus P is surjective. Then note
+        d(P (K), P (J)) = d(K#Pe, J#Pe) = kK#Pe# − Pe# − Jk = kK# − Jk = d(K, J).
+12                               TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+Thus P is a (surjective) isometry and so P is a quasi-isometry with respect to A = 1, B = 0 and
+C = 0.
+   A similar argument works in the other cases, after noting that kJk = kr(−J)k = k − Jk, by
+assumption, and k − Jk = kJk by definition of a group norm.                                   
+
+Lemma 6.2. Suppose d is a metric on a group G and suppose that f : G → G is a quasi-isometry
+with respect to constants A, B and C In the notation of Definition 1.2) . If g : G → G is within
+a bounded distance D of f then g is also a quasi-isometry, with respect to constants A0 = A,
+B 0 = B + 2D and C 0 = C + D.
+
+Proof. For any x, y ∈ G, by the triangle inequality we have
+
+                      d(g(x), g(y)) ≤ d(g(x), f (x)) + d(f (x), f (y)) + d(f (y), g(y)).
+
+Since f is a a quasi-isometry with respect to constants A and B, and g is within a distance D of f
+we have:
+                                  d(g(x), g(y)) ≤ A d(x, y) + (B + 2D).
+Similarly,
+
+           d(f (x), f (y)) ≤ d(f (x), g(x)) + d(g(x), g(y)) + d(g(y), f (y)) ≤ 2D + d(g(x), g(y)),
+
+so
+                                                               1
+                      d(g(x), g(y)) ≥ d(f (x), f (y)) − 2C ≥     d(x, y) − (B + 2D).
+                                                               A
+     As regards quasi-surjectivity we have:
+
+                            d(g(x), x) ≤ d(g(x), f (x)) + d(f (x), x) ≤ D + C.
+
+                                                                                                     
+
+  The following key result says that any satellite operator is within a bounded distance of a simpler
+operator.
+
+Proposition 6.3. Any winding number n operator P : (C ∗ , d∗ ) → (C ∗ , d∗ ) is within a bounded
+distance of the (n, 1)-cable operator, with respect to any of the metrics we have introduced.
+
+Proof. The operator P corresponds to a pattern knot P ,→ ST . The operator Cn,1 corresponds to
+a different pattern knot P 0 ,→ ST , both of which have winding number n. Consider P ,→ ST × {0}
+and P 0 ,→ ST ×{1}. Since these two oriented circles in are homologous in ST ×[0, 1], it is easily seen
+that they cobound a compact oriented surface Σ in ST × [0, 1]. Let D be the genus of Σ. Note that
+D depends only on P . Then, for any knot J whose tubular neighborhood is given by an embedding
+fJ : ST ,→ S 3 , consider the image of Σ under the map fJ ×id : ST ×[0, 1] ,→ S 3 ×[0, 1]. This surface
+forms a smooth cobordism of genus D from P (J) to P 0 (J). By Proposition 3.3, ds (P (J), P 0 (J)) ≤
+D. Thus, by Proposition 3.20, for each of the metrics we have defined, d∗ (P (J), P 0 (J)) ≤ D for
+each J.
+   With more attention, one can get an explicit bound for D involving only n and the geometric
+winding number of P , namely D ≤ kPek∗ + 1/2(gw(P ) − |n|) + (|n| − 1).                               
+
+Corollary 6.4. Any winding number 1 satellite operator P is within a bounded d∗ -distance of the
+identity map. Any winding number −1 satellite operator P is within a bounded d∗ -distance of the
+reverse operator.
+                        THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                    13
+
+
+6.1. Winding number one satellite operators. By Corollary 6.4, a general winding number
++1 operator behaves roughly like a connected sum operator. Consequently,
+Theorem 6.5. If P is a winding number ±1 pattern then P : (C ∗ , d∗ ) → (C ∗ , d∗ ) is a quasi-
+isometry.
+Proof. By Corollary 6.4, such a P is within a bounded d∗ -distance of either the identity or the reverse
+operator. By Proposition 6.1 both of the latter are bijective isometries, hence quasi-isometries with
+A = 1, B = 0 and C = 0. Hence by Lemma 6.2 P is a quasi-isometry with respect to d∗ . In
+fact, using the last line of the proof of Proposition 6.3, and applying Lemma 6.2 where f is an
+isometry, we see that P is a quasi-isometry with respect to the constants A = 1, B = (gw(P ) − 1)
+and C = 1/2(gw(P ) − 1).
+   Using a slightly different approach, one can do slightly better and get B = 1/2(gw(P ) − 1).
+Namely, as we will see in Figures 6.1 and 6.2 in the proof of Theorem 6.6, we have that
+                      −P (K)#P (J) = −P (K)#P (K# − K#J) = R(−K#J)
+where R is a pattern with the same winding number, with gw(R)≤gw(P ), and for which R        e is a
+slice knot. Then by Corollary 6.4, R is within a distance 1/2(gw(P ) − 1) of a surjective isometry.
+Hence
+           d∗ (P (K), P (J)) ≡ d∗ (−P (K)#P (J), U ) = d∗ (R(−K#J), U )
+                                                       ≤ k − K#Jk∗ + 1/2(gw(P ) − 1)
+                                                       = d∗ (K, J) + 1/2(gw(P ) − 1).
+                                                                                                      
+  Strong winding number one operators have an even better behavior with respect to the homology
+norm.
+Theorem 6.6. If P is a strong winding number ±1 pattern then
+                                        P : (C, dH ) → (C, dH )
+preserves the pseudo-norm dH and is quasi-surjective; so that if the 4D-Poincaré conjecture is true
+then P is an isometric embedding of C that is quasi-surjective. Moreover for ∗ = ex, top or n1
+                                       P : (C ∗ , d∗H ) → (C ∗ , d∗H )
+is an isometric embedding and is quasi-surjective.
+Proof. By Theorem 6.5, P is a quasi-isometry and hence is quasi-surjective.
+  Now we show that P preserves the norm (or pseudo-norm). Since any isometry is an injective
+function, our proof should be viewed as a generalization of [8, Theorem 5.1] where it was shown
+that any such operator P is injective in the cases ∗ = ex, top or n1 , and injective on C if the 4D-
+Poincaré conjecture holds. First we prove the theorem in the very special case that Pe = 0 in C ∗
+and J = 0 = P (J):
+Lemma 6.7. If R is a strong winding number ±1 pattern and R     e = 0 in C ∗ then the satellite
+operator R : C → C preserves the homology norm k − kH , that is kR(K)k∗H = kKk∗H for each K.
+              ∗   ∗                                 ∗
+
+Proof. Since R has strong winding number ±1, by [8, Corollary 4.4] and, in the case ∗ = 1/n, by [9,
+Thm. 2.1], the zero framed surgeries MR(K) and MK are smoothly (respectively, topologically,
+smoothly Z[1/n]-) homology cobordant. Moreover, except in the case ∗ = 1/n), we may assume the
+cobordism has fundamental group normally generated by each meridian. Thus, by Proposition 3.7,
+Proposition 3.15 and Proposition 3.18, kR(K)k∗H = kKk∗H .
+  We sketch the proof of [8, Corollary 4.4] in the case ∗ = ex for the convenience of the reader.
+The other cases and the proof of [9, Thm. 2.1] are similar. There is a standard cobordism E whose
+boundary is the disjoint union of −MR(K) , MR and MK (see for example [9, p. 2198]). This is
+14                              TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+obtained by gluing MRe × [0, 1] to MK × [0, 1] by identifying the surgery solid torus in MK × {1}
+with the solid torus: η × D2 ,→ MRe × {1}. Since R  e = 0 in C ∗ , it bounds a slice disk ∆ in some
+smooth homotopy 4-ball B. Use the manifold B − N (∆) to cap off the MRe boundary component of
+E, yielding a cobordism V between MK and MR(K) . This is the required homology cobordism. 
+
+     We return to the general situation in the proof of Theorem 6.6. Recall that, by definition,
+
+                                d∗H (P (J), P (K)) = k − P (K)#P (J)k∗H .
+
+Now we mimic one of the key steps in the proof of [8, Theorem 5.1]. Since K# − K is a slice knot
+in any category, J = K# − K#J in C ∗ , so P (J) = P (K# − K#J) in C ∗ . This last knot is pictured
+on the right-hand side of Figure 6.1. Hence
+
+(6.1)                    d∗H (P (J), P (K)) = k (−P (K)# (P (K# − K#J)) k∗H .
+
+A picture of the connected-sum of knots on the right-hand side of Equation (6.1) is shown in
+Figure 6.1. The particular form we have pictured for the −[P (K)] summand is not important.
+This form will not be used. Let R be the pattern knot shown in Figure 6.2. In terms of this
+
+
+
+
+                                                                            −K#J
+                     P                                 P
+                                            K
+                                                                             K
+
+
+
+
+                                             Figure 6.1.
+
+operator Equation (6.1) becomes
+
+(6.2)                             d∗H (P (J), P (K)) = kR(−K#J)k∗H
+
+Furthermore observe that R e = −P (K)#P (K) is a ribbon knot hence a slice knot in any category.
+Also note that the winding number of R is the same as that of P , which is ±1. In fact it was
+shown in the proof of [8, Theorem 5.1] that R has strong winding number one since P does. We
+also observe that the geometric winding number of R is at most that of P . Thus by Lemma 6.7
+
+                    d∗H (P (J), P (K)) = kR(−K#J)k∗H = k − K#Jk∗H ≡ d∗H (J, K).
+
+Thus we have shown that P is an isometry, hence injective. Thus P is a bijection to its image.
+Since the induced topology is the discrete topology, all maps are continuous so P is a topological
+embedding.
+                                                                                                
+                         THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                   15
+
+
+
+
+                                                                                         ηR
+                     P                                  P
+                                           K
+                                                                              K
+
+
+
+
+                          Figure 6.2. The operator R = −[P (K)]#P (K)
+
+6.2. General non-zero winding number satellite operators.
+Theorem 6.8. If P is a winding number n pattern where n 6= 0 then the satellite operator
+                                                1/n             1/n
+                                    P : (C 1/n , dH ) → (C 1/n , dH )
+is an isometric embedding. Moreover P is quasi-surjective.
+Proof. The proof is almost identical to that of Theorem 6.6 above. Note that it was already shown
+in [8, Theorem 5.1] that P is injective. To show that P preserves the norm, we repeat the proof of
+Theorem 6.6, replacing Lemma 6.7 by the following.
+Lemma 6.9. If R is a pattern of non-zero winding number n and Re = 0 in C 1/n then the satellite
+               1/n    1/n                                  1/n
+operator R : C     →C     preserves the homology norm k − kH .
+Proof. By [9, Theorem 2.1], the zero framed surgeries MR(K) and MK are smoothly Z[1/n]-
+                                                             1/n        1/n
+homology cobordant. Thus, by Proposition 3.18, kR(K)kH = kKkH .                                       
+                                                                                                      
+6.3. Winding number zero satellite operators. We show that every winding number zero
+operator is a bounded function, hence is approximately a constant map and thus is an approximate
+contraction. Not all winding number zero operators are injective functions. It remains possible
+that some are injective, or nearly so.
+Definition 6.10. A function f : X → Z is an approximate contraction if there is some constant
+D > 0 such that, for all x, y ∈ X, d(f (x), f (y)) ≤ max{D, d(x, y)}.
+   Any bounded function is within a bounded distance of a constant map and hence is approximately
+a contraction, in that, as long as x, y are not too close to each other, d(f (x), f (y)) < d(x, y). Thus
+it follows from the n = 0 case of Proposition 6.3 that:
+Proposition 6.11. Any winding number zero satellite operator on (C ∗ , d∗ ) is a bounded function,
+where (C ∗ , d∗ ) is any of the metric spaces we have defined. Thus any winding number zero satellite
+operator is an approximate contraction.
+16                              TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+Proof. By Proposition 6.3, such a P is within a bounded distance C of the constant operator that
+sends every class to Pe. Hence d∗ (P (K), P (J)) ≤ 2C.                                        
+   We should not expect that every winding number zero operator is an injective function, because
+the zero operator may be viewed as a (degenerate) satellite operator whose pattern knot is an
+unknot which has zero geometric winding number. But it is easy to find non-degenerate patterns
+that yeild the zero operator by choosing a pattern of non-zero geometric winding number which is
+concordant, inside the solid torus, to this unknot. Such a pattern will be called a trivial pattern
+since it induces the zero operator. There are various algebraic conditions on the pattern that ensure
+that an operator is non-trivial (see [10, Def. 7.2]) and is indeed injective on very large subsets of C.
+   But even here the precise situation is unclear. For example, consider the family of winding
+number zero patterns Rk shown on the left-hand side of Figure 6.3. The solid torus is the exterior
+of a neighborhood of the dashed circle η. This pattern has an obvious genus one Seifert surface.
+The −k signifies the number of full twists between the two bands of that surface (without twisting
+the two strands of a fixed band). A knot in a box indicates that all strands passing through that
+box are tied into parallel copies of the indicated knot. The value of this operator on a knot K
+is shown on the right-hand side of the figure. Then Rk (U ) is a slice knot since the core of the
+
+
+
+                           −k                                              −k
+            J
+                                                            J
+                                  η                                         K
+
+     Rk ≡                                       Rk (K) ≡
+
+
+
+
+                  Figure 6.3. A family of non-trivial non-injective operators Rk
+
+right-hand band has self-linking zero and has the knot type of the unknot. Similarly Rk (J) is a
+slice knot since the left-hand band has zero self-linking and has the knot type of the ribbon knot
+J# − J. Hence Rk is not injective since both U and J are sent to 0 ∈ C. Since an arbitrary pattern
+that is a genus one ribbon knot has two such “metabolizing curves”, this is the generic situation.
+   But recent examples indicate that the situation is even more complicated. In [7] the knot, R     e in
+Figure 6.4, was shown to be a slice knot for any knot J. If we let η be a circle linking the right-hand
+band, the the resulting operator, R, has winding number zero. Then R(U ) = R          e is slice. But as
+above there are two metabolizing curves. The core of the right-hand band of the Seifert surface for
+Re has self-linking zero and has the knot type of J1 = J(2,1) # − J so R(−J1 ) is also slice. There
+is a circle that goes over each band once that has self-linking zero which has a knot type, say, J2 ,
+so R(−J2 ) is also slice. Thus there are at least three knots (provably distinct for most J) that are
+sent to 0 by the operator R.
+   Nonetheless there is a lot of evidence that some winding number zero operators are injective, or
+are nearly so [10].
+6.4. Comparison of satellite operators and other natural operators.
+Proposition 6.12. For m ∈  / {0, 1} the function fm given by multiplication by m on C (respectively
+    ex
+on C ) is not within a bounded distance of any satellite operator, where the metric is ds (respectively
+                        THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                   17
+
+
+
+
+                                   −J
+                                                                   η
+
+                                        J
+                                 +2
+
+
+
+
+                                               Figure 6.4.
+
+dex
+ s ). The function f0 (namely the zero operator, is not within a bounded distance of any non-zero
+winding number satellite operator. The identity (i.e. f1 ) is not within a bounded distance of any
+satellite operator whose winding number is not ±1.
+Proof. The proof will be by contradiction. Suppose that m ∈ / {0, 1} and that fm is within D of the
+winding number n satellite operator P . By Proposition 6.3, P is within some bounded distance D0
+of the cabling operator C(n,1) . Let E = D + D0 . Consequently, for every knot J we would have that
+                                             d(mJ, J(n,1) ) ≤ E,
+or, equivalently,
+                                            k − mJ#J(n,1) k ≤ E.
+But both the slice genus and the exotic slice genus are bounded below by one half of the absolute
+value of the classical knot signature. Hence to reach a contradiction we need only specify a J (given
+m, n and Pe) such that
+                                     |σ(−mJ) + σ(J(n,1) )| > 2E.
+We assume that m ∈
+                 / {0, 1}. We can assure that
+                                                |σ(J)| > 2E,
+by choosing J to be the connected-sum of a sufficiently large number of left-handed trefoil knots.
+Note that for such a J the Levine-Tristram signature function takes on only two values, namely 0
+and σ(J). Thus σ(J(n,1) ) is either zero (if n = 0) or is equal to the exp(π/|n|)-signature of J, so in
+any case is either zero or is equal to σ(J). Hence we have
+                           |σ(−mJ) + σ(J(n,1) )| ≥ |(m − 1)||σ(J)| > 2E,
+resulting in a contradiction.
+   Moreover, in the case that m = 0 then, as long as n 6= 0, we can choose J such that |σ(J(n,1) )|
+is very large so that
+                              |σ(−mJ) + σ(J(n,1) )| = |σ(J(n,1) )| > 2E,
+for a contradiction. Hence the times zero operator is not within a bounded distance of any satellite
+operator with non-zero winding number.
+   In the case that m = 1 we can find a twist knot T of signature 2 wherein the roots of its Alexander
+polynomial have real part less than zero. Then, if n 6= ±1, then σ(T(n,1) ) = 0. Then let J be the
+connected sum of a large numer of such T , so that
+                                                |σ(J)| > 2E.
+18                             TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+and σ(J(n,1) ) = 0. Hence the times one operator (namely the identity) is not within a bounded
+distance of any satellite operator whose winding number is not ±1.                          
+Corollary 6.13. Neither the mirror image operator nor the inverse operator on C (respectively on
+C ex ) is within a bounded distance of any satellite operator, where the metric is ds (respectively dex
+                                                                                                     s ).
+
+Proof. The inverse operator is the case m = −1 of Proposition 6.12. Since the inverse operator
+is the composition of the mirror image operator followed by the reverse operator, and since the
+reverse operator is both an isometry and a satellite operator, if the mirror image operator were
+within a bounded distance of a satellite operator then the inverse operator would be within a
+bounded distance of a composition of satellite operators, which is a satellite operator. This is a
+contradiction.                                                                                  
+     The second two statements of Proposition 6.12 can easily be generalized.
+Proposition 6.14. Suppose m 6= ±n. Then no winding number m satellite operator is within a
+bounded distance of any winding number n satellite operator.
+Proof. As above, for a proof by contradiction, it suffices to show that, given E > 0, we can find a
+knot J such that
+                                     k − J(m,1) #J(n,1) k > E.
+For this, as above it suffices to find ω ∈ S 1 such that
+                                   |σω (−J(m,1) ) + σω (J(n,1) )| > 2E,
+where σω is the value of the (normalized) Levine-Tristram signature function at ω. This is true
+because both the slice genus and the exotic slice genus are bounded below by one half of |σω |. Let
+J be the connected sum of more than 2E copies of the left-handed trefoil −T , and let α ∈ S 1 be
+the root of the Alexander polynomial of the trefoil with positive imaginary part. Then, for any
+β ∈ S 1 (with positive imaginary part) whose argument is greater than that of α, σβ (−T ) = 2, so
+σβ (J) > 2E; whereas, for any β ∈ S 1 (with positive imaginary part) whose argument is less than
+that of α, σβ (−T ) = 0, so σβ (J) = 0.
+   Suppose |n| < |m|. Let rn and rm be the |n|th - and |m|th -roots of α that have smallest positive
+argument. Then arg(rn ) > arg(rm ). Let ω ∈ S 1 have argument between these and be close to rm .
+Then
+                                     σω (J(n,1) ) = ±σω|n| (J) = 0
+since the argument of ω |n| is less than that of α. On the other hand
+                                  |σω (J(m,1) )| = | ± σω|m| (J)| > 2E
+since the argument of ω |m| is slightly greater than that of α. These choices lead to the desired
+contradiction.                                                                                 
+Remark 6.15. With more work, the ± in Proposition 6.14 should be able to be replaced by +.
+It has been shown, using Casson-Gordon invariants that some knots are not concordant to their
+reverses [17][11, Thm. 5.5.2][23]. It is also known that Casson-Gordon invariants, in a certain
+sense, give lower bounds for the slice genus. Thus it may be able to be shown, with some effort
+beyond what is in the literature, that the reverse operator is not within a bounded distance of
+the identity. This would imply that no winding number −1 satellite operator is within a bounded
+distance of any winding number +1 satellite operator. For n > 1, to show that no winding number
+n satellite operation is within a bounded distance of any winding number −n operation, would
+seem to require calculations (of, say, Casson-Gordon invariants) far beyond what is currently in the
+literature. Nonetheless there is little doubt, in the authors’ opinion, as to its veracity.
+                          THE GEOMETRY OF THE KNOT CONCORDANCE SPACE                                           19
+
+
+                           7. Satellite operators as quasi-morphisms
+Theorem 7.1. Any satellite operator P : C → C is a quasi-homomorphism with respect to
+norm given by the slice genus, k − ks . Similarly, any satellite operator P : C ex → C ex is a
+quasi-homomorphism with respect to either dex
+                                           s or dH .
+
+Proof. The following is well-known.
+Lemma 7.2. If f : G → (A, d) is a quasi-homomorphism and g : G → A is within a bounded
+distance of f then g is a quasi-homomoprhism.
+Proof of Lemma 7.2. By sub-additivity, kak ≤ ka − bk + kbk. The lemma now follows quickly from
+setting a = g(xy) − g(x) − g(y) and b = f (xy) − f (x) − f (y).                              
+   By Proposition 6.3, a satellite operator of winding number n is within a bounded distance of the
+operator Cn,1 , so by Lemma 7.2, it suffices to show that latter is a quasi-homomorphism. This is
+done geometrically. By adding n carefully placed bands, the (n, 1)-cable of the knot K#J can be
+transformed to the disjoint union of the (n, 1)-cable of K with an n-component link consisting of
+parallel copies of J. By adding n − 1 more bands, the latter can be transformed to the (n, 1)-cable
+of J. Adding one more band transforms the disjoint union to the connected sum. Hence there is
+a cobordism in S 3 × [0, 1] from the (K#J)(n,1) to K(n,1) #J(n,1) whose genus is independent of K
+and J. Hence
+                                                                                     
+                   k(K#J)(n,1) − K(n,1) − J(n,1) ks ≡ ds (K#J)(n,1) , K(n,1) #J(n,1)
+is bounded by a function of n alone. Thus the (n, 1)-cable operator is a quasi-homomorphism. 
+Proposition 7.3. Suppose that q : C → R is a quasi-homomorphism whose absolute value gives a
+lower bound for a positive multiple of the slice genus, that is, there is some C > 0 such that, for
+all K, |q(K)| ≤ Cgs (K). Then, for any satellite operator P , the composition q ◦ P : C → R is a
+quasi-homomorphism.
+Proof. The proof follows that of [5, Cor. 1B] where the slightly stronger assumption was made that
+q is Lipshitz. Let E = P (K#J) − P (K) − P (J). Since P is a quasi-homomorphism, kEks ≤ DP .
+Then
+      |q (P (K#J)) − q (P (K)) − q (P (J)) | = |q (P (K) + P (J) + E)) − q (P (K)) − q (P (J)) |
+                                               ≤ 2Dq + |q(E)|
+                                               ≤ 2Dq + CkEks
+                                               ≤ 2Dq + CDP .
+                                                                                                               
+
+                                                References
+[1] Selman Akbulut and Robion Kirby. Mazur manifolds. Michigan Math. J., 26(3):259–284, 1979.
+[2] Selman Akbulut and Kouichi Yasui. Corks, plugs and exotic structures. J. Gökova Geom. Topol. GGT, 2:40–82,
+    2008.
+[3] Laurent Bartholdi, Rostislav Grigorchuk, and Volodymyr Nekrashevych. From fractal groups to fractal sets. In
+    Fractals in Graz 2001, Trends Math., pages 25–118. Birkhäuser, Basel, 2003.
+[4] Steven Boyer. Shake-slice knots and smooth contractible 4-manifolds. Math. Proc. Cambridge Philos. Soc.,
+    98(1):93–106, 1985.
+[5] Michael Brandenbursky and Jarek Kedra. Concordance group and stable commutator length in braid groups.
+    preprint 2014, http://front.math.ucdavis.edu/1402.3191.
+[6] Andrew Casson and Michael Freedman. Atomic surgery problems. In Four-manifold theory (Durham, N.H.,
+    1982), volume 35 of Contemp. Math., pages 181–199. Amer. Math. Soc., Providence, RI, 1984.
+[7] Tim D. Cochran and Christopher W. Davis. Counterexamples to Kauffman’s conjectures on slice knots. preprint
+    available at http://front.math.ucdavis.edu/1303.4418.
+[8] Tim D. Cochran, Christopher W. Davis, and Arunima Ray. Injectivity of satellite operators in knot concordance.
+    Journal of Topology, 2014. DOI 10.1112/jtopol/jtu003.
+20                                 TIM D. COCHRAN† AND SHELLY HARVEY††
+
+
+ [9] Tim D. Cochran, Bridget D. Franklin, Matthew Hedden, and Peter D. Horn. Knot concordance and homology
+     cobordism. Proceedings of the American Mathematical Society, 141:2193–2208, 2013.
+[10] Tim D. Cochran, Shelly Harvey, and Constance Leidy. Primary decomposition and the fractal nature of knot
+     concordance. Math. Annalen, 2010, (electronic). DOI:10.1007/s00208-010-0604-5.
+[11] Julia Collins. On the concordance orders of knots. http://front.math.ucdavis.edu/1206.0669.
+[12] Ralph H. Fox and John W. Milnor. Singularities of 2-spheres in 4-space and equivalence of knots. (Abstract)
+     Bulletin of Amer. Math. Soc., 63:406, 1957.
+[13] Ralph H. Fox and John W. Milnor. Singularities of 2-spheres in 4-space and cobordism of knots. Osaka J. Math.,
+     3:257–267, 1966.
+[14] Shelly L. Harvey. Homology cobordism invariants and the Cochran-Orr-Teichner filtration of the link concordance
+     group. Geom. Topol., 12(1):387–430, 2008.
+[15] Matthew Hedden and Paul Kirk. Instantons, concordance, and Whitehead doubling. J. Differential Geom.,
+     91(2):281–319, 2012.
+[16] Robion Kirby.
+[17] Paul Kirk and Charles Livingston. Twisted knot polynomials: inversion, mutation and concordance. Topology,
+     38(3):663–671, 1999.
+[18] Adam Levine. Non-surjective satellite operators and piecewise-linear concordance. preprint
+     http://front.math.ucdavis.edu/1405.1125.
+[19] W. B. Raymond Lickorish. An introduction to knot theory, volume 175 of Graduate Texts in Mathematics.
+     Springer-Verlag, New York, 1997.
+[20] Charles Livingston. The slicing number of a knot. Algebr. Geom. Topol., 2:1051–1060, 2002.
+[21] Charles Livingston. The concordance genus of knots. Algebr. Geom. Topol., 4:1–22, 2004.
+[22] Charles Livingston. The stable 4-genus of knots. Algebr. Geom. Topol., 10(4):2191–2202, 2010.
+[23] Swatee Naik. Casson-Gordon invariants of genus one knots and concordance to reverses. J. Knot Theory Rami-
+     fications, 5(5):661–677, 1996.
+[24] Arunima Ray. Satellite operators with distinct iterates in concordance. Preprint 2014,
+     http://front.math.ucdavis.edu/1403.3883.
+[25] Yoshihisa Sato. 3-dimensional homology handles and minimal second Betti numbers of 4-manifolds. Osaka J.
+     Math., 35(3):509–527, 1998.
+[26] Laurence R. Taylor. On the genera of knots. In Topology of low-dimensional manifolds (Proc. Second Sussex
+     Conf., Chelwood Gate, 1977), volume 722 of Lecture Notes in Math., pages 144–154. Springer, Berlin, 1979.
+[27] A. G. Tristram. Some cobordism invariants for links. Proc. Cambridge Philos. Soc., 66:251–264, 1969.
+
+     Department of Mathematics MS-136, P.O. Box 1892, Rice University, Houston, TX 77251-1892
+     E-mail address: cochran@rice.edu
+
+     Department of Mathematics MS-136, P.O. Box 1892, Rice University, Houston, TX 77251-1892
+     E-mail address: shelly@rice.edu
+

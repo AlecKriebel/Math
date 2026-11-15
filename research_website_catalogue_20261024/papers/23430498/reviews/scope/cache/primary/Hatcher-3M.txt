@@ -1,0 +1,3030 @@
+        Notes on Basic 3-Manifold Topology
+
+                                   Allen Hatcher
+
+
+
+
+  Chapter 1. Canonical Decomposition
+       1. Prime Decomposition.
+       2. Torus Decomposition.
+
+  Chapter 2. Special Classes of 3-Manifolds
+       1. Seifert Manifolds.
+       2. Torus Bundles and Semi-Bundles.
+
+  Chapter 3. Homotopy Properties
+       1. The Loop and Sphere Theorems.
+
+
+
+
+    These notes, originally written in the 1980’s, were intended as the beginning of
+a book on 3 manifolds, but unfortunately that project has not progressed very far
+since then. A few small revisions have been made, but much more remains to be
+done, both in improving the existing sections and in adding more topics. In particular
+an exposition of Haken manifolds was planned for §3.2. For any future updates which
+may be written, the reader should check my webpage:
+                       http://www.math.cornell.edu/˜hatcher
+
+    The three chapters here are to a certain extent independent of each other. The
+main exceptions are that the beginning of Chapter 1 is a prerequisite for almost ev-
+erything else, while some of the later parts of Chapter 1 are used in Chapter 2.
+§1.1                                Prime Decomposition                                   1
+
+
+Chapter 1. Canonical Decomposition
+     The first section of this chapter is devoted to what was historically the first general
+result on 3 manifolds, Kneser’s theorem that every compact orientable 3 manifold M
+decomposes uniquely as a connected sum M = P1 ♯ ··· ♯ Pn of 3 manifolds Pi which
+are prime in the sense that they can be decomposed as connected sums only in the
+trivial way Pi = Pi ♯ S 3 .
+     After the prime decomposition, we turn in the second section to the canonical
+torus decomposition due to Jaco-Shalen and Johannson.
+     We will work in the C ∞ category throughout. Some basic results about differen-
+tiable manifolds will be needed. In particular this includes:
+ — Tubular neighborhoods: submanifolds have neighborhoods that are diffeomor-
+     phic to their normal bundles, and these neighborhoods are unique up to isotopy.
+ — Isotopy extension: an isotopy of a submanifold can be extended to an isotopy of
+     the ambient manifold.
+ — Transversality: a submanifold of codimension p can be perturbed by a small
+     isotopy to intersect another submanifold of codimension q transversely, and then
+     the intersection is a submanifold of codimension p + q .
+ — Triangulability: a smooth manifold is homeomorphic to a simplicial complex
+     whose simplices are smoothly embedded.
+Convention: All manifolds in this chapter are assumed to be compact and connected,
+possibly with boundary, unless otherwise stated or constructed. Often we restrict
+attention to orientable 3 manifolds, although extensions to the nonorientable case
+are usually not too difficult.
+
+
+1. Prime Decomposition
+     Implicit in the prime decomposition theorem is the fact that S 3 is prime, other-
+wise one could only hope for a prime decomposition modulo invertible elements, as
+in algebra. The fact that S 3 is prime is a consequence of Alexander’s theorem, our
+first topic.
+
+
+Alexander’s Theorem
+     This quite fundamental result was one of the earliest theorems in the subject:
+
+
+ Theorem 1.1. Every embedded 2 sphere in R3 bounds an embedded 3 ball.
+2                            Canonical Decomposition                               §1.1
+
+
+    The version of this that Alexander proved, in the 1920s, was slightly different:
+a piecewise linearly embedded sphere in R3 bounds a topological ball. It would not
+have been difficult for him to improve the conclusion to say that the ball was piece-
+wise linear as well. The famous example of the Alexander horned sphere, which he
+constructed at about the same time, shows that a topological sphere need not bound
+a topological ball. The proof we give for smooth spheres follows the same general
+strategy as Alexander’s proof for piecewise linear spheres, namely, to cut the given
+sphere along horizontal planes to produce simpler spheres and apply an induction
+argument. Alexander cut along horizontal planes passing through vertices of the tri-
+angulated sphere. In the smooth category one cuts instead along horizontal planes
+that are transverse to the sphere. In order to have a nice starting point for the induc-
+tion we will do a preliminary isotopy of the sphere to arrange that the projection of
+the sphere onto the z -axis is a morse function, so we will assume the reader knows
+a little Morse theory. This could be avoided by using a more direct construction as at
+the beginning of [Hatcher 1983], but this would slow down the exposition.
+    The proof will also use the analogous result in one lower dimension, that a smooth
+circle in R2 bounds a smooth disk. This can be proved by a similar but simpler
+inductive argument, and it would be a good exercise for the reader to work this out.
+In two dimensions it is even true that a topologically embedded circle in R2 bounds
+a topological disk, the Schoenflies theorem, but the proof is more difficult since a
+simple inductive argument is not possible.
+    There is a simple proof due to M. Brown in 1960 that a smoothly embedded S n−1
+in Rn bounds a topological ball, for arbitrary n . The ball is known to be a smooth ball
+for all n except n = 4 where this question remains open. For n ≥ 5 this follows from
+the h-cobordism theorem (plus surgery theory in the case n = 5 ). Brown’s theorem
+in fact has a weaker hypothesis than smoothness, just that the embedding is locally
+flat, so near each point of the embedded sphere there is a local coordinate system for
+Rn in which the sphere becomes a linearly embedded Rn−1 ⊂ Rn .
+
+Proof of Alexander’s Theorem: Let S ⊂ R3 be an embedded closed surface, with
+h : S →R the height function given by the z coordinate. The first step is to arrange
+that h is a morse function, as follows. We can approximate h arbitrarily closely by a
+morse function, and the linear path between h and the approximation gives a small
+homotopy of h . Keeping the same x and y coordinates for S , this gives a small
+homotopy of S in R3 . Since embeddings are open in the space of all maps (with the
+C ∞ topology), if this homotopy is small enough, it will be an isotopy. By a further
+§1.1                                  Prime Decomposition                                     3
+
+
+small isotopy we can also assume the finitely many critical points of h (local maxima,
+minima, and saddles) all have distinct critical values.
+
+     Let a1 < ··· < an be noncritical values of h such that each interval (−∞, a1 ) ,
+(a1 , a2 ) , ··· , (an , ∞) contains just one critical value. For each i , h−1 (ai ) consists of
+a finite number of disjoint circles in the level z = ai . By the two-dimensional version
+of Alexander’s theorem, each circle of h−1 (ai ) bounds a disk in the plane z = ai .
+Let C be a circle of h−1 (ai ) which is innermost in the plane z = ai , so the disk D it
+bounds in this plane is disjoint from all the other circles of h−1 (ai ) . We can use D
+to surger S along C . This means that for some small ε > 0 we first remove from S
+the open annulus A consisting of points near C between the two planes z = ai ± ε ,
+then we cap off the resulting pair of boundary circles of S − A by adding to S − A the
+disks in z = ai ± ε which these circles bound. The result of this surgery is thus a new
+embedded surface, with perhaps one more component than S , if C separated S .
+
+     This surgery process can now be iterated, taking at each stage an innermost re-
+maining circle of h−1 (ai ) , and choosing ε small enough so that the newly introduced
+horizontal cap disks intersect the previously constructed surface only in their bound-
+aries.
+
+
+
+
+After surgering all the circles of h−1 (ai ) for all i , the original surface S becomes a
+disjoint union of closed surfaces Sj , each consisting of a number of horizontal caps
+together with a connected subsurface Sj′ of S containing at most one critical point
+of h .
+
+     The surgery construction as we have described it produces surfaces in R3 that
+are not smooth along the curves bounded by the horizontal caps since they have two
+distinct tangent planes at each point of these curves, one tangent plane being hori-
+zontal and the other one not horizontal. It would be easy to modify the definition of
+surgery to round these corners and make all the surgeries produce genuinely smooth
+surfaces. There will be many other occasions throughout the book where manifolds
+with corners arise, and we will let the smoothing of these corners be implicit.
+4                             Canonical Decomposition                                §1.1
+
+
+    Lemma 1.2. Each surface Sj ⊂ S is isotopic to one of seven models: the four shown
+    below plus three more obtained by turning these upside down. Hence each Sj is a
+    sphere bounding a ball in R3 .
+
+
+
+
+Proof: Consider the case that Sj has a saddle, say in the level z = a . First isotope
+Sj in a neighborhood of this level so that for some δ > 0 the subsurface Sjδ of Sj
+lying between the planes z = a + δ and z = a − δ is vertical, with vertical tangent
+planes, except in a neighborhood of the saddle where Sj has the standard form of the
+saddles in the models. Next, isotope Sj so that its subsurface Sj′ , the complement of
+the horizontal caps, lies in Sjδ . This is done by pushing its horizontal caps to lie near
+z = a , innermost caps first, keeping the caps horizontal throughout the deformation.
+
+
+
+
+After this has been done, Sj is entirely vertical except for the standard saddle and
+the horizontal caps. Viewed from above, Sj minus its horizontal caps then looks like
+two smooth circles, possibly nested, joined by a 1 handle, a neighborhood of an arc
+joining the two circles.
+
+
+
+
+Since these circles bound disks, they can be isotoped to the standard position of one
+of the models, yielding an isotopy of Sj to one of the models.
+      The remaining cases, when Sj′ has a local maximum or minimum or no critical
+points, are similar but simpler so we leave these cases to the reader.                  ⊓
+                                                                                        ⊔
+§1.1                                Prime Decomposition                                  5
+
+
+    Now we can finish the proof of Alexander’s Theorem, where the surface S is a
+sphere. Since every circle in a sphere separates the sphere into two components, each
+surgery splits one sphere into two spheres. Reversing the sequence of surgeries, we
+then start with a collection of spheres Sj bounding balls. The inductive assertion is
+that at each stage of the reversed surgery process, we have a collection of spheres
+each bounding a ball. For the inductive step we have two balls A and B bounded by
+the spheres ∂A and ∂B resulting from a surgery. Letting the ε for the surgery go to
+0 isotopes A and B so that ∂A ∩ ∂B equals the horizontal surgery disk D . There are
+two cases, up to changes in notation:
+ (i) A ∩ B = D , with pre-surgery sphere denoted ∂(A + B)
+(ii) B ⊂ A , with pre-surgery sphere denoted ∂(A − B) .
+Since B is a ball, the lemma below implies that A and A ± B are diffeomorphic. Then
+since A is a ball, so is A ± B , and the inductive step is completed.                    ⊓
+                                                                                         ⊔
+
+ Lemma 1.3. Given an n manifold M and a ball B n−1 ⊂ ∂M , let the manifold N be
+ obtained from M by attaching a ball B n via an identification of a ball B n−1 ⊂ ∂B n
+ with the ball B n−1 ⊂ ∂M . Then M and N are diffeomorphic.
+
+Proof: Any two codimension-zero balls in a connected manifold are isotopic. Ap-
+plying this fact to the given inclusion B n−1 ⊂ ∂B n and using isotopy extension, we
+conclude that the pair (B n , B n−1 ) is diffeomorphic to the standard pair. So there is an
+isotopy of ∂N to ∂M in N , fixed outside B n , pushing ∂N −∂M across B n to ∂M −∂N .
+By isotopy extension, M and N are then diffeomorphic.                                    ⊓
+                                                                                         ⊔
+
+
+Existence and Uniqueness of Prime Decompositions
+    Let M be a 3 manifold and S ⊂ M a surface which is properly embedded, i.e.,
+S ∩ ∂M = ∂S , a transverse intersection. For the moment we do not assume S is con-
+nected. Deleting a small open tubular neighborhood N(S) of S from M , we obtain a
+3 manifold M || S which we say is obtained from M by splitting along S . The neigh-
+borhood N(S) is an interval-bundle over S , so if M is orientable, N(S) is a product
+S × (−ε, ε) if and only if S is orientable.
+    Now suppose that M is connected and S ⊂ M is a separating sphere, meaning
+that M || S has two components, M1′ and M2′ . Let Mi be obtained from Mi′ by filling
+in its boundary sphere corresponding to S with a ball. In this situation we say M
+is the connected sum M1 ♯ M2 . We remark that Mi is uniquely determined by Mi′
+since any two ways of filling in a ball B 3 differ by a diffeomorphism of ∂B 3 , and any
+6                             Canonical Decomposition                                §1.1
+
+
+diffeomorphism of ∂B 3 extends to a diffeomorphism of B 3 . This last fact follows
+from the stronger assertion that any diffeomorphism of S 2 is isotopic to either the
+identity or a reflection (orientation-reversing), and each of these two diffeomorphisms
+extends over a ball.
+       The connected sum operation is commutative by definition and has S 3 as an
+identity since a decomposition M = M ♯ S 3 is obtained by choosing the sphere S
+to bound a ball in M . The connected sum operation is also associative, since in a
+sequence of connected sum decompositions, e.g., M1 ♯ (M2 ♯ M3 ) , the later splitting
+spheres can be pushed off the balls filling in earlier splitting spheres, so one may
+assume all the splitting spheres are disjointly embedded in the original manifold M .
+Thus M = M1 ♯ ··· ♯ Mn means there is a collection S consisting of n − 1 disjoint
+spheres such that M || S has n components Mi′ , with Mi obtained from Mi′ by filling
+in its boundary spheres corresponding to spheres of S with balls.
+       A connected 3 manifold M is called prime if M = P ♯Q implies P = S 3 or Q = S 3 .
+For example, Alexander’s theorem implies that S 3 is prime, since every 2 sphere in S 3
+bounds a 3 ball. The latter condition, stronger than primeness, is called irreducibility :
+M is irreducible if every 2 sphere S 2 ⊂ M bounds a ball B 3 ⊂ M . The two conditions
+are in fact very nearly equivalent:
+
+    Proposition 1.4. The only orientable prime 3 manifold which is not irreducible is
+    S1 × S2 .
+
+Proof: If M is prime, every 2 sphere in M which separates M into two components
+bounds a ball. So if M is prime but not irreducible there must exist a nonseparating
+sphere in M . For a nonseparating sphere S in an orientable manifold M the union
+of a product neighborhood S × I of S with a tubular neighborhood of an arc joining
+S × {0} to S × {1} in the complement of S × I is a manifold diffeomorphic to S 1 × S 2
+minus a ball. Thus M has S 1 × S 2 as a connected summand. Assuming M is prime,
+then M = S 1 × S 2 .
+    It remains to show that S 1 × S 2 is prime. Let S ⊂ S 1 × S 2 be a separating sphere,
+so S 1 × S 2 || S consists of two compact 3 manifolds V and W each with boundary a
+2 sphere. We have Z = π1 (S 1 × S 2 ) ≈ π1 V ∗ π1 W , so either V or W must be simply-
+connected, say V is simply-connected. The universal cover of S 1 × S 2 can be identified
+with R3 − {0} , and V lifts to a diffeomorphic copy V
+                                                    e of itself in R3 − {0} . The sphere
+ e bounds a ball in R3 by Alexander’s theorem. Since ∂ V
+∂V                                                         e also bounds V  e in R3
+                 e is a ball, hence also V . Thus every separating sphere in S 1 × S 2
+we conclude that V
+bounds a ball, so S 1 × S 2 is prime.                                                   ⊓
+                                                                                        ⊔
+§1.1                                 Prime Decomposition                                   7
+
+
+  Theorem 1.5. Each compact, connected, orientable 3 manifold M has a decompo-
+  sition M = P1 ♯ ··· ♯ Pn with each Pi prime, and this decomposition is unique up to
+  insertion or deletion of S 3 ’s and permutations of the factors Pi .
+
+Proof: The existence of prime decompositions is harder than the uniqueness, so let us
+tackle the existence first. If M contains a nonseparating S 2 , this gives a decomposition
+M = N ♯ S 1 × S 2 as we saw in the proof of Proposition 1.4. We can repeat this step
+of splitting off an S 1 × S 2 summand as long as we have nonseparating spheres, but
+the process cannot be repeated indefinitely since each S 1 × S 2 summand gives a Z
+summand of H1 (M) , which is a finitely generated abelian group since M is compact.
+Thus it suffices to prove the existence of prime decompositions in the case that each
+2 sphere in M separates. Each 2 sphere component of ∂M corresponds to a B 3
+summand of M , so we may also assume ∂M contains no 2 spheres.
+    We shall prove the following assertion, which clearly implies the existence of
+prime decompositions:
+Basic Fact. There is a bound on the number of spheres in a system S of finitely many
+disjoint spheres in M such that :
+(∗) No component of M || S is a punctured 3 sphere, i.e., a compact manifold obtained
+    from S 3 by deleting the interiors of finitely many disjoint balls.
+
+Before proving this we make a preliminary observation. Suppose the sphere system S
+satisfies (∗) and we do surgery on a sphere Si of S using a disk D ⊂ M with D ∩ S =
+∂D ⊂ Si to produce a pair a spheres Si′ and Si′′ . Then
+at least one of the systems S ′ and S ′′ obtained from S
+by replacing Si with Si′ or Si′′ again satisfies (∗) . To
+see this, first perturb Si′ and Si′′ to be disjoint from Si
+and each other, with Si , Si′ , and Si′′ together bounding
+a 3 punctured sphere P . On the other side of Si from
+P we have a component A of M || S , while the spheres Si′ and Si′′ split the component
+of M || S containing P into pieces B ′ , B ′′ , and P . Note that B ′ and B ′′ are distinct,
+otherwise Si′ and Si′′ would be nonseparating spheres in M . If both B ′ and B ′′ were
+punctured spheres, then the component B ′ ∪ B ′′ ∪ P of M || S would be a punctured
+sphere, contrary to hypothesis. So one of B ′ and B ′′ , say B ′ , is not a punctured sphere.
+If A ∪ P ∪ B ′′ were a punctured sphere, this would force A to be a punctured sphere,
+by Alexander’s theorem. This is also contrary to hypothesis. So we conclude that
+neither component of M || S ′ adjacent to Si′ is a punctured sphere, hence the sphere
+system S ′ satisfies (∗) .
+8                            Canonical Decomposition                              §1.1
+
+
+    Now we begin to prove the assertion that the number of spheres in a system S
+satisfying (∗) is bounded. Choose a smooth triangulation T of M . This has only
+finitely many simplices since M is compact. The given system S can be perturbed
+to be transverse to all the simplices of T . This perturbation can be done inductively
+over the skeleta of T : First make S disjoint from vertices, then transverse to edges,
+meeting them in finitely many points, then transverse to 2 simplices, meeting them
+in finitely many arcs and circles.
+    For a 3 simplex τ of T , we can make the components of S ∩ τ all disks, as
+follows. Such a component must meet ∂τ by Alexander’s theorem and condition
+(∗) . Consider a circle C of S ∩ ∂τ which is innermost in ∂τ . If C bounds a disk
+component of S ∩ τ we may isotope this disk to lie near ∂τ and then proceed to a
+remaining innermost circle C . If an innermost remaining C does not bound a disk
+component of S ∩ τ we may surger S along C using a disk D lying near ∂τ with
+D ∩ S = ∂D = C , replacing S by a new system S ′ satisfying (∗) , in which either C
+does bound a disk component of S ′ ∩ τ or C is eliminated from S ′ ∩ τ . After finitely
+many such steps we arrive at a system S with S ∩ τ consisting of disks, for each τ .
+In particular, note that no component of the intersection of S with a 2 simplex of T
+can be a circle, since this would bound disks in both adjacent 3 simplices, forming a
+sphere of S bounding a ball in the union of these two 3 simplices, contrary to (∗) .
+    Next, for each 2 simplex σ we eliminate arc components of S ∩ σ having both
+endpoints on the same edge of σ . Such an arc α cuts off a disk D from σ which
+meets only one edge of σ . We may choose α to be ‘edgemost’, so that D contains no
+other arcs of S ∩σ , and hence D ∩S = α since circles of S ∩σ have been eliminated in
+the previous step. By an isotopy of S supported near α we then push the intersection
+arc α across D , eliminating α from S ∩σ and decreasing by two the number of points
+of intersection of S with the 1 skeleton of T .
+
+
+
+
+    After such an isotopy decreasing the number of points of intersection of S with
+the 1 skeleton of T we repeat the first step of making S intersect all 3 simplices in
+disks. This does not increase the number of intersections with the 1 skeleton, so after
+finitely many steps we arrive at the situation where S meets each 2 simplex only in
+§1.1                                Prime Decomposition                                    9
+
+
+arcs connecting adjacent sides, and S meets 3 simplices only in disks.
+    Now consider the intersection of S with a 2 simplex σ .
+With at most four exceptions the complementary regions of
+S ∩ σ in σ are rectangles with two opposite sides on ∂σ and
+the other two opposite sides arcs of S ∩ σ . Thus if T has
+t 2 simplices, then all but at most 4t of the components of
+M || S meet all the 2 simplices of T only in such rectangles.
+    Let R be a component of M || S meeting all 2 simplices only in rectangles. For a
+3 simplex τ , each component of R∩∂τ is an annulus A which is a union of rectangles.
+The two circles of ∂A bound disks in τ , and A together with these two disks is a
+sphere bounding a ball in τ , a component of R ∩ τ which can be written as D 2 × I
+with ∂D 2 × I = A . The I fiberings of all such products D 2 × I may be assumed to agree
+on their common intersections, the rectangles, to give R the structure of an I bundle.
+Since ∂R consists of sphere components of S , R is either the product S 2 × I or the
+twisted I bundle over RP2 . (We can view R as the mapping cylinder of the associated
+∂I subbundle, a union of spheres which is a two-sheeted covering space of a connected
+base surface.) The possibility R = S 2 × I is excluded by (∗) . Each I bundle R is thus
+the mapping cylinder of the covering space S 2 →RP2 . This is just RP3 minus a ball, so
+each I bundle R gives a connected summand RP3 of M , hence a Z2 direct summand
+of H1 (M) . Thus the number of such components R of M || S is bounded. Since the
+number of other components was bounded by 4t , the number of components of M || S
+is bounded. Since every 2 sphere in M separates, the number of components of M || S
+is one more than the number of spheres in S . This finishes the proof of the existence
+of prime decompositions.
+    For uniqueness, suppose the nonprime M has two prime decompositions M =
+P1 ♯ ··· ♯ Pk ♯ ℓ(S 1 × S 2 ) and M = Q1 ♯ ··· ♯ Qm ♯ n(S 1 × S 2 ) where the Pi ’s and Qi ’s
+are irreducible and not S 3 . Let S be a disjoint union of 2 spheres in M reducing M to
+the Pi ’s, by which we mean that the components of M || S are the manifolds P1 , ··· , Pk
+with punctures, plus possibly some punctured S 3 ’s. Such a system S exists: Take
+for example a collection of spheres defining the given prime decomposition M =
+P1 ♯ ··· ♯ Pk ♯ ℓ(S 1 × S 2 ) together with a nonseparating S 2 in each S 1 × S 2 . Note that
+if S reduces M to the Pi ’s, so does any system S ′ containing S .
+    Similarly, let T be a system of spheres reducing M to the Qi ’s. If S ∩ T 6= ∅ ,
+we may assume this is a transverse intersection, and consider a circle of S ∩ T which
+is innermost in T , bounding a disk D ⊂ T with D ∩ S = ∂D . Using D , surger the
+sphere Sj of S containing ∂D to produce two spheres Sj′ and Sj′′ , which we may
+10                             Canonical Decomposition                                  §1.1
+
+
+take to be disjoint from Sj , so that Sj , Sj′ , and Sj′′ together bound a 3 punctured
+3 sphere P . By an earlier remark, the enlarged system S ∪ Sj′ ∪ Sj′′ reduces M to the
+Pi ’s. Deleting Sj from this enlarged system still gives a system reducing M to the
+Pi ’s since this changes only one component of M || S ∪ Sj′ ∪ Sj′′ by attaching P to one
+of its boundary spheres, which has the net effect of simply adding one more puncture
+to this component.
+     The new system S ′ meets T in one fewer circle, so after finitely many steps of
+this type we produce a system S disjoint from T and reducing M to the Pi ’s. Then
+S ∪ T is a system reducing M both to the Pi ’s and to the Qi ’s. Hence k = m and the
+Pi ’s are just a permutation of the Qi ’s.
+     Finally, to show ℓ = n , we have M = N ♯ ℓ(S 1 × S 2 ) = N ♯ n(S 1 × S 2 ) , so H1 (M) =
+H1 (N) ⊕ Zℓ = H1 (N) ⊕ Zn , hence ℓ = n .                                                 ⊓
+                                                                                          ⊔
+
+     The proof of the Prime Decomposition Theorem applies equally well to manifolds
+which are not just orientable, but oriented. The advantage of working with oriented
+manifolds is that the operation of forming M1 ♯ M2 from M1 and M2 is well-defined:
+Remove an open ball from M1 and M2 and then identify the two resulting boundary
+spheres by an orientation-reversing diffeomorphism, so the orientations of M1 and
+M2 fit together to give a coherent orientation of M1 ♯ M2 . The gluing map S 2 →S 2 is
+then uniquely determined up to isotopy, as we remarked earlier.
+     Thus to classify oriented compact 3 manifolds it suffices to classify the irre-
+ducible ones. In particular, one must determine whether each orientable irreducible
+3 manifold possesses an orientation-reversing self-diffeomorphism.
+     To obtain a prime decomposition theorem for nonorientable manifolds requires
+very little more work. In Proposition 1.4 there are now two prime reducible manifolds,
+S 1 × S 2 and S 1 ×
+                  e S 2 , the nonorientable S 2 bundle over S 1 , which can also arise from
+a nonseparating 2 sphere. Existence of prime decompositions then works as in the
+orientable case. For uniqueness, one observes that N ♯ S 1 × S 2 = N ♯ S 1 ×
+                                                                           e S 2 if N
+is nonorientable. This is similar to the well-known fact in one lower dimension that
+connected sum of a nonorientable surface with the torus and with the Klein bottle
+give the same result. Uniqueness of prime decomposition can then be restored by
+replacing all the S 1 × S 2 summands in nonorientable manifolds with S 1 ×
+                                                                         e S 2 ’s.
+     A useful criterion for recognizing irreducible 3 manifolds is the following:
+
+ Proposition 1.6. If p : M
+                         f→M is a covering space and M
+                                                     f is irreducible, then so is M .
+
+     The converse is also true, but its proof is more difficult and will be given in §3.1.
+§1.1                                 Prime Decomposition                                 11
+
+
+Proof: For a sphere S ⊂ M the covering space p−1 (S)→S consists of disjoint lifts Se
+of S projecting homeomorphically to S . Each of these lifts bounds a ball in M     f since
+f is irreducible. For a lift Se bounding a ball B in M
+M                                                    f , any other lift of S in the interior
+of B bounds a ball in B by Alexander’s Theorem, so we may choose Se so that it is
+innermost in B , with no other lifts of S in the new ball B that it bounds.
+     We claim that p : B →p(B) is a covering space. To verify the covering space prop-
+erty, consider first a point x ∈ p(B) − S , with U a small ball neighborhood of x
+disjoint from S . Then p −1 (U) is a disjoint union of balls in M
+                                                                f − p −1 (S) , and the
+ones of these in B provide a uniform covering of U for the projection B →p(B) . Now
+consider a point x ∈ S . For a small ball neighborhood U of x meeting S in a disk,
+p −1 (U) is a disjoint union of balls, only one of which, U
+                                                          e say, meets B since no lifts
+of S lie in the interior of B and p is one-to-one on Se . Therefore p restricts to a
+homeomorphism of U    e ∩ B onto a neighborhood of x in p(B) . Thus the projection
+p : B →p(B) is a covering space. This covering space is single-sheeted on Se , hence on
+all of B since p(B) is connected, so p : B →p(B) is a homeomorphism with image a
+ball bounded by S .                                                                      ⊓
+                                                                                         ⊔
+
+     By the proposition, manifolds with universal cover S 3 are irreducible. This in-
+cludes RP3 and more generally each 3 dimensional lens space Lp/q , which is the
+quotient space of S 3 under the free Zq action generated by the rotation (z1 , z2 ) ֏
+(e2π i/q z1 , e2pπ i/q z2 ) , where S 3 is viewed as the unit sphere in C2 .
+     For a product M = S 1 × F 2 , or more generally any surface bundle F 2 →M →S 1 ,
+with F 2 a compact connected surface other than S 2 or RP2 , the universal cover of
+M − ∂M is R3 , so such an M is irreducible.
+     One might wonder whether there is an analogue of Proposition 1.6 with ‘irre-
+ducible’ replaced by ‘prime’, but there is a counterexample to this since S 1 × S 2 is a
+2 sheeted covering space of RP3 ♯ RP3 . Namely, RP3 ♯ RP3 is the quotient of S 1 × S 2
+under the identification (x, y) ∼ (ρ(x), −y) with ρ a reflection of the circle. This
+quotient can also be described as the quotient of I × S 2 where (x, y) is identified
+with (x, −y) for x ∈ ∂I . In this description the 2 sphere giving the decomposition
+RP3 ♯ RP3 is {1/2 }× S 2 .
+
+Exercises
+1. Prove the smooth Schoenflies theorem in R2 : An embedded circle in R2 bounds
+an embedded disk.
+2. Show that for compact 3 manifold M there is a bound on the number of 2 spheres
+Si which can be embedded in M disjointly such that no Si bounds a ball and no two
+12                                Canonical Decomposition                            §1.2
+
+
+Si ’s bound a product S 2 × I .
+3. Use the method of proof of Alexander’s theorem to show that every torus T ⊂ S 3
+bounds a solid torus S 1 × D 2 ⊂ S 3 on one side or the other. (This result is also due to
+Alexander.)
+4. Develop an analogue of the prime decomposition theorem for splitting a compact
+irreducible 3 manifold along disks rather than spheres. In a similar vein, study the
+operation of splitting nonorientable manifolds along RP2 ’s with trivial normal bun-
+dles.
+5. Show: If M 3 ⊂ R3 is a compact submanifold with H1 (M) = 0 , then π1 (M) = 0 .
+
+
+
+2. Torus Decomposition
+     Beyond the prime decomposition, there is a further canonical decomposition of
+irreducible compact orientable 3 manifolds, splitting along tori rather than spheres.
+This was discovered only in the mid 1970’s, by Johannson and Jaco-Shalen, though
+in the simplified geometric version given here it could well have been proved in the
+1930’s. (A 1967 paper of Waldhausen comes very close to this geometric version.)
+Perhaps the explanation for this late discovery lies in the subtlety of the uniqueness
+statement. There are counterexamples to a naive uniqueness statement, involving a
+class of manifolds studied extensively by Seifert in the 1930’s. The crucial observa-
+tion, not made until the 1970’s, was that these Seifert manifolds give rise to the only
+counterexamples. It then becomes possible to get a unique decomposition by treating
+the Seifert submanifolds in a given manifold as pieces that are to be left intact, and
+not decomposed.
+
+
+Existence of Torus Decompositions
+     In this section and in later chapters we will often be dealing with surfaces in
+3 manifolds, where by a surface in a 3 manifold M we will generally mean a compact
+connected surface S that is properly embedded in M , so S ∩ ∂M = ∂S , a transverse
+intersection. A surface S ⊂ M is said to be 2-sided if its normal bundle is trivial, and
+1-sided if its normal bundle is nontrivial. The ‘sides’ of S then correspond to the
+components of the complement of S in a tubular neighborhood.
+    For the torus decomposition of an irreducible manifold M the aim is to split M
+along a collection T of disjoint tori in M so that the resulting components of M || T are
+simpler than M . To do this we must impose some conditions on the tori, otherwise
+§1.2                              Torus Decomposition                                 13
+
+
+the components of M || T could be more complicated than M rather than simpler. For
+example if one takes a knotted embedded of S 1 in S 3 and splits S 3 along the torus
+boundary T of a tubular neighborhood of the knot, then one component of S 3 || T
+will be a solid torus S 1 × D 2 but the other component can be a fairly complicated
+nonsimply-connected manifold with torus boundary.
+    Examples like this will be excluded by the following general definition. A 2 sided
+surface S other than S 2 or D 2 in a 3 manifold M is incompressible if for each disk
+D ⊂ M with D ∩ S = ∂D there is a disk D ′ ⊂ S with ∂D ′ = ∂D .
+
+
+
+
+Thus, surgery on S along a disk in M cannot produce a simpler surface, but only
+splits off an S 2 from S , leaving a diffeomorphic copy of S as the other piece resulting
+from the surgery. A disk D with D ∩ S = ∂D will sometimes be called a compressing
+disk for S , whether or not a disk D ′ ⊂ S with ∂D ′ = ∂D exists. If S were a sphere
+or disk then the disk D ′ would always exist so every sphere or disk would satisfy
+the incompressibility condition, but it seems best to avoid this situation by excluding
+spheres and disks in the definition of incompressibility.
+
+    Before focusing our attention on incompressible tori we first develop a few basic
+facts about incompressible surfaces in general.
+
+(1) A surface S ⊂ M which is not a sphere or disk is incompressible if the map
+π1 (S)→π1 (M) induced by inclusion is injective. This is because if D is a compressing
+disk for S then ∂D is nullhomotopic in M , hence also in S if the map π1 (S)→π1 (M)
+is injective. Then it is a standard fact in surface theory that a nullhomotopic embed-
+ded circle in a surface must bound a disk in the surface. This argument also works
+if one just assumes that the two inclusions of S into M || S on either side of S are
+injective on π1 .
+    The converse of (1) is true as well, but this is a more difficult result that will
+be proved in Chapter 3 as Corollary 3.3. For 1 sided surfaces these two conditions
+for incompressibility are no longer equivalent, π1 injectivity being strictly stronger
+in general; see the exercises. However, the definition we have given requires incom-
+pressible surfaces to be 2 sided, so there should be no confusion on this point.
+
+(2) There are no incompressible surfaces in R3 or, equivalently, in S 3 . This is imme-
+14                            Canonical Decomposition                                §1.2
+
+
+diate from the converse to (1), but can also be proved directly, as follows. As we saw
+in the proof of Alexander’s theorem, after isotopically perturbing a surface S ⊂ R3
+to make the height function a morse function with all critical points lying in different
+levels, there is a sequence of surgeries on S along horizontal disks converting S into
+a disjoint union of spheres. Surgery on an incompressible surface S in S 3 using a
+compressing disk D splits S into two surfaces one of which is a sphere. This sphere
+bounds a ball on each side in S 3 , and we can use the ball that is on the same side
+of S as D to isotope S to the other surface produced by the surgery. This surface
+is therefore incompressible. This argument applies to each of the surgeries that re-
+duce the original incompressible surface S to a collection of spheres, so it follows
+that S is isotopic to one of these spheres, making S itself a sphere. However, the
+definition of incompressibility does not allow spheres, so we conclude that there are
+no incompressible surfaces in S 3 or R3 .
+
+(3) A 2 sided torus T in a 3 manifold M is compressible if it bounds a solid torus
+S 1 × D 2 ⊂ M or lies in a ball in M . The converse is also true if M is irreducible: A
+compressible torus in an irreducible manifold must either bound a solid torus or lie
+in a ball. For if T ⊂ M is a compressible torus there is a surgery on T along some disk
+D which turns T into a sphere. This sphere bounds a ball B ⊂ M if M is irreducible.
+There are now two cases: If B ∩ D = ∅ then reversing the surgery glues two disks in
+∂B together to create a solid torus bounded by T . The other possibility is that D ⊂ B ,
+and then T ⊂ B .
+     If M = S 3 the ball B can be chosen disjoint from D , so the alternative D ⊂ B is
+not needed. Thus using statement (2) above we obtain the result, due to Alexander,
+that a torus in S 3 bounds a solid torus on one side or the other.
+
+(4) If S ⊂ M is a finite collection of disjoint incompressible surfaces, then M is ir-
+reducible if and only if M || S is irreducible. To see this, suppose first that M is irre-
+ducible. Then a 2 sphere in M || S bounds a ball in M , and this ball must be disjoint
+from S by statement (2) above, so the sphere bounds a ball in M || S and M || S is ir-
+reducible. Conversely, given a sphere S 2 ⊂ M which we may assume is transverse
+to S , consider a circle of S ∩ S 2 which is innermost in S 2 , bounding a disk D ⊂ S 2
+with D ∩ S = ∂D . By incompressibility of the components of S , ∂D bounds a disk
+D ′ ⊂ S . The sphere D ∪ D ′ bounds a ball B ⊂ M if M || S is irreducible. We must have
+B ∩ S = D ′ , otherwise a component of S would be contained in B , contrary to state-
+ment (2). Isotoping S by pushing D ′ across B to D and slightly beyond eliminates
+the circle ∂D from S ∩ S 2 , along with any other circles of S ∩ S 2 which happen to lie
+§1.2                               Torus Decomposition                                   15
+
+
+in D ′ . For the new S it is still true that M || S is irreducible since it is diffeomorphic
+to the old M || S by isotopy extension. We can then repeat this process of eliminating
+circles of S ∩ S 2 until we eventually get S ∩ S 2 = ∅ , or in other words S 2 ⊂ M || S .
+Since M || S is irreducible, S 2 then bounds a ball in M || S and therefore also in M .
+
+(5) If S ⊂ M is a finite collection of disjoint, properly embedded surfaces that are
+either incompressible or spheres or disks, then a surface T in M disjoint from S
+is incompressible in M if and only if it is incompressible in M || S . It is obvious that
+incompressibility in M implies incompressibility in M || S . For the less trivial converse,
+let D ⊂ M be a compressing disk for T . If this intersects S , we can assume the
+intersection is transverse, so D ∩ S consists of circles in the interior of D . If any
+of these circles bound disks in S , we can take such a circle that is innermost in S ,
+bounding a disk D0 ⊂ S with D0 ∩ D = ∂D0 . We can use D0 to surger D , producing a
+new disk D intersecting S in fewer circles. After repeating this step a finite number of
+times, we may assume D ∩S contains no circles that bound disks in S . If there are any
+remaining circles in D ∩S , choose one that is innermost in D , bounding a disk D0 ⊂ D
+with D0 ∩ S = ∂D0 . Since the components of S are either incompressible or spheres
+or disks, the circle ∂D0 must bound a disk in S , contrary to what we have arranged
+by the earlier surgery. Thus we must have D ∩ S = ∅ . Since T is incompressible in
+M || S , the circle ∂D then bounds a disk in T . This shows T is incompressible in M .
+
+
+ Proposition 1.7. For a compact irreducible manifold M there is a bound on the
+ number of components in a system S = S1 ∪ ··· ∪ Sn of disjoint closed incompressible
+ surfaces Si ⊂ M such that no component of M || S is a product T × I with T a closed
+ surface.
+
+Proof: This follows the scheme of the proof of existence of prime decompositions.
+First, perturb S to be transverse to a triangulation of M and perform the follow-
+ing two steps repeatedly to simplify the intersections of S with 2 simplices σ 2 and
+3 simplices σ 3 :
+
+(1) Make all components of S ∩ σ 3 disks. In the proof of prime decomposition, this
+was done by surgery, but now the surgeries can be achieved by isotopy. Namely, given
+a surgery disk D ⊂ M with D ∩ S = ∂D , incompressibility gives a disk D ′ ⊂ S with
+∂D ′ = ∂D . The sphere D ∪ D ′ bounds a ball B ⊂ M since M is irreducible. We have
+B ∩ S = D ′ , otherwise a component of S would lie in B . Then isotoping S by pushing
+D ′ across B to D and a little beyond replaces S by one of the two surfaces produced
+by the surgery.
+16                               Canonical Decomposition                                    §1.2
+
+
+     Note that Step (1) eliminates circles of S ∩ σ 2 , since such a circle would bound
+disks in both adjacent σ 3 ’s, producing a sphere component of S .
+(2) Eliminate arcs of S ∩ σ 2 with both endpoints on the same edge of σ 2 . This can be
+done by isotopy of S just as in the prime decomposition theorem.
+     After these simplifications, components of M || S meeting 2 simplices only in rect-
+angles are I bundles as before. Trivial I bundles are ruled out by hypothesis. The
+nontrivial I bundles are bounded by surfaces Si and are tubular neighborhoods of
+1 sided surfaces Si′ . A surface Si cannot have I bundles on both sides since the union
+of these two I bundles would be all of M , which is impossible since the I bundles
+contain no vertices of the triangulation of M .
+     Replacing each Si bounding an I bundle by the corresponding Si′ converts S
+into a new system S ′ such that the components of M || S ′ are exactly the components
+of M || S that are not I bundles. The number of components of M || S ′ is therefore
+bounded by four times the number of 2 simplices of the triangulation. Consider now
+the following exact sequence:
+
+                          H3 (M, S ′ ; Z2 )→H2 (S ′ ; Z2 )→H2 (M; Z2 )
+
+By excision the first group can be replaced by H3 (M || S ′ , ∂(M || S ′ ) − ∂M; Z2 ) . This
+is a vector space over Z2 of dimension bounded by the number of components of
+M || S ′ since, after triangulating M || S ′ , there is at most one nontrivial simplicial relative
+3 cycle with Z2 coefficients in each component of M || S ′ . Thus the first and third terms
+of the exact sequence have dimensions bounded by numbers depending only on M ,
+not S . By exactness the dimension of the middle term H2 (S ′ ; Z2 ) ≈ H2 (S; Z2 ) is also
+bounded. Thus the number of components of S ′ is bounded, and this is the same as
+the number of components of S .                                                                ⊓
+                                                                                               ⊔
+
+     A properly embedded surface S ⊂ M is called ∂ parallel if it is isotopic, fixing
+∂S , to a subsurface of ∂M . By isotopy extension this is equivalent to saying that S
+splits off a product S × [0, 1] from M with S = S × {0} . An irreducible manifold M is
+called atoroidal if every incompressible torus in M is ∂ parallel.
+
+ Corollary 1.8. In a compact connected irreducible M there exists a (possibly empty)
+ finite collection T of disjoint incompressible tori such that each component of M || T
+ is atoroidal.
+
+Proof: If M is atoroidal we take T = ∅ . Otherwise, let T1 be an incompressible torus
+in M that is not ∂ parallel. If M || T1 is atoroidal we take T = T1 , and otherwise we
+§1.2                               Torus Decomposition                                    17
+
+
+let T2 be an incompressible torus in M || T1 that is not ∂ parallel. This process can be
+repeated as long as we do not obtain a splitting into atoroidal components, but this
+cannot be done infinitely often, otherwise we would have an arbitrarily large collection
+T of disjoint incompressible tori in M with no component of M || T a product of a torus
+with I , contradicting the previous proposition.                                          ⊓
+                                                                                          ⊔
+
+
+    Now we describe an example of an irreducible M where this torus decomposition
+into atoroidal pieces is not unique, the components of M || T for the two splittings
+being in fact nonhomeomorphic.
+
+Example. For i = 1, 2, 3, 4 , let Mi be a solid torus whose boundary torus is decom-
+posed as the union of two annuli Ai and A′i each winding qi > 1 times around the S 1
+factor of Mi . The union of these four solid tori, with each A′i glued to Ai+1 (subscripts
+mod 4 ), is the manifold M . This contains two tori T1 = A1 ∪ A3 and T2 = A2 ∪ A4 .
+The components of M || T1 are M1 ∪ M2 and M3 ∪ M4 , and the components of M || T2
+are M2 ∪ M3 and M4 ∪ M1 .
+
+
+
+
+                                                                          i+1 q       q
+The fundamental group of Mi ∪ Mi+1 has presentation hxi , xi+1 | xi i = xi+1  i.
+The center of this amalgamated free product is cyclic, generated by the element
+ q      qi+1
+xi i = xi+1  . Factoring out the center gives quotient Zqi ∗ Zqi+1 , with abelianization
+Zqi ⊕ Zqi+1 . Thus if the qi ’s are for example distinct primes, then no two of the mani-
+folds Mi ∪ Mi+1 are homeomorphic.
+     Results from later in this section will imply that M is irreducible, T1 and T2
+are incompressible, and the four manifolds Mi ∪ Mi+1 are atoroidal. So the splittings
+M || T1 and M || T2 , though quite different, both satisfy the conclusions of the Corollary.
+
+     Manifolds like the ones in this example that are obtained by gluing together solid
+tori along annuli in their boundaries that are not contractible in the solid tori belong
+to a very special class of manifolds called Seifert manifolds, which we now define.
+A model Seifert fibering of S 1 × D 2 is a decomposition of S 1 × D 2 into disjoint cir-
+cles, called fibers, constructed as follows. Starting with [0, 1]× D 2 decomposed into
+the segments [0, 1]× {x} , identify the disks {0}× D 2 and {1}× D 2 via a 2π p/q ro-
+tation, for p/q ∈ Q with p and q relatively prime. The segment [0, 1]× {0} then
+18                            Canonical Decomposition                                   §1.2
+
+
+becomes a fiber S 1 × {0} , while every other fiber in S 1 × D 2 is made from q segments
+[0, 1]× {x} . A Seifert fibering of a compact connected 3 manifold M is a decompo-
+sition of M into disjoint circles, the fibers, such that each fiber has a neighborhood
+diffeomorphic, preserving fibers, to a neighborhood of a fiber in some model Seifert
+fibering of S 1 × D 2 . A Seifert manifold is one which possesses a Seifert fibering.
+     Each fiber circle C in a Seifert fibering of a 3 manifold M has a well-defined
+multiplicity, the number of times a small disk transverse to C meets each nearby
+fiber. For example, in the model Seifert fibering of S 1 × D 2 with 2π p/q twist, the
+fiber S 1 × {0} has multiplicity q while all other fibers have multiplicity 1 . Fibers
+of multiplicity 1 are regular fibers, and the other fibers are multiple (or singular, or
+exceptional). The multiple fibers are isolated and lie in the interior of M . The quotient
+space B of M obtained by identifying each fiber to a point is a surface, compact if
+M is compact, as is clear from the model Seifert fiberings. The projection π : M →B
+is an ordinary fiber bundle on the complement of the multiple fibers. In particular,
+π : ∂M →∂B is a circle bundle, so ∂M consists of tori and Klein bottles, or just tori if
+M is orientable.
+     Somewhat surprisingly, Seifert manifolds account for all the nonuniqueness in
+torus decompositions of orientable 3 manifolds, according to the following theorem
+which will be the main result of this section.
+
+ Theorem 1.9. For a compact irreducible orientable 3 manifold M there exists a col-
+ lection T ⊂ M of finitely many disjoint incompressible tori such that each component
+ of M || T is either atoroidal or a Seifert manifold, and a minimal such collection T is
+ unique up to isotopy.
+
+     Here ‘minimal’ means minimal with respect to inclusions of such collections. Note
+the strength of the uniqueness: up to isotopy, not just up to homeomorphism of M ,
+for example. The orientability assumption can be dropped if splittings along incom-
+pressible Klein bottles are also allowed and the definition of ‘atoroidal’ is modified
+accordingly. For simplicity we will stick to the orientable case, however.
+
+Incompressible Surfaces in Seifert Manifolds
+     We have already proved the existence statement in the preceding theorem, where
+Seifert manifolds are unnecessary. We will prove the uniqueness statement using var-
+ious facts about incompressible surfaces in Seifert manifolds which will be proved in
+this subsection. To state these we first need another definition. A properly embedded
+surface S ⊂ M is ∂ incompressible if for each disk D ⊂ M such that ∂D ∩ S is an arc
+§1.2                             Torus Decomposition                                19
+
+
+α in ∂D and ∂D − α ⊂ ∂M (such a D is called a ∂ compressing disk for S ) there is
+a disk D ′ ⊂ S with α ⊂ ∂D ′ and ∂D ′ − α ⊂ ∂M .
+
+
+
+
+Analogously to the situation for incompressibility, S is ∂ incompressible if the map
+π1 (S, ∂S)→π1 (M, ∂M) induced by inclusion is injective for all choices of basepoint
+in ∂S .
+    A surface which is either incompressible and ∂ incompressible, or a sphere not
+bounding a ball, or a disk that is not ∂ parallel, will be called an essential surface.
+For an essential surface S in an irreducible manifold M no circle of ∂S can bound a
+disk in ∂M since an innermost such disk could be push into the interior of M to give
+a compressing disk for S , forcing S itself to be a disk since surfaces are assumed to
+be connected, and then irreducibility of M would force the disk S to be ∂ parallel.
+
+ Lemma 1.10. The only essential surfaces in S 1 × D2 are disks isotopic to meridian
+ disks {x}× D 2 .
+
+Proof: Let S be an essential surface in M = S 1 × D2 . No circles of ∂S can bound disks
+in ∂M since an innermost such circle bounding a disk D ⊂ ∂M would bound a disk
+D ′ ⊂ S since S is essential, so S = D ′ and the sphere D ∪ S would bound a ball in M
+since M is irreducible, making S a ∂ parallel disk. Thus we may isotope S so that all
+the circles of ∂S are either meridian circles {x}× ∂D 2 or transverse to all meridian
+circles. By a small perturbation S can also be made transverse to a fixed meridian
+disk D0 . Circles of S ∩ D0 can be eliminated by pushing the disk D ⊂ S bounded by
+an innermost such circle C across the ball bounded by D and the disk in D0 bounded
+by C .
+    After this has been done, consider an edgemost arc α of S ∩ D0 . This cuts off a
+∂ compressing disk D from D0 , so α also cuts off a disk
+D ′ from S , meeting ∂M in an arc β . The existence of D ′
+implies that the two ends of β lie on the same side of D0
+in ∂M . But this is impossible since β is transverse to all
+meridians and therefore proceeds monotonically through
+the meridian circles of ∂M . Thus we must have S disjoint from D0 , so ∂S consists of
+meridian circles. Each circle of ∂S bounds a disk in the boundary sphere of the ball
+20                             Canonical Decomposition                                 §1.2
+
+
+M || D0 . Pushing this disk slightly into the interior of the ball yields a compressing disk
+for S so since S is essential it must be a disk. It follows from Alexander’s theorem
+that any two disks in a ball having the same boundary are isotopic fixing the boundary,
+so S is isotopic to a meridian disk in M .                                               ⊓
+                                                                                         ⊔
+
+ Lemma 1.11. An incompressible surface S in an irreducible 3 manifold M with
+ ∂S contained in torus boundary components of M is either ∂ incompressible or a
+ ∂ parallel annulus.
+
+Proof: Suppose S is incompressible but ∂ compressible, with a ∂ compressing disk
+D meeting S in an arc α which does not cut off a disk from
+S . Let β be the arc D ∩ ∂M , lying in a torus component T
+of ∂M . The circles of ∂S in T do not bound disks in T ,
+as noted before Lemma 1.10. Thus β lies in an annulus
+component A of T || ∂S . If β were trivial in A , cutting off a
+disk D ′ , incompressibility applied to the disk D ∪ D ′ would imply that α cuts off a
+disk from S , contrary to assumption. Therefore β must join the two components of
+∂A .
+       If both components of ∂A come from the same circle of ∂S then S ∩ T consists
+of a single circle. Since S is 2 sided, it has a nonvanishing normal vector field that
+points into D along α . These normals point into β at the endpoints of α and hence
+they point into A along the two circles of ∂A . But this is impossible if the two circles
+of ∂ give the same circle of ∂S .
+       Thus the endpoints of β must lie in different circles of ∂S , and we have the
+configuration shown in the figure at the right. Let
+N be a neighborhood of ∂A∪α in S , a 3 punctured
+sphere. The circle ∂N − ∂S bounds an obvious disk
+in the complement of S lying near D ∪A , so since S
+is incompressible this boundary circle also bounds
+a disk in S . Thus S is an annulus. Surgering the
+torus S ∪ A via D yields a sphere, which bounds a ball in M since M is irreducible.
+Hence S ∪ A bounds a solid torus and S is ∂ parallel.                                    ⊓
+                                                                                         ⊔
+
+ Proposition 1.12. If M is an irreducible Seifert-fibered manifold, then every essential
+ surface in M is isotopic to a surface which is either vertical, i.e., a union of regular
+ fibers, or horizontal, i.e., transverse to all fibers.
+
+Proof: Let C1 , ··· , Cn be fibers of the Seifert fibering which include all the multiple
+§1.2                                Torus Decomposition                                    21
+
+
+fibers together with at least one regular fiber if there are no multiple fibers. Let M0 be
+M with small fibered open tubular neighborhoods of all the Ci ’s deleted. Thus M0 is
+a circle bundle M0 →B0 over a compact surface B0 with nonempty boundary. Choose
+disjoint arcs in B0 whose union splits B0 into a disk, and let A be the pre-image in
+M0 of this collection of arcs, a union of disjoint vertical annuli in M0 . The manifold
+M1 = M0 || A is then a circle bundle over a disk, hence a solid torus.
+    Let S be an essential surface in M, possibly a disk that is not ∂ parallel, but not a
+sphere since M is irreducible. The circles of ∂S are nontrivial in ∂M as noted before
+Lemma 1.10. The circles of ∂S can then be isotoped to be either vertical or horizontal
+in each component torus or Klein bottle of ∂M . Vertical circles of ∂S can be perturbed
+by isotopy to be disjoint from A . We may assume S meets the fibers Ci transversely,
+and hence meets the neighborhoods of these fibers in disks transverse to fibers. So
+the surface S0 = S ∩ M0 also has each of its boundary circles either horizontal or
+vertical.
+    Circles of S ∩ A bounding disks in A can be eliminated by isotopy of S as usual.
+Arcs of S ∩ A with both endpoints on the same component of ∂A can be eliminated
+as follows. An edgemost such arc α cuts off a disk D from A . If the two endpoints
+of α lie in a component of ∂M0 − ∂M , then S can be isotoped across D to eliminate
+two intersection points with a fiber Ci . The other possibility, that the two endpoints
+of α lie in ∂M , cannot occur, for if it did, the disk D would be a ∂ compressing disk
+for S in M , a configuration ruled out by the monotonicity argument in Lemma 1.10,
+with the role of meridians in that argument now played by vertical circles.
+    So we may assume the components of S ∩A are either vertical circles or horizontal
+arcs. If we let S1 = S0 || A in the solid torus M1 = M0 || A , it follows that ∂S1 consists of
+horizontal or vertical circles in the torus ∂M1 . Obviously both types of circles cannot
+be present simultaneously. We may assume the components of S1 are incompressible
+in M1 . For let D ⊂ M1 be a compressing disk for a component S1 . After a perturbation
+this will intersect the other components of S1 transversely in circles in the interior
+of D , so let C be an innermost such circle. This bounds a disk D0 in S . If D0 is
+contained in M1 then we can use it to modify D to eliminate C from D ∩ S1 . If D0 is
+not contained in M1 we can use it to isotope S to eliminate some components of ∂S1 .
+Repeating this argument, we can isotope S so that each component of S1 is either
+incompressible in M1 or a disk. In the latter case the disk cannot be ∂ parallel since
+its boundary is vertical or horizontal in ∂M1 .
+    Since the non-disk components of S1 are incompressible, each such component
+is either a ∂ parallel annulus or essential in M1 , hence isotopic to a meridian disk by
+22                             Canonical Decomposition                                §1.2
+
+
+Lemma 1.10. If S1 contains a ∂ parallel annulus with horizontal boundary, then this
+annulus has a ∂ compressing disk D with D ∩ ∂M1 a vertical arc in ∂M0 . As in the
+earlier step when we eliminated arcs of S ∩ A with endpoints on the same component
+of ∂A , this leads to an isotopy of S removing intersection points with a fiber Ci . So we
+may assume all components of S1 are either ∂ parallel annuli with vertical boundary
+or disks with horizontal boundary.
+     Since vertical circles in ∂M1 cannot be disjoint from horizontal circles, S1 is either
+a union of ∂ parallel annuli with vertical boundary or a union of disks with horizontal
+boundary. In the former case S1 can be isotoped to be vertical, staying fixed on ∂S1
+where it is already vertical. This isotopy gives an isotopy of S to a vertical surface.
+In the opposite case that S1 consists of disks with horizontal boundary, isotopic to
+meridian disks in M1 , we can isotope S1 to be horizontal fixing ∂S1 , and this gives an
+isotopy of S to a horizontal surface.                                                    ⊓
+                                                                                         ⊔
+
+     Vertical surfaces are easy to understand: They are circle bundles since they are
+disjoint from multiple fibers by definition, hence they are either annuli, tori, or Klein
+bottles.
+     Horizontal surfaces are somewhat more subtle. For a horizontal surface S the
+projection π : S →B onto the base surface of the Seifert fibering is a branched cover-
+ing, with a branch point of multiplicity q for each intersection of S with a singular
+fiber of multiplicity q . (To see this, look in a neighborhood of a fiber, where the map
+S →B is equivalent to the projection of a number of meridian disks onto B , clearly
+a branched covering.) For this branched covering π : S →B there is a useful formula
+relating the Euler characteristics of S and B ,
+                                                  X
+                             χ (B) − χ (S)/n =        (1 − 1/qi )
+                                                  i
+
+where n is the number of sheets in the branched cover and the multiple fibers of
+M have multiplicities q1 , ··· , qm . To verify this formula, triangulate B so that the
+images of the multiple fibers are vertices, then lift this to a triangulation of S . Count-
+ing simplices would then yield the usual formula χ (S) = n χ (B) for an n sheeted
+unbranched cover. In the present case, however, a vertex in B which is the image
+of a fiber of multiplicity qi has n/qi pre-images in S , rather than n . This yields a
+                                     P
+modified formula χ (S) = n χ (B) + i (−n + n/qi ) , which is equivalent to the one
+above.
+     There is further structure associated to a horizontal surface S in a Seifert-fibered
+manifold M . We may assume S is 2 sided since if it is 1 sided, it has an I bundle
+§1.2                               Torus Decomposition                                   23
+
+
+neighborhood whose boundary is a horizontal 2 sided surface. The projection S →B
+is onto so S meets all fibers of M , and M || S is an I bundle. (The local triviality of
+this I bundle is clear if one looks in a model-fibered neighborhood of a fiber.) The
+associated ∂I subbundle consists of two copies of S , so the I bundle is the mapping
+cylinder of a 2 sheeted covering projection S ∐S →T for some possibly disconnected
+surface T . There are two cases, according to whether S separates M or not:
+(1) If M || S is connected, so is T , and S ∐ S →T is the trivial covering S ∐ S →S , so
+M || S = S × I and hence M is a bundle over S 1 with fiber S . The surface fibers of this
+bundle are all horizontal surfaces in the Seifert fibering.
+(2) If M || S has two components, each is a twisted I bundle over a component Ti of T ,
+the mapping cylinder of a nontrivial 2 sheeted covering S →Ti , i = 1, 2 . The parallel
+copies of S in these mapping cylinders, together with T1 and T2 , are the leaves of a
+foliation of M . These leaves are the ‘fibers’ of a natural projection p : M →I , with T1
+and T2 the pre-images of the endpoints of I . This ‘fiber’ structure on M is not exactly a
+fiber bundle, so let us give it a new name: a semi-bundle. Thus a semi-bundle p : M →I
+is the union of two twisted I bundles p −1 [0, 1/2 ] and p −1 [1/2 , 1] glued together by a
+homeomorphism of the fiber p −1 (1/2 ). For example, in one lower dimension, the Klein
+bottle is a semi-bundle with fibers S 1 , since it splits as the union of two Möbius bands.
+More generally, one could define semi-bundles with base any manifold with boundary.
+
+    The techniques we have been using can also be applied to determine which Seifert
+manifolds are irreducible:
+
+ Proposition 1.13. A Seifert-fibered manifold M is irreducible unless it is S 1 × S 2 ,
+ S1 ×
+    e S 2 , or RP3 ♯ RP3 .
+
+Proof: We begin by observing that if M is reducible then there is a horizontal sphere
+in M not bounding a ball. This is proved by imitating the argument of the preceding
+proposition, with S now a sphere not bounding a ball in M . The only difference is
+that when incompressibility was used before, e.g., to eliminate trivial circles of S ∩ A ,
+we must now use surgery rather than isotopy. Such surgery replaces S with a pair of
+spheres S ′ and S ′′ . If both S ′ and S ′′ bounded balls, so would S , as we saw in the
+proof of Alexander’s theorem, so we may replace S by one of S ′ , S ′′ not bounding a
+ball. With these modifications in the proof, we eventually get a sphere which is either
+horizontal or vertical, but the latter cannot occur since S 2 is not a circle bundle.
+    If S is a horizontal sphere in M , then as we have seen, M is either a sphere bundle
+or a sphere semi-bundle. The only two sphere bundles are S 1 × S 2 and S 1 ×
+                                                                           e S2 . A
+24                             Canonical Decomposition                                  §1.2
+
+
+sphere semi-bundle is two copies of the twisted I bundle over RP2 glued together via
+a diffeomorphism of S 2 . Such a diffeomorphism is isotopic to either the identity or
+the antipodal map. The antipodal map extends to a diffeomorphism of the I bundle
+RP2 ×
+    e I , so both gluings produce the same manifold, RP3 ♯ RP3 .                          ⊓
+                                                                                          ⊔
+
+     The manifolds S 1 × S 2 , S 1 ×
+                                   e S 2 , and RP3 ♯ RP3 have Seifert fiberings. This is
+obviously true for S 1 × S 1 , while for S 1 ×
+                                             e S 2 we can regard this as S 2 × I with the two
+ends identified via the antipodal map of S 2 , so the I bundle structure on S 2 × I gives
+S1 ×
+   e S 2 a circle bundle structure. For RP3 ♯ RP3 , the I bundle structures on the two
+halves RP2 ×
+           e I of RP3 ♯ RP3 are glued together by the identity so they give RP3 ♯ RP3
+a circle bundle structure too.
+     Now we can give a converse to Proposition 1.12:
+
+ Proposition 1.14. Let M be an irreducible Seifert-fibered 3 manifold. Then every
+ 2 sided horizontal surface S ⊂ M is essential. The same is true of every 2 sided
+ vertical surface except:
+  (a) a torus bounding a solid torus with a model Seifert fibering, containing at most
+      one multiple fiber, or
+  (b) an annulus cutting off a solid torus from M with the product fibering on this solid
+      torus.
+
+Proof: For a 2 sided horizontal surface S we have noted that the Seifert fibering
+induces an I bundle structure on M || S , so M || S is the mapping cylinder of a 2 sheeted
+covering S ∐ S →T . In the special case that S is a disk, the only 2 sheeted covering
+D 2 ∐D 2 →T is the trivial covering D 2 ∐D 2 →D 2 so the I -bundle M || S is D 2 × I . Since
+S does not separate M it cannot be ∂ parallel, so S is essential in this case.
+     If S is a horizontal surface other than a disk we need to show that it is incom-
+pressible and ∂ incompressible. The covering space projection S ∐ S →T is injective
+on π1 for all choices of a basepoint in S ∐S , so the inclusion of the ∂I subbundle into
+the I bundle is also injective on π1 , which implies that S is incompressible. Similarly,
+∂ incompressibility follows from injectivity of relative π1 ’s.
+     Now let S be a 2 sided vertical surface, so S is a circle bundle over a 1 manifold,
+hence a torus, Klein bottle, or annulus. Suppose first that S is a torus or Klein bottle.
+If S is compressible, choose a compressing disk D with ∂D not bounding a disk in S .
+Then D is essential in M || S . The components of the Seifert-fibered manifold M || S
+are irreducible by Proposition 1.13 since they have nonempty boundary, so D can be
+isotoped in M || S to be horizontal by Proposition 1.12, as a disk cannot be vertical.
+§1.2                               Torus Decomposition                                   25
+
+
+The Euler characteristic formula in the component of M || S containing D takes the
+                    P
+form χ (B) − 1/n = i (1 − 1/qi ) where n is the number of sheets in the branched
+cover D →B and there is one term in the summation for each multiple fiber. The
+summation is non-negative so χ (B) > 0 . Since ∂B is nonempty, B must then be a
+disk with χ (B) = 1 . Each term 1−1/qi is at least 1/2 , so there can be at most one such
+term, and so there is at most one multiple fiber. This component of M || S is therefore
+a solid torus with a model Seifert fibering, and S is its torus boundary.
+     In the case that S is a vertical annulus, a compressing disk D with ∂D not bound-
+ing a disk in S can be isotoped to have ∂D vertical in S . Then D is essential in M || S
+and so can be isotoped in M || S to be horizontal, so in particular ∂D becomes hori-
+zontal, but this is impossible since ∂D is vertical. Thus S must be incompressible. If
+it is ∂ compressible it must be ∂ parallel by Lemma 1.11, cutting off a Seifert-fibered
+solid torus from M . The Seifert fibering of this solid torus is a model Seifert fibering
+as we argued in the preceding paragraph, but it cannot contain a multiple fiber since
+the annulus S in its boundary wraps around the solid torus only once, as the solid
+torus is S × I with S = S × {0} . This shows that if S is not essential, it cuts off a solid
+torus from M with the product fibering.                                                  ⊓
+                                                                                         ⊔
+
+    The Euler characteristic argument in this proof showed the following fact:
+
+ Corollary 1.15. The only Seifert fiberings of S 1 × D2 are the model Seifert fiberings.
+
+Uniqueness of Torus Decompositions
+    For the proof of the uniqueness statement in Theorem 1.9 we will need three
+preliminary lemmas.
+
+ Lemma 1.16. An essential annulus in a Seifert-fibered manifold M can be isotoped
+ to be vertical, after possibly changing the Seifert fibering if M is an I bundle over
+ the torus or Klein bottle.
+
+Proof: By Proposition 1.12 an essential annulus A in M can be isotoped to be either
+horizontal or vertical, so let us assume A is horizontal. If A does not separate M
+then M || A is the product A× I , so M is a bundle over S 1 with fiber A , the mapping
+torus A× I/{(x, 0) ∼ (ϕ(x), 1)} of a diffeomorphism ϕ : A→A . We can view A× I as
+a cube with left and right faces identified by translation and then M is obtained by
+further identifying the top and bottom faces via ϕ . The top and bottom faces become
+the annulus A . There are only four isotopy classes of diffeomorphisms of A = S 1 × I ,
+26                            Canonical Decomposition                                §1.2
+
+
+obtained as the composition of either the identity or a reflection in each factors, so
+M can be obtained as the mapping torus one of these four diffeomorphisms. Since
+these diffeomorphisms preserve the product structure on A = S 1 × I , we can construct
+another Seifert fibering of M by fibering the cube by parallel line segments joining the
+left and right faces. In this fibering of M the annulus A is vertical. Fibering the cube
+by segments joining the front and back faces then gives an I bundle structure on M .
+The four choices of diffeomorphisms of A give the two I bundles over the torus and
+the two I bundles over the Klein bottle.
+     If A is separating, M || A consists of two copies of the twisted I bundle B over
+a Möbius band obtained from a cube by identifying the left and right faces by a 180
+degree twist. The annulus A is formed by the top and bottom faces of the cube. All
+four possible gluings of the two copies of B yield the same manifold M since the
+gluing maps extend over B . The fibering of the cube by segments joining the left and
+right faces gives a model Seifert fibering of the solid torus B with a multiple fiber of
+multiplicity 2 . After gluing the two copies of B together one has a Seifert fibering of M
+in which A is vertical. (This Seifert fibering has base space a disk with two multiple
+fibers of multiplicity 2 .) Fibering the two cubes by segments joining the front and
+back faces makes M the twisted I bundle over the Klein bottle obtained by gluing
+two Möbius bands together along their boundaries.                                      ⊔
+                                                                                        ⊓
+
+ Lemma 1.17. If M is a Seifert manifold then the restrictions to ∂M of any two Seifert
+ fiberings of M are isotopic unless M is S 1 × D 2 or an I bundle over the torus or Klein
+ bottle.
+
+Proof: Let M be Seifert-fibered with ∂M 6= ∅ . First we note that M contains an
+essential vertical annulus A unless M = S 1 × D 2 . Namely, take A = π −1 (α) where α
+is an arc in the base surface B which is disjoint from the images of the multiple fibers
+and is either nonseparating (if B 6= D 2 ) or separates the images of multiple fibers (if
+B = D 2 and there are at least two multiple fibers). This guarantees that A is essential
+by Proposition 1.14. If M is not an I bundle over the torus or Klein bottle then by
+Lemma 1.16, A is isotopic to a vertical annulus in any other Seifert fibering of M , so
+the two Seifert fiberings can be isotoped to agree on ∂A , hence on the components of
+∂M containing ∂A . Since α could be chosen to meet any component of ∂B , the result
+follows.                                                                                ⊓
+                                                                                        ⊔
+
+ Lemma 1.18. If M is compact, orientable, irreducible, and atoroidal, and M con-
+ tains an essential annulus meeting only torus components of ∂M , then M is a Seifert
+ manifold.
+§1.2                                  Torus Decomposition                             27
+
+
+Proof: Let A be an annulus as in the hypothesis. Since we assume M is orientable
+there are just three possibilities:
+
+(a) A meets two different tori T1 and T2 in ∂M , and A ∪ T1 ∪ T2 has a neighborhood
+    N which is a product of a 2 punctured disk with S 1 .
+(b) A meets only one torus T1 in ∂M , the union of A with either annulus of T1 || ∂A
+    is a torus, and A ∪ T1 has a neighborhood N which is a product of a 2 punctured
+    disk with S 1 .
+ (c) A meets only one torus T1 in ∂M , the union of A with either annulus of T1 || ∂A
+    is a Klein bottle, and A ∪ T1 has a neighborhood N which is an S 1 bundle over a
+    punctured Möbius band.
+
+In all three cases N has the structure of a circle bundle N →B with A vertical.
+
+
+
+
+    By hypothesis, the tori of ∂N − ∂M must either be compressible or ∂ parallel
+in M . Suppose D is a nontrivial compressing disk for ∂N − ∂M in M , with ∂D a
+nontrivial loop in a component torus T of ∂N − ∂M . If D ⊂ N , then N would be a
+solid torus S 1 × D 2 by Proposition 1.14, which is impossible since N has more than
+one boundary torus. So D∩N = ∂D . Surgering T along D yields a 2 sphere bounding
+a ball B 3 ⊂ M . This B 3 lies on the opposite side of T from N , otherwise we would
+have N ⊂ B 3 with T the only boundary component of N . Reversing the surgery, B 3
+becomes a solid torus outside N , bounded by T .
+    The other possibility for a component T of ∂N − ∂M is that it is ∂ parallel in
+M , cutting off a product T × I from M . This T × I cannot be N since π1 N is non-
+abelian, the map π1 N →π1 B induced by the circle bundle N →B being a surjection
+to a free group on two generators. So T × I is an external collar on N , and hence can
+be absorbed into N .
+    Thus M is N with solid tori perhaps attached to one or two tori of ∂N − ∂M . The
+meridian circles {x}× ∂D 2 in such attached S 1 × D 2 ’s are not isotopic in ∂N to circle
+fibers of N , otherwise A would be compressible in M (recall that A is vertical in N) .
+Thus the circle fibers wind around the attached S 1 × D 2 ’s a nonzero number of times
+in the S 1 direction. Hence the circle bundle structure on N extends to model Seifert
+fiberings of these S 1 × D 2 ’s, and so M is Seifert-fibered.                          ⊓
+                                                                                       ⊔
+28                            Canonical Decomposition                                 §1.2
+
+
+Proof of Theorem 1.9: Only the uniqueness statement remains to be proved. Let
+T = T1 ∪ ··· ∪ Tm and T ′ = T1′ ∪ ··· ∪ Tn′ be two minimal collections of disjoint
+incompressible tori splitting M into manifolds Mj and Mj′ , respectively, which are
+either atoroidal or Seifert-fibered. We may suppose T and T ′ are nonempty, otherwise
+the theorem is trivial since if T is empty for example, M itself would be Seifert-fibered
+or atoroidal and the minimality of T ′ would force it to be empty as well. We can also
+assume no torus of T is isotopic to a torus of T ′ , otherwise we could extend this
+isotopy to an ambient isotopy of M and in particular of T , to make T and T ′ have a
+torus in common, then split M along this torus and appeal to induction on the number
+of tori in T and T ′ .
+     After perturbing T to meet T ′ transversely, we can isotope T or T ′ to elimi-
+nate circles of T ∩ T ′ which bound disks in T or T ′ by the usual argument using
+incompressibility and irreducibility.
+     For each component Mj of M || T the components of T ′ ∩ Mj are then tori or
+annuli. To see that the annulus components are incompressible in Mj , let D be a
+compressing disk in Mj for an annulus component A of T ′ ∩ Mj . After perturbing
+D to be transverse to T ′ , it might have circles of intersection with T ′ in its interior,
+but these can be eliminated, innermost first, by an isotopy of D in M fixing ∂D since
+the components of T ′ are incompressible in M . After this has been done, D will
+be a compressing disk for A in M and hence also for the component torus of T ′
+containing A . This torus is incompressible in M , so ∂D bounds a disk D ′ in T ′ .
+This disk must be disjoint from T since we have eliminated trivial circles of T ∩ T ′ .
+Thus D ′ is contained in Mj . It must in fact be contained in A , otherwise A would be
+contained in D ′ and T ∩ T ′ would contain a circle that is trivial in T ′ . This shows A
+is incompressible in Mj . If it is ∂ compressible then it is ∂ parallel by Lemma 1.11,
+so it can be eliminated by an isotopy of T ′ decreasing the number of circles of T ∩ T ′ .
+Thus we can assume all annulus components of T ′ ∩ Mj are essential in Mj for all j .
+     A circle C of T ∩ T ′ lies in the boundary of annulus components Aj of T ′ ∩ Mj
+and Ak of T ′ ∩ Mk (possibly Aj = Ak if Mj = Mk ) . By Lemma 1.18 Mj and Mk are
+Seifert-fibered. Our next goal is to use minimality of the collection T to show that it
+must now be disjoint from T ′ . To do this we distinguish several cases:
+
+1.   If Mj 6= Mk , Lemma 1.16 implies that we can choose Seifert fiberings of Mj and
+Mk in which Aj and Ak can be isotoped to be vertical. Extending these isotopies
+to ambient isotopies and reversing the time parameter gives isotopies of the Seifert
+fiberings to new Seifert fiberings in which the original Aj and Ak are vertical. These
+§1.2                               Torus Decomposition                                  29
+
+
+Seifert fiberings both have C as a fiber, so they can be isotoped to agree on the torus
+component Ti of T containing C . This means that the collection T is not minimal
+since Ti could be deleted from it. Thus the case Mj ≠ Mk cannot occur.
+
+2. The same argument works if Mj = Mk and Aj = Ak , so we may assume now that
+Mj = Mk and Aj ≠ Ak .
+
+3.   If Mj is not one of the I bundles in Lemma 1.16 then Aj can be isotoped to be
+vertical in Mj , and the same is true for Ak . Restricting these two isotopies to the two
+copies of C in Mj on either side of Ti , we then have two isotopic circles in Ti that
+are vertical in the Seifert fibering of Mj . This implies that the Seifert fibering can be
+isotoped to extend across Ti and so the collection T would again fail to be minimal.
+
+4.     If Mj is one of the I bundles in Lemma 1.16 it can only be the trivial bundle
+S × S 1 × I since Mj is orientable and has at least two boundary components, coming
+ 1
+
+from the two sides of Ti . If Mj = S 1 × S 1 × I and we have to rechoose the Seifert
+fibering of Mj to make Aj vertical, then as we saw in the proof of Lemma 1.16, the
+new fibering is the trivial circle bundle over S 1 × I . The annulus Aj , being vertical in
+this fibering and essential in Mj , must then join the two boundary tori of Mj since
+its projection to the base surface S 1 × I of the circle bundle must be an arc joining
+the two boundary components of S 1 × I . The boundary circle of Tk coming from C
+is disjoint from Aj so it can be isotoped in Ti to be vertical. This implies that the
+Seifert fibering of Mj can be isotoped, fixing Aj , first to make this boundary circle of
+Tk vertical and then to make the two fiberings of Ti coming from either side in Mj
+agree, so Ti could be omitted from T . The same argument would work if the roles of
+Tj and Tk are reversed.
+
+5. The only remaining possibility is that Mj = S 1 × S 1 × I and both Tj and Tk can be
+isotoped to be vertical in Mj . The argument in Case 3 then applies.
+
+     Thus we may assume T ∩ T ′ = ∅ . If any component Ti of T lies in an atoroidal
+Mj′ it must be isotopic to a component Ti′ of T ′ , a situation we have already excluded.
+Thus we may assume each Ti lies in a Seifert-fibered Mj′ , and similarly, each Ti′ lies in
+a Seifert-fibered Mj . These Seifert-fibered manifolds all have nonempty boundary, so
+they contain no horizontal tori. Thus we may assume all the tori Ti ⊂ Mj′ and Ti′ ⊂ Mj
+are vertical.
+     We can also assume all the Mj ’s and Mj′ ’s are Seifert-fibered by the following
+argument. An atoroidal Mj , for example, would have to lie entirely within an Mj′ , as
+Mj contains no Ti′ ’s. This Mj′ would have to be Seifert-fibered since it contains the
+30                              Canonical Decomposition                                §1.2
+
+
+Ti ’s in ∂Mj . Then since the Ti ’s in ∂Mj are vertical in Mj′ , the Seifert-fibering of Mj′
+restricts to a Seifert-fibering of Mj .
+     The Ti ’s and Ti′ ’s together cut M into pieces Np . Each Np has two possibly
+different Seifert-fiberings, the one from the Mj which contains it, the other from the
+Mj′ which contains it. Consider a torus Ti . This has four fiberings from the two
+Seifert-fiberings on the Np and Nq on either side of it (possibly Np = Nq ). Two of
+these fiberings of Ti must be equal since they come from the same Mj′ containing Ti .
+We will show that the Seifert-fiberings of the Mj containing Np and the Mk containing
+Nq (possibly Mj = Mk ) can be made to agree on Ti . But this would contradict the
+minimality of the collection T since Ti could be deleted from it.
+     In most cases the two Seifert-fiberings of Np can be made to agree on Ti by an
+isotopy of the Seifert-fibering of Mj supported near Ti by Lemma 1.17. Since we
+assume M is orientable, the exceptional cases are:
+ — Np = S 1 × D 2 . This would have Ti as its compressible boundary, so this case
+     cannot occur.
+ — Np = S 1 × S 1 × I . One boundary component of this is Ti . If the other is a Ti′ , then
+     Ti and Ti′ would be isotopic, contradicting an earlier assumption. Thus both tori
+     of ∂Np come from tori in T . If these tori in T are distinct then Np gives an
+     isotopy between them so one of them could be omitted from T , contradicting
+     the minimality of T . There remains the possibility that both tori of ∂Np must
+     come from the same Ti , but this would mean T ′ is empty, a case excluded at the
+     beginning. Thus the case Np = S 1 × S 1 × I cannot occur.
+ — Np is the twisted I bundle over a Klein bottle. This has only one boundary com-
+     ponent, so Np = Mj ⊂ Mj′ and we can change the Seifert-fibering of Mj to be the
+     restriction of the Seifert-fibering of Mj′ .
+The same reasoning applies with Nq and Mk in place of Np and Mj . The conclusion
+is that we have Seifert-fiberings of Mj and Mk that agree on Ti since they agree with
+the fibering from Mj′ . This means Ti can be omitted from T , contrary to minimality,
+and the proof is complete.                                                                ⊓
+                                                                                          ⊔
+
+
+Exercises
+1. Show: If S ⊂ M is a 1 sided connected surface, then π1 S →π1 M is injective if and
+only if ∂N(S) is incompressible, where N(S) is a twisted I bundle neighborhood of
+S in M .
+2. Call a 1 sided surface S ⊂ M geometrically incompressible if for each disk D ⊂ M
+§1.2                             Torus Decomposition                                31
+
+
+with D ∩ S = ∂D there is a disk D ′ ⊂ S with ∂D ′ = ∂D . Show that if H2 M = 0 but
+H2 (M; Z2 ) 6= 0 then M contains a 1 sided geometrically incompressible surface which
+is nonzero in H2 (M; Z2 ) . This applies for example if M is a lens space Lp/2q . Note
+that if q > 1 , the resulting geometrically incompressible surface S ⊂ Lp/2q cannot be
+S 2 or RP2 , so the map π1 S →π1 Lp/2q is not injective. (See [Frohman] for a study of
+geometrically incompressible surfaces in Seifert manifolds.)
+3. S is ∂ incompressible if π1 (S, ∂S)→π1 (M, ∂M) is injective for all choices of base-
+point in ∂S .
+4. Develop a canonical torus and Klein bottle decomposition theorem for irreducible
+nonorientable 3 manifolds.
+32                          Special Classes of 3-Manifolds                            §2.1
+
+
+Chapter 2. Special Classes of 3-Manifolds
+     In this chapter we study prime 3 manifolds whose topology is dominated, in one
+way or another, by embedded tori. This can be regarded as refining the results of the
+preceding chapter on the canonical torus decomposition
+
+1. Seifert Manifolds
+     Seifert manifolds, introduced in the last chapter where they play a special role in
+the torus decomposition, are among the best-understood 3 manifolds. In this section
+our goal is the classification of orientable Seifert manifolds up to diffeomorphism.
+We begin with the classification up to fiber-preserving diffeomorphism, which is fairly
+straightforward. Then we show that in most cases the Seifert fibering is unique up to
+isotopy, so in these cases the diffeomorphism and fiber-preserving diffeomorphism
+classifications coincide. But there are a few smaller Seifert manifolds, including some
+with nonunique fiberings, which must be treated by special techniques. Among these
+are the lens spaces, which we classify later in this section.
+     The most troublesome Seifert fiberings are those with base surface S 2 and three
+multiple fibers. These manifolds are too large for the lens space method to work
+and too small for the techniques of the general case. They have been classified by a
+study of the algebra of their fundamental groups, but a good geometric classification
+has yet to be found, so we shall not prove the classification theorem for these Seifert
+manifolds.
+     All 3 manifolds in this chapter are assumed to be orientable, compact, and con-
+nected. The nonorientable case is similar, but as usual we restrict to orientable man-
+ifolds for simplicity.
+
+Classification of Seifert Fiberings
+     We begin with an explicit construction of Seifert fiberings. Let B be a compact
+connected surface, not necessarily orientable. Choose disjoint disks D1 , ··· , Dk in the
+interior of B , and let B ′ be B with the interiors of these disks deleted. Let M ′ →B ′
+be the circle bundle with M ′ orientable. Thus if B ′ is orientable M ′ is the product
+B ′ × S 1 , and if B ′ is nonorientable, M ′ is the twisted product in which circles in B ′
+are covered either by tori or Klein bottles in M ′ according to whether these circles are
+orientation-preserving or orientation-reversing in B ′ . Explicitly, B ′ can be constructed
+by identifying pairs of disjoint arcs ai and bi in the boundary of a disk D 2 , and then
+we can form M ′ from D 2 × S 1 by identifying ai × S 1 with bi × S 1 via the product of
+§2.1                                    Seifert Manifolds                                  33
+
+
+the given identification of ai and bi with either the identity or a reflection in the S 1
+factor, whichever makes M ′ orientable.
+
+       Let s : B ′ →M ′ be a cross section of M ′ →B ′ . For example, we can regard M ′ as the
+double of an I bundle, that is, two copies of the I bundle with their sub ∂I bundles
+identified by the identity map, and then we can choose a cross section in one of the
+I bundles. The cross section s together with a choice of orientation for the manifold
+M ′ allows us to speak unambiguously of slopes of nontrivial circles in the tori of
+∂M ′ . Namely, we can choose a diffeomorphism ϕ of each component of ∂M ′ with
+S 1 × S 1 taking the cross section to S 1 × {y} (slope 0 ) and a fiber to {x}× S 1 (slope
+∞ ). An orientation of M ′ induces an orientation of ∂M ′ , and this determines ϕ up
+to simultaneous reflections of the two S 1 factors, which doesn’t affect slopes. We are
+assuming the standard fact that each nontrivial circle in S 1 × S 1 is isotopic to a unique
+‘linear’ circle which lifts to the line y = (p/q)x of slope p/q in the universal cover
+R2 .
+
+       From M ′ we construct a manifold M by attaching k solid tori D 2 × S 1 to the torus
+components Ti of ∂M ′ lying over ∂Di ⊂ ∂B ′ , attaching by diffeomorphisms taking a
+meridian circle ∂D 2 × {y} of ∂D 2 × S 1 to a circle of some finite slope αi /βi ∈ Q in
+Ti . The k slopes αi /βi determine M uniquely, since once the meridian disk D 2 × {y}
+is attached to M ′ there is only one way to fill in a ball to complete the attaching of
+D 2 × S 1 . The circle fibering of M ′ extends naturally to a Seifert fibering of M via a
+model Seifert fibering on each attached D 2 × S 1 , since the fibers of M ′ in Ti are not
+isotopic to meridian circles of the attached D 2 × S 1 . Namely, fibers have slope ∞ ,
+meridians have slope αi /βi 6= ∞ . Note that the singular fiber in the i th D 2 × S 1 has
+multiplicity βi since the meridian disk of D 2 × S 1 is attached to a slope αi /βi circle
+and hence meets each fiber of ∂M ′ βi times. Recall that the multiplicity of a singular
+fiber is the number of times a transverse disk meets nearby regular fibers.
+
+       We use the notation M(±g, b; α1 /β1 , ··· , αk /βk ) for this Seifert-fibered manifold
+M , where g is the genus of B , with the sign + if B is orientable and − if B is
+nonorientable, and b is the number of boundary components of B . Here ‘genus’
+for nonorientable surfaces means the number of RP2 connected summands. Revers-
+ing the orientation of M(±g, b; α1 /β1 , ··· , αk /βk ) has the effect of changing it to
+M(±g, b; −α1 /β1 , ··· , −αk /βk ) .
+
+       We say two Seifert fiberings are isomorphic if there is a diffeomorphism carrying
+fibers of the first fibering to fibers of the second fibering.
+34                           Special Classes of 3-Manifolds                                 §2.1
+
+
+ Proposition 2.1. (a) Every orientable Seifert-fibered manifold is isomorphic to one of
+ the models M(±g, b; α1 /β1 , ··· , αk /βk ) .
+ (b) Seifert fiberings M(±g, b; α1 /β1 , ··· , αk /βk ) and M(±g, b; α′1 /β′1 , ··· , α′k /β′k )
+ are isomorphic by an orientation-preserving diffeomorphism if and only if the follow-
+ ing two conditions are satisfied:
+ (i) After possibly permuting indices, αi /βi ≡ α′i /β′i mod 1 for each i .
+      P           P
+ (ii) i αi /βi = i α′i /β′i in the special case b = 0 .
+
+     This gives the complete isomorphism classification of Seifert fiberings since the
+numbers ±g and b are determined by the isomorphism class of a fibering, which
+determines the base surface B , and the Seifert fiberings M(±g, b; α1 /β1 , ··· , αk /βk )
+and M(±g, b; α1 /β1 , ··· , αk /βk , 0) are the same.
+
+Proof: Given an oriented Seifert-fibered manifold M , let M ′ be the complement of
+open solid torus model-fibered neighborhoods of fibers C1 , ··· , Ck including all multi-
+ple fibers. Choose a section s of the circle bundle M ′ →B ′ . As before, this determines
+slopes for circles in ∂M ′ , and we see that M has the form M(±g, b; α1 /β1 , ··· , αk /βk ) .
+It remains to see the effect on the αi /βi ’s of choosing a different section s .
+     Let a be an arc in B ′ with endpoints in ∂B ′ . Above this in M ′ lies an annulus
+A . We can rechoose s near A so that instead of simply crossing A transversely, it
+winds m times around A as it crosses. See Figure 2.1. The effect of this change in s
+is to add m to all slopes in the boundary torus of M ′ at one edge of A and subtract
+m from all slopes in the boundary torus at the other edge of A . In particular, if both
+ends of A lie in the same boundary torus there is no change in boundary slopes.
+
+
+
+
+                                          Figure 2.1
+     Thus if b 6= 0 we can choose A connecting the boundary torus near the fiber Ci
+with a torus in ∂M , and then change αi /βi by any integer, keeping all other αj /βj ’s
+fixed. Similarly, if b = 0 we can add and subtract an integer m from any two αi /βi ’s,
+so we can change the αi /βi ’s to any fractions which are congruent mod 1 , subject
+                           P
+only to the constraint that i αi /βi stays constant.
+     We claim that any two choices of the section s are related by a sequence of ‘twist’
+§2.1                                    Seifert Manifolds                                   35
+
+
+modifications near vertical annuli A as above, together with homotopies through sec-
+tions, which have no effect on slopes. To see this, take disjoint vertical annuli Aj
+splitting M ′ into a solid torus. Any two sections can be homotoped, through sec-
+tions, to coincide outside a neighborhood of the Aj ’s. Then it is clear that near the
+Aj ’s the two sections can be homotoped to coincide, after inserting the appropriate
+number of twists.                                                                           ⊓
+                                                                                            ⊔
+
+     In the case of Seifert fiberings M(±g, 0; α1 /β1 , ··· , αk /βk ) of closed manifolds,
+               P
+the invariant i αi /βi is called the Euler number of the fibering. When there are no
+multiple fibers we can take k = 1 and then the Euler number, which is an integer, is
+the obstruction to the existence of a section B →M , i.e., the Euler number vanishes if
+and only if such a section exists. (Exercise.) More generally:
+
+ Proposition 2.2. Let M be an orientable Seifert-fibered manifold.
+  (a) If ∂M 6= ∅ , horizontal surfaces exist in M .
+  (b) If ∂M = ∅ , horizontal surfaces exist if and only if the Euler number of the fibering
+        is zero.
+
+Proof: In (a), view M as a circle bundle M0 with model-fibered solid tori Mi attached,
+each Mi attaching along an annulus in its boundary. Namely, these annuli in M project
+to arcs in the base surface cutting off disks each containing the image of one multiple
+fiber. Given a positive integer n there is a horizontal surface S0 ⊂ M0 meeting each
+fiber in n points. To see this, we can regard M0 as a quotient of a trivially fibered
+solid torus S 1 × D 2 in which certain vertical annuli in S 1 × ∂D 2 are identified. Each
+identification can be chosen to be either the identity or a fixed reflection in the S 1
+factor. Taking n points xj ∈ S 1 which are invariant (as a set) under the reflection,
+the n meridian disks {xj }× D 2 in S 1 × D 2 give the desired surface S0 in the quotient
+M0 .
+       Now let n be a common multiple of the multiplicities qi of the multiple fibers in
+the solid tori Mi attached to M0 . In Mi let Si be the union of n/qi meridian disks,
+so Si meets each regular fiber in n points. We can isotope Si through horizontal
+surfaces so that its n arcs of intersection with the vertical annulus M0 ∩ Mi match up
+with the n arcs of S0 in M0 ∩ Mi . Then the union of S0 with the Si ’s is a horizontal
+surface in M .
+       For (b), let M = M(±g, 0; α1 /β1 , ··· , αk /βk ) , with section s : B ′ →M ′ as before.
+Let M0 be M with a fibered solid torus neighborhood of a regular fiber in M ′ deleted.
+Suppose S0 is a horizontal surface in M0 .
+36                          Special Classes of 3-Manifolds                           §2.1
+
+
+Claim. The circles of ∂S0 in ∂M0 have slope equal to e(M) , the Euler number of M .
+This easily implies (b): By (a), such a surface S0 exists. If e(M) = 0 , S0 extends via
+meridian disks in M − M0 to a horizontal surface S ⊂ M . Conversely, if a horizontal
+surface S ⊂ M exists, the surface S0 = S ∩ M0 must have its boundary circles of slope
+0 since these circles bound disks in M − M0 . So e(M) = 0 .
+     To prove the Claim, let M0′ = M0 ∩ M ′ and S0′ = S0 ∩ M ′ . The circles of ∂S0′
+in ∂M ′ have slopes αi /βi , and we must check that the circles of ∂S0′ in ∂M0 have
+      P
+slope i αi /βi . This we do by counting intersections of these circles with fibers and
+with the section s . Since S0′ is horizontal, it meets all fibers in the same number of
+points, say n . Intersections with s we count with signs, according to whether the
+slope of ∂S0′ near such an intersection point is positive or negative. The total number
+of intersections of ∂S0′ with s is zero because the two intersection points at the end
+of an arc of s ∩ S0′ have opposite sign. Thus the number of intersections of ∂S0′ with
+                                                                           P
+s in ∂M0 equals the number of intersections in ∂M ′ . The latter number is i nαi /βi
+since the slope of ∂S0′ near the i th deleted fiber is αi /βi , which must equal the ratio
+of intersection number with s to intersection number with fiber; the denominator of
+this ratio is n , so the numerator must be nαi /βi .
+                                P               P
+     Thus the slope of ∂S0 is ( i nαi /βi )/n = i αi /βi = e(M) .                       ⊓
+                                                                                        ⊔
+§2.1                                      Seifert Manifolds                                 37
+
+
+Classification of Seifert Manifolds
+    Here is a statement of the main result:
+
+ Theorem 2.3. Seifert fiberings of orientable Seifert manifolds are unique up to iso-
+ morphism, with the exception of the following fiberings:
+  (a) M(0, 1; α/β) , the various model Seifert fiberings of S 1 × D 2 .
+  (b) M(0, 1; 1/2 , 1/2 ) = M(−1, 1; ), two fiberings of S 1 ×
+                                                             e S1 ×
+                                                                  eI.
+  (c) M(0, 0; α1 /β1 , α2 /β2 ) , various fiberings of S 3 , S 1 × S 2 , and lens spaces.
+  (d) M(0, 0; 1/2 , −1/2 , α/β) = M(−1, 0; β/α) for α, β 6= 0 .
+                                                                           e S1 ×
+  (e) M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 ) = M(−2, 0; ), two fiberings of S 1 ×    e S1 .
+
+    The two Seifert fiberings of S 1 ×
+                                     e S1 ×
+                                          e I in (b) are easy to see if we view S 1 ×
+                                                                                    e S1 ×
+                                                                                         eI
+as obtained from S 1 × I × I by identifying S 1 × I × {0} with S 1 × I × {1} via the diffeo-
+morphism ϕ which reflects both the S 1 and I factors. One fibering of S 1 ×
+                                                                          e S1 ×
+                                                                               e I then
+comes from the fibers S 1 × {y}× {z} of S 1 × I × I and the other comes from the fibers
+{x}× {y}× I ; in the latter case the two fixed points of ϕ give multiplicity-two fibers.
+
+
+
+
+                                             Figure 2.2
+    Note that the examples in (a) and (b) generate the remaining examples: The fiber-
+ings in (c) are obtained by gluing together two model fiberings from (a); (d) is obtained
+by gluing a model fibering into each of the two fiberings in (b); and (e) is simply the
+double of (b).
+    In most cases the Theorem is a consequence of the following:
+
+ Proposition 2.4. If M1 and M2 are irreducible orientable Seifert-fibered manifolds
+ which are diffeomorphic, then there is a fiber-preserving diffeomorphism provided
+ that M1 contains vertical incompressible, ∂ incompressible annuli or tori, and M2
+ contains no horizontal incompressible, ∂ incompressible annuli or tori.
+
+Proof: First we do the case of closed manifolds. In the base surface B1 of M1 choose
+two transversely intersecting systems C and C ′ of disjoint 2 sided circles not passing
+38                           Special Classes of 3-Manifolds                             §2.1
+
+
+through singular points (projections of singular fibers), such that:
+(1) No circle of C or C ′ bounds a disk containing at most one singular point.
+(2) The components of B1 || (C ∪ C ′ ) are disks containing at most one singular point.
+(3) No component of B1 || (C ∪ C ′ ) is a disk bounded by a single arc of C and a single
+     arc of C ′ , and containing no singular point.
+For example, one can choose C to be a single circle, then construct C ′ from suitably
+chosen arcs in B1 || C , matching their ends across C . (Details left as an exercise.) Let
+T and T ′ be the collections of incompressible vertical tori in M1 lying over C and C ′ .
+     Let f : M1 →M2 be a diffeomorphism. Since M2 contains no incompressible hor-
+izontal tori, we may isotope f to make f (T ) vertical in M2 by Proposition 1.12. The
+circles of T ∩ T ′ are nontrivial in T , so we may isotope f to make the circles of
+f (T ∩ T ′ ) vertical or horizontal in each torus of f (T ) . By condition (3) the annuli of
+T ′ || (T ∩ T ′ ) are incompressible and ∂ incompressible in M1 || T , so we may isotope f ,
+staying fixed on T , to make the annuli of f (T ′ ) || f (T ∩ T ′ ) vertical or horizontal in
+M2 . If any of these were horizontal, they would be part of horizontal tori in M2 , so we
+now have f (T ∪ T ′ ) vertical in M2 . Since f (T ∩ T ′ ) is vertical, we can can isotope f
+to be fiber-preserving on T ∪ T ′ , and then make f fiber-preserving in a neighborhood
+M1′ of T ∪ T ′ .
+     By condition (2) the components of M1 − M1′ are solid tori, so the same is true for
+M2 −M2′ , where M2′ = f (M1′ ) . Choose an orientation for M1 and a section for M1′ →B1′ .
+Via f these choices determine an orientation for M2 and a section for M2′ →B2′ . Note
+that f induces a diffeomorphism of B1′ onto B2′ , so the closed surfaces B1 and B2
+are diffeomorphic. The fractions αi /βi for corresponding solid tori of M1 − M1′ and
+M2 = M2′ must be the same since these are the slopes of boundary circles of meridian
+disks, and f takes meridian disks to meridian disks (up to isotopy). Thus M1 and
+M2 have the same form M(±g, 0; α1 /β1 , ··· , αk /βk ) , completing the proof for closed
+manifolds.
+     For nonempty boundary the proof is similar but easier. Let T be a collection of
+incompressible, ∂ incompressible vertical annuli splitting M1 into solid tori. Isotope
+f first to make f (T ) vertical, then to make f fiber-preserving in a neighborhood of
+T ∪ ∂M1 . The rest of the argument now proceeds as in the closed case.                    ⊓
+                                                                                          ⊔
+
+     Let us see how close Proposition 2.4 comes to proving the Theorem. Consider
+first the case of irreducible manifolds with nonempty boundary. Then vertical incom-
+pressible, ∂ incompressible annuli exist except in the model fiberings M(0, 1; α/β) .
+To see when horizontal annuli exist we apply the Euler characteristic formula χ (B) −
+§2.1                                      Seifert Manifolds                                       39
+
+            P
+χ (S)/n = i (1 − 1/βi ) . In the present case S is an annulus, so we have χ (B) =
+P                                                                                    2
+  i (1 − 1/βi ) ≥ 0 , so B is a disk, annulus, or Möbius band. If B = D , we have
+     P
+1 = i (1 − 1/βi ) , a sum of terms 1/2 , 2/3 , 3/4 , ···, so the only possibility is 1 = 1/2 + 1/2
+                                                                     P
+and the fibering M(0, 1; 1/2 , 1/2 ). If B = S 1 × I , we have 0 = i (1 − 1/βi ) so there are
+no multiple fibers and we have a product fibering M(0, 2; ) of S 1 × S 1 × I . Similarly,
+           e I we have the fibering M(−1, 1; ) of S 1 ×
+if B = S 1 ×                                          e S1 ×
+                                                           e I . The manifolds S 1 × S 1 × I
+and S 1 ×
+        e S1 ×
+             e I are not diffeomorphic since they deformation retract onto a torus and
+a Klein bottle, respectively, and so are of distinct homotopy types. Thus the Theorem
+follows in the case of irreducible manifolds with nonempty boundary.
+     For closed irreducible manifolds the analysis is similar but more complicated.
+Incompressible vertical tori exist unless the base surface B is S 2 and there are at
+most three multiple fibers, or B is RP2 and there is at most one multiple fiber. If
+horizontal tori exist we must have χ (B) ≥ 0 , so there are the following cases:
+                       P
+ — B = S 2 and 2 = i (1 − 1/βi ) . Since 1/2 ≤ 1 − 1/βi < 1 there must be either
+     three or four multiple fibers. With four multiple fibers, the multiplicities must
+     all be 2 , so we have the fibering M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 ) since the Euler number
+     must be zero. With three multiple fibers we have 1/β1 + 1/β2 + 1/β3 = 1 so
+     (β1 , β2 , β3 ) = (2, 3, 6) , (2, 4, 4) , or (3, 3, 3) , up to permutations. We leave it for
+     the reader to check that the fibering must be isomorphic to M(0, 0; 1/2 , −1/3 , −1/6 ),
+     M(0, 0; 1/2 , −1/4 , −1/4 ), or M(0, 0; 2/3 , −1/3 , −1/3 ), allowing orientation-reversing iso-
+     morphisms.
+                          P
+ — B = RP2 and 1 =        i (1 − 1/βi ) , implying just two multiple fibers, of multiplicity
+     2 . Since the Euler number is zero the fibering must be M(−1, 0; 1/2 , −1/2 ).
+            1   1     1    1
+                  e S with no multiple fibers and Euler number zero, the fiberings
+ — B = S × S or S ×
+     M(1, 0; ) and M(−2, 0; ) .
+Thus we have the following six manifolds:
+
+                 M1 = M(1, 0; ) = S 1 × S 1 × S 1
+                 M2 = M(−2, 0; ) = M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 ) = S 1 ×
+                                                                           e S1 ×
+                                                                                e S1
+                 M3 = M(0, 0; 2/3 , −1/3 , −1/3 )
+                 M4 = M(0, 0; 1/2 , −1/4 , −1/4 )
+                 M5 = M(0, 0; 1/2 , −1/3 , −1/6 )
+                 M6 = M(−1, 0; 1/2 , −1/2 )
+
+Each of these seven fiberings has Euler number zero, hence does in fact contain a
+horizontal surface S . By the Euler characteristic formula, χ (S) = 0 , so S is either a
+40                          Special Classes of 3-Manifolds                          §2.1
+
+
+torus or Klein bottle. In the latter case S is one-sided, and the boundary of a tubular
+neighborhood of S is a horizontal torus. So horizontal tori exist in all seven Seifert
+fiberings. As we saw in §1.2 following Proposition 1.12, this implies the manifolds
+M1 M6 are torus bundles or torus semi-bundles.
+     There remains the case of reducible Seifert manifolds. As shown in the proof
+of Proposition 1.14 there must exist a horizontal sphere in this case, which implies
+that the manifold is closed and the Euler number of the Seifert fibering is zero. By
+the Euler characteristic formula the base surface B must be S 2 or RP2 , with at most
+three multiple fibers in the first case and at most one multiple fiber in the second
+case. In the latter case there is in fact no multiple fiber since the Euler number is
+zero, so we have the Seifert fibering M(−1, 0; ) , and it is not hard to see that this
+manifold is RP3 ♯ RP3 . In the case B = S 2 it is an exercise with fractions to rule
+out the possibility of three multiple fibers, using the Euler characteristic formula and
+the fact that the Euler number is zero. Then if there are at most two multiple fibers,
+we are in the exceptional case (c) of the classification theorem, with a Seifert fibering
+M(0, 0; α/β, −α/β) of S 1 × S 2 .
+
+     To complete the main classification theorem, there remain three things to do:
+(1) Show the manifolds M1 M6 above are all distinct, and have only the seven Seifert
+     fiberings listed.
+(2) Classify the Seifert manifolds which possess fiberings over S 2 with at most two
+     multiple fibers.
+(3) Show that the different Seifert fiberings over S 2 with three multiple fibers are all
+     distinct manifolds, distinct also from the manifolds in (2).
+We shall do (2) in the following subsection, and in §2.2 we shall do (1) as part of a
+general classification of torus bundles and torus semi-bundles. As for (3), the only
+way which seems to be known for doing this is to show these manifolds are all distin-
+guished by their fundamental groups, apart from a few special cases where geometric
+techniques are available. We shall not cover this in the present version of these notes;
+see [Orlik] for a proof.
+
+Classification of Lens Spaces
+     Let Lp/q be the manifold obtained by attaching two solid tori S 1 × D 2 together by
+a diffeomorphism ϕ : S 1 × ∂D 2 →S 1 × ∂D 2 sending a meridian {x}× ∂D 2 to a circle of
+slope p/q , where we use the convention that a meridian has slope ∞ and a longitude
+S 1 × {y} has slope 0 . The fraction p/q determines Lp/q completely since circles in
+§2.1                                        Seifert Manifolds                                41
+
+
+S 1 × ∂D 2 are determined up to isotopy by their slopes, and once the meridian disk
+of the second S 1 × D 2 has been attached to the first S 1 × D 2 there is only one way
+to attach the remaining 3 ball. Note that L1/0 = S 1 × S 2 , and L0/1 = S 3 since S 3 =
+∂(D 2 × D 2 ) = ∂D 2 × D 2 ∪ D 2 × ∂D 2 .
+     The manifolds Lp/q are Seifert-fibered in many ways, by taking model fiberings
+on the two S 1 × D 2 ’s whose restrictions to S 1 × ∂D 2 correspond under ϕ ∈ SL2 (Z) ; a
+model fibering on the second S 1 × D 2 with boundary fibers of slope u/v extends to
+a model fibering on the first S 1 × D 2 provided ϕ(u/v) 6= 1/0 . These Seifert fiberings
+have base surface S 2 and at most two multiple fibers. Conversely, such a Seifert-
+fibered manifold is the union of two solid tori with boundaries identified, hence is an
+Lp/q .
+     We shall exclude the special case L1/0 = S 1 × S 2 from now on.
+     The manifold Lp/q can also be obtained as the quotient space S 3 /Zq where Zq is
+the group of rotations of S 3 generated by ρ(z1 , z2 ) = (e2π i/q z1 , e2π ip/q z2 ) , where S 3
+is regarded as the unit sphere in C2 . This action can be pictured in R3 , with the point
+at infinity added to get S 3 = S 1 × D 2 ∪ D 2 × S 1 , as a 1/q rotation of the first factor
+and a p/q rotation of the second factor.
+
+
+
+
+                                              Figure 2.3
+Each quotient S 1 × D 2 /Zq and D 2 × S 1 /Zq is a solid torus, so the quotient S 3 /Zq has
+the form Lp′ /q′ . To see that p ′ /q′ = p/q , note that slope p circles on the common
+boundary torus S 1 × S 1 are invariant under ρ , hence become longitudes in S 1 × D 2 /Zq .
+The boundary circle of a meridian disk of D 2 × S 1 /Zq then intersects the longitude of
+S 1 × D 2 /Zq p times and the meridian q times, hence has slope p/q , up to a sign
+determined by orientations.
+     In particular π1 Lp/q ≈ Zq . This can also be seen directly from the definition of
+42                           Special Classes of 3-Manifolds                             §2.1
+
+
+Lp/q since the meridian disk of the second solid torus is attached to S 1 × D 2 along a
+circle which wraps around the S 1 factor q times, and the subsequent attaching of a
+3 ball has no effect on π1 . Since π1 Lp/q ≈ Zq , the number q is uniquely determined
+by Lp/q . (We take q non-negative always.)
+     For p there is some ambiguity, however. First, we can rechoose the longitude in
+S × D 2 by adding any number of twists around the meridian. This changes slopes by
+ 1
+
+an arbitrary integer, so Lp′ /q = Lp/q if p ′ ≡ p mod q . Also, reversing the orientation
+of S 1 × D 2 changes the sign of slopes, so L−p/q = Lp/q . (We are not specifying an ori-
+                                                   1   2
+entation of Lp/q .) Finally, the roles of the
+                                             two S × D halves of L
+                                                                   p/q can
+                                                                          be reversed,
+                                       r q                             p −q
+replacing ϕ by ϕ−1 . Taking ϕ =        s p   ∈ SL2 (Z) , then ϕ−1 =    −s r   , so we obtain
+L−r /q = Lp/q , where r ≡ p −1 mod q since pr − qs = 1 . Summarizing, Lp′ /q = Lp/q if
+p ′ ≡ ±p ±1 mod q .
+
+
+ Theorem 2.5. Lp /q is diffeomorphic to Lp/q if and only if p′ ≡ ±p±1 mod q .
+                      ′
+
+
+
+Proof: We shall show that there is, up to isotopy, only one torus T in Lp/q bounding
+a solid torus on each side. This implies the theorem since such a T yields a decompo-
+sition Lp/q = S 1 × D 2 ∪ϕ S 1 × D 2 , and the only ambiguities in the slope p ′ /q′ defining
+such a representation of Lp/q are the ones considered in the paragraph preceding the
+theorem: choice of longitude and orientation in the boundary of the first solid torus,
+and switching the two solid tori.
+     Let T be the standard torus bounding solid tori on each side, from the definition
+of Lp/q . Let Σ be the core circle S 1 × {0} of the first solid torus S 1 × D 2 bounded by
+T . The union of a meridian disk D of the second S 1 × D 2 with the radial segments in
+slices {x}× D 2 of the first S 1 × D 2 joining points of ∂D to Σ is a 2 complex ∆ ⊂ Lp/q .
+Abstractly, ∆ is obtained from the circle Σ by attaching a disk D 2 by a q to 1 covering
+map ∂D 2 →Σ .
+     Let T ′ be another torus in Lp/q bounding solid tori on both sides. The concentric
+copies of T ′ in these two solid tori, together with the two core circles, define a singular
+foliation F of Lp/q , whose leaves can also be described as the level sets of a function
+f : Lp/q →[0, 1] .
+    The first thing we do is put ∆ in good position with respect to F , as follows.
+Perturb Σ to be disjoint from the two singular leaves (circles) of F , and so that f || Σ is
+a morse function with all critical points in distinct levels. Near local maxima of f || Σ ,
+perturb the q sheets of ∆ to lie ‘above’ Σ , as in Figure 2.4. Likewise, at local minima
+of f || Σ make ∆ lie ‘below’ Σ .
+§2.1                                  Seifert Manifolds                                 43
+
+
+
+
+                                        Figure 2.4
+Now, keeping ∆ fixed in a small neighborhood of Σ , perturb ∆ to be transverse to the
+two singular leaves of F and so that away from these two leaves f is a morse function
+on ∆ − Σ with all saddles in levels distinct from each other and from the levels of the
+critical points of f || Σ .
+    The foliation F then induces a singular foliation on ∆ , hence also on D 2 via the
+quotient map D 2 →∆ . The singularities of the foliation of D 2 are of the following
+types:
+ — ‘centers’ in the interior of D 2 , where f || (∆ − Σ) has local maxima or minima, in
+    particular where ∆ meets the two singular leaves of F .
+ — saddles in the interior of D 2 .
+ — ‘half-saddles’ in ∂D 2 , at local maxima or minima of f || Σ .
+Figure 2.5 shows the various possible configurations for a singular leaf in D 2 contain-
+ing a saddle or half-saddle.
+
+
+
+
+                                        Figure 2.5
+Recall that all saddles and half-saddles on ∆ lie in distinct levels. However, each local
+maximum or minimum of f || Σ gives q half-saddles in D 2 in the same level, and some
+of these may be contained in the same singular leaf, as indicated by the dashed line
+in case (e). The saddles and half-saddles in cases (a) and (e) are called essential, all
+others inessential. In (a) the singular leaf divides D 2 into four quarter disks, and in
+(e) the singular leaf cuts off two or more half disks from D 2 .
+    Let D be a quarter or half disk containing no other quarter or half disks, and let α
+be the arc D ∩ ∂D 2 . The two endpoints of α are part of the same singular leaf, and as
+we move into the interior of α we have pairs of points joined by a nonsingular leaf in
+D 2 . Continuing into the interior of α , this pairing of points of α by nonsingular leaves
+in D 2 continues until we reach an inessential saddle of type (b) or an inessential half-
+saddle, since D was chosen as a smallest quarter or half disk, and the singular leaves
+in cases (c) and (d) do not meet ∂D 2 . An inessential saddle of type (b) presents no
+44                         Special Classes of 3-Manifolds                         §2.1
+
+
+obstacle to continuing the pairing of points of α , which can therefore continue until
+we reach an inessential half-saddle. At this point, however, the two paired points of
+α coalesce into one point, the half-saddle point itself. We conclude from this that D
+contains exactly one inessential half-saddle.
+    In particular, note that the projection α→Σ must be an embedding on the interior
+of α since f || Σ has at least two critical points. The two endpoints of α might have
+the same image in Σ , however. If this happens, D must be a half disk and the two
+endpoints of α must be half-saddles at the same critical point of f || Σ . In this case
+isotoping α rel ∂α across D to ∂D − α induces an isotopy of Σ so that it lies in a
+leaf of F . This is a desirable outcome, as we shall see below, and our next goal is to
+reduce to this case.
+     So suppose the disk D is a half disk and α has a half-saddle at only one of its
+endpoints. The configuration is as shown in Figure 2.6. Here we can isotope Σ , and
+hence ∆ , via isotopy extension, by dragging α across D to a new position, shown in
+dashed lines, with f || Σ having two fewer critical points.
+
+
+
+
+                                      Figure 2.6
+     The other possibility is that D is a quarter disk, with the configuration in Fig-
+ure 2.7 below. In this case we again isotope Σ by pushing α across D , dragging the
+other q − 1 sheets of ∆ along behind, enlarging them by parallel copies of D . This
+does not change the number of critical points of f || Σ , while the number of essential
+saddles decreases, since the essential saddle in ∂D becomes q half-saddles and no
+new essential saddles are created. (The inessential half-saddle in α becomes q − 1
+inessential saddles. Inessential saddles in the interior of D are also replicated. In
+addition, other essential saddles in D 2 − D may become inessential.)
+§2.1                                    Seifert Manifolds                              45
+
+
+
+
+                                          Figure 2.7
+    Thus after finitely many steps we are reduced to the earlier case when Σ is iso-
+toped into a leaf of F , which we may assume is the torus T ′ . The circle Σ is nontrivial
+in T ′ since it generates π1 Lp/q ≈ Zq and we may assume q > 1 . The torus T is the
+boundary of a solid torus neighborhood of Σ . Shrinking this neighborhood if neces-
+sary, we may assume T ∩ T ′ consists of two circles, parallel copies of Σ in T ′ , so T
+intersects each of the solid tori X ′ and Y ′ bounded by T ′ in an annulus, and likewise
+T ′ intersects each of the solid tori X and Y bounded by T in an annulus.
+    We now appeal to the following fact: An annulus A ⊂ S 1 × D 2 with ∂A consisting
+of nontrivial, nonmeridional circles in S 1 × ∂D 2 must be ∂ parallel. For such an A
+must be incompressible since π1 A→π1 (S 1 × D 2 ) is injective, hence must be either
+∂ incompressible or ∂ parallel. In the former case A could be isotoped to be vertical
+in the product Seifert fibering of S 1 × D 2 , but then A would again be ∂ parallel.
+    This applies to each of the four annuli of T − T ′ and T ′ − T Note that meridional
+boundary circles cannot occur since Σ is not nullhomotopic in Lp/q . We conclude that
+the two annuli of T − T ′ can be isotoped to the two annuli of T ′ − T , as indicated in
+Figure 2.8, so T is isotopic to T ′ .                                                   ⊓
+                                                                                        ⊔
+
+
+
+
+                                          Figure 2.8
+
+Exercises
+1. What happens if αi /βi = 1/0 in the manifold M(±g, b; α1 /β1 , ··· , αk /βk ) ?
+46                         Special Classes of 3-Manifolds                          §2.2
+
+
+2. Torus Bundles and Semi-Bundles
+     In the preceding section we encountered a few Seifert manifolds which are bundles
+over the circle with torus fibers. Most torus bundles are not Seifert-fibered, however,
+though they share one essential feature with most Seifert manifolds: Their topology is
+dominated by incompressible tori. This makes them easy to classify, and Theorem 2.6
+below reduces this classification to understanding conjugacy classes in GL2 (Z) , an
+algebraic problem which has a nice geometric solution described later in this section.
+After the case of torus bundles we move on to a closely-related class of manifolds,
+torus semi-bundles, which always have a torus bundle as a 2 sheeted covering space.
+     The torus bundles and torus semi-bundles which are not Seifert-fibered have a
+special interest because they are the manifolds in one of Thurston’s eight geometries,
+called solvgeometry.
+
+The Classification of Torus Bundles
+     A torus bundle has the form of a mapping torus, the quotient Mϕ = T × I/(x, 0) ∼
+(ϕ(x), 1) for some diffeomorphism ϕ ∈ GL2 (Z) of the torus T . This is because
+every diffeomorphism f : T →T is isotopic to a linear diffeomorphism ϕ ∈ GL2 (Z) .
+Moreover, ϕ is uniquely determined by f since it is essentially the map on H1 (T ) ≈ Z2
+induced by f . By Proposition 1.6, Mϕ is irreducible since its universal cover is R3 .
+     Once again we restrict attention to orientable 3 manifolds for simplicity. For Mϕ
+this means restricting ϕ to be in SL2 (Z) .
+
+ Theorem 2.6. Mϕ is diffeomorphic to Mψ if and only if ϕ is conjugate to ψ±1 in
+ GL2 (Z) .
+
+Proof: The ‘if’ half is easy: Applying a diffeomorphism f : T →T in each slice T × {y}
+of T × I has the effect of conjugating ϕ by f when we form the quotient Mϕ =
+T × I/(x, 0) ∼ (ϕ(x), 1) . And by switching the two ends of T × I we see that Mϕ−1 is
+diffeomorphic to Mϕ .
+     The main step in the converse is the following:
+
+ Lemma 2.7. An incompressible
+                         surface in Mϕ is isotopic to a union of torus fibers,
+                            1 0
+ unless ϕ is conjugate to ± n 1
+                                .
+
+Proof: Let S ⊂ Mϕ be incompressible. We may suppose S has transverse intersection
+with a fiber T0 of Mϕ . After we eliminate trivial circles of S ∩ T0 by isotopy of S in
+the usual way, the surface S ′ = S || T0 is incompressible in Mϕ || T0 = T × I . (Given
+§2.2                         Torus Bundles and Semi-Bundles                               47
+
+
+a compressing disk D for S ′ in T × I , then ∂D bounds a disk in S , which must lie
+in S ′ since any intersections with T0 would be trivial circles of S ∩ T0 .) If S ′ is
+∂ compressible, it must have ∂ parallel annulus components. These can be eliminated
+by pushing them across T0 , decreasing the number of circles of S ∩ T0 . So we may
+assume S ′ is incompressible and ∂ incompressible in T × I .
+    Thinking of T × I as a trivial circle bundle, S ′ can be isotoped to be either hori-
+zontal or vertical, hence to consist either of vertical tori parallel to T0 , i.e., fibers of
+Mϕ , or annuli whose boundary circles have the same slope in both ends T × {0} and
+T × {1} . In the latter case, ϕ must preserve this slope in order for S ′ to glue together
+                                                                   2
+to form  original surface S . This means ϕ has an eigenvector in Z , so is conjugate
+      the
+     1 0
+to ± n 1 .                                                                                ⊓
+                                                                                          ⊔
+
+
+    Continuing the proof of the theorem, suppose f : Mϕ→Mψ is a diffeomorphism.
+                                                  1 0
+The lemma implies that if ψ is not conjugate to ± n 1 , we can isotope f to take
+a fiber T of Mϕ to a fiber of Mψ . We may assume that T is the image of T × ∂I
+in the quotient mapping torus T × I/(x, 0) ∼ (ϕ(x), 1) , and similarly that f (T ) is
+the image of T × ∂I in T × I/(x, 0) ∼ (ψ(x), 1) . Then f is the quotient of a diffeo-
+morphism F : T × I →T × I . We may assume F takes each of T × {0} and T × {1} to
+themselves, rather than interchanging them, by replacing ψ by ψ−1 if necessary,
+switching the ends of T × I . Let f0 and f1 be the restrictions of F to T × {0} and
+T × {1} . Since (x, 0) is identified with (ϕ(x), 1) , it must be that (f0 (x), 0) is identi-
+fied with (f1 ϕ(x), 1) . But (f0 (x), 0) is identified with (ψf0 (x), 1) , so we conclude
+that f1 ϕ = ψf0 . This equation implies that ϕ and ψ are conjugate in GL2 (Z) since
+f0 and f1 are isotopic to the same diffeomorphism in GL2 (Z) , as they induce the
+same map on H1 (T ) , namely the map induced by F on H1 (T × I) .
+
+  There
+         remains the case that ψ is conjugate, hence we may assume equal, to
+  1 0
+± n 1 . Since ψ preserves slope ∞ , Mψ is a circle bundle with fibers the slope ∞
+circles in the torus fibers of Mψ . It is not hard to see that, with a suitable choice of
+orientation for Mψ , this circle bundle, as a Seifert manifold, is M(ε, 0;n) 
+                                                                              with ε equal
+                                                                   1 0
+to either +1 or −2 , the sign of ε being the same as the sign of ± n 1 . The bun-
+dle projection Mψ →S 1 factors as a composition of two circle bundles Mψ →B →S 1 ,
+where B is the base surface of the Seifert fibering.
+    We may isotope a diffeomorphism f : Mϕ →Mψ so that the incompressible torus
+f (T ) , with T a fiber of Mϕ , is either horizontal or vertical in Mψ . If it is vertical,
+we may rechoose the torus fibering of Mψ so that f (T ) is a fiber, by rechoosing the
+fibering B →S 1 so that the image circle of f (T ) is a fiber. (In the case that B is a Klein
+48                            Special Classes of 3-Manifolds                                    §2.2
+
+
+bottle, this circle is 2 sided and nonseparating in B , so its complement
+                                                                       must be an
+                                                                        1 0
+annulus, not a Möbius band.) In the new fibering, the new ψ is still ± n 1 since this
+matrix was determined by the Seifert fibering M(ε, 0; n) , as we saw. Now we have f
+taking T to a torus fiber of Mψ , and the argument can be completed as before.
+     If f (T ) is horizontal we must have the Euler number n equal to zero, so ψ =
+±I . We cannot have ψ = −I since then the base surface of M(−2, 0; 0) is nonori-
+entable, so the circle fibers of M(−2, 0; 0) cannot be coherently oriented, which means
+that the horizontal surface f (T ) is separating, splitting M(−2, 0; 0) into two twisted
+I bundles. If ψ = I , then Mψ is the 3 torus, and after composing f with a diffeomor-
+phism in GL3 (Z) we may assume the map on π1 induced by f takes the subgroup
+π1 T into the Z2 subgroup corresponding to the torus fiber of Mψ , with cyclic image
+in π1 B . Then when we isotope f to make f (T ) horizontal or vertical, f (T ) cannot
+be horizontal since for a horizontal surface the projection to B is a finite-sheeted
+covering space, with π1 image of finite index in π1 B , hence noncyclic. This reduces
+us to the previous case that f (T ) was vertical.                                                 ⊓
+                                                                                                  ⊔
+
+
+     We now determine which Seifert-fibered manifolds are torus bundles Mϕ . If the
+fiber torus T is isotopic to a vertical surface, then since its complement is T × I , which
+
+                                                                          of Mϕ
+has only the product Seifert fibering, up to isomorphism, the Seifert fibering
+                                                                                          1 0
+must be of the form M(1, 0; n) or M(−2, 0; n) , with ϕ conjugate to ± n 1 . If T is
+isotopic to a horizontal surface, Mϕ must be one of the manifolds M1 M5 from §2.1:
+
+             M1 = M(1, 0; ) = S 1 × S 1 × S 1 ,      with ϕ = I
+             M2 = M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 ) = S 1 ×
+                                                          e S1 ×
+                                                               e S 1,       with ϕ = −I
+                                                                         
+                                                                  −1 −1
+             M3 = M(0, 0; 2/3 , −1/3 , −1/3 ),       with ϕ = 1 0
+                                                                       
+                                                                  0 −1
+             M4 = M(0, 0; 1/2 , −1/4 , −1/4 ),       with ϕ = 1 0
+                                                                       
+             M5 = M(0, 0; 1/2 , −1/3 , −1/6 ),       with ϕ = 01 −1   1
+
+For M2 and M4 , ϕ is rotation by 180 and 90 degrees, respectively. For M3 and M5 , if
+we view Z2 not as the usual square lattice in R2 but as the regular hexagonal lattice,
+ϕ is rotation by 120 and 60 degrees, respectively. So for M1 M5 , ϕ is periodic, of
+period 1, 2, 3, 4 , and 6 , respectively. We leave it for the reader to verify that with these
+ϕ ’s, Mϕ is the given Seifert fibering, with circle fibers the images of the segments
+{x}× I ⊂ T × I in the mapping torus Mϕ . This just amounts to checking that the
+multiple fibers have the multiplicities given, since the Euler number is necessarily
+zero; see §2.1.
+§2.2                         Torus Bundles and Semi-Bundles                                   49
+
+
+    In particular, the theorem implies that none of these Seifert manifolds M1 M5
+are diffeomorphic to each other or to the manifolds M(1, 0; n) or M(−2, 0; n) with
+n 6= 0 , since their ϕ ’s are not conjugate, being of different orders. This completes
+the classification of Seifert-fibered torus bundles, left over from §2.1.
+
+The Classification of Torus Semi-bundles
+    Let N = S 1 ×
+                e S1 ×
+                     e I , the twisted I bundle over the Klein bottle. Two copies of
+N glued together by a diffeomorphism ϕ of the torus ∂N form a closed orientable
+manifold Nϕ , which we called a torus semi-bundle in §2.1: Nϕ is foliated by tori
+parallel to ∂N , together with a Klein bottle at the core of each copy of N . We can
+identify ϕ , or rather its isotopy class, with an element of GL2 (Z) via a choice of
+coordinates in ∂N , which we can get by thinking of N as the quotient of S 1 × S 1 × I
+obtained by identifying (x, y, z) with (−x, ρ(y), ρ(z)) , where the ρ ’s are reflections.
+Then the x and y coordinates define ‘horizontal’ and ‘vertical’ in ∂N , and an arbitrary
+choice of orientations of these directions completes the choice of coordinates for ∂N .
+    If we compose ϕ on the left or the right with a diffeomorphism of ∂N which
+extends to a diffeomorphism of N , then we get the same manifold Nϕ . For example,
+we can compose ϕ with diffeomorphisms
+                                    reflecting either the horizontal or vertical
+                                   ±1 0
+directions in ∂N , with matrices    0 ±1   , since the reflection ρ acting in either S 1 factor
+of S 1 × S 1 × I passes down to a diffeomorphism of the quotient N . As we shall see
+below, these four diffeomorphisms are, up to isotopy, the only diffeomorphisms of
+∂N which extend over N .
+    Replacing ϕ by ϕ−1 obviously produces the same manifold Nϕ , by interchanging
+the roles of the two copies of N in Nϕ . Thus we have proved the easier ‘if’ half of the
+following:
+                                                                                       
+ Theorem 2.8. Nϕ is diffeomorphic to Nψ if and only if ϕ = ±10 ±10 ψ±1 ±10 ±10                in
+ GL2 (Z) , with independent choices of signs understood.
+
+Proof: First, consider an incompressible, ∂ incompressible surface S ⊂ N . Give N
+the Seifert fibering M(−1, 1; ) as a circle bundle over the Möbius band, and isotope S
+to be either horizontal or vertical. If S is vertical, it consists either of tori parallel to
+∂N , or nonseparating annuli with boundaries of slope ∞ in ∂N , with respect to the
+coordinates in ∂N chosen earlier. If S is horizontal it consists of separating annuli
+with boundaries of slope 0 . This can be seen as follows. Orient ∂S by the positive
+direction of the x coordinate in N . Let s be a section of the circle bundle N , with
+∂s of slope 0 . The arcs of S ∩ s pair off the points of ∂S ∩ ∂s into pairs of opposite
+50                            Special Classes of 3-Manifolds                                §2.2
+
+
+sign, so S and s have algebraic intersection number 0 . Since all the components of
+∂S have parallel orientations, each component must have intersection number 0 with
+∂s , hence must have slope 0 .
+     Now let S be an incompressible surface in Nψ . As in the proof of Lemma 2.7,
+we may isotope S so that for each of the two copies N1 and N2 of N whose union is
+Nψ , S ∩ Ni is an incompressible, ∂ incompressible surface Si in Ni . By the preceding
+paragraph, either S consists of parallel copies of the torus T splitting Nψ into N1
+and N2 , or ψ takes slope 0 or ∞ to slope 0 or ∞ . We shall see later that this means
+Nψ is Seifert-fibered.
+     Suppose f : Nϕ →Nψ is a diffeomorphism, and let T be the torus in Nϕ splitting
+Nϕ into two copies of N . Applying the preceding remarks to S = f (T ) , there are two
+possibilities:
+(1) We can isotope f so that f (T ) is the torus splitting Nψ into two copies of N . Then
+ϕ must be obtained from ψ by composing on the left and right by diffeomorphisms
+of ∂N which extend to diffeomorphisms of N . Such diffeomorphisms must preserve
+slope 0 and slope ∞ , since these are the unique slopes of the boundaries of incom-
+pressible, ∂ incompressible separating and nonseparating annuli in N , respectively,
+as noted earlier. The theorem is thus proved in this case.
+(2) We can isotope f so that f (T ) meets each of the two copies of N in incom-
+pressible, ∂ incompressible annuli. These must be separating, since T is separat-
+ing, so they must have boundaries
+                                of slope 0 . Thus ψ preserves slope 0 , having,
+                                1 n
+we may assume, the form         0 1   . In this case if we take all the slope 0 circles in
+the torus and Klein bottle fibers of the torus semi-bundle Nψ we obtain the Seifert
+fibering M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 , n), with Euler number n , as the reader can verify by
+inspection. The torus f (T ) can be isotoped to be vertical in this Seifert fibering,
+since horizontal surfaces in M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 , n) are nonseparating (because the
+base surface of this Seifert fibering is orientable, hence the fiber circles are coher-
+ently orientable, making any horizontal surface the fiber of a surface bundle). We
+can then rechoose the torus semi-bundle structure on Nψ so that f (T ) becomes a
+fiber torus. (The other torus and Klein bottle fibers are also unions of circle fibers of
+M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 , n).) The ψ
+                                            for
+                                                the new torus semi-bundle structure is clearly
+                                      1 n
+the same as the old one, namely       0 1   . So this reduces us to case (1).                 ⊓
+                                                                                              ⊔
+
+
+     Which Seifert fiberings are torus semi-bundles Nϕ ? If the torus fiber is vertical
+in the Seifert fibering, it splits Nϕ into two Seifert-fibered copies of N . Since N has
+just the two Seifert fiberings M(−1, 1; ) and M(0, 1; 1/2 , 1/2 ), the possibilities are:
+§2.2                                  Torus Bundles and Semi-Bundles                        51
+
+                                               
+                                          1 0
+(1) M(−2, 0; n) , with ϕ =                n 1                                
+                                                    0 1                   n 1
+(2) M(−1, 0; 1/2 , −1/2 , n), with ϕ =            , or equivalently
+                                                    1 n                   1 0
+                                                     
+(3) M(0, 0; 1/2 , 1/2 , −1/2 , −1/2 , n), with ϕ = 10 n1
+
+On the other hand, if the torus fiber of Nϕ is horizontal, then as we saw in §2.1, the
+Seifert fibering is either the one in (1) or (2) with n = 0 .
+     The theorem implies that all the manifolds listed in (1)-(3) are distinct, modulo
+changing the sign of n and the coincidence of (1) and (3) when n = 0 . In most cases
+this was already proved in §2.1. The one exception is the manifold M(−1, 0; 1/2 , −1/2 ),
+labelled M6 in §2.1, which we did not then distinguish from the other manifolds in
+(1)-(3).
+     For each Nϕ there is a torus bundle Mψ which is a natural 2 sheeted covering
+space of Nϕ . Over each of the two copies of N in Nϕ , Mψ consists of the double cover
+S 1 × S 1 × I →N by which N was defined. The first copy of S 1 × S 1 × I is glued to the
+second by ϕ along S 1 × S 1 × {0} and by τϕτ along S 1 × S 1 × {1} , where τ(x, y) =
+(−x, ρ(y)) , as in the definition of N . Thus ψ = τϕ−1 τϕ . Since the 2 sheeted
+covering Mψ →Nϕ takes fibers to fibers, it fits into a commutative
+diagram as at the right, where the two vertical maps are the bundle
+and semi-bundle projections, and the map S 1 →I is the ‘folding’ map
+which factors out by the reflection ρ . The bundle Mψ →S 1 can be regarded as the
+pullback of the semi-bundle Nϕ →I via the folding map S 1 →I . There are similar
+n to– 1 folding maps I →I , folding up I like an n segmented carpenter’s ruler, and
+Nϕ →I can be pulled back to other torus semi-bundles via these folding maps.
+
+
+The Geometry of SL(2,Z)
+                         
+                    a b
+     A matrix       c d       ∈ SL2 (Z) gives rise to a linear fractional transformation z ֏
+(az + b)/(cz + d) of the Riemann sphere C ∪ {∞} . Since this has real coefficients
+it takes R ∪ {∞} to itself, preserving orientation since the determinant is positive.
+Hence it takes the upper half plane to itself since all linear fractional transformations
+preserve orientation of C ∪ {∞}. Let H denote the upper half plane, including its
+boundary points R ∪ {∞} . The action of SL2 (Z) on H extends to an action of GL2 (Z)
+on H if we identify points in the upper and lower half planes via complex conjugation,
+since a linear fractional transformation with real coefficients takes conjugate points
+to conjugate points. Then an element of GL2 (Z) preserves or reverses orientation of
+H according to whether its determinant is +1 or −1 .
+                     
+                                a b
+     For a matrix A =           c d
+                                      ∈ GL2 (Z) let ℓA be the semicircle in H orthogonal to ∂ H
+52                           Special Classes of 3-Manifolds                             §2.2
+
+
+with endpoints at the rational numbers c/a and d/b in ∂ H . We orient ℓA from c/a
+to d/b . In case a or b is zero, ℓA is a vertical line in H with lower endpoint at d/b
+or c/a , respectively, and other ‘endpoint’ at ∞ = ±1/0 . Note that there are exactly
+four A ’s with the same oriented ℓA , obtained by multiplying either column of A by
+−1 . When the interior of H is taken as a model for the hyperbolic plane, the ℓA ’s are
+geodesics, so we shall refer to them as ‘lines.’
+     The collection of all the lines ℓA is invariant under the action of GL2 (Z) on H .
+Namely, if A, B ∈ GL2 (Z) then A(ℓB ) = ℓAB , as the reader can readily verify using the
+fact that linear fractional transformations preserve angles and take circles and lines
+in C to circles or lines. Note that this action is transitive: ℓB = BA−1 (ℓA ) .
+
+
+ Proposition 2.9. The collection of all lines ℓA forms a tessellation T of H by ideal
+ triangles: triangles with their vertices on ∂ H .
+
+     See Figure 2.9 for two pictures of this tesselation T , the second picture being a
+redrawing of the first to make H a disk.
+
+
+
+
+                                        Figure 2.9
+Proof: First we check that no two lines ℓA cross. Since the action of GL2 (Z) on the
+                                                                           a b
+ℓA ’s is transitive, it suffices to consider an ℓA crossing ℓI . If A =    c d     and ℓA is
+oriented from left to right (which can be achieved by switching the columns of A if
+necessary), then c/a < 0 < d/b . We may assume c is negative and a , b , and d are
+positive. But then ad − bc > 1 , which is impossible since elements of GL2 (Z) have
+determinant ±1 .
+     Next we observe that any two rational numbers are joined by an edgepath con-
+sisting of finitely many edges ℓA , each two successive edges in the edgepath having
+a common vertex.Forgiven c/a ∈ Q with (a, c) = 1 , there exist integers b, d with
+                    a b
+ad − bc = ±1 , so   c d
+                          ∈ GL2 (Z) . Thus each rational is the endpoint of a line ℓA . To
+§2.2                         Torus Bundles and Semi-Bundles                                   53
+
+                                                                  
+                                                             a b
+get an edgepath joining c/a to 0/1 , use the fact that       c d       can be reduced to a diago-
+nal matrix by a sequence of elementary column operations, each operation consisting
+of adding an integer multiple of one column to the other column. (This is essentially
+the Euclidean algorithm in Z .) This produces a finite sequence of matrices in GL2 (Z) ,
+each pair of successive matrices having a column in common, so the corresponding
+sequence of ℓA ’s forms an edgepath. The final edge has endpoints 0 = 0/±1 and
+∞ = ±1/0 , since the diagonal matrix has ±1 ’s down the diagonal.
+    The three ℓA ’s with endpoints 0/1 , 1/0 , and 1/1 form one triangle in H . Let
+U be the union of all the images of this triangle under the action of GL2 (Z) , with all
+vertices in ∂ H deleted. To finish the proof we need to show that U = int(H) . We do
+this by showing that U is both open and closed in int(H) . Openness is clear, since
+GL2 (Z) acts transitively on the ℓA ’s, and the edge ℓI is shared by the two triangles
+whose third vertices are +1 and −1 . If U were not closed, there would be an infinite
+sequence zi ∈ U converging to a point z ∈ int(H) − U . We may assume the zi ’s
+lie in distinct lines ℓAi . Since no ℓAi ’s cross, there would have to be a limit line ℓ
+containing z . Since z ∉ U , ℓ is not an ℓA . Neither endpoint of ℓ can be rational
+since every line through a rational point crosses lines ℓA (true for 1/0 , hence true for
+all rationals by transitivity) and if ℓ crossed an ℓA so would some ℓAi . On the other
+hand, if both endpoints of ℓ are irrational, then again ℓ cannot cross any ℓA ’s, and
+in this case it would not be possible to join rationals on one side of ℓ to rationals on
+the other side by edgepaths consisting of ℓA ’s, contradicting an earlier observation.
+Thus U must be closed in int(H) .                                                              ⊓
+                                                                                               ⊔
+
+    For the action of GL2 (Z) on H , only ±I act as the identity. So we have an injection
+of the quotient P GL2 (Z) = GL2 (Z)/±I into the symmetry group of the tesselation T .
+This is in fact an isomorphism, since P GL2 (Z) acts transitively on oriented edges, and
+also contains orientation-reversing maps of H . The index-two subgroup P SL2 (Z) is
+the group of orientation-preserving
+                                  symmetries of T .
+                       a b
+    An element A =     c d   ∈ SL2 (Z) not equal to ±I has one or two fixed points in
+H , the roots of the quadratic z = (az + b)/(cz + d) . There are three possibilities:
+(1) There are two distinct real irrational roots r1 and r2 . Then the line (semicircle)
+in H joining r1 and r2 is invariant under A . The infinite sequence of triangles of T
+meeting this line is arranged in a periodic pattern, invariant under A , which acts as a
+translation of this strip, as in Figure 2.10, with ai triangles having a common vertex
+on one side of the strip, followed by ai+1 triangles with a common vertex on the other
+side, etc.
+54                           Special Classes of 3-Manifolds                              §2.2
+
+
+
+
+                                        Figure 2.10
+The cycle (a1 , ··· , a2n ) is a complete invariant of the conjugacy class of A in P GL2 (Z) ,
+by our earlier comment that P GL2 (Z) is the full symmetry group of T . The fixed points
+r1 and r2 are slopes of eigenvectors of A . The two corresponding eigenvalues have
+the same sign since A ∈ SL2 (Z) , and this sign together with the cycle (a1 , ··· , a2n ) is
+a complete invariant of the conjugacy class of A in GL2 (Z) . A specific representative
+of this conjugacy class is
+                                !      !     !          !
+                            1 0   1 a2   1 0       1 a2n
+                          ±                    ···
+                            a1 1  0 1    a3 1      0 1
+
+The conjugacy class of A−1 is represented by the inverse cycle (a2n , ··· , a1 ) with the
+same sign of the eigenvalues. Geometrically, we can think of the conjugacy class of
+the pair {A, A−1 } as the triangulated cylinder obtained from the strip in Figure 5.2
+by factoring out by the translation A , together with a sign. Diffeomorphism classes
+of torus bundles Mϕ with ϕ having distinct real eigenvalues correspond bijectively
+with such triangulated, signed cylinders, by Theorem 2.6.
+
+(2) There is only one rational root r . In this case the triangles having r as a vertex
+form a degenerate infinite strip, with quotient a cone divided into some number n
+of triangles. The number n together with the sign of the eigenvalue ±1 of A is a
+complete invariant of theconjugacy
+                                   class of {A, A−1 } in GL2 (Z) . A representative of
+this conjugacy class is ± 10 n
+                             1 .
+
+(3) There are two complex conjugate roots. The root in int(H) gives a fixed point of
+A in int(H) , so A acts either by rotating a triangle 120 degrees about its center or
+by rotating an edge 180 degrees about its center. Since P GL2 (Z) acts transitively on
+triangles and edges, these rotations of H fall into two conjugacy classes in P GL2 (Z) ,
+according to the angle of rotation. In GL2 (Z) we thus have just the conjugacy classes
+of the matrices of orders 2, 3, 4 , and 6 discussed earlier.
+
+     Now let us use the tesselation T to make explicit the equivalence relation on ele-
+ments of GL2 (Z) corresponding to diffeomorphism of torus semi-bundles, described
+§2.2                          Torus Bundles and Semi-Bundles                           55
+
+                                          
+                                     a b
+in Theorem 2.8. An element A =       c d       ∈ GL2 (Z) determines an oriented edge ℓA in
+T , as above. The other
+                        three A ’s with the same oriented ℓA differ by multiplication on
+the right by ±1  0
+              0 ±1
+                   , so give the same torus semi-bundle NA . Multiplication on the left
+          
+by ±1    0
+      0 ±1 corresponds either to the identity of H or a reflection of H across the edge
+ℓI , so we may normalize A by choosing it so that ℓA lies in the right half of H . Let
+T (A) be the smallest connected union of triangles of T containing ℓI and ℓA . This
+is a finite triangulated strip with two distinguished oriented edges in its boundary, ℓI
+and ℓA , as in Figure 2.11.
+
+
+
+
+                                        Figure 2.11
+In degenerate cases the top or bottom edges of the strip can reduce to a single point.
+We leave it as an exercise for the reader to check that T (A−1 ) is obtained from T (A)
+by simply interchanging the labelling of the two oriented edges ℓI and ℓA . Thus dif-
+feomorphism classes of torus semi-bundles correspond bijectively with isomorphism
+classes of triangulated strips with oriented left and right edges.
+    As another exercise, the reader can show that the torus bundle double covering
+NA , as described earlier in this section, corresponds to the cylinder (or cone) obtained
+by gluing two copies of T (A) together by the identity map of their boundary, with
+the sign +1 if the two ends of T (A) have parallel orientation and the sign −1 in the
+opposite case; this assumes we are not in the degenerate case that T (A) is just a
+single edge, with no triangles.
+56                               Homotopy Properties                                 §3.1
+
+
+Chapter 3. Homotopy Properties
+1. The Loop and Sphere Theorems
+     These are the basic results relating homotopy theory, specifically π1 and π2 , to
+more geometric properties of 3 manifolds.
+
+The Loop Theorem
+     Let M be a 3 manifold-with-boundary, not necessarily compact or orientable.
+
+ Theorem 3.1. If there is a map f : (D2 , ∂D2 )→(M, ∂M) with f || ∂D2 not nullhomo-
+ topic in ∂M , then there is an embedding with the same property.
+
+Proof: The first half of the proof consists of covering space arguments which reduce
+the problem to finitely many applications of the relatively simple special case that f
+is at most two-to-one. The second half of the proof then takes care of this special
+case. It is a curious feature of the proof that at the end of the first step one discards
+the original f completely and starts afresh with a new and nicer f .
+     It seems more convenient to carry out the first half of the proof in the piecewise
+linear category. Choose a triangulation of M and apply the simplicial approximation
+theorem (for maps of pairs) to homotope the given f to a map f0 which is simplicial
+in some triangulation of the domain D 2 and which still
+satisfies the same hypotheses as f . We now construct
+a diagram as at the right. To obtain the bottom row, let
+D0 be f0 (D 2 ) , a finite subcomplex of M , and let V0 be a
+neighborhood of D0 in M that is a compact 3 manifold
+deformation retracting onto D0 . The classical construc-
+tion of such a V0 is to take the union of all simplices in
+the second barycentric subdivision of M that meet D0 .
+In particular, V0 is connected since D0 is connected. If V0 has a connected 2 sheeted
+cover p1 : M1 →V0 , then f0 lifts to a map f1 : D 2 →M1 since D 2 is simply-connected.
+Let D1 = f1 (D 2 ) and let V1 be a neighborhood of D1 in M1 chosen as before. This
+gives the second row of the diagram. If V1 has a connected 2 sheeted cover we can
+repeat the process to construct a third row, and so on up the tower.
+     To see that we must eventually reach a stage where the tower cannot be continued
+further, consider the covering pi−1 (Di−1 )→Di−1 . Both these spaces have natural sim-
+plicial structures with simplices lifting the simplices of D0 . The nontrivial deck trans-
+formation τi of the covering space pi−1 (Di−1 )→Di−1 is a simplicial homeomorphism.
+§3.1                          The Loop and Sphere Theorems                                57
+
+
+Since Mi is connected, so is pi−1 (Di−1 ) since Mi deformation retracts to pi−1 (Di−1 )
+by lifting a deformation retraction of Vi−1 to Di−1 . The set pi−1 (Di−1 ) = Di ∪ τi (Di )
+is connected, so Di ∩ τi (Di ) must be nonempty. This means that τi must take some
+simplex of Di to another simplex of Di , distinct from the first simplex since τi has
+no fixed points. These two simplices of Di are then identified in Di−1 , so Di−1 is a
+quotient of Di with fewer simplices than Di . Since the number of simplices of Di is
+bounded by the number of simplices in the original triangulation of the source D 2 , it
+follows that the height of the tower is bounded.
+    Thus we arrive at a Vn having no connected 2 sheeted cover. This says that π1 Vn
+has no subgroup of index two, so there is no nontrivial homomorphism π1 Vn →Z2 ,
+and hence H 1 (Vn ; Z2 ) = Hom(H1 (Vn ), Z2 ) = 0 . In the exact sequence
+
+                     H2 (Vn , ∂Vn ; Z2 ) -→ H1 (∂Vn ; Z2 ) -→ H1 (Vn ; Z2 )
+
+the first term is zero since it is isomorphic to H 1 (Vn ; Z2 ) by Poincaré duality, and
+the third term is zero since it is isomorphic to H 1 (Vn ; Z2 ) by the universal coefficient
+theorem. Exactness then implies that the middle term H1 (∂Vn ; Z2 ) is zero, which
+means that all the components of the compact surface ∂Vn are 2 spheres.
+    In the component of ∂Vi containing fi (∂D 2 ) , let Fi = (p1 ◦ ··· ◦ pi )−1 (∂M) . This
+will be a compact surface if the neighborhoods Vi are chosen with sufficient care. Let
+Ni ⊂ π1 Fi be the kernel of (p1 ◦ ··· ◦ pi )∗ : π1 Fi →π1 (∂M) . Note that [fi || ∂D 2 ] ∉ Ni
+by the initial hypothesis on f , so Ni is a proper normal subgroup of π1 Fi .
+    At the top of the tower the surface Fn is a planar surface, being a subsurface of
+a sphere. Hence π1 Fn is normally generated by the circles of ∂Fn . Since Nn 6= π1 Fn ,
+some circle of ∂Fn must represent an element of π1 Fn − Nn . This circle bounds a
+disk in ∂Vn . Let gn : D 2 →Vn be this embedding of a disk, with its interior pushed
+into Vn so as to be a proper embedding. We have [gn || ∂D 2 ] ∉ Nn . We can take gn to
+be a smooth embedding and work from now on in the smooth category.
+   The rest of the proof consists of descending the tower step by step, producing
+embeddings gi : D 2 →Vi with [gi || ∂D 2 ] ∉ Ni . In the end we will have an embedding
+g0 : D 2 →V0 ⊂ M with [g0 || ∂D 2 ] ∉ N0 , which says that g0 || ∂D 2 is not nullhomotopic
+in ∂M , and the proof will be complete.
+    Consider the inductive step of producing gi−1 from gi . Since pi is a 2 sheeted
+cover, we can perturb gi so that the immersion pi gi has only simple double curves,
+either circles or arcs, where two sheets of pi gi (D 2 ) cross transversely. Our aim is to
+modify gi so as to eliminate each of these double curves in turn.
+    Suppose C is a double circle. A neighborhood N(C) of C in pi gi (D 2 ) is a bundle
+58                               Homotopy Properties                                   §3.1
+
+
+over C with fiber the letter X . Thus N(C) is obtained from X × [0, 1] by identifying
+X × {0} with X × {1} by some homeomorphism given by a symmetry of X . A 90 degree
+rotational symmetry is impossible since pi is two-to-one. A 180 degree rotational
+symmetry is also impossible since it would force the domain D 2 to contain a Möbius
+band. For the same reason a symmetry which reflects the X across one of its crossbars
+is impossible. The two remaining possibilities are the identity symmetry, with N(C) =
+X × S 1 , and a reflection of X across a horizontal or vertical line. Note that a reflection
+can occur only if M is nonorientable.
+     In the case that N(C) = X × S 1 there are two circles in D 2 mapping to C . These
+circles bound disks D1 and D2 in D 2 . If D1 and D2 are nested, say D1 ⊂ D2 , then we
+redefine gi on D2 to be gi || D1 , smoothing the resulting corner along C . This has the
+effect of eliminating C from the self-intersections of pi gi (D 2 ) , along with any self-
+intersections of the immersed annulus pi gi (D2 − D1 ) . If D1 and D2 are disjoint we
+modify gi by interchanging its values on the disks D1 and D2 , then smoothing the re-
+sulting corners along C , as shown in Figure 3.1(a). Thus we eliminate the circle C from
+the self-intersections of pi gi (D 2 ) without introducing any new self-intersections.
+
+
+
+
+                                        Figure 3.1
+In the opposite case that N(C) is not X × S 1 we modify the immersed disk pi gi (D 2 )
+in the way shown in Figure 3.1(b), replacing each cross-sectional X of N(C) by two
+disjoint arcs. This replaces an immersed annulus by an embedded annulus with the
+same boundary, so the result is again an immersed disk with fewer double circles.
+Iterating these steps, all double circles can be eliminated without changing gi || ∂D 2 .
+     Now consider the case of a double arc C . The two possibilities for how the two
+corresponding arcs in D 2 are identified to C are shown in Figure 3.2.
+
+
+
+
+                                        Figure 3.2
+In either case, Figure 3.3 shows two ways to modify gi to produce new immersions
+§3.1                             The Loop and Sphere Theorems                                59
+
+
+gi′ and gi′′ eliminating the double arc C .
+
+
+
+
+                                                Figure 3.3
+The claim is that either [gi′ || ∂D 2 ] ∉ Ni or [gi′′ || ∂D 2 ] ∉ Ni . To see this, we break the
+loop gi || ∂D 2 up into four pieces α , β , γ , δ as indicated in Figure 3.2. Then in case
+(a) we have
+                       αβγδ = (αγ)δ−1 (αβ−1 γδ−1 )−1 (αγ)δ
+                                   ||                ||               ||
+                                 gi′ || ∂D 2     gi′′ || ∂D 2      gi′ || ∂D 2
+and in case (b) we have
+                       αβγδ = (αγ −1 )(γδ)−1 (αγ −1 )−1 (αδγβ)(γδ)
+                                       ||                 ||               ||
+                                  gi′ || ∂D 2        gi′ || ∂D 2      gi′′ || ∂D 2
+So in either case, if gi′ || ∂D 2 and gi′′ || ∂D 2 were both in the normal subgroup Ni , so
+would gi || ∂D 2 be in Ni .
+     We choose the new gi to be either gi′ or gi′′ , whichever one preserves the condi-
+tion [gi || ∂D 2 ] ∉ Ni . Repeating this step, we eventually get gi with pi gi an embedding
+gi−1 , with [gi−1 || ∂D 2 ] ∉ Ni−1 .                                                         ⊓
+                                                                                             ⊔
+
+ Corollary 3.2 (Dehn’s Lemma). If an embedded circle in ∂M is nullhomotopic in M ,
+ it bounds a disk in M .
+
+Proof: First delete from ∂M everything but a neighborhood of the given circle C ,
+producing a new manifold M ′ with ∂M ′ an annulus. (If C had a Möbius band neigh-
+borhood in ∂M , it would be an orientation-reversing loop in M , which is impossible
+since it is nullhomotopic.) Apply the loop theorem to M ′ to obtain a disk D 2 ⊂ M ′
+with ∂D 2 nontrivial in ∂M ′ , hence isotopic to C .                                         ⊓
+                                                                                             ⊔
+
+ Corollary 3.3. Let S ⊂ M be a 2 sided surface. If the induced map π1 S →π1 M is
+ not injective for some choice of basepoint in some component of S , then there is a
+ disk D 2 ⊂ M with D 2 ∩ S = ∂D 2 a nontrivial circle in S .
+
+Proof: Let f : D2 →M be a nullhomotopy of a nontrivial loop in S . We may assume f
+is transverse to S , so f −1 (S) consists of ∂D 2 plus possibly some circles in D 2 − ∂D 2 .
+60                                  Homotopy Properties                              §3.1
+
+
+If such a circle in D 2 − ∂D 2 gives a trivial loop in the component of S it maps to, then
+we can redefine f so as to eliminate this circle (and any other circles inside it) from
+f −1 (S) . So we may assume no circles of f −1 (S) are trivial in S . Then the restriction
+of f to the disk bounded by an innermost circle of f −1 (S) (this circle may be ∂D 2
+itself) gives a nullhomotopy in M − S of a nontrivial loop in S . Now apply the loop
+theorem to (M − ∂M) || (S − ∂S) .                                                  ⊓
+                                                                                   ⊔
+
+      Here is another application of the loop theorem:
+
+ Proposition 3.4. A compact connected orientable prime 3 manifold M with π1 M ≈
+ Z is either S 1 × S 2 or S 1 × D 2 .
+
+Proof: First let us do the case ∂M 6= ∅ . Then ∂M can contain no spheres, otherwise
+primeness would imply M = B 3 , contradicting π1 M ≈ Z . To restrict the possibilities
+for ∂M further we need the following basic result.
+
+ Lemma 3.5. If M is a compact orientable 3 manifold then the image of the boundary
+ map H2 (M, ∂M)→H1 (∂M) has rank equal to one half the rank of H1 (∂M) .
+
+      Here ‘rank’ means the number of Z summands in a direct sum splitting into cyclic
+groups. Equivalently, we can use homology with Q coefficients and replace ‘rank’ by
+‘dimension.’
+
+Proof: With Q coefficients understood, consider the commutative diagram
+
+
+
+
+where the vertical isomorphisms are given by Poincaré duality. Since we have coeffi-
+cients in a field, the map i∗ is the dual of i∗ , obtained by applying Hom(−, Q) . Linear
+algebra then implies that dim Ker i∗ = dim Coker i∗ . Hence dim Im ∂ = dim Ker i∗ =
+dim Coker i∗ = dim Coker ∂ which implies the result.                                    ⊓
+                                                                                        ⊔
+
+      Continuing with the proof of the Proposition, H1 (M) has rank one, hence so does
+  1
+H (M) ≈ H2 (M, ∂M) and we conclude that ∂M must be a single torus. The map
+π1 ∂M →π1 M is not injective, so the loop theorem gives a disk D 2 ⊂ M with ∂D 2
+nontrivial in ∂M . Splitting M along this D 2 gives a manifold with boundary S 2 , and
+this leads to a connected sum decomposition M = N ♯ S 1 × D 2 . Since M is prime, we
+conclude that M = S 1 × D 2 .
+      When ∂M = ∅ we use another basic fact about 3 manifolds:
+§3.1                         The Loop and Sphere Theorems                               61
+
+
+ Lemma 3.6. For a 3 manifold M , every class in H2 (M) is represented by an em-
+ bedded closed orientable surface S ⊂ M , and similarly every class in H2 (M, ∂M) is
+ represented by an embedded compact orientable surface (S, ∂S) ⊂ (M, ∂M) . If M is
+ orientable, S may be chosen in both cases so that the inclusion of each component of
+ S into M induces an injective map on π1 .
+
+Proof: Taking simplicial homology with respect to some triangulation of M , repre-
+sent a class in H2 (M) by a cycle z , a sum of the oriented 2 simplices in M with
+integer coefficients. Reversing orientations of some simplices, we may assume all
+coefficients are non-negative. To desingularize this 2 cycle z into a surface, first re-
+place each 2 simplex σ with coefficient nσ by nσ nearby parallel copies of itself,
+all with the same boundary ∂σ . Next, look in a small disk transverse to a 1 simplex
+of M . The copies of 2 simplices incident to this 1 simplex have induced normal ori-
+entations, which we can think of as either clockwise or counterclockwise around the
+1 simplex. Since z is a cycle, the number of incident 2 simplices with clockwise ori-
+entation equals the number with counterclockwise orientation. Thus there must be
+two consecutive 2 simplices with opposite orientation. The edges of these along the
+given 1 simplex can be joined together and pushed off the 1 simplex. Repeat this
+step until z is ‘resolved’ to a surface whose only singularities are at vertices of M . To
+eliminate these isolated singularities, consider a small ball about a vertex. The surface
+meets the boundary of this ball in disjoint embedded circles, so we can cap off these
+circles by disjoint embedded disks in the interior of the ball. Doing this for all vertices
+produces an embedded oriented surface S , with a natural map to the 2 skeleton of
+M taking the fundamental class for S to z . The case of relative homology is treated
+in similar fashion.
+    To obtain the final statement of the lemma, suppose the map π1 S →π1 M is not
+injective for some component of S . Then Corollary 3.3 gives a disk D ⊂ M realizing
+this noninjectivity. Surgering S along D produces a new surface which is obviously
+in the same homology class. Since S is compact, surgery simplifies S , either splitting
+one component into two components of lower genus, in case ∂D separates S , or in
+the opposite case, reducing the genus of a component of S . So after finitely many
+steps we reach the situation that each component of S is π1 injective.                   ⊓
+                                                                                         ⊔
+
+    Returning to the proof of Proposition 3.4 in the case of closed M , we have Z ≈
+H1 (M) ≈ H 1 (M) ≈ H2 (M) . By the lemma we may represent a nontrivial class in
+H2 (M) by a closed embedded surface S with each component π1 injective. Since
+π1 M ≈ Z , each component of S must then be a 2 sphere. The separating spheres are
+62                               Homotopy Properties                                    §3.1
+
+
+trivial in homology, so can be discarded, leaving at least one nonseparating sphere.
+As in Proposition 1.4 this gives a splitting M = N ♯ S 1 × S 2 , finishing the proof.     ⊓
+                                                                                          ⊔
+
+     Dropping the hypothesis that M is prime, the proof shows that M = N ♯ S 1 × S 2
+or N ♯ S 1 × D 2 . Then π1 M ≈ π1 N ∗ Z , hence N is simply-connected, since a nontrivial
+free product is necessarily nonabelian. This implies that ∂N , hence also ∂M , consists
+of spheres, since as we showed in the proof of the loop theorem, H1 (N; Z2 ) = 0 is
+sufficient to obtain this conclusion. Let N ′ be obtained from N by capping off its
+boundary spheres by balls. Thus N ′ is a closed simply-connected 3 manifold. The
+next proposition describes the homotopy type of such an N ′ .
+
+ Proposition 3.7. A closed simply-connected 3 manifold is a homotopy sphere, i.e.,
+ homotopy equivalent to S 3 . A compact 3 manifold is contractible if and only if it is
+ simply-connected and has boundary a 2 sphere.
+
+Proof: Let P be a closed simply-connected 3 manifold. It is orientable since π1 P = 0 .
+By Poincaré duality and the Hurewicz theorem we have π2 P ≈ H2 (P ) ≈ H 1 (P ) ≈
+H1 (P ) = 0 . Then π3 P ≈ H3 (M) ≈ Z , and we have a degree one map S 3 →P . This
+induces an isomorphism on all homology groups. Since both S 3 and P are simply-
+connected, Whitehead’s theorem implies that the map S 3 →P is a homotopy equiva-
+lence.
+     The second assertion can be proved in similar fashion.                               ⊓
+                                                                                          ⊔
+
+     The Poincaré Conjecture (still unproved) is the assertion that S 3 is the only ho-
+motopy 3 sphere, or equivalently, B 3 is the only compact contractible 3 manifold.
+
+The Sphere Theorem
+     Here is the general statement:
+
+ Theorem 3.8. Let M be a connected 3 manifold. If π2 M 6= 0 , then either
+  (a) there is an embedded S 2 in M representing a nontrivial element in π2 M , or
+  (b) there is an embedded 2 sided RP2 in M such that the composition of the cover
+      S 2 →RP2 with the inclusion RP2 ֓ M represents a nontrivial element of π2 M .
+
+     A 2 sided RP2 ⊂ M can exist only if M is nonorientable, so for orientable M
+the theorem asserts that there is an S 2 ⊂ M which is nontrivial in π2 M , if π2 M is
+nonzero. An example of a nonorientable manifold where RP2 ’s are needed to repre-
+sent a nontrivial element of π2 is S 1 × RP2 . This has S 1 × S 2 as a double cover, so π2
+§3.1                          The Loop and Sphere Theorems                                  63
+
+
+is Z . However, S 1 × RP2 is irreducible, by Proposition 1.13, so any embedded S 2 in
+S 1 × RP2 is nullhomotopic.
+    We remark that it is not true in general for orientable M that every element of
+π2 M is represented by an embedded sphere. For example, π2 (S 1 × S 2 ) ≈ Z , but as
+we saw in Proposition 1.4, a separating S 2 in S 1 × S 2 bounds a ball since S 1 × S 2 is
+prime, while a nonseparating S 2 is a slice {x}× S 2 in a product structure S 1 × S 2
+hence represents a generator of π2 .
+
+ Corollary 3.9. Let M be a compact connected orientable irreducible 3 manifold with
+                 f.
+ universal cover M
+  (a) If π1 M is infinite, and in particular if ∂M 6= ∅ , then M is a K(π , 1) , i.e., πi M = 0
+      for all i > 1 , or equivalently, Mf is contractible.
+  (b) If π1 M is finite, then either M = B 3 or M is closed and M
+                                                                f is a homotopy 3 sphere.
+
+Proof: Since M is irreducible, the Sphere Theorem implies that π2 M is zero. It fol-
+                    f ≈ H3 M
+lows that π3 M ≈ π3 M       f by the Hurewicz theorem. If π1 M is infinite, M
+                                                                            f is
+                  f = 0 . Thus π3 M = 0 . By Hurewicz again, π4 M ≈ π4 M
+noncompact, so H3 M                                                    f ≈ H4 M
+                                                                              f.
+Since H4 of a 3 manifold is zero, we get π4 M = 0 . Similarly, all higher homotopy
+groups of M are zero. Now assume π1 M is finite. If ∂M 6= ∅ then by Lemma 3.5,
+∂M must consist of spheres and irreducibility implies M = B 3 . If ∂M = ∅ , then M
+                                                                                 f is
+                               f→M is finite-sheeted, and so by Proposition 3.7 M
+also closed since the covering M                                                f
+is a homotopy sphere.                                                                        ⊓
+                                                                                             ⊔
+
+ Proposition 3.10. An embedded sphere S 2 ⊂ M is zero in π2 M if and only if it
+ bounds a compact contractible submanifold of M . A 2 sided RP2 ⊂ M is always
+ nontrivial in π2 M .
+
+Proof: Let Se be any lift of the nullhomotopic sphere S ⊂ M to the universal cover
+f . Via the isomorphism π2 M ≈ π2 M
+M                                     f , Se is nullhomotopic in M
+                                                                 f , hence it is also
+                         f , bounding a compact submanifold N
+homologically trivial in M                                         f . Rechoosing Se
+                                                              e of M
+                                e , we may assume N
+to be an innermost lift of S in N                 e contains no other lifts of S . Then
+the restriction of the covering projection Mf→M to N e is a covering space N e →N , as
+in the proof of Proposition 1.6. This covering is 1 sheeted, i.e., a homeomorphism,
+since it is 1 sheeted over S . By the van Kampen theorem, N    e is simply-connected
+      f is. By Proposition 3.7, N is contractible.
+since M
+                                                                             f→M ,
+    For the case of a 2 sided RP2 ⊂ M , consider the orientable double cover M
+corresponding to the subgroup of π1 M represented by orientation-preserving loops
+in M . The given RP2 lifts to a unique S 2 ⊂ M
+                                             f . If this is nullhomotopic, the first
+64                             Homotopy Properties                                 §3.1
+
+
+half of the proposition implies that this S 2 bounds a contractible submanifold N  e of
+f . The nontrivial deck transformation of M
+M                                             f takes Ne to itself since the given RP2
+                                                                   e is a double cover
+is 2 sided in M . So the restriction of the covering projection to N
+Ne →N , with ∂N = RP2 . This is impossible by the following lemma. (Alternatively, the
+                                                                              e →N
+Lefschetz fixed point theorem implies that the nontrivial deck transformation N  e
+                              e is contractible.)
+must have a fixed point since N                                                  ⊓
+                                                                                 ⊔
+
+ Lemma 3.11. If N is a compact 3 manifold, then the Euler characteristic χ (∂N) is
+ even.
+
+Proof: By the proof of Lemma 3.5 with Z2 coefficients now instead of Q coefficients,
+we see that H1 (∂N; Z2 ) is even-dimensional, from which the result follows.          ⊓
+                                                                                      ⊔
+
+     The converse statement, that a closed surface of even Euler characteristic is the
+boundary of some compact 3 manifold, is easily seen to be true also.
+     Here is another consequence of the Sphere Theorem:
+
+ Proposition 3.12. In a compact orientable 3 manifold M there exists a finite collec-
+ tion of embedded 2 spheres generating π2 M as a π1 M module.
+
+Proof: By the prime decomposition there is a finite collection S of disjoint spheres
+in M such that each component of M || S is an irreducible manifold with punctures.
+We claim that the spheres in S , together with all the spheres in ∂M , generate π2 M
+as a π1 M module. For let f : S 2 →M be given. Perturb f to be transverse to S , so
+that f −1 (S) is a collection of circles in S 2 . Since the components of S are simply-
+connected, we may homotope f , staying transverse to S , so that f takes each circle
+in f −1 (S) to a point. This means that f is homotopic to a linear combination, with
+coefficients in π1 M , of maps fj : S 2 →M − S . It suffices now to show that if P is
+irreducible-with-punctures then π2 P is generated as a π1 P module by the spheres
+in ∂P . This is equivalent to saying that if Pe→P is the universal cover, then π2 Pe is
+generated by the spheres in ∂ Pe . To show this, let Pe′ be Pe with its boundary spheres
+filled in with balls Bℓ . We have a Mayer-Vietoris sequence:
+
+
+
+
+Now Pe′ is the universal cover of the irreducible manifold P ′ obtained by filling in
+the boundary spheres of P , so π2 Pe′ ≈ π2 P ′ = 0 by the Sphere Theorem. Since
+§3.1                          The Loop and Sphere Theorems                               65
+
+    S                                  S
+H2 ( ℓ Bℓ ) = 0 , we conclude that π2 ( ℓ ∂Bℓ )→π2 (Pe) is surjective, i.e., π2 Pe is gener-
+ated by the spheres in its boundary.                                                      ⊓
+                                                                                          ⊔
+
+                                     f→M be the universal cover. By Lemma 3.6
+Proof of the Sphere Theorem: Let p : M
+we may represent a nonzero class in π2 M ≈ π2 Mf ≈ H2 Mf by an embedded closed
+                       f , each component of which is π1 injective, hence a sphere
+orientable surface S ⊂ M
+         f = 0 . Some component will be nontrivial in H2 M
+since π1 M                                               f , hence in π2 M
+                                                                         f . Call this
+component S0 .
+    The rest of the proof will be to show that the sphere S0 can be chosen so that the
+union of all the images τ(S0 ) under the deck transformations τ of M  f is a collection
+of disjoint embedded spheres. Then the restriction p : S0 →p(S0 ) is a covering space,
+so its image p(S0 ) is an embedded S 2 or RP2 in M representing a nontrivial element
+of π2 M . If it is a 1 sided RP2 , then the boundary of an I bundle neighborhood of this
+RP2 is an S 2 with the inclusion S 2 ֓ M homotopic to the composition S0 →RP2 ֓ M ,
+hence nontrivial in π2 M by the choice of S0 . Thus the proof will be finished.
+
+    We now introduce the key technical ideas which will be used. Let N be a triangu-
+lated 3 manifold, with triangulation T . Then a surface S ⊂ N is said to be in normal
+form with respect to the triangulation if it intersects each 3 simplex ∆3 of T in a
+finite collection of disks, each disk being bounded by a triangle or square of one of
+the types shown in Figure 3.4.
+
+
+
+
+                                        Figure 3.4
+There are four types of triangles in each ∆3 separating one vertex from the other
+three, and three types of squares separating opposite pairs of edges of ∆3 . Squares
+of different types necessarily intersect each other, so an embedded surface in normal
+form can contain squares of only one type in each ∆3 . The edges of the squares and
+triangles are assumed to be straight line segments, so ‘triangles’ are literally triangles,
+but ‘squares’ do not have to lie in a single plane or have all four sides of equal length.
+‘Quadrilateral’ would thus be a more accurate term.
+    For a compact surface S which meets the 1 skeleton of the triangulation trans-
+66                               Homotopy Properties                                  §3.1
+
+
+versely we define the weight w(S) to be the total number of points of intersection of
+S with all the edges of the triangulation.
+
+ Lemma 3.13. If N contains an embedded sphere which is nontrivial in π2 N , then it
+ contains such a sphere in normal form, and we may take this sphere to have minimal
+ weight among all spheres which are nontrivial in π2 N .
+
+Proof: As in the proof of existence of prime decompositions, we begin by perturbing
+a nontrivial sphere S ⊂ N to be transverse to all simplices of T , and then we perform
+surgeries to produce an S meeting each 3 simplex only in disks. A surgery on S
+produces a pair of spheres S ′ and S ′′ , and in π2 N , S is the sum of S ′ and S ′′ , with
+respect to suitably chosen orientations and paths to a basepoint. So at least one of
+S ′ and S ′′ must be nontrivial in π2 N if S is, and we replace S by this nontrivial S ′
+or S ′′ . Then we repeat the process until we obtain a nontrivial sphere S meeting all
+3 simplices in disks. Note that replacing S by S ′ or S ′′ does not yield a sphere of
+larger weight since w(S) = w(S ′ ) + w(S ′′ ) .
+     Next, we isotope S so that for each 3 simplex ∆3 , the boundary ∂D of each disk
+component D of S ∩ ∆3 meets each edge of ∆3 at most once. For if such a circle ∂D
+meets an edge ∆1 more than once, consider two points of ∂D ∩ ∆1 . After rechoosing
+these two points if necessary, we may assume the segment α of ∆1 between these
+points meets D only in the two points of ∂α . The arc α lies in one of the two disks
+of ∂∆3 bounded by ∂D , and separates this disk into two subdisks. Let E be one of
+these subdisks. We may perturb E so that it lies entirely in the interior of ∆3 except
+for the arc α in ∂E , which we do not move, and so that the rest of ∂E , an arc β , stays
+in D . Now we can perform an isotopy of S which removes the two points of ∂α = ∂β
+from the intersection of S with the edge ∆1 by pushing β across the repositioned
+E . It may be that before this isotopy, E intersects S in other curves besides β , but
+this is not a real problem as we can just push these curves along ahead of the moving
+β . The key property of this isotopy is that it decreases the weight w(S) by at least
+two, since it eliminates the two intersection points of ∂α without introducing any new
+intersections of S with edges of the triangulation.
+     Since this isotopy decreases w(S) , finitely many such isotopies, interspersed with
+the former surgery steps to make S meet each 3 simplex in disks, suffice to produce a
+sphere S meeting 3 simplices only in disks, with the boundaries of these disks meet-
+ing each 1 simplex at most once. We can then easily isotopy S to meet all 2 simplices
+in straight line segments, without changing the intersections with edges. We leave it as
+an exercise for the reader to check that the condition that the boundary circles of the
+§3.1                         The Loop and Sphere Theorems                              67
+
+
+disks of S ∩∆3 meet each 1 simplex at most once implies that each of these boundary
+circles consists of either three or four segments, forming a triangle or square as in
+Figure 3.4.
+    Thus we produce a sphere S in normal form which is still nontrivial in π2 N .
+Since the procedure for doing this did not increase the weight of S , it follows that the
+minimum weight of all homotopically nontrivial spheres in N is achieved by a normal
+form nontrivial sphere.                                                                 ⊓
+                                                                                        ⊔
+
+
+   Now we return to the proof of the Sphere Theorem. Choose a triangulation of
+                                        f . By the preceding lemma we may take S0
+M and lift this to a triangulation T of M
+to be in normal form with respect to T and of minimum weight among all nontrivial
+spheres in Mf . The immersed sphere p(S0 ) ⊂ M is then composed of triangles and
+squares in all the 3 simplices of M , and by small perturbations of the vertices of
+these triangles and squares we can put their boundary edges in general position with
+respect to each other. This means than any two edges of triangles or squares meet
+transversely in at most one point lying in the interior of a 2 simplex, and no three
+edges have a common point. We may also assume the interiors of the triangles and
+                                                              f , this means that the
+squares intersect each other transversely. Lifting back up to M
+collection Σ of all the translates τ(S0 ) of S0 under deck transformations τ ∈ π1 M
+consists of minimum weight nontrivial spheres in normal form, having transverse
+intersections disjoint from the 1 skeleton of T .
+                                f inductively, letting B0 be any 3 simplex of T
+    Define compact subsets Bi ⊂ M
+and then letting Bi be the union of Bi−1 with all 3 simplices which meet Bi−1 . So
+                S
+                       f . Let Σi be the collection of all the spheres in Σ which meet
+B0 ⊂ B1 ⊂ ··· ⊂ i Bi = M
+Bi . This is a finite collection since only finitely many τ(S0 ) ’s meet each 3 simplex of
+T , and Bi is a finite union of 3 simplices.
+    We describe now a procedure for modifying the spheres in Σi to make them
+all disjoint. Suppose S ∩ S ′ ∩ T2 6= ∅ for some S, S ′ ∈ Σi , where T2 denotes the
+2 skeleton of T . As a first step, circles of S ∩ S ′ in the interiors of 3 simplices of
+T can be eliminated by isotopy of S without affecting S ∩ T2 . Namely, since S and
+S ′ are in normal form, such a circle in a simplex ∆3 bounds disks D ⊂ S ∩ ∆3 and
+D ′ ⊂ S ′ ∩ ∆3 . We may choose D to be innermost, so that D ∩ S ′ = ∂D . Then D ∪ D ′
+is a sphere, which bounds a ball in ∆3 by Alexander’s theorem, and we can isotope S ′
+by pushing D ′ across this ball to eliminate the circle ∂D = ∂D ′ from S ∩ S ′ .
+    Next we will appeal to the following crucial lemma:
+68                               Homotopy Properties                                  §3.1
+
+
+ Lemma 3.14. Let S and S ′ be minimum weight nontrivial spheres in normal form,
+ intersecting transversely and with S ∩ S ′ disjoint from 1 simplices. Assume that
+ S ∩ S ′ 6= ∅ , and that in each 3 simplex, S ∩ S ′ consists only of arcs, no circles. Then
+ there is a circle C of S ∩ S ′ which is innermost in both S and S ′ , i.e., C bounds disks
+ D ⊂ S and D ′ ⊂ S ′ with D ∩ S ′ = ∂D and D ′ ∩ S = ∂D ′ . Furthermore we may choose
+ D and D ′ so that the sphere D ∪ D ′ is trivial in π2 M .
+
+     Let us postpone the proof of this lemma, which is rather lengthy, and continue
+with the proof of the Sphere Theorem. Having a circle C as in this lemma, we replace
+D by D ′ in S to obtain a new sphere S , and similarly modify S ′ by replacing D ′
+by D . Since D ∪ D ′ is trivial, the new spheres S and S ′ are homotopic to the old
+ones, hence are nontrivial. They are also still of minimum weight since the total
+weight w(S) + w(S ′ ) is unchanged, hence both terms are unchanged since S and S ′
+each have minimal weight. With a small perturbation of S and S ′ we can eliminate
+the circle C from S ∩ S ′ . The new spheres S and S ′ are not in normal form, but
+can easily be made so: First straighten their arcs of intersection with 2 simplices
+without changing the endpoints of these arcs; note that these arcs must join distinct
+edges of each 2 simplex, otherwise S or S ′ would not be of minimum weight. Having
+straightened the intersection of S and S ′ with 2 simplices, the intersections of S and
+S ′ with 3 simplices must still be disks, otherwise the procedure for putting them into
+normal form would decrease their weights, which is not possible. The new S and S ′
+together have no more points of intersection in 2 simplices with other spheres in Σi
+than the old S and S ′ did, since these other spheres are in normal form, so when
+we straightened the intersections of the new S and S ′ with 2 simplices this will not
+produce new intersections with the other spheres.
+     Thus by repeating this process for the other circles of S ∩ S ′ and then for all pairs
+S , S ′ , in Σi we eventually obtain a collection Σi of spheres which are disjoint in all
+2 simplices. They can easily be made to be disjoint in the interior of each 3 simplex
+∆3 as well. For the new spheres of Σi meet ∂∆3 in a collection of disjoint circles, so
+we need only choose disjoint disks in ∆3 bounded by these circles, then isotope the
+disks of Σi ∩ ∆3 to these disjoint disks, rel Σi ∩ ∂∆3 .
+     Suppose we perform this disjunction procedure on the spheres in Σ0 , Σ1 , Σ2 , ···
+in turn. We claim that no sphere is modified infinitely often. To see this, observe first
+that each sphere of Σi is contained in Bi+w where w is the common weight of all the
+spheres of Σ . This is because the cell structure on each sphere S in Σ consisting of
+the triangles and squares given by normal form has w vertices, so a maximal tree in
+§3.1                         The Loop and Sphere Theorems                             69
+
+
+its 1 skeleton has w − 1 edges and any two vertices can be joined by an edgepath
+with w − 1 edges, so if S meets Bi , S must be contained in Bi+w . So a sphere in Σi
+will not be modified at any stage after the spheres which meet Bi+w are modified, i.e.,
+the spheres in Σi+w .
+    So the infinite sequence of modifications produces a collection Σ of disjoint non-
+trivial spheres. Let S denote the union of these spheres. This is a surface in normal
+form, perhaps noncompact. We claim that the intersection of S with the 2 skeleton
+T2 is invariant under all the deck transformation. This is certainly true for the inter-
+section with the 1 skeleton T1 , which was unchanged during the whole modification
+procedure. Observe that for a surface T in normal form, T ∩ T1 determines T ∩ T2
+uniquely, since for each simplex ∆2 , the weights a , b , c of T at the three edges of
+∆2 determine the numbers x , y , z of arcs of T ∩ ∆2 joining each pair of edges, as
+indicated in Figure 3.5.
+
+
+
+
+                                       Figure 3.5
+So for each deck transformation τ , the normal form surfaces S and τ(S) have the
+same intersection with T1 hence also with T2 , as claimed.
+    Finally, to make S itself invariant under deck transformations we need only
+choose the disks of S − T2 to be invariant. This can be done by fixing a choice of
+these disks in a particular 3 simplex of T lying over each 3 simplex in M , then trans-
+lating these disks to all other 3 simplices of T via the deck transformations.         ⊓
+                                                                                       ⊔
+
+
+Proof of Lemma 3.14: Consider disks D ⊂ S and D′ ⊂ S ′ bounded by circles of
+S ∩ S ′ . Such disks may or may not be innermost, i.e., meeting S ∩ S ′ only in their
+boundary. Here are some facts about such disks.
+
+(1) The minimum weight of disks in S and S ′ is the same. For consider a disk of
+minimum weight in both S and S ′ , say D ⊂ S . We may assume D is innermost. Let
+D ′ and E ′ be the disks in S ′ bounded by ∂D . At least one of the spheres D ∪ D ′ ,
+D ∪ E ′ is nontrivial, say D ∪ E ′ . Then w(D ∪ E ′ ) ≥ w(S ′ ) = w(D ′ ∪ E ′ ) since S ′
+has minimal weight. Weights being additive, we get w(D) ≥ w(D ′ ) . This implies
+w(D) = w(D ′ ) by the choice of D , so D ′ also achieves the minimum weight of disks
+70                              Homotopy Properties                                §3.1
+
+
+in S and S ′ .
+
+(2) If D ⊂ S is an innermost minimum weight disk, separating S ′ into disks D ′ and
+E ′ with D ∪ E ′ nontrivial, then D ′ is a minimum weight disk and D ∪ E ′ is a minimum
+weight nontrivial sphere. This was shown in (1) except for the observation that D ∪ E ′
+is minimum weight, which holds because w(D ∪ E ′ ) = w(D ′ ∪ E ′ ) since w(D) =
+w(D ′ ) .
+
+(3) Each disk D has w(D) > 0 . To verify this we may assume D is innermost. The
+normal form sphere S is decomposed into triangles and squares by the 2 skeleton
+T2 . If w(D) = 0 , D is disjoint from the corners of these triangles and squares, and
+so meets them in regions of the following types:
+
+
+
+
+                                        Figure 3.6
+Construct a graph G ⊂ D by placing a vertex in the interior of each of these regions,
+together with an edge joining this vertex to the midpoint of each of the arcs of inter-
+section of the region with the sides of the triangle or square. Clearly D deformation
+retracts onto G , so G is a tree, but this contradicts the fact that each vertex of G is
+incident to at least two edges of G .
+
+(4) By (3), a minimum weight disk D which is not innermost can contain only one
+innermost disk D0 , and the annuli in D − D0 bounded by circles of S ∩ S ′ must have
+weight zero. By the Euler characteristic argument in (3), these annuli must consist
+entirely of the rectangular shaded regions in Figure 3.6.
+
+(5) For a minimum weight disk D , there must exist in some 2 simplex ∆2 of T an
+arc component α of D ∩ ∆2 having one end on ∂∆2 and the other in the interior of
+∆2 . This is because D meets T1 (since w(D) > 0) , and if a component of D ∩ T2
+containing a point of D ∩ T1 consisted entirely of arc components of D ∩ ∆2 with both
+endpoints on ∂∆2 , for each ∆2 , then D would be a closed surface.
+
+(6) An arc α as in (5) is divided into segments by the points of α ∩ S ′ . Each such
+segment, except the one meeting ∂∆2 , must connect the two boundary components
+of an annulus of D − S ′ , as in (4). The segment of α meeting ∂∆2 must lie in the
+unique innermost disk D0 ⊂ D .
+
+     Having these various facts at our disposal, we now begin the proof proper.
+§3.1                          The Loop and Sphere Theorems                               71
+
+
+Case I. Suppose we have a minimum weight disk D and an arc α of D ∩ ∆2 as in
+(5) with the additional property that the endpoint of α in the interior of ∆2 is the
+endpoint of an arc α′ of S ′ ∩ ∆2 whose other endpoint lies on the same edge of ∆2
+as the other endpoint of α ; see Fig. 3.6a. The two arcs α and α′ cut off a triangle T
+from ∆2 , and the following argument will involve replacing T by subtriangles until
+the situation of Fig. 3.7c is achieved, with α ∩ S ′ = α′ ∩ S = α ∩ α′ .
+
+
+
+
+                                        Figure 3.7
+
+
+After replacing D by its innermost subdisk we may assume by (6) that α∩S ′ = α∩α′ ,
+as in Fig. 3.7b. Near α ∩ α′ , α′ lies in a disk D ′ ⊂ S ′ . If all of α′ is not contained
+in D ′ , then the circle ∂D = ∂D ′ meets α′ at another point in the interior of α′ , and
+we can rechoose α to have this point as an endpoint. So we may assume α′ ⊂ D ′ . If
+D ∪ D ′ is nontrivial, relabel D ′ as E ′ in the notation of (1) and (2) above. But then the
+minimum weight nontrivial sphere D ∪ E ′ can obviously be isotoped to decrease its
+weight, a contradiction. So D ∪ D ′ is trivial, and by (1) D ′ is also a minimum weight
+disk. We can then repeat the preceding steps with the roles of D and D ′ reversed,
+obtaining in the end the desired situation of Fig. 3.7c, with both D and D ′ innermost
+and minimum weight, and D ∪ D ′ trivial. This finishes the proof in Case I.
+
+
+
+
+Case II. Suppose we have a minimum weight disk D such that D ∩∆2 has a component
+which is an arc β in the interior of ∆2 , for some 2 simplex ∆2 of T . The arc β is
+divided into segments by the points of S ′ ∩ D . One of these segments must lie in
+the innermost disk D0 in D , otherwise these segments would all be arcs crossing the
+annuli of D − S ′ as we saw in (4), an impossibility since both ends of β are on ∂D .
+Replace D by its innermost disk, with the new β a subsegment of the old one. The
+two endpoints of β are joined to ∂∆2 by arcs α1 and α2 of S ′ ∩ ∆2 , which may be
+chosen to have their outer endpoints on the same edge of ∆2 , as in Figure 3.8a.
+72                              Homotopy Properties                                  §3.1
+
+
+
+
+                                       Figure 3.8
+
+If there are other arcs of D ∩ ∆2 meeting α1 or α2 , these arcs cannot cross α1 or α2
+since D is innermost. Furthermore, these arcs must lie on the same side of α1 and α2
+as β since D lies on one side of S ′ near ∂D . Assuming we are not in Case I, these arcs
+then join α1 to α2 , and we can replace β by an edgemost such arc joining α1 to α2 .
+So we may assume α1 and α2 meet D only at ∂β . Then α1 and α2 lie in a disk D ′ of
+S ′ . If the sphere D ∪ D ′ is nontrivial, it must be minimum weight, by (2). But there is
+an obvious isotopy of D ∪ D ′ decreasing its weight by two. So D ∪ D ′ is trivial and D ′
+is a minimum weight disk, by (2) again. If D ′ is innermost, we are done. Otherwise,
+replace D ′ by its innermost subdisk, α1 and α2 being replaced by subarcs which still
+meet ∂∆2 by (6). If we are not in Case I, the endpoints of α1 and α2 in the interior
+of ∆2 are then joined by a new arc β in some disk D of S with ∂D = ∂D ′ . By (2) the
+sphere D ∪ D ′ cannot be nontrivial, since there is an obvious isotopy decreasing its
+weight. So D ∪ D ′ is trivial and D is minimum weight. If D is not innermost we can
+go back to the beginning of Case II and repeat the argument with a smaller rectangle
+bounded by α1 ∪ β ∪ α2 in ∆2 . So we may assume D is innermost, finishing the proof
+in Case II.
+
+Case III. Considering again an arc α as in (5), there remains the possibility that the
+component A′ of S ′ ∩ ∆2 containing the endpoint of α in the interior of ∆2 has both
+its endpoints on edges of ∆2 not containing the other endpoint of α . Thus we have
+the configuration shown in Figure 3.8b. The arc α lies in a minimum weight disk D
+which we may assume is innermost. In particular this means that no arcs of S ′ ∩ ∆2
+below A′ join the left and right edges of ∆2 . By (2) we have ∂D = ∂D ′ for some
+minimum weight disk D ′ in S ′ . Assuming Cases I and II are not applicable, there is
+an arc α′ in D ′ as shown in the figure, with one endpoint at the upper endpoint of α
+and the other endpoint in the left edge of ∆2 . If D ′ is not innermost we may replace
+it by an innermost disk, choosing a new α to the left of the current one. Thus we
+may assume both D and D ′ are innermost. If D ∪ D ′ is nontrivial then by (2) we can
+§3.1                          The Loop and Sphere Theorems                           73
+
+
+rechoose D ′ on the other side of α , but this configuration would be covered by Case
+I or II. So we may assume D ∪ D ′ is trivial, and Case III is finished.               ⊓
+                                                                                      ⊔
+
+    Now we can prove a converse to Proposition 1.6:
+
+ Theorem 3.15. If M
+                  f→M is a covering space with M irreducible and orientable,
+      f is irreducible.
+ then M
+
+Proof: This follows quite closely the scheme of proof of the Sphere Theorem. The
+main thing to observe is that Lemmas 3.13 and 3.14 remain valid if ‘triviality’ for
+embedded spheres is redefined to mean ‘bounding a ball.’ The two properties of trivial
+spheres which were used were: (1) Surgery on a nontrivial sphere cannot produce two
+trivial spheres, and (2) Triviality is invariant under isotopy.
+     Suppose M f is reducible, hence contains a nontrivial sphere S0 . The proof of the
+                                                 f which covers either a sphere
+Sphere Theorem gives a new nontrivial sphere S ⊂ M
+or an RP2 in M . In the latter case the RP2 is 1 sided since we assume M orientable,
+and an I bundle neighborhood of this RP2 is RP3 minus a ball, so irreducibility of
+M implies M = RP3 , hence M
+                          f = S 3 , which is irreducible, a contradiction. In case the
+sphere S ⊂ M f covers a sphere in M , the latter sphere bounds a ball in M , which lifts
+             f bounded by S , a contradiction again.
+to a ball in M                                                                        ⊓
+                                                                                      ⊔
+
+    Recall the example S 1 × S 2 →S 1 × RP2 of a covering of an irreducible manifold
+by a reducible manifold, which shows the necessity of the orientability hypothesis in
+Theorem 3.15. To extend the theorem to the nonorientable case one needs to restrict
+M to be P 2 irreducible, that is, irreducible and containing no 2 sided RP2 ’s.
+
+Exercises
+1. Show that a closed connected 3 manifold with π1 free is a connected sum of
+S 1 × S 2 ’s, S 1 ×
+                  e S 2 ’s, and possibly a homotopy sphere.
+2. Extend Proposition 3.4 to the nonorientable case.
+3. Show that every closed surface of even Euler characteristic is the boundary of some
+compact 3 manifold.
+4. Show that if M is simply-connected, then every circle in ∂M separates ∂M . In
+particular, components of ∂M which are closed must be spheres.
+74                             Homotopy Properties                                §3.1
+
+
+Bibliography
+     JW Alexander, On the subdivision of 3-space by a polyhedron, Proc. Nat. Acad.
+Sci. 10 (1924), 6–8.
+     M Brown, A proof of the generalized Schoenflies theorem, Bull. A. M. S. 66 (1960),
+74–76.
+     A Hatcher, A proof of the Smale Conjecture, Ann. Math. 117 (1983), 553–607.
+     J Milnor, Lectures on the h-Cobordism Theorem, Princeton University Press, 1965.
+

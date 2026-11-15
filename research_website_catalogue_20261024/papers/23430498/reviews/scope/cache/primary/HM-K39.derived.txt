@@ -1,0 +1,1672 @@
+      THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS
+
+                        NATHAN HABEGGER AND GREGOR MASBAUM
+
+       Abstra t. A formula for omputing the Milnor ( on ordan e) invariants from the Kont-
+       sevi h integral is obtained.
+          The redu ed Kontsevi h integral (with values in the quotient by all loop diagrams) is
+       shown to be the universal on ordan e invariant of nite type.
+          Some appli ations are dis ussed.
+
+
+
+                                            Contents
+
+  Introdu tion                                                                                     1
+  1. Review of basi on epts and notation.                                                          3
+  2. The ve tor spa e A(X ).                                                                       6
+  3. The universal invariant Z (T ).                                                               7
+  4. The Hop an monoidal ategory quotients Ah and At .                                            10
+  5. Review of Milnor's  invariants.                                                             11
+  6. The redu ed Kontsevi h integral Z t and Milnor's invariants.                                 12
+  7. A spe ial ase.                                                                               14
+  8. The rst non-vanishing Milnor invariants and the latti e Kn (l).                              15
+  9. Vanishing results.                                                                           17
+  10. The ase of homotopy Milnor invariants.                                                      18
+  11. Proof of Theorem 6.1.                                                                       20
+  12. A global formula for Milnor's invariants.                                                   22
+  13. Realizing primitive diagrams.                                                               24
+  14. The on ordan e invarian e of Z t for tangles.                                               26
+  15. The universal nite type on ordan e invariant.                                               28
+  16. Appendix on the Vassiliev ltration of pure braids.                                          31
+  Referen es                                                                                      32
+
+
+                                         Introdu tion
+
+  In [M1, M2℄, Milnor de ned invariants of links, known as the Milnor  (mu-bar) invariants.
+In fa t, these invariants are not universally de ned, i.e., if the Milnor invariants of order less
+than n do not vanish, then those of order n are either not de ned, or at best, they have
+indetermina ies. On the other hand, nite-type (or Vassiliev) invariants [Va, Gu, Ko, B2℄
+are universally de ned invariants (i.e., for all links). Thus the naively posed question \Are
+Milnor's invariants of nite type?" is not well-posed.
+  Date : April 7, 1999 (First version: April 1997.)
+This and related preprints an be obtained at http://www.math.s ien es.univ-nantes.fr/~habegger
+and at http://www.math.jussieu.fr/~masbaum .
+                                                  1
+2                       NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   In [HL1℄, the notion of string link was introdu ed, together with the philosophy that
+Milnor's invariants are a tually invariants of string links. Indetermina ies are determined
+pre isely by the indetermina y of representing a link as the losure of a string link. This
+philosophy led to the lassi ation of links up to (link) homotopy.
+   From this point of view, the well-posed question \Are Milnor's invariants of string links
+of nite type?" was answered aÆrmatively by D. Bar-Natan in [B1℄ and by X. S. Lin in [L℄.
+(See also remarks 11.3 and 12.8.)
+   Sin e the Milnor invariants are derived from (expansions of) the longitudes of a link, and
+sin e the longitudes determine (and are determined by) the Artin representation of a string
+link (ea h generator is onjugated by its longitude), one may (in the philosophy of [HL1℄)
+de ne the `Universal' Milnor invariant of a string link to be its Artin representation. This
+point of view was ontinued in [HL2℄, where the true indetermina y of Milnor's on ordan e
+ invariants was determined.
+   In the present paper we address the relationship between Milnor's on ordan e invariants
+(of string links), i.e., the Artin representation, and the Kontsevi h integral. Sin e nite type
+invariants are de ned dually to the Vassiliev ltration, and sin e the Kontsevi h integral is
+the universal nite type invariant, they should be al ulable dire tly from the Kontsevi h
+integral.
+   One of the main results of this paper is that this is possible. Spe i ally, in Theorem 6.1,
+we show the following. First, we prove that the ltration on string links indu ed by Milnor's
+invariants oin ides with what we all the Z t - ltration, that is, the ltration indu ed by a
+  ertain quotient Z t of the Kontsevi h integral, obtained by killing all diagrams ontaining
+loops. (The t in Z t stands for tree diagrams, whi h generate the quotient.) And se ond, we
+give a ombinatorial formula to ompute the rst non-vanishing Milnor invariants of a string
+link  from the rst non-vanishing term of Z t ( ) 1. Although the orresponding result in
+the ase of Milnor's homotopy invariants is nearly a tautology, and ertainly suggested by
+[B1℄, this formula does not seem to have been dis overed elsewhere.
+   The ombinatorial formula given in Theorem 6.1 generalizes to a formula (see Theorem
+12.7) whi h expresses the full Magnus expansion of the longitudes in terms of the Kontsevi h
+integral. (This formula grew out of a dis ussion with D. Bar-Natan in January 1997.) In
+prin iple, this formula allows one to al ulate all the Milnor invariants, not just the rst
+non-vanishing ones, although its expli it form for the higher order invariants depends on a
+  ertain unipotent automorphism (see remark 12.8).
+   The idea that Milnor's invariants are related to tree diagrams had been around before
+(the se ond-named author learned about it from D. Bar-Natan and L. Rozansky in summer
+1995). From the physi s viewpoint, a onne tion between Milnor invariants and Feynman
+diagrams whi h are trees seems to have appeared for the rst time in L. Rozansky's work [R℄.
+However, it is remarkable that already before that, one had the `Bing doubling' onstru tion
+of T. Co hran [Co2℄, realizing `realizable' Milnor invariants, starting from trees.
+   Sin e Milnor's invariants are on ordan e invariants, the above suggests that the redu ed
+Kontsevi h integral Z t might be the universal nite type on ordan e invariant. We show
+that this is indeed the ase. While for string links this may be dedu ed from the above
+relationship between Z t and Milnor's invariants (see remark 14.3), taking this approa h for
+general tangles would require a generalization of the stru ture theorem of [HL2℄. There is,
+however, a dire t proof whi h we give in Theorems 14.1 and 15.1. This proof relies on the
+                    THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                               3
+
+
+
+  ombinatorial omputation of the Kontsevi h integral [Ca, B3, LM1, LM2, KT℄. For this we
+were parti ularly in uen ed by T. Le and J. Murakami's point of view.
+   A onsequen e of this is that there are no rational nite type on ordan e invariants of
+string links other than Milnor's invariants and their produ ts ( orollary 6.4). (We understand
+that this result, whi h was originally onje tured by X. S. Lin, has also been obtained
+by T. Stanford and D. Thurston [ST℄.) This generalizes a result of K. Y. Ng [Ng℄, who
+showed that there are no non-trivial rational nite type on ordan e invariants of knots. In
+parti ular, nite type on ordan e invariants miss the `trans nite' on ordan e invariants of
+J. Y. Le Dimet [D℄ and T. Co hran and K. Orr [CO℄.
+   The Kontsevi h expansion Z takes values in rational ve tor spa es generated by diagrams
+and it is an open problem to determine its image on links or string links. This image is a
+priori not ontained in the latti e generated by diagrams (sin e Z has rational oeÆ ients).
+Our formula allows us to determine expli itly the latti e given by the possible values of
+the rst non-vanishing term of the redu ed Kontsevi h integral Z t . See remark 8.2 for the
+answer.
+   Another appli ation of theorem 6.1 is that the Kontsevi h integral of a link with vanishing
+Milnor invariants an be expressed as a sum of treeless diagrams.
+   There are several known onstru tions of links with given Milnor invariants [O, HL2, Co1,
+Co2℄. One of the byprodu ts of our onsiderations about Milnor invariants is a onstru tion
+of string links whose rst non-vanishing term in its Kontsevi h expansion is an arbitrarily
+given integer linear ombination of onne ted diagrams. This `realization' result is obtained
+using a pro edure, pioneered by T. Stanford [S℄, whi h modi es a link by a pure braid.
+In parti ular (at least rationally), this onstru tion also produ es links with given Milnor
+invariants.
+   In the appendix, as an appli ation of our methods, we give a new and di erent proof of
+the fa t, shown re ently by D. Bar-Natan [B4℄, that the Vassiliev ltration of the group ring
+of the pure braid group (that is, the ltration indu ed by the Vassiliev ltration on string
+links), oin ides with the `horizontal' Vassiliev ltration.
+A knowledgements:       We extend thanks to D. Bar-Natan, C. Blan het, S. Papadima, L. Rozansky,
+and P. Vogel, for the signi ant impa t they had on this paper through stimulating onversations
+with us during its elaboration. We also thank Cathy Habegger for her logisti al support. The rst
+author wishes to thank the Centre National de la Re her he S ienti que (CNRS) for its support
+and the University of Nantes for delegating his time towards resear h during the a ademi year
+96-97. Finally, we wish to thank the referee for his ritique of our original preprint, whi h indu ed
+us to make substantive improvements in our exposition.
+
+
+
+                     1. Review of basi on epts and notation.
+   Let I denote the unit interval [0; 1℄ and let  I = f0; 1g be its boundary.
+   By tangle, we mean a (smooth) proper embedding T : X ! C  I, where X is a (smooth)
+ ompa t 1-manifold with boundary, X , su h that X is embedded in R   I. By the type
+of the tangle, we mean the underlying manifold X , together with the embedding of X . It
+is ustomary to often onfuse T with the image T (X ), but in general, it will be useful to
+keep X at our disposal.
+4                          NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   For i = 0; 1, we set i X = T 1 (C  fig). One ould impose the ondition that T (i X )
+be a standard set of points, but this is not ne essary, as only the order of these points is
+a tually important (see se tion 3).
+   One may also wish to think in terms of tangle diagrams, i.e., (properly) immersed urves
+in R  I; together with over and under rossing data. One obtains a tangle diagram by
+generi proje`   tion. See gure 1 for an example.
+              j =l 1
+   If X = j =1 S , the tangle is alled an l- omponent link. A 1- omponent link is also
+ alled a knot.
+   Fix a olle tion of points                        R  C . By the trivial l- omponent string link,
+                            ` =pl1I<!: : :C<plI,inwhere
+we mean the tangle 1l : jj =1                            1l (t) = (pj ; t); t 2 Ij . By an l- omponent
+                                   j
+string link, we mean any tangle of the same type (see above). We shall often use the notation
+ for string links.
+   Note that by de nition, the omponents of links and string links are ordered.
+   A tangle is a braid if the tangent ve tors always have a non-zero omponent in the verti al
+dire tion. (We onsider I as the verti al dire tion and C as a horizontal plane.) A braid
+whi h is a string link is alled a pure braid.
+
+
+
+
+     Figure 1.   A string link whi h is not isotopi to a pure braid.
+   Let T : X ! C  I be a tangle for whi h T (0 X ) = T (1 X ), under the identi ation
+of C  f0g with C  f1g. One de nes the losure of T to be the link de ned on the spa e
+obtained from X by identifying 0 X with 1 X , by identifying C f0g with C f1g to obtain
+C  S 1 and embedding this in the standard way in C  I.
+   A on ordan e between tangles T0 and T1 of the same type is an embedding H : X  I !
+C  I  I, su h that H (x; i) = (Ti (x); i), and su h that for x 2 X , H (x; t) = (T0 (x); t),
+for all t 2 I. A on ordan e is an isotopy pre isely when the t-level is preserved (i.e.,
+H (x; t) = (Tt (x); t), where for 0  t  1; Tt : X ! C  I). An isotopy t , 0  t  1, of braids
+is said to be horizontal if for all t, t is a braid.
+   By a homotopy between tangles (sometimes referred to as a link homotopy, but we won't
+use this terminology here), one means a homotopy rel. boundary in the usual sense, subje t
+to the ondition that distin t omponents always have disjoint images. In other words,
+one allows strands of the same omponent to ross one another (during a generi regular
+homotopy through immersions), but one does not allow strands of di erent omponents to
+ ross one another.
+   By a framed tangle, we mean a tangle equipped with a non-vanishing normal ve tor eld,
+su h that the restri tion to the boundary is the restri tion of a xed unit ve tor eld normal
+to R in C . Isotopy and on ordan e of framed tangles are de ned in the obvious way. Two
+framed tangles will be onsidered to be homotopi if their underlying tangles are homotopi .
+Note. The terminology `framing' is slightly abusive here, as the non-vanishing normal ve tor
+ eld does not quite determine a trivialization of the normal bundle, unless X is oriented (in
+                     THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                     5
+
+
+
+whi h ase a se ond se tion may be determined using the orientation of C  I). Note that for
+a knot, an isotopy lass of framing may be spe i ed by an integer, known as the self-linking
+number or writhe.
+Convention. All tangles, links, and string links, will be onsidered to be framed. A on or-
+dan e of tangles will also be assumed to be framed. Pure braids will be equipped with the
+zero framing (i.e., the framing indu ing the zero framing on the losure of ea h omponent).
+   The set of isotopy lasses of framed tangles form a ategory T , where the obje ts are
+  nite sets of points in R (equipped with the standard framing), and omposition is given by
+(verti al) sta king. Composition1 will be denoted by (T1 ; T2 ) 7! T1 T2 . (Our onvention is
+to put the tangle T2 above the tangle T1 . The domain of the tangle T1 T2 will be denoted
+X1 X2 . It is obtained from the disjoint union of X1 and X2 by identifying 1 X1 with 0 X2 .)
+The tangle ategory has a monoidal (or tensorial) stru ture2 given by the juxtaposition of
+tangles (i.e., one puts one tangle to the right of the other), denoted by (T1 ; T2 ) 7! T1  T2 .
+The set of isotopy lasses of l- omponent framed string links will be denoted by SL(l). Note
+that string links need not have inverses, so that SL(l) is not a group but only a monoid.
+   By Artin's theorem [A℄, two pure braids whi h are isotopi as string links are already
+isotopi as braids, i.e., via a horizontal isotopy. Thus isotopy lasses of l- omponent pure
+braids form a subgroup P B (l) of SL(l). The inverse of a pure braid  is  = R Æ  Æ r,
+where R is the re e tion through a horizontal plane (i.e., R : C  I ! C `I is given by
+                                                                                      =l
+R(x; t) = (x; 1 t)), and r is re e tion at the sour e (i.e., the self-map of jj =1       Ij whi h
+sends tj to 1 tj ).
+   Con ordan e lasses of tangles also form a monoidal ategory CT . The set of framed
+  on ordan e lasses of l- omponent framed string links will be denoted by CSL(l). It is
+well-known that CSL(l) is a group. The inverse of a string link  up to on ordan e is again
+represented by  (see for example [D℄). See gure 10 in se tion 14 for an example.
+   Similarly, homotopy lasses of tangles form a monoidal ategory HT . Homotopy lasses
+of l- omponent string links form a group HSL(l), with  again inverse to  . It is well-known
+that any string link is homotopi to a pure braid (see [HL1℄), and that on ordan e of string
+links implies homotopy [Gi, Go℄ (see also [H℄), so that HSL(l) is a quotient of P B (l) and of
+CSL(l). (Not every string link is on ordant to a pure braid.)
+   Finally, sin e isotopy of tangles implies on ordan e, and on ordan e implies homotopy,
+we have forgetful fun tors, T ! CT and CT ! HT .
+Note. In [HL2℄, the notation SL(l) and CSL(l) is used for the unframed version of our
+SL(l) and CSL(l).
+The Vassiliev ltration. Let X be a tangle type, that is, a 1-manifold whose boundary
+X is embedded in R   I. We denote by Q T (X ) the Q ve tor spa e with basis the set
+T (X ) of framed embeddings of X in C  I, extending the embedding on the boundary, up to
+isotopy rel. boundary. The analogous ve tor spa es with isotopy repla ed with on ordan e
+or homotopy are denoted by Q CT (X ) and Q HT (X ).
+  1
+     Two tangles T1 ; T2 are omposable, if the map T1 restri ted to 1 X1 agrees with the map T2 restri ted
+to 0 X2 , onsidered as taking values in C .
+   2
+     See [M℄ for generalities about monoidal ategories.
+6                            NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+  We de ne the Vassiliev ltration to be the ltration of the linearized ategory Q T by
+powers of the augmentation ideal, that is, the ideal generated by di eren es of tangles of the
+same type. In other words, one has that Q T (X )1 is generated by di eren es T1 T2 , where
+T2 is obtained from T1 by a rossing hange or a hange of framing.3 The n-th term of the
+ ltration is generated by ompositions of n elements of ltration 1. Thus, the ltration is
+multipli ative with respe t to the juxtaposition and omposition of tangles.
+  We denote the n-th term of the Vassiliev ltration on Q T (X ) by Q T (X )n. The indu ed l-
+trations on the ve tor spa es Q CT (X ) and Q HT (X ) and on the algebras Q P B (l), Q CSL(l),
+and Q HSL(l), will again be alled the Vassiliev ltrations and denoted by Q CT (X )n ,
+Q HT (X )n , and so on.
+
+                               2. The ve tor spa e A(X ).
+   We refer the reader to [B2, B1℄ (see also [Vo2℄) for de nitions of the Q -ve tor spa e A(X )
+of hord diagrams, modulo 4T relations, on the 1-manifold X . Elements of A(X ) may also be
+represented by linear ombinations of vertex-oriented4 diagrams X [ (o asionally referred
+to as Feynman diagrams on X ), subje t to the AS (antisymmetry) and IHX (or Ja obi)
+relations.5 (Here is a uni-trivalent graph, whose univalent verti es lie in the interior of
+X . Ea h omponent of is required to have a univalent vertex.) It is ustomary to refer to
+ omponents of X as solid, and to omponents of as dashed.
+
+
+
+
+        Figure 2.  A diagram X [ of degree 9. Vertex orientations are those indu ed from the ori-
+        entation of the plane. Four-valent verti es are an artifa t of the diagrammati representation
+        and should be ignored.
+
+
+                    IHX:         =                           AS:              =
+
+                    STU:         =                           AS:              =
+
+        Figure 3.   The IHX and AS relations. The IHX relation involving verti es on X is ommonly
+        referred to as the STU relation.
+
+   The spa e A(X ) is graded by the degree, where the degree of a diagram is half the number
+of verti es of . The degree n part of A(X ) will be denoted by An (X ).
+    3
+     This di ers from the de nition in [KT℄, in that we in lude +1 framing hanges and not just rossing
+ hanges, whi h yield only +2 framing hanges. Thus we avoid the Z=2-residue of [KT℄ and the Vassiliev
+ ltration is the one indu ed from the Kontsevi h integral, see 3.3 below.
+   4
+     An orientation of a 3-valent vertex is an ordering of the half-edges at that vertex, up to y li permutation.
+   5
+     As pointed out by P. Vogel, one need not require X to be oriented. We require instead a vertex orientation
+of the verti es of on X , whi h are onsidered as trivalent verti es of X [ , and the AS relations are also
+required to hold at these verti es. See gure 3.
+                      THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                      7
+
+
+
+  By abuse of notation, we denote the graded ompletion (i.e., repla e the dire t sum of the
+An (X ) with the dire t produ t) of A(X ) again by A(X ).
+   If i : X ! Y is an embedding, there is an ` indu ed map i : A(X ) ! A(Y ).
+                                               j =l
+   Throughout this paper we set A(l) = A( j =1 Ij ). Composition (i.e., sta king one diagram
+verti ally over the other) makes this into an algebra. It is known (see [B2℄) that A(S 1 ) is
+isomorphi to A(I) = A(1) and thus is also an algebra.
+   For all X , the ve tor spa e A(X ) has a natural o ommutative omultipli ation  de ned
+as in [B2, p. 439℄. This makes A(l) into a Hopf algebra. (See [MM℄.)
+Notation. We let P (l) denote the spa e of primitive elements of A(l), and Pn (l) its degree
+n part. (An element  is alled primitive if ( ) = 1  +  1.) One has [B2℄ that P (l) is
+the graded subspa e of A(l) generated by diagrams with onne ted dashed graphs.
+                               3. The universal invariant Z (T ).
+    The original Kontsevi h integral [Ko, B2℄ asso iates to every (unframed) knot K in S 3 , an
+invariant, whi h is an element of the quotient of A(S 1 ) by the ideal generated by the hord
+diagram having a single hord. Although this onstru tion an be extended to tangles, we
+  nd it onvenient to use a ombinatorial version of it, based ultimately on seminal work
+of Drinfel'd [D1, D2℄. This ombinatorial version has been studied by Le and Murakami
+[LM1, LM2℄, Bar-Natan [B3℄, Cartier [Ca℄, Kassel and Turaev [KT℄. This approa h repla es
+tangles by q -tangles ( alled non-asso iative tangles in [B3℄).
+    The ategory of q -tangles is de ned as follows. A q -stru ture on an ordered set is a bra k-
+eting; for example, the bra ketings of the set f1; 2; 3; 4g are (((12)3)4); ((12)(34)); ((1(23))4);
+(1(2(34))); (1((23)4)). (See [LM1, LM2, B3, KT℄ for a formal de nition.) A q -tangle is a
+tangle equipped with a q -stru ture on i X , for i = 0; 1. Framed q -tangles again are the
+morphisms of a monoidal ategory, the obje ts of whi h are obje ts of the framed tangle
+ ategory but equipped with a q -stru ture. For example, the identity string link with two
+di erent q -stru tures at the top and at the bottom is an isomorphism (and not an identity)
+in this ategory. Composition of q -tangles is again given by sta king in the obvious way6 ,
+and the monoidal produ t is again given by juxtaposition, where, by way of example, the
+bra keting of the juxtaposition of (1(23)) and (45) is ((1(23))(45)). By abuse of notation,
+we again denote this ategory by T .
+    By the q -type of the q -tangle, we mean the type of the tangle, together with the q -stru ture
+on i X , i = 0; 1. Note that the set of q -tangles of a given q -type is naturally in bije tion
+with the set of tangles of the underlying type, so that the forgetful fun tor from the q -
+tangle ategory to the tangle ategory is a bije tion on morphisms. In parti ular, the set of
+endomorphisms of the identity obje t (represented by the empty set of points) of the framed
+q -tangle ategory is just the set of isotopy lasses of framed links.
+    To a framed q -tangle T : X ! C  I, the ombinatorial version of the Kontsevi h integral
+asso iates an element Z (T ),7 whi h lies in (the graded ompletion of) A(X ). It is an isotopy
+invariant of the framed q -tangle. (In fa t, one may allow ambient isotopies of C  I whi h
+preserve R   I set-wise, whi h is why only the order of the points in i X is important.)
+  6
+     Two q-tangles T1 ; T2 are omposable if the underlying tangles are omposable and if the q-stru tures on
+1 X1 and 0 X2 oin ide.
+   7
+     T. Le and J. Murakami use the notation Zf (T ) for their preliminary version of the Kontsevi h integral,
+and write Zbf (T ) for their nal invariant. We shall not use this notation in the present paper.
+8                               NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   One has that Z (T ) is multipli ative (i.e., Z (T1 T2 ) = Z (T1 )Z (T2 )) and also monoidal (i.e.,
+Z (T1  T2 ) = Z (T1 ) Z (T2 )). This latter property is one advantage of using q -tangles, as it
+allows one to ompute the Kontsevi h integral of a link lo ally, by utting it into elementary
+morphisms in the q -tangle ategory.
+3.1. Remarks. (i) It is sometimes useful to view A as a ategory with the same obje ts
+as the tangle ategory T , and with morphisms given by linear ombinations of diagrams on
+1-manifolds (i.e., tangle types). Then A is a monoidal ategory (with monoidal stru ture
+indu ed by juxtaposition), and Z is a monoidal fun tor from the ategory of q -tangles to A.8
+    (ii) The following terminology is sometimes useful. To every obje t of the tangle ategory,
+one asso iates an obje t of the q -tangle ategory by giving it the so- alled anoni al q -
+stru ture. Here, the anoni al q -stru ture of an ordered set is the one obtained by su essively
+taking the bra keting of the prede essors of an element with the element. For example,
+(((12)3)4) is the anoni al bra keting of the ordered set f1; 2; 3; 4g.
+    (iii) The fun tor Z depends on the hoi e of a ertain element  of A(3) alled the
+asso iator. This is the image under Z of the identity 3- omponent string link with the
+ anoni al q -stru ture at the bottom and the other q -stru ture at the top. It is hosen so as
+to satisfy ertain properties (e.g., to ensure isotopy invarian e). By Drinfeld's work, we an
+(and do) hoose an asso iator whose non-zero terms all lie in even degrees.9 This ensures
+properties 3.2.6 and 3.2.7 below.
+    (iv) Unless stated otherwise, in this paper string links will be equipped with the same
+q -stru ture at the top and at the bottom. For a string link  , the rst (i.e., lowest degree)
+non-vanishing term of Z ( ) 1 does not depend on the q -stru ture.
+Notation. In this paper, the expression O(n) will be used to denote terms of degree greater
+than or equal to n.
+3.2. Some properties of Z (T ).
+    1. One has Z (T ) = 1 + O(1), where we denote by 1 2 A0 (X ) = Q the diagram X [ with
+        empty dashed graph . Note that if  is an l- omponent string link, Z ( ) lies in the
+        algebra A(l), and the element 1 2 A0 (l) is the identity element of that algebra.
+    2. Let 1 : I1 q I2 ! C  I denote the generator of the braid group on 2 strands. Then
+        Z (1 ) = exp(1;2 =2), where 1;2 2 A(I1 q I2 ) is the diagram onsisting of a single hord
+        having one vertex on I1 and the other on I2 (with the `same' vertex orientation for both
+        verti es).
+    3. Let \ and [ be the 1- omponent framed tangles asso iated to the obvious tangle di-
+        agrams suggested by their symbols. Then Z ([) and Z (\) (when viewed in A(1)) are
+        equal to an element usually alled  1=2 . The value of  an be omputed from the
+        asso iator by the formula  = i (), where i : A(3) ! A(1) is the map indu ed by the
+        (order preserving) in lusion i of 3 intervals in a single interval whi h is orientation pre-
+        serving on the rst and third and is orientation reversing on the se ond. In parti ular,
+        one has  = 1 + O(2) (sin e  = 1 + O(2)).
+    4. If the tangle T 0 is obtained from the tangle T by removing a omponent, then Z (T 0 )
+        is obtained from Z (T ) by setting all diagrams having a vertex on that omponent
+    8
+     There is, however, more stru ture here. The fun tor Z respe ts the partition of morphisms in T into
+q -types X , in the sense that for all T 2 T (X ), Z (T ) lies in A(X ).
+    9
+        Su h an asso iator is alled `good' in [LM2℄.
+                       THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                    9
+
+
+
+     equal to zero ( onsidering all other diagrams to lie on the omplement of the removed
+       omponent).
+  5. A key fa t whi h we will use is that Z (T ) is always a group-like element (i.e., one has
+     (Z (T )) = Z (T ) Z (T )). (See [LM2, thm. 5.1℄.) Consequently,10 if  is a string link,
+     then Z ( ) = exp( ), for  a primitive element of A(l). Note that in parti ular, the rst
+     non-vanishing term in the expansion of Z ( ) 1 is therefore primitive, and hen e a
+     linear ombination of diagrams with onne ted dashed graphs.
+  6. (Doubling Formula) One has that
+                                        Z (Di (T )) = Di (Z (T ))
+       where Di (T ) denotes the double of T along the i-th omponent, Ci , say, and Di of a
+       diagram is the sum over all lifts of verti es on Ci , to verti es on the 2 omponents over
+       Ci . (See [LM2, thm. 4.2 and ommentary℄.) See gure 4.
+
+                                           D1                     +
+
+       Figure 4.   The doubling operation on the rst strand.
+
+  7. Let  be a string link with l omponents. In se tion 1, we de ned  , whi h is a
+      on ordan e inverse of  . By [LM2, prop. 3.1℄, one has
+                                            Z ( ) = R(Z ( ))
+       where R is the (anti-)involution of A(l) de ned
+                                                     ` =lasI follows. If  2 An (l), then R( ) =
+       ( 1)n r ( ), where r denotes the self-map of jj =1 j de  ned by tj 7! 1 tj .
+Remark 3.3. The invariant Z (T ) is the universal nite type invariant of framed q -tangles.
+By this, one means that there is an exa t sequen e,
+                                                              Z
+(1)                         0 ! Q T (X )n+1 ! Q T (X ) !n An (X ) ! 0;
+where An (X ) is the spa e of hord diagrams on X of degree  n, and Zn is the omposite
+of Z with the proje tion onto An (X ). Thus Z indu es an isomorphism from the ompletion
+of Q T (X ), with respe t to the Vassiliev ltration, to the graded ompletion of A(X ).11
+
+
+  10
+       It is an exer ise to show that in a (graded ompleted) o ommutative Hopf algebra, the exponential of
+a primitive element is group-like and vi e versa.
+    11
+       The proof of the exa tness of (1) is essentially the same as the proof given in [B2℄ for (unframed)
+knots. It omes down to showing that the natural map A (X ) ! Q T (X ) =Q T (X ) +1 (de ned as in [B2℄)
+                                                          n               n         n
+
+is surje tive. Note that this map isn't surje tive in the ombinatorial framed version of Kassel-Turaev [KT℄,
+who have a Z=2 residue due to their di erent de nition of the Vassiliev ltration. With our de nition, the
+map is indeed surje tive, whi h an be seen using the equality t t 1 = 2(t 1) + (t 1)(t 1 1), where t
+denotes a twist of framing. This shows that a +1 framing hange is equivalent, modulo higher ltration, to
+a rossing hange yielding a +2 framing hange.
+10                           NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+              4. The Hopfian monoidal ategory quotients Ah and At .
+   We say that A is a monoidal ategory quotient of A, if for all 1-manifolds X , A(X ) is
+a graded quotient of A(X ) and the produ t A(X1 ) A(X2 ) ! A(X1 X2 ) and monoidal
+produ t A(X1 ) A(X2 ) ! A(X1 q X2 ) pass to maps on quotients. If in addition, the
+ omultipli ation A(X ) ! A(X ) A(X ) passes to maps on quotients, the monoidal ategory
+quotient is referred to as Hop an. We denote by Z (T ), the image of Z (T ) in A(X ) (where
+T : X ! C  I).
+   In [B1℄, the Hop an monoidal ategory quotient Ah of A was de ned to be the quotient by
+the relations generated by hord diagrams ontaining a hord between the same omponent.
+It follows (see [B1℄) that any trivalent diagram ontaining a dashed omponent whi h is
+either not simply onne ted, or whi h has two edges on the same solid omponent, is also a
+relation. We denote Z by Z h .
+   The supers ript h here stands for `homotopy'. Indeed, D. Bar-Natan [B1℄ has shown that
+the graded ve tor spa e asso iated to Q HSL(l) with respe t to the Vassiliev ltration is
+pre isely Ah (l). Moreover, it is easy to see that Z h is the universal nite type invariant of
+tangles up to (link) homotopy. In other words, one has the analogue of the exa t sequen e
+of 3.3, with Q T (X ) repla ed by Q HT (X ), and Zn repla ed by Zh n , so that Z h indu es the
+Vassiliev ltration on Q HT (X ).
+   Similarly, let A = At (and let Z be denoted by Z t ), where all trivalent diagrams ontaining
+a non-simply onne ted dashed omponent are onsidered as relations. At is also a Hop an
+monoidal ategory
+               `      quotient of A. The supers ript t stands for `tree'; this is be ause tree
+                 j =l
+diagrams on j =1 Ij generate the subspa e P t (l) of primitive elements in At (l).
+   In se tion 14, we will prove that Z t is the universal nite type on ordan e invariant. Note
+that Ah is a quotient of At , so that Z h fa tors through Z t . This oin ides ni ely on the level
+of nite type invariants with the fa t that on ordant tangles are homotopi .
+Chinese hara ters.12 There is a natural isomorphism of A(l) with B (l), the Q algebra
+of Chinese hara ters, i.e., uni-trivalent vertex-oriented (dashed) graphs, modulo AS and
+IHX relations, whose univalent verti es are labelled by elements of the set f1; : : : ; lg. (See
+[B2, B1℄.) This restri ts to an isomorphism between P (l) and C (l), the spa e of onne ted
+Chinese hara ters. The multipli ation in the algebra B (l) is given by disjoint union, so that
+B (l) is the ommutative polynomial algebra on C (l). The isomorphism of A(l) with B (l) is
+ omultipli ative but not multipli ative.13
+   The isomorphism between A(l) and B (l) passes to an isomorphism between Ah (l) and
+B (l), where B h (l) is the ommutative polynomial algebra on the spa e C h (l) of labelled
+  h
+Chinese hara ters whi h are trees with distin t labels. The proof given in [B1℄ also shows
+that it passes to an isomorphism between At (l) and B t (l), where B t (l) is the ommutative
+polynomial algebra on the spa e C t (l) of labelled Chinese hara ters whi h are trees.
+
+      The name \Chinese hara ters" for this kind of diagrams was introdu ed by D. Bar-Natan in [B2, B1℄.
+     12
+
+Other names for them in lude \web graphs/diagrams" or \unitrivalent graphs/diagrams".
+   13
+      The orre t identi ation of B (l) with A(l) sends the Chinese hara ter to the average of all the ways
+of atta hing the Chinese hara ter (along the univalent verti es) to the strings (i.e., we divide the sum of all
+the ways by the total number of ways). This fa tor is missing in [B1℄ and, as pointed out by T. Le, without
+the fa tor, the map is not omultipli ative.
+                       THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                         11
+
+
+
+Remark 4.1. We will use the fa t that Z t ([) and Z t (\) are equal to 1 in At (1). This is
+seen as follows. As stated in 3.2.3, one has Z ([) = (\) =  1=2 , where  = 1 + O(2). Thus
+ = exp(), with  primitive of degree  2 and hen e zero in At (1), sin e the only primitives
+in At (1) are in degree 1.
+
+                           5. Review of Milnor's  invariants.
+   For a group G, let Gn denote the lower entral series of G, i.e., G = G1 and indu -
+tively Gn+1 = [G; Gn ℄ (where for sets A; B  G, [A; B ℄ denotes the group generated by all
+ ommutators [a; b℄ = aba 1 b 1 , a 2 A, b 2 B ).
+The Artin representation and the longitudes. Let F (l) be the free group on x1 ; : : : ; xl .
+We will also denote the image of xj in the lower entral series quotient F (l)=F (l)n again by
+xj . Let Aut0 (F (l)=F (l)n ) be the group of automorphisms of F (l)=F (l)n, whi h send ea h
+generator xj to a onjugate of itself, and whi h leave their produ t x1 x2    xl xed.
+   The n-th Artin representation is the homomorphism
+                                An : SL(l) ! Aut0(F (l)=F (l)n+1)
+de ned as follows. Let  be a string link with l omponents. Consider the in lusions i0
+and i1 of the omplement of the l standard points p1 ; : : : ; pl , in C  0 and in C  1 (see
+se tion 1), into the omplement of (the image of)  in C  I. It follows from Stallings'
+theorem [St℄ that i0 and i1 indu e isomorphisms on the lower entral series quotients of
+fundamental groups. Identifying the fundamental group of the omplement of p1 ; : : : ; pl in
+C in a standard way with the free group F (l), the indu ed map (i1 ) 1 (i0 ) is an automorphism
+An() of F (l)=F (l)n+1. It is easy to see that An() lies in Aut0(F (l)=F (l)n+1). We have
+that
+                                      An()(xi) = ixii 1;
+where i = (in) 2 F (l)=F (l)n+1 is the longitude of  de ned as follows. The framing
+of  de nes a parallel urve whi h determines an element in the fundamental group of the
+ omplement. Under (i1 ) 1 , this element orresponds to an element i of F (l)=F (l)n+1 , whi h
+is alled the longitude of  . Changing the framing modi es i only by multiplying by a power
+of xi on the right. Thus the Artin representation of  , An( ), is independent of the framing.
+   Similar onsiderations applied to the omplement of a on ordan e, show that An( ) is a
+ on ordan e invariant of  . Thus, An : SL(l) ! Aut0 (F (l)=F (l)n+1 ) fa tors through CSL(l).
+De nition. We say that  has Milnor ltration n, if all longitudes i of  are trivial in
+F (l)=F (l)n.
+   Noti e that every string link has Milnor ltration 1, and  has Milnor ltration 2 if and
+only if all linking numbers and all framings are zero.
+Remark 5.1. A string link  , with all framings zero, has Milnor ltration n if and only if
+An() = 1.14
+Milnor's invariants. Let P (l) be the ring of power series in non- ommuting variables
+X1 ; : : : ; Xl . The Magnus expansion is the group homomorphism
+                                          : F (l ) ! P (l )
+  14
+       This an be proven indu tively using lemma 16.3.
+12                         NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+de ned on the generators of the free group F (l) by (xj ) = 1 + Xj . The Milnor  (mu)
+invariants of a string link  are the oeÆ ients (of the monomials in the Xi ) in the Magnus
+expansion, (i ), of the longitudes of  .15
+  In this paper, we are parti ularly interested in the rst non-vanishing Milnor invariants.
+They an be des ribed as follows.
+  There is a anoni al graded isomorphism of n1 (F (l)n =F (l)n+1) Q with the free Q Lie
+algebra Lie(l) = n1 Lien (l) on l generators X1 ; : : : ; Xl (in degree 1). (In fa t, the graded
+ ompletion of Lie(l) is the spa e of primitives of P (l), if the latter is regarded as a graded
+ ompleted Hopf algebra by requiring the Xi to be primitive.) If  has Milnor ltration n,
+we an onsider the longitudes i as elements of F (l)n =F (l)n+1, and we denote by (in) ( )
+the orresponding element of Lien (l).
+De nition. The (in) ( ) are alled Milnor invariants of degree n.
+Note. This des ription of Milnor invariants of degree n is valid only for string links of
+Milnor ltration n. (In the general ase, one has to use the Magnus expansion.) Note also
+that degree n invariants in our de nition orrespond to what is usually alled Milnor's 
+invariants of length n + 1 (with possibly repeating indi es). For example, the linking number
+is a Milnor invariant of degree one and of length two. (We onsider the self-linking number
+as a Milnor invariant of degree one.)
+          6. The redu ed Kontsevi h integral Z t and Milnor's invariants.
+De nition. We say that a string link  has Z t - ltration n, if Z t ( ) = 1 + O(n), where O(n)
+denotes terms of degree greater than or equal to n.
+Note. We will see that Z t is a on ordan e invariant (see se tion 14), hen e a nul- on ordant
+string link has arbitrarily high Z t - ltration.
+   If  has Z t - ltration n, then by 3.2.5 the rst non-vanishing term of Z t ( ) 1 lies in Pnt (l),
+the primitives of Atn (l). In the remainder of this paper, we shall identify Pnt (l) with Cnt (l)
+(the spa e of degree n labelled Chinese hara ters whi h are trees).
+Note. The identi ation of Pnt (l) with Cnt (l) is parti ularly elementary. Sin e a tree diagram
+lying on the strings is already symmetri (be ause of the relations in At , permuting two
+verti es on the same string does not hange its value), one simply sends the tree diagram
+(on the strands) to its underlying Chinese hara ter (the tree with its univalent verti es
+labelled).
+   Let Cnt (l +1) be the spa e of degree n Chinese hara ters whi h are trees, and with labels in
+f0; : : : ; lg. One an identify Lien(l) with Cnt (l; 0), where Cnt (l; 0)  Cnt (l + 1) is the subspa e
+generated by tree diagrams in whi h the label 0 o urs exa tly on e. The map Cnt (l; 0) to
+Lien (l) is des ribed in [B1, Thm. 2℄ as follows.
+   Label the edges of a tree in Cnt (l; 0) indu tively, by rst labelling the edges having a
+univalent vertex with label in f1; : : : ; lg by the generator with the same label, and by using
+the rule that whenever an unlabelled edge meets two other labelled edges in a trivalent
+  Stri tly speaking, here one onsiders the i-th longitude as an element  = lim ( ) of the nilpotent
+     15
+                                                                          i         i
+                                                                                        n
+
+
+
+ompletion F (l) = lim F (l)=F (l) +1. Note that the Magnus expansion extends to F (l).
+                               n
+                      THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                             13
+
+
+
+vertex, then it is labelled by the ommutator of the two labels (in the order determined by
+the y li orientation of the vertex). (See gure 5.) This pro edure terminates with all edges
+labelled. One asso iates to this tree, the label on the edge whi h has the 0-labelled vertex
+as one of its verti es. This des ribes a well de ned map, sin e the AS and IHX relations go
+over into the antisymmetry and Ja obi relations of the Lie bra ket. The map is inje tive,
+sin e in a free Lie algebra there are no other relations. Moreover, sin e any ommutator in
+the generators an be obtained from su h a tree, this map is also surje tive.
+            0     2                    [X1 ;[X1 ;X2 ℄℄               X2
+                            7!                           [X1 ;X2 ℄
+                                                                                7!            [X1 ; [X1 ; X2 ℄℄
+            1     1                               X1                 X1
+
+                 An example for the isomorphism Cnt (l; 0)
+                                                                     ! Lie (l).
+     Figure 5.                                                              n
+
+  We de ne
+                            ji : Cnt (l) ! Cnt (l; 0) = Lien (l);         i = 1; : : : ; l;
+to be the map whi h takes a labelled tree to the sum of the labelled trees obtained by
+repla ing the label i, on one of the verti es, with the label 0. See gure 8 for an example.
+Theorem 6.1. (i) The Z t - ltration on string links oin ides with the Milnor ltration.
+  (ii) Furthermore, the rst non-vanishing Milnor invariants of a string link  are deter-
+mined by the rst non-vanishing term of Z t ( ) 1 (and vi e versa) through the formula
+                                               (in) ( ) = ji ( );
+where Z t ( ) = 1 +  + O(n + 1), with  2 Cnt (l).
+    The proof of theorem 6.1 will be given in se tion 11. See 7.2 and se tion 8 for examples.
+Remark 6.2. The vi e versa part of Theorem 6.1 follows from the fa t that the map j =
+(j1 ; : : : ; jl ) from Cnt (l) to Cnt (l; 0)l , the produ t of l opies of Cnt (l; 0), is inje tive. This fa t
+is easy to see. Indeed, let r = ii==1l ri Æ i , where i is proje tion onto the i-th fa tor and
+ri : Cnt (l; 0) ! Cnt (l) is the map whi h asso iates to a labelled tree, the same labelled tree,
+but with the vertex labelled 0 repla ed with the label i. Then the omposition r Æ j is
+multipli ation by n + 1, proving that the map j is inje tive.
+Corollary 6.3. Two string links 1 and 2 have the same Milnor invariants in all degrees
+(resp. in all degrees  n) if and only if Z t (1 ) = Z t (2 ) (resp. Zt n(1 ) = Zt n (2 )).
+Proof. The rst non-vanishing Milnor invariants as well as the rst non-vanishing term of
+Z t 1 are additive and hange sign under  7!  . Thus, it suÆ es to apply theorem 6.1 to
+1  2 and to pro eed by indu tion on the ltration degree.
+  The following orollary answers a onje ture of X. S. Lin.
+Corollary 6.4. The algebra of rational nite type on ordan e invariants of string links is
+generated by Milnor's invariants.
+  The proof is deferred to se tion 15, where we show that Z t is the universal nite type
+ on ordan e invariant.
+  More appli ations of theorem 6.1 will be dis ussed in se tions 8, 9, and 16.
+14                          NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+                                       7. A spe ial ase.
+   Let P B (l) denote the pure braid group on l ordered strands labelled 1; : : : ; l. There is a
+semidire t produ t de omposition P B (l) = F (l 1) o P B (l 1) (see e.g. [Bi, or. 1.8.1℄).
+Here, P B (l 1) is embedded into P B (l) via 7! 11  , and F (l 1) is the subgroup
+generated by xi , i = 1; : : : ; l 1, where xi = 1;i+1 wraps the rst strand around the i + 1-th
+strand. See gure 6. (Note that in this de omposition and in the statement and proof below,
+we have distinguished the rst omponent. With another hoi e, we would have obtained a
+similar result, sin e these situations are onjugate.)
+
+                                                         
+                                                         
+                                        1 2         i+1           l
+
+     Figure 6.   The generator xi = 1;i+1 of F (l        1)  P B (l).
+
+   Let x 2 F (l 1)n  F (l 1)  P B (l) be an iterated ommutator in the generators xi su h
+that ea h xi appears at most on e. The indu ed element in (F (l 1)n=F (l 1)n+1 ) Q =
+Lien (l 1) = Cnt (l 1; 0) is a labelled tree diagram  , say. Let  0 2 Cnt (l) be obtained from
+ by in reasing all labels by 1. Sin e ea h label o urs at most on e, there is a unique way
+of putting the diagram  0 on the l strings, so that  0 determines an element of Pn (l)  An (l)
+whi h we denote again by  0.
+Proposition 7.1. One has
+                                   Z (x) = 1 +  0 + O(n + 1):
+Remark 7.2. Let us use 7.1 to illustrate theorem 6.1 in this spe ial ase. Formula 6.1(ii)
+says that the rst non-vanishing Milnor invariant (1n) (x) is equal to j1 (Znt (x)), whi h by
+7.1 is the diagram obtained from  0 ( onsidered now as a Chinese hara ter in Cnt (l)) by
+repla ing the label 1 by 0, or, equivalently, the diagram obtained from  by in reasing all
+non-zero labels by 1. In other words, the rst longitude of x is, modulo ommutators in
+F (l)n+1 , the element x0 2 F (l)n obtained by repla ing ea h o uren e of a generator xi in
+x by xi+1 . (Of ourse, this an be he ked dire tly in this spe ial ase.) See gure 7 for an
+example.
+
+                                                                                     2
+                 x = [x1 ; x2 ℄ =                   ,          = [X1 ; X2 ℄ =   0       ,
+                                                                                     1
+
+                                    3                                                        3
+          Z2t (x) =  0 = 1             ,      (2)          0
+                                                1 (x) = j1 ( ) = [X2 ; X3 ℄ = 0                 .
+                                    2                                                        2
+
+     Figure 7.   An example for formula 6.1(ii) and 7.1.
+
+Proof of proposition 7.1. Note that the result is ertainly true if x = x1 = 1;2 , sin e in
+this ase, the indu ed element of C1t (l 1; 0) is 0;1 , where i;j is the dashed hord (of degree
+                        THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                                    15
+
+
+
+1) with verti es labelled i and j , and one has, by de nition, Z (1;2 ) = exp(1;2 ). (Here,
+we are using the anoni al q -stru ture.) For i  2, one has that xi = 1;i+1 = 1;2  1 ,
+where  is a ertain braid indu ing the permutation s = (i + 1; i; : : : ; 2). It follows that
+Z (1;i+1 ) = s(1 + 1;2)s 1 + O(2) = 1 + 1;i+1 + O(2).
+    Now suppose indu tively for all m < n the result holds and onsider an iterated ommu-
+tator x 2 F (l 1)n so that none of the generators xi appears twi e in x. There are x(i) , with
+degree x(i) stri tly less than n, su h that x = [x(1) ; x(2) ℄, as ommutators in F (l 1)  P B (l).
+It follows that Z (x) = [Z (x(1) ); Z (x(2) )℄. We have that Z (x) = exp( 00 ) and Z (x(i) ) = exp(i00 ),
+where  00 and i00 are primitive. Let i be the diagram orresponding to x(i) , and let i0 be the
+result of in reasing all labels by 1. By the indu tion hypothesis, the lowest degree term of i00
+is i0. It follows from the Campbell-Baker-Hausdor formula [MKS℄, that the lowest degree
+(i.e., degree n) term of  00 is [10 ; 20 ℄, as elements of An (l), where in the latter formula, one
+uses the Lie bra ket [a; b℄ = ab ba. Using the STU relation at the unique verti es of 10 and
+20 on the rst string, and the fa t that 10 and 20 annot both have a vertex on the same
+string other than the rst string (sin e, by hypothesis, none of the generators xi appears
+twi e in x), one he ks that [10 ; 20 ℄ is equal to the diagram  0 , as asserted.
+     8. The first non-vanishing Milnor invariants and the latti e Kn (l).
+  Our formula in theorem 6.1(ii) says that the rst non-vanishing Milnor invariants are
+naturally the dual of Cnt (l). For example, the linking (and self-linking) numbers orrespond
+to the oeÆ ient of
+                                                                 i         j
+
+and Milnor's triple linking numbers orrespond to the oeÆ ient of
+                                                                   i
+                                                                               k
+                                                                   j
+ It is quite pleasing to observe how this des ription ni ely en odes the relations among
+Milnor's invariants.
+ A less obvious example is the diagram  de ned in gure 8 whi h generates C3t (2).
+                   1     1                      0         1            1   0           0       1                   1   1
+              =             , j1 ( ) =                       +               =2                  , j2 ( ) = 2
+                   2     2                      2         2            2   2           2       2                   2   0
+
+       Figure 8.   Another example for formula 6.1(ii).
+   One may interpret this by saying that on 2- omponent string links  of Milnor ltration 3,
+the oeÆ ient of this diagram  orresponds to half the Milnor invariant 1122 in the lassi al
+index notation, sin e 1122 ( ) is the oeÆ ient of [X1 ; [X1 ; X2 ℄℄ in (3)
+                                                                          2 ( ) = j2 (Z3 ( )).
+                                                                                        t       16
+Note that for a string link version of the Whitehead link, this Milnor invariant is known to
+be 1, and hen e the rst non-vanishing term of Z t 1 must be =2 for su h a string link.
+   Generalizing this example, let us ompute the image over the integers of Znt on string
+links of Milnor ltration n. Observe that both the ve tor spa es Cnt (l) and Cnt (l; 0) ontain
+a anoni al latti e generated by tree diagrams; let us denote these latti es by Dnt (l) and
+Dnt (l; 0). (Here, the notation D stands for `diagram'.) The image of Znt on string links of
+  16
+       Classi ally, one de nes  1
+                                i ;::: ;i   n ;i as the       oeÆ ient of X 1    X n in ( ).
+                                                                                   i       i         i
+16                         NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+Milnor ltration n is also a latti e in Cnt (l); let us denote this latti e by Kn (l). For example,
+D3t (2) is generated by the diagram  de ned in gure 8, and K3 (2) is generated by =2. The
+latti e Kn (l) an be determined as follows.
+Corollary 8.1. Kn(l) is the sublatti e, of Dnt (l) Q = Cnt (l), onsisting of those  su h that
+j ( ) is integral, that is, lies in Dnt (l; 0)l  Cnt (l; 0)l . (It follows that Dnt (l)  Kn (l).)
+Proof. Consider a string link  of Milnor ltration n. Let Z t ( ) = 1 +  + O(n + 1),
+with  2 Cnt (l). The longitudes i of  lie in F (l)n =F (l)n+1 , and hen e an be onsidered
+as lying in Dnt (l; 0), as F (l)n =F (l)n+1 is the degree n part of the free Z Lie algebra on l
+generators X1 ; : : : ; Xl , and is anoni ally identi ed with Dnt (l; 0). Sin e ji ( ) = (in) ( ), by
+theorem 6.1, and sin e the Milnor invariants are omputed from the longitudes, one sees by
+following through the identi ations, that j (Kn (l)) is ontained in Dnt (l; 0)l  Cnt (l; 0)l . In
+fa t, j (Kn (l)) is pre isely the sublatti e of Dnt (l; 0)l onsisting of the l-tuples (1 ; : : : ; l )
+whi h an be realized as -invariants of string links. Hen e the rank of Kn (l) , whi h is
+the same as the rank of j (Kn (l)), is the number, kn (l), say, of linearly independent Milnor
+invariants of degree n, for l- omponent links. This number was rst omputed by Orr [O℄,
+who showed that kn (l) = lNn (l) Nn+1 (l), where Nn (l) is the rank of Dnt (l; 0).
+   De ne p : Dnt (l; 0)l ! Dnt +1 (l; 0) by p = ii==1l pi Æ i , where i is proje tion onto the i-th
+fa tor, and pi : Dnt (l; 0) ! Dnt +1 (l; 0) is the map, whi h asso iates to a labelled tree the
+tree obtained from the given one, by repla ing the vertex labelled 0 with a trivalent vertex
+with two additional edges labelled by i and 0. Here, the y li ordering of the edges of the
+additional trivalent vertex is hosen so that under the anoni al identi ation of Dnt (l; 0) with
+the degree n part of the free Z Lie algebra on generators X1 ; : : : ; Xl , the map pi orresponds
+to the map Y 7! [Y; Xi ℄.
+   It is easy to see that the omposite p Æ j is zero and hen e j (Kn(l))  ker(p), the kernel of
+p. Clearly, ker(p) has rank lNn (l) Nn+1 (l) (sin e p is surje tive), hen e at least j (Kn (l))
+has nite index in ker(p), by Orr's omputation of kn(l). In fa t, Orr's onstru tion an be
+adapted to string links, showing that any element of the kernel of p is realized by a string
+link (see [HL2℄). Hen e j (Kn (l)) is equal to ker(p) and the sequen e
+                            0 ! K n (l ) !
+                                         j
+                                           Dnt (l; 0)l !Dnt +1 (l; 0) ! 0
+                                                       p
+
+
+is exa t, proving the result.
+Remark 8.2. Kn (l) is the latti e in Cnt (l) generated by all labelled tree diagrams , and by
+2 , if admits a nontrivial symmetry of order 2. (It follows that 2 Kn (l)  Dn (l).)
+1                                                                                 t
+
+  This an be seen as follows. Given a labelled tree with n +1 univalent verti es, resp. one
+with order 2 symmetry, T. Co hran [Co1, Co2℄ onstru ts a link L( ), resp. L( 21 ), by
+taking band onne ted sums of ertain Bing doubles of the Hopf, resp. Whitehead, link. Let
+us denote by  ( ), resp.  ( 12 ), a string link version of these links. By Theorem 3.3 of [Co2℄,
+these links realize all `realizable' Milnor invariants, and hen e they generate Kn (l). Thus it
+suÆ es to show that Z t ( ( )) = 1 +  + O(n + 1) and Z t ( ( 21 )) = 1 + =2 + O(n + 1), where
+ 2 Cnt (l) is represented by . It is not hard to prove this using theorem 6.1; indeed, it is an
+exer ise to ompute the longitudes of these links and to he k that the rst non-vanishing
+Milnor invariants are given by j ( ), resp. j (=2). This veri ation is left to the reader.
+                   THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                           17
+
+
+
+                                 9. Vanishing results.
+  Note that the rst non-vanishing Milnor invariants of a string link  (i.e., the (in) ( )
+de ned in se tion 5), depend only on b, the link whi h is the ` losure' of  . (This follows
+easily from their de nition in [M1, M2℄.) The Milnor invariants of a losed link are alled
+the -invariants (the bar indi ating that higher order invariants other than the rst non-
+vanishing ones have indetermina ies) and depend only on its on ordan e lass (Stallings
+[St℄).
+Corollary 9.1. The rst non-vanishing term of Z t ( ) 1 is determined by the rst non-
+vanishing Milnor  invariants of b, the link obtained as the ` losure' of  . Consequently, if
+Z t ( ) = 1 + O(n), and if b0 is on ordant to b, then Z t ( 0 ) Z t ( ) = O(n + 1).
+Proof. This follows immediately from theorem 6.1.
+   The following vanishing results for the Kontsevi h expansion, Z , an at times be useful.
+(Re all that we onsider self-linking numbers to be Milnor invariants of degree 1.)
+Proposition 9.2. Let n denote a positive integer or 1. Let  be a string link su h that
+all Milnor  invariants of  of degree  n vanish. Then Z ( ) an be written as a linear
+ ombination of diagrams, none of whi h ontain a dashed omponent whi h is a tree of degree
+ n.
+Proof. Write Z ( ) = exp( ) where  is primitive. The quotient map from A(l) to At (l) has
+a anoni al se tion, oming from the isomorphism of A(l) with B (l) and the fa t that B t (l) is
+naturally a dire t summand of B (l) (sin e the Euler hara teristi of a Chinese hara ter is
+determined by its degree and the number of its univalent verti es). Thus there is a anoni al
+de omposition  = 1 + 2 , where 1 orresponds to onne ted Chinese hara ters in B t (l),
+and 2 orresponds to onne ted Chinese hara ters in the omplementary dire t summand
+of B (l). Then sin e Z t ( ) = exp(1 ) = 1 + O(n + 1) by theorem 6.1 and orollary 9.1, all
+terms of 1 are of degree > n. The result follows.
+Corollary 9.3. Let n denote a positive integer or 1. Let L be a link su h that all Milnor
+ invariants of degree  n vanish. Then the Kontsevi h expansion, Z (L), an be written as
+a linear ombination of diagrams, none of whi h ontain a dashed omponent whi h is a tree
+of degree  n.
+Proof. Let  be a string link su h that its losure b is isotopi to L. Then Z (L) an be
+  al ulated from Z ( ), whi h satis es the on lusion of proposition 9.2. We must see that
+this introdu es no diagrams whi h ontain a tree of degree  n. A pre ise formula an be
+found in [LM2℄: Z (L) is obtained
+                              `        from Z ( ) by multiplying by a ertain element l 2 A(l)
+                                 j =l 1
+and then proje ting to A( j =1 S ). In fa t l is obtained from  = 1 , by the operator
+D(l) : A(1) ! A(l) (whi h is the sum over all lifts of verti es on an interval to l intervals).
+But  = 1 in At (1) (see remark 4.1) so that  ontains no diagrams with trees. The result
+then follows from 9.2.
+Example 9.4. If the self-linking and linking numbers vanish, there are no dashed hord
+  omponents. If L is a boundary link, then all Milnor invariants vanish. Hen e Z (L) is a
+linear ombination of diagrams, none of whi h ontain a dashed omponent whi h is a tree.
+18                      NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+                     10. The ase of homotopy Milnor invariants.
+   One of the goals of this se tion is to give the analog of theorem 6.1 for homotopy Milnor
+invariants (see 10.1 and 10.6). In the next se tion, this will be used in the proof of theorem
+6.1.
+   We re all the onstru tion of the homotopy Milnor invariants. The redu ed free group
+RF (l) is the quotient of F (l) obtained by adding relations whi h say that ea h generator
+ ommutes with all of its onjugates. Consider a string link  2 SL(l) and its i-th longitude
+i ( ) 2 F (l)=F (l)n . Let us denote by Ri ( ) the image of i ( ) in RF (l 1)=RF (l 1)n
+under the quotient map whi h sets the i-th generator xi equal to 1. Then Ri ( ) depends
+only on the homotopy lass of  , i.e., the value of  in HSL(l).
+   We say that  has homotopy Milnor ltration n, if all longitudes Ri ( ) are trivial in
+RF (l 1)=RF (l 1)n .
+Proposition 10.1. For  2 HSL(l), the following are equivalent.
+ (i)  has homotopy Milnor ltration n,
+ (ii)  2 HSL(l)n, the n-th term of the lower entral series of HSL(l),
+ (iii)  1 2 I n , where I denotes the augmentation ideal of Q HSL(l),
+ (iv) Z h ( ) = 1 + O(n).
+Proof. The equivalen e of (i) and (ii) is proven in [HL1℄ using the semidire t produ t
+de omposition HSL(k) = RF (k 1) o HSL(k 1) (analogous to the semidire t produ t
+de omposition P B (k) = F (k 1) o P B (k 1)).
+   This also shows that the lower entral series quotients HSL(l)m =HSL(l)m+1 are torsion
+free (see [HL1℄).
+   Next, re all that for a group G, the augmentation ideal I  Q G is generated by the set
+of elements g 1 where g 2 G. The ltration of Q G by powers of I is alled the I -adi
+  ltration. It is a general fa t (see e.g. [Q1, or. 4.2℄) that if Gm =Gm+1 is torsion free for
+all m, then for all n, Gn is equal to fg 2 G : g 1 2 I ng, the so- alled n-th dimension
+subgroup. Applying this to G = HSL(l) shows that (ii) and (iii) are equivalent.
+   The equivalen e of (iii) and (iv) follows from the following proposition and the fa t (see
+se tion 4) that Z h indu es the Vassiliev ltration on Q HSL(l).
+Proposition 10.2. The Vassiliev ltration on Q HSL(l) oin ides with the I-adi ltration.
+Proof. Let Q HSL(l)n denote the Vassiliev ltration on homotopy string links. (N.b., this
+should not be onfused with Q (HSL(l)n ), where HSL(l)n is the n-th term of the lower
+ entral series.) Let I denote the augmentation ideal of the group ring Q HSL(l). It is easy
+to see that I  Q HSL(l)1 and hen e I n  Q HSL(l)n . We must show that I n = Q HSL(l)n .
+This follows by indu tion from the following lemma and the fa t that Z h indu es the Vassiliev
+  ltration.
+Lemma 10.3. The map Znh : I n =I n+1 ! Ahn (l) is an isomorphism.
+Proof. Re all that if G is a group, then Q G is a Hopf algebra with o ommutative o-
+multipli ation (g ) = g g (i.e., group elements are group-like). Sin e Z ( ) is group-like,
+Z h : Q HSL(l) ! Ah (l) is a ( ltration preserving) Hopf algebra map, and hen e indu es a
+map of (graded omplete o ommutative) Hopf algebras
+                         bnZnh : bn0 (I n=I n+1) ! Ah(l) = bn0 Ahn(l):
+                    THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                              19
+
+
+
+   By [Q2, 2.21℄, this map is an isomorphism if and only if it is an isomorphism on primitives.
+By [Q2, 3.11℄, the set of primitives of b     n0(I n=I n+1) is
+                                    bn1 (HSL(l)n=HSL(l)n+1) Q :
+The spa e of primitives of Ahn (l) is Pnh(l), whi h is identi ed with Cnh (l).
+   Proposition 7.1 shows that generators of Cnh (l) are realized by pure braids (in P B (l)n ).
+Hen e the map (HSL(l)n =HSL(l)n+1 ) Q ! Cnh (l) is surje tive. On the other hand, in [B1℄,
+the dimension of Cnh (l) was omputed to be the same as the rank of HSL(l)n =HSL(l)n+1
+( omputed in [HL1℄). Thus the above map is also inje tive, and the result follows.
+   The proof of proposition 10.1 is omplete. We have also proven the following.
+Proposition 10.4. The map Z h : Q HSL(l) ! Ah (l) is inje tive and indu es an isomor-
+phism of omplete Hopf algebras (after ompleting Q HSL(l) with respe t to the I-adi ltra-
+tion).
+Remark 10.5. By [HL1℄, the group HSL(l) is nilpotent of lass l 1. Hen e the equivalen e
+of 10.1(ii) and 10.1(iv) shows (or use 10.4) that two string links  ,  0 are homotopi if and
+only if Z h ( ) = Z h ( 0 ). Sin e Z h is the universal nite type homotopy invariant, this shows
+that nite type invariants separate homotopy string links (Bar-Natan [B1℄, Lin [L℄).
+   There is a anoni al isomorphism of n1 (RF (l)n=RF (l)n+1 ) Q with the redu ed free Q
+Lie algebra RLie(l) = n1 RLien (l). Here RLie(l) is the quotient of the free Lie algebra on l
+generators, X1 ; : : : ; Xl , in degree 1, obtained by setting equal to zero all basi ommutators
+in whi h one of the variables Xi appears twi e. If  has homotopy Milnor ltration n, we
+ an onsider the longitudes Ri ( ) as elements of RF (l 1)n =RF (l 1)n+1 , and we denote
+by R(in) ( ) the orresponding element of RLien (l 1). The R(in) ( ) are alled homotopy
+Milnor invariants of degree n. (These orrespond to what are usually alled Milnor's 
+invariants of length n + 1, without repeating indi es.)
+   Consider the map ji : Cnh (l) ! Cnh (l; 0), indu ed from ji : Cnt (l) ! Cnt (l; 0). Re all that
+Cnh (l) is generated by trees with distin t labels on its univalent verti es. (See se tion 4.)
+Observe that this ji is simply the map whi h repla es the label i by the label 0 if it o urs,
+and sends the labelled tree to zero, otherwise.
+   The identi ation of Lien (l) with Cnt (l; 0) indu es an identi ation of RLien (l) with Cnh(l; 0).
+Proposition 10.6. The rst non-vanishing homotopy Milnor invariants of a string link 
+are determined by the rst non-vanishing term of Z h ( ) 1 (and vi e versa) through the
+formula
+                                              R(in) ( ) = ji ( )
+where Z h ( ) = 1 +  + O(n + 1), with  2 Cnh(l).
+Proof. Assume Z h( ) = 1 +  + O(n + 1), with  2 Cnh (l). Fix i with 1  i  l.
+Suppose rst that  is a tree diagram (not a linear ombination of diagrams). There is an
+l- omponent pure braid  lying in a subgroup F (l 1)n  F (l 1)  P B (l) as in se tion
+7 (but with using the i-th string as preferred string in pla e of the rst string) su h that
+Z h ( ) = 1 +  + O(n + 1) (see proposition 7.1, but noti e that our  orresponds to the  0
+of 7.1). Thus, all strings ex ept the i-th string of  are trivial, and the i-th string (whi h
+determines a word in F (l 1)n) also determines the i-th longitude of  , and hen e the i-th
+homotopy -invariant. Following through the identi ations, this shows R(in) ( ) = ji ( ).
+20                          NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   Next, let  still be a tree diagram, but let  be any string link su h that Z h ( ) = 1 +  +
+O(n + 1). Then  (as de ned in se tion 1) is an inverse up to homotopy of  , and hen e
+Z h ( ) = 1  + O(n + 1). Thus Z h ( ) = 1 + O(n + 1), hen e  has Milnor ltration
+n + 1. By additivity of homotopy -invariants, this shows R(in) ( ) = R(in) ( ) = ji ( ).
+   This proves the result for any  2 HSL(l)n , with  a tree diagram, and all i. Sin e tree
+diagrams generate Cnh (l) and are realized by string links in HSL(l)n , the proof is omplete
+upon observing that both Ri(n) and ji Æ Znh are homomorphisms on HSL(l)n =HSL(l)n+1 ,
+and Znh is an isomorphism from (HSL(l)n =HSL(l)n+1 ) Q to Cnh (l) (see the proof of 10.3).
+                                    11. Proof of Theorem 6.1.
+   The proof of theorem 6.1 will be based on proposition 10.6 and the following 2 lemmas.
+Let D(m) ( ) be the string link obtained from  by repla ing ea h omponent of  with m
+parallel opies.17
+Lemma 11.1. Suppose that m  max(2; n 2). Then Z t ( ) = 1 + O(n) if and only if
+Z h (D(m) ( ))) = 1 + O(n).
+Proof. If Z t ( ) = 1 +  + O(n + 1), where  is of degree n, then Z h (D(m) ( )) = 1 +
+ (D(m) ( )) + O(n + 1), where D(m) of a diagram is the sum over all lifts of verti es on a
+ omponent to the omponents lying over the given omponent, and where  denotes the
+proje tion of At onto Ah . (This follows from iterated appli ation of 3.2.6.)
+   It follows that Z t ( ) = 1 + O(n) implies Z h (D(m) ( )) = 1 + O(n). To prove the onverse
+impli ation, note that D(m) ommutes with the omultipli ation, so that D(m) takes primi-
+tives to primitives. Let  also denote the proje tion from Cnt (ml) to Cnh (ml). It is enough
+to show that  Æ D(m) : Ct (l) ! Ch (ml) is inje tive in degrees  , where 1    n 1. This
+ an be seen as follows. Let p denote the map, from Cnh(ml) to Cnt (l), whi h identi es the m
+labels over a given label. Then the omposition p Æ  Æ D(m) is inje tive, sin e on trees with
+the same labels and multipli ities (whi h generate a dire t summand of Cnt (l)), the map is
+multipli ation by a positive integer. Here we need that m be at least as large as the largest
+possible multipli ity, whi h is 2 for  = 1, and is  1 in degrees   2.18 Hen e  Æ D(m) is
+inje tive provided m  max(2; n 2), proving the lemma.
+Lemma 11.2. Suppose that m  max(2; n 2). Then  has Milnor ltration n if and only
+if D(m) ( ) has homotopy Milnor ltration n.
+Proof. If the i-th longitude i ( ) is represented as a word in the generators x1 ; : : : ; xl
+of the free group F (l), then the (i;  )-th (homotopy) longitude Ri; (D(m) ( )) is obtained
+as follows. First repla e, for ea h k, ea h o uren e of an xk in this word by the produ t
+xk;1 xk;2    xk;m . Se ond, set xi; equal to 1. The result, viewed in RF (ml 1), represents
+Ri; (D(m) ( )).
+   By indu tion, we may assume that the lemma holds up to n 1, and hen e we may
+suppose that i ( ) 2 F (l)n =F (l)n+1 and Ri; (D(m) ( )) 2 RF (ml 1)n =RF (ml 1)n+1 .
+      We don't need to spe ify the q-stru ture on D( ) () here be ause we'll only be on erned with rst
+     17                                               m
+
+
+non-vanishing terms in this se tion. (See 3.1(iv).) Noti e, however, that if the q-stru ture on D( ) () is
+                                                                                                     m
+
+
+ hosen to be a `re nement' of the q-stru ture on , then (although the re nement is not unique if m  3),
+the value of Z (D( ) ()) (in all degrees) is independent of the hoi e of re nement.
+                  m
+
+   18
+      Note that a degree  Chinese hara ter whi h is a tree has  + 1 univalent verti es. If   2, it follows
+from the AS relation that the diagram is zero if one label appears with multipli ity >  1.
+                   THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                            21
+
+
+
+Thus we may onsider i ( ) as an element of Cnt (l; 0) = Lien (l) and Ri; (D(m) ( )) as
+an element of Cnh (ml 1; 0) = RLien (ml 1). It is easily seen that Ri; (D(m) ( )) =
+i; Æ D(m) (i ( )), where D(m) : Cnt (l; 0) ! Cnt (ml; 0) is de ned as before and i; is the
+proje tion from Cnt (ml; 0) to Cnh (ml 1; 0) (i.e., the map i; : Lien (ml) ! RLien(ml 1)
+setting the (i;  )-th variable to zero).
+   Reasoning as in the proof of 11.1, one impli ation of 11.2 is obvious, while the onverse
+impli ation follows from the fa t that i; Æ D(m) is inje tive in degrees  n 1, provided
+m  max(2; n 2). The lemma follows.
+Proof of theorem 6.1. Fix m  max(2; n 1) and let D(m) ( ) be the string link obtained
+from  by repla ing all omponents of  with m parallel opies. By prop. 10.1, D(m) ( ) has
+homotopy Milnor ltration n if and only if Z h(D(m) ( )) = 1+ O(n). Applying 11.1 and 11.2,
+this shows that  has Z t - ltration n if and only if it has Milnor ltration n. This proves
+6.1(i).
+   Let SL(l)n be the subset of SL(l) onsisting of string links  of ltration n. In the proof
+of 11.2, we have established the ommutative diagram
+                                              (in)
+                                 SL?(l)n       !           Cnt (?l; 0)
+                                   y         R(in)
+                                                                yi; ÆD(m)
+                                HSL(ml)n       !       Cnh (ml 1; 0)
+  Similarly, one has the ommutative diagram
+                                       Znt
+                         SL?(l)n       !      Cnt?(l)
+                                                         j
+                                                          !
+                                                          i
+                                                               Cnt (?l; 0)
+                            y                    yÆD(m)j           yi; ÆD(m)
+                                       Znh
+                                       !     Cn (ml) ! Cn (ml 1; 0)
+                                                         i;
+                       HSL(ml)n               h              h
+
+where the ommutativity of the left square was already used in the proof of 11.1, and the
+ ommutativity of the right square is easily he ked.
+   In order to show 6.1(ii), we must show that the omposite ji Æ Znt and (in) agree as maps
+from SL(l)n to Cnt (l; 0). (A tually, SL(l)n is a sub-monoid of SL(l), and both maps are
+morphisms of monoids, but we don't need this here.) It is suÆ ient to show that ji Æ Znt
+and (in) agree after omposing both maps with i; Æ D(m) , sin e this map is inje tive for
+m  max(2; n 1) (see the proof of 11.2). In view of the ommutative diagrams above, this
+follows from the equality ji; Æ Znh = R(i;n) , shown in lemma 10.6.
+Remark 11.3. There are several proofs [B1, L℄ that Milnor's invariants are of nite type.
+Here, we brie y sket h how to see this using the above methods. It suÆ es to show that the
+map whi h takes a string link to its longitude is a ltration preserving map, i.e., it sends
+the Vassiliev ltration to the I -adi ltration of the group ring (of the nilpotent ompletion)
+of the free group (sin e the Magnus expansion is multipli ative and hen e preserves I -adi
+  ltrations).
+   This an be seen as follows. For homotopy Milnor invariants, the orresponding assertion
+is a onsequen e of our identi ation of the Vassiliev ltration with the I -adi ltration.
+Indeed for a semidire t produ t for whi h the quotient a ts trivially on homology, it is an
+exer ise to see that proje ting onto the kernel, although failing to be multipli ative, indu es
+a map of group algebras whi h preserves the I -adi ltrations. Sin e taking the (homotopy)
+longitudes is by de nition su h a proje tion, the result follows in the homotopy ase.
+22                          NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   In the general ase, note that it suÆ es to ompose with the Magnus expansion, sin e
+this is a ltration preserving isomorphism. Applying the operation D, whi h doubles ea h
+ omponent N times say, and then redu ing to homotopy, we see that this gives inje tions of
+the asso iated power series rings, up to order N 1. Consequently, the general ase follows
+from the result for homotopy.
+
+                    12. A global formula for Milnor's invariants.
+   The ombinatorial formula given in Theorem 6.1, whi h des ribes the rst non-vanishing
+Milnor invariants, is quite suggestive, sin e it is obtained from the doubling operation via
+a forgetful map. One an think of the map ji (i.e., take the sum over all i-labelled verti es
+of the result of relabelling the vertex with the label 0) in the following way. Re all that the
+i-th longitude is the parallel (or double) of the i-th string. The map ji onsists of omputing
+it by means of the doubling formula 3.2.6, and then throwing away diagrams whi h don't
+have exa tly one vertex on the 0-th omponent (whi h represents the longitude).
+   We now explain how to generalize this to a formula whi h expresses the full Magnus
+expansion of the longitudes in terms of the Kontsevi h integral. We are indebted to D. Bar-
+Natan, whose suggestions onvin ed us that the above interpretation an be made rigorous,
+and generalizes to higher order Milnor invariants.
+   Re all that the pure braid group on l + 1 strands, denoted P B (l + 1), is a semi-dire t
+produ t, P B (l + 1) = F (l) o P B (l), where the a tion of P B (l) on F (l) is given by the Artin
+representation P B (l) ! Aut0 (F (l)). We onsider the strings of elements of P B (l + 1) to be
+labelled from 0 to l, and of elements of P B (l) to be labelled from 1 to l. If  2 P B (l) is
+given, we denote by 10   the orresponding element of P B (l + 1) obtained by adding a
+trivial 0-th string on the left.
+   The key observation is that the i-th longitude i 2 F (l) of an element  2 P B (l) is easily
+ al ulable from  . Let i be the braid whi h rosses the 0-th string over the strings labelled
+1 to i 1 (i.e., i is the produ t of the rst i 1 standard braid generators). Let Di be the
+map P B (l) ! P B (l + 1) obtained by doubling the i-th omponent. The i-th longitude i is
+obtained from the pure braid i Di ( ) i 1 by ` ombing' this braid, as follows.
+Proposition 12.1. Let i be the i-th longitude of  2 P B (l). In P B (l + 1), one has the
+formula
+                                     i Di ( ) i = (10   )i ;
+(2)                                             1
+
+and onsequently i = (10   ) 1 i Di ( ) i 1:
+
+                                                                                
+                                                                                       i
+                             Di ( )                                               
+                                                   =                                  10  
+
+                  0   1    i 1     i     l             0   1     i 1       i   l
+
+     Figure 9.   An illustration of formula (2).
+                     THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                  23
+
+
+
+   Applying the Kontsevi h expansion, Z , one dedu es immediately the following.
+Corollary 12.2. In A(l + 1), one has the formula
+                                  Z (i ) = Z (10   ) 1 Di (Z ( ))bi ;
+where Di is the doubling operation on A(l) (for the i-th string), bi = Z ( i ), and ab denotes
+bab 1 . (See 3.2.6 for the de nition of the doubling operation.)
+Remark 12.3. In the above formula, the pure braid 10   2 P B (l + 1) is endowed with
+the anoni al q -stru ture, whereas the braid i has the anoni al q -stru ture on the bottom,
+and the `i-th double' of the anoni al stru ture at the top.
+   In proposition 12.4, we will extend this formula for the Kontsevi h expansion of the lon-
+gitudes of pure braids to the ase of string links, where the longitudes i must now be
+ onsidered to lie in the nilpotent ompletion of F (l). In order to do this, we onsider an-
+other quotient of A(l + 1), whi h we now des ribe.
+   Suppose the 1-manifold X is a disjoint union of ompa t 1-manifolds X0 and X1 . Let
+Ah;t (X ) be the quotient of At (X ) obtained by introdu ing h relations (see se tion 4) for
+diagrams with verti es on X0 . Thus, in addition to the relations in At (X ), diagrams X [
+ ontaining a (dashed) omponent 0  with two verti es on X0 are set equal to zero. We
+denote the proje tion onto Ah;t (X ) by  h;t , and put Z h;t =  h;t Æ Z . Then Z h;t is an isotopy
+(and even on ordan e, see se tion 14) invariant, and, in addition, a homotopy invariant of
+the omponents in X0 (in the omplement of those in X1 ). In a ordan               ` =el with  the notation
+A(l + 1), we will use the notation Ah;t (l + 1) for the ase where X = jj =0            Ij , and where X0
+ onsists of the 0-th omponent.
+Proposition 12.4. Let  be a string link and i its i-th longitude. In Ah;t (l + 1), one has
+the formula
+                             Z h;t (i ) =  h;t (Z (10   ) 1 Di (Z ( ))bi ):
+   The proof makes use of the following lemma.
+Lemma 12.5. Let X be the disjoint union of X0 and X1 and suppose Ti , i = 1; 2; are two
+tangles whi h agree on X1 . Assume that on ea h omponent of X0 the maps di er by an
+element in the n + 1-st term of the lower entral series of the fundamental group of the
+ omplement of X1 . Then the images of Z (Ti ) in Ah;t        n (X ) agree.
+Proof. The fundamental group of the omplement of X1 is generated by a olle tion of
+meridians (e.g., as in the Wirtinger presentation). More pre isely, there is a ball meeting
+X1 in a trivial string link, on say m omponents, su h that the map of fundamental groups,
+indu ed by the in lusion of omplements, is surje tive. It follows that the map T2 an be
+obtained by a homotopy of the omponents of X0 after rst modifying the map T1 on X0 by
+pure braids in F (m)n+1  F (m)  P B (m + 1). Sin e modifying by pure braids in F (m)n+1
+does not hange terms of degree  n [S℄ (see also the proof of 13.1 below), the result follows.
+Proof of proposition 12.4. Let (in) 2 F (l) represent the longitude i in F (l)=F (l)n+1 .
+Then the tangles (10   )(in) and i Di ( ) i 1 satisfy (by Stallings' theorem [St℄) the hy-
+potheses of lemma 12.5. Applying the fun tor Z , solving for Z (i(n) ), proje ting onto Ah;t (l),
+and letting n tend to in nity proves the result.
+24                       NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   Note that Ah;t (l + 1) is a graded ( ompleted) o ommutative Hopf algebra, whose spa e
+of primitives is isomorphi to C h;t(l + 1), i.e., Chinese hara ters whi h are trees with labels
+2 f0; 1; : : : ; lg on their univalent verti es, and su h that the label 0 o urs at most on e. Let
+Xi 2 Ah;t (l + 1) denote the element de ned by the hord diagram 0;i , the dashed hord (of
+degree 1) with verti es labelled 0 and i. Then X1 ; : : : ; Xl generate a free non- ommutative
+power series ring
+                                    P (l) = P (X1 ; : : : ; Xl)  Ah;t(l + 1);
+sin e the primitives of Ah;t (l + 1) are naturally de omposed as
+                             C h;t (l + 1) = C t (l; 0)  C t (l) = Lie(l)  C t (l);
+and the rst summand orresponds to P (l).
+Lemma 12.6. The image of F (l) in Ah;t (l + 1) via the in lusion in P B (l + 1) followed by
+the map Z h;t , lies in the non- ommutative power series ring P (l).
+Proof. Let xi = 0;i , i = 1; : : : ; l, be the generators of F (l)  P B (l + 1) (see se tion 7).
+Then Z h;t (xi ) = exp(Yi ), where Yi = Xi + O(2), sin e Z h;t (xi ) is a onjugate of exp(Xi ).
+Note that by 3.2.4, ea h diagram o uring in Yi must have a vertex on the 0-th string, sin e
+xi be omes trivial upon forgetting the 0-th string. It follows that Yi lies in the subspa e
+C t (l; 0) = Lie(l) of the primitives of Ah;t (l + 1), proving the lemma.
+   We an now des ribe our global formula for Milnor's invariants, i.e., the Magnus expansion
+of the longitudes. Re all that the Magnus expansion  : F (l) ! P (l) is de ned by (xi ) =
+1+ Xi. Sin e Z h;t (xi ) = 1+ Xi + O(2), it follows from [L℄ that one has that  = Æ Z h;t, where
+   is a unipotent automorphism of P (l), i.e., if a 2 P (l) has degree n, then (a) = a+O(n+1).
+Hen e we have shown the following
+Theorem 12.7. For  2 SL(l) and i its i-th longitude, one has the formula
+                              (i ) = ( Æ  h;t )(Z (10   ) 1 Di (Z ( ))bi );
+where both sides are onsidered as elements of P (l)  Ah;t (l +1), Di is the doubling operation
+on A(l) (for the i-th string), bi = Z ( i ),  h;t is the proje tion onto Ah;t (l + 1), and is a
+unipotent automorphism.
+Remark 12.8. The formula in Theorem 12.7 allows one to al ulate all the Milnor invariants
+from the Kontsevi h integral, giving yet another proof that Milnor's invariants are of nite
+type. We leave it to the reader as an exer ise to show that it ontains the ombinatorial
+formula of Theorem 6.1 (whi h does not depend on the unipotent automorphism ) as a
+spe ial ase. It would be interesting to have an expli it formula for . (This would, of
+ ourse, require xing a hoi e of an asso iator.) On the other hand, the e e t of applying
+is merely to repla e the Magnus expansion by some other expansion; it is therefore not very
+important as far as the topologi al information arried by Milnor's invariants is on erned.
+                           13. Realizing primitive diagrams.
+  T. Stanford [S℄ introdu ed the pro edure of modifying a knot or link by a pure braid.
+In this se tion we will realize ertain diagrams by modifying the trivial string link by pure
+braids. This te hnique will be needed in se tion 15.
+  It is a natural question to ask what are the possible values of the Kontsevi h integral. We
+have the following partial answer.
+                    THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                              25
+
+
+
+Proposition 13.1. Let  2 An (l) be represented by a linear ombination with integer oef-
+   ients of diagrams with onne ted dashed graphs. Then there is a string link  su h that
+Z ( ) = 1 +  + O(n + 1).
+                                                        ` =l I . Note that has n + 1 univalent
+Proof. Let  = X [ be a tree diagram on X = jj =1               j
+verti es (whi h lie on X ). Embed X as the trivial l- omponent string link 1l . Consider
+  rst the spe ial ase where has exa tly one vertex on ea h string. Then the result follows
+already fromproposition 7.1 (we take for  a pure braid whi h is an iterated ommutator as
+in 7.1). In the general ase, we rst perform an isotopy, after whi h we an write 1l as the
+  omposite
+                                         T1 (T2  1n+1  T3 )T4
+for some tangles T1 ; : : : ; T4 , su h that ea h omponent of 1n+1 ontains exa tly one of the
+univalent verti es of . (To see this, hoose a disk in C  I whi h meets X transversally in
+the n + 1 univalent verti es of lying on X , and isotope this disk into a standard position.)
+Inserting now the appropriate iterated ommutator x 2 F (n)n  P B (n + 1) in pla e of 1n+1 ,
+gives a string link  su h that Z ( ) = 1 +  + O(n + 1). This follows from proposition 7.1,
+the fa t that Z (Ti ) = 1+ O(1), and the observation that Z (T1 )(Z (T2 )  1  Z (T3 ))Z (T4 ) = 1,
+by the isotopy invarian e of Z .
+   Thus we an realize any tree diagram. Sin e the rst non-zero term in positive degrees
+of the Kontsevi h integral of a omposition of string links is additive, we may realize any
+diagram whi h is a linear ombination with integer oeÆ ients of tree diagrams. (To realize
+the negative of a tree diagram, just use the inverse braid in the onstru tion above.) The
+theorem follows, sin e any onne ted diagram whi h is not a tree an be expressed (using
+the STU relation) as a linear ombination with integer oeÆ ients of tree diagrams.
+   Sin e diagrams with onne ted dashed graphs generate the spa e of primitive elements of
+A(l), one has the following immediate onsequen e of 13.1. (By 3.2.5, the hypothesis below
+that  2 An (l) be primitive is ertainly ne essary.)
+Corollary 13.2. Let  be an element of Pn (l), the primitives of An (l). Then there is a
+positive integer N and a string link  su h that Z ( ) = 1 + N + O(n + 1).
+   We on lude this se tion with a few orollaries pointed out by P. Vogel.
+Corollary 13.3. Let  be an element of P (l), the primitives of A(l). Fix any n. Then there
+is a positive integer N and a string link  su h that Z ( ) = exp(N ) + O(n + 1).
+Proof. Suppose indu tively one has 1 su h that Z (1 ) = exp(N1  ) + O(n). One has
+Z (1 ) = exp(1 ) and hen e exp(N1  ) exp( 1 ) = exp(2 ), with 2 = O(n). By 13.2, there
+are N2 and 2 , with Z (2 ) = 1 + N2 2 + O(n + 1) = exp(N2 2 ) + O(n + 1). Using the
+Campbell-Hausdor formula [MKS℄ and noting that the ommutator [; 2℄ = O(n + 1), one
+ he ks that 13.3 is satis ed with  = 1N 2 and N = N1 N2 .
+                                            2
+
+
+
+Corollary 13.4. Let  be a string link. Then for any positive integer n, there is a string
+link 1 , su h that the trun ated Kontsevi h expansion satis es Zn (1 ) = 1.
+Proof. Let Z ( ) = exp( ). By 13.3, there exist 2 and N , su h that Z (2 ) = exp( N ) +
+O(n + 1). Thus Z (1 ) = 1 + O(n + 1), where 1 =  N 1 2 .
+   As an appli ation, onsider the equivalen e relation on the monoid SL(l) given by 1 n 2
+if and only if Zn(1 ) = Zn(2 ). (Compare [Gu, NS℄.) We denote by En SL(l) the set
+26                        NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+of equivalen e lasses. (N.b., the equivalen e relation is independent of the hoi e of q -
+stru ture.)
+Proposition 13.5. En SL(l) is a group. Furthermore it is nilpotent of lass n.
+Proof. The trun ated Kontsevi h expansion Zn indu es an inje tive map of the monoid
+En SL(l) into the group 1 + 1j n Aj (l), whi h is nilpotent of lass n. Thus, the result
+follows from 13.4.
+Remark 13.6. P. Vogel has remarked that the values in a xed degree of the Kontsevi h
+integral of any tangle diagram an be taken to be a linear sum of hord diagrams with
+rational oeÆ ients, ea h having a xed denominator (depending only on the degree). It
+follows that the group En SL(l) is a entral extension of En 1 SL(l) by a latti e in Pn (l) (in
+parti ular, by a free abelian group of rank the dimension of Pn (l)). It follows (indu tively)
+that the groups En SL(l) are nitely generated and torsion free.
+
+           14. The on ordan e invarian e of Z t for tangles.
+Theorem 14.1. For all framed q -tangles T , Z t (T ) depends only on the on ordan e lass
+of T .
+Proof of Theorem 14.1. Consider two tangles T and T 00 whi h are on ordant. There
+is a tangle T 0 (see [H℄) su h that T 0 is obtained from T (and up to isotopy from T 00 ) by a
+ribbon on ordan e (i.e., adding an elling 0- and 1-handles). Spe i ally, we pass from T
+to the tangle T 0 by onne ting the boundaries of some trivially embedded disks i in the
+ omplement of T , via band onne ted sums along bands bi , lying in a neighborhood of paths
+  i , from a point on the boundary of the disk i to a point on the tangle T . (These paths
+may pass through the disks.) It is enough to see that Z t (T ) = Z t (T 0 ), if T 0 is obtained from
+T as above.
+     (It might be instru tive for the reader to follow the rest of the proof in the spe ial ase
+that there is just one disk and the path passes through the disk just on e, as in gure 10.)
+
+
+
+
+     Figure 10.  A on ordan e with one band-disk pair. Note that the string link on the right is
+     isotopi to  , where  is as in gure 1, showing that  is nul- on ordant.
+
+   If " = ("i), with "i 2 f0; 1g for all i, denote by T" the tangle obtained from T 0 , by sliding
+the bands meeting i o i , if "i = 1, and doing nothing otherwise. Note that T(1;::: ;1) is
+isotopi to T , and T(0;::: ;0) is T 0 . Note also that if "i = 1, one may remove the i-th band-disk
+pair, up to isotopy, so that T" is obtained from T by a ribbon on ordan e with fewer disks.
+   Set Æ (T ) = ( 1)j"j T" , where j"j = "i .
+Lemma 14.2. Z t (Æ (T )) = 0.
+                       THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                        27
+
+
+
+   Assuming lemma 14.2, we omplete the proof of Theorem 14.1 by indu tion on m, the
+number of disks. If m = 1, the result holds by the lemma, sin e Æ (T ) = T 0 T (up to
+isotopy) in this ase.
+   Assume Z t (T ) = Z t (T 0 ), if T 0 is obtained from T as above, but with fewer than m disks.
+It follows that Z t (T ) = Z t (T" ), if " 6= (0; : : : ; 0) and hen e that Z t (T 0 ) Z t (T ) = Z t (Æ (T )).
+The result now follows from lemma 14.2.
+Proof of Lemma 14.2. Let 2;3 denote the 3- omponent pure braid (endowed with the
+ anoni al q -stru ture) whi h wraps the se ond strand around the third. Let  be obtained
+from 2;3 by apping o the rst two omponents, and let 0 denote the ap-o of the trivial
+3- omponent string link (both with the anoni al q -stru ture on the bottom). See gure 11.
+
+
+                            =                                  0 =
+
+
+       Figure 11.   The tangles  and 0 .
+
+   We laim that Z t ( ) Z t (0 ) is a linear ombination of graphs X [ (with X = I1 q I2 )
+su h that ea h onne ted omponent of has at least one univalent vertex on ea h of the
+two omponents of X . To see this, note that Z t (2;3 ) = exp(Y ), where ea h diagram
+o uring in Y is onne ted and (by 3.2.4) must have a vertex on both the se ond and the
+third omponent, sin e 2;3 be omes trivial upon forgetting either the se ond or the third
+strand.19 Sin e Z t (\) = 1 (see remark 4.1), the laim follows.
+   Thus Z t ( ) Z t (0 ) is a linear ombination of graphs X [ su h that ea h univalent
+vertex of lying on I1 is the origin of a path in whi h ends in a univalent vertex on I2 .
+   Now the lo al hanges near i in the de nition of Æ (T ) are obtained from  0 by
+repla ing I2 by parallel opies, one for ea h strand of the j pier ing i , and then repla ing
+ea h of these opies with 2 parallel opies ( orresponding to the 2 sides of ea h band).
+   Hen e, in view of the doubling formula 3.2.6, Z t (Æ (T )) has a des ription, given as follows:
+   Re all that T 0 is the tangle obtained from T by taking band onne ted sums along bands
+bi with disks i . Identifying the underlying 1-manifold, X , of the tangle T 0 with its image,
+we de ne submanifolds Xi and Xib of X by setting Xi = X \  (i ) and Xib = X \ bi . Let
+X be obtained from X by identifying the two parallel strands in ea h Xib with ea h other.
+(Although X is not a manifold, one still has the notion of diagrams X [ .) See gure 12.
+
+                                              Xi
+                       X=                                              X=
+                                             Xib
+
+       Figure 12.   An example of Xi , Xib , and X .
+
+  19
+    As we have hosen the anoni al q-stru ture, Z (2 3 ) = exp(Y ) is not equal to exp(2 3 ), where 2 3 is
+                                                        t
+                                                            ;                                 ;           ;
+
+the hord onne ting the se ond and third omponents, but obtained from it by onjugating by the asso iator.
+28                         NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+   Then Z t (Æ (T )) is a linear ombination of terms, ea h of whi h is the pullba k (i.e., the
+sum over all diagrams obtained by lifting verti es on X to X under the proje tion X ! X )
+from a diagram X [ (sin e the two strands in bi are parallel), with the property that any
+univalent vertex lying in Xi is the origin of a path in ending in some univalent vertex
+lying in [j X bj . We hoose su h a path v for every univalent vertex v lying in [i Xi .
+                                                      b
+   Now onsider any univalent vertex of lying on X j . Assume this is the one lying losest to
+Xj . This lifts to two terms, one for ea h omponent of Xjb . These two terms are equivalent
+to a sum of terms (by the STU relation), with the vertex atta hed to a bran h of arriving
+at Xj . See gure 13 for an example.
+
+
+
+                      !                  +                  =                  +
+
+
+     Figure 13.   Applying the STU relation.
+                                                  b
+    Repeating this for all verti es lying on X j , for all j , we thus arrive at a sum of terms,
+su h that in ea h term, the paths v give rise to paths v0 with the following property. Here
+  0
+  v has the same origin as v , but ends in a trivalent vertex in the interior of another path
+  0
+  w (w may be equal to v ). Sin e all paths have a preferred dire tion (e.g., starting at v ), it
+follows that the union of these paths (whi h is ompa t) has a loop, and hen e su h a term
+is trivial in At (X ).
+    This ompletes the proof of theorem 14.1.
+Remark 14.3. An alternative proof ould be given based on theorem 6.1 and the methods
+of [HL2℄, along the following lines. First, the on ordan e invarian e of Z t ( ), for string
+links  , follows, by indu tion on the ltration degree, from 6.1, the on ordan e invarian e
+of Milnor's invariants, and the fa t that Z t ( ) = Z t ( ) 1 (sin e if  is on ordant to  0 ,
+then  0 is nul- on ordant, hen e it has vanishing Milnor invariants, and thus (by 6.1)
+1 = Z t ( 0 ) = Z t ( ) 1 Z t ( 0 )). The on ordan e invarian e of Z t (T ) for an arbitrary tangle
+(i.e., theorem 14.1) an then be dedu ed from the (generalized version of the) stru ture
+theorem of [HL2℄.
+
+              15. The universal finite type on ordan e invariant.
+   Let X be a q -tangle type. Let Q CT (X ) denote the Q -ve tor spa e with basis the set
+of framed embeddings of X in C  I, up to on ordan e rel. boundary. Let Q CT (X )n be
+the Vassiliev ltration on Q CT (X ) (indu ed from Q T (X )n ). By 14.1, Z t is well-de ned on
+Q CT (X ). Let Zt be the omposite with the proje tion onto At (X ).
+                  n                                              n
+Theorem 15.1. The sequen e,
+                                                      Zt
+                       0 ! Q CT (X )n+1 ! Q CT (X ) !n Atn (X ) ! 0
+is exa t. In other words, Z t is the universal nite type on ordan e invariant.
+                   THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                             29
+
+
+
+Note. This theorem answers a question of Bar-Natan [B1℄, who asked for an interpretation
+of the algebra At (l).
+   For the proof, we rst need to investigate the relationship between loop diagrams and
+nul- on ordant string links.
+   Let  be a string link with l omponents. In se tion 1, we de ned  , whi h is a on ordan e
+inverse of  .
+Lemma 15.2. Assume Z ( ) = 1 +  + O(n + 1) with  2 Pn (l)  An (l) represented by a
+diagram X [ with onne ted dashed graph with `    Euler hara teristi e( ) = 0 su h that
+                                              j =l
+  has at most one vertex on ea h omponent of j =1 Ij . Then Z ( ) = 1 + 2 + O(n + 1):
+Proof. Write Z ( ) = exp( ) + O(n + 1). Then Z ( ) = exp( + R( )) + O(n + 1),
+where R = ( 1)n r (see 3.2.7). Sin e has at most one vertex on ea h omponent, and r is
+orientation-reversing on ea h omponent, one has r ( ) = ( 1)v  as elements of Pn (l), where
+                                                                  1
+
+vi denotes the number of i-valent verti es of . Note that n = (v3 + v1 )=2 and 2a = 3v3 + v1 ,
+where a is the number of edges of . Thus n = a v3 and hen e e( ) = v1 + v3 a = v1 n.
+Sin e e( ) = 0 by hypothesis, it follows that R( ) =  , proving the lemma.
+Remark 15.3. The omputation of e( ) in the proof above shows that on labelled Chinese
+ hara ters the map R is simply multipli ation by ( 1)e , where e is the Euler hara teristi .
+(Indeed, the element of A(l) asso iated to a Chinese hara ter is the average of the ways
+of putting on the strings; this average, a( ), say, again satis es r (a( )) = ( 1)v a( ) and
+                                                                                      1
+
+
+hen e R(a( )) = ( 1)e( ) a( ).)
+Remark 15.4. One may use the observation in 15.3 to give a dire t proof of the fa t that
+Z t ( ) = Z t ( ) 1 (without knowing that Z t is a on ordan e invariant), as follows. Write
+Z t ( ) = exp(0 + 1 ), with i primitive and R(i ) = ( 1)i i . Then Z t ( ) = R(Z t ( )) =
+exp(0 1 ). Now onsider the ( omultipli ative, but not multipli ative) isomorphism of A(l)
+with the algebra B (l) of labelled Chinese hara ters. The R-symmetri al Chinese hara ters
+have even Euler hara teristi and so the primitives ones (i.e., the onne ted ones) are non-
+simply onne ted, and hen e trivial in B t (l). This shows that 0 is zero in At (l), and hen e
+Z t ( ) = exp( 1 ) = Z t ( ) 1 , as asserted.
+
+Proof of theorem 15.1. By de nition and by 14.1, the short exa t sequen e
+                         0 ! Q T (X )n+1 ! Q T (X )n Z!
+                                                      n
+                                                        A n ( X ) ! 0;
+maps surje tively to the sequen e
+                                                         Zt
+                        0 ! Q CT (X )n+1 ! Q CT (X )n !
+                                                      n
+                                                        Atn (X ) ! 0
+from whi h the theorem follows by indu tion, provided we an show this latter sequen e is
+exa t.
+   Obviously we have inje tivity and surje tivity where required. To see exa tness in the
+middle we pro eed as follows. By de nition, Q CT (X )n is the image of Q T (X )n. Thus it
+suÆ es to see that if x 2 Q T (X )n is in the kernel of the map to Atn (X ), then we may nd
+an element y 2 Q T (X )n in the kernel of the map to Q CT (X )n, su h that x y lies in the
+kernel of the map to An (X ).
+30                         NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+    Hen e it suÆ es to see that for all elements  2 An (X ) whi h lie in the kernel of the
+map to Atn (X ) (or by linearity, for a set of generators of this kernel), there is an element
+y 2 Q T (X )n , whi h is in the kernel of the map to Q CT (X )n , su h that Zn(y ) =  .
+    The kernel of the map An (X ) ! Atn (X ) is (by STU) generated by diagrams X [
+  ontaining a omponent with Euler hara teristi 0. Let i denote the onne ted omponents
+of . We may assume that 1 is the omponent with Euler hara teristi 0.
+    Let Xi be a regular neighborhood of the verti es of i in X . Fix a framed embedding T
+of X for whi h the Xi ea h form trivial string links ei in disjoint balls Bi . Now q(Xi [ i )
+represents an element i 2 Ani (Xi )  An (qXi), where ni is the degree of i , whi h maps
+to  2 An (X ) (under the in lusion qXi  X ). By proposition 13.1, there is some string
+link i su h that Z (i ) = 1 + i + O(ni + 1). Sin e 1 has even Euler hara teristi , and
+has pre isely 1 vertex on ea h omponent of X1 , it follows from lemma 15.2 that Z (1  1 ) =
+1+21 + O(n1 +1). Note that 1  1 is nul- on ordant. It follows that the linear ombination,
+y , say, of framed embeddings of X , obtained from T by inserting 1  1 e1 in B1 and i ei
+in Bi , maps trivially to Q CT (X )n . On the other hand, Z (y ) = 2 + O(n + 1), sin e the value
+of Z on the restri tion of T to the omplement (in X ) of qXi is 1 + O(1). Thus Zn (y ) = 2
+and the theorem follows.
+Remark 15.5. Alternatively to our onstru tion above of 21 by a nul- on ordant string
+link, one ould also use a onstru tion of K. Y. Ng, to realize a generating set of loop diagrams
+by ribbon (and hen e nul- on ordant) string links (see [Ng℄).
+Remark 15.6. A similar argument as in the proof above shows that if A is a monoidal
+  ategory quotient of A (see se tion 4) su h that for all string links  , the indu ed invariant
+Z satis es Z ( ) = Z ( ) 1 (e.g., if Z ( ) is a on ordan e invariant of  ), then A is a quotient
+of At .
+    We on lude this se tion with the proof of Corollary 6.4, whi h states that the algebra of
+rational nite type on ordan e invariants of string links is generated by Milnor's invariants.
+Proof of Corollary 6.4. Rational nite type on ordan e invariants of string links form a
+Q -algebra, V , say, equipped with a ompatible as ending ltration Q = V0  V1  : : :  V .
+By 15.1, one has gr V = At (l) , where At (l) = Atn (l) and Atn (l) denotes the dual ve tor
+spa e of Atn (l). Elements of Atn (l) are usually referred to as weight systems. It is known
+[B1, L℄ that Milnor's invariants of string links are of nite type. (See also remarks 11.3 and
+12.8.) In order to show that they generate V , it suÆ es to show that At (l) is generated by
+weight systems of Milnor invariants.
+    By theorem 6.1, for every ' 2 Atn (l) , there is an invariant M : SL(l) ! Q su h that M
+is a linear ombination of Milnor invariants and ' Æ Znt oin ides with M when restri ted to
+SL(l)n , the set of string links of (Milnor or Z t -) ltration n. Let 'M be the weight system
+of M . Then ' 'M is zero on the primitives of Atn (l), sin e every primitive element of
+Atn (l) is realized rationally as a string link (in SL(l)n ). But a (homogeneous) weight system
+    2 Atn(l) is zero on primitives if and only if it is de omposable, i.e., a linear ombination
+of produ ts of weight systems of stri tly lower degree.20 Thus, ' 'M is de omposable, and
+the result follows.
+     This follows from the fa t that A (l) is the symmetri algebra over P (l) , where P (l) is the dual
+     20                                  t                                 t              t
+
+
+of the spa e of primitives, P (l), of A (l). (This an be seen using the algebra isomorphism of A (l) with
+                            t        t                                                          t
+
+
+B (l) .)
+ t
+                     THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                   31
+
+
+
+              16. Appendix on the Vassiliev filtration of pure braids.
+   We de ne the Vassiliev ltration on Q P B (l) to be the ltration indu ed by the Vassiliev
+  ltration on string links, i.e., we put Q P B (l)n = Q P B (l) \ Q SL(l)n . Let I denote the aug-
+mentation ideal of Q P B (l). Let A0 (l) be the graded ompleted subalgebra of A(l) generated
+by hord diagrams in degree 1 between distin t omponents. A0 (l) is a Hopf subalgebra.
+Theorem 16.1. (i) The Vassiliev ltration on Q P B (l) oin ides with the I -adi ltration,
+i.e., one has I n = Q P B (l) \ Q SL(l)n .
+   (ii) Moreover, Z indu es an isomorphism (of omplete Hopf algebras) from the I -adi
+ ompletion of Q P B (l), to A0 (l).
+Note. Sin e A0 (l) inje ts into At (l), one may repla e Z by Z t in 16.1(ii).
+Remark 16.2. It is easy to see that the I -adi ltration on pure braids orresponds to
+the ltration `a la Vassiliev' where one allows only `horizontal' rossings, i.e., oming from
+`singular' braids (all strands remaining verti al).21 It has been known for some time (see
+[K1, K2℄), that this ltration orresponds to the Hopf algebra a la Vassiliev of `horizontal'
+ hord diagrams and `horizontal' 4T relations. Theorem 16.1 says that this algebra inje ts
+into the Hopf algebra At (l), and a fortiori into A(l). (This latter has re ently been proven
+in a di erent way by Bar-Natan [B4℄.)
+Lemma 16.3. If  2 F (l) satis es [; xi ℄ 2 F (l)n+1 for a generator xi , then for some
+m 2 Z, xm  i 2 F (l )n .
+   This well-known fa t an be proven using the Magnus expansion [MKS℄.
+Lemma 16.4. Let  be a pure braid (with zero framing). Then Z t ( ) = 1 + O(n) if and
+only if  2 P B (l)n .
+Proof. This follows from theorem 6.1 and the fa t that a pure braid has Milnor ltration
+n if and only if it lies in P B (l)n . Here is a proof of this fa t. We use the hara terization
+of the Milnor ltration by the Artin representation (remark 5.1). Thus, we will show that
+ 2 P B (l)n if and only if An( ) = 1 2 Aut(F (l)=F (l)n+1).
+   Note that the image of the Artin representation of a string link lies in the subgroup
+Aut0 (F (l)=F (l)n+1 ) of Aut(F (l)=F (l)n+1), onsisting of those automorphisms whi h onju-
+gate the generators and whi h preserve the produ t of the generators. Thus these automor-
+phisms a t trivially on homology. In parti ular, one has that Aut0 (F (l)=F (l)2 ) is trivial. Us-
+ing lemma 16.3, it is easy to see that the proje tion Aut0 (F (l)=F (l)n+1 ) ! Aut0 (F (l)=F (l)n)
+is a entral extension. It follows that Aut0 (F (l)=F (l)n+1 ) is a nilpotent group of lass n 1.
+This shows that P B (l)n is in the kernel of An.
+   To see the onverse, we pro eed by indu tion on l and use the semidire t produ t de-
+  omposition P B (l) = F (l 1) o P B (l 1). Suppose the image of x 2 P B (l) is trivial
+in Aut0 (F (l)=F (l)n+1). Let x 2 P B (l 1) be its image. Then the image of x is trivial in
+Aut0 (F (l 1)=F (l 1)n+1 ), so indu tively we have x 2 P B (l 1)n.
+   Hen e it is enough to show that y = xx 1 2 F (l 1) lies in F (l 1)n . Re all that
+An()(xi) = ixi i 1, where the xi are the generators of the free groups F (l), and the i
+are the longitudes. Note that under the forgetful map, 1 2 F (l) maps to y 2 F (l 1) 
+  21
+     This suggests alling the I -adi ltration the `horizontal Vassiliev ltration', so that 16.1 may be ex-
+pressed by saying that this oin ides with the a tual Vassiliev ltration.
+32                        NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+P B (l). Thus if the image of y in Aut0 (F (l)=F (l)n+1 ) is trivial, this says in parti ular that
+[1 ; x1 ℄ 2 F (l)n+1 . By lemma 16.3, this implies 1 xm
+                                                        1 2 F (l)n , for some m 2 Z, and hen e
+y 2 F (l 1)n  P B (l)n , ompleting the proof.
+Proof of theorem 16.1. Note that sin e the asso iator and braid rossings both have
+image in the Hopf subalgebra A0 (l) generated by hord diagrams in degree 1 between distin t
+ omponents, one has that Z t maps Q P B (l) into this subalgebra. Sin e I=I 2 maps surje tively
+to A01 , it follows that the map
+(3)                                   bn0(I n=I n+1) ! A0(l)
+is surje tive (see [Q2, 2.17℄). To prove inje tivity, as in the proof of 10.3, it is enough to see
+(by [Q2, 2.21℄), that the map is inje tive on primitives. By [Q2, 3.11℄, the set of primitives
+of b
+   n0(I n=I n+1) is
+                                  b n1(P B (l)n=P B (l)n+1) Q :
+   By theorem 6.1 and lemma 16.4, if x 2 P B (l)n and Znt (x) = 0, then x 2 P B (l)n+1. It
+follows that
+                               (P B (l)n=P B (l)n+1 ) Q ! Atn (l)
+is inje tive, and hen e (3) is an isomorphism, proving 16.1(ii).
+   In parti ular, this shows that I n =I n+1 inje ts into A0n (l), and a fortiori into An (l). Thus
+                                   In          Q P B (l) \ Q SL(l)n
+                                 I n +1  !   Q P B (l) \ Q SL(l)n+1
+is inje tive, and so, indu tively, it follows that I n = Q P B (l) \ Q SL(l)n . In other words,
+the Vassiliev ltration on Q P B (l) oin ides with the I -adi ltration, as asserted in 16.1(i).
+This ompletes the proof.
+Corollary 16.5. The redu ed Kontsevi h integral Z t (and a fortiori the Kontsevi h integral
+Z ) separates pure braids.
+Proof. In view of lemma 16.4, it suÆ es to show that the interse tion of the lower entral
+series of P B (l) is trivial. This is well-known [FR℄, but for ompleteness, here is a proof.
+The pure braid group is a semidire t produ t P B (l) = F (l 1) o P B (l 1). Moreover, the
+a tion of P B (l 1) on the free group F (l 1) is via the Artin representation. Then, sin e
+this representation a ts trivially on homology, it is an exer ise to see that the lower entral
+series of P B (l) is the semidire t produ t of the lower entral series of F (l 1) and that of
+P B (l 1). Sin e the interse tion of the lower entral series of a free group is trivial, by
+indu tion, the same holds for the pure braid group.
+Remark 16.6. Sin e the lower entral series quotients of the free group are torsion free,
+the argument above also shows that the lower entral series quotients P B (l)n=P B (l)n+1 are
+torsion free, and hen e the pure braid group P B (l) is residually torsion free nilpotent. By
+Chen [C, 2.2.1℄, this implies that the I -adi ltration of the group ring Q P B (l) is omplete,
+i.e., satis es \I n = 0. By 16.1, the same is true for the Vassiliev ltration on pure braids.
+                                          Referen es
+
+[A℄    E. Artin, The theory of braids, Annals of Math. 48, 1947, 101-126.
+[B1℄   D. Bar-Natan, Vassiliev Homotopy String Link Invariants, Journal of Knot Theory and its Rami -
+        ations, 1995, 13-32.
+                     THE KONTSEVICH INTEGRAL AND MILNOR'S INVARIANTS                                    33
+
+
+
+[B2℄          , On the Vassiliev knot invariants, Topology, 34 (1995) 423-472.
+[B3℄          , Non-Asso iative Tangles, In: Geometri Topology (W. Kazez, Ed.), Pro . Georgia Int.
+      Topology Conf. 1993, AMS/IP Studies in Advan ed Mathemati s, 1997.
+[B4℄          , Vassiliev and Quantum Invariants of Braids, Pro eedings of Symposia in Applied Math.,
+      Vol. 51, 1996.
+[Bi℄ J. Birman, Braids, links and mapping lass groups, Ann. of Math. Studies, vol. 82, Prin eton Univ.
+      Press, 1974.
+[Ca℄ P. Cartier, Constru tion ombinatoire des invariants de Vassiliev-Kontsevi h des nuds, C. R. A ad.
+      S i. Paris 316, 1993, 1205-1210.
+[C℄   K. Chen, Extension of C 1 Fun tion Algebra by Integrals and Mal ev Completion of 1 , Adv. in
+      Math., 1977, 181-210.
+[Co1℄ T. Co hran, Derivatives of Links, Milnor's Con ordan e Invariants and Massey Produ ts, AMS
+      Memoirs 84, No. 427, 1990.
+[Co2℄         , k-Cobordism for Links in S3 , Trans. AMS Vol. 327, 2, O t.1991, 641-654.
+[CO℄ T. Co hran, K. Orr, Not all links are on ordant to boundary links, Annals of Math. 138, 1993,
+      519-554.
+[D℄   J. Y. Le Dimet, Cobordisme d'enla ements de disques, Mem. So . Math. Fran e 32 (Suppl. Bulletin
+      So . Math. Fran e 116, 1988).
+[D1℄ V. G. Drinfel'd, On Quasi-Hopf algebras, Leningrad Math. J. 1, 1990, 1419-1457.
+[D2℄          , On quasi-triangular quasi-Hopf algebras and a group losely onne ted with Gal(Qb =Q ),
+      Leningrad Math. J. 2, 1990, 829-860.
+[FR℄ M. Falk, R. Randell, Pure braid groups and produ ts of free groups, Contemp. Math. 78, 1988,
+      217-228.
+[Gi℄ C. Gi en, Link on ordan e implies link homotopy, Math. S and. 45, 1979, 243-254.
+[Go℄ D. Goldsmith, Con ordan e implies homotopy for lassi al links in M 3 , Comment. Math. Helv. 54,
+      1979, 347-355.
+[Gu℄ M. N. Gusarov, On n-equivalen e of knots and invariants of nite degree, In: Topology of manifolds
+      and varieties, (O. Viro, Ed.), 173-192, Amer. Math. So ., Providen e, RI.
+[H℄   N. Habegger, Appli ations of Morse Theory to Link Theory, Knots 90, Pro . of the Int. Conf. on
+      Knot Theory and Related Topi s, Osaka 1990, A. Kawau hi, ed., 1992, 389-394.
+[HL1℄ N. Habegger and X. S. Lin, The Classi ation of Links up to Homotopy, Journal of the A.M.S., Vol.
+      3, No. 2, 1990, 389-419.
+[HL2℄ N. Habegger and X. S. Lin, On Link Con ordan e and Milnor's  Invariants, Bull. London Math.
+      So . 30, (1998) 419-428.
+[KT℄ C. Kassel and V. Turaev, Chord diagram invariants of tangles and graphs, Duke Math. J. 92 (1998),
+      no. 3, 497{552.
+[K1℄ T. Kohno, Serie de Poin are-Koszul asso iee aux groupes de Tresses Pures, Invent. Math. 82, 1985,
+      57-76.
+[K2℄          , Vassiliev Invariants and the De Rham omplex on the spa e of Knots, Contemp. Math. 179,
+      1994, 123-138.
+[Ko℄ M. Kontsevi h, Vassiliev's knot invariants, Adv. in Sov. Math., 16(2) (1993), 137{150.
+[Le℄ T. Le, An invariant of integral homology 3-spheres whi h is universal for all nite type invariants,
+      in: Soliton Geometry and Topology: on the rossroad, AMS Translations 2, Eds. V. Bu hstaber,
+      S. Novikov.
+[LM1℄ T.T.Q. Le, J. Murakami, The universal Vassiliev-Kontsevi h invariant for framed oriented links,
+      Compositio Math. 102, 1996, 41-64.
+[LM2℄         , Parallel version of the universal Vassiliev-Kontsevi h invariant, J. Pure Appl. Algebra 121
+      (1997), no. 3, 271{291.
+[LMO℄ T.T.Q. Le, J. Murakami, T. Ohtsuki, On a universal perturbative invariant of 3-manifolds. Topology
+      37 (1998), no. 3, 539{574.
+[L℄   X. S. Lin, Power Series Expansions and Invariants of Links, In: Geometri Topology (W. Kazez,
+      Ed.), Pro . Georgia Int. Topology Conf. 1993, AMS/IP Studies in Advan ed Mathemati s, 1997.
+[M℄   S. Ma Lane, Categories for the working mathemati ian. Springer Verlag, New York 1971.
+34                          NATHAN HABEGGER AND GREGOR MASBAUM
+
+
+
+[MKS℄ W. Magnus, A. Karrass, and D. Solitar, Combinatorial group theory, Pure and Appl. Math., vol
+      XIII, Inters ien e, New York, 1996.
+[M1℄ J. Milnor, Link groups, Annals of Math., 59, 1954, 177-195.
+[M2℄          , Isotopy of links, Algebrai Geometry and Topology, Prin eton Univ. Press. Prin eton, NJ,
+      1957.
+[MM℄ J. Milnor, J. C. Moore, On the stru ture of Hopf Algebras, J. Algebra, 10, 1968, 411-418.
+[Ng℄ K. Y. Ng, Groups of ribbon knots, Topology 37 (1998), no. 2, 441{458.
+[NS℄ K. Y. Ng, T. Stanford, On Gusarov's groups of knots, (to appear in Math. Pro . Camb. Phil. So .)
+[O℄   K. Orr, Homotopy invariants of links, Invent. Math. 95, 2, 1989, 379-394.
+[Q1℄ D. Quillen, On the Asso iated Graded Ring of a Group Ring, Journal of Algebra 10, 1968, 411-418.
+[Q2℄          , Rational Homotopy Theory, Appendix A, Annals of Math., 1969, 264-279.
+[R℄   L. Rozansky, Reshetikhin's formula for the Jones polynomial of a link: Feynman diagrams and Mil-
+      nor's linking numbers, J. Math. Phys. 35, 1994, 5219-5246
+[St℄  J. Stallings, Homology and entral series of groups, J. Algebra, 1965, 170-181.
+[S℄   T. Stanford, Braid Commutators and Vassiliev Invariants, Pa i Journal of Math 174, no 1, 1996,
+      269-276.
+[ST℄ T. Stanford, D. Thurston (private ommuni ation).
+[Va℄ V. A. Vassiliev, Cohomology of knot spa es, In: Theory of singularities and appli ations, Adv. Soviet.
+      Math. vol. 1, 1990, 23-69, Amer. Math. So ., Providen e, RI.
+[Vo1℄ P. Vogel, Invariants de Vassiliev des nuds, Sem. Bourbaki 1992-1993, Asterisque 216, 1993, 213-232.
+[Vo2℄         , Algebrai stru tures on modules of diagrams, to appear in Invent. Math. (preprint 1995).
+  UMR 6629 du CNRS, Universit     e de Nantes, Departement de Mathematiques, 2 rue de la
+Houssiniere, BP 92208, 44322 NANTES Cedex, Fran e
+  E-mail address : habeggermath.univ-nantes.fr
+  Institut de Math   ematiques de Jussieu, Universite Paris 7 - Denis Diderot, Case 7012, 75251
+PARIS Cedex 05, Fran e
+  E-mail address : masbaummath.jussieu.fr
+
