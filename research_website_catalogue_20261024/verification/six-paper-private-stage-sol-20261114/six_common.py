@@ -1,4 +1,6 @@
 """Small private-stage primitives. Importing this module performs no I/O."""
+import sys
+sys.dont_write_bytecode=True
 from pathlib import Path
 import hashlib,json,re
 

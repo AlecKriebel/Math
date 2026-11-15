@@ -18,8 +18,9 @@ def schema_fault(s,edit):
     m=re.search(r'(<script type="application/ld\+json">)(.*?)(</script>)',s,re.S);require(m is not None,'actual_schema_anchor')
     obj=json.loads(m.group(2));edit(obj);return s[:m.start(2)]+json.dumps(obj,ensure_ascii=False).replace('<','\\u003c')+s[m.end(2):]
 
-def run(stage,build_date):
-    stage=safe_output(stage);bundles=load_bundles();frozen=load(OWN/'FROZEN_INPUT_SET.json');base=load(OWN/'FRESH_BASELINE.json');old={x['path']:x for x in base['public_files']}
+def run(stage,build_date,*,_bundles=None):
+    stage=safe_output(stage);bundles=load_bundles() if _bundles is None else _bundles
+    frozen=load(OWN/'FROZEN_INPUT_SET.json');base=load(OWN/'FRESH_BASELINE.json');old={x['path']:x for x in base['public_files']}
     original={str(p.relative_to(stage)):bind(p) for p in stage.rglob('*') if p.is_file()};cases=[];positives=[]
     index=(stage/'research/index.html').read_bytes();sitemap=(stage/'research/sitemap.xml').read_bytes()
     for bundle in bundles:

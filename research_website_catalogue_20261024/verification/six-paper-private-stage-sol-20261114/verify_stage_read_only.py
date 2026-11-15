@@ -46,10 +46,11 @@ def check_overlays(bundles,index,sitemap,build_date,old):
     test('all_other_sitemap_bytes_unchanged',restored==oldmap.decode())
     return checks
 
-def verify(stage_root,build_date,*,current_base=False):
+def verify(stage_root,build_date,*,current_base=False,_bundles=None):
     require(date.fromisoformat(build_date).isoformat()==build_date,'explicit_stage_date')
     target=safe_output(stage_root);require(target.is_dir(),'existing_private_stage')
-    bundles=load_bundles();seal=load(OWN/'INPUT_FREEZE_SEAL.json');baseline=load(OWN/'FRESH_BASELINE.json')
+    bundles=load_bundles() if _bundles is None else _bundles
+    seal=load(OWN/'INPUT_FREEZE_SEAL.json');baseline=load(OWN/'FRESH_BASELINE.json')
     require(bind(OWN/'FRESH_BASELINE.json')['sha256']==seal['baseline_sha256'],'fresh_baseline_seal')
     checks={};test=lambda k,v:checks.__setitem__(k,bool(v));old={x['path']:x for x in baseline['public_files']}
     expected={'research/index.html','research/sitemap.xml'}
