@@ -1,0 +1,9 @@
+# Source-only custody: record23133607
+
+Fresh native Full List W/AB row140 matches the actually published/done latest Zenodo record. All native record/latest/allversions/files response bodies, actual ordered request/response headers and redirect bodies are retained whole. Every original published asset is native-size/checksum verified and preserved in native order. Actual original JSON types, key/list order, absent fields and nulls are not normalized. Native version presence, exact type and value are retained separately for each record; no default version or printed date/version is fabricated.
+
+Every archive container and safe regular payload is read completely for native CRC/size/SHA and extraction byte equality. Actual containers=1, nested=0, regular payload occurrences=33. No scientific program or builder is executed.
+
+All1 actual native PDF readers are preserved, with 4 total pages and the same number of fresh, individually hashed, UNVIEWED rasters. Every TeX candidate and both/extra operational source associations remain directly in READY. The primary operational PDF/source path is selected from deposited filenames and whole-byte metadata only. No typesetting, body, companion/edition role or scientific equivalence is certified. Future science must read the full published record, including every PDF and each controlling/additional TeX, before an initial seal.
+
+PDF mathematical text/pixels, TeX preamble/body and every supplied scientific proof/program/result/opinion remain UNREAD. Printed fields and scientific verdict remain null/false; this is custody only and gives no scientific, publication, canonical or AA authority. The native AB snapshot is retained unchanged; no Sheet cell was modified. No Sheet/site/core/Git/redirect/deploy/contact action or outside human communication/prepared outreach occurred. Source-only completion100%; no programme or publication count is claimed.

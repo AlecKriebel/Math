@@ -9,3 +9,13 @@
 2026-11-15T21:29:41.633896+00:00 — 40%: own results sealed before native/foreign exposure; native five Python bodies and necessary READMEs/expected fully read after one truncated attempted read; selected finite graph checker staged byteidentically for single normal/O replay. Scientific findings withheld from root.
 
 2026-11-15T21:36:32.509827+00:00 — 65%: all seven H10 and all nine converse section bodies now personally read in bounded full ranges, plus critical source theorem bodies. Handoff02 received with all original null/error/transport receipts retained; classical interface review and full native support reading continue. Root findings gate closed.
+
+2026-11-15T21:51:44.059998+00:00 — 85%: resumed after root checkpoint7da7df435ff22b32906ddb5f5291f6cbf6de16d7. Source support notes and literal historical receipts fully read while paused. Only the specifically authorized .gitignore was added during pause; no seal or original source changed. Current peer/root findings remain unread. Final source-interface reconciliation and closure underway.
+
+2026-11-15T22:00:17.078751+00:00 — 87%: resumed after checkpoint 7da7df435ff22b32906ddb5f5291f6cbf6de16d7; final raw-only handoff-03 schema read and whole bodies/transports copied with byte equality. Final two requested classical interfaces remain to read; no peer interpretations or control results received. Root 136 gate remains CLOSED.
+
+2026-11-15T22:08:54.219975+00:00 — 94%: all requested raw acquisition handoffs retained, including exact cited-book access limitation and all literal redirects. The independent alternative classical theorem is separately identified; no inaccessible edition is claimed read. Scientific reconstruction and final report reconciliation complete; strict offline closure remains. Current peer/root findings remain unread and withheld.
+
+2026-11-15T22:09:49.805959+00:00 — 98% overall review: all scientific final artifacts reconciled, exact access limits retained, literal custom verdict written. Current helper full body was read before any execution. Next operation closes every owned payload and directory and verifies source/ZIP/early seals/replay receipts offline. Parent comparison gate remains CLOSED; no science findings sent. Final100% belongs to the post-closure seal, not this staged checkpoint.
+
+2026-11-15T22:11:39.806236+00:00 — 97% after actual custody failure: the safe helper rejected the outer manifest payload ordering. Complete failed attempt retained. No FINAL completed and no optimized custody run yet. Correct the generated relative-string ordering, refresh the full payload manifest, and rerun the unchanged fully read pure custody helper. No native science rerun.

@@ -112,7 +112,8 @@ def render():
     for key, heading in [("plain_language", "The idea"), ("abstract", "Original abstract"), ("result", "The result"), ("why_it_works", "Why it works"), ("definitions_and_limits", "Scope and limits"), ("background", "Classical inputs and priority")]:
         values = c[key] if isinstance(c[key], list) else [c[key]]
         copy += "## " + heading + "\n\n" + "\n\n".join(values) + "\n\n"
-    copy += "## Status and collaboration\n\n" + c["ai_disclosure"] + "\n\n" + c["collaboration"] + "\n\n" + c["rights_notice"] + "\n\n## Related reading\n\n" + "\n\n".join('[' + x["label"] + '](' + x["url"] + '). ' + x["note"] for x in c["related_resources"]) + "\n"
+    copy += "## Read the paper\n\n" + c["reader_intro"] + "\n\n[Open PDF](paper.pdf) · [Download PDF](paper.pdf) · [Source and verification ZIP](source-and-verification.zip) · [BibTeX](citation.bib)\n\nIf the PDF viewer is unavailable, open the original PDF.\n\n"
+    copy += "## Related reading\n\n" + "\n\n".join('[' + x["label"] + '](' + x["url"] + '). ' + x["note"] for x in c["related_resources"]) + "\n\n## Status and collaboration\n\n" + c["ai_disclosure"] + "\n\n" + c["collaboration"] + "\n\n" + c["rights_notice"] + "\n\n## Citation\n\n" + publication["citation_text"] + "\n\n[Download BibTeX citation](citation.bib)\n"
     text_file("PUBLIC_COPY.md", copy)
     dump("SCHOLARLY_METADATA.json", metadata)
     dump("publication.json", publication)
