@@ -1,0 +1,5 @@
+# Editorial research log — record23418581
+
+- 2026-11-15T21:37:06.959150+00:00 —5%: New editorial namespace confirmed absent and created; source-only authority pins authenticated; private ignores established before raw copies/rasters. No website/Git/Sheet/native/scientific programme access or execution. Row135 completed packet untouched and findings withheld.
+
+- 2026-11-15T21:41:31.900556+00:00 —30%: Entire actual4-page PDF/279TeX/four fresh rasters, full root proof and128020-byte authority, native description and authored-support license read. Source291/root29 namespaces and qualified17 core plus405b helper frozen; whole literal originals retained. Initial expectations sealed before drafting. Preflight path-field mismatch was corrected to actual extracted_path; a later peer-verdict path guard stopped before initial freeze and was corrected to actual scope/CUSTOM_VERDICT.json. No original modified. Template-schema inspection printed a truncated prior131 publication object; it is not treated as fully read/imported and no old code runs.

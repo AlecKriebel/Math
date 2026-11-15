@@ -1,0 +1,206 @@
+                        Simple Young modules with nonprojective
+                                polynomial injective hulls
+                                                    Alec Kriebel∗
+
+                                        16 October 2026 (version 1.0)
+
+
+
+                                                      Abstract
+              For every odd prime p, the Young module labelled by λ = (2p − 2, 1) in characteristic p is
+          simple, whereas its corresponding polynomial injective hull In (λ) is nonprojective for every n ≥ 2.
+          At parameter q = 1, this gives a negative answer to the unrestricted formulation of Miyachi’s
+          Conjecture 7 in the 2009 Oberwolfach report. The proof combines classical representation theory
+          with a labelled rank-truncation argument. We include explicit proofs of the local calculations
+          and reproducible supporting checks. Historical priority remains unresolved; no ﬁrstness claim
+          is made.
+
+
+1        The printed question
+Let k be algebraically closed. In degree r, write In (ν) for the injective hull of the simple polynomial
+GLn (k)-module Ln (ν), equivalently its injective hull for the Schur algebra S(n, r). At stable rank
+N ≥ r, the Schur functor F deﬁnes Y ν = FIN (ν), the Young module in the convention of [1,
+pp. 945–946]. Here the parameter is q = 1, so the Hecke algebra is kSr ; in characteristic p, its
+quantum characteristic is p.
+    The ﬁrst proposal in [1, Conjecture 7, p. 946] asks whether simplicity of top(Y ν ) is equivalent to
+projectivity of In (ν) for some n ≥ ℓ(ν). The index-set criterion involving Λin is presented there as
+a stronger proposal. The characteristic-zero assumption in the subsequent subsection 0.5 concerns
+a diﬀerent method for simple Specht modules; it is not attached to the displayed Conjecture 7.
+Theorem 1. Let p be any odd prime and let k be algebraically closed of characteristic p. Put
+r = 2p − 1 and λ = (2p − 2, 1). Then Y λ is simple of dimension 2p − 2, but In (λ) is not projective
+for any integer n ≥ 2.
+   Thus p = 3, λ = (4, 1) already refutes the broad printed proposal. The theorem does not
+address a characteristic-zero variant with a nontrivial root-of-unity parameter, nor the separate
+De Visscher–Donkin classiﬁcation of projective-injective polynomial modules. In particular, being
+row p-regular is not being p-restricted (column p-regular), and no projectivity inference from row
+regularity is used.
+
+
+2        Established structural inputs
+We use the following standard facts from [2, Sections 2.2–2.4 and 3]. Page locators here refer to
+the manuscript dated 12 January 2005 (printed pp. 7–12), whose repository cover is not counted.
+    ∗
+        Independent researcher. ORCID: 0009-0001-9320-500X.
+
+
+                                                           1
+Costandard reciprocity gives
+
+                                 (In (ν) : ∇n (µ)) = [∇n (µ) : Ln (ν)].                             (1)
+
+A nonzero right side requires µ to dominate ν. An indecomposable polynomial injective is projective
+only if it is contravariantly self-dual and an indecomposable tilting module. Conversely, an injective
+tilting module is projective. Contravariant duality ﬁxes simple labels.
+     For N ≥ n, exact rank truncation takes IN (ν) to In (ν) and TN (µ) to Tn (µ) when the re-
+spective labels have at most n parts. We apply these labelled statements, not preservation of
+projectivity for arbitrary modules under an idempotent functor. Finally, ∇n (r) = Symr (k n ) and
+∇2 (a, b) = detb ⊗ Syma−b (k 2 ). The tensor products of symmetric powers are injective, with injec-
+tive multiplicities given by the corresponding weight multiplicities of simples [2, Section 3, printed
+p. 12]. None of these inputs assumes either conjecture. The stable Schur conventions also appear
+in [3, printed p. 3].
+
+
+3    The Young module and its label
+                                                                               ∑
+Let V = k r be the natural permutation module and put A = {(a1 , . . . , ar ) : i ai = 0}. Since p ∤ r,
+the constant line splits oﬀ and V = k ⊕ A. For a nonzero submodule U ⊆ A, choose 0 6= v ∈ U . Its
+coordinates cannot all agree. If vi 6= vj , then
+
+                                  v − (ij)v = (vi − vj )(ei − ej ) ∈ U.
+
+Permuting the coordinates supplies all diﬀerences ei − ej , which span A. Hence A is simple of
+dimension r − 1. This is the classical natural permutation/augmentation calculation.
+    For clarity, we check the label in the source’s FI convention. Take N ≥ r, EN = k N and
+H = Symr−1 EN ⊗ EN . Its injective multiplicities are the (r − 1, 1, 0, . . . , 0)-weight multiplicities
+of simples. Dominance leaves only labels (r) and λ, each with multiplicity one. For λ this is the
+highest weight. For LN (r), the weight occurs in the simple socle LN (r) of ∇N (r) = Symr EN ,
+                                                             1 x2 6= 0. The ambient weight space is
+which contains xr1 : the coeﬃcient of t in (x1 + tx2 )r is rxr−1
+one-dimensional. Thus
+                                         H= ∼ IN (r) ⊕ IN (λ).
+
+Reciprocity at the maximal label gives IN (r) = Symr EN . Multiplication m : H → Symr EN splits:
+the polarization map
+                                   ∑ ∂f
+                           δ(f ) =          ⊗ xi satisﬁes mδ = r id.
+                                    i
+                                       ∂xi
+Cancellation of indecomposable summands yields ker m =    ∼ IN (λ). On multilinear weight spaces, H
+           ∏                                                                    ∏
+has basis ( j6=i xj ) ⊗ xi for 1 ≤ i ≤ r, and m is coordinate summation onto k j xj . Exactness of
+F therefore gives FIN (λ) =∼ A, as required. The stable Schur functor is never applied at rank 2 < r.
+
+
+4    The rank-two obstruction
+Write E = k 2 , with basis x, y. In a ﬁxed symmetric power, the monomials vi = xm−i y i have
+distinct algebraic-torus weights. An invariant subspace contains individual weight components.
+It also contains every coeﬃcient in t of a unipotent translate: Vandermonde inversion over the
+inﬁnite ﬁeld k extracts those coeﬃcients from evaluations. This is a statement about rational
+GL2 (k)-modules, not just the ﬁnite group GL2 (Fp ).
+
+                                                   2
+Lemma 1. The module Sym2p−1 E is simple. The module B = Sym2p−3 E is a nonsplit extension
+of two distinct simple modules: its socle has highest weight (2p − 3, 0) and dimension 2p − 4; its top
+has highest weight (p − 1, p − 2) and dimension 2.
+Proof. From any monomial, the substitution y 7→ y +tx extracts the highest monomial. Translating
+that highest monomial in the opposite direction extracts the binomial-coeﬃcient multiples of all
+monomials. For degree 2p − 1, every coeﬃcient is nonzero, since in characteristic p
+
+                                  (1 + t)2p−1 = (1 + tp )(1 + t)p−1 ,
+
+and the coeﬃcients of (1 + t)p−1 are alternating units. This proves the ﬁrst assertion.
+   For m = 2p − 3, let
+
+                       W = span{vi : 0 ≤ i ≤ p − 3 or p ≤ i ≤ 2p − 3} ⊂ B.
+
+It is the image of the injective equivariant multiplication E (1) ⊗ Symp−3 E → B, where E (1) denotes
+Frobenius twist, via x(1) ⊗ f 7→ xp f and y (1) ⊗ f 7→ y p f . The two monomial ranges are disjoint.
+The same highest-monomial argument, now using
+
+                                  (1 + t)2p−3 = (1 + tp )(1 + t)p−3 ,
+
+shows that every nonzero submodule of W contains all its displayed monomials. Hence W is simple
+with the stated highest weight and dimension.
+    The quotient has the two weight lines represented by vp−2 , vp−1 . The opposite unipotents
+connect them with coeﬃcient p−1 6= 0, so the quotient is simple of highest weight (p−1, p−2). Any
+invariant complement to W must be a sum of torus weight spaces, hence must equal span(vp−2 , vp−1 ).
+But the translate of vp−2 under y 7→ y + tx has the nonzero coeﬃcient x2p−3 ∈ W at tp−2 . There
+is no complement. A nonsplit extension of two distinct simples has precisely the asserted socle and
+top.
+
+   These rank-two structures are established representation theory; for published formulas yielding
+them by duality and determinant twist, see [4, Proposition 3.1, classical analogue, and Theorem 3.3].
+The explicit proof makes their use here checkable.
+   Only (r) strictly dominates λ = (r − 1, 1). By Lemma 1, ∇2 (r) = Symr E is simple and does
+not contain L2 (λ). Equation (1) therefore gives
+
+                                      I2 (λ) = ∇2 (λ) = det ⊗B.
+
+Its socle and top are L2 (2p − 2, 1) and L2 (p, p − 1), respectively. Their highest weights diﬀer,
+including when p = 3 and both dimensions are 2. Thus I2 (λ) is not contravariantly self-dual and
+is not projective.
+
+
+5    Excluding every permitted rank
+Suppose IN (λ) were projective for some N ≥ 2. It would be TN (µ) for a partition µ of r. Since
+LN (λ) is a composition factor, µ dominates λ. Consequently µ = (r) or λ; both labels have at most
+two parts. Labelled rank truncation gives
+                                                  ∼ T2 (µ).
+                                           I2 (λ) =
+
+This would be an injective tilting module, hence projective, contradicting the rank-two calculation.
+This proves Theorem 1 for every N ≥ 2.
+
+                                                  3
+Corollary 1. The stronger simple-top/Λin criterion in the same printed Conjecture 7 is false in
+this setting.
+
+Proof. Membership in the constructed Λin family is already a suﬃcient condition for In (λ) to be
+projective [2, 1]. Theorem 1 excludes membership at every allowed rank. No completeness assertion
+about that family is needed.
+
+
+6    Veriﬁcation, attribution and status
+The companion archive preserves the frozen candidate, independent mathematical and priority
+reviews, source identities and reproducible exact checks. Formal polynomial-coeﬃcient calculations
+in characteristics 3 and 5 verify the local constituents and nonsplitting. A separate tensor-orbit
+computation constructs all 56 basis elements of S(2, 5), checks its 3136 products and independently
+ﬁnds dim P2 (3, 2) = 6, whereas dim I2 (4, 1) = 4. That optional computation uses NumPy; the core
+checks use Python’s standard library. Finite computations support the argument, and do not prove
+its all-prime or all-rank assertions.
+    The Young/augmentation calculation, rank-two structure and Schur-algebra inputs are classical.
+The note’s purpose is their explicit assembly into a counterexample to the broad printed 2009
+proposal. An extensive but bounded literature audit on 16 October 2026 did not verify an earlier
+complete bridge refutation. Priority remains unresolved: some older two-row papers, tables and
+later endomorphism-algebra papers were not available in full, and citation coverage is incomplete.
+No claim of ﬁrstness, certiﬁed novelty, or current worldwide open status is made. The source archive
+records exact read scopes and gaps.
+    AI tools were used extensively in developing and checking the argument, literature investigation,
+computations, drafting, reproduction and adversarial review. This is an unrefereed preprint without
+external human peer review or proof-assistant certiﬁcation. The note and authored companion
+material are licensed under CC BY 4.0.
+
+
+References
+[1] H. Miyachi, Dipper’s hypothesis and self-injective endomorphism rings, in Representations of
+    Finite Groups, Oberwolfach Reports 6 (2009), report 17, pp. 944–947.
+    doi:10.4171/OWR/2009/17.
+
+[2] M. De Visscher and S. Donkin, On projective and injective polynomial modules, Math. Z. 251
+    (2005), 333–358. doi:10.1007/s00209-005-0805-x. Speciﬁc manuscript locators refer to the
+    version dated 12 January 2005:
+    https://openaccess.city.ac.uk/id/eprint/969/1/prinjjan12.pdf.
+
+[3] A. Cox and A. Parker, Homomorphisms and higher extensions for Schur algebras and
+    symmetric groups, J. Algebra Appl. 4 (2005), 645–670. doi:10.1142/S0219498805001460. The
+    cited printed p. 3 is in the institutional accepted version:
+    https://openaccess.city.ac.uk/id/eprint/373/2/coxparker2final.pdf.
+
+[4] K. Erdmann and S. Law, Torsion pairs and Ringel duality for Schur algebras,
+    arXiv:2104.05317v1 (12 April 2021), pp. 5–6.
+
+
+
+
+                                                 4
+

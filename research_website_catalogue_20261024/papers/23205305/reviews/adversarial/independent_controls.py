@@ -70,7 +70,8 @@ def main():
             x = F(numerator, denominator)
             require(x*x + 1 > 0, 'affine x2+1')
             affine_checks += 1
-    require((0, 0) == (0, 0) and 0*0 + 0*0 == 0, 'singular rational origin')
+    origin = (0, 0)
+    require(sum(x*x for x in origin) == 0, 'singular rational origin evaluation')
     # The normalization's coefficient field Q(i) has no Q-map, witnessed by
     # i^2+1=0. Bounded x2+1 checks supplement the universal ordered-field proof.
     lam = F(-3)
@@ -105,6 +106,9 @@ def main():
     require(z*z-F(a, q)*z+F(1, q) == 0, 'missing denominator control')
     denominator_zero_controls += 1
     group_cases = 0
+    bad_character_projector = [F(1, 2), F(1, 2)]
+    require(any(x.denominator % 2 == 0 for x in bad_character_projector),
+            'character projector integrality negative control')
     for rank in (1, 2, 3):
         size, modulus = 2**rank, 8
         one = [1] + [0]*(size-1)
@@ -148,11 +152,12 @@ def main():
                       'chart_scaling_comparisons': chart_checks,
                       'ordered_field_affine_checks': affine_checks,
                       'compactification_rational_boundary_witness': infinity,
-                      'singular_normalization_counterexample_checked_as_ordered_field_argument': True,
+                      'normalization_counterexample_scope': 'Origin evaluated. Q(i)[x] normalization and absence of a Q-map are manual algebra/ordered-field deductions in INITIAL, not a normalization algorithm run.',
                       'j_invariant': str(j), 'discriminants': discriminants,
                       'exact_Euler_identity_cases': euler_cases,
                       'zero_denominator_controls_kept': denominator_zero_controls,
                       'integral_group_ring_unit_and_character_cases_mod8': group_cases,
+                      'nonintegral_character_projector_control': [str(x) for x in bad_character_projector],
                       'smoothing_identity_cases': smoothing_cases,
                       'scope': 'Bounded falsification/arithmetic only. No undecidability, deep arithmetic input, localization-unit hypothesis, or formal certification is proved by these tests.'}, indent=2))
 

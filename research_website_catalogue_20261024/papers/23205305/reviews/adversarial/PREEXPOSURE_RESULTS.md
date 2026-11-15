@@ -1,0 +1,7 @@
+# Fresh bounded pre-exposure controls
+
+2026-11-15T21:25:37.563658+00:00 — Controls were written from the manuscript-first reconstruction, fully read, and run with no native code/results, foreign scientific body, archived opinion or current peer/root finding exposure. Complete literal stdout/stderr/exit data and code pins are retained. A separate immutable results seal is created now, before opening such sources.
+
+The finite checks cover projective primitive enumeration/chart scaling, an introduced projective boundary point, elementary ordered-field samples, the exact j-invariant and discriminant, direct/inverse Euler and smoothing identities, and integral elementary-two-group unit/interpolation controls modulo8. A zero denominator and the nonintegral character projector are explicit negative controls. The normalization of the singular curve is a manual algebraic argument, not a normalization program run. None of these checks establishes undecidability, Poonen transfer effectivity, modularity, the retained geometric inputs, a pointwise 2-converse, or universal source-ring unit/specialization hypotheses. Their exact bounded scope is part of the result.
+
+During draft inspection, an unnecessarily tautological origin assertion and an overbroad normalization-output label were replaced before any execution by direct origin evaluation and an explicit manual-proof scope label. No failed execution or source repair occurred.

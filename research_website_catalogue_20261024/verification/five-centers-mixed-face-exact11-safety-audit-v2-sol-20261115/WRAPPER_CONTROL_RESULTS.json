@@ -1,0 +1,37 @@
+{
+  "status": "PASS_FRESH_EXACT_CHANGED_AUDIT_WRAPPER",
+  "actual_selected_current_function": "sealed_namespace",
+  "toy_payloads": 721,
+  "declared_empty_inputs_accepted": true,
+  "negative_cases": [
+    {
+      "case": "undeclared future-named empty directory",
+      "rejected": true,
+      "diagnostic": "exact declared directory extent, including legitimate empty directories"
+    },
+    {
+      "case": "FIFO",
+      "rejected": true,
+      "diagnostic": "reject symlink or special namespace entry: fifo"
+    },
+    {
+      "case": "symlink to declared empty inputs",
+      "rejected": true,
+      "diagnostic": "reject symlink or special namespace entry: inputs-link"
+    },
+    {
+      "case": "nested terminal basename",
+      "rejected": true,
+      "diagnostic": "exact ordinary file extent and exact root terminals only"
+    },
+    {
+      "case": "missing declared legitimate empty directory",
+      "rejected": true,
+      "diagnostic": "exact declared directory extent, including legitimate empty directories"
+    }
+  ],
+  "seal_interleaving_reads": 1,
+  "authenticated_original_seal_parsed": true,
+  "actual_source_packet_or_runtime_or_Git_touched": false,
+  "all_toy_writes_inside_own_removed_temporary_child": true
+}
