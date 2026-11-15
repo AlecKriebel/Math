@@ -1,0 +1,12 @@
+# Analytic116 post-initial research log
+
+UTC timestamps may fall on15November while local research date remains14November2026. Percentages refer to this independent analytic lane, not the203-paper programme. Earlier initial log and seal are immutable.
+
+- 2026-11-15T01:31:40.615704+00:00 — 25%: substantive eight-family initial reconstruction and complete target reading sealed before foreign bodies/code/results/inventory/opinions. General axial-triangle calculation already derived.
+- 2026-11-15T01:35:13.130558+00:00 — 50%: actual critical canonical/Jacobi/RGK bodies under examination; fresh IMPA request400 retained and historical raw book recovered with its own custody label. No neighboring historical review report read.
+- By2026-11-15T01:47:41.863160+00:00 — 80%: actual primary interfaces, exact and complex controls, source mathematical bodies and bounded reproduction examined. Both fresh commit-pinned mathematical campaign bodies acquired with ordered ordinary HTTPS receipts; restricted final conclusions not imported. No substantive theorem gap identified. Native assertion-mode sensitivity and ancillary primary misprint retained explicitly rather than hidden.
+- 2026-11-15T01:48:56.277434+00:00 — 85%: four complete selected normal mathematical stdout streams equal deposited receipts byte-for-byte; all stderr empty. Own57exact and407finiteNONINTERVAL checks complete in both modes; five semantic faults rejected in both modes. Larger or duplicate numerical campaigns not repeated.
+- By2026-11-15T01:54:46+00:00 — 95%: all40native files, complete24memberZIP attributes/order/bodies, both actualPDFcopies, initial payloads and20critical primary bindings independently rechecked. Root116gate independently opened; root/peer mathematical opinions still unread. Writing final proof-interface closure, report and custom verdict.
+- 2026-11-15T01:59:38.101519+00:00 — 100% scientific review: full literal claim supported within exact stated category; no mathematical gap, repair or narrowed replacement. Final owned manifest/seal and read-only closure are the remaining administrative checkpoint. No external contact, original/source/site/Sheet/Git/release changes.
+
+- 2026-11-15T02:00:38.565511+00:00 — 100% analytic lane: final immutable owned payload set sealed. Read-only verifier will emit its closure receipt to tool stdout without adding or changing payloads. Root retains installation/publication authority.

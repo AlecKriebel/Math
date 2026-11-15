@@ -5,6 +5,7 @@ bounded static DOM/inline-visibility check; complete CSS/layout needs review.
 """
 from html.parser import HTMLParser
 import re,unicodedata
+from urllib.parse import urljoin
 VOID={'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
 INACTIVE={'head','script','style','template','noscript','textarea','select','option'}
 BLOCK={'p','div','section','article','main','header','footer','nav','pre','blockquote','h1','h2','h3','h4','h5','h6','li','br'}
@@ -57,7 +58,10 @@ def validate_body(html,expected):
  need(body.count(norm(expected['abstract']))==1,'one full visible original abstract')
  links=[n for n in root.all() if n.tag=='a' and active(n)]
  for want in expected.get('visible_links',[]):
-  need(any(norm(text(n))==norm(want['label']) and n.attrs.get('href')==want['href'] for n in links),'visible article anchor '+want['label'])
+  pool=[n for n in nodes if n.tag=='a' and active(n)] if want.get('semantic_role')=='navigation' else links
+  base=expected.get('canonical_for_private_render_only','https://fixture.invalid/')
+  destination=want.get('resolved_href',urljoin(base,want['href']))
+  need(any(norm(text(n))==norm(want['label']) and urljoin(base,n.attrs.get('href',''))==destination for n in pool),'visible article anchor '+want['label'])
  need(not any(s in body for s in expected.get('forbidden_private_tokens',[])),'no private audit leakage')
  return {'status':'PASS_INDEPENDENT_SEMANTIC_BODY','blocks':len(expected['blocks']),'h2':len(headings),'links':len(links),'body_root':root.tag}
 def private_fixture_controls():

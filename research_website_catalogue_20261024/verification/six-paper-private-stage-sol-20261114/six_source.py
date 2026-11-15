@@ -10,7 +10,7 @@ def frozen_inputs():
         p=contained(PROGRAMME,x['path']);require(bind(p)=={k:x[k] for k in ('bytes','sha256')},'immutable_input:'+str(p))
     for rid in IDS:
         root=PROGRAMME/'papers'/rid/'sources'
-        require({str(p) for p in root.rglob('*') if p.is_file() and '__pycache__' not in p.parts}==
+        require({str(p) for p in root.rglob('*') if p.is_file()}==
                 {x['path'] for x in f['files'] if Path(x['path']).is_relative_to(root)},'no_new_native_source_aliases')
     return f
 
@@ -20,7 +20,8 @@ def native_assets(rid,paper,ready,api,c,spec):
     require(list(api['metadata'])==spec['native_metadata_keys'],'exact_native_metadata_shape')
     arr=ready[spec['ready_array']];require(type(arr) is list and len(arr)==2 and len(api['files'])==2,'two_native_assets')
     require([list(x) for x in arr]==spec['asset_keys'],'native_asset_schema_no_alias')
-    require([x[spec['asset_object_key']] for x in arr]==api['files'],'whole_native_file_objects_order')
+    require(same([x[spec['asset_object_key']] for x in arr],api['files']),'whole_native_file_objects_order')
+    require(same(api['files'],load(paper/'sources/record.raw.json')['files']),'complete_original_API_file_objects')
     require([x['key'] for x in api['files']]==spec['asset_order'],'native_asset_order')
     out=[]
     for x,obj in zip(arr,api['files']):
@@ -112,6 +113,26 @@ def _whole_source_objects(rid,paper,c,g,ready,api,transports):
             require([x['original'] for x in b['whole_native_transport_objects']]==transports and same(b['whole_native_transport_objects'],g['whole_native_transport_objects']),'whole_all_six_112_objects')
             for x in b['whole_native_transport_objects']:require(bind(contained(paper,x['path']))['sha256']==x['sha256'],'112_each_original_transport_binding')
 
+def validate_authorities(rid,c,g,science):
+    """Pure typed whole-authority/gate guard for meaningful in-memory faults."""
+    require(rid in IDS,'supported_authority_ID')
+    require(g['status']==(STATUSES[rid] if rid in {'23124601','23333046'} else 'PRIVATE_EDITORIAL_PREPARED_UNPUBLISHED'),'literal_editorial_preparation_status')
+    require(c.get('follow_up') is None and g.get('follow_up') is None and c.get('canonical_url') is None and g.get('canonical_url') is None and c.get('AA') is None and g.get('AA') is None,'historical_null_gates')
+    for obj in [g,c['review_metadata']]:
+        for k in ('rendered','deployed','rendered_public_copy_approved','rendered_copy_verified','local_http_verified','live_http_verified','live_verified','browser_verified','native_verified','native_sheet_publication_verified','public_page_published','root_editorial_clearance_received','production_integration_authorized','publication_clearance','ready_to_publish','canonical_verified'):
+            if k in obj:require(obj[k] is False,'historical_false_gate:'+k)
+    require(science['status']==STATUSES[rid] and (g['status'] if rid in {'23124601','23333046'} else g['scientific_status'])==STATUSES[rid],'literal_qualified_status')
+    require(same(g['root_clearance_record' if rid in {'23124601','23333046'} else 'whole_root_scientific_clearance_record'],science),'whole_root_science_preserved')
+    require(set(g['reviews'])==set(science['reviews'])=={'scope','analytic','adversarial'},'three_whole_original_families')
+    for role,item in g['reviews'].items():
+        orig=science['reviews'][role]
+        if rid=='23539734':require(same(item,orig),'whole_native_root_family_entry')
+        else:
+            ek='root_clearance_review_object' if rid=='23383952' else 'root_authority_entry'
+            vk='whole_original_custom_verdict' if rid=='23383952' else 'verdict'
+            ok='whole_original_custom_verdict' if rid in {'23124601','23333046','23383952'} else 'verdict_original'
+            require(same(item[ek],orig) and same(item[vk],orig[ok]),'whole_custom_verdict_no_coercion')
+
 def load_bundles():
     frozen=frozen_inputs();out=[]
     for rid in IDS:
@@ -123,23 +144,11 @@ def load_bundles():
         require(c['title']==api['title']==ready['title'] and c['doi']==api['doi'],'native_exact_work_identity')
         require(c['source_binding']['record_created_utc']==api['created'] and b['record_updated_utc']==api['updated'],'creation_not_publication_date')
         require(c['author']=='Alec Kriebel' and c['orcid']=='https://orcid.org/0009-0001-9320-500X' and meta['license']['id']=='cc-by-4.0','author_ORCID_deposit_license')
+        require(c['license']=='CC BY 4.0' and c['license_url']=='https://creativecommons.org/licenses/by/4.0/','exact_article_license')
+        require(c.get('code_license')==('MIT' if rid=='22929857' else 'CC BY 4.0' if rid=='23539734' else None),'record_specific_code_license_no_imported_MIT')
         require(b['manuscript_version'] is None and b['manuscript_version_printed'] is False if rid in {'23124601','23333046'} else b['manuscript_version']==VERSIONS[rid],'printed_vs_API_version')
-        require(c.get('follow_up') is None and g.get('follow_up') is None and c.get('canonical_url') is None and g.get('canonical_url') is None and c.get('AA') is None and g.get('AA') is None,'historical_null_gates')
-        for obj in [g,c['review_metadata']]:
-            for k in ('rendered','deployed','rendered_public_copy_approved','rendered_copy_verified','local_http_verified','live_http_verified','live_verified','browser_verified','native_verified','native_sheet_publication_verified','public_page_published','root_editorial_clearance_received','production_integration_authorized','publication_clearance','ready_to_publish','canonical_verified'):
-                if k in obj:require(obj[k] is False,'historical_false_gate:'+k)
         science=load(spec['whole_root_science']['path']);require(bind(spec['whole_root_science']['path'])['sha256']==g['root_clearance_sha256'],'pinned_root_scientific_authority')
-        require(science['status']==STATUSES[rid] and (g['status'] if rid in {'23124601','23333046'} else g['scientific_status'])==STATUSES[rid],'literal_qualified_status')
-        require(same(g['root_clearance_record' if rid in {'23124601','23333046'} else 'whole_root_scientific_clearance_record'],science),'whole_root_science_preserved')
-        require(set(g['reviews'])==set(science['reviews'])=={'scope','analytic','adversarial'},'three_whole_original_families')
-        for role,item in g['reviews'].items():
-            orig=science['reviews'][role]
-            if rid=='23539734':require(same(item,orig),'whole_native_root_family_entry')
-            else:
-                ek='root_clearance_review_object' if rid=='23383952' else 'root_authority_entry'
-                vk='whole_original_custom_verdict' if rid=='23383952' else 'verdict'
-                ok='whole_original_custom_verdict' if rid in {'23124601','23333046','23383952'} else 'verdict_original'
-                require(same(item[ek],orig) and same(item[vk],orig[ok]),'whole_custom_verdict_no_coercion')
+        validate_authorities(rid,c,g,science)
         assets=native_assets(rid,T,ready,api,c,spec);trans=[load(S/n) for n in spec['transport_files']]
         validate_transports(rid,T,trans,spec);_source_manifest(T,rid);_whole_source_objects(rid,T,c,g,ready,api,trans)
         tex=contained(T,b['source_tex_path']);require(bind(tex)['sha256']==b['source_tex_sha256'],'controlling_TeX')

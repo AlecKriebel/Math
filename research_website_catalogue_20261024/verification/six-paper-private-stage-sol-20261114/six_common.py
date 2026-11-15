@@ -9,6 +9,8 @@ WEBSITE=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
 PUBLIC=WEBSITE/'public'
 ROOT_ADOPTION=PROGRAMME/'verification/root-six-editorial-reading-20261114/ROOT_ADOPTION.json'
 ROOT_ADOPTION_SHA='1ab177bed7047c45ebbef7abddb0f2e3aced9287ac04286eb1ca7984e7e6483c'
+ROOT_AUDIT_ADOPTION=PROGRAMME/'verification/root-six-editorial-reading-20261114/EDITORIAL_AUDIT_ADOPTION.json'
+ROOT_AUDIT_SHA='6f2266ed9436ce7055f65be047f972221d4bc0f4270617c2d3cc2039ae3d3ae0'
 STATUSES={
  '23124601':'PASS_WITH_CLASSICAL_IMPORTS_AND_EXPLICIT_CHECKER_RUNTIME_LIMITS',
  '23333046':'PASS_WITH_KNOWN_ANTECEDENTS_AND_EXPLICIT_UNFRAMED_CATEGORY_LIMITS',
@@ -29,6 +31,13 @@ def sha(data):return hashlib.sha256(data).hexdigest()
 def bind(path):
     data=Path(path).read_bytes();return {'bytes':len(data),'sha256':sha(data)}
 def load(path):return json.loads(Path(path).read_bytes())
+def strict_json(text):
+    def pairs(rows):
+        out={}
+        for k,v in rows:
+            require(k not in out,'duplicate_JSON_key:'+k);out[k]=v
+        return out
+    return json.loads(text,object_pairs_hook=pairs)
 def contained(root,path):
     root=Path(root).resolve();p=Path(path);p=p if p.is_absolute() else root/p
     require(p.is_file() and not p.is_symlink() and p.resolve().is_relative_to(root),'contained_regular_file:'+str(path))
@@ -49,4 +58,7 @@ def authenticate_root():
     require(a['production_install_authorized'] is False and a['AA_writes_authorized'] is False,'root_public_gates_false')
     rows=[a['previous106_adoption'],*a['new_five_adoptions']]
     for row in rows:require(bind(contained(PROGRAMME,row['path']))['sha256']==row['sha256'],'exact_individual_root_adoption')
+    require(bind(ROOT_AUDIT_ADOPTION)['sha256']==ROOT_AUDIT_SHA,'exact_supplemental_root_editorial_audit_adoption')
+    audit=load(ROOT_AUDIT_ADOPTION)
+    require(audit['root_all_six_full_copy_and_unique_prose_reading_authority_sha256']==ROOT_ADOPTION_SHA and audit['private_staging_only'] is True and audit['production_install_authority'] is False,'supplement_remains_private_only')
     return a
