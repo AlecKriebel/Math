@@ -1,0 +1,1055 @@
+                                                  THE SINGULARITY CATEGORY AND DUALITY FOR COMPLETE
+                                                                  INTERSECTION GROUPS
+
+                                                                                         J.P.C.GREENLEES
+
+
+                                                   Abstract. If G is a finite group, the structure of the modular representation theory depends on
+                                                   the cochains C ∗ (BG; k), viewed as a commutative ring spectrum. We consider here its singularity
+                                                   category (in the sense of the author and Stevenson [20]) and show that the singularity category
+                                                   is the bounded derived category of the Ω-Tate spectrum (the k-nullification of the Koszul dual
+                                                   connective ring spectrum C∗ (ΩBGp )). We establish a form of Gorenstein duality for C∗ (ΩBGp ),
+                                                   and show that the Ω-Tate spectrum enjoys a form of Tate duality. Under a complete intersection
+
+
+
+
+arXiv:2504.03050v3 [math.AT] 27 Apr 2026
+                                                   hypothesis we give a method for calculating the Ω-Tate homology
+
+
+
+
+                                                                                             Contents
+                                             1. Introduction                                                                                             1
+                                             2. Homotopy invariant commutative algebra and Morita equivalence                                            3
+                                             3. Normalizations and the symmetric Gorenstein context                                                      5
+                                             4. The Tate localization                                                                                    6
+                                             5. Anderson-Tate duality for Lk C∗ (ΩBGp )                                                                  7
+                                             6. The norm                                                                                                 9
+                                             7. The squeezed Tate construction                                                                          12
+                                             8. The singularity category                                                                                13
+                                             9. Modules over the Tate localization                                                                      14
+                                             10. Central reduction                                                                                      17
+                                             11. Examples                                                                                               21
+                                             References                                                                                                 22
+
+
+
+
+                                                                                        1. Introduction
+                                              This paper is a contribution to the overarching aim of describing a hierarchy of behaviour for
+                                           finite groups G from the point of view of commutative algebra (we also comment on compact
+                                           Lie groups G). We recall the context in the rest of the introduction, but highlight here that
+                                           the novelty here is based around the Ω-Tate homology. We show that it satisfies a form of Tate
+                                           duality and that it captures the singularity category of C ∗ (BG). Finally, if the group satisfies a
+                                           complete intersection condition (for example Chevalley groups at good primes), we give methods
+                                           for calculating the Ω-Tate homology.
+
+                                               The author is grateful to Dave Benson for conversations about this work, especially Lemma 6.1. This research
+                                           was supported by EPSRC grant EP/W036320/1. The author would also like to thank the Isaac Newton Institute
+                                           for Mathematical Sciences, Cambridge, for support and hospitality during the programme Equivariant Homotopy
+                                           Theory in Context, where later parts of work on this paper was undertaken. This work was supported by EPSRC
+                                           grant EP/Z000580/1.
+                                                                                                  1
+1.A. The enhanced group cohomology ring. Many structural features of the representation
+theory of a finite group G over a field k of characteristic p are reflected in the cohomology ring
+H ∗ (BG; k) = Ext∗kG (k, k), starting with Quillen’s theorem that the Krull dimension is the p-rank
+of G. This is a Noetherian ring (Venkov) and very special structurally: for example if it is Cohen-
+Macaulay, it is automatically Gorenstein (Benson-Carlson [3]). However the structural features
+are more clearly reflected if we consider an enrichment: we consider the cochains C ∗ (BG) =
+C ∗ (BG; k) rather than the cohomology ring H ∗ (BG) = π∗ (C ∗ (BG)). For many purposes it is
+enough to consider it as an A∞ -ring, which is familiar in algebraic contexts, but in fact we may
+take C ∗ (BG) = map(BG, Hk) to be the spectrum of maps from BG into the Eilenberg-Maclane
+spectrum Hk. As such it is an E∞ -ring, and we may capture relevant structures by working in a
+symmetric monoidal category of spectra in which it is a commutative ring.
+
+1.B. The spectrum of behaviour. A massive benefit of working with cochains is that C ∗ (BG)
+is Gorenstein [13, Subsection 10.3] for all finite groups G without exception. At the other extreme,
+following Auslander, Buchsbaum and Serre in classical commutative algebra, one may define regular
+local rings in a homotopy invariant way, and it turns out that C ∗ (BG) is regular if and only if G
+is p-nilpotent.
+   It is then natural to consider the spread of behaviour on the spectrum between Gorenstein and
+regular, and to use the singularity category to place groups along the range.
+   Results of [20] (explained below) allow the apparatus of the singularity category to be applied
+for C ∗ (BG). Some specific calculations have been made in [5, 1]. In these cases it was possible to
+calculate all coefficient rings and to give small and explicit algebraic models, but we cannot expect
+to be explicit in general. In the present paper we develop some structural and homotopy invariant
+methods we can apply more generally.
+   In particular, we prove that the singularity category is the bounded derived category of the Ω-
+Tate ring spectrum (Definition 4.2). When C ∗ (BG) is a complete intersection in a suitable sense,
+we give methods of calculation.
+
+1.C. Koszul duality. Morita theory allows us to take a kG-module M and obtain the mod-
+ule C ∗ (BG; M ) := HomkG (k, M ) over the Koszul dual ring (kG)! := HomkG (k, k) ≃ C ∗ (BG).
+One might hope this is one direction of a Morita equivalence, but the situation is a little more
+complicated: if we attempt to return to kG-modules we obtain an action of the ring E of C ∗ (BG)-
+endomorphisms of k. The Eilenberg-Moore spectral sequence arises from an equivalence
+                                      HomC ∗ X (k, k) ≃ C∗ (ΩX),
+provided X is connected, p-complete and π1 (X) is a finite p-group [11]. Since the Bousfield-Kan
+p-completion BG −→ (BG)∧                                  ∗
+                          p induces an isomorphism in H (·; k), we see
+
+                          E = C ∗ (BG)! = HomC ∗ (BG) (k, k) ≃ C∗ (Ω(BG∧
+                                                                       p )).
+
+For brevity we write C∗ (ΩBGp ) = C∗ (Ω(BG∧    p )) from now on. The point is that C∗ (ΩBGp ) =
+      ! !
+((kG) ) is the double Koszul dual of kG, so we have a double-centralizer completion map kG −→
+C∗ (ΩBGp ). This is an equivalence if G is a p-group, but generally very far from it. For example if
+G is not p-nilpotent, the homology ring H∗ (ΩBGp ) is not finite dimensional.
+
+1.D. Morita equivalence. The advantage of working with C∗ (ΩBGp ) is that we do get a precise
+Morita equivalence between appropriate categories of C ∗ (BG)-modules and C∗ (ΩBGp )-modules.
+To establish the context, we must establish a good theory of ‘finitely generated’ modules. We
+explain this in more detail below, but there is a quick definition sufficient to let us to state our main
+results. We may say that a C ∗ (BG)-module M is finitely generated if π∗ (M ) is finitely generated
+                                                    2
+over π∗ (C ∗ (BG)) = H ∗ (BG), and define the bounded derived category to be the homotopy category
+of modules with homotopy finitely generated over H ∗ (BG),
+               Db (C ∗ (BG)) = Ho({M | π∗ (M ) is finitely generated over H ∗ (BG)})
+It is shown in [20] that this has good formal properties, and that there is a Morita equivalence
+                                  Db (C ∗ (BG)) ≃ Db (C∗ (ΩBGp )).
+Accordingly, we can move back and forth between C ∗ (BG)-modules and C∗ (ΩBGp )-modules, which
+makes precise what one learns about kG-modules by considering C ∗ (BG)-modules.
+1.E. Gorenstein duality. We have already highlighted the Gorenstein duality property for C ∗ (BG).
+This is closely related to the fact that there are two approaches to Tate duality: one which splices
+together homology and cohomology and one which kills finite free spectra. The fact that these two
+give the same answer is important: it is the Anderson self-duality of the Tate spectrum. In group
+cohomology, this is often called Tate duality.
+   It is known that the noncommutative ring C∗ (ΩBGp ) is Gorenstein, and in Theorem 5.1 we
+formulate and prove the corresponding Gorenstein duality statement.
+   This in turn is sufficient to allow us to define the Ω-Tate ring spectrum, and give a description
+of the singularity category for C ∗ (BG) as the bounded derived category of the Ω-Tate spectrum
+(Corollary 9.6).
+1.F. Complete intersections. Finally, under a complete intersection hypotheses, the duality
+properties for C∗ (ΩBGp ) can be formulated as a local cohomology theorem, showing that H∗ (ΩBGp )
+is a very special ring (Corollary 10.16 and Section 11).
+   To explain the assumption, recall that in the commutative algebra of Noetherian rings Gulliksen
+has shown that ci rings are precisely those for which the Ext algebra Ext∗R (k, k) has polynomial
+growth. Without an assumption of that type, the ring H∗ (ΩBGp ) ≃ π∗ (HomC ∗ (BG) (k, k)) has no
+hope of good Noetherian behaviour. Accordingly it is entirely reasonable to make a ci assumption.
+It was shown in [8] that there is a range of different ways to transpose the ci assumption to ring
+spectra like C ∗ (BG), and we will assume a form of the ci condition. Section 10 shows that under
+this assumption, the localization can be constructed using a stable Koszul complex inverting central
+elements, which gives a convenient method of calculation.
+1.G. Organization. In Section 2 we describe the general context of homotopy invariant commu-
+tative algebra, and in Section 3 we focus in on the symmetric Gorenstein context obtained from a
+faithful representation of the group in a connected compact Lie group. In Section 4 we introduce
+the Ω-Tate spectrum as a Bousfield localization, and in Section 5 we show that it enjoys Anderson
+duality for k-orientable groups. In Section 6 we consider the norm map and determine it for all
+finite groups. In Section 7 we give an alternative approach through Benson’s squeezed resolutions,
+hence determining Ω-Tate homology in purely algebraic terms. In Section 8 we recall the definition
+of the singularity category of C ∗ (BG), and in Section 9 we study modules over the Ω-Tate spectrum
+and show that the singularity category of C ∗ (BG) is the bounded derived category of the Ω-Tate
+spectrum. In Section 10 we show that under complete intersection hypotheses we may calculate the
+Ω-Tate homology by a Cech complex. Finally, in Section 11 we mention a few examples of groups
+to which this applies.
+
+        2. Homotopy invariant commutative algebra and Morita equivalence
+  The motivation for our methods comes from classical commutative algebra with the study of a
+Noetherian local ring with residue field k. In this section we recall some basic homotopy invariant
+definitions and how they apply to our examples.
+                                                 3
+   We note the recurrent theme that it is sometimes best to look at modules over the commutative
+algebra C ∗ (BG) and sometimes best to look at modules over C∗ (ΩBGp ).
+
+2.A. Building. We recall some useful language from [13].
+   Given an object M in a triangulated category, we say M finitely builds N if N can be constructed
+in finitely many steps from M by taking mapping cones, suspensions and retracts (in other words,
+if N is in the thick subcategory generated by M ). We say that M builds N if arbitrary coproducts
+are permitted (in other words, if N is in the localizing subcategory generated by M ).
+
+2.B. Regularity. By results of Auslander, Buchsbaum and Serre, a Noetherian commutative local
+ring is regular if and only if k is small as an R-module, or equivalently that Ext∗R (k, k) is finite
+dimensional. For a ring spectrum R with a map R −→ k we define R to be regular if k is small
+over R. This is again equivalent to π∗ E = π∗ (HomR (k, k)) being finite dimensional.
+   Thus C ∗ (BG) is regular if and only if π∗ C∗ (ΩBGp ) = H∗ (ΩBGp ) is finite dimensional, and this
+happens if and only if G is p-nilpotent [7, Theorem 7.3].
+
+2.C. Proxy regularity. Of course regularity is a very restrictive condition, and we need a more
+inclusive finiteness condition to play the role of the Noetherian condition. In classical commutative
+algebra, we may choose generators of the maximal ideal and consider the Koszul complex K. The
+existence of such a complex is the finiteness condition we need.
+   For ring spectra with a map R −→ k with k a field, and we will require the finiteness hypothesis
+that R is proxy-regular in the sense [13, 4.14] that there is a small R-module K finitely built by k
+and so that k is built by K.
+   It is shown in [13, Subsection 5.7] that C ∗ (BG) is proxy regular if G is any finite or compact Lie
+group, and by [13, 4.17] this implies C∗ (ΩBGp ) is proxy regular. The ring C∗ (G) (the group ring
+if G is finite) is proxy regular by [13, 5.9].
+
+2.D. The Gorenstein condition. We first consider the Gorenstein condition. In classical com-
+mutative algebra there are a number of different characterisations of Gorenstein local rings, one of
+which is the condition that Ext∗R (k, R) is 1-dimensional.
+Definition 2.1. [13, 8.1] A proxy-regular augmented ring spectrum R −→ k is said to be Gorenstein
+of shift a if there is an equivalence of R-modules HomR (k, R) ≃ Σa k.
+   It is shown in [13, Subsection 10.3] that for a finite group G, the ring C ∗ (BG) is Gorenstein
+of shift 0, and it follows from the Morita invariance statement [13, 8.5] that C∗ (ΩBGp ) is also
+Gorenstein of shift 0.
+   If G is a compact Lie group with k-orientable adjoint representation (i.e., if the conjugation
+action of G on the tangent space at the identity preserves orientation), then the rings C ∗ (BG) are
+again Gorenstein of shift equal to the dimension of G [13, Subsection 10.3].
+
+2.E. Effective constructibility. The power of Koszul duality is that it gives very organized
+constructions of k-cellularization. This is based on the observation that for any R-module M ,
+HomR (k, M ) is a E-module and hence built from E and hence HomR (k, M ) ⊗E k is built from k.
+Definition 2.2. [13, 4.3] We say k-cellularization is effectively constructible if the evaluation map
+                                      HomR (k, M ) ⊗E k −→ M
+is the k-cellularization for all R-modules M .
+   It is shown in [13, 4.10] that if R is proxy-regular then the cellularization is effectively con-
+structible.
+                                                   4
+2.F. Gorenstein duality. If R is a k-algebra we may form the Brown-Comenetz dual R∨ =
+HomR (k, R), which obviously has the Matlis lifting property
+                                     HomR (T, R∨ ) = Homk (T, k).
+  Thus if R −→ k is a k-algebra which is Gorenstein of shift a, we have equivalences
+                                HomR (k, R) ≃ Σa k ≃ HomR (k, Σa R∨ ).
+A priori this is only an equivalence of R-modules, but if E has a unique action on k, it is an
+equivalence of E-modules and we may apply ⊗E k to deduce
+                                        Cellk R ≃ Σa Cellk (R∨ ).
+The trivial action condition for C ∗ (BG) and for C∗ (ΩBGp ) is automatic for finite groups G (since
+π1 (BGp ) is a finite p-group that can only act trivially on k). For a compact Lie group, the action
+is given by the action of π1 (BGp ) on H d (S ad(G) ; k); if this is trivial, we say that the adjoint
+representation is k-orientable (this is automatic if G is finite or connected or if k is of characteristic
+2).
+   Finally, if R is connective or coconnective with R0 = k a field, we see that R∨ is already k-cellular,
+so that we have the Gorenstein duality statement
+                                            Cellk R ≃ Σa R∨ .
+Under complete intersection hypotheses we will also give an algebraic description of Cellk R putting
+the Gorenstein duality into the form of a local cohomology spectral sequence [17].
+
+                3. Normalizations and the symmetric Gorenstein context
+  In this section we recall from [20] the apparatus for defining and working with C ∗ (BG).
+
+3.A. Normalization. In commutative algebra, a Noether normalization of R is a regular subring
+over which R is finitely generated as a module. There is a convenient counterpart to this in our
+context.
+   For any finite group G we may choose a faithful representation ρ : G −→ U into a connected
+compact Lie group U (such as the unitary group U = U (n)). This gives a map q = ρ∗ : C ∗ (BU ) −→
+C ∗ (BG) of ring spectra.
+   Since U is connected C ∗ (BU ) is regular in the sense that H∗ (Ω(BUp )) is finite dimensional,
+because Ω(BUp ) ≃ (ΩBU )p ≃ Up . The finite generation statement corresponds to the fact that the
+cofibre C ∗ (BG) ⊗C ∗ (BU ) k ≃ C ∗ (U/G) is finitely built from k. Accordingly we consider q to be a
+normalization of C ∗ (BG).
+
+3.B. Finitely generated modules. For regular local rings, finite generation is equivalent to
+smallness, so we may reasonably say that C ∗ (BU )-modules are fg precisely if they are small.
+Definition 3.1. [20] A C ∗ (BG)-module M is finitely generated (fg) relative to ρ if q ∗ M is small
+over C ∗ (BU ). The bounded derived category relative to ρ is the full triangulated subcategory
+Db (C ∗ (BG)) of fg modules.
+  This is independent of the choice of U and ρ and has the very concrete characterisation that we
+used in the introduction.
+Theorem 3.2. [20, 7.5]
+                   Db (C ∗ (BG)) = {M | π∗ M is finitely generated over H ∗ (BG)}
+                                                    5
+3.C. The symmetric Gorenstein context. The representation ρ induces a fibration
+                                        U/G −→ BG −→ BU,
+which remains a fibration after p-completion and hence we have a cofibre sequence
+                                  Q                 R               S
+
+
+                             C ∗ (U/G) o        C ∗ (BG) o   q   C ∗ (BU )
+
+of k-algebras and an associated cofibre sequence
+                             D                          E                    F
+
+                                           ϕ
+                      C∗ (Ω((U/G)p ))          / C∗ (Ω(BGp ))      / C∗ (Ω(BUp ))
+
+of k-algebras. We note that C∗ U ≃ C∗ (ΩBUp ) and we will abbreviate C∗ (ΩU/Gp ) = C∗ (Ω((U/G)p )).
+   The map q : S −→ R is a normalization since S = C ∗ (BU ) is regular (as U is mod p finite) and
+U/G is mod p-finite. The map ϕ : D −→ E is a normalization since D = C∗ (ΩU/Gp ) is regular (as
+U/G is mod p finite) and U is mod p-finite.
+   We say that a C∗ (ΩBGp )-module X is finitely generated (fg) relative to ρ if ϕ∗ X is small over
+C∗ (ΩU/Gp ). These two notions of finite generation correspond under Koszul duality.
+Theorem 3.3. [20, 9.1] Koszul duality induces an equivalence
+                                  Db (C ∗ (BG)) ≃ Db (C∗ (ΩBGp ))
+between bounded derived categories of C ∗ (BG) and C∗ (ΩBGp ).
+
+                                   4. The Tate localization
+   In this section we introduce the Ω-Tate spectrum, the fundamental object of this paper. The
+definition as a Bousfield localization is formal. Later we will establish good behaviour under
+finiteness conditions.
+4.A. Tate localizations. When R = C ∗ (BG) or C∗ (ΩBGp ), the field k is an R-module, so we may
+consider the Bousfield localization which nullifies the localizing subcategory generated by k. The
+localization M −→ Lk M is characterised in the homotopy category by the fact that [k, Lk M ] = 0
+and the the mapping fibre is built from k. We will write
+                                      Γk M −→ M −→ Lk M
+for the associated triangle. Thus Lk M is the localization of M away from k, and Γk M −→ M is
+the k-cellularization of M . The functor Lk is monoidal and therefore takes ring spectra to ring
+spectra.
+   One of the powerful features of these localizations is invariance under change of base ring. We
+record it here since we will make repeated use of it, both here and in the non-commutative case.
+Lemma 4.1. If k is an R-module and we are given a ring map ϕ : S −→ R, then for any R-module
+M , ϕ∗ Lk M ≃ Lk ϕ∗ M , and similarly for Γk .
+Proof: We need to observe that ϕ∗ M −→ ϕ∗ Lk M has the unversal property of nullification of k.
+The fibre is ϕ∗ Γk M , and is built from k = ϕ∗ k, and
+                                 [k, ϕ∗ Lk M ] = [R ⊗S k, Lk M ] = 0;
+since R is built from S, R ⊗S k is built from k = S ⊗S k.                                       □
+                                                    6
+  The key definition is simply stated.
+Definition 4.2. The Tate localization of R is the ring Lk R.
+   (i) When R = C ∗ (BG) we obtain the classical Tate spectrum Lk R ≃ Ĉ ∗ (BG), which is the
+fixed point spectrum of the usual Tate construction ([15, 19]). Its homotopy is the classical Tate
+cohomology ring.
+   (ii) When R = C∗ (ΩBGp ) we obtain the Ω-Tate spectrum Lk C∗ (ΩBGp ). Its homotopy is the
+Ω-Tate homology ring.
+  Altogether, in our case this gives a web of maps as follows.
+
+                              U/G                      / BG            / BU
+
+
+
+                                                  Ĉ(BG) o           Ĉ ∗ (BU )
+                                                         O                O
+
+                                                                 q
+                            C ∗ (U/G) o           C ∗ (BG) o         C ∗ (BU )
+
+
+                                           ϕ
+                           C∗ (ΩU/Gp )          / C∗ (ΩBGp )         / C∗ (Up )
+
+
+                                                       
+                         Lk C∗ (ΩU/Gp )        / Lk C∗ (ΩBGp )
+
+  We note that since C ∗ (U/G) and C∗ (U ) are finitely built from k, they are annihilated by Lk .
+Remark 4.3. The object k is not a module over Lk C∗ (ΩBGp ), so there is no obvious notion of
+Koszul duality for Tate localizations. Nonetheless, we will say that a Lk C∗ (ΩBGp )-module X is
+fg if and only if (Lk ϕ)∗ X is small over Lk C∗ (ΩU/Gp ), and we write Db (Lk C∗ (ΩBGp )) for the full
+subcategory of the homotopy category consisting of finitely generated modules.
+
+                         5. Anderson-Tate duality for Lk C∗ (ΩBGp )
+   We show that the same condition that gave control over the Tate localization gives a duality
+statement for C∗ (ΩBGp ) of the form familiar from the duality on Tate cohomology of finite groups.
+   In this section G is a compact Lie group of dimension d. As in Subsection 2.F said it is orientable
+over k if the action of the component grou on Hd (G) is trivial. The reader may restrict attention
+to the case of a finite group, but the role of the dimension in the more general case is illuminating.
+
+5.A. Classical Tate duality for finite groups. We restate the classical situation in our language
+as a template. For a finite group G we have the norm sequence
+                                           ν
+                                C∗ (BG) −→ C ∗ (BG) −→ Ĉ ∗ (BG).
+The only degree in which ν may be non-zero is degree zero; since G acts trivially on coefficient
+group k, the norm is multiplication by the group order. If p does not divide the group order then it
+is an isomorphism and 1 = 0 in Tate cohomology so the Tate cohomology is zero. If p does divide
+the group order ν∗ = 0 and we have a short exact sequence
+                         0 −→ H ∗ (BG) −→ Ĥ ∗ (BG) −→ ΣH∗ (BG) −→ 0.
+                                                   7
+Since homology and cohomology are dual, we obtain the Tate duality statement that the positive
+codegrees are dual to negative degrees with a shift
+                Ĥ n (BG) = H n (BG) = Hom(H−n (BG), k) = Hom(Ĥ−1−n (BG), k),
+or
+                                      Ĥ ∗ (BG) ≃ Σ1 (Ĥ ∗ (BG))∨ .
+  Similarly for a compact Lie group G of dimension d with k-orientable adjoint representation,
+where C∗ (BG) is replaced by Σd C∗ (BG); if d is positive ν∗ is automatically zero and
+                                    Ĥ ∗ (BG) ≃ Σd+1 (Ĥ ∗ (BG))∨ .
+
+5.B. Gorenstein duality for C∗ (ΩBGp ). We follow the template of Subsection 5.A for the Koszul
+dual ring. By [13, 10.3], if the adjoint representation of G is k-orientable then C ∗ (BG) is Gorenstein
+of shift d and has Gorenstein duality of shift d, so that Γk C ∗ (BG) ≃ Σd C∗ (BG).
+   The argument of [13, 8.5] shows that C∗ (ΩBGp ) is also Gorenstein of shift d, but to make
+Gorenstein duality statements we need to calculate the homotopy of Cellk C∗ (ΩBGp ).
+Theorem 5.1. If G the adjoint representation is k-orientable, then
+                                  Cellk C∗ (ΩBGp ) ≃ Σd C ∗ (ΩBGp ).
+Proof: Since R = C∗ (ΩBGp ) is a Gorenstein k-algebra of shift d, we have
+                          HomR (k, R) ≃ Σd k ≃ HomR (k, Σd Homk (R, k)).
+If R′ = C ∗ (BG), the action on HomR′ (k, R′ ) is the action of π1 (BGp ) on H d (S ad(G) ; k), which is
+trivial by hypothesis, and by the Morita invariance of the Gorenstein condition [13, 8.5], the action
+of R = C∗ (ΩBGp ) is the corresponding action. Hence, the above composite isomorphism respects
+right E-actions, and by effective constructibility (Subsection 2.E), we conclude
+                                   Cellk R ≃ Σd Cellk (R∨ ) ≃ Σd R∨ .
+                                                                                                      □
+
+
+5.C. Anderson-Tate duality for the Koszul dual. In terms of ring spectra, if R is an aug-
+mented k-algebra, we are taking the cofibre sequence
+                                         Γk R −→ R −→ Lk R.
+If R = C ∗ (BG) and the adjoint representation is k-orientable then by Gorenstein duality, the
+cellularization takes the expected form
+                                      Γk C ∗ (BG) ≃ Σd C∗ (BG),
+where d is the dimension of G. This recovers the discussion in Subsection 5.A.
+  However, the ring R = C∗ (ΩBGp ) again has Gorenstein duality of shift d, and hence
+                                   Γk C∗ (ΩBGp ) ≃ Σd C ∗ (ΩBGp ).
+Again this gives a cofibre sequence
+                                           ν
+                          Σd C ∗ (ΩBGp ) −→ C∗ (ΩBGp ) −→ Lk C∗ (ΩBGp ),
+but now the suspension means that ν∗ is potentially non-zero in degrees betwee 0 and d. Further-
+more the special case where G = U is a compact connected Lie group has ΩBU ≃ U finite and
+hence Lk C∗ (U ) ≃ 0 so that ν is an equivalence. We will study ν in more detail in Section 6.
+                                                    8
+Theorem 5.2. Provided the adjoint representation of G is k-orientable then
+                                        
+                                          Hn (ΩBGp ) if n ≥ d + 2
+                    πn Lk C∗ (ΩBGp ) =
+                                          H d+1−n (ΩBGp ) if n ≤ −1.
+In the remaining degrees there is an exact sequence
+    H d−n (ΩBGp ) −→ Hn (ΩBGp ) −→ πn Lk C∗ (ΩBGp ) −→ H d+1−n (ΩBGp ) −→ Hn−1 (ΩBGp ),
+   The group G is a p-compact group if and only if Lk C∗ (ΩBGp ) ≃ 0. If G is finite, it is p-nilpotent
+if and only if Lk C∗ (ΩBGp ) ≃ 0. If G is a finite group and not p-nilpotent then
+         π0 (Lk C∗ (ΩBGp )) = kΠ ⊕ H 1 (ΩBGp ) and π1 (Lk C∗ (ΩBGp )) = kΠ ⊕ H1 (ΩBGp ),
+where Π = G/Op (G) is the largest p-quotient of G.
+Proof : After Theorem 5.1 the only things still requiring proofs concern when the norm map is
+trivial. It is proved by Bousfield and Kan that if G is finite π1 (BG∧             p
+                                                                      p ) = G/O (G).
+   It is clear that if G is p-nilpotent then C∗ (ΩBGp ) = C∗ (G/Op (G)) is finite dimensional. The defi-
+nition of p-compact is that C∗ (ΩBGp ) is finite dimensional. In any case, this means Lk C∗ (ΩBGp ) ≃
+0. Conversely, if Lk C∗ (ΩBGp ) ≃ 0 then C∗ (ΩBGp ) is k-cellular. By effective constructibility we
+have the equivalence
+     Σd C ∗ (ΩBGp ) ≃ Σd k ⊗C ∗ (BG) k ≃ HomC∗ (ΩBGp ) (k, C∗ (ΩBGp )) ⊗C ∗ (BG) k ≃ C∗ (ΩBGp ).
+In particular this implies H∗ (ΩBGp ) is in a finite range, and of finite total dimension, so G is a
+p-compact group.
+   Otherwise if Lk C∗ (ΩBGp ) ̸≃ 0 the norm map is not an isomorphism.
+   Finally, we we must show that if G is not p-nilpotent then the norm map is zero. We defer this
+to Section 6, and give an alternative approach using Benson’s squeezed resolutions in Section 7. □
+
+
+                                            6. The norm
+  In this section we continue with the cofibre sequence
+                                               ν
+                                         Γk R −→ R −→ Lk R
+in various cases, with R = C∗ (G) or C∗ (ΩBGp ) with a view to understanding ν. Our principal
+concern is for a finite group G, where we give a complete analysis, but we will also consider more
+general compact Lie groups at the end.
+   The idea is that it is elementary to understand the map ν when R = C∗ (G), and we can deduce
+substantial information from the double centralizer map C∗ (G) −→ C∗ (ΩBGp ).
+6.A. Context. We suppose G is a compact Lie group of dimension d and the adjoint representation
+is orientable over k. The ringsR = C∗ (BG), C ∗ (BG) or C∗ (ΩBGp ), are then Gorenstein of shift d,
+with
+                                       HomR (k, R) ≃ Σd k.
+It is elementary that HomR (k, R∨ ) ≃ k. For R = C ∗ (BG) or C∗ (ΩBGp ) we have seen R∨ is
+k-cellular and Γk R ≃ Σd R∨ . We will discuss the more elementary case of R = C∗ (G) below. By
+definition the map
+                                                  ν
+                                           Γk R −→ R
+is the one inducing a k-equivalence. We may understand the map ν since
+                                        HomR (Γk R, R) ≃ Rk∧
+If R = C ∗ (BG) or C∗ (ΩBGp ) then Rk∧ ≃ R, so that R0 = k and we find ν is determined by a
+scalar. It remains to identify the map (Σd R∗ )∨ = [R, Γk R] −→ [R, R] = R∗ .
+                                                   9
+6.B. The group ring of a finite group. First we take G to be finite and consider R = C∗ (G) =
+kG. As before Op (G) is the smallest normal subgroup so that G/Op (G) = Π is a p-group. The
+group G is said to be p-nilpotent if the Sylow p-subgroup is a retract of G, or equivalently if Op (G)
+is a p′ -group.
+   At the level of abelian categories, we may consider modules T which are k-cellular in the sense
+that they have filtration with subquotients a sum of copies of the trivial module k. The k-cellular
+obstructor of M is the smallest submodule of M so that M is k-cellular, and Benson observes [2,
+3.1] that the k-cellular obstructor is [Op (G), M ] = {m − gm | m ∈ M, g ∈ Op (G)}. The map
+M −→ M/[Op (G), M ] is thus an initial map to a k-cellular module. Similarly the fixed point
+                 p
+submodule M O (G) (which can be viewed as a kΠ-module) is the largest k-cellular submodule of
+                           p
+M , and the inclusion M O (G) −→ M is the terminal map from a k-cellular submodule.
+                                                               p
+   The counterpart of Γk M −→ M −→ Λk M is therefore M O (G) −→ M −→ M/[Op (G), M ].
+   In the following discussion, for a set X of group elements we write [X] = Σx∈X x.
+                                     p
+Lemma 6.1. The composite (kG)O (G) −→ kG −→ kG/[Op (G), kG] = kΠ is an isomorphism if G
+is p-nilpotent and zero otherwise.
+                                    p
+Proof : The module Γk kG = kGO (G) is spanned by coset sums. Since the action of Op (G) is
+trivialized in the codomain, the coset sum [xOp (G)] is represented by |Op (G)|x. The group G is
+p-nilpotent if and only if Op (G) is a p′ -group.                                             □
+
+
+6.C. The Ω-homology of a finite group. Continuing with a finite group, we consider R =
+C∗ (ΩBGp ). The idea is to deduce the answer from R = C∗ (G) using the fact that we have maps
+                               C∗ (G) −→ C∗ (ΩBGp ) −→ H0 (ΩBGp ),
+where the first is the double centralizer map, and the second kills homotopy in degrees 1 and above.
+Since G is finite this is
+                                      kG −→ C∗ (ΩBGp ) −→ kΠ.
+Lemma 6.2. If G is finite and R = C∗ (ΩBGp ), the map ν∗ is an isomorphism if G is p-nilpotent
+and otherwise is the zero map.
+Proof : We only need to consider degree 0. The maps kG −→ kΠ = C∗ (ΩBGp ) −→ kΠ, show
+C∗ (ΩBGp ) is augmented over kΠ, and in particular we have a commutative square
+
+                                          (kΠ)∨
+                                                       ν       / kΠ
+
+
+                                                                 
+                                  (C∗ (ΩBGp ))∨
+                                                       ν   / C∗ (ΩBGp )
+
+Since the verticals are isomorphisms in degree 0, the result follows from Lemma 6.1.                □
+
+
+6.D. Chains on a connected compact Lie group. We next consider the special case of a
+connected compact Lie groups G. In this case Ω(BGp ) ≃ Gp and the double centralizer map is an
+                    ≃
+equivalence C∗ (G) −→ C∗ (ΩBGp )
+Lemma 6.3. If R = C∗ (G) with G connected, then the map
+                                         ν : Σd C ∗ (Ge ) −→ C∗ (Ge )
+is an isomorphism.
+                                                      10
+Remark 6.4. It is natural to wonder if this is the Poincaré Duality isomorphism. However our
+map is a map of H∗ (G)-modules (which makes sense because G is a group), whereas the Poincaré
+Duality isomorphism is a map of H ∗ (G)-modules (which makes sense because G is a space). The
+rings need not be isomorphic (for example if H∗ (G) is not commutative).
+Proof: Since H∗ (G) is finite dimensional and connected, Lk C∗ (G) ≃ 0.                              □
+
+
+6.E. Nilpotent action. Finally, we make a statement covering both the case of a finite group and
+the case of a connected group. It does not cover all compact Lie groups, but it does suggest what
+the simplest behaviour looks like.
+  For a general compact Lie group G we have a short exact sequence
+                                     1 −→ Ge −→ G −→ Gf −→ 1
+where Ge is the identity component of G and Gf = G/Ge = π0 (G) is the finite quotient. This
+induces k-algebra maps
+                                C∗ (Ge ) −→ C∗ (G) −→ C∗ (Gf ) = kGf .
+  In general, if Gf is a p -group acting on Ge , we see H ∗ (BG) = H ∗ (BGe )Gf . In this case BG and
+                          ′
+
+BGe may be very different: for example H ∗ (BGe ) might be polynomial and H ∗ (BG) might not
+even be a complete intersection. To avoid these complexities, we may suppose Gf acts nilpotently
+on H ∗ (BGe ). In this case, p-completion preserves the fibration and we obtain a p-adic fibration
+                                    (BGe )∧      ∧          ∧
+                                          p −→ BGp −→ (BGf )p .
+This in turn gives a fibration
+                                  (Ge )∧        ∧              ∧
+                                       p −→ Ω(BGp ) −→ Ω((BGf )p ).
+In this case, the base is covered by our analysis of finite groups and the fibre is covered by the case
+of connected compact Lie groups, and we may hope that the behaviour is a simple combination of
+the two.
+Lemma 6.5. Suppose Gf acts nilpotently on H ∗ (BGe ).
+   (i) For R = C∗ (G), the map ν∗ followed by H∗ (G) −→ Λk H∗ (G) is an isomorphism if Gf is
+p-nilpotent and zero if Gf is not p-nilpotent.
+   (ii) For R = C∗ (ΩBGp ), the map ν∗ is an isomorphism if Gf is p-nilpotent. If Gf is not p-
+nilpotent, ν∗ is zero on the submodule of Σd H ∗ (ΩBGp ) generated by the image of H∗ (G)O (Gf ) ∼
+                                                                                          p
+                                                                                                 =
+H∗ (Ge )[Π]. The image of ν∗ maps to zero in H∗ (Ω(BGf )p ).
+Remark 6.6. If the spectral sequence collapses to an isomorphism
+                                 H∗ (ΩBGp ) = H∗ (Ge ) ⊗ H∗ (Ω(BGf )p )
+and Gf is not p-nilpotent, then ν∗ is zero.
+Proof: We know that H0 (G) = kGf and Hi (G) = Hi (Ge )[Gf ] (the action of Gf on Hi (Ge ) untwists
+in this induced module). The argument of Lemma 6.1 shows that the map
+                                      p
+    ν∗ : H∗ (Ge )[Π] = H∗ (Ge )[Gf ]O (Gf ) −→ H∗ (G) −→ H∗ (G)/[Op (Gf ), H∗ (G)] = H∗ (Ge )[Π]
+is multiplication by |Op (Gf )|, and it follows that the map is an isomorphism if G is p-nilpotent and
+zero if Gf is not p-nilpotent.
+   For R = C∗ (ΩBGp ), we see that ν is an equivalence if Gf is p-nilpotent (since H∗ (ΩBGp ) is
+finite dimensional and built from the trivial representation). If G is not p-nilpotent we deduce the
+the statement from the comparison maps C∗ (G) −→ C∗ (ΩBGp ) −→ C∗ (Ω(BGf )p ).                       □
+
+                                                   11
+                             7. The squeezed Tate construction
+  In this section G is a finite group, and we recall Benson’s purely algebraic approach to H∗ (ΩBGp ),
+extending it slightly to include the squeezed Tate construction.
+7.A. Squeezed resolutions. Benson [2] has shown how to calculate the homology and cohomology
+of ΩBGp in purely algebraic terms. We explain how to incorporate the norm map H 0 (ΩBGp ) −→
+H0 (ΩBGp ) into this framework and then calculate.
+   An ordinary projective resolution of a module A can be described as repeatedly taking the kernel
+of a projective cover: we choose a surjective map P (A) −→ A from a projective module P (A) and
+take the kernel
+                                 0 −→ ΩA −→ P (A) −→ A −→ 0.
+The resolution is obtained by iterating the process: we take A0 = A and then, once Ai is defined,
+we take Pi = P (Ai ) and
+                                   Ai+1 = ΩAi = ker(Pi −→ Ai ).
+   For the squeezed resolution there is another step. For a module B the squeezed submodule
+Bσ is the smallest submodule so that B/Bσ is built from the trivial module k (we have Bσ =
+[Op (G), B] = {x − γx | γ ∈ Op (G), x ∈ B}). The squeezed loops on A is defined to be
+                                            Ωσ A = (ΩA)σ .
+We now define a left squeezed resolution of a kG-module A by taking A0 = A and, once Ai is
+defined, we take Pi = P (Ai ) and Ai+1 = Ωσ Ai . In more detail, we define Pi , Bi , Ai+1 as follows
+                         Ai ←− P (Ai ) = Pi ←− ΩAi = Bi ⊇ (Bi )σ = Ai+1 .
+This gives a left squeezed resolution
+                                   · · · −→ P2 −→ P1 −→ P0 −→ 0
+and we then define H∗Ω (G; A) = H∗ (P• ).
+Remark 7.1. If A = k the left squeezed resolution coincides with that in [2]. We take A0 = k and
+then
+                                       A0 P 0 B 0 A1 P 1 B 1 . . .
+whereas, in corresponding steps, Benson takes
+                                         M−1 P0 N0 M0 P1 N1 . . .
+Actually, Benson does not define M−1 , and begins by taking P0 = N0 = P (k) and then takes
+Mi = (Ni )σ , Pi+1 = P (Mi ), Ni+1 = ΩMi . It is easy to see that the projectives Pi in the two
+sequences agree, and corresponding terms in the two sequences agree from A1 = M0 onwards, since
+                                            P (k)σ = (Ωk)σ .
+  Similarly, if D is a kG-module, we define Dσ to be the quotient of D by the largest submodule
+built from k, and we take Ω−1            −1     σ
+                              σ A = (Ω A) . We then define a right squeezed resolution of a
+kG-module C by taking C0 = C and, once Ci is defined, we take Ii = I(Ci ) (injective hull) and
+Ci−1 = Ω−1
+         σ Ci . In more detail, we define Ii , Di , Ci−1 as follows
+                           Ci −→ I(Ci ) −→ Ω−1 Ci = Di −→ Diσ = Ci−1
+This gives a right squeezed resolution
+                                  0 −→ I0 −→ I−1 −→ I−2 −→ · · ·
+and then define HΩ∗ (G; C) = H ∗ (I• ). Once again, for analagous reasons to the left case, when
+C = k the complex I• coincides with Benson’s right squeezed resolution.
+  Benson has shown [2, Theorem 1.2] that H∗Ω (G; k) = H∗ (ΩBGp ) and HΩ∗ (G; k) = H ∗ (ΩBGp ).
+                                               12
+7.B. The Tate squeezed resolution. For the module k, we splice the left and right squeezed
+resolutions together to form a Tate resolution T• by using a cofibre sequence
+                                              n
+                                           I• −→ P• −→ T• .
+Such a map n is specified by an arbitrary map n0 : I0 −→ P0 , and we take I0 = P0 and n0 to be
+the identity. We then define the squeezed Tate homology by Ĥ∗Ω (G) = H∗ (T• ).
+Lemma 7.2. (Benson) Taking n0 to be the identity gives the norm map
+                                     n∗ : HΩ0 (kG) −→ H0Ω (kG)
+given by multiplication by |Op G| and is therefore an isomorphism if G is p-nilpotent and 0 if G is
+not p-nilpotent.
+Proof: By the comparison map [2, 3.4] we may take I0 = P0 = kG. There is a commutative square
+
+                                     kG
+                                                  id          / kG
+                                      O
+
+
+                                       p
+                                                                   
+                                   kGO (G)             kG/[Op (G), kG]
+
+
+                                                  n∗
+                                   HΩ0 (G)                  / H Ω (G)
+                                                               0
+
+The statements about the maps were proved in Lemma 6.1.                                            □
+
+  To tie this algebraic treatment to the homotopical treatment, we need to show n is k-cellularization.
+Benson gives a H∗Ω (G)-module structure by comparison of resolutions [2, 4.6]. Because the argu-
+ments are formal consequences of connectivity this is sufficient to establish the result required.
+Lemma 7.3. The map P• −→ T• is nullification of k, and therefore the squeezed Tate homology is
+the Ω-Tate homology:
+                             Ĥ∗Ω (G) = π∗ (Lk C∗ (ΩBGp )).
+Proof: To see the map is a k-equivalence we note that by the squeezing process HomkG (k, I• ) = I0G
+and HomkG (k, P• ) = P0G . To see that I• is k-cellular, we need only note that since H∗ (I• ) is
+bounded above the process of killing homotopy groups shows I• is the homotopy direct limit of
+bounded below complexes with k-cellular homology.                                                □
+
+
+                                 8. The singularity category
+   Now that we have all the ingredients, we recall the definition of the singularity category of
+C ∗ (BG).
+8.A. The definition. For a commutative local ring R the singularity category is the Verdier
+quotient
+                                                   Db (R)
+                                         Dsg (R) := c
+                                                   D (R)
+where the numerator (the bounded derived category) may be defined as the homotopy category
+of finite complexes of finitely generated modules, and the denominator (the derived category of
+compact objects) may be seen to be the homotopy category of finite complexes of finitely generated
+projectives. The point of the definition is that (by the Auslander-Buchsbaum-Serre Theorem)
+                                                       13
+Dsg (R) is trivial if and only if the local ring R is regular. Its nontriviality therefore measures the
+deviation of R from being regular. It has especially good formal properties if R is Gorenstein.
+   We need to extend the definition of the singularity category to R = C ∗ (BG) in a way that
+respects Koszul duality. We described the symmetric Gorenstein context of [20] in Subsection 3.C.
+8.B. BGG correspondence. We explained the definition of the bounded derived category in
+Section 3 we may define the singularity category
+                                                       Db (R)
+                                          Dsg (R) :=
+                                                       Dc (R)
+when R = C ∗ (BG) or C∗ (ΩBGp ).
+  Alongside this, we have the definition of the dual cosingularity category
+                                                       Db (R)
+                                         Dcsg (R) :=          ,
+                                                        ⟨k⟩
+where the denominator is the thick subcategory generated by k. Serre’s Theorem establishes the
+importance of the invariant: for a graded connected k-algebra R, it describes quasicoherent sheaves
+over Proj(R): Dcsg (R) ≃ Db (Proj(R)). We may thus think of the cosingularity category as very
+geometric in flavour.
+   The Morita equivalence of bounded derived categories exchanges compact objects (finitely built
+from the ring) and objects finitely built from k.
+Theorem 8.1. [20, 9.10] Koszul duality induces the equivalences
+             Dsg (C ∗ (BG)) ≃ Dcsg (C∗ (ΩBGp )) and Dsg (C∗ (ΩBGp )) ≃ Dcsg (C ∗ (BG)).
+  Note that it follows in particular that Dsg (C ∗ (BG)) is trivial if and only if C ∗ (BG) is regular.
+  To see the relationship to the BGG correspondence consider the second when G is an elementary
+abelian 2-group of rank r: in the light of Serre’s Theorem it shows the singularity category of an
+exterior algebra on r-generators is the derived category of quasi-coherent sheaves on the projective
+space Pr−1 in the familiar way.
+
+                           9. Modules over the Tate localization
+   In this section we show that the singularity category of C ∗ (BG) is the bounded derived category
+of the Ω-Tate spectrum. The result involves understanding the interactions of finiteness conditions,
+and it is remarkable that the result holds for all finite groups G, and all compact Lie groups for
+which the adjoint representation is k-orientable.
+   In the following proofs we have in mind a normalization
+                                       U/G −→ BG −→ BU,
+or rather its p-completion. The space (U/G)p is finite, the space BUp has a finite loop space, and
+BGp itself is acquires finiteness properties from this fibration.
+9.A. Truncations. We first note that for the relevant spaces X, the homotopy π∗ (Lk C∗ (ΩX)) is
+finite dimensional in each degree and agrees with H∗ (ΩX) above some degree.
+Lemma 9.1. If X is the p-completion of U/G, BG or BU then the homotopy groups πs (Lk C∗ (ΩX))
+are finite dimensional for each s and π∗ (Lk C∗ (ΩX)) coincides with H∗ (ΩX) above some degree.
+Proof: Since ΩBUp is finite, this is obvious for BU . We have shown this holds for BG in Theorem
+5.2 above, and it follows for U/G from the other terms.                                        □
+
+                                                  14
+Lemma 9.2. If F is finite then for every s ∈ Z the truncation τ≥s Lk C∗ (ΩF ) of Lk C∗ (ΩF ) is small
+over C∗ (ΩF ).
+Proof: By Lemma 9.1, the truncation only differs from Lk C∗ (ΩF ) in finitely many degrees. Since
+each homotopy group of Lk C∗ (ΩF ) is finite dimensional over k the overall difference is finitely built
+from k. Finally, since F is finite, k is small over C∗ (ΩF ) (indeed, k finitely builds C ∗ (F ) and hence
+C∗ (ΩF ) finitely builds k) and the truncation differs from Lk C∗ (ΩF ) by a small module.              □
+
+
+Lemma 9.3. If F = U/Gp and M is a small Lk C∗ (ΩF )-module then for any s ∈ Z the truncation
+τ≥s M is a small C∗ (ΩF )-module.
+Proof: Every small object is finitely built from Lk C∗ (ΩF ), so we may prove the result by induction
+on the number of steps required. Lemma 9.2 gives the base of the induction.
+  We need to show that the property is preserved by adding a single cell (since it is obviously
+preserved by passage to retracts).
+  Suppose then that all truncations of M are small, and that we have a cofibre sequence
+                                     Σi Lk C∗ (ΩF ) −→ M −→ M ′ .
+The map M −→ M ′ −→ M ′ (−∞, −1] factors through M −→ M (−∞, −1] so we may form the
+diagram
+                               Z1               / τ≥0 M              / τ≥0 M ′
+
+
+                                                                        
+                         Σi Lk C∗ (ΩF )           /M                   / M′
+
+
+                                                                       
+                               Z2            / M (−∞, −1]        / M ′ (−∞, −1].
+
+From the bottom row, the spectrum Z2 has no homotopy in degrees ≥ 0. From the top row, Z1
+only has homotopy in degrees ≥ −1. The left hand vertical then shows that Z1 differs from the
+truncation of Σi Lk C∗ (ΩF ) in a finite dimensional vector space. By Lemma 9.1, τ≥0 Σi Lk C∗ (ΩF )
+differs from Σi C∗ (ΩF ) in a finite dimensional vector space. Since k is small over C∗ (ΩF ) (as in
+Lemma 9.2), it follows that Z1 is small. From the top row we see that since Z1 and τ≥0 M are
+small, so is τ≥0 M ′ .                                                                            □
+
+  We apply the previous lemma with F = U/Gp to the normalization ϕ : C∗ (ΩU/Gp ) −→
+C∗ (ΩBGp ).
+Corollary 9.4. If N is a fg Lk C∗ (ΩBGp )-module then every truncation of N is a fg C∗ (ΩBGp )-
+module.
+Proof: By hypothesis M = ϕ∗ N is small over Lk C∗ (ΩU/Gp ). By Lemma 9.3, all truncations τ≥s M
+are small over C∗ (ΩF ). However τ≥s M = τ≥s ϕ∗ N = ϕ∗ τ≥s N , so τ≥s N is a fg C∗ (ΩBGp )-module
+as required.                                                                                   □
+
+
+9.B. The singularity category as a bounded derived category. We are now equipped to out-
+line the strategy for understanding Dsg (C ∗ (BG)). Theorem 8.1 shows Dsg (C ∗ (BG)) ≃ Dcsg (C∗ (ΩBGp )),
+and we continue by showing this is the bounded derived category of the Ω-Tate spectrum Lk C∗ (ΩBGp ).
+                                                    15
+Theorem 9.5. Extension of scalars along C∗ (ΩBGp ) −→ Lk C∗ (ΩBGp ) induces an equivalence
+                                    Dcsg (C∗ (ΩBGp )) ≃ Db (Lk C∗ (ΩBGp )).
+Proof : At the level of unrestricted module categories, extension of scalars induces a functor
+C∗ (ΩBGp )-mod −→ Lk C∗ (ΩBGp )-mod. To see this induces a map on bounded derived categories
+we need to show that an fg-module over C∗ (ΩBGp ) maps to an fg-module over Lk C∗ (ΩBGp ).
+   Thus we suppose given a fg C∗ (ΩBGp )-module Z, meaning that ϕ∗ Z is small over C∗ (ΩU/Gp ).
+   Since Lk is smashing, the image of Z in Lk C∗ (ΩBGp )-mod is Lk Z, and ϕ∗ Lk Z = Lk ϕ∗ Z. Hence
+if Z if fg we conclude Lk Z is fg as required.
+   This gives a map
+                              ν : Db (C∗ (ΩBGp )) −→ Db (Lk C∗ (ΩBGp )).
+It is clear that ν(k) ≃ 0 and since Lk is exact, ν induces
+                 ν : Dcsg (C∗ (ΩBGp )) = Db (C∗ (ΩBGp ))/⟨k⟩ −→ Db (Lk C∗ (ΩBGp )).
+We must show this is full, faithful and essentially surjective. We will first consider the map on
+objects.
+   Injectivity: To see that ν is injective we note that the kernel of Lk is precisely the localizing
+subcategory generated by k. It remains to say that if M is a C∗ (ΩBGp )-module with M ≃
+Γk M and it is small over C∗ (ΩU/Gp ) then M is finitely built from k. Since M is a retract of
+C∗ (ΩBGp ) ⊗C∗ (ΩU/Gp ) M and C∗ (ΩBGp ) ⊗C∗ (ΩU/Gp ) k ≃ C∗ (U ) is finitely built from k, it suffices
+to check that M is finitely built from k as a C∗ (ΩU/Gp )-module.
+   By hypothesis M is finitely built from C∗ (ΩU/Gp ), and hence Γk M is finitely built from Γk C∗ (ΩU/Gp ).
+Since Γk C∗ (ΩU/Gp ) ≃ C ∗ (ΩU/Gp ), and H ∗ (ΩU/Gp ) is finite dimensional in each degree, we see
+Γk C∗ (ΩU/Gp ) ≃ lim Γk M (n) with each term finitely built from k. Accordingly, the identity factors
+                   → n
+through Γk M (n) for some n, and hence Γk M is a retract of an object finitely built from k.
+  Surjectivity: We suppose N is a fg Lk C∗ (ΩBGp )-module, so that ϕ∗ N small over Lk C∗ (ΩU/Gp ).
+We let Z = τ≥0 N , and note that Lk Z ≃ N because Lk annihilates any object bounded above.
+  We claim that Z is in fact finitely generated. Indeed,
+                             Lk ϕ∗ Z = Lk τ≥0 ϕ∗ N ≃ Lk ϕ∗ τ≥0 N ≃ Lk ϕ∗ N ≃ ϕ∗ N,
+so the localization of ϕ∗ Z is small. Since Z is the truncation of N , the result follows from Corollary
+9.4.
+   Morphisms: Since Lk is smashing, morphisms in the the localization of C∗ (ΩBGp )-modules
+are Lk C∗ (ΩBGp )-maps, and by definition the localization Lk on C∗ (ΩBGp )-modules is the Verdier
+quotient by the localizing subcategory Loc(k), so
+                                  D(C∗ (ΩBGp ))/Loc(k) ≃ D(Lk C∗ (ΩBGp )).
+Now consider the diagram
+                Db (C∗ (ΩBGp ))            / Db (C∗ (ΩBGp ))/⟨k⟩       / Db (Lk C∗ (ΩBGp ))
+
+                             ff                                                      ff
+                                                                               
+                D(C∗ (ΩBGp ))             / D(C∗ (ΩBGp ))/Loc(k) ≃     / D(Lk C∗ (ΩBGp ))
+
+with the outer verticals full and faithful by definition. We have argued that the part of Loc(k) in
+the bounded derived category is the thick subcategory ⟨k⟩, so the central vertical is also full and
+faithful.
+                                                                                                  □
+
+                                                          16
+  Putting results together we obtain a description of the singularity category as a bounded derived
+category.
+Corollary 9.6. We have equivalences
+                      Dsg (C ∗ (BG)) ≃ Dcsg (C∗ (ΩBGp )) ≃ Db (Lk C∗ (ΩBGp )).
+Proof: We combine Theorem 8.1, and Theorem 9.5.                                                     □
+
+
+                                     10. Central reduction
+   In the commutative setting (for example for modules over C ∗ (BG)) there is a well known con-
+struction of the cellularization Γk and the nullification Lk . The purpose of this section is to give
+conditions under which these same constructions work for the noncommutative ring C∗ (ΩBGp ). The
+flavour of the conditions is that C ∗ (BG) behaves like a complete intersection. The first require-
+ment is that H∗ (ΩBGp ) has polynomial growth. For commutative local rings, a growth condition
+is enough to characterize complete intersections, but for C ∗ (BG) we need a little more. The actual
+condition is about Hochschild cohomology, but it suffices to assume that G has a normalization in
+which the cohomology of the fibre is a complete intersection. This applies for example to Chevalley
+groups at good primes.
+10.A. Polynomial growth. To make this useful we need to understand the ring spectrum Lk C∗ (ΩBGp ).
+At the crudest level we want to understand its coefficient ring, but we are working towards an un-
+derstanding of its module category.
+   When H∗ (ΩBGp ) is periodic with periodicity element τ (as in the case of cyclic Sylow subgroup
+[5]), then we need only check that τ may be taken central, and then as a module, the Tate lo-
+calization is just a mapping telescope, so that Lk C∗ (ΩBGp ) = C∗ (ΩBGp )[1/τ ]. Furthermore we
+understand the terms in the telescope, and the homotopy groups are clear π∗ (C∗ (ΩBGp )[1/τ ]) =
+(H∗ (ΩBGp ))[1/τ ].
+   The general situation is more complicated. It is familiar from commutative algebra that the sin-
+gularity category behaves much better for complete intersections. In fact we can make good progress
+here under a finiteness assumption directly analagous to the growth condition that characterises
+complete intersections in commutative algebra.
+   We will use some results from the study of complete intersections [8], starting with the growth
+condition.
+Definition 10.1. [8] A p-complete space X is said to be gci if H∗ (ΩX) has polynomial growth
+(the letter g refers to the fact that this is a growth condition).
+  It is essentially due to the work of Felix-Halperin-Thomas [14] that this finiteness condition gives
+good control over the structure of the homology.
+Lemma 10.2. [8, 9.10] Let X be a Gorenstein gci space, then H∗ (ΩX) is left and right Noetherian
+and it is finitely generated over a central polynomial subalgebra.
+   Since X = BGp is automatically Gorenstein, the first assumption is absolutely harmless. We
+will proceed on the assumption that X = BGp is a gci space. If G is p-perfect, by Levi’s Dichotomy
+Theorem [22], H∗ (ΩBGp ) otherwise has at least semi-exponential growth, and in that case it is
+hard to even understand what it means for a module to be finitely generated.
+   We will assume the growth is polynomial and name the generators of the polynomial subring as
+follows.
+Assumption 10.3. H∗ (ΩX) is finite over a central polynomial subalgebra k[τ1 , . . . , τs ].
+                                                  17
+10.B. The commutative case. To set up notation we recall the construction in the commutative
+case.
+  Given a commutative Noetherian ring R, and an element τ we define the unstable Koszul complex
+             τn
+Kn (R) = (R −→ R) and their direct limit, the stable Koszul complex K∞ (R) = (R −→ R[1/τ ]).
+  Now, given an ideal I = (τ1 , . . . , τs ) we may construct the stable Koszul complex
+                                 K∞ (I) = K∞ (τ1 ) ⊗R · · · ⊗R K∞ (τs ).
+One may check that up to homology isomorphism this only depends on the radical of I and for an
+R-module N we may define the local cohomology by
+                                   HI∗ (R; N ) := H ∗ (K∞ (I) ⊗R N ).
+Grothendieck showed that this calculates the right derived functors of the I-power torsion functor.
+Similarly we may omit the degree 0 copy of R and regrade to get the Cech complex, which fits into
+a fibre sequence
+                                     K∞ (R) −→ R −→ CHI (R).
+The Cech cohomology is defined by
+                                    CHI∗ (R; N ) = CHI (R) ⊗R N,
+and it is easy to see that it calculates the right derived functors of global sections of N , viewed as
+a sheaf over Spec(R) \ V (I).
+   These constructions immediately adapt to the case that R is a commutative ring spectrum and
+I is an ideal in the Noetherian ring R∗ . The stable Koszul complex is replaced by the R-module
+fib(R −→ R[1/x]). We write ΓI N := K∞ (R) ⊗R N and LI N = CHI (R) ⊗R N . One may see that
+ΓI N is the cellularization with respect to K := K1 (τ1 , . . . , τs ) and LI N is the K-nullification.
+   The construction gives a natural filtration giving rise to spectral sequences
+                      HI∗ (R∗ ; N∗ ) ⇒ π∗ (ΓI N ) and CHI∗ (R∗ ; N∗ ) ⇒ π∗ (CHI N ).
+  When K and k generate the same localizing subcategory we write Γk N = ΓI N and Lk N = LI N .
+This holds for instance if there is a proxy small map R −→ k and (R∗ , I, k) is a local ring.
+
+10.C. Adapting to bimodules. If C∗ (ΩX) is finite as a module over a commutative ring spectrum
+R with a map k[τ1 , . . . , τs ] −→ R∗ then by Lemma 4.1, the localization Lk C∗ (ΩX), when considered
+as an R-module can be constructed by a Cech complex.
+   We now observe that we may adapt this to R = C∗ (ΩX) provided τ1 , . . . , τs may be realized by
+maps of R-bimodules.
+Lemma 10.4. Suppose C∗ (ΩX) is proxy small and H∗ (ΩX) is finite over a central polynomial
+subalgebra k[τ1 , . . . , τs ]. Provided τi ∈ H∗ (ΩX) is realized by a bimodule self-map of C∗ (ΩX), there
+are spectral sequences for calculating the homotopy of the k-cellularization Γk M and k-nullification
+Lk M of a C∗ (ΩX)-module M taking a familiar form. If I = (τ1 , . . . , τs ) the spectral sequences are
+                                        HI∗ (π∗ (M )) ⇒ π∗ (Γk M )
+and
+                                      CHI∗ (π∗ (M )) ⇒ π∗ (Lk M ).
+Remark 10.5. If s = 1 this collapses to the familiar calculation
+                                         π∗ (Lk M ) = M∗ [1/τ ].
+                                                    18
+Proof: We repeat the construction with R = C∗ (ΩX) and realize ΓI R as an (R, R)-bimodule. It
+is built from K = K1 (τ1 , . . . , τs ), and π∗ K is finite dimensional over k, and is therefore finitely
+built from k as a bimodule. Thus Γk M = Γk R ⊗R M is built from k ⊗R R. It follows that Γk M is
+k-cellular, and the map Γk M −→ M is a k-colocal equivalence.                                          □
+
+  In the light of this, it is natural to make a definition.
+Definition 10.6. We say that C∗ (ΩX) has a central system of parameters if there are central
+elements τ1 , . . . , τs ∈ H∗ (ΩX) over which H∗ (ΩX) is finite and these are realized by bimodule
+maps τ̂i : C∗ (ΩX) −→ C∗ (ΩX).
+  Thus if τ1 , . . . , τs may be represented by homotopically central elements of C∗ (ΩBGp ), we have
+an equivalence of modules
+                                     Lk C∗ (ΩX) ≃ CHτ1 ,...,τs (C∗ (ΩX)).
+10.D. Hochschild cohomology. In order to show that polynomial generators τi may be chosen
+homotopically central, we need control over the Hochschild cohomology HH ∗ (C∗ (ΩX)). Since
+HH ∗ (C∗ (ΩX)) ∼= HH ∗ (C ∗ X) [5, 5.3] or [1, 1.10.1], there are two obvious spectral sequences for
+this:
+                HH ∗ (H ∗ X) ⇒ HH ∗ (C ∗ X) and HH ∗ (H∗ (ΩX)) ⇒ HH ∗ (C∗ (ΩX)).
+In the second case the edge homomorphism is a map
+          HH ∗ (C ∗ (X)) = π∗ (HomC ∗ X e (C ∗ X, C ∗ X)) −→ π∗ (HomC ∗ (X) (k, k)) ∼
+                                                                                    = H∗ (ΩX).
+Example 10.7. In the case that G has a cyclic Sylow subgroup of order pn [5] describes both
+spectral sequences. The differential in the first occurs later (at the (pn − 1)-page, whilst the second
+occurs precisely (pn − 1)/q stages earlier, where 2q is the degree of the polynomial generator).
+   In that case the E2 -pages of the two spectral sequences are isomorphic (though graded quite dif-
+ferently), and the differential is on ‘the same’ element (that corresponding to the exterior generator
+of H∗ (ΩX)).
+Definition 10.8. The ring C ∗ (X) is said to be Hochchild cohomology complete intersection (HHci)
+if the spectral sequence HH ∗ (H ∗ X) ⇒ HH ∗ (C ∗ X) collapses at a finite stage.
+Proposition 10.9. If the spectral sequence HH ∗ (H ∗ X) → HH ∗ (C ∗ X) collapses at the Er−2 page,
+then all pr th powers are infinite cycles.
+Proof: In characteristic p every differential vanishes on pth powers by the Leibniz rule, so that if
+                                                     r
+the spectral sequence collapses at the Er−2 -page, xp survives for every element x.              □
+
+  A sufficient condition for the collapse of the Hochschild cohomology spectral sequence for cochains
+comes from the coefficient level.
+Lemma 10.10. If H ∗ (F ) is a complete intersection then the spectral sequence
+                                       HH ∗ (H ∗ (F )) ⇒ HH ∗ (C ∗ F )
+collapses at a finite stage: cci implies HHci.
+Proof : If H ∗ F = k[x1 , . . . , xc ]/(f1 , . . . , fc ) then the Hochschild cohomology HH ∗ (H ∗ (F )) is de-
+scribed explicitly by Buchweitz and Roberts [10]. We only need to know that there are generators in
+bidegrees (−1, −|xi |) and (−2, −|fi |). Since F is finite this shows that HH ∗ (H ∗ F ) is concentrated
+in a strip of vertical length equal to the dimension of F and below a line of slope 1. It follows that
+the spectral sequence
+                                         HH ∗ (H ∗ (F )) ⇒ HH ∗ (C ∗ F )
+                                                      19
+collapses at a finite stage.                                                                         □
+
+
+10.E. Retreat to normalizations. We now suppose given a normalization of C ∗ X, which is a
+p-adic fibration F −→ X −→ Y with Y regular and F finite. We will show that we may obtain the
+required behaviour by imposing conditions on F rather than on X.
+Definition 10.11. We say that X has a normalization with Property P if there is a normalization
+F −→ X −→ Y so that F has Property P.
+   The four properties P of interest are
+       • having a central system of parameters (C∗ (ΩF ) has a central system of parameters),
+       • being Hochschild cohomology ci (HHci) (i.e., the spectral sequence HH ∗ (H ∗ (F )) ⇒ HH ∗ (C ∗ (F ))
+         collapses at a finite stage,
+       • being coefficient ci (cci) (i.e., H ∗ (F ) is ci), and
+       • being strongly spherical ci (ssci) (i.e., H ∗ (F ) is an exterior algebra).
+It is clear that ssci implies cci, and Lemma 10.10 shows cci implies HHci.
+Lemma 10.12. If X has a normalization with a central system of parameters then as a module
+over C∗ (ΩF ), Lk C∗ (ΩX) has a Cech construction and there is a spectral sequence
+                                 CHk∗ (H∗ (ΩX)) ⇒ π∗ (Lk C∗ (ΩX)).
+Proof: We have a cofibre sequence
+                                  C∗ (ΩF ) −→ C∗ (ΩX) −→ C∗ ΩY,
+and since Y is regular, ΩY is finite. In particular,
+                                     C∗ ΩY ≃ C∗ (ΩX) ⊗C∗ (ΩF ) k
+is finite dimensional, and hence C∗ (ΩX) is finitely built by C∗ (ΩF ). This shows that some power
+of each τi ∈ H∗ (ΩX) lifts to H∗ (ΩF ).
+   By the hypothesis on F , Lk C∗ (ΩX) can be constructed as a C∗ (ΩF )-module using a Cech con-
+struction and apply Lemma 10.4.                                                                 □
+
+
+10.F. Conditions on cochains. Finally, we show that a complete-intersection condition on C ∗ X
+(cochains), is sufficient to guarantee the existence of a central system of parameters in C∗ (ΩX)
+(chains); this then gives the required spectral sequence for Lk C∗ (ΩX).
+Proposition 10.13. If C ∗ (X) has a normalization which is HHci then the normalization has a
+central system of parameters.
+Proof: If F −→ X −→ Y is the HHci normalization, we saw in Proposition 10.9 that some powers
+of the classes τi ∈ H∗ (ΩX) lift to H∗ (ΩF ), and we must show that some power of these survive to
+HH ∗ (C ∗ (ΩF )).
+   By Proposition 10.9, it suffices to show the elements τi are represented in the Hochschild coho-
+mology ring HH ∗ (H ∗ F ).
+   In fact we have a spectral sequence Ext∗,∗
+                                          H ∗ (F ) (k, k) ⇒ H∗ (ΩF ), and we may choose representatives
+of τi in the E2 -term. Using the map
+                    Ext∗,∗                   ∗,∗           ∗    ∗        ∗  ∗
+                       H ∗ (F ) (k, k) −→ ExtH ∗ (F ×F ) (H F, H F ) = HH (H (F ))
+
+we obtain elements τi in the E2 -term of the spectral sequence for HH ∗ (C ∗ (F )).                  □
+
+                                                  20
+Remark 10.14. It is natural to ask if the condition that X is gci already implies HHci, or indeed
+if gci is sufficient for the two spectral sequences for Hochschild cohomology to collapse.
+   One may also ask if the collapse of one of the spectral sequences at a finite stage implies the
+other collapses at a finite stage.
+10.G. Returning to groups. We return to the special case X = BG. In this case it is natural to
+focus on normalizations coming from group homomorphisms.
+Definition 10.15. We say that G has a normalization with property P if there is a group homo-
+morphism ρ : G −→ U with U regular, so that C ∗ (U/G) has property P.
+   As before, the three properties P of interest are (in order of increasing strength) HHci, coefficient
+ci (cci), and strongly spherical ci (ssci).
+Corollary 10.16. If G has an HHci normalization then C∗ (ΩBGp ) is finite over a weakly central
+polynomial subalgebra, and hence the coefficients may be calculated by the spectral sequence of
+Lemma 10.4.
+Remark 10.17. The group U need not be a compact connected Lie group: we only need it to
+be regular. For example if k is of characteristic p and q|p − 1, we may consider a non-trivial split
+extension G = Cpn ⋊ Cq (up to homotopy equivalence this is the general case of a group with cyclic
+Sylow p-subgroup as in [5]). In this case we may let U = S 1 ⋊ Cq , a 1-dimensional compact Lie
+group which behaves like a (2q − 1)-dimensional compact connected Lie group.
+
+                                            11. Examples
+  Methods in previous work have only applied to hypersurfaces. The present paper shows that
+the class of groups they are effective for is closed under products. Accordingly we can immediately
+generate many examples not covered previously by using products of s-hypersurfaces.
+Example 11.1. Let G = C ⋊ D with cyclic Sylow p-subgroup C = Cpn and D = Cq acting
+non-trivially. We can express this as a strongly spherical hypersurface via the fibration
+                                         T /C −→ BG −→ BU
+where BG = BC hD and BU = BT hD . This has
+                       H ∗ (BG) = k[X] ⊗ Λ(T ) and H∗ (ΩBGp ) = Λ[ξ] ⊗ k[τ ]
+with
+                        |X| = −2q, |T | = −2q + 1, |ξ| = 2q − 1, |τ | = 2q − 2.
+Example 11.2. We can take G = A4 with p = 2 and U = SO(3) and use the 2-adic fibration
+                                      S 3 −→ BA4 −→ BSO(3).
+  Any product of of these examples give another ssci group, by virtue of the fibration
+                    S n1 × · · · × S nc −→ B(G1 × · · · × Gc ) −→ B(U1 × · · · × Uc ).
+One may then hope to construct indecomposable examples from these. For example, if D is a group
+of order prime to p and it acts on U1 × · · · × Uc preserving G1 × · · · × Gc in such a way that the
+action on U1 /G1 × · · · × Uc /Gc is trivial on homology, then taking semidirect products gives another
+example
+                           G = (G1 × · · · × Gc ) ⋊ D, U = (U1 × · · · × Uc ) ⋊ D.
+  The following class of examples may seem more compelling.
+                                                    21
+Example 11.3. Suppose Γ is a simply connected compact Lie group for which p is not a torsion
+prime (for example any group SU (n) qualifies, and the situation is summarised in [6, Section 5]).
+The classifying space of the finite Chevalley groups G = Γ(q) for q prime to p fits into a p-adic
+homotopy pullback square
+                                       BG          / BΓ
+
+
+                                                   {1,Ψq }    
+                                         BΓ         / BΓ × BΓ
+   Accordingly, there is a fibration Γ −→ BG −→ BΓ. Since Γ is connected and the fibre is finite,
+this is a normalization, and since p is not a torsion prime H ∗ (Γ; Fp ) is exterior. This shows that G
+is ssci and hence HHci.
+
+                                                    References
+ [1] D.J.Benson “Classifying spaces of finite groups of tame representation type.” arXiv:2208.07913
+ [2] D.J.Benson “An algebraic model for chains on ΩBG∧    p ” TAMS 361 (2008) 2225-2242
+ [3] D.J.Benson and J.F.Carlson “Functional equations for Poincaré series in group cohomology” Bull. London Math.
+     Soc. 26 (1994) 438-448
+ [4] D.J.Benson and J.P.C.Greenlees “Duality in topology and modular representation theory.” JPAA 212 (2008)
+     1716-1743
+ [5] D.J.Benson and J.P.C.Greenlees “The singularity and cosingularity categories for groups with cyclic Sylow
+     subgroup” Preprint (2021), 33pp, arXiv:2107.09389
+ [6] D.J.Benson and J.P.C.Greenlees “Formality of cochains on BG” Bulletin LMS 55 (2023) 1120-1128
+ [7] D.J.Benson and J.P.C.Greenlees “Modules with finitely generated cohomology and singularities of C ∗ (BG)”
+     JPAA 228 (2024), Article 107667, arXiv:2305.08580
+ [8] D.J.Benson, J.P.C.Greenlees and S.Shamir “Complete intersections and mod p cochains.” AGT 13 (2013) 61-114,
+     arXiv: 1104.4244
+ [9] C. Broto, R.Levi and R.Oliver “Loop space homology of a small category.” Ann. K-Theory 6 (2021), 425–480.
+[10] R.-O. Buchweitz and C.Roberts “The multiplicative structure on Hochschild cohomology of a complete intersec-
+     tion” JPAA 219 (2015) 402-428
+[11] W. G. Dwyer “Strong convergence of the Eilenberg-Moore spectral sequence”, Topology 13 (1974), 255–265.
+[12] W.G.Dwyer and J.P.C.Greenlees “The equivalence of categories of complete and torsion modules.” American J.
+     Math. 124 (2002) 199-220
+[13] W.G.Dwyer, J.P.C.Greenlees and S.B.Iyengar, Duality in algebra and topology, Advances in Maths. 200 (2006),
+     357-402.
+[14] Y.Félix, S.Halperin, J.-C.Thomas ‘Elliptic Hopf algebras’ JLMS 43 (1991) 544-555
+[15] J.P.C.Greenlees “Representing Tate cohomology of G-spaces”, Proceedings of the Edinburgh Mathematical So-
+     ciety 30 (1987), 435-443
+[16] J.P.C.Greenlees “Homotopy invariant commutative algebra over fields” Building Bridges Between Algebra and
+     Topology, Birkhäuser (2018), 103-169, arXiv:1601.02473
+[17] J.P.C.Greenlees and G.Lyubeznik “Rings with a local cohomology theorem and applications to cohomology rings
+     of groups.” J. Pure and Applied Algebra 149 (2000) 267-285.
+[18] J.P.C.Greenlees and J.P. May “Derived functors of I-adic completion and local homology” Journal of Algebra
+     149 (1992) 438-453.
+[19] J.P.C.Greenlees and J.P. May “Generalized Tate cohomology” Memoirs of the American Maths. Soc., 543 (1995)
+     178pp.
+[20] J.P.C.Greenlees and G. Stevenson “Morita equivalences and singularity categories.” Advances in Mathematics
+     365 (2020), 44pp, arXiv: 1702.07957
+[21] J.P.C.Greenlees and V.Stojanoska “Anderson and Gorenstein duality” (Geometric and topological aspects of
+     group representations, Edited by J.Carlson, S.B.Iyengar and J.Pevtsova), Proceedings in Mathematics, (Springer-
+     Verlag), 23pp, arXiv: 1705.02664
+[22] R.Levi “On homological rate of growth and the homotopy type of ΩBG∧      p ” Math. Z. 226 (1997) 429-444
+
+
+  Mathematics Institute, Zeeman Building, Coventry CV4, 7AL, UK
+  Email address: john.greenlees@warwick.ac.uk
+
+
+                                                         22
+

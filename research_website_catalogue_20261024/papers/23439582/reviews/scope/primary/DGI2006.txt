@@ -1,0 +1,2189 @@
+                                Advances in Mathematics 200 (2006) 357 – 402
+                                                                                                     www.elsevier.com/locate/aim
+
+
+
+
+                          Duality in algebra and topology
+                        W.G. Dwyera , J.P.C. Greenleesb , S. Iyengarc
+           a Department of Mathematics, University of Notre Dame, Notre Dame, IN 46556, USA
+                  b Department of Pure Mathematics, Hicks Building, Shefﬁeld S3 7RH, UK
+               c Department of Mathematics, University of Nebraska, Lincoln, NE 68588, USA
+
+                                Received 14 January 2004; accepted 8 November 2005
+                                              Communicated by D.J. Benson
+                                            Available online 28 December 2005
+                 Dedicated to Clarence W. Wilkerson, on the occasion of his sixtieth birthday
+
+
+
+
+Abstract
+   We apply ideas from commutative algebra, and Morita theory to algebraic topology using
+ring spectra. This allows us to prove new duality results in algebra and topology, and to
+view (1) Poincaré duality for manifolds, (2) Gorenstein duality for commutative rings, (3)
+Benson–Carlson duality for cohomology rings of ﬁnite groups, (4) Poincaré duality for groups
+and (5) Gross–Hopkins duality in chromatic stable homotopy theory as examples of a single
+phenomenon.
+© 2005 Elsevier Inc. All rights reserved.
+
+MSC: 55P43; 57N65; 57P10; 13H10; 13D45; 20J06; 55R35; 55R40; 55S99; 16E30; 18E30; 16D90
+
+Keywords: Duality; Poincaré duality; Gorenstein; Benson–Carlson duality; Local cohomology; Ring
+spectra; S-algebras; Cellular; Small; Proxy-small; Matlis duality; Matlis lifts; Brown–Comenetz duality;
+Morita theory; Derived category
+
+
+
+
+Contents
+
+1. Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 358
+2. Spectra, S-algebras, and commutative S-algebras . . . . . . . . . . . . . . . . . . . . . . . . . . 363
+
+    E-mail addresses: dwyer.1@nd.edu (W. Dwyer), j.greenlees@shefﬁeld.ac.uk (J. Greenlees),
+iyengar@math.unl.edu (S. Iyengar).
+
+0001-8708/$ - see front matter © 2005 Elsevier Inc. All rights reserved.
+doi:10.1016/j.aim.2005.11.004
+358                      W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+3. Some basic constructions with modules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 368
+4. Smallness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 374
+5. Examples of smallness . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 380
+6. Matlis lifts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 383
+7. Examples of Matlis lifting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 387
+8. Gorenstein S-algebras . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 390
+9. A local cohomology theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 394
+10. Gorenstein examples . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 397
+References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 400
+
+
+1. Introduction
+
+   In this paper we take some classical ideas from commutative algebra, mostly ideas
+involving duality, and apply them in algebraic topology. To accomplish this we interpret
+properties of ordinary commutative rings in such a way that they can be extended to the
+more general rings that come up in homotopy theory. Amongst the rings we work with
+are the differential graded ring of cochains on a space X, the differential graded ring
+of chains on the loop space X, and various ring spectra, e.g., the Spanier–Whitehead
+duals of ﬁnite spectra or chromatic localizations of the sphere spectrum.
+   Maybe the most important contribution of this paper is the conceptual framework,
+which allows us to view all of the following dualities:
+• Poincaré duality for manifolds;
+• Gorenstein duality for commutative rings;
+• Benson–Carlson duality for cohomology rings of ﬁnite groups;
+• Poincaré duality for groups;
+• Gross–Hopkins duality in chromatic stable homotopy theory;
+as examples of a single phenomenon. Beyond setting up this framework, though, we
+prove some new results, both in algebra and topology, and give new proofs of a number
+of old results. Some of the rings we look at, such as C∗ X, are not commutative in any
+sense, and so implicitly we extend the methods of commutative algebra to certain non-
+commutative settings. We give a new formula for the dualizing module of a Gorenstein
+ring (Section 7.1); this formula involves differential graded algebras (or ring spectra)
+in an essential way and is one instance of a general construction that in another setting
+gives the Brown–Comenetz dual of the sphere spectrum (Section 7.3). We also prove
+the local cohomology theorem for p-compact groups and reprove it for compact Lie
+groups with orientable adjoint representation (Section 10.2). The previous proof for
+compact Lie groups [6] uses equivariant topology, but ours does not.
+
+1.1. Description of results. The objects we work with are fairly general; brieﬂy, we
+allow rings, differential graded algebras (DGAs), or ring spectra; these are all covered
+under the general designation S-algebra (see Section 1.5). We usually work in a derived
+category or in a homotopy category of module spectra, to the extent that even if R is
+a ring, by a module over R we mean a chain complex of ordinary R-modules. Most
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402       359
+
+
+of the time we start with a homomorphism R → k of S-algebras and let E denote
+the endomorphism S-algebra EndR (k). There are three main parts to the paper, which
+deal with three different but related types of structures: smallness, duality, and the
+Gorenstein condition.
+
+   Smallness. There are several different kinds of smallness which the homomorphism
+R → k might enjoy (Deﬁnition 4.14); the weakest and most ﬂexible one is called
+proxy-smallness. Any surjection from a commutative Noetherian ring to a regular ring is
+proxy-small (Section 5.1). One property of a proxy-small homomorphism is particularly
+interesting to us. Given an R-module M, there is an associated module Cellk (M),
+which is the closest R-module approximation to M which can be cobbled together
+from shifted copies of k by using sums and exact triangles. The notation Cellk (M)
+comes from topology [10], but if R is a commutative ring and k = R/I for a ﬁnitely
+generated ideal I , then ∗ Cellk (M) is just the local cohomology HI−∗ (M) of M at I
+[13, §6]. It turns out that if R → k is proxy-small, there is a canonical equivalence
+(Theorem 4.10)
+
+(1.2)                         Cellk M ∼ HomR (k, M) ⊗E k.
+
+  Duality. Given R → k, we look for a notion of “Pontriagin duality” over R which
+extends the notion of ordinary duality over k; more speciﬁcally, we look for an R-
+module I such that Cellk (I) ∼ I and such that for any k-module X, there is a natural
+weak equivalence
+
+(1.3)                         HomR (X, I) ∼ Homk (X, k).
+
+The associated Pontriagin duality (or Matlis duality) for R-modules sends M to HomR
+(M, I). If R → k is Z → Fp , there is only one such I, namely Z/p ∞ (= Z[1/p]/Z),
+and HomZ (–, Z/p∞ ) is ordinary p-local Pontriagin duality for abelian groups. Guided
+by a combination of (1.2) and (1.3), we ﬁnd that in many circumstances, and in
+particular if R → k is proxy-small, such dualizing modules I are determined by right
+E-module structures on k; this structure is a new bit of information, since in its state
+of nature E acts on k from the left. Given a suitable right action, the dualizing module
+I is given by the formula
+
+(1.4)                                   I ∼ k ⊗E k,
+
+which mixes the exceptional right action of E on k with the canonical left action.
+This is a formula which in one setting constructs the injective hull of the residue class
+ﬁeld of a local ring (Section 7.1), and in another gives the p-primary component of
+the Brown–Comenetz dual of the sphere spectrum (Section 7.3). There are also other
+examples (§7). We call an I which is of the form described in (1.4) a Matlis lift of k.
+  The Gorenstein condition. The homomorphism R → k is said to be Gorenstein if,
+up to a shift, Cellk (R) is a Matlis lift of k. This amounts to requiring that HomR (k, R)
+360             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+be equivalent to a shifted module a k, and that the right action of E on k provided
+by this equivalence act as in (1.4) to give a dualizing module I. There are several
+consequences of the Gorenstein condition. In the commutative ring case with k = R/I ,
+the equivalences
+
+                  I = k ⊗E k = −a HomR (k, R) ⊗E k ∼ −a Cellk R
+
+give a connection between the dualizing module I and the local cohomology object
+RI (R) = Cellk R. (Another notation for RI (R) might be HI• (R), since i RI (R)
+is the local cohomology group HI−i (R).) In this paper we head in a slightly different
+direction. Suppose that R is an augmented k-algebra and R → k is the augmenta-
+tion; in this case it is possible to compare the two right E-modules HomR (k, R) and
+HomR (k, Homk (R, k)). Given that R → k is Gorenstein, the ﬁrst is abstractly equiva-
+lent to a k; the second, by an adjointness argument, is always equivalent to k. If these
+two objects are the same as E-modules after the appropriate shift, we obtain a formula
+
+                              a Cellk Homk (R, k) ∼ Cellk R,
+
+relating duality on the left to local cohomology on the right. In many circumstances
+Cellk Homk (R, k) is equivalent to Homk (R, k) itself, and in these cases the above
+formula becomes
+
+                                 a Homk (R, k) ∼ Cellk R.
+
+This leads to spectral sequences relating the local cohomology of a ring to some kind of
+k-dual of the ring, for instance, if X is a suitable space, relating the local cohomology of
+H ∗ (X; k) to H∗ (X; k). We use this approach to reprove the local cohomology theorem
+for compact Lie groups and prove it for p-compact groups.
+   We intend to treat the special case of chromatic stable homotopy theory in [14]; it
+turns out that Gross–Hopkins duality is a consequence of the fact that the S-algebra
+map LK(n) S → K(n) is Gorenstein. In [15] we use our techniques to study derived
+categories of local rings.
+
+1.5. Notation and terminology. In this paper we use the term S-algebra to mean ring
+spectrum in the sense of [19] or [29]; the symbol S stands for the sphere spectrum. If
+k is a commutative S-algebra, we refer to algebra spectra over k as k-algebras. The
+sphere S is itself a commutative ring spectrum, and, as the terminology “S-algebra”
+suggests, any ring spectrum is an algebra spectrum over S. There is a brief introduction
+to the machinery of S-algebras in §2; this follows the approach of [29].
+
+  Any ring R gives rise to an S-algebra (whose homotopy is R, concentrated in
+degree 0), and we do not make a distinction in notation between R and this associated
+spectrum. If R is commutative in the usual sense it is also commutative as an S-algebra;
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      361
+
+
+the category of R-algebras (in the way in which we use the term) is then equivalent to
+the more familiar category of DGAs over R. For instance, Z-algebras are essentially
+DGAs; Q-algebras are DGAs over the rationals. See [42] for a detailed treatment of
+the relationship between Z-algebras and DGAs.
+   A module M over an S-algebra R is for us a module spectrum over R; the category
+of these is denoted R Mod. Note that unspeciﬁed modules are left modules. If R is
+a ring, then an R-module in our sense is essentially an unbounded chain complex
+over R. More generally, if R is a Z-algebra, an R-module is essentially the same
+as a differential graded module over the corresponding DGA [42]. (Unbounded chain
+complexes over a ring should be treated homologically as in [44]. Differential graded
+modules over a DGA are treated very similarly; there are implicit discussions of this
+in [43, §3] and [42, §2].) If R is a ring, any ordinary module M over R gives rise
+to an R-module in our sense by the analog of the usual device of treating M as a
+chain complex concentrated in degree 0. We will refer to such an M as a discrete
+module over R, and we will not distinguish in notation between M and its associated
+spectrum.
+   Homotopy/homology. The homotopy groups of an S-algebra R and an R-module
+M are denoted, respectively, ∗ R and ∗ M. The group 0 R is always a ring, and a
+ring is distinguished among S-algebras by the fact that i R 0 for i  = 0. If R is a
+Z-algebra and M is an R-module, the homotopy groups ∗ R and ∗ M amount to the
+homology groups of the corresponding differential graded objects. A homomorphism
+R → S of S-algebras or M → N of modules is an equivalence (weak equivalence,
+quasi-isomorphism) if it induces an isomorphism on ∗ . In this case we write R ∼ S
+or M ∼ N.
+   Hom and tensor. Associated to two R-modules M and N is a spectrum HomR (M, N )
+of homomorphisms; each R-module M also has an endomorphism ring EndR (M). These
+are derived objects; for instance, in forming EndR (M) we always tacitly assume that
+M has been replaced by an equivalent R-module which is coﬁbrant (projective) in the
+appropriate sense. If M and N are, respectively, right and left modules over R, there
+is a derived smash product, which corresponds to tensor product of differential graded
+modules, and which we write M ⊗R N .
+   To ﬁx ideas, suppose that R is a ring, M is a discrete right module over R, and N, K
+are discrete left modules. Then i (M ⊗R N ) Tor R   i (M, N ), while i Hom R (K, N )
+    −i
+ExtR (K, N ). In this situation we sometimes write homR (M, N ) (with a lower-case
+“h”) for the group Ext0R (M, N ) of ordinary R-maps M → N .
+   There are other contexts as above in which we follow the practice of tacitly replacing
+one object by an equivalent one without changing the notation. For instance, suppose
+that R → k is a map of S-algebras, and let E = EndR (k). The right action of k
+on itself commutes with the left action of R, and so produces what we refer to as a
+“homomorphism k op → E”, although in general this homomorphism can be realized as
+a map of S-algebras only after adjusting k up to weak equivalence. The issue is that in
+order to form EndR (k), it is necessary to work with a coﬁbrant (projective) surrogate
+for k as a left R-module, and the right action of k on itself cannot in general be
+extended to an action of k on such a surrogate without tweaking k to some extent. The
+reader might want to consider the example R = Z, k = Fp from [13, §3], where it is
+362             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+clear that the ring Fp cannot map to the DGA representing E, although a DGA weakly
+equivalent to Fp does map to E. In general we silently pass over these adjustments
+and replacements in order to keep the exposition within understandable bounds.
+   Derived category. The derived category D(R) = Ho(R Mod) of an S-algebra R is
+obtained from R Mod by formally inverting the weak equivalences. A map between
+R-modules passes to an isomorphism in D(R) if and only if it is a weak equivalence.
+Sometimes we have to consider a homotopy category Ho(ModR ) involving right R-
+modules; since a right R-module is the same as a left module over the opposite ring
+R op , we write Ho(ModR ) as D(R op ). If R is a ring, D(R) is categorically equivalent
+to the usual derived category of R.
+   Augmentations. Many of the objects we work with are augmented. An augmented
+k-algebra R is a k-algebra together with an augmentation homomorphism R → k which
+splits the k-algebra structure map k → R. A map of augmented k-algebras is a map of
+k-algebras which respects the augmentations. If R is an augmented k-algebra, we will
+by default treat k as an R-module via the homomorphism R → k.
+   Another path. The advantage of using the term S-algebra is that we can refer to rings,
+DGAs, and ring spectra in one breath. The reader can conﬁdently take S = Z, read
+DGA for S-algebra, H∗ for ∗ , and work as in [13] in the algebraic context of [44];
+only some examples will be lost. Note, however, that the loss will include all exam-
+ples involving commutativity in any essential way, unless the commutative S-algebras
+in question are Q-algebras or ordinary commutative rings. This is a consequence of
+the fact that under the correspondence between Z-algebras and DGAs, the notion of
+commutativity for Z-algebras does not carry over to the usual notion of commutativity
+for DGAs, except in characteristic 0 [36, Appendix C, 32], or if the homotopy of the
+Z-algebra is concentrated in degree 0.
+
+1.6. Organization of the paper. Section 2 has a brief expository introduction to spectra
+and S-algebras, and Section 3 describes some elementary properties of S-algebras
+which we use later on. Some readers may wish to skip these sections the ﬁrst time
+through. The three main themes, smallness, duality, and the Gorenstein condition, are
+treated, respectively, in Sections 4, 6, and 8. Section 9 explains how to set up a local
+cohomology spectral sequence for a suitable Gorenstein S-algebra. We spend a lot of
+time dealing with examples; §5 has examples relating to smallness, §7 examples related
+to duality, and §10 examples related to the Gorenstein condition. In particular, Section
+10 contains a proof of the local cohomology theorem for p-compact groups (Section
+10.2) and for compact Lie groups with orientable adjoint representation (Section 10.3);
+following [24,6], for ﬁnite groups this is one version of Benson–Carlson duality [5].
+
+1.7. Relationship to previous work. There is a substantial literature on Gorenstein
+rings. Our deﬁnition of a Gorenstein map R → k of S-algebras extends the deﬁnition
+of Avramov–Foxby [3] (see Proposition 8.4). Félix et al. have considered pretty much
+this same extension in the topological context of rational homotopy theory and DGAs
+[20]; we generalize their work and have beneﬁtted from it. Frankild and Jorgensen
+[21] have also studied an extension of the Gorenstein condition to DGAs, but their
+intentions are quite different from ours.
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402         363
+
+
+2. Spectra, S-algebras, and commutative S-algebras
+
+   In this section we give a brief introduction to the nuts and bolts of spectra, S-algebras,
+and commutative S-algebras; this is purely expository, and so the experts can safely
+move on to §3. In very rough terms, a spectrum is something like an unbounded chain
+complex in which the commutative and associative laws for the addition of elements
+hold only up to coherently speciﬁed homotopies. As will become clear later, a spectrum
+could also reasonably be styled an S-module. There is a well-behaved tensor product
+(AKA smash product) for spectra, and with the help of this it is possible to give simple
+deﬁnitions of S-algebras and commutative S-algebras.
+   Spectra are based in one way or another on homotopy-theoretic objects; the speciﬁc
+homotopy-theoretic objects we pick are pointed simplicial sets [22]. For the rest of this
+section, the word space taken by itself will mean pointed simplicial set. (In the course
+of the paper we often refer to topological spaces, but there are standard constructions
+which make it possible to pass back and forth between topological spaces and simplicial
+sets without losing homotopical information.) To set up the category of spectra we will
+rely on the symmetric spectrum machinery of Hovey et al. [29]. Both simplicial sets
+and symmetric spectra are inherently combinatorial objects, and so from the point of
+view we are taking a spectrum is combinatorial, or even algebraic, in nature.
+
+2.1. Asymmetric spectra. We will start with a simple construction, which long predates
+the notion of symmetric spectrum; for want of a better term we will call the objects
+that come up “asymmetric spectra”. The category of asymmetric spectra is a good
+homotopy theoretic model for the category of spectra, but it lacks a decent tensor
+product; passing to the more complicated category of symmetric spectra will solve this
+problem.
+
+2.2. Deﬁnition. A sequence X of spaces is a collection {Xn }n ⩾ 0 of spaces. The (graded)
+product Xa Y of two such sequences is the sequence Z given by
+                                            
+                                   Zn =            Xi ∧ Y j .
+                                          i+j =n
+
+
+  Here ∧ denotes the smash product of spaces. The superscript a in a signiﬁes
+“asymmetric”; later on we will deﬁne another kind of . In spite of its decoration, the
+operation a gives a symmetric monoidal structure on the category of sequences of
+spaces; the unit is the sequence  with 0 = S 0 and i = ∗ for i > 0 (here S 0 is the
+zero-sphere, i.e., the unit for the smash product operation on the category of spaces).
+The twist isomorphism Xa Y Y a X acts at level n by using the usual isomorphisms
+Xi ∧ Yj → Yj ∧ Xi (i + j = n). Let S 1 denote the simplicial circle, and S n (n ⩾1) the
+smash power S 1 ∧ · · · ∧ S 1 (n times). There is a sequence S with Si = S i , and it is
+easy to produce a pairing map
+
+                                         Sa S → S,
+364             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+which makes S into a monoid with respect to a [29, 2.3.4]. This pairing map is
+constituted from the obvious isomorphisms S i ∧ S j → S i+j .
+
+2.3. Deﬁnition. An asymmetric spectrum is a sequence X of spaces together with a
+left action of S on X, i.e, a map Sa X → X which satisﬁes appropriate associativity
+and unital identities.
+
+2.4. Remark. Since S is the free monoid with respect to a on a copy of S 1 at level 1,
+an asymmetric spectrum amounts to a sequence X of spaces together with structure
+maps S 1 ∧ Xi → Xi+1 . This is exactly a spectrum in the sense of Whitehead [47]
+(although he worked with topological spaces instead of with simplicial sets).
+
+  If X is an asymmetric spectrum, the structure maps S 1 ∧Xi → Xi+1 induce homotopy
+group maps n Xi → n+1 Xi+1 .
+
+2.5. Deﬁnition. The homotopy groups of an asymmetric spectrum X are the groups
+n X = colimi n+i Xi . A map X → Y of asymmetric spectra is a weak equivalence
+(quasi-isomorphism) if it induces isomorphisms i X i Y , i ∈ Z.
+
+   Additivity, associativity, commutativity. There is an elaborate homotopy theory of
+asymmetric spectra based upon this deﬁnition of weak equivalence. On its own, the
+deﬁnition of weak equivalence subtly imposes the additivity, associativity, and com-
+mutativity structures referred to in the introduction to the section. For instance, it
+follows from Deﬁnition 2.5 that any asymmetric spectrum X is weakly equivalent to
+n (S n ∧ X) (where the loop functor n and the smash functor S n ∧—are applied level-
+wise). However, for any space A, n (S n ∧A) (n⩾1) has up to homotopy an associative
+multiplication, and these multiplications enjoy ever richer commutativity properties as
+n increases.
+
+2.6. Relationship to chain complexes. As deﬁned in Deﬁnition 2.5, asymmetric spec-
+tra have both positive and negative dimensional homotopy groups, just as unbounded
+chain complexes have both positive and negative dimensional homology groups. An
+unbounded chain complex C can be converted into an asymmetric spectrum X by set-
+ting Xi = N −1 (ti C), where i shifts the complex upward i times, “t” cuts off the
+negative dimensional components, and N −1 is the Dold–Kan denormalization functor,
+which converts a non-negative chain complex into a simplicial abelian group. Then
+i X Hi C.
+
+2.7. Homotopy category, shifting, triangulated structure, suspension spectra. The
+homotopy category of asymmetric spectra is constructed by formally inverting weak
+equivalences, just as the derived category of a ring is constructed by formally inverting
+quasi-isomorphisms between chain complexes. For any i there is a shift map i deﬁned
+on the category of asymmetric spectra, given by (i X)n = Xn−i ; the formula is to
+be interpreted to mean that if n − i < 0, then (i X)n = ∗. This is parallel to the
+usual shift operation on chain complexes: in particular, k i X = k−i X, and up to
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      365
+
+
+weak equivalence i j = i+j . (The words “up to weak equivalence” are needed here
+because i and j can be negative.) Given a map f : X → Y of asymmetric spectra,
+the ﬁbre F of f is an asymmetric spectrum with Fi given by the homotopy ﬁbre of
+Xi → Yi ; the coﬁbre C is the asymmetric spectrum with Ci given by the mapping
+cone of Xi → Yi . It turns out that F and C are naturally weakly equivalent, and
+that the coﬁbre of Y → C is naturally weakly equivalent to X. This allows the
+homotopy category of asymmetric spectra to be given a triangulated structure, in which
+F → X → Y or X → Y → C are distinguished triangles. These distinguished triangles
+give long exact sequences on homotopy groups.
+
+   Any space gives rise to a suspension spectrum ∞ X, where (∞ X)n = S n ∧ X; in
+some sense this is the free S-module on X. The homotopy groups of ∞ X are the
+stable homotopy groups of X.
+   In spite of these encouraging signs, the category of asymmetric spectra has one
+serious shortcoming: there is no obvious way to deﬁne an internal tensor product on
+the category. Given two asymmetric spectra X, Y , one would like to deﬁne X ⊗ Y to
+be XaS Y . There is a real difﬁculty in making a deﬁnition like this, stemming from the
+fact that S is not a commutative monoid with respect to a . This is exactly the same
+difﬁculty that comes up in trying to form M ⊗R N when M and N are left modules
+over the non-commutative ring R, and the intention is that M ⊗R N be another left
+R-module. The remedy for this is to provide a little extra structure in the underlying
+objects, enough structure so that S becomes a commutative monoid.
+
+2.8. Symmetric spectra. The trick is to build in symmetric group actions, hence the
+name, symmetric spectra.
+
+2.9. Deﬁnition. A symmetric sequence X of spaces is a collection {Xn }n ⩾ 0 of spaces,
+together with, for each n, a left action of the symmetric group n on Xn . The (graded)
+product XY of two such sequences is the sequence Z given by
+                                   
+                           Zn =         (n )+ ∧i ×j Xi ∧ Yj .
+                                  i+j =n
+
+
+  Here (n )+ denotes the union of n with a disjoint basepoint.
+
+2.10. Remark. A symmetric sequence can equally well be thought of as a functor from
+the category of ﬁnite sets and isomorphisms to the category of spaces. From this point
+of view the graded product has the more elegant description
+                                            
+                      (XY )(C) =                      X(A) ∧ Y (B).
+                                      A∪B=C, A∩B=∅
+
+
+  The deﬁnition of  differs from that of a (Deﬁnition 2.2) because of the need to
+have symmetric group actions on the constituents of the result. The product  gives
+366            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+a symmetric monoidal structure on the category of symmetric sequences of spaces;
+the unit for  is again the sequence  mentioned after Deﬁnition 2.2, promoted to a
+symmetric sequence in the only possible way. The twist isomorphism XY Y X is
+composed, in the formulation from Remark 2.10, of the usual isomorphisms
+
+                             X(A) ∧ Y (B)       Y (B) ∧ X(A).
+
+In the formulation of Deﬁnition 2.9, the twist isomorphism combines isomorphisms
+Xi ∧ Yj Yj ∧ Xi with right multiplication on n by an element of the symmetric
+group which conjugates i × j to j × i .
+  The sequence S described above after Deﬁnition 2.2 extends to a symmetric sequence
+in a natural way, where n acts on S 1 ∧ · · · ∧ S 1 by permuting the factors. We will
+denote this symmetric sequence by S, since it will correspond to the sphere spectrum.
+The natural i ×j -equivariant isomorphisms S i ∧S j S i+j combine to give a natural
+map m : SS → S. The key property of this map is the following one.
+
+2.11. Lemma. The map m gives S the structure of a commutative monoid (with respect
+to ) in the category of symmetric sequences of spaces.
+
+2.12. Remark. Commutativity means that m = m, where  : SS → SS is the
+twist isomorphism of the symmetric monoidal structure.
+
+  The basic deﬁnitions are now clear.
+
+2.13. Deﬁnition. A symmetric spectrum X is a symmetric sequence of pointed spaces
+which is a left module over S (i.e., has been provided with a map mX : SX → X
+with appropriate unital and associativity properties).
+
+2.14. Remark. Since S is a commutative monoid, there is no real distinction between
+the notions of left and right modules; if mX : SX → X gives X the structure of a
+left S-module, then mX ·  : XS → X gives X the structure of a right S-module.
+Moreover, in this case mX ·  is a map of left S-modules.
+
+2.15. Deﬁnition. The tensor product (or smash product) of two symmetric spectra X
+and Y is the symmetric spectrum XS Y deﬁned by the coequalizer diagram
+
+                             XSY ⇒ XY → XS Y,
+
+where the two maps on the left are induced by the S-module structures of X and Y .
+
+  From now on we will drop the word “symmetric” and call a symmetric spectrum
+a spectrum. The tensor product XS Y is denoted X ⊗ Y , or, in topological contexts,
+X ∧ Y . The tensor product gives a symmetric monoidal structure on the category of
+spectra; the unit for this structure is S.
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402       367
+
+
+2.16. Deﬁnition. An S-algebra (or ring spectrum) R is a spectrum together with maps
+S → R and R ⊗ R → R with appropriate unital and associativity properties. The
+S-algebra R is commutative if the multiplication mR : R ⊗ R → R is commutative,
+i.e., if mR ·  = mR , where  is the twist automorphism of R ⊗ R.
+
+   We leave it to the reader to deﬁne modules over an S-algebra, tensor products of
+modules, algebras over a commutative S-algebra, etc. Note that S is an S-algebra, that
+every spectrum is a module over S, and that every S-algebra is, in fact, an algebra
+over S. From this point of view S plays the role of the ground ring for the category
+of spectra, just as Z is the ground ring for the category of chain complexes.
+   Mapping spectra. Given two spectra X, Y , it is possible to deﬁne a mapping spectrum
+Hom(X, Y ). If the two spectra are modules over the S-algebra R, there is also a spec-
+trum HomR (X, Y ) of R-module maps; if in addition R is commutative, HomR (X, Y )
+is an R-module spectrum.
+   Homotopy theory and derived constuctions. There is quite a bit of work to be done
+in setting up the homotopy theory of spectra; in particular, it is tricky to deﬁne the
+homotopy groups i X of a spectrum X, or what comes to the same thing, to deﬁne
+weak equivalences (quasi-isomorphisms) between spectra [29, §3]. Familiar issues of a
+homological algebra nature come up: for instance, tensor products or mapping spectra
+do not necessarily preserve weak equivalences unless the objects involved have free-
+ness (coﬁbrancy) or injectivity (ﬁbrancy) properties. These issues are handled in the
+non-additive context of spectra by Quillen’s model category machinery [16,28], which
+essentially allows a great deal of homological algebra to be extended to sufﬁciently
+structured non-additive settings. Invoking this machinery leads to notions of derived
+tensor product and derived mapping spectrum.
+   After the dust has settled, it is possible to prove that the homotopy theory of spectra
+is equivalent to the homotopy theory of asymmetric spectra. There is a shift operation
+as in Section 2.7, as well as a triangulated structure on the homotopy category. This
+homotopy category is obtained as usual from the category of spectra by inverting the
+weak equivalences. Any space X gives rise to a suspension (symmetric) spectrum,
+which we continue to denote ∞ X; as in Section 2.7, (∞ X)n is S n ∧ X, but now the
+symmetric group acts on S n = S 1 ∧ · · · ∧ S 1 by permuting the factors.
+
+2.17. Rings and DGAs vs. S-algebras. The construction of Section 2.6 can be ex-
+tended to convert any ring R into an S-algebra RS and any ordinary module over R
+to a module over RS . More generally, any chain complex over R gives a module over
+RS , and this correspondence provides an equivalence between the derived category of
+R and the homotopy category of modules over RS (this is actually part of a Quillen
+equivalence between two model categories). In this paper we work consistently with
+S-algebras, and when an ordinary ring R comes into play we do not usually distinguish
+in notation between R and RS . Note that i RS is R if i = 0, and 0 otherwise.
+
+  These considerations apply more generally if R is a DGA [42]; there is an associated
+S-algebra RS , and a Quillen equivalence which induces an equivalence between the
+derived category of R (i.e. the category obtained from DG R-modules by inverting the
+368             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+quasi-isomorphisms) and the homotopy category of RS -modules. Note that i RS =
+Hi R.
+   Any ring or DGA is an algebra over Z, and the corresponding S-algebra RS is an
+algebra over ZS . The correspondence R → RS gives a bijection up to equivalence
+between DGAs and ZS -algebras, or between rings and ZS -algebras whose homotopy
+is concentrated in degree 0. (Actually, any S-algebra whose homotopy is concentrated
+in degree 0 is canonically a ZS -algebra, and so amounts to an ordinary ring.)
+   The situation with commutativity is more complicated; commutative ZS -algebras
+correspond to E∞ DGAs (these are DGAs with a multiplication which is homotopy
+commutative up to explicit higher homotopies which are parametrized by the cells of
+an E∞ operad.) The prime example of such an E∞ algebra is the integral cochain
+algebra on a space X [36, Appendix C] (since all of our DGAs have differential which
+decreases dimension by 1, the cochain algebra is treated as a DGA by placing the
+i-dimensional cochains in degree−i). From a homotopical point of view, C ∗ (X; Z) is
+HomS (∞ X+ , ZS ), where X+ is X with a disjoint basepoint adjoined. The commu-
+tative S-algebra structure is derived from the multiplication on ZS and the diagonal
+map on X.
+   To repeat, commutative ZS -algebras do not correspond to commutative DGAs. How-
+ever, there is one bright note: commutative ZS -algebras with homotopy concentrated
+in degree 0 do correspond bijectively up to equivalence to commutative rings.
+   Terminological caveat. In the literature, S-algebras are sometimes styled A∞ ring
+spectra (or structured ring spectra) and commutative S-algebras E∞ ring spectra. The
+terms ring spectrum and commutative ring spectrum are occasionally used even today
+for a much weaker notion in which various diagrams involving the multiplication map
+are only required to commute up to homotopy.
+
+
+
+3. Some basic constructions with modules
+
+  This section looks into some constructions with S-algebras and modules which
+we refer to in the rest of the paper. We ﬁrst describe some Postnikov constructions
+which allow modules to be ﬁltered in such a way that the successive (co)ﬁbres are
+“Eilenberg–MacLane objects”, in the sense that they have non-vanishing homotopy in
+only a single dimension (Propositions 3.2 and 3.3). Next, we show that in many cases
+these Eilenberg–MacLane objects are determined by the homotopy group which appears
+(Proposition 3.9), although there are surprises (Remark 3.11). We end by formulating
+“directionality” properties for modules (Section 3.12), and studying ﬁniteness conditions
+(Section 3.15).
+   First, some terminology. An S-algebra R is connective if i R = 0 for i < 0 and
+coconnective if i R = 0 for i > 0. An R-module M is bounded below if i M = 0 for
+i>0, and bounded above if i M = 0 for i?0.
+
+3.1. Postnikov constructions. There are subtle differences between the connective and
+coconnective cases.
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402     369
+
+
+3.2. Proposition. Suppose that R is connective, that M is an R-module, and that n
+is an integer. Then there is a natural R-module Pn M with i (Pn M) 0 for i > n,
+together with a natural map M → Pn M inducing isomorphisms on i for i ⩽n.
+
+3.3. Proposition. Suppose that R is coconnective with 0 R a ﬁeld, that M is an R-
+module, and that n is an integer. Then there is an R-module Qn M with i (Qn M) = 0
+for i < n, together with a map M → Qn M inducing isomorphisms on i for i ⩾n.
+
+3.4. Remark. In the above situations there are maps Pn M → Pn−1 M or Qn M →
+Qn+1 M inducing isomorphisms on all appropriate non-zero homotopy groups. In the
+ﬁrst case M ∼ holimn Pn M, while in the second M ∼ holimn Qn M. The ﬁbre of the
+map Pn M → Pn−1 M or Qn M → Qn+1 M is a module with only one non-vanishing
+homotopy group.
+
+3.5. Remark. The construction of Qn M cannot be made functorial in any reason-
+able sense. Consider the DGA E of [13, § 3]; E is coconnective and 0 E Fp . Then
+0 HomE (E, E) 0 E Fp , while 0 HomE (Q0 E, Q0 E) = 0 HomE (Fp , Fp ) ∼ Zp . We
+are using topological notation: Zp is the ring of p-adic integers. Since there is no
+additive map Fp → Zp , there is no way to form Q0 E functorially from E.
+
+3.6. Remark. We have used the notion of “holim” above, and later on we will use
+“hocolim”. If M0 → M1 → ·    · · is an inductive
+                                                 system of spectra, then hocolimn Mn is
+the ﬁbre of 1 − , where  : Mn → Mn is the shift map. There are isomorphisms
+i hocolimn Mn colimn i Mn . Dually, if · · · → N1 → N0 is an      inversesystem of
+spectra, holimn Nn is deﬁned to be the ﬁbre of 1 − , where  : Nn → Nn is the
+shift map. In this case there are short exact sequences
+
+                 0 → lim1 i+1 Nn → i holimn Nn → lim i Nn → 0.
+                         n                                    n
+
+Homotopy colimits and limits are deﬁned for arbitrary small diagrams of spectra [27,
+18.1], but we will not need them in this generality.
+
+  For the proofs we need to make attaching constructions.
+
+3.7. Deﬁnition. Suppose that R is an S-algebra and that X and Y are R-modules.
+Then Y is obtained from X by attaching an R-module A if there is a coﬁbration
+sequence A → X → Y . If {A } is a collection of R-modules, then Y is obtained from
+X by attaching copies of the A if there is a coﬁbration sequence U → X → Y in
+which U is a coproduct of elements from {A }. Even more generally, Y is obtained
+from X by iteratively attaching copies of {A } if Y is the colimit of a directed system
+Y0 → Y1 → · · ·, such that X0 = X and Xn+1 is obtained from Xn by attaching copies
+of the A .
+
+Proof of Proposition 3.2. Form Pn M by iteratively attaching copies of i R, i > n to
+M (Deﬁnition 3.7) to kill off the homotopy of M above dimension n. More speciﬁcally,
+370            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+for each element x ∈ ix M with ix > n, construct a map ix R →M which takes the
+unit in 0 R to x. Let C(M) be the coﬁbre of the resulting map x ix R → M, and
+observe that the map M → C(M) induces isomorphisms on i for i ⩽n and is zero
+on i for i > n. Repeat the process, and let Pn M = hocolimk C k (M), where C k (M) =
+C(C k−1 M). The construction can be made functorial by doing the attachments over all
+maps with domain i R, i > n, and not bothering to choose representative maps from
+each homotopy class. 
+
+Proof of Proposition 3.3. Given an R-module X and an integer m, choose a basis for
+m X over 0 R, and let Vm X be a sum of copies of m R, one for each basis element.
+There is a map Vm X   → X which induces an isomorphism on m . Let C(M) be the
+coﬁbre of the map m<n Vm X → X, and observe that the map M → C(M) induces
+an isomorphism on i for i ⩾n, and is zero on i for i < n. Repeat the process, and
+let Qn M = hocolimk C k (M).
+   It is the fact that 0 R is a ﬁeld which guarantees that the attachment producing
+C(M) can be done without introducing new homotopy in dimensions ⩾n. However,
+the attachment must be done minimally, and it is this requirement that prevents the
+construction from being functorial. 
+
+
+3.8. Uniqueness of module structures. We ﬁrst aim for the following elementary
+uniqueness result.
+
+3.9. Proposition. Suppose that R is connective or that R is coconnective with 0 R a
+ﬁeld, and that M and N are R-modules with non-vanishing homotopy only in a single
+dimension n. Then M and N are equivalent as R-modules if and only if n M and
+n N are isomorphic over 0 R.
+
+3.10. Remark. It follows easily from the proof below that if R is as in Proposition
+3.9, A is a discrete module over 0 R, and n is an integer, then there exists an R-
+module K(A, n) with n K(A, n) A (over 0 R) and i K(A, n) 0 for i  = n. If R
+is connective the construction of K(A, n) can be made functorially in A, otherwise in
+general not. If A and B are two discrete 0 R-modules, the natural map
+                    0 HomR (K(A, n), K(B, n)) → hom0 R (A, B)
+
+is an isomorphism if R is connective but only a surjection in general if R is cocon-
+nective and 0 R is a ﬁeld.
+
+
+3.11. Remark. A startling cautionary note is struck by the fact that if R is cocon-
+nective and 0 R is not a ﬁeld, the conclusion of Proposition 3.9 is not necessarily
+true. We sketch an example of an S-algebra R and two R-modules M and N with
+homotopy concentrated in degree 0, such that 0 M 0 N as modules over 0 R, but
+M is not equivalent to N as an R-module. Let S be the ring Z[t]; make Z into a
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      371
+
+
+discrete S-module by letting t act as multiplication by zero, and Z/p ∞ into a dis-
+crete S-module by letting t act by multiplication by p. Let Fp [t]/t ∞ be the discrete
+S-module Fp [t, t −1 ]/Fp [t]. We let R = EndS (Z), M = HomS (Z, Z/p∞ ), and N =
+HomS (Z, Fp [t, t −1 ]/Fp [t]). Then ∗ R = Ext−∗
+                                               S (Z, Z) is an exterior algebra over Z on
+                                           −∗
+a generator of degree −1; ∗ M = Ext S (Z, Z/p∞ ) is a copy of Z/p in degree 0,
+and ∗ N is isomorphic to ∗ M. Both M and N are right R-modules, but they are not
+equivalent as right R-modules, since for instance by [13, 2.1] (cf. Theorem 4.9) there
+are equivalences
+
+                   M ⊗R Z ∼ Z/p∞           and   N ⊗R Z ∼ Fp [t]/t ∞ .
+
+Proof of Proposition 3.9. One way to prove this is to construct a suitable spectral
+sequence converging to ∗ HomR (M, N ); under the connectivity assumptions on R,
+hom0 R (n M, n N ) will appear in one corner of the E2 -page and subsequently remain
+undisturbed for positional reasons. This implies that any map n M → n N of 0 R-
+modules, in particular any isomorphism, can be realized by an R-map M → N . We
+will take a more elementary approach. Assume without loss of generality that n = 0
+and suppose that there are isomorphisms 0 M 0 N A over 0 R. First we treat the
+case in which R is connective. Find a free presentation
+
+                                   1 → 0 → A → 0
+
+of A over 0 R and construct a map F1 → F0 of R-modules such that each Fi is a sum
+of copies of R, and such that 0 F1 → 0 F0 is 1 → 0 . Let C be the coﬁbre of F1 →
+F0 . By inspection 0 C A and there are isomorphisms 0 HomR (C, M) hom0 R (A, A)
+and 0 HomR (C, N ) hom0 R (A, A). Choose maps C → M and C → N which induce
+isomorphisms on 0 , and apply the functor P0 (Proposition 3.2) to conclude M ∼ N .
+Now suppose that R is coconnective, and that 0 R is a ﬁeld. Write A ⊕ 0 R over
+0 R, let F = ⊕ R, and construct maps F → M and F → N inducing isomor-
+phisms on 0 . Consider Q0 F (Proposition 3.3). Since Q0 F is obtained from F by
+attaching copies of i R, i < 0, there are surjections (not necessarily isomorphisms)
+0 HomR (Q0 F, M) hom0 R (A, A) and 0 HomR (Q0 F, N ) hom0 R (A, A). Clearly,
+then, there are equivalences Q0 F → M and Q0 F → N . 
+
+3.12. Upward and downward (ﬁnite) type. Suppose that M is an R-module. We say
+that M is of upward type if there is some integer n such that up to equivalence M
+can be built by starting with the zero module and iteratively attaching copies of i R,
+i ⩾n; M is of upward ﬁnite type if the construction can be done in such a way that
+for any single i only a ﬁnite number of copies of i R are employed. Similarly, M
+is of downward type if there is some integer n such that M can be built by starting
+with the zero module and iteratively attaching copies of i R, i ⩽n; M is of downward
+ﬁnite type if the construction can be done in such a way that for any single i only a
+ﬁnite number of copies of i R are employed.
+372            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+  We look for conditions under which an R-module has upward or downward (ﬁnite)
+type.
+
+3.13. Proposition. Suppose that R is a connective S-algebra, and that M is a module
+over R which is bounded below. Then M is of upward type. If in addition 0 R is
+Noetherian and the groups i R and i M (i ∈ Z) are individually ﬁnitely generated
+over 0 R, then M is of upward ﬁnite type.
+
+Proof. Suppose for deﬁniteness that i M = 0 for i < 0. We inductively construct maps
+Xn → M such that i Xn → i M is an isomorphism for i < n and an epimorphism
+for i = n, and such that Xn is constructed from 0 by attaching copies of i R for
+0 ⩽i ⩽n. Let X−1 = 0. Given Xn → M, construct a surjection
+
+                             
+                                   0 R ker(n Xn → n M)
+                               
+
+                                                      
+of modules over 0 R, realize this surjection by a map  n R → Xn , and let Xn be
+                                                                 
+the coﬁbre of this map. The map Xn → M extends     to a map Xn → M which is an
+isomorphism on i for i ⩽n. Choose a surjection  0 R → n+1 M of 0 R-modules,
+                                                                     
+realize this by a map Y =  n+1 R → M, and let Xn+1 = Xn              Y . The map
+Xn → M then extends to a map Xn+1 → M with the desired properties. A homotopy
+group calculation gives that hocolimn Xn ∼ M, and so it is clear that M is of upward
+type over R. Under the stated ﬁniteness assumptions, it is easy to prove inductively
+that the homotopy groups of Xn are ﬁnitely generated over 0 R, and consequently that
+the above coproducts of suspensions of R can be chosen to be ﬁnite. 
+
+3.14. Proposition. Suppose that R is a coconnective S-algebra such that 0 R is a
+ﬁeld, and that M is an R-module which is bounded above. Then M is of downward
+type. If in addition −1 R = 0 and the groups i R and i M (i ∈ Z) are individually
+ﬁnitely generated over 0 R, then M is of downward ﬁnite type.
+
+Proof. Given an R-module X, let Vm X be as in Proof of Proposition 3.3 and let Wm X
+be the coﬁbre of Vm X → X. Now suppose that M is nontrivial and bounded above,
+let n be the greatest integer such that n M  = 0, and let Wn M be the coﬁbre of the
+map Vn M → M. Iteration gives a sequence of maps M → Wn M → Wn2 M → · · ·,
+and we let Wn∞ M = hocolimk Wnk M. Then n Wn∞ M = colimk n Wnk M = 0. Deﬁne
+modules Ui inductively by U0 = M, Ui+1 = Wn−i      ∞ U . There are maps U → U
+                                                        i                    i     i+1
+and it is clear that hocolimUi ∼ 0. Let Fi be the homotopy ﬁbre of M → Ui . Then
+hocolimFi is equivalent to M, and Fi+1 is obtained from Fi by repeatedly attaching
+copies of n−i−1 R. This shows that M is of downward type. If −1 R = 0, then
+n−i Wn−i Ui 0, so that Wn−i ∞ U ∼ W
+                                 i      n−i Ui . Under the stated ﬁniteness hypotheses,
+one sees by an inductive argument that the groups j Ui , j ∈ Z, are ﬁnite dimensional
+over k, and so Fi+1 is obtained from Fi by attaching a ﬁnite number of copies of
+n−i−1 R. This shows that M is of downward ﬁnite type. 
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402       373
+
+
+3.15. (Finitely) built. A subcategory of R Mod is thick if it is closed under equivalences,
+triangles, and retracts; here closure under triangles means that given any distinguished
+triangle (i.e. coﬁbration sequence) with two of its terms in the category, the third is
+in the category as well. The subcategory is localizing if in addition it is closed under
+arbitrary coproducts (or equivalently, under arbitrary homotopy colimits). If A and B
+are R-modules, we say that A is ﬁnitely built from B if A is in the smallest thick
+subcategory of R Mod which contains B; A is built from B if it is contained in the
+smallest localizing subcategory of R Mod which contains B.
+
+   Given an augmented k-algebra R, we look at the question of when an R-module M
+is (ﬁnitely) built from R itself or from k. We have already touched on related issues. It
+is in fact not hard to see that any R-module is built from R; Propositions 3.13 and 3.14
+amount to statements that sometimes this building can be done in a controlled way.
+
+3.16. Proposition. Suppose that k is a ﬁeld, that R is an augmented k-algebra, and
+that M is an R-module. Assume either that R is connective and the kernel of the
+augmentation 0 R → k is a nilpotent ideal, or that R is coconnective and 0 R k.
+Then an R-module M is ﬁnitely built from k over R if and only if ∗ M is ﬁnite
+dimensional over k.
+
+3.17. Remark. A similar argument shows that if R is coconnective and 0 R k, then
+any R-module M which is bounded below is built from k over R. It is only necessary
+to note that the ﬁbre Fn of M → Qn M is built from k (it has only a ﬁnite number of
+non-trivial homotopy groups) and that M ∼ hocolimFn . Along the same lines, if R is
+connective and 0 R is as in Proposition 3.16, then any R-module M which is bounded
+above is built from k over R.
+
+Proof of Proposition 3.16. It is clear that if M is ﬁnitely built from k then ∗ M is
+ﬁnite dimensional. Suppose then that ∗ M is ﬁnite-dimensional, so that in particular
+i M vanishes for all but a ﬁnite number of i. By using the Postnikov constructions
+P∗ (Proposition 3.2) or Q∗ (Proposition 3.3), we can ﬁnd a ﬁnite ﬁltration of M such
+that the successive coﬁbres are of the form K(n M, n) (Remark 3.10). It is enough
+to show that if A is a discrete module over 0 R which is ﬁnite-dimensional over k,
+then K(A, n) is ﬁnitely built from k over R. But this follows from Remark 3.10 and
+that fact that under the given assumptions, A has a ﬁnite ﬁltration by 0 R-submodules
+such that the successive quotients are isomorphic to k. 
+
+  We need one ﬁnal result, in which k and R play reciprocal roles. In the following
+proposition, there is a certain arbitrariness to the choice of which S-algebra is named E
+and which is named R; we have picked the notation so that the formulation is parallel
+to Proposition 3.14.
+
+3.18. Proposition. Suppose that k is a ﬁeld, and that E is a connective augmented
+k-algebra such that the kernel of the augmentation 0 E → k is a nilpotent ideal. Let
+M be an E-module, let N = HomE (M, k), and let R = EndE (k). If M is ﬁnitely built
+from k over E (i.e. ∗ M is ﬁnite-dimensional over k) then N is ﬁnitely built from R
+374            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+over R. If M is bounded below and each i M is ﬁnite-dimensional over k, then N is
+of downward ﬁnite type over R.
+
+3.19. Remark. This proposition will let us derive the conclusion of Proposition 3.14
+in some cases in which −1 R  = 0.
+
+Proof of Proposition 3.18. Suppose that X is some E-module. It is elementary that if
+M is ﬁnitely built from X over E, then HomE (M, k) is ﬁnitely built from HomE (X, k)
+over EndE (k). Taking X = k gives the ﬁrst statement of the proposition.
+   Suppose then that M is bounded below, and that each i M is ﬁnite-dimensional
+over k. Let Mi denote the Postnikov stage Pi M (Proposition 3.2), so that M is equiv-
+alent to holimi Mi , and let Ni = HomE (Mi , k). We claim that N is equivalent to
+hocolimi Ni . This follows from the fact that Mn is obtained from M by attaching
+copies of i E for i > n, and so the natural map Nn → N induces isomorphisms on
+i for i ⩾ − n. The triangle Mn → Mn−1 → K(n M, n + 1) (Remark 3.10) dualizes
+to give a triangle
+
+                      HomE (K(n M, n + 1), k) → Nn−1 → Nn .
+
+Since (as in proof of Proposition 3.16) n M has a ﬁnite ﬁltration by 0 E-submodules
+in which the successive quotients are isomorphic to k, it follows that Nn is obtained
+from Nn−1 by attaching a ﬁnite number of copies of HomE (n+1 k, k) ∼ −(n+1) R.
+Since Mi ∼ 0 for i>0, the proposition follows. 
+
+
+4. Smallness
+
+   In this section we describe the main setting that we work in. We start with a pair
+(R, k), where R is an S-algebra and k is an R-module. Eventually we assume that k
+is an R-module via an S-algebra homomorphism R → k.
+   We begin by discussing cellularity (Section 4.1) and then describing some smallness
+hypotheses under which cellular approximations are given by a simple formula (The-
+orem 4.10). These smallness hypotheses lead to various homotopical formulations of
+smallness for an S-algebra homomorphism R → k (Deﬁnition 4.14). Let E = EndR (k).
+We show that the smallness conditions have a certain symmetry under the interchange
+R ↔ E, at least if R is complete in an appropriate sense (Proposition 4.17), and that
+the smallness conditions also behave well with respect to “short exact sequences” of
+S-algebras (Proposition 4.18). Finally, we point out that in some algebraic situations
+the notion of completeness from Proposition 4.17 amounts to ordinary completeness
+with respect to powers of an ideal, and that in topological situations it amounts to
+convergence of the Eilenberg–Moore spectral sequence (Section 4.22).
+
+4.1. Cellular modules. A map U → V of R-modules is a k-equivalence if the induced
+map HomR (k, U ) → HomR (k, V ) is an equivalence. An R-module M is said to be
+k-cellular or k-torsion ([13, §4, 10]) if any k-equivalence U → V induces an equiv-
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      375
+
+
+alence HomR (M, U ) → HomR (M, V ). A k-equivalence between k-cellular objects is
+necessarily an equivalence.
+
+   It it not hard to see that any R-module which is built from k in the sense of Section
+3.15 is k-cellular, and in fact it turns out that an R-module is k-cellular if and only
+if it is built from k (cf. [27, 5.1.5]). The proof involves using a version of Quillen’s
+small object argument to show that for any R-module M, there exists a k-equivalence
+M  → M in which M  is built from k. If M is k-cellular, this k-equivalence must be
+an equivalence.
+   We let DCell(R, k) denote the full subcategory of the derived category D(R). con-
+taining the k-cellular objects. For any R-module X there is a k-cellular object Cellk (X)
+together with a k-equivalence Cellk (X) → X; such an object is unique up to a canonical
+equivalence and is called the k-cellular approximation to X. If we want to emphasize
+the role of R we write CellR   k (X).
+
+4.2. Remark. If R is a commutative ring and k = R/I for a ﬁnitely generated ideal I ⊂
+R, then an R-module X is k-cellular if and only if each element of ∗ X is annihilated by
+some power of I [13, 6.12]. The chain complex incarnation (Section 1.5) of CellR    k (X)
+is the local cohomology object RI (R) [13, 6.11].
+
+  We are interested in a particular approach to constructing k-cellular approximations,
+and it is convenient to have some terminology to describe it.
+
+4.3. Deﬁnition. Suppose that k is an R-module and that E = EndR (k). An R-module
+M is said to be effectively constructible from k if the natural map
+
+                                 HomR (k, M) ⊗E k → M
+
+is an equivalence.
+
+   Note that HomR (k, M) ⊗E k is always k-cellular over R, because HomR (k, M) is
+E-cellular over E (Section 3.15). The following lemma is easy to deduce from the fact
+that the map Cellk (M) → M is a k-equivalence.
+
+4.4. Lemma. In the situation of Deﬁnition 4.3, the following conditions are equivalent:
+
+(1) HomR (k, M) ⊗E k → M is a k-equivalence.
+(2) HomR (k, M) ⊗E k → M is a k-cellular approximation.
+(3) Cellk (M) is effectively constructible from k.
+
+4.5. Smallness. In the context above of R and k, we will consider three ﬁniteness
+conditions derived from the notion of “being ﬁnitely built” (Section 3.15).
+
+
+4.6. Deﬁnition. The R-module k is small if k is ﬁnitely built from R, and cosmall
+if R is ﬁnitely built from k. Finally, k is proxy-small if there exists an R-module K,
+376             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+such that K is ﬁnitely built from R, K is ﬁnitely built from k, and K builds k. The
+object K is then called a Koszul complex associated to k (cf. Section 5.1).
+
+4.7. Remark. The R-module k is small if and only if HomR (k, –) commutes with
+arbitrary coproducts; if R is a ring this is equivalent to requiring that k be a perfect
+complex, i.e., isomorphic in D(R) to a chain complex of ﬁnite length whose constituents
+are ﬁnitely generated projective R-modules.
+
+4.8. Remark. The condition in Deﬁnition 4.6 that k and K can be built from one
+another implies that an R-module M is built from k if and only if it is built from
+K; in particular, DCell(R, k) = DCell(R, K). If k is either small or cosmall it is also
+proxy-small; in the former case take K = k and in the latter K = R.
+
+   In [15] we explore the relevance of the concept of proxy-smallness to commutative
+rings.
+   One of the main results of [13] is the following; although in [13] it is phrased
+for DGAs, the proof for general S-algebras is the same. If k is an R-module, let
+E = EndR (k), let E be the functor which assigns to an R-module M the right E-
+module HomR (k, M), and let T be the functor which assigns to a right E-module X
+the R-module X ⊗E k.
+
+4.9. Theorem (Dwyer and Greenlees [13, 2.1, 4.3]). If k is a small R-module, then
+the functors E and T above induce adjoint categorical equivalences
+
+                              T : D(E op ) ↔ DCell(R, k) : E.
+
+All k-cellular R-modules are effectively constructible from k.
+
+  There is a partial generalization of this to the proxy-small case.
+
+4.10. Theorem. Suppose that k is a proxy-small R-module with Koszul complex K.
+Let E = EndR (k), J = HomR (k, K), and EK = EndR (K). Then the three categories
+
+                                                                   op
+                         D(Cell(R, k)), D(Cell(E op , J )), D(EK )
+
+are all equivalent to one another. All k-cellular R-modules are effectively constructible
+from k.
+
+4.11. Remark. We leave it to the reader to inspect the proof below and write down
+the functors that induce the various categorical equivalences.
+
+Proof of Theorem 4.10. We will show that J is a small E op -module, and that the
+natural map EK → EndE op (J ) is an equivalence. The ﬁrst statement is then proved by
+                                             op
+applying Theorem 4.9 serially to the pairs (EK , J ) and (R, K) whilst keeping Remark
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402     377
+
+
+4.8 in mind. For the smallness, observe that since K is ﬁnitely built from k as an R-
+module, J = HomR (k, K) is ﬁnitely built from E = HomR (k, k) as a right E-module.
+Next, consider all R-modules X with the property that for any R-module M the natural
+map
+
+(4.12)          HomR (X, M) → HomE op (HomR (k, X), HomR (k, M))
+
+is an equivalence. The class includes X = k by inspection, and hence by triangle
+arguments any X ﬁnitely built from k, in particular X = K.
+   For the second statement, suppose that M is k-cellular. By Remark 4.8, M is also
+K-cellular and hence (Theorem 4.9) effectively constructible from K. In other words,
+the natural map
+
+                              HomR (K, M) ⊗EK K → M
+
+is an equivalence. We wish to analyse the domain of the map. As above (4.12),
+HomR (K, M) is equivalent to HomE op (J, HomR (k, M)), which, because J is small
+as a right E-module, is itself equivalent to HomR (k, M) ⊗E HomE op (J, E). Since E ∼
+HomR (k, k), the second factor of the tensor product is (again as with 4.12) equivalent
+to HomR (K, k). We conclude that the natural map
+
+                    HomR (k, M) ⊗E (HomR (K, k) ⊗EK K) → M
+
+is an equivalence. But the factor HomR (K, k) ⊗EK K is equivalent to k, since by
+Theorem 4.9 the K-cellular module k is effectively constructible from K. Hence M is
+effectively constructible from k. 
+
+4.13. Smallness conditions on an S-algebra homomorphism. Now we identify certain
+S-algebra homomorphisms which are particularly convenient to work with. See Section
+5.1 for the main motivating example.
+
+4.14. Deﬁnition. An S-algebra homomorphism R → k is small if k is small as an
+R-module, cosmall if k is cosmall, and proxy-small if k is proxy-small.
+
+4.15. Remark. As in Remark 4.8, if R → k is either small or cosmall it is also
+proxy-small. These are three very different conditions to put on the map R → k, with
+proxy-smallness being by far the weakest one (see Section 5.1).
+
+   Our notion of smallness is related to the notion of regularity from commutative
+algebra. For instance, a commutative ring R is regular (in the absolute sense) if and
+only if every ﬁnitely generated discrete R-module M is small, i.e., has a ﬁnite length
+resolution by ﬁnitely generated projectives. Suppose that f : R → k is a surjection of
+commutative Noetherian rings. If f is regular as a map of rings it is small as a map
+of S-algebras, but the converse does not hold in general. The point is that for f to
+378             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+be regular in the ring-theoretic sense, certain additional conditions must be satisﬁed by
+the ﬁbres of R → k.
+
+4.16. Relationships between types of smallness. Suppose that k is an R-module and
+that E = EndR (k). The double centralizer of R is the ring R̂ = EndE (k). Left mul-
+tiplication gives a ring homomorphism R → R̂, and the pair (R, k) is said to be
+dc-complete if the homomorphism R → R̂ is an equivalence. We show below (Propo-
+sition 4.20) that if R → k is a surjective map of Noetherian commutative rings with
+kernel I ⊂ R, then, as long as k is a regular ring, (R, k) is dc-complete if and only if
+R is isomorphic to its I -adic completion.
+
+  If R is an augmented k-algebra, then E = EndR (k) is also an augmented k-algebra.
+The augmentation is provided by the natural map EndR (k) → Endk (k) ∼ k induced by
+the k-algebra structure homomorphism k → R.
+
+4.17. Proposition. Suppose that R is an augmented k-algebra, and let E = EndR (k).
+Assume that the pair (R, k) is dc-complete. Then R → k is small if and only if E → k
+is cosmall. Similarly, R → k is proxy-small if and only if E → k is proxy-small.
+
+Proof. If k is ﬁnitely built from R as an R-module, then by applying HomR (–, k)
+to the construction process, we see that E = HomR (k, k) is ﬁnitely built from k =
+HomR (R, k) as an E-module. Conversely, if E is ﬁnitely built from k as an E-module,
+it follows that k = HomE (E, k) is ﬁnitely built from R̂ ∼ HomE (k, k) as an R-module.
+If R ∼ R̂, this implies that k is ﬁnitely built from R.
+   For the rest, it is enough by symmetry to show that if R → k is proxy-small, then
+so is E → k. Suppose then that k is proxy-small over R with Koszul complex K.
+Let L = HomR (K, k). Arguments as above show that L is ﬁnitely built both from
+HomR (R, k) ∼ k and from HomR (k, k) ∼ E as an E-module. This means that L
+will serve as a Koszul complex for k over E, as long as L builds k over E. Let
+EK = EndR (K). By Theorem 4.10, the natural map L ⊗EK K → k is an equivalence;
+it is evidently a map of E-modules. Since EK builds K over EK , L ∼ L ⊗EK EK builds
+k over E. 
+
+  In the following proposition, we think of S → R → Q as a “short exact sequence”
+of commutative S-algebras; often, such a sequence is obtained by applying a cochain
+functor to a ﬁbration sequence of spaces (cf. Section 5.7 or 10.3).
+
+4.18. Proposition. Suppose that S → R and R → k are homomorphisms of commu-
+tative S-algebras, and let Q = R ⊗S k. Note that Q is a commutative S-algebra and
+that there is a natural homomorphism Q → k which extends R → k. Assume that one
+of the following holds:
+(1) S → k is proxy-small and Q → k is cosmall, or
+(2) S → k is small and Q → k is proxy-small.
+Then R → k is proxy-small.
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402       379
+
+
+Proof. Note that there is an S-algebra homomorphism R → Q. In case (1), suppose
+that K is a Koszul complex for k over S. We will show that R ⊗S K is a Koszul
+complex for k over R. Since K is small over S, R ⊗S K is small over R. Since k
+ﬁnitely builds K over S, R ⊗S k = Q ﬁnitely builds R ⊗S K over R. But k ﬁnitely
+builds Q over Q, and hence over R; it follows that k ﬁnitely builds R ⊗S K over R.
+Finally, K builds k over S, and so R ⊗S K builds Q over R; however, Q clearly builds
+k as a Q-module, and so a fortiori builds k over R.
+   In case (2), let K be a Koszul complex for k over Q. We will show that K is also
+a Koszul complex for k over R. Note that S → k is small, so that k is small over S
+and hence Q = R ⊗S k is small over R. But K is ﬁnitely built from Q over Q and
+hence over R; it follows that K is small over R. Since k ﬁnitely builds K over Q, it
+does so over R; for a similar reason K builds k over R. 
+
+4.19. DC-completeness in algebra. Recall that a ring k is said to be regular if every
+ﬁnitely generated discrete module over k has a ﬁnite projective resolution, i.e., if every
+ﬁnitely generated discrete module over k is small over k.
+
+4.20. Proposition. Suppose that R → k is a surjection of commutative Noetherian rings
+with kernel ideal I ⊂ R. Assume that k is a regular ring. Then the double centralizer
+map R → R̂ is can be identiﬁed with the I -adic completion map R → lims R/I s . In
+particular, (R, k) is dc-complete (Section 4.16) if and only if R is I -adically complete.
+
+Proof. Let E = EndR (k), and R̂ = EndE (k), so that there is a natural homomorphism
+R → R̂ which is an equivalence if and only if (R, k) is dc-complete. We will show
+that R̂ is equivalent to R Î = lims R/I s , so that (R, k) is dc-complete if and only if
+R → R Î is an isomorphism.
+  Consider the class of all R-modules X with the property that the natural map
+
+
+(4.21)                        X → HomE (HomR (X, k), k)
+
+
+is an equivalence. The class includes k, and hence all R-modules ﬁnitely built from
+k. Each quotient I s /I s+1 is ﬁnitely generated over k, hence small over k, and hence
+ﬁnitely built from k over R. It follows from an inductive argument that the modules
+R/I s are ﬁnitely built from k over R, and consequently that 4.21 is an equivalence for
+X = R/I s . By a theorem of Grothendieck [26, 2.8], there are isomorphisms
+
+                                                      
+                                                          k, i = 0,
+                          colims Ext iR (R/I s , k)
+                                                          0, i > 0,
+
+
+which (Section 1.5) assemble into an equivalence
+
+
+                     hocolims HomR (R/I s , k) ∼ HomR (R, k) ∼ k.
+380            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+This allows for the calculation
+
+                R̂ ∼ HomE (k, k)∼HomE (hocolims HomR (R/I s , k), k)
+                                   ∼holims HomE (HomR (R/I s , k), k)
+                                   ∼holims R/I s ∼ R Î .
+
+It is easy to check that under this chain of equivalences the map R → R̂ corresponds
+to the completion map R → R Î . 
+
+4.22. DC-completeness in topology. Suppose that X is a connected pointed topological
+space, and that k is a commutative S-algebra. For any space Y , pointed or not, let
+Y+ denote Y with a disjoint basepoint added, and ∞ Y+ the associated suspension
+spectrum. We will consider two k-algebras associated to the pair (X, k): the chain
+algebra R = C∗ (X; k) = k ⊗S ∞ (X)+ and the cochain algebra S = C ∗ (X; k) =
+MapS (∞ X+ , k). Here X is the loop space on X, and R is an S-algebra because
+X can be constructed as a topological or simplicial group; R is essentially the group
+ring k[X]. The multiplication on S is cup product coming from the diagonal map
+on X, and so S is a commutative k-algebra. Both of these objects are augmented, one
+by the map R → k induced by the map X → pt, the other by the map S → k
+induced by the basepoint inclusion pt → X. If k is a ring, then i R Hi (X; k) and
+i S H −i (X; k).
+
+   The Rothenberg–Steenrod construction [41] shows that for any X and k there is an
+equivalence S ∼ EndR (k). We will say that the pair (X, k) is of Eilenberg–Moore type
+if k is a ﬁeld, each homology group Hi (X; k) is ﬁnite-dimensional over k, and either
+(1) X is simply connected, or
+(2) k is of characteristic p and 1 X is a ﬁnite p-group.
+If (X, k) is of Eilenberg–Moore type, then by the Eilenberg–Moore spectral sequence
+construction [11], [18], [36, Appendix C], R ∼ EndS (k) and both of the pairs (R, k)
+and (S, k) are dc-complete (4.16).
+   Keep in mind that if (X, k) is of Eilenberg–Moore type, then the augmentation ideal
+of 0 C∗ (X; k) = k[1 X] is nilpotent (cf. Proposition 3.18).
+
+
+5. Examples of smallness
+
+  In this section we look at some sample cases in which the smallness conditions of
+§4 are or are not satisﬁed.
+
+5.1. Commutative rings. If R is a commutative Noetherian ring and I ⊂ R is an
+ideal such that the quotient R/I = k is a regular ring (Remark 4.15), then R → k
+is proxy-small [13, § 6]; the complex K can be chosen to be the Koszul complex
+associated to any ﬁnite set of generators for I . The construction of the Koszul complex
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      381
+
+
+is sketched below in Proof of Proposition 9.3. The pair (R, k) is dc-complete if and
+only if R is complete and Hausdorff with respect to the I -adic topology (Proposition
+4.20).
+
+  For example, if R is a Noetherian local ring with residue ﬁeld k, then the map
+R → k is proxy-small; this map is small if and only if R is a regular ring (Serre’s
+Theorem) and cosmall if and only if R is artinian.
+
+5.2. The sphere spectrum. Consider the map S → Fp of commutative S-algebras;
+here as usual S is the sphere spectrum and the ring Fp is identiﬁed with the associated
+Eilenberg–MacLane spectrum. This map is not proxy-small. A Koszul complex K for
+S → Fp would be a stable ﬁnite complex with non-trivial mod p homology (because
+K would build Fp ), and only a ﬁnite number of non-trivial homotopy groups, each one
+a ﬁnite p-group (because Fp would ﬁnitely build K). We leave it to the reader to show
+that no such K exists, for instance because of Lin’s theorem [35] that MapS (Fp , S) ∼ 0.
+
+   Let Sp denote the p-completion of the sphere spectrum. The map S → Fp is not
+dc-complete, but Sp → Fp is; this can be interpreted in terms of the convergence of
+the classical mod p Adams spectral sequence.
+  The next two examples refer to the following proposition.
+
+5.3. Proposition. Suppose that X is a pointed connected ﬁnite complex, that k is a
+commutative S-algebra, that R is the augmented k-algebra C∗ (X; k), and that S is
+the augmented k-algebra C ∗ (X; k) = EndR (k). Then k is small as an R-module and
+cosmall as an S-module.
+
+Proof. Let E be the total space of the universal principal bundle over X with ﬁbre
+X, so that E is contractible and M = C∗ (E; k) ∼ k. The action of X on E induces
+an action of R on M which amounts to the augmentation action of R on k. Let Ei be
+the inverse image in E of the i-skeleton of X, and let Mi be the R-module C∗ (Ei ; k).
+Then Mi /Mi−1 is equivalent to a ﬁnite sum ⊕i R indexed by the i-cells of X. Since
+k ∼ M = Mn (where n is the dimension of X), it follows that k is small as an
+R-module. The last statement is immediate, as in Proof of Proposition 3.18. 
+
+5.4. Remark. The argument above also shows that if X is merely of ﬁnite type (i.e.,
+has a ﬁnite number of cells in each dimension), then the augmentation module k is of
+upward ﬁnite type over R = C∗ (X; k).
+
+5.5. Cochains. Suppose that X is a pointed connected topological space, that k is a
+commutative S-algebra, and that R is the augmented k-algebra C ∗ (X; k):
+(1) The map R → k is cosmall if X is a ﬁnite complex (Proposition 5.3).
+(2) If k is a ﬁeld, then R → k is cosmall if and only if H ∗ (X; k) is ﬁnite-dimensional
+    (Proposition 3.16).
+(3) If (X, k) is of Eilenberg–Moore type, then R → k is small if and only if H∗ (X; k)
+    is ﬁnite-dimensional (Propositions 3.16 and 4.17).
+382             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+5.6. Chains. Suppose that X is a pointed connected topological space, that k is a
+commutative S-algebra, and that R is the augmented k-algebra C∗ (X; k):
+(1) The map R → k is small if X is a ﬁnite complex (Proposition 5.3).
+(2) If (X, k) is of Eilenberg–Moore type, then R → k is small if and only if H ∗ (X; k)
+    is ﬁnite-dimensional (Proposition 4.17, Section 5.5).
+(3) If (X, k) is of Eilenberg–Moore type, then R → k is cosmall if and only if
+    H∗ (X; k) is ﬁnite-dimensional (Proposition 3.16).
+The parallels between Sections 5.5 and 5.6 are explained by Proposition 4.17.
+
+5.7. Completed classifying spaces. Suppose that G is a compact Lie group (e.g., a
+ﬁnite group), that k = Fp , and that X is the p-completion of the classifying space BG
+in the sense of Bousﬁeld-Kan [8]. Let
+
+                         R = C ∗ (X; k) and        E = C∗ (X; k).
+
+We will show in the following paragraph that R → k and E → k are both proxy-small,
+and that the pair (X, k) is of Eilenberg–Moore type. There are many G for which
+neither H∗ (X; k) nor H ∗ (X; k) is ﬁnite dimensional [34]; by Sections 5.5 and 5.6,
+in such cases the maps R → k and E → k are neither small nor cosmall. We are
+interested in these examples for the sake of local cohomology theorems (Section 10.3).
+
+   By elementary representation theory there is a faithful embedding  : G → SU (n)
+for some n, where SU (n) is the special unitary group of n × n Hermitian matrices of
+determinant one. Consider the associated ﬁbration sequence
+
+(5.8)                     M = SU (n)/G → BG → BSU(n).
+
+The ﬁbre M is a ﬁnite complex. Recall that R = C ∗ (BG; k); write S = C ∗ (BSU(n); k)
+and Q = C ∗ (M; k). Since BSU(n) is simply connected, the Eilenberg–Moore spectral
+sequence of (5.8) converges and Q ∼ k ⊗S R (cf. [36, 5.2]). The map S → k is small
+by Section 5.5(3) and Q → k is cosmall by Section 5.5(2); it follows from Proposition
+4.18 that R → k is proxy-small. Since 1 BG = 0 G is ﬁnite, BG is Fp -good (i.e.,
+C ∗ (X; k) ∼ C ∗ (BG; k)), and 1 X is a ﬁnite p-group [8, VII.5]. In particular, (X, k)
+is of Eilenberg–Moore type. Since E = C∗ (X; k) is thus equivalent to EndR (k), we
+conclude from Proposition 4.17 that E → k is also proxy-small.
+
+5.9. Group rings. If G is a ﬁnite group and k is a commutative ring, then the augmen-
+tation map k[G] → k is proxy-small. We will prove this by producing a Koszul complex
+K for Z over Z[G]; it is then easy to argue that k ⊗Z K is a Koszul complex for k over
+k[G]. Embed G as above into a unitary group SU (n) and let K = C∗ (SU (n); Z). The
+space SU (n) with the induced left G-action is a compact manifold on which G acts
+smoothly and freely, and so by transformation group theory [30] can be constructed
+from a ﬁnite number of G-cells of the form (G × D i , G × S i−1 ). This implies that K is
+                  W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402     383
+
+
+small over Z[G], since, up to equivalence over Z[G], K can be identiﬁed with the G-
+cellular chains on SU (n). Note that G acts trivially on ∗ K = H∗ (SU (n); Z) (because
+SU (n) is connected) and that, since H∗ (SU (n); Z) is torsion free, each group i K is
+isomorphic over G to a ﬁnite direct sum of copies of the augmentation module Z.
+The Postnikov argument in Proof of Proposition 3.16 thus shows that K is ﬁnitely
+built from Z over Z[G]. Finally, K itself is an S-algebra, the action of Z[G] on K
+is induced by a homomorphism Z[G] → K, and the augmentation Z[G] → Z extends
+to an augmentation K → Z. Since K builds Z over K (see Section 3.15), K certainly
+builds Z over Z[G].
+
+
+6. Matlis lifts
+
+   Suppose that R is a commutative Noetherian local ring, and that R → k is reduction
+modulo the maximal ideal. Let I(k) be the injective hull of k as an R-module. The
+starting point of this section is the isomorphism
+
+(6.1)                          Homk (X, k) ∼ HomR (X, I(k)),
+
+which holds for any k-module X. We think of I(k) as a lift of k to an R-module, not
+the obvious lift obtained by using the homomorphism R → k, but a more mysterious
+construction that allows for (6.1). If we deﬁne the Pontriagin dual of an R-module
+M to be HomR (M, I(k)), then Pontriagin duality is a correspondingly mysterious
+construction for R-modules which extends ordinary k-duality for k-modules.
+  We generalize this in the following way.
+
+6.2. Deﬁnition. Suppose that R → k is a map of S-algebras, and that N is a k-module.
+An R-module I is said to be a Matlis lift of N if the following two conditions hold:
+(1) HomR (k, I) is equivalent to N as a left k-module, and
+(2) I is effectively constructible from k.
+
+6.3. Remark. If I is a Matlis lift of N and X is an arbitrary k-module, then the
+adjunction equivalence
+
+                           HomR (X, I) ∼ Homk (X, HomR (k, I))
+
+implies, by Deﬁnition 6.2(1), that there is an equivalence
+
+(6.4)                           Homk (X, N) ∼ HomR (X, I).
+
+This is the crucial property of a Matlis lift (cf. 6.1). Condition (2) of Deﬁnition 6.2
+tightens things up a bit. There is no real reason not to assume that I is k-cellular, since
+if I satisﬁes Proposition 6.2(1), so does Cellk I. The somewhat stronger assumption
+384             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+that I is effectively constructible from k will allow Matlis lifts to be constructed and
+enumerated (Proposition 6.9). In many situations, the assumption that I is k-cellular
+implies Deﬁnition 6.2(2).
+
+6.5. Remark. If R is a commutative Noetherian local ring, and R → k is reduction
+modulo the maximal ideal, then the injective hull I(k) is a Matlis lift of k (Section
+7.1).
+
+   For the rest of the section we assume that R → k is a map of S-algebras, and that
+N is a k-module. Let E = EndR (k). Observe that the right multiplication action of k
+on itself gives a homomorphism k op → E, or equivalently k → E op , so it makes sense
+to look at right E-actions on N which extend the left k-action.
+
+6.6. Deﬁnition. An E-lift of N is a right E-module structure on N which extends the
+left k-action. An E-lift of N is said to be of Matlis type if the natural map
+
+(6.7)                N ∼ N ⊗E HomR (k, k) → HomR (k, N ⊗E k)
+
+is an equivalence. (Here the action of R on N ⊗E k is obtained from the left action of
+R on k.)
+
+6.8. Remark. More generally, an arbitrary right E-module N is said to be of Matlis
+type if map (6.7) is an equivalence.
+
+  The following proposition gives a classiﬁcation of Matlis lifts.
+
+6.9. Proposition. The correspondences
+
+                           I → HomR (k, I),         N → N ⊗E k
+
+give inverse bijections, up to equivalence, between Matlis lifts I of N and E-lifts of
+N which are of Matlis type.
+
+Proof. If I is a Matlis lift of N , then HomR (k, I) is equivalent to N as a k-module
+(Deﬁnition 6.2), and so the natural right action of E on HomR (k, I) provides an E-lift of
+N. Equivalence (6.7) holds because I is effectively constructible from k; consequently,
+this E-lift is of Matlis type.
+   Conversely, given an E-lift of N which is of Matlis type, let I = N ⊗E k. Equivalence
+(6.7) guarantees that I satisﬁes Deﬁnition 6.2(1), and the same formula leads to the
+conclusion that I is effectively constructible from k. 
+
+  The following observation is useful for recognizing Matlis lifts.
+
+6.10. Proposition. Suppose that R → k is a map of S-algebra, that E = EndR (k),
+and that M is an R-module. Then the right E-module HomR (k, M) is of Matlis type
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      385
+
+
+if and only if the evaluation map
+
+                                HomR (k, M) ⊗E k → M
+
+is a k-cellular approximation, i.e., if and only if Cellk M is effectively constructible
+from k.
+
+Proof. Let N = HomR (k, M). Since N is E op -cellular over E op , N ⊗E k is k-cellular
+over R. This implies that the evaluation map  is a k-cellular approximation if and
+only if it is a k-equivalence. Consider the maps
+                                                               HomR (k,)
+                N ⊗E HomR (k, k) → HomR (k, N ⊗E k) −−−−−−→ N.
+
+It is easy to check that the composite is the obvious equivalence, so the left hand
+map is an equivalence (N is of Matlis type) if and only if the right-hand map is an
+equivalence ( is a k-equivalence). The ﬁnal statement is from Lemma 4.4. 
+
+6.11. Matlis duality. In the situation of Deﬁnition 6.6, let N = k and let I = k ⊗E k be
+a Matlis lift of k. The Pontriagin dual or Matlis dual of an R-module M (with respect
+to I) is deﬁned to be HomR (M, I). By Remark 6.3, Matlis duality is a construction
+for R-modules which extends ordinary k-duality for k-modules. Note, however, that
+in the absence of additional structure (e.g., commutativity of R) it is not clear that
+HomR (M, I) is a right R-module. We will come up with one way to remedy this later
+on (Remark 8.3).
+
+6.12. Existence of Matlis lifts. We give four conditions under which a right E-module
+is of Matlis type (Remark 6.8), and so gives rise to a Matlis lift of the underlying
+k-module. The ﬁrst two conditions are of an algebraic nature; the second two may seem
+technical, but they apply to many ring spectra, chain algebras, and cochain algebras.
+In all of the statements below, R → k is a map of S-algebras, E = EndR (k), and N
+is a right E-module.
+
+6.13. Proposition. If R → k is small, then any N is of Matlis type.
+
+Proof. Calculate
+
+               HomR (k, N ⊗E k) ∼ N ⊗E HomR (k, k) ∼ N ⊗E E ∼ N,
+
+where the ﬁrst weak equivalence comes from the fact that k is small as an R-
+module. 
+
+6.14. Proposition. If R → k is proxy-small, then N is of Matlis type if and only if
+there exists an R-module M such that N is equivalent to HomR (k, M) as a right
+E-module.
+386            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+Proof. If N is of Matlis type, then M = N ⊗E k will do. Given M, the fact that
+HomR (k, M) is of Matlis type follows from Proposition 6.10 and Theorem 4.10 (cf.
+Lemma 4.4). 
+
+6.15. Proposition. Suppose that k and N are bounded above, that k is of upward ﬁnite
+type as an R-module, and that N is of downward type as an E op -module. Then N is
+of Matlis type.
+
+6.16. Proposition. Suppose that k and N are bounded below, that k is of downward
+ﬁnite type as an R-module and that N is of upward type as an E op -module. Then N
+is of Matlis type.
+
+Proof of Proposition 6.15. Note ﬁrst that since k and N are bounded above and N
+is of downward type as an E op -module, N ⊗E k is also bounded above. Consider the
+class of all R-modules X such that the natural map
+
+                      N ⊗E HomR (X, k) → HomR (X, N ⊗E k)
+
+is an equivalence. This certainly includes R, and so by triangle arguments includes
+everything that can be ﬁnitely built from R. We must show that the class contains
+k. Pick an integer B, and suppose that A is another integer. Since k is of upward
+ﬁnite type as an R-module and both k and N ⊗E k are bounded above, there exists an
+R-module X, ﬁnitely built from R, and a map X → k which induces isomorphisms
+
+
+                    i HomR (k, k) −→ i HomR (X, k),
+(6.17)                                                                  i > A,
+             i HomR (k, N ⊗E k) −→ i HomR (X, N ⊗E k).
+
+Now N is of downward type as a right E-module, so if we choose A small enough
+we can guarantee that the map
+
+                  i (N ⊗E HomR (k, k)) → i (N ⊗E HomR (X, k))
+
+is an isomorphism for i > B. By reducing A if necessary (which of course affects the
+choice of X), we can assume A ⩽B. Now consider the commutative diagram
+
+                   N ⊗E HomR (k, k) −−−−→ HomR (k, N ⊗E k)
+                         ⏐                       ⏐
+                         ⏐                       ⏐
+(6.18)                                          
+                  N ⊗E HomR (X, k) −−−−→ HomR (X, N ⊗E k).
+
+The lower arrow is an equivalence, because X is ﬁnitely built from R, and the vertical
+arrows are isomorphisms on i for i > B. Since B is arbitrary, it follows that the
+upper arrow is an equivalence. 
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402         387
+
+
+Proof of Proposition 6.16. This is very similar to the proof above, but with the
+inequalities reversed. Observe that since k and N are bounded below, and N is of
+upward type as an E-module, N ⊗E k is also bounded below. Pick an integer B, and
+let A be another integer. Since k is of downward ﬁnite type as an R-module and both
+k and N ⊗E k are bounded below, there exists an X ﬁnitely built from R such that
+the maps in (6.17) are isomorphisms for i < A. Now N is of upward type as a right
+E-module, so if we choose A large enough we can guarantee that the map
+
+                    i (N ⊗E HomR (k, k)) → i (N ⊗E HomR (X, k))
+
+is an isomorphism for i < B. By making A larger if necessary, we can assume A > B.
+The proof is now completed by using the commutative diagram (6.18). 
+
+
+7. Examples of Matlis lifting
+
+  In this section we look at particular examples of Matlis lifting (§6). In each case
+we start with a morphism R → k of rings, and look for Matlis lifts of k. As usual, E
+denotes EndR (k).
+
+7.1. Local rings. Suppose that R is a commutative Noetherian local ring with maximal
+ideal I and residue ﬁeld R/I = k, and that R → k is the quotient map. Let I = I(k)
+be the injective hull of k (as an R-module). We will show that I is a Matlis lift of k.
+
+   To see this, ﬁrst note that I is k-cellular, or equivalently [13, 6.12], that each element
+of I is annihilated by some power of I . Pick an element x ∈ I; by Krull’s Theorem
+[2, 10.20] the intersection ∩j I j x is trivial. But each submodule I j x of I is either
+trivial itself or contains k ⊂ I [37, p. 281]. The conclusion is that I j x = 0 for j ?0.
+Since HomR (k, I) ∼ k (again, for instance, by [37]) and I is effectively constructible
+from k (Section 5.1, Theorem 4.10), I provides an E-lift of k. Up to equivalence there
+is exactly one E-lift of k (Proposition 3.9), and so in fact I is the only Matlis lift of
+k.
+   For instance, if R → k is Z(p) → Fp , then I ∼ k ⊗E k is Z/p ∞ (cf. [13, § 3]), and
+Matlis duality (Section 6.11) for R-modules is Pontriagin duality for p-local abelian
+groups.
+
+7.2. k-algebras. Suppose that R is an augmented k-algebra, and let M be the R-
+module Homk (R, k). The left R-action on M is induced by the right R-action of R
+on itself. By an adjointness calculation, HomR (k, M) is equivalent to k, and so in this
+way M provides an E-lift of k. If this E-lift is of Matlis type, then the R-module
+k ⊗E k, which by Proposition 6.10 is equivalent to CellR k Hom k (R, k), is a Matlis lift
+of k. There are equivalences
+
+            Homk (k ⊗E k, k) ∼ HomE (k, Homk (k, k)) ∼ HomE (k, k) ∼ R̂,
+388             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+so that if (R, k) is dc-complete, the Matlis lift k ⊗E k is pre-dual over k to R (i.e., the
+k-dual of k ⊗E k is R). Note that this calculation does not depend on assuming that R
+is small in any sense as a k-module; there is an interesting example below in Section
+7.6.
+
+7.3. The sphere spectrum. Let R → k be the unit map S → Fp . (Recall that we
+identify the ring Fp with the corresponding Eilenberg–MacLane S-algebra.) The endo-
+morphism S-algebra E is the Steenrod algebra spectrum, with −i E isomorphic to the
+degree i homogeneous component of the Steenrod algebra. Since k has a unique E-lift
+(Proposition 3.9) and the conditions of Proposition 6.15 are satisﬁed (Propositions 3.13
+and 3.14), k has a unique Matlis lift given by k ⊗E k. Let J be the Brown–Comenetz
+dual of S [9] and Jp its p-primary summand. We argue below that Jp is k-cellular; by
+the basic property of Brown–Comenetz duality, HomR (k, Jp ) ∼ k. By Proposition 6.10
+the evaluation map k ⊗E k → Jp is a k-cellular approximation and hence, because Jp
+is k-cellular, an equivalence. Matlis duality amounts to the p-primary part of Brown–
+Comenetz duality. Arguments parallel to those in Proof of Proposition 6.15 show that
+if X is spectrum which is bounded below and of ﬁnite type then the natural map
+
+                        k ⊗E HomR (X, k) → HomR (X, k ⊗E k)
+
+is an equivalence. Suppose that X∗ is an Adams resolution of the sphere. Taking
+the Brown–Comenetz dual HomR (X∗ , k ⊗E k) gives a spectral sequence which is
+the Fp -dual of the mod p Adams spectral sequence. On the other hand, computing
+∗ HomR (X∗ , k) amounts to taking the cohomology of X∗ and so gives a free resolution
+of k over the Steenrod Algebra; the spectral sequence associated to k ⊗E HomR (X∗ , k)
+is then the Kunneth spectral sequence
+
+                        Tor ∗ ∗ E (∗ k, ∗ k) ⇒ ∗ (k ⊗E k)    ∗ Jp .
+
+It follows that these two spectral sequences are isomorphic.
+
+   To see that Jp is k-cellular, write Jp = hocolimJp (−i), where Jp (−i) is the (−i)-
+connective cover of Jp . Each Jp (−i) has only a ﬁnite number of homotopy groups,
+each of which is a ﬁnite p-primary torsion group, and it follows immediately that Jp
+can be ﬁnitely built from k. Thus Jp , as a homotopy colimit of k-cellular objects, is
+itself k-cellular (cf. Remark 3.17).
+
+7.4. Cochains. Suppose that X is a pointed connected space and k is a ﬁeld such
+that (X, k) is of Eilenberg–Moore type (Section 4.22). Let R = C ∗ (X; k) and E =
+EndR (k) ∼ C∗ (X; k), and suppose that some E-lift of k is given. By Proposition
+3.13, k is of upward ﬁnite type over E op , and hence of downward ﬁnite type over R
+(Proposition 3.18), the conditions of Proposition 6.16 are satisﬁed, and I = k ⊗E k is
+a Matlis lift of k. In fact there is only one E-lift of k; this follows from Proposition
+3.9 and the fact that if k is a ﬁeld of characteristic p and G is a ﬁnite p-group,
+                 W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402         389
+
+
+any homomorphism G → k × is trivial. In these cases the Matlis lift I = k ⊗E k
+is equivalent by the Rothenberg–Steenrod construction to C∗ (X; k) = Homk (R, k).
+Observe in particular that Homk (R, k) is k-cellular as an R-module; this also follows
+from Remark 3.17.
+
+7.5. Chains. Let X be a connected pointed space, k a ﬁeld, and R the chain algebra
+C∗ (X; k), so that E ∼ C ∗ (X; k). By Proposition 3.9 there is only one E-lift of k,
+necessarily given by the augmentation action of E on k. Suppose that k has upward
+ﬁnite type as an R-module, for instance, suppose that the conditions of Proposition
+3.13 hold, or that X has ﬁnite skeleta (Remark 5.4). Then, by Propositions 3.14 and
+6.15, k has a unique Matlis lift, given by k ⊗E k, or alternatively (Section 7.2) by
+Cellk Homk (R, k) ∼ Cellk C ∗ (X; k). We have not assumed that (X, k) is of Eilenberg–
+Moore type, and so the identiﬁcation
+
+                                  k ⊗E k ∼ Cellk C ∗ (X; k)
+
+gives an interpretation of the abutment of the cohomology Eilenberg–Moore spectral
+sequence associated to the path ﬁbration over X; this is in some sense dual to the
+interpretation of the abutment of the corresponding homology spectral as a suitable
+completion of C∗ (X) [12].
+
+7.6. Suspension spectra of loop spaces. Suppose that X is a pointed ﬁnite complex,
+let k = S, and let R be the augmented k-algebra C∗ (X; k). Then E is equivalent to
+C ∗ (X; k), i.e., to the Spanier–Whitehead dual of X (Section 4.22). Since X is ﬁnite, k is
+small as an R-module (Proposition 5.3). It follows from Proposition 6.13 that Matlis lifts
+of k correspond bijectively to E-lifts of k. Note that since the augmentation action of E
+on k factors through E → k, and k is commutative, this augmentation action amounts
+in itself to an E-lift. (It is possible to show that this is the only E-lift of k, but we will
+not do that here.) By inspection, this augmentation E-lift of k is the same as the E-lift
+obtained by letting E act in the natural way on HomR (k, Homk (R, k)) ∼ k as in Section
+7.2. By Proposition 6.10, the corresponding Matlis lift k ⊗E k is Cellk Homk (R, k).
+
+   Suppose in addition that X is 1-connected, and write k ⊗E k as the realization of
+the ordinary simplicial bar construction
+
+                    k ⊗S k ⇐ k ⊗S E ⊗S kk ⊗S E ⊗S E ⊗S k · · · .
+
+The spectrum HomS (k ⊗S k, S) is then the total complex of the corresponding cosim-
+plicial object
+
+                  HomS (k ⊗S k, S) ⇒ HomS (k ⊗S E ⊗S k, S) · · · .
+
+This is the cosimplicial object obtained by applying the unpointed suspension spectrum
+functor to the cobar construction on X, and by a theorem of Bousﬁeld [7] its total
+390            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+complex is the suspension spectrum of X, i.e., R. Equivalently, Bousﬁeld’s theorem
+shows that in this case (R, k) is dc-complete. In this way if X is 1-connected the
+Matlis lift of k is a Spanier–Whitehead pre-dual of R (cf. Section 7.2). This object has
+come up in a different way in work of Kuhn [33].
+
+
+8. Gorenstein S-algebras
+
+  If R is a commutative Noetherian local ring with maximal ideal I and residue ﬁeld
+R/I = k, one says that R is Gorenstein if Ext ∗R (k, R) is concentrated in a single
+degree, and is isomorphic to k there. We give a similar deﬁnition for S-algebras, with
+an extra technical condition added on.
+
+8.1. Deﬁnition. Suppose that R → k is a map of S-algebras, and let E = EndR (k).
+Then R → k is Gorenstein of shift a if the following two conditions hold:
+(1) as a left k-module, HomR (k, R) is equivalent to a k, and
+(2) as a right E-module, HomR (k, R) is of Matlis type (Remark 6.8).
+
+8.2. Remark. Suppose that R → k is Gorenstein of shift a, and give a k the right
+E-module structure from 8.1(1). Then by Proposition 6.10, Cellk (R) is equivalent to
+a k ⊗E k. It follows from Proposition 8.4 and Section 5.1 that if R → k is a map from
+a commutative Noetherian local ring to its residue ﬁeld, then R → k is Gorenstein in
+our sense if and only if R is Gorenstein in the classical sense of commutative algebra.
+
+8.3. Remark. Deﬁnition 8.1 does not exhaust all of the structure in HomR (k, R); in
+fact, the right action of R on itself gives a right R-action on HomR (k, R) which
+commutes with the right E-action (since E acts through k). This implies that if R → k
+is Gorenstein and k is given the right E-action obtained from k ∼ −a HomR (k, R),
+then the Matlis lift I = k ⊗E k of k inherits a right R-action. In this case the Matlis
+dual HomR (M, I) of a left R-module is naturally a right R-module.
+
+   In the proxy-small case it is possible to simplify Deﬁnition 8.1. We record the
+following, which is a consequence of Proposition 6.14.
+
+8.4. Proposition. Suppose that the map R → k of S-algebras is proxy-small. Then
+R → k is Gorenstein of shift a if and only if HomR (k, R) is equivalent to a k as a
+left k-module.
+
+  The rest of the section provides techniques for recognizing Gorenstein homomor-
+phisms R → k.
+
+8.5. Proposition. Suppose that R is an augmented k-algebra, and let E = EndR (k).
+Assume that (R, k) is dc-complete, and that R → k is proxy-small. Then R → k is
+Gorenstein (of shift a) if and only if E → k is Gorenstein (of shift a).
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402     391
+
+
+  See [20, 2.1] for a differential graded version of this.
+
+Proof. Compute
+
+            HomR (k, R)∼HomR (k, HomE (k, k)) ∼ HomR⊗k E (k ⊗k k, k),
+             HomE (k, E)∼HomE (k, HomR (k, k)) ∼ HomE ⊗k R (k ⊗k k, k).
+
+What we are using is the fact that if A and B are left modules over the k-algebras S
+and T , respectively, and C is a left module over S ⊗k T , then there is an equivalence
+
+                  HomS (A, HomT (B, C)) ∼ HomS⊗k T (A ⊗k B, C).
+
+In our case A = B = C = k. This reveals a subtlety: k ⊗k k is certainly equivalent
+to k, but not necessarily in a way which relates the tensor product action of R ⊗k E
+on k ⊗k k to the action of R ⊗k E on k given by E = EndR (k). Nevertheless, it is
+clear that HomR (k, R) is equivalent to a shift of k if and only if HomE (k, E) is. If
+E is Gorenstein, then R is Gorenstein by Proposition 8.4. If R is Gorenstein, E is
+Gorenstein by Propositions 4.17 and 8.4. 
+
+8.6. Proposition. Suppose that S → R is a map of augmented commutative k-algebras
+such that R is small as an S-module. Let Q be the augmented k-algebra k ⊗S R. Then
+there is an equivalence of k-modules
+
+                     HomR (k, R) ∼ HomQ (k, HomS (k, S) ⊗k Q),
+
+where the action of Q on HomS (k, S) ⊗k Q is induced by the usual action of Q on
+itself.
+
+  There is a rational version in [20, 4.3]. The argument below depends on the following
+general lemma, whose proof we leave to the reader.
+
+8.7. Lemma. Suppose that R is a k-algebra, that A is a right R-module, and that B
+and C are left R-modules. Then there are natural equivalences
+
+                     HomR (B, C)∼HomR⊗k R op (R, Homk (B, C)),
+                          A ⊗R B∼R ⊗R⊗k R op (A ⊗k B).
+
+Proof of Proposition 8.6. Since R is commutative, we do not distinguish in notation
+between R and R op . First note that
+
+                      HomR (k, R) ∼ HomR⊗S R (R, HomS (k, R))
+392             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+as in Lemma 8.7. Now observe that R is small over S, so that
+
+(8.8)                      HomS (k, R) ∼ HomS (k, S) ⊗S R.
+
+Under this equivalence, the left action of R on HomS (k, S) ⊗S R is induced by the
+left action of R on itself, and the right action of R by the left action of R on k. Now
+since S is commutative, the right and left actions of S on HomS (k, S) are the same. In
+particular, the right action (which is used in forming HomS (k, S) ⊗S R) factors through
+the homomorphism S → k, and we obtain an equivalence
+
+(8.9)    HomS (k, S) ⊗S R ∼ HomS (k, S) ⊗k (k ⊗S R) ∼ HomS (k, S) ⊗k Q.
+
+Let M = HomS (k, S) ⊗k Q. Under 8.8 and 8.9 the left action of R on M is induced
+by the left action of R on Q, while the right action of R is induced by the left action
+of R on k. In particular, the action of R ⊗S R on M factors through an action of
+k ⊗S R ∼ Q on M, and so by adjointness we have
+
+                       HomR⊗S R (R, M)∼HomQ (Q ⊗R⊗S R R, M)
+                                           ∼HomQ (k, M) ,
+
+where the last equivalence depends on the calculation (Lemma 8.7)
+
+                           (k ⊗S R) ⊗R⊗S R R ∼ k ⊗R R ∼ k.
+
+The action of Q on this object is the obvious one that factors through Q → k.
+Combining the above gives the desired statement. 
+
+8.10. Proposition. Let S → R be a homomorphism of commutative augmented k-
+algebras, and set Q = k ⊗S R. Suppose that R is small as an S-module, and that
+R → k is proxy-small. Then if the maps S → k and Q → k are Gorenstein, so is
+R → k.
+
+Proof. By Proposition 8.6, HomR (k, R) ∼ a k. It follows from Proposition 8.4 that
+R → k is Gorenstein. 
+
+8.11. Poincaré duality. A k-algebra R is said to satisfy Poincaré duality of dimension
+a if there is an equivalence R → a Homk (R, k) of R-modules; note that here we
+give Homk (R, k) the left R-module structure induced by the right action of R on
+itself. The algebra R satisﬁes this condition if and only if there is an orientation class
+   ∈ −a Homk (R, k) with the property that ∗ Homk (R, k) is a free module of rank
+one over ∗ R with generator . If k is a ﬁeld, then ∗ Homk (R, k) = homk (∗ R, k),
+and R satisﬁes Poincaré duality if and only if ∗ R satisﬁes Poincaré duality in the
+simplest algebraic sense.
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      393
+
+
+8.12. Proposition. Suppose that R is an augmented k algebra such that the map R → k
+is proxy-small. If R satisﬁes Poincaré duality of dimension a, then R → k is Gorenstein
+of shift a.
+
+Proof. As in Section 7.2, compute
+
+       HomR (k, R) ∼ HomR (k, a Homk (R, k)) ∼ a Homk (R ⊗R k, k) ∼ a k.
+
+The fact that R → k is Gorenstein follows from Proposition 8.4.            
+
+  We now give a version of the result from commutative ring theory that “regular
+implies Gorenstein”.
+
+8.13. Proposition. Suppose that k is a ﬁeld, R is a connective commutative S-algebra,
+and R → k is a small homomorphism which is surjective on 0 . Assume that the pair
+(R, k) is dc-complete. Then R → k is Gorenstein.
+
+8.14. Remark. It is possible to omit the dc-completeness hypothesis from Proposition
+8.13 in the commutative ring case. Suppose that R is a commutative Noetherian ring,
+I ⊂ R is a maximal ideal, k = R/I is the residue ﬁeld, and R → k is small. We show
+that R → k is also Gorenstein. To see this, let S = lims R/I s be the I -adic completion
+of R. As in Proof of Proposition 4.20, S is ﬂat over R and Tor R0 (S, k) k; in addition,
+the map R → S is a k-equivalence (of R-modules). This gives a chain of equivalences
+
+           HomR (k, R) ∼ HomR (k, S) ∼ HomS (S ⊗R k, S) ∼ HomS (k, S).
+
+The ﬂatness easily implies that S → k is also small, and so R → k is Gorenstein if
+and only if S → k is Gorenstein. But it follows from Proposition 4.20 that the pair
+(S, k) is dc-complete, and so S → k is Gorenstein by Proposition 8.13.
+
+8.15 Remark. As the arguments below suggest, Proposition 8.13 fails without the
+commutativity assumption. For instance, let k = Fp , let X be a simply connected ﬁnite
+complex which does not satisfy Poincaré duality, and let R → k be the augmentation
+map C∗ (X; k) → k. Then R → k is small (Proposition 5.3), (R, k) is dc-complete
+(Section 4.22), but it is easy to see that R → k is not Gorenstein.
+
+8.16. Lemma. Suppose that k is a ﬁeld, R is a connective commutative S-algebra,
+and R → k is a homomorphism which is surjective on 0 . Assume that k is of upward
+ﬁnite type over R. Then ∗ EndR (k) is in a natural way a cocommutative Hopf algebra
+over k.
+
+Proof. The diagram chasing necessary to prove this is described in detail in [1, pp.
+56–76], with a focus at the end on the case in which R = S, k = Fp , and ∗ EndR (k) is
+the mod p Steenrod algebra. Let E = EndR (k). The key idea is that ∗ E is the k-dual
+394             W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+of the commutative k-algebra ∗ (k ⊗R k): as in Section 7.2 there are equivalences
+
+                Homk (k ⊗R k, k) ∼ HomR (k, Homk (k, k)) ∼ EndR (k).
+
+The k-dual of the multiplication on ∗ (k ⊗R k) then provides the comultiplication on
+∗ EndR (k). The fact that k is of upward ﬁnite type over R guarantees that the groups
+i (k ⊗R k) are ﬁnite-dimensional over k.
+   There is a technicality: k ⊗R k is a bimodule over k, not an algebra over k. However,
+k ⊗R k is an algebra over R, so that the surjection 0 R → k guarantees that the left
+and right action of k on ∗ (k ⊗R k) agree. For the same reason, the left and right
+actions of k on ∗ EndR (k) agree, and this graded ring becomes a Hopf algebra over
+k. 
+
+Proof of Proposition 8.13. Let E = EndR (k). The connectivity assumptions on R imply
+that 0 E k and that E is coconnective; by Lemma 8.16, E is a Hopf algebra over k.
+In fact, E is ﬁnitely built from k (Proposition 4.17), and so ∗ E is a ﬁnite dimensional
+Hopf algebra over k. Sweedler has remarked that a connected ﬁnite-dimensional Hopf
+algebra over k with commutative comultiplication and involution satisﬁes algebraic
+Poincaré duality [39]; see also [45, 5.1.6]. The map E → k is thus Gorenstein by
+Proposition 8.12, and R → k by Proposition 8.5. 
+
+8.17. Remark. The above arguments are related to those of Avramov and Golod [4],
+who show that a commutative Noetherian local ring R is Gorenstein if and only if the
+homology of the associated Koszul complex is a Poincaré duality algebra.
+
+
+9. A local cohomology theorem
+
+  One of the attractions of the Gorenstein condition on an S-algebra R is that it
+has structural implications for ∗ R, which can sometimes be thought of as a duality
+property. To illustrate this, we look at the special case in which R → k is a Gorenstein
+map of augmented k-algebras, where k is a ﬁeld. Let E = EndR (k). By Remark 8.2,
+the Gorenstein condition gives
+
+                                    a k ⊗E k ∼ Cellk R.
+
+We next assume that the right E-structure on a k given by a k ∼ HomR (k, R) is
+equivalent to the right E-structure given by
+
+                            a k ∼ HomR (k, a Homk (R, k)).
+
+By Proposition 6.10 this gives an equivalence
+
+                            a k ⊗E k ∼ a Cellk Homk (R, k).
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402       395
+
+
+Assume in addition that Homk (R, k) is itself k-cellular as an R-module. Combining
+the above then gives
+
+(9.1)                           a Homk (R, k) ∼ Cellk R.
+
+Now in some reasonable circumstances we might expect a spectral sequence
+
+(9.2)                  Ei,j
+                        2
+                            = i Cellk∗ R (∗ R)j ⇒ i+j CellR
+                                                              k (R),
+
+which in the special situation we are considering would give
+
+                    Ei,j
+                     2
+                         = i Cellk∗ R (∗ R)j ⇒ i+j −a Homk (R, k).
+
+(The subscript j refers to the j th homogeneous component of an appropriate grading
+on i Cellk∗ R (∗ R).) This is what we mean by a duality property for ∗ R: a spectral
+sequence starting from some covariant algebraic data associated to ∗ R and abutting
+to the dual object ∗ Homk (R, k) Homk (∗ R, k). If R is k-cellular as a module over
+itself, then (9.1) gives a Homk (R, k) ∼ R, and we obtain ordinary Poincaré duality.
+   The problematic point here is the existence of the spectral sequence (9.2). Rather
+than trying to construct this spectral sequence in general and study its convergence
+properties, we concentrate on a special case in which it is possible to identify CellR
+                                                                                     k (R)
+explicitly. To connect the following statement with (9.2), recall [13, §6] that if S is a
+commutative ring and I ⊂ S a ﬁnitely generated ideal with quotient ring k = S/I , then
+for any discrete S-module M the local cohomology group HIi (M) can be identiﬁed
+with −i CellSk (M).
+
+9.3. Proposition. Suppose that k is a ﬁeld, and that R is a coconnective commutative
+augmented k-algebra. Assume that ∗ R is Noetherian, and that the augmentation map
+induces an isomorphism 0 R k. Then for any R-module M there is a spectral sequence
+
+                         Ei,j
+                          2
+                              = HI−i (∗ M)j ⇒ i+j CellR
+                                                        k (M).
+
+  Under the assumptions of Proposition 9.3, Homk (R, k) is k-cellular as an R-module
+(Remark 3.17). Given the above discussion, this leads to the following local cohomology
+theorem.
+
+9.4. Proposition. In the situation of Proposition 9.3, assume in addition that R → k
+is Gorenstein of shift a, and that k has a unique E-lift (where E = EndR (k)). Then
+there is a spectral sequence
+
+                       Ei,j
+                        2
+                            = HI−i (∗ R)j ⇒ i+j −a Homk (R, k).
+
+9.5. Remark. The structural implications of this spectral sequence for the geometry of
+the ring ∗ R are investigated in [25].
+396            W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+Proof of Proposition 9.3. We ﬁrst copy some constructions from [13, §6]. For any
+x ∈ |x| R we can form an R-module R[1/x] by taking the homotopy colimit of the
+sequence
+                               x            x             x
+                             → −|x| R −
+                            R−         → −2|x| R −
+                                                  →···.
+
+(Actually, R[1/x] can also be given the structure of a commutative S-algebra, in such
+a way that R → R[1/x] is a homomorphism.) Write Km (x) for the ﬁbre of x m :
+R → −m|x| R, and K∞ (x) for the ﬁbre of the map R → R[1/x]. Now choose a ﬁnite
+sequence x1 , . . . , xn of generators for I ⊂ ∗ R, and let
+
+                           Km = Km (x1 ) ⊗R · · · ⊗R Km (xn ),
+                          K∞ = K∞ (x1 ) ⊗R · · · ⊗R K∞ (xn ).
+
+Recall that R is commutative, so that right and left R-module structures are inter-
+changeable, and tensoring two R-modules over R produces a third R-module. Write
+K = K1 . It is easy to see that ∗ K is ﬁnitely built from k as a module over ∗ R,
+and hence (Proposition 3.16) that K is ﬁnitely built from k as a module over R. An
+inductive argument (using coﬁbration sequences Km (xi ) → Km+1 (xi ) → m|xi | K1 (xi ))
+shows that K builds Km and hence also builds K∞ ∼ hocolimKm (cf. [13, 6.6]). It is
+easy to see that the evident map K∞ → R gives equivalences
+
+(9.6)                     k ⊗R K∞ ∼ k,          K ⊗R K∞ ∼ K.
+
+See [13, Proof of 6.9]; the second equivalence follows from the ﬁrst because K is
+built from k. The ﬁrst equivalence implies that K∞ builds k and this in turn shows
+that K builds k. Since K is small over R, we see that R → k is proxy-small with
+Koszul complex K. In particular, a map A → B of R-modules is a k-equivalence if
+and only if it is a K-equivalence, or (since HomR (K(xi ), R) ∼ K(xi ) and hence
+HomR (K, R) ∼ n K)) if and only if it induces an equivalence K ⊗R A → K ⊗R B.
+Since K∞ is built from k as an R-module, so is K∞ ⊗R M. The right hand equivalence
+in (9.6) implies that the map K∞ ⊗R M → M induces an equivalence
+
+                             K ⊗R K∞ ⊗R M → K ⊗R M,
+
+and it follows that K∞ ⊗R M is CellR
+                                   k (M). Each module K∞ (xi ) lies in a coﬁbration
+sequence
+
+                             −1 R[1/xi ] → K∞ (xi ) → R,
+
+which can be interpreted as a one-step increasing ﬁltration of K∞ (xi ). Tensoring these
+together gives an n-step ﬁltration of K∞ ,
+
+                    0 = Fn+1 → Fn → Fn−1 → · · · → F0 = K∞ ,
+                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      397
+
+
+with the property that there are equivalences
+
+                                     
+                   Fs /Fs+1 ∼                      R[1/xi1 ] ⊗R · · · ⊗R R[1/xis ].
+                                  {i1 ,... ,is }
+
+
+The sums here are indexed over subsets of cardinality s from {1, . . . , n}. Tensoring
+this ﬁltration with M gives a ﬁnite ﬁltration of CellR k (M), and the spectral sequence
+of the proposition is the homotopy spectral sequence associated to the ﬁltration. The
+identiﬁcation of the E 2 -page as local cohomology is standard [13, §6, 26]; the main
+point here is to notice that since ∗ R[1/xi ] is ﬂat over ∗ R, there are isomorphisms
+∗ (R[1/xi ] ⊗R M) ∗ (R[1/xi ]) ⊗∗ R ∗ M (∗ R)[1/xi ] ⊗∗ R ∗ M. 
+
+
+10. Gorenstein examples
+
+  We give several examples of S-algebras which are Gorenstein, and at least one
+example of an S-algebra which is not. Of course, commutative Noetherian local rings
+which are not Gorenstein are easy to come by; these also provide examples of non-
+Gorenstein S-algebras.
+
+10.1. Small chains. Suppose that X is a pointed connected topological space and that k
+is a ﬁeld such that the pair (X, k) is of Eilenberg–Moore type (Section 4.22), and such
+that H ∗ (X, k) is ﬁnite-dimensional and satisﬁes Poincaré duality of formal dimension b.
+Let a = −b. We point out that the augmentation map C∗ (X; k) → k is small and
+Gorenstein of shift a; note that the shift a is negative in this case.
+
+  Let R = C ∗ (X; k), E = C∗ (X; k) ∼ EndR (k). By Section 5.5, R → k is cosmall
+and E → k is small. The map R → k is Gorenstein of shift a (Proposition 8.12) and
+E → k is also Gorenstein with the same shift (Proposition 8.5). The ring R has a local
+cohomology spectral sequence (Proposition 9.4), but this collapses to a restatement of
+Poincaré duality:
+
+
+                     E 2 = ∗ R       Cellk∗ R (∗ R) ∗ a Homk (R, k).
+
+In the absence of the hypothetical spectral sequence (9.2), there is nothing like a local
+cohomology theorem for the non-commutative S-algebra E.
+
+10.2. Small cochains. Suppose that k is a ﬁeld and G is a topological group such that
+H∗ (G; k) is ﬁnite dimensional. Assume in addition that (BG, k) is of Eilenberg–Moore
+type; this covers the cases in which k = Fp , and G is a ﬁnite p-group, a compact
+Lie group with 0 G a ﬁnite p-group, or a p-compact group [17]. We point out that
+the augmentation map C ∗ (BG; k) → k is small and Gorenstein, and satisﬁes a local
+cohomology theorem.
+398              W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+   Let R = C ∗ (BG; k) and E = C∗ (G; k). The map E → k is cosmall (Proposition
+3.16), and hence R → k is small (Section 5.6). The graded ring H∗ (G; k) is a ﬁnite-
+dimensional group-like Hopf algebra over k, and so by Sweedler (cf. [45, 5.1.6])
+satisﬁes algebraic Poincaré duality of some dimension, say a. If G is a connected
+compact Lie group, then a = dim G; the “fundamental class” (see Section 8.11) lies
+in
+
+                        H a (G; k) = −a C ∗ (G; k) = −a (k ⊗R k).
+
+By Proposition 8.12, E → k is Gorenstein of shift a, and so R → k is also Gorenstein
+with the same shift (Proposition 8.5). The graded ring H ∗ (BG; k) = ∗ R is Noetherian.
+If k is of characteristic zero, this follows from the fact that the ring is a ﬁnitely generated
+polynomial algebra over k; see [38, 7.20]. If k = Fp and G is a compact Lie group,
+the ﬁnite generation statement is a classical theorem of Golod [23] and Venkov [46];
+in the p-compact group case it amounts to the main result of [17]. By Remark 3.17
+and Proposition 9.4 there is a local cohomology theorem for R.
+
+10.3. Completed classifying spaces. Suppose that G is a compact Lie group such that
+the adjoint action of G on its Lie algebra is orientable (e.g., G might be a ﬁnite group).
+Let k = Fp . We point out that the augmentation map C ∗ (BG; k) → k is proxy-small
+and Gorenstein, and that C ∗ (BG; k) has a local cohomology theorem. Note that we
+are not assuming that (BG, k) is of Eilenberg–Moore type, and in particular we are
+not assuming that 0 G is a p-group; the present case contrasts with Section 10.2 in
+that C ∗ (BG; k) → k need not be small.
+
+   We continue the discussion in Section 5.7, with the same notation. Recall that X is
+the p-completion of BG, R = C ∗ (X; k) ∼ C ∗ (BG; k), and E = C∗ (X; k); the space
+X plays the role of G above in Section 10.2, but we do not have that H∗ (X; k)
+is ﬁnite dimensional. The ﬁbre M in (5.8) is a compact manifold; it is orientable
+because its tangent bundle is the bundle associated to the conjugation action of G on
+the quotient of the Lie algebra of SU (n) by the Lie algebra of G. (Note that since
+SU (n) is connected, the conjugation action of G on the Lie algebra of SU (n) preserves
+orientation.) As in Section 10.1, Q = C ∗ (M; k) is cosmall and Gorenstein. Similarly,
+S = C ∗ (BSU(n); k) is small and Gorenstein by Section 10.2. Let S  = C∗ (SU (n); k),
+so that S ∼ EndS  (k). The group SU (n) acts on M = SU (n)/G, so that S  acts on
+C∗ (M; k); by an Eilenberg–Moore spectral sequence argument, there is an equivalence
+R ∼ HomS  (C∗ (M; k), k). It follows from Proposition 3.18 that R is small as a module
+over S. By Propositions 4.18 and 8.10, R → k is proxy-small and Gorenstein, as is
+E → k (Proposition 8.5). Since Homk (R, k) is k-cellular over R (Remark 3.17), there
+is a local cohomology spectral sequence for R (Proposition 9.4).
+
+10.4. Finite complexes. Suppose that X is a pointed connected ﬁnite complex which
+is a Poincaré duality complex over k of formal dimension b; in other words, assume
+that X satisﬁes possibly unoriented Poincaré duality with arbitrary (twisted) k-module
+coefﬁcients. To be speciﬁc, assume that k is a ﬁnite ﬁeld, the ﬁeld Q, or the ring
+               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402      399
+
+
+Z of integers. We point out that the augmentation map C∗ (X; k) → k is small and
+Gorenstein. This is related to Section 10.1 but slightly different: here we assume that
+X is ﬁnite, we do not insist that (X, k) be of Eilenberg–Moore type, but we require
+(possibly twisted) Poincaré duality with arbitrary k-module coefﬁcients.
+
+  Let R denote the augmented k-algebra C∗ (X; k), so that 0 R k[1 X]. Note that
+R → k is small (Proposition 5.3). Any module M over k[1 X] gives a module over
+R, and (by a version of the Rothenberg–Steenrod construction) there are isomorphisms
+
+              Hi (X; M) i (k ⊗R M),         H i (X; M)     −i HomR (k, M).
+
+Let a = −b. The duality condition on X can be expressed by saying that there is a
+module over k[1 X] whose underlying k-module is isomorphic to k itself, and an
+orientation class ∈ −a ( ⊗R k), such that, for any k[1 X]-module M, evaluation on
+   gives an equivalence
+
+(10.5)                        HomR (k, M) → a ⊗R M.
+
+By Proposition 3.9, it follows that (10.5) is an equivalence for any R-module M which
+has only one non-vanishing homotopy group. By triangle arguments (cf. Proposition
+3.2) it is easy to conclude that (10.5) is an equivalence for all M which have only a
+ﬁnite number of non-vanishing homotopy groups, and by passing to a limit (cf. Proof
+of Proposition 6.15) that (10.5) is actually an equivalence for all R-modules M. Note
+that this passage to the limit depends on the fact that k is small over R. The case
+M = R of (10.5) gives
+
+                       HomR (k, R) ∼ a ⊗R R ∼ a ∼ a k,
+
+and so by Proposition 8.4, R → k is Gorenstein of shift a. Let E = EndR (k). The pair
+(R, k) is not necessarily dc-complete, and so E → k is not necessarily Gorenstein; for
+example, it is clear that ∗ E H ∗ (X; k) need not satisfy algebraic Poincaré duality in
+the nonorientable case.
+   The equivalence HomR (k, R) ∼ is an R-module equivalence as long as HomR (k, R)
+is given the right R-module structure obtained from the right action of R on itself. In
+this way the orientation character of the Poincaré complex X is derived from the one
+bit of structure on HomR (k, R) that does not play a role in the deﬁnition of what it
+means for R → k to be Gorenstein (Remark 8.3).
+
+10.6. Suspension spectra of loop spaces. This is a continuation of Sections 10.4 and
+7.6: X is a pointed connected ﬁnite complex which is a Poincaré duality complex
+over k of formal dimension a. Let k = S. We observe that the augmentation map
+C∗ (X; k) → k is small and Gorenstein, and point out how this Gorenstein condition
+leads to a homotopical construction of the Spivak normal bundle of X.
+400                W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+  Let R denote the augmented k-algebra C∗ (X; k), and let E denote C ∗ (X; k) ∼
+EndR (k). The map R → k is small by Proposition 5.3. Note that S = Z ⊗S R ∼
+C∗ (X; Z) (Section 4.22). We wish to show that R → k is Gorenstein of shift −a, or
+equivalently, that HomR (k, R) ∼ −a k. The spectrum Y = −a k is characterized by a
+combination of the homotopical property that Y is bounded below, and the homological
+property that Z ⊗k Y ∼ −a Z. The spectrum HomR (k, R) is bounded below because
+R is bounded below and k is small over R. Similarly, the fact that k is small over R
+implies that Z ⊗k HomR (k, R) ∼ HomR (k, Z ⊗k R). Now compute
+
+                    HomR (k, Z ⊗k R) ∼ HomZ⊗k R (Z, Z ⊗k R) ∼ −a Z,
+
+where the ﬁrst equivalence comes from adjointness, and the second from Section 10.4.
+It follows that R → k is Gorenstein. (If X is simply connected, then E → k is cosmall
+and Gorenstein, since in this case (R, k) is dc-complete.)
+   The stable homotopy orientation character of X is given by the action of R on k ∼ S
+obtained via −a k ∼ HomR (k, R) from the right action of k on itself; see (10.5) for
+the homological version of this. It is not too far off to interpret this character as a
+homomorphism X → S× ; in any case it determines a stable spherical ﬁbration over
+X which can be identiﬁed with the Spivak normal bundle. (To see this, note that the
+Thom complex of this spherical ﬁbration is HomR (k, R) ⊗R k ∼ HomR (k, k) = E, and
+the top cell has a spherical reduction given by the unit homomorphism S → E.) For
+some more details see [31].
+
+10.7. The sphere spectrum. Let R = S and k = Fp . The map R → k is not
+Gorenstein; in fact, by Lin’s theorem [35], HomR (k, R) is trivial. Neeman has suggested
+that S should be considered to be a “fairly ordinary non-Noetherian ring” [40, §0]. If
+so, then Lin’s theorem is perhaps analogous to the classical calculation that if R =
+Fp [x1 , x2 , . . . ] and k = R/I for I = x1 , x2 , . . . , then HomR (k, R) = 0.
+
+
+References
+
+ [1] J.F. Adams, Lectures on generalised cohomology, Category Theory, Homology Theory and their
+     Applications, III, Battelle Institute Conference, Seattle, Washington, 1968, vol. 3, Springer, Berlin,
+     1969, pp. 1–138.
+ [2] M.F. Atiyah, I.G. Macdonald, Introduction to Commutative Algebra, Addison-Wesley, Reading, MA,
+     London, Don Mills, Ont., 1969.
+ [3] L.L. Avramov, H.-B. Foxby, Locally Gorenstein homomorphisms, Amer. J. Math. 114 (5) (1992)
+     1007–1047.
+ [4] L.L. Avramov, E.S. Golod, The homology of algebra of the Koszul complex of a local Gorenstein
+     ring, Mat. Zametki 9 (1971) 53–58.
+ [5] D.J. Benson, J.F. Carlson, Projective resolutions and Poincaré duality complexes, Trans. Amer. Math.
+     Soc. 342 (2) (1994) 447–488.
+ [6] D.J. Benson, J.P.C. Greenlees, Commutative algebra for cohomology rings of classifying spaces of
+     compact Lie groups, J. Pure Appl. Algebra 122 (1–2) (1997) 41–53.
+ [7] A.K. Bousﬁeld, On the homology spectral sequence of a cosimplicial space, Amer. J. Math. 109 (2)
+     (1987) 361–394.
+                   W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402                   401
+
+
+ [8] A.K. Bousﬁeld, D.M. Kan, Homotopy limits, completions and localizations, Lecture Notes in
+     Mathematics, vol. 304, Springer, Berlin, 1972.
+ [9] E.H. Brown Jr., M. Comenetz, Pontrjagin duality for generalized homology and cohomology theories,
+     Amer. J. Math. 98 (1) (1976) 1–27.
+[10] E. Dror-Farjoun, Cellular Spaces, Null Spaces and Homotopy Localization, Springer, Berlin, 1996.
+[11] W.G. Dwyer, Strong convergence of the Eilenberg–Moore spectral sequence, Topology 13 (1974)
+     255–265.
+[12] W.G. Dwyer, Exotic convergence of the Eilenberg–Moore spectral sequence, Illinois J. Math. 19 (4)
+     (1975) 607–617.
+[13] W.G. Dwyer, J.P.C. Greenlees, Complete modules and torsion modules, Amer. J. Math. 124 (2002)
+     199–220.
+[14] W.G. Dwyer, J.P.C. Greenlees, S. Iyengar, Gross–Hopkins duality, in preparation.
+[15] W.G. Dwyer, J.P.C. Greenlees, S. Iyengar, Finiteness in derived categories of local rings, Comment.
+     Math. Helv. 2005, to appear.
+[16] W.G. Dwyer, J. Spaliński, Homotopy theories and model categories, in: Handbook of Algebraic
+     Topology, North-Holland, Amsterdam, 1995, pp. 73–126.
+[17] W.G. Dwyer, C.W. Wilkerson, Homotopy ﬁxed-point methods for Lie groups and ﬁnite loop spaces,
+     Ann. of Math. 139 (2) (1994) 395–442.
+[18] S. Eilenberg, J.C. Moore, Homology and ﬁbrations. I. Coalgebras, cotensor product and its derived
+     functors, Comment. Math. Helv. 40 (1966) 199–236.
+[19] A.D. Elmendorf, I. Kříž, M.A. Mandell, J.P. May, Modern foundations for stable homotopy theory,
+     in: Handbook of Algebraic Topology, North-Holland, Amsterdam, 1995, pp. 213–253.
+[20] Y. Félix, S. Halperin, J.-C. Thomas, Gorenstein spaces, Adv. in Math. 71 (1) (1988) 92–112.
+[21] A. Frankild, P. JZrgensen, Gorenstein differential graded algebras, Israel J. Math. 135 (2003)
+     327–353.
+[22] P.G. Goerss, J.F. Jardine, Simplicial homotopy theory, Progress in Mathematics, vol. 174, Birkhäuser,
+     Basel, 1999.
+[23] E. Golod, The cohomology ring of a ﬁnite p-group, Dokl. Akad. Nauk SSSR 125 (1959) 703–706.
+[24] J.P.C. Greenlees, Commutative algebra in group cohomology, J. Pure Appl. Algebra 98 (2) (1995)
+     151–162.
+[25] J.P.C. Greenlees, G. Lyubeznik, Rings with a local cohomology theorem and applications to
+     cohomology rings of groups, J. Pure Appl. Algebra 149 (3) (2000) 267–285.
+[26] A. Grothendieck, Local cohomology, Course notes taken by R. Hartshorne, Harvard University, Fall,
+     1961, Lecture Notes in Mathematics, vol. 41, Springer, Berlin, 1967.
+[27] P.S. Hirschhorn, Model categories and their localizations, Mathematical Surveys and Monographs,
+     vol. 99, American Mathematical Society, Providence, RI, 2003.
+[28] M. Hovey, Model categories, Mathematical Surveys and Monographs, vol. 63, American Mathematical
+     Society, Providence, RI, 1999.
+[29] M. Hovey, B. Shipley, J. Smith, Symmetric spectra, J. Amer. Math. Soc. 13 (1) (2000) 149–208.
+[30] S. Illman, Smooth equivariant triangulations of G-manifolds for G a ﬁnite group, Math. Ann. 233
+     (3) (1978) 199–220.
+[31] J.R. Klein, The dualizing spectrum of a topological group, Math. Ann. 319 (3) (2001) 421–456.
+[32] I. Kříž, J.P. May, Operads, algebras, modules and motives, Astérisque (233) (1995) iv+145pp.
+[33] N.J. Kuhn, The McCord model for the tensor product of a space and a commutative ring spectrum,
+     Categorical decomposition techniques in algebraic topology (Isle of Skye 2001) Prog. Math. 215,
+     (2004) 213–236.
+[34] R. Levi, On homological rate of growth and the homotopy type of BG∧     p , Math. Z. 226 (3) (1997)
+     429–444.
+[35] T.Y. Lin, Duality and Eilenberg–Mac Lane spectra, Proc. Amer. Math. Soc. 56 (1976) 291–299.
+[36] M.A. Mandell, E∞ algebras and p-adic homotopy theory, Topology 40 (1) (2001) 43–94.
+[37] H. Matsumura, Commutative Ring Theory, second ed., Cambridge University Press, Cambridge, 1989
+     (Translated from the Japanese by M. Reid).
+[38] J.W. Milnor, J.C. Moore, On the structure of Hopf algebras, Ann. of Math. 81 (2) (1965) 211–264.
+402               W.G. Dwyer et al. / Advances in Mathematics 200 (2006) 357 – 402
+
+
+[39] J.C. Moore, F.P. Peterson, Nearly Frobenius algebras and their module categories, Symposium on
+     Algebraic Topology, Battelle Seattle Research Center, Seattle, Washington, 1971), Lecture Notes in
+     Mathamatics vol. 249, Springer, Berlin, 1971, pp. 94–98.
+[40] A. Neeman, The chromatic tower for D(R), Topology 31 (3) (1992) 519–532 (with an appendix by
+     Marcel Bökstedt).
+[41] M. Rothenberg, N.E. Steenrod, The cohomology of classifying spaces of H -spaces, Bull. Amer.
+     Math. Soc. 71 (1965) 872–875.
+[42] B. Shipley, H Z-algebra spectra are differential graded algebras, 2004, preprint.
+[43] B. Shipley, S. Schwede, Equivalences of monoidal model categories, Algebr. Geom. Topol. 3 (2003)
+     287–334.
+[44] N. Spaltenstein, Resolutions of unbounded complexes, Compositio Math. 65 (2) (1988) 121–154.
+[45] M.E. Sweedler, Hopf Algebras, Benjamin, New York, 1969.
+[46] B.B. Venkov, Cohomology algebras for some classifying spaces, Dokl. Akad. Nauk SSSR 127 (1959)
+     943–944.
+[47] G.W. Whitehead, Generalized homology theories, Trans. Amer. Math. Soc. 102 (1962) 227–283.
+
