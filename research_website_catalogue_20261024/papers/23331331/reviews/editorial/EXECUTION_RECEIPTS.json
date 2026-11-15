@@ -1,0 +1,165 @@
+{
+  "UTC": "2026-11-15T23:11:28.588473+00:00",
+  "runtime": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "actual_observed_processes": [
+    {
+      "command": "pdftoppm -r 144 -png ORIGINAL_PDF rasters/published",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "RENDER.stdout",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "whole_stderr": {
+        "path": "RENDER.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B freeze_inputs.py [attempt1; exact historical body preserved]",
+      "actual_observed_exit": 1,
+      "whole_stdout": {
+        "path": "INTAKE.stdout",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "whole_stderr": {
+        "path": "INTAKE.stderr",
+        "bytes": 1122,
+        "SHA256": "203257343b8974c5eaab59cf06c859e61d2e08dbc12fc9f7a6f602d830d291c4"
+      },
+      "literal_stdout": "",
+      "literal_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331331/reviews/editorial/freeze_inputs.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331331/reviews/editorial/freeze_inputs.py\", line 66, in main\n    v=json.loads(regular(P/f'papers/23331331/reviews/{name}/VERDICT.json'))\n                 ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331331/reviews/editorial/freeze_inputs.py\", line 20, in regular\n    need(stat.S_ISREG(path.lstat().st_mode), 'not ordinary file: ' + str(path))\n                      ~~~~~~~~~~^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 661, in lstat\n    return os.lstat(self)\n           ~~~~~~~~^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23331331/reviews/adversarial/VERDICT.json'\n"
+    },
+    {
+      "command": "python3 -B freeze_inputs.py [current body]",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "INTAKE-attempt2.stdout",
+        "bytes": 92,
+        "SHA256": "094453986f9f565718fb028164a5d2ebe378ab01b7e3bf90e5fa0aa90a65956e"
+      },
+      "whole_stderr": {
+        "path": "INTAKE-attempt2.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"status\": \"FROZEN_SOURCE_ONLY\", \"original_files\": 421, \"namespaces\": 4, \"blob_files\": 262}\n",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B prepare_editorial.py --mode normal",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "RENDER_EDITORIAL-normal.stdout",
+        "bytes": 1139,
+        "SHA256": "6189f34ab55ee7de75989b45c1e0460b558e1113ddcccc634420c8a97b702173"
+      },
+      "whole_stderr": {
+        "path": "RENDER_EDITORIAL-normal.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"AA\": null, \"assertions_enabled\": true, \"buffers\": {\"PUBLIC_COPY.md\": {\"SHA256\": \"e2dcf781120ce43c9aa1cd5d0679941fd37c5c9ff99e0ae8ed97d99a8f6c8ff2\", \"bytes\": 11511}, \"PUBLIC_HEAD.html\": {\"SHA256\": \"11de386b62f88cb67d4f318e20cc638478a25b7a0b78e89e13f91a044736d6fc\", \"bytes\": 3342}, \"PUBLIC_MAIN.html\": {\"SHA256\": \"46c9656c740c27bae87377a69a4c15341ab13e4b3c0eabc117151fea280b2f43\", \"bytes\": 14756}, \"SCHOLARLY_METADATA.json\": {\"SHA256\": \"eeef1b8b6639b73b28b77fab01516be754e116a35d91f88f20151d03e765fc0d\", \"bytes\": 2147}, \"citation.bib\": {\"SHA256\": \"afec934cd494acd9b748c073a103da6111d92620add2f19686841abc331479e3\", \"bytes\": 342}, \"index.html\": {\"SHA256\": \"5d90b72f0f631a3d8e3b76ec530287956319eaab5ed4802a4b29bac3cfaefce3\", \"bytes\": 19435}, \"outer-pedal-centroid-verification.zip\": {\"SHA256\": \"7c2a3ce49e095b4d0e045cf60c1c19d7137dc6a659a699d922b400493f07bf33\", \"bytes\": 103747}, \"outer_pedal_centroid.pdf\": {\"SHA256\": \"988ff679538849d4bfaa6c7bdd60077e35533aa24baa17cf1e386ec57fb40411\", \"bytes\": 69903}}, \"canonical_url\": null, \"mode\": \"normal\", \"output_directory\": \"candidate\", \"publication_authority\": false, \"status\": \"PRIVATE_RENDERED\"}\n",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B -O prepare_editorial.py --mode optimized",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "RENDER_EDITORIAL-optimized.stdout",
+        "bytes": 1153,
+        "SHA256": "ef196fdd3b770ba6579c86310074b9f0bc93b967df50bcc7d0f4df27f30e2bc2"
+      },
+      "whole_stderr": {
+        "path": "RENDER_EDITORIAL-optimized.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"AA\": null, \"assertions_enabled\": false, \"buffers\": {\"PUBLIC_COPY.md\": {\"SHA256\": \"e2dcf781120ce43c9aa1cd5d0679941fd37c5c9ff99e0ae8ed97d99a8f6c8ff2\", \"bytes\": 11511}, \"PUBLIC_HEAD.html\": {\"SHA256\": \"11de386b62f88cb67d4f318e20cc638478a25b7a0b78e89e13f91a044736d6fc\", \"bytes\": 3342}, \"PUBLIC_MAIN.html\": {\"SHA256\": \"46c9656c740c27bae87377a69a4c15341ab13e4b3c0eabc117151fea280b2f43\", \"bytes\": 14756}, \"SCHOLARLY_METADATA.json\": {\"SHA256\": \"eeef1b8b6639b73b28b77fab01516be754e116a35d91f88f20151d03e765fc0d\", \"bytes\": 2147}, \"citation.bib\": {\"SHA256\": \"afec934cd494acd9b748c073a103da6111d92620add2f19686841abc331479e3\", \"bytes\": 342}, \"index.html\": {\"SHA256\": \"5d90b72f0f631a3d8e3b76ec530287956319eaab5ed4802a4b29bac3cfaefce3\", \"bytes\": 19435}, \"outer-pedal-centroid-verification.zip\": {\"SHA256\": \"7c2a3ce49e095b4d0e045cf60c1c19d7137dc6a659a699d922b400493f07bf33\", \"bytes\": 103747}, \"outer_pedal_centroid.pdf\": {\"SHA256\": \"988ff679538849d4bfaa6c7bdd60077e35533aa24baa17cf1e386ec57fb40411\", \"bytes\": 69903}}, \"canonical_url\": null, \"mode\": \"optimized\", \"output_directory\": \"optimized-candidate\", \"publication_authority\": false, \"status\": \"PRIVATE_RENDERED\"}\n",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B namespace_controls.py",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "NAMESPACE-normal.stdout",
+        "bytes": 726,
+        "SHA256": "3e83450e35040ec4e7b59c783210c1841ffc7b090a720d7b60890cdc35455fe8"
+      },
+      "whole_stderr": {
+        "path": "NAMESPACE-normal.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"actual_extracted_functions\": [\"close_namespace\", \"need\", \"pin\", \"read\", \"scan\"], \"all_created_specials_links_and_child_paths_removed\": true, \"function_source_SHA256\": \"d4d59cf0fc851b8cf74dbf0a48c1ecfae6fa0f8ebb57658f6bd97f4f9e9e2b4e\", \"legitimate_declared_empty_accepted\": true, \"mode\": \"ordinary\", \"no_source_or_scientific_execution\": true, \"ordinary_roundtrip_revalidated\": true, \"rejections\": [\"unlisted empty directory\", \"anonymous future subtree\", \"FIFO before any body read\", \"symlink file\", \"symlink directory\", \"whole body changed\", \"missing declared empty directory\", \"terminal spelling does not exempt directory\"], \"retained_empty_finite_root\": \"namespace-fixture-work\", \"status\": \"OWN_NAMESPACE_CONTROLS_PASSED\"}\n",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B -O namespace_controls.py",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "NAMESPACE-optimized.stdout",
+        "bytes": 739,
+        "SHA256": "d3d1eed901617bcd4e2acaed7dd777d9c3834add509bcb0a4b6a05e14459740c"
+      },
+      "whole_stderr": {
+        "path": "NAMESPACE-optimized.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"actual_extracted_functions\": [\"close_namespace\", \"need\", \"pin\", \"read\", \"scan\"], \"all_created_specials_links_and_child_paths_removed\": true, \"function_source_SHA256\": \"d4d59cf0fc851b8cf74dbf0a48c1ecfae6fa0f8ebb57658f6bd97f4f9e9e2b4e\", \"legitimate_declared_empty_accepted\": true, \"mode\": \"optimized-O\", \"no_source_or_scientific_execution\": true, \"ordinary_roundtrip_revalidated\": true, \"rejections\": [\"unlisted empty directory\", \"anonymous future subtree\", \"FIFO before any body read\", \"symlink file\", \"symlink directory\", \"whole body changed\", \"missing declared empty directory\", \"terminal spelling does not exempt directory\"], \"retained_empty_finite_root\": \"namespace-fixture-work-optimized\", \"status\": \"OWN_NAMESPACE_CONTROLS_PASSED\"}\n",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B verify_editorial.py --preseal",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "PRESEAL-normal.stdout",
+        "bytes": 342,
+        "SHA256": "2d76f47f2cfe5a6284da1aca163404a6fb921ef084c1b69789750238d158127a"
+      },
+      "whole_stderr": {
+        "path": "PRESEAL-normal.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"AA\": null, \"canonical_url\": null, \"checks\": 32899, \"in_memory_copy_loss_rejections\": 3, \"mode\": \"ordinary\", \"original_files\": 421, \"paired_render_buffers\": 8, \"publication_authority\": false, \"scientific_replay\": false, \"source_JSON_bodies\": 39, \"status\": \"SOURCE_COPY_CUSTODY_PASSED\", \"strict_final_namespace\": false, \"typed_nodes\": 15281}\n",
+      "literal_stderr": ""
+    },
+    {
+      "command": "python3 -B -O verify_editorial.py --preseal",
+      "actual_observed_exit": 0,
+      "whole_stdout": {
+        "path": "PRESEAL-optimized.stdout",
+        "bytes": 345,
+        "SHA256": "1a3fd42652a8e11425d9f911780de873fa57bfe9ec8c87b5d0e2ac0ce72d4e61"
+      },
+      "whole_stderr": {
+        "path": "PRESEAL-optimized.stderr",
+        "bytes": 0,
+        "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "literal_stdout": "{\"AA\": null, \"canonical_url\": null, \"checks\": 32899, \"in_memory_copy_loss_rejections\": 3, \"mode\": \"optimized-O\", \"original_files\": 421, \"paired_render_buffers\": 8, \"publication_authority\": false, \"scientific_replay\": false, \"source_JSON_bodies\": 39, \"status\": \"SOURCE_COPY_CUSTODY_PASSED\", \"strict_final_namespace\": false, \"typed_nodes\": 15281}\n",
+      "literal_stderr": ""
+    }
+  ],
+  "pdftotext": {
+    "command": "pdftotext -layout ORIGINAL_PDF published-pdf-text.txt",
+    "actual_observed_exit": 0,
+    "actual_tool_output": "",
+    "stderr_not_separately_redirected": true,
+    "result": {
+      "path": "published-pdf-text.txt",
+      "bytes": 16696,
+      "SHA256": "3d62c8361541bdc66c0fa4f0ead4cde615b2bb3717cb61773ed3ed2e8dd20b43"
+    }
+  },
+  "failure_count": 1,
+  "failure_is_own_adapter_filename_not_source_or_math_defect": true,
+  "no_archived_or_native_science_or_builder_execution": true,
+  "final_sealer_and_default_pures": "Issued directly in tool handoff after payload freeze; no redirection into sealed namespace and no postseal writes."
+}

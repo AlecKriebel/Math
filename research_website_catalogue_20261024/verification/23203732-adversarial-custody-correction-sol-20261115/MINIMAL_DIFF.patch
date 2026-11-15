@@ -1,0 +1,23 @@
+--- sealed-original/verify_review.py
++++ correction/verify_review.corrected.py
+@@ -11,7 +11,7 @@
+ import stat
+ import zipfile
+ 
+-OWN = Path(__file__).resolve().parent
++OWN = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/adversarial')
+ SOURCE = OWN.parent.parent / 'sources'
+ TERMINALS = ['MANIFEST.json', 'FINAL_SEAL.json']
+ checks = 0
+@@ -183,7 +183,10 @@
+         files, directories = extent(OWN)
+         require(directories == manifest['directories'], 'entire exact owned directory namespace')
+         typed([f for f in files if f['path'] not in TERMINALS], manifest['files'])
+-        require([f['path'] for f in files] == sorted([f['path'] for f in manifest['files']] + TERMINALS), 'entire exact owned file namespace')
++        actual_paths = [f['path'] for f in files]
++        expected_paths = [f['path'] for f in manifest['files']] + TERMINALS
++        require(len(actual_paths) == len(set(actual_paths)) and len(expected_paths) == len(set(expected_paths)), 'unique actual and expected file identities')
++        require(sorted(actual_paths) == sorted(expected_paths), 'entire exact owned file namespace; Unicode lexical order on both sides')
+     print(json.dumps({'status': 'PASS_OFFLINE_CUSTODY_NO_SCIENTIFIC_REPLAY', 'checks': checks, 'typed_nodes': typed_nodes, 'source_files': len(source_files), 'source_directories': len(source_dirs), 'whole_original_JSON_objects': len(whole), 'archive_containers': 1, 'regular_archive_occurrences': 35, 'isolated_unchanged_native_files': 35, 'complete_native_expected_streams': 2, 'optimized_assertions_are_verification': False, 'own_final_closed_namespace_checked': own_closed, 'scientific_programs_project_imports_subprocess_network_or_writes': False}, indent=2))
+ 
+ if __name__ == '__main__':

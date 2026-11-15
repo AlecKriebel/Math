@@ -1,0 +1,5 @@
+# Custody correction log
+
+2026-11-15T23:16:05.956339+00:00 — 50%: Root authorized only this absent new additive namespace after original immutable159-file postseal closure failed its final sorting predicate. Original helper/body/seal/manifest/initial/results bound unchanged. Exact corrected body and minimal diff saved, with both list sorting and explicit duplicate detection; all original byte/type/payload/directory predicates retained. Science gate CLOSED; no mathematical result disclosed.
+
+2026-11-15T23:17:30.002612+00:00 — 100%: Complete original and corrected bodies personally read; original failure recurrence exit1/full separate streams and corrected custody-only exit0/empty stderr preserved. Mixed-prefix, identity, duplicate, case, missing/extra file/directory controls passed in memory. Every original payload hash and exact159-file20-directory extent remain unchanged. No scientific/native/foreign/campaign replay. Exact additive final sealing follows; root science gate remains CLOSED.

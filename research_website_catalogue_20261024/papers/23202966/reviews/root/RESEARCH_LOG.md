@@ -1,0 +1,1 @@
+2026-11-15T23:23:34.444914+00:00 — Full6PDF/376TeX/6freshownrasters read;14mechanism initial sealed before currentpeers/code/results/archive/foreign. Rootscientific25%, no disposition; upstream exponential inputs unverified.
