@@ -1,0 +1,764 @@
+TRANSACTIONS OF THE
+AMERICAN MATHEMATICAL SOCIETY
+Volume 349, Number 5, May 1997, Pages 1797–1809
+S 0002-9947(97)01846-1
+
+
+
+
+                   ON TRACE IDENTITIES AND
+              UNIVERSAL EIGENVALUE ESTIMATES FOR
+             SOME PARTIAL DIFFERENTIAL OPERATORS
+
+                     EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+          Abstract. In this article, we prove and exploit a trace identity for the spectra
+          of Schrödinger operators and similar operators. This identity leads to univer-
+          sal bounds on the spectra, which apply to low-lying eigenvalues, eigenvalue
+          asymptotics, and to partition functions (traces of heat operators). In many
+          cases they are sharp in the sense that there are specific examples for which the
+          inequalities are saturated. Special cases corresponding to known inequalities
+          include those of Hile and Protter and of Yang.
+
+
+
+
+                                        Introduction
+  In this article, we prove and exploit an identity for the spectra of self-adjoint
+operators H modeled on the Dirichlet Laplacian or, more generally, on Schrödinger
+operators of the form
+(1)                                  (p − A(x))2 + V (x),
+where p = 1i ∇ is the usual momentum operator in convenient units and A(x) is
+the magnetic vector potential. We recover and extend several known inequalities
+involving sums, differences, and ratios of eigenvalues. Let λj , j = 1, . . . , denote the
+ordered eigenvalues of the Dirichlet Laplacian on a bounded d-dimensional domain
+with zero Dirichlet boundary conditions, and recall that Hile and Protter [HiPr80]
+proved that:
+                                    1X
+                                        n
+                               d               λj
+(2)                              ≤                   ,
+                               4    n j=1 λn+1 − λj
+thereby extending an earlier inequality of Payne, Pólya, and Weinberger
+[PaPoWe56]. In the last few years it has become clear that these and many similar
+relationships can be realized as special cases of abstract variational bounds involv-
+ing the interplay among commutators of −∇2 , a Cartesian coordinate xj , and the
+corresponding derivative ∂/∂xj . For this analysis and various extensions of (2) see
+[Ha88], [Ho90], [Ha93], [HaMi95].
+   While inequalities of this type have been fairly sharp for low-lying eigenvalues,
+they have been mostly disappointing for higher eigenvalues. Yang [Ya91], however,
+
+   Received by the editors September 28, 1995.
+   1991 Mathematics Subject Classification. Primary 35J10, 35J25, 58G25.
+   Key words and phrases. Schrödinger operator, eigenvalue gap, trace, heat kernel, partition
+function.
+   The first author was supported in part by US NSF Grant DMS 9211624.
+
+                                                                c 1997 American Mathematical Society
+
+                                                  1797
+1798                   EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+first noticed that it is possible to use a modification of the original Hile-Protter
+argument to obtain somewhat complicated inequalities, the two sides of which are
+of the same order for high eigenvalues, when compared with the Weyl asymptotic
+formula for the Dirichlet Laplacian. In the course of understanding Yang’s results,
+we discovered an exact identity which implies Yang’s bound, the Hile-Protter bound
+(2), and several new ones. This identity is the cornerstone of our analysis. We
+emphasize that it is entirely nonvariational.
+
+                              I. An abstract trace formula
+   The operators to which our identity applies are modeled on (1) but potentially
+more general. Let H be a self-adjoint operator with purely discrete spectrum on
+a Hilbert space with inner product denoted h, i. Its eigenvalues and its normalized
+eigenfunctions will be written as λj and uj , respectively, j = 1, 2, . . . . There will
+be a distinguished subset J of the spectrum of H; J c will denote its complement in
+the spectrum, and PJ and PJ c will be the corresponding spectral projections. We
+shall be interested in traces of PJ f (H), where f (z) is any function defined on the
+spectrum of H.
+Theorem 1. Suppose there is a family of symmetric operators Xα and skew sym-
+metric operators Dα , α = 1, . . . , d, such that [Dα , Xα ] = 1, and that H is of the
+form
+                                               X
+                                               d
+(3)                                   H=−            Dα Dα + V,
+                                               α=1
+
+where V is such that [V, Xα ] = 0. Furthermore, suppose that Xα uj is in the domain
+of H for any j and that Dα is H-bounded. Define
+                                   Tαjm := |(Dα uj , um )|2 ≥ 0.
+Then
+       X                        X         f (λj ) − f (λm )          X f (λj )
+(4)            f (λj ) = −2                                 Tαjm + 4           Tαjq ,
+                                              λj − λm                  λq − λj
+       λj ∈J                  λj ,λm ∈J                            λj ∈J
+                               λj 6=λm                             λq ∈J c
+
+provided that these sums converge.
+Remarks.    1. Multiple eigenvalues are counted with their degeneracies.
+  2. In our principal model (1), Dα = (∇ − iA)α , and
+(5)                                        Tj := Σαm Tαmj
+     corresponds to the kinetic energy of the state uj . Moreover, in applications
+     where H = −∇2 , Tj is the usual Dirichlet integral with uk , so Tj = λj . The
+     same is true for purely magnetic Schrödinger operators, H = −(∇ − iA)2 .
+  3. There are other straightforward extensions, which we shall not bother to
+     write explicitly, such as replacing the Laplacian with other constant coefficient
+     elliptic operators. Likewise, we note that the formula extends to the case of
+     continuous spectra when the density of states is well defined. In the latter
+     case the sums become integrals, which must be assumed convergent.
+  4. If H is an abstract operator not necessarily satisfying (3), and [Dα , Xα ] = 1
+     for a particular pair of operators Dα , Xα , we still obtain the identity (6) given
+     below.
+               TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                                  1799
+
+
+  5. This identity was suggested by the analysis in [Ya91], where there is an in-
+     equality related to the case J = {λ1 , ..., λn }, f (λj ) = (λn+1 − λj )2 , H = −∇2 .
+     (See Theorem 5, below.)
+
+Proof. We rewrite tr(PJ f (H)) as follows:
+         X
+             f (λj ) = tr(PJ f (H)) = Tr(PJ f (H)[Dα , Xα ])
+         λj ∈J
+
+                         = tr(PJ f (H)[Dα (PJ + PJ c )Xα − Xα (PJ + PJ c )Dα ])
+                         = tr(PJ f (H)[Dα PJ Xα − Xα PJ Dα ])
+                                 + tr(PJ f (H)[Dα PJ c Xα − Xα PJ c Dα ]).
+
+Using the gap formula
+
+                          (λm − λj )hXα uj , um i = h[H, Xα ]uj , um i
+
+we obtain
+
+                                                           X
+  Tr(PJ f (H)(Dα PJ Xα − Xα PJ Dα )) = −2                            f (λj )hXα uj , um ihum , Dα uj i
+                                                         λj ,λm ∈J
+                                                          λj 6=λm
+                         X        f (λk )h[H, Xα ]uj , um ihum , Dα uj i
+                 =2
+                                               λj − λm
+                      λj ,λm ∈J
+                       λj 6=λm
+                       X         f (λj ) − f (λm )
+                 =                                 h[H, Xα ]uj , um ihum , Dα uj i,
+                                     λj − λm
+                     λj ,λm ∈J
+                      λj 6=λm
+
+where in the last step we symmetrized in the two indices. The cross term connecting
+J and J c can be rewritten similarly, except that symmetrization does not apply.
+The result is
+            X                    X        f (λj ) − f (λm )
+                 f (λj ) =                                  h[H, Xα ]uj , um ihum , Dα uj i
+                                              λj − λm
+         λj ∈J               λj ,λm ∈J
+                              λj 6=λm
+(6)                                   X 2f (λj )
+                                 +               h[H, Xα ]uj , uq ihuq , Dα uj i.
+                                        λj − λq
+                                     λj ∈J
+                                     λq ∈J c
+
+
+Identity (4) then follows because [H, Xα ] = −2Dα .
+
+  With the choice f (λ) = (z − λ)2 , identity (4) can be simplified, as follows:
+
+Proposition 2. With the same assumptions as in Theorem 1,
+      X                  X                 X  (z − λj )(z − λq )  X
+(7) d     (z − λj )2 = 4   (z − λj )Tj + 4                            Tαjq .
+                                                   λq − λj
+       λj ∈J                     λj ∈J                   λj ∈J      α
+                                                         λq ∈J c
+1800                     EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+Proof. The first term on the right in (4) is
+               X         (z − λj )2 − (z − λm )2              X
+        −2                                       Tαjm = 2               (2z − λj − λm )Tαjm
+                                λj − λm
+             λj ,λm ∈J                                      λj ,λm ∈J
+              λj 6=λm
+                                                              X
+                                                       =4               (z − λj )Tαjm
+                                                            λj ,λm ∈J
+
+(because of the symmetry in j, m)
+                   X            X          X
+                =4    (z − λj )   Tαjm − 4   (z − λj )Tαjm .
+                         λj ∈J         all λm            λj ∈J
+                                                        λm ∈J c
+
+Equation (7) now results from summing (4) over α, using (5), and noting that
+                           (z − λj )2               (z − λj )(z − λq )
+                                      − (z − λj ) =                    .
+                            λq − λj                     λq − λj
+
+
+
+       II. The estimates of Hile-Protter and Yang, and extensions
+   Earlier generalizations of the Hile-Protter inequality (2) in [Ha88], [Ho90], [Ha93],
+[HaMi95] had no analogue of the function f , and were on the other hand based on
+variational estimates of eigenvalues. The proof of Theorem 1 is not only more direct
+than the earlier estimates, but it also allows several new corollaries. In addition,
+several of our corollaries are sharp; this will be indicated by the use of the symbol
+#.
+Corollary 3 (#, harmonic oscillator, n = 1, all d).
+                                     d   1X    Tj
+(8)                                    ≤              .
+                                     4   n  λn+1 − λj
+                                            j≤n
+
+Remarks. This includes Hile-Protter (2), since for the Dirichlet Laplacian Tj = λj .
+Because of the virial theorem, for Schrödinger operators there are often substan-
+tially better substitutes for Tj than the inequality Tj ≤ λj , and in this case (8)
+is sharp (see Corollary 3). The Hile-Protter inequality for the Dirichlet Laplacian
+is definitely not sharp, even for the lowest two eigenvalues, for which the sharp
+version is that of Ashbaugh and Benguria [AsBe]. A generalization of inequality
+(8) is given below in Theorem 5.
+Proof. Make the choice f (z) = 1, J = {λ1 , ..., λn }, in (4) and sum over all α from
+1 to d. The first term on the right vanishes and the sum in the second term can be
+extended to all q to yield
+                     X Tαjq           X      Tαjq           X       Tj
+           dn = 4                 ≤4                    =4                .
+                          λq − λj         λn+1 − λj             λn+1 − λj
+                                                                  j≤n
+                           α                 α
+                          j≤n               j≤n
+                         q≥n+1              q≥1
+            TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                       1801
+
+
+  In at least one important situation, inequality (8) is sharp. For consider the
+quantum harmonic oscillator in d dimensions,
+                                    H = |p|2 + |x|2 ,
+the lowest two eigenvalues of which are known to be λ1 = d and λ2 = d + 2.
+Because of the virial theorem, Tj = 12 λj for the harmonic oscillator, and therefore
+with n = 1 the right side of (8) equals d2 21 = d4 , and the inequality is saturated.
+The general situation applying the virial theorem is:
+Corollary 4 (#, harmonic oscillator, n = 1, all d). Let H= |p|2 + V (x) on L2 (Rd ),
+where we assume that
+(9)                                  x · ∇V ≤ βV,
+and suppose that λ1 , . . . λn+1 are discrete eigenvalues. Then
+                              d(2 + β)     1 X       λk
+                                        ≤                  .
+                                 4β       n      λn+1 − λk
+                                              k≤n
+
+Remarks. This applies in particular to power-law potentials V (x) = |x|β , β > 0,
+and even, despite the presence of continuous spectrum, for the negative eigenvalues
+with V (x) = −|x|β , −2 < β < 0. The correct generalization corresponding to
+β = 0 is V (x) = ln(|x|), for which the conclusion reads
+                               d     1X        1
+                                  ≤                  .
+                                2    n     λn+1 − λk
+                                        k≤n
+
+Obviously, any of these power-law potentials could be multiplied by a positive
+constant with a similar estimate.
+Proof. By the virial theorem (see [EaKa]),
+                               1                    β
+                       Tj = huj , (x · ∇V )uj i ≤ huj , V uj i.
+                               2                    2
+Since λj = Tj + huj , V uj i, a simple calculation shows that this implies that
+(10)                                   Tj ≤ σλj ,
+with σ = β/(2 + β), which when inserted into (8) yields the claim.
+We next present some inequalities related to identity (4) for other choices of the
+function f . The important new idea in Yang’s analysis, as we interpret it, was to
+change the f used by Hile and Protter, so one of our tasks will be to recover his
+estimate. Suppose initially that H is bounded from below and that J is the lower
+part of its spectrum, J = {λ1 , . . . , λn }. It is clear that if f ≥ 0 is nondecreasing on
+J, then (4) produces an upper bound on Σf (λj ) when the first term on the right is
+dropped and the second sum is simplified by extending the sum to all p. Actually,
+a substantially stronger statement is obtainable:
+Theorem 5 (asymptotically # for Dirichlet Laplacian or power-law potentials).
+Suppose that the same assumptions as in Theorem 1 apply. Let f be a nonnegative
+function on J = {λ1 , ..., λn } such that for some z ∈ (λn , λn+1 ], f (λ)(z − λ)−2 is
+nondecreasing in λ for λ ∈ J. Then
+                              dX              X
+                                 n             n
+                                                  f (λj )
+(11)                                f (λj ) ≤             Tj .
+                              4 j=1           j=1
+                                                  z − λj
+1802                 EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+In particular, with f (λ) = (z − λ)2 , this implies that
+                           dX                 X
+                              n                n
+(12)                             (z − λj )2 ≤     (z − λj )Tj .
+                           4 j=1              j=1
+
+Remarks. For the Dirichlet Laplacian with z = λn+1 , (12) becomes a key formula
+of Yang’s article ([Ya91], above his eq. (24) in the 1991 numbering or above (25)
+in the 1995 numbering), from which the subsequent bounds in that article follow
+readily. As observed by Yang, when n → ∞ with p = 2, both sides have the same
+leading growth rate when we substitute the Weyl asymptotics for λj in the case of
+the Dirichlet Laplacian. On the other hand, if Tj is replaced by σλj , then inequality
+(12) may be interpreted as an inequality on a polynomial of the form
+                                        X        !
+                                                          d + 4σ X 2
+                                             n                    n
+                          2          2σ
+              Pn (z) := nz − 2 1 +              λk z +               λk .
+                                      d                      d
+                                                k=1               k=1
+
+This allows sharper estimates as follows:
+Proposition 6 (# for harmonic oscillator, d = 1). Let H be as in Theorem 1 and
+suppose that the bound (10) holds for some σ ∈ (0, 1]. (Recall that σ =
+β/(2 + β) results from the virial assumption (9) and that σ = 1 applies to the
+Dirichlet Laplacian or a purely magnetic Schrödinger operator.) Then
+  (i) Pn (z) ≤ 0 for all z ∈ [λn , λn+1 ].
+                                  2
+                       1 nP                   1 n
+                                                  P 2
+ (ii) Dn := 1 + 2σ   d   n     λk     − 1 + 4σ
+                                             d  n   λk ≥ 0.
+                           k=1                        k=1
+(iii) [λn , λn+1 ] ⊆ [λ− (n), λ+ (n)], where
+                                            
+                                          2σ 1 X     p
+                                               n
+                         λ± (n) := 1 +           λk ± Dn .
+                                           d n
+                                                  k=1
+
+       In particular, for the gap λn+1 − λn ,
+                                                  p
+                                 λn+1 − λn ≤ 2     Dn .
+Proof of Proposition 6. Statement (i) is a restatement of inequality (12). This im-
+plies that nDn = − min(Pn (z)) is nonnegative, giving (ii). Statement (iii) is merely
+the explicit determination of the upper and lower bounds.
+Discussion. Observe that inequality (ii) goes in the opposite direction from the
+Cauchy-Schwarz inequality. The underlying reason that it implies a simple but
+tight bound (iii) on the gap is that our technique is nonvariational, unlike most
+other gap estimates.
+   For the Dirichlet Laplacian, λj ∼ j 2/d in accordance with Weyl’s asymptotic
+formula, and this saturates our bound at leading order. Inequality (ii) is likewise
+asymptotically sharp for Schrödinger operators, in the sense that for Hamiltonians
+on L2 (Rd ) with power-law potentials,
+                                   H = |p|2 + |x|β ,
+β > 0, such as the harmonic oscillator (β = 2), the corresponding Weyl formula is
+                                      λn ∼ n2σ/d
+[QuRo77], which again saturates the inequality for Dn at leading order.
+              TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                         1803
+
+
+   Even more strikingly, we can compare the gap estimate from (iii) with the exact
+situation for the harmonic oscillator (β = 2) in one dimension as follows. The
+eigenvalues are λn = 2n − 1, and we calculate:
+                                          σ = 1/2,
+
+                                        1X
+                                           n
+                                           λk = n,
+                                        n
+                                          k=1
+
+
+                                  1X 2
+                                    n
+                                        1
+                                    λk = (4n2 − 1),
+                                  n     3
+                                   k=1
+
+                                           Dn = 1,
+and therefore λn and λn+1 are exactly equal to the bounds
+                                    λ± (n) = 2n ± 1.
+
+
+Proof of Theorem 5. We majorize the last term in (4) by
+          X                        X n X f (λj ) X ∞           Xd X
+                                                                    f (λj ) X
+                                    d                                       n
+                  f (λj )
+     4                    Tαjq ≤ 4                    Tαjq − 4                 Tαjq
+                 λq − λj           α=1 j=1
+                                           z − λj q=1          α=1
+                                                                    z − λj q=1
+                                                                         j≤n
+           α
+          j≤n
+         q≥n+1
+
+                                  X
+                                  n
+                                    f (λj )               X
+                                                          d X
+                                                            n
+                                                              f (λj ) X
+                                                                      n
+                             =4                  Tj − 4                          Tαjq .
+                                  j=1
+                                        z − λj            α=1 j=1
+                                                                    z − λj q=1
+
+Comparing (11) with (4), it suffices to show that
+                                                                    
+        Xd        X f (λj ) − f (λm )
+                   n                              X f (λj ) Xn
+            −2                          Tαjm − 4               Tαjm 
+        α=1      j,m=1
+                            λj −  λm                z − λ j m=1
+                                                            j≤n
+
+is negative. By symmetrizing the last term in this expression with respect to j, m,
+we get
+           X d  Xn                                              
+                         f (λj ) − f (λm )    f (λj )    f (λm )
+                      −2                   −2         −2           Tαjm ,
+           α=1 j,m=1
+                             λj − λm          z − λj     z − λm
+
+and some straightforward algebra shows that the expression in parentheses can be
+rewritten
+                                                                         
+                                  f (λj )(z − λj )−2 − f (λm )(z − λm )−2
+           −2 (z − λm ) (z − λj )                                           ,
+                                                  (λj − λm )
+which is negative by hypothesis.
+
+   A variant of these arguments, corresponding to a choice J = {λn , . . . , λN } rather
+than {λ1 , . . . , λN }, allows λN +1 to be controlled by the eigenvalues in J alone.
+While the bounds do not appear as tight as in Propositions 6 and 7, they use less
+information:
+1804                 EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+Proposition 7. With the same assumptions as in Proposition 6, but this time with
+       PN,n (z) := PN (z) − PN,n (z)
+                                                              !
+                                     2σ              X
+                                                     N
+                                                                         d + 4σ X 2
+                                                                                N
+                           2
+                = (N − n)z − 2 1 +                         λk       z+            λk .
+                                      d                                     d
+                                                   k=n+1                          k=n+1
+
+  (i) PN,n (z) ≤ 0 for all z ∈ [λN , λN +1 ].
+                                          !2
+                                 P
+                                  N                     1                P
+                                                                          N
+ (ii) DN,n :=     1 + 2σ
+                       d
+                             1
+                           N −n        λk     − 1 + 4σ
+                                                     d  N −n                     λ2k ≥ 0.
+                                     k=n+1                               k=n+1
+(iii) [λN , λN +1 ] ⊆ [λ− (N, n), λ+ (N, n)], where
+                                                  X
+                                      2σ       1
+                                                    N
+                                                          p
+                  λ± (N, n) := 1 +                    λk ± DN,n .
+                                       d N −n
+                                                      k=n+1
+
+       In particular, for the gap λN +1 − λN ,
+                                                     p
+                                    λN +1 − λN ≤ 2    DN,n .
+Proof. In identity (7) choose J = {λn+1 , . . . , λN } and substitute the formula (9) in
+the first term on the right. The analogue of (12),
+
+                         d X                   X
+                             N                  N
+                                 (z − λj )2 ≤       (z − λj )Tj ,
+                         4 j=n+1              j=n+1
+
+follows because the final term in (7),
+                        X  (z − λj )(z − λq )  X
+                      4                            Tαjq ≤ 0
+                                    λq − λj
+                         λj ∈J                   α
+                         λq ∈J c
+
+for z ∈ [λN , λN +1 ]. (In this sum, either q > N ≥ j or q ≤ n < j.)
+
+             III. Bounds for moments and partition functions
+   In order to generate further useful inequalities from the identity (4), we shall
+assume the existence of a function r(x) such that for x, y ∈ J,
+                                   f (x) − f (y)   r(x) + r(y)
+(H1)                                             ≥
+                                       x−y              2
+The existence of such a function r is of course a restriction on f (x), which in practice
+is that f 000 ≤ 0:
+Lemma 8. Hypothesis (H1) holds with r(s) = f 0 (s) provided that f ∈ C 3 (I) for
+some interval I containing J and that f 000 (s) ≤ 0 for all s ∈ I.
+Proof. Without loss of generality we can rescale f and subtract a constant to set
+y = 0, x = 1, and f (0) = 0, with f 000 (s) ≤ 0 for all s ∈ [0, 1]. The derivative f 0 is
+concave on that interval, and therefore f 0 (s) ≥ sf 0 (0) + (1 − s)f 0 (1). If we integrate
+this inequality from 0 to 1, we obtain
+                                      1           1
+                              f (1) ≥ f 0 (0) + f 0 (1)
+                                      2           2
+as required.
+                TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                                   1805
+
+
+Remarks. In what follows we shall generally choose r(x) = f 0 (x), since this seems
+to produce the sharpest corollaries. Complementary bounds in the other direction
+result in principle from the alternative hypothesis
+                                    f (x) − f (y)   R (x) + R (y)
+(H2)                                              ≤
+                                        x−y               2
+(just replace r by R and reverse the inequality in (13), below), but we have not
+found them useful. If f is a quadratic or linear polynomial, both hypotheses hold
+with equality for r(x) = R(x) = f 0 (x) (cf. Proposition 2).
+Theorem 9. With assumptions as in Theorem 1 and inequality (H1),
+       d X              X             X  2f (λj )          X
+(13)        f (λj ) ≤ −    r(λj )Tj +              + r(λj )      Tαjq .
+       2                                   λq − λj
+                λj ∈J               λj ∈J                λj ∈Jα
+                                                         λq ∈J c
+
+In particular, for f (λ) = (z − λ)p with p ≥ 2 and z ∈ [λn , λn + p(λn+1 − λn )/2],
+
+                                d X                 X
+                                    n                n
+(14)                                   (z − λj )p ≤     (z − λj )p−1 Tj .
+                                2p j=1              j=1
+
+Proof. Apply hypothesis (H1) to identity (4), recalling that Tαjq ≥ 0. The result is
+        X                          X        r(λj ) + r(λm )          X f (λj )
+                f (λj ) ≤ −2                                Tαjm + 4           Tαjq .
+                                                   2                   λq − λj
+        λj ∈J                   λj ,λm ∈J                                  λj ∈J
+                                 λj 6=λm                                   λq ∈J c
+
+Because the first sum on the right is symmetric in j, m, we may rewrite it as:
+                   X r(λj ) + r (λm )            X
+                                        Tαjm =         r (λj ) Tαjm .
+                              2
+                    λj ,λm ∈J                                  λj ,λm ∈J
+                     λj 6=λm                                    λj 6=λm
+
+Since
+                X                                X                             X
+        −2               r (λj ) Tαjm = −2               r (λj ) Tαjm + 2              r (λj ) Tαjm
+             λj ,λm ∈J                          λj ∈J                         λj ∈J
+              λj 6=λm                           all λm                       λm ∈J c
+
+and
+                                             X
+                                                     Tαjm = Tj ,
+                                               α
+                                            all λm
+
+by (5), inequality (13) follows after summing on α and dividing by 2.
+   For the moment inequality (14), notice that f (λ) := (z − λ)p satisfies (H1) for
+all λ < z by Lemma 8. The final term in (13) is negative for the given range
+of z because of the positivity of Tαjq and the observation that for q ≥ n + 1, its
+coefficient is
+                                         
+                                                     p−1
+                2 (z − λj ) − p (λq − λj ) (z − λj )
+                                                                                     p−1
+                                ≤ (2 (z − λj ) − p (λn+1 − λj )) (z − λj )                 ≤ 0.
+1806                EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+   One of the most significant functions in physics is the partition function, or trace
+of the heat operator,
+                               Z(t) := tr(exp(−tH)),
+and evidently our methods apply with f (λ) = exp(−λt), t > 0, and J = the
+entire spectrum. The set J may be allowed to be the entire spectrum assuming
+that the eigenvalues grow sufficiently fast, which is guaranteed by the usual Weyl
+asymptotics for Dirichlet Laplacians or Schrödinger operators on finite domains, or
+for Schrödinger operators on infinite domains if the potential grows sufficiently at
+infinity, for example. We henceforth assume the convergence of Z(t).
+   Since f (λ) has a negative third derivative in its variable λ for any t > 0, hypoth-
+esis (H1) is satisfied, and hence from (13),
+                      X                             X
+                       2                               2t       Tj
+(15)       Z (t) ≤ −          (−t exp (−tλj )) Tj =                (exp (−tλj )) λj
+                       d    j
+                                                       d     j
+                                                                λj
+As we have seen, in many cases the factor Tj /λj can be replaced by a constant
+σ. Thus for the Dirichlet Laplacian on a bounded domain, which corresponds
+physically to the ideal gas and σ = 1, (15) yields
+                                            
+                                            2t    0
+(16)                         Zi.g. (t) ≤ −      Zi.g. (t)
+                                            d
+which implies
+Corollary 10 (# for ideal gas = Dirichlet Laplacian, for large volume or t → 0).
+Z(t)td/2 is a nonincreasing function.
+Proof. We can rewrite (16) as
+                                                    
+                          d                         d d ln(t)
+                             ln(Zi.g. (t)) ≤ −                ,
+                          dt                        2    dt
+or, equivalently,
+                                  d
+(17)                                 ln(Zi.g. (t)td/2 ) ≤ 0.
+                                  dt
+
+   This should be compared with the known result from comparison of Green func-
+tions (see, e.g., [Da]), that
+                                                  Vol(Ω)
+                                   Zi.g. (t) ≤            ,
+                                                 (4πt)d/2
+which also follows from integrating (16) between 0 and t, using the fact that
+                            lim Zi.g. (t)(4πt)d/2 = vol(Ω).
+                            t→0
+With the virial theorem, if (9) holds, we obtain
+Corollary 11 (# as t → 0). Let H = |p|2 + V (x) on L2 (Rd ), where x · ∇V ≤ βV ,
+and suppose that the spectrum of H is discrete and Z(t) convergent for t > 0. Then
+                                               
+                                         2βt
+                           Z(t) ≤ −               Z 0 (t),
+                                      (2 + β)d
+so
+                    Z(t)t(2+β)d/2β is a nonincreasing function.
+            TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                     1807
+
+
+Proof. Substitute for Tj /λj as in Corollary 4 with (10) and argue as for Corollary
+10.
+Corollary 12 (# for harmonic oscillator). In addition to the assumptions of Cor-
+ollary 11, suppose that there is a minimal spectral gap ω ≤ |λk − λj | for all λj 6= λk
+(exact degeneracies are allowed). Then
+                                                   !
+                                      4β tanh ω2 t
+(18)                     Z (t) ≤ −                    Z 0 (t) ,
+                                       ωd (2 + β)
+
+                 ω
+                   (2+β)d/2β
+and Z (t) sinh   2t                is a nonincreasing function.
+
+Proof. For the partition function, with J = the entire spectrum, identity (4) be-
+comes
+         X                    X exp (−tλj ) − exp (−tλk )
+            exp (−tλk ) = −2                              Tαjk
+                                          λj − λk
+          k                   j6=k
+                           X
+                        =     (exp(−tλj ) + exp(−tλk ))
+                            j6=k
+                                                                          
+                                       exp (−tλ   ) −  exp   (−tλ   )
+                          ×                                               Tαjk
+                                                j                 k
+                                         
+                                  λk −λj
+                                     2     (exp (−tλ   j ) +  exp (−tλk ))
+                                                                
+                                                         λ −λ
+                            X                  tanh k 2 j t
+                         =t      2 exp (−tλj )                  Tαjk
+                                                     λk −λj
+                            j6=k                         2    t
+                                                           
+                            X                 tanh 2 t ω
+                         ≤t      2 exp(−tλj )       ω
+                                                         Tαjk ,
+                            j6=k                    2 t
+
+using the symmetry in j, k and the noting that tanh(x)/x is a decreasing function.
+When we sum over α, we get
+                                                         
+                             X                 tanh ω2 t
+                    dZ(t) ≤      2 exp (−tλj )     ω
+                                                          Tαjk
+                                j,k,α                         2
+                                                                     
+                                X                      tanh    ω
+                                                                 t
+                            =          2 exp (−tλj )      ω
+                                                              2         Tj
+                                   j                      2
+
+so, with (10),
+                                        4      ω           β
+                        dZ (t) ≤ −        tanh    t Z 0 (t)     .
+                                        ω       2           2+β
+This is equivalent to (18), which in turn may be written
+                                         ω d(2+β)/2β 
+                            d
+                       0≥       Z(t) sinh     r             .
+                           dt               2
+1808                 EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+   Corollary 12 is again optimal, for the exact partition function for the harmonic
+oscillator, normalized so that ω = 2, β = 2 (σ = 1/2), is
+                                Zh.o. (t) = (2 sinh (t))−d .
+Inequalities similar to these corollaries hold for the finite partition function
+                                            X
+                                            N
+                                ZN (t) :=         exp (−tλj )
+                                            j=1
+
+provided that t is sufficiently large (viz., > 2/(λN +1 − λN )). In addition, some
+slightly more refined estimates for the derivatives of Z are obtainable, since for any
+function f (λ) with f 000 ≤ 0 and J = the entire spectrum, inequality (13) becomes
+                            dX               X
+(20)                             f (λk ) ≤ −    f 0 (λk ) Tk ,
+                            2
+                                k                  k
+
+assuming convergence. For example, choosing
+                               f (λ; t) = 3 + λt exp(−λt)
+(the 3 ensures that f 000 ≤ 0 for all t), leads to a second order differential inequality,
+                                           
+                        2 00         d                 3d
+                      t Z (t) +        − 2 tZ 0 (t) − Z(t) ≥ 0.
+                                     2                  2
+
+                                    Acknowledgments
+   We are grateful to P. Kröger for bringing the article by Yang to our attention
+and to him and to J. Fleckinger for helpful conversations. We also wish to ac-
+knowledge the hospitality of the Erwin Schrödinger Institute in Vienna, where our
+collaboration began.
+
+                                      References
+[AsBe]       Ashbaugh, Mark S., Benguria, Rafael D., A sharp bound for the ratio of the first
+             two eigenvalues of Dirichlet Laplacians and extensions, Ann. Math. 135 (1992),
+             601–628. MR 93d:35105
+[Da]         Davies, E.B., Heat Kernels and Spectral Theory, Cambridge Tracts in Mathemat-
+             ics, vol. 92, Cambridge University Press, Cambridge, 1989. MR 90e:35123
+[EaKa]       Eastham, M.S.P., Kalf, H., Schrödinger-Type Operators with Continuous Spectra,
+             Research Notes in Mathematics, vol. 65, Pitman, Boston, 1982. MR 84i:35107
+[Ha88]       Harrell, Evans M., II, General Bounds for the Eigenvalues of Schrödinger Opera-
+             tors, Maximum Principles and Eigenvalue Problems in Partial Differential Equa-
+             tions, P.W. Schaefer, editor, Longman House, Essex, England, pp. 146–166, and
+             New York, Wiley, 1988. MR 90d:35220
+[Ha93]       Harrell, Evans M., II, Some geometric bounds on eigenvalue gaps, Communications
+             in Partial Differential Equations 18 (1993), 179–198. MR 94c:35135
+[HaMi95]     Harrell, Evans M., II and Michel, Patricia L., Commutator Bounds for Eigenvalues,
+             with Applications to Spectral Geometry, Communications in Partial Differential
+             Equations 19 (1994), 2037–2055; Erratum , vol. 20, 1995, pp. 1453. MR 95j:47028;
+             CMP 95:13
+[HiPr80]     Hile, G.N., M. H. Protter, Inequalities for eigenvalues of the Laplacian, Indiana
+             Univ. Math. J. 29 (1980), 523–538. MR 82c:35052
+[Ho90]       Hook, Stephen M., Domain-independent upper bounds for eigenvalues of elliptic
+             operators, Trans. Amer. Math. Soc. 318 (1990), 615–642. MR 90h:35075
+[PaPoWe56]   Payne, L.E., Pólya, G., Weinberger, H.F., On the ratio of consecutive eigenvalues,
+             J. Math. and Phys. 35 (1956), 289–298. MR 18:905c
+            TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                       1809
+
+
+[QuRo77]     Quigg, C., Rossner, J. L., Quantum mechanics with applications to quarkonium,
+             Physics Reports 56 (1979), 167–235. MR 80m:81020
+[Ya91]       Yang, Hongcang, An estimate of the difference between consecutive eigenvalues,
+             preprint IC/91/60 of the Intl. Centre for Theoretical Physics,, 1991, Revised
+             preprint, from Academia Sinica, 1995.
+
+   School of Mathematics, Georgia Institute of Technology, Atlanta, Georgia 30332-
+0160
+   E-mail address: harrell@math.gatech.edu
+
+   Département de Physique Théorique, Université de Genève, Geneva, Switzerland
+   E-mail address: stubbe@cernvm.cern.ch
+

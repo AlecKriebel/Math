@@ -10,7 +10,7 @@ REPO=PROGRAM.parent
 def git(*args, env=None, data=None):
     r=subprocess.run(['git','-c','gc.auto=0',*args],cwd=REPO,env=env,input=data,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     if r.returncode:
-        raise RuntimeError(r.stderr.decode('utf-8','replace')[-3000:])
+        raise RuntimeError((r.stdout+r.stderr).decode('utf-8','replace')[-3000:])
     return r.stdout
 
 def value(*args, env=None):
@@ -54,6 +54,8 @@ try:
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stderr',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.stdout',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.download',
+        # Raw HTTP response bodies are immutable evidence, including native whitespace.
+        ':!'+PROGRAM.name+'/papers/*/reviews/**/*.response',
         ':!'+PROGRAM.name+'/papers/*/reviews/**/*.txt',env=env)
     isolated_root=value('write-tree',env=env)
     isolated_entries=entries(isolated_root)

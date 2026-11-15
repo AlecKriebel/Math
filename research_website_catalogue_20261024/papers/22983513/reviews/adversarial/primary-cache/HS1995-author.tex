@@ -1,0 +1,970 @@
+\input amstex
+\documentstyle{tran}
+\title
+On Trace Identities and Universal Eigenvalue Estimates 
+for Some Partial Differential Operators\endtitle
+
+\author Evans M. Harrell II and Joachim Stubbe\endauthor
+
+\address School of Mathematics, 
+Georgia Institute of Technology, 
+Atlanta  GA  30332-0160\endaddress
+
+\email harrell\@math.gatech.edu\endemail
+
+
+\address D\'epartement de Physique Th\'eorique,
+Universit\'e de Gen\`eve,
+Geneva, Switzerland\endaddress     
+
+\email stubbe\@cernvm.cern.ch\endemail
+
+\cvol{00}
+\cvolno{00}
+\cvolyear{0000}
+\cyear{0000}
+\cmonth{XXX}
+
+\subjclass 35J10, 35J25, 58G25\endsubjclass  
+
+%%version of 17 September 1995
+\abstract
+In this article, we prove and exploit a trace identity for the spectra of 
+Schr\"odinger operators and similar operators.  This identity leads to 
+universal bounds on the spectra, which apply to low-lying eigenvalues, 
+eigenvalue asymptotics, and to partition functions (traces of heat operators).  
+In many cases they are sharp in the sense that there are specific 
+examples for which the inequalities are saturated.  
+Special cases corresponding to known 
+inequalities include those of Hile and Protter and of Yang.
+\endabstract
+
+\thanks The first author
+was supported in part by US NSF Grant DMS 9211624.\endthanks
+
+\date {} \enddate
+\keywords Schr\"odinger operator, eigenvalue gap, trace,
+heat kernel, partition function\endkeywords
+\endtopmatter
+
+\document
+\head Introduction\endhead
+
+In this article, we prove and exploit an identity for the 
+spectra of self-adjoint 
+operators $H$ modeled on the Dirichlet Laplacian or, more generally, on 
+Schr\"odinger operators of the form
+$$
+(\bold p - \bold A(\bold x))^2 + V(\bold x),                                    
+\tag 1$$
+where ${\bold p} = {1\over i}\, \nabla$ 
+is the usual momentum operator in convenient 
+units and {\bf A(x)} is the magnetic vector potential.   
+We recover and extend 
+several known inequalities involving sums, differences, and ratios of 
+eigenvalues.  Let 
+$\lambda_{j}$, $j = 1,\dots,$ denote the ordered eigenvalues 
+of the Dirichlet Laplacian on a bounded 
+$d$-dimensional domain with zero 
+Dirichlet boundary conditions, and recall that Hile and Protter [HiPr80] 
+proved that:
+$${d \over 4} \le  {1 \over n}\sum\limits_{j = 1}^{n} 
+{{\lambda }_{j} \over {\lambda }_{n+1} - {\lambda 
+}_{j}},\tag 2 $$
+thereby extending an earlier inequality of Payne, P\'olya, and 
+Weinberger\break 
+[PaPoWe56].  In the last few years it has become clear that these and many 
+similar relationships can be realized as special 
+cases of abstract variational 
+bounds involving the interplay among commutators of $-\nabla^2$, a 
+Cartesian coordinate $x_j$ and the corresponding derivative 
+$\partial/\partial x_j$.  
+For this analysis and various extensions of (2) see [Ha88], 
+[Ho90], [Ha93], [HaMi95].  
+
+While inequalities of this type have been fairly sharp for low-lying 
+eigenvalues, they have been mostly disappointing for higher eigenvalues.  
+Yang [Ya91], however, first noticed that it is possible to use a modification 
+of the original Hile-Protter argument to obtain somewhat complicated 
+inequalities, the two sides of which are of the same order for high 
+eigenvalues, when compared with the Weyl asymptotic formula for the 
+Dirichlet Laplacian.  In the course of understanding Yang's results, we 
+discovered an exact identity which implies Yang's bound, the Hile-Protter 
+bound (2), and several new ones.  This identity is the cornerstone of our 
+analysis.  We emphasize that it is entirely nonvariational.
+
+\head I.  An abstract trace formula\endhead
+
+The operators to which our identity applies are modeled on (1) but 
+potentially more general.  Let $H$ be a self-adjoint operator with purely 
+discrete spectrum on a Hilbert space with inner product denoted 
+$\langle,\rangle$.  Its 
+eigenvalues and its normalized eigenfunctions will be written as 
+$\lambda_{j}$ and $u_j$, respectively, $j = 1,2,\dots$.  There will be a 
+distinguished subset $J$ of the spectrum of $H$; $J^c$ 
+will denote its complement 
+in the spectrum, and $P_J$ and $P_{J^c}$ will be the corresponding spectral 
+projections.  We shall be interested in traces of  
+$P_J f(H)$, where $f(z)$ is any 
+function defined on the spectrum of $H$.
+
+\proclaim{Theorem 1}  
+Suppose there is a family of symmetric operators $X_{\alpha}$ 
+and skew symmetric operators  $D_{\alpha}$, 
+$\alpha = 1, \dots, d$, such that  
+$[D_{\alpha},X_{\alpha}] = 1$,  and that $H$ is of the form
+$$
+H =   - \sum_{\alpha=1}^d D_{\alpha}D_{\alpha}    +      
+V,   \tag 3
+$$
+where $V$ is such that  $[V,X_{\alpha}] = 0$.  
+Furthermore, suppose that 
+$X_{\alpha}u_j$ is in the domain of $H$ for any 
+$j$ and that $D_{\alpha}$ is 
+$H$-bounded.  Define 
+$$T_{\alpha jm} := |(D_{\alpha} u_j, u_m)|^2    \ge   0.$$
+Then:
+$$
+\sum\limits_{\lambda_j\in J} f\left(\lambda_j\right)
+= -2\sum\limits_{\scriptstyle\lambda_j,\lambda 
+_m\in J\atop
+\scriptstyle\lambda_j\ne \lambda_m}
+{f\left(\lambda _j\right) - f\left(\lambda_m\right) 
+\over\lambda_j-\lambda _m}\,
+{T}_{\alpha jm}+4\sum\limits_{\scriptstyle\lambda _j\in J\atop
+\scriptstyle\lambda_q\in J^c}
+{f\left({{\lambda }_{j}}\right) 
+\over {\lambda }_{q}-{\lambda }_{j}}\,{T}_{\alpha jq} , 
+\tag 4 $$
+provided that these sums converge.
+\endproclaim 
+
+\remark{Remarks}  %% if EH wants plural use demo{}
+\roster
+\item Multiple eigenvalues are counted with their degeneracies.
+\item In our principal model (1), 
+$D_{\alpha} = (\nabla - i {\bold A})_{\alpha}$, 
+and 
+$$T_j := \Sigma _{\alpha m} T_{\alpha m j}                                                                                     
+\tag 5$$
+corresponds to the kinetic energy of the state $u_j$.  
+Moreover, in applications 
+where 
+$H = - \nabla ^2$, $T_j$ 
+is the usual Dirichlet integral with $u_k$, so $T_j = 
+\lambda_{j}$.  The same is true for purely magnetic Schr\"odinger 
+operators, $H = -(\nabla - i {\bold A})^2$.  
+\item There are other straightforward extensions, 
+which we shall not bother to 
+write explicitly, such as replacing the Laplacian with other constant 
+coefficient elliptic operators.  
+Likewise, we note that the formula extends to 
+the case of continuous spectra when the density of 
+states is well defined.  In 
+the latter case the sums become integrals, which must be assumed 
+convergent. 
+\item If $H$ is an abstract operator not necessarily satisfying (3), and 
+$[D_{\alpha} ,X_{\alpha}] = 1$ for a particular pair of operators 
+$D_{\alpha}$, 
+$X_{\alpha}$, we still obtain the identity (6) given below.
+\item This identity was suggested by the analysis in [Ya91], 
+where there is an 
+inequality related to the case 
+$J = \{\lambda_1, ..., \lambda_n\}$, 
+$f(\lambda_j) = (\lambda_{n+1} - \lambda_j)^2$, $H = -\nabla^2$.  
+(See Theorem 5, below.)  
+\endroster
+\endremark
+
+\demo{Proof}
+We rewrite tr$(P_J f(H))$ as follows:
+$$\eqalign{
+\sum\limits_{{\lambda }_{j}\in J} 
+f(\lambda _j) &= \text{tr}
+(P_J f(H))=\text{Tr}
+(P_Jf(H)[D_\alpha, X_\alpha ])\cr
+&=\text{tr}(P_J f(H) [D_{\alpha} (P_J + P_{J^c}) X_{\alpha} 
+-X_{\alpha} (P_J + P_{J^c}) D_{\alpha}] )\cr
+&=\text{tr}(P_J f(H) [D_{\alpha} P_J X_{\alpha} - X_{\alpha} P_J 
+D_{\alpha}] )\cr   
+&\qquad+ \text{tr}(P_J f(H) [D_{\alpha} P_{J^c} X_{\alpha} - X_{\alpha} P_{J^c} 
+D_{\alpha}] ).
+}$$
+Using the gap formula 
+$$(\lambda_{m} - \lambda_{j}) \langle X_{\alpha}u_j,u_m\rangle
+=\langle [H,X_{\alpha}]u_j,u_m\rangle 
+$$
+we obtain
+$$\eqalign{
+\text{Tr}(P_Jf(H)&(D_{\alpha}P_JX_{\alpha} - X_{\alpha}P_JD_{\alpha}))
+= -2\sum\limits_{\scriptstyle\lambda_j,\lambda_m\in J\atop
+\scriptstyle\lambda _j\ne \lambda_m}
+f(\lambda_j)\langle X_{\alpha}u_j, 
+u_m\rangle\langle u_m,D_{\alpha }u_j
+\rangle\cr
+&= 2 \sum\limits_{\scriptstyle\lambda _j, 
+\lambda_m\in J\atop
+\scriptstyle
+\lambda_j\ne \lambda _m}{f(\lambda_k)\langle[H,X_{\alpha }]u_j , 
+u_m\rangle\langle u_m,D_{\alpha }u_j 
+\rangle \over \lambda _j -\lambda_m}\cr
+&=\sum\limits_{\scriptstyle\lambda_j ,\lambda 
+_m\in J\atop
+\scriptstyle\lambda_j\ne\lambda _m}{f(\lambda 
+_j)- f(\lambda _m) \over \lambda _j - 
+\lambda_m}\langle [H,X_\alpha ]
+u_j,u_m\rangle\langle u_m, 
+D_\alpha u_j\rangle,}
+$$
+where in the last step we symmetrized in the two indices.  
+The cross term 
+connecting $J$ and $J^c$ 
+can be rewritten similarly, except that symmetrization 
+does not apply.  The result is 
+$$\eqalign{\sum\limits_{\lambda_j\in  J} 
+f(\lambda_j)&=
+ \sum\limits_{\scriptstyle\lambda _j ,\lambda_m\in 
+J\atop
+\scriptstyle\lambda_j\ne \lambda _m}{f(\lambda 
+_j) - f(\lambda _m) \over\lambda_j- 
+\lambda_m}\,\langle[H,X_\alpha]
+u_j,u_m\rangle\langle u_m,D_\alpha u_j\rangle\cr
+&\qquad +\sum\limits_{\scriptstyle\lambda_j\in J\atop
+\scriptstyle\lambda_q\in J^c}{2f(\lambda _j 
+) \over \lambda_j-\lambda_q}\,\langle[
+H,X_\alpha]u_j,u_q\rangle
+\langle u_q,D_\alpha u_j
+\rangle.} \tag 6$$
+Identity (4) then follows because $[H,X_{\alpha}] = - 2 D_{\alpha}$.
+\hfill\qed
+\enddemo
+
+With the choice $f(\lambda) = (z - \lambda)^2$, identity (4) can be 
+simplified, as follows:
+
+\proclaim{Proposition 2}
+With the same assumptions as in \rom{Theorem 1}, 
+$$
+d\sum\limits_{\lambda _j\in J}({z 
+-\lambda_j})^{2} =4\sum\limits_{\lambda_j\in J}
+(z -\lambda_j)T_j+4\sum\limits_{\scriptstyle\lambda_j\in J\atop
+\scriptstyle\lambda_q\in J^c}{(z -\lambda_j)
+(z-\lambda_q) \overwithdelims () \lambda_q-\lambda_j}
+\sum\limits_\alpha T_{\alpha 
+jq}.\tag 7$$
+\endproclaim
+
+\demo{Proof}  
+The first term on the right in (4) is
+$$\eqalign{
+-2\sum_{\scriptstyle\lambda_j,\lambda_m\in J\atop 
+\scriptstyle\lambda_j\ne\lambda_m}
+{(z-\lambda_j)^2-(z-\lambda_m)^2\over \lambda_j-\lambda_m}
+\,T_{\alpha jm} &= 2\sum_{\lambda_j,\lambda_m\in J}
+(2z-\lambda_j-\lambda_m)T_{\alpha jm}\cr
+&=4\sum_{\lambda_j,\lambda_m\in J}(z-\lambda_j)T_{\alpha jm}}$$
+(because of the symmetry in $j,m$)
+$$ = 4\sum\limits_{\lambda_j\in J}(
+z -\lambda_j)\sum\limits_{\hbox{all }\lambda_m} 
+T_{\alpha jm}-4\sum\limits_{\scriptstyle\lambda_
+j\in J\atop\scriptstyle\lambda_m\in J^c}
+(z -\lambda_j)T_{\alpha jm}.$$
+Equation (7) now results from summing (4) over 
+$\alpha$, using (5), and noting 
+that
+$$
+{(z-\lambda_j)^2 \over \lambda_q- 
+\lambda_j}- (z-\lambda_j) = {(z
+-\lambda_j)(z -\lambda_q) \over \lambda 
+_q -\lambda_j}.\eqno{\qed} $$
+\enddemo
+
+\head II.  The estimates of Hile-Protter and Yang, and extensions\endhead
+
+
+Earlier generalizations of the Hile-Protter inequality (2) in 
+[Ha88], [Ho90],\break 
+[Ha93], [HaMi95] had no analogue of the function $f$, 
+and were on the other 
+hand based on variational estimates of eigenvalues.  
+The proof of Theorem 1 
+is not only more direct than the earlier estimates,  
+but it also allows several 
+new corollaries.  
+In addition, several of our corollaries are sharp; 
+this will be 
+indicated by the use of the symbol \#.
+
+\proclaim{Corollary 3} (\#, harmonic oscillator, $n=1$, all $d$).  
+$$
+{d \over 4}\le{1 \over n}\sum\limits_{j \le n} 
+{T_j \over \lambda_{n+1} -\lambda_j}.\tag 8$$
+\endproclaim
+
+\remark{Remarks}
+This includes Hile-Protter (2), since for the Dirichlet Laplacian 
+$T_j = \lambda_{j}$.  Because of the virial theorem, for Schr\"odinger 
+operators there are often substantially better substitutes 
+for $T_j$  than the 
+inequality $T_j   \le  \lambda_j$, and in this case (8) is sharp 
+(see Corollary 3).  
+The Hile-Protter inequality for the Dirichlet Laplacian is 
+definitely not sharp, even for the lowest two eigenvalues, for which the 
+sharp version is that of Ashbaugh and Benguria [AsBe].  A generalization of 
+inequality (8) is given below in Theorem 5.
+\endremark
+
+\demo{Proof}
+Make the choice $f(z) = 1$, $J = \{\lambda_1, ..., \lambda_n\}$, 
+in (4) and 
+sum over all $\alpha$ from 1 to $d$.  
+The first term on the right vanishes and the sum 
+in the second term can be extended to all $q$ to yield:
+$$
+ d n = 4\sum\limits_{{\scriptstyle\alpha \atop
+\scriptstyle j\le n}\atop
+\scriptstyle q \ge n+1} {T_{\alpha jq} \over \lambda_
+q-\lambda_j}\le 4 \sum\limits_{{\scriptstyle\alpha \atop
+\scriptstyle j \le n}\atop\scriptstyle q \ge 1}{T_{\alpha jq} \over \lambda_
+{n+1} - \lambda_j} = 4 \sum\limits_{j\le n} 
+{T_j \over \lambda_{n+1} -\lambda_j}. 
+ $$
+\enddemo
+	
+In at least one important situation, inequality (8) is sharp.  
+For consider the 
+quantum harmonic oscillator in $d$ dimensions, 
+$$
+H = |{\bold p}|^2 + |{\bold x}|^2,
+$$
+the lowest two eigenvalues of which are known to be 
+$\lambda_1 = d$ and 
+$\lambda_2 = d+2$. Because of the virial theorem, $T_j = {1\over 2} 
+\lambda_{j}$ for the harmonic oscillator, and therefore with $n=1$ the right 
+side of (8) equals  ${d\over 2}{1\over 2} ={d\over4}$, and the 
+inequality is saturated.  The 
+general situation applying the virial theorem is: 
+
+\proclaim{Corollary 4} (\#, harmonic oscillator, $n=1$, all $d$).  
+Let $H =   |{\bold p}|^2 + V({\bold x})$ on 
+$L^2(R^d)$, where we assume that
+$${\bold x}\cdot \nabla V   \le  \beta V,          
+\tag 9$$
+and suppose that $\lambda_1, \dots \lambda_{n+1}$ 
+are discrete eigenvalues.  
+Then 
+$$
+{d(2+\beta) \over 4\beta }\le{1 \over 
+n}\sum\limits_{k\le n}{\lambda _k \over \lambda 
+_{n+1} -\lambda_k}.$$
+\endproclaim
+
+\remark{Remarks}
+This applies in particular to power-law potentials $V({\bold x}) =  
+|{\bold x}|^{\beta}$, $\beta > 0$, 
+and even, despite the presence of continuous 
+spectrum, for the negative eigenvalues with 
+$V({\bold x}) = - |{\bold x}|^{\beta}$, 
+$-2 < \beta < 0$.  The correct generalization 
+corresponding to $\beta =0$ is 
+$V({\bold x}) = \ln(|{\bold x}|)$, for which the conclusion reads
+$${d \over 2} \le  {1 \over n}\sum\limits_{k\le n}{
+1 \over \lambda_{n+1} - \lambda_k}. $$
+Obviously, any of these power-law potentials could be multiplied by a 
+positive constant with a similar estimate.
+\endremark
+
+\demo{Proof}  
+By the virial theorem (see [EaKa]), 
+$$T_j=
+{1\over 2} \langle u_j,({\bold x}\cdot\nabla V)u_j\rangle\le{\beta\over
+2}\,\langle u_j,Vu_j\rangle.$$
+Since  ${\lambda }_{j} ={T}_{j} +\langle u_j, V 
+u_j\rangle,$ a simple calculation shows that this implies that 
+$${T}_{j}\le \sigma {\lambda }_{j },
+	 \tag 10$$
+with $\sigma=\beta /(2+\beta )$, which when inserted into (8) yields 
+the claim. 
+\hfill\qed\enddemo
+
+
+We next present some inequalities related to 
+identity (4) for other choices of 
+the function $f$.  
+The important new idea in Yang's analysis, as we interpret 
+it, was to change the $f$ 
+used by Hile and Protter, so one of our tasks will be 
+to recover his estimate.  Suppose initially that $H$ 
+is bounded from below and 
+that $J$ is the lower part of its spectrum, 
+$J = \{\lambda_1, \dots, 
+\lambda_n\}$.  It is clear that if $f \ge 0$ 
+is nondecreasing on $J$, then (4) 
+produces an upper bound on $\Sigma f(\lambda_{j})$ when the first term 
+on the right is dropped and the second sum is simplified by extending the 
+sum to all $p$.  
+Actually, a substantially stronger statement is obtainable:
+
+\proclaim{Theorem 5}  
+(asymptotically \# for Dirichlet Laplacian or power-law potentials)  Suppose 
+that the same assumptions as in \rom{Theorem 1} apply.  
+Let $f$ be a nonnegative 
+function on $J = \{\lambda_1, ..., \lambda_n\}$ such that for some 
+$z \in 
+(\lambda_n,\lambda_{n+1}]$,  $f(\lambda)(z- \lambda)^{-2}$ is 
+nondecreasing in $\lambda$ for $\lambda \in J$.  Then
+$${d \over 4} \sum\limits_{j=1}^{n} f(\lambda 
+_j)\le\sum\limits_{j = 1}^{n} {f(\lambda_j) \over 
+z -\lambda_j}T_j.
+\tag11$$
+In particular, with $f(\lambda) = (z-\lambda)^2$, this implies that
+$$
+{d \over 4} \sum\limits_{j =1}^{n} (z -\lambda 
+_j)^{2}\le \sum\limits_{j= 1}^{n} 
+(z -\lambda_j)T_j. \tag 12$$
+\endproclaim
+
+\remark{Remarks} 
+For the Dirichlet Laplacian with $z = \lambda_{n+1}$, 
+(12) becomes a key 
+formula of Yang's article ([Ya91], above his eq.\ (24) 
+in the 1991 numbering 
+or above (25) in the 1995 numbering), from which the subsequent bounds in that 
+article follow readily.  As observed by Yang, 
+when $n \rightarrow \infty$ 
+ with $p=2$, both sides have the same 
+ leading growth rate when we substitute 
+the Weyl asymptotics for $\lambda_j$ in the case of the Dirichlet 
+Laplacian.  On the other hand, if $T_j$ is replaced by $\sigma 
+\lambda_j$, then inequality (12) may be interpreted as an inequality on 
+a polynomial of the form 
+$$
+P_n(z) := nz^2- 2\left(1+{2\sigma  \over 
+d}\right)\left(\sum\limits_{k=1}^{n} \lambda_k\right) 
+z + {d+4\sigma  \over d}\sum\limits_{k = 1}^{n} \lambda_k^2.$$
+This allows sharper estimates as follows:
+\endremark
+
+\proclaim{
+Proposition 6} (\# for harmonic oscillator, $d=1$)
+Let $H$ be as in \rom{Theorem 1} and suppose that the bound 
+\rom{(10)} holds for some  
+$\sigma\in (0,1]$.  
+(Recall that $\sigma = \beta/(2+\beta)$ results from the 
+virial assumption \rom{(9)} and that $\sigma=1$ 
+applies to the Dirichlet Laplacian 
+or a purely magnetic Schr\"odinger operator.)  Then 
+\roster
+\item"(i)" $P_n(z)  \le  0$ for all  $z \in [\lambda_n, \lambda_{n+1}]$.
+\item"(ii)"
+$D_n:= \left(\left(1+{2\sigma  \over d}\right){1 \over 
+n}\sum\limits_{k=1}^{n} \lambda_k\right)^{2} - 
+\left(1+{4\sigma  \over d}\right){1 \over n}\sum\limits_{k = 1}^{n} 
+\lambda_k^2 \ge 0.$
+\item"(iii)"$[\lambda_n, \lambda_{n+1}]\subseteq 
+[\lambda_-(n),\lambda_+(n)], $
+where 
+$$\lambda_\pm(n) := \left(1+{2\sigma  \over d}\right) 
+{1 \over n}\sum\limits_{k = 1}^{n} \lambda_k\pm  
+\sqrt {D_n}.$$
+In particular, for the gap $\lambda_{n+1}  - \lambda_{n}$, 
+$$
+\lambda_{n+1} - \lambda_n\le  2\sqrt {D_n}.$$
+\endroster
+\endproclaim
+
+\demo{Proof of Proposition \rom{6}}
+Statement (i) is a restatement of inequality (12).  
+This implies that $n D_n = - 
+\min(P_n(z))$ is nonnegative, giving (ii).  
+Statement (iii) is merely the explicit 
+determination of the upper and lower bounds.
+\hfill\qed
+\enddemo
+
+\demo{Discussion}   
+Observe that inequality (ii) goes in the opposite direction 
+from the Cauchy-Schwarz inequality.  The underlying reason that it implies 
+a simple but tight bound (iii) on the gap is that our technique is 
+nonvariational, unlike most other gap estimates. 
+
+For the Dirichlet Laplacian, $\lambda_j \sim j^{2/d}$ in accordance with 
+Weyl's asymptotic formula, and this saturates our bound at leading order.  
+Inequality (ii) is likewise asymptotically sharp for Schr\"odinger operators, 
+in the sense that for Hamiltonians on $L^2(R^d)$ with power-law potentials,
+$$H = |{\bold p}|^2 + |{\bold x}|^{\beta},$$
+$\beta> 0$, such as the harmonic oscillator ($\beta=2$), 
+the corresponding Weyl 
+formula is
+$$ \lambda_n \sim n^{2 \sigma /d} $$
+[QuRo77], which again saturates the inequality for $D_n$ at leading order. 
+
+Even more strikingly, we can compare the gap estimate from (iii) with the 
+exact situation for the harmonic oscillator ($\beta=2$) in one dimension as 
+follows.  The eigenvalues are $\lambda_n  = 2n-1$, and we calculate:
+$$
+\sigma = 1/2$$
+$$
+{1 \over n}\sum\limits_{k = 1}^{n} \lambda_k=
+n $$
+$$
+{1 \over n}\sum\limits_{k = 1}^{n} \lambda_k^{2} =
+ {1 \over 3}(4n^2 -1)$$
+$$D_n= 1$$
+and therefore $\lambda_n$ and $\lambda_{n+1}$ are exactly equal to the 
+bounds 
+$$
+\lambda_\pm(n) = 2n\pm1. $$
+\enddemo
+
+\demo{Proof of Theorem \rom{5}}
+We majorize the last term in (4) by:
+$$\eqalign{
+4\sum\limits_{{\scriptstyle\alpha \atop
+\scriptstyle j\le n}\atop
+\scriptstyle q\ge n+1} {f(\lambda_j) \over \lambda 
+_q- \lambda_j}T_{\alpha jq}&\le 
+4\sum\limits_{\alpha =1}^{d} \sum\limits_{j=1}^{n} 
+{f(\lambda_j) \over z -\lambda_j} 
+\sum\limits_{q = 1}^{\infty} T_{\alpha jq}- 
+4\sum\limits_{\alpha =1}^{d} \sum\limits_{j\le n} 
+{f(\lambda _j) \over z -\lambda_j}
+\sum\limits_{q = 1}^{n} T_{\alpha jq}\cr
+&=4
+\sum\limits_{j = 1}^{n} {f(\lambda_j) 
+\over z -\lambda_j}\,T_j - 4\sum\limits_{\alpha 
+=1}^{d} \sum\limits_{j = 1}^{n} {f(\lambda_j) \over 
+z - \lambda_j} \sum\limits_{q= 1}^{
+n} T_{\alpha jq}  }$$
+Comparing (11) with (4), it suffices to show that 
+$$\sum\limits_{\alpha = 1}^{d} \left(-2\sum\limits_{
+j,m=1}^{n} {f(\lambda_j)-f(\lambda 
+_m) \over \lambda_j -\lambda_m}\,T_{\alpha 
+jm} - 4\sum\limits_{j\le n}{f(\lambda 
+_j) \over z - \lambda_j}\sum\limits_{m= 
+1}^{n} T_{\alpha jm}\right) $$
+is negative.  By symmetrizing the last term in this 
+expression with respect to 
+$j,m$, we get
+$$\sum\limits_{\alpha  = 1}^{d} \sum\limits_{j ,m = 
+1}^{n} \left(-2\,{f(\lambda_j) - 
+f(\lambda_m) \over \lambda_j -\lambda_m}-
+2\, {f(\lambda_j) \over z -\lambda_j} -2 
+\,{f(\lambda_m) \over z - \lambda_m}\right)\,
+T_{\alpha jm},$$
+and some straightforward algebra shows that the expression in parentheses 
+can be rewritten
+$$\left(-2\left(z -\lambda_m\right)\left(z -\lambda_j\right)
+{f(\lambda_j)(z -\lambda_j 
+)^{-2} - f(\lambda_m)(z -\lambda 
+_m)^{-2} \over (\lambda_j- \lambda 
+_m)}\right),$$
+which is negative by hypothesis.
+\hfill\qed
+\enddemo
+
+A variant of these arguments, corresponding to a choice $J = 
+\{\lambda_{n}, \dots, \lambda_{N}\}$ rather than $\{\lambda_{1}, \dots, 
+\lambda_{N}\}$, allows $\lambda_{N+1}$ to be controlled by the 
+eigenvalues in $J$ alone.  While the bounds do not appear as tight as in 
+Propositions 6 and 7, they use less information:
+
+\proclaim{Proposition 7}
+  With the same assumptions as in \rom{Proposition 6}, but this 
+time with
+$$\eqalign{
+P_{N,n}(z) :=P_N(z) -P_{N,n}(z) =(N-n) 
+z^2&- 2\left(1+{2\sigma  \over d}\right)
+\left(\sum\limits_{
+k=n+1}^{N} \lambda_k\right) z\cr 
+& +{d+4\sigma  \over 
+d}\sum\limits_{k = n+1}^{N} \lambda_k^2
+.}$$
+\roster
+\item"(i)"
+$P_{N,n}(z)  \le  0$ for all  $z \in [\lambda_{N}, \lambda_{N+1}]$.
+\item"(ii)" 
+$D_{N,n} := \left(\left(1+{2\sigma  \over d}\right) {1 
+\over N-n} \sum\limits_{k=n+1}^{N} \lambda_k\right) 
+^2-\left(1+{4\sigma  \over d}\right) {1 \over N-n} 
+\sum\limits_{k = n+1}^N\lambda_k^2\ge  0.$
+\item"(iii)"
+$[\lambda_N,\lambda_{N+1}]\subseteq  
+[\lambda_-(N,n),\lambda_+(N,n)],$
+where 
+$$\lambda_\pm (N,n) :=\left(1+{2\sigma  \over d}\right) 
+{1  \over N-n} \sum\limits_{k = n+1}^N \lambda_k
+\pm  \sqrt {D_{N,n}}. $$
+In particular, for the gap $\lambda_{N+1}  - \lambda_{N}$, 
+$$
+\lambda_{N+1} -\lambda_N\le 2\sqrt {D_{N,n}}.$$
+\endroster
+\endproclaim
+
+\demo{Proof}  
+In identity (7) choose 
+$J = \{\lambda _{n+1}, \dots, \lambda _{N}\}$ and 
+substitute the formula (9) in the first term on the right.  
+The analogue of 
+(12),
+$$
+{d \over 4}\sum\limits_{j = n+1}^{N} (z- 
+\lambda_j)^2\le \sum\limits_{j = 
+n+1}^{N} (z - \lambda_j)T_j,$$
+follows because the final term in (7), 
+$$4\sum\limits_{\scriptstyle\lambda_j\in J\atop
+\scriptstyle\lambda_q\in J^c} \left({(z -\lambda 
+_j)(z-\lambda_q) \over \lambda_q- 
+\lambda_j}\right)\sum\limits_{\alpha }T_{\alpha 
+jq}\le 0 $$
+for $z \in [\lambda_{N}, \lambda_{N+1}]$.   
+(In this sum, either $q > N  \ge  
+j$ or $q  \le  n < j$).
+\hfill\qed\enddemo
+
+\head III.  Bounds for moments and partition functions\endhead
+
+In order to generate further useful inequalities from the 
+identity (4), we shall 
+assume the existence of a function $r(x)$ such that for $
+x,y \in J$, 
+$${f(x) - f(y) \over x-
+y} \ge  {r(x) + r(y) \over 2}\leqno \text{(H1)} $$
+The existence of such a function $r$ 
+is of course a restriction on $f(x)$, which in 
+practice is that $f'''  \le  0$:
+
+
+\proclaim{Lemma 8}  
+Hypothesis \rom{(H1)} holds with $r(s) = f '(s)$ provided that 
+$f \in C^3(I)$ 
+for some interval $I$ containing $J$ and that 
+$f '''(s)  \le  0$ for all $s \in I$.
+\endproclaim
+
+\demo{Proof}  
+Without loss of generality we can rescale $f$ and subtract a constant 
+to set $y = 0$, 
+$x = 1$, and $f(0) = 0$, with $f '''(s)  \le  0$ 
+for all $s \in [0,1]$.  The derivative $f '$ is 
+concave on that interval, and therefore 
+$f '(s)  \ge  s f '(0) + (1-s) f '(1)$.  If 
+we integrate this inequality from 0 to 1, we obtain
+$$
+f(1) \ge  {1 \over 2}\, f^\prime(0) + {1 \over 2}\, f^\prime(1)
+$$
+as required.
+\hfill\qed
+\enddemo
+
+\remark{Remarks} %%Remarks.  
+In what follows we shall generally choose $r(x) = f '(x)$, since 
+this seems to produce the sharpest corollaries.  Complementary bounds in 
+the other direction result in principle from the alternative hypothesis 
+$$
+ {f(x) - f(y) \over x-
+y} \le  {R\left({x}\right) + R\left({y}\right) \over 2}\leqno \text{(H2)} $$
+(just replace $r$ by $R$ and reverse the inequality in (13), below), 
+but we have 
+not found them useful.  If $f$ is a quadratic or linear polynomial, both 
+hypotheses hold with equality for $r(x) = R(x) = f '(x)$ 
+(cf.\ Proposition 2).
+\endremark
+
+\proclaim{Theorem 9}
+ With assumptions as in \rom{Theorem 1} and inequality \rom{(H1)}, 
+$${d \over 2}\sum\limits_{\lambda_j\in J} 
+f(\lambda_j) \le -\sum\limits_{\lambda_j\in J}  
+r(\lambda_h)T_j+ 
+\sum\limits_{\scriptstyle\lambda_j\in J\atop
+\scriptstyle\lambda_q\in J^c}  \left({2f(\lambda 
+_j) \over \lambda_q-\lambda_j}+  
+r(\lambda_j)\right)\sum\limits_\alpha T_{\alpha jq}  .\tag 13$$                       
+In particular, for $f(\lambda ) = (z-\lambda )^p$ with 
+$p  \ge  2$ and $z \in [\lambda_{n}, 
+\lambda_{n} + p(\lambda_{n+1}- \lambda_{n})/2]$,
+$${d \over 2p}\sum\limits_{j = 1}^{n} (z - \lambda 
+_j)^p \le  \sum\limits_{j=1}^{n} 
+(z - \lambda_j)^{p-1}T_j . 
+\tag 14    
+$$
+\endproclaim
+
+\demo{Proof}  
+Apply hypothesis (H1) to identity (4), recalling that $T_{\alpha j q}  
+\ge  0$. The result is
+$$\sum_{\lambda_j\in J}f(\lambda_j)\le -2 
+\sum_{\scriptstyle
+\lambda_j,\lambda_m\in J\atop\scriptstyle \lambda_j\ne \lambda_j}
+{r(\lambda_j)+ r(\lambda_m)\over 2}\,T_{\alpha jm} +4
+\sum_{\scriptstyle\lambda_j\in J\atop\scriptstyle \lambda_q\in J^c}
+{f(\lambda_j)\over \lambda_q-\lambda_j}  \, T_{\alpha jq}.$$
+Because the first sum on the right is symmetric in 
+$j,m$, we may rewrite it as:
+$$
+\sum\limits_{\scriptstyle\lambda_j,\lambda_m\in J\atop
+\scriptstyle\lambda_j\ne\lambda_m}  {r(\lambda_j 
+) +r\left(\lambda_m\right) \over 2}\,T_{\alpha 
+jm} =  \sum\limits_{\scriptstyle\lambda_j,\lambda 
+_m\in J\atop
+\scriptstyle\lambda_j\ne \lambda_m}  r\left(\lambda_j 
+\right)T_{\alpha jm}.$$
+Since 
+$$-2\sum\limits_{\scriptstyle\lambda_j,\lambda_m\in 
+J\atop
+\scriptstyle\lambda_j\ne \lambda_m}  r\left(\lambda_j 
+\right)T_{\alpha jm} = -2 \sum\limits_{\scriptstyle\lambda 
+_j\in J\atop
+\hbox{all }\scriptstyle\lambda_m}  r\left(\lambda_j 
+\right)T_{\alpha jm} +2 \sum\limits_{\scriptstyle\lambda_
+j\in J\atop
+\scriptstyle\lambda_m\in J^c}  r\left(\lambda_j 
+\right)T_{\alpha jm}   $$
+and 
+$$\sum\limits_{\scriptstyle\alpha \atop
+\hbox{all }\scriptstyle\lambda_m}  T_{\alpha jm} = 
+T_j,   $$
+by (5), inequality (13) follows after summing on $\alpha$ and dividing by 
+2. 
+
+For the moment inequality (14), notice that $f(\lambda) := (z - \lambda)^p$ 
+satisfies (H1) for all $\lambda < z$  by Lemma 8.  The final term in (13) is 
+negative for the given range of $z$ 
+because of the positivity of $T_{\alpha j q} $
+and the observation that for $q  \ge  n+1$, its coefficient is
+$$\eqalign{
+\Bigl(2\left(z - \lambda_j\right)&- p\left(\lambda_q- 
+\lambda_j\right)\Bigr)\left(z - \lambda_j\right)^{p-1} \cr
+&\le  \left(2\left(z - \lambda_j\right) - p\left(\lambda 
+_{n+1} - \lambda_j\right)\right)\left(z - \lambda_j 
+\right)^{p-1} \le  0.}\eqno{\qed}$$
+\enddemo
+
+One of the most significant functions in physics is the partition 
+function, or 
+trace of the heat operator,
+$$        Z(t) := \text{tr}(\exp(-tH)),                                                 
+$$
+and evidently our methods apply with $f(\lambda) = \exp(-\lambda t)$, $t 
+> 0$,  and  $J =$ 
+the entire spectrum.  The set $J$ may be allowed to be the entire 
+spectrum assuming that the eigenvalues grow sufficiently fast, which is 
+guaranteed by the usual Weyl asymptotics for Dirichlet Laplacians or 
+Schr\"odinger operators on finite domains, or for Schr\"odinger operators 
+on infinite domains if the potential grows sufficiently at infinity, for 
+example.  We henceforth assume the convergence of $Z(t)$.  
+
+Since $f(\lambda)$ has a negative third derivative in its variable 
+$\lambda$ for any $t>0$, hypothesis (H1) is satisfied, and hence from (13), 
+$$
+Z\left(t\right) \le  -\left({2 \over d}\right) \sum\limits_{
+j}  \left(-t \exp \left(-t \lambda_j\right)\right) 
+T_j = \left({2 t \over d}\right) \sum\limits_{j}  
+{T_j \over {\lambda }_{j}} \left(\exp \left(-t \lambda 
+_j\right)\right) \lambda_j    \tag 15  $$
+As we have seen, in many cases the factor $T_{j} /\lambda_{j}$ can 
+be replaced by a constant $\sigma$.  Thus for the Dirichlet Laplacian on a 
+bounded domain, which corresponds physically to the ideal gas and 
+$\sigma=1$, (14) yields 
+$$Z_{i.g.}(t)\le -{2t\overwithdelims() d}Z'_{i.g.}(t)\tag 16
+$$
+which implies:
+
+\proclaim{Corollary 10} 
+(\# for ideal gas = Dirichlet Laplacian, for large volume or 
+$t\rightarrow 0$)  $Z(t) t^{d/2}$ is a nonincreasing function.
+\endproclaim
+
+\demo{Proof}
+We can rewrite (16) as 
+$$                              
+{d\over dt}\,\ln (Z_{i.g.}(t))\le -{d\overwithdelims () 2}
+{d\ln (t)\over dt},$$
+or, equivalently,
+$${d\over dt}\,\ln (Z_{i.g.}(t)t^{d/2})\le 0.\tag 17$$
+\hfill\qed\enddemo
+
+
+This should be compared with the known result from comparison of Green 
+functions (see, e.g., [Da]), that 
+$$
+Z_{i.g.}(t)  \le  {\text{Vol}(\Omega)\over
+(4 \pi t)^{d/2}},
+$$
+which also follows from integrating (16) between 0 and $t$, 
+using the fact that 
+$$\lim_{t\to 0} Z_{i.g.}(t)(4\pi t)^{d/2} =\text{vol}(\Omega).$$
+With the virial theorem, if (9) holds, we obtain:
+
+\proclaim{Corollary 11}  
+(\# as $t \rightarrow 0$)  Let $H =   |{\bold p}|2 + 
+V({\bold x})$ on $L^2(R^d)$, 
+where ${\bold x}\cdot \nabla V   \le  
+\beta V$, and suppose that the spectrum of $H$ is 
+discrete and $Z(t)$ convergent for $t>0$.  Then 
+$$
+Z(t)\le -{2\beta t\overwithdelims () (2+\beta)d} Z'(t),$$
+so 
+$$
+Z(t)t^{(2+\beta)d/2\beta}\text{ is a nonincreasing function.}
+$$
+\endproclaim
+
+\demo{Proof}  
+Substitute for $T_j/\lambda_{j}$ as in Corollary 4  with (10) and 
+argue as for Corollary 10.     
+\hfill\qed\enddemo 
+
+\proclaim{Corollary 12}  
+(\# for harmonic oscillator)\/ In addition to the assumptions 
+of \rom{Corollary 11}, suppose that there is a minimal spectral gap 
+$\omega  \le  
+|\lambda_{k} - \lambda_{j}|$ for all $\lambda_{j} \ne
+\lambda_{k}$  (exact degeneracies are allowed).  Then
+$${Z} \left({t}\right) \le  - \left({4\beta  \tanh \left({\omega  
+\over 2}t\right) \over \omega d\left(2+\beta \right)}\right) 
+{Z}^{\prime}\left({t}\right),          \tag 18   $$
+and 
+$
+{Z} \left({t}\right) {\left({\sinh \left({{\omega  \over 
+2}t}\right)}\right)}^{(2+\beta )d/2\beta }    $
+is a nonincreasing function.
+\endproclaim
+
+\demo{Proof}
+For the partition function, with 
+$J = $the entire spectrum, identity (4) becomes
+$$\eqalign{
+\sum\limits_k  \exp \left(- t \lambda _k\right) &= 
+-2\sum\limits_{j \ne  k}  {\exp \left(- t \lambda_j 
+\right) - \exp \left(- t \lambda_k\right)  \over \lambda_j 
+- \lambda_k}\,T_{\alpha jk} \cr
+&= \sum\limits_{j \ne  k}  (\exp (- t \lambda 
+_j)+ \exp (- t \lambda_k))\times\cr
+&\qquad  \left(
+{\exp \left(- t \lambda_j\right) - \exp \left(- t \lambda 
+_k\right)  \over \left({\lambda_k - \lambda_j \over 
+2}\right)\left(\exp \left(- t\lambda_j\right) + \exp \left(- t 
+\lambda_k\right)\right)}\right)T_{\alpha jk}\cr
+&= t\sum\limits_{j \ne  k}  2 \exp \left(- t \lambda 
+_j\right){\tanh \left({\lambda_k - \lambda_j \over 
+2}\,t\right) \over \left({\lambda_k - \lambda_j \over 
+2}\,t\right)}\,T_{\alpha jk} \cr
+&\le t\sum_{j\ne k} 2\exp(-t\lambda_j){\tanh \left({\omega\over 2} 
+\,t\right)\over \left({\omega\over 2}\,t\right)}\, T_{\alpha jk},}
+$$
+using the symmetry in $j,k$ and the noting that 
+$\tanh(x) /x$ is a decreasing 
+function.  When  we sum over $\alpha$, we get
+$$
+d Z(t) \le  \sum\limits_{j ,k,\alpha }  2 \exp \left({- t 
+{\lambda }_{j}}\right){\tanh \left({ \omega  \over 
+2}\,t\right) \over \left({{\omega  \over 2}}\right)}{T}_{\alpha jk} 
+= \sum\limits_{j}  2 \exp \left({- t {\lambda 
+}_{j}}\right){\tanh \left({ {\omega  \over 2}t}\right) \over 
+\left({{\omega  \over 2}}\right)}{T}_{j}    $$
+so, with (10), 
+$$d {Z} \left({t}\right) \le  -{4 \over \omega } \tanh 
+\left({{\omega  \over 2}t}\right) {Z}^{\prime}(t) {\beta  \over 
+2+\beta }$$
+This is equivalent to (18), which in turn may be written
+$$0\ge {d\over dt}\,\left( Z(t) \left(\sinh \left({\omega \over 2}\,
+r\right)\right)^{d(2+\beta)/2\beta}\right).\eqno{\qed}$$
+\enddemo
+
+Corollary 12 is again optimal, for the exact partition function for the 
+harmonic oscillator, normalized so that 
+$\omega=2$, $\beta=2$ ($\sigma=1/2$), 
+is 
+$${Z}_{h.o.}\left({t}\right)  = 
+{\left({2 \sinh \left({t}\right)}\right)}^{-
+d}.$$
+Inequalities similar to these corollaries hold for the 
+finite partition function
+$${Z}_{N}\left({t}\right) := \sum\limits_{j = 1}^{N} \exp 
+\left({-t{\lambda }_{j }}\right) $$
+provided that $t$ is sufficiently large (viz., $>2/(\lambda_{N+1}  - 
+\lambda_{N})$).  In addition, some slightly more refined estimates for the 
+derivatives of $Z$ are obtainable, since for any function 
+$f(\lambda)$ with 
+$f '''  \le  0$ and $J =$ the entire spectrum, inequality (13) becomes
+$${d \over 2}\sum\limits_{k}  f\left({{\lambda }_{k}}\right) \le 
+ -\sum\limits_{k}  f'\left({{\lambda }_{
+k}}\right){T}_{k},    
+\tag 20$$
+assuming convergence. For example, choosing 
+$$
+	   f(\lambda ;t) = 3+\lambda t \exp(- \lambda  t)  
+$$
+(the 3 ensures that $f '''  \le  0$ for all $t$), 
+leads to a second order differential 
+inequality,
+$$
+{t}^{2} Z''(t) + \left({{d \over 2}-2}\right) t Z' (t) - 
+{3d \over 2} Z(t) \ge  0.  $$
+
+{\bf Acknowledgments.}  
+We are grateful to P.~Kr\"oger for bringing the 
+article by Yang to our attention and to him and to J.~Fleckinger for helpful 
+conversations.  We also wish to acknowledge the hospitality of the Erwin 
+Schr\"odinger Institute in Vienna, where our collaboration began.
+
+\Refs
+
+\widestnumber\key{PAPOWE56}
+\ref\key AsBe  
+\by Ashbaugh, Mark S., Benguria, Rafael D.\paper A sharp bound for the 
+ratio of the first two eigenvalues of Dirichlet Laplacians and extensions 
+\jour Ann. Math. \vol 135\yr 1992\pages 601--628\endref
+\ref\key Da 
+\by Davies, E.B. \paper Heat Kernels and Spectral Theory
+\inbook Cambridge Tracts in 
+Mathematics \vol 92 \publaddr Cambridge  \publ Cambridge University Press 
+\yr 1989\endref
+\ref\key EaKa  
+\by Eastham, M.S.P., Kalf, H.\paper Schr\"odinger-Type Operators with 
+Continuous Spectra \inbook Research Notes in Mathematics \vol 65 
+\publaddr Boston \publ Pitman
+\yr 1982\endref
+\ref\key Ha88   
+\by  Harrell, Evans M., II\paper General Bounds for the Eigenvalues of 
+Schr\"odinger Operators \pages 146--166 \inbook Maximum Principles and 
+Eigenvalue Problems in Partial Differential Equations 
+\bookinfo P.W. Schaefer, 
+editor  \publaddr Essex, England  
+\publ Longman House \finalinfo and New York, Wiley, 1988\endref
+\ref\key Ha93   
+\by Harrell, Evans M., II \paper Some geometric bounds on eigenvalue gaps 
+\jour Communications in Partial Differential Equations 
+\vol 18\yr 1993\pages 179--198\endref
+\ref\key HaMi95   
+\by Harrell, Evans M., II and Michel, Patricia L.\paper Commutator 
+Bounds for Eigenvalues, with Applications to Spectral Geometry 
+\jour Communications in Partial Differential Equations
+\vol 19\yr 1994\pages 2037--2055
+\moreref Erratum \vol 20\yr 1995\pages 1453\endref
+\ref\key HiPr80  
+\by Hile, G.N., M. H. Protter\paper Inequalities for eigenvalues of the 
+Laplacian\jour Indiana Univ. Math. J. \vol 29 \yr 1980
+\pages 523--538\endref
+\ref\key Ho90  
+\by Hook, Stephen M.  \paper Domain-independent upper bounds for 
+eigenvalues of elliptic operators\jour Trans. Amer. Math. Soc. 
+\vol 318 \yr 1990 
+\pages 615--642\endref
+\ref\key PaPoWe56  
+\by Payne, L.E., P\'olya, G., Weinberger, H.F.\paper On the ratio of 
+consecutive eigenvalues\jour J. Math. and Phys. \vol 35 
+\yr 1956\pages 289--298\endref
+\ref\key QuRo77\by Quigg, C.,
+Rossner, J. L.\paper Quantum Mechanics with applications to quarkonia
+\jour Physics Reports \vol 56 \yr 1977\pages 167--235\endref
+\ref\key Ya91  
+\by Yang, Hongcang\paper An estimate of the difference between consecutive 
+eigenvalues \paperinfo
+preprint IC/91/60 of the Intl. Centre for Theoretical Physics, 
+\yr 1991  \finalinfo Revised preprint, from Academia Sinica, 1995\endref
+\endRefs
+
+\enddocument
+
