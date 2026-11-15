@@ -50,7 +50,7 @@ for r in old:
    if r['path']=='docs/papers/strict-dirichlet-gap/index.html':v=O/'private/current-strict-gap.visible.txt'
    representations.append((r['path'],'decoded_HTML',str(v),v.read_text()))
 for r in load(O/'REUSED_EXTRACT_BINDINGS.json'):representations.append((r['public_path'],'reused_complete_PDF_text',r['path'],Path(r['path']).read_text()))
-needles={'121':['cellularization','cellularisation','nonnilpotentcomponent','proxysmall','23439582','23439581'],'122':['elevenvertextree','fivelistobstruction','treefivelist','listdistancelabell','listdistancelabel','l21label','23440389','23440388'],'127':['periodiclefschetz','symmetricidealchain','23570763','23570762','30004534'],'128':['nullstellensatz','finitetypelinkinvariants','finitetypelinkinvariant','actualinkzeroset','23331295','23331294']}
+needles={'121':['cellularization','cellularisation','nonnilpotentcomponent','proxysmall','23439582','23439581'],'122':['elevenvertextree','fivelistobstruction','treefivelist','listdistancelabell','listdistancelabel','l21label','23440389','23440388'],'127':['periodiclefschetz','symmetricidealchain','23570763','23570762','30004534'],'128':['nullstellensatz','finitetypelinkinvariants','finitetypelinkinvariant','actuallinkzeroset','23331295','23331294']}
 secondary={}
 for rid,ns in needles.items():
  hits=[]

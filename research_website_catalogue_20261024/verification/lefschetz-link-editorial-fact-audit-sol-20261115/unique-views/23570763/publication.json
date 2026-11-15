@@ -1,0 +1,325 @@
+{
+  "title": "A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic",
+  "slug": "periodic-lefschetz-symmetric-ideal-chain",
+  "description": "One fixed two-row symmetric ideal chain has periodic weak and strong Lefschetz behavior in positive characteristic, with a classification over every field extension.",
+  "abstract": "For each fixed field of positive characteristic p, we construct a single compatible symmetric chain of Artinian ideals in two rows of variables, generated from width three. At every width n ≥ 2, its quotient has both the weak and strong Lefschetz properties exactly when p ∤ n − 1. The quadratic quotient is free over the integers, and a determinant for an arbitrary linear form gives the classification over every field extension. In particular, over the fixed infinite field 𝔽ₚ(t) both properties hold and fail at unbounded widths. This gives a negative answer to the unrestricted eventual dichotomies posed by Römer. It gives no negative answer in characteristic zero or in one row.",
+  "plain_language": [
+    "The weak Lefschetz property asks whether multiplication by one linear form has the largest possible rank between consecutive graded pieces of an Artinian algebra. The strong property asks for the same behavior for every positive power of that one form.",
+    "This note gives a single symmetric family whose answer keeps changing as its width grows. Over a field of positive characteristic p, the obstruction recurs whenever n − 1 is divisible by p. The field and the defining rule stay fixed throughout the family."
+  ],
+  "result": [
+    "Fix any field K. For width n ≥ 1, let Rₙ = K[x₁,…,xₙ,y₁,…,yₙ] and 𝔪ₙ = (x₁,…,xₙ,y₁,…,yₙ). Define the homogeneous ideal",
+    "Iₙ = 𝔪ₙ³ + (xᵢxⱼ : i ≠ j) + (yᵢyⱼ : 1 ≤ i,j ≤ n) + (xᵢyᵢ : 1 ≤ i ≤ n) + (xᵢyⱼ − xᵢyₖ : i,j,k pairwise distinct).",
+    "Here 𝔪ₙ³ includes every cubic monomial, including repeated variables; an empty index condition contributes no generators. The quotient Aₙ = Rₙ/Iₙ is Artinian. Every injection of column sets respects the ideals, so the chain is compatible with simultaneous column permutations in both rows. For every n ≥ 3, Iₙ = (Sym(n)I₃)Rₙ: the entire chain is generated from width three.",
+    "For every field K and every n ≥ 2, the Hilbert function is (1,2n,2n), and Aₙ has SLP if and only if it has WLP if and only if (n − 1)1_K ≠ 0. The same classification holds after every field extension, including extensions of finite fields. Width one is a separate case: its Hilbert function is (1,2,1), and it has SLP.",
+    "For each prime p, work over the single fixed infinite field K = 𝔽ₚ(t). Among n ≥ 2, exactly the widths n ≡ 1 (mod p) are bad. In particular, both properties hold at n = 2 + kp for every k ≥ 0, and both fail at n = 1 + kp for every k ≥ 1. Both sequences are unbounded. This disproves the unrestricted eventual alternatives in Römer’s question for one fixed field and one fixed two-row chain."
+  ],
+  "why_it_works": [
+    "The quadratic quotient is already free over the integers. For n ≥ 2 it has degree-two basis uᵢ = [xᵢ²] and vᵢ = [xᵢyⱼ], where any j ≠ i gives the same vᵢ. For each fixed i, the relations identify these mixed terms without introducing torsion, so this basis survives base change to every field.",
+    "For an arbitrary linear form ℓ = Σᵢ(aᵢxᵢ + bᵢyᵢ), multiplication from degree one to degree two has determinant (−1)ⁿ⁻¹(n − 1)∏ᵢaᵢ². At a bad width this vanishes for every choice of coefficients, not just for a symmetric test form. Independently, the nonzero degree-one element Σⱼyⱼ is then killed by every linear form.",
+    "At a good width, ℓ = x₁ + ⋯ + xₙ gives an invertible middle-degree map. Its square is Σᵢuᵢ ≠ 0, including in characteristic two. These maps cover all powers with nonzero source and target needed for SLP. The proof uses standard integral linear algebra, rank, determinant and socle methods; the contribution is this explicit chain and its complete classification."
+  ],
+  "limitations": [
+    "The counterexample uses two rows in fixed positive characteristic. In characteristic zero this particular construction has SLP at every width. It gives no negative answer for arbitrary characteristic-zero chains or for the one-row variant. The width-one exception must not be folded into the n ≥ 2 congruence rule.",
+    "The universal written proof establishes the infinite-width and all-field statements. The archive’s finite exact computations supplement that proof. Neither those computations nor bounded literature checks certify exclusive firstness, exhaustive novelty or the present worldwide open status of other variants."
+  ],
+  "background": [
+    "Tim Römer’s original contribution, “Asymptotic properties of invariant chains,” fixes an arbitrary field and an arbitrary fixed number of rows c ≥ 1. Its Artinian-chain question asks whether WLP or SLP eventually always holds or eventually always fails. That contribution is on printed pages 1594–1596 of Oberwolfach Report 31/2020. The separate working-group discussion on pages 1544–1545 focuses on one-row monomial ideals; it is a different scope.",
+    "Alexandra Seceleanu and Liana Şega’s “General symmetric ideals,” arXiv:2506.15459v1, gives positive results for general symmetric ideals in one row. Its Theorem B assumes an infinite field of characteristic zero or characteristic greater than n, positive integers d,r, and n ≥ max{d + 1, 1 + (1/r)Σᵢ₌₀ᵈ⁻¹P(i)}, where P(i) is the number of integer partitions of i. Under these hypotheses a general (r,d)-symmetric ideal has WLP. Its chain Theorem 9.2, summarized in Theorem C, assumes characteristic zero, positive d,r with r ≤ P(d), a general starting ideal at a width m sufficiently large for Construction 6.8, and n ≥ m. These hypotheses differ from the fixed-positive-characteristic two-row chain here. The v1 arXiv header is dated 18 June 2025; the PDF’s internal date is 19 June 2025.",
+    "David Cook II’s work provides standard background on characteristic-sensitive Lefschetz properties. None of these external theorems is needed in this note’s self-contained proof. The earlier project proof in PR1337 is unpublished. The Oberwolfach DOI identifies the original question; this preprint’s solution DOI is 10.5281/zenodo.23570763."
+  ],
+  "collaboration": [
+    "I welcome researchers interested in independently verifying the integral quotient and arbitrary-form determinant, developing a substantive extension, or preparing a journal submission. Any eventual coauthorship would reflect actual mathematical or writing contributions agreed together."
+  ],
+  "status": "Published Zenodo preprint, version 1.0.0, originally dated 22 October 2026. Unrefereed.",
+  "ai_disclosure": "AI tools were used extensively in planning, mathematical exploration, proof development and reconstruction, computation, literature investigation, writing, editing and adversarial checking. Alec Kriebel is the named human author. This preprint has no conventional independent human peer review, journal acceptance or formal proof-assistant certification.",
+  "rights_notice": "Authored paper, mathematical prose, metadata and source text are licensed CC BY 4.0. Authored verification and packaging code is separately MIT licensed. Third-party works retain their own rights.",
+  "reader_intro": "Read the complete unchanged four-page published PDF below, or open and download it directly. The full original source and verification ZIP includes the manuscript, exact checker and offline reproduction instructions.",
+  "related_resources": [
+    {
+      "label": "Tim Römer, Asymptotic properties of invariant chains, OWR 31/2020, printed 1594–1596",
+      "url": "https://doi.org/10.4171/OWR/2020/31"
+    },
+    {
+      "label": "Alexandra Seceleanu and Liana Şega, General symmetric ideals, arXiv:2506.15459v1",
+      "url": "https://arxiv.org/abs/2506.15459v1"
+    },
+    {
+      "label": "David Cook II, The Lefschetz properties of monomial complete intersections in positive characteristic",
+      "url": "https://doi.org/10.1016/j.jalgebra.2012.07.015"
+    },
+    {
+      "label": "Unpublished earlier project proof, PR1337",
+      "url": "https://github.com/AlecKriebel/Math/pull/1337"
+    }
+  ],
+  "keywords": [
+    "symmetric ideal chains",
+    "weak Lefschetz property",
+    "strong Lefschetz property",
+    "positive characteristic",
+    "periodic Lefschetz behavior",
+    "Artinian algebras",
+    "Römer eventual dichotomy"
+  ],
+  "follow_up": null,
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "followup_rationale": "No sufficiently justified high-bar follow-up proposed; no current worldwide-open-status inference.",
+  "publication_date": "2026-10-22",
+  "version": "1.0.0",
+  "version_field_present": true,
+  "printed_version": "1.0.0",
+  "doi": "10.5281/zenodo.23570763",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "periodic-lefschetz.pdf",
+  "pdf_pages": 4,
+  "supplement_filename": "periodic-lefschetz-source-and-verification.zip",
+  "supplement_label": "Complete original source and verification ZIP",
+  "additional_assets": [],
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "code_license": "MIT",
+  "code_license_url": "https://opensource.org/license/mit/",
+  "code_license_basis": "Actual separate LICENSE-CODE-MIT.txt and README; prose/source text governed by LICENSE-PROSE-CC-BY-4.0.txt.",
+  "publication_date_label": "Original publication date",
+  "edition_label": "Version 1.0.0",
+  "edition_note": "Original printed and Zenodo edition: version 1.0.0, dated 22 October 2026. Native record creation is separately recorded in the metadata.",
+  "native_record_created": "2026-10-22T16:11:19.267654+00:00",
+  "native_record_updated": "2026-10-22T16:11:19.600939+00:00",
+  "canonical_url": null,
+  "AA": null,
+  "native_sheet_aa_url": null,
+  "proposed_canonical_url": "https://aleckriebel.com/research/periodic-lefschetz-symmetric-ideal-chain/",
+  "seo": {
+    "title": "A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic | Alec Kriebel",
+    "description": "One fixed two-row symmetric ideal chain has periodic weak and strong Lefschetz behavior in positive characteristic, with a classification over every field extension.",
+    "robots_private_candidate": "noindex,nofollow"
+  },
+  "prepared_bibtex": "@misc{kriebel2026periodiclefschetz,\n  author = {Kriebel, Alec},\n  title = {A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic},\n  year = {2026},\n  month = oct,\n  day = {22},\n  version = {1.0.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23570763},\n  url = {https://doi.org/10.5281/zenodo.23570763},\n  note = {Unrefereed preprint. Original version 1.0.0, dated 22 October 2026.}\n}\n",
+  "source_binding": {
+    "source_ready_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY.json",
+    "source_ready_sha256": "64b0c9408ee2d24da06d20d3c9bd7653e2ed9537f571a1051d40826ee5e0ab73",
+    "whole_original_source_ready": {
+      "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY.json#"
+    },
+    "source_protocol_binding_path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/editorial/SOURCE_PROTOCOL_BINDINGS.json",
+    "whole_original_native_API_objects": [
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/record.response.body",
+        "bytes": 8131,
+        "SHA256": "0791d0d727f2b535b74e8b3bdc84e3086ce60163e7911e6a6674def0b345fb6c",
+        "role": "record",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/record.response.body#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/latest.response.body.redirect-01",
+        "bytes": 8131,
+        "SHA256": "0791d0d727f2b535b74e8b3bdc84e3086ce60163e7911e6a6674def0b345fb6c",
+        "role": "latest",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/record.response.body#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/versions-page001.response.body",
+        "bytes": 8266,
+        "SHA256": "6eeef1e6b9856c2ab6d4dc1253267d88978419170fb3a9064d5b0ccb99a06c86",
+        "role": "versions-page001",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/versions-page001.response.body#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/files.response.body",
+        "bytes": 2121,
+        "SHA256": "9bdcc9397d731696a5dd337ceb93cef2bbfcb6079e6eb569617d461ec381f665",
+        "role": "files",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/files.response.body#"
+        }
+      }
+    ],
+    "whole_original_seven_transport_objects": [
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/record.response.body.transport.json",
+        "bytes": 2351,
+        "SHA256": "3f2cb05904d39e1ef40097665a558f5f161ed1a94a1e3d0fa90de66aad9b4940",
+        "role": "native dispatch 0",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/record.response.body.transport.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/latest.response.body.transport.json",
+        "bytes": 2234,
+        "SHA256": "bb09bd6a6328aed51684c28afdb38d2a4c6866d7c2326cf00a4bdc01d59ce786",
+        "role": "native dispatch 1",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/latest.response.body.transport.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/latest.response.body.redirect-01.transport.json",
+        "bytes": 2363,
+        "SHA256": "1f5d0fe992f4426f7421c050edafaf3397339b53193492797d1f2f588bac138a",
+        "role": "native dispatch 2",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/latest.response.body.redirect-01.transport.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/versions-page001.response.body.transport.json",
+        "bytes": 2208,
+        "SHA256": "c93257fc253bd05ec7c616403b462f60285062d3a956e159bcf418c7a835201f",
+        "role": "native dispatch 3",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/versions-page001.response.body.transport.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/files.response.body.transport.json",
+        "bytes": 2183,
+        "SHA256": "2a2109b1c3ca7981e9bbd83f305255b6b5d1da8d342ace12f9f37a93d5ca5fbf",
+        "role": "native dispatch 4",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/files.response.body.transport.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/asset-001.response.body.transport.json",
+        "bytes": 2642,
+        "SHA256": "e2c2fd2970a51a71165eb05c7d12816dca26e0112c52d1d54ae228733e84a888",
+        "role": "native dispatch 5",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/asset-001.response.body.transport.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/asset-002.response.body.transport.json",
+        "bytes": 2593,
+        "SHA256": "bed9da0b60dd9d924f3b5d08e7a37884b36be659c158fd984c3b34a6934b3bf8",
+        "role": "native dispatch 6",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/asset-002.response.body.transport.json#"
+        }
+      }
+    ],
+    "whole_original_transport_aggregate": {
+      "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/ALL_TRANSPORT_RECEIPTS.json",
+      "bytes": 18124,
+      "SHA256": "eff88fac8b35a43ac677fefe3cdd3c57969f94268976ea3471fc5c4a33d57995",
+      "role": "original seven-item transport list",
+      "whole_literal_object": {
+        "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/ALL_TRANSPORT_RECEIPTS.json#"
+      }
+    },
+    "whole_original_archive_custody": {
+      "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/ARCHIVE_CUSTODY.json",
+      "bytes": 33657,
+      "SHA256": "5e700fbe3d7cda8138c07b13de11f9bc92d13c564b6caa61b8856d1c65b284ed",
+      "role": "all18 regular occurrences",
+      "whole_literal_object": {
+        "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/ARCHIVE_CUSTODY.json#"
+      }
+    },
+    "whole_original_native_schema_types": {
+      "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/NATIVE_SCHEMA_TYPES.json",
+      "bytes": 51731,
+      "SHA256": "77746e31d50fd6f7e44a672e46808163dd4c149535083c8ccb906937c440ea7b",
+      "role": "native heterogeneous types",
+      "whole_literal_object": {
+        "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/NATIVE_SCHEMA_TYPES.json#"
+      }
+    },
+    "whole_original_source_terminal_objects": [
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY_MANIFEST.json",
+        "bytes": 11046,
+        "SHA256": "309cc03d778efbaab04b0d2a7ebf0aa296e335d7ce34204671a7e5a26f383ac8",
+        "role": "SOURCE_READY_MANIFEST.json",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY_MANIFEST.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY_SEAL.json",
+        "bytes": 1072,
+        "SHA256": "a64546bb326bcd18764d67fabbe3dd20f78fe1b472d0dc3449f86a52df71e18e",
+        "role": "SOURCE_READY_SEAL.json",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY_SEAL.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY_CLOSURE.json",
+        "bytes": 946,
+        "SHA256": "46f90f96fa47210da2c17a055e8be2e057d1efaa1fdac3f610e48b167b81a536",
+        "role": "SOURCE_READY_CLOSURE.json",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/sources/SOURCE_READY_CLOSURE.json#"
+        }
+      }
+    ],
+    "historical_unread_flags_and_nulls_preserved_literally": true,
+    "all18_original_ZIP_payloads_unchanged": true,
+    "native_asset_order": [
+      "periodic-lefschetz-source-and-verification.zip",
+      "periodic-lefschetz.pdf"
+    ],
+    "source_protocol_binding_sha256": "8f3c02762dfdc77a45fad9f2a166d7e9de92d73893f6896f36caf7f6e3e22d0e"
+  },
+  "review_metadata": {
+    "root_scientific_authority_file": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/root-clearance-23570763-20261115.json",
+    "root_scientific_authority_sha256": "56a6e20fcef53e11e3cd7ab2bba1ad6503d0720509983be7b60d5a19bd9dc33f",
+    "whole_root_scientific_clearance_record": {
+      "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/root-clearance-23570763-20261115.json#"
+    },
+    "whole_original_two_scientific_custom_verdicts": [
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/scope/VERDICT.json",
+        "bytes": 35505,
+        "SHA256": "172923c65399fbe02d343b1db5ae5952db4e881c248b70fd4c2eedf85c06f945",
+        "role": "scope",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/scope/VERDICT.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/adversarial/VERDICT.json",
+        "bytes": 6252,
+        "SHA256": "5926cbd903f73831c4cc4d8ef894496422fe60327dfdd827c14d696d5bc0a4c4",
+        "role": "adversarial",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/adversarial/VERDICT.json#"
+        }
+      }
+    ],
+    "whole_original_scientific_review_seals": [
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/scope/SEAL.json",
+        "bytes": 1489,
+        "SHA256": "4cc10afb8e9ab824265fab0fb02f272a79f4b1d6586ad0d62f775931431b6023",
+        "role": "scope final seal",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/scope/SEAL.json#"
+        }
+      },
+      {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/adversarial/SEAL.json",
+        "bytes": 1248,
+        "SHA256": "9aba37cdb7ccc245a125da8d93be79161ddb4f8f09b252e647118dc7e0fbb83f",
+        "role": "adversarial final seal",
+        "whole_literal_object": {
+          "EXACT_WHOLE_TYPED_ORDERED_EQUAL_TO": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23570763/reviews/adversarial/SEAL.json#"
+        }
+      }
+    ],
+    "actual_scientific_review_cardinality": 2,
+    "editorial_role": "Informed editorial preparation after root adoption; prior127 source-only acquisition role disclosed, no127 independent scientific-review claim.",
+    "root_full_copy_and_config_adoption_pending": true
+  }
+}
