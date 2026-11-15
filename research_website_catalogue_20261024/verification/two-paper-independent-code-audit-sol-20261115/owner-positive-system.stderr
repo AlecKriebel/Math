@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/verify_stage_read_only.py", line 39, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--stage-root',type=Path,required=True);p.add_argument('--build-date',required=True);p.add_argument('--current-base',action='store_true');a=p.parse_args();print(json.dumps(verify(a.stage_root,a.build_date,current_base=a.current_base),indent=2))
+                                                                                                                                                                                                                           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/verify_stage_read_only.py", line 29, in verify
+    folder=root/'research'/b['slug'];files={p.name:p.read_bytes() for p in folder.iterdir() if p.is_file()};results.append(check_page(b,files['index.html'],files,build_date))
+                                                                                                                           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/two_contract.py", line 87, in check_page
+    if b['rid']=='23385145':need(signature(main)==signature(expected118_main(b)),'entire118_frozen_original_main_tree')
+                            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/two_common.py", line 17, in need
+    if not ok:raise ValueError('two_stage:'+label)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: two_stage:entire118_frozen_original_main_tree

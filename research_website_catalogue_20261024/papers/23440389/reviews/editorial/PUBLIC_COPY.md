@@ -1,0 +1,96 @@
+# A five-list obstruction on an eleven-vertex tree
+
+Alec Kriebel · [ORCID](https://orcid.org/0009-0001-9320-500X)
+
+17 October 2026 · Version 1.0 · Unrefereed preprint
+
+The manuscript prints version 1.0 and 17 October 2026, matching the Zenodo version and declared publication date.
+
+## Original abstract
+
+We exhibit an eleven-vertex tree T with ordinary L(2,1) initial-segment palette size 5 and arbitrary-list parameter 6. An explicit assignment of five-element positive-integer lists is infeasible by a short forcing argument. An ordinary five-palette labeling and the known Δ+3 tree list bound give the exact values. This contradicts the universal equality stated in Kohl's 2006 Conjecture 4 and dissertation Conjecture 4.4. Independent pendant-path extensions give infinitely many examples of unbounded diameter. Historical priority, minimal order and present openness are not claimed.
+
+## What the result means
+
+Distance labeling assigns integers to vertices with two separation rules: adjacent vertices must be at least two apart, and vertices two edges apart must receive different integers. A list assignment specifies which integers each vertex may use.
+
+This note gives an eleven-vertex tree that can be labeled using the common palette {1,2,3,4,5}, but fails for one assignment of five allowed integers at each vertex. Six allowed integers at each vertex always suffice on this tree, however those positive integers are chosen. The same gap persists after independently extending its six leaves by arbitrary finite paths.
+
+## The full result
+
+An L(2,1)-labeling of a finite simple graph uses positive integers, with |f(u)−f(v)|≥2 on every edge and f(u)≠f(v) whenever u and v have graph distance two. The ordinary parameter is the least k admitting a labeling from the common initial segment [k]={1,…,k}. The list parameter is the least k for which every assignment of k-element positive-integer sets L(v) admits a labeling f(v)∈L(v). Lists are not restricted to intervals or to a prescribed common bounded palette. These are numerical separation constraints; arbitrary renaming of labels need not preserve them.
+
+The tree T has spine a−b−c−d−e, leaves a₁ and a₂ attached to a, leaf b₁ attached to b, leaf d₁ attached to d, and leaves e₁ and e₂ attached to e. These are all its vertices and edges. Thus T has eleven vertices, ten edges, maximum degree three, radius three and diameter six.
+
+Set A={1,2,3,4,5} and B={1,3,4,5,6}. Assign B to a₁,a₂,e₁,e₂ and A to every other vertex.
+
+Theorem 1. This displayed five-element list assignment has no L(2,1)-labeling. The exact ordinary initial-segment palette parameter of T is 5, equivalently its ordinary zero-based span is λ(T)=4, and its exact arbitrary-list parameter is 6. Palette size and zero-based span differ by one.
+
+Known tree bound. For every nonempty finite tree S, every assignment of (Δ(S)+3)-element positive-integer lists admits an L(2,1)-labeling. In particular, every six-element list assignment works on the displayed tree. The proof includes the singleton case.
+
+Corollary 1. For every independently chosen six-tuple (m₁,…,m₆) of nonnegative finite integers, attach one path of mᵢ new edges outward from the corresponding original leaf of T. Every resulting finite tree S has ordinary initial-segment palette parameter 5, zero-based span 4 and arbitrary-list parameter 6. Zero lengths are allowed, and no parity or equal-length condition is imposed. Allowing one length to grow gives a family of unbounded diameter.
+
+## Why the obstruction works
+
+At b, the three neighbors all have list A and must be pairwise distinct. A proposed label 2,3 or 4 leaves at most two choices for them, so b must receive 1 or 5. The same holds at d; since b and d are at distance two, their endpoint labels differ. Reflecting the tree, which preserves the list assignment, permits b=1 and d=5, forcing c=3.
+
+The edge ab and the distance-two pair ac then force a=4 or a=5. If a=4, both a₁ and a₂ have only label 6 available; if a=5, both have only label 3 available. They are at distance two and must differ, giving the contradiction.
+
+An ordinary witness, in vertex order (a,b,c,d,e,a₁,a₂,b₁,d₁,e₁,e₂), is (1,5,3,1,5,3,4,2,4,2,3). A degree-three vertex rules out [4], because each possible center label leaves at most two admissible labels for three mutually distance-two neighbors. This proves the ordinary parameter is exactly five.
+
+For the general list upper bound, root a finite tree and label in breadth-first order. A nonroot vertex has only its parent earlier at distance one, forbidding at most three integers. Its earlier distance-two vertices are its grandparent, if present, and earlier siblings, at most Δ−1 vertices. At most Δ+2 integers are forbidden in total, so any (Δ+3)-element list leaves a choice. This is a self-contained proof of the credited known bound.
+
+The pendant-path extensions preserve all old distances and keep maximum degree three. Along each added path, the parent forbids at most three labels of [5] and the grandparent at most one, so the ordinary witness extends. New vertices on different added paths are at distance at least four. Restriction to the old tree preserves the lower bounds; extending its bad lists by any five-element lists on the new vertices preserves infeasibility. The general upper bound supplies six for every resulting tree.
+
+The argument is elementary and does not depend on computational search. The complete supporting package records the graph, lists, witness, manuscript source and finite exact checks. Those checks support the fixed construction; the written proofs carry the universal list and path-length quantifiers.
+
+## Scope and limitations
+
+The result concerns finite simple trees and the stated positive-integer L(2,1) model. The number five is the ordinary initial-segment palette size, four is the corresponding zero-based span, and six is a list cardinality guarantee. None is substituted for another, and the list theorem is not narrowed to interval lists or a common palette.
+
+No minimum vertex order, historical firstness, new general obstruction mechanism or present worldwide open status is established. The counterexample addresses the universal equality as stated in the cited historical sources. Verification using a supplied construction does not establish independent discovery.
+
+The source comparison used the actual 2006 Oberwolfach and dissertation interfaces and the actual 2001 institutional preprint. Some final journal mathematical bodies were not obtained, and repository deposit-date metadata was not independently authenticated. These access limits are not used to infer priority or to identify a preprint silently with a later journal edition.
+
+## Background and credit
+
+A. Kohl's 2006 Oberwolfach contribution states the universal equality between ordinary and arbitrary-list parameters for trees as Conjecture 4, printed page 416. The 2006 dissertation states the matching Conjecture 4.4, printed page 124. The eleven-vertex tree contradicts that stated equality in the same numerical and positive-integer conventions; no claim is made that the question remained open immediately before this note.
+
+The general tree list bound is prior work, credited to Voigt through Kohl's Oberwolfach page 416 and its reference to Kohl, Schreyer, Tuza and Voigt's 2005 paper. The note includes its own short L(2,1) proof for self-contained verification. It does not claim novelty for that bound; the complete 2005 journal mathematical body was not obtained for the source comparison.
+
+General-graph separations were known earlier. Fiala and Škrekovski's 2001 institutional preprint, Figure 4 on printed page 14, gives a ten-vertex cyclic graph with an ordinary five-palette labeling and infeasible five-element lists. That figure is not a tree counterexample. The actual 2001 preprint is credited as such, with no identity asserted with the differently titled 2005 journal version.
+
+## Contribution and collaboration
+
+Independent verification, a well-supported primary-source comparison or substantive work toward a journal submission would be welcome. Authorship would be considered in relation to actual contributions.
+
+## AI and review disclosure
+
+AI tools were used extensively in research, proof development, literature review, computation, verification and writing. This is an unrefereed preprint. Internal AI-assisted checks are not human peer review, and no formal proof-assistant certification is claimed.
+
+## Read and download
+
+Read the complete unchanged three-page version 1.0 manuscript below, or open or download its original PDF. The complete original ZIP contains authored manuscript source and verification materials; its README describes the Python 3 standard-library reproduction. Cited third-party papers are linked separately.
+
+- [Open original PDF](assets/Tree_Five_List_Note_v1.0.pdf)
+- <a href="assets/Tree_Five_List_Note_v1.0.pdf" download>Download original PDF</a>
+- [Download the complete original ZIP](assets/Tree_Five_List_Verification_v1.0.zip)
+- [Download BibTeX](assets/citation.bib)
+- [Zenodo record and DOI](https://doi.org/10.5281/zenodo.23440389)
+
+<iframe src="assets/Tree_Five_List_Note_v1.0.pdf#view=FitH" title="A five-list obstruction on an eleven-vertex tree — complete three-page PDF" width="100%" height="850" loading="lazy"></iframe>
+
+## Citation
+
+Alec Kriebel. A five-list obstruction on an eleven-vertex tree. Version 1.0, 17 October 2026. Zenodo. doi:10.5281/zenodo.23440389.
+
+## Primary background
+
+- [Kohl, 2006 Oberwolfach contribution — Conjecture 4, page 416](https://doi.org/10.4171/OWR/2006/07)
+- [Kohl, 2006 dissertation — Conjecture 4.4, page 124](https://nbn-resolving.org/urn:nbn:de:bsz:105-5454783)
+- [Kohl–Schreyer–Tuza–Voigt, 2005 — credited general bound; final body access limit stated above](https://doi.org/10.1016/j.tcs.2005.09.032)
+- [Fiala–Škrekovski, actual 2001 institutional preprint — cyclic Figure 4, page 14](https://kam.mff.cuni.cz/kamserie/clanky/2001/s530.pdf)
+
+## Rights
+
+The paper and authored package content, including authored verification code, are released under Creative Commons Attribution 4.0 International (CC BY 4.0), as stated by the Zenodo record and deposited README. Cited third-party works retain their own rights.

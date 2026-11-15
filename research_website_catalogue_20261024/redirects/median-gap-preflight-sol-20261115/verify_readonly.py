@@ -87,7 +87,7 @@ def main(preseal):
     api=json.loads(load(prior/'REMOTE_DOCS_TREE_GET.json')['structuredContent']['content'])
     need(api['sha']==TREE and api['truncated'] is False,'Exact reused complete current tree')
     need({'docs/'+r['path']:(r['mode'],r['type'],r['sha']) for r in api['tree'] if r['type']=='blob'}==leaves,'No current delta from reused corpus')
-    reused=load(O/'REUSED_EXTRACT_BINDINGS.json');need(len(reused)==76 and sum(r['pages'] for r in reused)==854,'Bounded reused PDF corpus')
+    reused=load(O/'REUSED_EXTRACT_BINDINGS.json');need(len(reused)==76 and len({r['path'] for r in reused})==73 and sum(r['pages'] for r in reused)==854,'Bounded reused PDF occurrences and distinct files')
     for r in reused:
         q=bypath[r['public_path']];need(q['blob']==r['pdf_blob'] and q['sha256']==r['pdf_sha256'],'Reused PDF exact object identity')
         p=Path(r['path']);b=p.read_bytes();need(len(b)==r['bytes'] and sha(b)==r['sha256'],'Reused complete extraction unchanged')
@@ -107,6 +107,15 @@ def main(preseal):
     for a in comparisons:
         if a['record_id']=='23385145':need(a['equal_SHA256_current_docs_paths']==[],'Unexpected118 asset match')
         elif a['native_asset_key']=='source-and-verification.zip':need(Path(a['native_path']).read_bytes()==ownzip,'Actual published ZIP byte identity')
+    checksum=load(O/'CHECKSUM_SCOPE_COMPARISON.json')
+    need(checksum['legacy_whole_bytes']==751 and checksum['native_whole_bytes']==170 and checksum['whole_files_equal'] is False,'Distinct whole checksum schemas')
+    need(len(checksum['legacy_entries'])==9 and set(checksum['native_entries'])=={'paper.pdf','source-and-verification.zip'},'Literal checksum scopes')
+    need(all(checksum['native_entries'][n]==checksum['legacy_entries'][n] for n in checksum['native_entries']),'Shared checksum entries')
+    targets=load(O/'TARGET_IDENTITIES.json')['targets']
+    for t in targets:
+        need(t['literal_fields']['canonical_url'] is None and t['literal_fields']['AA'] is None,'Literal unpublished null gates')
+        p=Path(t['prepared_snapshot']);need(p.read_bytes()==Path(t['original_config']['path']).read_bytes(),'Whole original config private copy')
+    need({t['record_id']:t['literal_fields']['slug'] for t in targets}=={'23385145':'multiplicatively-weighted-centers-median-graphs','22983513':'strict-dirichlet-gap'},'Actual adopted proposed slugs')
     live=load(O/'raw/live-legacy-article.receipt.json');need(live['status']==200 and live['body_identical_to_released_HTML'] is True,'Live legacy article observation')
     need((O/'raw/live-legacy-article.body').read_bytes()==(O/'candidate-evidence/index.html').read_bytes(),'Live HTML exact bytes')
     before=load(O/'PRESERVATION_BEFORE.json');after=load(O/'PRESERVATION_AFTER.json')
@@ -119,7 +128,7 @@ def main(preseal):
     if not preseal:
         s=load(O/'FINAL_SEAL.json');need(s['OWNED_MANIFEST_SHA256']==sha((O/'OWNED_MANIFEST.json').read_bytes()),'Final manifest seal')
         need(s['REPORT_SHA256']==sha((O/'REPORT.md').read_bytes()) and s['CUSTOM_VERDICT_SHA256']==sha((O/'CUSTOM_VERDICT.json').read_bytes()),'Final dispositions seal')
-    print(json.dumps({'verdict':'PASS','mode':'preseal' if preseal else 'sealed','checks':N,'owned_payloads':len(paths),'external_byte_bindings':len(inputs),'released_docs_blobs':254,'reused_PDF_extractions':76,'new_PDF_extractions':0,'network_requests':0,'writes':0,'source_or_scientific_code_executions':0},sort_keys=True))
+    print(json.dumps({'verdict':'PASS','mode':'preseal' if preseal else 'sealed','checks':N,'owned_payloads':len(paths),'external_byte_bindings':len(inputs),'released_docs_blobs':254,'reused_PDF_path_occurrences':76,'unique_cached_PDF_text_files':73,'new_PDF_extractions':0,'network_requests':0,'writes':0,'source_or_scientific_code_executions':0},sort_keys=True))
 
 
 if __name__=='__main__':

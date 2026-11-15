@@ -137,7 +137,8 @@ def main():
         identities.append({'record_id':rid,'original_config':binding(p),'literal_fields':{k:x[k] for k in fields if k in x},'fields_absent':[k for k in fields if k not in x],'prepared_snapshot':str(out),'frozen_historical_review_gate_fields':{k:v for k,v in x['review_metadata'].items() if isinstance(v,(bool,type(None)))}})
     save('TARGET_IDENTITIES.json',{'UTC':NOW,'targets':identities,'informed_prior_roles':{'23385145':'completed adversarial science review','22983513':'source acquisition, adversarial science review and editorial preparation'},'this_is_not_a_new_scientific_review':True,'root_adoption_is_additive_authority_historical_pending_flags_not_rewritten':True})
     save('CURRENT_BLOB_BINDINGS.json',rows);save('REUSED_EXTRACT_BINDINGS.json',extracts);save('CURRENT_HTML_IDENTITIES.json',htmls);save('SEARCH_RESULTS.json',{'queries':queries,'hit_representation_counts':counts,'hits':hits});save('CANDIDATE_ASSETS.json',assets)
-    save('INPUT_MANIFEST.json',{'UTC':NOW,'files':inputs,'imports_or_execution_from_prior_packets':False})
+    unique_inputs={r['path']:r for r in inputs}
+    save('INPUT_MANIFEST.json',{'UTC':NOW,'files':list(unique_inputs.values()),'imports_or_execution_from_prior_packets':False})
     save('CORPUS_RECEIPT.json',{'UTC':NOW,'remote_commit':COMMIT,'docs_tree':TREE,'reusable_packet':str(D),'current_tree_exactly_equals_authenticated_previous_current_tree':True,'current_blobs':len(rows),'raw_UTF8_representations':raw_text,'decoded_HTML_representations':decoded,'reused_complete_PDF_texts':len(extracts),'reused_PDF_pages':sum(r['pages'] for r in extracts),'total_identity_search_representations':len(representations),'new_PDF_extractions':0,'support_archives_expanded_or_supplied_code_executed':False,'hit_representation_counts':counts})
     print(json.dumps({'counts':counts,'candidate_paths':sorted({r['public_path'] for q in hits for r in hits[q]}),'representations':len(representations)},indent=2))
 

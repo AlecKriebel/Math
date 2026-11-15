@@ -10,7 +10,7 @@ An actual ordinary `git ls-remote` query pinned remote main at `1ef94e0144b2b6a7
 
 The current complete 254-leaf docs tree exactly equals the authenticated current tree in the sealed `three-paper-preflight-sol-20261115` packet. Its earlier historical `7a24…` tree differs only at the already documented unitary redirect leaf; that historical tree was not substituted for the current one. This packet preserves native Git commit/root/docs-subtree objects and checks their hashes and complete leaf relationships. Current UTF-8 blob snapshots are taken directly from those released objects. Prior metadata are authenticated against their original owned manifest and seal; no prior collector or verifier was imported or executed.
 
-The bounded identity search uses 137 raw UTF-8 representations, 47 decoded HTML representations and 76 previously extracted complete PDF texts covering 854 pages: 260 representations total. Reused extraction bytes, source PDF blob IDs and SHA256 bindings are checked against the unchanged current tree. **No PDF extraction campaign was rerun.** ZIP contents, image pixels, arbitrary history, the entire repository outside docs, other sites and worldwide literature are outside the negative search. PDF text extraction may miss visual-only material; the negative conclusion is explicitly bounded to these representations.
+The bounded identity search uses 137 raw UTF-8 representations, 47 decoded HTML representations and 76 complete public PDF occurrences, represented by 73 distinct cached text files and covering 854 page occurrences: 260 representations total. Reused extraction bytes, source PDF blob IDs and SHA256 bindings are checked against the unchanged current tree. **No PDF extraction campaign was rerun.** ZIP contents, image pixels, arbitrary history, the entire repository outside docs, other sites and worldwide literature are outside the negative search. PDF text extraction may miss visual-only material; the negative conclusion is explicitly bounded to these representations.
 
 ## Record118: no genuine correspondence located
 
@@ -49,6 +49,8 @@ The adopted proposed replacement is
 Its current canonical and AA fields remain null. **Only after that exact replacement is installed, live and verified** may root decide whether to redirect the genuine old article using the hosting platform's supported method. This preflight creates no redirect file, deployment instruction or broad asset redirect.
 
 ## Custody and authority
+
+The first custody closure failed closed on three duplicated identical cache-file bindings: three PDF objects occur at multiple public paths. The original 92-row input list, verifier, manifest and failure receipt are retained under `diagnostics/`; the final external manifest has 89 unique byte bindings while all 76 public-path associations remain literal. No source, extraction or scientific result changed.
 
 `CUSTOM_VERDICT.json` records the literal two dispositions and false live/redirect gates. `TARGET_IDENTITIES.json` preserves actual field presence, proposals and historical flags separately. `NATIVE_PDF_IDENTITIES.json`, `NATIVE_ASSET_COMPARISONS.json`, `CANDIDATE_ASSETS.json`, `SEARCH_RESULTS.json` and `EXCLUSIONS.json` provide checkable identity and negative boundaries. Whole original adopted configs are copied byte-for-byte privately, including their heterogeneous native objects; original sources and earlier packets remain unchanged.
 

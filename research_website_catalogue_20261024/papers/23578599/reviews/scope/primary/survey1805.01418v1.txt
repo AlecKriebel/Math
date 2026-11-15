@@ -1,0 +1,945 @@
+                                                   THE NASH PROBLEM FROM A GEOMETRIC AND
+                                                          TOPOLOGICAL PERSPECTIVE
+
+
+
+
+arXiv:1805.01418v1 [math.AG] 3 May 2018
+                                                           J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+                                                   Abstract. We survey the proof of the Nash conjecture for surfaces and show
+                                                   how geometric and topological ideas developed in previous articles by the au-
+                                                   thors influenced it. Later we summarize the main ideas in the higher dimen-
+                                                   sional statement and proof by de Fernex and Docampo. We end the paper by
+                                                   explaining later developments on generalized Nash problem and on Kollár and
+                                                   Nemethi holomorphic arcs.
+
+
+
+
+                                                                              1. Introduction
+                                             The Nash problem [19] was formulated in the sixties (but published later) in the
+                                          attempt to understand the relation between the structure of resolution of singu-
+                                          larities of an algebraic variety X over a field of characteristic 0 and the space of
+                                          arcs (germs of parametrized curves) in the variety. He proved that the space of
+                                          arcs centered at the singular locus (endowed with an infinite-dimensional algebraic
+                                          variety structure) has finitely many irreducible components and proposed to study
+                                          the relation of these components with the essential irreducible components of the
+                                          exceptional set of a resolution of singularities.
+                                             An irreducible component Ei of the exceptional divisor of a resolution of singu-
+                                          larities is called essential, if given any other resolution the birational transform of
+                                          Ei to the second resolution is an irreducible component of the exceptional divisor.
+                                          Nash defined a mapping from the set of irreducible components of the space of arcs
+                                          centered at the singular locus to the set of essential components of a resolution
+                                          as follows: he assigns to each component W of the space of arcs centered at the
+                                          singular locus the unique component of the exceptional set which meets the lifting
+                                          of a generic arc of W to the resolution. Nash established the injectivity of this
+                                          mapping. For the case of surfaces it seemed plausible for him that the mapping
+                                          is also surjective, and posed the problem as an open question. He also proposed
+                                          to study the mapping in the higher dimensional case. Nash resolved the question
+                                          positively for the surface Ak singularities, and in analyzing the higher dimensional
+                                          Ak singularities he could not prove the bijectivity for A4 .
+
+                                             Date: 14-1-2018.
+                                             2000 Mathematics Subject Classification. Primary: 14B05, 14J17, 14E15, 32S05, 32S25, 32S45.
+                                             First author is supported by ERCEA 615655 NMST Consolidator Grant, MINECO by the
+                                          project reference MTM2016-76868-C2-1-P, by the Basque Government through the BERC 2014-
+                                          2017 program, by Spanish Ministry of Economy and Competitiveness MINECO: MTM2016-76868-
+                                          C2-1-P, BCAM Severo Ochoa excellence accreditation SEV-2013-0323 and by Bolsa Pesquisador
+                                          Visitante Especial (PVE) - Cincias sem Fronteiras/CNPq Project number: 401947/2013-0. Part of
+                                          this work was carried when he was a member at IAS (Princeton); he thanks AMIAS for support.
+                                          Second author is supported by MINECO by the project reference MTM2016-76868-C2-1-P, by
+                                          Bolsa Pesquisador Visitante Especial (PVE) - Cincias sem Fronteiras/CNPq Project number:
+                                          401947/2013-0 and by NMST Consolidator Grant.
+                                                                                        1
+2                  J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+    As a general reference for the Nash problem the reader may look at [19] and [9].
+    Bijectivity of the Nash mapping was shown for many classes of surfaces (see
+[6],[9],[10],[11],[14],[15],[18],[20],[22],[23],[24],[26],[28],[29]). The techniques leading
+to the proof of each of these cases are different in nature, and the proofs are often
+complicated. It is worth to notice that even for the case of the rational double points
+not solved by Nash a complete proof has to be awaited until 2011: see [20], where
+the problem is solved for any quotient surface singularity, and also [23] and [26]
+for the cases of Dn and E6 . In [3] it is shown that the Nash problem for surfaces
+only depends on the topological type of the singularity. In 2012 the authors of
+the present paper established in the afirmative the Nash question for the general
+surface case [4]. The proof we found was of a topological nature, and it is essential
+to work with convergent arcs and their convergent deformations. This motivated
+J. Kollár and A. Nemethi to pursue the study of convergent arcs and deformations
+in [13]. The topological ideas of [3] and [20] also had an impact on the generalized
+Nash problem; in [5] P. Popescu-Pampu and the authors of the present survey show
+that the generalized Nash problem is of topological nature and explore the relation
+and applications of this problem to Arnol’d classical adyacency problem.
+    It is well known that birational geometry of surfaces is much simpler than
+in higher dimension. This fact reflects on the Nash problem: Ishii and Kollár
+showed in [9] a 4-dimensional example with a non-bijective Nash mapping. In
+the same paper they showed the bijectivity of the Nash mapping for toric sin-
+gularities of arbitrary dimension. Other advances in the higher dimensional case
+include [25], [6], [16]. In 2013 T. de Fernex [1] found the first counter-examples to
+the Nash question; further counterexamples, and a deeper understanding of how
+they appear was provided by J. Johnson and J. Kollár in [7]. There it was proved
+that the threefold A4
+                                 x2 + y 2 + z 2 + w5 = 0,
+the example that Nash left unfinished, was indeed a counter-example! In 2016 T.
+de Fernex and R. Docampo [2] proved that terminal divisors are at the image of the
+Nash map. Since at the surface case, terminal and essential divisors are precisely
+the same, this seems to be the correct higher dimensional generalization. It would
+remain, however, to characterize which essential non-terminal divisors at at the
+image of the Nash map.
+   For other modern review articles concerning the Nash problem the reader may
+consult [27], [12], [8]
+   In this paper we explain how geometric and topological techniques contributed
+to the development of the proof of the Nash conjecture, and how they relate with
+other viewpoints and further developments.
+   In Sections 2-5 explain our proof of the 2 dimensonal case in a non-technical way,
+pointing to the main new ideas appearing in it. We present a proof for the case in
+which the minimal resolution has a strict normal crossings exceptional divisor. In
+this case all new essential ideas already appear, but the ammount of technicalities
+can be reduced drastically. We include enough pictures so thar the reader can grasp
+what is going on in an easy and intituitive way.
+   In Section 6 we emphasize the notion of returns, which was discovered in [20] and
+was crucial for the development of the general proof. We also take the opportunity
+to comment on deformation techniques that were useful to establish the hard cases
+of E6 , E7 and E8 .
+                                THE NASH PROBLEM                                    3
+
+
+   In Section 7 we explain the relation of our proof with the higher dimensional one
+of [2]. We do it by giving a short exposition of their proof that we believe condense
+all main ideas.
+   In Section 8 we summarize our contribution with P. Popescu-Pampu on the gen-
+eralized Nash problem [5], and its impact on Arnol’d classical adyacency problem.
+Here we use the techniques of [3] to show that the generalized Nash problem is of
+topological nature.
+   Finally in Section 9 we explain the relation of our ideas with the further devel-
+opments of more geometric-topological nature by Kollár and Nemethi [13].
+
+
+                   2. The idea of the proof for surfaces
+  Let (X, O) be a surface singularity defined over an algebraically closed field of 0
+characteristic. Let
+                                π : (X̃, E) → (X, O)
+be the minimal resolution of singularities, which is an isomorphism outside the
+exceptional divisor E := π −1 (O). Consider the decomposition E = ∪ri=0 Ei of
+E into irreducible components. These irreducible components are the essential
+components of (X, O).
+   Given any irreducible component Ei we denote by NEi the Zariski closure in
+the arc space of X of the set of non-constant arcs whose lifting to the resolution
+is centered at Ei . These Zariski closed subsets are irreducible and each irreducible
+component of the space of arcs is equal to some NEi for a certain component
+Ei . The Nash mapping is the map assigning to each irreducible component NEi
+the exceptional divisor Ei . Injectivity is immediate. The Nash problem is about
+determining whether the Nash mapping is bijective.
+   The Nash mapping is not bijective if and only if there exist two different irre-
+ducible components Ei and Ej of the exceptional divisor of the minimal resolution
+such that we have the inclussion NEi ⊂ NEj (see [19]). Such inclusions were called
+adjacencies in [3].
+   An application of the Lefschetz principle allows to reduce to the case in which
+the base field is C. Details are at [4]. We make this assumption for the rest of the
+paper. Moreover, the case of a non-normal surface follows from the normal surface
+case easily (see Section 6 in [4]). Then, we assume (X, O) to be a complex normal
+surface singularity.
+   The idea of the proof is as follows. We reason by contradiction. Let (X, O) be a
+normal surface singularity and
+
+                                  π : X̃ → (X, O)
+
+be the minimal resolution of singularities. Assume that the Nash mapping is not
+bijective. Then, by a Theorem of [3] there exists a convergent wedge
+
+                               α : (C2 , O) → (X, O)
+
+with certain precise properties (see Definition 1). As in [20], taking a suitable
+representative we may view α as a uniparametric family of mappings
+
+                                 αs : Us → (X, O)
+4                J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+from a family of domains Us to X with the property that each Us is diffeomorphic
+to a disk. For any s we consider the lifting
+                                    α̃s : Us → X̃
+to the resolution. Notice that α̃s is the normalization mapping of the image curve.
+   On the other hand, if we denote by Ys the image of α̃s for s 6= 0, then we may
+consider the limit divisor Y0 in X̃ when s approaches 0. This limit divisor consists
+of the union of the image of α̃0 and certain components of the exceptional divisor
+of the resolution whose multiplicities are easy to compute. We prove an upper
+bound for the Euler characteristic of the normalization of any reduced deformation
+of Y0 in terms of the following data: the topology of Y0 , the multiplicities of its
+components and the set of intersection points of Y0 with the generic member Ys
+of the deformation. Using this bound we show that the Euler characteristic of the
+normalization of Ys is strictly smaller than one. This contradicts the fact that the
+normalization is a disk.
+   In the next three sections we fill the details of the sketch above.
+
+    3. Turning the problem into a problem of convergent wedges
+   The germ (X, O) is embedded in an ambient space CN . Denote by B the
+closed ball of radius  centered at the origin and by S its boundary sphere. Take
+a Milnor radius 0 for (X, O) in CN , that is, we choose 0 > 0 such that for a
+certain representative X and any radius 0 <  ≤ 0 we have that all the spheres S
+are transverse to X and X ∩ S is a closed subset of S (see [17] for a proof of its
+existence). In particular X ∩B0 has conical structure. From now on we will denote
+by X0 the Milnor representative X ∩ B0 and by X̃0 the resolution of singularities
+π −1 (X0 ).
+   We recall some terminology and results from [3]. Consider coordinates (t, s) in
+the germ (C2 , O). A convergent wedge is a complex analytic germ
+                                α : (C2 , O) → (X, O)
+which sends the line V (t) to the origin O. Given a wedge α and a parameter value
+s, the arc
+                                αs : (C, 0) → (X, O)
+is defined by αs (t) = α(t, s). The arc α0 is called the special arc of the wedge. For
+small enough s 6= 0 the arcs αs are called generic arcs.
+   Any non-constant arc
+                                  γ : (C, 0) → (X, O)
+admits a unique lifting to (X̃, O) that we denote by γ̃.
+Definition 1 ([3]). A convergent wedge α realizes an adjacency NEi ⊂ NEj (with
+j 6= i) if and only if the lifting α̃0 of the special arc meets Ei transversely at a
+non-singular point of E and the lifting α̃s of a generic arc satisfies α̃s (0) ∈ Ej .
+   Our proof is based on the following Theorem, which is the implication ”(1) ⇒ (a) ”
+of Corollary B of [3]:
+Theorem 2 ([3]). An essential divisor Ei is in the image of the Nash mapping if
+there is no other essential divisor Ej 6= Ei such that there exists a convergent wedge
+realizing the adjacency NEi ⊂ NEj .
+                                     THE NASH PROBLEM                                  5
+
+
+          Cx{0}             Cx{s}
+                                        (α, s)
+
+            U0               Us
+      0                 s    Λ
+
+          Figure 1. A wedge representative α : U → X × Λ and the repre-
+          sentives α0 |U0 and αs |Us .
+
+    The proof in [3] of this theorem has two parts. The first consists of proving that
+if there is an adjacency then there exists a formal wedge
+                                 α : Spec(C[[t, s]]) → (X, O)
+realising the adjacency. For that, firstly it is used a Theorem of A. Reguera [30]
+which produces wedges defined over large fields. Then a specialisation argument
+is performed to produce a wedge defined over the base field C. This was done
+independently in [16]. The second part is an argument based on D. Popescu’s
+Approximation Theorem, which produces the convergent wedge from the formal
+one.
+   Then, to prove the Nash Conjecture we reason by contradiction and by Theorem
+2 we assume that there exists a convergent wedge α : (C2 , O) → (X, O) that realises
+some adjacency NE0 ⊂ NEj .
+
+              4. Reduction to an Euler characteristic estimate
+    Following [20] we shall work with representatives rather than germs in order to
+get richer information about the geometry of the possible wedges.
+    Shrinking  is neccessary, we can choose a Milnor representative of α0 , say α0 |U ,
+with U diffeomorphic to a disk, such that α0 |−1
+                                               U (∂X ) = ∂U and the mapping α0 |U
+is transverse to any sphere S0 for any 0 < 0 ≤ .
+    Moreover, we can consider U such that for a positive and small enough δ the
+mapping α is defined in U × Dδ . Note also that we can assume α0 |U injective and
+consecuently αs |U generically one-to-one for s small enough (see [4] for details).
+    We consider the mapping
+                            β : (C2 , (0, 0)) → (CN × C, (O, 0))
+given by β(t, s) := (α(t, s), s) and its restriction
+                                 β|U ×Dδ : U × Dδ → X × Dδ .
+We denote by pr the projection of U × Dδ onto the second factor.
+  The following Lemma is proved using transversality arguments, together with
+Ehresmann Fibration Theorem, and the method is nowadays classical in Singularity
+Theory. Details are at [4].
+Lemma 3. After possibly shrinking δ, we have that there exists  > 0 such that,
+defining
+                          U := β|−1
+                                  U ×Dδ (X × Dδ )
+we have that
+6                 J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+
+                                  Xx{0}                                     Xx{s}
+                  E0   α 0(U 0)
+                                                    E0
+                             Ej E i                                Ej E i
+                                                                   αs(Us)
+
+
+                             π                                     π
+                                         Xx{0}                                Xx{s}
+
+                                                         αs (Us)
+                                      α 0(U 0)
+
+
+
+
+                                            Figure 2.
+
+
+(a) the restriction β|U : U → X × Dδ is a proper and finite morphism of analytic
+    spaces,
+(b) the set β(U) is a two-dimensional closed analytic subset of X × Dδ ,
+(c) for any s ∈ Dδ the restriction β|U ×{s} is transverse to S × Ḋδ ,
+(d) the set U is a smooth manifold with boundary β|−1 U (∂X × Dδ ) and
+(e) for any s ∈ Dδ the intersection U ∩ (C × {s}) is diffeomorphic to a disk.
+   We will denote by Us the fibre pr|−1U (s). The fact that every Us is a disk is a key
+in the proof as it was in the final step of the proof of the main result of [20].
+   Now we consider the image H := β(U). For every s ∈ Dδ the fibre Hs , by the
+natural projection onto Dδ , is the image of the representative
+                                        αs |Us : Us → X .
+    Given the minimal resolution of singularities
+                                            π : X̃ → X
+we consider the mapping
+                                  σ : X̃ × Dδ → X × Dδ
+defined by σ(x, s) = (π(x), s). Note that the mapping σ is an isomorphism outside
+E × Dδ . We denote by Y the strict transform of H by σ in X̃ × Dδ , that is the
+analytic Zariski closure in X̃ × Dδ of
+(1)                               σ −1 (H \ ({O} × Dδ )).
+The space (1) is an irreducible surface, thus so is its closure Y . Since X̃ × Dδ is a
+smooth threefold, the surface Y considered with its reduced structure is a Cartier
+divisor (that is, a codimension one analytic subset whose sheaf of ideals is locally
+principal). We denote by Ys the intersection Y ∩ (X̃ × {s}).
+   The indeterminacy locus of the mapping σ −1 ◦β|U has codimension 2, hence
+reducing  and δ if necessary, we can assume that the origin (0, 0) ∈ U is the only
+                                      THE NASH PROBLEM                                   7
+
+
+indeterminacy point. Denote by
+                                  β̃ : U \ {(0, 0)} → X̃ × Dδ
+                       −1
+the restriction of σ        ◦β|U to its domain of definition U \ {(0, 0)}. Observe that we
+have the equality
+                     β̃(U \ β −1 ({O} × Dδ )) = σ −1 (H \ ({O} × Dδ )).
+Consequently Y is the analytic Zariski closure of β̃(U \ {(0, 0)}) and moreover we
+have the equality
+(2)                           Y ∩ (X̃ × (Dδ \ {0})) = β̃(U \ U0 ).
+  For any s ∈ Dδ there exists a unique lifting
+                                         α̃s : Us → X̃
+such that αs = π◦α̃s . Obviously for s 6= 0 we have the equality β̃(t) = (α̃s (t), s)
+for any t ∈ Us . This, together with Equality (2), implies the equality
+(3)                                      Ys = α̃s (Us ).
+   Since Y is reduced, perhaps shrinking δ, we can assume that Ys is reduced. Since
+αs is proper and generically one to one, and Us is smooth, we have that the mapping
+                                         α̃s : Us → Ys
+is the normalisation of Ys .
+    Now we describe the divisor Y0 . It is clear that all the components, except α̃0 (U0 )
+live above the origin that is the only indeterminacy point of β̃. That is, the divisor
+Y0 decomposes as a sum
+                                                  r
+                                                  X
+(4)                                   Y0 = Z0 +         ai Ei .
+                                                  i=0
+
+where we have denoted Z0 := α̃0 (U0 ). This divisor Y0 has the following properties:
+        (i) it is reduced at Z0 \ E since σ is an isomorphism outside E × Dδ and H0
+            is reduced out of the origin.
+       (ii) Z0 intersects transversaly E0 in a smooth point
+      (iii) all the ai ’s are non-negative since the divisor Y0 is effective
+      (iv) some ai are strictly non zero, in particular a0 , since α realises an adjacency
+            and then β̃|U has indeterminacy.
+   Assuming the existence of a wedge realizing an adjacency we have found a de-
+formation Ys of some Y0 (as in (4) and satifying (i)-(iv)) that has the following
+properties:
+      (a) Ys is reduced for s 6= 0 small enough,
+      (b) its normalisation, that is Us , is diffeomorphic to a disk
+      (c) its boundary, that is α̃s (∂Us ), is an S1 that degenerates to the boundary of
+          Y0 , that is α̃0 (U ) ∩ ∂ X̃ .
+      (d) Ys meets Ej 6= 0.
+The remaing part of the proof consists in proving that the euler characteristic of
+the normalization of such a deformation Ys of Y0 is less or equal than 0 which
+contradicts (b).
+8                 J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+                                          [h!]
+
+
+
+
+              E0           α 0(U0)                               Ti
+                    B0                           Ei
+              T0                  Ej
+                                                              Y0
+                         B1          Tj           B2
+
+                 Figure 3. Adapted tubular neighbourhood of Y0
+
+
+
+
+        Figure 4. The normalization Us of Ys inside the tubular neigh-
+        bourhood of Y0 is a disc. In the picture we see the result of cutting
+        Ys along the boundary of the milnor balls Bi around the normal
+        crossings of Y0 . Each piece is either n−1 (Bi ) or n−1 (Tj ). The
+        exterior piece that we call A satisfies that n(A) is contained in B0 .
+
+                   5. The Euler characteristic estimates.
+   To simplify the computation of the euler characteristic estimates we assume the
+minimal resolution of (X, O) has as exceptional divisor a simple normal crossings
+divisor. This is the first case that we discovered. The general case is technically
+more elaborate, but follows essentially the same ideas. It may be checked in [4].
+   Let Y0 be a Cartier divisor as in (4) that satisfies (i)-(iv). Consider a deformation
+Ys of Y0 satisfying (a)-(d). Let n : Us → Ys be its normalization.
+   We consider a tubular neighbourhood of Y0 inside X̃ as a union of the following
+sets:
+      • a Milnor ball B0 := B(Z0 ∩ E, 0 ) for Y0 around the meeting point of Z0
+        and E.
+      • Milnor balls B1 , ..., Bk centered at each of the singular points of E red
+                                     THE NASH PROBLEM                                            9
+
+
+
+
+                                                   α 0(U 0)
+                                                          E0
+
+
+                                    Y0 : xy a0 =0
+        Figure 5. Counting the maximal number of disc images in Ys ∩B0
+        as a reduced deformation of Y0 ∩ B0 of equation xy a0 = 0
+
+
+      • tubular neighbourhoods T1 , ...Tr contained in X̃ \ ∪kj=0 Bj around each
+        Ei \ ∪j=0,..,k Bj such that there exist strong deformation retracts
+                                  ζi : Ti → Ei \ ∪j=0,..,k Bj .
+        (see [4] for technical details)
+For s small enough we have
+                                               k
+                                               [                r
+                                                                [
+                                  Ys ⊂ B0 ∪          Bj ∪            Ti .
+                                               j=1             i=0
+
+By the choice of the milnor balls, we have that for s small enough we have trasver-
+sality of Ys and the boundaries of the Bj ’s and Tj ’s (see [4] for technical details).
+   We are going to give an estimate for χ(Us ) splitting Us as the union of n−1 (Bj )
+and n−1 (Ti ). Note that n−1 (Bj ) and n−1 (Tj ) are respectively the normalization of
+Ys ∩ Bj and Ys ∩ Tj . In particular they are dsijoint unions of riemann surfaces with
+boundary. Since we know that Us is a disk and the Bi has transversal boundary
+with Ys we have a decomposition of Us as in Figure 5. Furthermore:
+
+                                             k
+                                             X                              r
+                                                                            X
+(5)           χ(Us ) = χ(n   −1
+                                  (B0 )) +         χ(n   −1
+                                                              (Bj )) +            χ(n−1 (Tj ))
+                                             j=1                            i=0
+
+We will separately give estimates for each of the summands in the right hand-side
+of the equality.
+5.1. Bound in B0 . The set Y0 ∩ B0 is defined by f0 (x, y) = xy a0 = 0, where x and
+y are the coordinates of B0 . The divisor Ys ∩ B0 is defined by some deformation
+fs (x, y) = 0 where fs is a 1-parameter holomorphic deformation of f0 such that fs
+is reduced for s 6= 0. Note that
+    We observe that n−1 (B0 ) is a disjoint union of riemann surfaces with boundary.
+The only connected orientable surface with boundary which has positive Euler
+characteristic is the disk. Hence χ(Us ) is bounded above by the number of connected
+components of n−1 (B0 ) that are disks.
+    There are at the most as many disks in n−1 (B0 ) as boundary components in
+  −1
+n (B0 ) which are at the most a0 + 1 since they degenerate to the boundary com-
+ponents of {xy a0 = 0} ∩ B0 . But by (c) the component of n−1 (B0 ) whose boundary
+10                   J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+
+
+                                      Ej
+                                                      Ek
+
+                                            a    a
+                                   Y0 : x j y k =0
+            Figure 6. Counting the maximal number of disc images in Ys ∩Bi
+            as a reduced deformation of Y0 ∩ Bi of equation xaj y ak = 0
+
+
+degenerates to the boundary of x = 0 in B0 , say A, is in fact the exterior component
+of Us (see the Figure 5) which can not be a disk, unless it is the whole disk (and
+this is not possible because Ys goes outside B0 and meets Ej by (d)). Then A has
+more than one boundary component. Then, n−1 (B0 ) has at the most a0 − 1 disks
+and we have
+(6)                          χ(n−1 (B0 )) ≤ #disks ≤ a0 − 1.
+
+5.2. Bound in the balls Bi , i 6= 0. We have Y0 ∩Bi defined by f0 (x, y) = xaj y ak =
+0, where x and y are the coordinates in Bi .
+   Again, the euler characteristic of n−1 (Bj ) which is a disjoint union of riemann
+surfaces with boundary is bounded from above by the number of disks. Whenever
+there is a disk D in n−1 (Bi ), since its boundary degenerates either to the boundary
+of xaj = 0 or y ak = 0 in Bi , we have that n(D) will meet at least once either y = 0
+or x = 0 in B0 . Then,
+                                                            X
+                      χ(n−1 (Bi )) ≤ #Ys ∩ Y0 ∩ Bi ≤              Ip (Ys , E).
+                                                           p∈Bi
+     Summing up the estimates of all the balls Bi with i 6= 0 we have
+                          k
+                          X                                X
+                                χ(n−1 (Bi )) ≤ Ys · E =         Ys · Ek .
+                          i=1                               k
+
+Note that Ys · E counts the returns (see Section 6) with multiplicity.
+    Now, we can use that the intersection multiplicity is stable by deformation, that
+is, Ys · E = Y0 · E to get
+      k
+      X                                              r
+                                                     X                           X
+(7)         χ(n−1 (Bi )) ≤ Ys · E = Y0 · E = (Z0 +         ai Ei ) · E = 1 +                ai Ei · Ek .
+      i=1                                            i=0                       i,k=0,..,r
+
+5.3. Bound in every Ti . To estimate χ(n−1 (Ys ∩Ti )) we consider the composition
+                             ζi ◦n : n−1 (Ys ∩ Ti ) → Ei \ ∪j Bj .
+Although there are some technicalities to be taken into account, for Euler charac-
+teristic computations, one may think that it is a holomorphic branched cover of
+                                    THE NASH PROBLEM                                                       11
+
+
+
+
+                                      Y0: yai =0
+            Figure 7. Bounding the euler characteristic of the normalization
+            of Ys ∩ Ti as a reduced deformation of Y0 ∩ Ti of equation y ai = 0.
+
+
+Riemann surfaces of degree ai (the reader may find in [4] a completely detailed
+proof of this). Then, by the Riemann-Hurwitz formula we get:
+(8)                            χ(n−1 (Ti )) ≤ ai χ(Ei \ ∪j Bj )
+                                                                 P
+   We denote by gi the genus of Ei . For i 6= 0, it is clear that k6=j Ei ·Ek counts the
+number of boundaryPcomponents of Ei \∪j Bj . The number of boundary components
+of E0 \ ∪Bi is 1 + k6=0 E0 · Ek since E0 meets also B0 .
+   Then, summing up the estimates (9) for all i = 0, ..., r we have
+      r
+      X                                        X                    X                      X
+(9)         χ(n−1 (Ti )) ≤ a0 (2 − 2g0 − 1 −          E0 · Ek ) +          ai (2 − 2gi −          Ei · Ek ).
+      i=0                                      k6=0                 j6=0                   k6=i
+
+5.4. Final estimate. Putting in (5) the estimates (6), (7) and (9) we get that
+                               X
+(10)                  χ(Us ) ≤     ai (2 − 2gi + Ei · Ei ).
+                                        i
+
+   By negative definiteness, for any 0 ≤ i ≤ r, the self-intersection Ei · Ei is a
+negative integer. Observe that, since π : X̃ → X is the minimal resolution, for
+any 0 ≤ i ≤ r, if Ei · Ei is equal to −1, then either the divisor Ei is singular or it
+has positive genus (otherwise it is a smooth rational divisor with self-intersection
+equal to −1 and the resolution is non-minimal by the Castelnuovo contractibility
+Criterion). Since we are assuming that every Ei is smooth we get that 2 − 2gi +
+Ei · Ei ≤ 0 for all i = 0, ..., r.
+Remark 4. Note that the right hand side is the adjuntion formula in the surface
+case, which computes the degree of the relative canonical sheaf at each irreducible
+component of the exceptional divisor. This serves as an inspiration for the higher
+dimensional proof of de Fernex and Docampo [2].
+   Suppose that α is a wedge that does not lift to the minimal resolution. This is
+equivalent to the existance of indeterminacy of the mapping π −1 ◦ α. This implies
+the inequality a0 > 0 (which is fact is equivalent) and bound (6).
+   On the other hand, the reader may observe that if the wedge α lifts to the
+minimal resolution, then the arguments leading to the estimate (6) break down.
+12                J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+  The rest of the estimates appearing in our proof are valid in complete generality.
+So we conclude
+Remark 5. Our proof shows that if α is a wedge such that the lifting to the minimal
+resolution of the special arc meets the exceptional divisor in a transverse way, then
+there is a lifting of α to the minimal resolution.
+
+       6. The returns of a wedged and deformation theoretic ideas
+    Before the proof of the Nash conjecture in [4], the second author proved in her
+PhD the conjecture for the quotient surface singularities ([21], [20]). In that proof
+it is shown that, despite the local nature of arcs, at least semi-local techniques were
+needed in order to study the arc space and the existence of certain families of arcs
+or wedges.
+    In particular, it was observed that for a representative α|U of a wedge, returns
+might be non-avoidable. We recall that a return is a point in αs−1 (0) different from
+the origin for s 6= 0. A return p ∈ αs−1 (0) is identified with the associated arc that
+consists in viewing αs |Us as a germ at p. If one thinks of an arc as the image of a
+parametrization “starting at the singular point”, the returns are the points where
+the parametrization passes again through the singular point. The contribution of
+the returns is crucial in the Euler characteristic estimates needed in our proof of
+the Nash conjecture (see Section 5.2).
+    The study of returns had a direct impact in the application of the valuative
+criterion to rule out adjacencies NE ⊂ NF in [20]. The valuative criterion was
+first studied in [28], [22]. Given an exceptional prime divisor D over (X, 0), we
+denote by ordD the associated divisorial valuation. The valuative criterion says
+that if there exists a germ g ∈ OX such that ordE (g) < ordF (g) where E and F
+are exceptional prime divisors, then the adjacency NE ⊂ NF is not possible. Now,
+taking into account the retunrs, we can say that if we have an inequality ordE (g) <
+ordF (g) + ordF 0 (g) then there is no wedge realising the adjacency NE ⊂ NF with
+a return with lifting by F 0 (nor a wedge realising the adjacency NE ⊂ NF 0 with a
+return by F ).
+    This idea is applied in [20] more conveniently for the pullback of the wedges by
+the quotient map q : (C2 , 0) → (X, 0) for a quotient surface singularity.
+    In [4] this criterion is completely understood in Section 3.2. as follows. Consider
+a wedge realising an adjacency NE0 ⊂ NEj as in Section 4. Since the divisor Ys
+defined in (2)-(3) is a deformation of the divisor Y0 , we have the equality
+(11)                                  Y0  Ei = Ys  Ei
+                                         P
+for any i. Recall notation Y0 = Z0 + i ai Ei . Denote by bi the intersection product
+of Ys  Ei and by M the matrix of the intersection form in H2 (X̃ , Z) with respect
+to the basis {[E0 ], ..., [Er ]}. Then, (11) can be expressed as follows:
+(12)                     M (a0 , ..., ar )t = (1 − b0 , b1 , ..., br )t .
+The number bi is the number of returns of the wedge through the divisor Ei counted
+with appropiate multiplicity.
+   An important observation is that all the entries of the inverse matrix M −1 are
+non-positive (see Lemma 10 in [4]).
+   The equality (12) can be used to prove that wedges realizing certain adjacencies
+with certain prescribed returns bi do not exist: the existence of such a wedge is
+                                 THE NASH PROBLEM                                    13
+
+
+impossible if the solution a0 ,...,an of (12) has either a negative or a non-integral
+entry.
+   Moreover, to finish the proof in [20] for the E8 singularities, further argu-
+ments using deformation theory were needed. There, wedges realising an adjacency
+NE0 ⊂ NEj with a given special arc are seen as δ-constant deformations of the
+cuve parametrized by the special arc. Then, the versal deformation of the curve
+parametrized by the special arc is computed. The codimensions of the δ-constant
+stratum and the codimension of the stratum of curves with the topological type
+of the generic curve of a family parametrized by a wedge representative with pre-
+scribed returns are computed. The inequality that these codimensions satisfy is not
+compatible with the existance of such a wedge (see Proposition 4.5. in [20]).
+
+7. The proof by de Fernex and Docampo for the higher dimensional
+                               case
+   De Fernex and Docampo figured out an algebro-geometric proof of the Nash
+conjecture based on bounds of coefficients of suitable relative canonical sheaves [2].
+This enabled them to formulate and prove a correct statement of the Nash corre-
+spondence in higher dimension.
+   A terminal valuation is a divisorial valuation on X such that there exists a
+terminal minimal model π : Y → X of X such that the center of the valuation is
+a divisor in Y . The centers of terminal valuations are essential divisors. The main
+theorem of de Fernex and Docampo is
+Theorem 6 (de Fernex, Docampo). Terminal valuations are at the image of the
+Nash map.
+    The begining of the proof is similar to the surface case: assuming that the result
+is false they derive the existence of a wedge such that its special arc lifts to Y in a
+transverse way to the center of a terminal valuation, but that can not be lifted to
+Y . Afterwards, assuming the existence of such a wedge they bound a coefficient for
+a relative canonical sheaf in two different ways and produce a contradiction. So, in
+fact they prove:
+Theorem 7 (de Fernex, Docampo). Let π : Y → X be a terminal model of X.
+Any wedge α such that its special arc lifts to Y in a transverse way to the center of
+a terminal valuation, admits a lifting to Y .
+   We refer to the original paper for a complete explanation of their proof. Here,
+instead we explain the main ideas of the proof in the context of surfaces. In this
+case Y = X̃ where X̃ is the unique terminal model which is the minimal resolution
+π : X̃ → X.
+   On one hand it is easier to digest, and all main ideas appear in this case. On the
+other hand, by doing it we derive a precise set of numerical equalities (see (14)) that
+are satisfied for any non-constant wedge α : (C2 , O) → X not lifting to the minimal
+resolution and such that π −1 ◦α is a meromorphic map with an only indeterminacy
+point, regardless this wedge has special arc lifting transversely or not (this means
+any wedge that is used in practice). This set of equalities have not been observed
+before. If one assumes that the special arc of the wedge lifts transversely, one may
+derive a chain of inequalities giving the contradiction in a straightforward way from
+this set of equalities.
+14                J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+    Let α : (C2 , O) → X be any wedge so that π −1 ◦α is a rational map from (C2 , O)
+to X̃, and such that the special arc of the wedge . Let σ : Z → (C2 , O) be the
+minimal sequence of blow ups at points resolving the indetermination of π −1 ◦α.
+Let β : Z → X̃ be the map such that π◦β = α◦σ. De Fernex and Docampo shift
+the computation
+             Pm from X̃ to Z.Pn
+    Let F = i=1 Fi and E = i=1 Ei be the decomposition in irreducible compo-
+nents of σ and π respectively. In (C2 , O) we consider coordinates (t, s) so that t is
+the arc variable and s is the deformation parameter. The special arc of the wedge
+is then α(t, 0). We order the components so that F1 is the unique component where
+the strict transform Pof V (s) meets.
+    Denote by KZ = i ai Fi the canonical divisor of Z. It is the only representative
+of the canonical class KZ supported at the exceptional divisor. Each ai is positive,
+and a simple observation on the behaviour of the canonical divisor under blow up
+shows that
+Remark 8. The number a1 is the number of blowing up centers touching the strict
+transform of V (s).
+   Since β is a morphism between smooth spaces, the relative canonical class
+KZ/X̃ := KZ − β ∗ KX̃ may be represented by the divisor associated with the ja-
+cobian of β. This is an effective divisor. When we write KZ/X̃ we mean such a
+divisor. We decompose it as
+                                         exc     hor
+                                KZ/X̃ = KZ/X̃
+                                              + KZ/X̃
+                                                      ,
+       exc                                                                hor
+where KZ/X̃
+            is the part with support on the exceptional divisor of π and KZ/ X̃
+                                                                                the
+complement. We have the equality
+(13)                              exc
+                            KZ − KZ/ X̃
+                                           hor
+                                        = KZ/ X̃
+                                                 + β ∗ KX̃ .
+
+The left hand side is a divisor concentrated in the exceptional set of σ.
+   In order to express the right hand side as a divisor concentrated in the exceptional
+set we let M be the intersection matrix of the collection of divisors {Fi } in Z. Since
+σ is a sequence of blow ups we have that M is unimodular and that its inverse M −1
+is the matrix whose i-th column (m1,i , ..., mn,i )t is obtained as follows: let the Ci
+be the curve in (C2 , O) given by the image of σ of a curvette transverse to Fi . Then
+its total transform to Z is
+                                          X
+                                 σ ∗ Ci =    −mj,i Fj .
+                                             j
+
+As a consequence we obtain that all the entries of M −1 are strictly negative (this
+is a general phenomenon which is well known, see for example Lemma 10 in [4] for
+the proof for general normal
+                          P surface singularities).
+                   exc
+   If we express KZ/ X̃
+                        =  i bi Fi , and define the intersection numbers
+
+                                            hor
+                                     ci := KZ/ X̃
+                                                   Fi ,
+
+                                     di := β ∗ KX̃  Fi ,
+Equality (13) becomes the following system of numerical equalities
+(14)             (a1 − b1 , ..., an − bn )t = M −1 (c1 + d1 , ..., cn + dn ).
+                                  THE NASH PROBLEM                                    15
+
+
+   This numerical equality works for any resolution π : X̃ → X (non-necessarily
+minimal) and any wedge α, so it may have applications in other problems. One
+instance could be the generalized Nash problem explained in Section 8.
+                         hor
+   Observe that, since KZ/ X̃
+                              has no component included in the exceptional divisor,
+each ci is non-negative.
+   If we asume now that π is the minimal resolution, we have
+                            di = β ∗ KX̃  Fi = KX̃  β∗ (Fi ),
+which is non-negative by adjunction formula, using the fact that π : X̃ → X is the
+minimal resolution.
+   This means that the right hand side in Equation (14) is non-positive.
+   In order to prove Theorem 7 for the surface case we assume that the wedge
+has the special arc lifting transversely to the exceptional divisor, and estimate the
+coefficient a1 − b1 in the left hand side of Equation (14).
+   By Remark 8 if the wedge α does not lift to X̃ then a1 is strictly positive and
+integral. Since the right hand side of Equation (14) is non-positive, in order to
+finish the proof it is enough to prove the strict inequality
+                                         b1 < 1.
+   Let ρ : Z → Z and β : Z → X̃ be such that the factorization β = β 0 ◦ρ
+                    0        0     0
+
+consists in collapsing all non-dicritical components of the exceptional divisor in Z
+(a component Fi is non-dicritical if β(Fi ) is a point). The surface Z 0 has sandwiched
+singularities, which are rational and Q-Gorenstein. Then the canonical divisor KZ 0
+is Q-Cartier. Therefore we may define the relative canonical class KZ/Z 0 . This
+class has a unique representative as a Q-divisor supported in the exceptional set of
+ρ such that all its coefficients are non-positive.
+   We have the equality KZ/X̃ = KZ/Z 0 + ρ∗ KZ 0 /X̃ . By the non-positivity of the
+coefficients of KZ/Z 0 we get
+        b1 = ordF1 (KZ/X̃ ) = ordF1 (KZ/Z 0 + ρ∗ KZ 0 /X̃ ) ≤ ordF1 (ρ∗ KZ 0 /X̃ ).
+   We make an abuse of language and denote the components of the exceptional
+divisor of Z 0 by the same name that they have in Z. In order to estimate b1 we
+enumerate {Fi1 , ..., Fil } the components of the exceptional set of Z 0 which contain
+the image by ρ of F1 . This is a subset of the components of F not collapsed by
+ρ. Observe that if F1 is dicritical then this set of components has F1 as a unique
+element, and the estimate that we will prove right away becomes much easier.
+   The special arc of the wedge α lifts transversally through an irreducible compo-
+nent of E. We enumerate the components so that this component is E1 . Then for
+each of the components Fij we have that β(Fij ) = E1 .
+   Before proving our final estimate we need the following observation: the following
+equality holds
+                          ordFij (KZ 0 /X̃ ) = ordFij ((β 0 )∗ E1 ) − 1.
+This holds because KZ 0 /X̃ is given at smooth points by the divisor associated with
+the jacobian of β 0 , and at a generic point of Fij the mapping β can be expressed in
+local coordinates as β(u, v) = (ua , v), where a = ordFij ((β 0 )∗ E1 ).
+   The last estimate we need is:
+                                            Xl
+               ordF1 (ρ∗ KZ 0 /Y ) = ordF1 (    ordFij (KZ 0 /X̃ )ρ∗ Fij )) =
+                                            j=1
+16                       J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+         l
+         X                                                  l
+                                                            X
+     =         ordF1 (ordFij ((β 0 )∗ E1 ) − 1)ρ∗ Fij ) <         ordF1 (ordFij ((β 0 )∗ E1 ))ρ∗ Fij ) =
+         j=1                                                j=1
+
+                                = ordF1 ρ∗ (β 0 )∗ E1 = ordF1 β ∗ E1 = 1.
+  The last equality holds because the special arc lifts transversely by E1 . This
+concludes the proof.
+
+     8. On the generalized Nash problem and the classical adjacency
+                                 problem
+   Let X be a normal surface singularity. The Generalized Nash problem consists
+in characterizing the pair of divisors E, F appearing in resolutions of X such that
+the adjacency NF ⊂ NE holds.
+   For our proof of the Nash conjecture it is essential to construct a holomorphic
+wedge α, as we have explained before. This was achieved in [3]. The technique
+developed to achive this gave, as a by product, a proof of the fact that the validity
+of the Nash conjecture only depends on the topology of the link of the surface
+singularity, or equivalently, in the combinatorics of the minimal good resolution.
+The same technique could be adapted to prove that the generalized Nash problem
+is a topological problem in the following sense.
+   Since the generalized Nash problem is wide open even in the case in which X
+is smooth we concentrate in this case. To any 2 exceptional divisors E and F of
+a sequence of blow ups at the origin of X, we may associate a decorated graph as
+follows: consider the minimal sequence of blow ups of π : Y → X where both E
+and F appear. Decorate the dual graph of the exceptional divisor of π attaching to
+each vertex the weight given by the self-intersection of the corresponding divisor.
+Finally add labels E and F to the vertices corresponding to the divisors E and F
+respectively. In [5] we proved:
+Theorem 9. Let (E1 , F1 ) and (E2 , F2 ) be two pairs of divisors having the same
+associated graph. Then the adyacency NF1 ⊂ NE1 is satisfied if and only if the
+adyacency NF2 ⊂ NE2 is satisfied.
+    As a consequence we could improve the discrepancy obstruction for adyacencies:
+see Corollary 4.17 and 4.19 of [5]. Furthermore, we get a nice structure of nested
+nash sets in the arc space of C2 and we made some conjectures about it: see
+conjectures 1 and 2 of [5].
+    For the sake of completeness we summarize very briefly the other main result of
+[5].
+    Given a prime divisor E over the origin of X we consider its associated valuation
+νE . It is easy to see that if we have the adjacency NF ⊂ NE then the inequality
+νE ≤ νF holds. However this criterion is not enough to characterize the Nash
+adjacencies (see Section 6). Our second main result is a characterization of the
+previous inequality in terms of deformations of plane curves.
+    We say that a plane curve germ C is associated with E in a model π : Y → C2
+where E appears if its strict transform by π meets E trasversely at a point which
+does not meet the singular set of the exceptional divisor of π. A deformation
+gs of function germs is a holomorphic function depending holomorphically on a
+parameter s. It is linear if it is of the form g0 + sh for g0 and h holomorphic.
+                                THE NASH PROBLEM                                    17
+
+
+Theorem 10. Let E and F be prime divisors over the origin of C2 and let S be
+the minimal model containing both divisors. The following are equivalent:
+    (1) νE ≤ νF ,
+    (2) There exists a deformation gs with g0 associated with F in S and gs asso-
+        ciated with E in S, for s 6= 0 small enough,
+    (3) There exists a linear deformation gs with g0 associated with F in S and gs
+        associated with E in S, for s 6= 0 small enough.
+   In fact in [5] we prove a more general version which allows non-prime divisors E
+and F .
+   This Theorem provides a very easy way of producing adjacencies of plane curve
+singularities. Using it we were able to recover most Arnol’d adjacencies. See Sec-
+tion 3.4 of [5] for detailed explanations.
+
+                              9. Holomorphic arcs
+   In the proof of the Nash conjecture for surfaces we study arcs and wedges from
+a convergent viewpoint, and take representatives. In this sense a wedge is for us a
+deformation of holomorphic maps from a disc to a representative of the singularity.
+At a generic parameter the preimage of the singular point in general contains more
+points in the disc that just the origin. These points are unavoidable and we call
+them returns following [20] (see Section 6).
+   J. Kollár and A. Nemethi started in [13] the sytematic study of convergent arc
+spaces as oposed to the classical formal arc spaces. We briefly summarize their
+main results and questions.
+   Let D denote the closed unit disc. A holomorphic map defined on D is the
+restriction to D of a holomorphic map in an open neighbourhood of D. Let X be
+a singularity.
+Definition 11. A complex analytic arc is a holomorphic map γ : D → X such
+that the preimage of the singular set does not intersect the boundary ∂D. A short
+complex analytic arc is a complex analytic arc such that the preimage of the singular
+set is just 1 point. A deformation of a complex analytic arc parametrized by an
+analytic space Λ is a holomorphic map
+                                  α:D×Λ→X
+such that each for any s ∈ Λ the restriction αs := α|D×{s} is a complex analytic
+arc. If all the arcs appearing are short complex analytic arcs we say that α is a
+deformation of short complex analytic arcs.
+Remark 12. What we do in Section 4 is to derive from a convergent wedge a
+deformation of a complex analytic arc parametrized by a disc Λ. The special arc
+at this deformation is a short arc, but the generic arcs αs are not short arcs in
+general, due to the existence of returns. The topological analysis of that deformation
+of complex analytic arcs yields the proof of the Nash conjecture.
+   Denote by Arc(X) and by ShArc(X) the sets of convergent analytic arcs in
+X. Kollár and Nemethi give natural metrics on these spaces, which endow them
+with a topology. Given an arc γ : D → X, since the preimage of the singular set
+Sing(X) is disjoint from the circle ∂D, the restriction γ|∂D defines an element of the
+fundamental group modulo conjugation π1 (X \ Sing(X))/(conjugation). Since this
+18                  J. FERNÁNDEZ DE BOBADILLA AND M. PE PEREIRA
+
+
+element does not change by continuous deformation of the arc γ we have defined
+“winding number maps”
+                    π0 (Arc(X)) → π1 (X \ Sing(X))/(conjugation),
+                   π0 (ShArc(X)) → π1 (X \ Sing(X))/(conjugation).
+     The main result in [13] concerns short arcs:
+Theorem 13 (Kollár, Nemethi). The winding number map
+                   π0 (ShArc(X)) → π1 (X \ Sing(X))/(conjugation)
+is injective for any normal surface singularity X. It is bijective for quotient surface
+singularities.
+   For general normal surface singularities the winding number map is far from
+being surjective, but its image is described in [13] in terms of the combinatorics of
+the resolution, or what is the same, the topology of the link.
+   On the other hand, the winding number map for long arcs, which is the one that
+is more related with the original Nash question, is not well understood.
+Problem 14 (Kollár, Nemethi). Is the winding number map
+                     π0 (Arc(X)) → π1 (X \ Sing(X))/(conjugation)
+injective?
+  In [13] many other open problems are proposed. Some interesting ones are
+concerned with the definition of a “finite type” holomorphic atlas in Arc(X) (see
+Conjecture 72 of loc. cit.), and with the existence of a curve selection Lemma in
+Arc(X).
+
+                                         References
+ [1] T. de Fernex. Three-dimensional counter-examples to the Nash problem. Compositio Math.
+     149 (2013), 1519-1534.
+ [2] T. de Fernex. R. Docampo. Terminal valuations and the Nash problem. Invent. Math. 203
+     (2016), 303-331.
+ [3] J. Fernández de Bobadilla. The Nash problem for surface singularities is a topological prob-
+     lem. Adv. Math. 230 (1) (2012) 131-176.
+ [4] J. Fernández de Bobadilla, M. Pe Pereira. The Nash problem for surfaces Annals of Mathe-
+     matics 176 (2012), 20032029
+ [5] J. Fernández de Bobadilla, M. Pe Pereira, P. Popescu-Pampu. On the generalized Nash prob-
+     lem for smooth germs and adjacencies of curve singularities. Adv. Math. 320 (2017) 1269-
+     1317.
+ [6] P. González Pérez. Bijectiveness of the Nash Map for Quasi-Ordinary Hypersurface Singu-
+     larities. Int. Math. Res. Not. IMRN 2007, no. 19, Art. ID rnm076, 13 pp.
+ [7] J. Johnson, J. Kollár. Arc spaces of cA-type singularities. J. Singul. 7 (2013), 238252.
+ [8] J. Johnson, J. Kollár. Arcology Amer. Math. Monthly 123 (2016), no. 6, 519541.
+ [9] S. Ishii, J. Kollár. The Nash problem on arc families of singularities. Duke Math. J. 120, no.
+     3, (2003), 601-620.
+[10] S. Ishii. Arcs, valuations and the Nash map. J. reine angew. Math, 588, (2005), 71-92.
+[11] S. Ishii. The local Nash problem on arc families of singularities, Ann. Inst. Fourier, Grenoble
+     56, (2006), 1207-1224.
+[12] J. Kollár. Nash work in algebraic geometry. Bull. Amer. Math. Soc. (N.S.) 54 (2017), no. 2,
+     307324.
+[13] J. Kollár, A. Nemethi. Holomorphic arcs on singularities. Invent. Math. 200 (2015), no. 1,
+     97147.
+                                     THE NASH PROBLEM                                          19
+
+
+[14] M. Lejeune-Jalabert. Arcs analytiques et résolution minimale des singularities des surfaces
+     quasi-homogenes Springer LNM 777, 303-336, (1980).
+[15] M. Lejeune-Jalabert, A. Reguera-López. Arcs and wedges on sandwiched surface singularities,
+     Amer. J. Math. 121, (1999) 1191-1213.
+[16] M. Lejeune-Jalabert, A. Reguera-López. Exceptional divisors which are not uniruled belong
+     to the image of the Nash map. ArXiv:08011.2421, (2008).
+[17] J. Milnor, ‘Singular Points of Complex Hypersurfaces.’ Annals of Mathematics Studies. 61.
+     Princeton University Press, Princeton, N.J.; University of Tokyo Press, Tokyo 1968 iii+122
+     pp
+[18] M. Morales. The Nash problem on arcs for surface singularities. math.AG/0609629, (2006).
+[19] J. Nash. Arc structure of singularities. A celebration of John F. Nash, Jr. Duke Math. J. 81,
+     no. 1, (1995) 31-38.
+[20] M. Pe Pereira. Nash problem for quotient surface singularities. arXiv:1011.3792, (2010). To
+     appear in J. London Math. Soc.
+[21] M. Pe Pereira. On Nash problem for quotient surface singularities. Phd Thesis, Universidad
+     Complutense de Madrid, 2011.
+[22] C. Plénat. À propos du problème des arcs de Nash. Ann. Inst. Fourier (Grenoble) 55, no. 3,
+     (2005), 805-823.
+[23] C. Plénat. The Nash problem of arcs and the rational double points Dn . Ann. Inst. Fourier
+     (Grenoble) 58 (2008), no.7, 2249-2278.
+[24] C. Plénat. P. Popescu-Pampu. A class of non-rational surface singularities for which the
+     Nash map is bijective. Bull. Soc. Math. France 134 no. 3, (2006), 383-394
+[25] C. Plénat. P. Popescu-Pampu. Families of higher dimensional germs with bijective Nash map.
+     Kodai Math. J. 31, no. 2, (2008), 199-218.
+[26] C. Plénat. M. Spivakovsky The Nash problem of arcs and the rational double point E6 . Kodai
+     Math. J. 35, (2012), 173-213.
+[27] C. Plénat. M. Spivakovsky Nash problem and its solution. Newsletter EMS 88 June 2013,
+     17-24.
+[28] A. Reguera-López. Families of arcs on rational surface singularities. Manuscripta Math. 88,
+     no. 3, (1995), 321–333.
+[29] A. Reguera-López. Image of the Nash map in terms of wedges. C. R. Math. Acad. Sci. Paris
+     338, no. 5, (2004), 385–390.
+[30] A. Reguera-López. A curve selection lemma in spaces of arcs and the image of the Nash
+     map. Compositio Math. 142 (2006), 119-130.
+
+   BCAM-Ikerbasque. Alameda de Mazarredo 14. 48009 Bilbao
+   E-mail address: jbobadilla@bcamath.org
+
+   Facultad de Ciencias Matematicas- UCM, Plaza de Ciencias, 3, Ciudad Universitaria,
+28040 MADRID
+   E-mail address: maria.pe@mat.ucm.es
+
