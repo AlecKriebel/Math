@@ -1,0 +1,3 @@
+# Private Robinson editorial preparation
+
+- 2026-11-15T07:07:27.498440+00:00 — 10%: Entire root authority (all 1314 lines), complete root review, full goal, both literal scientific verdicts embedded in authority, all 238 controlling TeX lines, both actual README rights/reproduction grants and comparable 121/122 editorial reports/requirements read. Initial combined output truncations were completed with bounded explicit ranges; no truncated output counted. Prior own source acquisition was metadata-only. This is informed editorial preparation, not new blind science. Root configs are outside the authorized write namespace; all public/native gates remain closed.
