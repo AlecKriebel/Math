@@ -34,7 +34,7 @@ Exact rational enclosures separate the selected centers from boundary vertices a
 
 Each common-focus curve is individually smooth because its powered-distance difference has a nonzero gradient. The boundary point A₃ lies on one curve and has a strictly positive residual for the other, proving that the two curves are distinct sets. This individual regularity does not assert joint transversality of their intersections.
 
-The original standard-library verifier and rational certificate accompany the proof. Its default command recomputes and compares the complete certificate without writing; integer and Fraction arithmetic decide the signs. The universal existence argument uses the written distance equivalence, monotone boundary definitions, strict signs and exact face identities.
+The original standard-library verifier and rational certificate accompany the proof. Its default command recomputes and compares the complete certificate without writing; integer and Fraction arithmetic decide the signs. The existence argument uses the written distance equivalence, monotone boundary definitions, strict signs and exact face identities.
 
 ## Limitations
 
