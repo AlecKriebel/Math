@@ -61,6 +61,8 @@ def scan(data,input_path,output,depth,parent_occurrence=None):
     if k=="zip":
         with zipfile.ZipFile(io.BytesIO(data)) as z:
             infos=z.infolist()
+            c["original_archive_comment_hex"]=z.comment.hex()
+            c["whole_original_central_directory"]=[{"ordinal_zero_based":i,"filename":t.filename,"original_filename":t.orig_filename,"is_directory":t.is_dir(),"bytes":t.file_size,"compressed_bytes":t.compress_size,"CRC32":"%08x"%t.CRC,"flags":t.flag_bits,"compression":t.compress_type,"native_date_time":list(t.date_time),"external_attr":t.external_attr,"internal_attr":t.internal_attr,"create_system":t.create_system,"create_version":t.create_version,"extract_version":t.extract_version,"header_offset":t.header_offset,"extra_hex":t.extra.hex(),"comment_hex":t.comment.hex()}for i,t in enumerate(infos)]
             for i,t in enumerate(infos):
                 require(t.orig_filename==t.filename,"NUL-truncated ZIP filename")
                 isdir=t.is_dir();namespace(t.filename,isdir)

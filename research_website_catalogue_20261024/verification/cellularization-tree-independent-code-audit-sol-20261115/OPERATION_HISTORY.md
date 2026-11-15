@@ -1,0 +1,5 @@
+# Operation history
+
+The first independent baseline capture assumed a root-level public/sitemap.xml, which does not exist. It stopped without source/production/writer writes; the approved contracts and private ignored blobs already captured remain intact. The actual research/sitemap.xml locator was then used. No scientific or historical campaign was restarted. A few large source-display requests were truncated; all four whole scientific verdicts, both complete PUBLIC_COPY bodies and the remaining unique metadata were subsequently read in bounded outputs. No unseen truncated content is claimed personally read.
+
+The first source-only fault labelled truncated_body changed the first matching abstract text in JSON-LD rather than the main body. Its original receipt is retained as PREEXPOSURE_CONTROLS_initial.json. Before the independence freeze, the reproducible controls were made explicit about extracting and truncating the actual main substring, and both modes rejected that correct body fault. No writer output or helper was opened during this correction.

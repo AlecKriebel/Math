@@ -24,6 +24,8 @@ def main(preseal):
     names=[]
     for row in m["files"]:bound(row);names.append(row["path"])
     require(len(names)==len(set(names)) and set(names)=={p.relative_to(R).as_posix() for p in R.rglob("*") if p.is_file()}-EXCLUDED,"Complete source namespace")
+    for item in load(R/"INPUT_MANIFEST.json")["files"]:
+        external=Path(item["path"]);require(external.is_file()and external.stat().st_size==item["bytes"]and sha(external)==item["SHA256"],"Whole original policy/helper/queue input binding")
     q=load(R/"QUEUE_BINDING.json");qp=Path(q["queue_path"]);require(qp.stat().st_size==q["whole_queue_bytes"] and sha(qp)==q["whole_queue_SHA256"],"Preserved203reconciliation changed")
     ready=load(R/"SOURCE_READY.json");a=load(R/"ACQUIRED_NATIVE.json");record=load(R/"record.response.body")
     require(record["id"]==q["identity_only"]["record_id"]==ready["record_id"]==a["record_id"],"Native/queue/readiness record")
@@ -54,6 +56,8 @@ def main(preseal):
         p=inside(container["input_path"]);require(sha(p)==container["input_SHA256"],"Actual original container")
         with zipfile.ZipFile(p) as z:
             infos=z.infolist();require(len(infos)==len(container["members"]),"Whole native member count")
+            directory=[{"ordinal_zero_based":i,"filename":v.filename,"original_filename":v.orig_filename,"is_directory":v.is_dir(),"bytes":v.file_size,"compressed_bytes":v.compress_size,"CRC32":"%08x"%v.CRC,"flags":v.flag_bits,"compression":v.compress_type,"native_date_time":list(v.date_time),"external_attr":v.external_attr,"internal_attr":v.internal_attr,"create_system":v.create_system,"create_version":v.create_version,"extract_version":v.extract_version,"header_offset":v.header_offset,"extra_hex":v.extra.hex(),"comment_hex":v.comment.hex()}for i,v in enumerate(infos)]
+            require(directory==container["whole_original_central_directory"]and z.comment.hex()==container["original_archive_comment_hex"],"Whole original central directory/comment")
             seen=set()
             for info,item in zip(infos,container["members"]):
                 require(info.filename==info.orig_filename==item["original_member_name"],"Original member names")

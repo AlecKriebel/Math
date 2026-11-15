@@ -1,0 +1,109 @@
+# A Robinson counterexample to ideal-only tangency certificates
+
+Alec Kriebel · [ORCID](https://orcid.org/0009-0001-9320-500X)
+
+12 October 2026 · Version 1.0 · Unrefereed preprint
+
+## Original abstract
+
+The classical Robinson sextic is nonnegative, but adding any nonnegative constant does not make it a sum of polynomial squares modulo the ideal of polynomials vanishing on its real tangency variety. This rules out both the exact radical certificate and the positive-constant certificate in the proposed unrestricted replacement of the gradient ideal. The same obstruction applies to the separate-cross-product ideal printed in the original report. Ten zero lines force the low-degree homogeneous parts of all square summands to vanish; an additional coordinate axis then makes the certificate impossible. The proof allows arbitrarily many summands of arbitrary degree and is entirely elementary. We credit the classical form and zero-set method, and make no claim of first bibliographic priority.
+
+## What the result means
+
+A sum of real polynomial squares is always nonnegative. One way to certify that a polynomial is nonnegative is to express it as such a sum, allowing an additional polynomial that vanishes on a chosen set. The choice of that set matters.
+
+This note applies Robinson’s classical sextic to two proposed ideal-only certificates. The polynomial is nonnegative everywhere, yet neither certificate works, even after adding any nonnegative constant. The obstruction permits any finite number of square summands with arbitrary real coefficients and arbitrary finite degrees. It is not a failure found by searching only up to a degree cutoff.
+
+## The full result
+
+Work in S=ℝ[x,y,z]. For a polynomial f, write f_x, f_y and f_z for its partial derivatives. Define the two ideals separately:
+
+J_f=(y f_x−x f_y, z f_x−x f_z, z f_y−y f_z).
+K_f=(y f_x, x f_y, z f_x, x f_z, z f_y, y f_z).
+
+For an ideal L, V_ℝ(L) is the set of real points where every polynomial in L vanishes. Let I_ℝ(L) be the full ideal of all real polynomials vanishing on that set, and let ΣS² denote finite sums of squares of real polynomials. The ordinary radical satisfies L⊆√L⊆I_ℝ(L).
+
+The Robinson sextic is
+R=x⁶+y⁶+z⁶−x⁴y²−x²y⁴−x⁴z²−x²z⁴−y⁴z²−y²z⁴+3x²y²z².
+
+Theorem 1. R is nonnegative on all of ℝ³. For both L=J_R and L=K_R and every real ε≥0,
+R+ε ∉ ΣS²+I_ℝ(L).
+
+Equivalently, there are no finite m, real polynomials q₁,…,q_m of arbitrary degrees, and h∈I_ℝ(L) with R+ε=∑q_j²+h. No fixed degree bound or bound on the finite summand count is imposed. The theorem includes ε=0 and every positive constant.
+
+Consequently R∉ΣS²+√L, and R+ε∉ΣS²+L for every ε>0, for each of the two ideals. Thus global nonnegativity does not imply either proposed ideal-only certificate. R attains its minimum zero; removing an attainment assumption includes attained examples.
+
+Tangency-minor nonnegativity equivalence. For every real polynomial f in n≥1 variables, nonnegativity on ℝⁿ is equivalent to nonnegativity on the real variety of the minors x_j f_{x_i}−x_i f_{x_j}. No global minimum-attainment or bounded-infimum hypothesis is needed. A negative value away from the origin produces a negative minimum on a compact sphere, where the gradient is parallel to the radius; the origin itself always belongs to the variety. For n=1 there are no minors and the variety is the whole line.
+
+Separate-product diagnostic. In two variables let Q(x,y)=(1−xy)²+y²−1/2 and K_Q=(y Q_x,x Q_y). Then V_ℝ(K_Q)={(0,0)}, where Q=1/2, although Q(2,1/2)=−1/4. Its infimum −1/2 is not attained, since equality would require both y=0 and xy=1; Q(1/u,u)=u²−1/2 approaches that infimum. This is a constant shift of a standard nonattaining example. It concerns only the separate-product reading and does not contradict the tangency-minor equivalence.
+
+## Why the obstruction works
+
+The nonnegativity is a classical Schur calculation. Put a=x², b=y² and c=z². The symmetric expression for R can be written as (a−b)²(a+b−c)+c(a−c)(b−c). After ordering a≥b≥c≥0, both terms are nonnegative.
+
+The ten directions (1,s,t), (1,s,0), (1,0,t) and (0,1,t), with each applicable sign independently equal to ±1, give ten whole zero lines of R. Each line lies in both real varieties because the gradient vanishes at every global minimizer. The coordinate axis (u,0,0) also lies in both varieties, and R(u,0,0)=u⁶.
+
+Suppose a certificate existed. On a zero line it would give ε=∑q_j(uv)² for every real u. Each restricted polynomial is bounded and therefore constant. The classical ten-zero cubic argument then forces every square summand’s homogeneous parts of degrees one, two and three to vanish identically. Its constant part is retained; for positive ε it need not be zero.
+
+On the coordinate axis the same certificate gives u⁶+ε=∑q_j(u,0,0)². A restriction of degree above three would contribute a strictly positive highest coefficient that cannot cancel with the other real squares. Thus every restriction has degree at most three. The already-vanishing low-degree parts make every restriction constant, contradicting u⁶+ε. This handles arbitrary finite degrees without assuming the whole variety is finite or the original ideal is radical.
+
+The complete supporting archive contains the manuscript source, authored verification materials and preserved review history. Exact algebra checks accompany the elementary universal proof; neither numerical solver failure nor a fixed sum-of-squares degree cutoff proves the nonexistence claim.
+
+## Scope and limitations
+
+The negative statement concerns finite sums of squares of real polynomials plus the specified ideal remainder. It is not a claim about rational-function, complex, analytic or infinite-sum certificates. It makes no negative claim about stronger models with added inequalities or sum-of-squares multipliers.
+
+The ordinary gradient ideal is different: Euler’s identity gives 6R=x R_x+y R_y+z R_z, so R already belongs to (R_x,R_y,R_z). The example does not refute the attained-minimum gradient-ideal theorem.
+
+The printed Oberwolfach formula uses separate products, while the tangency-minor ideal is treated as a separately explicit formulation. No uniquely intended or author-approved correction of the printed formula is asserted, and no current catalogue status is inferred.
+
+Historical first priority and continued worldwide openness are not established. Complete original 2008 and 2009 Hà–Pham article texts were not obtained for the source comparison; related truncated-certificate comparisons use later primary statements and retain their extra multiplier terms. The inspected Schweighofer author preprint is not silently identified with an unread final SIAM journal body.
+
+## Background and credit
+
+Robinson’s nonnegative sextic, Schur’s inequality and the zero-set method are classical. Reznick’s 2000 published reprint, Section 4(b), printed pages 258–259, gives the same form, ten zero directions and cubic obstruction. The note’s contribution is their explicit application to both ideal-only certificates, using whole zero lines and an additional axis to include every nonnegative constant.
+
+In Oberwolfach Report 14/2007, Schweighofer’s Theorem 1 on printed page 810 states the gradient-ideal equivalence with a minimum-attainment assumption. Conjecture 2 on printed page 811 proposes removing that assumption with a displayed separate-product replacement. The note evaluates that literal product ideal and the separately defined tangency-minor ideal; it does not silently replace one by the other. Robinson’s form already appears in Reznick’s contribution to the same report, printed page 798, equation (2).
+
+The sphere-minimization mechanism is credited to the standard argument also used in Laurent’s updated manuscript dated 6 February 2010, Section 7.2.3, Lemma 7.21, manuscript pages 117–118. That locator belongs to the updated manuscript, rather than the differently numbered lemma in the earlier 2009 chapter. Schweighofer’s gradient-tentacle certificates and the truncated/generalized-critical-value certificates of Hà–Pham and Guo–Safey El Din–Zhi use additional inequalities or SOS multipliers and remain distinct from this ideal-only obstruction.
+
+## Contribution and collaboration
+
+Independent mathematical verification, a substantive connection to stronger positivity certificates, or mathematical and expository work toward a journal version would be welcome. Any collaboration and authorship would reflect actual scholarly contributions.
+
+## AI and review disclosure
+
+AI tools were used extensively in developing, checking and presenting the argument, including literature review, computation, adversarial review and writing. This is an unrefereed preprint without independent human or journal peer review. Internal AI-assisted checks are not human review, and no formal proof-assistant certification is claimed.
+
+## Read and download
+
+Read the complete unchanged four-page version 1.0 manuscript below, or open or download its original PDF. The complete original source and verification ZIP includes the authored note, code and preserved history. Its README describes Python and SymPy requirements and supported reproduction commands. Cited third-party papers are linked separately.
+
+- [Open original PDF](assets/robinson-tangency-certificates-v1.0.pdf)
+- <a href="assets/robinson-tangency-certificates-v1.0.pdf" download>Download original PDF</a>
+- [Download the complete original ZIP](assets/robinson-tangency-source-verification-v1.0.zip)
+- [Download BibTeX](assets/citation.bib)
+- [Zenodo record](https://zenodo.org/records/23333002)
+- [DOI](https://doi.org/10.5281/zenodo.23333002)
+
+- [Original PDF on Zenodo](https://zenodo.org/api/records/23333002/files/robinson-tangency-certificates-v1.0.pdf/content)
+- [Original ZIP on Zenodo](https://zenodo.org/api/records/23333002/files/robinson-tangency-source-verification-v1.0.zip/content)
+
+<iframe src="assets/robinson-tangency-certificates-v1.0.pdf#view=FitH" title="A Robinson counterexample to ideal-only tangency certificates — complete four-page PDF" width="100%" height="850" loading="lazy"></iframe>
+
+## Citation
+
+Alec Kriebel. A Robinson counterexample to ideal-only tangency certificates. Version 1.0, 12 October 2026. Zenodo. doi:10.5281/zenodo.23333002.
+
+## Primary background
+
+- [Original Oberwolfach Report 14/2007 — printed pages 798 and 810–811](https://doi.org/10.4171/owr/2007/14)
+- [Reznick, 2000 — classical Robinson form and ten-zero cubic method, Section 4(b)](https://reznick.web.illinois.edu/Paper34.pdf)
+- [Schweighofer — actual inspected author v2 on gradient tentacles](https://arxiv.org/abs/math/0511617v2)
+- [Laurent — actual updated 6 February 2010 manuscript, pages 117–118](https://homepages.cwi.nl/~monique/files/moment-ima-update-new.pdf)
+- [Hà–Pham, 2008 — bibliographic reference; full original body access limit stated above](https://doi.org/10.1137/080719212)
+- [Guo–Safey El Din–Zhi, 2010 — author manuscript on generalized critical values](https://perso.lip6.fr/Mohab.Safey/Articles/gcv_sos.pdf)
+
+## Rights
+
+The authored manuscript, proofs, code and audits in the deposit are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0), as stated in the deposited README. Cited third-party works retain their own terms and are not redistributed in the authored package.

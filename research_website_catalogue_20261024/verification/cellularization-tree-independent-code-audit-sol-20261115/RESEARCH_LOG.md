@@ -1,3 +1,7 @@
 # Independent 121/122 integration audit
 
 - 2026-11-15T07:23:55.595902+00:00 — 5%: began new integration-only audit. Prior scientific/staging packets are immutable. First reading approved root authorities and independent source contracts; writer implementation and changing outputs remain unread. Model GPT-6.1 Sol Ultra. No scientific replay, external contact or production mutation authorized.
+
+- 2026-11-15T07:35:05.198266+00:00 — 25%: full two PUBLIC_COPY bodies, explicit requirements and all four whole literal scientific verdicts personally read. Captured raw approved contracts/full native-containing publication/promotion/adapter objects and independent assets. Current585 production files,597 original paper files,18 current core/helper pins and old two/five packet bytes guarded. Only approved checkpoint_subtree.py405b0357… differs from historical core baseline. Writer helpers/outputs remain unread. Initial sitemap locator mistake retained in operation history; actual research/sitemap.xml bound.
+
+- 2026-11-15T07:40:18.999109+00:00 — 40%: independent contract and checkable specification complete before writer helper/candidate exposure. Approved-source-only positives and11 distinct target fault instances completed in memory, normal/-O whole outputs identical. Corrected and retained the initial mislabelled JSON-LD truncation control before freezing. Writer final readiness metadata received, but implementation and outputs remain unread until the imminent own seal.
