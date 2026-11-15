@@ -1,0 +1,368 @@
+                               Steiner-Centroid Pedal Area Ratios
+                                       in Elliptic Billiards
+                                                     Alper Ferudun∗
+
+                                                     1 October 2026
+
+
+
+                                                        Abstract
+              For an odd-periodic billiard family between ﬁxed confocal ellipses, we prove that the signed area
+          of the original orbit divided by the signed area of its pedal polygon at its own Steiner curvature
+          centroid is constant. Both the centroid and this ratio are deﬁned at every real phase. Coprime star
+          trajectories and odd repeated traversals are included. Reﬂection identities express the pedal area
+          as an isotropic quadratic in the pedal point. Complementary complex pole sets and an odd-degree
+          quotient of the Jacobi parameter identify the moving centroid ellipse and reduce the ratio to a
+          constant coeﬃcient. A strict theta-function grid inequality proves the necessary nonvanishing in
+          the positive-quadratic regime. This establishes invariant k501 of Reznik, Garcia and Koiller. The
+          circular case has the elementary value sec2 (πτ /n). No absolute priority claim is made.
+
+
+1        The original-side Steiner pedal
+Fix a > b > 0 and 0 < λ < b2 , and consider the confocal pair
+
+                                      x2 y 2                       x2     y2
+                                E:       + 2 = 1,         Eλ :         +       = 1.
+                                      a2  b                      a2 − λ b2 − λ
+Let P = (Pi )i∈Z/N Z be a billiard polygon on E whose sides are tangent to Eλ . For a cyclic vector
+                                ∑
+sequence V , write A(V ) = 12 i det(Vi , Vi+1 ). These are signed shoelace areas, including for self-
+intersecting stars, not sums of absolute face areas.
+    Orient the orbit with its caustic to the left of each edge. Its local turn δi belongs to (0, π); the
+internal ray angle is θi = π − δi . Deﬁne the Steiner curvature centroid by
+                                      ∑
+                                          w i Pi
+                                   C = ∑i        ,      wi = sin(2θi ) = − sin(2δi ).                             (1)
+                                            i wi
+
+This speciﬁes the angle convention at crossed stars explicitly. Let Qi (M ) be the perpendicular foot of
+M on the original supporting sideline Pi Pi+1 , and put
+
+                              A = A(P ),           B(M ) = A(Q(M )),        BC = B(C).
+
+The sidelines here are the original billiard chords, not boundary tangents or the sides of a caustic-
+contact polygon.
+Theorem 1. For every odd N ≥ 3, the denominator in (1) is nonzero, BC > 0 in the chosen
+orientation, and A/BC is independent of the initial vertex in the ﬁxed-caustic billiard family. All
+admitted star windings and repeated odd traversals are included.
+    ∗
+        Mercury Software GmbH. Email: alper@mercurycodelab.com. GitHub: AlperTheKing.
+
+
+                                                           1
+    This is the invariant k501 in Table 6 of Reznik, Garcia and Koiller [1, 2]. Their signed-area and
+Steiner-centroid deﬁnitions are retained. Their table says odd N without explicitly requiring least
+period; Section 6 explains why repetitions do not require that extra restriction here. Hyperbolic and
+degenerate caustics are excluded. Reversing the orbit leaves C unchanged and reverses both areas, so
+the ratio is unaﬀected.
+    The ﬁxed-polygon Steiner theorem gives circular level sets for pedal area as the pedal point moves;
+see [3, §2]. It does not directly give the present ratio: both the original polygon and its own centroid
+vary with the billiard phase. The source also observes that the odd-period centroid loci are ellipses.
+We prove the precise parametrization of that locus needed here. The Jacobi billiard parametrization is
+due to the established theory; we use Stachel’s explicit form [4]. Complex pole cancellation in Poncelet
+area problems is also prior methodology [5]. Our argument supplies the original-side pedal trace, the
+quotient-torus axis relation, and the strict inequality required to invert the area ratio.
+
+
+2    Reﬂection identities and the pedal quadratic
+It is enough initially to use least period n, odd, and winding τ with gcd(τ, n) = 1 and 0 < τ < n/2.
+Set
+                         α = a2 , β = b2 , d = α − β, D = αβ, s = α + β.
+The canonical parametrization [4, Theorem 2] is
+
+                               d                  √
+                       k2 =       ,        k0 =       1 − k2 ,     K = K(k),      K 0 = K(k 0 ),
+                              α−λ                                                                              (2)
+                                                                                                      4τ K
+                 P (u) = (−a sn(u, k), b cn(u, k)),            Pi = P (u + ih),     h = 2∆ =               .
+                                                                                                       n
+The caustic condition gives
+
+                                     λ                    β−λ                     α(β − λ)
+                          sn2 ∆ =      ,     cn2 ∆ =          ,       dn2 ∆ =              .                   (3)
+                                     β                     β                      β(α − λ)
+
+We suppress k when no confusion is possible. After complexiﬁcation, dot products are bilinear, not
+Hermitian. All sums below are over i = 0, . . . , n − 1 at the arguments u + ih. Introduce
+                                                                √ √                 ∑ dn ui
+                       W (u) = α − d sn2 u,            H=        λ α − λ,      S=                 ,
+                                                                                             Wi
+                                     ∑ dn ui sn ui                       ∑ dn ui cn ui
+                              X=                          ,        Y =                   ,                     (4)
+                                       Wi2                                  Wi2
+                                   D − λs                        sD − λ(α2 + β 2 )
+                                q=        ,                   c=                   .
+                                    2D                                 2D
+For real u, S > 0. Also c > 0, since its numerator is greater than β 2 d > 0.
+
+Lemma 2. The following identities hold:
+                                 [                                                                     ]
+                   B(x, y) = H cS + 2a(β − λ)xX − 2b(α − λ)yY + qS(x2 + y 2 ) ,                                (5)
+                              a(β − λ)X            b(α − λ)Y
+                       Cx = −           ,     Cy =           ,                                                 (6)
+                                  qS                   qS
+                                (           )
+                      BC = HS c − q(C · C) .                                                                   (7)
+
+Here q 6= 0 for odd n, and q > 0 exactly when ∆ < K/2.
+
+
+                                                               2
+Proof. First consider any ordered polygon with nonzero edges. Let ti be its unit edge direction,
+ni = Jti , with J positive quarter rotation. Put Hi = 2ni nTi − I. Direct multiplication gives
+                                                       sin 2δi    JHi−1 − JHi
+                             sin δi Sym(ni−1 nTi ) =           I+             .
+                                                          4            4
+Translate the origin to the pedal point M . The two feet adjacent to vertex Pi contribute 12 sin δi ((Pi −
+M ) · ni−1 )((Pi − M ) · ni ). The matrix diﬀerence telescopes in the quadratic term. Its linear sum is
+∑                            ∑                                             ∑                ∑
+   JHi (Pi+1 − Pi ) = −J (Pi+1 − Pi ) = 0. Consequently, writing w = i wi and T = i wi Pi , we
+have
+                                                   T ·M     w(M · M )
+                                   B(M ) = B(0) +         −            .                               (8)
+                                                     4           8
+This proves the classical stationary-point identiﬁcation C = T /w whenever w 6= 0.             √
+    For the ellipse, at P = (a√cos θ, b sin θ) use the outward normal n = (b cos θ, a sin θ)/ W and
+tangent t = (−a sin θ, b cos θ)/ W , where W = β cos2 θ + α sin2 θ. The incoming and outgoing unit
+velocities are
+                                                                √                √
+             v− = ηt + jn,        v+ = ηt − jn,         j=          λ/W ,   η=       (W − λ)/W > 0.
+These signs hold for the elliptic caustic, including stars. For an explicit check, a chord with endpoint
+parameters m±ϵ has sin2 ϵ = λU/D, where U = α sin2 m+β cos2 m. The endpoint tangent-component
+numerators U cos ϵ ± d sin m cos m sin ϵ have positive sum and product U (DU − λV )/D > 0, where
+V = α2 sin2 m + β 2 cos2 m and DU − βV = β 2 d cos2 m ≥ 0.
+    The coordinate-product jump is
+                                                          √ √
+                                                         2 λ W − λ(2D − sW )
+                         (v− )x (v− )y − (v+ )x (v+ )y =                        .
+                                                                 dW 2
+                                        √              √
+It telescopes on a closed orbit. Since W − λ = α − λ dn u on the real locus,
+                                            ∑ dn ui              s
+                                                            =      S.                                       (9)
+                                                  Wi2           2D
+                                                                                             √
+The two centered √  pedal feet adjacent to P contribute ηj(η 2 Pn2 − j 2 Pt2 ), with Pn = ab/ W and
+Pt = −d sin θ cos θ/ W . Use d2 sin2 θ cos2 θ = (W − β)(α − W ) and sum:
+                                                                           √
+                           √ [                    ]                  ∑ Wi − λ
+                    B(0) = λ λR1 + (D − sλ)R2 = HcS,           Rj =                  .          (10)
+                                                                               Wij
+                                                         √
+    The vector velocity jump in Jacobi coordinates is 2 λ(−b sn u, a cn u)/W , so closure also gives
+∑              ∑
+   sn ui /Wi = cn ui /Wi = 0. Diﬀerentiate these identities with respect to the common phase, using
+    (cn u/W )0 = dn u sn u/W − 2β dn u sn u/W 2 ,           (sn u/W )0 = 2α dn u cn u/W 2 − dn u cn u/W.
+Thus
+                                 1 ∑ dn ui sn ui                       1 ∑ dn ui cn ui
+                          X=                     ,              Y =                    .                   (11)
+                                2β      Wi                            2α      Wi
+                      √ √
+The turn has sin δ = 2 λ W − λ/W and cos δ = 1 − 2λ/W . Therefore wi = −4H dn ui (Wi − 2λ)/Wi2 .
+Equations (9) and (11) give
+                      w = −8HqS,       Tx = 8aH(β − λ)X,              Ty = −8bH(α − λ)Y.
+Substitute in (8) and (10) to obtain (5)–(7).
+   Finally, (3) shows that q = 0 is equivalent to dn2 ∆ = k 0 . Since dn is strictly decreasing on (0, K)
+and dn2 (K/2) = k 0 , this is equivalent to ∆ = K/2, or 4τ = n, impossible for odd n. The same
+comparison gives q > 0 precisely when ∆ < K/2.
+
+                                                        3
+3    The complementary pole identity
+Lemma 3. For odd least period, A(u)S(u) = Λ is a positive constant. The zeros of S are precisely
+simple zeros at the shifted Jacobi vertex poles; its poles at the shifted zeros of W are simple.
+Proof. The common Jacobi pole positions are zp = 2mK + (2j + 1)iK 0 . The standard shift formulas
+[6] give, near iK 0 ,
+                                  1                                 i dn w                          i cn w
+              sn(iK 0 + w) =          ,    cn(iK 0 + w) = −                ,   dn(iK 0 + w) = −            .
+                               k sn w                               k sn w                           sn w
+Thus f = dn /W is holomorphic, odd, and zero at each zp . Put Z = zp + K. The point function
+satisﬁes P (Z + w) = P (Z − w); at Z = K + iK 0 this follows from
+                                              dn w                                  ik 0
+                              sn(Z + w) =           ,             cn(Z + w) = −          .
+                                             k cn w                               k cn w
+The zeros of W are exactly Z ± ∆ modulo 2KZ + 2iK 0 Z. They exhaust its order-two divisor and are
+simple: at them
+                     sn2 u = α/d,   cn2 u = −β/d,      dn2 u = −λ/(α − λ),                   (12)
+so W 0 = −2d sn u cn u dn u 6= 0.
+    A shifted W zero can coincide with a shifted vertex pole only if jh = K ± ∆ (mod 2K), or
+2τ (2j ± 1) = n(2l + 1). Parity excludes this for odd n. Two diﬀerent indexed vertex poles do not
+coincide either, because gcd(2τ, n) = 1. Therefore A has at most simple vertex poles. At each of them
+S is analytic and vanishes by pairing its terms under i 7→ n − i, using oddness of f and nh = 4τ K.
+The product AS has no pole there.
+    At u0 = Z − ∆, the vertices are ﬁnite and Pi (u0 ) = P1−i (u0 ). Reversing the ordered edges thus
+gives A(u0 ) = 0. Since S has at most a simple pole there, AS is regular. The other branch is an h
+shift; lattice translates preserve the cancellations. These exhaust the possible poles. The entire elliptic
+product is constant. On the real locus, each edge has the origin strictly on its left, so det(Pi , Pi+1 ) > 0;
+hence A > 0 and Λ = AS > 0.
+    At u0 exactly two summands have W poles, at Z − ∆ and Z + ∆. Their residues are equal and
+nonzero because f is odd about Z. Thus the pole of S is nonremovable and simple. At every vertex
+pole, the zero of S, the at-most-simple pole of A, and AS = Λ 6= 0 force both orders to be exactly one.
+The same identity excludes any further zeros of S.
+
+
+4    The odd quotient torus
+Let Q = exp(−πK 0 /K). Choose the unique modulus ℓ ∈ (0, 1) whose nome is Qn , and put
+                                                          √                    nL          L0   nK 0
+                  L = K(ℓ),     L0 = K(ℓ0 ),     ℓ0 =         1 − ℓ2 ,   v=       u,          =      .
+                                                                               K           L     K
+Lemma 4. There are constants A0 , σ > 0 and nonzero real cx , cy such that
+                                                σ
+                 A = A0 dn(v, ℓ),     S=              ,       Cx = cx sn(v, ℓ),        Cy = cy cn(v, ℓ),       (13)
+                                             dn(v, ℓ)
+with A0 σ = Λ. Moreover,
+                                                q(c2x − c2y )
+                                  c − qc2y =                  ,                                                (14)
+                                                     ℓ2
+                                                (   )
+                                          c2x     α 4 04 02 dn8 (∆, k)ℓ02
+                                              =         k ℓ =             .                                    (15)
+                                          c2y     β              k 04
+
+                                                              4
+Proof. Equation (11) and the simple, nonzero residues of S show that Cx , Cy are regular at the shifted
+W poles. At Jacobi vertex poles, dn sn /W and dn cn /W are individually holomorphic, while S has a
+simple zero. Thus Cx , Cy have at most simple poles at the vertex-pole lattice and no others.
+    Put T = 2K/n and E = 2iK 0 . The functions are h-periodic. The characters of (A, Cx , Cy ) under
+2K are (+, −, −), and under E they are (−, +, −). The latter follow from the Jacobi characters
+(sn, cn, dn) 7→ (sn, − cn, − dn). Choose integers r, t with 2τ r + nt = 1. Since n is odd, t is odd, and
+T = rh + t(2K) also has characters (+, −, −).
+    All possible vertex poles form the one class iK 0 modulo T Z + EZ. Under u 7→ v, T maps to
+2L and iK 0 to iL0 . The functions dn(v, ℓ), sn(v, ℓ), cn(v, ℓ) have respectively the same characters and
+simple-pole class. Subtract from each of A, Cx , Cy a multiple of the appropriate function to cancel the
+residue at iK 0 . The characters cancel every translated residue. The diﬀerence is entire with periods
+2T, 2E, hence constant, and a negative character forces that constant to vanish. This proves the
+asserted representations, initially allowing a zero axis scale. Evaluation at zero gives A0 = A(0) > 0,
+and Lemma 3 gives σ = S(0) > 0. Evaluation at real phases where the Jacobi functions are nonzero
+shows cx , cy are real.
+    At u0 = K + iK 0 − ∆, the two branch values of sn and cn are equal, by evenness about K + iK 0 .
+Taking the ratios of residues in (11) and (6) gives
+                                        a(β − λ) sn u0                        b(α − λ) cn u0
+                         Cx (u0 ) = −                  ,       Cy (u0 ) =                    .                (16)
+                                             2βq                                   2αq
+Both coordinates are nonzero. Equation (12) and the factorization
+
+    α4 (β − λ)2 − β 4 (α − λ)2
+                                                                                                 [                ]
+                                                                                  = d(D − λs) sD − λ(α2 + β 2 )
+
+show C(u0 ) · C(u0 ) = c/q. Now v(u0 ) = (n − 2τ )L + iL0 , with n − 2τ odd. Its squared Jacobi values
+are sn2 (v, ℓ) = 1/ℓ2 and cn2 (v, ℓ) = −ℓ02 /ℓ2 . Substitution proves (14). Taking the ratio of squared
+coordinates in (16) proves (15), using k 02 = (β − λ)/(α − λ) and (3). It also proves both axis scales
+nonzero.
+
+     From (13), (14), and sn2 v + cn2 v = 1 we obtain
+                                     q(c2x − c2y ) 2                     BC   Hσ 2 q(c2x − c2y )
+                      c − q(C · C) =              dn (v, ℓ),                =                    .            (17)
+                                          ℓ2                             A          ℓ2 Λ
+This already proves constancy of the reciprocal ratio. Nonvanishing is a separate obligation: it is not
+legitimate to invert a constant that might be zero.
+
+
+5      A strict odd-grid inequality and nonvanishing
+                                                                                     0
+Lemma 5. Let 0 < k < 1, and let ℓ have nome Qn , where Q = e−πK /K and n ≥ 5 is odd. If τ is a
+positive integer with ∆ = 2τ K/n < K/2, then
+                                                                k 02
+                                                 dn4 (∆, k) >        .                                        (18)
+                                                                 ℓ0
+Proof. Deﬁne F (x) = log dn(Kx/π, k) − 21 log k 0 . The half-period identity dn(u + K) = k 0 / dn u gives
+F (x + π) = −F (x), and F is even. On [0, π/2] it is decreasing, positive before the right endpoint, and
+F (π/2) = 0. It is strictly concave in the interior: with z = sn2 u,
+                                             k 2 (1 − 2z + k 2 z 2 )
+                          (log dn u)00 = −                           <0     (0 < u < K/2).
+                                                     dn2 u
+
+                                                           5
+The smaller zero of the numerator polynomial is 1/(1 + k 0 ), attained at u = K/2.
+   The theta representation of dn and the products for θ3 , θ4 [7, 6] yield the uniformly absolutely
+convergent real Fourier series
+                                             ∑ Qm cos(mx)
+                                   F (x) = 4                      .                             (19)
+                                             m≥1
+                                                  m(1 − Q2m )
+                                                    m odd
+                √
+Indeed dn u = k 0 θ3 (πu/(2K), Q)/θ4 (πu/(2K), Q), and expanding log((1 + z)/(1 − z)) in the paired
+products gives (19). Summation over the odd n-grid gives
+
+                             ∑
+                             n−1                    ∑      Qnm         1
+                      G :=         F (2πj/n) = 4                    = − log ℓ0 > 0.                      (20)
+                             j=0                   m≥1
+                                                       m(1 − Q2nm )    2
+                                                   m odd
+
+The grid factor n cancels the denominator of the surviving frequency nm.
+    Put t = π/n, r = bn/4c, and dj = F ((j − 1)t) − F (jt). Strict concavity implies d2j > d2j−1 for the
+indices used below. Folding the grid with evenness and F (π − x) = −F (x) gives
+
+                                                      ∑
+                                                      r
+                      n = 4r + 1 : G = F (0) − 2               d2j < F (2rt),
+                                                      j=1
+                                                      ∑r
+                      n = 4r + 3 : G = F (0) − 2               d2j − 2F ((2r + 1)t) < F (2rt).
+                                                      j=1
+
+In the second line (2r + 1)t < π/2, so the extra term is strictly negative. The assumption implies
+τ ≤ r. Thus F (2τ t) ≥ F (2rt) > G > G/2. Equations (20) and the deﬁnition of F now give
+4 log dn ∆ − 2 log k 0 > − log ℓ0 , proving (18).
+
+Completion of Theorem 1. The centroid is ﬁnite by Lemma 2. If q < 0, (7) immediately gives BC =
+HS(c − q|C|2 ) > 0 at every real phase. If q > 0, then ∆ < K/2; in particular n ≥ 5. Lemma 5 and
+(15) give c2x > c2y . Formula (17) is therefore strictly positive in this case too. Its inverse is the desired
+constant A/BC .
+
+
+6    Boundary cases, veriﬁcation and scope
+If a listed odd orbit of length N repeats an orbit of least period n, then N = mn forces n, m odd.
+Both weight sums in (1) are multiplied by m, so C is unchanged. Both areas are multiplied by m, and
+their ratio is unchanged. This proves the repeated-traversal assertion without narrowing the source’s
+odd-length condition.
+    For a = b, the primitive trajectory is a regular star with chord step 2πτ /n. Its common weight
+is − sin(4πτ /n), nonzero for odd n, and C = O. The feet form a rotated similar star scaled by
+cos(πτ /n) > 0, giving A/BC = sec2 (πτ /n). For n = 3 on a general ellipse, the Steiner centroid is
+the triangle circumcenter and its feet are the three side midpoints, yielding the familiar ratio 4. This
+classical case is not claimed as new.
+    The supporting package retains exact coeﬃcient checks and low-period geometric controls. It also
+retains numerical tests with their arithmetic precision, geometry residuals, and rejected integrations.
+These support regression testing, not the all-period theorem, whose proof is analytic above. In par-
+ticular, positivity of the stationary pedal area of an arbitrary ellipse-inscribed polygon is false; that
+tempting shortcut is not used here.
+    Only the original-side own-Steiner ratio k501 is claimed. The neighboring outer and inner invariants
+k502 , k503 and hyperbolic or degenerate caustics are not addressed. A bounded primary-literature
+
+                                                           6
+search did not identify an earlier proof of the same all-odd statement; this does not establish exhaustive
+novelty or absolute priority. This unrefereed manuscript was developed with AI assistance in the
+mathematical derivation, literature reconnaissance, algebraic checks and preparation. The author
+is responsible for its claims. No independent human review or formal proof-assistant veriﬁcation is
+asserted.
+
+
+References
+[1] D. Reznik, R. Garcia and J. Koiller, Fifty new invariants of N -periodics in the elliptic billiard,
+    Arnold Math. J. 7 (2021), 341–355. doi:10.1007/s40598-021-00174-y.
+
+[2] D. Reznik, R. Garcia and J. Koiller, Eighty new invariants in the elliptic billiard,
+    arXiv:2004.12497v11 (2020).
+
+[3] D. Reznik, R. Garcia and H. Stachel, Area-invariant pedal-like curves derived from the ellipse,
+    arXiv:2009.02581v3 (2020).
+
+[4] H. Stachel, On the motion of billiards in ellipses, arXiv:2105.03624v2 (2021).
+
+[5] A. C. Chávez-Caliz, More about areas and centers of Poncelet polygons, Arnold Math. J. 7
+    (2021), 91–106. doi:10.1007/s40598-020-00154-8.
+
+[6] NIST Digital Library of Mathematical Functions, §22.2, §22.4, and §22.8, Jacobi elliptic
+    functions (accessed 1 October 2026).
+
+[7] NIST Digital Library of Mathematical Functions, §20.5, Theta-function inﬁnite products,
+    equations 20.5.3–4 (accessed 1 October 2026).
+
+
+
+
+                                                    7
+
