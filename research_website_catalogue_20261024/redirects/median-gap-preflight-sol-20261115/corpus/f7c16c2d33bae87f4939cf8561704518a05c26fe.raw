@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An elementary geometric proof that no finite nonempty knights-and-rooks placement satisfies N=4, R=2, with a separately checkable local impossibility certificate.">
+  <meta name="author" content="Alec Kriebel">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Nonexistence in the N=4, R=2 Knights-and-Rooks Problem">
+  <meta property="og:description" content="A rightmost-knight obstruction, a self-contained proof, and reproducible verification materials.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/knights-rooks-n4-r2/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/knights-rooks-n4-r2/">
+  <title>Knights and Rooks: N=4, R=2 Is Impossible · Alec Kriebel Research</title>
+  <link rel="stylesheet" href="../../assets/style.css?v=20260809-portfolio">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec Kriebel Research</a>
+      <div class="nav-links"><a href="#result">Result</a><a href="#proof">Proof idea</a><a href="#verification">Verification</a></div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Recreational mathematics · Research note · Unrefereed</p>
+      <h1>Nonexistence in the N=4, R=2 Knights-and-Rooks Problem</h1>
+      <p class="byline">Alec Kriebel · AI-assisted research</p>
+      <p class="release">Research note: 13 September 2026 · Internal verification and publication: 17 September 2026 UTC</p>
+    </div></div>
+  </header>
+  <main class="paper-main">
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Read the six-page note</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/knights_rooks_research">Source &amp; Verification</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/knights_rooks_research/review/VERIFICATION_REPORT.md">Independent audit</a>
+      <a class="button secondary" href="https://erich-friedman.github.io/mathmagic/0207.html">Original problem</a>
+    </div>
+    <article class="paper-text">
+      <section id="result">
+        <h2>The result</h2>
+        <p class="lede">No finite nonempty placement of knights and rooks can make every knight attack exactly four rooks and no knights, while every rook attacks exactly two knights and no rooks.</p>
+        <p>This answers the N=4, R=2 cell in the Knights and Rooks table on Erich Friedman’s February 2007 Math Magic page. That cell still displayed a question mark when checked on 17 September 2026 UTC.</p>
+        <div class="theorem-block">
+          <p><strong>Stronger theorem.</strong> Let the knight and rook squares be finite, nonempty, disjoint subsets of the integer grid. If every rook sees exactly two knights and no rooks, then some knight attacks at most three rooks. Knight-to-knight attacks are permitted.</p>
+        </div>
+        <p>Rook visibility stops at the first occupied square in each orthogonal direction. Knights jump in the usual way. Attacks are directed: a knight attacking a rook does not imply that the rook attacks that knight.</p>
+      </section>
+      <section id="proof">
+        <h2>Why the placement is impossible</h2>
+        <p>A rook cannot lie farther right than every knight: it could then see a knight only to its west, giving at most one target. Translate a rightmost knight to the origin. Its four possible rook targets in the occupied half-plane are therefore forced.</p>
+        <p>Those rooks force intervening knights to block rook-to-rook attacks. Once a rook already sees two knights, its remaining rays must be empty. Following these local constraints forces another knight with at most three possible rook targets, contradicting the required four.</p>
+        <p>The argument covers every finite board size and every finite piece inventory. The full coordinate proof is available in the note and as <a href="https://github.com/AlecKriebel/Math/blob/main/knights_rooks_research/PROOF.md">plain text</a>.</p>
+      </section>
+      <section id="verification">
+        <h2>Checkable evidence</h2>
+        <div class="table-wrap"><table class="paper-table">
+          <thead><tr><th scope="col">Claim</th><th scope="col">Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>Universal finite nonexistence</td><td>Geometric proof using a rightmost knight and forced local blockers</td></tr>
+            <tr><td>Local obstruction</td><td>Necessary relaxation on 28 squares; 174 Boolean variables and 699 clauses</td></tr>
+            <tr><td>Certificate</td><td>One Boolean split, two contradictory leaves, 151 unit inferences</td></tr>
+            <tr><td>Reproducibility</td><td>20 supplied tests, two attack reconstruction algorithms, and certificate regeneration</td></tr>
+            <tr><td>Additional scrutiny</td><td>Separate AI reviews of the geometry, encoding, and reproduction, with an independently written certificate audit</td></tr>
+          </tbody>
+        </table></div>
+        <p>From the <code>knights_rooks_research</code> folder, run:</p>
+        <pre><code>python3 src/run_all.py</code></pre>
+        <p>The verification requires only Python 3.9 or newer and its standard library. The <a href="https://github.com/AlecKriebel/Math/blob/main/knights_rooks_research/FINITE_REDUCTION.md">finite-reduction explanation</a> shows why every hypothetical finite counterexample would satisfy the local constraints. Exhaustive searches on bounded boards are not needed for the theorem.</p>
+      </section>
+      <section id="scope">
+        <h2>Scope and provenance</h2>
+        <p>The result addresses only the N=4, R=2 knights-and-rooks cell. It does not resolve the other open questions on Friedman’s page. The finite, nonempty, ordinary integer-grid model is essential to the stated scope; no infinite or wrapped-board conclusion is claimed.</p>
+        <p>The supplied research package and PDF are preserved unchanged, alongside the later audit reports. References in that package to its original conversation and unpublished status describe the 13 September research session.</p>
+        <p>The research and internal reviews used substantial generative-AI assistance. The reviews are separate checks within an AI-assisted workflow, not external peer review or proof-assistant formalization. Historical priority has not been established.</p>
+      </section>
+    </article>
+    <section class="pdf-section" aria-label="Typeset research note">
+      <h2>Research note</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p><a href="./paper.pdf">Open the research note.</a></p></object>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec Kriebel Research</a> · <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/knights_rooks_research">Research package</a></footer>
+</body>
+</html>

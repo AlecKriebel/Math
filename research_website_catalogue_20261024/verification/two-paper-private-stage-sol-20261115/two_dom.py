@@ -29,7 +29,7 @@ class Tree(HTMLParser):
   rules={'html':{None},'head':{'html'},'body':{'html'},'title':{'head'},'meta':{'head'},'link':{'head'},'style':{'head'},'script':{'head'},'header':{'body','article'},'nav':{'header','main'},'main':{'body'},'article':{'main'},'section':{'article'},'footer':{'body','article'},'h1':{'header','article'},'h2':{'section','article','footer'},'h3':{'section','article'},'p':{'header','section','article','footer'},'div':{'section','article'},'span':{'p','div','span','a','li','strong','i','em','cite'},'strong':{'p','li','span'},'i':{'p','li','a','span'},'em':{'p','li','a','span'},'cite':{'p'},'sub':{'p','div','span','sub','sup'},'sup':{'p','div','span','sub','sup'},'a':{'body','p','nav','h1','li'},'time':{'p'},'br':{'p','div','span','li'},'hr':{'article','footer'},'ul':{'section','article'},'ol':{'section','article'},'li':{'ul','ol'},'iframe':{'section','article'}}
   if self.source_editorial:
    rules['header']=rules['header']|{'main'};rules['section']=rules['section']|{'main'}
-  rules['p']=rules['p']|{'iframe'}
+  rules['p']=rules['p']|{'iframe'};rules['br']=rules['br']|{'code'}
   rules['pre']={'section','article'};rules['code']={'pre','div'}
   need(t in rules and parent in rules[t],'closed_parent_grammar:'+str(parent)+'/'+t)
   a=dict(attrs);need(len(a)==len(attrs),'no_duplicate_attribute')

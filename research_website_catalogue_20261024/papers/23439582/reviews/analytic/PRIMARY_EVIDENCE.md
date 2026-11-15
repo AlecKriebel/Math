@@ -68,6 +68,6 @@ DGI 5.7 explicitly uses every compact Lie group, prime-field cochains on the com
 
 Ishiguro printed 198 identifies p-compactness of BG with finite total mod-p homology of the loop space of the p-completed BG. Proposition 1.3(a) printed 199 gives exactly the needed necessary component-group condition; no converse is used. Its original2001 proof is not represented as read.
 
-The OWR question is exactly the full cellularization homotopy-map question for positive-dimensional compact Lie groups with non-p-nilpotent components. Greenleesv3 already supplies finite-group vanishing and the nilpotent-action/restricted-image/tensor-collapse antecedents, which remain prior work. No broad world-priority or present-day openness conclusion follows from this bounded source review.
+The OWR question is exactly the full cellularization homotopy-map question for positive-dimensional compact Lie groups with non-p-nilpotent components. Greenlees v3 already supplies finite-group vanishing and the nilpotent-action/restricted-image/tensor-collapse antecedents, which remain prior work. No broad world-priority or present-day openness conclusion follows from this bounded source review.
 
 Eight fresh critical-primary rasters were personally inspected: DGI physical 22/26, Ishiguro 5, BIS 9, Lomp 4, OWR 54, Greenlees 10/11. The four target-manuscript rasters were separately read before the initial seal. Programme bodies/results were first read only after that seal. Source archived reviews, derivations and priority-opinion bodies were not read.

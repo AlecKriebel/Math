@@ -1,0 +1,172 @@
+
+ 
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   The Ramsey Number R(5,5) · Alec Kriebel Research 
+   
+   
+   
+   
+ 
+ 
+   
+     
+       Alec Kriebel Research 
+       
+         Problem 
+         Result 
+         Method 
+         Verify 
+         Paper 
+       
+     
+     
+       Research checkpoint · Paused 24 July 2026 · Global problem unresolved 
+       The Ramsey number  \(R(5,5)\):  one regular endpoint excluded 
+       A research run by Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol 
+       Publication checkpoint:  24 July 2026 
+     
+   
+
+   
+     
+       ! 
+       
+         The exact Ramsey number is still unknown. 
+         The published range remains \(43\le R(5,5)\le46\). We excluded one endpoint inside one hypothetical regular branch; we did not improve either global bound. This is an unreviewed, AI-assisted research checkpoint. 
+       
+     
+
+     
+       
+     
+
+     
+       Read the short paper 
+       Verifier release v1.0.1 
+       Paper source and audit 
+     
+
+     
+       
+         The problem, in plain language 
+         How large must a party be before five mutual acquaintances or five mutual strangers are unavoidable? 
+         The diagonal Ramsey number \(R(5,5)\) is the smallest \(n\) such that every graph on \(n\) vertices contains either a five-vertex clique or a five-vertex independent set. A 42-vertex construction proves \(R(5,5)\ge43\); the best published impossibility computation proves \(R(5,5)\le46\). Determining whether the answer is 43, 44, 45, or 46 remains a major open computational problem. 
+         
+           Published range \(43\le R(5,5)\le46\) 
+           Endpoint closed here \((e(A),e(H))=(85,128)\) 
+           Global outcome No bound improved 
+         
+       
+
+       
+         What survived the integrity audit 
+         
+           Endpoint theorem, conditional on the published catalogs.  No 18-regular graph on 43 vertices with neither a \(K_5\) nor an independent five-set has a vertex \(v\) whose neighborhood spans 85 edges. 
+           Together with the published extremal-edge statement, every vertex in such a hypothetical graph lies in at most 84 triangles. 
+         
+         This is a genuine complete exclusion of one finite endpoint, not a statistical observation. It rests on an elementary capacity inequality, a byte-pinned exhaustive calculation over 62,382 catalog pairs, and a short equality-rigidity argument. Its catalog completeness and nonisomorphism assumptions remain external published inputs. 
+         The result is substantial enough for a short computational-combinatorics note because the inequality and equality mechanism are reusable beyond the raw enumeration. It is not substantial enough to present as a new value or new bound for \(R(5,5)\). 
+       
+
+       
+         How the endpoint reduces 
+         Assume a hypothetical 18-regular \((5,5;43)\)-graph \(G\), choose a vertex \(v\), let \(A=G[N(v)]\), let \(B\) be its 24 non-neighbors, and set \(H=\overline{G[B]}\). Thus an edge of \(H\) is a nonedge of \(G[B]\). Both \(A\) and \(H\) are \(R(4,5)\)-graphs. A two-sided count of the cross edges gives 
+         \[
+          e(H)=213-e(A).
+        \] 
+         Thus the maximum local value \(e(A)=85\) is paired exactly with \(e(H)=128\). Published catalogs contain 74 such \(A\)-graphs and 843 such \(H\)-graphs. 
+
+         The capacity inequality 
+         For every vertex \(b\) of \(H\), its cross-neighborhood \(X_b\subseteq V(A)\) must meet every independent four-set of \(A\). If \(bc\) is an edge of \(H\), the union \(X_b\cup X_c\) must meet every independent triple of \(A\). Define \(q_s(A)\) to be the least number of independent triples missed by any size-\(s\) set that meets all independent four-sets. Then every valid assignment must satisfy 
+         
+           \[
+            \sum_{b\in V(H)} q_{d_H(b)-5}(A)\le4\,i_3(A),
+          \] 
+           where \(i_3(A)\) is the number of independent triples of \(A\). 
+         
+         The proof is a short incidence double count. For each independent triple \(Q\), the vertices \(b\) whose column \(X_b\) misses \(Q\) form an independent set in \(H\), so at most four columns can miss the same triple. 
+
+         Exact finite result 
+         
+           
+             Classification of all \(74\times843\) fixed-side catalog pairs 
+             
+               Classification Pairs 
+             
+             
+               Strictly violate the capacity inequality 61,939 
+               Attain equality and require terminal analysis 443 
+               Survive the terminal analysis 0 
+               Total 62,382 
+             
+           
+         
+         All 443 equality pairs share one exceptional \(A\). Its size-six minimizing transversal is unique and misses ten independent triples. Equality forces every degree-11 vertex of \(H\) to use that same set. There are sixteen such vertices, and they necessarily contain an edge; the two endpoint columns are then identical and jointly miss those ten triples, contradicting the two-column rule. 
+       
+
+       
+         Reproduce the computation 
+         The corrected release is a compact, self-contained verifier independent of the multi-gigabyte exploratory history. It includes the two pinned source catalogs, the deterministic producer, a separately implemented checker that imports no producer code, the complete 62,382-line classification stream, and 17 focused tests. 
+         
+           Release v1.0.1  — theorem, novelty review, verifier, pinned data, and downloadable archive. 
+           Normalized archive  — 11.1 MB; rebuilds deterministically. 
+           History-independent source branch  — compact Git checkout at commit  b6d7f1a . 
+           Short paper  — seven-page proof, scope statement, and exceptional endpoint data. 
+         
+         From the extracted archive, run  python3 verify_bundle.py . A fresh copy downloaded from GitHub reproduced every frozen artifact byte-for-byte, returned  "valid": true , and passed all 17 tests in under 70 seconds with peak memory below 140 MB. 
+         Archive SHA-256: 
+         de541d6c7ed8be496784397ea0ee3f1b12c2b93cdbc42ba908160095c1d79cc4 
+       
+
+       
+         Novelty assessment 
+         A focused primary-source review found a positive but moderate novelty signal. Feasible-cone gluing, the two-column covering condition, and incidence counting are classical. We found no earlier statement of the exact minimum-miss profile \(q_s(A)\), its graph-indexed aggregate inequality, the equality-rigidity closure, or this \((85,128)\) endpoint theorem. 
+         That search cannot establish worldwide priority. The paper therefore says “we formulate,” not “we introduce,” and makes no claim that the elementary double count itself is new. 
+       
+
+       
+         Why this program is paused 
+         The endpoint theorem eliminated one layer cleanly, but it did not scale across the six global branches. The next regular layer \((84,129)\) remained mostly open, and the published \(R(5,5)\le46\) result was obtained using computations far larger than this local machine can economically reproduce. 
+         Continuation is justified only if one of four stronger signals appears: a global count forcing a vertex into this endpoint; a correlated or weighted multi-column inequality with whole-layer reach; a pilot eliminating essentially all of the \((84,129)\) layer; or a genuinely new construction basin with at most one forbidden edge. 
+       
+
+       
+         Published context 
+         
+           Geoffrey Exoo,  “A lower bound for \(R(5,5)\)” ,  Journal of Graph Theory  13 (1989), 97–98. 
+           Vigleik Angeltveit and Brendan McKay,  “\(R(5,5)\le46\)” ,  Journal of Graph Theory  112 (2026), 198–208. 
+           Brendan McKay and Stanisław Radziszowski,  “\(R(4,5)=25\)” ,  Journal of Graph Theory  19 (1995), 309–322. 
+           Vigleik Angeltveit and Brendan McKay,  “\(R(5,5)\le48\)” ,  Journal of Graph Theory  89 (2018), 5–13. 
+           Brendan McKay,  Ramsey graph data , source of the pinned catalogs. 
+         
+       
+
+       
+         Scope and AI-assistance disclosure 
+         The exploratory mathematics, proof drafting, programs, independent-code audits, literature review, and publication materials were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a complete amateur and cannot independently validate the mathematics. No external expert has reviewed this work. Exact verification is evidence about the encoded finite statements; it is not peer review and does not independently prove the external catalog-completeness assertions. 
+       
+     
+   
+
+   
+     Alec Kriebel Research  ·  Short paper  ·  Verifier release  · Global problem unresolved
+   
+ 
+ 

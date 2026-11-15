@@ -133,12 +133,18 @@ def main():
     expected_result = load(Path(native['native_expected_results_path']))
     need(expected_result == native['result'] and native['result']['result'] == 'PASS',
          'native expected certificate comparison')
+    need(h(Path(native['native_expected_results_path']).read_bytes()) ==
+         native['native_expected_results_SHA256'], 'whole native expected bytes')
     audit = ast.parse((S / 'published-source/audits/hopf_01/check_bosonization.py').read_text())
     canon = ast.parse(canonical.decode())
     need(isinstance(canon.body[0], ast.If) and ast.dump(audit, include_attributes=False) ==
          ast.dump(ast.Module(body=canon.body[1:], type_ignores=[]), include_attributes=False),
          'whole native programme AST comparison')
     verdict = load(A / 'VERDICT.json')
+    for item in verdict['proof_artifacts']:
+        bound(item)
+    for key in ['exact_source_ready_identity', 'source_resume_seal', 'old_incomplete_seal']:
+        bound(verdict[key])
     need(verdict['decision'] == 'SUPPORTED — FULL ORIGINAL CLAIM' and verdict['defect_found'] is False
          and verdict['unresolved_central_mathematical_gap'] is None and verdict['follow_up'] is None
          and verdict['exact_source_ready_whole_object_preserved'] == ready,

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/targeted_controls.py", line 36, in <module>
+    if __name__=='__main__':print(json.dumps(run_controls(),indent=2))
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/targeted_controls.py", line 25, in run_controls
+    b=bs[1];raw=pages[b['rid']];pagecase(b,'119:missing_second_moment_square',raw.replace('Then M₁² − M₂² >'.encode(),'Then M₁² − M₂ >'.encode(),1));pagecase(b,'119:existing_skip_link_CSS_hides_paragraph',raw.replace(b'<p>For a membrane',b'<p class="skip-link">For a membrane',1));pagecase(b,'119:actual_MIT_scope_erased',raw.replace(b'Software and website code are MIT licensed.',b'Software has no separate license.',1));pagecase(b,'119:creation_date_substituted_for_publication',raw.replace(b'content="2026/09/23"',b'content="2026/09/26"',1));pagecase(b,'119:PDF_download_attribute_removed',raw.replace(b'download="paper.pdf"',b'',1));pagecase(b,'119:wrong_proposed_canonical',raw.replace(b'rel="canonical" href="https://aleckriebel.com/research/strict-dirichlet-gap/"',b'rel="canonical" href="https://example.invalid/"',1))
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/targeted_controls.py", line 19, in pagecase
+    need(changed!=pages[b['rid']] or assets is not None,'nonvacuous_fault:'+label);rejects(label,lambda:check_page(b,changed,files[b['rid']] if assets is None else assets,DATE))
+  File "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/two-paper-private-stage-sol-20261115/two_common.py", line 17, in need
+    if not ok:raise ValueError('two_stage:'+label)
+ValueError: two_stage:nonvacuous_fault:119:missing_second_moment_square
