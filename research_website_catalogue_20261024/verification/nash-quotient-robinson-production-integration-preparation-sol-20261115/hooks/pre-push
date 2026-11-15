@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""Root-audited exact-parent push guard: reads only; no network or file writes."""
+import sys
+sys.dont_write_bytecode=True
+import hashlib,os,re
+BASE='e2e064c48755452a56c2a31207fb12d7e55074fb'
+def fail():raise SystemExit('Exact14 push guard rejected the actual remote advertisement')
+expected=os.environ.get('EXACT14_APPROVED_COMMIT','')
+remote_sha=os.environ.get('EXACT14_APPROVED_PUSH_URL_SHA256','')
+if len(sys.argv)!=3 or sys.argv[1]!='origin' or not re.fullmatch('[0-9a-f]{40}',expected):fail()
+if hashlib.sha256(sys.argv[2].encode()).hexdigest()!=remote_sha:fail()
+lines=sys.stdin.buffer.read().splitlines()
+if len(lines)!=1:fail()
+parts=lines[0].split()
+if len(parts)!=4:fail()
+local_ref,local_oid,remote_ref,remote_oid=parts
+if local_oid!=expected.encode() or remote_ref!=b'refs/heads/master' or remote_oid!=BASE.encode():fail()
+if local_ref.startswith(b'(delete)') or local_oid==b'0'*40:fail()

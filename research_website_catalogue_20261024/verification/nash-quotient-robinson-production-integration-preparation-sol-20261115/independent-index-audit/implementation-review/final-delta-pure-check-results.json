@@ -1,0 +1,167 @@
+{
+  "UTC": "2026-11-15T17:53:57.479225+00:00",
+  "status": "PASS_PURE_CHECKS_ONLY",
+  "source_bindings": [
+    {
+      "path": "exact14_lib.py",
+      "bytes": 16532,
+      "SHA256": "db895045b45ed5af3819d8a043e0dd8c86ce507969ab73f180e189bfbdababcd",
+      "mode": "0o644",
+      "syntax": "PASS"
+    },
+    {
+      "path": "preflight.py",
+      "bytes": 1768,
+      "SHA256": "339d0fa4d51a388befeb567e9d8f844dbb2aa9c6df4e276f36fdda6d62dab219",
+      "mode": "0o644",
+      "syntax": "PASS"
+    },
+    {
+      "path": "install_exact.py",
+      "bytes": 12353,
+      "SHA256": "c6e5ab488ef42d311179ee6503e627d3860e9a8ec13c90bcdd538fa542cae722",
+      "mode": "0o644",
+      "syntax": "PASS"
+    },
+    {
+      "path": "hooks/pre-push",
+      "bytes": 925,
+      "SHA256": "f165472879ca2073e41c070789abc86c7bdf09b96b8c980dcd2f8964309f038d",
+      "mode": "0o555",
+      "syntax": "PASS"
+    }
+  ],
+  "tests": [
+    {
+      "name": "approved_exact_parent",
+      "expected_accept": true,
+      "actual_accept": true,
+      "returncode": 0,
+      "PASS": true
+    },
+    {
+      "name": "remote_rewind",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "remote_advance",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "absent_remote_ref",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "named_local_ref_same_approved_oid",
+      "expected_accept": true,
+      "actual_accept": true,
+      "returncode": 0,
+      "PASS": true
+    },
+    {
+      "name": "wrong_local_oid",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "wrong_remote_ref",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "extra_ref_record",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "missing_ref_record",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "malformed_ref_record",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "delete_ref_record",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "wrong_remote_name",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "wrong_remote_url",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "missing_commit_authority",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "missing_url_authority",
+      "expected_accept": false,
+      "actual_accept": false,
+      "returncode": 1,
+      "PASS": true
+    },
+    {
+      "name": "missing_execute",
+      "returncode": 1,
+      "expected_error_observed": true,
+      "run_state_absent": true,
+      "PASS": true
+    },
+    {
+      "name": "install_missing_root",
+      "returncode": 1,
+      "expected_error_observed": true,
+      "run_state_absent": true,
+      "PASS": true
+    },
+    {
+      "name": "publish_missing_root",
+      "returncode": 1,
+      "expected_error_observed": true,
+      "run_state_absent": true,
+      "PASS": true
+    }
+  ],
+  "test_count": 18,
+  "Git_executed": false,
+  "network_used": false,
+  "website_written": false,
+  "runtime_created": false
+}
