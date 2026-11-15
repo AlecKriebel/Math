@@ -1,0 +1,1 @@
+2026-11-15T02:30:08.563352+00:00 — Root15%: actualPDFpages1–4 personallyreadonly; TeX/raster/foreign/code/results/oldcurrentpeerfindingsstillunread. All3peerfinalsgated; initialnotsealed. Firstclaim/lowdegreeclassificationsandordinarymarkingobligationsidentifiedas hypothesesforfullreconstruction.

@@ -1,3 +1,5 @@
 2026-11-15T02:19:21.434189+00:00 — Root40%: actualfull4PDF/272TeX/all4pixels and8independentreconstructionfamilies sealed before foreign/code/results/peer science. Exactprimary/smoothparameterexistence/sourcechecksremain; root117gateopensnow. Native89/203scientificdispositions43.84%,117notyetcounted; no publicationauthority.
 
 2026-11-15T02:28:46.334580+00:00 — Root75%: exactdefiningflow/smoothfinite-timeprimaryinterfaces andcriticalpixels read; own24exactalgebra/conventionguards exit0; scope+analyticfullREPORT/wholeVERDICT read afterseal; thirdadversarialandcustodypending. No finaldisposition/publicationauthority.
+
+2026-11-15T02:35:33.092543+00:00 — Root100%fulloriginal117counterexample supported at explicitclassicalfinite-timePDEinputlevel;3fullpackets/postprimaryderivations/wholeliteralverdictsread; purewholemanifests+nativecustody exit0 withnocampaignreplay. Specific2025habilitationbodyremainspriorityunknown,notproofgap. Root90/203science44.33%,native89transitionpending; no publicauthority.

@@ -95,6 +95,8 @@ def main():
     for r in ready['all_native_assets_in_original_order']:
         b=Path(r['path']).read_bytes();key=r['original_api_file_object']['key'];ck(b==(Q/'assets'/key).read_bytes() and sha(b)==r['SHA256'] and 'md5:'+hashlib.md5(b).hexdigest()==r['original_api_file_object']['checksum'],'byte-identical actual full asset '+key)
     ck((Q/'assets/focal-pedal-ratios-note.pdf').read_bytes().startswith(b'%PDF') and (Q/'assets/focal-pedal-ratios-note.pdf').stat().st_size==73905,'successful actual PDF selected, not88B failure')
+    searchable=(P/'reviews/scope/actual_pdf_text.txt').read_text()
+    ck(searchable.count('\f')==6 and 'Focal pedal area ratios of closed elliptic billiards' in searchable,'existing complete searchable actual-PDF text evidence')
     custody=obj(S/'archive-custody.json');members=custody['regular_members']
     with zipfile.ZipFile(Q/'assets/focal-pedal-ratios-verification.zip') as z:
         infos=z.infolist();ck(len(infos)==len(members)==24 and z.testzip() is None,'whole24-payload archive/CRC')
