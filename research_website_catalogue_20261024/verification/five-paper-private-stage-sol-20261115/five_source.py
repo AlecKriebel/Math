@@ -3,6 +3,7 @@ from five_common import *
 from five_markup import Tree,text
 import re
 def authenticate_inputs():
+ authorize_editorials()
  seal=load(OWN/'INPUT_FREEZE_SEAL.json')
  for name,key in [('FROZEN_INPUT_SET.json','frozen_inputs_sha256'),('FRESH_BASELINE.json','baseline_sha256'),('PRIVATE_STAGE_POLICY.json','policy_sha256'),('RECORD_LAYOUTS.json','record_layouts_sha256')]:
   need(bind(OWN/name)['sha256']==seal[key],'exact_saved_'+name)
@@ -38,7 +39,7 @@ def view_record(rid,original):
  pdf=next(a for a in asset_view if a['name'].lower().endswith('.pdf'));zipasset=next(a for a in asset_view if a['name'].lower().endswith('.zip'))
  selected=ready['selected_actual_PDF'];need(bind(selected['path'])=={'bytes':selected['bytes'],'sha256':selected[hashkey]},'actual_selected_reader:'+rid)
  need(pdf['sha256']==selected[hashkey],'exact_native_reader_not_rebuilt:'+rid)
- if layout['kind']=='config':
+ if layout['kind'] in {'config','html-config'}:
   need(c['canonical_url'] is None and c['AA'] is None and c['follow_up'] is None,'original_config_public_flags_unassigned:'+rid)
   for key in ['production_integration_authorized','publication_clearance','ready_to_publish','rendered_copy_verified','local_http_verified','deployed','live_verified','browser_verified','native_verified','canonical_verified']:
    need(p[key] is False,'original_private_promotion_flag:'+rid+':'+key)
@@ -46,6 +47,11 @@ def view_record(rid,original):
   title=c['title'];slug=c['slug'];description=c['description'];abstract=c['abstract'];kind=c['status'];source_html=None
   need(c['doi']==record['doi'] and c['publication_date']==meta['publication_date'] and c['version']==meta['version'],'top_config_native_edition_date:'+rid)
   need(c['pdf_filename']==pdf['name'] and c['supplement_filename']==zipasset['name'],'top_config_exact_assets:'+rid)
+  if layout['kind']=='html-config':
+   source_html=(paper/layout['html']).read_text();tree=Tree(source_html,source_math_style=True)
+   need(text(tree.find('h1')[0])==title,'full115_preview_exact_title')
+   scholar=strict_json(text(tree.find('script')[0]));need(scholar['abstract']==abstract,'full115_preview_abstract')
+   kind=scholar['creativeWorkStatus']
  else:
   state=p['state'];need(state['AA'] is None and state['canonical_url'] is None and state['root_editorial_adoption'] is None,'nested_native_flags_unassigned:'+rid)
   for key in ['public_promotion_authority','production_config_authority','production_config_created','site_created','site_deployed','live_page_verified','browser_publication_gate','native_service_gate','tracker_gate','redirect_gate','git_gate','release_gate']:need(state[key] is False,'nested_original_private_gate:'+rid+':'+key)

@@ -44,3 +44,24 @@ def safe_output(path):
  p=Path(path).absolute();need(p.resolve().is_relative_to(OWN) and p.resolve()!=OWN,'only_new_private_stage_output')
  need(all(not q.is_symlink() for q in [p,*p.parents] if q.is_relative_to(OWN)),'no_output_symlinks')
  return p
+def authorize_dlab():
+ a=load(OWN/'SUPPLEMENTAL_DLAB_AUTHORITY.json');p=Path(a['root_authority_path'])
+ need(bind(p)['sha256']==a['root_authority_sha256']=='43e4f6133b8b0cdee7fc686e8d9352d58417873909712b9cf2d407ebe84dab67','exact_additive_root_Dlab_link_authority')
+ r=load(p);need(same(r,a['whole_root_authority_original']),'whole_additive_Dlab_authority')
+ need(r['old_href']==OLD_DLAB and r['new_href']==NEW_DLAB and r['display_text']=='Kourovka Notebook','exact_single_Dlab_link_delta')
+ need(r['status']=='ROOT_ADOPTED_EXACT_ONE_HREF_BACKGROUND_OVERRIDE_FOR_PRIVATE_RENDERING' and r['scientific_sentence_delta'] is None,'Dlab_link_only_scope')
+ need(r['historical_source_or_sealed_editorial_mutation_authorized'] is False and r['publication_adoption_or_live_verification'] is False,'Dlab_no_source_or_public_authority')
+ proposal=PROGRAMME/'verification/dlab-notebook-link-resolution-sol-20261114/FINAL_SEAL.json'
+ need(bind(proposal)['sha256']==r['source_proposal_seal_sha256'],'exact_Dlab_proposal_source')
+ return r
+def authorize_editorials():
+ a=load(OWN/'SUPPLEMENTAL_EDITORIAL_AUTHORITY.json');p=Path(a['root_authority_path'])
+ need(bind(p)['sha256']==a['root_authority_sha256']=='4af1b271c9f678899b17504dc2b6678fba2ae11f0a6609da719a543dcc73b4f4','exact_additive_root_five_copy_authority')
+ r=load(p);need(same(r,a['whole_root_authority_original']),'whole_five_editorial_authority')
+ need(r['status']=='ROOT_FIVE_EDITORIAL_COPY_ADOPTED_PRIVATE_STAGE_CODE_AND_LIVE_GATES_PENDING' and r['followups_all_null'] is True,'full_five_copy_private_adoption_scope')
+ need([x['record_id'] for x in r['records']]==list(IDS),'exact_five_root_copy_records')
+ for row in r['records']:
+  need(row['decision']=='ROOT_ADOPTED_FULL_PUBLIC_COPY_AND_UNIQUE_CONFIGURATION_PROSE_FOR_PRIVATE_STAGING','specific_full_copy_decision')
+  for b in row['bindings']:need(bind(contained(PROGRAMME,b['path']))=={k:b[k] for k in ['bytes','sha256']},'root_bound_complete_editorial_input')
+ for key in ['production_installation_authorized_by_this_record','live_or_browser_verified_by_this_record','native_canonical_URL_assignment_authorized_by_this_record','source_or_frozen_packet_repair']:need(r[key] is False,'root_no_install_live_native_or_source_repair:'+key)
+ return r

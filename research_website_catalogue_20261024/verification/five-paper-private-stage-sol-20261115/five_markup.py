@@ -15,7 +15,7 @@ def nodes(n):
   if isinstance(c,dict):yield from nodes(c)
 def serialize(n):
  if isinstance(n,str):return h(n,quote=False)
- a=''.join(' '+k+'="'+h(v,quote=True)+'"' for k,v in n['attrs'].items())
+ a=''.join(' '+k if v is None else ' '+k+'="'+h(v,quote=True)+'"' for k,v in n['attrs'].items())
  return '<'+n['tag']+a+'>'+('' if n['tag'] in VOID else ''.join(serialize(x) for x in n['children'])+'</'+n['tag']+'>')
 class Tree(HTMLParser):
  def __init__(self,source,*,source_math_style=False):
@@ -28,15 +28,15 @@ class Tree(HTMLParser):
  def handle_pi(self,d):raise ValueError('five_stage:processing_instruction')
  def handle_starttag(self,t,attrs):
   parent=self.stack[-1]['tag'] if self.stack else None
-  rules={'html':{None},'head':{'html'},'body':{'html'},'title':{'head'},'meta':{'head'},'link':{'head'},'style':{'head'},'script':{'head'},'header':{'body','article'},'nav':{'header','main'},'main':{'body'},'article':{'main'},'section':{'article'},'footer':{'body','article'},'h1':{'header','article'},'h2':{'section','article'},'h3':{'section','article'},'p':{'header','section','article','footer'},'div':{'section','article'},'span':{'p','div','span','a','li','strong','i','em','cite'},'strong':{'p','li','span'},'i':{'p','li','a','span'},'em':{'p','li','a','span'},'cite':{'p'},'sub':{'p','div','span','sub','sup'},'sup':{'p','div','span','sub','sup'},'a':{'body','p','nav','h1','li'},'time':{'p'},'br':{'p','div','span','li'},'hr':{'article','footer'},'ul':{'section','article'},'li':{'ul'},'iframe':{'section','article'}}
+  rules={'html':{None},'head':{'html'},'body':{'html'},'title':{'head'},'meta':{'head'},'link':{'head'},'style':{'head'},'script':{'head'},'header':{'body','article'},'nav':{'header','main'},'main':{'body'},'article':{'main'},'section':{'article'},'footer':{'body','article'},'h1':{'header','article'},'h2':{'section','article','footer'},'h3':{'section','article'},'p':{'header','section','article','footer'},'div':{'section','article'},'span':{'p','div','span','a','li','strong','i','em','cite'},'strong':{'p','li','span'},'i':{'p','li','a','span'},'em':{'p','li','a','span'},'cite':{'p'},'sub':{'p','div','span','sub','sup'},'sup':{'p','div','span','sub','sup'},'a':{'body','p','nav','h1','li'},'time':{'p'},'br':{'p','div','span','li'},'hr':{'article','footer'},'ul':{'section','article'},'ol':{'section','article'},'li':{'ul','ol'},'iframe':{'section','article'}}
   need(t in rules and parent in rules[t],'closed_parent_grammar:'+str(parent)+'/'+t)
   a=dict(attrs);need(len(a)==len(attrs),'no_duplicate_attribute')
-  allowed={'html':{'lang'},'meta':{'charset','name','property','content'},'link':{'rel','href'},'script':{'type'},'a':{'class','href','target','rel','download'},'p':{'class','id'},'nav':{'aria-label'},'main':{'id'},'h2':{'id'},'time':{'datetime'},'section':{'id'},'iframe':{'class','id','src','title','loading'},'div':{'class','role','aria-label','data-tex'},'span':{'class','role','aria-label','data-tex'}}.get(t,set())
+  allowed={'html':{'lang'},'meta':{'charset','name','property','content'},'link':{'rel','href'},'script':{'type'},'a':{'class','href','target','rel','download'},'p':{'class','id'},'nav':{'aria-label'},'main':{'id'},'h2':{'id'},'time':{'datetime'},'section':{'id','aria-labelledby'},'footer':{'id'},'iframe':{'class','id','src','title','loading'},'div':{'class','role','aria-label','data-tex'},'span':{'class','role','aria-label','data-tex'}}.get(t,set())
   if self.source_math_style and t=='span':allowed=allowed|{'style'}
   need(set(a)<=allowed,'allowed_visible_attributes:'+t)
   need(not any(k in a for k in ['hidden','inert','aria-hidden']) and not any(k.startswith('on') for k in a),'no_hidden_or_event_attributes')
   if 'style' in a:need(self.source_math_style and t=='span' and a['style']=='white-space: nowrap','only_original_inline_math_nowrap')
-  if 'class' in a:need(set(a['class'].split())<={'skip-link','site-title','entry-meta','paper-pdf','copyright','byline','formula','equation','result','citation'},'known_nonhiding_class')
+  if 'class' in a:need(set(a['class'].split())<={'skip-link','site-title','entry-meta','paper-pdf','copyright','byline','formula','equation','result','citation'}|({'meta','skip'} if self.source_math_style else set()),'known_nonhiding_class')
   n=node(t,a);(self.stack[-1]['children'] if self.stack else self.roots).append(n)
   if t not in VOID:self.stack.append(n)
  def handle_endtag(self,t):need(self.stack and self.stack[-1]['tag']==t,'balanced_nesting:'+t);self.stack.pop()

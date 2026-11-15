@@ -7,7 +7,7 @@ def freeze():
  layouts=load(OWN/'RECORD_LAYOUTS.json');need(list(layouts)==list(IDS),'five_explicit_layouts_in_native_row_order')
  records={};paths=set()
  for rid in IDS:
-  paper=PROGRAMME/'papers'/rid;layout=layouts[rid];editorial=paper/'reviews/editorial'
+  paper=PROGRAMME/'papers'/rid;layout=layouts[rid];editorial=paper/layout['editorial_dir']
   sealpath=contained(paper,layout['editorial_seal'])
   need(bind(sealpath)['sha256']==layout['editorial_seal_sha256'],'exact_final_editorial_seal:'+rid)
   rootname,rootsha=CLEARANCES[rid];authority=PROGRAMME/'verification'/rootname
@@ -21,7 +21,7 @@ def freeze():
   reviews={lane:load(contained(paper,'reviews/'+lane+'/VERDICT.json')) for lane in ['scope','analytic','adversarial']}
   paths.update(p for p in (paper/'sources').rglob('*') if p.is_file())
   paths.update(p for p in editorial.rglob('*') if p.is_file())
-  if layout['kind']=='html':paths.update(p for p in config.parent.rglob('*') if p.is_file())
+  if layout['kind'] in {'html','html-config'}:paths.update(p for p in config.parent.rglob('*') if p.is_file())
   else:paths.update([config,promotion])
   paths.add(authority)
   for lane in ['scope','analytic','adversarial']:
