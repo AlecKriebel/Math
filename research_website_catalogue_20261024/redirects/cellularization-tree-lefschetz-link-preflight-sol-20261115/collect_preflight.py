@@ -83,7 +83,10 @@ def main():
     for r in old:
         b=git('blob',r['blob']);need(len(b)==r['bytes'] and sha(b)==r['sha256'],'Original complete released blob '+r['path'])
         n=r['path'];current_blob=newmap[n]['sha'];cur=blob if n==delta[0]['path'] else b
-        row={'path':n,'blob':current_blob,'bytes':len(cur),'SHA256':sha(cur),'original_blob':r['blob'],'original_bytes':r['bytes'],'original_SHA256':r['sha256']};rows.append(row)
+        original_path=REPO/n
+        if not original_path.exists() or original_path.read_bytes()!=b:original_path=D/'corpus'/f"{r['blob']}.raw"
+        need(original_path.read_bytes()==b,'Existing whole original body proof '+n);bind(original_path)
+        row={'path':n,'blob':current_blob,'bytes':len(cur),'SHA256':sha(cur),'original_blob':r['blob'],'original_bytes':r['bytes'],'original_SHA256':r['sha256'],'original_body_path':str(original_path),'current_body_path':str(body if n==delta[0]['path'] else original_path)};rows.append(row)
         raw=D/'corpus'/f"{r['blob']}.raw"
         if raw.exists():
             need(raw.read_bytes()==b,'Original cached raw equality')
@@ -134,7 +137,8 @@ def main():
         sr=j['source_binding']['whole_original_source_ready'];rn=next(sr[k] for k in ['selected_actual_PDF'] if k in sr)
         native_pdf=Path(rn['path']);check(rn);prepared=e/'candidate/assets'/j['pdf_filename'];need(prepared.read_bytes()==native_pdf.read_bytes(),'Prepared/native PDF whole equality');bind(prepared)
         tex=sr['controlling_TeX'];
-        if isinstance(tex,dict) and 'path' in tex:check(tex)
+        if isinstance(tex,dict):
+            tp=Path(tex.get('path',tex.get('extracted_path')));tb=tp.read_bytes();need(len(tb)==tex['bytes'] and sha(tb)==tex['SHA256'],'Actual controlling TeX body');bind(tp)
         for n in ['PUBLIC_COPY.md','VERDICT.json','REPORT.md','SEAL.json','MANIFEST.json','actual-published.txt']:
             if (e/n).exists():bind(e/n)
         root_review=P/'papers'/rid/'reviews/root/ROOT_REVIEW_20261115.md';bind(root_review)
@@ -143,6 +147,9 @@ def main():
             if p.exists():bind(p)
         for q in sr.get('whole_native_API_objects',[]):
             if isinstance(q,dict) and 'path' in q:check(q)
+        actual_record=load(Path(next(q['path'] for q in sr['whole_native_API_objects'] if q['role']=='record')))
+        need(str(actual_record['id'])==rid and actual_record['doi']==j['doi'],'Actual native record/DOI')
+        md=actual_record['metadata'];need(md['title']==j['title'] and md['version']==j['version'] and md['publication_date']==j['publication_date'],'Native title/date/version actual fields')
         # All native assets are authenticated by both whole-source bindings and native MD5.
         assets=[]
         for q in sr.get('all_native_assets_in_original_order',[]):

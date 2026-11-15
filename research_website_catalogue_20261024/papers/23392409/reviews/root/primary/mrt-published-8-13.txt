@@ -1,0 +1,257 @@
+                                          P. Melotti, S. Ramassamy, and P. Thévenin      788
+
+2.1. ˛-embeddings and realizations
+
+Let us start by defining the notion of ˛-quads.
+Definition 2.1. A quadrilateral ABCD is called an ˛-quad for ˛ 2 R if
+
+                             AB ˛ C CD ˛ D AD ˛ C BC ˛ :
+
+It is called a 0-quad if
+                                   AB:CD D AD:BC;
+
+a C1-quad if
+                            max.AB; CD/ D max.AD; BC /
+and a 1-quad if
+                            min.AB; CD/ D min.AD; BC /:
+    Note that the ˛-quads are not required to be convex nor even proper (see Defini-
+tion 2.2), meaning that edges may intersect away from their endpoints.
+    One can immediately notice that ˛-quads (for ˛ 2 R) are simply quadrilaterals
+ABCD such that f˛ .AB; CD/ D f˛ .AD; BC /, where for x; y > 0 we set f˛ .x; y/ D
+x ˛ C y ˛ if ˛ 2 R , f0 .x; y/ D xy, fC1 .x; y/ D max.x; y/ and f 1 .x; y/ D
+min.x; y/. Such a notation calls for a generalization from f˛ to any homogeneous
+symmetric function f of two variables, which is done at the end of Section 5.
+    Of particular interest are the following three families of ˛-quads, which were
+already defined in a different context:
+•   1-quads correspond to tangential quads, i.e., quads such that there is a circle tan-
+    gential to their four sides (see, e.g., [13]);
+•   2-quads correspond to orthodiagonal quads, i.e., quads whose diagonals are per-
+    pendicular (see, e.g., [14]);
+•   0-quads are known under the name of balanced quads [13] and contain a well-
+    studied class of quads, the harmonic quads, which are defined as cyclic 0-quads
+    (that is, 0-quads inscribed in a circle, see [2] for details).
+Definition 2.2. For n  3, an n-tuple of distinct points A1 ; : : : ; An is said to be
+a proper polygon if the line segments ŒA1 A2 ; ŒA2 A3 ; : : : ; ŒAn 1 An ; ŒAn A1  do not
+intersect except possibly at their endpoints. In other words, the closed piecewise linear
+curve A1 ; A2 ; : : : ; An ; A1 is a Jordan curve.
+    A proper polygon is said to be positively (resp. negatively) oriented if the points
+on its boundary oriented counterclockwise (resp. clockwise) are A1 ; A2 ; : : : ; An in
+this order.
+                                  Cube moves for s-embeddings and ˛-realizations       789
+
+    Let G be a planar graph, finite or infinite. Denote its dual graph by G  , whose ver-
+tices are faces of G and where we connect two dual vertices if the two corresponding
+faces share an edge. We construct the graph G ˘ as the bipartite graph whose black
+(resp. white) vertices are the vertices of G (resp. G  ) and where an edge connects
+a black vertex to a white vertex whenever the black vertex is on the boundary of the
+face associated with the white vertex. In particular, all the faces of G ˘ are quadrilat-
+erals, see Figure 2.
+
+Definition 2.3. Let ˛ 2 R. An ˛-embedding of G is an embedding of G ˘ in the plane
+such that every internal face of G ˘ is an ˛-quad.
+
+    The fact that G ˘ is embedded in the plane implies that the ˛-quads corresponding
+to internal faces are proper. In particular, for embedded graphs, edges cannot collapse
+to a point, two distinct edges cannot meet outside of their endpoints, faces have non-
+empty interiors and two distinct faces have disjoint interiors. This setting is the one
+preferred for the study of statistical mechanical models such as spanning trees and
+the Ising model. However, in the more general setting we consider, we need to allow
+drawings of graphs that are not necessarily embeddings.
+
+Definition 2.4. Let ˛ 2 R. An ˛-realization of G is defined to be any map from the
+vertices of G ˘ to the plane such that every face of G ˘ is mapped to an ˛-quad.
+
+    See Figure 7 for an example of a 4-embedding and a 4-realization of the same
+graph.
+    As mentioned in the introduction, there are two notable classes of examples of
+˛-embeddings. The class of 1-embeddings of a planar graph corresponds to the class
+of s-embeddings defined by Chelkak in [6, 7] (see also [24]), while the class of 2-
+embeddings corresponds to the class of harmonic embeddings [18, 27].
+
+                     A1                                          A1
+
+        A2                       A6                  A2                       A6
+                                                                 A7
+                     A0
+        A3                       A5                   A3                      A5
+
+                     A4                                          A4
+     Figure 6. The combinatorics of a cube move for ˛-embeddings and ˛-realizations.
+                                            P. Melotti, S. Ramassamy, and P. Thévenin        790
+
+                    A1                                       A1
+
+
+                              A5                                       A5
+                                            A6               A7                     A6
+
+        A2                     A0                A2
+
+
+             A3                                       A3
+                                       A4                                      A4
+Figure 7. Here ˛ D 4. Left: an ˛-embedding of the portion of the graph on the left-hand side of
+Figure 6. Right: an ˛-realization of the portion of the graph on the right-hand side of Figure 6.
+The quad A4 A5 A6 A7 on the right is not proper.
+
+
+2.2. The cube move: setting
+We now define the property that we want to study on ˛-quads, which we call the flip
+property. This property states that it is possible to perform a cube move like that of
+Figure 6 locally on the realization or embedding, while keeping the global structure
+unchanged.
+
+Definition 2.5. For any ˛ 2 R, the set of all ˛-realizations is said to satisfy the flip
+property if, for any six distinct points in the plane A1 , A2 , : : : ; A6 such that A1 , A3 ,
+A5 (resp. A2 , A4 , A6 ) are not aligned, the following are equivalent:
+•   there exists a point A0 such that A0 ; A1 ; : : : ; A6 is an ˛-realization of the graph
+    on the left-hand side of Figure 6;
+•   there exists a point A7 such that A1 ; : : : ; A7 is an ˛-realization of the graph on the
+    right-hand side of Figure 6.
+    The set of ˛-embeddings is said to satisfy the proper flip property if, in the equiv-
+alence of Definition 2.5, it is also required that the figures are ˛-embeddings, and that
+each of the quadrilaterals is proper, with its boundary vertices oriented in the same
+order as in Figure 6.
+    In both cases, it is said to satisfy the unique (proper) flip property if it satisfies the
+(proper) flip property and if, in addition, when the points A0 and A7 exist they are
+unique.
+    Our ultimate goal is to understand for which values of ˛ these properties are satis-
+fied by the set of ˛-realizations or ˛-embeddings. In this direction, we notably prove
+Theorem 3.1 for 1-embeddings and Theorem 4.7 for ˛-realizations with ˛ > 1, and
+conjecture a generalization to other values of ˛ (see Conjecture 3.2). Note that it is
+                                  Cube moves for s-embeddings and ˛-realizations      791
+
+
+                                            A0
+
+
+                                       A6
+                             A1                        A5
+                        A2
+                                                          A4
+
+
+
+
+                                            A3
+
+Figure 8. A configuration for ˛ D 1, with the corresponding construction curves. The green
+construction curves have an intersection point A0 but the purple ones do not intersect.
+
+
+already known that the set of 2-embeddings satisfies the unique proper flip property
+and that the set of 2-realizations satisfies the unique flip property. This can be proved
+using a theorem of Steiner, see [18, 21].
+    There is a necessary condition on the outer hexagon A1 : : : A6 in order to be in
+a position to flip three quads.
+Proposition 2.6. Let A1 ; : : : ; A6 be six distinct points and let ˛ 2 R. Suppose that
+there is either a point A0 producing an ˛-realization of the left-hand side of Figure 6
+or a point A7 producing an ˛-realization of the right-hand side of Figure 6. Then the
+side lengths of the hexagon A1 : : : A6 must satisfy
+
+           A1 A˛2 C A3 A˛4 C A5 A˛6 D A2 A˛3 C A4 A˛5 C A6 A˛1       if ˛ ¤ 0;      (2.1)
+                A1 A2 :A3 A4 :A5 A6 D A2 A3 :A4 A5 :A6 A1      if ˛ D 0:            (2.2)
+
+Proof. When ˛ ¤ 0, formula (2.1) follows immediately from summing the three
+equations defining the three ˛-quads involving A0 (resp. A7 ). The case ˛ D 0 works
+similarly.
+
+    The example on Figure 8 with ˛ D 1 illustrates the fact that condition (2.1) is not
+sufficient to have an ˛-realization. Indeed, the existence of a point A0 implies that
+condition (2.1) is satisfied, but there exists no point A7 . We also point out that there
+is no analogue of Proposition 2.6 when ˛ D ˙1.
+                                          P. Melotti, S. Ramassamy, and P. Thévenin       792
+
+
+                                          0<˛<1
+
+
+                                           ˛D0
+
+
+                                            ˛<0
+                                                                            ˛D1
+                                          ˛D      1
+
+                                              B                         1<˛<2
+                                      C                                     ˛D2
+                                                                            ˛>2
+                                                                ˛ D C1
+
+
+                                              A
+
+Figure 9. Construction curves with foci A and B going through C . The fact that they intersect
+only at C and at its symmetric with respect to .AB/ is a consequence of Proposition 5.4. The
+asymptotic behavior of construction curves is described in Lemma 4.6.
+
+
+
+2.3. Construction curves
+In order to check the existence of the points A0 and A7 introduced in Definition 2.5,
+we will see them as intersection points of certain curves called construction curves.
+Let us first define them properly.
+Definition 2.7. Let A, B and C be three distinct points in the plane and let ˛ 2 R.
+The ˛-construction curve with foci A, B going through C is the set of points M such
+that ACBM is an ˛-quad.
+    Let A1 ; : : : ; A6 be the distinct vertices of a hexagon. The ˛-construction curves of
+the hexagon A1 : : : A6 are the six curves Ci where for every 1  i  6, Ci is defined to
+be the ˛-construction curve with foci Ai 1 and Ai C1 going through Ai . Here indices
+are taken modulo 6.
+
+    The role of construction curves in our problem is the following. Start with a hexa-
+gon A1 A2 A3 A4 A5 A6 and let ˛ 2 R. The existence of a point A0 as on the left-hand
+side of Figure 6 is equivalent to the fact that C2 , C4 and C6 have a common point, see
+Figure 10. Similarly the existence of a point A7 as on the right-hand side of Figure 6
+is equivalent to the fact that C1 , C3 and C5 have a common point.
+Remark 2.8. In order for the flip property to be satisfied when ˛ 2 R, it is actu-
+ally enough to consider the intersection of two construction curves rather than three.
+Indeed, if ˛ ¤ 0 and if A0 ; A1 ; : : : ; A6 are seven points such that the quadrilater-
+                                      Cube moves for s-embeddings and ˛-realizations         793
+
+als A1 A2 A3 A0 , A3 A4 A5 A0 and A5 A6 A1 A0 are all ˛-quads, then by Proposition 2.6
+formula (2.1) is satisfied. Hence, if C1 and C3 have a common point A7 , then combin-
+ing the equation of the two ˛-quads A2 A3 A4 A7 and A6 A1 A2 A7 with formula (2.1)
+yields that A7 also lies on C5 . The case ˛ D 0 works similarly, replacing formula (2.1)
+by formula (2.2).
+    In a few cases, the construction curves are well known. Fix two points A and B in
+the plane. If C is a point such that AC D BC , then clearly for any ˛ the construction
+curve going through C is the perpendicular bisector of ŒAB, which we denote from
+now on by P .AB/. Without loss of generality, we may assume in what follows that
+
+
+
+                                     A6                                              A6
+                         A1                                               A1
+                    A2                                              A2
+                               A0                                               A0
+
+                               A00                               A07 A7        A00
+                                                                                     A5
+      A3                              A5                    A3
+
+                                                                               A4
+                              A4
+
+                                           A1
+                                      A2               A6
+                                           A7
+
+
+                                                A0
+               A3                                                                    A5
+                                                A00
+
+
+                                                A000
+
+
+                                                A4
+
+
+
+Figure 10. Examples of construction curves for some hexagons. Top left: for ˛ D 0, two possible
+points A0 and no point A7 . Top right: for ˛ D 0, two points A0 and two points A7 . Pictures with
+the same number of solutions as the top two pictures can be obtained for ˛ close to 0. Bottom:
+for ˛ D 10, three points A0 and one point A7 .
+
