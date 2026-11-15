@@ -1,0 +1,313 @@
+                               Focal Pedal-Antipedal Area Products
+                                        in Elliptic Billiards
+                                                    Alper Ferudun∗
+
+                                                    1 October 2026
+
+
+
+                                                        Abstract
+              We prove constancy of the signed area product of the pedal and antipedal polygons at either
+          ﬁxed focus of an elliptic billiard, when the least period is divisible by four and the confocal caustic
+          is an ellipse. Convex and primitive star trajectories are included. The argument gives two ex-
+          plicit factors: the focal pedal area is a ﬁxed multiple of the outer tangent-polygon area, and the
+          focal antipedal area is a ﬁxed multiple of the original area. Their product reduces the assertion
+          to Chávez-Caliz’s even-period area-product theorem. A velocity-coordinate telescope and a Jacobi
+          quarter-period permutation provide the ﬁrst factor; opposite-edge algebra provides the second. This
+          establishes invariant k403,b in the usual genuine-period interpretation, with that convention stated
+          explicitly. No absolute priority claim is made.
+
+
+1        Statement and conventions
+Fix a > b > 0, put c2 = a2 − b2 , and consider the boundary and caustic
+                               x2 y 2                     x2     y2
+                          E:      + 2 = 1,        C:          +       = 1,          0 < λ < b2 .                    (1)
+                               a2  b                    a2 − λ b2 − λ
+Let P = (P1 , . . . , PN ) be a periodic billiard trajectory on E tangent to C. Throughout, N denotes its
+least positive period. We allow every coprime winding number admitted by the elliptic caustic, including
+star trajectories. For any ordered polygon set
+                                               1∑
+                                     A(V ) =       det(Vi , Vi+1 ),     VN +1 = V1 .
+                                               2 i
+
+All derived polygons retain trajectory order. Their areas are signed, not sums of absolute areas of
+bounded faces.
+    Write A = A(P ) and let T be the area of the polygon formed by consecutive intersections of the
+tangents to E at Pi . For one ﬁxed focus F = (±c, 0), let p be the area of the pedal polygon whose
+vertices are the perpendicular feet from F to the original sidelines. Let q be the area of the antipedal
+polygon, whose deﬁning sides are
+                                        (Pi − F ) · (X − Pi ) = 0.                                   (2)
+The conjecture k403,b in [1, 2, Table 5] asserts constancy of pq for N ≡ 0 (mod 4). Both factors concern
+the original orbit at the same focus. The source uses signed areas and expressly permits self-intersecting
+antipedals.
+    For compact notation put
+
+               α = a2 ,   β = b2 ,   d = α − β = c2 ,    D = αβ,      s = α + β,     J = (α − λ)(β − λ).
+    ∗
+        Mercury Software GmbH. Email: alper@mercurycodelab.com. GitHub: AlperTheKing.
+
+
+                                                            1
+Theorem 1. For every primitive billiard family in (1) with N ≡ 0 (mod 4), the same-focus signed
+pedal-antipedal product is constant. More precisely,
+
+                                 p = KT,          q = RA,        pq = KR(AT ),                              (3)
+
+where                            √
+                                     J(β − λ)               D(3β − α) + λ(α − β)2
+                            K=                ,      R=                           .                         (4)
+                                       β2                        2D(β − λ)
+All consecutive outer and focal-antipedal intersections are ﬁnite. The formulas include zero or negative
+antipedal area.
+
+    The source does not expressly expand “N -periodic” into a minimum-period deﬁnition. Its genuine-
+family interpretation is used here, and is essential: an arbitrary repeated list of 4m vertices does not
+satisfy the quarter-period argument below. Section 6 records an exact control illustrating this distinction.
+Neither a hyperbolic caustic nor a degenerate endpoint is included in the theorem.
+
+
+2    Reﬂection and the focal pedal area
+Choose the orientation with the caustic on the left of every directed edge. Its center and both foci lie
+strictly inside it, so
+                          det(Pi , Pi+1 ) > 0,   det(Pi − F, Pi+1 − F ) > 0.                         (5)
+The second inequality already proves ﬁnite consecutive antipedal intersections. Reversal changes every
+signed area’s sign and preserves the claimed identities.
+    At P = (a cos θ, b sin θ) deﬁne
+
+                                                    (b cos θ, a sin θ)              (−a sin θ, b cos θ)
+              W = β cos2 θ + α sin2 θ,        n=          √            ,      t=          √             .
+                                                            W                               W
+Here n is the outward unit normal, t the positive unit tangent, and det(n, t) = 1. The incoming and
+outgoing unit velocities are
+                                                                      √                    √
+                                                                           W −λ                λ
+                    v− = ht + jn,         v+ = ht − jn,         h=              ,     j=         .          (6)
+                                                                            W                  W
+
+To see the normal-component formula√      directly, a chord with endpoint parameters u − δ, u + δ has
+unit direction (−a sin u, b cos u)/ U , where U = α sin2 u + β cos2 u. Confocal tangency gives sin2 δ =
+λU/D, so its squared normal component is D sin2 δ/(U W ) = λ/W . Its positive tangent component and
+reﬂection give (6).
+                     ∑ √
+Lemma 2. If Sr = i Wi − λ/Wir , then
+
+                                                  2DS2 = sS1 .                                              (7)
+
+Proof. Equation (6) gives
+                                                           √ √
+                                                          2 λ W − λ(2D − sW )
+                          (v− )x (v− )y − (v+ )x (v+ )y =                     .
+                                                                dW 2
+The left side telescopes around the orbit: each outgoing velocity is the next incoming velocity. Since
+d, λ > 0, the asserted identity follows. No area invariance has been assumed.
+
+
+
+                                                        2
+Lemma 3. For a centrally paired orbit Pi+N/2 = −Pi , the focal pedal area is
+                                          √
+                                             λ α(β − λ)
+                                       p=               S1 .                                         (8)
+                                                β
+Proof. Take F = (c, 0) and denote its feet on the incoming and outgoing sidelines at P by Q− , Q+ . Set
+Pn = P · n, Pt = P · t, un = (P − F ) · n and ut = (P − F ) · t. Orthogonal projection yields
+                                                          Q+ + Q−
+                   Q+ − Q− = 2hj(un t + ut n),                    = P − ut h2 t − un j 2 n.
+                                                             2
+Thus their ordered half determinant is
+                            det(Q− , Q+ )
+                                          = hj(Pn un − Pt ut + u2t h2 − u2n j 2 ).                   (9)
+                                 2
+For X = cos θ, Y = sin θ, these frame coordinates are
+                        ab             dXY                 b(a − cX)              cY (a − cX)
+                  Pn = √ ,       Pt = − √ ,       un =        √      ,     ut =       √       .
+                         W               W                      W                       W
+Using W = β + dY 2 = (a − cX)(a + cX), the bracket in (9) reduces to (a − cX)[a(W − λ) + cXλ]/W .
+Consequently
+                            det(Q− , Q+ ) √ √          α − λ + caX
+                                         = λ W −λ                    .                       (10)
+                                 2                       (a + cX)2
+This term can be negative; no unsigned-area decomposition is being used. Pairing P with −P replaces
+X by −X. The pair contribution is
+                                       √ √     (           )
+                                                 α + λ 2αλ
+                                      2 λ W −λ        −      .
+                                                  W     W2
+Summing once over all vertices and applying (7) gives
+                                                                 √
+                                 √                                   λ α(β − λ)
+                            p=       λ[(α + λ)S1 − 2αλS2 ] =                    S1 .
+                                                                        β
+Reﬂection in the y-axis interchanges the foci and reverses both signed areas, giving the same formula
+for the other focus.
+
+
+3    The outer area and a quarter-period permutation
+Set L = D − sλ. For a vertex with boundary parameter θ, the two adjacent half-gap tangents z = tan δ
+solve
+                              (L + λW )z 2 − 2λd cos θ sin θ z − λW = 0.                        (11)
+This follows by substituting u = θ +δ in D sin2 δ = λ(α sin2 u+β cos2 u). The leading coeﬃcient satisﬁes
+
+                                         L + λW ≥ α(β − λ) > 0,
+
+so the roots have opposite signs and are ﬁnite.√One√is the forward half-gap tangent and the other is
+minus the backward one. Their diﬀerence is 2 λD W − λ/(L + λW ). The unit-circle tangent-side
+area formula, followed by the linear map diag(a, b), therefore gives
+                                                      √
+                                              √ ∑ Wi − λ
+                                       T =D λ                   .                               (12)
+                                                    i
+                                                       L + λWi
+
+                                                      3
+This signed boundary formula applies in trajectory order also for stars. It also shows that consecutive
+outer vertices are ﬁnite.
+   Stachel’s canonical parametrization [4, Theorem 2] is
+                                                         d                  4iτ K0
+                    P (u) = (−a sn u, b cn u),      k2 =     ,   ui = u0 +         ,                (13)
+                                                      α−λ                     N
+where K0 is the real complete quarter period and gcd(N, τ ) = 1. For even N , τ is odd and the index
+shift N/2 negates the vertices, justifying Lemma 3. For N ≡ 0 (mod 4), the index shift N/4 adds τ K0 .
+Since W = α − d sn2 u, the standard squared Jacobi quarter-period identity yields
+                          λW + L                     J                       JW
+                    W′ =            ,     W′ − λ =         ,   L + λW ′ =          .                (14)
+                           W −λ                    W −λ                    W −λ
+All real denominators and square roots here are positive. The index shift permutes the vertices, so (12)
+can be evaluated at the Wi′ . It becomes            √
+                                                  D λ
+                                              T = √ S1 .                                            (15)
+                                                    J
+Combining with (8) gives p = KT with K as in (4). An arbitrary padded list does not supply this
+quarter-period permutation.
+
+
+4    An opposite-edge formula for the antipedal
+Translate the origin to F . Consecutive antipedal sides then have equations u · Z = |u|2 and v · Z = |v|2 ,
+where u = P − F , v = Q − F . Collecting adjacent terms in the signed shoelace sum expresses the
+                       ∑
+antipedal area as q = i E(Pi − F, Pi+1 − F ), with
+                                            |u|2 |v|2 − (|u|2 + |v|2 )(u · v)/2
+                                E(u, v) =                                       .                       (16)
+                                                         det(u, v)
+Indeed, if r = |u|, r′ = |v| and η is their oriented normal-angle increment, the grouped term is rr′ csc η −
+(r2 + r′2 ) cot η/2. It follows by writing the two intersection coordinates along each oriented side and
+collecting half their determinants. The derivation does not require a convex antipedal.
+Lemma 4. For any centrally paired elliptic-caustic trajectory, q = RA with R given by (4).
+Proof. Write an edge’s endpoint parameters as t − δ, t + δ, and set
+                        U = α − d cos2 t,     C0 = cos δ,    S0 = sin δ,     z = c cos t.
+Then S02 = λU/D, z 2 = α − U and
+                     det(P, Q) = 2abS0 C0 ,       det(P − F, Q − F ) = 2bS0 (aC0 − z).
+Use the focal-distance formula |P − F | = a − c cos(t − δ) in (16). Its numerator divided by 2S02 is
+                               H(c) = (2β − U )(a − zC0 )2 + U (U − β)S02 .
+The opposite edge has c replaced by −c. Combining the two fractions and dividing by det(P, Q) gives
+                          E(P − F, Q − F ) + E(−P − F, −Q − F )
+                                        det(P, Q)
+                              H(c)/(aC0 − z) + H(−c)/(aC0 + z)
+                            =
+                                             2aβC0
+                              (2β − U )(α + z 2 C02 − 2z 2 ) + U (U − β)(1 − C02 )
+                            =
+                                                 β(αC02 − z 2 )
+                                  (D − sλ)U
+                            =2−              .                                                          (17)
+                                   D(β − λ)
+
+                                                       4
+For the last simpliﬁcation substitute z 2 = α − U and C02 = 1 − λU/D: the numerator becomes U [2(β −
+λ) − U (D − sλ)/D] and the denominator U (β − λ). All canceled normal determinants are nonzero; in
+particular
+                                                         U (β − λ)
+                                  (aC0 − z)(aC0 + z) =             > 0.
+                                                             β
+   The elementary identity
+                                                          ab [                        ]
+                            det(Pi , Pi+1 ) cos(2ti ) =       sin(2θi+1 ) − sin(2θi )
+                                                          2
+telescopes over the closed polygon. Since Ui = s/2 − d cos(2ti )/2, summing over one representative of
+each opposite-edge pair gives
+                          ∑                         ∑                        s
+                               det(Pi , Pi+1 ) = A,       det(Pi , Pi+1 )Ui = A.
+                         pairs                      pairs
+                                                                             2
+
+Summing (17) yields                        [                    ]
+                                               s(D − sλ)
+                                      q = 2−               A = RA.
+                                               2D(β − λ)
+No division by a total signed area occurs. Replacing c by −c gives the same result for the other focus.
+
+
+5    The published area theorem and its hypotheses
+Chávez-Caliz proves that AT is constant for even-period Poncelet families between concentric ellipses
+in general position [3, Theorem 6, p. 104]. Her area deﬁnition is the signed shoelace formula [3, p. 93];
+the theorem is not restricted to convex polygons or winding one. Its tangent polygon is precisely the
+outer polygon used in (12).
+    For (1), general position is automatic. The complex projective conics have four distinct ﬁnite
+intersections with
+                                       α(α − λ)              β(β − λ)
+                                 x2 =           ,    y2 = −           .
+                                        α−β                   α−β
+Their coordinates are nonzero, and the determinant of their aﬃne gradients equals
+                                             4xyλ(α − β)
+                                                            ̸= 0.
+                                           αβ(α − λ)(β − λ)
+There is no common point at inﬁnity, since the two leading diagonal quadratic forms have diﬀerent
+coeﬃcient ratios. Hence all four intersections are transverse. No in-domain limiting extension of the
+cited theorem is required.
+    It follows that AT is constant. Equations (8) and (15) give p = KT , and Lemma 4 gives q = RA.
+Since K, R depend only on the ﬁxed ellipse and caustic, Theorem 1 follows.                         □
+
+
+6    Checks, period scope and provenance
+For the standard primitive four-periodic family, λ = D/s, R = 2, K = D/s2 and AT = 8D, so
+                                                          16D2
+                                                 pq =          .
+                                                           s2
+For a = 5, b = 3, both the axial diamond and the rectangular member give pq = 202500/289, although
+their two factors diﬀer. The supplement includes exact rational/quadratic-ﬁeld geometry checks, in-
+cluding crossed antipedals, and coeﬃcientwise polynomial checks of the displayed identities. Rounded
+higher-period experiments are corroboration only; no ﬁnite set of phases supplies the general proof.
+
+                                                          5
+Remark 5. Least period is a substantive hypothesis. In the same ellipse a = 5, b = 3 with λ = 225/64,
+exact primitive six-periodic trajectories starting at boundary half-angle parameters 0 and 1/3 have focal
+products
+                                          823875          1390594355
+                                                    and                ,
+                                           1024             1721344
+respectively. The supplementary exact checker veriﬁes closure, reﬂection, caustic tangency and both focal
+areas. Traversing each twice creates a 12-entry list and multiplies its product by four, without changing
+its least period of six. This refutes a padded-list extension, not the genuine-period assertion proved above.
+Conversely, repeating an orbit whose least period is divisible by four preserves constancy and scales the
+product by the square of the repetition count.
+
+    The ellipse-billiard construction, Jacobi parametrization and even outer-area-product theorem are
+prior work and are credited explicitly. The contribution here is the focal pedal bridge and antipedal
+factor, with their application to the stated invariant and precise period scope. A bounded primary-
+literature search did not identify this exact conclusion, but does not establish originality or absolute
+priority.
+    This manuscript is an unrefereed preprint. AI assistance was used in derivation, internal checking,
+coding and manuscript preparation. There has been no independent human peer review or formal
+proof-assistant veriﬁcation. The written argument and cited theorem hypothesis map, not numerical
+experiments, establish the result.
+
+
+References
+[1] D. Reznik, R. Garcia and J. Koiller, Fifty new invariants of N -periodics in the elliptic billiard,
+    Arnold Math. J. 7 (2021),341–355. doi:10.1007/s40598-021-00174-y.
+
+[2] D. Reznik, R. Garcia and J. Koiller, Eighty new invariants of N -periodics in the elliptic billiard,
+    arXiv:2004.12497v11 (2020).
+
+[3] A. C. Chávez-Caliz, More about areas and centers of Poncelet polygons, Arnold Math. J. 7
+    (2021),91–106. doi:10.1007/s40598-020-00154-8.
+
+[4] H. Stachel, On the motion of billiards in ellipses, Eur. J. Math. 8 (2022),1602–1622.
+    doi:10.1007/s40879-021-00524-2. Parametrization cited from Theorem 2, pp. 11–12, of
+    arXiv:2105.03624v2 (2021).
+
+
+
+
+                                                     6
+

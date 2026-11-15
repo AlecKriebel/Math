@@ -1,0 +1,480 @@
+                                      Outer-Pedal Area Products
+                                         in Elliptic Billiards
+                                                   Alper Ferudun∗
+
+                                           1 October 2026 (version 1.1)
+
+
+
+                                                       Abstract
+              For a ﬁxed confocal elliptic-caustic billiard family with least period congruent to two modulo
+          four, we prove that the signed area of the outer tangent polygon times the signed area of its pedal
+          polygon with respect to any ﬁxed point is constant. Coprime star trajectories are included. The
+          tangent-intersection polygon is an explicit aﬃne image of a half-step shift of the billiard orbit.
+          After complexiﬁcation, its area and the outer-pedal area have disjoint possible simple-pole sets.
+          Central pairing separates the pedal map into two area traces; two reversal symmetries provide the
+          complementary zeros that make their product entire and elliptic. This proves invariant k303,a under
+          an explicit least-period convention. For the center pedal, the same argument also covers every odd
+          period, proving k303,b for all traversal lengths not divisible by four, including repeated traversals.
+          We evaluate the six-periodic constant and give exact counterexamples to the unrestricted arbitrary-
+          point repeated-list interpretation and to adding period four in the centered case. No absolute
+          priority claim is made.
+
+
+1        Statement and prior context
+Let a > b > 0 and 0 < λ < b2 . Fix the confocal ellipses
+
+                                       x2 y 2                     x2     y2
+                                 E:       + 2 = 1,         C:         +       = 1.                                 (1)
+                                       a2  b                    a2 − λ b2 − λ
+Let P = (Pi )i∈Z/N Z be a billiard orbit on E whose sides are tangent to C. Unless explicitly stated
+otherwise, N ≥ 3 denotes its least positive period. Every admitted coprime winding number is allowed,
+including self-intersecting star trajectories. For a cyclic vector sequence X write
+                                                       1∑
+                                            A(X) =         det(Xi , Xi+1 ).
+                                                       2 i
+
+All areas in this paper are signed shoelace areas, not sums of the absolute areas of bounded faces.
+    Let Vi be the intersection of the tangents to E at Pi and Pi+1 . For a ﬁxed point M ∈ R2 , let
+Qi (M ) be its perpendicular foot on the tangent to E at Pi . These are the sidelines of the outer tangent
+polygon V , not the original billiard chords. Put
+
+                                         A0 = A(V ),        BM = A(Q(M )).
+
+Theorem 1. If N ≡ 2 (mod 4), then for every ﬁxed M ∈ R2 the product A0 BM is constant as the
+initial vertex varies through the ﬁxed-caustic family (1).
+    ∗
+        Mercury Software GmbH. Email: alper@mercurycodelab.com. GitHub: AlperTheKing.
+
+
+                                                            1
+     This is the outer-pedal area-product assertion k303,a of Reznik, Garcia and Koiller [1, 2, Table 4
+and §3.4], under the stated least-period convention. Their table does not explicitly deﬁne minimal
+period; we make the qualiﬁcation explicit rather than attribute it verbatim to the source. Section 8
+shows that repeating a three-periodic trajectory to obtain six entries does not satisfy the unrestricted
+list-length version of the assertion. Hyperbolic and degenerate caustics are excluded.
+
+Theorem 2. For M = O, the product A0 BO is constant whenever the closed traversal has length L
+not divisible by four. Here L need not be the least period: repeated traversals and all admitted star
+windings are included.
+
+    Theorem 2 proves the adjacent centered assertion k303,b in the same source table, without an
+additional least-period qualiﬁcation. Its proof is given in Section 6. The period-four obstruction
+there explains why the period restriction cannot simply be omitted. This extension is integrated into
+the present paper because it uses the same outer polygon and complementary-pole argument, not a
+separate discovery of the overlapping even-period case.
+    Chávez-Caliz [6, Theorem 6] proves a related product involving the original and outer tangent-
+polygon areas for even Poncelet periods. That theorem supplies a closely related complex pole-
+cancellation strategy, but its second polygon is not the outer-pedal polygon. Bialy and Tabachnikov
+[7, Theorem 4.1] study precisely the feet on boundary tangents for arbitrary ﬁxed points, proving
+centroid and squared-distance invariants; those conclusions are diﬀerent from the cyclic signed-area
+product here. We use the canonical billiard parametrization of Stachel [3, Theorem 2, pp. 11–12 of the
+preprint], and prove the additional tangent-intersection identity and pedal-area cancellations needed
+for Theorem 1.
+
+
+2     The canonical parameter and the outer polygon
+Set
+                                                      d                                             √
+      α = a2 ,   β = b2 ,     d = α − β,      k2 =       ,    K = K(k),   K 0 = K(k 0 ),     k0 =       1 − k2 .
+                                                     α−λ
+We suppress k in the Jacobi elliptic functions. Stachel’s parametrization is
+                                                                               4τ K
+        P (u) = (−a sn u, b cn u),          Pi (u) = P (u + ih),   h = 2∆ =         ,      gcd(τ, N ) = 1.         (2)
+                                                                                N
+Choose the orientation so that 0 < τ < N/2. Then 0 < ∆ < K, and the caustic condition gives
+
+                                      λ                 β−λ                  α(β − λ)
+                            sn2 ∆ =     ,     cn2 ∆ =       ,      dn2 ∆ =            .                            (3)
+                                      β                  β                   β(α − λ)
+
+The physical point period is 4K, not 2K. We work on the common elliptic period lattice 4KZ + 4iK 0 Z.
+After complexiﬁcation all dot products are bilinear, not Hermitian. The standard identity dn(u+2K) =
+dn u is used throughout [4]; the opposite sign printed in a preliminary paragraph of Stachel’s preprint
+is not used.
+    The tangent to E at P (v) is n(v) · X = 1, where
+                                                      (            )
+                                                          sn v cn v
+                                              n(v) = −        ,     .                                              (4)
+                                                           a    b
+Write s0 = sn ∆, c0 = cn ∆, e0 = dn ∆.
+
+
+
+                                                          2
+Lemma 3. The intersection of the tangents at P (t − ∆) and P (t + ∆) is
+                                               (                        )
+                                                 ae0       b
+                                       V (t) = −     sn t, cn t .                                       (5)
+                                                  c0      c0
+
+Consequently, for A(u) = A((P (u + ih))i ),
+                                                        e0
+                                           A0 (u) =         A(u + ∆).                                   (6)
+                                                        c20
+
+Proof. Put s = sn t, c = cn t, e = dn t and Dt = 1 − k 2 s2 s20 . The addition formulas [5] give
+                                     sc0 e0 ± s0 ce                         cc0 ∓ ss0 ee0
+                       sn(t ± ∆) =                  ,        cn(t ± ∆) =                  .
+                                           Dt                                    Dt
+Substitution of (5) in either tangent equation gives
+
+                                                             s2 e20 + c2
+                                     n(t ± ∆) · V (t) =                  = 1.
+                                                                  Dt
+For a real nondegenerate billiard chord the two tangents are distinct; the displayed point is their actual
+intersection. The formula supplies its meromorphic continuation through any removable complex
+exceptions. Since Vi = V (u + ∆ + ih), the determinant of the ﬁxed diagonal linear map in (5) is e0 /c20 ,
+which proves (6). In particular the half-step shift cannot be omitted.
+
+
+3    The pedal map and central pairing
+In this and the next two sections we prove Theorem 1 and assume N ≡ 2 (mod 4).
+    Direct perpendicular projection onto the tangent in (4) gives
+
+                                              (1 − M · n(u))n(u)
+                            QM (u) = M +                         ,
+                                                  n(u) · n(u)
+                                                                                                        (7)
+                                                                                W (u)
+                              W (u) = α − d sn2 u,            n(u) · n(u) =           .
+                                                                                 αβ
+Introduce the meromorphic vector functions
+
+                                       n(u)                          (M · n(u))n(u)
+                          U (u) =               ,        RM (u) =                   .
+                                    n(u) · n(u)                        n(u) · n(u)
+
+Thus QM − M = U − RM . Translation does not change cyclic signed area: its extra determinant terms
+telescope. As N is even and τ is odd, (2) gives
+
+         P (u + (N/2)h) = −P (u),      U (u + (N/2)h) = −U (u),             RM (u + (N/2)h) = RM (u).
+
+Therefore the mixed determinants in A(U − RM ) cancel in opposite pairs, and
+
+                            BM (u) = A((U (u + ih))i ) + A((RM (u + ih))i ).                            (8)
+
+The two negative signs in the quadratic RM term cancel. Identity (8) does not assume that the pedal
+polygon itself is centrally symmetric for M 6= 0.
+
+
+
+
+                                                         3
+4    All possible complex poles
+The common Jacobi pole positions are
+
+                               zp = 2mK + (2n + 1)iK 0 ,          m, n ∈ Z.
+
+They are simple. At the representative zp = iK 0 , the standard shift formulas are
+
+                                             1                               i dn w
+                         sn(iK 0 + w) =          ,        cn(iK 0 + w) = −          .               (9)
+                                          k sn w                             k sn w
+Both are odd in w. Real and imaginary half-period translations only change coordinate signs, so P
+and n are odd about every zp . Put Z = zp + K. At the base representative Z = K + iK 0 ,
+
+                                           dn w                             ik 0
+                           sn(Z + w) =           ,        cn(Z + w) = −          .                 (10)
+                                          k cn w                          k cn w
+Hence P and n are even about every translated Z. These are meromorphic identities, not just identities
+on the real parameter line; see [4, 5].
+     At a Jacobi pole the leading coeﬃcients of sn and cn are nonzero and have ratio cn / sn = ±i. Thus
+n · n has a nonzero double-pole coeﬃcient proportional to 1/α − 1/β. It follows that U is holomorphic
+there with a zero and RM is holomorphic there. Consequently QM has no pole at a Jacobi pole.
+
+Lemma 4. The possible poles of A0 and BM are, respectively,
+
+                             zp − ∆ − jh     and     Z − ∆ − jh,       j ∈ Z.                      (11)
+
+For N ≡ 2 (mod 4) these sets are disjoint, and every possible pole of either area function is at most
+simple.
+
+Proof. The only remaining possible poles of QM are zeros of W . They are exactly
+
+                                Z − ∆, Z + ∆         (mod 2KZ + 2iK 0 Z).                          (12)
+
+Indeed the quarter-period formula and (3) give
+
+                                                      cn2 ∆   α−λ
+                                     sn2 (K ± ∆) =      2   =     ;
+                                                      dn ∆     α
+the imaginary shift then gives sn2 (Z ± ∆) = α/d. The two roots are distinct since 0 < ∆ < K, and
+exhaustive because sn2 has order two on the indicated smaller lattice. At either root,
+                                    α               β                         λ
+                          sn2 u =     ,    cn2 u = − ,          dn2 u = −        .
+                                    d               d                        α−λ
+All are nonzero. Thus W 0 = −2d sn u cn u dn u 6= 0, and the foot map has at most simple poles at
+these roots.
+    Formula (6) gives the ﬁrst pole set in (11). A determinant in A cannot have both adjacent vertices
+at Jacobi poles unless h ∈ 2KZ. That would require N | 2τ , impossible for a genuine period N ≥ 6.
+Hence A0 has at most simple poles. Several nonadjacent vertices can have coincident simple poles, but
+adding their contributions cannot increase the order.
+    Taking the cyclic trace of (12) gives the second set in (11); the two signs diﬀer by h = 2∆. A
+collision of the two area pole sets would require
+
+                          K ∈ hZ + 2KZ,       equivalently 4τ j = N (2ℓ + 1)
+
+                                                      4
+for some integers j, ℓ. The left side is divisible by four, whereas the right side is two modulo four.
+Thus the sets are disjoint on the full complex lattice.
+    It remains to bound the order of BM . At the adjacent pair Z − ∆, Z + ∆, evenness in (10)
+gives n(Z − ∆) = n(Z + ∆). The residues of the two feet are parallel to this common normal, so
+the double-pole coeﬃcient of their determinant is zero. Translated pairs satisfy the same statement,
+possibly with opposite normal signs. The only additional adjacent coincidence could require 4∆ ≡ 0
+(mod 2K). In 0 < ∆ < K this means ∆ = K/2, so τ /N = 1/4, incompatible with the primitive period
+under consideration. These are all possible adjacent coincidences. Each determinant in the pedal area
+therefore has at most a simple pole, as does their sum.
+
+
+5    Complementary zeros and the proof of the theorem
+Both area traces are h-periodic by cyclic reindexing. First consider a possible outer-area pole u =
+zp − ∆. Every foot is holomorphic there by Lemma 4. Its normal is
+                                                (              )
+                                         nj = n zp + (j − 12 )h .
+
+Oddness about zp and the period N h = 4τ K give
+
+                        n1−j = −nj ,      U1−j = −Uj ,       (RM )1−j = (RM )j .
+
+The permutation j 7→ 1 − j reverses cyclic order. Reversal changes the sign of signed area, while
+multiplying every vector by −1 does not. Thus
+
+                          A(U ) = −A(U ) = 0,        A(RM ) = −A(RM ) = 0.
+
+By (8), BM (zp − ∆) = 0. This holomorphic zero removes the possible simple pole of A0 in the product.
+   Next consider a possible pedal-area pole u = Z − ∆. Equation (6) gives
+                                                        e0
+                                         A0 (Z − ∆) =       A(Z).
+                                                        c20
+
+All the vertices P (Z + jh) are ﬁnite: a Jacobi pole among them would require the excluded relation
+K ∈ hZ + 2KZ. By evenness about Z,
+
+                                        P (Z − jh) = P (Z + jh).
+
+The permutation j 7→ −j reverses this polygon without changing its vertices. Therefore A(Z) =
+−A(Z) = 0. This is a holomorphic zero of A0 , cancelling the possible simple pole of BM in the
+product.
+    These arguments apply at every translated pole. Half-period translations only multiply vector
+coordinates by signs and preserve the respective oddness, evenness, parallel-residue, and reversal
+identities. We have therefore exhausted and removed every possible pole of A0 BM . The product is an
+entire function with periods 4K and 4iK 0 . It is bounded on a fundamental parallelogram, so Liouville’s
+theorem makes it constant. Restricting to real phases proves Theorem 1.                                  □
+    All real tangent intersections are ﬁnite because c0 > 0; all real feet are ﬁnite because n · n > 0. No
+division by a polygon area has been used, so a zero signed pedal area is not an exception. Orientation
+reversal changes both area signs and leaves the product unchanged.
+
+
+
+
+                                                    5
+6    The center pedal and all periods not divisible by four
+We now prove Theorem 2. First suppose N is the least period and 4 ∤ N . For M = O we have RM = 0,
+so
+                                   BO (u) = A((U (u + jh))j )
+directly, without using central pairing. This is the crucial change that allows odd periods. The
+parametrization, tangent-intersection formula and pole descriptions above do not otherwise need N
+even.
+    The possible pole sets are still those of (11). At Jacobi poles U is regular with value zero. The
+roots of W are still simple and exactly those of (12). Adjacent original vertices could both be at
+Jacobi poles only if N | 2τ , impossible for primitive N ≥ 3; hence A0 has at most simple poles. For
+BO , evenness of the normal at Z ± ∆ makes the two residues parallel. The possible extra adjacent
+coincidence ∆ = K/2 would force primitive N = 4, which is excluded. Thus its poles are also at most
+simple.
+    Disjointness of the two pole sets again reduces to
+
+                                                4τ j = N (2ℓ + 1).
+
+For odd N the right side is odd; for N ≡ 2 (mod 4) it is two modulo four. Both contradict the left
+side. Thus every step in the pole-order and ﬁniteness argument is valid in both claimed period classes,
+including all coprime winding numbers.
+     At u = zp − ∆, oddness of U about zp and N h = 4τ K give U1−j = −Uj . Reversal and global
+negation therefore imply BO = −BO = 0. For odd N , the self-paired index has argument zp + N h/2 =
+zp + 2τ K, a removable Jacobi-pole value of U equal to zero. No exceptional undeﬁned vertex is being
+ignored. At u = Z −∆, all P (Z +jh) are ﬁnite, and their evenness under j 7→ −j again gives A(Z) = 0
+and then A0 (u) = 0. All possible simple poles of A0 BO are removed. The same entire elliptic-function
+argument proves constancy for primitive 4 ∤ N .
+     Finally let L be any closed traversal length not divisible by four, and let N be its least period.
+Since N | L, necessarily 4 ∤ N . For r = L/N , the ordered original, outer and foot polygons are each
+repeated r times. Their signed determinant areas are multiplied by r, so the product is multiplied by
+r2 . The primitive result proves constancy for this repeated traversal as well. This completes the proof
+of Theorem 2.                                                                                         □
+
+Proposition 5. The centered product is not constant on every four-periodic family. For any a > b > 0
+and λ = a2 b2 /(a2 + b2 ), two members of the same family have products 8a2 b2 and 2(a2 + b2 )2 , diﬀering
+by 2(a2 − b2 )2 > 0.
+
+Proof. The axis diamond (a, 0), (0, b), (−a, 0), (0, −b) is a billiard trajectory; its slanted sidelines satisfy
+(a2 −λ)/a2 +(b2 −λ)/b2 = 1, the confocal tangency equation. The outer tangent polygon is the rectangle
+with vertices (±a, ±b), of area 4ab. Its center feet are the original diamond vertices, of area 2ab.
+    Put s = a2 + b2 . The second trajectory is the axis-parallel rectangle with cyclic vertices
+
+                              (a2 , b2 )   (−a2 , b2 )     (−a2 , −b2 )
+                                                                 (a2 , −b2 )
+                                √ ,          √         ,      √     √   ,    .
+                                   s           s                 s     s
+                                                                     √
+Its vertices lie on E, and its normals have coordinate magnitudes 1/ s, so the horizontal and vertical
+sides obey the reﬂection law. The identities a2 − λ = a4 /s and b2 − λ = b4 /s show that its sides
+                                                                                       √
+are tangent to the same caustic. Its boundary tangent lines have equations ±x ± y = s, giving an
+                                                              √         √
+outer diamond of area 2s. Their center feet are the corners (± s/2, ± s/2), of area s. The two area
+products and their stated diﬀerence follow.
+
+
+                                                           6
+    For a = 5, b = 3, these products are 1800 and 2312, with the same λ = 225/34. This refutes
+an all-period extension, not Theorem 2. Exact checks also give product 243/64 in ﬁve three-periodic
+instances with a2 = 1, b2 = 3/8, λ = 9/25, and verify the r2 scaling on repeated lengths 6, 9, 15. These
+checks supplement the analytic proof; they do not establish general constancy by sampling. No exact
+ﬁve-periodic control is claimed.
+
+
+7    Dependence on the pedal point and the six-periodic constant
+There is a useful algebraic description of the arbitrary-point dependence. For any cyclic collection of
+lines ni · X = 1 with nonzero real normals, put si = ni · ni and Di = det(ni , ni+1 ). Translating the
+foot polygon by −M gives the exact identity
+
+                                            1 ∑ Di (1 − ni · M )(1 − ni+1 · M )
+                                BM =                                            .                             (13)
+                                            2 i              si si+1
+
+For n = (x, y), q = (z, w), D = xw − yz, s = x2 + y 2 , t = z 2 + w2 ,
+
+                        D(xz − yw) = szw − txy,                 D(xw + yz) = sw2 − ty 2 .
+
+After division by st, both expressions telescope when summed cyclically. Thus the homogeneous
+quadratic part of (13) is radial. For even primitive N , central pairing eliminates the linear part,
+yielding
+                                           1 ∑ Di (ni · ni+1 )   1∑ (                 )
+              BM = B0 + C|M |2 ,     C=                        =     sin 2(ϕi+1 − ϕi ) ,        (14)
+                                           4 i     si si+1       8 i
+
+where ϕi is a real normal angle. It follows that the invariant in Theorem 1 has the form C0 + C2 |M |2
+for the ﬁxed conic pair.
+
+Proposition 6. For the six-periodic family with λ = a2 b2 /(a + b)2 ,
+                                                                  (                  )
+                                 0                              |M |2
+                                A BM = ab(a + 2b)(2a + b) 1 +                            .                    (15)
+                                                              (a + b)2
+                                                                               √
+Proof. By Theorem 1, it suﬃces to evaluate one member. Put r =                     b(2a + b) and s = a + b. Take
+
+                 P1 = (a, 0),    P2 = (a2 /s, br/s),        P3 = (−a2 /s, br/s),             Pi+3 = −Pi .
+
+Since a2 + r2 = s2 , all six distinct vertices lie on E. At P1 the horizontal normal reﬂects direction
+(a, r) to (−a, r). At P2 the normal (1/s, r/(bs)) has squared length 2/(bs) and dot product 1 with
+(−a, r), so reﬂection sends that direction to (−s, 0). Symmetry veriﬁes the other reﬂections. The
+horizontal edge is tangent to the caustic because b2 − λ = b2 r2 /s2 ; the slant-edge tangency identity
+is λ(r2 + a2 ) = a2 b2 . Its contact parameter from P1 to P2 is b/s ∈ (0, 1), so the contacts lie on the
+segments. Thus this is a genuine six-periodic member.
+     Its outer vertices and center feet are, respectively,
+
+                          V1 = (a, b2 /r), V2 = (0, bs/r),  V3 = (−a, b2 /r),
+                          Q1 = (a, 0),     Q2 = (b/2, r/2), Q3 = (−b/2, r/2),
+
+with Vi+3 = −Vi and Qi+3 = −Qi . Shoelace evaluation gives
+
+                                            2ab(a + 2b)                r(2a + b)
+                                     A0 =               ,       B0 =             .
+                                                 r                         2
+
+                                                            7
+Writing ϕ = arg(b+ir), the normal-angle increments are ϕ, π−2ϕ, ϕ, repeated twice. Since sin 2ϕ = r/s
+and sin2 ϕ = (2a + b)/(2s),
+
+                                    4 sin 2ϕ − 2 sin 4ϕ   r(2a + b)  B0
+                              C=                        =           = 2.
+                                             8               2s2      s
+Substitution in (14) proves (15).
+
+    For example, a = 5, b = 3 gives λ = 225/64 and A0 BM = 2145(1 + |M |2 /64). The supplementary
+standard-library checker independently reconstructs six-periodic orbits for four semiaxis pairs and four
+initial phases, veriﬁes their reﬂection laws and strict caustic contacts, and checks all coeﬃcients of the
+quadratic area polynomial. The circle case among those controls is not needed for the theorem’s a > b
+domain. These sixteen orbit instances are ﬁnite checks, not the proof of all-family invariance.
+
+
+8    Least period, reproducibility and limitations
+The least-period qualiﬁcation in Theorem 1, for arbitrary M , cannot be dropped in favor of arbitrary
+list length. The centered Theorem 2 has the separate repetition argument already proved above. Fix
+                                                 3          9
+                               a2 = 1,       b2 = ,   λ=       ,   M = (1, 0).
+                                                 8          25
+The triangle                        (          ( √ ) (     √ ))
+                                              4 3 6    4 3 6
+                              P =    (1, 0), − ,    , − ,−
+                                              5 20     5   20
+and its central reﬂection −P are genuine three-periodic billiards with this same caustic. At P , the in-
+coming and outgoing directions √  at (1, 0) reﬂect in the horizontal normal. At the upper-left vertex
+                                                                                                    √their
+representative directions (−12, 6) and (0, −1) satisfy the reﬂection law with normal (−4/5, 2 6/5);
+the remaining vertex follows by symmetry. The vertical side is tangent because a2 − λ = 16/25, and
+the two slant sides satisfy the confocal tangency equation. These identities and strict segment contacts
+are also checked exactly in the supplement.
+    For P the outer area and pedal area at M are
+                                                √                 √
+                                         0   27 6               81 6
+                                      A =          ,     BM =         ,
+                                               16                200
+while for −P they are                      √              √
+                                        27 6
+                                         0              21 6
+                                   A =        ,  BM =        .
+                                          16             200
+The respective products are 6561/1600 and 1701/1600. Repeating each list twice produces six entries
+and doubles both signed areas, giving products
+                                             6561              1701
+                                                      and           .
+                                             400               400
+Their diﬀerence is 243/20 > 0. This refutes the padded-list extension, not Theorem 1: these orbits
+still have least period three and do not have the even-orbit central pairing used in (8).
+     The supplement uses exact rational polynomial arithmetic and real quadratic ﬁelds. It veriﬁes the
+two universal telescoping identities behind (14), elementary axis identities, the six-periodic controls,
+and the padded triangle countercontrol. The general theorem rests on the written analytic argument,
+not on those ﬁnite checks or on numerical exploration.
+
+
+                                                       8
+    The source conjecture, confocal geometry, Jacobi parametrization and complex pole-cancellation
+method are credited prior mathematics. A bounded primary-literature search did not locate an earlier
+proof of this precise arbitrary-point outer-pedal product. This is not evidence of absolute priority, and
+the source’s historical question mark is not itself a statement about the current literature. The closest
+cited area-product and arbitrary-point projection results concern diﬀerent quantities, as described in
+Section 1.
+    This is an unrefereed preprint. AI assistance was used in derivation, internal checking, coding and
+manuscript preparation. No independent human peer review or formal proof-assistant veriﬁcation is
+claimed.
+
+
+References
+[1] D. Reznik, R. Garcia and J. Koiller, Fifty new invariants of N -periodics in the elliptic billiard,
+    Arnold Math. J. 7 (2021), 341–355. doi:10.1007/s40598-021-00174-y.
+
+[2] D. Reznik, R. Garcia and J. Koiller, Eighty new invariants of N -periodics in the elliptic billiard,
+    arXiv:2004.12497v11 (2020).
+
+[3] H. Stachel, On the motion of billiards in ellipses, Eur. J. Math. 8 (2022), 1602–1622.
+    doi:10.1007/s40879-021-00524-2. Parametrization from Theorem 2, pp. 11–12, of
+    arXiv:2105.03624v2 (2021).
+
+[4] NIST Digital Library of Mathematical Functions, §22.4, Periods, Poles, and Zeros, Tables 22.4.1
+    and 22.4.3; checked 1 October 2026.
+
+[5] NIST Digital Library of Mathematical Functions, §22.8, Addition Theorems, equations
+    22.8.1–22.8.3; checked 1 October 2026.
+
+[6] A. C. Chávez-Caliz, More about areas and centers of Poncelet polygons, Arnold Math. J. 7
+    (2021), 91–106. doi:10.1007/s40598-020-00154-8.
+
+[7] M. Bialy and S. Tabachnikov, Dan Reznik’s identities and more, Eur. J. Math. 8 (2022),
+    1341–1354. doi:10.1007/s40879-020-00428-7. arXiv:2001.08469v2 (2020).
+
+
+
+
+                                                    9
+

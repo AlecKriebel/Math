@@ -1,0 +1,16 @@
+# Adversarial approach families
+
+| Family | Failure sought | Checkable evidence and outcome | Remaining limit |
+|---|---|---|---|
+| Coordinate coverage | Wrong elliptic modulus, convex-only import or τ=1 substitution | Actual Stachel Theorem4.3/4.9 text and pixels1614–1615; independent direct reflection/tangency stress. Closed. | Standard imported canonical theorem is not re-proved globally here. |
+| Euclidean foot definition | Midpoint error, side-segment clamp or wrong outer order | Projection derivation; exact triangle; direct chord/tangent construction; omitted midpoint negative control. Closed. | Supporting-line convention retained. |
+| Star positivity | Self-intersection cancels signed area or closing edge changes sign | Normal-angle lift proof and focus-relative positive determinants; stars through31/15. Closed. | Unsigned lobe area is a different quantity. |
+| Original pole | Double pole survives or neighbor Jacobi pole is missed | Even q Laurent germ and odd neighbor difference; removable quotient poles; both complex sheets. Closed. | Standard Jacobi identities checked at DLMF. |
+| Outer pole | Two singular vertices generate a double pole, especially N3 | Explicit opposite collinear residues; determinant coefficient zero; N3 cyclic edge checked. Closed. | N2 is outside the theorem. |
+| Lattice/primitivity | Additional singular indices or wrongly identified poles | Coprime subgroup argument; native89 finite incidence controls; nonprimitive classification negative control. Closed. | Finite incidence checks supplement the integer proof. |
+| Residue noncircularity | Residue vanishes or matching assumes desired proportionality | Positivity plus anti-periodicity forces both genuine poles; compact-torus subtraction proves identity. Closed. | Circle handled separately. |
+| Focus and phase | Common multiplier confused with phase-constant focal ratio | Central inversion derivation; exact reciprocal triangle; even symmetry checks. Closed. | No phase-constancy extension made. |
+| Endpoint domain | Collapse, diameter, or near-tangent infinity silently enters | Strict k,v bounds, separate circle calculation; extreme admitted diagnostics. Closed. | Excluded endpoints have no claimed uniform bound. |
+| Exact certificate/old triangle | Invalid caustic, reflection, excentral geometry or missing center synchronization | Exact independent A/B certificate; all native exact reductions and54 constructed phases; analytic factor argument. Closed for claimed certificate and conditional deduction. | Old generic locus/power theorems remain explicitly conditional imports, not prerequisites of the main proof. |
+| Proof/code/results | Native programs alter sources, use unsupported finalizers or outputs fail to reproduce | Isolated normal runs of six read programs; six exact stdout matches and empty stderr; original40 bindings rechecked. Closed. | Native assertions require ordinary Python; numerical evidence is NONINTERVAL. |
+| Scope/priority | Old observation presented as new, unavailable finals hidden or AI called human review | Actual manuscript/supplement disclose old even/triangle/method cases and six missing finals; main interfaces checked. No inflated promotion adopted. | No exhaustive historical firstness or worldwide-openness certification; no fresh Table7/Fierobe-lemma body read claimed. |

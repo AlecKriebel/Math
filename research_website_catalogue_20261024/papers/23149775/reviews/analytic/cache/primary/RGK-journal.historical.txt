@@ -1,0 +1,740 @@
+Arnold Mathematical Journal (2021) 7:341–355
+https://doi.org/10.1007/s40598-021-00174-y
+
+PROBLEM CONTRIBUTION
+
+
+
+Fifty New Invariants of N-Periodics in the Elliptic Billiard
+
+Dan Reznik1 · Ronaldo Garcia2 · Jair Koiller3
+
+Received: 8 May 2020 / Revised: 21 October 2020 / Accepted: 4 January 2021 /
+Published online: 18 February 2021
+© Institute for Mathematical Sciences (IMS), Stony Brook University, NY 2021
+
+
+
+Abstract
+ We introduce 50+ new invariants manifested by the dynamic geometry of N -periodics
+in the Elliptic Billiard, detected with an experimental/interactive toolbox. These
+involve sums, products and ratios of distances, areas, angles, etc. Though curious in
+their manifestation, said invariants do all depend upon the two fundamental conserved
+quantities in the Elliptic Billiard: perimeter and Joachimsthal’s constant. Several proofs
+have already been contributed (references are provided); these have mainly relied on
+algebraic geometry. We very much welcome new proofs and contributions.
+
+Keywords Elliptic billiard · Invariant · Optimization · Experimental
+
+Mathematics Subject Classification 51N20 · 51M04 · 65-05
+
+
+1 Introduction
+
+The Elliptic Billiard (EB) is a special case of Poncelet’s Porism [9], where the conic pair
+are two confocal ellipses; it, therefore, admits a 1d family of N -periodic trajectories
+[9,11,26] which at every vertex are bisected by the normals to the outer ellipse in the
+pair (hence the term “billiard”); see Fig. 1.
+
+
+
+
+B Dan Reznik
+    dreznik@gmail.com
+    Ronaldo Garcia
+    ragarcia@ufg.br
+    Jair Koiller
+    jairkoiller@gmail.com
+
+1   Data Science Consulting, Rio de Janeiro, Brazil
+2   Math and Statistics Institute, Federal University of Goiás, Goiânia, Brazil
+3   Federal University of Juiz de Fora, Juiz de Fora, Brazil
+
+
+                                                                                  123
+342                                                                                               D. Reznik et al.
+
+
+
+
+Fig. 1 A (i) 5-periodic (vertices Pi ) is shown inscribed in a confocal ellipse pair (billiard and caustic). Also
+shown is (ii) the outer polygon with vertices Pi tangent to the outer ellipse at the N -periodic vertices, and
+(iii) the inner polygon whose vertices Pi are at the points of contact of the N -periodic with the caustic
+
+
+
+    The EB is an integrable system (in fact it is conjectured as the only integrable planar
+billiard [12]). Integrability implies invariant perimeter L; a second classic invariant
+is Joachimsthal’s constant J , which is simply a statement that all trajectory segments
+are tangent to the confocal caustic [20,26].
+    Continuing our work on properties of N-periodics in the EB [10,18], here we intro-
+duce 50+ newfound invariants detected via experimental exploration. These involve
+distances, areas, angles and centers of mass of N -periodics and associated polygons
+(inner, outer, pedal, antipedal, defined below). Some invariants depend on the parity
+of N , while others on other positional constraints.
+    Note that since the N-periodics in the EB are fully defined by L, J , any “new”
+invariants listed here or elsewhere must be ultimately dependent upon said quantities.
+Nevertheless, proving a specific functional dependence may require creativity. Several
+proofs have already been contributed and are referenced below. We hope to motivate
+more contributions and/or new discoveries.
+    This article is organized as follows: preliminary definitions are given in Sect. 2.
+Invariants are introduced in Sect. 3, in several clusters, involving: (i) lengths, areas,
+and angles of N -periodics and associated polygons; (ii) pedal polygons to N-periodics
+and (iii) their outer polygons; (iv) antipedal polygons (defined below); (v) area-ratios
+related to the Steiner curvature centroid [25]; (vi) pairs of pedal polygons; (vii) area-
+ratios of evolute polygons [6]; (viii) focus-inversive objects.
+    Details about our experimental toolbox are covered in Sect. 4. Section 5 lists videos
+illustrating some of the phenomena. For quick reference, all symbols used appear on
+Table 11 in Appendix 1. The reader is invited to visit our up-to-date and expanded list
+of invariants https://arxiv.org/abs/2004.12497 here.
+
+
+
+123
+Fifty New Invariants of N-Periodics...                                                  343
+
+
+2 Preliminaries
+                                                                            √
+Let the EB have center O, semi-axes a > b > 0, and foci f 1 , f 2 at [± a 2 − b2 , 0].
+Let a  , b denote the major, minor semi-axes of the confocal caustic, whose values are
+given by a method due to Cayley [9], though we obtain them numerically, see Sect. 4.
+    As mentioned above, the perimeter L is invariant for a given N -periodic family, as
+is Joachmisthal’s constant J = Ax, v, where x is a bounce point (called Pi above),
+v is the unit velocity vector (Pi − Pi−1 )/||.||, . stands for dot product, and [26]:
+
+                                                              
+                                         A = diag 1/a 2 , 1/b2
+
+
+   Hellmuth Stachel contributed [23] an elegant expression for Joahmisthal’s constant
+J in terms of the axes of the EB and its caustic:
+                                                 √
+                                                  a 2 − a 2
+                                            J=
+                                                     ab
+
+Note: holding a constant, for each N , a  and therefore J assume a distinct value.
+   Let a polygon have vertices Wi , i = 1, ..., N . In this paper, all polygon areas are
+signed, i.e., obtained from a sum of cross-products [15]:
+
+
+                                              1
+                                                 N
+                                         S=      Wi ×Wi+1                               (1)
+                                              2
+                                                 i=1
+
+
+   Let Wi = (xi , yi ), then Wi ×Wi+1 = (xi yi+1 − xi+1 yi ).
+
+   The curvature κ of the ellipse at point (x, y) at distance d1 , d2 to the foci is given
+by [27, Ellipse]:
+
+
+                              2     −3/2
+                  1           x   y2
+               κ= 2 2            + 4       = ab(d1 d2 )−3/2 = (κa d1 d2 )−3/2           (2)
+                 a b          a4  b
+
+Where κa = (ab)−2/3 is the constant affine curvature of the ellipse [14].
+
+
+3 Invariants
+
+In this section, we present the 56 invariants found so far in several tables. Each invariant
+is given an identifier kn where the first digit of n refers to a cluster of invariants; see
+Table 1.
+
+                                                                                 123
+344                                                                                     D. Reznik et al.
+
+
+Table 1 Numbering scheme for
+                                     Range         Invariant group                                Total
+the 56 invariants currently listed
+in this article                      k101 –k120    Distances, area, angles, curvature           20
+                                     k201 –k205    N-Periodic Pedal polygons                      5
+                                     k301 –k307    Outer pedal polygon                            7
+                                     k401 –k407    Antipedal polygon                              7
+                                     k501 –k503    Steiner curvature centroid                     3
+                                     k601 –k607    Pairs of pedal polygons wrt. foci              7
+                                     k701 –k703    Evolute polygons                               3
+                                     k801 –k804    Inversive objects                              4
+
+
+
+
+   On the invariant tables below, column “invariant” provides an expression for the
+conserved quantity; column “value” provides a closed-form expression for the invari-
+ant (when available) in terms of the fundamental constants, or a ‘?’ when not available
+(note that the invariant may already have been proved but no closed-form expression
+has yet been found); column “which N” specifies whether the invariant only holds for
+certain N (even, odd, etc.); column “date” specifies the month and year (mm/yy) when
+the invariant was first experimentally detected. Column “proven” references available
+proofs if already communicated and/or published, else it displays a ‘?’.
+
+3.1 Basic Invariants
+
+Invariants involving angles and areas of N-periodics and its tangential and internal
+polygons are shown on Table 2. There θi ,A (resp. θi ,A ) are angles, area of an N-
+periodic (resp. outer polygon to the N-periodic). A is the area of the internal polygon
+(where orbit touches caustic), see Fig. 1. All sums/products go from i = 1 to N .
+k101 , k102 , k103 originally studied in [18]. li and ri denote |Pi − Pi | and |Pi+1 − Pi |,
+respectively, and d j,i = |Pi − f j |. κi denotes the curvature of the EB at Pi (2). α j,i
+denotes the angle Pi f j Pi+1 .
+
+3.2 Pedal Polygons
+
+Tables 3 and 4 describe invariants found for the pedal polygons of N-periodics and
+the outer polygon, see Fig. 2.
+
+3.3 Pedals with Respect to N-Periodic
+
+Let Q i be the feet of perpendiculars dropped from a point M onto the sides of the
+N -periodic. Let Am denote the area of the polygon formed by the Q i , Fig. 2. Let φi
+denote the angle between two consecutive perpendiculars Q i − M and Q i+1 − M.
+Table 3 lists invariants so far observed for these quantities.
+
+123
+Fifty New Invariants of N-Periodics...                                                                    345
+
+
+Table 2 Distance, area, and angle invariants displayed by the N-periodic, its outer and/or inner polygon
+
+Code            Invariant                Value               Which N               Date           Proven
+                
+k101               cos θi                JL − N              All                   4/19           [5,7]
+                
+k102               cos θi               ?                   All                   5/19           [5,7]
+k103            A /A                    ?                   odd                   8/19           [5,8]
+                
+k104               cos(2θi )            ?                   All                   1/20           [2]
+                
+k105               sin(θi /2)            ?                   Odd                   1/20           [2]
+k106            A A                     ?                   Even                  1/20           [8]
+k107            k103 k105                ?                   ≡ 0 (mod 4)           1/20           ?
+k108            k103 /k105               ?                   ≡ 2 (mod 4)           1/20           ?
+k109            A/A                    k103                Odd                   1/20           ?
+k110            A A                    ?                   Even                  1/20           ?
+k111            A A /A2               1                   Odd                   1/20           [3]
+k112            A A                   [ab/(a  b )]2   All                   1/20           [24]
+                
+k113               d1,i                  ?                   Even                  1/20           symmetry
+                
+k114              d1,i                   ?                   ≡ 2 (mod 4)           4/20           ?
+                 
+k115              |P − f 1 |             ?                   ≡ 0 (mod 4)           4/20           ?
+k               i
+   116            li / ri                1                   All                   5/20           [24]
+k                     
+   117            li ,    ri             ?                   Even                  5/20           ?
+k                     
+   118             li ,    ri            L/2                 Odd                   8/20           ?
+†k               2/3
+     119           κi                    L/[2J (ab)4/3 ]     All                   10/20          [22]
+‡k              
+     120           cos α1,i              ?                   All                   10/20          ?
+ k , i = 116, 117, 118 were discovered by Hellmuth Stachel
+   i
+†k
+   119 was co-discovered with Pedro Roitman [19] and is equivalent to k802,b
+‡k
+   120 was suggested by A. Akopyan
+
+
+
+
+Fig. 2 Left (resp. right): Pedal polygons for N = 5 from a point m with respect to the N -periodic (resp. its
+outer polygon). Vertex and area centroids C0 , C2 are also shown. See Videos [16, PL#01,02,03]
+
+
+
+
+                                                                                                123
+346                                                                                               D. Reznik et al.
+
+
+Table 3 Invariants of pedal polygon with respect to N-Periodic sides
+
+Code            Invariant             Value                Which N            M            Date          Proven
+†k
+     201        |Q i − O|             a                  All                   f1 , f2   4/20          [4]
+                
+k202,a             |Q i − M|          (b ) N             Even                  f1 , f2   4/20          [7]
+                
+k202,b             |Q i − M|          (a  b ) N /2     ≡ 0 (mod 4)        O            4/20          [7]
+k203,a           A Am                 ?                    ≡ 0 (mod 4)        all          4/20          ?
+k203,b           A Am                 ?                     ≡ 2 (mod 4)      O            4/20          ?
+k204            A/Am                  ?                    ≡ 2 (mod 4)        All          4/20          ?
+                
+k205              cos φi              ?                    All                All          4/20          [1]
+†k
+     201 means the locus of the vertices of a pedal with respect to a focus is a circle
+
+
+
+Table 4 Invariants of pedal polygon with respect to the sides of the outer polygon
+
+Code             Invariant                   Value       Which N             M             Date          Proven
+†k
+     301         |Q i − O|                  a           All                 f1 , f2       4/20          [4]
+                  
+k302                 |Q i − M|2              ?           All                 All           4/20          [7]
+k303,a           A Am                      ?           ≡ 2 (mod 4)         All           4/20          ?
+k303,b           A Am                      ?            ≡ 0 (mod 4)       O             4/20          ?
+k304             A /Am                     ?           ≡ 0 (mod 4)         All           4/20          ?
+                 
+k305                cos φi                  ?           All                 All           4/20          [1]
+k306             C0                         ?           All                 All           4/20          [7]
+k307             C2                         ?           Even                All           4/20          ?
+†k
+     301 means the locus of the outer pedal with respect to a focus is a circle
+
+
+
+
+3.4 Pedals with Respect to the Outer Polygon
+
+Let Q i be the feet of perpendiculars dropped from a point M onto the outer polygon. Let
+φi denote the angle between two consecutive perpendiculars Q i − M and Q i+1     − M.
+       
+Let Am denote the area of the polygon formed by the Q i .   
+                                                                 
+    In the spirit of [21], we also analyze centers of mass: C0 = i Q i /N is the vertex
+centroid, and the area centroid C2 of the polygon defined by the Q i . The area centroid
+W of a polygon W is given by [15]:
+
+
+
+                                           1 
+                                                 N
+                               W =            (Wi ×Wi+1 )(Wi + Wi+1 )
+                                          6S
+                                                 i=1
+
+
+
+where Wi , S, are a polygon’s vertices and its signed area, (1). Table 4 lists invariants
+so far observed for these quantities.
+
+123
+Fifty New Invariants of N-Periodics...                                                                   347
+
+
+
+
+Fig. 3 Left (resp. right): antipedal polygons for N = 5 from a point m with respect to the N -periodic (resp.
+its outer polygon). Vertex and area centroids C0∗ , C2∗ are also shown
+
+
+
+3.5 Antipedal Polygons
+
+The antipedal polygons to the N -periodic and the outer polygon are shown in Fig. 3.
+The antipedal polygon Q i∗ of Pi with respect to M is defined by the intersections of
+rays shot from every Pi along (Pi − M)⊥ .
+   Let Am denote the area of the Q i∗ polygon and C0∗ , C2∗ its vertex- and signed1 area-
+centroids. C0 ∗ , C2 ∗ refer to centers of antipedals of the outer polygon. Table 5 lists
+invariants found so far for these polygons.
+
+3.6 Pedals of Steiner Curvature Centroids
+
+Given a polygon with vertices Ri and angles θi , its Steiner Centroid of Curvature2 is
+invariant if K is given by [25, p. 22]:
+
+                                 N
+                                      wi Ri
+                                  
+                              K = i=1       , with wi = sin(2θi )
+                                      wi
+
+1 Antipedals can be self-intersecting.
+2 J. Steiner (following a similar result by J. Sturm in 1823 for triangles) proved in 1825 that the area of
+pedal polygons of a polygon R with respect to points on any given circumference centered on K [25] is
+invariant.
+
+
+                                                                                                123
+348                                                                                             D. Reznik et al.
+
+
+Table 5 Invariants of antipedal polygons
+
+Code           Invariant          Value          Which N               M                 Date          Proven
+
+k401           A A∗m             ?              ≡ 2 (mod 4)           All               4/20          ?
+k402           A /A∗m            ?              ≡ 0 (mod 4)           All               4/20          ?
+k403,a         Am A∗m             ?              Odd                   O                 4/20          ?
+k403,b         Am A∗m             ?              ≡ 0 (mod 4)           f1 , f2           4/20          ?
+k404           A∗m /Am            ?              ≡ 2 (mod 4)           f1 , f2           4/20          ?
+k405           C0∗                ?              Even                  O, f 1 , f 2      4/20          ?
+k406,a         C0∗  , C2∗       O              Even                  O                 4/20          ?
+k406,b         C0∗  , C2∗       ?              4                     f1 , f2           4/20          ?
+k407           C0∗               ?              Even                  f1 , f2           4/20          ?
+
+
+
+
+Fig. 4 An N-periodic P is shown along with its outer P  and inner P  polygons. Also shown are their Steiner
+centroids of curvature K , K  , K  and the the pedal polygons Pk , Pk , Pk with respect to said centroids
+
+
+
+
+   Referring to Fig. 4, let P, P  , P  denote as before the N-periodic, outer, and inner
+polygons, A, A , A their areas, and K , K  , K  their Steiner centroids of curvature.
+Let Pk , Pk , Pk denote the pedal polygons of P, P  , P  with respect to K , K  , K  ,
+and Ak , Ak , Ak their areas.
+   When N even, the curvature centroids are stationary at the origin, so invariants
+described before involving A, Am (and primed quantities) for M = O apply. For odd
+N , the Curvature Centroids move along individual ellipses concentric with the EB.
+Invariants are observed appear on Table 6.
+   Combining the above with k103 and k106 one obtains as corollaries the fact that
+Ak /Ak , Ak /Ak , and Ak /Ak are invariant for odd N .
+
+123
+Fifty New Invariants of N-Periodics...                                                                 349
+
+
+Table 6 Invariants of pedal
+                                         Code       Invariant   Value     Which N       Date       Proven
+polygons of N -periodic, outer,
+and inner polygons, with respect         k501       A/Ak        ?         Odd           7/20       ?
+to their Steiner Curvature
+Centroids                                k502       A /Ak     ?         Odd           7/20       ?
+                                         k503       A /Ak   ?         Odd           7/20       ?
+
+
+Table 7 Invariants between pairs of pedal polygons defined with respect to the foci
+
+Code              Invariant                     Value           Which N          Date          Proven
+                         
+k601                 q1,i   q2,i                ?               Odd              4/20          ?
+                         
+k602                 q1,i q2,i                  ?               All              4/20          ?
+                   ∗  ∗
+k603                 q1,i / q2,i                1               All              5/20          ?
+k604,a             A1 /A2                       1               Even             4/20          Symmetry
+k604,b             A1 /A2                     1               Even             4/20          Symmetry
+k605               A1 A2                        ?               Odd              4/20          ?
+k606               A1 A2                      ?               Odd              4/20          ?
+k607               A1 /A2 = A1 /A2            ?               All              4/20          ?
+
+
+
+3.7 Pairs of Focal Pedal and Antipedal Polygons
+
+Let Q 1,i and Q 2,i be the vertices of the pedal polygon with respect to f 1 and f 2 .
+Define q1,i = |Q 1,i − f 1 | and q2,i = |Q 2,i − f 2 |. Likewise, let Q ∗1,i and Q ∗2,i be the
+vertices of the antipedal polygon with respect to f 1 and f 2 . Define q1,i∗ = |Q ∗ − f |
+                                                                                     1,i    1
+       ∗        ∗
+and q2,i = |Q 2,i − f 2 |.
+    Let A1 (resp. A2 ) denote the area of the polygon formed by the feet of perpendiculars
+dropped from f 1 (resp. f 2 ) onto the N -periodic, and A1 , A2 the same but with respect
+to the outer polygon. Table 7 list invariants so far detected involving pairs of these
+quantities.
+    Note k604,a , k604,b can be proven via a symmetry argument, namely, area pair are
+equal since opposite vertices of an even N -periodic are reflections about the origin,
+as will be the pedal polygons from either focus.
+    Though not yet checked, we expect area ratio and product invariants similar to those
+listed on Table 7 to hold for pairs of antipedal polygons with respect to the foci, e.g.,
+A∗1 , A∗2 and A1 ∗ , A2 ∗
+
+3.8 Evolute Polygons
+
+After [6], let the evolute3 polygon Rev of a generic polygon R have vertices at the
+intersections of successive pairs of perpendicular bisectors to the sides of R; see
+Fig. 5. So Pev , Pev , P  denote the evolute polygons of P, P  , and P  , respectively,
+                         ev
+                
+and Aev , Aev , Aev their areas. Trivially, at N = 3, the latter vanish since perpendicular
+
+3 The evolute of a smooth curve is the envelope of the normals [27, Evolute]. The perpendicular bisector
+is its discrete version.
+
+
+                                                                                               123
+350                                                                                        D. Reznik et al.
+
+
+
+
+Fig. 5 Left: An N-Periodic and its outer polygon are shown along their evolute polygons whose vertices
+are ordered intersections of perpendicular bisectors. Right: N-periodic, inner polygon, and their evolute
+polygons
+
+
+Table 8 Area-ratio invariants
+                                    Code       Invariant     Value         Which N      Date       Proven
+displayed by the evolute
+polygons of N -periodic, outer,     k701       A/Aev         ?             >4           7/20       ?
+and inner polygons
+                                    k702       A /Aev      ?             >4           7/20       ?
+                                    k703       A /Aev    ?             >4           7/20       ?
+
+
+
+Table 9 Invariants of inversive objects over the N-periodic family. As observed by A. Akopyan
+
+Code           Invariant               Value                     Which N        Date           Proven
+                −1  −1
+k801             d1,i / d2,i           1                         All            10/20          From k802,a
+                −1
+k802,a           d1,i                  ?                         All            10/20          [5,19]
+†k             
+     802,b       1/(d1,i d2,i )         L/[2J (ab)1/2 ]          All            10/20          [22]
+k803           Lj                      ?                         All            10/20          ?
+k             
+     804            cos γ1,i           ?                         All            10/20          ?
+†k
+   802,b is in fact equivalent to k119 , see (2)
+k
+   804 was co-discovered with Pedro Roitman [19]
+
+
+
+bisectors concur. At N = 4, P  is a rectangle, so Aev = 0. Area invariants observed
+for N > 4 appear on Table 8.
+   Combining the above with k103 and k106 one obtains as corollaries the fact that
+Aev /Aev , Aev /Aev , and Aev /Aev are invariant for all N > 4.
+
+3.9 Inversive Objects
+                              −1
+Referring to Fig. 6, let P j,i    denote the inversion of Pi with respect to a unit-radius
+circle centered on focus f j , j = 1, 2, and d j,i = |Pi − f j |. Let P j denote the polygon
+                             −1
+whose vertices are the P j,i    . Let L j denote the perimeter of P j , and γ j,i the angles
+internal to P j ’s ith vertex. Table 9 lists invariants for these and other inversive objects.
+
+123
+Fifty New Invariants of N-Periodics...                                                                351
+
+
+
+
+Fig. 6 The vertices of the inversive polygon are obtained by inverting N-periodic vertices with respect to
+a focus. Segments connecting said focus to the original (inverted) vertices are called focal spokes (resp.
+inversive focal spokes)
+
+
+
+
+Fig. 7 Interactive toolbox written in Wolfram Mathematica [28]. The area on the left permits selection of
+specific geometries, whereas on the right, the EB, the N-Periodic and derived polygons is displayed. See
+Videos on Table 10
+
+
+
+4 Experimental Method
+
+An interactive toolbox was developed in Wolfram Mathematica [28] to accurately
+calculate and display N -periodics while reporting their areas, angles, etc., and those
+of some derived objects (pedal and inversive polygons, etc.); see Fig. 7.
+   Since all trajectories in the Billiard family are tangent to the same caustic, a crucial
+calculation is to obtain the caustic semiaxes a  , b for a given choice of a, b, and N .
+
+                                                                                             123
+352                                                                                         D. Reznik et al.
+
+
+Table 10 Youtube list of videos about invariants of N-Periodics, the last column provides the link
+
+Id            Title                                                    N                youtu.be/...
+
+01            Area Invariants of Pedal and Antipedal Poly-             3                LN623VjeeFQ
+              gons
+02            Exploring invariants of N-Periodics and pedal            3–12             2yXbOV7qf7k
+              polygons
+03            Centroid Stationarity of Pedal Polygons                  even             j_GD_g8aIbg
+04            Equal sum of distances from foci to vertices             3–6              6F7Y3UKJzdk
+              of Antipedal Polygon
+05            Concyclic feet of focal pedals and product of            5, 6             OT-xAdbOp8o
+              sums of lengths for odd N
+06            Invariant altitudes of N-Periodics and outer             3,4              MvZhWbI6iB8
+              polygons I
+07            Invariant altitudes of N-Periodics and outer             5,6              ZMHLmWXeKrM
+              polygon II
+08            Sum of focal squared altitudes to outer poly-            3–8              VUtBRzmbOYU
+              gon
+09            Sum of square altitudes from arbitrary point             5                RNmHROZNGj8
+              to outer polygon
+10            Area products of focal pedal polygons                    5                sw8pJFMV00w
+11            Area ratios of Pedal Polygons to N-Periodic              5, 6             6F7Y3UKJzdk
+              and outer Polygon
+12            Invariant Area Ratios to Minimum-Area                    5                f0JwRlu7iaY
+              Steiner Pedal Polygons
+13            N-Periodic Inversive Invariants                          5                wkstGKq5jOo
+14            N-Periodic Inversive Objects                             5                bFsehskizls
+
+
+
+
+We achieve this via least-squares optimization [13], available through Mathematica’s
+FindMinimum[] function. Namely:
+
+ • Initialize N vertices Pi evenly across the ellipse (pick ti , i = 1, . . . , N for each),
+   and let P1 = (a, 0).
+ • Let bi be the unit bisector of the N -gon sides incident at Pi . Let n i denote the
+   ellipse normal at the Pi . The Pi will be a legitimate closed billiard trajectory if
+   all bisectors are perfectly aligned with the local normals, i.e., if Pi∗ can be found
+   which make the following error vanish:
+
+                                                  
+                                                  N
+                                             E=         (n iT .bi )2
+                                                  i=1
+
+
+ • Obtain the unique confocal ellipse tangent to [a, 0]P2∗ .
+
+    Notice only N /2 vertices for N odd (resp. N /4 for N even) need to be optimized
+if one exploits the symmetries of odd (resp. even) vertex positions when P1 = (a, 0).
+
+123
+Fifty New Invariants of N-Periodics...                                                                     353
+
+
+   In terms of identifying invariants, we look for quantities which over hundreds of
+configurations of a given N -family are statistically constant, maintained over a range
+of Billiard aspect ratios.
+
+
+5 Video List
+
+Videos of some of the above phenomena have been placed on a Youtube playlist [17]
+and are listed individually on Table 10.
+
+Acknowledgements We would like to thank Olga Romaskevitch, Sergei Tabachnikov, Richard Schwartz,
+Arseniy Akopyan, Hellmuth Stachel, Alexey Glutsyuk, Corentin Fierobe, Maxim Arnold, and Pedro Roit-
+man for useful discussions and insights.
+The second author is fellow of CNPq and coordinator of Project PRONEX/CNPq/FAPEG 2017 10 26 7000
+508.
+
+
+
+Appendix
+
+
+Table 11 Symbols used in the invariants. Note i = 1, ..., N and j = 1, 2
+
+Symbol                            Meaning
+
+O, N                              Center of billiard and trajectory vertices
+L, J                              Inv. perimeter and Joachimsthal’s constant
+a, b                              Billiard major, minor semi-axes
+a  , b                        Caustic major, minor semi-axes
+f1 , f2                           Foci
+Pi , Pi , Pi                   N -periodic, outer, inner polygon vertices
+d j,i                             Distances from Pi to f j
+li , ri                           |Pi − Pi |, |Pi+1 − Pi |
+θi , θi                          N -periodic, outer polygon angles
+α j,i                             Angle Pi f j Pi+1
+A, A , A                       N -periodic, outer, inner areas
+M                                 A point in the plane of the billiard
+Q i , Q i                        Feet of perps. from point M to sides of N -periodic, outer polygon
+φi , φi                          Angle between two consecutive perps. to N-periodic and outer polygon
+Q i∗ , Q i∗                      Vertices of the antipedal polygon from M with respect to the Pi , Pi
+Q j,i , Q ∗j,i                    Vertices of pedal, antipedal polygon wrt. f j
+q j,i , q ∗j,i                    |Q j,i − f j | and |Q ∗j,i − f j |
+Am , Am , A∗m                    Area of Q i , Q i , Q i∗ polygons
+A j , Aj                         Feet of perps. from f j , j = 1, 2 onto the N -periodic, outer polygon
+C0 , C0 , C0∗                    Vertex centroids of the Q i , Q i , Q i∗ polygons
+
+
+
+
+                                                                                                  123
+354                                                                                                D. Reznik et al.
+
+
+Table 11 continued
+
+Symbol                           Meaning
+
+C2 , C2 , C2∗                   Area centroids of the Q i , Q i , Q i∗ polygons
+C0∗  , C2∗                     Vertex, area centroids of the Q i∗  polygon
+K , K  , K                    Steiner centroids of curvature of P, P  , P 
+Pk , Pk , Pk                  Pedal Polygons of P, P  , P  wrt. K , K  , K 
+Ak , Ak , Ak                  Areas of Pk , Pk , Pk
+Pev , Pev , P                 Evolute Polygons of P, P  , P 
+                ev
+Aev , Aev , Aev                                , P 
+                                 Areas of Pev , Pev   ev
+  −1
+P j,i                            Inversion of Pi wrt. to unit-radius circle centered on f j
+                                                              −1
+Pj, L j                          Polygon whose vertices are P j,i and its perimeter
+                                                                            −1
+γ j,i                            Internal angle of P j at its ith vertex (P j,i )
+
+
+
+
+References
+ 1. Akopyan, A.: Angles φ = π − θi (resp. φ  = φ − θi ), so equivalent to invariant sum (resp. product)
+    of cosines. Private Communication (2020)
+ 2. Akopyan, A.: Corollary of Theorem 6 in Akopyan et al., Billiards in Ellipses Revisited (2020). Private
+    Communication (2020)
+ 3. Akopyan, A.: Follows from previous results: the construction is affine and holds for any two concentric
+    conics. Private (2020). Communication
+ 4. Akopyan, A.: Perpendicular feet to N-periodic or its tangential polygon are cyclic. Private (2020).
+    Communication
+ 5. Akopyan, A., Schwartz, R., Tabachnikov, S.: Billiards in ellipses revisited. Eur. J. Math. (2020). https://
+    doi.org/10.1007/s40879-020-00426-9
+ 6. Arnold, M., Fuchs, D., Izmestiev, I., Tabachnikov, S., Tsukerman, E.: Iterating evolutes and involutes.
+    Discrete Comput. Geom. 58, 80–143 (2017). https://doi.org/10.1007/s00454-017-9890-y
+ 7. Bialy, M., Tabachnikov, S.: Dan Reznik’s identities and more. Eur. J. Math. (2020) https://doi.org/10.
+    1007/s40879-020-00428-7
+ 8. Chavez-Caliz, A.: More about areas and centers of Poncelet polygons. Arnold Math J. (2020). https://
+    doi.org/10.1007/s40598-020-00154-8
+ 9. Dragović, V., Radnović, M.: Poncelet Porisms and Beyond: Integrable Billiards, Hyperelliptic Jaco-
+    bians and Pencils of Quadrics. Frontiers in Mathematics. Basel: Springer (2011)
+10. Garcia, R., Reznik, D., Koiller, J.: New properties of triangular orbits in elliptic billiards. Math. Monthly,
+    to appear, Amer (2020)
+11. Izmestiev, I., Tabachnikov, S.: Ivory’s theorem revisited. J. Integr. Syst. 2. (2017). https://doi.org/10.
+    1093/integr/xyx006
+12. Kaloshin, V., Sorrentino, A.: On the integrability of Birkhoff billiards. Phil. Trans. R. Soc. A (376)
+    (2018)
+13. Mangasarian, O.L.: Nonlinear Programming. SIAM, New York (1994)
+14. Nomizu, K., Sasaki, T.: Affine Differential Geometry. Cambridge University Press, Cambridge (1994)
+15. Preparata, F., Shamos, M.: Computational Geometry - An Introduction, 2nd edn. Springer, New York
+    (1988)
+16. Reznik, D.: Playlist for Invariants of 3- and 4-Periodics in the Elliptic Billiard. YouTube. (2020). www.
+    bit.ly/3aNqgqU
+17. Reznik, D.: Playlist for Invariants of N-Periodics in the Elliptic Billiard. YouTube. (2020). www.bit.
+    ly/2xeVGYw
+18. Reznik, D., Garcia, R., Koiller, J.: Can the elliptic billiard still surprise us? Math. Intell. 42, 6–17
+    (2020). www.rdcu.be/b2cg1
+
+
+123
+Fifty New Invariants of N-Periodics...                                                                     355
+
+
+19. Roitman, P.: Investigation of n-periodic invariants involving the curvature of the ellipse. Private (2020).
+    Communication
+20. Rozikov, U.A.: An Introduction To Mathematical Billiards. World Scientific Publishing Company,
+    Singapore (2018)
+21. Schwartz, R., Tabachnikov, S.: Centers of mass of Poncelet polygons, 200 years after. Math. Intell.
+    38(2), 29–34 (2016). https://doi.org/10.1007/s00283-016-9622-9
+22. Stachel, H.: Closed form expression for k119 . Private (2020). Communication
+23. Stachel, H.: Joachmisthal’s constant in terms of a, b and a  . Private (2020). Communication
+24. Stachel, H.: Proofs for k113 and k116 . Private (2020). Communication
+25. Steiner, J.: Über den Krümmungs-Schwerpunkt ebener Curven. Abhandlungen der Königlichen
+    Akademie der Wissenshaften zu Berlin 19–91 (1838)
+26. Tabachnikov, S.: Geometry and Billiards, vol. 30 of Student Mathematical Library. Providence, RI:
+    American Mathematical Society. (2005). www.bit.ly/2RV04CK
+27. Weisstein, E.: Mathworld. (2019). www.mathworld.wolfram.com
+28. Wolfram, S.: Mathematica, version 10.0 (2019)
+
+
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional affiliations.
+
+
+
+
+                                                                                                 123
+
