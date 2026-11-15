@@ -1,0 +1,5 @@
+# Bounded correspondence preflight log
+
+2026-11-15T20:55:24.216392+00:00 — 10%: New own folder created. Read prior completed mechanism/report/custody/helper sources without executing any old helper. Exact original native target identities/assets and query/corpus scope frozen before search. Native assets checked only as opaque whole bytes. Initial combined display truncation corrected by separately reading complete preparation helper; no source or production changes. Row135 FINAL remains immutable and science findings remain closed.
+
+2026-11-15T21:00:28.681140+00:00 — 85%: Fresh opening/closing remote commit/root remain identical and select exact docs subtree. All 254 whole blob paths/260 complete representations authenticated and searched. No exact/alias/normal-control/path hits or whole-native-asset matches. One compact k114 false hit fully read with complete 2-page text and 16191-byte K3P landing; unrelated 838-byte strict-gap redirect read and preserved. Full candidate exclusion recorded, no scientific interpretation adopted. Strict offline closure and final seal remain.

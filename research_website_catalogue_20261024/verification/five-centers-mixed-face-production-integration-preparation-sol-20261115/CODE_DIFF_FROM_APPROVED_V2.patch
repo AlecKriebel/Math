@@ -1,0 +1,1120 @@
+--- approved-v2/exact11_lib.py
++++ current130131/exact11_lib.py
+@@ -1,4 +1,4 @@
+-"""Exact11 read fences and future authority-gated installation primitives."""
++"""Source-only held fences; live reads and installation require a later real root receipt."""
+ from datetime import datetime, timezone
+ from pathlib import Path, PurePosixPath
+ import hashlib
+@@ -14,16 +14,17 @@
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ O = Path(__file__).resolve().parent
+-S = P / 'verification/lefschetz-link-private-stage-sol-20261115'
+-A = P / 'verification/lefschetz-link-independent-code-audit-sol-20261115'
+-BASE = '27cd946786754d66b44cbb309dae76da238b133e'
+-STAGE_SEAL = 'b42073395a01c7a60c733627212df7d56f484023662119a215a8b6cb57b89575'
++S = P / 'verification/five-centers-mixed-face-private-stage-sol-20261115'
++A = P / 'verification/five-centers-mixed-face-independent-code-audit-sol-20261115'
++BASE = '46773fd3d0e7289f5ab79bfc9f8ddf382fa508fc'
++STAGE_SEAL = '1fb0b5d399d013a729e3d709e18581e011d1643f88e1622f63dd62d2169cd24f'
+ AUDIT = A / 'FINAL_SEAL.json'
+-AUDIT_SEAL = 'afe06ee13def341fe2798f25aee2ad971477a442ad6320357f2b3cf2dafa1ed0'
+-ADOPTION = P / 'verification/root-lefschetz-link-stage-adoption-20261115.json'
+-COMMIT_APPROVAL = P / 'verification/root-lefschetz-link-commit-approval-20261115.json'
+-ROOT_READING = P / 'verification/root-lefschetz-link-stage-reading-20261115.json'
+-ROOT_READING_SHA256 = '455b7f101f01bd4a677be69ffd53aefb9f146872360f5c3e94fe16a65740d865'
++AUDIT_SEAL = 'c80ea0ca5c4aca8137ecf1bffca4c8effad7ddd81489c1c0153e6b150580f4ec'
++ADOPTION = P / 'verification/root-five-centers-mixed-face-stage-adoption-20261115.json'
++COMMIT_APPROVAL = P / 'verification/root-five-centers-mixed-face-commit-approval-20261115.json'
++ROOT_READING = P / 'verification/root-five-centers-mixed-face-stage-reading-20261115.json'
++ROOT_READING_SHA256 = '339e9a0e1d109dd54dfd52ca5143ac852a643332c896596a521bc9828195cbde'
++LIVE_AUTHORIZED = False
+ LOCK_BODY = b'Exact11 publication lock; inspect run-state if interrupted\n'
+ AGGREGATES = {'research/index.html', 'research/sitemap.xml'}
+ CODE_FILES = ['exact11_lib.py', 'preflight.py', 'install_exact.py', 'hooks/pre-push',
+@@ -45,6 +46,7 @@
+ 
+ def read(path):
+     path = Path(path)
++    need(LIVE_AUTHORIZED or not live_path(path), 'source-only: no website or .git access')
+     need(path.is_file() and not path.is_symlink() and path.resolve() == path,
+          'regular file through real ancestors: ' + str(path))
+     return path.read_bytes()
+@@ -68,6 +70,7 @@
+ 
+ 
+ def namespace(root):
++    need(LIVE_AUTHORIZED or not live_path(root), 'source-only: no live namespace inspection')
+     paths = list(root.rglob('*'))
+     need(root.is_dir() and not root.is_symlink() and root.resolve() == root
+          and all(not p.is_symlink() and (p.is_file() or p.is_dir()) for p in paths),
+@@ -75,12 +78,18 @@
+     return sorted(p.relative_to(root).as_posix() for p in paths if p.is_file())
+ 
+ 
++def live_path(path):
++    return path == W or W in path.parents or '.git' in path.parts
++
++
+ def root_reading():
+     body = read(ROOT_READING)
+     need(sha(body) == ROOT_READING_SHA256, 'separate actual root stage/copy/audit adoption')
+     value = json.loads(body)
+-    need(value['root_stage_code_and_current_copy_adopted'] is True
++    need(value['root_stage_code_adopted'] is True
++         and value['root_complete_current_copy_adopted'] is True
+          and value['root_independent_integration_audit_adopted'] is True
++         and value['source_only_production_helper_preparation_authorized'] is True
+          and value['production_installation_authorized'] is False,
+          'completed stage reading remains distinct from future install authority')
+     return value
+@@ -149,6 +158,7 @@
+ 
+ 
+ def git(*args, index=None, data=None, mutating=False, guard_commit=None, guard_remote_sha=None):
++    need(LIVE_AUTHORIZED, 'source-only preparation cannot invoke Git')
+     env = {k: v for k, v in os.environ.items() if not k.startswith('GIT_')}
+     env['GIT_OPTIONAL_LOCKS'] = '0'
+     if index is not None:
+@@ -218,28 +228,6 @@
+             'whole_index_SHA256': sha(raw), 'extensions': extensions}
+ 
+ 
+-def sealed_namespace(root, seal_name, manifest_name, expected_seal, manifest_key, rows_key):
+-    seal_bytes = read(root / seal_name)
+-    need(sha(seal_bytes) == expected_seal, 'exact sealed packet: ' + str(root))
+-    seal = json.loads(seal_bytes)
+-    manifest_raw = read(root / manifest_name)
+-    expected = seal[manifest_key]
+-    need(sha(manifest_raw) == (expected['SHA256'] if isinstance(expected, dict) else expected), 'sealed manifest')
+-    manifest = json.loads(manifest_raw)
+-    values = manifest[rows_key]
+-    rows = ([dict(row, path=name) for name, row in values.items()]
+-            if isinstance(values, dict) else values)
+-    names = [r['path'] for r in rows]
+-    need(len(names) == len(set(names)) and set(namespace(root)) == set(names) | {seal_name, manifest_name},
+-         'complete exact owned packet extent')
+-    directory_key = 'exact_relative_directories' if rows_key == 'files' else 'directories'
+-    directories = sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir())
+-    need(directories == sorted(manifest[directory_key]), 'complete immutable packet directory extent')
+-    for row in rows:
+-        pin(root / safe_rel(row['path']), row)
+-    return seal, rows
+-
+-
+ def counts(root):
+     text = read(root / 'research/index.html').decode()
+     graphs = re.findall(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', text, re.S)
+@@ -249,69 +237,180 @@
+     return len(namespace(root)), listing['numberOfItems'], len(ET.fromstring(read(root / 'research/sitemap.xml')))
+ 
+ 
+-def stage_fences(mode):
+-    need(mode in ['baseline', 'installed'], 'bounded actual website state')
+-    seal, stage_rows = sealed_namespace(S, 'FINAL_SEAL.json', 'OWNED_MANIFEST.json',
+-                                        STAGE_SEAL, 'owned_manifest_SHA256', 'files')
+-    audit, audit_rows = sealed_namespace(A, 'FINAL_SEAL.json', 'OWNED_MANIFEST.json',
+-                                        AUDIT_SEAL, 'manifest', 'payloads')
+-    need(len(stage_rows) == 948 and len(audit_rows) == 941, 'whole current writer/audit extents')
+-    need(audit['writer_FINAL_SEAL_SHA256'] == STAGE_SEAL
+-         and audit['root_stage_code_adopted'] is False
+-         and seal['root_stage_code_adopted'] is False, 'historical unadopted flags remain unchanged')
+-    contract = obj(S / 'STAGE_CONTRACT.json')
+-    overlay = obj(S / 'OVERLAY_MANIFEST.json')['files']
+-    paths = [r['path'] for r in overlay]
+-    need(paths == contract['overlay_paths'] == sorted(set(paths)) and len(paths) == 11, 'exact11 ordered overlay')
+-    need(contract['baseline_counts'] == [605, 90, 91] and contract['virtual_counts'] == [614, 92, 93],
+-         'exact actual baseline/candidate counts')
+-    plan = obj(S / 'INSTALLATION_PLAN.json')
+-    need(plan['website_baseline_commit'] == BASE and plan['exact_future_public_relative_paths'] == paths
+-         and set(plan['existing_aggregate_overlays']) == AGGREGATES and plan['new_leaf_files'] == 9,
+-         'exact original installation-plan interface')
++def sealed_namespace(kind):
++    root = S if kind == 'writer' else A
++    seal_bytes = read(root / 'FINAL_SEAL.json')
++    need(sha(seal_bytes) == (STAGE_SEAL if kind == 'writer' else AUDIT_SEAL), 'exact current packet seal')
++    seal = json.loads(seal_bytes)
++    if kind == 'writer':
++        name = 'OWNED_MANIFEST.json'
++        descriptor = seal['manifest']
++        excluded = {'OWNED_MANIFEST.json', 'FINAL_SEAL.json'}
++    else:
++        need(kind == 'audit', 'bounded current packet interface')
++        name = 'FINAL_MANIFEST.json'
++        descriptor = seal['bindings'][name]
++        excluded = {'FINAL_CLOSURE.json', 'FINAL_MANIFEST.json', 'FINAL_SEAL.json'}
++        pin(root / 'FINAL_CLOSURE.json', seal['bindings']['FINAL_CLOSURE.json'])
++    manifest = json.loads(pin(root / name, descriptor))
++    if kind == 'writer':
++        rows = [dict(row, path=path) for path, row in manifest['payloads'].items()]
++        need(len(rows) == 961 and seal['owned_payload_files'] == 961, 'actual writer961 interface')
++        need(sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir())
++             == manifest['directories'], 'whole writer directory namespace')
++    else:
++        # The independent manifest has absolute paths, unlike the writer manifest.
++        rows = [dict(row, path=Path(row['path']).relative_to(root).as_posix())
++                for row in manifest['files']]
++        need(len(rows) == 721 and seal['own_final_owned_payloads'] == 721, 'actual audit721 interface')
++    paths = [row['path'] for row in rows]
++    need(len(paths) == len(set(paths)) and set(namespace(root)) == set(paths) | excluded,
++         'complete current sealed packet, exact terminal exclusions only')
++    for row in rows:
++        pin(root / safe_rel(row['path']), row)
++    return seal, rows
++
++
++def overlay_rows(overlay, plan):
++    expected = [
++        'research/five-outgoing-centers-alpha16/citation.bib',
++        'research/five-outgoing-centers-alpha16/five_centers.pdf',
++        'research/five-outgoing-centers-alpha16/five_centers.tex',
++        'research/five-outgoing-centers-alpha16/index.html',
++        'research/five-outgoing-centers-alpha16/verification-package.zip',
++        'research/index.html', 'research/sitemap.xml',
++        'research/totally-mixed-face-posets/citation.bib',
++        'research/totally-mixed-face-posets/index.html',
++        'research/totally-mixed-face-posets/totally-mixed-face-posets-source-and-verification.zip',
++        'research/totally-mixed-face-posets/totally-mixed-face-posets.pdf']
++    need([r['path'] for r in overlay] == plan['exact_future_public_relative_paths'] == expected,
++         'exact new11 article-root paths including separate130TeX')
++    need(set(plan['existing_aggregate_replacements']) == AGGREGATES
++         and plan['baseline_counts'] == [614, 92, 93] and plan['proposed_counts'] == [623, 94, 95]
++         and plan['actual_frozen_installed_baseline_commit'] == BASE, 'actual current plan interface')
+     rows = []
+     for row in overlay:
+-        need(str(safe_rel(row['path'])).startswith('research/'), 'research-only target')
+-        body = pin(S / 'candidate-a/public' / row['path'], row)
+-        need(body == pin(S / 'candidate-b/public' / row['path'], row), 'whole paired payload equality')
++        need(row['whole_actual_normal_optimized_bytes_equal'] is True
++             and row['role'] == ('aggregate' if row['path'] in AGGREGATES else 'new_leaf'),
++             'actual current role and paired-byte fields')
+         rows.append(dict(row, action='replace_aggregate_only' if row['path'] in AGGREGATES else 'add_new_leaf'))
++    return rows
++
++
++def core_fences(live=False):
++    core = obj(A / 'CORE17_AND_AUTHORIZED_CHECKPOINT.json')
++    prior = core['prior_whole_qualification']
++    need(core['original17_files_unchanged'] == 17 and core['claim_all18_match_original_baseline'] is False
++         and core['authorized_checkpoint_current_SHA256'] ==
++         '405b0357fd20a2e14893ce6c3c1a0f81910894ccd8ffaddac4e25014138fb9c0',
++         'qualified17original plus authorized405b, never18original')
++    need(len(core['current_actual_file_snapshots']) == 18, 'whole18 qualified current bindings')
++    expected = {r['path']: r for r in prior['files']}
++    for row in core['current_actual_file_snapshots']:
++        source = row['source']
++        need(source['bytes'] == expected[source['path']]['bytes']
++             and source['SHA256'] == expected[source['path']]['SHA256'], 'whole retained qualified core interface')
++        need(pin(Path(row['snapshot']['path']), row['snapshot']) == pin(Path(row['snapshot']['path']), source),
++             'held actual core buffer, no source execution')
++        if live:
++            need(LIVE_AUTHORIZED, 'core live comparison requires later real authority')
++            pin(Path(source['path']), source)
++    if live:
++        need(sorted(str(p) for p in (P / 'scripts').glob('*.py')) == prior['scripts_namespace'],
++             'complete future current script namespace')
++    return core
++
++
++def stage_fences(mode):
++    need(mode in ['held', 'baseline', 'installed'], 'bounded held/live state')
++    live = mode != 'held'
++    need(not live or LIVE_AUTHORIZED, 'no website access during source-only preparation')
++    reading = root_reading()
++    writer, writer_rows = sealed_namespace('writer')
++    audit, audit_rows = sealed_namespace('audit')
++    need(audit['writer_FINAL_SEAL_SHA256'] == STAGE_SEAL, 'independent audit binds this exact writer')
++    need(writer['root_stage_code_adopted'] is False and writer['production_installation_authorized'] is False,
++         'historical writer false flags retained, separate current root adoption used')
++    rows = overlay_rows(obj(S / 'OVERLAY_MANIFEST.json')['files'], obj(S / 'INSTALLATION_PLAN.json'))
++    paths = [r['path'] for r in rows]
++    for row in rows:
++        need(pin(S / 'candidate-a/public' / row['path'], row)
++             == pin(S / 'candidate-b/public' / row['path'], row), 'whole paired current payloads')
+     for candidate in ['candidate-a', 'candidate-b']:
+-        need(namespace(S / candidate / 'public') == paths, 'complete exact11 paired candidate extent')
+-    inputs = obj(S / 'INPUT_MANIFEST.json')
+-    allowed = {str(W / 'public' / p) for p in paths} if mode == 'installed' else set()
+-    for row in inputs['files']:
+-        original = pin(S / safe_rel(row['blob']), row)
+-        if row['path'] not in allowed:
+-            need(read(row['path']) == original, 'whole unchanged external source/site/config input')
+-    for ns in inputs['strict_source_editorial_namespaces']:
+-        need(namespace(Path(ns['root'])) == ns['exact_relative_file_names'], 'entire source/editorial namespace')
+-        dirs = sorted(p.relative_to(Path(ns['root'])).as_posix() for p in Path(ns['root']).rglob('*') if p.is_dir())
+-        need(dirs == ns['exact_relative_directory_names'], 'entire source/editorial directory extent')
++        need(namespace(S / candidate / 'public') == paths, 'whole current11 counterpart namespace')
++    source = obj(S / 'SOURCE_INPUTS.json')
++    need(len(source['files']) == 341
++         and [len(n['files']) for n in source['complete_original_namespaces']] == [121, 69, 81, 59],
++         'current source341 and four complete namespaces')
++    for row in source['files']:
++        frozen = pin(S / safe_rel(row['blob']), row)
++        if live:
++            need(read(row['path']) == frozen, 'future unchanged source and original wrapper bytes')
++    if live:
++        for entry in source['complete_original_namespaces']:
++            root = Path(entry['path'])
++            need(namespace(root) == entry['files'], 'future whole source/editorial file namespace')
++            need(sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir())
++                 == entry['directories'], 'future whole original directory namespace')
+     base = obj(S / 'WEBSITE_BASELINE.json')
+-    need(base['prior_installation_commit'] == BASE and base['baseline_counts'] == [605, 90, 91], 'fresh owner website baseline')
+-    public = [r for r in base['files'] if r['path'].startswith(str(W / 'public') + '/')]
+-    oldpaths = {str(Path(r['path']).relative_to(W / 'public')) for r in public}
+-    need(len(public) == len(oldpaths) == 605 and oldpaths & set(paths) == AGGREGATES, '605 old files and only two overlaps')
+-    expected = oldpaths if mode == 'baseline' else oldpaths | set(paths)
+-    need(set(namespace(W / 'public')) == expected, 'complete actual public namespace')
+-    for row in public:
+-        if mode == 'baseline' or str(Path(row['path']).relative_to(W / 'public')) not in paths:
+-            pin(row['path'], row)
+-    for row in rows:
+-        destination = W / 'public' / row['path']
++    need(base['baseline_counts'] == [614, 92, 93] and base['proposed_counts'] == [623, 94, 95]
++         and base['local_HEAD_and_origin_master_tracking'] == BASE
++         and base['remote_server_ref_queried'] is False, 'actual held614 baseline, no invented server query')
++    oldpaths = set(base['public_namespace'])
++    need(len(oldpaths) == 614 and oldpaths & set(paths) == AGGREGATES
++         and len(oldpaths - set(paths)) == 612 and len(oldpaths | set(paths)) == 623,
++         'exact9new leaves/2aggregates and612 unrelated public paths')
++    independent = obj(A / 'FRESH_WEBSITE_BASELINE.json')
++    independent_rows = {r['public_relative_path']: r for r in independent['public_files']}
++    need(set(independent_rows) == oldpaths and independent['HEAD'] == BASE, 'whole independent held614 interface')
++    public = {}
++    for row in base['files']:
++        frozen = pin(S / safe_rel(row['blob']), row)
++        path = Path(row['path'])
++        if path.is_relative_to(W / 'public'):
++            rel = path.relative_to(W / 'public').as_posix()
++            other = independent_rows[rel]
++            need(frozen == pin(Path(other['snapshot']['path']), other), 'whole independent/writer old public buffer')
++            public[rel] = frozen
++        if live and not (mode == 'installed' and path.is_relative_to(W / 'public')
++                         and path.relative_to(W / 'public').as_posix() in paths):
++            need(read(path) == frozen, 'future expected-before public/config/receipt byte fence')
++    need(set(public) == oldpaths and len(base['files']) == 620, '614public plus6 nonpublic held rows')
++    for row in independent['configs']:
++        pin(Path(row['snapshot']['path']), row)
++    core_fences(live)
++    if live:
++        expected = oldpaths if mode == 'baseline' else oldpaths | set(paths)
++        need(set(namespace(W / 'public')) == expected, 'entire authorized future public namespace')
++        expected_dirs = set(base['public_directories'])
+         if mode == 'installed':
+-            pin(destination, row)
+-        elif row['action'] == 'add_new_leaf':
+-            need(not destination.exists() and not destination.is_symlink(), 'new leaf must remain absent')
+-    measured = list(counts(W / 'public'))
+-    need(measured == ([605, 90, 91] if mode == 'baseline' else [614, 92, 93]), 'fresh actual counts')
+-    # Paired overlay has only11 files; count its actual92/93 aggregates separately.
+-    candidate = S / 'candidate-a/public'
+-    _, number, sitemap = counts(candidate)
+-    need([len(oldpaths | set(paths)), number, sitemap] == [614, 92, 93], 'exact candidate union and aggregate counts')
+-    return rows, {'writer_owned': len(stage_rows), 'audit_owned': len(audit_rows),
+-                  'external_input_bindings': len(inputs['files']), 'actual_counts': measured,
+-                  'candidate_counts': [614, 92, 93], 'unrelated_public_files': 603}
++            expected_dirs |= {str(parent) for p in paths for parent in PurePosixPath(p).parents if str(parent) != '.'}
++        need(sorted(p.relative_to(W / 'public').as_posix() for p in (W / 'public').rglob('*') if p.is_dir())
++             == sorted(expected_dirs), 'future whole public directory namespace')
++        for row in rows:
++            destination = W / 'public' / row['path']
++            if mode == 'installed':
++                pin(destination, row)
++            elif row['action'] == 'add_new_leaf':
++                need(not destination.exists() and not destination.is_symlink(), 'future no-clobber new leaf absence')
++        need(list(counts(W / 'public')) == ([614, 92, 93] if mode == 'baseline' else [623, 94, 95]),
++             'future actual public/index/sitemap counts')
++    for name, wanted in [('research/index.html', 94), ('research/sitemap.xml', 95)]:
++        body = read(S / 'candidate-a/public' / name)
++        if name.endswith('.xml'):
++            need(len(ET.fromstring(body)) == wanted, 'held candidate sitemap95')
++        else:
++            match = re.findall(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', body.decode(), re.S)
++            need(len(match) == 1, 'one held candidate index graph')
++            listing = json.loads(match[0])['mainEntity']
++            need(listing['numberOfItems'] == len(listing['itemListElement']) == wanted, 'held candidate index94')
++    return rows, {'mode': mode, 'writer_payloads': len(writer_rows), 'audit_payloads': len(audit_rows),
++                  'source_originals': 341, 'held_baseline_counts': [614, 92, 93],
++                  'candidate_counts': [623, 94, 95], 'unrelated_public_paths': 612,
++                  'current_stage_and_independent_root_adoption_complete': True,
++                  'website_or_dot_git_access': live, 'production_authority_from_this_preparation': False}
++
++
+ 
+ 
+ def website_git_state(overlay, head=BASE, remote=True):
+@@ -369,7 +468,7 @@
+ 
+ 
+ def adoption_fields(adoption):
+-    need(adoption.get('schema') == 'root_exact11_production_adoption_v1'
++    need(adoption.get('schema') == 'root_five_centers_mixed_face_exact11_production_adoption_v1'
+          and adoption.get('authority') == 'root' and adoption.get('template_not_root_receipt') is False,
+          'actual root-authored receipt, never preparation template')
+     for key in ['root_stage_adopted', 'independent_code_audit_adopted',
+@@ -381,6 +480,7 @@
+ 
+ 
+ def root_adoption(expected_sha):
++    global LIVE_AUTHORIZED
+     need(re.fullmatch('[0-9a-f]{64}', expected_sha or ''), 'explicit actual root receipt hash')
+     need(ADOPTION.exists(), 'ROOT_ADOPTION_MISSING: current pair has no mutation authority')
+     body = read(ADOPTION)
+@@ -394,8 +494,8 @@
+          and adoption['independent_audit_final_seal_path'] == str(AUDIT)
+          and adoption['independent_audit_final_seal_SHA256'] == AUDIT_SEAL, 'root adopted exact current pair and actual audit FINAL_SEAL')
+     need(adoption['website_root'] == str(W) and adoption['website_HEAD'] == BASE
+-         and adoption['website_branch'] == 'master' and adoption['baseline_counts'] == [605, 90, 91]
+-         and adoption['candidate_counts'] == [614, 92, 93], 'root exact11 baseline and candidate authority')
++         and adoption['website_branch'] == 'master' and adoption['baseline_counts'] == [614, 92, 93]
++         and adoption['candidate_counts'] == [623, 94, 95], 'root exact11 baseline and candidate authority')
+     need(adoption['preparation_final_seal_SHA256'] == sha(read(O / 'PREPARATION_SEAL.json')), 'exact preparation adopted')
+     verify_preparation()
+     for name in CODE_FILES:
+@@ -404,9 +504,10 @@
+     need(adoption['hook_mode_octal'] == '0555'
+          and (O / 'hooks/pre-push').stat().st_mode & 0o7777 == 0o555, 'required executable guard')
+     need(adoption['public_relative_paths'] == [r['path'] for r in obj(S / 'OVERLAY_MANIFEST.json')['files']], 'root exact11 path order')
+-    capture = obj(O / 'PREFLIGHT_CAPTURE.json')
+-    need(adoption['preflight_capture_SHA256'] == sha(read(O / 'PREFLIGHT_CAPTURE.json'))
++    capture = obj(O / 'HELD_BASELINE_CONTRACT.json')
++    need(adoption['held_baseline_contract_SHA256'] == sha(read(O / 'HELD_BASELINE_CONTRACT.json'))
+          and adoption['index_SHA256'] == capture['Git']['index_SHA256']
+          and adoption['protected_raw_records_SHA256'] == capture['Git']['protected_raw_records_SHA256'],
+-         'root adopted exact fresh shared-index protection')
++         'root adopted exact held index protection; fresh live equality remains mandatory')
++    LIVE_AUTHORIZED = True
+     return adoption
+--- approved-v2/preflight.py
++++ current130131/preflight.py
+@@ -1,52 +1,91 @@
+-"""Read-only website/Git/remote fences. --capture writes only this new preparation."""
++"""Default held-data checks only. --live requires a later real root install receipt."""
+ import sys
+ sys.dont_write_bytecode = True
+ import argparse
+ import json
+ from pathlib import Path
+-from exact11_lib import (O, W, S, BASE, STAGE_SEAL, AUDIT_SEAL, ADOPTION, COMMIT_APPROVAL,
+-                         ROOT_READING_SHA256, root_reading,
+-                         need, now, sha, read, obj, stage_fences, website_git_state, git)
++import exact11_lib as L
++
++
++def held_contract():
++    rows, summary = L.stage_fences('held')
++    observation = L.obj(L.A / 'FRESH_GIT_OBSERVATIONS.json')
++    raw = L.pin(L.O / 'private/retained-approved-index', observation['actual_raw_index_file_observation'])
++    targets = {('public/' + row['path']).encode() for row in rows}
++    index = L.parse_index(raw, targets)
++    tuples = [('%06o' % mode).encode() + b' ' + oid.encode() + b' 0\t' + path
++              for path, record, mode, oid in index['entries']]
++    whole_tuples = b'\0'.join(tuples) + b'\0'
++    L.need(whole_tuples == L.pin(Path(observation['raw_index_records']['path']), observation['raw_index_records']),
++           'whole retained binary agrees with independently observed actual stage tuples')
++    protected = [value for value in tuples if value.split(b'\t', 1)[1] not in targets]
++    protected_tuples = b'\0'.join(protected) + b'\0'
++    L.need(protected_tuples == L.pin(Path(observation['fresh_protected_raw_records']['path']),
++                                   observation['fresh_protected_raw_records']), 'whole58552 independent protected tuples')
++    existing = {path for path, record, mode, oid in index['entries'] if path in targets}
++    L.need(existing == {('public/' + path).encode() for path in L.AGGREGATES},
++           'only two existing index targets; all nine new leaves absent')
++    L.need(index['count'] == observation['all_index_record_count'] == 58554
++           and index['protected_record_count'] == observation['fresh_protected_index_record_count'] == 58552,
++           'current-scope held index counts, never prior58543 count')
++    prior = L.obj(L.O / 'inputs/prior-PREFLIGHT_CAPTURE.json')['Git']
++    prepublication = L.obj(L.O / 'inputs/prior-PRE_PUBLICATION.json')
++    publication = L.obj(L.O / 'inputs/prior-PUBLICATION.json')
++    L.need(L.sha(raw) == prepublication['approved_index_SHA256']
++           and prepublication['commit'] == publication['commit'] == observation['website_HEAD'] == L.BASE,
++           'same retained approved buffer, prior publication and independent actual observation')
++    state = {'HEAD': L.BASE, 'master': L.BASE, 'branch': 'master',
++             'HEAD_file_SHA256': L.sha(b'ref: refs/heads/master\n'),
++             'master_file_SHA256': L.sha((L.BASE + '\n').encode()),
++             'local_git_config_SHA256': prior['local_git_config_SHA256'],
++             'index_SHA256': L.sha(raw), 'index_record_count': index['count'],
++             'protected_record_count': index['protected_record_count'],
++             'protected_raw_records_SHA256': index['protected_raw_records_SHA256'],
++             'protected_stage_tuple_SHA256': L.sha(protected_tuples),
++             'origin_push_URL_SHA256': prior['origin_push_URL_SHA256'],
++             'remote_master': L.BASE, 'fresh_remote_read_by_this_preparation': False}
++    return {'schema': 'held_expected_before_exact11_contract_no_live_access_v1',
++            'independent_observation_UTC': observation['UTC'], 'Git': state,
++            'stage_and_held_baseline': summary, 'source_data_only': True,
++            'retained_index_buffer': 'private/retained-approved-index',
++            'expected_HEAD_master_file_bytes_derived_from_checked_BASE': True,
++            'Git_config_and_push_URL_pins_retained_from_prior_approved_preflight': True,
++            'future_live_byte_identity_and_actual_remote_advertisement_required': True,
++            'current_live_website_dot_git_or_remote_requeried_by_preparation': False,
++            'installation_or_publication_authority': False}
+ 
+ 
+ def main():
+     parser = argparse.ArgumentParser()
+-    parser.add_argument('--capture', action='store_true')
++    parser.add_argument('--emit-contract', action='store_true')
++    parser.add_argument('--live', action='store_true')
++    parser.add_argument('--adoption-sha256')
+     args = parser.parse_args()
+-    root_reading()
+-    rows, summary = stage_fences('baseline')
+-    raw, index, state = website_git_state(rows)
+-    result = {'UTC': now(), 'status': 'PASS_READ_ONLY_EXACT11_PREFLIGHT',
+-              'baseline_HEAD': BASE, 'stage_final_seal_SHA256': STAGE_SEAL,
+-              'audit_final_seal_SHA256': AUDIT_SEAL, 'stage_and_website': summary, 'Git': state,
+-              'website_Git_or_remote_mutations': False, 'stage_or_audit_code_executed': False,
+-              'separate_stage_and_audit_root_reading_adopted': True,
+-              'root_stage_reading_SHA256': ROOT_READING_SHA256,
+-              'v2_preparation_root_adopted': False, 'production_install_authorized': False}
+-    if args.capture:
+-        need(not (O / 'PREFLIGHT_CAPTURE.json').exists(), 'capture is write-once')
+-        need(not ADOPTION.exists() and not COMMIT_APPROVAL.exists(), 'no current root install/commit authority')
+-        protected = b'\0'.join(p + b'\t' + r.hex().encode() for p, r in index['protected']) + b'\0'
+-        deletions = git('diff', '--cached', '--name-only', '--diff-filter=D', '-z', BASE)
+-        (O / 'private/shared-index.before').write_bytes(raw)
+-        (O / 'private/protected-index.raw-records').write_bytes(protected)
+-        (O / 'private/staged-deletions.z').write_bytes(deletions)
+-        need(sha(protected) == state['protected_raw_records_SHA256'], 'whole protected raw records')
+-        need(read(W / '.git/index') == raw, 'shared index unchanged during capture')
+-        result['staged_deletions'] = {'count': len([x for x in deletions.split(b'\0') if x]),
+-                                      'bytes': len(deletions), 'SHA256': sha(deletions),
+-                                      'path': 'private/staged-deletions.z'}
+-        result['whole_original_index_snapshot'] = 'private/shared-index.before'
+-        result['whole_protected_native_records'] = 'private/protected-index.raw-records'
+-        result['current_root_authority_paths_observed_absent'] = [str(ADOPTION), str(COMMIT_APPROVAL)]
+-        (O / 'PREFLIGHT_CAPTURE.json').write_text(json.dumps(result, indent=2) + '\n')
+-    else:
+-        capture = obj(O / 'PREFLIGHT_CAPTURE.json')
++    L.need(not (args.emit_contract and args.live), 'distinct held/live phases')
++    contract = held_contract()
++    if args.emit_contract:
++        print(json.dumps(contract, indent=2))
++        return
++    L.need(contract == L.obj(L.O / 'HELD_BASELINE_CONTRACT.json'), 'whole reproducible held contract')
++    if args.live:
++        adoption = L.root_adoption(args.adoption_sha256)
++        rows, summary = L.stage_fences('baseline')
++        raw, index, state = L.website_git_state(rows)
++        L.need(raw == L.read(L.O / 'private/retained-approved-index'), 'future actual raw index matches held buffer')
+         for key in ['HEAD', 'master', 'branch', 'HEAD_file_SHA256', 'master_file_SHA256',
+                     'local_git_config_SHA256', 'index_SHA256', 'protected_raw_records_SHA256',
+                     'protected_stage_tuple_SHA256', 'origin_push_URL_SHA256', 'remote_master']:
+-            need(state[key] == capture['Git'][key], 'fresh unchanged control fence: ' + key)
+-        need(raw == read(O / 'private/shared-index.before'), 'whole fresh raw shared index remains equal')
++            L.need(state[key] == contract['Git'][key], 'future actual unchanged fence: ' + key)
++        result = {'status': 'PASS_LATER_ROOT_AUTHORIZED_LIVE_PREFLIGHT', 'actual_Git': state,
++                  'stage_and_website': summary, 'root_install_receipt_SHA256': args.adoption_sha256,
++                  'mutations': False}
++    else:
++        L.need(L.LIVE_AUTHORIZED is False, 'default remains source-only')
++        result = {'status': 'PASS_SOURCE_ONLY_HELD_PREFLIGHT', 'held_contract_SHA256': L.sha(L.read(L.O / 'HELD_BASELINE_CONTRACT.json')),
++                  'held_baseline': [614, 92, 93], 'proposal': [623, 94, 95],
++                  'retained_index_records': 58554, 'protected_native_records': 58552,
++                  'website_dot_git_or_remote_access': False, 'Git_commands': 0,
++                  'installation_or_publication_authority': False}
+     print(json.dumps(result, indent=2))
+ 
+ 
+--- approved-v2/install_exact.py
++++ current130131/install_exact.py
+@@ -14,8 +14,8 @@
+     (run / name).write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
+ 
+ def expected_capture(raw, index, state, adoption):
+-    c = obj(O / 'PREFLIGHT_CAPTURE.json')['Git']
+-    need(raw == read(O / 'private/shared-index.before') and state['index_SHA256'] == c['index_SHA256'] == adoption['index_SHA256'], 'fresh exact original shared index')
++    c = obj(O / 'HELD_BASELINE_CONTRACT.json')['Git']
++    need(raw == read(O / 'private/retained-approved-index') and state['index_SHA256'] == c['index_SHA256'] == adoption['index_SHA256'], 'future actual index equals held independent-bound buffer')
+     need(state['protected_raw_records_SHA256'] == c['protected_raw_records_SHA256'] == adoption['protected_raw_records_SHA256'], 'all fresh protected raw records')
+     need(state['origin_push_URL_SHA256'] == c['origin_push_URL_SHA256'], 'original explicit origin push location')
+     for key in ['HEAD_file_SHA256', 'master_file_SHA256', 'local_git_config_SHA256']:
+@@ -23,7 +23,7 @@
+ 
+ def remote_parent(expected):
+     urls = git('remote', 'get-url', '--push', '--all', 'origin').splitlines()
+-    need(len(urls) == 1 and sha(urls[0]) == obj(O / 'PREFLIGHT_CAPTURE.json')['Git']['origin_push_URL_SHA256'], 'exact push destination')
++    need(len(urls) == 1 and sha(urls[0]) == obj(O / 'HELD_BASELINE_CONTRACT.json')['Git']['origin_push_URL_SHA256'], 'exact push destination')
+     need(git('ls-remote', '--refs', urls[0].decode(), 'refs/heads/master').split() == [expected.encode(), b'refs/heads/master'], 'actual push-destination remote parent')
+ 
+ def paths(rows):
+@@ -109,7 +109,7 @@
+     commit = git('commit-tree', tree, '-p', BASE, data=(message.rstrip('\n') + '\n').encode(), mutating=True).decode().strip()
+     checked_commit(commit, tree, target, rows)
+     need(git('rev-parse', 'HEAD').decode().strip() == BASE and read(W / '.git/index') == raw, 'shared index/ref unchanged while constructing commit')
+-    pending = {'UTC': now(), 'status': 'EXACT11_FILES_INSTALLED_COMMIT_PREPARED_NOT_PUBLISHED', 'root_adoption_SHA256': adoption_sha, 'stage_final_seal_SHA256': STAGE_SEAL, 'parent': BASE, 'commit': commit, 'tree': tree, 'gitpaths': [p.decode() for p in target], 'public_counts': [614, 92, 93], 'protected_raw_records_SHA256': state['protected_raw_records_SHA256'], 'shared_index_SHA256_unchanged': state['index_SHA256'], 'origin_push_URL_SHA256': state['origin_push_URL_SHA256'], 'shared_index_changed': False, 'ref_changed': False, 'pushed': False, 'deployed': False, 'root_commit_approval_required': True}
++    pending = {'UTC': now(), 'status': 'EXACT11_FILES_INSTALLED_COMMIT_PREPARED_NOT_PUBLISHED', 'root_adoption_SHA256': adoption_sha, 'stage_final_seal_SHA256': STAGE_SEAL, 'parent': BASE, 'commit': commit, 'tree': tree, 'gitpaths': [p.decode() for p in target], 'public_counts': [623, 94, 95], 'protected_raw_records_SHA256': state['protected_raw_records_SHA256'], 'shared_index_SHA256_unchanged': state['index_SHA256'], 'origin_push_URL_SHA256': state['origin_push_URL_SHA256'], 'shared_index_changed': False, 'ref_changed': False, 'pushed': False, 'deployed': False, 'root_commit_approval_required': True}
+     save(run, 'PENDING_COMMIT.json', pending)
+     print(json.dumps(pending, indent=2))
+ 
+@@ -119,7 +119,7 @@
+     approval_bytes = read(COMMIT_APPROVAL)
+     need(sha(approval_bytes) == expected_sha, 'exact root commit approval hash')
+     a = json.loads(approval_bytes)
+-    need(a['schema'] == 'root_exact11_commit_approval_v1' and a['authority'] == 'root' and (a['publication_authorized'] is True), 'root exact publication authority')
++    need(a['schema'] == 'root_five_centers_mixed_face_exact11_commit_approval_v1' and a['authority'] == 'root' and (a['publication_authorized'] is True), 'root exact publication authority')
+     need(a['root_adoption_SHA256'] == adoption_sha and a['pending_commit_receipt_SHA256'] == sha(read(O / 'run-state/PENDING_COMMIT.json')), 'root checked exact pending receipt')
+     for key in ['parent', 'commit', 'tree', 'gitpaths', 'protected_raw_records_SHA256']:
+         need(a[key] == pending[key], 'root checked commit ' + key)
+@@ -174,7 +174,7 @@
+         need(finalindex['protected'] == index['protected'], 'all unrelated raw index entries unchanged at completion')
+         need(git('rev-parse', 'HEAD').decode().strip() == pending['commit'] and git('symbolic-ref', 'HEAD').strip() == b'refs/heads/master', 'actual final local existing master')
+         stage_fences('installed')
+-        receipt = {'UTC': now(), 'status': 'PASS_EXACT11_INSTALL_ROOT_CHECKED_COMMIT_AND_GUARDED_NONFORCE_PUSH', 'parent': BASE, 'commit': pending['commit'], 'tree': pending['tree'], 'gitpaths': pending['gitpaths'], 'counts': [614, 92, 93], 'protected_record_count': index['protected_record_count'], 'protected_raw_records_SHA256': index['protected_raw_records_SHA256'], 'unrelated_raw_index_entries_unchanged': True, 'unrelated_public_files_unchanged': 603, 'site_configs_and_bound_original_inputs_unchanged': True, 'core_mutations': False, 'deployed': False, 'live_verified': False, 'browser_verified': False, 'native_Sheet_publication_verified': False, 'canonical_url': None, 'AA': None}
++        receipt = {'UTC': now(), 'status': 'PASS_EXACT11_INSTALL_ROOT_CHECKED_COMMIT_AND_GUARDED_NONFORCE_PUSH', 'parent': BASE, 'commit': pending['commit'], 'tree': pending['tree'], 'gitpaths': pending['gitpaths'], 'counts': [623, 94, 95], 'protected_record_count': index['protected_record_count'], 'protected_raw_records_SHA256': index['protected_raw_records_SHA256'], 'unrelated_raw_index_entries_unchanged': True, 'unrelated_public_files_unchanged': 612, 'site_configs_and_qualified17_plus405b_core_unchanged': True, 'core_mutations': False, 'deployed': False, 'live_verified': False, 'browser_verified': False, 'native_Sheet_publication_verified': False, 'canonical_url': None, 'AA': None}
+         save(run, 'PUBLICATION.json', receipt)
+         print(json.dumps(receipt, indent=2))
+     finally:
+--- approved-v2/hooks/pre-push
++++ current130131/hooks/pre-push
+@@ -5,7 +5,7 @@
+ import re
+ import sys
+ sys.dont_write_bytecode = True
+-BASE = '27cd946786754d66b44cbb309dae76da238b133e'
++BASE = '46773fd3d0e7289f5ab79bfc9f8ddf382fa508fc'
+ 
+ 
+ def accepted(args, environment, body):
+--- approved-v2/controls.py
++++ current130131/controls.py
+@@ -1,277 +1,102 @@
+-"""Bounded own controls, including isolated toy FD files; never Git or the installer."""
++"""Small new adapter/scope fixtures only. No prior control suite, Git or installer."""
+ import sys
+ sys.dont_write_bytecode = True
+ import ast
+ import copy
+ import hashlib
+-import importlib.machinery
+-import importlib.util
+ import json
+ import os
+-import struct
++from pathlib import Path
+ import tempfile
+-from pathlib import Path
+ import exact11_lib as L
+-from exact11_lib import O, BASE, need, parse_index, adoption_fields, safe_rel
+ 
+ 
+-def fd_controls():
+-    results = []
+-
+-    def denied(action):
+-        try:
+-            action()
+-        except RuntimeError:
+-            return
+-        raise RuntimeError('an isolated ownership/content control was not rejected')
+-
+-    def lock_at(path):
+-        fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_RDWR, 0o600)
+-        L.write_complete(fd, L.LOCK_BODY)
+-        L.validate_owned_buffer(path, fd, L.LOCK_BODY)
+-        return fd
+-
+-    with tempfile.TemporaryDirectory(prefix='isolated-fd-controls-', dir=O / 'private') as directory:
+-        root = Path(directory)
+-        packet = root / 'toy-packet'; packet.mkdir()
+-        body = b'owned toy payload'
+-        (packet / 'payload').write_bytes(body)
+-        manifest = {'files': [{'path': 'payload', 'bytes': len(body), 'SHA256': L.sha(body)}],
+-                    'exact_relative_directories': []}
+-        manifest_body = json.dumps(manifest).encode()
+-        (packet / 'MANIFEST').write_bytes(manifest_body)
+-        seal_a = json.dumps({'manifest_SHA256': L.sha(manifest_body)}).encode()
+-        seal_b = json.dumps({'manifest_SHA256': '0' * 64}).encode()
+-        seal_path = packet / 'SEAL'; seal_path.write_bytes(seal_a)
+-        original_read = L.read; calls = [0]
+-
+-        def changed_seal(path):
+-            value = original_read(path)
+-            if Path(path) == seal_path:
+-                calls[0] += 1
+-                seal_path.write_bytes(seal_b)
+-            return value
+-
+-        L.read = changed_seal
+-        try:
+-            observed, _ = L.sealed_namespace(packet, 'SEAL', 'MANIFEST', L.sha(seal_a),
+-                                             'manifest_SHA256', 'files')
+-        finally:
+-            L.read = original_read
+-        need(calls[0] == 1 and observed['manifest_SHA256'] == L.sha(manifest_body)
+-             and seal_path.read_bytes() == seal_b, 'same authenticated seal buffer, not changed pathname bytes')
+-        results.append({'control': 'seal path actually changed after read', 'critical_reads': calls[0],
+-                        'authenticated_and_parsed_original_buffer': True})
+-
+-        alternate = root / 'mutable-alternate'
+-        newraw = b'VALIDATED BUFFER: toy data, not a Git index'
+-        alternate.write_bytes(newraw)
+-        captured = alternate.read_bytes()
+-        alternate.write_bytes(b'CHANGED ALTERNATE PATH')
+-        destination = root / 'toy-destination'; destination.write_bytes(b'old destination')
+-        lock = root / 'toy-lock'; fd = lock_at(lock)
+-        try:
+-            L.publish_buffer(captured, destination, lock, fd)
+-            L.validate_owned_buffer(lock, fd, L.LOCK_BODY)
+-            need(destination.read_bytes() == newraw and destination.read_bytes() != alternate.read_bytes(),
+-                 'publication uses captured validated bytes despite altered alternate')
+-            results.append({'control': 'altered alternate cannot replace validated buffer',
+-                            'installed_bytes_hex': destination.read_bytes().hex(),
+-                            'distinct_owned_lock_retained': True})
+-        finally:
+-            try: L.unlink_owned(lock, fd)
+-            finally: os.close(fd)
+-
+-        path = root / 'short-write'; fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_RDWR, 0o600)
+-        original_write = L.os.write; writes = [0]
+-
+-        def short_write(descriptor, value):
+-            writes[0] += 1
+-            if writes[0] == 1:
+-                raise InterruptedError('isolated interrupted write')
+-            return original_write(descriptor, value[:3])
+-
+-        L.os.write = short_write
+-        try:
+-            L.write_complete(fd, newraw)
+-        finally:
+-            L.os.write = original_write
+-        try:
+-            L.validate_owned_buffer(path, fd, newraw)
+-            need(writes[0] > 2, 'actual short/interrupted writes exercised')
+-            results.append({'control': 'complete interrupted and short writes', 'write_attempts': writes[0],
+-                            'actual_bytes_equal': path.read_bytes() == newraw})
+-        finally:
+-            try: L.unlink_owned(path, fd)
+-            finally: os.close(fd)
+-
+-        path = root / 'zero-write'; fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_RDWR, 0o600)
+-        L.os.write = lambda descriptor, value: 0
+-        try:
+-            denied(lambda: L.write_complete(fd, newraw))
+-        finally:
+-            L.os.write = original_write
+-        try:
+-            need(os.fstat(fd).st_size == 0, 'zero-progress write rejected without hanging')
+-            results.append({'control': 'zero progress rejected', 'actual_file_bytes': 0})
+-        finally:
+-            try: L.unlink_owned(path, fd)
+-            finally: os.close(fd)
+-
+-        path = root / 'foreign-lock'; fd = lock_at(path)
+-        path.unlink(); path.write_bytes(b'foreign inode')
+-        try:
+-            denied(lambda: L.unlink_owned(path, fd))
+-            need(path.read_bytes() == b'foreign inode', 'foreign regular entry retained')
+-            results.append({'control': 'foreign regular inode cleanup rejected', 'foreign_entry_retained': True})
+-        finally:
+-            os.close(fd)
+-
+-        target = root / 'owned-target'; fd = lock_at(target)
+-        link = root / 'symlink-lock'; link.symlink_to(target)
+-        try:
+-            denied(lambda: L.unlink_owned(link, fd))
+-            need(link.is_symlink() and target.read_bytes() == L.LOCK_BODY, 'symlink and its target retained')
+-            results.append({'control': 'symlink to owned inode cleanup rejected', 'symlink_and_target_retained': True})
+-        finally:
+-            os.close(fd)
+-
+-        destination.write_bytes(b'old destination')
+-        lock = root / 'sibling-control-lock'; fd = lock_at(lock)
+-        original_mkstemp = L.tempfile.mkstemp; substituted = []
+-
+-        def changed_sibling(*args, **kwargs):
+-            sibling_fd, name = original_mkstemp(*args, **kwargs)
+-            path = Path(name); path.unlink(); path.write_bytes(b'foreign final sibling')
+-            substituted.append(path)
+-            return sibling_fd, name
+-
+-        L.tempfile.mkstemp = changed_sibling
+-        try:
+-            denied(lambda: L.publish_buffer(newraw, destination, lock, fd))
+-        finally:
+-            L.tempfile.mkstemp = original_mkstemp
+-        try:
+-            need(destination.read_bytes() == b'old destination'
+-                 and substituted[0].read_bytes() == b'foreign final sibling',
+-                 'substituted sibling rejected before replacement and never cleaned as owned')
+-            results.append({'control': 'final sibling inode substitution rejected',
+-                            'destination_unchanged': True, 'foreign_sibling_retained': True})
+-        finally:
+-            try: L.unlink_owned(lock, fd)
+-            finally: os.close(fd)
+-
+-        path = root / 'changed-content'; fd = lock_at(path)
+-        os.lseek(fd, 0, os.SEEK_SET); original_write(fd, b'changed')
+-        try:
+-            denied(lambda: L.validate_owned_buffer(path, fd, L.LOCK_BODY))
+-            results.append({'control': 'changed owned FD content rejected', 'actual_bytes_changed': True})
+-        finally:
+-            try: L.unlink_owned(path, fd)
+-            finally: os.close(fd)
+-    return results
++def denied(action):
++    try:
++        action()
++    except RuntimeError:
++        return
++    raise RuntimeError('required rejection missing')
+ 
+ 
+ def main():
+     results = []
++    original = L.obj(L.O / 'inputs/stage-OVERLAY_MANIFEST.json')['files']
++    plan = L.obj(L.O / 'inputs/stage-INSTALLATION_PLAN.json')
++    rows = L.overlay_rows(original, plan)
++    bad = copy.deepcopy(original)
++    bad[2]['path'] = 'research/five-outgoing-centers-alpha16/assets/five_centers.tex'
++    denied(lambda: L.overlay_rows(bad, plan))
++    denied(lambda: L.overlay_rows(original[:2] + original[3:], plan))
++    results.append({'control': 'article-root TeX mapping and exact11 coverage', 'both_losses_rejected': True})
++    template = L.obj(L.O / 'ROOT_ADOPTION_TEMPLATE.json')
++    denied(lambda: L.adoption_fields(template))
++    denied(lambda: L.adoption_fields(L.obj(L.O / 'inputs/root-five-centers-mixed-face-stage-reading-20261115.json')))
++    prior = L.obj(L.O / 'inputs/stage-ROOT_WEBSITE_GO.json')['prior_stage_adoption']
++    # Held prior receipt body, not its original path and never current production authority.
++    baseline = L.obj(L.O / 'inputs/stage-WEBSITE_BASELINE.json')
++    old = next(r for r in baseline['files'] if r['path'] == prior['path'])
++    denied(lambda: L.adoption_fields(json.loads(L.pin(L.S / old['blob'], old))))
++    results.append({'control': 'false template, source-only reading and prior-pair authority', 'all_rejected': True})
++    raw = L.read(L.O / 'private/retained-approved-index')
++    targets = {('public/' + r['path']).encode() for r in rows}
++    index = L.parse_index(raw, targets)
++    L.need(index['count'] == 58554 and index['protected_record_count'] == 58552, 'new-scope retained records')
++    path, record = index['protected'][0]
++    offset = raw.find(record)
++    L.need(offset >= 12 and raw.count(record) == 1, 'unique protected native record')
++    changed = bytearray(raw); changed[offset] ^= 1
++    changed[-20:] = hashlib.sha1(changed[:-20]).digest()
++    altered = L.parse_index(bytes(changed), targets)
++    L.need(altered['protected'] != index['protected'], 'native stat-byte preservation catches real loss')
++    results.append({'control': 'new58552 native protection detects stat change', 'detected': True})
++    with tempfile.TemporaryDirectory(prefix='new-scope-toy-', dir=L.O / 'private') as directory:
++        root = Path(directory)
++        old_w, old_run = L.W, L.subprocess.run
++        calls = [0]
+ 
+-    def rejected(label, action):
++        def forbidden_run(*args, **kwargs):
++            calls[0] += 1
++            raise AssertionError('subprocess must not be reached')
++
++        (root / 'held').write_bytes(b'owned toy')
++        L.W, L.subprocess.run = root, forbidden_run
+         try:
+-            action()
+-        except (RuntimeError, ValueError, struct.error):
+-            results.append({'control': label, 'rejected': True})
+-        else:
+-            raise RuntimeError('missed control: ' + label)
+-
+-    for name in ['exact11_lib.py', 'preflight.py', 'install_exact.py', 'controls.py', 'verify_preparation.py']:
+-        ast.parse((O / name).read_text())
+-    installer = ast.parse((O / 'install_exact.py').read_text())
+-    main_body = next(n for n in installer.body if isinstance(n, ast.FunctionDef) and n.name == 'main').body
+-    gate = next(i for i, n in enumerate(main_body) if isinstance(n, ast.Assign)
+-                and isinstance(n.value, ast.Call) and getattr(n.value.func, 'id', '') == 'root_adoption')
+-    dispatch = next(i for i, n in enumerate(main_body) if isinstance(n, ast.If))
+-    need(gate < dispatch, 'root adoption gate before mutation dispatch')
+-    tree = ast.parse((O / 'exact11_lib.py').read_text())
+-    # Only imports, literal/path assignments, and function definitions occur at library top level.
+-    need(not any(isinstance(n, (ast.With, ast.For, ast.While, ast.If, ast.Expr))
+-                 and not (isinstance(n, ast.Expr) and isinstance(n.value, ast.Constant)) for n in tree.body),
+-         'inert library top level')
+-    template = json.loads((O / 'ROOT_ADOPTION_TEMPLATE.json').read_bytes())
+-    rejected('false-authority preparation template', lambda: adoption_fields(template))
+-    valid = copy.deepcopy(template)
+-    valid['template_not_root_receipt'] = False
+-    flags = ['root_stage_adopted', 'independent_code_audit_adopted',
+-             'complete_current_helper_and_rendered_output_adopted', 'production_install_authorized']
+-    for key in flags:
+-        valid[key] = True
+-    adoption_fields(valid)  # Memory-only field fixture; no receipt or authority is created.
+-    for key in flags:
+-        bad = copy.deepcopy(valid); bad[key] = 1
+-        rejected('integer is not explicit boolean authority: ' + key, lambda bad=bad: adoption_fields(bad))
+-    bad = copy.deepcopy(valid); bad['commit_message'] = 'x\0y'
+-    rejected('invalid message rejected before mutation', lambda: adoption_fields(bad))
+-    for text in ['../public/file', '/public/file', 'research/../file', 'research\\file']:
+-        rejected('path escape ' + text, lambda text=text: safe_rel(text))
+-
+-    raw = (O / 'private/shared-index.before').read_bytes()
+-    overlay = json.loads((O.parents[0] / 'lefschetz-link-private-stage-sol-20261115/OVERLAY_MANIFEST.json').read_bytes())['files']
+-    targets = {('public/' + r['path']).encode() for r in overlay}
+-    parsed = parse_index(raw, targets)
+-    need(parsed['count'] == json.loads((O / 'PREFLIGHT_CAPTURE.json').read_bytes())['Git']['index_record_count'],
+-         'actual fresh index extent, no inherited count')
+-    bad = bytearray(raw); bad[-1] ^= 1
+-    rejected('whole index checksum corruption', lambda: parse_index(bytes(bad), targets))
+-
+-    def changed(offset, value):
+-        bad = bytearray(raw); bad[offset:offset + len(value)] = value
+-        bad[-20:] = hashlib.sha1(bad[:-20]).digest()
+-        return bytes(bad)
+-
+-    rejected('unsupported v3 index', lambda: parse_index(changed(4, struct.pack('>I', 3)), targets))
+-    rejected('unmerged flags', lambda: parse_index(changed(72, b'\x10\x00'), targets))
+-    first_path = parsed['entries'][0][0]
+-    path_start = 12 + 62
+-    end = path_start + len(first_path)
+-    rejected('nonzero native padding', lambda: parse_index(changed(end, b'X'), targets))
+-    protected_path, protected_record = parsed['protected'][0]
+-    start = raw.find(protected_record)
+-    need(start >= 12 and raw.count(protected_record) == 1, 'unique actual protected raw record')
+-    for offset, label in [(0, 'stat bytes'), (24, 'mode'), (40, 'object identity')]:
+-        bad = bytearray(raw); bad[start + offset] ^= 1
+-        bad[-20:] = hashlib.sha1(bad[:-20]).digest()
++            denied(lambda: L.read(root / 'held'))
++            denied(lambda: L.namespace(root))
++            denied(lambda: L.git('rev-parse', 'HEAD'))
++            L.need(calls[0] == 0, 'source-only gate precedes any subprocess')
++        finally:
++            L.W, L.subprocess.run = old_w, old_run
++        results.append({'control': 'live read/list/Git gates exercised against owned toy root', 'subprocess_calls': calls[0]})
++        lock = root / 'toy-lock'; fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_RDWR, 0o600)
++        L.write_complete(fd, L.LOCK_BODY)
++        destination = root / 'toy-destination'; destination.write_bytes(b'old')
++        alternate = root / 'toy-alternate'; alternate.write_bytes(b'validated130131')
++        captured = alternate.read_bytes(); alternate.write_bytes(b'changed')
+         try:
+-            altered = parse_index(bytes(bad), targets)
+-        except RuntimeError:
+-            results.append({'control': 'protected raw ' + label, 'rejected': True})
+-        else:
+-            need(altered['protected'] != parsed['protected'], 'raw preservation fence detects ' + label)
+-            results.append({'control': 'protected raw ' + label, 'rejected': True})
+-
+-    loader = importlib.machinery.SourceFileLoader('exact11_memory_hook', str(O / 'hooks/pre-push'))
+-    spec = importlib.util.spec_from_loader(loader.name, loader)
+-    hook = importlib.util.module_from_spec(spec); loader.exec_module(hook)
+-    commit = 'a' * 40; url = 'memory://explicit-origin'
+-    args = ['pre-push', 'origin', url]
+-    environment = {'EXACT11_APPROVED_COMMIT': commit,
+-                   'EXACT11_APPROVED_PUSH_URL_SHA256': hashlib.sha256(url.encode()).hexdigest()}
+-    body = (commit + ' ' + commit + ' refs/heads/master ' + BASE + '\n').encode()
+-    need(hook.accepted(args, environment, body), 'positive pure actual-advertisement fixture')
+-    bad_bodies = [b'', body + body, body.replace(BASE.encode(), b'b' * 40),
+-                  body.replace(b'refs/heads/master', b'refs/heads/other'),
+-                  body.replace(commit.encode(), b'c' * 40),
+-                  b'(delete) ' + commit.encode() + b' refs/heads/master ' + BASE.encode() + b'\n']
+-    for i, bad in enumerate(bad_bodies):
+-        need(not hook.accepted(args, environment, bad), 'advertisement control ' + str(i))
+-        results.append({'control': 'actual advertisement ' + str(i), 'rejected': True})
+-    need(not hook.accepted(['pre-push', 'other', url], environment, body)
+-         and not hook.accepted(['pre-push', 'origin', url + '/other'], environment, body),
+-         'wrong remote name or actual push URL rejected')
+-    fd_results = fd_controls()
+-    print(json.dumps({'status': 'PASS_BOUNDED_STATIC_MEMORY_AND_ISOLATED_FD_CONTROLS', 'controls': results,
+-                      'new_actual_FD_controls': fd_results,
+-                      'false_authority_dictionaries_only_in_memory': True, 'Git_or_installer_executed': False,
+-                      'network_or_subprocess': False, 'writes_only_new_private_toy_fixtures': True,
+-                      'actual_Git_index_or_object_or_ref_or_public_mutations': False}, indent=2))
++            L.publish_buffer(captured, destination, lock, fd)
++            L.validate_owned_buffer(lock, fd, L.LOCK_BODY)
++            L.need(destination.read_bytes() == captured, 'current compiled FD helper publishes captured whole buffer')
++            results.append({'control': 'compiled current FD buffer/retained distinct lock', 'passed': True})
++        finally:
++            try: L.unlink_owned(lock, fd)
++            finally: os.close(fd)
++        target = root / 'owned'; fd = os.open(target, os.O_CREAT | os.O_EXCL | os.O_RDWR, 0o600)
++        alias = root / 'foreign-link'; alias.symlink_to(target)
++        try:
++            denied(lambda: L.unlink_owned(alias, fd))
++            L.need(alias.is_symlink() and target.exists(), 'lstat refusal retains substituted symlink and target')
++            results.append({'control': 'current cleanup refuses symlink to owned inode', 'retained': True})
++        finally:
++            os.close(fd)
++    for name in L.CODE_FILES:
++        ast.parse(L.read(L.O / name).decode())
++    L.need(L.LIVE_AUTHORIZED is False, 'no authority enabled by controls')
++    print(json.dumps({'status': 'PASS_NEW_BOUNDED_SOURCE_ADAPTER_AND_TOY_CONTROLS', 'controls': results,
++                      'old_fault_renderer_native_scientific_campaigns_executed': False,
++                      'actual_website_dot_git_or_Git_subprocess_access': False,
++                      'writes_only_new_private_toy_namespace': True}, indent=2))
+ 
+ 
+ if __name__ == '__main__':
+--- approved-v2/verify_preparation.py
++++ current130131/verify_preparation.py
+@@ -1,105 +1,113 @@
+-"""Standalone pure preparation custody. No project imports, network, subprocess or writes."""
++"""Pure source-only custody. No project imports, live paths, network, subprocess or writes."""
+ from pathlib import Path, PurePosixPath
+ import hashlib
+ import json
+ import sys
+ 
+ O = Path(__file__).resolve().parent
++P = O.parent.parent
++W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ EXCLUDED = {'PREPARATION_MANIFEST.json', 'PREPARATION_SEAL.json', 'PREPARATION_CLOSURE.json'}
+-N = 0
++CHECKS = 0
+ 
+ 
+ def need(ok, label):
+-    global N
+-    N += 1
++    global CHECKS
++    CHECKS += 1
+     if not ok:
+         raise ValueError(label)
+ 
+ 
+ def read(path):
+-    need(path.is_file() and not path.is_symlink() and path.resolve() == path, 'real regular input')
++    need(path != W and W not in path.parents and '.git' not in path.parts, 'source-only, never a live descriptor')
++    need(not path.is_symlink() and path.is_file() and path.resolve() == path, 'real regular held input')
+     return path.read_bytes()
+ 
+ 
+-def digest(path):
+-    return hashlib.sha256(read(path)).hexdigest()
++def sha(body):
++    return hashlib.sha256(body).hexdigest()
+ 
+ 
+ def obj(path):
+     return json.loads(read(path))
+ 
+ 
+-def pinned(root, row):
+-    rel = PurePosixPath(row['path'])
+-    need(not rel.is_absolute() and '..' not in rel.parts and str(rel) == row['path'], 'safe exact payload path')
+-    path = root / rel
++def pin(path, row):
+     body = read(path)
+-    need(len(body) == row['bytes'] and hashlib.sha256(body).hexdigest() == row['SHA256'], 'whole owned bytes')
++    need(len(body) == row['bytes'] and sha(body) == row['SHA256'], 'whole source-only input')
++    return body
++
++
++def names(root):
++    entries = list(root.rglob('*'))
++    need(not any(p.is_symlink() for p in entries), 'no held namespace symlinks')
++    return {p.relative_to(root).as_posix() for p in entries if p.is_file()}
+ 
+ 
+ def main():
+-    need(sys.argv[1:] in [[], ['--preseal']], 'bounded pure custody options')
++    need(sys.argv[1:] in [[], ['--preseal']], 'bounded pure option')
+     preseal = sys.argv[1:] == ['--preseal']
+     manifest = obj(O / 'PREPARATION_MANIFEST.json')
+-    names = [r['path'] for r in manifest['files']]
++    paths = []
+     for row in manifest['files']:
+-        pinned(O, row)
+-    actual = {p.relative_to(O).as_posix() for p in O.rglob('*') if p.is_file()}
+-    need(len(names) == len(set(names)) and actual - EXCLUDED == set(names), 'whole preparation extent')
+-    need(not (O / 'run-state').exists(), 'preparation has not executed installation')
+-    need((O / 'hooks/pre-push').stat().st_mode & 0o7777 == 0o555, 'read-only executable guard')
+-    capture = obj(O / 'PREFLIGHT_CAPTURE.json')
+-    git = capture['Git']
+-    need(digest(O / 'private/shared-index.before') == git['index_SHA256']
+-         and digest(O / 'private/protected-index.raw-records') == git['protected_raw_records_SHA256'],
+-         'whole native index and all protected raw records')
+-    need(git['index_record_count'] - git['protected_record_count'] == 2, 'fresh index protects all except two existing aggregates')
+-    need(digest(O / 'private/staged-deletions.z') == capture['staged_deletions']['SHA256'], 'whole staged deletion list')
+-    for row in obj(O / 'REFERENCES.json')['files']:
+-        path = Path(row['path']); body = read(path)
+-        need(len(body) == row['bytes'] and hashlib.sha256(body).hexdigest() == row['SHA256'], 'unchanged reference body')
+-    original = obj(O / 'REFERENCES.json')['original_v1_namespace']
+-    original_root = Path(original['root'])
+-    need(sorted(p.relative_to(original_root).as_posix() for p in original_root.rglob('*') if p.is_file())
+-         == original['exact_relative_file_names'], 'whole immutable original v1 namespace')
++        rel = PurePosixPath(row['path'])
++        need(not rel.is_absolute() and '..' not in rel.parts, 'safe owned path')
++        pin(O / str(rel), row); paths.append(row['path'])
++    need(len(paths) == len(set(paths)) and names(O) - EXCLUDED == set(paths), 'complete preparation extent')
++    need(not (O / 'run-state').exists(), 'no installer runtime has occurred')
++    for row in obj(O / 'REFERENCE_BINDINGS.json')['files']:
++        body = pin(Path(row['path']), row)
++        if 'copy' in row:
++            need(body == read(O / row['copy']), 'whole copied original without normalization')
++    source_seals = [
++        ('five-centers-mixed-face-private-stage-sol-20261115',
++         '1fb0b5d399d013a729e3d709e18581e011d1643f88e1622f63dd62d2169cd24f'),
++        ('five-centers-mixed-face-independent-code-audit-sol-20261115',
++         'c80ea0ca5c4aca8137ecf1bffca4c8effad7ddd81489c1c0153e6b150580f4ec')]
++    for kind, (directory, expected) in enumerate(source_seals):
++        root = O.parent / directory
++        seal_bytes = read(root / 'FINAL_SEAL.json')
++        need(sha(seal_bytes) == expected, 'same authenticated actual seal bytes')
++        seal = json.loads(seal_bytes)
++        if kind == 0:
++            data = json.loads(pin(root / 'OWNED_MANIFEST.json', seal['manifest']))
++            rows = [(str(root / name), row) for name, row in data['payloads'].items()]
++            excluded = {'OWNED_MANIFEST.json', 'FINAL_SEAL.json'}
++        else:
++            data = json.loads(pin(root / 'FINAL_MANIFEST.json', seal['bindings']['FINAL_MANIFEST.json']))
++            rows = [(row['path'], row) for row in data['files']]
++            excluded = {'FINAL_MANIFEST.json', 'FINAL_SEAL.json', 'FINAL_CLOSURE.json'}
++            pin(root / 'FINAL_CLOSURE.json', seal['bindings']['FINAL_CLOSURE.json'])
++        need(names(root) == {Path(path).relative_to(root).as_posix() for path, row in rows} | excluded,
++             'exact current writer/audit interfaces and full history extent')
++        for path, row in rows:
++            pin(Path(path), row)
+     template = obj(O / 'ROOT_ADOPTION_TEMPLATE.json')
+     for key in ['root_stage_adopted', 'independent_code_audit_adopted',
+                 'complete_current_helper_and_rendered_output_adopted', 'production_install_authorized']:
+-        need(template[key] is False, 'template grants no authority')
++        need(template[key] is False, 'future template grants no actual authority')
+     need(template['template_not_root_receipt'] is True and template['preparation_final_seal_SHA256'] is None,
+-         'false-authority template only')
+-    for name, value in template['code_files_SHA256'].items():
+-        need(digest(O / name) == value, 'exact full current code pin')
+-    need(obj(O / 'CONTROL_RESULTS.json')['status'] == 'PASS_BOUNDED_STATIC_MEMORY_AND_ISOLATED_FD_CONTROLS', 'bounded own controls')
+-    need(obj(O / 'PREFLIGHT_FINAL.json')['status'] == 'PASS_READ_ONLY_EXACT11_PREFLIGHT', 'actual final live read fences')
+-    for root_name, seal_hash, manifest_key, rows_key in [
+-        ('lefschetz-link-private-stage-sol-20261115',
+-         'b42073395a01c7a60c733627212df7d56f484023662119a215a8b6cb57b89575', 'owned_manifest_SHA256', 'files'),
+-        ('lefschetz-link-independent-code-audit-sol-20261115',
+-         'afe06ee13def341fe2798f25aee2ad971477a442ad6320357f2b3cf2dafa1ed0', 'manifest', 'payloads')]:
+-        root = O.parent / root_name
+-        seal_body = read(root / 'FINAL_SEAL.json')
+-        need(hashlib.sha256(seal_body).hexdigest() == seal_hash, 'actual immutable current writer/audit seal')
+-        seal = json.loads(seal_body); expected = seal[manifest_key]
+-        need(digest(root / 'OWNED_MANIFEST.json') == (expected['SHA256'] if isinstance(expected, dict) else expected),
+-             'current packet manifest seal')
+-        values = obj(root / 'OWNED_MANIFEST.json')[rows_key]
+-        rows = [dict(row, path=name) for name, row in values.items()] if isinstance(values, dict) else values
+-        actual = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file()}
+-        need(actual == {r['path'] for r in rows} | {'OWNED_MANIFEST.json', 'FINAL_SEAL.json'}, 'whole current packet extent')
+-        for row in rows:
+-            pinned(root, row)
++         'never a self-created root receipt')
++    for path, value in template['code_files_SHA256'].items():
++        need(sha(read(O / path)) == value, 'whole current body pin')
++    contract = obj(O / 'HELD_BASELINE_CONTRACT.json')
++    need(contract['source_data_only'] is True and contract['current_live_website_dot_git_or_remote_requeried_by_preparation'] is False,
++         'held-data observation not a fresh live scan')
++    need(sha(read(O / 'private/retained-approved-index')) == contract['Git']['index_SHA256']
++         and contract['Git']['index_record_count'] == 58554
++         and contract['Git']['protected_record_count'] == 58552, 'new-scope held whole native index buffer')
++    need(obj(O / 'SOURCE_ONLY_PREFLIGHT.json')['status'] == 'PASS_SOURCE_ONLY_HELD_PREFLIGHT', 'actual new read-only closure')
++    need(obj(O / 'CONTROL_RESULTS.json')['status'] == 'PASS_NEW_BOUNDED_SOURCE_ADAPTER_AND_TOY_CONTROLS', 'necessary new bounded fixtures')
++    need((O / 'hooks/pre-push').stat().st_mode & 0o7777 == 0o555, 'prepared read-only executable hook')
+     if not preseal:
+         seal = obj(O / 'PREPARATION_SEAL.json')
+-        need(digest(O / 'PREPARATION_MANIFEST.json') == seal['MANIFEST_SHA256']
+-             and digest(O / 'PREPARATION_CLOSURE.json') == seal['CLOSURE_SHA256'], 'final preparation seal')
+-        need(seal['owned_payload_count'] == len(names), 'final complete payload extent')
+-    print(json.dumps({'status': 'PREPARATION_CUSTODY_PASS', 'mode': 'preseal' if preseal else 'final',
+-                      'checks': N, 'owned_payload_count': len(names),
+-                      'protected_index_records': git['protected_record_count'],
+-                      'separate_stage_and_audit_root_reading_adopted': True,
+-                      'v2_preparation_root_adopted': False, 'installation_or_push_executed': False,
+-                      'project_imports_network_subprocess_science_or_writes': False}, sort_keys=True))
++        need(sha(read(O / 'PREPARATION_MANIFEST.json')) == seal['MANIFEST_SHA256']
++             and sha(read(O / 'PREPARATION_CLOSURE.json')) == seal['CLOSURE_SHA256'], 'final immutable preparation')
++        need(seal['owned_payload_count'] == len(paths), 'complete final extent')
++    print(json.dumps({'status': 'PASS_SOURCE_ONLY_PREPARATION_CUSTODY', 'mode': 'preseal' if preseal else 'final',
++                      'checks': CHECKS, 'owned_payload_count': len(paths), 'held_protected_native_records': 58552,
++                      'website_or_dot_git_access': False, 'project_imports_network_subprocess_science_or_writes': False,
++                      'installation_or_publication_authority': False}, sort_keys=True))
+ 
+ 
+ if __name__ == '__main__':
