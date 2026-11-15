@@ -1,0 +1,55 @@
+{
+  "status": "PASS_PURE_REDIRECT_URL_PARSER_CONTROLS",
+  "node": "v22.16.0",
+  "positive_cases": [
+    {
+      "suffix": "",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/"
+    },
+    {
+      "suffix": "#result",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/#result",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/#result"
+    },
+    {
+      "suffix": "?utm_source=legacy#result",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?utm_source=legacy#result",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?utm_source=legacy#result"
+    },
+    {
+      "suffix": "?a=1&a=2&q=a%2Bb+space#result",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?a=1&a=2&q=a%2Bb+space#result",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?a=1&a=2&q=a%2Bb+space#result"
+    },
+    {
+      "suffix": "?next=https%3A%2F%2Fevil.example%2F#result",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?next=https%3A%2F%2Fevil.example%2F#result",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?next=https%3A%2F%2Fevil.example%2F#result"
+    },
+    {
+      "suffix": "?q=%23result#r%C3%A9sultat",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?q=%23result#r%C3%A9sultat",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?q=%23result#r%C3%A9sultat"
+    },
+    {
+      "suffix": "?x=1#//evil.example/path",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?x=1#//evil.example/path",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/?x=1#//evil.example/path"
+    },
+    {
+      "suffix": "?#",
+      "expected": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/",
+      "actual": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/"
+    }
+  ],
+  "changed_script_controls_rejected": [
+    "query discarded",
+    "fragment discarded",
+    "destination changed"
+  ],
+  "actual_browser_navigation": false,
+  "network_requests": 0,
+  "files_written": 0,
+  "no_Javascript_fallback": "Clean canonical destination via static meta refresh and visible link; no claim of preserving query without JavaScript."
+}
