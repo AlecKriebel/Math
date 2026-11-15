@@ -1,0 +1,7 @@
+# Informed read-only support
+
+The reused metadata support reviewer read all six current helper bodies and checked their code pins, the full writer GO, baseline metadata and both actual article heads/mains. It confirmed528source files and611baseline rows=605public+6external, with the actual GO preceding the fresh baseline. It found no concrete integration, licensing, native-order or history defect in the produced files.
+
+It checked all eleven paired candidate buffers and all seven downloads in full, exact adopted mains apart from the initial main ID, all90prior ordered index entries and the original91sitemap nodes/raw prefix. It confirmed the correct127mixedZIP omission and128TeX/ZIP/PDF broadCCBY grants, original dates/versions/absent fields and separate publication gates. An initial element-serialization comparison reflected the last old sitemap node's whitespace tail before the insertion; original content and raw bytes remained intact, so this was not an output defect.
+
+It reported one limited hardening gap: the first standalone verifier did not require the exact baseline manifest path set=605public+6requiredexternal rows. The actual manifest contained all611rows. This explicit guard was added in the corrected verifier. The review performed no file writes, rendering, website/source/Git/network mutation, scientific replay or root code adoption. It is informed implementation support, not a new independent scientific review.
