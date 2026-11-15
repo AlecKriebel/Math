@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""Exact11 actual advertisement guard; pure stdin, no network or file writes."""
+import hashlib
+import os
+import re
+import sys
+sys.dont_write_bytecode = True
+BASE = '27cd946786754d66b44cbb309dae76da238b133e'
+
+
+def accepted(args, environment, body):
+    expected = environment.get('EXACT11_APPROVED_COMMIT', '')
+    remote_sha = environment.get('EXACT11_APPROVED_PUSH_URL_SHA256', '')
+    if len(args) != 3 or args[1] != 'origin' or not re.fullmatch('[0-9a-f]{40}', expected):
+        return False
+    if hashlib.sha256(args[2].encode()).hexdigest() != remote_sha:
+        return False
+    lines = body.splitlines()
+    if len(lines) != 1:
+        return False
+    parts = lines[0].split()
+    if len(parts) != 4:
+        return False
+    local_ref, local_oid, remote_ref, remote_oid = parts
+    return (local_oid == expected.encode() and remote_ref == b'refs/heads/master'
+            and remote_oid == BASE.encode() and not local_ref.startswith(b'(delete)')
+            and local_oid != b'0' * 40)
+
+
+if __name__ == '__main__':
+    if not accepted(sys.argv, os.environ, sys.stdin.buffer.read()):
+        raise SystemExit('Exact11 push guard rejected the actual remote advertisement')

@@ -1,0 +1,179 @@
+                                  Negative answers to the printed
+                                   totally mixed face questions
+                                                     Alec Kriebel∗
+
+                                          October 17, 2026       Version 1.0.0
+
+
+
+                                                       Abstract
+              For two polytopes, retain the faces of their Minkowski sum whose two canonical summands
+          have positive dimensions and whose dimension is the sum of those dimensions. This is the
+          deﬁnition in Payne’s printed Oberwolfach question. Let D be the standard four-simplex and
+          I = [0, 1]. For the full-dimensional lattice polytopes D × I and (−D) × I in R5 , the qualifying-
+          face order complex is a disjoint union of two connected pure graphs, each with 50 vertices and 60
+          edges. Its rational Betti numbers are (2, 22, 0, . . .). Thus both printed assertions, shellability and
+          the homology of a wedge of three-spheres, fail. The shared interval factor deliberately produces
+          a nongeneric example. The argument concerns the printed additive-dimension deﬁnition; it does
+          not settle shellability for the diﬀerent mixed faces used in stable tropical intersections.
+
+
+1        The exact question and the example
+Payne’s question [1, p. 2464, Problem 3] concerns polytopes P1 , P2 ⊂ Rn and those faces F = F1 +F2
+satisfying
+                        dim Fi > 0 (i = 1, 2),     dim F = dim F1 + dim F2 .                     (1)
+It asks whether their inclusion poset is shellable and whether its realization has the rational ho-
+mology of a wedge of (n − 2)-spheres. There is no stated general-position assumption. We use the
+standard order complex: vertices are qualifying faces and simplices are nonempty strict chains. No
+artiﬁcial extrema are added.
+    For a face exposed by a functional u, its canonical summands are the faces Piu exposed by the
+same u. The standard uniqueness theorem for Minkowski-sum faces appears, for example, in [2,
+Lemma 4 of the cited arXiv version]. It also removes an existential ambiguity in (1): if nonempty
+summand faces Gi have G1 + G2 = P1u + P2u , exposure ﬁrst forces Gi ⊆ Piu . For every other
+functional, the two nonnegative deﬁcits between their support functions sum to zero. Each deﬁcit
+is therefore zero, so Gi = Piu .
+Theorem 1. Let D = conv(0, e1 , e2 , e3 , e4 ) ⊂ R4 and I = [0, 1]. For P1 = D×I and P2 = (−D)×I,
+let T be the inclusion poset selected by (1). Its order complex is a disjoint union K ⊔ K, where K
+is a connected pure graph with 50 vertices and 60 edges. In particular,
+
+                    H0 (|T |; Q) = Q2 ,       H1 (|T |; Q) = Q22 ,       Hj (|T |; Q) = 0    (j ≥ 2).
+
+The poset is not shellable, under either pure or standard nonpure shellability, and its realization
+does not have the rational homology asked for in the printed question.
+    ∗
+        Independent researcher. ORCID: 0009-0001-9320-500X.
+
+
+                                                            1
+    Both summands are full-dimensional lattice polytopes in R5 . The proof uses neither empty
+realizations nor low-dimensional sphere conventions. The simplex-diﬀerence geometry is classical
+[2, 3]; the observation used here is the eﬀect of a common interval factor on the exact ﬁlter (1).
+
+
+2    Complete face calculation
+Write v0 = 0, vi = ei , and E = {0, 1, 2, 3, 4}. Every nonempty proper face of D − D is uniquely of
+the form
+
+        F (A, B) = conv{vi : i ∈ A} + conv{−vj : j ∈ B},         ∅ ̸= A, B ⊂ E,     A ∩ B = ∅.
+
+Indeed, for a nonzero functional u, take A and B to be its maximum and minimum index sets.
+They are disjoint because the vertices aﬃnely span R4 . Conversely, assign values 1, −1, 0 on A, B
+and the remainder, and subtract the value at v0 to obtain a linear functional with exactly these
+extrema.
+   The two summand direction spaces intersect only at zero: a vector in their intersection gives
+an aﬃne dependence on the disjoint vertex sets, with coeﬃcient sum zero on each set. Aﬃne
+independence makes every coeﬃcient zero. Consequently,
+
+            dim F (A, B) = |A| + |B| − 2,       dim Du = |A| − 1,     dim(−D)u = |B| − 1.            (2)
+
+Moreover,
+                            F (A, B) ⊆ F (C, L)     ⇐⇒     A ⊆ C, B ⊆ L.                             (3)
+For the nontrivial direction, evaluate every vi − vj , i ∈ A, j ∈ B, against a functional exposing
+F (C, L). Attaining the maximum diﬀerence forces i ∈ C, j ∈ L. The reverse direction follows
+directly from convex hulls.                                                           ( )( )
+     Thus the base qualiﬁers have sizes (|A|, |B|) = (2, 2), (2, 3), (3, 2). There are 52 32 = 30 minimal
+                               ( )
+elements of type (2, 2) and 2 52 = 20 maximal elements. Each maximum has three lower minima,
+and each minimum has two upper maxima, obtained by placing its one unused index on either side.
+There are no three-element strict chains. The base order complex K is therefore a pure graph on
+50 vertices with 60 edges.
+     To check connectedness, suppress the degree-two minimal vertices. The resulting graph has
+signed two-subsets A+ , A− of E as vertices, with A+ adjacent to B − exactly when A ∩ B is empty.
+Two distinct intersecting same-sign subsets have the opposite-sign complement of their union as a
+common neighbor. If two same-sign subsets are disjoint, a two-subset containing one element of each
+intersects both; apply the preceding path twice. All vertices of a ﬁxed sign therefore connect, and
+every vertex has a neighbor of the other sign. The graph, and hence its subdivision K, is connected.
+Contracting a spanning tree shows that K is homotopy equivalent to a wedge of 60 − 50 + 1 = 11
+circles.
+     Now P1 + P2 = (D − D) × [0, 2]. A functional (u, t) with t > 0 or t < 0 exposes an upper or
+lower endpoint face; its summand dimensions and qualiﬁcation are exactly the base ones. If t = 0,
+write a, b for the base summand dimensions and c for the base sum dimension. The two summands
+then contain the interval factor, so their dimensions sum to a + b + 2, while their sum has dimension
+c + 1 ≤ a + b + 1. No such face passes (1). If u = 0, t ̸= 0, the additional horizontal end face has
+dimension 4 but both summands have dimension 4, so it also fails. The whole sum has dimensions
+(5, 5, 5) and fails; the empty face fails positivity.
+     These cases exhaust all faces. The qualifying poset is precisely two endpoint copies of the base
+poset, with no cross-comparisons. This proves the asserted decomposition and homology.
+
+                                                   2
+   In any proposed shelling, the ﬁrst edge from the component diﬀerent from the initial edge has
+empty intersection with the preceding facets. That intersection has dimension −1, whereas a new
+edge requires a pure zero-dimensional intersection [4, Deﬁnition 2.1]. This rules out both shellability
+conventions. Finally, a wedge of three-spheres, including the zero-fold point, is connected and has
+no ﬁrst homology. The same obstruction would persist if one replaced the printed sphere dimension
+by n − 3.
+
+
+3    Related results, scope, and veriﬁcation
+For comparison, D3 and −D3 in R3 yield just six incomparable qualifying faces: the index pairs
+partition four vertices into two pairs. Their order complex is six points. This refutes the printed
+wedge-of-circles homology assertion but is shellable in dimension zero. Scaled opposite tetrahedra
+and their six-ray geometry already occur in Sturmfels–Tevelev [3, Examples 1.3 and 4.10]; this
+lower-dimensional control is not presented as new. The ﬁve-dimensional example is needed here for
+nonshellability.
+   The term mixed has several diﬀerent deﬁnitions. In the published Adiprasito et al. paper [5,
+Section 1.2], totally mixed faces require facets of the summands. That counting theorem is not
+used. The public 2020 manuscript underlying Adiprasito’s 2024 article [6, p. 2, Corollary 1.3 of the
+public manuscript] instead selects faces satisfying
+                            (∑      )
+                      dim         Fi ≥ |J| for every nonempty index subset J.
+                            i∈J
+
+For two summands this is broader than (1). For instance, a proper vertical face F (A, B) × [0, 2]
+with |A| = |B| = 2 has summand dimensions 2, 2 and sum dimension 3. It meets that lower-bound
+criterion but fails additivity. Such vertical faces are absent from our poset. The counterexample
+therefore does not contradict the diﬀerent stable-intersection theorem, or resolve its shellability
+question. Related tropical link obstructions occur in Hiatt–Simpson–Wang–Wu’s revised 2026
+construction [7, Section 8]. Its Schön variety in (C∗ )8 is a diﬀerent object; no identiﬁcation with
+this two-summand exact face poset is supplied or assumed here.
+    The supplement records a bounded primary-source priority audit, including current versions
+and related tropical results. No earlier counterexample or theorem settling nonshellability for this
+exact poset was identiﬁed. Such a result, together with the classical homology antecedent, would
+already settle both assertions. This is not an exhaustive literature or ﬁrst-ever priority certiﬁcate.
+The 2024 journal metadata for [6] was veriﬁed, but its paywalled ﬁnal body was not inspected; the
+deﬁnition comparison above is explicitly with the public 2020 manuscript.
+    Two independently authored standard-library programs accompany the analytic proof. One
+reconstructs facets and their intersection lattice from integer coordinates, all 543 nonempty sum
+faces, and all 8649 summand-face pairs. The other independently constructs the order complex and
+its signed rational boundaries, obtaining boundary rank 98. Both run with explicit exceptions in
+ordinary and optimized Python; positive and adverse controls are included. These computations
+are supplementary, and the proof above requires no program.
+    AI and review disclosure. AI tools were used extensively in developing, verifying, research-
+ing, and writing this result and its supporting materials. This preprint is unrefereed. Independent
+adversarial AI reviews do not constitute external human peer review, journal acceptance, or formal
+proof-assistant certiﬁcation.
+
+
+
+
+                                                   3
+References
+[1] S. Payne, The complex of totally mixed faces, Problem 3 in J. Doolittle (collector), Open Prob-
+    lems, Oberwolfach Report 39/2019, p. 2464. doi:10.4171/OWR/2019/39.
+
+[2] K. Fukuda and C. Weibel, On f -vectors of Minkowski additions of convex polytopes, Discrete
+    Comput. Geom. 37 (2007), 503–516. arXiv:math/0510470v4.
+
+[3] B. Sturmfels and J. Tevelev, Elimination theory for tropical varieties, Math. Res. Lett. 15
+    (2008), 543–562. arXiv:0704.3471.
+
+[4] A. Björner and M. L. Wachs, Shellable nonpure complexes and posets. I, Trans. Amer. Math.
+    Soc. 348 (1996), 1299–1327. doi:10.1090/S0002-9947-96-01534-6.
+
+[5] K. Adiprasito, P. Brinkmann, A. Padrol, P. Paták, Z. Patáková, and R. Sanyal, Colorful sim-
+    plicial depth, Minkowski sums, and generalized Gale transforms, Int. Math. Res. Not. 2019(6),
+    1894–1919 (online 2017). doi:10.1093/imrn/rnx184.
+
+[6] K. Adiprasito, A note on the topology of Minkowski sums and complete intersections, Pure Appl.
+    Math. Q. 20(1) (2024), 17–28. doi:10.4310/PAMQ.2024.v20.n1.a2. Inspected public manuscript:
+    A note on the topology of polyhedral hypersurfaces and complete intersections, July 27, 2020,
+    author PDF.
+
+[7] S. Hiatt, C. Simpson, B. Wang, and C. Wu, Topology and Euler characteristics of tropical
+    varieties, arXiv:2606.10817v2, July 24, 2026. arXiv:2606.10817v2.
+
+
+
+
+                                                4
+

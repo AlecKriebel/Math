@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""One bounded editorial text/metadata/custody comparison, no scientific execution."""
+from pathlib import Path
+import json,hashlib,re,html,datetime
+A=Path(__file__).resolve().parent;P=A.parent.parent;E=P/'papers/23440943/reviews/editorial';src=P/'papers/23440943/sources'
+checks=0
+receipts=[]
+def need(b,s):
+ global checks
+ checks+=1
+ if not b:raise ValueError(s)
+def pin(p):
+ b=p.read_bytes();return {'bytes':len(b),'SHA256':hashlib.sha256(b).hexdigest()}
+def obj(p):return json.loads(p.read_bytes())
+def eq(a,b):
+ if type(a) is not type(b):return False
+ if isinstance(a,dict):return list(a)==list(b) and all(eq(a[k],b[k]) for k in a)
+ if isinstance(a,list):return len(a)==len(b) and all(eq(x,y) for x,y in zip(a,b))
+ return a==b
+def equal(a,b,label):need(eq(a,b),label);receipts.append({'label':label,'whole_types_key_and_list_order_equal':True})
+need(pin(E/'SEAL.json')=={'bytes':1203,'SHA256':'72242af7d1e4565e4ec2682af1e41aa632f4cf862d12d7166017733b2b55e06b'},'neutral owner final seal')
+need(pin(E/'MANIFEST.json')=={'bytes':10012,'SHA256':'114f910ab31cd973708e8fb87519b93c1178790e8f1d94b2c28661d577ef1d37'},'neutral owner final manifest')
+files={str(p.relative_to(E)):pin(p) for p in sorted(E.rglob('*')) if p.is_file()};need(len(files)==59,'whole actual owner59 namespace')
+publication=obj(E/'publication.json');promotion=obj(E/'promotion.json');protocol=obj(E/'SOURCE_PROTOCOL_BINDINGS.json');original=obj(A/'EXPECTED_NATIVE.json');source=obj(src/'SOURCE_READY.json');root=obj(P/'verification/root-clearance-23440943-20261115.json')
+tex=(src/'published-source/asset-001/main.tex').read_text();abst=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',tex,re.S)[1]
+need((E/'ORIGINAL_ABSTRACT.tex').read_text().strip()==abst.strip(),'complete original TeX abstract')
+main=(E/'PUBLIC_MAIN.html').read_text();candidate=(E/'candidate/index.html').read_text();m=re.search(r'<main>.*?</main>',candidate,re.S)
+need(m is not None and main==m[0]+'\n','whole actual main exact candidate')
+abstract=publication['abstract'];need(abstract in (E/'PUBLIC_COPY.md').read_text(),'whole original abstract in public copy');need('<h2>Original abstract</h2><p>'+html.escape(abstract)+'</p>' in main,'whole visible abstract in exact main')
+graph=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',candidate,re.S)[1]);equal(graph,obj(E/'SCHOLARLY_METADATA.json'),'whole scholarly object vs candidate JSONLD');need(graph['abstract']==abstract,'whole JSONLD abstract');need(abstract!=publication['description'],'abstract distinct from SEO summary')
+need(graph['datePublished']==publication['publication_date']=='2026-10-17' and graph['version']==publication['printed_version']==publication['version']=='1.0.0','original dates and printed/native versions')
+need(publication['native_record_created']==source['created'] and publication['native_record_updated']==source['updated'],'native timestamps not publication date')
+need(graph['identifier']=='10.5281/zenodo.23440943' and graph['author']['identifier']=='https://orcid.org/0009-0001-9320-500X','DOI and ORCID')
+need('<meta name="robots" content="noindex,nofollow,noarchive">' in candidate,'private robots')
+need('<object data="totally-mixed-face-posets.pdf" type="application/pdf" width="100%" height="900"' in main,'complete actual object reader grammar')
+need(not re.search(r'display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0',candidate,re.I),'no hidden content')
+need((E/'candidate/citation.bib').read_bytes()==(E/'citation.bib').read_bytes()==publication['prepared_bibtex'].encode(),'whole prepared BibTeX')
+assets=[]
+for native,encoding in zip(source['all_native_assets_in_original_order'],graph['encoding']):
+ name=native['original_api_file_object']['key'];p=Path(native['path']);q=E/'candidate'/name
+ need(pin(p)==pin(q)=={k:native[k] for k in ['bytes','SHA256']},'whole native asset '+name);need(p.read_bytes()==q.read_bytes(),'native full byte equality '+name)
+ need(encoding['encodingFormat']==native['whole_original_native_files_entry']['mimetype'] and encoding['contentUrl']==native['original_api_file_object']['links']['self'],'literal native encoding order and URL '+name);need(encoding['license']=='https://creativecommons.org/licenses/by/4.0/','actual broad encoding CC BY')
+ assets.append({'original':str(p),'copy':str(q.relative_to(E)),**pin(p)})
+need(len(graph['encoding'])==2 and publication['additional_assets']==[],'only original2native assets')
+need(publication['code_license'] is None and root['separate_code_instrument'] is None,'no invented separate code instrument')
+need('including verification code' in publication['rights_notice'] and 'MIT' not in main,'broad CC BY support/code and no MIT invention')
+for k in ['canonical_url','AA','follow_up','native_sheet_aa_url','proposed_canonical_url']:need(publication[k] is None,'private publication null '+k)
+for k in ['rendered_public_copy_approved','production_installation_authorized','ready_to_publish','installed','deployed','live_verified','browser_verified','local_http_verified','native_verified','native_sheet_publication_verified','public_page_published','all203_complete_claimed']:need(promotion[k] is False,'private false gate '+k)
+# Existing whole literal wrappers, not a new custody scheme or semantic science campaign.
+equalities=[]
+def walk(v,path,filename):
+ if isinstance(v,dict):
+  if all(k in v for k in ['original','copy','bytes','SHA256','whole_literal_object']):
+   p=Path(v['original']['path'] if isinstance(v['original'],dict) else v['original']);q=E/v['copy'];need(pin(p)==pin(q)=={k:v[k] for k in ['bytes','SHA256']},'existing raw wrapper binding')
+   equal(obj(p),v['whole_literal_object'],filename+'/'+str(path));need(p.read_bytes()==q.read_bytes(),'whole existing wrapper raw copy')
+   equalities.append({'original':str(p),'original_pointer':[],'copy':filename,'copy_pointer':path+['whole_literal_object'],'label':filename+'/'+str(path)})
+  for k,b in v.items():walk(b,path+[k],filename)
+ elif isinstance(v,list):
+  for i,b in enumerate(v):walk(b,path+[i],filename)
+for n in ['SOURCE_PROTOCOL_BINDINGS.json','publication.json','promotion.json']:walk(obj(E/n),[],n)
+for n,key,path in [('publication.json','source_binding',['source_binding','whole_original_source_ready']),('promotion.json','whole_source_binding',['whole_source_binding','whole_original_source_ready'])]:
+ v=obj(E/n)
+ for k in path:v=v[k]
+ equal(v,source,n+' complete native READY');equalities.append({'original':str(src/'SOURCE_READY.json'),'original_pointer':[],'copy':n,'copy_pointer':path,'label':n+' complete source READY'})
+equal(publication['source_binding']['whole_native_API_objects'],original['whole_original_native_API_objects'],'all4 original API objects')
+equal(publication['source_binding']['whole_ordered_transport_receipts'],original['full_original_transports'],'whole ordered native transports')
+equal(publication['source_binding']['native_assets_in_original_order'],source['all_native_assets_in_original_order'],'whole ordered native asset objects')
+equal(publication['review_metadata']['whole_original_scientific_verdicts'],root['whole_original_scientific_verdicts'],'whole heterogeneous original scientific verdicts')
+equal(promotion['whole_source_binding'],publication['source_binding'],'whole source binding shared unchanged')
+equal(promotion['whole_original_scientific_verdicts'],root['whole_original_scientific_verdicts'],'promotion whole original verdicts')
+now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+(A/'EDITORIAL_REVIEW_BINDINGS.json').write_text(json.dumps({'UTC':now,'editorial_directory':str(E),'files':files,'native_asset_copies':assets,'whole_json_equalities':equalities,'source_scientific_or_owner_code_execution':False},indent=2)+'\n')
+result={'UTC':now,'status':'PASS_BOUNDED_EDITORIAL_TEXT_METADATA_AND_CUSTODY_COMPARISONS','checks':checks,'whole_comparisons':receipts,'owner_files':59,'native_assets':2,'whole_literal_wrapper_comparisons':len(equalities)-2,'no_science_owner_program_campaign_network_or_external_writes':True}
+(A/'COMPARISON_RECEIPTS.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k!='whole_comparisons'}))
