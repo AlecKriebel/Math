@@ -1,0 +1,3 @@
+# Postinitial operation note
+
+One metadata-only coverage display used programme-relative paths while its working directory was the writer folder; it stopped at FileNotFoundError before producing that display. The full writer report/architecture/verdict reading in the same call still completed. The coverage query was then correctly rerun from the programme root and established all597 source files within the607 bindings. No writer/original file was changed. The original initial-checker style-assumption failures are retained separately and are not recast as successful checks. No later source or programme failure was discarded.

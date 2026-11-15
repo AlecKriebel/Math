@@ -11,3 +11,11 @@ Personally read complete actual5PDF/all307TeX/all5 own fresh page images. Substa
 2026-11-15T08:03:42.779579+00:00 — 50%
 
 Recovered actual completed own-control PASS JSON after truncated tool output; no rerun. Frozen exact results before foreign/support bodies: {"primitive_cases": 982, "nonprimitive_and_repeat_cases": 380, "exact_normal_reflection_focal_cases": 399}, plus 28 explicit four-bounce pairs. Parent root gate OPEN received; original CLOSED initial retained. No target-native scientific replay here.
+
+2026-11-15T08:12:01.342782+00:00 — 85%
+
+Actual primary imports and scope/credit checks completed; full derivation/report/verdict drafted. No mathematical defect found in the full stated claim. Historical priority remains unestablished; actual DG publisher403 retained, full body unread. Native code fully inspected after own results froze; no native replay. Final custody closure pending.
+
+2026-11-15T08:15:42.622634+00:00 — 100%
+
+Full original scope/primary review completed. Pure custody verifier PASS:74 inputs,13 ZIP regular occurrences,30 semantic checks. All22 in-memory altered-record/hash falsifiers rejected; actual import under -B left every owned file unchanged and emitted no output. Final manifest includes the completed evidence and this log; terminal closure/seal follows. No scientific replay or source change. Follow-up null.
