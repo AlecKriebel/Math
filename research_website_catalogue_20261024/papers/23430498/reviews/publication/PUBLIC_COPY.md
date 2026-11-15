@@ -22,7 +22,7 @@ The category is smooth, ordered and labelled string links with fixed boundary an
 
 Let 𝓥ₙ(k) be the space of invariants of order at most n, including constants, and let 𝓕ₖ consist of links whose actual three-dimensional exterior group is abstractly the free group F_k. No preferred-meridian-basis condition is imposed. Define 𝓝ₙ(k) = {v ∈ 𝓥ₙ(k) : v(L) = 0 for every L ∈ 𝓕ₖ}.
 
-Let 𝓜ₙ(k) = 𝓥ₙ(k) ∩ ℚ[μ_I : I any multi-index]. This is the intersection with the entire finite polynomial algebra of based Milnor invariants, allowing repeated indices, arbitrary lengths and cancellations in a polynomial presentation.
+Let 𝓜ₙ(k) = 𝓥ₙ(k) ∩ ℚ[μ_I : I any multi-index]. This is the intersection with the entire algebra of finite polynomials in based Milnor invariants, allowing repeated indices, arbitrary lengths and cancellations in a polynomial presentation.
 
 ## Full result
 

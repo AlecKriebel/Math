@@ -1,0 +1,242 @@
+
+--- PHYSICAL PAGE 2 ---
+1798                   EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+first noticed that it is possible to use a modification of the original Hile-Protter
+argument to obtain somewhat complicated inequalities, the two sides of which are
+of the same order for high eigenvalues, when compared with the Weyl asymptotic
+formula for the Dirichlet Laplacian. In the course of understanding Yang’s results,
+we discovered an exact identity which implies Yang’s bound, the Hile-Protter bound
+(2), and several new ones. This identity is the cornerstone of our analysis. We
+emphasize that it is entirely nonvariational.
+
+                              I. An abstract trace formula
+   The operators to which our identity applies are modeled on (1) but potentially
+more general. Let H be a self-adjoint operator with purely discrete spectrum on
+a Hilbert space with inner product denoted h, i. Its eigenvalues and its normalized
+eigenfunctions will be written as λj and uj , respectively, j = 1, 2, . . . . There will
+be a distinguished subset J of the spectrum of H; J c will denote its complement in
+the spectrum, and PJ and PJ c will be the corresponding spectral projections. We
+shall be interested in traces of PJ f (H), where f (z) is any function defined on the
+spectrum of H.
+Theorem 1. Suppose there is a family of symmetric operators Xα and skew sym-
+metric operators Dα , α = 1, . . . , d, such that [Dα , Xα ] = 1, and that H is of the
+form
+                                               X
+                                               d
+(3)                                   H=−            Dα Dα + V,
+                                               α=1
+
+where V is such that [V, Xα ] = 0. Furthermore, suppose that Xα uj is in the domain
+of H for any j and that Dα is H-bounded. Define
+                                   Tαjm := |(Dα uj , um )|2 ≥ 0.
+Then
+       X                        X         f (λj ) − f (λm )          X f (λj )
+(4)            f (λj ) = −2                                 Tαjm + 4           Tαjq ,
+                                              λj − λm                  λq − λj
+       λj ∈J                  λj ,λm ∈J                            λj ∈J
+                               λj 6=λm                             λq ∈J c
+
+provided that these sums converge.
+Remarks.    1. Multiple eigenvalues are counted with their degeneracies.
+  2. In our principal model (1), Dα = (∇ − iA)α , and
+(5)                                        Tj := Σαm Tαmj
+     corresponds to the kinetic energy of the state uj . Moreover, in applications
+     where H = −∇2 , Tj is the usual Dirichlet integral with uk , so Tj = λj . The
+     same is true for purely magnetic Schrödinger operators, H = −(∇ − iA)2 .
+  3. There are other straightforward extensions, which we shall not bother to
+     write explicitly, such as replacing the Laplacian with other constant coefficient
+     elliptic operators. Likewise, we note that the formula extends to the case of
+     continuous spectra when the density of states is well defined. In the latter
+     case the sums become integrals, which must be assumed convergent.
+  4. If H is an abstract operator not necessarily satisfying (3), and [Dα , Xα ] = 1
+     for a particular pair of operators Dα , Xα , we still obtain the identity (6) given
+     below.
+
+--- PHYSICAL PAGE 3 ---
+               TRACE IDENTITIES AND UNIVERSAL EIGENVALUE ESTIMATES                                  1799
+
+
+  5. This identity was suggested by the analysis in [Ya91], where there is an in-
+     equality related to the case J = {λ1 , ..., λn }, f (λj ) = (λn+1 − λj )2 , H = −∇2 .
+     (See Theorem 5, below.)
+
+Proof. We rewrite tr(PJ f (H)) as follows:
+         X
+             f (λj ) = tr(PJ f (H)) = Tr(PJ f (H)[Dα , Xα ])
+         λj ∈J
+
+                         = tr(PJ f (H)[Dα (PJ + PJ c )Xα − Xα (PJ + PJ c )Dα ])
+                         = tr(PJ f (H)[Dα PJ Xα − Xα PJ Dα ])
+                                 + tr(PJ f (H)[Dα PJ c Xα − Xα PJ c Dα ]).
+
+Using the gap formula
+
+                          (λm − λj )hXα uj , um i = h[H, Xα ]uj , um i
+
+we obtain
+
+                                                           X
+  Tr(PJ f (H)(Dα PJ Xα − Xα PJ Dα )) = −2                            f (λj )hXα uj , um ihum , Dα uj i
+                                                         λj ,λm ∈J
+                                                          λj 6=λm
+                         X        f (λk )h[H, Xα ]uj , um ihum , Dα uj i
+                 =2
+                                               λj − λm
+                      λj ,λm ∈J
+                       λj 6=λm
+                       X         f (λj ) − f (λm )
+                 =                                 h[H, Xα ]uj , um ihum , Dα uj i,
+                                     λj − λm
+                     λj ,λm ∈J
+                      λj 6=λm
+
+where in the last step we symmetrized in the two indices. The cross term connecting
+J and J c can be rewritten similarly, except that symmetrization does not apply.
+The result is
+            X                    X        f (λj ) − f (λm )
+                 f (λj ) =                                  h[H, Xα ]uj , um ihum , Dα uj i
+                                              λj − λm
+         λj ∈J               λj ,λm ∈J
+                              λj 6=λm
+(6)                                   X 2f (λj )
+                                 +               h[H, Xα ]uj , uq ihuq , Dα uj i.
+                                        λj − λq
+                                     λj ∈J
+                                     λq ∈J c
+
+
+Identity (4) then follows because [H, Xα ] = −2Dα .
+
+  With the choice f (λ) = (z − λ)2 , identity (4) can be simplified, as follows:
+
+Proposition 2. With the same assumptions as in Theorem 1,
+      X                  X                 X  (z − λj )(z − λq )  X
+(7) d     (z − λj )2 = 4   (z − λj )Tj + 4                            Tαjq .
+                                                   λq − λj
+       λj ∈J                     λj ∈J                   λj ∈J      α
+                                                         λq ∈J c
+
+--- PHYSICAL PAGE 4 ---
+1800                     EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+Proof. The first term on the right in (4) is
+               X         (z − λj )2 − (z − λm )2              X
+        −2                                       Tαjm = 2               (2z − λj − λm )Tαjm
+                                λj − λm
+             λj ,λm ∈J                                      λj ,λm ∈J
+              λj 6=λm
+                                                              X
+                                                       =4               (z − λj )Tαjm
+                                                            λj ,λm ∈J
+
+(because of the symmetry in j, m)
+                   X            X          X
+                =4    (z − λj )   Tαjm − 4   (z − λj )Tαjm .
+                         λj ∈J         all λm            λj ∈J
+                                                        λm ∈J c
+
+Equation (7) now results from summing (4) over α, using (5), and noting that
+                           (z − λj )2               (z − λj )(z − λq )
+                                      − (z − λj ) =                    .
+                            λq − λj                     λq − λj
+
+
+
+       II. The estimates of Hile-Protter and Yang, and extensions
+   Earlier generalizations of the Hile-Protter inequality (2) in [Ha88], [Ho90], [Ha93],
+[HaMi95] had no analogue of the function f , and were on the other hand based on
+variational estimates of eigenvalues. The proof of Theorem 1 is not only more direct
+than the earlier estimates, but it also allows several new corollaries. In addition,
+several of our corollaries are sharp; this will be indicated by the use of the symbol
+#.
+Corollary 3 (#, harmonic oscillator, n = 1, all d).
+                                     d   1X    Tj
+(8)                                    ≤              .
+                                     4   n  λn+1 − λj
+                                            j≤n
+
+Remarks. This includes Hile-Protter (2), since for the Dirichlet Laplacian Tj = λj .
+Because of the virial theorem, for Schrödinger operators there are often substan-
+tially better substitutes for Tj than the inequality Tj ≤ λj , and in this case (8)
+is sharp (see Corollary 3). The Hile-Protter inequality for the Dirichlet Laplacian
+is definitely not sharp, even for the lowest two eigenvalues, for which the sharp
+version is that of Ashbaugh and Benguria [AsBe]. A generalization of inequality
+(8) is given below in Theorem 5.
+Proof. Make the choice f (z) = 1, J = {λ1 , ..., λn }, in (4) and sum over all α from
+1 to d. The first term on the right vanishes and the sum in the second term can be
+extended to all q to yield
+                     X Tαjq           X      Tαjq           X       Tj
+           dn = 4                 ≤4                    =4                .
+                          λq − λj         λn+1 − λj             λn+1 − λj
+                                                                  j≤n
+                           α                 α
+                          j≤n               j≤n
+                         q≥n+1              q≥1
+
+--- PHYSICAL PAGE 6 ---
+1802                 EVANS M. HARRELL II AND JOACHIM STUBBE
+
+
+In particular, with f (λ) = (z − λ)2 , this implies that
+                           dX                 X
+                              n                n
+(12)                             (z − λj )2 ≤     (z − λj )Tj .
+                           4 j=1              j=1
+
+Remarks. For the Dirichlet Laplacian with z = λn+1 , (12) becomes a key formula
+of Yang’s article ([Ya91], above his eq. (24) in the 1991 numbering or above (25)
+in the 1995 numbering), from which the subsequent bounds in that article follow
+readily. As observed by Yang, when n → ∞ with p = 2, both sides have the same
+leading growth rate when we substitute the Weyl asymptotics for λj in the case of
+the Dirichlet Laplacian. On the other hand, if Tj is replaced by σλj , then inequality
+(12) may be interpreted as an inequality on a polynomial of the form
+                                        X        !
+                                                          d + 4σ X 2
+                                             n                    n
+                          2          2σ
+              Pn (z) := nz − 2 1 +              λk z +               λk .
+                                      d                      d
+                                                k=1               k=1
+
+This allows sharper estimates as follows:
+Proposition 6 (# for harmonic oscillator, d = 1). Let H be as in Theorem 1 and
+suppose that the bound (10) holds for some σ ∈ (0, 1]. (Recall that σ =
+β/(2 + β) results from the virial assumption (9) and that σ = 1 applies to the
+Dirichlet Laplacian or a purely magnetic Schrödinger operator.) Then
+  (i) Pn (z) ≤ 0 for all z ∈ [λn , λn+1 ].
+                                  2
+                       1 nP                   1 n
+                                                  P 2
+ (ii) Dn := 1 + 2σ   d   n     λk     − 1 + 4σ
+                                             d  n   λk ≥ 0.
+                           k=1                        k=1
+(iii) [λn , λn+1 ] ⊆ [λ− (n), λ+ (n)], where
+                                            
+                                          2σ 1 X     p
+                                               n
+                         λ± (n) := 1 +           λk ± Dn .
+                                           d n
+                                                  k=1
+
+       In particular, for the gap λn+1 − λn ,
+                                                  p
+                                 λn+1 − λn ≤ 2     Dn .
+Proof of Proposition 6. Statement (i) is a restatement of inequality (12). This im-
+plies that nDn = − min(Pn (z)) is nonnegative, giving (ii). Statement (iii) is merely
+the explicit determination of the upper and lower bounds.
+Discussion. Observe that inequality (ii) goes in the opposite direction from the
+Cauchy-Schwarz inequality. The underlying reason that it implies a simple but
+tight bound (iii) on the gap is that our technique is nonvariational, unlike most
+other gap estimates.
+   For the Dirichlet Laplacian, λj ∼ j 2/d in accordance with Weyl’s asymptotic
+formula, and this saturates our bound at leading order. Inequality (ii) is likewise
+asymptotically sharp for Schrödinger operators, in the sense that for Hamiltonians
+on L2 (Rd ) with power-law potentials,
+                                   H = |p|2 + |x|β ,
+β > 0, such as the harmonic oscillator (β = 2), the corresponding Weyl formula is
+                                      λn ∼ n2σ/d
+[QuRo77], which again saturates the inequality for Dn at leading order.
+
