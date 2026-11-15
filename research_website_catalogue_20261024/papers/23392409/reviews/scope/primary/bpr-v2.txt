@@ -1,0 +1,1433 @@
+                                          Hexagonal patterns in a simplified model for block
+                                                            copolymers
+                                                                   D. P. Bourne1 , M. A. Peletier2 , S. M. Roper1
+
+
+
+
+arXiv:1305.6540v2 [math.AP] 5 Dec 2013
+                                                                                  September 16, 2021
+
+
+                                                                                         Abstract
+                                                     In this paper we study a new model for patterns in two dimensions, inspired by diblock
+                                                 copolymer melts with a dominant phase. The model is simple enough to be amenable
+                                                 not only to numerics but also to analysis, yet sophisticated enough to reproduce hexago-
+                                                 nally packed structures that resemble the cylinder patterns observed in block copolymer
+                                                 experiments.
+                                                     Starting from a sharp-interface continuum model, a nonlocal energy functional involv-
+                                                 ing a Wasserstein cost, we derive the new model using Gamma-convergence in a limit
+                                                 where the volume fraction of one phase tends to zero. The limit energy is defined on
+                                                 atomic measures; in three dimensions the atoms represent small spherical blobs of the
+                                                 minority phase, in two dimensions they represent thin cylinders of the minority phase.
+                                                     We then study minimisers of the limit energy. Numerical minimisation is performed in
+                                                 two dimensions by recasting the problem as a computational geometry problem involving
+                                                 power diagrams. The numerical results suggest that the small particles of the minority
+                                                 phase tend to arrange themselves on a triangular lattice as the number of particles goes to
+                                                 infinity. This is proved in the companion paper [10] and agrees with patterns observed in
+                                                 block copolymer experiments. This is a rare example of a nonlocal energy-driven pattern
+                                                 formation problem in two dimensions where it can be proved that the optimal pattern is
+                                                 periodic.
+
+
+                                         1       Introduction
+                                         Block copolymers are a famous example of a pattern-forming system and even appear in the
+                                         popular-science literature [5]. A diblock copolymer molecule consists of a polymer chain of
+                                         type A bonded covalently to another polymer chain of type B. Because of a repulsive force
+                                         between the A and B chains, in diblock copolymer mixtures the A and B parts separate at
+                                         the microscale to produce a wide variety of patterns including lamellae, cylinders, gyroids,
+                                         and spheres. See Figure 1.
+                                             This spontaneous pattern formation occurs because the A and B blocks repel each other
+                                         and so try to arrange themselves to be as far away from each other as possible under the
+                                         constraint that each A block is bonded covalently to a B block. Apart from being beautiful
+                                         examples of a pattern forming system, block copolymers have the potential to be used as
+                                         microscale structuring agents to develop new materials with prescribed macroscale proper-
+                                         ties [8].
+                                             1
+                                             School of Mathematics and Statistics, University of Glasgow, 15 Univ. Gardens, Glasgow G12 8QW, UK.
+                                             2
+                                             Department of Mathematics and Computer Science and Institute for Complex Molecular Systems, Tech-
+                                         nische Universiteit Eindhoven, PO Box 513, 5600 MB Eindhoven, The Netherlands.
+
+
+                                                                                             1
+Figure 1: Some examples of three-dimensional patterns arising in models of block copolymer
+melts. These figures have been obtained in [16] by numerical minimisation of the Ohta-
+Kawasaki energy functional, a functional that is closely related to the models of this paper.
+
+
+    In this paper we derive a new, idealised model for diblock copolymers. The model is
+applicable in the parameter regime where one phase has a large volume fraction and where
+the repulsive force between the A and the B blocks is large. The starting point in the
+derivation is the following sharp-interface continuum model.
+
+The starting point: a sharp-interface continuum model. Let Ω be the domain oc-
+cupied by the diblock copolymer melt, which we take to be an open, connected and bounded
+subset of Rd , d ≥ 2, with Lipschitz boundary. Let u ∈ BV (Ω; {0, 1}) be a phase indicator,
+where the support of u represents the region occupied by the A blocks, and the support of
+1 − u represents the region occupied by the B blocks. Let m ∈ (0, 1) be the mass fraction of
+A:                                           Z
+                                          1
+                                     m=        u(x) dx.
+                                         |Ω| Ω
+This represents the average volume of the A blocks compared to the B blocks. We assume
+that u = 0 on ∂Ω, implying that the boundary prefers to be in contact with the B phase. Let
+p ∈ [1, ∞). We assign the following energy to u:
+                                                                 
+                                                        1−u u
+                                         Z
+                                     1−d
+                        Ep,m (u) = m d      |∇u| + Wp         ,                       (1.1)
+                                          Ω             1−m m
+
+where Wp is the p-Wasserstein transport cost, which is defined as follows:
+                                Z                                         
+                                              p
+                Wp (µ, ν) = inf    |x − T (x)| dµ : T : Ω → Ω, T# µ = ν
+                                   Ω
+
+for measures µ, ν such that µ(Ω) = ν(Ω) = |Ω| and µ is absolutely continuous with respect
+to the Lebesgue measure. Note that Wp is the p-th power of the p-Wasserstein metric (e.g.
+[47]).
+    The energy (1.1) was derived in [42]. In this model a polymer is represented as two spheres
+connected by a bond, and a free energy is postulated that takes into account entropy, the bond
+energy, repulsion between the A and B spheres, and volume exclusion. The bond is modeled
+as a spring with energy |e|p in terms of the spring extension e; p = 2 therefore corresponds to
+a linear spring. The A-B repulsion and the volume exclusion are represented by interaction
+with an external field that is self-consistently generated by the spheres themselves, i.e. in a
+mean-field manner. After taking a strong-segregation limit one finds (1.1).
+    The two terms in Ep,m in (1.1) can both be traced directly back to the modelling ingredi-
+ents. The first term arises from the tradeoff between entropy and A-B repulsion, and prefers
+
+
+                                              2
+phase separation (since it penalises the perimeter of the support of u). The second term is
+the total energy in the A-B bonds and prefers phase mixing. The competition between the
+two terms determines the pattern.
+    This model is strongly related to the well-studied Ohta-Kawasaki model [40, 7, 25, 17].
+Although the Ohta-Kawasaki model is derived and often studied for the regime of diffuse A-B
+interfaces, much of the analytical work is on the simpler sharp-interface version, and many
+of the sharp-interface results carry over to the diffuse-interface case (see e.g. [14, 15, 38] for
+examples of this).
+    The main distinction between the Ohta-Kawasaki model and (1.1) therefore lies in the
+form of the non-local term. The Wasserstein-p distances Wp are conceptually similar to the
+W −1,2 Sobolev norm in the Ohta-Kawasaki model. One way of making this similarity explicit
+is by observing that when only considering bounded functions on bounded sets, convergence
+in the Wp Wasserstein distances and in the Sobolev W −1,s norms is equivalent to each other
+and to weak convergence in Lq .
+    A second relation is shown in Figure 2. The 1-Wasserstein distance is also the norm in
+W −1,1
+     R , which we define here as the Sobolev norm dual to the W
+                                                                   1,∞ seminorm: W (µ , µ ) =
+                                                                                       1 1 2
+sup{ ϕ d(µ1 −µ2 ) : k∇ϕk∞ ≤ 1} =: kµ1 −µ2 kW −1,1 (see e.g. [47, Section 1.2]). For increasing
+p, the Wasserstein-p distances increase in strength: Wp0 (µ1 , µ2 ) ≥ Wp (µ1 , µ2 ) if p0 ≥ p. At
+the same time, the W −1,s -norm becomes weaker as s increases.
+                                                               p
+
+                                                  W1      W2
+
+
+                                      W 1,2      W 1,1
+
+                                      s
+
+Figure 2: A comparison of Wasserstein and Sobolev nonlocal terms; see the text for discussion.
+
+   These arguments show how the Wasserstein nonlocal terms can be considered related to
+the Sobolev norms, and the model we study here is related to the Ohta-Kawasaki case of
+W −1,2 .
+
+The vanishing-volume-fraction limit. We will consider the limit m → 0, i.e., the limit
+in which phase A has vanishing volume fraction. The energy (1.1) is scaled in such a way
+that we see a finite number of particles of A in the limit. Similar limits have been studied for
+the Ohta-Kawasaki model [44, 14, 15, 38, 39, 27, 18].
+                                                                                u        1
+    It is convenient to rewrite the energy in the following way: Define v := m    , n := m , and
+Fp,n (v) := Ep,1/n (v/n) so that
+                                                             
+                                                      n−v
+                                      Z
+                                − d1
+                                 n       |∇v| + Wp          ,v    if v ∈ Kn ,
+                    Fp,n (v) =         Ω              n−1                                   (1.2)
+                                 +∞                               otherwise,
+                               
+
+where                                         Z                              
+                                            1
+              Kn :=       v ∈ BV (Ω; {0, n}) :    v(x) dx = 1,     v = 0 on ∂Ω .             (1.3)
+                                           |Ω| Ω
+This energy is the starting point for our analysis.
+
+                                                  3
+The new model. By taking the Γ-limit of Fp,n as n → ∞ we obtain the following model.
+Recall that sending n → ∞ corresponds to sending the volume fraction of phase A to zero,
+in which case phase A can be represented by a measure of the form
+                                  M
+                                  X                             M
+                                                                X
+                             ν=         mi δxi       with             mi = |Ω|.
+                                  i=1                           i=1
+
+In three dimensions the points xi ∈ Ω represent small spherical blobs of phase A in a sea of
+phase B, and the weights mi > 0 represent the relative size of the blobs. In two dimensions
+the points xi represent thin cylinders of phase A in a cross-section orthogonal to the cylinders.
+In Theorem 2.5 we show that Fp,n Gamma-converges to an energy of the form
+                                             X            d−1
+                                Fp (ν) = λ           mi d + Wp (1, ν)                       (1.4)
+                                                 i
+
+where λ > 0 and the 1 in Wp (1, ν) denotes the Lebesgue measure on Ω. Note that the number
+M in the definition of ν is not prescribed and is an unknown of the problem. The first term
+of Fp represents the repulsion between the A and B blocks and is minimised when M = 1,
+which corresponds to complete phase separation where there is just one particle of phase A.
+The second term of Fp represents the covalent bonds between the A and B blocks and can
+be made arbitrarily small by taking M → ∞, corresponding to complete phase mixing, i.e.,
+infinitely many particles of A equidistributed in B. The competition between the two terms
+and the parameter λ determines the nature of the minimisers.
+
+Minimisers of the limit energy. From Section 3 onwards we study minimisers of the
+limit energy Fp .
+    Numerical Minimisation. Minimising Fp numerically is challenging since (a) Fp has in-
+finitely many local minimisers, and (b) it is difficult to evaluate numerically; evaluating the
+p-Wasserstein distance is equivalent to solving an infinite-dimensional linear programming
+problem. The second difficulty is addressed by using a deep a connection between the p-
+Wasserstein cost and generalised Voronoi diagrams (Proposition 4.13). This connection, made
+in [35] for the case p = 2, seems to be little known in the theoretical optimal transportation
+community. It allows the minimisation of Fp to be reformulated as a computational geometry
+problem. By combining this formulation with Euler-Lagrange equations for Fp (Theorem
+4.16), we derive an algorithm for finding stationary points of Fp (Section 4.2). This algorithm
+is a generalisation of Lloyd’s algorithm, which is a popular method for computing Centroidal
+Voronoi Tessellations (see Section 4.1).
+    For implementation purposes we limit our attention to the case p = 2 in two dimensions.
+Figure 3 shows a number of minimisers ν of F2 that were computed using our generalised Lloyd
+algorithm. The points represent the support of ν and the polygons represent the corresponding
+transport regions (the regions transported onto the support of ν by the optimal transport
+map T for W2 (1, ν)). We observe that, as λ → 0, the support of ν tends to a triangular
+lattice and the transport regions tend to a hexagonal tiling. This agrees with the hexagonally
+packed cylinder patterns observed experimentally (see e.g. [8]).
+    Rigorous characterisation of the pattern.    Figure 3, and many other figures like it,
+strongly suggest that the triangular lattice is optimal in some way, and that minimisers
+
+
+                                                      4
+                          λ = 0.01                              λ = 0.005
+            1                                         1
+
+
+
+
+            0                                         0
+             0                                1           0                         1
+
+
+                          λ = 0.001                             λ = 0.0005
+            1                                         1
+
+
+
+
+            0                                         0
+             0                                1           0                         1
+
+
+Figure 3: Minimisers of F2 (defined in equation (4.1)) in two dimensions. We see that as
+λ → 0 a hexagonal pattern appears. F2 was minimised using a generalisation of Lloyd’s
+algorithm, which is described in Section 4.2 .
+
+
+
+tend to approximate this optimal lattice, ‘as far as the boundary allows’. This statement
+of crystallisation we have formulated in an exact way, and proved with Florian Theil. A
+non-rigorous version is given in Section 5, and the full version and the proof are given in the
+companion paper [10].
+
+
+Related work. As we described above, the energy (1.1) is related to the Ohta-Kawasaki
+energy, which is a nonlocal Cahn-Hilliard energy, in which the nonlocality is a negative Sobolev
+norm rather than a Wasserstein distance. This energy has been extensively studied, with a
+variety of rigorous and non-rigorous results. However, to our knowledge exact crystallisation
+results of the form [10] do not exist; this appears to be the first time that it has been proved
+that multi-dimensional minimisers of an energy of diblock copolymer type are periodic. Until
+now the closest results were the weak periodicity results of [1] and [45]. Note, however, that the
+diblock copolymer models analysed in these papers are different from and more sophisticated
+
+
+                                                  5
+than the limit model we study here. It has recently been proved [37] that stripe patterns are
+optimal for the sharp interface limit of the Ohta-Kawasaki energy for thin two-dimensional
+domains.
+    In three dimensions we have no rigorous results, and we know of none either; however,
+we conjecture that minimisers of F2 in three dimensions form small spheres centred on a
+body-centred cubic lattice (see Section 6). This is also observed in experiments. Verifying
+this conjecture numerically will be the subject of a future paper.
+    This paper (along with the companion paper [10]) gives an example of an energy-driven
+pattern formation problem in two dimensions where it can be proved that the optimal pattern
+is periodic. Some previous results for problems arising in materials science include [43], [46]
+and [3]. Proofs in three dimensions are even rarer [29]. Also, while the hexagonal pattern
+appears in a wide range of situations, again there are few rigorous results [24, 28, 23, 36].
+    The energy (1.4) and the results in this paper have applications beyond diblock copoly-
+mers. Energies of the form of our limit energy (1.4) arise in optimal location problems
+[34, 13, 9], quantization and image processing [26, 35] and are related to many other prob-
+lems in computational geometry [20].
+
+Outline of the paper. In Section 2 the discrete limit energy (1.4) is derived from the
+continuum energy (1.2) using Gamma-convergence. Euler-Lagrange equations for the limit
+energy are derived in Section 3. In Section 4 we derive an algorithm for computing stationary
+points of the limit energy and implement it in two dimensions for the case p = 2. Section 5
+reports results from the companion paper [10], where minimisers are characterised analytically.
+Finally, in Section 6 we make a conjecture about minimisers in three dimensions.
+
+
+2    The Small Volume Fraction Limit Model
+In this section we find the Γ-limit of Fp,n as n → ∞, i.e., as the volume fraction of phase A
+tends to zero. By doing this we obtain a simpler model that is more amenable to numerics
+and analysis.
+Theorem 2.1 (Compactness). Let {vn } ⊂ Kn be a sequence with bounded energy:
+                                    sup Fp,n (vn ) ≤ C < ∞.
+                                    n>0
+             ∗
+Then vn dx −* ν, where                    X
+                                    ν=        mi δxi ,       mi ≥ 0
+                                          i
+
+is an at most countable sum of dirac masses located at points xi ∈ Ω. Moreover
+                             X                 X d−1
+                                 mi = |Ω|,         mi d < ∞.
+                                i                        i
+
+Proof. This follows almost immediately from the Second Concentrated Compactness Lemma
+                                                                                        1
+of P. L. Lions [32]. From the given sequence vn , define the rescaled sequence wn := n− d vn .
+Since vn has bounded energy, the sequence ∇wn is bounded in M, the space of bounded
+Radon measures. Also
+                          Z                 Z
+                                       − d1               1
+                             wn dx = n        vn dx = n− d |Ω| → 0,                    (2.2)
+                            Ω                   Ω
+
+
+                                                    6
+which implies that wn → 0 in L1 (Ω). Note that
+                                                       d
+                                            ∗
+                                          wn1 = wnd−1 = vn .                                      (2.3)
+                                     ∗                                  ∗    ∗
+Since Ω vn dx = |Ω|, the sequence wn1 dx ≡ vn dx is bounded and so wn1 dx −* ν for some
+     R
+
+ν ∈ M. Therefore wn satisfies the assumptions of the Second Concentrated Compactness
+Lemma, which implies that the limit measure ν is of the form given in the assertion.
+
+Remark 2.4 (Simpler proof for the case d = 2). For the case d = 2 there is an elementary
+proof that does not rely on the industrial-strength compactness lemma used above. In two
+dimensions the diameter of a connected set can be bounded by its perimeter, 2 Diam(S) ≤
+Per(S). The energy bound on vn implies that the perimeter of the support of vn tends to
+zero. Therefore the diameter of each connected component of the support of vn tends to zero,
+which implies that the limit measure ν is a sum of dirac masses.
+   Let K be the following set of Radon measures on Rd :
+             ∞                                              ∞           ∞
+      (                                                                           )
+            X                                               X           X  d−1
+  K= ν=        mi δxi : mi ≥ 0, xi ∈ Ω, xi 6= xj if i 6= j,   mi = |Ω|,   mi d < ∞ .
+               i=1                                                i=1             i=1
+
+Theorem 2.5 (Γ-convergence: The small volume fraction limit). Let ν be a Radon measure
+on Rd . Define            (
+                                  1 P    d−1
+
+                Fp (ν) :=   dα(d) d
+                                     i m i
+                                           d
+                                             + Wp (1, ν) if ν ∈ K,
+                            +∞                           otherwise,
+where α(d) is the volume of the unit ball in Rd . With respect to the topology of weak conver-
+gence of measures, Fp,n Gamma-converges to Fp as n → ∞, i.e.,
+                                    ∗
+  (i) Let vn ∈ Kn satisfy vn dx −* ν for some ν ∈ K. Then
+
+                                         Fp (ν) ≤ lim inf Fp,n (vn ).
+                                                    n→∞
+
+                                                                              ∗
+ (ii) Given ν ∈ K, there exists a sequence vn in Kn such that vn dx −* ν and
+
+                                           lim Fp,n (vn ) = Fp (ν).
+                                          n→∞
+
+Proof. First we prove (ii). By approximation        (see e.g. [12, Remark 1.29]) we can assume that
+ν is a finite sum of dirac masses: ν = M
+                                          P
+                                            i=1 i δxi ∈ K. We can also assume that none of the
+                                                 m
+                                                                    mi
+points xi belong to the boundary of Ω. Define ri by rid = nα(d)         so that the ball B(xi , ri ) has
+                                                                                   S
+volume mi /n. Let vn be the function taking values in {0, n} with support i B(xi , ri ). Note
+that, for n sufficiently large, the balls B(xi , ri ) are disjoint and are contained in Ω. Therefore
+vn ∈ Kn . It is easy to check that
+                                           ∗        n − vn ∗
+                                    vn dx −* ν,           −* 1.                                   (2.6)
+                                                    n−1
+Since the p-Wasserstein distance metrizes weak convergence of measures (see [47, Theorem
+7.12]), it follows that                       
+                                    n − vn
+                              Wp           , vn → Wp (1, ν).                        (2.7)
+                                    n−1
+
+                                                   7
+Recall that dα(d) is the surface area of the unit ball in Rd . Therefore for all n
+                                     Z                        d−1
+                                − d1                  1 X
+                              n        |∇vn | = dα(d) d    mi d .                                                                     (2.8)
+                                                         Ω                                 i
+
+Combining (2.7) and (2.8) yields (ii).
+                                                  ∗             P∞
+   Now we turn our attention to (i). Let vn dx −* ν, where ν =     i=1 mi δxi ∈ K. Fix
+M ∈ N. By Lemma 5.3 in [14] we can modify the sequence vn to obtain a sequence ṽn such
+that
+                                             M
+                                             X
+                                       ṽn =   vin
+                                              i=1
+where vi ∈ BV (Ω; {0, n}) have disjoint supports, dist(supp vin , supp vjn ) > 0 for all i 6= j, and
+       n
+
+satisfy
+                                              w- lim inf vin ≥ mi δxi ,             i ∈ {1, . . . , M }                               (2.9)
+                                                  n→∞
+in the sense of distributions, and
+                                                         Z                  Z
+                                                                 |∇vn | ≥           |∇ṽn |.                                         (2.10)
+                                                             Ω                 Ω
+
+This modification is necessary so that we can apply the Isoperimetric Inequality (with optimal
+constant) as follows:
+                     Z                        M Z                              M                     Z                       d−1
+                                                                                                                     d          d
+              − d1                     − d1                           1                          1
+                                              X                                X
+          n              |∇ṽn | = n                     |∇vin | ≥ n− d              dα(d)       d           |vin | d−1 dx
+                     Ω                        i=1   Rd                         i=1                      Rd
+                                                                                                                d−1                 (2.11)
+                                                                                    M Z
+                                                                                1   X                             d
+                                                                   = dα(d)      d                     vin dx           ,
+                                                                                     i=1         Rd
+
+where the last equality holds since vin takes values is {0, n}. Equations (2.10) and (2.11) imply
+that
+                                      M Z            d−1                    
+                                    1 X
+                                                 n
+                                                         d          n − vn
+                 Fp,n (vn ) ≥ dα(d) d          vi dx        + Wp           , vn .
+                                            Rd                      n−1
+                                                         i=1
+Therefore by using (2.9) and the fact that the Wasserstein distance metrizes weak convergence
+of measures we obtain
+                                                                               M           d−1
+                                                                           1   X
+                                  lim inf Fp,n (vn ) ≥ dα(d) d                       mi d + Wp (1, ν).
+                                   n→∞
+                                                                               i=1
+
+This holds for all M ∈ N. Therefore it also holds for M = ∞ and we obtain the desired
+result.
+
+Remark 2.12 (Existence of global minimisers for Fp and Fp,n ). It is clear that Fp has a
+global minimiser since it is a Γ-limit and so is lower semicontinuous. It is also easy to see
+that Fp,n has a global minimiser: Any infimising sequence {vk } ⊂ Kn is bounded in BV (Ω)
+and so has a strongly convergent subsequence vkj → v in L1 (Ω). The variation measure is
+lower semicontinuous with respect to this convergence, |∇v|(Ω) ≤ lim inf j→∞ |∇vkj |(Ω) (see
+[22, page 172, Theorem 1]), and the Wasserstein cost Wp is continuous with respect to this
+convergence, therefore Fp,n (v) = inf Kn Fp,n .
+
+                                                                       8
+Remark 2.13 (Minimisers of F2 are supported on a finite set). It is shown in [10, Lemma
+7(i)] that if ν is a global minimiser of F2 , then ν is supported on a finite set (as opposed to
+just a countable set). This is shown by proving a positive lower bound on inf i mi .
+
+
+3    Euler-Lagrange Equations
+In the rest of the paper we study the limit energy Fp . We start by deriving two Euler-Lagrange
+equations.
+                                                                                  P
+Proposition 3.1 (Euler-Lagrange equation obtained by varying xi ). Let ν = i mi δxi ∈ K
+be a minimiser of Fp such that xi ∈ Ω for all i, i.e., xi ∈
+                                                          / ∂Ω. Let Vi ⊆ Ω be the set of points
+transported to xi by the optimal transport map T for Wp (1, ν), i.e., Vi = T −1 (xi ). Then for
+each i                                Z
+                                 0=      (xi − x)|xi − x|p−2 dx.                           (3.2)
+                                      Vi
+
+    For the case p = 2 this says that each mass xi is located at the centre of mass, or centroid,
+of its transport region Vi . The assumption that minimisers have no xi ∈ ∂Ω is necessary.
+For example, if Ω is an annulus with |Ω| sufficiently small, then global minimisers ν of Fp
+are supported at just one point, which lies on the inner boundary of the annulus (there are
+infinitely many global minimisers). The centre of mass of the annulus, however, lies at its
+centre, and so (3.2) is not satisfied.
+
+Proof. We vary the positions of the dirac masses, but P     not their weights, using an inner
+variation along the same lines as [31]. Suppose that ν = i mi δxi is a minimiser of Fp . We
+consider variations of the form ντ = Φτ # ν, where {Φτ }τ ≥0 is a 1-parameter family of smooth
+invertible maps from Ω → Ω such that Φ0 (x) = x. To be precise, we define Φτ through the
+following ODE. Let ξ ∈ C0∞ (Ω; Ω). Define Φτ (y) ≡ Φ(τ, y) by
+                                 d
+                                   Φ(τ, y) = ξ(Φ(τ, y)) τ ≥ 0,
+                                dτ                                                          (3.3)
+                                   Φ(0, y) = y.
+
+Since in P
+         our case the measure ν has such a simple form, the push-forward ντ = Φτ # ν reduces
+to ντ = i mi δΦτ (xi ) . Formally, the Euler-Lagrange equation is
+
+                                        d
+                                          Fp (ντ )|τ =0 = 0.                                (3.4)
+                                       dτ
+Since we are not varying the weights mi of the dirac masses, the left-hand side of this equation
+reduces to ∂τ Wp (1, ντ )|τ =0 . Computing this derivative rigorously requires some care. The
+same calculation as in [31, p. 11] shows that equation (3.4) leads to the following Euler-
+Lagrange equation:
+                           Z
+                     0=           ξ(y) · (y − x)|y − x|p−2 dγ for all ξ ∈ C0∞              (3.5)
+                          Ω×Ω
+
+where γ is an optimal transport plan for the pair (1, ν), i.e.,
+                                         Z
+                            Wp (1, ν) =       |y − x|p dγ(x, y).                            (3.6)
+                                            Ω×Ω
+
+
+                                                9
+   Now we rewrite equation (3.5) in the form of the proposition statement. If T is an optimal
+transport map, so that ν = T# 1 and γ = (id × T )# 1, then equation (3.5) can be written as
+                   Z
+               0=     ξ(T (x)) · (T (x) − x)|T (x) − x|p−2 dx for all ξ ∈ C0∞ .          (3.7)
+                      Ω
+                                          S
+Note that T maps Ω onto spt(ν) = i {xi }. Let Vi denote the set of points mapped to xi by
+T , i.e., Vi = T −1 (xi ). Then equation (3.7) reduces to
+                           XZ
+                     0=          ξ(xi ) · (xi − x)|xi − x|p−2 dx for all ξ ∈ C0∞ .  (3.8)
+                          i   Vi
+
+
+Since this holds for all ξ ∈ C0∞ and since xi ∈
+                                              / ∂Ω for any i, we arrive at the Euler-Lagrange
+equations                       Z
+                              0=        (xi − x)|xi − x|p−2 dx                for all i.    (3.9)
+                                   Vi
+
+
+
+Proposition 3.10 (Euler-Lagrange equation obtained by varying mi ). Let ν = M
+                                                                                 P
+                                                                                  i=1 mi δxi ∈
+K be a minimiser of Fp consisting of a finite number of dirac masses. Let (φ∗ , ψ∗ ) be an
+optimal Kantorovich potential pair for the problem of transporting 1 to ν, i.e.,
+                                       Z             X
+                          Wp (1, ν) =     φ∗ (x)dx +     mi ψ∗ (xi )
+                                              Ω                      i
+
+and φ∗ (x) + ψ∗ (xi ) ≤ |x − xi |p for almost all x ∈ Ω and all i. Then
+                                   1              −1
+                              α(d) d (d − 1)mi d + ψ∗ (xi ) = constant                     (3.11)
+
+where the constant is independent of i.
+                                                                                    P
+    The constant appearing in (3.11) is the Lagrange multiplier for the constraint i mi = |Ω|.
+Its presence also agrees with the fact that φ∗ and ψ∗ are only defined up to a constant: If
+(φ∗ , ψ∗ ) is an optimal Kantorovich potential pair then so is (φ∗ + c, ψ∗ − c) for all c ∈ R.
+
+Proof. This time we keep the positions of the dirac masses fixed and vary their weights in the
+following way. Define
+                          mηi = mi + ηni , ni ∈ R,
+                                                       X
+                                                           ni = 0.                      (3.12)
+                                                                          i
+
+Given ni , for η sufficiently small we have mηi > 0 for all i and so ν η := i mηi δxi ∈ K. Let
+                                                                           P
+(φη∗ , ψ∗η ) be an optimal Kantorovich potential pair for the problem of transporting 1 to ν η ,
+i.e.,                                         Z
+                                                                         mηi ψ∗η (xi )
+                                                                 X
+                                         η
+                              Wp (1, ν ) =            φη∗ dx +                             (3.13)
+                                                  Ω              i
+
+and φη∗ (x) + ψ∗η (xi ) ≤ |x − xi |p for almost all x ∈ Ω and all i. By adding and subtracting
+a constant to ψ∗η and φη∗ we can assume that ψ∗η (x1 ) = 0, and similarly ψ∗ (x1 ) = 0; by
+Lemma 3.19 below, then ψ∗η (xi ) → ψ(xi ) for all i.
+
+
+
+                                                       10
+   Since (φη∗ , ψ∗η ) is admissible, we can estimate
+                                            Z           X
+                                Wp (1, ν) ≥    φη∗ dx +   mi ψ∗η (xi ).                                          (3.14)
+                                                             Ω              i
+
+Therefore by equations (3.12)–(3.14),
+                                                                            X
+                                   Wp (1, ν η ) − Wp (1, ν) ≤ η                       ni ψ∗η (xi ).              (3.15)
+                                                                                i
+
+Therefore, since ν is a minimiser of Fp ,
+                                                  η d−1       d−1
+                                      "                                         #
+             1                     X          1 (m ) d − (mi ) d
+        0 ≤ [Fp (ν η ) − Fp (ν)] ≤      dα(d) d   i
+                                                                  + ni ψ∗η (xi ) .                               (3.16)
+             η                                          η
+                                                   i
+
+Taking the limit of the right-hand side as η → 0 gives
+                               X                              
+                                         1         − d1
+                           0≤       α(d) d (d − 1)mi + ψ∗ (xi ) ni                                               (3.17)
+                                           i
+
+for all ni satisfying (3.12). Therefore
+                                           1                 −1
+                                   α(d) d (d − 1)mi d + ψ∗ (xi ) = constant                                      (3.18)
+
+as required.
+                                                    PM    η              η
+Lemma 3.19. Let ν = M                            η
+                             P
+                               i=1 mi δxi and ν =    i=1 mi δxi satisfy mi → mi as η → 0. Let
+                 η    η
+(φ∗ , ψ∗ ) and (φ∗ , ψ∗ ) be corresponding Kantorovich potentials, and assume that ψ∗ (x1 ) =
+ψ∗η (x1 ) = 0. Then ψ∗η (xi ) → ψ∗ (xi ) for all i.
+
+Proof. This result is a small extension of [13, Lemma 3.4], who proved the result for p > 1.
+Here we extend it to all p ≥ 1. The only new requirement is a proof that optimalPpotentials
+are unique for p ≥ 1, up to addition of constants, and we now show this. Fix ν = Mi=1 mi δxi ;
+note that the Kantorovich pair (φ∗ , ψ∗ ) satisfies
+
+                       φ∗ (x) = min |x − xi |p − ψ∗ (xi ) ,
+                                                         
+                                                             for x ∈ Ω,
+                                               i
+
+so that
+                                   Z                                 X
+                                        min |x − xi |p − ψ(xi ) dx +
+                                                               
+          Wp (1, ν) = sup                                              mi ψ(xi )
+                       {ψ(xi )}i    Ω      i
+                                                                                            i
+                                                                  XZ                                 X
+                                                                                |x − xi |p − ai dx +
+                                                                                               
+                   =      sup                          inf                                             mi ai .
+                       a={ai }M   {Ωi } partition of Ω                     Ωi
+                              i=1                                      i                              i
+                                       |                                            {z                     }
+                                                                                    f (a)
+
+The function f is affine along lines of the form a + b(1, . . . , 1), for b ∈ R, and strictly concave
+in all other directions. This follows from remarking that if {Ωi }i is an optimal partition of Ω
+
+
+
+                                                                  11
+for a = {ai }i , then for a perturbed a + ã we have
+
+    f (a + ã) − f (a) =
+                                XZ                                           XZ                              X
+                                                    p
+                                                                                        |x − xi |p − ai dx +
+                                                                                                      
+    =           inf                          |x − xi | − ai − ãi dx −                                         mi ãi
+        {Ω
+         e i } partition of Ω
+                                 i      Ω
+                                        ei
+                                                                               i   Ωi                          i
+              XZ                                            XZ                                    X
+                           |x − xi |p − ai − ãi dx −                      |x − xi |p − ai dx +
+                                                                                         
+    ≤                                                                                                 mi ãi
+                i     Ωi                                     i        Ωi                          i
+              X
+    =               ãi (mi − |Ωi |),
+                i
+
+and the inequality is strict whenever {Ωi }i is not an optimal partition for a + ã, which is
+whenever the ãi are not all equal. This strict inequality implies the strict concaveness of f in
+non-constant directions, and therefore the ai (and the ψ∗ (xi )) are uniquely determined up to
+constants.
+
+Remark 3.20 (Stationary points also satisfy the Euler-Lagrange equations). It can also be
+shown that stationary points of Fp satisfy the Euler-Lagrange equation (3.11), not only global
+minimisers. This is shown by using that φη∗ → φ∗ uniformly, which follows from the fact that
+φη∗ is |x − y|p -concave (c.f. [13, Lemma 3.4]). Then it follows that Fp (ν η ) is differentiable with
+respect to η and so we do not need to use the fact that ν is a global minimiser, just that it
+is a stationary point. The Euler-Lagrange equation (3.2) also holds for stationary points.
+
+
+4       Numerical Optimisation
+In the remainder of the paper we study minimisers of the limit energy Fp derived in The-
+orem 2.5. We characterise global minima and derive an algorithm to compute them for all
+p ∈ [1, ∞), d ≥ 2. For implementation purposes we limit our attention to two dimensions,
+d = 2, and to p = 2. The algorithm will be implemented in three dimensions and for other
+values of p in a future paper. The simple case d = 1 is discussed in Remark 4.11.
+    By rescaling so that Ω ⊂ Rd has area 1, the energy Fp has the form
+                                                           M
+                                                           X       d−1
+                                              Fp (ν) = λ         mi d + Wp (1, ν)                                  (4.1)
+                                                           i=1
+
+for some constant λ > 0, where ν = i=1 mi δxi with mi > 0, M
+                                                    PM        P
+                                                                i=1 mi = 1, xi ∈ Ω, xi 6= xj if
+i 6= j. The parameter λ, which comes from the rescaling, can also be thought of as modelling
+the repulsive strength between the A and B blocks. This parameter was suppressed in the
+original energy (1.2).
+     Note that M is not fixed a priori. The first term of Fp is minimised when M = 1, i.e.,
+when ν consists of just one dirac mass (placed anywhere). The minimum value of the second
+term of Fp converges to 0 as M → ∞ (since the Lebesgue measure can be approximated
+arbitrarily well by dirac masses). The parameter λ and the competition between the two
+terms determines the value of M for minimisers and the minimising patterns. For example,
+when λ is large the first term of Fp dominates and the minimiser is ν = δx1 , where x1 satisfies
+equation (3.2). In particular, M = 1. As λ decreases, M increases. The scaling of the energy
+                                   d
+                                − p+1
+suggests that M ∼ λ                     .
+
+                                                                 12
+4.1   Minimisers when λ = 0 and M is fixed: Centroidal Voronoi Tessella-
+      tions.
+To get an intuition for the problem we first consider the simpler problem where λ = 0 and M
+is prescribed. We also take p = 2 to start with. We assume that Ω is convex. This ensures
+that the Euler-Lagrange equations have a solution (see below). In this case the energy reduces
+to
+                                       F (ν) = W2 (1, ν)
+            PM
+where ν = i=1 mi δxi for some M ∈ N fixed. (Note that M must be fixed since otherwise F
+has no minimum.) This energy is well-studied in both the theoretical optimal transportation
+literature and the computational geometry literature (e.g. [20]) and has applications in optimal
+location problems (e.g., urban planning [34, 13, 9]), quantization (e.g., image compression and
+signal processing [26, 35]) and data clustering (e.g., k-means clustering [30, 20]). We briefly
+recall how the problem of minimising F can be converted into an optimal partitioning problem.
+    Let TM be the set of partitions of Ω into M sets:
+                                             M
+                        (                                                    )
+                                            [
+                              M
+                 TM = {Ui }i=1 : Ui ⊂ Ω,       Ui = Ω, |Ui ∩ Uj | = 0, i 6= j .             (4.2)
+                                                     i=1
+
+Then F can be written as
+                                      (M Z                                       )
+                                       X
+                      F (ν) = min                    |x − xi |2 dx : |Ui | = mi ∀ i .       (4.3)
+                                 TM             Ui
+                                        i=1
+
+Here Ui = T −1 ({xi }) where T is the optimal transportation map. Therefore
+                                          (M Z                                   )
+                                           X
+                min F (ν) = min min               |x − xi |2 dx : |Ui | = mi ∀ i
+                 ν            {xi ,mi }M   TM                  Ui
+                                       i=1           i=1
+                                                                                            (4.4)
+                                             M Z
+                                             X
+                          =      min                      |x − xi |2 dx.
+                              {xi }M
+                                   i=1 ,TM           Ui
+                                             i=1
+
+In other words, instead of minimising F over points {xi }M                    M
+                                                         i=1 and weights {mi }i=1 , we can
+minimise
+                                               M Z
+                                               X
+                                       M
+                           G({xi , Ui }i=1 ) =     |x − xi |2 dx                      (4.5)
+                                                           i=1      Ui
+
+over points {xi }M                       M
+                 i=1 and partitions {Ui }i=1 of Ω. In particular
+
+                                   min F (ν) = min G({xi , Ui })                           (4.6)
+                                        P
+and if {xi , Ui } minimises G, then ν = i |Ui |δxi minimises F .
+    It is known that G is minimised when the partition {Ui }M    i=1 is the Voronoi tessellation
+     M                                 M
+{Vi }i=1 generated by the points {xi }i=1 and simultaneously each xi is the centre of mass of
+its own Voronoi cell:
+
+                       Ui = Vi := {x ∈ Ω : |x − xi | ≤ |x − xj | ∀ j 6= i},                 (4.7)
+                                 Z
+                             1
+                       xi =          x dx,                                                  (4.8)
+                            |Vi | Vi
+
+
+                                                          13
+for i = 1, . . . , M . If condition (4.7) is not satisfied it is easy to see that G can be decreased
+by replacing the partition {Ui }M                                               M
+                                      i=1 with the Voronoi tessellation {Vi }i=1 generated by the
+              M
+points {xi }i=1 . Condition (4.8) is just the Euler-Lagrange equation ∂G/∂xi = 0 evaluated at
+{Ui } = {Vi }. These special types of Voronoi tessellations {xi , Vi } satisfying (4.7) and (4.8)
+are known as Centroidal Voronoi Tessellations (CVTs). See [20] for a nice survey of CVTs.
+    The assumption that Ω is convex ensures that all the Voronoi cells are convex, since they
+are the intersection of Ω with half planes, and so the centroid of each Voronoi cell lies in Ω.
+Without this assumption it is possible that (4.7) and (4.8) have no solution, i.e., that there
+exists no CVT of M points of Ω. This is the case, e.g., if Ω is an annulus and M = 1. Under
+the assumption that Ω is convex, equations (4.7) and (4.8) always have a solution.
+    Note however that in general there is not a unique CVT of M points – see Figure 4. In
+general, as M → ∞, the lowest energy CVT of M points tends to a hexagonal tiling. This
+and several extensions and generalisations were proved in [24, 28, 23, 36].
+
+
+
+
+Figure 4: Two partitions of the square: both are Centroidal Voronoi Tesselations of four
+points. The left one has lower energy G.
+
+    CVTs can be computed using Lloyd’s algorithm [33], which is a fixed-point method: Given
+an approximate set of points {xni }M                                                      n M
+                                     i=1 , compute the corresponding Voronoi diagram {Vi }i=1 ,
+                                           n+1 M
+and then define a new set of points {xi }i=1 to be the centres of mass of the Voronoi cells
+{Vin }M
+      i=1 . Fixed points of this algorithm satisfy (4.7) and (4.8). See [19, 20] for more details
+and convergence theory.
+    For λ > 0, minimisers of the original energy F2 (defined in equation (4.1)) turn out to be
+very close to CVTs, as illustrated in Figure 5. Therefore CVTs (which are easy to compute
+using Lloyd’s algorithm) can be used to generate good approximate minimisers. Developing a
+convergent minimisation algorithm, however, requires a different approach, which we discuss
+in the following section.
+Remark 4.9 (The case p ∈ [1, ∞)). A large part of the discussion above holds
+                                                                        P for the general
+case p ∈ [1, ∞). In particular, minimising Wp (1, ν) with respect to ν = M i=1 mi δxi for M
+fixed is equivalent to minimising
+                                                      M Z
+                                                      X
+                              Gp ({xi , Ui }M
+                                            i=1 ) =              |x − xi |p dx
+                                                      i=1   Ui
+
+
+over points {xi }M                          M
+                  i=1 and partitions {Ui }i=1 of Ω. As above, minimisers of Gp are Voronoi
+diagrams {xi , Vi }M                                        M
+                   i=1 , but this time the generators {xi }i=1 satisfy
+                                           Z
+                           ∂Gp
+                                 = 0 ⇐⇒        (xi − x)|xi − x|p−2 dx = 0.
+                           ∂xi              Vi
+
+
+                                                  14
+       1                                                    1
+                                     CVT                                       CVT
+                                     λ=0.1                                     λ=0.026
+
+
+
+
+       0                                                    0
+        0                                    1                  0                        1
+
+
+
+Figure 5: Minimisers of F2 (defined in equation (4.1)) are close to being Centroidal Voronoi
+Tessellations (CVTs). Left: A CVT of three points (empty circles indicate the generators of
+the Voronoi cells, dashed lines indicate the boundaries of the Voronoi cells) and a minimiser
+ν of F2 for λ = 0.1 (solid circles indicate the support {xi } of ν, solid lines indicate the
+boundaries of the transport regions). Right: A CVT of five points and a minimiser of F2 for
+λ = 0.026.
+
+
+These generalised CVTs are more difficult to compute than standard CVTs (the case p = 2),
+but in principle Lloyd’s algorithm could be modified as follows: Given an approximate set
+of points {xni }M                                                     n M
+                i=1 , compute the corresponding Voronoi diagram {Vi }i=1 , and then define the
+new set of points {xn+1 i }M
+                           i=1 to be the solutions of
+                       Z
+                          (xn+1
+                            i   − x)|xn+1
+                                       i   − x|p−2 dx = 0, i ∈ {1, . . . , M }.         (4.10)
+                     Vin
+
+The difficulty is that for general p this equation is much harder to solve than for p = 2. One
+option would be to use a numerical method. Another option would be to lag the nonlinear
+factor in (4.10), i.e., replace the factor |xn+1
+                                             i    − x|p−2 with |xni − x|p−2 , to obtain
+                                            Z
+                                                  x|xni − x|p−2 dx
+                                              V n
+                                   xn+1
+                                     i   = Zi                      .
+                                                   |xni − x|p−2 dx
+                                                 Vin
+
+A fixed point {xi , Vi }M
+                        i=1 of this method is a stationary point of Gp , and the corresponding
+measure ν = M
+             P
+                    |V  |δ
+               i=1 i xi is a stationary point of Wp (1, ν).
+
+Remark 4.11 (The case d = 1 and λ > 0). For the 1-dimensional case, d = 1, the functional
+Fp defined in equation (4.1) reduces to
+
+                                  Fp (ν) = λM + Wp (1, ν).
+
+The method given above for the case λ = 0 can be applied to minimise this energy for all
+λ > 0, in which case the value of M is not fixed a priori ; it is determined by λ. As above,
+
+                                                       15
+stationary points of Fp are Centroidal Voronoi Tesselations. In one dimension these are just
+uniform partitions of the interval Ω with the points xi at thePcentres of the partitions. For
+example, if Ω = [0, 1], then the stationary points of Fp are ν = M   1                1   i−1
+                                                                 i=1 M δxi with xi = 2M + M ,
+for all M ∈ N. These have energy
+                              M Z    i
+                              X   M                       p               2−p
+             Fp (ν) = λM +                x−    1   i−1
+                                               2M + M          dx = λM +       M −p .
+                                    i−1                                    p+1
+                              i=1    M
+
+We can find the global minimiser of Fp by minimising this over M . This gives
+                                                   1
+                                        2 (p + 1)λ − p+1
+                                        p
+                                    M=                   .
+                                             p
+
+Since M is an integer, the optimal value is obtained by rounding this expression up or down,
+depending on the corresponding value of the energy. We see that the optimal number of
+                       − 1
+masses M scales like λ p+1 . In the following section we treat the case λ > 0 for d > 1.
+
+4.2   Minimisers when λ > 0: Centroidal Power Diagrams.
+Minimising the energy Fp numerically is challenging, not only because it has infinitely many
+local minimisers, but also because it is challenging even to evaluate Fp (ν) for a given ν; from
+the Kantorovich formulation of the p-Wasserstein cost Wp (1, ν), given in terms of measures
+on Ω × Ω with marginals 1 and ν, we see that evaluating Wp (1, ν) is equivalent to solving an
+infinite-dimensional linear programming problem. For the case λ = 0 studied in the previous
+section this could be avoided. We will show that it can also be avoided for λ > 0 by rewriting
+the energy in new coordinates.
+
+Definition 4.12 (p-power diagrams). Let {xi , wi }M
+                                                  i=1 be a set of weighted points, xi ∈ Ω,
+wi ∈ R. To this we can associate a type of generalised Voronoi diagram {Pi }M i=1 : For i ∈
+{1, . . . , M }, define
+
+                    Pi = {x ∈ Ω : |x − xi |p − wi ≤ |x − xj |p − wj ∀ j 6= i}.
+
+This gives a partition of Ω, which we refer to as a p-power diagram. We refer to the sets Pi
+as p-power cells.
+
+    If p = 2 this is just the standard power diagram and Pi are convex polygons. For general p
+the cells Pi are not convex and their boundaries are not straight lines, unless all the weights wi
+are equal, in which case {Pi }M  i=1 is just a standard Voronoi diagram. The 1-power diagram is
+known in the literature as the Apollonius diagram, hyperbolic Dirichlet tessellation, additively
+weighted Voronoi diagram, or Voronoi diagram of discs. For general p there does not seem to
+be a standard name and hence we call them p-power diagrams. These fall into the class of
+generalised Dirichlet tessellations or generalised additively weighted Voronoi diagrams studied
+in [2]. For a comprehensive treatment of generalised Voronoi diagrams see [41].
+    The following proposition generalises [35, Theorem 1] and [4] from the case p = 2 to all
+p ∈ [1, ∞):
+
+
+
+
+                                                16
+Proposition 4.13 (Characterisation
+ 1
+                           PM           of transport regions P         R diagrams.). Let ρ ∈
+                                                               as p-power
+L (Ω; (0, ∞)) and let ν = i=1 mi δxi with xi ∈ Ω, mi ≥ 0, i mi = Ω ρ dx. Fix p ∈ [1, ∞).
+Let {Ui }M
+         i=1 be the optimal transport regions for Wp (ρ dx, ν), i.e.,
+
+                                                           M
+                                                           XZ
+                                    Wp (ρ dx, ν) =                    |x − xi |p ρ dx
+                                                           i=1   Ui
+
+      R
+and    Ui ρ dx = mi . Let (φ, ψ) be an optimal Kantorovich potential pair for Wp (ρ dx, ν), i.e.,
+                                                     Z                          X
+                                Wp (ρ dx, ν) =            φ(x)ρ dx +                  mi ψ(xi )
+                                                     Ω                           i
+
+and
+              φ(x) + ψ(xi ) ≤ |x − xi |p                 for a.e. x ∈ Ω and all i ∈ {1, . . . , M }.         (4.14)
+Then
+
+  (i) {Ui }M
+           i=1 is the p-power diagram with generators xi and weights ψ(xi ):
+
+                       Ui = {x ∈ Ω : |x − xi |p − ψ(xi ) ≤ |x − xj |p − ψ(xj ) ∀ j 6= i}.
+
+ (ii) If {Pi }M                                           M                    M
+              i=1 is a power diagram with generators {xi }i=1 and weights {wi }i=1 , then
+                                                 !
+                                     X              XZ
+                            Wp ρ dx,     |Pi |δxi =         |x − xi |p ρ dx.
+                                                 i                         i     Pi
+
+
+Proof. (i) Let Pi = Pi ({xj , ψ(xj )}M                                                        M
+                                     j=1 ) be the i-th p-power cell generated by {xj , ψ(xj )}j=1 .
+First note that if {Si }M
+                        i=1 is any partition of Ω, then
+
+                 M Z
+                 X                                               M Z
+                                                                 X
+                                       p
+                             [|x − xi | − ψ(xi )] ρ dx ≥                        [|x − xi |p − ψ(xi )] ρ dx   (4.15)
+                 i=1    Si                                       i=1       Pi
+
+
+with equality if and only if Si = Pi for all i (up to sets of Lebesgue measure zero). This
+follows from the definition of the p-power cells Pi . Then
+                                           M Z
+                                           X
+               Wp (ρ dx, ν)        =                 |x − xi |p ρ dx
+                                           i=1 Ui
+                                           XM Z                                               
+                                                                       p
+                                   =                      [|x − xi | − ψ(xi )] ρ dx + mi ψ(xi )
+                                           i=1  Ui
+
+                                  (4.15)   XM Z                                                
+                                   ≥                      [|x − xi |p − ψ(xi )] ρ dx + mi ψ(xi )
+                                           i=1    Pi
+
+                                  (4.14)   XM   Z                            
+                                   ≥                      φ(x)ρ dx + mi ψ(xi )
+                                           i=1       Pi
+
+                                   =       Wp (ρ dx, ν).
+
+
+                                                            17
+Therefore all the inequalities above are equalities and so Ui = Pi for all i, as required.
+   (ii) Now let {Pi }M                                                 M                   M
+                                              P with generators {xi }i=1 and weights {wi }i=1 .
+                     i=1 be the p-power diagram
+Let Ui be the optimal partition for Wp (ρ dx, i |Pi |δxi ). Then |Ui | = |Pi | and
+                                            M Z
+                                   !
+                       X                   X
+           Wp ρ dx,       |Pi |δxi    =            |x − xi |p ρ dx
+                        i                        i=1 Ui
+                                                 XM Z                                              
+                                                                            p
+                                         =                       [|x − xi | − wi ] ρ dx + |Ui |wi
+                                                 i=1   Ui
+
+                                        (4.15)   XM  Z                                             
+                                                                            p
+                                         ≥                       [|x − xi | − wi ] ρ dx + |Ui |wi
+                                                 i=1        Pi
+                                                  M
+                                                 XZ
+                                         =                  |x − xi |p ρ dx
+                                                 i=1   Pi
+                                                                                   !
+                                                                  X
+                                         ≥       Wp     ρ dx,           |Pi |δxi
+                                                                    i
+
+since {Pi }M
+                                                                    P
+           i=1 is an admissible partition for Wp (ρ dx,                 i |Pi |δxi ).   Therefore the inequalities
+above are equalities, yielding the desired result.
+
+    The following theorem generalises [10, Lemma 1] from the case p = 2 to all p ∈ [1, ∞):
+Theorem 4.16 (Global minimisers of Fp are centroidal p-power diagrams.). Let ν = M
+                                                                                         P
+                                                                                           i=1 mi δxi
+be a global minimiser of Fp (defined in equation (4.1)) such that xi ∈ Ω for all i, i.e., xi ∈
+                                                                                             / ∂Ω.
+         M                                                 M
+Let {Pi }i=1 be the p-power diagram with generators {xi }i=1 and weights
+                                   (d − 1) − d1
+                            wi = −λ        mi ,      i ∈ {1, . . . , M }.
+                                      d
+Then, for each i, xi is the p-centroid of Pi and mi is the d-dimensional Lebesgue measure of
+Pi :                     Z
+                            (xi − x)|xi − x|p−2 dx = 0,      mi = |Pi |.              (4.17)
+                            Pi
+Proof. This follows immediately from Propositions 3.1, 3.10 and 4.13.
+
+    Observe that (4.17) is a pair of nonlinear equations for global minimisers {xi , mi }M
+                                                                                         i=1 . The
+rest of this section is devoted to the numerical solution of these equations. For implementation
+purposes we will focus on the case p = 2 since 2-power diagrams (which are just power
+diagrams) are easy to compute. We also limit our attention to two space dimensions, d = 2,
+and to convex domains Ω.
+    By Proposition 4.13, minimising F2 over atomic measures ν is equivalent to minimising
+the following energy E over sets of points and weights {xi , wi }:
+                                                !                                 
+                                    X              X p            Z
+                                                                               2
+               E({xi , wi }) := F2      |Pi |δxi =      λ |Pi | +     |x − xi | dx ,        (4.18)
+                                    i                   i                          Pi
+
+where {Pi } is the power diagram generated by {xi , wi }. The energy E can be evaluated
+to machine precision, whereas evaluating the original energy F2 directly involves solving an
+infinite-dimensional linear programming problem.
+
+                                                   18
+A generalised Lloyd algorithm. By Theorem 4.16, global minimisers of E (which cor-
+respond to global minimisers of F2 ) are centroidal power diagrams and are fixed points of
+the following algorithm: Given an approximate set of points and weights {xni , win }M
+                                                                                    i=1 , first
+                                               n M                              n
+compute the corresponding power diagram {Pi }i=1 . (If any of the power cells Pi are empty,
+then delete the corresponding points and weights and update M .) Then define a new set of
+points and weights {xn+1
+                      i  , win+1 }M
+                                  i=1 by
+                                                 Z
+                                      n+1     1
+                                     xi   = n         x dx,
+                                            |Pi | Pin
+                                                                                       (4.19)
+                                      n+1     1    n − 12
+                                     wi   = − λ|Pi | .
+                                              2
+This is a generalisation of Lloyd’s algorithm, which we described in Section 4.1. The assump-
+tion that Ω is convex ensures that xn+1i    lies in Ω. Note that fixed points of this algorithm
+are not necessarily global minima. Below we discuss the implementation issue of how to find
+global minima as opposed to only local minima. It is easy to generalise this algorithm to
+p ∈ [1, ∞), although harder to implement on a computer since p-power diagrams are more
+difficult to compute.
+     Figure 3 (in Section 1) shows minimisers of F2 for decreasing values of λ computed using
+this method. Observe that as λ → 0 the power diagrams tend towards a hexagonal tiling
+of Ω, and the generators xi tend to a triangular lattice. In Section 5 we will see that this
+limiting behaviour can be proved rigorously.
+     We will extend this algorithm to a more general class of optimal location problems, study
+convergence, and implement it in three dimensions in a forthcoming paper [11].
+
+Implementation: Searching for global minimisers. Global minimisers of E as λ → 0
+asymptotically approach a regular hexagonal tiling of Ω (see Section 5). Therefore if we
+assume that boundary effects are small then the interior of Ω should be approximately tiled
+with hexagons of an appropriate size when λ is small. For a single √ 2regular hexagon with
+diameter D, with
+              √ 4generator placed at the centre, the area is AD = 3 3D /8, the 2-Wasserstein
+cost is CD = 5 3D /128, and the total energy is
+
+                              eD = λ33/4 2−3/2 D + 31/2 2−7 5D4 .                       (4.20)
+
+The total energy per unit area is eD /AD = λ3−3/4 23/2 D−1 + 5D2 /48. Minimising this gives
+an optimal diameter D̃ = 31/12 23/2 5−1/3 λ1/3 and correspondingly A−1
+                                                                     D̃
+                                                                        λ2/3 = 52/3 3−5/3 ≈
+0.4685737. Therefore the total energy of |Ω|A−1
+                                              D̃
+                                                 hexagons each with energy eD̃ is
+
+                                              1
+                            ED̃ = eD̃ |Ω|A−1
+                                          D̃
+                                             = 51/3 31/6 λ2/3 |Ω|.                      (4.21)
+                                              2
+As λ → 0 we expect the number of cells of a global minimising state to be approximately
+Mg := |Ω|A−1D̃
+               . The energy landscape is extremely flat and the number of stable local minima
+increases as λ → 0. Our algorithm is energy decreasing [11] but there is no guarantee that
+the state to which it converges is a global minimum. We employ a crude genetic algorithm
+in an attempt to find a global minimum.
+    For λ > 0, we estimate the number of cells of a global minimum to be Mg . For each
+integer M in the interval I = [Mg − Cλ−2/3 , Mg + Cλ−2/3 ], where C is chosen based on
+
+
+                                              19
+           M = 16, Ẽ = 0.192        M = 17, Ẽ = 0.235        M = 17, Ẽ = 0.240
+
+
+
+
+           M = 17, Ẽ = 0.246        M = 17, Ẽ = 0.249        M = 17, Ẽ = 0.261
+
+
+
+
+Figure 6: The six lowest energy states with λ = 0.005, using Nr = 250. The cells are
+coloured according to the number of sides. The energy Ẽ is a rescaled version of the energy
+E: Ẽ = (E − ED̃ )/eD̃ , where ED̃ is defined in (4.21) and eD̃ is defined in (4.20).
+
+
+experiments, we distribute M points xi uniformly in Ω with initial weights wi = 0. For each
+integer value of M ∈ I we generate Nr such random states and use (4.19) to find a local
+minimum. After a prescribed number of iterations the collection of results are sorted in order
+of increasing energy and states that have both the same energy (to a certain tolerance) and
+the same number of cells are factored out. Then the remaining states are improved using
+(4.19) and the process repeated until successive iterates differ in their energy by less than a
+prescribed tolerance. In this way we pursue only the best candidates. This method is crude,
+but gives reasonable results for moderate λ.
+    Figure 6 shows the result of applying our algorithm with λ = 0.005 in the unit square.
+Several such experiments were performed and gave the same five lowest energy states, with
+differences in the sixth state. In all experiments for λ = 0.005 the same lowest energy state
+was obtained, this state is shown in Figure 3 (top right). As can be seen from Figure 6, the
+energies of the local minimisers are very close and so the number of random initial states that
+must be tested increases as λ gets small.
+    For small λ, it is difficult to find a global minimum and experiments show that the low-
+est energy states calculated by our genetic algorithm are characterised by different ‘grains’ –
+regions of regular hexagonal tiling – that intersect at grain boundaries. See Figure 7. Distor-
+tions of the regular hexagonal pattern from both the grain boundaries and the boundary of
+Ω decay over a length of two of three cells.
+
+Remark 4.22 (Alternative algorithm). For the case p = 2, an alternative strategy for min-
+imising F2 (ν) is the following: Approximate the Lebesgue measure 1 in W2 (1, ν) with an
+
+                                              20
+                          M = 1006, E = 4.78746 × 10−4 , λ = 10−5
+
+
+
+
+Figure 7: ‘Grains’ of hexagonal tiling. This figure was produced from a completely random
+(uniformly distributed) initial state using 1000 iterations of the generalised Lloyd algorithm
+given in equation (4.19). Colouring indicates number of neighbours or sides: yellow polygons
+have six sides, pink seven, red five, and orange four.
+
+
+atomic measure µ representing a Gaussian quadrature rule of degree 2 on Ω; degree 2 is
+specially tailored to the quadratic transport cost |x − y|2 . Then the value of W2 (1, ν) can
+be well approximated by W2 (µ, ν), which is a finite-dimensional linear programming prob-
+lem.
+  P √Therefore, while F2 (ν) cannot be evaluated exactly, it can be approximated well by
+λ      mi + W2 (µ, ν), and a standard nonlinear optimisation algorithm could be used to min-
+imise this. Even with this sensible choice of discretisation, however, the method given above
+is much faster and more accurate.
+
+
+5    Exact Characterisation of Minimisers in 2D
+Let d = 2 and let νλ be a minimiser of F2 (defined in equation (4.1)). The numerical results
+in the previous section suggest that, as λ → 0, the support {xi }M λ
+                                                                 i=1 of νλ tends to a triangular
+lattice, and the associated transport regions Vi tend to a regular hexagonal tiling of Ω. A
+precise statement of this is proved in the companion paper [10]. Here we just give a rough
+statement. Let Ω ⊂ R2 have area 1. We rescale Ω to obtain a domain Ωλ that blows up as
+λ → 0:                                            1
+                                                2c6 3
+                                       Ωλ :=          Ω
+                                                 λ
+              √
+where c6 := 5543 is the cost of transporting the Lebesgue measure restricted to a unit area
+regular hexagon onto a dirac mass located as its centre. Under this rescaling the energy F2
+
+
+                                              21
+becomes, up to a factor λ4/3 (2c6 )−4/3 , the following:
+                                                M
+                                                X √
+                                F˜2 (ν) = 2c6          mi + W2 (1, ν)
+                                                i=1
+
+where ν = M
+           P
+             i=1 mi δxi is a measure on the rescaled domain Ωλ . Then [10, Theorems 1–4] can
+be stated roughly as follows:
+    • Let Ω be a polygonal domain with at most six sides. For λ > 0, the energy F˜2 is
+      bounded from below by the energy of a measure supported on a triangular lattice (to be
+      more precise, the energy of a measure supported at the centres of |Ωλ | unit-area regular
+      hexagons).
+    • This lower bound can be achieved in the limit λ → 0. (This statement holds for any
+      Lipschitz domain Ω.) It can also be achieved for λ > 0 if Ω is a periodic domain of the
+      right aspect ratio (meaning that it exactly fits an integer number of unit-area regular
+      hexagons).
+                           P
+    • If the energy of ν = i mi δxi is close to the lower bound, then {xi } is close to being a
+      triangular lattice.
+
+
+6    Conjecture About Minimisers in 3D
+In experiments on diblock copolymers where one phase has a very low volume fraction, it
+is observed that the minority phase forms small spheres embedded in a sea of the majority
+phase. These spheres are centred on a BCC (body-centred cubic) lattice (see e.g. [8]). We
+conjecture that minimisers of F2 in three dimensions are indeed BCC lattices. There is
+tantalizing evidence for this. We demonstrated numerically (see Fig. 5) that in two dimensions
+minimisers of F2 are close to being centroidal Voronoi tessellations (CVTs), meaning that the
+points {xi } in the support of the optimal measure ν are close to being the generators of a CVT.
+We expect the same to be true in three dimensions. It is not known what the optimal CVTs
+are in three dimensions, where optimal means that they minimise G (defined in (4.5)), but
+there is strong numerical evidence to suggest that they are generated by the BCC lattice [21].
+It has also been proved the lowest energy lattice CVT (i.e., the lowest energy CVT generated
+by a lattice) in three dimensions is generated by the BCC lattice [6].
+    Therefore we conjecture the following: Let d = 3 and νλ be a minimiser of F2 . As λ → 0,
+the support {xi }M   λ
+                  i=1 of νλ tends to a BCC lattice. Proving this seems out of reach, but it will
+be studied numerically in a forthcoming paper.
+
+Acknowledgments. Much of the work of D. P. Bourne was carried out while he held a
+postdoc position at the Technische Universiteit Eindhoven, supported by the grant ‘Singular-
+limit Analysis of Metapatterns’, NWO grant 613.000.810. The results presented in Section 5
+were obtained in collaboration with Florian Theil.
+
+
+References
+ [1] G. Alberti, R. Choksi, and F. Otto. Uniform energy distribution for an isoperimetric
+     problem with long-range interactions. J. Amer. Math. Soc., 22:569–605, 2009.
+
+                                                  22
+ [2] P. F. Ash and E. D. Bolker. Generalized Dirichlet tessellations. Geom. Dedicata, 20:209–
+     243, 1986.
+
+ [3] Y. Au Yeung, G. Friesecke, and B. Schmidt. Minimizing atomic configurations of short
+     range pair potentials in two dimensions: crystallization in the Wulff shape. Calc. Var.
+     PDE, 44:81–100, 2012.
+
+ [4] F. Aurenhammer, F. Hoffmann, and B. Aronov. Minkowski-type theorems and least-
+     squares clustering. Algorithmica, 20:61–76, 1998.
+
+ [5] P. Ball. Nature’s Patterns: A tapestry in three parts. Shapes. Oxford, 2009.
+
+ [6] E. S. Barnes and N. J. A. Sloane. The optimal lattice quantizer in three dimensions.
+     SIAM J. Algebraic Discrete Methods, 4:30–41, 1983.
+
+ [7] F. S. Bates and G. H. Fredrickson. Block copolymer thermodynamics: Theory and
+     experiment. Annu. Rev. Phys. Chem., 41:525–557, 1990.
+
+ [8] F. S. Bates and G. H. Fredrickson. Block copolymers – Designer soft materials. Physics
+     Today, 52:32–38, 1999.
+
+ [9] G. Bouchitté, C. Jimenez, and R. Mahadevan. Asymptotic analysis of a class of optimal
+     location problems. J. Math. Pures Appl. (9), 95:382–419, 2011.
+
+[10] D. P. Bourne, M. A. Peletier, and F. Theil. Optimality of the triangular lattice for a parti-
+     cle system with Wasserstein interaction. To appear in Communications in Mathematical
+     Physics.
+
+[11] D. P. Bourne and S. M. Roper. Centroidal power diagrams, Lloyd’s algorithm and
+     applications to optimal location problems. In preparation.
+
+[12] A. Braides. Γ-convergence for beginners. Oxford, 2002.
+
+[13] G. Buttazzo and F. Santambrogio. A mass transportation model for the optimal planning
+     of an urban region. SIAM Rev., 51:593–610, 2009.
+
+[14] R. Choksi and M. A. Peletier. Small volume fraction limit of the diblock copolymer
+     problem: I. Sharp-interface functional. SIAM J. Math. Anal., 42:1334–1370, 2010.
+
+[15] R. Choksi and M. A. Peletier. Small volume-fraction limit of the diblock copolymer
+     problem: II. Diffuse-interface functional. SIAM J. Math. Anal., 43:739–763, 2011.
+
+[16] R. Choksi, M. A. Peletier, and J. F. Williams. On the phase diagram for microphase
+     separation of diblock copolymers: An approach via a nonlocal Cahn-Hilliard functional.
+     SIAM J. Appl. Math., 69:1712–1738, 2009.
+
+[17] R. Choksi and X. Ren. On the derivation of a density functional theory for microphase
+     separation of diblock copolymers. Journal of Statistical Physics, 113(1/2):151–176, Oc-
+     tober 2003.
+
+[18] M. Cicalese and E. N. Spadaro. Droplet minimizers of an isoperimetric problem with
+     long-range interactions. Comm. Pure Appl. Math., 66:1298–1333, 2013.
+
+
+                                               23
+[19] Q. Du, M. Emelianenko, and L. Ju. Convergence of the Lloyd algorithm for computing
+     centroidal Voronoi tessellations. SIAM J. Numer. Anal., 44:102–119, 2006.
+
+[20] Q. Du, V. Faber, and M. Gunzburger. Centroidal Voronoi tessellations: Applications
+     and algorithms. SIAM Rev., 41:637–676, 1999.
+
+[21] Q. Du and D. Wang. The optimal centroidal Voronoi tessellations and the Gersho’s con-
+     jecture in the three-dimensional space. Computers and Mathematics with Applications,
+     49:1355–1373, 2005.
+
+[22] L. C. Evans and R. F. Gariepy. Measure theory and fine properties of functions. CRC
+     Press, 1992.
+
+[23] G. Fejes Tóth. A stability criterion to the moment theorem. Studia Sci. Math. Hungar.,
+     38:209–224, 2001.
+
+[24] L. Fejes Tóth. Lagerungen in der Ebene, auf der Kugel und im Raum. Springer, 1972.
+
+[25] G. H. Fredrickson and F. S. Bates. Dynamics of block copolymers: Theory and experi-
+     ment. Annu. Rev. Mater. Sci., 26:501–550, 1996.
+
+[26] A. Gersho. Asymptotically optimal block quantization. Information Theory, IEEE
+     Transactions on, 25:373–380, 1979.
+
+[27] K. Glasner and R. Choksi. Coarsening and self-organization in dilute diblock copolymer
+     melts and mixtures. Phys. D, 238:1241–1255, 2009.
+
+[28] P. M. Gruber. A short analytic proof of Fejes Tóth’s theorem on sums of moments.
+     Aequationes Math., 58:291–295, 1999.
+
+[29] T. C. Hales, J. Harrison, S. McLaughlin, T. Nipkow, S. Obua, and R. Zumkeller. A
+     revision of the proof of the Kepler conjecture. Discrete Comput. Geom., 44:1–34, 2010.
+
+[30] H. Imai, N. Katoh, and M. Inaba. Applications of weighted Voronoi diagrams and
+     randomization to variance-based k-clustering. Proceedings of the 10th ACM Symposium
+     on Computational Geometry, pages 332–339, 1994.
+
+[31] R. Jordan, D. Kinderlehrer, and F. Otto. The variational formulation of the Fokker-
+     Planck equation. SIAM J. Math. Anal., 29:1–17, 1998.
+
+[32] P.-L. Lions. The concentration-compactness principle in the calculus of variations. The
+     limit case. I. Rev. Mat. Iberoamericana, 1:145–201, 1985.
+
+[33] S. Lloyd. Least square quantization in PCM. IEEE Trans. Inform. Theory, 28:129–137,
+     1982.
+
+[34] A. Lösch, W. H. Woglom, and W. F. Stolper. The economics of location. Yale University
+     Press, 1954.
+
+[35] Q. Mérigot. A multiscale approach to optimal transport. Computer Graphics Forum,
+     30:1583–1592, 2011.
+
+
+
+                                            24
+[36] F. Morgan and R. Bolton. Hexagonal economic regions solve the location problem. Amer.
+     Math. Monthly, 109:165–172, 2002.
+
+[37] M. Morini and P. Sternberg. Cascade of minimizers for a nonlocal isoperimetric problem
+     in thin domains. Submitted.
+
+[38] C. B. Muratov. Droplet phases in non-local Ginzburg-Landau models with Coulomb
+     repulsion in two dimensions. Comm. Math. Phys., 299:45–87, 2010.
+
+[39] B. Niethammer. Evolution in dilute diblock-copolymer melts. GAMM-Mitt., 34:130–134,
+     2011.
+
+[40] T. Ohta and K. Kawasaki. Equilibrium morphology of block polymer melts. Macro-
+     molecules, 19:2621–2632, 1986.
+
+[41] A. Okabe, B. Boots, K. Sugihara, and S. N. Chiu. Spatial Tessellations: Concepts and
+     Applications of Voronoi Diagrams. Wiley, 2nd edition, 2000.
+
+[42] M. A. Peletier and M. Veneroni. Stripe patterns in a model for block copolymers. Math.
+     Models Methods Appl. Sci., 20:843–907, 2010.
+
+[43] C. Radin. The ground state for soft disks. J. Stat. Phys., 26:365–373, 1981.
+
+[44] X. Ren and J. Wei. Many droplet pattern in the cylindrical phase of diblock copolymer
+     morphology. Rev. Math. Phys., 19:879–921, 2007.
+
+[45] E. N. Spadaro. Uniform energy and density distribution: diblock copolymers’ functional.
+     Interfaces Free Bound., 11:447–474, 2009.
+
+[46] F. Theil. A proof of crystallization in two dimensions. Comm. Math. Phys., 262:209–236,
+     2006.
+
+[47] C. Villani. Topics in Optimal Transportation. AMS, 2003.
+
+
+
+
+                                             25
+

@@ -1,0 +1,1337 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                  Report No. 35/2020
+
+                            DOI: 10.4171/OWR/2020/35
+
+
+Mini-Workshop: Dimers, Ising and Spanning Trees beyond
+              the Critical Isoradial Case
+                   (online meeting)
+                                      Organized by
+                                 Cédric Boutillier, Paris
+                           Sanjay Ramassamy, Gif-sur-Yvette
+                           Marianna Russkikh, Cambridge MA
+
+
+                         15 November – 21 November 2020
+
+         Abstract. The goal of this mini-workshop is to gather specialists of the
+         dimer, Ising and spanning tree models around recent and ongoing progress
+         in two directions. One is understanding the connection to the spectral curve
+         of these models in the cases when the curve has positive genus. The other
+         is the introduction of universal embeddings associated to these models. We
+         aim to use these new tools to progress in the study of scaling limits.
+
+
+Mathematics Subject Classiﬁcation (2010): 82B20, 14H70, 52C26, 30G25, 53A70, 13F60, 51A20.
+
+
+
+                       Introduction by the Organizers
+
+The dimer model is a probabilistic model of random perfect matchings on graphs.
+In the case of planar graphs, various mappings lead to consider the Ising model for
+magnetization and the spanning tree model as special cases of the dimer model.
+While these models have been studied for almost a century, there has been a
+ﬂurry of recent research activity on these topics warranting the need of a meeting
+to assess the state-of-the-art and discuss the perspectives.
+   More speciﬁcally, the goal of this mini-workshop was to gather specialists of the
+dimer, Ising and spanning tree models around recent and ongoing progress in two
+main directions. One is the introduction of universal embeddings associated to
+these models. The other is understanding the connection to the spectral curve of
+these models in the cases when the curve has positive genus. Due to the Covid-19
+pandemic the meeting had to be held entirely online. Still, with one mini-course,
+1760                                                 Oberwolfach Report 35/2020
+
+ten lectures and two discussion sessions we managed to foster sustained interactions
+between the participants.
+Dmitry Chelkak provided a three-hour mini-course on the recently introduced t-
+embeddings, p-embeddings and s-embeddings, which provide the right setup for
+the deﬁnition of discrete holomorphic functions on arbitrary periodic bipartite
+graphs and for the convergence to conformally invariant objects in the scaling
+limit for the bipartite dimer model and the Ising model. Some of the theory, such
+as the existence of p-embeddings and of discrete three-dimensional objects related
+to them, is still an area of ongoing research. The application of such embeddings
+to random planar maps is a major long-term goal.
+   In a similar spirit, Asaf Nachmias showed the convergence of discrete holomor-
+phic functions on orthodiagonal embeddings of arbitrary graphs to their continuous
+counterparts. Paul Melotti described a local move on alpha-embeddings, which are
+a common generalization of s-embeddings and orthodiagonal embeddings. Niklas
+Aﬀolter presented local moves for several geometric conﬁgurations based on cluster
+algebra mutations, recovering as special cases s-, t- and orthodiagonal embeddings.
+   Cluster algebras also appeared in the talk of Terrence George, where their
+action on networks induces an integrable system linearized on the Prym variety of
+the spectral curve. Vladimir Fock presented a universal construction for the tau
+function on Riemann surfaces, with an application to the dimer cluster integrable
+system. David Cimasoni described properties of a Kasteleyn operator in terms
+of elliptic functions on minimal graphs and its application to the inverse spectral
+problem for planar periodic bipartite dimers for genus 1 Harnack curves, and the
+construction of Gibbs measures beyond the periodic case.
+   Beyond the two special topics of embeddings and spectral maps, new develop-
+ments were reported on planar statistical mechanics models. Marcin Lis showed
+a computation of boundary and bulk correlations for the Ashkin-Teller model, a
+generalization of the Ising model, via the introduction of a random current repre-
+sentation. Nathanaël Berestycki described a dimer model on the upper half-plane
+with free boundary conditions, which gives rise to a Gaussian free ﬁeld with free
+or Neumann boundary conditions. Richard Kenyon introduced the multidimer
+model with ﬁrst results on the free energy and ﬂuctuations of the edge process.
+Finally Zhongyang Li proved two conjectures of Benjamini and Schramm for site
+percolation in the case of transitive hyperbolic graphs.
+   The organizers are grateful to the MFO for help in organizing the mini-workshop,
+to Paul Melotti for acting as the video conference assistant and to Niklas Aﬀolter
+for putting together the present report. We also thank the ANR DIMERS project
+(grant number ANR-18-CE40-0033) for accepting to fund transportation costs if
+the workshop had been held at the MFO.
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                                        1761
+
+
+
+
+Mini-Workshop (online meeting): Dimers, Ising and Spanning
+Trees beyond the Critical Isoradial Case
+Table of Contents
+
+
+Nathanaël Berestycki (joint with Marcin Lis and Wei Qian)
+   Dimers with free boundary: random walk representation and scaling limit 1763
+Marcin Lis
+  On boundary correlations in planar Ashkin–Teller models . . . . . . . . . . . . . 1766
+Zhongyang Li
+   Percolation in the Hyperbolic Plane and Benjamini-Schramm Conjecture 1767
+Dmitry Chelkak
+  S-/t-/p-embeddings: state-of-the-art of convergence results for the
+  bipartite dimer and Ising models on irregular planar graphs . . . . . . . . . . . 1770
+Vladimir Fock
+   Tau-function on Riemann surfaces. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1773
+David Cimasoni (joint with Cédric Boutillier and Béatrice de Tilière)
+  Elliptic dimer models and genus 1 Harnack curves . . . . . . . . . . . . . . . . . . . 1776
+Richard Kenyon (joint with Andrei Pohoata)
+   The multidimer model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1778
+Niklas Aﬀolter (joint with Max Glick, Pavlo Pylyavskyy and Sanjay
+   Ramassamy)
+   Triple crossing diagrams, projective conﬁgurations, dimers . . . . . . . . . . . . 1779
+Asaf Nachmias (joint with Ori Gurel-Gurevich and Daniel C. Jerison)
+   The Dirichlet problem for orthodiagonal maps . . . . . . . . . . . . . . . . . . . . . . . 1780
+Paul Melotti (joint with Sanjay Ramassamy and Paul Thévenin)
+   Cube ﬂips in s-embeddings and α-immersions . . . . . . . . . . . . . . . . . . . . . . . 1783
+Terrence George
+   Inverse spectral problem for biperiodic networks . . . . . . . . . . . . . . . . . . . . . 1786
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case            1763
+
+                                   Abstracts
+
+     Dimers with free boundary: random walk representation and
+                               scaling limit
+                        Nathanaël Berestycki
+                (joint work with Marcin Lis and Wei Qian)
+
+We study the dimer model in which particles on part of the boundary are allowed
+to form monomers with some ﬁxed weight z > 0 called the monomer fugacity. A
+bijection described in Giuliani, Jauslin and Lieb [1] relates this model to a non-
+bipartite dimer, whose corresponding Kasteleyn matrix describes a random walk
+with negative rates along the boundary. Yet under certain assumptions on the
+domain boundary, we prove an eﬀective random walk representation for the in-
+verse Kasteleyn matrix. The proof makes use of the Schur complement formula
+and the exact computation of the potential kernel of an auxiliary one-dimensional
+walk. The assumptions are in particular satisﬁed in the inﬁnite volume (thermo-
+dynamic) limit on the upper half plane. In this case, we further show that the
+scaling limit of the height function is given by a Gaussian free ﬁeld with free (or
+Neumann) boundary conditions, thereby answering a question of Giuliani et al.
+To our knowledge, this is the ﬁrst occurrence of this ﬁeld as a scaling limit in the
+study of height functions.
+Free boundary dimers (aka monomer-dimer model). Let G = (V, E) be a
+ﬁnite planar bipartite graph which is a subgraph of Z2 . Let ∂m be a chosen subset
+of boundary vertices (i.e., the vertices adjacent to the unique unbounded external
+face). A monomer-dimer cover of G is a set M ⊂ E ∪ ∂m such that for each
+vertex v ∈ V , either v ∈ M , or v belongs to exactly one edge in M . Let MD(G)
+be the set of all MD covers of G, and let D(G) be the set of all dimer covers, i.e.
+MD covers M such that M ∩ ∂m = ∅. For M ∈ MD(G) we call M ∩ ∂m to be
+the set of monomers of the conﬁguration M . The monomer-dimer model is a
+random choice of a MD cover from MD(G) according to the following probability
+measure:
+                                          z #monomers
+                                P(M ) =               .
+                                              Z
+where #monomers is of course the same as |M ∩ ∂m |, and Z is a normalizing
+constant. We will always assume for convenience (in reality, this is not strictly
+necessary) that the graph is dimerable meaning D(G) 6= ∅. In particular, the
+partition function satisﬁes Z > 0. The height function of a monomer-dimer
+cover is a function deﬁned (up to a constant) on the bounded faces of G. Its
+deﬁnition is identical to the dimer model. The main question we aim to address
+in this work is the scaling limit of the height function.
+Boundary conditions. First, we assume that G is a subset of the square lattice
+Z2 ; we assume without loss of generality that 0 ∈ V and is a black vertex. (This
+ﬁxes a unique black/white partition of G.) We also assume that its vertex set V is
+contained the upper half plane H = {z ∈ C : ℑ(z) ≥ 0}. Furthermore, ∂m = V ∩R,
+1764                                                Oberwolfach Report 35/2020
+
+so the monomers are allowed exactly on the real line. The leftmost and rightmost
+vertices of V ∩ R = ∂m will be referred to as the corners of G. Finally, we assume
+that G has at least one black corner and one white corner.
+Main results. The monomer-dimer model as discussed above was discussed (with
+minor modiﬁcations) in a paper of Giuliani, Jauslin and Lieb. In that paper
+it was shown that the partition function Z can be computed as a Pfaﬃan of a
+certain matrix K. Furthermore, a bijection was provided to a non-bipartite dimer
+model (the authors indicate that this bijection was suggested by an anonymous
+referee). A key result of our work is a random walk representation for the inverse
+Kasteleyn matrix associated to this model. Suppose G is a graph satisfying the
+above assumption. Fix z > 0 and assign weight z to every monomer on ∂m
+except at either corner, where (for qtechnical reasons) we choose the weight of a
+                                           2
+monomer to be given by z ′ = z2 + 1 + z4 . For k ∈ N = {0, 1, . . .} let us call
+Vk = {v ∈ V : ℑ(v) = k}, so ∂m = V0 . Let us call Veven = V0 ∪ V2 ∪ . . . and
+Vodd = V1 ∪ V3 ∪ . . ..
+Theorem 1 (Random walk representation for inverse Kasteleyn matrix). There
+exists a pair of random walks (Zev , Zodd ) on the state spaces Veven and Vodd re-
+spectively such that the following holds. Consider the monomer-dimer model on G
+where the monomer weight z > 0 on V0 except at its corners where the monomer
+weight is z ′ as above. Let K be the associated Kasteleyn matrix, and L = K ∗ K,
+so that K −1 = L−1 K ∗ . Then if x, y ∈ V ,
+                              (
+                  −1            godd (x, y)           if x, y ∈ Vodd
+                 L (x, y) =
+                                (−1)ℜ(y−x) gev (x, y) if x, y ∈ Veven
+where gev , godd are the Green functions of Zev and Zodd respectively, normalised
+by L(y, y).
+   Both Zev and Zodd behave like simple random walk far away (at distance more
+than 2) from the boundary vertices, but with jumps of size ±2, so the parity of
+the walk does not change. Both have nontrivial boundary conditions, including
+some reﬂecting and absorbing boundary arcs along the non-monomer part of the
+boundary. Furthermore, both are allowed to make additional jumps along their
+bottommost vertices (V0 for Zev and V1 for Zodd ). These jumps are symmetric,
+bounded in the even case but not the odd case, although they do have exponentially
+decaying tail. Hence in the scaling limit, these walks would converge to Brownian
+motion in the upper half plane H with reﬂection on the real axis and
+whatever boundary condition is inherited from the Neumann/Dirichlet status of
+the other boundary arcs. The above theorem allows us to describe in detail ﬁrst
+an inﬁnite volume (local) limit, then a scaling limit for the height function.
+Proposition 2 (Inﬁnite volume limit). Let Gn be a sequence of graph such that
+Gn satisﬁes the above boundary condition, and Gn ↑ Z2 ∩ H. Let µn denote the
+law of the monomer-dimer model on Gn (with weight z > 0 per monomer and z ′
+at the corners, as in Theorem 1). Then µn converges weakly as n → ∞ to a law
+µ which describes a.s. a random monomer-dimer conﬁguration on Z2 ∩ H.
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                1765
+
+
+
+
+        Figure 1. A superposition of two conﬁgurations, respectively
+        blue and red. Double edges are in purple. The collection of arcs
+        joining monomers to monomers is in green. Next, a simulation of
+        ALE−λ,λ by B. Werness.
+
+   To describe the scaling limit, let Hg denote a Gaussian free ﬁeld with Neu-
+mann (or free) boundary conditions. For a small ǫ > 0 (the mesh size), let
+hǫ denote the height function of the monomer-dimer model µ with weight z in
+the inﬁnite half plane H ∩ ǫZ2 (rescaled by ǫ). We identify hǫ with an almost
+everywhere function H by taking the value of hǫ to be constant on each face, and
+view hǫ as a random distribution (modulo constant) on H.
+Theorem 3. Let f1 , . . . , fn ∈ D0 (H) be arbitrary test functions. Then as ǫ → 0,
+(hǫ , fi )ni=1 → ( √12π hGFF , fi )ni=1 in distribution.
+A conjecture. In the study of the dimer model, a well known conjecture of
+Kenyon concerns the superposition of two independent dimer conﬁgurations. It
+is easy to check that such a superposition deterministically results in a gas of
+loops (including double edges) covering every vertex. Kenyon conjectured that
+this collection of loops converges in the scaling limit to CLE4 , the conformal loop
+ensemble with parameter κ = 4. This is strongly supported by the fact that in
+the continuum, CLE4 can be viewed as the level lines of a (Dirichlet) GFF with
+a speciﬁed variance. Major progress has been made recently on this conjecture
+through the work of Dubédat and Basok and Chelkak.
+    It is natural to ask if any interesting phenomenon occurs when we superpose two
+independent free boundary dimer conﬁgurations, say in the upper half-plane. For
+topological reasons, this gives rise to a gas of loops as above but also a collection of
+curves connecting monomers to monomers. See the ﬁgure above for an example.
+An obvious question is to describe the law of this collection C of curves in the
+scaling limit. By analogy with the above, and in view of our result (Theorem 3),
+it is natural to expect that this collection C converges in the scaling limit to the
+level lines of a GFF with Neumann boundary conditions on the upper-half plane.
+By a result of Qian and Werner, the law of these curves was determined to be
+the ALE−λ,λ process (ALE stands for Arc Loop Ensemble, even though they do
+not in fact contain loops). ALEs were deﬁned by Aru, Sepulveda and Werner as
+1766                                                     Oberwolfach Report 35/2020
+
+certain local sets of the GFF (in fact, ALE−λ,λ is characterised as the “thinnest”
+two-valued set of the GFF).
+Conjecture 4. For any z > 0, in the scaling limit, the collection of boundary-
+touching curves C converges to the Arc Loop Ensemble ALE−λ,λ . Given the
+ALE, the loops form independent CLE4 in each of the connected component of the
+complement.
+
+                                    References
+[1] Giuliani, Alessandro and Jauslin, Ian and Lieb, Elliott H., A Pfaﬃan Formula for
+    Monomer–Dimer Partition Functions, Journal of Statistical Physics 163 (2016), 211–238.
+
+
+       On boundary correlations in planar Ashkin–Teller models
+                             Marcin Lis
+It has been well known since the work of Groeneveld, Boel and Kasteleyn [1] that
+in the Ising model the multi-point correlations of spins lying on the boundary of a
+planar graph are given by Pfaﬃans of the respective two-point correlations. This
+can be seen as the Wick’s rule for expectation values of products of noninteracting
+Majorana fermions, and is one of the many manifestations of the fermionic struc-
+ture underlying the planar Ising model. Recently it was noticed by the author
+that certain matrices of such boundary two-point functions are totally positive [2],
+i.e., determinants of all their minors are positive.
+    In this work we present a uniﬁed framework from which both the classical Pfaf-
+ﬁan identities and total positivity inequalities of Ising boundary correlations are
+naturally concluded. In the proofs we use switching lemmas for random currents.
+The idea of using switching identities to establish Pfaﬃan relations of Ising cor-
+relations originated in the recent work of Aizenman, Duminil-Copin, Tassion and
+Warzel [3] which was an inspiration for our considerations.
+    More generally we derive linear identities and inequalities that are satisﬁed
+by boundary correlations of planar Ashkin–Teller models, i.e., two Ising-like spin
+conﬁgurations σ and σ̃ coupled by a Hamiltonian with a four-body interaction. To
+this end we ﬁrst deﬁne a random current representation of the model, and show a
+switching identity for the correlations of σ and σ̃ which is a generalization of the
+classical switching lemma of Griﬃths, Hurst, and Sherman [4] for two independent
+Ising models (the case of vanishing four body interactions). Subsequently we
+obtain a new switching identity for the correlations of the {−1, 0, 1}-valued spins
+ϕ = (σ + σ̃)/2 and ϕ̃ = (σ − σ̃)/2. This yields a set of linear inequalities for the
+correlations of σ and σ̃. Moreover, the desired linear identities follow from the
+crucial observation that the correlations of ϕ and ϕ̃ may be forced to vanish by
+properly choosing the order of spin insertions on the boundary of a planar graph.
+    We also show that the same relations are satisﬁed by products of Pfaﬃans.
+Since the correlations of σ and σ̃ factorize in the noninteracting case, a uniﬁed
+picture arises: The boundary correlations of σ are given by Pfaﬃans of their
+respective two-point functions, whereas the mixed correlations of ϕ and ϕ̃ are
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                       1767
+
+given by analogous determinants. The latter may be thought of as an instance
+of the fermionic Wick’s rule for expectation values of products of noninteracting
+Dirac fermions.
+   This picture should be compared with the bosonic Wick’s rule which states that
+higher moments of real Gaussian ﬁelds are hafnians and those of a complexiﬁed
+pair of independent Gaussian ﬁelds are permaments of their second moments.
+Interestingly, in our setting total positivity of two-point boundary correlations
+turns out to be intrinsically related to the ﬁrst Griﬃths inequality for the spins ϕ
+and ϕ̃.
+
+                                        References
+ [1] J. Groeneveld, R.J. Boel, P.W. Kasteleyn Correlation-function identities for general planar
+     Ising systems, Physica A: Statistical Mechanics and its Applications 93 (1978), 138–154.
+ [2] M. Lis The Planar Ising Model and Total Positivity, Journal of Statistical Physics 166
+     (2017), 72–89.
+ [3] M. Aizenman, H. Duminil-Copin, V. Tassion, S. Warzel, Emergent planarity in two-
+     dimensional Ising models with ﬁnite-range Interactions, Inventiones Mathematicae 216
+     (2019), 661–743.
+ [4] R. B. Griﬃths, C. A. Hurst, S. Sherman, Concavity of Magnetization of an Ising Ferromag-
+     net in a Positive External Field, Journal of Mathematical Physics 11 (1970), 790–795.
+ [5] M. Lis On boundary correlations in planar Ashkin-Teller models, arXiv (2020), 2009.12131.
+
+
+
+                    Percolation in the Hyperbolic Plane and
+                        Benjamini-Schramm Conjecture
+                                 Zhongyang Li
+
+Introduced by Broadbent and Hammersley in 1957 (see [9]) to study the random
+spread of a ﬂuid through a medium, percolation has been a celebrated model
+illustrating the phase transition.
+    Let G = (V (G), E(G)) be an inﬁnite, locally ﬁnite, connected graph. A site
+percolation conﬁguration ω ∈ {0, 1}V (G) is an assignment to each vertex in G of
+either state 0 or state 1. A cluster in ω is a maximal connected set of vertices
+in which each vertex has the same state in ω. A cluster may be a 0-cluster or
+a 1-cluster depending on the common state of vertices in the cluster. A cluster
+may be ﬁnite or inﬁnite depending on the total number of vertices in the cluster.
+We say that percolation occurs in ω if there exists an inﬁnite 1-cluster in ω. We
+can deﬁne bond percolation in a similar way by considering edge states in {0, 1}
+instead of vertex states.
+    A central question in percolation theory is when there exists an inﬁnite cluster.
+The percolation model is a natural mathematical model for structure of matter,
+magnetization, or spread of pandemic diseases. See [6, 5] for overview on percola-
+tion.
+    The occurrence of percolation is closely related to the structure of the graph.
+A graph G = (V (G), E(G)) is called vertex-transitive, or transitive, if there exists
+a subgroup Γ ⊆ Aut(G), such that all the vertices are in the same orbit under the
+1768                                                       Oberwolfach Report 35/2020
+
+action of Γ on G. The graph G is called quasi-transitive if there exists a subgroup
+Γ ⊆ Aut(G), such that all the vertices are in ﬁnitely many diﬀerent orbits under
+the action of Γ on G.
+   The graph G is called amenable if
+                                        |∂E K|
+(1)                           inf              = 0,
+                         K⊆V (G),|K|<∞ |K|
+
+where ∂E K consists of all the edges in E(G) that have exactly one endpoint in K
+and one endpoint not in K. If the left-hand side of (1) is strictly positive, then
+the graph G is called non-amenable.
+   A manifold M is plane if every self-avoiding cycle splits it into two parts. We
+say the graph G is planar if it can be drawn on the plane in such a way that its
+edges intersect only at their endpoints. We say that an embedded graph G ⊂ M
+in M is properly embedded if every compact subset of M contains ﬁnitely many
+vertices of G and intersects ﬁnitely many edges.
+   The number of ends of a connected graph is the supremum over its ﬁnite sub-
+graphs of the number of inﬁnite components that remain after removing the sub-
+graph.
+   Of particular interest is the i.i.d. Bernoulli site (resp. bond) percolation on a
+graph. In such a model, an independent Bernoulli random variable, which takes
+value 1 with probability p ∈ [0, 1], is associated to each vertex (resp. edge). For
+the i.i.d. Bernoulli percolation, deﬁne
+ psite
+  c    (G) := inf{p ∈ [0, 1] : Bernoulli(p) site perc. on G has an inﬁnite cluster a.s.}
+ psite
+  u (G) := inf{p ∈ [0, 1] : Bernoulli(p) site perc. on G has a unique inf. cluster a.s.}
+
+
+pbond
+ c    (G) := inf{p ∈ [0, 1] : Bernoulli(p) bond perc. on G has an inﬁnite cluster a.s.}
+pbond
+ u    (G) := inf{p ∈ [0, 1] : Bernoulli(p) bond perc. on G has a unique inf. cluster a.s.}
+    Although percolation in the hypercubic lattice Zd , which is amenable, has been
+studied extensively, a lot of questions for percolation in more general graphs remain
+unknown. The research for percolation on general graphs was initiated in the paper
+[7] by Benjamini and Schramm, where they made several conjectures including the
+following two.
+Conjecture 1. (Conjecture 7 of [7]) Suppose G is planar, and the minimal degree
+in G is at least 7. Then at every p in the range (psite        site
+                                                   c (G), 1 − pc (G)), there are
+                                                                           1
+inﬁnitely many inﬁnite 1-clusters. Moreover, we conjecture that psite
+                                                                   c (G) < 2 , so
+the above interval is nonempty.
+Conjecture 2. (Conjecture 8 of [7]) Let G be a planar graph. Let p = 21 be the
+probability that a vertex is open and assume that a.s. percolation occurs in the site
+percolation on G, then almost surely there are inﬁnitely many inﬁnite 1-clusters.
+   Conjecture 1 was proved in [7] when the graph G is obtained by adding to the
+binary tree edges connecting all pairs of nearest vertices of same level along a line.
+Conjecture 2 was proved in [7] when G is a planar graph disjoint from the positive
+x-axis ({(x, 0) : x > 0}), such that every bounded set in the plane meets ﬁnitely
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                       1769
+
+many vertices and edges of G. Conjectures 1 and 2 were later proved in [8] when
+G is a regular triangular tiling of the hyperbolic plane H2 in which each vertex has
+the same degree d ≥ 7 and in [2] when G is an inﬁnite, connected, locally ﬁnite,
+transitive, planar graph by the following steps:
+    (1) By Proposition 2.1 of [3], an inﬁnite, connected, locally ﬁnite, quasi-
+        transitive graph has either one or two or inﬁnitely many ends. If the
+        graph has two ends, then it is amenable. If it has inﬁnitely many ends,
+        then it is non-amenable.
+    (2) Prove that for i.i.d. Bernoulli percolation on any connected, locally ﬁnite,
+        quasi-transitive graph with two ends, psite           site
+                                                   c (G) = pu (G) = 1.
+    (3) Prove that for i.i.d. Bernoulli percolation on any connected, locally ﬁnite,
+        quasi-transitive graph with inﬁnitely many ends, psite u (G) = 1.
+    (4) By Theorem 2 of [4], for any
+                                   √
+                                        planar graph    G with minimal vertex degree
+                      site      5+ √5
+        at least 7, pc (G) < 4(3+ 5) ≈ 0.3455.
+    (5) By Lemma 3.5 of [1], the number of inﬁnite clusters in any invariant per-
+        colation on any quasi-transitive, non-amenable planar graph with one end
+        is a.s. 0,1, or ∞. When p ∈ (pc , 1 − pc ), to show that there exists inﬁnitely
+        many inﬁnite 1-clusters, it suﬃces to exclude the case of a unique inﬁnite
+        1-cluster.
+    (6) If the one-ended graph can be embedded into the plane such that the auto-
+        morphism of the graph extended to isometries of the plane, the possibility
+        of a unique inﬁnite 1-cluster may be excluded by planar topology.
+
+
+
+                                       References
+[1] Benjamini, I. and Schramm, O. Percolation in the hyperbolic plane, Journal of the American
+    Mathematical Society 14 (2000), 487–507.
+[2] Li, Z. Site percolation on planar graphs, arXiv (2020), 2005.04529.
+[3] Babai, L. The growth rate of vertex-transitive planar graphs, Proceedings of the Eighth
+    Annual ACM-SIAM Symposium on Discrete Algorithms, New Orleans (1997), 564–573.
+[4] Halslegrave, J. and Panagiotis, C. Site percolation and isoperimetric inequalities for plane
+    graphs, Random Structures and Algorithms 58 (2020), 150–163.
+[5] Duminil-Copin, H. Sixty years of percolation, Proceedings of the ICM Rio (2018).
+[6] Grimmett, G. Percolation, Springer (1999).
+[7] Benjamini, I. and Schramm, O. Percolation beyond Zd , many questions and a few answers,
+    Electronic Communications in Probability 1 (1996), 71–82.
+[8] Li, Z. Constrained percolation, Ising model and XOR Ising model on planar lattices, Random
+    Structures and Algorithms 57 (2020), 474–525.
+[9] Broadbent, S. and Hammersley, J. Percolation processes: I. Crystals and mazes, Mathe-
+    matical Proceedings of the Cambridge Philosophical Society 53 (1957), 479–497.
+1770                                                   Oberwolfach Report 35/2020
+
+  S-/t-/p-embeddings: state-of-the-art of convergence results for the
+     bipartite dimer and Ising models on irregular planar graphs
+                          Dmitry Chelkak
+
+The goal of this series of three lectures is to describe the recent progress on un-
+derstanding the ‘discrete conformal structure’ of big planar graphs carrying either
+the bipartite dimer or the nearest-neighbor Ising model via their embeddings into
+the Minkowski spaces R2+2 or R2+1 , respectively, as piece-wise linear surfaces. We
+brieﬂy discuss the following topics:
+   1. The general framework of t-embeddings [3, 4], which were also introduced
+in [9] under the name Coulomb gauges; the special cases include:
+       • s-embeddings [1, 2] of graphs carrying the nearest-neighbor Ising model;
+       • classical barycentric or Tutte’s embeddings of weighted planar graphs;
+as well as even more speciﬁc ones like orthodiagonal embeddings or embeddings
+coming from circle patterns; e.g., see [8, 11].
+   2. The notion of t-holomorphic functions on t-embeddings T δ developed in [3]
+and key ideas of their analysis in the ‘small mesh size limit’ δ → 0:
+       • crucial role of a space-like surface S := (z(ζ), ϑ(ζ))ζ∈D ⊂ R2+2 (where ζ
+         stands for the conformal parametrization of S), which appears as a (sub-
+         sequential) limit of the graphs (T δ ; Oδ ) ⊂ R2+2 of origami maps Oδ ;
+       • interpretation of the mean curvature of S as the mass in the propagation
+         equation ∂ζ̄ f = mf for fermions appearing in the model (either bipartite
+         dimer or nearest-neighbor Ising) under consideration;
+       • inevitable appearance of minimal-Lorentz surfaces S in the limit δ → 0,
+         in which case the correlations of the dimer height ﬂuctuations become
+         harmonic in ζ and have the Gaussian structure. (If m 6= 0, then one
+         should not expect that the height correlations become Gaussian in the
+         limit δ → 0 since the bosonization of massive free fermions does not lead
+         to free bosons; cf. [7].)
+   3. The notion of perfect t-embeddings or p-embeddings of ﬁnite weighted bipar-
+tite graphs; see [4]. Loosely speaking, we call a t-embedding of a ﬁnite graph (or a
+Coloumb gauge in the terminology of [9]) perfect if the outer face of its augmented
+dual belongs to the unit hyperboloid
+       (T δ ; Oδ ) ∂out G∗ ⊂ H := {(z; ϑ) : |z|2 = 1 + |ϑ|2 , ϑ ∈ R} ⊂ R2+1 ⊂ R2+2 .
+It is worth emphasizing that the existence (and uniqueness) of perfect t-embeddings
+remains an open question; we believe that this should be also intimately related
+to more ‘algebraic’ viewpoints on the dimer model.
+Conjecture 1 ([4]). Given a (non-degenerate in a certain algebraic sense to be
+speciﬁed) weighted bipartite graph G with the sphere topology and a marked face
+of a G, prove that its augmented dual G∗ (as deﬁned in [9]) admits a perfect t-
+embedding and that this p-embedding is unique up to Lorentz isometries of the
+space R2+1 preserving the unit hyperboloid H.
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                  1771
+
+   4. The main result as well as the key ideas of our (joint with Benoı̂t Laslier
+and Marianna Russkikh, in preparation) paper [4].
+   Let Gδ = (Gδ , ν δ ), δ → 0, be (a sequence of) weighted bipartite graphs with
+the sphere topology and with marked ‘outer’ faces. Assume that
+    (a) T δ : (Gδ )∗ → C are perfect t-embeddings of the augmented duals of Gδ ;
+    (b) T δ satisfy a ‘technical’ assumption Exp-Fat as δ → 0 (informally speaking
+        this means that ‘exponentially-degenerate’ faces of T δ do not form curves
+        of a macroscopic size; see [3] for a rigorous statement).
+    (c) the graphs (T δ ; Oδ ) of the origami maps Oδ (associated with T δ ) converge
+        to a Lorentz-minimal surface Sθ ⊂ R2+1 ⊂ R2+2 spanned by a contour
+                        Lθ := {(eiφ · (cos θ(φ))−1 ; tan θ(φ))}φ∈T ⊂ H,
+        where θ : T → (− π2 , π2 ) is a 1-Lipschitz function on the unit circle T.
+
+Theorem 2 ([4]). Under the assumptions (a)–(c) listed above, the correlation
+functions of the ﬂuctuations of the random dimer height functions on (Gδ )∗ con-
+verge to the Gaussian Free Field (with Dirichlet boundary conditions) on the sur-
+face Sθ , where the metric on Sθ is induced from the ambient Minkowski space.
+   Below are several important remarks:
+   (i) Recall that, as for now, the existence of p-embeddings T δ remains an open
+question. Still, it is worth mentioning that p-embeddings do exist in particular
+cases: e.g., in the situation when outer faces of the graphs Gδ have degree 4;
+   (ii) The existence of subsequential space-like limits S ⊂ R2+2 of discrete sur-
+faces (T δ ; Oδ ) easily follows from compactness arguments since the deﬁnition of Oδ
+implies that |Oδ (x) − Oδ (y)| ≤ |T δ (x) − T δ (y)| for all x, y ∈ (Gδ )∗ .
+   (iii) If we assume that such a subsequential limit S is a Lorentz-minimal surface,
+then it has to be one of the surfaces Sθ deﬁned above: the deﬁnition of perfect
+t-embeddings implies that S has to be bounded by a contour running in the unit
+hyperboloid H ⊂ R2+1 ⊂ R2+2 . In particular, the minimality assumption yields
+that S ⊂ R2+1 , i.e., that the second coordinate of Oδ degenerates as δ → 0.
+   (iv) To illustrate the general theory, in a short joint paper [5] with Sanjay Ra-
+massamy we consider classical (homogeneous) Aztec diamonds (which are combi-
+natorially equivalent to graphs with outer degree 4 and thus admit p-embeddings)
+and demonstrate that the discrete surfaces (T δ ; Oδ ) converge to a surface Sθ with
+a piece-wise linear function θ such that θ(0) = θ(π) = π4 and θ(± π2 ) = − π4 . Of
+course, the metric of this surfaces gives rise to the well-known correlation functions
+of ﬂuctuations in the liquid zone (and the frozen zones are collapsed to points).
+   (v) Recall that we do not expect that non-minimal surfaces S could lead to
+Gaussian height ﬂuctuations because of the presence of the mass in the propaga-
+tion equation for fermionic observables. On the other hand, the famous Kenyon–
+Okounkov prediction [10] claims that Gaussian ﬂuctuations should appear when
+working with subgraphs of periodic grids, similarly to what happens for classical
+Aztec diamonds mentioned above. This naturally leads to the following question:
+1772                                                           Oberwolfach Report 35/2020
+
+Open question 3. What is the correspondence between the classical Kenyon–
+Okounkov theory and Lorentz-minimal surfaces? How does a concrete local struc-
+ture of the graphs Gδ (e.g., the fact that they are pieces of the homogeneous square
+grid) lead to the conjectural Lorentz-minimality of limit surfaces S in examples
+similar to Aztec diamonds?
+
+  5. Finally, we brieﬂy discuss the convergence results obtained in [2] for the
+nearest-neighbor Ising model on s-embeddings under the following assumptions:
+  – ‘uniformly bounded geometry’: the angles of s-embeddings S δ are uniformly
+bounded away from 0; the lengths of edges of S δ are uniformly comparable to δ;
+  – the origami function Qδ = O(δ) as δ → 0.
+   Certainly, these assumptions are very restrictive compared, e.g., to the very
+weak ‘technical’ assumption Exp-Fat for perfect t-embeddings mentioned above.
+Still, this generalizes the convergence of critical FK-Ising interfaces to SLE(16/3)
+curves from the very rigid classical setup of critical Baxter’s Z-invariant weights
+on rhombic lattices [6] to the critical Ising models on arbitrary periodic graphs
+(via their canonical s-embeddings), circle patterns [11] etc. Let us mention that
+   (i) the new approach used in [2] also gives a quantitative estimate on the speed
+of convergence of fermionic observables; this was not known before even on Z2 ;
+   (ii) this approach avoids Smirnov’s sub-/super-harmonicity trick [12] (which is
+not available beyond rhombic lattices) and can be adapted to the massive setup.
+We also hope that the techniques developed in [2] for the analysis of discrete
+Riemann boundary value problems can be eventually pushed forward to drop the
+‘bounded geometry’ assumptions but this certainly requires a non-trivial work.
+
+                                        References
+ [1] D. Chelkak, Planar Ising model at criticality: state-of-the-art and perspectives, In Proceed-
+     ings of the International Congress of Mathematicians 2018 3 (2018). 2789–2816.
+ [2] D. Chelkak. Ising model and s-embeddings of planar graphs, arXiv (2020), 2006.14559.
+ [3] D. Chelkak, B. Laslier, M. Russkikh, Dimer model and holomorphic functions on t-
+     embeddings of planar graphs, arXiv (2020), 2001:11871.
+ [4] D. Chelkak, B. Laslier, M. Russkikh, Bipartite dimer model: p-embeddings and Lorentz-
+     minimal surfaces, In preparation (2021).
+ [5] D. Chelkak, S. Ramassamy, Fluctuations in the Aztec diamonds via a Lorentz-minimal
+     surface, arXiv (2020), 2002.07540.
+ [6] D. Chelkak, S. Smirnov, Universality in the 2D Ising model and conformal invariance of
+     fermionic observables, Invent. Math. 189 3 (2012), 515–580.
+ [7] S. Chhita, The height ﬂuctuations of an oﬀ-critical dimer model on the square grid, J. Stat.
+     Phys. 148 2 (2012), 67–88.
+ [8] O. Gurel-Gurevich, D. C. Jerison, A. Nachmias, The Dirichlet problem for orthodiagonal
+     maps, Adv. Math. 374 (2020), 53 pp.
+ [9] R. Kenyon, W. Y. Lam, S. Ramassamy, M. Russkikh, Dimers and circle patterns, arXiv
+     (2018) 1810.05616.
+[10] R. Kenyon, A. Okounkov, Limit shapes and the complex Burgers equation, Acta Math.
+     199(2) (2007), 263–302.
+[11] M. Lis, Circle patterns and critical Ising models, Comm. Math. Phys. 370 (2019), 507–530.
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                   1773
+
+[12] S. Smirnov, Conformal invariance in random cluster models. I. Holomorphic fermions in
+     the Ising model. Ann. of Math. 172 2 (2010), 1435–1467.
+
+
+
+
+                      Tau-function on Riemann surfaces.
+                               Vladimir Fock
+
+τ -function was introduced by M.Sato [1] as a generating function for solutions
+of nonlinear integrable hierarchies of partial diﬀerential equations. He gave the
+”fermionic” interpretation for this function as a section of a determinant line bun-
+dle over inﬁnite Grassmanian. We suggest an alternative ”bosonic” deﬁnition of
+the τ -functions corresponding to ﬁnite gap solution of integrable hierarchies.
+    Let S be a Riemann surface. A quasi-rational function on S is a function
+holomorphic everywhere except ﬁnitely many points and such that locally it can
+be written as reφ where both r and φ are meropmorphic functions. The order
+ordp reφ of a quasi-rational function at a point p ∈ S is just the order of the
+function r at this point. Observe that quasi-rational functions are not closed with
+respect to addition, but nonzero quasi-rational functions form a group denoted by
+H(S) with respect to multiplication.
+Local group Hp . The multiplicative group of nonzero germs of quasi-rational
+functions in a vicinity of a point p is denoted by Hp . Given a local coordinate zp
+vanishing at p any element of Hp can be written as
+                                                            P
+                                                                t−i zpi
+                            f (zp ) = zpn eφ(zp ) = zpn e                 ,
+where φ(zp ) is a germ of a meromorphic function.
+  The group Hp has a canonical subgroup of holomorphic germs Hp+ ⊂ Hp taking
+                                                                              P   i
+value 1 at p. Elements of this group can be written as f + (zp ) = e i>0 t−i zp . If the
+coordinate zp is ﬁxed one can deﬁne a complimentary subgroup Hp− of functions of
+                        P          i
+the form f − (zp ) = zpn e i⩽0 t−i zp . Any germ f ∈ H it can be uniquely decomposed
+into the product f = f + f − with f + ∈ Hp+ and f − ∈ Hp− .
+   Observe that though the subgroup Hp+ does not depend on the coordinate sys-
+tem, the group Hp− does. In other words the splitting of the exact sequence
+
+                            1 → Hp+ → Hp → Hp /Hp+ → 1
+depends on the choice of the local coordinate zp . In particular the decomposition
+f = f + f − also depends on the choice of the local coordinate.
+Cocycle and central extension. Deﬁne a cocycle cp : Hp × Hp → C× on the
+group Hp by
+                                    Z                                
+                                 1
+                cp (f, g) = exp         ln f d ln g − ln g(γ(0))d ln f ,
+                                2πi   γ
+
+where γ : [0, 1] → C× be closed path (γ(0) = γ(1)).
+1774                                                            Oberwolfach Report 35/2020
+
+It satisﬁes the following properties:
+       • c(f, g) does not depend on the choice of the path γ and the branches of
+         the logarithms.
+       • Skew-symmetry: c(f, g) = c(g, f )−1
+       • Multiplicativity: c(f, gh) = c(f, g)c(f, h).
+       • Steinberg relation: c(f, 1 − f ) = 1.
+       • For f = zpn eφ(zp ) and g = zpm eψ(zp ) it is given by
+
+                 c(f, g) = (−1)mn exp(Res φdψ + (mφ − nψ)dz/z)
+                         P                      P
+       • For f = zpn exp p−i zpi and g = zpm exp t−i zpi it is given by
+                                                           X
+                         c(f, g) = exp(mp0 − nt0 +              ipi t−i ).
+
+       • The restrictions of the cocycle to Hp+ and to Hp− are equal to 1 identically.
+                                                                    i        s
+  This cocycle deﬁnes a central extension 1 → C× → Ĥp → Hp → 1 by the
+multiplication rule on the set Hp × C× :
+
+                               (f, x)(g, y) = (f g, xyc(f, g)).
+
+
+Representation of Ĥp . The group Ĥp has a subgroup Ĥp+ = {(f + , x)|f + ∈ Hp+ }.
+It has a obvious one-dimensional representation Ĥp+ → C× with (f + , x) 7→ x. The
+representation of Ĥp+ induces a representation of the group Ĥp in the space Bp of
+functions v : Ĥp → C× satisfying v((g, x)(f + , y)) = yv(g, x) for any (f + , x) ∈ Ĥp+ .
+Such function is uniquely determined by its value on the subgroup Hp− . The group
+Hp acts on such functions by let shifts.
+
+                 v((f, x)(g − , 1)) = xc(f + , f − )c2 (f + , g − )v(f − g − , 1).
+
+By functions on Hp /Hp+ we understand functions of k, t1 , t2 , . . . with ﬁnite support
+with respect to k and polynomial in ﬁnitely many variables out of t1 , t2 , . . ..
+
+Quasi-divisors. A quasi-divisor on S is an association to every point p ∈ S
+of an element of Hp /Hp+ in such a way that in only ﬁnitely many points these
+elements are nontrivial.
+               L          We denote the additive Z-graded group of quasi-divisors
+by qDiv(S) =      qDivk (S). The grading is given by degp reφ = degp r.
+   For a quasi-rational function f one can deﬁne a quasi-divisor denoted by (f ).
+The quasi-divisors obtained in this way are called principal. A principal quasi-
+divisor on a closed surface S has degree 0. The group of principal quasi-divisors is
+denoted by qdiv(S). Locally any quasi-divisor is principal. Two quasi-divisors with
+diﬀerence belonging to qdiv(S) are called linearly equivalent. Like for ordinary
+divisors the space of linear equivalence classes qDivk (S)/ qdiv(S) = Pick (S) is the
+space of line bundles over S of degree k.
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case               1775
+
+Global representation. For a surface S deﬁne B(S) = ⊗p∈S Bp . If we ﬁx local
+coordinates around all points, the elements of B(S) can be considered as functions
+on quasi-divisors qDiv(S). Observe that the non-extended group H(S) is a sub-
+group of ⊗\p Hp and therefore it acts on B(S). Indeed, it is a consequence of the
+Weil reciprocity formula extended to quasi-meromorphic functions:
+                                  Y
+                                      cp (f, g) = 1
+                                    p∈S
+
+Deﬁnition of the τ -function : τ -function is just the invariant of the group the
+space B( S) under the action of H(S). In the representation of B(S) as functions
+on qDiv0 the invariance of τ reads as
+                                       Y
+(1)               τ [d] = τ [d + (f )]   c2p (f + , gp (d))cp (f + , f − ),
+                                      p∈S
+
+where gp (d) is a representative of d in the vicinity of p.
+Properties of the τ -function :
+    A. The equation (1) deﬁnes the τ -function uniquely up to a multiplicative
+       constant.
+    B. The τ function satisﬁes Hirota bilinear relations which we do not formulate
+       here in full generality.
+    C. The value of the τ -function on a divisor supported at one point coincides
+       with the standard KP τ -function. Its value on a divisor on supported on
+       two points with k = 1, ti = 0 in one of the points is the KP Baker-Akhiezer
+       function [2]. Similarly τ - and Baker-Akhiezer functions for SG and KdV
+       hierarchies are particular values of our τ -function.
+    D. The values of the τ -function on ordinary divisors is given by an explicit
+       formula in terms of Riemann theta function:
+                     X                      X          Y
+                  τ[    ni [zi ]] = θq (t +   ni z i )   θq (zi − zj )ni nj
+                                                    i<j
+
+        These values satisfy discrete Hirota bilinear equation
+           τ [d + z1 + z2 ]τ [d + z3 + z4 ] + τ [d + z1 + z3 ]τ [d + z2 + z4 ]+
+                                       +τ [d + z1 + z4 ]τ [d + z2 + z3 ] = 0,
+       where d is a divisor of degree −2. They and explicit expression A-coordi-
+       nates for cluster integrable systems.
+    E. The function τ [d] can be viewed as a limit of the generating function S :
+       Ω01 (S) → C of the Lagrangian variety of closed 1-forms in the symplectic
+       variety of all forms. The function S satisﬁes the equation
+                                         Z
+               S(α) = S(α + ∂ ln f ) exp ∂¯ ln f ∂ ln f + 2α∂ ln f
+
+        for any smooth function f . The limit of this relation when the form α is
+        a distribution valued form with support at ﬁnitely many points gives the
+        relation (1).
+1776                                                       Oberwolfach Report 35/2020
+
+                                      References
+ [1] M. Sato, Soliton equations as dynamical systems on inﬁnite-dimensional Grassmann man-
+     ifold, RIMS Kokyuroku (1981) 439, 30–46.
+ [2] B.A. Dubrovin, Theta functions and non-linear equations, Russ. Math. Surv. (1981) 36 2.
+
+
+
+
+            Elliptic dimer models and genus 1 Harnack curves
+                                David Cimasoni
+            (joint work with Cédric Boutillier and Béatrice de Tilière)
+
+The aim of this talk was to present an ongoing research project with Cédric Boutil-
+lier and Béatrice de Tilière [1, 2, 3].
+Almost 20 years ago, Kenyon [6] showed that dimers on a bipartite isoradial
+graph G with critical weights admit a Gibbs measure that is local , in the sense
+that the probability of any ﬁnite family of edges of G being occupied by dimers
+only depends on the geometry of G near these edges. However, such weighted
+graphs form a very speciﬁc class: in the periodic case, they correspond to rational
+Harnack curves, i.e. Harnack curves of genus 0, and the aforementioned measure
+is one among the two-parameter family of ergodic Gibbs measures that can be
+deﬁned for such a curve [8]. Therefore, this phenomenon has long been considered
+as rather exceptional.
+   Our project can be understood as a wide-reaching extension of Kenyon’s re-
+markable results, in two directions. First, we do not restrict ourselves to graphs
+that can be isoradially embedded, which by [9] are exactly those planar graphs
+whose train-tracks form neither self-intersections nor bigons. Instead, we consider
+the wider class of minimal graphs [10] given by planar bipartite graphs whose
+(consistently oriented) train-tracks do not self-intersect and do not form parallel
+bigons. As proved in [1], a graph is minimal if and only if it admits a minimal im-
+mersion, a concept generalising that of isoradial embedding. Moreover, the space
+of such immersions can be described as an explicit subset of the space of angles
+maps associated to oriented train-tracks. One of the main results of [1] is that
+minimal graphs with such angle maps give the correct framework to study dimer
+models with the aim of locality in mind. Secondly, we do not restrict ourselves to
+the genus 0 case, but consider Fock’s weights [4] in the elliptic (i.e. genus 1) case
+in [2], and plan to address the case of arbitrary genus soon [3].
+   The introduction of Fock’s weights deserves some context. It was known since
+Kenyon-Okounkov [7] and Goncharov-Kenyon [5] that dimer models on minimal
+graphs allow to realise any spectral data, i.e. any Harnack curve together with a
+divisor given by one point on each oval. The construction of a minimal graph with
+the correct Newton polygon is not such a diﬃcult problem, but it was not clear how
+to construct the correct dimer weights on such a graph. In [4], Fock starts with
+an arbitrary smooth planar curve of degree g (not necessarily a Harnack curve)
+together with a degree g divisor on it (not necessarily on its ovals), and explicitly
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                       1777
+
+constructs weights on the minimal graph so that the corresponding “dimer model”
+has this “spectral data”.
+    The ﬁrst contribution of [2] is to show how to tune the parameters in Fock’s
+elliptic weights in order for the corresponding operator K to be Kasteleyn: one
+needs to start with a rectangular torus (i.e. to ﬁx τ purely imaginary, so that
+the real locus consists of two components), to chose the divisor to be a point t
+on one of these components, and to ﬁx an angle map α deﬁning a minimal im-
+mersion of the minimal graph. With these hypotheses, we then obtain a family
+of inverses {Au0 }uo ∈D for the Kasteleyn operator K, indexed by the upper half D
+of the torus with modular parameter τ . The most remarkable property of these
+inverses is that they are local, in the sense that Aub,w
+                                                       0
+                                                         only depends on the geometry
+of the graph near a path joining b and w.
+    For our next result, we need a technical assumption that holds trivially for pe-
+riodic graphs, and that we expect to hold for any minimal graph. If this condition
+is satisﬁed, then for every u0 ∈ D, the operator Au0 deﬁnes a Gibbs measure on
+dimer conﬁgurations of G. Furthermore, the set D gives the phase diagram of the
+model: when u0 is on the top boundary of D, the dimer model is gaseous (expo-
+nential decay of correlations); when u0 is in the interior of the set D, the model is
+liquid (polynomial decay of correlations); when u0 is on the lower boundary of D,
+the model is solid (no decay of correlations). Note that when G is periodic, this
+gives an alternative description of the full set of ergodic Gibbs measures of [8].
+Remarkably, these measures are now given by explicit local formulas. By afore-
+mentioned work of Goncharov-Kenyon, it is no longer diﬃcult to show that every
+genus 1 Harnack curve with a marked point on the oval is the spectral data of an
+explicit dimer model on a minimal graph G with Fock’s elliptic Kasteleyn operator,
+for a unique parameter t, and an angle map α deﬁning a minimal immersion of G.
+    Extending these arguments to the case of arbitrary genus, we now believe that
+the possibility of expressing locally an ergodic Gibbs measure on dimers is not the
+exception, but the rule.
+
+                                        References
+ [1] Cédric Boutillier, David Cimasoni, and Béatrice de Tilière, Isoradial immersions, arXiv
+     (2019), 1912.10297.
+ [2] Cédric Boutillier, David Cimasoni, and Béatrice de Tilière, Elliptic dimers on minimal
+     graphs and genus 1 Harnack curves, arXiv (2020), 2007.14699.
+ [3] Cédric Boutillier, David Cimasoni, and Béatrice de Tilière, Dimers on minimal graphs and
+     genus g Harnack curves, (2020+).
+ [4] Vladimir V. Fock, Inverse spectral problem for GK integrable system, arXiv (2015),
+     1503.00289.
+ [5] Alexander B. Goncharov and Richard Kenyon, Dimers and cluster integrable systems, Ann.
+     Sci. Éc. Norm. Supér. (2013) 46(5):747–813.
+ [6] Richard Kenyon, The Laplacian and Dirac operators on critical planar graphs, Invent.
+     Math. (2002) 150(2):409–439.
+ [7] Richard Kenyon and Andrei Okounkov, Planar dimers and Harnack curves, Duke Math. J.
+     (2006) 131(3):499–524.
+ [8] Richard Kenyon, Andrei Okounkov, and Scott Sheﬃeld, Dimers and amoebae, Ann. of
+     Math. (2) (2006) 163(3):1019–1056.
+1778                                                      Oberwolfach Report 35/2020
+
+ [9] Richard Kenyon and Jean-Marc Schlenker, Rhombic embeddings of planar quad-graphs,
+     Trans. Amer. Math. Soc. (2005) 357(9):3443–3458 (electronic).
+[10] Dylan P. Thurston, From dominoes to hexagons, In Proceedings of the 2014 Maui and 2015
+     Qinhuangdao conferences in honour of Vaughan F. R. Jones’ 60th birthday (2017) 46 of
+     Proc. Centre Math. Appl. Austral. Nat. Univ., 399–414.
+
+
+
+
+                              The multidimer model
+                                 Richard Kenyon
+                          (joint work with Andrei Pohoata)
+
+
+The dimer model on a graph is the probability model of random perfect match-
+ings of that graph. For arbitrary graphs essentially nothing is known about it,
+since even computing the number of conﬁgurations is NP hard (it is equivalent to
+computing the permanent).
+    We present a certain limit of the dimer model in which exact calculations can
+be done.
+    The multidimer model on a graph G is the dimer model on a “blow up” GN of
+G, where GN is obtained from G by replacing each vertex v with Nv vertices and
+each edge uv with a complete bipartite graph KNu ,Nv . Here N = {Nv }v∈V is an
+assignment of multiplicities to vertices of G.
+    If we assign positive weights ce to edges of G, then there is a natural probability
+measure on dimer covers of GN , giving a dimer cover m a probability proportional
+to the product of its edge weights.
+    The partition function Z(N) of the multidimer model has a surprisingly
+                                                                        P       simple
+exponential generating function, which is just exp(P ) where P = u∼v cuv xu xv
+is the “edge polynomial”.
+    In the limit of large multiplicities we can compute the free energy of the mul-
+tidimer model on arbitrary graphs. This follows from a saddle-point calculation.
+We also show that the edge occupation process tends to the Gaussian free ﬁeld
+with respect to an associated graph Laplacian.
+    Furthermore we also solve an analog of the monomer/dimer problem in this
+setting, by changing the multiplicities slightly away from constants. In this case
+the excess or deﬁcit multiplicity acts like a charge associated to a particle at that
+vertex, and these charges repel or attract via a Coulomb potential on the graph.
+    One of the most interesting features of the usual single dimer model is its limit
+shape theory. For regular geometric graphs like Zd we can give an analogous limit
+shape theory, along with an explicit surface tension function.
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case            1779
+
+       Triple crossing diagrams, projective conﬁgurations, dimers
+                             Niklas Affolter
+    (joint work with Max Glick, Pavlo Pylyavskyy and Sanjay Ramassamy)
+
+The goal is to study a wide array of maps from discrete diﬀerential geometry,
+discrete integrable systems and statistical mechanics with one framework, that
+captures and relates the geometric and algebraic properties of these maps. To this
+end we introduce TCD maps, which associate certain conﬁgurations in CPn to
+triple crossing diagrams [1]. To every such map we can associate a dimer partition
+function [2], with face weights that are invariant under projective transformations.
+Note that in general, the edge and face weights of these partition functions may not
+necessarily be real positive. Moreover, we can locally change the combinatorics of
+TCD maps. Such a change of combinatorics is closely related to Menelaus’ theorem
+in geometry, while it corresponds to a spider move in statistical physics. The setup
+of TCD maps allows us to ﬁnd dimers associated to the pentagram map (as found
+previously by Glick [3]), to objects from discrete diﬀerential geometry and discrete
+integrable systems like Q-nets, Darboux maps and Line complexes, A-nets, Cox
+lattices and so forth. In fact, we can also algebraically extend these deﬁnitions to
+CP1 , where the maps are not well deﬁned by their geometry anymore. In a bit of a
+surprise, it turns out that t-embeddings, harmonic embeddings and s-embeddings
+known from statistical physics are not only special cases of TCD maps, but of Q-
+nets, Darboux maps and Line complexes. However, the dimer partition functions
+that we have associated to TCD maps do not correspond to the previously known
+[4, 5] dimer partition functions associated to t-embeddings, harmonic embeddings
+and s-embeddings. This has motivated us to ﬁnd a second dimer partition function
+associated to a TCD map. This partition function is not invariant under general
+projective transformations, but only under aﬃne transformations. It reproduces
+the partition functions occurring in t-embeddings, harmonic embeddings and s-
+embeddings and also in T-graphs. In fact, by carefully studying the eﬀects of
+projections, sections and duals we can associate (n + 2) dimer partition functions
+to any TCD map in CPn . While many cases of TCD maps with real positive
+face weights are known, no general, systematic investigation exists. Therefore,
+conjecturally, a wide array of TCD maps exist (in CP1 and beyond) that feature
+the dimer model, but have not been investigated at all.
+   Moreover, it is well known that for certain combinatorics, one can study span-
+ning trees and the Ising model via the resistor subvariety and the Ising subvariety,
+where we consider subvarieties of the face weights of the dimer model. It turns
+out that these subvarieties can be translated to conditions on the geometry of
+TCD maps. In the projective case these are the so called Kœnigs nets and CKP
+Darboux maps. In fact we can show that many TCD maps that are known to fea-
+ture a discrete BKP equation have dimer face weights in the resistor subvariety,
+while TCD maps that are known to feature a discrete CKP equation have dimer
+face weights in the Ising subvariety. Additionally, we also show that if we begin
+with TCD maps that satisfy additional quadratic constraints with respect to a
+1780                                                       Oberwolfach Report 35/2020
+
+symmetric (or anti-symmetric) bilinear form in CP3 , we obtain TCD maps with
+variables in the resistor (or Ising) subvariety. As special cases we recover harmonic
+embeddings and s-embeddings. An open question is, whether there is a conceptual
+reason why symmetric bilinear forms lead to the resistor subvariety and the BKP
+equation while anti-symmetric bilinear forms lead to the Ising subvariety and the
+CKP equation. Moreover, it is unclear if there are other subvarieties occurring for
+TCD maps in particular position to bilinear forms in higher dimensional spaces
+(than CP3 ).
+
+                                      References
+ [1] Thurston, Dylan P. From Dominoes to Hexagons, Proceedings of the 2014 Maui and 2015
+     Qinhuangdao Conferences in Honour of Vaughan F.R. Jones’ 60th Birthday (2017), 399–414.
+ [2] Niklas Aﬀolter and Max Glick and Pavlo Pylyavskyy and Sanjay Ramassamy Vector-relation
+     conﬁgurations and plabic graphs, arXiv (2019), 1908.06959.
+ [3] Max Glick The pentagram map and Y-patterns, Advances in Mathematics 227 (2011),
+     1019–1045.
+ [4] R. Kenyon, W. Y. Lam, S. Ramassamy and M. Russkikh, Dimers and circle patterns, arXiv
+     (2018), 1810.05616.
+ [5] Niklas C. Aﬀolter, Miquel Dynamics, Cliﬀord Lattices and the Dimer Model, arXiv (2018),
+     1808.04227.
+
+
+
+                The Dirichlet problem for orthodiagonal maps
+                                 Asaf Nachmias
+            (joint work with Ori Gurel-Gurevich and Daniel C. Jerison)
+
+In [6] we prove that the discrete harmonic function corresponding to smooth
+Dirichlet boundary conditions on orthodiagonal maps, that is, plane graphs having
+quadrilateral faces with orthogonal diagonals, converges to its continuous counter-
+part as the mesh size goes to 0. This provides a convergence statement for discrete
+holomorphic functions, similar to the one obtained by Chelkak and Smirnov [1]
+for isoradial graphs. By the double circle packing theorem, any ﬁnite, simple,
+3-connected planar map admits an orthodiagonal representation.
+    Our result improves the work of Skopenkov [11] and Werness [13] by dropping
+all regularity assumptions required in their work and providing eﬀective bounds.
+In particular, no bound on the vertex degrees is required. Thus, the result can
+be applied to models of random planar maps that with high probability admit
+orthodiagonal representation with mesh size tending to 0. In a companion paper
+[5], we show that this can be done for the discrete mating-of-trees random map
+model of Duplantier, Gwynne, Miller and Sheﬃeld [3, 7].
+    Discrete complex analysis is a powerful tool in the study of two-dimensional
+statistical physics. It has been employed to prove the conformal invariance of the
+scaling limit of critical percolation and the critical Ising/FK model, see Smirnov’s
+ICM survey [12]. The high-level program of such proofs is to 1) ﬁnd a model-
+dependent function (the so-called discrete parafermionic observable) on the lattice
+which satisﬁes some discrete version of the Cauchy-Riemann equations; 2) use
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case           1781
+
+discrete complex analysis to show that as the lattice’s mesh size tends to 0, the
+discrete observable converges to a continuous holomorphic function; 3) identify this
+function uniquely by its boundary values. The results obtained this way include
+some of the most remarkable breakthroughs in contemporary probability theory.
+   Here we address the second part of the program above, namely, the convergence
+of discrete harmonic or holomorphic functions to their continuous counterparts.
+This study has been performed on the square lattice [2] as well as on rhombic
+lattices [1], which are plane graphs such that each inner face is a rhombus. Because
+not every quadrangulation can be embedded in C as a rhombic lattice [8], Smirnov
+asked, “can we always ﬁnd another embedding with a suﬃciently nice version of
+discrete complex analysis?” [12, Section 6, Question 1].
+   A broader class than the rhombic lattices are the orthodiagonal maps: plane
+graphs whose inner faces are quadrilaterals with orthogonal diagonals. See Figure
+1. One can ask which planar maps are representable by a rhombic lattice or by an
+orthodiagonal map. For rhombic lattices the answer is the isoradial graphs. Un-
+fortunately, these do not include all ﬁnite simple triangulations [8]. By contrast,
+every ﬁnite simple triangulation has an orthodiagonal representation which can be
+constructed using circle packing. We observe that the double circle packing the-
+orem provides an orthodiagonal representation for any simple, 3-connected ﬁnite
+planar map.
+   Skopenkov [11] proved a convergence result for the Dirichlet problem on ortho-
+diagonal maps under certain local and global regularity conditions. Werness [13]
+improved this result to assume only local regularity. All these works require a
+uniform bound on the vertex degrees of the maps.
+   The main result, Theorem 1, is a convergence statement that has no regularity
+assumptions of any kind. In particular, our result applies even when the vertex
+degrees are not uniformly bounded. Our only condition is that the maximal edge
+length of the map tends to 0. As well, our proof avoids compactness arguments
+and thus provides an eﬀective bound for the convergence.
+   Removing the regularity assumptions is not just mathematically pleasing; rather,
+it provides a framework for the study of discrete complex analysis on random pla-
+nar maps [9, 10]. In order to apply Theorem 1 to a given random map model, one
+has to verify the maximal edge length condition above. This condition is believed
+to hold in all natural random map models, though proving it for a random simple
+triangulation on n vertices is considered an important open problem (see [9, Sec-
+tion 6]). In the companion paper [5] we show that it indeed holds for the discrete
+mating-of-trees random map model of Duplantier-Gwynne-Miller-Sheﬃeld [3, 7].
+Hence Theorem 1 can be applied to this model; see [5].
+   There has been a great deal of interest in recent years in studying statistical
+physics models, such as percolation, Ising/FK and the self-avoiding walk, on ran-
+dom planar maps. The behavior of these models at their critical temperature is
+mysteriously related via the KPZ correspondence to their behavior on the usual
+square or triangular lattices [4]. A very ambitious program is to rigorously re-
+late the behavior of a statistical physics model in the random planar map setting
+1782                                                      Oberwolfach Report 35/2020
+
+
+
+
+        Figure 1. An orthodiagonal map. Primal vertices are repre-
+        sented by solid disks • and dual vertices by hollow disks ◦. The
+        edges of the orthodiagonal map itself are drawn in black. Edges
+        of the primal graph are drawn with solid gray lines, and edges of
+        the dual graph are drawn with dashed gray lines.
+
+
+
+(where in many cases the model is tractable) to its behavior on a regular lattice.
+We hope that the framework for discrete complex analysis on random planar maps
+that we provide in this paper will be useful for this endeavor.
+   Below is the statement of our main theorem. Even though some of the notation
+has not been deﬁned, the conclusion should be clear: the discrete harmonic func-
+tion is close to the continuous one when the mesh size is small. We have gathered
+the necessary deﬁnitions required to parse this theorem in Section 1.1 of [6].
+
+Theorem 1 ([6]). Let Ω ⊂ R2 be a bounded simply connected domain, and let
+g : R2 → R be a C 2 function. Given ε, δ ∈ (0, diam(Ω)), let G = (V • ⊔ V ◦ , E)
+be a ﬁnite orthodiagonal map with maximal edge length at most ε such that the
+Hausdorﬀ distance between ∂G and ∂Ω is at most δ. Let hc : Ω → R be the
+solution to the continuous Dirichlet problem on Ω with boundary data g, and let
+hd : V • → R be the solution to the discrete Dirichlet problem on Int(V • ) with
+boundary data g|∂V • . Set
+
+                   C1 = sup |∇g(x)| ,         C2 = sup kHg(x)k2
+                           e
+                         x∈Ω                          e
+                                                    x∈Ω
+
+
+where Ω             b Then there is a universal constant C < ∞ such that for
+       e = conv(Ω ∪ G).
+         •
+all x ∈ V ∩ Ω,
+
+                                          C diam(Ω)(C1 + C2 ε)
+                   |hd (x) − hc (x)| ≤                              .
+                                         log1/2 (diam(Ω)/(δ ∨ ε))
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                       1783
+
+                                        References
+ [1] D. Chelkak and S. Smirnov, Discrete complex analysis on isoradial graphs, Adv. Math. 228
+     (2011), 1590–1630.
+ [2] R. Courant, K. Friedrichs, and H. Lewy, Über die partiellen Diﬀerenzengleichungen der
+     mathematischen Physik, Math. Ann. 100 (1928), 32–74.
+ [3] B. Duplantier, J. Miller, and S. Sheﬃeld, Liouville quantum gravity as a mating of trees,
+     arXiv (2014), 1409.7055
+ [4] B. Duplantier and S. Sheﬃeld, Liouville quantum gravity and KPZ, Invent. Math. (2011)
+     185, 333–393.
+ [5] O. Gurel-Gurevich, D. C. Jerison, and A. Nachmias, A combinatorial criterion for macro-
+     scopic circles in planar triangulations, arXiv (2019), 1906.01612.
+ [6] O. Gurel-Gurevich, D. C. Jerison, and A. Nachmias, The Dirichlet problem for orthodiagonal
+     maps, Adv. Math. (2020) 374, 53.
+ [7] E. Gwynne, J. Miller, and S. Sheﬃeld, The Tutte embedding of the mated-CRT map
+     converges to Liouville quantum gravity, arXiv (2017), 1705.11161.
+ [8] R. Kenyon and J.-M. Schlenker, Rhombic embeddings of planar quad-graphs, Trans. Amer.
+     Math. Soc. (2005) 357, 3443–3458.
+ [9] J.-F. Le Gall, Random geometry on the sphere, In Proceedings of the International Congress
+     of Mathematicians—Seoul 2014. Vol. 1 (2014) 421–442.
+[10] G. Miermont, Aspects of random maps, Saint-Flour lecture notes (2014) http://perso.ens-
+     lyon.fr/gregory.miermont/coursSaint-Flour.pdf.
+[11] M. Skopenkov, The boundary value problem for discrete analytic functions Adv. Math.
+     (2013) 240 61–87.
+[12] S. Smirnov, Discrete complex analysis and probability, In Proceedings of the International
+     Congress of Mathematicians. Volume I (2010) 595–621.
+[13] B. M. Werness, Discrete analytic functions on non-uniform lattices without global geometric
+     control, arXiv (2015), 1511.01209.
+
+
+
+
+                 Cube ﬂips in s-embeddings and α-immersions
+                                  Paul Melotti
+              (joint work with Sanjay Ramassamy and Paul Thévenin)
+
+Our aim is to discuss a property that should be satisﬁed by “canonical” embeddings
+of planar graphs equipped with a certain model. This property, which we call here
+a cube ﬂip, states that if the model undergoes a star-triangle transformation (or Y-
+∆ move) that leaves the measure unchanged, then the corresponding embeddings
+of the star-graph G∆ and the triangle-graph GY should diﬀer only locally. In other
+words, a coupling property is conjugated with a theorem of planar geometry.
+This is in contrast with the usual requirements for embeddings of graphs equipped
+with model, which is that observables should converge to universal conformally
+invariant objects. Here we are interested only in a local feature. It is to be noted
+that all embeddings known at the moment seem to display both these global and
+local properties.
+The ﬁrst case we discuss is the notion of harmonic embeddings, ﬁrst introduced by
+Tutte, that maps a graph equipped with positive conductances into an arrangement
+of orthodiagonal quadrilaterals. Those are the quadrilaterals with successive side
+1784                                                 Oberwolfach Report 35/2020
+
+
+
+
+                      Figure 1. The cube ﬂip property (for s-embeddings)
+
+lengths a, b, c, d such that a2 + c2 = b2 + d2 . In this setting, the usual star-
+triangle transformation of resistor networks is conjugated with a theorem of planar
+geometry apparently due to Steiner; this was ﬁrst noted by Konopelchenko and
+Schief [3].
+Theorem 1 (Steiner, [3]). Let G∆ , GY be graphs equipped with conductances re-
+lated by a star-triangle move. For any Tutte embedding of G⋄∆ , there exists a
+unique Tutte embedding of G⋄Y that diﬀers only at the central point.
+   It was also proved by Kenyon, Lam, Ramassamy and Russkikh [2] that this
+transformation can be seen at the level of the t-embedding of the underlying dimer
+model given by Temperley’s bijection, and can thus be written as a composition
+of Miquel moves.
+We then turn our attention to s-embeddings, which correspond to the Ising model,
+were introduced by Chelkak [1] and are the object of active research. An s-
+embedding maps the graph to an arrangement of tangential quadrilaterals, which
+is equivalent to them satisfying a + c = b + d. We say that an embedding is proper
+if it respects a ﬁxed order around every face of the initial graph.
+Theorem 2 ([4]). Let G∆ , GY be graphs equipped with Ising models related by
+a star-triangle move. For any proper s-embedding of G⋄∆ , there exists a unique
+proper s-embedding of G⋄Y that diﬀers only at the central point.
+   The existence can be proved using the machinery of s-embeddings. However,
+this does not yield uniqueness. We provide a fully geometric proof of the latter.
+One could also get uniqueness by using a composition of Miquel moves.
+   As a consequence the proof of Theorem 2, we provide a new concise formula for
+the star-triangle move of the Ising model:
+Theorem 3 ([4]). Let (G∆ , θ), (GY , θ′ ) be graphs equipped with Ising models and
+related by a star-triangle move. The Ising models on G∆ and GY are equal in
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                        1785
+
+distribution if
+                            sin θ1 cos θ2 cos θ3
+               cos θ1′ =                          , cos θ2′ = . . . , cos θ3′ = . . .
+                           sin θ1 + sin θ2 sin θ3
+                                                   cos θ1′ sin θ2′ sin θ3′
+                  (or equivalently, sin θ1 =                                ,...)
+                                                  cos θ1′ + cos θ2′ cos θ3′
+
+In a third part of the talk, we introduce the notion of α-quads as those that satisfy
+aα + cα = bα + dα , for some α ∈ R∗ ; this can be extended naturally to α = 0
+with ac = bd, to α = +∞ with max(a, c) = max(b, d), and to α = −∞ with
+min(a, c) = min(b, d). After giving a brief overview of the space of α-quads when
+α runs through R ∪ {±∞}, we introduce α-immersions as graph immersions into
+α-quads. These being immersions and not embeddings, edges may intersect.
+Theorem 4 ([4]). Let α > 1. For any α-immersion of G⋄∆ , there exists an α-
+immersion of G⋄Y that diﬀers only at the central point.
+   This theorem is expected to be false for α ≤ 1, and we provide counter-examples
+for α close to 0. Moreover, we do not claim uniqueness of the central point, and
+we can produce counter-examples with as many as 3 potential central points. We
+conjecture this to be the maximal number.
+   The proof of Theorem 4 relies on the introduction α-curves, which are sets
+                                  {M | M Aα − M B α = λ}
+for two ﬁxed points A, B and λ ∈ R. Analysing the asymptotic behaviour of these
+curves yields the statement.
+This leaves a few questions open:
+      • Do α-immersions correspond to some model of statistical mechanics, or to
+        some integrable system, for some α distinct from 1 and 2?
+      • Do other families of quads exhibit geometric properties analogous to cube
+        moves? Namely, one may look at f -quads, deﬁned for a homogeneous
+        symmetric function f by f (a, c) = f (b, d).
+      • The case α = 0 may be worth special investigation. In this case, α-curves
+        are simply circles, and an analogous to a cube ﬂip might be obtained by
+        replacing points with radical axis of circles.
+
+                                         References
+ [1] D. Chelkak, Planar Ising model at criticality: state-of-the-art and perspectives, Proc. Int.
+     Cong. of Math. – Rio de Janeiro (2018) IV 2801–2828.
+ [2] R. Kenyon, W. Y. Lam, S. Ramassamy and M. Russkikh, Dimers and circle patterns, arXiv
+     (2019), 1810.05616.
+ [3] B. G. Konopelchenko and W. K. Schief, Reciprocal ﬁgures, graphical statics, and inversive
+     geometry of the Schwarzian BKP hierarchy, Stud. Appl. Math. (2002) 109 89–124.
+ [4] P. Melotti, S. Ramassamy and P. Thévenin, Cube moves for s-embeddings and α-realizations,
+     arXiv (2020), 2003.08941.
+1786                                                    Oberwolfach Report 35/2020
+
+             Inverse spectral problem for biperiodic networks
+                            Terrence George
+
+A planar electrical network is a pair (G, c) where G is a planar graph and c is a
+function that associates a non-zero complex number to each edge of G, deﬁned
+modulo overall scaling by a constant, called its conductance. Planar electrical
+networks provide the setting for discrete potential theory and are intimately related
+to random walks, spanning trees and discrete geometry. We say that (G, c) is
+biperiodic, if it is invariant under a translation action of Z2 . In this case, we take
+the quotient (G, c)/Z2 to get an electrical network on a torus.
+We start by deﬁning the space of electrical networks. To each graph G on the
+torus that satisﬁes a certain topological condition called minimality, we associate
+the space RG = (C∗ )number of edges of G−1 of conductances on it. There is a local
+rearrangement of networks called the Y − ∆ transformation that preserves all
+electrical properties outside the region where the transformation happens. For
+each convex integral polygon N in the plane that centrally symmetric, that is,
+invariant under rotation by π, a construction of Goncharov and Kenyon [6] gives
+a family of electrical networks associated to N that are related by Y − ∆ moves.
+A sequence of Y − ∆ moves relating any two networks (G, c) and (G′ , c′ ) in this
+family induces a birational map between RG and RG′ mapping c to c′ . Gluing the
+spaces RG for all networks G in the family according to these birational maps, we
+obtain the resistor network cluster variety RN parameterizing electrical networks
+associated to the polygon N .
+The fundamental operator in the study of electrical networks is the discrete Lapla-
+cian. Associated to the discrete Laplacian on a biperiodic network is its spectral
+transform which is a rational map from RN to a certain moduli space of curves
+and divisors. We show that this moduli space is a family of Prym varieties and
+show that the spectral transform is birational. This provides a classﬁcation of
+biperiodic networks, analogous to the classiﬁcation of electrical networks in a disc
+in terms of response matrices by Curtis, Ingerman and Morrow [3].
+Spectral curves of genus zero correspond to isoradial networks. In this case, our
+inverse spectral transform recovers Kenyon’s expressions in [7] for the isoradial
+conductances in terms of tangents. Boutillier, de Tiliére and Raschel [2] have
+extended isoradial networks in a diﬀerent way to the setting of massive isoradial
+networks. It would be very interesting to extend the spectral transform to the
+massive non-isoradial case, generalizing both.
+A sequence of Y − ∆ moves that takes a graph G to itself gives rise to a birational
+automorphism of RN called a cluster modular transformation. We show that
+cluster modular transformations are translations in the Prym variety, which hints
+that RN is an integrable system. Our results for electrical networks parallel Fock’s
+results in [4] for the dimer model, where the associated cluster variety is the phase
+space of the dimer integrable system of Goncharov and Kenyon [6]. A natural
+question here is whether electrical networks are Liouville integrable. We do not
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case                    1787
+
+have a Poisson structure on RN but a possible approach to ﬁnding it is as follows:
+the Poisson structure of the dimer integrable system is known to be induced by the
+Poisson-Lie structure of GL from work of Fock and Marshakov [5]. For electrical
+networks in a disc, Lam and Pylyavskyy [8] showed that there is a natural action
+of a symplectic group that is analogous to the action of GL on dimers. We expect
+that the Poisson structure on RN that we want is induced by the Poisson-Lie
+structure of the symplectic group.
+
+                                      References
+[1] Terrence George Spectra of biperiodic planar networks, arXiv (2019), 1901.06353.
+[2] Boutillier C., de Tilière B., Raschel K. The Z-invariant massive Laplacian on isoradial
+    graphs. Invent. math. 208 (2017), 109.
+[3] Curtis E. B., Ingerman D., Morrow J. A. Circular planar graphs and resistor networks.
+    Linear Algebra Appl. 283 (1998), 115–150.
+[4] Fock V. V.: Inverse spectral problem for GK integrable systems. arXiv (2015), 1503.00289.
+[5] Fock V., Marshakov A. Loop Groups, Clusters, Dimers and Integrable Systems. Geometry
+    and Quantization of Moduli Spaces. Advanced Courses in Mathematics. Birkhäuser, Cham
+    (2016).
+[6] Alexander B. Goncharov and Richard Kenyon, Dimers and cluster integrable systems, Ann.
+    Sci. Éc. Norm. Supér. 46 (2013), 747–813.
+[7] Kenyon R. The Laplacian and Dirac operators on critical planar graphs. Invent. Math. 150
+    (2002), 409–439.
+[8] Lam T., Pylyavskyy P. Laurent phenomenon algebras. Cambridge Journal of Mathematics
+    4 (2016), 121–162.
+
+
+
+
+                                                                Reporter: Niklas Affolter
+1788                                                   Oberwolfach Report 35/2020
+
+                                     Participants
+
+
+Niklas Aﬀolter                              Prof. Dr. Béatrice de Tilière
+Fachbereich Mathematik, Sekr.MA 8-3         CEREMADE
+Technische Universität Berlin              Université Paris Dauphine
+Straße des 17. Juni 136                     Place du Maréchal de Lattre de
+10623 Berlin                                Tassigny
+GERMANY                                     75775 Paris Cedex 16
+                                            FRANCE
+Prof. Dr. Nathanaël Berestycki
+Fakultät für Mathematik                   Prof. Dr. Vladimir V. Fock
+Universität Wien                           Institut de Mathématiques
+Oskar-Morgenstern-Platz 1                   Université de Strasbourg
+1090 Wien                                   7, rue René Descartes
+AUSTRIA                                     67084 Strasbourg Cedex
+                                            FRANCE
+Dr. Cédric Boutillier
+Laboratoire de Probabilités, Statistique   Dr. Terrence George
+et Modélisation                            Department of Mathematics
+Sorbonne Université                        University of Michigan
+Case Courrier 158                           530 Church Street
+4 place Jussieu                             Ann Arbor, MI 48109-1043
+75252 Paris Cedex 05                        UNITED STATES
+FRANCE
+                                            Dr. Nahid Ghodratipour
+Prof. Dmitry Chelkak                        School of Mathematics
+Dept. de Mathématiques et Applications     The Institute for Research in
+École Normale Supérieure                  Fundamental Sciences
+45, rue d’Ulm                               Tehran-Iran
+75005 Paris Cedex                           +98 Tehran P. O. Box 19395-5746
+FRANCE                                      IRAN, ISLAMIC REPUBLIC OF
+
+Dr. David Cimasoni                          Prof. Richard Kenyon
+Section de Mathématiques                   Department of Mathematics
+Université de Genève                      Yale University
+Case postale 240                            New Haven, CT 06520
+1211 Genève 24                             UNITED STATES
+SWITZERLAND
+                                            Dr. Benoı̂t Laslier
+                                            UFR de Mathématiques
+                                            Université Paris Diderot (Paris VII)
+                                            Bâtiment Sophie Germain
+                                            5 Rue Thomas Mann
+                                            75013 Paris Cedex
+                                            FRANCE
+Dimers, Ising and Spanning Trees beyond the Critical Isoradial Case       1789
+
+Prof. Dr. Zhongyang Li                  Prof. Asaf Nachmias
+Department of Mathematics               School of Mathematical Sciences
+University of Connecticut               Tel Aviv University
+341 Mansﬁeld Road U1009                 6997801 Ramat Aviv, Tel Aviv 6997801
+Storrs, CT 06269-3009                   ISRAEL
+UNITED STATES
+                                        Dr. Sanjay Ramassamy
+Dr. Marcin Lis                          Institut de Physique Théorique
+Fakultät für Mathematik               CEA Saclay
+Universität Wien                       91191 Gif-sur-Yvette Cedex
+Oskar-Morgenstern-Platz 1               FRANCE
+1090 Wien
+AUSTRIA
+                                        Dr. Marianna Russkikh
+                                        Department of Mathematics
+Dr. Paul Melotti                        Massachusetts Institute of
+Département de Mathématiques          Technology
+Université de Fribourg                 77 Massachusetts Avenue
+Perolles                                Cambridge MA 02139-4307
+Chemin du Musée 23                     UNITED STATES
+1700 Fribourg
+SWITZERLAND
+

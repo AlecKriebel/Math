@@ -4,6 +4,8 @@ Alec Kriebel · ORCID https://orcid.org/0009-0001-9320-500X
 
 22 October 2026 · Version 1.0.0 · Unrefereed preprint
 
+Original printed and Zenodo edition: version 1.0.0, dated 22 October 2026. Native record creation is separately recorded in the metadata.
+
 ## Original abstract
 
 For each fixed field of positive characteristic p, we construct a single compatible symmetric chain of Artinian ideals in two rows of variables, generated from width three. At every width n ≥ 2, its quotient has both the weak and strong Lefschetz properties exactly when p ∤ n − 1. The quadratic quotient is free over the integers, and a determinant for an arbitrary linear form gives the classification over every field extension. In particular, over the fixed infinite field 𝔽ₚ(t) both properties hold and fail at unbounded widths. This gives a negative answer to the unrestricted eventual dichotomies posed by Römer. It gives no negative answer in characteristic zero or in one row.
@@ -60,7 +62,7 @@ AI tools were used extensively in planning, mathematical exploration, proof deve
 
 ## Primary background
 
-- [Tim Römer, Asymptotic properties of invariant chains, OWR31/2020, printed1594–1596](https://doi.org/10.4171/OWR/2020/31)
+- [Tim Römer, Asymptotic properties of invariant chains, OWR 31/2020, printed 1594–1596](https://doi.org/10.4171/OWR/2020/31)
 
 - [Alexandra Seceleanu and Liana Şega, General symmetric ideals, arXiv:2506.15459v1](https://arxiv.org/abs/2506.15459v1)
 
@@ -72,14 +74,20 @@ AI tools were used extensively in planning, mathematical exploration, proof deve
 
 Read the complete unchanged four-page published PDF below, or open and download it directly. The full original source and verification ZIP includes the manuscript, exact checker and offline reproduction instructions.
 
-- Local unchanged PDF: assets/periodic-lefschetz.pdf
+[Open the complete PDF](assets/periodic-lefschetz.pdf) · [Download PDF](assets/periodic-lefschetz.pdf) · [Download complete source and verification ZIP](assets/periodic-lefschetz-source-and-verification.zip) · [Download BibTeX](assets/citation.bib)
 
-- Complete original ZIP: assets/periodic-lefschetz-source-and-verification.zip
+[Zenodo original: periodic-lefschetz-source-and-verification.zip](https://zenodo.org/api/records/23570763/files/periodic-lefschetz-source-and-verification.zip/content)
 
-- Citation: assets/citation.bib
+[Zenodo original: periodic-lefschetz.pdf](https://zenodo.org/api/records/23570763/files/periodic-lefschetz.pdf/content)
 
-- Zenodo DOI: https://doi.org/10.5281/zenodo.23570763
+Embedded reader: A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic — complete four-page PDF
 
-## Rights
+## Cite this paper
+
+Alec Kriebel. A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic. Version 1.0.0, 22 October 2026. Zenodo. [doi:10.5281/zenodo.23570763](https://doi.org/10.5281/zenodo.23570763).
+
+## Rights and supporting materials
 
 Authored paper, mathematical prose, metadata and source text are licensed CC BY 4.0. Authored verification and packaging code is separately MIT licensed. Third-party works retain their own rights.
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · [MIT License](https://opensource.org/license/mit/)

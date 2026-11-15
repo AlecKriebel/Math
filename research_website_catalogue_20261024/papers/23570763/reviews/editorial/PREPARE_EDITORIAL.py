@@ -157,12 +157,14 @@ def prepare(build_date):
         require(hashlib.md5(raw).hexdigest() == a['original_api_file_object']['checksum'].removeprefix('md5:'), 'actual native MD5')
         (out / 'assets' / a['original_api_file_object']['key']).write_bytes(raw)
     (out / 'assets/citation.bib').write_text(bib)
-    copy = ['# ' + pub['title'], '\nAlec Kriebel · ORCID ' + pub['orcid'], '\n22 October 2026 · Version 1.0.0 · Unrefereed preprint']
+    copy = ['# ' + pub['title'], '\nAlec Kriebel · ORCID ' + pub['orcid'], '\n22 October 2026 · Version 1.0.0 · Unrefereed preprint', '\n' + pub['edition_note']]
     for title,key in [('Original abstract','abstract'),('What this means','plain_language'),('The construction and exact classification','result'),('Why the pattern occurs','why_it_works'),('Scope and limitations','limitations'),('Context and credit','background'),('Collaboration','collaboration'),('Authorship and review status','status')]:
         vals = pub[key] if isinstance(pub[key],list) else [pub[key]];copy += ['\n## ' + title] + ['\n' + x for x in vals]
         if key == 'status': copy.append('\n' + pub['ai_disclosure'])
     copy += ['\n## Primary background'] + ['\n- [' + x['label'] + '](' + x['url'] + ')' for x in pub['related_resources']]
-    copy += ['\n## Read the paper', '\n' + pub['reader_intro'], '\n- Local unchanged PDF: assets/' + pub['pdf_filename'], '\n- Complete original ZIP: assets/' + pub['supplement_filename'], '\n- Citation: assets/citation.bib', '\n- Zenodo DOI: https://doi.org/' + pub['doi'], '\n## Rights', '\n' + pub['rights_notice']]
+    copy += ['\n## Read the paper', '\n' + pub['reader_intro'], '\n[Open the complete PDF](assets/' + pub['pdf_filename'] + ') · [Download PDF](assets/' + pub['pdf_filename'] + ') · [Download complete source and verification ZIP](assets/' + pub['supplement_filename'] + ') · [Download BibTeX](assets/citation.bib)']
+    copy += ['\n[Zenodo original: ' + a['original_api_file_object']['key'] + '](' + a['original_api_file_object']['links']['self'] + ')' for a in ready['all_native_assets_in_original_order']]
+    copy += ['\nEmbedded reader: ' + pub['title'] + ' — complete four-page PDF', '\n## Cite this paper', '\nAlec Kriebel. ' + pub['title'] + '. Version 1.0.0, 22 October 2026. Zenodo. [doi:' + pub['doi'] + '](https://doi.org/' + pub['doi'] + ').', '\n## Rights and supporting materials', '\n' + pub['rights_notice'], '\n[CC BY 4.0](' + CC + ') · [MIT License](' + MIT + ')']
     (HERE / 'PUBLIC_COPY.md').write_text('\n'.join(copy) + '\n')
     write('SCHEMA_ADAPTER.json', {'schema': 'private-editorial-config-placement-and-native-adapter127-v1', 'publication_path': str(HERE / 'config/publication.json'), 'promotion_path': str(HERE / 'config/promotion.json'),
         'paper_level_configs_absent_and_not_created': True, 'whole_original_source_binding': pub['source_binding'], 'whole_original_review_metadata': pub['review_metadata'],

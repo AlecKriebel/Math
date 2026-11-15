@@ -1,0 +1,1836 @@
+                                                  Centroidal power diagrams, Lloyd’s algorithm and
+                                                      applications to optimal location problems
+                                                                         D. P. Bourne†               S. M. Roper†
+
+
+
+
+arXiv:1409.2786v1 [math.NA] 9 Sep 2014
+                                                                                  September 10, 2014
+
+
+                                                                                          Abstract
+
+                                                       In this paper we develop a numerical method for solving a class of optimization
+                                                   problems known as optimal location or quantization problems. The target energy can
+                                                   be written either in terms of atomic measures and the Wasserstein distance or in terms
+                                                   of weighted points and power diagrams (generalized Voronoi diagrams). The latter for-
+                                                   mulation is more suitable for computation. We show that critical points of the energy
+                                                   are centroidal power diagrams, which are generalizations of centroidal Voronoi tessel-
+                                                   lations, and that they can be approximated by a generalization of Lloyd’s algorithm
+                                                   (Lloyd’s algorithm is a common method for finding centroidal Voronoi tessellations).
+                                                   We prove that the algorithm is energy decreasing and prove a convergence theorem.
+                                                   Numerical experiments suggest that the algorithm converges linearly. We illustrate the
+                                                   algorithm in two and three dimensions using simple models of optimal location and
+                                                   crystallization. In particular, we test a conjecture about the optimality of the BCC
+                                                   lattice for a simplified model of block copolymers.
+
+
+                                         1         Introduction
+                                         In this paper we derive and analyze a numerical method for minimizing a class energies
+                                         that arise in economics (optimal location problems), electrical engineering (quantization),
+                                         and materials science (crystallization and pattern formation). Applications are discussed
+                                         further in §1.5. These energies can be formulated either in terms of atomic measures and the
+                                         Wasserstein distance, equation (1), or in terms of generalized Voronoi diagrams, equation (7).
+                                         These formulations are equivalent, but (1) is more common in the applied analysis literature
+                                         (e.g., [5], [8]) and (7) is more common in the computational geometry and quantization
+                                         literature (e.g, [11], [13]). Importantly for us, formulation (7) is much more convenient for
+                                         numerical work. We work with formulation (7) throughout the paper after first deriving
+                                         it from (1) in §1.1 and §1.2. We start from (1) rather than directly from (7) in order to
+                                         highlight the connection between the different communities.
+                                             †
+                                                 School of Mathematics and Statistics, University of Glasgow, University Gardens, Glasgow, G12 8QW
+
+
+                                                                                               1
+1.1    Wasserstein formulation of the energy
+Let Ω be a bounded subset of Rd , d ≥ 2, and ρ : Ω → [0, ∞) be a given density on Ω. Let
+f : [0, ∞) → R. We consider the following class of discrete energies, which are defined on
+                                                    N
+sets of weighted points {xi , mi }N
+                                  i=1 ∈ (Ω × (0, ∞)) , xi 6= xj if i 6= j:
+
+                                                          N                       N
+                                                                                                 !
+                                                          X                       X
+                                   F ({xi , mi }) =             f (mi ) + d2 ρ,         mi δxi       .                   (1)
+                                                          i=1                     i=1
+
+The second termPis the square of the Wasserstein distance between the density ρ and the
+atomic measure N     i=1 mi δxi . It is defined below in equation (2). This energy models, e.g.,
+the problem of optimally locating resources (such as recycling points, polling stations, or
+distribution centres) in a city or country Ω with population density ρ. The points xi are
+the locations of the resources and the weights mi represent their size. The first term of the
+energy penalizes the cost of building or running the resources. The second term penalizes
+the total distance between the population and the resources. In our case the Wasserstein
+distance d(·, ·) can be defined by
+
+            N
+                           !
+            X
+  d2   ρ,         mi δxi       =
+            i=1
+                                               ( N Z                                      Z                          )
+                                                X
+                                   min                             |x − xi |2 ρ(x) dx :                  ρ dx = mi ∀ i . (2)
+                               T :Ω→{xi }N
+                                         i=1          T −1 (xi )                           T −1 (xi )
+                                                i=1
+
+
+See, e.g., [28]. In two dimensions the minimization problem (2) can be interpreted as the
+following optimal partitioning problem: The map T partitions, e.g., a city Ω with population
+density ρ into N regions, {T −1 (xi )}N
+                                      i=1 . Region T
+                                                     −1
+                                                        (xi ) is assigned to the resource (e.g.,
+polling station) located at point xi of size mi . The optimal map T does this in such a way
+to minimize the total distance squared between the population and the resources subject to
+the constraint that each resource can meet the demand of the population assigned to it.
+    The Wasserstein distance is well-defined provided that the weights mi are positive and
+satisfy the mass constraint                   Z
+                                     X
+                                         mi =     ρ(x) dx.                                  (3)
+                                                      i                 Ω
+
+It can be shown that d(·, ·) is a metric on measures and that it metrizes weak convergence
+of measures, meaning that if ρn converges to ρ, then d(ρ, ρn ) → 0. See, e.g., [28, Ch. 7].
+It is not necessary to be familiar with measure theory or the Wasserstein distance since we
+will soon reformulate the minimization problem min F as a more elementary computational
+geometry problem involving generalized Voronoi diagrams (power diagrams).
+    The given data for the problem are Ω, f , ρ. We assume that f is twice differentiable and
+
+                           Ω is convex,         f 00 ≤ 0,       f (0) ≥ 0,    ρ ∈ C 0 (Ω),       ρ ≥ 0.                  (4)
+
+                                                                    2
+We also exclude linearPfunctions f (m)  P = am,R a ∈ R, since otherwise the first term of the
+energy is a constant, i f (mi ) = a i mi = Ω ρ dx, and F has no minimizer (see below).
+However, affine functions f (m) = am+b, b > 0, are admissible. The necessity and limitations
+of assumptions (4) are discussed in §1.6.
+    The number N of weighted points is not prescribed and is an unknown of the problem:
+The goal is to minimize F over sets of weighted points {xi , mi }N i=1 , subject to the constraint
+(3), and over N . The optimal value of N is determined by the competition between the two
+terms of F . Amongst finite N , the first term is minimized when N = 1, due to the concavity
+of f . The infimum of the second term is zero, which is obtained in the limit N → ∞ (this
+is because the measure ρ dx can be approximated arbitrarily well with dirac masses, e.g.,
+by using a convergent quadrature rule, and because the Wasserstein distance d(·, ·) metrizes
+weak convergence of measures).
+    Energies of the form of F and generalizations have received a great deal of attention in the
+applied analysis literature, e.g., [8] and [5] study the existence and properties of minimizers
+for broad classes of optimal location energies. There is far less work, however, on numerical
+methods for such problems. Exceptions include the case of (1) with f = 0, which has been
+well-studied numerically. This is discussed in §1.4.
+
+
+1.2    Power diagram formulation of the energy
+Minimizing F numerically is challenging due to presence of the Wasserstein term, which is
+defined implicitly in terms of the solution to the optimal transportation problem (2). This
+is an infinite-dimensional linear programming problem in which every point in Ω has to be
+assigned to one of the N weighted points (xi , mi ). Therefore even evaluating the energy F
+is expensive. One option is to discretize ρ so that (2) becomes a finite-dimensional linear
+programming problem. This is still costly, however, and it turns out that by exploiting a
+deep connection between optimal transportation theory and computational geometry we can
+reformulate the minimization problem min F in such a way that we can avoid solving (2)
+altogether.
+    First we need to introduce some terminology from computational geometry. The power
+diagram associated to a set of weighted points {xi , wi }N
+                                                         i=1 , where xi ∈ Ω, wi ∈ R, is the
+collection of subsets Pi ⊆ Ω defined by
+
+                     Pi = {x ∈ Ω : |x − xi |2 − wi ≤ |x − xk |2 − wk ∀ k}.                    (5)
+
+The individual sets Pi are called power cells (or cells) of the power diagram. The power
+diagram is sometimes called the Laguerre diagram, or the radical Voronoi diagram. If all the
+weights wi are equal we obtain the standard Voronoi diagram, see Figure 1. From equation
+(5) we see that the power cells Pi are obtained by intersecting half planes and are therefore
+convex polytopes (or the intersection of convex polytopes with Ω in the case of cells that
+touch ∂Ω): in dimension d = 3 the cells are convex polyhedra, in dimension d = 2 the cells
+are convex polygons. Note that some of the cells may be empty. The classical reference on
+generalized Voronoi diagrams is [25].
+
+                                                3
+Figure 1: A comparison of a standard Voronoi diagram (left) with a power diagram (right).
+The location of the generators in both cases is the same, but the power diagram carries
+additional structure via the weights associated with each generator. The size of the weights
+in the power diagram is indicated by the radii of the dashed circles. Notice that in the power
+diagram it is possible for the generator to lie outside the cell or for the cell associated with a
+generator to be empty (the Voronoi diagram has 20 cells and the power diagram has 19 cells).
+The geometrical construction of the power diagram in terms of the generator locations and
+the circles is simple; for each point x construct a tangent line from x to the circles centred
+at xi with radii ri , the length of the tangent line is called the power of the point x, the point
+x belongs to the power cell that has minimum power. The weights of the generators in this
+case are wi = −ri2 .
+
+
+
+
+                                                4
+    Given weighted points {xi , mi }N                  N
+                                    i=1 ∈ (Ω × (0, ∞)) , let T∗ be the minimizer in (2). The
+optimal transport regions {T∗−1 (xi )}N                                              N
+                                       i=1 form a power diagram: There exits {wi }i=1 ∈ R
+                                                                                             N
+                                                                N                    −1
+such that the power diagram {Pi }N   i=1 generated by {xi , wi }i=1 satisfies Pi = T∗ (xi ) for
+                                                               N
+all i (up to sets of ρ dx–measure zero). Conversely, if {Pi }i=1 is any power diagram with
+generators {xi , wi }N
+                     i=1 , then
+
+                     N
+                               !  N Z                                   Z
+                    X             X
+             2                                    2
+            d ρ,         mi δxi =        |x − xi | ρ dx where mi =          ρ(x) dx.        (6)
+                   i=1            i=1    Pi                                Pi
+
+
+These results can be shown using Brenier’s Theorem [28, Thm. 2.12] or the Kantorovich
+Duality Theorem [28, Thm. 1.3]. See [22, Thm. 1 & 2] or [6, Prop. 4.4]. As far as we are
+aware these results first appeared in [3], although not stated in the language of Wasserstein
+distances.
+     Equation (6) gives an explicit formula for the Wasserstein distance, without the need
+to
+R solve a linear programming problem, provided that the weights mi can be written as
+  Pi
+     ρ(x) dx for some power diagram {Pi } (with generating points xi ). In practice actually
+finding this power diagram involves solving another linear programming problem (the gen-
+erating weights wi come from the solution to the dual linear programming problem to (2),
+see [6, Prop. 4.4]), but in our case this can be avoided since we are interested in minimizing
+F rather than evaluating it at any given point.
+     We use this connection between the Wasserstein distance and power diagrams to rewrite
+                                                                                         N
+the energy F in new variables, changing variables from {xi , mi }N    i=1 ∈ (Ω × (0, ∞))    to
+          N            N
+{xi , wi }i=1 ∈ (Ω × R) . By the results above, minimizing F is equivalent to minimizing
+
+                                       N 
+                                       X            Z                   
+                                                               2
+                      E ({xi , wi }) =    f (mi ) +   |x − xi | ρ(x) dx                        (7)
+                                        i=1           Pi
+
+                                                                    R
+where {Pi } is the power diagram generated by {xi , wi } and mi := Pi ρ dx. The equivalence
+                                                                     N
+of E and F is in the following sense: Given {xi , wi }Ni=1 ∈ (Ω × R)   and the corresponding
+                     N
+power diagram {Pi }i=1 , equation (6) implies that
+                                                              Z
+                    E ({xi , wi }) = F ({xi , mi }) for mi =     ρ(x) dx.
+                                                                  Pi
+
+Conversely, it can be shown (e.g., [6, Prop. 4.4]) that given any {xi , mi }N
+                                                                            i=1 ∈ (Ω × (0, ∞)) ,
+                                                                                                N
+                   N      N                                       N                            N
+         R {wi }i=1 ∈ R such that the power diagram {Pi }i=1 generated by {xi , wi }i=1
+there exists
+satisfies Pi ρ(x) dx = mi for all i. Then it follows from (6) that F ({xi , mi }) = E ({xi , wi }).
+The weights {wi }N        N
+                   i=1 ∈ R are unique up to the addition of a constant; it is easy to see from
+(5) that {wi + c}i=1 and {wi }N
+                   N
+                               i=1 generate the same power diagram.
+    While the energies E and F are equivalent, from a numerical point of view it is far more
+practical to work with E since it can be easily evaluated, unlike F , since computing power
+diagrams is easy while solving the linear programming problem (2) is not. In the rest of the
+paper we focus on finding local minimizers of E.
+
+                                                5
+1.3     Centroidal power diagrams and a generalized Lloyd algorithm
+From now on we will write (X, w) = ((x1 , . . . , xN ), (w1 , . . . , wN )) ∈ ΩN × RN to denote the
+generators of a power diagram. In this section we introduce an algorithm for finding critical
+points of E = E(X, w).
+   Let G N ⊂ ΩN ×RN be the smaller class of generators such that no two generators coincide
+and there are no empty cells:
+
+             G N = {(X, w) ∈ ΩN × RN : (xi , wi ) 6= (xj , wj ) if i 6= j, Pi 6= ∅ ∀ i}.            (8)
+
+Define ξ : G N → ΩN and ω : G N → RN by
+
+      ξ(X, w) := (ξ1 (X, w), . . . , ξN (X, w)),       ω(X, w) := (ω1 (X, w), . . . , ωN (X, w)),
+
+where
+                                   Z
+                           1
+          ξi (X, w) :=                          xρ(x) dx,     ωi (X, w) := −f 0 (mi (X, w)).        (9)
+                       mi (X, w)     Pi (X,w)
+
+
+Here Pi (X, w) is the i-th power cell in the power diagram generated by (X, w) and mi (X, w)
+is its mass:
+                                               Z
+                                mi (X, w) =            ρ(x) dx.
+                                                   Pi (X,w)
+
+
+Note that ξi (X, w) is the centroid (or centre of mass) of the i-th power cell. We will
+sometimes denote this by xi . In §2 we show that critical points of E are fixed points of the
+Lloyd maps:
+                   ∇E(X, w) = 0        ⇐⇒         (ξ(X, w), ω(X, w)) = (X, w)
+
+(up to the addition of a constant vector to w – see Proposition 2.5 for a precise statement).
+The condition ξ(X, w) = X means that the power diagram generated by (X, w) has the
+property that xi is the centroid of its power cell Pi for all i. We call these special types
+of power diagrams centroidal power diagrams. This is in analogy with centroidal Voronoi
+tessellations (CVTs), which are special types of Voronoi diagrams with the property that
+the generators of the Voronoi diagram are the centroids of the Voronoi cells. See [11] for a
+nice survey of CVTs. Note also that CVTs can be viewed as a special type of centroidal
+power diagram where all the weights are equal, wi = c for all i, c ∈ R, since power diagrams
+with equal weights are just Voronoi diagrams.
+    The following algorithm is an iterative method for finding fixed points of (ξ, ω), and
+therefore critical points of E:
+
+                                                   6
+Algorithm 1 The generalized Lloyd algorithm for finding critical points of E
+Initialization: Choose N0 ∈ N and (X 0 , w0 ) ∈ G N0 .
+At each iteration:
+
+ (1) Update the generators: Given (X k , wk ) ∈ G Nk , compute the corresponding power
+     diagram and define (X k+1 , wk+1 ) ∈ ΩNk × RNk by
+
+                            X k+1 = ξ(X k , wk ),   wk+1 = ω(X k , wk ).
+
+ (2) Remove empty cells:        Compute the power diagram {Pik+1 }N
+                                                                  i=1 generated by
+                                                                    k
+
+
+     (X k+1 , wk+1 ) and let
+
+                                J = j ∈ {1, . . . , Nk } : Pjk+1 = ∅ .
+                                   
+
+
+     For all j ∈ J, remove (xk+1
+                             j   , wjk+1 ) from the list of generators. Then replace Nk with
+     Nk+1 = Nk − |J|.
+
+
+
+
+    In particular this algorithm computes centroidal power diagrams, and it is a generaliza-
+tion of Lloyd’s algorithm [19], which is a popular method for computing centroidal Voronoi
+tessellations. See [11]. The classical Lloyd algorithm is recovered from our generalized Lloyd
+algorithm by simply taking the weights to be constant at each iteration, e.g., wk = 0 for all
+k. Due to this relation, we refer to ξ and ω as generalized Lloyd maps.
+
+     Step (2) of the algorithm means that, given N0 ∈ N and (X 0 , w0 ) ∈ G N0 , the algorithm
+can converge to a fixed point (X, w) ∈ G N with N < N0 . This means that the algorithm
+can partly correct for an incorrect initial guess N0 (recall that we are minimizing E(X, w)
+over (X, w) ∈ G N and over N ). It is still possible, however, that the algorithm converges
+to a local minimizer of E, possibly with a non-optimal value of N . Note also that the
+algorithm can eliminate generators, but it cannot create them. Therefore it is impossible
+for the algorithm to find a global minimizer of E if the initial value of N0 is less than the
+optimal value. We discuss strategies for finding global as opposed to local minimizers in §4
+and §5.
+                                                                             √
+     Algorithm 1 was introduced for the special case of d = 2, ρ = 1, f (m) = m in [6, Sec. 4].
+In the current paper we extend it to the broader class of energies (7), analyze it (prove that
+it is energy decreasing and that it converges, Theorems 3.1, 3.3), and implement it in both
+two and three dimensions. In addition, the derivation here, unlike in [6], is accessible to
+those not familiar with measure theory and optimal transport theory since we work with
+formulation (7) rather than (1).
+
+                                               7
+1.4     The case f = 0 and N fixed: CVTs and Lloyd’s algorithm
+Setting f = 0 in (1) and fixing N gives the energy
+                                                            N
+                                                                            !
+                                                            X
+                             FN ({xi , mi }) = d2 ρ,               mi δxi       .
+                                                            i=1
+
+It is necessary to fix N since otherwise this has no minimizer; the infimum is zero, which is
+obtained in the limit N → ∞ by approximating ρ with dirac masses. It can be shown that
+minimizing FN is equivalent to minimizing
+                                             N Z
+                                             X
+                             EN ({xi }) =               |x − xi |2 ρ(x) dx
+                                             i=1   Vi
+
+
+where {Vi }N                                            N
+           i=1 is the Voronoi diagram generated by {xi }i=1 :
+
+                           Vi = {x ∈ Ω : |x − xi | ≤ |x − xk | ∀ k}.
+
+See [6, Sec. 4.1]. Numerical minimization of EN has been well-studied. A necessary condition
+for minimality is that {xi }N
+                            i=1 generates a centroidal Voronoi tessellation (CVT). CVTs can
+be easily computed using the classical Lloyd algorithm. See, e.g., [11]. Convergence of the
+algorithm is studied in [10], [11] and [27], among others, and there is a large literature on
+CVTs and Lloyd’s algorithm. However, we are not aware of any work (other than [6]) on
+numerical minimization of E for f 6= 0.
+
+1.5     Applications
+Energies of the form (7), or equivalently (1), arise in many applications.
+
+1.5.1   Simple model of pattern formation: block copolymers
+The authors first came in contact with energies of the form (1) in a pattern formation problem
+in materials science [6]. The following energy is a simplified model of phase separation for
+two-phase materials called block copolymers, for the case where one phase has a much smaller
+volume fraction than the other:
+                                        N            Z                
+                                        X       d−1
+                                                                   2
+                       E ({xi , wi }) =     λmi +d
+                                                          |x − xi | dx                     (10)
+                                       i=1                    Pi
+
+             R                                                         P
+where mi = Pi 1 dx = |Pi | and d = 2 or 3. The measure ν =                i mi δxi represents the
+minority phase. In three dimensions, d = 3, this represents N small spheres of the minority
+phase centred at {xi }N
+                      i=1 . The weights mi give the relative size of the spheres. These spheres
+are surrounded by a ‘sea’ of the majority phase. In two dimensions, d = 2, the measure ν
+represents N parallel cylinders of the minority phases and Ω is a cross-section perpendicular
+
+                                                   8
+to the axes of the cylinders. The first term of E penalizes the surface area between the two
+phases and so prefers phase separation (N = 1), and the second term prefers phase mixing
+(N = ∞). The parameter λ represents the repulsion strength between the two phases.
+                                                                      d−1
+Equation (10) is the special case of (7) with ρ = 1 and f (m) = λm d .
+    This energy can be viewed as a toy model of the popular Ohta-Kawasaki model of block
+copolymers (see, e.g., [9]). Like the Ohta-Kawasaki energy, it is non-convex and non-local (in
+the sense that evaluating E involves solving an auxiliary infinite-dimensional problem). Un-
+like the Ohta-Kawasaki energy, however, it is discrete, which makes it much more amenable
+to numerics and analysis. In general it can be viewed as a simplified model of non-convex,
+non-local energy-driven pattern formation, and it has applications in materials science out-
+side block copolymers, e.g., to crystallization. It is also connected to the Ginzburg-Landau
+model of superconductivity [7, p. 123–124].
+    In [6] it was demonstrated numerically that for d = 2 minimizers of E tend to a hexagonal
+tiling as λ → 0 (in the sense that the power diagram generated by {xi , wi } tends to a
+hexagonal tiling). This was proved in [7], and it agrees with block copolymer experiments,
+where in some parameter regime the minority phase forms hexagonally packed cylinders. It
+was conjectured in [6] that for the case d = 3, minimizers of E tend to a body-centred cubic
+(BCC) lattice as λ → 0 (meaning that {xi } tend to a BCC lattice and wi → 0). We examine
+this conjecture in §5.4. In particular, numerical minimization of E in three dimensions
+suggests that the BCC lattice is at least a local minimizer of E when Ω is a periodic box.
+Again, this agrees with block copolymer experiments, where in some parameter regime the
+minority phase forms a BCC lattice.
+
+1.5.2   Quantization
+Energies of the form (7) can be used for data compression using a technique called vector
+quantization. By taking f = 0 in (7) and evaluating the resulting energy at wi = 0 for all
+                                                              N
+i, so that the power diagram {Pi }N  i=1 generated by {xi , 0}i=1 is just the Voronoi diagram
+{Vi }N                     N
+     i=1 generated by {xi }i=1 , we obtain the energy
+
+                           N
+                           XZ                               Z
+                                             2
+              D({xi }) =              |x − xi | ρ(x) dx ≡       min |x − xi |2 ρ(x) dx.   (11)
+                                 Vi                         Ω    i
+                           i=1
+
+This is known in the quantization literature as the distortion. See [15, Sec. 33] for a mathe-
+matical introduction to vector quantization and [13] and [14] for comprehensive treatments.
+Roughly speaking, the points x of Ω represent signals (e.g., parts of an image or speech) and
+xi represent codewords in the codebook {xi }N i=1 . The function ρ is a probability density on
+the set of signals Ω. If a signal x belongs to the Voronoi cell Vi , then the encoder assigns
+to it the codeword xi , which is then stored or transmitted. D measures the quality of the
+encoder, the average distortion of signals. The minimum value of D is called the minimum
+distortion.
+    In practice distortion is minimized subject to a constraint on the number of bits in the
+codebook. The codewords xi are mapped to binary vectors before storage or transmission. In
+
+                                                  9
+fixed-rate quantization all these vectors have the same length. R In variable-rate quantization
+the length depends on the probability density ρ: Let mi = Vi ρ dx be the probability that
+a signal lies in Voronoi cell Vi . If mi is large, then xi should be mapped to a short binary
+vector since it occurs often. For cells with lower probabilities, longer binary vectors can be
+used. The rate of an encoder has the form
+                                               N
+                                               X
+                                          R=         li mi
+                                               i=1
+
+where li is the length of the binary vector representing xi . Note that R is the expected value
+of the length. Distortion D is decreased by choosing more codewords. On the other hand,
+this means that the rate R, and hence the storage/transmission cost, is increased. Optimal
+encoders can be designed by trading off distortion against rate by minimizing energies of the
+form
+                                            λR + D
+where λ is a parameter determining the tradeoff. See [14, p. 2342]. Our energy (7) generalises
+this: Take li = l(1/mi ) for some concave function l so that m 7→ l(1/m)m is concave. In
+addition, l should be increasing so that the code length decreases as the probability m
+increases. We replace the Voronoi cells in (11) with power cells, which means that signals in
+power cell Pi are mapped to codeword xi . Then the energy λR + D has the form of (7):
+                     N           Z                                                    
+                     X
+                                             2                                       1
+     E({xi , wi }) =    f (mi ) +   |x − xi | ρ(x) dx        where f (m) = λl                m.
+                     i=1             Pi                                              m
+
+1.5.3   Optimal location of resources
+As discussed in §1.1 and §5.3, energies of the form (1) and (7) can be used to model the
+optimal location of resources {xi } in a city or country Ω with population density ρ. The
+resources have size mi , serve region Pi , and cost f (mi ) to build or run. The assumption that
+f is concave (introduced for mathematical convenience to prove Theorem 3.1) is also natural
+from the modelling point of view since it corresponds to an economy of scale. The energy
+trades off building/running costs against distance between the population and the resources.
+
+1.5.4   Other applications and connections
+Energies of the form (7), usually with f = 0, also arise in data clustering and pattern recog-
+nition (k-means clustering) [16], [21], image compression (this is a special case of vector
+quantization) [11, Sec. 2.1], numerical integration [11, Sec. 2.2], [15, p. 497–499] and con-
+vex geometry (packing and covering problems, approximation of convex bodies by convex
+polytopes) [15, Sec. 33]. Taking f 6= 0 in (7) gives the algorithm more freedom, e.g., to
+automatically select the number of data clusters in addition to their location, based on a
+cost per cluster.
+
+                                               10
+    Voronoi diagrams have recently gained a lot of interest in the materials science commu-
+nity, e.g., to model solid foams [1] and grains in metals [18], although this is usually done in a
+more heuristic manner than by energy minimization. Global minimizers of E can be difficult
+to find if they have a large value of N , and the generalized Lloyd algorithm tends to converge
+to local minimizers. These often resemble grains in metals, see Figure 3, which suggests that
+energy minimization might be a good method to produce Representative Volume Elements
+for the finite element simulation of materials with microstructure.
+    Several important PDEs, such as the heat equation and Fokker-Plank equation, can be
+written as a time-discrete gradient flow of an energy with respect to the Wasserstein distance
+[17]. For example, for the heat equation, an energy related to (1) is minimized at every time
+step, with the important differences that the first term of the energy is the integral of a
+convex function (as opposed to the sum of a concave function) and the second term is the
+Wasserstein distance between two absolutely continuous measures (as opposed to between
+an absolutely continuous measure and an atomic measure). A spatial discretization would
+bring the second terms in line and replace the integral in the first term by a sum. It could
+be argued, however, that we do not need another numerical method to solve the linear heat
+equation. Energies involving the Wasserstein distance also arise in models of dislocation
+dynamics [24].
+
+1.6    Limitations of the algorithm
+First we discuss the assumptions on the data given in equation (4).
+    The assumption that Ω is convex ensures that the centroid of each power cell lies in Ω.
+Without this assumption the algorithm could produce an unfeasible solution with xi ∈       / Ω for
+some i. For example, if Ω is the annulus A(r1 , r2 ) centred at the origin, ρ = 1, and f is chosen
+suitably, then E is minimized when N = 1 by (x1 , w1 ) in which |x1 | = r1 (the generator lies
+on the interior boundary of the annulus) and w1 is irrelevant (in the case where there is only
+one cell the weight is not determined). The generalized Lloyd algorithm, however, initialised
+with N0 = 1, would return x = 0 ∈     / Ω. This strong limitation on the shape of Ω means
+that the algorithm cannot be used to solve optimal location problems in highly nonconvex
+countries like Scotland. We plan to address this issue in a future paper.
+    The concavity assumption on f , f 00 ≤ 0, is necessary to prove Theorem 3.1, which asserts
+that step (1) of the algorithm decreases the energy at every iteration. As discussed in §1.5,
+it is also a reasonable modelling assumption for many applications. The assumption that
+f (0) ≥ 0 ensures that iteration step (2) is also energy decreasing.
+    If f is convex then the energy behaves very differently and the generalized Lloyd algorithm
+may not be suitable. The first term is not necessarily minimized when N = 1, but when all
+the power cells have the same mass, since by Jensen’s inequality
+                       N                                             Z
+                       X                          M
+                              f (mi ) ≥ N f                where M =       ρ dx.
+                        i=1
+                                                  N                    Ω
+
+
+If in addition f ≥ 0 and N f (M/N ) → 0 as N → ∞, then E does not have a global
+
+                                                      11
+minimizer. Its infimum is zero, obtained in the limit N → ∞ by approximating ρ arbitrarily
+well by dirac masses. We have not studied the case where f is neither concave nor convex.
+    As discussed in §1.3, another limitation of the algorithm is that, while it can annihilate
+generators, step (2), it cannot create them. Therefore the initial guess N0 for the optimal
+number of generators should be an over estimate. This limitation could be addressed by using
+a simulated annealing method to randomly introduce new generators at certain iterations.
+This could also be used to prevent the algorithm from getting stuck at a local minimizer.
+
+1.7    Generalizations
+While we have focussed on energy (7), our general methodology could be easily applied to
+broader classes of optimal location energies where the first term is more general, e.g., to
+                                                     N Z
+                                                     X
+                    E ({xi , wi }) = g({xi , mi }) +     |x − xi |2 ρ(x) dx
+                                                    i=1    Pi
+            R
+where mi = Pi ρ dx.
+   Our algorithm can also be modified to minimize the following energy, which is obtained
+from (1) by replacing the square of the 2-Wasserstein distance with the p-th power of the
+p-Wasserstein distance, p ∈ [1, ∞):
+                                        N                  N
+                                                                   !
+                                        X                  X
+                      Fp ({xi , mi }) =   f (mi ) + dpp ρ,   mi δxi .
+                                         i=1                    i=1
+
+See [28, Chap. 7] for the definition of dp (·, ·). In this case the energy can be rewritten in
+terms of what we call p-power diagrams. These are a generalization of power diagrams where
+the cells generated by {xi , wi } are defined by
+                    Pi = {x ∈ Ω : |x − xi |p − wi ≤ |x − xk |p − wk ∀ k}.
+For p = 2 this is just the power diagram. For p = 1 this is known as the Appollonius diagram
+(or the additively weighted Voronoi diagram, or the Voronoi diagram of disks). For general
+p there does not seem to be a standard name, although they fall into the class of generalized
+Dirichlet tessellations, or generalized additively weighted Voronoi diagrams. It can be shown
+that minimizing Fp is equivalent to minimizing
+                                        N
+                                        X            Z                   
+                                                                 p
+                      Ep ({xi , wi }) =     f (mi ) +   |x − xi | ρ(x) dx                 (12)
+                                       i=1            Pi
+                                                                    R
+where {Pi } is the p-power diagram generated by {xi , wi } and mi := Pi ρ dx. See [6, Sec. 4.2].
+Critical points of Ep can be found using a modification of the generalized Lloyd algorithm
+where for each i the map ξi returns the p-centroid of the p-power cell Pi , i.e., ξi (X, w)
+satisfies the equation          Z
+                                   (ξi − x)|ξi − x|p−2 dx = 0.                             (13)
+                                  Pi
+
+
+                                               12
+See [6, Th. 4.16]. For the case p = 2 this equation just says that ξi is the centroid of
+Pi . Therefore in principle the algorithm can be extended to all p ∈ [1, ∞). In practice
+it is much harder to implement. Except for the cases p = 1, 2, we are not aware of any
+efficient algorithms for computing p-power diagrams. This is due to the fact that for p 6= 2
+the boundaries between cells are curved (unless all the weights are equal). In addition,
+evaluating the Lloyd map ξ(X, w) involves solving the nonlinear equation (13). We plan to
+say more about this aspects in a future paper.
+
+1.8    Structure of the paper
+The generalized Lloyd algorithm, Algorithm 1, is derived in §2. In §3 we prove that it is
+energy decreasing, prove a convergence theorem, and study its structure. Implementation
+issues, such as how to compute power diagrams, are discussed in §4. Numerical illustrations
+in two and three dimensions are given in §5. In the appendix we give some useful formulas
+for implementing the algorithm for the special case ρ = constant, in which case it is not
+necessary to use a quadrature rule.
+
+
+2     Derivation of the algorithm
+In this section we derive the generalized Lloyd algorithm, Algorithm 1, which is a fixed point
+method for the calculation of stationary points of the energy E, defined in equation (7).
+Calculating the gradient of E requires care since this involves differentiating the integrals
+appearing in the definition of E with respect to their domains. We perform this calculation
+in §2.2 and §2.3, after introducing some notation in §2.1.
+
+2.1    Notation for power diagrams
+Throughout this paper we take Ω to be a bounded, convex subset of Rd , d ≥ 2. We will take
+d = 2 or 3 for purposes of illustration, but the theory developed applies for all d ≥ 2.
+    Given weighted points (X, w) = ((x1 , . . . , xN ), (w1 , . . . , wN )) ∈ ΩN × RN and the asso-
+ciated power diagram {Pi }Ni=1 (defined in equation (5)), we introduce the following notation:
+
+                                                xj − xi
+                     dij = |xj − xi |,    nij =         ,       Fij = Pi ∩ Pj ,               (14)
+                                                  dij
+                                Z                       Z
+                          mi =      ρ(x) dx,     mij =        ρ(x) dx,                        (15)
+                                 Pi                       Fij
+                              Z                              Z
+                            1                           1
+                     xi =         xρ(x) dx,     xij =            xρ(x) dx,                    (16)
+                           mi Pi                       mij Fij
+                                   Ji = {j 6= i : Pi ∩ Pj 6= ∅}.                              (17)
+
+Here dij is the distance between points xi and xj ; nij is the unit vector pointing from xi to
+xj ; the set Fij is the face common to both cells Pi and Pj ; mi is the mass of cell Pi ; mij is
+
+                                                13
+the mass of face Fij ; xi is the centre of mass of the cell Pi and xij is the centre of mass of
+face Fij . The set of indices of the neighbours of cell Pi is given by the index set Ji . In the
+case d = 2 the power cells are convex polygons and rather than referring to the intersections
+of neighbouring cells as faces, we refer to them as edges.
+    Recall that we sometimes write Pi (X, w) for the power cells generated by (X, w), instead
+of simply Pi , to emphasize that the power diagram is generated by (X, w). Similarly, we will
+sometimes write mi (X, w) for the mass of the i-th power cell. From equation (5) it is easy
+to see that adding a constant c ∈ R to all the weights generates the same power diagram:
+Pi (X, w + c) = Pi (X, w) for all i, where c = (c, . . . , c) ∈ RN . Let R+ = [0, ∞) and let
+m : ΩN × RN → RN    + be the function defined by
+
+
+                              m(X, w) = (m1 (X, w), . . . , mN (X, w)),                                     (18)
+
+which gives the mass of all of the cells generated by (X, w). Note that some of the cells
+may be empty (at most N − 1 of them), in which case the corresponding components of m
+take the value zero. Given a density ρ : Ω → [0, ∞), let the space of admissible masses be
+                                       (             N             Z               )
+                                                     X
+                             MN =       M ∈ RN
+                                             + :            Mi =        ρ(x) dx .                           (19)
+                                                      i=1           Ω
+
+
+    Throughout this paper Im denotes the m-by-m identity matrix.
+
+
+2.2     The helper function H
+Motivated by [10], where convergence of the classical Lloyd algorithm is studied, we introduce
+a helper function H defined by
+
+  H (X 1 , w1 ), (X 2 , w2 ), M :=
+                               
+
+                               N
+                               X                    Z                                                  
+                                       1
+                                   Mi wi + f (Mi ) +                          (|x − x1i |2 − wi1 )ρ(x) dx   (20)
+                                 i=1                          Pi (X 2 ,w2 )
+
+
+where (X k , wk ) = ((xk1 , . . . , xkN ), (w1k , . . . , wN
+                                                           k
+                                                             )) for k ∈ {1, 2}, M = (M1 , . . . , MN ), and the
+domain of H is (Ω × R ) × (Ω × R ) × MN . The energy E is recovered by choosing the
+                   N        N            N        N
+
+arguments of H appropriately:
+
+                            E (X, w) = H ((X, w), (X, w), m(X, w)) .                                        (21)
+
+Note that H is invariant under addition of a constant to all the weights:
+
+              H (X 1 , w1 + c1 ), (X 2 , w2 + c2 ), M = H (X 1 , w1 ), (X 2 , w2 ), M
+                                                                                     
+                                                                                                            (22)
+
+for all ci = ci (1, . . . , 1) ∈ RN , i ∈ {1, 2}, since M ∈ MN .
+
+                                                      14
+Lemma 2.1 (Properties of H). Let ξ, ω be the Lloyd maps defined in equation (9). Then
+          min H (X 1 , w1 ), (X 2 , w2 ), M = H ξ(X 2 , w2 ), w1 , (X 2 , w2 ), M ,
+                                                                                     
+   (i)
+         X 1 ∈ΩN
+   (ii) H (X, w1 ), (X, w), m(X, w) = E (X, w) , i.e., is independent of w1 ,
+                                           
+
+   (iii) H (X 1 , w1 ), (X 2 , w2 ), M ≥ H (X 1 , w1 ), (X 1 , w1 ), M ,
+                                                                          
+
+         with equality if and only if Pi (X 1 , w1 ) = Pi (X 2 , w2 ) for all i,
+   (iv) max H X 1 , ω(X 2 , w2 ) , (X 2 , w2 ), M =
+                                                      
+         M ∈RN+
+
+                                          H X 1 , ω(X 2 , w2 ) , (X 2 , w2 ), m(X 2 , w2 ) .
+                                                                                         
+
+Proof. Property (i): For fixed X 2 ∈ ΩN , w1 , w2 ∈ RN and M ∈ MN , define the function
+h : ΩN → R by h(X 1 ) := H ((X 1 , w1 ), (X 2 , w2 ), M ). Then
+                      Z
+         ∂h
+           1
+               1
+             (X ) = 2                 (x1i − x)ρ(x) dx = 2mi (X 2 , w2 )(x1i − ξi (X 2 , w2 ))
+        ∂xi             Pi (X 2 ,w2 )
+
+by the definition (9) of ξi . Therefore ξ(X 2 , w2 ) is a critical point of h. Moreover it is a
+global minimum point since h is convex:
+                              ∂ 2h
+                                       
+                                         2mi (X 2 , w2 )Id if i = j,
+                                     =
+                               1
+                           ∂xi ∂xj 1             0          if i 6= j,
+where Id and 0 are the d-by-d identity and zero matrices. (Note that h is not necessarily
+strictly convex since mi (X 2 , w2 ) may be zero for some i, which is the case when the power
+cell Pi (X 2 , w2 ) is empty.)
+    Property (ii) is immediate from the definitions of H and E.
+    Property (iii): This follows from the fact that for any partition {Si }Ni=1 of Ω we have
+            X    Z                                 X Z
+                     (|x − x1i |2 − wi1 )ρ(x) dx ≥          (|x − x1i |2 − wi1 )ρ(x) dx
+               i   Si                                          i    Pi (X 1 ,w1 )
+
+with equality if and only if {Si }N                                            1  1
+                                  i=1 is the power diagram generated by (X , w ) (up to sets
+of ρ dx–measure zero). This follows since
+         XZ                                         Z
+                               1 2      1
+                       (|x − xi | − wi )ρ(x) dx =      min{|x − x1i |2 − wi1 }ρ(x) dx.
+                   Pi (X 1 ,w1 )                                       Ω    i
+           i
+
+   Property (iv): First we check that m (X 2 , w2 ) is a critical point of the function defined
+by g (M ) = H ((X 1 , ω(X 2 , w2 )) , (X 2 , w2 ), M ):
+                 ∂g
+                       m X 2 , w2 = ωj X 2 , w2 + f 0 mj X 2 , w2 = 0
+                                                                     
+                ∂Mj
+by the definition (9) of ωj . Note that the function g is concave since its Hessian is diagonal
+with non-positive diagonal entries:
+                                   D2 g = diag (f 00 (M1 ), f 00 (M2 ), . . . , f 00 (MN )) .
+Therefore the critical point m (X 2 , w2 ) is a global maximum point of g, as required.
+
+                                                              15
+2.3     Critical points of E
+In this section we show that critical points of E are fixed points of the Lloyd maps ξ, ω.
+
+Lemma 2.2 (Partial derivatives of E). The partial derivatives of E are
+
+                                                     N
+                ∂E                                  X   ∂mj
+                    (X, w) = 2mi (xi − ξi (X, w)) +          (wj − ωj (X, w)),          (23)
+                ∂xi                                 j=1
+                                                        ∂x i
+
+                              N
+                ∂E           X   ∂mj
+                    (X, w) =         (wj − ωj (X, w))                                   (24)
+                ∂wi          j=1
+                                 ∂wi
+
+for i ∈ {1, . . . , N }. In matrix notation:
+                                                       
+                           ∇X E      2M̂ ∇X m   X − ξ(X, w)
+                                  =                                                     (25)
+                            ∇w E      0 ∇w m   w − ω(X, w)
+
+where
+                    M̂ := diag(m1 , . . . , mN ) ⊗ Id = diag(m1 Id , . . . , mN Id ).   (26)
+
+Proof. From equation (21),
+
+                            ∂E           ∂H     ∂H X ∂H ∂mj
+                                (X, w) =      +      +                                  (27)
+                            ∂xi          ∂x1i   ∂x2i   j
+                                                         ∂Mj ∂xi
+
+where the derivatives of H are evaluated at ((X, w), (X, w), m(X, w)). The second term
+on the right-hand side is zero by Lemma 2.1(iii). Direct computation (as in the proof of
+Lemma 2.1(i),(iv)) gives
+
+                       ∂H                         ∂H
+                            = 2mi (xi − ξi ),         = wj + f 0 (mj (X, w)).           (28)
+                       ∂x1i                       ∂Mj
+
+Combining (27), (28) and the definition of ωj yields (23).
+  Differentiating (21) with respect to wi gives
+
+                            ∂E           ∂H    ∂H    X ∂H ∂mj
+                                (X, w) =     +     +                                    (29)
+                            ∂wi          ∂wi1 ∂wi2   j
+                                                       ∂Mj ∂wi
+
+where the derivatives of H are evaluated at ((X, w), (X, w), m(X, w)). The first two terms
+on the right-hand side are zero by Lemma 2.1(ii),(iii). Therefore combining (29) and (28)2
+yields (24).
+
+                                                   16
+Weighted graph Laplacian matrices Given a power diagram {Pi (X, w)} define a graph
+G that has as vertices X, and edges given by the neighbour relations of the power diagram:
+xi is connected by an edge to xj if and only if i ∈ Jj (and equivalently j ∈ Ji ). If we
+associate a weight uij = uji to each edge of this graph, then we can define the weighted
+graph Laplacian matrix L = L(G, u) by
+                                     X
+                                    
+                                           ujk if i = j,
+                                    
+                                       k∈Jj
+                              Lij =                                                    (30)
+                                    
+                                        −uij if i ∈ Jj ,
+                                          0     otherwise.
+                                    
+
+The symmetric matrix L is the difference between the weighted degree matrix and weighted
+adjacency matrix of G. It is well-known that the dimension of the null space of L equals
+the number of connected components of G. See [23, p. 117, Th. 3.1]. In our case G is
+connected and so, for any edge-weighting u, the null space of L(G, u) is one-dimensional
+and is spanned by (1, 1, . . . , 1). In an analogous way, one can define (block) weighted graph
+Laplacian matrices for vector-valued weights uij .
+    Computing the derivatives of mj that appearRin equations (23) and (24) is delicate since
+this involves differentiating the integrals mj = Pj (X,w) ρ dx with respect to xi and wi . It
+turns out that these derivatives are weighted graph Laplacian matrices:
+Lemma 2.3 (Weighted graph Laplacian structure of ∇X m and ∇w m). Let (X, w) ∈ G N
+be the generators of a power diagram with the generic property that adjacent cells have a
+common face (a common edge in 2D). The partial derivatives of m(X, w) are
+                                X mjk
+                                            (xjk − xj ) if i = j,
+                               
+                               
+                                 k∈Jj
+                                        djk
+                        ∂mj    
+                            =          mij
+                        ∂xi         −       (xij − xi )    if i ∈ Jj ,
+                                       dij
+                               
+                               
+                               
+                               
+                               
+                                             0             otherwise,
+                                X mjk
+                                              if i = j,
+                               
+                               
+                                 k∈Jj
+                                       2djk
+                        ∂mj    
+                            =          mij
+                        ∂wi        −           if i ∈ Jj ,
+                                      2dij
+                               
+                               
+                               
+                               
+                               
+                                       0       otherwise,
+
+for i ∈ {1, . . . , N }. In particular, the N -by-N matrix ∇w m, which has components [∇w m]ij =
+                                                                                           m
+∂mj /∂wi , is the weighted graph Laplacian matrix of G(X, w) with respect to the weights 2dijij .
+Therefore the null space of ∇w m is one-dimensional and is spanned by (1, 1, . . . , 1) ∈ RN .
+Note that (1, 1, . . . , 1) also belongs to the null space of the (N d)-by-N matrix ∇X m, which
+has d-by-1 blocks [∇X m]ij = ∂mj /∂xi .
+Proof. Given the power diagram {Pj }N                                N         t N
+                                        j=1 generated by (X, w) ∈ G , let {Pj }j=1 be the
+power diagram generated by (X t , wt ) := (X + tX̃, w + tw̃) for some X̃ ∈ (Rd )N , w̃ ∈ RN .
+
+                                              17
+For t in a small enough neighbourhood of zero, this family of power diagrams has the same
+number of cells, and each cell has the same number of faces, as the power diagram generated
+by (X, w) (this follows from the assumption that adjacent cells have a common face). Let
+ϕt : Ω → Ω be any flow map with the properties that ϕ0 is the identity map, ϕt (X) = X t ,
+ϕt (Pj ) = Pjt for all j, and that ϕt maps the faces of Pj to the faces of Pjt for all j. Fix j and
+consider                                     Z           Z
+                                     t  t
+                               mj (X , w ) =     ρ dx =         ρ dx.                           (31)
+                                                         Pjt          ϕt (Pj )
+
+Define V (x) = dtd ϕt (x)|t=0 . By the Reynolds Transport Theorem, differentiating (31) with
+respect to t and evaluating at t = 0 gives
+                N                            Z                  XZ
+               X   ∂mj            ∂mj
+                          · x̃i +      w̃i =       ρ V · n dS =         ρ V · njk dS.   (32)
+               i=1
+                    ∂x  i         ∂w i        ∂P j              k∈J Fjk
+                                                                                 j
+
+
+Now we compute V · njk . Choose a face Fjk = Pj ∩ Pk and some point x ∈ Fjk . Then
+xt := ϕt (x) ∈ Fjk
+                t
+                   = Pjt ∩ Pkt and so it satisfies
+                                     |xt − xtj |2 − wjt = |xt − xtk |2 − wkt .
+Differentiating with respect to t and setting t = 0 gives
+                  2(x − xj ) · (V (x) − x̃j ) − w̃j = 2(x − xk ) · (V (x) − x̃k ) − w̃k .               (33)
+Recall that njk = (xk − xj )/djk . Therefore rearranging (33) and dividing by djk yields
+                                              (x − xj ) · x̃j − (x − xk ) · x̃k w̃j − w̃k
+                          V (x) · njk =                                        +          .             (34)
+                                                             djk                  2djk
+Substituting this into (32) and using (15)2 and (16)2 gives
+   N                                X mjk
+   X ∂mj                  ∂mj                                                          mjk
+                · x̃i +       w̃i =         [(xjk − xj ) · x̃j − (xjk − xk ) · x̃k ] +      (w̃j − w̃k ).
+    i=1
+          ∂xi             ∂wi       k∈J
+                                        djk                                            2djk
+                                          j
+
+
+The derivatives in Lemma 2.3 can be read off from this equation by making suitable choices
+of (X̃, w̃).
+Remark 2.4. The fact that (1, 1, . . . , 1) ∈ RN belongs to the null space of the matrix ∇w m
+corresponds to the fact that the power diagram has fixed total mass and that it is invariant
+under the addition of a constant to all its weights:
+              X         Z
+                  mj =     ρ(x) dx,        mj (X, w + (c, c, . . . , c)) = mj (X, w).     (35)
+                   j             Ω
+                                                                 P
+Differentiating the first equation with respect to wi gives j ∂mj /∂wi = 0 for all i, and
+so (1, 1, . . . , 1) belongs to the null space of ∇
+                                                  Pw m. Differentiating the second equation with
+respect to c and then setting c = 0 gives i ∂mj /∂wi = 0 for all j, and so (1, 1, . . . , 1)
+belongs to the null space of (∇w m)T (which equals ∇w m since ∇w m is symmetric).
+
+                                                           18
+    The main result of this section is the following:
+
+Proposition 2.5 (Critical points of E are fixed points of the Lloyd maps). Let (X, w) ∈ G N
+be a critical point of E. Then, up to the addition of a constant to the weights, (X, w) is a
+fixed point of the Lloyd maps ξ and ω:
+
+                              ξ(X, w) = X,     ω(X, w) = w + c                            (36)
+
+where c = c(1, 1, . . . , 1) ∈ RN . In particular, critical points of E are centroidal power
+diagrams.
+
+Proof. Equation (24) yields
+
+                              0 = ∇w E = ∇w m(w − ω(X, w)).
+
+By Lemma 2.3, ω(X, w) = w + c for some c = c(1, 1, . . . , 1) ∈ RN . Since c belongs to the
+null space of ∇X m, then equation (23) implies that
+
+                                ∂E
+                           0=       (X, w) = 2mi (xi − ξi (X, w)).                        (37)
+                                ∂xi
+
+By assumption the power diagram generated by (X, w) has no empty cells. Therefore mi 6= 0
+for any i and equation (37) gives X − ξ(X, w) = 0, as required.
+
+Remark 2.6 (Examples of critical points of E). Any centroidal Voronoi tessellation of Ω
+with the property that all cells have the same mass is a critical point of E. If ρ = constant
+and Ω is a domain with nice symmetry, e.g., a square or a disc, then it is easy to write down
+lots, in fact infinitely many, centroidal Voronoi tessellations with this property and hence
+find infinitely many critical points of E (although not all will be local minima). The highly
+non-convex nature of the energy landscape makes it difficult to find global minima. See §5.1.
+
+
+3     Properties of the algorithm
+Our main result is the following:
+
+Theorem 3.1. The generalized Lloyd algorithm is energy decreasing:
+
+                                E(X n+1 , wn+1 ) ≤ E(X n , wn )
+
+where X n+1 = ξ (X n , wn ), wn+1 = ω (X n , wn ), (X n , wn ) ∈ G N . The inequality is strict
+unless (X n+1 , wn+1 ) = (X n+2 , wn+2 ), i.e., unless the algorithm has converged.
+
+                                              19
+Proof. The proof follows easily by stringing together the properties of H from Lemma 2.1:
+
+    E (X n , wn )
+    = H X n , wn+1 , (X n , wn ) , m (X n , wn )
+                                                   
+                                                                            (by Lemma 2.1(ii))
+    = H ((X n , ω (X n , wn )) , (X n , wn ) , m (X n , wn ))           (by definition of wn+1 )
+    ≥ H (X n , ω (X n , wn )) , (X n , wn ) , m X n+1 , wn+1
+                                                             
+                                                                            (by Lemma 2.1(iv))
+    = H X n , wn+1 , (X n , wn ) , m X n+1 , wn+1                       (by definition of wn+1 )
+                                                     
+
+    ≥ H ξ (X n , wn ) , wn+1 , (X n , wn ) , m X n+1 , wn+1
+                                                              
+                                                                              (by Lemma 2.1(i))
+    = H X n+1 , wn+1 , (X n , wn ) , m X n+1 , wn+1                     (by definition of X n+1 )
+                                                        
+
+    ≥ H X n+1 , wn+1 , X n+1 , wn+1 , m X n+1 , wn+1
+                                                            
+                                                                            (by Lemma 2.1(iii))
+    = E X n+1 , wn+1
+                     
+                                                                             (by equation (21)).
+
+By Lemma 2.1(iii) the last inequality is strict unless Pi (X n+1 , wn+1 ) = Pi (X n , wn ) for all i,
+up to sets of ρ dx–measure zero, in which case xn+2
+                                                 i   (which is the centroid of Pi (X n+1 , wn+1 ))
+         n+1                                 n   n
+equals xi (which is the centroid of Pi (X , w )) and
+
+                win+2 = −f 0 (|Pi (X n+1 , wn+1 )|) = −f 0 (|Pi (X n , wn ) |) = win+1
+
+as required.
+
+Remark 3.2 (Elimination of generators is energy decreasing). The generalized Lloyd algo-
+rithm removes generators corresponding to empty cells, i.e., if Pin = ∅, then the generator
+pair (xni , win ) is removed in Step (2) of Algorithm 1. The assumption that f (0) ≥ 0 ensures
+that removing generators is energy decreasing.
+
+    Recall from equation (8) that G N is the set of N generators such that no two generators co-
+incide and that the corresponding power diagram has no empty cells. The energy-decreasing
+property of the algorithm can be used to prove the following convergence result, which is a
+generalization of convergence theorem for the classical Lloyd algorithm [10, Thm. 2.6]:
+
+Theorem 3.3 (Convergence of the generalized Lloyd algorithm). Assume that E has only
+finitely many critical points with the same energy. Let (X k , wk ) be a sequence generated by
+Algorithm 1. Let K be large enough such that, for all k ≥ K, (X k , wk ) ∈ G N for N fixed,
+i.e., there is no elimination of generators after iteration K. If the sequence (X k , wk )k>K is
+a compact subset of G N , then it converges to a critical point of E.
+
+Proof. This follows by combining a minor modification of the proof of the Global Convergence
+Theorem from [20, p. 206] with a convergence theorem for the classical Lloyd algorithm [10,
+Thm. 2.5]. Note that the Lloyd maps ξi , ωi and the energy E are continuous on G N by the
+continuity of the mass and first and second moments of mass of the power cells Pi , and the
+continuity of f .
+   Let (X kj , wkj ) be a convergent subsequence converging to (X, w) ∈ G N . By the conti-
+nuity of E on G N , E(X kj , wkj ) → E(X, w). Take J large enough so that E(X kJ , wkJ ) −
+
+                                                  20
+E(X, w) < ε. By Theorem 3.1 the whole sequence E(X k , wk ) converges to E(X, w) since
+for all k > kJ
+
+0 ≤ E(X k , wk ) − E(X, w) ≤ E(X k , wk ) − E(X kJ , wkJ ) + E(X kJ , wkJ ) − E(X, w) < ε.
+
+   Next we check that (X, w) is a fixed point of the Lloyd maps and hence a critical point
+of E. Consider the sequence (X kj −1 , wkj −1 ). By the compactness of (X k , wk ) there is a
+subsequence (X kjl −1 , wkjl −1 ) converging to (X− , w− ) ∈ G N . The continuity of the Lloyd
+maps on G N implies that
+
+     (ξ(X kjl −1 , wkjl −1 ), ω(X kjl −1 , wkjl −1 )) = (X kjl , wkjl ) → (ξ(X− , w− ), ω(X− , w− )).
+
+But (X kjl , wkjl ) → (X, w). Therefore (ξ(X− , w− ), ω(X− , w− )) = (X, w). Since E(X k , wk ) →
+E(X, w), we obtain that
+
+                     E(X− , w− ) = E(X, w) = E(ξ(X− , w− ), ω(X− , w− ))
+
+and thus, by Theorem 3.1, (ξ(X− , w− ), ω(X− , w− )) = (X, w) is a fixed point of the Lloyd
+maps.
+    We have shown that any accumulation point of (X k , wk ) is a fixed point of the Lloyd
+maps and, by the energy-decreasing property of the algorithm, all accumulation points have
+the same energy. Therefore, by the first assumption of the theorem, it follows that (X k , wk )
+has only finitely many accumulation points.
+    Finally, the whole sequence (X k , wk ) converges to (X, w) by the following result, which
+is proved in [10, Thm. 2.5] for the classical Lloyd algorithm but holds for general fixed point
+methods of the form z k+1 = T (z k ): If the sequence {z k } generated by z k+1 = T (z k ) has
+finitely many accumulation points, T is continuous at them, and they are fixed points of T ,
+then z k converges. This completes the proof.
+
+Remark 3.4 (Assumptions of the convergence theorem). The assumption that E has only
+finitely many critical points with the same energy is true for generic domains Ω but not for
+all, e.g., if Ω is a ball and ρ is radially symmetric then there could be infinitely many fixed
+points with the same energy by rotational symmetry. The assumption that (X k , wk )k>K is
+a compact subset of G N is stronger. It means that in the limit there is no elimination of
+generators. We need this assumption since the Lloyd maps are not defined if there are empty
+cells, Pi = ∅ for some i. While numerical experiments suggest that cells do not disappear
+in the limit, it is difficult to prove, even for the classical Lloyd algorithm; it was proved in
+one-dimension by [10, Prop. 2.9]. For further convergence theorems for the classical Lloyd
+algorithm see [11] and [27].
+
+Remark 3.5 (Interpretation of the Lloyd algorithm as a descent method). In the follow-
+ing proposition we study the structure of the generalized Lloyd algorithm. Recall that an
+iterative method is a descent method for an energy E if it can be written in the form
+
+                                        zn+1 = zn − αn Bn ∇E                                            (38)
+
+                                                   21
+where Bn is positive-definite, αn is the step size, and −Bn ∇E is the step direction, e.g.,
+Bn = I is the steepest descent method, Bn = (D2 E)−1 , αn = 1 is Newton’s method. The
+following proposition asserts that the generalized Lloyd algorithm can be written in the form
+(38), but not that Bn is positive-definite, which we are unable to prove:
+
+Proposition 3.6. The generalized Lloyd algorithm can be written in the form
+                      n+1   n                        
+                       X            X            ∇X E n       0
+                         n+1   =      n  − Bn         n  +                                          (39)
+                       w            w            ∇w E         c
+
+where Bn is a square matrix of dimension N (d + 1) and c = c(1, 1, . . . , 1)T for some c ∈ R.
+
+Proof. Recall that                          Z
+                                    mni =                      ρ(x) dx.
+                                               Pi (X n ,wn )
+
+and M̂n = diag(mn1 Id , . . . , mnN Id ). Equation (25) implies that
+                                                       n           
+                          ∇X E n           2M̂n ∇X mn        X − X n+1
+                                       =                                  ,                         (40)
+                           ∇w E n            0    ∇w mn       wn − wn+1
+
+where 0 is the N -by-(N d) zero matrix. By Lemma 2.3, the matrix on the right-hand side has
+a one-dimensional nullspace. Therefore rewriting these equations in the form (39) requires
+some care.
+   Let e1 , . . . , eN be the standard basis vectors for RN . We introduce the new basis
+
+     f1 := e1 − e2 ,   f2 := e2 − e3 ,   ...      fN −1 := eN −1 − eN ,   fN := e1 + · · · + eN .
+
+Note that fN spans the null space of ∇w mn . Let P be the invertible change-of-basis matrix
+satisfying P fi = ei . In particular
+                                                                 
+                                       1                      1
+                                     −1  1                   1
+                                                                 
+                                        −1     1             1
+                              P −1 =         .. ..            .. 
+                                     
+                                               .     .         .
+                                                                  
+                                                 . . . . . . .. 
+                                                              .
+                                                        −1 1
+
+with zeros where no entry is given. Let Π : RN → RN −1 be the projection onto {fN }⊥ :
+
+                                            Π = (IN −1 |0)
+
+where 0 is the (N − 1)-by-1 zero vector. Observer that for all y ∈ RN
+
+                                ∇w mn y = ∇w mn P −1 ΠT ΠP y                                        (41)
+
+                                                    22
+since ∇w mn fN = 0, ΠP fN = 0, and ΠT Π ei = ei for all i ∈ {1, . . . , N − 1}. We check that
+the following (N − 1)-by-(N − 1) matrix is invertible:
+                                   An := ΠP ∇w mn P −1 ΠT .                             (42)
+If An x = 0, then P ∇w mn P −1 ΠT x = c eN for some c ∈ R, and so ∇w mn P −1 ΠT x = cfN .
+But fNT ∇w mn = (∇w mn fN )T = 0 and thus c = 0. Therefore, by Lemma 2.3, P −1 ΠT x =
+afN for some a ∈ R. It follows from the definitions of P and Π that a = 0 and x = 0.
+    Using equations (41) and (42), we see that the equation
+                                 ∇w E n = ∇w mn (wn − wn+1 )
+can be inverted to give
+                             A−1       n       n
+                              n ΠP ∇w E = ΠP (w − w
+                                                    n+1
+                                                        ).
+Therefore
+                          wn+1 = wn − P −1 ΠT A−1       n
+                                               n ΠP ∇w E + cfN                          (43)
+for some c ∈ R. We conclude from equations (40) and (43) that
+                      n+1   n                            
+                       X          X             ∇X E n        0
+                               =        − Bn            +
+                       wn+1        wn           ∇w E n      cfN
+where Bn is the matrix
+                            1                                         
+                                M̂n−1 − 21 M̂n−1 ∇X mn P −1 ΠT A−1
+                                                                n ΠP
+                     Bn =     2                                            ,
+                                 0             P −1 ΠT A−1
+                                                        n  ΠP
+where 0 is the N -by-(N d) zero matrix. This completes the proof.
+Remark 3.7 (Alternative algorithm). The following proposition gives explicit expressions
+for the derivatives of the Lloyd maps ξ and ω. These could be used to find critical points of
+E in an alternative way, e.g., by solving the nonlinear equations (36) using Newton’s method.
+Proposition 3.8 (Derivatives of the Lloyd maps). Given a face F of a power diagram,
+define the matrix S(F ) by
+                                                Z
+                                           1
+                              S(F ) =              x ⊗ x ρ(x) dS
+                                         m(F ) F
+               R
+where m(F ) = F ρ dS is the mass of the face. Let (X, w) ∈ G N be the generators of a power
+diagram with the generic property that adjacent cells have a common face (a common edge
+in 2D). The derivatives of the Lloyd maps ξ(X, w) and ω(X, w) are
+                       
+                           1 X mik
+                       
+                                       (S(Fik ) − xik ⊗ xi + xi ⊗ (xi − xik )) if i = j,
+                           mi k∈J dik
+                       
+                       
+                     
+      ∂ξ         ∂ξi            i
+             =       =         mij
+      ∂X ij ∂xj            −         (S(Fij ) − xij ⊗ xj + xi ⊗ (xj − xij ))   if j ∈ Ji ,
+                       
+                       
+                              mi dij
+                       
+                                                    0                          otherwise,
+
+                                             23
+                                
+                                   1 X mik
+                                
+                                              (xik − xi ) if i = j,
+                                  2mi k∈J dik
+                                
+                                
+                              
+                   ∂ξ     ∂ξi           i
+                        =     =        mij
+                   ∂w ij ∂wj      −         (xij − xi )   if j ∈ Ji ,
+                                
+                                
+                                    2mi dij
+                                
+                                            0             otherwise,
+
+                                          X mik
+                              −f 00 (mi )           (xik − xi ) if i = j,
+                  
+                             
+                             
+                                          k∈Ji
+                                                 dik
+                ∂ω     ∂ωi   
+                                             mij
+                     =     =      f 00 (mi )      (xij − xi )    if j ∈ Ji ,
+                ∂X ij ∂xj                  dij
+                             
+                             
+                             
+                                                0                otherwise,
+
+                                                  X mik
+                                        00
+                                    −f    (m  i )            if i = j,
+                        
+                                   
+                                   
+                                                  k∈Ji
+                                                         2dik
+                      ∂ω     ∂ωi   
+                                                     mij
+                           =     =      f  00
+                                              (m              if j ∈ Ji ,
+                      ∂w ij ∂wj                  i)
+                                   
+                                   
+                                                    2d ij
+                                   
+                                                 0            otherwise.
+
+We order the block matrices ∂ξ/∂X, ∂ξ/∂w, ∂ω/∂X and ∂ω/∂w so that they have dimen-
+sions (N d)-by-(N d), (N d)-by-N , N -by-(N d) and N -by-N .
+
+Proof. Since ωi = −f 0 (mi ), then the partial derivatives ofR ω are obtained immediately from
+Lemma 2.3. Obtaining the partial derivatives of ξ = m1i Pi xρ dx requires a bit more work.
+Observe that
+                                                                                           
+           ∂ξi   1        ∂(mi ξi )        ∂mi             ∂ξi   1           ∂(mi ξi ) ∂mi
+               =                    − ξi ⊗           ,         =                      −     ξi .   (44)
+           ∂xj   mi         ∂xj            ∂xj             ∂wj   mi            ∂wj      ∂wj
+
+Lemma 2.3 gives ∂mi /∂xj , ∂mi /∂wj and so we just need to compute ∂(mi ξi )/∂xj , ∂(mi ξi )/∂wj ,
+i.e., compute the partial derivatives of
+                                                     Z
+                               (mi ξi )(X, w) =                     xρ(x) dx.
+                                                         Pi (X,w)
+
+
+The computation is similar to the proof of Lemma 2.3 and so we just sketch the details.
+Consider the same 1-parameter family of power diagrams used in the proof of Lemma 2.3:
+{Pit } = {ϕt (Pi )}. As for equation (32),
+
+                                 N                                  XZ
+      d                t   t
+                                X   ∂(mi ξi )       ∂(mi ξi )
+             (mi ξi )(X , w ) =               x̃j +           w̃j =         xρ(x)V · nik dS
+      dt t=0                    j=1
+                                      ∂x j            ∂w j
+                                                                    k∈J Fik
+                                                                                i
+
+
+
+                                                  24
+where V (x) = dtd ϕt (x)|t=0 . Combining this with equation (34) gives
+
+      N
+      X ∂(mi ξi )       ∂(mi ξi )
+                    x̃j +         w̃j
+      j=1
+            ∂x  j          ∂w j
+                                                                     
+         XZ               (x − xi ) · x̃i − (x − xk ) · x̃k w̃i − w̃k
+      =           xρ(x)                                    +            dS
+        k∈Ji Fik
+                                          dik                  2dik
+         X mik                                                          xik (w̃i − w̃k )
+                                                                                          
+      =            (S(Fik ) − xik ⊗ xi )x̃i − (S(Fik ) − xik ⊗ xk )x̃k +                      (45)
+        k∈J
+             d ik                                                               2
+            i
+
+
+
+where the matrix S(Fik ) was defined in the statement of the proposition. By combining
+equations (44) and (45) (with suitable choices of X̃ and w̃) and Lemma 2.3 we obtain the
+desired expressions for ∂ξi /∂xj and ∂ξi /∂wj .
+
+   Potentially these derivatives could also be used to prove convergence of the Lloyd al-
+gorithm by proving that the Lloyd map pair (ξ, ω) : G N → G N is a contraction. These
+derivatives are also needed to evaluate the Hessian of E, which can be used to check the
+stability of fixed points:
+
+Proposition 3.9 (The Hessian of E evaluated at fixed points). If (X, w) is a fixed point of
+the Lloyd maps ξ and ω, i.e., if it satisfies equation (36), then the Hessian of E evaluated
+at (X, w) is
+                                                 ∂ξ     ∂ξ
+                                                        
+                  EXX EXw     2M̂ ∇X m   IN d − ∂X    − ∂w
+                            =                 ∂ω          ∂ω   ,
+                   EwX Eww     0 ∇w m      − ∂X     IN − ∂w
+
+where 0 is the N -by-(N d) zero matrix, M̂ was defined in equation (26), EXX is the (N d)-by-
+(N d) block matrix with d-by-d blocks ∂ 2 E/∂xi ∂xj , Eww is the N -by-N matrix with entries
+[Eww ]ij = ∂ 2 E/∂wi ∂wj , EXw is the (N d)-by-N block matrix with d-by-1 blocks ∂ 2 E/∂xi ∂wj ,
+and EwX is the N -by-(N d) block matrix with 1-by-d blocks ∂ 2 E/∂wi ∂xj .
+
+Proof. This follows immediately from equation (25).
+
+   To evaluate the Hessian of E at an arbitrary point, rather than just at a fixed point,
+requires the computation of the Hessian of m, which is a rather painful computation that
+we choose not to do.
+
+
+4    Implementation
+The generalized Lloyd algorithm relies upon the computation of power diagrams. In this
+section we briefly review different methods for the calculation of the power diagram given a
+domain Ω and generators {xi , wi }N i=1 .
+
+
+                                                 25
+4.1    Half-plane intersection
+Recall that Fij = Fji = Pi ∩ Pj is the boundary between power cells Pi and Pj . Assume
+that Pi ∩ Pj 6= ∅ and take two distinct points x and y in Fij . By the definition (5) of the
+cells Pi and Pj we have |x − xi |2 − wi = |x − xj |2 − wj and |y − xi |2 − wi = |y − xj |2 − wj .
+Subtracting leaves
+                                    (x − y) · (xi − xj ) = 0.
+This establishes that boundaries between cells are planes with the normal to Fij parallel to
+xi − xj . A point on the plane can be found by writing p = xi + s (xj − xi ) and noting that
+p ∈ Fij implies
+                               |p − xi |2 − wi = |p − xj |2 − wj
+from which we deduce
+                   1   wi − wj                1               (wj − wi )
+              s=     +             ,    p=      (xi + xj ) −               (xj − xi ) .
+                   2 2 |xi − xj |2            2              2 |xj − xi |2
+If we define the half-plane
+
+             Hij = H (xi , wi , xj , wj ) = {x : kx − xi k2 − wi ≤ kx − xj k2 − wj }        (46)
+
+then
+                                        j=N
+                                         \
+                                Pi =              H (xi , wi , xj , wj ) .
+                                       j=1,j6=i
+
+The observation that power cells can be expressed as the intersection of half-planes, and
+the explicit expressions for both a point on the plane and the normal to the plane, is the
+basis for the half-plane method for the computation of a power-diagram [25]. The power
+cell is built iteratively according to Algorithm 2. The naı̈ve half-plane method sets the cell
+
+Algorithm 2 The half-plane intersection method, [25].
+Require: The set Ω is a convex polyhedron with nΩ faces, and there are N generators
+ {xi , wi }N
+           i=1 .
+ for Generator (xi , wi ) do
+   P̃i = Ω
+   for Generators (xj , wj ), j 6= i do
+       Calculate Hij , given by (46)
+       P̃i ← P̃i ∩ Hij
+   end for
+   Pi ← P̃i
+   return Power cell Pi
+ end for
+ return The power diagram composed of at most N power cells, {Pi }
+
+P̃i = Ω initially, and following repeated intersections with half-planes Hij forms the power
+
+                                                    26
+cell Pi . As discussed in [25] for Voronoi diagrams, the construction of each cell requires N −1
+half-plane intersections and the number of operations in each intersection depends upon the
+number of faces of the cell P̃i (we must check whether the boundary of the new half-plane
+intersects with any of the faces of P̃i ). At worst, each half-plane intersection increases the
+number of faces by 1. If initially the cell has nΩ faces, then the total number of checks is
+at most nΩ + (nΩ + 1) + . . . + (nΩ + (N − 2)) = (N − 2)nΩ + (N − 1)(N − 2)/2 = O(N 2 ).
+The intersections must be performed to create each cell so the overall time complexity of
+this method is at worst O(N 3 ) and is usually O(N 2 ).
+    Once the power cells are obtained, the centroid and the mass of cell Pi can be determined
+by quadrature, or in the special case of constant ρ can be calculated explicitly given the
+vertices of the cell (see Appendix A). These quantities are needed to evaluate the energy and
+to perform a step of the generalized Lloyd algorithm.
+
+
+
+4.2     Lifting method
+
+A faster method for the computation of the power diagram is given in [2], in which the
+                                              d+1
+generators {xi , wi }N   i=1 are lifted into R    . Given a generator (x, w), where x has components
+xj , j = 1, . . . , d, the lifted generator is the vector in Rd+1 with components (x1 , x2 , . . . , xd , z)
+where z = |x|2 − w. In the power diagram computation the lower convex hull of the lifted
+generators is found, giving rise to a regular triangulation of the generators. The j-faces of
+the triangulation (for example in two dimensions the 0-faces are the generators, the 1-faces
+are the edges and the 2-faces are the triangles) are then transformed into (d − j)-faces via
+a polar map. The result of this is that the triangulation formed by the lower convex hull of
+the lifted generators is transformed into the power diagram based on the generators. The
+expensive step in this calculation is the calculation of the lower convex hull of a set of points
+in Rd+1 . When d = 2 then convex hull algorithms with complexity O(N log N ) can be used.
+
+
+
+4.3     Other implementation issues
+
+It is worth noting that Algorithm 1 converges to local minima and a strategy must be adopted
+to find global minima. In our simulations we start with a large number of random initial
+configurations, apply Algorithm 1 and periodically sort the results. We then continue using
+Algorithm 1 on a subset of configurations that are the lowest energy states. In this way
+we search for global minima, although we cannot guarantee to find them with this heuristic
+method.
+     When using constant ρ the results of Appendix A allow fast computation of the integrals
+required. When using non-constant ρ we employ quadrature: the cells are triangulated
+and each triangle mapped to a reference triangle on which an N -point (we use N = 31)
+quadrature rule is applied.
+
+                                                    27
+5     Illustrations and Applications
+In this section we implement the algorithm in two and three dimensions. We use crystalliza-
+tion and optimal location problems to illustrate the typical flatness and non-convexity of the
+energy landscape and the rate of convergence of the algorithm. We finish in §5.4 with a more
+serious application, where we use the algorithm to test a conjecture about the optimality of
+the BCC lattice for a crystallization problem in three dimensions.
+
+5.1    Non-convexity and flatness of energy landscape
+In this section we look for critical points of the two-dimensional block copolymer energy
+from §1.5.1:
+                                       N                           
+                                             √
+                                       X            Z
+                                                                 2
+                      E ({xi , wi }) =      λ mi +      |x − xi | dx                 (47)
+                                        i=1             Pi
+
+where xi ∈ Ω = [0, 1]2√  . This example first appeared in [6]. It is the special case of (7)
+with ρ = 1, f (m) = λ m, where λ > 0 is a parameter representing the strength of the
+repulsion between the two phases of the block copolymer. The scaling of the energy suggests
+                                               2
+that the optimal value of N scales like λ− 3 . Figure 2 shows local minimizers of E for
+λ = 0.005. We believe that the top-left figure is a global minimizer. These were generated
+using 25, 000 random initial conditions to probe the non-convex energy landscape. The
+energy has infinitely many critical points, e.g., every centroidal Voronoi tessellation of [0, 1]2
+with cells of equal area (such as the checkerboard configuration) is a critical point. The
+flatness of the energy landscape can be seen from the energy values in Figure 2.
+    As λ decreases it becomes harder to find global minimizers. Figure 3 shows two local
+minimizers for λ = 10−5 . The figure on the left was obtained by using the triangular lattice
+as an initial condition. It was proved in [7] that the triangular lattice is optimal in the limit
+λ → 0. The figure on the right was obtained with a random initial condition. The ‘grains’
+of hexagonal tiling resemble grains in metals. This suggests that energies of the form (7)
+could be used to simulate material microstructure, for example to produce Representative
+Volume Elements for finite element simulations [1].
+
+5.2    Convergence rate
+In this section we study the rate of convergence of the algorithm to critical points of the
+energy (47) with λ = 0.005. Figure 4 shows the logarithm of the approximate error of the
+energy plotted against the number of iterations n for three simulations with random initial
+conditions. The initial number of generators was N = 6, 10, 25 and there was no elimination
+of generators throughout the simulations. The approximate error was computed using the
+value of the energy at the final iteration. The graph shows that the energy converges linearly,
+meaning that the error at the n–th iteration εn satisfies εn+1 /εn → r, where r ∈ (0, 1) is
+the rate of convergence. We observe that the rate of convergence decreases as the number
+                                             C
+of generators increases and that r ∼ 1 − N     for some constant C. In [10] it was found that
+
+                                               28
+   N = 16, E = 0.0303837758       N = 17, E = 0.030462854        N = 17, E = 0.030472869
+
+
+
+
+   N = 17, E = 0.030484319        N = 17, E = 0.030490777        N = 17, E = 0.030512245
+
+
+
+
+   N = 15, E = 0.030520200        N = 18, E = 0.030538490        N = 18, E = 0.030541664
+
+
+
+
+Figure 2: Flatness of energy landscape: Some local minimizers of the energy (47) for
+λ = 0.005. The polygons are the power cells Pi and the points are the generators xi . The
+weights wi are not shown. The shading corresponds to the number of sides of the cells.
+
+
+
+
+                                           29
+    N = 1037, E = 4.775 × 10−4 , λ = 10−5            N = 1037, E = 4.787 × 10−4 , λ = 10−5
+
+
+
+
+Figure 3: Two local minimizers of the energy (47) for λ = 10−5 with N = 1037 in both
+cases. In the first case the cell generators were initially arranged in a triangular lattice, in
+the second case they were distributed randomly.
+
+
+for the classical Lloyd algorithm with ρ = 1 in one dimension the rate of convergence of the
+generators (rather than the energy) is approximately 1 − 1/(4π 2 N 2 ). This was found from
+the spectrum of the derivative of the Lloyd map. In principle the rate of convergence of the
+generalized Lloyd algorithm could be found using the derivatives given in Proposition 3.8.
+We believe that region (?) in the figure is the result of the Lloyd iterates passing close to a
+saddle point of the energy on the way to a local minimum.
+
+
+5.3    An optimal location problem with non-constant ρ
+In the block copolymer example in the previous sections we had ρ = 1. In an optimal
+location problem ρ need not be uniform and might represent population density. The term
+f (m) represents the cost of building or running a facility to serve m individuals. The function
+f is concave, which represents an economy of scale.
+      A particular case of interest would be to determine where to locate government agencies
+(stations) to which people must attend at some rate (for example, a trip to the passport
+office). Somewhat artificially we may propose that the cost per person of a trip of length l
+is c̃ c(l/L) where L is a representative distance, c̃ is a constant with units of cost per person,
+and c is a non-dimensional cost function. Let {Pi }N     i=1 be a power diagram with generators
+{xi , wi }. We assume that if a person belongs to power cell Pi , then they must use the station
+
+                                               30
+         10−2
+                                                Data N = 6, 10, 25
+                                                        r = 0.939
+         10−3
+                                                        r = 0.840
+                                                        r = 0.741
+         10−4
+                        (?)
+         10−5
+
+ Error   10−6
+
+         10−7
+                                                    N = 25
+              −8
+         10
+
+         10−9          N =6          N = 10
+
+         10−10
+                   0          50              100                 150   200
+                                   Number of iterations, n
+
+
+Figure 4: Rate of convergence of the generalized Lloyd algorithm to critical points of the
+energy (47) with λ = 0.005: Approximate error of the energy against the number of iterations
+on semi-log axes for three simulations with random initial conditions. The initial number
+of generators was N = 6, 10, 25 and there was no elimination of generators throughout the
+simulations. We see that the algorithm converges linearly. The rate r was computed by
+fitting straight lines to the data.
+
+located at xi , and that they visit the station ω times per year. Then the cost per year C to
+the people travelling to the locations {xi }Ni=1 is
+
+                                      N Z                 
+                                     X           |x − xi |
+                            C = c̃ω          c               ρ (x) dx.
+                                     i=1  Pi
+                                                    L
+
+Suppose that the cost per year of running a station that serves m individuals is sf (m/M )
+where M is a characteristic number of people, s has units of cost per year, and f is a
+non-dimensional cost function. Using c(x) = x2 we obtain
+                       X N      m  c̃ω Z                      
+                                    i                   2
+                             sf       + 2      |x − xi | ρ (x) dx
+                        i=1
+                                  M     L Pi
+
+which represents the combined cost per year of running the stations and the travel costs of
+the users. This cost must be minimised. By rescaling we obtain the energy
+                                    N 
+                                    X           Z                    
+                                                            2
+                    E({xi , wi }) =    λf (m) +    |x − xi | ρ (x) dx .
+                                        i=1                  Pi
+
+
+                                                      31
+The parameter λ is a measure of the cost of running a station compared to the cost incurred
+by the individuals using the station; small values of λ represent a station that is low in
+cost to run and large values of λ represent a station that is high in cost to run (perhaps
+because of infrequent visits by its users). As a concrete example we take European population
+data covering metropolitan France and ask where to cite stations for different choices of λ,
+using the function f (m) = −m log m. Figure 5 shows the results for two different choices
+of λ, loosely corresponding to departments/regions and their centres of administration and
+extents.
+
+5.4    An example in three dimensions: crystallization
+In this section we implement the generalized Lloyd algorithm in three dimensions for the
+block copolymer model from §1.5.1:
+                                          N        Z             
+                                          X     2
+                                                               2
+                         E ({xi , wi }) =    λmi3 +   |x − xi | dx                              (48)
+                                          i=1            Pi
+
+
+where xi ∈ Ω ⊂ R3 . It was conjectured in [6] that global minimizers of E tend to a
+body-centred cubic (BCC) lattice as λ → 0, meaning that the set {xi } tends to a BCC
+lattice and wi → 0 for all i. This conjecture was motivated by block copolymer experiments
+and by results for the special case λ = 0, N → ∞: in [4] it was proved that the BCC
+lattice has asymptotically the lowest energy amongst all lattices and [12] provided numerical
+evidence that it has asymptotically the lowest energy amongst all possible configurations
+{xi }. Simulations in [6, Sec. 4.1] in two dimensions demonstrate that global minimizers
+of E for λ > 0 (centroidal power diagrams) are close to global minimizers of E for λ = 0
+(centroidal Voronoi tessellations). In this section we give further numerical support for the
+conjecture.
+     It is computationally expensive to study the limit λ → 0 in three dimensions since the
+optimal number of generators grows like N ∼ λ−1 . Instead we restrict our attention to the
+case where Ω is a periodic cube. Figure 6 shows a representative Voronoi cell generated
+by the BCC lattice, which is a truncated octahedron (Kelvin proposed a deformed version
+of the truncated octahedron as a candidate for three-dimensional foams). If N is chosen
+appropriately, then N of these cells fit exactly into the periodic cube and there is no boundary
+layer. If {zi }N                                                N
+               i=1 are the centres of these cells, then {zi , 0}i=1 is a critical point of E (because
+it is a centroidal Voronoi tessellation and all cells have the same mass). We study its stability
+using the generalized Lloyd algorithm.
+     We implemented the algorithm in C++ using the Voro++ software library to compute
+power diagrams [26]. We found that the BCC lattice is stable under small perturbations;
+if the initial condition (X 0 , w0 ) is taken to be a small enough perturbation of the BCC
+lattice, then the generalized Lloyd algorithm converges back to the BCC lattice. See Figure
+7, left column (the initial configuration is top-left, the final configuration is bottom-left).
+This suggests that the BCC lattice is at least a local minimizer of the energy. Under larger
+perturbations the Lloyd algorithm converges to a different critical point with a higher energy.
+
+                                                 32
+Figure 5: An example illustrating the algorithm applied to the convex hull of metropolitan
+France (recall that we require the region Ω to be convex). The colour represents the popula-
+tion density ρ, red is high density and green is low density (population data obtained from
+Eurostat). Areas in which no data was available have been assigned a population density
+of zero, for example in the seas and oceans. The figures were produced using Algorithm 1
+with an initial condition of 5000 random generators and 9000 iterations. The top figure has
+λ = 0.01 and the bottom figure has λ = 20. In the particular instances here, the final local
+minimum of the energy has 128 cells when λ = 0.1 and 21 cells when λ = 20.
+
+
+
+
+                                            33
+                   Figure 6: A Voronoi cell generated by the BCC lattice.
+
+
+See Figure 7, right column (the initial configuration is top-right, the final configuration is
+bottom-right). We also tested the energy of the BCC lattice against the energy of several
+common lattices and found that it was lower in each case. Due to the non-convexity and
+flatness of the energy landscape, however, the conjecture requires a more detailed numerical
+study.
+
+
+
+A      Useful implementation formulas for the case ρ =
+       constant
+In two dimensions in the special case that ρ (x) = ρ0 , a constant, the integrals defining the
+mass and centroid of a polygonal cell can be computed without using a quadrature rule; they
+can be expressed explicitly as functions of the vertices of the cell.
+    Consider a polygon P , lying in the plane with normal k with vertices vk for k = 0, . . . , N −
+1. We use the notation k ⊕ m = (k + m) mod N . The vertices are numbered anti-clockwise
+around the boundary (with respect to the normal k). We denote the outward normal to the
+polygon by ν. On edge k (with end points vk and vk⊕1 and length Lk ) ν can be written in
+terms of the vertices as
+                                          1
+                                    ν=      (vk⊕1 − vk ) × k.
+                                         Lk
+As the density is constant, we can use the Divergence Theorem to express integrals over
+
+                                                34
+Figure 7: Numerical evidence that the BCC lattice is a local minimizer of (48) for λ =
+10−3 . Left column: the initial condition (top-left) is a perturbation of the BCC lattice
+(a perturbation of both the generator locations and weights). The perturbation is small
+enough that the algorithm converges to the BCC lattice (bottom-left, configuration after 2000
+iterations). Right column: the initial condition (top-right) is a large enough perturbation of
+the BCC lattice to cause the algorithm to converge to a different local minimum (bottom-
+right, configuration after 2000 iterations). In all figures N = 128.
+
+polygons as edge integrals:
+                  Z
+                             1
+                                 Z
+                                               1   X Z vk⊕1
+                      ρ0 dx = ρ0     x · ν ds = ρ0          x · ν ds.
+                    P        2    ∂P           2 edges k vk
+
+                                             35
+Along an edge, using an arc-length parametrization,
+
+                       s         (Lk − s)                 1
+                  x=      vk⊕1 +          vk ,    x·ν =      [k · (vk × vk⊕1 )] .
+                       Lk          Lk                     Lk
+Since x · ν is independent of s we obtain
+                           Z
+                                       1  X
+                               ρ0 dx = ρ0        [k · (vk × vk⊕1 )] .                       (49)
+                            P          2 edges k
+
+Similarly             Z
+                                  1   X
+                         ρ0 x dx = ρ0       (vk + vk⊕1 ) [k · (vk × vk⊕1 )]                 (50)
+                       P          6 edges k
+
+and
+       Z
+            ρ0 x ⊗ x dx =                                                                   (51)
+        P
+       1    X
+         ρ0       [2vk ⊗ vk + 2vk⊕1 ⊗ vk⊕1 + vk ⊗ vk⊕1 + vk⊕1 ⊗ vk ] [k · (vk × vk⊕1 )] .
+       24 edges k
+
+
+
+Acknowledgements The generalized Lloyd algorithm was derived for a special case in
+collaboration with Mark Peletier [6]. Voro++ [26] was used to generate the power diagrams
+for the three-dimensional simulations in Section 5.4. All plots were prepared using Gnuplot.
+
+
+
+References
+ [1] J. Alsayednoor, P. Harrison, and Z. Guo, Large strain compressive response of
+     2-d periodic representative volume element for random foam microstructures, Mechanics
+     of Materials, 66 (2013), pp. 7–20.
+
+ [2] F. Aurenhammer, Power diagrams: properties, algorithms, and applications, SIAM
+     J. Comput., 16 (1987), pp. 78–96.
+
+ [3] F. Aurenhammer, F. Hoffmann, and B. Aronov, Minkowski-type theorems and
+     least-squares clustering, Algorithmica, 20 (1998), pp. 61–76.
+
+ [4] E. S. Barnes and N. J. A. Sloane, The optimal lattice quantizer in three dimen-
+     sions, SIAM Journal on Algebraic and Discrete Methods, 4 (1983), pp. 30–41.
+
+ [5] G. Bouchitté, C. Jimenez, and R. Mahadevan, Asymptotic analysis of a class
+     of optimal location problems, J. Math. Pures Appl., 95 (2011), pp. 382–419.
+
+                                                 36
+ [6] D.P. Bourne, M.A. Peletier, and S.M. Roper, Hexagonal patterns in a simplified
+     model for block copolymers, SIAM J. Appl. Math., (to appear).
+
+ [7] D.P. Bourne, M.A. Peletier, and F. Theil, Optimality of the triangular lattice
+     for a particle system with Wasserstein interaction, Communications in Mathematical
+     Physics, 329 (2014), pp. 117–140.
+
+ [8] G. Buttazzo and F. Santambrogio, A mass transportation model for the optimal
+     planning of an urban region, SIAM Rev., 51 (2009), pp. 593–610.
+
+ [9] R. Choksi, M.A. Peletier, and Williams J.F., On the phase diagram for mi-
+     crophase separation of diblock copolymers: an approach via a nonlocal Cahn-Hilliard
+     functional, SIAM J. Appl. Math., 69 (2009), pp. 1712–1738.
+
+[10] Q. Du, M. Emelianenko, and L. L. Ju, Convergence of the Lloyd algorithm for
+     computing centroidal Voronoi tessellations, SIAM J. Numer. Anal., 44 (2006), pp. 102–
+     119.
+
+[11] Q. Du, V. Faber, and M. Gunzburger, Centroidal Voronoi tessellations: Appli-
+     cations and algorithms, SIAM Rev., 41 (1999), pp. 637–676.
+
+[12] Q. Du and D. S. Wang, The optimal centroidal Voronoi tessellations and the Gersho’s
+     conjecture in the three-dimensional space, Comput. Math. Appl., 49 (2005), pp. 1355–
+     1373.
+
+[13] A. Gersho and R.M. Gray, Vector Quantization and Signal Compression, Springer,
+     1992.
+
+[14] R.M. Gray and D.L. Neuhoff, Quantization, IEEE Trans. on Inform. Theory, 44
+     (1998), pp. 2325–2382.
+
+[15] P.M. Gruber, Convex and Discrete Geometry, Springer, 2007.
+
+[16] J.A. Hartigan, Clustering Algorithms, Wiley, 1975.
+
+[17] R. Jordan, D. Kinderlehrer, and F. Otto, The vairational formulation of the
+     Fokker-Planck equation, SIAM J. Math. Anal., 29 (1998), pp. 1–17.
+
+[18] P.J.J. Kok and F.N.M. Korver, Modelling of complex microstructures in multi
+     phase steels: geometric considerations for building an RVE, in Proceedings of the X
+     International Conference on Computational Plasticity, 2009.
+
+[19] S.P. Lloyd, Least squares quantization in PCM, IEEE Trans. on Inform. Theory, 28
+     (1982), pp. 129–137.
+
+[20] D.G. Luenberger and Y. Ye, Linear and Nonlinear Programming, Springer, 3rd ed.,
+     2008.
+
+                                           37
+[21] J.B. MacQueen, Some methods for classification and analysis of multivariate obser-
+     vations, in Proceedings of 5th Berkeley Symposium on Mathematical Statistics and
+     Probability, 1, University of California Press, 1967, pp. 281–297.
+
+[22] Q. Mérigot, A multiscale approach to optimal transport, Computer Graphics Forum,
+     30 (2011), pp. 1583–1592.
+
+[23] B. Mohar, Topics in Algebraic Graph Theory, Cambridge, 2004, ch. 4: Graph Lapla-
+     cians, pp. 113–136.
+
+[24] M.G. Mora, M.A. Peletier, and L. Scardia, Convergence of interaction-driven
+     evolutions of dislocations with Wasserstein dissipation and slip-plane confinement, (in
+     preparation).
+
+[25] A. Okabe, B. Boots, K. Sugihara, and S. N. Chiu, Spatial Tesselations. Concepts
+     and Applications of Voronoi Diagrams, Wiley, second edition ed., 2000.
+
+[26] C.H. Rycroft, Voro++: A three-dimensional Voronoi cell library in C++, Chaos, 19
+     (2009).
+
+[27] J. Sabin and R. Gray, Global convergence and empirical consistency of the General-
+     ized Lloyd algorithm, IEEE Trans. on Inform. Theory, IT-32 (1986), pp. 148–155.
+
+[28] C. Villani, Topics in Optimal Transportation, AMS, 2003.
+
+
+
+
+                                            38
+

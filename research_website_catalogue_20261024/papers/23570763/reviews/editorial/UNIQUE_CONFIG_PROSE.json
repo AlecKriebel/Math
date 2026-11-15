@@ -1,0 +1,143 @@
+{
+  "notice": "Non-authoritative reading derivative. Complete nested configs and original native objects remain unchanged and authoritative.",
+  "publication_unique_fields": {
+    "title": "A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic",
+    "slug": "periodic-lefschetz-symmetric-ideal-chain",
+    "description": "One fixed two-row symmetric ideal chain has periodic weak and strong Lefschetz behavior in positive characteristic, with a classification over every field extension.",
+    "abstract": "For each fixed field of positive characteristic p, we construct a single compatible symmetric chain of Artinian ideals in two rows of variables, generated from width three. At every width n ≥ 2, its quotient has both the weak and strong Lefschetz properties exactly when p ∤ n − 1. The quadratic quotient is free over the integers, and a determinant for an arbitrary linear form gives the classification over every field extension. In particular, over the fixed infinite field 𝔽ₚ(t) both properties hold and fail at unbounded widths. This gives a negative answer to the unrestricted eventual dichotomies posed by Römer. It gives no negative answer in characteristic zero or in one row.",
+    "plain_language": [
+      "The weak Lefschetz property asks whether multiplication by one linear form has the largest possible rank between consecutive graded pieces of an Artinian algebra. The strong property asks for the same behavior for every positive power of that one form.",
+      "This note gives a single symmetric family whose answer keeps changing as its width grows. Over a field of positive characteristic p, the obstruction recurs whenever n − 1 is divisible by p. The field and the defining rule stay fixed throughout the family."
+    ],
+    "result": [
+      "Fix any field K. For width n ≥ 1, let Rₙ = K[x₁,…,xₙ,y₁,…,yₙ] and 𝔪ₙ = (x₁,…,xₙ,y₁,…,yₙ). Define the homogeneous ideal",
+      "Iₙ = 𝔪ₙ³ + (xᵢxⱼ : i ≠ j) + (yᵢyⱼ : 1 ≤ i,j ≤ n) + (xᵢyᵢ : 1 ≤ i ≤ n) + (xᵢyⱼ − xᵢyₖ : i,j,k pairwise distinct).",
+      "Here 𝔪ₙ³ includes every cubic monomial, including repeated variables; an empty index condition contributes no generators. The quotient Aₙ = Rₙ/Iₙ is Artinian. Every injection of column sets respects the ideals, so the chain is compatible with simultaneous column permutations in both rows. For every n ≥ 3, Iₙ = (Sym(n)I₃)Rₙ: the entire chain is generated from width three.",
+      "For every field K and every n ≥ 2, the Hilbert function is (1,2n,2n), and Aₙ has SLP if and only if it has WLP if and only if (n − 1)1_K ≠ 0. The same classification holds after every field extension, including extensions of finite fields. Width one is a separate case: its Hilbert function is (1,2,1), and it has SLP.",
+      "For each prime p, work over the single fixed infinite field K = 𝔽ₚ(t). Among n ≥ 2, exactly the widths n ≡ 1 (mod p) are bad. In particular, both properties hold at n = 2 + kp for every k ≥ 0, and both fail at n = 1 + kp for every k ≥ 1. Both sequences are unbounded. This disproves the unrestricted eventual alternatives in Römer’s question for one fixed field and one fixed two-row chain."
+    ],
+    "why_it_works": [
+      "The quadratic quotient is already free over the integers. For n ≥ 2 it has degree-two basis uᵢ = [xᵢ²] and vᵢ = [xᵢyⱼ], where any j ≠ i gives the same vᵢ. For each fixed i, the relations identify these mixed terms without introducing torsion, so this basis survives base change to every field.",
+      "For an arbitrary linear form ℓ = Σᵢ(aᵢxᵢ + bᵢyᵢ), multiplication from degree one to degree two has determinant (−1)ⁿ⁻¹(n − 1)∏ᵢaᵢ². At a bad width this vanishes for every choice of coefficients, not just for a symmetric test form. Independently, the nonzero degree-one element Σⱼyⱼ is then killed by every linear form.",
+      "At a good width, ℓ = x₁ + ⋯ + xₙ gives an invertible middle-degree map. Its square is Σᵢuᵢ ≠ 0, including in characteristic two. These maps cover all powers with nonzero source and target needed for SLP. The proof uses standard integral linear algebra, rank, determinant and socle methods; the contribution is this explicit chain and its complete classification."
+    ],
+    "limitations": [
+      "The counterexample uses two rows in fixed positive characteristic. In characteristic zero this particular construction has SLP at every width. It gives no negative answer for arbitrary characteristic-zero chains or for the one-row variant. The width-one exception must not be folded into the n ≥ 2 congruence rule.",
+      "The universal written proof establishes the infinite-width and all-field statements. The archive’s finite exact computations supplement that proof. Neither those computations nor bounded literature checks certify exclusive firstness, exhaustive novelty or the present worldwide open status of other variants."
+    ],
+    "background": [
+      "Tim Römer’s original contribution, “Asymptotic properties of invariant chains,” fixes an arbitrary field and an arbitrary fixed number of rows c ≥ 1. Its Artinian-chain question asks whether WLP or SLP eventually always holds or eventually always fails. That contribution is on printed pages 1594–1596 of Oberwolfach Report 31/2020. The separate working-group discussion on pages 1544–1545 focuses on one-row monomial ideals; it is a different scope.",
+      "Alexandra Seceleanu and Liana Şega’s “General symmetric ideals,” arXiv:2506.15459v1, gives positive results for general symmetric ideals in one row. Its Theorem B assumes an infinite field of characteristic zero or characteristic greater than n, positive integers d,r, and n ≥ max{d + 1, 1 + (1/r)Σᵢ₌₀ᵈ⁻¹P(i)}, where P(i) is the number of integer partitions of i. Under these hypotheses a general (r,d)-symmetric ideal has WLP. Its chain Theorem 9.2, summarized in Theorem C, assumes characteristic zero, positive d,r with r ≤ P(d), a general starting ideal at a width m sufficiently large for Construction 6.8, and n ≥ m. These hypotheses differ from the fixed-positive-characteristic two-row chain here. The v1 arXiv header is dated 18 June 2025; the PDF’s internal date is 19 June 2025.",
+      "David Cook II’s work provides standard background on characteristic-sensitive Lefschetz properties. None of these external theorems is needed in this note’s self-contained proof. The earlier project proof in PR1337 is unpublished. The Oberwolfach DOI identifies the original question; this preprint’s solution DOI is 10.5281/zenodo.23570763."
+    ],
+    "collaboration": [
+      "I welcome researchers interested in independently verifying the integral quotient and arbitrary-form determinant, developing a substantive extension, or preparing a journal submission. Any eventual coauthorship would reflect actual mathematical or writing contributions agreed together."
+    ],
+    "status": "Published Zenodo preprint, version 1.0.0, originally dated 22 October 2026. Unrefereed.",
+    "ai_disclosure": "AI tools were used extensively in planning, mathematical exploration, proof development and reconstruction, computation, literature investigation, writing, editing and adversarial checking. Alec Kriebel is the named human author. This preprint has no conventional independent human peer review, journal acceptance or formal proof-assistant certification.",
+    "rights_notice": "Authored paper, mathematical prose, metadata and source text are licensed CC BY 4.0. Authored verification and packaging code is separately MIT licensed. Third-party works retain their own rights.",
+    "reader_intro": "Read the complete unchanged four-page published PDF below, or open and download it directly. The full original source and verification ZIP includes the manuscript, exact checker and offline reproduction instructions.",
+    "related_resources": [
+      {
+        "label": "Tim Römer, Asymptotic properties of invariant chains, OWR 31/2020, printed 1594–1596",
+        "url": "https://doi.org/10.4171/OWR/2020/31"
+      },
+      {
+        "label": "Alexandra Seceleanu and Liana Şega, General symmetric ideals, arXiv:2506.15459v1",
+        "url": "https://arxiv.org/abs/2506.15459v1"
+      },
+      {
+        "label": "David Cook II, The Lefschetz properties of monomial complete intersections in positive characteristic",
+        "url": "https://doi.org/10.1016/j.jalgebra.2012.07.015"
+      },
+      {
+        "label": "Unpublished earlier project proof, PR1337",
+        "url": "https://github.com/AlecKriebel/Math/pull/1337"
+      }
+    ],
+    "keywords": [
+      "symmetric ideal chains",
+      "weak Lefschetz property",
+      "strong Lefschetz property",
+      "positive characteristic",
+      "periodic Lefschetz behavior",
+      "Artinian algebras",
+      "Römer eventual dichotomy"
+    ],
+    "follow_up": null,
+    "abstract_heading": "Original abstract",
+    "abstract_is_original": true,
+    "followup_rationale": "No sufficiently justified high-bar follow-up proposed; no current worldwide-open-status inference.",
+    "publication_date": "2026-10-22",
+    "version": "1.0.0",
+    "version_field_present": true,
+    "printed_version": "1.0.0",
+    "doi": "10.5281/zenodo.23570763",
+    "author": "Alec Kriebel",
+    "orcid": "https://orcid.org/0009-0001-9320-500X",
+    "pdf_filename": "periodic-lefschetz.pdf",
+    "pdf_pages": 4,
+    "supplement_filename": "periodic-lefschetz-source-and-verification.zip",
+    "supplement_label": "Complete original source and verification ZIP",
+    "additional_assets": [],
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "code_license": "MIT",
+    "code_license_url": "https://opensource.org/license/mit/",
+    "code_license_basis": "Actual separate LICENSE-CODE-MIT.txt and README; prose/source text governed by LICENSE-PROSE-CC-BY-4.0.txt.",
+    "publication_date_label": "Original publication date",
+    "edition_label": "Version 1.0.0",
+    "edition_note": "Original printed and Zenodo edition: version 1.0.0, dated 22 October 2026. Native record creation is separately recorded in the metadata.",
+    "native_record_created": "2026-10-22T16:11:19.267654+00:00",
+    "native_record_updated": "2026-10-22T16:11:19.600939+00:00",
+    "canonical_url": null,
+    "AA": null,
+    "native_sheet_aa_url": null,
+    "proposed_canonical_url": "https://aleckriebel.com/research/periodic-lefschetz-symmetric-ideal-chain/",
+    "seo": {
+      "title": "A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic | Alec Kriebel",
+      "description": "One fixed two-row symmetric ideal chain has periodic weak and strong Lefschetz behavior in positive characteristic, with a classification over every field extension.",
+      "robots_private_candidate": "noindex,nofollow"
+    },
+    "prepared_bibtex": "@misc{kriebel2026periodiclefschetz,\n  author = {Kriebel, Alec},\n  title = {A symmetric ideal chain with periodic Lefschetz behavior in positive characteristic},\n  year = {2026},\n  month = oct,\n  day = {22},\n  version = {1.0.0},\n  publisher = {Zenodo},\n  doi = {10.5281/zenodo.23570763},\n  url = {https://doi.org/10.5281/zenodo.23570763},\n  note = {Unrefereed preprint. Original version 1.0.0, dated 22 October 2026.}\n}\n"
+  },
+  "promotion_unique_fields": {
+    "record_id": "23570763",
+    "sheet_row": 127,
+    "status": "Private editorial candidate — full-copy/config root adoption pending",
+    "scientific_status": "PASS — full original all-field periodic two-row chain classification and unrestricted eventual-question counterexample",
+    "created_UTC": "2026-11-15T07:48:55.022196+00:00",
+    "full_original_scope_supported": true,
+    "root_clearance_file": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/root-clearance-23570763-20261115.json",
+    "root_clearance_sha256": "56a6e20fcef53e11e3cd7ab2bba1ad6503d0720509983be7b60d5a19bd9dc33f",
+    "actual_scientific_review_cardinality": 2,
+    "source_repair": false,
+    "narrowed_replacement": false,
+    "follow_up": null,
+    "human_peer_review": false,
+    "formal_certification": false,
+    "private_static_candidate_written": true,
+    "rendered": false,
+    "deployed": false,
+    "rendered_public_copy_approved": false,
+    "rendered_copy_verified": false,
+    "local_http_verified": false,
+    "live_http_verified": false,
+    "live_verified": false,
+    "browser_verified": false,
+    "native_verified": false,
+    "native_sheet_publication_verified": false,
+    "public_page_published": false,
+    "root_editorial_clearance_received": false,
+    "production_integration_authorized": false,
+    "publication_clearance": false,
+    "ready_to_publish": false,
+    "canonical_verified": false,
+    "canonical_url": null,
+    "AA": null,
+    "native_sheet_aa_url": null,
+    "proposed_canonical_url": "https://aleckriebel.com/research/periodic-lefschetz-symmetric-ideal-chain/",
+    "historical_source_and_review_flags_not_normalized": true,
+    "publication_sha256": "fcb4853cb0f851916b507fb36c4ce591ba7dbe83933293b05b252d89f08ced89"
+  }
+}

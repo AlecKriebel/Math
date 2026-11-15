@@ -1,0 +1,1359 @@
+The Pentagram Integrals for Poncelet Families
+                         Richard Evan Schwartz ∗
+                              February 3, 2014
+
+
+                                    Abstract
+          The pentagram map is now known to be a discrete integrable sys-
+      tem. We show that the integrals for the pentagram map are constant
+      along Poncelet families. That is, if P1 and P2 are two polygons in the
+      same same Poncelet family, and f is a monodromy invariant for the
+      pentagram map, then f (P1 ) = f (P2 ). Our proof combines complex
+      analysis with an analysis of the geometry of a degenerating sequence
+      of Poncelet polygons.
+
+
+1     Introduction
+The pentagram map is a projectively natural map defined on the space of n-
+gons. The case n = 5 is classical; it goes back at least to Clebsch in the 19th
+century and perhaps even to Gauss. Motzkin [Mot] also considered this case
+in 1945. I introduced the general version of the pentagram map in 1991. See
+[Sch1]. I subsequently published two additional papers, [Sch2] and [Sch3],
+on the topic. Now there is a growing literature. See the discussion below.
+    To define the pentagram map, one starts with a polygon P and produces
+a new polygon T (P ), as shown at left in Figure 1.1 for a convex hexagon. As
+indicated at right, the map P → T 2 (P ) acts naturally on labeled polygons.
+   ∗
+     Supported by N.S.F. Research Grant DMS-0072607 and also a Clay Research Schol-
+arship
+
+
+
+
+                                        1
+     P                                     P
+            T(P)
+                                                   T2(P)
+
+
+
+
+                     Figure 1.1: The pentagram map
+
+    The pentagram map is defined on polygons over any field. More generally,
+as I will discuss below, the pentagram map is defined on the so-called twisted
+polygons. The pentagram map commutes with projective transformations
+and thereby induces a map on spaces of projective equivalence classes of
+polygons, both ordinary and twisted.
+    In recent years, the pentagram map has attracted a lot of attention,
+thanks to the following developments.
+
+  1. In [Sch3], I found a hierarchy of integrals to the pentagram map, sim-
+     ilar to the KdV hierarchy. I also related the pentagram map to the
+     octahedral recurrence, and observed that the continuous limit of the
+     pentagram map is the classical Boussinesq equation. For later refer-
+     ence, call the pentagram integrals the monodromy invariants.
+
+  2. In [OST1], Ovsienko, Tabachnikov and I showed that the pentagram
+     map is a completely integrable system when defined on the space of
+     projective classes of twisted polygons. We also elaborated on the con-
+     nection to the Boussinesq equation. The main new idea is the intro-
+     duction of a pentagram-invariant Poisson bracket with respect to which
+     the monodromy invariants commute.
+
+  3. In [Sol] Soloviev showed that the pentagram map is completely inte-
+     grable, in the algebro-geometric sense, on spaces of projective classes
+     of real polygons and on spaces of projective classes of complex poly-
+     gons. In particular Soloviev showed that the pentagram map has a Lax
+
+
+                                      2
+     pair and he deduced the invariant Poisson structure from the Phong-
+     Krichever universal formula.
+
+  4. In [OST2] (independently, at roughly the same time as [Sol]) Ovsienko,
+     Tabachnikov and I showed that the pentagram map is a discrete, com-
+     pletely integrable system, in the sense of Liouville-Arnold, when defined
+     on the space of projective classes of closed convex polygons.
+
+  5. In [Gli1], Glick identified the pentagram map with a specific cluster
+     algebra, and found algebraic formulas for iterates of the map which
+     are similar in spirit to those found by Robbins and Rumsey for the
+     octahedral recurrence. See also [Gli2].
+
+  6. In [GSTV], Gekhtman, Shapiro, Tabachnikov, Vainshtein generalized
+     the pentagram map to similar maps using longer diagonals, and defined
+     on spaces of so-called corrugated polygons in higher dimensions. The
+     work in [GSTV] generalizes Glick’s cluster algebra.
+
+  7. In [MB1], Mari-Beffa defines higher dimensional generalizations of the
+     pentagram map and relates their continuous limits to various families
+     of integrable PDEs. See also [MB2].
+
+  8. In recent work, [KS1], [KS2], and [KS3], Khesin and Soloviev obtain
+     definitive results about higher dimensional analogues of the pentagram
+     map, their integrability, and their connection to KdV-type equations.
+
+  9. In the preprint [FM], Fock and Marshakov relate the pentagram map
+     to, among other things, Poisson Lie groups.
+
+ 10. The preprint [DiFK] discusses many aspects of the octahedral recur-
+     rence, drawing connections to the work in [GSTV].
+
+    Though this is not directly related to the pentagram map, it seems also
+worth mentioning the recent paper [GK] of Goncharov and Kenyon, who
+study a family of cluster integrable systems. These systems are closely re-
+lated to the octahedral recurrence which, in turn, is closely related to the
+pentagram map.
+
+   A Poncelet polygon is a polygon which is simultaneously inscribed in,
+and circumscribed about, a conic section. Two Poncelet polygons are in
+
+                                     3
+the same family, or related , if they are simultaneously inscribed in the same
+conic and circumscribed about the same conic. The famous Poncelet porism
+says that any Poncelet polygon is related to a 1-parameter family of Poncelet
+polygons. What is remarkable here is that the related polygons typically are
+not projectively equivalent.
+    The pentagram map interacts nicely with Poncelet polygons. Recall that
+  2
+T (P ) is the image of P under the square of the pentagram map, considered
+as a labeled polygon in a canonical way. The following theorem is a conse-
+quence of the results in [Sch4], and also a consequence of a classical result
+of Darboux:
+Theorem 1.1 Let P, Q ⊂ C be related Poncelet polygons. Then there is a
+projective transformation (the same for P and Q) which carries T 2 (P ) to P
+and T 2 (Q) to Q and respects the labelings.
+    Note that Theorem 1.1 make two statements. First, the image of a Pon-
+celet polygon under the square of the pentagram map is projectively equiva-
+lent to the original polygon. Second, one and the same projective equivalence
+works for a pair of related Poncelet polygons.
+    Let C n denote the space of labeled projective equivalence classes of strictly
+convex real n-gons. A Poncelet point in C n is an equivalence class of Poncelet
+polygons. Theorem 1.1 shows that T 2 fixes every Poncelet point in C n . Every
+pentagon is a Poncelet polygon, and in fact there is a suitable labeling con-
+vention with respect to which T is the identity on C 5 . This classical fact was
+known to Motzkin [M] and perhaps goes back even further. On C 6 , the map
+T 2 is the identity with respect to a labeling convention that is different than
+the one discussed above: T 2 (P ) and Pe are projectively equivalent, where Pe
+is obtained from P by cycling the vertex labels by 3. For n ≥ 7, the action
+of T 2 on C n is not periodic.
+    The purpose of this paper is to study a deeper and more subtle connection
+between the pentagram map and Poncelet polygons.
+
+Theorem 1.2 (Main) Any two related Poncelet polygons have the same
+monodromy invariants.
+
+    For convenience, we will prove Theorem 1.2 when n is even and large, say
+n > 10. The odd case has a proof similar to the even case. The case for small
+n, either even or odd, is similar to the case for large n, but the argument is
+somewhat less transparent.
+
+                                        4
+    Our proof is an argument in complex analysis. When defined over C,
+the generic Poncelet family – i.e., a collection of mutually related Poncelet
+polygons– is naturally parametrized by a complex torus 1 T . The monodromy
+functions are meromorphic functions on T , and our goal is to show that these
+functions are all constant. Our technique is to analyze the potential poles
+of the functions, which correspond to the singular Poncelet polygons within
+the family. We show that the functions are all bounded in neighborhoods of
+the singular Poncelet polygons, thereby showing that there are no poles at
+all. Consequenctly, all the functions must be constant.
+    Here is an overview of the paper. In §2 we discuss background and pre-
+liminary material. In §3, we reduce Theorem 1.2 to two technical lemmas,
+Lemma 3.8 and Lemma 3.9. The rest of the paper is devoted to proving
+these two lemmas. In §4 we provide some information, a mixture of classical
+and perhaps new, concerning Poncelet polygons and their degenerations. In
+§5 we prove Lemma 3.8. In §6 we prove Lemma 3.9.
+    I’d like to thank Valentin Ovsienko and Sergei Tabachnikov for many
+interesting discussions about the pentagram map. I would also like to thank
+the IHES and Caltech for their support during the writing of an early version
+of this paper.
+
+
+
+
+  1
+    By complex torus, we mean a compact Riemann surface which is holomorphically
+qeuivalent to C/Λ, where Λ a planar lattice.
+
+
+                                       5
+2     Preliminaries
+2.1    Coordinates for Polygons
+A twisted n-gon is a bi-infinite sequence {Pi } of points in the (real) projective
+plane P such that
+                            Pk+n = M ◦ Pk         ∀k.                          (1)
+for some projective transformation M . The map M is called the monodromy
+of P . The space P n is the space of twisted polygons modulo projective
+transformation. When M is the identity, we can interpret a twisted n-gon
+as an ordinary polygon. Hence C n is a subvariety of P n . Our paper [OST2]
+gives equations for this subvariety.
+    A flag of P is a pair (p, L), where p is a vertex of P and L is one of the
+two lines of P incident to v. Figure 2.1 shows how we order the flags.
+
+                                2
+                           1                         3
+                                                             4
+
+             0
+                            Figure 2.1: Flags of P .
+    We have the inverse cross ratio
+                                            (a − b)(c − d)
+                          χ(a, b, c, d) =                  .                  (2)
+                                            (a − c)(b − d)
+To each flag F = Fk we associate the cross ratio xk of the 4 white points, as
+shown in Figure 2.2.
+
+                  a                 b           c        d
+                                    F
+
+
+
+                 Figure 2.3: Geometry of the Corner Invariants
+
+                                            6
+   This construction associates a 2n periodic list ..., x0 , x1 , x2 , ... to P . We
+usually just write x1 , ..., x2n , taking a single period. Sometimes x1 , ..., x2n
+determines a closed polygon, and sometimes not.
+
+Vertex and Flag Conventions: Sometimes we find it convenient to use the
+variable names x1 , y1 , x2 , y2 , ... in place of the variables x1 , x2 , x3 , x4 , .... (So,
+new (y1 ) = old (x2 ) and new (x2 ) = old (x3 ), etc.) We call the list x1 , x2 , x3 , ...
+the flag coordinates of the polygon and we call the list x1 , y1 , x2 , y2 , ... the ver-
+tex coordinates of the polygon. This vertex coordinates are used in [OST1]
+and [ST] while the flag coordinates are used in [S3] and [OST2]. In the
+vertex coordinates, the variables xk and yk are associated to the vertex Pk .
+In the flag coordinates, the variable xk is associated to the kth flag.
+
+2.2     Flag Coordinates for Poncelet Polygons
+A poncelet polygon is nondegenerate if its points are pairwise distinct.
+Lemma 2.1 The flag coordinates of a non-degenerate Poncelet polygon all
+lie in the set C − {0, 1}.
+
+Proof: Let P be a non-degenerate Poncelet polygon. Our proof refers to
+Figure 2.2. If the flag coordinate in Figure 2.2 equals one of (0, 1, ∞), then
+the points a, b, c, d are not all distinct. In this case, either two vertices of P
+coincide, or 3 vertices are collinear. The former case is a direct contradiction,
+and the latter case contradicts the fact that a line intersects a conic in at
+most 2 points. ♠
+
+   Though we do not need it in this paper, we mention a consequence of
+[S3, Lemma 4.1].
+Theorem 2.2 Let P be an n-gon with flag coordinates x1 , ..., x2n . Then P
+is a Poncelet polygon if and only if there is a single value H(P ) such that
+                      H(P ) = (1 − xi−1 )xi (1 − xi+1 ),            ∀i.                   (3)
+Morover, if P and Q are related Poncelet polygons, then H(P ) = H(Q).
+    It seems that Theorem 2.2 would be useful in proving the main result of
+this paper. However, we haven’t found a way to use it. Also, it seems that
+one could express the monodromy invariants for Poncelet polygons directly
+in terms of H. We have not done this.
+
+                                              7
+2.3      The Pentagram Map
+As we mentioned above, the pentagram map naturally acts on twisted poly-
+gon as well as on closed polygons. One basic fact is that the pentagram
+map is monodromy preserving. That is, if P is a twisted polygon with mon-
+odromy M , then so is the image of P under the pentagram map. This follows
+immediately from the projective naturality of the pentagram map.
+   The second important property is algebraic. Let T 2 be the square of the
+pentagram map. In [S3] we show that (in flag coordinates.)
+
+                                           T 2 = α1 ◦ α2 .                                           (4)
+
+Here α1 (x1 , ..., x2n ) = (x′1 , ..., x′2n ) and α2 (x1 , ..., x2n ) = (x′′1 , ..., x′′2n ) where
+                        1 − x2k+1 x2k+2                               1 − x2k−3 x2k−2
+        x′2k−1 = x2k                    ;              x′2k = x2k−1                   ;
+                        1 − x2k−3 x2k−2                               1 − x2k+1 x2k+2
+
+                          1 − x2k−2 x2k−1                              1 − x2k+2 x2k+3
+          x′′2k+1 = x2k                                x′′2k = x2k+1                                 (5)
+                          1 − x2k+2 x2k+3                              1 − x2k−2 x2k−1
+    From the formulas above, we see that the pentagram map commutes with
+a certain “rescaling” operation. Define
+
+                   Rt (x1 , x2 , x3 , x4 , ...) = (tx1 , t−1 x2 , tx3 , t−1 x4 , ...).               (6)
+
+We have
+                                       Rt ◦ T 2 = T 2 ◦ Rt .                                         (7)
+
+2.4      The Monodromy Invariants
+We state our formulas using the flag coordinates. Here we give formulas for
+the integrals which arise in our main theorem. These formulas are not needed
+for our proof, but we discuss them for completeness. (The disinterested reader
+can safely skip this section.) This material also appears in [S3], with slightly
+different notation.
+    We say that a odd block is a sequence either of the form a or of the form
+a, a + 1, a + 2, where a is odd. We say that two odd blocks are well separated
+if there are at least 3 integers separating them, reckoned cyclically. (Thus, 1
+and 2n − 1 are adjacent odd integers.) For instance 1 and 3, 4, 5 are not well
+separated, but 1 and 5, 6, 7 are well separated (when n is large.)
+
+                                                   8
+   We say that an odd admissible subset is a finite subset of {1, ..., 2n} that
+decomposes into pairwise well-separated odd blocks. We define the sign of
+an odd admissible sequence to be (+) if there are an even number of singles
+and (−) if there are an odd number of singles. For instance (1, 5, 6, 7, 11)
+has sign (+). The emptyset counts as an admissible sequence, and its sign is
+(+). We define the weight to be the number of odd blocks in the sequence.
+For instance, (1, 5, 6, 7, 11) has weight 3.
+   We attach a monomial to each odd admissible sequence I, as follows.
+
+                               m(I) = sign(I)xI .                            (8)
+
+As we mentioned above, we take n even for convenience. Given any k =
+1, ..., n/2 we define Sk to be the set of odd admissible sequences of weight k.
+We then define                         X
+                                 Ok =      m(I).                            (9)
+                                           I∈Sk
+
+We define the invariant Ek similarly, except that we use even blocks and even
+admissible sequences; these are defined by interchanging the roles of odd and
+even in the construction above. Finally, for completeness, we define
+
+                On = x1 x3 x5 ...x2n−1 ;           En = x2 x4 x6 ...x2n .   (10)
+
+   Though we do not need it for this paper, we mention a recent result in
+[ST].
+Theorem 2.3 Suppose that P is inscribed in a conic section or circum-
+scribed about a conic section. Then Ok (P ) = Ek (P ) for all k.
+This result holds, in particular, when P is a Poncelet polygon.
+
+2.5    Relations Amongst the Monodromy Invariants
+For the purposes of proving Theorem 1.2, we don’t need the above explicit
+formulas for the monodromy invariants. Now we formulate things in a way
+that is more useful for our present purposes.
+   Let M be the monodromy of our twisted polygon P , as in Equation 1.
+We lift M to an element of GL3 (R) which we also denote by M . We define
+
+                        trace3 (M )                      trace3 (M −1 )
+                 Ω1 =               ;             Ω2 =                  .   (11)
+                          det(M )                          det(M −1 )
+
+                                            9
+These quantities are independent of the lift of M and only depend on the
+conjugacy class of M . Finally, these quantities are invariant under the pen-
+tagram map, because the pentagram map is monodromy-preserving.
+   We define
+                    e 1 = On2 En Ω1 ;
+                    Ω                    e 2 = On En2 Ω2 .
+                                         Ω                               (12)
+We say that a polynomial in the flag coordinates has weight k if
+
+                                  Rt∗ (P ) = tk P.                              (13)
+
+Here Rt∗ denotes the obvious action of Rt on polynomials. The significance
+of the quantities Ok and Ek is that they have weight k and −k respectively.
+That is, they are homogeneous with respect to this weighting system.
+    In [S3] we show that
+
+                          X
+                           n/2        3                   X
+                                                            n/2        3
+                   e1 =
+                   Ω             Ok        ;        e
+                                                    Ω2 =          Ek        .   (14)
+                           k=0                              k=0
+
+     Now we explain briefly why Ok and Ek really are invariants of T 2 . The
+map T 2 is monodromy preserving, so T 2 preserves both Ω1 and Ω2 . Also,
+from the formula for T 2 , we see that T 2 preserves both En and On . Hence
+T 2 preserves both Ωe 1 and Ω
+                            e 2 . Since T 2 commutes with the scaling operation
+                  2
+Rt , we see that T preserves the weighted homogeneous pieces of Ω    e 1 and Ω
+                                                                             e 2.
+                                               2
+Hence Ek and Ok really are invariants of T , for all k.
+
+
+
+
+                                               10
+3     Outline of the Proof
+3.1     Reduction to Two Lemmas
+First we state Theorem 1.2 more precisely.
+
+Theorem 3.1 Let P and Q be and two related Poncelet polygons. Then we
+have Ek (P ) = Ek (Q) and Ok (P ) = Ok (Q) for all k.
+
+   We will deduce Theorem 3.1 from two lemmas. Let Rt denote the scaling
+operation defined in §2.3. Let Pt = Rt (P ) and likewise define Qt = Rt (Q).
+Note that Pt and Qt are to be interpreted as twisted polygons. If P has flag
+coordinates (x1 , x2 , ...) then Pt has flag coordinates (tx1 , t−1 x2 , tx3 , t−1 x4 , ...).
+Technically, just the projective equivalence class of Pt and Qt is well-defined.
+However, when it comes up, we will concretely specify some way to get actual
+twisted polygons.
+   Here are the two technical lemmas.
+
+Lemma 3.2 En (P ) = En (Q) and On (P ) = On (Q).
+
+Lemma 3.3 Ω1 (Pt ) = Ω1 (Qt ) and Ω2 (Pt ) = Ω2 (Qt ) for all t sufficiently
+close to 1.
+
+Proof of Theorem 3.1: We have the general homogeneity relations:
+
+                  Ek (Pt ) = tk Ek (P );             Ok (Pt ) = t−k Ok (P ).            (15)
+
+Lemma 3.2 combines with Equation 15 to give
+
+              En (Pt ) = En (Qt );           On (Pt ) = On (Qt ),              ∀t.      (16)
+
+   We introduce the symbol ⊲⊳ t to mean “for all t sufficiently close to 1.”
+Lemma 3.3 says, in particular,
+
+                             Ω1 (Pt ) = Ω1 (Qt )            ⊲⊳ t.                       (17)
+
+Combining this with Equations 12 and 16, we get
+                             e 1 (Pt ) = Ω
+                             Ω           e 1 (Qt )          ⊲⊳ t.                       (18)
+
+
+
+                                             11
+Combining this with Equation 14, we see that
+                   n/2
+                   X                    
+                        k
+                       t Ek (P ) − Ek (Q) = 0           ⊲⊳ t.               (19)
+                    k=1
+
+But then we have a polynomial with infinitely many roots. Hence, all the co-
+efficients are 0. That is, Ek (P ) = Ek (Q) for all k. Similarly Ok (P ) = Ok (Q)
+for all k. ♠
+
+
+
+3.2    Some Basic Complex Analysis
+We are going to use some complex analysis to prove Lemmas 3.2 and 3.3.
+Here we recall some basic facts from complex analysis.
+    By a complex torus, we mean a compact Riemann surface biholomorphi-
+cally eqivalent to C/Λ, where Λ is a planar lattice. As is well known, a
+globally defined holomorphic function on a compact Riemann surface must
+be constant. We will use the principle several times in our proof.
+    A complex torus T has a natural unit area flat metric, coming from the
+description as C/Λ. Any point z0 ∈ T has a coordinate chart int C, a local
+isometry, which carries z0 to 0. We call these coordinate charts isometric
+coordinates. They are canonical up to rotations.
+    Suppose that f : T → C is meromorphic, i.e. defined and holomorphic
+except at finitely many points of T , called poles. We say that z0 ∈ T is
+a Laurent pole if, in isometric coordinates about z0 , the function f has the
+form
+                                  X−1
+                          f (z) =      Ck z k + h(z),                    (20)
+                                  k=−N
+
+where h(z) is holomorphic in a disk about the origin.
+Lemma 3.4 Let d denote the flat metric on T . Suppose f is meromorphic
+on T and z0 is a pole of f . Suppose also that |f (z)| ≤ Cd(z, z0 )−m for some
+constant C and some integer m. Then z0 is a Laurent pole of f .
+
+Proof: In isometric coordinates, we have the bound |f (z)| ≤ C|z|−m . As is
+well known, this implies that f has a finite Laurent series in a neighborhood
+of 0. ♠
+
+
+                                       12
+Lemma 3.5 Suppose that f is a meromorphic function on T and f has
+a Laurent pole at z0 . Suppose that there is an infinite sequence of points
+{zn } ∈ T such that zn → z0 and |f (zn )| is bounded. Then f can be defined
+(uniquely) at z0 to that the extension is holomorphic in a neighborhood of z0 .
+
+Proof: In isometric coordinates, f has a Laurent series expansion as in
+Equation 20. The conditions of the lemma imply that there is a sequence
+{zn } converging to 0 so that |f (zn )| is bounded. This implies almost imme-
+diately that C−N = ... = C−1 = 0. ♠
+
+
+
+3.3    The First Lemma
+Now we reduce Lemma 3.2 to something more concrete. We start with a
+Poncelet polygon P which is inscribed in a conic C1 and circumscribed about
+a conic C2 . Over C, the set of Poncelet polygons related to P is parametrized
+by a complex torus T . See §4.2 for more details. One identifies the points
+on T with flags (p, L), where p ∈ C1 and L is a line through p and tangent
+to C2 . There are two kinds of Poncelet polygons in this family, ordinary and
+degenerate. The ordinary Poncelet polygons are those consisting of n distinct
+points in general position. The rest of the polygons we call degenerate. We
+classify the points of T as ordinary and degenerate, according to the type of
+polygon they correspond to. There are finitely many degenerate points.
+    Let Pz be the Poncelet polygon corresponding to the point z ∈ T . Let
+f : T → C denote the function
+
+                               f (z) = En (P z ).                         (21)
+
+Here P z is the Poncelet polygon whose 1st and 2nd vertices determine the
+flag associated to z. The vertex of the flag is V z (1) and the line contains
+V z (1) and V z (2).
+
+Lemma 3.6 f is holomorphic in a neighborhood of each ordinary point.
+
+Proof: At an ordinary point, z, the corresponding Poncelet polygon P z is
+non-degenerate. The corner invariants are well defined and finite, by Lemma
+2.1, and depend holomorphically on z. ♠
+
+
+                                      13
+Lemma 3.7 Every degenerate point of T is a Laurent pole for f .
+
+Proof: Let z0 be a degenerate point of T . Let d be the flat metric on T . We
+have a double holomorphic branched cover π : T → C1 . Locally such a map
+is either bi-Lipschitz or looks like z → z 2 . Therefore, there is some constant
+K1 so that
+                         kπ(z) − π(z0 )k ≥ K1 d(z, z0 )2 .                  (22)
+At the same time, the points, lines, and cross ratios involved in the definition
+of the flag coordinates of Pz are obtained by taking, finitely many times,
+rational functions and square roots of the coordinates of E(z). Hence, we
+have a bound
+                        |f (z)| ≤ K2 |π(z) − π(z0 )|−m                      (23)
+for some constant K2 and some positive integer m. Combining our two
+bounds, we get
+                       |f (z)| ≤ K3 d(z, z0 )−2m .              (24)
+Our result now follows from Lemma 3.4. ♠
+
+   We will prove the following result in §4.
+
+Lemma 3.8 For each degenerate point z ∈ T there is a sequence {zj } of
+ordinary points such that zj → z and {f (zj )} is bounded.
+
+Combining Lemmas 3.5, 3.7, and 3.8, we see that f extends to be holomor-
+phic in a neighborhood of each degenerate point. But then this extension
+is holomorphic on T . As we mentioned above, a holomorphic function on
+a compact Riemann surface is constant. Hence f is constant. This proves
+Lemma 3.2.
+
+Remark: When it comes time to prove Lemma 3.8, we will consider the case
+when C1 is the unit circle and C2 is a concentric (but not circular) ellipse
+contained in the unit disk. By analytic continuation, it suffices to consider
+this case. We make this restriction because it will help us get a nice picture
+of what is going on. The same goes for our proof of Lemma 3.9 below.
+
+
+
+
+                                      14
+3.4    The Second Lemma
+We will take a similar approach to Lemma 3.3. For w ∈ T a regular point,
+we let Ptw be the t-rescaled version of the polygon P w . Note that Ptw is not
+a polygon, but rather a twisted polygon. Define the functions
+                     gt (z) = Ω1 (Ptz ),        ht (z) = Ω2 (pzt ).           (25)
+    Suppose that z ∈ T is a degenerate point. We call z special if z has the
+following property. If t is sufficiently close to 1 then there is a sequence {zj },
+converging to z, such that
+        z                                              z
+   • Pt j exists and has monodromy matrix Mt j .
+                                   z
+   • The limit M = limj→∞ Mt j exists and lies in GL3 (R).
+If z is special, then same argument as in the proof of Theorem 3.2 says that
+the functions gt and ht are holomorphic in a neighborhood of z, for all t
+sufficiently close to 1.
+    There is an action of Dn , the order 2n dihedral group, on T , such that the
+orbits are exactly the flags corresponding to Poncelet polygons. We describe
+this action in §4.2. We call two points of T equivalent if they are in the same
+Dn -orbit. In §5 we prove the following result.
+
+Lemma 3.9 For each degenerate point z ′ there is an eqivalent degenerate
+point z which is special.
+
+    Let t be sufficiently close to 1. Lemma 3.9 combines with the basic com-
+plex analysis, as in the previous section, to show that gt and ht are holomor-
+phic in a neighborhood of a special point. Lemma 3.9 covers one degenerate
+point per equivalence class, and the unordered pair {gt , ht } is constant on
+Dn -orbits. Hence, gt and ht are holomorphic in neighborhoods of all the sin-
+gular points. Hence, they are constant. This proves Lemma 3.3.
+
+Remark: The difficulty in Lemma 3.9 is that, even for t near 1, some of
+the coordinates for the Poncelet polygon blow up. This makes the twisting
+operation potentially very violent, even for t near 1. What we will show is
+that, in fact, the twisting operation is very gentle even though some of the
+invariants are blowing up.
+
+   The rest of the paper is devoted to proving Lemmas 3.8 and 3.9.
+
+                                           15
+4     Poncelet Polygons and their Degenerations
+4.1    Conics
+We recall the set-up from §3.1. For the purposes of proving Theorem 3.1 it
+suffices to consider the case when P is inscribed in a conic C1 and circum-
+scribed about a conic C2 , with the following equations.
+
+                           C1 :        x2 + y 2 = 1.                     (26)
+
+                  C2 :       ax2 + by 2 = 1.,     1 < a < b.             (27)
+    The intersection C1 ∩ C2 (over C) consists of 4 points. Let X ⊂ CP 2
+be the copy of RP 2 containing the real affine plane {(x, iy)|x, y ∈ R}. If
+we identity X with RP 2 using the map (x, iy) → (x, y), then C1 ∩ X is the
+hyperbola x2 − y 2 = 1 and C2 ∩ X is the hyperbola ax2 − by 2 = 1. These
+two hyperbolas intersect in 4 points.
+    Drawing a pair of hyperbolas is not so useful for our purposes. We can
+identify X with the real projective plane, and then apply a suitable real
+projective transformation so that C1 ∩ X and C2 ∩ X are intersecting ellipses,
+as shown in Figure 4.1.
+
+
+
+
+                                  C2
+
+
+                                  C1
+
+
+                     Figure 4.1: all the branch points
+
+    In Figure 4.1 we have distinguished 8 points. The 4 black points are the
+points of C1 ∩C2 . The 4 white points are the tangent points on C2 , contained
+in the 4 lines that are mutually tangent to C1 and C2 . These 8 points play
+a special role in our analysis.
+
+                                       16
+4.2    The Complexified Picture
+Let T be the complex torus consisting of flags (p, L), where p ∈ C1 and L is
+tangent to C2 . For j = 1, 2 we have maps φj : T → Cj given by
+
+             φ1 (z) = p;       φ2 (z) = L ∩ C2 ;         z = (p, L).      (28)
+
+Both φ1 and φ2 are double branched-covers. The map φ1 is branched over
+the 4 points of C1 ∩ C2 . These are the black points in Figure 4.1. The map
+φ2 is branched over each of the 4 points of x ∈ C2 such that the line tangent
+to C2 at x is also tangent to C1 . These are the white points in Figure 4.1.
+    The singular points of φj are the pre-images of the branch points. There
+are 4 such points. In its flat metric, T is obtained by gluing the opposite
+sides of a rectangle in the obvious way. Referring to Figure 4.2, the black
+points indicate the singular points of φ1 and the white points indicate the
+singular points of φ2 . Reflection in the vertical centerline swaps black and
+                                                            2
+white points. The dotted horizontal lines are φ−11 (C1 ∩ R ).
+
+
+
+
+                           Figure 4.2: singular points
+
+    There are two natural involutions associated with this picture. The map
+I1 has the action
+                             I1 (p, L1 ) = (p, L2 ).                    (29)
+Here L1 and L2 are the two lines such that (p, L1 ) and (p, L2 ) are flags.
+Geometrically, I1 is an order 2 rotation about the black singular points in T .
+
+                                       17
+Similarly, the map I2 has the action
+
+                             I2 (p1 , L) = (p2 , L).                      (30)
+
+Geometrically, I2 is an order 2 rotation about the white singular points in
+T . Evidently, the map Ij commutes with the map φj . That is
+
+                         φj ◦ I j = φj ;      j = 1, 2.                   (31)
+
+     The group Dn = hI1 , I2 i is the dihedral group of order 2n. The map φ1
+maps the Dn -orbits to Poncelet polygons. The Poncelet polygon is ordinary
+iff its image has n points. This happens iff the orbit does not contain one
+of the singular points of φ1 or φ2 . Thus, there are 4n degenerate points.
+Each degenerate point is equivalent under Dn to one of the singular points.
+2n of these degenerate points lie on the center horizontal line in Figure 4.2,
+hereafter called the centerline and denoted by Ξ. The other 2n lie on the
+bottom/top horizontal edge of the rectangle. By symmetry, it suffices to
+consider the ones on the centerline.
+     Figure 4.3 shows the degenerate points arranged along Ξ in case n = 4.
+The endpoints of Ξ are identified, so that Ξ is really a circle. The degenerate
+points on the Ξ are arranged into two Dn -orbits. One of the orbits consists
+of the black points and the other orbit consists of the white points. This
+picture is representative of the cases when n is even.
+
+
+              Figure 4.3: degenerate points on the centerline
+
+4.3    The Singular Orbits
+The map φ1 : Ξ → C1 ∩ X is a 2-to-1 folding map. If we suitably normalize
+the picture in Figure 4.1, the 2 singular points on Ξ are mapped to the two
+upper black points of C1 ∩ C2 ∩ X, and φ1 (Ξ) is the circular arc in Figure
+4.1 connecting these upper black points. Outside any neighborhood U of the
+two singularities of φ1 , the map φ1 is CU -bilipschitz. Here CU depends on
+the neighborhood U . Here Ξ is given its flat metric and C1 ∩ X is given a
+metric which makes it into a round circle, as in Figure 4.1.
+    We denote the singular orbits on Ξ by Ψ1 and Ψ2 . These orbits have the
+following description.
+
+
+                                       18
+   1. Ψ1 is the Dn -orbit of the 2-singularities of φ1 that lie on Ξ – the black
+      points in Figure 4.2. The restriction of φ1 to Ψ1 is 2-to-1 on all but 2
+      points of this orbit. The image φ1 (Ψ1 ) consists of (n/2) + 1 points.
+
+   2. Ψ2 is the Dn -orbit of the 2-singularities of φ2 that lie on Ξ – the white
+      points in Figure 4.2. In this case, φ1 (Ψ1 ) maps this orbit to C1 in a
+      2-to-1 fashion.
+
+Given the folding nature of φ1 , Figure 4.4 shows a fairly accurate picture of
+one end of φ1 (Ψ1 ) and φ1 (Ψ2 ). The other end is the mirror reflection. The
+points in the middle are not really of interest to us. In the first case, the
+point labelled 5 is the branch point.
+
+                       1                                     1 2
+                               2                                   3
+                   9       8       3                        10 9     4
+                               7                                 8     5
+             O1                    6 4                  O2         7
+                                                                     6
+                                    5
+            Figure 4.4: local picture of the degenerate polygons
+
+4.4    A Bi-Lipschitz Model for Perturbations
+For small ǫ, we let Ψǫj be the Dn -orbit that is ǫ away from Ψj . the perturbed
+orbit Ψǫj is obtained by replacing each point of Ψj by two points, on either
+side, that are 2ǫ apart. Our goal is to explain the geometry of the Poncelet
+polygons φ1 (Ψǫj ), in a sufficiently accurate approximate sense.
+    The picture of φ1 (Ψǫ2 ) is easier to understand. Each of the points labelled
+(5, 6), (4, 7),... is split apart into two points. These points are spaced between
+C −1 ǫ and Cǫ apart, and the distance between the point pairs is at least C −1 .
+Here C is a positive constant that only depends on n.
+    The picture of the image φ1 (Ψǫ1 ) is obtained by replacing the points com-
+monly labelled (1, 9) (2, 8), (3, 7) and (4, 6) each by two points that are
+between C −1 ǫ and Cǫ apart and by moving the point labelled 5 by a distance
+of at most Cǫ2 .
+    All the distance estimates, except the last one, come from the fact that φ1
+is bi-lipschitz away from any neighborhood of a singular point. The estimate
+on the motion on the point labelled 5 comes from the fact that φ1 (z) = z 2
+
+
+                                         19
+in a neighborhood of a singular point, when written in suitable holomorphic
+coordinates.
+    We find it convenient to apply a projective transformation that moves C1
+to the standard parabola
+
+                                 Π = {(x, y)| y = x2 }                    (32)
+
+and carries the rightmost points in our pictures to (0, 0). Such a projective
+transformation is bi-lipschitz. To draw pictures in Π, we consider the pro-
+jection onto the first coordinate. Figure 4.5 shows a fairly accurate picture
+of one end of (the renormalized image of) φ1 (Ψǫj ). The top shows the case
+j = 1 and the bottom shows the case j = 2.
+
+
+  5        4   6         3   7            2 8            1   9
+
+
+      origin
+
+
+        6 5          7   4              8 3              9 2     10 1
+               Figure 4.5: local model of the degenerations
+
+    The left endpoint is the origin. The only point we have not justified is
+the ordering of the points in Figure 4.5. The order we have drawn follows
+from the way Dn acts on Ξ. Alternatively, this order can be determined
+experimentally in one case; then the order remains unchanged in all cases by
+continuity. Again, we are showing the first coordinates of our points. They
+really lie on the parabola Π. Whether we consider the points on Π or just
+the first coordinates, the spacing between nearby points is between C −1 ǫ and
+Cǫ, and the spacing between all other pairs of points is at least C −1 . Here
+C only depends on n.
+    Figure 4.5 gives us our local model for the way the Poncelet polygons
+degenerate at one end. The other end, halfway around in terms of the order-
+ing on the points, is similar. The points in the middle play little role in the
+analysis, though sometimes we will have to consider these points in a very
+general sort of way.
+
+
+                                          20
+5       Proof of Lemma 3.8
+5.1     Reduction to Three Estimates
+For the remainder of the paper, we use the vertex coordinates. That is, we use
+the variables x1 , y1 , x2 , y2 , .... Here xk and yk are the two vertex coordinates
+associated to the vertex Pk . We will just deal with the invariant On = x1 ...xn .
+The case of En is entirely similar and indeed follows from symmetry. We have
+the formula
+                         x3 = χ(V1 , V2 , (12)(34), (12)(45)).                  (33)
+Here (12)(34) denotes the intersection of the line P1 P2 with the line P3 P4 .
+The formulas for the other coordinates are obtained by shifting the indices.
+   For ease of exposition we will just consider the orbits Ψǫ1 . The orbits Ψǫ2
+have an almost identical treatment, and indeed this second case follows from
+the first case and projective duality. We are interested in the invariants of
+the nearly singular Poncelet polygon
+                                  P ǫ = φ1 (Ψǫ1 ).                             (34)
+Here is a copy of the top line of Figure 4.5, which shows a model for this
+polygon. (Again, we have normalized so that P ǫ is contained in the parabola
+y = x2 .)
+
+    5       4   6         3   7          2 8           1   9
+                Figure 5.1: First coordinate projection of P ǫ .
+    We will show that the product x3 x4 x5 remains bounded as ǫ → 0. For
+other nearby indices, the vertex coordinates involve 5 points that remain in
+general position even in the limit. The singularity at the other end has the
+same analysis. We need P to have at least 10 points so that the singularities
+at the two ends to not interfere at all with each other.
+    We use the usual notation f ∼ g to indicate that f /g lies between two
+positive constants that depend only on n. We will show that x4 ∼ ǫ and
+x5 ∼ 1 and x6 ∼ 1/ǫ. Combining these estimates, we see that x4 x5 x6 ∼ 1.
+Hence, the product of interest to us remains bounded as ǫ → 0.
+    Our analysis in each case follows the same pattern. We will write
+                                  xk = [a, b, c, d]                            (35)
+where a, b, c, d depend on both the index k and on ǫ. We will then analyze
+the geometry of a, b, c, d as ǫ → 0.
+
+                                         21
+5.2    The First Estimate
+The points of interest to us are shown in Figure 5.2. The points of interest
+to us are
+
+a = V (2);      b = V (3);       c = L(23) ∩ L(45);      d = L(23) ∩ L(56).
+
+Here L(23) denotes the line through V (2) and V (3), etc. Looking at the
+picture, and using our model, we see that
+
+        kc − dk ∼ ǫ;         kx − yk ∼ 1;     x ∈ {a, b} y ∈ {c, d}.   (36)
+Hence x4 ∼ ǫ.
+
+
+                                                           2(a)
+
+                                                      3(b)
+
+                                                4          c
+                                                       d
+                                   5           6
+                                                   L(23)
+                        Figure 5.2: Estimating x4 .
+
+
+
+
+                                       22
+5.3    The Second Estimate
+Figure 5.3 shows the situation for x3 . The points of interest to us are
+a = V (3);      b = V (4);        c = L(56) ∩ L(34);        d = L(67) ∩ L(34).
+There is an (∼ 1)-bilipschitz projective transformation that carries the points
+V (3), V (7), V (4), V (6) to the vertices of a rectangle. (We mean that the
+transformation is (∼ 1)-bilipschitz on the convex hull of these points.) From
+this, we conclude that
+                         kd − bk ∼ 1;        kd − ak ∼ 1.
+But then kd − ck ∼ 1 as well. Also, ka − bk ∼ 1 and ka − ck ∼ 1. Hence
+x5 ∼ 1.
+
+                                                       3(a)
+                                                                 7
+                                                       d
+                               4(b)
+
+                                             6 c
+                                  5
+                                                L(34)
+                          Figure 5.3: Estimating x5 .
+   More is true in this case, since kb − ck ∼ ǫ we conclude that
+                       ka − bk                    kd − bk
+                  1−           ∼ ǫ;          1−           ∼ ǫ.
+                       ka − ck                    kd − ck
+From this, we see that
+                                1 − x5 (P ǫ ) ∼ ǫ.                         (37)
+
+
+                                        23
+5.4    The Third Estimate
+Figure 5.4 shows the situation for x6 . The points of interest to us are
+
+a = V (4);      b = V (5);       c = L(67) ∩ L(45);        d = L(78) ∩ L(45).
+
+In the same sense as the previous case, there is a uniformly bilipschitz pro-
+jective map that carries V (5), V (6), V (4), V (7) to a trapezoid whose 3 long
+sides have length 1 and whose short side has length ǫ. From this, we get
+
+                                 kc − ak ∼ ǫ.                              (38)
+
+Consider the triangle (V (4), V (7), d). The small angles of this triangle are
+all ∼ 1. Also, one side of this triangle, namely the one connecting V (4) to
+V (7), has length ∼ 1. Hence all sides have length ∼ 1. In particular,
+
+                                 kd − ak ∼ 1                               (39)
+
+But then we have kc − dk ∼ 1 and kb − dk ∼ 1. Finally, kb − ak ∼ 1. Hence
+x6 ∼ ǫ−1 .
+
+
+                                                      8
+
+
+                                                7
+                  4(a)
+                                                        L(45)
+                      c                         d
+                           5(b)            6
+                          Figure 5.4: Estimating x6 .
+
+
+
+
+                                      24
+6     Proof of Lemma 3.9
+6.1     A Continuity Principle
+In this section we state a technical result which will help us prove Lemma
+3.9. We use the vertex coordinates, as in the last chapter.
+
+Lemma 6.1 Let {Pk } be a sequence of n-gons and let P be some fixed n-gon.
+Suppose that
+    • x3 (Pk ) → x3 (P ) ∈ C − {0, 1}.
+
+    • y3 (Pk ) → y3 (P ) ∈ C − {0, 1}.
+
+    • Vi (Pk ) → Vi (P ) for i = 1, 2, 3, 4.
+Then V5 (Pk ) → V5 (P ).
+
+Proof: We know that Vi (Pk ) → Vi (P ) for i = 1, 2, 3, 4 and we want to show
+that V5 (Pk ) → V5 (P ). Adjusting the picture by a convegent sequence of
+projective transformations, we can normalize so that the first 5 vertices of
+Pk are
+                   (0, 0), (1, 0) (1, 1); (1, 0); (ak , bk ).
+A direct calculation (leaving off the subscripts) shows that
+
+                         (1 − x3 )y3                   (1 − y3 )
+                  a=                  ;        b=                  .    (40)
+                       1 + (x3 − 1)y3               1 + (x3 − 1)y3
+This shows how x3 and y3 determine the coordinates of V5 . Our lemma is
+obvious from here. ♠
+
+
+
+6.2     The Proof Modulo a Detail
+We fix some even n > 10. As in the proof of Lemma 3.9, we need enough
+points to separate out the singularities at the two ends of our degenerate
+polygons. As in the proof of Lemma 3.8, we will just deal with the degenera-
+tions associated to the orbit Ψ1 . The proof for the degenerations associated
+to Ψ2 is essentially the same, and again follows from the first case and from
+projective duality.
+
+                                          25
+      We define
+                         P ǫ = φ1 (Ψǫ1 ),        Ptǫ = Rt (P ǫ ).                (41)
+The map Rt is the scaling transformation from Equation 6. As in §4.4, the
+polygon φ1 (Ψǫ1 ) is the Poncelet polygon which is the image of the orbit Ψǫ1 ,
+the orbit which is ǫ away from the singular orbit Ψ1 . Again, we reproduce
+the top line of Figure 4.5, which shows a model for P ǫ .
+
+
+  5          4    6        3   7            2 8             1   9
+                  Figure 6.1: First coordinate projection of P1ǫ .
+
+   In constructing Ptǫ we normalize so that the vertices labelled 2, 3, 4, 5 are
+independent of t. Let P = P 0 . Let Vtǫ (k) denote the kth vertex of Ptǫ .
+
+Good Indices: We say that the index k is good if Vtǫmm (k) → V10 (k) for
+any sequence (ǫm , tm ) converging to (0, 1).
+
+   By construction, the indices 2, 3, 4, 5 are good. In the next section we
+prove the following result.
+
+Lemma 6.2 (Variation) The indices 6, 7, 8 are good.
+
+      We will assume this result, for now, and deduce some corollaries.
+
+Lemma 6.3 k is a good index for k = 9, ..., (n/2 + 5).
+
+Proof: We consider k = 9 first. Let x1 , y1 , ... be the vertex coordinates.
+Given our model for P ǫ , we have
+           x7 (Pm ) → x7 (P ) ∈ (0, 1);           y7 (Pm ) → y7 (P ) ∈ (0, 1).
+We know that indices 5, 6, 7, 8 are good. The k = 7 case of Lemma 6.1 now
+shows that 9 is good. We can repeat the same argument, successively shift-
+ing the indices, to show that that k is a good index for 10, 11, ..., (n/2) + 5. ♠
+
+Remark: We can’t go any further with a direct argument because the point
+Vn/2+5 (P ), like V5 (P ), is a branch point. Put another way, the last vertex
+coordinates which don’t degenerate are xk and yk for k = n/2 + 3. Put still
+another way, we encounter another “singularity” of P halfway through the
+index set, so we have to stop and take stock of what is going on.
+
+                                            26
+Lemma 6.4 k is a good index for k = 1, ..., (n + 5).
+
+Proof: The previous result establishes that n/2 + k is a good index for
+k = 2, 3, 4, 5. Now we can re-normalize the picture, by a sequence of projec-
+tive transformations converging to the identity, so that Vk+n/2 (Pm ) is inde-
+pendent of n for k = 2, 3, 4, 5. Our analysis in the proof of Lemma 3.8 works
+equally well for the degeneracy corresponding to the index (n/2) + 5. So, the
+Variation Lemma implies that k + n/2 is a good index for k = 6, 7, 8. Now
+we can repeat the proof in the previous lemma so show that n/2 + k is a
+good index for k = 9, ..., (n/2 + 5). ♠
+
+
+Lemma 6.5 There exists a map g : R → R∪∞ (not necessarily continuous)
+such that:
+
+   1. limt→1 g(t) = 0.
+
+   2. If k ∈ {2, ..., n + 5}, then
+
+                                kVtǫ (k) − V10 (k)k ≤ g(t)
+
+      for all sufficiently small ǫ.
+
+Proof: Suppose that this is false. Then there is some δ > 0 with the follow-
+ing property: There is some sequence {tm } converging to 1 and some index
+k ∈ {2, ..., n + 5} such that kVtǫmm (k) − V10 (k)k > δ for some ǫm < tm . But
+then the index k is not good. This is a contradiction. ♠
+
+   We say that a quadruple (A1 , A2 , A3 , A4 ) of points in P is δ-stable if the
+points (A′1 , A′2 , A′3 , A′4 ) are in general position as long as kA′j − Aj k < δ for
+j = 1, 2, 3, 4. Any general position quadrileral in the plane is δ-stable for
+some δ > 0.
+
+Proof of Lemma 3.9: Looking at our models for the singular Poncelet
+polygons, we see that there is some δ > 0 such that the two quads
+
+   {V10 (a)|a = 2, 3, 4, 5},         {V10 (a)|a = n + 2, n + 3, n + 4, n + 5}    (42)
+
+are 2δ-stable.
+
+                                           27
+   By Lemma 6.5, we can choose t sufficiently close to 1 so that
+
+  kVtǫ (an + b) − V10 (an + b)k ≤ δ,          a ∈ {0, 1},     b ∈ {2, 3, 4, 5}.   (43)
+
+Holding t fixed, we can choose a subsequence {ǫj } so that the the sequence
+of quads
+      ǫ                              ǫ
+   {Vt j (a)|a = 2, 3, 4, 5},     {Vt j (a)|a = n + 2, n + 3, n + 4, n + 5}       (44)
+
+both converge to general position quads. The monodromy projective trans-
+               ǫ
+formation Mt j converges to the projective transformation which carries the
+limit of the first quad to the limit of the second quad. Since both these limits
+are in general position, the limit map is a well-defined projective transfor-
+mation. If we take representative matrices in SL3 (R), we can get the con-
+vergence on the level of matrices. ♠
+
+
+
+6.3       An Auxilliary Cross Ratio
+The rest of the paper is devoted to proving the Variation Lemma.
+   Let L(ij) denote the the line containing V (i) and V (j) and let S(ij) be
+the slope of L(ij). Let
+
+                         z5 = [S(35), S(45), S(65), S(75)].                       (45)
+
+In general, we define z1 , z2 , ... by shifting the indices. A calculation shows
+that
+                                      z k = xk yk .                          (46)
+The importance of this quantity is that it does not change when we apply
+the map Rt , because xk → txk and yk → t−1 yk .
+   Now we consider the variation of one of these auxilliary cross ratios. As
+usual, we just consider the perturbation of Ψ1 .
+
+Lemma 6.6 |1 − z5 (P ǫ )| < Cǫ2 for some C that only depends on n.
+
+Proof: From our model, |S(35) − S(75)| ∼ ǫ and |S(45) − S(65)| ∼ ǫ,, and
+all other pairs of slopes are ∼ 1 apart. Our result now follows from the defi-
+nition of the inverse cross ratio. ♠
+
+
+                                         28
+6.4    The First Estimate
+We treat the case k = 6 of the Variation Lemma. We use the coordinates
+z1 , z2 , ... introduced in the previous section. First of all, we have
+
+                       z4 (Pm ) = z4 (Ptǫmm ) = z4 (P ǫm ).             (47)
+
+The first equality is just a definition. The second equality comes from Equa-
+tion 6 and Equation 46.
+    The indices 2, 3, 4, 5 correspond to points which do not move during our
+variation. Hence, S(46) is the only m-dependent quantity in z4 (Pm ). Hence,
+it follows from Equation 47 that Lm (46) → L(46). Here L(46) is the line
+tangent line to the parabola Π at V (4) = V (6).
+    From Estimate 1 in the proof of Lemma 3.8, we have
+
+                        χ(a, b, c, dm ) = x4 (Pm ) ∼ ǫm .               (48)
+
+Hence dm → c. Since Lm (46) → L(46), the fact that dm → c implies that
+Vm (6) → V (4) = V (6). This gives the Variation Lemma for k = 6.
+
+                                                       2(a)
+
+                                                3(b)
+
+                                              4        c
+                                                   d
+                                5           6
+                                                L(23)
+                     Figure 6.2: The relevant points.
+
+
+
+                                       29
+6.5    The Second Estimate
+Now we consider the case k = 7 of the Variation Lemma.
+Lemma 6.7 Lm (67) → L(67).
+
+Proof: From our analysis of the case k = 6, we get
+ kVm (6) − V (4)k ∼ ǫm ;      Lm (64) → L(64);        Lm (63) → L(63). (49)
+
+
+                                                        3(a)
+                                                                 7
+                                                       d
+                              4(b)
+
+                                          6 c
+                                 5
+                                                 L(34)
+                      Figure 6.3: The relevant points
+   Suppose that Lm (67) 6→ L(67). Passing to a subsequence, we can assume
+                                            
+                      angle Lm (67), Lm (63) > C
+
+But, referring to Figure 6.3, this big angle combines with Equation 49 to give
+                                kd − ck ∼ ǫm .
+But then x5 (Pm ) does not converge to 1. This contradicts Equation 37. ♠
+
+
+                                     30
+Lemma 6.8 Lm (57) → L(57).
+
+Proof: It follows from our analysis in the case k = 6 that
+                                            
+                      angle Lm (45), Lm (56) ∼ ǫm .                       (50)
+
+The first of these lines is independent of m. Suppose that Lm (57) 6→ L(57).
+Passing to a subsequence, we can assume
+                                               
+                          angle Lm (57), Lm (53) > C
+
+But then
+                             |1 − z5 (Pm )| > Cǫm ,
+contradicting Lemma 6.6. ♠
+
+   Since the limiting lines have different slopes, and intersect only at V (7),
+these two results combine to say that Vm (7) → V (7).
+
+6.6    A Technical Lemma
+Let Pm′ = P ǫm . The twisted polygon Pm is the twist of Pm′ , so to speak. Let
+Vm′ (k) denote the kth vertex of Pm′ . We have Vm′ (k) = Vm (k) = V (k) for
+k = 2, 3, 4, 5. By our normalization, these vertices do not change with the
+paramaters. The difficulty in the following lemma is that both the numerator
+and denominator tend to 0.
+
+Lemma 6.9 As m → ∞ we have
+                           kVm (6) − Vm′ (6)k
+                                              → 0.                        (51)
+                           kV (4) − Vm′ (6)k
+
+Proof: Our proof refers to Figure 6.4, a copy of Figure 5.2. By the scaling
+rule, we have z4 (Pm ) = z4 (Pm′ ). Also the points Vm (k) and Vm′ (k) do not
+depend on m for k = 2, 3, 4, 5. Hence, neither do the lines determined by
+these points. This means that the same line L = Lm (46) = L′m (46) contains
+both Vm (6) and Vm′ (6).
+
+
+
+                                      31
+                                                             2(a)
+
+                                                     3(b)
+
+                                                  4 c
+                                                         d
+                                   5             6
+                                                     L(23)
+                        Figure 6.4: Estimating x4 .
+
+   In Figure 6.4, the points a, b, c do not depend on m. Hence, there is a
+constant K such that x4 (Pm ) = Kkc − dm k and x4 (Pm′ ) = Kkc − d′m k. But
+the ratio of these quantities, namely tm , tends to 1 as m → ∞. Therefore,
+
+                   kc − dm k              kd′m − dm k
+                              →1                      → 0.               (52)
+                   kc − d′m k              kc − d′m k
+
+The first equation in Equation 52 implies the second. Geometrically, the lines
+L′m (56) and Lm (56) make an angle which is vanishingly small with respect
+to the angle between either of these lines and L(45). Also, all of these lines
+make a definite angle with L(23) and L. These facts combine with Equation
+52 to establish this lemma. ♠
+
+
+
+                                     32
+6.7    The Third Estimate
+Now we consider the case k = 8 of the Variation Lemma.
+
+Lemma 6.10 Lm (68) → L(68).
+
+Proof: Note that z6 (P ) exists and lies in C − {0, 1}, because the lines L(6k)
+are distinct for k = 4, 5, 7, 8. (We interpret L(64) as the line tangent to the
+parabola at V4 (P ) = V6 (P ).) Moreover, if we fix t = 1 and let ǫm → 0, these
+lines all converge.
+    Now we consider what happens when t is allowed to vary. We have
+
+                   z6 (Pm ) = z6 (Ptǫmm ) = z6 (P ǫm ) → z6 (P ).         (53)
+
+   From previous work, we have
+
+                     Lm (6k) → L(6k);             k = 4, 5, 7.            (54)
+
+This forces Sm (68) → S(68). But we already know Vm (6) → V (6). Hence
+Lm (68) → L(68). ♠
+
+    Now we show that Lm (78) → L(78). Once we know this, the same argu-
+ment as in Estimate 2 shows that the Variation Lemma holds for k = 8.
+    Our proof that Lm (78) → L(78) is delicate, because many of the quanti-
+ties involved are converging to 0, and the result turns on the rates of conver-
+gence. Lemma 6.9 is the main technical tool. We also make some auxillary
+observations here, before starting the proof, which will help with the argu-
+ment.
+
+  1. dist(Vm′ (6)), L(45)) ∼ kV (4) − Vm′ (6)k.
+
+  2. Vm′ (6) → V (4) = V (6).
+
+  3. Vm′ (7) and Vm (7) both converge to V (7).
+
+  4. The line L(47) = L(67) is not parallel to the line L(45) = L(65).
+
+All these properties come from our model, except the third one, which comes
+from the Variation Lemma for k = 7. See Figure 6.5 below. We call these
+properties together the convergence properties. Now we prove our final result.
+
+
+                                        33
+Lemma 6.11 Lm (78) → L(78).
+
+Proof: What we will do is produce 2 distinct points on Lm (78) which con-
+verge to 2 distinct points on L(78).
+    We consider the cross ratio x6 (Pm ). This is the cross ratio of the 4 points
+a, b, c, d shown in Figure 6.5. In Figure 6.5, the points a = am and b = bm are
+independent of m. The points cm and dm depend on m. Suppose we could
+show that dm → d. Then, since the Variation Lemma holds for index 7, we
+would have two points on Lm (78), namely Vm (7) and dm , converging to the
+distinct points V (7) and d on L(78). This suffices, as we already mentioned.
+So, to finish the proof, we just have to show that dm → d. This is what we
+do.
+
+
+                                                           8
+
+
+                                                    7
+                   4(a)
+                                                             L(45)
+                       c                              d
+                           5(b)              6
+                      Figure 6.5: The relevant points
+
+   It follows from the convergence properties that cm → c = a. Since dm lies
+on the line bcm , it suffices to prove that
+                                 kdm − bk    kd − bk
+                        ρm :=              →         .                      (55)
+                                kdm − cm k   kd − ck
+   We introduce the auxilliary points
+
+                      c′m = c(P ǫm );            d′m = d(P ǫm ).            (56)
+
+                                        34
+That is, we reconsider the picture when tm is replaced by 1. Since d′m → d,
+it suffices to prove that
+                           kcm − dm kkb − d′m k    ρ′m
+                                                 =     → 1.                    (57)
+                           kc′m − d′m kkb − dm k   ρm
+   Since tm → 1, we have
+            ka − bkkcm − dm kka − c′m kkb − d′m k   x4 (P ǫm )
+                                                  =            → 1.            (58)
+            ka − bkkc′m − d′m kka − cm kkb − dm k   x4 (Pm )
+   In view of Equation 58, Equation 57 is equivalent to either of these limits:
+                     ka − cm k                 kcm − c′m k
+                                → 1,                       → 0.                (59)
+                     ka − c′m k                 ka − c′m k
+We will establish the second limit.
+  Looking at our model, we see that
+                            ka − c′m k ∼ kV (4) − Vm′ (6)k.                    (60)
+So, it suffices to prove
+                             kcm − c′m k
+                                             → 0.                              (61)
+                           kV (4) − Vm′ (6)k
+   We introduce the auxilliary point
+                            c′′m = Vm (7) ∩ Vm′ (6) ∩ L(45).                   (62)
+For comparison,
+     c′m = Vm′ (7) ∩ Vm′ (6) ∩ L(45),       cm = Vm (7) ∩ Vm (6) ∩ L(45).      (63)
+c′m and c′′m only differ in that we are using different versions of Vm (7) to define
+them. It follows from the convergence properties listed above that
+                                  kc′m − c′′m k
+                                                  → 0.                         (64)
+                                kV (4) − Vm′ (6)k
+    cm and c′′m only differ in that we are using different versions of Vm (6) to
+define them. Combining Lemma 6.9 with the convergence properties above,
+we get
+                                 kcm − c′′m k
+                                                → 0.                        (65)
+                              kV (4) − Vm′ (6)k
+Equation 61 follows from Equations 64 and 65. This completes our proof ♠
+
+
+                                          35
+7    References
+[DiFK], R. Kedem and P. DiFrancesco, T -Systems with boundaries from net-
+work solutions, Electron. J. Combin. 20 (2013) no. 1, Paper 3, 62 pp.
+
+[FM] V. Fock, A. Marshakov, Integrable systems, clusters, dimers and loop
+groups, preprint (2013) arXiv:1401.1606
+
+[GK] A. B. Goncharov and R. Kenyon, Dimers and Cluster Integrable Sys-
+tems, preprint, arXiv 1107.5588 (2011)
+
+[GSTV] M. Gekhtman, M. Shapiro, S.Tabachnikov, A. Vainshtein, Higher
+pentagram maps, weighted directed networks, and cluster dynamics, Electron.
+Res. Announc. Math. Sci. 19 (2012) 1–17
+
+[Gli1] M. Glick, The pentagram map and Y -patterns, Adv. Math. 227
+(2012) 1019–1045
+
+[Gli2] M. Glick, The pentagram map and Y -patterns, 23rd Int. Conf. on
+Formal Power Series and Alg. Combinatorics (FPSAC 2011), 399–410
+
+[KS1] B. Khesin, F. Soloviev Integrability of higher pentagram maps, Mathem.
+Annalen. 357, no. 3 (2013) 1005-1047
+
+[KS2] B. Khesin, F. Soloviev The Pentagram Map in Higher Dimensions
+and KdV Flows, Electron. Res. Announc. Math. Sci. 19 (2012), 86-96
+
+[KS3] B. Khesin, F. Soloviev The Geometry of Dented Pentagram Maps.
+arXiv:1308.5363 (2013)
+
+[MB1] G. Mari Beffa, On Generalizations of the Pentagram Map: Discretiza-
+tions of AGD Flows, J. Nonlinear Sci. 23 no. 2 (2013) 303-334
+
+[MB2] G. Mari Beffa, On integrable generalizations of the pentagram map
+arXiv:1303.4295 (2013)
+
+[Mot] Th. Motzkin, The pentagon in the projective plane, with a comment
+on Napiers rule, Bull. Amer. Math. Soc. 52 (1945) 985–989.
+
+                                    36
+[OST] V. Ovsienko, R. Schwartz, S. Tabachnikov, Quasiperiodic motion for
+the pentagram map, Electron. Res. Announc. Math. Sci. 16 (2009) 1–8.
+
+[OST1] V. Ovsienko, R. Schwartz, S. Tabachnikov, The pentagram map:
+A discrete integrable system, Comm. Math. Phys. 299 (2010) 409–446.
+
+[OST2] V. Ovsienko, R. Schwartz, S. Tabachnikov, Liouville-Arnold inte-
+grability of the pentagram map on closed polygons, Duke Math J., Vol. 162
+(2013), 2815-2853
+
+[Sch1] R. Schwartz, The pentagram map, Experiment. Math. 1 (1992)
+71–81.
+
+[Sch2] R. Schwartz, The pentagram map is recurrent, Experiment. Math.
+10 (2001) 519–528.
+
+[Sch3] R. Schwartz, Discrete monodromy, pentagrams, and the method of
+condensation, J. of Fixed Point Theory and Appl. 3 (2008) 379–409
+
+[Sch4] R. Schwartz, The Poncelet Grid , Adv. in Geometry, 7 (2006) 157-175
+
+[Sol] F. Soloviev Integrability of the Pentagram Map, Duke Math J., Vol.
+162 (2013) 2815-2853
+
+[ST] R. Schwartz, S. Tabachnikov, Elementary surprises in projective ge-
+ometry, Math. Intelligencer 32 (2010) 31–34.
+
+
+
+
+                                   37
+
