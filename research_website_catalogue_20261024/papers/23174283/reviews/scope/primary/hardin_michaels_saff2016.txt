@@ -1,0 +1,2077 @@
+                                                                                                                  Volume 9 · 2016 · Pages 16–49
+
+
+
+
+               A Comparison of Popular Point Configurations on S2
+                                                 D. P. Hardin a · T. Michaels ab · E.B. Saff a
+
+
+
+                                                                       Abstract
+                     There are many ways to generate a set of nodes on the sphere for use in a variety of problems in numerical
+                     analysis. We present a survey of quickly generated point sets on S2 , examine their equidistribution
+                     properties, separation, covering, and mesh ratio constants and present a new point set, equal area
+                     icosahedral points, with low mesh ratio. We analyze numerically the leading order asymptotics for the
+                     Riesz and logarithmic potential energy for these configurations with total points N < 50, 000 and present
+                     some new conjectures.
+
+
+
+
+1     Introduction
+1.1     Overview
+                              
+Distributing points on S2 := x ∈ R3 : |x| = 1 is a classical problem arising in many settings in numerical analysis and ap-
+proximation theory, in particular the study of radial basis functions, quadrature and polynomial interpolation, Quasi-Monte
+Carlo methods for graphics applications, finite element methods for PDE’s, cosmic microwave background radiation modeling,
+crystallography and viral morphology, to name a few. The goal of this paper is to survey some widely used algorithms for the
+generation of spherical node sets. We will restrict our descriptions to “popular" point sets, most of which can be generated
+“reasonably fast." Namely, we study
+      • Fibonacci and generalized spiral nodes
+      • projections of low discrepancy nodes from the unit square
+      • zonal equal area nodes and HEALPix nodes
+      • polygonal nodes such as icosahedral, cubed sphere, and octahedral nodes
+      • minimal energy nodes
+      • maximal determinant nodes
+      • random nodes and
+      • “mesh icosahedral equal area nodes."
+The last is a new point set devised to have many desirable properties. For each of the above configurations, we provide illustrations,
+and analyze several of their properties. We focus our attention primarily on
+      • equidistribution
+      • separation
+      • covering
+      • quasi-uniformity and
+      • Riesz potential energy.
+For each property we provide numerical calculations, tables, and comparisons, and in some cases we prove theoretical bounds on
+the mesh ratio. Section 3 is devoted to asymptotic comparisons of various potential energies. We do not consider quadrature of
+the point sets; however, such a comparison for several of the configurations we describe here can be found in [19]. We now
+formally introduce the properties we will be studying and, in Section 2, describe the point sets themselves. We leave the technical
+proofs to Section 4, and at the end of the document, we provide resources for Matlab source codes to generate the point sets.
+a
+  Center for Constructive Approximation, Department of Mathematics, Vanderbilt University, Nashville, TN 37240, USA, email: doug.hardin@vanderbilt.edu,
+timothy.j.michaels@vanderbilt.edu, and edward.b.saff@vanderbilt.edu The research of the authors was supported, in part, by US-NSF grants DMS-1412428 and
+DMS-1516400.
+b
+  The research of this author was completed as part of a Ph.D dissertation
+                                                      Hardin · Michaels · Saff                                                     17
+
+
+
+1.2   Definitions and Properties
+For low error numerical integration with respect to uniform surface area measure ([1] and [35]) as well as in digitizing S2 for
+computer graphics purposes ([39] and [40]), it is important for any spherical configuration to have an approximately uniform
+distribution. A sequence {ωN }∞
+                              N =1
+                                   of spherical point sets with ωN having cardinality N is called equidistributed if the sequence of
+normalized counting measures,
+                                                          1
+                                               νN (A) := |A ∩ ωN |,     A Borel set,
+                                                          N
+associated with the ωN ’s converges in the weak-star sense to σ, the normalized surface area measure on S2 , as N → ∞. That is,
+for all continuous functions f on S2 ,                  Z            Z
+                                                     lim          f dνN =           f dσ.
+                                                    N →∞
+                                                             S2                S2
+
+An equivalent definition is that the L∞ -spherical cap discrepancy
+
+                                                          |V ∩ ωN |
+                                      DC (ωN ) := sup               − σ(V ) → 0,               N → ∞,
+                                                  V ⊂S2      N
+
+where the supremum is taken over all spherical caps V ⊂ S2 .
+   For the study of local statistics, separation and covering properties play an important role. The separation of a configuration
+ωN ⊂ S2 is
+
+                                                      δ(ωN ) := min |x − y|,
+                                                                    x, y∈ωN
+                                                                      x6= y
+
+and a sequence of spherical N -point configurations is said to be well-separated if for some c > 0 and all N ≥ 2,
+
+                                                           δ(ωN ) ≥ cN −1/2 .
+
+The covering radius of ωN with respect to S2 is defined to be
+
+                                                    η(ωN ) := max min |x − y|,
+                                                                   y∈S2 x∈ωN
+
+and a sequence of spherical N -point configurations is a good-covering if for some C > 0 and all N ≥ 2,
+
+                                                           η(ωN ) ≤ C N −1/2 .
+
+A sequence of configurations {ωN }∞
+                                  N =2
+                                       is said to be quasi-uniform if the sequence
+
+                                                                 η(ωN )
+                                                     §                   ª
+                                                      γ(ωN ) :=
+                                                                 δ(ωN ) N ≥2
+is bounded as N → ∞. The quantity γ(ωN ) is called the mesh ratio of ωN . Note that some authors define the mesh ratio as
+2γ(ωN ). A sequence of N -point configurations is quasi-uniform if it is well-separated and a good-covering. We remark that
+equidistribution does not imply quasi-uniformity or vice versa. In applications involving radial basis functions, “1-bit" sensing, and
+finite element methods ([27], [41], [50], and [58]), there is interest in precise bounds on DC (ωN ), δ(ωN ), η(ωN ), and γ(ωN ). A
+trivial lower bound is γ(ωN ) ≥ 1/2 for any configuration. Asymptotically, as proved in [9],
+                                                                   p
+                                                  1                  5−1
+                                    γ(ωN ) ≥             + o(1) =           + o(1), N → ∞,
+                                              2 cos π/5               2
+for any sequence of configurations {ωN }∞N =2
+                                              ⊂ S2 .
+    We also evaluate the potential energy of our point sets. The problem of minimizing point energies on the sphere dates to at
+least the beginning of the 20th century when Thomson put forth a model of the ground state configurations of electrons in [62].
+Given a lower-semicontinuous, symmetric kernel K : S2 × S2 → (−∞, ∞], and a spherical configuration ωN ⊂ S2 , the K-energy
+of ωN is defined to be
+                                                                 X
+                                                     EK (ωN ) :=     K(x, y).                                              (1)
+                                                                    x, y∈ωN
+                                                                      x6= y
+
+The infimum of EK (ωN ) over all N -point configurations on S2 is attained and is denoted by EK (N ). We will restrict our attention
+to the class of Riesz kernels defined by
+
+                                                                        1
+                                                      Ks (x, y) =             ,             s>0
+                                                                     |x − y|s
+                                                                                 1
+                                                      Klog (x, y) = log               ,
+                                                                              |x − y|
+                                                     Ks (x, y) = −|x − y|−s ,               s < 0.
+
+
+
+Dolomites Research Notes on Approximation                                                                           ISSN 2035-6803
+                                                         Hardin · Michaels · Saff                                                        18
+
+
+
+
+Figure 1: Voronoi decomposition of approximately minimal energy nodes for N = 1000 and s = 2. Cells with black points are hexagonal, but not
+necessarily regular. Cells with red points are pentagonal and cells with cyan points are heptagonal (see online for color).
+
+
+For brevity, the energy and minimal energy quantities for the Riesz s-kernel and log kernel will be denoted by Es (ωN ), Elog (ωN ),
+Es (N ), and Elog (N ) respectively. Determining an exact minimal configuration for a fixed N and s is a highly nonlinear optimization
+problem. In practice, gradient descent and Newton methods are used to arrive at approximate global minima [20]; however,
+there is substantial interest in generating nearly optimal points more quickly [53].
+     The Voronoi cell of a point x ∈ ωN ⊂ S2 is the spherical polygon
+                                                    
+                                         Vx (ωN ) := y ∈ S2 : | y − x| ≤ | y − z|, ∀ z ∈ ωN \ {x} .
+The Voronoi decomposition of a configuration is
+                                                       V (ωN ) := {Vx (ωN )} x∈ωN .
+It has been observed that the Voronoi cell decomposition of nearly optimal energy configurations appears to consist primarily of
+nearly regular spherical hexagons mixed with “scars" of spherical heptagons and pentagons as shown in Figure 1. It has been
+conjectured that for s > 2, the dominant term in the asymptotic expansion of Es (N ) is related to the Epstein-Zeta function for the
+hexagonal lattice (see Section 3).
+    We conclude this section by introducing some secondary properties of spherical configurations that we will use: A partition
+PN := {Wi }Ni=1 of S2 into N cells whose pairwise intersections have σ-measure 0 is equal area if σ(Wi ) = 1/N for all 1 ≤ i ≤ N . A
+sequence of partitions {PN }∞ N =2
+                                   of S2 such that each PN has N cells is diameter bounded if there are constants c, C > 0 such that
+for all N ∈ N and for every cell WiN ∈ PN ,
+
+                                                     cN −1/2 ≤ diam WiN ≤ C N −1/2 ,                                                    (2)
+                                                                                     2
+where diam(A) := sup x, y∈A |x − y|. We will call a sequence of partitions of S asymptotically equal area if
+                                            lim N max σ(WiN ) = lim N min σ(WiN ) = 1,                                                  (3)
+                                           N →∞    1≤i≤N             N →∞    1≤i≤N
+
+and a sequence of spherical configurations {ωN }∞
+                                                N =1
+                                                     will be said to be asymptotically equal area if its sequence of Voronoi
+decompositions is asymptotically equal area.
+
+2    Point Sets on S2
+Generalized Spiral Points
+
+    A spherical spiral on S2 is a path in spherical coordinates of the form
+                                                    r = 1,       θ = Lφ,    0 ≤ φ ≤ π,
+where φ denotes the polar angle and θ the azimuth. Modifying a construction by Rakhmanov, Saff, and Zhou [47], Bauer [2]
+defines a sequence of N points lying on a generating spherical spiral, SN :
+                               p                    2k − 1
+                           L = N π, hk = 1 −               , φk = cos−1 (hk ), θk = Lφk , k = 1, ..., N .                       (4)
+                                                      N
+The slope L is chosen such that for large N , the distance between adjacent points on the same level of the curve is similar to the
+distancepbetween adjacent levels which differ by 2π in θ . Indeed, the geodesic spacing between turns of the spiral is given by
+2π/L = 4π/N . Meanwhile, the total arc length is
+                            Z q                          Z πq
+                                                                                   p            p         
+                       T=         dφ + dθ sin φ =
+                                      2      2    2
+                                                              1 + L 2 sin2 φ dφ = 2 1 + L 2 E L/ 1 + L 2 ,
+                               SN                            0
+
+                                             pthe second kind. For large N , T ≈ 2L, and the spiral is divided into nearly equal
+where E(·) is the complete elliptic integral of
+length segments of approximately 2L/N = 4π/N . We refer to these points as the generalized spiral points.
+
+
+
+Dolomites Research Notes on Approximation                                                                                ISSN 2035-6803
+                                                       Hardin · Michaels · Saff                                                      19
+
+
+
+
+                           Figure 2: Plot of N = 700 generalized spiral points and their Voronoi decomposition.
+
+
+
+Theorem 2.1. The sequence {ωN }∞   N =1
+                                        of generalized spiral point configurations is equidistributed on S2 , quasi-uniform, and has the
+following asymptotic separation property:
+                                       p             q        p       p         p
+                                 lim N δ(ωN ) = 8 − 4 3 cos( 2π(1 − 3)) ≈ 3.131948....                                               (5)
+                                  N →∞
+
+    As shown in the proof of Theorem 2.1, the Voronoi cells of ωn are asymptotically equal area, but do not approach regular
+hexagons. Indeed, a typical decomposition is shown in Figure 2. A comparison of the mesh ratios for several values of N is shown
+in Table 1. Numerically, the mesh ratio appears to converge to 0.8099....
+
+                                           Table 1: Mesh Ratios for Generalized Spiral Nodes
+
+                                  N       γ(ωN )          N         γ(ωN )          N          γ(ωN )
+                                  10     0.897131       400       0.816007        20000      0.809510
+                                  20     0.827821       500       0.810128        30000      0.809629
+                                  30     0.814383       1000      0.805465        40000      0.809689
+                                  40     0.826281       2000      0.806411        50000      0.809725
+                                  50     0.834799       3000      0.807510       100000      0.809797
+                                 100     0.803901       4000      0.808077       200000      0.809832
+                                 200     0.806020       5000      0.808435       300000      0.809844
+                                 300     0.809226      10000      0.809151       500000      0.809854
+
+
+Fibonacci Nodes
+
+    Another set of spiral points is modeled after nodes appearing in nature such as the seed distribution on the head of a sunflower
+or a pine cone, a phenomenon known as spiral phyllotaxis [25]. Coxeter [22] demonstrated these arrangements
+                                                                                                      p            are fundamentally
+related to the Fibonacci sequence, {Fk } = {1, 1, 2, 3, 5, 8, 13, ...} and the golden ratio ϕ = (1 + 5)/2. There are two similar
+definitions of the spherical point set in the literature. Both are defined as lattices on the square [0, 1)2 and then mapped to the
+sphere by the Lambert cylindrical equal area projection, denoted by Λ. In Cartesian coordinates, Λ is defined by
+                                            Æ                           Æ
+                               Λ(x, y) := ( 1 − (2 y − 1)2 cos 2πx, 1 − (2 y − 1)2 sin 2πx, 2 y − 1)
+and, in spherical coordinates, by
+
+                                             Λ(x, y) := (cos−1 (2 y − 1), 2πx) = (φ, θ ).
+Define a rational lattice on [0, 1) , with total points Fk by
+                                    2
+
+
+                                                            iFk−1
+                                                         §       ª     
+                                                                      i
+                                                 ω
+                                                 e Fk :=           ,     , 0 ≤ i ≤ Fk ,                                             (6)
+                                                              Fk     Fk
+where {x} = x − bxc denotes the fractional part of x. On the other hand, an irrational lattice can be formed similarly for all
+values of total points N by replacing Fk−1 /Fk in (6) by limk→∞ Fk−1 /Fk = ϕ −1 :
+                                                                   
+                                                                   i
+                                                ωe N :=    iϕ −1 ,    , 0 ≤ i ≤ N.
+                                                                   N
+    Swinbank and Purser [59] define a spherical point set for all odd integers 2N + 1 symmetrically across the equator derived
+from the irrational lattice with points shifted a half step away from the poles:
+
+
+
+
+Dolomites Research Notes on Approximation                                                                             ISSN 2035-6803
+                                                              Hardin · Michaels · Saff                                                          20
+
+
+
+
+Figure 3: Fibonacci nodes for N = 1001 as defined by Swinbank and Purser and corresponding Voronoi decomposition. The visible spirals at
+each level are generated by a sequence of points whose index increases arithmetically by a Fibonacci number.
+
+
+
+
+                                                                        yi+13
+
+
+
+
+                                                                                b6        yi+8
+
+
+                                                                    yi+5
+
+                                                                           b4              b5     yi+3
+                                                       yi+2
+                                                                   b2                        b3
+                                                                                                                  yi+1
+                                                                                                           b1
+
+                                                                                     yi
+
+
+
+                                                                                                         2πϕ −1
+
+
+                              0                                                                                          2π
+
+Figure 4: Irrational lattice points on the square with labeled basis vectors from [59] around a node yi . The configuration is approximately
+a rotation of the rectangular lattice by the angle tan−1 (ϕ). Each line of points along a basis vector is mapped to a spiral under the Lambert
+projection, Λ. The basis vector bk such that Λ(bk ) has the shortest length forms the visible dominant spirals emanating from Λ(yi ). These shortest
+length vectors are determined by the total number of points and zone number z.
+
+
+
+
+                                                            2i
+                                   θi = 2πiϕ −1 , sin φi =       , −N ≤ i ≤ N , −π/2 ≤ φi ≤ π/2.
+                                                          2N + 1
+Denote ω2N +1 as the configuration generated above. Whereas for large N , the generalized spiral points tend towards flattening out
+and partitioning the sphere into distinct regions of latitude, the Fibonacci points maintain visible clockwise and counterclockwise
+spirals as N grows. Labeling
+                              the points of ω2N +1 by increasing latitude, the dominant spirals emanating from x i ∈ ω2N +1 are
+formed by the sequence x i+ jFk for some Fibonacci number Fk and j = · · · , −2, −1, 0, 1, 2, · · · .
+    The Fibonacci points derived from the rational lattice are studied by Aistleitner et al [1] and Bilyk et al [7] for discrepancy
+estimates. In [1], the spherical cap discrepancy of the points {Fk } is bounded by
+                                                            
+                                                               44p(2/Fk )
+                                                                 p
+                                                                             if k is odd,
+                                           DC (Λ(ωe Fk )) ≤
+                                                               44 (8/Fk ) if k is even.
+Numerical experiments in [1] suggest that in fact,
+
+                                                   (log Fk )c
+                                                             
+                              DC (Λ(ωe Fk )) = O       3/4
+                                                               ,                k → ∞ for some 1/2 ≤ c ≤ 1.
+                                                      Fk
+which is optimal up to a log power [3]. Both sequences of Fibonacci configurations are equidistributed. However, since the
+Swinbank and Purser nodes are defined for more values of total points, we will take these to be the Fibonacci sets moving forward.
+In [59], these points are also numerically shown to be asymptotically equal area.
+
+
+
+Dolomites Research Notes on Approximation                                                                                       ISSN 2035-6803
+                                                           Hardin · Michaels · Saff                                                          21
+
+
+
+
+Figure 5: Triangulation of N = 3001 nodes viewed at a slightly different angle. The enlarged box demonstrates where zone number z changes
+with changing φ. The sudden shift occurs at z = k ± 1/2. Along this latitude, ck,i and ck±1,i have equal lengths. For k − 1/2 < z < k + 1/2, the
+triangulation consists of basis vectors ck,i and ck+1,i as proven in [59].
+
+
+
+    Analyzing ω2N +1 as a shifted irrational lattice mapped by the Lambert projection helps to visualize the underlying spiral
+structure. Define a system of basis vectors
+                                                bk = Λ−1 (x i+Fk ) − Λ−1 (x i ),   k = 1, 2, 3...,
+which are independent of base point x i . This is illustrated in Figure 4. Emanating from each point x i , the line of points
+{x i + mbk }m=··· ,−1,0,1,··· is mapped to a spiral on S2 under the Lambert projection. Like the Fibonacci sequence, the basis vectors
+satisfy
+
+                                                               bk+1 = bk + bk−1 .
+On the sphere, the basis vectors in terms of the local Cartesian coordinate system at a point (φi , θi ) ∈ ω2N +1 have the form
+
+                                                                             2Fk
+                                                                                       
+                                          ck,i = (−1)k 2π cos φi ϕ −k ,                  .                                      (7)
+                                                                        (2N + 1) cos φi
+For a fixed latitude φ and total number of points 2N + 1, the zone number z is defined by
+                                                                     p
+                                                   ϕ 2z = (2N + 1)π 5 cos2 φ.
+              Æ       p                                                          p
+Letting d =       4π/( 5(2N + 1)) and using the fact that for large k, Fk ≈ ϕ k / 5 equation (7) can be rewritten
+
+                                                         ck,i ≈ d((−1)k ϕ z−k , ϕ k−z ).                                                    (8)
+For latitudes where k − 1/2 ≤ z ≤ k + 1/2, ck,i has the minimum length of the basis vectors around x i and forms the dominant
+spiral at those latitudes. As shown in [59], |ck,i | is also the smallest distance between points near these latitudes. Thus, the
+Delaunay triangulation [46] of ω2N +1 is composed of ck,i , ck−1,i , and ck+1,i when k − 1/2 ≤ z ≤ k + 1/2. This is shown in Figure 5
+and allows us to prove quasi-uniformity.
+Proposition 2.2. The sequence of Fibonacci configurations is quasi-uniform.
+    Numerically, the minimal separation appears to occur at the pole with value |x 1 − x 4 | = |x 2N +1 − x 2N −2 | and the largest hole
+appears to occur in the triangles covering the poles, 4x 2 , x 3 , x 5 and 4x 2N , x 2N −1 , x 2N −3 . In a straightforward computation, it can
+be shown that
+                                      p                      q          p
+                                  lim 2N + 1|x 1 − x 4 | = 16 − 112 cos(6πϕ −1 ) = 3.09207...
+                                   N →∞
+
+and the circumradius r of the polar triangles satisfies
+                                                              p
+                                                        lim    2N + 1 r = 2.72812....
+                                                       N →∞
+
+As shown in Table 2, the mesh ratios for Fibonacci nodes appear to converge quickly to this ratio ≈ 0.882298.
+
+Low Discrepancy Nodes
+
+      Another approach for distributing points on the sphere is to minimize a suitable notion of discrepancy, such as spherical cap,
+L p , or generalized discrepancy (cf. [16] and [23]). A low spherical cap discrepancy sequence {ωN }∞  N =2
+                                                                                                            satisfies [3]
+                                                                   p
+                                                a                    log N
+                                                    ≤ DC (ωN ) ≤ A         ,   N ≥ 2,                                            (9)
+                                              N 3/4                 N 3/4
+
+
+Dolomites Research Notes on Approximation                                                                                    ISSN 2035-6803
+                                                        Hardin · Michaels · Saff                                                 22
+
+
+
+
+                         Figure 6: Hammersley nodes for N = 1000 and corresponding Voronoi decomposition.
+
+                                                Table 2: Mesh Ratios for Fibonacci Nodes
+
+                                  N        γ(ωN )            N       γ(ωN )             N                γ(ωN )
+                                  11     0.859197          401    0.881897           20001          0.882289
+                                  21     0.872632          501    0.881978           30001          0.882292
+                                  31     0.876251         1001    0.882139           40001          0.882293
+                                  41     0.877909         2001    0.882218           50001          0.882294
+                                  51     0.878857         3001    0.882244          100001          0.882296
+                                 101     0.880646         4001    0.882258          200001          0.882297
+                                 201     0.881489         5001    0.882266          300001          0.882297
+                                 301     0.881762        10001    0.882282          500001          0.882297
+
+
+
+for some a, A > 0. Low discrepancy point sets are used in Quasi-Monte Carlo methods for numerical integration and also in
+graphics applications in [65]. One method for generating spherical nodes is to first distribute points on the square [0, 1)2 with
+low planar discrepancy [45], i.e. for some A > 0
+
+                                                      R ∩ ωN            log N
+                                      D(ωN ) := sup          − σ(R) ≤ A       ,           ωN ⊂ [0, 1)2 ,                       (10)
+                                                  R      N                N
+where the supremum R is taken over all rectangles with sides parallel to the axes. These sequences are then mapped to the
+sphere via the Lambert projection. While the log N /N term in (10) is optimal on the plane [51], it is an open problem whether
+the images of these sequences have optimal order spherical cap discrepancy. There are several such node distributions in the
+literature (cf. [1] and [23]), but as their properties are similar, we only consider the following one.
+
+Hammersley Nodes
+
+    For an integer p ≥ 2, the p-adic van der Corput sequence is defined by
+                                (p)     a0           ar
+                               xk =        + · · · + r+1 ,   where    k = a0 + · · · + a r p r ,     ai ∈ {0, 1} .
+                                        p           p
+                                                                                                   (2)
+The Hammerlsy node set on the square ([23], [45], and [65]) is given by x k := x k and yk := 2k−1       2N . The N point spherical
+Hammersley node set is given by {Λ(2πx k , 1 − 2 yk )}Nk=1 . The configuration for N = 1000 is given in Figure 6. The discrepancy of
+the planar Hammersley nodes is known from Niederreiter [45] to satisfy (10) . The sequence of Hammersley configurations is
+equidistributed; however it is not well-separated or quasi-uniform. This makes the nodes poor candidates for energy, as shown in
+Section 3. Their Voronoi decompositions also exhibit no discernible geometric patterns.
+
+Equal Area Partitions
+
+    Another class of point sets are those derived from equal area partitions of the sphere.
+
+Zonal Equal Area Nodes:
+
+    Rakhmanov et al [47] construct a diameter bounded, equal area partition of S2 into rectilinear cells of the form
+                                                        
+                           R([τφ , νφ ] × [τθ , νθ ]) := (φ, θ ) ∈ S2 : τφ ≤ φ ≤ νφ , τθ ≤ θ ≤ νθ .
+
+
+
+
+Dolomites Research Notes on Approximation                                                                            ISSN 2035-6803
+                                                            Hardin · Michaels · Saff                                                         23
+
+
+
+
+Figure 7: Zonal equal area partition of the sphere into 100 cells. The algorithm does not determine a unique partition as the collars can rotate
+past each other. Image created with the help of Paul Leopardi’s equal area partitioning toolbox available at eqsp.sourceforge.net.
+
+
+
+The cells are grouped by regions of equal latitude called collars that have the form R([τφ , νφ ] × [0, 2π]). The cells are defined
+                                            p
+such that νφ − τφ and νθ − τθ approximate 4π/N as N grows. This ensures the correct order of the diameter bound. The cells
+are defined in the following way.
+
+    1. Determine the latitudes of the polar caps. The first two cells are taken to be the polar caps of radius φc = cos−1 (1 − 2/N ).
+
+    2. Determine the ideal collar angle and ideal number of collars. The ideal angle between two collars is
+                                                                Æ
+                                                         δ I := 4π/N .
+The ideal number of collars between the polar caps, all of which have angle δ I , is
+                                                                          π − 2φc
+                                                                 n I :=           .
+                                                                            δI
+    3. Determine the actual number of collars, n. If N = 2, then n := 0. Otherwise,
+                                                           n := max {1, round(n I )} .
+    4. Create a list of the ideal number of cells in each collar. The “fitting" collar angle is
+                                                                      nI      π − 2φc
+                                                            δ F :=       δI =         .
+                                                                      n          n
+                      n+2
+Label the collars C j j=1 southward with the North polar cap as C1 and the South polar cap as Cn+2 . The area A j of collar C j can
+be written as the difference of polar cap areas:
+                                           A j = 2π(cos(φc + ( j − 2)δ F ) − cos(φc + ( j − 1)δ F )).
+Thus the ideal number of cells y j,I in each collar C j , j ∈ {2, . . . , n + 1}, is given by
+                                                                               4πA j
+                                                                     y j,I =           .
+                                                                                N
+   5. Create a list of the actual number of cells in each collar. We apply a cumulative rounding procedure. Letting y j be the
+number of cells in C j , define the sequences y and a by a1 := 0, y1 := 1, and for j ∈ {2, . . . , n + 1}:
+                                                                                             j
+                                                                                             X
+                                              y j := round( y j,I + a j−1 ),        a j :=         yk − yk,I .
+                                                                                             k=1
+
+    6. Create a list of latitudes φ j of each collar and partition each collar into cells. We define φ j as follows: φ0 = 0, φn+2 = π and
+for j ∈ {1, . . . , n + 1},
+                                                                               j
+                                                                          2 X
+                                                         φ j = cos−1 (1 −        yk ).
+                                                                          N k=1
+                                                                  Pj
+Thus the North polar cap of radius φ j has normalized area k=1 yk /N , and C j := R([φ j−1 , φ j ] × [0, 2π]).
+
+    7. Partition each collar into cells. C j has y j equal cells
+                                           n                             yj                  y j o y j −1
+                                            R([φ j−1 , φ j ] × [θ j + k     , θ j + (k + 1)     ])        ,
+                                                                        2π                  2π     k=0
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                    ISSN 2035-6803
+                                                       Hardin · Michaels · Saff                                                       24
+
+
+
+
+Figure 8: Zonal equal area points for N = 700 and corresponding Voronoi decomposition. The configurations have a similar structure to the
+generalized spiral points in Figure 2.
+
+
+
+where θ j ∈ [0, 2π) can be chosen to be any starting angle. Note that because θ j are chosen independently, the equal area partition
+determined by the algorithm is not unique. Indeed, the collars can rotate past each other without affecting the diameter bound or
+equal area property of the partition. Because the choice of the θ j ’s does not strongly affect the other properties with which we are
+concerned, we will take them to be random.
+    The point set ωN is defined to bep the centers of the cells of the rectilinear partition. As proved by Zhou [67], the cellspare
+diameter bounded from above by 7/ N ; however, numerical experiments from Leopardi in [36] suggest the bound to be 6.5/ N .
+For large N , the zonal equal area configurations look very similar to the generalized spiral configurations. Namely they exhibit
+iso-latitudinal rings with separation between adjacent points equal to separation between rings and a random longitudinal shift
+between points in adjacent rings. As shown in Section 3, the energy computations for both point sets are nearly identical.
+Proposition 2.3. The sequence of zonal equal area configurations is equidistributed and quasi-uniform.
+    The above construction was modified by Bondarenko et al [8] to create a partition with geodesic boundaries for the creation
+of well-separated spherical designs. More details can be found in [8]. Table 3 gives a comparison of the mesh ratios of the zonal
+points.
+
+                                            Table 3: Mesh Ratios for Zonal Equal Area Nodes
+
+                                  N        γ(ωN )          N        γ(ωN )           N            γ(ωN )
+                                  10      0.711934      400        0.769527        20000        0.758100
+                                  20      0.790937      500        0.766808        30000        0.758069
+                                  30      0.788546      1000       0.765356        40000        0.756793
+                                  40      0.843385      2000       0.764631        50000        0.756785
+                                  50      0.790252      3000       0.758645       100000        0.756770
+                                 100      0.761296      4000       0.756510       200000        0.756762
+                                 200      0.764846      5000       0.764217       300000        0.758015
+                                 300      0.763188     10000       0.758192       500000        0.756757
+
+
+
+HEALPix Nodes
+
+    Developed by NASA for fast data analysis of the cosmic microwave background (CMB), the Hierarchical Equal Area iso-Latitude
+Pixelization (HEALPix) was designed to have three properties essential for computational efficiency in discretizing functions on
+S2 and processing large amounts of data [30]:
+   1. The sphere is hierarchically tessellated into curvilinear quadrilaterals.
+   2. The pixelization is an equal area partition of S2 .
+   3. The point sets are distributed along fixed lines of latitude.
+    To create the partition of S2 , the authors in [30] first divide the sphere into 12 equal area, four sided pixels defined by the
+following boundaries:
+
+                                                           2         π
+                                              | cos φ| >     ,   θ =m ,       m = 0, 1, 2, 3
+                                                           3         2
+                                          −2 − 4m 8θ             mπ      (m + 1)π
+                                cos φ =          +    ,             ≤θ ≤          ,            m = 0, 1, 2, 3
+                                             3     3π             2         2
+
+
+
+Dolomites Research Notes on Approximation                                                                              ISSN 2035-6803
+                                                           Hardin · Michaels · Saff                                                             25
+
+
+
+
+Figure 9: Base tessellation of the sphere into 12 equal area pixels. A finer mesh is created by dividing each base pixel into a k × k grid of equal
+area subpixels of the same shape. The HEALPix points are taken to be the centers of the pixels.
+
+
+
+
+                                 Figure 10: HEALPix nodes and Voronoi decomposition for N = 1200, k = 10.
+
+
+
+
+                                       2 − 4m 8θ         −(m + 1)π           −mπ
+                                 cos φ =       −     ,                ≤θ ≤          ,   m = 0, 1, 2, 3.
+                                          3      3π           2                2
+The base tessellation is shown in Figure 9. For a given k ∈ N, each pixel is partitioned into a k × k grid of sub-pixels of the same
+shape and equal area. The HEALPix point sets are taken to be the centers of these pixels.
+   On the polar regions | cos φ| > 2/3, the points are distributed along k iso-latitudinal rings, indexed by i, each with 4i equally
+spaced points, indexed by j:
+
+                                                                     i2                 π       1
+                                                                                                 
+                                                 | cos φi | = 1 −       ,        θj =        j−    .
+                                                                    3k2                 2i      2
+On the equatorial region, there are 2k − 1 iso-latitudinal rings, each with 4k points. The rings are indexed by k ≤ |i| ≤ 2k and the
+points by 1 ≤ j ≤ 4k:
+
+                                                                              4 2i
+                                                              | cos φi | =     −   ,
+                                                                              3 3k
+                                                       π
+                                                                
+                                                               s
+                                                θj =        j−    ,         s = (i − k + 1) mod 2.
+                                                       2k      2
+The index s describes the phase shift between rings. This gives a configuration of size N = 12k2 . The point sets are hierarchical
+along the subsequence k = 3m . Holhoş and Roşca [32] have shown that the HEALPix points can be obtained as the image of
+points on a certain convex polyherdon under an area preserving mapping to the sphere.
+Proposition 2.4. The sequence of HEALPix configurations is equidistributed and quasi-uniform.
+Numerically, the mesh ratio appears to be bounded by 1, as shown in Table 4.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                      ISSN 2035-6803
+                                                        Hardin · Michaels · Saff                                                      26
+
+
+
+
+Figure 11: Radial icosahedral odes N = 642. The Voronoi decomposition is composed of regular hexagons of varying size and 12 pentagons at
+the vertices of the icosahedron.
+
+
+                                                Table 4: Mesh Ratios for HEALPix nodes
+
+                        k     N       γ(ωN )        k      N         γ(ωN )         k       N          γ(ωN )
+                        1     12    0.864783        9      972     0.965950         45    24300      0.992956
+                        2     48    0.862243       10     1200     0.969599         50    30000      0.993648
+                        3    108    0.909698       15     2700     0.979371         60    43200      0.994701
+                        4    192    0.929080       20     4800     0.984328         70    58800      0.995456
+                        5    300    0.940016       25     7500     0.987365         80    76800      0.996020
+                        6    432    0.951047       30    10800     0.989509         90    97200      0.996455
+                        7    588    0.957584       35    14700     0.990959        100   120000      0.996807
+                        8    768    0.961782       40    19200     0.992082        150   270000      0.997867
+
+
+
+Polyhedral Nodes and Area Preserving Maps
+
+    Another class of point sets are those derived from subdividing regular polyhedra and applying radial projection: Π(x) = x/kxk
+or an equal area projection. These node sets are used in finite element methods to give low error solutions to boundary value
+problems. See, for instance, [28] and [43].
+
+Radial Icosahedral Nodes
+
+    This point set, as described in [60] and [66] is formed by overlaying a regular triangular lattice onto each face of a regular
+icosahedron of circumradius 1 and edge length a = csc(2π/5). Given k ∈ N, for each vertex v, divide two adjacent edges
+emanating from v into basis vectors of length a/k. For the face F determined by these edges and vertex, the icosahedral point
+set ω
+    Þ Nk on F is taken to be the set of lattice points generated by these basis vectors restricted to F . The spherical points are
+ωNk := Π(Þ ωNk ). These node sets are defined for total points N = 10k2 + 2 and hierarchical along the subsequence k j = k0 2 j for
+any k0 ∈ N.                                               ∞
+    The sequence of icosahedral configurations ω     Þ Nk k=1 is equidistributed. However, because radial projection is not area
+preserving, the sequence of spherical configurations is not equidistributed. Density is higher towards the vertices of the icosahedron
+and lower towards the center of the faces where the areal distortion of Π is greatest. The Voronoi decomposition of ωNk is
+composed of twelve regular pentagons with all other cells regular hexagons of varying size as illustrated in Figure 11.
+Proposition 2.5. The sequence of radial icosahedral configurations is quasi-uniform.
+Numerically, the mesh ratio appears to be bounded by 0.86, as shown in Table 5.
+
+Cubed Sphere Nodes
+
+    A similar method as above can be applied to the cube [43]. A square k × k grid is placed on each face of the cube and radially
+projected to the sphere. A typical point set is shown in Figure 12. The configurations are defined for N = 6k2 − 12k + 8 and are
+hierarchical along the subsequence k = k0 2m . By an argument similar to that in Proposition 2.5, the limiting distribution is not
+uniform, but the sequence of configurations is quasi-uniform. Numerically, the mesh ratio seems to quickly converge to 1, as
+shown in Table 6.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                              ISSN 2035-6803
+                                                          Hardin · Michaels · Saff                                                       27
+
+
+
+
+Figure 12: Plot of N = 1016 Cubed Sphere Points and Voronoi Decomposition. The Voronoi cells tend towards regular hexagons near the vertices
+of the cube. Towards the middle of each face they resemble a square lattice.
+
+                                            Table 5: Mesh Ratios for Radial Icosahedral Nodes
+
+                                        k       N         γ(ωN )        k         N             γ(ωN )
+                                        1       12       0.620429       20     4002         0.830750
+                                        2       42       0.667597       30     9002         0.838066
+                                        3       92       0.684698       40    16002         0.842358
+                                        4      162       0.745348       50    25002         0.844697
+                                        5      252       0.765157       60    36002         0.846156
+                                        6      362       0.769854       70    49002         0.847376
+                                        7      492       0.789179      100   100002         0.849390
+                                       10     1002       0.808024      150   225002         0.850941
+                                       15     2252       0.821504      200   400002         0.851745
+
+
+                                                Table 6: Mesh Ratios for Cubed Sphere Points
+
+                         k     N       γ(ωN )        k       N          γ(ωN )         k           N      γ(ωN )
+                         2      8    0.827329        10      488       0.996846        50        14408   0.999893
+                         3     26    0.794265        15     1178       0.994025        60        20888   0.999926
+                         4     56    0.972885        20     2168       0.999289        70        28568   0.999946
+                         5     98    0.933655        25     3458       0.997954        80        37448   0.999959
+                         6    152    0.989913        30     5048       0.999695        90        47528   0.999968
+                         7    218    0.968757        35     6938       0.998979       100        58808   0.999974
+                         8    296    0.994805        40     9128       0.999831       150       133208   0.999988
+                         9    386    0.982046        45    11618       0.999390       200       237608   0.999994
+
+
+
+Octahedral Points
+
+    Unlike in the previous examples, the octahedral points, describedpby Holhoş
+                                                                          p      and Roşca [33], are derived from an area
+preserving map U from the regular octahedron K of edge length L = 2π/ 3 and surface area 4π to S2 . Let U x , U y , and Uz
+                                                                          4
+
+
+denote the x, y, and z components of U respectively. For (X , Y, Z) ∈ K,
+
+                                                                   2Z p
+                                                           Uz =       ( 2L − |Z|),
+                                                                   L2
+                                                              Æ                 π|Y |
+                                                 U x = sgn(X ) 1 − Uz2 cos                  ,
+                                                                             2(|X | + |Y |)
+                                                              Æ                 π|Y |
+                                                 U y = sgn(Y ) 1 − Uz2 sin                  .
+                                                                             2(|X | + |Y |)
+    To produce a spherical point set, the authors form a partition Pk of k2 triangles on each face of the octahedron in the same
+manner as the radial icosahedral points and obtain an equal area spherical partition Pk = U (Pk ). The point sets ωNk are taken to
+be the vertices of the triangles of Pk . For a given k, there are 8k2 triangles and N = 4k2 + 2 points.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                ISSN 2035-6803
+                                                         Hardin · Michaels · Saff                                                         28
+
+
+
+
+Figure 13: Equal area octahedral points for k = 15 and N = 902. The Voronoi decomposition of the octahedral points is composed of hexagons
+and 8 squares at the vertices of the octahedron. The hexagons approach regularity towards the center of the faces and deform along the edges.
+
+                                                 Table 7: Mesh Ratios for Octahedral Nodes
+
+                         k     N       γ(ωN )        k       N         γ(ωN )         k        N          γ(ωN )
+                         1      6     0.675511       9       326     0.873510        60       14402     0.905758
+                         2     18     0.872884      10       402     0.875606        70       19602     0.908047
+                         3     38     0.854610      15       902     0.882510        80       25602     0.909875
+                         4     66     0.856329      20      1602     0.886310        90       32402     0.911382
+                         5    102     0.860536      25      2502     0.888702       100       40002     0.912644
+                         6    146     0.864599      30      3602     0.892884       200      160002     0.919218
+                         7    198     0.868095      40      6402     0.898762       300      360002     0.921947
+                         8    258     0.871036      50     10002     0.902784       400      640002     0.923503
+
+
+
+    The octahedral configurations have similar properties to the HEALPix node sets. They are iso-latitudinal and hierarchical
+along the subsequence k = k0 2m . The sequence of configurations is equidistributed, and in addition, the authors in [33] compute
+a diameter bound for any triangular region T of Pk to be
+                                                             p
+                                                           2 4 + π2      7.448
+                                                diam T ≤ p            ≈ p       .
+                                                               8k2          8k2
+Following their proof of this bound, we can calculate a lower bound on the separation and an upper bound on the mesh norm.
+Theorem 2.6. The sequence of equal area octahedral configurations is quasi-uniform with
+                                        v                      p
+                                       1t      4 + π2           4 + π2
+                         γ(ω4k2 +2 ) ≤                     →            ≈ 0.931048...,                k → ∞.                            (11)
+                                       4 2 − (k + 1)2 /k2          4
+
+This bound seems to be near optimal. As shown in Table 7, the mesh ratio grows to at least 0.9235.
+
+Mesh Icosahedral Equal Area Points
+
+    Improvements to the radially projected icosahedral points have been put forth by Song et al [56] and Tegmark [61]. Here,
+we introduce two other improvements to these points to create new configurations. First, we generalize the icosahedral lattice
+structure to create configurations of more possible numbers of total points. Due to a method of Caspar and Klug [21] derived
+during their investigation of the construction of viruses, we define a triangular lattice on a regular icosahedron with total points
+                                        N = 10(m2 + mn + n2 ) + 2,    (m, n) ∈ N × N \ (0, 0).
+                                                                                  p
+    Consider the planar triangular lattice generated by e1 = (1, 0) and e2 = (1/2, 3/2). For a given (m, n), let em,n = me1 + ne2
+and it’s rotation by π/3 be basis vectors for an unfolded icosahedron superimposed on the lattice. This is illustrated in Figure 14.
+Folding the icosahedron results in a triangular lattice ω
+                                                        ÝN on each face. Due to rotational symmetry of the lattice, the resulting
+configuration is independent of how the icosahedron is unfolded. The subsequence (m, 0) produces the lattice for the radial
+icosahedral nodes.                                                                                      p       p
+    Secondly, we derive an area preserving map Φ from the regular icosahedron I of edge length L = 4π/ 4 75, circumradius
+r = L sin 2π/5, and surface area 4π using the technique presented by Snyder [54] for the truncated icosahedron. We define Φ
+piecewise by dividing each face F ⊂ I into the six triangles Ri partitioned by the altitudes of F :
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                 ISSN 2035-6803
+                                                       Hardin · Michaels · Saff                                                   29
+
+
+
+
+                                                                                   n
+                                                                       m
+
+
+                                         Figure 14: Planar icosahedral mesh for (m, n) = (5, 4).
+
+
+                                                                                                              p
+    1. Parametrize each point p ∈ Ri by h and w as labeled in Figure 16. If Ā is the side of Ri of length L/2 3, then w is the
+distance from p to Ā and h is the distance of pĀ := pr o j(p, Ā) to O, the center of F .
+                                             p
+    2. Let B̄ be the side of Ri of length L/ 3 and pB̄ be the intersection of the line pĀ p with B̄. For the triangle S = 4pĀ pB̄ O,
+find ψ as in Figure 16 and spherical right triangle Φ(S ) such that Area(S ) = σ(Φ(S )) = ψ − π/6. Thus,
+                                                                    p
+                                                                  h2 3 π
+                                                              ψ=         + .
+                                                                    2        6
+    3. Φ(p) will lie on the great circle Φ(pĀ pB̄ ). Letting T = 4pĀ, p, O, find λ as in Figure 16 such that Area(T ) = σ(Φ(T )). By
+the spherical law of cosines,
+
+                                                                        2 sin λ cos ψ     π
+                                                                                     
+                                             σ(Φ(T )) = λ + cos−1            p          − .
+                                                                               3          2
+Thus
+
+                                                                          2 )
+                                                                    sin( hw
+                                                      tan λ =                2 cos ψ
+                                                                                       .
+                                                                      2 )−
+                                                                cos( hw        p
+                                                                                 3
+
+    4. Transform (ψ, λ) into spherical coordinates.
+
+The map Φ is extended to I by rotations and reflections. This defines the unique azimuthal equal area projection from I onto S2
+[55]. The spherical configurations are ωN := Φ(ω   ÝN ). A typical point set is shown in Figure 15. The Voronoi cells are almost
+regular hexagons with 12 pentagonal cells at the vertices of I , and the Voronoi decomposition forms a spherical Goldberg
+Polyhedron [29]. To implement the points in Matlab, we derive explicit formulas on a triangular face. More details are provided
+in the companion paper [42].
+    Unlike the radial icosahedral points, the sequence of equal area configurations is equidistributed. Regarding quasi-uniformity,
+the following is proved in [42].
+Proposition 2.7. The sequence of equal area icosahedral configurations are quasi-uniform with
+
+                                                          γ(ωN ) ≤ 0.798....
+
+    As shown in Table 8, the mesh ratios appears to stay below 0.736. These are the lowest mesh ratios of all point sets discussed.
+
+
+
+Coulomb Points and Log Energy Points (Elliptic Fekete Points)
+
+    For s = 1, Riesz s-energy minimization is the classic Thomson problem for the Coulomb potential [62]. The sequence of
+minimal Coulomb energy configurations is known to be equidistributed, well-separated, and quasi-uniform [24]. However, no
+explicit bound is known for the mesh ratio. The Voronoi decomposition of these cells, as shown in Figure 17, primarily consists of
+
+
+
+Dolomites Research Notes on Approximation                                                                           ISSN 2035-6803
+                                                             Hardin · Michaels · Saff                                                       30
+
+
+
+
+Figure 15: Equal area mesh icosahedral nodes for (m, n) = (7, 2) and total points N = 672. The Voronoi decomposition forms a spherical
+Goldberg polyhedron.
+
+
+
+
+                                                                          Φ
+
+
+
+
+                                  O                                                                           Φ(O)
+                                  •                                                                             •
+                                                                                                                  λ
+                                h
+                                       T                                                                              Φ(T )        ψ •
+                               pĀ •              •          •                                                                 • Φ(pB̄ )
+                                           w      p         pB̄                                        Φ(pĀ) •               Φ(p)
+
+
+
+Figure 16: Illustration of area preserving map Φ defined piecewise on each triangle bounded by two altitudes of a face with relevant variables
+labeled.
+
+
+
+
+                                               Table 8: Mesh Ratios for Equal Area Icosahedral Nodes
+
+
+   (m, n)        N          γ(ωN )               (m, n)            N           γ(ωN )           (m, n)                  N          γ(ωN )
+   (1,0)         12      0.620429                 (7,1)            572        0.688031        (37,27)              30972         0.730733
+   (1,1)         32      0.617964                 (7,5)            1092       0.707058        (40,33)              40092         0.732326
+   (2,0)         42      0.667598                (12,4)            2082       0.706688        (42,40)              50442         0.732529
+   (2,1)         72      0.657081                (16,3)            3132       0.704123        (65,50)              99752         0.733719
+   (3,0)         92      0.659610                (16,7)            4172       0.717067        (90,75)             204752         0.735013
+   (3,1)        132      0.668227                (19,6)            5112       0.712681       (100,100)            300002         0.735397
+   (4,1)        212      0.680153               (19,18)           10272       0.726243       (131,100)            402612         0.735592
+   (5,2)        392      0.687368               (31,21)           20532       0.728761       (145,115)            509252         0.735965
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                      ISSN 2035-6803
+                                                         Hardin · Michaels · Saff                                                         31
+
+
+
+
+Figure 17: Coulomb points (top) and log points (bottom) and their Voronoi decomposition for N = 1024. The structure is very similar for both.
+
+
+
+close to regular hexagons with heptagons and pentagons forming scars along the sphere. For relatively small N , the scars grow
+out from the 12 vertices of the icosahedron like dislocations in a crystal due to displacement deformities. For N > 5, 000, the
+scars become less fixed, spreading across the sphere. For an in-depth discussion of the scarring behavior, see Bowick et al [11]
+and [12].
+    The log energy points are minimizers of the Riesz logarithmic potential. The sequence of log energy configurations is known
+to be equidistributed and well-separated, but covering and quasi-uniformity is an open problem. As shown in Table 9 below,
+numerically the log energy points appear to be quasi-uniform. The best known lower bound on separation is due to Dragnev [26]:
+
+                                                            log    2
+                                                         δ(ωN ) ≥ p ,        N ≥ 2.
+                                                                    N
+Their geometric structure is very similar to the Coulomb points as shown in Figure 17. The energies of log and Coulomb points
+have the same asymptotic behavior in the dominant and second order term for many Riesz potentials. See Section 3 and
+Conjecture 3.15.
+    Generating these points is a highly nonlinear optimization problem. Unlike the configurations we have described up to now,
+they are not so quickly obtained. Table 9 displays the mesh ratios of near minimal Coulomb and log energy configurations. We
+remark that the sequence appears to have outliers at several values of N , such as N = 20, 300, and 4096. Points for N < 500 and
+N = k2 , k ≤ 150, were provided by Rob Womersley.
+
+                                          Table 9: Mesh Ratios for Coulomb and Log Energy Points
+
+                                               log                                     log
+                                   N       γ(ωN )       γ(ωCoul
+                                                           N
+                                                                )        N        γ(ωN )        γ(ωCoul
+                                                                                                   N
+                                                                                                        )
+                                   10    0.687401       0.689279        500      0.757354      0.755834
+                                   20    0.731613       0.733265       1024      0.752122      0.755770
+                                   30    0.695481       0.692966       2025      0.761261      0.766218
+                                   40    0.669531       0.670842       3025      0.765075      0.761661
+                                   50    0.661301       0.656591       4096      0.770240      0.765712
+                                  100    0.695371       0.694604       5041      0.753573      0.758457
+                                  200    0.662102       0.658561      10000      0.762672      0.761964
+                                  300    0.740635       0.730182      15129      0.762385      0.763398
+                                  400    0.650106       0.647351      22500      0.773483      0.767096
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                 ISSN 2035-6803
+                                                     Hardin · Michaels · Saff                                                   32
+
+
+
+
+Figure 18: Maximal determinant nodes for N = 961. The Voronoi decomposition is primarily composed of regular hexagons with scarring
+features similar to the minimal energy points.
+
+
+
+
+                               Figure 19: Random points for N = 700 and their Voronoi decomposition.
+
+
+
+Maximal Determinant Nodes (Fekete Nodes)
+
+     Other node sets used in polynomial interpolation and numerical integration on the sphere are the maximal determinant
+nodes. Let φ1 , ..., φ(n+1)2 be a basis for the space Pn (S2 ) of spherical polynomials of degree ≤ n. The maximal determinant node
+set is the configuration ωN := ω(n+1)2 ⊂ S2 which maximizes
+                                                                            (n+1)2
+                                                         det(φi (x j ))i, j=1
+These points are independent of the choice of basis. The interpolatory cubature rule associated with the configuration ωN ,
+                                                                     N
+                                                                     X
+                                                      Q n ( f ) :=         w j f (x j ),
+                                                                     j=1
+
+is conjectured in [52] to have all weights positive which is of interest in numerical integration. For more information about these
+points and their applications, see [48], [49], and [52]. A typical node set is shown in Figure 18.
+     Like the minimal energy nodes, computing the maximal determinant nodes is a nonlinear optimization problem. The
+maximum is approximated by conjugate gradient and Newton-like methods on S2 [52]. Nodes for 1 ≤ n ≤ 165 are available from
+http://web.maths.unsw.edu.au/~rsw/Sphere/Extremal/New/index.html.
+     Berman et al [5] proved the sequence of maximal determinant configurations is equidistributed, while in [52], Sloan and
+Womersley proved it is quasi-uniform with
+                                                                    4 j0
+                                                  lim sup γ(ωN ) <       ≈ 3.06195,
+                                                    N →∞             π
+where j0 is the smallest positive zero of the Bessel function of the first kind, J0 . As shown in Table 10, the mesh ratio bound
+appears to be much lower though it is unclear whether or not limN →∞ γ(ωN ) exists.
+
+Random Points
+
+    The final configurations we consider are random configurations ωNr and consisting of N independent samples chosen with
+respect to surface area measure. Not surprisingly, these configurations do not have optimal order separation or covering and the
+sequence is not quasi-uniform. As proved in [18] and [50] respectively,
+
+
+
+
+Dolomites Research Notes on Approximation                                                                        ISSN 2035-6803
+                                                        Hardin · Michaels · Saff                                                     33
+
+
+
+                                          Table 10: Mesh Ratios for Maximal Determinant Nodes
+
+                                                 N       γ(ωN )          N          γ(ωN )
+                                                   9   0.718884           625      0.805608
+                                                  16   0.685587          1024      0.840506
+                                                  25   0.768510          2025      0.858874
+                                                  36   0.806140          3025      0.847347
+                                                  49   0.777490          4096      0.859887
+                                                 100   0.708579          4900      0.877990
+                                                 225   0.860728         10201      0.859625
+                                                 324   0.799227         15129      0.865695
+                                                 400   0.809172         22500      0.881492
+
+
+
+                                                                                                     1/2
+                                                           p
+                                                                                         
+                                                                                               N
+                                     lim E(δ(ωrand
+                                              N
+                                                   ))N =    2π,      lim E(η(ωrand
+                                                                              N
+                                                                                   ))                       = 2.
+                                 N →∞                               N →∞                     log N
+Note that while the order of the separation of random points is off by factor of N 1/2 , the covering is only off by a factor of
+(logN )1/2 . Figure 19 shows a realization of i.i.d. uniformly chosen random points on S2 .
+
+Summary of Properties
+
+     The following tables compare some of the properties of the point sets described above. Table 11 compares which sequences are
+proven to be equidistributed and well-separated, for which values of N the configurations are defined, and whether a subsequence
+is hierarchical. Table 12 compares which sequences are quasi-uniform and the numerically determined bounds for separation and
+mesh ratio constants.
+
+
+                                                 Table 11: Summary of Point Set Properties
+
+                               Name                  Defined for              Hier.       Equidist.         Separated
+                             Gen Spiral                 N ≥2                   No           Yes                Yes
+                             Fibonacci                  Odd N                  No           Yes                Yes
+                            Hammersley                  N ≥2                   No           Yes                No
+                          Zonal Eq. Area                N ≥2                   No           Yes                Yes
+                              HEALPix                   12k2 ,               Subseq.        Yes                Yes
+                            Octahedral                 4k2 + 2               Subseq.        Yes                Yes
+                            Radial Icos.              10k2 + 2,              Subseq.        No                 Yes
+                           Cubed Sphere             6k2 − 12k + 8            Subseq.        No                 Yes
+                          Equal Area Icos.       10(m2 + mn + n2 ) + 2       Subseq.        Yes                Yes
+                             Coulomb                    N ≥2                   No           Yes                Yes
+                            Log Energy                  N ≥2                   No           Yes                Yes
+                             Max Det.                  (1 + k)2                No           Yes                Yes
+                              Random                    N ≥2                   No           Yes                No
+
+
+
+
+3    Asymptotic Energy Considerations
+We now turn our attention to the potential energy of the above configurations, in particular, Elog (ωN ) and Es (ωN ) for s = -1,1,2,
+and 3. We are interested in the asymptotic behavior of the energies for above configurations as N → ∞ and how well the leading
+terms in the expansion of their energies match the known or conjectured leading terms and coefficients in the minimal energy
+expansion. We begin with the following well known necessary condition for asymptotically optimal point sets [10].
+Theorem 3.1. Let {ωN }∞ N =2
+                              be a sequence of configurations that is asymptotically optimal with respect to logarithmic energy or Riesz
+s-energy for some s > −2, s 6= 0, i.e.,
+                                                Es (ωN )                            Elog (ωN )
+                                           lim           =1        or        lim                 = 1.
+                                           N →∞ E (N )                       N →∞   Elog (N )
+                                                  s
+
+Then {ωN }∞
+          N =2
+               is equidistributed.
+    We define the energy of a probability measure µ on S2 with respect to the logarithmic or Riesz s-potential as
+                                                      Z Z
+                                                              1
+                                            Is [µ] :=               dµ(x)dµ(y),     s 6= 0
+                                                           |x − y|s
+
+
+
+Dolomites Research Notes on Approximation                                                                               ISSN 2035-6803
+                                                         Hardin · Michaels · Saff                                            34
+
+
+
+                                     Table 12: Comparison of Separation and Mesh Ratio Constants
+
+                               Name            Quasi-       Numeric lower bound
+                                                                              p             Numeric upper bound
+                                                                                                             p
+                                              Uniform        on lim inf δ(ωN ) N            on lim sup γ(ωN ) N
+                             Gen Spiral         Yes                 3.1319                         0.8099
+                             Fibonacci          Yes                 3.0921                         0.8823
+                            Hammersley          No                   N/A                            N/A
+                          Zonal Eq. Area        Yes                 3.3222                         0.7568
+                              HEALPix           Yes                 2.8345                         1.0000
+                            Radial Icos.        Yes                 2.8363                         0.8517
+                           Cubed Sphere         Yes                 2.7027                         1.0000
+                            Octahedral          Yes                 2.8284                         0.9235
+                          Equal Area Icos.      Yes                 3.1604                         0.7360
+                             Coulomb            Yes                 3.3794                         0.7671
+                            Log Energy         Conj.                3.3733                         0.7735
+                             Max Det.           Yes                 3.1957                         0.8900
+                              Random            No                   N/A                            N/A
+
+
+                                                            Z Z
+                                                                            1
+                                              Ilog [µ] :=         log            dµ(x)dµ(y).
+                                                                         |x − y|
+The normalized surface area measure σ is the unique minimizer of Ilog [µ] and Is [µ] for −2 < s < 2, s 6= 0, and
+
+                                                                         1
+                                                          Ilog [σ] =       − log 2,
+                                                                         2
+                                                                21−s
+                                                    Is [σ] =         ,     −2 < s < 2.
+                                                                2−s
+However, for s ≥ 2, Is [µ] = ∞ for all µ supported on S2 (see for example [10]).
+   For random points, the expected value of the s-energy is easily computed:
+
+                                          E[Es (ωrand
+                                                 N
+                                                      )] = Is [σ](N (N − 1)),          −2 < s < 2.                          (12)
+
+For s ≥ 2, E[Es (ωrand
+                  N
+                       )] = ∞.
+    The Epstein-Zeta function for a lattice Λ in R2 is given by
+                                                           X
+                                                 ζΛ (s) :=      |x|−s ,         Re s > 2.
+                                                             06=x∈Λ
+                                                                                          p
+Let Λ2 be the regular triangular lattice in R2 generated by basis vectors (1, 0) and (1/2, 3/2). It is known from number theory
+that ζΛ2 (s) admits the factorization
+
+                                               ζΛ2 (s) = 6ζ(s/2)L−3 (s/2),            Re s > 2,                             (13)
+where
+                                                       1    1    1    1
+                                        L−3 (s) := 1 −   +    −    +    − ··· ,     Re s > 1,
+                                                      2s 4s 5s 7s
+is a Dirichlet L-series. The right-hand side of (13) can be used to extend ζΛ2 (s) to s with Re s < 2.
+
+
+3.1     Logarithmic Potential
+The following asymptotic expansion is proven by Betermin and Sandier in [6]:
+Theorem 3.2. There exists a constant C 6= 0, independent of N , such that
+                                                         N log N
+                                    Elog (N ) = Ilog [σ]N 2 −     + C N + o(N ),   N → ∞,
+                                                            2
+                                                                            p
+                                                          1      2            π
+                        −0.22553754 ≤ C ≤ Cb := 2 log 2 + log + 3 log             = −0.05560530...
+                                                          2      3        Γ (1/3)
+The following extension of Theorem 3.2 is conjectured by Brauchart et al in [17]:
+Conjecture 3.3.
+                                                        N log N
+                              Elog (N ) = Ilog [σ]N 2 −         + Cb N + D log N + O(1),             N → ∞.
+                                                           2
+Beltran [4] provides a partial converse to Theorem 3.1:
+
+
+
+Dolomites Research Notes on Approximation                                                                         ISSN 2035-6803
+                                                           Hardin · Michaels · Saff                                                            35
+
+
+
+
+Figure 20: First order asymptotics for log potential. The solid black line is the known first order coefficient in the minimal energy expansion as
+given in Theorem 3.2.
+
+
+
+Theorem 3.4. If {ωN }∞
+                     N =2
+                          is a sequence of well-separated configurations whose spherical cap discrepancy satisfies
+
+                                                            lim DC (ωN ) log N = 0,
+                                                           N →∞
+
+then {ωN }∞
+          N =2
+               are asymptotically optimal with respect to logarithmic energy.
+As a corollary, Coulomb points and Fibonacci spiral points are asymptotically log optimal. We make the following natural
+conjecture:
+Conjecture 3.5. The condition on the spherical cap discrepancy in Theorem 3.4 can be relaxed to
+
+                                                                lim D(ωN ) = 0.
+                                                               N →∞
+
+Thus a sequence of configurations {ωN }∞     N =2
+                                                   is equidistributed and well-separated iff it is asymptotically optimal with respect to
+logarithmic energy.
+     Figures 20, 21, and 22 display three comparisons of the logarithmic energies of the point sets with cardinality up to 50,000.
+Some configurations are sampled along subsequences to avoid overcrowding the picture. Due to the computational cost of
+generating approximate log energy and Coulomb points, these points are only available for N < 22, 500. The energies of random
+configurations are plotted by expected value. We do not include the maximal determinant nodes because there is no known
+algorithm to generate them in polynomial time.
+     Figure 20 shows Elog (ωN )/N 2 for the point sets. For the equidistributed and well-separated point sets as well as for the
+Hammersley nodes, this ratio converges to 1/2 − log 2 supporting Conjecture 3.5. Though the radial icosahedral and cubed
+sphere points are not equidistributed and thus not asymptotically optimal, their log energy appears to be of leading order N 2 .
+     Figure 21 displays [Elog (ωn ) − Ilog [σ]N 2 ]/N log N for each configuration. The curves for classes of point sets begin separating.
+The energies of the octahedral, HEALPix, Fibonacci, generalized spiral, zonal equal area, and Coulomb points all appear to
+converge to the correct second order term. The energy of the Hammersley nodes appears to have N log N second term, though
+incorrect coefficient. While the equal area icosahedral nodes perform better than the radial icosahedral nodes, their asymptotic
+energy appears to have a second term different to N log N . Numerical second order behavior of log energy points is also studied
+in [44].
+     Figure 22 compares the energy of the configurations to the conjectured minimal log energy third order term, i.e. [Elog (ωn ) −
+Ilog [σ]N 2 +1/2N log N ]/N . Conjecture 3.3 is supported by the behavior of the Coulomb and log points. The octahedral, HEALPix,
+Fibonacci, zonal equal area, and generalized spiral configurations appear to have the third term of their energy of order N but
+the wrong coefficient. Of the algorithmically generated point sets, the generalized spiral and zonal equal area points perform the
+best with respect to the logarithmic energy.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                      ISSN 2035-6803
+                                                          Hardin · Michaels · Saff                                                          36
+
+
+
+
+Figure 21: Second order asymptotics for log potential (with the legend of Figure 20). The solid black line corresponds to the known coefficient
+from Theorem 3.2.
+
+
+
+
+Figure 22: Third order asymptotics for log energy (with the legend of Figure 20). The dashed line is the conjectured third order constant from
+[17].
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                   ISSN 2035-6803
+                                                        Hardin · Michaels · Saff                                                 37
+
+
+
+3.2     Riesz Potential, -2 < s < 2, s 6= 0
+
+      In this range, the best known bounds on Es (N ) are due to Wagner (cf. [63] and [64]).
+Theorem 3.6. For −2 < s < 2, s 6= 0, there exist cs , Cs > 0 such that for all N ∈ N,
+
+                                               cs N 1+s/2 ≤ Es (N ) − Is [σ]N 2 ≤ Cs N 1+s/2 .
+
+Kuiljaars and Saff [34] conjecture that limN →∞ [Es (N ) − Is [σ]N 2 ]/N 1+s/2 exists.
+Conjecture 3.7. For −2 < s < 2, s 6= 0,
+                                                     p
+                                                    ( 3/2)s/2 ζΛ2 (s) 1+s/2
+                              Es (N ) = Is [σ]N 2 +                   N      + o(N 1+s/2 ),      N → ∞.
+                                                        (4π)s/2
+
+    Heuristically, the second order coefficient corresponds to the Voronoi decomposition of minimal energy points being composed
+primarily of close to regular hexagons. A characterization of asymptotically optimal point sets is due to Leopardi [38].
+Theorem 3.8. If a well-separated sequence of configurations {ωN }∞
+                                                                 N =2
+                                                                      is equidistributed, then it is asymptotically optimal for
+0 < s < 2,
+A similar result for s < 0 is also known (see for example [10]).
+Theorem 3.9. A sequence of configurations {ωN }∞
+                                               N =2
+                                                    is asymptotically optimal for −2 < s < 0 iff it is equidistributed.
+Theorems 3.8 and 3.9 are the analogs of Conjecture 3.5 for −2 < s < 2, s 6= 0.
+   In the particular case of s = −1, the problem of minimizing energy becomes that of maximizing sums of distances. A
+characterization of minimal configurations for this case is due to Stolarsky [57] (see also [15]) and is generalized by Brauchart
+and Dick in [14]. Let Vt (z) = {x | x · z ≥ t} denote the spherical cap of height 1 − t centered at z ∈ S2 . The L2 discrepancy of a
+configuration ωN is defined to be
+                                                 Z 1 Z 
+                                                              |ωN ∩ Vt (z)|
+                                                                                       2        1/2
+                                  DL2 (ωN ) :=                              − σ(Vt (z)) dσ(z)d t      .
+                                                   −1   S2
+                                                                  N
+Theorem 3.10. Stolarsky Invariance Principle. For any ωN ⊂ S2 ,
+                                      1 X
+                                               |xi − x j | + 4DL2 (ωN )2 = I−1 [σ] = 4/3.
+                                     N 2 i6= j
+
+
+This gives the immediate corollary (see also [13]):
+Corollary 3.11. For a configuration ωN , E−1 (ωN ) = E−1 (N ) iff ωN minimizes L2 discrepancy.
+     Figure 23 graphs the Coulomb energy of the point sets to first order. From Theorem 3.8, limN →∞ E1 (ωN )/N 2 = Is [σ] = 1 for
+all the point sets except the radial icosahedral, cubed sphere, and Hammersley nodes. As in the logarithmic case, the energies
+of the radial icosahedral and cubed sphere nodes appear to have N 2 leading order term but incorrect coefficient. The plot is
+inconclusive on whether the behavior of the Hammersley nodes is asymptotically optimal. Figure 24 shows the second order N 3/2
+term from Conjecture 3.7. The energies of the generalized spiral, Fibonacci spiral, zonal equal area, HEALPix, and octahedral
+nodes all appear to converge to an N 3/2 term that is different from the conjectured value. None of these point sets have a regular
+hexagonal lattice structure as N gets large. Again the energies of equal area icosahedral points have a different second order
+term. The Hammersley nodes don’t have low enough energy to appear on the plot. The asymptotic energy of the log nodes seems
+to have the same second order coefficient as the Coulomb nodes and both point sets support Conjecture 3.7. As in the logarithmic
+energy case, the generalized spiral and zonal equal area points perform the best of the algorithmically generated points.
+     Figure 25 displays E−1 (ωN )/N 2 for the point sets. Again the radial icosahedral and cubed sphere points have the correct order
+                                                                                                                                 p
+though they are not asymptotically optimal. For s = −1 The second term in the minimal energy expansion is of known order N
+with conjectured coefficient ≈ 0.7985. As shown in Figure 26, the behavior of the second order of the asymptotic energy of the
+point sets resembles that of their log and Coulomb energies. The minimal Coulomb and log energy points perform the best and
+support Conjecture 3.7. The asymptotic energies of the octahedral, HEALPix, Fibonacci, zonal equal area, and generalized spiral
+appear to converge to the right second order and incorrect coefficient, and the latter two configurations have the lowest energy.
+
+3.3     Riesz Potential, s=2
+
+      Less is known about the case s = 2. The first order term was proved in [34].
+Theorem 3.12.
+                                                                   E2 (N )        1
+                                                             lim              =     .
+                                                             N →∞ N 2 log N       4
+
+
+
+
+Dolomites Research Notes on Approximation                                                                          ISSN 2035-6803
+                                                       Hardin · Michaels · Saff                                                         38
+
+
+
+
+              Figure 23: First order asymptotics for s = 1. The solid black line is the known coefficient from Theorem 3.6.
+
+
+
+
+    Figure 24: Second order asymptotics for s = 1 (with the legend of Figure 23). The dashed line is the conjectured value from [34].
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                ISSN 2035-6803
+                                                       Hardin · Michaels · Saff                                                      39
+
+
+
+
+              Figure 25: First order asymptotics for s = −1. The solid line follows from the Stolarsky invariance principle.
+
+
+
+
+         Figure 26: Second order asymptotics for s = −1 (with the legend of Figure 25). The dashed line is from conjecture 3.7.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                 ISSN 2035-6803
+                                                           Hardin · Michaels · Saff                                                         40
+
+
+
+
+Figure 27: First order asymptotics for s = 2. The break in the y-axis values is to enhance the separation between the configurations. The solid
+line is the known coefficient from Theorem 3.12.
+
+
+    It is not known whether the N 2 log N term corresponds to any geometric property of the points. There is also no result
+analogous to Theorems 3.4 and 3.8 giving a sufficient condition for a sequence of configurations to be asymptotically optimal.
+    Figure 27 shows E2 (ωN )/N 2 log N . The Hammersley points do not appear to have asymptotically minimal energy. The
+behavior of the octahedral, HEALPix, Fibonacci, generalized spiral, zonal equal area, and equal area icosahedral points is not
+clear. Their energies remain well below the known coefficient but have larger energy than the Coulomb and log energy points.
+Calculations beyond N = 50, 000 are needed. The generalized spiral, zonal equal area, and equal area icosahedral points perform
+the best.
+
+
+3.4    Riesz Potential, s > 2
+
+    In the hypersingular case s > 2 the continuous energy integral is infinite for any probability measure µ. Instead, the energy is
+known to be dominated by the nearest neighbor interactions of points as shown in a much more general result by Hardin and
+Saff [31].
+Theorem 3.13. For s > 2, there are constants Cs such that
+                                                          Es (N )
+                                                    lim             = Cs ,       0 < Cs < ∞.
+                                                   N →∞ N 1+s/2
+
+
+
+One can consider the analytic continuation of Is [σ], 0 < s < 2,
+
+                                                                  21−s
+                                                          Vs :=        ,     s ∈ C \ {2} .
+                                                                  2−s
+The following is analogous to Conjecture 3.7 (see [10]).
+Conjecture 3.14. For 2 < s < 4                    p
+                                                 ( 3/2)s/2 ζΛ2 (s) 1+s/2
+                                       Es (N ) =                  N      + Vs N 2 + o(N 2 ).
+                                                    (4π)s/2
+
+    Figure 28 plots E3 (ωN )/N 5/2 . The energies of most configurations seem to be going to the correct order but incorrect
+coefficient. The equal area icosahedral points outperform the spiral and zonal equal area points of the algorithmically generated
+configurations. This is expected because their Voronoi decomposition is closest to the regular hexagonal lattice. The log energy
+and Coulomb points again seem to be close to minimal and may converge to the conjectured C3 ≈ 0.199522. The Hammersley
+points are not seen on the plot because their asymptotic energy does not appear to have first order N 5/2 .
+    We conclude this section with the following observation: The apparent first and second order asymptotically minimal behavior
+of the energy of the Coulomb and log points for the potentials we have considered is striking and we suggest a conjecture.
+
+
+
+Dolomites Research Notes on Approximation                                                                                   ISSN 2035-6803
+                                                            Hardin · Michaels · Saff                                                        41
+
+
+
+
+                         Figure 28: First order asymptotics for s = 3. The dashed line is the conjectured coefficient.
+
+
+
+Conjecture 3.15. The minimal logarithmic energy points and Coulomb points are asymptotically minimal to second term precision
+                                                                                         log
+for all −2 < s < 4, s 6= 0. I.e., combined with Conjectures 3.7 and 3.14, letting ωN := ωN or ωCNoul
+                                                                                             p
+                                                                                            ( 3/2)s/2 ζΛ2 (s)
+                                  Es (ωN ) − Is [σ]N   2                       Es (ωN ) −       (4π)s/2
+                                                                                                                N 1+s/2
+                              lim                    = 1 or              lim                p                             = 1.
+                             N →∞ E (N ) − I [σ]N 2                     N →∞               ( 3/2)s/2 ζΛ2 (s)
+                                    s        s                                 Es (N ) −       (4π)s/2
+                                                                                                               N 1+s/2
+    Furthermore, the Coulomb points are minimal in the logarithmic energy to the third order term. That is
+
+                                                Elog (ωCNoul ) − (1/2 − log 2)N 2 + 1/2N log N
+                                         lim                                                             = 1.
+                                         N →∞    Elog (N ) − (1/2 − log 2)N 2 + 1/2N log N
+
+
+4    Proofs
+We begin with two auxiliary results.
+Proposition 4.1. Let {PN }∞    N =1
+                                    be a diameter bounded sequence of asymptotically equal area partitions of S2 such that each PN has N
+cells. For each PN , let ωN be a configuration of points on S2 such that the interior of each cell of PN contains exactly one point of ωN .
+Then {ωN }∞  N =1
+                  is equidistributed and provides a covering of S2 with η(ωN ) ≤ C N −1/2 for all N ∈ N, where C is as in equation (2).
+
+Proof. The bound on the covering radius is trivial. Let A ⊂ S2 be a spherical cap and let
+                                                      
+                                                Aδ := x ∈ S2 : dist(x, A) ≤ δ ,
+
+where dist(x, A) := min y∈A |x − y| is the standard distance function. For x ∈ ωN , denote by WxN the cell of PN containing x. Let
+ε, δ > 0 and choose N large enough such that
+                                                       N min σ(WxN ) ≥ 1 − ε
+                                                                 x
+
+and x ∈ A ∩ ωN implies WxN ⊂ Aδ . Then
+                                                  
+                                      |ωN ∩ A|   | x : WxN ⊂ Aδ |      σ(Aδ )         σ(Aδ )
+                                               ≤                  ≤                 ≤        .
+                                         N              N           N min x σ(WxN )   1−ε
+Since ε is arbitrary, we have
+                                                                     |ωN ∩ A|
+                                                           lim sup            ≤ σ(Aδ ).
+                                                             N          N
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                        ISSN 2035-6803
+                                                                 Hardin · Michaels · Saff                                               42
+
+
+
+Letting δ → 0 gives
+                                                                           |ωN ∩ A|
+                                                                lim sup             ≤ σ(A).                                           (14)
+                                                                    N         N
+Applying inequality (14) to S2 \ A, we obtain
+                                          |ωN ∩ A|              |ω ∩ (S2 \ A)|
+                                lim inf            = 1 − lim sup N             ≥ 1 − σ(S2 \ A) = σ(A),
+                                  N          N              N        N
+and thus, we have
+                                                                         |ωN ∩ A|
+                                                                   lim            = σ(A).
+                                                                  N →∞      N
+
+
+
+Proof of Theorem 2.1.                                                                                                        p
+    For a fixed N denote in spherical coordinates x i := (φi , θi ) ∈ ωN . We first prove the separation bound. Let εN = 2 4π/N .
+      p N , by the pigeonhole principle, at least one set of adjacent points x k , x k+1 ∈ ωN is separated along SN by a distance less
+For large
+than 4π/N . So we can restrict our attention to k ≤ N /2 and εN -balls B(x k , εN ). For large N, if k < 8π + 1/2, then
+                                                                                      v
+                                                       2k − 1          16π            t 4π
+                                        cos φk = 1 −           ≥1−          ≈ cos(2         ),
+                                                         N              N                N
+                                                                       from a pole. Otherwise, B(x k , εN ) contains disjoint levels of SN .
+and x k is within the first two full longitudinal turns of SN starting p
+In this case, the minimal distance between levels in B(x k , εN ) is 4π/N . We compute the nearest neighbor distance between
+points in the same level as follows. Let
+                                                            p
+                                              f N (k) :=        N |x k − x k+1 |,   x k ∈ ωN ,       k < N /2.
+Using the distance formula for spherical coordinates
+                                      |x j − x k |2 = 2 − 2(cos φ j cos φk + sin φ j sin φk cos(θ j − θk ))                           (15)
+
+and expanding cos−1 x around x = 1 we have
+                                           Ç      p            p   p        p
+                              lim f N (k) = 8k − 4 4k2 − 1 cos( 2π( 2k − 1 − 2k + 1)),                                                (16)
+                                  N →∞
+
+and f N (k) < f N +1 (k) for all k < N /2 − 1 and large N. Thus we have the correct order for the minimal separation between adjacent
+points in ωN . Furthermore, (16) is increasing as a function of k and thus
+                                                                q     p       p         p
+                                               lim min f N (k) = 8 − 4 3 cos( 2π(1 − 3)).                                        (17)
+                                              N →∞    k
+
+Lastly, around the north pole, k1 , k2 < 8π + 1/2, we can again use (15) to show that
+                                                            p
+                                                        lim N |x k1 − x k2 |
+                                                                    N →∞
+
+exists and can be computed case by case for pairs (k1 , k2 ). The southern hemisphere can be similarly computed. Comparing to
+(17) gives the separation constant (5).
+    For covering, given y ∈ S2 ,
+                                                                       π
+                                                                     s
+                                                         dist(SN ) ≤     .
+                                                                       N
+                                                                                 p
+Fromp(16), the maximal distance from any point on SN to a point of ωN is O(1/ N ) and thus the covering radius of ωN is also
+O(1/ N ).
+    We have two additional observations. First, the Voronoi
+                                                           decompositions of the spiral points are diameter bounded. Secondly,
+the Voronoi cells are asymptotically equal area on Kh := (x, y, z) ∈ S2 : −h ≤ z ≤ h for any fixed 0 < h < 1. By this we mean
+
+                                      lim N     max         σ(Vx (ωN )) = lim N           min        σ(Vx (ωN )) = 1.
+                                   N →∞       Vx (ωN )⊂Kh                      N →∞    Vx (ωN )⊂Kh
+
+    Indeed, fixing h, for any ε > 0, we can
+                                        p take N large enough such that given x i = (φi , θi ) ∈ Kh ∩ ωN , x i−1 , and x i+1 are almost
+iso-latitudinal with x i with separation 4π/N . I.e.,
+                                                                       Æ
+                                             |x i±1 − (φi , θi ± csc φi 4π/N )| < ε.
+                                    p
+Therepexists shifts 0 ≤ λi+ , λi− ≤ 4π/Np such that the nearestppoints in the adjacent spiral levels are within ε of the points
+(φi ± 4π/N , θi +csc φi λi± ) and (φi ± 4π/N , θi +csc φi (λi± − 4π/N )). Thus as N → ∞, the Voronoi cell Vi (ωN ) approaches
+the form of V in Figure 29 and
+                                                   σ(Vi (ωN )) = σ(V ) + O(ε2 ).
+
+
+
+Dolomites Research Notes on Approximation                                                                                ISSN 2035-6803
+                                                         Hardin · Michaels · Saff                                                          43
+
+
+
+
+Figure 29: Limiting form of Voronoi cell for each x i ∈ Kh ∩ ωN with relevant quantities labeled. p We can choose N large enough such that the
+nearest neighbors of x i lie within ε of the points taken along iso-latitudinal lines separated by 4π/N
+
+
+
+Furthermore, we can treat V as a planar polygon in Figure 29, and
+                                                                            1
+                                                                  σ(V ) =
+                                                                            N
+independent of pthe shifts λi± . This we show by direct computation.
+    Letting a = 4π/N and centering x i at (0, 0), the points y1 = (λi+ /2, a/2) and y2 = ((λi+ − a)/2, a/2) are the midpoints of
+the lines connecting x i to its nearest neighbors in the adjacent level which are shifted by λi+ . The corresponding lines
+                                              λi+      λi+    a                  a − λi+      λi+ − a    a
+                                 L1 : y = −       (x −     )+         L2 : y =           (x −         )+
+                                               a        2     2                     a            2       2
+form the top boundary of V and have intersection point
+                                                 w := (λi+ − a/2, (λi+ a + a2 − λ2i+ )/2a).
+From this we calculate the area of the top half of V to be
+
+                                            1      −aλi+ + λ2i+ + a2     a aλi+ − λi+
+                                                                                   2 
+                                                                                           1
+                                                                        
+                               σ(Vt op ) =      a                      +                =    .
+                                           4π              2a            2     a          2N
+The same calculation holds for the bottom half of V and thus (3) holds.
+     We now consider equidistribution. Because the height steps between points in ωN are uniform, for a spherical cap A centered
+at a pole,
+                                                            |ωN ∩ A|
+                                                        lim          = σ(A).                                                  (18)
+                                                      N →∞     N
+If A does not contain one of the poles, then A ⊂ Kh for some h and (18) holds by Proposition 4.1. Finally if A is a cap containing
+but not centered at one of the poles, A can be partitioned into an open cap of height h centered at the pole and A ∩ Kh . Because
+(18) holds on each disjoint subset, it also holds on A.
+
+Proof of Proposition 2.2.                                     p
+    When z = k, the basis vector ck,i has minimum length of 2d. At this latitude, ck+1,i and ck−1,i form the next most dominant
+                        p                                                                               p
+spirals and have length 3d. For z = k + 1/2, ck,i and ck+1,i are equally dominant and have grid length 5d. For a fixed latitude
+                                                                                                        4
+                                                                                                                     p
+φ 6= ±π/2, z increases with N . Points around φ will form a locally rectangular grid. Thus
+                                                                                        p  thepseparation approaches 2d which
+occurs when z = k and the largest        in the triangulation around x i will be at most 5d/ 2 which occurs when z = k ± 1/2.
+                                                                                        4
+                                p holep p                       p
+Thus off the poles, δ(ω2N +1 ) ≥ 8π 5/ N and η(ω2N +1 ) ≤ 2π/N .
+
+
+
+Dolomites Research Notes on Approximation                                                                                  ISSN 2035-6803
+                                                                Hardin · Michaels · Saff                                                   44
+
+
+
+                                                                             p
+    Indeed, these inequalities hold for large zone numbers z where Fk ≈ ϕ k / 5 holds. However, on the polar points, x 1 and x N ,
+the zone number                             p                                  p
+                             log((2N + 1)π 5(1 − 4N 2 /(2N + 1)2 ))    log(2π 5)
+                       z=                                           →              = 2.75..., N → ∞
+                                               log ϕ 2                   log ϕ 2
+and writing ck,i in the form of equation (8) for small k overestimates the length of the vector. Using equation (7) and noticing
+that k − 1/2 ≤ z ≤ k + 1/2 implies
+                                                 ϕ 2k−1                    ϕ 2k+1
+                                                        p ≤ cos2 φ ≤              p ,
+                                            (2N + 1)π 5               (2N + 1)π 5
+we have
+                                           4π2 ϕ + 20πFk2 ϕ −2k+1        1
+                                                                             
+                              |ck,i |2 ≥                 p        =O           ,                       k − 1/2 ≤ z ≤ k + 1/2.
+                                               (2N + 1)π 5             2N + 1
+Since |ck,i | is the minimal separation distance for k − 1/2 ≤ z ≤ k + 1/2, we have the correct order of separation on S2 . By a
+similar computation, we have the upper bound
+                                                       1
+                                                           
+                                        |ck,i | ≤ O p         ,    k − 3/2 ≤ z ≤ k + 3/2.
+                                                     2N + 1
+Since the triangulation of ω2N +1 in each zone consists of ck,i , ck−1,i , and ck+1,i , the covering of ω2N +1 is of the correct order on all
+of S2 .
+
+Proof of Proposition 2.3.
+   The diameter boundedness of the partition and Proposition 4.1 gives equidistribution and covering,
+
+                                                                             3.5
+                                                                    η(ωN ) ≤ p .
+                                                                               N
+In [37] and [67], it is established that there exists c1 , c2 > 0 such that for all partitions PN , with φ j , n as defined above,
+                                                   c1                c2
+                                                  p ≤ φ j+1 − φ j ≤ p ,                           0 ≤ j ≤ n.                              (19)
+                                                    N                 N
+This gives the correct order of separation between collars. For neighbors x 1 , x 2 ∈ ωN within collar j, wlog suppose φ j < π/2.
+Using the fact that the normalized area of each cell can be expressed as
+
+                                                            (cos φ j − cos φ j+1 )               1
+                                                                                             =     ,
+                                                                          2 yi                   N
+we have
+
+                                                                2π sin φ j                   4π sin φ j
+                                               |x 1 − x 2 | ≥                    =                              .
+                                                                    yi               N (cos φ j − cos φ j+1 )
+So it suffices to show there exists c3 > 0 such that
+
+                                                       sin φ j                p
+                                                                          ≥ c3 N              ∀N , 0 ≤ j ≤ n.                             (20)
+                                                cos φ j − cos φ j+1
+For a fixed h > 0 and φ j ≥ h, this follows from (19) and the fact that cos is Lipschitz. On the other hand, for sufficiently small φ j ,
+there exists c4 > 0 such that
+
+                                                                sin φ j                          φj
+                                                                                     ≥ c4                   .
+                                                       cos φ j − cos φ j+1                  φ 2j − φ 2j+1
+Again applying (19) twice,
+
+                                                       c4     φj      p    c4     φj      p       p
+                                       RHS (20) ≥                       N≥                  N ≥ c3 N .
+                                                       c1 φ j + φ j+1      c1 2φ j + pc2N
+In the last step we used the fact that for some c5 > 0 and all j
+
+                                                                                      2     c5
+                                                          φ j ≥ cos−1 (1 −              )≥ p .
+                                                                                      N      N
+
+
+Proof of Proposition 2.4.
+   The pixels are diameter bounded and thus by Proposition 4.1 the nodes are equidistributed.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                       ISSN 2035-6803
+                                                           Hardin · Michaels · Saff                                            45
+
+
+
+    To establish separation, we examine the five cases of nearest neighbor points: The points lie in 1) the polar region or 2)
+the equatorial region, and the points lie in a) the same ring or b) adjacent rings, and 3) the points lie in adjacent rings at the
+boundary of the polar region and the equatorial region.
+    Case 1a: If nearest neighbor points lie in the polar region along the same ring 1 ≤ i ≤ k that has radius
+                                                                  v
+                                                                  t 2i 2    i4
+                                                    ri = sin φi =      2
+                                                                         − 4
+                                                                    3k     9k
+and 4i equally spaced points, then the separation δ satisfies
+                                          v                      p v
+                                   π      t 2i 2    i4      π       2 t 2i 2   i4      1         1
+                                                                                                 
+                       δ = 2ri sin    =2         −      sin    ≥             −    = O     = O   p    .
+                                   4i       3k2 9k4         4i    i     3k2 9k4        k          N
+In the middle inequality we use the fact that
+                                                               p
+                                                                2/2
+                                                     sin x ≥        x          0 ≤ x ≤ π/4.                                  (21)
+                                                               π/4
+    Case 2a: Suppose the nearest neighbor points lie in the equatorial region along the same ring. Since each ring has 4k points,
+the smallest separation occurs at the ring farthest from the equator and closest to z = 2/3. Using (21) again, we have
+                                                           p            p
+                                                     π    2 5      π      10         1
+                                                                                       
+                                        δ = 2ri sin    ≥       sin    ≥      =O p        .
+                                                    4k     3       4k    3k           N
+   Case 1b: We split up the rings in the polar region into the outer half, 1 ≤ i ≤ k/2 and the inner half, k/2 ≤ i ≤ k. On the
+outer half, the separation between rings is
+                                                p                  p
+                                         (i + 1) 6k2 − (i + 1)2 − i 6k2 − i 2
+                         δ ≥ ri+1 − ri =
+                                                        3k2
+                                                  p                           p
+                                         (k/2 + 1) 6k2 − (k/2 + 1)2 − (k/2) 6k2 − (k/2)2          1
+                                                                                                    
+                                       ≥                                                  =  O   p    .
+                                                                 3k2                               N
+
+
+On the inner polar rings, the separation between rings is
+
+                                                                2i + 1    k+1           1
+                                                                                          
+                                           δ ≥ | cos φi+1 − cos φi | =  ≥       =  O   p     .
+                                                                 3k2       3k2           N
+    Case 2b: In the equatorial region, the ring height z increases linearly with respect to the index i giving
+
+                                                            2          1
+                                                                         
+                                                       δ≥      =O p        .
+                                                            3k          N
+    Case 3 follows from Case 1b and 2b.
+    The covering of the points follows by similar geometric arguments.
+
+Proof of Proposition 2.5.
+   It suffices to show Π is locally bi-Lipschitz on each face F of the icosahedron. If for some δ, L1 , L2 > 0
+
+                                     L1 |x − y| ≤ |Π(x) − Π( y)| ≤ L2 |x − y|,          x, y ∈ F , |x − y| < δ,
+then
+
+                                                                   L2           L2
+                                                        γ(ωN ) ≤      γ(Þ
+                                                                        ωNk ) = p   .
+                                                                   L1          L1 3
+                            Æ           p
+Let c := min x∈Icos |x| =       (1/3 + 2 5/15). For x, y ∈ F with angle θ , we have
+
+                                                                                  θ
+                                                               |x − y| ≥ 2c sin     .
+                                                                                  2
+Using the fact that sin−1 x ≤ π2 x for x ≤ 1 and |x − y| < 2c,
+
+                                                                               |x − y|
+                                                                                      
+                                           |Π(x) − Π( y)| ≤ θ ≤ 2 sin−1                  ≤ πc|x − y|.
+                                                                                  2c
+For the other inequality, wlog suppose c ≤ |x| ≤ | y| ≤ 1, and consider the line P ⊂ F connecting x and y. Denote z as the
+projection of 0 onto P. Defining φ := cos−1 (|z|/|x|), we have
+
+                                         | y| − |x| = |z| sec(θ + φ) − |z| sec φ ≤ sec(θ + φ) − sec φ.
+
+
+
+Dolomites Research Notes on Approximation                                                                         ISSN 2035-6803
+                                                                        Hardin · Michaels · Saff                                    46
+
+
+
+Since φ ≤ cos−1 c − θ and secant is convex on (0, π/2),
+                                                                             1
+                                                          | y| − |x| ≤         − sec(cos−1 c − θ ) =: g(θ ).
+                                                                             c
+Thus,
+                           |x − y|2 = |x|2 + | y|2 − 2|x|| y| cos θ ≤ max (| y| + g)2 + | y|2 − 2| y|(| y| + g) cos θ
+                                                                                    c≤| y|≤1
+
+                                        = (1 + g) + 1 − 2(1 + g) cos θ .
+                                                    2
+
+
+
+
+Since
+                                                        (1 + g)2 + 1 − 2(1 + g) cos θ
+                                                                 f (θ ) :=
+                                                                   2 − 2 cos θ
+is continuous for θ ∈ (0, π/2 + cos−1 c) and limθ →0 f (θ ) exists, there exists L > 0 such that
+                                             |x − y| ≤ L|Π(x) − Π( y)|,                        θ ∈ (0, π/2 + cos−1 c).
+
+
+
+Proof
+      of Theorem 2.6. Restricting ourselves to the face of K with all positive coordinates, label the vertices of the partition
+ Ai, j 0≤i+ j≤k by
+
+                                                                         i+ j
+                                                                             
+                                                        iL  jL   L
+                                             Ai, j =    p , p , p 1−              .
+                                                       k 2 k 2    2        k
+Let Ai, j = U (Ai, j ). Then
+                                          v                              v
+                                      i+ jt   (i + j)2       πj      i+ jt    (i + j)2       πj           (i + j)2
+                                                                                                                  
+                        Ai, j =            2−          cos         ,      2 −          sin          , 1 −           .
+                                       k         k2        2(i + j) k            k2        2(i + j)          k2
+Then
+                                         δ(ωN ) = min{kAi+1, j − Ai, j k, kAi, j+1 − Ai, j k, kAi+1, j − Ai, j+1 k}.               (22)
+                                                         i, j
+
+Adapting [33], we have
+
+                                                 (i + j + 1)2    (i + j)2    (i + j + 1)2 (i + j)2
+                                  kAi+1, j − Ai, j k2 = 2
+                                                        2
+                                                              +2       2
+                                                                          −2
+                                                      k              k                 k4
+                                                        v                  v
+                                     (i + j)(i + j + 1) t     (i + j + 1)2 t     (i + j)2             πj
+                                  −2                      2−                2−            cos                     .
+                                             k 2                   k 2              k2        2(i + j)(i + j + 1)
+Along the line i + j = c, the minimum is obtained when the cosine term is maximized, i.e. at j = 0. Thus
+
+                                                         min kAi+1, j − Ai, j k2 = min kAi+1,0 − Ai,0 k2
+                                                          i, j                         0≤i≤k
+                                                                        v             v
+                          2                      (i + 1)2 i 2                (i + 1)2 t    i2     2
+                                                                       t                     
+                       = 2 min (i + 1)2 + i 2 +               − i(i + 1) 2 −           2 −      = 2.
+                          k 0≤i≤k                    k2                         k2         k2    k
+By symmetry of the above expressions in i and j,
+
+                                                                                                                2
+                                                min kAi, j+1 − Ai, j k2 = min kA0, j+1 − A0, j k2 =                .
+                                                  i, j                             0≤ j≤k                       k2
+Lastly,
+
+                                                 (i + j + 1)2      (i + j + 1)2             π
+                                                                               
+                                      kAi+1, j − Ai, j+1 k2 = 42 −                sin2
+                                                      k2                k2             4(i + j + 1)
+which again depends on only i + j. Using (21) we have
+                                  min kAi+1, j − Ai, j+1 k2 = min kAi+1,0 − Ai,1 k2
+                                   i, j                       0≤i≤k
+
+                                                                      (i + 1)2        (i + 1)2           π
+                                                                                              
+                                                            = 4 min             2  −             sin2
+                                                                0≤i≤k    k2              k2           4(i + 1)
+                                                                      (i + 1)2        (i + 1)2       1
+                                                                                              
+                                                            ≥ 4 min             2  −
+                                                                0≤i≤k    k2              k2      2(i + 1)2
+                                                                       1         (i + 1)2       2        (k + 1)2
+                                                                                                               
+                                                            = 4 min      2
+                                                                            2−        2
+                                                                                            = 2 2−            2
+                                                                                                                   .
+                                                                0≤i≤k 2k            k           k           k
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                ISSN 2035-6803
+                                                     Hardin · Michaels · Saff                                                   47
+
+
+
+Thus from (22)
+
+                                                                 2       (k + 1)2
+                                                                                 
+                                                δ(ω4k2 +2 )2 ≥       2 −           .
+                                                                 k2         k2
+Taking the square root and substituting N = 4k2 + 2 gives
+                                                                   p   p
+                                                     lim inf δ(ωN ) N ≥ 8.
+                                                      N →∞
+
+Finally, the diameter bound in [33] gives an immediate upper bound for the covering radius from which (11) follows:
+                                                                   v
+                                                                   t 4 + π2
+                                                 η(ω4k2 +2 , S ) ≤
+                                                              2
+                                                                            .
+                                                                      8k2
+
+
+
+5    Matlab Code
+Many thanks to Grady Wright for his help in implementing some of these point sets in Matlab. Code for the Fibonacci,
+Hammersley, HEALPix, and cubed sphere nodes authored by Wright is available at https://github.com/gradywright/spherepts.
+The approximate Coulomb, log energy, and maximum determinant points were provided from computations by Rob Womersley.
+Code for the zonal equal area points is available in Paul Leopardi’s Recursive Zonal Equal Area Toolbox from eqsp.sourceforge.net.
+Code for the generalized spiral, octahedral, radial icosahedral, and equal area icosahedral nodes was created by the authors and
+is available upon request.
+
+6    References
+ [1] C. Aistleitner, J.S. Brauchart, and J. Dick. Point sets on the sphere S2 with small spherical cap discrepancy. Discrete Comput.
+     Geom., 48(4):990–1024, 2012.
+ [2] R. Bauer. Distribution of points on a sphere with application to star catalogs. J. Guid. Cont. Dyn., 23(1):130–137, 2000.
+ [3] J. Beck. Sums of distances between points on a sphere, an application of the theory of irregularities of distribution to
+     discrete geometry. Mathematika, 31(1):33–41, 1984.
+ [4] C. Beltran. A facility location formulation for stable polynomials and elliptic Fekete points. Found. Comput. Math.,
+     15:125–157, 2015.
+ [5] R. Berman, S. Boucksom, and D. Nystrom. Fekete points and convergence towards equilibrium measures on complex
+     manifolds. Acta Math., 207(1):1–27, 2011.
+ [6] L. Bétermin and E. Sandier. Renormalized energy and asymptotic expansion of optimal logarithmic energy on the sphere.
+     To appear, ArXiv preprint: http://arxiv.org/abs/1404.4485.
+ [7] D. Bilyk, V.N. Temlyakov, and R. Yu. Fibonacci sets and symmetrization in discrepancy theory. J. Complexity, 28(1):18–36,
+     2013.
+ [8] A. Bondarenko, D. Radchenko, and M. Viazovska. Well separated spherical designs. Constructive Approximation, 41(1):93–
+     112, 2014.
+ [9] A.V. Bondarenko, D.P. Hardin, and E.B. Saff. Mesh ratios for best-packing and limits of minimal energy configurations. Acta
+     Math. Hungar., 142(1):118–131, 2012.
+[10] S.V. Boradachov, D.P. Hardin, and E.B. Saff. Minimal discrete energy on rectifiable sets. Springer, to appear.
+[11] M.J. Bowick, A. Cacciuto, D.R. Nelson, and A. Travesset. Crysalline order on a sphere and the generalized Thompson
+     problem. Phys. Rev. Lett., 89, 2002.
+[12] M.J. Bowick and L. Giomi. Two-dimensional matter: Order, curvature and defects. Adv. Phys., 58:449–563, 2009.
+[13] J.S. Brauchart. Optimal discrete Riesz energy and discrepancy. Unif. Distrib. Theory, 6(2):207–220, 2011.
+[14] J.S. Brauchart and J. Dick. A characterization of Sobolev spaces on the sphere and an extension of Stolarky’s invariance
+     principle to arbitrary smoothness. Constr. Approx., 3:1–49, 2013.
+[15] J.S. Brauchart and J. Dick. A simple proof of Stolarsky’s invariance principle. Proc. Amer. Math. Soc., 141(6):2085–2096,
+     2013.
+[16] J.S. Brauchart, J. Dick, and L. Fang. Spatial low discrepancy sequences, spherical cone discrepancy, and applications in
+     financial modeling. J. Comput. Appl. Math., 286:28–53, 2015.
+[17] J.S. Brauchart, D.P. Hardin, and E.B. Saff. The next-order term for minimal Riesz and logarithmic energy asymptotics on the
+     sphere. Contemp. Math., 578:31–61, 2012.
+[18] J.S. Brauchart, E.B. Saff, I.H. Sloan, Y.G. Wang, and R.S. Womersley. Random point sets on the sphere – hole radii, covering,
+     and separation. submitted.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                         ISSN 2035-6803
+                                                    Hardin · Michaels · Saff                                                   48
+
+
+
+[19] J.S. Brauchart, E.B. Saff, I.H. Sloan, and R.S. Womersley. QMC designs: Optimal order quasi-monte carlo integration
+     schemes on the sphere. Math. Comput., 83(290):2821–2851, 2014.
+[20] M. Calef. Theoretical and computational investigations of minimal energy problems. PhD thesis, Vanderbilt University, 2009.
+[21] D.L.D. Caspar and A. Klug. Physical principles in the construction of regular viruses. Cold Springs Harb. Symp. Quant. Biol.,
+     27, 1962.
+[22] H.S.M Coxeter. The role of intermediate convergents in Tait’s explanation for phyllotaxis. J Algebra, 20:167–175, 1972.
+[23] J. Cui and W. Freeden. Equidistribution on the sphere. SIAM J. Sci. Comput., 18(2):595–609, 1997.
+[24] B. Dahlberg. On the distribution of Fekete points. Duke Math. J., 45(3):537–542, 1978.
+[25] R. Dixon. Spiral phyllotaxis. Comput. Math. Appl., 17:535–538, 1992.
+[26] P.D. Dragnev. On the separation of logarithmic points on the sphere. In Approx. Theory X, pages 137–144. Vanderbilt
+     University Press, Nashville, TN, 2002.
+[27] E.J. Fuselier and G.B. Wright. Stability and error estimates for vector field interpolation and decomposition on the sphere
+     with rbfs. SIAM J. Numer. Anal., 47(5):3213–39, 2009.
+[28] F.X. Giraldo, J.S. Hesthave, and T. Warburton. Nodal high-order discontinuous galerkin methods for the spherical shallow
+     water equations. J. Comput. Phys., 181(2):499–525, 2002.
+[29] M. Goldberg. A class of multi-symmetric polyhedron. Tohoku Math. J., 43:104–108, 1937.
+[30] K.M. Gorski, E. Hivon, A.J. Banday, B.D. Wandelt, F.K. Hansen, M. Reinecke, and M. Bartelman. HEALPix-a framework for
+     high resolution discretization, and fast analysis of data distributed on the sphere. Astophys. J., 622:759–771, 2005.
+[31] D.P. Hardin and E.B. Saff. Minimal Riesz energy point configurations for rectifiable d-dimensional manifolds. Adv. Math.,
+     193:174–204, 2005.
+[32] A. Holhoş and D. Roşca. Area preserving maps and volume preserving maps between a class of polyhedrons and a sphere.
+     ArXiv preprint: http://arxiv.org/abs/1504.01517.
+[33] A. Holhoş and D. Roşca. An octahedral equal area partition of the sphere and near optimal configurations of points. Comput.
+     Math. Appl., 67:1092–1107, 2014.
+[34] A.B.J. Kuijlaars and E.B. Saff. Asymptotics for minimal discrete energy on the sphere. Trans. Amer. Math. Soc., 350(2):523–
+     538, 1998.
+[35] L. Kuipers and H. Niederreiter. Uniform distribution of sequences. Wiley-Interscience, New York, 1974.
+[36] P. Leopardi. A partition of the unit sphere into regions of equal area and small diameter. Electron. Trans. on Numer. Anal.,
+     25:309–327, 2006.
+[37] P. Leopardi. Diameter bounds for equal area partitions of the unit sphere. Electron. Trans. Numer. Anal., 35:1–16, 2009.
+[38] P. Leopardi. Discrepancy, separation, and Riesz energy of finite point sets on the unit sphere. Adv. Comput. Math.,
+     39(1):27–43, 2013.
+[39] S. Mallet. A wavelet tour of signal processing 3rd ed. Elsevier Inc., Burlington, MA, 2009.
+[40] R. Marques, C. Bouville, M. Ribardiere, L.P. Santos, and K. Bouatouch. Spherical Fibonacci point sets for illumination
+     integrals. Comput. Graph. Forum, 32(8):134–143, 2013.
+[41] H.M. Mhashar, F.J. Narcowich, J. Prestin, and J.D. Ward. l p Bernstein estimates and approximation by spherical basis
+     functions. Math. Comp., 79(271):1647–49, 2010.
+[42] T. Michaels. Equidistributed icosahedral configurations on S2 . in preparation.
+[43] R.D. Nair, S.J. Thomas, and R.D. Loft. A discontinuous galerkin transport scheme on the cubed sphere. Mon. Weather Rev.,
+     135:814–828, 2005.
+[44] R. Nerattini, J.S. Brauchart, and M. K.-H. Kiessling. Optimal N-point configurations on the sphere: magic numbers and
+     Smale’s 7th problem. J. Stat. Phys., 157(6):1138–1206, 2014.
+[45] H. Niederreiter. Random number generation and quasi-Monte Carlo methods. Soc. Ind. Appl. Math., Philadelphia, Pennsylvania,
+     1992.
+[46] A. Okabe, B. Boots, K. Sugihara, and S.N. Chiu. Spatial tessellations: concepts and applications of Voronoi diagrams. Wiley,
+     Chichester, 1992.
+[47] E.A. Rakhmanov, E.B. Saff, and Y.M. Zhou. Minimal discrete energy on the sphere. Math. Res. Lett., 1:647–662, 1994.
+[48] M. Reimer. Quadrature rules for the surface integral of the unit sphere based on extremal fundamental systems. Math.
+     Nachr., 169:235–241, 1994.
+[49] M. Reimer. Spherical polynomial approximation: a survey. In Adv. Multivar. Aprox., pages 231–252. Wiley, Berlin, 1999.
+[50] A. Reznikov and E.B. Saff. The covering radius of randomly distributed points on a manifold. Internat. Math. Res. Notices,
+     To appear.
+[51] W.M. Schmidt. Irregularities of distribution VI. Compos. Math., 24:63–74, 1972.
+
+
+
+Dolomites Research Notes on Approximation                                                                       ISSN 2035-6803
+                                                    Hardin · Michaels · Saff                                                   49
+
+
+
+[52] I.H. Sloan and R.S. Womersley. Extremal systems of points and numerical integration on the sphere. Adv. Comput. Math.,
+     21:107–125, 2004.
+[53] S. Smale. Mathematical problems for the next century. Math. Intelligencer, 20:7–15, Spring 1998.
+[54] J.P. Snyder. An equal-area map projection for polyhedral globes. Cartographica, 29(1):10–21, 1992.
+[55] J.P. Snyder. Flattening the Earth. University of Chicago Press, Chicago, 1993.
+[56] L. Song, A.J. Kimerling, and K. Sahr. Developing an equal area global grid by small circle subdivision. In M. Goodchild and
+     A.J. Kimerling, editors, Discrete global grids: a web book. University of California, Santa Barbera, 2002.
+[57] K.B. Stolarsky. Sums of distances between points on a sphere II. Proc. Amer. Math. Soc., 41:575–582, 1973.
+[58] S.L. Svensson. Finite elements on the sphere. J. Approx. Theory, 40:246–260, 1984.
+[59] R. Swinbank and R.J. Purser. Fibonacci grids: A novel approach to global modeling. Roy. Meteorol. Soc., 132(619):1769–1793,
+     2006.
+[60] N.A. Teanby. An icosahedron-based method for even binning of globally distributed remote sensing data. Comput. Geosci.,
+     32:1442–1450, 2006.
+[61] M. Tegmark. An icosahedron-based method for pixelizing the celestial sphere. Astrophys. J., 470:L81–L84, 1996.
+[62] J.J. Thomson. On the structure of the atom: an investigation of the stability and periods of oscillation of a number of
+     corpuscles arranged at equal intervals around the circumference of a circle; with application of the results to the theory of
+     atomic structure. Philos. Mag. Ser., 7(39):237–265, 1904.
+[63] G. Wagner. On mean distances on the surface of the sphere (lower bounds). Pacific J. Math., 144:389–398, 1990.
+[64] G. Wagner. On mean distances on the surface of the sphere II. upper bounds. Pacific J. Math., 154:381–396, 1992.
+[65] T.T. Wong, W.S. Luk, and P.A. Heng. Sampling with Hammersley and Halton points. J. Graph. Tools, 2(2):9–24, 1997.
+[66] G. Wright. Notes/grids/meshes on the sphere. Unpublished notes.
+[67] Y.M. Zhou. Arrangements of points on the sphere. PhD thesis, University of South Florida, 1995.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                        ISSN 2035-6803
+

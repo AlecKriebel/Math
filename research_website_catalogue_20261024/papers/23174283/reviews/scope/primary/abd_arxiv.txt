@@ -1,0 +1,1610 @@
+                                             POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP
+                                                                 DISCREPANCY
+
+                                                                 CH. AISTLEITNER‡, J. S. BRAUCHART∗, AND J. DICK†
+
+
+                                                  Abstract. In this paper we study the geometric discrepancy of explicit constructions of
+
+
+
+
+arXiv:1109.3265v1 [math.NA] 15 Sep 2011
+                                                  uniformly distributed points on the two-dimensional unit sphere. We show that the spherical
+                                                  cap discrepancy of random point sets, of spherical digital nets and of spherical Fibonacci
+                                                  lattices converges with order N −1/2 . Such point sets are therefore useful for numerical
+                                                  integration and other computational simulations. The proof uses an area-preserving Lambert
+                                                  map. A detailed analysis of the level curves and sets of the pre-images of spherical caps under
+                                                  this map is given.
+
+
+
+
+                                                                                      1. Introduction
+                                            Let S2 = {z ∈ R3 : kzk = 1} be the unit sphere in the Euclidean space R3 provided with
+                                          the norm k · k induced by the usual inner product x · y. On this sphere       R we consider the
+                                          Lebesgue surface area measure σ normalised to a probability measure ( S2 d σ = 1).
+                                             This paper is concerned with uniformly distributed sequences of points on S2 . Informally
+                                          speaking, a sequence of points is called uniformly distributed if every reasonably defined
+                                          (clopen) A ⊆ S2 gets a fair share of points as their number N grows. Given a triangular
+                                          scheme {z 1,N , . . . , z N,N }, N ≥ 1, of points on S2 in such a case one has
+                                                                               card({j : z j,n ∈ A})
+                                          (1a)                               lim                      = σ(A),
+                                                                        N →∞            N
+                                          (where card denotes the cardinality of the set) or, equivalently (defined in terms of numerical
+                                          integration)
+                                                                 N               Z
+                                                             1 X
+                                          (1b)          lim         f (z j,N ) =     f dσ       for every f continuous on S2 .
+                                                       N →∞ N                     S2
+                                                                    j=1
+                                          The degree of uniformity is quantified by the so called spherical cap discrepancy.
+                                            A spherical cap C = C(w, t) centred at w ∈ S2 with height t ∈ [−1, 1] is given by the set
+                                                                        C(w, t) = y ∈ S2 : w · y > t .
+                                                                                   
+
+                                          (We assume that spherical caps are open subsets of S2 .) The boundary of C(w, t) then is
+                                                                      ∂C(w, t) = y ∈ S2 : w · y = t .
+                                                                                  
+
+                                             Date: October 14, 2018.
+                                             2000 Mathematics Subject Classification. Primary 65D30, 65D32; Secondary .
+                                             Key words and phrases. Discrepancy, Isotropic Discrepancy, Lambert Map, Level Curve, Level Set, Numer-
+                                          ical Integration, quasi Monte Carlo, Spherical Cap Discrepancy.
+                                             ‡The research of this author was supported by the Austrian Research Foundation (FWF), Project S9603-
+                                          N23.
+                                          ∗The research of this author was supported by an Australian Research Council Discovery Project.
+                                          †The research of this author was supported by an Australian Research Council Queen Elizabeth 2 Fellowship.
+                                                                                                1
+2                        CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+   Let ZN = {z 0 , . . . , z N −1 } ⊆ S2 be an N -point set on the sphere S2 . The local discrepancy
+with respect to a spherical cap C measures the difference between the proportion of points
+in C (the empirical measure of C) and the normalised surface area of C. The spherical cap
+discrepancy is then the supremum of the local discrepancy over all spherical caps, as stated
+in the following definition.
+Definition 1. The spherical cap discrepancy of an N -point set ZN = {z 0 , . . . , z N −1 } ⊆ S2 is
+                                               N −1
+                                         1 X
+                    D(ZN ) = sup sup         1C(w,t) (z n ) − σ(C(z, t)) .
+                             w∈S2 −1≤t≤1 N      n=0
+
+   If the point set ZN is well distributed, then this discrepancy is small. In fact, a sequence
+of N -point systems (ZN )N ≥1 satisfying
+(2)                                      lim D(ZN ) = 0,
+                                        N →∞
+
+is called asymptotically uniformly distributed. Using, for example, the classical Erdös-Turán
+type inequality (cf. Grabner [25], also cf. Li and Vaaler [38]) or LeVeque type inequalities
+(Narcowich, Sun, Ward, and Wu [41]) and the fact that the set of polynomials is dense in the
+set of continuous functions, one can show that (2) is equivalent with (1b).
+   It is known from [6] that there are constants c, C > 0, independent of N , such that a
+low-discrepancy scheme {ZN  ∗}
+                               N ≥2 satisfies
+
+                             c N −3/4 ≤ D(ZN  ∗
+                                                ) ≤ C N −3/4 log N .
+                                                            p
+(3)
+The lower bound holds for all N -point sets ZN on S2 and there always exists an N -point set
+ZN ⊆ S2 such that the upper bound holds. The proof of the upper bound is probabilistic
+in nature and is thus non-constructive. To our best knowledge explicit constructions of low-
+discrepancy schemes are not known. (In this paper we restrict ourselves to the sphere S2 ,
+though some of the results are known for spheres of dimension d ≥ 2.)
+   An explicit construction of points ZN with small spherical cap discrepancy has been given
+in [39, 40]. For instance, in [39] it was shown that
+(4)                               D(ZN ) ≤ C(log N )2/3 N −1/3 .
+The numerical experiments in [39] indicate a convergence rate of O(N −1/2 ).
+  In this paper we give explicit constructions of point sets ZN for which we have
+                                                √
+                                   D(ZN ) ≤ 44 2N −1/2 .
+Our numerical results indicate a convergence rate of O((log N )c N −3/4 ) for some 1/2 ≤ c ≤ 1,
+see Tables 1, 2 below.
+   The spherical cap L2 -discrepancy
+                                                                    2
+                                                                                 1/2
+                       Z 1 Z        N −1
+                                  1  X                                           
+           DL2 (ZN ):=                    1C(w,t) (z n ) − σ(C(z, t)) d σ(w) d t      ,
+                        −1 S2 N                                                 
+                                       n=0
+
+which averages the local discrepancy for a spherical cap over all caps, provides a lower bound
+for the spherical cap discrepancy. It is closely related to the sum of distances and its continu-
+ous counterpart the distance integral by means of Stolarsky’s invariance principle [50] for the
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                              3
+
+Euclidean distance and the 2-sphere,
+    N N                                                   Z Z
+ 1 XX                     C                       2                                                   4
+        |z j − z k | + 4  D    (z 1 , . . . , z N )   =               |z − w| d σ(z) d σ(w)=:V−1 (S2 ) = .
+ N2                         L2
+                                                            S2   S2                                     3
+     j=1 k=1
+
+This gives a simple way of computing the spherical cap L2 -discrepancy of point sets on S2 .
+In [14] it is shown that the spherical cap L2 -discrepancy of ZN can be interpreted as the
+worst-case error of an equal weight numerical integration rule with node set ZN for functions
+in the unit ball of a certain Sobolev space over S2 . It is shown in [13] that on average (that is
+for randomly chosen points independently identically uniformly distributed over the sphere),
+the expected squared worst-case error is of the form (4/3)N −1 . Thus the expected value of
+the squared spherical cap discrepancy satisfies
+                                                               4
+(5)                          8E [D(ZN )]2 ≥ 4E [DL2 (ZN )]2 = N −1 .
+                                                               3
+We study the expected value and the typical asymptotic order of the spherical cap discrepancy
+of random point sets in detail in Section 4. Among other results, we show that the there is
+also a constant C > 0 such that E [D(ZN )] ≤ CN −1/2 .
+
+   Point configurations maximising the sum of distances, by Stolarsky’s invariance princi-
+ple, have low spherical cap L2 -discrepancy. It is known from [6] that low spherical cap
+L2 -discrepancy point sets satisfy relations similar to (3) except for the logarithmic term in-
+troduced by the probabilistic approach. The upper bound for the spherical cap discrepancy
+of maximum sum of distances points ẐN   ∗ obtained in [41] is much weaker but still better than
+
+(4): For some positive constant c > 0, not depending on N ,
+                                              ∗
+                                           D(ZN ) ≤ cN −3/8 .
+  For point configurations ZN∗ emulating electrons restricted to move on S2 in the most stable
+
+equilibrium, that is minimising their Coulomb potential energy essentially given by
+                                            N
+                                            X N
+                                              X            1
+                                                                   ,
+                                                      |z j − z k |
+                                            j=1 k=1
+                                              j6=k
+one can show the bound
+                                               ∗
+                                         D(ZN    ) ≤ CN −1/2 log N.
+The estimate D(ZN        ∗ ) = O(N −1/2 ) was conjectured by Korevaar [32] and later proved (up to
+
+the logarithmic factor) by Götz [24]. When allowing so-called K-regular test sets ∗ introduced
+by Sjögren [46], the estimate above is sharp in the following sense: The upper bound holds
+for any K-regular test set, whereas there are some numbers K0 and c such that to any N
+points z 1 , . . . , z N ∈ S2 there is a K0 -regular test set B with [24, Corollary 2]
+                                                      N
+                                                 1 X
+                               c K0 N −1/2 ≤         1B (z n ) − σ(B) .
+                                                 N
+                                                      n=1
+(The lower bound also applies to the explicit constructions given in this paper.) Bounds
+for the spherical cap discrepancy of so-called minimal Riesz energy configurations (for the
+   ∗
+    Roughly speaking, σ-measurable subsets B of S2 whose δ-neighbourhoods ∂δ B relative to S2 satisfy
+σ(∂δ B) ≤ Kδ. For example, spherical caps are K1 -regular for some fixed K1 .
+4                         CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+concept of Riesz energy see, for example Saff and Kuijlaars [45] and Hardin and Saff [28])
+can be found in [11] (for the logarithmic energy), Damelin and Grabner [17, 18] (the first
+hyper-singular case), and [41] (sums of generalised distances). Wagner [54] estimates the
+spherical cap discrepancy in terms of the Riesz energy. It should be mentioned that there are
+very few known explicit constructions of point configurations with optimal Riesz energy. In
+general, one has to rely on numerical optimisation to generate such point sets. The underlying
+(constrained) optimisation problem is highly non-linear. Moreover, numerical results indicate
+that the number of local minima increases exponentially with the number of points. (For the
+computational complexity see, for example, Bendito et al. [9].)
+   Spherical n-designs introduced by Delsarte, Goethals and Seidel in the landmark paper [19]
+are node sets for equal weight numerical integration rules such that all spherical polynomials
+of degree ≤ n are integrated exactly. Grabner and Tichy [26] give the following upper bound
+of the spherical cap discrepancy of a spherical n-design with N (n) points
+                                            ∗           −1
+(6)                                      D(ZN (n) ) ≤ Cn
+
+which immediately follows from the aforementioned Erdös-Turán type inequality. (See also
+Andrievskii, Blatt, and Götz [4] for a similar form for K-regular test sets.)
+   A spherical n-design is the solution of a system of polynomial equations (one for every
+spherical harmonic of the real orthonormal basis of the space of spherical polynomials of
+degree ≤ n). Hence, a natural lower bound for the number of points of a spherical n-
+design is given by the dimension of the involved polynomial space; that is, one needs at
+least ≥ n2 /4 points. The famous conjecture that C n2 points (for some universal C > 0)
+are sufficient for a spherical n-design seems to have been settled by Bondarenko, Radchenko
+and Viazovska [10]. The proposed proof is non-constructive. Hardin and Sloane [29] propose
+a construction of so-called putative spherical n-designs with (1/2) n2 + o(n2 ) points. The
+variational characterisation of spherical designs introduced in [48] (also cf. [26]) leads to a
+minimisation problem for a certain energy functional (changing with n) whose minimiser is a
+spherical n-design if and only if the functional becomes zero. Numerical results also suggest a
+coefficient 1/2. When allowing more points, N (n) = (n+1)2 , interval-based methods yield, in
+principle, the existence of a spherical n-design near so-called extremal (maximum determinant
+points, cf. [47]). Due to the computational cost this approach was carried out only for n ≤ 20.
+Very recently, Chen, Frommer, and Lang [16] devised a computational algorithm based on
+interval arithmetic that, upon successful completion, verifies the existence of a spherical n-
+design with (n+1)2 points and provides narrow interval enclosures which are known to contain
+these nodes with mathematical certainty. The spherical cap discrepancy of all such obtained
+spherical n-design with O(n2 ) points can then be bounded by C 0 N −1/2 by (6). For the sake
+of completeness it should be mentioned that the tensor product rules used by Korevaar and
+Meyers [33] to prove the existence of spherical n-designs of N (n) = O(n3 ) points give rise to
+N (n)-point configurations whose spherical cap discrepancy can be bounded by C 00 [N (n)]−1/3
+by (6).
+   From [14] it follows that the spherical cap discrepancy of a point set ZN = {z 0 , . . . , z N −1 } ⊆
+S2 yields an upper bound on the integration error
+                                               P −1 in certain Sobolev spaces of functions defined
+on S2 using a quadrature rule QN (f ) = N1 N      n=0 f (z n ). Thus, our results here provide an
+explicit mean of finding quadrature points for numerical integration of functions defined      √      on
+S2 . Our result here improves the bound on the integration error in [12] by a factor of log N .
+   The construction of the points on S2 is obtained by mapping low-discrepancy points on
+[0, 1]2 to S2 using an equal area transformation Φ : [0, 1]2 → S2 . The same approach has
+          POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                         5
+
+previously been used in [12] and [27], in both cases in the context of numerical integration.
+The low-discrepancy points in [0, 1]2 are obtained from digital nets and Fibonacci lattices,
+see [20, 42]. These point sets are well-distributed with respect to rectangles anchored at the
+origin (0, 0). However, the set
+                         Φ−1 (C(w, t)) = {x ∈ [0, 1]2 : Φ(x) ∈ C(w, t)}
+is, in general, not a rectangle. In fact, it is not even a convex set, although the boundary
+                       Φ−1 (∂C(w, t)) = {x ∈ [0, 1]2 : Φ(x) ∈ ∂C(w, t)}
+is a continuous curve.
+   Hence, in order to prove bounds on the spherical cap discrepancy of digital nets and Fi-
+bonacci lattices lifted to the sphere using Φ (we call those point sets spherical digital nets
+and spherical Fibonacci lattices), we need to prove bounds on a general notion of discrepancy
+in [0, 1]2 . To this end we study discrepancy in [0, 1]2 with respect to convex sets, the corre-
+sponding discrepancy is known as isotropic discrepancy [8]. We show that digital nets and
+Fibonacci lattices have isotropic discrepancy of order O(N −1/2 ). Using these result and some
+properties of the function Φ, we can show that spherical digital nets and spherical Fibonacci
+lattices have spherical cap discrepancy at most CN −1/2 for an explicitly given constant C,
+see Corollary 16 and 18. Note that the best possible rate of convergence of the isotropic
+discrepancy is N −2/3 (log N )c for some 0 ≤ c ≤ 4, see [7] and [8, p.107]. Hence the approach
+via the isotropic discrepancy cannot give the optimal rate of convergence for the spherical
+cap discrepancy.
+   In the following we define the equal area Lambert map Φ and show some of its properties.
+
+            2. The equal-area Lambert transform and some properties
+   The points on the sphere are obtained by using the Lambert cylindrical equal-area projection
+                   p                     p                        
+(7)    Φ(α, τ ) = 2 τ − τ 2 cos(2πα), 2 τ − τ 2 sin(2πα), 1 − 2τ ,         α, τ ∈ [0, 1].
+   The area-preserving Lambert map can be illustrated in the following way. The unit square
+[0, 1]2 is linearly stretched to the rectangle [0, 2π] × [−1, 1], rolled into a cylinder of radius 1
+and height 2 and fitted around the unit sphere such that the polar axis is the main z-axis. This
+way a point (α, τ ) in [0, 1]2 is mapped to a point on the cylinder which is radially projected
+along a ray orthogonal to the polar axis onto the sphere giving the point Φ(α, τ ).
+   Axis-parallel rectangles in the unit square are mapped to spherical “rectangles” of equal
+area, see Figure 1.
+   The pre-images of a spherical cap centred at w with height t under the Lambert map is
+the set
+              B(w, t) = Φ−1 (C(w, t)) = {(α, τ ) ∈ [0, 1) × [0, 1] : Φ(α, τ ) ∈ C(w, t)}
+and the pre-image of the boundary of this spherical cap is
+         ∂B(w, t) = Φ−1 (∂C(w, t)) = {(α, τ ) ∈ [0, 1) × [0, 1] : Φ(α, τ ) ∈ ∂C(w, t)} .
+  The sets B(w, t) are not convex, in general. Thus, we consider a more general class of sets
+which we call pseudo-convex. A definition is given in the following.
+Definition 2. Let A be an open subset of [0, 1]2 such that there exists a collection of p convex
+subsets A1 , . . . , Ap of [0, 1]2 with the following properties: (a) Aj ∩ Ak is empty for j 6= k;
+(b) A ⊆ A1 ∪ · · · ∪ Ap ; (c) either Aj is a convex part of A (Aj ⊆ A) or the complement of
+6                        CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+
+
+
+      Figure 1. Axis-parallel rectangles in the square and their images under Φ on S2 .
+
+A with respect to Aj , A0j = Aj \ A, is convex. Then A is called a pseudo-convex set and
+A1 , . . . , Ap is an admissible convex covering for A with p parts (with q convex parts of A).
+Lemma 3. For every w ∈ S2 and all −1 ≤ t ≤ 1 the pre-image B(w, t) of the spherical cap
+C(w, t) centred at w with height t under the Lambert map is pseudo-convex with an admissible
+convex covering with at most 7 parts. More precisely, taking into account the number of convex
+parts of the pre-image, among the convex coverings with p parts and q of which are convex
+the worst case has p = 7 and q = 3 which implies the constant 2p − q = 11.
+    The proof of Lemma 3 in Section 7 gives details how to construct admissible coverings.
+
+                      3. Isotropic- and spherical cap discrepancy
+  We introduce the isotropic discrepancy of a point set and a sequence as follows. Let λ be
+the Lebesgue area measure in the unit square.
+Definition 4. The isotropic discrepancy JN of an N -point set PN = {x0 , . . . , xN −1 } in [0, 1]2
+is defined as
+                                            N −1
+                                          1 X
+                         JN (PN ) = sup          1A (xn ) − λ(A) ,
+                                    A∈A N       n=0
+where A is the family of all convex subsets of [0, 1]2 .
+   For an infinite sequence x0 , x1 , . . . ∈ [0, 1]2 the isotropic discrepancy is defined as the
+isotropic discrepancy of the initial N points of the sequence.
+Lemma 5. Let A be a pseudo-convex subset of [0, 1]2 with an admissible convex covering of
+p parts with q convex parts of A. Then for any N -point set PN = {x0 , . . . , xN −1 } ⊆ [0, 1]2
+                              N −1
+                           1 X
+                               1A (xn ) − λ(A) ≤ (2p − q) JN (PN ).
+                           N
+                              n=0
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                                                 7
+
+Proof. Let A1 , . . . , Ap be an admissible convex covering of A with p parts. Without loss of
+generality let A1 , . . . , Aq be the convex parts of A and Aq+1 , . . . , Ap those for which A0j = Aj \A
+(q + 1 ≤ j ≤ p) is convex. Clearly
+                                                   q
+                                                   [             p
+                                                                 [
+                                                                        Aj \ A0j .
+                                                                                
+                                             A=          Aj ∪
+                                                   j=1          j=q+1
+
+Thus
+         N −1
+       1 X
+           1A (xn ) − λ(A)
+       N
+          n=0
+                    q h   N −1                                     p      −1
+                                                                     h 1 NX
+                    X   1 X                                 i      X                                                    i
+                =                      1Aj (xn ) − λ(Aj ) +                             1Aj \A0j (xn ) − λ(Aj \ A0j )
+                             N                                               N
+                    j=1          n=0                              j=q+1           n=0
+                    q h        N −1                                p             −1
+                                                                            h 1 NX
+                    X        1 X                      i            X                                         i
+                =                   1Aj (xn ) − λ(Aj ) +                                1Aj (xn ) − λ(Aj )
+                             N                                               N
+                    j=1          n=0                              j=q+1           n=0
+                       p
+                       X              −1
+                                 h 1 NX                          i
+                 −                           1A0j (xn ) − λ(A0j ) .
+                                  N
+                       j=q+1           n=0
+
+In the last line all sets are convex and we can use the isotropic discrepancy in the estimation
+                      N −1
+                1 X
+                    1A (xn ) − λ(A) ≤ [q + (p − q) + (p − q)] JN (x0 , . . . , xN −1 ).
+                N
+                       n=0
+                                                                                                                            
+Theorem 6. Let PN = {x0 , . . . , xN −1 } ⊆ [0, 1]2 and let ZN = {Φ(x0 ), . . . , Φ(xN −1 )} ⊆ S2 .
+Then
+                                    D(ZN ) ≤ 11JN (PN ).
+Proof. Let w ∈ S2 and −1 ≤ t ≤ 1. A point Φ(xn ) ∈ C(w, t) if and only if xn ∈ B(w, t).
+Thus
+                        N
+                        X −1                    N
+                                                X −1
+                             1C(w,t) (Φ(xn )) =      1B(w,t) (xn ).
+                                       n=0                            n=0
+Further, since the transformation Φ preserves areas, we have
+                                                σ(C(w, t)) = λ(B(w, t)).
+Hence
+                N −1                                                      N −1
+           1 X                                 1 X
+               1C(w,t) (Φ(xn )) − σ(C(w, t)) =     1B(w,t) (xn ) − λ(B(w, t)) .
+           N                                   N
+                n=0                                                         n=0
+The pre-images are pseudo-convex in the sense of Definition 2 by Lemma 3. Applying Lemma 5
+with the constant 2p − q = 11 from Lemma 2 we arrive at the result.                     
+  We have now reduced the problem of proving bounds on the spherical cap discrepancy to
+prove bounds on the isotropic discrepancy of points in the square [0, 1]2 . We will study this
+problem in Section 5.
+8                        CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+                4. Spherical cap discrepancy of random points sets
+  Let (M, M) be a measurable space, and let P be a probability on it. Let further Xn ,
+n ≥ 0, denote a sequence of independent, identically distributed (i.i.d.) random variables on
+a probability space (Ω, A, P) with values in M , and let C ⊆ M denote a class of subsets of
+M . To avoid measurability problems we will assume throughout the rest of this section that
+the class C is countable. Let A ⊆ M be an arbitrary set. Then C is said to shatter A if to
+every possible subset B of A there exists a set C ∈ C such that
+                                                  C ∩ A = B.
+For k ≥ 1 the k-th shattering coefficient SC (k) of C is defined as
+                      SC (k):=      max          card{{x1 , . . . , xk } ∩ C : C ∈ C}.
+                                 x1 ,...,xk ∈M
+
+The Vapnik-Červonenkis dimension (VC-dimension) of C is defined as
+                                      v(C):= min{k : SC < 2k }.
+                                                    k
+
+(Here we use the convention that the minimum of the empty set is ∞.) A class C with finite
+VC-dimension is called a Vapnik-Červonenkis class (VC class). The theory of VC classes is of
+extraordinary importance in the theory of empirical processes indexed by classes of functions.
+For example, a class C is uniformly Glivenko-Cantelli if and only if it is a VC class, see
+[53]. We will use the following theorem, which is a combination of results of Talagrand [51,
+Theorem 6.6] and Haussler [30, Corollary 1], and has already been used by Heinrich et al.
+[31] in the context of probabilistic discrepancy theory.
+Theorem 7 (see [31, Theorem 2]). There exists a positive number K such that for each VC
+class Cpand each probability P and sequence Xn , n ≥ 0, as above the following holds: For all
+s ≥ K v(C) we have
+                          N −1
+                (                                     )            v(C)
+                                                          1 Ks2
+                                                            
+                       1 X                         s                         2
+              P sup            1C (Xn ) − P (C) ≥ √     ≤                e−2s .
+                 C∈C N     n=0
+                                                    N     s v(C)
+
+   In our setting we will have M = S2 , M will denote the sigma-field generated by the class of
+spherical caps, P will stand for the normalised Lebesgue surface area measure σ, and C will
+denote the class of all spherical caps for which the centre w is a vector of rational numbers
+and the height t is also a rational number (this restriction is necessary to assure that the class
+C is countable; of course the spherical cap discrepancy with respect to this class is the same
+as the discrepancy with respect to the class of all spherical caps). In the sequel we assume
+that the i.i.d. random variables Xn , n ≥ 0, are uniformly distributed on S2 . We will write
+ZN = ZN (ω) for the (random) point set {X0 , . . . , XN −1 } = {X0 (ω), . . . , XN −1 (ω)}.
+   The following proposition asserts that the class C is a VC class (the proof of this and the
+subsequent results of this section can be found in Section 7).
+Proposition 8. The class C has VC dimension 5.
+    Using Theorem 7 and Proposition 8 we can prove the following results:
+Theorem 9. There exist constants C1 , C2 such that for N ≥ 1
+                              √                        √
+                            C1 N ≤ E [D(ZN )] ≤ C2 N .
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                    9
+
+Remark. The existence of such a constant C1 for the lower bound follows directly from (5);
+we can choose C1 = 6−1/2 .
+Theorem 10. For any ε > 0 there exist positive constants C3 (ε), C4 (ε) such that for suffi-
+ciently large N          n      √                 o
+                       P C3 ≤ N D(ZN ) ≤ C4 ≥ 1 − ε.
+
+  Theorem 10 shows that the typical discrepancy of a random set of N points is of order
+N −1/2 .However, actually much more is true, since by classical results any VC class Cˆ on a
+measurable space (M̂ , M̂) is a so-called Donsker class, which essentially means that for every
+probability measure P̂ and every sequence Vn , n ≥ 0, of i.i.d. random variables having law P̂
+the empirical process indexed by sets
+                                 √    N −1
+                                    1 X
+                      αN (C) =    N        1C (Vn ) − P (C) ,           C ∈ Cˆ
+                                    N
+                                         n=0
+
+converges weakly to a centered, bounded Gaussian process B(C), which has covariance struc-
+ture
+               EB(C1 )B(C2 ) = P (C1 ∩ C2 ) − P (C1 )P (C2 ),            ˆ
+                                                               C1 , C2 ∈ C.
+This
+   √ weak convergence could, for example, be used to prove the existence of a limit distribution
+of N D(ZN ) as N → ∞; however, to keep this presentation short and self-contained we will
+not pursue this method any further, and refer the interested reader to [2, 21, 22, 52] and the
+references therein.
+Remark. The upper bounds in Theorem 9 and 10 follow from Theorem 7. However, since
+no concrete value for the constant K in Theorem 7 is known, the value of the constants C2
+and C4 in Theorem 9 and Theorem 10, respectively, is also unknown. It is possible that the
+decomposition technique from [1] can be used to achieve a version of Theorem 9 and 10 with
+explicitly known constants in the upper bound.
+   Finally, the following theorem describes the asymptotic order of a typical infinite sequence
+of random points.
+Theorem 11. We have
+                          √          
+                            log log N
+               D(ZN ) = O     √                  as N → ∞,         almost surely.
+                                N
+    Theorem 11 is a so-called bounded law of the iterated logarithm, and follows easily from
+Theorem 6 and Philipp’s law of the iterated logarithm (LIL) for the isotropic discrepancy of
+random point sets in the plane. More precisely, Philipp [44] proved that for a sequence of
+i.i.d. uniformly distributed random variables Yn , n ≥ 0, on the unit square (writing PN for
+the (random) point set {Y0 , . . . , YN −1 }) the law of the iterated logarithm
+                                         N JN (PN )     1
+                             lim sup √                =         a.s.
+                              N →∞       2N log log N   2
+holds. Together with Theorem 6 this implies for ZN = {Φ(Y0 ), . . . , Φ(YN −1 )} ⊆ S2
+                                       N D(ZN )      11
+                             lim sup √             ≤            a.s.,
+                              N →∞    2N log log N   2
+10                       CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+which proves Theorem 11 (it is necessary to observe that the image of a sequence of i.i.d.
+uniformly distributed random variables on the unit square under the area-preserving Lambert
+map is a sequence of i.i.d. uniformly distributed random variables on the sphere). It is easy to
+see that Theorem 11 is optimal, except for the value of the implied constant. More precisely,
+let C ∗ denote a fixed spherical cap with area 2π (which means that C ∗ is a hemisphere, and
+has normalised surface area measure σ(C ∗ ) = 1/2). Then clearly the random variables
+                                1C ∗ (Φ(Yn )) − σ(C ∗ ),      n ≥ 0,
+have expected value 0 and variance 1/4. Thus by the classical law of the iterated logarithm
+for sequences of i.i.d. random variables
+                               1 PN −1
+                               N    n=0 1C ∗ (Φ(Yn )) − 1/2   1
+                       lim sup       √                      =    a.s.,
+                        N →∞           2N log log N           2
+and since
+                                            N −1
+                                      1 X
+                             D(ZN ) ≥     1C ∗ (Φ(Yn )) − σ(C ∗ ) ,
+                                      N
+                                             n=0
+we finally arrive at
+                                       N D(ZN )       1
+                               lim sup √           ≥        a.s.,
+                              N →∞    2N log log N    2
+which proves the optimality of Theorem 11. We remark that it should also be possible to
+prove Theorem 11 without using Theorem 6 and Philipp’s LIL for the isotropic discrepancy, by
+deducing it directly from the bounded LIL for empirical processes on VC classes of Alexander
+and Talagrand [3]. We conjecture that Theorem 11 can be improved to
+                                            N D(ZN )      1
+                               lim sup √                =        a.s.,
+                                N →∞       2N log log N   2
+but this seems to be very difficult to prove.
+
+                    5. Point sets with small isotropic discrepancy
+   In this section we investigate the isotropic discrepancy of (0, m, 2)-nets and Fibonacci
+lattices. In particular we show that the isotropic discrepancy of those point sets converges with
+order O(N −1/2 ). Note that the best possible rate of convergence of the isotropic discrepancy
+is N −2/3 (log N )c for some 0 ≤ c ≤ 4, see [7] and [8, p.107]. Whether (0, m, 2)-nets and/or
+Fibonacci lattices achieve the optimal rate of convergence for the isotropic discrepancy is an
+open question.
+
+5.1. Nets and sequences. We give the definition of (0, m, 2)-nets in base b in the following.
+Definition 12. Let b ≥ 2 and m ≥ 1 be integers. A point set Pbm ⊆ [0, 1)2 consisting of bm
+points is called a (0, m, 2)-net in base b, if for all nonnegative integers d1 , d2 with d1 + d2 = m,
+each of the elementary intervals
+                        2              
+                       Y     ai ai + 1
+                                ,         ,      0 ≤ ai < bdi (ai an integer),
+                             bdi bdi
+                       i=1
+contains exactly 1 point of Pbm .
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                            11
+
+   It is also possible to construct nested (0, m, 2)-nets, thereby obtaining an infinite sequence
+of points.
+Definition 13. Let b ≥ 2 be an integer. A sequence x0 , x1 , . . . ∈ [0, 1)2 is called a (0, 2)-
+sequence in base b, if for all m > 0 and for all k ≥ 0, the point set xkbm , xkbm +1 , . . . , x(k+1)bm −1
+is a (0, m, 2)-net in base b.
+  Explicit constructions of (0, m, 2)-nets and (0, 2)-sequences are due to Sobol’ [49] and
+Faure [23], see also [20, Chapter 8].
+  The following is a special case of an unpublished result due to Gerhard Larcher. For
+completeness we include a proof here.
+Theorem 14. For the isotropic discrepancy JN of a (0, m, 2)-net PN in base b (N = bm ) we
+have                                                  √
+                                       √ −bm/2c 4 2b
+                           JN (PN ) ≤ 4 2b        ≤ √ .
+                                                       N
+Proof. Let PN = {x0 , . . . , xbm −1 }. Let k = bm/2c and consider a subcube W of [0, 1)s of the
+form                                                            
+                                           c1 c1 + 1     c2 c2 + 1
+                                 W = k,               × k,
+                                           b    bk       b     bk
+with 0 ≤ ci < bk (ci an integer) for i = 1, 2. The cube W has volume b−2k and is the union
+of bm−2k elementary intervals of order m. Indeed,
+                      bm−2k[ −1  c1 c1 + 1   c2                       
+                                                             v    c2 v+1
+                 W =                     ,         × k + m−k , k + m−k       .
+                                      bk     bk       b    b      b   b
+                          v=0
+                                                                                √
+So W contains exactly bm−2k points of the net. The diagonal of W has length 2/bk .
+   Let now A be an arbitrary convex subset of [0, 1]2 . Let W ◦ denote the union of cubes W
+fully contained in A and let W denote the union of cubes W having non-empty intersection
+with A or its boundary. The sets W and W ◦ are fair with respect to the net, that is,
+                       N −1                                  N −1
+                     1 X                                 1 X
+                         1W (xn ) = λ(W )         and        1W ◦ (xn ) = λ(W ◦ ).
+                     N                                   N
+                       n=0                                   n=0
+  We have
+              N −1                         N −1
+           1 X                   1 X
+               1A (xn ) − λ(A) ≤     1W (xn ) − λ(W ) + λ(W \ A) = λ(W \ A)
+           N                     N
+              n=0                          n=0
+and
+          N −1                         N −1
+       1 X                   1 X
+           1A (xn ) − λ(A) ≥     1W ◦ (xn ) − λ(W ◦ ) − λ(A \ W ◦ ) = −λ(A \ W ◦ ).
+       N                     N
+           n=0                         n=0
+  Since the set A is convex, the length of the boundary of A is at most the circumference of
+the unit square, which is 4. Further we have
+                                                    √
+                W \ A ⊆ {x ∈ [0, 1]2 \ A : kx − yk ≤ 2b−k for some y ∈ A}
+and therefore
+                                                        √                            √
+        λ(W \ A) ≤ λ({x ∈ [0, 1]2 \ A : kx − yk ≤           2b−k for some y ∈ A}) ≤ 4 2b−k ,
+12                       CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+where the last inequality follows from the fact that the outer boundary of the enclosing set
+has length at most 4 (which is the circumference of the square [0, 1]2 ). Moreover
+                                              √
+               A \ W ◦ ⊆ {x ∈ A : kx − yk ≤ 2b−k for some y ∈ [0, 1]2 \ A}
+and therefore
+                                                √                                      √
+      λ(A \ W ◦ ) ≤ λ({x ∈ A : kx − yk ≤            2b−k for some y ∈ [0, 1]2 \ A}) ≤ 4 2b−k ,
+since, by the convexity of A, the boundary of A has length at most 4 (which is the circum-
+ference of the square [0, 1]2 ).
+   Thus we obtain
+                                   N −1
+                                 1 X                       √
+                                        1A (xn ) − λ(A) ≤ 4 2b−k
+                                 N
+                                     n=0
+and hence the result follows.                                                                    
+
+  Note that the above result only applies when the number of points N is of the form N = bm
+(notice that choosing m = 1 only yields a trivial result, hence one usually chooses a small
+base b and a ’large’ value of m). In the following we give an extension where the number of
+points can take on arbitrary positive integers.
+Theorem 15. For the isotropic discrepancy JN of the first N points PN = {x0 , . . . , xN −1 }
+of a (0, 2)-sequence in base b we have
+                                           √           1
+                               JN (PN ) ≤ 4 2 b2 + b3/2 √ .
+                                                         N
+Proof. Let N ∈ N have base b expansion N = N0 +N1 b+· · ·+Nm bm . Let PN = {x0 , . . . , xN −1 }
+denote the first N points of a (0, 2)-sequence in base b. For 0 ≤ k ≤ m with Nk > 0 and
+0 ≤ ` < Nk the point set
+             Qk,` = {xNm bm +···+Nk+1 bk+1 +`bk , . . . , xNm bm +···+Nk+1 bk+1 +(`+1)bk −1 }
+
+is a (0, k, 2)-net in base b by Definition 13. Thus PN is a disjoint union of such (0, k, 2)-nets
+                                             [     [
+                                     PN =               Qk,` .
+                                             0≤k≤m 0≤`<Nk
+                                              Nk >0
+
+We have the following triangle inequality for the isotropic discrepancy (which is an analogue
+to the triangle inequality for the star-discrepancy [34, p. 115, Theorem 2.6])
+                                                 k −1 k
+                                              m NX
+                                              X      b
+                                JN (PN ) ≤                    Jbk (Qk,` ).
+                                                          N
+                                              k=0 `=0
+                                              Nk >0
+
+This inequality holds, since for a spherical cap C we have
+                                                                        
+                N −1                     m Nk  −1 k
+              1  X                      X     X   b 1    X
+                     1C (xn ) − λ(C) =                      1C (x) − λ(C) .
+              N                                   N bk
+                 n=0                       k=0 `=0               x∈Qk,`
+                                           Nk >0
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                   13
+
+Thus we can use Theorem 14 to obtain
+                    k −1 k
+                 m NX                      k −1 dk/2e
+                                        m NX              Pm
+                 X      b √ −bk/2c   √ X       b        √  k=0 Nk b
+                                                                   dk/2e
+      JN (PN ) ≤           4 2b    =4 2               =4 2 P m       k
+                        N                        N           k=0 Nk b
+                    k=0 `=0                         k=0 `=0
+                    Nk >0                           Nk >0
+                             m dk/2e
+                   √         X b        √ b(b − 1) −m/2    √ b3/2 (b − 1) 1
+                ≤ 4 2(b − 1)         ≤ 4 2 √      b     ≤ 4 2 √          √ .
+                                 bm          b−1                  b−1     N
+                                k=0
+
+The estimate follows from the identity (a − 1)(a + 1) = a2 − 1.                               
+Corollary 16.
+   (1) Let PN be a (0, m, 2)-net in base b and let ZN = Φ(PN ) ⊆ S2 . Then the spherical cap
+       discrepancy D(ZN ) is bounded by
+                                               √
+                                   D(ZN ) ≤ 44 2b−bm/2c .
+    (2) Let PN be the first N points of a (0, 2)-sequence in base b and let ZN = Φ(PN ) ⊆ S2 .
+         Then the spherical cap discrepancy D(ZN ) is bounded by
+                                       √             1
+                           D(ZN ) ≤ 44 2 b2 + b3/2 √        for all N .
+                                                        N
+                                                                 √
+   Note that Item (2) improves upon Theorem 11 by a factor of log log N and hence, asymp-
+totically, spherical digital sequences are better than random sequences almost surely.
+
+    m               6         7       8       9       10       11       12         13
+    N = 2m          64        128     256     512     1024     2048     4096       8192
+    D̃(ZN )∗N 3/4
+       √
+         log N
+                    0.8829 0.8436 0.8279 0.8632       0.8518   1.2128   1.2285     0.9546
+    D̃(ZN )∗N 3/4
+        log N       0.4329 0.3829 0.3515 0.3456       0.3235   0.4392   0.4259     0.3180
+    m               14        15      16      17     18     19     20      21
+    N = 2m          16384     32768   65536   131072 262144 524288 1048576 2097152
+    D̃(ZN )∗N 3/4
+       √
+         log N
+                    0.7925 0.8862 1.0331 0.8337       0.8562   0.9854   1.1167     1.1463
+    D̃(ZN )∗N 3/4
+        log N       0.2544 0.2748 0.3102 0.2428       0.2424   0.2715   0.2999     0.3004
+       Table 1. The value D̃(ZN ) denotes the maximum of the absolute values of
+       the local discrepancies of ZN at the spherical caps centered at the spherical
+       digital net ZN based on a two-dimensional Sobol’ point set.
+
+
+  The numerical experiments shown in Table 1 seem to suggest that the correct order of the
+spherical cap discrepancy of spherical digital nets is
+                               (log N )c
+                                         for some 1/2 ≤ c ≤ 1.
+                                 N 3/4
+In those experiments we calculated the spherical cap discrepancy for all spherical caps centered
+at a spherical digital net based on a two-dimensional Sobol’ point set (this of course gives
+only a lower bound).
+14                             CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+5.2. Fibonacci lattices. The Fibonacci numbers Fm are given by F1 = 1, F2 = 1 and
+Fm = Fm−1 + Fm−2 for all m > 2. A Fibonacci lattice is a point set of Fm points in [0, 1)2
+given by                                    
+                                  n     nFm−1
+                       f m :=       ,              , 0 ≤ n < Fm ,
+                                 Fm      Fm
+where {x} = x − bxc denotes the fractional part for nonnegative real numbers x. The set
+                                             Fm := {f 0 , . . . , f Fm −1 }
+is called a Fibonacci lattice point set.
+   The spherical Fibonacci lattice points are then given by
+                                        z n = Φ(f n ),         0 ≤ n < Fm ,
+and the point set
+                                             ZFm = {z 0 , . . . , z Fm −1 }
+is the spherical Fibonacci lattice point set.
+   In the following we prove a bound on the isotropic discrepancy of Fibonacci lattices, see
+also [35, 36, 37].
+Lemma 17. For the isotropic discrepancy JFm of a Fibonacci lattice Fm we have
+                                    ( p
+                                      4 2/Fm if m is odd,
+                        JFm (Fm ) ≤    p
+                                      4 8/Fm if m is even.
+
+Proof. Consider the case of odd integers m first. From [43, Theorem 3] it follows that for
+m ∈ N the Fibonacci lattice F2m+1 can be generated by the vectors
+ a2m+1 = (Fm /F2m+1 , (−1)m−1 Fm+1 /F2m+1 ),                    b2m+1 = (Fm+1 /F2m+1 , (−1)m Fm /F2m+1 ).
+This means that
+                             F2m+1 = {ua2m+1 + vb2m+1 : u, v ∈ Z} ∩ [0, 1)2 .
+Let
+                     U (y) = {y + x ∈ [0, 1]2 : x = sa2m+1 + tb2m+1 , 0 ≤ s, t < 1}.
+We call U (f n ) a unit cell (belonging to the point f n ). Note that the area of a unit cell is
+1/F2m+1 and each unit cell contains exactly one point of the lattice, see [43].
+   Since a2m+1 ⊥ b2m+1 it follows that the minimum distance between points of the Fibonacci
+lattice is
+                                                         q
+                                                             2 + F2
+                                                            Fm     m+1        1
+            dmin (F2m+1 ) = min{ka2m+1 k, kb2m+1 k} =                   =√         .
+                                                             F2m+1          F2m+1
+                                     p
+Thus the diameter of a unit cell is 2/F2m+1 .
+   Let now A be an arbitrary convex subset of [0, 1]2 . Let W ◦ denote the union of all unit cells
+fully contained in A and let W denote the union of all unit cells with nonempty intersection
+with A or its boundary.
+   We have
+             F2m+1 −1                                 F2m+1 −1
+       1       X                                1        X
+                        1A (f n ) − λ(A) ≤                       1W (f n ) − λ(W ) + λ(W \ A) = λ(W \ A)
+     F2m+1                                   F2m+1
+               n=0                                       n=0
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                                15
+
+and
+        F2m+1 −1                                F2m+1 −1
+  1       X                               1       X
+                   1A (f n ) − λ(A) ≥                      1W ◦ (f n ) − λ(W ◦ ) − λ(A \ W ◦ ) = −λ(A \ W ◦ ).
+F2m+1                                   F2m+1
+          n=0                                     n=0
+  Since the set A is convex, the length of the boundary of A is at most the circumference of
+the unit square, which is 4. Further we have
+                                                   p
+             W \ A ⊆ {x ∈ [0, 1]2 \ A : kx − yk ≤ 2/F2m+1 for some y ∈ A}
+and therefore
+                                                        p                            p
+  λ(W \ A) ≤ λ({x ∈ [0, 1]2 \ A : kx − yk ≤              2/F2m+1 for some y ∈ A}) ≤ 4 2/F2m+1 ,
+where the last inequality follows since the outer boundary of enclosing set has length at most
+4 (which is the circumference of the square [0, 1]2 ).
+   On the other hand
+             A \ W ◦ ⊆ {x ∈ A : kx − yk ≤ 2/F2m+1 for some y ∈ [0, 1]2 \ A}
+                                             p
+
+and therefore
+  λ(A \ W ◦ ) ≤ λ({x ∈ A : kx − yk ≤
+                                              p                                      p
+                                               2/F2m+1 for some y ∈ [0, 1]2 \ A}) ≤ 4 2/F2m+1 ,
+since, by the convexity of A, the boundary of A has length at most 4 (which is the circum-
+ference of the square [0, 1]2 ).
+   Thus we obtain
+                                 F2m+1 −1
+                                                               s
+                              1    X                               2
+                                          1A (f n ) − λ(A) ≤ 4         .
+                          F2m+1                                  F2m+1
+                                        n=0
+  Now we consider even integers n = 2m with m ≥ 2. Using the identity Fm F2m−1 −
+Fm−1 F2m = (−1)m−1 Fm , we obtain Fm F2m−1 ≡ (−1)m−1 Fm (mod F2m ). Consequently
+                                             (−1)m−1 Fm
+                                                  
+               k      kF2m−1         Fm
+                  ,              =       ,                  for k = Fm .
+              F2m      F2m           F2m        F2m
+Thus the Fibonacci lattice has the equivalent generating vector
+                                         Fm (−1)m−1 Fm
+                                                         
+                               a2m =         ,              .
+                                        F2m       F2m
+Analogously, using the equality Fm+1 F2m−1 −Fm F2m = (−1)m Fm−1 , we obtain the generating
+vector
+                                        Fm+1 (−1)m Fm−1
+                                                       
+                                b2m =       ,             .
+                                        F2m      F2m
+  The area of the parallelogram spanned by a2m and b2m is
+                    Fm /F2m (−1)m−1 Fm /F2m
+                                             
+                                                    Fm Fm−1 + Fm Fm+1       1
+          det                                    =                      =      .
+                 Fm+1 /F2m (−1)m Fm−1 /F2m                   2
+                                                            F2m            F2m
+Thus the parallelogram spanned by a2m and b2m does not contain any point of the Fibonacci
+lattice in its interior (i.e. is a unit cell of the Fibonacci lattice, see [15, 43]). Thus we have
+                              F2m = {ua2m + vb2m : u, v ∈ Z} ∩ [0, 1)2 .
+  Let
+                   U (y) = {y + x ∈ [0, 1]2 : x = sa2m+1 + tb2m+1 , 0 ≤ s, t < 1}.
+16                             CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+We call U (f n ) a unit cell (belonging to the point f n ). Note that the area of a unit cell is
+1/F2m+1 and each unit cell contains exactly one point of the lattice.
+  Now
+                                                   2F 2
+                                        ka2m k2 = 2m
+                                                   F2m
+and
+                                2
+                               Fm+1    2
+                                    + Fm−1    2 + F (2F           2
+                                             Fm    m   m−1 )   2Fm
+                   kb2m k2 =        2      >        2        >             2
+                                                                 2 = ka2m k .
+                                  F2m              F2m         F2m
+Further it can be checked that ka2m + b2m k, ka2m − b2m k > ka2m k. Thus the minimum
+distance between points of the Fibonacci lattice is
+                                                      √
+                                                        2Fm
+                               dmin (F2m ) = ka2m k =       .
+                                                       F2m
+  The diameter of a unit cell is given by ka2m +b2m k. Using the relations Fm = Fm−1 +Fm−2 ,
+ 2     2
+Fm + Fm−1 = F2m−1 and F2m = (2Fm−1 + Fm )Fm we obtain
+      2
+     F2m ka2m + b2m k2 = (Fm + Fm+1 )2 + (Fm − Fm−1 )2 = 2F2m + 4F2m−1 + 2Fm
+                                                                           2
+                                                                             < 8F2m .
+Thus the diameter of a unit cell is bounded by
+                                                            r
+                                                                 8
+                                         ka2m + b2m k ≤             .
+                                                                F2m
+The result now follows by using the same arguments as in the previous case.                         
+Corollary 18. Let Fm be a Fibonacci lattice and let ZFm = Φ(Fm ) ⊆ S2 . Then the spherical
+cap discrepancy D(ZFm ) is bounded by
+                                     ( p
+                                      44 2/Fm if m is odd,
+                          D(ZFm ) ≤      p
+                                      44 8/Fm if m is even.
+
+
+     m                 17        18       19       20           21       22       23       24
+     Fm                1597      2584     4181     6765         10946    17711    28657    46368
+                3/4
+     D̃(ZFm )∗Fm
+        √
+          log Fm
+                       0.6729 0.6373      0.6228   0.6661       0.6953   0.6890   0.7427   0.6900
+                 3/4
+     D̃(ZFm )∗Fm
+         log Fm        0.2477 0.2273      0.2156   0.2243       0.2279   0.2203   0.2318   0.2105
+     m                 25        26     27     28     29     30     31      32
+     Fm                75025     121393 196418 317811 514229 832040 1346269 2178309
+                3/4
+     D̃(ZFm )∗Fm
+        √
+          log Fm
+                       0.6957 0.7249      0.7531   0.7205       0.8562   0.7455   0.7862   0.8082
+                 3/4
+     D̃(ZFm )∗Fm
+         log Fm        0.2076 0.2118      0.2157   0.2024       0.2361   0.2019   0.2092   0.2115
+          Table 2. The value D̃(ZFm ) denotes the maximum of the absolute values of
+          the local discrepancies of ZFm at the spherical caps centered at the spherical
+          Fibonacci points ZFm .
+          POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                    17
+
+  The numerical experiments shown in Table 2 seem to suggest that the correct order of the
+spherical cap discrepancy of spherical Fibonacci lattice points is of order
+                              (log Fm )c
+                                  3/4
+                                           for some 1/2 ≤ c ≤ 1.
+                                Fm
+In those experiments we calculated the spherical cap discrepancy for all spherical caps centered
+at the spherical Fibonacci points (this of course gives only a lower bound).
+
+         6. Level curves of the distance function and their properties
+  The Euclidean distance of two points on S2 , given by w = Φ(u, v) and z = Φ(α, τ ), can
+be written as
+                             h                                                             i
+ kw − zk2 = 2 (1 − w · z) = 2 1 − (1 − 2v) (1 − 2τ ) −4 (1 − v) v (1 − τ ) τ cos(2π(u − α)) .
+                                                       p
+                               |       {z         }
+                                     2(v+τ −2vτ )
+
+The well-defined boundary curve of a spherical cap C(w, t) has the implicit representation
+(8)    F (α, τ ):= kw − zk2 − 2 (1 − t) = 0,     where z = Φ(α, τ ) moves on ∂C(w, t).
+       p
+(Here, 2(1 − t) is the distance from the centre w to a point on the boundary of C(w, t).)
+Relation (8) describes a level curve Cw of the distance function kw − Φ(α, τ )k (for w fixed) in
+the parameter space which is the unit square, cf. Figure 2. For further references we record
+that for each w there are, in general, two exceptional levels
+                    rw2
+                        = 2 (1 − tw ) = kw − pk2 = 4v,
+                    ρ2w = 2 1 − t0w = 2 (1 + tw ) = kw + pk2 = 4 (1 − v) ,
+                                    
+
+where the boundary of the spherical cap centred at w passes through the North Pole (p) and
+the South Pole (−p), respectively, which may coincide if w is on the equator. For these level
+curves the singular behaviour at the poles imposed by the parametrisation Φ plays a role.
+   Suppose u = 1/2. Because the sign of the difference u − α is absorbed by the cosine
+function in the distance function, a level curve (a level set) is symmetric with respect to the
+vertical line α = u. The shape of the curves (sets) do not change when the point w is rotated
+about the polar axis except a part moving outside the left side of the unit square enters
+at the right side (“wrap around”). This “modulo 1” behaviour complicates considerations
+regarding convexity of the pre-image of a spherical cap centred at w under the distance
+function. Similarly and in the same sense, the level curves (sets) are symmetric with respect
+to the vertical line α = u ± 1/2 mod 1 which passes through the parameter point of the
+antipodal point −w = Φ(u ± 1/2 mod 1, 1 − v). When identifying the left and right side
+of the unit square [0, 1]2 , we get the “cylindrical view”. Clearly, all level curves except the
+critical ones associated with the distance to one of the poles are closed on the open cylinder.
+Thus, the critical level curves separate the open cylinder into three parts corresponding to
+the cases when neither pole is contained in the spherical cap centred at w, only one pole is
+contained in the spherical cap, and both poles are contained in the spherical cap. In both
+the first and last case the level curve can not escape the level set bounded by a critical curve
+(and the boundary of the cylinder). It is closed even in the unit square provided the level
+set is contained in its interior. In the middle case the level curves wrap around the cylinder;
+that is, start at the left side of the unit square and end at its right side at the same height;
+cf. Figure 2.
+18                        CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+   Let w be the North or the South Pole. Then the level curves are horizontal lines in
+the unit square which are smooth curves. Moreover, the pre-image of a spherical cap centred
+at one of these poles is a convex set (a rectangle).
+   Let w be different from either pole (that is 0 < v < 1). We use the signed curvature
+of the implicitly given level curve to determine the segments where it is convex (concave).
+First, we collect the partial derivatives up to second order:
+                                     p
+(9a)             Fα (α, τ ) = −16π (1 − v) v (1 − τ ) τ sin(2π(u − α)),
+                                                     p                           !
+                                                        (1 − v) v
+(9b)             Fτ (α, τ ) = 4 1 − 2v − (1 − 2τ ) p               cos(2π(u − α)) ,
+                                                        (1 − τ ) τ
+                                    p
+(9c)            Fαα (α, τ ) = 32π 2 (1 − v) v (1 − τ ) τ cos(2π(u − α)),
+                                             p
+                                               (1 − v) v
+(9d)            Fατ (α, τ ) = −8π (1 − 2τ ) p             sin(2π(u − α)),
+                                               (1 − τ ) τ
+                                         p
+                                   2       (1 − v) v
+(9e)            Fτ τ (α, τ ) =           p           cos(2π(u − α)).
+                               (1 − τ ) τ (1 − τ ) τ
+   We observe that the partial derivatives involving differentiation with respect to τ become
+singular as τ approaches 0 (North Pole) or 1 (South Pole).
+   The signed curvature at a point (α, τ ) of Cw is given by
+                                            Fαα Fτ2 − 2Fατ Fα Fτ + Fτ τ Fα2
+(10)                       κ = κ(α, τ ) =                                     .
+                                                    (Fα2 + Fτ2 )3/2
+     First, we discuss the denominator. Substituting the relations (9a) and (9b) we obtain
+                                                    p                         !2
+                                                      (1 − v) v
+                  Fα2 + Fτ2 = 16 1 − 2v − (1 − 2τ ) p           cos(2π(u − α))
+                                                     (1 − τ ) τ
+                            + 162 π 2 (1 − v) v (1 − τ ) τ [sin(2π(u − α))]2 .
+A necessary condition for the vanishing of Fα2 + Fτ2 is sin(2π(u − α)) = 0; that is, either
+α = u or α = u ± 1/2 mod 1. In the first case one has cos(2π(u − α)) = 1 and, therefore,
+Fα2 + Fτ2 = 0 if and only if τ = v. In the second case one has cos(2π(u − α)) = −1 and,
+therefore, Fα2 + Fτ2 = 0 if and only if τ = 1 − v. It follows that the denominator of the
+curvature formula (10) vanishes if and only if z = Φ(α, τ ) (on the boundary of the spherical
+cap centred at w = Φ(u, v)) coincides with w (that is the spherical cap degenerates to the
+point w) or z coincides with the antipodal point of w (that is the closed spherical cap is the
+whole sphere). In either of these cases the pre-image of the spherical cap under Φ is convex.
+   Suppose that the spherical cap is neither a point nor the whole sphere. Then
+Fα2 + Fτ2 6= 0. For the numerator in (10) we obtain after some simplifications
+Fαα Fτ2 − 2Fατ Fα Fτ + Fτ τ Fα2
+                                                     p                         !2
+      p   2                                            (1 − v) v
+= 512π (1 − v) v (1 − τ ) τ       1 − 2v − (1 − 2τ ) p           cos(2π(u − α)) cos(2π(u − α))
+                                                      (1 − τ ) τ
+                      p
+                        (1 − v) v
+              2
+     + 512π (1 − v) v p           cos(2π(u − α)) [sin(2π(u − α))]2
+                       (1 − τ ) τ
+           POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                         19
+
+                                                   p                          !
+                                                     (1 − v)  v
+  − 1024π 2 (1 − v) v (1 − 2τ ) 1 − 2v − (1 − 2τ ) p            cos(2π(u − α)) [sin(2π(u − α))]2 .
+                                                     (1 − τ ) τ
+The right-hand side above can be written as a polynomial in x = cos(2π(u − α)) as follows
+                                                                 A2 Bx 1 − x2
+                                                                                
+                2                      2                     2
+           Fαα Fτ − 2Fατ Fα Fτ + Fτ τ Fα = Ax (1 − 2v − BHx) +
+                                                                512π 2 (1 − τ ) τ
+                                          − 2ABH (1 − 2v − BHx) 1 − x2 ,
+                                                                          
+
+where                                                 p
+                    p   2                               (1 − v) v
+            A = 512π (1 − v) v (1 − τ ) τ ,     B=p                ,    H = 1 − 2τ.
+                                                        (1 − τ ) τ
+Reordering with respect to falling powers of x, we observe that the coefficient of x2 vanishes
+and after simplifications we arrive at
+                                                                           
+                                                                   A
+               2                       2
+          Fαα Fτ − 2Fατ Fα Fτ + Fτ τ Fα = −AB BH +    2
+                                                                              x3
+                                                          512π 2 (1 − τ ) τ
+                                                               
+                            2             2         AB
+                   + A 2B H + (1 − 2v) +                          x − 2ABH (1 − 2v) .
+                                              512π 2 (1 − τ ) τ
+The coefficient of x3 does not vanish for 0 < v < 1 and 0 < τ < 1. Hence, we divide and get
+                    Fαα Fτ2 − 2Fατ Fα Fτ + Fτ τ Fα2
+                −                              = x3 + p x + q=:Q(τ ; x)=:Q(x),
+                               2        A
+                     AB BH + 512π2 (1−τ )τ
+where (using the definitions of A, B, and H)
+                       (1 − 2v)2 + B 2 1 + 2H 2
+                                                
+                                                                        2 (1 − 2v) (1 − 2τ )
+         p = p(τ ) = −                            ,       q = q(τ ) =                        .
+                              B 2 (1 + H 2 )                                B (1 + H 2 )
+We observe that p(1−τ ) = p(τ ) and q(1−τ ) = −q(τ ). Hence, Q(τ ; x) = −Q(1−τ ; −x) for all
+x. In particular, if ξ is a zero of Q(τ ; ·), then so is −ξ a zero of Q(1 − τ ; ·) and vice versa. The
+monic polynomial Q of degree 3 with real coefficients has either one or three real solutions
+(counting multiplicity). With the help of Mathematica we find that the discriminant of the
+polynomial Q is positive,
+                                    discr(Q) = −4p3 − 27q 2 > 0;
+that is, the polynomial Q has three distinct real roots.
+   For v = 1/2 the polynomial Q reduces to
+                                                      1 + 2H 2     1 + 2 (1 − 2τ )2
+               Q(x) = x3 + px,        where    p=−             = −                  .
+                                                      1 + H2        1 + (1 − 2τ )2
+The solutions ±1 (if τ = 1/2) correspond to Φ(α, τ ) = ±w and can be discarded, since we
+assumed that the spherical cap is neither a point nor the whole sphere. The solution zero
+yields that cos(2π(u − α)) = 0, which in turn shows that the zeros of the curvature (10) form
+the vertical lines at α = u ± 1/4 mod 1 if v = 1/2.
+   Let v 6= 1/2. Suppose Q has a zero at ±1. Then
+                                                                 √                    2
+                                                                     (1−v)v
+                                                        1 − 2v + √           (1 − 2τ )
+                                  (1 − 2v + BH)2                     (1−τ )τ
+        0 = Q(1) = 1 + p + q = ±                   =±
+                                    B 2 (1 + H 2 )              B 2 (1 + H 2 )
+20                       CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+
+
+
+        Figure 2. Contour plot of √  the distance function
+                                                    √      kw − Φ(α, τ )k for various
+                                              √
+        w. Level curves for distances 2 and 2 v, 2 1 − v are emphasised. The solid
+        curve shows vanishing curvature.
+
+
+which can only happen when τ = v. This implies that Φ(α, τ ) = w, which is excluded by our
+assumptions. Suppose Q has a zero at 0. Since v 6= 1/2, this can only happen when τ = 1/2.
+   Having established that −1, 0 (except when τ = 1/2), and 1 cannot be zeros of the
+polynomial Q, we use Storm’s theorem to show that the polynomial Q has precisely one
+solution either in the interval (−1, 0) or in the interval (0, 1) if τ 6= 1/2, cf. Table 3. First, we
+generate the canonical Storm chain by applying Euclid’s algorithm to Q and its derivative:
+          p0 (x) = Q(x) = x3 + px + q,
+          p1 (x) = Q0 (x) = 3x2 + p,
+                                            2p
+          p2 (x) = p1 (x)q0 (x) − p0 (x) = −   x − q,
+                                             3
+                                                27q 2   −4p3 − 27q 2   discr(Q)
+          p3 (x) = p2 (x)q1 (x) − p1 (x) = −p −     2
+                                                      =       2
+                                                                     =          > 0,
+                                                 4p        4p             4p2
+          p4 (x) = 0.
+Let σ(x) denote the number of sign changes (not counting a zero) in the sequence
+                                    {p0 (x), p1 (x), p2 (x), p3 (x)}.
+For x = 0 we obtain the canonical Storm chain {q, p, −q, discr(Q)/(4p2 )} and we conclude
+that σ(0) = 2 for (1/2 − v)(1/2 − τ ) > 0 and σ(0) = 1 otherwise. For x = 1 we have
+                                    (1 − 2v + BH)2
+           p0 (1) = 1 + p + q = −                    < 0,
+                                      B 2 (1 + H 2 )
+          POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                   21
+
+
+                           2 + H2       (1 − 2v)2
+          p1 (1) = 3 + p =          −               >0       iff (1 − τ )τ < 3(1 − v)v,
+                           1 + H 2 B 2 (1 + H 2 )
+                                h                                              i
+                                    2 1 + 2H 2 + (1 − 2v)2 − 3BH (1 − 2v)
+                                               
+                     2p       2   B
+          p2 (1) = − − q =                                                       > 0,
+                      3                         3B 2 (1 + H 2 )
+                   discr(Q)
+          p3 (1) =          > 0.
+                      4p2
+(The positivity of p2 (1) has been verified using Mathematica.) Hence, in all three cases
+p1 (1) < 0, p1 (1) = 0, and p1 (1) > 0 one gets σ(1) = 1. For x = −1 we have
+
+                                  (1 − 2v + BH)2
+         p0 (−1) = −1 − p + q =                    > 0,
+                                    B 2 (1 + H 2 )
+                           2 + H2      (1 − 2v)2
+         p1 (−1) = 3 + p =         −               >0       iff (1 − τ )τ < 3(1 − v)v,
+                           1 + H 2 B 2 (1 + H 2 )
+                                h                                             i
+                                   2 1 + 2H 2 + (1 − 2v)2 + 3BH (1 − 2v)
+                                              
+                   2p         2  B
+         p2 (−1) =    −q =−                                                     < 0,
+                    3                          3B 2 (1 + H 2 )
+                   discr(Q)
+         p3 (−1) =          > 0.
+                      4p2
+Here, we obtain σ(−1) = 2. Thus, by Storms Theorem, the difference σ(−1) − σ(0) gives the
+number of real zeros of Q in the interval (−1, 0] and σ(0) − σ(1) is the number of zeros in
+(0, 1], see Table 3.
+
+       Table 3. The number of real zeros of Q in the intervals (−1, 0) and (0, 1) as
+       it follows from Sturm’s Theorem.
+
+                  Range of v and τ     σ(−1) σ(0) σ(1) (−1, 0) (0, 1)
+              0 < v < 1/2, 0 < τ < 1/2   2    2    1     0       1
+              0 < v < 1/2, 1/2 < τ < 1   2    1    1     1       0
+              1/2 < v < 1, 0 < v < 1/2   2    1    1     1       0
+              1/2 < v < 1, 1/2 < τ < 1   2    2    1     0       1
+
+   Having established that the polynomial Q has to every 0 < τ < 1 precisely one zero in the
+interval (−1, 1) (cf. Table 3 and previous considerations), it follows that to each such zero
+x = x(τ ) there correspond two values of α by means of the trigonometric equation
+
+(11)                                cos(2π(u − α)) = x(τ ).
+
+Because of the continuity of the coefficients in the polynomial Q (if 0 < τ < 1) the zero x(τ )
+is also changing continuously and so are the solutions α1 and α2 . A jump can happen when
+they are taken modulo 1. We further record that along the vertical lines α = u ± 1/4 mod 1
+one has
+                                               (1 − v) v (1 − 2v) (1 − 2τ )
+                 κ(u ± 1/4, τ ) = −16π 2
+                                         [1 − 4 (1 − v) v (1 − 4π 2 (1 − τ ) τ )]3/2
+22                            CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+which vanishes at τ = 1/2 and along the vertical lines α = u ± 1/2 mod 1 and α = u one has
+                                                     p
+                                        2              (1 − v) v (1 − τ ) τ
+        κ(u, τ ) = κ(u ± 1/2, τ ) = −8π           p                         p
+                                          (1 − 2v) (1 − τ ) τ + (1 − 2τ ) (1 − v) v
+
+which vanishes only as τ → 0 or τ → 1 (if 0 < v < 1). When identifying the left and right
+side of the unit square, these two lines separate the two solutions of (11) in such a way that in
+each part the points at which κ(α, τ ) vanishes form a connected curve varying about the “base
+lines” α = u ± 1/4 mod 1. It follows that these curves (together with the boundary of the
+cylinder) divide the cylinder into two parts in each of which the curvature κ(α, τ ) has the same
+sign. The shapes of these curves do not change when w is rotated about the polar axis. We
+may fix u = 1/2 and because of the symmetries (including relation Q(τ ; x) = −Q(1 − τ ; −x))
+it suffices to consider the curve of the zeros of κ(α, τ ) for 0 < v < 1/2 (recall that these curves
+are vertical lines for v = 1/2) and 0 < τ < 1/2 which lies in the strip 0 < α < 1/2. We know
+that the zero x = x(τ ) of Q (we are interested in) in the given setting is in (0, 1) (cf. Table 3).
+Using ẋ to denote the derivative of x with respect to τ , implicit differentiation gives
+(12)                                 Q0 (x(τ )) ẋ(τ ) = −ṗ(τ ) x(τ ) − q̇(τ ),
+where it can be easily seen that Q0 (x(τ )) < 0, since x(τ ) is simple and Q(x) has a negative
+global minimum for positive x. For τ ’s in (0, 1/2) at which ẋ(τ ) vanishes one has
+                                                                  s
+                                           1 − 6 (1 − τ ) τ 1 − 2v (1 − v) v
+(13)              x(τ ) = −q̇(τ )/ṗ(τ ) =                                   ,
+                                           1 − 6 (1 − v) v 1 − 2τ (1 − τ ) τ
+which follows by substituting
+                                                                                                        s
+                 (1 − 6 (1 − v) v) (1 − 2τ )                          (1 − 6 (1 − τ ) τ ) (1 − 2v)          (1 − τ ) τ
+ ṗ(τ ) = −                                     ,        q̇(τ ) =                                                      .
+               2 (1 − v) v (1 − 2 (1 − τ ) τ )2                     2 (1 − τ ) τ (1 − 2 (1 − τ ) τ )2       (1 − v) v
+For the second derivative of x at such τ ’s we get
+                                                                               1 − 2v
+     Q0 (x(τ )) ẍ(τ ) = −p̈(τ ) x(τ ) − q̈(τ ) =                   3/2
+                                                                          p                                     .
+                                                    4 ((1 − τ ) τ )        (1 − v) v [1 − 2τ (2 − τ (3 − 2τ ))]
+The square-bracketed expression is strictly monotonically decreasing on (0, 1/2) and evaluates
+to zero at τ = 1/2. Thus, the left-hand side has to be positive for all critical τ in (0, 1/2)
+which in turn implies that ẍ(τ ) < 0 at such τ ’s. We conclude that x(τ ) has a single maximum
+in (0, 1/2), since it cannot be constant as can be seen from (13) by evaluating x(τ ) at that τ 0
+at which 1 − 6 (1 − τ 0 ) τ 0 = 0 and x(τ ) → ∞ as τ → 1/2. By (11) (recall u = 1/2)
+                                             − cos(2πα(τ )) = x(τ )
+and it follows that α(τ ) has a single maximum in (0, 1/2).
+Proposition 19. The set of zeros of κ(α, τ ) and the horizontal sides of the unit square divide
+the unit square either into three parts of equal sign of κ(α, τ ) or in four parts, cf. Figure 2.
+  Using the trigonometric method,
+                            p      we obtain an explicit expression of the zero of Q in (−1, 1).
+The change of variable x = 2 −p/3 cos θ gives the equivalence
+                                                                   r
+                                                                3q    3
+                    Q(x) = 0      if and only if    cos(3θ) =
+                                                                2p −p
+            POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                                23
+
+and therefore
+                                                                    s
+                             p             1         3q(τ )             3  2π 
+                    x(τ ) = 2 −p(τ )/3 cos    arccos                           −   .
+                                            3          2p(τ )           −p(τ )   3
+(The discarded solutions are either smaller or larger than the given one. By our reasoning,
+they have to lie outside the interval (−1, 1).) A limit process shows that x(τ ) → 0 as τ → 0
+or τ → 1. Hence, when moving towards the upper or lower side of the square along the curve
+of zeros of the curvature, one approaches the corresponding “base line” α = u ± 1/4 mod 1.
+   Eliminating the trigonometric term, along a level curve with parameter t (cf. (8)) we have
+                                                    "               
+               2                       2          2       1        1    3
+         Fαα Fτ − 2Fατ Fα Fτ + Fτ τ Fα = −16π                  2 + τ2 X
+                                                       (1 − τ )
+                                                                                     #
+                             (1 − v) v
+                  −8 1+3                 (1 − 2τ )2 X + 64 (1 − v) v (1 − 2v) (1 − 2τ ) ,
+                             (1 − τ ) τ
+where X = t−(1−2v)(1−2τ ). Reordering the terms and using the substitution G = t−(1−2v),
+we arrive at
+                                              16     h
+      Fαα Fτ2 − 2Fατ Fα Fτ + Fτ τ Fα2 = −              3          2          2
+                                                                               
+                                                  2 2 G − 2G 3 + G + 3Gt − 3t τ
+(14)                                      (1 − τ ) τ
+                                                                                       i
+             + 2 2t + 6G2 t − 2t3 + 3G 3 − t2 τ 2 − 4 5t − 3t3 + 3G 1 + t2 τ 3 + 16tτ 4 .
+                                                                        
+
+The zeros of the numerator of the curvature (10) are determined by a polynomial in τ of
+degree 4. Thus, there can be at most four pairs (symmetry with respect to α = u) of points
+on the level set at which the curvature vanishes. For the sake of completeness, in a similar
+way one obtains
+           3/2         1        h
+                                              2                 2 2                                     i3/2
+ Fα2 + Fτ2      =                 (G   − 2tτ )  − 16π 2
+                                                        (1 − τ ) τ    G 2
+                                                                          − 4Gtτ −  4τ   1 −    t 2
+                                                                                                    − τ        .
+                   (1 − τ )3 τ 3
+  The critical curves when the boundary of the spherical cap passes through a pole are of
+particular interest. In the case of the North Pole (that is t = 1 − 2v, or equivalently G = 0),
+the curvature along the corresponding level curve reduces to
+                                                                                           2
+                                                                                            
+                            2 (1 − 2v) (1 − τ ) 2 (1 − v) v − (1 + 6 (1 − v) v) τ + 2τ
+(15)         κ(τ ) = −16π          h                                                 i3/2      .
+                                     (1 − 2v)2 − 16π 2 (1 − τ )2 τ (τ − 4 (1 − v) v)
+For given 0 < τ < 1, the corresponding value(s) of α can be obtained from the relation
+                                                   (1 − 2v) τ
+(16)                           cos(2π(u − α)) = p                     .
+                                               2 (1 − v) v (1 − τ ) τ
+From (8) it follows that the range for τ is (0, τ1 ] with τ1 = 4v(1 − v). For future reference we
+record that for 0 < v < 1 with v 6= 1/2 the curvature (15) vanishes only for
+                      1                   p                                  
+(17)             τv =     1 + 6 (1 − v) v − 1 − 4 (1 − v) v (1 − 9 (1 − v) v) .
+                      4
+(The other solution lies outside the interval [−1, 1] as one can verify with Mathematica.)
+Proposition 20. The curves of zeros of the curvature (10) (as functions of τ ) assume their
+extrema at τv and 1 − τv with τv given in (17).
+24                       CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+Proof. Suppose that u = 1/2 and 0 < v < 1/2. Then 0 < τv < 1/2. On observing that the
+right-hand side of (16) for τ = τv is also the zero x(τv ) in the interval (0, 1) of the polynomial
+Q, it can be verified with the help of Mathematica that the right-hand side of (12) vanishes
+and therefore ẋ(τv ) = 0; that is, the zero x(τ ) is extremal at τ = τv . Using the symmetry
+relation Q(τ ; x) = −Q(1 − τ ; −x), the zero x(τ ) is also extremal at τ = 1 − τv . By means
+of (16) this translates into extrema of the curve of zeros of the curvature (10). A shift in u
+(rotation of w about the polar axis) does not change the shape of the level curves and the
+general result follows.                                                                          
+  Substituting (17) into the right-hand side of (16) gives the extremal value a zero of Q in
+(−1, 1) can assume, also cf. (13):
+                                               1 − 2v
+                x(τv ) = s                  r                                .
+                                                                          
+                           1 + 2 (1 − v) v + 1 − (1 − v) v 9 (1 − 2v)2 − 5
+
+It can be shown that x(τv ) is a strictly monotonically decreasing
+                                                                 √     function in v which is
+                                                         +
+symmetric with respect to v = 1/2. Hence |x(τv )| ≤ x(0 ) = 1/ 2. Using this bound in (16)
+yields that |α − (u ± 1/4)| ≤ 1/8 (when wrapping around).
+   When moving along the critical level curve towards the lower side of the unit square, which
+is associated with the North Pole, we have
+                                     1 − 2v
+                 lim κ(τ ) = −32π 2           (1 − v) v,   0 < v < 1, v 6= 1/2.
+                 τ →0               |1 − 2v|3
+We conclude that the critical level curve with t = 1 − 2v (associated with the North Pole) has
+precisely one symmetric (in the cylindrical view) pair of intersection points with the curves
+of zeros of the curvature function (10) at τ = τv in the strip 0 < τ < 1. A similar result holds
+for the level curve associated with the South Pole (t = −(1 − 2v)).
+Proposition 21. Let 0 < v < 1/2. Then the level curves with t in the range −(1 − 2v) ≤ t ≤
+1 − 2v have precisely one symmetric (in the cylindrical view) pair of intersection points with
+the curve of zeros of the curvature function (10). For t in the ranges −1 < t < −(1 − 2v) or
+1 − 2v < t < 1 there are either no intersection points, one pair of tangential points, or two
+pairs.
+                                                                                           √
+   The analogue result holds for 1/2 < t < 1. (For v = 1/2 the level curves for distance 2
+are the verticals at α = u ± 1/4 mod 1 and coincide with the curve of zeros of κ(α, τ ) and
+also coincide with the critical curves. The other level curves have no intersections.)
+Proof. Without loss of generality assume that u = 1/2. We have already established that
+either critical level curve has precisely one pair of symmetric (with respect to α = u) inter-
+section point with the two curves of zero curvature about the base lines α = u ± 1/4 at the
+values τ = τv and τ = 1 − τv . These parameter values also give the position of the extrema
+of the zero curves, cf. Figure 2. The left zero curve Z is increasing for τ in (0, τv ), decreasing
+for τ in (τv , 1 − τv ) and increasing again for τ in (1 − τv , 1).
+   Let −(1 − 2v) < t < 1 − 2v and Γt denote the left half of the corresponding level curve
+starting at the left side at some point (0, τ1 ) and ending at some point (u, τ2 ). (The other half
+is symmetric.) We note that the part where the zero curve is increasing is contained in the
+regions separated off by the critical level curves. Thus, an intersection between Z and Γt can
+only occur for τ in the interval [tv , 1 − tv ]. The curvature along Γt changes continuously (cf.
+              POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                 25
+
+(14) and subsequent formula) from negative to positive value. Hence, there is an intersection
+point of Z and Γt and the Γt cannot change abruptly. In particular, both Z and Γ0 † pass
+through (1/4, 1/2), which is their only intersection point because for τ 6= 1/2 the vertical line
+α = 1/4 separates both curves. A Γt with 0 < t < 1 − 2v (−(1 − 2v) < t < 0) has to intersect
+Z in the strip 1/4 < α < 1/2 (0 < α < 1/4). Inspecting the partial derivatives of F (cf.
+(9)) it follows that the Gradient of F at the intersection point, which is the outward normal
+at the level curve Γt , points into the upper left part; that is the tangent vector at Γt at the
+intersection point shows to the right whereas the tangent vector at Z at this point shows to
+the left. Moreover, if 0 < t < 1 − 2v, then the curve Γ0 separates Z and Γt for τ ≥ 1/2 and in
+the remaining part both curves Z and Γt bend away from each other because Z is decreasing
+with growing τ and the curvature along Γt becomes positive. Consequently, there is only one
+intersection point of Γt and Z. A similar argument holds for −(1 − 2v) < t < 0.
+   Let 1 − 2v < t < 1. Let Γt denote the left half of the level curve. For t sufficiently close
+to 1 there is no intersection with Z and the level curve is convex. If Γt and Z intersect in
+only one point, then the level curve is still convex, since the curvature function κ(α, τ ) has
+positive sign in the section between Z and the vertical line α = u. In this case Z and Γt share
+a common tangent at the intersection point. If the curvature along Γt changes its sign to
+negative, then it has to become positive again, since it is positive when crossing the vertical
+α = u. But after changing back to positive curvature, both curves are bending away from
+each other. So, there can be no other intersection point.
+   By symmetry with respect to the line α = u one has pairs of symmetric intersection points.
+   Shifting u does not change the form of the curves and their relative positions. This com-
+pletes the proof.                                                                              
+
+                                              7. Proofs
+Proof of Lemma 3. For t = 1 the spherical cap is a point and for t = −1 it is the whole
+sphere. Their pre-images (a point and the whole unit square) are convex. So, we may assume
+that −1 < t < 1.
+   Case (i): Let w be either the North or the South Pole. Then the pre-images of the
+boundary of spherical caps centred at w are horizontal lines in the unit square. Hence, the
+pre-image of such a spherical cap is convex.
+   Case (ii): Let w be on the equator (that is v = 1/2). We know that the curvature (10)
+vanishes along the lines α = u ± 1/4 mod 1. First, suppose that u = 1/4. Then the pre-
+image
+√      of any spherical cap centred at w with boundary points at most Euclidean distance
+  2 away from w is convex. For a larger spherical cap C it follows that its complement C
+with respect to the sphere (centred√at the antipodal point −w) has the property that points
+on the boundary have distance ≤ 2 from −w. Hence, the pre-image of C is convex. When
+rotating w about the polar axis (that is shifting u), the vertical boundaries of the square cut
+these convex sets into two parts. We conclude that the pre-image of a spherical cap centred
+at w or its complement with respect to the sphere is the union of at most two convex sets.
+   Case (iii): Let w be neither the poles nor located at the equator. Without loss of generality
+we may assume that w is in the upper half of the sphere; that is 0 < v < 1/2. (Otherwise we
+can use reflection with respect to the equator.) First, let us consider the canonical position
+u = 1/2. Let −(1 − 2v) ≤ t ≤ 1 − 2v. Then, by Proposition 21, there are precisely two
+(symmetric) points along the level curve at which the curvature vanishes, say at (α1 , τt ) and
+  †
+      The spherical cap is the half-sphere.
+26                      CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+(α2 , τt ). This yields a decomposition of the unit square into three vertical rectangles such
+that either the part above or below the level curve is convex. Let 1 − 2v < t < 1. By
+Proposition 21 the level curve is already convex or there are two pair of symmetric points at
+which the curvature along the level curve vanishes and a sign change occurs. Hence, there
+are numbers τ1 < τ2 such that the level curve is convex for τ ≤ τ1 and convex for τ ≥ t2 .
+The remaining middle part can be covered by a convex isosceles trapezoid which in turn can
+be split by some vertical line contained in the level set associated with the level curve. Thus,
+one has again two convex polygons which are divided into a convex and non-convex part by
+the level curve. A similar argument holds for −1 < t < −(1 − 2v).
+   A shift of u does not increase the number of vertical rectangles needed for 0 ≤ t ≤ 1−2v. (In
+fact, one may even reduce the number of elements of the partition.) In the case 1 − 2v < t < 1
+one may need to use a covering of the pre-image of the spherical cap with up to 7 pieces. A
+more precise analysis is listed in Table 4.                                                   
+
+
+       Table 4. Worst-case admissible convex covering with p part and q of which
+       are convex. The vertical lines show canonical positions of the vertical borders
+       of [0, 1]2 .
+
+
+
+           p   q 2p − q
+       A   4   2   6
+       B   5   3   7
+       C   7   3   11
+       D   6   3   9
+       E   6   4   8
+
+
+
+
+Proof of Proposition 8. Radon’s theorem (see e.g. [5, Theorem 4.1]) states that any set of
+d + 2 points from Rd can be partitioned into two disjoint subsets whose convex hulls intersect.
+Particularly, let A denote a set of 5 points on the sphere. Then by Radon’s theorem there
+exists a partitioning of A into disjoint subsets whose convex hulls intersect. Thus the set A
+can not be shattered by the class of halfspaces. Since every spherical cap is the intersection
+of the sphere with an appropriate halfspace, the set A can also not be shattered by the class
+of spherical caps. Thus the VC dimension of the class of spherical caps is at most 5.
+On the other hand, let the set Â consist of the points of a regular simplex, which lie on the
+sphere. Then some simple considerations show that the set Â is shattered by the class of
+spherical caps. Thus the VC dimension of the class of spherical caps (and therefore of course
+also the VC dimension of the class C of spherical caps for which the centre w and the height
+t are rational numbers, which was used in Section 4) equals 5.                               
+
+Proof of Theorem 9. As mentioned directly after the statement of Theorem 9, the lower bound
+in the theorem follows directly from (5). To prove the upper bound we use Theorem 7. By
+Proposition 8 the VC dimension of the class C in Section 4 is 5. For simplicity we assume
+          POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY               27
+
+that the constant in Theorem 7 is an integer. Then for any s ≥ 2K
+                                                        5
+                                                1 Ks2
+                                                
+                                         s                     2
+                         P D(ZN ) ≥ √         ≤            e−2s ,
+                                         N      s    5
+and consequently we have
+                                     ∞                            
+                                 2K  X     (s + 1)               s
+                E(D(ZN )) ≤      √ +        √      · P D(ZN ) ≥ √
+                                  N s=2K      N                   N
+                                     ∞                 5
+                                         s + 1 Ks2
+                                                     
+                                 2K  X                        2
+                             ≤   √ +      √              e−2s
+                                  N      s N       5
+                                        s=2K
+                                 K̂
+                             ≤   √
+                                   N
+for some appropriate constant K̂. This proves the theorem.                               
+
+Proof of Theorem 10. Let C ∗ ⊆ C denote a hemisphere, i.e. a spherical cap whose normalised
+surface area measure is σ(C ∗ ) = 1/2. By the central limit theorem for any t ≥ 0
+           (    N −1
+                                                  )    √ Z t
+              1 X                    ∗       −1/2        2         2
+         P           1C ∗ (Xn ) − σ(C ) ≤ tN        →√         e−2u du as N → ∞,
+             N                                           π −t
+                n=0
+
+and consequently, for any given ε > 0 and sufficiently small C3 (ε) > 0,
+                             N −1
+                       (                                         )
+                          1 X                     ∗         −1/2
+                     P            1C ∗ (Xn ) − σ(C ) ≤ C3 N        ≤ ε/2
+                          N
+                             n=0
+
+                                            1 PN −1                ∗
+for sufficiently large N . Since D(ZN ) ≥   N  n=0 1C ∗ (Xn ) − σ(C ) , this implies
+                                  n                  o
+(18)                             P D(ZN ) ≤ C3 N −1/2 ≤ ε/2
+
+for sufficiently large N .
+On the other hand, by Theorem 7 for any given ε > 0 and sufficiently large C4 (ε)
+                                               
+                                             C4
+(19)                          P D(ZN ) ≥ √         ≤ ε/2
+                                              N
+for sufficiently large N . Combining (18) and (19) we obtain
+                                                      
+                                  C3               C4
+                              P   √   ≤ D(ZN ) ≤   √     ≥1−ε
+                                    N                N
+for sufficiently large N , which proves Theorem 11.                                      
+
+                                   8. Acknowledgements
+  The authors are grateful to Peter Kritzer and Friedrich Pillichshammer for inspiring sug-
+gestions. In particular, F. Pillichshammer pointed out Theorem 14.
+28                          CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+                                               References
+ [1] C. Aistleitner. Covering numbers, dyadic chaining and discrepancy. J. Complexity. To appear.
+     doi:10.1016/j.jco.2011.03.001.
+ [2] K. S. Alexander. The central limit theorem for empirical processes on Vapnik-Červonenkis classes. Ann.
+     Probab., 15(1):178–203, 1987.
+ [3] K. S. Alexander and M. Talagrand. The law of the iterated logarithm for empirical processes on Vapnik-
+     Červonenkis classes. J. Multivariate Anal., 30(1):155–166, 1989.
+ [4] V. V. Andrievskii, H.-P. Blatt, and M. Götz. Discrepancy estimates on the sphere. Monatsh. Math.,
+     128(3):179–188, 1999.
+ [5] A. Barvinok. A course in convexity, volume 54 of Graduate Studies in Mathematics. American Mathe-
+     matical Society, Providence, RI, 2002.
+ [6] J. Beck. Sums of distances between points on a sphere—an application of the theory of irregularities of
+     distribution to discrete geometry. Mathematika, 31(1):33–41, 1984.
+ [7] J. Beck. On the discrepancy of convex plane sets. Monatsh. Math., 105(2):91–106, 1988.
+ [8] J. Beck and W. W. L. Chen. Irregularities of distribution, volume 89 of Cambridge Tracts in Mathematics.
+     Cambridge University Press, Cambridge, 2008. Reprint of the 1987 original [MR0903025].
+ [9] E. Bendito, A. Carmona, A. M. Encinas, J. M. Gesto, A. Gómez, C. Mouriño, and M. T. Sánchez.
+     Computational cost of the Fekete problem. I. The forces method on the 2-sphere. J. Comput. Phys.,
+     228(9):3288–3306, 2009.
+[10] A. Bondarenko, D. Radchenko, and M. Viazovska. Optimal asymptotic bounds for spherical designs.
+     arXiv:1009.4407v3 [math.MG], 2011.
+[11] J. S. Brauchart. Optimal logarithmic energy points on the unit sphere. Math. Comp., 77(263):1599–1613,
+     2008.
+[12] J. S. Brauchart and J. Dick. Quasi-monte carlo rules for numerical integration over the unit sphere S2 .
+     submitted, 2010.
+[13] J. S. Brauchart, E. B. Saff, I. H. Sloan, and R. S. Womersley. Sequences of approximate spherical designs.
+     Manuscript, 62 pages.
+[14] J. S. Brauchart and R. S. Womersley. Numerical integration over the unit sphere, L2 -discrepancy and sum
+     of distances. manuscript, 26 pages.
+[15] J. W. S. Cassels. An introduction to the geometry of numbers. Die Grundlehren der mathematischen
+     Wissenschaften in Einzeldarstellungen mit besonderer Berücksichtigung der Anwendungsgebiete, Bd. 99
+     Springer-Verlag, Berlin-Göttingen-Heidelberg, 1959.
+[16] X. Chen, A. Frommer, and B. Lang. Computational existence proofs for spherical t-designs. Numer. Math.,
+     117(2):289–305, 2011.
+[17] S. B. Damelin and P. J. Grabner. Energy functionals, numerical integration and asymptotic equidis-
+     tribution on the sphere. J. Complexity, 19(3):231–246, 2003. Numerical integration and its complexity
+     (Oberwolfach, 2001).
+[18] S. B. Damelin and P. J. Grabner. Corrigendum to: “Energy functionals, numerical integration and asymp-
+     totic equidistribution on the sphere” [J. Complexity 19 (2003), no. 3, 231–246; mr1984111]. J. Complexity,
+     20(6):883–884, 2004.
+[19] P. Delsarte, J. M. Goethals, and J. J. Seidel. Spherical codes and designs. Geometriae Dedicata, 6(3):363–
+     388, 1977.
+[20] J. Dick and F. Pillichshammer. Digital Nets and Sequences. Discrepancy Theory and Quasi-Monte Carlo
+     Integration. Cambridge University Press, Cambridge, 2010.
+[21] R. M. Dudley. Central limit theorems for empirical measures. Ann. Probab., 6(6):899–929 (1979), 1978.
+[22] M. Durst and R. M. Dudley. Empirical processes, Vapnik-Chervonenkis classes and Poisson processes.
+     Probab. Math. Statist., 1(2):109–115 (1981), 1980.
+[23] H. Faure. Discrépance de suites associées à un système de numération (en dimension s). Acta Arith.,
+     41(4):337–351, 1982.
+[24] M. Götz. On the distribution of weighted extremal points on a surface in Rd , d ≥ 3. Potential Anal.,
+     13(4):345–359, 2000.
+[25] P. J. Grabner. Erdős-Turán type discrepancy bounds. Monatsh. Math., 111(2):127–135, 1991.
+[26] P. J. Grabner and R. F. Tichy. Spherical designs, discrepancy and numerical integration. Math. Comp.,
+     60(201):327–336, 1993.
+            POINT SETS ON THE SPHERE S2 WITH SMALL SPHERICAL CAP DISCREPANCY                                  29
+
+[27] J. H. Hannay and J. F. Nye. Fibonacci numerical integration on a sphere. J. Phys. A, 37(48):11591–11601,
+     2004.
+[28] D. P. Hardin and E. B. Saff. Discretizing manifolds via minimum energy points. Notices Amer. Math.
+     Soc., 51(10):1186–1194, 2004.
+[29] R. H. Hardin and N. J. A. Sloane. McLaren’s improved snub cube and other new spherical designs in
+     three dimensions. Discrete Comput. Geom., 15(4):429–441, 1996.
+[30] D. Haussler. Sphere packing numbers for subsets of the Boolean n-cube with bounded Vapnik-
+     Chervonenkis dimension. J. Combin. Theory Ser. A, 69(2):217–232, 1995.
+[31] S. Heinrich, E. Novak, G. W. Wasilkowski, and H. Woźniakowski. The inverse of the star-discrepancy
+     depends linearly on the dimension. Acta Arith., 96(3):279–302, 2001.
+[32] J. Korevaar. Fekete extreme points and related problems. In Approximation theory and function series
+     (Budapest, 1995), volume 5 of Bolyai Soc. Math. Stud., pages 35–62. János Bolyai Math. Soc., Budapest,
+     1996.
+[33] J. Korevaar and J. L. H. Meyers. Spherical Faraday cage for the case of equal point charges and Chebyshev-
+     type quadrature on the sphere. Integral Transform. Spec. Funct., 1(2):105–117, 1993.
+[34] L. Kuipers and H. Niederreiter. Uniform distribution of sequences. Wiley-Interscience [John Wiley &
+     Sons], New York, 1974. Pure and Applied Mathematics.
+[35] G. Larcher. Optimale Koeffizienten bezüglich zusammengesetzter Zahlen. Monatsh. Math., 100(2):127–
+     135, 1985.
+[36] G. Larcher. On the distribution of s-dimensional Kronecker-sequences. Acta Arith., 51(4):335–347, 1988.
+[37] G. Larcher. Corrigendum: “On the distribution of s-dimensional Kronecker-sequences” [Acta Arith. 51
+     (1988), no. 4, 335–347; MR0971085 (90f:11065)]. Acta Arith., 60(1):93–95, 1991.
+[38] X.-J. Li and J. D. Vaaler. Some trigonometric extremal functions and the Erdős-Turán type inequalities.
+     Indiana Univ. Math. J., 48(1):183–236, 1999.
+[39] A. Lubotzky, R. Phillips, and P. Sarnak. Hecke operators and distributing points on the sphere. I. Comm.
+     Pure Appl. Math., 39(S, suppl.):S149–S186, 1986. Frontiers of the mathematical sciences: 1985 (New York,
+     1985).
+[40] A. Lubotzky, R. Phillips, and P. Sarnak. Hecke operators and distributing points on S 2 . II. Comm. Pure
+     Appl. Math., 40(4):401–420, 1987.
+[41] F. J. Narcowich, X. Sun, J. D. Ward, and Z. Wu. Leveque type inequalities and discrepancy estimates for
+     minimal energy configurations on spheres. J. Approx. Theory, 162(6):1256–1278, 2010.
+[42] H. Niederreiter. Random number generation and quasi-Monte Carlo methods, volume 63 of CBMS-NSF
+     Regional Conference Series in Applied Mathematics. Society for Industrial and Applied Mathematics
+     (SIAM), Philadelphia, PA, 1992.
+[43] H. Niederreiter and I. H. Sloan. Integration of nonperiodic functions of two variables by Fibonacci lattice
+     rules. J. Comput. Appl. Math., 51(1):57–70, 1994.
+[44] W. Philipp. Emphirical distribution functions and uniform distribution mod 1. In Diophantine approxi-
+     mation and its application (Proc. Conf., Washington, D.C., 1972), pages 211–234. Academic Press, New
+     York, 1973.
+[45] E. B. Saff and A. B. J. Kuijlaars. Distributing many points on a sphere. Math. Intelligencer, 19(1):5–11,
+     1997.
+[46] P. Sjögren. Estimates of mass distributions from their potentials and energies. Ark. Mat., 10:59–77, 1972.
+[47] I. H. Sloan and R. S. Womersley. Extremal systems of points and numerical integration on the sphere.
+     Adv. Comput. Math., 21(1-2):107–125, 2004.
+[48] I. H. Sloan and R. S. Womersley. A variational characterisation of spherical designs. J. Approx. Theory,
+     159(2):308–318, 2009.
+[49] I. M. Sobol0 . Distribution of points in a cube and approximate evaluation of integrals. Z̆. Vyčisl. Mat. i
+     Mat. Fiz., 7:784–802, 1967.
+[50] K. B. Stolarsky. Sums of distances between points on a sphere. II. Proc. Amer. Math. Soc., 41:575–582,
+     1973.
+[51] M. Talagrand. Sharper bounds for Gaussian and empirical processes. Ann. Probab., 22(1):28–76, 1994.
+[52] M. Talagrand. Vapnik-Chervonenkis type conditions and uniform Donsker classes of functions. Ann.
+     Probab., 31(3):1565–1582, 2003.
+[53] V. N. Vapnik and A. J. Červonenkis. The uniform convergence of frequencies of the appearance of events
+     to their probabilities. Teor. Verojatnost. i Primenen., 16:264–279, 1971.
+30                         CH. AISTLEITNER, J. S. BRAUCHART, AND J. DICK
+
+[54] G. Wagner. Erdős-Turán inequalities for distance functions on spheres. Michigan Math. J., 39(1):17–34,
+     1992.
+
+   Ch. Aistleitner, Graz University of Technology, Institute of Mathematics A, Steyrergasse
+30, 8010 Graz, Austria, J. S. Brauchart and J. Dick: School of Mathematics and Statistics,
+University of New South Wales, Sydney, NSW, 2052, Australia
+   E-mail address: aistleitner@math.tugraz.at
+   E-mail address: j.brauchart@unsw.edu.au
+   E-mail address: josef.dick@unsw.edu.au
+

@@ -1,0 +1,191 @@
+The Minimum Distance of Unshifted Spherical Fibonacci Lattices
+                                                       Alper Ferudun∗
+
+                                                      27 October 2026
+
+
+
+                                                               Abstract
+              For the unshifted spherical
+                                   √      Fibonacci lattice with Fn ≥ 2 points, we prove that the least
+          Euclidean distance is 2/ Fn . The unique closest pair consists of the north pole and the
+          next point in the deﬁning order. This answers the separation question stated in Brauchart’s
+          contribution to Oberwolfach Report 40/2012. The proof combines a global inequality for
+          the Lambert equal-area map with Zaremba’s classical formula for the ﬁgure of merit of a
+          Fibonacci lattice. More generally, a rational lattice with N points and Zaremba index at
+          least N/4 has exactly the same minimum distance after the unshifted Lambert lift. No
+          limiting argument or numerical hypothesis is used.
+
+
+1        The point set and the result
+Put F0 = 0, F1 = F2 = 1, and Fn = Fn−1 + Fn−2 for n ≥ 3. For N ≥ 2 and an integer a coprime
+to N , deﬁne
+                     s                                   s                                       !
+                         k          k           2πak           k          k           2πak      2k
+          zk =   2               1−         cos      , 2               1−         sin      , 1−          ,   0 ≤ k < N.   (1)
+                         N          N            N             N          N            N        N
+
+Write Z(N, a) = {z0 , . . . , zN −1 } ⊂ S2 and
+
+                                                    δ(Z) = min |x − y|,
+                                                                   x,y∈Z
+                                                                    x6=y
+
+where | · | is Euclidean distance in R3 . For N = Fn and a = Fn−1 , this is the spherical Fibonacci
+lattice of Aistleitner, Brauchart and Dick [1, Section 5.2].
+    Brauchart [2, p. 2438] conjectured that the pole-to-next-point distance is the minimum for
+this construction. The following theorem establishes the stated formula.
+
+Theorem 1. For every n ≥ 3,
+                                                                    2
+                                                  δ Z(Fn , Fn−1 ) = √ .
+                                                                     Fn
+
+The unique unordered pair attaining the minimum is {z0 , z1 }.
+
+     The index range in (1) is the one used in [1, Section 5.2] and in the deﬁning formula in
+[2, p. 2438]. The latter page subsequently writes the set with indices 1, . . . , Fn . Those two
+endpoint conventions give isometric sets: the orthogonal map (x, y, z) 7→ (x, −y, −z) takes zk
+to zN −k . With the second convention, the closest pair is {zN −1 , zN }. Neither convention is the
+half-step-shifted irrational spiral studied in [4, Section 2]; no assertion about its exact minimum
+is intended here.
+    ∗
+        Mercury Software GmbH. Email: alper@mercurycodelab.com. GitHub: AlperTheKing.
+
+
+                                                                    1
+2    A global distance inequality
+The relevant geometry can be treated without any approximation by tangent planes.
+
+Lemma 2. Let x, y ∈ S2 have third coordinates t1 , t2 and longitude diﬀerence θ. Set h = |t1 −t2 |
+and c = cos θ. Then                      (
+                                           2h,             c ≤ 0,
+                             |x − y| ≥
+                                    2         √
+                                           2h 1 − c2 , c ≥ 0.
+Longitudes at a pole may be assigned arbitrarily.
+
+Proof. Put                                                    q
+                             v = 1 − t1 t2 ,            r=        (1 − t21 )(1 − t22 ).
+The scalar-product formula and an elementary identity give
+
+                        |x − y|2 = 2(v − cr),                v 2 = r2 + h2 ,         v ≥ 0.      (2)
+
+If c ≤ 0, then v − cr ≥ v ≥ h. If c ≥ 0, Cauchy–Schwarz gives
+                                p                  q                    p
+                         cr +       1 − c2 h ≤         c2 + (1 − c2 ) r2 + h2 = v.
+
+Substitution in (2) proves the result. At a pole r = 0, so the same calculation applies.
+
+    Write kuk = dist(u, Z). For two points in (1), put q = j − i with i < j and d = kaq/N k.
+Their height diﬀerence is 2q/N . If d ≥ 1/4, the cosine of the longitude diﬀerence is nonpositive.
+If 0 ≤ d ≤ 1/4, concavity of sine on [0, π/2] gives sin(2πd) ≥ 4d. Consequently Lemma 2 yields
+                                                   (
+                                                        4q/N,   d ≥ 1/4,
+                                |zi − zj | 2
+                                               ≥                                                 (3)
+                                                        16qd/N, d ≤ 1/4.
+
+Both inequalities are consistent at d = 1/4.
+
+
+3    The arithmetic criterion
+The dual lattice and its Zaremba index are
+
+                        L∗ (N, a) = {(u, v) ∈ Z2 : u + av ≡ 0 (mod N )},
+                         ρ(N, a) =           min         max(1, |u|) max(1, |v|).
+                                       (u,v)∈L∗ (N,a)
+                                         (u,v)6=(0,0)
+
+This is the classical ﬁgure of merit for the rank-one rule with generating vector (1, a); see [5, 3].
+
+Theorem 3. For N ≥ 2 and gcd(a, N ) = 1,
+                                                                                
+                                                 4 16ρ(N, a)
+                            δ(Z(N, a)) ≥ min   2
+                                                   ,            .
+                                                N      N2
+                                      √
+If ρ(N, a) ≥ N/4, then δ(Z(N, a)) = 2/ N . If ρ(N, a) > N/4, its unique closest pair is {z0 , z1 }.
+
+Proof. For 1 ≤ q < N , choose an integer p nearest to aq/N and put u = pN − aq. Since a and
+N are coprime, u 6= 0. The vector (u, q) belongs to L∗ (N, a), hence
+
+                                           aq   q|u|   ρ(N, a)
+                                       q      =      ≥         .                                 (4)
+                                           N     N       N
+
+
+                                                         2
+Apply (3) to obtain the asserted lower bound. The point z0 = (0, 0, 1) satisﬁes
+                                                           
+                                                         2            4
+                              |z0 − z1 |2 = 2 1 − 1 −             =     .                        (5)
+                                                         N            N
+This proves equality under the stated index threshold.
+    Suppose now that the threshold is strict. The second case of (3), together with (4), is strictly
+larger than 4/N . In the ﬁrst case equality forces q = 1. It also forces equality in v − cr ≥ v ≥ h
+from Lemma 2, so v = h and r = 0. One of the two points must therefore be a pole. The only
+pole in Z(N, a) is z0 , giving {z0 , z1 }.
+
+Proof of Theorem 1. Zaremba’s classical formula [5, p. 186] is
+
+                                 ρ(Fn , Fn−1 ) = Fn−2     (n ≥ 3).                               (6)
+
+The same formula and its comparison with Fn /3 are recalled in [3, p. 7]. For n ≥ 4, the
+recurrence gives
+                             Fn = 2Fn−2 + Fn−3 ≤ 3Fn−2 ;
+for n = 3, the ratio is F1 /F3 = 1/2. Thus in all cases Fn−2 ≥ Fn /3 > Fn /4. Apply Theorem 3.
+
+
+
+4    Scope and checks
+The arithmetic input (6) is an established theorem, not a new claim of this paper. The ar-
+gument above supplies the geometric implication needed for the spherical separation question.
+It concerns the exact rational, unshifted construction in (1), not discrepancy, optimal packing
+among all N -point sets, or the exact separation of shifted irrational Fibonacci conﬁgurations.
+    A common height shift k 7→ k + η, 0 ≤ η ≤ 1, in the latitude coordinates preserves (3) and
+the lower bound in Theorem 3, because height diﬀerences are unchanged. For 0 < η < 1, pole
+attainment (5) is unavailable, so equality is not asserted.
+    The arithmetic condition cannot simply be omitted. For N = 12, a = 1, the pair z5 , z6 has
+                                        √
+                                          105    1     4
+                      |z5 − z6 | = 2 −
+                                2
+                                               < = ,          ρ(12, 1) = 1.
+                                          6      3    N
+The accompanying reproducibility script checks the polynomial identity in Lemma 2 symboli-
+cally and checks the classical arithmetic formula for all 1 ≤ q < Fn , 3 ≤ n ≤ 30, using integers.
+It also computes all pair distances for 3 ≤ n ≤ 17 in ﬂoating point as a diagnostic. These ﬁnite
+checks are not used to prove either theorem.
+    This unrefereed note was prepared with AI assistance in mathematical exploration, source
+retrieval, drafting and computational checks. Its proof has undergone an originating-system self-
+audit; no independent review or proof-assistant veriﬁcation is claimed. The bounded literature
+search did not locate the same geometric resolution of the cited question; this does not certify
+absolute priority.
+
+
+References
+[1] C. Aistleitner, J. S. Brauchart and J. Dick, Point sets on the sphere S2 with small spherical
+    cap discrepancy, Discrete Comput. Geom. 48 (2012), 990–1024. arXiv:1109.3265.
+
+[2] J. S. Brauchart, Spherical nets, sequences and lattice rules—construction of low-discrepancy
+    sequences on spheres, in Optimal and Near Optimal Conﬁgurations on Lattices and Man-
+    ifolds, Oberwolfach Reports 9 (2012), Report 40, pp. 2436–2439, separation question on
+    p. 2438. doi:10.4171/OWR/2012/40.
+
+                                                 3
+[3] J. Dick and F. Pillichshammer, A note on the ﬁgure of merit of 2-dimensional rank 2 lattice
+    rules, Integers 5(3) (2005), A05. Journal PDF.
+
+[4] D. P. Hardin, T. Michaels and E. B. Saﬀ, A comparison of popular point conﬁgurations on
+    S2 , Dolomites Res. Notes Approx. 9 (2016), 16–49. doi:10.14658/PUPJ-DRNA-2016-1-2.
+
+[5] S. K. Zaremba, A remarkable lattice generated by Fibonacci numbers, Fibonacci Quart. 8
+    (1970), 185–198. Journal PDF.
+
+
+
+
+                                              4
+

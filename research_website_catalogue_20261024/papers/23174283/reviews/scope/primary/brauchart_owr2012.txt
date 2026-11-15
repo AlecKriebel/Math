@@ -1,0 +1,3114 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                  Report No. 40/2012
+
+                            DOI: 10.4171/OWR/2012/40
+
+ Optimal and Near Optimal Configurations on Lattices and
+                       Manifolds
+                                       Organised by
+                                Christine Bachoc, Bordeaux
+                                   Peter Grabner, Graz
+                                 Edward B. Saff, Nashville
+                                Achill Schürmann, Rostock
+
+
+                          19th August – 25th August 2012
+
+         Abstract. Optimal configurations of points arise in many contexts, for ex-
+         ample classical ground states for interacting particle systems, Euclidean pack-
+         ings of convex bodies, as well as minimal discrete and continuous energy
+         problems for general kernels. Relevant questions in this area include the
+         understanding of asymptotic optimal configurations, of lattice and periodic
+         configurations, the development of algorithmic constructions of near optimal
+         configurations, and the application of methods in convex optimization such
+         as linear and semidefinite programming.
+
+
+
+Mathematics Subject Classification (2000): 11K41, 52C17, 11H31.
+
+
+
+                        Introduction by the Organisers
+
+
+The workshop Optimal and Near Optimal Configurations on Lattices and Mani-
+folds, organised by Christine Bachoc (Bordeaux), Peter Grabner (Graz), Ed Saff
+(Nashville) and Achill Schürmann (Rostock), was held 19 August –25 August
+2012. This meeting has gathered 27 participants from various areas of mathemat-
+ics, mostly Approximation Theory, Optimization, Number Theory and Discrete
+Geometry. Bringing together mathematicians with a variety of expertise on opti-
+mal configurations on lattices and manifolds was one of the aims of this workshop
+and was indeed fully achieved. A broad range of topics have been covered during
+the talks, especially minimal energy configurations, best packings in Euclidean
+2430                                                  Oberwolfach Report 40/2012
+
+space or on other spaces, spherical designs, Euclidean lattices and linear and semi-
+definite programming methods. Theoretical as well as computational issues have
+been addressed.
+   Eight survey talks were given by four participants at the beginning of the work-
+shop, at the request of the organisers, in order to provide the younger participants
+with a better perspective on fruitful research directions. In addition, nineteen
+40min talks have addressed more specialised topics. Also one Problems Session
+took place one evening, and one session gathered our group with the participants
+of the parallel workshop Rough Paths and PDE’s.
+   Many recent and exciting results were presented during this week, including
+(but not limited to): the proof that for each N ≥ cd td there exists a spherical
+t-design on S d consisting of N points, where cd is a constant depending only
+on d, the computation of semidefinite programming bounds for binary packings,
+the construction of kissing configurations in dimension 25 and larger that are
+better than the previously known, the discovery of an extremal even unimodular
+lattice in dimension 72, the solution of Tammes problem for thirteen points, and
+low complexity methods for computing near minimal energy points on general
+manifolds.
+   The diversity of participants and the broad range of topics covered during
+the presentations, as well as the warm atmosphere provided by the Mathema-
+tisches Forschungsinstitut Oberwolfach have stimulated fruitfull discussions and
+new collaborations among the participants. A detailed program of the week and
+slides for many of the talks are available from https://sites.google.com/site/
+optimalconfigurations2012/. In the following the abstracts of the talks are in-
+cluded in alphabetical order of their authors.
+Optimal and Near Optimal Configurations on Lattices and Manifolds                                                          2431
+
+
+
+
+Workshop: Optimal and Near Optimal Configurations on Lattices
+and Manifolds
+
+Table of Contents
+
+
+Andriy Bondarenko (joint with Danylo Radchenko)
+  Euclidean representation of strongly regular graphs . . . . . . . . . . . . . . . . . . . 2433
+Sergiy Borodachov (joint with Doug Hardin and Edward Saff)
+   Asymptotically optimal d-energy configurations on d-dimensional sets . . 2434
+Johann S. Brauchart (joint with Christoph Aistleitner, Josef Dick, Edward
+   B. Saff, Ian H. Sloan, Robert S. Womersley)
+   Spherical Nets, Sequences and Lattice rules — construction of
+   low-discrepancy sequences on spheres . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2436
+Henry Cohn
+   Examples and open problems I and II . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2439
+Renaud Coulangeon
+   On Rankin constants and slope filtration of Euclidean lattices . . . . . . . . . 2439
+Peter D. Dragnev
+   On a characterization theorem for stationary logarithmic configurations 2441
+Martin Ehler (joint with Christine Bachoc)
+  Signal reconstruction from the magnitude of subspace components . . . . . . 2444
+Noam Elkies
+  Lattices and Designs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2447
+Douglas P. Hardin and Edward B. Saff
+  Asymptotics of Minimal Energy and Maximal Polarization
+  Configurations I . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2448
+Douglas P. Hardin and Edward B. Saff
+  Asymptotics of Minimal Energy and Maximal Polarization Configurations
+  II . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2451
+Nathan Kaplan (joint with Noam Elkies)
+   An Application of Weighted Theta Functions to t-core Partitions and
+   Numerical Semigroups . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2453
+Abhinav Kumar (joint with Henry Cohn, Yang Jiao, Salvatore Torquato)
+  On some kissing numbers in low dimensions . . . . . . . . . . . . . . . . . . . . . . . . 2456
+David de Laat (joint with Fernando Mário de Oliveira Filho and Frank
+  Vallentin)
+  Polydisperse spherical cap packings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2459
+2432                                                                           Oberwolfach Report 40/2012
+
+Ka-Sing Lau (joint with Sze-Man Ngai, Xiang-Yang Wang and Tim-Kam
+   Wong )
+   Self-similar set as Martin Boundary and Induced Dirichlet forms . . . . . . 2461
+H. N. Mhaskar (joint with M. Ehler and F. Filbir)
+   Some applications of local operators . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2465
+Oleg R. Musin
+   Packing of congruent spheres on a sphere . . . . . . . . . . . . . . . . . . . . . . . . . . . 2467
+Gabriele Nebe
+  On extremal lattices in jump dimensions . . . . . . . . . . . . . . . . . . . . . . . . . . . 2469
+Fernando Mário de Oliveira Filho (joint with David de Laat and Frank
+   Vallentin)
+   Packings of bodies in Euclidean space . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2473
+Christian Reiher (joint with Henry Cohn, Abhinav Kumar, Achill
+   Schürmann)
+   Formally dually sequences in finite abelian groups . . . . . . . . . . . . . . . . . . . . 2475
+Ian Hugh Sloan
+   QMC designs – optimal order Quasi Monte Carlo Integration in Sobolev
+   spaces on the sphere . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2476
+Frank Vallentin
+   Linear and semidefinite programming bounds . . . . . . . . . . . . . . . . . . . . . . . . 2477
+Maryna Viazovska (joint with Andriy Bondarenko, Danylo Radchenko)
+  On optimal asymptotic bounds for spherical designs . . . . . . . . . . . . . . . . . . 2480
+Robert S. Womersley
+  Efficient spherical designs with good geometric properties . . . . . . . . . . . . . 2482
+Natalia Zorii
+   Gauss variational problem for infinite dimensional vector measures and
+   Riesz kernels . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2484
+
+     Open Problems Session . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2487
+Optimal and Near Optimal Configurations on Lattices and Manifolds                 2433
+
+                                    Abstracts
+
+
+           Euclidean representation of strongly regular graphs
+                           Andriy Bondarenko
+                    (joint work with Danylo Radchenko)
+
+Definition 1. A strongly regular graph Γ = (V, E) with parameters (v, k, λ, µ)
+is an undirected regular graph on v vertices of valency k such that each pair of
+adjacent vertices has λ common neighbors, and each pair of nonadjacent vertices
+has µ common neighbors.
+The main question is:
+
+  For which parameter set (v, k, λ, µ) there exists a strongly regular graph?
+
+   It is easy to show that incidence matrix of a strongly regular graph A has 3
+eigenvalues: k of multiplicity 1, one positive eigenvalue r of multiplicity f , and one
+negative eigenvalue s of multiplicity g. The list of all suitable parameters together
+with known existence results for v ≤ 1300 could be found at [3] (except trivial case
+when Γ is a disjoint union of complete graphs mKn or its complement).
+   A strongly regular graph implies 2-distance sets both in S f −1 , and in S g−1
+which are spherical 2-designs. Conversely, if there is a 2-distance set on S n then
+it is naturally implies a strongly regular graph. This simple fact is useful for
+constructing of many well-known strongly regular graphs. Strongly regular graph
+which are spherical 3-designs provide universally optimal configurations [6].
+   The main tool we will use for description of strongly regular graphs is the fact
+that each subset of vectors {xi : i ∈ U } for Euclidean representation in S g−1 ,
+where U ⊂ V , has a positive definite Gram matrix {(xi , xj )}i,j∈U of rank at most
+g.
+   We will investigate strongly regular graphs with λ = 1 and negative eigenspaces
+of dimension g = k, see [1]. One can deduce that such a graph is either K3 or
+belongs to the family
+                      ((n2 + 3n − 1)2 , n2 (n + 3), 1, n(n + 1)),
+where n ∈ N is the positive eigenvalue.
+  This family includes the lattice graph L3,3 with parameters (9, 4, 1, 2), the
+Brouwer-Haemers graph with parameters (81, 20, 1, 6), which is also known to be
+unique [4], and the Games graph with parameters (729, 112, 1, 20), for which the
+uniqueness question was open. We will show that these are the only graphs in the
+family.
+
+   Theorem 1. Suppose that there exists a strongly regular graph with parameters
+((n2 + 3n − 1)2 , n2 (n + 3), 1, n(n + 1)). Then n ∈ {1, 2, 4}.
+2434                                                         Oberwolfach Report 40/2012
+
+   The proof consists of two parts. First, using Euclidean representation we will
+show that each graph in the family exhibits certain symmetries (in particular, its
+group of automorphisms is vertex-transitive). Then, we will use different properties
+of these symmetries to prove that the set of vertices can be given a vector space
+structure over the finite field F3 . In particular, the number of vertices in the graph
+is a power of 3.
+   Finally, the resulting diophantine equation has the only three mentioned solu-
+tions by virtue of [2, Theorem B]. This equation has appeared during the studying
+of ternary linear codes with exactly two nonzero weights and with the minimal
+weight of the dual code at least 4. It was actually shown in [5] that each of
+such codes of dimension 2m implies a strongly regular graph from the family with
+v = 32m vertices.
+   The following result completes description of the family.
+
+  Theorem 2. The strongly regular graph with parameters (729, 112, 1, 20) is
+unique up to isomorphism.
+
+                                       References
+ [1] A. Bondarenko, D. Radchenko, On a family of strongly regular graphs with λ = 1, submitted,
+     http://arxiv.org/abs/1201.0383.
+ [2] A. Bremner, R. Calderbank, P. Hanlon, P. Morton, and J. Wolfskill, Two-weight ternary
+     codes and the equation y 2 = 4.3a + 13, J. Number Theory 16 (1983), 212–234.
+ [3] A. E. Brouwer, Parameters of strongly regular graphs, tables published electronically at
+     http://www.win.tue.nl/ aeb/graphs/srg/srgtab.html.
+ [4] A.E. Brouwer, W.H. Haemers, Structure and uniqueness of the (81,20,1,6) strongly regular
+     graph, Discrete Math. 106/107 (1992), 77–82.
+ [5] R. Calderbank , W. M. Kantor, The geometry of two-weight codes, Bulletin of the London
+     Mathematical Society 18 (1986), 97–122.
+ [6] H. Cohn, A. Kumar, Universally optimal distribution of points on spheres, Journal of the
+     American Mathematical Society, 20 (2007), 99–148.
+
+
+
+Asymptotically optimal d-energy configurations on d-dimensional sets
+                         Sergiy Borodachov
+             (joint work with Doug Hardin and Edward Saff)
+
+We find a class of asymptotically optimal sequences of N -point configurations for
+the Riesz d-energy minimization problem on Jordan measurable sets in Rd , d ∈ N.
+We also provide sufficient conditions for the asymptotic optimality of sequences
+of N -point configurations on a certain class of d-dimensional manifolds (for the
+d-energy problem).
+   Let k ·k be an arbitrary norm in Rd and η be the metric generated by this norm.
+Given a finite set ω = {x1 , . . . , xN } ⊂ Rd , let
+                                           X            1
+                           Edη (ω) =                           .
+                                                   kxi − xj kd
+                                        1≤i6=j≤N
+Optimal and Near Optimal Configurations on Lattices and Manifolds            2435
+
+The minimal N -point d-energy of a compact set K ⊂ Rd is defined as
+                                Edη (K, N ) = inf Edη (ω).
+                                                  ω⊂K
+                                                  #ω=N
+
+Here #X stands for the cardinality of a set X.
+   Denote by Ld the d-dimensional Lebesgue measure and let βdη be the Ld -measure
+of the unit ball in Rd with respect to the norm k · k.
+   The following asymptotic result is known when η is the Euclidean distance (see
+[1, Theorem 2.1]). In this case we omit the index η in the notation of the minimal
+N -point d-energy and use the notation βd instead of βdη .
+   Theorem A. Suppose that K is a compact subset of Rd endowed with the
+Euclidean norm. Then
+                                  Ed (K, N )     βd
+                              lim            =         .
+                             N →∞ N 2 ln N     Ld (K)
+   When the boundary ∂K of K has Lebesgue measure zero; i.e., K is Jordan
+measurable, we are able to obtain asymptotically d-energy minimizing configura-
+tions.
+   Let Y be an infinite point configuration in Rd such that
+(1)                            δη (Y ) = inf kx − yk > 0.
+                                          x,y∈Y
+                                           x6=y
+
+
+Given a point x = (x1 , . . . , xd ) ∈ Rd , denote
+                C[x, R] := [x1 − R, x1 + R) × . . . × [xd − R, xd + R) .
+Assume that the limit defining the density of Y ,
+                                              #(Y ∩ C[0, R])
+                            ∆(Y ) := lim
+                                       R→∞        (2R)d
+exists as a finite and positive number. Denote
+                                          #(Y ∩ C[x, R])
+                      J(Y, R) := sup                     − ∆(Y ) .
+                                   x∈Rd       (2R)d
+   Given a compact subset K ⊂ Rd such that Ld (K) > 0 and Ld (∂K) = 0, define
+the following sequence of point configurations:
+                                                       r
+                                                       d ∆(Y )Ld (K)
+(2)       XN := (σN Y ) ∩ K, N ∈ N, where         σN =               .
+                                                             N
+   Theorem 1. Let K be a compact subset of Rd such that Ld (K) > 0 and
+Ld (∂K) = 0. If a point set Y ⊂ Rd of a positive density ∆(Y ) satisfies the
+conditions δη (Y ) > 0 and
+                                 lim J(Y, R) = 0,
+                                    R→∞
+then for the sequence of configurations {XN }∞
+                                             N =1 defined by (2) one has
+                                    Edη (XN )    βdη
+(3)                              lim   2
+                                              =        .
+                               N →∞ N ln N      Ld (K)
+2436                                                     Oberwolfach Report 40/2012
+
+   Remark 1. Theorem 1, in particular, holds true when Y is any full-rank lattice
+in Rd or a periodic set; i.e., a union of finitely many shifts of a given full-rank
+lattice.
+   Remark 2. One can prove that #XN = N (1 + o(1)), N → ∞. Hence, in the
+case of the Euclidean distance η in Rd , Theorem A and relation (3) imply that the
+sequence of configurations {XN } is asymptotically d-energy minimizing on K. In
+particular, we show the asymptotic optimality when d = 2 of the sequence {XN }
+obtained by intersecting the regular hexagonal lattice with a Jordan measurable
+region in the Euclidean plane.
+   Remark 3. Theorem 1 is a consequence of a more general result that we obtain
+in this work. This result gives the asymptotic behavior of the d-energy of well-
+separated N -point configurations with a sufficiently low discrepancy from a given
+continuous density on the set K, which belongs to a certain class of d-dimensional
+manifolds embedded in Rp , p > d.
+
+                                     References
+ [1] D.P. Hardin, E.B. Saff, Minimal Riesz Energy Point Configurations for Rectifiable d-
+     Dimensional Manifolds, Advances in Mathematics, 193 (2005), no. 1, 174–204.
+
+
+
+
+     Spherical Nets, Sequences and Lattice rules — construction of
+                  low-discrepancy sequences on spheres
+                           Johann S. Brauchart
+(joint work with Christoph Aistleitner, Josef Dick, Edward B. Saff, Ian H. Sloan,
+                            Robert S. Womersley)
+
+How does one explicitly construct sequences of N -point configurations on the unit
+sphere Sd in the Euclidean space Rd+1 that will provide “good” integration node
+sets for equal-weight numerical integration, i.e. Quasi Monte Carlo (QMC), rules,
+in particular, for integrating functions from Sobolev spaces over Sd ? In this talk we
+approach this question by looking at ways to utilize the fact that low-discrepancy
+sequences in the unit cube in Rd+1 can be efficiently computed (see, e.g., [8]).
+   An essential tool for measuring the quality of a low-discrepancy sequence (XN )
+is a (closed form) expression for the worst-case error in terms of a reproducing
+kernel for the Sobolev space Hs (Sd ) with s > d/2. The space H(d+1)/2 (Sd ) provided
+with the distance kernel Kdist (x, y) = 2V−1 (Sd )−|x−y| is special as the worst-case
+error has a geometrical interpretation in terms of the spherical cap L2 -discrepancy:
+h                           i2              N N
+                                          1 XX               1  C       2
+ wce(Q[XN ]; H(d+1)/2 (Sd )) = V−1 (Sd )− 2     |xj − xk | =    DL2 (XN ) ,
+                                         N j=1               Cd
+                                                     k=1
+
+where XN = {x1 , . . . , xN }, cf. [5, 7] and [3] for a generalization to other distance
+kernels. The second equation is also known as Stolarsky’s invariance principle [13].
+Optimal and Near Optimal Configurations on Lattices and Manifolds                           2437
+
+   A sequence (XN ) of N -point node sets XN on Sd is said to be a low-discrepancy
+sequence on Sd if the spherical cap discrepancy
+                           (                                             )
+          C                   |XN ∩ C|                                 d
+         DL∞ (XN ) : = sup              − σd (C) : C spherical cap in S
+                                  N
+satisfies (for some some positive constant c independent of N ) for all XN
+                                             √
+                                               log N
+(1)                        DLC∞ (XN ) ≤ c [(d+1)/2]/d .
+                                           N
+Such sequences are almost QMC design sequences for the Sobolev space Hs (Sd )
+with s = (d + 1)/2 in that the worst case error of the QMC rules Q[XN ] have up
+to a logarithmic term optimal order; i.e. for every d/2 < s ≤ (d + 1)/2,
+            β1 (s, d)                                     (log N )s/(d+1)
+                s/d
+                      ≤ wce(Q[XN ]; Hs (Sd )) ≤ β3 (s, d)                 .
+              N                                                N s/d
+(QMC design sequences for Hs (Sd ) were introduced in the talk of Ian Sloan, [6].)
+   We discuss theoretical and numerical results concerning sequences on Sd that
+are obtained from “lifting” to the sphere well-known low-discrepancy sequences on
+the unit square using the Lambert cylindrical equal-area projection,
+             p                      p                          
+  Φ(α, τ ) = 2 τ − τ 2 cos(2πα), 2 τ − τ 2 sin(2πα), 1 − 2τ ,            α, τ ∈ [0, 1],
+
+in case of S2 and its area-preserving higher-dimensional analogue in case of Sd .
+Under such an area-preserving map a discrepancy notion in the unit cube [0, 1)d
+with respect to some collection R(∗) of test sets immediately translates into a
+corresponding spherical version,
+                        (∗)                       (∗)
+                      DN (Sd , Ω(∗) ; ZN ) = DN ([0, 1)d , R(∗) ; ZN ),
+ where Ω(∗) and ZN are the images of R(∗) and ZN under the Lambert map.
+     Digital (t, m, d)-nets and (t, d)-sequences 1 as introduced by H. Niederreiter
+ [10] provide a very efficient method to generate low-discrepancy sequences of
+ point sets in the d-dimensional unit cube [0, 1)d . A (t, m, 2)-net in base b with
+         m
+Na1= ba1 +1points
+               is      characterized
+                     a2 a2 +1
+                                       by the requirement that every elementary interval
+    d
+   b 1
+       ,  d
+         b 1
+                ×     d
+                     b 2
+                         ,  d
+                           b 2
+                                  with 0 ≤ a1 ≤ bd1 , 0 ≤ a2 ≤ bd2 , d1 + d2 = m − t, and
+                                         t                                   ∗
+ 0 ≤ d1 , d2 ∈ Z contains exactly b points. The star-discrepancy DN            (XN ) of such
+                           ∗                      m−t
+ a net XN satisfies DN (XN ) ≤ C(m − t)/b             . In [4] it is shown that the spherical
+ rectangle star discrepancy (derived from the star discrepancy on the unit square
+ which uses rectangles anchored at 0 as test sets) of a (0, m, 2)-net lifted to S2
+ obeys the bound
+                                                                                   
+                               b2 /4 m      1 9 1             1      b 1       4b + 3
+      Db∗m (S2 , Ω∗ , ZN ) ≤             +        +      +             −  −             .
+                               b + 1 bm    bm 4 b            b2m 2 4 4(b + 1)2
+This bound is essentially best possible as can be seen from Roth’s lower bound [12]
+                         Db∗m (Ω∗ , ZN ) ≥ (⌊log2 N ⌋ + 3)/(28 N ).
+   1Because of a clash of notation we shall not use here the traditional notation (t, m, s)-net.
+2438                                                         Oberwolfach Report 40/2012
+
+It is worth to note that the minimal spherical cap discrepancy √      of N -point sets
+on Sd also satisfies the bound in (1), hence, is of order O( log N /N 3/4 ) if d = 2.
+However, the best estimates so far for the spherical cap L∞ -discrepancy of spher-
+ical (0, m, 2)-nets in base b are obtained in [1] by using as an intermediate step
+the spherical analogue (via Lambert transformation) of the isotropic discrepancy
+JN (ZN ) which uses convex subsets of the unit square as test sets:
+                                          √
+       C                                 4 2b
+     DL∞ (Φ(ZN )) ≤ 11 JN (ZN ) ≤ 11 √ ,             ZN a (0, m, 2)-net in base b.
+                                            N
+This result implies an improvement upon the bounds on the spherical cap L2 and
+L∞ -discrepancy of the construction given in [9]. (In contrast it is also shown in [1]
+that the expected value of the spherical cap L∞ -discrepancy is of order N −1/2 .)
+Numerical experiments suggests the conjecture that a sequence of so-called Sobol’
+points in [0, 1)d (d ≥ 2) forming a (0, d)-sequence lifted to the d-sphere Sd achieves
+optimal convergence rate of the sum of all pairwise distances which is related to
+the worst-case error and the spherical cap L2 -discrepancy in the aforementioned
+sense (see first displayed formula).
+   Fibonacci lattice rules are the optimal lattice rules for 2-dimensional numerical
+integration (cf. [11]). Let Fn denote the nth Fibonacci number. Using the Lambert
+map the spherical Fibonacci lattice points with 0 ≤ k ≤ Fn − 1 can be defined as
+                                                                     
+                                  Fn−1                    Fn−1         2k
+            zk = αk,n cos 2πk             , αk,n sin 2πk         ,1 −
+                                   Fn                      Fn          Fn
+where                                   s              
+                                            k        k
+                              αk,n := 2          1−      .
+                                           Fn        Fn
+The Fn -point set ZFn = {z1 , . . . , zFn } is the spherical Fibonacci lattice point set.
+The smallest pairwise distance δ(XN ) between points of a node set XN affects
+the quality of the QMC rule Q[XN ]. For a Fibonacci point set ZFn in√[0, 1)2
+this distance has an explicit formula and we conjecture that |z0 − z1 | = 2/ Fn is
+the least pairwise distance in a spherical Fibonacci lattice Fn -point set [2].√ It is
+shown in [1] that the spherical cap L∞ -discrepancy of ZFn is of order O(1/ Fn ).
+                                              3/4
+Numerical results suggest O((log Fn )c /Fn ) for some 1/2 ≤ c ≤ 1.
+   A numerics section concludes the talk: Notable is that spherical nets (based on
+Sobol’ points) and spherical Fibonacci lattice points seem to form QMC design
+sequences for H3/2 (S2 ). Shifting the spherical Fibonacci
+                                                        √     points (to avoid the poles
+of S2 ) improves the rate of convergence by a factor N compared to the unshifted
+version when worst-case error formulas for Hs (S2 ) with s = 3.5 and 4.5 are used.
+Integration of the smooth Franke test function gives a similar result.
+
+                                        References
+ [1] C. Aistleitner, J. S. Brauchart, and J. Dick. Point sets on the sphere S2 with small spher-
+     ical cap discrepancy. Discrete & Computational Geometry, [to appear]. arXiv:1109.3265v1
+     [math.NA].
+ [2] J. S. Brauchart and J. Dick. Spherical Fibonacci points. In preparation.
+Optimal and Near Optimal Configurations on Lattices and Manifolds                          2439
+
+ [3] J. S. Brauchart and J. Dick. A characterization of Sobolev spaces on the sphere and an
+     extension of Stolarsky’s invariance principle to arbitrary smoothness. Manuscript: 45 pages;
+     arXiv:1203.5157v1 [math.NA], 2012.
+ [4] J. S. Brauchart and J. Dick. Quasi-Monte Carlo rules for numerical integration over the unit
+     sphere S2 . Numer. Math., 121(3):473–502, 2012.
+ [5] J. S. Brauchart and J. Dick. A simple proof of Stolarsky’s invariance principle. Proc. Amer.
+     Math. Soc., [to appear]. arXiv:1101.4448v1 [math.NA].
+ [6] J. S. Brauchart, E. B. Saff, I. H. Sloan, and R. S. Womersley. QMC designs: Opti-
+     mal order Quasi Monte Carlo integration schemes on the sphere. Manuscript: 34 pages;
+     arXiv:1208.3267v1 [math.NA], 2012.
+ [7] J. S. Brauchart and R. S. Womersley. Weighted QMC designs: Numerical integration over
+     the unit sphere, L2 -discrepancy and sum of distances. In preparation.
+ [8] J. Dick and F. Pillichshammer. Digital nets and sequences. Cambridge University Press,
+     Cambridge, 2010. Discrepancy theory and quasi-Monte Carlo integration.
+ [9] A. Lubotzky, R. Phillips, and P. Sarnak. Hecke operators and distributing points on the
+     sphere. I. Comm. Pure Appl. Math., 39(S, suppl.):S149–S186, 1986. Frontiers of the math-
+     ematical sciences: 1985 (New York, 1985).
+[10] H. Niederreiter. Point sets and sequences with small discrepancy. Monatsh. Math.,
+     104(4):273–337, 1987.
+[11] H. Niederreiter. Random number generation and quasi-Monte Carlo methods, volume 63 of
+     CBMS-NSF Regional Conference Series in Applied Mathematics. Society for Industrial and
+     Applied Mathematics (SIAM), Philadelphia, PA, 1992.
+[12] K. F. Roth. On irregularities of distribution. Mathematika, 1:73–79, 1954.
+[13] K. B. Stolarsky. Sums of distances between points on a sphere. II. Proc. Amer. Math. Soc.,
+     41:575–582, 1973.
+
+
+                      Examples and open problems I and II
+                                 Henry Cohn
+  These expository talks covered three of the topics I find most puzzling:
+   (1) Asymptotic lower bounds for the sphere packing density on Rn , including
+       recent work of Vance and Venkatesh.
+   (2) Maxwell’s double tangent construction and its implications for the Gauss-
+       ian core model in R3 .
+   (3) Configurations of n2 equiangular lines in Cn , i.e. Zanner’s conjecture.
+An overall theme is the role of symmetry in geometric optimization problems.
+
+      On Rankin constants and slope filtration of Euclidean lattices
+                        Renaud Coulangeon
+Rankin constants are a variant of the classical Hermite constant in the theory of
+Euclidean lattices. Whereas the Hermite constant is concerned with the shortest
+non-zero vectors in a lattice, and thus measures the density of the associated
+sphere packing, Rankin constant account for the sublattices (of fixed dimension)
+with minimal covolume. More precisely, if L is a Euclidean lattice, and k is a fixed
+integer between 1 and dim L, one defines, following Rankin ([8]):
+                                   δk (L) =     inf    det M
+                                              M∈L(k)
+2440                                                      Oberwolfach Report 40/2012
+
+where L(k) stands for the set of k-dimensional sublattices of L, and
+                                γn,k = sup δk (L),
+                                        det L=1
+
+the supremum over lattices of fixed covolume. When k = 1, one recovers the
+Hermite constant. The geometric interpretation of γn,k for general k is less trans-
+parent, although this quantity shows up naturally in a variety of contexts.
+   In the first part of the talk we briefly explain why, from an algorithmic point of
+view, the computation of γn,k is essentially more difficult when k > 1, because of
+the lack of a complete Voronoi theory. Indeed, when k = 1, the computation of the
+classical Hermite constant can be achieved, at least theoretically, by computing
+the vertices of a certain polyhedron (the Ryshkov polyhedron) in Sym Rn , as a
+byproduct of the so-called Voronoi algorithm. For k > 1, the same approach is
+possible, but unfortunately does not yield a polyhedron, but rather a convex set
+(Ryshkov generalised cone) bounded by finitely many algebraic hypersurfaces (see
+e.g. [4]). Nevertheless, we show that it is possible to approximate this Ryshkov
+cone with an arbitrary precision by polyhedra for which a complete Voronoi theory
+is available.
+   The second part of the talk is concerned with the slope filtration of Euclidean lat-
+tices, first described by Stuhler [9, 10] and Grayson [5]. This construction, inspired
+by the classical Harder-Narasinham filtration of vector bundles over projective
+curves, seems not to have received the interest it deserves among lattice-theorists.
+The slope filtration of a Euclidean lattice L can be defined as follows : for every
+primitive sublattice M of L, one plots in R2 the point ℓ(M ) = (dim M, log det M )
+– by convention, ℓ(0) = (0, 0) – and take the convex hull of the resulting set of
+points. The profile of L is the polygonal boundary of this convex hull. It turns out
+that each vertex of the profile of L corresponds to a unique sublattice of L. Any
+set of sublattices of L corresponding to vertices of the profile of L form a flag which
+we call the canonical or slope filtration of L (see [9, 10, 5] for the justification of
+these properties, or the very nicely written introductory paper [3]). Obviously, the
+Rankin invariants of L have a geometric interpretation in terms of the profile of
+L. In particular, if we set
+                                                    1/k
+                               µ(L) = min (δk L)
+                                       1≤k≤n
+
+then the minimal slope of the profile is given by
+                      log det M                 1/k
+                   min          = log min (δk L)    = log µ(L).
+                   M⊂L dim M           k
+
+  About 15 years ago, J.-B. Bost proposed a conjecture predicting a very rigid
+behaviour of this invariant, namely that the equality
+(1)                           µ(L ⊗ M ) = µ(L)µ(M )
+should hold for any Euclidean lattices L and M . As strange as it may sound
+–metric invariants of Euclidean lattices are usually not well-behaved under tensor
+Optimal and Near Optimal Configurations on Lattices and Manifolds                             2441
+
+product – this conjecture is nevertheless supported by the fact that the correspond-
+ing statement for vector bundles on projective curves in characteristic 0 is actually
+a theorem ([7]). Note that (1) is trivially satisfied if L and M are unimodular.
+   In the talk, we report on recent results about this conjecture ([1, 2, 6]), and
+put emphasis on the case of isodual lattices, which is a natural class to investigate
+after that of unimodular lattices.
+
+                                         References
+ [1] Yves André, On nef and semistable Hermitian lattices, and their behaviour under tensor
+     product, Tohoku Math. J. (2) 63 (2011), no. 4, 629–649.
+ [2] Jean-Benoı̂t Bost and Huayi Chen, Concerning the semi stability of tensor products in
+     Arakelov geometry, to appear in Journal de Mathématiques Pures et Appliquées.
+ [3] Bill Casselman, Stability of lattices and the partition of arithmetic quotients, Asian J. Math.
+     8 (2004), no. 4, 607–637.
+ [4] Renaud Coulangeon, Réseaux k-extrêmes, Proc. London Math. Soc. (3) 73 (1996), no. 3,
+     555–574.
+ [5] Daniel R. Grayson, Reduction theory using semistability, Comment. Math. Helv. 59 (1984),
+     no. 4, 600–634.
+ [6] Éric Gaudron and Gaël Rémond, Minima, pentes et algèbre tensorielle, to appear in Israel
+     Journal of Math.
+ [7] M. S. Narasimhan and C. S. Seshadri, Stable and unitary vector bundles on a compact
+     Riemann surface, Ann. of Math. (2) 82 (1965), 540–567.
+ [8] R. A. Rankin, On positive definite quadratic forms, J. London Math. Soc. 28 (1953), 309–
+     314.
+ [9] Ulrich Stuhler, Eine Bemerkung zur Reduktionstheorie quadratischer Formen, Arch. Math.
+     (Basel) 27 (1976), no. 6, 604–610.
+[10]         , Zur Reduktionstheorie der positiven quadratischen Formen. II, Arch. Math. (Basel)
+     28 (1977), no. 6, 611–619.
+
+
+
+
+         On a characterization theorem for stationary logarithmic
+                              configurations
+                            Peter D. Dragnev
+
+For every x, y ∈ Rd let x · y = x1 y1 + · · · + xd yd be the inner product and
+|x| = (x · x)1/2 the Euclidean distance. Denote the unit sphere with Sd−1 := {x ∈
+Rd : |x| = 1}. For any N -point configuration ωN = {x1 , x2 , . . . , xN } ⊂ Sd−1 the
+points {xi } and the segments {xi xj }i6=j will be called respectively vertices and
+edges of the configuration. Throughout di,j := |xi − xj |2 will denote the square of
+the length of the corresponding edge. Here we are interested in configurations of
+         ∗
+points ωN   such that
+
+                                                                            Y
+                ∗
+(1)         P (ωN ) = P(N, d) :=        max P (ωN ),        P (ωN ) =              di,j
+                                      ωN ⊂Sd−1
+                                                                        1≤i<j≤N
+
+   These configurations minimize the logarithmic energy
+2442                                                         Oberwolfach Report 40/2012
+
+
+                                  X                 1
+(2)             Elog (ωN ) :=             log              = −2 log P (ωN ),
+                                                |xi − xj |
+                                1≤i<j≤N
+
+and hence are called logarithmic configurations. More generally, the optimal s-
+energy configurations minimize (maximize when s < 0) the s-energy
+                                       X        1
+(3)                        Es (ωN ) :=                 .
+                                       i<j
+                                           |xi − xj |α
+
+The logarithmic configurations are the limiting case of the optimal s-energyl con-
+figurations as s → 0. As s → ∞ we arrive at best packing configurations (centers
+of N identical spherical caps with maximal radius packed on the unit sphere). For
+further reference on various optimal configurations see [3], [5], [7], [8], [9].
+    The questions of finding logarithmic configurations was posed by Whyte in
+1952 [10] (for d = 3), yet only very few are known. If d = 2 this is a well studied
+problem of Fekete points on the circle, and the solution is the regular N -gon. If
+d = 3 the solution is known for N = 1 − 6, and 12. For N = 1 − 4 the solution
+is trivial (regular simplex of dimension 0 − 3). For N = 12 Andreev [1] showed
+that the regular icosahedron is an optimal configuration. He used the fact that the
+configuration is a spherical 5-design, a technique that follows closely the results of
+[6], where the authors provided a lower bound for P(N, d), which they showed is
+attained for the regular d-simplex when N = d+1, and the generalized octahedron
+when N = 2d. The analysis is based on the fact that these special configurations
+are suitable spherical designs. However, when the optimal configuration is not a
+design of sufficiently high degree, then the method fails, as noted by the authors
+for the particular case when N = 5 and d = 3. The solution in this case, given in
+[4], is a triangular bipyramid, i.e. two points at the Poles and three points forming
+an equilateral triangle on the Equator.
+    Our goal here is to characterize the stationary configurations (or ”ground sta-
+tes”) of the discrete logarithmic energy (2). The following vector conditions are
+essentially found in [2] for d = 3.
+Proposition Let ωN = {x1 , x2 , . . . , xN } be a stationary logarithmic configuration
+on the unit sphere S d−1 in Rd . Then the following force conditions hold:
+                        X xi − xj       N −1
+(4)                                  =         xi i = 1, . . . , N.
+                             di,j         2
+                       j6=i
+
+Moreover, theP
+             center of mass of the configuration coincides with the center of the
+sphere 0 and j6=i di,j = 2N i = 1, . . . , N.
+   In general, for stationary s-energy configurations similar vector equations hold,
+but the coefficients on the right-hand side of (4) vary with i, which adds significant
+difficulty.
+Definition: Let ωN = {x1 , . . . , xN } ⊂ Sd−1 . Two vertices xi and xj are called
+mirror related (we write xi ∼ xj ), if di,k = dj,k , for every k 6= i, j. A configuration
+is called degenerate if the points of the configuration do not span the whole Rd .
+Optimal and Near Optimal Configurations on Lattices and Manifolds                 2443
+
+   Note that the mirror relation property defined above is an equivallence relation
+and that an equivallence class of k vertices forms a regular k-simplex inscribed in
+a (k − 1)-dimensional sphere of radius less or equal to 1.
+Theorem 1 Let N = d + 2 and let the configuration ωN be stationary. Then at
+least one of the following three possibilities occurs:
+   (a) The configuration ωN is degenerate;
+   (b) There exists a vertex with all edges stemming out being equal;
+   (c) Every vertex is mirror related to another vertex.
+    The following strict monotonicity property of P(N, d) shows that degenerate
+stationary logarithmic configurations are not optimal when N ≥ d + 1.
+Theorem 2 For fixed N , the sequence P(N, d) is strictly increasing for d < N
+and P(N, d) = P(N, N − 1) for d ≥ N .
+    We illustrate Theorem 1 with the following classifications of the stationary
+configurations of d + 2 points for d = 2, 3, and 4.
+Example 1 Let d = 2 (N = 4). Then (a) and (b) are impossible,and the only
+stationary configurations satisfy (c). There could be only two equivallence classes
+of two points each, which are easily seen to be the diagonals of a square.
+Example 2 Let d = 3 (N = 5). Now all, (a), (b) and (c) are possible. The
+only degenerate stationary configuration ω5r is the regular pentagon. The only
+stationary configuration ω5p satisfying (b) is the square pyramid with vertex at the
+North pole and a square base in a horizontal plane of altitude −1/4.
+    If (c) holds, there could be only two equivallence classes, one with two points,
+a segment, and the other with three points, an equilateral triangle, which we
+orient horizontally. The two points from the segment have to be equidistant to
+the vertices of the equilateral triangle, so clearly they are the North and South
+Poles. The center of mass shows that the equilateral triangle lies on the equator.
+Comparing the energies we observe that the bipyramid configuration ω5b minimizes
+the energy (2), which is another proof of the result in [4].
+    We note that numerical evidence shows that the triangular bypyramid config-
+uration ω5b is minimizing the s-energy for s < 15.023..., while the square pyramid
+ω5p,s is optimal (the base altitude is adjusted with s).
+Example 3 Let d = 4 (N = 6). Again all, (a), (b) and (c) are possible. The
+degenerate configuration with minimal logarithmic energy of dimension two is the
+regular hexagon and dimension three the octahedron (see [6]).
+    The situation when (c) holds is richer. The various equivallence classes under
+the mirror relation give rise to the following configurations:
+    (i) Two orthogonal simplexes, a diameter and regular tetrahedron, with 2 and
+        4 points respectively;
+                               (                      √           √              )2
+                                                   1 2 2     2kπ 2 2     2kπ
+  ω{2,4} = {(0, 0, 0, ±1)} ∪       (1, 0, 0, 0), (− ,    cos    ,    sin     , 0)
+                                                   3 3        3   3       3
+                                                                                  k=0
+2444                                                          Oberwolfach Report 40/2012
+
+    (ii) Two orthogonal simplexes with 3 points each (equilateral triangles);
+                                        2                              2
+                    2kπ       2kπ                          2kπ       2kπ
+      ω{3,3} = (cos     , sin     , 0, 0)     ∪ (0, 0, cos     , sin     )     .
+                     3         3          k=0               3         3    k=0
+   (iii) Three orthogonal simplexes
+       p                        p                          p
+{(u, ± 1 − u2 , 0, 0)}∪{(v, 0, ± 1 − v 2 , 0)}∪{(w, 0, 0, ± 1 − w2 )}, u+v+w = 0.
+Comparing the enrgies we conclude that the optimal logarithmic configuration of
+six points on S3 is ω{3,3} . This result is new in the literature.
+
+                                        References
+ [1] N. N. Andreev An extremal property of the icosahedron, East J. Approx. 2, no. 4 (1996),
+     459-462.
+ [2] B. Bergersen, D. Boal, and P. Palffy-Muhoray, Equilibrium configurations of particles on the
+     sphere: the case of logarithmic interactions, J. Phys. A: Math. Gen. 27 (1994), 2579-2586.
+ [3] J. H. Conway and N. J. A. Sloane, Sphere Packings, Lattices and Groups, 2nd ed., New
+     York: Springer-Verlag (1993).
+ [4] P. D. Dragnev, D. A. Legg, and D. W. Townsend, Discrete Logarithmic Energy on the
+     Sphere, Pacific J. Math. 207, no. 2 (2002), 345-358.
+ [5] D. P. Hardin and E. B. Saff, Discretizing manifolds via minimum energy points, Notices of
+     Amer. Math. Soc. 51, no. 10 (2004), 1186-1194.
+ [6] A. V. Kolushov and V. A. Yudin, Extremal dispositions of points on the sphere, Anal. Math.
+     23, no. 1 (1997), 25-34.
+ [7] T. W. Melnik, O. Knop, and W. R. Smith, Extremal arrangements of points and unit charges
+     on a sphere: equilibrium configurations revised, Can. J. Chem. 55 (1977), 1745-1761.
+ [8] E. A. Rakhmanov, E. B. Saff, Y. M. Zhou, Minimal discrete energy on the sphere Math.
+     Res. Lett. 1 (1994), 647-662.
+ [9] E. B. Saff and A. B. J. Kuijlaars, Distributing many points on a sphere, Math. Intelligencer
+     19, no. 1 (1997), 5-11.
+[10] L. L. Whyte, Unique arrangements of points on a sphere, Amer. Math. Monthly 59 (1952),
+     606-611.
+
+
+  Signal reconstruction from the magnitude of subspace components
+                             Martin Ehler
+                    (joint work with Christine Bachoc)
+
+Frames have become a powerful tool in signal processing that can offer more flex-
+ibility than orthogonal bases, cf. [10, 24, 23] and [12, 13, 14, 15]. Many signal
+processing problems in engineering such as X-ray crystallography and diffraction
+imaging require signal reconstruction from the magnitude of its frame coefficients,
+also known under the term “reconstruction without the phase”, cf. [5, 7] and refer-
+ences therein. By making additional assumptions on the underlying frame, exact
+solutions are presented in [4, 5], see [26, 27] for relations to quantum measure-
+ments. Recently, reconstruction from frame coefficients without phase has been
+numerically addressed via semidefinite programming, see [7, 8].
+   Frame coefficients can be thought of as projections onto one-dimensional sub-
+spaces. In image reconstruction from averaged diffraction patterns by means of
+Optimal and Near Optimal Configurations on Lattices and Manifolds                2445
+
+incoherent addition of k wavefields [17], the original signal must be recovered from
+the norms of its k-dimensional subspace components. Notably, the latter is a com-
+mon problem in crystal twinning [11]. Here, we pose the following questions: Can
+we reconstruct the original signal from the norms of its k-dimensional subspace
+components by means of a closed formula? Also, can we reconstruct even if a
+certain number of norms of subspace components are erased?
+   We will provide an affirmative answer in the following sense: Given k-dimensio-
+nal linear subspaces {Vj }nj=1 in Rd , we aim to reconstruct the signal x ∈ S d−1 from
+any subset of {kPVj (x)k}nj=1 that has cardinality at least n − p. Here, PVj denotes
+the orthogonal projector onto Vj . Under suitable conditions on the subspaces, we
+are able to compute a finite list of candidate signals, one of which is the correct
+one.
+   Finding a set of candidate signals is known as list decoding and was introduced
+in [16]. We determine this list in a two-step procedure, both steps are related
+to codes, designs, and cubatures in Grassmann spaces [1, 2]. Without loss of
+generality, let us suppose that the first p norms were erased. If there are positive
+weights {ωj }nj=1 such that {(Vj , ωj )}nj=1 forms a tight p-fusion frame as recently
+introduced in [3], then we are able to reconstruct the erased norms {kPVj (x)k}pj=1
+at least up to permutations. Here, we needed to verify that a certain system of
+algebraic equations has only finitely many solutions. Notice that our input are
+not the subspace components but their norms, as opposed to signal reconstruction
+under the erasures discussed in [6, 9, 22, 25].
+   In the second step, we assume that {(Vj , ωj )}nj=1 yields a cubature formula of
+strength 4, see [3], enabling us to reconstruct the orthogonal projection onto xR
+from knowledge of {kPVj (x)k}nj=1 . Indeed, if x ∈ S d−1 , then
+                                  n
+                               1X                       β
+(1)                    PxR =         ωj kPVj (x)k2 PVj − Id,
+                               α j=1                    α
+
+                2k(d−k)              k(kd+k−2)
+where α = d(d+2)(d−1)      and β = d(d+2)(d−1)  . This extends the one-dimensional
+results in [4] to k-dimensional projections addressed in the present paper. Note
+that the authors in [4] require cubature formulas for the projective space whose
+weights are ωj = 1/n, i.e., so-called projective designs. In practice, however,
+the choice of subspaces may underlie some restrictions that prevent them from
+being a design, but there is still the chance to compute weights enabling cubature
+formulas, cf. [18, 19, 21]. Thus, our results in Step 2 are a significant improvement
+for one-dimensional projections already. We also extend the above concepts to the
+complex setting, in which some constants need adjustments.
+   The cardinality of a cubature formula of strength 4 scales at least quadratically
+with the ambient dimension d, cf. [20]. For k = 1, it is known that semidefinite pro-
+gramming yields signal recovery with high probability when the one-dimensional
+subspaces are chosen at random [8]. The cardinality of the subspaces can then
+scale linearly in the ambient dimension up to a logarithmic term. Here, we shall
+extend the latter to general k-dimensional subspaces chosen at random.
+2446                                                         Oberwolfach Report 40/2012
+
+   Let H denote the collection of symmetric matrices in Rd×d . For {Vj }nj=1 ⊂ Gk,d ,
+we define the operator
+                                                d
+(2)                       Fn : H → Rn , X 7→ (hX, PVj i)nj=1 .
+                                                k
+If f := kd (kPVj (x)k2 )nj=1 = Fn (PxR ) ∈ Rn and assuming f 6= 0, then PxR solves
+(3)               min (rank(X)),       subject to    Fn (X) = f, X  0.
+                  X∈H
+The notation X  0 stands for X being symmetric and positive semidefinite. Rank
+minimization is in general NP-hard. Therefore, (3) is commonly replaced with
+(4)               min (trace(X)),      subject to    Fn (X) = f, X  0.
+                  X∈H
+
+If {Vj }nj=1 are chosen at random, then we shall verify that, with high probability,
+PxR is the unique solution to (4). Our proof is guided by the approach in [8] but
+some steps are more involved and need to be taken care of with different tools
+in this more general setting. For instance, the case k = 1 relies on i.i.d. Gauss-
+ian random matrices modeling the measurements. For k > 1, we must deal with
+measurement matrices involving rank-k orthogonal projectors that clearly have
+dependent entries. Hence, the extension from k = 1 to k > 1 is not obvious and
+requires special care. Later, we also verify numerically that semidefinite program-
+ming enables us to recover a signal from the norms of its random k-dimensional
+subspace components.
+
+                                       References
+ [1] C. Bachoc, E. Bannai, and R. Coulangeon, Codes and designs in Grassmannian spaces,
+     Discrete Mathematics, 277 (2004), 15-28.
+ [2] C. Bachoc, R. Coulangeon, and G. Nebe, Designs in Grassmannian spaces and lattices,
+     J. Algebraic Combinatorics, 16 (2002), 5-19.
+ [3] C. Bachoc and M. Ehler, Tight p-fusion frames, Appl. Comput. Harmon. Anal., in press,
+     DOI:10.1016/j.acha.2012.07.001 (2012).
+ [4] R. Balan, B. G. Bodmann, P. G. Casazza, and D. Edidin, Painless reconstruction from
+     magnitudes of frame coefficients, J. Fourier Anal. Appl. 15 (2009), no. 4, 488–501.
+ [5] R. Balan, P. Casazza, and D. Edidin, On signal reconstruction without phase, Appl. Com-
+     put. Harmon. Anal 20 (2006), 345–356.
+ [6] B. G. Bodmann and V. I. Paulsen, Frames, graphs and erasures, Lin. Alg. Appl. 404 (2005),
+     118–146.
+ [7] E. J. Candès, Y. Eldar, T. Strohmer, and V. Voroninski, Phase retrieval via matrix com-
+     pletion, arXiv:1109.0573v2 (2011).
+ [8] E. J. Candès, T. Strohmer, and V. Voroninski, PhaseLift: Exact and stable signal recovery
+     from magnitude measurements via convex programming, arXiv:1109.4499v1, to appear in
+     Communications on Pure and Applied Mathematics.
+ [9] P. G. Casazza and J. Kovacevic, Equal-norm tight frames with erasures, Adv. Com-
+     put. Math. 18 (2003), no. 2-4, 387–430.
+[10] O. Christensen, An Introduction to Frames and Riesz Bases, Birkhäuser, Boston, 2003.
+[11] J. Drenth, Principles of protein x-ray crystallography, Springer, 2010.
+[12] M. Ehler, On multivariate compactly supported bi-frames, J. Fourier Anal. Appl. 13 (2007),
+     no. 5, 511–532.
+[13] M. Ehler and J. Galanis, Frame theory in directional statistics, Stat. Probabil. Lett. 81
+     (2011), no. 8, 1046–1051.
+Optimal and Near Optimal Configurations on Lattices and Manifolds                           2447
+
+[14] M. Ehler and B. Han, Wavelet bi-frames with few generators from multivariate refinable
+     functions, Appl. Comput. Harmon. Anal. 25 (2008), no. 3, 407–414.
+[15] M. Ehler and K. Okoudjou, Minimization of the probabilistic p-frame potential,
+     J. Stat. Plann. Inference 142 (2012), no. 3, 645–659.
+[16] P. Elias, Error-correcting codes for list decoding, IEEE Trans. Inform. Theory 37 (1991),
+     no. 1, 5–12.
+[17] V. Elser and R. P. Millane, Reconstruction of an object from its symmetry-averaged diffrac-
+     tion pattern, Acta Crystallographica Section A 64 (2008), no. 2, 273–279.
+[18] F. Filbir and H. N. Mhaskar, A quadrature formula for diffusion polynomials corresponding
+     to a generalized heat kernel, J. Fourier Anal. Appl. 16 (2010), no. 5, 629–657.
+[19] F. Filbir and H. N. Mhaskar, Marcinkiewicz–Zygmund measures on manifolds, Journal of
+     Complexity (2011).
+[20] P. de la Harpe and C. Pache, Cubature formulas, geometrical designs, reproducing kernels,
+     and Markov operators, Infinite groups: geometric, combinatorial and dynamical aspects
+     (2005).
+[21] Q. T. Le Gia and H. N. Mhaskar, Localized linear polynomial operators and quadrature
+     formulas on the sphere, SIAM J. Numer. Anal. 47 (2008), no. 1, 440–466.
+[22] R.B. Holmes and V. Paulsen, Optimal frames for erasures, Lin. Alg. Appl. 377 (2004),
+     31–51.
+[23] J. Kovac̆ević and A. Chebira, Life beyond bases: The advent of frames (part i), IEEE Signal
+     Processing Magazine 24 (2007), no. 4, 86–104.
+[24] J. Kovac̆ević and A. Chebira, Life beyond bases: The advent of frames (part ii), IEEE Signal
+     Processing Mag. 24 (2007), no. 5, 115–125.
+[25] G. Kutyniok, A. Pezeshki, R. Calderbank, and T. Liu, Robust dimension reduction, fusion
+     frames, and Grassmannian packings, Appl. Comput. Harmon. Anal. 26 (2009), no. 1, 64–76.
+[26] J. M. Renes, R. Blume-Kohout, A. J. Scott, and C. M. Caves, Symmetric informationally
+     complete quantum measurements, J. Math. Phys. 45 (2004), 2171–2180.
+[27] A. J. Scott, Tight informationally complete quantum measurements, Journal of Physics
+     A-Mathematical and General 39 (2006), no. 43, 13507–13530.
+
+
+
+
+                                  Lattices and Designs
+                                     Noam Elkies
+
+   This two-part exposition introduces several variations on the theta functions
+of Euclidean lattices that can yield precise results on the distribution of lattice
+vectors.
+   In the first lecture we introduce Poisson summation and harmonic polynomi-
+als; we then use them to define harmonic theta functions, and outline how these
+functions’ modularity leads to asymptotic equidistribution results on the spherical
+shells of rational lattice translates.
+   In the second lecture we introduce spherical designs, and show how in special
+cases the asymptotic results of the first lecture improve to exact formulas with
+diverse applications.
+2448                                                        Oberwolfach Report 40/2012
+
+       Asymptotics of Minimal Energy and Maximal Polarization
+                          Configurations I
+              Douglas P. Hardin and Edward B. Saff
+
+   Let A ⊂ Rp be a compact set and K(·, ·) : A × A → (−∞, ∞] be a symmet-
+ric lower semi-continuous kernel on A. Then with each set of N points ωN =
+{x1 , . . . , xN } ⊂ A we can associate a K-energy; namely
+
+                                X                        N X
+                                                         X N
+(1)             EK (ωN ) :=              K(xi , xj ) =              K(xi , xj ).
+                              1≤i6=j≤N                   i=1 j=1
+                                                             j6=i
+
+
+   We denote by EK (A, N ) the minimum K-energy taken over all sets of N points
+of A; that is,
+
+
+(2)              EK (A, N ) := min{EK (ωN ) : ωN ⊂ A, |ωN | = N },
+where |X| denotes the cardinality of the set X. A point set ωN that attains this
+                         ∗
+minimum is denoted by ωN   , and is referred to as an optimal N -point K-energy
+configuration.
+
+   Of particular interest in classical potential theory is the class of Riesz kernels
+                                  (
+                                    |x − y|−s ,     for s > 0,
+(3)                  Ks (x, y) :=               −1
+                                    log |x − y| , for s = log,
+
+where | · | denotes Euclidean distance and s > 0 (or s = log) is a fixed parameter.
+For such kernels we write Es in place of EKs and Es in place of EKs . Optimal
+and near optimal Riesz s-energy configurations are of interest for a variety of
+reasons. For example, in the case when A = S d , the d-dimensional unit sphere
+in Rd+1 , optimal Riesz s-energy configurations are, for fixed s > 0, and s = log,
+asymptotically (as N → ∞) uniformly distributed with respect to surface area
+(more precisely d-dimensional Hausdorff measure on S d ). This fact together with
+properties of “well-separation” and “small fill radius” make some of these point
+set sequences particularly attractive for such purposes as interpolation, cubature,
+and CAGD.
+    For s = 1 and A = S 2 , finding optimal configurations is the classical Thomson
+problem which has been studied for over 100 years. Other examples of physical
+interest include the case s = 3 which corresponds to a dipole interaction, appro-
+priate for neutral colloids at the interface between two liquids. The case s = 12
+is the repulsive part of the Lennard-Jones potential and is the important piece of
+the interaction for driving crystallization.
+    It is important to note that as s → ∞, with N fixed, the s-energy Es (ωN ) is
+increasingly dominated by the term(s) involving the smallest of pairwise distances
+and, in this sense, leads to the best-packing problem on A.
+Optimal and Near Optimal Configurations on Lattices and Manifolds               2449
+
+    If the Riesz parameter s is less than the Hausdorff dimension d of the compact
+set A, then the limiting distribution of minimal s-energy configurations as N → ∞
+is characterized from classical potential theory as the equilibrium measure for the
+corresponding continuous energy problem for integrals. Even in this case, the
+support of the equilibrium measure may be a proper subset of A that is not
+easily determined. For the case of a surface of revolution in R3 , e.g. a torus,
+the equilibrium measure for s = log will have support contained in the ‘radially
+outer most’ portion of the surface [4]. When the Riesz parameter s ≥ d, classical
+potential theory does not apply; however we have shown that the asymptotic
+distribution of minimal energy points is uniform as described in the following
+theorem for d-rectifiable sets, i.e., Lipschitz images of bounded sets in Rd .
+Theorem 1 (Poppy-Seed Bagel Theorem, [3]). Let s > d and p ≥ d, where d and
+p are integers. For every infinite compact d-rectifiable set A ⊂ Rp , we have
+                                   Es (A, N )      Cs,d
+                             lim              =            ,
+                           N →∞ N 1+s/d          Hd (A)s/d
+where Cs,d is a positive and finite constant independent of A and Hd denotes d-
+dimensional Hausdorff measure on Rp .
+                                                                          ∗ ∞
+   Moreover, if A is d-rectifiable with Hd (A) > 0, then any sequence {ωN   }N =2 of
+s-energy minimizing configurations on A such that #ωN = N is asymptotically
+uniformly distributed on A with respect to Hd , i.e.
+                         1 X           ∗   Hd (·)
+(4)                               δx −→           , N → ∞.
+                        N       ∗
+                                           Hd (A)
+                              x∈ωN
+
+   For the purpose of generating point configurations that are not uniform, but
+rather approximate a given distribution, we introduce a weighted energy. More-
+over, by including a cutoff function in the weight, we obtain a truncated energy
+expression of low computational complexity. Before stating this result, we intro-
+duce some needed notation.
+   For a collection of N (≥ 2) distinct points ωN := {x1 , . . . , xN } ⊂ A, a non-
+negative symmetric weight function w on A × A, and s > 0, the weighted Riesz
+s-energy of ωN is defined by
+                                X                       XN X N
+                                         w(xi , xj )            w(xi , xj )
+(5)            Esw (ωN ) :=                         s =                    s,
+                                         |xi − xj |     i=1 j=1
+                                                                |xi − xj |
+                              1≤i6=j≤N
+                                                            j6=i
+
+while the N -point weighted Riesz s-energy of A is defined by
+(6)              Esw (A, N ) := inf{Esw (ωN ) : ωN ⊂ A, |ωN | = N }.
+  We call w : A × A → [0, ∞] a CPD-weight function on A × A if
+   (a) w is continuous (as a function on A × A) at Hd -almost every point of the
+       diagonal D(A) := {(x, x) : x ∈ A},
+  (b) there is some neighborhood G of D(A) (relative to A × A) such that
+       inf G w > 0, and
+   (c) w is bounded on any closed subset B ⊂ A × A such that B ∩ D(A) = ∅.
+2450                                                             Oberwolfach Report 40/2012
+
+   If A is a compact set in Rp and w is a CPD-weight function on A × A, then for
+s ≥ d we define the weighted Hausdorff measure Hds,w on Borel sets B ⊂ A by
+                                   Z
+                         s,w
+(7)                    Hd (B) :=      (w(x, x))−d/s dHd (x).
+                                           B
+
+Finally, we say that a sequence {ωN }∞N =1 of N -point configurations in A is asymp-
+totically (w, s)-energy minimizing for A if
+(8)                       Esw (ωN )/Esw (A, N ) → 1 as N → ∞.
+   For Riesz s-energy we prove in [1] the following version of the poppy-seed bagel
+theorem for d-rectifiable sets (also see [2]).
+Theorem 2. Let A ⊂ Rp be as in Theorem 1 and let w be a CPD-weight function
+on A × A. Suppose Φ : (0, ∞) → [0, 1] is such that (a) limt→0+ Φ(t) = 1 and (b)
+Φ(t) = 0, t > 1, and {rN }N ∈N is a sequence of positive numbers such that
+(9)                                    lim rN N 1/d = ∞.
+                                      N →∞
+
+For N ∈ N, let
+                                               
+                                      |x − y|
+(10)             vN (x, y) := Φ                     w(x, y),   x, y ∈ A, x 6= y.
+                                        rN
+If s > d, then
+                                EsvN (A, N )     Cs,d
+(11)                          lim   1+s/d
+                                             = s,w      ,
+                            N →∞ N            Hd (A)s/d
+where the constant Cs,d is as in Theorem 1. Furthermore, any sequence of asymp-
+totically ({vN }, s)-energy minimizing configurations on A is uniformly distributed
+with respect to Hds,w as N → ∞.
+
+
+Acknowledgements. This research was supported, in part, by the U. S. National
+Science Foundation under grants DMS-0808093 and DMS-1109266.
+
+                                         References
+ [1] S.V. Borodachov, D.P. Hardin, E.B. Saff, Low complexity methods for discretizing manifolds
+     via Riesz energy minimization, in preparation.
+ [2] S.V. Borodachov, D.P. Hardin, E.B. Saff, Asymptotics for discrete weighted minimal Riesz
+     energy problems on rectifiable sets, Trans. Amer. Math. Soc. 360 (2008), 1559–1580.
+ [3] D.P. Hardin, E.B. Saff, Minimal Riesz energy point configurations for rectifiable d-
+     dimensional manifolds, Advances in Math. 193 (2005), 174–204.
+ [4] D.P. Hardin, E.B. Saff, H. Stahl, Support of the logarithmic equilibrium measure on sets of
+     revolution in R3 , J. Math. Phys. 48 (2007), 022901, 14 pp.
+ [5] A.B.J. Kuijlaars, E.B. Saff, Asymptotics for minimal discrete energy on the sphere, Trans.
+     Amer. Math. Soc. 350 (1998), 523–538.
+Optimal and Near Optimal Configurations on Lattices and Manifolds               2451
+
+       Asymptotics of Minimal Energy and Maximal Polarization
+                          Configurations II
+              Douglas P. Hardin and Edward B. Saff
+
+
+
+                       1. Minimum Energy, continued
+    Using a truncated energy as in Theorem 2 of part I of this report with constant
+weight and cutoff function Φ(t) = (1 − t2 )2 , s = 3.5, and rN chosen proportional
+to N −1/2 for N = 30, 000, we obtain the following ‘low energy’ configuration on
+S 2 . The figure shows the associated Voronoi decomposition. The majority of the
+Voronoi cells are nearly congruent hexagons, while the ‘scars’ or ‘dislocations’ form
+‘grain boundaries’ composed of alternating pentagons and heptagons.
+
+
+
+
+        Figure 1. A near optimal configuration of 30, 000 points on the
+        sphere S 2 for s = 3.5.
+
+
+
+                           2. Maximum Polarization
+  For N ∈ N, let ωN = {x1 , x2 , . . . , xN } denote N (not necessarily distinct)
+points in p-dimensional Euclidean space Rp . We define for s > 0 and a compact
+2452                                                         Oberwolfach Report 40/2012
+
+set A ⊂ Rp , the polarization quantities
+                              N
+                              X       1           s
+(1)     M s (ωN , A) := min                  ,   MN (A) := max M s (ωN , A).
+                        x∈A
+                              j=1
+                                  |x − xj |s                     ωN ⊂A
+
+
+Such max-min quantities for potentials were first introduced by M. Ohtsuka who
+explored (for very general kernels) their relationship to various definitions of ca-
+pacity that arise in electrostatics (see [4]). In particular, he showed that for any
+compact set A ⊂ Rp , the following limit, called the Chebyshev constant of A, exists
+as an extended real number:
+                                                 s
+                                                MN (A)
+(2)                           Ms (A) := lim            .
+                                           N →∞  N
+Moreover, he showed that Ms (A) is not smaller than the Wiener constant Ws (A)
+for A. We are primarily interested in the case when the limit (2) is infinite and
+the set A is the unit sphere or the unit ball.
+   Just as minimum energy problems are related to best-packing, maximum polar-
+ization configurations are related to best-covering problems as s → ∞ as we now
+describe. The fill (covering) radius of ωN ∈ AN is given by
+                          ρ(ωN ; A) := max min |y − x|.
+                                           y∈A x∈ωN
+
+Proposition 1. For each fixed N,
+                                                     1
+                                    s
+                               lim MN (A)1/s =            ,
+                              s→∞                  ρN (A)
+where ρN (A) is the N -point fill (covering) radius of A :
+                       ρN (A) := inf{ρ(ωN ; A) : ωN ∈ AN }.
+ Furthermore, every cluster point of optimal N −point polarization configurations
+ s
+ωN  is an N −point best covering configuration for A as s → ∞.
+   In [1], the authors conjecture that for the unit circle S1 and every s > 0 and
+N ≥ 1, the maximum polarization is attained for equally spaced points. The case
+s = 2 was first proved by Ambrus [1] and the case s = 4 by Erdélyi and Saff [2].
+We announce that this conjecture is now proved.
+Theorem 3 ([3]). Let f : [0, π] → [0, ∞] be non-increasing and strictly convex.
+For a configuration ωN = (z1 , ..., zN ) on S1 , set
+                                                 n
+                                                 X
+                        M f (ωN ; S1 ) := min1         f (d(z, zk )),
+                                           z∈S
+                                                 k=1
+
+                    f
+                   MN (S1 ) := max{M f (ωN ; S1 ) : ωN ∈ (S1 )N },
+                                                                        f
+ where d(z, w) denotes geodesic distance on S1 . Then M f (ωN ; S1 ) = MN (S1 ) if
+                                                                1
+and only if ωN consists of N distinct points equally spaced on S .
+Optimal and Near Optimal Configurations on Lattices and Manifolds                          2453
+
+   The research team at Vanderbilt is in the process of establishing analogs of
+minimum energy results on d-rectifiable sets for maximum polarization. In partic-
+ular, progress is being made on the following conjectured analog of the poppy-seed
+bagel theorem.
+Conjecture 1. Let s > d and p ≥ d, where d and p are integers. For every
+infinite compact d-rectifiable set A ⊂ Rp , we have
+                                     s
+                                   MN  (A)       σs,d
+                              lim           =           ,
+                             N →∞ N s/d       Hd (A)s/d
+where σs,d is a positive and finite constant independent of A and Hd denotes d-
+dimensional Hausdorff measure on Rp .
+                                                                          ∗ ∞
+   Moreover, if A is d-rectifiable with Hd (A) > 0, then any sequence {ωN  }N =2
+of s-polarization maximizing configurations on A is asymptotically uniformly dis-
+tributed on A with respect to Hd .
+   In particular, Theorem 3 implies that the constant σs,1 appearing in Conjec-
+ture 1 would have to equal 2(2s − 1)ζ(s), where ζ(s) denotes the classical Riemann
+zeta function.
+
+Acknowledgements. This research was supported, in part, by the U. S. National
+Science Foundation under grants DMS-0808093 and DMS-1109266.
+
+                                        References
+ [1] G. Ambrus, K. Ball, and T. Erdélyi, Chebyshev constants for the unit circle, Bull. London
+     Math. Soc. (to appear), arXiv:1006.5153
+ [2] T. Erdélyi and E.B. Saff, Polarization inequalities in higher dimensions, (submitted),
+     arXiv:1206.4729v1
+ [3] D. P. Hardin, A. P. Kendall and E. B. Saff, Polarization optimality of equally spaced points
+     on the circle for discrete potentials (submitted) arXiv:1208.5261v1 (2012)
+ [4] M. Ohtsuka, On various definitions of capacity and related notions, Nagoya Math. 30,
+     (1967) 121–127.
+
+
+An Application of Weighted Theta Functions to t-core Partitions and
+                       Numerical Semigroups
+                          Nathan Kaplan
+                    (joint work with Noam Elkies)
+
+We first present a problem about the set of positive integers represented by a
+certain quadratic form subject to some additional constraints. This particular
+problem is motivated by an application to combinatorics, which we explain below.
+Let                                                
+                                             X4         X
+                Q5 (x1 , x2 , x3 , x4 ) = 2    x2j  −   xj xk .
+                                               j=1          1≤j<k≤4
+This quadratic form is associated to a lattice, in this case a scaled copy of A∗4 .
+We do not consider integer inputs but (x1 , x2 , x3 , x4 ) satisfying xj ∈ Z + 5j for
+2454                                                      Oberwolfach Report 40/2012
+
+1 ≤ j ≤ 4. Knowing the set of integers represented by this form subject to this
+condition is equivalent to knowing the possible norms of vectors in a particular
+translate of this lattice. Standard results in the theory of quadratic forms in
+four or more variables imply that the vectors of norm N in this lattice translate
+asymptotically become equidistributed. For our particular application these types
+of asymptotic results are not sufficient. We want to determine exactly the set of
+positive integers represented by Q5 (x1 , x2 , x3 , x4 ) subject to the above constraint
+                            x
+and also satisfying maxj6=k xkj ≤ 2. Our main result is the following.
+Theorem 4 (Elkies, K.). For each n ≥ 1, n 6∈ {1, 2, 3, 6}, there exist (x1 , x2 , x3 , x4 )
+                                 x
+satisfying xj ∈ Z + 5j , maxj6=k xkj ≤ 2, and Q5 (x1 , x2 , x3 , x4 ) = n.
+   This result has consequences in the study of t-core partitions and numerical
+semigroups. A partition λ of n is nonincreasing list of positive integers, λk ≥
+λk−1 ≥ · · · ≥ λ1 ≥ 1, that sums to n. We can represent a partition by its Young
+diagram, an array of k left-justified rows of boxes with λk boxes in the first row,
+λk−1 boxes in the second row, and so on, down to λ1 boxes in the last row. Each
+box in the Young diagram has a hook length, the number of boxes in the hook
+attached to this box. Hook lengths play an important role in the correspondence
+between irreducible representations of Sn and partitions of n. The hook set of
+a partition is the set of hook lengths of boxes of the Young diagram. A t-core
+partition is a partition none of whose hook lengths is divisible by t. We recall the
+t-core theorem of Granville and Ono [2].
+Theorem 5 (Granville-Ono, 1996). Fix t ≥ 4. For any n ≥ 1, there exists a
+t-core partition of n.
+   The proof of the t-core theorem involves studying the generating function for t-
+cores as a modular form and carefully considering the coefficients of its q-expansion.
+We will use similar modular forms methods to strengthen the Granville-Ono the-
+orem in the case t = 5.
+   A numerical semigroup S is an additive submonoid of {0, 1, 2, . . . , } with finite
+complement. The size of this complement is known as the genus of S, denoted
+g(S), terminology which comes from the theory of Weierstrass semigroups on al-
+gebraic curves. The weight of S, denoted w(S), is the sum of the elements of N \ S
+minus g(S)(g(S) + 1)/2. The connection between numerical semigroups and t-core
+partitions is summarized in the following propositions, the second of which builds
+on work of Bras-Amorós and de Mier [1].
+Proposition 2. The hook set of a partition is the complement of a numerical
+semigroup.
+Proposition 3. Given a numerical semigroup S there is a unique partition λ(S)
+with hook set equal to N \ S and satisfying the additional property that for any
+integer j in the hook set there is a box in the first column of the Young diagram of
+λ with hook length equal to j.
+Suppose m is the smallest nonzero element of S. The λ(S) is an m-core partition
+but not a t-core for any t < m and the size of λ(S) is w(S) + g(S).
+Optimal and Near Optimal Configurations on Lattices and Manifolds                  2455
+
+   We can express w(S) + g(S) in terms of a particular generating set of S known
+as the Apéry set. If S has smallest nonzero element n, then w(S)+ g(S) is equal to
+an inhomogeneous quadratic form in m − 1 variables evaluated at inputs coming
+from the Apéry set of S. A simple change of variables gives the following quadratic
+form:
+                                                     
+                                              m−1
+                                              X              X
+                                         m−1
+         Qm (x1 , x2 , . . . , xm−1 ) :=          x2j  −             xj xk .
+                                          2   j=1           1≤j<k≤m−1
+
+We want to determine the values represented by this form when our inputs come
+                                                                           x
+from the Apéry set of a semigroup. A sufficient condition is that maxj6=k xkj ≤ 2.
+Setting m = 5 gives the problem from the beginning of the abstract. Our main
+result implies the following.
+Corollary 1. For each n ≥ 6 there exists a numerical semigroup S with multi-
+plicity 5 and w(S) + g(S) = n.
+For each n ≥ 6 there exists a 5-core partition λ of n which is not a t-core partition
+for any t < 5 with the additional property that for any j ∈ H(λ) there exists a box
+in the first column of the Young diagram of λ with hook number equal to j.
+   We describe some of the ingredients of the proof below. In order to impose the
+                                                      x
+condition that (x1 , x2 , x3 , x4 ) satisfies maxj6=k xkj ≤ 2 we note that this vector is
+in this cone if and only if the absolute value of the cosine of the angle defined by
+this vector and (1, 1, 1, 1) is large. We treat this scaled inner product as a variable
+and find a polynomial in this variable which is negative outside of the cone and
+has positive average on the unit sphere. Therefore, if we show that this average
+of this polynomial taken over all vectors of norm N is positive, then there exists
+a vector of norm N in our cone.
+   We express this polynomial as a linear combination of Chebyshev polynomials
+of the second kind, which lead to closely related harmonic polynomials. These
+harmonic polynomials give weighted theta functions. In this setting, the theta
+function weighted by the harmonic polynomial of degree 2n is a modular form of
+level 5, weight 2 + 2n, and character χ, the Legendre character mod 5.
+   One of these weighted theta functions is the Eisenstein series for our space and
+the other nonzero ones are cusp forms. We can determine the q-expansion of the
+Eisenstein series explicitly and note that the q n coefficient is ≫ n1−ǫ . We use a
+theorem of Deligne to bound the contribution from the cusp forms. Combining
+these bounds with the expansion described above shows that the average of this
+polynomial taken over vectors of norm N must be positive if N is squarefree and
+either N has 9 or more prime factors, or N has a prime factor at least 5471. We
+now have a large but finite list of squarefree N to consider.
+   We generate a list of candidates and for each one determine the relevant cusp
+form coefficients and the corresponding term of the overall q-expansion. This
+completes our analysis for squarefree N . It is not difficult to extend these ideas
+to general N . We show that the only N for which the average of the polynomial
+taken over vectors of norm N is negative are {1, 2, 3, 4, 6, 8, 10, 14}. We can give
+2456                                                        Oberwolfach Report 40/2012
+
+explicit representatives of vectors of norm N in our cone for some of these values,
+completing the proof of the main theorem.
+
+                                       References
+[1] M. Bras-Amorós and A. de Mier, Representation of numerical semigroups by Dyck paths.
+ Semigroup Forum 75 (2007), no. 3, 677-682.
+[2] A. Granville and K. Ono. Defect zero p-blocks for finite simple groups. Trans. Amer. Math.
+ Soc., 348 (1996), no. 1, 331-347.
+
+
+
+                 On some kissing numbers in low dimensions
+                                Abhinav Kumar
+           (joint work with Henry Cohn, Yang Jiao, Salvatore Torquato)
+
+    The kissing number problem in dimension n asks for the maximum size of a
+configuration of non-overlapping unit spheres in Rn which touch a central unit
+sphere. It is equivalent to the question of finding the maximum size of a spher-
+ical code of minimal angle π/3. The kissing numbers are exactly known only in
+dimensions 1 through 4 [18, 15], 8 and 24 [16, 14]. In other low dimensions, we
+have upper bounds from linear programming [9, 11] or semidefinite programming
+[1], and lower bounds from explicitly known kissing arrangements, often arising
+from dense sphere packings. Note that the kissing configurations of size 240 and
+196560 in R8 and R24 respectively are unique [2], coming from the E8 and Leech
+lattices. The kissing configuration of 24 points in R4 is expected to be unique, but
+this question is open.
+    In our recent work [3], we described an algorithm to test whether a spherical
+code is infinitesimally rigid, motivated by studies of rigidity of sphere packings
+[19, 10]. We say that a spherical code is rigid or jammed if the only continuous
+motions of its points which do not decrease its minimal distance are induced by
+continuous rotations (i.e. paths in SO(n) starting at the identity). Similarly,
+there is a notion of being infinitesimally rigid, which says that any infinitesimal
+deformation is an infinitesimal rotation. If C = {x1 , . . . , xN } ⊂ S n−1 is a spherical
+code, and the collection of vectors y1 , . . . , yN describes the first order change in
+the positions, then we must have hxi , yi i = 0 to stay on the sphere (to first order).
+In addition, in order that the minimal angle of the code does not decrease to
+first order, one needs that for every pair (i, j) of distinct points at the smallest
+distance, hxi , yj i + hxj , yi i ≤ 0. We say that the collection of yi is an infinitesimal
+deformation if these conditions are satisfied. On the other hand, an infinitesimal
+rotation is one for which yi = Φxi for some skew-symmetric matrix Φ (recall that
+the Lie algebra of SO(n) is the space of skew-symmetric matrices). It follows
+from the work of Connelly, Roth and Whiteley [5, 17] that an infitesimally rigid
+spherical code is rigid. We do not know whether the converse is true or false, if
+the code is assumed to span the ambient space (a harmless restriction). In any
+case, the considerations above lead almost immediately to a linear programming
+algorithm to check if a spherical code is rigid, once we establish the following
+Optimal and Near Optimal Configurations on Lattices and Manifolds                        2457
+
+easy fact: for a spherical code which spans the ambient space, an infinitesimal
+deformation is an infinitesimal rotation if and only if no distances change to first
+order, i.e., hxi , yj i + hxj , yi i = 0 for all pairs (i, j). Since this objective function is
+linear in the variables (the coordinates of the yi ) and so are the constraints, one
+merely has to run N2 linear programs to check if a code is infinitesimally rigid.
+The presence of symmetry may simplify often simplifies matters, since one may
+then restrict to checking one pair of vectors in each orbit of Aut(C) on C × C.
+   We implemented this algorithm and ran it on the best kissing configurations
+known in low dimensions. We were then able to rigorously verify our results, by
+showing (via more conceptual arguments) that the spherical codes in question were
+rigid or non-rigid. Here, we briefly report on these results.
+   In dimension 2, the best kissing arrangement comes from the vertices of the
+regular hexagon, and it is obviously rigid, for instance by a simple argument with
+angles. In dimension 3, one may take the vertices of a rhombic dodecahedron (the
+kissing configuration of the face-centered cubic lattice). This is well-known to be
+non-rigid, and in fact there is so much space that one can perform any permu-
+tation of the twelve points through continuous deformations, without decreasing
+the mininal distance [8, Appendix to Chapter 1]. In dimension 4, the root system
+of the D4 lattice gives an optimal kissing configuration of 24 points. We showed
+that it is (infinitesimally) rigid, by first using an embedding argument from the A2
+root system to see that the inner products of ±1/2 cannot change to first order,
+and then using a bit of algebra to see that the inner product of 0 cannot change
+to first order, either. The same embedding argument shows that the root systems
+of Dn (for n ≥ 5) and of E6 , E7 , E8 are also rigid.
+   In dimension 5, we showed that both the best known kissing configurations of
+40 points, coming from the D5 lattice and its non-lattice competitor [12, 7] are
+rigid. Similarly, in dimensions 6, we showed that the kissing configurations of E6
+and the three other uniform “tight” packings [13, 7] are rigid. In dimension 7,
+again we have four competitors for the current record, two of which are the E6
+root system and a uniform non-lattice packing [7, 4]. The other two do not occur
+in any of the tight packings. All these kissing configurations are rigid.
+   In dimension 8, the unique solution to the kissing problem is obviously rigid.
+In dimensions 9 through 12, the best kissing configurations known are obtained
+from certain constant weight binary codes through Construction A [8, Chapter 5],
+and are all rigid. However, the best lattice kissing configuration in R9 is obtained
+from the laminated lattice Λ9 [6]. It consists of the E8 kissing configuration of 240
+points on the “equator”, with cross-polytopes of 16 points above and below. This
+code contains the kissing configuration of D9 (consisting of 144 points), which we
+have shown is rigid. However, the remaining 128 points are not even locally rigid,
+and in fact we can move half of them simultaneously into the northern hemisphere
+to deform the code. An adaptation of this construction is lets us improve the
+kissing numbers in dimensions 25 through 31, which we describe next.
+   For concreteness, we describe dimension 25. The previously best kissing con-
+figuration known was that of the laminated lattice Λ25 , consisting of 196560 + 96
+2458                                                          Oberwolfach Report 40/2012
+
+points, with a similar structure as in 9 dimensions: the Leech lattice kissing con-
+figuration C24 on the equator, and a cross-polytope above and below. To improve
+upon it, we first discard the 96 points, and then proceed to find a subset S of C24
+of size 480 such that no pair of points of S is at the minimal distance. We then
+remove S from the equatorial hyperplane, and place a copy at an appropriate lat-
+itude in the northern hemisphere, as well as one in the southern hemisphere. The
+new kissing configuration has size 196560 + |S|, which beats the previous record.
+Similar constructions, utilizing good kissing configurations in dimension 2 through
+7, work in dimensions 24 + 2 through 24 + 7.
+   Finally, we mention two further interesting observations from our work. In
+dimension 12, the best lattice kissing configuration is that of the Coxeter-Todd
+lattice, with 756 points. We showed that it is not rigid, by finding an interesting
+family of deformations: one can decompose the code into 126 hexagons (using the
+Eisenstein structure, for instance) and then independently rotate each hexagon
+through a different angle! In dimension 16, the best kissing configuration known is
+that of the Barnes-Wall lattice, which is also the densest packing in that dimension.
+We showed that this 4320-point spherical code is rigid. However, we have not
+checked the large number of competitors [7], which may not be rigid and may offer
+a possibility of improving the kissing number in R16 .
+
+
+
+                                        References
+ [1] C. Bachoc and F. Vallentin, New upper bounds for kissing numbers from semidefinite pro-
+     gramming, J. Amer. Math. Soc. 21 (2008), no. 3, 909–924, arXiv:math/0608426.
+ [2] E. Bannai and N. J. A. Sloane, Uniqueness of certain spherical codes, Canad. J. Math. 33
+     (1981), 437–449.
+ [3] H. Cohn, Y. Jiao, A. Kumar and S. Torquato, Rigidity of spherical codes, Geom. Topol. 15
+     (2011), no. 4, 2235–2273, arXiv:1102.5060.
+ [4] H. Cohn and A. Kumar, Counterintuitive ground states in soft-core models, Phys. Rev. E
+     78 (2008), 061113:1–7, arXiv:0811.1236.
+ [5] R. Connelly, The rigidity of certain cabled frameworks and the second-order rigidity of
+     arbitrarily triangulated convex surfaces, Adv. Math. 37 (1980), 272–299.
+ [6] J. H. Conway and N. J. A. Sloane, Laminated lattices, Ann. of Math. 116 (1982), 593–620.
+ [7] J. H. Conway and N. J. A. Sloane, What are all the best sphere packings in low dimensions? ,
+     Discrete Comput. Geom. 13 (1995), 383–403.
+ [8] J. Conway and N. J. A. Sloane, Sphere Packings, Lattices and Groups, third edition,
+     Grundlehren der Mathematischen Wissenschaften 290, Springer-Verlag, New York, 1999.
+ [9] P. Delsarte, J. M. Goethals, and J. J. Seidel, Spherical codes and designs, Geom. Dedicata
+     6 (1977), 363–388.
+[10] A. Donev, S. Torquato, F. H. Stillinger, and R. Connelly, A linear programming algo-
+     rithm to test for jamming in hard-sphere packings, J. Comput. Phys. 197 (2004), 139–166,
+     arXiv:cond-mat/0208502.
+[11] G. A. Kabatjanskiı̆ and V. I. Levenšteı̆n, Bounds for packings on the sphere and in space,
+     (Russian) Problemy Peredači Informacii 14 (1978), no. 1, 3–25.
+[12] J. Leech, Five dimensional non-lattice sphere packings, Canad. Math. Bull. 10 (1967), 387–
+     393.
+[13] J. Leech, Six and seven dimensional non-lattice sphere packings, Canad. Math. Bull. 12
+     (1969), 151–155.
+Optimal and Near Optimal Configurations on Lattices and Manifolds                          2459
+
+[14] V. I. Levenšteı̆n, On bounds for packings in n-dimensional Euclidean space (Russian), Dokl.
+     Akad. Nauk SSSR 245 (1979), 1299–1303; English translation in Soviet Math. Dokl. 20
+     (1979), 417–421.
+[15] O. R. Musin, The kissing number in four dimensions, Ann. of Math. 168 (2008), 1–32,
+     arXiv:math/0309430.
+[16] A. M. Odlyzko and N. J. A. Sloane, New bounds on the number of unit spheres that can
+     touch a unit sphere in n dimensions, J. Combin. Theory Ser. A 26 (1979), 210–214.
+[17] B. Roth and W. Whiteley, Tensegrity frameworks, Trans. Amer. Math. Soc. 265 (1981),
+     419–446.
+[18] K. Schütte and B. L. van der Waerden, Das Problem der dreizehn Kugeln, Math. Ann. 125
+     (1953), 325–334.
+[19] S. Torquato and F. H. Stillinger, Jammed hard-particle packings: from Kepler to Bernal
+     and beyond, Rev. Modern Phys. 82 (2010), 2633–2672, arXiv:1008.2982.
+
+
+
+
+                     Polydisperse spherical cap packings
+                               David de Laat
+     (joint work with Fernando Mário de Oliveira Filho and Frank Vallentin)
+
+Given a finite set {α1 , . . . , αN } of angles, we give upper bounds on the maximal
+density of spherical cap packings using these angles, where the spherical cap with
+center x ∈ S n−1 and angle α is defined by C(x, α) = {y ∈ S n−1 : x · y ≥ cos α}. To
+do this we define a graph G with vertex set V = S n−1 × {1, . . . , N } where vertices
+(x, i) and (y, j) are adjacent if cos(αi + αj ) < x · y and (x, i) 6= (y, j). We define
+the weight of a vertex to be the normalized area of the corresponding cap. The
+independent sets in this graph correspond precisely to the spherical cap packings,
+and the weight of an independent set gives the cap packing density.
+   Determining the independence number of a finite graph is NP-hard, but in many
+cases the ϑ number, which can be computed in polynomial time, gives good upper
+bounds. When we generalize the weighted theta number of Grötschel, Lovász, and
+Schrijver [3] to infinite graphs we obtain
+                                      √      √
+            ϑ′w (G) = inf M : K − w ⊗ w ∈ C(V × V )0 ,
+                                K(u, u) ≤ M for all u ∈ V,
+                                K(u, v) ≤ 0 for all {u, v} 6∈ E where u 6= v,
+where C(V × V )0 denotes the cone of positive semidefinite kernels.
+   Any feasible solution of this program gives an upper bound on the packing
+density, but to find good feasible solutions by computer we reformulate the problem
+as a semidefinite program with finitely many variables and constraints. This is
+done using the symmetry of G expressed by the group action
+                            O(n) × V → V, A(x, i) = (Ax, i).
+It follows that in the above program we can replace C(V ×V )0 by the smaller cone
+          O(n)
+C(V × V )0 of O(n)-invariant positive kernels. Using an explicit characterization
+2460                                                              Oberwolfach Report 40/2012
+
+                       0.90                       Icosahedron
+
+                       0.88                               Octahedron
+
+                       0.86
+                                                                Simplex
+                       0.84
+
+                       0.82
+
+                       0.80
+
+                       0.78
+
+                       0.76
+
+                                0.2   0.4         0.6     0.8       1.0
+
+        Figure 1. Upper bounds on the packing density for N = 1 and
+        n = 3. The solid line is the semidefinite programming bound; the
+        dashed line is the geometric bound.
+
+
+of the kernels in this cone, we can reformulate the above program as
+                                                       N
+          ϑ′w (G) = inf M : fij,0 − w(αi )1/2 w(αj )1/2 i,j=1  0,
+                                  N
+                             fij,k i,j=1  0 for k ≥ 1,
+                              fij (u) ≤ 0 whenever − 1 ≤ u ≤ cos(αi + αj ),
+                              M ≥ fii (1) for 1 ≤ i ≤ N,
+where
+                                            ∞
+                                            X
+                                fij (u) =         fij,k Pkn (u)
+                                            k=0
+                                                 ((n−3)/2,(n−3)/2)
+and where Pkn denotes the Jacobi polynomial Pk                     of degree k, nor-
+                 n
+malized so that Pk (1) = 1. By restricting the degree of the polynomials fij in this
+program, and by using sums of squares characterizations, we can reformulate the
+above as a semidefinite program with finitely many variables and constraints.
+   This semidefinite programming bound reduces to the Delsarte, Goethals, and
+Seidel [1] bound when N = 1. Figure 1 shows a plot of this bound for n = 3.
+The other bound in this plot is a geometric bound due to Florian [2]. We know
+that the bounds meet at the three given configurations, and the numerical solution
+suggest that the bounds in fact meet infinitely often as the angle decreases. An
+interesting feature of the semidefinite programming bound is that it has a similar
+shape between any two of these meeting points.
+   Figure 2 shows the bound for N = 2 and n = 3. When we compare this bound
+with the geometric bound we see that it depends on the specific combination of
+angles which bound is sharper. One specific set of angles where the semidefinite
+bound is sharper – and where the bound is in fact tight – is those that occur in
+the configuration related to the 5-prism. Here we project a 5-prism whose vertices
+Optimal and Near Optimal Configurations on Lattices and Manifolds                         2461
+
+                         1.0                                      0.96
+                                                                  0.94
+                                                                  0.92
+                         0.8
+                                                                  0.9
+                                                                  0.88
+                         0.6                                      0.86
+                                                                  0.84
+                         0.4                                      0.82
+                                                                  0.8
+                                                                  0.78
+                         0.2
+                                                                  0.76
+                               0.2    0.4    0.6   0.8    1.0
+
+         Figure 2. Upper bounds on the packing density for N = 2 and
+         n = 3. The horizontal and vertical axes carry the spherical cap
+         angle; the colors indicate the density.
+
+lie on the sphere radially on the sphere so that we obtain a so called spherical
+archimedean tiling. Taking the incircles of this tiling results in a binary spherical
+cap packing with big caps on the north and south poles, and five smaller caps on
+the equator. We show how an exact solution of the semidefinite program can be
+obtained, proving that the bound is tight.
+
+                                        References
+ [1] P. Delsarte, J.M. Goethals, and J.J. Seidel, S pherical codes and designs, Geom. Dedicata 6
+     (1977), 363–388.
+ [2] A. Florian, Packing of incongruent circles on the sphere, Monatsh. Math. 133 (2001),
+     111–129.
+ [3] M. Grötschel, L. Lovász, and A. Schrijver, The ellipsoid method and its consequences in
+     combinatorial optimization, Combinatorica 1 (1981), 169–197.
+ [4] D. de Laat, F.M. de Oliveira Filho, F. Vallentin, Upper bounds for packings of spheres of
+     several radii, preprint, (2012). (arXiv:1206.2608)
+
+
+
+   Self-similar set as Martin Boundary and Induced Dirichlet forms
+                              Ka-Sing Lau
+   (joint work with Sze-Man Ngai, Xiang-Yang Wang and Tim-Kam Wong )
+
+   In this report, we discuss an approach using the Markov chain theory and
+its associated discrete potential theory to study the induced Dirichlet forms and
+Laplacians on the self-similar sets K. The basic idea is to establish a homeomor-
+phism of K with the limit set of the chain, i.e., the Martin boundary [3], then
+apply the established theory to obtain the desired harmonic structure on K. This
+technique was first used by Denker and Sato [2] on the Sierpinski gasket. The
+study here is closely connected to the current developments on the analysis on
+fractals.
+2462                                                     Oberwolfach Report 40/2012
+
+   We let K be the self-similar set generated by a contractive iterated function
+system (IFS) {Si }Ni=1 , N ≥ 2, which satisfies the open set condition (OSC), and
+assume the maps have equal contraction ratio. The set K admits a symbolic
+representation asSfollows: for each integer n ≥ 0, let Σ = {1, · · · , N } be the set of
+                   ∞
+alphabets, Σ∗ = n=0 Σn the set of finite words, and Σ∞ the set of infinite words.
+Then each x ∈ K can be represented by an u ∈ Σ∞ with {x} = ∩∞           n=1 Su1 ···un (K).
+From the graph-theoretic point of view, we can consider Σ∗ as a tree with edges
+connecting the descendants of each word (the root is at Σ0 := {ϑ}), and Σ∞ is a
+certain boundary of Σ∗ . It is conceivable that the tree structure on Σ∗ is too rough
+and does not reflect the nature of K. We therefore introduce an augmented tree
+structure on Σ∗ to reflect more properties of the underlying set K.
+
+Definition 1. Let X := Σ∗ be the symbolic space associated with {Si }N  i=1 . The
+augmented tree (X, E) is defined to have an edge set E = Ev ∪ Eh of vertical edges
+and horizontal edges:
+                (u, v) ∈ Ev    ⇔ v = ui or u = vi, i ∈ Σ;
+                (u, v) ∈ Eh    ⇔ |u| = |v| and Su (K) ∩ Sv (K) 6= ∅.
+
+   We write u ∼ v, u ∼v v and u ∼h v for (u, v) ∈E, Ev and Eh respectively. The
+augmented tree was introduced by Kaimanovich [5] on the symbolic space of the
+Sierpinski gasket K. The following is a useful extension.
+Theorem 2. [10] With the above assumptions on the IFS, then
+   (i) the augmentd tree (X, E) is a hyperbolic graph ([14]);
+  (ii) the self-similar set K is homeomorphic to the hyperbolic boundary ∂H X of
+(X, E).
+   On this augmented tree, we can impose different Markov chains that walk on
+the whole or part of the paths. For example, the simple Markov chain considered
+by Denker and Sato [2] is that when it is at u, it will walk to its descendants and
+the descendants of the conjugate v (i.e., u ∼h v and u, v have different parents)
+(see [4], [11] for more discussions and extensions). In the following we consider
+two other classes of Markov chains that have different perspectives.
+   We first consider a class of random walks on Σ∗ so that the induced harmonic
+structure on K coincides with the one that is now classical in the analysis on
+fractals [6]. On the Sierpinski gasket, we let Vn be the three vertices in Σn , and
+define a transition probability on Σ∗ by
+                         
+                          1/3,
+                                   if u, v ∈ Σn \ V n , u ∼h v;
+               p(u, v) = 1/3,       if u ∈ V n , v = ui, i = 1, 2, 3;
+                         
+                          0,       otherwise.
+The chain walks on the horizontal edges of the augmented tree in each level Σn ,
+and goes down to the next level Σn+1 when it reaches the three vertices of Σn .
+We call this a transversal random walk. The main result is
+Optimal and Near Optimal Configurations on Lattices and Manifolds                 2463
+
+Theorem 3. [9] The Martin boundary M is homeomorphic to the SG and the
+minimal boundary Mmin = {1̇, 2̇, 3̇}.
+   Moreover the class of induced harmonic functions on the SG is 3-dimensional,
+satisfies the “1/5 − 2/5 rule”, and coincides with Kigami’s harmonic functions.
+    We point out that for the about type of Markov chains, the self-similar set is not
+always homeomorphic to the Martin boundary. For example, in [10], we prove that
+on the Hata tree (a non-symetric case), the Martin boundary is homeomorphic to
+the “trunk” of the tree, yet the harmonic structure still holds as desired. There
+are fruitful researches concerning the existence and properties of the Laplacian on
+self-similar sets, in particular, for some symmetric fractals and their ramifications
+[6]. A still unsolved problem is whether a Laplacian will exist on a general non-
+symmetric (connected) self-similar set. The above Markov chain approach is likely
+to be extended to larger class of self-similar sets, and offers an alternative approach
+to attack the problem.
+   Note that for the above Markov chain, the induced harmonic structure on the
+self-similar set corresponds to a Laplacian, which is a local Dirichlet form. In
+the following we consider another type of Markov chain which induces a non-local
+Dirichlet form. This is initiated by Kigami [7] where the underlying state space is
+a tree and the Martin boundary is a Cantor-type set.
+   On the augmented tree (Σ∗ , E), we define a transition probability by
+                                    (
+                                      c(u,v)
+(1)                       p(u, v) =    m(u) , u ∼ v;
+                                      0,       otherwise,
+                                                               P
+where c(u, v) = c(v, u), 0 < M1 ≤ c(u, v) ≤ M2 and m(u) = v:v∼u c(u, v). Note
+that unlike the previous case, this {Zn }∞ n=0 visits its neighbor in all directions,
+and we call this a reversible random walk. Also note that if c(u, v) = 1, then
+{Zn }∞
+     n=0 is the nearest neighborhood random walk. In [1], Ancona proved a deep
+theorem that says for a hyperbolic graph with a uniformly irreducible transition
+probability (plus some other minor conditions), the hyperbolic boundary ∂H X, the
+Martin boundary M and the minimal boundary Mmin are all identical. Hence
+together with Theorem 2, we prove
+Theorem 4. [13] Let p(·, ·) be as above, then K ≈ ∂H X ≈ M = Mmin
+  Let E be a discrete Dirichlet form on (Σ∗ , E) defined by
+                               1X
+                       E[f ] =       c(x, y)(f (x) − f (y))2 .
+                               2 x∼y
+
+By using the representation theory of harmonic functions on M, E induces a closed,
+non-negative definite, symmetric bilinear form EK on K: EK (u, v) = E(Hu, Hv)
+where Hu on Σ∗ is the Poisson integral of u on K.
+Theorem 5. [13] Suppose dimH K < 2, and the random walk in (1) satisfies the
+uniform drift condition: inf x Px {|Z1 | = |x| + 1} > supx Px {|Z1 | = |x| − 1}. Then
+2464                                                         Oberwolfach Report 40/2012
+
+EK is a non-local Dirichlet form on L2 (K, µϑ ), and has the expression
+                             Z Z
+                  EK [u] =            (u(x) − u(y)2 J(x, y)dµϑ (x)dµϑ (y).
+                              K   K
+
+
+
+
+    We note that the technical conditions in the theorem are used to prove the
+domain DK of EK is dense in L2 (K, µϑ ); J(x, y) is the Naı̈m kernel and the integral
+expression of EK follows from Silverstein [12], which implies EK is a non-local
+Dirichlet form. There are many unanswer questions arisen from Theorem 5, for
+example, it is not clear what the explicit expression of the hitting distribution µϑ
+is, and an estimation of the kernel J(x, y) has not been obtained. Also it is not
+known whether the technical conditions in the theorem can be weakened.
+
+
+
+                                         References
+ [1] A. Ancona, Positive harmonic functions and hyperbolicity, Potential Theory: Surveys and
+     Problems, Lecture Notes in Math. 1344, Springer, 1988, 1-23.
+ [2] M. Denker and H. Sato, Sierpinski gasket as a Martin boundary I: Martin kernels, Potential
+     Anal. 14 (2001), 211-232.
+ [3] E. Dynkin, Boundary theory of Markov processes (The Discrete Case), Russian Math. Sur-
+     veys 24 (1969), 1-42.
+ [4] H.B. Ju, K.S. Lau and X.Y. Wang, Post-critically finite Fractal and Martin boundary, Tran.
+     AMS, 364 (2012), 103-118.
+ [5] V. Kaimanovich, Random walks on Sierpinski graphs: hyperbolicity and stochastic homog-
+     enization, Fractals in Graz 2001, Trends Math., Birkhäuser, Basel, 2003, 145-183.
+ [6] J. Kigami, Analysis on fractals, Cambridge Tracts in Mathematics 143, Cambridge Univer-
+     sity Press, Cambridge, 2001.
+ [7] J. Kigami, Dirichlet forms and associated heat kernels on the Cantor set induced by random
+     walks on trees, Adv. in Math. 225 (2010), 2674-2730.
+ [8] K.S. Lau and S.M. Ngai, Martin boundary and exit space on the Sierpinski gasket, Sci.
+     China Math. 55(2012), 465-670
+ [9] K.S. Lau and S.M. Ngai, Boundary theory on the Hata tree, preprint.
+[10] K.S. Lau and X.Y. Wang, Self-similar sets as hyperbolic boundaries, Indiana U. Math. J.
+     58 (2009), 1777-1795.
+[11] K.S. Lau and X.Y. Wang, Self-similar sets, hyperbolic boundaries and Martin boundaries,
+     preprint.
+[12] M. Silverstein, Classification of stable symmetric Markov chains, Indiana U. Math. J.
+     24(1974), 29-77.
+[13] T.K. Wong and K.S. Lau, Random walks and induced Dirichlet forms on self-similar sets,
+     preprint.
+[14] W. Woess, Random walks on infinite graphs and groups, Cambridge Tracts in Mathematics
+     138, Combridge University Press, Cambridge, 2000.
+Optimal and Near Optimal Configurations on Lattices and Manifolds                 2465
+
+                     Some applications of local operators
+                                H. N. Mhaskar
+                     (joint work with M. Ehler and F. Filbir)
+
+   A recent idea for analyzing high dimensional, unstructured data is to let the
+data speak for themselves. In theoretical analysis, one assumes that the data
+represents a sample from some unknown low dimensional manifold embedded in a
+high dimensional ambient Euclidean space. The objective is then to understand
+the geometry of this manifold. Thus, statistical techniques have been devised to
+estimate the dimension of this manifold [4]. Laplacian eigenmaps/diffusion maps
+are suggested to reveal the relative neighborhoods of different data points [3, 1],
+as well as provide local coordinate systems for the manifold [9, 10]. See the special
+issue [2] for an introduction to these ideas.
+   In many practical applications, one needs to go beyond an understanding of the
+manifold and answer queries based on the data. These queries can be modeled
+mathematically as functions on the (unknown) manifold. This function may be
+known to us on few training points and we aim to accurately predict the value of
+the function at items which are not yet observed. The theory on the approximation
+of functions on data-defined manifolds has been developed in a series of papers
+[11, 7, 8, 12, 13]. A particularly interesting aspect of this theory is a definition of
+pointwise smoothness of the target function. The research has also enabled us to
+devise specific algorithms, extending the theory developed for the understanding
+of the geometry, with the property that the rate of convergence of these algorithms
+in neighborhoods of different points completely characterize the local smoothness
+properties of the target function at those points.
+   Let X be the hypothetical manifold from which all data is assumed to be sam-
+pled. Let {ϕk }∞ k=0 be the eigenfunctions of the Laplace-Beltrami operator ∆ on
+X and {ℓ2k }∞k=0 the associated eigenvalues, ordered in a nondecreasing way with
+ℓ0 = 0 and ℓk → ∞ as k → ∞. The space of diffusion polynomials up to degree N
+is ΠN := span{ϕk : ℓk < N }. Note that {ϕk }∞    k=0 was replaced by a more general
+orthonormal basis for L2 (X, µ) in [7, 8].
+   The object of interest in approximation theory is the degree of approximation
+of the target function:
+(1)                          EN (f ) = min kf − P k∞ .
+                                       P ∈ΠN
+
+This leads us to define the (global) smoothness class W s in terms of the quantities
+EN (f ) as
+                     W s (X) := {f ∈ C(X) : EN (f ) = O(N −s )},
+endowed with the norm k·kW s := k·k∞ +k(N s ENT   (f ))N k∞ . The set of all infinitely
+differentiable functions is denoted by C ∞ (X) = s>0 W s (X). If x0 ∈ X, we will
+define the local smoothness of f at x0 by the natural windowing construction.
+Thus, we say that f ∈ Wxs0 (X) if there exists a neighborhood U of x0 such that
+for every φ ∈ C ∞ (X), supported on U , φf ∈ W s (X).
+2466                                                                      Oberwolfach Report 40/2012
+
+  If we define
+                                  ∞
+                                  X          ℓk
+(2)              ΦN (x, y) :=           h(      )ϕk (x)ϕk (y),         for all x, y ∈ X,
+                                             N
+                                  k=0
+
+where h : R → [0, 1] satisfies h(t) = 1 if |t| ≤ 1/2 and h(t) = 0 if |t| ≥ 1, then
+formally, we have
+                   ∞ Z
+                   X                               Z
+(3)        f (x) =       f (y)ϕk (y)dµ(y)ϕk (x) =    f (y)Φ(x, y)dµ(y),
+                        k=0   X                                       X
+                 P∞
+with Φ(x, y) = k=0 ϕk (y)ϕk (x). To approximate f from training data, we need
+some technical assumptions that lead to
+                                             Nα
+(4)                    |ΦN (x, y)| .                     ,
+                                     max(1, (N ρ(x, y))S
+where α is the dimension of X, ρ the metric on X, and S any integer [7, 11, 13]. If
+the training data C = {yi }Mi=1 are sufficiently dense in X, then there are quadrature
+weights {ωi }M
+             i=1 such  that
+                 Z                 XM
+                    P (x)dµ(x) =        ωj P (xj ),  for all P ∈ ΠaN .
+                    X                        j=1
+
+We now replace the right-hand side of (3) with the approximation
+                                                   M
+                                                   X
+(5)                           σN (f, x) :=               ωj f (yj )ΦN (x, yj )
+                                                   j=1
+
+that is defined for all x ∈ X, although f must only be known on {yi }M
+                                                                     i=1 . We
+verified in [6] that, for f ∈ Wys0 (X), there is δ > 0, such that,
+(6)                               sup      |f (x) − σN (f, x)| . N −s ,
+                              x∈Bδ (y0 )
+
+where Bδ (y0 ) ⊂ X denotes a ball of radius δ around y0 . Thus, when f is locally
+smooth in a neighborhood around y0 , then we can locally reconstruct f from
+the training data. The analogous result for functions that are globally smooth is
+contained in [7, 8, 11], and [13] contains local estimates using spectral data rather
+than the values of f at finitely many points.
+
+   Local smoothness ideas and local function approximation as outlined above are
+particularly useful in biomedicine as disease progression underlies natural vari-
+ations, medication leads to abrupt changes in disease progression, and environ-
+mental factors can vary quickly, so that the query function might not be globally
+smooth. While late disease stages underlie large variations, the transition from
+healthy to early pathology can be smooth, leading to query functions that are
+locally smooth within such early disease transitions. Therefore, we decided to test
+our methods for classification problems in two standard biomedical datasets, avail-
+able at the UCI database library site : the Cleveland heart disease data set and
+Optimal and Near Optimal Configurations on Lattices and Manifolds                          2467
+
+the Wisconsin breast cancer data set. Our methods yielded substantially better
+results than the commonly used support vector machines.
+   After this verification, we use our scheme to analyze multi-spectral retinal im-
+ages of age-related macular degeneration (AMD) patients. This is a first–of–its–
+kind work, an announcement of which was published in [5]. The full results are
+published in [6]
+
+                                        References
+ [1] M. Belkin and P. Niyogi, Laplacian eigenmaps for dimensionality reduction and data rep-
+     resentation, Neural. Comput. 15 (2003), no. 6, 1373–1396.
+ [2] C. K. Chui and D. L. Donoho, Special issue: Diffusion maps and wavelets, Appl. Com-
+     put. Harmon. Anal 21 (2006), no. 1.
+ [3] R. R. Coifman, S. Lafon, A. B. Lee, M. Maggioni, B. Nadler, F. J. Warner, and S. W.
+     Zucker, Geometric diffusions as a tool for harmonic analysis and structure definition of
+     data. part i: Diffusion maps, Proc. Nat. Acad. Sci. 102 (2005), 7426–7431.
+ [4] J. A. Costa and A. O. Hero, Geodesic entropic graphs for dimension and entropy estimation
+     in manifold learning, IEEE Transactions on Signal Processing 52 (2004), no. 8, 2210–2221.
+ [5] M. Ehler, F. Filbir, and H. N. Mhaskar, Learning Biomedical Data Locally using Diffusion
+     Geometry Techniques, in Proceeding (771) Imaging and Signal Processing in Health Care
+     and Technology / 772: Human–Computer Interaction / 773: Communication, Internet and
+     Information Technology – 2012, (R. Merrell, D.-G. Shin, M.H. Hamza Eds) Baltimore, 2012,
+     pp. 125–131.
+ [6] M. Ehler, F. Filbir, and H. N. Mhaskar, Locally learning biomedical data using diffusion
+     frames, accepted in J. Comput. Biol. (2012).
+ [7] F. Filbir and H. N. Mhaskar, A quadrature formula for diffusion polynomials corresponding
+     to a generalized heat kernel, J. Fourier Anal. Appl. 16 (2010), no. 5, 629–657.
+ [8]         , Marcinkiewicz–Zygmund measures on manifolds, Journal of Complexity (2011).
+ [9] P. W. Jones, M. Maggioni, and R. Schul, Universal local parametrizations via heat kernels
+     and eigenfunctions of the laplacian, Ann. Acad. Sci. Fenn. Math. 35 (2010), no. 1, 131–174.
+[10] S. Lafon, Diffusion maps and geometric harmonics, Ph.D. thesis, Yale University, 2004.
+[11] M. Maggioni and H. N. Mhaskar, Diffusion polynomial frames on metric measure spaces,
+     Appl. Comput. Harmon. Anal. 24 (2008), no. 3, 329–353.
+[12] H. N. Mhaskar, Eignets for function approximation, Appl. Comput. Harmon. Anal. 29
+     (2010), 63–87.
+[13]         , A generalized diffusion frame for parsimonious representation of functions on data
+     defined manifolds, Neural Networks 24 (2011), 345–359.
+
+
+
+                    Packing of congruent spheres on a sphere
+                                 Oleg R. Musin
+
+   We say that X in Sd−1 is a spherical ϕ-code if for any x, y ∈ X with x 6= y,
+we have dist(x, y) ≥ ϕ. Denote by A(d, ϕ) the maximum cardinality of a ϕ-code
+in Sd−1 . In other words, A(d, ϕ) is the maximum cardinality of a sphere of radius
+ϕ/2 packing in Sd−1 .
+   We consider several classical and new methods for upper bounds on A(d, ϕ) i.e.
+upper bounds on densest packing of congruent spheres on a sphere:
+(1) Fejes Tóth’s bound of circles packings (1943). Coxeter (1963) extended this
+bound for higher dimensions.
+2468                                                    Oberwolfach Report 40/2012
+
+(2) Distance and irreducible graphs of circles packings [Schutte and van der Waer-
+den, Leech, Danzer].
+(3) Linear programming (Delsarte method) and SDP;
+(4) Combination of (2) and (3).
+(1) L. Fejes Tóth proved the following bound
+                                            2π
+                               A(3, ϕ) ≤        + 2,
+                                           ∆(ϕ)
+where                                                
+                                              cos ϕ
+                         ∆(ϕ) = 3 arccos                − π,
+                                            1 + cos ϕ
+i.e. ∆(ϕ) is the area of a spherical regular triangle with side length ϕ.
+    The Fejes Tóth bound is tight for n = 3, 4, 6 and 12. So for these n it gives a
+solution of the Tammes problem. This bound is also tight asymptotically.
+    Coxeter (1963) and Böröczky (1978) extended the Fejes Tóth bound for all
+dimensions:
+                             A(d, ϕ) ≤ 2Fd−1 (α)/Fd (α),
+where
+                              sec 2α = sec ϕ + d − 2,
+and the function F is defined recursively by
+                              Zα
+                        2
+             Fd+1 (α) =              Fd−1 (β) dθ, sec 2β = sec 2θ − 2,
+                        π
+                           arcsec(d)/2
+
+with the initial conditions F0 (α) = F1 (α) = 1.
+(2) Let X be a finite subset of S2 . Denote
+                     ψ(X) := min {dist(x, y)}, where x 6= y.
+                              x,y∈X
+
+Then X is a spherical ψ(X)-code.
+   Denote by dN the largest angular separation ψ(X) with |X| = N that can be
+attained in S2 , i.e.
+                      dN := max2 {ψ(X)}, where |X| = N.
+                             X⊂S
+
+In other words, how are N congruent, non-overlapping circles distributed on the
+sphere when the common radius of the circles has to be as large as possible?
+   The problem was first asked by the Dutch botanist Tammes, who was led to
+this problem by examining the distribution of openings on the pollen grains of
+different flowers.
+   The Tammes problem is presently solved only for several values of N : for
+N = 3, 4, 6, 12 by L. Fejes Tóth (1943); for N = 5, 7, 8, 9 by Schütte and van
+der Waerden (1951); for N = 10, 11 by Danzer (1963) and for N = 24 by Robin-
+son (1961).
+Optimal and Near Optimal Configurations on Lattices and Manifolds                        2469
+
+   Recently, we solved the Tammes problem for N = 13 [7]. It is joint work
+with Alexey Tarasov. Our computer-assisted proof is based on an enumeration of
+irreducible graphs.
+(3) I. J. Schoenberg proved that a function is positive definite in the unit sphere
+if and only if this function is a nonnegative linear combination of Gegenbauer
+polynomials. This fact plays a crucial role in Delsarte’s method for finding bounds
+for the density of sphere packings on spheres and Euclidean spaces.
+   One of the most excited applications of Delsarte’s method is a solution of the
+kissing number problem in dimensions 8 and 24. However, 8 and 24 are the only
+dimensions in which this method gives a precise result. For other dimensions (for
+instance, three and four) the upper bounds exceed the lower.
+   Recently, were found extensions of Schoenberg’s theorem for multivariate posi-
+tive-definite functions. Using these extensions and semidefinite programming some
+upper bounds for spherical codes can be improved.
+(4) We have found an extension of the Delsarte method that allows to solve the
+kissing number problem (as well as the one-sided kissing number problem) in
+dimensions three and four.
+
+                                       References
+[1] O. R. Musin, The kissing problem in three dimensions, Discrete Comput. Geom., 35 (2006),
+ 375-384.
+[2] O. R. Musin, The one-sided kissing number in four dimensions, Periodica Math. Hungar., 53
+ (2006), 209-225.
+[3] O. R. Musin, The kissing number in four dimensions, Ann. of Math., 168 (2008), no. 1, 1-32.
+[4] O. R. Musin, Bounds for codes by semidefinite programming, Proc. Steklov Inst. Math. 263
+ (2008), 134-149.
+[5] O. R. Musin, Multivariate positive definite functions on spheres, arXiv:math.MG/0701083.
+[6] O. R. Musin, Positive definite functions in distance geometry.“European Congress of Math-
+ ematics Amsterdam, 14-18 July, 2008”, 115-134, EMS Publishing House, 2010.
+[7] O. R. Musin and A. S. Tarasov, The Strong Thirteen Spheres Problem, Discrete & Comput.
+ Geom., 48 (2012), 128–141.
+
+
+
+                    On extremal lattices in jump dimensions
+                               Gabriele Nebe
+
+Let (L, Q) be an even unimodular lattice, so L is a free Z-module of rank n,
+and Q : L → Z a positive definite regular integral quadratic form. Then L
+can be embedded into Euclidean n-space (Rn , (, )) with bilinear form defined by
+(x, y) := Q(x + y) − Q(x) − Q(y) and L defines a lattice sphere packing, whose
+density measures its error correcting properties. One of the main goals in lattice
+theory is to find dense lattices. This is a very difficult problem, the densest lattices
+are known only in dimension n ≤ 8 and in dimension 24 [3], for n = 8 and n = 24
+the densest lattices are even unimodular lattices. The density of a unimodular
+lattice is proportional to its minimum, min(L) := min{Q(ℓ) | 0 6= ℓ ∈ L}.
+For even unimodular lattices the theory of modular forms allows to bound this
+2470                                                             Oberwolfach Report 40/2012
+
+                           n
+minimum min(L) ≤ 1 + ⌊ 24    ⌋ and extremal lattices are those even unimodular
+lattices L that achieve equality. The link is the theta series of L,
+
+                                     X                      ∞
+                                                            X
+                              θL =         q Q(ℓ) = 1 +              ak q k
+                                     ℓ∈L                  k=min(L)
+
+
+
+where ak = |{ℓ ∈ L | Q(ℓ) = k}|. After substituting the formal variable q by the
+holomorphic function exp(2πiz) with z ∈ C, ℑ(z) > 0, θL (z) becomes a modular
+form of weight n2 for the full modular group SL2 (Z). So one may apply explicit
+transformation rules to conclude that the dimension n is always a multiple of 8
+(see [4, Theorem 2.1]), which also follows from the theory of quadratic forms. The
+space of modular forms of weight 4k has dimension mk := ⌊ k3 ⌋ + 1 and contains a
+unique form
+
+       f (k) := 1 + 0q + 0q 2 + . . . + 0q mk −1 + a(f (k) )q mk + b(f (k) )q mk +1 + . . .
+
+the extremal modular form of weight 4k. Already Siegel [12, end of proof of
+                                                                       n
+Satz 2] has shown that a(f (k) ) > 0 for all k, therefore min(L) ≤ 1+⌊ 24 ⌋ for all even
+unimodular lattices of rank n. Lattices achieving equality are called extremal.
+Recently Jenkins and Rouse [5] have shown that the next coefficient b(f (k) ) of
+the extremal modular form becomes negative for all k ≥ 20408, so there are no
+extremal lattices of dimension n ≥ 163, 264.
+
+                      Extremal even unimodular lattices L≤ Rn
+            n        8 16 24      32     40      48 72 80                          ≥ 163, 264
+         min(L)      1 1    2      2      2      3      4   4
+       number of
+        extremal 1        2     1     ≥ 107      ≥ 1051      ≥ 3 ≥1           ≥4       0
+         lattices
+
+Of particular interest are extremal even unimodular lattices L in the jump dimen-
+sions 24m. Then θL,p = 0 for all harmonic polynomials of degree 1 ≤ deg(p) ≤ 11
+hence all non-empty layers {ℓ ∈ L | Q(ℓ) = a} form spherical 11-designs. In
+particular the minimal vectors of L form a spherical 4-design, so all these lattices
+are strongly perfect [14] and their density realises a local maximum of the den-
+sity function on the space of all 24m-dimensional lattices. For m = 1 there is a
+unique extremal even unimodular lattice, the Leech lattice, which is the densest
+24-dimensional lattice [3]. The 196560 minimal vectors of the Leech lattice form
+the unique tight spherical 11-design and realise the maximal kissing number in di-
+mension 24. Also m = 2, 3 these lattices are the densest known lattices and realise
+the maximal known kissing number. There are only 5 extremal lattices known in
+jump dimensions. Using the classification of finite simple groups, one may show
+that the automorphism groups of these lattices are [11]
+Optimal and Near Optimal Configurations on Lattices and Manifolds                        2471
+
+       Aut(Λ24 ) ∼
+                 = 2.Co1                            order 8315553613086720000
+                                                      =    222 39 54 72 · 11 · 13 · 23
+       Aut(P48p ) ∼
+                  = (SL2 (23) × S3 ) : 2            order   72864 = 25 32 11 · 23
+       Aut(P48q ) ∼
+                  = SL2 (47)                        order 103776 = 25 3 · 23 · 47
+       Aut(P48n ) ∼
+                  = (SL2 (13)Y SL2 (5)).22          order 524160 = 27 32 5 · 7 · 13
+                 ∼
+       Aut(Γ72 ) = (SL2 (25) × PSL2 (7)) : 2        order 5241600 = 28 32 52 7 · 13
+A canonical construction of a lattice is a construction that is respected by (a
+big subgroup of) its automorphism group. Two of the 48-dimensional extremal
+lattices have a canonical construction with codes:
+Let (e1 , . . . , en ) be a p-frame, so (ei , ej ) = pδij . Given C ≤ Fnp the codelattice
+                    P
+is Λ(C) := { p1         ci ei | (c1 , . . . , cn ) ∈ C}.
+    Theorem [6], [7]
+Let C = C ⊥ ≤ F48          3 with d(C) = 15. Then one of the two even neighbors of
+the codelattice Λ(C) is an extremal even unimodular lattice. The other even
+neighbor has minimum 4, its minimal vectors form a 4-frame and hence this is
+a codelattice for some extremal code modulo 4. This is one explanation of the
+surprising bijection between Hadamard matrices mod 4 and mod 3 given in [7].
+    Having this application to extremal lattices in mind, I classified all extremal
+ternary codes of length 48 that have an automorphism prime order ≥ 5 in [9].
+It turned out that the two known codes are the only such codes: the extended
+quadratic residue code Q48 with Aut(Q48 ) ∼              = SL2 (47) and the Pless code P48 with
+Aut(P48 ) ∼  = (SL2 (23) × C2 ) : 2. These codes yield the two lattices P48q and P48p .
+    In [8] I found the third lattice P48n which has a canonical construction as a
+tensor product of lattices over quaternions which is very similar to√the construction
+of Γ72 as a Hermitian tensor product over Z[α] where α = 1+ 2 −7 . For sake of
+brevity I will only comment on Γ72 and show how one may apply the theory
+from [1] to obtain the minimum of Γ72 . A Z[α]-lattice P is a free Z[α] module of
+rank n together with a positive definite Hermitian form h : P × P → Q[α]. The
+minimum of P is min(P ) := min{h(ℓ, ℓ) | 0 6= ℓ ∈ P }, the determinant of P
+is the determinant of any Gram matrix of P and the Hermitian dual lattice is
+P ∗ := {v ∈ V | h(v, ℓ) ∈ Z[α] for all ℓ ∈ P } We call P Hermitian unimodular,
+if P = P ∗ One       example of sucha lattice is the Barnes lattice Pb with Hermitian
+                          2 α −1
+Gram matrix  β 2 α  where β = α = 1 − α. Then Pb is Hermitian
+                         −1 β 2
+unimodular, det(Pb ) = 1, min(Pb ) = 2 and Aut(Pb ) = ± PSL2 (7).
+    Any Hermitian Z[α]-lattice (P, h) is also a Z-lattice (L, Q) of dimension 2n,
+where L = P and Q(x) := h(x, x) ∈ R ∩ Q[α] = Q. Then the polar form of Q is
+(x, y) = TraceQ[α]/Q (h(x, y)) and (L, Q) is called the trace lattice of (P, h). We
+have min(L) = min(P ), L# = √1−7 P ∗ and det(L) = 7n det(P )2 .
+    Transfering ideas of Kitaoka, Renaud Coulangeon [1] obtained bounds on the
+minimum of the tensor product of Hermitian lattices: Let K be an imaginary qua-
+dratic field and (L, hL ) and (M, hM ) be Hermitian ZK -lattices, n = dimZK (L) ≤
+m := dimZK (M ). Each v ∈ L ⊗ M is the sum of at most n pure tensors v =
+2472                                                        Oberwolfach Report 40/2012
+
+Pr
+  i=1 ℓi ⊗ mi where r is minimal. Put A := (hL (ℓi , ℓj )) and B := (hM (mi , mj )),
+then h(v, v) = Trace AB ≥ r det(A)1/r det(B)1/r . so
+              min(L ⊗ M ) ≥ min{rdr (L)1/r dr (M )1/r | r = 1, . . . , n}
+where dr (L) = min{det(T ) | T ≤ L, Rg(T ) = r}.
+    Theorem [2]
+Let P be an Hermitian Z[α]-lattice with min(P ) = 2. Then min(P ⊗ Pb ) ≥ 3 and
+min(P ⊗ Pb ) > 3 if and only if P has no sublattice isometric to Pb .
+Proof: Clearly d1 (Pb ) = min(Pb ) = 2, d3 (Pb ) = det(Pb ) = 1 and d2 (Pb ) =
+d1 (Pb∗ ) = 2. By assumption d1 (P ) = min(P ) = 2 and so d2 (P ) ≥ 22 37 and
+d3 (P ) ≥ 1, as these are the minimal determinants of the densest Z[α]-lattices of
+minimum 2 and dimension 2 respectively 3. So
+                                               
+                                                =4    r=1
+                       rdr (Pb )1/r dr (P )1/r   ≥ 3.7 r = 2
+                                               
+                                                 ≥3    r=3
+So the bound on min(P ⊗ Pb ) is strictly bigger than 3, if P does not represent the
+lattice Pb .
+                The nine Z[α] structures of the Leech lattice
+                     i           group             #Pb ≤ Pi
+                     1          SL2 (25)                 0
+                     2        2.A6 × D8            2 · 20, 160
+                     3         SL2 (13).2          2 · 52, 416
+                     4      (SL2 (5) × A5 ).2     2 · 100, 800
+                     5      (SL2 (5) × A5 ).2     2 · 100, 800
+                     6            29 33           2 · 177, 408
+                     7   ± PSL2 (7) × (C7 : C3 ) 2 · 306, 432
+                     8      PSL2 (7) × 2.A7       2 · 504, 000
+                     9           2.J2 .2         2 · 1, 209, 600
+   In particular we may apply this to the nine 12-dimensional Z[α]-lattices Pi
+given in the table such that Trace(Pi ) ∼  = Λ24 . The representation number of Pb
+in Pi can be obtained by computations within the set of minimal vectors of the
+Leech latticed and is given in the last column of this table. It gives the number of
+vectors of norm 3 in Pi ⊗Pb . Therefore the trace lattice Trace(P1 ⊗Pb ) =: Γ72 is an
+extremal even unimodular lattice. Two computational proofs of the extremality of
+Γ72 have been given in [10] a third proof by M. Watkins is based on the following
+idea.
+   Theorem. [13]
+Let L be an even unimodular lattice of dimension 72 with min(L) ≥ 3. Then L is
+extremal, if and only if it contains at least 6, 218, 175, 600 vectors v with Q(v) = 4.
+   Proof: L is an even unimodular lattice of minimum ≥ 3, so its theta series is
+                     θL = 1 + a3 q 3 + a4 q 4 + . . . = f (9) + a3 ∆3 .
+Optimal and Near Optimal Configurations on Lattices and Manifolds                         2473
+
+                     f (9) = 1 + 6, 218, 175, 600q 4 + . . .
+                      ∆3 =        q3              −72q 4 + . . .
+So a4 = 6, 218, 175, 600 − 72a3 ≥ 6, 218, 175, 600 if and only if a3 = 0.
+
+                                        References
+ [1] R. Coulangeon, Tensor products of Hermitian lattices. Acta Arith. 92 (2000) 115-130.
+ [2] R. Coulangeon, G. Nebe, Dense lattices as Hermitian tensor products. Proceedings of
+     the BIRS workshop “Diophantine Methods, Lattices, and Arithmetic Theory of Quadratic
+     Forms”, Contemporary Mathematics (to appear)
+ [3] H. Cohn, A. Kumar, Optimality and uniqueness of the Leech lattice among lattices. Annals
+     of Mathematics 170 (2009) 1003-1050.
+ [4] W. Ebeling, Lattices and Codes, Vieweg 1994
+ [5] P. Jenkins, J. Rouse, Bounds for coefficients of cusp forms and extremal lattices. Bulletin
+     LMS 43 (2011) 927-938.
+ [6] H. Koch, The 48-dimensional analogues of the Leech lattice. Trudy Mat. Inst. Steklov. 208
+     (1995) 193-201.
+ [7] Akihiro Munemasa, Hiroki Tamura, The codes and the lattices of Hadamard matrices. Eu-
+     ropean J. Combin. 33 (2012) 519-533.
+ [8] G. Nebe, Some cyclo-quaternionic lattices. J. Algebra 199 (1998) 474-498.
+ [9] G. Nebe, On extremal self-dual ternary codes of length 48. International Journal of Com-
+     binatorics, vol. 2012
+[10] G. Nebe, An even unimodular 72-dimensional lattice of minimum 8. J. Reine und Angew.
+     Math. (to appear)
+[11] G. Nebe, On automorphisms of extremal lattices. (in preparation)
+[12] C.L. Siegel, Berechnung von Zetafunktionen an ganzzahligen Stellen. Nachr. Akad. Wiss.
+     Göttingen 10 (1969) 87-102.
+[13] D. Stehlé, M. Watkins, On the Extremality of an 80-Dimensional Lattice. ANTS 2010:
+     340-356.
+[14] B. Venkov, Even unimodular extremal lattices. Trudy Mat. Inst. Steklov. 165 (1984) 43-48.
+
+
+
+                     Packings of bodies in Euclidean space
+                      Fernando Mário de Oliveira Filho
+                (joint work with David de Laat and Frank Vallentin)
+
+Let K1 , . . . , KN ⊆ Rn be convex bodies. A packing of K1 , . . . , KN is a union of
+translated copies of these bodies in which any two copies have disjoint interiors.
+The density of a packing is the fraction of space it covers, and one is interested
+in finding lower and upper bounds for the maximum density of a packing of the
+bodies K1 , . . . , KN . There are different ways to formalize the definition of density,
+and then problems arise as to whether every packing has a density and so on.
+These technical details are not really important for us, as they do not change the
+maximum density that can be achieved by a packing; the reader interested in a brief
+discussion of these matters and further references may consult e.g. Appendix A of
+Cohn and Elkies [1].
+   When N = 1 and K1 is a ball we are dealing with the classical sphere-packing
+problem. For this problem, Cohn and Elkies [1] proposed an upper bound for
+the maximum density based on linear programming. Their bound is the best
+2474                                                          Oberwolfach Report 40/2012
+
+known upper bound for dimensions 4, . . . , 24 and is conjectured to be tight in
+dimensions 2, 8, and 24.
+   In our work [3] we give a generalization of the Cohn-Elkies bound to packings
+of N convex bodies. Let f : Rn → C be an L1 function. The Fourier coefficient
+associated with u ∈ Rn is
+                                   Z
+                           fˆ(u) =     f (x)e−2πiu·x dx.
+                                         Rn
+
+Our theorem is the following:
+Theorem. Let K1 , . . . , KN ⊆ Rn be convex bodies and let f : Rn → RN ×N be a
+matrix-valued function whose every component is an L1 and continuous function.
+Suppose f satisfies:
+                                                      N
+   (1) the matrix fˆij (0) − (vol Ki )1/2 (vol Kj )1/2 i,j=1 is positive semidefinite;
+                          N
+   (2) the matrix fˆij (u) i,j=1 is positive semidefinite for all u ∈ Rn ;
+   (3) fij (x) ≤ 0 whenever Ki◦ ∩ (x + Kj◦ ) = ∅.
+Then the density of any packing of translated copies of K1 , . . . , KN is at most
+max{ fii (0) : i = 1, . . . , N }.
+   We use the theorem to compute explicit upper bounds for the densities of binary
+sphere packings. A binary sphere packing is a packing of balls of two different
+radii. Recently, Hopkins, Jiao, Stillinger, and Torquato [2] provided constructive
+lower bounds for the densities of binary sphere packings in dimension 3. For
+instance, they give a packing of balls of radius 0.224744 . . . and 1 in R3 with
+density 0.824539 . . ., whereas the upper bound we computed is 0.861712 . . ..
+   Our approach to finding functions f satisfying the conditions required by the
+theorem is computational. Roughly speaking, we specify the function via its
+Fourier coefficients (so that they become our optimization variables) and use the
+computer to find a best function satisfying the conditions of the theorem.
+   More precisely, we specify a template for the Fourier transform of f . We fix an
+odd integer d and write
+                                        d
+                                        X                       2
+                          fˆij (u) =          aij,k kuk2k e−πkuk ,
+                                        k=0
+
+where the aij,k would be our optimization variables, being such that aij,k = aji,k .
+   This template for the Fourier transform makes it easy to compute back the
+function f . Indeed we have
+                              d
+                              X                         2   n/2−1
+                  fij (x) =         aij,k k!π −k e−πkxk Lk          (πkxk2 ),
+                              k=0
+
+where Lα
+       k is the Laguerre polynomial of degree k and parameter α.
+   Both f and fˆ are polynomials multiplied by an exponential function, which
+is always nonnegative. We may use this fact to rewrite the conditions of the
+Optimal and Near Optimal Configurations on Lattices and Manifolds                         2475
+
+theorem. Condition (1) can be easily expressed in our formulation. Condition (2)
+is equivalent to the 3-variable polynomial
+                                                     2 X
+                                                     X d
+                                  σ(t, y1 , y2 ) =               aij,k t2k yi yj
+                                                     i,j=1 k=0
+
+being nonnegative for all t and all y1 , y2 . In this particular case, this is equiv-
+alent to σ being a sum of squares, that is, it is equivalent to the existence of
+polynomials p1 , . . . , pm such that σ = p21 + · · · + p2m .
+   Condition (3) can be similarly expressed in terms of nonnegative polynomials
+and sums of squares. Finally, since determining whether a polynomial is a sum
+of squares is the same as solving a semidefinite programming problem, we obtain
+at the end a semidefinite programming problem giving an upper bound for the
+maximum density.
+   The approach sketched above is in principle numerical. Since we use a semidef-
+inite programming solver, working with floating-point numbers, it is not a priori
+clear that the numbers we obtain are really bounds. It is possible however to ob-
+tain rigorous results out of this approach by carefully checking the solution data
+provided by the solver.
+   Finally, a similar but simpler computational approach can also be used to com-
+pute upper bounds for the densities of sphere packings, which in this case coincide
+with the Cohn-Elkies bounds. We also show how to strengthen the Cohn-Elkies
+bounds for sphere packings by adding extra valid inequalities. This strengthen-
+ing, together with the computational approach above, gives stronger bounds in
+dimensions 4, 5, 6, and 7.
+
+                                              References
+ [1] H. Cohn, N.D. Elkies, New upper bounds on sphere packings I, Ann. of Math. (2) 157
+     (2003), 689–714.
+ [2] A.B. Hopkins, Y. Jiao, F.H. Stillinger, S. Torquato, Phase diagram and structural diversity
+     of the densest binary sphere packings, Phys. Rev. Lett. 107 (2011), 125501, 5 pages.
+ [3] D. de Laat, F.M. de Oliveira Filho, F. Vallentin, Upper bounds for packings of spheres of
+     several radii, arXiv:1206.2608, 2012, 31 pages.
+
+
+
+             Formally dually sequences in finite abelian groups
+                              Christian Reiher
+        (joint work with Henry Cohn, Abhinav Kumar, Achill Schürmann)
+
+    Let G be a finite abelian group and Ĝ its Pontryagin dual. Two sequences
+v1 , . . . , vN ∈ G and w1 , . . . , wM ∈ Ĝ of distinct elements from these groups are
+said to be formally dual to each other if each y ∈ Ĝ satisfies
+             N
+             X                2       N2 
+                   (vi , y)       =     ♯ (j, k) | 1 ≤ j, k ≤ M and y = wj − wk .
+             i=1
+                                      M
+2476                                                         Oberwolfach Report 40/2012
+
+It is elementary that this implies |G| = |Ĝ| = M N and
+            M
+            X                2       M2 
+                  (x, wj )       =     ♯ (i, k) | 1 ≤ i, k ≤ N and x = vi − vk
+            j=1
+                                     N
+
+for all x ∈ G. In the talk we described some examples of formally dual sequences
+and described our approach to the classification of all such sequences in case G
+has rank 1, which is still work in progress.
+
+
+   QMC designs – optimal order Quasi Monte Carlo Integration in
+                  Sobolev spaces on the sphere
+                        Ian Hugh Sloan
+
+In this joint work with Johann Brauchart, Edward Saff and Robert Womersley,
+we introduce a new concept, that of QMC designs. These are sequences of finite
+point sets on the unit sphere S d ⊂ Rd+1 , which if used for equal weight (or Quasi
+Monte Carlo, or QMC) numerical integration, give optimal order of convergence
+for functions in a Sobolev space H s (S d ) on the unit sphere S d ∈ Rd+1 , where
+s > d/2 is the smoothness parameter of the Sobolev space. Thus if (XN ) is a
+sequence of N -point QMC designs for the Sobolev space H s (S d ) then the worst
+case error in H s (S d ) of equal weight numerical integration based on XN (the worst
+case error being the supremum of the quadrature error for all functions in the unit
+ball of H s (S d )) has order of convergence O(N −s/d ), with an implied constant that
+depends on the H s (S d )-norm, but is independent of N . Here N = |XN | is the
+cardinality of XN .
+   Spherical t-designs with a suitably small number of points are prime examples
+of QMC designs. A spherical t-design, a concept introduced in a ground breaking
+paper by Delsarte, Goethals and Seidel, is a finite subset XN ⊂ S d with the
+characterizing property that an equal weight integration rule with nodes from
+XN integrates exactly all spherical polynomials of degree ≤ t, where a spherical
+polynomial of degree ≤ t is the restriction to S d of a polynomial of degree ≤ t
+on Rd+1 . From earlier results of Hesse and Sloan, spherical designs have a known
+fast convergence property in Sobolev spaces, namely that the worst case error in
+H s (S d ) for an N -point design is of order O(ts ). Thus if a sequence of N -point
+spherical t-designs has N of exact order td then it is a sequence of QMC designs
+for all s > d/2. That spherical designs with this number of points do exist was
+proved recently by Bondarenko, Radchenko and Viazowska, and is the subject of
+a different presentation at this workshop.
+   We show that if a sequence (XN ) is a sequence of QMC designs for H s (S d )
+then it is also a sequence of QMC designs for s′ satisfying d/2 < s′ < s. This
+implies that for every sequence of QMC designs on S d there is a supremum s∗ of
+the values of s for which the QMC design property holds. We call s∗ the QMC
+index of the sequence of designs. A sequence of spherical t-designs with t → ∞
+has s∗ = ∞.
+Optimal and Near Optimal Configurations on Lattices and Manifolds               2477
+
+    An essential tool for our analysis is an expression for the worst-case error in
+terms of a reproducing kernel for the space H s (S d ) with s > d/2. As a consequence
+of this and the recent result of Bondarenko et al., we show that minimizers of
+the N -point energy for this kernel form a sequence of QMC designs for H s (S d ).
+We also show, without appealing to the Bondarenko et al. result, that point
+sets that maximize the sum of suitable powers of the Euclidean distance between
+pairs of points form a sequence of QMC designs for H s (S d ) for s in the interval
+(d/2, d/2 + 1). For such spaces there exist reproducing kernels with simple closed
+forms that are useful for numerical testing of optimal order Quasi Monte Carlo
+integration.
+    Numerical experiments suggest that many familiar sequences of point sets on
+the sphere (equal area points, spiral points, minimal [Coulomb or logarithmic]
+energy points, and Fekete points) are QMC designs for s up to some number
+s∗ . We present estimated values of s∗ for each such sequence. For comparison
+purposes we show that configurations of random points that are independently
+and uniformly distributed on the sphere do not constitute QMC designs for any
+s > d/2.
+
+
+               Linear and semidefinite programming bounds
+                            Frank Vallentin
+   To show that a given point configuration on a manifold is optimal or near opti-
+mal the use of linear programming methods has become one of the most successful
+approaches over the last 40 years. This development started in 1973 with Del-
+sarte’s fundamental work on linear programming bounds for finite Hamming and
+Johnson spaces. In 1977 it was extended by Delsarte, Goethals and Seidel to the
+unit sphere and in 1978 by Kabatiansky and Levenshtein to general compact 2-
+point homogeneous manifolds. Cohn and Elkies extended this to Euclidean space
+in 2003. Using semidefinite programming instead of linear programming improve-
+ments were established by Schrijver in 2005 for Hamming and Johnson spaces. In
+2008 Bachoc and I extended Schrijver’s approach to the unit sphere.
+Linear and semidefinite programming
+   Linear programming (LP) is maximizing a linear function over a polyhedron,
+the intersection of the nonnegative orthant Rn≥0 with an affine subspace. Semi-
+definite programming (SDP) — a rich generalization of linear programming — is
+maximizing a linear function over a spectrahedron, the intersection of the cone of
+                                n
+positive semidefinite matrices S0 with an affine subspace. Both, LP and SDP, are
+conic optimization problems for which efficient (in theory and practice) algorithms
+are available. Furthermore duality theory gives a systematic tool for rigorously
+proving that a solution is (globally) optimal or close to optimal.
+   For solving LPs and SDPs two types of algorithms are available: The ellipsoid
+method focuses on the existence/non-existence of polynomial time algorithm but
+no practical implementation is available. In contrast to this there are many very
+good implementations of the interior point method. However, we currently do not
+2478                                                     Oberwolfach Report 40/2012
+
+know if interior point methods run in polynomial time (in the Turing machine bit
+model!) for non-linear convex programs. Question: Are interior point methods
+the right choice for performing rigorous computations in computer proofs?
+Three applications of SDP
+     For the design and implementation of LP and SDP bounds three applications
+of SDP are important: eigenvalue optimization, approximating N P-hard graph
+parameters, and polynomial optimization:
+     1. Let X ∈ S n be a symmetric matrix with (real) eigenvalues λ1 (X) ≥ λ2 (X) ≥
+. . . ≥ λn (X). Finding the sum of the largest k eigenvalues is an SDP
+ λ1 (X) + · · · + λk (X) = max hX, Y i, Ek = {Y ∈ S n : In  Y  0, hIn , Y i = k}.
+                          Y ∈Ek
+
+This gadget can be used to show that optimizing convex functions which only
+depend on the eigenvalues is in many cases SDP representable.
+   2. Let G = (V, E) be a finite graph. A subset I ⊆ V is called independent
+if {x, y} 6∈ E or all x, y ∈ I. The independence number α(G) is the largest
+cardinality of an independent set. This graph parameter is N P-hard to compute.
+Lovász’ ϑ is another graph parameter which upper bounds α and which is efficiently
+computable by solving an SDP. Let J denotes the all-one matrix.
+          ϑ′ (G) = min    M
+                          K −J          is positive semidefinite,
+                          K(x, x) ≤ M for all x ∈ V ,
+                          K(x, y) ≤ 0   for all {x, y} 6∈ E where x 6= y,
+                          M ∈ R, K ∈ S V .
+  3. Polynomial optimization amounts to finding the solution pmin of the following
+minimization problem
+            minimize     p(x)
+                         x ∈ K = {x ∈ Rn : g1 (x) ≥ 0, . . . , gm (x) ≥ 0},
+where p, g1 , . . . , gm ∈ R[x] are given polynomials. Equivalently, one finds the
+largest t so that p − t ∈ P(K) where P(K) is the cone of polynomials which are
+nonnegative on K. Again, this is in general an N P-hard problem which one can
+relax to an SDP by using sum of squares
+                  psos = sup{t : p − t ∈ Σ + g1 Σ + · · · + gm Σ},
+where
+                       Σ = {h21 + · · · + h2r : r ∈ N, hi ∈ R[x]}
+is the cone of sum of squares polynomials. Detecting that a polynomial p ∈ R[x]≤d
+of degree at most d is a sum of squares is equivalent to deciding whether there is
+a positive semidefinite matrix Q with
+                                       X
+                 p = [x]T
+                        d Q[x]d , i.e.       Qβ,γ = pα ∀α ∈ Nn2d ,
+                                         β,γ∈Nn
+                                              d
+                                         β+γ=α
+Optimal and Near Optimal Configurations on Lattices and Manifolds                 2479
+
+where [x]d denotes the vector of all monomials of degree up to d. Clearly, psos ≤
+pmin and generally pmin 6= psos . Putinar’s theorem (1993) guarantees equality
+                                                                      Pn        in
+many important cases: If there is a natural number N such that N − i=1 x2i ∈
+Σ + g1 Σ + · · · + gm Σ, then
+                  ∀x ∈ K : p(x) > 0 =⇒ p ∈ Σ + g1 Σ + · · · + gm Σ.
+
+Geometric packing problems
+   Many, often notoriously difficult, problems in geometry can be modeled as pack-
+ing and coloring problems of continuous graphs G = (V, E) where the vertex set V
+is a manifold. Packing problems correspond to finding the independence number
+α(G). Examples:
+     • Kissing numbers:
+        V = S n−1 = {x ∈ Rn : x · x = 1},       x ∼ y ⇐⇒ 0 < ∠(x, y) < π/3.
+     • Translational body packings: Let K1 , . . . , KN ⊆ Rn be convex, compact
+       bodies:
+         V = Rn × {1, . . . , N },   (x, i) ∼ (y, j) ⇐⇒ x + Kio ∩ y + Kjo 6= ∅.
+A combination of SDP and harmonic analysis often gives the best known upper
+bounds for these packing problems.
+Symmetry reduction and harmonic analysis
+   Now I illustrate how to apply harmonic analysis in order to be able to perform
+the calculations of ϑ′ (G) for continuous graphs. To simplify the notation I consider
+the case when (V, µ) is a compact measure space. Then, we replace symmetric
+matrices S V by continuous symmetric kernels C(V × V ). Suppose the graph G has
+Γ as its symmetry group. If K ∈ C(V × V )0 is feasible for ϑ′ , then also its group
+average K is:
+                                        Z
+                              K(x, y) =    K(γx, γy)dγ.
+                                           Γ
+So it suffices to consider only the Γ-invariant cone
+                C(V × V )Γ0 = {K : ∀γ ∈ Γ : K(γx, γy) = K(x, y)}
+
+and a theorem of Bochner (1941) gives an explicit parametrization of C(V × V )Γ0 .
+   We state Bochner’s theorem now which requires a bit of technical vocabulary.
+The group Γ acts on C(V ) by (γf )(x) = f (γ −1 x). So one can speak about Γ-
+invariant and Γ-irreducible subspaces of C(V ). The Peter-Weyl theorem (1927)
+says that one can decompose C(V ) orthogonally (using the inner product from
+L2 (V ))
+           C(V ) = (H0,1 ⊥ . . . ⊥ H0,m0 ) ⊥ (H1,1 ⊥ . . . ⊥ H1,m1 ) ⊥ . . . ,
+where Hk,l is Γ-irreducible and dim Hk,l < ∞ and where Hk,l ∼ Hk′ ,l′ iff k = k ′ .
+We fix an orthonormal basis ek,1,1 , . . . , ek,1,dim Hk,1 and Γ-isomorphisms ϕk,l :
+ 2480                                                               Oberwolfach Report 40/2012
+
+ Hk,1 → Hk,l and set ek,l,1 = ϕk,l (ek,1,1 ), . . . , ek,l,dim Hk,1 = ϕk,l (ek,1,dim Hk,1 ).
+ Bochner’s theorem:
+                           ∞ D
+                                                                        !
+                n          X            dim Hk,1                                             E              o
+                                                                                                         mk
+C(V × V )Γ
+         0 =    K(x, y) =    Fk ,                                                               : Fk ∈ S0   .
+                                           P
+                                                   ek,l,i (x)ek,l′ ,i (y)
+                             k=0           i=1
+                                                                            l,l′ =1,...,mk
+
+  This means that instead of optimizing over the cone C(V × V )0 we can optimize
+                                                m0      m1
+ over the direct product of semidefinite cones S0 ×S0    ×. . . Since for finding upper
+ bounds for α(G) we are interested only in feasible solutions we can set Fk = 0 for
+                                    P
+ large enough k. In the case when i ek,l,i (x)ek,l′ ,i (y) is a polynomial one can use
+ polynomial optimization to find feasible solutions for ϑ′ (G) by a finite-dimensional
+ SDP.
+
+                                         References
+  [1] M. Laurent, F. Vallentin, Lecture notes: Semidefinite optimization: Theory and applications
+      in combinatorics, geometry, and algebra, 2012.
+      http://sites.google.com/site/mastermathsdp/lectures
+  [2] C. Bachoc, D.C. Gijswijt, A. Schrijver, F. Vallentin, Invariant semidefinite programs, pages
+      219–269 in Handbook on Semidefinite, Conic and Polynomial Optimization (M.F. Anjos,
+      J.B. Lasserre (ed.)), Springer 2012.
+
+
+
+             On optimal asymptotic bounds for spherical designs
+                               Maryna Viazovska
+              (joint work with Andriy Bondarenko, Danylo Radchenko)
+
+ Let S d be the unit sphere in Rd+1 with Lebesgue measure dµd normalized by
+ µd (S d ) = 1.
+    A set of points x1 , . . . , xN ∈ S d is called a spherical t-design if
+                                Z                       N
+                                                     1 X
+                                    P (x) dµd (x) =        P (xi )
+                                 Sd                  N i=1
+ for all algebraic polynomials in d + 1 variables and of total degree at most t. The
+ concept of a spherical design was introduced by Delsarte, Goethals, and Seidel [6].
+ For each t, d ∈ N denote by N (d, t) the minimal number of points in a spherical
+ t-design on S d . The following lower bounds,
+                                                
+                               d+k       d+k−1
+                             
+                                      +                if t = 2k,
+                             
+                                 d            d
+ (1)              N (d, t) ≥
+                             
+                                     
+                             
+                                d+k
+                             2                         if t = 2k + 1,
+                                    d
+ are also proved in [6].
+    Spherical t-designs attaining these bounds are called tight. Exactly eight tight
+ spherical designs are known for d ≥ 2 and t ≥ 4. All such configurations of points
+Optimal and Near Optimal Configurations on Lattices and Manifolds                         2481
+
+are highly symmetrical and possess other extreme properties. Several of these
+configurations are described in the book of and Conway and Sloane [5].
+    Let us give a short history of asymptotic upper bounds on N (d, t) for fixed d
+and t → ∞. First, Seymour and Zaslavsky [11] have proved that spherical designs
+exist for all d, t ∈ N. Then, Wagner [12] and Bajnok [2] independently proved that
+                  4                    3
+N (d, t) ≤ cd tCd and N (d, t) ≤ cd tCd , respectively. Korevaar and Meyers [8] have
+                                                               2
+improved these inequalities by showing that N (d, t) ≤ cd t(d +d)/2 . They have also
+conjectured that N (d, t) ≤ cd td . Note that (1) implies N (d, t) ≥ Cd td .
+    The conjecture of Korevaar and Meyers was attacked by many mathematicians.
+For instance, Kuijlaars and Saff [10] emphasized the importance of this conjecture
+and revealed its relation to the energy problems. Then, Mhaskar, Narcowich, and
+Ward [9] have constructed positive quadrature formulas on S d with cd td points
+having almost equal weights. Very recently, An, Chen, Sloan, and Womersley, see,
+e.g. [1], [4], have proved the existence of spherical t-designs on S 2 having (t + 1)2
+points, for t ≤ 100. In order to prove their result they extensively used computer
+calculations.
+    For d = 2 there exists even stronger conjecture by Hardin and Sloane [7], that
+N (2, t) = 12 t2 + o(t2 ) as t → ∞. They also provided a numerical evidence for the
+conjecture.
+    In the paper [3] we combine the ideas of Brouwer degree theory and the notion
+of area regular partitions in order to find the optimal asymptotic lower bounds
+for spherical designs. Firstly, starting from a partition of the sphere into regions
+of equal area and small diameter we find a configuration of points on S d which
+is “almost” a t-design. Then, using Brouwer degree theory we show that one can
+slightly move these points so that they become a t-design. Thus, we prove the
+following.
+Theorem 6. For each N ≥ cd td there exists a spherical t-design on S d consisting
+of N points, where cd is a constant depending only on d.
+This proves the conjecture of Korevaar and Meyers.
+
+                                        References
+ [1] C. An, X. Chen, I. H. Sloan, and R. S. Womersley, Well conditioned spherical designs
+     for integration and interpolation on the two-sphere, preprint.
+ [2] B. Bajnok, Construction of spherical t-designs, Geom. Dedicata, 43 (1992), pp. 167–179.
+ [3] A. Bondarenko, D. Radchenko, M. Viazovska, Optimal asymptotic bounds for spherical
+     designs, arXiv:1009.4407v3 [math.MG].
+ [4] X. Chen and R. S. Womersley, Existence of solutions to systems of underdetermined
+     equations and spherical designs, SIAM Journal on Numerical Analysis 44, 6 (2006), pp.
+     2326 - 2341.
+ [5] J. H. Conway and N. J. A. Sloane, Sphere packings, lattices and groups., 3rd ed., Springer,
+     New York, 1999.
+ [6] P. Delsarte, J. M. Goethals, and J. J. Seidel, Spherical codes and designs, Geom.
+     Dedicata, 6 (1977), pp. 363–388.
+ [7] R. H. Hardin and N. J. A. Sloane, McLaren’s Improved Snub Cube and Other New
+     Spherical Designs in Three Dimensions, Discrete Comput. Geom., 15 (1996), pp. 429–441.
+2482                                                                Oberwolfach Report 40/2012
+
+ [8] J. Korevaar and J. L. H. Meyers, Spherical Faraday cage for the case of equal point
+     charges and Chebyshev-type quadrature on the sphere, Integral Transforms Spec. Funct. 1
+     (1993), pp. 105–117.
+ [9] H. N. Mhaskar, F. J. Narcowich, and J. D. Ward, Spherical Marcinkiewicz-Zygmund
+     inequalities and positive quadrature, Math. Comp., 70 (2001), pp. 1113–1130.
+[10] E. B. Saff and A. B. J Kuijlaars, Distributing many points on a sphere, Math. Intelli-
+     gencer, 19 (1997), pp. 5–11.
+[11] P. D. Seymour and T. Zaslavsky, Averaging sets, Adv. Math., 52 (1984), pp. 213–240.
+[12] G. Wagner, On averaging sets, Monatsh. Math., 111 (1991), pp. 69–78.
+
+
+
+        Efficient spherical designs with good geometric properties
+                           Robert S. Womersley
+
+Spherical t-designs, introduced in Delsarte, Goethals and Seidel [5], are sets XN
+of N points on the unit sphere Sd ∈ Rd+1 which are equal weight numerical
+integration rules for Sd that are exact for all spherical polynomials of degree at
+most t. Spherical t-designs are known to exist for all N sufficiently large. A lower
+bound N ∗ (d, t) on the number of points N was given in [5], but point sets which
+achieve this lower bound, known as tight spherical t-designs, only exist in a few
+special cases (see, for example, the survey [1]). The lower bounds were improved
+by Yudin [11]. Recently Bondarenko, Radchenko and Viazovska [2] established
+that spherical t-designs exist for all N ≥ cd td for some constant cd . A spherical
+design is efficient if N is less than 2N ∗ (d, t).
+   We are interested in sequences of efficient spherical t-designs XN = {x1 , . . . , xN }
+that also have good geometric properties. The geometric properties used are
+the mesh norm hXN = maxx∈Sd dist(x, XN ) (the radius for covering the sphere
+by congruent spherical caps with centres from Xn ) and the separation δXN =
+mini6=j dist(xi , xj ) (twice the packing radius). The mesh ratio is
+                                                 2hXN
+                                        ρX N =         ≥ 1.
+                                                  δX N
+A common requirement for computational methods using the nodes in XN is that
+XN is quasi-uniform, that is the mesh ratio is uniformly bounded.
+  A number of variational characterizations of spherical designs have been pro-
+posed (see for example Grabner and Tichy [6], Cohn and Kumar [4] and Sloan
+and Womersley [8]). These all rely on the property that they can be expressed as
+weighted (with strictly positive weights) sums of the squares of the functions
+                            N
+                            X
+            rℓ,k (XN ) :=         Yℓ,k (xj ),   ℓ = 1, . . . , t,   k = 1, . . . , Z(d, ℓ).
+                            j=1
+
+Here Z(d, ℓ) is the dimension of the space of homogeneous harmonic polynomials
+on Sd of exact degree ℓ and {Yℓ,k , k = 1, . . . , Z(d, ℓ)} are an orthonormal set of
+spherical harmonics of degree ℓ. The dimension of the space Pt (Sd ) of spherical
+polynomials of degree at most t is Z(d+1, t). A set XN ⊂ Sd is a spherical t-design
+if and only if the m = Z(d + 1, t) − 1 conditions rℓ,k (XN ) = 0 for k = 1, . . . , Z(d, ℓ)
+Optimal and Near Optimal Configurations on Lattices and Manifolds                    2483
+
+and ℓ = 1, . . . , t are satisfied. (The term ℓ = 0 corresponding to the constant
+polynomial is not included).
+   A spherical t-design XN is invariant under rotations of the whole point set.
+Thus, on S2 a point set can be rotated so that the first point is at the north pole
+and the second point is on the prime meridian, giving n = 2N − 3 remaining
+parameters. The simple argument of matching the number of parameters n with
+the number of equations m = Z(3, t) − 1 = (t + 1)2 − 1, suggests that a solution
+to the system of equations may be found when
+                              b (2, t) := ⌈(t + 1)2 /2⌉ + 1.
+                           N ≥N
+   The idea of using symmetries to ensure that certain polynomials are integrated
+exactly and hence reducing the number of conditions that must be satisfied goes
+back to at least the work of Sobolev [9]. A simple example of that is that an
+antipodal (or symmetric) point set such that x ∈ XN ⇔ −x ∈ XN , automatically
+integrates all odd degree spherical polynomials exactly. Counting constraints from
+the even degree polynomials and imposing the symmetry condition gives
+                                                            
+                                          (t − 1)(t + 2) + 6
+                      N ≥ N (2, t) := 2                        .
+                                                   4
+   A Levenberg-Marquardt based optimization procedure for solving the system
+of nonlinear equations numerically found spherical t-designs with N        b (2, t) points
+for t = 1, . . . , 180 and symmetric t-designs with N (2, t) points for t = 1, . . . , 231.
+A key factor in the performance of the algorithm was the choice of starting point,
+with different starting points producing different spherical designs. A version of the
+generalized spiral points was very effective as they are close to spherical designs (see
+[3]). Although the results are only numerical, the confidence that the calculated
+points are close to true spherical t-designs is increased by observing a rapid rate
+of convergence of the method and the condition number of the Jacobian of the
+system of nonlinear equations. These results agree with Hardin and Sloane [7]
+                                                                        2
+who conjectured that spherical t-designs exist for S2 with N = t2 (1 + o(1)).
+   Yudin [10] has has proved results for the mesh norm (covering radius) of spher-
+ical t-designs, which imply that hXN decays as cN −1/d for spherical designs with
+N = ctd points. Thus spherical t-designs with N    b (2, t) or N (2, t) points must have
+good mesh norm.
+   It is well know that the combination of two spherical t-designs with N points,
+produces a spherical t-design with 2N points. Moreover, as a rotation does not
+affect the conditions for a spherical design, the separation of the combined set of
+2N points can be made arbitrarily small. However as
+
+                           b (2, t) = t,                               3
+             2N ∗ (2, t) − N                2N ∗ (2, t) − N (2, t) =     t − ζt ,
+                                                                       2
+(where ζt = 32 if mod (t, 4) = 1 and ζt = 21 if mod (t, 4) = 3) this construction
+                            b (2, t) or N (2, t) points and small separation is not
+of spherical t-designs with N
+possible. The calculated spherical t-designs with N   b (2, t) points had mesh ratio
+2484                                                         Oberwolfach Report 40/2012
+
+ρXNc ≤ 1.85 for all t = 1, . . . , 180, while the symmetric point sets had mesh ratio
+less than 2.2 for all t = 1, . . . , 231.
+                                                          2
+   The calculated spherical designs for S2 have N ≈ t2 points and are efficient in
+that they have less than twice the lower bounds on the number of points. They also
+have good geometric properties with bounded mesh ratio, which in turn implies
+that the point sets are well separated (although this has not yet been proved).
+
+                                        References
+ [1] E. Bannai, E. Bannai, A survey on spherical designs and algebraic combinatorics on spheres,
+     European J. Comb. 30 (2009) 1392–1425.
+ [2] A. Bondarenko, D. Radchenko, M. Viazovska, Optimal asymptotic bounds for spherical
+     designs, arXiv:1009.4407v3 [math.MG] March 2011.
+ [3] J. Brauchart, E.B. Saff, I.H. Sloan, R.S. Womersley, QMC designs: optimal order Quasi
+     Monte Carlo integration schemes on the sphere, arXiv:1208.3267v1 [math.NA] August 2012.
+ [4] H. Cohn, A. Kumar, Universally optimal distribution of points on spheres, J. Amer. Math.
+     Soc. 20 (2007) 99–148.
+ [5] P. Delsarte, J.M. Goethals, J.J. Seidel, Spherical codes and designs, Geom. Dedicata 6
+     (1977), 363–388.
+ [6] P.J. Grabner, R.F. Tichy, Spherical designs, discrepancy and numerical integration, Math.
+     Comp. 60 (1993), 327–336.
+ [7] R.H. Hardin, N.J.A. Sloane, McLaren’s improved Snub cube and other new spherical designs
+     in three dimensions, Discrete Comput. Geom. 15 (1996), 429–441.
+ [8] I.H. Sloan, R.S. Womersley, A variational characterization of spherical designs, J. Approx.
+     Th. 159 (2009), 308-318.
+ [9] S.L. Sobolev, Cubature formulas on the sphere invariant with respect to any finite group of
+     rotations, Dokl. Acad. Nauk. SSSR 146 (1962), 310–313.
+[10] V.A. Yudin, Covering a sphere and extremal properties of orthogonal polynomials, Discrete
+     Math. Appl. 5 (1995), 371–379.
+[11] V.A. Yudin, Lower bounds for spherical designs, Izv. Math. 61 (1997), 673–683.
+
+
+
+  Gauss variational problem for infinite dimensional vector measures
+                          and Riesz kernels
+                           Natalia Zorii
+
+   The interest in the Gauss variational problem (i.e., minimal energy problems
+with external fields), which goes back to the work by Gauss, reappeared in the
+1980’s when Gonchar and Rakhmanov, Mhaskar and Saff efficiently applied log-
+arithmic potentials with external fields in the investigation of orthogonal polyno-
+mials and rational approximations to analytic functions. E.g., the vector setting
+of the problem, suggested earlier by Ohtsuka [4], nowadays became particularly
+interesting in connection with Hermite–Padé rational approximations. However,
+the potential–theoretical methods, applied in these studies, were mainly based on
+the vague (=weak ∗ ) topology, which made it possible to prove the existence of a
+solution only for vector measures of finite dimensions and compact support [4].
+   In order to treat the Gauss variational problem for vector measures µ of infinite
+dimensions and/or noncompact support, in [8, 9] we have suggested an approach
+Optimal and Near Optimal Configurations on Lattices and Manifolds                   2485
+
+based on the introducing a metric structure on the class of all µ with finite en-
+ergy and also on the establishing an infinite dimensional version of a completeness
+theorem. This enabled us to obtain simultaneously necessary and sufficient con-
+ditions for the solvability of the problem [8, 9]. Although these results have been
+obtained therein for a general positive definite kernel on a locally compact space,
+satisfying Fuglede’s condition of perfectness [1], for the sake of simplicity we shall
+concentrate on the Riesz kernels κα (x, y) = |x − y|α−n , 0 < α < n, in Rn , n ⩾ 2.
+   Let M be the linear space of all Borel measures on Rn equipped with the
+vague topology,
+          R        and let E = Eα consist of all ν ∈ M with finite (Riesz) energy
+E(ν) := κα d(ν⊗ν). Then, by Cartan, E forms an (incomplete) pre-Hilbert          p space
+                                        R
+with the scalar product E(ν, ν1 ) := κα d(ν ⊗ ν1 ) and the norm kνk := E(ν),
+while by Deny, it can be completed by making use of slowly increasing distributions
+with finite energy [3]. Let Cα (·) denote the capacity of a Borel set relative to κα .
+   We consider a countable collection A = (Ai )i∈I of pairwise disjoint, nonempty,
+closed sets Ai ⊂ Rn with the sign +1 or −1 prescribed, and let M+ (A) consist
+                                i
+of all vector measuresQ µ = (µ    )i∈I with µi ∈ M+ (Ai ) := ν ⩾ 0 : supp ν ⊂ Ai .
+That is, M (A) = i∈I M (Ai ). The product space topology on M+ (A), where
+             +                +
+
+each M+ (Ai ) is endowed with the induced vague topology, is likewise called vague.
+   Treating A as a condenser, we assume that the interaction between the charges
+on the conductors Ai , i ∈ I, is characterized by the matrix (siP sj )i,j∈I , where si :=
+sign Ai . Then the energy of µ ∈ M+ (A) is given by E(µ) := i,j∈I si sj E(µi , µj ).
+Let E + (A) denote the class of all µ ∈ M+ (A) with −∞ < E(µ) < ∞.1
+   Fix a vector-valued external field f = (fi )i∈I ; then the f -weighted P energy
+                                                                                R       of
+µ ∈ E + (A) is defined by Gf (µ) := E(µ) + 2hf , µi, where hf , µi := i∈I fi dµi .
+Let Ef+ (A) consist of all µ ∈ E + (A) with −∞ < Gf (µ) < ∞. In what follows, we
+                                                                              n
+suppose thatR either all the fi are ⩾ 0 and lower semicontinuous on R (Case 1),
+or fi = si κα (·, y) dσ(y) for all i ∈ I, where σ ∈ E is given (Case 2).
+   Also fix a P = (ai )i∈I with ai ∈ R+ for all i ∈ I and g ∈ C(Rn ) satisfying the
+assumptions i∈I ai < ∞ and 0 < c1 < g(x) < c2 < ∞ for all x ∈ Rn . Write
+                              
+              Ef+ (A, a, g) := µ ∈ Ef+ (A) : hg, µi i = ai for all i ∈ I
+and suppose that2
+                         Gf (A, a, g) :=         inf        Gf (µ) < ∞.
+                                            µ∈Ef+ (A,a,g)
+
+Problem 1. Does there exist λ = λA ∈ Ef+ (A, a, g) with Gf (λ) = Gf (A, a, g)?
+   If A is finite and compact and Case 1 holds, then the existence of λA can be
+established by exploiting the vague topology only, since then Ef+ (A, a, g) is vaguely
+compact, while Gf (·) is vaguely lower semicontinuous (see [4]). However, these
+arguments break down if any of the above-mentioned hypotheses is dropped, and
+then Problem 1 becomes rather nontrivial. E.g., Ef+ (A, a, g) is no longer vaguely
+
+   1For µ to have finite energy, it is sufficient that P      i
+                                                        i∈I kµ k < ∞ (see [8]).
+   2See [8] for necessary and sufficient conditions for this to hold.
+2486                                                            Oberwolfach Report 40/2012
+
+compact if any of the Ai is noncompact. Another difficulty is that, in Case 2, Gf (·)
+might not be vaguely lower semicontinuous. These difficulties have been overcome
+in [8] in the frame of an approach3 based on the following crucial
+                                                                 P arguments.
+   Given µ ∈ E + (A) and a Borel set B ⊂ Rn , write Rµ(B) := i∈I si µi (B).
+Theorem 7. E + (A) forms a metric space with the metric
+                               hX                                  i1/2
+          kµ1 − µ2 kE + (A) :=      si sj E(µi1 − µi2 , µj1 − µj2 )     .
+                                          i,j∈I
+
+Moreover, kµ1 − µ2 kE + (A) = kRµ1 − Rµ2 kE , so that E + (A) becomes isometric to
+its R-image, the latter being regarded as a metric subspace of E.
+Theorem 8. The metric space E + (A) is complete.4
+   All these enabled us to establish the following (see [8]):
+Theorem 9. Let ̺A > 0, where ̺A is the Euclidean distance between the oppo-
+sitely signed plates of A. Then, for the Gauss variational problem to be solvable
+for any a, g and f , it is sufficient that Cα (Ai ) < ∞ for all i ∈ I.
+   However, if Cα (Aℓ ) = ∞ for some ℓ, then in general there exists a vector a
+such that the problem admits no solution [8]. Then, for given A, g and f , what
+is a description of the set Sf (A, g) of all a for which the problem is nevertheless
+solvable? We shall formulate an answer in the case where Aℓ is the only plate with
+Cα (Aℓ ) = ∞; then the characterization obtained has the most complete form [9].
+                                                               2            2
+   Suppose that Case 2 holds; then, in fact, GS   f (µ) = −kσk + kσ + Rµk . Also
+                                              n
+assume that σ is compactly supported in R \ i∈I Ai , while ̺A > 0.
+Theorem 10. Then Sf (A, g) consists of all a = (ai )i∈I with aℓ ⩽ hg, λ          eℓ i,
+where λ eℓ is the ℓ-component of the solution λ
+                                              e (it exists) to the auxiliary problem
+inf Gf (µ), the infimum being taken over all µ ∈ E + (A) such that hg, µi i = ai for
+all i 6= ℓ. Actually,              D          X          E
+                             eℓ i = g, PA σ +
+                         hg, λ                      s i
+                                                        ei ,
+                                                        λ
+                                         ℓ
+                                                        i6=ℓ
+where PAℓ is the operator of orthogonal projection in E onto E + (Aℓ ).
+  Assume, in addition, α ∈ (0, 2] and α < n. Then PAℓ is, in fact, the operator of
+Riesz balayage onto Aℓ . On account of [6, Theorem 4], we thus led to the following:
+Corollary 2. Let I = {1, 2}, s1 = 1, s2 = −1, Cα (A1 ) < ∞, g = 1, σ ⩾ 0,
+a2 = a1 +σ(Rn ), and let Rn \A2 be connected. Then the Gauss variational problem
+admits no solution if and only if Cα (A2 ) = ∞ though A2 is α-thin at ∞Rn .5
+   3For a background of this approach, see Fuglede’s pioneering work [1] (where I = {1}, g = 1,
+and f = 0) and the author’s study [7] (where I is finite and f = 0).
+   4The proof of Theorem 8 is based on the isometric between E + (A) and its R-image, Deny’s
+result mentioned above, and the fact that a positive distribution is a measure. Thus, if compared
+with Cartan’s counterexample on the incompleteness of E, a crucial assumption in Theorem 8 is
+that the supports of Rµ+ and Rµ− , where µ ranges over E + (A), are uniformly disjoint.
+   5A closed set F is α-thin at ∞ n if F ∗ , the inverse of F relative to the unit sphere, is α-thin
+                                     R
+at x = 0; or equivalently [3], if either F is bounded or x = 0 is an α-irregular point for F ∗ .
+Optimal and Near Optimal Configurations on Lattices and Manifolds                             2487
+
+Example 1. Under the assumptions of Corollary 2, let n = 3 and let A2 be a
+rotational body consisting of all x = (x1 , x2 , x3 ) ∈ R3 with q ⩽ x1 < ∞, where
+q ∈ R, and 0 ⩽ x22 + x23 ⩽ ρ(x1 ). Consider the following three cases:
+(1)          α ∈ (0, 2],               ρ(r) = r−t ,                      t ∈ [0, ∞),
+                                                        t
+(2)          α ∈ (0, 2],               ρ(r) = exp(−r ),                  t > 1,
+                                                        t
+(3)          α = 2,                    ρ(r) = exp(−r ),                  t ∈ (0, 1].
+Then A2 is not α-thin at ∞R3 in case (1), has finite (Riesz) capacity in case (2),
+and it is 2-thin at ∞R3 though C2 (A2 ) = ∞ in case (3) (see [5]). Hence, by Corol-
+lary 2, the Gauss variational problem is solvable in both cases (1) and (2), while
+it is nonsolvable in case (3). See also [2] for some related numerical experiments.
+
+                                         References
+ [1] B. Fuglede, On the theory of potentials in locally compact spaces, Acta Math. 103 (1960),
+     139–215.
+ [2] H. Harbrecht, W.L. Wendland, N. Zorii, Riesz minimal energy problems on C k−1,1 -mani-
+     folds, Preprint Series Stuttgart Research Centre for Simulation Technology (2012).
+ [3] N.S. Landkof, Foundations of Modern Potential Theory, Springer, Berlin (1972).
+ [4] M. Ohtsuka, On potentials in locally compact spaces, J. Sci. Hiroshima Univ. Ser. A-1 25
+     (1961), 135–352.
+ [5] N. Zorii, An extremal problem on the minimum of energy for space condensers, Ukr. Math. J.
+     38 (1986), 365–370.
+ [6] N. Zorii, A problem of minimum energy for space condensers and Riesz kernels, Ukr.
+     Math. J. 41 (1989), 29–36.
+ [7] N. Zorii, Interior capacities of condensers in locally compact spaces, Potential Anal. 35
+     (2011), 103–143. DOI:10.1007/s11118-010-9204-y.
+ [8] N. Zorii, Equilibrium problems for infinite dimensional vector potentials with external fields,
+     Potential Anal., DOI:10.1007/s11118-012-9279-8.
+ [9] N. Zorii, Necessary and sufficient conditions for the solvability of the Gauss variational
+     problem for infinite dimensional vector measures, ArXiv:1207.0604.
+
+
+
+                                 Open Problems Session
+
+
+Mixed packings of balls (Oleg Musin): Assume that we pack balls of two
+sizes, r1 and r2 , in the Euclidean space. Assume also that the sizes are distributed
+(in terms of the limit cardinalities of the sets of balls touching a large ball BR when
+R → +∞) in a prescribed proportion α : (1 − α). Denote by kij the mean kissing
+(contact) number of balls of radius rj around balls of radius ri and consider the
+packing density defined in terms of the limit ratio of the covered volume. Some
+experimental data were obtained in [1] raising many questions to be rigorously
+considered. For example:
+Problem. What is the maximal packing density and kissing numbers k11 , k12 , k21 ,
+and k22 in such packings? Is it true that in the case when r1 and r2 are close to
+each other, the packing density coincides with the packing density for balls of same
+size, that is different balls do not mix?
+2488                                                       Oberwolfach Report 40/2012
+
+Minimizing the sum of squares (Oleg Musin): An olympiad problem (com-
+municated by Fedor Petrov) asserts that given a finite point set P in the unit
+square I 2 it is possible to connect its points by a Hamiltonian cycle with the sum
+of squares of edge lengths at most 4. Evgeniy Shchepin noted that the cycles min-
+imizing the sum of squares generate certain interesting Peano curves in the unit
+square.
+   A bunch of similar questions were discussed by Bern and Eppstein in [2]. For
+example, it is true that for any set P of an even number of points in the d-
+dimensional cube I d it is possible to find a full matching (a partition into pairs) of
+these points such that the sum of d-th powers of the lengths of matching segments
+is bounded by a constant Cd .
+   Returning to the planar case and sums of squares one may ask:
+Problem. Let B be the disk of radius one in the plane. Is it true that any finite
+P ⊂ B can be spanned by a Hamiltonian cycle with the sum of squares at most 8?
+Is it true that any finite P with even number of points has a full matching with
+sum of squares at most 4? What can be done for other convex figures C in place
+of B or I 2 ?
+   It seems like the case |P | = 4 can be done by hand, the extremal configurations
+being inscribed quadrangles with perpendicular diagonals and inscribed triangles
+together with their orthocenters, as well as the limiting cases of them.
+Subcodes of S(Λ24 ) (Henry Cohn): This problem is closely related to Abhinav
+Kumar talk.
+   Let S(Λ24 ) denote the set of minimal vectors in the leech lattice Λ24 . The
+inner product of two distinct elements in S(Λ24 ) belongs to {−4, −2, −1, 0, 1, 2}.
+The problem is to find a large subset C ⊂ S(Λ24 ) such that (x, y) ≤ 1 for all
+x 6= y ∈ C. A set of 480 element was found by computer search. A set of size 554
+would improve the best known kissing number in dimension 32.
+The s-polarization of N points (Ed Saff ): For wN = (x1 , . . . , xN ) ∈ (S 2 )N ,
+where S 2 is the unit sphere of R3 , let
+                                                  N
+                                                  X       1
+                         M s (wN , S 2 ) = min2
+                                           x∈S
+                                                  j=1
+                                                      |x − xj |s
+
+be the s-polarization of wN with respect to S 2 . According to numerical experi-
+ments, the square-based pyramid is optimal for the 5-point s-polarization:
+                             M s (S 2 ) = max M s (w5 , S 2 )
+                                           w5
+
+for s up to a certain value s0 ≈ 2.69. Prove it.
+The optimal configuration of 7 points for the log energy minimization
+problem (Peter Dragnev): For wN = (x1 , . . . , xN ) a set of N points on the
+unit sphere of R3 , let
+                                     X           1
+                        Elog (wN ) =   log            .
+                                           kxi − xj k
+                                      1≤i6=j≤N
+Optimal and Near Optimal Configurations on Lattices and Manifolds                          2489
+
+Prove that the configuration of 7 points given by a regular pentagon on the equator,
+together with the north and south poles, minimizes Elog (w7 ). This is Rakhmanov’s
+problem.
+The maximal measure of a subset of S 2 that avoids π/2 (Frank Vallentin):
+Let A be a measurable subset of S 2 such that, for x, y ∈ A, (x, y) 6= 0. What
+is the largest possible A ? If A is the union of two antipodal spherical caps
+                                                                             2
+of angular radius π/4,      √ and if µ denotes the Lebesgue measure on S , we have
+            2
+µ(A)/µ(S ) = 1 − 1/ 2 ≈ 0.29. It is conjectured that this set is optimal. The
+best known upper bound for µ(A)/µ(S 2 ) is 1/3, easily obtained from the set
+{(1, 0, 0), (0, 1, 0), (0, 0, 1)} ⊂ S 2 . Can one prove a better upper bound ?
+   This problem first appeared in [3].
+The maximal density of a 1-avoiding set in R2 (Fernando Mario de
+Oliveira Filho): This problem is closely related to the chromatic number of the
+plane χ(R2 ), for which we only know that 4 ≤ χ(R2 ) ≤ 7. Let A ⊂ R2 be a
+measurable set, such that kx − yk 6= 1 for all x, y ∈ A. Let δ(A) denotes its
+density, and let m1 (R2 ) denotes the supremum of the densities of all such subsets.
+Erdös has conjectured that m1 (R2 ) < 1/4. Currently the best known upper bound
+is by 0.26.., and the best known lower bound is 0.22...
+   If G is a finite subgraph of the unit distance graph, if V is its vertex set, and
+α(G) its independence number, we have m1 (R2 ) ≤ α(G)/|V |. The Moser graph
+gives 2/7 = 0.28.. Problem: find a finite graph with α(G)/|V | < 2/7.
+The number of local minima for the Coulomb potential on S 2 (Henry
+Cohn): Let Ln be the number of local minima for the Coulomb potential 1/kx−yk
+taken over n points of S 2 .
+    Q1 Is it true that Ln > 1 for n large enough ?
+    Q2 Does Ln grow exponentialy with n ?
+    Q3 What is the energy gap from the global minimum ?
+    Q4 What it the size of the basins of attraction in the gradiant descent method ?
+
+                                       References
+[1] A. B. Hopkins, F. H. Stillinger, S. Torquato. Densest binary sphere packings. Physical Review
+    E 85:021130 (2012), 1–19.
+[2] M. Bern, D. Eppstein. Worst-case bounds for subadditive geometric graphs. SCG ’93. Pro-
+    ceedings of the ninth annual symposium on Computational geometry. (1993), 183–188.
+[3] H.S. Witsenhausen, Spherical sets without orthogonal point pairs, Amer. Math. Monthly 81
+    (1974), 1101-1102.
+
+
+
+
+                                                               Reporter: Christine Bachoc
+2490                                                Oberwolfach Report 40/2012
+
+                                   Participants
+
+
+Prof. Dr. Christine Bachoc               David de Laat
+Laboratoire d’Algorithmique              Dept. of Electrical Engineering
+Arithmetique                             Delft University of Technology
+Universite Bordeaux I                    P. O. Box 5031
+351 cours de la Liberation               2600 GA DELFT
+33405 TALENCE Cedex                      NETHERLANDS
+FRANCE
+                                         Dr. Fernando Mario de Oliveira
+Dr. Andriy V. Bondarenko                 Filho
+Department of Mathematical Analysis      Institut für Mathematik
+Faculty of Mechanics and Mathematics     Freie Universität Berlin
+National Taras Shevchenko University     Arnimallee 2
+str. Volodymyrska, 64                    14195 Berlin
+01601 KYIV
+UKRAINE
+                                         Prof. Dr. Peter Dragnev
+                                         Department of Mathematics
+Prof. Dr. Sergiy Borodachov              Indiana University -
+Towson University                        Purdue University at Fort Wayne
+Department of Mathematics                FORT WAYNE, IN 46805
+8000 York Road                           UNITED STATES
+TOWSON, MD 21252-001
+UNITED STATES
+                                         Dr. Martin Ehler
+                                         Institut für Biomathematik
+Dr. Johann S. Brauchart                  und Biometrie
+School of Mathematics and Statistics     GSF Forschungszentrum Neuherberg
+University of New South Wales            Ingolstädter Landstr. 1
+SYDNEY NSW 2052                          85764 Neuherberg
+AUSTRALIA
+                                         Prof. Dr. Noam D. Elkies
+Prof. Dr. Henry Cohn                     Department of Mathematics
+Microsoft Research New England           Harvard University
+One Memorial Drive                       Science Center
+CAMBRIDGE, MA 02142                      One Oxford Street
+UNITED STATES                            CAMBRIDGE MA 02138-2901
+                                         UNITED STATES
+Prof. Dr. Renaud Coulangeon
+Mathematiques et Informatique            Prof. Dr. Peter J. Grabner
+Universite Bordeaux I                    Institut für Analysis und Computational
+351, cours de la Liberation              Number Theory
+33405 TALENCE Cedex                      Technische Universität Graz
+FRANCE                                   Steyrergasse 30
+                                         8010 GRAZ
+                                         AUSTRIA
+Optimal and Near Optimal Configurations on Lattices and Manifolds              2491
+
+Prof. Dr. Douglas Hardin                Prof. Dr. Gabriele Nebe
+Department of Mathematics               Lehrstuhl D für Mathematik
+Vanderbilt University                   RWTH Aachen
+1326 Stevenson Center                   Templergraben 64
+NASHVILLE TN 37240-0001                 52062 Aachen
+UNITED STATES
+                                        Dr. Christian Reiher
+Nathan Kaplan                           Department Mathematik
+Department of Mathematics               Universität Hamburg
+Harvard University                      Bundesstr. 55
+Science Center                          20146 Hamburg
+One Oxford Street
+CAMBRIDGE MA 02138-2901
+                                        Prof. Dr. Edward B. Saff
+UNITED STATES
+                                        Department of Mathematics
+                                        Vanderbilt University
+Prof. Dr. Abhinav Kumar                 1326 Stevenson Center
+Department of Mathematics               NASHVILLE TN 37240-0001
+MIT                                     UNITED STATES
+CAMBRIDGE, MA 02139
+UNITED STATES
+                                        Prof. Dr. Achill Schrmann
+                                        Institut für Mathematik
+Prof. Dr. Ka-Sing Lau                   Universität Rostock
+Department of Mathematics               Ulmenstr. 69
+Lady Shaw Building                      18057 Rostock
+The Chinese University of Hong Kong
+SHATIN, HONG KONG
+                                        Prof. Dr. Ian H. Sloan
+CHINA
+                                        School of Mathematics and Statistics
+                                        The University of New South Wales
+Prof. Dr. Hrushikesh N. Mhaskar         SYDNEY NSW 2052
+Department of Mathematics               AUSTRALIA
+California Institute of Technology
+PASADENA, CA 91125
+                                        Prof. Dr. Frank Vallentin
+UNITED STATES
+                                        Faculty of Electrical Engineering,
+                                        Applied Mathematics & Computer Sc.
+Prof. Dr. Oleg R. Musin                 Delft University of Technology
+Yaroslavl State University              Mekelweg 4
+Delone Laboratory of Discrete & Comp.   2628 CD DELFT
+Geometry                                NETHERLANDS
+Sovetskaya str. 14
+150000 YAROSLAVL
+                                        Maryna Viazovska
+RUSSIAN FEDERATION
+                                        Max-Planck-Institut für Mathematik
+                                        Vivatsgasse 7
+                                        53111 Bonn
+2492                                      Oberwolfach Report 40/2012
+
+Prof. Dr. Robert S. Womersley
+School of Mathematics and Statistics
+The University of New South Wales
+SYDNEY NSW 2052
+AUSTRALIA
+
+Dr. Natalia V. Zorii
+Department of Mathematical Physics
+Institute of Mathematics
+National Academy of Sciences of Ukraine
+KIEV 01601
+UKRAINE
+

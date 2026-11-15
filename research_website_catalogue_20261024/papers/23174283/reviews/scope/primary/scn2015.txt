@@ -1,0 +1,720 @@
+                                                      Special Issue for the “10 years of the Padua points”, Volume 8 · 2015 · Pages 92–101
+
+
+
+
+         Integration and Approximation with Fibonacci lattice points
+                                          Gowri Suryanarayana a · Ronald Cools a · Dirk Nuyens a
+
+
+
+                                                                             Abstract
+                        We study the properties of a special rank-1 point set in 2 dimensions — Fibonacci lattice points. We
+                        present the analysis of these point sets for cubature and approximation of bivariate periodic functions
+                        with decaying spectral coefficients. We are interested in truncating the frequency space into index sets
+                        based on different degrees of exactness. The numerical results support that the Lebesgue constant of
+                        these point sets grows like the conjectured optimal rate ln2 (N ), where N is the number of sample points.
+
+
+
+
+1       Introduction
+Rank-1 lattice points are very well known for their usefulness in multivariate cubature, see [7, 17, 18]. They have also been
+used for function approximation in [12, 13, 15]. Here we focus on a special case of these lattice points, namely Fibonacci lattice
+points. These are point sets in two dimensions, with the special property that the number of points in the set is a Fibonacci
+number. These were first introduced by Bhakhvalov [2] in 1959. He proved that these point sets are the best for integrating
+smooth bivariate periodic functions (with respect to a certain quality criterion). Fibonacci lattice points have since been widely
+used for the integration of bivariate functions in various settings. For instance, these point sets appear in [20] in the context
+of having a good so called Zaremba or hyperbolic cross index. More recent studies of Fibonacci lattices include [3], where the
+trigonometric degree of these point sets is calculated. In [16], these points were used for the integration of nonperiodic bivariate
+functions. Also in [8], extensions to Fibonacci lattices to improve the trigonometric degree have been introduced. In [11], it
+is shown that the first few Fibonacci lattices are the unique global minimizers of the worst case integration error in a space of
+bivariate periodic functions with bounded mixed derivatives; see [10] for more related results. Fibonacci lattice points have also
+been used for integration over the unit sphere, e.g., in [1] and [14].
+     Motivated by the above results, we study Fibonacci lattices for various degrees of exactness (defined in the next section)
+for cubature as well as function approximation. We are also interested in the Lebesgue constant of trigonometric interpolation
+operators that use these point sets. In [19], upper and lower bounds for the Lebesgue constant for generic lattice point sets are
+given. We numerically verify that Fibonacci lattices have the conjectured optimal growth in the Lebesgue constant of order ln2 (N )
+for N up to 2178309, similar to the well known Padua points which are used in bivariate polynomial interpolation, see [4].
+     We will first start with basic concepts needed in this paper. Throughout the paper we work with bivariate smooth periodic
+functions that have absolutely convergent Fourier series expansions of the form
+                                                            X
+                                                   f (x ) =    fb(h) exp(2πi h · x ),                                            (1)
+                                                                      h∈Z2
+
+where fb(h) are the Fourier coefficients given by
+                                                                  Z
+                                                        fb(h) =            f (x ) exp(−2πi h · x ) dx .                               (2)
+                                                                  [0,1]2
+
+For cubature points or sampling points (for function approximation), we are going to use points from a rank-1 lattice point set,
+which is defined as follows:
+Definition 1.1. For a given N ∈ N and z ∈ ZdN , a rank-1 lattice point set Λ(z, N ) in d dimensions is given by
+                                                   
+                                        Λ(z, N ) := N −1 nz mod 1 : n = 0, 1, . . . , N − 1 ,
+where z is called the generating vector.
+     Let Fk be the k-th Fibonacci number defined by F1 = 1, F2 = 1, and Fk = Fk−1 + Fk−2 for 2 < k ∈ N. A Fibonacci lattice is then
+a rank-1 lattice point set with N = Fk points and generating vector z = [1, Fk−1 ] or z = [1, Fk−2 ]. Figure 1 shows two Fibonacci
+lattice point sets with N = F8 = 21 and N = F9 = 34 points with generating vectors z = [1, 13] and z = [1, 21] respectively.
+
+2       Cubature
+We will consider N -point cubature rules Q N that are linear combinations of function values to approximate integrals (and inner
+products):
+                                                                                                            N −1
+                                                                                                            X
+                              Q N ( f ) = Q N ( f ; {w0 , . . . , w N −1 }, {x (0) , . . . , x (N −1) }) :=      w n f (x (n) ), (3)
+                                                                                                          n=0
+
+a
+    Department of Computer Science, KU Leuven, Celestijnenlaan 200A, 3001 Heverlee, Belgium
+                                                        Suryanarayana · Cools · Nuyens                                                           93
+
+
+
+                                 1                                                   1
+
+
+                               0.8                                                  0.8
+
+
+                               0.6                                                  0.6
+
+
+                               0.4                                                  0.4
+
+
+                               0.2                                                  0.2
+
+
+                                 0                                                   0
+                                     0    0.2   0.4    0.6     0.8       1                0        0.2    0.4    0.6   0.8      1
+
+
+                         Figure 1: Fibonacci lattice points with N = F8 = 21, z = [1, 13] and N = F9 = 34, z = [1, 21].
+
+
+
+where x (0) , . . . , x (N −1) are the sampling points and w0 , . . . , w N −1 are the weights. A lattice rule is then a cubature rule that uses the
+points from a lattice Λ(z, N ) with equal weights 1/N . We will denote its application to a function f by Q N ( f ; z). The following
+character property with respect to the Fourier basis is useful:
+
+                                                                                1 if h · z ≡ 0 (mod N ),
+                                                                              
+                                              Q N (exp(2πi (h · x )); z) =                                                                       (4)
+                                                                                0, otherwise.
+
+The set of frequency indices h ∈ Zd for which the cubature sum is equal to 1 is called the dual lattice and we denote it by Λ⊥ (z, N ).
+A Fibonacci lattice rule uses points from a Fibonacci lattice; the following rules are equivalent Fibonacci lattice rules (in the sense
+       (i)                    (i)
+that x 2 is replaced by 1 − x 2 ):
+                                                                               Fk −1
+                                                                             1 X                  n nFk−1
+                                                                                                         
+                                                  Q Fk ( f ; [1, Fk−1 ]) =          f                ,      ,
+                                                                             Fk n=0               Fk   Fk
+
+                                                                               Fk −1
+                                                                             1 X                  n nFk−2
+                                                                                                         
+                                                  Q Fk ( f ; [1, Fk−2 ]) =          f                ,      .
+                                                                             Fk n=0               Fk   Fk
+
+All results in this paper hold for both formulations of the Fibonacci rule. To describe the quality of a cubature rule, we use the
+largest degree of exactness with respect to a certain index set Ad (T ), with T ∈ N the dilation. In Figure 2 we illustrate the different
+shapes of Ad that we consider.
+Definition 2.1. The cubature degree of exactness T (Q N ) = T (Q N , Ad (·), {exp(2πi h · x )}h ) of a cubature rule Q N with respect to
+an index set Ad (T ) ⊂ Zd and the set of basis functions {exp(2πi h · x )}h is the largest T ∈ N for which
+                                                      Z
+                                     Q N (exp(2πi h · x )) =            exp(2πi h · x ) dx               for all h ∈ Ad (T ).
+                                                               [0,1]d
+
+We will consider three standard shapes of index sets for the quality measures of cubature rules, see, e.g., [5, 6].
+Definition 2.2. For trigonometric degree of exactness T , we define a cross polytope
+                                                          ¨          d
+                                                                                  «
+                                                                    X
+                                               Td (T ) := h ∈ Z :d
+                                                                        |h j | ≤ T .
+                                                                                    j=1
+
+Definition 2.3. For hyperbolic cross degree of exactness T , or Zaremba index T + 1, we define a hyperbolic cross
+                                                     ¨            d
+                                                                                      «
+                                                                 Y
+                                           Hd (T ) := h ∈ Z : d
+                                                                    max(1, |h j |) ≤ T .
+                                                                             j=1
+
+Definition 2.4. For product trigonometric degree of exactness T , we define the index set
+                                                        §                        ª
+                                             Pd (T ) := h ∈ Zd : max |h j | ≤ T .
+                                                                                   1≤ j≤d
+
+     We now present the results for these degrees of exactness for cubature using Fibonacci lattice rules. The degrees of rules with
+Fk points follow a different pattern based on whether k is even or odd. Therefore we will differentiate between these cases. We
+first state known results from [3] and [20], and then add a similar result for the product trigonometric degree which will be of
+use later on.
+Theorem 2.1. The trigonometric degree of a Fibonacci lattice rule with Fk points, where k ≥ 2, and generating vector z = [1, Fk−1 ]
+is 2Fk/2 − 1 for even k and Fbk/2c+2 − 1 for odd k.
+
+
+
+Dolomites Research Notes on Approximation                                                                                           ISSN 2035-6803
+                                                    Suryanarayana · Cools · Nuyens                                                      94
+
+
+
+                               T2 (5)                                 H2 (7)                            P2 (5)
+
+
+
+
+          Figure 2: Index sets associated with the trigonometric, hyperbolic cross and product trigonometric degrees of exactness.
+
+
+
+Proof. See [3] for a proof.                                                                                                              
+
+Theorem 2.2. For a Fibonacci lattice rule with Fk points, where k ≥ 3, and generating vector z = [1, Fk−1 ] the hyperbolic cross
+degree is Fk−2 − 1, i.e., the Zaremba index is Fk−2 .
+
+Proof. See [20] for a proof.                                                                                                             
+
+    We now add results on the product trigonometric degree for Fibonacci lattice rules with odd and even indexed number of
+points Fk .
+Lemma 2.3. The product trigonometric degree of a Fibonacci rule with Fk points and generating vector z = [1, Fk−1 ], where
+3 ≤ k = 2m + 1, is Fm+1 − 1.
+
+Proof. A dual generating matrix is (see [3])
+
+                                                                       (−1)m+1 Fm+1
+                                                                                   
+                                                                Fm
+                                                      B=                              .
+                                                               Fm+1      (−1)m Fm
+
+The points of the dual lattice are thus given by (( j1 Fm + j2 Fm+1 ), (−1)m (− j1 Fm+1 + j2 Fm )) with j1 , j2 ∈ Z. Now we have 4 cases:
+    • When j1 = 0, j2 6= 0, we have | j2 Fm+1 | > Fm+1 − 1.
+    • Similarly, when j1 6= 0, j2 = 0, we have |(−1)m j1 Fm+1 | > Fm+1 − 1.
+    • When j1 j2 > 0, we have |( j1 Fm + j2 Fm+1 )| > Fm+1 − 1.
+    • When j1 j2 < 0, we have |(−1)m (− j1 Fm+1 + j2 Fm )| > Fm+1 − 1.
+On the other hand, for j1 = 0 and j2 = 1, we have a point of the dual lattice at (Fm+1 ,(−1)m Fm ). This completes the proof.            
+
+Lemma 2.4. The product trigonometric degree of a Fibonacci lattice rule with Fk points and generating vector z = [1, Fk−1 ], where
+2 ≤ k = 2m, is Fm − 1.
+
+Proof. A dual generating matrix is (see [3])
+
+                                                                         (−1)m Fm
+                                                                                    
+                                                                Fm
+                                                      B=                               .
+                                                               Fm−1    (−1) m+1
+                                                                                Fm+1
+
+The points of the dual lattice are thus given by (( j1 Fm + j2 Fm−1 ), (−1)m ( j1 Fm − j2 Fm+1 )) with j1 , j2 ∈ Z. We again have 4 cases:
+    • When j1 = 0, j2 6= 0, we have |(−1)m j2 Fm+1 | > Fm − 1.
+    • Similarly, when j1 6= 0, j2 = 0, we have | j1 Fm | > Fm − 1.
+    • When j1 j2 > 0, we have |( j1 Fm + j2 Fm−1 )| > Fm − 1.
+    • When j1 j2 < 0, we have |(−1)m (− j1 Fm+1 + j2 Fm )| > Fm − 1.
+On the other hand, for j1 = 1 and j2 = 0, we have a point of the dual lattice at (Fm ,(−1)m Fm ). This completes the proof.              
+
+    We now combine the two previous results.
+Theorem 2.5. The product trigonometric degree of a Fibonacci lattice rule with Fk points, where k ≥ 2, and generating vector
+z = [1, Fk−1 ] is Fdk/2e − 1.
+
+Proof. See Lemma 2.3 and Lemma 2.4.                                                                                                      
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                 ISSN 2035-6803
+                                                              Suryanarayana · Cools · Nuyens                                        95
+
+
+
+    We now present an interesting result on the number of points of a type of rule derived from a specific Fibonacci lattice rule. It
+is known (see, e.g., [9]) that the number of points N of a cubature rule with trigonometric degree T is bounded from below by
+
+                                                                       N ≥ t (d, bT /2c) ,
+
+where t (d, bT /2c) denotes the number of monomials in d variables of degree at most bT /2c. An improved (i.e., higher) lower
+bound is known for odd degree T . For d = 2, these bounds reduce to 2(m + 1)2 for T = 2m + 1 and 2m2 + 2m + 1 for T = 2m and
+are attainable. Examples are the Fibonacci lattice rule with N = F5 = 5 points having trigonometric degree 2 and the Fibonacci
+lattice rule with N = F6 = 8 points having trigonometric degree 3. In the following lemma we give an infinite sequence of
+cubature rules with optimal number of points. These are `2 copy rules based on the Fibonacci rule with 8 points. Such an `2 copy
+rule (see, e.g., [18]) basically scales the rule in each direction by `−1 , ` ∈ N, and fills the unit cube by copies of the scaled rule.
+Written for general rank-1 rules in d dimensions, this is
+                                                                                   N −1
+                                                                      1 X X                   nz/N mod 1 m
+                                                                                                           
+                                             copy
+                                        Q `d ×N ( f ; z) =                      f                       +     .
+                                                                     N `d d n=0
+                                                                                                  `       `
+                                                                           m∈Z`
+
+
+    Somehow surprisingly, the lower bound on the number of points for trigonometric degree is attained by copy rules based on a
+Fibonacci rule with 8 points.
+Theorem 2.6. For ` ∈ N with gcd(8, `) = 1, consider the sequence of `2 copy rules of the Fibonacci lattice rule with N = F6 = 8
+points and generating vector z = [1, 5] given by
+                                                                                   7
+                                                                      1 XX                     n 5n mod 8     m
+                                                                                                             
+                                      copy
+                                    Q `2 ×8 ( f ; [1, 5]) =                    f                  ,         +     .
+                                                                     8`2 2 n=0
+                                                                                               8`   8`        `
+                                                                           m∈Z`
+
+
+These rules have a trigonometric degree of exactness of 4` − 1 and have the optimal number of points for the trigonometric degree that
+they achieve.
+
+Proof. The trigonometric degree of the Fibonacci rule with 8 points is 3. Hence, we would find a point of the dual lattice which is
+at a Manhattan distance of 4 from the origin. The dual lattice of an `2 copy of this rule is simply scaled by ` and hence, for the
+copy rule, we would find the closest point of the dual lattice at a distance of 4`. The degree of the `2 copy rule is thus 4` − 1.
+    The optimal number of points to attain a degree of 4` − 1 is 2(m + 1)2 where 4` − 1 = 2m + 1 (so m = 2` − 1). This is equal
+to 8`2 , which is exactly the number of points in a `2 copy of the rule with 8 points.                                            
+
+3    Approximation
+A function f is approximated by truncating its Fourier series expansion with respect to a suitable index set Ad (T ) and approximating
+the Fourier coefficients using samples from a specific point set. Denoting by fba the approximation of the Fourier coefficients of a
+function f , we can define an approximation f a by
+                                                            X
+                                                f a (x ) :=      fba (h) exp(2πi h · x ),                                          (5)
+                                                                       h∈Ad (T )
+
+where the Fourier coefficients are approximated by a cubature rule
+
+                                                         fba (h) := Q N ( f (x ) exp(−2πi h · x )).
+
+Substitution of the Fourier expansion (1) into (2) yields
+                                           Z     X                         
+                                   fb(h) =             fb(`) exp(2πi ` · x ) exp(−2πi h · x ) dx
+                                                     [0,1]d    `∈Zd
+                                                 X               Z
+                                             =           fb(`)             exp(2πi (` − h) · x ) dx ,                               (6)
+                                                 `∈Zd             [0,1]d
+
+where the last integral is unity for h = ` and vanishes otherwise due to the orthonormality of the basis. On the other hand, for
+the approximation of the coefficients, we have
+                                                     X                                      
+                                      fba (h) = Q N      fb(`) exp(2πi ` · x ) exp(−2πi h · x )
+                                                                `∈Zd
+                                                      X
+                                                 =            fb(`) Q N (exp(2πi (` − h) · x )).                                    (7)
+                                                     `∈Zd
+
+
+From (6) and (7), we note that calculating fba (h) involves approximating the integrals in the inner products of the basis function.
+The contamination of fba (h) by other coefficients is called aliasing. In what follows, the concept of a non-aliasing index set will be
+useful.
+
+
+
+Dolomites Research Notes on Approximation                                                                             ISSN 2035-6803
+                                                     Suryanarayana · Cools · Nuyens                                                     96
+
+
+
+Definition 3.1. We call a set Ad ⊂ Zd a non-aliasing index set of a lattice Λ(z, N ) if no two distinct vectors in Ad differ by a
+vector that is in the dual lattice; i.e.,
+                                          h − h0 6∈ Λ⊥ (z, N )   for all h, h0 ∈ Ad ,                                         (8)
+or equivalently,                                           Z
+                         Q N (exp(2πi (h − h0 ) · x )) =            exp(2πi (h − h0 ) · x ) dx        for all h, h0 ∈ Ad .              (9)
+                                                           [0,1]d
+
+   Note that if Ad is a non-aliasing index set, then |Ad | ≤ N . If we define a difference set D = {h − h0 : h, h0 ∈ Ad }, it will
+contain no points that are in the dual lattice (D ∩ Λ⊥ (z, N ) = ;).
+
+3.1     Degrees of exactness for approximation
+As in the case of cubature, we define an approximation degree of exactness based on the exact approximation of the inner products
+of the basis functions.
+Definition 3.2. The approximation degree T (Q N ) = T (Q N , Ad (·), {exp(2πi h · x )}h ) of a cubature rule Q N with respect to an
+index set Ad (T ) and the set of basis functions {exp(2πi h · x )}h is the largest T ∈ N for which Ad (T ) is a non-aliasing index set,
+i.e., for which condition (8), or equivalently (9), is met.
+    It turns out that the approximation degree of exactness strongly depends on that of cubature, and hence we observe a similar
+pattern with respect to the even and odd indexed Fibonacci numbers.
+Theorem
+          3.1. The trigonometric approximation
+                                                     of a Fibonacci lattice rule with Fk points and generating vector z = [1, Fk−1 ]
+                                                 degree
+is (Fbk/2c+2 − 1)/2 for odd k ≥ 3 and (2Fk/2 − 1)/2 for even k ≥ 2.
+
+Proof. Note that the difference set of a cross polytope is itself a cross polytope of twice the degree, i.e., the degree of the
+difference set of a cross polytope of degree of (Fbk/2c+2 − 1)/2 is at most (Fbk/2c+2 − 1). To have an approximation degree of
+                 
+  (Fbk/2c+2 − 1)/2 , the rule needs to have a trigonometric degree for cubature of at least (Fbk/2c+2 − 1), which is exactly the degree
+                                                                                                                                 
+of the rule with Fk points with odd k. On the other hand, for a cross polytope of degree greater than (Fbk/2c+2 − 1)/2 , the
+difference set will not fit into the trigonometric degree for the rule with Fk points. For even k, the same argument holds.          
+
+Theorem 3.2. The product trigonometric
+                                            approximation degree of a Fibonacci lattice rule with Fk points and generating vector
+z = [1, Fk−1 ] is (Fdk/2e − 1)/2 , where k ≥ 2.
+                                                                                                                     
+Proof. As before, the degree of the difference set of the product trigonometric index set of degree (Fdk/2e − 1)/2 is at most
+                                                                  
+(Fdk/2e − 1). To have an approximation degree of (Fdk/2e − 1)/2 , the rule needs to have a product trigonometric degree for
+cubature of at least (Fdk/2e − 1), which is exactly the degree of the rule with Fk points. On the other hand, for an index set of
+                                    
+degree greater than (Fdk/2e − 1)/2 , the difference set will not fit into the product trigonometric degree for the rule with Fk
+points.                                                                                                                         
+
+      Finding the hyperbolic cross degree for approximation is a more tedious task. We first need the following lemma.
+Lemma 3.3. Consider the hyperbolic cross H2 (T ) = {k ∈ Z2 : max(1, |k1 |) max(1, |k2 |) < T } where T = Fm+1 − 2. Then the
+difference set D = {` − k : `, k ∈ H2 (T )} has the following properties: for every h ∈ D, we have
+   1.
+
+                                                                    −2T ≤ h1 , h2 ≤ 2T,
+
+   2. and
+                                                          T                                            T
+                                      |h1 | ≤ T +                          and    |h2 | ≤ T +                      ,                   (10)
+                                                    max(|h2 | − 1, 1)                            max(|h1 | − 1, 1)
+
+   3. and at least one of the following is true:
+          (a) either
+
+                                                h ∈ [−Fm+1 + 1, Fm+1 − 1]2 ,
+
+          (b) or
+
+                                                max(|h1 |, 1) max(|h2 |, 1) ≤ F2m−1 − 1             for m ≥ 2,
+
+          (c) or
+
+                                                 |h1 | + |h2 | ≤ Fm+2 − 1                           for m ≥ 3.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                    ISSN 2035-6803
+                                                  Suryanarayana · Cools · Nuyens                                                     97
+
+
+
+Proof. The first point is trivial to prove as the bounding box of the hyperbolic cross is [−T, T ]2 , the bounding box of the difference
+set will be [−2T, 2T ]2 .
+     We have to tackle the second point in several steps. First, it suffices to handle the case for h1 , h2 ≥ 0 because the difference
+set inherits the symmetry of the hyperbolic cross; it is symmetric under the exchange of variables and sign change. This can be
+seen from the illustration in Figure 3. Second, since we are dealing with the upper bound, it is enough to consider cases where h
+is as large as possible. Let h = p − q, then we only need to consider the case when p is in the first quadrant (p1 , p2 > 0) and q is
+in the third quadrant, we will take q = (−q1 , −q2 ), q1 , q2 > 0. All other points will follow because they are interior points or by
+symmetry. So we have h = (p1 + q1 , p2 + q2 ). More specifically,
+                                                    h2 = p2 + q2
+                                                             1    1
+                                                                   
+                                                       ≤T       +
+                                                             p1 q1
+                                                                   T
+                                                       ≤T+
+                                                           max(p1 + q1 − 1, 1)
+                                                                T
+                                                       ≤T+                .
+                                                           max(h1 − 1, 1)
+The second inequality above holds as, for the cases (p = 1, q ≥ 1) and (p ≥ 1, q = 1) we have equality, and if p, q ≥ 2, the right
+hand side is always larger than the left hand side. Because of symmetry under the exchange of variables, the following also holds:
+                                                                      T
+                                                      h1 ≤ T +                  .
+                                                                 max(h2 − 1, 1)
+To extend this to all the quadrants, we use the absolute value and that completes the proof of this part.
+    For the third point, again due to the symmetry conditions, we only need to consider the case for 0 ≤ h1 ≤ T +1 and 0 ≤ h2 ≤ 2T ;
+please refer to the shaded regions in Figure 3. This is constrained by the second part of (10), (h2 − T ) max(h1 − 1, 1) ≤ T . We
+need to consider the following cases:
+    • If 0 ≤ h2 ≤ T + 1, then h ∈ [−Fm+1 + 1, Fm+1 − 1]2 , hence Item 3.(a) holds.
+    • h2 = 2T implies h1 = 0, 1 or 2 and
+                                               max(|h1 |, 1) max(|h2 |, 1) ≤ 4T = 4(Fm+1 − 2).
+       Subtracting this from F2m−1 − 1, we get
+                                         F2m−1 − 1 − 4Fm+1 + 8 = Fm−1
+                                                                  2
+                                                                      + Fm2 − 4(Fm + Fm−1 ) + 7
+                                                                 = Fm−1 (Fm−1 − 4) + Fm (Fm − 4) + 7
+                                                                 ≥ 0 for m ≥ 2.
+       Hence Item 3.(b) holds.
+    • The substitution t 1 = h1 − 1 and t 2 = h2 − T reduces the constraint (h2 − T ) max(h1 − 1, 1) ≤ T to t 1 t 2 ≤ T and we are left
+      with the case where t 1 ≥ 2 and t 2 ≥ 2. We want to prove that in this situation, Item 3.(c) holds. We have
+                                                    1 + t 1 + T + t 2 = t 1 + t 2 + Fm+1 − 1
+       and to show that t 1 + t 2 + Fm+1 − 1 ≤ Fm+2 − 1, we need
+                                                              p to show that t 1 + t 2 ≤ Fm . Considering the indices on the boundary,
+       note that t 1 + t 2 = t 1 + tT1 has its minima at t 1 = T . So it is enough to consider one of the corner indices for this case
+       which is t 1 = 2, t 2 = bT /2c.
+                                                                          Fm+1 − 2
+                                                         2 + bT /2c ≤ 2 +
+                                                                             2
+                                                                      Fm + Fm−1 + 2
+                                                                    =
+                                                                            2
+                                                                    ≤ Fm for m ≥ 3.
+       This completes this part and the proof.                                                                                        
+
+Lemma 3.4. The hyperbolic cross approximation degree of a Fibonacci lattice point set with Fk points and generating vector
+z = [1, Fk−1 ], where 7 ≤ k = 2m + 1, is Fm+1 − 2.
+
+Proof. The proof directly follows by Lemma 3.3, which shows that the difference set of a hyperbolic cross with index Fm+1 − 2 has
+no points from the dual in it. The indices in the boxes described in Lemma 3.3 3.(a), 3.(b), and 3.(c) have product trigonometric
+degrees, hyperbolic cross degrees and trigonometric degrees less than the respective degrees of the Fibonacci lattice rule with Fk
+points. On the other hand, taking T = Fm+1 − 1 will result in at least one dual point in the box described in Lemma 3.3 3.(a).
+Hence this is the highest degree achievable.                                                                                    
+
+Lemma 3.5. The hyperbolic cross approximation degree of a Fibonacci lattice point set with Fk points and generating vector
+z = [1, Fk−1 ], where 8 ≤ k = 2m, is Fm − 2.
+
+
+
+Dolomites Research Notes on Approximation                                                                             ISSN 2035-6803
+                                                             Suryanarayana · Cools · Nuyens                                                  98
+
+
+
+
+                                                                                2T
+                                                  20
+
+
+                                                                                    T
+                                                  10
+
+                                                            −2T         −T                              T            2T
+
+                                                       0
+
+
+                                                 −10                            −T
+
+
+
+
+                                                 −20
+                                                                               −2T
+
+
+                                                             −20        −10             0            10           20
+
+Figure 3: An example of H2 (T ) (the blue dots) and its difference set (the red dots). The blue square, the red rectangle and the green triangle
+illustrate the claims stated in 3.(a), 3.(b), and 3.(c) of Lemma 3.3.
+
+
+
+Proof. A similar proof as before follows. The difference set of the corresponding hyperbolic cross is covered by the index sets
+with appropriate trigonometric, product trigonometric and hyperbolic cross degrees for cubature.                             
+
+Theorem 3.6. The hyperbolic cross approximation degree of a Fibonacci lattice rule with Fk points and generating vector z = [1, Fk−1 ],
+where k ≥ 7, is Fdk/2e − 2.
+
+Proof. This follows from Lemma 3.4 and Lemma 3.5.                                                                                             
+
+3.2     Lebesgue constant
+In this section, we will numerically calculate the Lebesgue constant of a trigonometric interpolation operator using points from a
+Fibonacci lattice. Let f ∗ be the best approximation of f onto a space Hd and let L be the interpolation operator. We have
+
+                                           kL f − f k ≤ k f − f ∗ k + kL( f − f ∗ )k ≤ (kLk + 1)k f − f ∗ k.
+
+We are interested in the behavior of the Lebesgue constant L := kLk. The following theorems are from [19].
+Theorem 3.7. Let Ad be a non-aliasing index set of the lattice Λ(z, N ) such that its cardinality is N . Then the trigonometric
+interpolating operator using Λ(z, N ) as the interpolating point set is given by
+                                                 X                                   X
+                                   (L f )(x ) =      c̃k exp(2πi k · x ) where c̃k =    ck+` ,
+                                                           k∈Ad                                                   `∈Λ⊥ (z,N )
+
+and the lattice interpolation space Hd is spanned by {exp(2πi k · x )}k∈Ad .
+      Once we know the interpolation space and the basis functions it is spanned by, we arrive at the following theorem.
+Theorem 3.8. Consider a rank-1 lattice point set Λ(z, N ) and its d-dimensional Dirichlet kernel
+                                                            X
+                                                 DAd (x ) =      exp(2πi k · x ).
+                                                                             k∈Ad
+
+                            (i)   ( j)
+Then for any two points x , x            ∈ Λ(z, N ),
+
+                                                                              1 if i = j,
+                                                                            
+                                                           1       (i) ( j)
+                                                             DAd (x − x ) =                                                               (11)
+                                                           N                  0 otherwise.
+
+We can then define Lagrange functions for Λ(z, N ) as
+                                                                  1
+                                                   L i (x ) =       DAd (x − x (i) ),       ∀ x (i) ∈ Λ(z, N ),
+                                                                  N
+and the Lebesgue constant is
+                                                                      1               X
+                                                             LN =         max                      |L i (x )| .                           (12)
+                                                                      N x ∈[0,1]d (i)
+                                                                                x       ∈Λ(z,N )
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                       ISSN 2035-6803
+                                                  Suryanarayana · Cools · Nuyens                                                  99
+
+
+
+                                      40
+                                                 L Fk for k odd
+                                                 L Fk for k even
+                                                   log210 (N ) + 2
+                                      30          3     2
+                                                  4 log10 (N ) + 2
+
+
+
+                                      20
+
+
+
+                                      10
+
+
+
+                                       0
+                                              101      102         103          104   105   106
+                                                                         N
+
+                                 Figure 4: Growth of the Lebesgue constant of Fibonacci lattice points.
+
+
+
+Although the discrete orthogonality condition in (11) is proven only for prime N in [19], a slight modification to [5, Theorem
+7.3] will give the result for all N .
+    It is conjectured in [19] that
+                                                    C1 lnd (N ) ≤ LN ≤ C2 lnd (N ).
+We numerically evaluate LN from (12) for Fibonacci lattice points on a very fine grid (with 1000 equidistant grid points in each
+direction). Some observations follow.
+    In Figure 4, the numerical Lebesgue constant for consecutive Fibonacci lattices, denoted by L Fk , is plotted against log10 (N )
+for convenience. Note that the Dirichlet kernel for Fibonacci numbers is complex and we take the complex norm (modulus) while
+calculating the Lebesgue constant. We verify that this quantity grows at a rate of log210 (N ) for k up to 32. Further, the curve
+connecting the results for point sets corresponding to Fibonacci numbers with an even index lies below the one connecting those
+with an odd index; however, they both have a growth of c ln2 (N ) but with different constants c.
+    In Figure 5, we present the contour plots of the function
+                                                        X
+                                                               DA2 (x − x (i) )                                               (13)
+                                                      x (i) ∈Λ(z,N )
+
+appearing in (12) for N = F10 = 55 and N = F11 = 89. We observe from these and other plots that the minima of this function
+are at the lattice points themselves (i.e., N = Fk and the generating vector z = [1, Fk−1 ]). These minima are the dark blue centers
+in both plots. A possible explanation could be Property (11). Unsurprisingly, the value of these minima is 1 for all Fibonacci point
+sets.
+    Note that the expression in (13) already suggests that the maxima are obtained by shifting the Fibonacci lattice by a fixed
+vector x ∈ [0, 1]2 . The contour plots also substantiate this; the black dots superimposed on the peaks are from the original lattice
+with an appropriate shift. These observations are summarized in the following conjecture.
+Conjecture 3.9. Consider a Fibonacci point set with Fk points and generating vector z = [1, Fk−1 ] and the corresponding non-aliasing
+index set A2 . Then, the Lebesgue constant of this point set is given by
+                                                      1        X
+                                               LN =                      DA2 (y − x (i) ) ,
+                                                     N (i)
+                                                        x   ∈Λ([1,Fk−1 ],Fk )
+
+where y = mod (x + ∆, 1), for any x ∈ Λ([1, Fk−1 ], Fk ) and some ∆ ∈ [0, 1]2 . Further, we conjecture that
+                                               (F )
+                                               x k−1 /2       if k ≡ 0 (mod 6),
+                                         ∆ = (1/2, 1/2) if k ≡ 1, 5 (mod 6),
+                                                 (1/2, 0)      if k ≡ 2, 3, 4 (mod 6).
+                                              
+
+   The above expression for the Lebesgue constant can be further simplified by taking into account the periodicity of the Dirichlet
+kernel, but this is beyond the scope of this manuscript.
+
+4    Conclusions
+We presented different cubature degrees of exactness for Fibonacci lattice rules; in particular we derived a new result for the
+product trigonometric degree. We also proved that the sequence of `2 copies of the Fibonacci lattice rule with 8 points achieves
+the lower bound on the number of points: to achieve a trigonometric degree of 4` − 1 it uses 8`2 points.
+
+
+
+Dolomites Research Notes on Approximation                                                                          ISSN 2035-6803
+                                                       Suryanarayana · Cools · Nuyens                                                          100
+
+
+
+
+        0.9                                                                  0.9
+
+        0.8                                                                  0.8
+
+        0.7                                                                  0.7
+
+        0.6                                                                  0.6
+
+        0.5                                                                  0.5
+
+        0.4                                                                  0.4
+
+        0.3                                                                  0.3
+
+        0.2                                                                  0.2
+
+        0.1                                                                  0.1
+
+          0                                                                    0
+              0       0.2        0.4        0.6         0.8                        0       0.2        0.4        0.6        0.8
+
+
+                       Figure 5: Contour plots of the function (13) for Fk points with k = 10 (left) and k = 11 (right).
+
+
+
+    Next, we used Fibonacci lattice points to approximate a function by first truncating its Fourier series expansion to an index set
+A2 (T ) and then calculating the Fourier coefficients. In this context, we derived the trigonometric, product trigonometric, and
+hyperbolic cross approximation degrees.
+    Finally, we presented numerical results on the Lebesgue constant in using Fibonacci lattice points for approximation of
+periodic bivariate functions. It is conjectured in [19] that this Lebesgue constant is bounded above and below by curves with
+growth rate lnd (N ). Our numerical results show that Fibonacci lattice points follow this bound for the considered range of
+numbers. In addition we made a conjecture about the location of the maxima in the expression for the Lebesgue constant.
+
+References
+ [1] C. Aistleitner, J. Brauchart, and J. Dick. Point sets on the sphere S2 with small spherical cap discrepancy. Discrete & Computational Geometry,
+     48(4):990–1024, 2012.
+ [2] N. S. Bakhvalov. On the approximate calculation of multiple integrals. Journal of Complexity, 31(4):502–516, 2015.
+ [3] M. Beckers and R. Cools. A relation between cubature formulae of trigonometric degree and lattice rules. In H. Brass and G. Hämmerlin,
+     editors, Numerical Integration IV, volume 112 of ISNM International Series of Numerical Mathematics, pages 13–24. Birkhäuser Basel, 1993.
+ [4] M. Caliari, S. De Marchi, and M. Vianello. Bivariate polynomial interpolation on the square at new nodal sets. Applied Mathematics and
+     Computation, 165(2):261–274, 2005.
+ [5] R. Cools. Constructing cubature formulae: The science behind the art. Acta Numerica, 6:1–54, 1997.
+ [6] R. Cools, F. Kuo, and D. Nuyens. Constructing lattice rules based on weighted degree of exactness and worst case error. Computing,
+     87(1-2):63–89, 2010.
+ [7] R. Cools and D. Nuyens. A Belgian view on lattice rules. In A. Keller, S. Heinrich, and H. Niederreiter, editors, Monte Carlo and Quasi-Monte
+     Carlo Methods 2006, pages 3–21. Springer, 2008.
+ [8] R. Cools and D. Nuyens. Extensions of Fibonacci lattice rules. In P. L’Ecuyer and A. B. Owen, editors, Monte Carlo and Quasi-Monte Carlo
+     Methods 2008, pages 259–270. Springer Berlin Heidelberg, 2009.
+ [9] R. Cools and I. Sloan. Minimal cubature formulae of trigonometric degree. Mathematics of Computation, 65(216):1583–1600, 1996.
+[10] D. Dũng and T. Ullrich. Lower bounds for the integration error for multivariate functions with mixed smoothness and optimal Fibonacci
+     cubature for functions on the square. Mathematische Nachrichten, 288(7):743–762, 2015.
+[11] A. Hinrichs and J. Oettershagen. Optimal point sets for quasi-Monte Carlo integration of bivariate periodic functions with bounded mixed
+     derivatives. In R. Cools and D. Nuyens, editors, Monte Carlo and Quasi-Monte Carlo Methods 2014. Springer Berlin Heidelberg, to appear.
+[12] F. Y. Kuo, I. H. Sloan, and H. Woźniakowski. Lattice rules for multivariate approximation in the worst case setting. In H. Niederreiter and
+     D. Talay, editors, Monte Carlo and Quasi-Monte Carlo Methods 2004, pages 289–330, 2006.
+[13] D. Li and F. J. Hickernell. Trigonometric spectral collocation methods on lattices. In S. Y. Cheng, C.-W. Shu, and T. Tang, editors, Recent
+     Advances in Scientific Computing and Partial Differential Equations, volume 330 of AMS Series in Contemporary Mathematics, pages 121–132,
+     2003.
+[14] R. Marques, C. Bouville, M. Ribardière, L. P. Santos, and K. Bouatouch. Spherical Fibonacci point sets for illumination integrals. Computer
+     Graphics Forum, 32(8):134–143, 2013.
+[15] H. Munthe-Kaas and T. Sørevik. Multidimensional pseudo-spectral methods on lattice grids. Applied Numerical Mathematics, 62(3):155–165,
+     2012.
+[16] H. Niederreiter and I. H. Sloan. Integration of nonperiodic functions of two variables by Fibonacci lattice rules. Journal of Computational
+     and Applied Mathematics, 51(1):57 – 70, 1994.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                         ISSN 2035-6803
+                                                      Suryanarayana · Cools · Nuyens                                                       101
+
+
+
+[17] D. Nuyens. The construction of good lattice rules and polynomial lattice rules. In Kritzer, P., Niederreiter, H., Pillichshammer, F., and
+     Winterhof, A., editors, Uniform Distribution and Quasi-Monte Carlo Methods: Discrepancy, Integration and Applications, volume 15 of Radon
+     Series on Computational and Applied Mathematics, pages 223–256. De Gruyter, Berlin, Boston, 2014.
+[18] I. H. Sloan and S. Joe. Lattice Methods for Multiple Integration. Oxford University Press, 1994.
+[19] T. Sørevik and M. A. Nome. Trigonometric interpolation on lattice grids. BIT Numerical Mathematics, pages 1–16, 2015.
+[20] S. Zaremba. La méthode des “bons treillis” pour le calcul des intégrales multiples. In S. Zaremba, editor, Applications of Number Theory to
+     Numerical Analysis, pages 39–116. Academic Press, 1972.
+
+
+
+
+Dolomites Research Notes on Approximation                                                                                    ISSN 2035-6803
+

@@ -1,0 +1,525 @@
+                                              DETECTING THE ORIENTATION OF LONG LINKS BY FINITE
+                                                              TYPE INVARIANTS
+
+                                                                               S.V.DUZHIN, M.V.KAREV
+
+
+
+
+arXiv:math/0507015v5 [math.GT] 25 Jul 2005
+                                                    Abstract. We prove the existence of a degree 7 Vassiliev invariant of long (or
+                                                    string) two-component links which is not preserved under the simultaneous change
+                                                    of orientation of both components. The non-invertibility of this invariant can be
+                                                    detected by the standard weight system with values in the tensor square of the
+                                                    universal enveloping algebra for gl(n).
+
+
+
+
+                                                                                 1. Introduction
+                                                It is well known that classical knot polynomials and quantum invariants in general
+                                             take equal values on a knot and its inverse. The class of Vassiliev invariants is strictly
+                                             wider [Vog], and the problem whether they can be used to tell a knot from its inverse
+                                             is open and seemingly difficult. In this paper, we discuss the corresponding problem
+                                             for links with more than 1 component.
+                                                Let Sp1 be the disjoint union of p numbered copies of an oriented circle, R1p the
+                                             disjoint union of p numbered copies of an oriented real line, and Ip1 the disjoint union
+                                             of p numbered copies of an oriented interval [0, 1].
+                                             Definition. An p-component closed link is a smooth embedding of Sp1 into oriented
+                                             3-space R3 , considered up to a component-preserving isotopy.
+                                                An p-component long link is a smooth embedding of Rp1 into oriented 3-space R3
+                                             with fixed behavior at infinity: xi (t) = [i, 0, t] for |t| > C, considered up to an isotopy,
+                                             fixed at infinity, and a Euclidean movement of space.
+                                                An p-component string link is a smooth embedding of Ip1 into the slice R2 × [0, 1] ⊂
+                                             R3 with fixed endpoints: xi (t) = [i, 0, t] for t = 0, 1, considered up to an isotopy, fixed
+                                             at the boundary, and a Euclidean movement of the slice.
+
+
+
+
+                                                               A closed link          A long link           A string link
+                                                It is immediately clear that the theories of long and string links are equivalent. In
+                                             the case of knots (p = 1) they are also equivalent to the theory of closed links; this
+                                             is not true when p > 1.
+                                                The problem of invertibility is stated as follows. Given a link L, let L′ be the same
+                                             link with the orientation of all components reversed. May it happen that L′ is not
+                                             equivalent to L? If yes, then what invariants can be used to detect that difference?
+                                                                                           1
+2                               S.V.DUZHIN, M.V.KAREV
+
+   For knots, the problem was standing for a long time, until Trotter [Tro] proved in
+1964 that some knots (e.g. pretzel knot with parameters (3, 5, 7)) are non-invertible.
+The simplest non-invertible knot is 817 ([Ka]). However, it is not known if the two
+knots 817 and 8′17 , or any other pair of mutually inverse knots, can be distinguished
+by finite type invariants.
+   In the case of links, the only published result is a theorem of X.-S. Lin [L2] that
+asserts the non-invertibility of Vassiliev invariants for closed links with at least 6
+components. Other papers containing the words ‘links’, ‘Vassiliev invariants’, ‘in-
+vertibility’ (‘separation’, ‘detection’ etc) in their titles/abstracts have smaller rele-
+vance to the plain problem we are speaking about, e.g. D.Bar-Natan [BN2] studies
+homotopy string links invariants, X.-S.Lin [L1] uses a modified definition of finite
+type invariants, etc.
+   The present text deals with the problem of detecting the orientation by finite type
+invariants for long links. The reformulation of the problem in terms of chord diagrams
+shows immediately that the answer is positive for p > 2. In the case of 2-component
+links (p = 2) the problem is nontrivial; below, we give a proof of the following
+
+Theorem. There exists a Vassiliev invariant f of order no greater than 7 and a
+2-component long link L such that f (L′ ) 6= f (L).
+
+  We will give two proofs of this theorem, both based on direct calculations. The first
+proof (Proposition 1, page 5) uses chord diagrams and requires computer calculations.
+The second one (Proposition 2, page 8) uses Jacobi diagrams and can be done by
+hand. Frankly speaking, both of these proofs refer to the invariants of framed links.
+In Section 6 we explain why they also imply the same result in the unframed case.
+
+
+                         2. Reduction to chord diagrams
+   Finite type invariants for various types of links are defined in the same way as they
+are in the classical case of closed knots, see [BN1, Sta].
+   Let F be a field of characteristic 0, e.g. Q or C. Denote by Vn (p) the vector space
+of F-valued Vassiliev invariants for p-component long links of degree no greater than
+n, by An (p) the space spanned by chord diagrams of degree n on p strings modulo 4-
+term relations, and by Wn (p) = A∗n (p) = HomQ (An (p), F) the corresponding space of
+weight systems. Then there is a linear map σnp : Vn (p) → Wn (p) (taking the symbol of
+a Vassiliev invariant) whose kernel coincides with Vn−1 (p) and whose image consists
+of all weight systems that vanish on chord diagrams with isolated chords. For framed
+links, the image equals the entire Wn (p), and, until Section 6, we will actually be
+speaking about invariants of framed links.
+   As before, we denote by L′ the inverse of a link L. Setting τV (f )(L) = f (L′ ) for
+f ∈ V , we obtain an involution τV in the space of Vassiliev invariants. On the level
+of chord diagrams, the corresponding operation τA acts as follows:
+
+
+                  τA :              7−→                =             ,
+     DETECTING THE ORIENTATION OF LONG LINKS BY FINITE TYPE INVARIANTS                  3
+
+i.e. it changes the orientation of all the strings of a chord diagram, or, which is the
+same thing, reflects the plane picture of the diagram in a horizontal line, assuming
+that the support is drawn vertically (and preserves its orientation).
+   Instead of usual chord diagrams only, the same space A(p) may be spanned by
+all generalized chord diagrams (Chinese character diagrams in the terminology of
+[BN1]), i.e. 1-3-valent graphs, attached to the same support (R1p ) with a cyclic order
+of edges specified in every 3-valent vertex.
+   Generalized chord diagrams can be understood as linear combinations of ordinary
+chord diagrams by iterative applications of the STU rule, e.g.
+
+                                   7−→                      −
+
+
+(here and below, we use the blackboard convention: edges around trivalent vertices
+for every diagram drawn on paper are always ordered counterclockwise).
+   For generalized diagrams, one should be more cautious with the definition of the
+involution τA . In fact, extending the previously defined map τA from chord diagrams
+to generalized diagrams by STU relations, one arrives at the following rule:
+
+
+                 τA :              7−→         −                  =
+
+
+
+i.e. one must either change the orientation of all strings and multiply the result by ±1
+depending on the parity of the number of trivalent vertices, or, again, simply reflect
+the plane picture of the diagram in a horizontal line.
+Lemma 1. The involution τA is the graded part of the involution τV , i.e. the following
+square commutes:
+                                                p
+                                               σn
+                                   Vn (p)           / Wn (p)
+
+                                          τV                τA
+                                                             ∗
+
+                                               p
+                                               σn
+                                                        
+                                   Vn (p)           / Wn (p)
+
+Proof. This follows immediately from the definition of σ ([BN1, CD]).                  
+   The problem of detecting the inversion of orientation on long links by finite type
+invariants is thus equivalent to the problem: find a chord diagram on p lines which is
+different from its inverse modulo 4T relations. If p ≥ 3, then there is a straightforward
+example:
+
+                 τA :                7−→                         6=
+
+   For n = 2 the problem is non-trivial, because, as one can check, chord diagrams
+of small degrees (like the one depicted on page 2) are all τA -invariant. In the next
+section, we indicate a diagram which is not.
+4                                     S.V.DUZHIN, M.V.KAREV
+
+                             3. First proof of the theorem
+    To prove that a certain element of the space A(p) is non-zero, one can use weight
+systems, i.e. linear functionals on these spaces. A powerful weight system is provided
+by Kontsevich’s homomorphism ϕ = ϕg : A(p) → U(g)⊗p for a metrized Lie algebra
+g (see [Kon, CD]). In fact, ϕ takes values in the g-invariant subalgebra U(p) =
+[U(g)⊗p ]g. We give an explicit description for the case g = glN , using the basis
+eij (matrix with one 1 and many 0’s) and the metric defined by the conjugacy rule
+e∗ij = eji .
+Lemma 2. Let D ∈ A(p) be a (generalized) chord diagram on p strings. The element
+ϕ(D) ∈ U(glN )⊗p can be obtained as follows. Consider the alternating sum of all
+resolutions [BN1] of the inner triple points of the diagram D. For each resolution label
+the connected components of the obtained diagram by different independent indices;
+then replace each pair of adjacent indices by eij and take the sum over all indices
+from 1 to N. (Closed components, if any, turn into factors N.)
+  The proof repeats the proof for the particular case p = 1 that can be found in
+[BN1, CD]. We give an example instead:
+
+                                k            k        l               j           l   l       i   l
+                                j            l        k               k           k   i       k   k
+                       7−→                       −                            −           +
+                                j            l        j                   l       j   j       j   j
+                                i            i        i                   i       i   k       i   l
+
+
+Therefore, the image of this diagram under ϕ is
+          X
+          N
+                (eij ejk ⊗ eli ekl − eij ekl ⊗ eli ejk − eij ekl ⊗ ejk eli + eij eki ⊗ ejl elk ).
+        i,j,k,l=1
+
+Note that the order of the factors eij agrees with the orientation of each component
+of the support, but the order of the two subscripts (i, j) in each factor follows a
+go-round pattern, in our case bottom-to-top for the left line and top-to-bottom for
+the right line.
+   Denote by τU the operator in U(glN )⊗p that rewrites each monomial backwards
+and changes the order of the two subscripts in each generator eij , e.g. τU (e12 e23 ⊗
+e13 e24 ) = e32 e21 ⊗e42 e31 . This is an involution that preserves the ad-invariant subspace
+U(p) = [U(glN )⊗p ]g.
+   The construction of ϕ shows that the following assertion holds.
+Lemma 3. The square
+                                                          ϕ
+                                          A(p)                / U(p)
+
+                                                 τA                  τU
+                                                         ϕ
+                                                                 
+                                          A(p)                / U(p)
+
+is commutative.
+   It follows that the non-invertibility of a chord diagram can be checked on the level
+of the universal enveloping algebra: if the ϕ-image of a diagram is not τU -invariant,
+then the diagram itself is not invariant under τA . Therefore, the next proposition
+gives the first proof of our Theorem.
+     DETECTING THE ORIENTATION OF LONG LINKS BY FINITE TYPE INVARIANTS               5
+
+Proposition 1. Each of the following diagrams is different from its image under the
+involution τA :
+
+
+                                       ,                 .
+
+
+
+Proof. A direct computer calculation of the ϕ-images of each diagram and its inverse
+shows that they are different for the Lie algebra gl4 (and hence for any glN with
+n ≥ 4). The calculations are organized as follows: we fix a lexicographical ordering
+of the basic elements eij and transform the expression for ϕ(D) obtained by the above
+algorithm using the commutator relations between the generators in order to rewrite
+each monomial lexicographically. The programs, input and output files are available
+at [Calc]. The result for the left-hand side diagram, for example, is a polynomial
+consisting of 58378 terms; its calculation requires several hours on a reasonably fast
+modern PC.                                                                          
+
+
+                      4. Reduction to Jacobi diagrams
+   Another, yet simpler, reformulation of the invertibility problem, can be given in
+terms of colored Jacobi diagrams. A colored Jacobi diagram is the same thing as
+a Chinese character as defined in [BN1], only its univalent vertices are labeled by
+p colors. The space of colored Jacobi diagrams B(p) is defined as a vector space
+formally generated by all p-colored Jacobi diagrams modulo two kinds of relations:
+antisymmetry and IHX.
+   Similarly to Theorem 8 of [BN1], one can prove that there is a symmetrization
+map χ : B(p) → A(p) which provides a linear isomorphism between the two spaces
+(see also [LM]).
+   The map χ is defined as follows — we explain that in the case p = 2. Let D be
+a Jacobi diagram with k ‘legs’ of color 1 and l ‘legs’ of color 2, then χ(D) is the
+average of all the k!l! ways to attach 1-colored legs to the first line of the support
+and 2-colored legs to the second line of the support, e.g.
+                           2   2
+                                        1
+                                        2
+                           1   1
+                                            1   2    1   2
+
+   Colored Jacobi diagrams can thus be viewed as symmetric elements of the space
+A(p), much in the same way as commutative polynomials over a Lie algebra g can
+be viewed as symmetric elements of the universal enveloping algebra U(g), by virtue
+of the PBW theorem.
+   The isomorphism χ is very important for our needs because the involution τA takes
+an especially simple form when transferred to B(p) via this isomorphism. In fact, the
+following assertion holds:
+Lemma 4. Let τB : B(p) → B(p) be the linear operator defined as identity on each
+Jacobi diagram with an even number of legs and as multiplication by −1 on each
+6                               S.V.DUZHIN, M.V.KAREV
+
+Jacobi diagram with an odd number of legs. Then the square
+                                                      χ
+                                    B(p)                  / A(p)
+
+                                              τB                        τA
+                                                     χ
+                                                                
+                                    B(p)                  / A(p)
+
+is commutative.
+Proof. The proof smoothly follows from the definitions of both τA and τB given above.
+A simple illustration might be helpful to understand how it goes. Let
+
+                                                                         2
+                                    D=                                       .
+                                                  1
+                                                            2
+
+Then by definition
+                                                                                 2
+                                τB (D) = −                                           .
+                                                      1
+                                                                             2
+
+Now
+                                     1                                       1
+                          χ(D) =                            +
+                                     2                                       2
+
+and hence
+                    1           1                           1                                1
+    τA (χ(D)) = −           −                         = −                                −       = χ(τB (D)).
+                    2           2                           2                                2
+
+                                                                                                                
+   The problem of finite type invertibility for 2-component long links can now be
+restated as follows: is there a non-zero 2-colored Jacobi diagram with an odd number
+of legs?. In the next section, we give an example of such a diagram.
+
+                        5. Second proof of the theorem
+  Take a metrized Lie algebra g and denote by S(g) the symmetric algebra of the
+vector space g. The weight system B(1) → S(g) described in [BN1, CD] has an
+immediate generalization to an arbitrary value of p giving a homomorphism ψ :
+B(p) → S(g)⊗p whose image lies in the g-invariant subalgebra S(p) = [S(g)⊗p ]g.
+Lemma 5. The mapping ψ fits into a commutative diagram
+                                                      ψ
+                                    B(p)                  / S(p)
+
+                                              χ                         π
+                                                     ϕ
+                                                                    
+                                    A(p)                  / U(p)
+
+where χ is the isomorphism defined in the previous section, ϕ is the Kontsevich weight
+system for the algebra A(p), and π is the Poincaré-Birkhoff-Witt isomorphism raised
+to the n-th tensor power.
+     DETECTING THE ORIENTATION OF LONG LINKS BY FINITE TYPE INVARIANTS                                           7
+
+Proof. The proof is straightforward, just like in the conventional case p = 1.                                   
+
+
+   For the Lie algebra g = glN there is a pictorial algorithm for the calculation of ψ,
+similar to the procedure for ϕ described in section 3. The only difference is that now
+the basic elements eij are commutative, so we do not have to bother about the order
+of factors in the monomials. Here is a simple example:
+
+                                                             j i                         j i
+                            2                                      2                           2
+               ψ :                        7−→                                −
+                     1                                  1               2            1             2
+                                  2                 j                    i         k                 k
+                                                        k               k           i              j
+
+                                 X
+                                 N
+                      7−→                 (ejk ⊗ eij eki − eki ⊗ eij ejk ) = 0.
+                                i,j,k=1
+
+
+   A big advantage that the mapping ψ has over ϕ is that the g-invariant part of
+S(glN )⊗p has a rather transparent structure. A p-colored necklace of order n is a
+combinatorial object defined as a sequence of n numbers between 1 and p, considered
+up to cyclic shifts; it can be best viewed as a circular arrangement of n p-colored
+beads. To every necklace one can assign an element of S(glN )⊗p , which turns out to
+be ad-invariant, as follows. Sprinkle different indices over the arcs of the necklace;
+every bead transforms into eij where i is the index written on the incoming arc and
+j is the index of the outgoing arc; put this element eij into the tensor factor whose
+number is the color of the bead and take the sum over all indices from 1 to N. For
+example:
+
+                                      j         i
+                                                                         X
+                                                                         N
+  [1212] =               7−→                                7−→                (eij ekl ⊗ ejk eli ) =: x1212 .
+                                      k         l                      i,j,k,l=1
+
+
+
+We denote such necklace elements by xµ where µ is the lexicographically smallest
+sequence corresponding to the given necklace.
+
+Lemma 6. For the Lie algebra g = glN the g-invariant part of S(g)⊗p , as an algebra,
+is generated by the necklace elements. Algebraic relations between necklace elements
+of a given degree may exist for small values of N, but they disappear as N → ∞.
+
+Proof. Statements close to this lemma are proved in [W] and [VP]. We are sure that
+the fact itself must be written up somewhere, and we would be grateful to anybody
+who can give us an exact reference.                                             
+
+
+  In the algebra generated by necklaces there is an involution τS that inverts the
+orientation of each necklace. For p = 2, in small degrees, up to 5, it is identical; the
+minimal necklace which is not fixed by τS , is x112122 . It turns out that the operation
+τS agrees with all other inversions denoted by τ with various subscripts in this paper.
+8                                     S.V.DUZHIN, M.V.KAREV
+
+Lemma 7. The involutions of the change of orientation in the spaces A(p), B(p),
+S(p), U(p) commute with the four arrows of the diagram in Lemma (5). More pre-
+cisely, we have a commutative cube
+                                                                                ψ
+                                         B(p)                                                   / S(p)
+                                  τB xx
+                                       x                                                  τS xx
+                                                                                               x
+                                     x                                                       x
+                                   xx                                                      xx
+                                {xx                             ψ
+                                                                                        {xx
+                        B(p)                                                / S(p)                  π
+
+                                                    χ
+                                                                                    π
+                                                                   ϕ
+                                                                                                   
+                        χ                A(p)                                                  / U(p)
+                                 τA    xx                                                 τU xx
+                                                                                               x
+                                    xxx                                                     xx
+                                   x                                                       x
+                               {xx         ϕ
+                                                                                       {xx
+                       A(p)                                                 / U(p)
+                                                    g                                           g
+(recall that g = glN , S(p) = [S(g)⊗p ] , U(p) = [U(g)⊗p ] ; the maps were all defined
+in the text above, in particular, π is the Poincaré-Birkhoff-Witt isomorphism).
+Proof. What we are really interested in is the commutativity of the top face of the
+cube. Since all χ’s, π’s and τ ’s are linear isomorphisms, this follows from the com-
+mutativity of the remaining 5 faces which was proved in various places of this paper
+above.                                                                             
+   The commutativity of the upper face of the cube implies that, to prove the non-
+τB -invariance of a Jacobi diagram (an element of B(p)) it is enough to prove the
+non-τS -invariance of its image under ψ in the necklace algebra. Since the minimal
+degree of a non-invertible necklace is 6 and we need to find a non-invertible diagram
+of an odd degree, the smallest example should be searched in degree 7. And, indeed,
+it exists — thus providing a second proof of the Theorem.
+Proposition 2. The following diagram is non-zero as an element of the space B(2):
+                                                                            1
+                                                                                        2
+                                                        1
+                                  H     =                                                   2
+                                                        2
+                                                                        1               2
+Proof. A direct computation shows that the image of this diagram in the algebra
+S(2) (for N big enough), when expressed through necklaces, equals
+                   N(x1121222 − x1122212 ) + 3x2 (x112212 − x112122 ),
+which is different from zero. The entire expression for ψ(H) involves 128 terms, out
+of which only 8 contain nonsymmetric necklaces, e.g.
+                                 1
+                                            2
+                       1
+                                                                        7−→             −x2 x112122 .
+                                                            2
+                       2
+                                 1          2
+     DETECTING THE ORIENTATION OF LONG LINKS BY FINITE TYPE INVARIANTS                9
+
+The same result can also be obtained by a computer program available at [Calc]. 
+
+
+                                   6. Deframing
+   As we mentioned before, the proofs given in Sections 3 and 5, actually refer to the
+case of framed links, because the 1-term relations were not taken into consideration.
+In principle, detecting the orientation of a framed link is easier, because it contains
+an additional structure which may not be preserved by the inversion. Note that an
+unframed link can be considered as a framed one, so the Theorem in the unframed
+case is in any case stronger. Here we explain why does it hold.
+   Indeed, let A′(2) be the space A(2) modded out by 1-term relations, i.e. by the
+ideal generated by the diagrams a1 (with 1 chord on the first component of the
+support) and a2 (with 1 chord on the second component of the support): A′ (2) =
+A(2)/ha1, a2 i, where angular brackets denote the 2-sided ideal with given generators.
+The quotient algebra A′ (2) can also be considered as a subalgebra of A(2): by the
+structure theorem for cocommutative Hopf algebras, A(2) is the universal enveloping
+algebra over its primitive subspace P , so if we take the subspace of P spanned by all
+connected diagrams except for a1 and a2 , we will obtain an inclusion A′ (2) ⊂ A(2).
+Since the diagrams displayed in Proposition 1 belong to A′ (2), this means that non-
+invertibility holds for unframed long links, too.
+  Now let χ2 : A(2) → B(2) be the isomorphism discussed above.
+Lemma 8. The subspace χ−1 (A′(2)) = B′ (2) coincides with the subalgebra of B(2)
+generated by all connected Jacobi diagrams except b1 = 1 1 and b2 = 2 2 .
+Proof. The assertion is non-trivial, because χ does not preserve the multiplication,
+and the subalgebras A′ (2) and B′ (2) are described by their generators in the sense of
+different multiplications. However, a little thinking about the action of the operator
+χ shows that its value on a product of Jacobi diagrams different from b1 and b2 is
+equal to a linear combination of products of connected chord diagrams different from
+a1 and a2 .                                                                          
+
+  The lemma shows that the ‘heptapus’ element displayed in Proposition 2 belongs
+indeed to the subalgebra B′ (2) responsible for the Vassiliev invariants of unframed
+2-component long links. Since it is non-zero, the existence of a 7 order invariant that
+can distinguish the orientation follows.
+
+
+                           7. Related open problems
+  Problem 1. Is there a τ -equivariant linear mapping B(1) → B(2) whose image is
+not a priori contained in the τ -invariant subspace of B(2)?
+   Remark. If such a mapping existed, then one could try to apply the techniques
+of this paper to the invertibility problem for knots. The standard doubling operator
+∆ : B(1) → B(2) (as in [BN1, LM]) is no good, as one can easily see.
+   Problem 2. Do Vassiliev invariants detect invertibility of closed 2-component
+links?
+10                                    S.V.DUZHIN, M.V.KAREV
+
+   Remark. The combinatorial object responsible for finite type invariants of closed
+links is the space of diagrams on 2 circles, call it A(S21 ). There is an evident epimor-
+phism A(R12 ) → A(S21), but its kernel is non-trivial, so it cannot be used to define a
+Kontsevich type weight system with values in U ⊗2 .
+   Problem 3. Is 7 the minimal degree of Vassiliev invariants that can be used to
+distinguish the orientation of long links with 2 components?
+   Remark. The question is reduced to the existence of non-invertible diagrams of
+degree smaller than 7. For example, we do not know if the following diagram
+
+
+                                        −                   =
+
+
+
+is zero or not as an element of A5 (2).
+                                     Acknowledgements
+   We thank A. Khoroshkin, S. Loktev and E. B. Vinberg for useful comments on in-
+variant theory, and S. Lando who read the text and made some useful remarks. The
+first author was supported by RFBR grant 05-01-01012a.
+                                            References
+[BN1] D. Bar-Natan, On the Vassiliev knot invariants, Topology, 34 (1995) 423–472.
+[BN2] D. Bar-Natan, Vassiliev Homotopy String Link Invariants, Journal of Knot Theory and its
+       Ramifications 4-1 (1995) 13–32.
+[Calc] S. Duzhin. Computer programs and data files for the calculation of the weight systems ϕ and
+       ψ. Online at http://www.pdmi.ras.ru/~arnsem/dataprog/OrLinks/.
+[CD] S. V. Chmutov and S. V. Duzhin, CDBook. Introduction to Vassiliev Knot invariants, prelim-
+       inary draft version of a book, Online at http://www.pdmi.ras.ru/~duzhin/papers/.
+[Ka] A. Kawauchi, The invertibility problem on amphicheiral excellent knots. Proc. Japan Acad.
+       Ser. A Math. Sci. 55 (1979), no. 10, 399–402.
+[Kon] M. Kontsevich, Vassiliev’s knot invariants, Adv. in Soviet Math., 16 Part 2 (1993) 137–150.
+[L1] X.-S. Lin, Finite type link invariants and the invertibility of links, Math. Res. Letters 3 (1996),
+       no. 3, pp. 405–417. Online at arXiv:q-alg/9601019.
+[L2] X.-S. Lin, Finite type link-homotopy invariants, l’Enseignement Mathématique 47 (2001), pp.
+       315–327. Online at arXiv:math.GT/0012095.
+[LM] T. Q. T. Le, J. Murakami, The universal Vassiliev–Kontsevich invariant for framed oriented
+       links, Compositio Math. 102 (1996) 41–64.
+[Sta] T. Stanford, Finite-type invariants of knots, links and graphs. Topology, Vol. 35, no. 4, pp.
+       1027–1050.
+[Tro] H. F. Trotter, Non-invertible knots exist. Topology 2 (1964), 275–280.
+[VP] E. B. Vinberg and V. L. Popov, Invariant theory. In: Itogi Nauki Tekh., Ser. Sovrem. Probl.
+       Mat., Fundam. Napravleniya 55 (1989), 137-314. English transl.: Encyclopaedia Math. Sci.
+       vol 55, Springer, 1994.
+[Vog] P. Vogel, Algebraic structures on modules of diagrams, Institut de Mathématiques de Jussieu,
+       Prépublication 32, August 1995, Revised in 1997, http://www.math.jussieu.fr/~vogel/.
+[W] H. Weyl, The Classical Groups: Their Invariants and Representations. Princeton University
+       Press, 1997.
+                                                                             duzhin@pdmi.ras.ru
+

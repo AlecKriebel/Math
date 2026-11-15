@@ -1,3 +1,4 @@
 # Row 111 editorial preparation log
 
 - 2026-11-15T00:41:02.827074+00:00 — Destinations confirmed absent and exact programme-level root scientific authority authenticated. All existing row111 files and selected prior immutable packets bound before writes. Editorial-only work begins, preserving complete historical false/null states and native schemas. Completion estimate 10%.
+- 2026-11-15T00:53:07.540951+00:00 — Complete public copy and unique config prose reread; intrinsic/full-quantifier/metric/endpoint/family/classical/priority/AI/rights limits retained. Whole original source and both actual transport shapes/custom verdicts preserved. Static check and 36 changed-input controls pass identically in normal/optimized modes; all181 original and8 selected prior immutable bindings remain unchanged. Editorial preparation 100%; publication promotion remains0%.

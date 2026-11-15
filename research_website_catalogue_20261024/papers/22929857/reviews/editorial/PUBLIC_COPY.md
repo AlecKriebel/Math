@@ -22,7 +22,7 @@ Choose one point on the sphere. The final constant is the matrix originally assi
 
 ## The precise result
 
-For every finite n ≥ 2 and N ≥ 1, equip the unit-round sphere S^(n−1) with geodesic distance and U(N) with the induced length metric of either the unnormalized Hilbert–Schmidt norm ||X||HS = sqrt(tr(X*X)) or the operator norm ||X||op. Give the space of maps the uniform topology. Fix p ∈ S^(n−1). For every map Φ with intrinsic Lipschitz constant L ≤ 1/2, put A = Φ(p) and WΦ(x) = A*Φ(x).
+For every finite n ≥ 2 and N ≥ 1, equip the unit-round sphere S^(n−1) with geodesic distance and U(N) with the induced length metric of either the unnormalized Hilbert–Schmidt norm ||X||HS = sqrt(tr(X*X)) or the operator norm ||X||op. Give the space of maps the uniform topology. Fix p ∈ S^(n−1). For every map Φ with intrinsic Lipschitz constant L ≤ 1/2, put A = Φ(p) and WΦ(x) = A*Φ(x). Here * denotes conjugate transpose.
 
 For every t ∈ [0,1], Ht(Φ)(x) = A(WΦ(x) + tI)(I + tWΦ(x))^(−1) is well-defined in U(N) and satisfies Lip(Ht(Φ)) ≤ ((1 − t²)/(1 + t²)) L. It starts at Φ when t = 0 and ends at the constant Φ(p) when t = 1.
 
@@ -58,7 +58,7 @@ The method’s classical ingredients are credited below. A bounded primary-sourc
 
 ## Publication and materials
 
-The manuscript and Zenodo’s declared publication date are 23 September 2026, version 1.1. Zenodo created the record on 24 September 2026 UTC and updated its metadata on 10 October 2026. Those dates do not replace the original edition date or establish historical priority.
+The manuscript and Zenodo’s declared publication date are 23 September 2026, version 1.1. Zenodo created the record on 24 September 2026 UTC; the record was updated on 10 October 2026. Those dates do not replace the original edition date or establish historical priority.
 
 Paper, LaTeX, research notes, review reports and prose: CC BY 4.0. Python scripts and website code: MIT. Third-party works retain their own rights.
 

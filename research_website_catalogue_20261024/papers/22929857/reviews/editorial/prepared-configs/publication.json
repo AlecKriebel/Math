@@ -1,0 +1,1482 @@
+{
+  "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+  "slug": "lipschitz-nonincreasing-unitary-deformation",
+  "description": "An explicit deformation of small unitary-valued sphere maps preserves a half-Lipschitz bound, with a quantitative estimate for two intrinsic length metrics.",
+  "abstract": "For the unit-round sphere and either the unnormalized Hilbert–Schmidt or operator-norm length metric on U(N), we give an explicit strong deformation retraction of the maps with Lipschitz constant at most 1/2 onto the constant maps. At time t ∈ [0,1], the Lipschitz constant is at most (1 − t²)/(1 + t²) times its original value. The formula depends continuously on the entire map and stays in the original U(N). In particular, it answers the literal question [?24](i) in Gromov's 2017 scalar-curvature problem list, with the stronger requirement that the Lipschitz bound be preserved throughout. The proof uses a classical matrix fractional transformation and an elementary resolvent identity.",
+  "abstract_heading": "Original abstract",
+  "abstract_is_original": true,
+  "plain_language": [
+    "A map can assign a unitary matrix to each point of a sphere. A small Lipschitz constant means nearby points receive nearby matrices, measured by a specified intrinsic distance on the unitary group.",
+    "This note gives an explicit way to deform every such map with Lipschitz constant at most one half into a constant map. At each time the Lipschitz constant is bounded by a known factor times its original value, so the deformation stays inside the same small-map space.",
+    "Choose one point on the sphere. The final constant is the matrix originally assigned to that point. Maps that were already constant remain fixed throughout, and the construction uses the original U(N) without enlarging the matrices."
+  ],
+  "result": [
+    "For every finite n ≥ 2 and N ≥ 1, equip the unit-round sphere S^(n−1) with geodesic distance and U(N) with the induced length metric of either the unnormalized Hilbert–Schmidt norm ||X||HS = sqrt(tr(X*X)) or the operator norm ||X||op. Give the space of maps the uniform topology. Fix p ∈ S^(n−1). For every map Φ with intrinsic Lipschitz constant L ≤ 1/2, put A = Φ(p) and WΦ(x) = A*Φ(x). Here * denotes conjugate transpose.",
+    "For every t ∈ [0,1], Ht(Φ)(x) = A(WΦ(x) + tI)(I + tWΦ(x))^(−1) is well-defined in U(N) and satisfies Lip(Ht(Φ)) ≤ ((1 − t²)/(1 + t²)) L. It starts at Φ when t = 0 and ends at the constant Φ(p) when t = 1.",
+    "This is a jointly continuous strong deformation retraction of the closed L ≤ 1/2 sublevel onto the constant maps, and it restricts to one of the strict L < 1/2 sublevel. Every constant map is fixed at every time. Thus the based subspace Φ(p) = I is contractible; the unbased space retracts onto a copy of U(N). The theorem includes nonsmooth Lipschitz inputs.",
+    "The same conclusion holds on the two-point sphere S⁰ when its two points are assigned angular distance π. It does not use the disconnected sphere’s intrinsic path metric.",
+    "For any topological parameter space Y, a continuous family Φ: Y × S^(n−1) → U(N) whose slices satisfy the bound gives a continuous family of these deformations. For constant Q,R ∈ U(N), Ht(QΦR) = QHt(Φ)R."
+  ],
+  "why_it_works": [
+    "After normalizing by the value at p, the sphere’s diameter and the Lipschitz bound place all image eigenangles in the closed interval [−π/2, π/2]. This keeps the fractional transformation’s inverse uniformly well-defined, including at the terminal time.",
+    "A resolvent identity gives the same quantitative differential bound for both stated matrix norms, without assuming that the matrices commute. Integrating that bound along the actual image of a shortest sphere geodesic controls intrinsic curve length and proves the Lipschitz estimate, including for nonsmooth maps.",
+    "The construction is a classical Cayley-coordinate scaling. The contribution presented here is the explicit quantitative map-space deformation and its estimate for the two specified length metrics; the Cayley transform, logarithm chart and ordinary local contractibility are classical."
+  ],
+  "limitations": [
+    "The sphere is unit-round, and the target norms are exactly the unnormalized Hilbert–Schmidt norm or operator norm with their induced length metrics. Dividing the Hilbert–Schmidt norm by sqrt(N), changing the source geometry, or specifying only a shortest-geodesic normalization does not give the stated theorem for an arbitrary metric.",
+    "A fixed domain basepoint is chosen. The endpoint constant depends on the input map; the construction does not contract the constant-map copy of U(N) to one prescribed point. No nontrivial sphere-fibration, domain-rotation-equivariant or infinite-dimensional result is claimed.",
+    "The result addresses the literal small-map assertion in Gromov’s 2017 question [?24](i). The nearby discussion of the larger Lip < 1 bound and the separate sphere-fibration question are different statements. Ordinary deformation for Lip < 1 already follows from a principal logarithm chart without the same sublevel-preservation assertion.",
+    "The method’s classical ingredients are credited below. A bounded primary-source comparison does not establish first-publication priority, exhaustive novelty or continued worldwide openness. Exact algebra and numerical diagnostics in the package supplement the analytic proof; finite tests do not prove its all-dimensional or mapping-space assertions."
+  ],
+  "background": [
+    {
+      "title": "M. Gromov, 101 Questions, Problems and Conjectures around Scalar Curvature (2017), printed pages 35–36",
+      "url": "https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf",
+      "note": "The original metric context and question [?24](i), asking for deformation of maps with Lip < 1/2 to constants continuously in the input map."
+    },
+    {
+      "title": "Y. A. Neretin, Lectures on Gaussian Integral Operators and Classical Groups (2011), §1.7.9, Theorem 7.5, page 42",
+      "url": "https://www.mat.univie.ac.at/~neretin/lectures/ems.pdf",
+      "note": "The classical Cayley chart for unitary and self-adjoint matrices. The displayed deformation scales that coordinate by (1 − t)/(1 + t)."
+    }
+  ],
+  "collaboration": "Substantive collaboration on independent verification, a meaningful mathematical extension, or development of a journal submission is welcome. Authorship and responsibilities would be discussed by mutual agreement and would reflect actual research and writing contributions.",
+  "follow_up": null,
+  "followup_rationale": "No precise follow-up has cleared the required mathematical and focused primary-literature threshold.",
+  "publication_date": "2026-09-23",
+  "version": "1.1",
+  "version_field_present": true,
+  "doi": "10.5281/zenodo.22929857",
+  "author": "Alec Kriebel",
+  "orcid": "https://orcid.org/0009-0001-9320-500X",
+  "pdf_filename": "paper.pdf",
+  "pdf_pages": 4,
+  "reader_intro": "Read the complete four-page published preprint in the on-page PDF reader.",
+  "supplement_filename": "reproducibility.zip",
+  "supplement_label": "Complete original manuscript source and reproducibility package (ZIP)",
+  "additional_assets": [],
+  "related_resources": [
+    {
+      "label": "Zenodo original complete PDF",
+      "url": "https://zenodo.org/records/22929857/files/paper.pdf"
+    },
+    {
+      "label": "Zenodo original complete ZIP",
+      "url": "https://zenodo.org/records/22929857/files/reproducibility.zip"
+    }
+  ],
+  "status": "Unrefereed preprint; version 1.1. Developed with extensive AI assistance; no external human or journal peer review, journal acceptance or formal proof-assistant certification is claimed.",
+  "ai_disclosure": "OpenAI tools were used extensively in mathematical development, derivation, writing, coding, literature research and internal adversarial checking. This is an unrefereed preprint. Internal AI-assisted reviews are not external human or journal peer review, and no journal acceptance or formal proof-assistant certification is claimed. The named author is responsible for the claims, materials and citations.",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "code_license": "MIT",
+  "publication_date_label": "Manuscript and declared publication date",
+  "edition_label": "Version 1.1",
+  "citation_edition_label": "Version 1.1, 23 September 2026",
+  "edition_note": "The manuscript and Zenodo’s declared publication date are 23 September 2026, version 1.1. Zenodo created the record on 24 September 2026 UTC; the record was updated on 10 October 2026. Those dates do not replace the original edition date or establish historical priority.",
+  "bibtex_note": "Unrefereed preprint; version 1.1, dated 23 September 2026. Zenodo record created 24 September 2026 UTC. Extensive AI assistance.",
+  "prepared_bibtex": "@misc{Kriebel2026SmallUnitaryDeformation,\n  author = {Kriebel, Alec},\n  title = {A Lipschitz-nonincreasing deformation of small unitary-valued maps},\n  year = {2026},\n  month = sep,\n  day = {23},\n  version = {1.1},\n  doi = {10.5281/zenodo.22929857},\n  url = {https://doi.org/10.5281/zenodo.22929857},\n  note = {Unrefereed preprint, version 1.1, dated 23 September 2026. Zenodo record created 24 September 2026 UTC. Developed with extensive AI assistance.}\n}\n",
+  "canonical_url": null,
+  "AA": null,
+  "proposed_canonical_url": "https://aleckriebel.com/research/lipschitz-nonincreasing-unitary-deformation/",
+  "keywords": [
+    "Lipschitz maps",
+    "unitary group",
+    "strong deformation retraction",
+    "Hilbert–Schmidt norm",
+    "operator norm",
+    "intrinsic length metric",
+    "Gromov question 24(i)",
+    "Cayley transform"
+  ],
+  "source_binding": {
+    "record_id": "22929857",
+    "concept_record_id": "22929856",
+    "record_url": "https://zenodo.org/records/22929857",
+    "doi": "10.5281/zenodo.22929857",
+    "concept_doi": "10.5281/zenodo.22929856",
+    "version": "1.1",
+    "manuscript_version": "1.1",
+    "manuscript_version_printed": true,
+    "manuscript_date": "23 September 2026",
+    "zenodo_publication_date": "2026-09-23",
+    "record_created_utc": "2026-09-24T04:08:19.697044+00:00",
+    "record_updated_utc": "2026-10-10T21:41:29.296237+00:00",
+    "metadata_path": "sources/record.raw.json",
+    "metadata_sha256": "27f4af93fed4e5e0b4d11ffe72eb11a210badea80e805377e1633c0d6d58f482",
+    "source_receipt_path": "sources/SOURCE_READY.json",
+    "source_receipt_sha256": "b9a6b2f5d848fd924682faf33ad39c74f80d6d849e1a0081abbc5d5bfdc0bf4d",
+    "whole_original_source_ready": {
+      "schema": "source-ready-22929857-v1",
+      "UTC": "2026-11-14T23:48:33.342480+00:00",
+      "status": "SOURCE_READY_COMPLETE_EXACT_PUBLISHED_TWO_ASSET_RELEASE_SAFE",
+      "record_id": 22929857,
+      "sheet_row": 111,
+      "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+      "version": "1.1",
+      "publication_date_declared": "2026-09-23",
+      "record_created": "2026-09-24T04:08:19.697044+00:00",
+      "record_updated": "2026-10-10T21:41:29.296237+00:00",
+      "DOI": "10.5281/zenodo.22929857",
+      "conceptrecid": "22929856",
+      "latest_record_id": 22929857,
+      "all_native_versions_total": 1,
+      "all_native_assets_in_original_order": [
+        {
+          "original_api_file_object": {
+            "id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+            "key": "reproducibility.zip",
+            "size": 133556,
+            "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+            "links": {
+              "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22929857/sources/reproducibility.zip",
+          "bytes": 133556,
+          "SHA256": "7692e3dbed4e43647721b3c007e567debcdcef0f43cab3700c129433dbd4a930",
+          "MD5": "2c8122b5e0edaaa2d84771abb1a3c616"
+        },
+        {
+          "original_api_file_object": {
+            "id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+            "key": "paper.pdf",
+            "size": 69229,
+            "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+            "links": {
+              "self": "https://zenodo.org/api/records/22929857/files/paper.pdf/content"
+            }
+          },
+          "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22929857/sources/paper.pdf",
+          "bytes": 69229,
+          "SHA256": "3e8c052065110ec412a3e01e80f0c789f663ce6a9eb74c31aa8fdd99915fc02b",
+          "MD5": "5ae67a95127ae05323cc76645ffee931"
+        }
+      ],
+      "selected_actual_PDF": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22929857/sources/paper.pdf",
+        "bytes": 69229,
+        "SHA256": "3e8c052065110ec412a3e01e80f0c789f663ce6a9eb74c31aa8fdd99915fc02b",
+        "pages": 4,
+        "original_native_API_asset_key": "paper.pdf",
+        "byte_identical_ZIP_member": "paper/main.pdf"
+      },
+      "controlling_TeX": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22929857/sources/published-source/paper/main.tex",
+        "bytes": 11262,
+        "SHA256": "954d45001560d29f3286383a40ff9c477a257d9359e02ada7477eac67a0cda4e",
+        "original_member_name": "paper/main.tex",
+        "basis": "Sole TeX member adjacent to the byte-identical paper/main.pdf in the exact native reproducibility package."
+      },
+      "archive_custody": {
+        "native_ZIP_bytes": 133556,
+        "all_30_regular_payloads_CRC_SHA256_extracted_exact": true,
+        "uncompressed_bytes": 208344,
+        "nested_archives_by_actual_magic": 0,
+        "unsafe_names": [],
+        "duplicate_names": [],
+        "nonregular_payloads": [],
+        "native_29_entry_MANIFEST_sha256_all_match": true
+      },
+      "record_description_encountered_as_native_metadata": true,
+      "target_manuscript_scientifically_read": false,
+      "source_programs_builders_finalizers_executed": false,
+      "foreign_bodies_code_data_triage_archived_current_reviews_opinions_read": false,
+      "original_native_JSON_objects_order_and_schemas_preserved": true,
+      "originals_now_immutable": true,
+      "declared_publication_date_not_silently_replaced_by_created_or_updated": true,
+      "HTTP_status_and_headers_preserved": true,
+      "completion_estimate_percent_source_acquisition": 100
+    },
+    "whole_native_record": {
+      "created": "2026-09-24T04:08:19.697044+00:00",
+      "modified": "2026-10-10T21:41:29.296237+00:00",
+      "id": 22929857,
+      "conceptrecid": "22929856",
+      "doi": "10.5281/zenodo.22929857",
+      "conceptdoi": "10.5281/zenodo.22929856",
+      "doi_url": "https://doi.org/10.5281/zenodo.22929857",
+      "metadata": {
+        "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+        "doi": "10.5281/zenodo.22929857",
+        "publication_date": "2026-09-23",
+        "description": "<p>For the unit-round sphere and either the unnormalized Hilbert&ndash;Schmidt or operator-norm length metric on U(N), this note gives an explicit strong deformation retraction of the maps with Lipschitz constant at most 1/2 onto the constant maps. At time t in [0,1], the Lipschitz constant is at most (1-t&sup2;)/(1+t&sup2;) times its original value. The formula is continuous in the entire input map, fixes constant maps, preserves the strict sublevel, and stays in the original U(N). It supplies an affirmative answer to the literal assertion in Gromov&rsquo;s 2017 question [?24](i), catalogued as AMR-066-0025.</p>\n<p>The proof is elementary matrix algebra plus an intrinsic curve-length argument. The Cayley/M&ouml;bius transformation is classical. Ordinary contraction without preservation of the Lipschitz sublevel already follows from a standard logarithm chart. A documented, bounded literature search located no earlier explicit resolution or exact quantitative map-space retraction; first-publication priority is not established.</p>\n<p>The package includes the four-page preprint, editable LaTeX source, independent AI-assisted internal reviews, a priority audit, dependency-free exact algebra checks, optional NumPy stress tests, and SHA-256 checksums. The scripts are finite diagnostics, not a formal proof of the theorem. This is an unrefereed preprint developed and checked with generative-AI assistance. Paper and prose: CC BY 4.0; code: MIT.</p>",
+        "access_right": "open",
+        "creators": [
+          {
+            "name": "Kriebel, Alec",
+            "affiliation": null,
+            "orcid": "0009-0001-9320-500X"
+          }
+        ],
+        "keywords": [
+          "Lipschitz maps",
+          "unitary group",
+          "unitary-valued maps",
+          "strong deformation retraction",
+          "Lipschitz-nonincreasing deformation",
+          "Gromov question 24(i)",
+          "Cayley transform",
+          "matrix Möbius transformation",
+          "resolvent identity",
+          "Hilbert-Schmidt metric",
+          "operator-norm length metric",
+          "uniform topology",
+          "unit-round sphere",
+          "AMR-066-0025"
+        ],
+        "related_identifiers": [
+          {
+            "identifier": "https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf",
+            "relation": "references",
+            "resource_type": "publication-preprint",
+            "scheme": "url"
+          },
+          {
+            "identifier": "https://aleckriebel.github.io/Math/papers/gromov-unitary-lipschitz/",
+            "relation": "isDocumentedBy",
+            "resource_type": "other",
+            "scheme": "url"
+          },
+          {
+            "identifier": "https://github.com/AlecKriebel/Math/tree/main/gromov_unitary_lipschitz_contraction",
+            "relation": "isSupplementedBy",
+            "resource_type": "software",
+            "scheme": "url"
+          }
+        ],
+        "version": "1.1",
+        "language": "eng",
+        "resource_type": {
+          "title": "Preprint",
+          "type": "publication",
+          "subtype": "preprint"
+        },
+        "license": {
+          "id": "cc-by-4.0"
+        },
+        "relations": {
+          "version": [
+            {
+              "index": 0,
+              "is_last": true,
+              "parent": {
+                "pid_type": "recid",
+                "pid_value": "22929856"
+              }
+            }
+          ]
+        }
+      },
+      "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+      "links": {
+        "self": "https://zenodo.org/api/records/22929857",
+        "self_html": "https://zenodo.org/records/22929857",
+        "preview_html": "https://zenodo.org/records/22929857?preview=1",
+        "doi": "https://doi.org/10.5281/zenodo.22929857",
+        "self_doi": "https://doi.org/10.5281/zenodo.22929857",
+        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22929857",
+        "reserve_doi": "https://zenodo.org/api/records/22929857/draft/pids/doi",
+        "parent": "https://zenodo.org/api/records/22929856",
+        "parent_html": "https://zenodo.org/records/22929856",
+        "parent_doi": "https://doi.org/10.5281/zenodo.22929856",
+        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22929856",
+        "self_iiif_manifest": "https://zenodo.org/api/iiif/record:22929857/manifest",
+        "self_iiif_sequence": "https://zenodo.org/api/iiif/record:22929857/sequence/default",
+        "files": "https://zenodo.org/api/records/22929857/files",
+        "media_files": "https://zenodo.org/api/records/22929857/media-files",
+        "thumbnails": {
+          "10": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E10,/0/default.jpg",
+          "50": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E50,/0/default.jpg",
+          "100": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E100,/0/default.jpg",
+          "250": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E250,/0/default.jpg",
+          "750": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E750,/0/default.jpg",
+          "1200": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E1200,/0/default.jpg"
+        },
+        "latest": "https://zenodo.org/api/records/22929857/versions/latest",
+        "latest_html": "https://zenodo.org/records/22929857/latest",
+        "versions": "https://zenodo.org/api/records/22929857/versions",
+        "draft": "https://zenodo.org/api/records/22929857/draft",
+        "access_links": "https://zenodo.org/api/records/22929857/access/links",
+        "access_grants": "https://zenodo.org/api/records/22929857/access/grants",
+        "access_users": "https://zenodo.org/api/records/22929857/access/users",
+        "access_request": "https://zenodo.org/api/records/22929857/access/request",
+        "access": "https://zenodo.org/api/records/22929857/access",
+        "communities": "https://zenodo.org/api/records/22929857/communities",
+        "communities-suggestions": "https://zenodo.org/api/records/22929857/communities-suggestions",
+        "request_deletion": "https://zenodo.org/api/records/22929857/request-deletion",
+        "file_modification": "https://zenodo.org/api/records/22929857/file-modification",
+        "quota_increase": "https://zenodo.org/api/records/22929857/quota-increase",
+        "requests": "https://zenodo.org/api/records/22929857/requests"
+      },
+      "updated": "2026-10-10T21:41:29.296237+00:00",
+      "recid": "22929857",
+      "revision": 5,
+      "files": [
+        {
+          "id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+          "key": "reproducibility.zip",
+          "size": 133556,
+          "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content"
+          }
+        },
+        {
+          "id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+          "key": "paper.pdf",
+          "size": 69229,
+          "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/paper.pdf/content"
+          }
+        }
+      ],
+      "swh": {},
+      "owners": [
+        {
+          "id": "1789874"
+        }
+      ],
+      "status": "published",
+      "stats": {
+        "downloads": 13,
+        "unique_downloads": 11,
+        "views": 19,
+        "unique_views": 17,
+        "version_downloads": 13,
+        "version_unique_downloads": 11,
+        "version_unique_views": 17,
+        "version_views": 19
+      },
+      "state": "done",
+      "submitted": true
+    },
+    "whole_native_latest_record": {
+      "created": "2026-09-24T04:08:19.697044+00:00",
+      "modified": "2026-10-10T21:41:29.296237+00:00",
+      "id": 22929857,
+      "conceptrecid": "22929856",
+      "doi": "10.5281/zenodo.22929857",
+      "conceptdoi": "10.5281/zenodo.22929856",
+      "doi_url": "https://doi.org/10.5281/zenodo.22929857",
+      "metadata": {
+        "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+        "doi": "10.5281/zenodo.22929857",
+        "publication_date": "2026-09-23",
+        "description": "<p>For the unit-round sphere and either the unnormalized Hilbert&ndash;Schmidt or operator-norm length metric on U(N), this note gives an explicit strong deformation retraction of the maps with Lipschitz constant at most 1/2 onto the constant maps. At time t in [0,1], the Lipschitz constant is at most (1-t&sup2;)/(1+t&sup2;) times its original value. The formula is continuous in the entire input map, fixes constant maps, preserves the strict sublevel, and stays in the original U(N). It supplies an affirmative answer to the literal assertion in Gromov&rsquo;s 2017 question [?24](i), catalogued as AMR-066-0025.</p>\n<p>The proof is elementary matrix algebra plus an intrinsic curve-length argument. The Cayley/M&ouml;bius transformation is classical. Ordinary contraction without preservation of the Lipschitz sublevel already follows from a standard logarithm chart. A documented, bounded literature search located no earlier explicit resolution or exact quantitative map-space retraction; first-publication priority is not established.</p>\n<p>The package includes the four-page preprint, editable LaTeX source, independent AI-assisted internal reviews, a priority audit, dependency-free exact algebra checks, optional NumPy stress tests, and SHA-256 checksums. The scripts are finite diagnostics, not a formal proof of the theorem. This is an unrefereed preprint developed and checked with generative-AI assistance. Paper and prose: CC BY 4.0; code: MIT.</p>",
+        "access_right": "open",
+        "creators": [
+          {
+            "name": "Kriebel, Alec",
+            "affiliation": null,
+            "orcid": "0009-0001-9320-500X"
+          }
+        ],
+        "keywords": [
+          "Lipschitz maps",
+          "unitary group",
+          "unitary-valued maps",
+          "strong deformation retraction",
+          "Lipschitz-nonincreasing deformation",
+          "Gromov question 24(i)",
+          "Cayley transform",
+          "matrix Möbius transformation",
+          "resolvent identity",
+          "Hilbert-Schmidt metric",
+          "operator-norm length metric",
+          "uniform topology",
+          "unit-round sphere",
+          "AMR-066-0025"
+        ],
+        "related_identifiers": [
+          {
+            "identifier": "https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf",
+            "relation": "references",
+            "resource_type": "publication-preprint",
+            "scheme": "url"
+          },
+          {
+            "identifier": "https://aleckriebel.github.io/Math/papers/gromov-unitary-lipschitz/",
+            "relation": "isDocumentedBy",
+            "resource_type": "other",
+            "scheme": "url"
+          },
+          {
+            "identifier": "https://github.com/AlecKriebel/Math/tree/main/gromov_unitary_lipschitz_contraction",
+            "relation": "isSupplementedBy",
+            "resource_type": "software",
+            "scheme": "url"
+          }
+        ],
+        "version": "1.1",
+        "language": "eng",
+        "resource_type": {
+          "title": "Preprint",
+          "type": "publication",
+          "subtype": "preprint"
+        },
+        "license": {
+          "id": "cc-by-4.0"
+        },
+        "relations": {
+          "version": [
+            {
+              "index": 0,
+              "is_last": true,
+              "parent": {
+                "pid_type": "recid",
+                "pid_value": "22929856"
+              }
+            }
+          ]
+        }
+      },
+      "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+      "links": {
+        "self": "https://zenodo.org/api/records/22929857",
+        "self_html": "https://zenodo.org/records/22929857",
+        "preview_html": "https://zenodo.org/records/22929857?preview=1",
+        "doi": "https://doi.org/10.5281/zenodo.22929857",
+        "self_doi": "https://doi.org/10.5281/zenodo.22929857",
+        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22929857",
+        "reserve_doi": "https://zenodo.org/api/records/22929857/draft/pids/doi",
+        "parent": "https://zenodo.org/api/records/22929856",
+        "parent_html": "https://zenodo.org/records/22929856",
+        "parent_doi": "https://doi.org/10.5281/zenodo.22929856",
+        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22929856",
+        "self_iiif_manifest": "https://zenodo.org/api/iiif/record:22929857/manifest",
+        "self_iiif_sequence": "https://zenodo.org/api/iiif/record:22929857/sequence/default",
+        "files": "https://zenodo.org/api/records/22929857/files",
+        "media_files": "https://zenodo.org/api/records/22929857/media-files",
+        "thumbnails": {
+          "10": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E10,/0/default.jpg",
+          "50": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E50,/0/default.jpg",
+          "100": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E100,/0/default.jpg",
+          "250": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E250,/0/default.jpg",
+          "750": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E750,/0/default.jpg",
+          "1200": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E1200,/0/default.jpg"
+        },
+        "latest": "https://zenodo.org/api/records/22929857/versions/latest",
+        "latest_html": "https://zenodo.org/records/22929857/latest",
+        "versions": "https://zenodo.org/api/records/22929857/versions",
+        "draft": "https://zenodo.org/api/records/22929857/draft",
+        "access_links": "https://zenodo.org/api/records/22929857/access/links",
+        "access_grants": "https://zenodo.org/api/records/22929857/access/grants",
+        "access_users": "https://zenodo.org/api/records/22929857/access/users",
+        "access_request": "https://zenodo.org/api/records/22929857/access/request",
+        "access": "https://zenodo.org/api/records/22929857/access",
+        "communities": "https://zenodo.org/api/records/22929857/communities",
+        "communities-suggestions": "https://zenodo.org/api/records/22929857/communities-suggestions",
+        "request_deletion": "https://zenodo.org/api/records/22929857/request-deletion",
+        "file_modification": "https://zenodo.org/api/records/22929857/file-modification",
+        "quota_increase": "https://zenodo.org/api/records/22929857/quota-increase",
+        "requests": "https://zenodo.org/api/records/22929857/requests"
+      },
+      "updated": "2026-10-10T21:41:29.296237+00:00",
+      "recid": "22929857",
+      "revision": 5,
+      "files": [
+        {
+          "id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+          "key": "reproducibility.zip",
+          "size": 133556,
+          "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content"
+          }
+        },
+        {
+          "id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+          "key": "paper.pdf",
+          "size": 69229,
+          "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/paper.pdf/content"
+          }
+        }
+      ],
+      "swh": {},
+      "owners": [
+        {
+          "id": "1789874"
+        }
+      ],
+      "status": "published",
+      "stats": {
+        "downloads": 13,
+        "unique_downloads": 11,
+        "views": 19,
+        "unique_views": 17,
+        "version_downloads": 13,
+        "version_unique_downloads": 11,
+        "version_unique_views": 17,
+        "version_views": 19
+      },
+      "state": "done",
+      "submitted": true
+    },
+    "whole_native_versions": {
+      "hits": {
+        "hits": [
+          {
+            "created": "2026-09-24T04:08:19.697044+00:00",
+            "modified": "2026-10-10T21:41:29.296237+00:00",
+            "id": 22929857,
+            "conceptrecid": "22929856",
+            "doi": "10.5281/zenodo.22929857",
+            "conceptdoi": "10.5281/zenodo.22929856",
+            "doi_url": "https://doi.org/10.5281/zenodo.22929857",
+            "metadata": {
+              "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+              "doi": "10.5281/zenodo.22929857",
+              "publication_date": "2026-09-23",
+              "description": "<p>For the unit-round sphere and either the unnormalized Hilbert&ndash;Schmidt or operator-norm length metric on U(N), this note gives an explicit strong deformation retraction of the maps with Lipschitz constant at most 1/2 onto the constant maps. At time t in [0,1], the Lipschitz constant is at most (1-t&sup2;)/(1+t&sup2;) times its original value. The formula is continuous in the entire input map, fixes constant maps, preserves the strict sublevel, and stays in the original U(N). It supplies an affirmative answer to the literal assertion in Gromov&rsquo;s 2017 question [?24](i), catalogued as AMR-066-0025.</p>\n<p>The proof is elementary matrix algebra plus an intrinsic curve-length argument. The Cayley/M&ouml;bius transformation is classical. Ordinary contraction without preservation of the Lipschitz sublevel already follows from a standard logarithm chart. A documented, bounded literature search located no earlier explicit resolution or exact quantitative map-space retraction; first-publication priority is not established.</p>\n<p>The package includes the four-page preprint, editable LaTeX source, independent AI-assisted internal reviews, a priority audit, dependency-free exact algebra checks, optional NumPy stress tests, and SHA-256 checksums. The scripts are finite diagnostics, not a formal proof of the theorem. This is an unrefereed preprint developed and checked with generative-AI assistance. Paper and prose: CC BY 4.0; code: MIT.</p>",
+              "access_right": "open",
+              "creators": [
+                {
+                  "name": "Kriebel, Alec",
+                  "affiliation": null,
+                  "orcid": "0009-0001-9320-500X"
+                }
+              ],
+              "keywords": [
+                "Lipschitz maps",
+                "unitary group",
+                "unitary-valued maps",
+                "strong deformation retraction",
+                "Lipschitz-nonincreasing deformation",
+                "Gromov question 24(i)",
+                "Cayley transform",
+                "matrix Möbius transformation",
+                "resolvent identity",
+                "Hilbert-Schmidt metric",
+                "operator-norm length metric",
+                "uniform topology",
+                "unit-round sphere",
+                "AMR-066-0025"
+              ],
+              "related_identifiers": [
+                {
+                  "identifier": "https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf",
+                  "relation": "references",
+                  "resource_type": "publication-preprint",
+                  "scheme": "url"
+                },
+                {
+                  "identifier": "https://aleckriebel.github.io/Math/papers/gromov-unitary-lipschitz/",
+                  "relation": "isDocumentedBy",
+                  "resource_type": "other",
+                  "scheme": "url"
+                },
+                {
+                  "identifier": "https://github.com/AlecKriebel/Math/tree/main/gromov_unitary_lipschitz_contraction",
+                  "relation": "isSupplementedBy",
+                  "resource_type": "software",
+                  "scheme": "url"
+                }
+              ],
+              "version": "1.1",
+              "language": "eng",
+              "resource_type": {
+                "title": "Preprint",
+                "type": "publication",
+                "subtype": "preprint"
+              },
+              "license": {
+                "id": "cc-by-4.0"
+              },
+              "relations": {
+                "version": [
+                  {
+                    "index": 0,
+                    "is_last": true,
+                    "parent": {
+                      "pid_type": "recid",
+                      "pid_value": "22929856"
+                    }
+                  }
+                ]
+              }
+            },
+            "title": "A Lipschitz-nonincreasing deformation of small unitary-valued maps",
+            "links": {
+              "self": "https://zenodo.org/api/records/22929857",
+              "self_html": "https://zenodo.org/records/22929857",
+              "preview_html": "https://zenodo.org/records/22929857?preview=1",
+              "doi": "https://doi.org/10.5281/zenodo.22929857",
+              "self_doi": "https://doi.org/10.5281/zenodo.22929857",
+              "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22929857",
+              "reserve_doi": "https://zenodo.org/api/records/22929857/draft/pids/doi",
+              "parent": "https://zenodo.org/api/records/22929856",
+              "parent_html": "https://zenodo.org/records/22929856",
+              "parent_doi": "https://doi.org/10.5281/zenodo.22929856",
+              "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22929856",
+              "self_iiif_manifest": "https://zenodo.org/api/iiif/record:22929857/manifest",
+              "self_iiif_sequence": "https://zenodo.org/api/iiif/record:22929857/sequence/default",
+              "files": "https://zenodo.org/api/records/22929857/files",
+              "media_files": "https://zenodo.org/api/records/22929857/media-files",
+              "thumbnails": {
+                "10": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E10,/0/default.jpg",
+                "50": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E50,/0/default.jpg",
+                "100": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E100,/0/default.jpg",
+                "250": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E250,/0/default.jpg",
+                "750": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E750,/0/default.jpg",
+                "1200": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/%5E1200,/0/default.jpg"
+              },
+              "latest": "https://zenodo.org/api/records/22929857/versions/latest",
+              "latest_html": "https://zenodo.org/records/22929857/latest",
+              "versions": "https://zenodo.org/api/records/22929857/versions",
+              "draft": "https://zenodo.org/api/records/22929857/draft",
+              "access_links": "https://zenodo.org/api/records/22929857/access/links",
+              "access_grants": "https://zenodo.org/api/records/22929857/access/grants",
+              "access_users": "https://zenodo.org/api/records/22929857/access/users",
+              "access_request": "https://zenodo.org/api/records/22929857/access/request",
+              "access": "https://zenodo.org/api/records/22929857/access",
+              "communities": "https://zenodo.org/api/records/22929857/communities",
+              "communities-suggestions": "https://zenodo.org/api/records/22929857/communities-suggestions",
+              "request_deletion": "https://zenodo.org/api/records/22929857/request-deletion",
+              "file_modification": "https://zenodo.org/api/records/22929857/file-modification",
+              "quota_increase": "https://zenodo.org/api/records/22929857/quota-increase",
+              "requests": "https://zenodo.org/api/records/22929857/requests"
+            },
+            "updated": "2026-10-10T21:41:29.296237+00:00",
+            "recid": "22929857",
+            "revision": 5,
+            "files": [
+              {
+                "id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+                "key": "reproducibility.zip",
+                "size": 133556,
+                "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+                "links": {
+                  "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content"
+                }
+              },
+              {
+                "id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+                "key": "paper.pdf",
+                "size": 69229,
+                "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+                "links": {
+                  "self": "https://zenodo.org/api/records/22929857/files/paper.pdf/content"
+                }
+              }
+            ],
+            "swh": null,
+            "owners": [
+              {
+                "id": "1789874"
+              }
+            ],
+            "status": "published",
+            "stats": {
+              "downloads": 13,
+              "unique_downloads": 11,
+              "views": 19,
+              "unique_views": 17,
+              "version_downloads": 13,
+              "version_unique_downloads": 11,
+              "version_unique_views": 17,
+              "version_views": 19
+            },
+            "state": "done",
+            "submitted": true
+          }
+        ],
+        "total": 1
+      },
+      "links": {
+        "self": "https://zenodo.org/api/records/22929857/versions?page=1&size=25&sort=version"
+      }
+    },
+    "whole_native_files_endpoint": {
+      "enabled": true,
+      "links": {
+        "self": "https://zenodo.org/api/records/22929857/files"
+      },
+      "entries": [
+        {
+          "created": "2026-09-24T04:08:19.834011+00:00",
+          "updated": "2026-10-10T21:41:28.740864+00:00",
+          "mimetype": "application/zip",
+          "version_id": "f8d76fff-094d-41c4-a80b-9b638de13865",
+          "file_id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+          "bucket_id": "47490c87-92ea-4592-88fb-fc9caff793f1",
+          "metadata": {
+            "zip_toc_position": 131488
+          },
+          "access": {
+            "hidden": false
+          },
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip",
+            "content": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content",
+            "container": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/container"
+          },
+          "key": "reproducibility.zip",
+          "size": 133556,
+          "transfer": {
+            "type": "L"
+          },
+          "status": "completed",
+          "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+          "storage_class": "L"
+        },
+        {
+          "created": "2026-09-24T04:08:19.773502+00:00",
+          "updated": "2026-10-10T21:41:28.870988+00:00",
+          "mimetype": "application/pdf",
+          "version_id": "ffde900d-18e5-41c1-ac9d-596c14fe115b",
+          "file_id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+          "bucket_id": "47490c87-92ea-4592-88fb-fc9caff793f1",
+          "metadata": {
+            "width": 612,
+            "height": 792
+          },
+          "access": {
+            "hidden": false
+          },
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/paper.pdf",
+            "content": "https://zenodo.org/api/records/22929857/files/paper.pdf/content",
+            "iiif_canvas": "https://zenodo.org/api/iiif/record:22929857/canvas/paper.pdf",
+            "iiif_base": "https://zenodo.org/api/iiif/record:22929857:paper.pdf",
+            "iiif_info": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/info.json",
+            "iiif_api": "https://zenodo.org/api/iiif/record:22929857:paper.pdf/full/full/0/default.png"
+          },
+          "key": "paper.pdf",
+          "size": 69229,
+          "transfer": {
+            "type": "L"
+          },
+          "status": "completed",
+          "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+          "storage_class": "L"
+        }
+      ],
+      "default_preview": "paper.pdf",
+      "order": []
+    },
+    "all_native_assets_in_original_order": [
+      {
+        "original_api_file_object": {
+          "id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+          "key": "reproducibility.zip",
+          "size": 133556,
+          "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22929857/sources/reproducibility.zip",
+        "bytes": 133556,
+        "SHA256": "7692e3dbed4e43647721b3c007e567debcdcef0f43cab3700c129433dbd4a930",
+        "MD5": "2c8122b5e0edaaa2d84771abb1a3c616"
+      },
+      {
+        "original_api_file_object": {
+          "id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+          "key": "paper.pdf",
+          "size": 69229,
+          "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/paper.pdf/content"
+          }
+        },
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22929857/sources/paper.pdf",
+        "bytes": 69229,
+        "SHA256": "3e8c052065110ec412a3e01e80f0c789f663ce6a9eb74c31aa8fdd99915fc02b",
+        "MD5": "5ae67a95127ae05323cc76645ffee931"
+      }
+    ],
+    "whole_native_acquisition_transport_receipt": {
+      "assets_order_preserved_from_record": [
+        {
+          "id": "e550ff25-a908-481d-95e3-ab878f61ece8",
+          "key": "reproducibility.zip",
+          "size": 133556,
+          "checksum": "md5:2c8122b5e0edaaa2d84771abb1a3c616",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content"
+          }
+        },
+        {
+          "id": "57c1a408-ac5d-4139-9954-1f6e8a8e6d90",
+          "key": "paper.pdf",
+          "size": 69229,
+          "checksum": "md5:5ae67a95127ae05323cc76645ffee931",
+          "links": {
+            "self": "https://zenodo.org/api/records/22929857/files/paper.pdf/content"
+          }
+        }
+      ],
+      "responses_in_requested_order": [
+        [
+          "latest.raw.json",
+          {
+            "UTC": "2026-11-14T23:46:59.870063+00:00",
+            "request_url": "https://zenodo.org/api/records/22929857/versions/latest",
+            "resolved_url": "https://zenodo.org/api/records/22929857",
+            "HTTP_status": 200,
+            "headers": [
+              [
+                "server",
+                "nginx"
+              ],
+              [
+                "date",
+                "Sat, 14 Nov 2026 23:47:01 GMT"
+              ],
+              [
+                "content-type",
+                "application/json"
+              ],
+              [
+                "content-length",
+                "6725"
+              ],
+              [
+                "vary",
+                "Accept-Encoding"
+              ],
+              [
+                "etag",
+                "\"5\""
+              ],
+              [
+                "link",
+                "<https://zenodo.org/api/records/22929857> ; rel=\"linkset\" ; type=\"application/linkset+json\""
+              ],
+              [
+                "access-control-allow-origin",
+                "*"
+              ],
+              [
+                "access-control-expose-headers",
+                "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+              ],
+              [
+                "x-ratelimit-limit",
+                "133"
+              ],
+              [
+                "x-ratelimit-remaining",
+                "126"
+              ],
+              [
+                "x-ratelimit-reset",
+                "1794700051"
+              ],
+              [
+                "retry-after",
+                "29"
+              ],
+              [
+                "x-frame-options",
+                "sameorigin"
+              ],
+              [
+                "x-xss-protection",
+                "1; mode=block"
+              ],
+              [
+                "x-content-type-options",
+                "nosniff"
+              ],
+              [
+                "content-security-policy",
+                "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+              ],
+              [
+                "strict-transport-security",
+                "max-age=31556926; includeSubDomains"
+              ],
+              [
+                "referrer-policy",
+                "strict-origin-when-cross-origin"
+              ],
+              [
+                "x-source",
+                "api"
+              ],
+              [
+                "connection",
+                "close"
+              ]
+            ],
+            "bytes": 6725,
+            "SHA256": "27f4af93fed4e5e0b4d11ffe72eb11a210badea80e805377e1633c0d6d58f482",
+            "MD5": "bdf6ac0b3447d515b5c9874d291a36d7"
+          }
+        ],
+        [
+          "versions.raw.json",
+          {
+            "UTC": "2026-11-14T23:46:59.870341+00:00",
+            "request_url": "https://zenodo.org/api/records/22929857/versions",
+            "resolved_url": "https://zenodo.org/api/records/22929857/versions",
+            "HTTP_status": 200,
+            "headers": [
+              [
+                "server",
+                "nginx"
+              ],
+              [
+                "date",
+                "Sat, 14 Nov 2026 23:47:00 GMT"
+              ],
+              [
+                "content-type",
+                "application/json"
+              ],
+              [
+                "content-length",
+                "6860"
+              ],
+              [
+                "vary",
+                "Accept-Encoding"
+              ],
+              [
+                "access-control-allow-origin",
+                "*"
+              ],
+              [
+                "access-control-expose-headers",
+                "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+              ],
+              [
+                "x-ratelimit-limit",
+                "133"
+              ],
+              [
+                "x-ratelimit-remaining",
+                "127"
+              ],
+              [
+                "x-ratelimit-reset",
+                "1794700051"
+              ],
+              [
+                "retry-after",
+                "30"
+              ],
+              [
+                "x-frame-options",
+                "sameorigin"
+              ],
+              [
+                "x-xss-protection",
+                "1; mode=block"
+              ],
+              [
+                "x-content-type-options",
+                "nosniff"
+              ],
+              [
+                "content-security-policy",
+                "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+              ],
+              [
+                "strict-transport-security",
+                "max-age=31556926; includeSubDomains"
+              ],
+              [
+                "referrer-policy",
+                "strict-origin-when-cross-origin"
+              ],
+              [
+                "x-source",
+                "api"
+              ],
+              [
+                "connection",
+                "close"
+              ]
+            ],
+            "bytes": 6860,
+            "SHA256": "08047b913e067772e093074dbbf68fd2060d3a59a094c1e47915a6399372f63b",
+            "MD5": "8c46f5bbc02c828906c7d76e965021f7"
+          }
+        ],
+        [
+          "files.raw.json",
+          {
+            "UTC": "2026-11-14T23:46:59.870468+00:00",
+            "request_url": "https://zenodo.org/api/records/22929857/files",
+            "resolved_url": "https://zenodo.org/api/records/22929857/files",
+            "HTTP_status": 200,
+            "headers": [
+              [
+                "server",
+                "nginx"
+              ],
+              [
+                "date",
+                "Sat, 14 Nov 2026 23:47:00 GMT"
+              ],
+              [
+                "content-type",
+                "application/json"
+              ],
+              [
+                "content-length",
+                "1931"
+              ],
+              [
+                "vary",
+                "Accept-Encoding"
+              ],
+              [
+                "access-control-allow-origin",
+                "*"
+              ],
+              [
+                "access-control-expose-headers",
+                "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+              ],
+              [
+                "x-ratelimit-limit",
+                "133"
+              ],
+              [
+                "x-ratelimit-remaining",
+                "127"
+              ],
+              [
+                "x-ratelimit-reset",
+                "1794700051"
+              ],
+              [
+                "retry-after",
+                "30"
+              ],
+              [
+                "x-frame-options",
+                "sameorigin"
+              ],
+              [
+                "x-xss-protection",
+                "1; mode=block"
+              ],
+              [
+                "x-content-type-options",
+                "nosniff"
+              ],
+              [
+                "content-security-policy",
+                "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+              ],
+              [
+                "strict-transport-security",
+                "max-age=31556926; includeSubDomains"
+              ],
+              [
+                "referrer-policy",
+                "strict-origin-when-cross-origin"
+              ],
+              [
+                "x-source",
+                "api"
+              ],
+              [
+                "connection",
+                "close"
+              ]
+            ],
+            "bytes": 1931,
+            "SHA256": "33399fd1a44bc7d1d31eca31fbe1767c59578d7322318607e23fb0a37b56389c",
+            "MD5": "b9ae945913e87cce376daceee9eb9c9a"
+          }
+        ],
+        [
+          "reproducibility.zip",
+          {
+            "UTC": "2026-11-14T23:46:59.870543+00:00",
+            "request_url": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content",
+            "resolved_url": "https://zenodo.org/api/records/22929857/files/reproducibility.zip/content",
+            "HTTP_status": 200,
+            "headers": [
+              [
+                "server",
+                "nginx"
+              ],
+              [
+                "date",
+                "Sat, 14 Nov 2026 23:47:00 GMT"
+              ],
+              [
+                "content-type",
+                "application/octet-stream"
+              ],
+              [
+                "content-length",
+                "133556"
+              ],
+              [
+                "content-disposition",
+                "attachment; filename=reproducibility.zip"
+              ],
+              [
+                "oc-checksum",
+                "MD5:2c8122b5e0edaaa2d84771abb1a3c616"
+              ],
+              [
+                "accept-ranges",
+                "bytes"
+              ],
+              [
+                "content-type",
+                "application/octet-stream"
+              ],
+              [
+                "content-security-policy",
+                "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+              ],
+              [
+                "x-content-type-options",
+                "nosniff"
+              ],
+              [
+                "x-download-options",
+                "noopen"
+              ],
+              [
+                "x-permitted-cross-domain-policies",
+                "none"
+              ],
+              [
+                "x-frame-options",
+                "sameorigin"
+              ],
+              [
+                "x-xss-protection",
+                "1; mode=block"
+              ],
+              [
+                "x-ratelimit-limit",
+                "133"
+              ],
+              [
+                "x-ratelimit-remaining",
+                "127"
+              ],
+              [
+                "x-ratelimit-reset",
+                "1794700051"
+              ],
+              [
+                "retry-after",
+                "30"
+              ],
+              [
+                "strict-transport-security",
+                "max-age=31556926; includeSubDomains"
+              ],
+              [
+                "referrer-policy",
+                "strict-origin-when-cross-origin"
+              ],
+              [
+                "access-control-allow-origin",
+                "*"
+              ],
+              [
+                "access-control-expose-headers",
+                "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+              ],
+              [
+                "x-source",
+                "files-primary"
+              ],
+              [
+                "connection",
+                "close"
+              ]
+            ],
+            "bytes": 133556,
+            "SHA256": "7692e3dbed4e43647721b3c007e567debcdcef0f43cab3700c129433dbd4a930",
+            "MD5": "2c8122b5e0edaaa2d84771abb1a3c616"
+          }
+        ],
+        [
+          "paper.pdf",
+          {
+            "UTC": "2026-11-14T23:46:59.870605+00:00",
+            "request_url": "https://zenodo.org/api/records/22929857/files/paper.pdf/content",
+            "resolved_url": "https://zenodo.org/api/records/22929857/files/paper.pdf/content",
+            "HTTP_status": 200,
+            "headers": [
+              [
+                "server",
+                "nginx"
+              ],
+              [
+                "date",
+                "Sat, 14 Nov 2026 23:47:00 GMT"
+              ],
+              [
+                "content-type",
+                "application/octet-stream"
+              ],
+              [
+                "content-length",
+                "69229"
+              ],
+              [
+                "content-disposition",
+                "attachment; filename=paper.pdf"
+              ],
+              [
+                "oc-checksum",
+                "MD5:5ae67a95127ae05323cc76645ffee931"
+              ],
+              [
+                "accept-ranges",
+                "bytes"
+              ],
+              [
+                "content-type",
+                "application/octet-stream"
+              ],
+              [
+                "content-security-policy",
+                "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+              ],
+              [
+                "x-content-type-options",
+                "nosniff"
+              ],
+              [
+                "x-download-options",
+                "noopen"
+              ],
+              [
+                "x-permitted-cross-domain-policies",
+                "none"
+              ],
+              [
+                "x-frame-options",
+                "sameorigin"
+              ],
+              [
+                "x-xss-protection",
+                "1; mode=block"
+              ],
+              [
+                "x-ratelimit-limit",
+                "133"
+              ],
+              [
+                "x-ratelimit-remaining",
+                "127"
+              ],
+              [
+                "x-ratelimit-reset",
+                "1794700051"
+              ],
+              [
+                "retry-after",
+                "30"
+              ],
+              [
+                "strict-transport-security",
+                "max-age=31556926; includeSubDomains"
+              ],
+              [
+                "referrer-policy",
+                "strict-origin-when-cross-origin"
+              ],
+              [
+                "access-control-allow-origin",
+                "*"
+              ],
+              [
+                "access-control-expose-headers",
+                "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+              ],
+              [
+                "x-source",
+                "files-primary"
+              ],
+              [
+                "connection",
+                "close"
+              ]
+            ],
+            "bytes": 69229,
+            "SHA256": "3e8c052065110ec412a3e01e80f0c789f663ce6a9eb74c31aa8fdd99915fc02b",
+            "MD5": "5ae67a95127ae05323cc76645ffee931"
+          }
+        ]
+      ]
+    },
+    "whole_native_record_transport_receipt": {
+      "UTC": "2026-11-14T23:46:29.519033+00:00",
+      "request_url": "https://zenodo.org/api/records/22929857",
+      "resolved_url": "https://zenodo.org/api/records/22929857",
+      "HTTP_status": 200,
+      "headers": [
+        [
+          "server",
+          "nginx"
+        ],
+        [
+          "date",
+          "Sat, 14 Nov 2026 23:46:30 GMT"
+        ],
+        [
+          "content-type",
+          "application/json"
+        ],
+        [
+          "content-length",
+          "6725"
+        ],
+        [
+          "vary",
+          "Accept-Encoding"
+        ],
+        [
+          "etag",
+          "\"5\""
+        ],
+        [
+          "link",
+          "<https://zenodo.org/api/records/22929857> ; rel=\"linkset\" ; type=\"application/linkset+json\""
+        ],
+        [
+          "access-control-allow-origin",
+          "*"
+        ],
+        [
+          "access-control-expose-headers",
+          "Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+        ],
+        [
+          "x-ratelimit-limit",
+          "133"
+        ],
+        [
+          "x-ratelimit-remaining",
+          "132"
+        ],
+        [
+          "x-ratelimit-reset",
+          "1794700051"
+        ],
+        [
+          "retry-after",
+          "60"
+        ],
+        [
+          "x-frame-options",
+          "sameorigin"
+        ],
+        [
+          "x-xss-protection",
+          "1; mode=block"
+        ],
+        [
+          "x-content-type-options",
+          "nosniff"
+        ],
+        [
+          "content-security-policy",
+          "default-src 'self' fonts.googleapis.com *.gstatic.com data: 'unsafe-inline' 'unsafe-eval' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch"
+        ],
+        [
+          "strict-transport-security",
+          "max-age=31556926; includeSubDomains"
+        ],
+        [
+          "referrer-policy",
+          "strict-origin-when-cross-origin"
+        ],
+        [
+          "x-source",
+          "api"
+        ],
+        [
+          "connection",
+          "close"
+        ]
+      ],
+      "bytes": 6725,
+      "SHA256": "27f4af93fed4e5e0b4d11ffe72eb11a210badea80e805377e1633c0d6d58f482"
+    },
+    "transport_receipt_paths": [
+      "sources/acquisition.transport.json",
+      "sources/record.transport.json"
+    ],
+    "transport_receipt_sha256": {
+      "sources/acquisition.transport.json": "aa008431b704a42e7f6611d3d9d7a97a039dfe748f6fab31de8ab846f1ad3b10",
+      "sources/record.transport.json": "efe3d0b9eed4ac89b305fa3dddc2ebe36af5fedb952b6048827c156761918cd8"
+    },
+    "transport_receipt_schema": "Native acquisition.transport.json object has assets_order_preserved_from_record and ordered responses_in_requested_order [filename, receipt] pairs; native record.transport.json is one distinct receipt object. Preserve exact HTTP_status/headers/bytes/SHA256/MD5/request and resolved URL fields as present. No generic receipt.json, body field or elapsed field is invented.",
+    "pdf_sha256": "3e8c052065110ec412a3e01e80f0c789f663ce6a9eb74c31aa8fdd99915fc02b",
+    "supplement_sha256": "7692e3dbed4e43647721b3c007e567debcdcef0f43cab3700c129433dbd4a930",
+    "source_tex_path": "sources/published-source/paper/main.tex",
+    "source_tex_sha256": "954d45001560d29f3286383a40ff9c477a257d9359e02ada7477eac67a0cda4e",
+    "abstract_source": "reviews/editorial/ORIGINAL_ABSTRACT.tex",
+    "abstract_tex": "\nFor the unit-round sphere and either the unnormalized Hilbert--Schmidt or operator-norm length metric on $U(N)$, we give an explicit strong deformation retraction of the maps with Lipschitz constant at most $1/2$ onto the constant maps. At time $t\\in[0,1]$, the Lipschitz constant is at most $(1-t^2)/(1+t^2)$ times its original value. The formula depends continuously on the entire map and stays in the original $U(N)$. In particular, it answers the literal question [?24](i) in Gromov's 2017 scalar-curvature problem list, with the stronger requirement that the Lipschitz bound be preserved throughout. The proof uses a classical matrix fractional transformation and an elementary resolvent identity.\n",
+    "abstract_source_sha256": "f58771424cc862d61a2211a60eecccfc4200d9ae95405914f6a9a9409a8d9aae",
+    "abstract_normalization": {
+      "whitespace": "fold consecutive whitespace to one ordinary space",
+      "exact_presentational_replacements": {
+        "Hilbert--Schmidt": "Hilbert–Schmidt",
+        "$U(N)$": "U(N)",
+        "$1/2$": "1/2",
+        "$t\\in[0,1]$": "t ∈ [0,1]",
+        "$(1-t^2)/(1+t^2)$": "(1 − t²)/(1 + t²)",
+        "$N$": "N"
+      },
+      "no_word_or_sentence_omission": true
+    },
+    "archive_custody_path": "sources/archive-custody.json",
+    "archive_custody_sha256": "5e3088206a7ed055c23cf58bb2fe721e693f846fe71f32265196a42356ffe12e",
+    "archive_outer_regular_file_count": 30,
+    "archive_containers": 1,
+    "nested_archives": 0,
+    "expanded_bytes": 208344,
+    "embedded_reader_pdf": "paper/main.pdf",
+    "embedded_reader_sha256": "3e8c052065110ec412a3e01e80f0c789f663ce6a9eb74c31aa8fdd99915fc02b",
+    "public_page_reader_pdf_count": 1,
+    "prepared_bibtex_path": "reviews/editorial/CITATION.bib",
+    "prepared_bibtex_sha256": "1a07cd74ffbf4bd78d6de26c72181c62e71cb0a6dc45412f558908c919acb738",
+    "license_provenance": "Actual LICENSE.md grants CC BY 4.0 to paper, TeX, research notes, review reports and prose; Python/website code is MIT. Third-party works retain their rights.",
+    "license_source_path": "sources/published-source/LICENSE.md",
+    "license_source_sha256": "655b9b18cf69ab416d91dd7ddfa11e197990a949427a3107e5bc7b7bc201205b",
+    "original_CFF_path": "sources/published-source/CITATION.cff",
+    "original_CFF_sha256": "421bd72c80135838bdbe75e181fcfe97cd3daf111297680adf5c3154cb758b77",
+    "original_CFF_DOI_placeholder_preserved": true,
+    "publication_state": "PRIVATE_EDITORIAL_PREPARED_UNPUBLISHED"
+  },
+  "review_metadata": {
+    "prepared_utc": "2026-11-15T00:44:01.042459+00:00",
+    "completion_percent": 100,
+    "editorial_only": true,
+    "scientific_clearance_received": true,
+    "scientific_clearance_status": "PASS_WITH_EXPLICIT_METRIC_CLASSICAL_METHOD_AND_PRIORITY_LIMITS",
+    "root_clearance_file": "verification/root-clearance-22929857-20261114.json",
+    "root_clearance_sha256": "3f747e63612ccc879b10f6241865b804374c85951743ceb46046935d3da0dc79",
+    "publication_state": "PRIVATE_EDITORIAL_PREPARED_UNPUBLISHED",
+    "rendered": false,
+    "deployed": false,
+    "rendered_public_copy_approved": false,
+    "local_http_verified": false,
+    "live_http_verified": false,
+    "browser_verified": false,
+    "native_sheet_publication_verified": false,
+    "public_page_published": false,
+    "root_editorial_clearance_received": false,
+    "production_integration_authorized": false,
+    "publication_clearance": false,
+    "ready_to_publish": false,
+    "canonical_verified": false,
+    "canonical_url": null,
+    "AA": null,
+    "native_sheet_aa_url": null
+  }
+}
