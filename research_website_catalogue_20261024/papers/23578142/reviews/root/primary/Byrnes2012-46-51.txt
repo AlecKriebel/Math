@@ -1,0 +1,229 @@
+Chapter 5
+
+Rank Sizes of Differential Posets
+
+One area of inquiry into differential posets deals with rank sizes occur for differential
+posets. In this chapter what is known about the rank sizes is discussed. The main result
+will be a proof of Theorem 1.2.
+   Perhaps the first result dealing with the rank sizes of differential posets was Stanley’s
+Corollary 4.3 in [17]. The theorem is restated here:
+
+Theorem 5.1 (Stanley [17]). Let p0 , p1 , . . . be the rank sizes of an r-differential poset.
+Then, pi ≥ pi−1 for all i ≥ 1.
+
+   In order to prove Theorem 5.1, Stanley used the following proposition (in slightly
+different language).
+
+Proposition 5.2 (Stanley [17]). Let P be an r-differential poset. Then, ri is an eigen-
+value of U Dn with multiplicity ∆pn−i = pn−i − pn−i−1 .
+
+   Recently, Miller was able to extend Theorem 5.1 to the following theorem [11].
+
+Theorem 5.3 (Miller [11]). Let p0 , p1 , . . . be the rank sizes of an r-differential poset.
+Then, pi > pi−1 for all i ≥ 1 except when r = i = 1.
+
+   One of the remarkable things about Theorems 5.1 and 5.3 is that the data on 1-
+differential posets seem to indicate that the rank sizes are growing much more quickly.
+From the data for 1-differential posets it seems likely that for any constant A there
+exists N such that pn − pn−1 > A for all n ≥ N . It would be interesting to find a
+stronger bound on the increase in rank sizes.
+
+                                             37
+                                                                                        38
+    A recent result of Stanley and Zanello [16] does make some progress in this direction.
+
+Theorem 5.4 (Stanley, Zanello [16]). Let P be an r-differential poset with rank sizes
+p0 , p1 , . . .. Then, there exists a constant a such that
+                                                    √
+                                       pn >> na e2 rn .
+
+    While Theorem 5.4 does not explicitly show any growth for consecutive ranks, it does
+indicate that the long term pattern is for rank sizes of differential posets to increase.
+Clearly, there are basic questions about the rank sizes of differential posets that remain
+to be solved.
+    The main objective of this section will be to prove an upper bound on the rank sizes
+of r-differential. In fact, the bound is tight. Here is a restatement of Theorem 1.2.
+
+    Theorem 1.2. Let p0 , p1 , . . . be the rank sizes of an r-differential poset. Then,
+pi ≤ Fr (i).
+
+    Theorem 1.2 was conjectured by Stanley in [17] (see Problem 6 in Section 6).
+    The proof is a relatively straightforward induction proof and will use three lemmas.
+    The first lemma shows that if P is a differential poset, then P[n,n+1] is “connected”
+in a particular sense. To state the lemma one needs to define a graph for each rank of
+a differential poset.
+    Let Gn (P ) be the graph whose vertices are Pn and where there is an edge between two
+vertices u,v if and only if u and v both cover a common element of Pn−1 . Equivalently,
+there is an edge between two vertices u, v if and only if u and v are both covered by a
+common element of Pn+1 . Say that a vertex of Gn (P ) covers (is covered by) a vertex
+of Gn−1 (P ) (Gn+1 (P )) if the corresponding element of Pn covers (is covered by) the
+corresponding element of Pn−1 (Pn+1 ).
+    The first lemma can now be stated.
+
+Lemma 5.5. For n ≥ 0 and P an r-differential poset, Gn (P ) is connected.
+
+Proof. Let k be the smallest rank for which Gk (P ) is not connected. Let C be a
+connected component of Gk (P ). Let A be the set of vertices of Gk−1 (P ) covered by the
+vertices in C.
+                                                                                                            39
+    Suppose A does not contain all of the vertices of Pk−1 . Since Gk−1 (P ) is connected
+there exists an edge {v, w} in Gk−1 (P ) with v ∈ A and w ∈
+                                                          / A. Let x ∈ C cover v and
+y∈
+ / C cover w. Since v and w are adjacent in Gk−1 (P ) there exists z ∈ Pk that covers
+both x and y. So, there are edges {x, z} and {z, y} in Gk (P ). Since x ∈ C and y ∈
+                                                                                  / C,
+this contradicts C being a component of Gk (P ).
+    So, A = Pk−1 . Let s ∈ Pk − C. Let a ∈ Pk−1 be covered by s. So a ∈ A and there
+exists t ∈ C that covers a. But, that means {s, t} is an edge in Gk (P ). Since t ∈ C and
+s∈
+ / C this contradicts C being a component of Gk (P ).
+    So, no minimum k exists with Gk (P ) disconnected. Thus, Gn (P ) is connected for
+all n.
+
+
+
+    The second lemma is an identity involving r-Fibonacci numbers.
+
+Lemma 5.6. For n ≥ 1,
+                                                Ãn−2           !
+                                                 X
+                             Fn−1 (r) = 1 + r           Fk (r)       − Fn−2 (r)
+                                                 k=0
+
+
+Proof. The proof will be by induction. The case when n = 1 is clear (take Fk (r) = 0
+for k < 0).
+                                  ³P             ´
+                                      n−2
+    Suppose Fn−1 (r) = 1 + r          k=0 Fk (r)      − Fn−2 (r). Then,
+
+         Ãn−1        !                        Ãn−1         !         Ã         Ãn−2        !            !
+          X                                    X                                X
+1+r             Fk (r)   − Fn−1 (r) = 1 + r           Fk (r)     −       1+r          Fk (r)   − Fn−2 (r)
+          k=0                                   k=0                             k=0
+
+                                   = rFn−1 (r) + Fn−2 (r)
+                                   = Fn (r)
+
+
+
+
+    The third lemma is an identity involving two different ways of looking at rank sizes
+of a differential poset. Here dup (v) is used to denote the number of elements that cover
+v and ddown (v) is used to denote the number of elements that are covered by v.
+                                                                                     40
+Lemma 5.7. For P an r-differential poset and n ≥ 0,
+
+                                   X                    n
+                                                        X
+                                          dup (v) = r         pk
+                                  v∈Pn                  k=0
+
+
+Proof. The proof is by induction. For the n = 0 case one gets r = r since every
+r-differential poset has p0 = 1 and p1 = r. Suppose v∈Pn dup (v) = r nk=0 pk . Then,
+                                                   P                P
+
+                       X                   X
+                              dup (v) =            (ddown (v) + r)
+                     v∈Pn+1               v∈Pn+1
+                                                                  
+                                               X
+                                     =                ddown (v) + rpn+1
+                                              v∈Pn+1
+                                          Ã                  !
+                                              X
+                                     =             dup (v)       + rpn+1
+                                            v∈Pn
+                                           Ã n          !
+                                            X
+                                     =r            pk       + rpn+1
+                                             k=0
+                                           n+1
+                                           X
+                                     =r          pk
+                                           k=0
+
+
+
+
+   Now the proof of Theorem 1.2 can be completed.
+
+Proof. The proof is by induction on n. The base case holds since p0 = F0 = 1. Since
+Gn (P ) is connected by Lemma 5.5 one can order the vertices of Gn−1 (P ) such that each
+vertex is adjacent to a previous vertex in the ordering. Thus, the number of vertices
+at rank n in P is at most the sum of dup (v) for v ∈ Pn−1 minus (pn−1 − 1) since each
+                                                                                         41
+vertex added after the first vertex has one of its covers already accounted for. So,
+                                               
+                               X
+                   pn ≤               dup (v) − (pn−1 − 1)
+                              v∈Pn−1
+                           Ãn−1         !
+                            X
+                      =r           pk       − pn−1 + 1                                 (5.1)
+                               k=0
+                                 n−2
+                                 X
+                      =1+r              pk + (r − 1)pn−1
+                                 k=0
+                                 Ãn−2            !
+                                  X
+                      ≤1+r               Fk (r)        + (r − 1)Fn−1 (r)               (5.2)
+                                   k=0
+                          Ã        Ãn−2             !             !
+                                     X
+                      =    1+r                Fk (r)    − Fn−1 (r)    + rFn−1 (r)      (5.3)
+                                        k=0
+
+                      = Fn−2 (r) + rFn−1 (r)
+                      = Fn (r)
+
+   Note that (5.1) is true due to Lemma 5.7, (5.3) is true due to Lemma 5.6, and (5.2)
+holds by induction.
+
+
+
+
+5.1    Further directions and conjectures
+There are many remaining questions about rank sizes of differential posets.
+   One of the more prominent conjectures is the following which was originally asked
+by Stanley in [17] (see Problem 6).
+
+Conjecture 5.8. Y r has the smallest nth rank of any r-differential poset for all n.
+
+   The data from Chapter 4 show that Conjecture 5.8 is true for r = 1 up to n = 9.
+Interestingly, there exist 1-differential posets with the same rank size as Y for some n.
+However, all of the known examples of such 1-differential posets eventually are forced
+to have larger rank sizes than Y .
+   Even more appears to be true from the upper bound perspective than Theorem 1.2.
+The following conjecture was introduced by Stanley in [17] (see Problem 6).
+                                                                                         42
+Conjecture 5.9. Let P be an r-differential poset with rank sizes p0 , p1 , . . .. Then,
+pn ≤ rpn−1 + pn−2 .
+
+    Note that Conjecture 5.9 asks if the r-Fibonacci recurrence relation holds as an
+upper bound for arbitrary rank sizes.
+    The data from Chapter 4 show that Conjecture 5.9 is true for r = 1 up to n = 9.
+Also, it appears that there is a unique extension of a partial 1-differential poset P[0,n−1]
+that satisfies the inequality of Conjecture 5.9 at equality. This unique extension can be
+achieved via reflection-extension.
+    Another conjecture is that the possible rank sizes for partial 1-differential posets up
+to rank n actually form the lattice points of a polytope.
+
+Conjecture 5.10. Let n ≥ 0. Let A be defined as
+
+            A = {(p0 , p1 , . . . , pn ) | P is a 1-differential poset up to rank n}.
+
+Then, there exists a polytope Qn such that A = Qn ∩ Zn .
+
+    The author believes Conjecture 5.10 is new. However, similar ideas have been studied
+in [16].
+    The data from Chapter 4 show that Conjecture 5.10 is true for 0 ≤ n ≤ 9. On
+the other hand, the analog of Conjecture 5.10 is not true for 4-differential posets (see
+Theorem 2.7 in [16]).
+    If Conjecture 5.10 is true, then it would be interesting to determine the facets of
+Qn . Based on computer experiments it appears that one facet is given by the inequality
+pn ≤ pn−1 + pn−2 . Note that this is the inequality from Conjecture 5.9.
+

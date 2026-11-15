@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+"""Durable custody only. Standard library; no project/scientific imports,
+network, subprocess, rebuilding, fault campaigns, or writes. Default uses held
+website buffers after a future authorized freeze; old live fence is optional.
+"""
+from pathlib import Path
+import hashlib
+import html
+import json
+import re
+import sys
+import xml.etree.ElementTree as ET
+A=Path(__file__).resolve().parent;P=A.parent.parent
+W=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+checks=0;typed=0
+def need(b,label):
+ global checks
+ checks+=1
+ if not b:raise ValueError(label)
+def obj(p):return json.loads(p.read_bytes())
+def pin(p):
+ b=p.read_bytes();return {'bytes':len(b),'SHA256':hashlib.sha256(b).hexdigest()}
+def bound(p,r):need(pin(p)=={'bytes':r['bytes'],'SHA256':r['SHA256']},'whole binding '+str(p))
+def paths(p):return sorted(str(x.relative_to(p)) for x in p.rglob('*') if x.is_file())
+def same(a,b):
+ if type(a) is not type(b):return False
+ if isinstance(a,dict):return list(a)==list(b) and all(same(a[k],b[k]) for k in a)
+ if isinstance(a,list):return len(a)==len(b) and all(same(x,y) for x,y in zip(a,b))
+ return a==b
+def whole(a,b,label):
+ global typed
+ need(same(a,b),'whole typed/key/list/null '+label);typed+=1
+s=obj(A/'SOURCE_INPUTS.json');rows={r['path']:r for r in s['files']}
+need(len(rows)==len(s['files']),'distinct complete source paths')
+for r in s['files']:
+ p=Path(r['path']);need(not p.is_relative_to(W),'source path must not be website');q=A/r['blob'];bound(p,r);bound(q,r);need(p.read_bytes()==q.read_bytes(),'whole original copy')
+ if p.suffix=='.json' or p.name.endswith('.response.body') or '.response.body.redirect-' in p.name:
+  try:a=json.loads(p.read_bytes());b=json.loads(q.read_bytes())
+  except (UnicodeDecodeError,json.JSONDecodeError):continue
+  whole(a,b,str(p))
+for ns in s['complete_original_namespaces']:
+ d=Path(ns['path']);need(paths(d)==ns['files'],'whole source/editorial namespace');need(sorted(str(x.relative_to(d)) for x in d.rglob('*') if x.is_dir())==ns['directories'],'whole original directories')
+def frozen(p):
+ r=rows[str(p)];return (A/r['blob']).read_bytes()
+def fobj(p):return json.loads(frozen(p))
+records=[];expected=[]
+for rid in ['23392409','23440943']:
+ e=P/'papers'/rid/'reviews/editorial';p=fobj(e/'publication.json');root=fobj(P/'verification'/('root-editorial-'+rid+'-20261115.json'));ready=fobj(P/'papers'/rid/'sources/SOURCE_READY.json');graph=fobj(e/'SCHOLARLY_METADATA.json');main=frozen(e/'PUBLIC_MAIN.html').decode()
+ need(root['root_editorial_adopted'] is True and root['private_stage_preparation_authorized'] is True and root['production_installation_authorized'] is False,'exact limited root authority')
+ need(p['abstract']==root['original_full_abstract']==graph['abstract'],'complete original abstract')
+ need(p['version_field_present']==root['native_version_field_present'] and p['printed_version_field_present']==root['printed_version_field_present'],'version presence, not null default')
+ whole(ready['all_native_assets_in_original_order'],root['native_assets_in_original_order'],'complete native assets root')
+ need(p['publication_date']==root['original_publication_date']==graph['datePublished'],'original publication date')
+ rule=root['future_exact_reader_only_transform_authorized'];need(main.count(rule['from'])==1,'one exact adopted reader source')
+ need(main.startswith('<main>') and main.endswith('</main>\n'),'exact original main boundary')
+ need(frozen(e/'citation.bib')==p['prepared_bibtex'].encode(),'whole original BibTeX')
+ for k in ['canonical_url','AA','follow_up']:need(p[k] is None,'literal private null '+k)
+ need(p['code_license'] is None,'broad CC BY, no separate code instrument')
+ if not p['version_field_present']:need('version' not in graph and re.search(r'\bversion\s*=',p['prepared_bibtex'],re.I) is None,'absent version not synthesized')
+ base='research/'+root['future_proposed_slug']+'/'
+ expected += [base+'index.html',base+'citation.bib']+[base+n['original_api_file_object']['key'] for n in ready['all_native_assets_in_original_order']]
+ # Preserve all existing native/source/science literal wrappers in actual protocols.
+ protocol=fobj(e/'SOURCE_PROTOCOL_BINDINGS.json')
+ def wrappers(v):
+  if isinstance(v,dict):
+   if 'whole_literal_object' in v and 'original' in v:
+    o=v['original'];path=Path(o['path'] if isinstance(o,dict) else o);whole(v['whole_literal_object'],fobj(path),'existing whole literal wrapper')
+   for b in v.values():wrappers(b)
+  elif isinstance(v,list):
+   for b in v:wrappers(b)
+ wrappers(protocol)
+ records.append((p,root,ready,graph,main[:-1],base))
+expected=sorted(expected+['research/index.html','research/sitemap.xml']);need(len(expected)==11,'derived11overlay9newleaves')
+if (A/'SOURCE_SEAL.json').exists():
+ seal=obj(A/'SOURCE_SEAL.json');bound(A/'SOURCE_MANIFEST.json',seal['manifest'])
+ for n,r in obj(A/'SOURCE_MANIFEST.json')['payloads'].items():bound(A/n,r)
+phase='SOURCE_ONLY_READY_AWAITING_SEPARATE_ACTUAL_ROOT_WEBSITE_GO'
+if (A/'WEBSITE_BASELINE.json').exists():
+ # These branches become relevant only after actual root GO, never now.
+ go=obj(A/'ROOT_WEBSITE_GO.json');b=obj(A/'WEBSITE_BASELINE.json');need(go['source_seal_SHA256']==pin(A/'SOURCE_SEAL.json')['SHA256'],'actual GO binds source phase')
+ need(go['baseline_counts']==[614,92,93] and go['proposed_counts']==[623,94,95],'correct future counts')
+ need(go['root_stage_code_adopted'] is False and go['production_installation_authorized'] is False,'GO grants no installation')
+ need(b['root_GO_SHA256']==pin(A/'ROOT_WEBSITE_GO.json')['SHA256'],'same actual GO')
+ for key in ['prior_installation_receipt','prior_stage_adoption','prior_commit_approval']:bound(Path(go[key]['path']),go[key])
+ need(obj(Path(go['prior_installation_receipt']['path']))['commit']==obj(Path(go['prior_commit_approval']['path']))['commit']==go['installed_commit'],'exact prior installed/root-approved commit')
+ extra={str(W/'firebase.json'),str(W/'.firebaserc'),str(A/'ROOT_WEBSITE_GO.json'),go['prior_installation_receipt']['path'],go['prior_stage_adoption']['path'],go['prior_commit_approval']['path']}
+ need(len(b['public_namespace'])==len(set(b['public_namespace']))==614 and len(b['files'])==620 and {r['path'] for r in b['files']}=={str(W/'public'/n) for n in b['public_namespace']}|extra,'complete614public plus6external rows')
+ old={}
+ for r in b['files']:
+  bound(A/r['blob'],r)
+  if Path(r['path']).is_relative_to(W/'public'):old[str(Path(r['path']).relative_to(W/'public'))]=(A/r['blob']).read_bytes()
+ if '--live-baseline' in sys.argv:
+  need(paths(W/'public')==b['public_namespace'],'optional old-live namespace')
+  for n,v in old.items():need((W/'public'/n).read_bytes()==v,'optional old-live614 bytes')
+ phase='AUTHORIZED_FRESH_BASELINE_FROZEN_RENDER_PENDING'
+ if (A/'candidate-a').exists() or (A/'candidate-b').exists():
+  need(paths(A/'candidate-a/public')==paths(A/'candidate-b/public')==expected,'both exact11 actual candidate namespaces')
+  out={n:(A/'candidate-a/public'/n).read_bytes() for n in expected}
+  for n,v in out.items():need(v==(A/'candidate-b/public'/n).read_bytes(),'all11 actual normal/optimized buffers equal')
+  def jscript(t):
+   x=re.findall(r'<script\b[^>]*type="application/ld\+json"[^>]*>(.*?)</script>',t,re.S);need(len(x)==1,'one JSONLD');return json.loads(x[0]),x[0]
+  for p,root,ready,original,main,base in records:
+   t=out[base+'index.html'].decode();rule=root['future_exact_reader_only_transform_authorized'];wanted=main.replace('<main>','<main id="main">',1).replace(rule['from'],rule['to'],1)
+   need(re.findall(r'<main\b[^>]*>.*?</main>',t,re.S)==[wanted],'whole main only two exact root transformations')
+   graph,_=jscript(t);page,article=graph['@graph'];canonical=root['future_proposed_canonical_url']
+   need(page['@type']=='WebPage' and article['@type']=='ScholarlyArticle','production graph types')
+   need(page['@id']==canonical+'#page' and page['mainEntity']=={'@id':canonical+'#article'} and article['mainEntityOfPage']=={'@id':canonical+'#page'},'linked page/article')
+   need(article['datePublished']==p['publication_date'] and page['dateCreated']==page['dateModified']==go['build_date'],'original date separate builddate')
+   for k,v in original.items():
+    if k not in ['url','@id','mainEntityOfPage','encoding','inLanguage','isAccessibleForFree']:whole(article[k],v,'original scholarly field '+k)
+   need(article['abstract']==p['abstract'] and html.escape(p['abstract']) in wanted,'whole original visible/scholarly abstract')
+   need('rel="canonical" href="'+canonical+'"' in t and 'href="/research/research.css"' in t and 'href="/favicon.ico"' in t and 'content="index,follow"' in t,'shared styling/canonical/robots')
+   need('content="'+canonical+p['pdf_filename']+'"' in t,'local citation PDF')
+   need('<a class="skip-link" href="#main">Skip to content</a>' in t and '<p class="copyright">© 2013–2026 Kriebel LLC.</p>' in t,'established shared wrapper')
+   need(not re.search(r'display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0',t,re.I),'no hidden substantive content')
+   need(len(article['encoding'])==len(ready['all_native_assets_in_original_order']),'all original native encodings')
+   for n,encoding in zip(ready['all_native_assets_in_original_order'],article['encoding']):
+    name=n['original_api_file_object']['key'];need(out[base+name]==frozen(Path(n['path'])),'whole unchanged native download')
+    need(encoding['encodingFormat']==n['whole_original_native_files_entry']['mimetype'] and encoding['contentUrl']==canonical+name and encoding['sameAs']==n['original_api_file_object']['links']['self'] and encoding['license']=='https://creativecommons.org/licenses/by/4.0/','actual native order/MIME/local/nativeURL/CCBY')
+   need(out[base+'citation.bib']==p['prepared_bibtex'].encode(),'whole original BibTeX')
+   if not p['version_field_present']:need('version' not in article and 'citation_version' not in t,'native absent version remains omitted')
+  oldt=old['research/index.html'].decode();newt=out['research/index.html'].decode();og,os=jscript(oldt);ng,ns=jscript(newt)
+  for k,v in og.items():
+   if k!='mainEntity':whole(ng[k],v,'whole old index field '+k)
+  need(list(ng)==list(og) and list(ng['mainEntity'])==list(og['mainEntity']),'whole old index key order')
+  newitems=[{'@type':'ListItem','position':93+j,'url':r[1]['future_proposed_canonical_url'],'name':r[0]['title']} for j,r in enumerate(records)]
+  whole(ng['mainEntity']['itemListElement'][92:],newitems,'both new exact typed identities')
+  whole(ng['mainEntity']['itemListElement'][:92],og['mainEntity']['itemListElement'],'all92old ordered typed items');need(ng['mainEntity']['numberOfItems']==len(ng['mainEntity']['itemListElement'])==94,'94indexitems')
+  oli=re.findall(r'<li\b[^>]*>.*?</li>',oldt,re.S);nli=re.findall(r'<li\b[^>]*>.*?</li>',newt,re.S);need(nli[:92]==oli and len(nli)==94,'all92oldvisibleitems')
+  restored=newt
+  for li in nli[92:]:restored=restored.replace('      '+li+'\n','',1)
+  restored=restored.replace(ns,os,1);need(restored==oldt,'entire old index recovered')
+  ox=old['research/sitemap.xml'].decode();nx=out['research/sitemap.xml'].decode();on=re.findall(r'<url>.*?</url>',ox,re.S);nn=re.findall(r'<url>.*?</url>',nx,re.S);ET.fromstring(nx)
+  need(len(nn)==95 and nn[:93]==on,'all93old XMLnodes')
+  for j,r in enumerate(records):need(nn[93+j]=='<url><loc>'+r[1]['future_proposed_canonical_url']+'</loc><lastmod>'+go['build_date']+'</lastmod></url>','both exact new sitemap identities')
+  restored=nx
+  for node in nn[93:]:restored=restored.replace('  '+node+'\n','',1)
+  need(restored==ox,'entire old sitemap recovered');need(len(set(old)|set(out))==623 and len(set(out)-set(old))==9,'derived623union9newleaves612unrelatedoldprotected')
+  phase='ACTUAL_PAIRED_PRIVATE_OUTPUT_CUSTODY'
+else:
+ need(not (A/'candidate-a').exists() and not (A/'candidate-b').exists(),'no candidates before authorized baseline')
+if (A/'FINAL_SEAL.json').exists():
+ f=obj(A/'FINAL_SEAL.json');bound(A/'OWNED_MANIFEST.json',f['manifest']);m=obj(A/'OWNED_MANIFEST.json');need(paths(A)==sorted(list(m['payloads'])+['OWNED_MANIFEST.json','FINAL_SEAL.json']),'strict final stage namespace')
+ for n,r in m['payloads'].items():bound(A/n,r)
+print(json.dumps({'phase':phase,'custody_checks':checks,'whole_typed_objects':typed,'frozen_original_files':len(s['files']),'original_namespace_counts':[len(x['files']) for x in s['complete_original_namespaces']],'planned_overlay_paths':11,'planned_new_leaves':9,'planned_future_baseline':[614,92,93],'planned_proposed':[623,94,95],'captured_website_baseline':(A/'WEBSITE_BASELINE.json').exists(),'rendered_candidates':(A/'candidate-a').exists(),'source_native_science_project_imports_network_subprocess_or_writes':False,'root_stage_code_adopted':False,'production_installation_authorized':False,'canonical_url':None,'AA':None,'follow_up':None},indent=2))
