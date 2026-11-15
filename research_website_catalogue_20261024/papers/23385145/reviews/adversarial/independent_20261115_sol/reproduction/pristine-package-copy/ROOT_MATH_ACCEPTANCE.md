@@ -1,0 +1,17 @@
+# Root mathematical acceptance: PR570 / 30006605
+
+The finite, unit-edge, promised-median exact-comparison theorem is accepted mathematically after independent source-first oracle01 and reduction/search01 reviews. This is not a historical-priority or submission-package acceptance. The graph is supplied by adjacency lists. The proof gives a center, exact optimum, and every center in deterministic O(n log^5(2n)) operations for all finite median graphs, answering the workshop bounded-cube-dimension question in its finite algorithmic sense. No edge-weighted/infinite encoding, recognition, precision-independent bit bound or fast implementation is claimed.
+
+Root read the full original candidate before its old audit, derived the threshold/search invariants in EARLY_ROOT_CHECKPOINT.md, reproduced both complete original suites exactly, then checked the two new reviewers' full derivations. Every 13+9 authored sealed file matches. The search01 complete JSON replays exactly; oracle01 all mathematical and source-recursion fields replay exactly, excluding its three clock fields only. Raw reruns and comparison receipt are preserved. The first strict oracle comparison failed only because its recorded start/end/elapsed times change on a new run; no mathematical discrepancy occurred.
+
+## Explicit source corrections carried forward
+
+For arXiv:2410.10235v1 only, the literal logarithm-base volume estimate and Lemma16 product comparison are not accepted as printed. Root visually checked source PDF pp13,24 and exact workshop target p505; relevant full extracted proof read previously. The succinct pendant-cube counterexample independently recomputes total duplicated slice volume 1,022,147,483,646 for n=10^12. It refutes the literal intermediate volume estimate, not the final theorem.
+
+Use integer f(s)=2 ceil(log_2 s) consistently for every recursive instance s>=3, direct base s<=2. The wide ladder has ell<=ceil(log_2 s), hence two copies of slices total at most 2 ell s/f(s)<=s; balanced children partition s. Every child shrinks by at least 1/f(s), and f(s)<=lambda ln s for lambda=4/ln2. Along a root-N path s_h<=N(1-1/(lambda ln N))^h<=N exp(-h/(lambda ln N)); h=ceil(lambda(ln N)^2) forces termination. This independently replaces the erroneous product estimate without relying on Lemma16's printed proof. Nonrecursive O(s log^2 s) and per-level total volume<=N give O(N log^4 N). Source gate/fiber/ladder formulas and Theta/preprocessing dependencies remain credited. Initial additive labels<=n-1 grow by at most n-1 per level, so internal labels use O(log n) bits.
+
+Root checked the independent median-triple proof of disjoint ladders, nonempty gated slices, original/fiber dual-call necessity (fiber weight need not dominate original), tie-priority dominance, base/zero cases, and the full threshold feasible-set identity. The specific source version and missing proceedings comparison must be disclosed; no claim of a formalized fast implementation or verified final-SODA erratum is made. A public note must include the self-contained parameter/depth correction or attach it, alongside attribution. Original artifacts remain immutable.
+
+## Next gate
+
+Two fresh independent priority families now inspect full primary literature after the mathematical gate. Do not prepare publication or change PR status until that audit is reconciled. Current PR completion estimate 27%; shard71%. No other PR/status processed, no external outreach.

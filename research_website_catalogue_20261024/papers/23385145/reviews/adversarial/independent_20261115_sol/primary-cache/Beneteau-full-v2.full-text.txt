@@ -1,0 +1,1899 @@
+                                           MEDIANS IN MEDIAN GRAPHS AND THEIR CUBE COMPLEXES IN
+                                                               LINEAR TIME1
+
+                                                    LAURINE BÉNÉTEAU, JÉRÉMIE CHALOPIN, VICTOR CHEPOI, AND YANN VAXÈS
+
+
+                                                   Abstract. The median of a set of vertices P of a graph G is the set of all vertices x of
+                                                   G minimizing the sum of distances from x to all vertices of P . In this paper, we present
+                                                   a linear time algorithm to compute medians in median graphs, improving over the existing
+                                                   quadratic time algorithm. We also present a linear time algorithm to compute medians in
+                                                   the `1 -cube complexes associated with median graphs. Median graphs constitute the principal
+                                                   class of graphs investigated in metric graph theory and have a rich geometric and combinatorial
+                                                   structure, due to their bijections with CAT(0) cube complexes and domains of event structures.
+                                                   Our algorithm is based on the majority rule characterization of medians in median graphs and on
+
+
+
+
+arXiv:1907.10398v2 [cs.DM] 23 Jul 2020
+                                                   a fast computation of parallelism classes of edges (Θ-classes or hyperplanes) via Lexicographic
+                                                   Breadth First Search (LexBFS). To prove the correctness of our algorithm, we show that
+                                                   any LexBFS ordering of the vertices of G satisfies the following fellow traveler property of
+                                                   independent interest: the parents of any two adjacent vertices of G are also adjacent. Using
+                                                   the fast computation of the Θ-classes, we also compute the Wiener index (total distance) of G
+                                                   in linear time and the distance matrix in optimal quadratic time.
+
+
+
+
+                                                                                       1. Introduction
+                                            The median problem (also called the Fermat-Torricelli problem or the Weber problem) is one
+                                         of the oldest optimization problems in Euclidean geometry [49]. The median problem can be
+                                         defined for any metric space (X, d): given a finite set P ⊂ X of points with positive weights,
+                                         compute the points x of X minimizing the sum of the distances from x to the points of P multi-
+                                         plied by their weights. The median problem in graphs is one of the principal models in network
+                                         location theory [40, 71] and is equivalent to finding nodes with largest closeness centrality in
+                                         network analysis [15, 16, 65]. It also occurs in social group choice as the Kemeny median. In
+                                         the consensus problem in social group choice, given individual rankings of d candidates one
+                                         has to compute a consensual group decision. By the classical Arrow’s impossibility theorem,
+                                         there is no consensus function satisfying natural “fairness” axioms. It is also well-known that
+                                         the majority rule leads to Condorcet’s paradox, i.e., to the existence of cycles in the majority
+                                         relation. In this respect, the Kemeny median [44, 45] is an important consensus function and
+                                         corresponds to the median problem in graphs of permutahedra (the graph whose vertices are
+                                         all d! permutations of the candidates and whose edges are the pairs of permutations differing
+                                         by adjacent transpositions). Other classical algorithmic problems related to distances are the
+                                         diameter and center problems. Yet another such problem comes from chemistry and consists
+                                         in the computation of the Wiener index of a graph. This is a topological index of a molecule,
+                                         defined as the sum of the distances between all pairs of vertices in the associated chemical
+                                         graph [76]. The Wiener index is closely related to the closeness centrality of a vertex in a graph,
+                                         a quantity inversely proportional to the sum of all distances between the given vertex and all
+                                         other vertices that has been frequently used in sociometry and the theory of social networks.
+                                            The median problem in Euclidean spaces cannot be solved in symbolic form [6], but can be
+                                         solved numerically by Weiszfeld’s algorithm [75] and its convergent modifications (see e.g. [59]),
+                                         and can be approximated in nearly linear time with arbitrary precision [29]. For the `1 -metric
+                                         the median problem becomes easier and can be solved by the majority rule on coordinates, i.e.,
+                                         by taking as median a point whose ith coordinate is the median of the list of ith coordinates of
+                                         the points of P . This kind of rule was used in [43] to define centroids of trees (which coincide
+                                         with their medians [37,71]) and can be viewed as an instance of the majority rule in social choice
+                                           1
+                                               An extended abstract of this paper appeared in the proceedings of ICALP 2020.
+
+
+
+                                                                                                 1
+theory. For graphs with n vertices, m edges, and standard graph distance, the median problem
+can be trivially solved in O(nm) time by solving the All Pairs Shortest Paths (APSP) problem.
+One may ask if APSP is necessary to compute the median. However, by [1] APSP and median
+problem are equivalent under subcubic reductions. It was also shown in [2] that computing the
+medians of sparse graphs in subquadratic time refutes the HS (Hitting Set) conjecture. It was
+also noted in [20] that computing the Wiener index of a sparse graph in subquadratic time will
+refute the Exponential time (SETH) hypothesis. Note also that computing the Kemeny median
+is NP-hard [33] if the input is the list of individual preferences.
+   In this paper, we show that the medians in median graphs can be computed in optimal
+O(m) time (i.e., without solving APSP). Median graphs are the graphs in which each triplet
+u, v, w of vertices has a unique median, i.e., a vertex metrically lying between u and v, v and
+w, and w and u. They originally arise in universal algebra [4, 18] and their properties have
+been first investigated in [53, 57]. It was shown in [26, 62] that the cube complexes of median
+graphs are exactly the CAT(0) cube complexes, i.e., cube complexes of global non-positive
+curvature. CAT(0) cube complexes, introduced and nicely characterized in [38] in a local-to-
+global way, are now one of the principal objects of investigation in geometric group theory [67].
+Median graphs also occur in Computer Science: by [3,13] they are exactly the domains of event
+structures (one of the basic abstract models of concurrency) [58] and median-closed subsets of
+hypercubes are exactly the solution sets of 2-SAT formulas [56, 68]. The bijections between
+median graphs, CAT(0) cube complexes, and event structures have been used in [21, 22, 27] to
+disprove three conjectures in concurrency [64,72,73]. Finally, median graphs, viewed as median
+closures of sets of vertices of a hypercube, contain all most parsimonious (Steiner) trees [12]
+and as such have been extensively applied in human genetics. For a survey on median graphs
+and their connections with other discrete and geometric structures, see the books [41, 48], the
+surveys [10, 47], and the paper [23].
+   As we noticed, median graphs have strong geometric and metric properties. For the median
+problem, the concept of Θ-classes is essential. Two edges of a median graph G are called opposite
+if they are opposite in a common square of G. The equivalence relation Θ is the reflexive and
+transitive closure of this oppositeness relation. Each equivalence class of Θ is called a Θ-class
+(Θ-classes correspond to hyperplanes in CAT(0) cube complexes [66] and to events in event
+structures [58]). Removing the edges of a Θ-class, the graph G is split into two connected
+components which are convex and gated. Thus they are called halfspaces of G. The convexity
+of halfspaces implies via [32] that any median graph G isometrically embeds into a hypercube
+of dimension equals to the number q of Θ-classes of G.
+
+Our results and motivation. In this paper, we present a linear time algorithm to compute
+medians in median graphs and in associated `1 -cube complexes. Our main motivation and
+technique stem from the majority rule characterization of medians in median graphs and the
+unimodality of the median function [8, 70]. Even if the majority rule is simple to state and is a
+commonly approved consensus method, its algorithmic implementation is less trivial if one has
+to avoid the computation of the distance matrix. On the other hand, the unimodality of the
+median function implies that one may find the median set by using local search. More generally,
+consider a partial orientation of the input median graph G, where an edge uv is transformed
+into the arc −→ iff the median function at u is larger than the median function at v (in case
+              uv
+of equality we do not orient the edge uv). Then the median set is exactly the set of all the
+sinks in this partial orientation of G. Therefore, it remains to compare for every edge uv the
+median function at u and at v in constant time. For this we use the partition of the edge-set of
+a median graph G into Θ-classes and; for every Θ-class, the partition of the vertex-set of G into
+complementary halfspaces. It is easy to notice that all edges of the same Θ-class are oriented
+in the same way because for any such edge uv the difference between the median functions at
+u and at v, respectively, can be expressed as the sum of weights of all vertices in the same
+halfspace as v minus the sum of weights of all vertices in the same halfspace as u.
+   Our main technical contribution is a new method for computing the Θ-classes of a median
+graph G with n vertices and m edges in linear O(m) time. For this, we prove that Lexicographic
+
+
+                                                2
+Breadth First Search (LexBFS) [63] produces an ordering of the vertices of G satisfying the
+following fellow traveler property: for any edge uv, the parents of u and v are adjacent. With
+the Θ-classes of G at hand and the majority rule for halfspaces, we can compute the weights
+of halfspaces of G in optimal time O(m), leading to an algorithm of the same complexity for
+computing the median set. We adapt our method to compute in linear time the median of a
+finite set of points in the `1 -cube complex associated with G. We also show that this method
+can be applied to compute the Wiener index in optimal O(m) time and the distance matrix of
+G in optimal O(n2 ) time.
+   In all previous results we assumed that the input of the problem is given by the median graph
+or its cube complex, together with the set of terminals and their weights. However, analogously
+to the Kemeny median problem, the median problem in a median graph G can be defined in
+a more compact way. We mentioned above that median graphs are exactly the domains of
+configurations of event structures and the solution sets of 2-SAT formulas (with no equivalent
+variables). The underlying event structure or the underlying 2-SAT formula provide a much
+more compact (but implicit) description of the median graph G. Therefore, we can formulate
+a median problem by supposing that the input is a set of configurations of an event structure
+and their weights. The goal is to compute a configuration minimizing the sum of the weighted
+(Hamming) distances to the terminal-configurations. Thanks to the majority rule, we show that
+this median problem can be efficiently solved in the size of the input. Finally, we suppose that
+the input is an event structure and the goal is to compute a configuration minimizing the sum
+of distances to all configurations. We show that this problem is #P-hard. For this we establish
+a direct correspondence between event structures and 2-SAT formulas and we use a result by
+Feder [36] that an analogous median problem for 2-SAT formulas is #P-hard.
+
+Related work. The study of the median problem in median graphs originated in [8, 70] and
+continued in [7, 51, 54, 55, 61]. Using different techniques and extending the majority rule for
+trees [37], the following majority rule has been established in [8, 70]: a halfspace H of a median
+graph G contains at least one median iff H contains at least one half of the total weight of
+G; moreover, the median of G coincides with the intersection of halfspaces of G containing
+strictly more than half of the total weight. It was shown in [70] that the median function of
+a median graph is weakly convex (an analog of a discrete convex function). This convexity
+property characterizes all graphs in which all local medians are global [9]. A nice axiomatic
+characterization of medians of median graphs via three basic axioms has been obtained in [55].
+More recently, [61] characterized median graphs as closed Condorcet domains, i.e., as sets of
+linear orders with the property that, whenever the preferences of all voters belong to the set,
+their majority relation has no cycles and also belongs to the set. Below we will show that the
+median graphs are the bipartite graphs in which the medians are characterized by the majority
+rule.
+   Prior to our work, the best algorithm to compute the Θ-classes of a median graph G has
+complexity O(m log n) [39]. It was used in [39] to recognize median graphs in subquadratic
+time. The previous best algorithm for the median problem in a median graph G with n vertices
+and q Θ-classes has complexity O(qn) [7] which is quadratic in √     the worst case. Indeed q may
+be linear in n (as in the case of trees) and is always at least d( d n − 1) as shown below (d is
+the largest dimension of a hypercube which is an induced subgraph of G). Additionally, [7]
+assumes that an isometric embedding of G in a q-hypercube is given. The description of such
+an embedding has already size O(qn). The Θ-classes of a median graph G correspond to
+the coordinates of the smallest hypercube in which G isometrically embeds (this is called the
+isometric dimension of G [41]). Thus one can define Θ-classes for all partial cubes, i.e., graphs
+isometrically embeddable into hypercubes. An efficient computation (in O(n2 ) time) of all Θ-
+classes was the main step of the O(n2 ) algorithm of [34] for recognizing partial cubes. The
+fellow-traveler property (which is essential in our computation of Θ-classes) is a notion coming
+from geometric group theory [35] and is a main tool to prove the (bi)automaticity of a group.
+In a slightly stronger form it allows to establish the dismantlability of graphs (see [19,25,26] for
+examples of classes of graphs in which a fellow traveler order was obtained by BFS or LexBFS).
+
+
+                                                 3
+                                   (a)                                      (b)
+
+        Figure 1. Two median graphs, the second one (denoted by D) will be our
+        running example.
+
+LexBFS has been used to solve optimally several algorithmic problems in different classes of
+graphs, in particular for their recognition (for a survey, see [31]).
+   Cube complexes of median graphs with `1 -metric have been investigated in [74]. The same
+complexes but endowed with the `2 -metric are exactly the CAT(0) cube complexes. As we
+noticed above, they are of great importance in geometric group theory [67]. The paper [17]
+established that the space of trees with a fixed set of leaves is a CAT(0) cube complex. A
+polynomial-time algorithm to compute the `2 -distance between two points in this space was
+proposed in [60]. This result was recently extended in [42] to all CAT(0) cube complexes. A
+convergent numerical algorithm for the median problem in CAT(0) spaces was given in [5].
+   Finally, for an extensive bibliography on Wiener index in graphs, see [41, 46]. The Wiener
+index of a tree can be computed in linear time [52]. Using this and the fact that benzenoids
+(i.e., subgraphs of the hexagonal grid bounded by a simple curve) isometrically embed in the
+product of three trees, [28] proposed a linear time algorithm for the Wiener index of benzenoids.
+Finally, in a recent breakthrough [20], a subquadratic algorithm for the Wiener index and the
+diameter of planar graphs was presented.
+
+                                         2. Preliminaries
+   All graphs G = (V, E) in this paper are finite, undirected, simple, and connected; V is the
+vertex-set and E is the edge-set of G. We write u ∼ v if u, v ∈ V are adjacent. The distance
+d(u, v) = dG (u, v) between two vertices u and v is the length of a shortest (u, v)-path, and the
+interval I(u, v) = {x ∈ V : d(u, x) + d(x, v) = d(u, v)} consists of all the vertices on shortest
+(u, v)–paths. A set H (or the subgraph induced by H) is convex if I(u, v) ⊆ H for any two
+vertices u, v of H; H is a halfspace if H and V \ H are convex. Finally, H is gated if for every
+vertex v ∈ V , there exists a (unique) vertex v 0 ∈ V (H) (the gate of v in H) such that for all
+u ∈ V (H), v 0 ∈ I(u, v). The k-dimensional hypercube Qk has all subsets of {1, . . . , k} as the
+vertex-set and A ∼ B iff |A4B| = 1. A graph G is called median if I(x, y) ∩ I(y, z) ∩ I(z, x) is a
+singleton for each triplet x, y, z of vertices; this unique intersection vertex m(x, y, z) is called the
+median of x, y, z. Median graphs are bipartite and do not contain induced K2,3 . The dimension
+d = dim(G) of a median graph G is the largest dimension of a hypercube of G. In G, we refer
+to the 4-cycles as squares, and the hypercube subgraphs as cubes.
+   A map w : V → R+ ∪ {0} is called a P         weight function. For a vertex v ∈ V , w(v) denotes
+the
+P    weight  of v (for a set S ⊆  V , w(S)  =     x∈S w(x) denotes the weight of S). Then Fw (x) =
+   v∈V w(v)d(x, v) is called the median function of the graph G and a vertex x minimizing Fw
+is called a median vertex of G. Finally, Medw (G) = {x ∈ V : x is a median of G} is called
+
+
+                                                   4
+the median set (or simply, the median) of G with respect to the weight function w. The
+Wiener index W (G) (called also the total distance) of a graph G is the sum of all pairwise
+distances between
+          P       the vertices of G. For a weight function w, the Wiener index of G is the sum
+Ww (G) = u,v∈V w(u)w(v)d(u, v).
+
+                                 3. Facts about median graphs
+   We recall the principal properties of median graphs used in the algorithms. Some of those
+results are a part of folklore for the people working in metric graph theory and some other
+results can be found in the papers [53, 54] by Mulder. For readers convenience, we provide the
+proofs (sometimes different from the original proofs) of all those results in the Appendix.
+   From now on, G = (V, E) is a median graph with n vertices and m edges. The first three
+properties follow from the definition.
+Lemma 3.1 (Quadrangle Condition). For any vertices u, v, w, z of G such that v, w ∼ z and
+d(u, v) = d(u, w) = d(u, z) − 1 = k, there is a unique vertex x ∼ v, w such that d(u, x) = k − 1.
+Lemma 3.2 (Cube Condition). Any three squares of G, pairwise intersecting in three edges
+and all three intersecting in a single vertex, belong to a 3-dimensional cube of G.
+Lemma 3.3 (Convex=Gated). A subgraph of G is convex if and only if it is gated.
+  Two edges uv and u0 v 0 of G are in relation Θ0 if uvv 0 u0 is a square of G and uv and u0 v 0 are
+opposite edges of this square. Let Θ denote the reflexive and transitive closure of Θ0 . Denote
+by E1 , . . . , Eq the equivalence classes of Θ and call them Θ-classes (see Fig. 2(a)).
+Lemma 3.4 ([53])(Halfspaces and Θ-classes). For any Θ-class Ei of G, the graph Gi = (V, E \
+Ei ) consists of exactly two connected components Hi0 and Hi00 that are halfspaces of G; all
+halfspaces of G have this form. If uv ∈ Ei , then Hi0 and Hi00 are the subgraphs of G induced by
+W (u, v) = {x ∈ V : d(u, x) < d(v, x)} and W (v, u) = {x ∈ V : d(v, x) < d(u, x)}.
+  By [32], G is a partial cube, (i.e., isometrically embeds into an hypercube) iff G is bipartite
+and W (u, v) is convex for any edge uv of G. Consequently, we obtain the following corollary.
+Corollary 3.5. G isometrically embeds into a hypercube of dimension equals to the number q
+of Θ-classes of G.
+Lemma 3.6. Each convex subgraph S of G is the intersection of all halfspaces containing S.
+  Two Θ-classes Ei and Ej are crossing if each halfspace of the pair {Hi0 , Hi00 } intersects each
+halfspace of the pair {Hj0 , Hj00 }; otherwise, Ei and Ej are called laminar.
+Lemma 3.7 (Crossing Θ-classes). Any vertex v ∈ V (G) and incident edges vv1 ∈ E1 , . . . , vvk ∈
+Ek belong to a single cube of G if and only if E1 , . . . , Ek are pairwise crossing.
+  The boundary ∂Hi0 of a halfspace Hi0 is the subgraph of Hi0 induced by all vertices v 0 of Hi0
+having a neighbor v 00 in Hi00 . A halfspace Hi0 of G is peripheral if ∂Hi0 = Hi0 (See Fig. 2(b)).
+Lemma 3.8 (Boundaries). For any Θ-class Ei of G, ∂Hi0 and ∂Hi00 are isomorphic and gated.
+   From now on, we suppose that G is rooted at an arbitrary vertex v0 called the basepoint. For
+any Θ-class Ei , we assume that v0 belongs to the halfspace Hi00 . Let d(v0 , Hi0 ) = min{d(v0 , x) :
+x ∈ Hi0 }. Since Hi0 is gated, the gate of v0 in Hi0 is the unique vertex of Hi0 at distance d(v0 , Hi0 )
+from v0 . Since median graphs are bipartite, the choice of v0 defines a canonical orientation of
+the edges of G: uv ∈ E is oriented from u to v (notation −       → if d(v , u) < d(v , v). Let −
+                                                                 uv)
+                                                                                                   →
+                                                                                                   G v0
+                                                                           0           0
+denote the resulting oriented pointed graph.
+Lemma 3.9 ([54])(Peripheral Halfspaces). Any halfspace Hi0 maximizing d(v0 , Hi0 ) is peripheral.
+                                           → is an edge of −
+  For a vertex v, all vertices u such that −
+                                           uv
+                                                           →
+                                                           G v0 are called predecessors of v and
+are denoted by Λ(v). Equivalently, Λ(v) consists of all neighbors of v in the interval I(v0 , v).
+A median graph G satisfies the downward cube property if any vertex v and all its predecessors
+Λ(v) belong to a single cube of G.
+
+
+                                                    5
+                                                                                  18
+
+             Hi0                               H10              H20
+                                                                            16           17
+                                Ei
+
+                                                                       14         13          15
+
+
+                                                                            11    10     12
+           ∂Hi0           ∂Hi00
+                                                                            7     9      8
+
+
+                                                                       5          4           6
+
+
+                                                                            2            3
+                         Hi00
+
+                                                           v0                     1 v0
+
+
+                   (a)                               (b)                         (c)
+
+       Figure 2. (a) In dashed, the Θ-class Ei of D, its two complementary halfspaces
+       Hi0 and Hi00 and their boundaries ∂Hi0 and ∂Hi00 , (b) two peripheral halfspaces of
+       D, and (c) a LexBFS ordering of D.
+
+Lemma 3.10 ([53])(Downward Cube Property). G satisfies the downward cube property.
+  Lemma 3.10 immediately implies the following upper bound on the number of edges of G:
+Corollary 3.11. If G has dimension d, then m ≤ dn ≤ n log n.
+  We give a sharp lower bound on the number q of Θ-classes, which is new to our knowledge.
+                                                                           √
+Proposition 3.12. If G has q Θ-classes and dimension√        d, then q ≥ d( d n − 1). This lower
+bound is realized for products of d paths of length d n − 1.
+Proof. Let Γ(G) be the crossing graph Γ(G) of G: V (Γ(G)) is the set of Θ-classes of G and two
+Θ-classes are adjacent in Γ(G) if they are crossing. Note that |V (Γ(G))| = q. Let X(Γ(G)) be
+the clique complex of Γ(G). By the characterization of median graphs among ample classes [11,
+Proposition 4], the number of vertices of G is equal to the number |X(Γ(G))| of simplices of
+X(Γ(G)). Since G is of dimension d, by [11, Proposition 4], Γ(G) does not contain cliques
+of size d + 1. By Zykov’s theorem [79] (see also [78]), the number of k-simplices in X(Γ(G))
+               k                                                  k             d
+is at most kd dq . Hence n = |V (G)| = |X(Γ(G))| ≤ dk=0 kd dq              = 1 + dq and thus
+                                                            P
+       √                                                                      √
+q ≥ d(√
+        d
+          n − 1). Let now G be the Cartesian
+                                       √       product of d paths of length ( d n − 1). Then G
+has ( d n − 1 + 1)d = n vertices and d( d n − 1) Θ-classes (each Θ-class of G corresponds to an
+edge of one of factors).                                                                      
+
+                                     4. Computation of the Θ-classes
+  In this section we describe two algorithms to compute the Θ-classes of a median graph G:
+one runs in time O(dm) and uses BFS, and the other runs in time O(m) and uses LexBFS.
+
+4.1. Θ-classes via BFS. The Breadth-First Search (BFS) refines the basepoint order and
+                                →
+                                −
+defines the same orientation G v0 of G. BFS uses a queue Q and the insertion in Q defines a
+total order < on the vertices of G: x < y iff x is inserted in Q before y. When a vertex u arrives
+at the head of Q, it is removed from Q and all not yet discovered neighbors v of u are inserted
+in Q; u becomes the parent f (v) of v; for any vertex v 6= v0 , f (v) is the smallest predecessor
+                 −−−→
+of v. The arcs f (v)v define the BFS-tree of G. For each vertex v, BFS produces the list Λ(v)
+of predecessors of v ordered by <; denote this ordered list by Λ< (v). By Lemma 3.10, each list
+Λ< (v) has size at most d := dim(G). Notice also that the total order < on vertices of G give
+raise to a total order on the edges of G: for two edges uv and u0 v 0 with u < v and u0 < v 0 we
+have uv < u0 v 0 if and only if u < u0 or if u = u0 and v < v 0 .
+
+
+                                                     6
+  Now we show how to use a BFS rooted at v0 to compute, for each edge uv of a median graph
+G, the unique Θ-class E(uv) containing the edge uv. Suppose that uv is oriented by BFS from
+u to v, i.e., d(v0 , u) < d(v0 , v). There are only two possibilities: either the edge uv is the first
+edge of the Θ-class E(uv) discovered by BFS or the Θ-class of uv already exists. The following
+lemma shows how to distinguish between these two cases:
+Lemma 4.1. An edge uv ∈ Ei with d(v0 , u) < d(v0 , v) is the first edge of a Θ-class Ei iff u is
+the unique predecessor of v, i.e., Λ< (v) = {u}.
+Proof. First let uv be the first edge of Ei discovered by BFS. Since Hi0 is gated, v is the gate of
+v0 in Hi0 and u is the unique neighbor of v in Hi00 . We assert that u is the unique neighbor of v
+in I(v0 , v). Suppose I(v0 , v) contains a second neighbor u00 of v. Since v is the gate of v0 in Hi0
+and u00 is closer to v0 than v, u00 necessarily belongs to Hi00 , a contradiction with the uniqueness
+of u. Conversely, suppose that v has only u as a neighbor in I(v0 , v) but uv is not the first
+edge of Ei with respect to the BFS. This implies that the gate x of v0 in Hi0 is different from
+v. Let u0 be a neighbor of v in I(x, v) and note that I(x, v) ⊆ I(v0 , v). Since v, x ∈ Hi0 and Hi0
+is convex, u0 belongs to Hi0 . Since u belongs to Hi00 , we conclude that u and u0 are two different
+neighbors of v in I(v0 , v), a contradiction.                                                      
+  If uv is not the first edge of its Θ-class, the following lemma shows how to find its Θ-class:
+Lemma 4.2. Let uv be an edge of a median graph with u ∈ Λ< (v). If v has a second predecessor
+v 0 , then there exists a square u0 uvv 0 in which uv and u0 v 0 are opposite edges and u0 ∈ Λ< (u) ∩
+Λ< (v 0 ).
+Proof. Indeed, by the quadrangle condition, the vertices u and v 0 have a unique common neigh-
+bor u0 such that u0 uvv 0 is a square of G and u0 is closer to v0 than u and v 0 . Consequently,
+u0 ∈ Λ< (u) ∩ Λ< (v 0 ) and uv and u0 v 0 are opposite edges of u0 uvv 0 .                    
+   From Lemmas 4.1 and 4.2 we deduce the following algorithm for computing the Θ-classes of
+G. First, run a BFS and return a BFS-ordering of the vertices and edges of G and the ordered
+lists Λ< (v), v ∈ V . Then consider the edges of G in the BFS-order. Pick a current edge uv and
+suppose that u ∈ Λ< (v). If Λ< (v) = {u}, by Lemma 4.1 uv is the first edge of its Θ-class, thus
+create a new Θ-class Ei and insert uv in Ei . Otherwise, if v has a second predecessor v 0 , then
+traverse the ordered lists Λ< (u) and Λ< (v 0 ) to find their unique common predecessor u0 (which
+exists by Lemma 4.2). Then insert the edge uv in the Θ-class of the edge u0 v 0 . Since the two
+sorted lists Λ< (u) and Λ< (v 0 ) are of size at most d, their intersection (that contains only u0 )
+can be computed in time O(d), and thus the Θ-class of each edge uv of G can be computed in
+O(d) time. Consequently, we obtain:
+Proposition 4.3. The Θ-classes of a median graph G with n vertices, m edges, and dimension
+d can be computed in O(dm) = O(d2 n) time.
+4.2. Θ-classes via LexBFS. The Lexicographic Breadth-First Search (LexBFS), proposed
+in [63], is a refinement of BFS. In BFS, if u and v have the same parent, then the algorithm order
+them arbitrarily. Instead, the LexBFS chooses between u and v by considering the ordering of
+their second-earliest predecessors. If only one of them has a second-earliest predecessor, then
+that one is chosen. If both u and v have the same second-earliest predecessor, then the tie is
+broken by considering their third-earliest predecessor, and so on (See Fig. 2(c)). The LexBFS
+uses a set partitioning data structure and can be implemented in linear time [63]. In median
+graphs, the next lemma shows that it suffices to consider only the earliest and second-earliest
+predecessors, leading to a simpler implementation of LexBFS:
+Lemma 4.4. If u and v are two vertices of a median graph G, then |Λ(u) ∩ Λ(v)| ≤ 1.
+Proof. Let x, x0 be two distinct predecessors of u and v. Since x, x0 ∈ Λ(u) ∩ Λ(v), we have
+d(v0 , u) = d(v0 , v) = d(v0 , x) + 1 = d(v0 , x0 ) + 1 = k + 1. By Lemma 3.1, there is a vertex
+y ∼ x, x0 at distance k − 1 from v0 . But then x, x0 , u, v, y induce a forbidden K2,3 .      
+
+
+                                                  7
+     u1                             u1                                 u1                                  u1                                        u1
+
+
+v1              v3        v1                  v3                  v1             v3              v1        v2        v3                   v1         v2    v3
+
+
+                w3                  w4        w3                  w1   w4        w3              w1        w4        w3        w2         w1         w4    w3
+
+
+                                                                       x3                                  x3                                        x3
+
+     (a)                        (b)                                    (c)                             (d)                                     (e)
+
+                u1                                 u1                                       u1                                             u1
+
+
+     v1         v2   v3                  v1        v2        v3                        v1   v2        v3                        v1         v2         v3
+                                                         v
+
+w2   w1         w4   w3        w2        w1        w4        w3   w               w2   w1   w4        w3                  w2    w1         w4         w3
+                                                                                                                                                w0
+
+x2   x5         x3             x2        x5        x3             x4              x2   x5   x3                  x4        x2    x5         x3               x4
+                                                                                                                                     x0
+
+     y5                                  y5                                            y5             y4                        y5                    y4
+
+
+                                                                                            z3                                             z3
+
+          (f)                                      (g)                                      (h)                                           (i)
+
+                                     Figure 3. Animated proof of Theorem 4.5.
+
+  A graph G satisfies the fellow-traveler property if for any LexBFS ordering of the vertices of
+G, for any edge uv with v0 ∈/ {u, v}, the parents f (u) and f (v) are adjacent.
+Theorem 4.5. Any median graph G satisfies the fellow-traveler property.
+Proof. Let < be an arbitrary LexBFS order of the vertices of G and f be its parent map. Since
+any LexBFS order is a BFS order, < and f satisfy the following properties of BFS:
+(BFS1) if u < v, then f (u) ≤ f (v);
+(BFS2) if f (u) < f (v), then u < v;
+(BFS3) if v 6= v0 , then f (v) = min< {u : u ∼ v};
+(BFS4) if u < v and v ∼ f (u), then f (v) = f (u).
+  Notice also the following simple but useful property:
+Lemma 4.6. If abcd is a square of G with d(v0 , c) = k, d(v0 , b) = d(v0 , d) = k+1, d(v0 , a) = k+2
+and f (a) = b, and the edge ad satisfies the fellow-traveler property, then f (d) = c.
+Proof. By the fellow traveler property, f (d) ∼ f (a) = b. If f (d) 6= c, then a, b, c, d, f (d) induce
+a forbidden K2,3 .                                                                                   
+   We prove the fellow-traveler property by induction on the total order on the edges of G defined
+by <. The proof is illustrated by several figures (the arcs of the parent map are represented in
+bold). We use the following convention: all vertices having the same distance to the basepoint
+v0 will be labeled by the same letter but will be indexed differently; for example, w1 and w2 are
+two vertices having the same distance to v0 .
+   Suppose by way of contradiction that e = u1 v3 with v3 < u1 is the first edge in the order <
+such that the parents f (u1 ) and f (v3 ) of u1 and v3 are not adjacent. Then necessarily f (u1 ) 6= v3 .
+Set v1 = f (u1 ) and w3 = f (v3 ) (Fig. 3a). Since d(v0 , v1 ) = d(v0 , v3 ) and u1 ∼ v1 , v3 , by the
+quadrangle condition v1 and v3 have a common neighbor at distance d(v0 , v1 ) − 1 from v0 . This
+vertex cannot be w3 , otherwise f (u1 ) and f (v3 ) would be adjacent. Therefore there is a vertex
+w4 ∼ v1 , v3 at distance d(v0 , v1 ) − 1 from v0 (Fig. 3b). By induction hypothesis, the parent
+x3 = f (w4 ) of w4 is adjacent to w3 = f (v3 ). Since u1 ∼ v1 = f (u1 ), v3 and v3 ∼ w3 = f (v3 ), w4 ,
+by (BFS3) we conclude that v1 < v3 and w3 < w4 . By (BFS2), f (v1 ) ≤ f (v3 ), whence f (v1 ) ≤
+w3 and since f (v1 ) 6= f (v3 ) (otherwise, f (u1 ) ∼ f (v3 )), we deduce that f (v1 ) < w3 < w4 .
+Hence f (v1 ) 6= w4 . Set w1 = f (v1 ). By the induction hypothesis, f (v1 ) = w1 is adjacent to
+f (w4 ) = x3 (Fig. 3c). By the cube condition applied to the squares w4 v1 w1 x3 , w4 v1 u1 v3 , and
+
+
+                                                                             8
+w4 v3 w3 x3 there is a vertex v2 adjacent to u1 , w1 , and w3 . Since u1 ∼ v2 and f (u1 ) = v1 , by
+(BFS3) we obtain v1 < v2 . Since v2 is adjacent to w1 and w1 = f (v1 ), by (BFS4) we obtain
+f (v2 ) = f (v1 ) = w1 , and by (BFS2), v2 < v3 . Since f (v2 ) = w1 , by Lemma 4.6 for v2 w1 x3 w3 ,
+we obtain f (w3 ) = x3 (Fig. 3d). Since v1 < v2 , f (v1 ) = f (v2 ) = w1 , and v2 ∼ w1 , w3 , by
+LexBFS v1 is adjacent to a predecessor different from w1 and smaller than w3 . Since w3 < w4 ,
+this predecessor cannot be w4 . Denote by w2 the second smallest predecessor of v1 (Fig. 3e)
+and note that w1 < w2 < w3 < w4 .
+   By the quadrangle condition, w2 and w4 are adjacent to a vertex x5 , which is necessarily
+different from x3 because G is K2,3 -free. By the induction hypothesis, f (w2 ) and f (v1 ) = w1
+are adjacent. Then f (w2 ) 6= x3 , x5 , otherwise we obtain a forbidden K2,3 . Set f (w2 ) = x2 .
+Analogously, f (x5 ) = y5 and f (w2 ) = x2 are adjacent as well as f (x5 ) = y5 and f (w4 ) = x3
+(Fig. 3f). By (BFS1), x2 = f (w2 ) < f (w3 ) = x3 and by (BFS3), x3 = f (w4 ) < x5 . Since
+w3 < w4 with f (w3 ) = f (w4 ) and w4 is adjacent to x5 , by LexBFS w3 must have a predecessor
+different from x3 and smaller than x5 . This vertex cannot be x2 by (BFS3) since f (w3 ) = x3 .
+Denote this predecessor of w3 by x4 and observe that x2 < x3 < x4 < x5 . By the induction
+hypothesis, the parent of x4 is adjacent to f (w3 ) = x3 . Let y4 = f (x4 ).
+   If y4 = y5 , applying the cube condition to the squares x3 w3 x4 y5 , x3 w4 x5 y5 , and x3 w4 v3 w3
+we find a vertex w adjacent to x4 , v3 , and x5 . Applying the cube condition to the squares
+w4 v3 wx5 , w4 v1 w2 x5 , and w4 v1 u1 v3 we find a vertex v adjacent to u1 , w2 , and w. Since v ∼ w2 ,
+by (BFS3) f (v) ≤ w2 < w3 = f (v3 ), hence by (BFS2) we obtain v < v3 . Therefore we can
+apply the induction hypothesis, and by Lemma 4.6 for u1 v1 w2 v, we deduce that f (v) = w2 . By
+Lemma 4.6 for v3 w3 x4 w, we deduce that f (w) = x4 (Fig. 3g). Applying the induction hypothesis
+to the edge vw we have that f (v) = w2 is adjacent to f (w) = x4 , yielding a forbidden K2,3
+induced by v, x5 , x4 , w, w2 (Fig. 3g). All this shows that y4 6= y5 . By the quadrangle condition,
+y5 and y4 have a common neighbor z3 (Fig. 3h).
+   Recall that x2 < x3 < x4 < x5 , and note that by (BFS1), y4 = f (x4 ) < f (x5 ) = y5 . We
+denote by H the subgraph of G induced by the vertices V 0 = {w1 , x2 , x3 , x4 , x5 , y4 , y5 , z3 }. The
+set of edges of H is E 0 = {z3 y4 , z3 y5 , y4 x3 , y4 x4 , y5 x2 , y5 x3 , y5 x5 , x2 w1 , x3 w1 }. To conclude the
+proof, we use the following technical lemma.
+Lemma 4.7. Let H = (V 0 , E 0 ) (Fig. 5a) be an induced graph of G, where d(v0 , w1 ) = d(v0 , x2 )+
+1 = · · · = d(v0 , x5 ) + 1 = d(v0 , y4 ) + 2 = d(v0 , y5 ) + 2 = d(v0 , z3 ) + 3 and f (x5 ) = y5 and
+f (x4 ) = y4 , such that x2 < x3 < x4 < x5 and y4 < y5 . If G satisfies the fellow-traveler property
+up to distance d(v0 , w1 ), then there exists a vertex x0 such that x0 < x2 and x0 ∼ w1 , y4
+(Fig. 5b).
+
+           w1                               w1                                   w1                               w1
+
+
+x2 x       x1     x3        x4   x2 x       x1     x3        x4       x2 x       x1     x3        x4   x2 x       x1        x3        x4
+       5                                5                                    5                                5        x0
+
+           y5          y4        y2         y5     y3   y4            y2         y5     y3   y4        y2         y5        y3   y4
+                                                                                                                       y0
+
+                  z3                        z5     z3                            z5     z3   z4                   z5        z3   z4
+
+
+                                                                                        t                                   t
+
+                (a)                              (b)                                  (c)                              (d)
+
+                                  Figure 4. To the proof of Lemma 4.7.
+
+
+Proof of Lemma 4.7. Consider a median graph G for which Lemma 4.7 does not hold. Among
+all induced subgraphs of G satisfying the conditions of the lemma but for which there does not
+exist a vertex x0 6= x3 ∼ w1 , y4 with x0 < x2 , we select a copy of H minimizing the distance
+d(v0 , w1 ). First, suppose that f (w1 ) = x2 . By Lemma 4.6 for w1 x2 y5 x3 , we deduce f (x3 ) = y5 .
+Then, by (BFS1), we get y5 = f (x3 ) ≤ f (x4 ) ≤ f (x5 ) = y5 . Hence, f (x4 ) = y5 , a contradiction.
+Therefore f (w1 ) 6= x2 . Since G satisfies the fellow-traveler property up to distance d(v0 , w1 ),
+
+
+                                                                  9
+                                          w1                                    w1
+
+
+                               x2 x              x3        x4        x2 x                 x3        x4
+                                      5                                     5        x0
+
+                                          y5          y4                        y5             y4
+
+
+                                                 z3                                       z3
+
+                                               (a)                                   (b)
+
+                        Figure 5. The induced subgraph H in Lemma 4.7.
+
+we get f (x2 ) ∼ f (w1 ). Let x1 be the parent of w1 (Fig. 4a) and let y2 = f (x2 ) be the
+parent of x2 . To avoid an induced K2,3 , y2 cannot coincide with y5 . Moreover, y2 does not
+coincide with y4 because otherwise x1 would be the common neighbor of w1 and y4 required
+by Lemma 4.7. Let z5 be the parent of y5 . By the fellow-traveler property, z5 = f (y5 ) is
+adjacent to y2 = f (x2 ). By the cube condition applied to the squares x2 w1 x1 y2 , x2 w1 x3 y5 , and
+x2 y2 z5 y5 , we find a neighbor y3 of x3 , x1 , and z5 . If z5 = z3 , then y3 = y4 (otherwise we get
+a K2,3 ) and x1 is the neighbor of w1 and y4 required by Lemma 4.7, a contradiction. Thus
+y3 6= y4 and z5 6= z3 . Moreover, by Lemma 4.6 for w1 x1 y3 x3 , y3 = f (x3 ) (see Fig 4b). Let
+t be the parent of z3 . By induction hypothesis, z5 = f (y5 ) ∼ t = f (z3 ). Applying the cube
+condition to the squares y5 z3 tz5 , y5 x3 y3 z5 , and y5 x3 y4 z3 , we find a neighbor z4 of t, y3 and y4 .
+By Lemma 4.6 for x3 y3 z4 y4 , f (y4 ) = z4 (Fig. 4c) and by (BFS1), x2 < x3 < x4 < x5 implies
+y2 = f (x2 ) < y3 = f (x3 ) < y4 = f (x4 ) < y5 = f (x5 ). Since d(x1 , v0 ) < d(w1 , v0 ), our choice of
+H implies the existence of a neighbor y0 of x1 and z4 such that y0 < y2 (Fig. 4d). Applying
+the cube condition to the squares y3 x1 y0 z4 , y3 x1 w1 x3 and y3 x3 y4 z4 , we find a neighbor x0 of
+w1 , y4 , and y0 . By (BFS3), f (x0 ) ≤ y0 < y2 = f (x2 ) and thus, by (BFS2), x0 < x2 (Fig. 4d), a
+contradiction with the choice of H.                                                                      
+    Since G contains a subgraph H satisfying the conditions of Lemma 4.7, there exists a vertex
+x0 such that x0 < x2 and x0 ∼ w1 , y4 (Fig. 3i). By the cube condition applied to the squares
+x3 w1 x0 y4 , x3 w1 v2 w3 , and x3 w3 x4 y4 , there exists w0 ∼ x0 , v2 , x4 (Fig. 3i). Since x0 is adjacent to
+w0 , by (BFS3) f (w0 ) ≤ x0 < x2 = f (w2 ). By (BFS2), w0 < w2 . Recall that f (v1 ) = w1 = f (v2 )
+and that w2 is the second-earliest predecessor of v1 . Since w0 < w2 and w0 is a predecessor of
+v2 , by LexBFS we deduce that v2 < v1 . Since v1 and v2 are both adjacent to u1 we obtain a
+contradiction with f (u1 ) = v1 . This contradiction shows that any median graph G satisfies the
+fellow-traveller property. This finishes the proof of Theorem 4.5.                                           
+   We now explain how to implement LexBFS in a median graph G in a simpler way than
+in the general case. By Lemma 4.4, it suffices to keep for each vertex v only its earliest and
+second-earliest predecessors, i.e., if v and w have the same earliest predecessor, then LexBFS
+will order v before w iff either the second-earliest predecessor of v is ordered before the second
+earliest predecessor of w or if v has a second-earliest predecessor and w does not. Similarly to
+BFS, LexBFS can be implemented using a single queue Q. Additionally to BFS, each already
+labeled vertex u must store the position π(u) in Q of the earliest vertex of Q having u as a single
+predecessor. In Q, all vertices having u as their parent occur consecutively. Additionally, among
+these vertices, the ones having a second predecessor must occur before the vertices having only
+u as a predecessor and the vertices having a second predecessor must be ordered according to
+that second predecessor. To ensure this property, we use the following rule: if a vertex v in Q,
+currently having only u as a predecessor, discovers yet another predecessor u0 , then v is swapped
+in Q with the vertex π(u), and π(u) is updated. Clearly this is an O(m) implementation.
+   Now we use Theorem 4.5 to compute the Θ-classes of G. We run LexBFS and return a
+LexBFS-ordering of V (G) and E(G) and the ordered lists Λ< (v), v ∈ V . Then consider the
+edges of G in the LexBFS-order. Pick the first unprocessed edge uv and suppose that u ∈ Λ< (v).
+If Λ< (v) = {u}, by Lemma 4.1, uv is the first edge of its Θ-class, thus we create a new Θ-class
+Ei and insert uv as the first edge of Ei . We call uv the root of Ei and keep d(v0 , v) as the
+distance from v0 to Hi0 . Now suppose |Λ< (v)| ≥ 2. We consider two cases: (i) u 6= f (v) and (ii)
+
+
+                                                                10
+ Algorithm 1: Θ-classes via LexBFS
+  Data: G = (V, E), v0 ∈ V
+  Result: The Θ-classes Θ of G ordered by increasing distance from v0
+  begin
+     Θ←∅
+     (E, Λ, f ) ← LexBF S(G, v0 )
+     // E : the list of edges ordered by LexBFS
+     // Λ : V 7→ 2V such that Λ(v) is the set of predecessors of v
+     // f : V 7→ V such that f (v) is the parent of v
+     foreach uv ∈ E do
+        if |Λ[v]| = 1 then
+             Add a new Θ-class {uv} to Θ                   // first edge in the Θ-class
+        else if f (v) 6= u then
+             Add the edge uv to the Θ-class of the edge f (u)f (v)
+        else
+             Pick any x in Λ(v) \ {u}
+             Add the edge uv to the Θ-class of the edge f (x)x
+       return Θ
+
+
+u = f (v). For (i), by Theorem 4.5, uv and f (u)f (v) are opposite edges of a square. Therefore
+uv belongs to the Θ-class of f (u)f (v) (which was already computed because f (u)f (v) < uv).
+In order to recover the Θ-class of the edge f (u)f (v) in constant time, we use a (non-initialized)
+matrix A whose rows and columns correspond to the vertices of G such that A[x, y] contains
+the Θ-class of the edge xy when x and y are adjacent and the Θ-class of xy has already been
+computed and A[x, y] is undefined if x and y are not adjacent or if the Θ-class of xy has not
+been computed yet. For (ii), pick any x ∈ Λ< (v), x 6= u. By Theorem 4.5, uv = f (v)v and
+f (x)x are opposite edges of a square. Since f (x)x appears before uv in the LexBFS order, the
+Θ-class of f (x)x has already been computed, and the algorithm inserts uv in the Θ-class of
+f (x)x. Each Θ-class Ei is totally ordered by the order in which the edges are inserted in Ei .
+Consequently, we obtain:
+Theorem 4.8. The Θ-classes of a median graph G can be computed in O(m) time.
+
+                                             5. The median of G
+   We use Theorem 4.8 to compute the median set Medw (G) of a median graph G in O(m)
+time. We also use the existence of peripheral halfspaces and the majority rule.
+5.1. Peripheral peeling. The order E1 , E2 , . . . , Eq in which the Θ-classes Ei of G are con-
+structed corresponds to the order of the distances from v0 to Hi0 : if i < j then d(v0 , Hi0 ) ≤
+d(v0 , Hj0 ) (recall that v0 ∈ Hi00 ). By Lemma 3.9, the halfspace Hq0 of Eq is peripheral. If we
+contract all edges of Eq (i.e., we identify the vertices of Hq0 = ∂Hq0 with their neighbors in ∂Hq00 )
+we get a smaller median graph G       e = H 00 ; G
+                                                 e has q −1 Θ-classes E     e1 , . . . , Eeq−1 , where Eei consists of
+                                            q
+the edges of Ei in G.  e The halfspaces of G    e have the form H  e 0 = H 0 ∩H 00 and H       e 00 = H 00 ∩H 00 . Then
+                                                                     i        i       q          i     i     q
+                                                                          0             0
+E1 , . . . , Eq−1 corresponds to the ordering of the halfspaces H1 , . . . , Hq−1 of G by their distances
+ e           e                                                          e            e           e
+to v0 . Hence the last halfspace H     e 0 is peripheral in G.    e Thus the ordering Eq , Eq−1 , . . . , E1 of
+                                        q−1
+the Θ-classes of G provides us with a set Gq = G, Gq−1 = G,            e . . . , G0 of median graphs such that
+G0 is a single vertex and for each i ≥ 1, the Θ-class Ei defines a peripheral halfspace in the graph
+Gi obtained after the successive contractions of the peripheral halfspaces of Gq , Gq−1 , . . . , Gi+1
+defined by Eq , Eq−1 , . . . , Ei+1 . We call Gq , Gq−1 , . . . , G0 a peripheral peeling of G. Since each
+vertex of G and each Θ-class is contracted only once, we do not need to explicitly compute the
+restriction of each Θ-class of G to each Gi . For this it is enough to keep for each vertex v a
+
+
+                                                          11
+variable indicating whether this vertex belongs to an already contracted peripheral halfspace or
+not. Hence, when the ith Θ-class must be contracted, we simply traverse the edges of Ei and
+select those edges whose both ends are not yet contracted.
+5.2. Computing the weights of the halfspaces of G. We use a peripheral peeling
+Gq , Gq−1 , . . . , G0 of G to compute the weights w(Hi0 ) and w(Hi00 ), i = 1, . . . , q of all halfs-
+paces of G. As above, let G     e be obtained from G by contracting the Θ-class Eq . Consider the
+weight function w     e on G = Hq00 defined as follows:
+                             e
+                               (
+                          00    w(v 00 ) + w(v 0 ) if v 00 ∈ ∂Hq00 , v 0 ∈ Hq0 , and v 00 ∼ v 0 ,
+(5.1)                 w(v ) =
+                                w(v 00 )           if v 00 ∈ Hq00 \ ∂Hq00 .
+                       e
+
+
+ Algorithm 2: ComputeWeightsOfHalfspaces(G, w, Θ)
+  Data: A median graph G = (V, E), a weight function w : V → R+ n ∪ {0}, the Θ-classes
+         Θ = (E1 , . . . , Eq ) of G ordered by increasing distance to the basepoint v0 .
+  Result: The list of the pairs of weights (w(Hq00 ), w(Hq0 )), . . . , (w(H100 ), w(H10 ))
+  begin
+     if |V | = 1 then
+         return the empty list
+     else
+         Let H 0 and H 00 be the two complementary halfspaces defined bynEq (v0 ∈ H 00 )
+         w(H 0 ) ← v∈H 0 w(v)
+                      P
+
+         w(H 00 ) ← w(V ) − w(H 0 )
+         foreach v 0 v 00 ∈ Eq with v 0 ∈ H 0 and v 00 ∈ H 00 do
+             w(v 00 ) ← w(v 0 ) + w(v 00 )
+          L ← ComputeWeightsOfHalfspaces(H 00 , w, Θ \ {Eq })
+          add (w(H 00 ), w(H 0 )) to L
+          return L
+
+
+
+Lemma 5.1. For any Θ-class E
+                           ei of G,
+                                 e e  e 0 ) = w(H 0 ) and e
+                                    w(H                   w(Hi00 ) = w(Hi00 ).
+                                       i         i
+   By Lemma 5.1, to compute all w(Hi0 ) and w(Hi00 ), it suffices to compute the weight of the
+peripheral halfspace of Ei in the graph Gi , set it as w(Hi0 ), and set w(Hi00 ) := w(G) − w(Hi0 ).
+   Let G be the current median graph, let Hq0 be a peripheral halfspace of G, and G      e = Hq00 be
+                                                                                   0
+the graph obtained from G by contracting the edges of Eq . To compute w(Hq ), we traverse the
+vertices of Hq0 (by considering the edges of Eq ). Set w(Hq00 ) = w(G)−w(Hq0 ). Let we be the weight
+function on G e defined by Equation 5.1. Clearly, w   e can be computed in O(|V (Hq0 )|) = O(|Eq |)
+time. Then by Lemma 5.1 it suffices to recursively apply the algorithm to the graph G      e and the
+weight function e w. Since each edge of G is considered only when its Θ-class is contracted, the
+algorithm has complexity O(m).
+5.3. The median Medw (G). We start with a simple property of the median function Fw that
+follows from Lemma 3.4:
+Lemma 5.2. If xy ∈ Ei with x ∈ Hi0 and y ∈ Hi00 , then Fw (x) − Fw (y) = w(Hi00 ) − w(Hi0 ).
+   A halfspace H of G is majoritary if w(H) > 12 w(G), minoritary if w(H) < 21 w(G), and
+egalitarian if w(H) = 21 w(G). Let Medloc
+                                      w (G) = {v ∈ V : Fw (v) ≤ Fw (u), ∀u ∼ v} be the set of
+local medians of G. We continue with the majority rule:
+Proposition 5.3 ( [8, 70]). Medw (G) is the intersection of all majoritary halfspaces and
+Medw (G) intersects all egalitarian halfspaces. If Hi0 and Hi00 are egalitarian halfspaces, then
+Medw (G) intersects both Hi0 and Hi00 . Moreover, Medw (G) = Medloc
+                                                                  w (G).
+
+
+
+                                                  12
+Proof. Let us first prove a generalization of Lemma 5.2 from which the different statements of
+Proposition 5.3 easily follow.
+Lemma 5.4. Let Ei be a Θ-class of a median graph G and let Hi0 , Hi00 be the two halfspaces
+defined by Ei . If x00 ∈ Hi00 and x0 is its gate in Hi0 , then Fw (x00 ) ≥ Fw (x0 ) + d(x00 , x0 )(w(Hi0 ) −
+w(Hi00 )).
+Proof. By definition of the median function,
+                          X                  X                 X
+   Fw (x00 ) − Fw (x0 ) =   d(x00 , u)w(u) −   d(x0 , u)w(u) =   (d(x00 , u) − d(x0 , u))w(u).
+                           u∈V                    u∈V                    u∈V
+Then, we decompose the sum over the complementary halfspaces Hi0 and Hi00 :
+                         X                                      X
+  Fw (x00 ) − Fw (x0 ) =   (d(x00 , u0 ) − d(x0 , u0 ))w(u0 ) +   (d(x00 , u00 ) − d(x0 , u00 ))w(u00 ).
+                          u0 ∈Hi0                                 u00 ∈Hi00
+
+Since x0 is the gate of x00 on Hi0 , for any u0 ∈ Hi0 , d(x00 , u0 ) − d(x0 , u0 ) = d(x00 , x0 ). By triangle
+inequality, d(x00 , u00 ) − d(x0 , u00 ) ≥ −d(x00 , x0 ) for every u00 ∈ Hi00 . We get
+                                             X                           X
+                    Fw (x00 ) − Fw (x0 ) ≥          d(x00 , x0 )w(u0 ) −       d(x00 , x0 )w(u00 )
+                                          u∈Hi0                   u00 ∈Hi00
+
+and conclude that Fw (x00 ) ≥ Fw (x0 ) + d(x00 , x0 )(w(Hi0 ) − w(Hi00 )).                                 
+    Let Hi00 and Hi0 be two complementary halfspaces such that w(Hi0 ) > w(Hi00 ). Pick any vertex
+x ∈ Hi00 and its gate x0 in Hi0 . By Lemma 5.4, Fw (x00 ) > Fw (x0 ) and therefore x00 cannot be
+ 00
+
+a median. This shows that the complement of a majoritary halfspace does not contain any
+median vertex. This implies that Medw (G) is contained in the intersection M of the majoritary
+halfspaces. If Medw (G) is a proper subset of M , since M is convex we can find two adjacent
+vertices x ∈ Medw (G) and y ∈ M \ Medw (G). Let xy ∈ Ei with x ∈ Hi0 and y ∈ Hi00 . Since
+y ∈ M , Hi0 cannot be a majoritary halfspace. Since x ∈ Medw (G), Hi0 cannot be a minoritary
+halfspace. Thus Hi0 and Hi00 are egalitarian halfspaces. Since Fw (x) − Fw (y) = w(Hi00 ) − w(Hi0 ) =
+0, we deduce that y is a median vertex, thus Medw (G) = M . Now, consider two egalitarian
+complementary halfspaces Hi00 and Hi0 . Suppose that a median vertex x0 belongs to Hi0 and let
+x00 be its gate on Hi00 . By Lemma 5.4, Fw (x00 ) ≤ Fw (x0 ). Therefore, x00 is also median. By
+symmetry, we conclude that both Hi0 and Hi00 contain a median vertex.
+   We now show that any local median is a median. Pick any vertex v ∈            / Medw (G). Since
+Medw (G) is the intersection of all majority halfspaces of G, there exists a majority halfspace H
+containing Medw (G) and not containing v. Let v 0 be the gate of v in H and u be a neighbor of v
+in I(v, v 0 ). Then necessarily H ⊆ W (u, v), thus W (u, v) is a majoritary halfspace. This implies
+that Fw (u) < Fw (v), i.e., v is not a local median. This concludes the proof of Proposition 5.3. 
+   We use Proposition 5.3 and the weights of halfspaces computed above to derive Medw (G).
+For this, we direct the edges v 0 v 00 of each Θ-class Ei of G as follows. If v 0 ∈ Hi0 and v 00 ∈ Hi00 ,
+then we direct v 0 v 00 from v 0 to v 00 if w(Hi00 ) > w(Hi0 ) and from v 00 to v 0 if w(Hi0 ) > w(Hi00 ). If
+w(Hi0 ) = w(Hi00 ), then the edge v 0 v 00 is not directed. We denote this partially directed graph
+    →
+    −                                      →
+                                           −                                        →
+                                                                                    −
+by G . A vertex u of G is a sink of G if there is no edge uv directed in G from u to v. From
+                                 →
+                                 −
+Lemma 5.2, u is a sink of G if and only if u is a local median of G. By Proposition 5.3,
+                                                                                →
+                                                                                −                 →
+                                                                                                  −
+Medloc
+     w (G) = Medw (G) and thus Medw (G) coincides with the set S( G ) of sinks of G . Note
+                                                                                 →
+                                                                                 −
+that in the graph induced by Medw (G), all edges are non-oriented in G . Once all w(Hi0 ) and
+                                                     →
+                                                     −
+w(Hi00 ) have been computed, the orientation G of G can be constructed in O(m) by traversing
+                                                       →
+                                                       −
+all Θ-classes Ei of G. The graph induced by S( G ) can then be found in O(m).
+Theorem 5.5. The median Medw (G) of a median graph G can be computed in O(m) time.
+  The next remark follows immediately from the majority rule and the fast computation of the
+Θ-classes:
+Remark 5.6. Given the median set Medw (G) of a median graph G, one can find all majoritary
+halfspaces of G in linear time O(m).
+
+
+                                                        13
+Computing a diametral pair of Medw (G). The article [8] proved that in a median graph,
+the median set coincide with the interval between two diametral pairs of its vertices. We show
+how to find this pair in O(m) time, using a corollary of Proposition 5.3 :
+Corollary 5.7. If two disjoint halfspaces H 0 and H 00 defined by two laminar Θ-classes of G
+both intersect Medw (G), then w(v) = 0 for any vertex v ∈ V \ (H 0 ∪ H 00 ).
+Proof. Since Medw (G) ∩ H 0 6= ∅ and Medw (G) ∩ H 00 6= ∅, and since H 0 and H 00 are disjoint,
+by Proposition 5.3, both H 0 and H 00 are egalitarian halfspaces. Since H 0 and H 00 are disjoint,
+w(H 0 ) + w(H 00 ) = w(V ), hence w(V \ (H 0 ∪ H 00 )) = 0.                                     
+Corollary 5.8. If w(G) > 0, we can find u, v ∈ V (G) in O(m) such that Medw (G) = I(u, v).
+  The proof of Corollary 5.8 is based on a result of [8, Proposition 6] stating that in a median
+graph, the median set is an interval. Let H be a gated subgraph of G and u be a vertex of
+H. The set PH (u) = {v ∈ V : u is the gate of v in H} is called the fiber of u with respect
+to H. We say that a fiber PH (u) is positive if w(PH (u)) > 0. The fibers {PH (u) : u ∈ H}
+define a partition of V (G). We give below a non lattice-based proof of the result of Bandelt
+and Barthélémy [8, Proposition 6].
+Proposition 5.9. Let M = Medw (G) and let u be a vertex of M with a positive fiber PM (u).
+Then M = I(u, v) for the vertex v ∈ M maximizing d(u, v).
+Proof. Since M is convex and u, v ∈ M , we have I(u, v) ⊆ M . We now prove the reverse
+inclusion. Suppose by way of contradiction that there exists a vertex z ∈ M \ I(u, v). Consider
+such a vertex z minimizing d(v, z). Let z 0 be the median of u, v, z. Then z 0 ∈ I(u, v). Since
+M is convex and z, z 0 ∈ M , from the minimality choice of z we conclude that z and z 0 are
+adjacent. Since G is bipartite and v is a furthest from u vertex of M , necessarily z 0 6= v. Since
+z∈  / I(u, v), z 0 ∈ I(u, v) and G is bipartite, z 0 ∈ I(z, u) ∩ I(z, v), i.e., u, v ∈ W (z 0 , z). Let y be
+any neighbor of z 0 in I(z 0 , v) and suppose that z 0 z ∈ Ei and z 0 y ∈ Ej .
+    We assert that the Θ-classes Ei and Ej are laminar. Indeed otherwise, by Lemma 3.7, there
+exists a vertex x0 ∼ z, y. Since x0 ∈ I(z, y) and z, y ∈ M , x0 also belongs to M and is one step
+closer to v than z. The minimality choice of z implies that x0 ∈ I(v, u). Since u ∈ W (z, x0 ), we
+have z ∈ I(x0 , u), yielding z ∈ I(v, u). This contradiction shows that Ei and Ej are laminar, i.e.,
+the halfspaces W (z, z 0 ) and W (y, z 0 ) are disjoint. Since they both intersect M , by Corollary 5.7,
+all vertices of G not belonging to W (z, z 0 ) ∪ W (y, z 0 ) have weight 0.
+    Pick any vertex p ∈ PM (u). Since p belongs to the fiber PM (u) and z, y ∈ M , necessarily
+u ∈ I(y, p) ∩ I(z, p). Since y is a neighbor of z 0 in I(z 0 , v) and z 0 ∈ I(v, u), we obtain that
+z 0 ∈ I(y, u) ⊆ I(y, p), yielding p ∈ W (z 0 , y). Analogously, from the choice of z we deduced that
+z 0 ∈ I(z, u) ⊆ I(z, p), yielding p ∈ W (z 0 , z). This establishes that PM (u) ⊆ W (z 0 , y) ∩ W (z 0 , z),
+i.e., PM (u) is disjoint from the halfspaces W (y, z 0 ) and W (z, z 0 ). This contradicts the fact that
+PM (u) has positive weight.                                                                               
+  Now we can prove the corollary :
+Proof of Corollary 5.8. Once we have computed M = Medw (G), one can pick an arbitrary
+vertex v1 such that w(v1 ) > 0. By running a BFS-algorithm, we find in linear time the closest
+to v1 vertex u in M and the furthest from v1 vertex v in M . Since M is gated, u is unique, v1 ∈
+PM (u) and v is at maximum distance from u in M . By Proposition 5.9, I(u, v) = Medw (G). 
+Median graphs and the majority rule. In the Introduction we mentioned that the median
+graphs are the bipartite graphs satisfying the majority rule. We will make now this statement
+precise. Let G = (V, E) be a bipartite graph. A halfspace of G is a subgraph induced by
+W (u, v) = {x ∈ V : d(x, u) < d(x, v)} for some edge uv. Recall that all halfspaces of G are
+convex iff G is isometrically embeddable into a hypercube [32]. For a weight function w on G and
+any pair of complementary halfspaces W (u, v) and W (v, u), we have w(W (u, v))+w(W (v, u)) =
+w(V ). A majoritary halfspace of G is a halfspace W (u, v) such that w(W (u, v)) > w(W (v, u)).
+A bipartite graph G satisfies the majority rule if for any weight function w on G, Medw (G) is
+the intersection of all majoritary halfspaces of G.
+
+
+                                                    14
+Proposition 5.10. A bipartite graph G satisfies the majority rule if and only if G is median.
+Proof. One direction is covered by Proposition 5.3. Now, suppose that a bipartite graph G
+satisfies the majority rule. To prove that G is median it suffices to show that G satisfies the
+quadrangle condition and does not contain K2,3 [53]. To establish the quadrangle condition,
+let d(u, z) = k + 1, d(u, x) = d(u, y) = k ≥ 2 and z ∼ x, y. Consider the weight function
+w(u) = w(x) = w(y) = 1 and w(v) = 0 is v ∈ V \ {u, x, y}. Notice that Fw (x) = Fw (y) =
+k + 2, Fw (z) = k + 3, Fw (u) = 2k and that Fw (v) ≥ k + 1 for any other vertex v. Since W (x, z)
+and W (y, z) are majoritary halfspaces and x ∈     / W (y, z), y ∈/ W (x, z), the vertices x and y are
+not medians. This implies that if v ∈ Medw (G), then Fw (v) = k + 1. Since G is bipartite, this
+is possible only if d(v, u) = k − 1, d(v, x) = d(v, y) = 1, i.e., G satisfies the quadrangle condition.
+Suppose now that G contains a K2,3 induced by the vertices x, y, z, u, u0 , where u and u0 are
+adjacent to x, y, z. Consider the weight function w(x) = w(y) = w(z) = w(u) = w(u0 ) = 1 and
+w(v) = 0 for any vertex v ∈ V \ {x, y, z, u, u0 }. Then Fw (u) = Fw (u0 ) = 5 and Fw (x) = Fw (y) =
+Fw (z) = 6. Since G is bipartite, Fw (v) ≥ 6 for any other vertex v. Thus Medw (G) = {u, u0 }.
+Since u, y, z ∈ Ww (u, x) and x, u0 ∈ W (x, u) we deduce that W (u, x) is a majoritary halfspace
+and u0 ∈ Medw (G) \ W (u, x), a contradiction with the majority rule.                                
+
+
+ Algorithm 3: DistanceMatrix(G, Θ)
+  Data: A median graph G = (V, E), the Θ-classes Θ = (E1 , . . . , Eq ) ordered by increasing
+         distance to the basepoint v0 .
+  Result: The distance matrix D : V × V → N
+  begin
+     if G contains a single vertex v then
+         D(v, v) ← 0
+         return D
+     else
+         Let H 0 and H 00 be two complementary halfspaces defined by Eq (v0 ∈ H 00 )
+         D ← DistanceMatrix(H 00 , Θ \ {Eq })
+         foreach u0 u00 ∈ Eq with u0 ∈ H 0 and u00 ∈ H 00 do
+            foreach v 00 ∈ H 00 do D(u0 , v 00 ) ← D(u00 , v 00 ) + 1
+            foreach v 0 v 00 ∈ Eq with v 0 ∈ H 0 and v 00 ∈ H 00 do D(u0 , v 0 ) ← D(u00 , v 00 )
+         return D
+
+
+5.4. The Wiener index Ww (G) and the distance matrix D(G) of G. Using the fast
+computation of the Θ-classes and of the weights of halfspaces of a median graph G, we can
+compute the Wiener index of G in linear time.
+Proposition 5.11. The Wiener index Ww (G) of a median graph G can be computed in O(m)
+time.
+Proof. Given the weights w(Hi0 ) and w(Hi00 ) of all halfspaces of G, the Wiener index Ww (G) of
+G can be computed in O(q) time using the following formula (which holds for all partial cubes,
+see e.g. [46]):
+Lemma 5.12. Ww (G) = qi=1 w(Hi0 ) · w(Hi00 ).
+                         P
+
+Proof. If G is a partial cube, then for any two vertices u, v of G, d(u, v) is equal to the number
+of Θ-classes Ei separating u and v (u and v belong to different halfspaces defined by Ei ). We
+write u|i v if Ei separates u and v. This implies that
+     XX                                  XX X                                  q X X
+                                                                               X
+               w(u) · w(v) · d(u, v) =                     w(u) · w(v) · 1 =                      w(u) · w(v)
+     u∈V v∈V                             u∈V v∈V i:u|i v                       i=1 u∈Hi0 v∈Hi00
+                      Pq       0        00
+and thus Ww (G) =       i=1 w(Hi ) · w(Hi ).                                                                    
+
+
+                                                      15
+  Since the weight of all halfspaces can be computed in O(m) time and since q ≤ m, Ww (G)
+can also be computed in O(m) time.                                                      
+    The distance matrix D(G) of a median graph G can be computed in O(n2 ) time by traversing
+the reverse peripheral peeling G0 , . . . , Gq−1 , Gq = G of G (the pseudo-code is given in Algo-
+rithm 3). For each i, we compute D(Gi ) assuming D(Gi−1 ) already computed. Since Gi−1
+coincides with the halfspace Hi00 of Gi , Gi−1 is gated in Gi , thus D(Gi ) restricted to Gi−1 coin-
+cides with D(Gi−1 ). Thus, to obtain D(Gi ) we have to compute the distances from all vertices
+v 0 of Hi0 to all other vertices of Gi . For each pair u0 , v 0 of Hi0 , let u00 , v 00 be their unique neighbors
+in Gi−1 = Hi00 . Since Hi0 is peripheral in Gi , Hi0 is isomorphic to the boundary ∂Hi00 of Hi00 .
+Since ∂Hi00 is gated (by Lemma 3.8), d(u0 , v 0 ) = d(u00 , v 00 ). Since v 00 is the gate of v 0 in Hi00 , for
+each vertex w00 ∈ Hi00 we have d(v 0 , w00 ) = d(v 00 , w00 ) + 1. This establishes how to complete the
+distance matrix D(Gi ) from D(Gi−1 ). The complexity of this completion is the number of items
+of D(Gi ) which are not in D(Gi−1 ). This shows that D(G) can be computed in total O(n2 )
+time. Consequently, we obtain the following result:
+Proposition 5.13. The distance matrix D(G) of a median graph G can be computed in O(n2 )
+time.
+
+                      6. The median problem in the cube complex of G
+6.1. The main result. In this section, we describe a linear time algorithm to compute medians
+in cube complexes of median graphs.
+The problem. Let G = (V, E) be a median graph with n vertices, m edges, and q Θ-classes
+E1 , . . . , Eq . Let G be the cube complex of G obtained by replacing each graphic cube of G by
+a unit solid cube and by isometrically identifying common subcubes. We refer to G as to the
+geometric realization of G (see Fig. 6(a)). We suppose that G is endowed with the intrinsic
+`1 -metric d1 . Let P be a finite set of points of (G, d1 ) (called terminals) and let w be a weight
+function on G such that w(p) > 0 if p ∈ P and w(p) = 0 if p ∈          / P . The goal of the median
+problem is to compute the set Med     Pw (G) of median pointsP of G, i.e., the set of all points x ∈ G
+minimizing the function Fw (x) = p∈G w(p)d1 (x, p) = p∈P w(p)d1 (x, p).
+The input. The cube complex G is given by its 1-skeleton G. Each terminal p ∈ P is given
+by its coordinates in the smallest cube Q(p) of G containing p. Namely, we give a vertex v(p)
+of Q(p) together with its neighbors in Q(p) and the coordinates of p in the embedding of Q(p)
+as a unit cube in which v(p) is the origin of coordinates. Let δ be the sum of the sizes of the
+encodings of the points of P . Thus the input of the median problem has size O(m + δ).
+The output. Unlike Medw (G) (which is a gated subgraph of G), Medw (G) is not a subcomplex
+of G. Nevertheless we show that Medw (G) is a subcomplex of the box complex Gb obtained by
+subdividing G, using the hyperplanes passing via the terminals of P . The output is the 1-
+skeleton M           b and Medw (G),
+         c of Medw (G)                                                             c in G. We
+                                    b and the local coordinates of the vertices of M
+show that the output has linear size O(m).
+Theorem 6.1. Let G be a median graph with m edges and let P be a finite set of terminals
+of G described by an input of size δ. The 1-skeleton M
+                                                     c of Medw (G) can be computed in linear
+time O(m + δ).
+
+6.2. Geometric halfspaces and hyperplanes. In the following, we fix a basepoint v0 of G.
+For each point x of G, let Q(x) be the smallest cube of G containing x and let v(x) be the gate
+of v0 in Q(x). For each Θ-class Ei defining a dimension of Q(x), let i (x) be the coordinate of x
+along Ei in the embedding of Q(x) as a unit cube in which v(x) is the origin. For a Θ-class Ei
+and a cube Q having Ei as a dimension, the i-midcube of Q is the subspace of Q obtained by
+restricting the Ei -coordinate of Q to 12 . A midhyperplane hi of G is the union of all i-midcubes.
+Each hi cuts G in two components [66] and the union of each of these components with hi is
+called a geometric halfspace (see Fig. 6(b)). The carrier Ni of Ei is the union of all cubes of G
+
+
+                                                       16
+                     (a)                               (b)                              (c)
+
+         Figure 6. (a) The cube complex D of D, (b) a hyperplane of D, and (c) the
+         box complex D
+                     b and Medw (D) (in gray) defined by 4 terminals of weight 1.
+
+
+intersecting hi ; Ni is isomorphic to hi × [0, 1]. For a Θ-class Ei and 0 <  < 1, the hyperplane
+hi () is the set of all points x ∈ Ni such that i (x) = . Let hi (0) and hi (1) be the respective
+geometric realizations of ∂Hi00 and ∂Hi0 . Note that hi () is obtained from hi by a translation.
+The open carrier Ni◦ is Ni \ (hi (0) ∪ hi (1)). We denote by Hi0 () and Hi00 () the geometric
+halfspaces of G defined by hi (). Let Hi00 := Hi00 (0) and Hi0 := Hi0 (1); they are the geometric
+realizations of Hi0 and Hi00 . Note that G is the disjoint union of Hi0 , Hi00 , and Ni◦ .
+
+6.3. The majority rule for G. Now we show how to reduce the median problem in G to a
+median problem in a median graph.
+
+The box complex b     G. By [74, Theorem 3.16], (G, d1 ) is a median metric space (i.e., |I(x, y) ∩
+I(y, z) ∩ I(z, x)| = 1 ∀x, y, z ∈ G) and the graph G is isometrically embedded in (G, d1 ). For
+each p ∈ P and each coordinate i (p), consider the hyperplane hi (i (p)). All such hyperplanes
+subdivide G into a box complex Gb (see Fig. 6(c)). Clearly, ( b  G, d1 ) is a median space. By [74,
+Theorem 3.13], the 1-skeleton G of G is a median graph and each point of P corresponds to
+                                  b       b
+a vertex of bG. The Θ-classes of G  b are subdivisions of the Θ-classes of G. In b G, all edges of a
+Θ-class of G have the same length. Let Gl be the graph G in which the edges have these lengths.
+            b                               b              b
+Gb l is a median space, thus Medw (G b l ) = Medw ( b
+                                                   G) by [70]. By Proposition 5.3, Medw (G b l ) is the
+intersection of the majoritary halfspaces of G. b
+
+Proposition 6.2. Medw (G) is the subcomplex of Gb defined by M
+                                                             c := Medw (G
+                                                                        b l ).
+
+Proof. Let E b1 , . . . , E
+                          bq̂ be the the Θ-classes of G.   b For a point x ∈ G, we denote by Q(x)         b    the
+smallest box of Gb containing x, and for any Θ-class E          bi of b Q(x), let bi (x) be the coordinate of x
+along the dimension E       bi in the embedding of Q(x) b     as a unit cube where the origin is the gate of
+v0 on Q(x).
+        b
+   For a point x ∈ G, let b     G(x) be the subdivision of the complex Gb by the hyperplanes passing
+via x, let G(x) denote the 1-skeleton of G(x)
+           b                                      b    and let Gb l (x) be the corresponding weighted graph.
+Again, b G(x) is a median graph and G        b l (x) is an isometric subgraph of b     G(x) that is isometric to
+G and G.b
+   We show by induction on the dimension of b          Q(x) that x ∈ Medw (G) = Medw ( b      G) = Medw ( b  G(x))
+if and only if for any vertex v of Q(x), v ∈ Medw (G). If Q(x) = {x}, then there is nothing to
+                                         b                              b
+prove. Otherwise, pick a Θ-class E       bi of G   b such that 0 < bi (x) < 1. In b    G(x), x has exactly two
+neighbors x , x belonging to two opposite facets of Q(x) such that bi (x00 ) = 0 and bi (x0 ) = 1.
+             0   00                                              b
+Observe that V (Q(x))  b              b 0 )) ∪ V (Q(x
+                               = V (Q(x              b 00 )) and x ∈ I b (x0 , x00 ). By the definition of
+                                                                           G(x)
+ b there is no terminal p ∈ P with 0 < bi (p) < 1. Consequently in G(x),
+G,                                                                                        b     W (x00 , x) ∩ P =
+
+
+                                                       17
+W (x, x0 ) ∩ P and W (x0 , x) ∩ P = W (x, x00 ) ∩ P . Therefore in G(x)
+                                                                    b     (and in Gb l (x)), the halfspace
+        00                                                                       0
+W (x , x) is majoritary (resp. egalitarian, minoritary) if and only if W (x , x) minoritary (resp.
+egalitarian, majoritary).
+     Suppose that x ∈ Medw (G). If W (x, x00 ) (resp. W (x, x0 )) is minoritary in b       G(x), then by
+                                                   00                        0
+Lemma 5.2 applied to Gl (x), Fw (x) > Fw (x ) (resp. Fw (x) > Fw (x )) and x ∈
+                             b                                                             / Medw (G), a
+contradiction. Thus, necessarily W (x00 , x) and W (x0 , x) are egalitarian and by Lemma 5.2 in
+Gb l (x), Fw (x0 ) = Fw (x00 ) = Fw (x). Since Q(x
+                                                 b 0 ) and Q(xb 00 ) are facets of Q(x),
+                                                                                    b        by induction
+hypothesis, all vertices in V ( b Q(x)) = V ( b     0
+                                                Q(x )) ∪ V ( b   00
+                                                            Q(x )) belong to Medw (G). Conversely,
+suppose that V (Q(x))b            b 0 )) ∪ V (Q(x
+                            = V (Q(x            b 00 )) ⊆ Medw (G). Then by induction hypothesis,
+  0    00
+x , x ∈ Medw (G). Since Medw (G      b l (x)) = Medw ( bG(x)) is convex and x ∈ I b       (x, x0 ), we have
+                                                                                    G(x)
+Fw (x) = Fw (x0 ) = Fw (x00 ) and consequently, x ∈ Medw (G).                                            
+The Ei -median problems. We adapt now Proposition 5.3 to the continuous setting. In our
+algorithm and next results we will not explicitly construct the box complex Gb and its 1-skeleton
+Gb (because they are too large), but we will only use them in proofs. For a Θ-class of G, the
+Ei -median is the median of the multiset of points of the segment [0, 1] weighted as follows: the
+weight wi (0) of 0 is w(Hi00 ), the weight wi (1) of 1 is w(Hi0 ), and for each p ∈ P ∩ Ni◦ , there is a
+point i (p) of [0, 1] of weight wi (i (p)) = w(p). It is well-known that this median is a segment
+[%00i , %0i ] defined by two consecutive points %00i ≤ %0i of [0, 1] with positive weights, and for any
+p ∈ P , i (p) ≤ %00i or i (p) ≥ %0i . Majoritary, minoritary, and egalitarian geometric halfspaces of
+G are defined in the same way as the halfspaces of G.
+Proposition 6.3. Let Ei be a Θ-class of G. Then the following holds:
+  (1) Medw (G) ⊆ Hi00 (resp. Medw (G) ⊆ Hi0 ) if and only if Hi00 is majoritary (resp. Hi0 is
+      majoritary), i.e., ρ00i = ρ0i = 0 (resp. ρ00i = ρ0i = 1);
+  (2) Medw (G) ⊆ Hi00 ∪ Ni◦ (resp. Medw (G) ⊆ Hi0 ∪ Ni◦ ) and Medw (G) intersects each of the
+      sets Hi00 (resp. Hi0 ) and Ni◦ if and only if Hi00 (resp. Hi0 ) is egalitarian and Hi0 (resp. Hi00 )
+      is minoritary, i.e., 0 = ρ00i < ρ0i < 1 (resp. 0 < ρ00i < ρ0i = 1);
+  (3) Medw (G) ⊆ Ni◦ if and only if Hi0 and Hi00 are minoritary, i.e., 0 < ρ00i ≤ ρ0i < 1;
+  (4) Medw (G) intersects the three sets Hi , Hi00 , and Ni◦ if and only if Hi0 and Hi00 are egalitar-
+      ian, i.e., 0 = ρ00i ≤ ρ0i = 1 (and thus w(Ni◦ ) = 0).
+Proof. Let 0 < 1 < · · · < k < 1 denote the possible values of coordinates of points of P
+with respect to the Θ-class Ei . They define parallel hyperplanes hi (0), hi (1 ), . . . , hi (k ), hi (1).
+The pieces of the edges of Ei bounded by two such consecutive hyperplanes define a Θ-class
+of G b and all such Θ-classes are laminar. In fact, we have the following chains of inclusions
+between the geometric halfspaces of G (or G)  b defined by those Θ-classes: H00 = H00 (0) ⊂
+                                                                                        i          i
+Hi (1 ) ⊂ · · · ⊂ Hi (k ) and Hi = Hi (1) ⊂ Hi0 (k ) ⊂ · · · ⊂ Hi0 (1 ). Similar inclusions hold
+  00                00           0     0
+
+between corresponding halfspaces of the graph G.b Notice also that, by the definition of G           b and
+G, the geometric halfspaces and the corresponding graphic halfspaces, have the same weight.
+b
+Therefore, to deduce the different cases of the proposition, it suffices to apply the majority
+rule (Proposition 5.3 and Corollary 5.7) to the halfspaces of G    b occurring in the two chains
+of inclusions and use the fact that Mc is the 1-skeleton of Medw (G) = Medw ( b           G) in Gb from
+Proposition 6.2.                                                                                           
+6.4. The algorithm.
+Preprocessing the input. We first compute the Θ-classes E1 , E2 , . . . , Eq of G ordered by
+increasing distance from v0 to Hi0 . Using this, we first modify the input of the median problem
+in linear time O(m + δ) in such a way that for each terminal p ∈ P , v(p) is the gate of v0 in
+Q(p). Once the Θ-classes have been computed, we can assume that each terminal p is described
+by its root v(p) as well as a list of coordinates ∆(p), one coordinate 0 < i (p) < 1 for each
+Θ-class Ei of Q(p) such that i (p) is the coordinate of x along Ei in the embedding of Q(p) as
+a unit cube in which v(p) is the origin. To update v(p) and ∆(p), we use a (non-initialized)
+matrix B whose rows and columns are indexed respectively by the vertices and the Θ-classes
+
+
+                                                     18
+ Algorithm 4: ComputeMedianCubeComplex(G, P, w, Θ)
+  Data: A median graph G = (V, E), a set of terminals P , a weight function w : P → R+ ,
+         the Θ-classes Θ = (E1 , . . . , Eq ) of G ordered by increasing distance to the
+         basepoint v0 .
+  Result: The graph M     c and the coordinates of each vertex m   b ∈M c in G
+  begin
+     Modify the root v(p) of each point p ∈ P such that v(p) is the gate of v0 on Q(p)
+     Compute w(Pi ) for all Θ-classes Ei by traversing P
+     Compute w∗ (v) = w(Pv ) for all v ∈ V by traversing P
+     Apply ComputeWeightsOfHalfspaces (G, w∗ , Θ) to compute the weights w∗ (Hi0 ) and
+      w∗ (Hi00 ) for each Θ-class Ei
+     Set w(Hi0 ) ← w∗ (Hi0 ) and w(Hi00 ) ← w∗ (Hi00 ) − w(Pi ) for each Θ-class Ei
+     Compute the Ei -median instance for all Θ-classes Ei by traversing P
+     Compute the Ei -median [%00i , %0i ] for each Θ-class Ei
+     Orient the edges of G and compute the set of half-edges around each vertex v ∈ V
+                            →
+                            −                →
+                                             −
+     Compute n    the set S( G ) of sinks of G by traversing the edges of G
+        c) ← g(v) : v ∈ S(−      →  o
+     V (M                        G)
+        c)n ← g(u)g(v) : uv ∈ E and u, v ∈ S(−         →o
+                   n
+     E(M                                               G)
+                               
+     return V (M    c), E(M c)
+
+
+
+of G and such that if a vertex v has a neighbor v 0 such that vv 0 belongs to the Θ-class Ei ,
+then B[v, Ei ] = v 0 (and B[v, Ei ] is undefined if v does not have such a neighbor v 0 ). One can
+construct B in time O(m) by traversing all edges of G once the Θ-classes have been computed.
+With the matrix B at hand, for each terminal p ∈ P , we consider the coordinates of p in order
+and for each coordinate i (p) of p, if v 0 = B[v(p), Ei ] is closer to v0 than v(p), we replace v(p)
+by v 0 and i (p) by 1 − i (p). Observe that each time we modify v(p), v(p) is still a vertex of
+Q(p) and thus B[v(p), Ej ] is still defined for any coordinate j ∈ ∆(p). Note that v(p) can move
+to distance up to |∆(p)| from its original position during the process. Once the matrix B has
+   P computed, the modification of the roots of all the points p ∈ P can be performed in time
+been
+O( p∈P ∆(p)) = O(δ).
+   In this way, the local coordinates of the terminals of P coincide with the coordinates i (p)
+defined in Section 6.2. For each Θ-class Ei , let Pi = P ∩ Ni◦ = {p ∈ P : 0 < i (p) < 1}, and
+for each point v ∈ V (G), let Pv = {p ∈ P : v(p) = v}. By traversing the points of P , we can
+compute all sets Pi , 1 ≤ i ≤ q and Pv , v ∈ V and the weights of these sets in time O(δ).
+
+Computing the Ei -medians. We first compute the weights wi (0) = w(Hi00 ) and wi (1) =
+w(Hi0 ) of the geometric halfspaces Hi00 , Hi0 of G. For each vertex v of G, let w∗ (v) = w(Pv ).
+Note that w∗ (V ) = w(P ). Since v0 ∈ Hi00 , w∗ (Hi0 ) = w(Hi0 ) and w∗ (Hi00 ) = w(Hi00 ) + w(Nio ) for
+each Θ-class Ei . We apply the algorithm of Section 5.2 to G with the weight function w∗ to
+compute the weights w∗ (Hi0 ) and w∗ (Hi00 ) of all halfspaces of G. Since w(Nio ) = w(Pi ) is known,
+we can compute w(Hi0 ) = w∗ (Hi0 ) and w(Hi00 ) = w∗ (Hi00 ) − w(Pi ). This allows us to complete
+the definition of each Ei -median problem which altogether can be solved linearly in the size of
+the input [30, Problem 9.2], i.e., in time O(Σqi=1 (|Pi | + 2)) = O(δ + m).
+
+Computing M         c. To compute the 1-skeleton M     c of Medw (G) in G,    b we orient the edges of Ei
+according to the weights of Hi and Hi : v v ∈ Ei with v ∈ Hi and v 00 ∈ Hi00 is directed from
+                                      0       00  0 00            0        0
+
+v 00 to v 0 if %0i = %00i = 1 (Hi0 is majoritary) and from v 0 to v 00 if %0i = %00i = 0 (Hi00 is majoritary),
+                                                                                                   →
+                                                                                                   −
+otherwise the edges of Ei are not oriented. Denote this partially directed graph by G and let
+    →
+    −                              →
+                                   −
+S( G ) be the set of sinks of G . A non-directed edge v 0 v 00 ∈ Ei defines a half-edge with origin v 00
+
+
+                                                     19
+if %00i > 0 and a half-edge with origin v 0 if %0i < 1 (an edge v 0 v 00 such that 0 < %00i ≤ %0i < 1 defines
+two half-edges).
+                                             →
+                                             −
+Proposition 6.4. For any vertex v of G , all half-edges with origin v define a cube Qv of G.
+Proof. For any vertex v and two Θ-classes Ei , Ej defining half-edges with origin v, let vi and vj
+be the respective neighbors of v in G
+                                    b along the directions Ei and Ej . By Proposition 6.3, vvi
+and vvj point to two majoritary halfspaces of Gb (and G). Since those two halfspaces cannot be
+disjoint, Ei and Ej are crossing. The proposition then follows from Lemma 3.7.                  
+  For any cube Q of G, let B(Q) ⊆ Q be the subcomplex of Gb that is the Cartesian product of
+the Ei -medians [%00i , %0i ] over all Θ-classes Ei wich define dimensions of Q. By the definition of
+the Ei -medians, B(Q) is a single box of Gb and its vertices belong to b   G.
+Proposition 6.5. For any cube Q of G, if Q ∩ Medw (G) 6= ∅, then B(Q) = Medw (G) ∩ Q.
+Proof. If a vertex x of B(Q) is not a median of b       G, by Proposition 5.3, x is not a local median
+of G. Thus Fw (x) > Fw (y) for an edge xy of G. Suppose that xy is parallel to the edges of
+    b                                                   b
+Ei of G. Then i (x) coincides with %00i or %0i . Since Fw (x) > Fw (y), the halfspace W (y, x) of G   b
+is majoritary, contrary to the assumption that i (x) is an Ei -median point. Thus all vertices
+of B(Q) belong to M     c and by Proposition 6.2, B(Q) ⊆ Medw (G). It remains to show that any
+point of Q \ B(Q) is not median. Otherwise, by Proposition 6.2 and since M          c is convex, there
+exists a vertex y ∈  / B(Q) of (M  c ∩ Q) \ B(Q) adjacent to a vertex x of B(Q). Let xy be parallel
+to Ei . Then i (x) coincides with %00i or %0i and i (y) does not belong to the Ei -median [%00i , %0i ].
+Hence the halfspace W (y, x) of G     b is minoritary, contrary to Fw (y) = Fw (x).                   
+                     →
+                     −
+   For a sink v of G , let g(v) be the point of Qv such that for each Θ-class Ei of Qv , i (g(v)) = %0
+if v ∈ Hi0 and i (g(v)) = %00 if v ∈ Hi00 . Note that g(v) is the gate of v in B(Qv ) and g(v) is a
+vertex of Mc. Conversely, let x ∈ M     c and consider the cube Q(x). Since B(Q(x)) is a cell of G,   b
+                                                      0   00
+for each Θ-class Ei of Q(x), we have i (x) ∈ {%i , %i }. Let f (x) be the vertex of Q(x) such that
+f (x) ∈ Hi00 if i (x) = %00i and f (x) ∈ Hi0 otherwise.
+                                        →
+                                        −
+Proposition 6.6. For any v ∈ S( G ), g(v) is the gate of v in M     c and Medw (G). For any x ∈ M   c,
+x = g(f (x)) is the gate of f (x) in M   c and Medw (G).
+                                                             →
+                                                             −
+   Furthermore, for any edge uv of G with u, v ∈ S( G ), either g(u) = g(v) or g(u)g(v) is an
+edge of Mc. Conversely, for any edge xy of M      c, f (x)f (y) is an edge of G.
+
+Proof. By Proposition 6.3 applied to G, Proposition 5.3 applied to b                        G, and the definition of sinks
+    →
+    −                             →
+                                  −
+of G b , g(v) is a sink of G       b , thus g(v) is a median of G          b and G. Since B(Qv ) = Medw (G) ∩ Qv
+is gated and non-empty, the gate of v in Medw (G) belongs to B(Qv ) and thus the gate of v in
+Medw (G) is the gate of v on B(Qv ). Conversely, i (x) ∈                   / {0, 1} for any Ei defining a dimension
+of Q(x), thus there is an Ei -half-edge with origin f (x). Pick now any Ej -edge incident to v such
+that Ej does not define a dimension of Q(x). Without loss of generality, assume that f (x) ∈ Hj0 .
+Then x ∈ Hj0 , yielding w(Hj0 ) ≥ 21 w(P ). By Proposition 6.3, %0j = 1 and thus f (x) is not the
+origin of an Ej -edge or Ej -half-edge. Consequently, Qf (x) = Q(x) by Proposition 6.4 and by
+the definition of f (x) and g(f (x)), we have x = g(f (x)).
+                                                                      →
+                                                                      −
+   Let v 0 v 00 be an Ei -edge between two sinks of G with v 0 ∈ Hi0 and v 00 ∈ Hi00 . Let x0 = g(v 0 )
+and x00 = g(v 00 ) and assume that x0 6= x00 . Let u0 , u00 be the points of v 0 v 00 such that i (u0 ) = %0i
+and i (u00 ) = %00i . Note that u0 and u00 are adjacent vertices of G                         b and that u0 ∈ I b (v 0 , x0 )
+                                                                                                                        G
+and u00 ∈ IGb (v 00 , x00 ). In G,     b x00 is the gate of u00 (and x0 is the gate of u0 ) in M                     c. Since
+dGb (u0 , x0 ) + dGb (x0 , x00 ) = dGb (u0 , x00 ) ≤ dGb (u00 , x00 ) + 1 and dGb (u00 , x00 ) + dGb (x0 , x00 ) = dGb (u00 , x0 ) ≤
+dGb (u0 , x0 ) + 1, we obtain that dGb (x0 , x00 ) ≤ 1.
+   Any edge x0 x00 of M     c is parallel to a Θ-class Ei of G. For any Θ-class Ej of Q(x0 ) (resp. Q(x00 ))
+with j 6= i, Ej is a Θ-class of Q(x00 ) (resp. Q(x0 )) and j (x0 ) = j (x00 ). By their definition, f (x0 )
+
+
+                                                                20
+and f (x00 ) can be separated only by Ei , i.e., dG (f (x0 ), f (x00 )) ≤ 1. Since f is an injection from
+V (Mc) to S(− →
+              G ), necessarily f (x0 ) and f (x00 ) are adjacent.                                       
+                                            →
+                                            −                      →
+                                                                   −                               →
+                                                                                                   −
+   The algorithm computes the set S( G ) of all sinks of G and for each sink v ∈ S( G ), it
+computes                               c and the local coordinates of g(v) in G. The algorithm re-
+       n the gate of− →o
+                        g(v) of v in M
+                                   c) and g(u)g(v) : uv ∈ E and u, v ∈ S(−        →o
+                                            n
+turns g(v) : v ∈ S( G ) as V (M                                                   G ) as E(M  c). Propo-
+sition 6.6 implies that V (M c) and E(M   c) are correctly computed and that M       c contains at most
+n vertices and m edges. Moreover each vertex x of M        c is the gate g(f (x)) of the vertex f (x) of
+Q(x) that has dimension at most deg(f (x)). Hence the size of the description of the vertices of
+M
+c is at most O(m). This finishes the proof of Theorem 6.1.
+
+6.5. Wiener index in G. We describe a linear time algorithm to compute the Wiener index
+of a set of terminals in the `1 -cube complex G of a median graph G. By analogy with graphs,
+the Wiener index in G is the sum of the weighted distances between all pairs of terminals.
+Proposition 6.7. Let G be a median graph with m edges and let P be a finite set of terminals
+of G described by an input of size δ. The Wiener index of P in G can be computed in O(m + δ)
+time.
+Proof. The proof is similar to the proof of Proposition 5.11. Let 0 < 1 < · · · < k < 1 denote
+the Ei -coordinates of the points in P and let 0 = 0 and k+1 = 1. Just like in the proof of
+Proposition 6.3, we have the following chains of inclusions between the halfspaces defined by
+the hyperplanes hi (0 ), hi (1 ), . . . , hi (k ), hi (k+1 ):
+                               Hi00 = Hi00 (0 ) ⊂ Hi00 (1 ) ⊂ · · · ⊂ Hi00 (k )
+and
+                              Hi0 = Hi0 (k+1 ) ⊂ Hi0 (k ) ⊂ · · · ⊂ Hi0 (1 ).
+  Then, similarly to Lemma 5.12, we get the following result:
+Lemma 6.8. Ww (G) = qi=1 kj=0 w(Hi00 (j )) · w(Hi0 (j+1 )) · (j+1 − j ).
+                       P P
+
+  Once the O(δ) hyperplanes are ordered, we can compute the weights of the halfspaces in
+O(m + δ) time and compute the Wiener index of P in G in O(m + δ) time.                
+
+                        7. The median problem in event structures
+  In this section, we consider the median problem in which the median graph is implicitly
+defined as the domain of configurations of an event structure. We show that the problem
+can be solved efficiently in the size of the input. However, if the input consists solely of the
+event structure and the goal is to compute the median of all configurations of the domain,
+then this algorithmic problem is #P-hard. To prove this we provide a direct (polynomial size)
+correspondence between event structures and 2-SAT formulas and use #P-hardness of a similar
+median problem for 2-SAT established in [36].
+
+7.1. Definitions and bijections. We start with the definition of event structures and 2-SAT
+formulas and their bijections with median graphs.
+
+7.1.1. Event structures. Event structures, introduced by Nielsen, Plotkin, and Winskel [58, 77],
+are a widely recognized abstract model of concurrent computation. An event structure is a
+triple E = (E, ≤, #), where
+      • E is a set of events,
+      • ≤⊆ E × E is a partial order of causal dependency,
+      • # ⊆ E × E is a binary, irreflexive, symmetric relation of conflict,
+      • ↓ e := {e0 ∈ E : e0 ≤ e} is finite for any e ∈ E,
+      • e#e0 and e0 ≤ e00 imply e#e00 .
+
+
+                                                       21
+   Two events e0 , e00 are concurrent (notation e0 ke00 ) if they are order-incomparable and they are
+not in conflict. A configuration of an event structure E is any finite subset c ⊂ E of events which
+is conflict-free (e, e0 ∈ c implies that e, e0 are not in conflict) and downward-closed (e ∈ c and
+e0 ≤ e implies that e0 ∈ c). Notice that ∅ is always a configuration and that ↓ e and ↓ e \ {e} are
+configurations for any e ∈ E. The domain of E is the set D(E) of all configurations of E ordered
+by inclusion; (c0 , c) is a (directed) edge of the Hasse diagram of the poset (D(E), ⊆) if and only if
+c = c0 ∪{e} for an event e ∈ E \c. The domain D(E) can be endowed with the Hamming distance
+d(c, c0 ) = |c∆c0 | between any configurations c and c0 . From the following result, the Hamming
+distance coincides with the graph-distance. Barthélemy and Constantin [13] established the
+following bijection between event structures and pointed median graphs:
+Theorem 7.1 ( [13]). The (undirected) Hasse diagram of the domain (D(E), ⊆) of an event
+structure E = (E, ≤, #) is median. Conversely, for any median graph G and any basepoint v of
+G, the pointed median graph Gv is the Hasse diagram of the domain of an event structure Ev .
+   We briefly recall the construction of the event structure Ev . Consider a median graph G and
+an arbitrary basepoint v. The events of the event structure Ev are the hyperplanes of the cube
+complex G (or the Θ-classes of G). Two hyperplanes H and H 0 define concurrent events if and
+only if they cross (i.e., there exist a square with two opposite edges in one Θ-class and other
+two opposite edges in the second Θ-class). The hyperplanes H and H 0 are in relation H ≤ H 0
+if and only if H = H 0 or H separates H 0 from v. Finally, the events defined by H and H 0 are
+in conflict if and only if H and H 0 do not cross and neither separates the other from v.
+Example 7.2. The pointed median graph G described in Fig. 7 is the domain of the event
+structure E = (E, ≤, #). The seven events e1 , . . . , e7 of E correspond to the seven Θ-classes of
+G. The causal dependency is defined by e1 ≤ e3 , e5 , e6 , e7 ; e2 ≤ e4 , e5 , e6 , e7 ; e3 , e4 , e5 ≤ e6 , e7 .
+The events e6 and e7 are in conflict and all remaining pairs of events are concurrent.
+
+
+
+
+                                             e6                        e7
+                                                                  e5
+
+
+
+
+                                             e3                        e4
+
+                                                   e1        e2
+
+
+                 Figure 7. The domain of the event structure from Example 7.2.
+
+   Consequently, event structures encode median graphs and this representation is much more
+compact than the standard one using vertices and edges. For example, the hypercube of dimen-
+sion d is the domain of the event structure with d events that are pairwise concurrent.
+
+7.1.2. The median problem in event structures. Let E = (E, ≤, #) be a finite event structure.
+The input is a set C = {c1 , . . . , ck } of configurations of E and their weights w1 , . . . , wk , where
+each ci is given by the list of events belonging to ci . The goal of the median problem in the event
+structure E is to compute a configuration c minimizing the function Fw (c) = ki=1 wi d(c, ci ),
+                                                                                     P
+where d(c, c0 ) is the Hamming distance between c and c0 . Consider also a special case of this
+median problem, in which C is the set of all configurations of E and the input is the event
+structure E, i.e., the graphs (E, ≤) and (E, #). We call this problem the compact median
+problem.
+
+
+                                                        22
+7.1.3. 2-SAT formulas. A 2-SAT formula on variables x1 , . . . , xn is a formula ϕ in conjunctive
+normal form with two literals per clause, i.e., a set of clauses of the form (u ∨ v), where each
+of the two literals u, v is either a positive literal xi or a negative literal ¬xi . A solution for
+ϕ is an assignment S of variables to 0 or 1 that satisfies all clauses. The solution set S(ϕ) of
+ϕ is the set of all solutions of ϕ. We consider each solution set as a subset of vertices of the
+n-dimensional hypercube Qn . A subset Y of vertices of the hypercube Qn (viewed as a median
+graph) is called median-stable if the median of each triplet x, y, z ∈ Y also belongs to Y .
+Proposition 7.3 ([56, 69]). Median-stable sets are exactly the solution sets of 2-SAT formulas.
+   A variable of a 2-SAT formula ϕ is trivial if it has the same value in each solution. Two
+nontrivial variables xi and xj in ϕ are equivalent if either xi = xj in all solutions or xi = ¬xj
+in all solutions. Here is a characterization of 2-SAT formulas corresponding to median graphs:
+Proposition 7.4 ([36, Corollary 3.34]). The solution set S(ϕ) of a 2-SAT formula ϕ induces
+a median graph if and only if ϕ has no equivalent variables.
+7.2. A direct correspondence between event structures and 2-SAT formulas. We
+provide a canonical correspondence between event structures and 2-SAT formulas (which may
+be useful also for other purposes).
+   By Theorem 7.1 and Propositions 7.3,7.4 there is a bijection between the domains of event
+structures and pointed median graphs and a bijection between (unpointed) median graphs and
+2-SAT formulas not containing equivalent variables. Since ∅ and ↓ e, e ∈ E are configurations,
+their characteristic vectors must be solutions of the associated 2-SAT formula. This can be
+ensured by requiring that the 2-SAT formula does not contain clauses of the form (xi ∨ xj ).
+   Let E = (E, ≤, #) be an event structure with E = {e1 , . . . , en }. We associate to E a 2-SAT
+formula ϕE on n variables x1 , . . . , xn . For each pair of events such that ei ≤ ej we define the
+clause (xi ∨ ¬xj ) and for each pair of events such that ei #ej we assign the clause (¬xi ∨ ¬xj ).
+Next for each subset c of E we denote by Sc its characteristic vector.
+Proposition 7.5. S(ϕE ) coincides with D(E).
+Proof. Let c ⊆ E and c ∈  / D(E), i.e., c is either not downward-closed or not conflict-free. In the
+first case, there exist two events ei and ej such that ei ≤ ej and ej ∈ c, ei ∈    / c. This implies
+that ϕE contains the clause (¬xj ∨ xi ). Since Sc (xj ) = 1 and Sc (xi ) = 0, Sc is not a solution of
+ϕE . In the second case, there exist two events ei , ej ∈ c such that ei #ej . This implies that ϕE
+contains the clause (¬xi ∨ ¬xj ). Since Sc (xi ) = Sc (xj ) = 1, Sc is not a solution of ϕE .
+   Conversely, suppose that Sc is not a solution of ϕE . Recall that ϕE contains only clauses
+of the form (¬xi ∨ xj ) or (¬xi ∨ ¬xj ). If a clause (¬xi ∨ xj ) of ϕE is false, then Sc (xi ) = 1
+and Sc (xj ) = 0. Thus, the events ei and ej are such that ej ≤ ei and ei ∈ c and ej ∈            / c.
+Consequently, c is not a configuration of E. Similarly, if a clause (¬xi ∨ ¬xj ) in ϕE is false, then
+Sc (xi ) = Sc (xj ) = 1. Thus c contains two events ei and ej such that ei #ej , whence c is not a
+configuration. This shows that S(ϕE ) and D(E) coincide.                                            
+   Let ϕ be a 2-SAT formula on variables x1 , . . . , xn not containing trivial and equivalent vari-
+ables and clauses of the form (xi ∨ xj ). We associate to ϕ an event structure Eϕ = (E, ≤, #)
+consisting of a set E = {e1 , . . . , en } and the binary relations ≤ and # defined as follows. First
+we define two binary relations #0 and ≤0 : for ei , ej we set ei #0 ej if and only if ϕ contains the
+clause (¬xi ∨ ¬xj ) and we set ei ≤0 ej if and only if ϕ contains the clause (xi ∨ ¬xj ). Let ≤ be
+the transitive and reflexive closure of ≤0 . Let also # be the relation obtained by setting ej #e`
+for each quadruplet ei , ej , ek , e` ∈ E such that ei ≤ ej , ek ≤ e` , and ei #0 ek . Note that #0 ⊆ #
+and that # satisfies the last axiom of event structures.
+Proposition 7.6. Eϕ = (E, ≤, #) is an event structure and D(Eϕ ) coincides with S(ϕ).
+Proof. In view of previous conclusions, to show that Eϕ is an event structure it remains to prove
+that ≤ is antisymmetric. Suppose by way of contradiction that there exist ei , ej ∈ E such that
+ei ≤ ej and ej ≤ ei . By definition of ≤, there exist e1 , . . . , ep ∈ E and ep+1 , ep+2 , . . . , eq ∈ E
+such that ei ≤0 e1 ≤0 e2 ≤0 · · · ≤0 ep ≤0 ej and ej ≤ ep+1 ≤0 ep+2 ≤0 · · · ≤0 eq ≤0 ei .
+
+
+                                                    23
+Consequently, the formula ϕ contains the clauses (¬xi ∨ x1 ), (¬x1 ∨ x2 ), . . . , (¬xp ∨ xj ), (¬xj ∨
+xp+1 ), . . . , (¬xq ∨ xi ). Thus, the variables x1 , . . . , xq , xi , xj are equivalent, which is impossible
+because ϕ is a 2-SAT formula without trivial and equivalent variables.
+   To prove the second assertion, let c = {e1 , . . . ep } be a subset of E which is not a configuration
+of Eϕ , i.e., either c is not downward-closed or is not conflict-free. First, suppose that c contains
+an event ej such that there is an event ei ∈       / c with ei ≤ ej . Since ≤ is the transitive and
+reflexive closure of ≤0 , there exists a pair of events ek , e` such that e` belongs to c, ek does
+not belong to c and ek ≤0 e` . Thus ϕ contains the clause (¬x` ∨ xk ). Since Sc (x` ) = 1 and
+Sc (xk ) = 0, the assignment Sc is not a solution of ϕ. Therefore, we can suppose now that c is
+downward-closed. Second, suppose that c contains two events ei and ej such that ei #ej . By
+definition of # and #0 , there exists a pair of events ek ≤ ei and e` ≤ ej such that ek #0 e` . Since
+c is downward-closed and contains both ei and ej , necessarily both ek and e` belong to c. Thus,
+Sc (xk ) = Sc (x` ) = 1. But since ek #0 e` , ϕ contains the clause (¬xk ∨ ¬x` ), which is not satisfied
+by Sc . Consequently, if c is not a configuration of E, then Sc is not a solution of ϕ.
+   Conversely, suppose that S is a assignment which is not a solution of ϕ. Let c ⊆ E such that
+Sc = S. Since ϕ does not contain clauses of the form (xi ∨xj ), this implies that ϕ either contains
+a clause (¬xi ∨ xj ) such that Sc (xi ) = 1 and Sc (xj ) = 0, or ϕ contains a clause (¬xi ∨ ¬xj ) such
+that Sc (xi ) = Sc (xj ) = 1. If ϕ contains (¬xi ∨ xj ) with Sc (xi ) = 1 and Sc (xj ) = 0, then ej ≤ ei
+in Eϕ . Consequently, the corresponding subset c of events is not a configuration of Eϕ because
+c contains ei but not ej . If ϕ contains (¬xi ∨ ¬xj ) with Sc (xi ) = Sc (xj ) = 1, then ei #ej and
+again c is not a configuration of Eϕ because c contains two conflicting events ei and ej .                  
+
+7.3. The median problem in event structures. In this subsection we show that the median
+problem in event structures can be solved in linear time in the size of the input. We also show
+that a diametral pair of median configurations can be computed in linear time. On the other
+hand, we show that the compact median problem is hard.
+
+7.3.1. An algorithm for the median problem in event structures. Let E = (E, ≤, #) be an event
+structure with E = {e1 , . . . , en }. Let C = {c1 , . . . , ck } be a set of configurations of E and
+w1 , . . . , wk be their weights. Let c∗ be a subset of E defined by the majority rule in the hypercube
+Qn = {0, 1}E . Namely, c∗ consists of all events ei such that the weight of all configurations of
+C containing eP     i is strictly larger
+                                    P than the total weight of all configurations not containing ei :
+c∗ = {ei ∈ E : j:ei ∈cj wj > j:ei /∈cj wj }. We assert that c∗ is a configuration of E and that c∗
+minimizes the median function Fw (c) = ki=1 wi d(c, ci ). Since D(E) is an isometric subgraph of
+                                               P
+Qn , for each c ∈ D(E), the values of the median function Fw (c) in D(E) and Qn are the same.
+    Since Qn is a median graph, by the majority rule (Proposition 5.3), the median set of Qn is the
+intersection of all majoritary halfspaces of Qn . Each pair Hi0 , Hi00 of complementary halfspaces
+of Qn correspond to an event ei of E: one halfspace Hi0 consists of all c ⊆ E containing ei and its
+complement Hi00 consists of all c ⊆ E not containing ei . If w(Hi0 ) > w(Hi00 ), then Hi0 is majoritary,
+which means that the weight of all configurations of C containing ei is strictly larger than one
+half of the total weight. By definition of c∗ , ei belongs to c∗ , i.e., c∗ (viewed as a characteristic
+vector) is a vertex of Hi0 . Similarly, if w(Hi00 ) > w(Hi0 ), then Hi00 is majoritary, which means
+that the weight of all configurations of C not containing ei is strictly larger than one half. By
+definition of c∗ , ei does not belong to c∗ , i.e., c∗ is a vertex of Hi00 . Consequently, c∗ is a vertex
+of the hypercube Qn minimizing the function Fw (c) = ki=1 wi d(c, ci ) over all c ⊆ E. Since the
+                                                              P
+minimum of this function taken over D(E) cannot be smaller than this minimum, to finish the
+proof it remains to show that c∗ is a configuration of E. Suppose that ei ∈ c∗ and ej ≤ ei . Since
+each configurations of E is downward-closed, all configurations of C containing ei also contain
+ej . Thus the weight of all configurations of C containing ej is strictly larger than the weight
+of all configurations not containing ej , whence ej ∈ c∗ . Now suppose by way of contradiction
+that ei , ej ∈ c∗ and ei #ej . Since ei , ej ∈ c∗ , the weight of all configurations of C containing
+ei is strictly larger than one half of the total weight and the weight of all configurations of C
+containing ej is also strictly larger than one half of the total weight. Therefore, in C we must
+
+
+                                                     24
+find a configuration containing both ei and ej , which is impossible because ei #ej . Consequently,
+we obtain the following result:
+Proposition 7.7. A median configuration c∗ of any set C = {c1 , . . . , ck } of configurations of
+an event structure E can be computed in linear time in the size O( ki=1 |ci |) of the input.
+                                                                  P
+
+Remark 7.8. We mentioned in the Introduction that the space of trees with a fixed set of n
+leaves is a CAT(0) cube complex [17]. The vertices of this complex are the so-called n-trees and
+is was known since 1981 that the set of all n-trees is a median semilattice [50], thus a median
+graph. Let E = {e1 , . . . , en }. An n-tree T is a collection of subsets of E satisfying the following
+conditions: (1) E ∈ T, ∅ ∈      / T , (2) {ei } ∈ T for any ei ∈ E, (3) A ∩ B ∈ {∅, A, B} for any
+A, B ∈ T . Any set A ∈ T is called a cluster. This name is justified by the fact that n-trees are
+exactly the collections of clusters occurring in hierarchical clustering: any two clusters either
+are disjoint or one is contained in another one. Barthélemy and McMorris [14] considered the
+median problem for n-trees, where the input consists of the n-trees T1 , . . . , Tk on E and the goal
+is to compute an n-tree T minimizing ki=1 d(T, Ti ), where d(T, T 0 ) = |T ∆T 0 | is the number of
+                                            P
+clusters in T but not in T 0 plus the number of clusters in T 0 but not in T . Since the space of
+all n-trees is a median semilattice, the authors of [14] deduced that the majority n-tree T ∗ is
+a median n-tree; the majority n-tree T ∗ consists of all clusters included in strictly more than
+one half of the n-trees T1 , . . . , Tk . This can be viewed as another compact formulation of the
+median problem in an implicitly defined median graph, where the input is given by the n-trees
+T1 , . . . , Tk .
+Remark 7.9. Due to the correspondence between event structures and 2-SAT formulas estab-
+lishes in Propositions 7.5 and 7.6, we can define a similar median problem for a set of solutions
+Sc1 , . . . , Sck of the 2-SAT formula ϕE and to search for a solution Sc ∈ S(ϕE ) minimizing
+Pk
+   i=1 wi d(Sc , Sci ). From our bijections we deduce that Sc∗ belongs to S(ϕE ) and therefore is an
+optimal solution.
+7.3.2. Computing a diametral pair of median configurations. We know from [8] that the median
+set of a median graph coincides with the interval between two diametral pairs of its vertices. In
+Proposition 5.9 we gave a different proof of this result and in Corollary 5.8 we showed how to
+find such a diametral pair in linear time. Now we will show how to compute a diametral pair
+{c0∗ , c00∗ } of median configurations in linear time in the size of the input (the description of the
+event structure and of the set of configurations).
+Remark 7.10. Similarly to the median problem in the cube complexes associated to median
+graphs, we cannot explicitly return all median configurations, because one can have an expo-
+nential number of such optimal solutions.
+   For the moment, we will suppose that {c0 , c00 } is a diametral pair of the median set of configu-
+rations (which exists by the result of [8]). Recall also that in the previous subsection we defined
+a canonical median configuration c∗ . Similarly to the classification of Θ-classes of a median
+graph, we can classify the events of E in three classes: an event e ∈ E is called (i) majoritary if
+e belongs to c∗ , (ii) minoritary if the halfspace defined by e and containing c∗ is a minoritary
+halfspace, and (iii) egalitarian if the two halfspaces defined by e have the same weight. We
+denote by E= the set of all egalitarian events. We start with several simple assertions.
+Lemma 7.11. The distance d(c0 , c00 ) between c0 and c00 in the median graph D(E) equals to the
+number of egalitarian events.
+Proof. By Proposition 5.3, no majoritary or minoritary event of E separate two configurations
+of the median set. Therefore, any event corresponding to a Θ-class separating c0 and c00 is
+egalitarian; this establishes that d(c0 , c00 ) is not larger than |E= |. Conversely, we assert that any
+event e ∈ E= separates c0 and c00 . By Proposition 5.3, the two halfspaces defined by e both
+intersect the medians set. If c0 , c00 are not separated by these halfspaces, they necessarily they
+both belong to the same halfspace and some median configuration c belongs to the complemen-
+tary halfspace. Since c ∈ I(c0 , c00 ), we obtain a contradiction with the convexity of halfspaces.
+This proves that any egalitarian event separates c0 and c00 .                                          
+
+
+                                                   25
+Lemma 7.12. The median configuration c∗ is the gate of the empty configuration c∅ = ∅ in
+the interval I(c0 , c00 ). In particular, c∗ is the median of the triplet c∅ , c0 , and c00 .
+Proof. Suppose by way of contradiction that c 6= c∗ is the gate of c∅ in I(c0 , c00 ). This implies that
+c ∈ I(c∅ , c∗ ), i.e., c∗ is the union of c and the events separating c and c∗ . Since c, c∗ ∈ I(c0 , c00 ),
+by Lemma 7.11 any event separating c and c∗ is an egalitarian event. This contradicts the
+definition of c∗ : by its definition, c∗ contains only majoritary events.                                
+
+   By Lemma 7.12, c∗ ∈ I(c∅ , c0 ) ∩ I(c∅ , c00 ) and we conclude that c0 = c∗ ∪ A and c00 = c∗ ∪ B,
+where A and B are sets of egalitarian events. By Lemma 7.11, d(c0 , c00 ) = |E= | and since it
+coincides with the Hamming distance |c0 ∆c00 | = |A∆B|, the sets A and B must constitute a
+partition of E= . Since c0 = c∗ ∪ A and c00 = c∗ ∪ B are configurations, we conclude that the
+sets c∗ ∪ A, c∗ ∪ B are conflict-free and downward-closed. Therefore, the events of c∗ are not in
+conflict with the events of E= = A ∪ B.
+   On the set E= we define the following binary relation R0 : for e1 , e2 ∈ E= we set e1 R0 e2
+if e1 ≤ e2 or e2 ≤ e1 . Let R be the transitive closure of the relation R0 . Observe that the
+equivalence classes of R are the connected components of the graph obtained by forgetting the
+orientation of the Hasse diagram of (E= , ≤). Now define the following conflict graph Γ: the
+vertices of Γ are the equivalence classes of R and two such classes C 0 and C 00 are linked by an
+edge in Γ if and only if there exists an event e0 ∈ C 0 and an event e00 ∈ C 00 such that e0 #e00 .
+Lemma 7.13. Any equivalence class C of the relation R is conflict-free. Consequently, the
+conflict graph Γ is bipartite.
+Proof. Let A, B be a bipartition of E= such that c0 = c∗ ∪ A, c00 = c∗ ∪ B is a diametral pair of
+median configurations (that c0 , c00 have such a representation follows from the discussion after
+Lemma 7.12). Since the sets A and B are conflict-free, it suffices to prove that C is contained
+in A or in B.
+   Suppose by way of contradiction that there exists e ∈ A ∩ C and e0 ∈ B ∩ C. By
+the definition of R0 , there exist events e = e0 , e1 , . . . , ep , ep+1 = e0 ∈ E= such that
+(e0 , e1 ), (e1 , e2 ), . . . , (ep−1 , ep ), (ep , ep+1 ) ∈ R0 . Since A, B is a partition of E= , there exists
+(ej−1 , ej ) ∈ R0 such that ej−1 ∈ A \ B and ej ∈ B \ A. Since (ej−1 , ej ) ∈ R0 , either ej−1 ≤ ej
+or ej ≤ ej−1 . Without loss of generality, assume the first. Consequently, since c00 = c∗ ∪ B is
+downward-closed and contains ej , necessarily ej−1 belongs to c00 . Since ej−1 is egalitarian and
+all events in c∗ are majoritary, necessarily ej−1 ∈ B, a contradiction. Therefore, any equivalence
+class of R is contained in A or in B. Since A and B are conflict-free, any edge of the conflict
+graph Γ must run between A and B. Therefore, the equivalent classes of R included in A and
+those included in B define a bipartition of Γ into two independent sets.                                      
+Lemma 7.14. For the partition A∗ , B∗ of E= induced by any bipartition Q0∗ , Q00∗ of Γ into two
+independent sets, c0∗ = c∗ ∪ A∗ and c00∗ = c∗ ∪ B∗ is a diametral pair of median configurations.
+Proof. Let A∗ be the union of all equivalence classes of R contained in Q0∗ and let B∗ be the
+union of all equivalence classes of R contained in Q00∗ . We assert that c0∗ = c∗ ∪A∗ and c00∗ = c∗ ∪B∗
+are configurations of E. We prove this assertion for c0∗ . Since by Lemma 7.13 each equivalence
+class of R is conflict-free and since Q0∗ is an independent set of Γ, the set A∗ is necessarily
+conflict-free. As we noticed above, no event of c∗ and of E= are in conflict. Consequently, the
+set c0∗ = c∗ ∪ A∗ is conflict-free.
+   Now we show that c0∗ = c∗ ∪ A∗ is downward-closed. Pick any event e ∈ c0∗ and any event
+e0 ≤ e. If e ∈ c∗ , then e0 ∈ c∗ because we proved that c∗ is a configuration. Now suppose that
+e ∈ A∗ . Suppose by way of contradiction that e0 ∈    / c0∗ = c∗ ∪ A∗ , i.e., either e0 is minoritary or
+e is egalitarian but belongs to B∗ . Since any configuration containing e also contains e0 , the
+ 0
+
+total weight of the configurations containing e0 is at least the total weight of the configurations
+containing e. Since e is egalitarian, either e0 is majoritary or e0 is egalitarian. In the first case,
+e0 ∈ c∗ by the definition of c∗ . In the second case, e and e0 belong to the same equivalence class
+of R and thus they both belong to A∗ or they both belong to B∗ .
+
+
+                                                      26
+     Consequently, c0∗ = c∗ ∪ A∗ and c00∗ = c∗ ∪ B∗ are configurations of E. We assert that both c0∗
+and c00∗ are median configurations. Clearly, both c0∗ and c00∗ are contained in all halfspaces He0 for
+all majoritary events e ∈ c∗ . On the other hand, c0∗ and c00∗ are contained in the halfspaces He00 for
+all minoritary events e. Since in both cases those halfspaces have weight strictly larger than one
+half of the total weight, c0∗ and c00∗ belong to all majoritary halfspaces, thus by Proposition 5.3
+they are median configurations. Finally, since d(c0∗ , c00∗ ) = |A∗ ∪ B∗ | = |E= |, we conclude that
+c0∗ , c00∗ is a diametral pair of the set of median configurations.                                  
+   From previous results, we obtain the following linear time algorithm for computing a diametral
+pair c0∗ , c00∗ of median configurations. First we compute the set Emaj of majoritary events and
+the set E= of egalitarian events. This can be done in total O( ki=1 |ci |) time by traversing the
+                                                                        P
+lists of events describing the set of configurations c1 , . . . , ck . Next, compute the binary relation
+R0 and its reflexive and transitive closure R. As noticed above, this can be done by computing
+the connected components of the subgraph induced by E= of the Hasse diagram of ≤ where we
+forget the orientation. This can be done in linear time in the size of (E, ≤). To compute the
+graph Γ, one just need to consider the conflict graph (E, #) and for any e1 , e2 ∈ E= such that
+e1 #e2 , we add an edge between the equivalence classes of e1 and e2 . This can be done in linear
+time in the size of (E, #) and the size of the graph Γ is linear in the size of E.
+Proposition 7.15. A diametral pair c0∗ = c∗ ∪ A∗ , c00∗ = c∗ ∪ B∗ of median configurations of
+any set C = {c1 , . . . , ck } of configurations of an event structure E can be computed in O(|E| +
+Pk
+  i=1 |ci |) time.
+
+7.3.3. The compact median problem is #P-hard. An analogue of compact median problem for
+2-SAT formulas was already studied by Feder [36], who proved the following result:
+Proposition 7.16 ([36, Lemma 3.54]). For a 2-SAT formula ϕ without trivial and equivalent
+variables, the problem of finding the median of the median graph S(ϕ) is #P-hard.
+   The literals of any satisfiable 2-SAT formula ϕ can be renamed to transform ϕ into an
+equivalent formula not containing clauses (xi ∨ xj ). Thus Proposition 7.16 holds for 2-SAT
+formulas without trivial and equivalent variables and clauses (xi ∨ xj ). Since the size of the
+event structure Eϕ in Proposition 7.6 is quadratic in the size of the 2-SAT formula ϕ, we obtain
+the following result from Propositions 7.6, 7.16, and Remark 7.9:
+Proposition 7.17. The compact median problem in an event structure E is #P-hard.
+Acknowledgements. We would like to thank Florent Capelli, Nadia Creignou, and Yann
+Strozecki for providing us with the proof of Proposition 7.16 much before we discovered this
+result in [36]. The work on this paper was supported by ANR project DISTANCIA (ANR-17-
+CE40-0015).
+
+                                                References
+ 1. A. Abboud, F. Grandoni, and V. Vassilevska Williams, Subcubic equivalences between graph centrality prob-
+    lems, APSP and diameter, SODA 2015, SIAM, 2015, pp. 1681–1697.
+ 2. A. Abboud, V. Vassilevska Williams, and J. R. Wang, Approximation and fixed parameter subquadratic
+    algorithms for radius and diameter in sparse graphs, SODA 2016, SIAM, 2016, pp. 377–391.
+ 3. F. Ardila, M. Owen, and S. Sullivant, Geodesics in CAT(0) cubical complexes, Adv. in Appl. Math. 48 (2012),
+    no. 1, 142–163.
+ 4. S. P. Avann, Metric ternary distributive semi-lattices, Proc. Amer. Math. Soc. 12 (1961), no. 3, 407–414.
+ 5. M. Bacák, Computing medians and means in Hadamard spaces, SIAM Journal on Optimization 24 (2014),
+    no. 3, 1542–1566.
+ 6. C. Bajaj, The algebraic degree of geometric optimization problems, Discrete Comput. Geom. 3 (1988), no. 2,
+    177–191. MR 920702
+ 7. K. Balakrishnan, B. Brešar, M. Changat, S. Klavžar, M. Kovše, and A. R. Subhamathi, Computing median
+    and antimedian sets in median graphs, Algorithmica 57 (2010), no. 2, 207–216.
+ 8. H.-J. Bandelt and J.-P. Barthélémy, Medians in median graphs, Discrete Appl. Math. 8 (1984), no. 2, 131–142.
+ 9. H.-J. Bandelt and V. Chepoi, Graphs with connected medians, SIAM J. Discrete Math. 15 (2002), no. 2,
+    268–282. MR 1920186
+
+
+
+                                                       27
+10.         , Metric graph theory and geometry: a survey, Surveys on Discrete and Computational Geometry:
+    Twenty Years Later (J. E. Goodman, J. Pach, and R. Pollack, eds.), Contemp. Math., vol. 453, Amer. Math.
+    Soc., Providence, RI, 2008, pp. 49–86.
+11. H.-J. Bandelt, V. Chepoi, A. W. M. Dress, and J. H. Koolen, Combinatorics of lopsided sets, European J.
+    Combin. 27 (2006), no. 5, 669–689.
+12. H.-J. Bandelt, P. Forster, and A. Röhl, Median-joining networks for inferring intraspecific phylogenies, Mol.
+    Biol. Evol. 16 (1999), no. 1, 37–48.
+13. J.-P. Barthélemy and J. Constantin, Median graphs, parallelism and posets, Discrete Math. 111 (1993),
+    no. 1-3, 49–63, Graph Theory and Combinatorics (Marseille-Luminy, 1990).
+14. J.-P. Barthélemy and F. R. McMorris, The median procedure for n-trees, J. Classification 3 (1986), 329–334.
+15. A. Bavelas, Communication patterns in taskoriented groups, J. Acoust. Soc. Am. 22 (1950), no. 6, 725–730.
+16. M. A. Beauchamp, An improved index of centrality, Behavorial Science 10 (1965), 161–163.
+17. L. J. Billera, S. P. Holmes, and K. Vogtmann, Geometry of the space of phylogenetic trees, Adv. in Appl.
+    Math. 27 (2001), no. 4, 733–767.
+18. G. Birkhoff and S. A. Kiss, A ternary operation in distributive lattices, Bull. Amer. Math. Soc. 53 (1947),
+    749–752. MR 21540
+19. B. Brešar, J. Chalopin, V. Chepoi, T. Gologranc, and D. Osajda, Bucolic complexes, Adv. Math. 243 (2013),
+    127–167.
+20. S. Cabello, Subquadratic algorithms for the diameter and the sum of pairwise distances in planar graphs,
+    ACM Trans. Algorithms 15 (2019), no. 2, 21:1–21:38.
+21. J. Chalopin and V. Chepoi, A counterexample to Thiagarajan’s conjecture on regular event structures, ICALP
+    2017, LIPIcs, vol. 80, Schloss Dagstuhl - Leibniz-Zentrum für Informatik, 2017, pp. 101:1–101:14.
+22.         , 1-safe Petri nets and special cube complexes: Equivalence and applications, ACM Trans. Comput.
+    Log. 20 (2019), no. 3, 17:1–17:49.
+23. J. Chalopin, V. Chepoi, H. Hirai, and D. Osajda, Weakly modular graphs and nonpositive curvature, Mem.
+    Amer. Math. Soc. (2017), To appear.
+24. V. Chepoi, Classification of graphs by means of metric triangles, Metody Diskret. Analiz. (1989), no. 49,
+    75–93, 96 (Russian).
+25.         , On distance-preserving and domination elimination orderings, SIAM J. Discrete Math. 11 (1998),
+    no. 3, 414–436.
+26.         , Graphs of some CAT(0) complexes, Adv. in Appl. Math. 24 (2000), no. 2, 125–179.
+27.         , Nice labeling problem for event structures: a counterexample, SIAM J. Comput. 41 (2012), no. 4,
+    715–727.
+28. V. Chepoi and S. Klavžar, The Wiener index and the Szeged index of benzenoid systems in linear time,
+    Journal of Chemical Information and Computer Sciences 37 (1997), 752–755.
+29. M. B. Cohen, Y. T. Lee, G. L. Miller, J. Pachocki, and A. Sidford, Geometric median in nearly linear time,
+    STOC 2016, ACM, 2016, pp. 9–21.
+30. T. H. Cormen, C. E. Leiserson, R. L. Rivest, and C. Stein, Introduction to algorithms, 3rd ed., MIT Press,
+    2009.
+31. D. G. Corneil, Lexicographic breadth first search – A survey, WG 2004, Lecture Notes in Comput. Sci., vol.
+    3353, Springer, 2004, pp. 1–19.
+32. D. Ž. Djoković, Distance-preserving subgraphs of hypercubes, J. Combin. Theory Ser. B 14 (1973), no. 3,
+    263–267.
+33. C. Dwork, R. Kumar, M. Naor, and D. Sivakumar, Rank aggregation methods for the web, WWW 2001,
+    ACM, 2001, pp. 613–622.
+34. David Eppstein, Recognizing partial cubes in quadratic time, J. Graph Algorithms Appl. 15 (2011), no. 2,
+    269–293.
+35. D. B. A. Epstein, J. W. Cannon, D. F. Holt, S. V. F. Levy, M. S. Paterson, and W. P. Thurston, Word
+    processing in groups, Jones and Bartlett, Boston, MA, 1992.
+36. T. Feder, Stable networks and product graphs, Memoirs Amer. Math. Society 116 (1995), no. 3.
+37. A. J. Goldman and C. J. Witzgall, A localization theorem for optimal facility placement, Transp. Sci. 4 (1970),
+    no. 4, 406–409.
+38. M. Gromov, Hyperbolic groups, Essays in Group Theory (S. M. Gersten, ed.), Math. Sci. Res. Inst. Publ.,
+    vol. 8, Springer, New York, 1987, pp. 75–263.
+39. J. Hagauer, W. Imrich, and S. Klavžar, Recognizing median graphs in subquadratic time, Theoret. Comput.
+    Sci. 215 (1999), no. 1-2, 123–136.
+40. S. L. Hakimi, Optimum locations of switching centers and the absolute centers and medians of a graph, Oper.
+    Res. 12 (1964), no. 3, 450–459.
+41. R. Hammack, W. Imrich, and S. Klavšar, Handbook of product graphs, 2nd ed., Discrete Math. Appl., CRC
+    press, Boca Raton, 2011.
+42. K. Hayashi, A polynomial time algorithm to compute geodesics in CAT(0) cubical complexes, Discrete Com-
+    put. Geom. (to appear) (2019).
+43. C. Jordan, Sur les assemblages de lignes, J. Reine Angew. Math. 70 (1869), 185–190. MR 1579443
+
+
+
+                                                        28
+44. J. G. Kemeny, Mathematics without numbers, Daedalus 88 (1959), no. 4, 577–591.
+45. J. G. Kemeny and J. L. Snell, Mathematical models in the social sciences, MIT Press, Cambridge, Mass.-
+    London, 1978, Reprint of the 1962 original. MR 519512
+46. S. Klavžar, Applications of isometric embeddings to chemical graphs, Discrete Mathematical Chemistry, DI-
+    MACS Series in Discrete Mathematics and Theoretical Computer Science, vol. 51, DIMACS/AMS, 1998,
+    pp. 249–259.
+47. S. Klavžar and H. M. Mulder, Median graphs: Characterizations, location theory and related structures, J.
+    Combin. Math. Combin. Comput. 30 (1999), 103–127.
+48. D. E. Knuth, The art of computer programming, volume 4a, fascicle 0: Introduction to combinatorial algo-
+    rithms and boolean functions, Addison-Wesley, 2008.
+49. R. F. Love, J. G. Morris, and G. O. Wesolowsky, Facilities location: Models and methods, Publ. Oper. Res.
+    Ser., vol. 7, North Holland, Amsterdam, 1988.
+50. T. Margush and F. R. McMorris, Consensus n-trees, Bull. Math. Biol. 43 (1981), 239–244.
+51. F. R. McMorris, H. M. Mulder, and F. S. Roberts, The median procedure on median graphs, Discrete Appl.
+    Math. 84 (1998), no. 1-3, 165–181.
+52. B. Mohar and T. Pisanski, How to compute the Wiener index of a graph, J. Math. Chem. 2 (1988), no. 3,
+    267–277. MR 966088
+53. H. M. Mulder, The interval function of a graph, Mathematical Centre tracts, vol. 132, Mathematisch Centrum,
+    Amsterdam, 1980.
+54.         , The expansion procedure for graphs, Contemporary methods in graph theory, Bibliographisches Inst.,
+    Mannheim, 1990, pp. 459–477.
+55. H. M. Mulder and B. Novick, A tight axiomatization of the median procedure on median graphs, Discrete
+    Appl. Math. 161 (2013), no. 6, 838–846. MR 3027973
+56. H. M. Mulder and A. Schrijver, Median graphs and Helly hypergraphs, Discrete Math. 25 (1979), no. 1, 41–50.
+    MR 522746
+57. L. Nebeský, Median graphs, Comment. Math. Univ. Carolinae 12 (1971), 317–325. MR 286705
+58. M. Nielsen, G. D. Plotkin, and G. Winskel, Petri nets, event structures and domains, part I, Theoret. Comput.
+    Sci. 13 (1981), no. 1, 85–108.
+59. L. M. Ostresh, On the convergence of a class of iterative methods for solving the Weber location problem,
+    Oper. Res. 26 (1978), no. 4, 597–609. MR 496728
+60. M. Owen and J. S. Provan, A fast algorithm for computing geodesic distances in tree space, IEEE/ACM
+    Trans. Comput. Biology Bioinform. 8 (2011), no. 1, 2–13.
+61. C. Puppe and A. Slinko, Condorcet domains, median graphs and the single-crossing property, Econom. Theory
+    67 (2019), no. 1, 285–318. MR 3905426
+62. M. Roller, Poc sets, median algebras and group actions, Tech. report, Univ. of Southampton, 1998.
+63. D. J. Rose, R. E. Tarjan, and G. S. Lueker, Algorithmic aspects of vertex elimination on graphs, SIAM J.
+    Comput. 5 (1976), no. 2, 266–283. MR 408312
+64. B. Rozoy and P. S. Thiagarajan, Event structures and trace monoids, Theoret. Comput. Sci. 91 (1991), no. 2,
+    285–313.
+65. G. Sabidussi, The centrality index of a graph, Psychometrika 31 (1966), no. 4, 581–603.
+66. M. Sageev, Ends of group pairs and non-positively curved cube complexes, Proc. London Math. Soc. s3-71
+    (1995), no. 3, 585–617.
+67.         , CAT(0) cube complexes and groups, Geometric Group Theory (M. Bestvina, M. Sageev, and K. Vogt-
+    mann, eds.), IAS/Park City Math. Ser., vol. 21, Amer. Math. Soc., Inst. Adv. Study, 2012, pp. 6–53.
+68. T. J. Schaefer, The complexity of satisfiability problems, STOC 1978, ACM, 1978, pp. 216–226.
+69.         , The complexity of satisfiability problems, STOC 1978, ACM, 1978, pp. 216–226.
+70. P. S. Soltan and V. D. Chepoı̆, Solution of the Weber problem for discrete median metric spaces, Trudy
+    Tbiliss. Mat. Inst. Razmadze Akad. Nauk Gruzin. SSR 85 (1987), 52–76. MR 1042948
+71. B. C. Tansel, R. L. Francis, and T. J. Lowe, Location on networks: A survey. Part I: The p-center and
+    p-median problems, Manag. Sci. 29 (1983), no. 4, 482–497.
+72. P. S. Thiagarajan, Regular event structures and finite Petri nets: A conjecture, Formal and Natural Com-
+    puting, Lecture Notes in Comput. Sci., vol. 2300, Springer, 2002, pp. 244–256.
+73. P. S. Thiagarajan and S. Yang, Rabin’s theorem in the concurrency setting: a conjecture, Theoret. Comput.
+    Sci. 546 (2014), 225–236.
+74. M. van de Vel, Theory of convex structures, North-Holland Math. Library, vol. 50, North-Holland Publishing
+    Co., 1993.
+75. E. Weiszfeld, Sur le point pour lequel la somme des distances de n points donnés est minimum, Tohoku Math.
+    J. 43 (1937), 355–386, (English transl.: Ann. Oper. Res., 167:7–41, 2009).
+76. H. Wiener, Structural determination of paraffin boiling points, J. Am. Chem. Soc. 69 (1947), no. 1, 17–20.
+77. G. Winskel, Events in computation, Ph.D. thesis, Edinburgh University, 1980.
+78. D. R. Wood, On the maximum number of cliques in a graph, Graphs Combin. 23 (2007), no. 3, 337–352.
+    MR 2320588
+
+
+
+
+                                                       29
+79. A. A. Zykov, On some properties of linear complexes, Mat. Sb. (N.S.) 24(66) (1949), no. 2, 163–188, (English
+    transl.: Amer. Math. Soc. Transl. 79, 1952). MR 0035428
+
+                               Appendix A. Proofs from Section 3
+   We present the proofs of all auxiliary results from Section 3. Some of those results are well
+known to the people working in metric graph theory, other results were also known to us, but
+it is difficult to give the references first presenting them.
+Proof of Lemma 3.1. Let x be the median of the triplet u, v, w. Then x must be adjacent to
+v, w and must have distance k −1 to u. If there exists yet another such vertex x0 , then the triplet
+u, v, w will have two medians (or alternatively, the vertices z, v, w, x, x0 will define a K2,3 ). 
+Proof of Lemma 3.2. Pick any three squares xutv, utwy, and vtwz of G, pairwise intersecting
+in three edges and all three intersecting in a single vertex. Since G is bipartite and K2,3 -free,
+d(x, w) = d(y, v) = d(z, u) = 3 and d(x, y) = d(y, z) = d(z, x) = 2. Therefore, the median of
+vertices x, y, z is a new vertex r adjacent to x, y, and z and having distance 3 to t. Consequently,
+the 8 vertices induce an isometric 3-cube of G.                                                   
+Proof of Lemma 3.3. That gated sets S are convex holds for all graphs (and metric spaces).
+Indeed, pick x, y ∈ S and any z ∈ I(x, y). Let z 0 be the gate of z in S. Then z 0 ∈ I(z, x)∩I(z, y).
+Since z ∈ I(x, y) this is possible only if z 0 = z, i.e., z ∈ S. Conversely, let S be a convex subgraph
+of a median graph G and pick any vertex x ∈        / S. Let v be a closest to x vertex of S. Pick any
+vertex y ∈ S and let u be the median of the triplet x, y, v. Since u ∈ I(y, v) and S is convex,
+we deduce that u ∈ S. Since u ∈ I(x, v), from the choice of v we have u = v. Thus v ∈ I(x, y),
+i.e., v is the gate of x in S.                                                                        
+   The convexity of halfspaces of median graphs and of their boundaries was first established
+in [53]. We give a different and shorter proof of this result.
+Proof of Lemma 3.4. For an edge uv of a median graph G, recall that W (u, v) = {x ∈ V :
+d(u, x) < d(v, x)} and W (v, u) = {x ∈ V : d(v, x) < d(u, x)}. We assert that W (u, v) and
+W (v, u) are convex. We use the local characterization of convexity of median graphs (and more
+general classes of graphs, see [24]): a connected subgraph H of a median graph G is convex
+if and only if I(x, y) ⊆ H for any two vertices x, y of H with dH (x, y) = 2. Since both sets
+W (u, v) and W (v, u) induce connected subgraphs, we can use this result. Pick x, y ∈ W (u, v)
+such that x and y have a common neighbor z in W (u, v). Suppose by way of contradiction that
+there exists a vertex t ∼ x, y belonging to W (v, u). Then d(u, x) = d(u, y) = d(v, t) = k and
+d(v, x) = d(v, y) = d(u, t) = k + 1. Since G is bipartite, d(u, z) is either k − 1 or k + 1. If
+d(u, z) = k + 1, by the quadrangle condition we will find a vertex s ∼ x, y at distance k − 1
+from u. But then the vertices x, y, z, s, t induce a forbidden K2,3 . Thus d(u, z) = k − 1, i.e.,
+d(v, z) = k. Therefore z, t ∈ I(x, v), x ∼ z, t, and by the quadrangle condition there exists a
+vertex r ∼ t, z with d(r, v) = k − 1. But then again x, y, z, t, r induce a forbidden K2,3 . This
+contradiction establishes that for each edge uv of G, W (u, v) and W (v, u) induce convex and
+thus gated subgraphs of G.
+   Next, define another binary relation Ψ on edges of G: for two edges uv and xy we write
+uvΨxy if and only if x ∈ W (u, v) and y ∈ W (v, u). It can be easily seen that the relation Ψ is
+reflexive and symmetric. Next we will prove that Ψ is transitive and that Ψ and Θ coincide. For
+transitivity of Ψ it suffices to show that if uvΨxy, then W (u, v) = W (x, y). Suppose by way of
+contradiction that there exists a vertex z ∈ W (u, v) \ W (x, y). This implies that z ∈ W (y, x),
+i.e., y ∈ I(x, z). Since x, z ∈ W (u, v) and y ∈ W (v, u), this contradicts the convexity of W (u, v).
+Consequently, Ψ is an equivalence relation.
+   To conclude the proof of the lemma it remains to show that Θ = Ψ. It is obvious that
+Θ0 ⊆ Ψ. Since Θ is the transitive closure of Θ0 , we conclude that Θ ⊆ Ψ. To show the converse
+inclusion Ψ ⊆ Θ, pick any two edges uv and xy with uvΨxy. We proceed by induction on
+k = d(u, x) = d(v, y). Let x0 be a neighbor of x in I(x, u) ⊆ W (u, v). Then d(x0 , v) = d(y, v) = k
+and d(x, v) = k+1. By the quadrangle condition, there exists a vertex y 0 ∼ x0 , y at distance k−1
+
+
+                                                      30
+from v. Since y 0 ∈ I(y, v) ⊆ W (v, u), we conclude that uvΨx0 y 0 . Since d(u, x0 ) = d(v, y 0 ) = k−1,
+by induction hypothesis uvΘx0 y 0 . Since x0 y 0 and xy are opposite edges of a square, x0 y 0 Θ0 xy,
+yielding uvΘxy. This finishes the proof of Lemma 3.4.                                                 
+Proof of Lemma 3.6. Let S be a convex set of G and let S 0 be the intersection of all halfspaces
+containing S. If S is a proper subset of S 0 , since S 0 is convex, we can find two adjacent vertices
+u ∈ S and v ∈ S 0 \ S. Let uv ∈ Ei , say u ∈ Hi0 and v ∈ Hi00 . From Lemma 3.4 it follows that
+Hi0 = W (u, v) and Hi00 = W (v, u). Since G is bipartite and S is convex, all vertices of S must be
+closer to u than to v. Consequently, S ⊂ W (u, v) = Hi0 . Since v ∈  / Hi0 , we obtain a contradiction
+                         0
+with the definition of S .                                                                           
+Proof of Lemma 3.7. One direction is trivial. Consider now a vertex v and neighbors v1 , . . . , vk
+of v such that for all distinct 1 ≤ i, j ≤ k, the respective Θ-classes Ei and Ej of vvi and vvj
+are crossing. Since all cubes of G are locally convex, they are convex and gated, if we prove
+that v and any subset of k 0 neighbors of v belong to a cube of dimension k 0 , then this k 0 -cube
+is unique.
+    We show by induction on k that there exists a cube Q containing v, v1 , v2 , . . . , vk . If k = 2,
+without loss of generality, assume that v ∈ H100 ∩ H200 . Since E1 and E2 are crossing, there
+exists u ∈ H10 ∩ H20 . Observe that v1 and v2 are respectively the gates of v on Hi0 and Hj0 .
+Consequently, d(u, v1 ) = d(u, v2 ) = d(u, v) − 1 and by the quadrangle condition, there exists
+v 0 ∼ v1 , v2 . Therefore there is a square vv1 v 0 v2 , establishing the claim.
+    Suppose now that the assertion holds for any k 0 < k. By applying the lemma when k = 2 to
+v1 , vi , for any 1 < i ≤ k, we know that there exists ui ∼ v1 , vi . By induction hypothesis, there
+exists a unique (k − 1)-cube R0 containing v, v2 , . . . , vk and a unique (k − 1)-cube R00 containing
+v1 , u2 , . . . , uk . We assert that R0 ∪ R00 is a k-cube of G. For any vertex vi , i = 2, . . . k, since
+ui is a neighbor of vi , by induction hypothesis, there exists a cube containing ui and the k − 2
+neighbors of vi in R0 distinct from v. This implies that there exists an isomorphism between
+the facet of R00 containing ui and not v1 and the facet of R0 containing vi and not containing
+v. Since R0 and R00 are convex, this defines an isomorphism between R0 and R00 which maps
+vertices of R0 to their neighbors in R00 . Hence R0 ∪ R00 defines a k-cube of G, finishing the proof
+of Lemma 3.7.                                                                                           
+Proof of Lemma 3.8. The last argument of the proof of Lemma 3.4 implies that the boundaries
+∂Hi0 , ∂Hi00 are connected subgraphs of G. Thus it suffices to show that they are locally convex.
+Pick x0 , y 0 ∈ ∂Hi0 having a common neighbor z 0 ∈ ∂Hi0 . Let x00 , y 00 , z 00 be the neighbors of
+respectively x0 , y 0 , z 0 in ∂Hi00 (they are unique because Hi00 is gated). Pick any common neighbor
+t of x0 , y 0 different from z 0 . Since Hi0 is convex, t belongs to Hi0 . By the cube condition, there
+exists a vertex s adjacent to t, x00 , y 00 . But then obviously s ∈ Hi00 , whence t ∈ ∂Hi0 .
+   Since ∂Hi0 , ∂Hi00 are convex, any vertex of ∂Hi0 is adjacent to exactly one vertex of ∂Hi00 and,
+vice versa, any vertex of ∂Hi00 is adjacent to exactly one vertex of ∂Hi0 . This defines a bijection
+between ∂Hi0 and ∂Hi00 . Now, if u0 , v 0 ∈ ∂Hi0 are adjacent to u00 , v 00 ∈ ∂Hi00 , respectively, and
+u0 and v 0 are adjacent, then u00 and v 00 also must be adjacent. Indeed, since G is bipartite, if
+u00  v 00 , then d(u00 , v 00 ) = 3 and u0 , v 0 belong to I(u00 , v 00 ), contrary to the convexity of ∂Hi00 .
+This shows that ∂Hi0 and ∂Hi00 are isomorphic subgraphs of G.                                               
+Proof of Lemma 3.9. We have to prove that any furthest from the basepoint v0 halfspace Hi0 of
+G is peripheral. Let x be the gate of v0 in Hi0 . Then x ∈ ∂Hi0 and d(v0 , x) = d(v0 , Hi0 ). Suppose
+by way of contradiction that the boundary ∂Hi0 is a proper subset of Hi0 and let v be a closest
+to v0 vertex in Hi0 \ ∂Hi0 which is adjacent to a vertex u of ∂Hi0 (such a vertex exists because
+Hi0 is convex and thus connected). Let Ej be the Θ-class of the edge uv. Since u is the gate of
+v in ∂Hi0 , u ∈ I(x, v). Since x ∈ I(v0 , v), we conclude that there exists a shortest (v0 , v)-path
+P (v0 , v) passing via x and u. Consequently, v0 , u ∈ Hj00 and v ∈ Hj0 .
+   Let y be the gate of v0 in Hj0 . Clearly, y ∈ ∂Hj0 and d(v0 , y) = d(v0 , Hj0 ). From the choice
+of Hi0 as a furthest from v0 halfspace, d(v0 , y) ≤ d(v0 , x). Since x is the gate of v0 in Hi0 , this
+implies that y cannot be located in Hi0 . Therefore y belongs to Hi00 . Let z be the gate of y in Hi0
+(and ∂Hi0 ) and note that z ∈ I(y, v). Since u is the gate of v in ∂Hi0 , we also have u ∈ I(v, z).
+
+
+                                                      31
+Consequently, u ∈ I(v, y) and belongs to Hj0 since Hj0 is convex, which is impossible. This shows
+that Hi0 is peripheral and finishes the proof of Lemma 3.9.                                    
+Proof of Lemma 3.10. To prove the downward cube property, pick any vertex v and let
+u1 , . . . , ud be the parents of v, i.e., the neighbors of v in I(v0 , v). By the quadrangle condi-
+tion, for any distinct ui , uj , 1 ≤ i, j ≤ d, there exists a vertex ui,j ∼ ui , uj . This shows that the
+Θ-classes of vui and vuj are crossing. By Lemma 3.7, this implies that v, u1 , . . . , ud belong to
+a unique cube.                                                                                         
+
+  Laboratoire d’Informatique et Systèmes, Aix-Marseille Université and CNRS
+  E-mail address: laurine.beneteau@lis-lab.fr
+
+  Laboratoire d’Informatique et Systèmes, Aix-Marseille Université and CNRS
+  E-mail address: jeremie.chalopin@lis-lab.fr
+
+  Laboratoire d’Informatique et Systèmes, Aix-Marseille Université and CNRS
+  E-mail address: victor.chepoi@lis-lab.fr
+
+  Laboratoire d’Informatique et Systèmes, Aix-Marseille Université and CNRS
+  E-mail address: yann.vaxes@lis-lab.fr
+
+
+
+
+                                                   32
+

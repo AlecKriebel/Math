@@ -1,0 +1,311 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ecc}{\operatorname{ecc}}
+\title{Multiplicatively Weighted Centers of Median Graphs\\
+in Quasilinear Time}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 14, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We record a short reduction from multiplicatively weighted center thresholds
+to additively weighted eccentricities on a graph with bounded integral
+distances. Combining it with the algorithm of Berg\'e, Ducoffe and Habib
+and a known implicit optimization method gives a deterministic
+$O(n\log^5(2n))$ algorithm for a center, the optimum radius and all centers
+of every finite unit-edge median graph. This answers the finite algorithmic
+form of Open Problem~1 in Ducoffe's Oberwolfach report, without a bound on
+cube dimension. The contribution is the threshold observation and its
+consequence; neither the additive algorithm nor the optimization mechanism
+is new. We specify the exact comparison model and give explicit corrections
+to two estimates in the public preprint proof of the imported algorithm.
+\end{abstract}
+
+\section{Problem and prior algorithms}
+Let $G=(V,E)$ be a finite, nonempty, connected, simple graph with unit edge
+lengths, $n=|V|$, and shortest-path distance $d$. For a finite nonnegative
+real profile $w:V\to\R_{\geq0}$ define
+\[
+ r_w(x)=\max_{u\in V}w(u)d(x,u),\qquad
+ \rho=\min_{x\in V}r_w(x),\qquad C_w=\{x:r_w(x)=\rho\}.
+\]
+A median graph is one in which every triple has a unique vertex belonging
+to the three pairwise shortest-path intervals. Ducoffe~\cite[pp.~504--505]{OWR}
+asks for an almost linear-time weighted-center algorithm on median graphs
+of bounded cube dimension. The weights in this question multiply
+distances; additive arrival weights define a different objective.
+
+\begin{theorem}\label{thm:main}
+Given a graph promised to be median, supplied by adjacency lists, and a
+finite nonnegative real profile, one can compute $\rho$, a vertex in $C_w$
+and the entire set $C_w$ deterministically in $O(n\log^5(2n))$ exact
+operations. No cube-dimension bound or supplied embedding is required.
+Operations on profile values only compare bounded integer multiples
+$k w(u)$, with $0\leq k\leq n-1$.
+\end{theorem}
+
+The principal imported theorem is due to Berg\'e, Ducoffe and Habib
+(BDH)~\cite{BDH}: for a nonnegative integer arrival profile $a$, all values
+\begin{equation}\label{eq:additive}
+ E_a(x)=\max_{u\in V}\bigl(d(x,u)+a(u)\bigr)
+\end{equation}
+on a median graph can be computed in $O(n\log^4(2n))$ time, including
+preprocessing. The precise interface is on pp.~2--3 of the public
+preprint~\cite{BDHarxiv}; its Algorithm~1 is on p.~22 and the overall
+complexity proof is on pp.~23--24. Our calls have $0\leq a(u)\leq n-1$.
+Appendix~\ref{app:repair} supplies consistent parameter and depth estimates
+for two literal proof errors in that preprint version, preserving the
+advertised theorem. Classical median structure and its preprocessing
+algorithms remain credited dependencies~\cite{BDHarxiv,Median}.
+
+Ducoffe~\cite[Lemma~2, p.~133:6]{D26} already proves that a $T(n,m)$-time
+weighted-center decision algorithm yields optimization in
+$O((T(n,m)+n)\log n)$ time. Its weighted-median mechanism is used below
+in a slightly slower, self-contained comparison-only form. The full
+preprint statement is Lemma~2.2 on pp.~5--6~\cite{D26arxiv}.
+For cube-free median graphs the stronger bound $O(n\log^2 n)$ was already
+proved by Chalopin et al.~\cite[Theorem~7.8, p.~28]{CCDDV}; our bound does
+not improve that special case. Tree-product algorithms assume a stronger
+representation promise~\cite{Trees,OWR}. The present note records the
+short connection between these lines of work. A bounded primary-source
+audit found no earlier explicit full-scope resolution, but does not
+certify historical firstness or continued open status in October 2026.
+
+\section{A threshold identity}
+Set $D=n-1$. Every distance in a connected unit-edge graph is an integer
+in $[0,D]$. For $R\geq0$ and $u\in V$ put
+\begin{equation}\label{eq:budget}
+ b_R(u)=\max\{k\in\{0,\ldots,D\}:k w(u)\leq R\},
+ \qquad a_R(u)=D-b_R(u).
+\end{equation}
+Zero is an admissible index. If $w(u)=0$ then $b_R(u)=D$.
+For positive $w(u)$ this is the capped floor of $R/w(u)$, but binary
+search on the $D+1$ integer indices computes it using $O(\log(2n))$
+comparisons, without a real division or unbounded-floor primitive.
+
+\begin{lemma}\label{lem:threshold}
+For every vertex $x$ and $R\geq0$,
+\[
+ r_w(x)\leq R\quad\Longleftrightarrow\quad E_{a_R}(x)\leq D.
+\]
+\end{lemma}
+\begin{proof}
+For every $u$, integrality and the distance bound give
+\[
+ w(u)d(x,u)\leq R
+ \ \Longleftrightarrow\ d(x,u)\leq b_R(u)
+ \ \Longleftrightarrow\ d(x,u)+a_R(u)\leq D.
+\]
+For a zero weight both conditions are vacuous. Take the conjunction
+over $u$ and use~\eqref{eq:additive}.
+\end{proof}
+
+Thus one BDH call, followed by a scan, returns the \emph{entire} feasible
+set $F_R=\{x:r_w(x)\leq R\}$ in $O(n\log^4(2n))$ operations.
+The graph and its zero-weight vertices are retained. No subdivision,
+Helly property, ball convexity or local-search theorem is required.
+For $R<0$ the feasible set is empty. For $n=1$, or an all-zero profile,
+the optimum is zero and every vertex is a center.
+
+\section{Implicit optimization and complete output}
+For any vertex $x$, its radius is an attained maximum and hence has the
+form $k w(u)$ with $0\leq k\leq D$. Therefore $\rho$ belongs to the
+multiset of $n$ sorted rows
+\[
+ S_u=(0,w(u),2w(u),\ldots,Dw(u)),\qquad u\in V.
+\]
+These $n^2$ entries are conceptual and are never materialized. Here is
+the promised variant of the prior optimization mechanism~\cite{D26}.
+
+Maintain an inclusive active index interval $[l_u,h_u]$ in each row,
+initially $[0,D]$, and a feasible incumbent $B=D\max_u w(u)$, witnessed
+by an arbitrary vertex. Handle $n=1$ and $B=0$ directly. Write
+$L_u=h_u-l_u+1$ for a nonempty interval and let $M$ be their total length.
+While $M>0$, take the lower middle value
+$q_u=w(u)\lfloor(l_u+h_u)/2\rfloor$ of every nonempty row, with
+selection weight $L_u$. Sort these values and choose a weighted median
+$q$: the total selection weight on either weak side is at least $M/2$.
+Query $F_q$ using Lemma~\ref{lem:threshold}.
+
+If $F_q$ is nonempty, replace $B$ by $\min(B,q)$, saving a corresponding
+feasible witness when it decreases, and delete all active entries
+$\geq q$. Otherwise delete all active entries $\leq q$. Binary searches
+within the row intervals implement either deletion exactly, including
+ties and zero rows. Repeat until all intervals are empty.
+
+\begin{lemma}\label{lem:search}
+This process ends after $O(\log(2n))$ queries and returns $B=\rho$ and a
+center. A final query at $B$ returns exactly $C_w$.
+\end{lemma}
+\begin{proof}
+Maintain that $B$ is feasible and either $B=\rho$ or an active entry
+equals $\rho$. Initially this holds. A feasible pivot has $\rho\leq q$:
+if equality holds it is saved; if $\rho<q$, every optimum copy survives.
+An infeasible pivot has $\rho>q$, so every optimum copy again survives.
+This proves the invariant, and an empty active set forces $B=\rho$.
+Its feasible witness is a center, and $F_B=C_w$.
+
+For progress, a middle entry of a row of length $L_u$ has at least
+$L_u/2$ entries on each weak side. If $q$ is infeasible, rows with
+$q_u\leq q$ have total length at least $M/2$, and at least half of
+those entries are deleted. If $q$ is feasible, use rows with $q_u\geq q$.
+In either case at least $M/4$ entries are deleted, counting multiplicity.
+This includes singleton rows and equal values. Since $M$ is an integer
+and starts at $n^2$, only $O(\log(2n))$ iterations occur.
+\end{proof}
+
+Sorting and all bounded searches require $O(n\log(2n))$ work per
+iteration and $O(n)$ row storage beyond the oracle. Thus the total
+comparison overhead is $O(n\log^2(2n))$. The
+$O(\log(2n))$ BDH calls and final complete-output call prove
+Theorem~\ref{thm:main}. Reading the adjacency lists is absorbed: median
+graphs have at most $n\log_2 n$ edges~\cite{BDHarxiv}.
+
+\section{Model, reproducibility and status}
+The claim concerns finite vertex centers in a graph promised to be
+median. It includes zero weights, singleton support, exact equality
+thresholds and multiple centers. It does not solve recognition, the
+separate arbitrary-edge-length question, a continuous facility problem,
+or an unspecified encoding of infinite median graphs. Nor does the
+global threshold algorithm settle the separate unimodality question in
+the workshop report~\cite{OWR}.
+
+The optimum can be stored as one pair $(k,u)$ representing $k w(u)$.
+All real comparisons are between such pairs. For rational input
+$w(u)=p_u/q_u$ with positive denominators and components of at most $B$
+bits, a comparison uses integer products $k p_u q_v$ and $j p_v q_u$
+of $O(B+\log n)$ bits. There are $O(n\log^2(2n))$ original-weight
+comparisons; their bit cost and input-reading cost must be paid.
+The theorem is not an encoding-independent bit bound. The small
+integer labels in the imported algorithm use $O(\log n)$ bits, including
+its internal updates, as checked in Appendix~\ref{app:repair}.
+
+The accompanying authored-only verification package includes the frozen
+original candidate and historical audit, new independent proofs and
+source comparisons, exact rational controls, the source-proof repair,
+manuscript source, an offline replay driver and nested hash manifests.
+Reference all-pairs and brute-structure routines verify finite cases;
+they are expressly not a fast implementation or an experimental proof
+of the asymptotic theorem. The universal argument uses the credited
+classical structure and algorithms. Hashes establish file consistency,
+not authenticity, priority or formal proof certification.
+
+\paragraph{AI and review disclosure.}
+AI tools were used extensively in solving, developing, writing,
+reproducing and adversarially verifying this work. This is an
+unrefereed preprint. Internal AI adversarial reviews are not human peer
+review; the manuscript has not received human peer review or
+proof-assistant certification. The priority assessment is bounded and
+the limitations stated above are part of the result's presentation.
+
+\appendix
+\section{Explicit estimates for the imported recursion}\label{app:repair}
+This appendix concerns the proof of Theorem~1 of
+\emph{arXiv:2410.10235v1}~\cite{BDHarxiv}. It does not assert that the
+final SODA typesetting contains the same errors; that full chapter was
+not inspected. BDH's algorithm and structural discoveries remain theirs.
+The complete step-by-step audit and exact controls are in the supplement.
+
+That preprint declares $\log=\ln$ on p.~4, proves cube dimension
+$d\leq\log_2 s$, then uses $\ell\leq\ln s$ for its wide-ladder size in
+the duplicated-slice volume estimate on p.~24. Its separate displayed
+product comparison in Lemma~16 on p.~13 has the wrong direction.
+Both estimates admit the following consistent replacement.
+
+For every recursive graph of order $s\geq3$ use
+\[
+ L(s)=\lceil\log_2 s\rceil,\qquad f(s)=2L(s).
+\]
+Compute $L(s)$ as the bit length of $s-1$. A cut is balanced exactly
+when $f(s)$ times its smaller halfspace size is at least $s$.
+Keep the original direct base cases $s\leq2$. The structural arguments
+of BDH's Sections~3--4 apply with this choice: halfspaces and slices are
+nonempty gated median graphs; the unique-majority median in an
+unbalanced instance needs only $f(s)\geq2$. The wide ladder consists of
+pairwise orthogonal incident classes, so $\ell\leq\log_2 s\leq L(s)$.
+Each slice $S_i$ lies in a minority halfspace of size less than $s/f(s)$.
+The two recursive calls on each slice consequently have total volume
+\[
+ 2\sum_{i=0}^{\ell-1}|S_i|\leq \frac{2\ell s}{f(s)}\leq s.
+\]
+Balanced children partition $s$. Each child in either case has order at
+most $s(1-1/f(s))$; in the unbalanced case its order is less than
+$s/f(s)$. The gate, fiber-reweighting and merging identities depend on
+gatedness, not this balance constant. Both original-weight and
+fiber-weight slice calls are retained: a fiber weight need not dominate
+the original value. There is no change of objective or input graph.
+
+For completeness, put $\lambda=4/\ln2$. Since
+$f(s)\leq4\log_2 s=\lambda\ln s$ for $s\geq3$, every nonterminal
+path from a root of order $N$ satisfies
+\[
+ s_{i+1}\leq s_i\left(1-\frac1{\lambda\ln s_i}\right)
+ \leq s_i\left(1-\frac1{\lambda\ln N}\right).
+\]
+Thus $s_h\leq N\exp(-h/(\lambda\ln N))$. At
+$h=\lceil\lambda(\ln N)^2\rceil$ this is at most one, so the path has
+already reached the $s\leq2$ base case. This proves depth $O(\log^2 N)$
+directly, without the erroneous product comparison. The source's
+nonrecursive work is $O(s\log^2(2s))$; per-level volume is at most $N$.
+The total remains $O(N\log^4(2N))$.
+
+For our initial offsets at most $N-1$, each fiber update adds at most
+$N-1$ to a previous maximum. Along $O(\log^2 N)$ levels all internal
+arrival labels are $O(N\log^2(2N))$, hence have $O(\log(2N))$ bits.
+The cited linear-time median/Theta/halfspace preprocessing~\cite{Median}
+is unchanged. It is not reconstructed as a fast implementation here.
+
+\paragraph{Why the literal volume estimate needs correction.}
+Take $Q_{30}$, attach $17{,}000{,}000{,}000$ leaves at each of its
+30 unit-vector vertices and $488{,}926{,}258{,}176$ leaves at zero.
+This is a median graph of order $N=10^{12}$: attaching pendant trees
+at a vertex preserves medianity. Each coordinate minority has
+$17{,}536{,}870{,}912$ vertices. A finite positive Taylor sum gives
+$e^7>1000$, hence $\ln N<28$; multiplying each such minority by
+56 gives $982{,}064{,}771{,}072<N$. All cuts are unbalanced for the
+written natural-log threshold $2\ln N$. Give the cube antipode arrival
+weight $N-1$ and every other vertex zero. It is uniquely farthest from
+the majority median zero, with all 30 classes in its wide ladder.
+Their minority union has $511{,}073{,}741{,}823$ vertices; its two
+slice copies therefore total $1{,}022{,}147{,}483{,}646>N$.
+This succinct exact example refutes the intermediate volume estimate,
+not correctness or the final time bound after the stated repair.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{OWR} G. Ducoffe, Radius functions in median graphs, in
+\emph{Median Geometry and Applications}, Oberwolfach Reports 8/2026,
+504--507. \href{https://doi.org/10.4171/OWR/2026/8}{doi:10.4171/OWR/2026/8}.
+\bibitem{BDH} P. Berg\'e, G. Ducoffe and M. Habib,
+Quasilinear-time eccentricities computation, and more, on median graphs,
+\emph{SODA 2025}, 1679--1704.
+\href{https://doi.org/10.1137/1.9781611978322.52}{doi:10.1137/1.9781611978322.52}.
+\bibitem{BDHarxiv} P. Berg\'e, G. Ducoffe and M. Habib, same title,
+public preprint, October 14, 2024.
+\href{https://arxiv.org/abs/2410.10235v1}{arXiv:2410.10235v1}.
+\bibitem{D26} G. Ducoffe, Beyond Trees: The Weighted Center Problem on
+Gromov Hyperbolic Graphs, \emph{ESA 2026}, LIPIcs 388, 133:1--133:19.
+\href{https://doi.org/10.4230/LIPIcs.ESA.2026.133}{doi:10.4230/LIPIcs.ESA.2026.133}.
+\bibitem{D26arxiv} G. Ducoffe, same title, full preprint, July 5, 2026.
+\href{https://arxiv.org/abs/2607.04287v1}{arXiv:2607.04287v1}.
+\bibitem{CCDDV} J. Chalopin, V. Chepoi, F. F. Dragan, G. Ducoffe and
+Y. Vax\`es, On $G^p$-unimodality of radius functions in graphs:
+structure and algorithms, March 19, 2025.
+\href{https://arxiv.org/abs/2503.15011v1}{arXiv:2503.15011v1}.
+\bibitem{Trees} G. Ducoffe, Isometric Embeddings in Trees and Their Use
+in Distance Problems, \emph{MFCS 2021}, LIPIcs 202, 43:1--43:16.
+\href{https://doi.org/10.4230/LIPIcs.MFCS.2021.43}{doi:10.4230/LIPIcs.MFCS.2021.43}.
+\bibitem{Median} L. B\'en\'eteau, J. Chalopin, V. Chepoi and Y. Vax\`es,
+Medians in median graphs and their cube complexes in linear time,
+\emph{J. Comput. Syst. Sci.} 126 (2022), 80--105.
+\href{https://doi.org/10.1016/j.jcss.2022.01.001}{doi:10.1016/j.jcss.2022.01.001}.
+\end{thebibliography}
+\end{document}

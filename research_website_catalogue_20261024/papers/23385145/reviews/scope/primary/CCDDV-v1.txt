@@ -1,0 +1,2463 @@
+                                         ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS:
+                                                     STRUCTURE AND ALGORITHMS
+
+                                         JÉRÉMIE CHALOPIN, VICTOR CHEPOI, FEODOR DRAGAN, GUILLAUME DUCOFFE,
+                                                                   AND YANN VAXÈS
+
+
+
+
+                                         Abstract. For every weight assignment π to the vertices in a graph G, the radius function
+                                         rπ maps every vertex of G to its largest weighted distance to the other vertices. The center
+                                         problem asks to find a center, i.e., a vertex of G that minimizes the radius function rπ . We here
+                                         study some local properties of radius functions in graphs, and their algorithmic implications;
+                                         our work is inspired by the nice property that in Euclidean spaces every local minimum of
+
+
+
+
+arXiv:2503.15011v1 [cs.DS] 19 Mar 2025
+                                         every radius function rπ is a center. We study a discrete analogue of this property for graphs,
+                                         which we name Gp -unimodality: specifically, every vertex that minimizes the radius function
+                                         in its ball of radius p must be a central vertex. While it has long been known since Dragan
+                                         (1989) that graphs with G-unimodal radius functions rπ are exactly the Helly graphs, the class
+                                         of graphs with G2 -unimodal radius functions has not been studied insofar. We prove the latter
+                                         class to be much larger than the Helly graphs, since it also comprises (weakly) bridged graphs,
+                                         graphs with convex balls, and bipartite Helly graphs (alias bipartite absolute retracts). These
+                                         classes share basic properties with geodesic metric spaces of ℓ2 , ℓ1 , and ℓ∞ -types; e.g., bridged
+                                         graphs (one of the most important classes of graphs in metric graph theory) are considered as
+                                         the combinatorial analogs of CAT(0) spaces. We also show that in δ-hyperbolic or (only for
+                                         0-1-weights) δ-coarse Helly graphs, rπ is GO(δ) -unimodal.
+                                            Recently, using the G-unimodality of radius functions rπ , a randomized O(   e √nm)-time local
+                                         search algorithm for the center problem on Helly graphs was proposed by Ducoffe (2023).
+                                         Assuming the Hitting Set Conjecture (Abboud et al., 2016), we prove that a similar result for
+                                         the class of graphs with G2 -unimodal radius functions is unlikely. However, we design local
+                                         search algorithms (randomized or deterministic) for the center problem on many of its important
+                                         subclasses: our descent algorithm has (1) randomized complexity O(       e √nm) if G is (weakly)
+                                                                                                                                   √
+                                         bridged or bipartite Helly with arbitrary weights, (2) deterministic complexity O( nm) for
+                                                                                                                     3
+                                         the same graphs with 0-1-weights, and (3) randomized complexity O(m     e 2 ) if G is a graph with
+                                                                                                      √
+                                         convex balls and arbitrary weights. To overcome the O( nm) complexity barrier and using
+                                         the G2 -unimodality of radius functions and other structural results, we further design a (4)
+                                         divide-and-conquer algorithm with deterministic complexity O(n log2 n) for cube-free median
+                                         graphs with arbitrary weights. More specifically, we present a nontrivial generalization of the
+                                         algorithm by Kariv and Hakimi (1979) for weighted centers in trees to another class of graphs.
+                                         Summarizing, our structural and algorithmic results contribute to a better understanding on
+                                         the power of local search for solving optimization problems related to distances in graphs.
+
+
+
+
+                                                                                          1
+2                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+                                        1. Introduction
+1.1. Avant-propos. The center problem is a basic problem in graph theory, computational ge-
+ometry, and optimization. It naturally arises in facility location, communication and transporta-
+tion networks, network analysis, robot-motion planning, and other areas. The center problem
+can be defined for any metric space (X, d). In the unweighted version, given a finite set P ⊆ X
+of points, it consists in computing a point c ∈ X minimizing the largest distance from c to a
+point of P . In the weighted version, each point of P has a positive multiplicative weight and one
+seeks to compute a point c ∈ X minimizing the largest weighted distance from c to a point of
+P . The goal of the center problem is to design efficient algorithms for computing c. The center
+problem has a long history, both in discrete and continuous settings. Sylvester [96] formulated
+in 1857 the center problem in the Euclidean plane (the smallest enclosing circle). Around the
+same time, Jordan [74] defined the center of a tree and established that it always consists of
+one or two adjacent vertices located in the middle of a diametral path. The center problem was
+extensively studied in Euclidean spaces, in polygons (simple or with holes), and more relevant to
+this work, in graphs. Under plausible computational assumptions, it was shown in [2] that the
+unweighted center problem in graphs cannot be solved in subquadratic time. However, faster
+algorithms can be designed if the radius function has additional properties. Unimodality of a
+function (i.e., the property that its local minima are global minima) is at the heart of descent
+methods of optimization. These methods have numerous variations and specifications and, more
+importantly, numerous practical applications in optimization, combinatorial optimization, oper-
+ations research, machine learning, statistics, and discrete and metric geometry. Convex functions
+constitute the most common setting of unimodality. The distance function of a normed space
+is an example of a convex function; the objective functions in facility location problems (center,
+median, and p-moments) in normed spaces are thus convex and can be minimized by descent
+algorithms. The radius functions in trees and in simple polygons with geodesic metric are also
+convex (see [97] and [90]); [90] also establishes that simple polygons satisfy other properties of
+CAT(0) metric spaces (e.g., convexity of balls); convexity of balls also holds in simple polygons
+with link metric [77]. In fact, metric trees and simple polygons are CAT(0) and the convexity
+of the distance function is among the most important and useful properties of CAT(0) geome-
+tries [22,89], an important type of metric geometries extensively investigated in geometric group
+theory and metric graph theory.
+   In this paper, we introduce the Gp -unimodality of the (weighted and unweighted) radius
+functions rπ in graphs G and use it to design subquadratic-time local search algorithms for the
+center problem in several classes of graphs, among which are (weakly) bridged graphs, graphs
+with convex balls, bipartite Helly graphs, and cube-free median graphs. Our results can be
+viewed as a contribution in the case of radius functions to the general question “How does the
+geometry of the graph influence the complexity of local search?”, recently raised in [21].
+1.2. Related work. There is a vast literature on the center problem. We mostly review the
+results related to unimodality and to the classes of graphs occurring in this paper. By [74], the
+unweighted center of a tree T is located in the middle of a diametral path of T . It is folklore that
+a diametral pair of vertices can be found in O(n) time by picking an arbitrary vertex u of T ,
+computing a furthest from u vertex v ∈ T , and then computing a furthest from v vertex w ∈ T ;
+then the pair v, w is diametral. The weighted center problem in trees is much more difficult:
+Kariv and Hakimi [75] presented an O(n log n)-time algorithm combining divide-and-conquer,
+convexity, and centroid computation. At each step, a centroid v of a subtree T ′ of T and a
+neighbor v ′ of v with rπ (v ′ ) < rπ (v) are computed. The radius function rπ of T is convex, thus
+either v ′ does not exist and v is central or the subtree of T ′ rooted at v ′ contains the center and
+the recursion is performed on it. We refer to this method as cut-on-best-neighbor. Meggido [79]
+refined this approach into an optimal O(n)-time algorithm by significantly refining the approach
+of [75] and using the same ideas as his linear-time algorithm for linear programming in R2 and
+R3 . In [79], he also presented the first O(n)-time algorithm for the smallest enclosing circle
+(disproving the conjecture that O(n log n) is its best complexity). Both algorithms are based on
+the same ideas as the linear-time algorithm for linear programming in R2 and R3 [79]. Linear time
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                       3
+
+algorithms for linear programming and the unweighted center problem in any fixed dimension
+were given in [80]; see [40, 57] for an O(n)-time algorithm for the weighted version. For the
+geodesic (unweighted) center in simple polygons, an O(n log n)-time algorithm was proposed
+in [90] and an optimal O(n)-time algorithm was given in [1]. The center problem for simple
+polygons with the link-metric was investigated in [77], which proposed an O(n2 )-time algorithm
+(the best known algorithm has complexity O(n log n) and was given in [42]).
+    One computation of a furthest vertex is called a FP scan [78]. Thus the unweighted center
+of a tree is computed via two FP scans. This FP scans paradigm was successful in several
+cases, e.g., [32] uses it to compute an unweighted center of a chordal graph G in O(m) time.
+In this case, a pair v, w returned after two FP scans is almost diametral and there is a center
+of G located in the neighborhood of the middle of (v, w)-geodesics. The algorithm of [77] is
+based on the fact that the link-radius of a simple polygon (which can be viewed as an infinite
+connected graph) is approximatively equal to half of the link-diameter. Knowing the diameter
+(the link-diameter is O(n)-time computable), one can locate the link-center around the middle
+of a diametral pair. The graphs investigated in [32] and [77] have small hyperbolicity. Chepoi
+et al. [34] proved that similar results hold for the center problem in δ-hyperbolic graphs G: two
+FP scans return a pair v, w such that d(v, w) ≥ diam(G) − 2δ and the center of G is contained
+in the ball of radius 5δ + 1 centered at a middle vertex of any (v, w)-geodesic. This provides a
+general framework for the unweighted center problem (parameterized by hyperbolicity).
+    Another approach to the center problem is based on unimodality and local search. Dragan
+[43, 44] proved that Helly graphs (the graphs in which the family of balls satisfies the Helly
+property) are exactly the graphs in which all radius functions are unimodal. Therefore local
+search can be used to solve the center problem in Helly graphs, however the number of steps until
+the minimum cannot be easily bounded. Ducoffe [52] suggested to pick a random set U of size
+ e √n) and run local search starting from a vertex u ∈ U with smallest rπ (u) (see also Aldous
+O(
+[3] for a similar method for unimodal functions on graphs). This leads to an O(          e √nm)-time
+                                                                                    √
+algorithm for computing a weighted center of a Helly graph [52,55], where e      O( n) is the number
+of steps and O(m) is the complexity of each improvement step. This algorithmic paradigm
+(which we call sample-select-descent) was later applied to other classes of graphs [45, 53]. A
+main difficulty when dealing with these classes is to efficiently implement an improvement step
+of local search (the solution proposed in [52] heavily relies on the Helly property).
+    There are also several papers which present efficient algorithms for the unweighted center
+problem, which do not use local search or FP-scans. The unweighted center problem in me-
+dian graphs was considered in [20], [18], and [19]: [20] presents an algorithm with complexity
+O(2O(d log d) n) for computing the center of a median graph with constant largest cube-dimension
+d and [18] presents an algorithm with complexity O(n1.6408 logO(1) n) for median graphs with n
+vertices. This result was recently improved by [19] that provides an O(n log4 n)-time algorithm
+for computing all unweighted eccentricities of a median graph. Finally, [36] presents linear-
+time algorithms for squaregraphs and trigraphs, planar instances of median and bridged graphs.
+There are also subquadratic-time algorithms for the center problem in planar graphs [26,62] and
+in graphs in which the VC-dimension of the family of all balls is constant [56].
+    Buseman [24] introduced peakless functions by replacing the quantitative inequality f (z) ≤
+λ · f (x) + (1 − λ) · f (y) by the qualitative one f (z) ≤ max{f (x), f (y)}, where equality holds only
+if f (x) = f (z) = f (y). Buseman and Phadke [25] investigated peakless functions in Busemann
+spaces (which generalize CAT(0) spaces and where each pair of points can be connected by a
+unique geodesic [89]). In the case of discrete metric spaces, where there exist several geodesics
+between the same points, Arkhipova and Sergienko [5] introduced the notion of r-convex func-
+tions (see also [76]). A function f is r-convex if for each pair of points there exists a geodesic
+on which f is convex. Bandelt and Chepoi [8] combined these notions and defined a function f
+to be weakly peakless if for each pair of points there is a geodesic on which f is peakless. More
+recently, Bénéteau et al. [17] introduced the notions of p-weakly peakless functions by requiring
+that each pair of vertices is connected by a step-p geodesic on which the function is peakless.
+While peakless, r-convex, and weakly peakless functions are unimodal on G, p-weakly peakless
+4                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+functions are unimodal on the pth power Gp of G. All these classes of functions were suitable
+for investigating the unimodality of the median and radius functions on graphs. Namely, it
+was shown in [8] that the graphs in which all median functions are unimodal are exactly the
+graphs in which all median functions are weakly peakless. This bijection was extended in [17]
+to Gp -unimodality of median functions and p-weakly peaklessness of all median functions. The
+results of [8] and [17] show that numerous important classes of graphs have G- or G2 -unimodal
+median functions. As we mentioned before, Dragan [43,44] established that the graphs in which
+all radius functions are G-unimodal are exactly the Helly graphs. Properties close to relaxed
+unimodality (called locality) were established and used in the case of δ-hyperbolic graphs [49]
+and graphs with αi -metrics [45].
+1.3. Our results. One can ask to what extent the two results about the center problem in Helly
+graphs are generalizable. In this paper, we investigate the unimodality of the radius function
+rπ of a graph G not in G but in some its power Gp . We show that several important classes of
+graphs have Gp -unimodal radius functions, i.e., every vertex that minimizes the radius function
+in its ball of radius p is a central vertex:
+Theorem A. (Propositions 5.5,6.2,11.5,8.1,8.9,11.5) For bridged and weakly bridged graphs,
+graphs with convex balls, bipartite Helly graphs, and cube-free median graphs, all radius functions
+rπ are G2 -unimodal. For δ-hyperbolic graphs, all radius functions rπ are G4δ+1 -unimodal and
+for δ-coarse Helly graphs all 0-1 radius functions rπ are GO(δ) -unimodal.
+   To prove Theorem A, a stronger property, p-weakly peaklessness of the radius function rπ is
+established; we recall, as mentioned earlier, that it is a relaxation of convexity, which originates
+from Busemann/CAT(0) geometry [24, 25], and was used before in [8, 17].
+   The recognition problem for graphs with Gp -unimodal radius functions is polynomial:
+Theorem B. (Theorem 9.1) Given a graph G with n vertices and a positive integer p, one can
+decide in O(n4 ) time whether all radius functions rπ of G are Gp -unimodal.
+  To implement efficiently local search on graphs with Gp -unimodal radius functions, we need
+an efficient algorithm that for any vertex v outputs an improving p-neighbor of v if it exists. In
+general, this cannot be done in subquadratic time even for p = 2:
+Theorem C. (Theorem 9.2) Assuming the Hitting Set Conjecture, for any ε > 0, deciding if v
+is a local minimum in G2 of the radius function rπ for a graph G cannot be solved in O(n2−ε )
+time, even if G has only O(n)
+                         e    edges, and every radius function rπ of G is 2-weakly-peakless.
+   Nevertheless, we show (and this is our first main result) that for the classes of graphs from
+Theorem A (except hyperbolic and coarse Helly graphs), getting an improving 2-neighbor or a
+certificate that it does not exist can be done efficiently (e.g., in O(m) time for bridged graphs).
+This leads to the first subquadratic-time algorithms for the center problem for all these classes
+of graphs. Furthermore, in the case of graphs with 2-weakly peakless radius functions and 0-
+1-weights, we present a deterministic algorithm with the same complexity as the sample-select-
+method. Consequently, using all this and local and global metric and geometric properties of
+those classes of graphs, we obtain the following algorithmic results:
+Theorem D. (Theorems 5.12,6.11,11.15,8.3) If G is a bridged, weakly bridged, or bipartite
+Helly graph with arbitrary weights, then a central vertex of G can be computed in randomized
+      e √
+   √ O( nm). For 0-1-weights, a central vertex of G can be computed in deterministic time
+time
+O( nm) (and in deterministic time O(δm), if G is δ-hyperbolic). More generally, if G is a
+graph with convex balls and arbitrary weights, then a central vertex of G can be computed in
+                      3
+randomized time eO(m 2 ).
+                                                                    √
+   The sample-select-descent
+                √              algorithm  cannot get better than O(   nm) even for trees. To
+overcome this O( nm) barrier, we need to use Gp -unimodality differently. For cube-free median
+graphs (a subclass of bipartite Helly graphs), we do this by adapting the cut-on-best-neighbor
+approach from [75, 79] (this is our second main result):
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                    5
+
+Theorem E. (Theorem 7.8) If G is a cube-free median graph with arbitrary weights, then a
+central vertex of G can be computed in deterministic time O(n log2 n).
+
+1.4. Bridged, median, and (bipartite) Helly graphs. Together with hyperbolic graphs,
+median graphs, bridged graphs and Helly graphs constitute the most important classes of graphs
+in metric graph theory [9, 27]. All these classes have been also extensively studied in geometric
+group theory.
+   Median graphs are exactly the 1-skeleta of CAT(0) cube complexes [31]. Gromov [64] char-
+acterized CAT(0) cube complexes as the simply connected cube complexes in which links are
+flag complexes. Median graphs can also be characterized as the domains of event structures [15]
+from concurrency theory and as the solution sets of 2-SAT formulas [92]. For characterizations
+and applications of median graphs to discrete mathematics and geometric group theory, see the
+book [23] and the surveys [9] and [91].
+   Bridged graphs are the graphs in which balls around convex sets are convex (which is one of
+the basic properties of Euclidean convexity and CAT(0) spaces) and they have been characterized
+in [59, 95] as the graphs in which all isometric cycles have length 3. Bridged graphs generalize
+chordal graphs. Chepoi [31] presented a local-to-global characterization of bridged graphs as the
+1-skeleta of simply connected flag simplicial complexes with 6-large links (i.e., they do not have
+induced 4- and 5-cycles). Those simplicial complexes have been rediscovered by Januszkiewicz
+and Świaţkowski [73] and dubbed systolic complexes. Systolic complexes are contractible [31,73]
+and they are considered as combinatorial analogs of simplicial nonpositive curvature. The groups
+acting on systolic complexes/bridged graphs have been studied in numerous papers; [71, 73,
+87, 94] is a small sample. Graphs with convex balls generalize bridged graphs. They have
+been introduced and characterized in [59, 95] and thoroughly studied in [29]. Weakly bridged
+graphs constitute a subclass of graphs with convex balls; they have been introduced in [86] and
+characterized in [38].
+   Helly graphs are the graphs in which the balls satisfy the Helly property, i.e., any collection
+of pairwise intersecting balls has a nonempty intersection. The bipartite Helly graphs (alias
+bipartite absolute retracts) are the bipartite analogs of Helly graphs. Namely, bipartite Helly
+graphs are the bipartite graphs in which the family of half-balls (the intersections of balls with
+the halves of the bipartition) satisfies the Helly property. Helly graphs and bipartite Helly graphs
+are the discrete analogues of hyperconvex spaces [6] (complete geodesic metric spaces in which
+the set of closed balls satisfies the Helly property). In perfect analogy with hyperconvexity,
+there is a close relationship between Helly graphs and absolute retracts. A graph is an absolute
+retract exactly when it is a retract of any larger graph into which it embeds isometrically.
+Then absolute retracts and Helly graphs are the same. Analogously, the bipartite Helly graphs
+are the absolute retracts in the category of bipartite graphs [10], which is why they are also
+called bipartite absolute retracts. Helly graphs have been characterized in the papers [12, 13]
+metrically and in [27] topologically, in a local-to-global way. The study of groups acting on Helly
+graphs was initiated in the paper [28] and continued in many other papers, e.g. [66, 69, 72, 88].
+Numerous examples of such groups are also known: hyperbolic groups and groups acting on
+CAT(0) cube complexes are Helly [28]. The bipartite Helly graphs have been introduced and
+metrically characterized in [10]. Bandelt, Hell, and Farber [11] established a correspondence
+between Helly graphs and bipartite Helly graphs, using natural transformations between reflexive
+graphs and bipartite graphs. An important subclass of bipartite Helly graphs is the class of
+hereditary modular graphs [7]. Since the hereditary modular graphs are exactly the graphs in
+which all isometric cycles have length 4 [7], they can be viewed as bipartite analogs of bridged
+graphs. Hoda [68] associated cell complexes to hereditary modular graphs and investigated their
+topological properties as well as the groups acting on them.
+  From the point of view of graph theory, median, bridged, and (bipartite) Helly graphs are
+quite general and universal. First, any connected graph can be isometrically embedded into a
+Helly graph and any connected bipartite graph can be isometrically embedded into a bipartite
+Helly graph. Furthermore, in analogy to injective hulls/tight spans of general metric spaces, for
+any connected graph (respectively, connected bipartite graph) H there exists a unique minimal
+6                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+Helly graph (respectively, bipartite Helly graph) G containing H as an isometric subgraph; this
+graph G is called the Hellyfication (respectively, the bipartite Hellyfication) of H. Second, any
+connected graph H is a minor of a cube-free median or K4 -free bridged graph. Furthermore,
+any graph H not containing any induced C4 and C5 is an induced subgraph of a bridged graph.
+The local structure of median and bridged graphs is also universal because arbitrary graphs
+may occur in their stars. For any graph H (respectively, any triangle-free graph H) its simplex
+graph (the covering graph of the poset of cliques of H ordered by inclusion) is a median graph
+(respectively, a cube-free median graph) [14]. The stars (the union of all cubes containing a given
+vertex) of any median graph G are simplex graphs. In the same vein, Weetman [98] described a
+nice construction W (H) of (infinite) graphs in which the links (neighborhoods) of all vertices are
+isomorphic to a prescribed finite graph H of girth ≥ 6. For example, if H = C6 , then W (H) is
+the triangular grid. If H = Cn for n ≥ 7, then W (H) is the graph of a tiling of the (hyperbolic)
+plane into triangles in which each vertex has n neighbors. For general H, W (H) are always
+bridged and K4 -free.
+   Nonetheless, median, bridged, hyperbolic, and (bipartite) Helly graphs have a rich and versa-
+tile metric structure. Median graphs can be viewed as discrete ℓ1 -geometries, bridged graphs and
+graphs with convex balls as discrete ℓ2 -geometries, and Helly graphs as discrete ℓ∞ -geometries.
+This structure has been thoroughly studied in metric graph theory, see [9] for a survey. On
+the other hand, the algorithmic results about median, bridged, and (bipartite) Helly graphs are
+still rare. For median graphs, we can mention the polynomial-time algorithm for computing the
+geodesic between any two points in the associated CAT(0) cube complex [67], the linear time
+algorithm for computing the median [16], and the subquadratic-time algorithms for computing
+the 0-1-centers [18–20]. For bridged graphs, our algorithm for computing a central vertex is, to
+the best of our knowledge, the first such algorithmic result. Previously, it was only known how
+to compute the 0-1-centers in linear time for chordal graphs [32] and planar bridged graphs [36].
+1.5. The structure of the paper. The rest of the paper is organized as follows. In Section 2
+we present the main notions and definitions used in all other sections. More specific definitions
+are given in respective sections. In Section 3 we present the main ideas of the algorithm sample-
+select-descent for bridged graphs and bipartite Helly graphs, and of the algorithm cut-on-best-
+neighbor for cube-free median graphs. Section 4 shows how to derandomize the sample-select-
+descent algorithm for 0-1-profiles. Section 5 presents our results about the center problem in
+bridged and weakly bridged graphs, namely: the G2 -unimodality of their radius functions, the
+sample-select-descent algorithm, and its correctness and complexity. Similar results for bipartite
+Helly graphs are presented in Section 6. Section 7 presents the cut-on-best-neighbor algorithm
+for cube-free median graphs and establishes its correctness and complexity. Section 8 establishes
+the GO(δ) unimodality of all radius functions in δ-hyperbolic graphs and (for 0-1-profiles) in δ-
+coarse Helly graphs. In Section 9 we prove that the graphs with Gp -unimodal radius functions
+can be recognized in polynomial time; we also establish super-linear lower bounds for deciding
+if a vertex is a local minimum of the radius function in a graph, which holds even if all radius
+functions are G2 -unimodal. Section 10 presents some perspectives of our work and open questions
+(other open questions are locally presented in previous sections). The final Section 11 generalizes
+the results of Section 5 to all graphs with convex balls. Since the resulting complexity is worse
+than for (weakly) bridged graphs and the technical details are much more involved we decided
+to present Section 11 as an appendix of the paper.
+
+                                       2. Preliminaries
+2.1. Graphs. All graphs G = (V, E) in this paper are undirected, connected, and simple. If
+G is a bipartite graph, then we denote by V0 and V1 the sets of the bipartition of V . Our
+non-algorithmic results hold for infinite graphs; in algorithms, G has n vertices and m edges.
+We write u ∼ v if u, v ∈ V are adjacent and u ≁ v otherwise. As usual, Kn is a complete graph,
+Kp,q a complete bipartite graph, and Cn a cycle; sometimes, C3 is called a triangle, C4 a square
+and C5 a pentagon. The wheel Wn consists of Cn and a vertex adjacent to all vertices of Cn .
+The 3-cube Q3 is the 1-skeleton of the 3-dimensional unit cube.
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                               7
+
+    A (u, v)-geodesic is a (u, v)-path with a minimum number of edges. The distance d(u, v) :=
+dG (u, v) between u and v is the length of a (u, v)-geodesic. The interval between u and v is
+the set of all vertices on (u, v)-geodesics, i.e., I(u, v) = {w ∈ V : d(u, w) + d(w, v) = d(u, v)}.
+Let I ◦ (u, v) = I(u, v) \ {u, v}. The ball of radius r centered at a vertex v of G is the set
+Br (v) = {x ∈ V : d(v, x) ≤ r}. As usual, N (v) = B1 (v) \ {v} and N (A) = B1 (A) \ A. More
+generally,SNr (v) = Br (v) \ Br−1 (v) = {x ∈ V : d(v, x) = r}. A half-ball of a bipartite graph
+G = (V0 V1 , E) is the intersection of any ball Br (v) of G with V0 or V1 . More generally, the r–
+ball around a set A ⊆ V is the set Br (A) = {v ∈ V : d(v, A) ≤ r}, where d(v, A) = min{d(v, x) :
+x ∈ A}. Let also prz (A) = {a ∈ A : d(z, a) = d(z, A)} be the metric projection of vertex z on
+A. For an integer p ≥ 1, the pth power of G is a graph Gp with the same vertex-set V as G and
+u, v are adjacent in Gp if and only if u ̸= v and dG (u, v) ≤ p.
+    A subgraph H of G is (1) isometric if dH (u, v) = dG (u, v) for any u, v ∈ V (H), (2) convex if
+I(u, v) ⊂ H for any u, v ∈ V (H), (3) locally-convex if H is connected and I(u, v) ⊂ H for any
+u, v ∈ V (H) with d(u, v) = 2, and (3) gated if for every x outside H there is x′ in H (the gate of
+x) such that x′ ∈ I(x, y) for any y ∈ V (H). An outergate of z with respect to S ⊂ V is a vertex
+z ∗ such that d(z, z ∗ ) = d(z, S) − 1 and z ∗ is adjacent to all vertices of the projection prz (S) of
+z on S. The set S is outergated if any z ∈ V \ S has an outergate.
+    A graph G = (V, E) is isometrically embeddable into a graph G′ = (W, F ) if there exists a
+mapping φ : V → W such that dG′ (φ(u), φ(v)) = dG (u, v) for u, v ∈ V . A retraction φ of a
+graph G is an idempotent nonexpansive mapping of G into itself, that is, φ2 = φ : V (G) → V (G)
+with d(φ(x), φ(y)) ≤ d(x, y) for all x, y ∈ V (G). The subgraph H of G induced by the image
+of G under φ is referred to as a retract of G. A graph H is called an absolute retract if H
+is a retract of any graph G into which H is isometrically embedded. Analogously, a bipartite
+graph H is a bipartite absolute retract if H is a retract of any bipartite graph G into which H is
+isometrically embedded. A family of sets F on a universe V satisfies the Helly property if any
+subfamily F ′ of F has a nonempty intersection whenever each pair of sets of F ′ intersects.
+    Vertices v1 , v2 , v3 form a metric triangle v1 v2 v3 if I(v1 , v2 ), I(v2 , v3 ), and I(v3 , v1 ) pairwise
+intersect only in common end-vertices, i.e., I(vi , vj ) ∩ I(vi , vk ) = {vi } for any 1 ≤ i, j, k ≤ 3.
+If d(v1 , v2 ) = d(v2 , v3 ) = d(v3 , v1 ) = k, then this metric triangle is called equilateral of size k.
+An equilateral metric triangle v1 v2 v3 of size k is called strongly equilateral if d(vi , x) = k for
+any vertex x ∈ I(vj , vk ), where {i, j, k} = {1, 2, 3}. Obviously, all metric triangles of size 0
+or of size 1 are strongly equilateral. A metric triangle v1 v2 v3 of G is a quasi-median of the
+triplet x, y, z if the following metric equalities are satisfied: d(x, y) = d(x, v1 ) + d(v1 , v2 ) +
+d(v2 , y), d(y, z) = d(y, v2 ) + d(v2 , v3 ) + d(v3 , z), and d(z, x) = d(z, v3 ) + d(v3 , v1 ) + d(v1 , x) (such
+a quasi-median always exists). A quasi-median v1 v2 v3 of x, y, z that is a metric triangle of size
+0 (i.e., v1 = v2 = v3 ) is called a median.
+
+2.2. Weakly modular graphs. A graph G is weakly modular [27,30] if G satisfies the triangle
+(TC) and quadrangle (QC) conditions:
+ (TC) Triangle Condition: for v, x, y ∈ V with d(v, x) = d(v, y) = k and x ∼ y, ∃z ∈ Bk−1 (v),
+      z ∼ x, y.
+ (QC) Quadrangle Condition: for v, x, y, u ∈ V with d(v, x) = d(v, y) = k = d(v, u) − 1 and
+      u ∼ x, y, x ≁ y, ∃z ∈ Bk−1 (v), z ∼ x, y.
+   By [30], the weakly modular graphs are exactly the graphs in which all metric triangles are
+strongly equilateral. A graph G is called modular if all metric triangles have size 0, i.e., the
+quasi-medians of all triplets are medians. Median graphs are the modular graphs in which each
+triplet has a unique median. Cube-free median graphs are the median graphs not containing the
+3-cube as a subgraph.
+   Helly graphs are the graphs in which the family of balls satisfies the Helly property. Helly
+graphs are weakly modular, namely all quasi-medians in Helly graphs are metric triangles of size
+0 or 1. Bipartite Helly graphs are the bipartite graphs in which the family of half-balls satisfies
+the Helly property. Bipartite Helly graphs are modular. We stress here the fact that the class of
+bipartite Helly graphs is not a subclass of Helly graphs, because in Helly graphs and in bipartite
+8                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+Helly graphs the Helly property holds for different families of sets: balls in the first case and
+half-balls in the second case.
+   A graph G is bridged if any isometric cycle of G has size 3. By [59,95], the bridged graphs are
+exactly the graphs in which the balls Br (A) around convex sets A are convex. Bridged graphs
+are weakly modular, in fact they are exactly the weakly modular graphs not containing induced
+C4 and C5 [30, 31]. A graph with convex balls (a CB-graph) is a graph in which all balls are
+convex. Obviously, bridged graphs are CB-graphs. CB-graphs are not weakly modular but they
+satisfy (QC) and the Triangle-Pentagon Condition (TPC) asserting that for any v, x, y ∈ V such
+that d(v, x) = d(v, y) = k and x ∼ y either (TC) or the following (PC) holds [29]:
+  (PC) Pentagon Condition: there exist z, w, w′ ∈ V such that z ∈ Bk−2 (v) and xwzw′ y is a
+         pentagon of G.
+   The weakly bridged graphs are the weakly modular graphs with convex balls. By [38] they are
+exactly the weakly modular graphs not containing induced C4 .
+2.3. Radius function and Gp -unimodality. A profile (or a weight function) is a map π :
+V → R+ ∪ {0} with finite support supp(π) = {v ∈ V : π(v) > 0}. The radius function is
+given by rπ (v) = maxu∈supp(π) π(u)d(u, v). A vertex v minimizing rπ (v) is called a center of
+G with respect to π and the set of all centers is the center Cπ (G). The value rπ (v) for any
+v ∈ Cπ (G) is the radius of G with respect to π and is denoted by radπ (G). For v ∈ V , let
+Fπ (v) = {z ∈ supp(π) : π(z)d(v, z) = rπ (v)} be the set of furthest vertices of v. If π(v) ∈ {0, 1}
+for any v, then we call π a 0-1-profile and rπ a 0-1-radius function.
+   Let f : V → R be a function defined on the vertex-set V of G. The global minima of f is the
+set arg min(f ) of vertices of G minimizing f on G. By a local minimum one means a vertex v
+such that f (v) ≤ f (w) for any w in B1 (v). A function f is called unimodal on G if every local
+minimum of f is global, that is, if the inequality f (v) ≤ f (y) holds for all neighbors of y of a
+vertex v of G then it holds for all vertices y of G. Weakly peakless functions introduced in [8]
+is an important subclass of unimodal functions: f : V → R is weakly peakless if for any two
+non-adjacent vertices u, v it satisfies the following condition WP(u, v):
+WP(u, v): there exists w ∈ I ◦ (u, v) such that f (w) ≤ max {f (u), f (v)}, and equality holds only
+            if f (u) = f (w) = f (v).
+In [17] the notions of unimodal and weakly peakless functions have been generalized to Gp -
+unimodal and p-weakly peakless functions, with p a positive integer. A function f is Gp -unimodal
+if every local minimum of f in the pth power Gp of G is a global minimum of f . A function f
+is called p-weakly peakless if for any two vertices u, v such that d(u, v) ≥ p + 1 it satisfies the
+condition WP(u, v). It is shown in [17] that p-weakly peakless functions are Gp -unimodal. A
+function f is locally-p-weakly peakless on G if it satisfies WP(u, v) for any u, v with p + 1 ≤
+d(u, v) ≤ 2p. By [17], f is p-weakly peakless iff f is locally-p-weakly peakless. Note that if f is
+p-weakly peakless, then any pair of vertices u, v of G can be connected by a p-geodesic (a subset
+of a geodesic in which consecutive vertices have distance ≤ p) along which f is peakless. Using
+p-weakly peaklessness is more handy when proving Gp -unimodality because we can better use
+the metric structure of graphs. Note that any radius function rπ is defined with respect to the
+distance function of G, but its unimodality is considered in Gp .
+2.4. Cartesian trees. We often need to compute rπ for vertices of a set S, by running a BFS
+from S and computing for each s ∈ S the maximal weighted distance κ(s) from s to a vertex
+from supp(π) in the branch of the BFS-tree rooted at s. For this we will use the following
+lemma:
+Lemma 2.1. Let G = (V, E) be a graph and κ : V 7→ R+ ∪ {0}. There is an O(n + m)-time
+algorithm that computes, for every u ∈ V , cκ (u) := max{κ(v) : v ∈ V \ N (u)}.
+Proof. Denote the ith vertex of G by vi . We construct an array Aκ such that Aκ [i] = κ(vi )
+for 1 ≤ i ≤ n. We pre-process it in O(n) time so that any q(i, j) := max{Aκ [k] : i ≤ k ≤ j}
+can be computed in O(1) time. This is done using Cartesian trees [61]. Thereafter, we reorder
+in O(n + m) time the adjacency lists N (u) of every u by increasing index. Doing so, we can
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                        9
+
+scan every ordered neighborhood N (u) S
+                                      once and compute the pairs (i1 , j1 ), . . . , (ir , jr ), for some
+r ≤ deg(u) + 1, such that V \ N (u) = rt=1 {vit , . . . , vjt }. Note that cκ (u) = max{q(it , jt ) : 1 ≤
+t ≤ r}. Thus we can compute cκ (u) in O(r) = O(deg(u)) time, giving O(n + m) total time. □
+
+                                     3. Technical overview
+   In this section, we present the technical contributions of this paper at a high level. We begin
+by recalling the sample-select-descent method on which most of our algorithmic results are based.
+This allows us to highlight the main difficulty in implementing this method on a given graph
+class. We then explain how to overcome this difficulty in the case of bridged and bipartite Helly
+graphs (which is one the main contributions of this work). Kariv and Hakimi introduced the
+cut-on-best-neighbour method, which enabled to obtain an O(n log n)-time algorithm for the
+weighted center problem in trees [75]. We end this section with an overview of our second main
+contribution, which consists in extending to cube-free median graphs the use of the cut-on-best-
+neighbour method.
+3.1. Sample-select-descent method. In the case of (weakly) bridged graphs, graphs with
+convex balls, and bipartite Helly graphs, we use the sample-select-descent method. For the spe-
+cial case of 0-1-profiles, we present a deterministic version of this method (see Section 4). Recall
+that sample-select-descent picks a random set U of size O(    e √n), computes their eccentricities,
+and runs local search in G2 starting from a vertex u of U with smallest value rπ (u). Local
+search constructs a minimizing path (u0 = u, . . . , uℓ ) of G2 such that rπ (u0 ) > . . . > rπ (uℓ ),
+and uℓ is a local (and thus global) minimum of rπ in G2 . At step i + 1, a vertex ui+1 ∈ B2 (ui )
+such that rπ (ui ) > rπ (ui+1 ) is computed. Algorithm 1 provides the pseudo-code of the generic
+sample-select-descent. Two complexity issues arise. First, given ui , how to compute ui+1 , i.e.,
+how to efficiently implement ImproveEccentricity(G, π, ui )? Second, how to bound the length
+ℓ of the improving path (u0 , . . . , uℓ )? (This second question was treated in the case of quasi
+M # - and L# -convex functions from discrete convex analysis [83, 84] and in the computation of
+L2 -geodesics in CAT(0) cube complexes [67]). In the case of radius functions, the second issue
+can be solved by applying to G2 the following result of [52] (see also [3]):
+Lemma 3.1 ([52, Lemma 3]). For any graph G = (V, E) and for any profile π, for any random
+                      e √n), if u minimizes rπ on U , then with high probability any minimizing
+subset U of V of size O(
+                                                                     √
+path in G2 between u and any vertex of Cπ (G) has length at most eO( n).
+   In the case of 0-1-profiles, we proceed
+                                        √ in the following deterministic
+                                                            √            way. By [81], any graph G
+can be covered in O(m) time with Θ( n) balls of radius 2 n and this covering can be computed
+in O(m) time. Let U be the set of centers of these balls. Compute rπ on the vertices of U and
+pick u ∈ U minimizing rπ on U , i.e., f (u) = min{f (u′ ) : u′ ∈ U }. Then we run local search on
+G 2                                                     ∗                  ∗
+√ starting from u until we find a local minimum v . We prove that v is reached in at most
+  n + 1 improvement steps.
+
+ Algorithm 1: SampleSelectDescent(G, π)
+  Input : A graph G = (V, E), a profile π : V → R+
+  Output: A central vertex of G
+                                       √
+  Pick a random set U ⊆ V of size e O( n);
+  Compute rπ (u) for all u ∈ U ;
+  Select u0 ∈ U with minimum rπ (u0 );
+  i←0;
+  u1 ← ImproveEccentricity(G, π, u0 );
+  while ui+1 ̸= ui do
+      i ← i + 1;
+      ui+1 ← ImproveEccentricity(G, π, ui );
+  return ui ;
+10                J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+   For radius function rπ , the issue of computing an improving neighbor in G2 may be a bot-
+tleneck. Theorem C shows that deciding if v is a local minimum of rπ in G or in G2 is as
+hard as the global minimization of rπ even if rπ is G2 -unimodal. However, for (weakly) bridged
+graphs, graphs with convex balls, and bipartite Helly graphs, we show (and this is the main
+technical content of the paper) that given a vertex v, deciding if v is a local minimum of rπ
+in G2 or computing a vertex u ∈ B2 (v) with rπ (u) < rπ (v) otherwise, can be done in O(m)
+time. Consequently, for those classes of graphs, each call of ImproveEccentricity requires O(m)
+time. Combining with Lemma 3.1 this yields algorithms with complexity O(    e √nm) (O(√nm)
+for 0-1-profiles) for the center problem on such graphs.
+3.2. The case of bridged graphs. We describe how to implement ImproveEccentricity(G, π, v)
+(i.e., to compute a vertex u ∈ B2 (v) with rπ (u) < rπ (v)) in the case of bridged graphs. For
+graphs with convex balls this is done analogously but some technical extra work is needed for
+the last step (i.e., to assert that v is a local minimum of rπ in G2 ), details are given in the
+appendix (Section 11).
+   In bridged graphs G, the balls around convex sets are convex. This property is crucial for
+ImproveEccentricity(G, π, v) and the proof of its correctness. In particular, using it, we show
+that any 1-ball B of G is outergated (see Section 2.1) and we can compute in O(m) time the
+outergates on B. Using Lemma 2.1, we compute u ∈ B1 (v) minimizing rπ in O(m) time. If
+rπ (u) < rπ (v), then we are done. Otherwise, v is a local minimum of rπ in G and we have
+to decide if v is a local minimum of rπ in G2 . The key step of the algorithm is to identify a
+neighbor wmax of v such that wmax ∼ u if there exists a vertex u ∈ B2 (v) with rπ (u) < rπ (v)
+(see Figure 1 for an illustration). For this, consider the set Fπ (v) of all furthest from v vertices
+of the profile. For every w ∈ N (v), the shadow Ψπ (w) of w is the set of all z ∈ Fπ (v) such that
+w ∈ I(v, z), i.e., w lies on a shortest (v, z)-path. Next, we partition the neighborhood N (v) of v
+into equivalence classes W0 , W1 , . . . , Wk , where two vertices w, w′ ∈ N (v) are equivalent if they
+have the same shadows Ψπ (w) = Ψπ (w′ ). Using outergates and partition refinement techniques,
+this partition of N (v) can be computed in O(m) time. Doing so, we also compute |Ψπ (Wi )| for
+every equivalence class Wi (where Ψπ (Wi ) = Ψπ (w) for any w ∈ Wi ). Assume that W0 is the
+equivalence class maximizing the size |Ψπ (W0 )| of its shadow. Since v is a local minimum of rπ
+in G, Fπ (v) ̸= Ψπ (W0 ). We pick any vertex z ∈ Fπ (v) \ Ψπ (W0 ) and compute in O(m) time the
+intersection N (v) ∩ I(v, z) = N (v) ∩ N (z ′ ), where z ′ is any outergate of z on the 1-ball B1 (v).
+Let wmax ∈ N (v) ∩ I(v, z) be a vertex maximizing |N (wmax ) ∩ W0 |. Using the convexity of balls,
+we prove that if v is not a local minimum of rπ in G2 , then wmax has a neighbor v + such that
+rπ (v + ) < rπ (v) (see Proposition 5.11). Using Lemma 2.1, the algorithm selects in O(m) time
+a vertex v + minimizing rπ in B1 (wmax ). If rπ (v + ) = rπ (v), then v ∈ Cπ (G) and otherwise we
+return v + as an improving vertex u ∈ B2 (v).
+3.3. The case of bipartite Helly graphs. We describe how to implement the function
+ImproveEccentricity(G, π, v) in the case of a bipartite Helly graph G = (V0 ∪ V1 , E). The com-
+putation is different but follows the same lines as for bridged graphs (see Section 6). Suppose
+without loss of generality that v ∈ V0 .
+   First, using the Helly property for half-balls, we show that any 1-ball of G is outergated. Using
+this property, we show how to compute in O(m) time a vertex u ∈ N (v) with rπ (u) < rπ (v),
+if u exists. Now, suppose that v is a local minimum of rπ . Then we have to find a vertex
+u ∈ N2 (v) with rπ (u) < rπ (v), if such u exists. When u exists,Tsince G is bipartite, necessarily
+u ∈ I(v, x) forTany x ∈ Fπ (v), i.e., u belongs to the set S1 = {N2 (v) ∩ I(v, x) : x ∈ Fπ (v)}.
+Let also A = {N (v) ∩ I(v, x) : x ∈ Fπ (v)}. If S1 ̸= ∅, then any common neighbor a of v
+and any vertex of S1 belongs to A, thus A ̸= ∅. The set S1 can be computed in the following
+way (see Figure 2 for an illustration). Since B1 (v) is outergated, the set A can be computed
+in O(m) time. If A = ∅, then S1 is also empty. Otherwise, the computation of S1 is done in
+two steps. First, we decide if S1 ̸= ∅ and if this is the case, we compute a vertex b of S1 such
+that A ⊆ N (b). Without loss of generality, assume that v ∈ V0 . Note that if S1 ̸= ∅, then the
+half-balls B1 (a) ∩ V0 , a ∈ A and Bd(x,v)−2 (x) ∩ V0 , x ∈ Fπ (G) pairwise intersect. By the Helly
+property for half-balls, this implies that there exists a common vertex b that belongs to all these
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                    11
+
+
+
+
+                                                                 Ψπ (W0 )
+
+
+
+
+                                                W0
+
+
+                                                            v+
+                                            v
+                                                     wmax         B1 (wmax )
+                              B1 (v)
+                                                            z′
+
+
+                                                                      z
+
+
+                     Figure 1. ImproveEccentricity(G, π, v) for bridged graphs.
+
+
+
+                                        b                        gb (x)          x
+
+
+                 v
+
+
+
+
+                          A            u ∈ S1                                  Fπ (v)
+
+
+                Figure 2. Computing S1 in the case of bipartite Helly graphs.
+
+half-balls, i.e., such that b ∈ S1 and A ⊆ N (b). Consequently, S1 is non-empty if and only if
+there exists such a vertex b. To test the existence of such a vertex in O(m) time, we transform
+the profile π to a new profile π ′ and reduce the existence of b ∈ S1 to testing if an arbitrary
+vertex a of A is a local minimum of the new radius function rπ′ . Now, with the vertex b ∈ S1 at
+hand, for each x ∈ Fπ (v) we compute the outergate gb (x) of x with respect to B1 (b). We show
+that z ∈ N2 (v) belongs to S1 if and only if z is at distance 2 from gb (x) for all x ∈ Fπ (v). Based
+on this local characterization, S1 can be computed in O(m) time since the intersection of the
+balls B2 (y), y ∈ Y for any set Y can be computed in O(m) time.
+  Since G is bipartite, if u ∈ N2 (v) and d(u, x) > d(v, x), then d(u, x) = d(v, x) + 2. Conse-
+quently, if u ∈ N2 (v) and rπ (u) < rπ (v), necessarily for any x such that π(x)(d(v, x)+2) ≥ rπ (v),
+we should have d(u, x) ≤ d(v, x). Let X = {x : π(x)(d(v, x) + 2) ≥ rπ (v)} and note that if there
+exists u ∈ N2 (v) such that rπ (u) < rπ (v), then d(u, x) ≤ d(v, x) for all x ∈ X. We show that
+u ∈ N2 (v) satisfies this condition if u is at distance 2 from the outergate gv (x) with respect to
+B1 (v) for all x ∈ X. Using the same subroutine as before, we can compute the set S2 of vertices
+u ∈ N2 (v) such that d(u, x) ≤ d(v, x) for all x ∈ X. Finally, if S1 ∩ S2 ̸= ∅, we output any
+vertex of S1 ∩ S2 as the improving vertex u ∈ N2 (v) and v otherwise. The correctness of this
+procedure is obtained by proving that together the two necessary conditions are also sufficient.
+
+3.4. Cut-on-best-neighbor for cube-free median graphs. Cube-free median graphs are
+bipartite Helly graphs and the previous algorithm performs a single step of local search for rπ in
+12                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+O(m) time. The complexity of the sample-select-descent also depends on the number of descent
+steps and the size of the initial set U . Therefore sample-select-descent cannot be used to get an
+algorithm faster than O( e √nm).
+    For cube-free median graphs, we design an e     O(m)-time algorithm. To do so, we use the G2 -
+unimodality of rπ differently: we generalize in a non-trivial way the cut-on-best-neighbor method
+by Kariv and Hakimi [75] for weighted centers in trees. Their algorithm computes a centroid v
+of T and a neighbor v ′ of v with rπ (v ′ ) < rπ (v). Since the radius function rπ of T is convex, if v ′
+does not exist then v is central. Otherwise, the center belongs to the subtree T ′ of T containing
+v ′ and the recursion is performed on it. For median graphs G, the role of subtree T ′ is played by
+halfspaces, i.e., convex sets with convex complements. The halfspaces of G are exactly the sets
+of the form H(x, y) = {z ∈ V : d(z, x) < d(z, y)} where xy is an edge of G and can be elegantly
+constructed in linear time by LexBFS [16].
+    Let G = (V, E) be a cube-free median graph; then G contains at most 2n edges and rπ is
+   2
+G -unimodal. We start with G as the search region R. At each iteration, the search region R
+is convex (and thus gated) and contains the center Cπ (G). Furthermore, R is the intersection
+of the search region R′ of the previous iteration with a certain halfspace H of G and has size
+at most one half of the size of R′ : R = R′ ∩ H and |R| ≤ |R′ |/2. Consequently, the algorithm
+has log2 n iterations. Now, we show how, given the search region R, to compute in O(n log n)
+time a halfspace H such that Cπ (G) ⊆ H and |R ∩ H| ≤ |R|/2. First, a median/centroid v
+of R is computed in O(|R|) time using [16]. Then we compute the star St(v) ⊆ B2 (v) of v in
+R (the union of all edges and squares containing v) and rπ (z) for all z ∈ St(v) (this can be
+done in linear time because St(v) is gated). If v minimizes rπ (v) in the star St(v), using the
+G2 -unimodality of rπ , we show that v is a central vertex of G and we return it. Otherwise, we
+compute a halfspace H of R separating v from Cπ (G), i.e., Cπ (G) ⊆ H and v ∈ R \ H. Since v
+is a median of R and Cπ (G) ⊆ H, |R ∩ H| ≤ |R|/2 holds.
+    The computation of the halfspace H is the main technical issue of the algorithm. This is done
+in O(n log n) time by using the function ReduceConvexRegion, which is described in Section 7 and
+which we now outline (see Figure 3 for an illustration). A vertex z ∈ St(v) with rπ (z) < rπ (v)
+is called an improving neighbor of v if z ∼ v and an improving second neighbor if z ≁ v. First
+we show that v has at most two improving neighbors. If v does not have improving neighbors
+but has an improving second neighbor w ∈ R, then as H we consider a halfspace H(z, v) where
+z ∼ v, w. Otherwise, we pick an improving neighbor z and we construct the fiber ΦSt(v) (z) of z
+(i.e., the set of vertices having z as their gates in St(v)). The boundary ΥSt(v) (z) is the set of
+vertices of ΦSt(v) (z) that have a neighbor outside of ΦSt(v) (z). For cube-free median graphs, this
+boundary is a tree with gated branches. Using the cut-on-best-neighbor approach for trees, we
+find in O(n log n) time a local-minimum u of the radius function rπ on ΥSt(v) (z) (i.e., a vertex
+u ∈ ΥSt(v) (z) such that rπ (u) ≤ rπ (u′ ) for all neighbors u′ of u in ΥSt(v) (z)). Then we compute
+in linear time the star St(u) of u and rπ (t) for all vertices t ∈ St(u). If u is a local minimum
+in St(u), we return u as a central vertex. If u has one improving neighbor t, then we select
+the halfspace H(t, u) as H. Analogously, if u does not have an improving neighbor but has an
+improving second neighbor w, then we take as H a halfspace H(t, u), where t ∼ u, w and t does
+not belong to the (z, u)-path of ΥSt(v) (z). Finally, if u has two improving neighbors, we prove
+that they belong to ΦSt(v) (z) and that the halfspace H(z, v) defined by the edge vz separates v
+from Cπ (G) (and thus can be taken as H). Since ReduceConvexRegion is called O(log n) times,
+we obtain an algorithm with complexity O(n log2 n).
+
+                          4. Deterministic sample-select-descent
+    Let f : V → Z+ ∪ {0} be a 2-weakly peakless function on G. Local search (the descent
+algorithm) constructs a minimizing path (u0 , . . . , uℓ ) of G2 such that f (u0 ) > · · · > f (uℓ ), and
+uℓ is a local (and thus global) minimum of f . At step i + 1, a vertex ui+1 ∈ B2 (ui ) such
+that f (ui ) > f (ui+1 ) is computed. We say that f has descent p if for any v and x ∈ B2 (v),
+|f (v) − f (x)| ≤ p. Any 0-1-radius function rπ has descent 2. For a vertex u, denote by δ(u) the
+number of descent steps necessary to achieve a vertex from arg min(f ) starting from u.
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                         13
+
+                                              H(z, v)
+
+
+
+
+                                                                                          ΥSt(v) (z)
+
+
+
+
+                                          z                                               ΦSt(v) (z)
+                              v
+            St(v)                                                             t
+                                                                                     t′
+
+                                                                              u
+
+
+
+
+        Figure 3. ReduceConvexRegion for cube-free median graphs. Starting from a
+        vertex v, its star St(v) is in blue and given an improving neighbor z of v, the
+        parallel with vz edges defining the halfspace H(z, v) are drawn in bold red, the
+        fiber ΨSt(v) (z) is drawn in stripped yellow, and its boundary ΨSt(v) (z) in orange.
+
+Lemma 4.1. Let f be a 2-weakly peakless function on G with descent p. For any u ∈ V and
+v ∈ arg min(f ) closest to u, f (u) ≤ f (v) + pτ and δ(u) ≤ pτ , where τ = d(u,v)
+                                                                             2    + 1.
+Proof. Since f is weakly peakless in G2 , there is a (u, v)-geodesic P ′ = (u = v0′ , v1′ , . . . , vk′ = v)
+in G2 such that f (v0′ ) > f (v1′ ) > . . . > f (vk′ ), where k = dG2 (u, v) ≤ τ . At each step, f
+decreases by ≤ p units, thus f (u) ≤ f (v) + pτ . Pick any longest minimizing path P ′′ = (v0 =
+u, v1 . . . , vk′ = v ′ ) of G2 such that f (v0 ) > f (v1 ) > . . . > f (vk′ ) and v ′ ∈ arg min(f ). By
+definition, δ(u) = k ′ . Since d(u, v) ≤ d(u, v ′ ), k ′ ≥ k. Since at each step f decreases by ≥ 1 and
+f (u) ≤ f (v) + pτ = f (v ′ ) + pτ , we get k ′ ≤ pτ .                                                    □
+                                                                 √                     √
+   By [81], any G can be covered in O(m) time with Θ( n) balls of radius 2 n. Let U be the
+set of centers of these balls. Compute f on the vertices of U and let u minimize f on U . Run
+local search on G2 starting from u until we find a local minimum v ∗ .
+Proposition 4.2. If f is a 2-weakly peakless function with descent p,√then the number of descent
+steps to compute v ∗ ∈ arg min(f ) starting from u ∈ U is at most p( n + 1).
+                                            √                ′ ∗              √          √
+Proof. Let u′ ∈ U so that d(u′ , v ∗ ) ≤ 2 n. Set τ = d(u2,v ) + 1 ≤ 2 2 n + 1 = n + 1. By
+Lemma 4.1, f (u′ ) ≤ f (v ∗ ) + pτ . From the choice of u, f (u) ≤ √   f (u′ ), thus f (u) ≤ √
+                                                                                             f (u′ ) ≤
+f (v ∗ ) + pτ . Since each step decreases f by ≥ 1 and d(u′ , v ∗ ) ≤ 2 n, we need ≤ p · ( n + 1)
+steps to reach v ∗ from u.                                                                           □
+
+                    5. The center problem in (weakly) bridged graphs
+  In this section, we present an algorithm for the center problem in weakly bridged graphs based
+on G2 -unimodality of the radius function.
+5.1. Bridged and weakly bridged graphs. Recall that a graph G is bridged if balls Br (C)
+around convex sets C are convex [59, 95]. A graph G is weakly bridged (WB-graph for short)
+if G is a graph with convex balls in which each C5 is included in a 5-wheel [38]. Topological
+14                  J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+characterization of bridged graphs, respectively of weakly bridged graphs, via their clique com-
+plexes were given in [31] and [38]. Notice that the clique complexes of bridged graphs are exactly
+the systolic simplicial complexes introduced in [73] and which are considered as combinatorial
+analogs of simplicial nonpositive curvature.
+   In this paper, we only need a few metric characterizations and properties of these graphs, which
+we now recall. As we noted already (see Section 2.2), bridged graphs and weakly bridged graphs
+are weakly modular. Furthermore, weakly bridged graphs G satisfy the Interval Neighborhood
+Condition (INC): for any u, v ∈ V , the neighbors of v in I(u, v) form a clique. Recall now the
+metric characterization of bridged and weakly bridged graphs:
+
+Theorem 5.1. For a graph G, the following are equivalent:
+     (1) G is bridged;
+     (2) any isometric cycle of G has length 3 [59, 95];
+     (3) G is a weakly modular graph without induced C4 and C5 [30, 31].
+
+Theorem 5.2 ([38]). A graph G is weakly bridged iff G is weakly modular without induced C4 .
+
+   A graph G satisfies the interval-outergate property if for any u, v ∈ V with d(u, v) = k ≥ 2,
+there exists w ∈ I(u, v) (called the interval-outergate of u with respect to v) at distance k − 2
+from u and adjacent to all vertices of I(v, u) ∩ N (v).
+
+Lemma 5.3 ([38]). Any weakly bridged graph G satisfies the interval-outergate property.
+
+Lemma 5.4. If G is weakly modular and u, v, x ∈ V are such that d(x, u) < d(x, v), then there
+exists wx ∈ N (v) ∩ I(v, u) such that wx ∈ I(v, x).
+
+Proof. Let u′ v ′ x′ be a metric triangle such that d(u, v) = d(u, u′ ) + d(u′ , v ′ ) + d(v ′ , v), d(u, x) =
+d(u, u′ ) + d(u′ , x′ ) + d(x′ , x), and d(v, x) = d(v, v ′ ) + d(v ′ , x′ ) + d(x′ , x). If v ′ ̸= v, then any
+neighbor of v in I(v, v ′ ) ⊂ I(v, u) ∩ I(v, x) can be selected as wx . Now suppose that v ′ = v.
+Since d(x, u) < d(x, v), the vertices u′ , v ′ , x′ are pairwise distinct and the metric triangle u′ v ′ x′
+cannot be equilateral, which is impossible since G is weakly modular.                                         □
+
+5.2. G2 -unimodality of the radius function. The following result establishes the statement
+of Theorem A for (weakly) bridged graphs:
+
+Proposition 5.5. All radius functions of a weakly bridged graph G are 2-weakly peakless.
+
+Proof. Let u, v be any two vertices of G = (V, E) with d(u, v) ≥ 3 and suppose that rπ (u) ≤
+rπ (v). If rπ (u) = rπ (v), then for any vertex x ∈ supp(π) and any vertex w ∈ I(u, v), w ̸= u, v,
+by convexity of balls we have π(x)d(x, w) ≤ max{π(x)d(x, u), π(x)d(x, v)} ≤ rπ (u) = rπ (v),
+yielding rπ (w) ≤ rπ (u) = rπ (v). Thus, suppose that rπ (u) < rπ (v). To establish WP(u, v), we
+will prove the following assertion: For any w ∈ I(v, u) such that d(v, w) = 2 and N (v)∩I(v, u) ⊆
+N (w), we have rπ (w) < rπ (v) (such a vertex exists by Lemma 5.3). Recall that Fπ (v) = {x ∈
+supp(π) : π(x)d(x, v) = rπ (v)}. Since G has convex balls, for any z ∈ I(v, u)\{v, u} and any y ∈
+supp(π)\Fπ (v), the following inequality holds: π(y)·d(z, y) ≤ max{π(y)·d(v, y), π(y)·d(u, y)} ≤
+max{π(y) · d(v, y), rπ (u)} < rπ (v). Therefore, in order to prove rπ (w) < rπ (v), it suffices to
+prove that d(w, x) < d(v, x) for every x ∈ Fπ (v). By Lemma 5.4, for every x ∈ Fπ (v), there is
+some wx ∈ N (v) ∩ I(u, v) such that d(wx , x) < d(v, x). Set W = {wx : x ∈ Fπ (v)}. By definition
+W ⊆ N (v) ∩ I(u, v) ⊆ N (w). Finally, for any x ∈ Fπ (v) we have wx , u ∈ Bd(x,v)−1 (x). Since
+w ∈ I(wx , u), the convexity of Bd(x,v)−1 (x) yields d(w, x) ≤ max{d(wx , x), d(u, x)} < d(x, v).
+Thus, rπ is 2-weakly peakless.                                                                  □
+
+5.3. The algorithm. We consider the algorithmic implications of Proposition 5.5 and local
+search; namely, we show how for weakly bridged graphs to implement each iteration of the
+descent algorithm in O(m) time.
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                     15
+
+5.3.1. Computing rπ for a clique. We start by recalling the following result:
+Lemma 5.6 ([52, Lemma 6]). For a set S of a graph G, in O(m) time one can map every z ∈         /S
+to z ∗ ∈ Bd(v,S)−1 (z) ∩ B1 (S) maximizing |N (z ∗ ) ∩ S|. Furthermore, if S is outergated, then z ∗
+is an outergate of z.
+Lemma 5.7. Any clique K of G is outergated.
+Proof. Let z ∈   / K be arbitrary, let K ′ = prz (K) and u ∈ V with d(z, u) = d(z, K)−1 maximizing
+|N (u) ∩ K ′ |. Suppose for the sake of contradiction that u is not an outergate of z. Let u ≁ w
+for w ∈ K ′ . Pick v ∈ K, v ∼ u. By (TC), there exists u′ ∼ v, w with d(z, u′ ) = d(z, K) − 1.
+Since u ≁ w, u′ ̸= u. By (INC), u ∼ u′ . Pick x ∈ K ′ , x ∼ u. Since G is C4 -free, u′ ∼ x. Thus
+|N (u′ ) ∩ K ′ | > |N (u) ∩ K ′ |, a contradiction.                                             □
+Lemma 5.8. For any clique K, in O(m) time, we can compute rπ (w) for every w ∈ K.
+Proof. By Lemma 5.7, K is outergated. Then, by Lemma 5.6, in O(m) time we can com-
+pute an outergate gK (y) for every y ∈/ K. For every u ∈ N (K), we compute the weights
+α(u) = max{π(y)d(y, K) : y ∈ / K and gK (y) = u} and β(u) = max{π(y)(d(y, K) + 1) : y ∈
+                                                                                      /
+K and gK (y) = u}. Pick any w ∈ K. Then
+                      n
+         rπ (w) = max {π(w′ ) : w′ ∈ K \ {w}} ∪ {π(x)d(x, K) : x ∈ X}
+                                                                                 o
+                        ∪ {α(u) : u ∈ N (K) ∩ N (w)} ∪ {β(u) : u ∈ N (K) \ N (w)} .
+We assert that we can compute in O(m) time max{β(u) : u ∈ N (K) \ N (w)}, for every w ∈ K.
+For that, we apply Lemma 2.1 to the subgraph induced by N [K] and to the weight function κ,
+where κ(w) = 0 if w ∈ K and κ(u) = β(u) if u ∈ N (K). Thus, for each w ∈ K, we compute
+rπ (w) in additional O(deg(w)) time. The total runtime is in O(m).                       □
+5.3.2. Local minima of rπ in G and in G2 . First we show how to minimize rπ on B1 (v).
+Lemma 5.9. For v ∈ V , we can compute u in B1 (v) minimizing rπ in O(m) time.
+Proof. Let Fπ (v) ∩ N (v) = ∅, otherwise |Fπ (v) ∩ N (v)| > 1 and v is a local minimum of rπ or
+Fπ (v) ∩ N (v) = {u} and we can output a vertex amongst v, u that minimizes rπ . By Lemma 5.3,
+every z ∈ Fπ (v) has an outergate gv (z) with respect to B1 (v). Furthermore,
+                                                                    T             by Lemma 5.6 we
+can compute gv (z),
+                  T   for any z ∈ Fπ (v), in O(m)   time. Let K  =    {N  (v) ∩ I(v, z) : z ∈ Fπ (v)}.
+Note that K = {N (v) ∩ N (gv (z)) : z ∈ Fπ (v)}, thus one can compute K in O(m) time.
+For any w ∈ N (v) \ K there exists z ∈ Fπ (v) such that w ∈     / I(v, z). Hence d(w, z) ≥ d(v, z),
+yielding rπ (w) ≥ rπ (v). Therefore, if K = ∅, v is a local minimum of rπ . If K ̸= ∅, since K is
+the intersection of the cliques N (v) ∩ I(v, z), z ∈ Fπ (v), K is a clique. By Lemma 5.8, we can
+compute u ∈ K minimizing rπ in O(m) time. Since rπ (w) ≥ rπ (v) for any w ∈ N (v) \ K, either
+v or u is a local minimum of rπ in B1 (v).                                                          □
+   Now, we describe a local-search technique, allowing to find a vertex in B2 (v) with smaller
+eccentricity than that of v (if one exists). First, we show that Lemma 5.4 can be generalized as
+follows:
+Lemma 5.10. Let X ⊂ V be     T nonempty, and u, v, w ∈ V be such that (1) for every x ∈ X,
+d(u, x) < d(v, x)Tand (2) w ∈ {N (v) ∩ I(v, x) : x ∈ X}. Then there exists wX ∈ N (v) ∩ I(v, u)
+such that wX ∈ {N (v) ∩ I(v, x) : x ∈ X}.
+Proof. Assume w ∈  / I(u, v), otherwise we can set wX = w. If d(u, w) > d(u, v), then v ∈ I(u, w)
+and w, u ∈ Bd(v,x)−1 (x) for any x ∈ X, contradicting the convexity of the ball Bd(v,x)−1 (x).
+Thus d(u, w) = d(u, v). Pick any y ∈ X. By Lemma 5.4, there exists wy ∈ N (v) ∩ I(v, u)
+such that d(y, wy ) < d(y, v). Since w, wy ∈ N (v) ∩ I(v, y) and the ball Bd(y,v)−1 (y) is convex,
+the vertices wy , w are adjacent. Consequently, wy ∈ I(w, u). Since u, w ∈ Bd(x,v)−1 (x) for
+any xT∈ X, the convexity of the ball Bd(x,v)−1 (x) implies that d(x, wy ) ≤ d(x, v) − 1. Thus
+wy ∈ {N (v) ∩ I(v, x) : x ∈ X} and we can set wX = wy .                                         □
+16                  J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+                       / Cπ (G), in O(m) time one can find u′ ∈ B2 (v) with rπ (u′ ) < rπ (v).
+Proposition 5.11. If v ∈
+Proof. Suppose v is not central. If there is v ′ ∼ v with rπ (v ′ ) < rπ (v), then Lemma 5.9 will
+return u ∈ B1 (v) such that rπ (u) ≤ rπ (v ′ ) < rπ (v). So, let v be a local minimum of rπ . Let
+Fπ (v) = {z ∈ V : π(z) · d(v, z) = rπ (v)}. Since v is a local but not a global minimum, d(v, z) > 1
+for any z ∈ Fπ (v). For every w ∈ N (v), let Ψπ (w) = {z ∈ Fπ (v) : w ∈ N (v) ∩ I(v, z)}. We
+define an equivalence relation ≡ on N (v) as follows: w ≡ w′ iff Ψπ (w) = Ψπ (w′ ). We partition
+N (v) according to ≡. For that, we use outergates with respect to N (v), which exist for any
+z ∈ Fπ (v) by Lemma 5.3. By Lemma 5.6 in O(m) time we compute an outergate gv (z) for every
+z ∈ Fπ (v). Then, for any w, w′ ∈ N (v), we have w ≡ w′ iff N (w) ∩ {gv (z) : z ∈ Fπ (v)} =
+N (w′ ) ∩ {gv (z) : z ∈ Fπ (v)}. Consequently, we can compute in O(m) time the equivalence
+classes on N (v) with respect to ≡ by using partition refinement techniques. Next, in O(n) time
+we compute, for every vertex u ∈ B2 (v) \ B1 (v), the number of vertices z ∈ Fπ (v) such that
+gv (z) = u. Doing so, in total O(m) time, we also compute |Ψπ (Wi )| for every equivalence class
+Wi of ≡ (where we set Ψπ (Wi ) = Ψπ (w) for arbitrary w ∈ Wi ). Let W0 be an equivalence
+class maximizing |Ψπ (W0 )|. If |Ψπ (W0 )| = |Fπ (v)|, then we abort. From now on, we assume
+that |Ψπ (W0 )| < |Fπ (v)|. Let z ∈ Fπ (v) \ Ψπ (W0 ) be arbitrary. Then in O(m) time we
+compute N (v) ∩ I(v, z) = N (v) ∩ N (gv (z)). Let wmax ∈ N (v) ∩ I(v, z) be a vertex maximizing
+|N (wmax ) ∩ W0 |. Finally, we apply Lemma 5.9 to compute a vertex v + minimizing rπ within
+N (wmax ) and the algorithm returns v + .
+   Now, we prove the correctness of this algorithm. Recall that v is a local minimum of rπ
+and rπ (v ′ ) < rπ (v) for some v ′ . By Lemma 5.3, there exists u ∈ I(v, v ′ ) such that d(u, v) = 2
+and N (v) ∩ I(v, v ′ ) ⊆ N (u). Furthermore, by the proof of Proposition 5.5, rπ (u) < rπ (v).
+By Lemma 5.10, there exists w′ ∈ N (v) ∩ I(v, v ′ ) ⊆ N (u) such that Ψπ (W0 ) ⊆ Ψπ (w′ ). By
+maximality of |Ψπ (W0 )|, necessarily w′ ∈ W0 . To prove the correctness of the algorithm, we
+show that (1) |Ψπ (W0 )| = |Fπ (v)| is impossible and that (2) u is adjacent to wmax . This will
+show that the algorithm returns a vertex v + ∈ N (wmax ) ⊂ B2 (v) with rπ (v + ) ≤ rπ (u) < rπ (v).
+First, suppose |Ψπ (W0 )| = |Fπ (v)|, i.e., Ψπ (W0 ) = Fπ (v) holds. Since w′ ∈ W0 , we have
+π(y)d(w′ , y) < π(y)d(v, y) for any vertex y ∈ Ψπ (W0 ). Since v is a local minimum, the profile
+π must contain y ′ ∈  / Ψπ (W0 ) = Fπ (v) such that π(y ′ )d(w′ , y ′ ) = rπ (w′ ) ≥ rπ (v) > π(y ′ )d(v, y ′ ).
+This implies d(w , y ′ ) = d(v, y ′ ) + 1. Since π(y ′ )d(u, y ′ ) ≤ rπ (u) < rπ (w′ ) = π(y ′ )(d(v, y ′ ) + 1),
+                    ′
+
+we also conclude that d(u, y ′ ) ≤ d(v, y ′ ). Consequently, u and v belongs to the ball Bd(v,y′ ) (y ′ )
+and w′ ∈ I(u, v) does not belong to this ball, a contradiction with convexity of balls. This
+establishes that Ψπ (W0 ) is strictly included in Fπ (v) and proves that the vertex z chosen by the
+algorithm exists. To prove that the vertex wmax computed by the algorithm is adjacent to u, first
+we prove that wmax is adjacent to every w ∈ N (u) ∩ W0 (this set is nonempty since it contains
+w′ ). By Lemma 5.4, there exists wz ∈ N (v) ∩ I(v, z) ∩ I(v, v ′ ) ⊆ N (u). Since w, wz ∈ I(u, v), by
+(INC) the vertices w, wz must be adjacent. Furthermore, since wz , wmax ∈ N (v) ∩ I(v, z), and
+so they are adjacent, the sets N (wz ) ∩ W0 and N (wmax ) ∩ W0 must be comparable for inclusion
+(otherwise, we get a forbidden induced C4 ). By maximality choice of wmax , we obtain w ∈
+N (wz ) ∩ W0 ⊆ N (wmax ) ∩ W0 , thus wmax and w are adjacent. Then, wmax , u ∈ N (w) ∩ I(w, z),
+and by (INC) wmax ∼ u. This concludes the proof.                                                               □
+   Consequently, Algorithm 2 implements the ImproveEccentricity procedure in the case of weakly
+bridged graphs.
+5.3.3. Computing a central vertex. Local search will construct a path (v0 , v1 , . . . , vℓ ) of G2 such
+that rπ (v0 ) > rπ (v1 ) > . . . > rπ (vℓ ) by applying ImproveEccentricity(G, π, v) at each step, until it
+reaches a vertex v ∗ := vℓ where the algorithm aborts. By Proposition 5.11, v ∗ is a central vertex
+                                                                     e √n). In the case of 0-1-profiles,
+of G. By Lemma 3.1, the length of√(v0 , v1 , . . . , vℓ ) is at most O(
+the length of this path will be O( n) (Proposition 4.2). Consequently, we obtain the following
+main result of this section (which is Theorem D in the case of weakly bridged graphs):
+Theorem 5.12. If G is a weakly bridged graph with arbitrary weights, then a central vertex of
+                                     e √
+                                 √ O( nm). For 0-1-weights, a central vertex of G can be
+G can be computed in randomized time
+computed in deterministic time O( nm).
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                            17
+
+
+ Algorithm 2: ImproveEccentricity(G, π, v) for weakly bridged graphs
+  Input : A weakly bridged graph G = (V, E), a profile π : V → R+ , and a vertex v ∈ V
+  Output: A vertex u ∈ B2 (v) with rπ (u) < rπ (v) if it exists and v otherwise
+  Compute a vertex u minimizing rπ in B1 (v)                             // O(m) by Lemma 5.9
+  if rπ (u) < rπ (v) then
+      return u
+  Compute the outergates in B1 (v) of every vertex z ∈ V ;
+  Partition N (v) into the equivalence classes W0 , W1 , . . . , Wk of the relation ≡;
+  Assume W0 is an equivalence class with the largest shadow Ψπ (W0 );
+  Pick a vertex z ∈ Fπ (v) \ Ψπ (W0 );
+  Let wmax be a vertex of N (v) ∩ I(v, z) having a maximum number of neighbors in W0 ;
+  Compute a vertex v + minimizing rπ in B1 (wmax )                       // O(m) by Lemma 5.9
+          +
+  if rπ (v ) = rπ (v) then
+      return v
+  else
+      return v +
+
+
+Remark 5.13. In the appendix (Section 11), we extend the algorithm for weakly bridged graphs
+to graphs with convex balls. In this case, both the implementation and the correctness proof
+of ImproveEccentricity(G, π, v) are technically more involved. We also need to design a final
+procedure that either asserts that the last vertex v ∗ , obtained with local search, is central or
+finds a center inside B2 (v ∗ ) \ B1 (v ∗ ).
+
+                     6. The center problem in bipartite Helly graphs
+   In this section, we present a subquadratic-time algorithm for the center problem in bipartite
+Helly graphs, based on G2 -unimodality of the radius function. The main technical contribution
+is an O(m)-time implementation of the function ImproveEccentricity.
+6.1. Bipartite Helly graphs. Recall that a graph G is a Helly graph if the set of balls of
+G satisfies the Helly property: any collection of pairwise intersecting balls has a nonempty
+intersection. Analogously, a graph G is a bipartite Helly graph if G is bipartite and the family
+of half-balls of G satisfies the Helly property. As we noticed above (see Section 2.2), bipartite
+Helly graphs are modular. A topological local-to-global characterization of Helly graphs was
+given in [27], however such a characterization for bipartite Helly graphs is missing.
+   Bipartite Helly graphs have been introduced and characterized in several nice ways by Bandelt,
+Dählmann, and Schütte [10], some of which we recall next. The graph Bn is the bipartite
+complete graph Kn,n minus a perfect matching, i.e., the bipartition of Bn is defined by a1 , . . . , an
+and b1 , . . . , bn and ai is adjacent to bj iff i ̸= j. The graph B
+                                                                   bn is obtained from Bn by adding two
+adjacent new vertices a and b such that a is adjacent to b1 , . . . , bn and b is adjacent to a1 , . . . , an .
+Theorem 6.1 ( [10]). For a bipartite graph G = (V0 ∪ V1 , E), the following conditions are
+equivalent:
+(1) G is a bipartite Helly graph;
+(2) G is a modular graph such that every induced Bn (n ≥ 4) extends to B     bn in G;
+(3) G satisfies the following interval-outergate property: for any vertices u and v with d(u, v) ≥
+    3, the neighbors of v in I(u, v) have a second common neighbor x in I(u, v).
+6.2. G2 -unimodality of the radius function. The following result establishes the statement
+of Theorem A related to bipartite Helly graphs:
+Proposition 6.2. All radius functions rπ of a bipartite Helly graph G are 2-weakly peakless.
+Proof. By the characterization of 2-weakly peakless functions of [17], it suffices to establish the
+property WP(u, v) for any two vertices u, v with 3 ≤ d(u, v) ≤ 4. By Theorem 6.1, the vertices
+18                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+u and v have interval-outergates a and b, i.e., there exist vertices a, b ∈ I ◦ (u, v) such that
+d(u, a) = d(v, b) = 2 and a is adjacent to all vertices of A = N (u) ∩ I(u, v), b is adjacent to all
+vertices of B = N (v) ∩ I(u, v). Let C = I ◦ (u, v) − (A ∪ B). The set C is empty when d(u, v) = 3
+and contains all middle vertices of shortest uv-paths when d(u, v) = 4. Suppose without loss
+of generality that rπ (u) ≤ rπ (v). Since any bipartite Helly graph is modular, every triplet of
+vertices has a median. Let z be any vertex and z ′ be a median of the triplet u, v, z. Then z ′
+either belongs to A ∪ B ∪ C or coincides with u or v. If z ′ ∈ A, then d(a, z) ≤ d(a, z ′ ) + d(z ′ , z) ≤
+1 + d(z ′ , z) = d(u, z). Since any vertex of C has a neighbor in A and a is adjacent to every vertex
+in A, d(a, w) ≤ 2 for any w ∈ C. Hence, if z ′ ∈ C then d(a, z ′ ) ≤ d(u, z ′ ). Since d(a, b) ≤ 2 when
+b ∈ C and d(a, b) = 1 when b ∈ A, d(a, b) ≤ d(u, b). Additionally, b ∈ I(u, w) for any w ∈ B∪{v}.
+Hence, if z ′ ∈ B ∪ {v} then d(a, z ′ ) ≤ d(u, z ′ ). We conclude that d(a, z) ≤ d(u, z) except when
+z ′ = u. Let x be any furthest from a vertex of the profile π, i.e., rπ (a) = π(x)d(x, a). Let x′
+be any median of the triplet u, v, x. If x′ ̸= u, then from the previous conclusion we deduce
+that rπ (u) ≥ π(x)d(x, u) ≥ π(x)d(x, a) = rπ (a). Since rπ (u) ≤ rπ (v), a verifies the condition
+WP(u, v). Now, let x′ = u. Then rπ (v) ≥ π(x)d(v, x) > π(x)d(a, x) = rπ (a). We conclude that
+rπ (a) < max{rπ (u), rπ (v)}.                                                                            □
+   Since cube-free median graphs are hereditary modular graphs [7], and thus bipartite Helly
+graphs, the statement of Theorem A related to cube-free median graphs is a corollary of Propo-
+sition 6.2 :
+Corollary 6.3. All radius functions rπ of a cube-free median graph G are 2-weakly peakless.
+6.3. The algorithm. In this section, we consider the algorithmic implications of Theorem 6.2;
+namely, we show how for bipartite Helly graphs to implement each iteration of the descent
+algorithm in O(m) time. From now on, G = (V0 ∪ V1 , E) is a bipartite Helly graph and π is any
+profile on G. We also set V = V0 ∪ V1 .
+   We first show the following proposition.
+Proposition 6.4. For v ∈ V , we can compute u ∈ N (v) such that rπ (u) < rπ (v) in O(m) time
+or assert that v is a local minimum of rπ .
+Proof. Let A = {z ∈ V : π(z) · (d(v, z) + 1) ≥ rπ (v)}. Note that Fπ (v) ⊆ A. First assume
+A ∩ B1 (v) ̸= ∅. If v ∈ A, or |A ∩ N (v)| > 1, then v is a local minimum of rπ . Otherwise, let
+u be the unique vertex of A ∩ N (v). Then, u or v minimizes rπ within B1 (v). From now on,
+we assume
+     T      A ∩ B1 (v) = ∅. Pick any u ∈ N (v). We claim that rπ (u) < rπ (v) if and only if
+u ∈ {I(v, z) : z ∈ A}. For that, we use that since G is bipartite, |d(u, w) − d(v, w)| = 1 for
+every w ∈ V . In one direction, suppose rπ (u) < rπ (v) but there exists some z ∈ A such that
+u∈                                        T therefore, rπ (u) ≥ π(z) · (d(v, z) + 1) ≥ rπ (v), a
+  / I(v, z). Then d(u, z) = d(v, z) + 1, and
+contradiction. Conversely, suppose u ∈ {I(v, z) : z ∈ A}. Pick any w ∈ Fπ (u). If w ∈        / A
+then rπ (u) ≤ π(w) · (d(v, w) + 1) < rπ (v). Otherwise, w ∈ A, and rπ (u) = π(w) · d(u, w) <
+π(w) · d(v, w) ≤ rπ (v).
+                    T In both cases, rπ (u) < rπ (v) as required. This establishes the claim. We
+are left computing {N (v) ∩ I(v, z) : z ∈ A}. By Theorem 6.1, G satisfies the interval-outergate
+property. Furthermore, by Lemma 5.6 we can   Tcompute an outergate gv (z), T for every z ∈ A, in
+O(m) total time. We end up observing that {N (v) ∩ I(v, z) : z ∈ A} = {N (v) ∩ N (gv (z)) :
+z ∈ A}, and therefore we can compute this subset in O(m) time.                                 □
+   Before proving the more general Proposition 6.10 (building on our Proposition 6.4, but ex-
+tending the local search to the ball of radius two), we need two technical lemmas. Our proof
+strategy for Lemma 6.5 below is the same as for Lemma 3 in [53].
+Lemma 6.5. If π is a 0-1-profile on G and k is a positive integer, then we can compute in
+O(km) time the set of all vertices v such that rπ (v) ≤ k and their corresponding values rπ (v).
+Proof. Since we can consider the restrictions of π to the partite sets V0 , V1 separately, keeping
+the maximum of both radius functions computed for every vertex, we may assume, without loss
+of generality, that supp(π) ⊆ V0 . Then, following [53], we consider a more general problem where
+for every i such that 0 ≤ i ≤ k, the goal is to compute both a partition Pi = (X1i , X2i , . . . , Xℓii )
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                           19
+
+of supp(π), and a partition Qi = (Y1i , Y2i , . . . , Yℓii ) of some subset of Vi (mod 2) , with the following
+property: for every j such that 1 ≤ j ≤ ℓi , we must have {Bi (x) ∩ Vi (mod 2) : x ∈ Xji } =
+                                                                        T
+
+Yji ̸= ∅. We stress that all subsets Y1i , Y2i , . . . , Yℓii must be nonempty and pairwise disjoint. In
+particular, the least i ≥ 1 such that ℓi = 1 must equal radπ (G). Furthermore, for every vertex v,
+the least i ≥ 1 such that ℓi = 1 and v ∈ X1i must equal rπ (v). Let supp(π) = {x0 , x1 , x2 , . . . , xℓ0 }.
+If i = 0, then we set P0 = Q0 = ({x0 }, {x1 }, . . . , {xℓ0 }). Otherwise, when i > 0, we compute
+Pi , Qi from G and Pi−1 , Qi−1 in O(m) time. For that, let us define an intermediate family
+of subsets Ri−1 = (Z1i−1 , Z2i−1 , . . . , Zℓi−1
+                                              i−1
+                                                  ) where, for every j such that 1 ≤ j ≤ ℓi−1 , Zji−1 =
+N (Yji−1 ). Since the subsets of Qi−1 are pairwise disjoint, we can compute Ri−1 in O(m) time.
+Claim 6.6. For every j such that 1 ≤ j ≤ ℓi−1 , Zji−1 = {Bi (x) ∩ Vi (mod 2) : x ∈ Xji−1 }.
+                                                              T
+
+   By construction, Zji−1 ⊆ {Bi (x) ∩ Vi (mod 2) : x ∈ Xji−1 }. Conversely, let z ∈ {Bi (x) ∩
+                                 T                                                         T
+
+Vi (mod 2) : x ∈ Xji−1 } be arbitrary. Then, the half-balls B1 (z) ∩ Vi−1 (mod 2) and Bi−1 (x) ∩
+Vi−1 (mod 2) for every x ∈ Xji−1 pairwise intersect. By the Helly property for half-balls, z must
+have a neighbor in {Bi−1 (x) ∩ Vi−1 (mod 2) : x ∈ Xji−1 } = Yji−1 , which implies z ∈ Zji−1 .
+                     T
+   In general, we do not have Qi = Ri−1 because the subsets of Ri−1 may not be disjoint. We
+compute Pi , Qi from Pi−1 , Ri−1 by using the following algorithm. We initialize t := 0. While
+Ri−1 is nonempty, we select any vertex zt that appears in a maximum number     S of the remaining
+subsets in Ri−1 . Let Jt = {j : zt ∈ Zji−1 }. We construct the subsets Xti := {Xji−1 : j ∈ Jt } and
+Yti := {Zji−1 : j ∈ Jt }. Then, we add Xti , Yti to Pi , Qi . After that, we remove all subsets Zji−1
+       T
+
+such that j ∈ Jt from Ri−1 , and we set tT     := t + 1. Note that, by construction, Yti ̸= ∅ because
+it contains vertex zt . Furthermore, Yt = {Bi (x) ∩ Vi (mod 2) : x ∈ Xti }. Overall, by maximality
+                                          i
+
+of the selected vertices zt , all subsets in Qi must be disjoint. Therefore, the above algorithm for
+                                                                                        Sℓi−1 i−1
+computing Pi , Qi is correct. Its implementation requires to store all vertices z ∈ j=1       Zj in
+a max-heap, with their respective priorities being the number of subsets in which they appear
+in Ri−1 . Since all priorities are integer between 1 and ℓi , we can use for our implementation of
+max-heap a bucket queue [41]. Then, all operations on the heap run in O(δp ) time, where δp
+denotes the difference between the old and new values of the maximum priority of the elements
+                                      Pℓi−1 i−1
+in the queue. Since there are O( j=1         |Zj |) = O(m) operations that are performed on the
+queue, and the maximum priority monotonically decreases from ℓi−1 to 1, the running time of
+the algorithm is in O(m + ℓi−1 ) = O(m).                                                           □
+  Our second intermediate result, Lemma 6.7, follows from Proposition 6.4 and Lemma 6.5:
+                                                                                 T
+Lemma 6.7. For v ∈ V and any X ⊆ V , we can compute in O(m) time the set S := {N2 (v) ∩
+I(v, x) : x ∈ X}.
+Proof. First, we reduce to the case X ∩ B3 (v) = ∅:
+(1) Case 1: X ∩ B1 (v) ̸= ∅. We return S = ∅.
+(2) Case 2: X ∩ N2 (v) ̸= ∅. If |X ∩ N2 (v)| > 1, then we return
+                                                              T S = ∅. Otherwise, let x be the
+    unique vertex of N2 (v) ∩ X. We return S = {x} if x ∈ {I(v, x′ ) : x′ ∈ X} (that can be
+    verified in O(m) time by starting a BFS T at x) and S = ∅ otherwise.
+(3) Case 3: X ∩ N3 (v) ̸= ∅. Let Y := {N2 (v) ∩ N (x) : x ∈ N3 (v) ∩ X}. Note that we
+    can compute Y Tin O(m) time. If X ⊆ N3 (v), then we return S = Y . Otherwise, we also
+    compute Y ′ := {N2 (v) ∩ I(v, x′ ) : x′ ∈ X \ B3 (v)} and we return S = Y ∩ Y ′ .
+Thus, from now on, we can assume that X ∩ B3 (v) = ∅. By Theorem 6.1, G satisfies the
+interval-outergate property. Furthermore, by Lemma 5.6, weTcan compute in O(m) total time,
+T every x ∈ X, an outergate gv (x) in B1 (v). Let A = {N (v) ∩ N (gv (x)) : x ∈ X} =
+for
+  {NT (v) ∩ I(v, x) : x ∈ X}, which can also be computed in O(m) time. If A = ∅, then so must
+be {N2 (v) ∩ I(v, x) : x ∈ X}, and we return S = ∅. Therefore, we now assume that A ̸= ∅.
+From the definition of the sets A and S, we have the inclusion S ⊆ N (A).
+Claim 6.8. If A ̸= ∅, then in O(m) time we can either decide that S = ∅ or compute a vertex
+b ∈ S such that A ⊆ N (b).
+20                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+   Suppose without loss of generality that v ∈ V0 . To establish the claim, first assume that
+S ̸= ∅. Then the half-balls B1 (a) ∩ V0 , for every a ∈ A, and Bd(v,x)−2 (x) ∩ V0 , for every x ∈ X,
+                                           T property for half-balls, there exists a vertex b ∈ V0
+               T Since G satisfies the Helly
+pairwise intersect.
+such that b ∈ {N (a) : a ∈ A} and b ∈ {Bd(v,x)−2 (x) : x ∈ X}. Then, A ⊆ N (b) and b ∈ S.
+Therefore S is nonempty if and only if such a vertex b exists. To test is such b exists, we pick
+an arbitrary vertex a ∈ A. Let r := max{d(a, x) : x ∈ X} ≥ 3. We define a profile π ′ such that
+                            
+                                 ′
+                            π (x) = r/d(a, x) for every x ∈ X
+                            
+                               π ′ (y) = r/3 for every y ∈ A
+                             ′
+                            
+                               π (z) = 0 for every other z.
+In particular, rπ′ (a) = r. If there exists a vertex b as desired, then rπ′ (b) < rπ′ (a). Conversely,
+                                                                                            T
+if there exists b ∈ N (a)
+                        T such that rπ′ (b) < rπ′ (a), then necessarily A ⊆ N (b) and b ∈ {N (a) ∩
+I(v, x) : x ∈ X} ⊆ {N2 (v) ∩ I(v, x) : x ∈ X} = S. Therefore, we are done by applying
+Proposition 6.4 to the vertex a and profile π ′ . This concludes the proof of Claim 6.8.
+    In what follows, we assume given b ∈ S such that A ⊆ N (b). It remains to show how
+to compute the whole set S. By Lemma 5.6, we can compute in total O(m) time, for every
+x ∈ X, an outergate gb (x) in B1 (b) (with possibly gb (x) = x if d(v, x) = 4). We stress that
+gb (x) ∈ N4 (v) ∩ I(v, x). The following claim is the cornerstone of our proof.
+Claim 6.9. For every x ∈ X, N2 (v) ∩ I(v, x) ∩ N (A) = N2 (v) ∩ B2 (gb (x)) ∩ N (A).
+   In one direction, pick any u ∈ N2 (v) ∩ B2 (gb (x)). Then d(v, u) + d(u, x) = 2 + d(u, x) ≤ 4 +
+d(gb (x), x) = d(v, x). Therefore, N2 (v) ∩ B2 (gb (x)) ⊆ I(v, x). Conversely, let u ∈ N2 (v) ∩ I(v, x)
+be having a neighbor in A. Since A ⊆ N (b), d(u, b) = 2. By Theorem 6.1, G is modular.
+Then, a median of triple u, b, x must be contained in N (u) ∩ N (b) ∩ Nd(v,x)−3 (x) ⊆ N (gb (x)). In
+particular, N2 (v) ∩ I(v, x) ∩ N (A) ⊆ B2 (gb (x)). Therefore, Claim 6.9 is proven.
+   Finally, let π ′′ be the 0-1-profile on G such that π ′′ (w) = 1 if and only if w = gb (x) for some
+x ∈ X. To compute U := {B2 (gb (x)) : x ∈ X}, we apply Lemma 6.5 for π ′′ and k = 2. Then,
+                              T
+we can return S = U ∩ N2 (v) ∩ N (A). The correctness follows from Claims 6.8 ,6.9 and the
+inclusion S ⊆ N (A).                                                                                 □
+     Combining Proposition 6.4 and Lemmas 6.5,6.7, we obtain the following result.
+Proposition 6.10. For v ∈ V, in O(m) time we can either output some u ∈ B2 (v) such that
+rπ (u) < rπ (v) or assert that v ∈ Cπ (G).
+Proof. We may assume, by Proposition 6.4, that v is a local minimum for rπ . By Proposition 6.2,
+there exists u ∈ N2 (v) such that rπ (u) < rπ (v) or v ∈ Cπ (G). Analogously to the definition of
+the set S from Lemma 6.7, let
+                                   \
+                             S1 := {N2 (v) ∩ I(v, y) : y ∈ Fπ (v)}.
+Pick any u ∈ N2 (v). We claim that a first necessary condition for rπ (u) < rπ (v) is that u
+belongs to S1 . Indeed, suppose by contradiction the existence of some y ∈ Fπ (v) such that
+u∈/ I(v, y). Then d(u, y) > d(v, y) − 2. Since G is bipartite, the distances d(u, y) and d(v, y)
+have the same parity. In particular, d(u, y) ≥ d(v, y), which implies rπ (u) ≥ rπ (v), giving a
+contradiction. Therefore, the assertion is proven. Applying Lemma 6.7 to v and Fπ (v), the set
+S1 can be computed in O(m) time.
+  From now on, we assume that S1 is nonempty, otherwise, v ∈ Cπ (G). Note that this implies
+B1 (v) ∩ Fπ (v) = ∅. Then, let X = {x ∈ V \ Fπ (v) : π(x)(d(v, x) + 2) ≥ rπ (v)}. Let also
+                          S2 = {u ∈ N2 (v) : d(u, x) ≤ d(v, x) ∀x ∈ X}.
+We claim that a second necessary condition for u ∈ N2 (V ) for having rπ (u) < rπ (v) is that
+u ∈ S2 . Indeed, if d(u, x) > d(v, x) for some x ∈ X, then d(u, x) = d(v, x) + 2 because G
+is bipartite. Hence, rπ (u) ≥ π(x)(d(v, x) + 2) ≥ rπ (v), a contradiction. So, our assertion is
+proven. Let us further prove that the set S2 can also be computed in O(m) time. If v ∈ X,
+then there is no solution; in particular, v ∈ Cπ (G). Moreover, any solution must be contained
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                    21
+   T
+in {N (x) : x ∈ X ∩ N (v)}, and this latter subset can be computed in O(m) time. As a result,
+we assume from now on that X ∩ B1 (v) = ∅. By Theorem 6.1, G satisfies the interval-outergate
+property. Furthermore, by Lemma 5.6, we can compute   T     an outergate gv (x), for every x ∈ X,
+in O(m) total time. Observe that all vertices in {N2 (v) ∩ B2 (gv (x)) : x ∈ X} satisfy the
+condition d(u, x) ≤ d(v, x) for any x ∈ X, and thus belong to S2 . Let us prove that there are
+no other solutions. For that, let u ∈ S2 and let x ∈ X be arbitrary. If u ∈ I(v, x), then u is
+adjacent to some vertex of N (v) ∩ I(v, x) ⊆ N (gv (x)), which implies d(u, gv (x)) ≤ 2. Otherwise,
+d(u, x) = d(v, x). Since G is modular, there exists a median vertex w for the triple u, v, x. In this
+situation, w ∈ N (u) ∩ N (v) ∩ I(v, x) ⊆ N (u) ∩ N (gv (x)), which again implies d(u, gv (x)) ≤ 2.
+Let πX be the 0-1-profile on G such that πX (w) = 1 if and only if w = gv (x) for some x ∈ X. By
+Lemma 6.5 applied to πX and k = 2, all vertices of N2 (v) belonging to S2 can also be computed
+in O(m) time as the set of all vertices of N2 (v) such that rπX (u) ≤ 2.
+   In order to complete the proof, we are left to show that if an arbitrary u ∈ N2 (v) belongs to
+the sets S1 and S2 , then rπ (u) < rπ (v). Suppose, by contradiction, that it is not the case for
+some u. Let z ∈ Fπ (u) be arbitrary. Since we assume rπ (u) ≥ rπ (v), d(u, z) ≥ d(v, z). Since
+u ∈ S1 , z ∈
+           / Fπ (v). Furthermore, d(u, z) > d(v, z), or else rπ (u) < rπ (v). Since G is bipartite,
+d(u, z) = d(v, z) + 2. Since u ∈ S2 , z ∈
+                                        / X. However, it implies rπ (u) = π(z)(d(v, z) + 2) < rπ (v),
+providing a contradiction.                                                                         □
+   Consequently, Algorithm 3 implements the ImproveEccentricity procedure in the case of bipar-
+tite Helly graphs.
+
+ Algorithm 3: ImproveEccentricity(G, π, v) for bipartite Helly graphs
+  Input : A bipartite Helly graph G = (V, E), a profile π : V → R+ , and a vertex v ∈ V
+  Output: A vertex u ∈ B2 (v) with rπ (u) < rπ (v) if it exists and v otherwise
+  if v is not a local minimum of rπ in B1 (v) then
+      return u ∈ B1 (v) such that rπ (u) < rπ (v)            // O(m) by Proposition 6.4
+                          T
+  Compute the set S1 = {N2 (v) ∩ I(v, y) : y ∈ Fπ (v)} ;            // O(m) by Lemma 6.7
+  Let X = {x ∈ V \ Fπ (v) : π(x)(d(v, x) + 2) ≥ rπ (v)};
+  Compute gv (x) for all x ∈ X ;                                    // O(m) by Lemma 5.6
+  Let πX (w) = 1 if and only if w = gv (x) for some x ∈ X ;
+  Compute the set S2 = {u ∈ N2 (v) : rπX (u) ≤ 2} ;                 // O(m) by Lemma 6.5
+  if S1 ∩ S2 = ∅ then
+      return v
+  else
+      return u ∈ S1 ∩ S2
+
+
+   The following main result of this section is an easy by-product of Proposition 6.10 and the
+descent algorithm presented in Section 4. It establishes the statement of Theorem D in the case
+of bipartite Helly graphs.
+Theorem 6.11. Let G be a bipartite Helly graph.
+                                                              e √n) time with high probability.
+(1) For any profile on G, a central vertex can be computed in O(m                  √
+(2) For any 0-1-profile on G, a central vertex can be computed in deterministic O(m n) time.
+Remark 6.12. Bandelt et al. [11] established the following correspondences between Helly
+graphs and bipartite Helly graphs. Let G be a reflexive graph (i.e., each vertex of G has a loop).
+The graph B(G) has two copies of each vertex of G and two vertices of B(G) are adjacent if and
+only if the corresponding vertices of G are adjacent. Then G is a Helly graph if and only if B(G)
+is a bipartite Helly graph [11]. Conversely, to each bipartite graph G = (X ∪ Y, E) Bandelt et
+al. [11] associated two reflexive graphs SX and SY : SX has X as the set of vertices and two
+vertices are adjacent in SX if and only if these two vertices are identical or have distance 2 in G;
+the graph SY is defined in an analogous way. Then a bipartite graph G = (X ∪ Y, E) is bipartite
+Helly if and only if the graphs SX and SY are Helly graphs [11].
+22                J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+   One may think that the center problem in a bipartite Helly graph G = (X ∪ Y, E) can be
+reduced to two center problems in the Helly graphs SX and SY , to which the algorithm of
+Ducoffe [52] can be applied. Unfortunately, this is not the case: simple examples show that the
+central vertices of SX and SY computed by the algorithm of [52] maybe different and even if
+they have the same eccentricity in SX and SY , they may have different eccentricities in G. But
+most importantly, the graphs SX and SY may have a quadratic number of edges with respect to
+the number of edges |E| of G: each vertex of degree d give raise to d(d−1)
+                                                                       2   edges in the graph SX
+or SY . It was explained in [53] how these issues could be circumvented in the case of diameter
+computation on bipartite Helly graphs. However, evidence was also given in [53] that a similar
+approach could not be easily extended to the center problem.
+
+                  7. The center problem in cube-free median graphs
+   In this section, we present an O(n log2 n)-time divide-and-conquer algorithm for computing
+a weighted center of a cube-free median graph G. Our method generalizes the algorithm of [75]
+for computing the center of a tree and uses similar ingredients: divide-and-conquer, median
+computation, and unimodality of the radius function.
+7.1. Median graphs. Recall that a median of u, v, w is a vertex from the intersection I(u, v) ∩
+I(v, w) ∩ I(w, u). A graph G is median if any triplet u, v, w has a unique median. A graph G is
+cube-free median if G does not contain the cube Q3 as a subgraph. Median graphs satisfy (QC),
+are modular and thus bipartite. In fact, the median graphs are exactly the K2,3 -free modular
+graphs. A topological local-to-global characterization of median graphs as 1-skeleta of CAT(0)
+cube complexes was given in [31].
+   It is not immediately clear from the definition, but median graphs have a rich metric and
+cubical structure. For that, let us recall some important notations and terminology. The star
+St(v) of v is the union of all cubes containing v. For an edge uv, let H(u, v) = {x ∈ V (G) :
+d(x, u) < d(x, v)}. In a bipartite graph G, and thus in a median graph, the sets H(u, v) and
+H(v, u) define a bipartition of V (G). For a gated set M and z ∈ M , let ΦM (z) be the set of all
+x ∈ V whose gate in M is z and call ΦM (z) the fiber of z. The boundary ΥM (z) of ΦM (z) is the
+subgraph induced by all vertices of ΦM (z) having neighbors in other fibers ΦM (z ′ ), z ′ ∈ M . A
+branch of a tree T rooted at a vertex z is a path of T with one end in z and another end in a vertex
+of T . The following properties of median graphs are well-known, see for example [9, 16, 39, 85]:
+Theorem 7.1. For a median graph G = (V, E), we have:
+(1) The convex sets, the locally-convex sets, and the gated sets of G are the same;
+(2) The stars St(v) and the sets H(u, v), H(v, u) are convex, and thus gated;
+(3) If G has n vertices and the largest cube has dimension d, then G contains at most dn edges.
+    In particular, any cube-free median graph contains at most 2n edges;
+(4) If M is gated, each fiber ΦM (u) is gated and u′ ∈ ΦM (u), v ′ ∈ ΦM (v) and u′ ∼ v ′ , u ̸= v
+    imply u ∼ v [85];
+(5) For a cube-free median graph G, for each fiber ΦSt(v) (z) of a star St(v), its boundary ΥSt(v) (z)
+    is a tree with gated branches [39];
+(6) For any u and v, u and all neighbors of u in I(u, v) belong to a hypercube of I(u, v). If G
+    is cube-free, then u has at most two neighbors in I(u, v) [85].
+  Call the last property the downward cube property (DCP ). For an edge uv of a median
+graph G, the sets H(u, v) and H(v, u) are called halfspaces. The edges running between two
+complementary halfspaces H(u, v) and H(v, u) of G are called Θ-classes. Notice that any two
+edges from the same Θ-class of G define the same pair of halfspaces.
+Lemma 7.2. If G is cube-free median, S = uvwz is a square of G, and x and y are two
+vertices of G belonging to opposite fibers of S, say x ∈ ΦS (u) and y ∈ ΦS (w), then d(x, y) =
+d(x, u) + 2 + d(w, y) and thus u, v, w, z ∈ I(x, y).
+Proof. Since u ∈ I(x, w) and v, z ∈ I(u, w), it suffices to prove that w ∈ I(x, y). If this is not the
+case, then we can find a neighbor t of w belonging to I(w, x) and I(w, y). Since v, z ∈ I(w, x),
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                          23
+
+by DCP, t coincides with v or z. But this is impossible since w is the gate of y in S. This
+contradiction shows that u, v, w, t ∈ I(x, y) and d(x, y) = d(x, u) + 2 + d(w, y).       □
+   By Corollary 6.3, radius functions are G2 -unimodal in cube-free median graphs. The following
+example shows that for any positive integer p there exists a median graph (in fact a hypercube),
+in which the radius function is not p-weakly peakless:
+Example 7.3. For a given integer p > 0, let Qr be a hypercube of dimension r > p. Obviously,
+Qr is a median graph. Pick any pair u, v of diametral vertices of Qr and consider the following
+profile π on Qr : π(u) = π(v) = 0 and π(x) = 1 if x ̸= u, v. Then rπ (u) = rπ (v) = r − 1 and
+rπ (x) = r for any x ̸= u, v (this is because for x there exists an opposite vertex x′ with π(x′ ) = 1.
+Since r > p, rπ is not p-weakly peakless.
+7.2. Improving neighbors and improving second neighbors. From now on, G is a cube-
+free median graph and π is any profile. A neighbor z of v ∈ V is improving (an i-neighbor ) if
+rπ (z) < rπ (v). A vertex z with d(z, v) = 2 is an improving second neighbor (an is-neighbor ) if
+rπ (z) < rπ (v). If z ∈ I(v, c) for some c, then z is improving in direction c. In this subsection we
+present several properties of i-neighbors and is-neighbors of vertices of G.
+Lemma 7.4. If P = (v, z, w) is a gated path of G, then 2rπ (z) ≤ rπ (v) + rπ (w). In particular,
+z is an i-neighbor of v if rπ (v) > rπ (w). Furthermore, one cannot have rπ (v) = rπ (z) = rπ (w).
+Proof. Let x be a furthest from z vertex, i.e., a vertex of π maximizing π(x)d(x, z). If x belongs
+to the fiber ΦP (z) of z, then d(v, x) = d(w, x) = d(z, x) + 1, whence rπ (v) ≥ π(x)d(v, x) =
+π(x)d(z, x) + π(x) = rπ (z) + π(x). Analogously, rπ (w) ≥ π(x)d(w, x) = rπ (z) + π(x) and in
+this case we obtain 2rπ (z) < rπ (v) + rπ (w). Now, suppose that x belongs to one of the fibers
+ΦP (v) or ΦP (w), say x ∈ ΦP (w). Then d(z, x) = d(w, x) + 1 and d(v, x) = d(z, x) + 1, whence
+rπ (w) ≥ π(x)d(w, x) = rπ (z) − π(x) and rπ (v) ≥ π(x)d(v, x) = rπ (z) + π(x). This implies that
+2rπ (z) ≤ rπ (v) + rπ (w) also in this case.
+   Now, suppose by way of contradiction that rπ (v) = rπ (z) = rπ (w). Since 2rπ (z) < rπ (v) +
+rπ (w) if x ∈ ΦP (z), this case is impossible. On the other hand, in the case when x ∈ ΦP (w)
+we deduce that rπ (v) ≥ π(x)d(v, x) = rπ (z) + π(x). Therefore, we conclude that also the case
+when x belongs to one of the fibers ΦP (v) or ΦP (w) is impossible. This establishes the second
+assertion.                                                                                      □
+Lemma 7.5. Any vertex v has at most two i-neighbors. If v has two i-neighbors z1 , z2 , then
+v, z1 , z2 are included in a square of G.
+Proof. Suppose v has three i-neighbors z1 , z2 , z3 . Let x ∈ Fπ (v). Since rπ (zi ) < rπ (v), z1 , z2 , z3 ∈
+I(v, x), contradicting the fact that G is cube-free. Now, let v have two i-neighbors z1 , z2 and
+x ∈ Fπ (v). Then z1 , z2 ∈ I(v, x). By (QC) there exists a common neighbor w of z1 , z2 one step
+closer to x. Consequently, v, z1 , z2 , w induce a square S.                                                □
+Lemma 7.6. If v ∈   / Cπ (v) has no i-neighbor in direction c ∈ Cπ (G), then v has no i-neighbor
+at all but has a unique is-neighbor w in all directions c′ ∈ Cπ (G).
+Proof. Pick c ∈ Cπ (G) and suppose v has no i-neighbor in direction c. Since v ∈              / Cπ (G),
+d(v, c) ≥ 2. We assert that v has an is-neighbor. This is so when d(v, c) = 2 since c is an is-
+neighbor of v. If d(v, c) ≥ 3, since rπ is 2-weakly peakless, there exists w ∈ I(v, c) ∩ B2 (v) with
+rπ (w) < rπ (v). Since v has no i-neighbor in direction c, d(v, w) = 2, i.e., w is an is-neighbor of v.
+From now on, let w be any is-neighbor of v. We assert that w is an is-neighbor in direction of all
+c′ ∈ Cπ (G). First, note that w ∈ St(v). Indeed, if v and w have a unique common neighbor z, by
+Lemma 7.4, z is an i-neighbor of v, a contradiction. Thus v and w have two common neighbors
+z1 , z2 . Pick the square S = vz1 wz2 , which is gated. For u ∈ S, let xu ∈ supp(π) such that
+rπ (u) = π(xu )d(u, xu ). We assert that xz1 ∈ ΦS (z2 ) and xz2 ∈ ΦS (z1 ). If xz1 ∈ ΦS (z1 ) ∪ ΦS (v),
+then rπ (w) ≥ π(xz1 )d(w, xz1 ) > π(xz1 )d(z1 , xz1 ) = rπ (z1 ), a contradiction. If xz1 ∈ ΦS (w), then
+rπ (v) ≥ π(xz1 )d(v, xz1 ) > π(xz1 )d(z1 , xz1 ) = rπ (z1 ), again a contradiction. Hence, xz1 ∈ ΦS (z2 )
+and xz2 ∈ ΦS (z1 ). By a similar proof, xv ∈ ΦS (w). Now we show Cπ (G) ⊆ ΦS (w). Suppose
+c′ ∈ Cπ (G) \ ΦS (w). If c′ ∈ ΦS (v), since xv ∈ ΦS (w), by Lemma 7.2, v ∈ I(c′ , xv ). Hence,
+24                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+rπ (c′ ) ≥ π(xv )d(c′ , xv ) ≥ π(xv )d(v, xv ) = rπ (v), a contradiction with v ∈   / Cπ (G). Similar
+arguments with zi instead of v show that c′ cannot belong to ΦS (z1 ) ∪ ΦS (z2 ). Hence, Cπ (G) ⊆
+ΦS (w) and w ∈ I(v, c′ ) for any c′ ∈ Cπ (G).
+   Now suppose v has an i-neighbor z. Since v has no i-neighbor in direction c, z ̸= z1 , z2 , thus
+z ∈ ΦS (v), where S = vz1 wz2 . Since xv ∈ ΦS (w), by Lemma 7.2, d(z, xv ) = 1 + 2 + d(w, xv ) =
+1 + d(v, xv ), thus rπ (z) ≥ π(xv )d(z, xv ) > π(xv )d(v, xv ) = rπ (v). Hence, v has no i-neighbor. It
+remains to show that w is unique. Suppose w′ is another is-neighbor of v. By what has been
+proven above, w and w′ are is-neighbors for all centers, thus w, w′ ∈ I(v, c′ ) for any c′ ∈ Cπ (G).
+Since G is bipartite, d(w, w′ ) = 2 or d(w, w′ ) = 4. If d(w, w′ ) = 2, let z be the median of w, w′ , v.
+Then z ∼ w, w′ , v. Suppose by contradiction there exists another common neighbor z ′ of w, w′ .
+Since G is K2,3 -free, z ′ ̸∼ v. Then, w, w′ ∈ I(v, z ′ ). However, since w, w′ ∈ St(v), the latter
+implies the existence of at least three neighbors of v in I(v, z ′ ), and so, by DCP, of an induced
+Q3 in G. Since G is cube-free, we deduce that z is the unique common neighbor of w and w′ .
+By Lemma 7.4, 2rπ (z) ≤ rπ (w) + rπ (w′ ) < 2rπ (v), thus z is an i-neighbor of v in direction c,
+a contradiction. Now, let d(w, w′ ) = 4. Since w ∈ I(v, c) and G is cube-free, z1 and z2 are the
+unique neighbors of v in I(v, c). Since w′ ∈ I(v, c), w′ must be adjacent to one of z1 , z2 , thus
+d(w, w′ ) = 2, a contradiction.                                                                        □
+
+7.3. The algorithm. Let G be a cube-free median graph; then G contains at most 2n edges.
+We start with G as the search region R. At all iterations, the search region R is convex and
+contains the center Cπ (G). At each iteration, we compute a median/centroid v of the current
+region R in O(|R|) time [16]. We compute the star St(v) of v in R and rπ (z) for all vertices z
+of St(v) (see Section 7.6). If R = {v} or rπ (v) ≤ rπ (z) for all z ∈ St(v), we return v as a central
+vertex of G. Otherwise, we show that v has an i-neighbor or an is-neighbor in R. Using this
+improving (2-)neighbor of v, we either compute a center or a halfspace H of R separating Cπ (G)
+from v, i.e., Cπ (G) ⊆ H and v ∈ R\H. Then the search is continued in H. Algorithm 4 presents
+the main routine of the divide-and-conquer algorithm. Algorithm 5 presents the division step,
+which computes a separating halfspace H of R.
+
+ Algorithm 4: CutOnBestNeighbor(G, π) for cube-free median graphs
+  Input : A cube-free median graph G = (V, E) and a profile π : V → R+
+  Output: A vertex of Cπ (G)
+  R←G;
+  while |R| > 1 do
+     R ← ReduceConvexRegion(G, π, R)
+  return the unique vertex of R;
+
+
+
+7.4. Correctness of ReduceConvexRegion. Let R be the current search region containing Cπ (G)
+and let v be a median vertex of R. We show that ReduceConvexRegion correctly computes a
+halfspace H of R separating Cπ (G) from v if such a halfspace H exists (otherwise, v is returned
+as a central vertex). We distinguish several cases.
+Case 0: v does not have i- and is-neighbors in R. Then v ∈ Cπ (G). Indeed, let c ∈ Cπ (G) ⊆ R.
+Since rπ is 2-weakly peakless in G, if d(v, c) ≥ 3, then v has an i- or is-neighbor w in G in
+direction c. Since R is convex, w ∈ I(v, c) ⊆ R, thus w ∈ R, a contradiction. Thus d(v, c) = 2
+and rπ (c) < rπ (v). Then c ∈  / St(v), i.e., v and c have a unique common neighbor z. By
+Lemma 7.4, rπ is convex on (v, z, c), yielding rπ (z) < rπ (v). Hence z is an i-neighbor, a
+contradiction.
+Case 1: v does not have i-neighbor in R but has an is-neighbor w ∈ R. We set H := H(z, v)
+in R, where z ∼ v, w. We assert that v ∈ / H and Cπ (G) ⊆ H. Indeed, since R is convex,
+I(v, c) ⊆ R for any c ∈ Cπ (G). By Lemma 7.6, w ∈ I(v, c). Since w ∈ I(v, c) and z ∈ I(v, w),
+we have c ∈ H(z, v) and v ∈ H(v, z).
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                       25
+
+
+ Algorithm 5: ReduceConvexRegion(G, π, R)
+  Input : A cube-free median graph G = (V, E), a profile π : V → R+ , a convex region R
+             of G containing Cπ (G)
+  Output: A proper convex subregion of R containing Cπ (G) or a central vertex of Cπ (G)
+  Compute a median vertex v of R using the algorithm of [16];
+  Compute the star St(v);
+  Compute rπ (z) for all z ∈ St(v) using the algorithm from Subsection 7.6;
+  if v is a local minimum of rπ in St(v) then
+      return {v}                                                             // Case 0
+  if v has an is-neighbor w but no improving neighbor then
+      return R ∩ H(z, v) where z ∼ v, w                                                  // Case 1
+  Let z be a i-neighbor ;
+  Construct the fiber ΦSt(v) (z) and its boundary ΥSt(v) (z) ;
+  Compute a local minimum u of the radius function rπ on ΥSt(v) (z) using the algorithm
+    from Subsection 7.5;
+  if u is a local minimum in St(u) then
+       return {u} ;                                                            // Case 2
+  if u has a unique i-neighbor t then
+      return R ∩ H(t, u) ;                                                               // Case 4
+  if u has an is-neighbor w but no i-neighbor then
+      return R ∩ H(t, u) where t ∼ u, w and t ∈/ (z, u)-path of ΥSt(v) (z) ;             // Case 3
+  return R ∩ H(z, v) ;                                                                   // Case 5
+
+
+    Now suppose that v has an i-neighbor z ∈ R. We construct the fiber ΦSt(v) (z) of z and
+its boundary ΥSt(v) (z), which is a tree with gated branches. By Lemma 7.4, rπ is convex on
+each branch of ΥSt(v) (z), however rπ is not unimodal on ΥSt(v) (z). Nevertheless, we can find in
+O(n log n) time a local minimum u of rπ on ΥSt(v) (z) (see Section 7.5). Let P = (u0 = v, u1 =
+z, . . . , uk−1 , uk = u) be the path obtained by adding v to the gated branch I(z, u) ⊆ ΥSt(v) (z).
+Since St(v) is gated, P is locally-convex and thus gated. Then compute rπ (t) for all vertices t
+of the star St(u).
+Case 2: u does not have i- and is-neighbors in R. Then we return u as a center; the proof is as
+in Case 0.
+Case 3: u does not have any i-neighbor in R but has an is-neighbor w ∈ R. By Lemma 7.4,
+u and w have two common neighbors t, t′ . At least one of them, say t, does not belong to
+the path P (i.e., t ̸= uk−1 ). Then as H we take the halfspace H(t, u) of R. The proof that
+Cπ (G) ⊆ H = H(t, u) is the same as in Case 1. Since the path P is gated and t ∈      / P,
+d(v, t) = d(v, u) + 1, which implies v ∈ H(u, t), and so v ∈
+                                                           / H.
+Case 4: u has a unique i-neighbor t in R. We set H := H(t, u). By Lemma 7.6, t ∈ I(u, c)
+for any c ∈ Cπ (G), thus Cπ (G) ⊆ H(t, u) = H. Since rπ (uk−1 ) ≥ rπ (u) and rπ (t) < rπ (u),
+t ̸= uk−1 . Since P is convex, t ∈
+                                 / P , thus d(v, t) = d(v, u) + 1 and v ∈ H(u, t).
+Case 5: u has two i-neighbor t and t′ in R. We distinguish two subcases.
+Subcase 1: t or t′ , say t, does not belongs to ΦSt(v) (z). This case is impossible. Indeed, then
+we should have t ∈ ΦSt(v) (w) with d(v, w) = 2 and v, w belong to a square S ′ . Since u ∼ t, we
+would get z ∼ w, and so z ∈ S ′ , i.e., S ′ = vzwz ′ . By Lemma 7.5, u, t, t′ are included in a square
+S = utyt′ . Since the fibers are gated, y ∈   / ΦSt(v) (z) and t′ ∈
+                                                                  / ΦSt(v) (w). If t′ ∈ ΦSt(v) (z), then
+ ′                       ′                  ′
+t ∈ ΥSt(v) (z) because t ∼ y. Since rπ (t ) < rπ (u) and u is a local minimum of rπ in ΥSt(v) (z),
+this is impossible. Thus t′ ∈ ΦSt(v) (w′ ), where d(v, w′ ) = 2, w′ ̸= w, and v, w′ are included in
+a square S ′′ . Since u ∼ t′ , we get z ∼ w′ , and so S ′′ = vzw′ z ′′ . Consider the fiber ΦSt(v) (q) of
+26                   J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+St(v) containing y. Since y ∼ t, t′ , either q ∈ {w, w′ } or q ∼ w, w′ . If say q = w, then w′ ∼ w
+and we obtain a K3 = {z, w, w′ }. Thus q ̸= w, w′ and q ∼ w, w′ . If q ∈ {z ′ , z ′′ }, say q = z ′ , then
+w′ ∼ z ′ and v, w′ , z, z ′ , z ′′ induce a forbidden K2,3 . Hence q ̸= z ′ , z ′′ . The median of z ′ , z ′′ , y is
+p ∼ z ′ , z ′′ , q. But then v, z ′ , z ′′ , p, z, w, w′ , q induce a forbidden 3-cube.
+Subcase 2: t, t′ ∈ ΦSt(v) (z). We set H := H(z, v). Clearly, v ∈ H(v, z), thus v ∈             / H. We
+assert that Cπ (G) ⊆ H. Pick any c ∈ Cπ (G). Since u has i-neighbors, by Lemma 7.6, u has an
+i-neighbor in direction c, say t. Let c′ be the gate of c in P . If c′ ̸= v, then z ∈ I(v, c′ ) ⊂ I(v, c),
+thus c ∈ H(z, v) = H and we are done. Now we show that c′ = v is impossible. Let p be the
+median of t, v, c. Since t, v ∈ I(u, c), necessarily p ̸= v. Let z ′ be a neighbor of v in I(v, p).
+Then z ′ ∈ I(v, p) ⊆ I(v, t). Since P is convex and t ∈    / P , also z ∈ I(v, t). By (QC), there exists
+w ∼ z, z ′ one step closer to t than z, z ′ . Since the square vzwz ′ belongs to St(v) and w ∈ I(z, t),
+we get a contradiction with t ∈ ΦSt(v) (z).
+Example 7.7. In the case of 0-1-profiles, for any i-neighbor z of the current median vertex v
+of R, the halfspace H = H(z, v) separates v from some central vertex of G. The example from
+Figure 4 shows that this is not longer true for weighted profiles. The cube-free median graph G
+consists of a rectangular grid of size k × (2k + 2) and a horizontal path of length k(k + 1) glued
+to the bottom leftmost vertex c of the grid (in the figure, k = 4). The profile consist of two
+vertices: the bottom leftmost vertex l of G of weight 1 and the bottom rightmost vertex r of
+G of weight k + 1. There is a unique central vertex, which is the vertex c along which the grid
+and the path are glued; rπ (c) = k(k + 1) = 1 · d(c, l) = (k + 1) · d(c, r). Now, let v be the upper
+leftmost vertex of the grid. Then rπ (v) = (k + 1)(3k + 2) = (k + 1) · d(v, r). The vertex v has
+two neighbors in G, the horizontal neighbor z and the vertical neighbor z ′ . Both z and z ′ are
+i-neighbors of v, namely rπ (z) = rπ (z ′ ) = k(3k + 2) = (k + 1) · (d(v, r) − 1) < rπ (v). However
+the halfspace H(z, v) does not separate v and c. Therefore, in this case we need to compute a
+local minimum u of rπ in ΥSt(v) (z). In this example, ΥSt(v) (z) = ΦSt(v) (z) and it coincides with
+the horizontal path with one end in v and passing via z. Then u is the other end of this path
+and rπ (u) = (k + 1)(2k + 2) = (k + 1) · d(u, r). In this case, u has a unique improving neighbor
+t and rπ (t) = (k + 1)(2k + 1) = (k + 1) · d(t, r), thus we are in Case 4 and H is the halfspace
+H(t, u), which indeed separates v and c.
+
+7.5. Computing a local minimum of rπ in the tree ΥSt(v) (z). We use divide-and-conquer
+and we start with ΥSt(v) (z) as the search region T ; T will always contain a local minimum of
+rπ . At each iteration, we compute a centroid u of T , and rπ (u′ ) for each u′ ∈ N [u] in T . For
+that, since N [u] ⊂ St(u), we simply compute in O(n) time rπ (u′ ) for all u′ ∈ St(u) (see the
+next Section 7.6 for details). If |T | = 1 or rπ (u) ≤ rπ (u′ ) for any u′ ∈ N [u], then u is a local
+minimum of rπ in ΥSt(v) (z) and we return u. Otherwise, if rπ (u′ ) < rπ (u) for some neighbor
+u′ of u in T , then clearly the subtree T ′ of T containing u′ and not containing u will contain
+a local minimum of rπ in ΥSt(v) (z). Then we continue with T ′ as the search region. Since u
+is a centroid of T , |T ′ | ≤ |T |/2, the algorithm has log n′ iterations, where n′ is the number of
+vertices of ΥSt(v) (z). Since each iteration is performed in O(n) time and n′ ≤ n, the algorithm
+has complexity O(n log n).
+7.6. Computing all eccentricities in a star St(v). In this subsection, we show how to
+compute rπ for all vertices of a star St(v). This is used at each iteration of the algorithm
+in order to find the improving neighbors or the improving second neighbors of v. Bergé et
+al. [18] presented an algorithm which computes all eccentricities of a star in O(n log n) time. For
+cube-free median graphs, we present a simpler algorithm with complexity O(n). Our algorithm
+constructs the gated set St(v) and performs a BFS on G to construct a partition of V (G)
+into the fibers ΦSt(v) (u) : u ∈ St(v). This can be done in linear O(n) time as explained in
+[39]. The fibers of G are divided into fibers of neighbors u of v and fibers of second neighbors
+w of v in St(v). We denote the set of first neighbors of v by N (v) and the set of second
+neighbors of v from St(v) by N2 (v). We suppose that St(v) has n′ vertices. During the BFS
+that computes the partition of V (G) into the fibers of St(v), our algorithm also computes in
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                          27
+
+                                                   70 v        65 z   60    55   50 u
+
+
+
+                                                   65       z ′ 60    55    50   45
+                                                                                      t
+
+                                                   60          55     50    45   40
+                                                                                          k=4
+
+                                                   55          50     45    40   35
+
+
+
+                                                   50          45     40    35   30
+
+
+
+                                                   45          40     35    30   29
+
+
+
+                                                   40          35     30    27   28
+
+
+
+                                                   35          30     25    26   27
+                                                                                          k+2=6
+
+                                                   30          25     24    25   26
+
+
+
+                                                   25          22     23    24   25
+
+
+
+                    l                              20          21     22    23   24
+                                                                                    r
+                    1                                   c                        k+1=5
+                                 k(k + 1) = 20                        k=4
+
+
+       Figure 4. An example showing that the halfspace H(z, v) for an i-neighbor z
+       of v does not necessarily intersect Cπ (G).
+
+
+O(n) time the values ki (z) := max{π(x)(d(x, z) + i) : x ∈ ΦSt(v) (z)} for all vertices z ∈ St(v)
+and all i = 0, 1, . . . , 4. The eccentricity of v can be computed in O(n′ ) time by the formula
+rπ (v) = max{{k1 (u) : u ∈ N (v)} ∪ {k2 (w) : w ∈ N2 (v)}}. The eccentricity of each neighbor u of
+v can be computed by the formula
+   rπ (u) = max{{π(v), k0 (u)} ∪ {k2 (u′ ) : u′ ∈ N (v) \ {u}} ∪ {k1 (w) : w ∈ N2 (v) ∩ N (u)} ∪
+                 {k3 (w) : w ∈ N2 (v) \ N (u)}}.
+The first term of this formula can be computed in O(1) time. The second term can be computed
+in O(1) time, after a preprocessing in O(deg(v)) time in order to keep track of two neighbors
+of v with maximum k2 -value. The third term can be computed in O(deg(u)) time by simply
+scanning all neighbors of u. Finally, applying Lemma 2.1 to the subgraph induced by St(v)
+with κ(w) = k3 (w) if w ∈ N2 (v) and 0 otherwise, we deduce that all fourth terms requested to
+compute the eccentricity of every u ∈ N (v) can be computed in total O(n′ ) time. It remains
+to compute the eccentricities rπ (w) of vertices w ∈ N2 (v). Let u1 and u2 be the two common
+neighbors of w and v. Then rw can be computed by the following formula:
+   rπ (w) = max{{2π(v), k0 (w), k1 (u1 ), k1 (u2 )} ∪ {k2 (w′ ) : w′ ∈ N2 (v) ∩ (N (u1 ) ∪ N (u2 ))} ∪
+                 {k3 (u) : u ∈ N (v) \ {u1 , u2 }} ∪ {k4 (w′ ) : w′ ∈ N2 (v) \ (N (u1 ) ∪ N (u2 ))}}.
+The first term can be computed in O(1) time. To compute the second term, for every u ∈ N (v),
+we compute max{k2 (w′ ) : w′ ∈ N2 (v)∩N (u)}. Then, for every w ∈ N2 (v), we keep the maximum
+value computed for its neighbors u1 , u2 . It takes total O(n) time. To compute the third term, we
+apply Lemma 2.1 to St(v) with κ(u) = k3 (u) if u ∈ N (v) and 0 otherwise. Finally, to compute
+the fourth term, we proceed in three steps:
+(1) First notice that N (w) ∩ N (v) ̸= N (w′ ) ∩ N (v) for every distinct vertices w, w′ ∈ N2 (v).
+    Indeed, if w and w′ have the same common neighbors u1 , u2 with v, then the vertices
+    v, w, w′ , u1 , u2 induce a K2,3 , which is forbidden in median graphs.
+(2) Then, for every u ∈ N (v), we compute a vertex wu ∈ N2 (v) \ N (u) maximizing k4 (wu ). For
+    that, we apply Lemma 2.1 to St(v) with κ(w) = k4 (w) if w ∈ N2 (v) and 0 otherwise.
+28                J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+       Observe that the fourth term of any w ∈ N2 (u) must be equal to k4 (wu1 ) (or to k4 (wu2 ),
+    respectively), unless w, wu1 (w, wu2 , respectively) have a common neighbor in St(v), which
+    can be verified in O(1) time. If w has no common neighbor with at least one of wu1 , wu2 , then
+    we call it decided (its fourth term has been already computed), and undecided otherwise.
+    Notice that w is undecided if and only if wu1 is adjacent to u2 and wu2 is adjacent to u1 .
+    Furthermore, every first neighbor u ∈ N (v) has at most two undecided neighbors. Indeed, if
+    u has three undecided neighbors w1 , w2 , w3 , then each wi , i = 1, 2, 3 has a common neighbor
+    zi with v that is distinct from u. Since there exists at most one w ∈ N2 (v) such that
+    N (v) ∩ N (w) = {u, u′ }, the vertices z1 , z2 , z3 are pairwise distinct and they are all adjacent
+    to wu . Consequently, v, z1 , z2 , z3 , wu induce a forbidden K2,3 .
+(3) Let K be obtained from St(v) by making each undecided            vertex w ∈ N2 (v) adjacent to all
+    vertices of N (u1 ) ∪ N (u2 ). There are at most 2 {deg(u) : u ∈ N (v)} = O(n′ ) additional
+                                                           P
+    edges in K. Therefore, K contains at most O(n) edges and can be computed in O(n)
+    time. We end up computing the fourth terms of undecided vertices of N2 (v), by applying
+    Lemma 2.1 to K with κ(w) = k4 (w) if w ∈ N2 (v) and 0 otherwise.
+7.7. Complexity. At each step, given the region R, we compute in O(|R|) time a median vertex
+v of R using [16]. Then we compute in O(n) time rπ (z) for all z ∈ St(v). We either return v
+as a center (Case 0) or v has an i-neighbor or/and is-neighbor. If v has no i-neighbor, then in
+O(n) time we compute a separating halfspace H of R (Case 1). Finally, if v has an i-neighbor
+z, we compute in O(n log n) time a local minimum u of rπ in the tree ΥSt(v) (z) and rπ (t) for all
+t ∈ St(u). Then we either return u as a center (Case 2) or we compute in O(n) time a separating
+halfspace H of R (Cases 3-5). Namely, H = R ∩ H(a, b), where ab is an edge of R such that
+ab = zv in Cases 1,5 and ab = tu in Cases 3,4. To compute R ∩ H(a, b), first we compute in
+O(n) time the Θ-classes of G using [16], then we traverse the edges of the Θ-class Θi of ab. For
+each such edge we select the end belonging to H(a, b). Then we perform a BFS in R starting
+from the set of all such vertices and which does not involve the edges of Θi . The vertices of
+R which are reached by this BFS are exactly the vertices of R ∩ H(a, b), and it requires O(n)
+time to compute them. Since we have log n iterations and the complexity of each iteration is in
+O(n log n), we obtain an algorithm with complexity O(n log2 n). Consequently, we have proven
+the following main result of this section (which is Theorem E):
+Theorem 7.8. If G is a cube-free median graph with arbitrary weights, then a central vertex of
+G can be computed in deterministic time O(n log2 n).
+
+8. Gp -unimodality of the radius functions of δ-hyperbolic and α-coarse Helly
+                                     graphs
+  In this section, we prove that the radius functions of δ-hyperbolic and α-coarse Helly graphs
+are Gp -unimodal for some constant p depending respectively only on δ and α. We further refine
+our algorithmic results for δ-hyperbolic (weakly) bridged or bipartite Helly graphs.
+8.1. δ-Hyperbolic graphs. Gromov’s hyperbolicity is an important notion in metric geometry,
+which revolutionized the geometric group theory. A graph G = (V, E) is δ-hyperbolic [64] for
+δ ≥ 0 if for any u, v, x, y ∈ V , the two largest of the sums d(u, v) + d(x, y), d(u, x) + d(v, y),
+d(u, y) + d(v, x) differ by at most 2δ ≥ 0. Gromov hyperbolic graphs constitute a very important
+class of graphs in metric graph theory. The unweighted center problem for this class of graphs
+and the relationship between the radius, the diameter, and the δ-hyperbolicity were studied
+in [34]. Almost unimodality properties of the classical radius function in δ-hyperbolic graphs
+(i.e., when π(v) = 1 for all v ∈ V ) were investigated earlier in [4, 48, 49, 51]. Here we consider
+arbitrary profiles.
+   The following result establishes the statement of Theorem A related to δ-hyperbolic graphs:
+Proposition 8.1. All radius functions rπ of a δ-hyperbolic graph G are (4δ + 1)-weakly peakless.
+Proof. Let u, v be any pair of vertices of G with d(u, v) ≥ 4δ + 2. Pick any geodesic γ(u, v)
+between u and v and let w be a vertex of γ(u, v) such that d(w, u) ≥ 2δ + 1 and d(w, v) ≥ 2δ + 1.
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                       29
+
+This implies that d(u, v) > max(d(u, w), d(v, w))+2δ. We assert that rπ (w) < max{rπ (u), rπ (v)}.
+Indeed, let x be a furthest from w vertex of supp(π), i.e., x is a vertex from the profile such
+that rπ (w) = π(x)d(x, w). As d(u, v) + d(w, x) ≤ max{d(u, x) + d(v, w), d(v, x) + d(u, w)} + 2δ
+because G is δ-hyperbolic, and d(u, v) > max{d(u, w), d(w, v)} + 2δ, we deduce that d(w, x) <
+max{d(u, x), d(v, x)}. Consequently, rπ (w) < max{rπ (u), rπ (v)}, establishing that the radius
+function rπ is strictly (4δ + 1)-weakly peakless.                                               □
+
+   Let the δ-hyperbolicity of a graph G be the smallest δ for which G is δ-hyperbolic. Theorem
+9.6 of [27] (which refines Proposition 10 of [34]) characterizes (up to a constant factor) the δ-
+hyperbolicity of a weakly modular graph G by the largest size µ of a metric triangle of G and
+the largest size κ of an isometric square grid of G: δ = Θ(max{µ, κ}). Similarly to [27, Theorem
+9.6] about the hyperbolicity of weakly modular graphs, and using Lemma 11.3, one can prove
+a similar result about the hyperbolicity of CB-graphs. From these two results we can conclude
+the following:
+                                                                         √
+Proposition 8.2. If G is weakly modular or a CB-graph, then G is O( n)-hyperbolic.
+   The δ-hyperbolicity of median graphs, (weakly) bridged, and (bipartite) Helly graphs can
+be characterized by forbidding more structured patterns. By Corollary 4 of [34] and Lemma
+9.7 of [27], the hyperbolicity of a median graph G is characterized by the size of the largest
+isometric square grid of G. A similar result can be proved for bipartite Helly graphs. Similarly,
+the hyperbolicity of a Helly graph G is characterized by the size of the largest isometric king
+grid of G (the king grid is obtained from the square grid by adding the two diagonals of each
+square); see [28, Proposition 4.7.] and [47]. Finally, by Corollary 4 of [34], the hyperbolicity δ of
+a bridged graph G is characterized by the size ν of a largest isometric deltoid of G: δ = Θ(ν). A
+deltoid of size ν is a subgraph of G that is isometric to the equilateral triangle with side ν of the
+triangular grid (the tessellation of the plane into equilateral triangles with side 1). As a graph,
+the triangular grid can be obtained from the square grid by adding one diagonal to each square
+such that all such added diagonals lie on parallel lines. The deltoid of size ν contains a triangular
+grid with side ν2 × ν2 (this grid has the form of a lozenge and is obtained by gluing two deltoids
+with side ν2 along a common side). Therefore, the hyperbolicity of bridged graphs can be again
+characterized by the largest size of a triangular grid (largest lozenge). This characterization can
+be extended to all weakly bridged graphs.
+   The results of our paper and of [52] can be combined with the result of [34] about the approx-
+imation of the radius of δ-hyperbolic graphs to get a fast deterministic algorithm for the center
+problem with 0-1-profiles in δ-hyperbolic (weakly) bridged graphs, Helly, and bipartite Helly
+graphs. We call this method FPscan-descent. We proceed as follows. Let G be any δ-hyperbolic
+graph from one of these classes of graphs and let π be a 0-1-profile on G. Let u, w be the pair of
+vertices returned (in O(m) time) after two FP scans: pick any vertex v, compute any farthest
+from v vertex u of the profile and then compute a furthest from u vertex w from the profile. Let
+c be any vertex in the middle of a shortest (u, w)-path P (if d(u, w) is even, then c is unique and
+if d(u, v) is odd, then P contains two middle vertices and c is one of them). By [34, Proposition
+6], the center of π is contained in the ball B5δ (c) of radius 5δ centered at c (then clearly that
+rπ (c) ≤ rπ + 5δ). Now, we set u0 := c and we apply the descent algorithm to the radius function
+rπ . Namely, at step i given the current vertex ui , we apply ImproveEccentricity(G, π, ui ), specific
+to each class of graphs. Let (u0 , u1 , . . . , uℓ ) be the improving path of G2 (or of G if G is Helly)
+constructed by the descent algorithm. Since uℓ is a minimum of the radius function rπ in B2 (uℓ )
+and rπ is G2 -unimodal, uℓ is a central vertex of G. Since rπ (u0 ) > rπ (u1 ) > · · · > rπ (uℓ ), π is a
+0-1-profile, and u0 = c has distance ≤ 5δ from the center uℓ , the length ℓ of the improving path
+is at most 5δ. Since each call of ImproveEccentricity is in O(m) time, we obtain an algorithm with
+complexity O(δm). If δ is constant,
+                                 √      this is a linear-time algorithm. Since by Proposition √  8.2 the
+hyperbolicity of G is at most n, this is a deterministic algorithm with complexity O( nm).
+The same holds for graphs with convex balls, but in this case the final vertex uℓ is either central
+or is at distance at most 2 from the center. Summarizing, we get the following result (which is
+the assertion of Theorem D for δ-hyperbolic graphs):
+30                J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+Theorem 8.3. Let G = (V, E) be a graph with n vertices and m edges and π be a 0-1-profile
+on G.
+(1) If G is a δ-hyperbolic bridged, weakly bridged, or bipartite Helly graph (respectively, CB-
+    graph), then a central vertex of G (respectively, a vertex at distance at most 2 from the center)
+    can be computed in deterministic O(δm) time via FPscan-descent method. If δ = O(1), then
+    this is a linear-time algorithm for the center problem.
+(2) If G is a bridged, weakly bridged, or bipartite Helly graph (respectively, CB-graph) with a
+    0-1-profile, then a central vertex of G (respectively,
+                                                   √        a vertex at distance at most 2 from the
+    center) can be computed in deterministic O( nm) time via FPscan-descent method.
+   Theorem 8.3 has several consequences, when the hyperbolicity of G is constant. For exam-
+ple, the hyperbolicity of chordal graphs is at most 1, thus we get a linear-time algorithm for
+computing a central vertex for a chordal graph. As we noted above, such an algorithm already
+exists [32]. In fact, the FPscan-descent method can be viewed as a generalization of the method
+used in [32]. Another class of graphs with constant hyperbolicity are the chordal bipartite graphs,
+i.e., the bipartite graphs in which all induced cycles have length 4. These graphs are hereditary
+modular and thus they are bipartite Helly graphs [7]. Consequently, we obtain the following
+consequence of Theorem 8.3:
+Corollary 8.4. If G is a chordal bipartite graph, then for any 0-1-profile on G, a central vertex
+can be computed in O(m) time.
+Remark 8.5. Previously, it was only known that a central vertex of a chordal bipartite graph
+can be computed in linear time for the classical center function [53], i.e., when π(v) = 1 for any
+vertex v.
+  Since the size of a largest square grid, king grid, or triangular grid is roughly equivalent to
+hyperbolicity of bipartite Helly, Helly, and (weakly) bridged graphs, we also obtain the following
+consequence of Theorem 8.3:
+Corollary 8.6. If G is a (1) bipartite Helly graph in which each square grid has size O(1), (2) a
+Helly graph in which each king grid has size O(1), or (3) a (weakly) bridged graph in which each
+triangular grid has size O(1), then for any 0-1-profile on G, a central vertex can be computed in
+O(m) time using FPscan-descent.
+Remark 8.7. A linear-time algorithm for the center problem with 0-1-profiles for weakly bridged
+graphs not containing the triangular grid of size 2, was recently and independently of us obtained
+by S. Seif [93], using a different approach.
+8.2. Coarse Helly graphs. A graph G is called α-coarse Helly if for any family B = {Bri (vi ) :
+i ∈ I} of pairwise intersecting balls, inflating each ball Bri (viT    ) of B by a constant α leads to
+a family of balls with a nonempty common intersection, i.e., i∈I Bri +α (vi ) ̸= ∅ holds. This
+generalized Helly property was introduced in [37], where it was shown that δ-hyperbolic graphs
+are 2δ-coarse Helly, and further was investigated in [28] and [50] (and papers in geometric group
+theory, e.g., [66, 88]). Clearly, any finite graph G is α-coarse Helly for α ≥ ⌊diam(G)/2⌋. The
+minimum α for which a graph G is α-coarse Helly is called the Helly-gap of G, denoted by α(G).
+Helly graphs are the graphs with the Helly gap α(G) = 0. Several other graph families are
+known to have a Helly-gap bounded by a constant [50]. Interestingly, even earlier, Lenhart et
+al. [77, Lemma 9] established that the balls of simple polygons endowed with link-metric satisfy
+a Helly-type property which implies coarseness 1 (the link graph of a simple polygon P has the
+points of P as vertices and pairs of points x, y ∈ P such that [x, y] ⊆ P as edges). Notice also
+that bipartite Helly graphs G = (V0 ∪ V1 , E) are 1-coarse Helly. Indeed, if B = {Bri (vi ) : i ∈ I}
+is a collection of pairwise intersecting balls of G, then the collection B ′ = {Bri +1 (vi ) : i ∈ I}
+of inflated balls pairwise intersect in V0 (and also in V1 ). Therefore, the inflated half-balls
+Bri +1 (vi ) ∩ V0 , i ∈ I pairwise intersect inTV0 . By the Helly property
+                                                                      T for half-balls we deduce that
+there exists a vertex of V0 belonging to i∈I Bri +1 (vi ) ∩ V0 ⊆ i∈I Bri (vi ), and we are done.
+   In this subsection, we prove GO(α) -unimodality of all 0-1-radius functions rπ of an α-coarse
+Helly graph. Our starting point is the interesting result of [50]: in any α-coarse Helly graph
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                      31
+
+G = (V, E) with a 0-1-profile π, for any v ∈ V such that rπ (v) > radπ (G) + α, there is a vertex
+v ′ ∈ B2α+1 (v) with rπ (v ′ ) < rπ (v). For ℓ ≥ 0, let Cπℓ (G) = {v ∈ V : rπ (v) ≤ radπ (G) + ℓ}.
+Clearly, Cπ (G) ⊆ Cπℓ (G). First, we strengthen this result of [50] as follows:
+Lemma 8.8. If G is α-coarse Helly graph, π is a 0-1-profile, and v an arbitrary vertex with
+rπ (v) = radπ (G) + α + k for some k ≥ 1, then,
+(1) either Cπα+k (G) ⊂ B2α+1 (v) (whence Cπ (G) ⊂ B2α+1 (v)),
+(2) or for every u ∈ Cπα+k (G) with d(v, u) ≥ 2α + 2, there is a vertex v ′ ∈ B2α+1 (v) such that
+     rπ (v ′ ) < rπ (v) and d(v ′ , u) < d(v, u).
+Proof. Let M = {v ∈ V : π(v) = 1} = supp(π). Assume that Cπα+k (G) \ B2α+1 (v) ̸= ∅ and pick
+any u ∈ Cπα+k (G) with d(v, u) ≥ 2α + 2. Consider in G a system of balls F = {Bρ(x) (x) : x ∈
+M ∪ {v, u}} with radii defined as follows: ρ(v) := α + 1, ρ(u) := d(u, v) − α − 1 ≥ α + 1 and
+ρ(x) := rπ (v) − α − 1 ≥ radπ (G) for all x ∈ M . We assert that all balls of F pairwise intersect.
+Pick any x in M . Balls Bρ(x) (x) and Bρ(v) (v) intersect as d(x, v) ≤ rπ (v) = ρ(x) + ρ(v). Balls
+Bρ(x) (x) and Bρ(u) (u) intersect as d(x, u) ≤ rπ (u) ≤ rπ (v) = (rπ (v)−α−1)+(α+1) ≤ ρ(x)+ρ(u).
+For each y ∈ M , balls Bρ(x) (x) and Bρ(y) (y) intersect as d(x, y) ≤ 2 radπ (G) ≤ ρ(x) + ρ(y).
+Finally, balls Bρ(u) (u) and Bρ(v) (v) intersect as d(u, v) = ρ(u) + ρ(v). Since G is α-coarse
+Helly, the system F of pairwise intersecting balls has a common intersection when radii of
+all balls are extended by α. Therefore, there is v ′ such that d(v ′ , v) ≤ ρ(v) + α = 2α + 1,
+d(v ′ , u) ≤ ρ(u) + α = d(v, u) − 1, and d(v ′ , x) ≤ ρ(x) + α = rπ (v) − 1 for all x ∈ M . The latter
+shows that rπ (v ′ ) ≤ rπ (v) − 1 and we are done.                                                  □
+  The following result establishes the statement of Theorem A in the case of α-coarse Helly
+graphs:
+Proposition 8.9. For any unweighted radius function rπ of an α-coarse Helly graph G and any
+vertex v, if rπ (v) > radπ (G) + α, then v is not a local minimum of rπ in G2α+1 .
+Proof. Let p = 2α + 1. If d(v, Cπ (G)) ≤ p, then in Gp the vertex v has a neighbor v ′ ∈ Cπ (G).
+Then rπ (v ′ ) ≤ rπ (v) and thus either v is a central vertex or rπ (v ′ ) < rπ (v) and thus v is not a
+local minimum of rπ in Gp . Now suppose that d(v, Cπ (G)) > p. By Lemma 8.8, for any vertex
+u ∈ Cπ (G), there exists a vertex v ′ ∈ B2α+1 (v) such that rπ (v ′ ) < rπ (v) and d(v ′ , u) < d(v, u).
+Thus, v is not a local minimum in Gp of the radius function rπ .                                      □
+   At the difference to other classes of graphs, for which we prove Gp -unimodality via p-weakly
+peaklessness, we do not have such a proof for coarse Helly graphs. Even worse, we cannot prove
+that if a vertex v is far away from the center Cπ (G), then eπ (v) is much larger than radπ (G).
+Furthermore, no good characterizations or polynomial recognition algorithms are known for
+α-coarse Helly graphs, even in the case α = 1. Even more, we are inclined to believe that
+already the recognition of 1-coarse Helly graphs is coNP-hard. On the other hand, Dragan
+and Guarnera [50] proved the following relation between the radius and the diameter of an α-
+coarse Helly graph, which generalizes similar results for Helly graphs [43,44] and for δ-hyperbolic
+graphs [34]:
+Proposition 8.10 ( [50]). For any subset M ⊆ V of an α-coarse Helly graph, 2rad(M ) ≥
+diam(M ) ≥ 2rad(M ) − 2α(G) − 1.
+   Dragan and Guarnera [50] asked whether 2rad(M ) ≥ diam(M ) ≥ 2rad(M ) − 2α(G) − 1 for
+all M ⊆ V implies that G is α-coarse Helly? A positive answer even of the relaxed version
+when G would be O(α)-coarse Helly would indicate that the graphs, for which the exact or
+approximate computation of the center is done by searching a region around the middle of a
+shortest path returned by a few FP scans, are all O(α)-coarse Helly. As proved in [28], the Helly
+gap α(G) is a maximal distance from a point in the Hellyfication of G to a closest vertex of G;
+however this result cannot be used to compute α(G) since the Hellyfication of G may contain
+an exponential number of vertices. Therefore it will be interesting to investigate whether the
+Hellyfication of G contains specific points which are furthest from V (G). Each point of the
+32                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+Hellyfication corresponds to a set of radii of the vertices of G, which give pairwise intersecting
+balls. The question of [50] can be reformulated in this language as follows:
+Question 8.11. Is it true that G is α-coarse Helly iff for any r and any family of pairwise
+intersecting balls {Br (xi ) : i ∈ I} of radius r the intersection ∩ni=1 Br+α (xi ) of the inflated balls
+is nonempty?
+   The second question about coarse Helly graphs is on the existence of subquadratic-time algo-
+rithms for the center problem. This problem seems nontrivial already for 1-coarse Helly graphs,
+because it must generalize our result for bipartite Helly graphs:
+Question 8.12. Is it possible to compute a central vertex of an α-coarse Helly graph G in
+subquadratic time? What can be said in case of α = 1 and in case of 0-1-profiles?
+
+                              9. Recognition and lower bounds
+  In this section we show on one hand that the graphs with Gp -unimodal radius functions
+can be recognized in polynomial time. On the other hand, under the Hitting Set Conjecture,
+we show that deciding whether a given vertex is a local minimum of the radius function (and
+thus ImproveEccentricity) in a graph with Gp -unimodal radius functions cannot be solved in
+subquadratic time, even if p = 2.
+
+9.1. Recognition. In this subsection, we present a polynomial-time recognition algorithm for
+all graphs with Gp -unimodal radius functions (for median function, see [8] for p = 1 and [17] for
+any p). This proves Theorem B.
+Theorem 9.1. Given a graph G with n vertices and a positive integer p, one can decide in
+O(n4 ) time whether all radius functions rπ of G are Gp -unimodal.
+Proof. It suffices to check if G admits a non Gp -unimodal radius function. For that, for each
+vertex u, we check if there exists a profile π such that u is a local minimum of rπ in Gp , however
+u∈ / Cπ (G). We consider each v ∈ V with d(u, v) > p and we search for π for which rπ (v) < rπ (u).
+We claim that a necessary and sufficient condition for existence of such π is UC(u, v): for every
+x ∈ Bp (u), there is a vertex wx such that d(x, wx ) ≥ d(u, wx ) and d(x, wx ) > d(v, wx ). Indeed,
+let there exists π for which u is a local minimum of rπ in Gp and rπ (v) < rπ (u). For every
+x ∈ Bp (u), we pick a vertex wx such that rπ (x) = π(wx )d(x, wx ). Then, d(x, wx ) ≥ d(u, wx ),
+otherwise rπ (x) < π(wx )d(u, wx ) ≤ rπ (u). In the same way, d(x, wx ) > d(v, wx ), otherwise
+rπ (v) ≥ rπ (x) ≥ rπ (u). This proves the necessity of UC(u, v). Conversely, let UC(u, v) holds.
+Set W = {wx : x ∈ Bp (u)}. Let π be the profile with support W such that, for every w ∈ W ,
+we have π(w) = 1/ min{d(w, x) : x ∈ Bp (u) and w = wx }. Then, for every x ∈ Bp (u),
+                                    1
+rπ (x) ≥ π(wx )d(x, wx ) ≥ d(x,w      x)
+                                         d(x, wx ) = 1. In particular, rπ (u) ≥ 1. For every w ∈ W ,
+there exists some x ∈ Bp (u) such that w = wx and π(w) = 1/d(x, wx ). Then, π(w)d(u, w) =
+    1                   1
+d(x,wx ) d(u, wx ) ≤ d(x,wx ) d(x, wx ) = 1. Hence rπ (u) = 1. Thus u is a local minimum for rπ in
+  p
+G . Finally, for every w ∈ W , let again x ∈ Bp (u) be satisfying w = wx and π(w) = 1/d(x, wx ).
+                             1                    1
+Then, π(w)d(v, w) = d(x,w      x)
+                                  d(v, wx ) < d(x,w x)
+                                                       d(x, wx ) = 1. Therefore, rπ (v) < 1 = rπ (u). Note
+that UC(u, v) can be checked in O(|Bp (u)|n) = O(n2 ) time, if the distance matrix of G is given.
+Hence, the running time of the algorithm is in O(n2 × n2 + nm) = O(n4 ).                                □
+
+9.2. Lower bounds. In this subsection, we prove a conditional hardness result for the problem
+of deciding whether a given vertex is a local minimum of the radius function in G2 (Theorem
+C):
+Theorem 9.2. Assuming the Hitting Set Conjecture, for any ε > 0, deciding if v is a local
+minimum in G2 of the radius function rπ for a graph G with 2-weakly-peakless radius functions
+cannot be solved in O(n2−ε ) time, even if G has only O(n)
+                                                      e    edges, and every center function rπ
+of G is 2-weakly-peakless.
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                          33
+
+Proof. Recall the Hitting Set Conjecture, introduced by Abboud et al. [2]: There is no ε > 0 such
+that for all γ ≥ 1, there is an algorithm that given two lists X, Y of n subsets of a universe U of
+size at most γ log n, can decide in O(n2−ε ) time if there is a set in the first list that intersects
+every set in the second list, i.e., a hitting set. Let ⟨X, Y, U ⟩ be an instance of the Hitting Set
+problem. The following graph G⟨X, Y, U ⟩ is a slight variation of the HSE graph introduced
+in [2]. The vertex set is X ∪ Y ∪ U ∪ {a, b, c, v, w}, where U is a clique. For every z ∈ X ∪ Y ,
+and every u ∈ U , z ∼ u iff u ∈ z. Additionally, a ∼ v, v ∼ w, b ∼ c, for every z ∈ X ∪ U ,
+a, b ∼ z, and for every x ∈ X, v ∼ x. Since U is of size at most γ log n, for some constant γ,
+we can construct G⟨X, Y, U ⟩ in O(n)
+                                   e     time. We can suppose wlog that U is covered both by the
+sets of X and by the sets of Y ; equivalently, each u ∈ U has a neighbor both in X and in Y .
+Notice also that the vertices of Y are adjacent only to vertices of U , thus all vertices of Y are
+simplicial (i.e., their neighborhoods are cliques). Theorem C follows by combining the following
+two lemmas.
+Lemma 9.3. The vertex v is a local minimum in G := G⟨X, Y, U ⟩ (in G2 , respectively) of the
+classical radius function rπ (i.e., where π(z) = 1 for any z ∈ X ∪ Y ∪ U ∪ {a, b, c, v, w}) iff there
+is no set in X that intersects every set in Y .
+Proof. By construction of G, rπ (v) = 3; namely, v has distance 3 to c and all vertices of Y . Since
+w is a pendant vertex adjacent to v, rπ (w) = 4. Consequently, the radius of G is at least 2.
+Furthermore, every vertex of eccentricity 2 must be contained in the ball B2 (w) = X ∪ {a, v, w}.
+Observe that rπ (a) = d(a, c) = 3. Thus, either the radius of G is 3 and v ∈ Cπ (G) or there
+exists a vertex x such that rπ (x) = 2. In the second case, by definition of G, we must have
+x ∈ X ⊆ N (v). By definition of G, a vertex x ∈ X has eccentricity 2 iff the set x of X intersects
+every set in Y . Consequently, v is a local minimum of rπ in G (resp. in G2 ) iff there is no set
+in X that intersects every set in Y .                                                             □
+Lemma 9.4. Any radius function rπ on G := G⟨X, Y, U ⟩ is 2-weakly peakless.
+Proof. We start with a useful remark: Let r, s, r ̸= s be vertices of a graph G′ such that B1 (r) ⊆
+B1 (s). If rπ (r) < rπ (s), then Cπ (G′ ) = {r} and rπ (s) = π(r). Indeed, let t be a furthest from s
+vertex. If t ̸= r, then rπ (r) ≥ π(t)d(t, r) ≥ π(t)d(t, s) = rπ (s), which is impossible. Therefore,
+t = r, which implies rπ (s) = π(r). Furthermore, for every z ̸= r of G′ , rπ (z) ≥ π(r)d(r, z) ≥
+π(r) = rπ (s) > rπ (r). Hence, Cπ (G′ ) = {r} and we are done.
+   Let π be any profile on G. Let z, z ′ be such that d(z, z ′ ) ≥ 3. We assume in what follows
+that for every vertex s of I ◦ (z, z ′ ) the inequality rπ (s) ≥ max{rπ (z), rπ (z ′ )} holds. By the
+construction of G, either at least one of the vertices z, z ′ belongs to Y or one of the vertices z, z ′
+coincides with one of the vertices w, c. Consequently, in both cases, at least one of the vertices
+z, z ′ , say z, is simplicial. Pick any s ∈ I ◦ (z, z ′ ) adjacent to z. Since z is simplicial, we have
+B1 (z) ⊆ B1 (s). We cannot have rπ (s) = π(z), because otherwise, rπ (z ′ ) ≥ 3π(z) > π(z) = rπ (s),
+contrary to our assumption about the pair z, z ′ . Therefore, by the above claim, rπ (s) ≤ rπ (z).
+Since rπ (s) ≥ max{rπ (z), rπ (z ′ )}, we obtain that rπ (s) = rπ (z). Since z is not a furthest
+from s vertex, the equality rπ (s) = rπ (z) implies that z cannot be of degree one, and so,
+that it is different from vertices w and c. Consequently, z ∈ Y and s ∈ U . If furthermore
+rπ (z ′ ) ≥ rπ (z), then we are done because rπ (s) = rπ (z) ≤ max{rπ (z), rπ (z ′ )} and equality holds
+when rπ (z) = rπ (z ′ ). Thus, from now on we can suppose that rπ (z ′ ) < rπ (z) = rπ (s).
+   Assume further that z ′ is not simplicial (otherwise, we conclude the proof by considering z ′
+instead of z and s′ ∈ N (z ′ )∩I(z, z ′ ) instead of s). Since d(z, z ′ ) ≥ 3, necessarily z ′ ∈ X ∪{v}. Let
+t be a furthest from s vertex. Since rπ (z) = rπ (s), we must have d(z, t) ≤ d(s, t). This implies
+that t must be different from the vertices a, b, c, v, w, z ′ . On the other hand, since rπ (z ′ ) < rπ (s),
+we must have d(z ′ , t) < d(s, t). This implies that t cannot belong to U ∪ Y , as we prove it now.
+Indeed, for any vertex u ∈ U we have d(s, u) ≤ 1 (since s ∈ U ) and d(z ′ , u) ≥ 1 (since z ′ ∈        / U ).
+Analogously, for any y ∈ Y we have d(s, y) ≤ 2 (since s ∈ U and U is a clique) and d(z ′ , y) ≥ 2
+(since z ′ ∈ X ∪ {v}). If z ′ ∈ X, then furthermore t cannot belong to X \ z ′ , because d(z ′ , x) = 2
+and d(s, x) ≤ 2 for any x ∈ X \ z ′ . This leads us to a contradiction. Therefore, z ′ = v.
+Consequently, in this case, a ∈ I ◦ (z, z ′ ). Suppose rπ (a) ≥ rπ (s) = rπ (z) > rπ (z ′ ) (otherwise, we
+34                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+are done), and let r be a furthest from a vertex. Since rπ (v) = rπ (z ′ ) < rπ (a), we must have
+d(v, r) < d(a, r). This implies that r must coincide with one of the vertices v, w. But then,
+a ∈ I ◦ (z, r), which implies rπ (z) > rπ (a), a contradiction. Consequently, any radius function rπ
+is 2-weakly peakless.                                                                             □
+
+     This concludes the proof of Theorem 9.2.                                                     □
+
+
+                                       10. Perspectives
+   In this paper, using G2 -unimodality of the radius functions, we presented local search sub-
+quadratic algorithms (randomized or deterministic) for the weighted and unweighted center
+problems on several important classes of graphs: bridged and weakly bridged graphs, graphs
+with convex balls, and bipartite Helly graphs. We also presented a divide-and-conquer algo-
+rithm with deterministic complexity O(n log2 n) for the weighted center problem on cube-free
+median graphs (a subclass of bipartite Helly graphs). Prior to our work, it was only known
+how to compute in linear time the 0-1-centers of chordal graphs (a well-known class of graphs
+at the intersection of bridged and hyperbolic graphs) and a subquadratic-time algorithm for the
+0-1-centers of median graphs.
+   We do not have analogous results for the weighted centers of δ-hyperbolic graphs (and, more
+generally, of δ-coarse Helly graphs) and we believe that they do not exist. This is because at
+small scale (in balls of radius δ), δ-hyperbolic graphs may be arbitrary. Therefore, the algorithm
+of [34] for approximating the radius and returning an approximate center of a δ-hyperbolic graph
+seems to be the best one can get for the center problem. The results of [34] are for 0-1-profiles,
+thus generalizing them to arbitrary profiles is open:
+
+Question 10.1. Is it possible to compute for any profile π on a δ-hyperbolic graph G = (V, E)
+in O(|E|) time (or even in subquadratic time) a vertex v that has distance at most O(δ) from
+the center Cπ (G)?
+
+  There are also several more general perspectives on the center problem (and our paper provides
+partial answers to each of them). The first is about the graphs for which the center problem can
+be solved efficiently:
+
+Question 10.2. Characterize the graphs for which the center problem can be solved in sub-
+quadratic time for all profiles.
+
+   In the same vein, it will be important to investigate the metric properties of graphs, which
+can be useful in the efficient computation of radius, center, and diameter. The 0-1-center
+problem in chordal graphs can be solved in linear time, however assuming the Orthogonal Vectors
+Conjecture, the diameter problem cannot be solved in subquadratic time. It will be interesting
+to investigate the center problem for classes of graphs for which the diameter problem cannot be
+solved efficiently. This is related to the question how to compute the radius of a graph without
+computing the eccentricities of all its vertices. It is also important to understand the power and
+the limits of local search and Gp -unimodality for the center problem in graphs.
+   More generally, it will be important to investigate general Gp -unimodal functions (and their
+weakly peakless variants) in graphs from the perspectives of discrete convex analysis [70, 82–84]
+and the relationships between the complexity of local search and the geometry of graphs [21].
+Last but not least, it will be important and challenging to create an algorithmic theory for the
+classes of graphs studied in Metric Graph Theory. This question is intimately related to the
+notion of metric (fat) minor of a graph, independently introduced in papers [35] and [60] and the
+coarse and metric graph theory (an interesting research program on coarse graph theory based
+on the notion of metric/fat minor was suggested in recent paper [63]).
+
+Acknowledgements. This work has been supported in part by the PHC Brâncuşi LoSST and
+the ANR project DISTANCIA (ANR-17-CE40-0015).
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                              35
+
+                                                References
+ [1] H.-K. Ahn, L. Barba, P. Bose, J.-L. De Carufel, M. Korman, and E. Oh, A linear-time algorithm for the
+     geodesic center of a simple polygon, Discr. Comput. Geom. 56 (2016), 836–859.
+ [2] A. Abboud, V. Vassilevska Williams, and J. Wang, Approximation and fixed parameter subquadratic algo-
+     rithms for radius and diameter in sparse graphs, SODA 2016, pp. 377—391.
+ [3] D. Aldous, Minimization algorithms and random walk on the d-cube, Ann. Probab. 11 (1983), 403–413.
+ [4] H. Alrasheed and F.F. Dragan, Core–periphery models for graphs based on their δ-hyperbolicity: An example
+     using biological networks, J. Alg. Comput. Tech., 11 (2016), 40–57.
+ [5] T.T. Arkhipova and I.V. Sergienko, On conditions of coincidence of local and global extrema in optimization
+     problems, Cybernetics (Kiev), 11 (1975), 129–131.
+ [6] N. Aronszajn and P. Panitchpakdi, Extension of uniformly continuous transformations and hyperconvex
+     metric spaces, Pacific J. Math. 6 (1956), 405–439.
+ [7] H.-J. Bandelt, Hereditary modular graphs, Combinatorica 8 (1988), 149–157.
+ [8] H.-J. Bandelt and V. Chepoi, Graphs with connected medians, SIAM J. Discr. Math., 15 (2002), 268—282.
+ [9] H.-J. Bandelt and V. Chepoi, Metric graph theory and geometry: a survey, Surveys on Discrete and Com-
+     putational Geometry: Twenty Years Later, J.E. Goodman, J. Pach, and R. Pollack (eds), Contemp. Math.,
+     453 (2008), pp. 49–86.
+[10] H.-J. Bandelt, A. Dählmann, and H. Schütte, Absolute retracts of bipartite graphs, Discr. Appl. Math., 16
+     (1987), 191–215.
+[11] H.-J. Bandelt, P. Hell, and M. Farber, Absolute reflexive retracts and absolute bipartite retracts, Discr.
+     Appl. Math. 44 (1993), 9–20.
+[12] H.-J. Bandelt and E. Pesch, Dismantling absolute retracts of reflexive graphs, Eur. J. Comb. 10 (1989),
+     211–220.
+[13] H.-J. Bandelt and E. Prisner, Clique graphs and Helly graphs, J. Combin. Th., Ser. B, 51 (1991), 34–45.
+[14] H.-J. Bandelt and M. van de Vel, Embedding topological median algebras in products of dendrons, Proc.
+     London Math. Soc. 58 (1989), 439–453.
+[15] J.-P. Barthélemy and J. Constantin, Median graphs, parallelism and posets, Discrete Math. 111 (1993), no.
+     1-3, 49–63, Graph Theory and Combinatorics (Marseille-Luminy, 1990.
+[16] L. Bénéteau, J. Chalopin, V. Chepoi, and Y. Vaxès, Medians in median graphs in linear time, J. Comput.
+     Syst. Sci. 126 (2022), 80–105.
+[17] L. Bénéteau, J. Chalopin, V. Chepoi, and Y. Vaxès, Graphs with Gp -connected medians, Math. Prog. Ser
+     B, 203 (2024), 369–420.
+[18] P. Bergé, G. Ducoffe, and M. Habib, Subquadratic-time algorithm for the diameter and all eccentricities on
+     median graphs, Theory Comput. Syst. 68 (2024), 144–193.
+[19] P. Bergé, D. Ducoffe, and M. Habib, Quasilinear-time eccentricities computation, and more, on median
+     graphs, SODA 2025, pp. 1679–1704.
+[20] P. Bergé and M. Habib, Diameter, radius and all eccentricities in linear time for constant-dimension median
+     graphs, LAGOS 2021, pp. 97–107.
+[21] S. Brânzei, D. Choo, and N. Recker, The sharp power law of local search on expanders, SODA 2024, pp.
+     1792–1809.
+[22] M. R. Bridson and A. Haefliger, Metric Spaces of Non-positive Curvature, Berlin: Springer, 1999.
+[23] B.H. Bowditch, Median algebras, First draft: March 2022. Revised: January 2024 (279 pages).
+[24] H. Busemann, The Geometry of Geodesics, Academic Press, New-York, 1955.
+[25] H. Busemann and B.B. Phadke, Peakless and monotone functions on G-spaces, Tsukuba J. Math., 7 (1983),
+     105—135.
+[26] S. Cabello, Subquadratic algorithms for the diameter and the sum of pairwise distances in planar graphs,
+     ACM TALG, 15 (2018) 21.
+[27] J. Chalopin, V. Chepoi, H. Hirai, and D. Osajda, Weakly modular graphs and nonpositive curvature, Mem.
+     Amer. Math. Soc, 268 (2020), no 1309, 159 pp.
+[28] J. Chalopin, V. Chepoi, A. Genevois, H. Hirai, and D. Osajda, Helly groups, Geom. Topol. 29 (2025), 1–70.
+[29] J. Chalopin, V. Chepoi, and U. Giocanti, Graphs with convex balls, Geom. Dedic. 217 (2023), article #67.
+[30] V. Chepoi, Classification of graphs by means of metric triangles, Metody Diskret. Analiz., 49 (1989), 75—93,
+     96. In Russian.
+[31] V. Chepoi, Graphs of some CAT(0) complexes, Adv. Appl. Math. 24 (2000), 125–179.
+[32] V. Chepoi and F. Dragan, A linear algorithm for computing a central vertex of a chordal graph, ESA, 1994,
+     159–170.
+[33] V. Chepoi and F. Dragan, Finding a central vertex in HHD-free graphs, Discr. Appl. Math. 131 (2003),
+     93–111.
+[34] V. Chepoi, F. Dragan, B. Estellon, M. Habib, and Y. Vaxès, Diameters, centers, and approximating trees of
+     delta-hyperbolic geodesic spaces and graphs, SoCG 2008, pp. 59—68.
+[35] V. Chepoi, F. F. Dragan, I. Newman, Y. Rabinovich, and Y. Vaxès, Constant approximation algorithms for
+     embedding graph metrics into trees and outerplanar graphs, Discr. Comput. Geom. 47 (2012), 187–214.
+36                  J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+[36] V. Chepoi, F. Dragan, and Y. Vaxès, Center and diameter problem in planar quadrangulations and trian-
+     gulations, SODA 2002, pp. 346–355.
+[37] V. Chepoi and B. Estellon, Packing and covering delta-hyperbolic spaces by balls, APPROX-RANDOM
+     2007, pp. 59–73.
+[38] V. Chepoi and D. Osajda, Dismantlability of weakly systolic complexes and applications, Trans. Am. Math.
+     Soc. 367 (2015), 1247—1272.
+[39] V. Chepoi, A. Labourel, and S. Ratel, Distance and routing labeling schemes for cube-free median graphs,
+     Algorithmica 83 (2021), 252–296.
+[40] R. Cole, Slowing down sorting networks to obtain faster sorting algorithms, FOCS 1984, pp. 255–260.
+[41] R. B. Dial, Algorithm 360: Shortest-path forest with topological ordering [H], Commun. ACM 12 (1969),
+     632–633.
+[42] H. Djidjev, A. Lingas, and J.-R. Sack, An O(n log n) algorithm for computing the link center of a simple
+     polygon, Discr. Comput. Geom. 8 (1992), 131—152.
+[43] F. F. Dragan, Centers of graphs and the Helly property, PhD thesis, Moldova State University, 1989.
+[44] F.F. Dragan, Conditions for coincidence of local and global minima for eccentricity function on graphs and
+     the Helly property. Studies in Applied Mathematics and Information Science, 1990, pp. 49—56.
+[45] F.F. Dragan and G. Ducoffe, αi -Metric graphs: radius, diameter and all eccentricities, Algorithmica. 86
+     (2024), 2092-2129.
+[46] F.F. Dragan, G. Ducoffe, and H. M. Guarnera, Fast deterministic algorithms for computing all eccentricities
+     in (hyperbolic) Helly graphs, J. Comput. Syst. Sci. 199 (2025), 103606.
+[47] F.F. Dragan and H.M. Guarnera, Obstructions to a small hyperbolicity in Helly graphs, Discr. Math. 342
+     (2019), 326–338.
+[48] F.F. Dragan and H.M. Guarnera, Eccentricity function in distance-hereditary graphs, Theor. Comput. Sci.
+     833 (2020), 26–40.
+[49] F. F. Dragan and H. M. Guarnera, Eccentricity terrain of δ-hyperbolic graphs, J. Comput. Syst. Sci. 112
+     (2020), 50–65.
+[50] F. F. Dragan and H. M. Guarnera, Helly-gap of a graph and vertex eccentricities, Theor. Comput. Sci. 867
+     (2021), 68–84.
+[51] F.F. Dragan, E. Köhler, and H. Alrasheed, Eccentricity approximating trees, Discret. Appl. Math. 232
+     (2017), 142–156.
+[52] G. Ducoffe, Distance problems within Helly graphs and k-Helly graphs, Theor. Comput. Sci., 946: 113690,
+     2023.
+[53] G. Ducoffe, Beyond Helly graphs: the diameter problem on absolute retracts, WG 2021, pp. 321–335.
+[54] G. Ducoffe, Isometric embeddings in trees and their use in distance problems, MFCS 2021, pp; 43:1–43:16.
+[55] G. Ducoffe and F. F. Dragan, A story of diameter, radius, and (almost) Helly property, Networks 77 (2021),
+     435–453.
+[56] G. Ducoffe, M. Habib, and L. Viennot, Diameter, eccentricities and distance oracle computations on H-minor
+     free graphs and graphs of bounded (distance) VC-dimension, SIAM J. Comput. 51 (2022), 1506–1534.
+[57] M.E. Dyer, On a multidimensional search technique and its application to the Euclidean one-center problem,
+     SIAM J. Comput. 12 (1983), 759–776.
+[58] M. Farber, On diameters and radii of bridged graphs, Discr. Math. 73 (1989), no. 3, 249—260.
+[59] M. Farber and R. E. Jamison, On local convexity in graphs, Discr. Math., 66 (1987), 231—247.
+[60] K. Fujiwara and P. Papasoglu, Asymptotic dimension of planes and planar graphs, Trans. Am. Math. Soc.,
+     374 (2021), 8887–8901.
+[61] H. Gabow, J. Bentley, and R. E. Tarjan, Scaling and related techniques for geometry problems, STOC 1984,
+     pp. 135—143.
+[62] P. Gawrychowski, H. Kaplan, S. Mozes, M. Sharir, and O. Weimann, Voronoi diagrams on planar graphs,
+     and computing the diameter in deterministic O(n5/3 ) time, SODA 2018, pp. 495–514.
+[63] A. Georgakopoulos and P. Papasoglu, Graph minors and metric spaces, Combinatorica (to appear).
+[64] M. Gromov, Hyperbolic groups, Essays in group theory, Math. Sci. Res. Inst. Publ., vol. 8, Springer, New
+     York, 1987, pp. 75–263.
+[65] M. Habib, R. McConnell, C. Paul, and L. Viennot, Lex-BFS and partition refinement, with applications
+     to transitive orientation, interval graph recognition and consecutive ones testing, Theor. Comput. Sci. 234
+     (2000), 59—84.
+[66] T. Haettel, N. Hoda, and H. Petyt, Coarse injectivity, hierarchical hyperbolicity and semihyperbolicity,
+     Geom. Topol. 27 (2023), 1587–1633.
+[67] K. Hayashi, A polynomial time algorithm to compute geodesics in CAT(0) cubical complexes, Discr. Comput.
+     Geom. 65 (2021), 636—654.
+[68] N. Hoda, Quadric complexes, Michigan Math. J. 69 (2020), 241–271.
+[69] N. Hoda, Crystallographic Helly groups, Bull. London Math. Soc. 55 (2023), 2991–3011.
+[70] H. Hirai, Discrete convex function on graphs and their algorithmic applications, In Combinatorial Optimiza-
+     tion and Graph Algorithms, pages 67–100. Springer, Singapore, 2017.
+[71] J. Huang and D. Osajda, Large-type Artin groups are systolic, Proc. Lond. Math. Soc. 120 (2020), 95–123.
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                             37
+
+[72] J. Huang and D. Osajda, Helly meets Garside and Artin, Invent. Math. 225 (2021), 395–426.
+[73] T. Januszkiewicz and J. Świaţkowski, Simplicial nonpositive curvature, Publ. Math. IHES, 104 (2006), 1—85.
+[74] C. Jordan, Sur les assemblages de lignes, J. Reine Angew. Math., 70 (1869), 185–190.
+[75] O. Kariv and S.L. Hakimi, An algorithmic approach to network location problems, Part I. The 1-centers,
+     SIAM J. Appl. Math. 37 (1979), 513–538.
+[76] T.T. Lebedeva, I.V. Sergienko, and V. Soltan, On conditions of coincidence of local and global minima in
+     problems of discrete optimization, Cybernetics (Kiev), 20 (1984), 687–697.
+[77] W. Lenhart, R. Pollack, J. Sack, R. Seidel, M. Sharir, S. Suri, G. Toussaint, S. Whitesides, and C. Yan,
+     Computing the link center of a simple polygon, Discr. Comput. Geom. 3 (1988), 281–293.
+[78] G. Malandain and J.-D. Boissonnat, Computing the diameter of a point set, Int. J. Comput. Geom. Appl.
+     12 (2002), 489–510.
+[79] N. Megiddo, Linear time algorithms for linear programming in R3 and related problems, SIAM J. Comput.
+     12 (1983), 759-–776.
+[80] N. Megiddo, Linear programming in linear time when the dimension is fixed, J. of ACM 30 (1984), 114–127.
+[81] A. Meir and J.W. Moon, Relations between packing and covering numbers of a tree, Pacific J. Math. 61
+     (1975), 225–233.
+[82] K. Murota, Discrete convex analysis, Math. Prog. 83 (1998), 313—371.
+[83] K. Murota and A. Shioura, Note on minimization of quasi M # -convex functions, Japan J. Indust. Appl.
+     Math. 41 (2024), 857–880.
+[84] K. Murota and A. Shioura, Note on steepest descent algorithm for quasi L# -convex function minimization,
+     arXiv: 2307.11491v1, 2023.
+[85] H. M. Mulder, The interval function of a graph, Mathematical Centre tracts, vol. 132, Mathematisch Cen-
+     trum, Amsterdam, 1980.
+[86] D. Osajda, A combinatorial non-positive curvature I: weak systolicity, preprint, 2013
+[87] D. Osajda and P. Przytycki, Boundaries of systolic groups, Geom. Topol. 13 (2009), 2807–2880.
+[88] D. Osajda and M. Valiuunas, Helly groups, coarsely Helly groups, and relative hyperbolicity, Trans. Amer.
+     Math. Soc. 377 (2024), 1505-1542
+[89] A. Papadopoulos, Metric Spaces, Convexity and Nonpositive Curvature, Zürich: European Mathematical
+     Society Publishing House, 2005.
+[90] R. Pollack, M. Sharir, and G. Rote, Computing the geodesic center of a simple polygon, Discr. Comput.
+     Geom. 4 (1989), 611–626.
+[91] M. Sageev, CAT(0) cube complexes and groups, Geometric Group Theory (M. Bestvina, M. Sageev, and K.
+     Vogtmann, eds.), IAS/Park City Math. Ser., vol. 21, Amer. Math. Soc., Inst. Adv. Study, 2012, pp. 6—53.
+[92] T.J. Schaefer, The complexity of satisfability problems, STOC 1978, pp. 216–226.
+[93] S. Seif, Personal communication, December 31, 2024.
+[94] M. Soergel, Systolic complexes and group presentations, Groups Geom. Dyn. 17 (2023), 899—921.
+[95] V. P. Soltan and V. Chepoi, Conditions for invariance of set diameters under d-convexification in a graph,
+     Cybernetics (Kiev), 19 (1983), 750—756.
+[96] J.J. Sylvester, A question in the geometry of situation, Quart. J. Math. 1 (1857), p.79.
+[97] B. C. Tansel, R. L. Francis, and T. J. Lowe, Location on networks: A survey, I, II. Manag. Sci., 29 (1983),
+     482—511.
+[98] G.M. Weetman, A construction of locally homogeneous graphs, J. London Math. Soc. (2), 50 (1994), 68–86.
+38                  J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+                      11. Appendix: The center problem in CB-graphs
+   In this section, we first recall the definition of CB-graphs together with characterizations and
+properties of these graphs. They are useful to prove that their radius functions are G2 -unimodal.
+Then, we consider the algorithmic implications of this result and of the descent algorithms from
+Section 4. This part is similar to that for weakly bridged graphs (see Section 5), but it is
+technically more involved, and the correctness proof requires additional distance conditions to
+hold for the center. Hence, we need to complete the algorithm with a different, and costlier,
+search procedure, which ensures that it is always correct even if such distance conditions do not
+hold.
+11.1. CB-graphs. A graph G is called a graph with convex balls (abbreviately, a CB-graph) if
+all balls Br (v) of G are convex [59, 95]. A topological characterization of CB-graphs via their
+triangle-pentagon complexes was given in [29].
+   As (weakly) bridged graphs, CB-graphs satisfy the Interval Neighborhood Condition (INC),
+i.e., for any u, v ∈ V, u ̸= v, the neighbors of v in I(u, v) form a clique. CB-graphs do not satisfy
+the triangle condition, but they satisfy the Triangle-Pentagon Condition (TPC), i.e., for any
+v, x, y ∈ V such that d(v, x) = d(v, y) = k and x ∼ y, either there exists z ∈ Bk−1 (v) such that
+z ∼ x, y, or there exists z ∈ Bk−2 (v), w ∼ x, z, and w′ ∼ y, z such that xwzw′ y is a pentagon.
+   Recall now the metric characterizations of CB-graphs.
+Theorem 11.1. For a graph G, the following are equivalent:
+(1) G is a CB-graph
+(2) G satisfies (INC) and isometric cycles have length 3 or 5 [59, 95].
+(3) G satisfies the conditions (INC) and (TPC) [29].
+     As in (weakly) bridged graphs, the 1-balls in CB-graphs are outergated.
+Lemma 11.2 ([29]). Any CB-graph G satisfies the interval-outergate property.
+     We will also need the following result about the metric triangles:
+Lemma 11.3 ([29]). In a CB-graph G, any metric triangle uvw is strongly equilateral or of type
+(2, 2, 1), i.e., d(u, v) = d(u, w) = 2 and d(v, w) = 1 (assuming that d(u, v) ≥ d(u, w) ≥ d(v, w)).
+     In CB-graphs, the property of Lemma 5.4 holds but only for vertices at distance at least 3.
+Lemma 11.4. If G is a CB-graph and u, v, x ∈ V such that d(x, u) < d(x, v) and d(u, v) ≥ 3,
+then there exists wx ∈ N (v) ∩ I(v, u) such that wx ∈ I(v, x).
+Proof. Let u′ v ′ x′ be a quasi-median (metric triangle) of the triplet u, v, x and assume that
+d(u, v) = d(u, u′ ) + d(u′ , v ′ ) + d(v ′ , v), d(u, x) = d(u, u′ ) + d(u′ , x′ ) + d(x′ , x), and d(v, x) =
+d(v, v ′ ) + d(v ′ , x′ ) + d(x′ , x). If v ′ ̸= v, then any neighbor of v in I(v, v ′ ) ⊂ I(v, u) ∩ I(v, x) can
+be selected as the desired wx . Now suppose that v ′ = v. Since d(x, u) < d(x, v), the vertices
+u′ , v ′ , x′ are pairwise distinct and the metric triangle u′ v ′ x′ cannot be equilateral. Therefore, by
+Lemma 11.3, the metric triangle u′ v ′ x′ must have type (2, 2, 1), and we conclude that d(x′ , u′ ) =
+1, d(x′ , v) = d(u′ , v) = 2. Since d(u, x) = d(u, u′ ) + 1 + d(x′ , x) < d(v, x) = 2 + d(x′ , x), we must
+have u = u′ . However, this contradicts the assumption that d(u, v) ≥ 3.                                       □
+11.2. G2 -unimodality of the radius function. We show that as in (weakly) bridged graphs,
+in a CB-graph, any radius function is 2-weakly peakless.
+Proposition 11.5. All radius functions rπ of a CB-graph G are 2-weakly peakless.
+Proof. Let u, v be any two vertices of G = (V, E) with d(u, v) ≥ 3 and suppose that rπ (u) ≤
+rπ (v). If rπ (u) = rπ (v), then for any vertex x ∈ supp(π) and any vertex w ∈ I ◦ (u, v), by
+convexity of balls we have π(x)d(x, w) ≤ max{π(x)d(x, u), π(x)d(x, v)} ≤ rπ (u) = rπ (v), yield-
+ing rπ (w) ≤ rπ (u) = rπ (v). Thus, suppose that rπ (u) < rπ (v). By Lemma 11.2, there exists
+w ∈ I(v, u) such that d(v, w) = 2 and N (v) ∩ I(v, u) ⊆ N (w). We will prove that rπ (w) < rπ (v).
+   Recall that Fπ (v) = {x ∈ supp(π) : π(x)d(x, v) = rπ (v)}. Since G is a graph with convex balls,
+for any z ∈ I ◦ (v, u) and any y ∈ supp(π) \ Fπ (v), the following inequality holds: π(y) · d(z, y) ≤
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                         39
+
+max{π(y) · d(v, y), π(y) · d(u, y)} ≤ max{π(y) · d(v, y), rπ (u)} < rπ (v). Therefore, in order
+to prove rπ (w) < rπ (v), it suffices to prove that d(w, x) < d(v, x) for every x ∈ Fπ (v). By
+Lemma 11.4, for every x ∈ Fπ (v), there is some wx ∈ N (v) ∩ I(u, v) such that d(wx , x) < d(v, x).
+Set W = {wx : x ∈ Fπ (v)}. By definition W ⊆ N (v) ∩ I(u, v) ⊆ N (w). Finally, for any
+x ∈ Fπ (v) we have wx , u ∈ Bd(x,v)−1 (x). Since w ∈ I(wx , u), the convexity of Bd(x,v)−1 (x) yields
+d(w, x) ≤ max{d(wx , x), d(u, x)} < d(x, v).                                                       □
+Corollary 11.6. Let G = (V, E) be a CB-graph and let π be any profile. Then for any v ∈ V ,
+either v ∈ Cπ (G) or there exists w ∈ B2 (v) such that rπ (w) < rπ (v).
+Proof. Suppose that v ∈  / Cπ (G) and let c ∈ Cπ (G). Then rπ (c) < rπ (v). If d(v, c) ≤ 2, we are
+done. So, let d(c, v) ≥ 3. By Theorem 11.5, for any vertex u ∈ I(c, v) such that d(u, v) = 2 and
+N (v) ∩ I(v, u) ⊆ N (u) we have rπ (u) < rπ (v).                                                □
+
+11.3. Outergated and 2-outergated sets. Given a set S and a vertex z ∈ V \ S, recall that
+z ∗ is an outergate of z with respect to S if d(z, z ∗ ) = d(z, S) − 1 and z ∗ is adjacent to prz (S),
+the set of all vertices of S at distance d(z, S) from z. More generally, for an integer i we say
+that a vertex z ∗ is an i-outergate of a vertex z if d(z, z ∗ ) = d(z, S) − i and d(z ∗ , u) = i for any
+u ∈ prz (S). Then the set S is called i-outergated if every vertex of V \ S has an i′ -outergate for
+some i′ ≤ i. The outergates and outergated sets correspond to the case i = 1.
+   By Lemma 11.2, in a CB-graph G all unit balls B1 (v) are outergated sets. The cliques of G
+are not always outergated. However, they are 2-outergated:
+Lemma 11.7. Let K be a clique of a CB-graph G. Then K is 2-outergated. More precisely, for
+any z ∈ V \ K, either z has an outergate or prz (K) = K and z has a 2-outergate z ′ ; as z ′ one
+can select any vertex such that d(z, z ′ ) = d(z, K) − 2 and z ′ is included in a pentagon z ′ xuvy
+with u, v ∈ K not included in a 5-wheel.
+Proof. Let d(z, K) = k. If there exists u ∈ K \ prz (K), then prz (K) ⊆ I(u, z) ∩ N (u) and
+the fact that z has an outergate follows from Lemma 11.2. Thus assume prz (K) = K. First
+suppose that (TC) applies to every triplet z, u, v with u, v ∈ K. We assert that then z has an
+outergate. Indeed, let z ∗ be a vertex of Bk−1 (z) adjacent to a maximum number of vertices
+of K. Let K ′ = K ∩ N (z ∗ ). By (TC), |K ′ | ≥ 2 and let u, v ∈ K ′ . Suppose that there exists
+w ∈ K \ K ′ . By (TC) there exists z ′ adjacent to u and w and having distance k − 1 to z.
+By (INC) the vertices z ∗ , z ′ ∈ I(u, z) are adjacent. By maximality of z ∗ , K ′ contains a vertex,
+say v, not adjacent to z ′ . But then z ∗ , z ′ , w, v induce a forbidden 4-cycle. This contradiction
+shows that K ′ = K and thus z ∗ is an outergate. Thus suppose that K contains two vertices
+u, v such that to the triplet z, u, v only (PC) applies. Thus there exists a vertex z ∗ such that
+d(z, z ∗ ) = k − 2 and d(z ∗ , u) = d(z ∗ , v) = 2. Since (TC) does not apply to the triplet z, u, v
+and z ∗ ∈ I(u, z) ∩ I(v, z), z ∗ has no outergate. By the first part of the proof we conclude that
+prz ∗ (K) = K and thus d(z ∗ , w) = 2 for any w ∈ K. Consequently, z ∗ is a 2-outergate of z. □
+Lemma 11.8. Let K be a clique in a CB-graph G = (V, E), let z ∈ V \ B1 (K), and let
+z ∗ ∈ B1 (K) ∩ Bd(z,K)−1 (z) be maximizing |N (z ∗ ) ∩ K|. Then z ∗ is an outergate of z with respect
+to K if and only if N (z ′ ) ∩ B1 (K) ⊆ B1 (z ∗ ) for every z ′ ∈ N (z ∗ ) ∩ I(z, z ∗ ).
+Proof. Let K ′ = N (z ∗ ) ∩ K and d(z, K) = k. Obviously, K ′ ̸= ∅. First, suppose that z ∗
+is an outergate of z in K, i.e., K ′ = prz (K). Pick any vertex z ′ ∈ N (z ∗ ) ∩ I(z, z ∗ ) and let
+y ∈ N (z ′ ) ∩ B1 (K). We assert that y ∼ z ∗ . Since y ∈ N (z ′ ) ∩ B1 (K) and y ∈
+                                                                                  / K, y is adjacent to
+a vertex u of K. Obviously, u ∈ prz ′ (K) ⊆ prz (K) = K ′ . Hence, z ∗ is adjacent to u. Since z ′ ≁ u
+from the choice of z ′ , we obtain a forbidden 4-cycle induced by the vertices z ∗ , z ′ , y, u. Hence,
+z ∗ ∼ y. Conversely, suppose that N (z ′ ) ∩ B1 (K) ⊆ B1 (z ∗ ) holds for every z ′ ∈ N (z ∗ ) ∩ I(z, z ∗ ),
+however z ∗ is not an outergate of z in K. Then there exists a vertex w ∈ prz (K) \ K ′ . Let
+u ∈ K ′ and first suppose that (TC) applies to the triplet z, u, w. By (TC) there exists a vertex
+t ∼ u, w at distance k − 1 to z. Since z ∗ , t ∈ N (u) ∩ I(u, z), by (INC) z ∗ ∼ t. Pick any v ∈ K ′ .
+Since z ∗ ≁ w and the 4-cycle (z ∗ , t, w, v) is not induced, we conclude that t ∼ v. Consequently,
+t is adjacent to w and to all vertices of K ′ , contradicting the maximality choice of the vertex
+40                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+z ∗ . Thus, we can assume that only (PC) applies to the triplet z, u, w. By [29, Theorem 3.3],
+there exists a vertex z ′ at distance k − 2 from z and a common neighbor t of z ′ and w such
+that w, u, z ∗ , z ′ , t induce a pentagon. But then t ∈ N (z ′ ) ∩ B1 (K) \ B1 (z ∗ ), contrary to our
+assumption. This shows that K ′ = prz (K), i.e., that z ∗ is an outergate of z.                      □
+11.4. Computing rπ for the vertices of a clique. From Lemmas 11.7 and 11.8 we derive
+the following algorithmic procedures:
+Lemma 11.9. Let G be a CB-graph and K be a clique of G. Then in O(m) time we can compute
+the set of all vertices of G without an outergate with respect to K.
+Proof. Applying Lemma 5.6 for S = K, in total O(m) time we can map every vertex z ∈ V \ K
+to some z ∗ ∈ Bd(z,K)−1 (z) ∩ B1 (K). Then, our initial problem reduces to that of deciding for
+every z ∈ V \ K separately whether z ∗ is an outergate of z with respect to K. For that, we apply
+the following marking process. We consider every z ∈ V \ B1 (K) sequentially, by nondecreasing
+distance to K. If d(z, K) = 2, we mark vertex z if and only if N (z)∩B1 (K) ̸⊆ B1 (z ∗ ). Otherwise,
+if d(z, K) ≥ 3, then we mark vertex z iff there exists some x ∼ z such that d(x, K) = d(z, K)−1,
+|N (z ∗ ) ∩ K| = |N (x∗ ) ∩ K|, and x is already marked. This can be done in O(m) time, while we
+execute a BFS with start subset K.
+    Now, we prove that this algorithm is correct. Pick any z ∈ V \ B1 (K). First, assume that z
+has no outergate with respect to K. By Lemma 11.8 there exist vertices z ′ ∈ N (z ∗ ) ∩ I(z ∗ , z)
+and y ∈ N (z ′ ) ∩ B1 (K) \ B1 (z ∗ ). Let u be any neighbor of z ∗ in K and v be any neighbor of
+y in K. Since u ∼ v, z ∗ ≁ y and G does not contain induced 4-cycles, necessarily z ′ yvuz ∗ is a
+pentagon. If z ′ is marked, then every vertex of I(z ′ , z) must be also marked and we are done.
+So, suppose by way of contradiction that z ′ is not marked. This implies that (z ′ )∗ ̸= z ∗ and
+that N (z ′ ) ∩ B1 (K) ⊆ B1 ((z ′ )∗ ). By Lemma 11.8 (z ′ )∗ is an outergate of z ′ . Since d(z ′ , v) =
+d(z ′ , u) = 2 = d(z ′ , K), the vertices u and v belong to prz ′ (K), thus they are both adjacent to
+(z ′ )∗ . Since d(z, z ′ ) = d(z, K) − 2 and d(z ′ , K) = 2, necessarily v ∈ prz ′ (K) ⊆ prz (K). Since u
+is an arbitrary vertex of K adjacent to z ∗ and v is not adjacent to z ∗ , we obtain a contradiction
+with the maximality choice of z ∗ in Lemma 5.6. This contradiction shows that the vertices z ′
+and z are marked.
+    Conversely, assume that the vertex z is marked. We assert that z has no outergate with
+respect to K. We proceed by induction on d(z, K). If d(z, K) = 2, by the marking algorithm
+we have N (z) ∩ B1 (K) ̸⊆ B1 (z ∗ ). By Lemma 11.8 and the maximality choice of z ∗ , z has
+no outergate in K. Now assume that d(z, K) > 3. By the marking algorithm, there exists a
+marked vertex z ′ on a shortest path between z and some vertex of prz (K) such that d(z ′ , K) = 2
+and |N ((z ′ )∗ ) ∩ K| = |N (z ∗ ) ∩ K|. By the induction hypothesis, z ′ has no outergate in K.
+Suppose by way of contradiction that z has an outergate with respect to K. Equivalently,
+z ∗ is an outergate of z, i.e., N (z ∗ ) ∩ K = prz (K). Since d(z, K) = d(z, z ′ ) + d(z ′ , K), we
+have prz ′ (K) ⊆ prz (K). Since |N ((z ′ )∗ ) ∩ K| = |N (z ∗ ) ∩ K| and N ((z ′ )∗ ) ∩ K ⊆ prz ′ (K),
+this is possible only if N ((z ′ )∗ ) ∩ K = prz ′ (K), contradicting our assumption that z ′ has no
+outergate with respect to K. Consequently, z has no outergate with respect to K, establishing
+the correctness of the marking algorithm.                                                               □
+Proposition 11.10. Let G be a CB-graph and π be a profile on G. Then for every clique K,
+in O(m) time, we can compute rπ (w) for every w ∈ K.
+Proof. We partition V in K, X, Y , where X contains the vertices of V \ K with no outergate
+in K, and Y = V \ (X ∪ K). By Lemma 11.9, we can compute this partition in O(m) time.
+Furthermore, by Lemma 5.6, in total O(m) time we can compute an outergate gK (y) for every
+vertex y ∈ Y . Then, for every u ∈ N (K), we compute the weights α(u) = max{π(y)d(y, K) :
+y ∈ Y and gK (y) = u} and β(u) = max{π(y)(d(y, K) + 1) : y ∈ Y and gK (y) = u}. This can be
+done in additional O(m) time. Pick any w ∈ K. Recall that according to Lemma 11.7 we have
+d(x, w) = d(x, K) for any x ∈ X. Consequently,
+             rπ (w) = max{{π(w′ ) : w′ ∈ K \ {w}} ∪ {π(x)d(x, K) : x ∈ X}
+                         ∪{α(u) : u ∈ N (K) ∩ N (w)} ∪ {β(u) : u ∈ N (K) \ N (w)}}.
+     ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                      41
+
+Note that we need to compute max{π(x)d(x, K) : x ∈ X} only once, which can be done
+in O(m) time. Furthermore, we claim that we can also compute in O(m) time the values
+max{β(u) : u ∈ N (K) \ N (w)}, for every vertex w ∈ K. For that, it suffices to apply Lemma 2.1
+to the subgraph induced by N [K] and to the cost function κ such that: κ(w) = 0 if w ∈ K;
+and κ(u) = β(u) if u ∈ N (K). Doing so, for every w ∈ K, we can compute rπ (w) in additional
+O(deg(w)) time. Overall, the total runtime is in O(m).                                       □
+11.5. Local minima of rπ in G. We show how, given a vertex v of a graph G with convex
+balls, to compute in O(m) time a vertex u minimizing rπ on B1 (v). If rπ (v) = rπ (u), then v is
+a local minimum of rπ . This proposition is a generalization of Proposition 5.9 to CB-graphs.
+Proposition 11.11. Let G be a CB-graph and π be a profile on G. For any v ∈ V , in O(m)
+time we can compute a vertex minimizing rπ on B1 (v). In particular, we can either output some
+w ∈ N (v) with rπ (w) < rπ (v) or assert that v is a local minimum of rπ .
+Proof. We may assume that Fπ (v) ∩ N (v) = ∅, otherwise, either |Fπ (v) ∩ N (v)| > 1 and v must
+be a local minimum of rπ or Fπ (v) ∩ N (v) = {u} and we are left outputting a vertex amongst
+v, u with minimum rπ . By Lemma 11.2, every z ∈ Fπ (v) has an outergate gv (z) with respect to
+B1 (v). Furthermore,
+           T          by Lemma 5.6 we can compute gv (z), T     for any z ∈ Fπ (v), in O(m) time.
+Let K = {N (v) ∩ I(v, z) : z ∈ Fπ (v)}. Note that K = {N (v) ∩ N (gv (z)) : z ∈ Fπ (v)},
+thus we can compute K in O(m) time. For any w ∈ N (v) \ K there exists z ∈ Fπ (v) such that
+w∈ / I(v, z). This implies that d(w, z) ≥ d(v, z), yielding rπ (w) ≥ rπ (v). Therefore, if K = ∅,
+then v is a local minimum of rπ . If K ̸= ∅, since K is the intersection of cliques N (v) ∩ I(v, z)
+with z ∈ Fπ (v), K is a clique. By Proposition 11.10, we can compute a vertex u minimizing rπ
+within K in O(m) time. Since rπ (w) ≥ rπ (v) for any w ∈ N (v) \ K, either v or u is a local
+minimum of rπ in B1 (v).                                                                         □
+11.6. Local minima of rπ in G2 (under distance conditions). In this part, we describe a
+local-search technique, allowing to find an improving 2-neighbor of v (if there exists one). First,
+we show that Lemma 11.4 can be generalized in the following way to obtain a lemma similar to
+Lemma 5.10, but only for vertices at distance at least 3.
+Lemma 11.12. Let G be a CB-graph, X ⊂ V be nonempty, and u, v, w ∈ V be such that:
+(1) d(u, v) ≥ 3;
+         T x ∈ X, d(u, x) < d(v, x);
+(2) for every
+(3) w ∈ {N (v) ∩ I(v, x) : x ∈ X}.
+                                                              T
+Then there exists a vertex wX ∈ N (v) ∩ I(v, u) such that wX ∈ {N (v) ∩ I(v, x) : x ∈ X}.
+Proof. Assume that w ∈   / I(u, v), otherwise we can set wX = w. If d(u, w) > d(u, v), then
+v ∈ I(u, w) and w, u ∈ Bd(v,x)−1 (x) for any x ∈ X, contradicting the convexity of the ball
+Bd(v,x)−1 (x). Thus d(u, w) = d(u, v). Pick any y ∈ X. By Lemma 11.4, there exists wy ∈
+N (v)∩I(v, u) such that d(y, wy ) < d(y, v). Since w, wy ∈ N (v)∩I(v, y) and the ball Bd(y,v)−1 (y)
+is convex, the vertices wy , w are adjacent. Consequently, wy ∈ I(w, u). Since u, w ∈ Bd(x,v)−1 (x)
+      T x ∈ X, the convexity of the ball Bd(x,v)−1 (x) implies that d(x, wy ) ≤ d(x, v) − 1. Thus
+for any
+wy ∈ {N (v) ∩ I(v, x) : x ∈ X} and we can set wX = wy .                                          □
+   The following result is the main technical result of this subsection. It is in the same spirit as
+Proposition 5.11 and the proof is essentially the same: the only difference being that when v is
+a local minimum, we ask that v is at distance at least 3 from a central vertex. This is because
+we use Lemmas 11.4 and 11.12 in the proof instead of Lemmas 5.4 and 11.12.
+Proposition 11.13. Let v be an arbitrary vertex of a CB-graph G = (V, E) and let π be some
+profile on G. If there exists some vertex v ′ such that rπ (v ′ ) < rπ (v) and d(v, v ′ ) ̸= 2, then in
+O(m) time we can output a vertex u′ ∈ B2 (v) such that rπ (u′ ) < rπ (v).
+Proof. If v ′ ∼ v, then Proposition 11.11 will return a vertex u ∈ B1 (v) such that rπ (u) ≤
+rπ (v ′ ) < rπ (v) and we are done. So, assume that v is a local minimum of rπ . Let Fπ (v) = {z ∈
+V : π(z)d(v, z) = rπ (v)}, i.e., Fπ (v) is the set of vertices that are the furthest from v. Since v
+42                  J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+is a local minimum but not a global minimum of rπ , we can suppose that d(v, z) > 1 for any
+z ∈ Fπ (v). For every neighbor w ∈ N (v) of v, let Ψπ (w) = {z ∈ Fπ (v) : w ∈ N (v) ∩ I(v, z)}. We
+define an equivalence relation ≡ on N (v) as follows: w ≡ w′ if and only if Ψπ (w) = Ψπ (w′ ). Then,
+we partition the vertices of N (v) according to the relation ≡. For that, we use outergates with
+respect to N (v), which by Lemma 11.2 exist for every z ∈ Fπ (v). By Lemma 5.6 we can compute
+such an outergate gv (z) for every z ∈ Fπ (v) in total O(m) time. Then, for every w, w′ ∈ N (v),
+we have w ≡ w′ if and only if N (w) ∩ {gv (z) : z ∈ Fπ (v)} = N (w′ ) ∩ {gv (z) : z ∈ Fπ (v)}.
+Consequently, we can compute in O(m) time the equivalence classes on N (v) with respect to
+≡ by using partition refinement techniques. Next, in O(n) time we compute, for every vertex
+u ∈ B2 (v) \ B1 (v), the number of vertices z ∈ Fπ (v) such that gv (z) = u. Doing so, in total
+O(m) time, we can also compute |Ψπ (Wi )| for every equivalence class Wi of ≡ (where we set
+Ψπ (Wi ) = Ψπ (w) for arbitrary w ∈ Wi ). Let W0 be an equivalence class maximizing |Ψπ (W0 )|.
+If |Ψπ (W0 )| = |Fπ (v)|, then we abort. From now on, we assume that |Ψπ (W0 )| < |Fπ (v)|. Let
+z ∈ Fπ (v) \ Ψπ (W0 ) be arbitrary. Then in O(m) time we compute N (v) ∩ I(v, z) = N (v) ∩
+N (gv (z)). Let wmax ∈ N (v) ∩ I(v, z) be a vertex maximizing |N (wmax ) ∩ W0 |. Finally, we
+apply Proposition 11.11 in order to compute a vertex v + minimizing π within N (wmax ) and the
+algorithm returns this vertex v + .
+   Now, we prove the correctness of the algorithm in the case of CB-graphs. Recall that we
+assume that v is a local minimum of rπ and that there exists a vertex v ′ such that d(v, v ′ ) ̸= 2 and
+rπ (v ′ ) < rπ (v). This implies that d(v, v ′ ) ≥ 3. By Lemma 11.2, there exists a vertex u ∈ I(v, v ′ )
+such that d(u, v) = 2 and N (v) ∩ I(v, v ′ ) ⊆ N (u). Furthermore, by the proof of Theorem 11.5,
+rπ (u) < rπ (v). By Lemma 11.12, there exists a vertex w′ ∈ N (v) ∩ I(v, v ′ ) ⊆ N (u) such that
+Ψπ (W0 ) ⊆ Ψπ (w′ ). By maximality of |Ψπ (W0 )|, necessarily w′ ∈ W0 . To prove the correctness
+of the algorithm, we will prove that (1) |Ψπ (W0 )| = |Fπ (v)| is impossible and that (2) u is
+adjacent to wmax . This will show that the algorithm will return a vertex v + ∈ N (wmax ) ⊂ B2 (v)
+with rπ (v + ) ≤ rπ (u) < rπ (v). First, suppose that |Ψπ (W0 )| = |Fπ (v)|, i.e., Ψπ (W0 ) = Fπ (v)
+holds. Since w′ ∈ W0 we have π(y)d(w′ , y) < π(y)d(v, y) for any vertex y ∈ Ψπ (W0 ). Since
+v is a local minimum of rπ , the profile must contain a vertex y ′ ∈             / Ψπ (W0 ) = Fπ (v) such that
+π(y )d(w , y ) = rπ (w ) ≥ rπ (v) > π(y )d(v, y ). This implies d(w′ , y ′ ) = d(v, y ′ ) + 1. Since
+    ′       ′   ′             ′                   ′        ′
+
+π(y ′ )d(u, y ′ ) ≤ rπ (u) < rπ (w′ ) = π(y ′ )(d(v, y ′ ) + 1), we also conclude that d(u, y ′ ) ≤ d(v, y ′ ).
+Consequently, the vertices u and v belongs to the ball Bd(v,y′ ) (y ′ ) and the vertex w′ ∈ I(u, v) does
+not belong to this ball, a contradiction with convexity of balls. This establishes that Ψπ (W0 ) is
+strictly included in Fπ (v) and proves that the vertex z chosen by the algorithm exists. It also
+proves that for any vertex w ∈ W0 we have the equality Fπ (w) = Fπ (v) \ Ψπ (W0 ). To prove that
+the vertex wmax computed by the algorithm is adjacent to u, first we prove that wmax is adjacent
+to every vertex w of N (u) ∩ W0 (this set is nonempty since it contains w′ ). By Lemma 11.4,
+there exists a vertex wz ∈ N (v) ∩ I(v, z) ∩ I(v, v ′ ) ⊆ N (u). Since w, wz ∈ I(v, u) ∩ N (v), by
+(INC), the vertices w, wz are adjacent. Similarly, since wz , wmax ∈ N (v) ∩ I(v, z), by (INC),
+wz and wmax are adjacent. Note that the sets N (wz ) ∩ W0 and N (wmax ) ∩ W0 are comparable
+for inclusion (otherwise, we would get a forbidden induced C4 ). By our maximality choice of
+wmax , we obtain w ∈ N (wz ) ∩ W0 ⊆ N (wmax ) ∩ W0 , and thus wmax and w are adjacent. Then,
+wmax , u ∈ N (w) ∩ I(w, z), and by (INC) wmax ∼ u. This concludes the proof.                                □
+
+11.7. Getting very close to the center. We show how to compute in O(m                   e √n) time a vertex
+v ∗ of a CB-graph G which is either central or is located at distance 2 from any central vertex
+of G. Our result follows from a combination of Proposition 11.13 with random sampling and
+a bootstrap approach (Lemma 3.1). For unweighted profiles we derandomize this approach
+using Proposition 4.2. Using the sample-select-descent method in the weighted case and its
+deterministic version for 0-1-profiles (see Section 4), the generic descent algorithm will construct
+a path (v0 , v1 , v2 , . . . vℓ ) of G2 such that rπ (v0 ) > rπ (v1 ) > rπ (vℓ ). By Lemma 3.1, the length of
+this path is at most O(       e √n). In the case of 0-1-profiles, the length of this path will be O(√n)
+(Proposition 4.2). Let us call the vertex v ∗ := vℓ and the 2-ball B2 (v ∗ ) centered at v ∗ terminal.
+Consequently, a terminal vertex v ∗ can be computed in O(m              e √n) time (in O(m√n) time for
+0-1-profiles). From previous results it follows that either v ∗ is a central vertex of G or the
+      ON Gp -UNIMODALITY OF RADIUS FUNCTIONS IN GRAPHS: STRUCTURE AND ALGORITHMS                           43
+
+whole center Cπ (G) is included in B2 (v ∗ ) \ B1 (v ∗ ). Since Cπ (G) is convex, in the second case
+Cπ (G) must have diameter at most 3. In fact, if Cπ (G) ⊆ B2 (v ∗ ) and v ∗ is terminal, then
+diam(Cπ (G)) ≤ 2. Indeed, let x, y ∈ Cπ (G) with d(x, y) = 3. Since d(v ∗ , x) = d(v ∗ , y) = 2,
+any quasi-median of the triplet x, y, v ∗ has type (1, 1, 1). Thus v ∗ will be adjacent to neighbors
+of x and y in I(x, y). Since I(x, y) ⊂ Cπ (G), v ∗ cannot be a local minimum of rπ , contrary
+to our assumption that v ∗ is a terminal vertex. Notice also that if Cπ (G) ⊆ B2 (v ∗ ) and π
+is a 0-1-profile, then rπ (v ∗ ) may differ from the radius radπ (G) by at most 1. Indeed, since
+d(v ∗ , x) = 2 for any x ∈ Cπ (G), if rπ (x) ≤ rπ (v ∗ ) − 2, then for any common neighbor w of x and
+v ∗ we will have rπ (w) = rπ (x) + 1 < rπ (v∗), contrary with the fact that v ∗ is a terminal vertex.
+Consequently, we have the following result:
+Theorem 11.14. For a CB-graph G, the following holds:
+                                √
+(1) For any profile π, in e O(m n) time with high probability one can compute a vertex v ∗ such
+    that, either diam(Cπ (G)) ≥ 3 and v ∗ is a central                       ∗         ∗
+                                                  √ vertex, or Cπ (G) ⊆ B2 (v ) \ B1 (v ).∗
+(2) For any 0-1-profile π, in deterministic O(m n) time one can compute a vertex v with
+    eccentricity rπ (v ∗ ) ≤ radπ (G) + 1. Moreover, if diam(Cπ (G)) ≥ 3, then v ∗ is a central
+    vertex, otherwise Cπ (G) ⊆ B2 (v ∗ ).
+11.8. Computing a central vertex of a CB-graph. The goal of this subsection is to prove
+the following result:
+Theorem 11.15. Given a CB-graph G and a profile π, one can compute a central vertex v ∈
+          e 3/2 ) time with high probability.
+Cπ (G) in O(m
+Proof. The algorithm has two main steps. During its first step, we compute a terminal vertex
+v ∗ , as stated in Theorem 11.14 (1). This can be done in O(m       e √n) time with high probability.
+During the second step, we maintain a convex subset Xi and two vertices xi , yi such that:
+(1) xi ∈ Xi ;
+(2) for every v ∈ V \ Xi , rπ (v) ≥ rπ (yi );
+(3) either yi ∈ Cπ (G) or Cπ (G) ⊆ B2 (xi ).
+Initially, x0 = y0 = v ∗ , and X0 = V . Then, Properties 1 and 2 trivially hold, while Property
+3 follows from Theorem 11.14 (1). If at some point during the execution Xi = ∅, then we can
+assert by Property 2 that yi ∈ Cπ (G).    √ Thus, in what follows, we always assume Xi ̸= ∅.
+     We first assume |N (xi ) ∩ Xi | ≤ m. Then, we apply Proposition 11.11 to every           S vertex of
+B1 (xi )∩Xi , which results in the computation of a vertex ui that minimizes rπ within {B1 (wi ) |
+wi ∈ B1 (xi ) ∩ Xi }. We claim that one of ui , yi must be contained in Cπ (G). Indeed, assume
+that yi ∈  / Cπ (G). Properties 2 and 3 imply that S     Cπ (G) ⊆ Xi ∩ B2 (xi ). Since xi ∈ Xi (Property
+1), the convexity of Xi implies that Cπ (G) ⊆ {B1 (wi ) | wi ∈ B1 (xi ) ∩ Xi }. In particular,
+ui ∈ Cπ (G). Therefore, we are done outputting       √ a vertex minimizing rπ within ui , yi .
+     From now on, we assume |N (xi ) ∩ Xi | > m. Let zi be such that π(zi )d(zi , xi ) = rπ (xi ).
+We set Xi+1 := Xi ∩ Bd(xi ,zi )−1 (zi ). Let also xi+1 ∈ prxi (Xi+1 ) (so as to satisfy Property
+1). Finally, let yi+1 be a vertex minimizing rπ within yi , xi . Note that for every vertex v ∈
+V \ Xi+1 , either v ∈   / Xi and so rπ (v) ≥ rπ (yi ) ≥ rπ (yi+1 ), or d(v, zi ) ≥ d(xi , zi ) and so
+rπ (v) ≥ rπ (xi ) ≥ rπ (yi+1 ) (Property 2). We now claim that if yi+1 ∈        / Cπ (G), then Cπ (G) ⊆
+B2 (xi+1 ) (Property 3). For that, let ui ∈ Cπ (G) be arbitrary. Since yi+1 ∈          / Cπ (G), we have
+yi , xi ∈
+        / Cπ (G). Note that ui ∈ Xi+1 because of Property 2 and our assumption that yi+1 ∈                 /
+Cπ (G). Furthermore, d(xi , xi+1 ) ≤ d(ui , xi ) ≤ 2 because xi+1 ∈ prxi (Xi+1 ) and ui ∈ Cπ (G) ⊆
+B2 (xi ) by Property 3. Suppose by contradiction d(ui , xi+1 ) ≥ 3. If xi+1 , xi were adjacent,
+then we would obtain d(ui , xi+1 ) = 3 and xi ∈ N (xi+1 ) ∩ I(xi+1 , ui ), thus contradicting the
+convexity of Xi+1 . Therefore, d(xi , xi+1 ) = 2. It also implies d(xi , ui ) = 2. Note that the
+convexity of Xi+1 also implies that xi ∈       / I(ui , xi+1 ) and thus d(ui , xi+1 ) = 3. Consequently,
+there is no median vertex for xi , ui , xi+1 . Consider a quasi-median abc for xi , ui , xi+1 such that:
+d(xi , ui ) = d(xi , a)+d(a, b)+d(b, ui ), d(ui , xi+1 ) = d(ui , b)+d(b, c)+d(c, xi+1 ) and d(xi+1 , xi ) =
+d(xi+1 , c) + d(c, a) + d(a, xi ). If abc is an equilateral triangle, then necessarily, a = xi , b ∼ xi , ui ,
+and c ∼ xi , xi+1 , b. Therefore, since b, c ∈ I(ui , xi+1 ) ⊆ Xi+1 as Xi+1 is convex, we have
+44                 J. CHALOPIN, V. CHEPOI, F. DRAGAN, G. DUCOFFE, AND Y. VAXÈS
+
+d(xi , Xi+1 ) = 1, contradicting the definition of xi+1 . Consequently, by Lemma 11.3, the triangle
+abc has type (2, 2, 1). If a ̸= xi , then max{d(xi , ui ), d(xi , xi+1 )} ≥ 1 + max{d(a, b), d(a, c)} = 3,
+which is impossible as d(xi , ui ) = d(xi , xi+1 ) = 2. Therefore, a = xi . As Xi+1 is convex,
+necessarily b, c ∈ I(ui , xi+1 ) ⊆ Xi+1 . This implies d(a, b) = d(a, c) = 2. But then, b = ui ,
+c = xi+1 , and so d(ui , xi+1 ) = 1 < 3, a contradiction. Consequently, d(ui , xi+1 ) ≤ 2 and
+Property 3 holds for xi+1 , yi+1 , and Xi+1 . We then repeat the step with Xi+1 , xi+1 , yi+1 .
+   Let us analyze√the runtime of the second step. Each iteration except the final one (when
+|N (xi ) ∩ Xi | ≤ m) can be executed in O(m) time and the final iteration can be done in
+      √
+O(m
+  √ m) time. If we perform k + 1 iterations, then the runtime     √                               O(km +
+                                                                           of the algorithm is in e
+m m). Vertices x0 , x1 , . . . , xk−1 must have degree > m. Since X0 ⊃ X1 ⊃ . . . Xk , and
+xi ∈ Xi \ Xi+1 for every i such that 0 ≤ i < k, these vertices are pairwise different. As a result,
+            √          √
+k = O(m/ m) = O( m). Overall, the runtime is in e            O(m3/2 ).                                  □
+
+     CNRS and Aix-Marseille Université, LIS, Marseille, France
+     Email address: jeremie.chalopin@lis-lab.fr
+
+     Aix-Marseille Université and CNRS, LIS, Marseille, France
+     Email address: victor.chepoi@lis-lab.fr
+
+     Computer Science Department, Kent State University, Kent, USA
+     Email address: dragan@cs.kent.edu
+
+  National Institute for Research and Development in Informatics and University of Bucharest,
+Bucureşti, România
+  Email address: guillaume.ducoffe@ici.ro
+
+     Aix-Marseille Université and CNRS, LIS, Marseille, France
+     Email address: yann.vaxes@lis-lab.fr
+

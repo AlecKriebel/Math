@@ -1,0 +1,1047 @@
+Beyond Trees: The Weighted Center Problem on
+Gromov Hyperbolic Graphs
+Guillaume Ducoffe # Ñ
+University of Bucharest, Romania
+National Institute for Research and Development in Informatics, Bucharest, Romania
+
+      Abstract
+The Weighted Center problem takes as its input a graph G = (V, E) together with a profile π
+such that every vertex v is mapped to some nonnegative multiplicative weight π(v). Its output must
+be some vertex c minimizing max{π(v)dG (c, v) : v ∈ V }. The classic Center problem corresponds
+to the case where π(v) = 1 for every vertex v. In the literature, various almost linear-time algorithms
+have been proposed for the Center problem on some well-structured classes of graphs. By contrast,
+similarly efficient algorithms for the Weighted Center problem have been scarce. We investigate
+how the Gromov hyperbolicity, alone or in combination with other metric and geometric properties
+on graphs, can be used in the design of exact and approximate almost linear-time algorithms for the
+Weighted Center problem. In particular, we derive almost optimal algorithms for the following
+well-studied classes of graphs: chordal graphs, distance-hereditary graphs (both in O(m) time),
+dually chordal graphs and chordal bipartite graphs (both in O(m log n) time).
+
+2012 ACM Subject Classification Theory of computation → Graph algorithms analysis; Theory
+of computation → Facility location and clustering; Theory of computation → Fixed parameter
+tractability; Theory of computation → Algorithm design techniques
+
+Keywords and phrases Weighted center problem, Gromov hyperbolicity, Chordal graphs and related
+graph classes, Planar graphs, Fine-grained complexity in P, Graph algorithms
+
+Digital Object Identifier 10.4230/LIPIcs.ESA.2026.133
+
+Related Version Full Version: https://arxiv.org/pdf/2607.04287 [27]
+
+Funding This work has been supported in part by the PHC Brâncuşi LoSST.
+
+
+ 1      Introduction
+
+Problem considered. We refer to [6] for basics in Graph Theory. Graphs considered
+throughout the paper will be simple, undirected, unweighted and connected. As usual, let
+dG denote the shortest-path metric of a graph G = (V, E), i.e., for any vertices u and v their
+distance dG (u, v) is equal to the minimum number of edges on a (u, v)-path. The following
+facility location problem on graphs is considered:
+
+  Weighted Center
+  Input: A graph G = (V, E); a profile π : V 7→ R≥0 .
+  Output: A vertex c ∈ V s.t. rπ (c) = max{π(v)dG (c, v) : v ∈ V } is minimized.
+
+    Roughly, π(v) represents the importance for vertex v to be close to the new facility. For
+example, π(v) can be the expected material flux between v and a new factory, the number of
+children in a building at v who will attend to a new neighborhood school, etc. Furthermore,
+if we set π(v ′ ) = 0 for some vertices v ′ , then we can account for the plausible situation where
+the placement of a new facility is only relevant for a subset of the vertices. Note that we
+cannot simply remove the zero-weight vertices for it could change the distances in the graph.
+
+            © Guillaume Ducoffe;
+            licensed under Creative Commons License CC-BY 4.0
+34th Annual European Symposium on Algorithms (ESA 2026).
+Editors: Philip Bille, Seth Pettie, and Sabine Storandt; Article No. 133; pp. 133:1–133:19
+                    Leibniz International Proceedings in Informatics
+                    Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl Publishing, Germany
+133:2   The Weighted Center of Hyperbolic Graphs
+
+
+            In line with existing literature [33], the function rπ is called a radius function. The
+        solution vertex c is called a center. The Weighted Center problem can be defined more
+        generally for any metric space. In particular, a linear-time algorithm for the Weighted
+        Center problem on Euclidean spaces of constant dimension was presented in [28]. For
+        graphs, the existing literature is mostly focused on the following restricted variant:
+
+            Center
+            Input: A graph G = (V, E).
+            Output: A vertex c ∈ V s.t. ecc(c) = max{dG (c, v) : v ∈ V } is minimized.
+
+            The radius function ecc is also called the eccentricity function of G. More generally, if
+        π(v) ∈ {0, 1} for every vertex v, then π is called a binary profile, and rπ is called a binary
+        radius function. The special case of binary profiles on graphs has received some attention
+        in the literature, see [10, 14]. As a rule of thumb, most of the techniques for the Center
+        problem can be also applied for binary profiles. However, such is not the case for the more
+        general Weighted Center problem.
+
+        Related work. The Weighted Center problem can be reduced to All-Pairs Shortest-
+        Paths. For n-vertex m-edge graphs, this straightforward reduction leads to an O(nm)-time
+        algorithm. In [1], the Hitting Sets Conjecture was introduced to prove a conditional lower
+        bound in Ω(n2−o(1) ) for the Center problem on n-vertex graphs, even if the number of edges
+        is at most in n1+o(1) . Therefore, breaking the quadratic barrier for the Center problem, and
+        even more so for the Weighted Center problem, is likely to require additional restrictions
+        on the classes of graphs we consider. There is a plethora of subquadratic-time algorithms,
+        and even better, of almost linear-time algorithms, for the Center problem on some well-
+        structured classes of graphs; we refer to [1, 12, 19, 25] for a small sample of such results. By
+        comparison, the only published linear-time algorithm for the Weighted Center problem,
+        to the best of our knowledge, is that of Megiddo for the class of trees [39]. Recently, a
+        parameterized almost linear-time algorithm for the Weighted Center problem on the
+        graphs of bounded clique-width was presented in [25], using orthogonal range queries and the
+        so-called convex hull trick. In particular, for the distance-hereditary graphs, the clique-width
+        of which is at most three [29], this result leads to an O(m logc n)-time algorithm for the
+        Weighted Center problem, for some unspecified constant c > 1. An O(m)-time algorithm
+        for the Center problem was presented much earlier, in [20].
+            The authors in [11] introduced a different approach for the Weighted Center problem
+        that is based on a metric property, hereafter called Gp -unimodality (see also [26] for the
+        case p = 1). Roughly, a radius function rπ on a graph G is called Gp -unimodal if any
+        vertex that minimizes rπ within its ball of radius p is a center. It was proved in [11] that
+        for many classes of graphs studied in Metric Graph Theory, all their radius functions are
+                                                                                 √
+        G2 -unimodal. The latter was used in the design of randomized Õ(m n)-time1 local-search
+        algorithms for the Weighted Center problem on these classes of graphs. Although the
+        algorithmic properties of the classes studied in Metric Graph Theory have insofar received
+        limited attention (the results in [2, 4, 21] count among the few exceptions), we want to
+        stress here that they are natural generalizations of better-studied classes, including: chordal
+        graphs, chordal bipartite graphs, and dually chordal graphs. In particular, before this work,
+                  √
+        the Õ(m n)-time algorithms from [11, 26] were the best ones known for the Weighted
+        Center problem on chordal (bipartite) graphs, and dually chordal graphs. By comparison,
+        O(m)-time algorithms for the Center problem can be found in [7, 13, 24].
+
+
+        1
+            The Õ() notation suppresses poly-logarithmic factors.
+G. Ducoffe                                                                                              133:3
+
+
+    One common property of chordal graphs and their relatives, but also of distance-hereditary
+graphs, AT-free graphs, and several other well-studied classes of graphs (e.g., see [14, 43])
+is that they have bounded Gromov hyperbolicity. Roughly, the hyperbolicity of a graph
+represents how close, locally, its shortest-path metric is to a tree metric (see Sec. 2 for a
+formal definition). The introduction of this parameter by Gromov, see [30], has revolutionized
+Geometric Group Theory. Later on, extensive experiments have evidenced that many complex
+networks also have bounded hyperbolicity [34]. There is now a rich literature of approximation
+algorithms on graphs whose performances depend on the hyperbolicity value [32, 37]. Of
+special interest to us is the main result from [14], which states that on any δ-hyperbolic
+graph G, for every binary profile π on G, a vertex that is at distance at most O(δ) to the
+center can be computed in O(m) time. Note that it leads to an approximation algorithm for
+the radius: defined as radπ (G) = min{rπ (v) : v ∈ V }, with additive one-sided error in O(δ).
+Furthermore, this result was combined with the local-search techniques from [11] to refine
+                                                                          √
+the runtime of their exact algorithms (only for binary profiles) from O(m n) to O(δm). The
+motivation for our paper was to generalize the result from [14] to arbitrary profiles.
+
+Our contributions. For a graph G, and a profile π, let us define Cπ (G) as the set of all its
+centers. In what follows, the ball of center v and radius ρ is denoted by Bρ (v). We provide
+the following two main results for the Weighted Center problem on δ-hyperbolic graphs.
+
+▶ Theorem A. Given a δ-hyperbolic graph G with n vertices and m edges, and an arbitrary
+profile π, one can compute:
+1. a vertex c1 such that Cπ (G) ⊆ B12δ log n+4δ+11 (c1 ), in O(m) time;
+2. a vertex c2 such that Cπ (G) ⊆ B124δ+21 (c2 ), in O(δm log2 n) time.
+
+    In particular, for an arbitrary profile π, a vertex that is at distance O(δ) to the center can
+be computed in Õ(δm) time. This weakly generalizes the result of [14] for binary profiles,
+but at the price of a slightly worse running time. Furthermore, if π is k-bounded, then we
+get an approximation of the radius with additive one-sided error in O(kδ). The latter is also
+                                                                               v∈V π(v)
+a multiplicative (1 + O(εδ))-approximation of the radius, where ε = max      radπ (G) .
+    Theorem A(1) follows from efficient algorithms for embedding a δ-hyperbolic graph into
+a tree with additive distortion in O(δ log n), used in combination with the aforementioned
+linear-time algorithm for the Weighted Center problem on trees. By doing so, it is
+expected that we get a vertex c1 such that rπ (c1 ) and radπ (G) are close. However, it is
+less immediate that c1 and the true centers of G are also close. Theorem A(2) is based on
+Theorem A(1). Roughly, we search for c2 in a ball of center c1 and radius O(δ log n). For
+that, we reduce our search to Õ(δ) instances of the Weighted Center problem with binary
+profiles, which may be of independent interest. In particular, we are using the result of [14].
+As our second main contribution in the paper, we present a set of new algorithms for
+the Weighted Center problem on some important examples of graphs with bounded
+hyperbolicity. These results are reported in Table 1. They are based on Theorem A, and
+on additional metric properties of these graphs. Our running times are optimal, or quasi
+optimal, for all the classes of graphs considered.
+    Our result for chordal graphs builds upon the local-search techniques from [11]. Indeed,
+in this special case a vertex c1 that is at distance O(1) to the center can be computed in
+O(m) time (the latter is a refinement of Theorem A(1) for this class of graphs). Then,
+starting from c1 , an improving sequence (v0 = c1 , v1 , . . . , vℓ ) can be computed in O(ℓm)
+time, such that rπ (vi ) > rπ (vi+1 ) for every i such that 0 ≤ i < ℓ, and vℓ is a center. If π is a
+binary profile, then as our starting vertex c1 is at distance O(1) to the center, we must have
+
+
+
+                                                                                                       ESA 2026
+133:4   The Weighted Center of Hyperbolic Graphs
+
+
+           Table 1 Results for the Weighted Center problem on some classes of graphs with bounded
+        Gromov hyperbolicity.
+
+                     Graph class            Prior works           This work         Ref.
+                                                √
+                      Chordal             Õ(m n) [11]              O(m)        Theorem 20(2)
+                                                √
+                  Chordal bipartite       Õ(m n) [11]            O(m log n)    Theorem 25(2)
+                 Distance-hereditary   O(m logc n), c > 1 [25]      O(m)         Theorem 26
+                                                √
+                   Dually chordal         Õ(m n) [26]            O(m log n)    Theorem 25(2)
+
+
+        ℓ = O(1) no matter how we choose vi+1 from vi . However, as already noted in [11], this does
+        not hold anymore for arbitrary profiles. We introduce a new selection mechanism for the
+        next improving vertex vi+1 that ensures that the bound ℓ = O(1) still holds with arbitrary
+        profiles.
+            For distance-hereditary graphs, we use a similar local-search approach as for chordal
+        graphs. For that, we prove that all their radius functions are also G2 -unimodal. We also
+        design an O(m)-time procedure for computing the next improving vertex vi+1 from vi in
+        a distance-hereditary graph. The latter is based on injective hulls, which are important
+        objects in the study of metric spaces and their optimal realizations, see [23]. By doing so, we
+        contribute to the recent line of studies of the properties of injective hulls of graphs [31].
+            For chordal bipartite graphs and dually chordal graphs, we adapt a technique from [21].
+        Roughly, it allows us to compute, in some ball of constant radius, all the vertices v such that
+        rπ (v) is less than a fixed threshold τ . By doing so, all the centers can be computed with
+        O(log n) calls to this technique, using a nontrivial variation of binary search. At this point,
+        we should mention that it is not that obvious that we can efficiently reduce the Weighted
+        Center problem to its decision version, using binary search, because the set of possible
+        values for the radius is {k × π(v) : 0 < k < n, v ∈ V }, which has size in O(n2 ). To apply a
+        naive binary-search strategy to this set would require first to sort all the values. The latter
+        would result in an Ω(n2 log n)-time lower bound. The existence of an efficient reduction from
+        Weighted Center to its decision version is a side contribution of the paper.
+        Our third contribution in the paper is a set of parameterized almost linear-time algorithms
+        for the Weighted Center problem, where the parameter is the hyperbolicity value δ.
+        These results are reported in Table 2.
+
+           Table 2 Parameterized algorithms for the Weighted Center problem on some classes of graphs,
+        where the parameter is the hyperbolicity value δ.
+
+                               Graph class       Running time            Ref.
+                                                      O(δ)
+                             Max. degree ∆     Õ(∆     m + δm)    Theorem 14(1)
+                             Weakly bridged          Õ(δm)        Theorem 20(1)
+                                 Helly              Õ(δ 3 m)      Theorem 25(1)
+                             Bipartite Helly        Õ(δ 3 m)      Theorem 25(1)
+                                Planar             Õ(2O(δ) n)      Theorem 21
+
+
+           Our result for graphs with bounded maximum degree is a straightforward application
+        of Theorem A(2). For weakly bridged graphs, Helly graphs and bipartite Helly graphs, we
+        use the same techniques as for chordal graphs, dually chordal graphs, and chordal bipartite
+        graphs, of which they are superclasses. The respective definitions of these classes of graphs
+        are recalled in the technical sections of the paper. Finally, our most interesting entry in
+G. Ducoffe                                                                                             133:5
+
+
+Table 2 is that for planar graphs, for which we do not use Theorem A. Instead, we rely on
+a recent separator theorem for planar hyperbolic graphs, see [35], which is combined with
+a VC-dimension argument. To the best of our knowledge, this is the first combination of
+Gromov hyperbolicity with VC-theory in algorithm design.
+
+
+Organization of the paper. The notations and terminology that are used in the paper
+are first recalled in Sec. 2. Furthermore, we introduce some prior results that are required
+for the presentation of our algorithms and their analysis. Sec. 3 is devoted to the proof of
+Theorem A. Then, in Sec. 4, we present all our exact algorithms for the Weighted Center
+problem on some classes of graphs with bounded hyperbolicity. Section 5 concludes the
+paper, with some discussion about our work, and directions for future research.
+    Due to lack of space, we only detail in this extended abstract the proofs of our Theorem A,
+Theorem 20 (for chordal graphs), and Theorem 21 (for planar graphs). The remaining results,
+and their proofs, can be found in the full version of the paper [27].
+
+
+ 2     Preliminaries
+
+We start recalling a few notations. Let G = (V, E) be a graph. We will always denote by n its
+number |V | of vertices, and by m its number |E| of edges. For every vertices u and v, we write
+u ∼ v if u and v are adjacent, and u ≁ v if they are nonadjacent. Let NG (u) = {v ∈ V : u ∼ v}
+and NG [u] = NG (u) ∪ {u} be the (open) neighborhood and the closed neighborhood of vertex
+                                   S
+u. For a subset X, let NG (X) = {NG (x) \ X : x ∈ X}. Recall that a shortest (u, v)-path is
+one with minimum number of edges; the distance dG (u, v) is equal to the length of a shortest
+(u, v)-path. Furthermore, let IG (u, v) = {w ∈ V : dG (u, v) = dG (u, w) + dG (w, v)} be the
+                                               o
+(metric) interval between u and v. Let also IG   (u, v) = IG (u, v) \ {u, v}. For every k such that
+0 ≤ k ≤ dG (u, v), let Sk (u, v, G) = {w ∈ IG (u, v) : dG (u, w) = k} be called a slice. Recall
+that for every vertex u and for every integer ρ, the set Bρ (u, G) = {v ∈ V : dG (u, v) ≤ ρ}
+is called the ball of center u and radius ρ. For any vertex u, and for any subset X, let
+dG (u, X) = min{dG (u, x) : x ∈ X}. The (weak) diameter of a subset X is defined as
+diamG (X) = max{dG (x, x′ ) : x, x′ ∈ X}. A subset X is called (geodesically) convex if
+IG (x, x′ ) ⊆ X for any two vertices x, x′ ∈ X. If G is clear from the context, then it is omitted
+from our notations. Other notations are locally defined at appropriate places in the paper.
+
+
+Functions defined on a graph. Let G = (V, E) be a graph, and let f : V 7→ R. A global
+minimum of f is any vertex u such that f (u) is minimal within V . A local minimum of
+f is any vertex u such that f (u) ≤ f (v) for every v ∈ N (u). We call f unimodal if every
+local minimum is also a global minimum. More generally, for every integer p ≥ 1, let the
+pth -power of G be the graph Gp = (V, Ep ) such that there exists an edge uv ∈ Ep if and
+only if 0 < dG (u, v) ≤ p. We call f Gp -unimodal if it is unimodal on Gp . Note that f is
+Gp -unimodal if and only if every vertex u that minimizes f (u) within Bp (u, G) is also a
+global minimum. The function f is called weakly peakless if it satisfies the following condition
+WP(u, v) for every vertices u and v such that u ≁ v: there exists a vertex w ∈ I o (u, v) such
+that f (w) ≤ max{f (u), f (v)}, and equality holds only if f (u) = f (w) = f (v). It is called
+p-weakly peakless if it satisfies WP(u, v) for every vertices u and v such that d(u, v) ≥ p + 1.
+
+▶ Lemma 1 (see Theorem 11 in [3]). Every p-weakly peakless function on a graph G is
+Gp -unimodal.
+
+
+
+                                                                                                      ESA 2026
+133:6   The Weighted Center of Hyperbolic Graphs
+
+
+        Results on the Weighted Center problem. Let G = (V, E) be a graph, and let π : V 7→ R≥0
+        be a profile. The support of π, hereafter denoted by Supp(π), is the set of all vertices v
+        such that π(v) > 0. Recall that rπ : u ∈ V 7→ max{π(v)d(u, v) : v ∈ V } is called a radius
+        function. Furthermore, for every vertex u, let Fπ (u) = {v ∈ V : rπ (u) = π(v)d(u, v)}. Recall
+        that we define the (π-)radius as radπ (G) = min{rπ (u) : u ∈ V }. In the same way, let the
+        center Cπ (G) contain all the vertices c such that rπ (c) is minimized; each vertex c ∈ Cπ (G)
+        is also called a center. As a side contribution of the paper, we present a reduction from the
+        Weighted Center problem to its decision version. For that, although the search space for
+        radπ (G) is in O(n2 ), we can use a strategy inspired by the median-of-medians algorithm [5]
+        to quickly reduce the size of this space.
+        ▶ Lemma 2. Let G = (V, E) be a graph, and let π be an arbitrary profile on G. If the problem
+        of either computing a vertex c such that rπ (c) ≤ τ , or asserting that no such vertex exists,
+        can be solved in O(T (n, m)) time for any value τ , then the Weighted Center problem can
+        be solved in O ((T (n, m) + n) log n) time on G, π.
+        Proof. If Supp(π) = ∅, then Cπ (G) = V . Furthermore, if Supp(π) is a singleton, then
+        Cπ (G) = Supp(π). Thus, let us assume from now on | Supp(π)| > 1. We maintain a set
+        S ⊆ V × N × N with the property that for some (v, av , bv ) ∈ S, there exists some k such that
+        av ≤ k ≤ bv , and radπ (G) = π(v)k. Initially, we set S = {(v, 1, n − 1) : v ∈ Supp(π)}. Then,
+        our algorithm iteratively performs some procedure, detailed next, until the following halting
+        condition, (HC), is met: for every (v, av , bv ) ∈ S, av = bv . Note that once (HC) holds, we
+        are left with O(|S|) = O(n) distinct possibilities for radπ (G). We can then sort all these
+        values in O(n log n) time, remove duplicates, and compute a center in O(T (n, m) log n) time
+        by using a standard binary search.
+            Assume for what follows that (HC) does not hold. For every v ∈ Supp(π), we define
+        its weight ω(v) as follows: if there is some triple (v, av , bv ) in S, then ω(v) = bv − av ,
+                                                                           P
+        and otherwise ω(v) = 0. Furthermore, let ω(S) =                       {ω(v) : v ∈ Supp(π)}. As (HC)
+        does not hold, ω(S) > 0. Then, the following procedure is performed. For some arbitrary
+        ordering v0 , v1 , . . . , vℓ of all the vertices
+                                                 j          kof positive weight, we construct an array whose
+                                                   avi +bvi
+        entries are the values τi := π(vi )            2      , for 0 ≤ i ≤ ℓ. We compute the lowest weighted
+                                                                             P
+        median of the array: defined as the value τi∗ such that {ω(vj ) : τj < τi∗ } < ω(S)/2 and
+        P
+           {ω(vj ) : τj > τi∗ } ≤ ω(S)/2. Then, we test whether there               k a vertex c s.t. rπ (c) ≤ τi∗ .
+                                                                             j exists
+                                                                               τ
+            If yes, then for each (v, av , bv ) ∈ S, let us define b′v = π(v)    i∗
+                                                                                     . If b′v < av , then we remove
+           this triple from S. Otherwise, if in addition b′v < bv , then we replace (v, av , bv ) with
+           (v, av , b′v ) in S.                             j   k
+                                                                      τi∗
+            Else, for each (v, av , bv ) ∈ S, let us define a′v =     π(v)   + 1. If a′v > bv , then we remove
+            this triple from S. Otherwise, if in addition a′v > av , then we replace (v, av , bv ) with
+           (v, a′v , bv ) in S.
+        As noted in [18], the lowest weighted median can be computed in O(ℓ) = O(n) time by using
+        a variation of the median-of-medians algorithm, see [5]. Therefore, this above procedure
+        can be done in O(T (n, m) + n) time. Furthermore, we claim that the total weight ω(S) is
+        decreased by a factor at least 3/4 after each call to the procedure. Indeed, if there is a vertex
+        c such that rπ (c) ≤ τi∗ , then the weight of every vertex vj such that τj ≥ τi∗ is at least
+        halved. If there is no such vertex, then the weight of every vertex vj such that τj ≤ τi∗ is at
+        least halved. Therefore, we always halve the weights for a subset of vertices such that the
+        sum of their weights is at least ω(S)/2. In particular, the total weight decreases by at least
+        ω(S)/4, thus proving our claim. Overall, as initially ω(S) = O(n2 ), there are O(log n) calls
+        to the procedure.                                                                              ◀
+G. Ducoffe                                                                                                    133:7
+
+
+δ-hyperbolic graphs and their properties. For every nodes u, v, x, y in a tree T , it holds
+dT (u, v) + dT (x, y) ≤ max{dT (u, x) + dT (v, y), dT (u, y) + dT (v, x)}. The definition of Gromov
+hyperbolicity can be regarded as a relaxation of this four-point condition. A graph G =
+(V, E) is called δ-hyperbolic if for every u, v, x, y ∈ V , d(u, v) + d(x, y) ≤ max{d(u, x) +
+d(v, y), d(u, y) + d(v, x)} + 2δ holds. Alternatively, if d(u, y) + d(v, x) ≤ d(u, x) + d(v, y) ≤
+d(u, v) + d(x, y), then d(u, v) + d(x, y) − d(u, x) − d(v, y) ≤ 2δ. The hyperbolicity of G is
+the smallest δ such that it is δ-hyperbolic. In what follows, we gather some properties of
+δ-hyperbolic graphs.
+    The first result is a relaxation of a well-known Helly property for trees: every family of
+pairwise intersecting subtrees (and so, every family of pairwise intersecting balls in a tree)
+has a nonempty common intersection.
+
+▶ Lemma 3 (see Lemma 1 in [16]). If G is δ-hyperbolic, then for any family of pairwise
+                                                           T
+intersecting balls Bρ1 (v1 ), Bρ2 (v2 ), . . . , Bρk (vk ), {Bρi +2δ (vi ) : 1 ≤ i ≤ k} ̸= ∅.
+
+The next result is a special case of Morse lemma [41], of which we give a direct proof. Recall
+that in a tree, there exists a unique path between every two nodes. Roughly, we relax this
+property for a δ-hyperbolic graph such that almost shortest-paths between every two vertices
+must stay close to each other.
+
+▶ Lemma 4. Let u, v, x, y be vertices in a δ-hyperbolic graph G. If u ∈ I(x, y), d(x, v) +
+d(v, y) ≤ d(x, y) + λ, and d(v, x) ≥ d(u, x), d(v, y) ≥ d(u, y), then d(u, v) ≤ λ + 2δ.
+
+Proof. Since G is δ-hyperbolic, d(u, v)+d(x, y) ≤ max{d(u, x)+d(v, y), d(u, y)+d(v, x)}+2δ.
+Therefore, d(u, v) + d(x, y) ≤ max{d(u, x), d(v, x)} + max{d(u, y), d(v, y)} + 2δ ≤ d(v, x) +
+d(v, y) + 2δ ≤ d(x, y) + λ + 2δ. The latter implies as claimed that d(u, v) ≤ λ + 2δ.      ◀
+
+Finally, observe that for any subtree H in a tree (in particular, for any ball in a tree), the
+nodes out of H can be partitioned in rooted subtrees with their roots being taken in the
+boundary2 of H. In particular, every node y out of H has a unique closest node v in H
+(namely, the root of its subtree), and the unique path from y to any node of H goes by v.
+We prove a relaxation of this simple property for balls in a δ-hyperbolic graph, namely:
+
+▶ Lemma 5. Let u, x, y be vertices in a δ-hyperbolic graph G. If x ∈ Br (u) and y ∈
+                                                                                  / Br (u),
+then for any v ∈ Sr (u, y), d(x, v) + d(v, y) ≤ d(x, y) + 2δ.
+
+Proof. Consider the three sums A = d(u, y)+d(v, x), B = d(u, v)+d(x, y), and C = d(u, x)+
+d(v, y). Since v ∈ Sr (u, y), we get that d(u, v) = r ≥ d(u, x). Furthermore, d(y, z) ≥ d(y, v)
+for any z ∈ Br (u). So, in particular, d(x, y) ≥ d(v, y). Therefore, B ≥ C. As v ∈ I(u, y),
+d(u, y) = d(u, v) + d(v, y). Hence, A = d(u, v) + d(v, y) + d(v, x) ≥ d(u, v) + d(x, y) = B.
+Since G is δ-hyperbolic, A − B ≤ 2δ. As a result, d(v, y) + d(v, x) − d(x, y) ≤ 2δ.          ◀
+
+
+    3    Approximation algorithms for δ-hyperbolic graphs
+
+This section is devoted to the proof of Theorem A. Its statements (1) and (2) are proved in
+Sec. 3.1 and Sec. 3.2, respectively.
+
+
+2
+    Recall that the boundary of H is the subset of the vertices of H with at least one neighbour out of H.
+
+
+
+
+                                                                                                             ESA 2026
+133:8   The Weighted Center of Hyperbolic Graphs
+
+
+        3.1    Using tree embeddings
+        A graph G λ-embeds into a tree if there exists a tree T , possibly edge-weighted, such that
+        V ⊆ V (T ) and for every vertices u and v of G, dG (u, v) ≤ dT (u, v) ≤ λdG (u, v). This part is
+        devoted to the proof of the following result:
+        ▶ Theorem 6. If a δ-hyperbolic graph G = (V, E) λ-embeds into a tree, then for any profile
+        π, one can output in O(m) time a vertex c1 such that Cπ (G) ⊆ B6λ+4δ+5 (c1 ).
+           Note that Theorem A(1) follows from Theorem 6 and the following Lemma 7.
+        ▶ Lemma 7 (see Proposition 6.1.B in [30]). Every δ-hyperbolic graph λ-embeds into a tree,
+        for some λ ≤ 2δ log n + 1.
+        Stronger versions of Lemma 7 are used for some of the classes of graphs considered in Sec. 4.
+           Roughly, the proof of Theorem 6 consists in solving approximately the Weighted
+        Center problem in a δ-hyperbolic graph G by solving this problem exactly on a tree T
+        in which G embeds. It is known from prior works that such a tree T with almost optimal
+        (additive) distortion can be computed efficiently, namely:
+        ▶ Lemma 8 (see Corollary 4 in [15]). If a graph G = (V, E) λ-embeds into a tree, then there
+        exists an unweighted tree T = (V, F ) (without Steiner points), constructible in O(m) time,
+        such that dT (x, y) − 2 ≤ dG (x, y) ≤ dT (x, y) + 3λ for any vertices x, y ∈ V .
+            Given G and T as above, our contribution in this part is to prove that for an arbitrary
+        profile π, for any centers c ∈ Cπ (G) and c′ ∈ Cπ (T ), their distance (in G) is at most linear
+        in the hyperbolicity of G and the additive distortion of the embedding. We prove it next:
+        ▶ Proposition 9. Given a δ-hyperbolic graph G = (V, E) and a tree T = (V, F ) such that
+        dT (x, y) − p ≤ dG (x, y) ≤ dT (x, y) + q for any vertices x, y ∈ V (p, q ≥ 0), for an arbitrary
+        profile π, Cπ (G) ⊆ B2(p+q)+4δ+1 (c′ ) holds for any c′ ∈ Cπ (T ).
+        Proof. Set τ = p + q + 2δ + 1. Suppose for the sake of contradiction the existence of a center
+        c ∈ Cπ (G) such that dG (c, c′ ) ≥ 2τ . Let w ∈ IG (c, c′ ) such that dG (c, w), dG (w, c′ ) ≥ τ .
+            We consider some vertex x such that π(x)dG (w, x) is maximized. Since G is δ-hyperbolic,
+        dG (c, c′ )+dG (w, x) ≤ max{dG (c, w)+dG (c′ , x), dG (c, x)+dG (c′ , w)}+2δ. By the choice of ver-
+        tex w, dG (c, c′ ) ≥ max{dG (c, w), dG (c′ , w)}+τ , and so, dG (w, x) ≤ max{dG (c′ , x), dG (c, x)}+
+        2δ − τ . Furthermore, by the hypothesis 2δ − τ < 0. Since dG (c, x) ≤ dG (w, x) because
+        c ∈ Cπ (G), it follows that dG (w, x) ≤ dG (c′ , x) + 2δ − τ .
+            We also consider some vertex y such that π(y)dT (w, y) is maximized. Again since G
+        is δ-hyperbolic, dG (c, c′ ) + dG (w, y) ≤ max{dG (c, w) + dG (c′ , y), dG (c, y) + dG (c′ , w)} + 2δ.
+        Recall that by the choice of vertex w, dG (c, c′ ) ≥ max{dG (c, w), dG (c′ , w)} + τ , and so,
+        dG (w, y) ≤ max{dG (c′ , y), dG (c, y)}+2δ−τ . Since c′ ∈ Cπ (T ), we obtain dT (c′ , y) ≤ dT (w, y),
+        and so, dG (c′ , y) ≤ dT (c′ , y) + q ≤ dT (w, y) + q ≤ dG (w, y) + p + q. Furthermore, by the
+        hypothesis p + q + 2δ − τ < 0. Therefore, dG (w, y) ≤ dG (c, y) + 2δ − τ .
+            Suppose π(x)dG (w, x) ≤ π(y)dT (w, y). Then, dT (w, y) ≤ dG (w, y) + p ≤ dG (c, y) + p +
+        2δ − τ < dG (c, y). It implies π(y)dG (c, y) > π(y)dT (w, y) ≥ π(x)dG (w, x), thus contradicting
+        our assumption that c ∈ Cπ (G). Therefore, π(x)dG (w, x) > π(y)dT (w, y). Then, dG (w, x) ≤
+        dG (c′ , x) + 2δ − τ ≤ dT (c′ , x) + q + 2δ − τ < dT (c′ , x). However, it implies π(x)dT (c′ , x) >
+        π(x)dG (w, x) > π(y)dT (w, y), thus contradicting our assumption that c′ ∈ Cπ (T ).                 ◀
+
+           Theorem 6 now follows from the combination of Lemma 7, Proposition 9, and the following
+        known algorithmic result:
+        ▶ Lemma 10 (see Section 3 in [39]). Given a tree T = (V, E), and an arbitrary profile π,
+        one can solve the Weighted Center problem in O(n) time.
+G. Ducoffe                                                                                              133:9
+
+
+3.2    Getting closer to the center
+The remainder of this section is devoted to the proof of statement (2) of Theorem A.
+
+▶ Theorem 11. Given a δ-hyperbolic graph G = (V, E), an arbitrary profile π, and a vertex
+c1 and a radius ρ such that Cπ (G) ⊆ Bρ (c1 ), one can output in O(ρm log n) time a vertex c2
+such that Cπ (G) ⊆ B124δ+21 (c2 ).
+
+Note that Theorem 11, in combination with Theorem A(1) implies Theorem A(2). To prove
+Theorem 11, roughly, our strategy consists in projecting the support of the profile onto the
+ball Bρ (c1 ). Then, roughly, we reduce the computation of an approximate center c2 for π to
+that of approximate centers for O(ρ log n) binary profiles. For that, we will also need some
+results on the Weighted Center problem for binary profiles:
+
+▶ Lemma 12 (see Proposition 6 in [14]). Given a δ-hyperbolic graph G = (V, E), and a binary
+profile π, one can output in O(m) time a vertex c∗ such that Cπ (G) ⊆ B5δ+1 (c∗ ).
+
+   Consider the important special case of the eccentricity function, i.e., where π(v) = 1 for
+every vertex v. Then, it is known that for any node v in a tree T , ecc(v) = d(v, C(T ))+rad(T ).
+Furthermore, a relaxation of this result was proved in [22], Theorem 5, for all δ-hyperbolic
+graphs. We prove it next for any binary profile.
+
+▶ Lemma 13. Let G = (V, E) be δ-hyperbolic, and let π be a binary profile on G. For any
+vertex v ∈ V , d(v, Cπ (G)) + radπ (G) − 6δ − 1 ≤ rπ (v) ≤ d(v, Cπ (G)) + radπ (G).
+
+Proof. The upper bound holds for any graph G and any binary profile. For the lower
+bound, let c ∈ Cπ (G) be arbitrary, and let u, w ∈ Supp(π) be maximizing d(u, w). Since
+G is δ-hyperbolic, d(v, c) + d(u, w) ≤ max{d(v, u) + d(c, w), d(v, w) + d(c, u)} + 2δ, and
+so, d(v, c) + d(u, w) ≤ rπ (v) + rπ (c) + 2δ = rπ (v) + radπ (G) + 2δ. By [14], Proposition
+4, d(u, w) ≥ 2 radπ (G) − 4δ − 1. Therefore, rπ (v) ≥ d(v, c) + d(u, w) − radπ (G) − 2δ ≥
+d(v, Cπ (G)) + d(u, w) − radπ (G) − 2δ ≥ d(v, Cπ (G)) + (2 radπ (G) − 4δ − 1) − radπ (G) − 2δ =
+d(v, Cπ (G)) + radπ (G) − 6δ − 1.                                                             ◀
+
+    For simplicity of the presentation, we assume in what follows that the hyperbolicity value
+δ is known to us. In practice, any approximation δ ′ ≥ δ can be used, but then the distance
+of c2 to Cπ (G) also depends on the approximation ratio.
+
+Sketch Proof of Theorem 11. We shall assume throughout the proof that ρ > 124δ + 21,
+since otherwise it suffices to output c2 = c1 . Furthermore, we shall also assume that Supp(π)
+contains at least two vertices: otherwise, either Supp(π) = ∅, and so, Cπ (G) = V holds;
+or Supp(π) = {v} for some v ∈ V , and then, Cπ (G) = {v} holds. By Lemma 2 (slightly
+modified), we only need to present an O(ρm)-time algorithm such that, for any value τ :
+it either asserts radπ (G) < τ ; or it asserts radπ (G) > τ ; or it outputs some c∗ such that
+Cπ (G) ⊆ B124δ+21 (c∗ ).
+    For every v ∈ Supp(π), let q(v) be a closest-to-v vertex in the ball Bρ (c1 ), and let
+ℓ(v) = d(v, q(v)). – Roughly, we project the support of π onto Bρ (c1 ). – So, in particular, if
+d(c1 , v) ≤ ρ, then we set q(v) = v, and ℓ(v) = 0. If d(c1 , v) > ρ, then we set ℓ(v) = d(v, c1 )−ρ,
+and we choose an arbitrary q(v) ∈ Sρ (c1 , v). All the values q(v), ℓ(v), for v ∈ Supp(π), can
+be computed by dynamic programming on a shortest-path tree rooted at c1 .
+                 k value to be compared to radπ (G). For each v ∈ Supp(π), we compute
+    Let τ jbe some
+            τ
+λτ (v) =   π(v)   : the maximum distance between v and any c such that rπ (c) ≤ τ . If
+λτ (v) < ℓ(v) for some v ∈ Supp(π), then as Cπ (G) ⊆ Bρ (c1 ), we assert radπ (G) > τ . If
+
+
+
+                                                                                                       ESA 2026
+133:10 The Weighted Center of Hyperbolic Graphs
+
+
+       λτ (v) ≥ ℓ(v) + 2ρ, then as Cπ (G) ⊆ Bρ (c1 ) ⊆ Bλτ (v) (v), we can discard v. Furthermore,
+       if λτ (v ′ ) ≥ ℓ(v ′ ) + 2ρ for every v ′ ∈ Supp(π), then it implies rπ (c1 ) < τ , and so, we assert
+       radπ (G) < τ . Thus, we now assume ℓ(v) ≤ λτ (v) ≤ ℓ(v) + 2ρ − 1 for each v ∈ Supp(π).
+       To avoid some degenerate cases in our analyzes, we further assume λτ (v) > 0 for each
+       v ∈ Supp(π). Indeed, assume λτ (v) = 0 for some v. If v ∈         / Bρ (c1 ), then, as ℓ(v) > λτ (v),
+       we assert radπ (G) > τ . Otherwise, either rπ (v) ≤ τ , or rπ (v) > τ . In the former case,
+       necessarily Cπ (G) = {v}. In the latter case, we assert radπ (G) > τ .
+            For every i such that 0 ≤ i ≤ 2ρ − 1, we consider Mi = {q(v) : λτ (v) = ℓ(v) + i}. Roughly,
+       if Mi ̸= ∅, then we want to construct some superset C i of Cπ (G). More specifically, let us
+       define a binary profile πi such that πi (v) = 1 if and only if v ∈ Mi . By Lemma 12, a vertex
+       ci such that Cπi (G) ⊆ B5δ+1 (ci ) can be computed in O(m) time. If rπi (ci ) > i + 7δ + 1,
+       then we assert radπ (G) > τ . Roughly, this is because if radπ (G) ≤ τ , then we can prove
+       radπi (G) ≤ i + 2δ (and so, rπi (ci ) ≤ i + 7δ + 1) using Lemma 5. See Claim 28 in the appendix.
+       Otherwise, we set C i = Bi−rπi (ci )+18δ+3 (ci ) ∩ Bρ (c1 ).
+            Let C ∗ = {C i : Mi ̸= ∅}. If C ∗ = ∅, then we assert radπ (G) > τ . Roughly, this is
+                         T
+
+       because if radπ (G) ≤ τ , then we can use Lemma 13 to prove Cπ (G) ⊆ C ∗ . See Claim 29
+       in the appendix. Else, let c∗ ∈ C ∗ be arbitrary. If C ∗ ⊆ B124δ+21 (c∗ ), then we output
+       c∗ . Otherwise, we assert that radπ (G) < τ . This is the most technical part of the proof.
+       Recall that if radπ (G) ≤ τ , then we can prove Cπ (G) ⊆ C ∗ . So, we need to consider the
+       case radπ (G) ≥ τ . Then, we prove that for some u, v ∈ Supp(π), λτ (u) + λτ (v) − O(δ) ≤
+       d(u, v) ≤ λτ (u) + λτ (v) + O(δ). For that, we exploit both the fact that C ∗ ̸= ∅ (for the upper
+       bound) and the Helly-type property of Lemma 3 (for the lower bound). Furthermore, due
+       the way we construct C ∗ , and due to the definition of Cπ (G), we observe that every vertex of
+       C ∗ ∪ Cπ (G) must be contained in an almost shortest (u, v)-path: at distances λτ (u) ± O(δ)
+       and λτ (v) ± O(δ) of u and v. As a result, we can use Lemma 4 to upper bound the diameter
+       of C ∗ ∪ Cπ (G). See Claims 31 and 32 in the appendix.
+           As we call Lemma 12 O(ρ) times, the runtime is in O(ρm).                                       ◀
+
+        4     Exact algorithms
+       We present (almost) linear-time algorithms for the Weighted Center problem. With the
+       notable exception of Sec. 4.3, all the results in what follows are based on our Theorem A,
+       used in combination with other properties of the classes of graphs considered. Furthermore,
+       for the classes of graphs with unbounded hyperbolicity, we present parameterized algorithms,
+       where the parameter is the hyperbolicity value.
+
+       4.1    Bounded-degree graphs
+       The growth function of a graph G = (V, E) is defined as γG : ρ ∈ N 7→ max{|Bρ (v)| : v ∈ V }.
+       Note that γG (ρ) = O(∆ρ ) if G has maximum degree ∆. A graph G of polynomial growth
+       is one such that γG (ρ) = O(ρα ), for some fixed exponent α. See [40], and the references
+       therein, for previous studies on the graphs of polynomial growth. Finally, a graph G has
+       doubling dimension β if every ball in G of positive radius is included in the union of at most
+       2β balls with half-radius. Then, γG (ρ) = O(ρβ ).
+
+       ▶ Theorem 14. For any δ-hyperbolic graph G, and for any profile π, the Weighted Center
+       problem can be solved in O((γG (O(δ)) + δ log2 n)m) time, with γG the growth function. In
+       particular, this algorithm runs
+       1. in O((∆O(δ) + δ log2 n)m) time, if G has maximum degree ∆;
+       2. in O(δ α m log2 n) time, if G has polynomial growth with exponent α;
+       3. in O(δ β m log2 n) time, if G has doubling dimension β.
+G. Ducoffe                                                                                                               133:11
+
+
+Proof. We apply Theorem A(2) to compute a vertex c2 such that Cπ (G) ⊆ B124δ+21 (c2 ).
+To compute Cπ (G), it suffices to compute rπ (x), for every x ∈ B124δ+21 (c2 ), which requires
+O(m) time per vertex. There are at most γG (124δ + 21) vertices in the ball.                ◀
+
+4.2       Chordal graphs, and weakly bridged graphs
+Recall that a chordal graph is one with no induced cycle of length more than three. A graph
+G is called weakly bridged if it has convex balls and if any of its induced cycles of length
+five is contained in the neighborhood of some vertex. Note that chordal graphs are weakly
+bridged. However, chordal graphs are 1-hyperbolic [9], whereas the hyperbolicity of weakly
+bridged graphs is unbounded [36]. The properties of weakly bridged graphs were studied
+in [17]. In particular, they satisfy the following Triangle Condition:
+    (TC) If u ∼ v and d(u, w) = d(v, w), for some vertices u, v, w, then S1 (u, w)∩S1 (v, w) ̸= ∅.
+We will need the following characterization of graphs with convex balls:
+▶ Lemma 15 (see Theorem 2 in [42]). All balls Bk (v) (v ∈ V , k ≥ 1) of a graph G are convex
+if and only if G does not contain isometric cycles of length ℓ > 5, and for any two vertices
+x, y of G the slice S1 (x, y) is a clique.
+The Weighted Center problem on weakly bridged graphs was studied in [11], Sec. 5. In
+particular, every radius function of a weakly bridged graph is 2-weakly peakless (see [11],
+Proposition 5.5). In what follows, we gather some more results from [11]; we provide more
+precise statements than the authors in [11], based on a careful analysis of their proofs. Let
+G = (V, E) be weakly bridged, and let π be an arbitrary profile:
+    (WB.1) for any v ∈ V such that v is not a local minimum of rπ in G, we can compute
+    in O(m) time the subset of all its neighbors u ∈ N (v) such that rπ (u) < rπ (v), and the
+    corresponding values rπ (u) (follows from [11], Lemma 5.9 and its proof);
+    (WB.2) for any v ∈ V such that v is a local minimum of rπ in G, but v ∈             / Cπ (G), a
+    vertex u ∈ B2 (v) such that rπ (u) < rπ (v) can be computed in O(m) time; furthermore,
+    for any c ∈ Cπ (G), there exists some u∗c ∈ S2 (v, c) such that u ∈ N [u∗c ] (follows from [11],
+    Proposition 5.11 and its proof3 ).
+Starting from any vertex v0 , we can repeatedly apply either (WB.1) or (WB.2) until we
+find a center. By doing so, we construct an improving sequence v0 , v1 , . . . , vℓ for which rπ is
+monotonically decreasing, and vℓ ∈ Cπ (G). Roughly, to bound the length ℓ of the sequence,
+we must enforce that d(vi+1 , Cπ (G)) < d(vi , Cπ (G)) at each step i of the process.
+▶ Lemma 16. Let G = (V, E) be weakly bridged, let π be an arbitrary profile, and let v ∈ V .
+If v is not a local minimum of rπ in G, then, for any c ∈ Cπ (G), there exists some neighbor
+uc of v such that rπ (uc ) is minimum within N [v], and d(uc , c) < d(v, c).
+Proof. Let u0 be minimizing rπ within N [v]. As v is a not a local minimum of rπ in G,
+rπ (u0 ) < rπ (v). Suppose by contradiction d(v, c) < d(u0 , c). For every x ∈ Supp(π), as the
+balls in G are convex, we get d(w, x) ≤ max{d(u0 , x), d(c, x)} for every w ∈ I(u0 , c). In
+particular, rπ (w) ≤ max{rπ (u0 ), rπ (c)} = rπ (u0 ) < rπ (v). As v ∈ I(u0 , c), a contradiction
+arises. Therefore, d(u0 , c) ≤ d(v, c). If d(u0 , c) < d(v, c), then we set uc := u0 , and we are
+done. Otherwise, by (TC), there exists some u1 ∈ S1 (u0 , c) ∩ S1 (v, c). By similar convexity
+arguments as above, rπ (u1 ) ≤ rπ (u0 ). Due to the minimality of rπ (u0 ) within N [v], we
+obtain rπ (u1 ) = rπ (u0 ). We set uc := u1 .                                                   ◀
+
+3
+    More specifically, for some u∗c ∈ S2 (v, c) the authors in [11] proved that rπ (u∗c ) < rπ (v), and that v, u, u∗c
+    have some common neighbor wmax . As v is a local minimum of rπ in G, rπ (u) < rπ (v) ≤ rπ (wmax ),
+    and similarly rπ (u∗c ) < rπ (wmax ). It implies that for any x ∈ Fπ (wmax ), u, u∗c ∈ S1 (wmax , x) holds. By
+    Lemma 15, either u = u∗c , or u ∼ u∗c .
+
+
+                                                                                                                         ESA 2026
+133:12 The Weighted Center of Hyperbolic Graphs
+
+
+       ▶ Lemma 17. Let G = (V, E) be weakly bridged, let π be an arbitrary profile, and let v ∈ V . If
+       v∈/ Cπ (G), then a vertex u ∈ B3 (v) such that rπ (u) < rπ (v), and d(u, Cπ (G)) < d(v, Cπ (G)),
+       can be computed in O(m) time.
+       Proof. We start with the following claim:
+       ▷ Claim 18. If (WB.2) applies to v, then it returns a vertex u ∈ B2 (v) such that rπ (u) < rπ (v),
+       and d(u, Cπ (G)) < d(v, Cπ (G)).
+       Proof. Indeed, let c ∈ Cπ (G) be closest to v. Recall that there exists some u∗c ∈ S2 (v, c) such
+       that u ∈ N [u∗c ]. Hence, d(u, Cπ (G)) ≤ d(u, c) ≤ 1 + d(u∗c , c) = d(v, c) − 1.               ◁
+
+           We now describe our algorithm for an arbitrary vertex v. If v is a local minimum of rπ in
+       G, then we are done by Claim 18. Otherwise, we apply (WB.1) to v. By doing so, we compute
+       the subset X(v) of all its neighbors minimizing rπ . As X(v) ⊆ S1 (v, z) for each z ∈ Fπ (v),
+       by Lemma 15, X(v) is a clique. Furthermore, we observe that d(u′ , Cπ (G)) ≤ d(v, Cπ (G))
+       for every u′ ∈ X(v). Indeed, this is because X(v) is a clique and, by Lemma 16 applied for
+       any c ∈ Cπ (G) closest to v, some unknown vertex in X(v) is at distance d(v, Cπ (G)) − 1
+       to the center. We pick some arbitrary u0 ∈ X(v). If (WB.1), (WB.2) cannot be applied
+       to u0 , then necessarily u0 ∈ Cπ (G). In this situation, we return u := u0 . Assume now
+       that (WB.2) applies to u0 . By Claim 18, the latter returns some u1 ∈ B2 (u0 ) ⊆ B3 (v)
+       such that: rπ (u1 ) < rπ (u0 ) < rπ (v); and d(u1 , Cπ (G)) < d(u0 , Cπ (G)) ≤ d(v, Cπ (G)). In
+       this situation, we return u := u1 . Otherwise, we apply (WB.1) to u0 to compute the
+       subset X(u0 ) of all its neighbours minimizing rπ . By similar convexity arguments as above,
+       X(u0 ) is a clique. Furthermore, d(u′′ , Cπ (G)) ≤ d(u0 , Cπ (G)) ≤ d(v, Cπ (G)) for every
+       u′′ ∈ X(u0 ). Let u2 be maximizing |N (u2 ) ∩ X(v)| within X(u0 ). In this situation, we return
+       u := u2 . Indeed, we first note that rπ (u2 ) < rπ (u0 ) < rπ (v). Suppose now by contradiction
+       d(u2 , Cπ (G)) ≥ d(v, Cπ (G)). Then, d(u2 , Cπ (G)) = d(u0 , Cπ (G)) = d(v, Cπ (G)) = k. Let
+       c0 ∈ Cπ (G) be closest to v. By Lemma 16 applied to both v, u0 , there exist x0 ∈ X(v),
+       x2 ∈ X(u0 ) such that d(x0 , c0 ) = d(x2 , c0 ) = k − 1. As x0 , x2 ∈ S1 (u0 , c0 ), by Lemma 15, we
+       get x0 ∼ x2 . However, as G has convex balls, there is no induced C4 . It implies that the
+       subsets N (u′′ ) ∩ X(v), for u′′ ∈ X(u0 ), must be comparable for inclusion. Therefore, due
+       to the maximality of |N (u2 ) ∩ X(v)|, u2 ∼ x0 holds. It implies that x0 ∈ S1 (u2 , c0 ). But
+       then, for every y ∈ Fπ (u2 ), as G has convex balls, d(w, y) ≤ max{d(u2 , y), d(c0 , y)} holds for
+       every w ∈ I(u2 , c0 ). So, rπ (w) ≤ max{rπ (u2 ), rπ (c0 )} = rπ (u2 ) for every w ∈ I(u2 , c0 ). As
+       x0 ∈ I(u2 , c0 ), and rπ (x0 ) = rπ (u0 ) > rπ (u2 ), a contradiction arises.                      ◀
+
+           We can now state the main result of this section. Theorem A(1) is used for selecting
+       the start vertex of our local search. To improve the runtime for chordal graphs, we use a
+       stronger version of this result (Theorem 6), in combination with the following property of
+       this class of graphs:
+       ▶ Lemma 19 (see Theorem 1 in [8]). Every chordal graph 3-embeds into a tree.
+       ▶ Theorem 20. For every weakly bridged graph G, for any profile π, the Weighted Center
+       problem can be solved
+       1. in O(δm log n) time if G is δ-hyperbolic;
+       2. and in O(m) time if G is chordal.
+       Proof. We compute some vertex c1 such that d(c1 , Cπ (G)) ∈ O(δ log n), whose existence
+       follows from Theorem A(1). If G is chordal, then by the combination of Lemma 19 with
+       Theorem 6, the vertex c1 can be chosen such that d(c1 , Cπ (G)) ∈ O(1). Then, starting from
+       v := c1 , we repeatedly apply Lemma 17 until we find a center. The number of steps of the
+       local search is at most d(c1 , Cπ (G)). Furthermore, each step can be done in O(m) time. ◀
+G. Ducoffe                                                                                             133:13
+
+
+4.3    Planar graphs
+▶ Theorem 21. There is an 2O(δ) n log10 n-time algorithm for the Weighted Center
+problem on δ-hyperbolic planar graphs.
+
+    Recall that a separator of a graph G is a subset S such that G \ S is disconnected. The
+balance of a separator S is the largest α such that every connected component of G \ S
+contains at most (1 − α)n vertices. Finally, a separator S is called isometric if it induces an
+isometric (or distance-preserving) subgraph of G. Note that if S is an isometric separator,
+and C is any connected component of G \ S, then C ∪ S also induces an isometric subgraph.
+
+▶ Lemma 22 (see Theorem 1 in [35]). If G is a planar δ-hyperbolic graph, then we can
+compute in O(δ 2 n log4 n) time an isometric separator S such that
+ 1. either S is a path of length O(δ 2 log n), and it has constant balance;
+ 2. or S is a cycle of length O(δ), and it has balance at least 2O(δ)1log n .
+
+    As it can be expected, our strategy for proving Theorem 21 consists in recursively
+disconnecting a planar hyperbolic graph using Lemma 22. After each separation, for any
+connected component C, we need to compute, for each vertex of C, its maximum weighted
+distance to the vertices in the other connected components. For that, we use the algorithmic
+toolkit from [38], which is based on VC-theory. In what follows, for any graph G, the
+boundary of an induced subgraph H is defined as the subset of all the vertices of H with
+at least one neighbor in V (G) \ V (H). We denote the boundary of H by ∂H. Furthermore,
+we assume for what follows that ∂H is totally ordered: ∂H = ⟨s0 , s1 , . . . , s|∂H|−1 ⟩ (the
+ordering is arbitrary). Then, for any vertex v, the pattern of v with respect to ∂H is the
+|∂H|-dimensional array pv such that, for each i, pv [i] = d(v, si ) − d(v, s0 ). The following
+result is proved in [38] for Kh -minor-free graphs, but we restate it only for planar graphs:
+
+▶ Lemma 23 (see Lemma 4 in [38]). Let H be a connected induced graph of some planar
+graph G. The number of distinct patterns with respect to ∂H is in O(|∂H||V (H)|4 ).
+
+    Since we are dealing with arbitrary profiles (not necessarily binary), in what follows we
+will need to combine Lemma 23 with the following convex hull trick:
+
+▶ Lemma 24 (see Lemma 4.2 in [25]). Let F be a set of n linear functions fi : t 7→ ai · t + bi ,
+where ai , bi ≥ 0. Then after an O(n log n)-time pre-processing, for any x ≥ 0 we can compute
+max{ai · x + bi : 1 ≤ i ≤ n} in O(log n) time.
+
+Proof of Theorem 21. Assume for what follows n ≥ 2Θ(δ) (otherwise, we solve the Weigh-
+ted Center problem by brute-force in O(n2 ) = 2O(δ) time). We apply Lemma 22 to
+compute an isometric separator S in O(δ 2 n log4 n) time. Furthermore, as |S| = O(δ 2 log n),
+we can afford to compute rπ (s), for each s ∈ S; it takes O(δ 2 n log n) time in total. For the
+other vertices, let us consider the connected components C1 , C2 , . . . , Cq , q ≥ 2, of G \ S. For
+each i such that 1 ≤ i ≤ q, let πi denote the restriction of π to Ci ∪ S. Then, for any vertex
+v of Ci , rπ (v) = max{rπi (v)} ∪ {π(u)d(v, u) : u ∈
+                                                   / Ci ∪ S}. As Ci ∪ S induces an isometric
+subgraph Gi of G, the graph Gi is also planar and δ-hyperbolic. In particular, all the values
+rπi (v), for v ∈ Ci , can be computed by applying our algorithm recursively on Gi .
+     For each i such that 1 ≤ i ≤ q, for each v ∈ Ci , define λ(v) = max{π(u)d(v, u) : u ∈         /
+Ci ∪ S}. By the above, rπ (v) = max{rπi (v), λ(v)}. So, we are left to compute the values
+λ(v), for each v ∈ V \ S. For that, for each j with 1 ≤ j ≤ ⌈log q⌉, let Xj , Yj be such that:
+     Xj contains all components Ci such that the j th bit of i is equal to 0;
+     Yj contains all components Ci such that the j th bit of i is equal to 1.
+
+
+
+                                                                                                       ESA 2026
+133:14 The Weighted Center of Hyperbolic Graphs
+
+
+       Note that for each pair of vertices u, v that are in different components of G \ S, there is
+       at least one j such that either u ∈ Xj , v ∈ Yj or u ∈ Yj , v ∈ Xj . Therefore, to compute
+       all values λ(v), it suffices to compute the following values λj (v) for any j: if v ∈ Xj , then
+       λj (v) = max{π(u)d(v, u) : u ∈ Yj }; and if v ∈ Yj , then λj (v) = max{π(u)d(v, u) : u ∈ Xj }.
+       By symmetry, it suffices to present an algorithm for computing all values λj (v), for v ∈ Xj .
+           For that, let ∂S = s0 , s1 , . . . , s|∂S|−1 . We compute all profiles pu , for u ∈ Yj , with respect
+       to ∂S. This can be done in O(|∂S|n) = O(δ 2 n log n) by performing a BFS for each si ∈ ∂S.
+       Denote by PS the set of all distinct profiles with respect to ∂S. Note that PS can be
+       computed in O(|∂S|n log n) = O(δ 2 n log2 n) time, by sorting. Furthermore, by Lemma 23, it
+       holds |PS | = O(|∂S||S|4 ) = O(|S|5 ) = O(δ 10 log5 n). For each p ∈ PS , let Yj,p contain all the
+       vertices u ∈ Yj such that pu = p. For any v ∈ Xj , let λj,p (v) = max{π(u)d(v, u) : u ∈ Yj,p }.
+       To compute λj (v), it suffices to compute λj,p for each p ∈ PS .
+           So, let p ∈ PS be fixed. For each k with 0 ≤ k ≤ |∂S| − 1, we define the family of
+       functions Fj,p,k = {t 7→ π(u) · t + π(u)d(sk , u) : u ∈ Yj,p }, for which we apply Lemma 24.
+       It takes O(|∂S|n log n) = O(δ 2 n log2 n) time in total. Then, we consider each v ∈ Xj
+       sequentially. Let k be such that d(v, sk ) + p[k] is minimum. We claim that for any u ∈ Yj,p ,
+       sk ∈ I(v, u). To prove this claim, as any shortest (v, u)-path contains a vertex of ∂S, it
+       suffices to prove that d(v, sk ) + d(sk , u) is minimum. That is indeed the case because for any
+       k ′ with 0 ≤ k ′ ≤ |∂S| − 1, d(v, sk ) + d(sk , u) − d(s0 , u) = d(v, sk ) + p[k] ≤ d(v, sk′ ) + p[k ′ ] =
+       d(v, sk′ ) + d(sk′ , u) − d(s0 , u). Consequently, by Lemma 24 applied for Fj,p,k and x = d(v, sk ),
+       we can compute λj,p (v) in O(log n) time.
+           Overall, the values λj,p (v), for v ∈ Xj , can be computed in O(δ 2 n log2 n) time. It implies
+       that the values λj (v), for v ∈ Xj , can be computed in O(|PS |δ 2 n log2 n) = O(δ 12 n log7 n)
+       time. Hence, the values λ(v), for v ∈ V \ S, can be computed in O(δ 12 n log8 n) time.
+          Finally, by Lemma 22, the balance of S is at least 1/(2O(δ) log n). Furthermore, as we
+       assume n ≥ 2Θ(δ) , the inclusion of S in all the Gi ’s has a marginal impact on the size of
+       these subgraphs. Therefore, the recursion depth of our algorithm is at most 2O(δ) log2 n. ◀
+
+
+       4.4     More classes of graphs
+       We obtain almost optimal algorithms for the Weighted Center problem on dually chordal
+       graphs, and chordal bipartite graphs. A graph is dually chordal if it is the intersection
+       graph of the maximal cliques of some chordal graph. The same as chordal graphs can be
+       characterized by the existence of a perfect elimination ordering, the dually chordal graphs
+       can be also characterized by the existence of a special type of dismantling ordering [7]. A
+       chordal bipartite graph is a bipartite graph with no induced cycle of length more than four.
+       Both the dually chordal graphs and the chordal bipartite graphs are 1-hyperbolic. We also
+       consider some of their metric generalizations. Namely, a graph is called Helly if every family
+       of pairwise intersecting balls has a nonempty common intersection. A half-ball in a bipartite
+       graph is the intersection of a ball with one of its two partite sets. A bipartite graph is called
+       bipartite Helly if and only if every family of pairwise intersecting half-balls has a nonempty
+       common intersection. Interestingly, every (bipartite) graph G can be isometrically embedded
+       in a smallest (bipartite) Helly graph H(G), which is called its injective hull. Furthermore,
+       dually chordal graphs and chordal bipartite graphs are Helly and bipartite Helly, respectively.
+
+       ▶ Theorem 25. For a (bipartite) Helly graph, the Weighted Center problem can be solved
+       1. in O(δ 3 m log2 n) time, if it is δ-hyperbolic;
+       2. in O(m log n) time, if it is dually chordal or chordal bipartite.
+G. Ducoffe                                                                                         133:15
+
+
+    Roughly, we use Theorem A to restrict the search for a center to some ball of radius O(δ).
+Then, for any profile π, for any value τ , we can identify the vertices u of this ball such that
+rπ (u) ≤ τ using a nontrivial combination of prior results for binary profiles on these classes
+of graphs and a generalization of the techniques from [21], Section 4.1.
+
+   Finally, a graph G is called distance-hereditary if every induced path is a shortest-path.
+Note that the distance-hereditary graphs are 1-hyperbolic [43].
+
+▶ Theorem 26. The Weighted Center problem can be solved in O(m) time for distance-
+hereditary graphs.
+
+    We prove new metric properties of distance-hereditary graphs, which we use in the design
+of our O(m)-time algorithm. In particular, radius functions are 2-weakly peakless. Therefore,
+a local-search algorithm for computing a center can be derived. To implement each step of
+the local search in O(m) time, we use the injective hull. In fact, we need the result from [31]
+that the injective hull of a distance-hereditary graph is both Helly and distance-hereditary.
+Furthermore, [31] also provides an O(m)-time algorithm for computing the injective hull of a
+distance-hereditary graph.
+
+
+ 5     Perspectives
+The main contribution of the paper is an algorithm for computing on any δ-hyperbolic graph
+with m edges, for any profile π, some vertex at distance O(δ) to the center in Õ(δm) time
+(Theorem 11). In doing so, we answer one of the questions left open in [11] (Question 10.1).
+Our dependency on δ is linear, but it is quite large. Improving this constant could be an
+interesting challenge.
+    Based on this main result, a framework for solving the Weighted Center problem
+exactly on some classes of hyperbolic graphs is proposed. It implies optimal, or almost
+optimal, algorithms for the Weighted Center problem on chordal graphs, chordal bipartite
+graphs, dually chordal graphs and distance-hereditary graphs. However, the inclusion to
+our framework of AT-free graphs, graphs of bounded asteroidal number, and other classic
+examples of hyperbolic graphs, remains to be done.
+    Finally, we present parameterized almost linear-time algorithms for the Weighted Cen-
+ter problem on planar graphs and several other classes of graphs, where the parameter is the
+hyperbolicity. We leave for future work whether similar hyperbolicity-based parameterizations
+can be also achieved for some other distance-related problems on these classes of graphs.
+
+
+     References
+ 1   A. Abboud, V. Vassilevska Williams, and J. Wang. Approximation and fixed parameter
+     subquadratic algorithms for radius and diameter in sparse graphs. In Proceedings of the
+     ACM-SIAM Symposium on Discrete Algorithms (SODA), pages 377–391, 2016.
+ 2   L. Bénéteau, J. Chalopin, V. Chepoi, and Y. Vaxès. Medians in median graphs and their
+     cube complexes in linear time. Journal of Computer and System Sciences, 126:80–105, 2022.
+     doi:10.1016/J.JCSS.2022.01.001.
+ 3   L. Bénéteau, J. Chalopin, V. Chepoi, and Y. Vaxès. Graphs with Gp -connected medians.
+     Mathematical Programming, Ser B, 203:369–420, 2024. doi:10.1007/S10107-023-01939-3.
+ 4   P. Bergé, G. Ducoffe, and M. Habib. Quasilinear-time eccentricities computation, and more,
+     on median graphs. In Proceedings of the ACM-SIAM Symposium on Discrete Algorithms
+     (SODA), pages 1679–1704, 2025.
+
+
+
+
+                                                                                                   ESA 2026
+133:16 The Weighted Center of Hyperbolic Graphs
+
+
+        5   M. Blum, R.W. Floyd, V. Pratt, R.L. Rivest, and R.E. Tarjan. Linear time bounds for median
+            computations. In Proceedings of the ACM Symposium on Theory of Computing (STOC), pages
+            119–124, 1972.
+        6   J.A. Bondy and U.S.R. Murty. Graph theory. Graduate Texts in Mathematics, 2008.
+        7   A. Brandstädt, V. Chepoi, and F.F. Dragan. The algorithmic use of hypertree structure
+            and maximum neighbourhood orderings. Discrete Applied Mathematics, 82:43–77, 1998.
+            doi:10.1016/S0166-218X(97)00125-X.
+        8   A. Brandstädt, V. Chepoi, and F.F. Dragan. Distance Approximating Trees for Chordal and
+            Dually Chordal Graphs. Journal of Algorithms, 30:166–184, 1999. doi:10.1006/JAGM.1998.
+            0962.
+        9   G. Brinkmann, J.H. Koolen, and V. Moulton. On the hyperbolicity of chordal graphs. Annals
+            of Combinatorics, 5(1):61–69, 2001.
+       10   S. Cabello. Subquadratic algorithms for the diameter and the sum of pairwise distances in
+            planar graphs. ACM Transactions on Algorithms, 15(2), 2018.
+       11   J. Chalopin, V. Chepoi, F.F. Dragan, G. Ducoffe, and Y. Vaxxès. On Gp -unimodality of radius
+            functions in graphs: structure and algorithms. Technical Report 2503.15011, arXiv, 2025.
+       12   T.M. Chan, H.-C. Chang, J. Gao, S. Kisfaludi-Bak, H. Le, and D.W. Zheng. Truly Subquadratic
+            Time Algorithms for Diameter and Related Problems in Graphs of Bounded VC-dimension.
+            In Proceedings of the IEEE Symposium on Foundations of Computer Science (FOCS), pages
+            2728–2765, 2025.
+       13   V. Chepoi and F.F. Dragan. A linear algorithm for computing a central vertex of a chordal
+            graph. In Proceedings of the European Symposium on Algorithms (ESA), pages 159–170, 1994.
+       14   V. Chepoi, F.F. Dragan, B. Estellon, M. Habib, and Y. Vaxès. Diameters, centers, and approx-
+            imating trees of δ-hyperbolic geodesic spaces and graphs. In Proceedings of the Symposium on
+            Computational Geometry (SoCG), pages 59–68, 2008.
+       15   V. Chepoi, F.F. Dragan, I. Newman, Y. Rabinovich, and Y. Vaxès. Constant approximation
+            algorithms for embedding graph metrics into trees and outerplanar graphs. Discretre &
+            Computational Geometry, 47:187–214, 2012. doi:10.1007/S00454-011-9386-0.
+       16   V. Chepoi and B. Estellon. Packing and covering δ-hyperbolic spaces by balls. In Proceedings
+            of the International Workshops on Approximation Algorithms for Combinatorial Optimization
+            Problems, and on Randomization and Computation (APPROX-RANDOM), pages 59–73, 2007.
+       17   V. Chepoi and D. Osajda. Dismantlability of weakly systolic complexes and applications.
+            Transactions of the American Mathematical Society, 367(2):1247–1272, 2015.
+       18   T.H. Cormen, C.E. Leiserson, R.L. Rivest, and C. Stein. Introduction to algorithms. MIT
+            press, 2022.
+       19   D. Coudert, G. Ducoffe, and A. Popa. Fully Polynomial FPT Algorithms for Some Classes
+            of Bounded Clique-width Graphs. ACM Transactions on Algorithms, 15(3), 2019. doi:
+            10.1145/3310228.
+       20   F.F. Dragan. Dominating cliques in distance-hereditary graphs. In Proceedings of the Scand-
+            inavian Workshop on Algorithm Theory (SWAT), pages 370–381, 1994.
+       21   F.F. Dragan, G. Ducoffe, and H.M. Guarnera. Fast deterministic algorithms for computing all
+            eccentricities in (hyperbolic) Helly graphs. Journal of Computer and System Sciences, 199,
+            2025.
+       22   F.F. Dragan and H.M. Guarnera. Eccentricity terrain of δ-hyperbolic graphs. Journal of
+            Computer and System Sciences, 112:50–65, 2020. doi:10.1016/J.JCSS.2020.03.004.
+       23   A.W.M. Dress. Trees, tight extensions of metric spaces, and the cohomological dimension of
+            certain groups: a note on combinatorial properties of metric spaces. Advances in Mathematics,
+            53(3):321–402, 1984.
+       24   G. Ducoffe. Beyond Helly Graphs: The Diameter Problem on Absolute Retracts. In Proceedings
+            of the International Workshop on Graph-Theoretic Concepts in Computer Science (WG), pages
+            321–335, 2021.
+G. Ducoffe                                                                                             133:17
+
+
+25   G. Ducoffe. Optimal Centrality Computations Within Bounded Clique-Width Graphs. Al-
+     gorithmica, 84:3192–3222, 2022. doi:10.1007/S00453-022-01015-W.
+26   G. Ducoffe. Distance problems within Helly graphs and k-Helly graphs. Theoretical Computer
+     Science, 946, 2023.
+27   G. Ducoffe. Beyond Trees: The Weighted Center Problem on Gromov Hyperbolic Graphs.
+     Technical Report 2607.04287, arXiv, 2026.
+28   M.E. Dyer. On A Multidimensional Search Technique And Its Application To The Euclidean
+     One-Centre Problem. SIAM Journal on Computing, 15(3):725–738, 1986. doi:10.1137/
+     0215052.
+29   M.C. Golumbic and U. Rotics. On The Clique-Width Of Some Perfect Graph Classes.
+     International Journal of Foundations of Computer Science, 11(3):423–443, 2000. doi:10.
+     1142/S0129054100000260.
+30   M. Gromov. Hyperbolic Groups, 1987.
+31   H.M. Guarnera, F.F. Dragan, and A. Leitert. Injective hulls of various graph classes. Graphs
+     and Combinatorics, 38(4), 2022. doi:10.1007/S00373-022-02512-Z.
+32   B. Das Gupta, M. Karpinski, N. Mobasheri, and F. Yahyanejad. Effect of Gromov-hyperbolicity
+     parameter on cuts and expansions in graphs and some algorithmic implications. Algorithmica,
+     80(2):772–800, 2018. doi:10.1007/S00453-017-0291-7.
+33   O. Kariv and S.L. Hakimi. An Algorithmic Approach To Network Location Problems. I: The
+     p-Centers. SIAM Journal on Applied Mathematics, 37(3):513–538, 1979.
+34   W.S. Kennedy, I. Saniee, and O. Narayan. On the hyperbolicity of large-scale networks and
+     its estimation. In Proceedings of the IEEE International Conference on Big Data (BigData),
+     pages 3344–3351, 2016.
+35   S. Kisfaludi-Bak, J. Masar̆íkova, E.J. van Leeuwen, B. Walczak, and K. Wȩgrzycki. Separator
+     Theorem and Algorithms for Planar Hyperbolic Graphs. In Proceedings of the Symposium on
+     Computational Geometry (SoCG), 2024.
+36   J.H. Koolen and V. Moulton. Hyperbolic bridged graphs. European Journal of Combinatorics,
+     23(6):683–699, 2002. doi:10.1006/EUJC.2002.0591.
+37   R. Krauthgamer and J.R. Lee. Algorithms on negatively curved spaces. In Proceedings of the
+     IEEE Symposium on Foundations of Computer Science (FOCS), pages 119–132, 2006.
+38   H. Le and C. Wulff-Nilsen. VC set systems in minor-free (di) graphs and applications. In
+     Proceedings of the ACM-SIAM Symposium on Discrete Algorithms (SODA), pages 5332–5360,
+     2024.
+39   N. Megiddo. Linear time algorithms for linear programming in R3 and related problems. SIAM
+     Journal on Computing, 12:759–776, 1983.
+40   P. Papasoglu. Polynomial growth and asymptotic dimension. Israel Journal of Mathematics,
+     255:985–1000, 2023.
+41   V. Shchur. A quantitative version of the Morse lemma and quasi-isometries fixing the ideal
+     boundary. Journal of Functional Analysis, 264(3):815–836, 2013.
+42   V.P. Soltan and V.D. Chepoi. Conditions for invariance of set diameters under d-convexification
+     in a graph. Cybernetics, 19:750–756, 1983. Russian, English transl.
+43   Y. Wu and C. Zhang. Hyperbolicity and chordality of a graph. The Electronic Journal of
+     Combinatorics, 18(1):P43, 2001.
+
+
+ A     Missing proofs of Section 3
+The following claims complete the correctness proof of the algorithm of Theorem 11. We put
+all the claims together at the end of the section.
+▷ Claim 27. If λτ (v) ≥ ℓ(v) + 2ρ for every v ∈ Supp(π), then radπ (G) < τ .
+Proof. Indeed, for any v ∈ Supp(π), d(c1 , v) ≤ ℓ(v) + ρ ≤ ℓ(v) + 2ρ − 1. So, in particular,
+T
+  {Bλτ (v)−1 (v) : v ∈ Supp(π)} ̸= ∅.                                                     ◁
+
+
+
+                                                                                                       ESA 2026
+133:18 The Weighted Center of Hyperbolic Graphs
+
+
+       ▷ Claim 28. If Mi ̸= ∅, and z is any vertex of Bρ (c1 ) such that rπ (z) ≤ τ , then rπi (z) ≤ i+2δ.
+       Furthermore, if radπ (G) ≤ τ , then radπi (G) ≤ i + 2δ.
+       Proof. Suppose, for the sake of contradiction, rπi (z) > i + 2δ. Let v ∈ Supp(π) be chosen
+       such that q(v) ∈ Fπi (z). Assume first that v ∈ Bρ (c1 ). As d(z, v) > i = λτ (v), we get
+       rπ (z) ≥ π(v)d(z, v) > τ , thus contradicting our assumption that rπ (z) ≤ τ . Thus, v ∈ / Bρ (c1 ).
+       As we assume z ∈ Bρ (c1 ), by Lemma 5, we obtain d(v, q(v)) + d(q(v), z) ≤ d(v, z) + 2δ.
+       Therefore, d(v, z) ≥ ℓ(v) + d(q(v), z) − 2δ > ℓ(v) + i = λτ (v). Again, this contradicts our
+       assumption that rπ (z) ≤ τ . So, radπi (G) ≤ rπi (z) ≤ i + 2δ. Finally, note that if radπ (G) ≤ τ ,
+       then as we assume Cπ (G) ⊆ Bρ (c1 ), there exists a z ∈ Bρ (c1 ) such that rπ (z) ≤ τ .         ◁
+
+       ▷ Claim 29. For any vertex z ∈ Bρ (c1 ) such that rπ (z) ≤ τ , z ∈ C ∗ .
+       Proof. It suffices to prove that z ∈ C i for any i such that Mi ̸= ∅. By Claim 28, rπi (z) ≤ i+2δ.
+       Therefore, by Lemma 13, d(z, Cπi (G)) ≤ rπi (z) − radπi (G) + 6δ + 1 ≤ i − radπi (G) + 8δ + 1.
+       As Cπi (G) ⊆ B5δ+1 (ci ), it implies that
+          d(z, ci ) ≤ d(z, Cπi (G)) + 5δ + 1 ≤ i − radπi (G) + 13δ + 2
+                   ≤ i − (rπi (ci ) − 5δ − 1) + 13δ + 2
+                   ≤ i − rπi (ci ) + 18δ + 3.
+       Therefore, z ∈ C i .                                                                             ◁
+
+       ▷ Claim 30. If z ∈ C ∗ , and v ∈ Supp(π), then d(z, v) ≤ λτ (v) + 18δ + 3.
+       Proof. As C ∗ ̸= ∅, we get λτ (v) > 0. If λτ (v) ≥ ℓ(v) + 2ρ, then it holds C ∗ ⊆ Bρ (c1 ) ⊆
+       Bλτ (v) (v), and so, we are done. Thus, from now on, let i be such that 0 ≤ i ≤ 2ρ − 1,
+       and q(v) ∈ Mi . Then, d(z, v) ≤ d(z, ci ) + d(ci , q(v)) + d(q(v), v). Recall that d(q(v), v) =
+       ℓ(v) = λτ (v) − i. Furthermore, as q(v) ∈ Mi , d(ci , q(v)) ≤ rπi (ci ). As z ∈ C ∗ ⊆ C i , we get
+       d(z, ci ) ≤ i−rπi (ci )+18δ+3. As a result, d(z, v) ≤ (i−rπi (ci )+18δ+3)+rπi (ci )+(λτ (v)−i) ≤
+       λτ (v) + 18δ + 3.                                                                               ◁
+
+       ▷ Claim 31. If radπ (G) ≥ τ , and if C ∗ ̸= ∅, then diam(C ∗ ) ≤ 124δ + 21.
+       Proof. Assume first λτ (v) ≤ 2δ+1 for some v ∈ Supp(π). By Claim 30, C ∗ ⊆ B20δ+4 (v) holds.
+       Therefore, it holds diam(C ∗ ) ≤ 40δ + 8. From now on, we assume that λτ (v) > 2δ + 1 for
+                                                                       T
+       every v ∈ Supp(π). As we assume radπ (G) ≥ τ , we obtain {Bλτ (v)−1 (v) : v ∈ Supp(π)} =
+       ∅. Therefore, by the contrapositive of Lemma 3, there exist u, v ∈ Supp(π) such that
+       Bλτ (u)−1−2δ (u) ∩ Bλτ (v)−1−2δ (v) = ∅. In this situation, d(u, v) ≥ λτ (u) + λτ (v) − 4δ − 1. By
+       Claim 30, C ∗ ⊆ Bλτ (u)+18δ+3 (u). Similarly, C ∗ ⊆ Bλτ (v)+18δ+3 (v).
+           We fix some shortest (u, v)-path P . Then, let Q be the subpath of P that is made of all the
+       vertices w such that λτ (u) − 22δ − 4 ≤ d(u, w) ≤ λτ (u) + 18δ + 3. To prove the claim, we will
+       prove that d(z, Q) ≤ 42δ +7 for every z ∈ C ∗ . By doing so, diam(C ∗ ) ≤ diam(Q)+84δ +14 ≤
+       124δ + 21. In what follows, let z ∈ C ∗ be arbitrary. As d(u, v) ≤ d(u, z) + d(z, v), there must
+       be a vertex wz of P such that d(u, wz ) ≤ d(u, z), d(v, wz ) ≤ d(v, z). Recall that d(u, z) ≤
+       λτ (u) + 18δ + 3, d(v, z) ≤ λτ (v) + 18δ + 3, and d(u, v) ≥ λτ (u) + λτ (v) − 4δ − 1. Consequently,
+       d(u, z) + d(z, v) ≤ d(u, v) + µ, where µ = 40δ + 7. By Lemma 4, d(z, wz ) ≤ µ + 2δ = 42δ + 7.
+       So, it remains to show that wz ∈ Q. As d(u, wz ) ≤ d(u, z), we get d(u, wz ) ≤ λτ (u) + 18δ + 3.
+       Finally,
+          d(u, wz ) = d(u, v) − d(v, wz ) ≥ d(u, v) − d(v, z)
+                    ≥ (λτ (u) + λτ (v) − 4δ − 1) − (λτ (v) + 18δ + 3)
+                    ≥ λτ (u) − 22δ − 4.
+       Therefore, wz ∈ Q.                                                                               ◁
+G. Ducoffe                                                                                            133:19
+
+
+▷ Claim 32. If C ∗ ̸= ∅, and C ∗ ⊆ B124δ+21 (c∗ ) for some c∗ ∈ C ∗ , then also Cπ (G) ⊆
+B124δ+21 (c∗ ).
+
+Proof. The result follows from Claim 29 if radπ (G) ≤ τ . Thus from now on, let us assume
+radπ (G) = γ > τ . Note that λγ (v) ≥ λτ (v) for any v ∈ Supp(π). Assume first λγ (v) ≤ 2δ + 1
+for some v ∈ Supp(π). Then, Cπ (G) ⊆ B2δ+1 (v) ⊆ B22δ+5 (c∗ ) holds, where the first inclusion
+follows from the definition of λγ (v) and the second inclusion follows from Claim 30. From
+now on, we assume λγ (v) > 2δ + 1 for every v ∈ Supp(π). Furthermore, as radπ (G) = γ,
+T
+  {Bλγ (v)−1 (v) : v ∈ Supp(π)} = ∅. Hence, by the contrapositive of Lemma 3, there exist
+u, v ∈ Supp(π) such that d(u, v) ≥ λγ (u) + λγ (v) − 4δ − 1. Recall that as c∗ ∈ C ∗ , by
+Claim 30, d(u, c∗ ) ≤ λτ (u) + 18δ + 3 ≤ λγ (u) + 18δ + 3. Similarly, d(v, c∗ ) ≤ λγ (v) + 18δ + 3.
+    Let c ∈ Cπ (G) be arbitrary. In particular, d(u, c) ≤ λγ (u), and in the same way
+d(v, c) ≤ λγ (v). Since G is δ-hyperbolic,
+
+   d(u, v) + d(c, c∗ ) ≤ max{d(u, c) + d(v, c∗ ), d(u, c∗ ) + d(v, c)} + 2δ
+                      ≤ λγ (u) + λγ (v) + 20δ + 3
+                      ≤ d(u, v) + 24δ + 4.
+
+As a result, d(c, c∗ ) ≤ 24δ + 4 < 124δ + 21.                                                   ◁
+
+     We are now ready to prove the correctness of the algorithm of Theorem 11. For any
+i such that Mi ̸= ∅, as Cπi (G) ⊆ B5δ+1 (ci ), we get radπi (G) ≥ rπi (ci ) − 5δ − 1. Thus, if
+rπi (ci ) > i + 7δ + 1, then we get radπi (G) > i + 2δ. By the contrapositive of Claim 28,
+radπ (G) > τ . Assume now rπi (ci ) ≤ i+7δ+1 for each i. If C ∗ = ∅, then, by the contrapositive
+of Claim 29, radπ (G) > τ . Otherwise, let c∗ ∈ C ∗ be arbitrary. If C ∗ ̸⊆ B124δ+21 (c∗ ), then,
+we obtain diam(C ∗ ) > 124δ + 21; by the contrapositive of Claim 31, radπ (G) < τ . However,
+if C ∗ ⊆ B124δ+21 (c∗ ), then by Claim 32, Cπ (G) ⊆ B124δ+21 (c∗ ).
+
+
+
+
+                                                                                                      ESA 2026
+

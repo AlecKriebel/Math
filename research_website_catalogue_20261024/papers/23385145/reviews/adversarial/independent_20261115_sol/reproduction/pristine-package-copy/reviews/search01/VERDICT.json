@@ -1,0 +1,77 @@
+{
+  "reviewer_family": "search01",
+  "review_type": "independent_adversarial_algorithm_and_reduction_audit",
+  "problem_id": 30006605,
+  "pull_request": 570,
+  "head_sha": "417ca52e83cf06b07c388d89c756cfd86473d5b0",
+  "candidate_budget_position": "verification_of_complete_candidate_1_of_5",
+  "date_utc": "2026-10-15",
+  "verdict": "PASS_REDUCTION_AND_SEARCH_UNDER_EXPLICIT_IMPORTED_ORACLE",
+  "blocking_reduction_or_search_defects": [],
+  "counterexamples_within_stated_domain": [],
+  "strongest_verified_result": "Given the stated deterministic additive-eccentricity oracle on finite median graphs, the threshold reduction and implicit search correctly return an exact center, optimum radius, and all centers in O(n log^5(2n)) exact operations.",
+  "exact_assumptions": [
+    "Finite, nonempty, connected, simple, unit-edge median graph supplied by adjacency lists; medianity is promised.",
+    "Every profile value is a finite nonnegative real with exact comparison of bounded integer multiples.",
+    "Imported oracle returns every max_u(d_G(x,u)+a(u)) for integer a(u) in [0,n-1], deterministically in O(n log^4(2n)), including its preprocessing and requiring no supplied embedding or decomposition.",
+    "Standard graph/RAM index arithmetic on O(log n)-bit words; arbitrary-real operation counts are distinct from rational bit costs."
+  ],
+  "verified_components": [
+    "Full feasible-set equality for multiplicative-to-additive threshold transform.",
+    "Zero weights, clamping, exact ties, n=1, all-zero profiles, singleton support and zero optimum.",
+    "Implicit n-sorted-row optimum candidate set, feasible incumbent and optimum-survival invariant.",
+    "Every weighted midpoint median removes at least one quarter of active multiplicity on either outcome, including singleton and repeated-entry rows.",
+    "Saved witnesses and final complete center set.",
+    "O(log(2n)) oracle calls and O(n log^2(2n)) original-weight comparison overhead.",
+    "Median-graph adjacency read bound via hypercube subset edge inequality.",
+    "Exact rational comparison operands have O(B+log n) bits; no encoding-independent bit bound claimed.",
+    "Complete author JSON reproduced byte-for-byte from scratch and both frozen seals verified."
+  ],
+  "remaining_gaps": [
+    "This family's assignment does not independently certify the complete BDH imported theorem proof or its applicability; combine with the separate independent oracle audit before endorsing the unconditional headline.",
+    "Historical novelty and publication-package acceptance are not decided here.",
+    "No fast general median-graph oracle implementation or asymptotic benchmark was produced or claimed."
+  ],
+  "optional_editorial_notes": [
+    "Place the promised adjacency-list input explicitly in the theorem statement.",
+    "Tighten the ESA Lemma 2 pinpoint to p. 133:6."
+  ],
+  "author_full_json_equal": true,
+  "author_byte_equal": true,
+  "author_bundle_sealed_files_verified": 7,
+  "old_audit_sealed_files_verified": 7,
+  "independent_control_status": "PASS",
+  "independent_statistics": {
+    "connected_graphs_enumerated": 772,
+    "median_graphs_enumerated": 209,
+    "optimization_cases": 48641,
+    "median_optimization_cases": 46854,
+    "complete_feasible_set_comparisons": 579377,
+    "abstract_row_states": 44132,
+    "abstract_outcome_contractions": 94134,
+    "abstract_optimization_runs": 243120,
+    "abstract_search_iterations": 498009,
+    "cube_subset_edge_bound_checks": 65535
+  },
+  "independence_checkpoint_utc": "2026-10-15 04:08:39 UTC",
+  "old_audit_first_access_utc": "2026-10-15 04:12:18 UTC, after the fresh independent suite completed",
+  "independent_script_imports_author_code": false,
+  "concurrent_reviewer_findings_read": false,
+  "frozen_files_modified": false,
+  "git_operations_performed": false,
+  "external_person_communications": false,
+  "formal_or_human_peer_certification_claimed": false,
+  "completion_percent": 100,
+  "artifacts": [
+    "REPORT.md",
+    "VERDICT.json",
+    "INDEPENDENCE_CHECKPOINT.md",
+    "RESEARCH_LOG.md",
+    "SOURCE_CHECKS.md",
+    "independent_controls.py",
+    "INDEPENDENT_CONTROL_RESULTS.json",
+    "AUTHOR_CONTROLS_RERUN.json",
+    "REPRODUCTION_AND_INPUT_HASHES.json",
+    "SHA256SUMS"
+  ]
+}

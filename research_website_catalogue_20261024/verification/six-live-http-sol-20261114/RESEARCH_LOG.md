@@ -1,0 +1,8 @@
+# Six live HTTP verification log
+
+- 2026-11-15T02:49:19.508841+00:00: Dedicated folder guarded and expected files prepared offline; no live request before explicit deployment signal. Completion5%.
+- 2026-11-15T02:50:29.325761+00:00: Explicit root hosting-complete signal received and native CLI receipt copied; live GETs now authorized. An offline schema assumption about SOURCE_READY publication_date failed for heterogeneous records; switched to the actual whole raw native record metadata without editing any object. No live request occurred during that preparation failure. Completion20%.
+- 2026-11-15T02:55:49.759309+00:00:30 ordinary uncachebusted GETs complete,30pass: full approved26plushome/favicon/twoCSS byte-identical with direct200/MIME; all7researchHTMLcachemax-age0. Index78/sitemap79unique and6exactcanonicals/citationdates/assetlinks/iframes verified. No retry or cache override. Completion75%.
+- 2026-11-15T02:57:37.950189+00:00:18 bounded external prefix GETs (6DOI+12actualnativePDFZIPURLs) reachable; six DOI redirect destinations and native magic inspected. No whole external integrity/all-background health claim. Local custody independently passes530oldpublic/18core/26approved and556namespace; helper body/report read, result reused. Remaining: pure offline closure/report/seal. Completion90%.
+
+- 2026-11-15T03:02:23.160851+00:00: Full30GET proof,18bounded external checks, metadata/caches/index/sitemap and all local custody ready; pure offline closure passed530old/18core/26approved bytes with556namespace. Full report/literal verdict/failures and reproduction notes complete. No browser/nativeAA authority claimed. Final manifest/seal prepared. Completion100% for this bounded HTTP task.

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "reviewer": "oracle01",
+  "pr": 570,
+  "problem_id": "30006605",
+  "head": "417ca52e83cf06b07c388d89c756cfd86473d5b0",
+  "completed_at_utc": "2026-10-15T04:18:11.854982+00:00",
+  "completion_percent_assigned_audit": 100,
+  "verdict": "mathematically_sound_with_explicit_import_proof_corrections",
+  "candidate_proof_sha256": "b0b948da64c113dfff1349a2aae48389531c2a8bd719dcdd2ab9483a6fc37d76",
+  "all_16_original_hashes_match": true,
+  "candidate_read_completely": true,
+  "source_first_checkpoint_saved_before_candidate_access": true,
+  "historical_candidate_audit_read": false,
+  "prior_or_sibling_assessments_read": false,
+  "target_scope": "Finite connected simple unit-edge median graphs, nonnegative finite real multiplicative vertex weights, exact arithmetic/comparison model; resolves bounded-cube-dimension target by stronger all-dimensions result.",
+  "oracle_interface_matches": true,
+  "candidate_mathematical_blocker_found": false,
+  "source_proof_findings": [
+    {
+      "id": "BDH-V1-LOGBASE",
+      "severity": "source_proof_correction",
+      "literal_claim_falsified": "For the written f(n)=2 ln n, two copies of all unbalanced slices have combined size at most n.",
+      "exact_repair": "Use f(n)=2 ceil(log_2 n) throughout all recursive balanced/unbalanced size tests and bounds, base n<=2."
+    },
+    {
+      "id": "BDH-V1-DEPTH-PRODUCT",
+      "severity": "source_proof_correction",
+      "literal_issue": "Lemma16 displayed product bound uses final s_r with reversed factor comparison.",
+      "exact_repair": "Bound every factor by 1-1/(lambda ln N) for root N and lambda=4/ln2; s_h<=N exp(-h/(lambda ln N)) yields O(log^2 N) depth."
+    }
+  ],
+  "classical_dependencies_relied_on": [
+    "Median convex/gated and cube/Theta/ladder structure",
+    "Majority-rule median set characterization",
+    "Published O(m) Theta classes, halfspace sizes, and median preprocessing"
+  ],
+  "tests": {
+    "status": "all_assertions_passed",
+    "exact_profile_cases": 54959,
+    "full_threshold_vector_checks": 2646,
+    "search_pivot_checks": 199663,
+    "source_recursion_profiles": 17,
+    "largest_explicit_source_recursion_graph_n": 408,
+    "literal_source_volume_counterexample_exact": true
+  },
+  "publication_version_comparison": "Official SODA DOI not accessible through one normal web opening; arXiv v1 reviewed completely in relevant proof sections; no retry or bypass.",
+  "remaining_separate_work": [
+    "Historical priority audit",
+    "No machine-checked fast BDH implementation supplied"
+  ],
+  "authored_records": [
+    "SOURCE_FIRST_CHECKPOINT.md",
+    "SOURCE_PROOF_REPAIR.md",
+    "REPORT.md",
+    "CONTROL_RESULTS.json",
+    "INPUT_HASH_CHECKS.json",
+    "RESEARCH_LOG.md",
+    "TIMESTAMP_CORRECTION.md"
+  ],
+  "communication_policy": "Only parent-agent reports; no external individuals contacted.",
+  "mutations": "Only own oracle01 directory; no Git/index/branch/canonical/original writes."
+}

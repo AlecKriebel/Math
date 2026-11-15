@@ -1,0 +1,1743 @@
+                                             Quasilinear-time eccentricities computation, and more, on
+                                                                  median graphs
+                                                          Pierre Bergé1 , Guillaume Ducoffe2,3 , and Michel Habib4
+
+
+
+
+arXiv:2410.10235v1 [cs.DS] 14 Oct 2024
+                                                     1
+                                                      Université Clermont-Auvergne, CNRS, Mines de Saint-Etienne,
+                                                   Clermont-Auvergne-INP, LIMOS, 63000 Clermont-Ferrand, France
+                                               2
+                                                 National Institute for Research and Development in Informatics, Romania
+                                                                     3
+                                                                       University of Bucharest, Romania
+                                                               4
+                                                                 IRIF, CNRS & Université Paris Cité, France
+
+
+
+                                                                                      Abstract
+                                                  Computing the diameter, and more generally, all eccentricities of an undirected graph
+                                              is an important problem in algorithmic graph theory and the challenge is to identify
+                                              graph classes for which their computation can be achieved in subquadratic time. Using
+                                              a new recursive scheme based on the structural properties of median graphs, we provide
+                                              a quasilinear-time algorithm to determine all eccentricities for this well-known family of
+                                              graphs. Our recursive technique manages specifically balanced and unbalanced parts of
+                                              the Θ-class decomposition of median graphs. The exact running time of our algorithm is
+                                              O(n log4 n). This outcome not only answers a question asked by Bénéteau et al. (2020)
+                                              but also greatly improves a recent result which presents a combinatorial algorithm running
+                                              in time O(n1.6408 logO(1) n) for the same problem.
+                                                  Furthermore we also propose a distance oracle for median graphs with both poly-
+                                              logarithmic size and query time. Speaking formally, we provide a combinatorial algorithm
+                                              which computes for any median graph G, in quasilinear time O(n log4 (n)), vertex-labels
+                                              of size O(log 3 (n)) such that any distance of G can be retrieved in time O(log4 (n)) thanks
+                                              to these labels.
+
+
+
+
+                                         1    Presentation of the contributions: ideas and impact
+                                         A wide literature in graph theory, and more specifically in metric graph theory, is dedicated
+                                         to median graphs. Given two vertices u, v ∈ V (G), the interval I(u, v) is the set containing all
+                                         vertices x metrically between u and v, i.e. x ∈ I(u, v) if d(u, v) = d(u, x) + d(x, v). Formally,
+                                         median graphs are the graphs G such that for any triplet of distinct vertices u, v, w ∈ V (G),
+                                         the intersection I(u, v) ∩ I(v, w) ∩ I(w, u) is a singleton. From the applications point of view,
+                                         median graphs are crucial in the study of phylogenetic networks [8, 36]. They are usually
+                                         mentioned as “median networks” in this area of research. They are, in particular, widely
+                                         considered in the visualization of sequence variations in human mitochondrial DNA [7, 9, 11,
+                                         41]. From a more theoretical point of view, median graphs are in bijection with numerous and
+                                         diverse notions from discrete mathematics. For example, they represent solutions of 2-SAT
+
+                                                                                           1
+formulae [33, 38]. In geometric group theory, median graphs are exactly the 1-skeletons of
+CAT(0) cube complexes [4, 21]. In abstract models of concurrency, median graphs are in
+bijection with event structures [12, 37]. Finally, median graphs form a natural subclass of
+partial cubes, i.e. isometric subgraphs of hypercubes [34].
+    From a graph theory point of view now, median graphs admit many characterizations and
+structural properties. First, median graphs are bipartite (hence, triangle-free) and do not
+admit any induced K2,3 . They are exactly the retracts of hypercubes [2], and the Cartesian
+product of two median graphs is also median [4]. Median graphs are sparse: the number m
+of edges of any median graph G satisfies m ≤ n log2 n, where n = |V (G)|. Among the most
+famous subclasses of median graphs, we can cite: trees, hypercubes, grids (of any dimension),
+and cogwheels. A very practical characterization of median graphs come from the notion of
+Θ-classes which provide us with natural edge separators satisfying convexity properties. This
+concept, used in most of the algorithmic literature cited below, will be a key instrument of
+our contributions in this article.
+    Recently, several efficient algorithms, dedicated to solving distance problems on median
+graphs, have been proposed [14, 15, 16, 20, 23, 26]. An important outcome is the algorithm
+proposed by Bénéteau et al. [14] which computes both the median set and the Wiener index
+of median graphs G in linear time O(m), where m = |E(G)|. A second one [15] computes all
+eccentricities of median graphs in subquadratic time Õ(n1.6408 ), where the Õ notation neglects
+poly-logarithmic factors. Constant 1.6408 comes from a slight improvement on a first version
+                                        5
+of the algorithm, which achieved Õ(n 3 ).
+    Other contributions focused on subclasses of median graphs too. There is a linear-time
+algorithm [16] which determines the diameter of median graphs for which the dimension of
+the largest induced hypercube is bounded. Furthermore, Chepoi et al. [23] designed distance
+and routing labeling schemes of O(log3 n) bits for cube-free median graphs.
+    Our contributions. The main outcome of this paper consists in the proposal of a
+combinatorial algorithm which computes all eccentricites of a median graph in quasilinear
+time. Before stating formally this contribution, let us recall the problem we treat here. The
+distance d(u, v) between two vertices u, v ∈ V (G) is the length of a shortest (u, v)-path. Given
+a vertex u ∈ V (G), its eccentricity ecc (u | G) is the maximum distance from u to any other
+vertex of G. The diameter and radius, which are certainly the most studied metric parameters
+on graphs, correspond respectively to the maximum/minimum eccentricity of the graph.
+ Eccentricities
+ Input: A median graph G = (V, E).
+ Output: All labels ecc (u | G) = max{d(u, v) : v ∈ V } for each vertex u ∈ V .
+    In this article, we focus in fact on a more general problem, which is a weighted version of
+the Eccentricities problem. The input graph is a vertex-weighted median graph and the
+objective is to determine, for each vertex u, its weighted eccentricity ecc (u | (G, ω)), which is
+the maximum value d(u, v) + ω(v). In other words, the weight of the arrival vertex is added
+to the standard distance. Obviously, it generalizes Eccentricities since fixing weights 0 to
+each vertex is equivalent to the classical problem.
+ Weighted Eccentricities
+ Input: A weighted median graph G = (V, E, ω), with ω : V → N.
+ Output: All labels ecc (u | (G, ω)) = max{d(u, v) + ω(v) : v ∈ V } for each u ∈ V .
+
+
+
+                                                2
+   The main contribution of this article is thus stated below. Observe that it greatly enhances
+the literature as, for now, the best running time for computing all eccentricies of a median
+graph was in Õ(n1.6408 ), from [15]. Moreover, we handle a more general problem.
+
+Theorem 1. There exists a combinatorial algorithm which computes all weighted eccentrici-
+ties of a weighted median graph (G, ω) in quasilinear time O(n log4 (n)).
+
+     This result is described in Sections 3 and 4. The idea of our algorithm is in fact relatively
+simple: Θ-classes, which are presented in the preliminary Section 2, are separators of the
+input graph G and admit several convexity properties. Hence, inspired by well-known divide-
+and-conquer methods on graphs [31], we make a tradeoff on the balance of these separators:
+either the sizes of the two sides generated by the separator are comparable, or not. Thus, we
+distinguish two cases.
+     When the median graph G admits a balanced Θ-class (this notion is defined in Section 3.1),
+we retrieve all weighted eccentricities by recursively focusing on each side of the separator,
+with an extra procedure that runs in linear time. As the Θ-class is balanced, there is a
+non-negligible decrease of the size of each side compared to n = |V (G)|. After obtaining the
+weighted eccentricities of each side recursively, our extra procedure consists in retrieving the
+weighted eccentricities of the whole graph by looking for large distances between vertices of
+different sides. This can be achieved thanks to the gatedness of each side: this property of
+Θ-classes will be recalled in Section 2.1.
+     However, when no Θ-class of the input graph is balanced, the previous technique is not
+efficient anymore since for any Θ-class, the size of its sides does not decrease enough. We
+provide a list of characterizations of median graphs without balanced Θ-classes. In particular,
+we observe that such graphs admit a unique median vertex v0 . Then, we prove how a BFS
+starting from v0 together with a reasonable number of recursive calls on convex subgraphs
+help us in finding all weighted eccentricities of (G, ω). This second part of our algorithm is
+more technical than the first one.
+     As a second result, we propose a distance oracle (DO) for median graphs. The objective
+beyond our DO is to locally store some information so that one can retrieve the distance
+between any pair of vertices by inspecting the labels in a very short time. Concretely, we
+propose an algorithm which assigns a label to each vertex of the graph, and then we show
+how these labels can be used to compute fast any value d(u, v). Observe however that our
+labeling is not a distance labeling scheme, since we might need to look at more than two vertex
+labels in order to compute some distance d(u, v). Indeed, the information given by the labels
+of u and v might not be sufficient to obtain d(u, v), extra labels must be taken into account.
+Our result is described in Section 5.
+
+Theorem 2. There exists a combinatorial algorithm which computes in quasilinear time
+O(n log4 (n)), for any median graph G, vertex-labels (ΛG (u))u∈V (G) of size O(log3 (n)) such
+that the distance d(x, y) between a pair x, y of vertices can be retrieved in time O(log4 (n))
+thanks to the labels.
+
+    The proof re-uses the splitting between the balanced and unbalanced cases. When a Θ-
+class is balanced, we apply similar arguments to those used for the computation of eccentric-
+ities, with the difference that the necessary information is put into vertex labels. Concretely,
+any vertex u is labeled with the identity of the balanced Θ-class considered, the side of u, the
+
+
+                                                3
+closest-to-u vertex on the other side (its gate), the distance to its gate, and finally the label of
+u in the graph induced by its side regarding the balanced Θ-class. This whole package allows
+us to retrieve any distance between two vertices in poly-logarithmic time.
+    The unbalanced case requires more effort. Our idea consists in partitioning all vertices
+of the graph in function of their “direction” regarding the central vertex v0 . To do so, we
+launch a BFS from v0 and take note of some information, that will be added to the label of
+any vertex u 6= v0 : the distance from v0 to u, the Θ-classes traversed to go from v0 to u, etc.
+In addition, some gates of u through certain small convex sets are also computed. With this
+information, we show again how to retrieve any distance in poly-logarithmic time.
+    Perspectives. First, we believe that the techniques proposed in this article offer not only
+tools for different problems on median graphs but also for more general classes of graphs.
+Observe that larger families of graphs are still impacted by the notion of Θ-class, the main
+difference consisting in weaker convex characterizations: almost median graphs [17], pseudo-
+median graphs [10, 39] or partial cubes [40]. In our work, we exploit several times the fact
+that the boundary of each Θ-class is convex, which is a property specific to median graphs
+and not to these superclasses. Therefore, one should be able to get rid of this argument in
+order to handle larger families of graphs. However, a tradeoff on the balance of Θ-class stays,
+in our opinion, a promising starting point for tackling them.
+    Coming back to median graphs, one can hope producing efficient algorithms by exploiting
+again this tradeoff technique. A future direction of research could be trying to design algo-
+rithms which improve the naive general method for computing other metric parameters, such
+as the hyperbolicity [27], the betweenness and reach centralities [1],. . . The techniques proposed
+in our paper can be useful tools for such problems. Eventually, we mention a problem which
+was not studied yet on median graphs to the best of our knowledge: Weighted Center [13].
+Given a median graph G with vertex weights ω : V → N, the objective is to determine the
+weighted center of (G, ω), i.e. the vertex u which minimizes maxv∈V (G) ω(v)d(u, v). Observe
+that, with Theorem 1, we can deduce, from the weighted eccentricities, some kind of weighted
+center where weights stand as an additive term and not multiplicative. For this reason, we
+believe that the techniques we proposed can be fruitful for solving Weighted Center in
+quasilinear time. Note that Weighted Center admits exact quasilinear-time algorithms
+for trees and cactii [13], hence targeting median graphs is a natural challenge.
+
+
+2     Preliminaries
+We begin with a reminder of some notions of graphs, and more particularly on median graphs.
+We emphasize on a very important tool in this area: Θ-classes, which are equivalences classes
+over the edge set of median graphs, and especially the orthogonality between these Θ-classes.
+From the mathematical point of view, notation log refers to the natural logarithm, i.e. log n =
+loge n. When another base is considered, we mention it as a subscript, e.g. log2 .
+
+2.1   Definitions and properties from metric graph theory
+All graphs G = (V, E) considered in this paper are undirected, simple (loopless and without
+multiple edges), finite and connected. To avoid confusions when several graphs are considered,
+we denote by V (G) (resp. E(G)) the vertex set (resp. edge set) of G. Usually, we use n to
+denote the size of the vertex set of G, i.e. |V (G)|, while m denotes the size of the edge set:
+
+                                                 4
+m = |E(G)|. To improve readibility, edges (u, v) ∈ E are sometimes denoted by uv. Let N (u)
+be the open neighborhood of u ∈ V , i.e. the set of vertices adjacent to u in G. We extend it
+naturally: for any set A ⊆ V , the neighborhood N (A) of A is the set of vertices outside A
+adjacent to some u ∈ A.
+    A subgraph G′ of G is a graph G′ = (V ′ , E ′ ), where V ′ ⊆ V and E ′ ⊆ E ∩ (V ′ × V ′ ). For
+any U ⊆ V , let E [U ] be the set of edges of G with two endpoints in U . We denote by G [U ]
+the subgraph of G induced by U : G [U ] = (U, E [U ]).
+    Given two vertices u, v ∈ V , let d(u, v) be the distance between u and v, i.e. the length of
+a shortest (u, v)-path. When the context is not clear enough, we might notice, as a subscript,
+in which graph these distance are considered, e.g. dG (u, v). As a weighted version is defined
+in the remainder, we may refer to this notion as the unweighted distance. The eccentricity
+ecc (u | G) of a vertex u ∈ V in graph G is the length of a longest shortest path starting
+from u. Put formally, ecc (u | G) is the maximum value d(u, v) for all v ∈ V : ecc (u | G) =
+maxv∈V d(u, v). The diameter of graph G is the maximum distance between two of its vertices:
+diam(G) = maxu∈V ecc (u | G).
+    We denote by I(u, v) the interval of pair u, v ∈ V . It contains exactly the vertices which
+are metrically between u and v: I(u, v) = {x ∈ V : d(u, x) + d(x, v) = d(u, v)}. The vertices
+of I(u, v) are lying on at least one shortest (u, v)-path.
+Definition 1 (Convex and gated sets). We say that a set H ⊆ V (or equivalently the induced
+subgraph G [H]) is convex if I(u, v) ⊆ H for any pair u, v ∈ H. Moreover, we say that H is
+gated if any vertex v ∈  / H admits a H-gate gH (v) ∈ H, i.e. a unique vertex that belongs to
+all intervals I(v, x), x ∈ H. For any x ∈ H, we have d(v, gH (v)) + d(gH (v), x) = d(v, x).
+    Observe that, if v ∈ H, then it admits a natural H-gate: itself, since v belongs not only
+to H but also to all intervals I(v, x), x ∈ H. Gated sets are convex by definition. Indeed,
+by contradiction, for a gated set H, if a shortest path from x ∈ H to y ∈ H was containing
+a section outside H, it would imply the existence of two H-gates for the vertices of this
+section. Conversely, convex sets are not necessarily gated in general (e.g. any pair of vertices
+in the 3-clique K3 ). But, we will see in the remainder that, on median graphs, convexity and
+gatedness are equivalent notions.
+    A well-known property is that the intersection of two gated sets is itself gated.
+Lemma 1 (Intersection of gated subgraphs [4]). Given two gated sets H1 , H2 of a graph G,
+the set H1 ∩ H2 is gated.
+   We naturally focus on the set of vertices which admit a given vertex as a gate.
+Definition 2 (Fibers [4]). Given a gated set H of G and a vertex x ∈ H, the fiber FH [x] is
+the set of vertices which admit x ∈ H as a gate for H.
+    As each vertex in H is its own gate, the fibers FH [x], x ∈ H, partition V (G). A fiber is
+thus a set of vertices which all admit the same gate for a given gated H. In fact, the H-gate
+of some v ∈/ H is necessarily the vertex of H minimizing the distance to v. Observe that,
+except x itself, FH [x] contains vertices outside H: FH [x] \ {x} ⊆ V (G) \ H. In the following
+sections, we often manipulate this set FH [x] \ {x} that we call the open fiber.
+Definition 3 (Open fibers). Given a gated set H of G and a vertex x ∈ H, we define the
+open fiber as FH (x) = FH [x] \ {x}.
+
+                                                5
+    There is a natural linear-time algorithm (in fact, a very slight variation of BFS) for com-
+puting the fibers (and open fibers) of a given gated set H. To keep this paper as self-contained
+as possible, we recall a sketch of this algorithm, proposed in [23]. The classical BFS uses a
+queue to store the visited vertices of the graph. Here, we initialize this queue by putting into
+it all the vertices of H (instead of a single starting vertex). Each vertex v ∈ V is labeled by
+three variables: d(v) (distance to the gate), f (v) (parent of v in the BFS tree) and fib(v)
+(H-gate of v). All vertices x ∈ H are initialized with d(x) = 0, f (x) = NULL, and fib(x) = x.
+Then, we proceed the search as follows. Once a vertex v is at the head of the queue, all
+not yet discovered neighbors w of v are inserted into the queue, and we fix d(w) = d(v) + 1,
+f (w) = v, fib(w) = fib(v). At the end of the execution, each vertex v is labeled by not
+only its gate fib(v) = gH (v) in H but also the (unweighted) distance towards its gate d(v).
+For the correctness of this BFS traversal, see Lemma 16 and Corollary 6 from [22], the open
+access version of [23].
+Lemma 2 ([22, 23]). For any gated set H of a graph G, one can compute, in linear time
+O(m) = O(n log n), all fibers FH [x], with x ∈ H, but also all distances from each v ∈ V (G)
+to its H-gate.
+
+    Let us denote by (G, ω) = ((V, E), ω) the weighted graph G when it is equipped with
+an integer non-negative weight function on its vertices ω : V → N. In brief, in this paper,
+expression weighted graph refers to vertex-weighted graphs. Observe that the definitions of
+the structural notions we introduced above are independent from any weight consideration.
+Notions of interval, gate, convex and gated sets, and fiber only depend on unweighted dis-
+tances.
+    Now, considering a weighted graph (G, ω), the distance is generalized to a ”weighted
+distance” which is not symmetrical anymore: dω (u, v) = d(u, v) + ω(v). In particular,
+dω (u, u) = ω(u). When there is some ambiguity on the graph considered, we may write
+the weighted distance as d(G,ω) (u, v). The weighted eccentricity of a vertex u ∈ V is the max-
+imum weighted distance from this vertex, i.e. ecc (u | (G, ω)) = maxv∈V dω (u, v). In future
+sections, this notion of weighted distances/eccentricities will allow us to describe recursive
+algorithms on median graphs based on gated sets.
+
+2.2   Median graphs and Θ-classes
+From now on, we focus on the family of graphs which is studied in this article: median graphs.
+
+Definition 4 (Median graph). A graph is median if, for any triplet (x, y, z) of distinct vertices,
+the set I(x, y) ∩ I(y, z) ∩ I(z, x) contains exactly one vertex m(x, y, z) called the median of
+(x, y, z).
+    Trees, hypercubes, grids and squaregraphs [6] are median graphs. Median graphs are
+bipartite and do not contain any induced K2,3 [4, 29, 34]. The Cartesian product of two
+median graphs is also median [18].
+    Given an integer k ≥ 1, we denote by Qk the hypercube of dimension k. Inductively,
+graph Q1 is the single-edge graph, and Qk is the Cartesian product of Qk−1 and Q1 for k ≥ 2.
+In other words, Qk is obtained by taking graph Qk−1 with a copy of it, and connecting each
+vertex with its own copy. For example, Q2 is a square and Q3 is the well-known 8-vertex cube
+of dimension 3.
+
+                                                6
+      Figure 1: Example of median graph G with d = 3. Two Θ-classes are highlighted.
+
+
+Definition 5 (Dimension d). The dimension d = dim(G) of a median graph G is the dimen-
+sion of the largest hypercube contained in G as an induced subgraph.
+    In other words, d = dim(G) means that G admits Qd as an induced subgraph, but not
+Qd+1 . Median graphs with d = 1 are exactly the trees. Median graphs with d ≤ 2 are
+called cube-free median graphs. Figure 1 provides us with an example of median graph with
+dimension d = 3. In general, since Qd contains 2d vertices:
+                                        d = dim(G) ≤ log2 n.
+
+   As stated previously, in general graphs, all gated subgraphs are convex. In median graphs,
+these two characterizations are equivalent.
+Lemma 3 ([4, 14]). A subgraph of a median graph is gated if and only if it is convex.
+    In fact, fibers are also gated.
+Lemma 4 ([19, 23]). For any gated set H of a median graph G and any vertex x ∈ H, the
+set FH [x] is gated.
+    We recall the notion of Θ-class [25] and its implications on median graphs. We say that
+the edges uv and xy are in relation Θ0 if there is a square uvyx, where uv and xy are opposite.
+Notation Θ refers to the reflexive and transitive closure of relation Θ0 . The classes of the
+equivalence relation Θ are denoted by E1 , . . . , Eq and the set of Θ-classes is E(G).
+Definition 6 (Θ-classes). Two edges uv and u′ v ′ belong to the same Θ-class if there is a
+sequence uv, u1 v1 , . . . , ur vr , u′ v ′ such that ui vi and ui+1 vi+1 are opposite edges of a square.
+    The size q of E(G) can fluctuate: hypercube Qk admits q = k Θ-classes but 2k vertices,
+while a tree has q = n − 1 Θ-classes (as many as edges). In any case, the Θ-classes can be
+assigned to edges of a median graph in linear time.
+Lemma 5 (Θ-classes in linear time [14]). There exists an algorithm which computes the
+Θ-classes E1 , . . . , Eq of a median graph in linear time O(m) = O(n log n).
+    In median graphs, each class Ei , 1 ≤ i ≤ q, is a perfect matching cutset and its two sides
+Hi′ and Hi′′ admit convex characterizations.
+Lemma 6 (Halfspaces of Ei [14, 28, 35]). Let G be any median graph and Ei ∈ E(G). For
+any 1 ≤ i ≤ q, the graph G deprived of edges of Ei , i.e. G\Ei = (V, E\Ei ), has two connected
+components with respective vertex sets Hi′ and Hi′′ , called halfspaces. Edges of Ei form a
+matching. Halfspaces satisfy the following properties:
+
+                                                   7
+   • Both Hi′ and Hi′′ are convex/gated.
+
+   • If uv is an edge of Ei with u ∈ Hi′ and v ∈ Hi′′ , then:
+     Hi′ = {x ∈ V : d(x, u) < d(x, v)}
+     Hi′′ = {x ∈ V : d(x, v) < d(x, u)}.
+
+    We say a minority halfspace is a halfspace, say Hi′ w.l.o.g, such that |Hi′ | < |Hi′′ |. The
+opposite halfspace Hi′′ is thus naturally called a majority halfspace. Moreover, we say that Hi′
+and Hi′′ are egalitarian halfspaces if |Hi′ | = |Hi′′ |. In summary, a pair (Hi′ , Hi′′ ) is made up of
+either a minority-majority configuration or two egalitarian halfspaces.
+    A very nice and powerful characterization of median graphs is the construction by convex
+expansions proposed by Mulder [34, 35]. Indeed, given a graph G with two convex subgraphs
+G1 and G2 covering G, the convex expansion G′ of G is the graph obtained by adding both
+an isomorphic copy of G1 ∩ G2 and a matching connecting the corresponding vertices between
+G1 ∩ G2 and its copy. While G1 ∩ G2 stays attached to G1 , its copy replaces it in G2 , and
+the matching connects both versions of G1 ∩ G2 . The apparition of this matching in the new
+graph G′ consists in the creation of a new Θ-class. In summary, any median graph can be
+obtained by successive convex expansions starting from the single-vertex graph [34].
+    We denote by ∂Hi′ the subset of Hi′ containing the vertices which are adjacent to a vertex
+in Hi′′ : ∂Hi′ = N (Hi′′ ). Put differently, the set ∂Hi′ is made up of vertices of Hi′ which are
+endpoints of edges in Ei . Symmetrically, set ∂Hi′′ contains the vertices of Hi′′ which are
+adjacent to Hi′ . We say these sets are the boundaries of halfspaces Hi′ and Hi′′ respectively.
+A halfspace satisfying Hi′ = ∂Hi′ is called a peripheral halfspace and its associated Θ-class is
+also called a peripheral Θ-class. As observed in [14] any median graph necessarily admits at
+least one peripheral Θ-class.
+
+Lemma 7 (Boundaries [14, 28, 35]). Let G be a median graph and Ei ∈ E(G). Both ∂Hi′ and
+∂Hi′′ are convex/gated. Also, the edges of Ei define an isomorphism between ∂Hi′ and ∂Hi′′ .
+
+    As a consequence, suppose uv and u′ v ′ belong to Ei : if uu′ is an edge and belongs to
+class Ej , then vv ′ is an edge too and it belongs to Ej . We pursue with another property
+related to the fact that median graphs G are bipartite. The v0 -orientation of the edges of
+                                                                                        # » if
+G according to some vertex v0 ∈ V (G) is such that, for any edge uv, the orientation is uv
+d(v0 , u) < d(v0 , v). Indeed, we cannot have d(v0 , u) = d(v0 , v) as G is bipartite.
+
+Lemma 8 (Orientation [14]). All edges of a median graph G can be oriented according to any
+vertex v0 ∈ V (G).
+
+    Considering such orientation fixed, we might refer to the vertex v0 as the canonical base-
+point. Given two vertices u, v ∈ V , the set which contains the Θ-classes separating u from v
+is called the signature σu,v . For example, if u ∈ Hi′ and v ∈ Hi′′ , then Ei ∈ σu,v .
+
+Definition 7 (Signature σu,v [15]). We say that the signature of the pair of vertices u, v,
+denoted by σu,v , is the set of classes Ei such that u and v are separated in G\Ei . In other
+words, u and v are in different halfspaces of Ei .
+
+    As stated in [16], the signature of two vertices provides us with the composition, in terms
+of Θ-classes, of any shortest (u, v)-path.
+
+                                                  8
+Lemma 9 ([16]). For any shortest (u, v)-path P , the edges in P belong to classes in σu,v and,
+for any Ei ∈ σu,v , there is exactly one edge of Ei in path P . Conversely, a path containing at
+most one edge of each Θ-class is a shortest path between its departure and its arrival.
+
+   This lemma is a consequence of the convexity of halfspaces. Indeed, a shortest path that
+would pass through two edges of some Θ-class Ei would escape temporarily from an halfspace.
+This is not possible since any halfspace is convex (Lemma 6).
+
+2.3   Orthogonal Θ-classes, POFs and ladder sets
+We now present other notions on median graphs related to the orthogonality of Θ-classes [30].
+
+Definition 8 (Orthogonal Θ-classes [30]). We say that classes Ei and Ej are orthogonal
+(denoted by Ei ⊥ Ej ) if there is a square uvyx in G, where uv, xy ∈ Ei and ux, vy ∈ Ej .
+
+   We focus on the set of Θ-classes which are pairwise orthogonal.
+
+Definition 9 (Pairwise Orthogonal Family (POF) [15]). We say that a set of classes X ⊆
+E(G) is a POF if for any pair Ej , Eh ∈ X, we have Ej ⊥ Eh .
+
+    The empty set is considered as a POF, such as the singletons of elements of E(G). The
+notion of POF has natural connections with induced hypercubes in median graphs. As an
+extreme case, the whole set E(G) is a POF if and only if graph G is a hypercube of dimension
+log2 n [30, 32]. Conversely, if G does not admit any POF of size at least 2, then it is a tree, as
+it means that there is no square in G. The following lemma states an important observation
+linking POFs and hypercubes.
+
+Lemma 10 (POFs and hypercubes [16]). Let X be a POF, v ∈ V (G), and assume that for
+each Ei ∈ X, there is an edge of Ei adjacent to v. There exists a hypercube Q containing
+vertex v and all edges of X adjacent to v. The Θ-classes of the edges of Q are the Θ-classes
+of X.
+
+   Furthermore, a natural bijection between the vertices of a median graph and its POFs
+was highlighted in the literature [5, 11]. As a consequence, the number of POFs is equal to
+n = |V (G)|.
+
+Lemma 11 (POF/vertex bijection [5, 11]). Let G be a median graph and v0 ∈ V (G) an
+arbitrary basepoint. We consider the v0 -orientation of G. Given a vertex v ∈ V (G), let
+N − (v) be the set of edges going into v and E − (v) ⊆ E(G) the Θ-classes of the edges in N − (v).
+
+   • For any vertex v ∈ V (G), E − (v) is a POF. Moreover, both v and the edges of N − (v)
+     belong to an induced hypercube whose edges are in the Θ-classes of E − (v).
+
+   • For any POF X, there is an unique vertex vX such that E − (vX ) = X. Vertex vX is the
+     closest-to-v0 vertex v such that X ⊆ E − (v). As vX and N − (vX ) belong to a common
+     induced hypercube, any POF X verifies |X| ≤ d.
+
+
+
+
+                                                9
+                                v
+                                                               E2
+                       E4                            v0                  E1
+                                                                         u
+                                                                    E3
+
+Figure 2: The v0 -orientation of some median graph G and some of its Θ-classes. For example,
+E − (u) = {E1 , E2 , E3 }.
+
+     An example is given in Figure 2 with the same median graph than in Figure 1. The
+v0 -orientation of this graph is represented, with a sample of four Θ-classes. With the notation
+used in the previous lemma, we have: E − (v0 ) = ∅, E − (v) = {E4 }, and E − (u) = {E1 , E2 , E3 }.
+One can check that each vertex admits its own incoming set of Θ-classes. Due to this
+POF/vertex bijection, POFs of a median graph can be enumerated in linear time [11, 30].
+Furthermore, as with the v0 -orientation, at most d arcs enter in each vertex (E − (u) is a POF),
+median graphs are relatively sparse: m ≤ dn ≤ n log2 n.
+     We focus on another notion strongly related to POFs, defined in [16], called ladder set.
+Definition 10 (Ladder set [16]). Given two vertices u 6= v of a median graph G, the ladder
+set Lu,v is the set of Θ-classes which are both adjacent to u and belong to σu,v :
+                              Lu,v = Ei ∈ σu,v : u ∈ ∂Hi′ ∪ ∂Hi′′ .
+                                     
+
+
+
+    For example, in Figure 2, we have Lv,u = Lv,v0 = {E4 } and Lu,v = Lv0 ,u = {E1 , E2 , E3 }.
+In fact, the Θ-classes of a given ladder set are pairwise orthogonal.
+Lemma 12 ([16]). Any ladder set Lu,v is a POF.
+   Less formally, the ladder set Lu,v provides us with the Θ-classes of the induced hypercube
+containing u covered by the set of all shortest (u, v)-paths.
+   Given a basepoint v0 , all ladder sets Lv0 ,v , with v ∈ V (G) \ {v0 } can be enumerated in
+quasilinear time thanks to a BFS starting at v0 . Such an algorithm is evoked in [15] but is
+not clearly stated, hence we do so.
+Lemma 13 ([15]). Given a basepoint v0 of some median graph G, the list of all ladder sets
+Lv0 ,v with v 6= v0 can be enumerated in quasilinear time O(n log2 n).
+Proof. Initialize the queue with the starting vertex v0 . Label all vertices with a set lad(x) = ∅.
+Once a vertex v is at the head of the queue, all its not yet discovered neighbors w of v are
+inserted into the queue, and we fix lad(w) = lad(v) ∪ Ei if vw ∈ Ei and v0 is adjacent to
+Ei , otherwise lad(w) = lad(v). Labels lad exactly compute ladder sets from Definition 10:
+lad(v) contains the Θ-classes adjacent to v0 which separates v from v0 . As ladder sets are
+POFs which contain the identity of at most log2 n Θ-classes, the size needed to store each
+label is at most (log2 n)2 . BFS execution together with the writing of labels gives a total
+running time O(n log2 n) since m = O(n log n).
+
+                                                10
+2.4   Median set and majority rule
+It was recently proposed in [14] a linear-time algorithm which computes the median set of
+median graphs. We recall here some key observations of this article but also previous works
+that will be useful for us. We begin with the definition of a median set.
+
+Definition 11 (Median vertex
+                        P and set). Given a graph G, a median vertex of G is a vertex
+u which minimizes Γ(u) = v∈V (G) d(u, v). The median set Med(G) is the set containing all
+median vertices.
+
+   In median graphs, the median set admits an interesting characterization related to the
+Θ-classes. Indeed, any vertex which belongs to at least one minority halfspace is not median.
+
+Lemma 14 (Majority rule [3]). Med(G) is the intersection of all majority halfspaces. It
+coincides with the interval of a diametral pair of its vertices.
+
+    The majority rule is a key tool for the algorithm presented in [14]. The first part consists
+in computing the cardinality of each halfspace of the input median graph G. This is based on
+a peripheral peeling that we describe briefly. Consider G where all vertex weights are fixed to
+1. Pick up some peripheral Θ-class Ei : first retrieve the cardinality of its peripheral halfspace
+(say Hi′ = ∂Hi′ ) by summing up all weights of Hi′ , second transfer the weights of vertices in Hi′
+to their Ei -neighbors. Remove Hi′ from the current graph and recurse the process on another
+peripheral Θ-class.
+
+Lemma 15 (Halfspaces sizes [14]). Given a median graph G, there is a combinatorial al-
+gorithm computing in linear time O(m) = O(n log n) all triplets (Ei , |Hi′ |, |Hi′′ |) where Ei ∈
+E(G).
+
+   Once the cardinality of each halfspace is known, the majority rule allows them to retrieve
+the median set Med(G). The second part consists simply in orienting edges uv (say uv ∈ Ej
+and u ∈ Hj′ w.l.o.g) such that v is the head of the arc iff |Hj′′ | > |Hj′ |. From Lemma 14, the
+median set coincides with the sinks of this partially directed graph.
+
+Corollary 1 ([14]). Med(G) can be computed in linear time O(m) = O(n log n).
+
+
+3     Exploiting halfspaces for the computation of eccentricities
+Our objective is to determine the weighted eccentricities of a weighted median graph (G, ω).
+Please note that notation G naturally refers to the same graph without any weight considera-
+tion. To achieve our goal, we introduce the notion of balanced Θ-classes. Our algorithm will
+distinguish two cases: either G contains a balanced Θ-class or not. If it is the case, then we
+will pick up such a Θ-class and retrieve the eccentricities of (G, ω) by computing recursively
+the eccentricities of the two halfspaces (G[Hi′ ], ω) and (G[Hi′′ ], ω).
+
+3.1   Balanced Θ-classes
+As stated in Section 2, the Θ-classes are natural separators for a median graph. Consequently,
+the ratio between the size of the two halfspaces is a potential tool to design divide-and-conquer
+procedures on this family of graphs. We begin with the definition of f -balanced Θ-classes.
+
+                                                11
+Definition 12 (Balanced and unbalanced Θ-classes). Let N∗ = N \ {0} be the set of positive
+integers. Given some median graph G and a function f : N∗ → N∗ , a Θ-class Ei of G is
+f -balanced if:
+                                                      |V (G)|
+                             min{|Hi′ |, |Hi′′ |} ≥             .                      (1)
+                                                    f (|V (G)|)
+                                                                                               |V (G)|
+Conversely, a Θ-class is f -unbalanced if it is not f -balanced, so formally either |Hi′ | < f (|V (G)|)
+               |V (G)|
+or |Hi′′ | < f (|V (G)|) .
+
+    The halfspaces of a Θ-class Ei form a bipartition of V (G). Hence, being f -unbalanced
+                                                 n
+means that one halfspace has size less than f (n)   , with n = |V (G)|, while the other halfspace
+                                            1
+is large with cardinality at least n(1 − f (n) ). Star graphs are the most natural examples of
+median graphs without balanced Θ-classes: for each Θ-class, its minority halfspace has size 1.
+Observe that the case f being a constant function (for example, f (n) = 3 for all integers n)
+is the classical sense given to a balanced separator in graphs, as defined originally by [31]. In
+the remainder of this article, we will focus more particularly on f -balanceness, with f being
+a logarithmic function.
+    It should be noticed that certain median graphs do not admit any f -balanced Θ-classes,
+for some given function f .
+Definition 13 (Unbalanced median graphs). Let Uf be the family of all median graphs G
+satisfying the following property: all Θ-classes of G are f -unbalanced.
+    For Sections 3 and 4, we fix a specific function f and the notion of balanced/unbalanced
+Θ-class will be naturally associated with this function : let f = 2 log, i.e. the function
+f : n → 2 log(n). We denote by U2 log the family of median graphs which do not admit any
+(2 log)-balanced Θ-classes. Fixing f = 2 log, which is less restrictive than a constant function,
+is crucial to make our algorithm work: this choice will be justified in the proof of Theorem 1
+(as presented in section 1).
+    Checking whether a median graph admits (or not) a balanced Θ-class can be achieved in
+linear time O(n log n), according to Lemma 15. As a consequence, we are able in linear time
+either to pick up a balanced Θ-class (for any balance criterion f ) or answer that the input
+median graph contains only unbalanced ones. It consists simply in applying the algorithm of
+Lemma 15 and returning a balanced Θ-class when Equation (1) is satisfied.
+    The idea of our future recursive scheme is to identify whether a balanced Θ-class of
+the input median graph G exists. If it is the case, we compute recursively the weighted
+eccentricities of its halfspaces in order to retrieve the weighted eccentricities of the whole
+graph. Otherwise, we fall into the case G ∈ U2 log which will be treated in Section 4.
+    We state an analytical result on some integer sequences which will be a key win-win
+argument for this global recursive process. The consequence of the following lemma is that
+the depth of the recursive tree, built upon balanced Θ-classes separation, is at most poly-
+logarithmic.
+Lemma 16. Let (sn ) be a sequence of integers such that s0 is a positive integer, and let λ ≥ 2
+be a positive real number such that:
+                                 (                     
+                                                 1
+                                     ⌊sn 1 − λ log(s n)
+                                                         ⌋ if sn > 2
+                          sn+1 =
+                                     sn                    if sn ≤ 2
+
+                                                  12
+The total stopping time τ of sequence sn , i.e. the minimum positive integer τ such that
+sτ = sτ +1 , verifies τ ≤ λ(log(s0 ))2 . Moreover, sτ ∈ {1, 2}.
+
+Proof. Consider a finite subsequence s0 , s1 , . . . , sn and assume that sn > 2. By definition, it
+is monotonically decreasing
+                  Qn−1                i ) > 1 for any 0 ≤ni ≤ n.
+                            since λ log(s
+                                 1                          1
+    Then, sn ≤ s0 i=0 1 − λ log(si ) ≤ s0 1 − λ log(s         n)
+                                                                  . Assume by contradiction that
+n ≥ λ(log(s0 ))2 , then by exploiting the fact that (1 − x1 )x ≤ 1e for x ≥ 2,
+                                 λ(log(s0 ))2                             λ log(sn ) log(s0 )
+                         1                                          1
+    sn ≤ s0       1−                              ≤ s0       1−                                     ≤ s0 e− log(s0 ) = 1.
+                     λ log(sn )                                 λ log(sn )
+
+This yields a contradiction since we assumed sn > 2. Hence, for n ≥ λ(log(s0 ))2 , sn ≤ 2, so
+                                                  2
+                  time verifies τ ≤ λ(log(s0 )) . Now, we verify that sτ > 0. As sτ −1 ≥ 3, we
+the total stopping
+                          1                        1
+have sτ = ⌊sτ −1 1 − λ log(s τ −1 )
+                                    ⌋ ≥ ⌊3(1 − 2 log(3)) ⌋ ≥ 1. Therefore, sτ ∈ {1, 2}.
+
+3.2    Retrieving all eccentricities thanks to Θ-classes
+The following theorem is crucial for our algorithm: it states that, given a Θ-class and the
+weighted eccentricity of each vertex inside its induced halfspace, we can re-assemble all
+weighted eccentricities of (G, ω) in linear time.
+
+Theorem 3. Let (G, ω) be a weighted median graph and Ei one of its Θ-classes. Assume
+that:
+
+    • all weighted eccentricities of (G[Hi′ ], ω) are known,
+
+    • all weighted eccentricities of (G[Hi′′ ], ω) are known.
+
+Then, one can compute all weighted eccentricities of (G, ω) in linear time O(|E(G)|) =
+O(n log n).
+
+Proof. At the beginning of our computation, every vertex of V (G) is labeled with a weighted
+distance: the vertices u′ ∈ Hi′ are labeled with their weighted eccentricity in G[Hi′ ], formally
+ecc (u′ | (Hi′ , ω)). Similarly, each vertex u′′ ∈ Hi′′ is labeled with ecc (u′′ | (Hi′′ , ω)).
+     For any vertex u′ ∈ Hi′ , we determine its Hi′′ -gate g(u′ ) ∈ Hi′′ and, conversely, for any
+vertex u′′ ∈ Hi′′ , we determine its Hi′ -gate g(u′′ ). This operation can be achieved in total
+O(n log n) time, as recalled in Lemma 2, by launching two BFSs: one with a starting queue
+made up of Hi′ , and one with a starting queue Hi′′ . We compute, for any v ′ ∈ ∂Hi′ (resp.
+v ′′ ∈ ∂Hi′′ ) its open fiber FHi′ (v ′ ) in Hi′′ (resp. FHi′′ (v ′′ ) in Hi′ ). Through this BFS, we store
+the unweighted distance from any vertex to its gate: we obtain all values d(u′ , g(u′ )) (resp.
+d(u′′ , g(u′′ )) also in linear time.
+     One can retrieve at this moment the weighted eccentricity of u′ ∈ Hi′ (resp. u′′ ∈ Hi′′ with
+the same arguments). Indeed, the farthest vertex from u′ (in the weighted sense) is either in
+Hi′ or in Hi′′ . If it belongs to Hi′ , as this halfspace is convex, the weighted eccentricity of u′
+is its label ecc (u′ | (Hi′ , ω)). Else, as Hi′′ is gated, for any vertex v ′′ ∈ Hi′′ , there is a shortest
+path from u′ to v ′′ passing through the Hi′′ -gate g(u′ ). Conversely, any shortest path induced
+in Hi′′ from g(u′ ) to some v ′′ , concatenated with a shortest (u′ , g(u′ ))-path, produces a shortest
+(u′ , v ′′ )-path, since d(u′ , g(u′ )) + d(g(u′ ), v ′′ ) = d(u′ , v ′′ ) . Hence, the weighted eccentricity of
+
+                                                              13
+                                                                u′′
+                                          v
+                                                              FHi′ (v)
+
+                                              Ei                         Hi′′
+                           x
+                    Hi′
+
+Figure 3: The largest weighted distance from u′′ ∈ Hi′′ to some vertex x ∈ Hi′ is given by
+the (unweighted) distance from u′′ to its gate v = gHi′ (u′′ ) in addition with the weighted
+eccentricity of v: ecc (v | (Hi′ , ω)) = d(v, x).
+
+u′ can be decomposed as the sum of d(u′ , g(u′ )) (distance to the gate) with the weighted
+eccentricity of g(u′ ) in Hi′′ . Formally,
+       ecc u′ | (G, ω) = max ecc u′ | (Hi′ , ω) , d(u′ , g(u′ )) + ecc g(u′ ) | (Hi′′ , ω) .
+                                                                                       
+
+Figure 3 illustrates this formula with a vertex u′′ ∈ Hi′′ instead of u′ ∈ Hi′ .
+   The whole procedure, consisting first in computing the gates g(u) and second in applying
+the latter formula, takes time O(n log n).
+
+    Theorem 3 immediately yields a recursive algorithm scheme based on Θ-classes. But its
+complexity is not necessarily subquadratic.
+    When our input graph G has a balanced Θ-class Ei , one can recursively compute the
+weighted eccentricities of the two induced halfspaces G[Hi′ ] and G[Hi′′ ] and then retrieve the
+weighted eccentricities of G with an extra linear time. With some “ideal” instance, we could
+always find such a balanced Θ-class and use this recursive scheme until falling into the trivial
+case of a single weighted vertex. Observe that, with such a utopian situation, the total
+running time would be quasilinear: the depth of the recursive tree is poly-logarithmic thanks
+to Lemma 16. Indeed, fixing s0 = n = |V (G)| and λ = 2, value sn gives an upper bound of
+the number of vertices remaining in each branch of the recursive tree after n calls.
+    Nevertheless, we might find at some moment an induced subgraph of G which has no
+balanced Θ-class, in other words which belongs to U2 log . Obviously, even the input G could
+belong to this family. Then the time complexity of the recursive scheme could be quadratic.
+    As a conclusion of this section, we observe that, to pursue the description of our recur-
+sive algorithm, we need to focus on the case of weighted median graphs which admit only
+unbalanced Θ-classes.
+
+
+4    Computation of eccentricities on median graphs without
+     balanced Θ-classes
+The study of median graphs with only unbalanced Θ-classes is of interest since, as we prove
+it now, the existence of a quasilinear-time algorithm finding all weighted eccentricities for the
+subfamily U2 log of median graphs will imply the same result for the whole family of median
+graphs. In Sections 4.1 and 4.2, we fix (G, ω) ∈ U2 log .
+
+                                                   14
+4.1   Slice decomposition
+We now pursue with new concepts about Θ-classes. As all Θ-classes Ei of G ∈ U2 log are
+unbalanced, all of them admit both a minority halfspace denoted from now on by Hi′ (the
+halfspace with the smaller size), and a majority halfspace denoted by Hi′′ . From Definition 12,
+we have |Hi′ | ≤ 2 log(n)
+                     n
+                          with n = |V (G)|. Also, we assume that graph G ∈ U2 log has at least
+three vertices: n ≥ 3 and log n ≥ 1 (case n ≤ 2 will be treated trivially).
+    No graph of U2 log contains an egalitarian halfspace since all its Θ-classes are unbalanced.
+Consequently, these graphs admit a unique median vertex.
+
+Lemma 17 (Unique median vertex in G ∈ Uf ). For any n-vertex median graph G ∈ Uf where
+f (n) ≥ 2, there exists a unique vertex v0 such that, for any Θ-class Ei , this vertex v0 belongs
+to the majority halfspace of Ei .
+
+Proof. From Lemma 14, the median set of a graph G ∈ Uf is the intersection of all majority
+halfspaces and there exists u, v ∈ V (G) such that Med(G) = I(u, v). Assume that u 6= v.
+As Med(G) is connected, consider two adjacent vertices x, y ∈ Med(G) and let xy ∈ Ei .
+The Θ-class Ei admits two egalitarian halfspaces since, otherwise, either x or y would not
+be a median vertex. We have a contradiction: Ei is clearly balanced, but it should admit a
+                                          n
+halfspace of size strictly smaller than f (n) ≤ n2 .
+
+   From now on, this unique median vertex v0 will be taken as the basis of the orientation
+of G. We consider a second vertex umax (potentially equal to v0 ) which is a farthest vertex
+from v0 .
+
+Definition 14. Let umax be a vertex such that dω (v0 , umax ) = ecc (v0 | (G, ω)). If several
+candidates for umax exist, then select one arbitrarily, except in one case: when v0 itself is a
+candidate for umax , then fix umax = v0 .
+
+   We begin with a straightforward observation: if umax = v0 , then v0 is the farthest vertex
+from any u 6= v0 .
+
+Lemma 18. If v0 = umax , then for any vertex u ∈ V (G) \ {v0 }, ecc (u | (G, ω)) = dω (u, v0 ).
+
+Proof. By definition of umax , we have ω(v0 ) ≥ dω (v0 , u). Consider any vertex v 6= v0 . By
+triangular inequality, d(u, v) ≤ d(u, v0 ) + d(v0 , v), so dω (u, v) ≤ d(u, v0 ) + d(v0 , v) + ω(v) =
+d(u, v0 ) + dω (v0 , v). But dω (v0 , v) ≤ ω(v0 ) which implies that dω (u, v) ≤ dω (u, v0 ). As a
+consequence, v0 is the farthest vertex from any u 6= v0 .
+
+    A natural consequence of the previous lemma is that, if umax = v0 , then the eccentricities
+of (G, ω) ∈ U2 log can be computed in linear time in a very simple way.
+
+Corollary 2. Let (G, ω) ∈ U2 log with umax = v0 . All eccentricities of (G, ω) can be computed
+in linear time O(m) = O(n log n) thanks to a BFS starting at v0 .
+
+Proof. Executing a BFS with departure vertex v0 allows us to obtain all unweighted distances
+between v0 and all other vertices. We know from Lemma 18 that, in our case, for any u 6= v0 ,
+ecc (u | (G, ω)) = dω (u, v0 ) = d(u, v0 ) + ω(v0 ). Moreover, ecc (v0 | (G, ω)) = ω(v0 ) since
+umax = v0 . In summary, after computing all unweighted distances from v0 in linear time, one
+can retrieve all eccentricities of (G, ω) also in linear time as a second step.
+
+                                                 15
+    From now on, we can assume that umax 6= v0 as otherwise the weighted eccentricities can be
+computed trivially. We define L(G) as a ladder set Lv0 ,umax between v0 and one farthest-to-v0
+vertex umax .
+
+Definition 15 (Wide ladder). We denote by L(G) the wide ladder of G, which is the POF
+containing the Θ-classes Ei adjacent to v0 such that umax belongs to their minority halfspace,
+i.e. umax ∈ Hi′ . Formally, L(G) = Lv0 ,umax and ℓ = |L(G)| is its size.
+
+   For sake of simplicity, we modify the indices of the Θ-classes such that:
+
+                                   L(G) = {E1 , E2 , . . . , Eℓ }.
+
+Observe that this change has no impact on the previous results since the indices of Θ-classes
+played no role yet.
+    Our technique to handle median graphs without balanced Θ-classes relies on the following
+crucial observation. All vertices v of G such that Lv0 ,v ∩ L(G) = ∅ form, due to the unbal-
+ancedness of the Θ-classes, a large set of vertices. Moreover, we can directly deduce their
+weighted eccentricity which is dω (v, umax ). As a consequence, the eccentricity of at least half
+of the vertices of the graph are already known. We will explain how to handle the remaining
+vertices afterwards, in Section 4.2.
+
+Lemma 19. Let G ∈ U2 log and v0 its median vertex. Any vertex v such that Lv0 ,v ∩ L(G) = ∅
+has a weighted eccentricity ecc (v | (G, ω)) = d(v, v0 ) + dω (v0 , umax ) = dω (v, umax ).
+
+Proof. It suffices to show that v0 ∈ I(v, umax ). Let P be a (v, umax )-path consisting in
+the concatenation of a shortest (v, v0 )-path (denoted by Q) with a shortest (v0 , umax )-path
+(denoted by R). It suffices to show that P is made up of edges belonging to pairwise different
+Θ-classes (Lemma 9). Assume by contradiction that there exists a Θ-class Ej ∈ σv0 ,v ∩σv0 ,umax
+and that there is no other Θ-class Ek ∈ σv0 ,v ∩ σv0 ,umax such that:
+
+   • the edge of Ek on path Q is closer to v0 than the edge of Ej on Q,
+
+   • the edge of Ek on path R is closer to v0 than the edge of Ej on R.
+
+In brief, if we assume σv0 ,v ∩ σv0 ,umax nonempty, we fix Ej as a Θ-class of this set which is
+minimal by distance towards the median vertex v0 . Such a minimal class necessarily exists.
+    By definition of Ej , there is no Θ-class that appears twice in the path Pj , defined as
+the connected sub-path containing v0 obtained after removing edges of Ej in the path G[P ].
+Hence, Pj is a shortest path. Moreover, its endpoints both belong to the same boundary ∂Hj′′
+of Ej . As ∂Hj′′ is convex (Lemma 7) and v0 ∈ Pj , then v0 ∈ ∂Hj′′ . This yields a contradiction
+since Ej is adjacent to v0 and should be part of Lv0 ,v ∩ L(G).
+
+Definition 16 (Large sets). We define recursively a finite sequence (Gi )0≤i≤ℓ of induced
+subgraphs of G called large sets. Let G0 = G and, for any integer 0 ≤ i ≤ ℓ − 1,
+                                                    ′
+                                       Gi+1 = Gi \ Hi+1 .
+
+In other words, Gi+1 is incrementally obtained from Gi by removing all vertices in the minority
+halfspace of Ei+1 ∈ L(G).
+
+
+                                                 16
+   A first trivial remark is that the number of vertices of the graphs of the sequence is
+decreasing: |V (Gi+1 )| ≤ |V (Gi )|. A second fact is that each Gi is a gated subgraph of G.
+Lemma 20. For each 0 ≤ i ≤ ℓ, Gi is a gated subgraph of G.
+Proof. We proceed by induction. Obviously, as the base case, G0 = G is trivially gated.
+    We assume that Gi is a gated subgraph of G: V (Gi ) is gated in G. Moreover, the halfspace
+  ′′ is also gated in G (Lemma 6). As we know from Definition 16, V (G                   ′
+Hi+1                                                                    i+1 ) = V (Gi )\Hi+1 =
+            ′′ . The intersection of two gated sets is gated (Lemma 1). Hence, V (G
+V (Gi ) ∩ Hi+1                                                                          i+1 ) is
+gated and our induction step holds.
+
+      In fact, we can rewrite, for any 1 ≤ i ≤ ℓ, the definition of Gi as the following one:
+
+                                       Gi = G[H1′′ ∩ H2′′ ∩ . . . ∩ Hi′′ ].                    (2)
+
+   As all large sets Gi are convex/gated subgraphs of G, they are median graphs. So, they
+admit Θ-classes which can in fact be retrieved from the Θ-classes of the original graph G.
+Lemma 21 (Θ-classes of isometric subgraphs [15]). Let G be a median graph. If H is an
+isometric1 subgraph of G, then the Θ-classes of H are exactly the nonempty subsets among
+Ei ∩ E(H), for Ei ∈ E(G).
+    Since gated subgraphs are also isometric (the converse is false), then the Θ-classes of Gi
+are inherited from the Θ-classes of G.
+    We define slices as the subgraphs withdrawn from each transition between Gi and Gi+1 .
+Definition 17 (Slices). We define a finite sequence (Si )0≤i≤ℓ−1 of graphs called slices:
+
+                                             Si = Gi \ V (Gi+1 ).
+
+The vertex set of each Gi can be thus partitioned in 2 parts V (Si ) and V (Gi+1 ).
+
+
+                                                        .                umax
+                                                       ..
+                                 ...
+                                        E1
+                                                                              S0
+                                                                 ..
+                                 ..               v0              .
+                                   .
+                                                            E2
+                                                    ..
+                             V (G2 )                 .                             S1
+
+Figure 4: Illustration of the slice decomposition of some median graph G with L(G) =
+{E1 , E2 }. For example, V (G1 ) = V (S1 ) ∪ V (G2 ).
+
+    We refer to the expression slice decomposition in order to refer to the whole collection
+                                                                                     ′
+of slices. Slices Si can be rewritten as the intersection of the minority halfspace Hi+1 with
+  1
+      a subgraph which preserves the distances of the original graph
+
+
+                                                         17
+                                          ′ ]. Hence, by definition, slices are pairwise vertex-
+the current vertex set V (Gi ): Si = Gi [Hi+1
+disjoint. In fact,                    ′
+                                            \ H1′ ∪ H2′ ∪ . . . Hi′ .
+                                                                   
+                              Si = G Hi+1                                                    (3)
+    Figure 4 gives an illustration of the slice decomposition on some example. It represents a
+part of the graph: only umax together with the vertices belonging to hypercubes which contain
+the median vertex v0 are drawn. The wide ladder (ladder set Lv0 ,umax ) contains two Θ-classes
+E1 and E2 : ℓ = 2. In such case, there are two slices: S0 is exactly the minority halfspace H1′
+and S1 is H2′ deprived of the vertices of H1′ : S1 = G[H2′ \ H1′ ]. Sets S0 , S1 , and V (G2 ) are
+disjoint and cover the graph.
+
+Lemma 22. For each 0 ≤ i ≤ ℓ − 1, Si is a gated subgraph of G
+
+Proof. Graph Gi is gated subgraph of G (Lemma 20). Consequently, Si is gated since it is
+                          ′
+the intersection between Hi+1 and V (Gi ) (Lemma 1).
+                                                                  ′ | ≤
+    In terms of cardinality, slices are thus small, |V (Si )| ≤ |Hi+1       n
+                                                                        2 log(n) , while even the
+last large set Gℓ contains at least half of the vertices.
+                                                                               i
+Lemma 23 (Cardinality of large sets). For any 0 ≤ i ≤ ℓ, |V (Gi )| ≥ n(1 − 2 log(n) ).
+
+Proof. By induction: i = 0 trivially holds. The large set Gi+1 corresponds to Gi after
+                                                     n
+withdrawing the slice Si , which contains at most 2 log n vertices. Therefore by induction,
+                                                                               
+                                   n              i           n            i+1
+      |V (Gi+1 )| ≥ |V (Gi )| −         =n 1−            −         =n 1−            .
+                                2 log n       2 log(n)     2 log n       2 log(n)
+
+Which yields the announced inequality for all integers 0 ≤ i ≤ ℓ − 1.
+
+    Indeed, as ℓ ≤ d ≤ log n, we have |V (Gℓ )| ≥ n(1 − 2 log(n)        ℓ
+                                                                           ) ≥ n2 . From Equation (2),
+set V (Gℓ ) contains exactly the vertices which does not belong to any H1′ , . . . Hℓ′ , in other
+words whose ladder set has no intersection with L(G). As stated in Lemma 19, the weighted
+eccentricities of all vertices v of V (Gℓ ) can be directly deduced. On the other hand, any
+vertex v with a ladder set Lv0 ,v intersecting L(G) belongs to one of the slices S0 , . . . , Sℓ−1
+(Equation (3)). The input graph, by definition of slices and large sets, satisfies V (G) =
+V (Gℓ ) ∪ V (S0 ) ∪ V (S1 ) ∪ . . . ∪ V (Sℓ−1 ). Furthermore, the large sets generally satisfy, for any
+0 ≤ i ≤ ℓ − 1:
+                        V (Gi ) = V (Gℓ ) ∪ V (Si ) ∪ V (Si+1 ) ∪ . . . ∪ V (Sℓ−1 ).
+
+4.2    Peeling the slices
+We show that, assuming we know all the weighted eccentricities on slices, which are small-sized
+induced subgraphs of the input graph (G, ω) ∈ U2 log , we can deduce all weighted eccentricities
+of G. We begin with a description of how to modify weights on slices so that our recursive
+calls will enable us to retrieve all eccentricities of (G, ω).
+
+Definition 18. Let (G, ω) ∈ U2 log with umax 6= v0 and an integer 0 ≤ i ≤ ℓ − 1. The weight
+function ωi∗ on slice Si is defined as:
+
+
+
+                                                  18
+    • for any x ∈ ∂Hi+1 ′  ∩ V (Si ), ωi∗ (x) is equal to the maximum distance dω (x, z) where z
+      belongs to the fiber FHi+1
+                              ′  (x) of Gi .2
+                              ′ , ω ∗ (y) = ω(y).
+    • for any y ∈ V (Si ) \ ∂Hi+1  i
+
+
+    We state now a theorem which introduces our recursive process to compute the weighted
+eccentricities of (G, ω) ∈ U2 log . As we already observed it, all weighted eccentricities of the
+large set Gℓ are already known. Therefore, we focus on computing the eccentricities of the
+vertices which belong to at least one slice.
+    Let us now define a labeling function Bi , for any 0 ≤ i ≤ ℓ − 1 on the vertices of slices
+Si ∪ Si+1 ∪ . . . ∪ Sℓ−1 . The label of Bi for some vertex u is denoted by Bi (u).
+Definition 19 (Labeling Bi ). For any 0 ≤ i ≤ ℓ − 1 and any vertex u ∈ V (Si ) ∪ V (Si+1 ) ∪
+. . . ∪ V (Sℓ−1 ), label Bi (u) is equal to the weighted eccentricity of u on graph (Gi , ω):
+
+                                        Bi (u) = ecc (x | (Gi , ω)) .
+
+
+    Observe that labeling B0 would allow us to determine all eccentricities of (G, ω): for
+vertices in the slices, the labels give their eccentricity while for vertices in Gℓ , we can use
+Lemma 19.
+    Our proposition is the following. Assume that we already computed some labeling Bi+1
+and our intention is to obtain Bi . Our idea to achieve this recursive step consists in launching
+two recursive calls, in order to compute the weighted eccentricities on graph Si but with two
+different weight functions ω and ωi∗ . We prove that given labeling Bi+1 and the results of
+these calls, we can retrieve labeling Bi .
+Theorem 4. Let 0 ≤ i ≤ ℓ − 1. Assume that the following values are known:
+    • all weighted eccentricities of (Si , ω),
+    • all weighted eccentricities of (Si , ωi∗ ),
+    • all labels of Bi+1 .
+One can compute in linear time O(|E(Gi )|) all labels of Bi .
+Proof. We apply the BFS traversal evoked in Lemma 2 for graph Gi with the gated set Si . We
+recall that the vertex set of Gi can be partitioned into V (Gi+1 ) and V (Si ). We thus obtain
+in time O(|E(Gi )|) all the unweighted distances d(gSi (v), v), for each v ∈ V (Gi+1 ), and as a
+consequence, also all weighted distances dω (gSi (v), v) = d(gSi (v), v) + ω(v). Our objective is
+to compute the labels Bi (x). We distinguish two cases: either x belongs to the current slice
+Si , or in a former slice Si+1 ∪ . . . ∪ Sℓ−1 .
+     Case 1: x ∈ V (Si ). We determine the labels Bi (x) for vertices x ∈ Si which are from
+Definition 19 their eccentricity in (Gi , ω). The weighted distance between some x ∈ Si and
+v ∈ V (Gi+1 ) is:
+
+           dω (x, v) = d(x, gSi (v)) + dω (gSi (v), v) = d(x, gSi (v)) + d(gSi (v), v) + ω(v).             (4)
+  2                           ′                                               ′
+    Here, we abuse notation: Hi+1 refers to the intersection of V (Gi ) with Hi+1 , which is a halfspace of the
+Θ-class Ei+1 ∩ E(Gi ) (Lemma 21).
+
+
+                                                      19
+Let us recall that, from Definition 18, when x belongs to the boundary of Si , ωi∗ (x) is equal
+to the maximum dω (x, v) such that v ∈ FSi (x) - or, said differently, x = gSi (v). Otherwise,
+ωi∗ (x) = ω(x).
+                                                              ′ , its weighted eccentricity is
+     We consider two cases for vertex x ∈ V (Si ). If x ∈ ∂Hi+1
+achieved:
+   • either with a vertex z of Si : dω (x, z) = ecc (x | (Si , ω)), known by the assumption on
+     (Si , ω),
+
+   • or with a vertex z of FSi (x): dω (x, z) = ωi∗ (x), computed with the BFS traversal,
+
+   • or with a vertex z of V (Gi+1 ) not in the fiber FSi (x): in this case, it will be given by
+     dω (x, z) = d(x, gSi (z)) + ωi∗ (gSi (z)).
+
+If the weighted eccentricity of x is attained for some vertex z ∈ V (Gi+1 ) (which corresponds
+to the two latter bullets), its value is equal to ecc (x | (Si , ωi∗ )). Written briefly,
+
+                 ecc (x | (Gi , ω)) = max {ecc (x | (Si , ω)) , ecc (x | (Si , ωi∗ ))} .         (5)
+
+From the statement assumptions, all the values needed to compute ecc (x | (Gi , ω)) in Equa-
+tion (5) are supposed to be known.
+                         ′ , the reasoning is relatively similar: either the weighted eccentricity
+    If x ∈ V (Si ) \ ∂Hi+1
+of x is achieved either with some v ∈ Si , or with v ∈ V (Gi+1 ). In the latter case, from
+Equation (4), the weighted eccentricity of x is d(x, gSi (v)) + ωi∗ (gSi (v)) = dωi∗ (x, gSi (v)). As
+the weight difference between ωi∗ and ω lies only on the boundary, we have: ecc (x | (Gi , ω)) =
+max {ecc (x | (Si , ω)) , ecc (x | (Si , ωi∗ ))}. Figure 5 illustrates these two possibilities on the
+example already introduced in Figure 4: either the maximum weighted distance from x goes
+towards Si or towards V (Gi+1 ). We completed the first part of the proof: the weighted eccen-
+tricities of all x ∈ Si in graph (Gi , ω) can be directly deduced from the theorem assumptions:
+Bi (x) = ecc (x | (Gi , ω)).
+
+
+
+
+                                               v0   E2              ecc (x | (S1 , ω))
+                       ecc (x | (S1 , ω1∗ ))
+
+
+
+                       G2                                     x       S1
+
+Figure 5: Retrieving the eccentricities of x ∈ V (Si ) in graph Gi : example with ℓ = 2 and
+i = 1. Either the largest weighted distance from x is with a vertex of Si , or with one in the
+other side V (Gi+1 ).
+
+    Case 2: x ∈ V (Si+1 ) ∪ . . . ∪ V (Sℓ−1 ). We determine the labels Bi (x) for vertices x ∈
+V (Si+1 ) ∪ . . . ∪ V (Sℓ−1 ). Since we know all labels of Bi+1 , we have the eccentricity Bi+1 (x) =
+ecc (x | (Gi+1 , ω)) of x in graph (Gi+1 , ω). By definition, Bi (x) ≥ Bi+1 (x) and the only chance
+to have Bi (x) > Bi+1 (x) is that the weighted eccentricity of x in Gi is the distance from x to
+some vertex v ∈ V (Si ), as V (Gi ) \ V (Gi+1 ) = V (Si ). So, we compute the maximum distance
+
+                                                         20
+dω (x, v) for v ∈ V (Si ) and verify whether it is larger than Bi+1 (x) or not. Thanks to the BFS
+traversal, we know gSi (x) and then the maximum distance D(x) = max{dω (x, v) : v ∈ V (Si )}
+is given:
+                            D(x) = d(x, gSi (x)) + ecc (gSi (x) | (Si , ω)) .
+In summary, all these values can be computed since not only d(x, gSi (x)) but also all eccen-
+tricities of (Si , ω) are known:
+
+                  Bi (x) = max {Bi+1 (x), d(x, gSi (x)) + ecc (gSi (x) | (Si , ω))}
+
+.
+
+    The latter theorem stands as the recursive step to prove that the weighted eccentricities
+of (G, ω) ∈ U2 log can be computed in linear time, assuming that we already have the weighted
+eccentricities of all slices.
+
+Corollary 3. Let (G, ω) ∈ U2 log with umax 6= v0 given with its slice decomposition. Assume
+that, for each integer 0 ≤ i ≤ ℓ − 1, all weighted eccentricities of (Si , ω) but also all weighted
+eccentricities of (Si , ωi∗ ) are known. Then, one can compute all weighted eccentricities of
+(G, ω) in time O(n log2 n).
+
+Proof. We proceed by induction in order to prove that labeling Bi can be determined in time
+O((ℓ − i)m). The base case is the computation of labeling Bℓ−1 . We focus on graph Gℓ−1
+which is partitioned by Θ-class Eℓ into two halfspaces: Sℓ−1 and V (Gℓ ). The idea is similar
+to the ones explained in the proof of Theorem 4. We begin by applying the BFS traversal of
+Lemma 2 in order to retrieve the Sℓ−1 -gates of any vertex of graph Gℓ−1 . For x ∈ Sℓ−1 , its
+weighted eccentricity in Gℓ−1 is given by:
+                                                                        ∗
+                                                                             
+                 Bℓ−1 (x) = max{ecc (x | (Sℓ−1 , ω)) , ecc x | (Sℓ−1 , ωℓ−1 ) }.
+                                                               ∗ ), but also of all distances to
+The knowledge of the eccentricities of (Sℓ−1 , ω) and (Sℓ−1 , ωℓ−1
+Sℓ−1 -gates in Gℓ−1 thanks to the BFS, allows us to obtain the labeling Bℓ−1 . The running
+time is made up of the BFS traversal with a linear number of maximum computations, which
+is O(m) and independent from ℓ.
+     The inductive step consists in applying Theorem 4. Indeed, labeling Bi can be determined
+from labeling Bi+1 in time O(m), given that we have the eccentricities of both (Si , ω) and
+(Si , ωi∗ ). Hence, from the induction hypothesis, the running time of the whole process is
+O((ℓ − i − 1)m + m) = O((ℓ − i)m).
+     Consequently, labeling B0 is obtained in time O(dm) = O(n log2 n), as ℓ ≤ d ≤ log2 n.
+For any vertex x belonging to a slice, i.e. x ∈ S0 ∪ . . . ∪ Sℓ−1 , value B0 (x) is its weighted
+eccentricity on (G0 , ω) = (G, ω). Concerning vertices z ∈ V (Gℓ ), as observed earlier, their
+ladder set Lv0 ,z has no intersection with L(G), so their weighted eccentricity can be directly
+computed (Lemma 19). All in all, the weighted eccentricities of (G, ω) are known.
+
+4.3   Summary and analysis for the eccentricities computation
+Given the observations and subroutines presented above, we present now our recursive al-
+gorithm which computes all weighted eccentricities of a median graph (G, ω). We call this
+algorithm MΘrse (acronym for Median Θ-class Recursive Scheme for Eccentricities) and its
+
+                                                 21
+      Algorithm 1: Algorithm MΘrse
+ 1:    Input: A weighted median graph (G, ω).
+ 2:    Output: All eccentricities ecc (u | (G, ω)) for each u ∈ V (G).
+ 3:    if |V (G)| ≤ 2 then
+ 4:        return all eccentricities by enumerating all (at most 2) shortest paths
+ 5:    endif
+ 6:    Compute all Θ-classes Ei ∈ E(G) (Lemma 5) and their halfspaces sizes (Lemma 6)
+ 7:    if there exists a Θ-class Ei which is balanced then
+ 8:        list1 ← MΘrse(G[Hi′ ], ω)
+ 9:        list2 ← MΘrse(G[Hi′′ ], ω)
+10:        return all eccentricities of (G, ω) retrieved from list1/list2 (Theorem 3)
+       else
+11:        Compute the unique median vertex v0 as G ∈ U2 log (Lemma 17)
+12:        Launch a BFS starting from v0 to determine all distances from v0 , but also umax
+             and L(G)
+13:        if umax = v0 then return all eccentricities retrieved with Lemma 18
+14:        Give a unique (arbitrary) identifier for each class of L(G), from 1 to ℓ = |L(G)|
+15:        Determine all large sets Gj and slices Si for each 0 ≤ j ≤ ℓ and 0 ≤ i ≤ ℓ − 1
+16:        collec ← list of ℓ empty lists; wcollec ← list of ℓ empty lists;
+17:        for i from 0 to ℓ − 1 do
+18:            collec[i] ← MΘrse(Si , ω)
+19:            wcollec[i] ← MΘrse(Si , ωi∗ )
+20:        endfor
+21:        return all eccentricities of (G, ω) retrieved from collec and wcollec
+             (Theorem 4)
+22:    endif
+
+
+ pseudocode is given in Algorithm 1. The base case of MΘrse is when the number of vertices
+ of the graph is at most 2. Trivially, one can compute the weighted eccentricites of such graph
+ in constant time O(1) (line 4 of Algorithm 1). We focus now on the recursive calls launched
+ by MΘrse.
+     It starts with the computation of Θ-classes and their halfspaces sizes (line 6) which can
+ be done in time O(n log n), according to Lemmas 5 and 6. Then, it distinguishes two cases:
+ either the input graph (G, ω) contains at least one f -balanced Θ-class (with f = 2 log) or not.
+     If (G, ω) admits a balanced Θ-class Ei , then the procedure is relatively simple. We call
+ recursively MΘrse in order to obtain the weighted eccentricities of both halfspaces, i.e.
+ of G[Hi′ ] and G[Hi′′ ] (lines 8-9). Thanks to Theorem 3, we know that we can retrieve all
+ eccentricities of (G, ω) in linear time (line 10).
+     Otherwise, (G, ω) ∈ U2 log , and there is a unique median vertex v0 which belong to all
+ majoritarian halfspaces of G (Lemma 17). It is computed in linear time (Corollary 1). Then,
+ we execute a BFS from v0 (line 12) which allows us to determine umax and L(G), according
+ to Lemma 13. The slice decomposition of G can be directly deduced from this BFS since the
+ vertices of Si are exactly the vertices v such that Ei+1 ∈ Lv0 ,v but E1 , . . . , Ei ∈
+                                                                                       / Lv0 ,v , see
+ Equation (3). Then, we apply recursively MΘrse on all instances (Si , ω) and (Si , ωi∗ ), with
+
+
+                                                 22
+0 ≤ i ≤ ℓ − 1. Eventually, one can retrieve the eccentricites of (G, ω) in linear time according
+to Theorem 4.
+   We show that MΘrse is executed in quasilinear time.
+Theorem 1. There exists a combinatorial algorithm which computes all weighted eccentrici-
+ties of a weighted median graph (G, ω) in quasilinear time O(n log4 (n)).
+Proof. Both Theorems 3 and 4 ensure us that MΘrse computes exactly all eccentricities of
+the weighted median graph (G, ω). Our effort consists now in showing that its running time
+is quasilinear.
+    We prove the following statement: if |V (G)| ≥ 3, the computation of MΘrse(G, ω), in
+addition with a running time O(|V (G)| log 2 |V (G)|), launches recursive calls on a collection C
+of weighted subgraphs of G satisfying:
+                |V (G′ )| ≤ |V (G)|
+         P
+    •
+       (G′ ,ω ′ )∈C
+                                                                     
+    • max {|V (G′ )| : (G′ , ω ′ ) ∈ C} ≤ |V (G)| 1 − 2 log(|V1 (G)|)
+
+
+
+                                                              ∈
+                                                              / U2 log
+              Depth 0
+          Size |V (G)| = n                                  (G, ω)
+
+                                           ∈ U2 log                                          ∈ U2 log
+                                           umax = v0                                         umax 6= v0
+           Depth 1
+                    1
+Max size ≤ n(1 − 2 log              (G[Hi′ ], ω)                                     (G[Hi′′ ], ω)
+                       n)
+                                                                                                         ...
+     n
+≤ 2 log
+                Depth 2
+                      1
+        n (1 − 2 log( 2 log
+                         n
+                              ))
+                                                   (S0 , ω)    (S0 , ω0∗ )   (S1 , ω)      (S1 , ω1∗ )    (S2 , ω)   ...
+                      ..    n
+                                                      ..             ..         ..             ..            ..
+                       .                               .              .          .              .             .
+Figure 6: Tree of recursive calls: an example where the input (G, ω) admits a balanced Θ-class
+Ei ; then (G[Hi′ ], ω) ∈ U2 log with umax = v0 hence its weighted eccentricities can be directly
+computed in linear time (Corollary 2); finally (G[Hi′′ ], ω) ∈ U2 log but umax 6= v0 so 2ℓ recursive
+calls are launched.
+
+   If (G, ω) admits a balanced Θ-class Ei , two recursive calls are achieved on its halfspaces
+which partition the vertexset of G. Moreover, from Definition 12, none of these halfspaces
+                                    1
+has a size greater than n 1 − 2 log   n   with n = |V (G)|. Otherwise, when (G, ω) ∈ U2 log ,
+the situation is trickier. If umax = v0 , all eccentricities can be computed in linear time
+(Corollary 2) and there is no recursive call (red node of the tree in Figure 6). But, if umax 6= v0 ,
+two recursive calls are launched for each slice Si , 0 ≤ i ≤ ℓ − 1: one with weight function
+ω and one with ωi∗ . Each slice is the subset of a minority halfspace, hence |Si | ≤ 2 log   n
+                                                                                                n <
+
+
+                                                       23
+            
+         1
+n 1 − 2 log n . Then, observe that two different slices do not intersect each other by definition.
+As ℓ ≤ log(|V (G)|), we have:
+                                                 ℓ−1
+                       X                         X                   2ℓ|V (G)|
+                                   |V (G′ )| =         2|Si | ≤                  ≤ |V (G)|.
+                                                                  2 log(|V (G)|)
+                    (G′ ,ω ′ )∈C                 i=0
+
+In both cases, the inequalities claimed above are satisfied. We analyze the tree of recursive
+calls, admitting the input (G, ω) as a root and, as leaves, either cases umax = v0 or very small
+weighted graphs (at most two vertices). At each depth k of the tree, the total number of
+vertices involved in the instances is at most n = |V (G)|. The extra running time needed to
+retrieve the weighted eccentricities of the instances at depth k from the weighted eccentricities
+of instances at depth k + 1 is O(n log2 n): it is O(n log n) when a balanced Θ-class is present
+(Theorem 3), O(n log2 n) otherwise (Corollary 3). Let sk be the maximum number of vertices
+of some weighted graph at depth k ≥ 0. Obviously, s0 = n. Sequence (sk ) follows the scheme
+                                                                                           1
+introduced in Lemma 16 with λ = 2: in particular, when sk ≥ 3, then sk+1 ≤ ⌊sk (1− 2 log(s   k)
+                                                                                                )⌋.
+Indeed, according to the second inequality above, as sk is the maximum size of some instance
+                                                                     1
+at depth k, any instance at depth k + 1 cannot exceed ⌊sk (1 − 2 log(s k)
+                                                                          )⌋. As a conclusion, the
+depth of the recursive tree cannot overpass 2 log2 n (Lemma 16).
+    As the running time needed per depth is O(n log2 n) and the depth of the tree of recursive
+calls is upper-bounded by 2 log2 n, then the total running time of MΘrse is O(n log4 n).
+
+
+5     Distance oracle
+We present in this section the second outcome of this paper, which is the design of a distance
+oracle (DO) for (unweighted) median graphs with a poly-logarithmic size of labels and query
+time. In this section, the notions of balanced/unbalanced Θ-classes will be associated with
+a different function f than in Sections 3 and 4. Indeed, we fix f as the constant function:
+f : n → 3. We denote by U3 the set of median graphs without any 3-balanced Θ-classes. In
+other words, if G ∈ U3 , then for each Ei ∈ E(G), either |Hi′ | < n3 or |Hi′′ | < n3 .
+    The main technique used to achieve this goal is similar to the one used in Sections 3
+and 4: we exploit balanced Θ-classes. We propose a recursive scheme where, at each step, a
+non-negligible number of vertices is withdrawn for each recursive call. When the number of
+vertices n = |V (G)| is at most 2, the label of each vertex has size 0: it does not contain any
+bit. Indeed, the distance towards the other vertex is necessarily 1, as G is connected.
+    Now we fixed this trivial case, we focus on median graphs G with n ≥ 3. We distinguish
+two cases: either G admits a 3-balanced Θ-class, or G ∈ U3 .
+
+5.1   Recursive scheme exploiting gated halfspaces
+We propose a distance oracle ΛG for median graphs G. Any label ΛG (u) is a sequence of
+bits. The size of the DO is the maximum size of all sequences ΛG (u): we denote |ΛG | =
+maxu∈V (G) |ΛG (u)|. Then, we say that the DO ΛG has a query time τ (n) if, for any pair
+u, v ∈ V (G), the time needed to retrieve d(u, v) thanks to labeling ΛG is at most τ (n). The
+DO we propose has both poly-logarithmic size and query time.
+Theorem 5. Let G be a median graph and Ei ∈ E(G). Assume that:
+
+                                                           24
+   • a DO ΛHi′ of graph G[Hi′ ] is known with query time τ1 (|Hi′ |),
+
+   • a DO ΛHi′′ of graph G[Hi′′ ] is known with query time τ2 (|Hi′′ |).
+                                                                                       n                  o
+Then, one can build a DO ΛG of graph G with size at most 3 log2 n + 1 + max |Λ |, |Λ       Hi′    Hi′′   |
+and query time τ (n) = O(log2 n) + max {τ1 (|Hi′ |), τ2 (|Hi′′ |)}. The construction takes time
+O(n(log2 n + max{|ΛHi′ |, |ΛHi′′ |})).
+Proof. Thanks to our assumptions, every vertex of V (G) is initially associated with a label of
+the halfspaces of Ei . The vertices u′ ∈ Hi′ are labeled with ΛHi′ (u′ ) while the vertices u′′ ∈ Hi′′
+are labeled with ΛHi′′ (u′′ ).
+      For the construction of ΛG , we begin with the computation of the gate of each vertex
+thanks to the BFS of Lemma 2. As a reminder, for any vertex u′ ∈ Hi′ , we determine its
+Hi′′ -gate g(u′ ) ∈ Hi′′ , and conversely for each vertex u′′ ∈ Hi′′ we determine its Hi′ -gate g(u′′ ).
+This operation is achieved in time O(n log n) by launching a BFS with a starting queue made
+up of Hi′ , and a second one with a starting queue Hi′′ (as it was done with the eccentricities,
+see the proof of Theorem 3). At the end of the execution, for each u ∈ V (G), we know all
+distances d(u, g(u)).
+      We are ready to describe the content of the DO ΛG . For each u ∈ V (G), the sequence of
+bits ΛG (u) contains successively:
+   1. ΛΘ
+       G (u): the index i of the Θ-class Ei , encoded by log 2 n bits, since q ≤ n,
+
+   2. Λside                                                                ′         ′′
+       G (u): the side of u regarding Ei encoded with one bit: either u ∈ Hi or u ∈ Hi ,
+
+   3. Λgate
+       G (u): the identity of its gate g(u) through the opposite halfspace encoded with log2 n
+      bits,
+
+   4. Λdist
+       G (u): the distance d(u, g(u)) encoded with log2 n bits,
+
+   5. Λrec                                             ′
+       G (u): the label of u in its halfspace: if u ∈ Hi , then we add ΛHi′ (u), otherwise ΛHi′′ (u).
+
+In summary, label ΛG (u) is the concatenation of 3 log2 n + 1 preliminary information in addi-
+                                                                           gate
+tion with the label of u in its Ei -halfspace: ΛG (u) = ΛΘ       side               dist
+                                                          G (u)·ΛG (u)·ΛG (u)·ΛG (u)·ΛG (u).
+                                                                                             rec
+
+Hence, its size is at most O(log2 n) + max{|ΛHi′ |, |ΛHi′′ |}. Moreover, the time needed for the
+construction of ΛG includes the BFS evoked in Lemma 2 but also the writing of sequence
+ΛG (u). The latter takes at most O(log2 n + max{|ΛHi′ |, |ΛHi′′ |}) and is executed for each
+vertex of G.
+    Let us explain how any distance d(u, v) can be retrieved thanks to the DO ΛG . From the
+log2 n first bits of ΛΘ             Θ
+                      G (u) (or ΛG (v)), we obtain the Θ-class which was used as a separator.
+Then, we look at the next bit Λside G for each vertex, it allows us to know into which halfspace
+u and v are. If they belong to the same halfspace , say Hi′ w.l.o.g., then we obtain d(u, v)
+thanks to the DO ΛHi′ , given by both Λrec                  rec                     ′
+                                               G (u) and ΛG (v). Else, if u ∈ Hi and v ∈ Hi
+                                                                                                   ′′
+
+w.l.o.g., we first retrieve the gate g(u) of u in Hi′′ thanks to the part Λgate   G (u), together
+                                            dist
+with the distance d(u, g(u)) thanks to ΛG (u). Second, we determine the distance d(g(u), v)
+with a query on the DO ΛHi′′ , given by both Λrec                      rec
+                                                       G (g(u)) and ΛG (v). Finally, we obtain
+d(u, v) = d(u, g(u)) + d(g(u), v).
+    The query time consists in the analysis of the first 3 log2 n + 1 bits to retrieve the different
+information: Ei , halfspace of each vertex, gate of u and d(u, g(u)). Then, we necessarily launch
+
+                                                  25
+a query on either ΛHi′ or ΛHi′′ . All in all, the query time is upper-bounded by O(log2 n) +
+max{τ1 (|Hi′ |), τ2 (|Hi′′ |)}.
+
+    We formulate an observation similar to the one we gave for the eccentricities problem
+after Theorem 3. We could apply recursively Theorem 5 until we find base cases, i.e. median
+graphs of at most 2 vertices. Unfortunately, if we select the Θ-class Ei arbitrarily, such an
+approach can lead to labels of linear size. However, in an utopian situation, we could select a
+balanced Θ-class Ei at each recursive step. In this way, the depth of the recursive tree would
+be logarithmic. The issue is that many median graphs do not admit any balanced Θ-class.
+For this reason, we provide in the next subsection a labeling procedure for graphs G ∈ U3 .
+
+5.2   Oracle construction for median graphs without balanced Θ-classes
+In order to handle the case of median graphs without any balanced Θ-class, we label each
+vertex with not only its distance to the median vertex v0 , but also its gates for the “neigh-
+boring” fibers around it. In this way, one can retrieve any distance d(u, v) by looking at the
+successive distances from gate to gate a logarithmic number of times. The query time is thus
+poly-logarithmic, such as the size of the labeling.
+     Consider a median graph G ∈ U3 . According to Lemma 17, there is a unique median
+vertex v0 for G belonging to all majority halfspaces. Each vertex v 6= v0 admits a ladder set
+Lv0 ,v , hence the vertices of G can be partitioned in function of their ladder Lv0 ,v . We denote
+by VL ⊆ V (G) \ {v0 } the set of vertices v with ladder set Lv0 ,v = L. Set VL can also be seen,
+from Definition 10, as the intersection of all minority halfspaces of Θ-classes in L:
+                                                 \
+                                          VL =       Hi′ .
+                                                Ei ∈L
+
+For any POF L containing only Θ-classes adjacent to v0 , VL is not only nonempty but also
+gated, as shown in the next lemma.
+Lemma 24. For any POF L adjacent to v0 , VL is nonempty and gated.
+Proof. As all Θ-classes of L are adjacent to v0 , there is a hypercube QL containing both v0
+and edges of L adjacent to v0 (Lemma 10). We denote by vL the farthest-to-v0 vertex of
+QL , said differently the opposite vertex of v0 in QL . By definition, the ladder set of vL is L,
+therefore VL is nonempty.
+     Let St(v0 ) be the subgraph of G made up of the vertices which belong to a common
+induced hypercube with v0 . This notion was defined in [23] and called the star of a vertex.
+The authors (Proposition 2, [23]) proved that, for any vertex v, St(v) is a gated subgraph of
+G. Consequently, the fibers of St(v0 ) are gated (Lemma 4).
+     We claim that VL is exactly the fiber of vertex vL : in brief, VL = FSt(v0 ) [vL ]. Let u ∈ VL
+and z ∈ St(v0 ): we show that vL ∈ I(u, z) necessarily. If σvL ,u ∩ σvL ,z = ∅, then our claim
+holds, according to Lemma 9. By contradiction, assume that some Θ-class Ej belongs to both
+σvL ,u and σvL ,z . As Ej ∈ σvL ,z , then by convexity of St(v0 ), Ej is adjacent to v0 . However,
+at the same time, we have L = Lv0 ,u = σv0 ,vL ⊆ σv0 ,u . Hence, vL ∈ I(v0 , u) and σvL ,u ⊆ σv0 ,u
+does not contain any Θ-class adjacent to v0 since all of them are present, by definition, in
+σv0 ,vL . So, Ej is not adjacent to v0 , which contradicts our first observation. As a consequence,
+vL is the St(v0 )-gate of any u ∈ VL . As fibers are gated (Lemma 4), then we conclude that
+set VL is gated.
+
+                                                26
+    The idea beyond our DO follows. We do not give any label to the median vertex v0 .
+We exploit the partition {VL : L 6= ∅, POF adjacent to v0 } of V (G) \ {v0 }. We compute
+recursively the DO of all median subgraphs VL . Observe that, for any Θ-class Ei ∈ L, then
+VL ⊆ Hi′ and hence each set contains at most n3 vertices, since G ∈ U3 . Then, we complete
+each label ΛVL (u) with the identity of the ladder set L = Lv0 ,u , the distance d(v0 , u), and the
+pair gate-distance from u to its gate in any neighboring fiber VL′ of VL . The formal (recursive)
+definition of the DO ΛG for G ∈ U3 is given below.
+
+Definition 20 (DO ΛG for G ∈ U3 ). Let G ∈ U3 with n ≥ 3. The label ΛG (v0 ) is empty. For
+u ∈ V (G) \ {v0 }, sequence ΛG (u) contains:
+
+  1. ΛL                                                   2
+      G (u): the ladder set Lv0 ,u , encoded with (log2 n) bits,
+
+  2. Λdist
+      G (u): the distance d(v0 , u), encoded with log2 n bits,
+
+  3. Λfib                         ′                                           ′
+       G (u): each triplet (L \ L , gL′ (u), d(u, gL′ (u))), for all subsets L ( L = Lv0 ,u with
+       ′
+     |L | = |L| − 1, where gL′ (u) is the gate of u for the gated fiber VL′ . Each triplet is
+     encoded with 3 log2 n bits, so the sequence of all triplets has size O((log2 n)2 ),
+
+  4. Λrec
+      G (u): the label ΛVL (u) of the DO ΛVL computed recursively on the median subgraph
+     G[VL ].
+
+We have ΛG (u) = ΛL        dist     fib      rec
+                  G (u) · ΛG (u) · ΛG (u) · ΛG (u).
+
+
+                   V{E1 ,E3 }
+                     u                 V{E1 }
+                                     g{E1 } (u)
+     V{E3 }
+      g{E3 } (u)                                     .        ΛG (u) = {E1 , E3 } : (log2 n)2 bits
+    .                                              ..                  d(v0 , u) : log2 n bits
+  ..                                                     Λfib
+                                                          G (u) :       {E   }, g       (u), d(u, g       (u)
+                                                                                                             
+
+                                                  E1
+                                                         O((log2 n)2 ) {   1     {E 1 }            {E 1 }
+                                                                        {E3 }, g{E3 } (u), d(u, g{E3 } (u)
+                                                                                                             
+              E3                                         bits          ΛV{E1 ,E3 } (u)
+          ..                    v0                ..
+                                                   .
+            .
+                                      E2
+
+                         Figure 7: The label ΛG (u) of some vertex u ∈ V (G), G ∈ U3
+
+    An example of label ΛG (u) is given in Figure 7. The definition of our labeling ΛG is now
+complete. Remember that, if the graph G has at most 2 vertices, |ΛG | = 0: there is no need to
+label the vertices since they are necessarily at distance 1. Else, we distinguish two cases. If G
+contains a 3-balanced Θ-class Ei , then we compute recursively the DO of each halfspace and
+label a logarithmic number of bits for each vertex in addition with the DO of its halfspace, as
+described in Theorem 5. If G contains no 3-balanced Θ-class, i.e. G ∈ U3 , then we proceed as
+in Definition 20: we compute recursively the DO of each fiber VL and label each vertex with
+a poly-logarithmic number of bits in addition with the DO of its fiber VL . We thus conclude
+on the size of the labeling ΛG .
+
+
+
+                                                            27
+Lemma 25. For any median graph G, the size of ΛG is poly-logarithmic: |ΛG | = O((log2 n)3 )
+
+
+Proof. Let α(n) be the maximum size of a DO ΛG on median graphs G satisfying |V (G)| = n.
+For n ≥ 3, we show that α(n) ≤ 4(log2 n)2 + log2 n + α(⌊ 2n    3 ⌋).
+     If G admits a 3-balanced Θ-class, as shown in Theorem 5, the size of the labeling ΛG is
+at most 3 log2 n + 1 + α(⌊ 2n3 ⌋) since each halfspace of a 3-balanced Θ-class contains at most
+⌊ 2n
+   3 ⌋ vertices.
+     However, if G ∈ U3 , let us justify that, in this case, the size of the labeling ΛG is upper-
+bounded by 4(log 2 n)2 + log2 n + α(⌊ n3 ⌋). As already stated in Definition 20, the size of the
+first two parts of the labeling, i.e. ΛL           dist            2                              fib
+                                           G and ΛG , is (log2 n) + log2 n. The third part ΛG
+is trickier to analyze. Let u ∈ V (G) and L = Lv0 ,u . The label Λfib      G (u) contains as many
+triplets as the number of subsets L′ of L with exactly one element left. As |L| ≤ d ≤ log2 n,
+there are at most log2 n such subsets. The triplet is made up of the singleton L \ L′ , the
+gate gL′ (u) and the distance d(u, gL′ (u)). Each component of the triplet can be encoded with
+log2 n bits. Therefore, the size of Λfib                           2
+                                        G (u) is at most 3(log 2 n) . Finally, ΛG (u) also contains
+the part Λrec                                                                           n
+             G (u), which is the label of u for the DO on graph G[VL ]. As |VL | < 3 , we have
+|ΛG (u)| ≤ 4(log 2 n)2 + log2 n + α(⌊ n3 ⌋).
+     Combining the inequalities obtained for the two possible cases, i.e. G ∈ U3 or G ∈    / U3 , we
+                         2                   2n
+have: α(n) ≤ 4(log2 n) + log2 n + α(⌊ 3 ⌋). Furthermore, as a base case, α(1) = α(2) = 0.
+The depth of this recursive sequence is logarithmic since we divide at each recursive step the
+number of vertices of the graph by a constant factor smaller than 1. The extra size added into
+the labeling at each recursive step is O((log2 n)2 ). We conclude: α(n) = O((log2 n)3 ).
+
+   The size of labeling ΛG for any median graph G is guaranteed to be poly-logarithmic. We
+show now that obtaining labels ΛG (u) for each vertex u ∈ V (G) can be achieved in quasilinear
+time.
+
+Lemma 26. There is a combinatorial algorithm which, given any median graph G, outputs
+the labeling ΛG in quasilinear time O(n(log2 n)4 ).
+
+Proof. Let T (n) be the maximum construction time of a labeling ΛG for median graphs G
+satisfying |V (G)| = n. We almost entierely handled the case where G ∈  / U3 : in Theorem 5, we
+proved that, given a balanced Θ-class Ei and the labeling ΛHi′ and ΛHi′′ of its halfspaces, we
+build the labeling ΛG in time O(n(log2 n + max{|ΛHi′ |, |ΛHi′′ |})). Now, we naturally add the
+construction time for labelings ΛHi′ and ΛHi′′ which were supposed to be known in Theorem 5.
+Moreover, thanks to Lemma 25, values |ΛHi′ | and |ΛHi′′ | can be upper-bounded by O((log2 n)3 ).
+                                                                                 |H ′ |         |H ′′ |
+In summary, we obtain: T (n) ≤ O(n(log2 n)3 ) + T (λn) + T (µn), where λ = ni and µ = ni ,
+hence λ + µ = 1 and max{λ, µ} ≤ 23 .
+    We focus now on the case G ∈ U3 . Let u ∈ V (G) \ {v0 }. First, a BFS starting from v0
+gives us the ladder Lv0 ,u (Lemma 13) together with the distance d(v0 , u). Second, we present a
+procedure to obtain all labels Λfib
+                                 G (u). We begin with looking at all edges of the graph: if they
+connect a vertex of a fiber VL with another vertex of a fiber VL′ , where L′ ( L, |L′ | = |L| − 1,
+we associate this edge to the pair (L, L′ ). We denote by ∂EL,L′ this kind of edges and by
+∂VL,L′ the set of vertices of VL′ which admit a neighbor in VL .
+    For any POF L adjacent to v0 and any subset L′ ( L, |L′ | = |L| − 1, we launch a BFS on
+graph GL,L′ = (VL ∪∂VL,L′ , E[VL ]∪∂EL,L′ ) in order to determine, for each u ∈ VL , its VL′ -gate
+
+                                                 28
+gL′ (u) and also d(u, gL′ (u)) (Lemma 2). The running time of this operation depends on the
+total number of edges of all graphs GL,L′ . Any edge of VL belongs to at most d ≤ log2 n
+such graphs, as there are |L| possible subsets L′ of L. The edges connecting two sets VL
+and VL′ are thus taken into account in only one graph GL,L′ . All in all, as each edge is
+considered in at most log2 n such graphs GL,L′ , the total running time of this procedure is
+O(m log2 n) = O(n(log2 n)2 ). With the writing of each label, the total time spent to determine
+blocks ΛL     dist       fib              3
+         G , ΛG and ΛG is O(n(log2 n) ). Finally, P we need to compute recursively the DO of
+each fiber VL . In brief, TP (n) ≤ O(n(log2 n)3P
+                                               ) + L T (|VL |). As each |VL | < n3 , we can write:
+T (n) ≤ O(n(log2 n)3 ) + k T (αk n), where k αk = 1 and max{αk } < 13 .
+     Both inequations for T (n) fall into the domain of the Master theorem described in [24].
+At each recursive step, an extra time O(n(log2 n)3 ) is needed and, at the same time, the
+size of the instances on which recursive calls are launched is decreased by a constant factor.
+Moreover, the total number of vertices considered at each depth of the recursive tree stays
+equal to n. All in all, we have: T (n) = O(n(log2 n)4 ).
+
+    The last part of our proof is certainly the most important of course: even if the labeling
+ΛG has poly-logarithmic size and can be computed in quasilinear time, we do not know yet
+whether it allows us to retrieve any distance in poly-logarithmic time. The algorithm we
+present below use a new technique for the case G ∈ U3 : to retrieve distance d(u, v), we
+compare the ladder sets of both vertices, i.e. Lv0 ,u and Lv0 ,v . The idea consists in going from
+u to v via ”neighboring” ladder sets (differing from only one Θ-class), using the information
+of labeling Λfib
+             G .
+
+Theorem 6. Let G be a median graph and u, v ∈ V (G). One can retrieve any distance d(u, v)
+thanks to ΛG with poly-logarithmic query time O(log4 (n)).
+
+Proof. For graphs with at most two vertices, one can retrieve distances in constant time. We
+proceed by induction on the size of |V (G)| to prove that labeling ΛG is a DO. For median
+graphs G ∈ / U3 : according to Theorem 5, if the DOs ΛHi′ and ΛHi′′ are known, then the labeling
+ΛG we built is a DO. By induction hypothesis, our labeling is a DO for graphs with a smaller
+number of vertices, in particular G[Hi′ ] and G[Hi′′ ]. So, ΛG is a DO for G ∈       / U3 with query
+time τ (n) = O(log2 n) + max{τ (|Hi′ |), τ (|Hi′′ |)} ≤ O(log2 n) + τ (⌊ 2n
+                                                                          3 ⌋).
+    Let us focus on the more complicated case G ∈ U3 : our objective is to retrieve a distance
+d(u, v), for some pair u, v ∈ V (G). A first simple case occurs when one of these vertices is v0 ,
+w.l.o.g. u = v0 . The label Λdist
+                               G (v), which is a part of ΛG (v), gives directly distance d(v0 , v).
+Hence, we retrieve this distance in constant time.
+    Assume that both u and v are different from v0 . Both admit a ladder set with v0 , which
+can be deduced from ΛL                  L
+                         G (u) and ΛG (v). Say, w.l.o.g., that |Lv0 ,u | ≤ |Lv0 ,v |. Another simple
+case is when Lv0 ,u = Lv0 ,v . The distance d(u, v) can be computed thanks to a query on
+the labels ΛVL (u) and ΛVL (v), where L = Lv0 ,u . Indeed, VL is gated, so G[VL ] is a median
+subgraph of G. These two labels are given by the part Λrec    G of ΛG over each vertex. The query
+time in this situation is thus τ (⌊ n3 ⌋) by induction hypothesis, as |VL | < n3 .
+    Nevertheless, in general, Lv0 ,u 6= Lv0 ,v . A third case easy to handle is when Lv0 ,u ∩ Lv0 ,v =
+∅. In this scenario, the signatures σv0 ,u and σv0 ,v have no Θ-class in common: if they had one,
+say Ei , by convexity of its boundary ∂Hi′′ , then v0 ∈ ∂Hi′′ and Ei must belong to both ladder
+sets from Definition 10. So, v0 ∈ I(u, v) and the distance d(u, v) = d(u, v0 ) + d(v0 , v) can be
+retrieved from labels Λdist              dist
+                         G (u) and ΛG (v).
+
+
+                                                 29
+    The remaining (and hard) case is the following one: Lv0 ,u 6= Lv0 ,v and Lv0 ,u ∩ Lv0 ,v 6= ∅.
+First, we compute the ladder sequence Su,v between these two sets Lv0 ,u and Lv0 ,v : this a
+finite sequence of POFs, starting from Lv0 ,u and finishing at Lv0 ,v . The size gap between
+two consecutive POFs of this sequence is exactly 1. The first part of Su,v starts with Lv0 ,u
+and goes towards Lv0 ,u ∩ Lv0 ,v . At each step, a Θ-class of Lv0 ,u \ Lv0 ,v is withdrawn from
+the current POF. The second part of Su,v starts with Lv0 ,u ∩ Lv0 ,v and goes towards Lv0 ,v by
+adding to the current POF a Θ-class of Lv0 ,v \ Lv0 ,u at each step. The elements of sequence
+Su,v are denoted by:
+                                                                                           
+                Su,v = L(−r) , L(−r+1) , . . . , L(−1) , L(0) , L(1) , . . . , L(t−1) , L(t) ,
+
+where r and t are nonnegative integers, L(−r) = Lv0 ,u , L(t) = Lv0 ,v , and L(0) = Lv0 ,u ∩ Lv0 ,v .
+For any integer 0 ≤ i ≤ r − 1, L(−i+1) is obtained from L(−i) by withdrawing one Θ-class
+belonging to L(−i) \ Lv0 ,v . Similarly, for any 0 ≤ j ≤ t − 1, L(j) is obtained from L(j+1) by
+withdrawing one Θ-class of L(j+1) \ Lv0 ,u . As an example, if Lv0 ,u = {E1 , E2 , E3 } and Lv0 ,v =
+{E3 , E4 , E5 }, then Su,v might be: ({E1 , E2 , E3 }, {E2 , E3 }, {E3 }, {E3 , E4 }, {E3 , E4 , E5 }). As
+each ladder set has size at most d, the length of sequence Su,v is upper-bounded by 2d.
+    For any integer 0 ≤ i ≤ r − 1, we denote by E (−i) the Θ-class of the singleton L(−(i+1)) \
+L(−i) . Similarly, E(j) denotes the Θ-class of L(j+1) \ L(j) , for 0 ≤ j ≤ t − 1. We show that
+there is a shortest (u, v)-path passing through all sets VL for L ∈ Su,v . We proceed in three
+steps, each one characterized by a claim.
+    Claim 1 : the median of triplet u, v, v0 , vertex m = m(u, v, v0 ) (see Definition 4), belongs to
+VL(0) . As m ∈ I(u, v), then it belongs, by convexity, to the minority halfspaces of all Θ-classes
+in Lv0 ,u ∩ Lv0 ,v . But, as m ∈ I(v, v0 ) and both v and v0 are into the majority halfspace of all
+Θ-classes of Lv0 ,u \ Lv0 ,v , then m is also in the majority halfspace of these Θ-classes. Observe
+that the same argument holds for Lv0 ,v \ Lv0 ,u , because m ∈ I(u, v0 ). In summary, m belongs
+to the majority halfspace of all Θ-classes in the symmetric difference between Lv0 ,u and Lv0 ,v ,
+but to the minority halfspace of all Θ-classes in Lv0 ,u ∩ Lv0 ,v . Therefore, Lv0 ,m = Lv0 ,u ∩ Lv0 ,v .
+    Claim 2 : there exists a shortest (u, m)-path passing through all fibers VL(−i) , 0 ≤ i ≤ r.
+We show briefly that a way to go from u to m is to traverse fiber VL(−r+1) . We will see that,
+applying the same argument iteratively, leads to the same conclusion than Claim 2. Vertex u
+belongs to the minority halfspace of E (−r+1) while m belongs to its majority halfspace. So,
+u admits a gate g−r+1 (u) for the majority halfspace of E (−r+1) . Vertex g−r+1 (u) belongs to
+VL(−r+1) . Then, we can pursue with the same argument for the gate g−r+1 (u): it admits a
+gate g−r+2 (u) in the majority halfspace of E (−r+2) , and so on. Finally, we produce a sequence
+of gates, all belonging by definition to I(u, m). The last gate of this sequence, g0 (u), belongs
+to VL(0) , such as m, hence the last part of the shortest (u, m)-path stays in VL(0) , by convexity
+of fibers.
+    Claim 3 : there exists a shortest (v, m)-path passing through all fibers VL(j) , 0 ≤ j ≤ t.
+The argument is the same as the one for Claim 2: we start from v and determine iteratively
+the successive gates on the majority halfspaces of respectively Θ-classes E (t−1) , E (t−2) , . . .
+    As a conclusion of the three claims, since m ∈ I(u, v) belongs to VL(0) , we ensure that
+there exists a shortest (u, v)-path, consisting first in a section from u to m passing through
+all fibers indexed negatively (Claim 2), second in a section from m to v passing through all
+fibers indexed positively (Claim 3). In brief, there is a shortest (u, v)-path passing successively
+through the fibers VL , where L follows the sequence Su,v . An example is provided in Figure 8,
+
+                                                   30
+with a sequence Su,v = ({E1 , E3 }, {E1 }, {E1 , E2 }). The orange dashed path represents a
+shortest (u, v)-path traversing all successive fiber gates.
+
+                                 V{E1 ,E3 }
+                                     u                   V{E1 }
+                                                       g{E1 } (u)
+                       V{E3 }
+
+                                          g{E1 } (v)
+                                                                         v
+                   ...                                                       V{E1 ,E2 }
+
+                                                                    E1
+                                E3
+                          ..                   v0                   ..
+                                                                     .
+                            .
+                                                        E2
+
+Figure 8: A concrete view of a median graph G ∈ U3 and its fiber to show how we retrieve
+distance d(u, v), with Lv0 ,u = {E1 , E3 } and Lv0 ,v = {E1 , E2 }
+
+     In order to retrieve distance d(u, v), we use some labels of each fiber VL , where L ∈ Su,v .
+From label ΛfibG (u), we obtain the gate of u for the set VL(−r+1) , which is necessarily g−r+1 (u)
+since VL(−r+1) is a subset of the majority halfspace of E (−r+1) . Then, from Λfib  G (g−r+1 (u)), we
+obtain the second gate, which belongs to set VL(−r+2) , and so on. In summary, we follow the
+sequence Su,v of logarithmic size and obtain from Λfib  G successively the pair gate/distance in
+the next majority halfspace considered. By simply summing up all the distances between the
+different gates, we obtain d(u, v). The distance that remains unknown even after the pick up
+of pairs gate/distance is the distance between the two gates obtain in fiber VL(0) (e.g. vertices
+g{E1 } (u) and g{E1 } (v) in Figure 8). To compute the distance between these two final gates, a
+query on ΛrecG for these gates suffices. Hence, distance d(u, v) is now determined.
+     As u and v belong to different fibers but with a nonempty intersection, the whole process
+consists in (i) retrieving the ladder set of both vertices thanks to ΛL      G , (ii) computing the
+sequence Su,v and then the successive gates thanks to ΛfibG , (iii) obtaining  the distance between
+all successive gates thanks to ΛfibG , and (iv) computing the distance   between    the gates of VL(0)
+             rec
+thanks to ΛG . The cost of (i) is negligible compared to the one of (ii) and (iii) together, which
+is O((log2 n)3 ), since the computation of one gate takes O(|Λfib                    2
+                                                                 G |) = O((log 2 n) ) and there are
+at most 2d of them. So, taking also (iv) into account, we have τ (n) = τ (⌊ 3 ⌋) + O((log2 n)3 ).
+                                                                                 n
+
+     Considering all possible cases, an upper bound is τ (n) = τ (⌊ 2n                     3
+                                                                        3 ⌋) + O((log 2 n) ), conse-
+quently, by Master theorem, τ (n) = O((log2 n) ).  4
+
+
+    The labeling ΛG thus guarantees all the properties listed in the following statement, which
+is the second contribution of our paper.
+
+Theorem 2. There exists a combinatorial algorithm which computes in quasilinear time
+O(n log4 (n)), for any median graph G, vertex-labels (ΛG (u))u∈V (G) of size O(log3 (n)) such
+that the distance d(x, y) between a pair x, y of vertices can be retrieved in time O(log4 (n))
+thanks to the labels.
+
+
+
+
+                                                           31
+References
+ [1] A. Abboud, F. Grandoni, and V. V. Williams. Subcubic equivalences between graph
+     centrality problems, APSP and diameter. In Proc. of SODA, pages 1681–1697, 2015.
+
+ [2] H. Bandelt. Retracts of hypercubes. Journal of Graph Theory, 8(4):501–510, 1984.
+
+ [3] H. Bandelt and J. Barthélemy. Medians in median graphs. Discret. Appl. Math., 8(2):131–
+     142, 1984.
+
+ [4] H. Bandelt and V. Chepoi. Metric graph theory and geometry: a survey. Contemp.
+     Math., 453:49–86, 2008.
+
+ [5] H. Bandelt, V. Chepoi, A. W. M. Dress, and J. H. Koolen. Combinatorics of lopsided
+     sets. Eur. J. Comb., 27(5):669–689, 2006.
+
+ [6] H. Bandelt, V. Chepoi, and D. Eppstein. Combinatorics and geometry of finite and
+     infinite squaregraphs. SIAM J. Discret. Math., 24(4):1399–1440, 2010.
+
+ [7] H. Bandelt, P. Forster, and A. Röhl. Median-joining networks for inferring intraspecific
+     phylogenies. Molecular Biology and Evolution, 16(1):37–48, 1999.
+
+ [8] H. Bandelt, P. Forster, B. C. Sykes, and M. B. Richards. Mitochondrial portraits of
+     human populations using median networks. Genetics, 141(2):743–753, 1995.
+
+ [9] H. Bandelt, V. Macaulay, and M. Richards. Median networks: Speedy construction and
+     greedy reduction, one simulation, and two case studies from human mtDNA. Molecular
+     Phylogenetics and Evolution, 16(1):8–28, 2000.
+
+[10] H. Bandelt and H. M. Mulder. Pseudo-median graphs: decomposition via amalgamation
+     and cartesian multiplication. Discret. Math., 94(3):161–180, 1991.
+
+[11] H. Bandelt, L. Quintana-Murci, A. Salas, and V. Macaulay. The fingerprint of phantom
+     mutations in mitochondrial DNA data. Am. J. Hum. Genet., 71:1150–1160, 2002.
+
+[12] J. Barthélemy and J. Constantin. Median graphs, parallelism and posets. Discret. Math.,
+     111(1-3):49–63, 1993.
+
+[13] B. Ben-Moshe, B. K. Bhattacharya, Q. Shi, and A. Tamir. Efficient algorithms for center
+     problems in cactus networks. Theor. Comput. Sci., 378(3):237–252, 2007.
+
+[14] L. Bénéteau, J. Chalopin, V. Chepoi, and Y. Vaxès. Medians in median graphs and their
+     cube complexes in linear time. In Proc. of ICALP, volume 168, pages 10:1–10:17, 2020.
+
+[15] P. Bergé, G. Ducoffe, and M. Habib. Subquadratic-time algorithm for the diameter and
+     all eccentricities on median graphs. In Procs. of STACS, volume 219 of LIPIcs, pages
+     9:1–9:21, 2022.
+
+[16] P. Bergé and M. Habib. Diameter, radius and all eccentricities in linear time for constant-
+     dimension median graphs. In Proc. of LAGOS, 2021.
+
+[17] B. Brešar. Characterizing almost-median graphs. Eur. J. Comb., 28(3):916–920, 2007.
+
+                                               32
+[18] B. Brešar, S. Klavžar, and R. Skrekovski. On cube-free median graphs. Discret. Math.,
+     307(3-5):345–351, 2007.
+
+[19] M. Chastand. Fiber-complemented graphs – I: structure and invariant subgraphs. Discret.
+     Math., 226(1-3):107–141, 2001.
+
+[20] C. T. Cheng. A poset-based approach to embedding median graphs in hypercubes and
+     lattices. Order, 29(1):147–163, 2012.
+
+[21] V. Chepoi. Graphs of some CAT(0) complexes. Adv. Appl. Math., 24(2):125–179, 2000.
+
+[22] V. Chepoi, A. Labourel, and S. Ratel. Distance and routing labeling schemes for cube-free
+     median graphs. CoRR, abs/1809.10508, 2018.
+
+[23] V. Chepoi, A. Labourel, and S. Ratel. Distance labeling schemes for cube-free median
+     graphs. In Proc. of MFCS, volume 138, pages 15:1–15:14, 2019.
+
+[24] T. H. Cormen, C. E. Leiserson, R. L. Rivest, and C. Stein. Introduction to Algorithms,
+     3rd Edition. MIT Press, 2009.
+
+[25] D. Djoković. Distance-preserving subgraphs of hypercubes. Journal of Combinatorial
+     Theory, Series B, 14(3):263–267, 1973.
+
+[26] A. Gély, M. Couceiro, L. Miclet, and A. Napoli. A study of algorithms relating distribu-
+     tive lattices, median graphs, and Formal Concept Analysis. Int. J. Approx. Reason.,
+     142:370–382, 2022.
+
+[27] M. Gromov. Hyperbolic Groups, pages 75–263. Springer New York, 1987.
+
+[28] J. Hagauer, W. Imrich, and S. Klavžar. Recognizing median graphs in subquadratic time.
+     Theor. Comput. Sci., 215(1-2):123–136, 1999.
+
+[29] R. Hammack, W. Imrich, and S. Klavžar. Handbook of Product Graphs, Second Edition.
+     CRC Press, Inc., 2011.
+
+[30] M. Kovše. Complexity of phylogenetic networks: counting cubes in median graphs and
+     related problems. Analysis of complex networks: From Biology to Linguistics, pages
+     323–350, 2009.
+
+[31] R. J. Lipton and R. E. Tarjan. A separator theorem for planar graphs. SIAM Journal
+     on Applied Mathematics, 36(2):177–189, 1979.
+
+[32] F. R. McMorris, H. M. Mulder, and F. S. Roberts. The median procedure on median
+     graphs. Discret. Appl. Math., 84(1-3):165–181, 1998.
+
+[33] H. M. Mulder and A. Schrijver. Median graphs and Helly hypergraphs. Discret. Math.,
+     25(1):41–50, 1979.
+
+[34] M. Mulder. The structure of median graphs. Discret. Math., 24(2):197–204, 1978.
+
+[35] M. Mulder. The interval function of a graph. Mathematical Centre Tracts, Mathematisch
+     Centrum, Amsterdam, 1980.
+
+                                             33
+[36] D. H. Parks and R. G. Beiko. Measuring Community Similarity with Phylogenetic Net-
+     works. Molecular Biology and Evolution, 29(12):3947–3958, 2012.
+
+[37] V. Sassone, M. Nielsen, and G. Winskel. A classification of models for concurrency. In
+     Proc. of CONCUR, volume 715 of Lecture Notes in Computer Science, pages 82–96, 1993.
+
+[38] T. J. Schaefer. The complexity of satisfiability problems. In Procs. of STOC, pages
+     216–226, 1978.
+
+[39] A. Vesel. Recognizing pseudo-median graphs. Discret. Appl. Math., 116(3):261–269,
+     2002.
+
+[40] P. M. Winkler. Isometric embedding in products of complete graphs. Discret. Appl.
+     Math., 7(2):221–225, 1984.
+
+[41] B. Zimmermann, A. Röck, G. Huber, T. Krämer, P. M. Schneider, and W. Parson.
+     Application of a west eurasian-specific filter for quasi-median network analysis: Sharp-
+     ening the blade for mtDNA error detection. Forensic Science International: Genetics,
+     5(2):133–137, 2011.
+
+
+
+
+                                             34
+

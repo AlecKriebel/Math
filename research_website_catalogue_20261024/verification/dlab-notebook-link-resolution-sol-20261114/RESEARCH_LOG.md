@@ -1,0 +1,6 @@
+# Narrow official Notebook link-resolution log
+
+- 2026-11-15T02:40:23.924900+00:00: Dedicated additive proposal folder created; sealed copy/config/audit/root/historical primary bindings recorded. Completion5%.
+- 2026-11-15T02:40:41.462224+00:00: Fresh ordinary GET confirms official home200 and dated OctoberPDF404; complete ordered headers/body receipts retained. Focused official website navigation only, no outreach. Completion40%.
+- 2026-11-15T02:42:03.698343+00:00: Actual homepage hrefs lead through November post200 to mainPDF200; full streamSHA matches existing immutable cache, no large PDF written. Actual current target question located on201 after initial199lookup did not contain it; historical question remains199. Completion75%.
+- 2026-11-15T02:46:35.532768+00:00: Actual question/attribution interfaces compared equal after whitespace normalization; no whole-edition/status inference. Minimal URL-only public background proposal prepared for official landing; historical bodies/date/pages/hash preserved.12 original/cache/sealed-file bindings unchanged. No source/editorial/config/audit/site/core/Sheet/Git/outreach mutation. Completion100% for narrow additive proposal; adoption/publication remains pending.
