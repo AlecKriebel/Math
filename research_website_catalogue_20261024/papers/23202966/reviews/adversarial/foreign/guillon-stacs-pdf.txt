@@ -1,0 +1,1064 @@
+Polynomial Complementation of Nondeterministic
+Two-Way Finite Automata by 1-Limited Automata
+Bruno Guillon # Ñ
+Université Clermont-Auvergne, CNRS, Mines de Saint-Étienne, Clermont-Auvergne-INP, LIMOS,
+63000 Clermont-Ferrand, France
+Luca Prigioniero # Ñ
+Department of Computer Science, Loughborough University, UK
+Javad Taheri #
+Université Clermont-Auvergne, CNRS, Mines de Saint-Étienne, Clermont-Auvergne-INP, LIMOS,
+63000 Clermont-Ferrand, France
+
+        Abstract
+We prove that, paying a polynomial increase in size only, every unrestricted two-way nondeterministic
+finite automaton (2nfa) can be complemented by a 1-limited automaton (1-la), a nondeterministic
+extension of 2nfas still characterizing regular languages. The resulting machine is actually a
+restricted form of 1-las – known as 2nfas with common guess – and is self-verifying. A corollary of
+our construction is that a single exponential is necessary and sufficient for complementing 1-las.
+
+2012 ACM Subject Classification Theory of computation → Formal languages and automata theory;
+Theory of computation → Models of computation; Theory of computation → Regular languages
+
+Keywords and phrases descriptional complexity, inductive counting, common-guess
+
+Digital Object Identifier 10.4230/LIPIcs.STACS.2026.48
+
+Related Version Full Version: https://arxiv.org/abs/2507.11209 [7]
+
+Acknowledgements The authors are very grateful to Giovanni Pighizzini for his useful comments
+and bibliographic help during the writing process.
+
+
+    1    Introduction
+The study of the resources used by computational models is a central topic in automata
+theory. One classical problem in this area is to determine the cost of applying operations
+between languages (e.g., union, intersection, concatenation, Kleene star, etc.). Here, the
+cost is defined as the increase in size of the resulting (or target) devices after applying the
+operation to the languages recognized by the original (or source) machines.
+    In this paper, we focus on the cost of the complementation of regular languages. This
+operation is usually cheap (i.e., costs at most polynomial) when dealing with deterministic
+devices, while it is often expensive (i.e., at least exponential) for nondeterministic devices;
+see Table 1. The reason for this separation has been understood for a long time and
+originates from the nature of nondeterminism, as illustrated by the case of classical (one-way)
+nondeterministic finite automata (1nfas). Indeed, the semantics of such a device is that a
+word is accepted as long as there exists a computational path leading to an accepting state.
+Therefore, in order to acknowledge that a word does not belong to the recognized language,
+one should somehow check that every computational path leads to a non-accepting state,1 a
+semantic which is hardly captured by nondeterminism. This issue does not exist for one-way
+
+
+1
+    For ease of discussion, we admit here that the automata are complete, that is, no computational path
+    gets stuck in the middle of the input.
+             © Bruno Guillon, Luca Prigioniero, and Javad Taheri;
+             licensed under Creative Commons License CC-BY 4.0
+43rd International Symposium on Theoretical Aspects of Computer Science (STACS 2026).
+Editors: Meena Mahajan, Florin Manea, Annabelle McIver, and Nguyễn Kim Thắng
+Article No. 48; pp. 48:1–48:18
+                     Leibniz International Proceedings in Informatics
+                     Schloss Dagstuhl – Leibniz-Zentrum für Informatik, Dagstuhl Publishing, Germany
+48:2   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+       deterministic finite automata (1dfas), because they admit a unique computational path
+       on each input, and thus existential and universal quantifications on computational paths
+       coincide. Indeed, it is folklore that exchanging accepting and non-accepting states of a 1dfa,
+       while keeping the rest of the structure (initial state and transitions) unchanged, yields a
+       1dfa recognizing the complement of the language.1 On the other hand, it is well known that
+       transforming a 1nfa into another one recognizing the complement of the language may cost
+       as much as determinizing it and then complementing it (as explained above) in the worst
+       case [18, 1, 10].
+           Yet, the corresponding question remains unsolved for other regular language recognizers,
+       and in particular when dealing with two-way finite automata, an extension of finite automata
+       allowing the machine to move its head both back and forth, and which still characterizes
+       regular languages. Indeed, although complementing two-way deterministic automata (2dfas)
+       has been non-trivially2 shown to cost linear only [4], the cost for complementing their
+       nondeterministic counterparts (2nfas) is still unknown in the general case. Worse still, the
+       best-known upper bound is exponential and is obtained by transforming the source 2nfa
+       into an equivalent 1dfa. That is, neither two-wayness nor nondeterminism are exploited
+       for complementing arbitrary 2nfas. Indeed, also the cost for determinizing 2nfas is a
+       longstanding open question known as “the Sakoda and Sipser problem” [18] (see e.g. [14] for
+       a survey). As shown in [4], the two problems are related via the linear-cost complementation
+       of 2dfas. On the one hand, finding an exponential (or super-polynomial) lower bound for
+       complementing 2nfas would imply a similar lower bound for determinizing them. On the
+       other hand, finding a polynomial (or sub-exponential) upper bound for determinizing 2nfas
+       would imply a similar upper bound for complementing them. It is worth noting that a
+       polynomial-cost complementation of 2nfas has been obtained in some particular cases, e.g.,
+       in the unary and letter-bounded settings [4, 2], or when the 2nfa makes a restricted use of
+       nondeterminism, known as outer-nondeterminism [3].
+           In this paper, we study the cost of complementing two-way finite automata following
+       a different approach: Instead of using the same model as source and target devices, we
+       relax the target machines by equipping them with some extra features while keeping the
+       expressive power unchanged. More precisely, we use as target device a machine called
+       1-limited automaton (1-la), which is an extension of 2nfas with some rewriting capability.
+
+
+           Table 1 Tight cost orders for the complementation on different models of finite automata. Here,
+       the target device is the same as the source device, and it is indicated in the first column. The cost
+       of complementing 2nfas is an open problem related to the “the Sakoda and Sipser conjecture” [18]
+       (abbreviated “SS78” in the table). The best-known upper bound for this problem is exponential and
+       is derived from constructions that eliminate two-wayness, see, e.g., [21, 12]. It can be observed that
+       the transformation is cheap (i.e., at most polynomial) for deterministic devices, and expensive (i.e.,
+       exponential) or unknown for nondeterministic ones.
+
+           model       cost                              model       cost
+            1dfa       trivial                            1nfa       exp [18]
+            2dfa       linear [4]                         2nfa       ??? (related to SS78, via [4])
+           d1-la       poly [5]                           1-la       exp (lower bound in [16, 6], and
+                                                                         upper bound in Corollary 3.3)
+
+
+       2
+           The main challenge when complementing 2dfas is to detect infinite computations induced by loops.
+B. Guillon, L. Prigioniero, and J. Taheri                                                                    48:3
+
+
+                                            ? [18, SS78 Prob.]
+                ? [4]       2nfa                                           2dfa        lin [4]
+                                                ? [1
+                      poly                          5, P
+                                                         rob
+                   Thm. 4.1                                  .4]
+
+      ≥exp [16, 6]                             ≥exp [16, 6]
+                            1-la                                          d1-la        poly [5]
+     ≤exp Cor. 3.3                            ≤? [15, Prob.2]
+
+    Figure 1 Size cost orders for various transformations discussed in introduction. Plain blue arrows
+mean conversions of sources into equivalent targets, while dashed red arrows mean complementations
+of sources with targets. Question marks indicates the open problems, including “the Sakoda and
+Sipser conjecture” denoted as “SS78” [18].
+
+
+Technically, each time the machine visits a cell for the first time it is allowed to change its
+contents. This model is not more powerful than 2nfas [22, Thm. 12.1], i.e., it recognizes
+regular languages only. However, there are cases where it can represent languages more
+succinctly than 2nfas (for a recent survey on this model, see [15]). This approach has already
+been used to provide succinct representations of operations that have exponential cost when
+both source and target machines are 1dfas (Kleene star, reversal and concatenation), but can
+be done at a polynomial cost when the target machine is a deterministic 1-la (d1-la) [17].
+    In the survey [15], the author identifies some problems regarding the descriptional
+complexity of 1-las. In particular, the question of the cost of the conversion of 2nfas
+into equivalent d1-las [15, Problem 4], as well as those of the cost of determinizing 1-las
+[15, Problem 2] are raised. Just as complementing 2nfas relates to the Sakoda and Sipser
+problem, complementing 2nfas with 1-las relates to these problems; see Figure 1.
+
+Our results. We show polynomial simulations of 1nfas and 2nfas by self-verifying 1-las
+(Theorems 3.2 and 4.1). The property of being self-verifying means that the devices are
+able to recognize both the language and its complement (the formal definition is given
+in Section 2), see, e.g., [11]. In both constructions, the resulting devices are 1-las of a
+particular form, known as 2nfas with common guess (2nfa+cgs), in which the rewriting
+of the tape is made during an initial nondeterministic memoryless traversal of the input –
+see [5, 6] for details and results on this model. Although a polynomial simulation of 1nfas by
+self-verifying 1-las is implied by Theorem 4.1, this particular case is treated in Theorem 3.2,
+which presents a specific construction for this case that is simpler, cheaper, and serves as a
+preparatory step for the more technical second construction. Also, because every 1-la can
+be converted into a 1nfa paying a single exponential [16], a consequence of Theorem 3.2 is a
+single exponential upper bound for the cost of the complementation of 1-las (Corollary 3.3).
+This improves the best-known upper bound for the transformation, which used the simulation
+of 1-las by 1dfas at a doubly-exponential cost. Since an exponential lower bound is known
+for this transformation [6], the cost order is tight. Figure 1 summarizes our results and their
+connection to open questions and some related results.
+
+Outline. The paper is organized as follows. In Section 2 we gather the definitions and
+notations used throughout the subsequent sections. In Section 3 we present the conversion of
+1nfas into self-verifying 2nfa+cgs, and its consequence on the cost of the complementation
+of 1-las. In Section 4 we develop the conversion of 2nfas into self-verifying 2nfa+cgs. A
+brief conclusion is given in Section 5.
+
+
+
+                                                                                                         S TA C S 2 0 2 6
+48:4   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+           2    Preliminaries
+
+       In this section, we recall some fundamental definitions and notations used throughout the
+       paper. We assume that the reader is familiar with basic concepts from formal languages and
+       automata theory (see, e.g., [8]).
+           For a set S, #S denotes its cardinality and 2S denotes its powerset. For n ∈ N, [n] denotes
+       the set consisting of the first n natural numbers (including 0), namely [n] = {0, . . . , n − 1};
+       in particular [0] = ∅ and [1] = {0}. Given an alphabet Σ, the set of strings over Σ is denoted
+       by Σ∗ . It includes the empty string denoted by ε. The length of a word w ∈ Σ∗ is denoted
+       by |w|, and the set of strings over Σ of length i is denoted by Σi . The number of occurrences
+       of a symbol σ ∈ Σ in w is denoted by |w|σ . The positions of symbols within a string w are
+       indexed from 0 to |w| −1. We use the notation w[i] to indicate the symbol at position i ∈ [|w|]
+       of w (i.e., the (i + 1)-th symbol of w, e.g., w[0] is the first symbol of w) and w[i, j] for the
+       factor of w from index i to index j included, 0 ≤ i, j < |w|. If i > j, we set w[i, j] = ε by
+       convention. Hence, the length of w[i, j] is 0 if i > j and j − i + 1 otherwise.
+
+       ▶ Definition 2.1. A two-way nondeterministic finite automaton (2nfa) A is a tuple
+       ⟨Q, Σ, δ, qstart , qf ⟩, where Q is the finite set of states, Σ is the input alphabet, qstart ∈ Q
+       is the initial state, qf is the final state,3 and δ : Q × Σ▷,◁ → 2Q×{−1,+1} is a nondeterministic
+       transition function with Σ▷,◁ = Σ ∪ {▷, ◁}, where ▷, ◁ ∈    / Σ are two special symbols called the
+       left and the right endmarker, respectively.
+
+       We shall often assume Q = [n] for n = #Q, so that Q is ordered, with −1 ∈       / Q as a minimum.
+           In 2nfas, the input is written on the tape surrounded by the two endmarkers, the
+       left endmarker being at tape position zero. Hence, on input w, the right endmarker is at
+       position |w| + 1. In one move, A reads an input symbol, changes its state, and moves the
+       head one position backward or forward depending on whether δ returns −1 (a left move)
+       or +1 (a right move), respectively. Furthermore, the head cannot pass the endmarkers. The
+       machine accepts the input if there exists a computational path which starts from the initial
+       state qstart with the head on the cell at position 1 (i.e., scanning the first letter of w if w ̸= ε
+       and scanning ◁ otherwise) and eventually halts in the final state qf with the head scanning
+       the right endmarker. The language accepted by A is denoted by L(A).
+           A 2nfa is one-way (1nfa) if its head can never move left, i.e., if no transition returns −1.
+       The transition function of a 1nfa is seen as a function δ : Q×Σ → 2Q (that is, the endmarkers
+       and the instruction for head direction are irrelevant).
+           The above models are all read-only machines. We now define 1-limited automata (1-las,
+       for short) that extend 2nfas with a limited write ability. Just as 2nfas, 1-las have a finite
+       set of states, an initial and an accepting state, and work both ways on a tape that initially
+       contains the input surrounded by the two endmarkers. However, they are allowed to replace
+       the contents of each tape cell (except for those containing the endmarkers) when the head
+       visits the cell for the first time – during subsequent visits to the cell, the contents cannot be
+       changed any longer. Acceptance for 1-las is defined exactly as for 2nfas, and the language
+       accepted by a given 1-la A is denoted by L(A). It is known that 1-las recognize regular
+       languages only [22, Thm 12.1].
+
+
+       3
+           Notice that, for convenience, we shall assume that 2nfas have a unique final state. This is not a
+           limitation, since each n-state 2nfa with many final states can easily be simulated by a (n + 1)-state
+           2nfa with, as in our definition, a single final state. (We do not consider one-way deterministic finite
+           automata, for which this restriction makes a difference.) The same comment applies on initial states.
+B. Guillon, L. Prigioniero, and J. Taheri                                                                  48:5
+
+
+Common guess. In this paper, we use as target devices particular cases of 1-las, whose
+computations are somehow split into two phases. In the first phase, using one state only, these
+machines make a single one-way pass over the input during which they nondeterministically
+rewrite (or annotate) every tape cell symbol, and then move the head back to the left
+endmarker. In the second phase, they perform read-only two-way computations on the
+annotated word. In other words, this model can be seen as an extension of 2nfas with
+the ability (called common guess) to initially annotate the input word w ∈ Σ∗ using some
+annotation symbols from a fixed alphabet Γ, to which we refer as the annotation alphabet.
+The annotated word resulting from this initial phase is a word over the product alphabet Σ×Γ.
+                                                                       ∗
+It is nondeterministically chosen among all the words v ∈ (Σ × Γ) such that π1 (v) = w
+                                                                   ∗
+(implying |v| = |w|), where π1 is the natural projection of (Σ × Γ) onto Σ∗ . We shall also use
+                                              ∗
+the notation π2 for the projection of (Σ × Γ) onto Γ∗ , and the convention π1 (▷) = π2 (▷) = ▷
+and π1 (◁) = π2 (◁) = ◁.
+
+▶ Definition 2.2. A 2nfa with common guess (2nfa+cg) is a triplet M = ⟨A, Σ, Γ⟩ where Σ
+is the input alphabet, Γ is the annotation alphabet, and A is a 2nfa over the product
+alphabet Σ × Γ.
+
+The language recognized by M is:
+                                      ∗
+   L(M) = {w ∈ Σ∗ | ∃v ∈ (Σ × Γ) , v ∈ L(A) and π1 (v) = w} = π1 (L(A)).
+
+   In [5], the authors showed that a polynomial increase in size is always sufficient for the
+conversion of 1-la into 2nfa+cg. Conversely, every n-state 2nfa+cg can be converted into
+an n-state 1-la. For a recent discussion on this model, we refer the reader to [6].
+
+Configurations and computations. Given one of the devices M under consideration, a
+configuration is represented as a string ▷x·p·y◁, meaning that p is the current state, xy ∈ ▷Ψ∗ ◁
+is the contents of the tape (here Ψ denotes the tape alphabet: Σ, ∆, or Σ × Γ, depending
+on the model under consideration) and the head is scanning the first symbol of y◁. Hence,
+the initial configuration over input w is ▷ · qstart · w◁, and an accepting configuration is a
+configuration of the form ▷x·qf ·◁. The transition relation between configurations of M is
+                                                              ∗
+denoted by ⊢M, and its reflexive-transitive closure by ⊢M . A computational path of M is a
+sequence of configurations c0 , . . . , cr such that ci ⊢M ci+1 for each i < r. It is initial (resp.
+accepting) if c0 is initial (resp. cr is accepting). In order to emphasize the locality of some
+computational paths, we also represent partial configurations as u·p·v, where p is the current
+                                                                                         ∗
+state and uv ∈ {ε, ▷}∆∗ {ε, ◁} is a factor of the tape content. The relations ⊢M and ⊢M , whence
+the notion of computational path, naturally extend onto partial configurations.
+
+Self-verifyingness. A nondeterministic state machine M is said to be self-verifying if it has
+two different final states, one accepting and one rejecting, and satisfies the following property.
+Each string must have at least one computational path ending in a final state, and cannot
+admit both an accepting (i.e., ending in the accepting state) and a rejecting (i.e., ending in
+the rejecting state) computational path. As a consequence the set of words recognized by M
+is partitioned into those admitting an accepting computational path, and those admitting
+a rejecting computational path. Observe that it is still possible to have computational
+paths that halt in non-final states; they are said aborted. The set of words admitting an
+accepting computational path is denoted as L(M), and the set of words admitting a rejecting
+computational path is its complement.
+
+
+
+                                                                                                       S TA C S 2 0 2 6
+48:6   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+               Procedure 1 enum_X(m).                                 Procedure 3 member_X (qt , m).
+           1 qprev ← −1                                          14   foreach q ∈ enum_X(m) do
+           2 for i ← 1 to m do                                   15       if q = qt then return true
+           3      qnext ← nsimul_A()
+                                                                 16   return false
+           4      if qnext ≤ qprev then abort
+           5      qprev ← qnext
+           6      output qnext                                        Procedure 4 count_next_X(m).
+                                                                 17 mnext ← 0
+               Procedure 2 check_annot(m).                       18 foreach p ∈ Q do
+                                                                 19      foreach r ∈ enum_X(m) do
+          // starting from last position of xi                   20          if p ∈ δ(r, read()) then
+          m ← m − |π2 (xi )|1 // move n − 1 times leftward
+           7                                                     21               mnext ← mnext + 1
+        8 if m ̸= 0 then abort                                   22               break
+        9 m ← m + |π2 (xi )|1    // move n − 1 times rightward
+       10 foreach p ∈ enum_X(m) do
+                                                                 23   return mnext
+       11       move n − p − 1 times leftward
+       12       if π2 (read()) ̸= 1 then abort
+       13       move n − p − 1 times rightward
+
+
+
+
+       Size of models. For each model under consideration, we evaluate its size as the total
+       number of symbols used to describe it. Hence, under standard representation and denoting
+       by Σ the input alphabet, the size of an n-state 2nfa is O(n2 #Σ), that of an n-state 1-la
+       with work alphabet ∆ ⊃ Σ is O(n2 #∆2 ), and that of an n-state 2nfa+cg with annotation
+       alphabet Γ is O(n2 #Σ · #Γ). In our work, we generally consider #Σ as a constant.
+
+
+           3      Complementing 1NFAs using 2NFAs with common guess
+       In this section, we present a construction that transforms an arbitrary n-state 1nfa into an
+       equivalent self-verifying 2nfa+cg with polynomially many states and 2 annotation symbols.
+       As in [4, 3], our simulation is based on the inductive counting technique, which originates
+       from the proof of the well-celebrated Immerman–Szelepcsényi theorem [9, 20].
+           Let A = ⟨Q, Σ, δ, qstart , qf ⟩ be an n-state 1nfa. We assume Q = [n] which is thus equipped
+       with the natural ordering. For w ∈ Σ∗ , we define XwA to be the set of states the automaton A
+                                            A
+       reaches after reading w, i.e., Xw      = δ(qstart , w). Working on w, a 2nfa can iteratively simulate
+       nondeterministic computation paths of A by bringing the head back to the left endmarker
+                                                                                                 A
+       before starting a new simulation. It may thus find several states belonging to Xw           . Suppose
+                                                                                               A
+       that the number m of states reached after reading w is given, i.e., m = #Xw . Then, by
+       simulating m times A on w, and controlling at each iteration but the first that the state
+       reached at the end of the simulation is larger than the preceding one, a 2nfa can enumerate
+       all the m states of XwA . This process is described in Procedure 1, where nsimul_A stands
+       for the nondeterministic simulation of A from the initial configuration.4 Hence, according
+       to whether one or none of them is the accepting state, the 2nfa recognizes whether w
+       belongs to L(A) or to its complement; see Procedure 3 in which the accepting state is passed
+       as a parameter qt . Remarkably, a 2nfa Bm with O(n2 m) ⊆ O(n3 ) states can implement
+       this process. Indeed, such a 2nfa only has to simultaneously store in its finite control the
+       index i ≤ m of the iteration, the previously found state (qprev ), and the state in the current
+       simulation (qnext ). One strategy to detect whether an input w belongs to the complement
+       of L(A) would therefore be to first compute m = #XwA , and then run the 2nfa Bm . Yet,
+                        A
+       computing #Xw      is not an easy task.
+
+
+       4
+            In enumeration algorithms, the outputs are not returned at the end of the execution, but yielded as
+            soon as they are found. This allows an outer calling procedure to treat them one-by-one (see, e.g.,
+            Procedures 3 and 4). In Procedure 1, this yielding is indicated with the output keyword on Line 6.
+B. Guillon, L. Prigioniero, and J. Taheri                                                                        48:7
+
+
+    Suppose now that #XwA is unknown, but that there exists a nondeterministic procedure
+nsimul_A, which, starting from some position |u|, where u is a prefix of the input w,
+eventually halts at the same position returning a state q if and only if q ∈ XuA . Then a
+2nfa equipped with nsimul_A may inductively compute #XuA for each successive prefix u
+of w as follows. Initially, #XεA = 1 since XεA = {qstart } by definition. Let uσ be a prefix
+                               A
+of w. In order to compute #Xuσ    from #XuA , the automaton tests for each state p whether it
+             A
+belongs to Xuσ , and counts those for which the answer is positive. This process is described
+in Procedure 4, in which σ is read from the tape (indicated as read()). Testing whether a
+                            A
+given state p belongs to Xuσ  is based on the following basic observation:
+
+         A
+    p ∈ Xuσ                    ⇐⇒                    ∃r ∈ XuA such that p ∈ δ(r, σ).
+
+Using the knowledge of m = #XuA and nsimul_A, the automaton enumerates the m distinct
+states belonging to XuA in ascending order as explained before (i.e., using Procedure 1).
+As soon as it finds one from which a transition on σ allows to enter p, it breaks the loop
+         A
+as p ∈ Xuσ  has been witnessed. If otherwise the m states are correctly found but none of
+                                                                 A
+them has an outgoing transition to p on σ, a witness of p ∈ / Xuσ   has been obtained. Once
+the number of states in Xuσ has been computed, the automaton forgets those of XuA , moves
+                            A
+
+its head one cell to the right, and proceeds with the next iteration of the induction.
+
+    However, implementing nsimul_A with a 2nfa is challenging. Indeed, since there is an
+unbounded number of prefixes of inputs, it is not possible to bring the head back to its
+initial position (in order to restart a computation of A), and then recover the position |u|.
+To overcome this issue, we use annotations, so that it is possible to simulate computations
+of A without moving the head more than 2n cells to the left of position |u|. In this way, the
+automaton can recover the position |u| by maintaining, in its finite control, the distance of
+the head from that position.
+                                                                                            ∗
+    Let w ∈ Σ∗ . The idea is to consider an annotated word x ∈ (Σ × {0, 1}) such that
+π1 (x) = w and the following property holds. Logically dividing x into factors of length n (or
+                                                                A
+possibly less for the last one), the i-th factor encodes Xw[0,i·n−1]       . Formally, decomposing x
+as x = x1 · · · xk+1 with |xk+1 | ≤ n and |xi | = n for each i ≤ k, every π2 (xi ) (except,
+possibly π2 (xk+1 ) if it has length less than n) encodes the set XπA1 (x1 ···xi ) = Xw[0,i·n−1]
+                                                                                      A
+                                                                                                 . In this
+way, our nondeterministic procedure nsimul_A starting from some position i·n+j, 0 ≤ i ≤ k
+and 0 ≤ j < n, operates in two phases. First, it scans π2 (xi ), from which it extracts some
+                                              A
+nondeterministically-chosen state p ∈ Xw[0,i·n−1]      – for i = 0, we assume xi = ▷ from which
+the machine extracts p = qstart . Second, it performs a direct simulation of A on π1 (xi+1 [0, j]),
+starting from the selected state p and halting as soon as the cell at position i · n + j is entered.
+At that time, the reached state in the simulated path, belongs to δ(p, w[i · n, i · n + j − 1]),
+                A                          A
+and thus to Xw[0,i·n+j−1]     since p ∈ Xw[0,i·n−1] = δ(qstart , w[0, i · n − 1]).
+                                                                                            ∗
+    A subset S of Q = [n] is naturally encoded as a length-n word enc(S) ∈ {0, 1} as follows:
+
+    enc(S)[p] = 1         ⇐⇒         p ∈ S.
+
+                                   A                                              A
+Hence, provided π2 (xi ) = enc(Xw[0,i·n] ), in order for nsimul_A to select p ∈ Xw[0,i·n] during
+its first phase, it is sufficient to choose a position p of xi such that π2 (xi [p]) = 1. The
+annotation of a word w ∈ Σ∗ is defined now.
+
+
+
+
+                                                                                                             S TA C S 2 0 2 6
+48:8   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+       ▶ Definition 3.1. For each w ∈ Σ∗ , we let aw be the |w|-length word over {0, 1} defined as
+       follows. Let k and r be such that |w| = kn + r with 0 ≤ r < n:
+           if k = r = 0 (i.e., w = ε) then aw = ε, otherwise,
+                                                                        A
+           if r = 0 then aw = zy, where z = aw[0,(k−1)n] , and y = enc(Xw ),
+                                                                 r
+           if r > 0 then aw = zy, where z = aw[0,kn] , and y = 0 .
+       The word annot(w) is the word x over Ψ = Σ × {0, 1} such that π1 (x) = w and π2 (x) = aw .
+
+           Our goal is to design a 2nfa B over Ψ = Σ × {0, 1} of polynomial size in n, with two
+       distinguished states qacc (for acceptance) and qrej (for rejection) that satisfies:
+           B accepts x if and only if π1 (x) ∈ L(A) and x = annot(π1 (x));
+           B rejects x if and only if π1 (x) ∈
+                                             / L(A) and x = annot(π1 (x)).
+       Notice that B itself is not self-verifying, as it can neither accept nor reject an input x such
+       that x ̸= annot(π1 (x)). However, the 2nfa+cg ⟨B, Σ, {0, 1}⟩ is self-verifying since every
+       input w ∈ Σ∗ admits an annotated variant annot(w) that should be either accepted or
+       rejected by B according to whether w belongs to L(A) or not.
+           The design of B follows the above-explained inductive counting strategy. In particular,
+       it uses the already-presented procedures enum_X, member_X , and count_next_X (see
+       Procedures 1, 3, and 4), as well as nsimul_A. To implement the latter, B maintains two
+       variables in its finite control: the value of its head position modulo n (so it knows where
+       each factor xi begins, and to which state p an annotation symbol 1 correspond), and the
+       distance of its current head position to the position |z|, where z is the input prefix under
+       consideration. By the locality of nsimul_A, the latter information is an integer less than 2n.
+           Not only B has to behave correctly on inputs annot(w): it also has to detect ill-formed
+       inputs, namely words x ∈ Ψ∗ for which x ̸= annot(π1 (x)). To this end, each time the
+       length of the prefix z under consideration is a positive multiple of n, before considering the
+       next prefix, B checks the annotation of the length-n suffix xi (i = |z|/n) of z. This can
+       easily be done, since at that time m = #XπA1 (z) has been computed. Hence, the automaton
+       can check that π2 (xi ) has m occurrences of 1, and, using enum_X, that π2 (xi [p]) = 1 for
+       each p ∈ XπA1 (z) .
+           Evaluating the size of B, we get that O(n3 ) states are sufficient for implementing
+       nsimul_A, including the two above-mentioned state components relative to the head position.
+       Next, B further uses a O(n4 )-state component for storing m = #XuA , mnext ≤ #Xuτ    A
+                                                                                              , and two
+       intermediate states q and qprev . Hence, the total number of states belongs to O(n7 ).
+
+       ▶ Theorem 3.2. Every n-state 1nfa has an equivalent self-verifying 2nfa+cg with O(n7 )
+       many states and 2 annotation symbols.
+
+          A direct consequence is that complementing 1-las costs at most a single exponential.
+
+       ▶ Corollary 3.3. For each n-state 1-la recognizing some language L ⊆ Σ∗ , there exists a
+       1-la with an exponential number of states in n and 3 #Σ work symbols which recognizes the
+       complement of L.
+
+       Proof. From [16, Theorem 2], each n-state 1-la over Σ can be simulated by a 1nfa with
+                    2
+       at most n2n states. Also by Theorem 3.2, each m-state 1nfa can be converted into an
+       equivalent self-verifying 2nfa+cg (which is a particular case of 1-la) with O(m7 ) states
+       and 2 annotation symbols. Combining these two results, one can simulate each n-state 1-la,
+       by a self-verifying 1-la with work alphabet ∆ = Σ ∪ (Σ × {0, 1}) and a number of states
+                 2               2
+       in O(27(n +log n) ) ⊂ 2O(n ) .                                                          ◀
+B. Guillon, L. Prigioniero, and J. Taheri                                                                    48:9
+
+
+As demonstrated in [6], the exponential bound in the above corollary cannot be avoided in
+the worst case, even when the source device is a unary 2dfa+cg, namely a 2nfa+cg over a
+singleton input alphabet whose underlying 2nfa is deterministic.5
+
+    4      Complementing 2NFAs using 2NFAs with common guess
+In this section, we show how to simulate an arbitrary n-state 2nfa A over Σ with a self-
+verifying 2nfa+cg M that has polynomially many states in n and 2 annotation symbols.
+▶ Theorem 4.1. Every n-state 2nfa has an equivalent self-verifying 2nfa+cg or 1-la with
+a polynomial number of states in n, and annotation alphabet {0, 1}.
+The self-verifyingness of the obtained 2nfa+cg M is actually implied by a stronger condition
+which is satisfied by its underlying 2nfa B over Ψ = Σ × {0, 1}. This is stated in the following
+lemma whose proof is our main technical contribution.
+▶ Lemma 4.2. Let A be an n-state 2nfa over Σ, and let Ψ = Σ × {0, 1}. Then there
+exist a function annot : Σ∗ → Ψ∗ , and a 2nfa B of polynomial size in n over Ψ, with two
+distinguished halting states qacc and qrej such that, on input x ∈ Ψ∗ :
+    B accepts x if and only if π1 (x) ∈ L(A) and x = annot(π1 (x));
+    B rejects x if and only if π1 (x) ∈
+                                      / L(A) and x = annot(π1 (x)).
+Notice that, in the above lemma, B itself is not a self-verifying 2nfa. Indeed, on inputs
+not belonging to annot(Σ∗ ), B neither accepts nor rejects.6 Yet, as the goal is to check
+whether a word w ∈ Σ∗ belongs to L(A), and since each such word has an annotated
+version annot(w) that is either accepted or rejected by B, we obtain self-verifyingness for the
+2nfa+cg M = ⟨B, Σ, {0, 1}⟩.
+    The rest of the section is devoted to the proof of Lemma 4.2, and is structured as follows.
+In Section 4.1, we recall the principle of Shepherdson’s construction [19], introducing the
+basic concepts and properties on which such a simulation as much as ours relies. The
+definition of annot(w) is given at the end of the section. The automaton B is then designed
+in Section 4.2, where the proof of Lemma 4.2 is finally completed.
+
+4.1        L-tables
+In [19], Shepherdson proposed a construction to simulate 2dfas by 1dfas, which has then
+been generalized to the simulation of 2nfas and even 1-las by 1dfas, see, e.g., [12, 16].
+The main ingredient of this construction is to store in each state of the finite control of the
+simulating 1dfa, a table, that we call L-table,7 describing the finitely-many possible behaviors
+of the simulated two-way machine that may occur on the portion of the tape to the left of
+the current head position. This is formalized in the following. For u ∈ Σ∗ , an L-segment
+over u with respect to A is a computational path of A over ▷uv◁ for some v ∈ Σ∗ that starts
+from tape position |u| (hence reading the last symbol of ▷u) and ends in position |u| + 1
+(hence, reading the first symbol of v◁) visiting only positions j ≤ |u| in the meantime (hence,
+independent from v). The L-table of u with respect to A, denoted tAu , is the set of pairs (p, q)
+such that there exists an L-segment over u starting in state p and ending in state q. Formally:
+                                    ∗
+        tAu = {(p, q) ∈ Q2 | x·p·σ ⊢A ▷u·q},            where xσ = ▷u with |σ| = 1.
+
+
+5
+    Remark that 2dfa+cgs are nondeterministic devices, since the annotation phase is nondeterministic.
+6
+    B is actually a don’t-care automaton [13], namely an automaton with the self-verifying property on
+    inputs from a restricted domain (here, inputs of the form annot(w) for some w ∈ Σ∗ ).
+7
+    L for “Left”; In the literature, they have sometimes been called “transition tables”.
+
+
+                                                                                                         S TA C S 2 0 2 6
+48:10   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+        Observe that there are finitely many such tables. Also, for every u ∈ Σ∗ , we denote by XuA
+        the set of states that A may enter when it visits the cell containing the right endmarker for
+                                                                                               ∗
+        the first time during a computation over input u. Namely, XuA = {q ∈ Q | ▷·qstart ·u ⊢A ▷u·q}.
+        Again, remark that there are finitely many such sets. Shepherdson observed that knowing XuA
+        and tAu (but not u) is sufficient for deciding whether u ∈ L(A). In order to simplify, we
+        slightly modify the simulated 2nfa, so that knowing tAu will be sufficient.
+        ▶ Lemma 4.3. Each n-state 2nfa A over Σ admits an equivalent (n + 1)-state 2nfa A′ with
+        an inaccessible distinguished state qrestart such that, for each u ∈ Σ∗ and each state p of A′ , on
+                                         ′                           ′                                        ′
+        the one hand (qrestart , p) ∈ tAu if and only if p ∈ XuA , and on the other hand (p, qrestart ) ∈/ tAu .
+        Furthermore, δ ′ (qrestart , ◁) = {(qrestart , −1)} where δ ′ is the transition function of A′ .
+            The key of Shepherdson’s construction is that, given tAu and τ ∈ Σ, it is possible to
+        compute tAuτ without accessing u. Indeed, an L-segment on uτ can be decomposed as a
+        sequence alternating left-moves over τ and L-segments on u, followed by a final right-move
+        over τ . This is formalized in Proposition 4.5 below, using the following notions. For τ ∈ Σ∪{◁}
+                                                       Ak          Ak
+        and k ≥ 0, we define the binary relation Tuτ      (resp. Suτ  ) on Q as the set of pairs (p, q) for
+        which there is a computational path that starts at position |u| + 1 in state p, ends at the
+        same position in state q, visits only positions j ≤ |u| + 1 in the meantime, and visits the
+        position |u| + 1 exactly (resp. at most) k + 1 times (including the initial and final visits, in
+                                                     A0
+        state p and q, respectively). Formally: Tuτ     = {(p, p) | p ∈ Q} and
+                       n                                                                                o
+              A k+1                                             Ak
+            Tuτ     = (p, q) ∃s, r ∈ Q such that (p, s) ∈ Tuτ      , (r, −1) ∈ δ(s, τ ) and (r, q) ∈ tAu ,
+
+             Ak           Aj                        A∗                           Aj
+                    Sk                                                     S
+        and Suτ  = j=0 Tuτ   . We furthermore let Suτ   denote the relation j∈N Tuτ .
+           The following directly follow from the above definitions:
+        ▶ Remark 4.4. Given a 2nfa A, u ∈ Σ∗ and τ ∈ Σ ∪ {◁}:
+             A∗                                              A1
+        1. Suτ   is the reflexive and transitive closure of Tuτ ;
+                      A1
+        2. (p, q) ∈ Tuτ   if and only if there exists r ∈ Q such that (r, q) ∈ tAu and (r, −1) ∈ δ(p, τ );
+                                                 ∗       j
+        3. for every j ≥ n(n − 1), it holds SuA = SuA .
+            In order to build tAuτ from tAu , we rely on the following property.
+        ▶ Proposition 4.5. Let A = ⟨Q, Σ, δ, qstart , qf ⟩ be a 2nfa, u ∈ Σ∗ , and τ ∈ Σ. Then
+                                                                        A∗
+        (p, q) ∈ tAuτ if and only if there exists r such that (p, r) ∈ Suτ and (q, +1) ∈ δ(r, τ ).
+        A direct consequence of the above proposition is that tAu = tAv implies tAuw = tAvw for every w.
+        Also, provided A is in the form of Lemma 4.3, we can decide whether w ∈ L(A) with the
+                             A∗
+        only information of Sw◁ , which is determined from tAw thanks to Remark 4.4:
+        ▶ Proposition 4.6. Let A be a 2nfa over Σ in the form of Lemma 4.3, and w ∈ Σ∗ .
+                                                         A∗
+        Then w ∈ L(A) if and only if (qrestart , qf ) ∈ Sw◁ where qf is the accepting state of A.
+            Not every binary relation R ⊆ Q2 is equal to tAu for some u. Nevertheless, each R ⊆ Q2
+        can be updated according to Proposition 4.5. We formalize this fact in the following, by
+                                                A
+        introducing a variant A/R of A so that tε /R = R.
+        ▶ Definition 4.7. Let A be a 2nfa with state set Q, and let R ⊆ Q2 . We define A/R as the
+        2nfa obtained from A by overwriting its transitions on ▷ according to R. More precisely, A/R
+        has the same transitions as A on symbols distinct from ▷, and transitions from p to (q, +1)
+        on ▷ if and only if (p, q) ∈ R.
+                    A                                                               A
+        Trivially, tε /R = R and A/tAε = A. Also, if R = tAu for some u then tv /R = tAuv for every v.
+B. Guillon, L. Prigioniero, and J. Taheri                                                             48:11
+
+
+    In Shepherdson’s construction, after reading a prefix u of the input, the simulating 1dfa
+stores the whole table tAu (along with the set XuA , which thanks to Lemma 4.3 is not needed
+in our presentation) in its finite control. Then, on symbol τ , it updates it to tAuτ according
+to Proposition 4.5. Finally, it decides acceptance according to Proposition 4.6. This method
+comes with a cost: storing the L-tables in the finite control implies an exponential number
+of states (which, for the simulation of 2nfas by 1dfas, cannot be avoided in general; see,
+e.g., [12]). In order to keep the size of our simulating self-verifying 2nfa+cg polynomial, we
+do not store the successive L-tables in the finite control of the machine. We rather successively
+store the number of elements belonging to the L-tables as a state component, and encode
+some of these tables on the tape. Intuitively, the tape will be virtually divided into portions
+of length n2 (possibly the last portion being shorter), so that the j-th portion stores on its
+annotation track an encoding of the table tAx where x is the input prefix of length jn2 . We
+naturally encode a relation R ⊆ Q2 in a length-n2 word enc(R) over {0, 1}, as follows:
+
+   enc(R)[pn + q] = 1 ⇐⇒ (p, q) ∈ R                      for each p, q ∈ Q = [n].
+
+Notice that the encoding defines a bijection between binary relations on Q and length-n2
+words over {0, 1}. We denote by dec the inverse of enc, i.e., dec = enc−1 .
+                                                                                 ∗
+▶ Definition 4.8. For w ∈ Σ∗ , the annotation of w is the word aw ∈ {0, 1} of length |w|
+defined as follows. Let k ∈ N and r ∈ [n2 ] such that |w| = kn2 + r.
+    If k = r = 0 (i.e., w = ε) then aw = ε, otherwise,
+    If r = 0 then aw = zy where z = aw[0,(k−1)n2 ] and y = enc(tAw ),
+    If r > 0 then aw = zy where z = aw[0,kn2 ] and y = 0r .
+The word annot(w) is the word x over Ψ = Σ × {0, 1} such that π1 (x) = w and π2 (x) = aw .
+
+4.2     The automaton B
+As in Section 3, a key ingredient in our construction is a subprocedure, implemented by
+a 2nfa, which, starting from and ending in some position |v| for some prefix v of the
+input, nondeterministically simulates the computational paths of A on ▷v. Unlike those of
+1nfas described in Section 3, such computational paths are here L-segments or variants of
+L-segments. Again, this procedure is made possible by the use of annotations, which allow to
+keep the head close to the position |v| during the simulation. This idea has already been used
+in [5] for proving a polynomial upper bound for the simulation of 1-las by halting 2nfa+cgs.
+However, in that construction the resulting machine is only able to check the inclusion of the
+encoded relations in the corresponding L-tables. In other words, the simulating 2nfa+cg is
+allowed to “lose” some pairs of the L-tables. Although this is sufficient for the simulated
+machine to recover acceptance of the input, it turns out to be insufficient if, as in the present
+work, we aim to recover rejection of the input. To address this lack of information, following
+the same strategy as in Section 3 and [4, 3], our construction uses inductive counting to
+check that every encoded relation is equal to the corresponding L-table, and finally detect
+whether the input belongs to L(A) or not.
+
+4.2.1    Simulating L-segments using annotations
+The automaton B maintains a variable rpos ranging over [2n2 ] in its finite control, which is
+updated according to each head move as now explained. The variable rpos is incremented on
+right moves and decremented on left moves like a counter with the two following differences:
+decrementing from value 0 is forbidden (hence left-moves from a state in which rpos = 0
+
+
+
+                                                                                                    S TA C S 2 0 2 6
+48:12   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+
+                            kn2                        n2                    n2
+              ▷               u                        x                 y                              ◁
+
+                                          rpos = 0              rpos = n2
+
+            Figure 2 The virtual window when the input prefix under consideration is uxy ∈ Ψ∗ with |u| = kn2
+        for some k ≥ 0, |x| = n2 and |y| = r < n2 . The automaton already has checked π2 (x) = enc(tAπ1 (ux) )
+        and can thus simulate L-segments of A with respect to π1 (uxy) without exiting the window.
+
+
+        are forbidden), and incrementing from value 2n2 − 1 resets the counter to n2 . In the
+        initial configuration, in which the head is at position 1, rpos = n2 . Hence, at any point
+        of the computation with the head at position h, the value of rpos is congruent to h − 1
+        modulo n2 . We call current window the portion of the tape of length at most 2n2 , going from
+        position max(0, h − rpos) to position min(ℓ + 1, h − rpos + 2n2 − 1) where ℓ is the input
+        length; see Figure 2. By relative position i, for i ∈ [2n2 ], we refer to the position i relatively
+        to the current window, i.e., the absolute position max(0, h − rpos) + i. The window will
+        slide from left to right along the input. Indeed, on the one hand, as decrementing rpos from
+        value 0 is forbidden the head can never visit cells to the left of the current window. On
+        the other hand, updating the value of rpos from 2n2 − 1 to n2 on a right-move shifts the
+        window to the right by n2 cells in the following sense: after the shift, a cell that was at some
+        relative position i before the shift is either not covered by the window if i < n2 , or at relative
+        position i − n2 otherwise. By using rpos, B can navigate within this window without getting
+        lost. From now on, we assume the machine has always access to the value rpos without
+        mentioning it explicitly. More generally, we say that a 2nfa is rpos-aware when it has access
+        to rpos, and we do not count the underlying state component when analyzing its size. In a
+        (partial) configuration of some rpos-aware 2nfa, q[rpos=i] indicates state q with rpos = i.
+            Our construction based on inductive counting relies on a nondeterministic subroutine
+        nsimul_t (Procedure 5), which, assuming the annotation on the left side of the current
+        window is correct, allows to simulate L-segments of A while keeping the head within the current
+        window. In particular, on input w, if called from position |x| for a prefix x of annot(w), the
+        procedure eventually halts (if an L-segment on π1 (x) is found) with the head at position |x|+1.
+        The procedure can be implemented by a 2nfa of polynomial size in n, as stated in the
+        following lemma (recall Definition 4.7).
+
+        ▶ Lemma 4.9. Let i ∈ [n2 ]. There exists a rpos-aware 2nfa Ci with same state set Q as A,
+                                         2
+        such that, for every x ∈ {▷} ∪ Ψn , every y ∈ Ψi , and every p, q ∈ Q:
+                                  C∗                                                        A
+           z·p[rpos=n2 +i−1] ·σ ⊢i zσ·q[rpos=n2 +i]             ⇐⇒                (p, q) ∈ tπ1/R
+                                                                                               (yσ)
+
+        where zσ = xy with |σ| = 1, and R equals tAε if x = ▷ or dec(π2 (x)) otherwise.
+
+        Proof. The behavior of Ci is described in Procedure 5, where the value of i is deduced
+        from the initial relative position (Line 24), and which uses a variable pcurr ranging over Q.
+        The states of Ci are the valuations of this variable. The absence of outgoing transitions
+        when rpos ≥ n2 + i is ensured by the main loop condition (Line 26). Let x, y, z, σ, and R
+        be as in the lemma statement. We also let z ′ σ ′ = ▷π1 (y) with |σ ′ | = 1. Starting from the
+        last position of xy = zσ (thus scanning σ) with pcurr = p and rpos = n2 + i − 1, Ci non-
+        deterministically simulates a computational path of A/R starting from configuration z ′ ·p·σ ′ .
+        Yet, Ci does not work on z ′ σ ′ but on xy. Hence, in order to simulate A/R , Ci proceeds in
+        two modes (mainly distinguished by whether rpos ≥ n2 or not, c.f. Line 27).
+B. Guillon, L. Prigioniero, and J. Taheri                                                              48:13
+
+
+      Procedure 5 nsimul_t(p).
+ 24 i ← rpos − n2 + 1
+ 25 pcurr ← p
+                      2
+ 26 while rpos < n + i do
+ 27      if rpos ≥ n2 or read() = ▷ then
+              // direct simulation of A reading the input track
+ 28           choose (r, d) ∈ δ(pcurr , π1 (read()))
+ 29           pcurr ← r
+ 30           move the head according to d
+ 31      else
+              // recovering L-segment from the annotation track
+ 32           while true do
+ 33                if pcurr · n ≤ rpos < (pcurr + 1)n and π2 (read()) = 1 then
+ 34                     choose b ∈ {true, false}
+ 35                     if b then break
+ 36                  if rpos = 0 then abort
+ 37                  move the head leftward
+ 38           pcurr ← rpos mod n
+ 39           move the head rightward to relative position n2
+
+ 40   return pcurr
+
+
+
+
+Mode 1 As far as it scans the portion containing y (rpos ≥ n2 ), it performs a direct
+         simulation by reading the symbols from the input track. Since on this portion these
+         symbols are distinct from ▷, the transition of A/R are the same as those of A. Hence,
+         Ci nondeterministically chooses one transition of A on the corresponding symbol,
+         and then updates its state and moves its head accordingly (Lines 28–30).
+Mode 2 As soon as the last position of the portion containing x is entered (from the right,
+         detected as rpos < n2 ), it simulates a transition of A/R on ▷. If x = ▷ then R = tAε
+         and thus such transitions are the same as those of A. Hence the same simulation as
+         in the previous case works (c.f. the second condition for entering the previous mode
+         on Line 27). Otherwise, Ci scans backward the annotation track carrying π2 (x)
+         (Lines 32–39) in order to find some relative position pn+q where p is the current value
+         of pcurr (detected as pcurr · n ≤ rpos < (pcurr + 1)n) and such that π2 (x[pn + q]) = 1
+         (Line 33). Such a position indeed indicates that (p, q) belongs to R, or equivalently,
+         that from state p scanning ▷, A/R may move its head rightward and enter q. Upon
+         encountering such a position, Ci nondeterministically chooses either to ignore it
+         or to select it (Line 34). In the former case it proceeds with the backward scan
+         of π2 (x), while in the latter it sets pcurr to q and moves the head rightward to
+         relative position n2 (Lines 38–39), so that the simulation may resume from there.
+         If at some point rpos = 0 and no position has been found and selected, then the
+         machine aborts (Line 36).
+By construction, Ci simulates A/R on relative position less than n2 + i. Next, its transitions
+are determined from the only information of pcurr that ranges over Q, rpos and the scanned
+symbol. Hence, Ci has n states (not counting the rpos-component).                             ◀
+
+    In order to update the L-tables according to Proposition 4.5, we need to consider other
+                  A/R j
+relations, e.g. Szσ     for j ∈ [n2 ]. The automaton C can be easily adapted so that the
+resulting 2nfa is able to find any computational path of A/R witnessing the membership of
+a pair (p, q) to such relations.
+
+▶ Lemma 4.10. Let i ∈ [n2 ]. There exists an rpos-aware 2nfas Si with state set Q × [n2 ]
+                                 2
+such that, for every x ∈ {▷} ∪ Ψn , y ∈ Ψi , σ ∈ Ψ ∪ {◁}, p, q ∈ Q, and j ∈ [n2 ]:
+                                 S∗                                                             j
+      xy·(p, j)[rpos=n2 +i] ·σ ⊢i xy·(q, 0)[rpos=n2 +i] ·σ               ⇐⇒      (p, q) ∈ SπA1/R
+                                                                                              (yσ)
+
+where R equals tAε if x = ▷ and dec(π2 (x)) otherwise.
+
+                                                                                                     S TA C S 2 0 2 6
+48:14   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+        We let S be the disjoint union of Si ’s over i. In subsequent procedures, the call to S is referred
+        to as the procedure nsimul_S which takes two parameters, namely the starting state p and
+                                                               Aj
+        the value of j, and eventually returns a state q ∈ Szσ    (p) when called from head position |zσ|.
+                        A          A j
+            Let Y be tvτ (resp. Svτ for some j), and m denote the size of Y . Equipped with the
+        procedure nsimul_t (resp. nsimul_S ), a 2nfa can enumerate the elements of Y as soon
+        as m is known. Indeed, in a similar way as Procedure 1 enumerates the elements of XvA , it is
+        possible to repeat m calls to nsimul_t (resp. nsimul_S ) and check that at each iteration
+        but the first, the found pair is larger than the preceding one. The so-described enumeration
+        procedure is named enum_t (resp. enum_S ), and can be implemented by a rpos-aware 2nfa
+        with polynomially many states in n.
+
+        Checking the annotation-track contents. The whole machinery above relies on the pro-
+        cedure nsimul_t, which in turn relies on the correctness of the annotation on the left side
+        of the current window. Hence, as in Section 3, we have to check that the annotation track
+        contents do encode the expected L-tables. Because our strategy requires to compute the
+        size m of tAπ1 (v) for the successive prefixes v of the correctly-annotated input, our auto-
+        maton B can trigger a special mode, on each time the length of such a prefix v is a positive
+        multiple of n2 , just after having computed m = #tAπ1 (v) . This special mode is responsible
+        of checking that the n2 -length suffix y of v carries the correct annotation symbols, namely,
+                                                                             A
+        that π2 (y) = enc(tAπ1 (v) ). (Technically, it checks that π2 (y) = tπ1/R(y) where R = tAε if v = y
+        or R = dec(π2 (x)) if v = zxy for some |x| = n2 . Since π2 (x) = R = tAπ1 (zx) is assumed to
+        have already been checked by induction, it follows π2 (y) = tAπ1 (v) .) Because at the time this
+        special mode is entered m = #tAπ1 (v) is known (i.e., is stored within the finite control of B),
+        the verification can be easily obtained as follows. First the device checks that π2 (y) has
+        exactly m bits equal to 1. Second, it enumerates the pair (p, q) ∈ tAv using enum_t and checks
+        for each of them that π2 (y)[p + qn] = 1. It is routine to implement this procedure, to which
+        we refer as check_table, by a 2nfa of size polynomial in n.
+
+        ▶ Lemma 4.11. There exists an rpos-aware 2nfa T with polynomially many states in n, and
+                                                                                                    2
+        two injections start and end from [n2 ] to the states of T such that, for every x ∈ {▷} ∪ Ψn ,
+               2
+        y ∈ Ψn −1 , and σ ∈ Ψ:
+                             ∗                                                                 A
+           xy·start(m)·σ ⊢T xy·end(m)·σ                    ⇐⇒                π2 (yσ) = enc(tπ1/R(yσ) )
+
+                                                                                     A
+        where R equals tAε if x = ▷ and dec(π2 (x)) otherwise, and m = #tπ1/R(yσ) .
+
+        4.2.2     Inductively computing the size of L-tables
+        We now explain how our 2nfa B inductively computes #tAπ1 (v) for each prefix v of w. More
+        precisely, we inductively ensure the following invariant for every prefix v of w:
+
+                            when B enters position |v| + 1 for the first time,
+           #tAπ1 (v) is stored in its finite control, and, if |v| ≥ n2 then π2 (v ′ ) = enc(tAπ1 (v′ ) )   (Iv )
+                for v ′ the maximal prefix of v whose length is a positive multiple of n2 .
+
+        Initially, for v = ε, #tAπ1 (v) = #tAε is a precomputed constant, encoded in the initial state
+        of B. Let vσ be a prefix of w ∈ Ψ∗ with |σ| = 1. Assume that #tAπ1 (v) is known (i.e.,
+        stored in the finite control of B) and the head is on position |vσ|, scanning σ. In order to
+        compute #tAπ1 (vσ) , B follows the following steps:
+B. Guillon, L. Prigioniero, and J. Taheri                                                                               48:15
+
+
+                                1
+Step 1 It computes #SπA1 (vσ) from #tAπ1 (v) ;
+                                                      ∗                 1
+Step 2 It then inductively computes #SπA1 (vσ) from #SπA1 (vσ) ;
+                                                 ∗
+Step 3 It finally computes #tAπ1 (vσ) from #SπA1 (vσ) .
+Each of these steps is performed through a computational path of B that starts from
+position |vσ|, ends in position |vσ|, and visits only position h ≤ |vσ| in the meantime.
+   Steps 1 and 3 are the simplest ones, as they follow from Remark 4.4 and Proposition 4.5,
+respectively. Indeed, for Step 1, B can detect whether a given pair (p, q) belongs to tAπ1 (v)
+given #tAπ1 (v) by enumerating the elements of tAπ1 (v) using enum_t (using the same idea as
+                                                                                         1
+in Procedure 3). Thus, it can detect whether a pair belongs to SπA1 (vσ) based on Item 2
+                                                                                                          1
+of Remark 4.4, and, by trying all pairs and counting those that belong to SπA1 (vσ) , it can
+                  1
+compute #SπA1 (vσ) . Similarly for Step 3, B can detect whether a given pair (p, q) belongs
+        ∗                ∗                                        ∗
+to SπA1 (vσ) given #SπA1 (vσ) by enumerating the elements of SπA1 (vσ) using enum_S with j = n2
+              j             ∗
+(so that SπA1 (vσ) = SπA1 (vσ) by Item 3 of Remark 4.4). Thus, it can detect whether a pair
+belongs to tAπ1 (vσ) based on Proposition 4.5, and by trying all pairs and counting those
+that belong to tAπ1 (vσ) , it can compute #tAπ1 (vσ) . The resulting procedures get_S1_from_t
+and get_t_from_S* can be implemented using a polynomial number of states (as stated in
+Lemma 4.12 below).
+    It thus remains to explain Step 2, which follows the same idea but with an inner
+                                                          ∗            n2                    1
+induction. Indeed, one way of computing #SπA1 (vσ) = #SπA1 (vσ) from #SπA1 (vσ) is to successively
+                  j
+compute #SπA1 (vσ) for j = 1, . . . , n2 . However, we follow a cheaper and simpler big-step
+strategy, where we compute these cardinalities only for successive powers of 2, using the
+following observation:
+                  2j                                           j                     j
+    (p, q) ∈ SπA1 (vσ)      ⇐⇒          ∃r ∈ Q : (p, r) ∈ SπA1 (vσ) and (r, q) ∈ SπA1 (vσ)           for all j ≥ 0.
+                                    j                                                                             j
+Hence, since knowing #SπA1 (vσ) allows to detect which pairs of states belong to SπA1 (vσ)
+                                                                        2j                       j
+using enum_S , our automaton B is able to compute #SπA1 (vσ) from #SπA1 (vσ) . The resulting
+procedure get_next_S (Procedure 6) can be implemented using a polynomial number
+of states only. By successively computing such cardinalities for j = 1, . . . , 2⌈log(n)⌉, we
+               22⌈log(n)⌉                                 ∗
+obtain #SπA1 (vσ) which is equal to #SπA1 (vσ) by Remark 4.4. The resulting procedure
+get_S*_from_S1 (Procedure 7) can be implemented using a polynomial number of states
+in n only.
+▶ Lemma 4.12. Let i ∈ [n2 ]. There exist three rpos-aware 2nfas Di , Ei , Fi of size
+polynomial in n, each provided with two mappings start and end from [n2 ] to their respective
+                                                2
+set of states, such that for every x ∈ {▷} ∪ Ψn , y ∈ Ψi , σ ∈ Ψ ∪ {◁}, and m, m′ ∈ [n2 ]:
+                                                                                    1
+                                                                                       
+            A                                     D∗
+    m = #tπ1/R(y)       =⇒          xy·start(m)·σ ⊢i xy·end(m′ )·σ ⇐⇒ m′ = #SπA1/R(yσ)
+                                                                                     ∗
+                 1
+                                                                                      
+                                                  E∗
+    m = #SπA1/R(yσ)     =⇒          xy·start(m)·σ ⊢i xy·end(m′ )·σ ⇐⇒ m′ = #SπA1/R(yσ)
+                 ∗
+                                                                                      
+                                                  F∗                            A
+    m = #SπA1/R(yσ)     =⇒          xy·start(m)·σ ⊢i xy·end(m′ )·σ ⇐⇒ m′ = #tπ1/R(yσ)
+
+where R equals tAε if x = ▷ and dec(π2 (x)) otherwise.
+
+4.2.3      Gathering the mechanisms: the automaton B
+We are now ready to prove Lemma 4.2 by concluding the presentation of B whose high-level
+behavior is described by Procedure 8.
+
+
+
+                                                                                                                      S TA C S 2 0 2 6
+48:16   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+             Procedure 6 get_next_S(m, j).                      Procedure 8 mainB().
+        41 mnext ← 0                                       52 m ← #tAε
+        42 foreach (p, q) ∈ Q do
+                                2                          53 while read() ̸= ◁ do
+        43      foreach r ∈ Q do                           54     m ← get_S1_from_t(m)
+        44          if (p, r) ∈ enum_S (m, j) and          55     m ← get_S*_from_S1(m)
+                      (r, q) ∈ enum_S (m, j) then          56     m ← get_t_from_S*(m)
+        45                mnext ← mnext + 1                57     if rpos = 2n2 − 1 then check_table(m)
+        46                break                            58     move the head to the right
+                                                           59 if the suffix of length rpos − n2 − 1 of π2 (w) is
+        47   return mnext                                       not in 0∗ then abort
+                                                           60 m ← get_S1_from_t(m)
+                                                           61 m ← get_S*_from_S1(m)
+             Procedure 7 get_S*_from_S1(m).                                   2
+                                                           62 if enum_S (m, n ) outputs (qrestart , qf ) then
+        48 mnext ← m                                       63      return true
+        49 for j ← 1 to 2⌈log(n)⌉ do                       64 else
+        50      mnext ← get_next_S(mnext , 2j )            65      return false
+        51   return mnext
+
+
+
+
+        Proof of Lemma 4.2. The mapping annot is defined in Definition 4.8, while the 2nfa B
+        implements Procedure 8 using and maintaining the rpos variable in its finite control, as
+        explained in Section 4.2.1. We first show the correctness of B, based on the preliminary work,
+        and then argue that its has polynomial size in n.
+            The behavior of B can be decomposed into two phases. First, it has one main loop
+        for visiting all tape cells until hitting the right endmarker (Lines 53–58) while iteratively
+        computing #tAv for the corresponding prefix v. Then, a final phase decides the acceptance or
+        the rejection of the input. In any phase, abortion of the computation, due to wrong choices
+        or incorrect annotation are possible.
+            During the first phase, we ensure the invariant (Iv ) where v is the input-track contents to
+        the left of the head position, at the loop entrance. This prefix v is extended, symbol by symbol,
+        at each iteration of the loop (see Line 58). Indeed, knowing #tAv at the beginning of the loop
+        with the head scanning τ ̸= ◁ with π1 (τ ) = σ, the machine computes #tAvσ by following the
+        three steps that were presented in Section 4.2.2 (Lines 54–56). In order for the simulation
+        to work properly, B checks the annotation track contents using the procedure check_table
+        each time a factor of length n2 have been completed (Line 57).
+            The second phase is entered when the head has reached ◁. To ensure unicity of the
+        annotation, B checks that the annotation-track contents ends with 0r , where r = |w| mod n2
+        is known as r = rpos − n2 − 1 (Line 59). Also, at that time, the state of B contains the
+        information of #tAw . Hence, in a similar way as done during the loop, the machine can com-
+                  A∗
+        pute #Sw◁     (Lines 60–61). It then decide acceptance by testing whether the pair (qrestart , qf )
+                       A∗
+        belongs to Sw◁    or not according to Proposition 4.6, using enum_S with j = n2 (Line 62).
+            The number of states of B is polynomial in n. This can easily be seen as the given
+        procedure and sub-procedures use finitely many variables (including rpos), each ranging
+        over at most n2 values. Indeed a state of B roughly consists in a valuation of these variables,
+        together with a mode specifying at which point (which procedure and line) the simulation is.
+        A rough analysis could show that O(n17 log(n)) states are sufficient (hopefully a finer analysis
+        and/or design could decrease this exponent, possibly using further annotation symbols). ◀
+
+         5       Conclusion
+        We investigated the descriptional complexity of the complementation of 2nfas. Our results
+        show that, if we relax the target device so that, in addition to the usual nondeterminism
+        it enjoys common guess (i.e., it works on nondeterministically annotated inputs), then a
+B. Guillon, L. Prigioniero, and J. Taheri                                                               48:17
+
+
+polynomial cost can be met. By adapting our construction or applying the results from [5],
+the resulting 2nfa+cg can furthermore be made halting. A natural improvement of our result
+consists in a finer analysis of the upper-bounding polynomial, or – more promising – in the
+design of an alternative cheaper construction, possibly using more annotation symbols. In the
+opposite direction, deriving non-trivial (e.g., quadratic) upper bounds for the transformation
+is left as a challenging open problem.
+    Another extension could be to consider more restricted forms of 2nfa+cgs as target
+devices. In particular, 2dfa+cgs are of particular interest. In contrast with 2nfa+cgs,
+their nondeterminism is limited to the annotation phase only. This limitation already
+allows to derive similar lower bounds for their simulation by 2nfas, 1nfas, 1dfas, or
+deterministic 1-las (d1-las) as those obtained for the simulation of general 1-las [6]. A
+natural question is whether common guess is sufficient for capturing the usual form of
+nondeterminism up-to a polynomial size increase. This reduces to the question of the size
+cost of the conversion of 2nfas into equivalent 2dfa+cgs, a weakening of [15, Problem 4];
+see Figure 1. Hence, a future line of research consists in the investigation of these costs, as
+well as the related problem of the cost of complementing 2nfas or 1nfas by 2dfa+cgs.
+
+
+     References
+ 1   Jean-Camille Birget. Intersection and union of regular languages and state complexity.
+     Information Processing Letters, 43(4):185–190, 1992. doi:10.1016/0020-0190(92)90198-5.
+ 2   Alessandro Clerici Lorenzini, Giovanni Pighizzini, and Luca Prigioniero. Two-way automata
+     and bounded languages. In Conference on Implementation and Application of Automata CIAA
+     2025, Proceedings, volume 15981 of Lecture Notes in Computer Science, pages 73–85. Springer,
+     2025. doi:10.1007/978-3-032-02602-6_6.
+ 3   Viliam Geffert, Bruno Guillon, and Giovanni Pighizzini. Two-way automata making choices
+     only at the endmarkers. Information and Computation, 239:71–86, 2014. doi:10.1016/j.ic.
+     2014.08.009.
+ 4   Viliam Geffert, Carlo Mereghetti, and Giovanni Pighizzini. Complementing two-way finite
+     automata. Information and Computation, 205(8):1173–1187, 2007. doi:10.1016/j.ic.2007.
+     01.008.
+ 5   Bruno Guillon and Luca Prigioniero. Linear-time limited automata. Theoretical Computer
+     Science, 798:95–108, 2019. doi:10.1016/j.tcs.2019.03.037.
+ 6   Bruno Guillon, Luca Prigioniero, and Javad Taheri. Nondeterminism makes unary 1-limited
+     automata concise. In Developments in Language Theory DLT 2025, Proceedings, volume
+     16036 of Lecture Notes in Computer Science, pages 153–165. Springer, 2025. doi:10.1007/
+     978-3-032-01475-7_11.
+ 7   Bruno Guillon, Luca Prigioniero, and Javad Taheri. Polynomial complementation of non-
+     deterministic 2-way finite automata by 1-limited automata. CoRR, abs/2507.11209, 2025.
+     doi:10.48550/arXiv.2507.11209.
+ 8   John E. Hopcroft and Jeffrey D. Ullman. Introduction to Automata Theory, Languages and
+     Computation. Addison-Wesley, 1979.
+ 9   Neil Immerman. Nondeterministic space is closed under complementation. SIAM Journal on
+     Computing, 17(5):935–938, 1988. doi:10.1137/0217058.
+10   Galina Jirásková. State complexity of some operations on binary regular languages. Theoretical
+     Computer Science, 330(2):287–298, 2005. doi:10.1016/j.tcs.2004.04.011.
+11   Galina Jirásková and Giovanni Pighizzini. Optimal simulation of self-verifying automata
+     by deterministic automata. Information and Computation, 209(3):528–535, 2011. doi:
+     10.1016/j.ic.2010.11.017.
+
+
+
+
+                                                                                                      S TA C S 2 0 2 6
+48:18   Polynomial Complementation of 2NFAs by 1-LAs
+
+
+        12   Christos A. Kapoutsis. Removing bidirectionality from nondeterministic finite automata. In
+             Mathematical Foundations of Computer Science MFCS 2005, Proceedings, volume 3618 of
+             Lecture Notes in Computer Science, pages 544–555. Springer, 2005. doi:10.1007/11549345_47.
+        13   Nelma Moreira, Giovanni Pighizzini, and Rogério Reis. Optimal state reductions of automata
+             with partially specified behaviors. Theoretical Computer Science, 658:235–245, 2017. doi:
+             10.1016/j.tcs.2016.05.002.
+        14   Giovanni Pighizzini. Two-way finite automata: Old and recent results. Fundamenta Informat-
+             icae, 126(2-3):225–246, 2013. doi:10.3233/FI-2013-879.
+        15   Giovanni Pighizzini. Limited automata: Properties, complexity and variants. In Descriptional
+             Complexity of Formal Systems DCFS 2019, Proceedings, volume 11612 of Lecture Notes in
+             Computer Science, pages 57–73. Springer, 2019. doi:10.1007/978-3-030-23247-4_4.
+        16   Giovanni Pighizzini and Andrea Pisoni. Limited automata and regular languages. Inter-
+             national Journal of Foundations of Computer Science, 25(7):897–916, 2014. doi:10.1142/
+             s0129054114400140.
+        17   Giovanni Pighizzini, Luca Prigioniero, and Simon Sádovský. Performing regular operations
+             with 1-limited automata. Theory of Computing Systems, 68(3):465–486, 2024. doi:10.1007/
+             s00224-024-10163-1.
+        18   William J. Sakoda and Michael Sipser. Nondeterminism and the size of two way finite automata.
+             In Symposium on Theory of Computing STOC 1978, Proceedings, pages 275–286. ACM, 1978.
+             doi:10.1145/800133.804357.
+        19   John C. Shepherdson. The reduction of two-way automata to one-way automata. IBM Journal
+             of Research and Development, 3(2):198–200, 1959. doi:10.1147/rd.32.0198.
+        20   Róbert Szelepcsényi. The method of forced enumeration for nondeterministic automata. Acta
+             Informatica, 26(3):279–284, 1988. doi:10.1007/BF00299636.
+        21   Moshe Y. Vardi. A note on the reduction of two-way automata to one-way automata.
+             Information Processing Letters, 30(5):261–264, 1989. doi:10.1016/0020-0190(89)90205-6.
+        22   Klaus W. Wagner and Gerd Wechsung. Computational Complexity. Mathematics and its
+             Applications. Springer, 1986.
+

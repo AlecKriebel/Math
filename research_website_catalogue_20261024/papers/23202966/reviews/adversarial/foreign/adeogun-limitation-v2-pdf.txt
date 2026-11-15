@@ -1,0 +1,789 @@
+                                             Unrestricted 2DFA simulation of 1NFAs:
+                                          A Quadratic Limitation to a New Lower Bound
+
+                                                           Kehinde Adeogun and Christos A. Kapoutsis
+
+                                                                 Carnegie Mellon University in Qatar
+
+
+
+
+arXiv:2609.13793v2 [cs.FL] 15 Sep 2026
+                                                Abstract. A recent result by the present authors established a quadratic
+                                                lower bound, in the worst case, for the increase in the number of states
+                                                when a one-way nondeterministic finite automaton is converted to a two-
+                                                way deterministic finite automaton. Although this simply matched a well-
+                                                known pre-existing quadratic lower bound by Chrobak, it used a distinct
+                                                proof method. We show that, much like Chrobak’s, this new method is
+                                                also unable to deliver any lower bound strictly greater than quadratic.
+
+                                                Keywords: Sakoda-Sipser conjecture, descriptional complexity
+
+
+                                         1    Introduction
+
+                                         An important open question in automata and complexity theory concerns the
+                                         conversion of one-way nondeterministic finite automata (1nfas) to two-way de-
+                                         terministic finite automata (2dfas). By an old result [1], this conversion is always
+                                         possible, as we can convert the given 1nfa N to an equivalent one-way deter-
+                                         ministic finite automaton M , i.e., a 2dfa that does not use its ability to reverse
+                                         its input head. However, this method is known to incur an exponential cost in
+                                         the number of states: if N has s states, then M may well have (and, for some N ,
+                                         necessarily has) 2s states [2]. A natural question then is whether M can decrease
+                                         its number of states to only a polynomial in s, if it uses its bidirectionality.
+                                             First posed by Seiferas [3], this question is still open. Sakoda and Sipser [4] re-
+                                         vealed its importance by viewing it as a special case of the respective question for
+                                         the more general conversion of two-way nondeterministic finite automata (2nfas)
+                                         to 2dfas; and, in turn, by viewing this latter conversion as a miniature variant
+                                         of our big open questions on the power of nondeterminism (e.g., P vs. NP). In
+                                         the spirit of this analogy, they also introduced a decision problem, now called
+                                         one-way liveness (owl), that is “complete” for the conversion, in that: for all h,
+                                         a 2dfa with s(h) states can decide owlh (i.e., owl on instances of “height” h) iff
+                                         every h-state 1nfa has an equivalent 2dfa with s(h) states. Hence, the original
+                                         question became: Is owlh decidable by a 2dfa with poly(h) states?
+                                             Sakoda and Sipser conjectured a negative answer, namely that 2dfas need
+                                         super-polynomially many states to decide owlh ; and thus (equivalently) to sim-
+                                         ulate h-state 1nfas (and thus to simulate h-state 2nfas—this latter, weaker
+                                         claim being what is now known as the “Sakoda-Sipser conjecture”). Their first
+                                         attempts at confirming this conjecture were followed by many others, which
+2       K. Adeogun, C. A. Kapoutsis
+
+mostly established super-polynomial lower bounds for specials cases of restricted
+2dfas (see [5] for a brief summary). Proving lower bounds for unrestricted 2dfas
+against owl has been a minority approach, with just three instantiations.
+    In 1986, Chrobak [7] studied the conversion in the special case where the
+given 1nfa is unary (i.e., over a single-letter input alphabet). For every h, he
+exhibited a specific h-state 1nfa Nh and proved that every 2dfa equivalent to
+it needs Ω(h2 ) states, directly implying the same for the restriction of owlh to
+strings of the one symbol that captures the behavior of that Nh . On a pessimistic
+note, he also proved that every h-state unary 1nfa has an equivalent 2dfa with
+O(h2 ) states, so his approach was unable to deliver any greater lower bound.
+    In 2018, Kapoutsis [9] studied owlh in the special case of instances of
+length 3. He proved that every 2dfa deciding such instances needs Ω(h2 / log h)
+states. On a pessimistic note, he also proved that O(h2 / log h) states are enough,
+so his approach was also unable to deliver any greater lower bound.
+    Note that, quite counter-intuitively, in both of the above results the lower
+bound was achieved even on severely restricted instances of owl (strings over
+only one symbol; or of length 3). However, as mentioned above, the 2dfa assumed
+to be working on these restricted instances was completely unrestricted.
+    In 2026, the present authors [5] studied owlh in the general case. Matching
+Chrobak’s lower      bound, they proved that every 2dfa for owlh must have at
+least 21 h+1
+                        2
+            2   =  Ω(h     ) states. Crucially, their technique was distinct from those
+of [7,9]: they proved that, under certain favorable conditions, two properties P, P ′
+(i.e., sets of strings) can force the 2dfa to “spend 1 state on the left or right” just
+to be able to tell whether some infix of the input is in P or P ′ ; and then designed
+a sequence of properties P0 , P1 , . . . , PN where N = h+1     2   and every Pi−1 , Pi
+satisfy the favorable conditions, thus concluding that 21 N states must be spent.
+On a pessimistic note, they also conjectured that their sequence P0 , P1 , . . . , PN
+was longest among all sequences where successive properties satisfy the favorable
+conditions; so their approach was also unable to deliver any greater lower bound.
+    Here, we confirm that conjecture (cf. Th. 1). We prove that, indeed, for every
+sequence P0 , P1 , . . . , Pm , if every two successive properties Pi−1 , Pi satisfy
+                                                                                   the
+favorable conditions of [5, Lemma 10] (for owlh ), then m ≤ N = h+1             2 . For
+this, we first abstract every instance z of owlh into its connectivity C: an h × h
+Boolean matrix that records connections between nodes of the outer columns
+of z. We then view C as a homomorphism on the powerset of [h] := {1, . . . , h},
+and note that its range is a lattoid V : a union-closed family of subsets of [h]. In
+it, we identify a quantity, the prime volume of V , which lies between 0 and h+1
+                                                                                       
+                                                                                     2 .
+Finally, we show that, in every step along the given sequence P0 , P1 , . . . , Pm , the
+prime volume decreases by at least 1, which immediately implies m ≤ h+1          2 .
+    After some preliminaries (Sect. 2), we study lattoids and how mappings on
+them affect the prime volume (Sect. 3); connectivities and how they relate to
+lattoids (Sect. 4); and properties and how they relate to connectivities (Sect. 5).
+We then prove our result for the special case of connectivity properties (Th. 2),
+like those designed in [5]. The general case (Th. 1) needs a simple extension with
+longer presentation and is reserved for the full version of this report.
+               A limitation for proving lower bounds for 2DFAs against OWL              3
+
+
+                                                                                   
+                                                                           00000
+                                                                          1 1 0 1 0
+                                                                                   
+                                                                          0 0 1 1 1
+                                                                                   
+                                                                          1 1 0 0 0
+                                                                           11010
+
+Fig. 1. Three symbols in Σ5 (L); their string (M); and its connectivity (R). (From [5].)
+
+
+2    Preliminaries
+For h ≥ 1, let [h] := {1, 2, . . . , h} and let [[h]] be the powerset of [h]. In a family
+of sets F ⊆ [[h]], an incomparability is any unordered pair {a,b} of incomparable
+sets: a, b ∈ F & a ⊈ b & a ⊉ b. The set of all incomparabilities in F is denoted
+by I(F ). The volume of F is its number of sets and incomparabilities
+
+                                 vol(F ) := |F | + |I(F )| ,                         (1)
+
+and is between 0 and |F 2|+1 .(1) The
+                                
+                                        S union closure of F is the set of all unions of
+(zero or more) sets of F , cl(F ) := { X | X ⊆ F }. Easily, this includes the empty
+set ∅;(2) and all of F ,(3) i.e., F ⊆ cl(F ). If F = cl(F ), then F is union-closed.
+                              
+Example 1. Family F := {1}, {2}, {2,3} has two incomparabilities             ({1} with
+{2} and {2,3}); volume 3+2 = 5; and union closure [[3]] \ {3}, {1,3} .
+
+Properties. A property (of the strings) over an alphabet Σ is any P ⊆ Σ ∗ . We
+call P smooth, if every two strings in it have an infix that keeps their concate-
+nation in the property: (∀x,z ∈ P )(∃y)(xyz ∈ P ). Properties P, P ′ are separated
+by language L ⊆ Σ ∗ if there is always a context where choosing P or P ′ affects
+membership in L: (∀x ∈ P )(∀z ∈ P ′ )(∃u,v)(uxv ∈ L ⇐⇒ uzv ̸∈ L).
+    We say that P lr-extends to P ′ if every string in it can be lr-extended
+into P ′ : (∀x ∈ P )(∃y)(xy ∈ P ′ ); that P has a suffix into P ′ , if a single suffix y
+can push into P ′ every x from P or P ′ : (∃y)(∀x ∈ P ∪ P ′ )(xy ∈ P ′ ); and that
+P has suffix of choice into P ′ , if that suffix can be chosen to end in any way
+v ∈ P that we want: (∀v ∈ P )(∃u)(∀x ∈ P ∪ P ′ )(xuv ∈ P ′ ).
+
+One-way liveness. Let h ≥ 1. The alphabet Σh := P([h]×[h]) consists of every
+two-column directed graph with h nodes per column and only rightward arrows
+(Fig. 1). An n-long string z ∈ Σh∗ is naturally viewed as a graph of n+1 columns,
+indexed from 0 to n, where edges connect successive columns and, for simplicity,
+are undirected. If there exists an n-long path from some node of column 0 to
+some node of column n, then z is live; otherwise, it is dead. Checking that a given
+z ∈ Σh∗ is live is the one-way liveness problem for height h, denoted by owlh .
+    The problem helps us study how easily 2dfas can simulate 1nfas [4]. For-
+mally, the family owl = (owlh )h≥1 is complete, under homomorphic reduc-
+tions, for the class 1N of all language families L = (Lh )h≥1 that are recognized
+4       K. Adeogun, C. A. Kapoutsis
+
+by 2dfa families M = (Mh )h≥1 where the number of states grows polynomially
+in h. Intuitively, the strings of Σh∗ are all computations of all h-state 1nfas. So,
+if a 2dfa solves owlh with ≤ s(h) states, then every h-state 1nfa can be simu-
+lated by a 2dfa with ≤ s(h) states; and, conversely, if every 2dfa for owlh needs
+≥ s(h) states, then some h-state 1nfa needs ≥ s(h) states in each 2dfa simulator.
+
+The new method. At the heart of the method of [5] lies a general lemma, that
+a 2dfa for a language L must “spend ≥ 1 state on the left or the right” just to
+“distinguish” between two properties P and P ′ , if these satisfy certain conditions.
+Lemma 1 ([5, Lemma 10]). Let P, P ′ ̸= ∅ be smooth. Suppose P has suffix of
+choice into P ′ ; and P, P ′ are separated by L. If 2dfa M solves L, then the exit
+sizes of P, P ′ on M satisfy a(P ) ≥ a(P ′ ) and b(P ) ≥ b(P ′ ), and at least one of
+these inequalities is strict.
+For the definitions of lr-size a(P ) and rl-size b(P ) of a property P , see [5].
+Here, we only need to know that all of the mentioned lr-/rl-sizes are between 0
+and the size of M ’s set of states Q, namely: 0 ≤ a(P ), b(P ), a(P ′ ), b(P ′ ) ≤ |Q|.
+     Given this lemma for L = owlh , the rest of [5] is spent designing properties
+P0 , P1 , . . . , PN ⊆ Σh∗ for N = h+1
+                                    2  such that every two successive ones Pi−1 , Pi
+satisfy the lemma’s assumptions (non-empty, smooth, separated by owlh , with
+suffix of choice) and thus its conclusion that a(Pi−1 ) ≥ a(Pi ) & b(Pi−1 ) ≥ b(Pi )
+and at least one inequality is strict. Therefore, the two sequences
+    |Q| ≥ a(P0 ) ≥ · · · ≥ a(PN ) ≥ 0   and |Q| ≥ b(P0 ) ≥ · · · ≥ b(PN ) ≥ 0         (2)
+host ≥ N strict inequalities; so one of them hosts ≥ 21 N ; therefore |Q| ≥ 12 N .
+    Our goal is to prove that the sequence P0 , P1 , . . . , PN above is longest, 
+                                                                                  and
+so this method can deliver no lower bound strictly greater than 12 N = 21 h+1    2 .
+
+Theorem 1. Let ∅ ̸= P0 , P1 , . . . , Pm ⊆ Σh∗ be arbitrary properties. Suppose that,
+for 1 ≤ i ≤ m, Pi−1 , Pi are separated by owlh ; Pi−1 has suffix of choice into Pi ;
+and Pi is smooth. Then m ≤ h+1     2 .
+
+
+3    Lattoids
+A lattoid over h is any union-closed family V ⊆ [[h]]. Note that such V always
+contains ∅.(4) For v ∈ V , the length of a longest strict chain in V from ∅ to v:
+      h(v) := max{k | (∃v0 , v1 , . . . , vk ∈ V )(∅ = v0 ⊊ v1 ⊊ · · · ⊊ vk = v)} ,   (3)
+is its height. Easily, we have 0 = h(∅) ≤ h(v) and u ⊊ v =⇒ h(u) < h(v).(5)
+     We say that v is composite, if it is the union of other sets in V :
+                                                     S 
+                           (∃X ⊆ V ) v ∈ /X & v= X ;                        (4)
+
+otherwise, it is prime. Note that ∅ is composite.(6) The set of all primes in V is
+its core, core(V ). A prime factorization
+                                    S     of v is any collection X of primes that
+can create it: X ⊆ core(V ) & v = X. Easily, prime factorizations always exist.
+              A limitation for proving lower bounds for 2DFAs against OWL            5
+
+Lemma 2. Every set v in a lattoid V has a prime factorization.(7)
+    The prime incomparabilities and prime volume of a lattoid V are the incom-
+parabilities and volume of its core. Easily, 0 ≤ vol(core(V )) ≤ |core(V )|+1 (8)
+                                                                             
+                                                                       2       .
+    A representative for a prime v of a lattoid V is any member i that belongs
+to only those primes of V that contain v:
+                 i∈v      &    (∀u ∈ core(V ))(i ∈ u =⇒ v ⊆ u) .                   (5)
+We also say that i represents v; and v is represented (by i). Easily, a prime may
+have zero, one, or many representatives; but each i can represent at most one
+prime in V .(9) If every prime is represented, we say that V is a regular lattoid.
+
+3.1   Mappings between Lattoids
+Let U, V be lattoids and α : U → V any mapping. We say that α respects
+inclusion (or is monotone) if u ⊆ u′ =⇒ α(u) ⊆ α(u′ ); that α respects non-
+inclusion if u ⊈ u′ =⇒ α(u) ⊈ α(u′ ); that α is an embedding, if it respects both
+inclusion and non-inclusion; and that α is a (relational ) isomorphism if it is a
+bijective embedding. Easily, surjective embeddings are already isomorphisms:
+Lemma 3. Every surjective embedding is a (relational ) isomorphism.(10)
+     WeS say thatSα is a homomorphism (or that it respects union) if, for all X ⊆ U ,
+it is α( X) = u∈X α(u). Easily, every homomorphism is a monotone mapping;
+is fully determined by its values on the primes; and its range is a lattoid:
+Lemma 4. Every homomorphism respects inclusion.(11)
+Lemma 5. Suppose homomorphisms α, β : U → V agree on the primes of U ,
+namely α(u) = β(u) for every u ∈ core(U ). Then α = β.(12)
+Lemma 6. The range of every homomorphism is a lattoid.(13)
+    We say α is an operational isomorphism, if it is a bijective homomorphism.
+In the next three lemmas, we prove that operational isomorphisms are exactly
+the (relational) isomorphisms (i.e., bijective embeddings) defined above.
+Lemma 7. Every surjective embedding is an operational isomorphism.
+Proof. Pick any surjective embedding α : U → V . We know α is a relational
+isomorphism (Lemma 3), and thus bijective. So, we just need      S to show
+                                                                        S that it
+also respects union. For this, we letSX ⊆ U and prove that α( X) = Su∈X α(u).
+    [⊇] Every u ∈ X satisfies u ⊆ X (clearly), and thus α(u) ⊆ α( X) (since      S
+α respects inclusion). Therefore the union of all α(u) is also included in α( X).
+    [⊆] Since V contains
+                   S       the α(u) for all u ∈ X and is a lattoid, it also contains
+their union v∗ := u∈X α(u). Since α is surjective, there exists u∗ ∈ U such that
+α(u∗ ) = v∗ . Now, for every u ∈ X, it is α(u) ⊆ v∗ (clearly); namely α(u) ⊆ S  α(u∗ );
+and thus u ⊆ u∗ (since α respects non-inclusion).
+                                        S               Therefore,
+                                                                S  the union     X of
+all such u ∈ X is also in u∗ , namely
+                                   S      X  ⊆ u∗ . But then  α(  X)  ⊆ α(u ∗ ) (since
+α respects inclusion); namely α( X) ⊆ v∗ , as desired.                              □
+6       K. Adeogun, C. A. Kapoutsis
+
+Lemma 8. Every injective homomorphism is an embedding.
+
+Proof. Pick any injective homomorphism α : U → V . Since α respects inclusion
+(Lemma 4), we just need to show that it also respects non-inclusion. Let u, u′ ∈ U
+with u ⊈ u′ . Then clearly u ∪ u′ ⊈ u′ , and thus u ∪ u′ ̸= u′ ; so, α(u ∪ u′ ) ̸= α(u′ )
+(since α is injective); and thus α(u)∪α(u′ ) ̸= α(u′ ) (since α is a homomorphism);
+which is possible only if α(u) ⊈ α(u′ ), as desired.                                  □
+
+Lemma 9. Operational and relational isomorphisms between lattoids coincide.
+
+Proof. Pick any α : U → V . If α is a relational isomorphism, then it is also an
+operational one (by Lemma 7, as a surjective embedding). If α is an operational
+isomorphism, then it is bijective (by definition); and an embedding (by Lemma 8,
+as an injective homomorphism); hence, it is a relational isomorphism.          □
+
+   So, from now on we stop qualifying isomorphisms as relational or operational;
+and take it for granted that inclusion, non-inclusion, and union are all respected.
+
+
+3.2   Prime Volume under Surjective Homomorphisms
+
+We now prove that surjective homomorphisms between lattoids never increase
+the prime volume (Lemma 11); and always decrease it, if they are non-injective
+and map to a regular lattoid (Lemma 13).
+
+Lemma 10. If α : U → V is a surjective homomorphism, then every prime
+of V is the image of some prime of U , and likewise for prime incomparabilities:
+
+                    (∀v ∈ core(V ))(∃u ∈ core(U ))(α(u) = v)
+      ∀{v,v } ∈ I(core(V )) ∃{u,u′ } ∈ I(core(U )) {α(u), α(u′ )} = {v,v ′ } .
+            ′
+                                                                          
+
+
+Proof. Pick any v ∈ core(V ). Since α is surjective, there is u ∈ U with α(u)S= v.
+Let Xu be any prime factorization of u (Lemma 2): Xu ⊆ core(U ) & u = Xu .
+We claim that some u′ ∈ Xu is the prime we are after, i.e., α(u′ ) = v. Indeed:
+Let Y := {α(u′ ) | u′ ∈ Xu } and use the fact that α is a homomorphism, to get:
+                                          [
+                                            α(u′ ) = Y ,
+                                  S                 S
+                     v = α(u) = α( Xu ) =                                            (6)
+                                              u′ ∈Xu
+
+             S
+namely v = Y for the particular Y ⊆ V . Since v is prime, it must be v ∈ Y ,
+namely v = α(u′ ) for some u′ ∈ Xu , as promised.
+    Now pick any prime incomparability {v,v ′ } of V . By the previous part, there
+exist primes u, u′ in U with α(u) = v and α(u′ ) = v ′ . We claim {u,u′ } is a prime
+incomparability of U . Indeed: If not, then u, u′ are comparable. Without loss
+of generality, say u ⊆ u′ . But then α(u) ⊆ α(u′ ) (as α respects inclusion, by
+Lemma 4); namely v ⊆ v ′ ; so v, v ′ are comparable —contradiction.                □
+              A limitation for proving lower bounds for 2DFAs against OWL            7
+
+Lemma 11. If α : U → V is a surjective homomorphism, then U has at least
+as many primes and at least as many prime incomparabilities as V :
+           |core(U )| ≥ |core(V )|    and    |I(core(U ))| ≥ |I(core(V ))|         (7)
+and thus also at least as large a prime volume: vol(core(U )) ≥ vol(core(V )).
+Proof. By Lemma 10, the restriction α̂ of α to core(U ) surjects it onto some
+V̂ ⊇ core(V ); and the restriction ι̂ of the mapping {u,u′ } 7→ {α(u), α(u′ )} to
+I(core(U )) surjects it onto some Iˆ ⊇ I(core(V )). Because of these surjections and
+                                                                  ˆ ≥ |I(core(V ))|.
+inclusions, |core(U )| ≥ |V̂ | ≥ |core(V )| and |I(core(U ))| ≥ |I|
+Therefore, |core(U )| ≥ |core(V )| and |I(core(U ))| ≥ |I(core(V ))|; and
+             vol(core(U )) = |core(U )| + |I(core(U ))| ≥                          (8)
+                           ≥ |core(V )| + |I(core(V ))| = vol(core(V )) .            □
+Lemma 12. Let α : U → V be a surjective homomorphism. If U, V have equally
+many primes, then the restriction of α to core(U ) is a bijection to core(V ).(14)
+Lemma 13. Let α : U → V be a surjective homomorphism. If α is non-injective
+and V is regular, then vol(core(U )) > vol(core(V )).
+Proof. Let α : U → V and V be as in the statement. By Lemma 11, we know (7)
+holds; and it suffices to prove at least one of those inequalities strict (because then
+a calculation as in (8) shows that vol(core(U )) > vol(core(V ))). Equivalently, we
+prove that, if the first inequality of (7) is not strict, then the second one is.
+     So, suppose |core(U )| = |core(V )|. To prove that |I(core(U ))| > |I(core(V ))|,
+we recall (from the proof of Lemma 11) the mapping {u,u′ } 7→ {α(u), α(u′ )}
+and its restriction ι̂ to I(core(U )), which surjects it onto some Iˆ ⊇ I(core(V )),
+causing |I(core(U ))| ≥ |I|ˆ ≥ |I(core(V ))|. We prove that some prime incompa-
+rability {x∗ , y∗ } is mapped by ι̂ to a two-set in Iˆ \ I(core(V )). This implies that
+Iˆ is strictly bigger than I(core(V )), and thus so is I(core(U )).
+     To locate the desired x∗ , y∗ , we work as follows.
+     Since α is non-injective, there exist u, v ∈ U such that u ̸= v but α(u) = α(v).
+We know u ⊈ v ∨ u ⊉ v (as u ̸= v), so let us assume (without loss of generality)
+that u ⊈ v. We also know u, v have prime  S      factorizations
+                                                          S      (Lemma 2), so let us
+fix them as X, Y ⊆ core(U ) with u = X and v = Y . Overall, we have:
+                                      S      S               S          S
+            X, Y ⊆ core(U ) and         X ⊈ Y and α( X) = α( Y ) .                  (9)
+                                          S      S
+To locate x∗ , we fix any witness i∗ ∈ X \ Y of the non-inclusion in (9), and
+let x∗ be any prime in X that contains it: i∗ ∈ x∗ . We note that, because of this
+witness, x∗ ‘escapes’ all primes in Y :
+                               for all y ∈ Y :   x∗ ⊈ y .                         (10)
+To locate y∗ , we observe that α(x∗ ) is prime in V (by Lemma 12) and is thus
+represented (since V is regular), by some r∗ ; we see that this r∗ is in
+                         [             S         S        [
+                α(x∗ ) ⊆    α(x) = α( X) = α( Y ) =           α(y)       (11)
+                         x∈X                                 y∈Y
+8         K. Adeogun, C. A. Kapoutsis
+
+(by the equality in (9)); and let y∗ be any prime in Y whose α-image contains
+it: r∗ ∈ α(y∗ ). We note that y∗ ̸= x∗ , and in particular
+                                            x∗ ⊈ y∗                                        (12)
+(by (10)); that α(y∗ ) is also prime in V (again by Lemma 12); and that, since it
+contains the representative r∗ of α(x∗ ), it also includes it entirely:
+                                       α(x∗ ) ⊆ α(y∗ ) .                                   (13)
+This further implies that the converse of this inclusion, α(x∗ ) ⊇ α(y∗ ), is false
+(or else we would have α(x∗ ) = α(y∗ ) for the distinct primes x∗ , y∗ , contradicting
+Lemma 12). Hence, α(x∗ ) ⊉ α(y∗ ), which (by the monotonicity of α) implies:
+                                           x∗ ⊉ y∗ .                                       (14)
+At this point, we are done: our located primes x∗ , y∗ are incomparable (by (12)
+and (14)), but their (prime) images α(x∗ ), α(y∗ ) are (by (13)), and thus their
+two-set is not a prime incomparability in V : {α(x∗ ), α(y∗ )} ̸∈ I(core(V )). □
+
+4     Connectivities
+Let B := {0,1} be the Boolean values. A connectivity over h is any h × h Boolean
+matrix C = (cij )1≤i,j≤h ∈ Bh×h . Equivalently, we think of C as the symbol of Σh
+where node i on the left connects to node j on the right iff cij = 1 (Fig. 1); or as
+the mapping C : [h] → [[h]] of every i ∈ [h] to the set C(i) := {j ∈ [h] | cij = 1}.
+                                      S the natural extension C̃ : [[h]] → [[h]] which
+    In the latter case, we also consider
+maps every set u ⊆ [h] to C̃(u) := i∈u C(i); and let V (C̃) := {C̃(u) | u ⊆ [h]}
+be its range. Easily, C̃ is a homomorphism;(15) and thus V (C̃) is a lattoid over h
+(Lemma 6). Importantly, V (C̃) has at most h primes:
+Lemma 14. Let C ∈ Bh×h . For every prime v ∈ V (C̃) there exists i ∈ [h] such
+that C(i) = v. Therefore, |core(V (C̃))| ≤ h.
+Proof. Let v ∈ V (C̃) be prime. Since v ∈ V (C̃), there is u ⊆ [h] with C̃(u) = v.
+S X := {C(i)
+Let           S | i ∈ u} collect the images of all elements of u. Then v = C̃(u) =
+  i∈u C(i) =    X. But v is prime, so it must be v ∈ X. So, there exists i ∈ u
+such that v = C(i). Overall, C is a surjection from [h] onto a superset of the
+primes of V (C̃), causing h = |[h]| ≥ |core(V (C̃))|.                            □
+   The product of two connectivities A, B over h is the connectivity C = AB
+over h obtained by Boolean multiplication of matrices A, B, i.e., by the variant
+of matrix multiplication where + and · are replaced by ∨ and ∧, respectively:
+                                           Wh
+                     for i, j ∈ [h]: cij := k=1 (aik ∧ bkj ) .              (15)
+Equivalently, we think of C = AB as the concatenation of the symbols A, B of Σh
+(Fig. 1); or as the homomorphism obtained by standard function composition of
+homomorphisms A, B, namely C(u) = B(A(u)), for all u ⊆ [h].1
+1
+    For simplicity, from now on, we write C both for the mapping C : [h] → [[h]] and its
+    extension C̃ : [[h]] → [[h]]. So, for i ∈ [h], u ⊆ [h], notations C(i), C(u) are both legal.
+              A limitation for proving lower bounds for 2DFAs against OWL            9
+
+Lemma 15. If C = AB then the restriction of homomorphism B : [[h]] → [[h]] to
+V (A) is a surjective homomorphism αA,B : V (A) → V (C); and V (C) ⊆ V (B).
+
+Proof. In the composition of homomorphisms A, B that produces C, the second
+homomorphism B is applied only on the range of the first homomorphism A
+(i.e., on the lattoid V (A)); and its respective values, which constitute the range
+of C (i.e., the lattoid V (C)), are all in the range of B (i.e., in the lattoid V (B)).
+Overall, the restriction αA,B of homomorphism B to lattoid V (A) is a surjective
+homomorphism from V (A) onto V (C); and this last lattoid is in V (B).               □
+
+4.1   Regularity
+A connectivity C ′ is regular on a connectivity C if there is connectivity J such
+that C ′ = CJC. Easily, this implies a surjective homomorphism inside V (C).
+Lemma 16. If C ′ is regular on C then there exists a surjective homomorphism
+α : V (C) → V (C ′ ); and V (C ′ ) ⊆ V (C).
+
+Proof. Suppose C ′ is regular on C. Then C ′ = CJC, for some J. Lemma 15 for
+C ′ = C(JC) says that α := αC,JC is a surjective homomorphism from V (C)
+onto V (C ′ ). The same lemma for C ′ = (CJ)C also says that V (C ′ ) ⊆ V (C). □
+
+   Sometimes a connectivity C is regular on itself, i.e., C = CJC for some J.
+Then we just call it regular. This is intimately related to regularity of lattoids.
+
+Lemma 17. A connectivity C is regular iff the lattoid V (C) is regular.
+
+Proof. [⇒] Suppose C = CJC, for some J. To show that V := V (C) is regular,
+we fix an arbitrary prime v in V and show that it is represented.
+     By Lemma 15, the restriction α := αC,JC of homomorphism JC : [[h]] → [[h]]
+to lattoid V (C) is a surjective homomorphism from V (C) to V (CJC) = V (C),
+i.e., from V to V . Hence (Lemma 12), its further restriction to core(V ) is a
+permutation of the primes of V . In particular, ṽ := α(v) is also a prime
+                                                                         S of V .
+     Now let X := {{i} | i ∈ v} be all singletons in v, so that v = X; and
+X̃ := {JC(i) | i ∈ v} = {C(J(i)) | i ∈ v} be all their images in V (C) = V . Then
+                    S          [            [           [           S
+      ṽ = α(v) = α( X) = α( {i}) = JC( {i}) =            JC(i) = X̃ .        (16)
+                                i∈v            i∈v        i∈v
+
+
+So, ṽ is the union of some sets X̃ in V . Since it is prime, we know ṽ ∈ X̃, namely
+α(v) = JC(i∗ ), from some i∗ ∈ v. We claim i∗ is the representative we want.
+    For this, pick arbitrary prime u in V and suppose i∗ ∈ u. Then {i∗ } ⊆ u, thus
+JC(i∗ ) ⊆ JC(u) (since JC is monotone, by Lemma 4), namely α(v) ⊆ α(u). If
+α respects non-inclusion, then this implies v ⊆ u and we are done.
+    To see why α respects non-inclusion, recall that it is a surjective homomor-
+phism from V to V . As a surjection between sets of equal size, it is injective, and
+thus a bijection. So, it is a bijective homomorphism, i.e., an operational isomor-
+phism, and thus a relational one (Lemma 9). Hence, it respects non-inclusion.
+10      K. Adeogun, C. A. Kapoutsis
+
+   [⇐] Suppose every prime in V := V (C) has a representative. To show that
+C is regular, we define a connectivity J and prove that CJC = C.
+   We define J as the homomorphism J = J˜ : [[h]] → [[h]] (cf. Footnote 1) that
+extends to [[h]] the simpler mapping J : [h] → [[h]] of every i ∈ [h] to the set
+                   (
+                     {r | C(r) = v} if i represents some prime v in V ,
+          J(i) :=                                                                (17)
+                     ∅               if i represents no prime in V .
+
+Recall that (i) every i can represent at most one prime (Endnote 9); and (ii) every
+prime is the image of some singleton (Lemma 14); hence, if the upper case of (17)
+applies, the prime v is unique and the set J(i) is non-empty.
+    To prove CJC = C, it suffices that JC is the identity I : V → V (as then
+CJC, C agree on all v ∈ V : CJC(v) = JC(C(v)) = I(C(v)) = C(v)). In turn,
+to prove that JC = I, it suffices that JC is the identity on core(V ) (Lemma 5).
+    So, let v be any prime. Consider its partition v = v0 ∪ v1 ∪ v2 to its represen-
+tatives, the representatives of other primes, and its non-representing elements:
+
+                  v0 := {i ∈ v | i represents v}                                  (18)
+                  v1 := {i ∈ v | i represents some prime u ̸= v}                  (19)
+                  v2 := {i ∈ v | i represents no prime} .                         (20)
+
+Note that v0 ̸= ∅ (as V is regular); every i ∈ v1 represents some u ⊆ v (since
+v contains the representative i of u); and JC(v) = JC(v0 ) ∪ JC(v1 ) ∪ JC(v2 )
+(since JC is a homomorphism). We claim that
+
+               JC(v0 ) = v    and   JC(v1 ) ⊆ v     and    JC(v2 ) = ∅ ,          (21)
+
+and thus their union is indeed JC(v) = v, as required.
+   Indeed, every i ∈ v0 represents v, so J(i) = {r | C(r) = v}; therefore
+                                               [           [
+     JC(i) = C(J(i)) = C({r | C(r) = v}) =         C(r) =      v = v,             (22)
+                                                  C(r)=v      C(r)=v
+                    S               S
+causing JC(v0 ) = i∈v0 JC(i) = i∈v0 v = v (also using that v0 ̸= ∅). Similarly,
+every i ∈ v1 represents some prime u ⊆ v; so, JC(i) ⊆ v, and thus JC(v1 ) ⊆ v;
+and every i ∈ v2 represents no prime; so, JC(i) = ∅ and thus JC(v1 ) = ∅.(16) □
+   Sometimes the relation between two connectivities is stronger than regularity:
+We say C ′ is forward-regular on C if there exists J such that C ′ = C ′ JC = CJC.
+Clearly, forward-regularity between connectivities implies regularity.
+Lemma 18. If C ′ is forward-regular on C and C ′ ̸= C then there exists a non-
+injective surjective homomorphism α : V (C) → V (C ′ ).
+Proof. Suppose C ′ is forward-regular on C, so C ′ = C ′ JC = CJC for some J. As
+in the proof of Lemma 16, C ′ = CJC implies that the restriction α := αC,JC of
+homomorphism JC to the range V := V (C) of C is a surjective homomorphism
+from V to V (C ′ ), and V (C ′ ) ⊆ V . We will prove that this α is also non-injective.
+              A limitation for proving lower bounds for 2DFAs against OWL         11
+
+    Towards a contradiction, suppose α is injective. Then it is a bijection from V
+to its subset V (C ′ ). But this can be only if V (C ′ ) = V . So, α is a permutation
+of V . Let k be its order, so that αk is the identity on V . Then the homomorphism
+C(JC)k equals both C ′ and C (as shown below), hence C ′ = C —contradiction.
+    The equality C(JC)k = C ′ follows from the following stronger fact, for t = k.
+
+Claim. For all t ≥ 1: C ′ = C(JC)t .
+
+Proof. By induction. If t = 1, C = CJC by the choice of J. If t ≥ 2, assume
+C ′ = C(JC)t−1 and calculate: C ′ = C ′ JC = C(JC)t−1 JC = C(JC)t .        ⊡
+
+    The equality C(JC)k = Cholds because the two    homomorphisms
+                                                                      agree on
+all u ∈ [[h]]. Indeed, C(JC)k (u) = (JC)k C(u) = αk C(u) = C(u), where
+the second step uses the next claim, for t = k, and the fact that C(u) ∈ V ; and
+the last step uses the fact that αk is the identity on V and indeed C(u) ∈ V .
+
+Claim. If v ∈ V then for all t ≥ 1: (JC)t (v) = αt (v).
+
+Proof. By induction on t. If t = 1, then JC(v) = α(v), since α restricts JC to V
+and v ∈ V . If t ≥ 2, assume (JC)t−1 (v) = αt−1 (v) and calculate:
+                              (1)            (2)
+ (JC)t (v) = (JC) (JC)t−1 (v) = (JC) αt−1 (v) = α αt−1 (v) = αt (v) , (23)
+                                                          
+
+
+where (1) uses the inductive hypothesis; and (2) is because α restricts JC to V
+and indeed αt (v) ∈ V .                                                     ⊡□
+
+
+5    Properties
+
+The connectivity C(z) of an string z ∈ Σh∗ is the connectivity C ∈ Bh×h that
+records all connections between the two outer columns of z, in that cij = 1
+iff z has a one-way path from node i of the leftmost column to node j of the
+rightmost column (Fig. 1(R)). Easily, z is live iff its connectivity is non-zero:
+z ∈ owlh ⇐⇒ C(z) ̸= 0; and concatenation of strings corresponds to Boolean
+multiplication of connectivities, namely C(xy) = C(x)C(y).
+     Given C ∈ Bh×h , we let P (C) := {z ∈ Σh∗ | C(z) = C} be all strings
+with connectivity C. A property P ⊆ Σh∗ is a connectivity property if P =
+P (C) for some C. Easily, connectivity properties are non-empty: P (C) ̸= ∅, for
+all C. Moreover, when properties are connectivity properties, some qualities and
+relations of properties correspond to qualities and relations of connectivities.
+
+Lemma 19. Let C, C ′ ∈ Bh×h be any two connectivities. Let P := P (C) and
+P ′ := P (C ′ ) be the corresponding connectivity properties. Then:(17)
+
+(a) P is smooth iff C is regular.
+(b) P has suffix of choice into P ′ iff C ′ is forward-regular on C.
+(c) P, P ′ are separated by owlh iff C ̸= C ′ .
+12      K. Adeogun, C. A. Kapoutsis
+
+    We now use our theory of lattoids and connectivities to prove the promised
+result. First, a final lemma: two connectivity properties that satisfy the condi-
+tions of [5, Lemma 10] decrease the prime volume.
+
+Lemma 20. Let P, P ′ ⊆ Σh∗ be two connectivity properties. Suppose P, P ′ are
+separated by owlh ; P has suffix of choice into P ′ ; and P ′ is smooth. Then the
+corresponding connectivities C, C ′ satisfy: vol(core(V (C))) > vol(core(V (C ′ ))).
+
+Proof. We know C ′ is forward-regular on C (by Lemma 19b, since P has suffix
+of choice into P ′ ) and C ̸= C ′ (by Lemma 19c, as P, P ′ are separated by owlh ).
+So (Lemma 18), a non-injective surjective homomorphism α : V (C) → V (C ′ )
+exists. Since V (C ′ ) is also regular (by Lemmas 17 & 19a, as P ′ is smooth), the
+prime volume decreases (Lemma 13): vol(core(V (C))) > vol(core(V (C ′ ))). □
+
+Theorem 2. Let P0 , P1 , . . . , Pm ⊆ Σh∗ be connectivity properties. Suppose that,
+for 1 ≤ i ≤ m: Pi−1 , Pi are separated
+                                      by owlh ; Pi−1 has suffix of choice into Pi ;
+and Pi is smooth. Then m ≤ h+1     2 .
+
+Proof. For i = 0, 1, . . . , m, let Ci be the connectivity underlying property Pi ,
+namely Pi = P (Ci ); and si , ti be respectively the number of primes and the
+prime volume of the lattoid V (Ci ), namely
+
+              si := |core(V (Ci ))|     and       ti := vol(core(V (C))) .           (24)
+
+Then si ≤ h (Lemma 14) and 0 ≤ ti ≤ si2+1 (Endnote 8), so 0 ≤ ti ≤ h+1
+                                                                                 
+                                                                             2 ; but
+also ti−1 > ti (by Lemma 20, applied to Pi−1 , Pi ). So,the sequence t0 , t1 ,. . . , tm
+contains 1 + m distinct numbers between 0 and h+1    2 . Hence, m ≤
+                                                                        h+1
+                                                                           2 .           □
+
+
+6    Conclusion
+In [5], we proved a lower bound of 21 N for any 2dfa for owlh , where N = h+1
+                                                                                        
+                                                                                      2 .
+At the heart of our proof lied a sequence of connectivity properties P0 , P1 , . . . , PN
+meeting certain specifications. It was clear that a longer such sequence would
+imply a greater lower bound. So, we asked: Could a better design produce a longer
+sequence of connectivity properties, and thus a greater lower bound? Here, we
+answered negatively, i.e., that the sequence designed in [5] was longest (Th. 2).
+    Importantly, our proof would have also worked with arbitrary properties;
+we used connectivity ones only because our design took us there. So, one may
+wonder: What if we allow arbitrary properties? Is there a longer sequence then?
+The answer is again negative (Th. 1), but requires a longer presentation, which
+we are reserving for the full version of this report.
+                    A limitation for proving lower bounds for 2DFAs against OWL              13
+
+      References
+       1. M. O. Rabin, D. Scott, Finite automata and their decision problems, IBM Journal
+          of Research and Development 3 (1959) 114–125.
+       2. A. R. Meyer, M. J. Fischer, Economy of description by automata, grammars, and
+          formal systems, in: Proceedings of FOCS, 1971, pp. 188–191.
+       3. J. I. Seiferas, Untitled, manuscript communicated to M. Sipser (Oct. 1973).
+       4. W. J. Sakoda, M. Sipser, Nondeterminism and the size of two-way finite automata,
+          in: Proceedings of STOC, 1978, pp. 275–286.
+       5. K. Adeogun, C. Kapoutsis, A quadratic lower bound for 2DFAs against one-way
+          liveness, in: Proceedings of SOFSEM, 2026, pp. 104–116, full version in [6].
+       6. K. Adeogun, C. Kapoutsis, A quadratic lower bound for 2DFAs against one-way
+          liveness, Discrete Mathematics and Theoretical Computer Science (to appear).
+       7. M. Chrobak, Finite automata and unary languages, Theoretical Computer Science
+          47 (1986) 149–158, (see also [8]).
+       8. A. W. To, Unary finite automata vs. arithmetic progressions, Information Process-
+          ing Letters 109 (2009) 1010–1014.
+       9. C. Kapoutsis, Optimal 2DFA algorithms for one-way liveness on two and three
+          symbols, in: Böckenhauer et al. [10], pp. 33–48.
+      10. H.-J. Böckenhauer, D. Komm, W. Unger (Eds.), Adventures between lower bounds
+          and higher altitudes – Essays dedicated to Juraj Hromkovič on the occasion of his
+          60th birthday, Vol. 11011 of Lecture Notes in Computer Science, Springer, 2018.
+
+
+      Notes                                                    (To be omitted in final version.)
+
+
+(1)   The lower bound is trivial, for a sum of non-negative terms; and is clearly reached
+      when F = ∅. For the upper bound, the second term is clearly at most               the
+      number |F2 | of all unordered pairs in F , so the sum is at most |F | + |F2 | , which
+                                                                                    
+
+      evaluates to |F 2|+1 ; moreover, this bound is clearly met when every two sets
+      are incomparable, namely when F is an anti-chain.
+
+(2)   Indeed,
+      S       choosingSfrom FSthe empty collection of sets X := ∅ ⊆ F , we have that
+        X ∈ F , where X = ∅ = ∅. Hence, ∅ ∈ F .
+
+                    S a ∈ F , choosing
+      Indeed, for every             S fromSF the singleton collection X := {a} ⊆ F ,
+(3)
+      we have that X ∈ F , where X = {a} = a. Hence, a ∈ cl(F ).
+
+(4)   It is V = cl(V ) (as V is union-closed) and ∅ ∈ cl(V ) (Endnote 2); so, ∅ ∈ V .
+
+(5)   Suppose u ⊊ v. Let k := h(u) and consider any strict chain that witnesses this:
+      ∅ = u0 ⊊ u1 ⊊ · · · ⊊ uk = u. Then the chain u0 ⊊ u1 ⊊ · · · ⊊ uk = u ⊊ v proves
+      that k+1 ≤ h(v). So, h(u) < h(v).
+                                                  S
+(6)   Indeed, if X = ∅ ⊆ V , then we have ∅ =         X and ∅ ∈
+                                                              / X.
+
+(7)   Proof of Lemma 2.
+         By strong induction on k := h(v). In the base case (k = 0), it canS only be
+      v = ∅, which has prime factorization X∅ := ∅, since X∅ ⊆ core(V ) and X∅ = ∅.
+       14      K. Adeogun, C. A. Kapoutsis
+
+          For the inductive set (k ≥ 1), consider any v ∈ V with height k. If v is prime,
+       then Xv := {v} is clearly a prime factorization. Otherwise, v is composite,
+                                                                          S        namely
+       the union of a collection X ⊆ V of other sets: v ∈   / X & v = X. Then each
+       u ∈ X has strictly smaller height than v (see below) and thus     S (by inductive
+       hypothesis) a prime factorization Xu ⊆ core(V     S)  with u  =    Xu . Collect all
+       primes from all these factorizations into Xv := u∈X Xu . Then easily
+                  [          [ [          [ [     [    [
+                      Xv =            Xu =     Xu =   u=   X = v;                        (25)
+                                u∈X          u∈X             u∈X
+
+       and clearly Xv ⊆ core(V ); hence, Xv is a prime factorization of v, as desired.
+                  S each u ∈ X has strictly smaller height than v, note that u ⊆ v
+           To see why
+       (since u ⊆ X = v) and u ̸= v (since v ∈   / X). Therefore u ⊊ v, which implies
+       h(u) < h(v) (Endnote 5).                                                        □
+
+       Follows from the bounds 0 ≤ vol(F ) ≤ |F 2|+1 for arbitrary F ⊆ [[h]] (Endnote 1),
+                                                    
+ (8)
+       when we let F := core(V ). Easily, the lower bound is met when core(V ) = ∅,
+       equivalently when V is the singleton {∅}; and the upper bound is met when the
+       primes of V form an anti-chain.
+
+ (9)   Suppose i represents primes v and v ′ . Then (5) implies i ∈ v and i ∈ v ′ . Also,
+       because i represents v and is in v ′ , (5) implies v ⊆ v ′ . Likewise, because i repre-
+       sents v ′ and is in v, (5) implies v ′ ⊆ v. So, v = v ′ .
+
+(10)   Proof of Lemma 3.
+           Let α : U → V be a surjective embedding. We just prove that α is injective
+       (as then it is a bijective embedding, i.e., a relational isomorphism). Suppose
+       u ̸= u′ . Then u ⊈ u′ or u ⊉ u′ . Without loss of generality, assume u ⊈ u′ . Then
+       α(u) ⊈ α(u′ ) (since α respects non-inclusion). So, α(u) ̸= α(u′ ).              □
+
+(11)   Proof of Lemma 4.
+           Let α : U → V be a homomorphism and u, u′ ∈ U , Suppose u ⊆ u′ . Then
+       clearly u ∪ u′ = u′ ; and thus α(u′ ) = α(u ∪ u′ ) = α(u) ∪ α(u′ ) (since α is a
+       homomorphism); which clearly contains α(u). Overall, α(u) ⊆ α(u′ ).           □
+
+(12)   Proof of Lemma 5.
+           S v ∈ U . Let Xv ⊆ core(U ) be a prime factorization of v (Lemma 2). Then
+          Let
+       v = Xv and we calculate:
+                         S     (1) [      (2) [      (3) S
+                α(v) = α( Xv ) =     α(u) =     β(u) = β( Xv ) = β(v) ,                  (26)
+                                      u∈Xv          u∈Xv
+
+       where (1) and (3) use the fact that α, β are homomorphisms; and (2) uses their
+       agreement on the primes.                                                    □
+
+(13)   Proof of Lemma 6.
+                         A limitation for proving lower bounds for 2DFAs against OWL       15
+
+          Let α : U → V be a homomorphism. Let Ũ := {α(u) | u ∈ U } be its range.
+                                    S we pick an arbitrary collection of sets X̃ ⊆ Ũ and
+       To prove that Ũ is a lattoid,
+       show that their union ũ := X̃ is also in Ũ , as follows.
+          Let X := {u ∈ U | α(u) ∈ X̃} consist of all sets in U that map to sets of X̃.
+       Then their images are exactly X̃, namely {α(u) | u ∈ X} = X̃. Therefore:
+                  S          S                      S            (1) S           S
+           ũ =       X̃ =       {α(u) | u ∈ X} =       u∈X α(u) = α( u∈X u) = α( X) ,    (27)
+
+       where
+          S (1) uses the fact that α is homomorphism. Hence, ũ is the α-image of the
+       set X ∈ U , which implies ũ ∈ Ũ , as required.                            □
+
+(14)   Proof of Lemma 12.
+           As in the proof of Lemma 11, the restriction α̂ of α to core(U ) surjects it
+       onto some V̂ ⊇ core(V ) and thus |core(U )| ≥ |V̂ | ≥ |core(V )|. Since |core(U )| =
+       |core(V )|, it must be that V̂ = core(V ) and it must be that α̂ is injective. Overall,
+       α is a bijection from core(U ) onto core(V ).                                       □
+
+(15)   Pick any collection of sets X ⊆ [[h]]. Then
+                     S   (1) S       (2) S S        (3) S
+                  C̃( X) = i∈SX C(i) = u∈X i∈u C(i) = u∈X C̃(u) ,                         (28)
+
+       where (1) and (3) use Sthe definition of C̃ out of C; and (2) simply reorganizes
+       the union
+               S over all
+                      S   i ∈  X to a union over all i ∈ u over all u ∈ X. Overall, we
+       have C̃( X) = u∈X C̃(u), as required for C̃ to be a homomorphism.
+
+(16)   Indeed: For the arbitrary i ∈ v1 , we have:
+                                                                [            [
+            JC(i) = C(J(i)) = C({r | C(r) = u}) =                   C(r) =       u ⊆ v,   (29)
+                                                               C(r)=u    C(r)=u
+                                 S              S
+       which causes JC(v1 ) = i∈v1 JC(i) ⊆ i∈v1 v ⊆ v (even when v1 = ∅). Finally,
+       the arbitrary i ∈ v2 , represents no prime, hence J(i) = ∅ and so
+
+                              JC(i) = C(J(i)) = C(∅) = ∅ ,                                (30)
+                        S            S
+       causing JC(v2 ) = i∈v2 JC(i) = i∈v2 ∅ = ∅.
+
+(17)   Proof of Lemma 19.
+           (a) [⇒] Suppose P is smooth. Let x, z ∈ P , namely C(x) = C(z) = C. Using
+       the smoothness of P , pick any y such that xyz ∈ P , namely C(xyz) = C, and
+       let J := C(y). Then C = C(xyz) = C(x)C(y)C(z) = CJC. Overall, we found J
+       such that C = CJC. Hence, C is regular.
+           [⇐] Suppose C is regular. Let x, z ∈ P , namely C(x) = C(z) = C. Since
+       C is regular, there is J such that C = CJC. We know P (J) ̸= ∅, so pick any
+       y ∈ P (J). Then C(xyz) = C(x)C(y)C(z) = CJC = C, hence xyz ∈ P . Overall,
+       we found y such that xyz ∈ P . Hence, P is smooth.
+16      K. Adeogun, C. A. Kapoutsis
+
+   (b) [⇒] Pick any v, x ∈ P , x′ ∈ P ′ . Then C(v) = C(x) = C and C(x′ ) = C ′ .
+Since P has suffix of choice into P ′ , there exists u such that xuv, x′ uv ∈ P ′ ,
+namely C(xuv) = C(x′ uv) = C ′ . Let J := C(u). Then
+
+                     C ′ = C(xuv) = C(x)C(u)C(v) = CJC ,                        (31)
+                      ′       ′           ′                ′
+                    C = C(x uv) = C(x )C(u)C(v) = C JC .                        (32)
+
+Overall, we found J such that C ′ = C ′ JC = CJC, as required.
+    [⇐] Suppose C ′ is forward regular on C. Then C ′ = C ′ JC = CJC for
+some J. Let u ∈ P (J) ̸= ∅ be any string with that connectivity. Now pick any
+v, x ∈ P and x′ ∈ P ′ , namely C(v) = C(x) = C and C(x′ ) = C ′ . Then
+
+                     C(xuv) = C(x)C(u)C(v) = CJC = C ′ ,                        (33)
+                          ′         ′                ′         ′
+                    C(x uv) = C(x )C(u)C(v) = C JC = C .                        (34)
+
+Overall, for any v ∈ P , we found u with xuv ∈ P for all x ∈ P ∪ P ′ , as required.
+    (c) [⇒] For the contrapositive, suppose C = C ′ . Pick any x ∈ P and x′ ∈ P ′ .
+Then C(x) = C = C ′ = C(x′ ). Hence, for any context u, v, it is C(uxv) =
+C(u)C(x)C(v) = C(u)C(x′ )C(v) = C(ux′ v), namely uxv and ux′ v have the
+same connectivity. Hence they are both dead (i.e., of connectivity zero) or both
+live (i.e., of connectivity non-zero). Hence, owlh does not separate P, P ′ .
+    [⇐] Suppose C ̸= C ′ . Then there exist 1 ≤ i, j ≤ h such that cij ̸= c′ij .
+Without loss of generality, assume cij = 1 and c′ij = 0. Now pick any x ∈ P and
+x′ ∈ P ′ . Then C(x) = C and C(x′ ) = C ′ , which means that x has a path from
+node i on the leftmost column to node j on the rightmost column, but x′ does
+not. Hence, if u is the single symbol {(i, i)} and v the single symbol {(j, j)}, then
+the context u, v distinguishes between x and x′ : uxv is live and ux′ v is dead.
+Overall, owlh separates P, P ′ .                                                    □
+

@@ -1,0 +1,779 @@
+                                        Discrete Mathematics and Theoretical Computer Science . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                                        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . vol. ??:? special issue for ??? #? (202?)
+
+
+
+                                        A quadratic lower bound for
+                                        2DFAs against one-way liveness∗
+                                                                Kehinde Adeogun                                                  Christos Kapoutsis
+
+
+
+
+arXiv:2602.24279v2 [cs.FL] 6 Jul 2026
+                                                                                            Carnegie Mellon University in Qatar
+
+                                        revisions 1st Jan. 2000; accepted 1st Jan. 2000.
+
+
+                                        We show that every two-way deterministic finite automaton (2dfa) that solves one-way liveness on height h has
+                                        Ω(h2 ) states. This implies a quadratic lower bound for converting one-way nondeterministic finite automata to 2dfas,
+                                        which asymptotically matches Chrobak’s well-known lower bound for this conversion on unary languages. In contrast
+                                        to Chrobak’s simple proof, which relies on a 2dfa’s inability to differentiate between any two sufficiently distant loca-
+                                        tions in a unary input, our argument can be applied to inputs over any alphabet and is structured around a main lemma
+                                        that is general enough to potentially be reused elsewhere.
+
+                                        Keywords: two-way finite automata, size complexity, Sakoda-Sipser conjecture, minicomplexity
+
+
+
+
+                                        1       Introduction
+                                        Back in the 1970s, Sakoda and Sipser [22] (but also Seiferas [23]) asked a fundamental question, which
+                                        to this day remains an important open problem in automata and complexity theory: Can every two-way
+                                        nondeterministic finite automaton (2nfa) with some number of states s be simulated by a two-way deter-
+                                        ministic finite automaton (2dfa) with a number of states f (s) which is polynomial in s?
+                                           A standard way to approach this question is to study variant cases: cases where either the 2dfa is
+                                        enhanced or the 2nfa is restricted, if we want to prove an upper bound for the respective variant f (s); or
+                                        cases where either the 2dfa is restricted or the 2nfa is enhanced, if we want to prove a lower bound for
+                                        the respective variant f (s).
+                                           Indeed, a polynomial upper bound is known when the simulating 2dfa is enhanced into some restricted
+                                        single-tape Turing machine: a weight-reducing one (i.e., one that overwrites symbols only by “lighter”
+                                        ones) or a bounded & linear-time one (i.e., a linear-time one that writes only within the input) [9]. Likewise,
+                                        a quasi-polynomial upper bound is known when the simulated 2nfa is restricted to unary (i.e., accepting
+                                        only unary inputs) [8]; or letter-bounded (i.e., accepting only inputs of the form a∗1 a∗2 · · · a∗k for fixed k) [5];
+                                        or outer-nondeterministic (i.e., using nondeterminism only on the endmarkers) [6].
+                                           ∗ Supported by Qatar Foundation, via CMUQ’s Seed Research program and project Minicomplexity. All statements made herein
+
+                                        are the responsibility of the authors.
+                                        ISSN 1365–8050             © 202? by the author(s)              Distributed under a Creative Commons Attribution 4.0 International License
+2                                                                                Kehinde Adeogun, Christos Kapoutsis
+
+    On the flip side, an exponential lower bound is known when the simulating 2dfa is restricted to single-
+pass (i.e., halting upon reaching an endmarker) [23]; or sweeping (i.e., reversing only on the endmark-
+ers) [25]; or (almost) oblivious (i.e., following sub-linearly many trajectories per input length) [11]; or
+few-reversal (i.e., reversing sub-linearly often) [14]; or logical (i.e., satisfying some formula on “reacha-
+bility variables” in each state) [10, 2, 21]; and an infinite lower bound is known when the 2dfa is a mole
+(i.e., it only explores the configuration graph of the 2nfa) [13]. Likewise, an exponential lower bound is
+known when the simulated 2nfa is enhanced into a single-pebble 2nfa (i.e., one equipped with a pebble
+that it can drop on and lift from an input cell) [7]; or into a 1-limited automaton (i.e., a single-tape nonde-
+terministic Turing machine that can overwrite an input cell when it first visits it) [18], even a once-marking
+one (i.e., one that can only place a mark once on a single cell of the input) [19].
+    In this landscape, a natural question is: What about lower bounds for unrestricted 2dfas?
+    There are only two results of this kind and, quite counterintuitively, both are obtained in scenarios where
+the simulated 2nfa is (not in any way enhanced, but instead) severely restricted!
+    The first one is Chrobak’s well-known bound f (s) = Ω(s2 ) for when the simulated 2nfa is both unary
+(as above) and one-way (i.e., moving its input head only forward; namely, a standard one-way nondeter-
+ministic finite automaton or 1nfa) [4, Thm. 6.3] (cf. also [27]). Expectedly, the simple proof of this result
+relies heavily on the inability of the simulating 2dfa to differentiate between distant locations on the unary
+input. Moreover, a matching upper bound [4, Thm. 6.2] shows that no better lower bound is possible in
+this special case.
+    The second result is the bound f (s) = Ω(s2 / log s) of [15, Lemma 7] for the case where the simulated
+2nfa is both one-way (again) and accepting only inputs of length 3.(i) The (counting) argument for this
+second result is also quite simple. Moreover, here too, the possibility of a better lower bound is removed
+by a (quite non-trivial) matching upper bound [15, Lemma 8].
+    Our present study offers a third lower bound for unrestricted 2dfas. As in the two existing results, we
+focus on 2nfas that are one-way, i.e., 1nfas; and, like Chrobak, we prove f (s) = Ω(s2 ). Unlike the two
+existing results, however, our 1nfas work on alphabets of any size and inputs of any length, which forces
+us into a much deeper analysis of the relevant computations.
+    We express our argument in terms of one-way liveness (owl), the complete language (family) for the
+conversion of 1nfas to 2dfas [22, Thm. 2.3]. Specifically, we prove that every 2dfa that solves owl on
+height h has Ω(h2 ) states, which directly implies that f (s) = Ω(s2 ), since owl on height h is solved by
+a 1nfa with h states [22, Thm. 2.3i].
+    After some preliminaries (Sect. 2), we recall (from [13]) the basic definitions and facts about generic
+strings (Sect. 3.1); and show how these force a 2dfa to use its states on their outer boundaries (Sect. 3.2).
+We then prove our main lemma (Lemma 11), that a suitably selected pair of properties can force a 2dfa
+to spend ≥ 1 state just to distinguish between them. Finally, we identify a quadratically long sequence of
+properties where every two successive ones are as described in the lemma (Sect. 4). This then implies the
+promised lower bound.
+    An earlier   version of this work
+                                    appeared in [1]. Here, we offer a strictly stronger quadratic lower bound
+( 21 h+1                       1 h
+          
+       2    , instead of only  2 2 ), as we have the space to also include Stage 2 and Stage 3 of our full
+construction (in Section 4.1) and the analysis of the respective connectivities (in Section 4.2). We also
+offer a better exposition, with more discussion, intuition, and examples.
+
+(i) This is (easily) an equivalent restatement of [15]’s lower bound for 3owl.
+A quadratic lower bound for 2DFAs against one-way liveness                                                                                  3
+
+2      Preparation
+For n ≥ 1, let [n] := {1, 2, . . . , n}. The set Σ ∗ consists of all finite strings over Σ. If z ∈ Σ ∗ , we let
+|z|, zi , z i be its length, its ith symbol (i ∈ [|z|]), and the concatenation of i copies of itself (i ≥ 0). If
+f : S → S, then f i is the composition of i copies of f (i ≥ 0). We let B := {0,1} be the set of Boolean
+values and Bn×m be the set of all n × m Boolean matrices (n, m ≥ 1).
+
+2.1      Two-way finite automata
+A two-way deterministic finite automaton (2dfa) is a tuple of the form M = (Q, Σ, δ, qs , qa , qr ), where
+Q is a set of states; Σ is an input alphabet; the states qs ,qa ,qr ∈ Q are the start, accept, and reject states,
+respectively; and δ : Q × (Σ ∪ {⊢,⊣}) → Q × {l,r} is a total transition function, where ⊢,⊣ ̸∈ Σ are the
+left and right endmarkers, and l,r are the two directions. An input z ∈ Σ ∗ is presented to M between the
+endmarkers, as ⊢z⊣. The computation starts at qs on the left endmarker. In each step, the next state and
+head move are derived from δ and the current state and symbol. Endmarkers are never violated, except
+for ⊣ when the next state is qa or qr . Hence, the computation can either loop; or fall off ⊣ into one of qa ,qr .
+   Formally, the computation of M from state p and “the jth symbol of string z” (where 0 ≤ j ≤ |z|+1),
+denoted by compM,p,j (z), is the unique sequence c = (qt , jt )0≤t<1+m of state-position pairs, called
+configurations, where 0 ≤ m ≤ ∞; q0 := p and j0 := j; for all 0 ≤ t < m, the t-th position satisfies
+1 ≤ jt ≤ |z|; and every next state qt+1 and position jt+1 are derived from δ and the current state qt and
+symbol zjt . If m = ∞, we say the computation loops. Otherwise, m is finite and the last position jm is
+either |z|+1 or 0, in which cases we say the computation hits right or hits left into qm , respectively.(ii) If
+j = 1 or j = |z|, we get the left computation and right computation of M from p on z, respectively:(iii)
+
+                 lcompM,p (z) := compM,p,1 (z)                    and         rcompM,p (z) := compM,p,|z| (z) .
+
+Then the computation of M on z is its left computation from qs on ⊢z⊣, in symbols
+
+                                                compM (z) := lcompM,qs (⊢z⊣) ;
+
+and M accepts z if this computation hits right into qa . As usual, M solves a language L ⊆ Σ ∗ if it accepts
+exactly its strings: M accepts z ⇐⇒ z ∈ L.
+
+2.2      One-way liveness
+Let h ≥ 1. The alphabet Σh := P([h]×[h]) consists of every two-column directed graph with h nodes
+per column and only rightward arrows (Fig. 1L). An n-long string z ∈ Σh∗ is naturally viewed as a graph
+of n+1 columns, indexed from 0 to n, where edges connect successive columns and, for simplicity, are
+undirected (Fig. 1M). If there exists an n-long path from some node of column 0 to some node of column n,
+then z is live; otherwise, it is dead. Checking that a given z ∈ Σh∗ is live is the one-way liveness problem
+for height h, denoted by owlh .
+(ii) Note that, if the starting position j is 0, then the computation c starts at the imaginary position just to the left of the leftmost
+
+    boundary of z, so it immediately hits left (into p). Likewise, if j = |z|+1, then c starts at the imaginary position    just to theright
+    of the rightmost boundary of z, so it immediately hits right into p. In both cases, it is m = 0 and c = (q0 , j0 ) = (p, j) .
+(iii) Note that, if z = ϵ is the empty string, then every left computation on z hits right, since it starts (and ends immediately) at position
+
+    j = 1 = |z|+1. Likewise, every right computation on z hits left, since it starts (and ends immediately) at position j = |z| = 0.
+    See also Footnote (ii).
+4                                                                         Kehinde Adeogun, Christos Kapoutsis
+
+                                                                                                             
+                                                                                          0    0    0   0   0
+                                                                                         1    1    0   1   0
+                                                                                                             
+                                                                                         0    0    1   1   1
+                                                                                                             
+                                                                                         1    1    0   0   0
+                                                                                          1    1    0   1   0
+
+                   Figure 1: Three symbols in Σ5 (L); their string (M); and its connectivity (R).
+
+    Given any n-long z ∈ Σh∗ , its connectivity C(z) ∈ Bh×h is the h×h Boolean matrix where cell (i, j) is 1
+iff z contains an n-long path from node i of column 0 to node j of column n (Fig. 1R). Easily, concatenation
+of strings corresponds to Boolean multiplication of connectivities, namely C(xy) = C(x)C(y), where
+every + and · on Boolean values is ∨ and ∧, respectively. So, equivalently, owlh is defined over the
+alphabet Bh×h and consists in checking that a given string of Boolean matrices of dimension h × h has
+non-zero Boolean product.
+    The problem is important in studying how easily 2dfas can simulate one-way nondeterministic finite
+automata (1nfas, as typically defined [20, 26]). Formally, the family owl = (owlh )h≥1 is complete, under
+homomorphic reductions, for the class 1N of all language families L = (Lh )h≥1 that can be recognized
+by 2dfa families M = (Mh )h≥1 where the number of states grows polynomially in h [22]. Intuitively,
+owlh captures in its instances all computations of all h-state 1nfas. So, if a 2dfa can solve owlh with
+≤ s(h) states, then every h-state 1nfa can be simulated by a 2dfa with ≤ s(h) states; and, conversely, if
+every 2dfa for owlh needs ≥ s(h) states, then some h-state 1nfa requires ≥ s(h) states in every 2dfa that
+simulates it.
+
+2.3    Properties
+A property (of the strings) over an alphabet Σ is any set P ⊆ Σ ∗ . If x ∈ P , we also say that “x has P ”.
+We are interested in properties over Σh that are defined by connectivities:
+Definition 1. For any C ∈ Bh×h , we let P (C) := {z ∈ Σh∗ | C(z) = C} be the property of all strings
+over Σh that have connectivity C.
+   A property P over an alphabet Σ is smooth if it is “closed under concatenation with infix”, meaning
+that every two strings in the property have an infix over Σ that keeps their concatenation in the property,
+namely: (∀x ∈ P )(∀z ∈ P )(∃y ∈ Σ ∗ )(xyz ∈ P ).
+Example 1. For any i, j ∈ [h], let Ci,j ∈ Bh×h be the matrix where cell (i, j) is the only cell that contains 1.
+Then property Pi,j := P (Ci,j ) is smooth, because any two strings x and z in it have the one-symbol infix
+y := {(j, i)} that ensures that xyz is also in Pi,j .
+   Given two properties, P and P ′ over an alphabet Σ, we say that P lr-extends to P ′ if every string in P
+can be lr-extended into a string in P ′ , namely if (∀x ∈ P )(∃y ∈ Σ ∗ )(xy ∈ P ′ ).
+                                                                                     S
+Example 2. For any i, j ∈ [h], let Pi,j be as in Example 1 and let Pi,∗ := k Pi,k consist of every
+string whose connectivity has 1 in some cell in row i and in no other cells. Then property Pi,∗ lr-extends
+to property Pi,j because, for any string x ∈ Pi,∗ whose connectivity has its only 1 in a cell (i, k), the
+one-symbol suffix y := {(k, j)} is such that xy is in Pi,j .
+   Sometimes it is possible to find a single suffix y that can lr-extend into P ′ every x from P and from P ′ ,
+namely (∃y ∈ Σ ∗ )(∀x ∈ P ∪ P ′ )(xy ∈ P ′ ). We then say that P has a suffix into P ′ .
+A quadratic lower bound for 2DFAs against one-way liveness                                                    5
+
+Example 3. For any i, j ∈ [h], let Pi,∗ and Pi,j be as in Example 2. Then Pi,∗ (not only lr-extends to Pi,j ,
+but even) has a suffix into Pi,j . Indeed, the one-symbol suffix y := {(k, j) | k ∈ [h]}, that connects every
+node on the left to the j-th node of the right, forces xy to be in Pi,j , no matter what x ∈ Pi,∗ ∪ Pi,j = Pi,∗
+we select.
+   In even more special cases, the suffix that lr-extends into P ′ all strings of P ∪ P ′ can also be chosen
+to end in any way v ∈ P that we want: (∀v ∈ P )(∃u ∈ Σ ∗ )(∀x ∈ P ∪ P ′ )(xuv ∈ P ′ ). We then say that
+P has suffix of choice into P ′ .
+Example 4. Let I, J ∈ Bh×h be the identity matrix and the matrix with 1s in all of the first row and
+nowhere else, respectively. Then P := P (I) is the property of having h disjoint paths that connect every
+leftmost node to the corresponding rightmost node; and P ′ := P (I + J) is like P except that the top
+leftmost node also connects to all rightmost nodes. We argue that P has suffix of choice into P ′ . Indeed,
+pick any v ∈ P . Choose u ∈ P ′ (any such u will do) and consider the suffix y := uv. Easily, for every
+x ∈ P ∪ P ′ , appending y forces xy into P ′ .
+   Symmetric variants of the above relations are also relevant: we say that P rl-extends to P ′ if (∀x ∈
+P )(∃y ∈ Σ ∗ )(yx ∈ P ′ ); that P has a prefix into P ′ if (∃y ∈ Σ ∗ )(∀x ∈ P ∪ P ′ )(yx ∈ P ′ ); and that P
+has a prefix of choice into P ′ if (∀v ∈ P )(∃u ∈ Σ ∗ )(∀x ∈ P ∪ P ′ )(vux ∈ P ′ ).
+   Finally, we say that two properties P, P ′ ⊆ Σ ∗ are separated by a language L ⊆ Σ ∗ if every two of
+their strings have a context where the choice between them affects membership in L:
+
+                  (∀x ∈ P )(∀z ∈ P ′ )(∃u ∈ Σ ∗ )(∃v ∈ Σ ∗ )(uxv ∈ L ⇐⇒ uzv ̸∈ L) .
+
+In particular, distinct connectivities define properties that are separated by owl:
+Lemma 1. Let C, C ′ ∈ Bh×h . If C ̸= C ′ then P (C), P (C ′ ) are separated by owlh .
+
+Proof: Since C ̸= C ′ , there exists cell (i, j) such that C(i, j) ̸= C ′ (i, j). Without loss of generality,
+assume C(i, j) = 0 and C ′ (i, j) = 1. Now pick any x ∈ P (C) and z ∈ P (C ′ ). Then x has no path
+from the ith leftmost node to the jth rightmost node, but z does. Consider the symbols u := {(1, i)}, v :=
+{(j, 1)} ∈ Σh . Clearly, uxv is dead and uzv is live.
+
+
+3     A lower-bound lemma
+Let L be a language over some alphabet Σ. This section proves a general lemma for lower-bounding the
+number of states in a 2dfa solving L. Section 4 uses this lemma for Σ = Σh and L = owlh to show a
+lower bound of Ω(h2 ).
+   So, fix a 2dfa M that solves L with states Q. (Since M is fixed, we drop unnecessary subscripts: e.g.,
+for lcompM,p (z), we just write lcompp (z).)
+
+3.1    Generic strings
+Introduced in [24], generic strings continue to be the main building block that we have for constructing
+hard inputs for 2dfas of various kinds [12, 13, 16, 14, 17]. Here, we are using the flavor of [13, Sect. 3.2].
+This subsection briefly recalls concepts and facts from that work that we need in our arguments.
+   For y ∈ Σ ∗ , consider the set of “exit states” that M hits right into at the end of a left computation on y:
+
+                       Qlr (y) := {q ∈ Q | (∃p ∈ Q)(lcompp (y) hits right into q)} .
+6                                                                     Kehinde Adeogun, Christos Kapoutsis
+
+When we lr-extend y to some yz, the size of this set cannot possibly increase, because the function αy,z
+that maps every q ∈ Qlr (y) to the state (if any) that is hit right by the computation compq,|y|+1 (yz) is
+easily seen to be a partial surjection from Qlr (y) onto Qlr (yz).
+Lemma 2 ([13, Fact 3]). For all y,z, the function αy,z partially surjects Qlr (y) onto Qlr (yz); hence
+|Qlr (y)| ≥ |Qlr (yz)|.
+  Consequently, if we start with a string y in a property P and keep lr-extending it inside P , we will at
+some point have minimized the size of the set of exit states. When that happens, the string has become
+“lr-generic”.
+Definition 2 ([13, Def. 3]). A string y is lr-generic for property P if y ∈ P and, for all yz ∈ P , we have
+|Qlr (y)| = |Qlr (yz)|.
+Lemma 3 ([13, Lemma 3]). Every property P ̸= ∅ has lr-generic strings.
+
+Proof: Pick y ∈ P . If y is lr-generic, we are done. Otherwise, there is yz1 ∈ P such that |Qlr (y)| >
+|Qlr (yz1 )|. So, we replace y with yz1 and repeat: either yz1 is lr-generic and we are done; or there is
+yz1 z2 ∈ P such that |Qlr (yz1 z2 )| is even smaller, and we replace yz1 with yz1 z2 and repeat. Clearly, this
+eventually terminates, as M has finitely many states and every step decreases |Qlr ( · )|.
+  In addition, every further lr-extension of a lr-generic string inside the property continues to be lr-
+generic for the property:
+Lemma 4. If y is lr-generic for P , then so is every yz ∈ P .
+
+Proof: Towards a contradiction, say y is lr-generic for P , but some yz ∈ P is not. Then |Qlr (y)| =
+|Qlr (yz)| (since y is lr-generic and yz ∈ P ) but there exists yzz ′ ∈ P such that |Qlr (yz)| > |Qlr (yzz ′ )|
+(since yz is not lr-generic). Then z̃ := zz ′ is such that yz̃ ∈ P but |Qlr (y)| > |Qlr (yz̃)|, contrary to the
+lr-genericity of y.
+   Finally, the size |Qlr (yz)| is upper bounded, not only by the respective size |Qlr (y)| for the prefix y
+(the “prefix-monotonicity” given by Lemma 2), but also by the respective size |Qlr (z)| for the suffix z (a
+“suffix-monotonicity”).
+Lemma 5 ([13, Fact 4]). For all y,z: Qlr (yz) ⊆ Qlr (z); so |Qlr (yz)| ≤ |Qlr (z)|.
+   Symmetrically to the above, we can also define the set Qrl (y) of exit states that M hits left into after
+right computations on y; note the partial surjection βz,y : Qrl (y) → Qrl (zy), mapping every q to the
+state (if any) hit left by compq,|z| (zy); conclude that |Qrl (y)| cannot increase when we rl-extend y (suffix-
+monotonicity); define rl-generic strings and show that they exist for every P ̸= ∅; show that rl-extensions
+preserve rl-genericity; and argue that Qrl (z) ⊇ Qrl (zy) and thus prefix-monotonicity also holds.
+   In the end, we are interested in strings that are generic in both directions, and we are guaranteed to have
+them for non-empty properties that are also smooth.
+Definition 3 ([13, Def. 3]). A string is generic if it is both lr- and rl-generic.
+Lemma 6 ([13, Lemma 3]). Every smooth property P ̸= ∅ has generic strings.
+
+Proof: Since P ̸= ∅, there exist x, z ∈ P that are respectively lr- and rl-generic for P (by Lemma 3 and
+its symmetric variant). Since P is smooth, there exists y such that w := xyz ∈ P . Then w is both lr- and
+A quadratic lower bound for 2DFAs against one-way liveness                                                    7
+
+rl-generic for P , as a lr-extension of x and a rl-extension of z (Lemma 4 and its symmetric variant).
+Therefore, w is generic for P .
+
+3.2    Exit sizes
+The previous section studied how the size of the set Qlr (y) changes as y ∈ P is lr-extended within P .
+Call this number a(y) := |Qlr (y)| the “lr-size” of y. We now study how this number changes when y is
+replaced by other strings.
+  We first note that switching between lr-generic strings for P preserves the lr-size, provided that P is
+smooth. Hence, this number is a feature of P .
+Lemma 7. Let x,z be lr-generic strings for a smooth P . Then a(x) = a(z).
+
+Proof: Suppose P is smooth and strings x, z are lr-generic for it. Since P is smooth, there exists y such
+that xyz ∈ P . Then a(x) = |Qlr (x)| = |Qlr (xyz)|, by the definition of a(x) and since xyz ∈ P lr-
+extends the lr-generic x. But also |Qlr (xyz)| ≤ |Qlr (z)| = a(z), by suffix monotonicity (Lemma 5) and
+the definition of a(z). Overall, a(x) ≤ a(z). Finally, a(z) ≤ a(x) is also true, symmetrically.
+
+Definition 4. The lr-size a(P ) of a smooth P ̸= ∅ is the common lr-size of all lr-generic strings of P .
+  Moreover, a(P ) is a lower bound for the lr-size of any string in P , and is reached by exactly the lr-
+generic strings of P .
+Lemma 8. Let P ̸= ∅ be smooth. Every x ∈ P satisfies a(x) ≥ a(P ); and the equality holds iff x is
+lr-generic for P .
+
+Proof: Let x ∈ P . As in the proof of Lemma 3, x can be lr-extended to some lr-generic string xz for P .
+Then a(x) = |Qlr (x)| ≥ |Qlr (xz)| = a(xz) = a(P ) (by Lemma 2 and the definitions of a( · ), a(P )),
+hence a(x) ≥ a(P ).
+  Now let x be lr-generic for P . Then a(x) = a(P ) (Def. 4). Conversely, assume a(x) = a(P ).
+Pick any lr-extension xz ∈ P . We know |Qlr (x)| ≥ |Qlr (xz)|, by Lemma 2. But we also know that
+|Qlr (x)| ≤ |Qlr (xz)|, because |Qlr (x)| = a(x) = a(P ) (by definition of a(x) and our assumption) and
+a(P ) ≤ |Qlr (xz)| (by the first part of our proof, and since xz ∈ P ). Overall, |Qlr (x)| = |Qlr (xz)| for
+the arbitrary lr-extension of x in P . So, x is lr-generic for P .
+  Finally, the lr-sizes of distinct smooth properties can be compared, if one lr-extends to the other:
+Lemma 9. If P, P ′ ̸= ∅ are smooth and P lr-extends to P ,′ then a(P ) ≥ a(P ′ ).
+
+Proof: Pick any lr-generic string x for P . Since P lr-extends to P ′ , there exists y such that xy ∈ P ′ . Then
+a(P ) = a(x) = |Qlr (x)| ≥ |Qlr (xy)| ≥ a(P ′ ), where the two equalities are by the definitions of a(P )
+and a(x) (and since x is lr-generic) and the two inequalities hold by Lemmas 2 and 8, respectively.
+   Symmetrically to the above, we can also define the rl-size b(y) := |Qrl (y)| of a string y; prove that it
+is common for all rl-generic strings of a smooth P ; define it as the rl-size b(P ) of P ; show that it lower
+bounds the rl-size of all x ∈ P and is met iff x is rl-generic; and prove b(P ′ ) ≤ b(P ) when a smooth P
+rl-extends to a smooth P ′ . We then also prove the following.
+Lemma 10. If P, P ′ ̸= ∅ are smooth and P has suffix of choice into P ′ , then both a(P ) ≥ a(P ′ ) and
+b(P ) ≥ b(P ′ ).
+8                                                                     Kehinde Adeogun, Christos Kapoutsis
+
+Proof: Since P has suffix of choice into P ′ , it clearly lr-extends to P ′ , therefore a(P ) ≥ a(P ′ ) (by
+Lemma 9), and we just need to prove that b(P ) ≥ b(P ′ ).
+   Let v be any generic string for P (Lemma 6). Then v ∈ P and, since P has suffix of choice into P ′ ,
+some u is such that the suffix uv forces a string xuv into P ′ , no matter which x ∈ P ∪ P ′ we pick. Let us
+pick x = v. Then vuv ∈ P ′ , and it suffices to prove that b(P ) ≥ b(vuv) ≥ b(P ′ ).
+   The second inequality follows by the symmetric variant of Lemma 8 and since vuv ∈ P ′ . The first one
+follows from the fact that b(P ) = b(v) = |Qrl (v)| ≥ |Qrl (vuv)| = b(vuv), where the three equalities
+are by the definitions of b(P ) (since v is rl-generic for P ), b(v), and b(vuv), and the inequality is by
+prefix-monotonicity (the symmetric variant of Lemma 5).
+
+3.3    The lemma
+We are now ready to state and prove our main lemma.
+Lemma 11 (Main Lemma). Suppose language L ⊆ Σ ∗ is solved by 2dfa M . Let ∅ ̸= P, P ′ ⊆ Σ ∗ be
+two smooth properties separated by L. If P has suffix of choice into P ′ , then the exit sizes of P, P ′ on M
+satisfy a(P ) ≥ a(P ′ ) and b(P ) ≥ b(P ′ ), and at least one of these inequalities is strict.
+
+Proof: Inequalities a(P ) ≥ a(P ′ ) and b(P ) ≥ b(P ′ ) follow from Lemma 10. So we just need to prove
+that at least one of the two is strict. Toward a contradiction, suppose that neither is, namely a(P ) = a(P ′ )
+and b(P ) = b(P ′ ).
+  Let ϑ be generic for P (Lemma 6). Since P has suffix of choice into P ′ , there exists x such that the
+suffix xϑ forces every string wxϑ into P ′ , for all w ∈ P ∪ P ′ :
+
+                                        (∀w ∈ P ∪ P ′ )(wxϑ ∈ P ′ )                                        (1)
+
+Claim 1. For all t ≥ 1, we have ϑ(xϑ)t ∈ P ′ .
+
+Proof: By induction on t ≥ 1. For t = 1, apply (1) for w := ϑ (which is in P as generic string), to
+conclude that P ′ contains wxϑ = ϑxϑ. For t ≥ 2, apply (1) for w := ϑ(xϑ)t−1 (which is in P ′ by the
+inductive hypothesis), to conclude that P ′ also contains wxϑ = ϑ(xϑ)t−1 xϑ = ϑ(xϑ)t .
+   Now, since P, P ′ are separated by L, we know that, for every t ≥ 1, there exists a context ut , vt such
+that exactly one of ut ϑvt and ut ϑ(xϑ)t vt is in L (since ϑ ∈ P and ϑ(xϑ)t ∈ P ′ ). In what follows, we
+find t ≥ 1 such that M decides identically on ut ϑvt and ut ϑ(xϑ)t vt , contradicting the assumption that
+M solves L.
+   We first focus on the string ϑxϑ and the function αϑ,xϑ that partially surjects Qlr (ϑ) to Qlr (ϑxϑ)
+(Lemma 2). Letting α := αϑ,xϑ and A := Qlr (ϑ), we prove:
+Claim 2. α is a permutation of A.
+
+Proof: We know Qlr (ϑxϑ) is a subset of Qlr (ϑ) (Lemma 5); and at least as big, because |Qlr (ϑxϑ)| ≥
+a(P ′ ) (by Lemma 8 and since ϑxϑ ∈ P ′ ) and a(P ′ ) = a(P ) (our assumption) and a(P ) = |Qlr (ϑ)| (by
+definition of a(P ) and since ϑ is lr-generic). So, it must be Qlr (ϑxϑ) = Qlr (ϑ) = A, which implies that
+α = αϑ,xϑ is total and injective. Since it is also surjective, it bijects A to A. (Fig. 2c.)
+  Moreover, by standard arguments (see, e.g., [13, Facts 7,8]), we know that the same holds for the re-
+spective function on other strings ϑ(xϑ)t (Fig. 2c):
+                                                                                                                                                       A quadratic lower bound for 2DFAs against one-way liveness
+(a)                                                                                                                                      (c)
+
+
+
+
+(b)
+
+
+
+
+Figure 2: (a) A computation on uϑv with m + 2 = 7 crucial points; and the corresponding m + 1 = 6 computation infixes c1 , . . . , c6 , odd (bold)
+and even (dashed). (b) The computation c′ on uϑ(xϑ)t v (here t = 3), created by joining the concatenations c′i of the ci and di . (c) How α := αϑ,xϑ
+(solid lines) permutes A := Qlr (ϑ); and αϑ,(xϑ)t (solid & dotted) permutes A, too, sometimes as identity (here t = 2).
+
+
+
+                                                                                                                                                       9
+10                                                                            Kehinde Adeogun, Christos Kapoutsis
+
+Claim 3. For all t ≥ 1, the function αϑ,(xϑ)t is the permutation αt of A.
+   Finally, by symmetric arguments, the partial surjection β := βϑx,ϑ (cf. comments after Lemma 5) of
+B := Qrl (ϑ) to Qrl (ϑxϑ) is also a permutation of B; and for every t ≥ 1, the respective mapping β(ϑx)t ,ϑ
+is the permutation β t of B.
+   Now, let tlr , trl ≥ 1 be such that αtlr and β trl become the identity maps idA on A and idB on B,
+respectively. Then for t = t∗ := tlr · trl and for the string ϑ(xϑ)t , we have αϑ,(xϑ)t = αt = (αtlr )trl =
+(idA )trl = idA and likewise β(ϑx)t ,ϑ = β t = idB . Intuitively, this means that no lr-traversal of ϑ(xϑ)t by
+our 2dfa M “notices” the t copies of xϑ to the right of the leftmost ϑ; neither any rl-traversal “notices”
+the t copies of ϑx to the left of the rightmost ϑ. This becomes an issue, when we place the two strings ϑ
+and ϑ(xϑ)t in the context of u := ut and v := vt .
+Claim 4. M decides identically on uϑv and uϑ(xϑ)t v.
+
+Proof: Consider the computation c of M on uϑv (Fig. 2a). Let 0 ≤ ℓ ≤ ∞ be the number of times c fully
+traverses ϑ (i.e., crosses into ϑ from one side and, after computing strictly inside ϑ, crosses out of ϑ on
+the opposite side). Note that, either ℓ = ∞ and c loops in a way that fully traverses ϑ infinitely often; or
+ℓ < ∞ and, after the ℓth traversal, c ends with a suffix that either lies entirely inside ⊢uϑ and is infinite, if
+ℓ is even; or lies entirely inside ϑv⊣ (except possibly for the last configuration, if it exists) and is infinite
+or finite, if ℓ is odd.
+   Now, for 1 ≤ i < ℓ+1, let the ith crucial point of c be the configuration (pi , ki ) at the end of the ith
+full traversal, so that ki is either |uϑ|+1 (odd i) or |u| (even i); let the 0th crucial point (p0 , k0 ) be the start
+configuration (qs , 0); and, in case c halts, let the ℓ+1st crucial point (pℓ+1 , kℓ+1 ) be the last configuration,
+off ⊣. Then call ci the infix of c from the i − 1st to the ith crucial point (inclusive), if 1 ≤ i < ℓ+1; or the
+suffix of c from the ℓth crucial point onward, if ℓ < ∞ and i = ℓ+1. Note that every ci lies entirely inside
+either ⊢uϑ (if i is odd) or ϑv⊣ (if i is even), except only for its last configuration (when it exists).
+   Now, for 1 ≤ i < ℓ+1, let di be the computation of M that justifies why αϑ,(xϑ)t (pi ) = αt (pi ) =
+idA (pi ) = pi , if i is odd; or why β(ϑx)t ,ϑ (pi ) = β t (pi ) = idB (pi ) = pi , if i is even. Form c′i by “joining”
+ci and di at the shared configuration (pi , ki ), if i is odd; or by “joining” a λ-shifted variant of ci and di
+at the shared configuration (pi , λ + ki ), where λ := |xϑ|t , if i is even (Fig. 2b). If ℓ < ∞ and i = ℓ+1,
+then also let c′i be ci , if i is odd; or a λ-shifted variant of ci , if i is even. Then “join” all c′i to obtain the
+full computation c′ of M on uϑ(xϑ)t v.
+   By construction, c′ loops or halts exactly as c: either because both computations loop by oscillating
+between u and v infinitely often, if ℓ = ∞; or because they both end by looping inside ⊢uϑ, if ℓ < ∞ is
+even; or because they both end by looping inside ϑv⊣, if ℓ < ∞ is odd and cℓ+1 is infinite; or because
+they both end by falling off ⊣ into the same state qa or qr , if ℓ < ∞ is odd and cℓ+1 is finite. Therefore,
+M decides identically on uϑv and uϑ(xϑ)t v.
+    Since exactly one of uϑv, uϑ(xϑ)t v is in L, we know M fails to solve L —a contradiction.
+
+
+4      The lower bound
+To prove the promised lower bound, we introduce a sequence of 1 + N non-empty properties
+
+                                            ∅ ̸= P0 , P1 , . . . , PN ⊆ Σh∗                                        (2)
+A quadratic lower bound for 2DFAs against one-way liveness                                                        11
+                                                                                                      
+                    1 0 0 0 0               1 0 0 0 1         1                         1    1       1   1
+                   0 1 0 0 0             0 1 0 1 1       0                         1    1       1   1
+                                                                                                      
+                   0 0 1 0 0 C6 = 0 0 1 1 1 C10 = 0
+              C0 =                                                                     0    1       1   1
+                                                          
+                                                                                                           
+                   0 0 0 1 0             0 0 0 1 1       0                         0    0       1   1
+                    0 0 0 0 1               0 0 0 0 1         0                         0    0       0   1
+                                                                                                      
+                    1 1 1 1 1                1 1 1 1 1         1                         1 1 1           1
+                   0 1 1 1 1             0 1 1 1 1       1                          1 1 1           1
+                                                                                                      
+                   0 0 1 1 1 C12 = 0 0 1 1 1 C14 = 1
+             C11 =                                                                      1 1 1           1
+                                                          
+                                                                                                           
+                   0 0 0 1 1             0 0 1 1 1       1                          1 1 1           1
+                    0 0 0 1 1                0 0 1 1 1         1                         1 1 1           1
+
+Figure 3: Some of the connectivities C0 , C1 , . . . , CN for h = 5. Here, U = 10 and N = 15. In each Ct , we have
+underlined every ‘fresh’ 1, i.e., every 1 that is not also present in Ct−1 (t ̸= 0).
+
+such that N = h+1
+                     
+                  2    and every two successive ones, Pt−1 , Pt (1 ≤ t ≤ N ), satisfy the conditions of the
+Main Lemma: they are smooth (Lemma 15), separated by owlh (Lemma 16), and such that the earlier one
+has suffix of choice into the later one (Lemma 17). Then the lemma implies that the exit sizes of Pt−1
+upper bound those of Pt , and strictly so on at least one of the two sides. Therefore, in the sequence of the
+corresponding pairs of exit sizes
+
+                           (a(P0 ), b(P0 )), (a(P1 ), b(P1 )), . . . , (a(PN ), b(PN )),
+
+no step increases a component; and each step decreases at least one. This is a total of at least N decrements
+of component, to be divided between the two nonincreasing sequences
+
+                      a(P0 ), a(P1 ), . . . , a(PN )       and    b(P0 ), b(P1 ), . . . , b(PN ) .
+
+So, at least one of them decreases atleast N/2 times. Since all numbers are obviously between |Q| and 0,
+it follows that |Q| ≥ N/2 = 21 h+1  2   = 14 (h + 1)h = Ω(h2 ).
+    To define the properties of (2), we first define a sequence of connectivities C0 , C1 . . . , CN and then let
+each Pt be the property of having connectivity Ct , namely Pt := P (Ct ). So, in the rest of this section,
+we introduce the connectivities; prove a list of basic facts about them (Lemmas 12-14); then use these to
+prove the desired facts about our properties (Lemmas 15-17) and thus our main result (Theorem 1).
+
+4.1    The connectivities
+To construct the connectivities C0 , C1 , . . . , CN , we take the identity matrix Ih and start flipping its h2 − h
+non-diagonal bits, from 0 to 1, starting from the strict upper triangle (stage 1) and continuing to the strict
+lower triangle (stage 2), until all bits are 1. In the end (stage 3), we flip all h2 bits together, from 1 back to
+0, to get the zero matrix 0h .
+   In the first stage, we flip the U := h2 bits of the strict upper triangle, one cell at a time, from column h to
+                                          
+
+column 2, and from bottom to top in each column: i.e., we start with cells (h−1, h), (h−2, h), . . . , (1, h),
+continue with (h−2, h−1), . . . , (1, h−1), etc., all the way to (2, 3), (1, 3), and (1, 2). (See upper row of
+Fig. 3.) Specifically, if we let “the t-th cell” refer to the tth cell (it , jt ) in this sequence (1 ≤ t ≤ U ), then
+
+                         C0 := Ih         and          Ct := Ct−1 + Et       (1 ≤ t ≤ U ),                       (3)
+12                                                                           Kehinde Adeogun, Christos Kapoutsis
+
+where Et ∈ Bh×h is the matrix with only the t-th cell (it , jt ) set to 1 (Fig. 4). An equivalent definition,
+which will be more helpful in our proofs later, is:
+
+                          C0 := Ih         and      Ct := Ct−1 + Et′          (1 ≤ t ≤ U ),                         (3′ )
+
+where Et′ ∈ Bh×h is the matrix obtained from Et by also placing 1s in the cells to the right of the t-th
+cell in the same row (so that the 1s in Et′ are exactly at (it , jt ), (it , jt + 1), . . . , (it , h)) (Fig. 4). Easily,
+these extra 1s are not changing Ct , since Ct−1 already has 1s in those cells and the addition is Boolean.
+Either way, the end result CU of this stage contains 1s in exactly those cells that lie on and above the main
+diagonal (Fig. 4).
+   In the second stage, we flip the bits of the strict lower triangle, one column at a time, from column h−1
+to column 1: that is, we start with the one cell (h, h−1), continue with the two cells (h, h−2), (h−1, h−2),
+etc., all the way to the h−2 cells (h, 2), (h−1, 2) . . . , (3, 2), and the h−1 cells (h, 1), (h−1, 1), . . . , (2, 1).
+(See lower row of Fig. 3.) Specifically, if we let “the t-th column” refer to the column jt := h−(t−U ) of
+the new 1s of Ct (U +1 ≤ t ≤ N −1), then
+
+                                     Ct := Ct−1 + Dt           (U +1 ≤ t ≤ N −1),                                    (4)
+
+where Dt ∈ Bh×h is the matrix that contains 1s exactly in those cells of the tth column that lie strictly
+below the diagonal (Fig. 4). An equivalent definition, which will be more helpful in our proofs later, is:
+
+                                     Ct := Ct−1 + Dt′          (U +1 ≤ t ≤ N −1),                                   (4′ )
+
+where Dt′ ∈ Bh×h is the matrix that contains 1s in all cells of the tth column and of the columns to its right
+(so that the 1s in Dt′ are exactly all cells of columns jt , jt +1, . . . , h) (Fig. 4). As before, these extra 1s
+do not change Ct , as Ct−1 already has 1s in those cells and the addition is Boolean. Either way, the end
+result CN −1 of this stage contains 1s in all of the cells (Fig. 4).
+   In the third stage, we flip the bits of the entire matrix, all at once, from 1 back to 0, to get the zero matrix
+CN := 0h .
+   This concludes the definition of    the sequence C0 , C1 , . . . , CU , CU +1 , . . . , CN −1 , CN . Note that the
+total number of steps is indeed h2 + (h−1) + 1 = h+1        2     = N , as promised.
+                                                                                      
+                      0     0    0    0   0          0    0     0   0   0        0 0 0 0 0
+                                                                           ′ 0 0 1 1 1
+                    0      0    0    1   0       0     0     1   0   0                
+                                                 
+                    0
+               E6 =        0    0    0   0 E8 = 0
+                                                         0     0   0   0 E8 = 0 0 0 0 0
+                                                                               
+                                                                                           
+                    0      0    0    0   0       0     0     0   0   0      0 0 0 0 0
+                      0     0    0    0   0          0    0     0   0   0        0 0 0 0 0
+                                                                                       
+                     0      0   0     0   0          0     0    0   0   0         0 0 1 1 1
+                    0      0   0     0   0        0     0    0   0   0      0 0 1 1 1
+                                                                        ′              
+                    0
+              D11 =        0   0     0   0 D12 = 0     0    0   0   0 12 0 0 1 1 1
+                                                                            D =
+                                                                                          
+                    0      0   0     0   0        0     0    1   0   0      0 0 1 1 1
+                     0      0   0     1   0          0     0    1   0   0         0 0 1 1 1
+
+                  Figure 4: Some of the auxiliary matrices for building C0 , C1 , . . . , CN for h = 5.
+A quadratic lower bound for 2DFAs against one-way liveness                                                       13
+
+4.2    Some basic facts
+Two important facts about the matrices C0 , C1 , . . . , CN are (i) that they are idempotent; and (ii) that the
+product of every two successive ones (in either order) produces the later one (Lemma 14). To prove these
+facts, we must first prove some elementary facts about our auxiliary matrices, Et′ and Dt′ , and how these
+interact with the Ct (Lemmas 12 and 13).
+Lemma 12. For all t = 1, 2, . . . , U :    (Et′ )2 = 0h and Ct−1 Et′ = Et′ = Et′ Ct−1 .
+
+Proof: Fix t and let (i, j) := (it , jt ) be “the t-th cell”. Note that i < j, since cell (i, j) lies strictly above
+the main diagonal. Also note that Ct−1 has 0 in cell (i, j); hence, the 1s in its upper strict triangle are not
+covering all of the jth column; so, none of them is in the i-th column (since i < j); so, the ith column of
+Ct−1 has only a single 1, on the diagonal.
+  Let ei ∈ Bh×1 be the column vector with a single 1 at cell i; and rj ∈ B1×h be the row vector with 1 in
+cells j, j+1, . . . , h and 0 everywhere else. We then easily verify the following:
+    • Et′ = ei rj . Indeed, the product is an h × h matrix where the only non-zero row is the i-th one
+      (because of ei ’s single 1 in cell i) and equals the row vector rj , namely it has 1s in columns j, j +
+      1, . . . , h —which is exactly the description of Et′ .
+    • rj ei = 0. Indeed, the product is a 1 × 1 matrix, namely a single Boolean value. And it equals 0,
+      because rj has 0 in cell i (since i < j).
+    • Ct−1 ei = ei . Indeed, the product is a h × 1 column vector, where the only non-zero cell is the ith
+      one, because the ith row of Ct−1 is the only row with 1 in cell i (since, as observed above, the i-th
+      column in Ct−1 has only a single 1, on the diagonal).
+    • rj Ct−1 = rj . Indeed, the product is a 1 × h row vector, where the only non-zero cells are j, j +
+      1, . . . , h, because columns j, j + 1, . . . , h are the only columns in Ct−1 that contain one or more 1s
+      in cells j, j+1, . . . , h (since Ct−1 has 0s in all cells strictly below the diagonal).
+Using these observations, we easily compute:
+
+                           (Et′ )2 = (ei rj )2 = ei rj ei rj = ei · 0 · rj = 0 · rj = 0h
+              Ct−1 Et′ = Ct−1 ei rj = ei rj = Et′             Et′ Ct−1 = ei rj Ct−1 = ei rj = Et′ ,
+
+where 0 is the zero column vector and 0h is the zero h × h matrix.
+
+Lemma 13. For all t = U +1, . . . , N −1:        (Dt′ )2 = Dt′ and Ct−1 Dt′ = Dt′ = Dt′ Ct−1 .
+
+Proof: Fix t and let j := jt = h−(t−U ) be the index of the t-th column.
+  Let 1 ∈ Bh×1 be the column vector containing only 1s; and (as in Lemma 12) rj ∈ B1×h be the row
+vector with 1s exactly in cells j, j+1, . . . , h. We then easily verify the following:
+    • Dt′ = 1rj . Indeed, the product is an h × h matrix where every row is a copy of rj , namely it has 1s
+      in columns j, j + 1, . . . , h —which is exactly the description of Dt′ .
+    • rj 1 = 1. Indeed, the product is a 1 × 1 matrix, namely a single Boolean value. And it equals 1,
+      because rj has at least one 1.
+14                                                                               Kehinde Adeogun, Christos Kapoutsis
+
+     • Ct−1 1 = 1. Indeed, the product is a h × 1 column vector, where a cell i contains 1 iff the ith row in
+       Ct−1 has at least one 1; but every row of Ct−1 does (e.g., on the diagonal).
+
+     • rj Ct−1 = rj . Indeed, the product is a 1 × h row vector, where the only non-zero cells are j, j +
+       1, . . . , h, because columns j, j + 1, . . . , h are the only ones in Ct−1 with one or more 1s in the cells
+       j, j+1, . . . , h (since Ct−1 has 0s in all cells below the diagonal and left of column j).(iv)
+
+Using these observations, we easily compute:
+
+                                 (Dt′ )2 = (1rj )2 = 1rj 1rj = 1 · 1 · rj = 1rj = Dt′
+                Ct−1 Dt′ = Ct−1 1rj = 1rj = Dt′                      Dt′ Ct−1 = 1rj Ct−1 = 1rj = Dt′ ,
+
+which covers all of the desired equalities.
+
+Lemma 14. For all t = 0, 1, . . . , N :         Ct2 = Ct and Ct−1 Ct = Ct = Ct Ct−1 (if t ̸= 0).
+
+Proof: The idempotence of Ct is obvious for t = N : CN         2
+                                                                    = 02h = 0h = CN . For t ≤ N −1, we
+                                                               2
+do induction on t. In the base case (t = 0), we have C0 = I2h = Ih = C0 . In the inductive step
+(1 ≤ t ≤ N −1), we take cases according to whether 1 ≤ t ≤ U (stage 1); or U +1 ≤ t ≤ N −1 (stage 2).
+   In stage 1 (cf. (3′ )), we have Ct2 = (Ct−1 +Et′ )2 = Ct−1
+                                                           2
+                                                              +Ct−1 Et′ +Et′ Ct−1 +(Et′ )2 . By the inductive
+hypothesis and Lemma 12, this becomes Ct−1 + Et′ + Et′ + 0h ; which is just Ct−1 + Et′ (as the last three
+terms Boolean-add to Et′ ); which is just Ct (by (3′ )).
+   In stage 2 (cf. (4′ )), we have Ct2 = (Ct−1 + Dt′ )2 = Ct−1   2
+                                                                     + Ct−1 Dt′ + Dt′ Ct−1 + (Dt′ )2 . By the
+inductive hypothesis and Lemma 13, this becomes Ct−1 + Dt + Dt′ + Dt′ ; which is just Ct−1 + Dt′ (as
+                                                                   ′
+
+the last three terms Boolean-add to Dt′ ); which is just Ct (by (4′ )).
+   This concludes the induction for the idempotence of Ct .
+   For the equalities, we take cases according to whether 1 ≤ t ≤ U (stage 1); or U +1 ≤ t ≤ N −1
+(stage 2); or t = N (stage 3).
+   In stage 1 (cf. (3′ )), we have Ct−1 Ct = Ct−1 (Ct−1 + Et′ ) = Ct−1     2
+                                                                               + Ct−1 Et′ . By idempotence
+                                       ′                   ′
+and Lemma 12, this is Ct−1 + Et , which is Ct (by (3 )). For the reverse product, we have Ct Ct−1 =
+(Ct−1 + Et′ )Ct−1 = Ct−1      2
+                                + Et′ Ct−1 , which (by idempotence and Lemma 12 again) is just Ct−1 + Et′ ,
+                            ′
+namely Ct again (by (3 )). Overall, Ct−1 Ct = Ct = Ct Ct−1 , as desired.
+   In stage 2 (cf. (4′ )), we have Ct−1 Ct = Ct−1 (Ct−1 + Dt′ ) = Ct−1     2
+                                                                               + Ct−1 Dt′ . By idempotence
+                                       ′                   ′
+and Lemma 13, this is Ct−1 + Dt , which is Ct (by (4 )). For the reverse product, we have Ct Ct−1 =
+(Ct−1 + Dt′ )Ct−1 = Ct−1      2
+                                + Dt′ Ct−1 , which (by idempotence and Lemma 13 again) is just Ct−1 + Dt′ ,
+                            ′
+namely Ct again (by (4 )). Overall, Ct−1 Ct = Ct = Ct Ct−1 , as desired.
+   In stage 3 (t = N ), we have Ct−1 Ct = Ct−1 0h = 0h = Ct and Ct Ct−1 = 0h Ct−1 = 0h = Ct .
+Therefore, we again have Ct−1 Ct = Ct = Ct Ct−1 , as desired.
+
+(iv) Note that, despite appearances, this fourth condition is not the same as the corresponding fourth condition in the proof of
+
+  Lemma 12: Ct−1 there and here are different matrices, since t ≤ U there and t ≥ U +1 here.
+A quadratic lower bound for 2DFAs against one-way liveness                                                      15
+
+4.3    The desired facts
+We are now ready to prove the three facts that we promised about the properties Pt of (2).
+Lemma 15. For all t = 0, . . . , N , property Pt is smooth.
+
+Proof: Pick any x,z ∈ Pt . Let y be any string with identity connectivity (e.g., the string consisting of the
+one symbol {(i, i) | i ∈ [h]}). Then the connectivity of xyz is C(xyz) = C(x)C(y)C(z) = Ct Ih Ct =
+Ct2 = Ct , where we used idempotence (Lemma 14). So, xyz ∈ Pt .
+
+Lemma 16. For all t = 1, . . . , N , properties Pt−1 , Pt are separated by owlh .
+
+Proof: Follows directly from Lemma 1, since Ct−1 ̸= Ct for all t = 1, . . . , N . Indeed, the two con-
+nectivities Ct−1 and Ct differ: either on the tth cell, if 1 ≤ t ≤ U (stage 1); or on the tth column, if
+U +1 ≤ t ≤ N −1 (stage 2); or on all cells, if t = N (stage 3).
+
+Lemma 17. For all t = 1, . . . , N , property Pt−1 has suffix of choice into Pt .
+
+Proof: Pick any v ∈ Pt−1 . Let u be arbitrary in Pt . Pick any x ∈ Pt−1 ∪ Pt . We compute:
+
+                          C(xuv) = C(x)C(u)C(v) = C(x)Ct Ct−1 = C(x)Ct ,
+
+where the last equality uses Lemma 14. Now, since x is in Pt−1 or Pt , the connectivity C(x)Ct is either
+Ct−1 Ct or Ct2 ; both of which equal Ct , again by Lemma 14. Therefore, xuv ∈ Pt .
+
+
+4.4    The theorem
+We are now ready to carefully state our main result and summarize its proof.
+Theorem 1. Let h ≥ 1. Let M be any 2dfa that solves owlh . Then M has at least 14 h(h + 1) states.
+
+Proof: For the given h and for N = h+1                                     ∗
+                                              
+                                           2 , let P0 , P1 , . . . , PN ⊆ Σh be the 1+N properties of (2), which
+are all non-empty (clearly) and smooth (Lemma 15). For every t = 1, 2, . . . , N , we know that Pt−1 and Pt
+are separated by owlh (Lemma 16); and that Pt−1 has suffix of choice into Pt (Lemma 17).
+   For the given M and for t = 0, 1, . . . , N , let at := a(Pt ) and bt := b(Pt ) be the (well-defined, since
+Pt is smooth) lr-size and rl-size of Pt with respect to M (Def. 4 and discussion preceding Lemma 10),
+which clearly satisfy 0 ≤ at , bt ≤ |Q|, where Q is the set of states of M .
+   Now, fix any t = 1, 2, . . . , N . We easily see that Pt−1 and Pt satisfy the conditions of our Main Lemma
+(Lemma 11). Hence, at−1 ≥ at ; and bt−1 ≥ bt ; and at least one of these two inequalities is strict.
+   Overall, M implies two weakly decreasing sequences a0 ≥ a1 ≥ · · · ≥ aN and b0 ≥ b1 ≥ · · · ≥ bN ,
+where at least N of all inequalities are strict. Clearly then, one of these sequences hosts at least 21 N strict
+inequalities, and thus contains at least 1 + 12 N distinct integers. Since these all lie in {0, 1, . . . , |Q|}, it
+follows that 1 + 12 N ≤ 1 + |Q|, which implies |Q| ≥ 14 h(h + 1).
+16                                                                  Kehinde Adeogun, Christos Kapoutsis
+
+5    Conclusion
+We proved that every 2dfa solving owlh needs Ω(h2 ) states and thus, in general, the conversion of 1nfas
+to 2dfas incurs a quadratic blow-up in the number of states. Although this simply matches the already
+known lower bound by Chrobak [4, 27] and only slightly exceeds that of [15], it results from an analysis
+of 2dfa computations which are much richer than the ones realized on unary or on 3-long inputs.
+   We conjecture that the sequence of smooth properties constructed in Sect. 4 is of maximum possible
+length. Namely that, in every sequence ∅ ̸= P0 , P1 , . . . , Pm ⊆ Σh∗ , if every two successive properties
+Pt−1 , Pt satisfy the conditions of our Main Lemma (Lemma 11), then m ≤ h+1
+                                                                                    
+                                                                                 2 .
+   If this is indeed the case, then our lemma in its present form seems not to be helpful in discovering
+super-quadratic lower bounds for 2dfas against owl. Still, we are hopeful that our Main Lemma might
+help bound the size of 2dfas in other settings. The lack of general lower-bounding tools is a well-known
+major deficiency in the study of 2dfa computations. In this work, we deliberately tried to extract from our
+syllogisms a lemma that is general enough to potentially serve as such a tool.
+
+
+References
+ [1] Kehinde Adeogun and Christos Kapoutsis. A quadratic lower bound for 2DFAs against one-way
+     liveness. In Proceedings of SOFSEM, pages 104–116, 2026.
+
+ [2] Maria Paola Bianchi, Juraj Hromkovič, and Ivan Kováč. On the size of two-way reasonable automata
+     for the liveness problem. In Proceedings of DLT, pages 120–131, 2015.
+
+ [3] Hans-Joachim Böckenhauer, Dennis Komm, and Walter Unger, editors. Adventures between lower
+     bounds and higher altitudes – Essays dedicated to Juraj Hromkovič on the occasion of his 60th
+     birthday, volume 11011 of Lecture Notes in Computer Science. Springer, 2018.
+
+ [4] Marek Chrobak. Finite automata and unary languages. Theoretical Computer Science, 47:149–158,
+     1986.
+
+ [5] Alessandro Clerici, Giovanni Pighizzini, and Luca Prigioniero. Two-way automata and bounded
+     languages. In Proceedings of CIAA, pages 73–85, 2025.
+
+ [6] Viliam Geffert, Bruno Guillon, and Giovanni Pighizzini. Two-way automata making choices only at
+     the endmarkers. Information and Computation, 239:71–86, 2014.
+
+ [7] Viliam Geffert and L’ubomı́ra Ištoňová. Translation from classical two-way automata to pebble two-
+     way automata. In Proceedings of DCFS, pages 131–140, 2009.
+
+ [8] Viliam Geffert, Carlo Mereghetti, and Giovanni Pighizzini. Converting two-way nondeterministic
+     unary automata into simpler automata. Theoretical Computer Science, 295:189–203, 2003.
+
+ [9] Bruno Guillon, Giovanni Pighizzini, Luca Prigioniero, and Daniel Průša. Converting nondeterminis-
+     tic two-way automata into small deterministic linear-time machines. Information and Computation,
+     289, 2022.
+A quadratic lower bound for 2DFAs against one-way liveness                                               17
+
+[10] Juraj Hromkovič, Rastislav Královič, Richard Královič, and Richard Štefanec. Determinism vs. non-
+     determinism for two-way automata: Representing the meaning of states by logical formulæ. Inter-
+     national Journal of Foundations of Computer Science, 24(7):955–978, 2013.
+[11] Juraj Hromkovič and Georg Schnitger. Nondeterminism versus determinism for two-way finite au-
+     tomata: Generalizations of Sipser’s separation. In Proceedings of ICALP, pages 439–451, 2003.
+[12] Christos Kapoutsis. Small sweeping 2NFAs are not closed under complement. In Proceedings of
+     ICALP, pages 144–156, 2006.
+[13] Christos Kapoutsis. Deterministic moles cannot solve liveness. Journal of Automata, Languages and
+     Combinatorics, 12(1-2):215–235, 2007.
+[14] Christos Kapoutsis. Nondeterminism is essential in small two-way finite automata with few reversals.
+     Information and Computation, 222:208–227, 2013.
+[15] Christos Kapoutsis. Optimal 2DFA algorithms for one-way liveness on two and three symbols. In
+     Böckenhauer et al. [3], pages 33–48.
+[16] Christos Kapoutsis, Richard Královič, and Tobias Mömke. Size complexity of rotating and sweeping
+     automata. Journal of Computer and System Sciences, 78(2):537–558, 2012.
+[17] Christos Kapoutsis and Giovanni Pighizzini. Reversal hierarchies for small 2DFAs. In Proceedings
+     of MFCS, pages 554–565, 2012.
+[18] Giovanni Pighizzini. Limited automata: properties, complexity and variants. In Proceedings of IFIP,
+     pages 57–73, 2019.
+[19] Giovanni Pighizzini and Luca Prigioniero. Once-marking and always-marking 1-limited automata.
+     In Proceedings of AFL, pages 215–227, 2023.
+[20] Michael O. Rabin and Dana Scott. Finite automata and their decision problems. IBM Journal of
+     Research and Development, 3:114–125, 1959.
+[21] Martin Raszyk. On the size of logical automata. In Proceedings of SOFSEM, pages 447–460, 2019.
+[22] William J. Sakoda and Michael Sipser. Nondeterminism and the size of two-way finite automata. In
+     Proceedings of STOC, pages 275–286, 1978.
+[23] Joel I. Seiferas. Untitled. Manuscript communicated to M. Sipser, October 1973.
+[24] Michael Sipser. Halting space-bounded computations. Theoretical Computer Science, 10:335–338,
+     1980.
+[25] Michael Sipser. Lower bounds on the size of sweeping automata. Journal of Computer and System
+     Sciences, 21(2):195–202, 1980.
+[26] Michael Sipser. Introduction to the theory of computation. Cengage Learning, 3rd edition, 2012.
+[27] Anthony W. To. Unary finite automata vs. arithmetic progressions. Information Processing Letters,
+     109:1010–1014, 2009.
+

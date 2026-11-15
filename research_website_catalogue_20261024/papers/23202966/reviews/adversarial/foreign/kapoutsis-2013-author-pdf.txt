@@ -1,0 +1,1558 @@
+               Nondeterminism is essential
+   in small two-way finite automata with few reversals
+
+                                 Christos A. Kapoutsis
+          Laboratoire d’Informatique Algorithmique: Fondements et Applications
+                                  Université Paris VII
+
+
+
+
+Abstract
+On every n-long input, every two-way finite automaton (fa) can reverse its
+input head O(n) times before halting. A fa with few reversals is an automaton
+where this number is only o(n). For every h, we exhibit a language that can be
+recognized by an h-state nondeterministic fa with few reversals, but requires
+Ω(2h ) states on every deterministic fa with few reversals.
+
+
+1. Introduction
+    A long-standing open question in the theory of computation, posed already
+in the seventies [1, 2], is whether every two-way nondeterministic finite automa-
+ton (nfa) has an equivalent deterministic one (dfa) with at most polynomially
+more states.
+    The answer to this question is conjectured to be negative. Indeed, this
+has been confirmed in several special cases: for automata that are single-pass
+(i.e., they halt upon reaching an endmarker [1]) or sweeping (i.e., they reverse
+their input head only on endmarkers [3, 4]) or almost oblivious (i.e., they exhibit
+o(n) distinct input head trajectories over all n-long inputs [5]) or moles (i.e., they
+explore the configuration graph implied by the input [6]). For unary automata,
+however, a non-trivial upper bound has been established: every unary nfa ad-
+mits a deterministic simulator with only quasi-polynomially more states [7]. It is
+also known that the final answer to this question, both for general and for unary
+alphabet, will have implications for the old question whether nondeterminism
+is essential in space-bounded Turing machines [8, 9, 10].
+    Here we confirm the general conjecture in yet another special case: for au-
+tomata that reverse their input head (anywhere on the tape, but) only o(n) times
+on every n-long input before halting. These ‘fas with few reversals’ stand nat-
+urally between sweeping fas, which perform only O(1) reversals and only on
+the endmarkers, and general fas, which perform O(n) reversals (cf. Fact 3).
+
+
+  I Research funded by a Marie Curie Intra-European Fellowship (pief-ga-2009-253368) within
+
+the European Union Seventh Framework Programme (fp7/2007-2013).
+    Email address: christos.kapoutsis@liafa.jussieu.fr (Christos A. Kapoutsis)
+
+
+Preprint submitted to Elsevier                                            October 13, 2011
+Theorem 1. For every h, there is a language that requires Ω(2h) states on every
+dfa with few reversals but only h states on a nfa with few reversals.
+The family of languages witnessing this theorem is one-way liveness [2] (as
+in several other theorems [3, 5, 6]) and the promised h-state nfas are actually
+one-way (that is, their ‘few’ reversals are in fact ‘zero’). Hence, the theorem
+can be seen as a generalization of the main theorem of [3], which states that
+one-way liveness requires exponentially many states on sweeping dfas.
+    Given Theorem 1, two natural questions arise. First, does the theorem really
+generalize the one of [3], or can it perhaps follow from it by proving that the
+gap from few-reversal dfas to sweeping dfas is only polynomial? Second,
+does the full conjecture really generalize the theorem, or can it perhaps follow
+from it by proving that the gap from general dfas to few-reversal dfas is only
+polynomial? We provide affirmative answers to both of these questions.
+Theorem 2. For every h, there is a language that requires 2Ω(h) states on every
+sweeping dfa but only O(h) states on a dfa with 2 reversals.
+Theorem 3. For every h, there is a language that requires Ω(2h ) states on every
+dfa with few reversals but only O(h2 ) states on a general dfa.
+We note that Theorems 1, 2, and 3 together can been seen as full answers to
+Research Problems 2 and 3 proposed by J. Hromkovič in 2002 [11].
+    We consider the second half of Theorem 1 (i.e., the upper bound) known,
+and leave the proofs of Theorems 2 and 3 for the final sections (Sections 7 and 6,
+respectively). We thus devote most of this article to proving the first part of
+Theorem 1 (i.e., the lower bound). Our argument is structured similarly to the
+one in [3]: after fixing terminology, notation, and strategy (Section 2), we intro-
+duce generic strings (Section 3), study the blocks defined by them (Section 4),
+use such blocks to build a family of hard instances (Section 5.1), and conclude
+by applying the linear algebra bound on a family of vectors derived from these
+instances (Section 5.2).
+
+2. Preparation
+
+2.1. Functions
+    Let A, B, C be sets, and f : A * B and g : B * C be partial functions. We
+write A and P(A) for the complement and for the powerset of A. By idA : A → A
+we denote the identity function on A. The image of a set X ⊆ A under f is
+f [X] := {f (a) | a ∈ X and f (a) is defined}. The pre-image of an element b ∈ B
+under f is f −1 (b) := {a ∈ A | f (a) = b}. The composition of f and g is the
+partial function f ◦ g : A * C which is defined on an element a ∈ A iff both
+f (a) and g(f (a)) are defined, and then (f ◦ g)(a) = g(f (a)). If A = B, then the
+k-fold composition of f with itself is denoted by f k . By f ≤ g we mean that,
+whenever f (a) is defined, g(a) is also defined and equals f (a). Easily, ≤ is a
+partial order on the set {f | f : A * A} of all partial functions on A, and every
+total function is a maximal element in this order.
+
+
+                                        2
+                                       0     1         2   3      jm−1             j0       j2
+                                   0
+                                   1                                             q0              q2
+                                   2
+                                   3                                                  c
+                                   4                              qm−1
+             (a)                                 (b)                                  (c)
+
+Figure 1: (a) Three symbols in Σ5 ; e.g., the third symbol is {(0, 1), (0, 3), (1, 4), (3, 3)}. (b) The
+string defined by the three symbols on the left, simplified and indexed; here n = 3 and
+ξ = {(2, 4)}. (c) A left-hitting computation c with m = 15 and r(c) = 5; points 2, 8, and 12
+are backward reversals, while points 6 and 11 are forward reversals.
+
+
+Fact 1. For all f, f1 , f2 : A * A we have f1 ≤ f2 =⇒ f ◦ f1 ≤ f ◦ f2 .
+
+Proof. Let f1 ≤ f2 and pick any a ∈ A for which (f ◦f1 )(a) is defined. Then f (a)
+is defined and equals some b ∈ A, and f1 (b) is defined and equals some c ∈ A,
+and c = (f ◦ f1 )(a). By f1 ≤ f2 and f1 (b) = c, we know f2 (b) is also defined,
+and equals c. By f (a) = b and f2 (b) = c, we know (f ◦ f2 )(a) is also defined,
+and equals c.
+
+2.2. Problems
+    Let Σ be an alphabet. If z ∈ Σ ∗ is a string, we write z R , |z|, and zj for
+its reverse, length, and j-th symbol (if 1 ≤ j ≤ |z|). If Z ⊆ Σ ∗ , then the
+corresponding set of reverses is Z R := {z R | z ∈ Z}.
+    A (promise) problem over Σ is any pair L = (L, L̃) of disjoint subsets of Σ ∗ .
+Its positive instances are all w ∈ L, whereas all w ∈ L̃ are its negative instances.
+The set L ∪ L̃ of all instances is the promise. A machine solves L if it accepts
+every positive instance but no negative one. If L̃ = L, then L is a language.
+    Let h ≥ 1 and [h] := {0, . . . , h−1}. The alphabet Σh := P([h] × [h]) consists
+of all two-column directed graphs with h nodes per column and only rightward
+arrows (Fig. 1a). An n-long string z ∈ Σh∗ is naturally viewed as an (n+1)-
+column graph, where every arrow connects successive columns (Fig. 1b); we
+usually index the columns from 0 to n and, for simplicity, drop the directions
+of the arrows. The connectivity of z is the set of pairs
+
+  ξ(z) := { (a, b) ∈ [h] × [h] | there exists a path (of length n)
+                                  from node a of column 0 to node b of column n } .
+
+If ξ(z) 6= ∅ then z contains paths from the leftmost to the rightmost column,
+and we say that it is live; otherwise we call it dead. The language
+
+               owlh = one-way livenessh := { z ∈ Σh∗ | ξ(z) 6= ∅ }
+
+represents the computational task of checking that a string is live [2].
+
+
+
+
+                                                   3
+2.3. Machines
+    A two-way deterministic finite automaton (dfa) is any tuple of the form
+M = (Q, Σ, δ, qs , qa , qr ), where Q is a set of states, Σ is an alphabet, qs , qa , qr ∈ Q
+are respectively the start, accept, and reject states, and
+
+                          δ : Q × (Σ ∪ {`,a}) → Q × {l, r}
+
+is the (total) transition function, for `,a ∈     / Σ the left and right endmarkers, and
+l, r the left and right directions. An input w ∈ Σ ∗ is presented to M surrounded
+by the endmarkers, as `wa. The computation starts at qs and on `. In each
+step, the next state and head move are derived from δ and the current state
+and symbol. Endmarkers are never violated, except for a when the next state
+is qa or qr ; that is, δ(· , `) is always of the form (· , r), whereas δ(· ,a) is always
+(qa , r) or (qr , r) or of the form (· , l). Hence, the computation either loops, or
+falls off a into qr , or falls off a into qa . In the last case, we say that M accepts w.
+     In general, the computation of M from state p on the j-th symbol of string z,
+denoted by compM,p,j (z), is the longest sequence
+
+                                   c = ((qt , jt ))0≤t<m
+
+such that 0 < m ≤ ∞, (q0 , j0 ) = (p, j), and every next (qt , jt ) is derived from the
+previous one via δ and z in the natural way. We call (qt , jt ) the t-th point of the
+computation, and m the length. If m = ∞ then c loops; otherwise, jm−1 = 0 or
+|z|+1 and c hits left or hits right, respectively, into qm−1 (Fig. 1c). We say that
+a computation c0 = ((qt0 , jt0 ))0≤t<m0 parallels c if it is a ‘shifted copy’ of c, in the
+sense that m0 = m and qt0 = qt and jt0 = jt + j∗ for some j∗ and all t.
+    The l-computation of M from p on z is the computation
+
+                         lcompM,p (z) := compM,p,1 (z)
+
+and is called a lr-traversal, a l-turn, or a l-loop, depending on whether it hits
+right, hits left, or loops. Similarly, the r-computation of M from p on z
+
+                         rcompM,p (z) := compM,p,|z| (z)
+
+is a rl-traversal, a r-turn, or a r-loop. Two l-/r-computations resemble each
+other if they share the same first state, the same type (l/r-turn/loop, lr/rl-
+traversal), and the same last state (when it exists). The (full ) computation of
+M on w ∈ Σ ∗ is the computation
+
+                           compM (w) := lcompM,qs (`wa) .
+
+Hence, M accepts w iff compM (w) hits right into qa .
+    Given a string w = uzv, the decomposition of c := compM (w) relative to z is
+the unique sequence c0 , c1 , . . . of computations, called segments, which is derived
+by splitting c wherever it enters or exits z. More precisely, for each point (qt , jt )
+of c produced by a step that crosses the u-z or the z-v boundary, we replace
+
+
+                                             4
+(qt , jt ) by two copies of itself and then split c between these two copies. Note
+that every segment ci for even i is a computation on `u or on va, whereas
+every ci for odd i is a computation on z. Moreover, c halts iff there exists a last
+segment cm and m is even and cm falls off a.
+     We say that M is nondeterministic (a nfa) if δ maps Q × (Σ ∪ {`,a}) to
+the powerset of Q × {l, r}. Then every compM,p,j (z) is a set of computations,
+and M accepts w iff some c ∈ compM (w) hits right into qa .
+     A reversal in a computation c is any point (qt , jt ) whose predecessor and
+successor exist and lie on the same side with respect to the point (Fig. 1c).
+More carefully, (qt , jt ) is a reversal if t 6= 0, m−1 and either jt−1 , jt+1 < jt
+(backward reversal) or jt < jt−1 , jt+1 (forward reversal). We write r(c) for the
+total number of reversals in c. Note that 0 ≤ r(c) ≤ ∞ and the following holds.
+Fact 2. For every computation c, we have r(c) = ∞ iff c is looping.
+For every length n ≥ 0, we write rM (n) for the maximum r(c) over all full
+computations c of M on n-long inputs. When finite, this is at most linear.
+
+Fact 3. For every s-state dfa M and every length n, either rM (n) = ∞ or
+rM (n) is even and at most (s − 1)(n + 2).
+Proof. If M loops on any of its n-long inputs, then clearly rM (n) = ∞. Oth-
+erwise, for any n-long input w, we know c := compM (w) is halting. Hence,
+c starts on ` and eventually falls off a. Therefore, every backward reversal is
+followed by a forward one. So, r(c) is even. Moreover, on each of the n+2 tape
+cells, c performs at most s−1 reversals. Thus, r(c) ≤ (s − 1)(n + 2). Since w
+was arbitrary, we conclude that rM (n) is also even and at most (s − 1)(n + 2).
+    It remains, of course, to prove the italicised claim above.
+    We start by noting that on every cell, at least one point of c is not a reversal.
+Indeed, if that is not the case, then there exists a cell on which all points are
+reversals. The first of these reversals is a backward one, because it is the first
+visit to the cell and thus came from the left. The second reversal is also a
+backward one, because it is the second visit to the cell and, since the first visit
+was a backward reversal, must have come from the left, too. And so on. Hence,
+all points on the cell are backward reversals, which means c never moves past
+this cell. So, c never falls off a —a contradiction.
+    Now suppose there is a cell on which c performs more than s−1 reversals.
+Since every reversal is a point and at least one of the points on that cell is not a
+reversal, c has more than s points there. Hence, two of them use the same state,
+and are thus identical. So, c repeats a point. So, it loops —a contradiction.
+   If M performs all its reversals on the endmarkers, we call it sweeping (a
+sdfa or snfa). If it performs no reversals, we call it one-way (a dfa or nfa).
+
+2.4. Building hard instances
+    Hard instances for dfas are built in three stages. We start with generic
+strings, which buy us some basic stability in the machine’s behavior. We then
+
+
+                                         5
+         u        y          v                     u       y            z          v
+qs                                        qs
+
+             p           q                             p           q
+
+
+                                                                   q∗          r
+(a)                                     (b)
+                                                           c1           c2
+                                                                        c∗
+Figure 2: (a) Computing on uyv. The segment from p to q parallels lcompM,p (y), but differs
+from it in that every point’s position is incremented by |`u|. (b) Computing on uyzv.
+
+
+
+use generic strings to build blocks, on which we draw a set of requirements for
+how the machine must compute. In order to prove that the machine must indeed
+meet these requirements, we iterate the blocks into much longer strings and use
+the fact that the machine decides correctly there. Finally, we argue that meeting
+the requirements on the blocks is impossible for any machine with subexponen-
+tially many states. This general strategy originates in [3]; its instantiation here
+for dfas improves on the analysis of [6, §3].
+    For the rest of the article, we fix a dfa M =(Q, Σ, δ, qs , qa , qr ) and drop ‘M ’
+from all subscripts. For example, lcompM,p (w) and rM (n) will be denoted by
+just lcompp (w) and r(n).
+
+
+3. Generic strings
+
+    For each y ∈ Σ ∗ , consider all states that can be produced by lr-traversals
+of y inside full computations of M (Fig. 2a), called the lr-outcomes of y:
+               
+     Qlr (y) := q ∈ Q | there exist p and u, v such that
+                      lcompp (y) appears in comp(uyv) & hits right into q , (1)
+
+where a computation on y ‘appears in comp(uyv)’ if it parallels one of the
+odd-indexed segments in the decomposition of comp(uyv) relative to y.(1)
+     We now consider any extension yz of y and compare Qlr (yz) with Qlr (y)
+and with Qlr (z). To facilitate the first of these two comparisons, we define a
+partial function αy,z : Qlr (y) * Q as follows (Fig. 2b): for each q ∈ Qlr (y), we
+examine compq,|y|+1 (yz); if it hits right into some state r, we set αy,z (q) := r;
+if it hits left or loops, we leave αy,z (q) undefined.
+Fact 4a. We have αy,z [Qlr (y)] ⊇ Qlr (yz) and also Qlr (yz) ⊆ Qlr (z).(2)
+Proof. Let r ∈ Qlr (yz). Then there exist p and u, v such that c := lcompp (yz)
+appears in comp(uyzv) and hits right into r (Fig. 2b). We know c crosses the
+y-z boundary at least once. Let q and q∗ be the states right after the first
+crossing and after the last crossing, respectively. The prefix of c up to the first
+crossing is c1 := lcompp (y) and hits right into q, while the remaining suffix
+
+
+                                               6
+is c2 := compq,|y|+1 (yz) and hits right into r. The suffix of c after the last
+crossing is c∗ = lcompq∗ (z) and hits right into r. Now, c1 is a lr-traversal of y
+that appears in comp(uyzv) and produces q, so q ∈ Qlr (y). By this and c2 , we
+know αy,z (q) = r. Therefore, r ∈ αy,z [Qlr (y)]. Moreover, c∗ is a lr-traversal
+of z that appears in comp(uyzv) and produces r. Therefore, r ∈ Qlr (z).
+
+    Symmetrically, we also consider the set Qrl (y) of rl-outcomes of y, consist-
+ing of all states that can be produced by rl-traversals of y inside full computa-
+tions of M , and introduce the partial function βz,y : Qrl (y) * Q so that βz,y (q)
+is r if compq,|z| (zy) hits left into r, or undefined if the computation loops or
+hits right. Then the following fact holds, which is symmetric to Fact 4a.
+
+Fact 4b. We have Qrl (z) ⊇ Qrl (zy) and also Qrl (zy) ⊆ βz,y [Qrl (y)].
+    By the first inclusion of Fact 4a, we know every distinct element of Qlr (yz)
+is hit via αy,z by at least one distinct element of Qlr (y), so |Qlr (y)| ≥ |Qlr (yz)|.
+Similarly, Fact 4b implies |Qrl (zy)| ≤ |Qrl (y)|. Hence, extending a string in
+either direction can never increase the respective number of outcomes. Thus,
+sufficiently long extensions minimize this number. Such extensions are called
+generic strings and are defined as follows.
+Definition. Let L ⊆ Σ ∗ . A string y is lr-generic over L if
+
+                 y∈L &        for all yz ∈ L: |Qlr (y)| = |Qlr (yz)| .
+
+Symmetrically, y is rl-generic over L if
+
+                 y∈L &        for all zy ∈ L: |Qrl (zy)| = |Qrl (y)| .
+
+If y is both lr-generic and rl-generic, then it is called generic.
+
+Lemma 1. Every ∅ 6= L ⊆ Σ ∗ admits both lr- and rl-generic strings.(3) And
+if yl is lr-generic and yr is rl-generic, then every yl xyr ∈ L is generic over L.
+Proof. Suppose no lr-generic strings over L exist. Then every y ∈ L has a
+yz ∈ L such that |Qlr (y)| 6= |Qlr (yz)|, and thus |Qlr (y)| > |Qlr (yz)|. Hence,
+starting with any y ∈ L and applying this rule ad infinitum, we find a sequence
+y, yz1 , yz1 z2 , . . . ∈ L in which |Qlr (·)| keeps decreasing forever. This contradicts
+the obvious fact that |Qlr (·)| ≥ 0. Hence, lr-generic strings over L exist. For
+rl-generic strings we work symmetrically.
+    For the final claim, it is enough to note that every right-extension yl z ∈ L
+of a lr-generic string yl is also lr-generic (easily, by the definition). Similarly,
+every left-extension zyr ∈ L of a rl-generic string yr is also rl-generic.
+
+   Alternatively, genericity can be characterized via αy,z and βz,y , as follows.
+Lemma 2. Let y ∈ L ⊆ Σ ∗ . Then y is lr-generic over L iff αy,z is total and
+bijective from Qlr (y) to Qlr (yz) for all yz ∈ L.(4) Similarly, y is rl-generic
+over L iff βz,y is total and bijective from Qrl (y) to Qrl (zy) for all zy ∈ L.
+
+
+                                           7
+Proof. We focus on the first equivalence (the second one follows symmetrically)
+and on the ‘only if’ direction —the ‘if’ direction is immediate, since the existence
+of any total bijection from Qlr (y) to Qlr (yz) implies |Qlr (y)| = |Qlr (yz)|.
+    Let y be lr-generic over L and pick yz ∈ L. We know αy,z partially maps
+Qlr (y) to Q (by definition) and covers Qlr (yz) (Fact 4a). Namely, each r ∈
+Qlr (yz) has a distinct q ∈ Qlr (y) with αy,z (q) = r. So, if there were q ∈ Qlr (y)
+with αy,z (q) undefined or outside Qlr (yz) or equal to αy,z (q 0 ) for another q 0 ∈
+Qlr (y), we would have |Qlr (y)| > |Qlr (yz)|, contrary to y being generic. Hence,
+αy,z (q) is defined and in Qlr (yz) and distinct, for all q ∈ Qlr (y). Namely, αy,z is
+a total injection from Qlr (y) to Qlr (yz). By Fact 4a, it is also a surjection.
+
+
+4. Blocks
+
+    Let L be any non-empty property of strings, ∅ 6= L ⊆ Σ ∗ . Pick any generic
+string ϑ over this property, and let A := Qlr (ϑ) and B := Qrl (ϑ) be the
+corresponding pair of sets of outcomes.
+    Every string of the form ϑxϑ is called a block (on ϑ), and x is called the infix
+of it.(5) We say that the pair (αx , βx ) := (αϑ,xϑ , βϑx,ϑ ) are the inner behavior
+of M on the block. Note that αx : A * Q and βx : B * Q.
+
+4.1. Pumping symbols
+    Blocks are useful because, in certain situations, they enable us to ‘pump’
+symbols into the input without the machine noticing. Specifically, if we manage
+to force αx and βx to be identity functions, then the prefix ϑx and the suffix xϑ
+of the block become ‘invisible’ to M , in the sense that the machine cannot
+distinguish between ϑ and the entire block ϑxϑ in any environment u, v. The
+following lemma explains.
+Lemma 3. Suppose (αx , βx ) = (idA , idB ). Pick any two strings u and v, and let
+c0 , c1 , . . . and d0 , d1 , . . . be the decompositions of comp(uϑv) and comp(uϑxϑv)
+relative to ϑ and to ϑxϑ, respectively. Then every ci parallels di if i is even, or
+resembles di if i is odd. Thus, M behaves (accepts, rejects, or loops) identically
+on uϑv and uϑxϑv.
+Proof. Note that even-indexed ci and di compute on `u or va, whereas odd-
+indexed ci compute on ϑ, and odd-indexed di compute on ϑxϑ. It suffices to
+prove that every ci and di resemble each other and, if i is even, compute on the
+same string. (For the even i, note that two resembling segments computing on
+the same string are necessarily parallel.)
+    We work inductively. If i = 0, then c0 and d0 are both l-computations on `u
+from qs ; so they are identical, and thus resembling, on the same string. For the
+inductive step, pick any i > 0 and assume the claim holds for ci−1 and di−1 .
+    If i is even, then ci−1 computes on ϑ and di−1 computes on ϑxϑ. We take
+cases on their common type. If they are loops, then no ci and di exist, and we
+are done. If they are l-turns or rl-traversals (resp., r-turns or lr-traversals),
+then they both hit left (resp., right) into the same state p, causing ci and di to
+
+
+                                          8
+be r-computations (resp., l-computations) from p on `u (resp., va), and thus
+identical (resp., parallel), hence resembling, computations on the same string.
+    If i is odd, then ci−1 and di−1 compute both on `u or both on va. We take
+cases on their common type and input. If they are loops, then no ci and di
+exist, and we are done. If they are lr-traversals on va, then again no ci and di
+exist. If they are lr-traversals or r-turns on `u, then they both hit right into
+the same state p, causing ci and di to be l-computations from p on ϑ and ϑxϑ,
+respectively. Since ϑ is a prefix of ϑxϑ, we know ci is a prefix of di . Therefore,
+if ci hits left or loops, then di remains identical to ci , and thus resembles it.
+If instead ci hits right, into some state q, then di crosses the ϑ-xϑ boundary
+into q and continues with the suffix compq,|ϑ|+1 (ϑxϑ), which we know hits right
+into q (because αx (q) = idA (q) = q); thus di again resembles ci . Each of the
+remaining cases is either impossible or symmetric.
+    We now continue with the final claim. If M halts on uϑv, then there exists a
+last cm , with m even, which falls off a. Hence, cm is a lr-traversal of va, ending
+in qa or qr . Since cm resembles dm , we know dm is also a lr-traversal of va, with
+the same last state. Hence, M halts on uϑxϑv too, and decides identically. If
+M loops on uϑv, then there are either infinitely many ci , and thus also infinitely
+many resembling di , or a looping last cm , with the resembling dm also looping
+and last. Either way, M loops on uϑxϑv, too.
+    Now, how can we force the inner behavior of M on a block into the identities?
+This we know how to do only when the generic string ϑ appears (not only at
+the two ends of the block, but also) multiple times inside the infix. That is,
+we can force identities on blocks of the form ϑ(x1 ϑx2 ϑ · · · ϑxk )ϑ. The next few
+facts study how M computes on such blocks.
+    We start with the simple case of only one copy of ϑ inside the infix, namely
+blocks of the form ϑ(xϑy)ϑ. The inner behavior of M on such blocks depends
+on its inner behavior on the sub-blocks ϑxϑ and ϑyϑ, in the following manner.
+
+Fact 5. Let z = xϑy. Then αx ◦ αy ≤ αz and βy ◦ βx ≤ βz .(6) In addition, if αz
+is total and injective, then so is αx ; if βz is total and injective, then so is βy .
+Proof. For αx ◦αy ≤ αz , let p ∈ A and assume (αx ◦αy )(p) is defined and equal to
+some r ∈ Q. Then αx (p) is defined and equal to some q ∈ Q, and αy (q) is defined
+and equal to r. By αx (p) = q, we know cx := compp,|ϑ|+1 (ϑxϑ) hits right into q
+(Fig. 3). By αy (q) = r, we also know cy := compq,|ϑ|+1 (ϑyϑ) hits right into r.
+Now, by concatenating cx and cy we get exactly cz := compp,|ϑ|+1 (ϑxϑyϑ).
+Hence cz hits right into r. Therefore αz (p) is defined and equal to (αx ◦ αy )(p).
+     Now suppose αz is total and injective. If αx is not total, then αx (p) is unde-
+fined for some p ∈ A, namely cx := compp,|ϑ|+1 (ϑxϑ) hits left or loops. But cx
+is a prefix of cz := compp,|ϑ|+1 (ϑxϑyϑ), so cz also hits left or loops. Hence αz (p)
+is undefined, and αz is not total—a contradiction. If αx is not injective, then
+αx (p) = αx (p0 ) for two distinct p, p0 ∈ A, namely cx := compp,|ϑ|+1 (ϑxϑ) and
+c0x := compp0 ,|ϑ|+1 (ϑxϑ) hit right into the same state. But cx and c0x are respec-
+tively prefixes of cz := compp,|ϑ|+1 (ϑxϑyϑ) and c0z := compp0 ,|ϑ|+1 (ϑxϑyϑ), so
+
+
+
+                                         9
+                                              z
+                     ϑ            x           ϑ         y        ϑ
+                              p
+
+                                                    q
+
+                                                                       r
+                                         cx                 cy
+                                                   cz
+              Figure 3: Computing on two overlapping blocks ϑxϑ and ϑyϑ.
+
+
+cz and c0z continue identically after the ϑxϑ-yϑ boundary, hitting right into the
+same state. Hence αz (p) = αz (p0 ), and αz is not injective—a contradiction.
+    The statements for the β’s are proved by symmetric arguments.
+   We now proceed to blocks of the form ϑ(xϑxϑ · · · xϑx)ϑ, where the infix is
+multiple ϑ-separated copies of some x. We denote such infixes by
+
+                                      x(k) := x(ϑx)k−1
+
+for k ≥ 1. So, we now discuss blocks of the form ϑx(k) ϑ = ϑ(xϑ)k = (ϑx)k ϑ.
+Note that the usual law of exponents (x(k) )(l) = x(lk) is valid for all k and l:
+
+  (x(k) )(l) = x(k) (ϑx(k) )l−1 = x(ϑx)k−1 (ϑx(ϑx)k−1 )l−1 = x(ϑx)lk−1 = x(lk) .
+
+Extending Fact 5, the next fact shows the relationship between the inner be-
+havior on the full block ϑx(k) ϑ and the inner behavior on the basic block ϑxϑ.
+Fact 6. Let k ≥ 1. Then (αx )k ≤ αx(k) and (βx )k ≤ βx(k) . In addition, if αx(k)
+is total and injective, then so is αx ; if βx(k) is total and injective, then so is βx .
+
+Proof. Once again, we prove only the two claims for the α’s.
+    For (αx )k ≤ αx(k) , we use induction on k. Case k = 1 is trivial. For k ≥ 1,
+assume (αx )k ≤ αx(k) . Then (αx )k+1 = αx ◦ (αx )k ≤ αx ◦ αx(k) (Fact 1) and
+αx ◦ αx(k) ≤ αx(k+1) (Fact 5 for z = xϑ(x(k) ) = xϑx(ϑx)k−1 = x(ϑx)k = x(k+1) ).
+So, (αx )k+1 ≤ αx(k+1) (by transitivity of ≤), and we are done.
+    The second claim follows from Fact 5 when z = xϑ(x(k−1) ) = x(k) .
+    Finally, we are ready to state a sufficient condition for forcing the inner
+behavior of M into the setting of Lemma 3: if any infix of the form x(k) forces
+the inner behavior into just permutations, then infinitely many of the longer
+infixes of the same form force the inner behavior into just identities. The next
+fact says exactly this. The phrase (αx(k) , βx(k) ) permute (A, B) is shortcut for
+the condition that αx(k) is a permutation of A and βx(k) is a permutation of B.
+Fact 7. If (αx(k) , βx(k) ) permute (A, B), then (αx(tlk) , βx(tlk) ) = (idA , idB ) for
+some l ≥ 1 and all t ≥ 1.
+
+
+                                              10
+           ϑ         x         ϑ                        u           ϑ           v
+                     q
+                                                  qs
+                                                                p           q
+                          q̃           r
+ (a)                                             (b)
+                               d                                        c
+Figure 4: (a) A computation d that witnesses αx (q) = r, with two forward reversals. (b) An
+environment u, v and a computation c that witness q ∈ A.
+
+
+Proof. Let z := x(k) and suppose that αz and βz are permutations of A and B.
+    Pick l ≥ 1 so that each of these permutations becomes the corresponding
+identity after l iterations: (αz )l = idA and (βz )l = idB . Then (αz )l ≤ αz(l) (by
+Fact 6), where z (l) = (x(k) )(l) = x(lk) . In other words, idA ≤ αx(lk) . Therefore
+αx(lk) = idA (since idA is total). Similarly, βx(lk) = idB .
+    Now, consider any t ≥ 1. By Fact 6, we know (αx(lk) )t ≤ α(x(lk) )(t) . But
+(αx(lk) )t = (idA )t = idA and (x(lk) )(t) = x(tlk) . Hence, we know idA ≤ αx(tlk) .
+Therefore αx(tlk) = idA (since idA is total). Similarly, βx(tlk) = idB .
+
+4.2. Pumping reversals
+    Whenever we ‘pump’ symbols into a block ‘under M ’s radar’, some of the
+reversals that M performs on the block are unavoidably ‘pumped’ as well, into
+the computation of M on the longer input generated by the pumping. This
+effectively kills every hope of M maintaining a sublinear number of reversals.
+    The next lemma analyses this phenomenon. The phrase (A, B) use reversals
+on x is shortcut for the condition that some compp,|ϑ|+1 (ϑxϑ) for p ∈ A or some
+compp,|ϑx| (ϑxϑ) for p ∈ B contains at least one reversal.
+
+Lemma 4. If (A, B) use reversals on x and (αx , βx ) permute (A, B), then it
+cannot be r(n) = o(n).
+Proof. Since (A, B) use reversals on x, we know that there exists a computation
+d := compq,|ϑ|+1 (ϑxϑ) with q ∈ A (or d := compq,|ϑx| (ϑxϑ) with q ∈ B, in
+which case we work symmetrically) that contains one or more reversals (Fig. 4a).
+In fact, d contains at least one forward reversal: since αx permutes A, we know
+αx (q) is defined, therefore d hits right, hence at least one of its reversals must
+be a forward one.
+    Since (αx , βx ) permute (A, B), we also know (by Fact 7 for k = 1) that there
+exists l ≥ 1 such that (αx(tl) , βx(tl) ) = (idA , idB ) for all t ≥ 1.
+    Let z := x(l) . Then z (t) = x(tl) and thus (αz(t) , βz(t) ) = (idA , idB ), for all t.
+Using this, we show that each dt := compq,|ϑ|+1 (ϑz (t) ϑ) reverses a lot.
+Claim. For every t ≥ 1, the computation dt contains ≥ t forward reversals.
+
+Proof. By induction on t (Fig. 5). For t = 1, we have d1 = compq,|ϑ|+1 (ϑz (1) ϑ).
+Since z (1) = z = x(l) and l ≥ 1, we know the block ϑz (1) ϑ has ϑxϑ as prefix,
+causing d1 to have d as prefix, and thus contain ≥ 1 forward reversals.
+
+
+
+                                            11
+                     z (t−1)                                                     z (1)
+                     z (1)
+    ϑ        x         ϑ        x       ϑ        x     ϑ     x       ϑ       x    ϑ          x   ϑ
+             q
+
+                                                 q
+
+                     d                                                       q
+                     d1
+
+                                                                                                     q
+                     dt−1                                                        d1
+                     dt
+
+Figure 5: Pumping the 1 forward reversal of d into the t forward reversals of dt , in the proof
+of the first Claim of Lemma 4; here l = 2 and t = 3.
+
+
+   For t > 0, we have dt = compq,|ϑ|+1 (ϑz (t) ϑ). Since ϑz (t) ϑ = ϑz (t−1) ϑzϑ,
+the prefix of dt up to the boundary ϑz (t−1) ϑ-zϑ is dt−1 , and so the state after
+crossing this boundary is αz(t−1) (q) = idA (q) = q. Thus, the remaining suffix
+compq,|ϑz(t−1) ϑ|+1 (ϑz (t−1) ϑzϑ) parallels d1 . Hence, dt contains the ≥ t−1 for-
+ward reversals of dt−1 plus the ≥ 1 forward reversals of d1 , for a total of ≥ t.
+   Note that, since the dt are arbitrary computations, their existence does not
+prove that M performs many reversals. To establish this, we need to find many
+reversals inside full computations of M . This is our next step.
+   Since q ∈ A = Qlr (ϑ), there exist a state p and an environment u, v such
+that c := lcompp (ϑ) appears in ĉ := comp(uϑv) and hits right into q (Fig. 4b).
+Consider the family of inputs wt := uϑz (t) ϑv for t ≥ 1, and the respective
+computations ĉt := comp(wt ). We show that each ĉt reverses a lot.
+Claim. For every t ≥ 1, the computation ĉt contains ≥ t forward reversals.
+
+Proof. By Lemma 3 and (αz(t) , βz(t) ) = (idA , idB ), we know c resembles a seg-
+ment ct in the decomposition of ĉt relative to ϑz (t) ϑ (Fig. 6). So, ct is a l-
+computation on ϑz (t) ϑ from p. Since ϑ is a prefix of ϑz (t) ϑ, the prefix of ct
+up to the boundary ϑ-z (t) ϑ is c, the state after crossing the boundary is q, and
+the suffix compq,|ϑ|+1 (ϑz (t) ϑ) from then on parallels dt . So, ĉt also contains
+≥ t forward reversals.
+
+                                                     z (t)
+                 u              ϑ            x                   x       ϑ               v
+        qs
+
+                            p                q
+                                                                                  q
+
+                                    c                dt
+                                        ct
+
+Figure 6: Placing dt and its t forward reversals inside a segment ct of a full computation ĉt ,
+in the proof of the second Claim of Lemma 4.
+
+
+
+
+                                                       12
+   We are almost done. We just observe that each ĉt works on input length
+            nt := |wt | = |uϑx(tl) ϑv| = |uϑ(xϑ)tl v| = l|xϑ| · t + |uϑv| .
+Hence, the maximum number of reversals performed by M on nt -long inputs is
+                  r(nt ) ≥ r(ĉt ) ≥ t = (1/l|xϑ|) · nt − |uϑv|/l|xϑ| .
+So, r(n) exceeds a linear function inifinitely often. Hence, r(n) 6= o(n).
+
+4.3. Block criterion
+    In Fact 6 we saw that the inner behavior of M on the short block ϑxϑ af-
+fects its inner behavior on all longer blocks ϑx(k) ϑ for k ≥ 1. Not surprisingly,
+therefore, if we know how M decides on the long blocks, we can draw con-
+clusions about its behavior on the short one. In a sense, this converts global
+information about decisions on a family of long inputs into local information
+about computations on a single short input.
+    Typically, the global information is implied by the assumption that M solves
+a certain problem L = (L, L̃), and thus accepts every long block which is in L
+but no long block which is in L̃. On the other hand, the local information takes
+the form of a criterion on αx and βx . In this section we argue our way through
+the conversion of the starting global assumption into the final local criterion.
+    So, let us call an infix x positive, negative, or neutral relative to a problem
+L = (L, L̃) if respectively ϑxϑ is in L, in L̃, or in neither. In Section 5, we will
+encounter cases which satisfy the promise that
+            (∃k ≥ 1) x(k) is positive     ∨ (∀k ≥ 1) x(k) is negative
+                                                                        
+
+Whenever this holds, we will say that ϑ and x respect L; and that they select L
+or L̃, depending on whether the promise is met on its first half (namely, some
+x(k) is positive) or on its second half (namely, all x(k) are negative).
+    Now, if we also know that M solves L, then we can tell which of the two
+halves of the above promise is met using the local criterion whether (αx , βx )
+permute (A, B). The next fact assembles this criterion; the next lemma states
+the same criterion in a form which is easier to use.
+Fact 8. If positive x(k) exist, then (αx , βx ) permute (A, B). In contrast, if all
+x(k) are negative and M solves L, then (αx , βx ) do not permute (A, B).
+Proof. For the second implication, suppose M solves L and (going for the contra-
+positive) assume that (αx , βx ) = (αx(1) , βx(1) ) permute (A, B) in order to find a
+non-negative x(k) . Indeed, pick any t ≥ 1 such that (αx(t·1) , βx(t·1) ) = (idA , idB ),
+among the infinitely many guaranteed by Fact 7, and let k = t · 1. Then M be-
+haves identically on ϑ and ϑx(k) ϑ (by Lemma 3 with empty u, v) and thus
+accepts ϑx(k) ϑ (since it accepts ϑ ∈ L). Therefore, ϑx(k) ϑ ∈   / L̃, which implies
+that x(k) is not negative.
+    For the first implication, suppose z := x(k) is positive for some k ≥ 1. We
+will prove that αx : A * Q is a permutation of A (omitting the symmetric proof
+that βx is a permutation of B). To this end, we first need the following.
+
+
+                                           13
+                                              z (t)
+         u          ϑ            x        ϑ     x             x       ϑ           v
+  qs
+
+                p                q
+
+                                     q̃        r
+                                                                              q
+
+                        c                 d
+                            ct
+
+       Figure 7: Proving that αx keeps all its values in A, in the argument for Fact 8.
+
+
+Claim. (αz , βz ) permute (A, B).
+
+Proof. Since z is positive, namely ϑzϑ = ϑ(xϑ)k ∈ L, we know αz = αϑ,(xϑ)k
+is a total bijection from A = Qlr (ϑ) to A0 := Qlr (ϑzϑ) (by Lemma 2). But
+A0 ⊆ A (by Fact 4a, since ϑzϑ ends in ϑ) and |A0 | = |A| (since αz is bijective),
+therefore A0 = A. Thus, αz = αx(k) is a permutation of A. By a symmetric
+argument, βz = βx(k) is a permutation of B.
+
+     Now, in order to show that αx permutes A, it is enough to prove two facts:
+first, that αx is total and injective; and second, that αx [A] ⊆ A. The first fact
+follows directly from Fact 6 and the previous Claim, which implies that αx(k) is
+total and injective. For the second fact, we work as follows.
+     Let r ∈ αx [A]. Then there exists a state q ∈ A = Qlr (ϑ) with αx (q) = r.
+In other words, there exist two states p, q and an environment u, v such that
+the computation c := lcompp (ϑ) appears in ĉ := comp(uϑv) and hits right
+into q (Fig. 4b), and d := compq,|ϑ|+1 (ϑxϑ) hits right into r (Fig. 4a). Note
+that c is an odd-indexed segment in the decomposition of ĉ relative to ϑ.
+Now pick any t ≥ 1 with (αz(t) , βz(t) ) = (αx(tk) , βx(tk) ) = (idA , idB ) (Fact 7).
+Lemma 3 says c resembles an odd-indexed segment ct in the decomposition of
+ĉt := comp(uϑz (t) ϑv) relative to ϑz (t) ϑ (Fig. 7). So, ct is also a l-computation
+from p, on ϑz (t) ϑ. Since ϑxϑ is a prefix of ϑz (t) ϑ, the prefix of ct up to the
+first crossing of the right boundary of ϑxϑ is c followed by a parallel of d. In
+particular, if q̃ is the state in d after the last crossing of the ϑx-ϑ boundary, then
+d˜ := lcompq̃ (ϑ) hits right into r and appears in ĉt = comp((uϑx)ϑ(x(tk−1) ϑv)).
+Hence, r ∈ Qlr (ϑ) = A.
+
+Lemma 5. Suppose that M solves L = (L, L̃), and that ϑ and x respect L.
+Then ϑ and x select L iff each outcome of ϑ is hit exactly once by the respective
+half of the inner behavior:
+
+              ∀r ∈ A |αx−1 (r)| = 1 & ∀r ∈ B |βx−1 (r)| = 1 .
+                                                               
+                                                                              (2)
+
+Proof. If ϑ and x select L, then there exist positive x(k) , hence αx permutes A
+(by Fact 8) and thus hits every r ∈ A exactly once; similarly for βx and B.
+
+
+                                                14
+                 ϑ          x       ϑ                       ϑ         x     ϑ
+                        p
+                                q                                 p                 r
+                                         r
+                        p
+
+                                         r
+                        p
+
+         (a)                             r          (b)
+
+Figure 8: (a) Three right-hitting compp,|ϑ|+1 (ϑxϑ): one simple (top), two non-simple. (b) Un-
+derstanding Sp : each column is a copy of Q; circles and dashed edges represent the q for which
+lcompq (ϑ) hits right into r; dotted edges represent the δlr (p, x, q) that are being summed.
+
+
+
+Conversely, if αx : A * Q hits every r ∈ A, then it is total and injective and
+keeps all its values inside A (or else its values would not be enough to cover A),
+hence it bijects A into A, i.e., it permutes A; similarly for βx and B. Therefore,
+not all x(k) are negative (by Fact 8). So ϑ and x do not select L̃, but L.
+
+4.4. Block criterion under few reversals
+     In the special case where M uses sublinearly many reversals, criterion (2) in
+Lemma 5 can be simplified by replacing αx−1 (r) and βx−1 (r) by two simpler sets,
+αx∗ (r) and βx∗ (r), which we now introduce.
+     First, recall that αx−1 (r) consists of all states p ∈ A for which the computa-
+tion compp,|ϑ|+1 (ϑxϑ) hits right into r. Of course, every such computation is
+free to reach r after arbitrary meanders inside ϑxϑ. Suppose, however, that we
+restrict our attention only to computations which stay inside xϑ and cross the
+x-ϑ boundary only once—we call these computations simple (Fig. 8a). Then,
+αx∗ (r) is the set of p which still manage to reach r:
+
+  αx∗ (r) = αϑ,xϑ
+             ∗
+                  (r) := {p ∈ A | (∃q ∈ Q)(lcompp (x) hits right into q
+                                                & lcompq (ϑ) hits right into r)} . (3)
+
+Symmetrically, we let βx∗ (r) = βϑx,ϑ        ∗
+                                               (r) be the set of all states p ∈ B for which
+compp,|ϑx| (ϑxϑ) hits left into r having crossed the ϑx-ϑ and ϑ-xϑ boundaries
+0 and 1 times respectively.
+     A simple but important property of the new sets (one that the old sets do not
+share) is explained in the next fact, which uses the two boolean-valued functions
+δlr (· , · , · ) and δrl (· , · , · ) given by
+
+                δlr (p, x, q) = 1 ⇐⇒         lcompp (x) hits right into q
+                δrl (q, x, p) = 1 ⇐⇒         rcompp (x) hits left into q .
+
+The fact says that the sizes of αx∗ (r) and βx∗ (r) can be expressed as simple sums
+of appropriate selections of the bits δlr (· , x, · ) and δrl (· , x, · ), respectively.
+
+
+
+
+                                              15
+Fact 9. For all r ∈ Q: αx∗ (r) ⊆ αx−1 (r) and βx∗ (r) ⊆ βx−1 (r). Moreover :
+                    X                                   X
+        |αx∗ (r)| =    δlr (p, x, q)        |βx∗ (r)| =       δrl (q, x, p) .   (4)
+              p∈A & lcompq (ϑ)                            p∈B & rcompq (ϑ)
+               hits right into r                           hits left into r
+
+Proof. The inclusions are obvious. For the equality on the left, fix any p ∈ A
+and consider the inner sum
+                                  X
+                           Sp :=       δlr (p, x, q) .
+                                      lcompq (ϑ)
+                                   hits right into r
+
+This iterates over all q whose lcompq (ϑ) hits right into r, and counts how many
+of them are hit-right into by lcompp (x) (Fig. 8b). By (3), every q counted this
+way is a witness for verifying that p ∈ αx∗ (r). Hence, Sp equals the number of
+such witnesses. Since M is deterministic, this number is ≤ 1 and thus
+                                  (
+                                    0 if p 6∈ αx∗ (r) ,
+                             Sp =
+                                    1 if p ∈ αx∗ (r) .
+
+Consequently, the size of αx∗ (r) can be calculated by summing the Sp ’s,
+                                X             X
+                  |αx∗ (r)| =       Sp =           δlr (p, x, q) ,
+                                   p∈A        p∈A & lcompq (ϑ)
+                                               hits right into r
+
+and the equality is proven. The equality for βx∗ (r) is proved symmetrically.
+
+   We are now ready to prove the simplification of (2) that we promised.
+Lemma 6. Suppose that M solves L = (L, L̃) with r(n) = o(n) reversals, and
+that ϑ and x respect L. Then ϑ and x select L iff each outcome of ϑ is hit by
+exactly one simple computation:
+
+               ∀r ∈ A |αx∗ (r)| = 1 & ∀r ∈ B |βx∗ (r)| = 1 .
+                                                          
+                                                                          (5)
+
+Proof. Suppose ϑ and x select L. Then (αx , βx ) permute (A, B) (by Fact 8),
+therefore (A, B) do not use reversals (by Lemma 4, and since r(n) = o(n)).
+     Now pick any r ∈ A. We know |αx∗ (r)| ≤ 1, because αx∗ (r) ⊆ αx−1 (r) (by
+Fact 9) and |αx−1 (r)| = 1 (by Lemma 5). We also know |αx∗ (r)| ≥ 1, because the
+r-hitting compp,|ϑ|+1 (ϑxϑ) for the unique p ∈ αx−1 (r) uses no reversals (because
+(A, B) do not use reversals) and thus p ∈ αx∗ (r). Overall, |αx∗ (r)| = 1. A similar
+argument applies for βx∗ and B.
+     Conversely, suppose criterion (5) holds. Then criterion (2) holds, too (since
+αx∗ (r) ⊆ αx−1 (r) and βx∗ (r) ⊆ βx−1 (r)). So, ϑ and x select L (by Lemma 5).
+
+
+
+
+                                             16
+5. The hardness of liveness
+
+    We now proceed to the proof of the lower bound of Theorem 1. We pick an
+arbitrary h ≥ 1 and suppose that the dfa M that we kept fixed throughout
+the previous sections is actually reading inputs over Σ = Σh and solves owlh
+with r(n) = o(n) reversals. We will show that the number of states in M must
+be exponential in the height h of the input alphabet, specifically |Q| = Ω(2h ).
+    To this end, we will first restrict our attention from the infinity of all possible
+instances of owlh down to a very specific family of inputs, which collectively
+capture the ‘core’ of the computational hardness overcome by M (Section 5.1).
+Next, we will use the fact that M decides correctly on all these ‘hard instances’
+in order to argue our way through to the lower bound (Section 5.2).
+
+5.1. The hard instances
+   We focus on the same family of instances that was used in [12, §3.2] for
+proving that snfas need exponentially many states against the complement
+of owlh . These instances are blocks of the form ϑx(k) ϑ, where k ≥ 1 and ϑ
+and x are drawn from two families (ϑi )i∈I and (xi )i∈I of generic and single-
+symbol strings, respectively. Hence, describing the hard instances reduces to
+describing these two families of strings.
+   We start with the index set I, which is all pairs of non-empty subsets of [h],1
+
+                           I := { (α, β) | ∅ 6= α, β ⊆ [h] } .
+
+and is considered to be totally ordered by the rule
+                                          def
+                     (α0 , β 0 ) < (α, β) ⇐⇒ hα0 ihβ 0 i <b hαihβi ,
+
+where h·i is the natural h-bit encoding for subsets of [h], and <b stands for the
+natural ordering of 2h-bit positive integers. E.g., for h = 5 and α = {0, 1, 4}
+we have hαi = 10011; and if in addition β = {0, 2, 4} and α0 = {0, 2} and
+β 0 = {0, 2, 3}, then (α0 , β 0 ) < (α, β) because the number hα0 ihβ 0 i = 00101 01101
+is smaller than the number hαihβi = 10011 10101.
+    Now, for each (α, β) ∈ I consider the property of having connectivity α × β:
+
+                         Lα,β := { z ∈ Σ ∗ | ξ(z) = α × β } .
+
+We can verify that generic strings over Lα,β exist, as follows. Pick any lr-generic
+string ϑl and any rl-generic string ϑr (guaranteed to exist by Lemma 1) and
+join them into ϑ := ϑl ηϑr with the ‘reset’ symbol η := [h] × [h] of all possible
+arrows. Then the connectivity of ϑ is (easily) also α × β. Hence ϑ ∈ Lα,β , which
+implies that ϑ is generic over Lα,β (by Lemma 1).
+
+
+   1 Here α and β (without subscripts) denote subsets of [h]. These names preserve notational
+
+symmetry, and should cause no confusion with the names (with subscripts) of the two partial
+functions in the inner behavior of M .
+
+
+
+                                             17
+    We are now ready to define the strings ϑi and xi , for each i = (α, β) ∈ I.
+First, ϑi is any of the (infinitely many) generic strings over Li = Lα,β . Second,
+xi := β × α is the (unique) 1-long string consisting of all arrows not in β × α.
+    Consider all short blocks of the form ϑi xj ϑi that can be constructed from
+these strings. We naturally picture these blocks on a |I| × |I| matrix. Cell (i, j)
+of this matrix hosts the block ϑi xj ϑi along with copies of all objects that are
+associated with it in Lemma 6: the sets and functions
+                                                  ∗
+   Ai := Qlr (ϑi )    Bi := Qrl (ϑi )            αi,j := αϑ∗ i ,xj ϑi    ∗
+                                                                        βi,j := βϑ∗i xj ,ϑi .
+
+Crucially, the assumptions of Lemma 6 are satisfied in every single cell, whereas
+its conclusions follow a very simple pattern on and below the main diagonal
+(i.e., when i ≥ j). The next fact proves this observation. Its statement uses
+
+                         L∅ := {z ∈ Σ ∗ | ξ(z) = ∅} = owlh
+
+as an extra name for the dead strings, for symmetry with the Li .
+Fact 10. For all i, j ∈ I, the assumptions of Lemma 6 are satisfied by ϑi , xj ,
+and Li = (Li , L∅ ). Moreover, if i > j then ϑi and xj select Li ; in contrast, if
+i = j then ϑi and xj select L∅ .
+Proof. Let i = (α, β) and j = (α0, β 0 ). We start by checking the assumptions of
+Lemma 6. Clearly, M solves Li (since all strings in Li are live and all strings
+in L∅ are dead) with r(n) = o(n) (by assumption), and ϑi is generic over Li (by
+selection). To show that ϑi and xj respect Li , we take cases.
+    If ϑi xj ϑi is dead, then so is every ϑi (xj ϑi )k for k ≥ 1 (since every extension
+of a dead string is also dead). Hence, all (xj )(k) are negative.
+    If ϑi xj ϑi is live, then some path a∗        b∗ connects the two outer columns,
+      ∗ ∗                             0 0
+for a , b ∈ [h] (Fig. 9, left). If b , a are the nodes visited by this path on the two
+columns of xj , then the path is of the form a∗             b0 → a0     b∗ and ϑi contains
+                   ∗     0       0      ∗          ∗ 0       0 ∗
+the two paths a         b and a        b . Hence (a , b ), (a , b ) ∈ ξ(ϑi ) = α × β, which
+implies that b0 ∈ β and a0 ∈ α. Now pick any a, b ∈ [h] and consider node a of the
+leftmost column and node b of the rightmost column of ϑi xj ϑi . If (a, b) 6∈ (α, β),
+then a 6∈ α or b 6∈ β, hence at least one of the nodes cannot ‘see through’ ϑi ,
+and thus the nodes do not connect in ϑi xj ϑi . In contrast, if (a, b) ∈ (α, β),
+then a ∈ α and b ∈ β, hence (a, b0 ), (a0, b) ∈ ξ(ϑi ), and thus the nodes connect
+via a path of the form a           b0 → a0     b. Overall ξ(ϑi xj ϑi ) = α × β, namely
+                             (1)
+ϑi xj ϑi ∈ Li . Hence, (xj ) is positive.
+    Since the above two cases are exhaustive, we conclude that ϑi and xj re-
+spect Li . Moreover, we showed that ϑi and xj select Li iff ϑi xj ϑi is live.
+    For the second half of the statement, we examine each case separately.
+    If i > j, then the binary number hαihβi is strictly greater than the binary
+number hα0 ihβ 0 i. This implies that at least one of the 1’s in hαihβi corresponds
+to a 0 in hα0 ihβ 0 i. Therefore, at least one of α * α0 or β * β 0 is true. Suppose
+β * β 0 (if α * α0 , apply a similar argument). Pick any a∗ ∈ α and b0 ∈ β \ β 0
+and a0 ∈ α and b∗ ∈ β (Fig. 9, left). Then (a∗, b0 ) ∈ ξ(ϑi ) and (b0, a0 ) ∈ ξ(xj ) and
+
+
+                                            18
+             ϑi      β 0 xj   α0      ϑi                        ϑi      β 0 xj α 0       ϑi
+                                                  b∗
+    α                                                  α
+∗
+                                                 β                                                 β
+a
+                          0    0
+                      b       a
+    Figure 9: The connectivity of hard blocks below the diagonal (left) and on the diagonal (right).
+
+
+    (a0, b∗ ) ∈ ξ(ϑi ), therefore ϑi xj ϑi contains the path a∗ b0 → a0 b∗ . Hence, it
+    is live. By our previous conclusion, this implies that ϑi and xj select Li .
+          If i = j then ξ(ϑi ) = α × β and ξ(xj ) = β × α (Fig. 9, right). Then ϑi xj ϑi is
+    dead, because a path of the form a∗ b0 → a0 b∗ needs to have (a∗, b0 ) ∈ ξ(ϑi )
+    and (b0, a0 ) ∈ ξ(xj ) and (a0, b∗ ) ∈ ξ(ϑi ), where the membership in the middle says
+    (b0 , a0 ) 6∈ β × α and the two others imply b0 ∈ β and a0 ∈ α, which is impossible.
+    Hence, by our previous conclusion, ϑi and xj select L∅ .
+
+    5.2. The lower bound
+        Now consider the following two collections of experiments.
+        In the first collection, we perform one experiment for every generic string ϑi
+    and every state r ∈ Q. With ϑi and r fixed, we let xj range over all possibilities
+                                              ∗            ∗
+    and observe how the sizes of the sets αi,j  (r) and βi,j (r) vary. The result of our
+    observation is a pair of 1 × |I| vectors,
+                             ∗                                   ∗
+                                                                      
+                 ai,r := |αi,j (r)| j∈I     and      bi,r := |βi,j (r)| j∈I .
+
+    Repeating for every possible ϑi and r, we arrive at the two sets of vectors
+
+             A := {ai,r | i ∈ I, r ∈ Q}          and       B := {bi,r | i ∈ I, r ∈ Q} .
+
+       In the second collection, we perform one experiment for every p, q ∈ Q. With
+    p and q fixed, we again let xj range over all possibilities. This time we observe
+    the bits δlr (p, xj , q) and δrl (q, xj , p). The result is a pair of 1 × |I| vectors,
+                                                                               
+            up,q := δlr (p, xj , q) j∈I          and     vq,p := δrl (q, xj , p) j∈I .
+
+    Repeating the same for every p and q, we arrive at the sets of vectors
+
+                  U := {up,q | p, q ∈ Q}         and       V := {vq,p | p, q ∈ Q} .
+
+        The proof now concludes with two more facts. First, within A ∪ B we can
+    find ≥ |I| − 1 vectors which are linearly independent (Fact 11a). Second, every
+    vector in A ∪ B is a linear combination of the ≤ 2|Q|2 distinct vectors of U ∪ V
+    (Fact 11b). Hence, the dimension of the span of the vectors of U ∪ V should be
+    large enough to accomodate all linearly independent vectors of A ∪ B (see, e.g.,
+    [13, Prop. 14.1]). Namely,
+                                    2|Q|2 ≥ |I| − 1 .
+    Since |I| = (2h − 1)2 , it follows that |Q| = Ω(2h ) and the proof is complete.
+
+
+                                                  19
+Fact 11a. The set A ∪ B contains |I| − 1 linearly independent vectors.
+Proof. Within A ∪ B we will find a family of vectors (ci )i∈I such that
+               i > j =⇒ ci (j) = 1         and       i = j =⇒ ci (j) = 0 ,                 (6)
+for all i, j ∈ I. This will be enough. Because then the numbers ci (j) form a
+|I| × |I| matrix with 0s on the diagonal and 1s below it, which has rank |I| − 1
+(easily), and thus |I| − 1 of the ci must be linearly independent.
+    To select these vectors, we pick any i ∈ I and argue as follows. First of all,
+we know that ϑi and xi select L∅ (Fact 10). Therefore, there exist outcomes r
+which are not hit by exactly 1 simple computation (Lemma 6):
+                     ∗                                         ∗
+          r ∈ Ai & |αi,i (r)| 6= 1          or      r ∈ Bi & |βi,i (r)| 6= 1 .
+At least one of these r must, in fact, be hit by 0 simple computations—otherwise,
+every r ∈ Ai is hit by ≥ 1 value of αi,i , every r ∈ Bi is hit by ≥ 1 value of βi,i ,
+and at least one of all these r is hit by ≥ 2 values, for a total of ≥ |Ai | + |Bi | + 1
+values of αi,i and βi,i together, a contradiction. Pick ri to be any of these unhit
+outcomes. Then
+                     ∗                                          ∗
+         ri ∈ Ai & |αi,i (ri )| = 0         or      ri ∈ Bi & |βi,i (ri )| = 0 .
+Depending on whether we select ri from Ai or Bi , we respectively set
+                           ci := ai,ri      or      ci := bi,ri
+and the selection of our family of vectors is complete.
+    We now prove that our selection satisfies (6). Let i, j ∈ I. Suppose ci = ai,ri
+(if ci = bi,ri , we argue similarly). For the first conjunct, suppose i > j. Then
+ϑi and xj select Li (Fact 10). Thus, each r ∈ Ai and r ∈ Bi is hit by exactly 1
+simple computation (Lemma 6). In particular, this is true of ri . Hence,
+                                                 ∗
+                          ci (j) = ai,ri (j) = |αi,j (ri )| = 1 .
+For the second conjunct, suppose i = j. Then, by the selection of ri directly,
+                                                      ∗
+                      ci (j) = ci (i) = ai,ri (i) = |αi,i (ri )| = 0 .
+Therefore, both conjuncts of (6) are true and the proof is complete.
+Fact 11b. Every vector in A ∪ B is a linear combination of vectors from U ∪ V.
+Proof. Let i ∈ I and r ∈ Q. For all j ∈ I, the left equality of (4) implies that
+                                                X                   X
+                ∗
+   ai,r (j) = |αi,j (r)| = |αϑ∗ i ,xj ϑi (r)| =   δlr (p, xj , q) =    up,q (j)
+                                          p∈Ai & lcompq (ϑi )        p∈Ai & lcompq (ϑi )
+                                            hits right into r          hits right into r
+
+whereas the right equality of (4) supports a similar chain of equations for bi,r (j).
+Therefore, ai,r and bi,r are the following linear combinations
+                          X                               X
+                 ai,r =        up,q    and      bi,r =         vq,p
+                    p∈Ai & lcompq (ϑi )                  p∈Bi & rcompq (ϑi )
+                      hits right into r                    hits left into r
+
+of vectors from U and of vectors from V, respectively.
+
+
+                                            20
+6. Weaker than general
+
+    Let h ≥ 1. In this section we describe a language that needs O(h2 ) states
+on a general dfa but Ω(2h ) states on every dfa with few reversals.
+    Our witness will be a restriction of owlh to instances of a special form.
+The restriction will be strong enough so that the problem becomes easy for
+general dfas, but also weak enough so that the problem remains hard for dfas
+with few reversals. Once we describe it, it will be straightforward to design a
+small general dfa solver, and equally straightforward to turn the argument of
+Section 5 into one that is valid even for the restricted language.
+    This strategy is not new. It was applied in [14] in order to convert the sepa-
+ration of small snfas from small sdfas (by [3]) into a separation of small general
+dfas from small sdfas. It was also applied in [15, §3.6] in order to convert
+the separation of small co-nondeterministic sfas from small snfas (by [12]; also
+in [15, §3]) into a separation of small general dfas from small snfas. Our
+restriction will be exactly the one used in this second application.
+
+6.1. The witness
+   To describe the special form of the restricted instances, we need the ‘reset’
+symbol η = [h] × [h], from Section 5.1. We also need the restriction Σh0 of Σh to
+the 2h ‘parallel’ symbols of the form {(a, a) | a ∈ α} for α ⊆ [h]; for example,
+the leftmost symbol in Fig. 1a is in Σ50 , for α = {1, 2, 3, 4}. Now, we restrict
+owlh to strings of the form (Fig. 10):
+                                                    ∗
+                      segmentsh := Σh0 ηΣh0 Σh Σh0 ηΣh0 .
+
+Namely, every string must start and end with a parallel symbol and, in between,
+it must consist of one or more resets separated by 3-symbol segments, each of
+which consists of an unrestricted symbol between two parallel ones. Clearly,
+every such string is live iff the first and last symbols are non-empty and all
+segments are live. Intuitively, the copies of η ‘segment’ the task into 3-symbol
+pieces by resetting liveness every four symbols. We use the name
+
+                    segmented owlh := segmentsh ∩ owlh
+
+for the problem of checking liveness on such strings.
+
+
+
+
+       Figure 10: A string in segments5 , where four resets delimit three segments.
+
+
+
+
+                                           21
+6.2. The argument
+    Given the last observation, a small dfa algorithm for segmented owlh is
+obvious: we just check that the input is of the correct form, that the first and
+last symbols are non-empty, and that every segment is live. For the first two
+checks, O(1) states are enough. For the last check, we may iterate a O(h2 )-
+state depth-first search. Overall, a general dfa can solve segmented owlh
+with O(h2 ) states. Not surprisingly, this algorithm performs Θ(n) reversals.
+    In contrast, dfas with o(n) reversals still need Ω(2h ) states to solve the
+problem. To prove this, we repeat the argument of Section 5, this time being
+careful to select all hard instances from within segmentsh .
+    Specifically, for each i = (α, β) ∈ I, we replace property Li with the subset
+
+                               L0i := segmentsh ∩ Li
+
+of strings which have (not only the correct connectivity α × β, but also) the
+correct form. Easily, these are the strings in segmentsh where all segments are
+live and the parallel first and last symbols are induced respectively by α and β.
+    Much like Li , the restricted property L0i also admits generic strings. First,
+Lemma 1 guarantees two strings ϑ0l and ϑ0r which are lr-generic and rl-generic
+over L0i . From them, we get ϑ0 := ϑ0l ηϑ0r . This is also in L0i , because it inherits
+from ϑ0l and ϑ0r the correct first symbol, the correct last symbol, and a number of
+segments which are all live, plus a brand-new segment ‘in the middle’ (formed by
+the non-empty last symbol of ϑ0l , the joining η, and the non-empty first symbol
+of ϑ0r ) which is clearly live as well. Thus ϑ0 is generic over L0i (by Lemma 1).
+    Finally, Fact 10 remains valid if we replace every Li with L0i and every ϑi
+with a ϑ0i generic over L0i . This follows from the observation that, because all
+blocks ϑ0i xj ϑ0i are in segmentsh , the validity of the argument depends only on
+the connectivities of the strings appearing in it, and these have not changed.
+    The rest of the proof remains the same.
+
+7. Stronger than sweeping
+
+    Let h ≥ 1. In this section we describe a language that needs O(h) states on
+a dfa with 2 reversals but 2Ω(h) states on every sdfa.
+    For our lower bound, we use the “hardness propagation” framework of [16].
+The main idea there was that, in some cases, if a problem L needs ‘many’ states
+on automata of a certain type X, then by transforming it appropriately we
+can construct a harder problem L0 which needs ‘many’ states on automata of a
+more powerful type X 0 . Thus, hardness ‘propagates’ upwards from L versus X
+to L0 versus X 0 . Several lemmata of this form were proven in [16]. Applying
+them in succession, one could easily transform, e.g., a problem which is hard
+for dfas into a problem which is hard for sdfas.
+    We do the same here. We start with a problem J which is easily seen
+to require ≥ 2h states on dfas, and transform it into a problem J0 which
+requires 2Ω(h) states on sdfas. Before this, we need to recall some of the problem
+transformations introduced in [16], along with one of the hardness propagation
+
+
+                                          22
+lemmata. We then define a new transformation and prove a new hardness
+propagation lemma for it. Finally, we use the old and new transformations and
+lemmata to define our witness and establish the separation.
+
+7.1. Hardness propagation
+   Let L = (L, L̃) be a problem. The complement and the reverse of L are
+
+                     ¬L = (L̃, L)     and      LR = (LR , L̃R ) .
+
+For # any fresh symbol, the conjunctive star of L is the problem of checking
+whether a #-delimited string of instances of L contains only positive instances,
+whereas the disjunctive star asks whether a positive instance exists:
+   V                                                                              
+     L := {#x1 # · · · #xl # | (∀i)(xi ∈ L)}, {#x1 # · · · #xl # | (∃i)(xi ∈ L̃)}
+   W                                                                              
+     L := {#x1 # · · · #xl # | (∃i)(xi ∈ L)}, {#x1 # · · · #xl # | (∀i)(xi ∈ L̃)} ,
+
+where the form #x1 # · · · #xl # assumes l ≥ 0 and every xi ∈ L ∪ L̃. The equalities
+              V  W                                     V R V R
+            ¬ L = ¬L                   R
+                                                R       L = L
+              W  V                 ¬ L = ¬L            W R W R
+            ¬ L = ¬L                                      L = L .
+
+are easy to verify, directly from these definitions.
+   We will use the following hardness propagation lemma [16, Lemma 5]:
+Lemma 7. If W no m-state dfa solves L, then no ∩ldfa with m-state compo-
+nents solves L.
+Here, ‘∩ldfa’ stands for ‘left-sided parallel intersection automaton’. In general,
+a parallel intersection automaton is a pair M = (A, B) of disjoint families of
+dfas. To run M on an input z means to run each component dfa D ∈ A ∪ B
+on z separately and record the result, but with a twist: every D ∈ A reads z
+from left to right (as usual), whereas every D ∈ B reads z from right to left (i.e.,
+it reads z R ). Moreover, each D may hang within z. We say that M accepts z
+if all components accept. If A = ∅ or B = ∅, then M is respectively right-
+sided (a ∩rdfa) or left-sided (a ∩ldfa). If the definition is modified so that
+M accepts if some component accepts, then M is a parallel union automaton,
+which again can be right-sided (a ∪rdfa) or left-sided (a ∪ldfa). We will need
+the following easy observations.
+Fact 12. If a ∪rdfa with m-state components solves L, then a ∪ldfa with
+m-state components solves LR . If a ∪ldfa with m-state components solves L,
+then a ∩ldfa with (m + 1)-state components solves ¬L.
+
+Proof. For the first statement, just swap the two dfa families. For the sec-
+ond statement, just add a rejecting sink state to each component (to rule out
+rejections by hanging) and then complement the sets of accepting states.
+
+
+
+                                        23
+    Finally, we also recall the following ‘core’ problem, defined over the alphabet
+[h] ∪ P([h]) of numbers and sets of numbers in [h]:
+                                                                             
+  J = set numh := {αi | α ⊆ [h] & i ∈ α}, {αi | α ⊆ [h] & i ∈ α} , (7)
+
+where we are given a set α and a number i (in this order), and we must check
+that i ∈ α. It is easy to prove that J requires ≥ 2h states on every dfa, whereas
+its reversal JR (where the number is given before the set) requires ≤ h.
+    This concludes our summary of facts from [16]. We now add to these a new
+problem transformation, along with a new hardness propagation lemma for it.
+
+7.2. Ordered star
+    Let L1 = (L1 , L̃1 ) and L2 = (L2 , L̃2 ) be two problems of disjoint promises.
+We define a new problem, where the input is promised to be a string #x1 # · · · #xl #
+of #-delimited instances of L1 and L2 . Of course, each xi may be positive or
+negative in the respective problem. We are also promised that, although nega-
+tive instances may mingle freely, positive instances do not: one of the problems
+places all its positive instances before all positive instances of the other problem.
+Note that this extra promise is vacuously true whenever one of the problems
+contributes no positive instances at all. Now, under these promises, our task
+depends on whether both problems contribute positive instances: if so, we must
+check that the one which places its positive instances first is L1 ; if not, we must
+check that neither problem contributes any positive instance. In summary:
+      Given a string #x1 # · · · #xl # of #-delimited instances of L1 and L2
+      where all positive instances of one of the problems appear before
+      all positive instances of the other, check that either both problems
+      contribute positive instances and the one that places them first is L1
+      or neither problem contributes any positive instance.
+We call this problem the ordered star of L1 and L2 and denote it by L1 < L2 .
+    The intuition behind this definition is that, under certain assumptions,
+L1 < L2 is easy for a dfa with just 2 reversals but hard for a sdfa. Specifically,
+suppose that checking L1 is hard during forward scans but easy during back-
+ward ones, whereas checking L2 is easy during forward scans but hard during
+backward ones. Then, a small dfa may just scan forwards until it recognizes
+a positive instance of L2 , then turn backwards until it recognizes a positive
+instance of L1 , then turn forwards again to accept off a. In contrast, a small
+sdfa is in a tough place: although it can, too, recognize the positive instances
+of each problem when scanning in the appropriate direction, it cannot compare
+their positions, since it is forced to keep moving until the next endmarker and,
+upon reaching it, has no accurate memory of these positions any more.
+    Following is a hardness propagation lemma for the ordered star. Intuitively,
+it says that, if L1 requires ‘many’ states during forward scans and L2 requires
+‘many’ states during backward scans, then L1 < L2 requires ‘many’ states during
+multiple scans in both directions.
+
+
+                                         24
+Lemma 8. If no ∪ldfa with m
+                                
+                               2 -state components solves L1 and no ∪rdfa
+with m
+     2 -state components solves L2 , then no m-state sdfa solves L1 < L2 .
+
+Proof. For the contrapositive, suppose some m-state sdfa M solves L1 < L2 .
+Among all strings of #-delimited instances of L1 and L2 , focus on those where
+neither problem contributes positive instances and those where exactly one of
+them does:
+
+  L := {#x1 # · · · #xl # | (∀i)(xi ∈ L̃1 ∪ L̃2 ) }
+  L̃ := {#x1 # · · · #xl # | (∃i)(xi ∈ L1 ∪ L2 ) & ¬(∃i)(∃j)(xi ∈ L1 & xj ∈ L2 ) }
+
+where #x1 # · · · #xl # means l ≥ 0 and every xi ∈ L1 ∪ L̃1 ∪ L2 ∪ L̃2 . Since M
+solves L1 < L2 , we know that M solves L = (L, L̃).
+    Now, let ϑ be any generic string for M over L. As usual, let A := Qlr (ϑ)
+and B := Qrl (ϑ) be the two sets of outcomes of ϑ and, for any instance x of L1
+or L2 , let (αx , βx ) := (αϑ,xϑ , βϑx,ϑ ) be the inner behavior of M on the block ϑxϑ.
+Using Fact 8, we can get a criterion for checking whether x is positive.
+Claim 1. An instance x of L1 or L2 is positive iff (αx , βx ) do not permute (A, B).
+Proof. If x is positive, then clearly ϑxϑ ∈ L̃. The same holds for every ϑx(k) ϑ =
+ϑ(xϑ)k with k ≥ 1, since the only positive instances are the copies of x and they
+all come from the same problem. Thus, every infix x(k) is negative relative to L
+(cf. Section 4.3). Hence, (αx , βx ) do not permute (A, B), by Fact 8.
+    If x is negative, then clearly ϑxϑ ∈ L. Thus, the infix x(1) = x is positive
+relative to L. Hence, (αx , βx ) permute (A, B), by Fact 8 again.
+    For positive instances, the above criterion is somewhat weak. It says that at
+least one of αx and βx is not permutative, without saying which. It turns out
+that a stronger criterion is possible for at least one of L1 or L2 , exactly because
+M can tell the relative placement of their positive instances. Intuitively, a non-
+permutative αx means that forward scans by M can ‘sense’ that x is positive,
+whereas a non-permutative βx means the same for backward scans by M .
+Claim 2. At least one of the following statements is true:
+   • for every positive instance x of L1 : αx does not permute A,
+   • for every positive instance x of L2 : βx does not permute B.
+Proof. Suppose neither statement is true. Then there exist x ∈ L1 and y ∈ L2
+such that αx permutes A and βy permutes B. Pick k ≥ 1 so that the two
+permutations become identities after k iterations:
+
+                        (αx )k = idA       and        (βy )k = idB .
+
+Then αx(k) ≥ (αx )k = idA and βy(k) ≥ (βy )k = idB (Fact 6), and therefore
+
+                        αx(k) = idA        and        βy(k) = idB ,
+
+since idA and idB are total.
+
+
+                                             25
+   Intuitively, this means that forward scans cannot distinguish between ϑ and
+ϑx(k) ϑ, whereas backward scans cannot distinguish betweeen ϑ and ϑy (k) ϑ.
+Hence, M should be unable to distinguish between the two blocks
+
+                       ϑx(k) ϑy (k) ϑ       and        ϑy (k) ϑx(k) ϑ ,                   (8)
+
+because they should both look like ϑy (k) ϑ during forward scans and like ϑx(k) ϑ
+during backward scans. If this intuition is correct, then M decides identically
+on a positive and a negative instance of L1 < L2 —the desired contradiction.
+    Indeed, if we calculate the forward part of the inner behavior of M on each
+of the two blocks in question, we find (using Fact 5 in the first step):
+
+                  αx(k) ϑy(k) ≥ αx(k) ◦ αy(k) = idA ◦ αy(k) = αy(k)
+                  αy(k) ϑx(k) ≥ αy(k) ◦ αx(k) = αy(k) ◦ idA = αy(k) .
+
+Since M is sweeping, all its inner behaviors consist of total functions. Hence,
+αy(k) is total, causing αx(k) ϑy(k) = αy(k) = αy(k) ϑx(k) . By this and a symmetric
+argument for the backward parts, we eventually conclude that
+
+         (αx(k) ϑy(k) , βx(k) ϑy(k) ) = (αy(k) , βx(k) ) = (αy(k) ϑx(k) , βy(k) ϑx(k) )
+
+in accordance with our intuition above. It follows that M behaves identically
+on the two blocks of (8), by a straightforward argument that compares the
+decompositions of the computations on them relative to their infixes (as in the
+proof of Lemma 3).
+    Now, if the first statement of Claim 2 is true, we can combine it with Claim 1
+to arrive at the following criterion for L1 :
+
+           an instance x of L1 is positive iff αx does not permute A.                     (9)
+
+This leads us to a small-component ∪ldfa for L1 , as shown in the following.
+Claim 3. Some ∪ldfa solves L1 with m
+                                        
+                                       2 -state components.
+
+Proof. Let x ∈ L1 ∪ L̃1 . Since M is sweeping, we know αx : A * Q is total.
+Hence, it can fail to be a permutation in two ways:(7) by not keeping all its
+values inside A or by not being injective. Therefore, a restatement of (9) is that
+                                            
+  x ∈ L1 ⇐⇒ (∃p ∈ A) αx (p) 6∈ A
+                                                                              
+                               ∨ (∃p1 , p2 ∈ A) p1 6= p2 & αx (p1 ) = αx (p2 ) . (10)
+
+The condition αx (p) 6∈ A is equivalent to saying that lcompp (xϑ) hits right
+into a state outside A. In turn, because this latter computation is simple (even
+simpler than in Fig. 8a, since M is sweeping), this can be restated as
+
+  lcompp (x) hits right into a state q such that
+                                 lcompq (ϑ) hits right into a state outside A . (11)
+
+
+                                                26
+Similarly, the condition αx (p1 ) = αx (p2 ) is equivalent to saying that
+
+  lcompp1 (x) and lcompp2 (x) hit right into states q1 and q2 such that
+              lcompq1 (ϑ) and lcompq2 (ϑ) hit right into the same state.        (12)
+
+Overall, (10)-(12) describe a way to test x ∈ L1 by simulating M only on x.
+     Specifically, for any p1 , p2 ∈ A we build a dfa Mp1 ,p2 which checks (12)
+for p1 , p2 and also (11) for p1 and for p2 . On input x, the machine performs a
+synchronized simulation of both lcompp1 (x) and lcompp2 (x). If at any point
+the two computations are about to enter the same state, the machine hangs.
+If the right endmarker is ever reached, the machine knows the two states q1
+and q2 produced, and thus also the states r1 and r2 produced by lcompq1 (ϑ)
+and lcompq2 (ϑ). Hence, it accepts iff r1 6∈ A or r2 6∈ A or r1 = r2 . Note that
+this final test is symmetric in r1 and r2 . Hence, throughout the simulation, the
+current states of the two computations may be recorded as an unordered pair.
+Therefore, Mp1 ,p2 does not need morethan m     2 states.
+     Now consider the ∪ldfa whose m   2  components   are the dfas Mp1 ,p2 , where
+p1 , p2 range over all unordered pairs of states of M . This ∪ldfa solves L1 .
+   Symmetrically, if the second statement of Claim 2 is true, then we get a
+small-component ∪rdfa for L2 , and the proof of Lemma 8 is complete.
+
+7.3. The separation
+    We are now ready to define the problem separating small 2-reversal dfas
+from small sdfas. It is constructed from the core problem J of (7) by applying
+the problem transformations introduced in the last two sections:
+
+                                  J0 :=
+                                          V      V R
+                                            J <     J                            (13)
+                                                  V
+To decode this, note that every instance of J is of the form #α1 i1 # · · · #αl il #
+where the α are sets, the i are numbers, and the      V question is whether every set
+contains the adjacent number. The instances of JR ask the same question, but
+have the form #i1 α1 # · · · #il αl #, with numbers before sets. Consequently, the
+instances of J0 have the form *x1 * · · · *xl * (note the fresh delimiter *) where
+every x is a list of either set-number pairs or number-set pairs. A list of either
+kind is positive if every set in it contains its adjacent number. The promise is
+that all positive lists of one kind appear before all positive lists of the other
+kind. The question is whether no list is positive or positive lists of both kinds
+exist and the number-set ones appear first.
+    To solve J0 on a small 2-reversal dfa, we work as follows. First, we let M0
+be the h-stateVdfa which solves JR . Then we construct a O(h)-state dfa M1
+which solves JR by performing successive simulations of M0 and checking if all
+accept. Finally, we use M1 as a subroutine in the     V following algorithm.
+   1. We scan forwards,
+                  V          ignoring   instances of    J and simulating M1 on in-
+      stances of JR . If a positive instance is found, we raise a flag b = 1 and
+      go to 2; otherwise, we eventually reach a and go to 2 with b = 0.
+
+
+                                         27
+                                                       V R
+    2. We scan backwards, ignoring V instances of J and simulating M1 on (the
+        reverses of) instances of J. If a positive instance is found, we raise a flag
+        a = 1 and go to 3; otherwise, we eventually reach ` and go to 3 with a = 0.
+    3. We scan forwards until a, where we accept iff a = b.
+Clearly, the algorithm performs exactly 2 reversals on every instance of J 0 ,
+and its three stages require respectively O(h) + O(h) + O(1) = O(h) states.
+Concerning correctness, we take cases with respect to the values of the flags.
+     If a=0 & b=0, then each V of stagesV1 and 2 scanned the entire input and found
+no positive instance of JR and of J, respectively. Hence, neither problem
+constributed positively. Therefore, the input is positive.                           V R
+     If a=1 & V b=1, then stages 1 and 2 found two positive instances, one of J
+and one of J, with theVformer to the right of theVlatter. So (by the promise),
+all positive instances of JR appear after those of J. So, the input is positive.
+     If a=1 &  Vb=0,    then stage 1 scanned the entire input and foundV      no positive
+                  R
+instance
+V          of   J   , whereas  stage 2 found a   positive instance  of   J. Hence,   only
+  J contributed positively. So, the input is negative.             V R
+     If a=0 & b=1, then stage 1 found a positive  V instance of V     J and, to the left
+of it, stage 2 found no positive instances
+                                    V         of   J.
+                                                    V  Thus,  either   J contributes no
+positive instances, hence only JR does,    V R  or    J  contributes  positive  instances
+only after the first positive instance
+                                     V  of  J  , hence  (by the promise)  all its positive
+instances appear after those of JR . Either way, the input is negative.
+     Overall, the input instance is positive iff a = b, and the algorithm is correct.
+     To prove that J0 is hard for sdfas, we work as follows. First, we recall that
+no dfa solves J with < 2h states. So, the same holds for ¬J, since dfas can
+always be complemented         without increasing the number of states. Therefore,
+no ∩ldfa solves ¬J with components of < 2h states (by Lemma 7). Therefore,
+                      W
+
+              no ∪ldfa solves J with components of < 2h − 1 states
+                                  V
+                                                                                     (14)
+                                                        V      W
+by the second statement of Fact 12 applied on ¬ J = ¬J. Therefore,
+
+             no ∪rdfa solves JR with components of < 2h − 1 states
+                                 V
+                                                                                     (15)
+                                                    V        V
+by the first statement of Fact 12 applied on ( J)R = JR . Therefore,
+
+                   every sdfa solving J0 needs 2Ω(h) states,
+by (14), (15), and Lemma 8 applied on ( J) < ( JR ) = J0 .
+                                        V       V
+
+
+8. Conclusion
+
+    We confirmed the Sakoda-Sipser conjecture in the special case of two-way fi-
+nite automata which perform sublinearly many reversals, by proving that dfas
+of this kind must be exponentially large to solve one-way liveness. We also
+showed that our theorem does not resolve the full conjecture, because in some
+cases raising the number of reversals of a dfa from sublinear to linear results
+in exponential savings in size. Finally, we proved that exponential savings in
+
+
+                                           28
+size are possible even when we raise the number of within-the-input reversals
+from zero to the smallest possible non-zero number.
+    All our witnesses were defined over alphabets of exponential size. However,
+up to polynomial differences, our conclusions remain valid even over the binary
+alphabet. For example, the binary version of owlh where each symbol of Σh
+is encoded into a h2 -bit string in the natural way, still needs Ω(2h ) states on
+every dfa with few reversals (by the same proof, as all reasoning is on cell
+boundaries) but only O(h2 ) states on a nfa with zero reversals. Therefore, the
+title of this article remains valid even if we change the interpretation of ‘small
+fa’ from ‘fa with few states’ to ‘fa with short description’.
+    Theorem 1 says that every dfa for owlh satisfies
+
+                        rM (n) 6= o(n)   ∨    |Q| = Ω(2h ) .
+
+It would be interesting to see a proof of the following stronger condition
+
+                       rM (n) = Ω(n)     ∨    |Q| ≥ 2h .
+
+Another direction for further work is to continue with Research Problem 4
+of [11], analyzing the trade-off between size and number of reversals of a dfa.
+    In the broader horizon, two complementary directions are suggested.
+    The first points, of course, towards the full Sakoda-Sipser conjecture. This is
+perhaps even more inviting now, after the recent tightening of the connections to
+L v NL [10]. Specifically, resolving the conjecture can now be seen as a first step,
+hopefully more tractable than others, towards the conjectures NLL * LL/polylog
+and NL * L/poly (in this order), where the classes NL and L/poly correspond (as
+usual) to O(log n) space and poly(n) advice bits, whereas NLL and LL/polylog
+are their counterparts for space O(log log n) and advice of length poly(log n).
+    The second direction points towards the full Sakoda-Sipser analogy. This
+refers to the analogy drawn in [2] between the time complexity of Turing ma-
+chines and the size complexity of fas. In the same way that the P v NP theory
+was the first step towards the complexity theory that has been built on Turing
+machines and time, the 2D v 2N theory of [2] can be seen as the first step towards
+a complexity theory that can be built on fas and size [17]. Developing this
+theory appears to be a valuable long-term goal.
+
+
+References
+
+ [1] J. I. Seiferas, Untitled manuscript, communicated to M. Sipser (Oct. 1973).
+
+ [2] W. J. Sakoda, M. Sipser, Nondeterminism and the size of two-way finite
+     automata, in: Proceedings of the Symposium on the Theory of Computing,
+     1978, pp. 275–286.
+ [3] M. Sipser, Lower bounds on the size of sweeping automata, Journal of
+     Computer and System Sciences 21 (2) (1980) 195–202.
+
+
+                                         29
+ [4] H. Leung, Tight lower bounds on the size of sweeping automata, Journal
+     of Computer and System Sciences 63 (3) (2001) 384–393.
+ [5] J. Hromkovič, G. Schnitger, Nondeterminism versus determinism for two-
+     way finite automata: generalizations of Sipser’s separation, in: Proceedings
+     of the International Colloquium on Automata, Languages, and Program-
+     ming, 2003, pp. 439–451.
+ [6] C. Kapoutsis, Deterministic moles cannot solve liveness, Journal of Au-
+     tomata, Languages and Combinatorics 12 (1-2) (2007) 215–235.
+ [7] V. Geffert, C. Mereghetti, G. Pighizzini, Converting two-way nondetermin-
+     istic unary automata into simpler automata, Theoretical Computer Science
+     295 (2003) 189–203.
+ [8] P. Berman, A. Lingas, On complexity of regular languages in terms of finite
+     automata, Report 304, Institute of Computer Science, Polish Academy of
+     Sciences, Warsaw (1977).
+ [9] V. Geffert, G. Pighizzini, Two-way unary automata versus logarithmic
+     space, Information and Computation 209 (7) (2011) 1016–1025.
+[10] C. Kapoutsis, Two-way automata versus logarithmic space, in: Proceedings
+     of the International Computer Science Symposium in Russia, 2011, pp.
+     197–208.
+[11] J. Hromkovič, Descriptional complexity of finite automata: concepts and
+     open problems, Journal of Automata, Languages and Combinatorics 7 (4)
+     (2002) 519–531.
+[12] C. Kapoutsis, Small sweeping 2NFAs are not closed under complement, in:
+     Proceedings of the International Colloquium on Automata, Languages, and
+     Programming, 2006, pp. 144–156.
+[13] S. Jukna, Extremal Combinatorics, Springer-Verlag, 2001.
+[14] S. Micali, Two-way deterministic finite automata are exponentially more
+     succinct than sweeping automata, Information Processing Letters 12 (2)
+     (1981) 103–105.
+[15] C. Kapoutsis, Algorithms and lower bounds in finite automata size com-
+     plexity, PhD Thesis, Massachusetts Institute of Technology (Jun. 2006).
+[16] C. Kapoutsis, R. Královič, T. Mömke, On the size complexity of rotating
+     and sweeping automata, in: Proceedings of the International Conference
+     on Developments in Language Theory, 2008, pp. 455–466.
+[17] C. Kapoutsis, Size complexity of two-way finite automata, in: Proceed-
+     ings of the International Conference on Developments in Language Theory,
+     2009, pp. 47–66.
+
+
+
+                                       30
+Notes
+  (1)
+      Note the difference between (1) and the respective definition of [6, §3.2]:
+There, Qlr (y) is the states produced by all possible lr-traversals. Here, Qlr (y)
+is only those produced by lr-traversals that are segments of full computations.
+  (2)
+      Note the difference between the inclusion Qlr (yz) ⊆ αy,z [Qlr (y)] and Fact 3
+of [6]: There, we know (easily) that all values of αy,z are inside Qlr (yz) (and
+cover it), so we call αy,z a ‘surjection onto Qlr (yz)’. Here, some values of αy,z
+may fall outside Qlr (yz), so we cannot call αy,z a ‘surjection onto Qlr (yz)’ —
+we cannot even call it a ‘function to Qlr (yz)’. We only know that its values
+cover Qlr (yz) —they may also cover parts of Q \ Qlr (yz).
+ (3)
+    Note a difference from [6, Lemma 3]: There, we required that L is infinitely
+extensible to the right/left. This is redundant. If L is not infinitely extensible to
+the right, then lr-generic strings still exist: every y ∈ L with no right-extensions
+in L is (vacuously) lr-generic. Similarly in the other direction.
+ (4)
+    Here the conclusion is the same as [6, Lemma 5], but the reasoning differs. In
+both cases, we show that the partial map αy,z : Qlr (y) * Q is really a bijection
+to Qlr (yz); namely, that it is (i) total, (ii) injective, (iii) covers Qlr (yz), and
+(iv) stays inside Qlr (yz). In [6], Fact 3 shows (iii) and (iv), and genericity
+implies the rest. Here, Fact 4a shows only (iii), and genericity implies the rest.
+ (5)
+    Our blocks are the same as those of [3]. Note that the traps of [6] are blocks,
+too, but their infixes must always preserve the property L of the generic string.
+    The intentions of [6] and [3] differ. In [6], we want to force the machine into
+permutative inner behavior, so as to then prove that it gets lost in the maze.
+Instead, in [3] (and here) we want to study how the machine changes behav-
+ior between infixes that preserve and infixes that purturb the generic string’s
+property, so as to then prove that these changes require many states.
+ (6)
+     Note the difference from [6, Fact 7]: There, we know that all infixes involved
+(x, y, and z) preserve L, thus all functions (αx , αy , and αz ) are total, and we
+just need to make sure that their values match. Here, any of the infixes may not
+preserve L. So, we can only guarantee that αz (p) is defined when both αx (p) and
+αy (αx (p)) are —and that then its value is as expected. Note that the converse is
+not necessarily true: if αz (p) is defined, namely cz := compp,|ϑ|+1 (ϑxϑyϑ) hits
+right into some state r, then cz certainly crosses the ϑxϑ-yϑ boundary, the first
+time into some state q, and thus αx (p) is also defined and equals q; however,
+the suffix of cz after this first crossing may very well revisit the prefix ϑx, in
+which case αy (αx (p)) = αy (q) will be undefined.
+ (7)
+     Note a difference between this construction and the one in the proof of [16,
+Lemma 8]. There, αx (is denoted by lmap(ϑ, xϑ), and) is easily known to keep
+all its values inside A. As a result, the dfa components in that construc-
+tion need to test only one of the two conditions that the components in our
+construction will test.
+
+
+
+
+                                         31
+

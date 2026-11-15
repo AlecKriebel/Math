@@ -6,7 +6,7 @@ import hashlib,json,shutil,subprocess
 A=Path(__file__).resolve().parent;S=A.parents[1]/'sources'
 if (A/'SOURCE_INPUT_MANIFEST.json').exists():raise RuntimeError('initial acquisition already prepared')
 (A/'.gitignore').write_text('inputs/\nrasters/\nprimary/\nraw/\n__pycache__/\n')
-for n in ['inputs','rasters','primary','raw']:(A/n).mkdir()
+for n in ['inputs','rasters','primary','raw']:(A/n).mkdir(exist_ok=True)
 def now():return datetime.now(timezone.utc).isoformat()
 def pin(q):
  b=q.read_bytes();return {'path':str(q),'bytes':len(b),'SHA256':hashlib.sha256(b).hexdigest()}
@@ -14,9 +14,14 @@ files=[]
 for q in sorted(S.rglob('*')):
  if q.is_symlink():raise ValueError('source symlink')
  if q.is_file():files.append(pin(q))
-if len(files)!=79:raise ValueError('source extent')
+if len(files)!=82:raise ValueError('source extent:79payloads plus3exact terminals')
 m=json.loads((S/'SOURCE_READY_MANIFEST.json').read_bytes());seal=json.loads((S/'SOURCE_READY_SEAL.json').read_bytes())
 if pin(S/'SOURCE_READY_MANIFEST.json')['SHA256']!=seal['MANIFEST_SHA256']:raise ValueError('source manifest seal')
+if len(m['files'])!=79:raise ValueError('source payload count')
+for e in m['files']:
+ q=S/e['path'];actual=pin(q)
+ if actual['bytes']!=e['bytes'] or actual['SHA256']!=e['SHA256']:raise ValueError('source payload binding')
+if {Path(e['path']).relative_to(S).as_posix() for e in files}!={e['path'] for e in m['files']}|set(m['excluded_terminal_files']):raise ValueError('source exact namespace')
 (A/'SOURCE_INPUT_MANIFEST.json').write_text(json.dumps({'UTC':now(),'complete_source_files':files,'exact_complete_source_directories':[str(q.relative_to(S)) for q in sorted(S.rglob('*')) if q.is_dir()],'source_ready_SHA256':'86264fb9c694c35abcdcae60fd15aaa617627204ceb8e0cd95b09947e4d893dc','source_seal_SHA256':'9a87a851ebab2735927edb66d350168fdb9d20e738ab6a9bc2e85b7f3a93ed63','root135_gate':'CLOSED','prior_record135_scientific_exposure':None},indent=2)+'\n')
 (A/'RESEARCH_LOG.md').write_text('# Scope review log — row135 /23202966\n\n- '+now()+' —0%: New scope namespace confirmed absent before preparation. Initial mkdir attempt stopped before any file creation because reviews/ ancestor was absent; corrected by creating only the authorized new scope path. Root comparison gate CLOSED. Only source custody metadata has been read; no prior23202966 scientific opinion exposure known. Prior roles involve unrelated acquisitions/editorial/integration. Source historical unread/null/version flags remain unchanged.\n')
 ready=json.loads((S/'SOURCE_READY.json').read_bytes())

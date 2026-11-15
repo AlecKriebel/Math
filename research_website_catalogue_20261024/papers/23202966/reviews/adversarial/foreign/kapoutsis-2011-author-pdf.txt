@@ -1,0 +1,593 @@
+                 Nondeterminism is Essential
+              in Small 2FAs with Few Reversals
+
+                                Christos A. Kapoutsis
+
+                             LIAFA – Université Paris VII
+
+
+
+        Abstract. On every n-long input, every two-way finite automaton (fa)
+        can reverse its head O(n) times before halting. A fa with few reversals is
+        an automaton where this number is only o(n). For every h, we exhibit a
+        language that requires Ω(2h ) states on every deterministic fa with few
+        reversals, but only h states on a nondeterministic fa with few reversals.
+
+
+1     Introduction
+
+A long-standing open question in the theory of computation, posed already in the
+70s [11,10], is whether every two-way nondeterministic finite automaton (nfa)
+has a deterministic equivalent (dfa) with at most polynomially more states.
+    The answer is conjectured to be negative. Indeed, this has been confirmed in
+several special cases: for automata that are single-pass (halting upon reaching
+an endmarker [11]) or sweeping (reversing only on endmarkers [12,9]) or almost
+oblivious (exhibiting o(n) distinct trajectories on n-long inputs [5]) or moles
+(exploring the implicit configuration graph [7]). However, for unary automata
+a non-trivial upper bound is known: the simulating dfa need never be more
+than quasi-polynomially larger [2]. We also know that the final answer, both
+for general and for unary alphabet, may have implications for the old question
+whether nondeterminism is essential in space-bounded Turing machines [1,3,8].
+    Here we confirm the general conjecture in yet another special case: for au-
+tomata that reverse their input head (anywhere on the tape, but) only o(n) times
+on every n-long input before halting. These ‘fas with few reversals’ stand very
+naturally between sweeping fas, which perform only O(1) reversals and only on
+the endmarkers, and general fas, which perform O(n) reversals (cf. Lemma 1).
+Theorem 1. For every h, there is a language that requires Ω(2h) states on every
+dfa with few reversals but only h states on a nfa with few reversals.
+Here, the family of witness languages is one-way liveness [10] (as usual [12,5,7])
+and the h-state nfas are actually one-way (so that their ‘few’ reversals are in
+fact ‘zero’). So, this can be seen as a generalization of the lower bound of [12].
+    Given Theorem 1, two questions arise. First, does the theorem really general-
+ize [12], or can it perhaps follow from it by proving that the gap from few-reversal
+?
+    Research funded by a Marie Curie Intra-European Fellowship (pief-ga-2009-253368)
+    within the European Union Seventh Framework Programme (fp7/2007-2013).
+to sweeping dfas is only polynomial? Second, does the full conjecture really gen-
+eralize the theorem, or can it perhaps follow from it by proving that the gap from
+general to few-reversal dfas is only polynomial? We answer affirmatively.
+Theorem 2. For every h, there is a language that requires 2Ω(h) states on every
+sweeping dfa but only O(h) states on a dfa with 2 reversals.
+
+Theorem 3. For every h, there is a language that requires Ω(2h) states on every
+dfa with few reversals but only O(h2 ) states on a general dfa.
+
+Note that Theorems 1-3 answer Hromkovič’s Research Problems 2 and 3 from [4].
+   We consider the second half of Theorem 1 (upper bound) known, and leave
+the proofs of Theorems 2 and 3 for longer versions of this report. We thus prove
+only the first part of Theorem 1 (lower bound). We work as in [12]. After fix-
+ing notation (Sect. 2), we define generic strings (Sect. 3.1), study their blocks
+(Sect. 3.2), build a family of hard instances using such blocks (Sect. 4.1), and ap-
+ply the linear algebra bound on vectors derived from these instances (Sect. 4.2).
+
+
+2    Preparation
+Let [n] := {0, . . . , n−1}. For A a set, A is the complement and idA : A → A the
+identity on A. For f : A * B a partial function, X ⊆ A, and b ∈ B, we define
+f [X] := {f (a) | a ∈ X & f (a) defined} and f −1 (b) := {a ∈ A | f (a) = b}. If in
+addition g : B * C, then the composition f ◦ g : A * C is defined on a iff both
+f (a) and g(f (a)) are defined. If A = B, then f n is the n-fold composition of f
+with itself, and f ≤ g means that f (a) defined =⇒ g(a) defined & g(a) = f (a).
+
+Fact 1. The relation ≤ is a partial order on FA := {f | f : A * A}, and idA is
+maximal in it. Moreover, g ≤ g 0 =⇒ f ◦ g ≤ f ◦ g 0 for all f,g,g 0 ∈ FA .
+
+    For z a string, |z| and zj denote its length and its j-th symbol (1 ≤ j ≤ |z|). A
+(promise) problem over Σ is any pair (L, L̃) of disjoint subsets of Σ ∗ . A machine
+solves (L, L̃) if it accepts all w ∈ L but no w ∈ L̃. If L̃ = L, then L is a language.
+
+Liveness. For h ≥ 1, the alphabet Σh := {all G ⊆ [h] × [h]} is all two-column
+directed graphs with h nodes per column and only rightward arrows (Fig. 1a). An
+n-long z ∈ Σh∗ is viewed as an (n+1)-column graph (without arrow directions,
+for simplicity); its connectivity is ξ := {(a, b) | there is an n-arrow path from
+node a of column 0 to node b of column n}; if ξ = ∅, then z is dead, otherwise
+it is live. We define owlh = one-way livenessh := {z ∈ Σh∗ | z is live} [10].
+
+Machines. A two-way deterministic finite automaton (dfa) is any tuple M =
+(Q, Σ, δ, qs , qa , qr ), where Q is a set of states, Σ an alphabet, qs ,qa ,qr ∈ Q are the
+start, accept, and reject states, and δ : Q×(Σ ∪{`,a}) → Q×{l, r} is the (total)
+transition function, for `,a ∈    / Σ two endmarkers and l,r the two directions. An
+input w ∈ Σ ∗ is presented to M endmarked, as `wa. Computation starts at qs
+and on `. In each step, the next state and head move are derived from δ and
+the current state and symbol. Endmarkers are never violated, except for a if the
+next state is qa or qr ; i.e., δ(·, `) is always of the form (·, r), and δ(·,a) is always
+(qa , r) or (qr , r) or of the form (·, l). So, the computation either loops, or falls
+off a into qr , or falls off a into qa . In the last case, we say M accepts w.
+     In general, the computation of M from state p on the j-th symbol of string z,
+denoted compM,p,j (z), is the longest sequence c = ((qt , jt ))0≤t<m with 0<m≤∞,
+(q0 , j0 ) = (p, j), and every next (qt , jt ) derived from the previous one via δ
+and z in the natural way. We say (qt , jt ) is the t-th point and m the length. If
+m = ∞ then c loops; otherwise, jm−1 = 0 or |z|+1 and c hits left or hits right,
+respectively, into qm−1 (Fig. 1b). We say c0 = ((qt0 , jt0 ))0≤t<m0 parallels c if it is
+a ‘shifted copy’ of it: m0 = m and qt0 = qt & jt0 = jt + j∗ for some j∗ and all t.
+     The l-computation of M from p on z is lcompM,p (z) := compM,p,1 (z) and
+is called a lr-traversal, l-turn, or l-loop, depending on whether it hits right, hits
+left, or loops. Similarly, the r-computation rcompM,p (z) := compM,p,|z| (z) is a
+rl-traversal, r-turn, or r-loop. Two l-/r-computations resemble each other if
+they share the same first state, type (l/r-turn/loop, lr/rl-traversal), and last
+state (if it exists). The (full ) computation of M on w ∈ Σ ∗ is compM (w) :=
+lcompM,qs (`wa). Hence, M accepts w iff compM (w) hits right into qa .
+     For w = uzv, the decomposition of c := compM (w) by z is the unique se-
+quence c0 , c1 , . . . of computations, called segments, derived by splitting c wher-
+ever it enters or exits z (for each point (qt , jt ) produced by crossing the u-z or z-v
+boundary, replace (qt , jt ) by two copies of it and split between the copies). Note
+that every ci for even i (resp., odd i) is a computation on `u or va (resp., z),
+and c halts iff there exists a last segment cm and m is even and cm falls off a.
+     We say M is nondeterministic (nfa) if δ maps Q × (Σ ∪ {`,a}) to the
+powerset of Q × {l, r}. Then every compM,p,j (z) is a set of computations, and
+M accepts w iff some c ∈ compM (w) hits right into qa .
+     A reversal in a computation c is any point (qt , jt ) whose predecessor and suc-
+cessor exist and lie on the same side with respect to it (Fig. 1b): t 6= 0, m−1 and
+either jt−1 , jt+1 < jt (backward reversal) or jt < jt−1 , jt+1 (forward reversal).
+We write r(c) for the total number of reversals in c. Note that 0 ≤ r(c) ≤ ∞,
+and r(c) = ∞ iff c is looping. For n ≥ 0, we write rM (n) for the maximum r(c)
+over all full computations c of M on n-long inputs.
+Lemma 1. For every s-state dfa M and every length n, either rM (n) = ∞ or
+rM (n) is even and at most (s − 1)(n + 2).
+
+
+3    Building Hard Instances
+Hard instances for dfas are built in three stages. We start with generic strings,
+which buy us some basic stability in the machine’s behavior. We then use generic
+strings to build blocks, where we draw a set of requirements for how the machine
+may compute. Finally, in order to force her to meet these requirements, we iterate
+the blocks into long strings, and ask her to decide correctly there. This general
+strategy is from [12]. Its instantiation here for dfas improves on [7, §3].
+    From now on, we fix dfa M =(Q, Σ, δ, qs , qa , qr ) and drop it from subscripts.
+jm−1        j0          j2                                0       1         2   3                                                                                                      z (t)
+                                                      0                                         ϑ       x         ϑ                      u       ϑ            x             ϑ            x                     x           ϑ           v
+           q0                   q2                    1                                             p
+                                                      2                                                                        qs
+                                                                                                            q
+                    c                                 3                                                                    r
+                                                      4                                             p                                        p                q
+qm−1                                 (b)                              (a)
+                                                                                                                           r                                          q̃                r
+       u                    y                 v                                                     p                                                                                                                              q
+
+ qs                                                                                                                            (j)
+                                                                                    (k)                                    r                         c                     d
+                                                                                                                                                         ct
+                p                         q                                                                                                                                z (t)
+                                                                                                ϑ       x         ϑ                      u       ϑ            x                         x          ϑ               v
+ (c)                                                                                                                           qs
+                                                                                                                           r
+                                                                                                    p
+       u                    y                     z                   v                                                                      p                q
+                                                                                                                                                                                                               q
+ qs                                                                                                                            (i)
+                                                                                    (l)
+                                                                                                                                                     c                     dt
+                                                                                                                                                         ct
+                p                         q
+                                                                                                ϑ       x         ϑ                      u       ϑ                v
+                                                                                                        q
+                                                                                                                               qs
+                                          q∗                      r
+                                                                                                                                             p                q
+ (d)                                                                                (f)                     q̃             r
+                            c1                    c2                                                             d             (h)
+                                                  c∗                                                                                                 c
+                                                                                                                 z (t−1)                                                                               z (1)
+                                          z                                                                      z (1)
+       ϑ                    x             ϑ                   y             ϑ                   ϑ       x          ϑ       x         ϑ       x           ϑ            x            ϑ           x        ϑ              x       ϑ
+                                                                                                        q
+                        p
+
+                                                                                                                                             q
+                                                          q
+                                                                                                                 d                                                                             q
+ (e)                                                                                r                            d1
+                                     cx                               cy
+                                                      cz                                                                                                                                                                                   q
+                                                                                          (g)                    dt−1                                                                                  d1
+                                                                                                                 dt
+
+
+
+
+Fig. 1. (a) A string of 3 symbols over Σ5 , drawn as an indexed 4-column undirected graph; here ξ = {(2, 4), (4, 0)}. (b) A left-hitting
+computation c with m = 15, r(c) = 5; points 2, 8, 12 are backward reversals, points 6, 11 are forward reversals. (c) Computing on uyv.
+(d) Computing on uyzv. (e) Computing on overlapping blocks ϑxϑ,ϑyϑ. (f) Witnessing αx (q) = r, with two forward reversals. (g) In-
+duction for proving Lemma 5 (here l = 2, t = 3). (h) Witnessing q ∈ A. (i) Proving Lemma 5. (j) Proving Fact 6. (k) Three right-hitting
+compp,|ϑ|+1 (ϑxϑ): one simple (top), two non-simple. (l) Understanding Sp : each column is a copy of Q; circles and dashed edges represent
+the q for which lcompq (ϑ) hits right into r; dotted edges represent the δlr (p, x, q) that are being summed.
+3.1     Generic Strings
+
+For each y ∈ Σ ∗ , consider all states that can be produced by lr-traversals of y
+inside full computations of M (Fig. 1c), called the lr-outcomes of y:
+            
+  Qlr (y) := q ∈ Q | there exist p and u,v such that
+                      lcompp (y) appears in comp(uyv) & hits right into q , (1)
+
+where a computation on y ‘appears in comp(uyv)’ if it parallels one of the
+odd-indexed segments in the decomposition of comp(uyv) by y.
+    We now consider any extension yz of y and compare Qlr (yz) with Qlr (y) and
+Qlr (z). For the first comparison, we define a partial function αy,z : Qlr (y) * Q
+as follows (Fig. 1d): for each q ∈ Qlr (y), examine compq,|y|+1 (yz); if it hits right
+into some state r, set αy,z (q) := r; if it hits left or loops, leave αy,z (q) undefined.
+
+Fact 2a. For all y,z ∈ Σ ∗ : Qlr (yz) ⊆ αy,z [Qlr (y)] ∩ Qlr (z).
+
+Proof. Let r ∈ Qlr (yz). Then there exist p and u,v such that c := lcompp (yz)
+appears in comp(uyzv) and hits right into r (Fig. 1d). We know c crosses the
+y-z boundary at least once. Let q and q∗ be the states right after the first
+crossing and after the last crossing, respectively. The prefix of c up to the first
+crossing is c1 := lcompp (y) and hits right into q, while the remaining suffix
+is c2 := compq,|y|+1 (yz) and hits right into r. The suffix of c after the last
+crossing is c∗ = lcompq∗ (z) and hits right into r. Now, c1 is a lr-traversal of y
+that appears in comp(uyzv) and produces q, so q ∈ Qlr (y). By this and c2 , we
+know αy,z (q) = r. Therefore, r ∈ αy,z [Qlr (y)]. Moreover, c∗ is a lr-traversal of z
+that appears in comp(uyzv) and produces r. Therefore, r ∈ Qlr (z).                 t
+                                                                                   u
+
+Symmetrically, we let the set Qrl (y) of rl-outcomes of y be all states producible
+by rl-traversals of y inside full computations of M . Then βz,y : Qrl (y) * Q is
+introduced so that βz,y (q) is r, if compq,|z| (zy) hits left into r, or undefined, if
+the computation loops or hits right. Then a fact symmetric to Fact 2a holds.
+Fact 2b. For all y,z ∈ Σ ∗ : Qrl (zy) ⊆ βz,y [Qrl (y)] ∩ Qrl (z).
+   By the first inclusion of Fact 2a, we know |Qlr (y)| ≥ |Qlr (yz)|. Similarly,
+Fact 2b implies |Qrl (zy)| ≤ |Qrl (y)|. Hence, extending a string in either direction
+can never increase the respective number of outcomes. Thus, sufficiently long
+extensions will minimize this number. Such extensions are called generic strings.
+
+Definition. Let T ⊆ Σ ∗ be arbitrary. A string y ∈ T is lr-generic (for M )
+over T if |Qlr (y)| = |Qlr (yz)| for all yz ∈ T . It is rl-generic if |Qrl (zy)| =
+|Qrl (y)| for all zy ∈ T . It is generic if it is both lr- and rl-generic.
+
+Lemma 2. Every ∅ 6= T ⊆ Σ ∗ admits lr- and rl-generic strings. Also, if yl is
+lr-generic and yr is rl-generic, then every yl xyr ∈ T is generic over T .
+
+      Alternatively, genericity can be characterized via αy,z and βz,y , as follows.
+Lemma 3. Let y ∈ T ⊆ Σ ∗ . Then y is lr-generic over T iff αy,z is total
+and bijective from Qlr (y) to Qlr (yz) for all yz ∈ T . Similarly, y is rl-generic
+over T iff βz,y is total and bijective from Qrl (y) to Qrl (zy) for all zy ∈ T .
+Proof. We focus on the first equivalence (the second one follows symmetrically)
+and on the ‘only if’ direction —the ‘if’ direction is immediate, since the existence
+of any total bijection from Qlr (y) to Qlr (yz) implies |Qlr (y)| = |Qlr (yz)|.
+    Let y be lr-generic over T and pick yz ∈ T . We know αy,z partially maps
+Qlr (y) to Q (by definition) and covers Qlr (yz) (Fact 2a). Namely, each r ∈
+Qlr (yz) has a distinct q ∈ Qlr (y) with αy,z (q) = r. So, if there were q ∈ Qlr (y)
+with αy,z (q) undefined or outside Qlr (yz) or equal to αy,z (q 0 ) for another q 0 ∈
+Qlr (y), we would have |Qlr (y)| > |Qlr (yz)|, contrary to y being generic. Hence,
+αy,z (q) is defined and in Qlr (yz) and distinct, for all q ∈ Qlr (y). Namely, αy,z is
+a total injection from Qlr (y) to Qlr (yz). By Fact 2a, it is also a surjection. t  u
+
+3.2   Blocks
+Fix ∅ 6= T ⊆ Σ ∗ , fix a generic ϑ over T , and let A := Qlr (ϑ) and B := Qrl (ϑ).
+   Every string of the form ϑxϑ is a block (on ϑ), and x is its infix. We say the
+pair (αx , βx ) := (αϑ,xϑ , βϑx,ϑ ) are the inner behavior of M on the block.
+   Recall that αx : A * Q and βx : B * Q. In the special case where each
+function is the identity, the prefix ϑx and the suffix xϑ are ‘invisible’ to M .
+Lemma 4. Suppose (αx , βx ) = (idA , idB ). Pick any u,v and let c0 , c1 , . . . and
+d0 , d1 , . . . be the decompositions of comp(uϑv) and comp(uϑxϑv) by ϑ and ϑxϑ,
+respectively. Then ci parallels di for all even i, and resembles di for all odd i.
+Thus, M behaves (accepts, rejects, or loops) identically on uϑv and uϑxϑv.
+   In blocks of the form ϑ(xϑy)ϑ, where ϑ is an infix of the infix itself, the inner
+behavior of M depends on its inner behaviors on the sub-blocks ϑxϑ and ϑyϑ.
+Fact 3. Let z = xϑy. Then αx ◦ αy ≤ αz and βy ◦ βx ≤ βz . In addition, if αz
+is total and injective, then so is αx ; if βz is total and injective, then so is βy .
+Proof. To prove αx ◦ αy ≤ αz , let p ∈ A and assume (αx ◦ αy )(p) is defined and
+equal to some r ∈ Q. Then αx (p) is defined and equal to some q ∈ Q, and αy (q) is
+defined and equal to r. By αx (p) = q, we know cx := compp,|ϑ|+1 (ϑxϑ) hits right
+into q. (Fig. 1e.) By αy (q) = r, we also know cy := compq,|ϑ|+1 (ϑyϑ) hits right
+into r. Now, concatenating cx , cy gives exactly cz := compp,|ϑ|+1 (ϑxϑyϑ). Hence
+cz hits right into r. Therefore αz (p) is defined and equal to (αx ◦ αy )(p).
+    Now suppose αz is total and injective. If αx is not total, then αx (p) is un-
+defined for some p ∈ A, namely cx := compp,|ϑ|+1 (ϑxϑ) hits left or loops. But
+cx is a prefix of cz := compp,|ϑ|+1 (ϑxϑyϑ), so cz also hits left or loops. Hence
+αz (p) is undefined, and αz is not total—contradiction. If αx is not injective,
+then αx (p) = αx (p0 ) for two distinct p, p0 ∈ A, namely cx := compp,|ϑ|+1 (ϑxϑ)
+and c0x := compp0 ,|ϑ|+1 (ϑxϑ) hit right into the same state. But cx and c0x are
+prefixes of cz := compp,|ϑ|+1 (ϑxϑyϑ) and c0z := compp0 ,|ϑ|+1 (ϑxϑyϑ), so cz and
+c0z continue identically after the ϑxϑ-yϑ boundary, hitting right into the same
+state. Hence αz (p) = αz (p0 ), and αz is not injective—contradiction.          t
+                                                                                u
+   We will need a variant of Fact 3 for blocks of the form ϑ(xϑxϑ · · · xϑx)ϑ,
+where the infix is multiple ϑ-separated copies of x. Let x(k) := x(ϑx)k−1 for
+k ≥ 1. Note that ϑx(k) ϑ = ϑ(xϑ)k = (ϑx)k ϑ and (x(k) )(l) = x(lk) for all k, l.
+
+Fact 4. Let k ≥ 1. Then (αx )k ≤ αx(k) and (βx )k ≤ βx(k) . In addition, if αx(k)
+is total and injective, then so is αx ; if βx(k) is total and injective, then so is βx .
+
+Proof. We prove (αx )k ≤ αx(k) inductively. Case k = 1 is trivial. For the induc-
+tive step, assume (αx )k ≤ αx(k) . Then (αx )k+1 = αx ◦ (αx )k ≤ αx ◦ αx(k) (Fact 1)
+and αx ◦ αx(k) ≤ αx(k+1) (Fact 3 for z = xϑ(x(k) ) = xϑx(ϑx)k−1 = x(ϑx)k =
+x(k+1) ). So, (αx )k+1 ≤ αx(k+1) (by transitivity of ≤), and we are done. The ad-
+ditional claim follows from that of Fact 3 when z = xϑ(x(k−1) ) = x(k) .          t
+                                                                                  u
+
+    If any infix x(k) causes the inner behavior of M to just permute the outcomes
+of ϑ, then longer infixes force the behavior into the special case of Lemma 4.
+
+Fact 5. If (αx(k) , βx(k) ) permute (A, B), then (αx(tlk) , βx(tlk) ) = (idA , idB ) for
+some l ≥ 1 and all t ≥ 1.
+
+Proof. Let z := x(k) and suppose αz and βz are permutations of A and B. Pick
+l ≥ 1 so that both permutations become identity after l iterations: (αz )l = idA
+and (βz )l = idB . Then (αz )l ≤ αz(l) (Fact 4), where z (l) = (x(k) )(l) = x(lk) ; i.e.,
+idA ≤ αx(lk) , so αx(lk) = idA (Fact 1). Similarly, βx(lk) = idB . Now, let t ≥ 1. By
+Fact 4, (αx(lk) )t ≤ α(x(lk) )(t) . By (αx(lk) )t = (idA )t = idA and (x(lk) )(t) = x(tlk) ,
+we know idA ≤ αx(tlk) , so αx(tlk) = idA (Fact 1). Similarly, βx(tlk) = idB .            t
+                                                                                         u
+
+    We will now state a condition that forces the number of reversals to become
+more than sublinear. We say (A, B) use reversals on x if some compp,|ϑ|+1 (ϑxϑ)
+for p ∈ A or some compp,|ϑx| (ϑxϑ) for p ∈ B contains at least one reversal.
+
+Lemma 5. If (A, B) use reversals on x and (αx , βx ) permute (A, B), then it
+cannot be rM (n) = o(n).
+
+Proof. Since (A, B) use reversals, there is a d := compq,|ϑ|+1 (ϑxϑ) with q ∈ A
+(or a compq,|ϑx| (ϑxϑ) with q ∈ B, and we work similarly) containing ≥ 1 reversal
+(Fig. 1f); in fact, d contains ≥ 1 forward reversal (because d hits right, since αx
+permutes A =⇒ αx (q) is defined). Since (αx , βx ) permute (A, B), there exists
+l ≥ 1 such that (αx(tl) , βx(tl) ) = (idA , idB ) for all t ≥ 1 (by Fact 5 for k = 1).
+    Let z := x(l) . Then z (t) = x(tl) and thus (αz(t) , βz(t) ) = (idA , idB ), for all t.
+Using this, we show that each dt := compq,|ϑ|+1 (ϑz (t) ϑ) reverses a lot (Fig. 1g).
+    Claim. For every t ≥ 1, computation dt contains ≥ t forward reversals.
+    Proof. By induction. For t = 1, d1 = compq,|ϑ|+1 (ϑz (1) ϑ). By z (1) = z = x(l)
+and l ≥ 1, we know ϑz (1) ϑ has ϑxϑ as prefix, hence d1 has d as prefix, and
+thus contains ≥ 1 forward reversals. For t > 0, dt = compq,|ϑ|+1 (ϑz (t) ϑ). Since
+ϑz (t) ϑ = ϑz (t−1) ϑzϑ, the prefix of dt up to the ϑz (t−1) ϑ-zϑ boundary is dt−1 ,
+the state after crossing this boundary is αz(t−1) (q) = idA (q) = q, and thus the
+remaining suffix compq,|ϑz(t−1) ϑ|+1 (ϑz (t−1) ϑzϑ) parallels d1 . Hence, dt contains
+the ≥ t−1 forward reversals of dt−1 plus the ≥ 1 of d1 , for a total of ≥ t.
+    Since q ∈ A = Qlr (ϑ), there exist p,u,v such that c := lcompp (ϑ) appears
+in ĉ := comp(uϑv) and hits right into q (Fig. 1h). Consider the family of in-
+puts wt := uϑz (t) ϑv for t ≥ 1, and the respective computations ĉt := comp(wt )
+(Fig. 1i). By Lemma 4 and (αz(t) , βz(t) ) = (idA , idB ), we know c resembles a seg-
+ment ct in the decomposition of ĉt by ϑz (t) ϑ. So, ct is a l-computation on ϑz (t) ϑ
+from p. Since ϑ is a prefix of ϑz (t) ϑ, the prefix of ct up to the ϑ-z (t) ϑ boundary
+is c, the state after crossing the boundary is q, and the suffix compq,|ϑ|+1 (ϑz (t) ϑ)
+from then on parallels dt . So, ĉt also contains ≥ t forward reversals, and thus
+≥ 2t reversals overall (ĉt is full, so each forward reversal follows a backward one).
+    Now, each ĉt works on input length nt := |wt | = |uϑx(tl) ϑv| = |uϑ(xϑ)tl v| =
+l|xϑ| · t + |uϑv|. Thus rM (nt ) ≥ r(ĉt ) ≥ 2t = (2/l|xϑ|) · nt − 2|uϑv|/l|xϑ|. So,
+rM (n) exceeds a linear function inifinitely often. Hence, rM (n) 6= o(n).            t
+                                                                                      u
+    Now fix T̃ ⊆ T . With respect to the problem (T, T̃ ), an infix x is positive, neg-
+ative, or neutral if ϑxϑ is in T , in T̃ , or in neither. We will encounter cases which
+meet the promise that either some x(k) are positive or all x(k) are negative. We
+then say that ϑ,x respect (T, T̃ ); and that they select T (resp., T̃ ), if the promise
+is met by its left (resp., right) disjunct. If in addition M solves (T, T̃ ), then we
+can tell which disjunct is selected using a ‘local’ criterion for M on ϑxϑ. The
+next fact assembles this criterion; the next lemma states it more compactly.
+Fact 6. If positive x(k) exist, then (αx , βx ) permute (A, B). Almost conversely,
+if M solves (T, T̃ ) and (αx , βx ) permute (A, B), then non-negative x(k) exist.
+Proof. [⇒] Suppose z := x(k) is positive for some k ≥ 1. We shall prove that
+αx : A * Q is a permutation of A (the claim for βx follows similarly). For this, it
+is enough to prove two Claims: (1) αx is total and injective, and (2) αx [A] ⊆ A.
+    Since z is positive, namely ϑzϑ = ϑ(xϑ)k ∈ T , we know αz = αϑ,(xϑ)k is a
+total bijection from A = Qlr (ϑ) to A0 := Qlr (ϑzϑ) (Lemma 3). But A0 ⊆ A
+(Fact 2a, since ϑzϑ ends in ϑ) and |A0 | = |A| (since αz is bijective), so A0 = A.
+Thus, αz = αx(k) permutes A. By a symmetric argument, βz = βx(k) permutes B.
+    Since αx(k) is total and injective, Claim 1 is true (Fact 4). For Claim 2, let
+r ∈ αx [A]. Then there is q ∈ A = Qlr (ϑ) with αx (q) = r. I.e., there exist p,q and
+u,v such that c := lcompp (ϑ) appears in ĉ := comp(uϑv) and hits right into q
+(Fig. 1h), and d := compq,|ϑ|+1 (ϑxϑ) hits right into r (Fig. 1f). Note that c is an
+odd-indexed segment in the decomposition of ĉ by ϑ. Now pick any t ≥ 1 with
+(αz(t) , βz(t) ) = (αx(tk) , βx(tk) ) = (idA , idB ) (Fact 5). Lemma 4 says c resembles an
+odd-indexed segment ct in the decomposition of ĉt := comp(uϑz (t) ϑv) by ϑz (t) ϑ
+(Fig. 1j). So, ct is also a l-computation from p, on ϑz (t) ϑ. Since ϑxϑ is a prefix
+of ϑz (t) ϑ, the prefix of ct up to the first crossing of the right boundary of ϑxϑ
+is c followed by a parallel of d. In particular, if q̃ is the state in d after the
+last crossing of the ϑx-ϑ boundary, then d˜ := lcompq̃ (ϑ) hits right into r and
+appears in ĉt = comp((uϑx)ϑ(x(tk−1) ϑv)). Hence, r ∈ Qlr (ϑ) = A.
+    [⇐] Suppose M solves (T, T̃ ) and (αx , βx ) = (αx(1) , βx(1) ) permute (A, B).
+Pick any t ≥ 1 with (αx(t·1) , βx(t·1) ) = (idA , idB ) (Fact 5). Pick k = t · 1. Then M
+behaves identically on ϑ and ϑx(k) ϑ (Lemma 4 with empty u,v). Since it accepts
+ϑ ∈ T , it also accepts ϑx(k) ϑ, thus ϑx(k) ϑ ∈      / T̃ . So, x(k) is positive or neutral. t
+                                                                                             u
+Lemma 6. Suppose M solves (T, T̃ ) and ϑ,x respect (T, T̃ ). Then ϑ,x select T iff
+each outcome of ϑ is hit exactly once by the respective half of the inner behavior:
+             ∀r ∈ A |αx−1 (r)| = 1 & ∀r ∈ B |βx−1 (r)| = 1 .
+                                                                 
+                                                                                (2)
+Proof. If ϑ,x select T , then positive x(k) exist, so αx permutes A (Fact 6) and
+thus hits every r ∈ A exactly once; similarly for βx ,B. Conversely, if αx : A * Q
+hits every r ∈ A, then it is total and injective and stays in A (or else its values
+are not enough to cover A), hence it bijects A into A, i.e., permutes it; similarly
+for βx ,B. So, nonnegative x(k) exist (Fact 6). So ϑ,x do not select T̃ , but T . t
+                                                                                  u
+     If M uses sublinearly many reversals, then we can simplify (2) by replacing
+αx−1 (r), βx−1 (r) by two simpler sets αx∗ (r), βx∗ (r), which we now introduce. Recall
+that αx−1 (r) is all p ∈ A for which compp,|ϑ|+1 (ϑxϑ) hits right into r. Of course,
+each p may reach r after arbitrary meanders inside ϑxϑ. Now suppose we demand
+computations that stay inside xϑ and cross the x-ϑ boundary only once; then
+αx∗ (r) is all p ∈ A that reach r via such ‘simple computations’ (Fig. 1k):
+
+  αx∗ (r) = αϑ,xϑ
+             ∗
+                  (r) := {p ∈ A | (∃q ∈ Q)(lcompp (x) hits right into q
+                                            & lcompq (ϑ) hits right into r)} . (3)
+                          ∗
+Symmetrically, βx∗ (r) = βϑx,ϑ (r) is all p ∈ B for which compp,|ϑx| (ϑxϑ) hits left
+into r having crossed the ϑx-ϑ and ϑ-xϑ boundaries 0 and 1 times respectively.
+     The simplification of (2) is proved in the next lemma. Before that, the next
+fact studies the new sets. The boolean functions δlr (p, x, q) and δrl (q, x, p) are 1
+iff lcompp (x) hits right into q and iff rcompp (x) hits left into q, respectively.
+Fact 7. For all r ∈ Q: αx∗ (r) ⊆ αx−1 (r) and βx∗ (r) ⊆ βx−1 (r). Moreover :
+                    X                                    X
+        |αx∗ (r)| =    δlr (p, x, q)         |βx∗ (r)| =       δrl (q, x, p) .      (4)
+               p∈A & lcompq (ϑ)                       p∈B & rcompq (ϑ)
+                hits right into r                      hits left into r
+
+                  P are easy. For the left equality, consider any p ∈ A and the
+Proof. The inclusions
+inner sum Sp := q δlr (p, x, q) over all q for which lcompq (ϑ) hits right into r
+(Fig. 1l). Since M is deterministic, Sp ≤ 1. And Sp = 1 iff one of these P q is the
+witness required in (3); i.e., Sp = 1 ⇐⇒ p ∈ αx∗ (r). So, the number p∈A Sp of
+p ∈ A for which Sp = 1, is the size of αx∗ (r). Similarly for the other equality. t
+                                                                                  u
+Lemma 7. Suppose M solves (T, T̃ ) with rM (n) = o(n), and ϑ,x respect (T, T̃ ).
+Then ϑ,x select T iff each outcome of ϑ is hit by exactly one ‘simple computation’ :
+               ∀r ∈ A |αx∗ (r)| = 1 & ∀r ∈ B |βx∗ (r)| = 1 .
+                                                                
+                                                                                (5)
+Proof. Suppose ϑ,x select T . Then (αx , βx ) permute (A, B) (Fact 6), so (A, B) do
+not use reversals (Lemma 5 and rM (n) = o(n)). Now pick any r ∈ A. Then
+|αx∗ (r)| ≤ 1, because αx∗ (r) ⊆ αx−1 (r) (Fact 7) and |αx−1 (r)| = 1 (Lemma 6). And
+|αx∗ (r)| ≥ 1, because the r-hitting compp,|ϑ|+1 (ϑxϑ) of the unique p ∈ αx−1 (r)
+uses no reversals (because (A, B) do not use reversals), thus p ∈ αx∗ (r). Overall,
+|αx∗ (r)| = 1. Similarly for βx∗ ,B. Conversely, if (5) is true, then (2) is true (since
+αx∗ (r) ⊆ αx−1 (r) and βx∗ (r) ⊆ βx−1 (r)), and thus ϑ,x select T (Lemma 6).          t
+                                                                                      u
+4       The Proof
+Fix h ≥ 1. Suppose Σ = Σh and M solves owlh with rM (n) = o(n) reversals.
+We will prove that M needs exponentially many states, namely |Q| = Ω(2h ).
+
+4.1      The Hard Instances
+We focus on a family of hard instances of owlh similar to that of [6, §3.2]. This
+is all blocks ϑxϑ where ϑ and x are drawn from two families (ϑi )i∈I and (xi )i∈I
+of generic and single-symbol strings, respectively. Here, i ranges over all pairs
+of non-empty subsets of [h], namely I := {(α, β) | ∅ 6= α,β ⊆ [h]}.1 These are
+totally ordered by the rule (α0 , β 0 ) < (α, β) ⇔def hα0 ihβ 0 i <b hαihβi, where h·i is
+the natural h-bit encoding of subsets of [h] and <b is the natural order on 2h-bit
+positive integers. For each i = (α, β) ∈ I, the string ϑi is any fixed generic string
+over Ti := {z ∈ Σ ∗ | z has connectivity α × β}, and xi := β × α is the 1-long
+string of all arrows not in β × α. We also let T∅ := {z ∈ Σ ∗ | z is dead}.
+    We picture these blocks on a |I| × |I| matrix. Cell (i, j) hosts block ϑi xj ϑi
+and copies of the objects associated with it in Lemma 7: the sets Ai := Qlr (ϑi ),
+                                        ∗
+Bi := Qrl (ϑi ) and the functions αi,j     := αϑ∗ i ,xj ϑi , βi,j
+                                                              ∗
+                                                                  := βϑ∗i xj ,ϑi . Crucially, the
+assumptions of Lemma 7 are satisfied in all cells, and its conclusions follow a
+simple pattern on and below the diagonal (i.e., when i ≥ j).
+Fact 8. For all i,j ∈ I, the assumptions of Lemma 7 are satisfied by M ,ϑi ,xj for
+(Ti , T∅ ). Furthermore, if i > j then ϑi ,xj select Ti ; if i = j then ϑi ,xj select T∅ .
+Proof. Fix any i = (α, β) and j = (α0, β 0 ). We first check the assumptions of the
+lemma. Easily, M solves (Ti , T∅ ) (since all of Ti is live and all of T∅ is dead) with
+rM (n) = o(n) (by assumption), and ϑi is generic for M over Ti (by selection).
+To show that ϑi ,xj respect (Ti , T∅ ), we take cases. If ϑi xj ϑi is dead, then all
+ϑi (xj ϑi )k for k ≥ 1 are dead (since all extensions of a dead string are dead),
+namely all (xj )(k) are negative. If ϑi xj ϑi is live, then some path a∗              b∗ for
+  ∗ ∗                                                                           0 0
+a ,b ∈ [h] connects its outer columns (cf. next figure, left side). If b ,a are the
+visited nodes on the columns of xj , then the path has the form a∗ b0 → a0 b∗
+and ϑi has paths a∗ b0 and a0 b∗ . Hence (a∗, b0 ), (a0, b∗ ) ∈ ξ, for ξ = α × β the
+connectivity of ϑi . Thus, b0 ∈ β and a0 ∈ α. Now, for any a,b ∈ [h], consider the
+ath leftmost and bth rightmost nodes of ϑi xj ϑi . If a 6∈ α ∨ b 6∈ β, then the two
+nodes do not connect, since neither can ‘see through’ ϑi ; but if a ∈ α & b ∈ β,
+then (a, b0 ), (a0, b) ∈ ξ, so the two nodes connect via a path a            b0 → a0      b.
+                                                                           (1)
+Hence, ϑi xj ϑi has connectivity ξ, namely ϑi xj ϑi ∈ Ti , and (xj ) is positive.
+Overall, ϑi ,xj respect (Ti , T∅ ). In particular, ϑi ,xj select Ti iff ϑi xj ϑi is live.
+            ϑi      β 0 xj α0      ϑi                      ϑi      β 0 xj α 0      ϑi
+                                                  ∗
+                                              b
+    α                                                 α
+ ∗                                           β                                               β
+a
+                     0      0
+                   b      a
+1
+     Here α,β (without subscripts) denote subsets of [h]. This causes no confusion with the
+     names (with subscripts) for M ’s inner behavior, and preserves notational symmetry.
+    If i > j (cf. left side), then hα0 ihβ 0 i <b hαihβi. Thus α0 + α ∨ β 0 + β
+(otherwise α0 ⊇ α & β 0 ⊇ β, thus the 1’s of hα0 i and hβ 0 i cover all 1’s of hαi
+and hβi, hence hα0 ihβ 0 i ≥b hαihβi, a contradiction). Suppose β 0 + β (if α0 + α,
+apply a similar argument). Pick any a∗ ∈ α, b0 ∈ β \ β 0 , a0 ∈ α, and b∗ ∈ β.
+Then (a∗, b0 ) ∈ ξ and (b0, a0 ) ∈ β 0 × α0 and (a0, b∗ ) ∈ ξ, therefore ϑi xj ϑi contains
+the path a∗ b0 → a0 b∗ , and is live. Thus, ϑi ,xj select Ti .
+    If i = j (cf. right side), then xj has connectivity ξ 0 = β × α. If ϑi ,xj do not
+select T∅ , then they select Ti , so ϑi xj ϑi is live. Pick any witnessing path, say of
+the form a∗       b0 → a0    b∗ . Then (a∗, b0 ) ∈ ξ and (b0, a0 ) ∈ ξ 0 and (a0, b∗ ) ∈ ξ.
+Therefore b ∈ β and (b , a ) ∈ β × α and a0 ∈ α, a contradiction.
+             0            0 0
+                                                                                         t
+                                                                                         u
+
+
+4.2   The Bound
+
+Now consider the following two families of experiments.
+    First, fix ϑi and r ∈ Q, let xj range over all possibilities, and observe how
+                  ∗            ∗
+the sizes of αi,j   (r) and βi,j (r) vary with xj . The result is two 1 × |I| vectors,
+            ∗                              ∗
+ai,r := (|αi,j (r)|)j∈I and bi,r := (|βi,j   (r)|)j∈I . Repeat for all ϑi and r, to obtain
+the two sets of vectors A := {ai,r | i ∈ I, r ∈ Q} and B := {bi,r | i ∈ I, r ∈ Q}.
+    Second, fix p,q ∈ Q, let xj range over all possibilities, and observe how the
+bits δlr (p, xj , q) and δrl (q, xj , p) vary. The result is two 1 × |I| binary vectors,
+up,q := (δlr (p, xj , q))j∈I and vq,p := (δrl (q, xj , p))j∈I . Repeat for all p and q, to
+obtain the two sets of vectors U := {up,q | p, q ∈ Q} and V := {vq,p | p, q ∈ Q}.
+
+Fact 9a. Every vector in A ∪ B is a linear combination of vectors from U ∪ V.
+
+Proof. Fix i ∈ I and r ∈ Q. The left equality in Fact 7 implies that for all j ∈ I:
+                                                 X                   X
+                 ∗
+    ai,r (j) = |αi,j (r)| = |αϑ∗ i ,xj ϑi (r)| =   δlr (p, xj , q) =   up,q (j)
+                                         p∈Ai & lcompq (ϑi )     p∈Ai & lcompq (ϑi )
+                                           hits right into r       hits right into r
+                P                                                           P
+and thus ai,r =    up,q for the specific ranges of p,q. Similarly, bi,r =     vq,p if
+the sum ranges over all p ∈ Bi and all q for which rcompq (ϑi ) hits left into r. tu
+
+Fact 9b. The set A ∪ B contains |I| − 1 linearly independent vectors.
+
+Proof. We will find in A ∪ B a vector family (ci )i∈I such that i > j =⇒ ci (j) = 1
+and i = j =⇒ ci (j) = 0, for all i,j ∈ I. This will be enough. Because then the
+numbers ci (j) form a |I| × |I| matrix with 0s on the diagonal and 1s below it,
+which has rank |I| − 1 (easily), and thus |I| − 1 of the ci must be independent.
+    Pick i ∈ I. Since ϑi , xi select T∅ (Fact 8), there exist r ∈ Ai or r ∈ Bi which
+                                                                               ∗
+are not hit by exactly 1 simple computation (Lemma 7), respectively |αi,i        (r)| 6= 1
+     ∗
+or |βi,i (r)| 6= 1. One of these r must, in fact, be hit by 0 simple computations
+(otherwise, each r is hit by ≥ 1 value of αi,i or βi,i and at least one is hit by ≥ 2
+values, for an absurd total of ≥ |Ai | + |Bi | + 1 values of αi,i and βi,i ). If ri is
+                                       ∗                            ∗
+this unhit state, then ri ∈ Ai & |αi,i   (ri )| = 0 or ri ∈ Bi & |βi,i (ri )| = 0. In the
+former case, we let ci := ai,ri ; in the latter case, we let ci := bi,ri .
+    By this definition, clearly ci (i) = 0. Moreover, if i > j then ϑi ,xj select Ti
+(Fact 8) and thus each r ∈ Ai and r ∈ Bi is hit by exactly 1 simple computation
+(Lemma 7). Hence, so is ri . Therefore, depending on the case in ci ’s definition,
+                              ∗                                        ∗
+either ci (j) = ai,ri (j) = |αi,j (ri )| = 1 or ci (j) = bi,ri (j) = |βi,j (ri )| = 1. t
+                                                                                       u
+   So, U ∪ V span a space of dimension ≥ |I| − 1. Clearly then |U ∪ V| ≥ |I| − 1,
+therefore 2|Q|2 ≥ (2h −1)2 −1. Hence |Q| = Ω(2h ), and the proof is complete.
+
+5    Conclusion
+We confirmed the Sakoda-Sipser conjecture in the special case of fas performing
+o(n) reversals, by proving that owl needs exponentially large dfas of this kind.
+    The large alphabet of owlh is not a problem, as binary witnesses exist, too:
+Just encode the symbols of Σh into h2 -bit strings. Then dfas still need Ω(2h )
+states (same proof, as all reasoning is on cell boundaries), while nfas need only
+O(h2 ). So, our title is valid even if ‘small fas’ means ‘fas of small description’.
+    Theorem 1 says that all dfas for owlh satisfy rM (n) 6= o(n) ∨ |Q| = Ω(2h ),
+but the stronger condition rM (n) = Ω(n) ∨ |Q| ≥ 2h is probably also true. An-
+other possible direction for further work is to continue with Research Problem 4
+of [4] and fully analyze the trade-off between size and number of reversals.
+
+References
+ 1. Piotr Berman and Andrzej Lingas. On complexity of regular languages in terms
+    of finite automata. Report 304, Institute of Computer Science, Polish Academy of
+    Sciences, Warsaw, 1977.
+ 2. Viliam Geffert, Carlo Mereghetti, and Giovanni Pighizzini. Converting two-way
+    nondeterministic unary automata into simpler automata. Theoretical Computer
+    Science, 295:189–203, 2003.
+ 3. Viliam Geffert and Giovanni Pighizzini. Two-way unary automata versus logarith-
+    mic space. In Proceedings of DLT, pages 197–208, 2010.
+ 4. Juraj Hromkovič. Descriptional complexity of finite automata: concepts and open
+    problems. Journal of Automata, Languages and Combinatorics, 7(4):519–531, 2002.
+ 5. Juraj Hromkovič and Georg Schnitger. Nondeterminism versus determinism for
+    two-way finite automata: generalizations of Sipser’s separation. In Proceedings of
+    ICALP, pages 439–451, 2003.
+ 6. Christos Kapoutsis. Small sweeping 2NFAs are not closed under complement. In
+    Proceedings of ICALP, pages 144–156, 2006.
+ 7. Christos Kapoutsis. Deterministic moles cannot solve liveness. Journal of Au-
+    tomata, Languages and Combinatorics, 12(1-2):215–235, 2007.
+ 8. Christos Kapoutsis. Two-way automata versus logarithmic space. In Proceedings
+    of CSR, pages 359–372, 2011.
+ 9. Hing Leung. Tight lower bounds on the size of sweeping automata. Journal of
+    Computer and System Sciences, 63(3):384–393, 2001.
+10. William J. Sakoda and Michael Sipser. Nondeterminism and the size of two-way
+    finite automata. In Proceedings of STOC, pages 275–286, 1978.
+11. Joel I. Seiferas. Untitled manuscript, communicated to M. Sipser. October 1973.
+12. Michael Sipser. Lower bounds on the size of sweeping automata. Journal of
+    Computer and System Sciences, 21(2):195–202, 1980.
+
