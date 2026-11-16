@@ -1,0 +1,13 @@
+# Annular Martin legacy correspondence preflight
+
+**Bounded negative: no genuinely corresponding current legacy article identified.** Native record23332261 supplies no `isDocumentedBy` or `related_identifiers` route. No path was guessed.
+
+The native title is “A Martin kernel with isolated Harnack contact in an annulus”, Alec Kriebel, version1.0.0, publication_date 2026-10-12 (created 2026-10-13T05:12:09.360305+00:00). Native DOI `10.5281/zenodo.23332261` and concept DOI `10.5281/zenodo.23332260` are identity inputs. Bibliographic references are third-party sources, not article-route evidence.
+
+Current GitHub main opened and closed at `7492e3db011862a0c1500abe9dcca5023bfb43fb`, root `d70aa943065c49379b28b990b5033037fb431f29`, docs `f354d7c396652ff7e4287618708c29a1edeab509`. The unchanged docs tree was reused by authenticated static reference:304 tree entries,51 tree objects reconstructed from metadata,47 current HTML paths. Each of the47 HTML buffers was hashed against its exact Git blob and SHA256 before parsing. No254-body reacquisition or old helper execution occurred.
+
+Only current paths, title-element text, H1, selected citation-title/DOI/author metadata and canonical fields were searched for the frozen source terms (full native title; native/concept DOI and IDs; Martin kernel; Harnack; annul; Arsove; Johnson;7.42). Zero matches. The complete47-row finite lookup and exact body references are in HTML_IDENTITY_LOOKUP.json. The title parser also includes embedded SVG title text; this broadens, rather than removes, searched title text. No whole-body article-text search was performed. No exact article candidate was selected or read as a corresponding article; no old DOI/version/result identity or fragment set is established.
+
+The actual private model supplies proposed target `/research/annular-martin-kernel-isolated-harnack-contact/`; root public canonical and AA are null. Target private fragment IDs are retained as source data only. No old route, alias, fragment mapping or redirect is proposed. Eventual redirect authority requires an evidenced genuine source and separately verified live target.
+
+Limits: this is a current47-HTML identity-field result, not absence across full bodies, unknown aliases, assets, history or the public web. No PDF/ZIP, programme/science replay, W/Git/Sheet/deploy/contact action, or live HTTP certification. Math local HEAD and whole opaque index bytes/hash/mode matched the frozen baseline after inspection; source and private identity pins were unchanged. All writes stayed in this new owned folder. Completed100% at 2026-11-16T13:53:34.417227+00:00.
