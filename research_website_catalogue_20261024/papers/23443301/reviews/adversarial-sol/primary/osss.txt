@@ -1,0 +1,613 @@
+                                                              Every decision tree has an influential variable
+                                                        Ryan O’Donnell∗                           Michael Saks†                       Oded Schramm
+
+
+
+
+arXiv:cs/0508071v1 [cs.CC] 16 Aug 2005
+                                                      Microsoft Research                        Rutgers University                   Microsoft Research
+                                                    odonnell@microsoft.com                    saks@math.rutgers.edu
+                                                                                            Rocco A. Servedio‡
+                                                                                           Columbia University
+                                                                                         rocco@cs.columbia.edu
+                                                                                            September 24, 2018
+
+
+                                         Abstract                                                              the randomized query complexity of nontrivial monotone
+                                                                                                               graph properties is at least Ω(v 4/3 /p1/3 ), where v is the
+                                         We prove that for any decision tree calculating a boolean number of vertices and p ≤ 1 is the critical thresh-
+                                                                                                                                                 2
+                                         function f : {−1, 1}n → {−1, 1},                                      old probability. This supersedes the milestone Ω(v 4/3 )
+                                                                         X n                                   bound of Hajnal [13] and is sometimes superior to the
+                                                             Var[f ] ≤         δi Inf i (f ),                  best known lower bounds of Chakrabarti-Khot [9] and
+                                                                          i=1                                  Friedgut-Kahn-Wigderson [11].
+                                         where δi is the probability that the ith input variable is
+                                         read and Inf i (f ) is the influence of the ith variable on f .
+                                         The variance, influence and probability are taken with re- 1 Introduction
+                                         spect to an arbitrary product measure on {−1, 1}n. It fol-
+                                         lows that the minimum depth of a decision tree calculat- 1.1 Motivation.
+                                         ing a given balanced function is at least the reciprocal of This paper lies at the intersection of two topics within the
+                                         the largest influence of any input variable. Likewise, any theory of boolean functions.
+                                         balanced boolean function with a decision tree of depth                  The first topic is decision tree complexity. A deter-
+                                         d has a variable with influence at least d1 . The only pre- ministic decision tree (DDT) for a boolean function f :
+                                         vious nontrivial lower bound known was Ω(d2−d ). Our {−1, 1}n → {−1, 1} is a deterministic adaptive strategy
+                                         inequality has many generalizations, allowing us to prove for reading variables so as to determine the value of f
+                                         influence lower bounds for randomized decision trees, (a formal definition appears in Section 3.1). The cost of
+                                         decision trees on arbitrary product probability spaces, a DDT on a given input is simply the number of input
+                                         and decision trees with non-boolean outputs. As an ap- variables that it reads, and the DDT complexity of a func-
+                                         plication of our results we give a very easy proof that tion f , D(f ), is the minimum over all DDT’s for f of the
+                                            ∗ Some of this research was performed while this author was at the maximum cost of any input. A randomized decision tree
+                                         Institute for Advanced Study                                          (RDT) for f is a probability distribution over DDTs for
+                                            † Supported in part by NSF grants CCR-9988526 and CCR-0515201.
+                                            ‡ Supported in part by NSF CAREER award CCF-0347282 and a          f ; such trees are sometimes known as zero-error random-
+                                         Sloan Foundation Fellowship.                                          ized decision trees. The RDT complexity of f , R(f ), is
+                                                                                                               the minimum over all RDT’s for f of the maximum ex-
+                                         This paper is posted by permission from the IEEE Computer Soci- pected cost of any input. Decision tree complexity has
+                                         ety. To appear in FOCS 2005.                                          been studied in theoretical computer science for over 30
+
+                                                                                                         1
+years and there is now a significant body of research on               sure, µ(p) (x) = p|{i:xi =1}| (1 − p)|{i:xi =−1}| . When we
+the subject (for a survey, see e.g., [8]).                             write simply {−1, 1}n the uniform measure case p = 12
+   The second topic is variable influences, introduced to              is implied. Our main interest is in boolean functions
+theoretical computer science by Ben-Or and Linial in                   f : {−1, 1}n(p) → {−1, 1}, and in this section we will
+1985 [2]. Any n-variate boolean function f has an as-                  describe our main theorem in this case.
+sociated influence vector (Inf 1 (f ), . . . , Inf n (f )) where          First we recall a few definitions. We have
+Inf i (f ) measures the extent to which the value of f de-
+                                                                        Var[f ] = E[f 2 ] − E[f ]2 = 4 Pr[f = 1] Pr[f = −1].
+pends on variable i (a precise definition appears in Sec-
+tion 1.2). A number of papers have dealt with properties               This measures the “balance” of f ; if f is equally likely to
+of this vector and its relation to other properties of boolean         be 1 as −1, then Var[f ] = 1. We also make the following
+functions; perhaps the best known work along these lines               definition for the influence of the ith coordinate on f :
+is that of Kahn, Kalai and Linial [14] (“KKL”) concern-
+                                                                                 Inf i (f ) = 2       Pr [f (x) 6= f (x(i) )],
+ing the maximum influence Inf max (f ) = max{Inf i (f ) :                                            x,x(i)
+i ∈ [n]}. Their result implies, for example, that
+Inf max (f ) = Ω( logn n ) for any near-balanced boolean               where x is drawn from {−1, 1}n(p) and x(i) is formed by
+function f (where we say that f is near-balanced if both               rerandomizing the ith coordinate of x. Note that our defi-
+|f −1 (1)|/2n and |f −1 (−1)|/2n are Ω(1)).                            nition agrees with the one introduced in [2] in the uniform
+   The question that originally motivated this paper was:              measure case p = 21 , which was Inf i [f ] = Pr[f (x) 6=
+what is the best lower bound on Inf max (f ) that holds for            f (x ⊕ i)]. (Our definition differs from the p-biased notion
+all near-balanced boolean functions f satisfying D(f ) ≤               of influences used in, e.g., [12] by a factor of 4 p (1 − p);
+d? It is easy to see that such a function f depends on at              we prefer rerandomizing the ith coordinate to flipping
+most 2d of its variables and therefore the KKL result im-              it, since this makes sense in more general product prob-
+plies Inf max (f ) ≥ Ω( 2dd ); prior to this work, this was the        ability spacesPnwhich we will consider later.) We call
+best lower bound known. Our main inequality for boolean                Inf (f ) := i=1 Inf i (f ) the total influence of f .
+functions, Theorem 1.1, implies a (tight) lower bound of                   Finally, since the notion of influences involves random-
+Inf max (f ) ≥ Ω( d1 ) for any near-balanced function f sat-           izing over the input domain, it makes sense to introduce
+isfying D(f ) ≤ d.                                                     a notion of randomizing over inputs for decision trees.
+                                                                       Let T be a DDT computing a function f : {−1, 1}n(p) →
+   In fact, Theorem 1.1 provides a lower bound on a
+weighted average of the influence vector, where Inf i (f )             {−1, 1}. We write
+is weighted by the probability that a DDT for f queries
+xi when x is a randomly chosen input. This lets us ex-                      δi (T ) =       Pr        [T queries xi ],           and
+                                                                                        x∈{−1,1}n
+                                                                                                (p)
+tend our lower bound on Inf max (f ) to functions with                           n
+R(f ) ≤ d and even to functions with ∆(f ) ≤ d, where                            X
+                                                                       ∆(T ) =         δi (T ) =       E         [# coords T queries on x ].
+∆(f ) denotes the expected number of queries made by the                                           x∈{−1,1}n
+                                                                                                           (p)
+                                                                                 i=1
+best DDT for f on a random input (again, see Section 1.2
+for precise definitions).                                              We also let ∆(f ) denote the minimum of ∆(T ) over
+                                                                       all DDTs T computing f : {−1, 1}n(p) → {−1, 1}. It
+                                                                       is easy to see that this is equivalent to minimizing over
+1.2 The main theorem for boolean func-                                 all RDTs computing f ; hence ∆(f ) ≤ R(f ) for all
+    tions.                                                             p. Also note that ∆(f ) can be upper-bounded in terms
+                                                                       of the size (number of leaves) of the smallest DDT T
+Our main theorem holds in a very general setting, that                 for f : [19] shows ∆(f ) ≤ log2 (size(T))/H(p), where
+of functions from product probability spaces into metric               H(p) = −p log2 p − (1 − p) log2 (1 − p) is the binary
+spaces. However the case of greatest interest to us is much            entropy of p.
+simpler. Fix some p ∈ (0, 1) and let {−1, 1}n(p) denote                   We may now state our main theorem in the case of func-
+the discrete cube endowed with the p-biased product mea-               tions f : {−1, 1}n(p) → {−1, 1}:
+
+                                                                   2
+Theorem 1.1 Let f : {−1, 1}n(p) → {−1, 1} and let T be n1 . This follows from the edge isoperimetric inequality
+a DDT computing f . Then                                     on the discrete cube (see, e.g., [6]); however, it is more
+                             Xn                              instructive for us to view it as following from the Efron-
+               Var[f ] ≤          δi (T ) Inf i (f ).        Stein inequality [10, 26],
+                             i=1                                                                 X n
+
+As an immediate corollary we obtain the lower bound on                     Var[f ] ≤ Inf (f ) =      Inf i (f ),      (1)
+                                                                                                 i=1
+Inf max (f ) mentioned in Section 1.1:
+                                                             which holds in the general p-biased case, and also in the
+Corollary 1.2 For every f : {−1, 1}n(p) → {−1, 1} we much more general setting of f : Ω → R, where Ω is a n-
+have                                                         wise product probability space and Inf i is defined appro-
+                                  Var(f )
+                     ∆(f ) ≥                  .              priately for real-valued functions (specifically, with the
+                                Inf max (f )                 “ρ2 semimetric” discussed in Section 3.4). Theorem 1.1
+Proof: Let T be a DDT computing f . From Theorem 1.1,        is immediately seen to improve the Efron-Stein inequality
+                                                             in the case of functions f : {−1, 1}n(p) → {−1, 1}.
+               Xn                                               Ben-Or and Linial constructed a balanced function f :
+   Var[f ] ≤        δi (T ) Inf i (f )                       {−1, 1}n → {−1, 1} (“Tribes”) satisfying Inf max (f ) =
+               i=1                                           Θ( logn n ) and conjectured that for every balanced function
+                      n
+                    X                                        f : {−1, 1}n → {−1, 1}, Inf max cannot be smaller.
+    ≤ Inf max (f )       δi (T ) = Inf max (f ) · ∆(T ) . ✷  There were small improvements on the simple n1 bound
+                    i=1                                                        3−ǫ
+                                                             ( 2−ǫ
+                                                                n by Alon, n by Chor and Gereb-Graus; see [14])
+   Some brief comments on our main theorem:                  before the famous KKL paper [14] confirmed the conjec-
+                                                             ture. Note that our theorem improves upon KKL when-
+   • It is linear in the δi (T )’s. Hence if we allow an RDT ever f has ∆(f ) = o(n/ log n); in particular, whenever f
+     T for f and make the natural definition of δi (T ), the has a DDT of size 2o(n/ log n) .
+     result still holds by averaging over the distribution      The KKL result was subsequently generalized by Ta-
+     T.                                                      lagrand [27, Theorem 1.5] who proved that for any f :
+                                                             {−1, 1}n(p) → {−1, 1},
+   • It can be sharp; see Section 3.5 for cases of equality.
+                                                                                      1     X n
+                                                                                                       Inf i (f )
+   • Other corollaries along the lines of Corollary 1.2 fol-    Var[f ] ≤ O log                                     . (2)
+     low; for example, if d is an integer ≥ ∆(f ), then the                        p(1 − p) i=1 log(1/Inf i (f ))
+     sum of the influences of the d most influential vari-
+                                                             Talagrand’s motivation for proving this was that when
+     ables is at least Var[f ].
+                                                             f : {−1, 1}n(p) → {−1, 1} is monotone, lower bounds on
+   • In Section 3.3 we will give a “two function” version, the sum of f ’s influences imply a “sharp threshold” for
+     which yields a lower bound for the randomized deci- f , via the Russo-Margulis lemma [16, 21]. Indeed, this
+     sion tree complexity of approximating f .               connection with threshold phenomena is one of the chief
+                                                             motivations for studying influences, and it is considered
+                                                             an important problem in the theory of boolean functions
+1.2.1 Influence lower bounds — comparison with
+                                                             and random graphs to provide general conditions under
+         previous work.
+                                                             which the total influence is large [7]. Our main inequality
+Proving lower bounds on the influences of boolean func- provides such a condition: Inf (f ) is large if f has a ran-
+tions has had a long history in theoretical computer domized decision tree T with δi (T ) small for all i. Note
+science, starting with the 1985 paper of Ben-Or and that when f is a transitive function, this is equivalent to
+Linial [2] on collective coin flipping. Ben-Or and Linial the natural condition that ∆(f ) is small. (See Section 2
+made the basic observation that if f : {−1, 1}n → for definitions of monotone and transitive functions, as
+{−1, 1} is balanced (i.e., E[f ] = 0), then Inf max (f ) ≥ well as further discussion of random graph properties.)
+
+                                                           3
+   In particular, ours seems to be the first quantita-                       x. We say that f is transitive if for each pair i, j ∈ [n]
+tively strong influence lower bound that takes into ac-                      there is an automorphism of f that sends i to j. For exam-
+count the “structure” or computational complexity of f .                     ple, Rivest and Vuillemin [20] proved that for n a prime
+We note that previously achievable lower bounds on in-                       power, any n-variate monotone transitive function f has
+fluences in terms of some measure of the complexity                          D(f ) = n.
+of f yield quantitatively much weaker results than can                           One long studied open question about boolean deci-
+be obtained from our inequality. For instance, Nisan                         sion tree complexity is the following: how small can
+and Szegedy [18] showed that if f : {−1, 1}n →                               R(f ) be in relation
+                                                                                           p       to D(f )? It is well known [5] that
+{−1, 1} is computed by a polynomial over R of degree                         R(f ) ≥ Ω( D(f )) for any function f , and this is the
+deg(f ), then every coordinate i with nonzero influence                      best general lower bound known. The largest known sep-
+has Inf i (f ) ≥ 2−deg(f ) . Since D(f ) ≤ O(deg(f )4 )                      aration is given by the following recursively defined func-
+(by a result of Nisan and Smolensky [8]), our Corol-                         tion: Let f0 be the identity function on a single variable
+lary 1.2 implies that the maximum influence in fact sat-                     and for k ≥ 1, let fk be the function on n = 4k vari-
+isfies Inf max (f ) ≥ Ω(Var[f ]/deg(f )4 ). As another                                          1
+                                                                             ables given by (fk−1         2
+                                                                                                     ∧ fk−1        3
+                                                                                                            ) ∨ (fk−1       4
+                                                                                                                        ∧ fk−1  ), where
+example, suppose f : {−1, 1}n → {−1, 1} is approxi-                            i
+                                                                             fk−1 is the value of fk−1 on the ith group of 4k−1 vari-
+mately computed by a polynomial over R of degree                             ables. The function fk is monotone and transitive, and so
+deg(f ) — i.e. there is a polynomial p(x) of degree f
+ f                                                   deg(f )                 by the above result of Rivest and Vuillemin, D(fk ) = n.
+such that |p(x)− f (x)| < 1/3 for all x. Talagrand’s result                  Snir [25] gave an  RDT  for fk establishing R(f ) ≤ nβ
+                                                                                                   √
+implies that Inf max (f ) ≥ exp(−O(Inf (f )/Var[f ])).                       where β = log2 1+4 33 ≈ 0.753. Saks and Wigderson
+Since by [24] we have Inf (f ) ≤ O(deg(ff )), one could
+                                                                             [22] proved that Snir’s RDT is optimal for fk and conjec-
+conclude that Inf max (f ) ≥ exp(−O(deg(ff )/Var[f ])).
+                                                                             tured that R(f ) ≥ Ω(D(f )β ) for any boolean function;
+However by contrast, since D(f ) ≤ O( f   deg(f )6 ) by [1],                 this is not even known to hold for all monotone transitive
+our Corollary 1.2 implies that the maximum influence in                      functions.
+                                        f )6 ).
+fact satisfies Inf max (f ) ≥ Ω(Var[f ]/deg(f                                   A well studied subclass of transitive boolean functions
+                                                                             consists of functions derived from graph properties. A
+                                                                             property of v-vertex (undirected) graphs is a set of graphs
+2 Randomized decision tree com-                                              on vertex set V = {1, . . . , v} that is invariant under vertex
+  plexity lower bounds                                                       relabellings; e.g., the set of graphs on V that are properly
+                                                                             3-colorable. We restrict attention to properties that are
+In this section we give an application of Theorem 1.1 to                     non-trivial; i.e., at least one graph has the property and at
+the problem of randomized decision tree complexity for                       least one graph does not have the property.
+monotone graph properties. We prove Theorem 1.1 in a                            Let V2 denote the set of 2-elements subsets of V . Each
+more general setting in Section 3.                                           graph G on V can be identified with the boolean vector
+                                                                             xG ∈ {−1, 1}( 2 ) where xG
+                                                                                               V
+
+                                                                                                           {i,j} is 1 if {i, j} ∈ E(G) and
+                                                                             is −1 otherwise. A graph property P is thus naturally
+2.1 History.                                                                                                                        V
+                                                                             identified with a boolean function fP : {−1, 1}( 2 ) −→
+As mentioned in Section 1.1, decision tree complexity has                    {−1, 1} which maps the vector xG to 1 if and only if G
+been extensively studied for over three decades. Two spe-                    satisfies P. The invariance of properties under vertex re-
+cial classes of functions have played a prominent role in                    labellings implies that the associated functions are transi-
+these investigations. The first is the class of monotone                     tive.
+functions, those satisfying f (y) ≥ f (x) whenever y ≥ x                        There are examples of graph properties on v vertices
+under the componentwise partial order. The second is the                     that have deterministic decision trees of depth O(v); e.g.,
+class of transitive functions. An automorphism of the n-                     the property of being a “scorpion graph” [4]. However,
+variate boolean function f is a permutation σ of [n] satis-                  for graph properties that are monotone (those whose asso-
+fying f (x1 , . . . , xn ) = f (xσ(1) , . . . , xσ(n) ) for all inputs       ciated function is monotone), Rivest and Vuillemin [20]
+
+                                                                         4
+proved a lower bound Ω(v 2 ) on DDT complexity. A con-                In particular,
+jecture made by Yao [28] and also attributed to Karp [22]
+is that this Ω(v 2 ) lower bound extends to RDT complex-                                                 (v − 1)4/3
+                                                                                       R(f ) ≥ ∆(f ) ≥
+ity. This is the problem we make progress on in this sec-                                                (16 p q)1/3
+tion.                                                                 if f corresponds to a v-vertex graph property.
+   Yao observed that an Ω(v) lower bound for RDT
+computation of monotone graph properties is easy to                   Proof: The inequality we need from [19] is the following:
+    p this also follows from the general bound R(f ) =
+prove;
+Ω( D(f )) mentioned earlier. The first improvement                      For all p, if f : {−1, 1}n(p) → {−1, 1} is monotone
+on this naive bound came a decade later from Yao him-                 then                         p
+self, who proved an Ω(v log1/12 v) lower bound us-                                     Inf (f ) ≤ 2 p q ∆(f ) .          (3)
+ing “graph packing” arguments [29]. These arguments                   Fix p to be the critical probability of f and let T be a
+were improved by King [15], yielding an Ω(v 5/4 ) lower               DDT computing f with expected cost ∆(f ). We ap-
+bound, and by Hajnal [13], yielding an Ω(v 4/3 ) lower                ply Theorem 1.1, using Var[f ] = 1 since p is criti-
+bound. This lower bound stood for a decade before                     cal and Inf i (f ) = Inf (f )/n since f is transitive (and
+Chakrabarti and Khot [9] gave a small improvement to                  hence all coordinates have the same influence). This gives
+Ω(v 4/3 log1/3 v). Both the Hajnal and Chakrabarti-Khot               1 ≤ (Inf (f )/n) · ∆(f ). Using (3) to bound Inf (f ) we
+bounds have rather long and technical proofs based on                            √
+                                                                      get 1 ≤ (2 p q/n)·(∆(f ))3/2 , and this can be rearranged
+graph packing.                                                        to give the desired result. ✷
+   Fairly recently, Friedgut, Kahn and Wigderson [11]
+proved a general lower bound of a somewhat different
+form. Given a nonconstant monotone boolean function                   2.3    Discussion.
+f : {−1, 1}n(p) → {−1, 1}, it is easy to see that E[f ]
+is a continuous increasing function of p; therefore there             In the case of monotone graph properties, our result al-
+is a critical probability p for which E[f ] = 0, i.e.,                ways improves on Hajnal’s Ω(v 4/3 ) lower bound and can
+Var[f ] = 1. Friedgut, Kahn and Wigderson proved that                 be superior to both Chakrabarti-Khot (when min{p, q}
+any nontrivial monotone v-vertex graph property has RDT               is small enough) and to FKW (when min{p, q} is large
+                           v        v2                                enough). It is worth noting that unlike all previous lower
+complexity Ω(min{ min(p,1−p)     , log v }) when p is the crit-
+ical probability for f . In fact, they show that ∆(f ) is             bounds for monotone graph properties, our proof makes
+at least this quantity. The FKW bound can improve on                  no use of graph packing arguments, instead relying only
+Chakrabarti-Khot in cases where the critical probability              on elementary probabilistic arguments.
+is sufficiently close to 0 or 1. We remark that the proof in             Most interestingly, we obtain a result essentially as
+FKW also uses a graph packing argument.                               good as the best unconditional bound (Chakrabarti-Khot)
+                                                                      in the more general context of monotone transitive func-
+                                                                      tions, not just graph properties. Further, our bound for
+2.2 Our R(f ) lower bound.                                            monotone transitive functions is known to be essentially
+As a simple consequence of our elementary main in-                    tight in the case p = 1/2: in [3], a sequence fn :
+equality Theorem 1.1 and a recent elementary inequality               {−1, 1}n → {−1, 1} of balanced monotone transitive
+from [19], we obtain the following:                                   functions is presented with ∆(fn ) ≤ O(n2/3 log n). Our
+                                                                      present Theorem 1.1 is used in [3] to show that ∆(fn ) =
+Theorem 2.1 Let f : {−1, 1}n(p) → {−1, 1} be a non-                   Ω(n2/3 ), by an argument similar to the proof of Theo-
+constant monotone transitive function, where p is the crit-           rem 2.1, but using an inequality from [23] in place of (3).
+ical probability for f (i.e., f is balanced). Write q = 1−p.             It is tantalizing that the place where the RDT complex-
+Then                                                                  ity of monotone graph properties has been stuck for al-
+                                        n2/3                          most 15 years, v 4/3 , is exactly the tight bound for mono-
+               R(f ) ≥ ∆(f ) ≥                  .                     tone transitive functions. Perhaps this suggests that in
+                                     (4 p q)1/3
+
+                                                                  5
+some way the argument of Hajnal is not really using the            notion of the cost of T on input x as the length of the root-
+fact that f is a graph property — just that it’s transi-           leaf path T follows on input x. Thus, we have the usual
+tive. Indeed, one might wonder the same thing about                notions of D(T ) and D(f ), and also the (zero-error) ran-
+Chakrabarti-Khot, since their v 4/3 log1/3 v lower bound           domized decision tree complexities R(T ) and R(f ). With
+could also hold for monotone transitive functions — the            the product probability measure µ on X, we can also natu-
+example of [3] does not rule it out.                               rally extend our notions of expected cost from Section 1.2:
+                                                                   given a DDT T computing f ,
+
+3 The main inequality                                                             δiµ (T ) = Pr [T queries xi ],
+                                                                                             x←Ω
+
+3.1 Decision trees, variation, influences — and ∆µ (T ) and ∆µ (f ) are similarly defined. We will
+    general definitions.                    henceforth drop the superscript µ when it is clear from
+                                                            context. Note that, as before, we have ∆(f ) ≤ R(f ).
+The proof of Theorem 1.1 is most naturally carried out in
+                                                              We now give the definitions of variation and influences
+a significantly more general context than that of functions
+                                                            for functions f : Ω → Z. The variation of f : Ω → Z is
+f : {−1, 1}n(p) → {−1, 1}. Specifically, we will consider
+functions                                                             Vrµ,d [f ] =      E    [d(f (x), f (y))].
+                       f : Ω −→ Z                                                  (x,y)←Ω×Ω
+
+mapping a product probability space into a metric space.           To define influences, first let Ω(i) denote the probability
+In this section we give the necessary definitions.                 space given by pairs (x, x(i) ), where x is chosen from Ω
+   Let us begin with the domain. Here we have an n-wise            and x(i) is formed by rerandomizing the ith coordinate of
+product probability space Ω = (X, µ), meaning that that            x using µi . Then the influence of the ith coordinate on
+the underlying set X is a product set X1 ×· · ·×Xn and the         f : Ω → Z is defined to be
+measure µ is a product probability measure µ1 × · · ·× µn ,
+where µi is a probability measure on Xi . For simplicity,                 Inf µ,d                         [d(f (x), f (x(i) ))].
+                                                                              i (f ) =        E
+we assume that X is finite. We write Ωi for the probability                              (x,x(i) )←Ω(i)
+space (Xi , µi ). We use the notation x ← Ω to mean that
+x is an element of X randomly selected according to µ.             We will usually drop the superscripts µ and d on Vr and
+   The range of our functions is a metric space (Z, d).            Inf i when they are implied by context. Note that if we
+(Actually we can allow a “pseudo-metric”, meaning we               view the functions f : {−1, 1}n(p) → {−1, 1} from Sec-
+may omit the requirement that d(z, z ′ ) = 0 ⇒ z = z ′ .)          tion 1 as mapping into the metric space on {−1, 1} with
+Useful examples to keep in mind are the following: Z               distance d given by d(z, z ′ ) = |z − z ′ | = 2 · 1z6=z′ , then
+any finite set with d(z, z ′ ) = 1z6=z′ ; and, Z = R with          we get agreement in the definitions of Inf i (f ) and also
+d(z, z ′ ) = |z − z ′ |. Of course, in the special case of         Vr[f ] = Var[f ].
+boolean-valued functions, Z = {−1, 1}, all metrics are
+the same up to a constant factor.                                  3.2    Theorem and proof.
+   The definitions of decision trees in the context of func-
+tions mapping a product set domain X = X1 × · · · × Xn             We now state and prove our main inequality, which in-
+into a set Z are the obvious ones. Briefly, a DDT will be          cludes Theorem 1.1 as a special case.
+a rooted directed tree T in which each internal node v is
+                                                                   Theorem 3.1 Let f : Ω → (Z, d) be a function map-
+labelled by a coordinate iv ∈ [n] and each leaf is labelled
+                                                                   ping a finite n-wise product probability space into a met-
+by an element of the output set Z. Further, the arcs em-
+                                                                   ric space, and let T be a DDT computing f . Then
+anating from each internal node v must be in one-to-one
+correspondence with Xiv . The node labels along every                                        n
+                                                                                             X
+root-leaf path are required to be distinct. T computes a                          Vr[f ] ≤         δi (T ) Inf i (f ).
+function fT : X → Z in the obvious way; we retain the                                        i=1
+
+
+
+                                                               6
+Proof: Let x and y be random inputs chosen indepen-                   Taking expectation gives
+dently from Ω. Given a subset J ⊆ [n] we will write xJ y                h                             i
+for the hybrid input in X that agrees with x on the co-               E d f (u[t−1]), f (u[t]) 1{it =i} = Pr[it = i] Inf i (f ) .
+ordinates in J and with y on the coordinates in [n] \ J.
+                                                                             Pn
+Let i1 , . . . , is denote the sequence of variables queried          Since t=1 Pr[it = i] = δi (T ), an appeal to (5) com-
+by T on input x (these i’s are random variables and s                 pletes the proof. ✷
+is also a random variable). For t ≥ 0, let J[t] = {ir :
+s ≥ r > t}. Finally, let u[t] = xJ[t] y. (For example, if
+x = (1, −1, 1, 1), y = (1, 1, −1, −1), the tree read x4 fol-          3.3   Corollaries and two function version.
+lowed by x2 and terminates, then u[0] = (1, −1, −1, 1),
+u[1] = (1, −1, −1, −1) and u[2] = y.) All E[ · ]’s and                In this section we treat some immediate corollaries of
+Pr[ · ]’s in what follows are over all the random variables           Theorem 3.1. Certainly the analogue of Corollary 1.2
+just described (i.e., x, y, i’s, s, u[·]’s).                          holds for Theorem 3.1, as do the first and third remarks
+   We begin with the simple observation                               stated after Corollary 1.2. We now give the promised “two
+                                                                      function” version. Define
+  Vr[f ] = E[d(f (x), f (y))] = E[d(f (u[0]), f (u[s]))],
+                                                               CoVr[f, g]
+which follows because y = u[s] and f (x) = f (u[0])
+(although x does not necessarily equal u[0]). This latter       =       E     [d(f (x), g(y))] − E [d(f (x), g(x))],
+                                                                   (x,y)←Ω×Ω                    x←Ω
+equality is the only place in the proof we use the fact that
+T computes f .                                               so in particular CoVr[f, f ] = Vr[f ]. Thus the following
+   We next make the obvious step                             theorem generalizes Theorem 3.1:
+                               hX
+                                s                             i       Theorem 3.2 Let f, g : Ω → (Z, d) be functions map-
+E[d(f (u[0]), f (u[s]))] ≤ E         d(f (u[t − 1]), f (u[t]))        ping a finite n-wise product probability space into a met-
+                               t=1                                    ric space, and let T be an RDT computing f . Then
+                                                         (4)
+which uses the fact that d is a metric. Set
+                                         Pnti = ∅ for t > s.                                      n
+                                                                                                  X
+Linearity of expectation and 1{t≤s} = i=1 1{it =i} give                          CoVr[f, g] ≤           δi (T ) Inf i (g).
+                                                                                                  i=1
+      hX
+       s                             i
+  E         d(f (u[t − 1]), f (u[t])) =                               Proof: As usual we can assume by averaging that T is
+      t=1
+                                                                      a DDT T computing f . Using the same setup as in the
+        X n
+        n X        h                                 i                proof of Theorem 3.1, we have
+                                            
+                  E d f (u[t − 1]), f (u[t]) 1{it =i} .    (5)
+        t=1 i=1                                                         CoVr[f, g] = E[d(f (x), g(y))]−E[d(f (u[0]), g(u[0]))]
+   Let Xt denote the sequence of values seen by the               = E[d(f (u[0]), g(u[s]))] − E[d(f (u[0]), g(u[0]))]
+decision tree by time t on input x; that is, Xt = where in the first equality we used that u[0] is, in isolation,
+(xi1 , . . . , xit∧s ), where t ∧ s denotes the minimum of t distributed according to Ω, and in the second equality we
+and s. Note that Xt−1 determines it . Induction on t ∈ [n] used the fact that f (x) = f (u[0]) since T computes f
+easily shows that conditional on Xt−1 the variables y and (as in the previous proof). Now using the fact that d is a
+(xj : j 6= i1 , . . . , i(t−1)∧s ) are independent and retain metric we get
+their original distributions. It follows that conditional on
+Xt−1 the pair (u[t − 1], u[t]) has the distribution Ω(i) if     CoVr[f, g] =
+it = i ∈ [n]. Consequently, for i, t ∈ [n],
+                                                                  E[d(f (u[0]), g(u[s]))] − E[d(f (u[0]), g(u[0]))]
+  h                                          i
+E d f (u[t−1]), f (u[t]) 1{it =i} Xt−1 = 1{it =i} Inf i (f ) .                              ≤ E[d(g(u[0]), g(u[s]))]
+
+
+                                                                  7
+and of course this is also true for −CoVr[f, g]. The proof          (z − z ′ )2 /2. In this case Vrρ2 [f ] = Var[f ] and Inf ρ2 (f )
+now proceeds exactly as before with g in place of f ; note          has the meaning commonly associated with this notation
+that from this point on in the previous proof we did not            for functions f : Ω → R; that is, the interpretation used
+use the fact that T computed f . ✷                                  in, e.g., the Efron-Stein inequality or in [17].
+                                                                       To study the semimetric case, we simply introduce a
+   As mentioned below Corollary 1.2, Theorem 3.2 can                quantity measuring the extent to which the triangle in-
+be used to give a lower bound for the randomized decision           equality fails for ρ on paths of length k. We define
+tree complexity of approximating g. Note that the triangle          the defect of a sequence z0 , z1 , . . . , zk ∈ Z k+1 to be
+                                                                                  Pk
+inequality gives                                                    ρ(z0 , zk )     ( t=1 ρ(zt−1 , zt )), where 00 is taken to be
+                                                                  1. We then define the k-defect of ρ, denoted Def k (ρ), to
+       CoVr[f, g] ≥ Vr[g] − 2 E d(f (x), g(x)) .
+                                                                    be the maximum defect of any sequence z0 , . . . , zk . The
+Consequently, Theorem 3.2 implies that for every ǫ > 0              following facts are easy to check:
+the expected number of queries required by a randomized               • Def 1 (ρ) = 1 and Def k (ρ) is nondecreasing with k.
+                          any approximation f of g satis-
+decision tree to calculate
+fying E d(f (x), g(x)) ≤ ǫ is at least                                • Def k (ρ) ≤ (sup ρ)/(inf ρ) for all k.
+                       Vr[g] − 2 ǫ                                    • Def 2 (ρ) = 1 implies that ρ satisfies the triangle in-
+                                   .
+                       Inf max (g)                                      equality, which, in turn, implies that Def k (ρ) = 1
+                                                                        for all k; i.e., ρ is a metric.
+                                                                      • If ρ1/q is a metric for some q ≥ 1, then Def k (ρ) ≤
+   We now describe an alternate version of Theorem 3.2.
+                                                                        k q−1 . Thus in our motivating case with Z = R and
+Let f : Ω → [−1, 1], g : Ω → R, and let T be a random-
+                                                                        ρ(z, z ′ ) = (z − z ′ )2 /2 we have Def k (ρ) ≤ k.
+ized decision tree computing f . Then
+                            n                                         • If ρ1/q is a metric for some q ≥ 1, then Def k (ρ) ≤
+                            X
+            Cov[f, g] ≤           δi (T ) Inf ρi 1 [g],   (6)           |Z|q−1 for all k.
+                            i=1
+                                                          It is easy to see how to generalize Theorems 3.1 and 3.2
+where ρ1 (x, y) = |x − y| and Cov[f, g] = for semimetrics ρ; since Theorem 3.2 is more general, we
+E[f (x) g(x)] − E[f (x)] E[g(x)] is the covariance of f will only state its extension:
+and g. With the usual definitions of x, y, u[t] and s, we
+                                                          Theorem 3.3 Let f, g : Ω → (Z, ρ) be functions map-
+have f (x) = f [u(0)] and u[s] = y. Hence, we may write
+                                                          ping an n-wise product probability space into a semimet-
+                                                        ric space, and let T be an RDT computing f . Let k be
+  Cov[f, g] = E f (u[0])g(u[0]) − f (x)g(u[s])
+                                                    the length of the longest path in any DDT in T ’s support.
+ = E f (x) g(u[0])−g(u[s]) ≤ E |g(u[0])−g(u[s])| , Then
+
+and the proof of (6) proceeds as above.                                                                 n
+                                                                                                        X
+                                                                           CoVr[f, g] ≤ Def k (ρ)             δi (T ) Inf i (g).
+                                                                                                        i=1
+3.4 When d is not a metric.
+                                                                    This is the most general version of our main inequality
+In this section we generalize our results to the case when          that we state. In the semimetric setting we are most inter-
+f maps into (Z, ρ), where (Z, ρ) is a “semimetric”. This            ested in, namely that of one function f : Ω → (R, ρ2 ), we
+just means that ρ need not satisfy the triangle inequality;         have the following:
+specifically, all we require of ρ is that ρ ≥ 0, ρ(z, z) = 0,
+and ρ(z, z ′ ) = ρ(z ′ , z). (Again we do not insist that           Corollary 3.4 Let f : Ω → (R, ρ2 ) be a function map-
+ρ(z, z ′ ) = 0 ⇒ z = z ′ .) Our main motivation for study-          ping an n-wise product probability space into the real line
+ing this extension is the case Z = R with ρ = ρ2 (z, z ′ ) :=       with semimetric ρ2 (z, z ′ ) = (z − z ′ )2 /2, and let T be an
+
+                                                                8
+RDT computing f . Let k be the length of the longest path describe a collections of trees that are separated but not
+in any DDT in T ’s support. Then                                read-once, we consider (disjoint) compositions. A dis-
+                                                                joint composition is a function F = f (f1 , . . . , fm ) where
+                            Xn
+                                            ρ2                  each fj acts on a disjoint set of input variables, and the
+              Var[f ] ≤ k       δi (T ) Inf i (f ),
+                                                                value of each of the input variables xj of f is the value of
+                            i=1
+                                                                fj . An example is given by Tribes (OR of disjoint ANDs).
+and f has a coordinate
+                     Pn         with ρ2 -influence at least It should be clear that a representation of a function as a
+Var[f ]/k 2 (since i=1 δi (T ) ≤ k).                            disjoint composition F = f (f1 , . . . , fm ) together with
+                                                                a DDT for each factor function f, f1 , . . . , fm induces a
+                                                                DDT for the composition; one just needs to replace each
+3.5 Tightness of the inequality
+                                                                node of the tree computing f by a corresponding tree
+Our main Theorem 3.1 can be tight; one class of DDTs computing a function fj . It is not too hard to check that
+for which it is tight are read-once decision trees. In fact, if each of the original trees is separated, then also the tree
+it is tight for a broader family of decision trees, which we calculating F (f1 , . . . , fm ) is separated. In particular, re-
+now describe. Observe that each subtree of a decision tree cursive disjoint compositions of read-once trees are sepa-
+below any given node can be thought of as a decision tree rated. On the other hand, it is easy to see that the simplest
+on the same input Ω (which may ignore some of the input nontrivial Tribes function (x1 ∧ x2 ) ∨ (x3 ∧ x4 ) cannot be
+variables). Say that a decision tree is separated, if for represented by a read-once tree.
+every two subtrees T ′ and T ′′ and every input x ∈ Ω, if
+T ′ and T ′′ compute different values on x, then the sets of       Finally, we discuss the necessity of the factor k in
+variables they query on input x are disjoint. Clearly, read-    Corollary    3.4. Indeed, as far as we know, it may be possi-
+once trees are separated. Later, we will see that separated     ble  to  replace  the factor k by an absolute constant. How-
+trees are not necessarily read-once.                            ever   we   can  show    that the factor k cannot be replaced
+                                                                                        3
+    To prove that Theorem 3.1 is tight for every sepa-          by   1.   The  {−1,  1}     → (R, ρ2 ) example shown in Fig-
+rated tree, note that the only inequality in the proof of       ure  1  demonstrates     that  a constant slightly greater than 1
+the theorem is (4). Suppose that T is separated, that           is necessary.    Except    for  optimizing the leaf labels in this
+f (u[0]) 6= f (u[t]) and that t is minimal with this prop-      particular   tree, this is  the worst example we know.
+erty. Since f (u[t]) 6= f (u[t − 1]), on input u[t] the vari-
+able yit is inspected by T . Let v ′ be the node of T arrived
+at right after reading xit on input x, and let v ′′ be the node 4 Questions for Future Work
+of T arrived at right after reading yit on input u[t]. Then
+on input u[t] the two subtrees of T rooted at v ′ and v ′′         • Is it possible to explain the “coincidence” that our
+calculate f (x) = f (u[0]) and f (u[t]), respectively. Since           near-tight lower bound on ∆(f ) for monotone tran-
+f (u[t]) 6= f (u[0]) and T is separated, the sets of variables         sitive functions gives a lower bound for graph prop-
+examined by these two subtrees on input u[t] are disjoint.             erties — about v 4/3 — that essentially matches
+In particular, f (u[t]) = f (u[t + 1]) = · · · = f (u[s]).             the lower bound barrier that has stood since Ha-
+Since f (u[0]) = f (u[1]) = · · · = f (u[t − 1]), this shows           jnal ’91 [13]? Perhaps either the Hajnal or the
+that (4) must hold as an equality when T is separated.                 Chakrabarti-Khot [9] arguments can be reframed
+Thus, the inequality in Theorem 3.1 holds as an equality               in terms of merely transitive functions (if true of
+in this case. Note that this argument shows that equality              Chakrabarti-Khot, this would be quite interesting);
+holds even if d = ρ is just a semimetric.                              or, perhaps graph-theoretic arguments can augment
+    Simple examples of read-once DDTs are those for                    our elementary probabilistic reasoning to produce a
+AND : {−1, 1}n → {−1, 1} and OR : {−1, 1}n →                           better lower bound.
+{−1, 1}. The simplest nontrivial balanced example is the
+“selection function” SEL : {−1, 1}3 → {−1, 1}, which               • Can our inequality in the real-valued, ρ2 case —
+maps (x1 , x2 , x3 ) to x2 if x1 = 1, or x3 if x1 = −1. To             Corollary 3.4 — be sharpened? If the factor k could
+
+                                                                9
+                                                                  x1
+
+                                                x2                                  x3
+
+                                    x3                      −1      −1                         x2
+
+
+                        0                         2                                2                        0
+
+Figure 1: Left edges correspond to input variables with value −1, right edges to value 1. The function
+f : {−1, 1}3 → R computed by this DDT has Var[f ] = 23 , but (δ1 (T ), δ2 (T ), δ3 (T )) = (1, 34 , 34 ) and
+                                                                                                P
+(Inf ρ12 (f ), Inf ρ22 (f ), Inf ρ32 (f )) = ( 81 , 87 , 78 ), where ρ2 (x, y) = (x − y)2 /2, so 3i=1 δi (T ) Inf ρi 2 (f ) = 16
+                                                                                                                              23
+                                                                                                                                 < 32 .
+
+
+
+     be replaced by a universal constant, this would be a               [6] B. Bollobas. Combinatorics: Set Systems, Hypergraphs,
+     very strong variant of the Efron-Stein inequality.                     Families of Vectors and Combinatorial Probability. Cam-
+                                                                            bridge University Press, 1986.
+  • What other applications might our main inequality                   [7] J. Bourgain and G. Kalai. Influences of variables and
+    have? We suggest there might be applications in                         threshold intervals under group symmetries. GAFA,
+    computational learning theory or in the theory of ran-                  7:438–461, 1997.
+                                                                        [8] H. Buhrman and R. de Wolf. Complexity measures and
+    dom graphs.
+                                                                            decision tree complexity: a survey. Theoretical Computer
+                                                                            Science, 288(1):21–43, 2002.
+                                                                        [9] A. Chakrabarti and S. Khot. Improved lower bounds on
+5 Acknowledgments                                                           the randomized complexity of graph properties. In Pro-
+                                                                            ceedings of the 28th International Colloquium on Au-
+We would like to thank Andris Ambainis, Laci Lovasz,                        tomata, Languages and Programming, pages 285–296,
+and Avi Wigderson for helpful discussions.                                  2001.
+                                                                       [10] B. Efron and C. Stein. The jackknife estimate of variance.
+                                                                            Annals of Statistics, 9:586–596, 1981.
+                                                                       [11] E. Friedgut, J. Kahn, and A. Wigderson. Computing graph
+References                                                                  properties by randomized subcube partitions. In Proceed-
+                                                                            ings of the 6th International Workshop on Random and
+ [1] R. Beals, H. Buhrman, R. Cleve, M. Mosca, and                          Approximation Techniques, pages 105–113, 2002.
+     R. de Wolf. Quantum lower bounds by polynomials. Jour-            [12] E. Friedgut and G. Kalai. Every monotone graph property
+     nal of the ACM, 48(4):778–797, 2001.                                   has a sharp threshold. Proceedings of the AMS, 124:2993–
+ [2] M. Ben-Or and N. Linial. Collective coin flipping. In Pro-             3002, 1996.
+     ceedings of the 26th Annual Symposium on Foundations of           [13] A. Hajnal. An Ω(n4/3 ) lower bound on the randomized
+     Computer Science (FOCS), pages 408–416, 1985.                          complexity of graph properties. Combinatorica, 11:131–
+ [3] I. Benjamini, O. Schramm, and D. Wilson. Balanced                      143, 1991.
+     boolean functions that can be evaluated so that every input       [14] J. Kahn, G. Kalai, and N. Linial. The influence of vari-
+     bit is unlikely to be read. In Proceedings of the 37th An-             ables on boolean functions. In Proceedings of the 29th
+     nual Symposium on Theory of Computing (STOC), 2005.                    Annual Symposium on Foundations of Computer Science,
+ [4] M. Best, P. van Emde Boas, and H. Lenstra. A sharpened                 pages 68–80, 1988.
+     version of the Aanderaa-Rosenberg conjecture. Technical           [15] V. King. Lower bounds on the complexity of graph prop-
+     Report Report ZW30/74, Mathematisch Centrum Amster-                    erties. In Proceedings of the 20th Annual Symposium on
+     dam, 1974.                                                             Theory of Computing, pages 468–476, 1988.
+ [5] M. Blum and R. Impagliazzo. Generic oracles and oracle            [16] G. Margulis. Probabilistic characteristics of graphs with
+     classes. In Proceedings of the 28th Annual Symposium on                large connectivity. Prob. Peredachi Inform., 10:101–108,
+     Foundations of Computer Science, pages 118–126, 1987.                  1974.
+
+
+                                                                  10
+[17] E. Mossel, R. O’Donnell, and K. Oleszkiewicz. Noise
+     stability of functions with low influences: invariance and
+     optimality. In Proceedings of the 46th Annual Symposium
+     on Foundations of Computer Science (FOCS), 2005.
+[18] N. Nisan and M. Szegedy. On the degree of Boolean func-
+     tions as real polynomials. In Proceedings of the Twenty-
+     Fourth Annual Symposium on Theory of Computing, pages
+     462–467, 1992.
+[19] R. O’Donnell and R. Servedio. Learning monotone
+     functions from random examples in polynomial time.
+     Manuscript, 2005.
+[20] R. Rivest and J. Vuillemin. On recognizing graph proper-
+     ties from adjacency matrices. Theoretical Computer Sci-
+     ence, 3:371–384, 1976.
+[21] L. Russo. On the critical percolation probabilities. Z.
+     Wahrsch. werw. Gebiete, 43:39–48, 1978.
+[22] M. Saks and A. Wigderson. Probabilistic boolean decision
+     trees and the complexity of evaluating game trees. In Pro-
+     ceedings of the 27th Annual Symposium on Foundations
+     of Computer Science, pages 29–38, 1986.
+[23] O. Schramm and J. Steif. Quantitative noise sensitivity
+     and exceptional times for percolation. Manuscript, 2005.
+[24] Y. Shi. Lower bounds of quantum black-box complexity
+     and degree of approximating polynomials by influence of
+     boolean variables. Information Processing Letters, 75(1-
+     2):79–83, 2000.
+[25] M. Snir. Lower bounds for probabilistic linear decision
+     trees. Theoretical Computer Science, 38:69–82, 1985.
+[26] J. M. Steele. An Efron-Stein inequality for nonsymmetric
+     statistics. Annals of Statistics, (14):753–758, 1986.
+[27] M. Talagrand. On Russo’s approximate 0-1 law. The An-
+     nals of Probability, 22(3):1576–1587, 1994.
+[28] A. Yao. Probabilistic computations: towards a unified
+     measure of complexity. In Proceedings of the 18th Annual
+     Symposium on Foundations of Computer Science (FOCS),
+     pages 222–227, 1977.
+[29] A. Yao. Lower bounds to randomized algorithms for graph
+     properties. In Proceedings of the 28th Annual Sympo-
+     sium on Foundations of Computer Science, pages 393–
+     400, 1987.
+
+
+
+
+                                                              11
+

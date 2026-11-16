@@ -1,0 +1,2135 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                  Report No. 9/2025
+
+                             DOI: 10.4171/OWR/2025/9
+
+      MFO-RIMS Tandem Workshop: Optimization,
+   Theoretical Computer Science and Algebraic Geometry:
+                  Convexity and Beyond
+                                     Organized by
+                                Yoshio Okamoto, Tokyo
+                                Cordian Riener, Tromsø
+                             Markus Schweighofer, Konstanz
+                              Yoshiyuki Sekiguchi, Tokyo
+
+
+                          16 February – 21 February 2025
+
+         Abstract. The joint workshop brought together leading experts from real al-
+         gebraic geometry, computational algebra, polynomial optimization, and the-
+         oretical computer science. The event fostered vibrant interdisciplinary ex-
+         change, with a particular emphasis on the role of computation–both as a
+         practical tool for algorithm design and as a lens for uncovering deep mathe-
+         matical structures.
+
+
+Mathematics Subject Classiﬁcation (2020): 14-XX, 49-XX, 68Qxx.
+License: Unless otherwise noted, the content of this report is licensed under CC BY SA 4.0.
+
+
+                        Introduction by the Organizers
+
+The MFO-RIMS Tandem Workshop “Optimization, Theoretical Computer Science
+and Algebraic Geometry: Convexity and Beyond”, jointly organized by Yoshio
+Okamoto (Tokyo), Cordian Riener (Tromsø), Markus Schweighofer (Konstanz),
+and Yoshiyuki Sekiguchi (Kyoto), took place from February 16–21, 2025. The
+event was held in a hybrid format, with parallel in-person meetings at the Math-
+ematisches Forschungsinstitut Oberwolfach (MFO) and the Research Institute for
+Mathematical Sciences (RIMS) in Kyoto, connected via a shared digital infras-
+tructure.
+   The main goal of the workshop was to explore the rich interplay between con-
+vexity and its generalizations in optimization, algebraic geometry, and theoretical
+406                                                    Oberwolfach Report 9/2025
+
+computer science. Convexity has long served as a unifying concept in these disci-
+plines, and recent developments have extended its scope to more general geometric
+and algebraic settings. The workshop brought together researchers from Europe
+the US and Asia working on these intersections, with the aim of facilitating new
+collaborations and strengthening existing links between mathematical communi-
+ties across continents.
+   The scientiﬁc program featured a diverse collection of talks, spanning both foun-
+dational theory and recent advances. A prominent theme was optimization over
+non-classical domains, including polyhedral norms, non-Euclidean spaces, and sin-
+gular semideﬁnite programs. Other key topics included the structure and complex-
+ity of symmetric and nonnegative polynomials, tensor methods in high-dimensional
+computation, algorithmic aspects of sum-of-squares proofs, and applications of al-
+gebraic and combinatorial methods in graph theory and discrete geometry.
+   Several talks focused on the algebraic geometry underlying matroid varieties,
+semistability in quiver representations, and D-module approaches to singularities.
+The workshop also highlighted holonomic and combinatorial techniques that bridge
+continuous and discrete models in optimization and complexity theory.
+   A central element of the workshop was a dedicated problem session held mid-
+week, during which participants from both sites contributed open problems and
+research challenges. This structured interaction proved highly fruitful and led to
+several follow-up discussions. The time zone diﬀerence required careful sched-
+uling, with some talks given live and others recorded for asynchronous viewing.
+Despite these logistical challenges, the hybrid format enabled broad participation
+and dynamic exchange between the Oberwolfach and Kyoto communities.
+   We believe the workshop was highly successful in creating an arena for scientiﬁc
+exchange. It provided both in-depth technical presentations and a platform for
+interdisciplinary engagement and contributed to building a stronger global network
+of researchers at the interface of optimization, algebra, and geometry. We thank
+the staﬀ of MFO and RIMS for their excellent support in making this collaboration
+possible.
+Acknowledgement: MFO and the workshop organizers would like to thank the
+National Science Foundation for supporting the participation of junior researchers
+in the workshop by the grant DMS-2230648, “US Junior Oberwolfach Fellows”.
+Moreover, the MFO and the workshop organizers would like to thank the Ober-
+wolfach Foundation for supporting the participation of junior researchers by the
+Oberwolfach Foundation Fellowship.
+Optimization, Theoretical Computer Science and Algebraic Geometry                                                     407
+
+
+
+
+MFO-RIMS Tandem Workshop: Optimization, Theoretical
+Computer Science and Algebraic Geometry: Convexity and
+Beyond
+
+Table of Contents
+
+
+Fatemeh Mohammadi (joint with Emiliano Liwski)
+   Matroid varieties, their defining equations, and their irreducibility . . . . . 409
+Saugata Basu (joint with Hamidreza A. Khorasgani, Hemanta K. Maji,
+   Hai H. Nguyen)
+   Lamination hulls and solving linear inequalities over convex sets . . . . . . . 412
+Nidhi Kaihnsa (joint with E. Duarte, J. Lindberg, A. Torres, M. Weinstein)
+   Distance Optimisation in Polyhedral Norms . . . . . . . . . . . . . . . . . . . . . . . . . 415
+Petteri Kaski (joint with Mateusz Michalek)
+   A Universal Sequence of Tensors for the Asymptotic Rank Conjecture . . 416
+Luis Felipe Vargas (joint with Alex Bortolotti, Monaldo Mastrolilli)
+   On the degree automatability of SoS proofs . . . . . . . . . . . . . . . . . . . . . . . . . . 416
+Dmitriy (Tim) Kunisky (joint with Maximilian Jerdee, Cristopher Moore,
+  Alexander S. Wein)
+  Tensor networks, tensor cumulants, tensor PCA . . . . . . . . . . . . . . . . . . . . 419
+Petter Brändén (joint with Leonardo Saud Maia Leite)
+   Totally nonnegative matrices, chain enumeration and zeros of
+   polynomials . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 421
+Sebastian Debus (joint with Jose Acevedo, Grigoriy Blekherman,
+   Cordian Riener)
+   Symmetric nonnegative functions and the Vandermonde map . . . . . . . . . . 423
+Sandra Kiefer (joint with Brendan D. McKay, Devini de Mel)
+   Hard Graphs for Colour Refinement and Beyond . . . . . . . . . . . . . . . . . . . . 424
+Grigoriy Blekherman
+   Graph Homomorphisms and Polynomials . . . . . . . . . . . . . . . . . . . . . . . . . . . 425
+Yoshio Okamoto
+   Combinatorial Shorest Paths on Combinatorial Polytopes . . . . . . . . . . . . . 426
+Shin-ichi Tanigawa
+   Identifying Generic Points from Non-generic Measurements . . . . . . . . . . 428
+Keiya Sakabe (joint with Hiroshi Hirai)
+   Gradient descent for unbounded convex functions on Hadamard manifolds
+   and its applications to scaling problems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 429
+408                                                                            Oberwolfach Report 9/2025
+
+Tasuku Soma (joint with Yuni Iwamasa, Taihei Oki)
+   Algorithmic Aspects of Semistability of Quiver Representations . . . . . . . . 431
+Yusuke Nakamura
+   Ehrhart theory on periodic graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 432
+Satoshi Tsujimoto
+   Discrete Integrable Systems:A Matrix Decomposition Approach . . . . . . . . 434
+Saiei-Jaeyeong Matsubara-Heo
+   A hypergeometric view on Landau singularity . . . . . . . . . . . . . . . . . . . . . . . 435
+Nobuki Takayama
+  Holonomic methods in optimization, statistics, and machine learning . . . 438
+Yoshiyuki Sekiguchi (joint with Hiroyuki Ochiai, Hayato Waki)
+   Alternating Projections in Low Dimensions . . . . . . . . . . . . . . . . . . . . . . . . . 441
+Takashi Tsuchiya (joint with Bruno F. Lourenço, Masakazu Muramatsu,
+   Takayuki Okuno)
+   Closing nonzero duality gap of singular SDP by perturbation . . . . . . . . . . 442
+
+    Open Problems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 444
+Optimization, Theoretical Computer Science and Algebraic Geometry                         409
+
+                                       Abstracts
+
+  Matroid varieties, their defining equations, and their irreducibility
+                          Fatemeh Mohammadi
+                     (joint work with Emiliano Liwski)
+
+The theory of point-line conﬁgurations can be seen as a geometric counterpart of
+matroids of rank 3. They arise in various areas of research, including the study of
+the connectivity of moduli spaces of hyperplane arrangements and the cohomology
+of their complement manifolds [1, 8], as well as the study of singularities and
+smoothness of their varieties [2]. They also arise in the study of determinantal
+varieties, as well as conditional independence models [3]. Of particular interest
+are (vr , bk ) conﬁgurations, which contain Steiner systems [4, 5].
+Definition 1. A point-line conﬁguration M consists of a set of points P and a set
+of lines L such that each line contains at least three distinct points, and any pair
+of points lies on at most one common line. A (vr , bk ) configuration is a point-line
+conﬁguration such that:
+       • There are v points and b lines.
+       • Each line contains k points, and each point lies on r lines.
+When v = b, and r = k, the conﬁguration is called symmetric, denoted by vk .
+  In this note, we focus on the associated varieties of point-line conﬁgurations M .
+Our primary goal is to determine the irreducible decomposition of these varieties.
+We describe a decomposition strategy from [11], based on identifying the set of
+minimally dependent matroids of M . We apply this method to the MacLane
+conﬁguration, which cannot be handled using existing computer algebra systems.
+We deﬁne two families of point-line conﬁgurations that play a key role in this note;
+see [9, 10]. In the following, we let Lp denote the set of lines containing p for any
+point p ∈ P. The degree of p is deﬁned as the size of Lp , i.e., deg(p) = |Lp |.
+Definition 2. For a point-line conﬁguration M , we deﬁne SM = {p ∈ P : |Lp | ≥
+2}. We then consider the following chain of submatroids of M :
+           M0 = M,       M 1 = SM ,      and     Mj+1 = SMj        for all j ≥ 1.
+We say that M is nilpotent if Mj = ∅ for some j.
+Definition 3. For a point-line conﬁguration M , we deﬁne QM = {p ∈ P : |Lp | ≥
+3}. We then consider the following chain of submatroids of M :
+          M 0 = M,       M 1 = QM ,      and     M j+1 = QM j       for all j ≥ 1.
+                                   j
+We say that M is solvable if M = ∅ for some j.
+Definition 4. Let M be a matroid of rank n on the ground set [d]. A realization
+of M is a collection of vectors γ = {γ1 , . . . , γd } ⊂ Cn such that
+  {γi1 , . . . , γip } is linearly dependent ⇐⇒ {i1 , . . . , ip } is a dependent set of M .
+410                                                              Oberwolfach Report 9/2025
+
+The realization space of M is deﬁned as ΓM = {γ ⊂ Cn : γ is a realization of M }.
+A matroid is called realizable if its realization space is non-empty. The matroid
+variety VM of M is deﬁned as the Zariski closure in Cnd of ΓM . See [6, 7].
+  Similarly, we introduce the circuit variety of M as follows:
+         VC(M) = V (IC(M) ) = {γ ⊂ Cn : γ includes the dependencies of M }.
+  We recall the following result on the varieties of nilpotent and solvable matroids.
+Theorem 5 ([10, 9]). Let M be a point-line configuration on [d].
+       (i) Assume M has no points of degree above two. If M is nilpotent, then
+           VC(M) = VM . If every proper submatroid of M is nilpotent, then VC(M) =
+           VM ∪ VU2,d , where U2,d is the uniform matroid of rank 2 with d elements.
+      (ii) If M is solvable, then VM is either irreducible or empty.
+Decomposition strategy. We begin by identifying the minimal matroids
+min(M ). Next, the circuit variety is decomposed using Proposition 4.1 in [11].
+In the recursive decomposition step, this process is applied to each circuit variety
+that appears in the decomposition. The decomposition continues iteratively for
+any new circuit varieties encountered, until each circuit variety falls into one of the
+following cases: if a circuit variety VC(N ) corresponds to a nilpotent conﬁguration
+with no points of degree greater than two, it is replaced by VN ; if it corresponds
+to a conﬁguration where all points have degree at most two, and all proper sub-
+matroids are nilpotent, it is replaced by VN ∪ VU2,d . After this step, we obtain a
+decomposition of VC(M) as a union of matroid varieties. The irreducibility of each
+matroid variety is then veriﬁed by identifying the solvable matroids involved and
+applying Theorem 5.
+We illustrate our algorithm from [11] for identifying minimal matroids of point-line
+conﬁgurations and computing their circuit varieties’ irreducible decomposition.
+Example 6. Let M be the MacLane conﬁguration M , which is the unique 83
+conﬁguration. Then, min(M ) consists of the following matroids; see Figure 1:
+       • The uniform matroid U2,8 .
+       • The matroids M (i) for i ∈ [8].
+       • A line of M with the other 5 points coinciding at a single point outside it.
+       • A line with four points, three as double points, and a free point x outside.
+         The double points form pairs on a common line with x.
+   There are 8 matroids of the third type, each associated with a line of M , and 8
+matroids of the fourth type, each determined by the choice of a free point. We label
+these matroids as Aj , Bk , for j, k ∈ [8]. This leads to the following decomposition:
+                                        8
+                                        [                8
+                                                         [               8
+                                                                         [
+(1)            VC(M) = VM ∪ VC(U2,8 )         VC(M(i))         VC(Aj )         VC(Bk ) .
+                                        i=1              j=1             k=1
+                     S8                 S8               S4              S8
+Moreover, we have      i=1 VC(M(i)) =    i=1 VM(i)        i=1 VDi ∪        i=1 VCi , where
+Optimization, Theoretical Computer Science and Algebraic Geometry                          411
+
+      • The matroid Ci is obtained by making one point of M a loop, with the
+        remaining points forming the uniform matroid U2,7 .
+      • The matroid Di is obtained from M by making loops of two points that are
+        not connected. The pairs of non-connected points are {1, 3}, {2, 4}, {5, 7},
+        {6, 8}.
+                                                                  +        −
+The matroid VM has two irreducible components, denoted VM           and VM   . The ma-
+troids U2,8 , Aj , Bk are nilpotent, hence their circuit and matroid varieties coincide.
+Moreover, VAj ⊂ VM and VCi ⊂ VU2,9 , hence (1) equals:
+                                                8
+                                                [              4
+                                                               [           8
+                                                                           [
+                          +    −
+(2)              VC(M) = VM ∪ VM ∪ VU2,8             VMM (i)         VDi         VBk .
+                                               i=1             i=1         k=1
+All the matroids in (2) are solvable, hence their varieties are irreducible. The
+decomposition is non-redundant, providing the irreducible decomposition of VC(M) .
+
+
+
+
+          Figure 1. MacLane conﬁguration M and its minimal matroids
+
+
+                                        References
+ [1] G. Rybnikov, On the fundamental group of the complement of a complex hyperplane ar-
+     rangement, Functional Analysis and Its Applications 45 (2011), 137–148.
+ [2] R. Vakil, Murphy’s law in algebraic geometry: badly-behaved deformation spaces, Inven-
+     tiones mathematicae 164 (2006), 569–590.
+ [3] O. Clarke, K. Grace, F. Mohammadi and H. Motwani Matroid stratiﬁcations of hypergraph
+     varieties, their realization spaces, and discrete conditional independence models, Interna-
+     tional Mathematics Research Notices 22 (2021), 18958-19019.
+ [4] C. Colbourn, and R. Mathon Steiner systems, Chapman and Hall/CRC Handbook of Com-
+     binatorial Designs (2006), 128–135.
+ [5] H. Gropp Conﬁgurations and their realization, Discrete Mathematics 74 (1997), 137–151.
+ [6] J. Oxley Matroid theory, Second edition, Oxford University Press (2011).
+ [7] I. Gelfand, M. Goresky, R.MacPherson and V. Serganova Combinatorial geometries, convex
+     polyhedra, and Schubert cells, Advances in Mathematics 63 (1997), 301–316.
+ [8] E. Liwski and F. Mohammadi, Irreducibility, Smoothness, and Connectivity of Realization
+     Spaces of Matroids and Hyperplane Arrangements, arXiv preprint arXiv:2403.13718 (2024).
+ [9] E. Liwski and F. Mohammadi, Paving matroids: deﬁning equations and associated varieties,
+     arXiv preprint arXiv:2403.13718 (2024).
+[10] E. Liwski and F. Mohammadi, Solvable and Nilpotent Matroids: Realizability and Irreducible
+     Decomposition of Their Associated Varieties, arXiv preprint arXiv:2403.13718 (2024).
+[11] E. Liwski and F. Mohammadi, Minimal matroids in dependency posets: algorithms and
+     applications to computing irreducible decompositions of circuit varieties, arXiv preprint
+     arXiv:2502.00799 (2025).
+412                                                         Oberwolfach Report 9/2025
+
+    Lamination hulls and solving linear inequalities over convex sets
+                               Saugata Basu
+ (joint work with Hamidreza A. Khorasgani, Hemanta K. Maji, Hai H. Nguyen)
+
+
+Definition 1 (Λ-hull). Let Λ ⊂ Rd be some ﬁxed subset. For any subset S ⊂ Rd
+we denote
+(1)         GΛ (S) = {αx + (1 − α)y | x, y ∈ S, x − y ∈ Λ, 0 < α < 1},
+                                         (i)
+and for each i ∈ N, we denote GΛ (S) = GΛ ◦ · · · ◦ GΛ (S).
+                                         |  {z       }
+                                              i
+                               S     (i)
+  We call the subset S (Λ,∞) = i≥0 GΛ (S) the Λ-hull of S.
+
+Remark 2. If 0 ∈ Λ, then taking x = y ∈ S in (1), we get that S ⊂ GΛ (S).
+Remark 3. If Λ = Rd , then it follows from Carathéodory’s theorem that for any
+                           (⌈log (d+1)⌉)
+subset S ⊂ Rd , S (Λ,∞) = GΛ 2           (S) = conv(S), where conv(S) denotes the
+convex hull of S.
+   Characterizing the Λ-hull of subsets of Rd is an important problem arising in
+several unrelated areas of mathematics (such as in the study of certain partial
+diﬀeretial equations [4]) as well as in theoretical computer science (secure compu-
+tation in cryptography [1]).
+   We prove the following theorem.
+Theorem 4. [3] Let a, b, c ≥ 0, d = a + b + c. Let Λ ⊂ Rd be defined by
+(2)                      Λ = {0} × Rb × Rc ∪ Ra × {0} × Rc .
+Then, for each finite subset S ⊂ Rd , S (Λ,∞) is a semi-algebraic subset of Rd . More-
+over, there exists an algorithm that, given S as input, produces a semi-algebraic
+description of S (Λ,∞) as its output.
+                                   (i)
+Remark 5. The sequence (GΛ )i≥0 need not stabilize. Let
+        S = {(3/4, 1/4, 0), (1/4, 1/2, 0), (1/2, 1, 0), (1, 3/4, 0), (3/4, 1/2, 1)}.
+With this choice of S, a = b = c = 1, and Λ ⊂ R3 in (2), it is not diﬃcult to see
+                    (i)
+that the sequence GΛ (S) does not stabilize (this example is sometimes referred
+to as the “Tartar square” in the literature, see [2]).
+Remark 6. Another interesting example also in R3 is the following one, which
+shows that even for ﬁnite sets S, S (Λ,∞) need not always be a semi-linear set
+(though still semi-algebraic by Theorem 4). Take Λ ⊂ R3 as deﬁned in (2) with
+a = b = c = 1 and let S = {(0, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 1)}. It is easy to verify
+that with these choices,
+                             (2)
+                S (Λ,∞) = GΛ (S) = {(x, y, z) | z = xy, 0 ≤ x, y ≤ 1}.
+Optimization, Theoretical Computer Science and Algebraic Geometry                            413
+
+  As an intermediate step in our proof of Theorem 4 we prove a result about
+convex subsets of Rd which might be of independent interest. Let Ω be a ﬁnite set
+and denote by CL(Ω) (CL for “Convex Linear”) the set of all formal convex linear
+combinations of elements of Ω, i.e.
+                             X                     X
+                   CL(Ω) = {      aω · ω | aω ≥ 0,   aω = 1}.
+                                   ω∈Ω                       ω
+
+   We also denote
+                             o      o
+                MΩ = {L1 ⋆ · · · ⋆ Lk | k ≥ 1, Li ∈ CL(Ω), 1 ≤ i ≤ k},
+and
+             PΩ = {M1 ⊕ · · · ⊕ Mm | m > 0, Mj ∈ MΩ , 1 ≤ j ≤ m}.
+It might be useful to think of MΩ as a set of “monomials” and PΩ as a set of
+polynomials “polynomials” on CL(Ω). There exists a evaluation map evalΩ , that
+given, φ ∈ Pω , and a tuple S = (Sω )ω∈Ω of subsets of Rd , produces a subset
+evalΩ (φ)(S) ⊂ Rd , deﬁned by the formula obtained from φ, by replacing ω by Sω
+and interpreting c · X as dilation of X by c, + as Minkowski sum, ⊕ as union, and
+o
+⋆ as the “positive geometric join” operator deﬁned by
+                     o
+                 X ⋆ Y = {αx + (1 − α)y | x ∈ X, y ∈ Y, 0 < α < 1}.
+   For subsets X, Y ⊂ Rd , we denote X ≥ Y iﬀ X contains the convex hull of Y .
+Theorem 7. [3] For any finite set Ω = Ω1 ∪ Ω2 , with Ω1 = {X1 , . . . , Xn }, Ω2 =
+{P1 , . . . , Pm }, and a system of inequalities
+(3)                                     (Xi ≥ φi )1≤i≤n ,
+where φi ∈ PΩ , 1 ≤ i ≤ n, there exists a tuple (ψi )1≤i≤n , with ψi ∈ PΩ2 , such that
+for any tuple of sets S = (Si )1≤i≤m , the tuple (Yi = conv(evalΩ2 (ψi )(S)))1≤i≤n , is
+the smallest (with respect to inclusion) tuple of convex subsets of Rd , which satisfy
+the inequalities (Yi ≥ evalΩ (φi )(S ′ ))1≤i≤n , where S ′ = (Y1 , . . . , Yn , S1 , . . . , Sm ).
+   If S1 , . . . , Sm are semi-algebraic subsets of Rd , then so are Y1 , . . . , Yn . Moreover,
+if S1 , . . . , Sm are finite subsets, then each Yi is convex and is a union of the relative
+interiors of a finite set of polytopes in Rd (we call such sets hemihedras).
+Example 8. We give an illustration of Theorem 7. Consider the following system
+of inequalities with two variables with Ω1 = {X1 , X2 }, Ω2 = {P1 , P2 , P3 , P4 }.
+                                                              
+                                     1           1         1
+                         X1 ≥ P1 ⊕     · X1 + · X2 + · P3 ,
+                                     2           4         4
+                                                              
+                                     1           1         1
+                         X2 ≥ P2 ⊕     · X1 + · X2 + · P4 .
+                                     4           2         4
+   Then the convex hulls of the following pair of sets
+                                                                             
+             o    1         1            o    1         1      o   2         1
+    P1 ⊕ P1 ⋆       · P2 + · P3 ⊕ P1 ⋆          · P2 + · P3 ⋆        · P3 + · P4 ,
+                  2         2                 2         2          3         3
+                                                                              
+               o   1         1             o   1         1       o  1         2
+     P2 ⊕ P2 ⋆        · P1 + · P4 ⊕ P2 ⋆          · P1 + · P4 ⋆        · P3 + · P4
+                   2         2                 2         2          3         3
+414                                                          Oberwolfach Report 9/2025
+
+is the smallest convex solution to the given system of inequalities.
+
+   The connection between Theorems 4 and 7 is the following. We show that for
+S a ﬁnite subset of Rd and Λ as deﬁned in (2), the set S (Λ,∞) can be recovered
+(using a semi-algebraic procedure i.e. deﬁned using a ﬁrst-order formula in the
+theory of the reals) from a ﬁnite set of ﬁbers S (Λ,∞) ∩ π −1 (x, y), (x, y) ∈ Ra × Rb ,
+where π : Ra × Rb × Rc → Ra × Rb denotes the projection map. Moreover, we
+prove that each ﬁber S (Λ,∞) ∩ π −1 (x, y), (x, y) ∈ Ra × Rb can be characterized
+as the smallest convex solution to a system of inequalities (3), with P1 , . . . , Pm
+specialized to points in Rd . Theorem 7 in conjunction with the semi-algebraic
+procedure mentioned above and the Tarski-Seidenberg theorem allows us to obtain
+eﬀectively a semi-algebraic description of S (Λ,∞) . Note that while we only prove
+that S (Λ,∞) is a semi-algebraic set, Theorem 7 implies that each of the ﬁbers
+S (Λ,∞) ∩ π −1 (x, y), (x, y) ∈ Ra × Rb are hemihedral. However, as illustrated in the
+example given in Remark 6, S (Λ,∞) itself need not be hemihedral.
+   Theorem 4 is a key step in proving a result in cryptography. Suppose X, Y, Z
+are ﬁnite subsets. A randomized function f : X ×Y ×Z → R, is a function that for
+each (x, y) ∈ X × Y , induces a probability distribution function f (x, y, ·) : Z → R.
+In a recent work [1], the authors proved the decidability of the problem: given
+f and r > 0, does there exist a r-bit secure randomized two-party protocol that
+computes f . The decision procedure reduced to testing whether a certain point
+                             (r)
+qf ∈ Rd belonged to GΛ (Sf ) for a certain explicitly constructed ﬁnite subset
+Sf ⊂ Rd (where a = card(X), b = card(Y ), c = card(Z) and d = a + b + c). It
+was left open whether the problem of deciding whether there exists a secure r-bit
+protocol for f for some r > 0 is decidable. Using the result in [1] mentioned above,
+this last decision problem reduces to testing whether the point qf belongs to the
+S (Λ,∞) . Theorem 4 implies that the problem is decidable.
+
+
+
+                                       References
+ [1] S. Basu, H. A. Khorasgani, H. K. Maji, H. H. Nguyen, Geometry of Secure Two-party Com-
+     putation, Proceedings of the 63rd Annual IEEE Symposium on Foundations of Computer
+     Science (FOCS), 2022 .
+ [2] S. Basu, H. A. Khorasgani, H. K. Maji, H. H. Nguyen, Randomized Functions with High
+     Round Complexity, Theory of Cryptography. TCC 2023. Lecture Notes in Computer Science,
+     vol 14369.
+ [3] S. Basu, H. A. Khorasgani, H. K. Maji, H. H. Nguyen, Solving Linear Inequalities over
+     Convex Sets & its Applications to Cryptography and Hydrodynamics, Preprint, 2025.
+ [4] L. Hitruhin, S. Lindberg Lamination convex hull of stationary incompressible porous media
+     equations, SIAM Journal on Mathematical Analysis,53:1,491-508, 2021.
+Optimization, Theoretical Computer Science and Algebraic Geometry                          415
+
+               Distance Optimisation in Polyhedral Norms
+                               Nidhi Kaihnsa
+       (joint work with E. Duarte, J. Lindberg, A. Torres, M. Weinstein)
+
+Given a subset X in a metric space, a Voronoi diagram partitions the metric space
+by identifying the points closest to a given point p on X. The region corresponding
+to the point p is called the Voronoi cell of p. When the metric space is Rn
+endowed with Euclidean norm and X is a real algebraic variety, the geometry
+of this decomposition was studied in [4]. It was shown that the Voronoi cell a
+point p ∈ X is a convex semialgebraic set contained in the normal sapce of the
+variety at p. The authors also studied the algebraic boundary of the Voronoi cells
+by computing the locus of points that are closest to at least two points on X. This
+locus is called the medial axis.
+   We study this geometric problem for the case when X is a co-dimension one
+variety in Rn endowed with the metric induced by a polyhedral norm. For a poly-
+hedral norms the unit ball is given by a centrally symmetric (full-dimenstional)
+polytope. The main motivation to study this problem arises from algebraic statis-
+tics. Given a metric on a ﬁnite set of states, Ω, it induces a Wasserstein distance
+on the space of probability distributions on the set Ω, with a convex polytope as a
+unit ball. On the probability simplex, the problem of minimizing Wassertein dis-
+tance between a probability distribution and an algebraic variety has been studied
+in great detail (cf. [2, 3]).
+   In [1] the authors compute the dimension of a Voronoi cell of a point on an
+algebraic variety for polyhedral norms. They also estimate the number of points
+on X with full dimensional Voronoi cells. In the joint work with Duarte, Lindberg,
+Torres, and Weinstein, we are considering this problem for algebraic varieties with
+codimension one. Given a point p ∈ X, the Voronoi cell of p and its dimension can
+be determined by the relative position of the normal space of the point and the
+normal fan of the unit ball. The dimension of Vornoi cell of each point decomposes
+the algebraic variety. We show that this decomposition infact gives a stratiﬁcation
+of the variety. We also study the decomposition of the ambient space Rn by ﬁnding
+upper bounds on the degrees of medial axis.
+
+                                       References
+[1] A. Becedas, K. Kohn, and L. Venturello: Voronoi Diagrams of Algebraic Varieties under
+    Polyhedral Norms, Journal of Symbolic Computation, 120:102229, 2024.
+[2] T. Çelik, A. Jamneshan, G. Montúfar, B. Sturmfels, and L. Venturello, Optimal Transport
+    to a Variety, Mathematical Aspects of Computer and Information Sciences, MACIS 2019,
+    Springer Lecture Notes in Computer Science 11989 , 364–381.
+[3] T. Çelik, A. Jamneshan, G. Montúfar, B. Sturmfels, and L. Venturello, Wasserstein distance
+    to independence models, Journal of Symbolic Computation, 104 (2021), 855–873.
+[4] D. Cifuentes, K. Ranestad, B. Sturmfels, and M. Weinstein: Voronoi Cells of Varieties,
+    Journal of Symbolic Computation, 109 (2022), 351–366.
+416                                                        Oberwolfach Report 9/2025
+
+A Universal Sequence of Tensors for the Asymptotic Rank Conjecture
+                           Petteri Kaski
+                  (joint work with Mateusz Michalek)
+
+We present an explicit sequence of zero-one-valued three-tensors whose sequence of
+tensor ranks captures the worst-case tensor exponent of tensors of shape d × d × d.
+Joint work with Mateusz Michalek (Konstanz). Cf. ITCS 2025 Article No. 64 [1].
+
+                                      References
+ [1] P. Kaski, M. Michalek, A Universal Sequence of Tensors for the Asymptotic Rank Conjec-
+     ture, 16th Innovations in Theoretical Computer Science Conference, ITCS 2025, January
+     7–10, 2025, Columbia University, New York, NY, USA, LIPIcs 325, Schloss Dagstuhl -
+     Leibniz-Zentrum für Informatik, 2025, pp. 64:1-64:24. https://doi.org/10.4230/LIPIcs.
+     ITCS.2025.64
+
+
+                 On the degree automatability of SoS proofs
+                               Luis Felipe Vargas
+               (joint work with Alex Bortolotti, Monaldo Mastrolilli)
+
+Semideﬁnite programming (SDP) relaxations have been a powerful technique for
+approximation algorithm design ever since the celebrated result of Goemans and
+Williamson. With the aim to construct stronger and stronger SDP relaxations,
+the Sum-of-Squares (SoS) hierarchy has emerged as a systematic and versatile
+method for approximating many combinatorial optimization problems. However,
+fundamental questions remain unanswered. For instance, it is still unknown under
+what conditions SoS can be automated, meaning whether one can ﬁnd a degree-d
+SoS proof in time nO(d) , provided it exists. O’Donnell (2017) observed that the
+prevailing belief regarding the automatability of SoS using ellipsoid algorithms is
+not entirely accurate. Issues may arise when the only degree-d proofs contain ex-
+ceedingly large coeﬃcients, thereby hindering the ellipsoid method from operating
+within polynomial time. In this talk we address this problem and provide suﬃcient
+conditions that guarantee polynomial time computability of SoS proofs.
+Polynomial optimization. Polynomial optimization asks for minimizing a poly-
+nomial over a given set of polynomial constraints. That is, given polynomials
+r, p1 , . . . , pm ∈ R[x1 , . . . , xn ], the task is to ﬁnd (or approximate) the inﬁmum of
+the following problem:
+(1)         inf r(x),   where    S = {x ∈ Rn | p1 (x) = · · · = pm (x) = 0}.
+           x∈S
+
+   Typically, S is deﬁned by a set of equality constraints, in this case P =
+{p1 , . . . , pm }, as well as a set of inequality constraints, Q. For the purpose of
+this talk we restrict to the case where Q = ∅ and S is ﬁnite. Nonetheless, we em-
+phasize that our results readily extend to the semialgebraic setting, where Q 6= ∅.
+   A common approach for solving (or approximating) a polynomial optimization
+problem is by means of sums of squares of polynomials, as we now explain. Let
+Optimization, Theoretical Computer Science and Algebraic Geometry                     417
+
+q ∈ R[x1 , . . . , xn ] be a polyomial. An SoS proof of “q ≥ 0” (over S) from P is an
+identity of the form
+                                      t
+                                      X0            m
+                                                    X
+                                 q=         s2i +         hi p i ,
+                                      i=1           i=1
+
+where si , hi ∈ R[x1 , . . . , xn ]. Moreover, we say that the above SoS proof has degree
+at most d if deg(s2i ) ≤ d, for all i ∈ [t0 ], and deg(hi pi ) ≤ d for all i ∈ [s]. An SoS
+refutation of P is an SoS proof of “ − 1 ≥ 0” from P.
+   The SoS hierarchy is based on the following observation: if there exists an SoS
+proof of “r − θ ≥ 0” from P, then we have that minx∈S r(x) ≥ θ. Moreover, the
+supremum of the values θ such that there is an SoS proof of “r − θ ≥ 0” from P of
+degree d, is called d-th SoS relaxation, also known as the d-th Lasserre relaxation
+of problem (1). It turns out that the d-th SoS relaxation can be formulated as an
+SDP of size nO(d) .
+   SoS relaxations have gained increasing popularity and success; yet, they remain
+a relatively recent development. Fundamental questions about their properties and
+capabilities remain open. For example, we do not even know when SoS relaxations
+can be computed in polynomial time. Indeed, O’Donnell provided an example of a
+polynomial system P and a polynomial r such that for all ε > 0 there is a degree-2
+                                                                                    n
+SoS proof of “r + ε ≥ 0”, but every proof has coeﬃcients of magnitud 22 . This
+shows that the often repeated claim that, for any ﬁxed degree d, the d-th SoS
+relaxation can be found (or approximated) in polynomial time is far from true.
+
+O’Donnell (2017) posed the open problem of identifying meaningful conditions
+that ensure that “small” SoS proofs can be found. We will consider systems
+P = {p1 = 0, . . . , pm = 0} of polynomials and an “input” polynomial r of degree
+at most d, with the (mild) assumption that the bit complexity needed to represent
+P and r is polynomial in n. Moreover, we assume that P is explicitly Archimedean,
+                         d
+i.e. there is N < 2poly(n ) such that there exists a “small” SoS proof of “N −x2i ≥ 0”
+from P for any variable xi . We restate O’Donnell’s question as follows: Under what
+conditions on P does the following property hold?
+   (P) Assume there exists an SoS proof of “r ≥ 0” from P of degree 2d. Then,
+       for every ε > 0, there also exists an SoS proof of “r + ε ≥ 0” from P with
+                                                        d   1
+       degree O(d) and coeﬃcients bounded by 2poly(n ,lg ε ) .
+   Since O’Donnell raised his question in 2017, very few papers have been published
+that address this issue. An initial elegant solution to this question is provided by
+Raghavendra and Weitz, which is based on the Nullstellensatz proof system. This
+criterion is applicable to various optimization problems, including Max-Clique,
+Matching, and Max-CSP. However, the criterion is subject to signiﬁcant limita-
+tions. First, the criterion is suﬃcient but not necessary. Second, it is important to
+observe how the their criterion in is inﬂuenced by the complexity of a well-known
+problem known as the Ideal Membership Problem (IMP). This problem involves
+determining whether an input polynomial r belongs to the ideal generated by
+{p1 , . . . , pm }.
+418                                                       Oberwolfach Report 9/2025
+
+In this talk, we present new criteria that guarantee property (P) holds, thus en-
+abling the automation of Sum of Squares (SoS) methods. Speciﬁcally, we outline
+the main contributions and techniques:
+      (1) SoSε criterion. We start by presenting a general criterion, called the
+          SoSε criterion, which guarantees that Property (P) is satisﬁed, and thus
+          that SoS can be automated. This criterion, which is a generalization of the
+          criterion by Raghavendra and Weitz, serves as tool for presenting our main
+          contributions. The key distinction lies in the notion of completeness used
+          in the criterion. Speciﬁcally, one of the conditions for applying citerior is
+          the so-called SoSε -completeness. We say, roughly, that the system P is
+          SoSε -complete if every degree-d polynomial q that vanishes on S admits a
+          “small approximate” SoS proof of “q ≥ 0”.
+      (2) SoS approximability of polynomial systems. A main diﬃculty for
+          applying our new criterion is to prove that a system is SoSε -complete.
+          For this, we present the notion of SoS-approximation between polynomial
+          systems, which turns out to be a powerful tool for showing SoSε complete-
+          ness, and applying the sosε criterion.
+
+      (3) SoS simulates PC and PC criterion Polynomial Calculus (PC) is a
+          dynamic proof system that permits to prove that an input polynomial be-
+          longs to an ideal. In general, PC and SoS are incomparable. However,
+          in the presence of domain restrictions, this is not necessarily true. In a
+          surprising result, Berkholz showed that over Boolean variables, SoS simu-
+          lates PC for refutations, while for the converse there is a strict separation.
+          In this talk we present an extension of Berkholz’s result to general poly-
+          nomial derivations in which the variable domains are ﬁnite rational sets.
+          This result permits us to state a new criterion, called the PC-criterion for
+          guaranteeing that property (P) holds, and thus SoS can be automated.
+As a main application of the PC criterion, we examine constraint languages (and
+polynomial equations) that are closed under the semilattice and dual discrimina-
+tor polymorphisms. Propositional formulas from HORN-SAT or 2-SAT can be
+easily translated into system of polynomial equations that are semilatice or dual
+discriminator closed, respectively. Moreover, these two classes extend HORN-
+SAT and 2-SAT formulas, respectively, to general ﬁnite domain cases and have
+held a signiﬁcant role in the theory of Constraint Satisfaction Problems of the
+form CSP(Γ);
+
+Theorem 1. For a system P of polynomial equations over n variables that is
+closed under the semilattice (or dual discriminator) polymorphism, then the PC
+criterion applies.
+Optimization, Theoretical Computer Science and Algebraic Geometry                     419
+
+             Tensor networks, tensor cumulants, tensor PCA
+                         Dmitriy (Tim) Kunisky
+   (joint work with Maximilian Jerdee, Cristopher Moore, Alexander S. Wein)
+
+
+This work concerns hypothesis testing between probability distributions over ten-
+sors. It is easiest to think of such problems by analogy with a matrix-valued
+problem, which is often used as a model of principal component analysis (PCA)
+in the statistics literature.
+   In the general matrix-valued setting, we are given an observation Y from one
+of two probability measures Qn or Pn over n × n symmetric matrices, and must
+compute some test t(Y ) ∈ {0, 1} that attempts to output 0 if Y ∼ Qn and 1 if
+Y ∼ Pn with as little error probability as possible. A speciﬁc widely studied model
+involves “noise” drawn from the so-called Gaussian orthogonal ensemble (GOE), a
+random matrix W with Wij = Wji ∼ N (0, 1 + δij ) independently. Under Qn one
+observes Y = W , while under Pn one further draws a unit vector x ∼ Unif(Sn−1 )
+and observes Y = W + βxx⊤ for some β > 0.
+   A natural idea to perform hypothesis testing in such a model is to consider
+only spectral statistics: to ﬁrst compute the eigenvalues λ1 (Y ) ≥ · · · ≥ λn (Y ), and
+compute a test t(Y ) = t(λ(Y )). Indeed, it is known [1, 4] that in the above setting
+a simple such strategy is information-theoretically optimal :
+
+Theorem 1. The following hold in the above model:
+    (1) If β > 1, then:                 √
+         (a) If Y ∼ Qn , then λ1 (Y )/√ n → 2 almost surely.
+         (b) If Y ∼ Pn , then λ1 (Y )/ n → β + β −1 almost surely.
+        In particular, there is a t(Y ) that distinguishes Y ∼ Qn from Y ∼ Pn with
+        high probability by computing and thresholding λ1 (Y ).
+                                                                 n×n
+    (2) If 0 < β < 1, then there is no sequence of tests t : Rsym     → {0, 1} such
+        that limn→∞ Qn [t(Y ) = 0] = limn→∞ Pn [t(Y ) = 1] = 1.
+
+   Our work [2] is motivated by the analogous problem over tensors. Let p ≥ 3.
+There is a certain natural Gaussian random tensor W ∈ Symp (Rn ) analogous to
+the GOE, and the model problem of tensor PCA [5] asks when it is possible to
+distinguish Y ∼ Qn drawn as Y = W from Y ∼ Pn drawn as Y = W +βx⊗p . While
+this problem has many interesting properties, we do not focus on this application
+in this talk, and instead describe some of the algebraic tools developed to try to
+understand analogous algorithms to the above over tensors.
+   At ﬁrst, the task seems ill-posed: there are various diﬀerent notions of tensor
+eigenvalues, but they are typically intractable to compute and are not generically
+associated to any analog of the spectral decomposition. We propose a diﬀerent
+analogy by which the notion of “spectral algorithm” may be understood for tensors.
+                                                                n×n
+In the matrix case, the orthogonal group O(n) acts on Rsym           by Q · Y = QY Q⊤ .
+The symmetric functions of the eigenvalues f (λ1 (Y ), . . . , λn (Y )) are then precisely
+the functions f (Y ) that are invariant under this action, having f (Q · Y ) = f (Y )
+420                                                            Oberwolfach Report 9/2025
+
+for all Q ∈ O(n). Polynomial such f are generated by the special polynomials
+                                                   n
+                                                   X
+                            mk (Y ) = Tr(Y k ) =         λi (Y )k .
+                                                   i=1
+
+   There is an analogous action of O(n) on symmetric p-tensors, where Q acts
+on a tensor Y by acting linearly on each “axis” of the tensor simultaneously. We
+propose that the natural spectral algorithms over tensors are invariant functions
+under this action. A generalization of the above fact about invariant polynomials
+is known (due to Weyl in the 1940’s) in the tensor case: the tensor invariants are
+generated by the polynomials, for p-regular graphs G,
+                                      X       Y
+                        mG (Y ) =                  Yi(∂v) ,
+                                      i:E(G)→[n] v∈V (G)
+
+where ∂v is the set of edges incident to a vertex v. The matrix polynomials mk
+coincide with taking G = Ck the k-cycle. Because of the graphical interpretation,
+in the general tensor case, these polynomials are often called tensor networks.
+   We thus arrive at the natural question: how well can tensor networks solve
+statistical problems like tensor PCA? (It turns out that our above descriptions of
+matrix and tensor PCA makes the distributions Qn and Pn themselves invariant
+under the orthogonal action, in which case an optimal hypothesis testing algorithm
+may be taken to be an invariant function without loss of generality.) In particu-
+lar, we follow a recently popular paradigm in theoretical computer science [3] of
+measuring whether low-degree polynomials (a proxy for eﬃcient algorithms) can
+solve such a problem. Speciﬁcally, we consider whether a low-degree polynomial
+f (Y ) can separate the distributions Qn and Pn by having
+      EY ∼Pn [f (Y )] − EY ∼Qn [f (Y )] ≫ max {VarY ∼Pn [f (Y )], VarY ∼Qn [f (Y )]} .
+  As this is an “L2 notion” of separation, to understand it, it is useful to seek out
+an approximately orthogonal basis for the invariant polynomials under the inner
+product hf, gi = EY ∼Qn f (Y )g(Y ). One of our main results obtains such a basis,
+and shows that it has a surprising further property.
+Theorem 2 (Informal). For D = D(n) not too large, there exist polynomials
+κG (Y ) indexed by p-regular graphs G with |V (G)| ≤ D (variants of the mG (Y )
+above) that satisfy the following:
+    (1) The κG (Y ) for |V (G)| ≤ D form a basis for the invariant polynomials of
+         a p-tensor Y of degree at most D.
+    (2) This basis is approximately orthogonal: the matrix (hκG , κH i)G,H is well-
+         conditioned.
+    (3) If G is connected, then for Q a uniformly random orthogonal matrix,
+                         EQ κG (A + Q · B) = κG (A) + κG (B).
+         A similar but slightly more complicated identity holds for general G.
+   The surprising part of this result is that the third property is satisﬁed along with
+the ﬁrst two, which merely state the properties of an approximately orthogonal
+Optimization, Theoretical Computer Science and Algebraic Geometry                              421
+
+basis. This third property is both intrinsically interesting and useful for under-
+standing problems like tensor PCA, since a random Y ∼ Pn in tensor PCA has
+precisely the form Y = A + Q · B.
+   Because of this third property, we call the κG the finite free cumulants of a
+tensor. This is by analogy with the theory of free probability. In classical prob-
+ability, the cumulants are statistics of a probability measure that are additive
+under summation of independent random variables. In free probability, there is a
+notion of free independence which, roughly speaking, asks that a matrix B has its
+frame of eigenvectors rotated randomly relative to that of a matrix A. There is
+a corresponding notion of free cumulant that behaves like the classical cumulant
+but with respect to free independence over growing sequences of random matrices.
+More recently, a notion of finite free cumulant was developed that again behaves
+similarly, but is just a polynomial of a ﬁxed ﬁnite-dimensional matrix. Finally,
+our notion generalizes this last one to tensors.
+   Based on this surprising result, we propose an intriguing direction for future
+research. We ask: in general, what do approximately orthogonal bases for invariant
+polynomials under various group actions look like? Can such general bases be
+chosen to also satisfy the additivity property above? And, what implications do
+these objects have in algorithmic statistics beyond the special case of tensor PCA?
+
+                                         References
+ [1] D. Féral, S. Péché. The largest eigenvalue of rank one deformation of large Wigner matrices.
+     Communications in Mathematical Physics 272, No. 1, pp. 185–228, 2007.
+ [2] D. Kunisky, C. Moore, A.S. Wein. Tensor cumulants for statistical inference on invariant
+     distributions. 65th Annual Symposium on Foundations of Computer Science (FOCS 2024).
+ [3] D. Kunisky, A.S. Wein, A. Bandeira. Notes on computational hardness of hypothesis testing:
+     Predictions using the low-degree likelihood ratio. Mathematical Analysis, its Applications
+     and Computation, pp. 1–50, Springer International Publishing 2022.
+ [4] A. Perry, A.S. Wein, A.S. Bandeira, A. Moitra. Optimality and sub-optimality of PCA I:
+     Spiked random matrix models. Annals of Statistics 46, No. 5, pp. 2416–2451, 2018.
+ [5] E. Richard, A. Montanari. A statistical model for tensor PCA. Advances in Neural Infor-
+     mation Processing Systems, 2014, pp. 2897–2905.
+
+
+      Totally nonnegative matrices, chain enumeration and zeros of
+                                polynomials
+                             Petter Brändén
+                 (joint work with Leonardo Saud Maia Leite)
+
+In this talk we provide a new view on, and new tools for, problems in algebraic
+combinatorics related to face numbers of complexes and zeros of polynomials. The
+key theorem relates totally nonnegative matrices to chain enumeration in partially
+ordered sets, and f -vectors of simplicial complexes and posets. It is used to develop
+a general theory for chain enumeration in posets and zeros of chain polynomials.
+The results obtained extend and unify results of the speaker, Brenti, Welker and
+Athanasiadis. In the process we deﬁne a notion of h-vectors for a large class of
+posets which generalize the notions of h-vectors associated to simplicial and cubical
+422                                                           Oberwolfach Report 9/2025
+
+complexes. We also use the methods developed to answer an open problem posed
+by Forgács and Tran on the real-rootedness of polynomials arising from certain
+bivariate rational functions. The talk is based on the preprint [1].
+   Recall that a matrix is totally nonnegative (TN) if all of its minors are non-
+negative. Let R = (rn,k )Nn,k=0 , N ∈ N ∪ {∞}, be a lower triangular matrix whose
+diagonal entries are all equal to one. Associate to R a sequence {pn (t)}N n=0 of
+polynomials deﬁned recursively by p0 (t) = 1, and
+                                   n−1
+                                   X
+(1)                   pn (t) = t         rn,k · pk (t),   0 < n ≤ N.
+                                   k=0
+We call these polynomials the chain polynomials associated to R. Our main the-
+orem is
+Theorem 1. If R is totally nonnegative, then all zeros of pn (t) are real and located
+in the interval [−1, 0].
+                                 ∞
+Example 2. The matrix R = nk n,k=0 is TN. The chain polynomials associated
+to R are
+                                     n
+                                     X
+                            pn (t) =    k!S(n, k)tk ,
+                                           k=0
+where S(n, k) is a Stirling number of the second kind. These polynomials are chain
+polynomials for intervals in boolean algebras.
+    We prove that in many cases the polynomials pn (t) are chain polynomials of
+posets, and use Theorem 1 as a tool to prove real-rootedness of chain polynomials
+of posets. The results obtained extend and unify results of the speaker, Brenti,
+Welker and Athanasiadis.
+    Recall that a sequence {ai }∞i=0 of real numbers is a Pólya frequency sequence
+if the Toeplitz matrix (ai−j )∞
+                              i,j=0 is TN, where ak = 0 if k < 0. Pólya frequency
+sequences were characterized by Aissen, Schoenberg, Whitney and Edrei as follows.
+Theorem 3. A sequence {ai }∞    i=0 of real numbers is a Pólya frequency sequence if
+and only if its generating function is of the form
+                          X∞                    ∞
+                                               Y 1 + αi x
+(2)                           an xn = CxN eγx               ,
+                          n=0                  i=1
+                                                   1 − βi x
+                                                                P∞
+where C, γ, αi , βi are nonnegative real numbers, N ∈ N, and i=1 (αi + βi ) < ∞.
+  The special case of Theorem 1 when R is a Toeplitz matrix translates as follows.
+Theorem 4. Let f (x) be as in (2), and consider the formal power series
+                                       ∞
+                         1            X
+(3)                                 =     rn (t)xn ∈ R[t][[x]].
+                1 − t(f (x) − f (0)) n=0
+Then rn (t) is a real-rooted polynomial for each n ∈ N.
+  Theorem 3 solves an openQproblem of Forgács and Tran, namely the case of
+                            m
+Theorem 3 when f (x) = xr / i=1 (1 − βi x), where βi ≥ 0 for each i.
+Optimization, Theoretical Computer Science and Algebraic Geometry                          423
+
+                                        References
+ [1] P. Brändén, L. Saud Maia Leite, Totally nonnegative matrices, chain enumeration and zeros
+     of polynomials, preprint, arXiv:2412.06595.
+
+
+
+      Symmetric nonnegative functions and the Vandermonde map
+                               Sebastian Debus
+      (joint work with Jose Acevedo, Grigoriy Blekherman, Cordian Riener)
+
+The image of the Vandermonde map (p1 , p2 , . . . , pd ) : Rn → Rd , where pi (x) =
+P  n      i
+   j=1 xj denotes the i-th power sum polynomial, shows fascinating geometric
+properties. Let Πn,d denote the projection of the image of ∆n−1 = {x ∈ Rn≥0 :
+Pn
+   i=1 xi = 1} onto its last d − 1 coordinates. We call Πn,d a Vandermonde cell.
+In [2], we prove that for n ≥ d the set Πn,d has the combinatorial structure of the
+cyclic polytope C(n, d − 1) which is the convex hull of n points on the real moment
+curve (t, t2 , . . . , td−1 ). This was previously experimentally observed in [7].
+    Moreover, the Vandermonde cells Πn,d ⊂ Πn+1,d form an increasing nested
+sequence
+  S           in Rd−1 and we prove that the Vandermonde cell at inﬁnity Πd =
+cl n∈N Πn,d has the combinatorial structure of an inﬁnite cyclic polytope, i.e.,
+of a convex body with inﬁnitely many facets which are characterized by Gale’s
+evenness condition. The methods used to prove the theorem rely on a description
+of the preimage of the boundary of Πn,d via multiplicity vectors of elements in
+∆n−1 and are an adaptation of the work of Kostov [5] who studied the geometry
+of (p1 , p2 , . . . , pd )(Sn−1 ).
+    For a real symmetric matrix A, all its eigenvalues are real. The trace of Ai is
+given by evaluating pi in the eigenvalues of A. Thus, we have a natural relationship
+between inequalities in symmetric functions in several groups of variables and
+inequalities in traces of real symmetric matrices of all sizes. We prove that the
+problem of deciding nonnegativity of such inequalities is undecidable. This result
+is in sharp contrast to the case of bounded matrix sizes where the problem is
+decidable. It remains an open problem whether the problem is decidable in the
+setting of a single group of variables or, respectively, in the case of a single matrix.
+    Naturally, the study of the image of the Vandermonde map relates to the study
+of nonnegative symmetric functions. Normalized symmetric function inequalities
+have been previously investigated in [1, 4]. In [3], we investigate the relationship
+between the cones of homogeneous symmetric functions that are sums of squares
+and those that are nonnegative in all numbers of variables. Building on the study
+of Kostov [6] of the image of (p1 , p2 , p3 , p4 ) at inﬁnity, we ﬁnd that the symmetric
+function
+                                                 139
+                                4p41 − 5p2 p21 −     p3 p1 + 4p22 + 4p4
+                                                 20
+is nonnegative in all numbers of variables and already not a sum of squares in
+the smallest possible case of 4 variables. In any larger degree, the cones are also
+distinct. This can be seen by the fact that the cones of sums of squares are semial-
+gebraic while the cones of nonnegative symmetric functions are not semialgebraic
+424                                                             Oberwolfach Report 9/2025
+
+sets. We further investigate the diﬀerences between the cones in the even sym-
+metric setting using tropicalization. Moreover, we ﬁnd that the superdominance
+order on partitions encodes all inequalities of the form
+                                pλ1 · · · pλl ≥ pµ1 · · · pµm
+valid on the nonnegative orthant independently of the numbers of variables.
+
+                                      References
+[1] J. Acevedo, and G. Blekherman, Power mean inequalities and sums of squares, Discrete &
+    Computational Geometry (2024), 1–47.
+[2] J. Acevedo, G. Blekherman, S. Debus, and C. Riener The wonderful geometry of the Van-
+    dermonde map, https://arxiv.org/pdf/2303.09512
+[3] J. Acevedo, G. Blekherman, S. Debus, and C. Riener Symmetric nonnega-
+    tive functions, the tropical Vandermonde cell and superdominance of power sums,
+    https://arxiv.org/pdf/2408.04616
+[4] G. Blekherman, and C. Riener Symmetric non-negative forms and sums of squares, Discrete
+    & Computational Mathematics 65 (2021), 764–799.
+[5] V. P. Kostov On the geometric properties of Vandermonde’s mapping and on the problem of
+    moments, Proceedings of the Royal Society of Edinburgh Section A: Mathematics 112.3-4
+    (1989), 203-211.
+[6] V. P. Kostov. Stably hyperbolic polynomials. Advanced Studies in Pure Mathematics (2007),
+    95–104.
+[7] H. Melánová, B. Sturmfels, and R. Winter, Recovery from power sums, Experimental Math-
+    ematics 32(2) (2024), 225–234.
+
+
+
+             Hard Graphs for Colour Refinement and Beyond
+                               Sandra Kiefer
+              (joint work with Brendan D. McKay, Devini de Mel)
+
+Colour Reﬁnement is a combinatorial procedure that iteratively computes a color-
+ing of its input graph, with the purpose of detecting (a)symmetries in the graph.
+The central complexity parameter of the algorithm is its number of iterations un-
+til termination, i.e., the number of colourings that it computes until the induced
+partition does not become ﬁner anymore. The trivial upper bound on this number
+is n − 1, where n is the number of vertices in the graph.
+    In my talk, I presented the construction and compact representation that Bren-
+dan D. McKay and I came up with to show that there are inﬁnitely many long-
+reﬁnement graphs, that is, inﬁnitely many graphs with n − 1 iterations until ter-
+mination. I also reported on recent progress with Devini de Mel concerning the
+uniqueness of the construction: with a single exception, the presented families
+are the only long-reﬁnement graphs with minimal degrees.Via reverse-engineering
+partitions, we extend the classiﬁcation to maximum degree 4.
+    I also spoke about generalizations of the algorithm and bounds on their ex-
+pressive power concerning graph distinguishability. I leave as an open problem
+the systematic construction of long-reﬁnement graphs (or non-existence proofs)
+for such generalizations.
+Optimization, Theoretical Computer Science and Algebraic Geometry                             425
+
+                    Graph Homomorphisms and Polynomials
+                           Grigoriy Blekherman
+
+
+Given two simple graphs G, H a homomorphism ϕ : G → H is a map from the
+vertex set V (G) of G to the vertex set V (H) of H such that ϕ preserves adjacency
+of vertices. The homomorphism density t(H, G) is deﬁned by
+
+                                       #homomorphisms G → H
+                      t(H, G) =                                   .
+                                    total # of maps V (G) → V (H)
+
+   One can ask for complexity of deciding whether a polynomial expression in
+t(Gi , H) is nonnegative for all target graphs H, and it was shown by Hatami
+and Norin that this problem is undecidable [3]. We now describe an alternative
+proof of this result (also giving more general information) using the geometry of
+polynomial maps.
+   For a graph H let AH denote the adjacency matrix of H. For any n × n matrix
+A recall that tr(Ad ) = λd1 + · · · + λdn , where λi are the eigenvalues of A. Let pd to
+denote the d-th power sum polynomial: pd (x) = xd1 + · · · + xdn . It is well known
+that for an even cycle C2k we have
+
+                                         tr A2k
+                                             H     p2k (λ1 , . . . , λn )
+                       t(C2k , H) =              =                        ,
+                                       |V (H)|2k      |V (H)|2k
+  where λ1 , . . . , λn are eigenvalues of AH .
+  Therefore we have
+       t(C 6 , H)     tr A6H    p6 (λ1 , . . . , λn )        t(C 4 , H)  p4 (λ1 , . . . , λn )
+(1)             3
+                  =       2  3
+                               = 3                    , and             = 4                    .
+      t(C2 , H)     (tr AH )    p2 (λ1 , . . . , λn )       t(C2 , H)2   p2 (λ1 , . . . , λn )
+
+  Deﬁne the d-th Vandermonde map νn,d by sending a point in Rn to its image
+under the ﬁrst d power sums:
+
+                               νn,d (x) = (p1 (x), . . . , pd (x)).
+
+Let ∆n−1 be the probability simplex in Rn : ∆n−1 consists of all vectors with non-
+negative coordinates with the sum of coordinates equal to 1. The image νn,d (∆n−1 )
+is called the the (n, d)-Vandermonde cell and is denoted by Πn,d . Observe that
+the ﬁrst coordinate of Πn,d is identically 1, and so we may project it out, and see
+Πn,d as the subset of Rd−1 , which is the image of ∆n−1 under (p2 , . . . , pd ).
+   The image of Πn,3 looks as follows:
+   The Vandermonde cell Πn,3 has n special points of the form (1/k, 1/k 2) for
+k = 1, . . . , n. The lower boundary of the image consists of concave curves joining
+the special points (1/k, 1/k 2). As n goes to inﬁnity we get inﬁnitely many isolated
+points on the curve y = x2 . The upper boundary of the limit cell Π∞,3 is given
+by the curve y 2 = x3 for 0 ≤ x ≤ 1.
+426                                                          Oberwolfach Report 9/2025
+
+
+
+
+                       Figure 1. The sets Πn,3 for n = 3, 4, 5
+
+   If we do not restrict to adjacency matrices of graphs, then the image of the map
+                                                                                      
+                                         p6 (λ1 , . . . , λn ) p4 (λ1 , . . . , λn )
+                 (λ1 , . . . , λn ) 7→                         ,
+                                         p32 (λ1 , . . . , λn ) p42 (λ1 , . . . , λn )
+is simply the the Vandermonde cell Π∞,3 . However, one can show that as we go
+over all graphs H with any number of vertices, we actually get the full Vander-
+monde cell Π∞,3 in 1 [1].
+   For undecidability we need a product of independent copies of Π∞,3 . We can
+obtain these independent copies by considering necklace graphs. The even cycles
+are 2k copies of complete graph K2 glued together in a circular fashion. One can
+similarly take 2k copies of the triangle K3 and glue them together in circular fash-
+ion, producing a necklace graph on 4k vertices. One can show that using necklace
+graphs for larger complete graphs Km we can obtain independent copies of Π∞,3
+and use the same undecidability reduction [2][1]. Moreover, this reduction can be
+used to show undecidability for weighted homomorphism density inequalities, even
+with negative weights.
+
+                                      References
+ [1] Grigoriy Blekherman and Annie Raymond. Ubiquity of power sums in graph proﬁles. arXiv
+     preprint arXiv:2308.07422, 2023.
+ [2] Grigoriy Blekherman, Annie Raymond, and Fan Wei. Undecidability of polynomial inequal-
+     ities in weighted graph homomorphism densities. Forum of Mathematics, Sigma, 12:e40,
+     2024.
+ [3] Hamed Hatami and Serguei Norine. Undecidability of linear inequalities in graph homomor-
+     phism densities. Journal of the American Mathematical Society, 24(2):547–565, 2011.
+
+
+        Combinatorial Shorest Paths on Combinatorial Polytopes
+                          Yoshio Okamoto
+This talk is a biased overview of recent results and open problems on combinatorial
+shortest paths on combinatorial polytopes. In this talk, combinatorial polytopes
+mean bounded polyhedra that arise from combinatorics and discrete mathematics.
+We are mainly interested in two questions on the graphs (i.e., the 1-skeleta) of
+Optimization, Theoretical Computer Science and Algebraic Geometry                         427
+
+such polytopes. The ﬁrst question is to determine the graph distance between two
+vertices in a polytope. The second question is to determine the graph diameter of
+a polytope, where the graph diameter is deﬁned as the maximum graph distance
+over all pairs of vertices.
+    In a perfect matching polytope of an undirected graph G, the vertices corre-
+spond to perfect matchings of G and two vertices are joined by an edge if and only
+if the symmetric diﬀerence of the corresponding perfect matchings is composed of
+a single cycle. Then, the distance between two perfect matchings of G is deﬁned
+as the graph distance on the graph of the perfect matching polytope of G.
+    Aichholzer et al. [1] and Ito et al. [3] independently proved that the distance
+between two perfect matchings is NP-hard to compute. Moreover, Cardinal and
+Steiner [2] proved that the constant-factor approximation is also NP-hard. For the
+diameter computation, Nöbel and Steiner [5] recently prove that it is also NP-hard.
+    In a d-dimensional associahedron, the vertices correspond to binary tree with
+d + 2 leaves, and two vertices are joined by an edge if and only if one of the
+corresponding binary trees can be obtained by a single rotation from the other.
+This is equivalently stated as the vertices correspond to triangulations of a convex
+polygon with d + 3 vertices, and two vertices are joined by an edge if and only if
+one of the corresponding triangulations can be obtained by a single diagonal ﬂip
+from the other.
+    The diameter of associahedra is well studied. Sleator et al. [7] proved that the
+diameter is at most 2d − 4 when d ≥ 10, and this is tight for inﬁnitely many d’s.
+Pournin [6] later proved that the bound of 2d − 4 is indeed tight for all d ≥ 10.
+On the other hand, the distance computation in associahedra is a long-standing
+open problem.
+    A graph associahedron is a generalization of an associahedron. In a graph asso-
+ciahedron of an undirected graph G, the vertices correspond to elimination trees
+of G, and two vertices are joined by an edge if and only if one of the corresponding
+elimination trees can be obtained by a single ﬂip from the other. When G is a
+path, a graph associhedron of G is identical to an associahedron.
+    Ito et al. [4] proved that the distance computation is NP-hard for graph asso-
+ciahedra. On the other hand, while several authors found the exact diameters for
+restricted classes of graphs and upper/lower bounds for diameters, less is known
+for the diameter computation of graph associahedra. In particular, we do not
+know whether the diameter computation can be done in polynomial time or it is
+NP-hard.
+
+                                       References
+[1] Oswin Aichholzer, Jean Cardinal, Tony Huynh, Kolja Knauer, Torsten Mütze, Raphael
+    Steiner, Birgit Vogtenhuber: Flip distances between graph orientations. Algorithmica 83(1):
+    116–143 (2021)
+[2] Jean Cardinal, Raphael Steiner: Inapproximability of Shortest paths on perfect matching
+    polytopes. IPCO 2023: 72–86
+[3] Takehiro Ito, Naonori Kakimura, Naoyuki Kamiyama, Yusuke Kobayashi, Yoshio Okamoto:
+    Shortest reconﬁguration of perfect matchings via alternating cycles. SIAM J. Discret. Math.
+    36(2): 1102–1123 (2022)
+428                                                                  Oberwolfach Report 9/2025
+
+ [4] Takehiro Ito, Naonori Kakimura, Naoyuki Kamiyama, Yusuke Kobayashi, Shun-ichi
+     Maezawa, Yuta Nozaki, Yoshio Okamoto: Hardness of ﬁnding combinatorial shortest paths
+     on graph associahedra. ICALP 2023: 82:1–82:17
+ [5] Christian Nöbel, Raphael Steiner: Complexity of polytope diameters via perfect matchings.
+     SODA 2025: 2234–2251
+ [6] Lionel Pournin: The diameter of associahedra. Advances in Mathematics 259: 13–42 (2014)
+ [7] Daniel D. Sleator, Robert E. Tarjan, William P. Thurston: Rotation distance, triangulations,
+     and hyperbolic geometry. Journal of the American Mathematical Society 1(3): 647–681
+     (1988)
+
+
+       Identifying Generic Points from Non-generic Measurements
+                           Shin-ichi Tanigawa
+A d-dimensional framework is a pair (G, p) of a graph G = (V, E) and a vertex
+conﬁguration p : V → Rd in d-space. The framework (G, p) is called globally rigid
+if, for any framework (G, q) with the same underlying graph G,
+(1)                      kp(i) − p(j)k = kq(i) − q(j)k               ∀ij ∈ E
+implies that q is the image of p by a Euclidean isometry, where k · k denotes the
+Euclidean norm in Rd . A classical observation by Saxe shows that checking the
+global rigidity of a given framework is NP-hard even in one-dimensional space,
+implying that a concise characterization of globally rigid frameworks is unlikely to
+exist. However, Gortler-Healy-Thurston [4] proved the following surprising result.
+Theorem 1. For a graph G = (V, E) and an integer d, let
+                   GR(G, d) := {p ∈ (Rd )V : (G, p) is globally rigid}.
+Then, GR(G, d) or its complement has measure zero. Moreover, there is a ran-
+domized polynomial time algorithm to decide which of the two cases holds for a
+given G.
+   The theorem implies that, as long as we are concerned with generic p, global
+rigidity is determined by the underlying graph G.
+   In this project, we are interested in generalizing this result to a broader class
+of polynomial systems. In [3], we introduce the following generalized rigidity
+model: Let g : (Rd )k → R be a homogeneous polynomial map. For a k-uniform
+hypergraph G and a vertex conﬁguration p, the corresponding framework (G, p) is
+globally g-rigid if for any framework (G, q) with the same underlying hypergraph
+G,
+(2)        f (p(v1 ), . . . , p(vk )) = f (q(v1 ), . . . , q(vk ))   ∀(v1 , . . . , vk ) ∈ E
+implies that q is the image of p by an action of a stabilizer of g.
+   We relate the concept of global g-rigidity with the identiﬁability of secant va-
+rieties. In particular, we show how to extend the rank condition of Connelly–
+Gortler–Healy–Thurston [2, 4] for the Euclidean case to the general setting of
+global g-rigidity, using the tangential weak defectiveness of secant varieties due to
+Chiantini and Ottaviani [1]. As applications, we consider the following two special
+cases:
+Optimization, Theoretical Computer Science and Algebraic Geometry                          429
+
+    (i) When k = 2 and g(x1 , x2 ) = kx1 − x2 kqq for x1 , x2 ∈ Rd , where k · kq
+        denotes the ℓq -norm: In this case (when q is even), the corresponding
+        global g-rigidity problem has been well studied as the graph rigidity in
+        ℓq -normed space. In [6], we showed that the ℓq -analogue of Theorem 1 is
+        true if d = 2. It remains an open problem to extend this result to higher
+        dimensions.
+   (ii) When g(x1 , x2 , . . . , xk ) = (x1 ⊙ x2 ⊙ · · · ⊙ xk ) · 1, where ⊙ denotes the
+        Hadamard product, · denotes the dot product, and 1 denotes the all-one
+        vector. In this case, the corresponding g-rigidity characterizes the unique
+        identiﬁability of low-rank tensors from partial entries.
+            We show that global g-rigidity is not a generic property, i.e., there is a
+        graph G for which (G, p1 ) is globally g-rigid and (G, p2 ) is not globally g-
+        rigid for some generic p1 , p2 . On the other hand, global g-rigidity remains
+        a generic property if G is an Erdös–Rényi random hypergraph. Concretely,
+        in [5], we proved the following: Let Gn,t be the random k-uniform hyper-
+        graph on n vertices obtained by inserting each hyperedge of size k with
+        probability t, and let p be a generic d-dimensional vertex conﬁguration.
+        If t > (1+ε) log n
+                  nk−1     , then a.a.s. (Gn,t , p) is globally g-rigid. If t < (1+ε)
+                                                                                  nk−1
+                                                                                      log n
+                                                                                            ,
+        then a.a.s. (Gn,t , p) is not globally g-rigid. We believe that this phenom-
+        enon holds for other polynomial maps g as well, which remains an open
+        problem.
+
+                                       References
+[1] L. Chiantini and G. Ottaviani. On generic identiﬁability of 3-tensors of small rank. SIAM
+    Journal on Matrix Analysis and Applications, 33(3):1018–1037, 2012.
+[2] R. Connelly. Generic global rigidity. Discrete & Computational Geometry, 33:549–563, 2005.
+[3] James Cruickshank, Fatemeh Mohammadi, Anthony Nixon, and Shin-ichi Tanigawa, Identi-
+    ﬁability of points and rigidity of hypergraphs under algebraic constraints, arXiv:2305.18990
+[4] S.J.Gortler, A.D.Healy, and D.P.Thurston. Characterizing generic global rigidity. American
+    Journal of Mathematics, 132(4):897–939, 2010.
+[5] Hiroki Hamaguchi and Shin-ichi Tanigawa, Sample complexity of low-rank tensor recovery
+    from uniformly random entries, arXiv:2408.03504
+[6] Tomohiro Sugiyama and Shin-ichi Tanigawa, Generic global rigidity in ℓp -Space and the
+    identiﬁability of the p-Cayley-Menger varieties, arXiv:2402.18190
+
+
+
+   Gradient descent for unbounded convex functions on Hadamard
+         manifolds and its applications to scaling problems
+                             Keiya Sakabe
+                     (joint work with Hiroshi Hirai)
+
+We study the gradient descent for a lower-unbounded (geodesically-)convex func-
+tion f on a Hadamard manifold M , especially in inf x∈M k∇f (x)k > 0 case. A
+key mathematical tool for the analysis is M ∞ : the boundary of M , which is ob-
+tained by the visual compactiﬁcation M ⊔ M ∞ of M , and the resulting topology
+on M ⊔ M ∞ is called the cone topology. The recession function [2] (also known as
+430                                                            Oberwolfach Report 9/2025
+
+asymptotic slope [4]) f ∞ : M ∞ → R ⊔ {∞} represents the asymptotic increasing
+ratio of f at the inﬁnity of M in each direction. We show a duality theorem that
+the inﬁmum of the gradient norm equals the supremum of minus the recession
+function, and that these inﬁmum and supremum are attained at the limit of the
+gradient descent:
+
+Theorem 1 ([3, Theorem III.7]). Let M be a Hadamard manifold and f : M → R
+be an L-smooth convex function. If inf x∈M k∇f (x)k > 0, then for the gradient
+descent sequence (xi )i∈N defined by xi+1 := expxi (−∇f (xi ) /L), the following
+equation holds:
+                                                                                    
+         lim k∇f (xi )k = inf k∇f (x)k = sup −f ∞ (ξ) = −f ∞                   lim xi ,
+        i→∞                 x∈M                 ξ∈M ∞                        i→∞
+
+
+where the last limit exists in the sense of the cone topology.
+
+   One motive for studying unbounded convex functions on Hadamard manifolds
+is non-commutative optimization [1], which minimizes the logarithm of the vector
+norm over an orbit of a rational representation of a reductive algebraic group acting
+on V ∼= CN . Its objective function f is unbounded and inf x∈M k∇f (x)k > 0 iﬀ
+the closure of the orbit has the origin 0 ∈ V ; this case is called unstable in terms
+of geometric invariant theory. The (un)stability determination via the gradient
+descent is proposed in [1], and our result provides a theoretical foundation for the
+behavior of the gradient descent in the unstable case. Especially, limi→∞ xi ∈ M ∞
+corresponds to the maximum destabilizing 1-parameter subgroup in this case, and
+one open problem is to construct an algorithm to compute it with some complexity
+bounds.
+
+
+
+                                        References
+ [1] P. Bürgisser, C. Franks, A. Garg, R. Oliveira, M. Walter, and A. Wigderson. Towards a
+     theory of non-commutative optimization: geodesic ﬁrst and second order methods for mo-
+     ment maps and polytopes. In 60th IEEE Annual Symposium on Foundations of Computer
+     Science, FOCS 2019, pages 845–861. IEEE, 2019.
+ [2] H. Hirai. Convex analysis on Hadamard spaces and scaling problems. Foundations of Com-
+     putational Mathematics, 24(6):1979–2016, 2024.
+ [3] H. Hirai and K. Sakabe. Gradient descent for unbounded convex functions on Hadamard
+     manifolds and its applications to scaling problems. In 65th IEEE Annual Symposium on
+     Foundations of Computer Science, FOCS 2024, pages 2387–2402. IEEE, 2024.
+ [4] M. Kapovich, B. Leeb, and J. J. Millson. Convex functions on symmetric spaces, side lengths
+     of polygons and the stability inequalities for weighted conﬁgurations at inﬁnity. Journal of
+     Diﬀerential Geometry, 81(2):297–354, 2009.
+Optimization, Theoretical Computer Science and Algebraic Geometry                          431
+
+    Algorithmic Aspects of Semistability of Quiver Representations
+                              Tasuku Soma
+                (joint work with Yuni Iwamasa, Taihei Oki)
+
+Let V be a representation of an acyclic quiverQQ = (Q0 , Q1 ) with dimension vector
+α. Consider a natural action of GL(Q, α) = i∈Q0 GL(α(i)) given by (g · V )(a) =
+          −1
+gha V (a)gta  for each arc a. For a weight σ ∈ ZQ0 , a representation V is said to
+be σ-semistable if the orbit closure of (V, 1) does not contain Q the origin, where
+the action on C is given by the multiplicative character χσ (g) = i∈Q0 det(gi )σ(i) .
+King [8] characterized the σ-semistability of V with a ﬁnite linear system: V is σ-
+                               V ) = 0 and σ(dim W ) ≤ 0 for any subrepresentation
+semistable if and only if σ(dimP
+W ≤ V , where σ(dim V ) = i∈Q0 σ(i) dim V (i). The σ-semistability of quiver
+representations captures operator scaling [7, 6, 4, 1], membership problem in the
+Brascamp–Lieb polytope [5], which have attracted much interest in theoretical
+computer science and combinatorial optimization in the last decade.
+   In this talk, we present eﬃcient algorithms for several fundamental compu-
+tational problems on the semistability of quiver representations: deciding the
+semistability and σ-semistability, ﬁnding the maximizers of King’s criterion, and
+computing the Harder–Narasimhan ﬁltration. We also investigate a class of poly-
+hedral cones deﬁned by the linear system in King’s criterion, which we refer to
+as King cones. For rank-one representations, we demonstrate that these King
+cones can be encoded by submodular ﬂow polytopes, enabling us to decide the σ-
+semistability in strongly polynomial time. Our approach employs submodularity
+in quiver representations, which may be of independent interest.
+   More broadly, quiver representations form a rich subclass of geometric invari-
+ant theory (GIT). [2] devised deterministic algorithms for the general setting of
+GIT, but they are not always polynomial-time algorithms. Our results show that
+the semistability of quiver representations forms a tractable class of general GIT
+problems due to the underlying submodular structure.
+   The full version of the paper is available at https://arxiv.org/abs/2407.
+06493.
+
+
+                                        References
+ [1] Peter Burgisser, Cole Franks, Ankit Garg, Rafael Oliveira, Michael Walter, and Avi Wigder-
+     son. Eﬃcient algorithms for tensor scaling, quantum marginals, and moment polytopes. In
+     Proceedings of the IEEE 59th Annual Symposium on Foundations of Computer Science
+     (FOCS), pages 883–897, 2018.
+ [2] Peter Bürgisser, Cole Franks, Ankit Garg, Rafael Oliveira, Michael Walter, and Avi Wigder-
+     son. Towards a theory of non-commutative optimization: Geodesic 1st and 2nd order meth-
+     ods for moment maps and polytopes. In Proceedings of the 60th IEEE Annual Symposium
+     on Foundations of Computer Science (FOCS), pages 845–861, 2019.
+ [3] Harm Derksen and Jerzy Weyman. An Introduction to Quiver Representations, volume 184.
+     American Mathematical Soc., 2017.
+ [4] Cole Franks. Operator scaling with speciﬁed marginals. In Proceedings of the 50th Annual
+     ACM SIGACT Symposium on Theory of Computing (STOC), pages 190–203, 2018.
+432                                                           Oberwolfach Report 9/2025
+
+ [5] Ankit Garg, Leonid Gurvits, Rafael Oliveira, and Avi Wigderson. Algorithmic and optimiza-
+     tion aspects of Brascamp-Lieb inequalities, via operator scaling. Geometric and Functional
+     Analysis, 28(1):100–145, 2018.
+ [6] Ankit Garg, Leonid Gurvits, Rafael Oliveira, and Avi Wigderson. Operator scaling: Theory
+     and applications. Foundations of Computational Mathematics, 2019.
+ [7] Leonid Gurvits. Classical complexity and quantum entanglement. Journal of Computer and
+     System Sciences, 69(3):448–484, 2004.
+ [8] Alastair D King. Moduli of representations of ﬁnite dimensional algebras. The Quarterly
+     Journal of Mathematics, 45(4):515–530, 1994.
+
+
+
+                        Ehrhart theory on periodic graphs
+                               Yusuke Nakamura
+
+An n-dimensional periodic graph (Γ, L) is a pair of a directed graph Γ (that may
+have loops and multiple edges) and a free abelian group L of rank n such that L
+freely acts on Γ and its quotient graph Γ/L is ﬁnite. For a vertex x0 of Γ, the growth
+sequence (sΓ,x0 ,i )i≥0 (resp. cumulative growth sequence (bΓ,x0 ,i )i≥0 ) is deﬁned as
+the number of vertices of Γ whose distance from x0 is i (resp. at most i). Periodic
+graphs naturally appear in crystallography, as periodic tilings in combinatorics,
+and as Cayley graphs of virtually abelian groups in geometric group theory.
+   In [3], Grosse-Kunstleve, Brunner and Sloane conjectured that the growth se-
+quences of periodic graphs are of quasi-polynomial type, i.e., there exist an integer
+M and a quasi-polynomial fs : Z → Z such that sΓ,x0 ,i = fs (i) holds for any
+i ≥ M . In [7], the author, Sakamoto, Mase, and Nakagawa prove that this conjec-
+ture is true for any periodic graphs.
+Theorem 1 ([7]). The growth sequences of periodic graphs are of quasi-polynomial
+type.
+    Although it was proved to be of quasi-polynomial type, determining the ex-
+plicit formulae of growth sequences is still diﬃcult. In [5], Takuya Inoue and the
+author give an algorithm to compute the explicit formulae of growth sequences.
+Theoretically, our algorithm can be applied to arbitrary periodic graphs of any
+dimension. In the two-dimensional case, it is relatively simple to implement our
+algorithm into a computer program, and using the computer program, the growth
+sequences of some new examples can be computed. In higher dimensions, although
+it is possible to implement the algorithm in a computer program, it is sometimes
+not practical. Finding a better algorithm is one of the future work.
+    In [1], Benson proves that the growth sequences of virtually abelian groups are
+quasi-polynomial type. Theorem 1 can be seen as a generalization of Benson’s
+theorem, since the Cayley graphs of virtually abelian groups are periodic graphs.
+In the proof of Theorem 1, we use the commutative monoid theory, and the proof
+is essentially diﬀerent from Benson’s original proof, where he uses his theory of
+“polyhedral sets”. In [6], the author proves the rationality of the multivariate
+relative growth series for algebraic sets of virtually abelian groups. This result is
+a variant of Benson’s theorem, and it had been conjectured by Evetts and Levine
+Optimization, Theoretical Computer Science and Algebraic Geometry                           433
+
+[2]. We believe that the studies on periodic graphs still have the potential for
+further applications to similar studies of virtually abelian groups.
+    In Ehrhart theory, for a rational polytope Q ⊂ RN , it is proved that the function
+                                                              
+                        hQ : Z≥0 → Z≥0 ; i 7→ # iQ ∩ ZN
+is a quasi-polynomial on i ≥ 0. In [4], for a rational polytope Q ⊂ RN with 0 ∈ Q,
+we construct a periodic graph (ΓQ , ZN ) such that its cumulative growth sequence
+bΓQ ,0,i coincides with hQ (i). Therefore, we can say that the study of the growth
+sequences of periodic graphs essentially contains the Ehrhart theory of rational
+polytopes Q satisfying 0 ∈ Q. Since the cumulative growth sequence (bΓQ ,0,i )i is
+a quasi-polynomial on i ≥ 0, the following natural question arises.
+Question 1. Find a reasonable class P of pairs (Γ, x0 ) that consist of a periodic
+graph Γ and one of its vertices x0 such that
+       • P contains the class {(ΓQ , 0) | Q is a rational polytope with 0 ∈ Q}, and
+       • for any (Γ, x0 ) ∈ P, the sequence (bΓ,x0 ,i )i is an honest quasi-polynomial
+         (i.e. a quasi-polynomial on i ≥ 0).
+Note that, unlike the case of Ehrhart theory, the growth sequences of periodic
+graphs in general are not necessarily quasi-polynomials, and they may have ﬁnite
+exceptional terms. However, it has been observed that for some highly symmetric
+periodic graphs, they are often honest quasi-polynomials. The intention of this
+question is to describe the properties of such good periodic graphs.
+   Another important topic of Ehrhart theory is the reciprocity law. When we
+think of the function hQ as a quasi-polynomial and substitute        a negative value
+for it, we have hQ (−i) = (−1)dim Q # i · relint(Q) ∩ ZN for i > 0. In the growth
+sequences of some n-dimensional periodic graphs, it has been observed that they
+sometimes satisfy the equations
+(♦)              fb (−i) = (−1)n fb (i − 1),        fs (−i) = (−1)n+1 fs (i),
+where fb and fs are the corresponding quasi-polynomials to the sequences (bΓ,x0 ,i )i
+and (sΓ,x0 ,i )i . These equations in (♦) are consistent with the reciprocity laws of
+reﬂexive polytopes. Thus, the following natural question arises.
+Question 2. Find a reasonable class P ′ of pairs (Γ, x0 ) such that
+       • P ′ contains the class {(ΓQ , 0) | Q is a reﬂexive polytope}, and
+       • for any (Γ, x0 ) ∈ P ′ , its growth sequence satisﬁes the reciprocity laws (♦).
+In [4], Takuya Inoue and the author give answers to Questions 1 and 2.
+
+                                        References
+ [1] M. Benson, Growth series of ﬁnite extensions of Zn are rational, Invent. Math. 73, no. 2,
+     (1983), 251–269.
+ [2] A. Evetts, A. Levine, Equations in virtually abelian groups: languages and growth, Internat.
+     J. Algebra Comput. 32, no. 3, (2022), 411–442.
+ [3] R. W. Grosse-Kunstleve, G. O. Brunner, N. J. A. Sloane, Algebraic description of coordi-
+     nation sequences and exact topological densities for zeolites, Acta Crystallogr. Sect. A 52,
+     no. 6, (1996), 879–889.
+434                                                            Oberwolfach Report 9/2025
+
+ [4] T. Inoue, Y. Nakamura, Ehrhart theory on periodic graphs, Algebr. Comb. 7 (2024), 969–
+     1010.
+ [5] T. Inoue, Y. Nakamura, Ehrhart theory on periodic graphs II: Stratiﬁed Ehrhart ring theory,
+     preprint, arXiv:2310.19569v2.
+ [6] Y. Nakamura, Rationality of the multivariate growth series for algebraic sets of virtually
+     abelian groups, preprint, arXiv:2408.10521v1.
+ [7] Y. Nakamura, R. Sakamoto, T. Mase, J. Nakagawa, Coordination sequences of crystals are
+     of quasi-polynomial type, Acta Crystallogr. Sect. A 77, no. 2, (2021), 138–148.
+
+
+
+      Discrete Integrable Systems:A Matrix Decomposition Approach
+                            Satoshi Tsujimoto
+We will provide an overview of discrete integrable systems and their analysis based
+on matrix decomposition. In particular, the aim is to clarity the structure of dis-
+crete integrable systems through matrix decomposition using spectral-preserving
+deformations.
+   Discrete integrable systems include speciﬁc examples such as the KdV lattice
+and Lotka-Volterra lattice, which are nonlinear yet possess exact solutions with a
+large degree of freedom[1, 2]. These systems are closely related to the theory of
+orthogonal polynomials using Jacobi matrices, and they can be analyzed through
+spectral transformations and matrix decomposition[3, 4].
+   Furthermore, by performing ultra-discretization, one can obtain the box-ball
+system (a cellular automaton) as a limiting case of integrable systems, allowing for
+a simpliﬁed description of soliton dynamics[5, 6]. Such discretization is also ben-
+eﬁcial for numerical computations, where subtraction-free computation schemes
+contribute to improved numerical stability.
+   This study utilizes matrix decomposition to analyze integrable systems and
+develops numerical computation methods that preserve their structure. In partic-
+ular, d-qd and dlv algorithms for singular value computation have been shown to
+be eﬀective in the analysis of integrable systems.
+   As highlighted above, research on discrete integrable systems enables the devel-
+opment of new analytical methods through orthogonal polynomials, matrix decom-
+position, and ultra-discretization, further contributing to applications in numerical
+computation and mathematical modeling[7, 8, 9].
+
+                                        References
+ [1] R. Hirota, Nonlinear partial diﬀerence equations. I. a diﬀerence analogue of the Korteweg-de
+     Vries equation, J. Phys. Soc. Japan 43 (1977), 1424–1433.
+ [2] R. Hirota, Discrete analogue of a generalized Toda equation, J. Phys. Soc. Japan 50 (1981),
+     3785–3791.
+ [3] V. Spiridonov and A. Zhedanov, Discrete-time Volterra chain and classical orthogonal poly-
+     nomials, J. Phys. A: Math. Gen. 30 (1997), 8727–8737.
+ [4] S. Tsujimoto, Determinant solutions of the nonautonomous discrete Toda equation asso-
+     ciated with the deautonomized discrete KP hierarchy, J. Syst. Sci. Complex. 23 (2010),
+     153–176.
+ [5] D. Takahashi and J. Satsuma, A soliton cellular automaton, J. Phys. Soc. Japan 59 (1990),
+     3514–3519.
+Optimization, Theoretical Computer Science and Algebraic Geometry                           435
+
+ [6] T. Tokihiro, D. Takahashi, J. Matsukidaira and J. Satsuma, From soliton equations to
+     integrable cellular automata through a limiting procedure, Phys. Rev. Lett. 76 (1996), 3247–
+     3250.
+ [7] K. Nishinari and D. Takahashi, Analytical properties of ultradiscrete burgers equation and
+     rule-184 cellular automaton, J. Phys. A: Math. Gen. 31 (1998), 5439–5450.
+ [8] K. Kobayashi and S. Tsujimoto, The ultradiscrete Toda lattice and the Smith normal form
+     of bidiagonal matrices, J. Math. Phys. 62 (2021), 092701 (8pages).
+ [9] H. Miki, S. Tsujimoto and Da Zhao, Quantum walk on extension of association schemes, J.
+     Phys. A: Math. Theor. 56 (2023), 465201 (21pages)
+
+
+
+                A hypergeometric view on Landau singularity
+                      Saiei-Jaeyeong Matsubara-Heo
+
+Let Z be a smooth aﬃne complex variety, f : (C∗ )n ×Z → C be a regular function,
+and let s, ν1 , . . . , νn ∈ C be generic parameters. In perturbative quantum ﬁeld
+theory (pQFT), one often considers an integral of the following kind:
+                                   Z
+                                                                    dx1 ∧ · · · ∧ dxn
+(1)              IΓ (z; s, ν) :=       f (x; z)−s xν11 · · · xνnn                     ,
+                                   Γ                                   x1 · · · xn
+known as the Lee-Pomeransky representation of a Feynman integral ([6]). Here,
+we do not specify the integration contour Γ. In pQFT, one considers a graph
+called a Feynman diagram and associate to it a graph polynomial f called Lee-
+Pomeransky polynomial ([9]). A simple example of f in physics could be the
+following one: consider the so-called bubble graph
+                                        m1
+                                  p            –p
+                                        m2
+where m1 , m2 are scalar parameters and p ∈ RD is a D-dimensional vector Let
+M := p2 be the Lorenzian self inner product of p. The associated Lee-Pomeransky
+integral is f (x1 , x2 ; m1 , m2 , M ) := (1 − m1 x1 − m2 x2 )(x−1   −1
+                                                                1 + x2 ) + M . Thus, we
+take Z as C3 = Spec C[m1 , m2 , M ] in this example.
+Problem. Describe the locus where the integral (1) develops singularity.
+   Such a locus is called Landau variety since it dates back to the work [5]. In
+the case of bubble graph example, the following process captures a large part of
+singularity: consider a subvariety of (C∗ )2 × C3 deﬁned by
+(2)            D := {(x, z) ∈ (C∗ )2 × Z | f (x, z) = 0, dx f (x, z) = 0}.
+Let π : (C∗ )2 × Z → Z be a projection. The Zariski closure ∇f of the projection
+π(D) is an irreducible hypersurface deﬁned by an identity {λ(m1 , m2 , M ) = 0},
+where λ(m1 , m2 , M ) = m21 +m22 +M 2 −2m1 m2 −2m1 M −2m2 M . In fact, the locus
+where the integral (1) diverges is precisely given by {m1 m2 M λ(m1 , m2 , M ) = 0}.
+   For a general f : (C∗ )n × Z → C, one can still deﬁne D by (2) and discuss ∇f .
+If f is suitably non-degenerate with respect to its Newton polytope, ∇f is known
+436                                                                Oberwolfach Report 9/2025
+
+as the principal A-determinant ([3]). However in physics, most of the examples
+are degenerate and quite often, the equality ∇f = Z holds, which does not give
+rise to any component of Landau variety.
+   In order to treat such degenerate examples, an analytic point of view oﬀers
+a new perspective. Namely, we consider a system of diﬀerential equations that
+annihilates (1) and extract Landau variety out of it. Let DZ beT the ring of linear
+diﬀerential operators on Z. We deﬁne a left ideal of DZ by I := AnnDZ IΓ (z; s, ν)
+                                                                              Γ
+and call it a hypergeometric system. The deﬁnition of the hypergeometric system
+looks abstract at a glance. However, if we enlarge the ring, it turns out that we
+obtain a complete description. To do so, we regard s, νi as symbols, rather than
+numbers. Let ν0 := s and let Rpol denote the non-commutative ring generated by
+elements νj , σj±1 (j = 0, . . . , n) with relations
+(3)         [σi , νj ] = δij σj , [σi−1 , νj ] = −δij σj , [σi , σj ] = 0, [νi , νj ] = 0,
+where δij denotes Kronecker’s delta. Each σνi corresponds to the forward shift
+νi 7→ νi + 1. Let K be the ﬁeld of rational functions in νi ’s. We set R :=
+K ⊗C[ν0 ,...,νn ] Rpol , which also has a natural ring structure induced by that of
+Rpol . Finally, we set DD := DZ ⊗C R, which is again a ring. Now we set J :=
+T
+  AnnDD IΓ (z; s, ν). A special case of the following theorem when Z is a point is
+Γ
+obtained in [8]. For simplicity, let us assume Z = CN = Spec C[z1 , . . . , zN ] below.
+Theorem 1. J is generated by the following operators:
+                                         ∂f                      ∂f
+(4)      1 − σs f (σν ; z), νi − sσs σνi     (σν ; z), ∂zj + sσs     (σν ; z).
+                                         ∂xi                     ∂zj
+   Therefore, I is obtained as a non-commutative elimination I = J ∩ DZ . A
+crucial point is that these generators give rise to a commutative elimination picture
+of Landau variety. The connection to commutative algebra tells us properties of
+Landau variety. For a ﬁxed z ∈ Z, let us consider likelihood equations:
+                                                                                            
+                                                            ∂f
+(5)        (y, x) ∈ Cn+1 | 1 − yf (x; z) = νi − syxi            (x; z) = 0 (i = 1, . . . , n) .
+                                                            ∂xi
+Note that the deﬁning equations of (5) is a commutative version of the ﬁrst n + 1
+operators of (4). Namely, the former is obtained from the latter by by a re-
+placement σs → y, σνi → xi . The cardinality of the set (5) is independent of a
+choice of generic s, νi and it coincides with the Euler characteristic of the van-
+ishing locus V (f (·, z)) ⊂ (C∗ )n of f for a ﬁxed z ([4]). A locally constant func-
+tion χ : Z ∋ z 7→ |χ(V (f (·, z)))| ∈ Z≥0 deﬁnes the Euler discriminant (locus).
+∇χ (Z) := {z ∈ Z | χz < max χz }. Euler discriminant is a generalization of the
+principal A-determinant ([1]) and re-discovered in a study of Landau variety as
+a candidate for Landau variety ([2]). The following result proves that the Euler
+discriminant is indeed the Landau variety ([7]):
+Theorem 2. ∇χ (Z) is purely one-codimensional in Z unless it is empty and
+coincides with Landau variety.
+Optimization, Theoretical Computer Science and Algebraic Geometry                         437
+
+   To state the actual elimination formula of Landau variety, we realize that we
+should work on a cotangent bundle T ∗ Z = CN × CN whose ring of regular func-
+tions is OT ∗ Z = C[z1 , . . . , zN , ξ1 , . . . , ξN ], where ξi is the cotangent coordinates.
+Consider an ideal J0 ⊂ C[y, x] ⊗C OT ∗ Z generated by
+
+                                        ∂f                ∂f
+                      1 − yf (x; z), νi − syxi
+                                             (x), ξj + sy     (x; z).
+                                        ∂xi               ∂zj
+The generators of J0 are obtained from (4) by a replacement σs → y, σνi →
+xi , ∂j → ξj . Now we set I0 := J0 ∩ OT ∗ Z . It is a technical part that one has to
+take the associated graded gr(I0 ) ⊂ OT ∗ Z of I0 with respect to the grading so
+that zi has degree 0 and ξi has degree one. We set CN × {0} =: TZ∗ Z ⊂ T ∗ Z. Let
+̟ : T ∗ Z = CN × CN → CN = Z be the projection to the ﬁrst N coordinates.
+Theorem 3. The set ̟ (V (gr(I0 )) \ TZ∗ Z) is a closed algebraic subvariety of Z
+and coincides with Landau variety.
+      The following diagram is called a sunrise/sunset diagram.
+                                              m1
+                                         p    m2      –p
+                                              m3
+The landau variety is given by {(m1 , m2 , m3 , M ) ∈ C4 | m1 m2 m3 M ∆(m1 , m2 ,
+m3 , M ) = 0}, where ∆(m1 , m2 , m3 , M ) is given by
+
+(6)      ∆(m1 , m2 , m3 , M )
+       =m41 − 4 m31 m2 + 6 m21 m22 − 4 m1 m32 + m42 − 4 m31 m3 + 4 m21 m2 m3
+         + 4 m1 m22 m3 − 4 m32 m3 + 6 m21 m23 + 4 m1 m2 m23 + 6 m22 m23 − 4 m1 m33
+         − 4 m2 m33 + m43 − 4 m31 M + 4 m21 m2 M + 4 m1 m22 M − 4 m32 M + 4 m21 m3 M
+         − 40 m1 m2 m3 M + 4 m22 m3 M + 4 m1 m23 M + 4 m2 m23 M − 4 m33 M + 6 m21 M 2
+         + 4 m1 m2 M 2 + 6 m22 M 2 + 4 m1 m3 M 2 + 4 m2 m3 M 2 + 6 m23 M 2 − 4 m1 M 3
+         − 4 m2 M 3 − 4 m3 M 3 + M 4 .
+It is still open how to encode the combinatorics of a Feynman diagram to Landau
+variety. Does it contributes to the irreducible decomposition of the Landau variety
+as suggested by the method [2]?
+
+                                         References
+ [1] Esterov, Alexander. ”The discriminant of a system of equations.” Advances in Mathematics
+     245 (2013): 534-572.
+ [2] Fevola, Claudia, Sebastian Mizera, and Simon Telen. ”Principal Landau determinants.”
+     Computer Physics Communications 303 (2024): 109278.
+ [3] Gel’fand, I. M. and Kapranov, M. M. and Zelevinsky, A. V.,Discriminants, resultants, and
+     multidimensional determinants, Birkhäuser Boston, Inc., Boston, MA (1994).
+ [4] Huh, June. ”The maximum likelihood degree of a very aﬃne variety.” Compositio Mathe-
+     matica 149.8 (2013): 1245-1266.
+438                                                          Oberwolfach Report 9/2025
+
+ [5] Landau, L. D. ”On analytic properties of vertex parts in quantum ﬁeld theory.” Nucl. Phys
+     13 (1960).
+ [6] Lee, Roman N., and Andrei A. Pomeransky. ”Critical points and number of master inte-
+     grals.” Journal of High Energy Physics 2013.11 (2013): 1-17.
+ [7] Matsubara-Heo, Saiei-Jaeyeong, in preparation
+ [8] Matsubara-Heo, Saiei-Jaeyeong, and Simon Telen. ”Twisted cohomology and likelihood
+     ideals.” Advances in Applied Mathematics 165 (2025): 102832.
+ [9] Weinzierl, Stefan. Feynman Integrals: A Comprehensive Treatment for Students and Re-
+     searchers. Springer Nature, 2022.
+
+
+ Holonomic methods in optimization, statistics, and machine learning
+                        Nobuki Takayama
+
+Definition 1. (I.N.Bernstein=J.Bernstein, 1972) Let         L I be a left ideal of the Weyl
+algebra Dn = Chx1 , . . . , xn , ∂1 , . . . , ∂n i. Put Fk = α1 +···+αn +β1 +···+βn ≤k Cxα ∂ β
+and H(k) = dimC FFk ∩Ik
+                          . If the degree of the polynomial H(k) is n, we call I a
+holonomic ideal.
+   Any holonomic ideal I contains ordinary diﬀerential operators for all directions
+of the form
+                  Xri
+(1)                   sik (x)∂ik , sik (x) ∈ C[x], i = 1, . . . , n.
+                      k=0
+The opposite is not necessarily true, but we have the following theorem.
+Theorem 2. (see, e.g., [7, Appendix]) Let Rn = C(x)h∂1 , . . . , ∂n i be the ring of
+differential operators with rational function coefficients and J 6= Rn , h0i a left ideal
+generated by operators of the form (1) of Rn . Then, J ∩ Dn is a holonomic ideal
+of Dn .
+   A classical function that is annihilated by a holonomic ideal is called a holonomic
+function. It follows from the Theorem above that a classical function annihilated
+by ordinary diﬀerential operators for all directions is a holonomic function. A
+distribution that is annihilated by a holonomic ideal is called a holonomic distri-
+bution.
+Theorem 3. [1]
+  (1) The degree of the Hilbert polynomial of a left ideal I ( Dn of Dn is equal
+      to n or more than n.
+  (2) If I is a holonomic ideal in Dn , then (I + xn Dn ) ∩ Dn−1 (restriction ideal)
+      and (I + ∂n Dn ) ∩ Dn−1 (integration ideal) are holonomic ideals in Dn−1 .
+   We have the following fact from the theorem; if a rapidly descreasing function
+                                                                             ′
+              R ∞by a holonomic ideal I ⊂ Dn , then the n − 1 variables x func-
+f is annihilated
+        ′
+tion g(x ) := −∞ f (x)dxn is annihilated by the integration ideal. Algorithms to
+construct integration ideals have been studied by several people (see, e.g., [3], [2],
+[5] and references therein). A lot of normalizing constants in statistics are ex-
+pressed as deﬁnite integrals with parameters. Thus, we can apply Theorem 3 and
+Optimization, Theoretical Computer Science and Algebraic Geometry                  439
+
+these algorithms to evaluate normalizing constants by solving numerically ordinary
+diﬀerential equations in integration ideals. This method is called the holonomic
+gradient method (HGM) (see, e.g., a list of papers on HGM for optimization,
+statistics, physics, and machine learning at [6]).
+   Now, we discuss on a statitical model with parameters. Let m be the number
+of parameters θ and n be the size of the data vector x. We consider a holonomic
+function u(θ, x) on Rm+n or a product u(θ, x) of a holonomic function and a delta
+function whose support is a real algebrac manifold or a Heaviside function whose
+support is a semi-algebraic set. We suppose that the holonomic function is smooth
+and non-negative on the support of the associated delta
+                                                      R function or Heaviside func-
+tion. We also suppose that the normalizing constant Rn u(θ, x)dx is annihilated by
+the integration ideal. We call such distribution u(θ, x) an unnormalized holonomic
+distribution.
+
+Theorem 4. For an unnormalized holonomic distribution u(θ, x), the maximal
+likelihood estimation with respect to u(θ, x) and data in the x space can be described
+by a dynamical system.
+
+Example 5. The unnormalized Von-Mises distribution on S 1 ∋ x (which is the
+angle that represents a coordinate of S 1 ⊂ R2 ) is
+
+        u(θ, x) = exp(θ1 cos x + θ2 sin x) = exp(θ1 x1 + θ2 x2 )δ(x21 + x22 − 1)
+
+where (x1 , x2 ) is the coordinate of R2 . The normalizing constant is
+
+                                Z 2π
+                       Z(θ) =          exp(θ1 cos x + θ2 sin x)dx.
+                                 0
+
+
+Put F = (Z, ∂1 Z)T , ∂i = ∂/∂θi . It satisﬁes
+                                                                 !
+                    ∂F                  0             1
+                           =            θ12       θ22 −θ12           F =: P1 F
+                    ∂θ1              θ12 +θ22   θ1 (θ12 +θ22 )
+                                                           !
+                    ∂F                  0       θ2 /θ1
+                           =          θ1 θ2      −2θ2            F =: P2 F
+                    ∂θ2              θ12 +θ22   θ12 +θ22
+
+
+
+
+Let Xi , i = 1, . . . , N be observed data. The maximal likelihood estimation (MLE)
+is to ﬁnd θ which maximizes the log likelihood
+
+                                                       N
+                                                       Y   u(θ, Xi )
+                          f = log ℓ(θ; X) = log                      .
+                                                       i=1
+                                                            Z(θ)
+440                                                                 Oberwolfach Report 9/2025
+
+
+
+
+                         Figure 1. Vector ﬁeld on (θ1 , θ2 ) space
+
+
+It follows from [4, Prop 3.7] and our holonomic approach that the MLE is a point
+such that θ˙1 = 0, θ˙2 = 0 of the following system of ordinary diﬀerential equations
+              N
+              X                    (P1 F )1
+θ˙1   =   =         cos(Xi ) − N
+              i=1
+                                     F1
+              N
+              X                    (P2 F )1
+θ˙2   =   =         sin(Xi ) − N
+              i=1
+                                     F1
+              N
+                                              !                N
+                                                                                           !
+              X                (P1 F )1                        X                (P2 F )1
+Ḟi   =           cos(Xi ) − N                    (P1 F )i +       sin(Xi ) − N                (P2 F )i
+              i=1
+                                 F1                            i=1
+                                                                                  F1
+where the subscript i denotes the i-th element of a vector. Figure 1 is a vector
+ﬁeld for a wind direction dataset.
+Open questions are
+   (1) When the target function f is convex, develop an algorithm to ﬁnd an
+        orbit that converges to a point standing for the optimal point of the target
+        function.
+   (2) Describe a global structure of the dynamical system of Theorem 4.
+Note that the ﬁrst question is not trivial when there is no closed form of the nor-
+malizing constant, because numerical errors of evaluating the normalizing constant
+may produce a wrong orbit.
+
+                                          References
+ [1] I.N.Bernstein, Analytic continuation of generalized functions with respect to a parameter,
+     Functional Analysis and Applications 6, (1971) 26-40.
+ [2] F.Chyzak, The ABC of Creative Telescoping – Algorithms, Bounds, Complexity, (2014),
+     https://theses.hal.science/tel-01069831/document
+ [3] C.Koutschan, Creative Telescoping for Holonomic Functions, (2013), arxiv:1307.4554
+Optimization, Theoretical Computer Science and Algebraic Geometry                          441
+
+ [4] U.Helmke, J.Moore, Optimization and Dynamical Systems, 1994.
+ [5] T.Oaku, Algorithms for D-modules, integration, and generalized functions with applications
+     to statistics, Advanced study of pure mathematics 77 (2018), 253–352.
+ [6] https://www.math.kobe-u.ac.jp/OpenXM/Math/ref-hgm.html
+ [7] N.Takayama, An approach to the zero recognition problem by Buchberger algorithm, Journal
+     of symbolic computation 14 (1992), 265–282.
+
+
+                  Alternating Projections in Low Dimensions
+                              Yoshiyuki Sekiguchi
+                  (joint work with Hiroyuki Ochiai, Hayato Waki)
+
+Alternating projections is an algorithm for ﬁnding a point in the intersection of
+two sets by projection a point onto each set alternatingly. We consider an aﬃne
+subspace of the space of symmetric matrices and the cone Sn+ of positive semidef-
+inite matrices. It is known that if the intersection of these two sets is transversal,
+the convergence rate is linear. If the intersection is non-transversal, then the rate
+is sublinear. [2] provided an upper bound on the rate using the singularity degree
+of an aﬃne subspace and Sn+ .
+    The singularity degree is an integer deﬁned as the smallest number of steps
+in the facial reduction process, required to construct an exposing vector for the
+minimal face of Sn+ that contains the intersection of an aﬃne subspace and Sn+ . In
+addition to the convergence rate of alternating projections, singularity degree can
+be used to express the exponent for a separation inequality for an aﬃne subspace
+and Sn+ . A similar separation inequality holds for complex algebraic sets, where the
+exponent is determined by the degrees of the algebraic sets [1, 3]. This suggests a
+connection between singularity degree and algebraic geometry. Motivated by this
+observation, I propose the following problem.
+Problem. Is there a quantity in algebraic geometry that can provide a dimension-
+free exponent for the separation inequality for an aﬃne subspace and Sn+ ?
+   The exponent of the separation inequality is used to express the convergence
+rate of the alternating projections. Beyond the intrinsic importance of convergence
+analysis, we examine the tightness of the convergence rate given by singularity de-
+gree to obtain some insights on singularity degree. To this end, we analyze alter-
+nating projections in low dimensions, and aim to develop a deeper understanding
+of the algorithm. The following results are extracted from our papers [4, 5].
+   First, we derive a formula that expresses the new parameters in terms of the
+old parameters and eigenvalues of a parametric matrix that corresponds to the
+sequence generated by alternating projections. Applying this eigenvalue formula,
+we show that if alternating projections are applied to a 1-dimensional aﬃne sub-
+space and Sn+ whose intersection is a singleton, the convergence rate of alternating
+projections is bounded above by O(k −1/2 ), independently of the singularity degree
+of the intersection. Furthermore, we use the eigenvalue formula to construct an
+example of 2-dimensional aﬃne subspace where the singularity degree is 1, but the
+convergence rate remains linear.
+442                                                            Oberwolfach Report 9/2025
+
+   Under additional assumptions, we derive a formula for alternating projections
+that allows us to construct the slowest curve for alternating projections. Applying
+the formula to a speciﬁc aﬃne subspace and we explicitly construct the corre-
+sponding slowest curve. To extend this result to a general aﬃne subspace, we
+parameterize a family of 3-planes whose intersection with S3+ is a singleton. This
+parametrization provides geometric insights into the structure of such planes and
+their singularity degrees. Then we obtain a rational formula for the slowest curve
+for a subfamily of these planes. This rational formula also determines the exact
+image of one step of alternating projections up to degree 7. Moreover, if the inter-
+section of a 3-plane and S3+ is a singleton with singularity degree 2, we show that
+the convergence rate predicted by singularity degree is tight using this rational
+formula.
+
+                                        References
+ [1] E. Cygan, A note on separation of algebraic sets and the Lojasiewicz exponent for polyno-
+     mial mappings, Bull. Sci. Math. 129 (2005), 139–147.
+ [2] D. Drusvyatskiy, G. Li, H. Wolkowicz, A note on alternating projections for ill-posed semi-
+     deﬁnite feasibility problems, Math. Program. Ser. A 162 (2017), 537–548.
+ [3] J. Kollár, Sharp eﬀective nullstellensatz, J. Amer. Math. Soc. 1 (1988), 963–975.
+ [4] H. Ochiai, Y. Sekiguchi, H. Waki, Analytic Formulas for Alternating Projection Sequences
+     for S3+ and Applications to Convergence Analysis, J. Math. Anal. Appl. 544 (2025), Paper
+     No. 129070.
+ [5] H. Ochiai, Y. Sekiguchi, H. Waki, Expansions of the Characteristic Polynomial of a Per-
+     turbed Positive Semideﬁnite Matrix and Convergence Analysis of Alternating Projections,
+     arXiv:2401.16689 (2024).
+
+
+     Closing nonzero duality gap of singular SDP by perturbation
+                            Takashi Tsuchiya
+ (joint work with Bruno F. Lourenço, Masakazu Muramatsu, Takayuki Okuno)
+
+Consider the standard form dual pair of semideﬁnite programs:
+(P)                 min C • X s.t. Ai • X = bi , i = 1, . . . , m, X  0
+                     X
+                                             m
+                                             X
+(D)                 max b y T
+                                  s.t. C −         Ai yi = S, S  0,
+                     y,S
+                                             i=1
+
+where C, Ai , i = 1, . . . , m, X, and S are real symmetric n×n matrices and y ∈ ℜm .
+We denote the optimal values of P and D by v(P) and v(D), respectively.
+   Suppose that P and D have a nonzero ﬁnite duality gap. This implies that P
+and D are weakly feasible. It is hard to solve such SDP problems because the
+exsiting algorithms for SDP only work under the condition that both P and D are
+strongly feasible, i.e., Slater’s condition is satisﬁed.
+   A simple practical idea to solve P and D under such a circumstance is to perturb
+the problems so that both perturbed primal and dual are strongly feasible. The
+perturbed pair are primal-dual strongly feasible and therefore share common a
+optimal value. Since the original unperturbed problems have diﬀerent optimal
+Optimization, Theoretical Computer Science and Algebraic Geometry                            443
+
+values, it is interesting to analyze the behavior of the common optimal value of
+the perturbed problems when perturbation is reduced to zero.
+   To implement this idea, we consider the following perturbed problems
+Regularized Primal-Dual Standard Form SDP (RPD-SDP)
+(1) P(ε, η) :     min (C + εI) • X s.t. Ai • X = bi + ηAi • I, i = 1, . . . , m, X  0
+                   X
+and
+                             m
+                             X                                  m
+                                                                X
+(2)   D(ε, η) :     max                     i
+                                   (bi + ηA • I)yi s.t. C −           Ai yi + εI = S,   S  0,
+                       y,S
+                             i=1                                i=1
+
+where I denotes the n × n identity matrix. We call the pair (1) and (2) the
+Regularized Primal-Dual Standard Form SDP or RPD-SDP for short. P(ε, η) and
+D(ε, η) reduce to P and D when ε and η are set to zero. RPD-SDP is obtained
+by relaxing the semideﬁnite constraints X  0 of P and S  0 of D to X  −ηI
+and S  −εI, respectively, and by redeﬁning X := X + ηI and S := S + εI.
+   Under the assumption that P and D are weakly feasible, the perturbed problems
+admit interior feasible solutions for any ε > 0 and η > 0, so, in this sense, the lack
+of interior solutions of P and D is ﬁxed. However, this is only useful if something
+can be said about how the optimal values of D(ǫ, η) and P(ǫ, η) relate to the
+optimal values of the original P and D.
+   For ε > 0 and η > 0, both (1) and (2) are strongly feasible, so they have optimal
+solutions and a common optimal value, which we denote by v(ε, η). v is referred
+to as pd-regularized optimal value function. We note that v(ε, 0) and v(0, η) are
+also well-deﬁned for any ε > 0 and η > 0, since P(ε, 0) and D(0, η) have interior
+feasible solution for any ε > 0 and η > 0 and there is no duality gap in these cases
+according to the standard duality theory for convex programming.
+   But v(0, 0) is diﬀerent since it is not well-deﬁned when there exists a ﬁnite
+nonzero duality gap, and ironically, the value of v(0, 0) is what we really wish to
+compute.
+   We have recently analyzed the behavior of the pd-regularized optimal value
+function v(ε, η) in the neighbourhood of (ε, η) = (0, 0) and demonstrated that
+v(ε, η) have a directional limit when approaching to (0, 0). Let us deﬁne the
+directional limit
+(3)                                 va (θ) := lim v(t cos θ, t sin θ)
+                                                t↓0
+
+as a function of the direction of approach. The function va is referred to as limiting
+pd-regularized optimal value function. Then, the following theorem holds.
+Theorem 1. [1] If P and D are feasible, the limiting pd-regularized optimal value
+function va (θ) has the following properties.
+    (1) va (0) = v(P), va (π/2) = v(D).
+    (2) va (θ) is monotone decreasing in [0, π/2] and is continuous on (0, π/2).
+  Theorem 1 shows that va (θ) is a monotone decreasing function whose value is
+between v(P) and v(D) and it is continuous in the open interval (0, π/2) but may
+444                                                              Oberwolfach Report 9/2025
+
+be discontinuous at θ = 0 and/or θ = π/2. The following theorem in [2] shows
+that continuity holds at the both θ = 0 and θ = π/2 when the singularity degree
+of the both problems P and D is one.
+Theorem 2. [2] Suppose that P and D have a finite nonzero duality gap. If
+the singularity degree of both P and D is one, then va (θ) is continuous at θ = 0
+and θ = π/2. Furthermore, va is a monotonically decreasing continuous bijective
+function from [0, π/2] to [v(D), v(P)].
+   In [2] an instance is given for which va is discontinuous at θ = π/2. The
+singularity degree of the instance is 2.
+   In the talk, we introduced these results together with further open problems
+including extensions to general convex programs and possible variable transforma-
+tions to recover continuity of va for SDPs with higher singularity degree.
+
+                                         References
+ [1] Takashi Tsuchiya, Bruno F. Lourenço, Masakazu Muramatsu and Takayuki Okuno: A limit-
+     ing analysis on regularization of singular SDP and its implication to infeasible interior-point
+     algorithms. Mathematical Programming, Vol. 200 (2023), pp. 531–568.
+ [2] Takashi Tsuchiya, Bruno F. Lourenço, Masakazu Muramatsu and Takayuki Okuno: Clos-
+     ing duality gaps of SDPs completely through perturbation when singularity degree is one.
+     Optimization Methods and Software, Vol. 39 (2024), pp. 1040–1067.
+
+
+                                      Open Problems
+
+
+
+      Unsatisfiable Boolean formulas and the Komlós conjecture
+                 Contributed by Dmitriy (Tim) Kunisky
+The startlingly simple-looking Komlós conjecture is one of the main open problems
+in the ﬁeld of discrepancy theory and has remained open for at least 30 years. The
+conjecture states that there exists an absolute constant KP> 0 such that, for any
+                                                                   m
+u1 , . . . , um ∈ Rn , there exist x1 , . . . , xm ∈ {±1} having k i=1 xi ui k∞ ≤ K. The
+conjecture proposes a dimension-free bound, while√the best known bound due to
+Banaszczyk (1998) scales, in the case m = n,√as log n. In the recent work [1],
+the author showed the lower bound K ≥ 1 + 2, which remains the best known.
+This comes from a construction of “bad” vectors u1 , . . . , um based on unsatisﬁ-
+able Boolean formulas: roughly, each vector ui corresponds to a variable, each
+index j ∈ {1, . . . , n} to a clause, and the unsatisﬁability of the formula  P     trans-
+lates to stating that, for all x1 , . . . , xm ∈ {±1}, at least one entry of m  i=1 i ui is
+                                                                                   x
+large. The unsatisﬁable formulas that would give the best lower bound on K are
+those that are, in a certain quantitative sense, as close as possible to “regular,”
+with each clause having roughly the same number of variables and each variable
+occurring in roughly the same number of clauses. Can         √ such constructions of dis-
+crepancy instances ever exceed the lower bound 1 + 2? More generally, how can
+we understand the extremal combinatorics of unsatisﬁable Boolean formulas?
+Optimization, Theoretical Computer Science and Algebraic Geometry                       445
+
+                                      References
+ [1] D. Kunisky. The discrepancy of unsatisﬁable matrices and a lower bound for the Komlós
+     conjecture constant. SIAM Journal on Discrete Mathematics 37, No. 2, pp. 586–603, 2023.
+
+ Zeros of Low-Degree, Low-Influence Polynomials on the Boolean
+                           Hypercube
+                  Contributed by Per Austrin
+For a degree-d multilinear polynomial
+                                            X            Y
+                                  f (x) =           fS         xi
+                                            S⊆[n]        i∈S
+                                            |S|≤d
+
+in n variables x1 , . . . , xn with real-valued coeﬃcients {fS }, the (relative) inﬂuence
+of xi on f is the squared ℓ2 mass of coeﬃcients fS of terms containing xi , relative
+to the total squared ℓ2 mass, i.e.,
+                                                    ,
+                                               X      X
+                               RelInf i (f ) =     2
+                                                  fS       fS2 .
+                                            S⊆[n]          S⊆[n]
+                                             i∈S
+
+Problem. Let f and g be two degree-d multilinear polynomials such that
+                           max(RelInf i (f ), RelInf i (g)) ≤ δ.
+                             i
+How small does δ need to be in order to guarantee that there is an x ∈ {−1, 1}n
+where both f (x) 6= 0 and g(x) 6= 0?
+   The condition of bounded inﬂuences can be viewed as a kind of smoothness
+condition on f and g, saying that no individual variable plays a large role. The
+condition of f (x) 6= 0 and g(x) 6= 0 is equivalent with saying that the union of the
+roots of f and g does not cover the entire Boolean hypercube.
+   It is known that it is suﬃcient to take δ ≤ 2−d /d, and that there are examples
+which shows that we need to take δ ≤ 1/d2 . The main question is whether δ can
+be taken to be some polynomial in d. Further reading, including these known
+bounds, can be found in [1].
+
+                                      References
+ [1] Austrin, P., Chung, H., Chung, KM., Fu, S., Lin, YT., Mahmoody, M. (2022). On the
+     Impossibility of Key Agreements from Quantum Random Oracles. In: Dodis, Y., Shrimp-
+     ton, T. (eds) Advances in Cryptology – CRYPTO 2022. CRYPTO 2022. Lecture Notes in
+     Computer Science, vol 13508.
+
+ Number of connected components of the set of real zeros of two
+                   multi-affine polynomials?
+ Contributed by Saugata Basu (joint work with Daniel Perruccii)
+It is a classical result originally due to Oleı̆nik and I. G. Petrovskiı̆ [1] that the
+number of connected components of a real algebraic set in Rn deﬁned by any
+ﬁnite set of real polynomials of degrees at most d is bounded by d(2d− 1)n−1 . This
+446                                                              Oberwolfach Report 9/2025
+
+bound grows exponentially with n and this exponential dependence is unavoidable.
+In [2] it is proved that if P ∈ R[X1 , . . . , Xn ] is a multi-aﬃne polynomial (i.e.
+degXi (P ) ≤ 1 for 1 ≤ i ≤ n), then the number of connected components of
+the real zeros of P is bounded by 2d−1 . This bound is independent of n and is
+tight. It is also shown in the same paper that there exist for each n, k, k ≤ n,
+three multi-aﬃne polynomials of degrees bounded by 4, such that     the number of
+connected components of their common real zeros is equal to nk . Thus, it is not
+possible to obtain a bound on the number of connected components of the real
+zeros of a system of three real multi-aﬃne polynomials in terms of their degrees
+only, independent of n.
+Problem. Does there exist a bound on the number of connected components of
+the real zeros of a system of two multi-aﬃne polynomials in terms of a bound on
+their degrees, independent of n ?
+
+                                         References
+ [1] I. G. Petrovskiı̆, O. A. Oleı̆nik, O. A. On the topology of real algebraic surfaces , Izvestiya
+     Akad. Nauk SSSR. Ser. Mat., 13:389-402, 1949
+ [2] S. Basu, D. Perrucci Topology of real multi-aﬃne hypersurfaces and a homological stability
+     property, Advances in Mathematics, Volume 420, 2023.
+
+
+      Sum-of-Squares certificates for non-negativity of Quadratics
+                 Contributed by Grigoriy Blekherman
+Let A1 and A2 be two n × n symmetric real matrices, and let Q1 and Q2 be
+the corresponding quadratic forms Qi (x) = xt Ai x. It is well known that Q1 is
+nonnegative on the variety deﬁned V deﬁned by vanishing of Q2 if and only if
+there exists a scalar λ such that the matrix A1 + λA2 is positive semideﬁnite. This
+was rediscovered several times, and sometimes goes under the name of S-lemma.
+What happens if we instead ask for certiﬁcate of nonnegativity of Q1 on the variety
+deﬁned by two quadratics Q2 and Q3 ? If there exist two scalar λ2 , λ3 such that
+A1 +λ2 A2 +λ3 A3 is positive semideﬁnite, then this will certify nonnegativity of Q1 ,
+but existence of λi is no longer guaranteed. Instead we can look for higher degree
+certificates: ﬁnd a sum of squares homogeneous polynomial P and homogeneous
+polynomials R2 and R3 all of degree 2d such that P Q1 + R2 Q2 + R3 Q3 is a sum of
+squares. The previously considered certiﬁcate had degree 2d equal to 0, and now
+we ask in what degree 2d is this certiﬁcate guaranteed to exist? Is the degree 2d
+of the certiﬁcate independent of the number of variables n?
+
+                  Separations of affine sets and psd matrices
+                     Contributed by Yoshiyuki Sekiguchi
+Problem. Is there any quantity in algebraic geometry that can be used to express
+a dimension-free exponent for separation of an aﬃne set and the set of positive
+semideﬁnite matrices? Is there a symbolic or a randomized algorithm to give such
+an exponent?
+Optimization, Theoretical Computer Science and Algebraic Geometry                              447
+
+   A separation inequality is an inequality in the following form:
+                                                        γ
+                                         dist(z, X ∩ Y )
+        dist(z, X) + dist(z, Y ) ≥ c ·                      , for all z ∈ K n .
+                                             1 + |z|2
+For complex algebraic sets X, Y ⊂ Cn , Cygan [2] showed that this inequality holds
+with γ = deg X · deg Y for all z ∈ C n . Let n be the dimension of the ambient
+space, d be the singularity degree of E∩ Sn+ , D be the maximum degree of the
+                                     s
+deﬁning polynomials, and β(s) = ⌊s/2⌋    . Variations of the separation inequality
+have been shown with the exponents in the table below.
+           Complex Algebraic sets [2]             deg X · deg Y
+             Real Algebraic sets [5]          n   D(6D  − 3)n−1       o
+                                                          (2D−1)n +1
+           Convex semialgebraic sets [1] min                  2      , β(n − 1)Dn
+             Aﬃne subsp. and Sn+ [6, 3]                            d
+                                                                   2
+                  Polyhedra [4]                                    1
+
+                                         References
+ [1] J. Borwein, G. Li, L. Yao, Analysis of the convergence rate for the cyclic projection algorithm
+     applied to basic semialgebraic convex sets, SIAM J. Optim. 24 (2014) 498–527.
+ [2] E. Cygan, A note on separation of algebraic sets and the Lojasiewicz exponent for polynomial
+     mappings, Bull. Sci. Math. 129 (2005) 139–147.
+ [3] D. Drusvyatskiy, G. Li, H. Wolkowicz, A note on alternating projections for ill-posed semi-
+     deﬁnite feasibility problems, Math. Program. Ser. A 162 (2017) 537–548.
+ [4] A.J. Hoﬀman, On approximate solutions of systems of linear inequalities, J. Res. Natl. Bur.
+     Standards 49 (1952) 263–265.
+ [5] K. Kurdyka, S. Spodzieja, Separation of real algebraic sets and the Lojasiewicz exponent,
+     Proc. Amer. Math. Soc. 142 (2014) 3089–3102.
+ [6] J.F. Sturm, Error bounds for linear matrix inequalities, SIAM J. Optim. 10 (2000) 1228–
+     1248.
+
+                     Structure of Euler discriminants
+               Contributed by Saiei-Jaeyeong Matsubara-Heo
+Discriminants is a classical yet developing notion. We consider a family of complex
+varieties π : X → Z. For a given z ∈ Z, the symbol χz denotes the absolute
+value of the topological Euler characteristic of the ﬁber of π over z. The function
+Z ∋ z 7→ χz ∈ Z takes a constant value at a generic point of Z. This value is
+denoted by χ∗ . The Euler descriminant locus ∇πχ (Z) is the Zariski closure of the
+following set:
+                                  {z ∈ Z | χz < χ∗ }.
+Since the Euler characteristic of a ﬁnite set is its cardinality, this notion generalizes
+classical discriminant of a single polynomial. The deﬁnition of Euler discriminant
+is quite topological, but it turns out it admits an algebraic description as in [4]. It
+is also proved in [1] that Euler discriminant generalizes principal A-determinant
+of Gelfand-Kapranov-Zelevinsky [2].
+   Compared to principal A-determinant, the description of Euler discriminant
+is still cumbersome. In fact, principal A-determinant factorizes into a product
+448                                                          Oberwolfach Report 9/2025
+
+of principal A-discriminants, which admits an elimination picture, i.e., one con-
+structs an incident variety I and a projection pI : I → Z so that (the closure of)
+the image pI (I) is the principal A-determinant. Can we find the same picture
+for Euler discriminant? This is partially achieved in [4] for a family of very
+aﬃne hypersurfaces with the aid of likelihood equation [3]. However, it relies on a
+certain compactiﬁcation of the family and it is not intrinsic.
+
+                                      References
+ [1] Esterov, Alexander. ”The discriminant of a system of equations.” Advances in Mathematics
+     245 (2013): 534-572.
+ [2] Gel’fand, I. M. and Kapranov, M. M. and Zelevinsky, A. V.,Discriminants, resultants, and
+     multidimensional determinants, Birkhäuser Boston, Inc., Boston, MA (1994).
+ [3] Huh, June. ”The maximum likelihood degree of a very aﬃne variety.” Compositio Mathe-
+     matica 149.8 (2013): 1245-1266.
+ [4] Telen, Simon, and Maximilian Wiesmann. ”Euler Stratiﬁcations of Hypersurface Families.”
+     arXiv preprint arXiv:2407.18176 (2024).
+
+
+
+
+                                                                   Reporter: Per Austrin
+Optimization, Theoretical Computer Science and Algebraic Geometry                449
+
+                                     Participants
+
+
+Dr. Per Austrin                            Dr. Nidhi Kaihnsa
+Department of Computer Science             Department of Mathematical Sciences
+KTH EECS                                   University of Copenhagen
+Lindstedtsvägen 3                         Universitetsparken 5
+10044 Stockholm                            2100 København
+SWEDEN                                     DENMARK
+
+Prof. Dr. Saugata Basu                     Petteri Kaski
+Department of Mathematics                  Department of Computer Science
+Purdue University                          Aalto University
+150 N. University Street                   (Konemiehentie 2)
+West Lafayette IN 47907-2067               P.O. Box 00076
+UNITED STATES                              02150 Espoo
+                                           FINLAND
+Prof. Dr. Greg Blekherman
+School of Mathematics                      Prof. Dr. Sandra Kiefer
+Georgia Institute of Technology            Computing Laboratory
+686 Cherry Street                          Oxford University
+Atlanta GA 30332-0160                      Wolfson Building
+UNITED STATES                              Parks Road
+                                           Oxford OX1 3QD
+                                           UNITED KINGDOM
+Prof. Dr. Petter Brändén
+Department of Mathematics,
+Royal Institute of Technology              Dr. Dmitriy (Tim) Kunisky
+Lindstedtsvägen 25                        Department of Applied Mathematics &
+100 44 Stockholm                           Statistics
+SWEDEN                                     Johns Hopkins University
+                                           3100 Wyman Park Drive
+Prof. Dr. Radu Curticapean                 21211 Baltimore
+                                           UNITED STATES
+Universität Regensburg
+Fakultät für Informatik und Data
+Science                                    Prof. Dr. Fatemeh Mohammadi
+Bajuwarenstraße 4                          Departement Wiskunde
+93053 Regensburg                           Faculteit der Wetenschappen
+GERMANY                                    Katholieke Universiteit Leuven
+                                           Celestijnenlaan 200B
+Dr. Sebastian Debus                        3001 Leuven
+                                           BELGIUM
+Fakultät für Mathematik
+TU Chemnitz
+Postfach 964
+09009 Chemnitz
+GERMANY
+450                                               Oberwolfach Report 9/2025
+
+Prof. Dr. Yoshio Okamoto              Prof. Dr. Yoshiyuki Sekiguchi
+Department of Computer and Network    Graduate School of Marine Science and
+Engineering                           Technology,
+The Univ.of Electro Communications    Tokyo University of Marine Science and
+Chofugaoka 1-5-1, Chofu               Technology
+Tokyo 182-8585                        2-1-6 Etchujima Koto
+JAPAN                                 Tokyo 135-8533
+                                      JAPAN
+Prof. Dr. Cordian Riener
+Department of Mathematics and         Dr. Ettore Teixeira Turatti
+Statistics                            Department of Mathematics and
+Faculty of Science                    Statistics
+UiT The Arctic University of Norway   Faculty of Science
+Forskningsparken 1 B425               UiT The Arctic University of Norway
+9037 Tromsø                           Forskningsparken 1 B425
+NORWAY                                9037 Tromsø
+                                      NORWAY
+Prof. Dr. Mohab Safey El Din
+LIP 6, PolSys Team                    Dr. Luis Felipe Vargas
+Sorbonne Université                  IDSIA
+Boite courrier 169                    Via Santa 1
+bureau 321                            6962 Lugano
+4 place Jussieu                       SWITZERLAND
+75252 Paris Cedex 05
+FRANCE
+
+Prof. Dr. Markus Schweighofer
+Fachbereich für Mathematik und
+Statistik
+Universität Konstanz
+78457 Konstanz
+GERMANY
+

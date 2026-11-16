@@ -1,0 +1,492 @@
+                                                               Impossibility of Perfectly Complete
+                                                            Many-Round Key Agreement in the QROM
+
+                                                                   Longcheng Li‗ Qian Li† Xingjian Li‡ Qipeng Liu§
+
+
+
+                                                                                                Abstract
+                                                      This paper proves that it is impossible to construct perfectly complete quantum key agreement
+                                                  protocols (QKA) from quantumly secure one-way functions (OWFs) in a black-box manner.
+                                                      Specifically, consider any protocol in which Alice and Bob exchange only classical messages,
+
+
+
+
+arXiv:2608.03824v1 [quant-ph] 4 Aug 2026
+                                                  make at most 𝑞 A and 𝑞 B quantum queries, respectively, to a Boolean-valued random oracle,
+                                                  and agree on a shared key with certainty. This paper shows that there exists an eavesdropper,
+                                                  given the classical messages, that can recover the shared key with certainty using 𝑂 ((𝑞 A + 𝑞 B ) 5 )
+                                                  classical oracle queries. The bound is independent of the number of rounds, transcript length,
+                                                  key length, and oracle-domain size. Previous results only applies to two-round key agreement
+                                                  (Li et al. CRYPTO 26) or relies on unproven conjectures (Austrin et al. CRYPTO 22).
+                                                      GPT-5.6 Sol Ultra found this proof in a one-shot conversation and drafted a preliminary
+                                                  version of this paper. The authors are fully responsible for the correctness, writing and
+                                                  discussions of this paper.
+
+
+                                           1     Introduction
+                                           Key agreement is a fundamental cryptographic task in which two parties use public interaction to
+                                           establish a shared secret that was not available to either party in advance. In the random oracle
+                                           model (ROM), Impagliazzo–Rudich established the foundational black-box separation between
+                                           one-way functions (OWFs) and key agreement, and Barak–Mahmoody later gave an 𝑂 (𝑞 2 )-query
+                                           eavesdropping attack against every 𝑞-query classical key-agreement protocol [IR89, BMG09]. The
+                                           quantum random oracle model (QROM) is more subtle because an honest party may query a
+                                           superposition of oracle inputs [BDF+ 11]. A particularly interesting case is quantum computation
+                                           with classical communication (QCCC): the local computations and oracle queries are quantum, while
+                                           every communicated message is classical.
+                                               Austrin, Chung, Chung, Fu, Lin, and Mahmoody made the first significant progress on QCCC
+                                           key agreement in the QROM. They gave an unconditional quadratic-query classical attack when
+                                           one party is classical and an unconditional exponential-query classical attack when both parties are
+                                           quantum. Under their Polynomial Compatibility Conjecture, they obtained a polynomial-query
+                                           classical attack against general perfectly complete QCCC protocols [ACC+ 22].
+                                               A subsequent sequence of works by Li, Li, Li, and Liu studied the two-message key-agreement
+                                           protocols induced by quantum public-key encryption. Their first work uses quantum Markov
+                                           chains and handles classical-query key generation [LLLL24]. Their second work formulates a
+                                               ‗ University of Cambridge. Email: lilongcheng116@gmail.com
+                                               † Shenzhen Research Institute of Big Data. Email: liqian.ict@gmail.com
+                                               ‡ Tsinghua University. Email: lxj22@mails.tsinghua.edu.cn
+                                               § University of California San Diego. Email: qipengliu0@gmail.com
+
+
+
+
+                                                                                                    1
+Boolean-function conjecture and unconditionally handles logarithmically many quantum queries
+in key generation [LLLL25]. Most recently, the conjecture and the restriction on key-generation
+queries were both removed for perfectly complete quantum public-key encryption with classical
+keys and classical or quantum ciphertexts, using a quantum-query eavesdropper [LLLL26]. These
+developments leave the natural question of whether arbitrary-round, perfectly complete QCCC key
+agreement can be secure in the QROM.
+
+1.1   Our Main Result
+Our main theorem gives a round-independent negative answer, improving the two-round result
+in [LLLL26] and removing the conjecture in [ACC+ 22]. More interestingly, although the honest
+parties may query the oracle in superposition, the eavesdropper only makes classical queries.
+
+Theorem 1.1 (Informal). Fix a Boolean-output random oracle. Every finite-round, perfect complete QCCC
+key-agreement protocol admits a query-efficient eavesdropper that recovers the shared key with probability
+one. If the honest parties make 𝑞 A and 𝑞 B quantum oracle queries, the eavesdropper makes 𝑂 ((𝑞 A + 𝑞 B ) 5 )
+classical oracle queries.
+
+    The query bound is independent of the number of rounds, the transcript length, the key length,
+and the oracle-domain size. Relative to the polynomial-query attack of [ACC+ 22], our attack is
+unconditional and recovers the key with certainty. Relative to the later QPKE results [LLLL26], our
+attack applies to arbitrarily many classical communication rounds and uses only classical queries.
+Moreover, our new result allows parties to keep arbitrary quantum states between stages; [LLLL26]
+handles only the two-round case where parties keep classical states between stages (corresponding
+to classical secret keys in a quantum public-key encryption scheme).
+    The result is information-theoretic in query complexity. The eavesdropper is allowed unbounded
+computation, but only bounded number of quantum/classical queries. We assume that two parties
+Alice and Bob begin with independent private states and exchange only classical messages; pre-
+shared entanglement, correlated setup, and quantum communication are not allowed in our model.
+Perfect completeness is essential to our argument. Extending the proof to imperfect completeness
+would require significantly different ideas.
+
+Proof overview. Fix the complete public transcript 𝑡, a pair of output keys 𝑎, 𝑏, and the truth table
+𝑧 ∈ {0, 1} 𝑁 encoding the oracle. Because communication is classical and the initial private state is a
+product, the probability of this branch factors as
+
+                             Pr[𝑇 = 𝑡, 𝐾A = 𝑎, 𝐾B = 𝑏 | 𝑧] = 𝐴𝑡 ,𝑎 (𝑧) · 𝐵𝑡 ,𝑏 (𝑧).
+
+The quantum polynomial method [BBC+ 01] bounds the degrees of the two nonnegative factors by
+2𝑞 A and 2𝑞 B .
+    Perfect completeness holds pointwise on the finite oracle space. Consequently, all cross-key
+products 𝐴𝑡 ,𝑘 𝐵𝑡 ,ℓ , for 𝑘 ≠ ℓ, vanish on the Boolean cube. Consider the following polynomials on
+{0, 1} 𝑁 :
+                                              𝐶𝑡 ,𝑘 = 𝐴𝑡 ,𝑘 · 𝐵𝑡 ,𝑘 .
+where have degree at most 𝑑 := 2(𝑞 A + 𝑞 B ). For two different keys 𝑘 ≠ ℓ, perfect completeness gives
+
+                          𝐶𝑡 ,𝑘 (𝑧)𝐶𝑡 ,ℓ (𝑧) = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,𝑘 (𝑧) 𝐴𝑡 ,ℓ (𝑧)𝐵𝑡 ,ℓ (𝑧)
+                                                                                    
+                                             = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,ℓ (𝑧) 𝐴𝑡 ,ℓ (𝑧)𝐵𝑡 ,𝑘 (𝑧) = 0.
+
+
+                                                        2
+Thus, fixing transcript 𝑡, the supports of {𝐶𝑡 ,𝑘 } 𝑘 are pairwise disjoint. Moreover, summing over the
+output keys gives                                        ∑︁
+                                      Pr[𝑇 = 𝑡 | 𝑧] =        𝐶𝑡 ,𝑘 (𝑧).
+                                                           𝑘
+
+Whenever 𝑡 can occur under 𝑧, the left-hand side is positive, so exactly one term on the right is
+nonzero for each 𝑧. Conditioned on (𝑡, 𝑧), both parties therefore output the uniquely determined
+key indexing that term.
+    Finally, by the standard fact that a nonzero multilinear polynomial of degree at most 𝑑 on
+{0, 1} 𝑁 is nonzero on at least 2 𝑁 −𝑑 points, we have that, for the set K𝑡 = {𝑘 : 𝐶𝑡 ,𝑘 . 0} of keys that
+can occur with 𝑡 under some oracle,
+                                         ∑︁
+                                  2𝑁 ≥       | supp(𝐶𝑡 ,𝑘 )| ≥ |K𝑡 | 2 𝑁 −𝑑 ,
+                                        𝑘 ∈ K𝑡
+
+since supp(𝐶𝑡 ,𝑘 ) are disjoint. It follows that |K𝑡 | ≤ 2𝑑 .
+    It remains to identify the compatible key without evaluating the 𝐶𝑡 ,𝑘 ’s one by one. We prove the
+following useful lemma. Suppose that two polynomials 𝑝 and 𝑞, each of degree at most 𝑑, have
+disjoint supports, and we are promised that one of them is nonzero at the actual oracle (i.e., the
+input 𝑧). Then a deterministic procedure can determine which one by reading only 𝑂 (𝑑 4 ) oracle
+bits.
+    The procedure proceeds in rounds. In each round, it identifies 𝑂 (𝑑 3 ) oracle positions with the
+following property: once the values at these positions are known, either the answer is determined
+immediately or the degree of one of the two relevant polynomials decreases. Since the degree can
+decrease at most 𝑂 (𝑑) times, the procedure determines which of the two polynomials is nonzero at
+𝑧 using a total of 𝑂 (𝑑 4 ) classical oracle queries.
+    Finally, the eavesdropper performs a balanced binary search over the at most 2𝑑 candidate keys.
+At each level of the search, the candidates are partitioned into two sets. Let 𝑝 be the sum of the
+polynomials associated with the first set, and let 𝑞 be the corresponding sum for the second set.
+Because exactly one candidate polynomial evaluates to a nonzero value at 𝑧, exactly one of 𝑝(𝑧)
+and 𝑞(𝑧) is nonzero. The procedure above therefore determines which half contains the correct key
+using 𝑂 (𝑑 4 ) classical oracle queries. Since the binary search has at most 𝑑 levels, the eavesdropper
+uses 𝑂 (𝑑 5 ) classical oracle queries in total. The detailed proof combines ideas from [NS94], [Mid04],
+and [KKDWY26, Theorem 4].
+
+Acknowledgment. GPT-5.6 Sol Ultra discovered the proof in a one-shot conversation and produced
+a preliminary draft of the paper. The authors independently verified every statement and proof,
+simplified and refined the argument, and wrote the final manuscript. The authors take full
+responsibility for the correctness, exposition, and discussion presented in the paper.
+
+
+2     Preliminaries
+2.1   Notations in Boolean Functions Analysis
+For a positive integer 𝑁, let [𝑁] = {1, . . . , 𝑁 }. Any function 𝑓 : {0, 1} 𝑁 → ℝ has a unique expression
+as a multilinear polynomial                            ∑︁
+                                              𝑓 (𝑥) =      𝑎𝑆 · 𝑥𝑆 ,
+                                                  𝑆⊆[𝑁 ]
+
+
+
+
+                                                    3
+where 𝑥 𝑆 := Π𝑖 ∈𝑆 𝑥 𝑖 , and 𝑎 𝑆 is the coefficient of 𝑥 𝑆 . The degree of 𝑓 , denoted deg( 𝑓 ), is defined
+as max{|𝑆| : 𝑎 𝑆 ≠ 0}. A monomial 𝑥 𝑆 is called maximum if 𝑎 𝑆 ≠ 0 and it has degree deg( 𝑓 ), i.e.,
+|𝑆| = deg( 𝑓 ). Two monomials 𝑥 𝑆 and 𝑥𝑇 are called disjoint if 𝑆 ∩ 𝑇 = ∅. We let supp( 𝑓 ) = {𝑥 ∈
+{0, 1} 𝑁 : 𝑓 (𝑥) ≠ 0} denote the support of 𝑓 . For any polynomial 𝑔 with domain {0, 1} 𝑁 , we have
+that 𝑥 𝑖𝑘 = 𝑥 𝑖 for any 𝑘 ≥ 1. The multilinearization ml(𝑔) of polynomial 𝑔 is obtained by replacing
+every 𝑥𝑖𝑘 with 𝑥𝑖 for 𝑘 ≥ 1.
+     A restriction 𝜌 fixes some variables to {0, 1}. We write 𝑓 | 𝜌 for the function on the remaining
+variables obtained after the restriction. For 𝑥 ∈ {0, 1} 𝑁 and 𝑆 ⊆ [𝑁], let 𝑥 𝑆 be the point obtained by
+flipping the coordinates in 𝑆: 𝑥 𝑖𝑆 = 1 − 𝑥𝑖 for 𝑖 ∈ 𝑆 and 𝑥 𝑖𝑆 = 𝑥 𝑖 otherwise. For 𝑥 ∈ {0, 1} 𝑁 , we use
+|𝑥| := |{𝑖 : 𝑥𝑖 = 1}| to denote the Hamming weight.
+     We will use the following standard facts in Boolean function analysis.
+
+Lemma 2.1 ([NS94]). Let 𝑓 : {0, 1} 𝑁 → ℝ be a non-zero function of degree at most 𝑑, then | supp( 𝑓 )| ≥
+2 𝑁 −𝑑 .
+
+Lemma 2.2 ([BBC+ 01]). Suppose a quantum algorithm makes 𝑑 queries to a Boolean string1 𝑥 ∈ {0, 1} 𝑁 ,
+and the acceptance probability is denoted by 𝑓 (𝑥). Then the function 𝑓 : {0, 1} 𝑁 → ℝ has degree at most 2𝑑.
+The same holds for the squared norm of any fixed postselected branch.
+
+   A deterministic decision tree adaptively queries coordinates of an unknown 𝑥 ∈ {0, 1} 𝑁 . Its
+depth is the maximum number of queried coordinates on any root-to-leaf path.
+
+2.2   The QROM and QCCC Key Agreement
+For notational simplicity, we use the security parameter 𝜆 also as the oracle input length and write
+𝑁 = 2𝜆 . A uniformly random oracle is a uniformly random function
+
+                                               𝐻 : {0, 1}𝜆 −→ {0, 1}.
+
+We identify 𝐻 with its truth table
+                                                     
+                                        tt(𝐻) = 𝐻 (𝑥) 𝑥 ∈ {0,1} 𝜆 ∈ {0, 1} 𝑁 .
+
+For 𝑧 ∈ {0, 1} 𝑁 , let 𝐻 𝑧 denote the unique oracle having tt(𝐻 𝑧 ) = 𝑧. We use the standard oracle query
+convention
+                                  𝑂 𝐻𝑧 |𝑥, 𝑢⟩ = |𝑥, 𝑢 ⊕ 𝐻 𝑧 (𝑥)⟩, 𝑢 ∈ {0, 1}.
+In particular, a classical algorithm can recover 𝐻 𝑧 (𝑥) with one query by setting 𝑢 = 0.
+    A QCCC key-agreement protocol consists of two parties, Alice and Bob, that begin with
+independent private states. They may use private randomness, arbitrary quantum computation,
+and arbitrary measurements, and they may query 𝑂 𝐻𝑧 in superposition. Every communicated
+message is classical. Let 𝑇 be the complete public transcript, including any public randomness,
+and let 𝐾A , 𝐾B be the classical output keys. For each fixed 𝜆, we assume that the protocol has
+finite transcript and key alphabets. The number of rounds has a finite worst-case bound for each
+𝜆, but that bound may depend arbitrarily on 𝜆. All initial states and non-oracle operations are
+independent of 𝐻. Alice and Bob make at most 𝑞 A and 𝑞 B oracle queries. Without loss of generality,
+any external public coin is sampled by Alice and announced as the first classical message.
+   1We interpret the string 𝑥 ∈ {0, 1} 𝑁 as a function 𝑥 : [𝑁] → {0, 1}, and model queries to 𝑥 as oracle queries to this
+
+function.
+
+
+
+                                                           4
+   All unconditioned probabilities are over the uniform oracle and all protocol randomness and
+measurement outcomes. Conditioned expressions such as Pr[E | 𝑧] mean Pr[E | tt(𝐻) = 𝑧]. The
+protocol is perfect complete if
+                                       Pr[𝐾A = 𝐾B ] = 1.
+    A passive eavesdropper observes 𝑇 without altering the execution and may then adaptively
+query the same oracle. Our eavesdropper is required to be query-efficient, but not computationally
+efficient or uniform. It may depend on the public protocol and 𝜆, but not on the sampled oracle or
+private execution. We count only oracle queries: there is no bound on running time or space, and
+all hidden constants in our query bounds are universal.
+
+2.3     A Discrete Markov Inequality
+We will also use the following lemma due to the discrete Markov inequality from [NS94].
+
+Lemma 2.3 ([KKDWY26]). Let 𝑟 : {0, 1} 𝑏 → ℝ be a polynomial with the following properties:
+
+      • |𝑟 (𝑥)| ≤ 1 for any 𝑥 ∈ {0, 1} 𝑏 ,
+
+      • |𝑟 (0𝑏 )| = 1,
+
+   • 𝑟 (𝑥) · 𝑟 (0𝑏 ) ≤ 0 for any 𝑥 ∈ {0, 1} 𝑏 with |𝑥| = 1.
+                 √︁
+Then deg(𝑟) ≥ 𝑏/2.
+
+
+3      Proof of the Main Theorem
+We now prove the quantitative, pointwise version of Theorem 1.1.
+
+Theorem 3.1 (Main theorem). Let Π be a perfectly complete QCCC key-agreement protocol in the QROM.
+Suppose Alice and Bob begin with independent private states and make at most 𝑞 A and 𝑞 B quantum queries,
+respectively. Set
+                                       𝑑 = min{2(𝑞 A + 𝑞 B ), 𝑁 }.
+There is a passive eavesdropper against Π with the following property: for every 𝑧 ∈ {0, 1} 𝑁 and every
+transcript 𝑡 satisfying Pr[𝑇 = 𝑡 | 𝑧] > 0, after observing 𝑡, the eavesdropper makes 𝑂 (𝑑 5 ) classical queries to
+𝐻 𝑧 and outputs the unique key 𝑘 for which
+
+                                             Pr[𝐾A = 𝐾B = 𝑘 | 𝑇 = 𝑡, 𝑧] = 1.
+
+Consequently,
+                                                Pr[𝐾A = 𝐾B = 𝐾E ] = 1,
+and the eavesdropper uses 𝑂 ((𝑞 A + 𝑞 B ) 5 ) classical oracle queries.
+
+3.1     Low-Degree Transcript Rectangularity
+Fixing a complete classical transcript separates the two local quantum executions. This is the only
+step that uses the restriction to classical communication.
+
+
+
+
+                                                           5
+Lemma 3.2 (Transcript rectangularity). For every complete transcript 𝑡, pair of keys 𝑎, 𝑏, and 𝑧 ∈ {0, 1} 𝑁 ,
+there are functions 𝐴𝑡 ,𝑎 , 𝐵𝑡 ,𝑏 : {0, 1} 𝑁 → ℝ ≥0 such that
+
+                              Pr[𝑇 = 𝑡, 𝐾A = 𝑎, 𝐾B = 𝑏 | 𝑧] = 𝐴𝑡 ,𝑎 (𝑧)𝐵𝑡 ,𝑏 (𝑧).                        (1)
+
+Moreover, their unique multilinear representations satisfy
+
+                                 deg( 𝐴𝑡 ,𝑎 ) ≤ 2𝑞 A ,          deg(𝐵𝑡 ,𝑏 ) ≤ 2𝑞 B .
+
+Proof. Purify the initial private states and private randomness, replace every local operation by
+a Stinespring isometry, and retain unrecorded Kraus indices in local environments. For fixed
+(𝑡, 𝑎), we compose Alice’s message-conditioned isometries and postselect on the outgoing-message
+projections, together with her final-key projection. The operators composes into a linear branch
+operator 𝑀𝑡A,𝑎 (𝑧). Incoming messages act only as classical controls and are hardwired to their values
+in 𝑡. Define 𝑀𝑡B,𝑏 (𝑧) analogously. Outgoing-message projections occur only at the sending party.
+     Let |𝜓A ⟩ ⊗ |𝜓B ⟩ be the purified initial product state and set
+
+                             |𝛼𝑡𝑧,𝑎 ⟩ = 𝑀𝑡A,𝑎 (𝑧)|𝜓A ⟩,         |𝛽𝑡𝑧,𝑏 ⟩ = 𝑀𝑡B,𝑏 (𝑧)|𝜓B ⟩.
+
+Conditioning every classical channel on the value recorded in 𝑡 leaves the subnormalized global
+branch
+                                         |𝛼𝑡𝑧,𝑎 ⟩ ⊗ |𝛽𝑡𝑧,𝑏 ⟩.
+Its squared norm is the branch probability and factors. Thus Equation (1) holds with
+
+                                 𝐴𝑡 ,𝑎 (𝑧) = ∥𝛼𝑡𝑧,𝑎 ∥ 2 ,       𝐵𝑡 ,𝑏 (𝑧) = ∥ 𝛽𝑡𝑧,𝑏 ∥ 2 .
+
+These functions are nonnegative on the Boolean cube. Applying Lemma 2.2 to the two fixed local
+branches gives the stated degree bounds.                                                    □
+
+3.2   Perfect Completeness and Disjoint Key Supports
+For every transcript 𝑡 and key 𝑘, define the function 𝐶𝑡 ,𝑘 : {0, 1} 𝑁 → ℝ as
+
+                                                𝐶𝑡 ,𝑘 = 𝐴𝑡 ,𝑘 · 𝐵𝑡 ,𝑘 .
+
+On the Boolean cube, 𝐶𝑡 ,𝑘 (𝑧) = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,𝑘 (𝑧) ≥ 0, and deg(𝐶𝑡 ,𝑘 ) ≤ 𝑑.
+
+Lemma 3.3 (Disjoint key supports). For every transcript 𝑡, distinct keys 𝑘 ≠ ℓ, and 𝑧 ∈ {0, 1} 𝑁 ,
+
+                                               𝐶𝑡 ,𝑘 (𝑧)𝐶𝑡 ,ℓ (𝑧) = 0.
+
+Moreover, whenever Pr[𝑇 = 𝑡 | 𝑧] > 0, exactly one 𝐶𝑡 ,𝑘 (𝑧) is nonzero, and both honest parties output that
+key with conditional probability one.
+
+Proof. Perfect completeness, the uniform distribution on the finite oracle space, and Lemma 3.2 give
+                                                 ∑︁ ∑︁ ∑︁
+                       0 = Pr[𝐾A ≠ 𝐾B ] = 2− 𝑁                 𝐴𝑡 ,𝑎 (𝑧)𝐵𝑡 ,𝑏 (𝑧).
+                                                        𝑧 ∈ {0,1} 𝑁   𝑡   𝑎≠𝑏
+
+Every summand is nonnegative, and all alphabets are finite. Hence, for every 𝑧, 𝑡 and 𝑎 ≠ 𝑏,
+
+                                               𝐴𝑡 ,𝑎 (𝑧)𝐵𝑡 ,𝑏 (𝑧) = 0.                                   (2)
+
+                                                            6
+For 𝑘 ≠ ℓ, it follows that
+
+                        𝐶𝑡 ,𝑘 (𝑧)𝐶𝑡 ,ℓ (𝑧) = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,𝑘 (𝑧) 𝐴𝑡 ,ℓ (𝑧)𝐵𝑡 ,ℓ (𝑧)
+                                                                                    
+                                           = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,ℓ (𝑧) 𝐴𝑡 ,ℓ (𝑧)𝐵𝑡 ,𝑘 (𝑧) = 0.
+             Í                    Í
+   Let 𝐴𝑡 = 𝑘 𝐴𝑡 ,𝑘 and 𝐵𝑡 = 𝑘 𝐵𝑡 ,𝑘 . Summing Equation (1) over the two keys 𝑎, 𝑏 and using
+Equation (2), we obtain                                                ∑︁
+                                Pr[𝑇 = 𝑡 | 𝑧] = 𝐴𝑡 (𝑧)𝐵𝑡 (𝑧) =            𝐶𝑡 ,𝑘 (𝑧).      (3)
+                                                                      𝑘
+
+If the left-hand side is positive, at least one summand is positive. Pairwise disjointness makes this
+key 𝑘 unique. Moreover,
+
+                         𝐶𝑡 ,𝑘 (𝑧) = Pr[𝑇 = 𝑡, 𝐾A = 𝑘, 𝐾B = 𝑘 | 𝑧] = Pr[𝑇 = 𝑡 | 𝑧],
+
+where the last equality follows from Equation (3). Therefore
+
+                                      Pr[𝐾A = 𝐾B = 𝑘 | 𝑇 = 𝑡, 𝑧] = 1.                                      □
+
+3.3   Few Candidate Keys
+We next count how many key polynomials can be nonzero for a fixed transcript.
+Lemma 3.4 (Few candidate keys). For every transcript 𝑡, the candidate key set
+
+                                      K𝑡 := {𝑘 : 𝐶𝑡 ,𝑘 . 0 on {0, 1} 𝑁 }
+
+has size at most 2𝑑 .
+Proof. By Lemma 2.1, each nonzero 𝐶𝑡 ,𝑘 has support of size at least 2 𝑁 −𝑑 . By Lemma 3.3, these
+supports are pairwise disjoint. Since the cube has 2 𝑁 points,
+
+                                                       2𝑁
+                                            |K𝑡 | ≤          = 2𝑑 .                                        □
+                                                      2 𝑁 −𝑑
+
+3.4   A Decision Tree for Disjoint Polynomial Supports
+We now prove the central polynomial statement.
+Lemma 3.5 (Disjoint-support separator). Let 𝑝, 𝑞 : {0, 1} 𝑁 → ℝ be multilinear polynomials of degree at
+most 𝑑 such that
+                             𝑝(𝑧)𝑞(𝑧) = 0      for every 𝑧 ∈ {0, 1} 𝑁 .
+There is a deterministic decision tree of depth 𝑂 (𝑑 4 ) which, under the promise 𝑝(𝑧) + 𝑞(𝑧) ≠ 0, determines
+whether 𝑝(𝑧) ≠ 0 or 𝑞(𝑧) ≠ 0.
+Proof. We construct the tree recursively. At one node, restrict 𝑝 and 𝑞 by the answers already
+queried, and let 𝑆 ⊆ [𝑁] be the set of unqueried variables. Then we can view 𝑝 and 𝑞 as polynomials
+on the remaining subcube {0, 1} 𝑆 . Disjointness and the promise at {0, 1} 𝑆 are preserved. If both
+restricted polynomials are identically zero, the subcube contains no promised input and may be
+labeled arbitrarily. If exactly one is identically zero, label the node with the other side.
+    Now suppose both restricted polynomials are not identically zero, and set
+
+                                       𝐷 = max{deg( 𝑝), deg(𝑞)}.
+
+                                                       7
+The case 𝐷 = 0 is impossible, as two nonzero constant functions cannot have disjoint supports. Let
+                                                      𝑠 = 𝑝2 − 𝑞2,
+so deg(𝑠) ≤ 2𝐷, and 𝑠 is not identically zero on {0, 1} 𝑆 . Choose 𝑧★ ∈ {0, 1} 𝑆 maximizing |𝑠(𝑧★)|.
+As 𝑝 and 𝑞 has disjoint supports, exactly one of 𝑝(𝑧★) and 𝑞(𝑧★) is nonzero. W.l.o.g., assume that
+𝑝(𝑧★) ≠ 0. Then
+                                 𝑠(𝑧★) > 0    and       𝑞(𝑧★) = 0.
+    Let 𝑧 𝑀1 , . . . , 𝑧 𝑀𝑏 be a maximal family of pairwise-disjoint maximum monomials 2 of 𝑞, and
+𝑀1 , . . . , 𝑀𝑏 ⊆ 𝑆 be their corresponding supports. As 𝑞 is not identically zero, it contains at least one
+maximum monomial and thus 𝑏 ≥ 1.
+    For each 𝑖 ∈ [𝑏], fix every variable outside 𝑀𝑖 according to 𝑧★. Such restriction does not change
+the coefficient of the monomial 𝑧 𝑀𝑖 , because 𝑧 𝑀𝑖 is maximum and no other monomial of 𝑞 strictly
+containing 𝑀𝑖 . Thus the resulting polynomial in the variables of 𝑀𝑖 is nonzero. Since 𝑞(𝑧★) = 0,
+there is therefore a nonempty set 𝐸 𝑖 ⊆ 𝑀𝑖 such that
+                                                         
+                                                𝑞 (𝑧★) 𝐸𝑖 ≠ 0.
+Disjoint supports of 𝑝 and 𝑞 imply
+                                                                         
+                                              𝑠(𝑧★) > 0,        𝑠 (𝑧★) 𝐸𝑖 < 0.                                         (4)
+As {𝑀𝑖 } are pairwise disjoint, the blocks {𝐸 𝑖 } are also pairwise disjoint.
+   Now, consider the function 𝑟 : {0, 1} 𝑏 → ℝ defined by: for 𝑦 ∈ {0, 1} 𝑏 ,
+                                                      Ð          
+                                                𝑠 (𝑧★) 𝑖:𝑦𝑖 =1 𝐸𝑖
+                                       𝑟 (𝑦) =                      ,
+                                                     |𝑠(𝑧★)|
+    Because the blocks are disjoint, every original coordinate is either fixed or is an affine function
+of one 𝑦 𝑖 . Hence deg(𝑟) ≤ deg(𝑠) ≤ 2𝐷. The maximality of |𝑠(𝑧★)| and Equation (4) gives
+    • |𝑟 (𝑦)| ≤ 1 for any 𝑦 ∈ {0, 1} 𝑏 ,
+    • |𝑟 (0𝑏 )| = 1,
+    • 𝑟 (𝑦) · 𝑟 (0𝑏 ) ≤ 0 for any 𝑦 ∈ {0, 1} 𝑏 with |𝑦| = 1.
+Then, Lemma 2.3 yields 𝑏 = 𝑂 (𝐷 2 ).
+   Let 𝑆 = 𝑀1 ∪ · · · ∪ 𝑀𝑏 . Every 𝑀𝑖 has size deg(𝑞) ≤ 𝐷, so
+                                                      |𝑆| = 𝑂 (𝐷 3 ).
+As {𝑀𝑖 } are maximal, 𝑆 intersects the support of every maximum monomial of 𝑞. Query all variables
+in 𝑆. Under every assignment to these variables, each old maximum monomial loses at least one
+free variable. Therefore every branch restriction satisfies
+                                         𝑞| 𝜌 ≡ 0   or       deg(𝑞| 𝜌 ) < deg(𝑞).
+If 𝑞(𝑧★) ≠ 0, the symmetric construction instead strictly decreases the degree of 𝑝.
+    A branch terminates if either 𝑝 or 𝑞 is identically zero after restriction. Along every nonterminal
+branch, each stage decreases deg( 𝑝) + deg(𝑞) by at least one. As initially deg( 𝑝) + deg(𝑞) ≤ 2𝑑, and
+every stage queries 𝑂 (𝑑 3 ) variables. The resulting decision tree has depth 𝑂 (𝑑 4 ).              □
+   2 Maximal means that for any other maximum monomial 𝑧
+                                                             𝑀 of 𝑞, we have 𝑀 ∩ 𝑀𝑖 ≠ ∅ for some 𝑖 ∈ [𝑏]. Pairwise-disjoint
+means that 𝑀𝑖 ∩ 𝑀 𝑗 = ∅ for all 𝑖 ≠ 𝑗.
+
+
+                                                            8
+3.5   The Eavesdropper
+Proof of Theorem 3.1. Fix the observed transcript 𝑡. As the eavesdropper is computationally un-
+bounded, it computes the candidate key set
+
+                                             K𝑡 = {𝑘 : 𝐶𝑡 ,𝑘 . 0}.
+
+This set depends only on the public protocol and 𝑡, so requires no queries to the sampled oracle. By
+Lemma 3.4, |K𝑡 | ≤ 2𝑑 . If 𝑡 is actually observed, Lemma 3.3 guarantees that K𝑡 is nonempty.
+   The eavesdropper performs balanced binary search on K𝑡 . At a search node, partition the
+remaining candidates into two sets L, R of as equal size as possible, and form
+                                       ∑︁                    ∑︁
+                                𝑃(𝑧) =     𝐶𝑡 ,𝑘 (𝑧), 𝑄(𝑧) =    𝐶𝑡 ,𝑘 (𝑧).
+                                       𝑘∈L                           𝑘∈R
+
+Both polynomials have degree at most 𝑑. Pairwise disjointness of the key polynomials gives
+
+                                 𝑃(𝑧)𝑄(𝑧) = 0        for every 𝑧 ∈ {0, 1} 𝑁 .
+
+For the actual oracle and every transcript of positive conditional probability, Lemma 3.3 guarantees
+𝑃(𝑧) + 𝑄(𝑧) > 0, and exactly one candidate in L ∪ R is positive on 𝑧. The eavesdropper therefore
+applies the decision tree from Lemma 3.5 to learn which half contains the candidate.
+   There are at most                                  
+                                             log2 |K𝑡 | ≤ 𝑑
+search levels, and each level uses 𝑂 (𝑑 4 ) oracle-bit queries. The total number is 𝑂 (𝑑 5 ). At the final
+leaf, the eavesdropper outputs the sole remaining key. By Lemma 3.3, this is exactly the key output
+by both honest parties, for every 𝑧, 𝑡 of positive conditional probability. Therefore
+
+                                          Pr[𝐾A = 𝐾B = 𝐾E ] = 1.
+
+Finally, 𝑑 ≤ 2(𝑞 A + 𝑞 B ), so the total query complexity is 𝑂 ((𝑞 A + 𝑞 B ) 5 ). Every query reads one oracle
+bit 𝐻 (𝑥), and is therefore a classical query permitted in the quantum-query model.                         □
+
+
+References
+[ACC+ 22]      Per Austrin, Hao Chung, Kai-Min Chung, Shiuan Fu, Yao-Ting Lin, and Mohammad
+               Mahmoody. On the impossibility of key agreements from quantum random oracles.
+               In Advances in Cryptology – CRYPTO 2022, volume 13508 of Lecture Notes in Computer
+               Science, pages 165–194. Springer, 2022.
+[BBC+ 01]      Robert Beals, Harry Buhrman, Richard Cleve, Michele Mosca, and Ronald de Wolf.
+               Quantum lower bounds by polynomials. J. ACM, 48(4):778–797, 2001.
+[BDF+ 11]      Dan Boneh, Özgür Dagdelen, Marc Fischlin, Anja Lehmann, Christian Schaffner,
+               and Mark Zhandry. Random oracles in a quantum world. In Advances in Cryptology
+               – ASIACRYPT 2011, volume 7073 of Lecture Notes in Computer Science, pages 41–69.
+               Springer, 2011.
+[BMG09]        Boaz Barak and Mohammad Mahmoody-Ghidary. Merkle puzzles are optimal —
+               an 𝑂 (𝑛2 )-query attack on any key exchange from a random oracle. In Advances in
+               Cryptology – CRYPTO 2009, volume 5677 of Lecture Notes in Computer Science, pages
+               374–390. Springer, 2009.
+
+                                                      9
+[IR89]      Russell Impagliazzo and Steven Rudich. Limits on the provable consequences of
+            one-way permutations. In Proceedings of the 21st Annual ACM Symposium on Theory of
+            Computing, pages 44–61. ACM, 1989.
+
+[KKDWY26] Robin Kothari, Matt Kovacs-Deak, Daochen Wang, and Rain Zimin Yang. Rational
+          degree is polynomially related to degree. arXiv:2601.08727v2, 2026. To appear in
+          FOCS 2026.
+
+[LLLL24]    Longcheng Li, Qian Li, Xingjian Li, and Qipeng Liu. How (not) to build quantum PKE
+            in Minicrypt. In Leonid Reyzin and Douglas Stebila, editors, Advances in Cryptology
+            – CRYPTO 2024, volume 14926 of Lecture Notes in Computer Science, pages 152–183.
+            Springer, 2024.
+
+[LLLL25]    Longcheng Li, Qian Li, Xingjian Li, and Qipeng Liu. Toward the impossibility of
+            perfect complete quantum PKE from OWFs. In Raghu Meka, editor, 16th Innovations in
+            Theoretical Computer Science Conference (ITCS 2025), volume 325 of Leibniz International
+            Proceedings in Informatics (LIPIcs), pages 71:1–71:16. Schloss Dagstuhl – Leibniz-
+            Zentrum für Informatik, 2025.
+
+[LLLL26]    Longcheng Li, Qian Li, Xingjian Li, and Qipeng Liu. Cryptomania v.s. Minicrypt in a
+            quantum world. In Advances in Cryptology – CRYPTO 2026, 2026. To appear; IACR
+            ePrint 2025/639.
+
+[Mid04]     Gatis Midrĳanis. Exact quantum query complexity for total boolean functions. arXiv
+            preprint quant-ph/0403168, 2004.
+
+[NS94]      Noam Nisan and Mario Szegedy. On the degree of boolean functions as real
+            polynomials. Comput. Complex., 4:301–313, 1994.
+
+
+
+
+                                               10
+

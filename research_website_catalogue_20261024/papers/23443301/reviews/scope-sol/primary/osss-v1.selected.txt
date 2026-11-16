@@ -1,0 +1,178 @@
+some way the argument of Hajnal is not really using the            notion of the cost of T on input x as the length of the root-
+fact that f is a graph property — just that it’s transi-           leaf path T follows on input x. Thus, we have the usual
+tive. Indeed, one might wonder the same thing about                notions of D(T ) and D(f ), and also the (zero-error) ran-
+Chakrabarti-Khot, since their v 4/3 log1/3 v lower bound           domized decision tree complexities R(T ) and R(f ). With
+could also hold for monotone transitive functions — the            the product probability measure µ on X, we can also natu-
+example of [3] does not rule it out.                               rally extend our notions of expected cost from Section 1.2:
+                                                                   given a DDT T computing f ,
+
+3 The main inequality                                                             δiµ (T ) = Pr [T queries xi ],
+                                                                                             x←Ω
+
+3.1 Decision trees, variation, influences — and ∆µ (T ) and ∆µ (f ) are similarly defined. We will
+    general definitions.                    henceforth drop the superscript µ when it is clear from
+                                                            context. Note that, as before, we have ∆(f ) ≤ R(f ).
+The proof of Theorem 1.1 is most naturally carried out in
+                                                              We now give the definitions of variation and influences
+a significantly more general context than that of functions
+                                                            for functions f : Ω → Z. The variation of f : Ω → Z is
+f : {−1, 1}n(p) → {−1, 1}. Specifically, we will consider
+functions                                                             Vrµ,d [f ] =      E    [d(f (x), f (y))].
+                       f : Ω −→ Z                                                  (x,y)←Ω×Ω
+
+mapping a product probability space into a metric space.           To define influences, first let Ω(i) denote the probability
+In this section we give the necessary definitions.                 space given by pairs (x, x(i) ), where x is chosen from Ω
+   Let us begin with the domain. Here we have an n-wise            and x(i) is formed by rerandomizing the ith coordinate of
+product probability space Ω = (X, µ), meaning that that            x using µi . Then the influence of the ith coordinate on
+the underlying set X is a product set X1 ×· · ·×Xn and the         f : Ω → Z is defined to be
+measure µ is a product probability measure µ1 × · · ·× µn ,
+where µi is a probability measure on Xi . For simplicity,                 Inf µ,d                         [d(f (x), f (x(i) ))].
+                                                                              i (f ) =        E
+we assume that X is finite. We write Ωi for the probability                              (x,x(i) )←Ω(i)
+space (Xi , µi ). We use the notation x ← Ω to mean that
+x is an element of X randomly selected according to µ.             We will usually drop the superscripts µ and d on Vr and
+   The range of our functions is a metric space (Z, d).            Inf i when they are implied by context. Note that if we
+(Actually we can allow a “pseudo-metric”, meaning we               view the functions f : {−1, 1}n(p) → {−1, 1} from Sec-
+may omit the requirement that d(z, z ′ ) = 0 ⇒ z = z ′ .)          tion 1 as mapping into the metric space on {−1, 1} with
+Useful examples to keep in mind are the following: Z               distance d given by d(z, z ′ ) = |z − z ′ | = 2 · 1z6=z′ , then
+any finite set with d(z, z ′ ) = 1z6=z′ ; and, Z = R with          we get agreement in the definitions of Inf i (f ) and also
+d(z, z ′ ) = |z − z ′ |. Of course, in the special case of         Vr[f ] = Var[f ].
+boolean-valued functions, Z = {−1, 1}, all metrics are
+the same up to a constant factor.                                  3.2    Theorem and proof.
+   The definitions of decision trees in the context of func-
+tions mapping a product set domain X = X1 × · · · × Xn             We now state and prove our main inequality, which in-
+into a set Z are the obvious ones. Briefly, a DDT will be          cludes Theorem 1.1 as a special case.
+a rooted directed tree T in which each internal node v is
+                                                                   Theorem 3.1 Let f : Ω → (Z, d) be a function map-
+labelled by a coordinate iv ∈ [n] and each leaf is labelled
+                                                                   ping a finite n-wise product probability space into a met-
+by an element of the output set Z. Further, the arcs em-
+                                                                   ric space, and let T be a DDT computing f . Then
+anating from each internal node v must be in one-to-one
+correspondence with Xiv . The node labels along every                                        n
+                                                                                             X
+root-leaf path are required to be distinct. T computes a                          Vr[f ] ≤         δi (T ) Inf i (f ).
+function fT : X → Z in the obvious way; we retain the                                        i=1
+
+
+
+                                                               6
+Proof: Let x and y be random inputs chosen indepen-                   Taking expectation gives
+dently from Ω. Given a subset J ⊆ [n] we will write xJ y                h                             i
+for the hybrid input in X that agrees with x on the co-               E d f (u[t−1]), f (u[t]) 1{it =i} = Pr[it = i] Inf i (f ) .
+ordinates in J and with y on the coordinates in [n] \ J.
+                                                                             Pn
+Let i1 , . . . , is denote the sequence of variables queried          Since t=1 Pr[it = i] = δi (T ), an appeal to (5) com-
+by T on input x (these i’s are random variables and s                 pletes the proof. ✷
+is also a random variable). For t ≥ 0, let J[t] = {ir :
+s ≥ r > t}. Finally, let u[t] = xJ[t] y. (For example, if
+x = (1, −1, 1, 1), y = (1, 1, −1, −1), the tree read x4 fol-          3.3   Corollaries and two function version.
+lowed by x2 and terminates, then u[0] = (1, −1, −1, 1),
+u[1] = (1, −1, −1, −1) and u[2] = y.) All E[ · ]’s and                In this section we treat some immediate corollaries of
+Pr[ · ]’s in what follows are over all the random variables           Theorem 3.1. Certainly the analogue of Corollary 1.2
+just described (i.e., x, y, i’s, s, u[·]’s).                          holds for Theorem 3.1, as do the first and third remarks
+   We begin with the simple observation                               stated after Corollary 1.2. We now give the promised “two
+                                                                      function” version. Define
+  Vr[f ] = E[d(f (x), f (y))] = E[d(f (u[0]), f (u[s]))],
+                                                               CoVr[f, g]
+which follows because y = u[s] and f (x) = f (u[0])
+(although x does not necessarily equal u[0]). This latter       =       E     [d(f (x), g(y))] − E [d(f (x), g(x))],
+                                                                   (x,y)←Ω×Ω                    x←Ω
+equality is the only place in the proof we use the fact that
+T computes f .                                               so in particular CoVr[f, f ] = Vr[f ]. Thus the following
+   We next make the obvious step                             theorem generalizes Theorem 3.1:
+                               hX
+                                s                             i       Theorem 3.2 Let f, g : Ω → (Z, d) be functions map-
+E[d(f (u[0]), f (u[s]))] ≤ E         d(f (u[t − 1]), f (u[t]))        ping a finite n-wise product probability space into a met-
+                               t=1                                    ric space, and let T be an RDT computing f . Then
+                                                         (4)
+which uses the fact that d is a metric. Set
+                                         Pnti = ∅ for t > s.                                      n
+                                                                                                  X
+Linearity of expectation and 1{t≤s} = i=1 1{it =i} give                          CoVr[f, g] ≤           δi (T ) Inf i (g).
+                                                                                                  i=1
+      hX
+       s                             i
+  E         d(f (u[t − 1]), f (u[t])) =                               Proof: As usual we can assume by averaging that T is
+      t=1
+                                                                      a DDT T computing f . Using the same setup as in the
+        X n
+        n X        h                                 i                proof of Theorem 3.1, we have
+                                            
+                  E d f (u[t − 1]), f (u[t]) 1{it =i} .    (5)
+        t=1 i=1                                                         CoVr[f, g] = E[d(f (x), g(y))]−E[d(f (u[0]), g(u[0]))]
+   Let Xt denote the sequence of values seen by the               = E[d(f (u[0]), g(u[s]))] − E[d(f (u[0]), g(u[0]))]
+decision tree by time t on input x; that is, Xt = where in the first equality we used that u[0] is, in isolation,
+(xi1 , . . . , xit∧s ), where t ∧ s denotes the minimum of t distributed according to Ω, and in the second equality we
+and s. Note that Xt−1 determines it . Induction on t ∈ [n] used the fact that f (x) = f (u[0]) since T computes f
+easily shows that conditional on Xt−1 the variables y and (as in the previous proof). Now using the fact that d is a
+(xj : j 6= i1 , . . . , i(t−1)∧s ) are independent and retain metric we get
+their original distributions. It follows that conditional on
+Xt−1 the pair (u[t − 1], u[t]) has the distribution Ω(i) if     CoVr[f, g] =
+it = i ∈ [n]. Consequently, for i, t ∈ [n],
+                                                                  E[d(f (u[0]), g(u[s]))] − E[d(f (u[0]), g(u[0]))]
+  h                                          i
+E d f (u[t−1]), f (u[t]) 1{it =i} Xt−1 = 1{it =i} Inf i (f ) .                              ≤ E[d(g(u[0]), g(u[s]))]
+
+
+                                                                  7
+and of course this is also true for −CoVr[f, g]. The proof          (z − z ′ )2 /2. In this case Vrρ2 [f ] = Var[f ] and Inf ρ2 (f )
+now proceeds exactly as before with g in place of f ; note          has the meaning commonly associated with this notation
+that from this point on in the previous proof we did not            for functions f : Ω → R; that is, the interpretation used
+use the fact that T computed f . ✷                                  in, e.g., the Efron-Stein inequality or in [17].
+                                                                       To study the semimetric case, we simply introduce a
+   As mentioned below Corollary 1.2, Theorem 3.2 can                quantity measuring the extent to which the triangle in-
+be used to give a lower bound for the randomized decision           equality fails for ρ on paths of length k. We define
+tree complexity of approximating g. Note that the triangle          the defect of a sequence z0 , z1 , . . . , zk ∈ Z k+1 to be
+                                                                                  Pk
+inequality gives                                                    ρ(z0 , zk )     ( t=1 ρ(zt−1 , zt )), where 00 is taken to be
+                                                                  1. We then define the k-defect of ρ, denoted Def k (ρ), to
+       CoVr[f, g] ≥ Vr[g] − 2 E d(f (x), g(x)) .
+                                                                    be the maximum defect of any sequence z0 , . . . , zk . The
+Consequently, Theorem 3.2 implies that for every ǫ > 0              following facts are easy to check:
+the expected number of queries required by a randomized               • Def 1 (ρ) = 1 and Def k (ρ) is nondecreasing with k.
+                          any approximation f of g satis-
+decision tree to calculate
+fying E d(f (x), g(x)) ≤ ǫ is at least                                • Def k (ρ) ≤ (sup ρ)/(inf ρ) for all k.
+                       Vr[g] − 2 ǫ                                    • Def 2 (ρ) = 1 implies that ρ satisfies the triangle in-
+                                   .
+                       Inf max (g)                                      equality, which, in turn, implies that Def k (ρ) = 1
+                                                                        for all k; i.e., ρ is a metric.
+                                                                      • If ρ1/q is a metric for some q ≥ 1, then Def k (ρ) ≤
+   We now describe an alternate version of Theorem 3.2.
+                                                                        k q−1 . Thus in our motivating case with Z = R and
+Let f : Ω → [−1, 1], g : Ω → R, and let T be a random-
+                                                                        ρ(z, z ′ ) = (z − z ′ )2 /2 we have Def k (ρ) ≤ k.
+ized decision tree computing f . Then
+                            n                                         • If ρ1/q is a metric for some q ≥ 1, then Def k (ρ) ≤
+                            X
+            Cov[f, g] ≤           δi (T ) Inf ρi 1 [g],   (6)           |Z|q−1 for all k.
+                            i=1
+                                                          It is easy to see how to generalize Theorems 3.1 and 3.2
+where ρ1 (x, y) = |x − y| and Cov[f, g] = for semimetrics ρ; since Theorem 3.2 is more general, we
+E[f (x) g(x)] − E[f (x)] E[g(x)] is the covariance of f will only state its extension:
+and g. With the usual definitions of x, y, u[t] and s, we
+                                                          Theorem 3.3 Let f, g : Ω → (Z, ρ) be functions map-
+have f (x) = f [u(0)] and u[s] = y. Hence, we may write
+                                                          ping an n-wise product probability space into a semimet-
+                                                        ric space, and let T be an RDT computing f . Let k be
+  Cov[f, g] = E f (u[0])g(u[0]) − f (x)g(u[s])
+                                                    the length of the longest path in any DDT in T ’s support.
+ = E f (x) g(u[0])−g(u[s]) ≤ E |g(u[0])−g(u[s])| , Then
+
+and the proof of (6) proceeds as above.                                                                 n
+                                                                                                        X
+                                                                           CoVr[f, g] ≤ Def k (ρ)             δi (T ) Inf i (g).
+                                                                                                        i=1
+3.4 When d is not a metric.
+                                                                    This is the most general version of our main inequality
+In this section we generalize our results to the case when          that we state. In the semimetric setting we are most inter-
+f maps into (Z, ρ), where (Z, ρ) is a “semimetric”. This            ested in, namely that of one function f : Ω → (R, ρ2 ), we
+just means that ρ need not satisfy the triangle inequality;         have the following:
+specifically, all we require of ρ is that ρ ≥ 0, ρ(z, z) = 0,
+and ρ(z, z ′ ) = ρ(z ′ , z). (Again we do not insist that           Corollary 3.4 Let f : Ω → (R, ρ2 ) be a function map-
+ρ(z, z ′ ) = 0 ⇒ z = z ′ .) Our main motivation for study-          ping an n-wise product probability space into the real line
+ing this extension is the case Z = R with ρ = ρ2 (z, z ′ ) :=       with semimetric ρ2 (z, z ′ ) = (z − z ′ )2 /2, and let T be an
+
+                                                                8
+

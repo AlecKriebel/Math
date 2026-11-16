@@ -1,0 +1,60 @@
+--- source153-155/acquire_sources.py
++++ source156-nextthree/acquire_sources.py
+@@ -7,10 +7,10 @@
+ import datetime, hashlib, http.client, io, json, os, ssl, stat, subprocess, sys, tarfile, traceback, urllib.parse, zipfile
+ 
+ P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+-N=P/'verification/source153-155-sol-20261116'
+-WORKS={23444050:153,23334001:154,23394004:155}
+-EXPECTED_TITLES={23444050:'An explicit counterexample to three-summand Kato-kernel splitting',23334001:'An odd-period pedal-antipedal area invariant in elliptic billiards',23394004:'An odd-period product for focal inversions of outer billiard polygons'}
+-EXPECTED_PDFS={23444050:('mixed-kato-counterexample.pdf','01ef963f6dbebc0c3aa91bfb10f13d293c983a46238c4465ae53bf4db99f1c96'),23334001:('odd_origin_area_product.pdf','687c633a92a61f1962d719be628ef5e119e077846254456f89a088d5fd13f34f'),23394004:('k904a-outer-focal-inverse-areas.pdf','82b2710dd69f706dc2018f8d7ee6de4e8d894688f8dc15c3e8006219e974ab06')}
++N=P/'verification/source156-nextthree-sol-20261116'
++WORKS={23443301:159,23393139:160,23398175:162}
++EXPECTED_TITLES={23443301:'Polynomial compatibility on the Boolean cube from disjoint-support separators',23393139:'Quantitative persistence in a fixed-city area equation',23398175:'The outer focal-pedal area product in odd elliptic billiards'}
++EXPECTED_PDFS={23443301:'polynomial-compatibility.pdf',23393139:'city-ode-persistence-note.pdf',23398175:'k605a-outer-focal-pedal-areas.pdf'}
+ TERMINALS={'SOURCE_MANIFEST.json','SOURCE_FINAL.json'}
+ 
+ def need(ok,why):
+@@ -135,6 +135,7 @@
+             need(record.get('conceptrecid')==given.get('conceptrecid'),'same native concept/version family')
+             files_raw,files_path=self.get('https://zenodo.org/api/records/'+str(rid)+'/files','files-'+str(rid)); files_obj=json.loads(files_raw)
+             native=record['files']; need(isinstance(native,list),'original native file ordering must be list')
++            endpoint=files_obj['entries']; need(isinstance(endpoint,list) and {x['key']:(x['size'],x['checksum']) for x in endpoint}=={x['key']:(x['size'],x['checksum']) for x in native},'literal files-wrapper asset identities agree; original orders retained')
+             local_assets=[]
+             for ordinal,item in enumerate(native):
+                 key=item['key']; need(key and Path(key).name==key and key not in ('.','..') and '\\' not in key,'ordinary native asset name')
+@@ -144,17 +145,22 @@
+                 local=self.R/('assets' if rid==self.rid else 'versions/'+str(rid)+'/assets')/key; write(local,data)
+                 asset={'ordinal_zero_based':ordinal,'record_id':rid,'key':key,'original_API_file_object':item,'path':str(local),'transport_body_path':str(body_path),**pin(data),'native_MD5_verified':True,'fresh_ordinary_native_GET':True,'cached_bytes_reused':False}
+                 local_assets.append(asset); assets.append(asset); self.inspect(local,rid,{'native_asset':key,'ordinal_zero_based':ordinal})
+-            summaries.append({'record_id':rid,'record_body_path':str(path),'title':meta['title'],'DOI':record['doi'],'creators':creators,'publication_date':meta.get('publication_date'),'created':record.get('created'),'updated':record.get('updated'),'native_record_state':field(record,'state'),'native_is_published':field(record,'is_published'),'native_version_whole_field':field(meta,'version'),'native_conceptrecid_whole_field':field(record,'conceptrecid'),'license_whole_field':field(meta,'license'),'resource_type_whole_field':field(meta,'resource_type'),'description_whole_field':field(meta,'description'),'files_endpoint_body_path':str(files_path),'files_endpoint_original_order_and_fields':files_obj,'all_native_assets_in_original_order':local_assets})
++            summaries.append({'record_id':rid,'record_body_path':str(path),'title':meta['title'],'DOI':record['doi'],'creators':creators,'publication_date':meta.get('publication_date'),'created':record.get('created'),'updated':record.get('updated'),'native_record_state':field(record,'state'),'native_record_status':field(record,'status'),'native_is_published':field(record,'is_published'),'native_version_whole_field':field(meta,'version'),'native_conceptrecid_whole_field':field(record,'conceptrecid'),'license_whole_field':field(meta,'license'),'resource_type_whole_field':field(meta,'resource_type'),'description_whole_field':field(meta,'description'),'files_endpoint_body_path':str(files_path),'files_endpoint_original_order_and_fields':files_obj,'all_native_assets_in_original_order':local_assets})
+         need(any(x['record_id']==latest['id'] and x['origin'].get('native_asset') for x in self.pdfs),'latest published native actual PDF exists')
+-        need(any(x['record_id']==self.rid and x['key']==EXPECTED_PDFS[self.rid][0] and x['SHA256']==EXPECTED_PDFS[self.rid][1] for x in assets),'queued exact native PDF filename and SHA256')
++        need(any(x['record_id']==self.rid and x['key']==EXPECTED_PDFS[self.rid] for x in assets),'queued exact native PDF filename; SHA256 freshly recorded after full native MD5/size verification')
+         pairs=[]
+         for pdf in self.pdfs:
+             candidates=[t for t in self.tex if t['record_id']==pdf['record_id'] and Path(t['path']).stem==Path(pdf['path']).stem]
+             if not candidates:
+                 same=[t for t in self.tex if t['record_id']==pdf['record_id']]; candidates=same if len(same)==1 else []
+             pairs.append({'PDF':pdf['path'],'record_id':pdf['record_id'],'source_candidates':candidates,'basis':'same basename; otherwise sole version-specific TeX candidate; filename-only association, no build/scientific correspondence asserted'})
++        identities=[]
++        for pdf in self.pdfs:
++            if pdf['origin'].get('native_asset'):
++                embedded=[other for other in self.pdfs if other['record_id']==pdf['record_id'] and not other['origin'].get('native_asset') and other['SHA256']==pdf['SHA256'] and other['bytes']==pdf['bytes']]
++                identities.append({'standalone_PDF':pdf['path'],'record_id':pdf['record_id'],'standalone_SHA256':pdf['SHA256'],'byte_identical_embedded_PDF_paths':[x['path'] for x in embedded],'no_identical_embedded_copy_found':len(embedded)==0,'identity_only_no_scientific_correspondence_claim':True})
+         self.event('NATIVE_PDF_SOURCE_ACQUISITION_COMPLETE',completion_percent=90,native_assets=len(assets),PDF_readers=len(self.pdfs),TeX_candidates=len(self.tex))
+-        result={'schema':'source-only-native-acquired-v1','UTC':utc(),'queued_record_id':self.rid,'sheet_row':WORKS[self.rid],'latest_record_id':latest['id'],'all_enumerated_version_ids_in_native_order':[x['id'] for x in versions],'version_pages':pages,'version_enumeration_no_next_link':True,'records':summaries,'all_native_assets':assets,'all_actual_PDF_readers':self.pdfs,'all_TeX_candidates':self.tex,'manuscript_source_associations':pairs,'containers':self.containers,'members':self.members,'actual_HTTP_receipts':self.receipts,'expanded_regular_bytes':self.expanded,'archive_member_occurrences':self.entries,'source_custody_completion_percent':90,'scientific_body_code_results_opinions_or_PDF_pixels_text_read':False,'printed_date_version_inspected':False,'scientific_verdict':None,'AA':None,'canonical_url':None,'publication_authority':False,'outside_contact_or_prepared_outreach':False}
++        result={'schema':'source-only-native-acquired-v1','UTC':utc(),'queued_record_id':self.rid,'sheet_row':WORKS[self.rid],'latest_record_id':latest['id'],'all_enumerated_version_ids_in_native_order':[x['id'] for x in versions],'version_pages':pages,'version_enumeration_no_next_link':True,'records':summaries,'all_native_assets':assets,'all_actual_PDF_readers':self.pdfs,'all_TeX_candidates':self.tex,'manuscript_source_associations':pairs,'standalone_embedded_PDF_identity':identities,'containers':self.containers,'members':self.members,'actual_HTTP_receipts':self.receipts,'expanded_regular_bytes':self.expanded,'archive_member_occurrences':self.entries,'source_custody_completion_percent':90,'scientific_body_code_results_opinions_or_PDF_pixels_text_read':False,'printed_date_version_inspected':False,'scientific_verdict':None,'AA':None,'canonical_url':None,'publication_authority':False,'outside_contact_or_prepared_outreach':False}
+         write(self.R/'ACQUIRED.json',js(result)); return result
+ 
+ def inventory(R):
+@@ -167,7 +173,7 @@
+ def seal(rid):
+     R=root(rid); need(not any((R/x).exists() for x in TERMINALS),'seal exclusively once'); acquired=readjson(R/'ACQUIRED.json')
+     need(acquired['queued_record_id']==rid and acquired['scientific_verdict'] is None,'source-only acquired association')
+-    ready={'schema':'source-only-ready-unread-science-v1','UTC':utc(),'record_id':rid,'sheet_row':WORKS[rid],'latest_record_id':acquired['latest_record_id'],'native_version_records':len(acquired['records']),'native_assets':acquired['all_native_assets'],'actual_PDF_readers':acquired['all_actual_PDF_readers'],'all_TeX_candidates':acquired['all_TeX_candidates'],'source_associations':acquired['manuscript_source_associations'],'archive_containers':len(acquired['containers']),'archive_occurrences':len(acquired['members']),'all_native_MD5_verified':True,'all_original_native_metadata_description_license_dates_and_asset_order_preserved_in':'ACQUIRED.json and raw API bodies','source_custody_completion_percent':100,'native_mathematical_bodies_code_results_opinions_and_PDF_pixels_text_read':False,'scientific_verdict':None,'printed_date_version_inspected':False,'AA':None,'canonical_url':None,'publication_authority':False,'source_program_executions':[],'metadata_tool_executed':'pdfinfo only'}
++    ready={'schema':'source-only-ready-unread-science-v1','UTC':utc(),'record_id':rid,'sheet_row':WORKS[rid],'latest_record_id':acquired['latest_record_id'],'native_version_records':len(acquired['records']),'native_assets':acquired['all_native_assets'],'actual_PDF_readers':acquired['all_actual_PDF_readers'],'all_TeX_candidates':acquired['all_TeX_candidates'],'source_associations':acquired['manuscript_source_associations'],'standalone_embedded_PDF_identity':acquired['standalone_embedded_PDF_identity'],'archive_containers':len(acquired['containers']),'archive_occurrences':len(acquired['members']),'all_native_MD5_verified':True,'all_original_native_metadata_description_license_dates_and_asset_order_preserved_in':'ACQUIRED.json and raw API bodies','source_custody_completion_percent':100,'native_mathematical_bodies_code_results_opinions_and_PDF_pixels_text_read':False,'scientific_verdict':None,'printed_date_version_inspected':False,'AA':None,'canonical_url':None,'publication_authority':False,'source_program_executions':[],'metadata_tool_executed':'pdfinfo only'}
+     write(R/'SOURCE_READY.json',js(ready)); files,dirs=inventory(R)
+     manifest={'schema':'finite-source-manifest-v1','root':str(R),'files':files,'directories':dirs,'exact_terminal_exclusions':sorted(TERMINALS),'no_future_or_subtree_exclusions':True}
+     body=js(manifest); write(R/'SOURCE_MANIFEST.json',body)

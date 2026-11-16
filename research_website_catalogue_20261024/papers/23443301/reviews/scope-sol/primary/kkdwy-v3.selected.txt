@@ -1,0 +1,102 @@
+Fact 3. For every Boolean function f , rdeg(f ) = max(ndeg(f ), ndeg(¬f )).
+Proof. Let p/q be a rational representation of f with max(deg(p), deg(q)) = rdeg(f ). Then, p and
+q − p are nondeterministic representations of f and ¬f respectively. Thus,
+
+max(ndeg(f ), ndeg(¬f )) ≤ max(deg(p), deg(q − p)) ≤ max(deg(p), max(deg(p), deg(q))) = rdeg(f ).
+
+   Conversely, let p and q be nondeterministic representations of f and ¬f respectively, with
+deg(p) = ndeg(f ) and deg(q) = ndeg(¬f ). Then p/(p + q) is a rational representation of f . Thus,
+
+rdeg(f ) ≤ max(deg(p), deg(p + q)) ≤ max(deg(p), max(deg(p), deg(q))) = max(ndeg(f ), ndeg(¬f )).
+
+      Taken together, we obtain rdeg(f ) = max(ndeg(f ), ndeg(¬f )), as required.
+
+   We also record the fact that rational degree exactly equals the ϵ-approximate postselected
+quantum query complexity PostQϵ with ϵ = 0 as defined in [MdW15]. We will not use this fact later
+but it serves to underscore the tight connection between rational degree and quantum complexity, a
+connection first observed by Aaronson [Aar05].
+Fact 4. For every Boolean function f , rdeg(f ) = PostQ0 (f ).
+Proof sketch. [MdW15] proves PostQϵ (f ) ≤ rdeg(f ) ≤ 2 PostQϵ (f ) for all ϵ ∈ [0, 1/2). When ϵ = 0,
+the factor of 2 can be removed by extending the argument in [MdW15]; see Appendix A.
+
+      Our proof will relate rational degree to degree via the following three complexity measures.
+Definition 5 (Block sensitivity). Let f : {0, 1}n → {0, 1}. Let x ∈ {0, 1}n . We say that a subset
+B ⊆ [n] is a sensitive block of f at x if f (x) ̸= f (xB ), where xB denotes x with all bits in B flipped.
+The block sensitivity of f at x, denoted bsx (f ), is the maximum number of disjoint sensitive blocks
+of f at x.
+                                                                   P          Q
+Definition 6 (Hitting set). For a multilinear polynomial p := S⊆[n] cS · i∈S Xi ∈ R[X1 , . . . , Xn ],
+its set of maximal monomials is the set M(p) := {M ⊆ [n] : cM ̸= 0, cM ′ = 0 for all M ′ ⊋ M }.2 We
+say that H ⊆ [n] is a hitting set of p if H ∩ M is nonempty for all M ∈ M(p).
+Definition 7 (Decision tree complexity). The decision tree complexity of f : {0, 1}n → {0, 1},
+denoted D(f ), is the minimum depth of a decision tree (deterministic query algorithm) that, for all
+x ∈ {0, 1}n , queries bits of x to exactly compute f (x) at a leaf.
+
+2.2     Technical tools
+Our proof involves using polynomial symmetrization followed by Markov’s inequality [Mar90]. The
+symmetrization we use is folklore, see, e.g., [AKKT20, Lemma 12] where it is attributed to [Shi02],
+and follows immediately from basic properties of expectation.
+                                                                                               Q
+Fact 5. Given multilinear p ∈ R[X1 , . . . , Xn ], define P ∈ R[Y ] by replacing every monomial i∈S Xi
+appearing in p by Y |S| . For y ∈ [0, 1], let Bny denote the distribution over {0, 1}n where each bit is
+sampled independently to be 1 with probability y. Then, for all y ∈ [0, 1],
+
+                                          P (y) = Ex∼Bny [ p(x) ].                                        (1)
+
+Furthermore, deg(P ) ≤ deg(p).
+  2
+    Note that this is not the same as M′ (p) := {M ⊆ [n] : cM ̸= 0 and deg(p) = |M |}. While M′ (p) is always
+contained in M(p), the containment could be strict. This distinction matters for Section 4.
+
+
+                                                     3
+Theorem 1 (Markov). Let P ∈ R[X]. Let a1 , a2 , b1 , b2 ∈ R be such that a1 < a2 and b1 < b2 .
+Suppose P (x) ∈ [b1 , b2 ] for all x ∈ [a1 , a2 ]. Then, for all x ∈ [a1 , a2 ],
+                                                    b2 − b1
+                                       P ′ (x) ≤             · deg(P )2 .                          (2)
+                                                    a2 − a 1
+Corollary 1. Let p ∈ R[X1 , . . . , Xn ] and h > 0. Suppose that p has the following properties:
+(i)     |p(x)| ≤ h for all x ∈ {0, 1}n ,
+(ii)    |p(0n )| = h,
+(iii) p(x) · p(0n ) ≤ 0 for all x ∈ {0, 1}n with |x| = 1.
+Then,                                          p
+                                                n/2 ≤ deg(p).                                      (3)
+Proof. There are two cases to consider: (1) p(0n ) = h and p(x) ≤ 0 for all x ∈ {0, 1}n with |x| = 1;
+(2) p(0n ) = −h and p(x) ≥ 0 for all x ∈ {0, 1}n with |x| = 1. We give the proof for the first case as
+the second case then follows from considering (−p). We may assume that p is multilinear without
+loss of generality and write
+
+                         p = a0 + (a1 X1 + · · · + an Xn ) + (higher degree terms).                (4)
+
+By assumption a0 = p(0n ) = h. Evaluating p at bitstrings of Hamming weight 1, we see that
+a0 + ai ≤ 0 for all i ∈ [n]. Hence, ai ≤ −h for all i ∈ [n]. By Fact 5, we obtain P ∈ R[Y ] with
+deg(P ) ≤ deg(p), such that, for all y ∈ [0, 1],
+
+                                       |P (y)| ≤ Ex∼Bny [ |p(x)| ] ≤ h.                            (5)
+
+Moreover, we can write
+
+                          P = a0 + (a1 + · · · + an )Y + (higher degree terms).                    (6)
+
+In particular, we see that P ′ (0) = a1 + · · · + an ≤ −n · h. Now Theorem 1 gives
+                                               h − (−h)
+                           n · h ≤ P ′ (0) ≤            · deg(P )2 = 2h deg(P )2 .                 (7)
+                                                 1−0
+             p
+Therefore,    n/2 ≤ deg(P ) ≤ deg(p), as required.
+
+    The next key lemma relates sensitive blocks of f at x with maximal monomials of a nondeter-
+ministic representation of f . It generalizes [BdW02, Lemma 5] (attributed to Nisan and Smolensky)
+to involve x, nondeterministic representation, and maximal monomials. The proof is the same.
+Lemma 1 (Nisan-Smolensky). Let f : {0, 1}n → {0, 1} be nonconstant and x ∈ f −1 (0). Let p be a
+nondeterministic representation of f and M be a maximal monomial of p. Then there exists B ⊆ M
+such that f (xB ) = 1.
+Proof. Let q be the restriction of p obtained by fixing all variables outside M according to x. Now M
+remains a maximal monomial of q. Therefore, q is nonconstant (as a formal polynomial). Therefore,
+there exists y ∈ {0, 1}M with q(y) ̸= 0 by uniqueness of multilinear representation. Let x′ ∈ {0, 1}n
+be equal to y on M and be equal to x outside M . Then p(x′ ) = q(y) ̸= 0, which implies f (x′ ) = 1
+as p is a nondeterministic representation of f . By definition, x′ and x can only differ on M , so x′
+can be written as xB for some B ⊆ M .
+
+                                                      4
+

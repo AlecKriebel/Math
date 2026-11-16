@@ -1,0 +1,98 @@
+For 𝑘 ≠ ℓ, it follows that
+
+                        𝐶𝑡 ,𝑘 (𝑧)𝐶𝑡 ,ℓ (𝑧) = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,𝑘 (𝑧) 𝐴𝑡 ,ℓ (𝑧)𝐵𝑡 ,ℓ (𝑧)
+                                                                                    
+                                           = 𝐴𝑡 ,𝑘 (𝑧)𝐵𝑡 ,ℓ (𝑧) 𝐴𝑡 ,ℓ (𝑧)𝐵𝑡 ,𝑘 (𝑧) = 0.
+             Í                    Í
+   Let 𝐴𝑡 = 𝑘 𝐴𝑡 ,𝑘 and 𝐵𝑡 = 𝑘 𝐵𝑡 ,𝑘 . Summing Equation (1) over the two keys 𝑎, 𝑏 and using
+Equation (2), we obtain                                                ∑︁
+                                Pr[𝑇 = 𝑡 | 𝑧] = 𝐴𝑡 (𝑧)𝐵𝑡 (𝑧) =            𝐶𝑡 ,𝑘 (𝑧).      (3)
+                                                                      𝑘
+
+If the left-hand side is positive, at least one summand is positive. Pairwise disjointness makes this
+key 𝑘 unique. Moreover,
+
+                         𝐶𝑡 ,𝑘 (𝑧) = Pr[𝑇 = 𝑡, 𝐾A = 𝑘, 𝐾B = 𝑘 | 𝑧] = Pr[𝑇 = 𝑡 | 𝑧],
+
+where the last equality follows from Equation (3). Therefore
+
+                                      Pr[𝐾A = 𝐾B = 𝑘 | 𝑇 = 𝑡, 𝑧] = 1.                                      □
+
+3.3   Few Candidate Keys
+We next count how many key polynomials can be nonzero for a fixed transcript.
+Lemma 3.4 (Few candidate keys). For every transcript 𝑡, the candidate key set
+
+                                      K𝑡 := {𝑘 : 𝐶𝑡 ,𝑘 . 0 on {0, 1} 𝑁 }
+
+has size at most 2𝑑 .
+Proof. By Lemma 2.1, each nonzero 𝐶𝑡 ,𝑘 has support of size at least 2 𝑁 −𝑑 . By Lemma 3.3, these
+supports are pairwise disjoint. Since the cube has 2 𝑁 points,
+
+                                                       2𝑁
+                                            |K𝑡 | ≤          = 2𝑑 .                                        □
+                                                      2 𝑁 −𝑑
+
+3.4   A Decision Tree for Disjoint Polynomial Supports
+We now prove the central polynomial statement.
+Lemma 3.5 (Disjoint-support separator). Let 𝑝, 𝑞 : {0, 1} 𝑁 → ℝ be multilinear polynomials of degree at
+most 𝑑 such that
+                             𝑝(𝑧)𝑞(𝑧) = 0      for every 𝑧 ∈ {0, 1} 𝑁 .
+There is a deterministic decision tree of depth 𝑂 (𝑑 4 ) which, under the promise 𝑝(𝑧) + 𝑞(𝑧) ≠ 0, determines
+whether 𝑝(𝑧) ≠ 0 or 𝑞(𝑧) ≠ 0.
+Proof. We construct the tree recursively. At one node, restrict 𝑝 and 𝑞 by the answers already
+queried, and let 𝑆 ⊆ [𝑁] be the set of unqueried variables. Then we can view 𝑝 and 𝑞 as polynomials
+on the remaining subcube {0, 1} 𝑆 . Disjointness and the promise at {0, 1} 𝑆 are preserved. If both
+restricted polynomials are identically zero, the subcube contains no promised input and may be
+labeled arbitrarily. If exactly one is identically zero, label the node with the other side.
+    Now suppose both restricted polynomials are not identically zero, and set
+
+                                       𝐷 = max{deg( 𝑝), deg(𝑞)}.
+
+                                                       7
+The case 𝐷 = 0 is impossible, as two nonzero constant functions cannot have disjoint supports. Let
+                                                      𝑠 = 𝑝2 − 𝑞2,
+so deg(𝑠) ≤ 2𝐷, and 𝑠 is not identically zero on {0, 1} 𝑆 . Choose 𝑧★ ∈ {0, 1} 𝑆 maximizing |𝑠(𝑧★)|.
+As 𝑝 and 𝑞 has disjoint supports, exactly one of 𝑝(𝑧★) and 𝑞(𝑧★) is nonzero. W.l.o.g., assume that
+𝑝(𝑧★) ≠ 0. Then
+                                 𝑠(𝑧★) > 0    and       𝑞(𝑧★) = 0.
+    Let 𝑧 𝑀1 , . . . , 𝑧 𝑀𝑏 be a maximal family of pairwise-disjoint maximum monomials 2 of 𝑞, and
+𝑀1 , . . . , 𝑀𝑏 ⊆ 𝑆 be their corresponding supports. As 𝑞 is not identically zero, it contains at least one
+maximum monomial and thus 𝑏 ≥ 1.
+    For each 𝑖 ∈ [𝑏], fix every variable outside 𝑀𝑖 according to 𝑧★. Such restriction does not change
+the coefficient of the monomial 𝑧 𝑀𝑖 , because 𝑧 𝑀𝑖 is maximum and no other monomial of 𝑞 strictly
+containing 𝑀𝑖 . Thus the resulting polynomial in the variables of 𝑀𝑖 is nonzero. Since 𝑞(𝑧★) = 0,
+there is therefore a nonempty set 𝐸 𝑖 ⊆ 𝑀𝑖 such that
+                                                         
+                                                𝑞 (𝑧★) 𝐸𝑖 ≠ 0.
+Disjoint supports of 𝑝 and 𝑞 imply
+                                                                         
+                                              𝑠(𝑧★) > 0,        𝑠 (𝑧★) 𝐸𝑖 < 0.                                         (4)
+As {𝑀𝑖 } are pairwise disjoint, the blocks {𝐸 𝑖 } are also pairwise disjoint.
+   Now, consider the function 𝑟 : {0, 1} 𝑏 → ℝ defined by: for 𝑦 ∈ {0, 1} 𝑏 ,
+                                                      Ð          
+                                                𝑠 (𝑧★) 𝑖:𝑦𝑖 =1 𝐸𝑖
+                                       𝑟 (𝑦) =                      ,
+                                                     |𝑠(𝑧★)|
+    Because the blocks are disjoint, every original coordinate is either fixed or is an affine function
+of one 𝑦 𝑖 . Hence deg(𝑟) ≤ deg(𝑠) ≤ 2𝐷. The maximality of |𝑠(𝑧★)| and Equation (4) gives
+    • |𝑟 (𝑦)| ≤ 1 for any 𝑦 ∈ {0, 1} 𝑏 ,
+    • |𝑟 (0𝑏 )| = 1,
+    • 𝑟 (𝑦) · 𝑟 (0𝑏 ) ≤ 0 for any 𝑦 ∈ {0, 1} 𝑏 with |𝑦| = 1.
+Then, Lemma 2.3 yields 𝑏 = 𝑂 (𝐷 2 ).
+   Let 𝑆 = 𝑀1 ∪ · · · ∪ 𝑀𝑏 . Every 𝑀𝑖 has size deg(𝑞) ≤ 𝐷, so
+                                                      |𝑆| = 𝑂 (𝐷 3 ).
+As {𝑀𝑖 } are maximal, 𝑆 intersects the support of every maximum monomial of 𝑞. Query all variables
+in 𝑆. Under every assignment to these variables, each old maximum monomial loses at least one
+free variable. Therefore every branch restriction satisfies
+                                         𝑞| 𝜌 ≡ 0   or       deg(𝑞| 𝜌 ) < deg(𝑞).
+If 𝑞(𝑧★) ≠ 0, the symmetric construction instead strictly decreases the degree of 𝑝.
+    A branch terminates if either 𝑝 or 𝑞 is identically zero after restriction. Along every nonterminal
+branch, each stage decreases deg( 𝑝) + deg(𝑞) by at least one. As initially deg( 𝑝) + deg(𝑞) ≤ 2𝑑, and
+every stage queries 𝑂 (𝑑 3 ) variables. The resulting decision tree has depth 𝑂 (𝑑 4 ).              □
+   2 Maximal means that for any other maximum monomial 𝑧
+                                                             𝑀 of 𝑞, we have 𝑀 ∩ 𝑀𝑖 ≠ ∅ for some 𝑖 ∈ [𝑏]. Pairwise-disjoint
+means that 𝑀𝑖 ∩ 𝑀 𝑗 = ∅ for all 𝑖 ≠ 𝑗.
+
+
+                                                            8
+

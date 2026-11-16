@@ -1,0 +1,209 @@
+               Polynomial compatibility on the Boolean cube
+                     from disjoint-support separators
+                                             Alec Kriebel
+                                     ORCID: 0009-0001-9320-500X
+
+                                           17 October 2026
+
+
+                                               Abstract
+         We give an explicit aﬃrmative answer to the two-polynomial question posed by Austrin
+     in Oberwolfach Report 9/2025. Two nonzero real multilinear polynomials of degree at most
+     d on the uniform Boolean cube have a common nonzero vertex whenever every relative coor-
+     dinate inﬂuence is at most 1/(4096d8 ). In fact, disjoint supports force a relative inﬂuence at
+     least 1/(1024d8 ). The result is a deduction from the disjoint-support separator of Li–Li–Li–Liu
+     and the covariance inequality of O’Donnell–Saks–Schramm–Servedio, combined with a square-
+     density estimate. We supply the complete deduction and an explicit separator constant. No
+     novelty or ﬁrst-priority claim is made for this consequence.
+
+
+1    The question and the quantitative answer
+All expectations refer to independent uniform signs X ∈ {−1, 1}n . For a nonzero real multilinear
+                   P            Q
+polynomial a(x) = S⊆[n] a   b(S) i∈S xi , set
+                                                                           P
+                                        X                                      b(S)   2
+                                                                           S∋i a
+                    ∥a∥22 = Ea(X)2 =             2
+                                             b(S) ,
+                                             a            RelInf i (a) =                  .
+                                         S
+                                                                            ∥a∥22
+
+The denominator includes the constant coeﬃcient. Austrin’s question [1, p. 445] asks whether an
+inverse-polynomial inﬂuence bound in the degree guarantees a common nonzero vertex for two such
+polynomials. The following gives that guarantee with absolute constants.
+
+Theorem 1. Let n, d ≥ 1 be integers and let f, g be nonzero real multilinear polynomials on
+{−1, 1}n , each of degree at most d. If f (x)g(x) = 0 at every vertex, then
+                                                                        1
+                           max max{RelInf i (f ), RelInf i (g)} ≥            .                          (1)
+                            i∈[n]                                     1024d8
+
+Consequently, if every relative inﬂuence of both polynomials is at most 1/(4096d8 ), some vertex
+satisﬁes f (x)g(x) ̸= 0.
+
+    The structural input is the prior separator of Li, Li, Li and Liu [3, Lemma 3.5]; the covariance
+input is already [5, §3.3, Eq. (6)]. Neither is a new theorem of this note. The Markov/Bernoulli
+presentation in [4, Fact 5 and Corollary 1] makes the numerical constant transparent. The resulting
+target-speciﬁc application is written out below, including arbitrary common zeros. The general
+distribution formulations in [2, Conjectures 1.2 and 5.5] and other groups or input measures are
+outside the theorem asserted here.
+
+                                                      1
+2    A quantitative total separator
+We reconstruct the prior separator to keep both its constant and its behavior on common zeros
+explicit. Here alone we use {0, 1} coordinates; the aﬃne change between the two cubes preserves
+degrees and query depths.
+
+Lemma 1 (Li–Li–Li–Liu separator, with an extracted constant). If real multilinear p, q of degree
+at most d ≥ 1 on {0, 1}n satisfy pq = 0 everywhere, there is a total deterministic decision tree of
+depth at most 16d4 , with output h ∈ {0, 1}, such that h = 1 on supp p and h = 0 on supp q. No
+coordinate repeats along a branch.
+
+Proof. We ﬁrst recall the block bound used in [3, 4]. Suppose R : {0, 1}b → R has degree at most m,
+satisﬁes |R| ≤ 1, R(0) = 1, and R(ej ) ≤ 0 for all j. Its expectation P (t) at independent Bernoulli(t)
+bits is a polynomial of degree at most m, bounded by one throughout [0, 1]. Moreover,
+
+                                                 X
+                                                 b
+                                     P ′ (0) =       (R(ej ) − 1) ≤ −b.
+                                                 j=1
+
+The classical Markov inequality, rescaled to [0, 1], gives |P ′ (0)| ≤ 2m2 . Thus b ≤ 2m2 .
+    At a node, restrict p, q by the coordinates already queried. If one restriction is zero, label for the
+other side, with an arbitrary label if both are zero. Otherwise neither restriction can be a nonzero
+constant, since the other has disjoint support. Put D = max(deg p, deg q) ≥ 1. The multilinear
+representative of s = p2 − q 2 has degree at most 2D. Choose a vertex z maximizing |s|, whose
+maximum is positive. Suppose p(z) ̸= 0, so s(z) > 0 and q(z) = 0.
+    Choose an inclusion-maximal family of pairwise disjoint supports M1 , . . . , Mb of maximum-
+degree monomials of q. For each Mj , ﬁxing all variables outside it to their values at z preserves its
+top coeﬃcient: a further contribution would require a strictly containing monomial. This restriction
+is therefore nonzero, although it vanishes at z. Some nonempty Ej ⊆ Mj can be ﬂipped from z to
+make q ̸= 0. There p = 0 and s < 0. The blocks Ej are disjoint.
+    Encode these block ﬂips by b Boolean variables and divide s by |s(z)|. The resulting function R
+is bounded by one, has R(0) = 1 and R(ej ) < 0, and has degree at most 2D: each original coordinate
+becomes an aﬃne function of one block bit, and multilinearization cannot increase degree. The
+block bound gives b ≤ 8D2 .
+                     S
+    The union H = j Mj contains at most 8d3 coordinates and hits every maximum-degree mono-
+mial of q, by maximality. Query all coordinates in H. On every answer branch, q becomes zero
+or strictly loses degree; the degree of p cannot increase. The case q(z) ̸= 0 is symmetric. Each
+nonterminal stage decreases deg p + deg q by at least one, from an initial value at most 2d. Thus at
+most 2d stages, each costing at most 8d3 queries, suﬃce. Only free coordinates are queried. Zero
+restrictions terminate before their degree is needed. These rules give a total tree, including on the
+common-zero set.
+
+
+3    Covariance and squared densities
+For a real function u on the sign cube, let
+
+                                      Ai (u) = E|u(X) − u(X (i) )|,
+
+where X (i) independently resamples coordinate i; it leaves that coordinate unchanged with proba-
+bility one-half.
+
+                                                       2
+Lemma 2 (OSSS covariance inequality). Let a total deterministic tree, without repeated branch
+queries, compute h : {−1, 1}n → {0, 1}. If ri is the probability that it queries coordinate i, then for
+every real u,
+                                                   1X
+                                   | Cov(h, u)| ≤        ri Ai (u).                                 (2)
+                                                   2 i
+
+Proof. This is directly [5, §3.3, Eq. (6)], applied to 2h − 1. We give the ﬁnite-cube argument for
+completeness. Run the tree solely on X, and take an independent uniform Y . Let Zt replace
+the ﬁrst t queried coordinates of X by those of Y , and let L be the branch length. A complete
+transcript is precisely a cylinder ﬁxing the queried X-coordinates. Conditional on it, ZL is uniform:
+queried coordinates come from Y , and unqueried X-coordinates remain independent fair signs. It
+is therefore independent of the transcript and its output. Consequently
+                                                  "                                                 #
+                                                                     X
+                                                                     L
+                                                                                                
+                            Cov(h, u) = E             (h(X) − 12 )         u(Zt−1 ) − u(Zt )            .
+                                                                     t=1
+
+Conditional on a pre-query transcript whose next index is i, the previously ﬁxed X-coordinates have
+already been replaced by independent Y -coordinates. All remaining X-coordinates are unrestricted,
+and Yi is fresh because queries do not repeat. Thus (Zt−1 , Zt ) has exactly the unconditional
+uniform coordinate-resampling-i law under this conditioning. Using |h− 12 | = 21 , taking the absolute
+telescoping sum, and summing the probabilities of these pre-query cylinders gives (2). All sums
+are ﬁnite, including variable-length branches; u need not be computed by the tree.
+
+Lemma 3 (Square-density estimate). For any nonzero real a, with ρi = RelInf i (a) deﬁned from
+its unique multilinear expansion,
+                                                       !
+                                              a2              q                √
+                                        Ai                 ≤ 2 ρi (1 − ρi ) ≤ 2 ρi .
+                                             ∥a∥22
+
+Proof. Write a = b + xi c, with b, c independent of xi . Parseval gives ∥a∥22 = Eb2 + Ec2 and ρi =
+Ec2 /∥a∥22 . A sign ﬂip changes a2 by 4xi bc, while independent resampling ﬂips with probability one-
+half. Hence the left side equals 2E|bc|/∥a∥22 . Cauchy–Schwarz gives the asserted bound, including
+ρi = 0, 1.
+
+Proof of Theorem 1. Assume disjoint supports and take the total separator from Lemma 1, of depth
+T ≤ 16d4 . Set u = f 2 /∥f ∥22 , v = g 2 /∥g∥22 , and µ = Eh. Then Eu = Ev = 1, hu = u, and hv = 0, so
+
+                                  | Cov(h, u)| + | Cov(h, v)| = (1 − µ) + µ = 1.
+
+These identities also hold at common zeros, where both densities vanish. With δ the maximum
+relative inﬂuence of either polynomial, Lemmas 2–3 give
+                 X         q                     q                       X          √         √        √
+            1≤        ri        RelInf i (f ) +       RelInf i (g) ≤ 2            ri        δ ≤ 2T δ ≤ 32d4 δ.
+                  i                                                           i
+
+This proves (1). If δ ≤ 1/(4096d8 ), the last upper bound is at most 1/2, a contradiction.
+
+    A nonzero constant has full support, so constants cause no exception. The proof also covers
+n < d. The earlier exponential suﬃcient bound uses δ < 2−d /d, as in [2, §5.2]. Its non-strict
+endpoint printed in [1] fails already for d = 1, f = 1 + x1 , g = 1 − x1 , both of relative inﬂuence 1/2.
+The smaller inclusive threshold in Theorem 1 has slack. No optimality of its exponent or constants
+is asserted.
+
+                                                                3
+4    Attribution, veriﬁcation, and review status
+The contribution of this note is the explicit application above to the stated two-polynomial ques-
+tion. The separator, the real covariance inequality, and the Markov/Bernoulli method are credited
+prior inputs, available before this note. Reconstructing their proofs does not establish novelty. A
+bounded primary-source audit found no earlier recorded complete target-speciﬁc deduction in the
+bodies inspected; it does not certify historical priority. In particular, the full ePrint version of the
+2022 paper and the full 2023 non-interactive-commitment followup were inaccessible to that audit.
+Detailed source/version records, inspection limits, and independent priority reviews accompany the
+note. No ﬁrstness or current global literature-status claim is made.
+    The accompanying source and veriﬁcation archive includes the original proof record, new in-
+dependent mathematical audits, exact rational diagnostics, and a portable oﬄine runner. Finite
+enumerations check adaptive trees, support geometry, Fourier identities, boundary cases, and de-
+liberate incorrect variants in ordinary and optimized execution. They supplement the universal
+written proof; they are not a formal proof certiﬁcate or an exhaustive check in arbitrary dimension.
+Third-party source bodies are not redistributed.
+    AI tools were used extensively in developing, writing, reproducing and adversarially reviewing
+this work. The reviews are internal AI-assisted checks. This preprint is unrefereed; no external
+human peer review, journal acceptance, or proof-assistant certiﬁcation is claimed.
+
+
+References
+[1] P. Austrin, Zeros of Low-Degree, Low-Inﬂuence Polynomials on the Boolean Hypercube, con-
+    tributed problem in MFO–RIMS Tandem Workshop: Optimization, Theoretical Computer Sci-
+    ence and Algebraic Geometry: Convexity and Beyond, Oberwolfach Reports 22 (2025), no. 1,
+    405–450, at p. 445. doi:10.4171/OWR/2025/9.
+
+[2] P. Austrin, H. Chung, K.-M. Chung, S. Fu, Y.-T. Lin and M. Mahmoody, On the Impossibility
+    of Key Agreements from Quantum Random Oracles, CRYPTO 2022, LNCS 13508, 165–194.
+    doi:10.1007/978-3-031-15979-4_6.
+
+[3] L. Li, Q. Li, X. Li and Q. Liu, Impossibility of Perfectly Complete Many-Round Key Agreement
+    in the QROM, 4 August 2026. arXiv:2608.03824v1, Lemma 3.5, pp. 7–8.
+
+[4] R. Kothari, M. Kovacs-Deak, D. Wang and R. Z. Yang, Rational degree is polynomially related
+    to degree, 28 September 2026. arXiv:2601.08727v3, Fact 5, Theorem 1 and Corollary 1.
+
+[5] R. O’Donnell, M. Saks, O. Schramm and R. A. Servedio, Every decision tree has an inﬂuential
+    variable, FOCS 2005, 31–39. doi:10.1109/SFCS.2005.34; arXiv:cs/0508071v1, §3.3, Eq. (6), p. 8.
+
+
+
+
+                                                   4
+
