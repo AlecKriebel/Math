@@ -1,0 +1,165 @@
+         A ﬁrst-order obstruction to Habiro’s rank interpolation
+                                              Alec Kriebel
+                                        Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                   16 October 2026        Version 1.0
+
+
+                                               Abstract
+        The rank completion printed in Ohtsuki’s Conjecture 7.30 cannot interpolate the standard
+     uniﬁed sln invariants of an integral homology sphere with nonzero Casson invariant. A ﬁnite
+     quotient forces its ﬁrst Taylor coeﬃcients to be aﬃne in n, contrary to the classical cubic
+     coeﬃcient formula. The speciﬁed Poincaré sphere gives the incompatible values 0, −6, −24.
+     This is a negative answer to the literal displayed statement, obtained from established quantum-
+     invariant results.
+
+
+1    The printed completion
+In the notation of Ohtsuki’s collection [1, pp. 490–492], put
+
+                         /( ∏
+                            m           )                 ∏
+                                                          m
+       R = lim Z[q, q −1 ]      (q j − 1) ,    Em (t) =       (t − q j ),   S = lim R[t]/(Em (t)).
+           ←m
+             −                                                                  ←m
+                                                                                  −
+                             j=1                          j=1
+
+The transition maps are quotient maps. This R is the ordinary integral Habiro ring: q is already a
+unit in every polynomial quotient, since the deﬁning polynomial has constant term ±1. For F ∈ S,
+evaluation at t = q n is deﬁned through any coordinate m ≥ n; compatibility makes the value
+independent of that choice.
+   Conjecture 7.30 asks for an invariant FM ∈ S of every integral homology 3-sphere M such that
+
+             FM (q n ) = In (M )   (n ≥ 1),     In (M ) = I sln (M ) (n ≥ 2),   I1 (M ) = 1.
+
+Thus n denotes matrix size, not the Lie rank n − 1. Its ﬁxed-Lie-algebra premise, Conjecture 7.29,
+is supplied by the Habiro–Lê uniﬁcation theorem [3, Theorem 1.1].
+
+Theorem 1. Use the coeﬃcient ring and standard invariant normalization above. If λC (M ) 6= 0,
+there is no FM ∈ S with these evaluations. Here λC is the Casson–Walker invariant in Lê’s Lescop
+normalization. In particular, the orientation of the Poincaré homology sphere given by −1 surgery
+on the left-handed trefoil is a counterexample to the printed conjecture.
+
+
+2    A ﬁnite-jet constraint
+Let D = Z[x]/(x2 ). The substitution q 7→ 1 + x, q −1 7→ 1 − x kills (q − 1)(q 2 − 1). Projection to
+the second coordinate therefore deﬁnes a ring map T1 : R → D. No injectivity assertion for Taylor
+expansion is needed.
+
+                                                    1
+Lemma 1. For F ∈ S, write T1 (F (q n )) = un + vn x for n = 1, 2, 3. Then u1 = u2 = u3 and
+v3 − 2v2 + v1 = 0. Consequently, F (q) = 1 implies v3 = 2v2 .
+
+Proof. The third coordinate of F has a representative P (t) = a + bt + ct2 , with a, b, c ∈ R, by
+division by the monic polynomial E3 . Evaluation on this quotient is well-deﬁned at q, q 2 , q 3 . Write
+T1 (a) = a0 + a1 x, and similarly for b, c. Since (1 + x)k = 1 + kx in D,
+                                                              (                                   )
+                     T1 (P (q n )) = a0 + b0 + c0 + a1 + b1 + c1 + n(b0 + 2c0 ) x.
+
+The coeﬃcient of x is aﬃne in n. If F (q) = 1, its value at n = 1 is zero, which gives the last
+assertion.
+
+    Only one ﬁnite interpolation quotient and one ﬁnite coeﬃcient quotient occur in this argument;
+it diﬀerentiates no inﬁnite sum.
+
+
+3    The quantum coeﬃcient and counterexample
+Habiro–Lê identify the Taylor series of the uniﬁed invariant with the Ohtsuki series [3, Proposi-
+tion 1.9]; their Proposition 1.2 also gives the projective specialization. Lê’s published ﬁrst-coeﬃcient
+formula [2, p. 821], in the variable x = q − 1, specializes on an integral homology sphere to
+
+                            [x] T1 (In (M )) = n(n2 − 1)λC (M ),                         n ≥ 2.       (1)
+
+The factor involving |H1 (M ; Z)| is 1 here. These sources use a common type-A parameter: roots
+have squared length 2, and q = v 2 = exp(h) [3, §3A1–2]. Changing from h to q − 1 does not change
+a ﬁrst coeﬃcient. Thus (1) concerns the invariants in the printed question, with no rank-dependent
+rescaling.
+    If FM existed, Lemma 1 would give
+
+                      0 = v3 − 2v2 + v1 = 24λC (M ) − 2 · 6λC (M ) = 12λC (M ).
+
+This proves the nonexistence assertion in Theorem 1.
+    For an explicit orientation check, let P be the sphere in that theorem. The source’s series [1,
+p. 492], also given as a uniﬁed invariant in [4, §16.1, equation (16.1)], is
+                                                              ∏2k+1
+                                                                  j=k+1 (1 − q )
+                                                ∑                             j
+                                                          k
+                                    I2 (P ) =         q                              .
+                                                k≥0
+                                                                       1−q
+
+After cancelling 1 − q in each polynomial summand, it becomes
+
+                                                                       ∏
+                                                                      2k+1
+                                   q (1 + q + · · · + q )
+                                    k                             k
+                                                                             (1 − q j ).
+                                                                      j=k+2
+
+The k = 0 term is 1; the k = 1 term is q(1 + q)(1 − q 3 ) = −6x + O(x2 ). Every k ≥ 2 term is divisible
+by xk , so the entire remaining tail contributes no constant or linear term. Hence [x]I2 (P ) = −6
+and (1) ﬁxes λC (P ) = −1 in the stated convention. It follows that
+
+                      (v1 , v2 , v3 ) = (0, −6, −24),                 v3 − 2v2 + v1 = −12 6= 0.
+
+This proves the explicit counterexample.
+
+                                                              2
+4    Scope, attribution, and veriﬁcation
+The obstruction concerns the displayed ordinary completion. It gives no existence criterion when
+λC (M ) = 0. Omitting the assigned value at n = 1 does not remove the obstruction: the same ﬁnite-
+quotient argument at sizes 2, 3, 4 gives a second diﬀerence of 18λC (M ). Poles in q − 1, a diﬀerent
+completion, or rank-dependent normalization change the question; no corrected formulation is
+proposed here.
+     The cubic type-A behavior is classical, already explicit in Lê–Murakami–Ohtsuki [5, Proposi-
+tion 5.3 and Remark 5.4] and in the all-rank free-energy formalism [6, §3]. The coeﬃcient and
+uniﬁcation inputs above are credited prior results. Fixed-rank uniﬁcation, link-interpolation stabil-
+ity, and enlarged knot-color completions [7, 8, 9] do not by themselves assert the printed S-valued
+homology-sphere interpolation. No novelty, ﬁrstness, or continued-openness claim is made. The
+accompanying bounded priority audit records its source-access and coverage gaps. The collection’s
+volume year is 2002; the publisher records its release on 1 June 2004.
+     Source-free veriﬁcation materials provide exact arithmetic checks, preserved original ﬁles, in-
+dependent adversarial reports, and reproduction instructions. Portable ﬁnite-checker stages were
+reproduced on macOS; the legacy Linux/bubblewrap whole-ﬁlesystem read-only replay was not
+reproduced there. The cited topology theorems remain mathematical inputs. AI tools were used
+extensively in developing and checking this work. This note is unrefereed; no independent human
+peer review or formal proof-assistant certiﬁcation is asserted.
+© 2026 Alec Kriebel. Licensed under CC BY 4.0.
+
+
+References
+[1] T. Ohtsuki (editor), Problems on invariants of knots and 3-manifolds, Geom. Topol. Monogr.
+    4 (2002), 377–572, Conjecture 7.30, p. 492. Publisher record.
+
+[2] T. T. Q. Lê, On perturbative PSU(n) invariants of rational homology 3-spheres, Topology 39
+    (2000), 813–849. doi:10.1016/S0040-9383(99)00037-3.
+
+[3] K. Habiro and T. T. Q. Lê, Uniﬁed quantum invariants for integral homology spheres associated
+    with simple Lie algebras, Geom. Topol. 20 (2016), 2687–2835. doi:10.2140/gt.2016.20.2687.
+
+[4] K. Habiro, A uniﬁed Witten–Reshetikhin–Turaev invariant for integral homology spheres, Invent.
+    Math. 171 (2008), 1–81. The equation locator used here refers to arXiv:math/0605314v1 (2006).
+
+[5] T. T. Q. Lê, J. Murakami and T. Ohtsuki, On a universal perturbative invariant of 3-manifolds,
+    Topology 37 (1998), 539–574. Author-hosted published text.
+
+[6] S. Garoufalidis, T. T. Q. Lê and M. Mariño, Analyticity of the free energy of a closed 3-manifold,
+    SIGMA 4 (2008), 080. Author-hosted text.
+
+[7] A. Beliakova and E. Gorsky, Cyclotomic expansions for glN link invariants via interpolation
+    Macdonald polynomials, Selecta Math. 30 (2024), 101. doi:10.1007/s00029-024-00990-y.
+
+[8] H. Fang and T. Zhou, Cyclotomic Newton expansions and a rank-uniform integer-valued Newton
+    completion, arXiv:2608.29585v1 (30 August 2026).
+
+[9] H. Fang, Quantum color Newton rings, arXiv:2610.21102v1 (15 October 2026).
+
+
+
+                                                  3
+

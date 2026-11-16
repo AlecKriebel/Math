@@ -1,0 +1,28 @@
+--- PLAN.pending.json
++++ PLAN.json
+@@ -3,8 +3,12 @@
+   "website": "/Users/alec/Desktop/alec-dev/aleckriebel.com",
+   "project": "/Users/alec/Documents/Math/research_website_catalogue_20261024",
+   "stage": "verification/coefficient-boundary-private-stage-sol-20261116",
+-  "root_adoption": null,
+-  "root_adoption_state": "PENDING_ROOT_PRIVATE_STAGE_ADOPTION",
++  "root_adoption": {
++    "path": "verification/root-coefficient-boundary-private-stage-adoption-20261116.json",
++    "bytes": 4699,
++    "SHA256": "0ad8cd6b4bd90c06b83550117ff323ba4367cea643aa2b09cba9c8ea1eccec2b"
++  },
++  "root_adoption_state": "ROOT_PROVIDED_AND_ADOPTED",
+   "website_HEAD": "8f34b08dda80716f5c66c98d69513f0dbfb918f7",
+   "website_tree": "ab7e4ef64f589f317d3ebebb6cfde2b258c9c7fa",
+   "website_index": {
+--- release_two.pending.py
++++ release_two.py
+@@ -13,7 +13,7 @@
+ M = P.parent
+ N = P/'verification/coefficient-boundary-production-release-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = 'c7054052c4b17852ce8a0c25a6a603529f68910f728e86213c61f4959a7eb6da'
++PLAN_SHA = '1376ad4dc660b3791ac9682d093b9570961458ea3a94e186f0cf35dd8d8390bf'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')

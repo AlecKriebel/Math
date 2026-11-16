@@ -1,0 +1,7 @@
+# Adversarial scientific research log — 23191247
+
+- 2026-11-16T10:58:18.513981+00:00 — Complete255-line source TeX read after neutral handoff metadata. No supplied/native code/results/reviews/README opinions, current other-family/root findings or foreign primary bodies read. Created only assigned folder and raster ignore before complete fresh PDF reading. Scientific-review estimate10%.
+
+- 2026-11-16T11:01:23.548459+00:00 — First own control run exited1: an exact equality guard for rational line equations was inadvertently applied to the Decimal odd-cycle sanity check. Original first code/stdout/stderr retained with .first names. Correcting only the numerical wrapper to a precision-labelled residual check; exact Fraction controls and manuscript unchanged. No scientific defect inferred. Review completion estimate35%.
+
+- 2026-11-16T11:04:13.528857+00:00 — Entire4-page PDF/255-line TeX and four fresh own images read; duplicate byte identity confirmed. Independent ordinary-norm/orientation/telescoping derivations, exact rational controls, odd primitive algebraic cycle and excluded-hypothesis counterexamples completed source-only. Own runs[1,0], first numerical-wrapper failure preserved; source/exact Fraction controls unchanged. No support/native/result/archived/current-peer/root/foreign-body exposure. INITIAL/results frozen; review completion estimate65% pending actual primary interfaces.
