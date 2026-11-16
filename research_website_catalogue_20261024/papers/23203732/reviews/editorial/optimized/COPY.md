@@ -1,0 +1,87 @@
+# L²-acyclicity and cost for a rank-100 amalgam
+
+Alec Kriebel · 6 October 2026 · Preprint
+
+This note computes every L²-Betti number of OpenAI’s explicit rank-100 amalgam directly, and combines that calculation with OpenAI’s positive Bernoulli cost estimate. The result is a free ergodic probability-measure-preserving orbit relation whose cost is strictly greater than one although all its L²-Betti numbers vanish. The group’s infimum cost is one. The direct invariant calculation and the substantial upstream positive-cost input have separate roles.
+
+## Original paper
+
+[Open original PDF](paper.pdf)
+
+## Original files
+
+- [paper.pdf](paper.pdf)
+
+- [cost-betti-source-and-verification.zip](cost-betti-source-and-verification.zip)
+
+[Original Zenodo record](https://zenodo.org/records/23203732) · [DOI](https://doi.org/10.5281/zenodo.23203732) · [BibTeX](citation.bib)
+
+## Full printed abstract
+
+We give a direct calculation of all L²-Betti numbers of the rank-100 amalgam in OpenAI’s fixed-price construction. An elementary regular-tree argument makes its cellular boundary injective, proves its displayed presentation complex aspherical, and gives βₙ⁽²⁾(Γ) = 0 for every n ≥ 0, independently of either cost bound. Combining this calculation with OpenAI’s positive Bernoulli cost estimate gives an explicit free ergodic probability-measure-preserving orbit relation with cost at least 1 + (100·2⁶¹)⁻¹ and vanishing L²-Betti numbers. The group infimum cost remains one. The construction and positive cost estimate are due to OpenAI; the cost–Betti comparison and action invariance are due to Gaboriau. This is an attributed consequence and verification note, with a separate direct invariant proof.
+
+## The explicit group and the full conclusion
+
+Let A = F(a, b_1, …, b_99), let w = a b_1 a b_2 … a b_99 a, and let J = ⟨b_1, …, b_99, w⟩. The group is Γ = A ∗_J (J × ⟨t⟩). Its displayed presentation has 101 generators and 100 relators: [t, b_i] = 1 for 1 ≤ i ≤ 99, and [t, w] = 1. The associated presentation complex is a finite two-dimensional K(Γ, 1).
+
+Every L²-Betti number of Γ vanishes: βₙ⁽²⁾(Γ) = 0 for every n ≥ 0. Gaboriau’s action-invariance theorem transfers this to the orbit relation of every essentially free probability-measure-preserving action of Γ. That transfer does not require ergodicity.
+
+For the invariant conull free part X of the product-Lebesgue Bernoulli shift [0, 1]^Γ, the action is free, ergodic and probability-measure-preserving. Its orbit relation ℛ_X satisfies βₙ⁽²⁾(ℛ_X) = 0 for all n ≥ 0 and Cost(ℛ_X) ≥ 1 + 1/(100·2⁶¹) > 1. The positive gap is obtained from OpenAI’s substantial Bernoulli cost theorem, with α = 2⁻⁶¹.
+
+## What the direct proof establishes
+
+The note supplies a direct invariant proof for the displayed group. A free-basis substitution turns the relevant convolution operator into the adjacency problem on an infinite 100-regular tree. The tree argument and the infinite-order t direction establish injectivity of the completed cellular boundary. The argument preserves the order of the noncommuting factors in the Fox-derivative formulas.
+
+Injectivity also applies to finitely supported integral cellular chains. The simply connected two-dimensional presentation cover is then acyclic and hence contractible, proving the K(Γ, 1) assertion. The completed chain complex, with module ranks 100, 101 and 1, has zero reduced L²-homology in every degree. Euler characteristic zero is only a consistency check; it would not by itself prove the vanishing.
+
+This all-degree Betti calculation and the asphericity proof use neither cost bound. They do not independently prove the positive Bernoulli cost estimate or failure of fixed price. The tree operator is proved injective on the regular representation, with no claim of bounded invertibility, a spectral gap or injectivity in arbitrary finite quotients.
+
+## Bernoulli cost and group infimum cost
+
+Cost is the infimum of the total domain measure of partial orbit maps that generate a measured equivalence relation. The classical comparison is Cost(ℛ) − 1 ≥ β₁⁽²⁾(ℛ) − β₀⁽²⁾(ℛ). The zeroth term matters: a free action of a finite group of order q has β₀⁽²⁾ = 1/q and cost 1 − 1/q. For the infinite group here, free orbits have β₀⁽²⁾ = 0.
+
+The note also constructs cyclic-height actions Y_M = X × ℤ/Mℤ. With χ(a) = 1 and χ(b_i) = χ(t) = 0, the action is (x, r)g = (xg, r + χ(g) mod M). These actions are free, ergodic and probability-measure-preserving for every positive integer M. A short direct graphing proof gives Cost(ℛ_{Y_M}) ≤ 1 + 99/M for every integer M > 100.
+
+Every essentially free action has cost at least one by the classical comparison, while the Y_M bounds approach one. Thus Cost_*(Γ) = 1, where Cost_* is the infimum over essentially free probability-measure-preserving actions. This does not assert that any action attains cost one. The Bernoulli relation’s strictly positive cost gap and the group infimum are distinct statements.
+
+The cyclic-height graphing bound also gives a separate limiting proof of first-Betti vanishing. The direct all-degree proof and the group-infimum argument remain valid independently of the Bernoulli positive lower bound.
+
+## The substantial input and its attribution
+
+The construction and positive cost estimate are due to OpenAI’s A group without fixed price, manuscript dated 5 October 2026, used at source commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. That estimate relies on the upstream compression, deployment, finite-model, rank and planar-shortening argument; it is not a consequence of the invariant calculation or finite arithmetic checks alone.
+
+The pinned upstream source identifies itself as an intermediate record and does not establish that it was the final revision. The exact cited version and its proof are the dependency used here. This page does not substitute an unspecified latest edition or a formal proof certificate for that input.
+
+Cost–Betti comparison and free-action invariance belong to Damien Gaboriau. The general fixed-price implication was already explicit in Popa, Shlyakhtenko and Vaes, Remark 6.6, in the first arXiv version from 2018. The author’s earlier public preliminary triage already recorded the short conditional limit observation. The added contribution here is the separate direct all-degree invariant and asphericity proof, together with the attributed consequence. No independent fixed-price discovery or certificate of first priority is asserted.
+
+## Status, AI use and collaboration
+
+AI tools were used extensively in research, drafting, source checking and adversarial verification. At publication this preprint has not undergone conventional human peer review or refereeing. Automated reviews and finite checks are evidence, not human refereeing or machine formalization of the full theorem. No complete Lean proof is claimed.
+
+Substantive mathematical contributions to corrections or extensions are welcome. Collaboration, authorship and credit would reflect actual contributions.
+
+## Original Zenodo description
+
+Separate full native HTML description; distinct from the printed abstract.
+
+<p>An expanded consequence and verification note for OpenAI's rank-100 fixed-price construction. A self-contained regular-tree and cellular-boundary calculation proves that its displayed 101-generator/100-relator presentation complex is a finite two-dimensional classifying space and every L2-Betti number vanishes, independently of either cost bound. Gaboriau's action invariance and OpenAI's positive Bernoulli cost estimate then give an explicit free ergodic p.m.p. orbit relation with Cost at least 1 + 1/(100*2^61) and vanishing L2-Betti numbers. The group infimum cost is one.</p><p>The group and positive cost estimate are due to OpenAI; cost--Betti comparison and action invariance are due to Gaboriau. The general fixed-price implication was already explicit in Popa--Shlyakhtenko--Vaes, and the short conditional limit argument was already in the author's public preliminary triage. Added content is the direct all-degree invariant proof and reproducible input-validation record. No independent fixed-price discovery or firstness is claimed. The pinned upstream source warns that its source argument was intermediate. Its pivotal proof is explicitly identified and independently audited in the supplement.</p><p>AI tools were used extensively in research, drafting and adversarial verification. At publication this preprint has not undergone conventional human peer review or refereeing. Automated audits are neither human refereeing nor machine formalization. The package contains the paper source, exact arithmetic and Fox-identity checks, scoped proof audits, source hashes, priority record and clean reproduction instructions.</p>
+
+## References and credit
+
+- [OpenAI, A group without fixed price, manuscript dated 5 October 2026, exact pinned source.](https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-group-without-fixed-price-October-5-2026/unequal-costs-rank-100-amalgam.pdf)
+
+- [Damien Gaboriau, Invariants ℓ² de relations d’équivalence et de groupes (2002), comparison and action invariance.](https://doi.org/10.1007/s102400200002)
+
+- [Damien Gaboriau, Coût des relations d’équivalence et des groupes (2000), group infimum convention.](https://doi.org/10.1007/s002229900019)
+
+- [Sorin Popa, Dimitri Shlyakhtenko and Stefaan Vaes, Classification of regular subalgebras of the hyperfinite II₁ factor, Remark 6.6; first arXiv version 2018.](https://arxiv.org/abs/1811.06929v1)
+
+- [Published Popa–Shlyakhtenko–Vaes article (2020).](https://doi.org/10.1016/j.matpur.2020.02.009)
+
+- [Alec Kriebel, public preliminary conditional cost–Betti observation, pinned source.](https://github.com/AlecKriebel/Math/tree/387962dc519c86b1d1833cb0a41bd3fbddd2b446/openai_followon_triage_20261006)
+
+Pinned OpenAI source commit: adc7f1241b42e322a6451854ab7e4b4c146bf78a
+
+## Licensing
+
+The original note, code and audit text are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). Referenced OpenAI material and other third-party works retain their respective rights.

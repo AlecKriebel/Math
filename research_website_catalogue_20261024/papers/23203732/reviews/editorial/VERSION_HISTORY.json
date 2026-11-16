@@ -1,0 +1,57 @@
+{
+  "UTC": "2026-11-16T02:36:51.773608+00:00",
+  "failed_original_preseal_guard_exit": 1,
+  "failed_original_stdout": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/PRESEAL_GUARD.stdout",
+    "bytes": 0,
+    "SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "failed_original_stderr": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/PRESEAL_GUARD.stderr",
+    "bytes": 1001,
+    "SHA256": "8219ffbd91117cce05697814c99a5d5d4c561cdb343194b3c9df1d6e2010223a"
+  },
+  "full_failed_original_execution_receipt": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/EXECUTION_RECEIPTS.json",
+    "bytes": 8916,
+    "SHA256": "d7a504c80fee9e0b247db9ff3c41376d573d75ce62d24b9cdc106205cc89b9d1"
+  },
+  "diagnosis": "Guard v1 matched the internal TeX macro spelling betti n, whereas the actual abstract uses explicit beta_n^{(2)}. The manually source-read initial abstraction and candidate formula already agree; no mathematical or editorial text changed.",
+  "actual_original_TeX_fragment": "$\\beta_n^{(2)}(\\Gamma)=0$",
+  "original_incorrect_guard_fragment": "$\\betti n(\\Gamma)=0$",
+  "correction_scope": "Only verifier exact source-spelling matcher plus explicit v2 input/code-read receipt routing; source/INITIAL/copy/config/rendered outputs unchanged.",
+  "original_authoring_input_seal_and_CODE_reads_retained_unmodified": true,
+  "v1_failed_verifier_body_retained": true,
+  "v1_sealer_body_retained_but_never_executed": true,
+  "diffs": [
+    {
+      "previous": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/history/verify_editorial-v1.py",
+        "bytes": 11827,
+        "SHA256": "748ed81aac7f3fe89c988b5f442d80ed27dda35eedf6999c17b09b461ad41aa7"
+      },
+      "current": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/verify_editorial.py",
+        "bytes": 11833,
+        "SHA256": "ef92d0b0c35ec8dbbff5a44f67bcb4c2469c7ca043ca8bfdf362009ad90746ef"
+      },
+      "complete_actual_diff": "--- history/verify_editorial-v1.py\n+++ verify_editorial.py\n@@ -65,7 +65,7 @@\n     else:need(a==b,'literal value')\n def main():\n     need(sys.argv[1:]==[],'only designated default closure')\n-    inputs=obj(R/'AUTHORING_INPUTS_SEAL.json');OWNEDPINS.update(inputs['inputs'])\n+    inputs=obj(R/'CUSTODY_INPUTS_SEAL-v2.json');OWNEDPINS.update(inputs['inputs'])\n     for name,p in inputs['inputs'].items():need(pin(read(R/name))==p,'same-buffer authoring input '+name)\n     protected=obj(R/'PROTECTED_INPUTS.json')\n     for contract in protected['namespaces'].values():\n@@ -90,7 +90,7 @@\n     typed(pub['native_version_field'],{'present':False,'original_value':None});need(pub['printed_version_present'] is False and pub['printed_version'] is None,'printed version absent')\n     need(pub['datePublished']==expect['printed_and_declared_date']=='2026-10-06' and pub['native_created_separate']==native['created'],'declared/created distinction')\n     raw=expect['printed_abstract_original_TeX_whole']\n-    substitutions=[('$L^2$','L²'),(r'$\\betti n(\\Gamma)=0$','βₙ⁽²⁾(Γ) = 0'),(r'$n\\geq0$','n ≥ 0'),(r'$1+(100\\cdot2^{61})^{-1}$','1 + (100·2⁶¹)⁻¹'),('cost--Betti','cost–Betti')]\n+    substitutions=[('$L^2$','L²'),(r'$\\beta_n^{(2)}(\\Gamma)=0$','βₙ⁽²⁾(Γ) = 0'),(r'$n\\geq0$','n ≥ 0'),(r'$1+(100\\cdot2^{61})^{-1}$','1 + (100·2⁶¹)⁻¹'),('cost--Betti','cost–Betti')]\n     for old,new in substitutions:raw=raw.replace(old,new)\n     need(canon(raw)==canon(expect['printed_abstract_readable_math_whole'])==canon(copy['printed_abstract']),'entire printed abstract mathematical transcription')\n     typed(copy['printed_abstract'],pub['full_printed_abstract_readable_math'])\n"
+    },
+    {
+      "previous": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/history/seal_editorial-v1.py",
+        "bytes": 5262,
+        "SHA256": "96eb4c5931fe31c014bde69b37a0b881e08b8c358bcdf5c56bbaec42ce7f950c"
+      },
+      "current": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23203732/reviews/editorial/seal_editorial.py",
+        "bytes": 5268,
+        "SHA256": "0861ab0b401c1d2cb32edd352bb1fbf990e079b87c34c91d896b2e536ef84d84"
+      },
+      "complete_actual_diff": "--- history/seal_editorial-v1.py\n+++ seal_editorial.py\n@@ -25,7 +25,7 @@\n     visit(R);return sorted(files,key=lambda x:x['path']),sorted(dirs)\n def main():\n     if any((R/n).exists() for n in TERMS):raise ValueError('retain earlier finalization/failure history')\n-    for n in ['REPORT.md','VERDICT.json','CURRENT_CODE_READS.json','EXECUTION_RECEIPTS.json']:\n+    for n in ['REPORT.md','VERDICT.json','CURRENT_CODE_READS-v2.json','EXECUTION_RECEIPTS.json']:\n         if not (R/n).is_file():raise ValueError('missing required final payload '+n)\n     with (R/'RESEARCH_LOG.md').open('a') as f:f.write('\\n'+utc()+' — 100% editorial preparation: full source-faithful copy/config/readers/head/Bib ready; actual strict default normal/O finalization follows. Root copy adoption, independent fact audit, production installation and live verification remain separate.\\n')\n     write('OWNED_MANIFEST.json',{'status':'MANIFEST_IN_PROGRESS'},True)\n@@ -41,7 +41,7 @@\n             write('CLOSURE.json',{'status':'FAILED_FINALIZATION_HISTORY_RETAINED','runs':runs});raise ValueError('read-only guard failed; no final seal')\n     if extent()!=(files,dirs):raise ValueError('payload mutation during closure')\n     write('CLOSURE.json',{'UTC':utc(),'status':'ACTUAL_NORMAL_O_DEFAULTS_PASS','runs':runs,'whole_actual_streams_retained':True,'phase_qualification':'These saved actual defaults closed the final payload/declared directory namespace while all three root controls already existed, before final seal binding. Their final_seal_bound:false is literal. Direct final defaults follow final binding without packet writes.','normal_O_stdout_identical':runs[0]['stdout']['SHA256']==runs[1]['stdout']['SHA256'],'scientific_execution':False,'production_authority':False})\n-    write('FINAL_SEAL.json',{'UTC':utc(),'status':'EDITORIAL_PREPARATION_FINAL','record_id':23203732,'sheet_row':137,'manifest_SHA256':pin((R/'OWNED_MANIFEST.json').read_bytes())['SHA256'],'closure_SHA256':pin((R/'CLOSURE.json').read_bytes())['SHA256'],'payload_count':len(files),'actual_file_count':len(files)+3,'directory_count':len(dirs),'exact_root_terminals':sorted(TERMS),'all_files_and_directories_closed':True,'no_future_or_subtree_exclusions':True,'INITIAL':bind(R/'INITIAL.json'),'config':bind(R/'EDITORIAL_CONFIG.json'),'whole_copy':bind(R/'normal/COPY.md'),'whole_MAIN':bind(R/'normal/PUBLIC_MAIN.html'),'current_code_reads':bind(R/'CURRENT_CODE_READS.json'),'actual_saved_default_normal_O_exit_zero':True,'complete_original_source_peer_root_and_namedcore_preserved':True,'root_science_clearance_reference_only':True,'new_independent_scientific_verdict':None,'root_copy_adopted':False,'production_authority':False,'canonical_url':None,'AA':None,'follow_up':None,'immutable':True})\n+    write('FINAL_SEAL.json',{'UTC':utc(),'status':'EDITORIAL_PREPARATION_FINAL','record_id':23203732,'sheet_row':137,'manifest_SHA256':pin((R/'OWNED_MANIFEST.json').read_bytes())['SHA256'],'closure_SHA256':pin((R/'CLOSURE.json').read_bytes())['SHA256'],'payload_count':len(files),'actual_file_count':len(files)+3,'directory_count':len(dirs),'exact_root_terminals':sorted(TERMS),'all_files_and_directories_closed':True,'no_future_or_subtree_exclusions':True,'INITIAL':bind(R/'INITIAL.json'),'config':bind(R/'EDITORIAL_CONFIG.json'),'whole_copy':bind(R/'normal/COPY.md'),'whole_MAIN':bind(R/'normal/PUBLIC_MAIN.html'),'current_code_reads':bind(R/'CURRENT_CODE_READS-v2.json'),'actual_saved_default_normal_O_exit_zero':True,'complete_original_source_peer_root_and_namedcore_preserved':True,'root_science_clearance_reference_only':True,'new_independent_scientific_verdict':None,'root_copy_adopted':False,'production_authority':False,'canonical_url':None,'AA':None,'follow_up':None,'immutable':True})\n     if extent()!=(files,dirs):raise ValueError('postseal payload mutation')\n     print(json.dumps({'status':'EDITORIAL_PREPARATION_FINAL','seal':bind(R/'FINAL_SEAL.json'),'manifest':bind(R/'OWNED_MANIFEST.json'),'payloads':len(files),'directories':len(dirs),'production_authority':False},sort_keys=True))\n if __name__=='__main__':main()\n"
+    }
+  ],
+  "original_failure_not_retroactively_pass": true,
+  "scientific_paper_defect": false,
+  "source_or_root_repair": false
+}
