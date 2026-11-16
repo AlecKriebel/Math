@@ -1,0 +1,31 @@
+# Informed editorial INITIAL: record 23204250
+
+This is an informed editorial fidelity audit, not a new independent scientific audit. The actual six-page PDF, complete 189-line controlling TeX, native record and all three native API file objects, both publication READMEs, project README, and actual rights instruments were personally read before any discovery, listing, or reading of the new writer folder. Six fresh rasters were individually viewed. Root's current scientific clearance and final review were then read as expressly authorized prior informed authority. Root clears the full original claim; this audit will not rerun or recertify that science.
+
+## Frozen expected scientific content
+
+For the convex hull of undirected Hamiltonian-cycle incidence vectors of K_N, N >= 3, exact real affine PSD lift complexity is 2^Theta(N), for every sufficiently large integer N. The size is the order r of one real PSD matrix, or the sum of orders of blocks under a block-diagonal embedding; affine equations are unrestricted. This is not merely maximum block order. The displayed claim must retain constants c>0,N_0 and the printed upper bound 2(N-1)+(N-1)(N-2)2^(N-3). It must not be replaced by a narrower conditional or promotional statement.
+
+The substantial lower-bound breakthrough is OpenAI family 126, pinned at adc7f1241b42e322a6451854ab7e4b4c146bf78a. This paper supplies the explicit TSP consequence, constructions and verification package; it does not claim a new lower-bound method, first priority, or independent resolution of matching. Yannakakis's established 3n-city face projection is credited; the 2n contraction retains its mandatory diagonal-one and off-diagonal-zero conditions. The projection is surjective, generally not injective. The n=2 colored parallel edges and the m=3 padding boundary are valid. All-N padding uses n=2 floor(N/4), not a residue-restricted conclusion. The upper formulation is an exact subset-state acyclic unit-flow projection embedded diagonally, with total arc order 2q+q(q-1)2^(q-2), q=N-1.
+
+The original full abstract must remain visibly distinct from the native Zenodo Description. Their exact source strings are frozen separately in INITIAL_PINS.json. Neither can silently be substituted for the other. Reader explanations may simplify the presentation while preserving the complete scientific assertion, attribution, dependency and limits.
+
+Lean's selected statements cover superpolynomial n^C matching growth only. Neither the exponential input nor this TSP theorem is claimed formalized; no full Lean build or axiom audit was reproduced. Independent mathematical audits and finite exact/numerical checks are not conventional human refereeing or asymptotic proofs. AI tools were used extensively. Public status should be concise and accurate. No claim is made about approximation, a particular SDP hierarchy, coefficient bit complexity, complex PSD cones, stable sets, arbitrary TSP algorithms, or P versus NP.
+
+## Frozen expected metadata and rights
+
+Alec Kriebel is the sole declared author, ORCID 0009-0001-9320-500X; no affiliation is supplied. Printed and declared publication date is 6 October 2026; native creation is 7 October UTC. Native and printed version are absent, so no synthetic 1.0 is permitted. Original DOI is 10.5281/zenodo.23204250, concept DOI 10.5281/zenodo.23204249. The API asset order is paper.pdf (89174 bytes), tsp-verification.zip (71399), tsp-source.zip (11448). These are three native assets, two ZIPs with 35 payload occurrences and no embedded PDFs: one six-page paper. Native object wrappers, types, nulls, key/list order and historical statuses must be preserved literally in private evidence.
+
+New prose, documentation and data representations are CC BY 4.0; newly authored verification code is MIT under LICENSES.md/LICENSE_CODE.txt. Third-party rights and attributions remain theirs. The mixed archives must not acquire an invented blanket code/document license. Referencing OpenAI or cited authors supplies no endorsement.
+
+## Frozen expected page and reader experience
+
+A readable white-background Arial article with semantic MAIN id=main should explain the exact real result in human blog prose. Native downloads retain their original names, bytes and API order. A titled original paper.pdf#view=FitH embed, direct-open and download options, Zenodo link and accurate BibTeX must work as written. Head, visible metadata, JSON-LD and citation information must agree with the original date, absent version, rights and full claim. Private preview is noindex; canonical/base URL and AA remain null without production authority. No public audit counts, audit timestamps or replay logs. Professional passive collaboration language may describe actual contributions without offering authorship for endorsement. Follow-up defaults null unless a substantial justified publishable question exists.
+
+## Method and decision rules
+
+Wait for root's explicit actual-writer FINAL handoff before any writer-folder listing or opening. Then read the entire actual public copy, whole MAIN, page model, head, JSON-LD, BibTeX and each current helper body. Execute only a designated safe READ-ONLY DEFAULT once after full personal code reading. No import, authoring, rendering, sealing, native scientific, fetching, building, reproducer or older campaign executions. Own minimal read-only comparison checks may inspect bytes/data. Record functions actually run and limits; no assertions-disabled proof claim. Report literal PASS or NO_GO with specific actual copy defects. Never edit the writer, original, peer or root work.
+
+All artifacts belong only to this dedicated audit folder. The terminal custody inventory will enumerate every actual owned file and directory including ignored material, excluding only the exact root terminal control files by complete path; no future, subtree or basename carveouts. No external communication, Git, Sheet, deployment, redirects or network operations are authorized. Primary corpora remain referenced by finite paths/hashes rather than copied. No new scientific contribution or global cache baseline is claimed.
+
+Checkpoint: source/root-informed expectations complete; editorial comparison pending writer handoff. Best estimate: 30% of this editorial audit complete. No actual page defect is assessed before exposure.
