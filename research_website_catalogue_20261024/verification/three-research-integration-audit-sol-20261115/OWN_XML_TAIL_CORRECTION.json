@@ -1,0 +1,26 @@
+{
+  "UTC": "2026-11-16T05:42:46.307820+00:00",
+  "status": "ADDITIVE_OWN_CHECKER_XML_TAIL_QUALIFICATION",
+  "first_actual_attempt": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/three-research-integration-audit-sol-20261115/INDEPENDENT_PRESEAL_ATTEMPT01.json",
+    "bytes": 633,
+    "SHA256": "048b4056cafc8ae3ba5e0d93918c7a8fa726f0142e94a1c09a3fbaef76c68143"
+  },
+  "first_full_helper_preserved": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/three-research-integration-audit-sol-20261115/verify_integration_read_only.py",
+    "bytes": 21738,
+    "SHA256": "7bec76df5d32ead62827b07f17d724a7554ada88e2fcf0bb5f2c4a2496d029ba"
+  },
+  "corrected_full_helper": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/three-research-integration-audit-sol-20261115/verify_integration_read_only_corrected.py",
+    "bytes": 21754,
+    "SHA256": "b0bb0737da2ea47cf9350cb585854db8e893b8282e1f55af05a368817a116a30"
+  },
+  "exact_only_code_delta": {
+    "before": "[ET.tostring(x) for x in newxml[:97]]==[ET.tostring(x) for x in oldxml]",
+    "after": "[ET.tostring(x).strip() for x in newxml[:97]]==[ET.tostring(x).strip() for x in oldxml]"
+  },
+  "mechanism": "ElementTree.tostring includes whitespace-only tail after each URL element. Appending another sibling changes the previous final URL tail indentation; strip only the surrounding serialized-element whitespace. Full original sitemap bytes must independently recover exactly after deleting the3newURL lines, so existing substantive or internal XML-byte changes still fail.",
+  "first_failure_not_a_candidate_or_source_defect": true,
+  "source_or_candidate_writes": false
+}
