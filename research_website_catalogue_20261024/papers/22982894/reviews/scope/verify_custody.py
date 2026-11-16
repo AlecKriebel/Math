@@ -163,6 +163,11 @@ def main():
         pin({'path': str(A / t['request']), 'bytes': t['request_bytes'], 'SHA256': t['request_SHA256']})
         need(t['body_complete'] is True and t['error'] is None, 'actual response body completeness')
     need([t['HTTP_status'] for t in transports] == [302, 403, 200, 200], 'literal actual status sequence in handoff order')
+    chronological = load(A / 'ACTUAL_PRIMARY_REQUEST_SEQUENCE.json')['actual_sequence']
+    for r in chronological:
+        literal(load(pin(r['receipt'])), r['whole_transport'], 'chronological whole actual transport')
+    literal([r['whole_transport'] for r in chronological],
+            sorted(transports, key=lambda t: t['started_UTC']), 'actual chronological requests')
     custody = load(S / 'ARCHIVE_CUSTODY.json')
     need(len(custody['containers']) == 1, 'one original native ZIP container')
     occurrences = []

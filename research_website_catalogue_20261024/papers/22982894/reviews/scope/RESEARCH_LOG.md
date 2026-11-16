@@ -9,3 +9,9 @@ Raw handoff02 freezes all four ordinary actual requests (DOI302, actual publishe
 
 ## 2026-11-16T02:57:02.601344+00:00 — 80%
 Actual critical primary bodies and six fresh critical rasters personally read, exact read/edition/notation/access limits recorded. Later static support/code/data and two historical proof bodies read after both own freezes; no supplied scientific execution or current findings exposure. Full report/literal verdict/derivation and family/failure ledgers written privately. Source and frozen INITIAL/results unchanged; root143 CLOSED. Remaining: bounded standalone custody closure and final seal.
+
+## 2026-11-16T03:07:24.628649+00:00 — 90%
+RESUME after root checkpointd767ab05. First read-only check confirmed exact paused78files/2dirs/digest2675d6bd; all saved bytes unchanged. New read-only custody helper full current body personally read before any execution. An explicit chronological request ledger supplements unchanged handoff02, whose records retain file lexical order; all original transports remain whole. Scientific work complete privately; finishing finite closure only, root143 CLOSED.
+
+## 2026-11-16T03:09:05.015924+00:00 — 95% final preseal checkpoint
+All scientific artifacts and read/failure/rights/primary ledgers complete within own namespace. Full actual current custody and explicit metadata packager source read; exact code pins in CONTROL_READ_RECEIPT. Frozen INITIAL/results/source remain immutable. Next explicit terminal preparation and bounded normal/-O custody checks retain literal stdout/stderr/exits in CLOSURE; then FINAL binds all payloads/directories and exact three root controls. Postseal default checks will be issued without packet writes. No native scientific run/new GET/current opinion/contact; root143 CLOSED. Final seal completion field100% will mark successful closure, without rewriting this log afterward.

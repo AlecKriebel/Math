@@ -1,0 +1,45 @@
+# Root138 pinned analytic input and classical interfaces
+
+This reading followed the root manuscript-first INITIAL eb926658, with fifteen own reconstruction/falsifier families. Both current peer REPORTs were subsequently read before this primary campaign. Their favorable conclusions are not counted as proof of the primary. The checks below concern the actual pinned scientific sources, read in full. No central unsupported bridge was identified. This is extensive AI mathematical review, not human refereeing or formal certification.
+
+The actual thirteen annular source/PDF bodies match the deposited hashes at adc7f1241b42e322a6451854ab7e4b4c146bf78a: nine proof sections/2667lines, main, README, bibliography and37pagePDF. All nine section bodies/main/README/bibliography were personally read. Actual PDF text1–5 and fresh critical images2/21/31 were separately read. Theorem1.1 on physical2 has exactly complex L3×L3→L3/2, every real r>2, all positive scales, and pointwise arbitrary finite rational partitions with output-dependent endpoints. Full37PDFpixels are not claimed read. A maximal/dyadic/fixed-partition theorem would not suffice.
+
+## Matrix and heat mechanisms
+
+The triangular map x=-a,y=-b,t=a+b+c has determinant1; each pair map preserves its L3norm. Finite annuli have the absolute 2log(R/epsilon) product bound, giving one countable exceptional set and endpoint continuity. Finite rectangular step menus can later be exhausted without fixing one partition across output points.
+
+For positive P on its support, Phi(P)=tr(P^(3/2)) has Hessian b_P(K)=(3/2)sum_ij|Kij|²/(sqrt(pi)+sqrt(pj)). Differentiating the square-root equation gives the inverse Lyapunov operator. Inversion reverses positive order; square-root order follows from its integral representation. Regularization proves b_P(K)>=a^(-1/2)b_Q(K) when P<=aQ and K is supported on P, including larger support for Q. The inserted Gram bound is <=(3/4)||L||op²Phi(R*R), by singular values and row/column sums. No spectral gap is assumed.
+
+Joint averaging uses A=integral sqrt(T_omega), A²<=Tbar by vector Cauchy–Schwarz, hence sqrt(Tbar)>=A. The variational formula for an inverse positive operator gives b_Tbar(Kbar)<=integral b_Tomega(Komega), on a common fixed support, without uniform invertibility. Rank changes use regularization and an integrated first derivative, rather than applying the supported Hessian across rank loss.
+
+Combining three row stars into a Hermitian block M gives A_v=MP_vM<=M² and supported K_v=MP_vDM, so total energy>=b_M²(MDM)/3. In M's eigenbasis, Q controls A/2+E. Grouping the cubic trace by smallest index yields |tr((DM)^3)|<=D*(A+3E+3sqrt(AE))<=5D*Q. Rotating one W by a scalar unit phase leaves star costs unchanged and converts6Re(tau) to6|tau|. Complex diagonal insertions split into eight Hermitian products. This preserves noncommuting factor order and does not assume real input matrices.
+
+Positive Gaussian row/column weights keep finite-array ranks fixed. The e_v=Phi(T_v)=Phi(S_v) identities differentiate row density in T and column density in S. Plane integration converts integrated pure/mixed center derivatives to J_dd through determinant-one chart changes; no false pointwise equality is asserted. Polynomial-times-Gaussian bounds justify the derivatives. Neighbor column costs sum<=sqrt2 times the row cost, from T<=2diag(A*A,B*B). Rates(1,1.1,1.1) leave strict dissipation because1-0.6sqrt2>0 and1.1-0.5sqrt2>0. Integrated initial energies are bounded by cubed norms once variance>=mesh².
+
+## Switches and uniform frequency estimates
+
+For disjoint smooth annuli, each dual mask stays bounded and total entry jumps are<=2n|A0|. Entrywise energy derivatives give n(n0³+n0²(n1+n2)), plus initial energies. Gaussian phase probabilities and line maximal operators produce scale-independent majorants. Rescaling n0=n^(-1/2), n1=n2=1 makes the energy bound constant and returns sqrt(n). Terminal energies remain present until switch telescoping.
+
+Frequency refinement narrows one row variance to theta s, theta=1/(16D²), on disjoint slabs2qLk²<s<3qLk². The exact modulated Gaussian average has positive prefactor exp(omega²ab'/(2(a-b'))) and omega'=aomega/(a-b'). Conditional Gaussian integration verifies its sign/widths. Since omega²b' is bounded, insertion coefficients are O(sqrt(theta s)); joint convexity yields theta s times the refined score cost. Averaging plane offsets with variance(1-theta)s changes the heat coefficient from2+theta to3. Polynomial growth/Gaussian decay justify twice integration by parts. Single-edge energies pay column costs at arbitrary positive variance rates.
+
+The mixed boundary covariance is s[[2theta,-theta],[-theta,3]], with determinant theta(6-theta)s² and upper bound4s diag(theta,1). Gaussian density comparison has a prefactor bounded independently of theta, yielding a two-coordinate maximal majorant. Mixed jumps cost |A0|²H_E and sum by the actual pointwise coefficient square integral; cubic costs sum through bounded-coefficient times coefficient². No separate frequency supremum is substituted. Normalizing inputs gives the product bound uniformly in D and number of scales. Fixed finite block/dilation majorants justify the Riemann and L3 density passages.
+
+## Rough endpoints and full variation
+
+Hard endpoint kernels have Gaussian tails and two jumps. Three vanishing moments permit a Gaussian-weighted third primitive. Its first two derivatives are continuous and its third derivative is BV, so weak product derivatives add no hidden delta. BV translation plus Plancherel gives sup|D³fhat|<=Cm/D and integral|D³fhat|²<=Cm/D on frequency blocks. The cutoff P*=(2+n)^8 has weighted L5 error O((m/P*)^(1/5)); m<=A sqrt(n) makes the sum over<=An terms bounded. Coefficients mu=D(D³fhat)/sqrt(n) meet both pointwise and joint-square conditions. There are O(logn) blocks, giving sqrt(n)logn. Odd kernels with nonzero first moment reduce through phi=Psi+(1/2)Dil2phi; the geometric coefficients sum and the fixed-n remainder vanishes.
+
+Pairing lower/upper endpoints inside each dyadic radius bin uses total paired interval length<=1 and at most two unpaired endpoints. The result is a kernel/derivative bound independent of jump count. Bins with m>sqrt(n) number<=2sqrt(n) and obey a pointwise Gaussian envelope; remaining bins meet the rough-family theorem. Shared endpoints are allowed. Finite measurable menus are approximated on compact sets by rectangles; phases1,-1,i,-i recover absolute increments through real parts. L3 duality, monotone exhaustion and density yield the full count bound. Sorting a partition's increments by size and dyadic rank grouping yields sum_j(1+j)2^(j(1/r-1/2)), convergent for every r>2. No partition-length bound or dyadic-only restriction survives.
+
+These are the substantive analytic mechanisms needed by the deposited paper. Finite arithmetic checks or archived audits cannot replace them. Positive-order, Holder, Minkowski, maximal-covering, Gaussian, BV/Plancherel and density interfaces have explicit derivations or standard exact uses here. No full audit of every background reference or historical priority assertion is claimed.
+
+## Classical attribution and limits
+
+Demeter2006v1 actualPDF1–2: Theorem1.2 uses tau^n,tau^-n. Remark1.3 has1/p+1/q<3/2; a fresh root page2image confirms3/2 despite ambiguous text extraction. L3L3 lies in that opposite-power convergence result. The scope family's historical inverted fraction is separately corrected, not adopted here.
+
+Becker–Durcik2603.20173v1 physical1–6: Mn are averages f1(T^i)f2(T^-i); Corollary1.4 gives sharp full r>2 variation at p>=1. Equation1.8 distinguishes arbitrary commuting averages. This is context, not the analytic input. The target does not claim arbitrary commuting one-sided Cesaro convergence. No current worldwide-openness certificate is inferred from a dated preprint discussion.
+
+Demeter–Thiele0803.1268v1 completeSection6/footnote36, physical42–45, explicitly describes constant-cell R²→Z² and orbit-array Z²→X transfer. DKST1603.00631v3 principal statements1–3 and completeSection5 physical24–26 show norm variation and positive-area phase integration. These support inherited credit while distinguishing full pointwise variation. Physical27's appendix/reference prefix was also seen; it is not treated as a new proof audit of an irrelevant appendix.
+
+All original Calderon printed349–353 were personally read in cached official images. Its finite-window/invariance mechanism establishes transference provenance; the target supplies the quantifiers for its bilinear variant. Cached DOI403 and PMC-PDF200HTML proof-of-work limits remain literal. Root made zero GETs and used no bypass. Author-preprint editions and journal typography remain distinct.
+
+Scientific review85% at this checkpoint: full manuscript, actual pivotal analytic proof and critical classical interfaces read. Whole current peer derivations/custom verdicts, native checker/expected interfaces and final custody remain. No root finalPASS or native Sheet update yet. Follow-up stays null under the high bar.
