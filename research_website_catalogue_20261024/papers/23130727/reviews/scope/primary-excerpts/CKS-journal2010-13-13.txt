@@ -1,0 +1,49 @@
+                                        E. Czeizler et al. / Theoretical Computer Science 411 (2010) 617–630                              629
+
+
+
+
+                                                  Fig. 15. The case when n is even and |y| < |z |.
+
+
+
+
+                                             Fig. 16. The case when n is odd and v1 = · · · = vn = v .
+
+
+    Next we consider the case when n is odd and v1 = · · · = vn = v , see Fig. 16. Let v = xy such that x = θ (x), y = θ (y),
+and y = θ (z )z for some x, y, z ∈ Σ + . Then uθ (u) = v (n−1)/2 xθ (z )zxθ (v)(n−1)/2 .
+    If vn+1 = θ (v), then x is a prefix of both v and θ (v) and thus v 00 = pref|x|−1 (x). Hence we have xzxzs = vn+1 v 00 = θ (z )zxv 00
+for some zs = pref|z |−1 (θ (z )). Depending on the lengths of x and z, we have the following four subcases. Let us consider the
+first subcase when |x| = |z |. Then immediately we have x = θ (z ), and we are done, i.e., obviously ρθ (u) = ρθ (v). The second
+subcase is when |x| > |z |. Then, xzxzs = θ (z )zxv 00 implies that x overlaps non-trivially with xv 00 . Since v 00 ∈ Pref(x) and x
+is a θ -palindrome, we can write x = x1 x2 = x2 x1 for some θ -palindromes x1 , x2 , where, moreover x2 = θ (z ). This implies
+that x1 , x2 , x ∈ {t }+ for some t ∈ Σ + , and hence θ (z ), z , x ∈ {t , θ (t )}+ . Since u, v ∈ {θ (z ), z , x}+ , we have ρθ (u) = ρθ (v).
+The third subcase is when |x| < |z | ≤ 2|x|. Let θ (z ) = xzp for some zp ∈ Pref(z ), which implies zp = θ (zp ). Thus, z = zp x.
+Since xz ∈ Pref(θ (z )z ), i.e., xzp x ∈ Pref(xzp zp x) and |zp | ≤ |x|, we have zp ∈ Pref(x). Now since θ (z )z ∈ Pref(xzx), we have
+θ(z )z = xzp xzp , i.e., z = xzp . Therefore, z = xzp = zp x, which implies ρ(z ) = ρ(x) and we obtain again ρθ (u) = ρθ (v). The
+fourth subcase is when 2|x| < |z |. As in the third subcase, θ (z ) = xzp0 for some θ -palindrome zp0 . Since xzx ∈ Pref(θ (z )z )
+holds in this case, let θ (z )z = xzxzs0 for some zs0 ∈ Pref(θ (z )). By substituting z = zp0 x into this equation, we obtain z = x2 zs0 .
+Then zs0 = θ (zs0 ). Hence, z = zp0 x = x2 zs0 , which implies, due to Lemma 30, that ρ(x) = ρ(z ) and hence ρθ (u) = ρθ (v).
+    Finally we consider the case vn+1 = v = xθ (z )z. Then, as illustrated in Fig. 16, z = θ (z ) and thus vn+1 = xz 2 . If vn+2 = v ,
+then as above, we can employ Theorem 8 to conclude that ρθ (u) = ρθ (v). Otherwise, vn+2 = θ (v) = z 2 x. Now we have
+four subcases depending on the lengths of x and z. The first subcase is when |x| ≤ |z |. Note that z 2 ∈ Pref(zxθ (z )). Hence
+z = xzs for some zs ∈ Pref(θ (z )), which implies that zs = θ (zs ). Since z = θ (z ), z = xzs = zs x. This means ρ(x) = ρ(z )
+and we obtain again ρθ (u) = ρθ (v). The second subcase is when |z | < |x| ≤ 2|z |. Since |v 00 | = |x| − 1 and v 00 is a prefix
+of vn+2 = z 2 x, we have that z ∈ Pref(v 00 ). Then, z 3 ∈ Pref(zxθ (z )), and we can conclude ρ(x) = ρ(z ) as done in the first
+subcase. Thus, ρθ (u) = ρθ (v). The third subcase is when 2|z | < |x| ≤ 3|z |. Then, we actually have z 2 ∈ Pref(v 00 ). Thus,
+z 4 ∈ Pref(zxθ (z )) and again we have ρ(x) = ρ(z ), and hence ρθ (u) = ρθ (v). The last subcase is when 3|z | < |x|. Recall that
+vn+2 = z 2 x. Since x = θ (x), we can rewrite this as vn+2 = z 2 θ (x). As |v 00 | = |x| − 1, this means that v 00 = z 2 x1 for some
+x1 ∈ Pref(θ (x)) satisfying |x1 | = |x| − 2|z | − 1, which is positive. Since zx ∈ Pref(z 2 v 00 ), there exists x2 ∈ Pref(x1 ) such that
+zx = z 4 x2 , i.e., x2 ∈ Suff(x). However, since x2 ∈ Pref(θ (x)), we obtain x2 = θ (x2 ). Thus, x = z 3 x2 = x2 z 3 , which implies,
+due to Lemma 29, that ρ(x) = ρ(z ), so we conclude again that ρθ (u) = ρθ (v). 
+Example 8. Let θ : {a, b}∗ → {a, b}∗ be the mirror involution, u = a2 ba3 b, and v = a2 ba. Then, gcd(|u|, |v|) = 1, u3 and
+v 2 θ(v)2 v have a common prefix of length 2|u| + |v| − 2, but ρθ (u) 6= ρθ (v).
+Example 9. Let θ : {a, b}∗ → {a, b}∗ be the mirror involution, u = ba2 baba, and v = ba2 ba. Then, gcd(|u|, |v|) = 1, uθ (u)2
+and v 4 have a common prefix of length 2|u| + |v| − 2, but ρθ (u) 6= ρθ (v).
+   Combining all results obtained in this section together, we have the extended Fine and Wilf theorem for an antimorphic
+involution θ :
+Corollary 32. Let u, v ∈ Σ ∗ be two words with |u| > |v|. If there exist two θ -powers α(u, θ (u)) ∈ u{u, θ (u)}∗ and
+β(v, θ(v)) ∈ v{v, θ (v)}∗ having a common prefix of length 2|u| + |v| − gcd(|u|, |v|), then ρθ (u) = ρθ (v). Furthermore,
+this bound is optimal.
+

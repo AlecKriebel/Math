@@ -1,0 +1,131 @@
+                                                     Theoretical Computer Science 411 (2010) 617–630
+
+
+
+                                                      Contents lists available at ScienceDirect
+
+
+                                               Theoretical Computer Science
+                                                 journal homepage: www.elsevier.com/locate/tcs
+
+
+
+
+On a special class of primitive wordsI
+Elena Czeizler ∗ , Lila Kari, Shinnosuke Seki
+Department of Computer Science, The University of Western Ontario, London, Ontario, N6A 5B7, Canada
+
+
+
+article               info                            abstract
+Article history:                                      When representing DNA molecules as words, it is necessary to take into account the fact
+Received 24 June 2008                                 that a word u encodes basically the same information as its Watson–Crick complement
+Received in revised form 21 September                 θ (u), where θ denotes the Watson–Crick complementarity function. Thus, an expression
+2009
+                                                      which involves only a word u and its complement can be still considered as a repeating
+Accepted 29 September 2009
+Communicated by M. Crochemore
+                                                      sequence. In this context, we define and investigate the properties of a special class
+                                                      of primitive words, called pseudo-primitive words relative to θ or simply θ -primitive
+Keywords:
+                                                      words, which cannot be expressed as such repeating sequences. For instance, we prove
+Word equations                                        the existence of a unique θ -primitive root of a given word, and we give some constraints
+Fine and Wilf theorem                                 forcing two distinct words to share their θ -primitive root. Also, we present an extension of
+(Pseudo-)periodicity                                  the well-known Fine and Wilf theorem, for which we give an optimal bound.
+(Pseudo-)power                                                                                            © 2009 Elsevier B.V. All rights reserved.
+(Pseudo-)primitivity
+(Anti-)morphic involution
+
+
+
+1. Introduction
+
+    Encoding information as DNA strands as in, e.g., DNA Computing, brings up for investigation new features based on the
+specific biochemical properties of DNA molecules. Recall that single-stranded DNA molecules can be viewed as words over
+the quaternary alphabet of bases {A, T , C , G}. Moreover, one of the main properties of DNA molecules is the Watson–Crick
+complementarity of the bases A and T and respectively G and C . Because of this property two Watson–Crick complementary
+single DNA strands with opposite orientation bind together to form a DNA double strand, in a process called base-pairing.
+Recently, there were several approaches to generalize notions from classical combinatorics on words in order to incorporate
+this major characteristic of DNA molecules, see, e.g., [1–3]. Along these lines, in this paper, we generalize the concept of
+primitivity and define pseudo-primitive words.
+    The notion of periodicity plays an important role in various fields of theoretical computer science, such as algebraic
+coding theory, [4], and combinatorics on words, [5,6]. An integer p ≥ 1 is a period of a word if any of two letters on the
+word which are distant from each other by p letters are the same. The well-known periodicity theorem by Fine and Wilf
+states that if a word has two periods p, q and is of length at least p + q − gcd(p, q), then gcd(p, q) is also a period of the
+word, where gcd(p, q) is the greatest common divisor of p and q [7]. This theorem can be rephrased as: if a power of a word
+u and a power of a word v share the same prefix of length |u| + |v| − gcd(|u|, |v|), then u and v are powers of a same word
+t. This description elucidates the relationship between the Fine and Wilf theorem and the notion of primitivity. A word is
+called primitive if it cannot be decomposed as a power of another word. Investigating the primitivity of a word is often the
+first step when analyzing its properties. Moreover, how a word can be decomposed and whether two words are powers of
+a common word are two questions which were widely investigated in language theory, see, e.g., [5,6,8].
+
+
+ I The conference version of this paper was published as: E. Czeizler, L. Kari, S. Seki, On a special class of primitive words, in: Proc. MFCS 2008, LNCS 5162,
+2008, pp. 265–277.
+ ∗ Corresponding address: Department of IT, Åbo Akademi University, Turku 20520, Finland. Tel.: +1 519 661 2111.
+   E-mail addresses: elena.czeizler@abo.fi (E. Czeizler), lila@csd.uwo.ca (L. Kari), sseki@csd.uwo.ca (S. Seki).
+
+0304-3975/$ – see front matter © 2009 Elsevier B.V. All rights reserved.
+doi:10.1016/j.tcs.2009.09.037
+618                                    E. Czeizler et al. / Theoretical Computer Science 411 (2010) 617–630
+
+
+    While, in classical combinatorics on words we look for repetitions of the form ui for some word u and some i ≥ 2, when
+dealing with DNA molecules (i.e., their abstract representation as words) we have to take into account the fact that a word u
+encodes the same information as its complement θ (u), where θ denotes the Watson–Crick complementarity function, or its
+mathematical formalization as an arbitrary antimorphic involution. In other words, we can extend the notion of power to
+pseudo-power relative to θ or simply θ -power. A θ -power of u is a word of the form u1 u2 · · · un for some n ≥ 1, where u1 = u
+and for any 2 ≤ i ≤ n, ui is either u or θ (u). In this context, we define θ -primitive words as strings which cannot be a θ -power
+of another word. Also, we define the θ -primitive root of a word w as the shortest word u such that w is a θ -power of u. In
+classical combinatorics on words, there exist two equivalent definitions for the primitive root of a word w as the shortest
+word u such that w is a power of u, or the unique primitive word u such that w is a power of u. The first main contribution of
+this paper is to propose such equivalent definitions for the θ -primitive root of a word, that is, we prove that the θ -primitive
+root of a word w is the unique θ -primitive word u such that w is a θ -power of u. In the process of obtaining this result, we
+also prove an extension of the Fine and Wilf theorem. Until now, several extensions of this theorem were proved, see, e.g.,
+[9–14]. In this paper, we look at the case when a θ -power of u and a θ -power of v share a same prefix. If the prefix is longer
+than a given bound, then we prove that u and v are θ -powers of a same word, that is, they share their θ -primitive root. Our
+bound is twice the length of the longer word (u or v ) plus the length of the other word minus the greatest common divisor
+of the lengths of u and v . Moreover, we show that this bound is optimal.
+    The paper is organized as follows. In Section 2, we fix our terminology and recall some basic results. In Section 3 we
+investigate some basic properties of θ -primitive words. In particular, we give an extension of the Fine and Wilf theorem
+which implies immediately that we can define the θ -primitive root of a word in the two equivalent ways. In Section 4,
+we present several constraints forcing two words to share their θ -primitive root. In Section 5, we investigate some
+connections between the θ -primitive words that we introduced here and the θ -palindrome words, which were proposed
+and investigated in [2,3]. In Section 6, we present the optimal bound for our extension of the Fine and Wilf theorem.
+
+2. Preliminaries
+
+     Let Σ be a finite alphabet. We denote by Σ ∗ the set of all finite words over the alphabet Σ , by  the empty word, and by
+Σ + the set of all nonempty finite words over Σ . The length of a word w , denoted by |w|, is the number of letters occurrences,
+i.e., if w = a1 . . . an with P
+                              ai ∈ Σ , 1 ≤ i ≤ n, then |w| = n. For a letter a ∈ Σ , let |w|a denote the number of occurrences of
+a in w . Therefore, |w| =        a∈Σ |w|a . We say that u is a prefix (resp. a suffix) of v , if v = ut (resp. v = tu) for some t ∈ Σ .
+                                                                                                                                     ∗
+
+For any integer 0 ≤ k ≤ |v|, we use the notation prefk (v) (suffk (v)) for the prefix (resp. suffix) of length k of a word v , and
+Pref(v) (Suff(v)) for the set of all prefixes (resp. all suffixes) of v . In particular pref0 (v) =  for any word v ∈ Σ ∗ . An integer
+p ≥ 1 is a period of a word w = a1 . . . an , with ai ∈ Σ for all 1 ≤ i ≤ n, if ai = ai+p for all 1 ≤ i ≤ n − p.
+     A word w ∈ Σ + is called primitive if it cannot be written as a power of another word; that is, w = un implies n = 1 and
+w = u. For a word w ∈ Σ + , the shortest u ∈ Σ + such that w = un for some n ≥ 1 is called the primitive root of the word w
+and is denoted by ρ(w). The following result gives an alternative, equivalent way for defining the primitive root of a word.
+Theorem 1. For each word w ∈ Σ ∗ , there exists a unique primitive word t ∈ Σ + such that ρ(w) = t, i.e., w = t n for some
+n ≥ 1.
+      The next result illustrates another property of primitive words.
+Proposition 2. Let u ∈ Σ + be a primitive word. Then u cannot be a factor of u2 in a nontrivial way, i.e., if u2 = xuy, then
+necessarily either x =  or y =  .
+    We say that two words u and v commute if uv = v u. The following result characterizes the commutation of two words
+in terms of primitive roots.
+Theorem 3. For u, v ∈ Σ ∗ , the following conditions are equivalent: (i) u and v commute; (ii) u and v satisfy a non-trivial relation,
+i.e., an equation where the two sides are not graphically identical; (iii) u and v have the same primitive root.
+   For two words u and v , we denote by u ∧ v the maximal common prefix of u and v . The following result from [6] will be
+very useful in our future considerations.
+Theorem 4. Let X = {x, y} ⊆ Σ ∗ such that xy 6= yx. Then, for each words u, v ∈ X ∗ we have
+         u ∈ xX + ,    v ∈ yX + ,   |u|, |v| ≥ |xy ∧ yx|, ⇒ u ∧ v = xy ∧ yx.
+      The following result is an immediate consequence.
+Corollary 5. Let X = {x, y} ⊆ Σ ∗ , u ∈ xX ∗ , and v ∈ yX ∗ such that |u|, |v| ≥ |xy|. If |u ∧ v| ≥ |xy|, then ρ(x) = ρ(y).
+   Two words u and v are said to be conjugate if there exist words x and y such that u = xy and v = yx. In other words, v
+can be obtained via a cyclic permutation of u. The next result characterizes the conjugacy of two words.
+Theorem 6. Let u, v ∈ Σ + . Then the following conditions are equivalent: (i) u and v are conjugate; (ii) there exists a word z
+such that uz = z v ; moreover, this holds if and only if u = pq, v = qp, and z = (pq)i p, for some p, q ∈ Σ ∗ and i ≥ 0; (iii) the
+primitive roots of u and v are conjugate.
+
