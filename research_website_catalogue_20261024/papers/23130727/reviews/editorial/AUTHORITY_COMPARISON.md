@@ -1,0 +1,9 @@
+# Post-INITIAL comparison
+
+2026-11-16T09:06:14Z. Completion estimate: 40%. Root acknowledged the frozen source-first INITIAL/seal, paused writes for checkpoint 14fb9c86dfe1dbd1743c022fad80b49cad6c9068, then opened authority and gave copy GO. No owned writes or root-opinion reading occurred during the hold. The complete 1,872-byte authority and 7,999-byte ROOT_REVIEW.md were personally read afterward, before copy.
+
+Authority SHA256 is 3196624f1f70a335ae000e8294672a86f8c5f656407ef764bb4966e766f6a8b1; root report is a1471c81ce2b252d4f85758cca822aa9190c232ed6bb9bcc38805d5b8b6e290a. They retain the full arbitrary-alphabet, fixed/swapped-letter, nonminimal-period, gcd-prefix-phase theorem and uniform-only one-unit obstruction, without source repair or narrowing. They agree with the source-first reconstruction. No native/scientific helper or result buffer was run or opened in this editorial lane.
+
+The substantive comparison qualification is Kari–Seki's q=2d endpoint: their author manuscript has the stronger piecewise branch 2p−floor(d/2), whereas the note's single formula is still a valid weaker sufficient comparison there. New related-work copy will preserve this qualification. For Simpson, the direct common-phase comparison is made for ordinary reversal; a general letter-twisted reflection is not automatically an ordinary palindrome. No claim excludes all indirect reformulations of prior work, certifies priority, or certifies current worldwide openness.
+
+The public copy will contain no new verification narrative. Original abstract/record description remain complete, and concise AI/unrefereed disclosure is retained. Native ZIP-then-PDF order, version string1.0 versus absent printed version, 3October publication versus 4OctoberUTC creation, and CC BY4.0 author-produced note/code rights remain distinct. Follow-up and production authority remain null/false. Packaging stays minimal; no new broad audit framework or old-helper execution.
