@@ -1,0 +1,5 @@
+# Knudson informed editorial fact-check log
+
+2026-11-16T12:52:14.813824+00:00 — Began source-first copy contract. Prior source-only acquisition and later adversarial mathematical review of this paper, including original manuscript, Knudson primary body and a single unchanged normal verifier route, are prior informed exposure, not fresh blind science. This lane re-reads only actual native manuscript/controlling TeX/metadata/rights and makes fresh own raster views before INITIAL. Current root review/clearance, peer reports, old editorial copy and current writer folder remain CLOSED. No native scientific execution. Completion estimate **15%**.
+
+2026-11-16T12:54:58.813104+00:00 — Complete actual PDF/160-line TeX, native record/whole Description/file order and authored rights personally read; all three fresh own page rasters viewed. Source PDF/TeX/asset MD5s and ZIP-embedded PDF identity bound. Exact full abstract and metadata/version/date/rights/claim boundaries frozen before any current root/peer/old editorial/writer intake. Completion estimate **40%**; INITIAL source-first portion **100%**.
