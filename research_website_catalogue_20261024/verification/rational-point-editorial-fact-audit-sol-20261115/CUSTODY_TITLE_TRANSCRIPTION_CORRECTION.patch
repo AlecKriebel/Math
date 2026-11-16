@@ -1,0 +1,20 @@
+--- verify_fact_read_only.py
++++ verify_fact_read_only_corrected.py
+@@ -122,7 +122,7 @@
+  m=native['both_complete_original_manuscripts'][i]
+  need(norm(copy[key])==abstract(m['full_original_abstract_TeX']),'entire faithful printed abstract '+key)
+  need(pub[['main_printed_abstract_full','companion_printed_abstract_full'][i]]==copy[key],'whole config abstract')
+-need(copy['companion_title']==native['both_complete_original_manuscripts'][1]['full_original_title_TeX'],'full actual conditional companion title')
++need(norm(copy['companion_title'])==norm(native['both_complete_original_manuscripts'][1]['full_original_title_TeX'].replace(chr(92)*2,' ')),'full actual conditional companion title, explicit TeX linebreak rendered as space')
+ need(copy['title']==native['whole_original_record_metadata']['title']==c['title'],'full main title')
+ need(copy['native_description']==pub['native_description_exact']==native['native_full_description_distinct_from_both_printed_abstracts'],'whole separate native description')
+ need(pub['datePublished']=='2026-10-06' and pub['native_created_separate']==native['native_creation_UTC'],'date versus UTC creation')
+@@ -182,7 +182,7 @@
+ 
+ of,od=extent(D)
+ if sys.argv[1:]==['--preseal']:
+- spec=obj(D/'FACT_PRESEAL_NAMESPACE.json');need(of==lex(spec['files']) and od==lex(spec['directories']),'own finite preseal')
++ spec=obj(D/'FACT_CORRECTED_PRESEAL_NAMESPACE.json');need(of==lex(spec['files']) and od==lex(spec['directories']),'own finite preseal')
+ else:
+  final=obj(D/'FINAL_SEAL.json');manifest=obj(D/'FINAL_MANIFEST.json');match(D/'FINAL_MANIFEST.json',final['manifest'])
+  terms=['FINAL_MANIFEST.json','FINAL_SEAL.json'];need(final['exact_root_terminal_exclusions']==terms and final['future_subtree_exclusions']==[],'exact final terminal exclusions')
