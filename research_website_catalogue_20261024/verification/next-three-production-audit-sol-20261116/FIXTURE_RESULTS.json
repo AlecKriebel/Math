@@ -1,0 +1,101 @@
+{
+  "helper_SHA256": "266bb054694b5996680757de6205ace307cb846b996c8164ac1a26bb76335159",
+  "tests": [
+    {
+      "case": "index accepts valid stage-zero plus assume-unchanged raw flag",
+      "accepted_expected": true,
+      "detail": {
+        "a": "636848156d05c0838198e9d223014243eeefa95526b05ed6175c7f65d3e18b27",
+        "b": "b897a9bd315e6873c5b816fec7ccd174d3198af4a549f472728d2d55a6a717c5",
+        "z": "c7ec5d01cfa5bab9215e73b8f8f4971dd2f52e20a7b7660133b1e2d8c129bb55"
+      }
+    },
+    {
+      "case": "index rejects stage-one hidden unrelated record",
+      "rejected": true,
+      "reason": "ordinary stage-zero index record"
+    },
+    {
+      "case": "index rejects unsupported extended flags",
+      "rejected": true,
+      "reason": "ordinary stage-zero index record"
+    },
+    {
+      "case": "index rejects forged checksum",
+      "rejected": true,
+      "reason": "v2 index/checksum"
+    },
+    {
+      "case": "index rejects duplicate path ordinal",
+      "rejected": true,
+      "reason": "sorted unique whole raw record"
+    },
+    {
+      "case": "index rejects LINK split-index extension",
+      "rejected": true,
+      "reason": "only cache-tree extension"
+    },
+    {
+      "case": "actual58585 protected raw records independently match INITIAL",
+      "accepted_expected": true,
+      "detail": 58585
+    },
+    {
+      "case": "held ordinary source read",
+      "accepted_expected": true,
+      "detail": "unchanged fixture"
+    },
+    {
+      "case": "source leaf symlink rejected",
+      "rejected": true,
+      "reason": "no symlink path"
+    },
+    {
+      "case": "source/target ancestor symlink rejected",
+      "rejected": true,
+      "reason": "no symlink path"
+    },
+    {
+      "case": "exclusive new file creates durable complete owned buffer",
+      "accepted_expected": true,
+      "detail": "complete"
+    },
+    {
+      "case": "exclusive leaf collision rejects overwrite",
+      "rejected": true,
+      "reason": "[Errno 17] File exists: '/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/next-three-production-audit-sol-20261116/mechanism-fixtures-l8oe5juz/exclusive'"
+    },
+    {
+      "case": "transaction uses authorization SHA directory and retained exact lock",
+      "accepted_expected": true,
+      "detail": {
+        "transaction": "4ceeaac4c98eeace0b8a045ac3fad921c9417fcae4af232aee936063bb14a008",
+        "authorization_sha": "4ceeaac4c98eeace0b8a045ac3fad921c9417fcae4af232aee936063bb14a008",
+        "same": true
+      }
+    },
+    {
+      "case": "same authorization cannot reacquire fixed owned lock",
+      "rejected": true,
+      "reason": "[Errno 17] File exists: '/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/next-three-production-audit-sol-20261116/mechanism-fixtures-l8oe5juz/ACTIVE_INSTALL.lock'"
+    },
+    {
+      "case": "same lock bytes on replacement inode rejected",
+      "rejected": true,
+      "reason": "held exact new transaction lock"
+    },
+    {
+      "case": "ambient pushurl bypasses fetch-only destination fence",
+      "fetch_url": "https://github.com/AlecKriebel/aleckriebel.com.git",
+      "push_url": "https://example.invalid/unapproved.git",
+      "current_fetch_check_passes": true,
+      "different_push_destination": true,
+      "remote_contact": false,
+      "qualification": "Owned CLI include models equivalent inherited system/global configuration; no actual global config changed."
+    }
+  ],
+  "fixture_scope": "RAM and temporary directory under audit ownership only; removed on completion",
+  "release_modes_executed": [],
+  "remote_contact": false,
+  "W_or_Math_mutations": false
+}

@@ -1,0 +1,88 @@
+--- history-v1/release_next_three.py	2026-11-16 00:49:02
++++ release_next_three.py	2026-11-16 00:51:09
+@@ -13,7 +13,7 @@
+ M = P.parent
+ N = P/'verification/next-three-production-release-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = 'e540789bf319daa3fdc8ee4f7d29a82a221c1a51de89b8d479b86cae31dbcc74'
++PLAN_SHA = 'df9cc43177353f085d18adf3bfc39f8ecd7a08521a38e3227242ad641208c594'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')
+@@ -60,13 +60,26 @@
+ def event(phase,**fields):
+     if LOG is not None:
+         LOG.write(packed({'UTC':utc().isoformat(),'phase':phase,**fields})); LOG.flush(); os.fsync(LOG.fileno())
+-def git(*args,data=None,index=None,identity=None,cwd=W):
++def git(*args,data=None,index=None,identity=None,cwd=W,opaque=False):
+     env=dict(ENV)
+     if index is not None: env['GIT_INDEX_FILE']=str(index)
+     if identity: env.update(identity)
+     cmd=['git',*GIT_OPTIONS,*args]; r=subprocess.run(cmd,cwd=cwd,env=env,input=data,capture_output=True)
+-    event('git',argv=cmd,input_SHA256=None if data is None else sha(data),exit=r.returncode,stdout_base64=base64.b64encode(r.stdout).decode(),stderr_base64=base64.b64encode(r.stderr).decode())
++    event('git',argv=cmd,input_SHA256=None if data is None else sha(data),exit=r.returncode,stdout_SHA256=sha(r.stdout),stderr_SHA256=sha(r.stderr),stdout_base64=None if opaque else base64.b64encode(r.stdout).decode(),stderr_base64=None if opaque else base64.b64encode(r.stderr).decode())
+     need(r.returncode==0,'Git failed: '+args[0]); return r.stdout
++
++def routing(p,expected=None):
++    args=('config','--null','--show-origin','--show-scope','--get-regexp',p['routing_config_key_regex'])
++    before=git(*args,opaque=True)
++    fetch=git('remote','get-url','--all','origin',opaque=True)
++    push=git('remote','get-url','--push','--all','origin',opaque=True)
++    after=git(*args,opaque=True)
++    need(before==after,'stable effective routing configuration')
++    intended=(p['origin']+'\n').encode()
++    need(fetch==intended and push==intended,'exact singleton effective origin fetch/push URLs')
++    state={'configuration':pin(before),'effective_fetch_URL_SHA256':sha(fetch),'effective_push_URL_SHA256':sha(push),'singletons_match_intended_origin':True}
++    need(expected is None or state==expected,'authorization-bound routing configuration unchanged')
++    return state
+ 
+ def census(root):
+     files,dirs={},{}
+@@ -146,7 +159,8 @@
+     p,buffers,old_files,old_dirs,new_dirs=contract(); math_fence(p)
+     need(git('symbolic-ref','HEAD').strip().decode()==p['branch'] and git('rev-parse','HEAD').strip().decode()==p['website_HEAD'] and git('rev-parse','HEAD^{tree}').strip().decode()==p['website_tree'],'existing Wmaster/parent/tree')
+     need(git('rev-parse','--show-object-format').strip()==b'sha1','SHA1 repository')
+-    need(pin(read(W/'.git/config'))==p['website_config'] and mode(W/'.git/config')==0o644 and git('remote','get-url','origin').strip().decode()==p['origin'],'same origin/config')
++    need(pin(read(W/'.git/config'))==p['website_config'] and mode(W/'.git/config')==0o644,'same local origin/config')
++    route=routing(p)
+     need(sha(read(W/'firebase.json'))==p['firebase_config_SHA256'] and mode(W/'firebase.json')==0o644,'unchanged hosting config')
+     old=read(W/'.git/index'); need(pin(old)=={k:p['website_index'][k] for k in ('bytes','SHA256')} and mode(W/'.git/index')==0o600,'exact Windex0600')
+     er=entries(old); targets={n.encode() for n in buffers}; replacements={n.encode() for n in p['replacement_paths']}
+@@ -157,7 +171,7 @@
+     actual,counts=public_fence(p,buffers,old_files,old_dirs,new_dirs,installed)
+     if required is not None: need(installed==required,'required installed/preinstall phase')
+     identities={n:[*inode((W/n).lstat()),(W/n).lstat().st_mtime_ns,(W/n).lstat().st_ctime_ns] for n in p['replacement_paths']}
+-    state={'installed':installed,'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_next_three.py')),'adoption':p['root_adoption'],'public':actual,'counts':counts,'W_HEAD':p['website_HEAD'],'W_tree':p['website_tree'],'W_index':pin(old),'Math_HEAD':p['Math_HEAD'],'Math_index':p['Math_index'],'aggregate_identities':identities,'scope':[(n,pin(b)) for n,b in sorted(buffers.items())]}
++    state={'installed':installed,'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_next_three.py')),'adoption':p['root_adoption'],'public':actual,'counts':counts,'W_HEAD':p['website_HEAD'],'W_tree':p['website_tree'],'W_index':pin(old),'Math_HEAD':p['Math_HEAD'],'Math_index':p['Math_index'],'routing':route,'aggregate_identities':identities,'scope':[(n,pin(b)) for n,b in sorted(buffers.items())]}
+     return p,buffers,old_files,old_dirs,new_dirs,old,sha(packed(state)),state
+ 
+ def authorization(kind,fp,p):
+@@ -263,7 +277,7 @@
+     def current():
+         check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_next_three.py'))==a['helper_SHA256'],'same current Git authority/code')
+     try:
+-        current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(p['website_HEAD']+'\t'+p['branch']+'\n').encode(),'remote parent exact')
++        current(); routing(p,state['routing']); need(git('ls-remote','--exit-code','origin',p['branch'])==(p['website_HEAD']+'\t'+p['branch']+'\n').encode(),'remote parent exact')
+         native=t/'native-successor.index'; commit_index=t/'commit.index'; new_file(t/'shared-index.before',old); new_file(native,old)
+         oids={n:hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest() for n,b in buffers.items()}
+         for n,b in sorted(buffers.items()): current(); need(git('hash-object','--no-filters','-w','--stdin',data=b).strip().decode()==oids[n],'exact unfiltered blob')
+@@ -294,8 +308,8 @@
+         def final_local():
+             need(read(W/'.git/index')==staged and mode(W/'.git/index')==0o600 and git('rev-parse',p['branch']).strip().decode()==commit,'exact final W ref/index')
+             need(git('symbolic-ref','HEAD').strip().decode()==p['branch'],'existing master retained'); public_fence(p,buffers,old_files,old_dirs,new_dirs,True); math_fence(p); contract()
+-        current(); final_local(); git('push','--no-follow-tags','--recurse-submodules=no','origin',commit+':'+p['branch'])
+-        need(git('ls-remote','--exit-code','origin',p['branch'])==(commit+'\t'+p['branch']+'\n').encode(),'remote immutable commit verified'); final_local()
++        current(); final_local(); routing(p,state['routing']); git('push','--no-follow-tags','--recurse-submodules=no','origin',commit+':'+p['branch'])
++        routing(p,state['routing']); need(git('ls-remote','--exit-code','origin',p['branch'])==(commit+'\t'+p['branch']+'\n').encode(),'remote immutable commit verified'); final_local()
+         result={'status':'SCOPED16_COMMIT_AND_PUSH_VERIFIED','commit':commit,'tree':tree,'paths':16,'delta':'14A2M','protected_full_raw_records':58585,'successor_index_records':58601,'index_SHA256':sha(staged),'index_mode':'0600','Math_HEAD_index_unchanged':True,'deployment_or_Sheet_actions':False,'new_Git_lock_retained':True,'old_completed_lock_untouched':True}
+         new_file(t/'SUCCESS.json',packed(result)); event('GIT_SUCCESS',**result); return result
+     except BaseException as error:
+@@ -309,7 +323,7 @@
+     elif sys.argv[1:]==['--publish']: result=publish(snapshot)
+     else:
+         p,buffers,old_files,old_dirs,new_dirs,old,fp,state=snapshot
+-        result={'status':'READONLY_INSTALLED_PREFLIGHT_PASS' if state['installed'] else 'READONLY_PREINSTALL_PREFLIGHT_PASS','preflight_SHA256':fp,'helper_SHA256':sha(read(N/'release_next_three.py')),'plan_SHA256':PLAN_SHA,'counts':state['counts'],'fixed_paths':sorted(buffers),'new_leaves':14,'replacements':2,'protected_raw_records':58585,'successor_raw_records':58601,'W_HEAD':p['website_HEAD'],'Math_HEAD':p['Math_HEAD'],'old_completed_lock_retained':True,'remote_checked':False,'writes':0,'publication_authority_inferred':False}
++        result={'status':'READONLY_INSTALLED_PREFLIGHT_PASS' if state['installed'] else 'READONLY_PREINSTALL_PREFLIGHT_PASS','preflight_SHA256':fp,'helper_SHA256':sha(read(N/'release_next_three.py')),'plan_SHA256':PLAN_SHA,'counts':state['counts'],'fixed_paths':sorted(buffers),'new_leaves':14,'replacements':2,'protected_raw_records':58585,'successor_raw_records':58601,'W_HEAD':p['website_HEAD'],'Math_HEAD':p['Math_HEAD'],'routing':state['routing'],'old_completed_lock_retained':True,'remote_checked':False,'writes':0,'publication_authority_inferred':False}
+     print(json.dumps(result,sort_keys=True))
+ 
+ if __name__=='__main__':

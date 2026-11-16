@@ -1,0 +1,44 @@
+{
+  "helper_SHA256": "568c442fab8055c659113f3c9bdb453481f1bc106031e684bd04d104f8092010",
+  "baseline_opaque_routing_pin": {
+    "configuration": {
+      "bytes": 141,
+      "SHA256": "e700873ab1ea98a5278df2e64b50324d8cbd2d64afc0d1182cda64f152deacf6"
+    },
+    "effective_fetch_URL_SHA256": "1274f0cc1fe9f3ebda020d96485f6e33a8983004460f8558184fa218097379a8",
+    "effective_push_URL_SHA256": "1274f0cc1fe9f3ebda020d96485f6e33a8983004460f8558184fa218097379a8",
+    "singletons_match_intended_origin": true
+  },
+  "cases": [
+    {
+      "case": "actual current effective singleton routing matches default",
+      "pass": true
+    },
+    {
+      "case": "v1 ambient wrong-pushurl witness now fails closed",
+      "rejected": true,
+      "reason": "exact singleton effective origin fetch/push URLs"
+    },
+    {
+      "case": "duplicate effective push endpoints rejected",
+      "rejected": true,
+      "reason": "exact singleton effective origin fetch/push URLs"
+    },
+    {
+      "case": "changed relevant configuration fails old authorization despite same effective URLs",
+      "rejected": true,
+      "reason": "authorization-bound routing configuration unchanged"
+    },
+    {
+      "case": "configuration drift between before/after snapshots rejected",
+      "rejected": true,
+      "reason": "stable effective routing configuration"
+    }
+  ],
+  "all_cases_pass": true,
+  "read_only_Git_subprocess_calls": 20,
+  "remote_calls": 0,
+  "release_modes_executed": [],
+  "global_config_or_W_or_Math_mutations": false,
+  "scope": "Only actual read-only route queries with owned temporary includes, plus one RAM-only change to returned config bytes. No credential contents printed."
+}
