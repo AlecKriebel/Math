@@ -1,0 +1,5 @@
+# Coefficient/boundary legacy preflight
+
+2026-11-16T10:14:30.019145+00:00 — Fresh connector opening main6acfa8f6/root862e32fc confirms currentdocs f5f5fb2f. Reused exact authenticated254path/260representation interface. Read native identity fields only and whole10,177-byte coefficient legacy HTML; no scientific source/manuscript reading or program replay. Original21preparation file pins verified unchanged. Completion estimate:30%; bounded search and closing identity pending.
+
+2026-11-16T10:19:02.008942+00:00 — Single bounded scan6c82b4exit0/stderr0authenticated254wholeblob bodies and reconstructed docs f5f5fb2f; searched254paths/260representations with all47HTML raw+decoded coverage. Whole coefficient article and general catalogue read; only article is genuine correspondence. Boundary-twist exact identity/bounded aliases have0path/text hits. Fresh closing connector main6acfa8f6/root862e32fc equalsopening; no redundant corpus/blobfetch. Original21productionpreparation pins rechecked unchanged. No redirect/source/science/W/Git/Sheet actions. Completion estimate:100% of bounded legacy preflight.

@@ -1,0 +1,11 @@
+# Coefficient and boundary-twist legacy correspondence
+
+One genuine corresponding HTML article was identified for row143/22982894: `docs/papers/brandes-coefficient-normalization/index.html`, blob `6506d8102c616aa850c1611511441edcb89eccf6` (10,177bytes; SHA256 `1ac2b738a0089a69e2dbbab56e09ea30afd3bd59525fa0a7c841fd95ed91d7ac`). Its actual whole HTML was personally read. The exact title, author/ORCID, version1.0/date23September2026 and specific Brandes coefficient-normalization work establish correspondence. Its canonical is https://aleckriebel.github.io/Math/papers/brandes-coefficient-normalization/ .
+
+This is an older pre-upload presentation stating that no DOI was created. A DOI match is not claimed. The supplied new route `/research/positive-definite-coefficient-normalization/` remains private/proposed; no redirect was written or prepared. The general `docs/index.html` hit was also read in full and excluded because it is the research catalogue. Assets, metadata/upload instructions, sitemap and cached PDF references are not matching HTML articles.
+
+For row144/23430927, *A credited finiteness deduction for restricted boundary-twist factorizations*, no corresponding legacy HTML was identified. The exact title, DOI, record ID and recorded bounded aliases produced zero path or text hits. Its target/canonical remains null; no slug was invented.
+
+Fresh opening and closing public GitHub connector reads agree on main `6acfa8f6fc2013a41bb89bd24cfb9c5d73290380`, root `862e32fce01bf5107c7adcde7b5fbb206e37df1f`, and docs `f5f5fb2fb18196b604d7b568e3e58ccc1bf127b3`. All254cached current blob bodies were reauthenticated and reconstruct that docs tree. All254paths and260complete cached text representations were searched, including raw/decoded coverage for all47HTML paths. No redundant corpus/blob fetch, PDF extraction, archive expansion, image OCR or scientific replay occurred.
+
+The negative finding is limited to that enumerated current docs corpus; it is not a claim about all history or the wider web. No live GitHub Pages deployment or new production target was verified. Original21production-preparation pins remain unchanged. No W, Git, Sheet, source or redirect write, outside contact or prepared outreach occurred. Completion:100% of this bounded preflight.
