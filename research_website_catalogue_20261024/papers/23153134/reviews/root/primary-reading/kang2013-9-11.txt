@@ -1,0 +1,154 @@
+1 A Survey of Observers for Nonlinear Dynamical Systems                                9
+
+
+                                          z D z.x/
+                                                                                (1.14)
+                                     z.x0 / D 0
+
+so that (1.13) is transformed into a linear system with a nonlinear output injection
+
+                                    Pz D Az C .y/
+                                                                                (1.15)
+                                    y D Cz
+
+for some matrices A 2 Rnn and C 2 Rpn . If this is the case, then we can easily
+construct a Luenberger type of observer as follows.
+
+                            POz D AOz C .y/ C G.y  C Oz/                      (1.16)
+
+Let
+                                       e D z  zO
+then the error dynamics is a linear system decoupled from z.t/
+
+                                   eP D .A  GC /e
+
+If G, the observer gain, is chosen so that the eigenvalues of .A  GC / are all in the
+left half plane, then
+                                    lim e.t/ D 0
+                                    t !1
+
+   Not all nonlinear systems can be transformed into a linear system with output
+injection. The existence of the change of coordinates (1.14) can be determined
+using Lie differentiation. Given a function h.x/, let dh represents the 1-form, or
+the gradient,                                                 
+                                 @h       @h           @h
+                     dh.x/ D         .x/     .x/        .x/
+                                 @x1     @x2           @xn
+The Lie derivative is defined as follows
+
+                             Lf .h/ D dh  f
+                                          @2 h      @f
+                            Lf .dh/ D f T      C dh
+                                          @x        @x
+The following theorem was proved in Krener and Isidori (1983).
+Theorem 1.1. There exists a local change of coordinates (1.14) that trans-
+forms (1.13) into a linear system with output inject (1.15) if and only if
+
+                                      f .x0 / D 0
+                                      h.x0 / D 0
+
+and Lnf .dh/ is a linear combination of Lkf .dh/ for k D 0; 1;    ; n  1.
+10                                                                       W. Kang et al.
+
+
+    Note that the theorem guarantees the existence of a local change of coordinates
+around an equilibrium. Therefore, the observers are limited in a local neighborhood
+of an equilibrium point. Among a large number of publications on the observer
+design by achieving linearized error dynamics, we would like to bring up (Kazantzis
+and Kravaris 1998). In this work, the formulation of the observer design problem
+is realized via a system of singular first-order linear partial differential equations
+(PDE). The theory is applicable to a larger family of systems than that addressed
+in Krener and Isidori (1983). In fact, after a nonlinear change of coordinates, the
+resulting system is not required to have a linear output like in (1.15). Another
+advantage of the work in Kazantzis and Kravaris (1998) is that the solution to
+the PDEs is locally analytic and this enables the development of a series solution
+method, that is programmable using symbolic software packages. In the presence
+of noise, some types of output injection, such as a y 2 term, may result in a biased
+estimation because EŒ.y C n/2  D EŒy 2  C EŒn2 , where n is a random noise.
+    Other related work includes Zeitz’s extended Luenberger observer based upon
+a local linearization technique (Zeitz 1987). Nonlinear coordinate transformations
+have also been employed to transform the nonlinear system to a suitable observer
+canonical form, where the observer design problem may be solved (Bestle and Zeitz
+1983; Ding et al. 1990; Xia and Gao 1989; Zheng et al. 2007).
+
+
+1.3.3 Observers Based on Lyapunov Functions
+
+For systems that do not admit a linear error dynamics, nonlinear observers can
+be derived so that its stability is guaranteed by a Lyapunov function. A widely
+used approach is based on the high gain observer proved in Gauthier et al. (1992).
+Once again, consider the nonlinear system (1.13). Using a single output case as an
+example, consider the mapping, z D z.x/ W Rn ! Rn , defined by
+                                       2        3
+                                         h.x/
+                                      6 Lf h.x/ 7
+                                      6         7
+                               z.x/ D 6    ::   7                               (1.17)
+                                      4     :   5
+                                           Ln1
+                                            f h.x/
+
+We assume that z D z.x/ is a diffeomorphism on a region   Rn . Under this
+transformation, the original system is equivalent to the system in the form
+                                        2      3
+                                           z2
+                                         6 z3 7
+                                         6     7
+                                         6     7
+                                    zP D 6 ::: 7
+                                         6     7                                (1.18)
+                                         4 zn 5
+                                          .z/
+                                    y D z1
+1 A Survey of Observers for Nonlinear Dynamical Systems                              11
+
+
+Using the following notation
+                                                          T
+                            fN.z/ D z2 z3    zn .z/
+                                    2                    3
+                                      0 1 0  0 0
+                                    6                    7
+                               AN D 4 0 0 1    0 0 5
+                                      :: :: ::     :: ::
+                                     : : :    : :
+                               CN D 1 0    0
+
+the observer has the form
+
+                             POz D fN.Oz/  S 1 CN .CN zO  y/
+
+where S is the solution of the equation
+
+                           S  ANT S  S AN C CN T CN D 0
+
+where is a constant. It is proved in Gauthier et al. (1992) that the error of the
+observer
+                                 e.t/ D z  Oz
+approaches zero if is large enough (thus the name “high gain observer”). While
+the proof is carried out in the z-space, the observer can be constructed in the original
+state space
+                                       
+                                         @z 1 1 N
+                       xPO D f . Ox/           S C .h. Ox/  y/
+                                         @x
+   The simplicity in the construction of a high gain observer makes it a convenient
+tool for nonlinear systems (Gauthier and Kupka 1994). However, in the presence
+of noise, a high gain observer should be used with caution. It may significantly
+enlarge the impact of the noise and result in large estimation errors. In addition,
+the “homomorphism” requirement for (1.17) limits the region in the state space in
+which the observer is applicable. In Krener and Kang (2003), a nonlinear observer is
+constructed without a global homomorphism requirement. In addition, the observer
+gain depends on the state of the system so that it is not constantly high. Global or
+semi-global observers can also be derived based on Lyapunove functions for systems
+with a triangular structure or bounded nonlinear terms in its differential equations
+(Lei et al. 2007; Krener and Kang 2003; Tsinias 1989). Deriving Lyapunov
+functions for nonlinear systems is always difficult. An alternative is to directly apply
+convergent numerical algorithms in nonlinear observers. For instance, an Euler-
+Newton observer is introduced in Kang (2006). Moving horizon observers are also
+computational based methodologies (Findeisen et al. 2002; Michalska and Mayne
+1995).
+   The sliding mode observer is another Lyapunov function based approach. It has
+the capability of handling unknown inputs or unknown parameters (Floquet and
+Barbot 2007). A survey of various types of sliding mode observers can be found in
+

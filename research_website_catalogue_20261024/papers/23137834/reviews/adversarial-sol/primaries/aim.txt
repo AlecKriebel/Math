@@ -1,0 +1,2782 @@
+ Rational and integral points on higher dimensional varieties
+                         The American Institute of Mathematics
+
+
+
+   This is a hard–copy version of a web page available through http://www.aimath.org
+    Input on this material is welcomed and can be sent to workshops@aimath.org
+                           Version: Mon Nov 22 11:41:01 2004
+
+
+
+     This document is an outcome of the ARCC workshop “Rational and Integral Points
+on Higher Dimensional Varieties,” held at AIM in Palo Alto, December 11-20, 2002.
+     The lecture notes and problem list were primarily provided by John Voight and William
+McCallum. The glossary, photographs, and the overall arrangement of material was provided
+by William Stein.
+
+
+
+
+                                            1
+2
+
+                                    Table of Contents
+    A. Lecture Notes . . . . . . . . . . . . . . . . . . . . . . . . . .         . . . 3
+         1. Colliot-Thelene 1: Rational points on surfaces with a pencil ...
+         2. Colliot-Thelene 2: Rational points on surfaces with a pencil ...
+         3. de Jong: Rationally Connected Varieties
+         4. Graber: Rationally Connected Varieties
+         5. Harari 1: Weak approximation on algebraic varieties (introduction)
+         6. Harari 2: Weak approximation on algebraic varieties (cohomology)
+         7. Hassett 1: Equations of Universal Torsors
+         8. Hassett 2: Weak approximation for function fields
+         9. Heath-Brown: Rational Points and Analytic Number Theory
+        10. Mazur: Families of rationally connected subvarieties
+        11. Peyre: Motivic height zeta functions
+        12. Raskind: Descent on Simply Connected Algebraic Surfaces
+        13. Rotger: Rational points on Shimura varieties
+        14. Salberger: Arithmetic Bezout and Rational Points of Bounded Height
+        15. Skorobogatov: Counterexamples to the Hasse Principle...
+        16. Vojta: Big semistable vector bundles
+        17. Wooley: The Circle Method
+        18. Yafaev: Descent on certain Shimura curves
+    B. Problems . . . . . . . . . . . . . . . . . . . . . . . . . . . .          . .   44
+         1. List of open problems
+         2. Photos
+    C. Glossary     . . . . . . . . . . . . . . . . . . . . . . . . . . . .      . .   55
+    D. Miscellaneous Photos . . . . . . . . . . . . . . . . . . . . . . .        . .   59
+                                                                                                          3
+
+                                         Chapter A: Lecture Notes
+      Notes of selected lectures, by John Voight.
+A.1 Colliot-Thelene 1: Rational points on surfaces with a pencil of
+curves of genus one
+Symmetrizing the Computation of the Selmer Group
+      Let k be a field, char k = 0, E : y 2 = (x − e1 )(x − e2 )(x − e3 ) an elliptic curve with
+ei ∈ k so that all 2-torsion of E is rational. We have the exact sequence
+                                                                  2
+                                           0 → E[2] → E −
+                                                        →E→0
+where E[2] ∼
+           = (Z/2Z)2 . The long exact sequence in Galois cohomology gives
+                     0 → E(k)/2E(k) → H 1 (k, E[2]) → H 1 (k, E)[2] → 0
+where H 1 (k, E[2]) ∼
+                    = (k ∗ /k ∗2 )2 classifies 2-coverings: that is, given (α1 , α2 ) ∈ (k ∗ /k ∗2 )2 , we
+have the 2-cover defined by the equations: x−e1 = α1 u21 , x−e2 = α2 u22 , x−e3 = (α1 α2 )−1 u23 .
+The group H 1 (k, E) classifies principal homogeneous spaces.
+     Now let k be a number field, Ω the set of places of k. We have the diagram
+                                                        Sel(E, 2)              / X2 (k, E)[2]        /0
+                                                 5
+                                             lll
+                                        lllll
+                                     lll
+                                  lll                  ²                                ²
+             0         / E(k)/2E(k)           / H 1 (k, E[2])                  / H 1 (k, E)[2]       /0
+
+
+                   Q                 ²             Q      1
+                                                              ²                Q      1
+                                                                                         ²
+                       v∈Ω E(kv )/2E(kv )              v H (kv , E[2])             v H (kv , E)[2]
+                                               /                           /                         /0
+
+so Sel(E, 2) gives 2-covers with points everywhere locally, and X2 (k, E) measures the differ-
+ence.
+      Over a local field, we have a pairing
+                             H 1 (kv , E[2]) × H 1 (kv , E[2]) → H 2 (kv , µ2 )
+induced by the Weil pairing, which is nondegenerate and alternating, so that (x, x) = 0.
+Fact (Tate). E(kv )/2E(kv ) ,→ H 1 (kv , E[2]) is maximal isotropic for the above pairing.
+     If E/k has good reduction at kv , then E(kv )/2E(kv ) = E(Ov )/2E(Ov ) ≃ H 1 (Ov , E[2]),
+which is (Ov∗ /Ov∗2 )2 ⊂ (kv∗ /kv∗2 )2 , the maximal isotropic subgroup.
+     Suppose S ⊂ Ω is a finite set of places, and suppose S contains the primes above ∞, 2,
+and the primes of bad reduction. Then
+                 L
+                     v∈S E(kv )/2E(kv ) ×         H 1 (OS , E[2])
+                                                                        SSSS
+                                                                            SSSSe
+                                                                   i             SSSS
+                                 ²                               ²               P SSSSS
+                   L                               L                               ev   )
+                             1
+                                                             H 1 (kv , E[2])              / Z/2Z
+                       v∈S H (kv , E[2]) ×             v∈S
+
+Then Sel(E, 2) is the right kernel of e.
+Fact. If Cl(OS ) = 0, then i is injective.
+4
+
+       This follows from class field theory. So we choose S0 such that Cl(OS0 ) = 0, and take
+S ⊃ S0 . LIf Cl(OS ) = 0, i is an injection, and the image of i is a maximal isotropic subgroup
+of VS = v∈S Vv , Vv = H 1 (kv , E[2]).
+       WhatL  we have achieved: the Selmer group Sel(E, 2) is now a kernel of ‘a square ma-
+trix’, since v∈S E(kv )/2E(kv ) and H 1 (OS , E[2]) have the same dimension over F2 . Letting
+h(A) = (A∗ /A∗2 )2 , we have
+                                       WS × h(OS ) → Z/2Z
+where                                 M
+                               WS =       Wv , Wv = E(kv )/2E(kv ).
+                                        v∈S
+
+Proposition. Assume S ⊃ S0 (containing primes above ∞, 2 and those of bad reduction
+and such that Cl(OS0 ) = 0) is a finite set of places. Suppose that h(OS ) ⊂ VS is a maximal
+isotropic subgroup. Then there exist Kv ⊂ Vv for v ∈ S maximal isotropic such that Kv =
+h(Ov ) for v ∈ S \ S0 , and                  M
+                                    h(OS ) ⊕      Kv = V S .
+                                                    v∈S
+
+     This is purely a result in linear algebra.
+     Recall we have WS × h(OS ) → Z/2Z from WS ⊂ VS and h(OS ) ⊂ VS .
+Definition. We let Sel(E, 2) ⊂ I S ⊂ h(OS ), where
+                       I S = {ξ ∈ h(OS ) : for all v ∈ S, ξ ∈ Kv + Wv }.
+We let                                        M
+                                   WS =             Wv /(Wv ∩ Kv ).
+                                              v∈S
+We then have a pairing
+                                                      e
+                                         WS × I S −→
+                                                   S
+                                                     Z/2Z.
+Proposition. The Selmer group is the kernel of eS . The map τ : I S ≃ WS is an isomor-
+phism. For µ ∈ I S , we define a map
+                                   P             P
+                               µ = v∈S αv + βv 7→ v∈S αv ;
+via τ , the new pairing WS × I S → Z/2Z is symmetric.
+                                                                     Q
+Example. For E : y 2 = (x − e1 )(x − e2 )(x − e3 ), ei ∈ Ov , v( (ei − ej )) = 1 (reduction is of
+type I2 ). Then
+                           E(kv )/2E(kv )             / (k ∗ /k ∗2 )2
+                                    O     RRR             v    v
+                                             RRR
+                                                RRR
+                                                    RRR
+                                                       RR)   ²
+                                E(kv )[2]         / / Z/2Z ⊂ (Z/2Z)2
+
+Here Wv /(Wv ∩ Kv ) = Z/2Z, Wv ∼
+                               = (Z/2Z)2 .
+
+Algebraico-Geometric version of Selmer group
+     Let k be a field, char k = 0, E : y 2 = (x − c1 (t))(x − c2 (t))(x − c3 (t)), so E is defined
+over F = k(t). To simplify,Qwe assume that all pi = ci − cjQare of the same even degree.
+We also assume that r(t) = (ci − cj ) is separable, r(t) = ρ M ∈M rM (t) where ρ ∈ k ∗ , rM
+monic irreducible, so E has reduction type I2 .
+                                                                                               5
+
+     Now assume k is a totally imaginary number field. The Neron model E/P1 has
+                                         L
+                         0 → E ∗ → E → M ∈M iM ∗ Z/2Z → 0.
+Let V ⊂ A1 = Spec k(t) be V = A1 \ {r = 0}.
+                                                                                 Q
+     Let S ⊂ h(k(V )) consist of triples (m1 , m2 , m3 ), mi ∈ k(t) squarefree, ( 3i=1 mi ) is a
+square which divides r(t)2 , and gcd(mi , pi ) = 1.
+     Put another way, we have
+                0      / E(F )/2E(F )               /S                 / H 1 (P1 , E)    /0
+                                                                           ét
+
+
+                                                     ²                          ²
+                                                ∗        ∗2 2          / H 1 (F, E)[2]
+                                              (F /F )                                    /0
+
+      Corresponding to m = (m1 , m2 , m3 ), we have the surface Xm defined by the equations
+x − ei (t) = mi (t)u2i , i = 1, 2, 3. Then Xm /P1 has a minimal model if and only if Xm /P1 is
+locally isomorphic for the étale topology with E/P1 .
+      We have a map                           M
+                                           δ        ∗   ∗2
+                                         S−→      (kM /kM  )
+                                              M ∈M
+where kM = k[t]/rM (t). We see that E(F )/2E(F ) ⊂ ker δ.
+Theorem (Theorem A). Suppose that ker δ is the image of E(F )[2]. (In particular, the
+generic rank is zero.) Assume Schinzel’s hypothesis. Then there exist infinitely many x ∈
+P1 (k) such that rk Ex (k) = 0.
+Theorem (Theorem B). Let m ∈ S, and assume that
+                  Ã                           !
+                         M
+               ker S →       ∗
+                            kM    ∗2
+                               /(kM  , δM (m)) = E(F )[2] ⊕ Z/2Z.
+                                M
+
+Assume Schinzel’s hypothesis. Assume Xm (Ak )Br1 (X) 6= ∅. Then there exist infinitely many
+x ∈ P1 (k) such that Ex (k) is of rank one and Xm,x (k) 6= ∅.
+
+A.2 Colliot-Thelene 2: Rational points on surfaces with a pencil of
+curves of genus one
+     We had y 2 = (x − c1 (t))(x − c2 (t))(x − c3 (t)), E/F = k(t), and
+                                    Y                   Y
+                             r(t) =      (ci − cj ) = ρ     rM (t)
+                                        i<j                     M ∈M
+
+separable, all rM irreducible, even degree, S ⊂ h(F ) = (F ∗ /F ∗2 )2 , m = (m1 , m2 , m3 ),
+m3 = m1 m2 up to F ∗2 . Xm /P1 , x − ci (t) = mi (t)u2i , i = 1, 2, 3.
+                                              M
+                                                      ∗     ∗2
+                                    δ:S→            kM   /kM
+                                               M ∈M
+     0
+and δ is the composition with the map
+                          M              M
+                                ∗   ∗2      ∗    ∗2
+                               kM /kM  →   kM /(kM  , δM (m)).
+                           M ∈M                M ∈M
+
+where kM = k[t]/rM .
+6
+
+Fact. E(F )/2E(F ) ⊂ ker δ.
+Theorem (Theorem B). Assume Schinzel’s hypothesis, and the finiteness of X. Let m ∈ S,
+m 6∈ E(F )[2]. Let X = Xm /P1 . Assume: ker δ 0 = E(F )[2] ⊕ Z/2Z(m), and X(Ak )Brvert (X) 6=
+∅.
+     Then R = {x ∈ P1 (k) : #Xx (k) = ∞} is infinite, and X(k) is Zariski dense.
+      Here,
+                    Brvert (X) = {ξ ∈ Br(X) : ξη |Xη comes from Br(F )} ⊂ Br1 (X).
+      Schinzel’s hypothesis: Let Pi (x) ∈ Z[x] for i = 1, . . . , r be distinct irreducible polyno-
+mials with leading coefficient positive (plus technical condition, to exclude polynomials like
+X 2 + X + 2); then there exist infinitely many values n ∈ N such that each Pi (x) is a prime.
+Remark. The assumption that ker δ 0 = E(F )[2] ⊕ Z/2Z(m) is satisfied for general ci . For
+the assumption that X(Ak )Brvert (X) 6= ∅, in general we have Brvert (X) = Br k so this reduces
+to X(Ak ) 6= ∅.
+       The proof of this theorem will take up the rest of these notes.
+       We shall define a finite set S ⊂ Ω of ‘bad places’. For each v ∈ S, we have some
+xv ∈ kv , and we look for x ∈ OS , with x very close to xv for v ∈ S, and find one x such that:
+       • Xx (Ak ) 6= ∅;
+       • dimF2 (Sel(Ex , 2)) = 3, spanned by Ex [2] and m(x).
+       We have S ⊃ S0 , containing 2-adic places and those over ∞ (note we are being sloppy
+for real places), and places of bad reduction of E/k, of Xm = X/k, and such that Cl(OS0 ) = 0.
+If v 6∈ S, then rM (t) ∈ OS [t] is separable (finite étale cover).
+       We look at rM (x) and look at its prime decomposition; it will have some part in S
+                       x
+and another part TM       of primes of multiplicity 1, and one prime vM , the ‘Schinzel prime’.
+We realize
+       S     (TM ∪  S vM ) ∩ (TN ∪ vN ) = ∅ for M 6= N . Then Ex /k has bad reduction in
+S ∪ ( M TM ) ∪ ( vM ).
+       First we find x such that Xx (Ak ) 6= ∅. For M ∈ M, we introduce the algebra AM (t) =
+coreskM /k (KM /kM , t − θM ), where KM /kM is the quadratic extension connected to m. Then
+rM (t) = NkM /k (t − θM ). A priori, AM (t) ∈ Br k(t) → Br Xη . Since rM is even, AM ∈ Br(X).
+                                                                                    P
+       Let (Pv ) ∈ X(Ak )Brvert (X) , with projection (xv ) ∈ A1 (kv ). We know that v∈Ω AM (xv ) =
+                                         A
+0. For almost all places of k, X(kv ) −−M
+                                        → Br(kv ) is trivial.
+                                                                             P
+      Fix S as before plus places where some AM is not trivial on X(kv ). Now v∈S AM (xv ) =
+0. Fix xv ∈ kv for v ∈ S with this property. Note Xxv (kv ) 6= ∅. Suppose x ∈ OS is very
+close to xv for v ∈ S and the decomposition of rM (x) has all primes in TM split in KM /kM .
+Claim. For such x, Xx (Ak ) 6= ∅.
+Proof. The only places where it will fail to have a point are those of bad reduction. For
+v ∈ S, Xx (kv ) 6= ∅, as x is close to xv . For v ∈ TM , Xx (kv ) 6= ∅ since the two rational curves
+are defined. For v = vM , write
+           X                 X               X
+       0=        AM (x)v =       AM (x)v +        AM (x)v + AM (x)vM = 0 + 0 + AM (x)|vM
+              v∈Ω             v∈S            v∈TM
+
+the second because v splits in KM ; therefore the prime that is left over forces the prime vM
+to split in KM /kM , we again have points locally.                                          ¤
+                                                                                                      7
+
+       For the second part, we now need to control the Selmer groups uniformly in the family
+Ex , for x satisfying (∗), namely, x is very close to xv for v ∈ S, rM (x) decomposes into primes
+in S, TM primes splitting in KM /kM , and the Schinzel prime vM .
+                            S                     fx = S ∪ S TM ∪ S vM . We have
+       Let T = Tx = S ∪ M ∈M Tm , and Te = T
+                                                                    ordML                    2
+                                                                               M ∈M (Z/2Z)
+                   0       / h(OT )          / h(OT [u])               /                         /0
+
+                                                      evx
+                                                  ²                                 ²
+                                                                    ordML
+                               ²
+                                              / h(O e )                                    2
+                                                                               M ∈M (Z/2Z)
+                   0       / h(OT )                                        /                     /0
+                                                      T
+
+      Here
+                                                               e
+                                        Sel(Ex ) ⊂ I T ⊂ h(OTe ),
+                                                 x             ev
+and Nx the Cartesian square from h(OT [u]) −−→     h(OTe ). Then Sel(Ex ) is the kernel of a
+symmetric pairing on Nx .
+                                                                           f
+     We find two ‘constant’ subgroups Nx . First, we find N0 = h(OS ) ∩ I Tx , fixed because
+x very close to xv for v ∈ S. For the second pair:
+Proposition. For each M ∈ M, there exists a unique (aM , bM ) ∈ h(OS ) such that for any
+                                             f
+x with (∗), (aM rM (x)fM , bM rM (x)gM ) ∈ I Tx , and for each v ∈ S, its component in Vv belongs
+to Kv .
+      We define the subgroup
+                                      M
+                              A=             Z/2(aM rM (t)fM , bM rM (t)gM ).
+                                      M ∈M
+
+Note (fM , gM ) ∈ {(0, 1), (1, 0), (1, 1)}.
+Proposition.                                                                             
+                                                              M
+                          Nx = N0 ⊕ A ⊕ φ−1
+                                         x
+                                                                      (Wv /Wv ∩ Kv ) .
+                                                              v∈T \S
+
+Proposition. On N0 ⊕ A ⊂ Nx , the restriction of the pairing ex is independent of x.
+      To prove this, use various reciprocity laws.
+      To conclude, write N0 ⊕ A = B0 ⊕ B1 ⊕ B2 ⊂ h(k(t)), where B0 = E(F )[2] ⊕ Z/2Z(m),
+B0 ⊕ B1 = ker ex |N0 ⊕A , and B2 is the supplement. Use the assumption that ker δ 0 = (Z/2Z)3
+to get rid of B1 ...
+      Now use finiteness of X and Cassels-Tate pairing, dim(X(Ex )[2]) ≤ 1 implies X(Ex )[2] =
+0, so the rank is 1.
+A.3 de Jong: Rationally Connected Varieties
+Deformation theory
+      Let X be a nonsingular projective variety over C, and let C ,→ X be a one-dimensional
+closed subscheme. We have OX ⊃ IC , the ideal sheaf of C, and we assume that C is a local
+complete intersection, or what is equivalent, IC /IC2 is a locally free sheaf of OC -modules of
+rank dim X − 1. For example, this holds if X is a nodal curve.
+8
+
+Definition. The normal bundle of the curve C in X is
+                                     NC X = H omOC (IC /IC2 , OC ).
+     We have that
+                           OeHilbX ,[C] = C[[t1 , . . . , td ]]/(f1 , . . . , fr ),
+where d = h0 (C, NC X), and r ≤ h1 (C, NC (X)). We say that H 0 is the deformation space,
+and H 1 are the obstructions to deformation. In particular, the dimension the Zariski tangent
+space of the Hilbert scheme at [C] has T[C] HilbX = H 0 (C, NC X), and it has dimension at
+least χ(NC X), the Euler characteristic.
+Example. In the case where [f : C → P1 ] ∈ Mg (P1 , d), with C is a smooth genus g curve,
+and f having at worst simple branchings, then there are no obstructions to deformation and
+                                                M
+                            T[f ] Mg (P1 , d) =      TP1 |f (P ) .
+                                                         P ∈Ram(f )
+
+This is a canonical way of understanding how to move branch points on maps to P1 .
+
+A map of moduli spaces
+      Let f : X → P1 be a nonconstant morphism with X a nonsingular projective variety
+over C, and let C ⊂ X be a closed subscheme which is a smooth curve of genus g, such
+that the ramification of f |C is simple. In a (formal) neighborhood of [C ⊂ X], the spaces
+Mg (X, [C]) and the HilbX are the same. The map
+                                       Mg (X, [C]) → Mg (P1 , d)
+where d is the degree of f on C, induces on tangent spaces
+                                           L
+                            H 0 (C, NC X) → P ∈Ram(f |C ) TP1 |f (P )
+induced by the right vertical arrow in the diagram
+                     0      /T             / TX |C                    /N X       /0
+                                 C                                      C
+
+
+                                                 ²                       ²
+                     0      /T            / f ∗ T 1 |C       / (f ∗ T 1 |C)/TC   /0
+                                 C              P                     P
+
+If C is contained in the smooth locus of f , then the middle vertical map TX |C → f ∗ TP1 |C
+is surjective, hence also the right vertical map NC X → (f ∗ TP1 |C)/TC is also surjective as
+maps of sheaves. This will not give a surjection on global sections, however one has:
+Corollary. If C is contained in the smooth locus of f , and NC X is “sufficiently positive”,
+then the morphism
+                                 Mg (X, [C]) → Mg (P1 , d)
+analytically locally around [C ⊂ X] is a projection Ca+b → Cb .
+     One argues that the Hilbert scheme is smooth at the point [C ⊂ X] since one can twist
+by a small number of points and keep that the H 1 vanishes. In particular, the corollary
+implies that the morphism is surjective.
+     We are now ready to prove:
+Theorem (G, Harris, Starr). If k = k, char k = 0, then any rationally connected variety
+over k(C) for C a curve has a rational point.
+                                                                                                           9
+
+     Proof. Assume that (∗): all fibres of X → P1 are reduced.
+           Step 1. Take a general complete intersection C ⊂ X; it will be smooth, irreducible,
+     of say genus g and degree d. The condition (∗) implies that C is in the smooth locus and
+     C → P1 (by Bertini) has at worst simple branching.
+           Step 2. Choose a large integer N and choose general points c1 , . . . , cN ∈ C, and rational
+     curves Ci ⊂ X such that:
+  (i) C ∩ Ci = {ci };
+ (ii) Ci ⊂ f −1 (f (Ci ));
+(iii) NCi Xf (ci ) is very ample;
+(iv) Tci Ci ⊂ Tci Xf (ci ) is in general position.
+           Now let C new = C ∪ C1 ∪ · · · ∪ CN . The basic property is that NC new X|Ci ⊃ NCi X.
+     Moreover, NC new X|C ⊃ NC X with colength N and assumption (iv) gives that this is “gen-
+     eral”. This gives that the sheaf NC new X on C new is sufficiently positive.
+           Now deform this curve to a simply branched curve, and this gives the result; conclude
+     by the corollary.                                                                        ¤
+
+     Multiple fibres
+           We must deal with the case when (∗) fails. Suppose we have a family of varieties
+     X → P1 with fibres at t1 , . . . , tr irreducible of multiplicity m1 , . . . , mr . Since the curve must
+     intersect these fibres transversally, this must be preserved in any deformation, meaning that
+     the ramification index at ti will be divisible by mi .
+           In this case, the problem is: Mg (X, β) → Mg (P1 , d) cannot dominate. Instead, we
+                                          (t ,m )
+     consider consider the subset Zg,di i ⊂ Mg (P1 , d) consisting of stable maps f : C → P1 , C
+     of genus g, f of degree d, such that all ramification indices above ti are equal to mi .
+                                                                                                  (t ,m )
+           Now we have the additional problems: Which reducible curves are in Zg,di i ? And
+     perhaps dim Z is too small? To resolve both problems, enlarge the genus g (but not d) by
+     adding loops to C: join two points with a good rational curve. This allows you to break off
+     a component even in this case.
+     Conclusion
+           This is work with Jason Starr. What will guarantee the existence of a rational point
+     on a variety over a function field in two variables? Is there a geometric condition which
+     would be like rational connectedness in this case? This is too much to hope for, there are
+     many surfaces S with a nontrivial Brauer-Severi variety X → S. Maybe there are geometric
+     restrictions on the fibres X → S such that one obtains a rational section.
+           A good guess for this condition: demand that certain moduli spaces of rational curves
+     on the fibers are themselves rationally connected. For example, Starr and Harris proved that
+     for hypersurfaces X of degree d in Pn with d2 + d + 2 ≤ n, the moduli spaces of rational
+     curves of fixed degree on X are themselves rationally connected.
+     A.4 Graber: Rationally Connected Varieties
+     Introduction
+     Definition. A field K is quasi-algebraically closed (C1 ) if any polynomial F ∈ K[x0 , . . . , xn ]
+     with deg F ≤ n has a root in K.
+10
+
+      Any finite field is quasi-algebraically closed, as is any function field k(C) of a curve
+over an algebrically closed field. This implies that any Laurent series ring k[[t]] is C 1 .
+      These generalize to the following three possible definitions:
+Definition. A projective variety X is rationally connected (RC) if any two general points
+p, q ∈ X can be joined by a rational curve f : P1 → X.
+Definition. X is rationally chain connected (RCC) if any two general points p, q ∈ X can be
+joined by a chain of rational curves.
+Definition. X is separably rationally connected (SRC) if X is normal   L and there exists a
+rational curve f : P1 → Xsm such that f ∗ T X is ample, i.e. f ∗ T X =  O(di ), di > 0.
+Theorem. If X is smooth projective over C, then X is rationally connected (RC) if and only
+if X is rationally chain connected (RCC) if and only if X is separably rationally connected
+(SRC).
+      In characteristic zero, X a smooth hypersurface of degree d in Pn is rationally connected
+if and only if d ≤ n.
+      The main result we will consider is the following:
+Theorem (G, Harris, Starr). If k = k, char k = 0, then any rationally connected variety
+over k(C) for C a curve has a rational point.
+Remark. In characteristic p, the same is true for SRC. (de Jong, Starr)
+Theorem. Over k((t)), any rationally connected variety has a rational point.
+      This follows from the function field case. Geometrically, you can find a nonsingular
+integral model over k[[t]]; to find a section, it is equivalent to find a reduced component of
+the central fiber.
+Theorem (Ernault). If X/Fq is smooth, projective, and geometrically rationally chain con-
+nected, then X has a rational point.
+
+Proof, a Beginning
+       We now prove the theorem that an RC variety over k(C) has a rational point.
+       Choose an integral model f : X → B. First, we reduce to the case B ∼       = P1 . By
+restriction of scalars, have a map X → B → P1 ; the fibres of X → P1 are products of fibres
+of f , and the product of rationally connected varieties is rationally connected.
+       Next, choose a curve C ⊂ X which dominates P1 . Deform C and specialize until it
+breaks off a section. We have a map of moduli spaces
+                                             πf
+                             {curves in X} −→ {coverings of P1 }.
+The latter is built out the data of the branch points plus monodromy; fixing the genus of
+the curve and the degree of the cover, we know that this moduli space is irreducible. It is
+possible to degenerate any branched cover of P1 to a reducible cover with a section as one
+component. It is enough to show that this map πf on moduli spaces is surjective. Now it
+is just a matter of tracing the monodromy as the branch points move around (at least in
+characteristic zero). In characteristic p, it can also be done (look, for example, at P 1 → P1 ).
+                                                                                                11
+
+       To make all of this more precise, we look at stable maps. Given X a smooth projective
+variety over C, and given g ∈ N and β ∈ H2 (X, Z), we construct a space Mg (X, β) consisting
+of maps f : C → X such that C is a connected nodal curve of arithmetic genus g, f is a
+morphism, and f∗ (C) = β, together with a stability criterion.
+       This space Mg (X, β) is projective, and given any morphism f : X → Y , one has an
+induced map Mf : Mg (X, β) → Mg (Y, f∗ β) from C → X → Y . If Y = P1 , then Mg (P1 , d) is
+a compactification of the space of branched covers. We want to show that Mf is surjective.
+(We only need the coarse moduli space; in fact, at least in characteristic zero we have a
+Deligne-Mumford stack.)
+       When K is C1 , the bound d ≤ n is sharp. If K is not algebraically closed, then pick a
+finite extension K ⊂ L, and consider NL : L → K; this has a polynomial of degree [L : K]
+with no nontrivial zeros; therefore it is impossible to get a larger class of hypersurfaces.
+       Is the notion of rational connectivity sharp? In the case of finite V
+                                                                           fields, we also get: if
+X/Fq smooth projective, and either H i (X, OX ) = 0 for i > 0 or H 0 (X, i ΩX ) = 0 for i > 0,
+then X has a rational point. (These two are equivalent in characteristic zero.) The analog
+over function fields is false. In particular, there exists a family X of Enriques surfaces over
+k(C) (C is a curve over C) which has no section.
+       The general statement: Let π : X → M be a proper morphism of varieties over C.
+Suppose that for all maps f : C → M , there exists a pullback fe : C → X. It would suffice
+for there to exist Z ⊂ X dominating M such that the general fibre of π|Z is rationally
+connected. It is a theorem that this is necessary and sufficient (G, Harris, Mazur, Starr).
+A.5 Harari 1: Weak approximation on algebraic varieties (intro-
+duction)
+      Let k be a number field, and let kv be the completion of k at v. Let Ωk be the set of
+all places of k.
+Basic Facts
+Theorem (Weak Approximation). Let Σ ⊂ Ωk be a finite set of places of k. Let αv ∈ kv for
+v ∈ Σ. Then there is an α ∈ k which is arbitrarily close to αv for v ∈ Σ.
+      This is a refinement of the ChineseQremainder theorem. One reformulation of it is as
+follows: the diagonal embedding k ,→ v∈Ωk kv is dense, the product equipped with the
+product of the v-adic topologies.
+                                                       Q
+      We have the slight refinement: P1 (k) is dense in v P1 (kv ).
+Definition. Let X/k be a geometrically integral algebraic variety. Then X satisfies weak
+approximation if given Σ ⊂ Ωk a finite set of places and Mv ∈ X(kv ) for v ∈ Σ, there exists
+a k-rational point M ∈ X(k) which is arbitrarily close to Mv for v ∈ Σ.
+                           Q
+      Care must be taken if v∈Ωk kv is empty; by convention, we will say that in this case
+X satisfies weak approximation even if X(k) is empty.
+Q We see weak approximation is equivalent to the statement that X(k) is dense in
+  v X(kv ).
+                                       Q
+Remark. If X is projective, X(Ak ) = v X(kv ) and weak approximation is equivalent to
+strong approximation, namely, X(k) is dense in X(Ak ) for the adelic topology. (Here,
+X(kv ) = X (Ov ), X → Spec Ok a flat and proper model of X.)
+    12
+
+          Let X, X 0 be smooth. Assume that X is k-birational to X 0 . Then X satisfies weak
+    approximation if and only if X 0 satisfies weak approximation (a consequence of the implicit
+    function theorem for kv ).
+         We can speak about weak approximation for a function field k(X): this means that
+    weak approximation holds for any smooth (projective) model of X.
+    Example. The spaces A1k , P1k , and more generally, Ank , Pnk , satisfy weak approximation, as does
+    any k-rational variety, e.g. a smooth quadric with a k-point.
+
+    More Examples
+    Theorem. Let Q ⊂ Pnk a (smooth) projective quadric. Then Q satisfies weak approximation.
+         Here, we do not assume that there is a k-rational point. This is the difficult part, the
+    Hasse-Minkowski theorem: if Q(kv ) 6= ∅ for all v, then Q(k) 6= ∅.
+         There are several results for complete intersections:
+         A. A smooth intersection of 2 quadrics X ⊂ Pnk (Colliot-Thélène, Sansuc, Swinnerton-
+            Dyer 1987) satisfies weak approximation if n ≥ 8 or if n ≥ 4 and there exists a pair
+            of skew-conjugate lines on X.
+         B. Châtelet surfaces: y 2 −az 2 = P (x), where deg P = 4, a ∈ k ∗ −k ∗2 . If P is irreducible,
+            then X (a smooth projective model) satisfies weak approximation. (Uses descent
+            method.)
+         C. The circle method: X ⊂ Pnk a smooth cubic hypersurface, then weak approximation
+            holds for n ≥ 16 (Skinner 1997).
+          There are also results for linear algebraic groups:
+         A. If T is a k-torus, and dim T ≤ 2, then T satisfies weak approximation beacuse T is
+            k-rational (Voskreseskii).
+         B. If G is a semi-simple, simply connected linear k-group, then G satisfies weak approx-
+            imation (Kneser-Platonov, around 1969).
+    Conjecture. A smooth intersection of 2 quadrics in Pn for n ≥ 5 satisfies weak approxima-
+    tion.
+          A smooth cubic hypersurface (of dimension at least 3) satisfies weak approximation.
+
+    The Fibration Method
+    Theorem. Let p : X → B be a projective, flat surjective morphism (with X smooth, to
+    simplify). Assume that
+  (i) B is projective and satisfies weak approximation;
+ (ii) Almost all k-fibers of p satisfy weak approximation; and
+(iii) All fibers of p are geometrically integral.
+    Then X satisfies weak approximation.
+         (Here almost all means on a Zariski-dense open subset).
+         There are refinements when B is the projective space : you can accept degenerate fibers
+    on one hyperplane (using the strong approximation theorem for the affine space).
+                                                                                                    13
+
+      Applications: (i) Hasse-Minkowski theorem, from four variables to five; (ii) intersection
+of 2 quadrics in Pn for n ≥ 8 (here one uses a fibration in Châtelet surfaces) and n ≥ 5 with a
+pair of skew conjugate lines (to go from n = 4 to n ≥ 5 by induction); (iii) cubic hypersurfaces
+of dimension ≥ 4 with 3 conjugate singular points (Colliot-Thélène, Salberger).
+
+Proof. Start with Mv a smooth kv -point for any v on X. Project p(Mv ) = Pv ∈ B(kv ).
+Use weak approximation on B, so can approximate Pv by P ∈ B(k) for v ∈ S. Consider
+the fiber p−1 (P ) = XP ⊂ X; XP has a kv -point Mv0 close to Mv for v ∈ Σ by the implicit
+function theorem. To apply weak approximation on XP , we check that XP (kv ) 6= ∅ for
+v 6∈ Σ; this is OK if Σ is sufficiently large by the Weil estimates : here we use that all
+k-fibers are geometrically irreducible, which implies that the reduction mod. v of X P also is
+for a sufficiently large v (independent of P ).                                             ¤
+
+Some Counterexamples
+      Cubic surfaces: the surface 5x3 + 9y 3 + 10z 3 + 12w3 = 0 fails the Hasse Principle
+(Cassels, Guy).
+      Certain intersections of two quadrics in P4k (see above).
+      Looking (over the rationals) at y 2 + z 2 = f (x)g(x), deg(f ) = deg(g) = 2, gcd(f, g) = 1,
+it is possible to construct counterexamples to weak approximation. The idea: K = Q(i),
+Kv = K ⊗Q Qv ; there exists a finite set Σ0 such that if v 6∈ Σ0 and Mv ∈ X(Qv ), then f (Mv )
+is a norm of Kv /Qv (use a computation with valuations). If you find Σ ⊃ Σ0 and v0 ∈ Σ
+such that there exists Mv0 such that f (Mv0 ) is not a local norm and v 6= v0 there exists
+Mv such that f (Mv ) is a local norm, then there is no weak approximation. (Think: global
+reciprocity of class field theory.)
+      For tori, let K/k be a biquadratic extension, then there are counterexamples like T :
+NK/k (x1 w√1 + · · · + x4 w4 ) = 1, where w1 , . . . , w4 is a basis of K/k; this holds e.g. for k = Q,
+K = Q(i, 5).
+
+Theorem (Minchev). Let X be a projective, smooth k-variety, assume that π1 (X) 6= 0,
+where X = X ⊗ k, k an algebraic closure. Assume X(k) 6= ∅, then X does not satisfy weak
+approximation.
+
+Sketch of proof. Enlarge the situation over Spec Ok,Σ0 where Σ0 is a finite set of places. By
+assumption, there is a nontrivial geometrically connected covering Y → X, which for models
+gives Y → X . Take an arbitrary M ∈ X(k), the fibre YM = Spec L where L is an étale
+algebra L = k1 × · · · × kr ; each ki is unramified outside Σ0 . Only finitely many ki are possible
+(by Hermite’s Theorem). Find v 6∈ Σ0 such that v is totally split for each ki (by Cebotarev’s
+Theorem); find Mv such that the fiber of Y at X for Mv is not (this is possible because Y is
+geometrically connected, via a “geometric” Cebotarev-like Theorem). Then Mv cannot be
+approximated by a rational point M .                                                             ¤
+
+A.6 Harari 2: Weak approximation on algebraic varieties (coho-
+mology)
+     Let X be a smooth, geometrically integral variety over k (a number field), and suppose
+                                                                 Q
+that X is projective. We denote by X(k) the closure of X(k) in v∈Ωk X(kv ) = X(Ak ).
+    14
+
+          Here our aim is to: (i) explain the counterexamples to weak approximation; (ii) find
+    ‘intermediate’ sets E between X(k) and X(Ak ); (iii) in some cases, prove that E = X(k).
+    General setting
+           Let G/k be an algebraic group (usually linear, but not necessarily connected, e.g. G
+    finite). If G is commutative: define H i (X, G) the étale cohomology groups (i = 1, 2; the
+    cohomological dimension of a number field forgetting real places makes the higher coho-
+    mology groups uninteresting). In general, we have only the pointed set H 1 (X, G) (defined
+    by Cech cocycles for the étale topology). If X = Spec k, H 1 (X, G) = H 1 (Γ, G(k)), where
+    Γ = Gal(k/k). If G is linear, H 1 (X, G) corresponds to G-torsors over X up to isomorphism.
+           Take f ∈ H i (X, G), define
+                          ©                                            Q              ª
+               X(Ak )f = (Mv ) ∈ X(Ak ) : (f (Mv )) ∈ img(H i (k, G) → v H i (kv , G)) .
+
+         Obviously X(k) ⊂ X(Ak )f . We will see that in many cases X(k) ⊂ X(Ak )f
+    Example.
+(a) Br X = H 2 (X, Gm );
+                                                           \
+                                X(k) ⊂ X(Ak )Br =                  X(Ak )f .
+                                                         f ∈Br X
+
+    (Indeed the Brauer group of the ring of integers of kv is zero). X(Ak )Br is the Brauer-Manin
+    set of X. Manin showed in 1970 that for a genus one curve with finite Tate-Shafarevich
+    group, the condition X(Ak )Br 6= ∅ implies the existence of a rational point.
+(b) Let f : Y → X be a Galois, geometrically connected, nontrivial étale covering with group
+    G. Then f ∈ H 1 (X, G), where G is considered as a constant group scheme. Then X(k) ⊂
+    X(Ak )f (via Hermite’s Theorem). It is possible to find (Mv ) 6∈ X(Ak )f , which implies
+    Minchev’s result that X does not satisfy weak approximation.
+    Remark. If X is rational, then Br X/ Br k = H 1 (k, Pic X) is finite, where X = X ×k k. Then
+    X(Ak )Br is ‘computable’.
+    Theorem (H, Skorobogatov). If G is linear and f ∈ H 1 (X, G), then X(k) ⊂ X(Ak )f (and
+    X(Ak )f is “computable”).
+
+    Abelian descent theory
+         This was developed by Colliot-Thélène and Sansuc, and recently completed by Sko-
+    robogatov.
+    Theorem. Define
+                                                      \
+                                    X(Ak )Br1 =               X(Ak )f
+                                                   f ∈Br1 X
+
+    where Br1 X = ker(Br X → Br X). Assume that X(Ak )Br1 6= ∅. Then:
+(a) We have
+                                                      \
+                              X(Ak )Br1 =                              X(Ak )f .
+                                                  f ∈H 1 (X,S)
+                                            S of multiplicative type
+                                                                                                        15
+
+(b) Assume further that Pic X is of finite type, set S0 such that Sb0 = Pic X; then there exists a
+    torsor f0 : Y → X under S0 (a universal torsor, i.e. “as nontrivial as possible”) such that
+                                           X(Ak )Br1 = X(Ak )f0 .
+           This Theorem is difficult, see Skorobogatov’s book for a complete account on the
+    subject. One of the ideas is to recover the Brauer group of X (mod. Br k) making cup-
+    products [Y ] ∪ a, where a ∈ H 1 (k, Sb0 ) and [Y ] is the class of Y in H 1 (X, S0 ).
+           Now assume that X is a rational variety, so X(Ak )Br = X(Ak )Br1 (since Br X = 0).
+                                                                     S0
+    Assume X(Ak )Br 6= ∅. Consider a universal torsor f : Y −→           X. If σ ∈ H 1 (k, S0 ), can define
+    f σ : Y σ → X where
+                                     [Y σ ] = [Y ] − σ ∈ H 1 (X, S0 ).
+    Then                                            [
+                                  X(Ak )f =                f σ (Y σ (Ak )).
+                                                 σ∈H 1 (k,S0 )
+
+        If you can prove that the torsors Y σ satisfy weak approximation, then X(k) = X(Ak )f =
+    X(Ak )Br , so the Brauer-Manin obstruction is the only one.
+    Example. There are many examples of this:
+(a) Châtelet surface: y 2 − az 2 = P (x), a ∈ k ∗ /k ∗2 , deg P = 4. Colliot-Thélène, Sansuc,
+    Swinnerton-Dyer showed that X(k) = X(Ak )Br , so the Brauer-Manin obstruction is the
+    only one. If P is irreducible, then Br X/ Br k = 0, so X satisfies weak approximation.
+    If P is reducible, we can have a counterexample to weak approximation, e.g. y 2 − az 2 =
+    f1 (x)f2 (x), where deg f1 = deg f2 = 2, gcd(f1 , f2 ) = 1, in some cases there is an obstruction
+    given by the Hilbert symbol f = (a, f1 ).
+(b) Conic bundles over P1 with at most 5 degenerate fibres. Results of Colliot-Thélène, Salberger,
+    Skorobogatov covered at most 4. In the case of 5, the existence of a global rational point
+    is easy to show, so the only problem is weak approximation, and which is due to Salberger,
+    Skorobogatov 1993 (using descent and K-theory).
+    Theorem (Sansuc 1981). Let G be a linear connected algebraic group over k, X a smooth
+    compactification of G, then the Brauer-Manin obstruction is the only one:
+                                             X(k) = X(Ak )Br .
+
+    Back to fibration methods
+         If p : X → B is a fibration, we saw that if the base and the fibres satisfy weak
+    approximation, under certain circumstances then X satisfies weak approximation.
+         Here we consider p : X → P1 , a projective, surjective morphism (and the generic fibre
+    Xη is smooth). Assume also that all fibres are geometrically integral (can do with all but
+    one because of strong approximation on the affine line).
+    Question. If XP (k) = XP (Ak )Br for almost all fibres XP , P ∈ P1 (k), can you prove that
+    X(k) = X(Ak )Br ?
+    Theorem (H 1993, 1996). Yes, X(k) = X(Ak )Br if you assume that:
+(i) Pic Xη is torsion-free, where Xη = Xη ×K K, K = k(η); e.g. Xη rational, or smooth complete
+    intersection of dimension at least three.
+    16
+
+(ii) Br Xη is finite.
+          Two ideas:
+        (a) Br Xη / Br K → Br XP / Br k is an isomorphism for many k-fibres XP (‘many’ in the
+            sense of Hilbert’s irreducibility theorem).
+        (b) If α1 , . . . , αr are elements of Br Xη , assume αi ∈ Br U , U ⊂ X an open subset. Use
+            the ‘formal lemma’: Take (Mv ) ∈ X(Ak )Br , Mv ∈ U , Σ0 a finite set of places; then
+            there exists (Pv ) ∈ X(Ak ), Pv ∈ U , Σ ⊃ Σ0 finite such that:
+                 1. P  Pv = Mv for v ∈ Σ0 ;
+                 2. v∈Σ jv (αi (Pv )) = 0 for 1 ≤ i ≤ r, where jv : Br kv → Q/Z is the local
+                       invariant.
+          Applications: (i) Recover Sansuc’s result just knowing the case of a torus; (ii) If you
+    know that X(k) = X(Ak )Br for X a smooth cubic surface, then by induction the same holds
+    for hypersurfaces, so if dim X ≥ 3, then X satisfies weak approximation.
+    Nonabelian descent
+        If G/k is a finite but not commutative k-group, it is possible that for f ∈ H 1 (X, G),
+    X(Ak )f 6⊃ X(Ak )Br .
+    Theorem (Skorobogatov 1997). There exists X/Q a bi-elliptic surface such that X(Q) = ∅,
+    X(AQ )Br 6= ∅.
+           Actually: X(AQ )f = ∅ for some f ∈ H 1 (X, G), G(Q) = (Z/4Z)2 o Z/2Z.
+           There are similar statements for weak approximation (H 1998), e.g. take X/k any
+    bi-elliptic surface, X(k) 6= ∅, then X(k) ( X(Ak )Br .
+           Nevertheless the Brauer-Manin condition is quite strong, as shows the following result :
+    Theorem (H 2001). We have:
+(a) If G/k is a linear connected k-group, f ∈ H 1 (X, G), then
+                                           X(Ak )Br ⊂ X(Ak )f .
+(b) If G is any commutative k-group, f ∈ H 2 (X, G), then
+                                           X(Ak )Br ⊂ X(Ak )f .
+           Open question : is the first part of this theorem still true for a G which is an extension
+    of a finite abelian group by a connected linear group ? My guess is “no”.
+    A.7 Hassett 1: Equations of Universal Torsors
+    Cox Rings
+         This follows an exposition due to Hu and Keel (Yi Hu and Seán Keel, Mori dream
+    spaces and GIT, Michigan Math. J., 48 (2000), 331-348). Let K = C, and X a projective
+    smooth variety over K. Let L1 , . . . , Lr be line bundles on X. If ν = (n1 , . . . , nr ) ∈ Nr , then
+    Lν = L⊗n
+           1
+               1
+                 ⊗ · · · ⊗ L⊗nr
+                                r
+                                  .
+         We have a multiplication
+                             L             map Γ(X, Lν1 ) ⊗ Γ(X, Lν2 ) → Γ(X, Lν1 +ν2 ). We have a ring
+    R(X, L1 , . . . , Lr ) = ν∈Nr Γ(X, Lν ), which is often not finitely generated.
+         If L1 , . . . , Lr are (semi)ample (a semiample bundle is a pullback of an ample bundle),
+    then R(X, L1 , . . . , Lr ) is finitely generated.
+                                                                                                       17
+
+    Definition. Let X be smooth and projective, and assume Pic(X) ∼
+                                                                  = Zr (e.g. a Fano variety).
+    The Cox ring Cox(X) is Cox(X) = R(X, L1 , . . . , Lr ) where:
+ (i) L1 , . . . , Lr is a basis for Pic(X);
+(ii) Every effective divisor D can be written D = n1 [L1 ] + · · · + nr [Lr ] for nj ≥ 0.
+    Remark.
+A. Cox(X) is (multi)graded by Pic(X); for ν ∈ Pic(X), there is a ν-graded piece Cox(X) ν . This
+   gives a natural action by TN S , the Neron-Severi torus, t(ξ) = χv (t)ξ, t ∈ T , χv ∈ X ∗ (TN S )
+   corresponding to v ∈ Pic(X).
+B. Graded pieces which are nonzero are in one-to-one correspondence with effective divisor
+   classes of X.
+C. Definition does not depend on choice of {Lj }; R(X, L1 , . . . , Lν ) ≃ R(X, M1 , . . . , Mv ) is
+   natural up to the action of the Neron-Severi torus.
+
+          The Hilbert function h(ν) = dim Cox(X)ν = χ(OX (v)) if ν has no higher cohomology,
+    so is a ‘polynomial in ν’. For example, if ν ∈ KX + (ample cone), Kodaira vanishing implies
+    that h(ν) = χ(OX (ν)).
+          If −KX is nef (D is nef if D · C ≥ 0 for every curve C) and big (D is big if D is
+    in the interior of the effective cone), for example if X is Fano, then h(ν) = χ(O(ν)) for
+    all ν nef and big. Our basic strategy: use knowledge of the Hilbert function to read off
+    the structure of Cox(X). There is hope that the ring will be finitely generated from this
+    polynomial expression.
+    Finite Generation
+         What are necessary conditions for Cox(X) to be finitely generated? (Part of a theorem
+    of Hu, Keel which give necessary and sufficient conditions.) We must have:
+           A. The effective cone of X should be finitely generated. (It is an open problem if the
+              effective cone of a Fano variety is finitely generated, either in the sense that the closed
+              cone is rational polyhedral or the associated monoid is finitely generated.)
+           B. The nef cone is finitely generated.
+            There are also sufficient conditions:
+           A. Cox(X) ∼ = k[xσ ] for σ ∈ Σ(1) if X is a toric variety.
+           B. If X is (log) Fano of dimension ≤ 3. Then Cox(X) is finitely generated (Shokurov).
+    Conjecture (Hu, Keel). If X is (log) Fano, then Cox(X) is finitely generated.
+    Remark. The universal torsor T ⊂ Spec Cox(X) as an explicitly defined open subset, if
+    Cox(X) is finitely generated.
+
+    E6 Cubic Surface
+          This is joint work with Tschinkel. The E6 cubic surface S is defined by the equation
+    xy + yw2 + z 3 = 0 embedded in P3 ; it contains a unique line ` : y = z = 0, and a unique
+       2
+
+    singularity P : x = y = z = 0.
+          Analysis of the singularity: In affine coordinates, we have Y 2 + Y W 2 + Z 3 = 0. We
+    rewrite this as (Y + W 2 /2)2 − (1/4)W 4 + Z 3 = 0, and up to analytic equivalence, this is
+    Y 02 + W 04 + Z 3 = 0, which is the normal form of an E6 singularity.
+18
+
+      The resolution β : Se → S has six −2 exceptional curves in an E6 -diagram, and Pic(S)
+                                                                                         e
+has intersection form
+                              F1 F2 F3 ` F4 F5 F6
+                              −2 0       1   0    0    0    0
+                               0 −2 0        0    0    0    1
+                               1    0 −2 0        0    0    1
+                               0    0    0 −1 1        0    0
+                               0    0    0   1 −2 1         0
+                               0    0    0   0    1 −2 1
+                               0    1    1   0    0    1 −2
+with numbering as
+                                          2
+
+
+                           1       3       6                   5       4         `.
+      The inverse of this matrix is given by
+                                     A1 A2 A3              L A4 A5 A6
+                                     0 1 1                 2 2 2 2
+                                     1 1 2                 3 3 3 3
+                                     1 2 2                 4 4 4 4
+                                     2 3 4                 3 4 5 6
+                                     2 3 4                 4 4 5 6
+                                     2 3 4                 5 5 5 6
+                                     2 3 4                 6 6 6 6
+      The inverse proves that:
+Proposition. The effective cone of X is generated by {Fj , `}; the nef cone is generated by
+{Aj , L}.
+      We have                           M
+                             e =
+                         Cox(S)                    Γ(OSe(n1 F1 + · · · + n6 F6 + n` `));
+                                      n1 ,...,n6
+
+we choose ξj generating Γ(OSe(Fj )). (Descent to k involves rescaling these ξj such that the
+relations are defined over k.)
+      We have k[ξ1 , . . . , ξ6 , ξ` ] ,→ Cox(X), but this is not surjective. We need additional
+generators. We let ξ α(j) ∈ Γ(O(Aj )); since A1 is semiample, we have dim Γ(O(Aj )) = 2 by
+Riemann-Roch, and Se → P1 is a conic bundle. Then
+                                          Γ(O(A1 )) = hξ α(1) , τ1 i.
+Similarly, dim Γ(O(A2 )) = 3, so we have an additional generator
+                                  Γ(O(A2 )) = hξ α(2) , ξ α(2)−α(1) τ1 , τ2 i.
+Since dim Γ(O(A` )) = 4, we have a fourth generator
+                           Γ(O(A` )) = hξ α(`) , ξ α(`)−α(1) τ1 , ξ α(`)−α(2) τ2 , τ` i.
+Fact. We have a surjection C[ξ1 , . . . , ξ` , τ1 , τ2 , τ` ] → Cox(X).
+                                                                                                19
+
+     Now we look for relations among these generators. By the Hilbert function, we know
+that dim Γ(O(A6 )) = 7, but we have 8 elements of degree α(O) in the polynomial ring:
+                              {ξ α(6) , ξ α(6)−α(1) τ1 , . . . , ξ α(6)−α(`) τ` }.
+      Since O(A` ) = OS (+1), Y = ξ α(`) , Z = ξ α(`)−α(1) τ1 , W = ξ α(γ)−α(2) τ2 after renormal-
+ization, so the original equation Y 2 + Y W 2 + Z 3 = 0 gives the relation
+                               F : τ` ξ`3 ξ42 ξ5 + τ22 ξ2 + τ13 ξ12 ξ3 = 0.
+With this,
+                                 e = C[ξ1 , . . . , ξ` , τ1 , τ2 , τ` ]/hF i;
+                             Cox(S)
+by a computation of the Hilbert function of the quotient, there are no more relations.
+     This method should also work for other very singular cubic surfaces.
+A.8 Hassett 2: Weak approximation for function fields
+Weak Approxmation
+     We start with the diagram:
+                                           X                   /X
+
+
+                                             ²                  ²
+                                        Spec F            / Spec OF
+
+where X(F ) = X (OF ), X smooth projective over a number field, and X an integral model
+of X.
+Definition. The F -rational points of X satisfy weak approximation if for each {v j } a finite
+set of places, with completions Fvj , and open sets Uj ⊂ X(Fvj ), there exists an x ∈ X(F )
+with x ∈ Uj for each j.
+     Note that for nonarchimedean places, pj ∈ Spec OF , Fpj = OF /pj , then we have
+reduction maps
+                                           ρj,n
+                                  [
+                      X(Fvj ) = X(O F,vj ) −−→ X(OF /pn+1
+                                                      j   ) 3 sj .
+The basic open subsets ρ−1                                      n+1
+                        j,n (sj ) have ‘fixed reduction modulo pj   ’.
+Remarks. By Hensel’s lemma, xj ∈ X(Fpj ) gives a point in X(Fvj ) if xj is smooth.
+    If X is regular, then if xj ∈ X(Fpj ) comes from a point in X(Fvj ), then xj is regular.
+
+Function field analog
+     Now consider the diagram
+                                                 X             /X
+
+
+                                                 ²               ²
+                                            Spec F             /B
+
+where B is a smooth projective curve over C, F = C(B), and X a smooth projective variety
+over F with a regular projective model X → B. Fix a finite set {bj } ⊂ B, xj ∈ Xbj smooth
+                                                                      n +1
+points, and local Taylor series data at these points, sj ∈ X (OB,bj /mbjj ), sj (bj ) = xj .
+   20
+
+   Definition. X satisfies weak approximation if for any such set of data there exists s : B → X
+                           n +1
+   so that s = sj (mod mbjj ).
+   Remarks.
+A. X satisfies weak approximation if and only if for each regular model X1 → X , and points
+   {bj } ⊂ B and smooth points x0j ∈ (X1 )bj , there exists a section s : B → X1 with s(bj ) = x0j .
+B. If X1 , X2 are models of X, then X1 satisfies weak approximation if and only if X2 does, so it
+   makes sense to say X satisfies weak approximation.
+C. F -rational varieties satisfies weak approximation.
+   Rationally connected case
+        Let X → F = C(B) be rationally connected, with model X → B. Here we have the
+   theorem:
+   Theorem (Graber, Harris, Starr; Kollár). There exists a section s : B → X . Choose points
+   {bj } ⊂ B such that the fibres Xbj are smooth, and choose points xj ∈ Xbj ; then there exists
+   a section s : B → X with s(bj ) = xj .
+          This will not give Taylor series data, because once one blows up to get the second-order
+   Taylor series, the fibres are no longer irreducible.
+          All the fibers of X → B are rationally chain connected, except for the degenerate fibers
+   (e.g., reducible fibers), which might have to go through singular points. Also, for example,
+   the cone over an elliptic curve x3 + y 3 + z 3 = 0 is rationally chain connected but is not itself
+   rationally connected.
+   Problem. Let X/F be a smooth projective variety, F = C(B), B a curve. If X is rationally
+   connected, show that X satisfies weak approximation.
+   Effectivity
+   Problem. Given bj ∈ B, Djk ∈ Xbj of multiplicity one, does there exist an effective curve
+   class [M ] such that [M ] · Xb = m, and [M ] · Dij = m.
+         Let Y be a projective smooth variety over C. We have N S(Y ) ⊂ H 2 (Y, Z), the Néron-
+                                                                             1
+   Severi group, and N1 (Y ) ⊂ H2 (Y, Z), the 1-cycles. We have the cone N E (Y ) ⊂ N S(Y )R ,
+   the cone of effective divisors; we also have the cone of moving curves Mov 1 (Y ) ⊂ N1 (Y )R ,
+   consisting of cycle classes [M ] such that M is irreducible and passes through the generic
+   point of Y .
+         Given an effective divisor D and a moving class M , then D · M ≥ 0.
+                        1
+         Note that N E (Y ) ⊂ Mov1 (Y )∗ , the dual cone.
+                                                           1
+   Theorem (Demailly, Peternell). Equality holds, N E (Y ) = Mov1 (Y )∗ .
+                                                                1
+        As an application, this allows us to find [M ] ∈ Mov (X ) with the desired intersection
+   properties.
+   A.9 Heath-Brown: Rational Points and Analytic Number Theory
+        Analytic number theory is often quite useful in questions on rational points on varieties.
+   For example, using the circle method, weak approximation gives formulas of the type
+                                        N (B) ∼ CB k (log B)j
+                                                                                               21
+
+where                                                Y
+                                          C = σ∞              σp .
+                                                      p
+
+     What kind of asymptotic formulae can we expect when weak approximation fails?
+     Look at
+                                 L1 (x1 , x2 )L2 (x1 , x2 ) = x23 + x24
+                                 L3 (x1 , x2 )L4 (x1 , x2 ) = x25 + x26
+where Li (x1 , x2 ) are linear forms over Z. This is the intersection of two quadrics in P5 . In
+this case, the Hasse principle may fail, and weak approximation may fail. We take
+                                H(x1 , . . . , x6 ) = max(|x1 |, |x2 |).
+     We have the following “theorem”: There is a modification of the Hardy-Littlewood
+formula in which                           Y
+                                   C = κσ∞     σp
+                                                          p
+
+where κ ∈ [0, 2], κ vanishes precisely when the Hasse principle fails, κ is built from infor-
+mation at a finite number of ‘bad’ places, and κ ∈ Q is easily calculable. To do this, use a
+“descent” process followed by variation of the circle method.
+Theorem (H-B, Moroz). Let a, b ∈ N be coprime, with a ≡ ±2, ±3 (mod 9). Then the
+surface
+                                 x31 + 2x32 + ax33 + bx34 = 0
+has a nontrivial rational point.
+      To prove this, there are two ingredients. First, a result of Satgé: x31 + 2x32 = p has a
+rational point if p is prime, p ≡ 2 (mod 9) (proved by Heegner point construction). Second,
+ax33 + bx34 takes infinitely many prime values 2 (mod 9).
+      In the other direction, analytic number theorists are often interested in rational points
+on varieties. We take the counting function
+                  N (F ; B) = #{F (x1 , . . . , xn ) = 0 : max |xi | ≤ B, x ∈ Zn }.
+For instance, take F (x) = a1 x31 + · · · + an x3n ; there exists an asymptotic formula n ≥ 8
+(Vaughan). In the case n = 7, analytic methods establish a local-global principle, but not
+an asymptotic formula. To handle this case, we would want:
+Conjecture. We have
+                                          N (F0 ; B) ¿ B θ
+for some constant θ < 7/2, where
+                             F0 (x) = x31 + x32 + x33 − x34 − x35 − x36 .
+     This is known for any θ > 7/2, and conjectured to be true for any θ > 3, so it is
+reasonable to expect.
+     What about N (F0 , B) for F0 = xd1 + xd2 + xd3 − xd4 − xd5 − xd6 ? We can show θ < 7/2 for
+d ≥ 24. This variety has lines in trivial planes of the type x1 = x4 , x2 = x5 , x3 = x6 , and no
+other lines if d ≥ 5; what other quadric or low degree curves can be found?
+22
+
+Proposition (Green 1975). Any curve of genus 0 or 1 in F0 = 0 has xi /xj constant for
+some i, j, as soon as d ≥ 25.
+     (Here 25 = (6 − 1)2 .) This involves meromorphic functions and Nevanlinna theory.
+Question. To what extant can one reduce the number 25 for quadratic curves?
+Proposition (Davenport 1963). Any cubic form F (x) ∈ Z[x] in n ≥ 16 variables has a
+nontrivial integer zero.
+     This applies to an arbitrary cubic form; there is a better result for smooth forms with
+n ≥ 9. Define a matrix J(X) with entries
+                                                   ∂2F
+                                       J(X)ij =
+                                                  ∂xi ∂xj
+and Vm = {x : rk J(x) ≤ m} ⊂ Pm−1 . Assume that F (x) = 0 has no nontrivial rational
+point; then any component C of Vm which has a rational point has dim C ≤ m − 1.
+Question. What about components C without a rational point?
+       Vinogradov’s mean value theorem refers to the counting function of the variety defined
+by the equations
+                                    xj1 + · · · + xjs = y1j + · · · + ysj
+for 1 ≤ j ≤ k, V (k, s) ⊂ P2s−1 , count 0 < xi , yi ≤ B. This is a cone with vertex (1 : · · · :
+1; 1 : · · · : 1).
+       One can easily show N (B) À B s , B 2s−k(k+1)/2 for all s, k; if k ≥ s then x is a permu-
+tation of y, N (B) ∼ s!B s . In fact, N (B) ∼ cB s for s = k + 1 (Vaughan, Wooley).
+       For s ≥ s0 (k) ∼ k 2 log k, we have N (B) ∼ cB 2s−k(k+1)/2 .
+Question. Can we find how N (B) behaves for ‘in-between’ values?
+     Applications: Exponential sums, zero-free region for ζ(s) and the error term in the
+prime number theorem. So this question has several far-reaching implications!
+Question. Can one prove N (B) ∼ cB s for k = 4, s = 6? If L is a linear space of projective
+dimension `, and C ⊂ V (4, 6) ∩ L, such that C is not contained in the subset of points where
+x is a permutation of y, is dim C ≤ (2` − 1)/3?
+
+A.10 Mazur: Families of rationally connected subvarieties
+Introduction
+      This is joint work with Graber, Harris, and Starr.
+      Throughout, we let k be any finite field and K a field of transcendence degree 1 over C.
+We have two classical results, due to Chevalley-Warning and Tsen, for k and K, respectively:
+a hypersurface of low degree has a rational point; a hypersurface of low degree X is one with
+deg X ≤ dim X + 1.
+      Inspired by these theorems, one (i.e. Artin) defines a field F to be quasi-algebraically
+closed if every hypersurface of low degree over F has a F -rational point. In view of resent re-
+sults due to Kollár, Kollár-Miyaoka-Mori, and Graber-Harris-Starr, we ask similar questions
+not for hypersurfaces but for certain other classes of varieties.
+                                                                                                23
+
+      We generalize the notion of hypersurfaces of low degree to rationally connected varieties
+over C which are projective and smooth: a variety X is rationally connected if for any two
+points p, q ∈ X, there exists a rational curve C ⊂ X with p, q ∈ C. Rationally connected
+varieties are closed under birational transformation, products, domination (if X → Y is
+dominant, and X is rationally connected, then Y is rationally connected), and specialization.
+This is a much better class of varieties than, say, rational varieties (consider the difficulty in
+determining which cubic 4-folds are rational).
+      There is another candidate for a generalization of hypersurfaces of low degree: a variety
+X over F is O-acyclic if                         (
+                                                   1, i = 0
+                                  hi (X, OX ) =
+                                                   0, i > 0.
+Rationally connected varieties are O-acyclic.
+      The only rationally connected curves are rational curves; the only rationally connected
+surfaces are rational surfaces. However, there are O-acyclic surfaces which are not rational,
+e.g. Enriques surfaces.
+Theorem. If X is a smooth hypersurface over C, then it is equivalent for X to be of low
+degree, rationally connected, and O-acyclic.
+Theorem (Generalized Chevalley-Warning; Katz). Any O-acyclic variety over k has a k-
+rational point.
+
+          P C, and
+       Over           given an endomorphism f : X → X, one defines the Lefschetz number
+L(f ) = (−1) tr(F |H i ); this complex number measures the fixed point locus of f . Over a
+                 i
+
+finite field, the Lefschetz number counts the number of fixed points, at least modulo p; one
+computes that the Lefschetz number is 1 mod p.
+       For the generalization to rationally connected varieties over K, a variety X over K can
+be thought of as a family of rationally connected varieties over a curve X → C. By family
+we always mean that although the base C might not be proper or smooth, the morphism is
+proper and generically smooth.
+Theorem (Generalized Tsen; Graber, Harris, Starr). Any rationally connected variety over
+K has a K-rational point.
+
+A converse
+     Given a family X → B, a section is a triangle
+                                           BA        /X
+                                              AA
+                                                AA=
+                                                  AA
+                                                    AÃ ²
+                                                    B.
+We define a pseudo-section to be a triangle
+                                           S@        /X
+                                              @@
+                                                @@
+                                                  @@
+                                                    Â ²
+                                                    B;
+where S → B is a family of rationally connected varieties. Since a point is rationally
+connected, a section gives a pseudo-section.
+24
+
+      We can rephrase the GHS theorem in this language as follows: If f : X → B is a family
+with a pseudo-section, then its restriction fC : XC → C to every smooth curve C ,→ B has
+a section.
+
+Theorem (Weak converse to GHB). If f : X → B is a family such that every restriction
+fC : XC → C for every smooth curve C ,→ B has a section, then f : X → B has a
+pseudo-section.
+
+     This theorem is related to Lefschetz’s theorem about π1 as can be seen by restricting
+attention to finite étale covers.
+Applications
+      This theorem has application to finding varieties X/K with no rational point; in par-
+ticular:
+
+Corollary. There exists an Enriques surface over some K with no K-rational point.
+
+     This is completely ineffective; an open question is to find the genus of the curve given
+by this counterexample.
+
+Question. Is there an Enriques surface over Q(t) with no rational point over C(t)?
+
+      Every Enriques surfaces over k has a point over k; this is not the case over K, so we
+have distinguished finite fields from function fields of transcendence degree 1 over C. We
+ask: in the Artin-Lang philosophy, what kinds of varieties are cut out by O-acyclic varieties?
+      We have another corollary:
+
+Corollary. A family of curves of genus 1 over a base B has a section if and only if it has a
+section over every curve C ⊂ B.
+
+     The corollary is clear: a family of curves of genus 1 has no room for a pseudo-section.
+Number Theoretic Applications
+      Now we consider π : X → B a family defined over a number field; we say π is arith-
+metically surjective if and only if X(L) → B(L) is surjective for all finite extensions L/F .
+      If X → B is a family of curves of genus ≥ 1, is it the case that arithmetic surjectivity
+is equivalent to the existence of a section over F ? This question is unapproachable in full
+generality.
+      Instead, let us take a very small fragment of it: let B be a nonempty open subset of
+P1 over F = Q, X → B a family of genus 1 curves, we say it belongs to its Jacobian E → B.
+We consider quadratic twist elliptic pencils; given any E1 /Q : y 2 = g(x), we have the pencil
+Et /Q : ty 2 = g(x). We have the problem: For all X → B belonging to Et , is is true that
+arithmetic surjectivity holds if and only if a section exists? Work of Skinner-Ono can be
+used to establish this for all elliptic curves E1 /Q.
+                                                                                         25
+
+A.11 Peyre: Motivic height zeta functions
+Manin’s principle in the functional case
+The setting
+    Notation: let p be a prime number, q = pk , C a smooth projective curve over Fq ,
+K = Fq (C). A point x ∈ PN
+                         K induces a function
+
+                                                  x̃ : C → PN
+                                                            Fq
+
+and we define a height
+                                    (
+                                        deg(x̃∗ (O(1)) if x̃ is not constant
+                         hN (x) =
+                                        0              otherwise
+
+     Now let V be a smooth, geometrically integral projective variety over K, let U ⊂ V be
+an open subset, and define
+                                   X
+                       ZU,k (T ) =    T h(x) , ζU,k (s) = ZU,k (q −s ).                 (1)
+                                        x∈U (k)
+
+We make the following assumptions
+     • ωV−1 is very ample
+     • ωV−1 = φ∗ (O(1))
+     • H 1 (V, OV ) = 0, H 2 (V, OV ) = 0
+     • V (K) is Zariski dense
+
+Problems
+     • Find the value of θ = inf{σ|ζV,k (s) converges if the real part <(s) = σ}.
+     • Find the order of the pole of ζU,k at θ.
+     • Find the leading coefficient of the Laurent series at θ.
+
+Questions For small enough U ,
+     • Is θ = 1?
+     • Is the order of ζU,k (s) at θ equal to t = rank Pic(V )?
+     • Is the leading term of ζU,k (s) at θ equal to θh∗ (V )/(s − 1)t , where
+                                    θh∗ (V ) = α∗ (V )wh (V (K))
+       where α∗ (V ) can be defined in terms of the cone of effective divisors Cef
+                                                                                1
+                                                                                   f (V ) ⊂
+       Pic V ⊗ R, w(h) is some adelic measure, and V (K) is the closure of the rational
+       points?
+
+Results Answers are positive if
+     • V = G/P where G is a reductive group over K and P is a smooth parabolic subgroup
+       of G (Morris, EP).
+     • V is a smooth toric projective variety (D. Bourgui), U an open orbit of V .
+     • V ⊂ PNK is a hypersurface with N >> deg V (circle method).
+26
+
+         Simplest example: V = PnK . Let g be the genus of C.
+                  ζK ((n + 1)s − n)                ζK ((n + 1)s − (n − 1))
+     ZV,k (t) = q n(1−g)            + q (n−1)(1−g)                          + ...
+                    ζK ((n + 1)s)                       ζK ((n + 1)s)
+                                                              ζK ((n + 1)s − 1)     Q(q −s )
+                                                      + q 1−g                   +             .
+                                                                ζK ((n + 1)s)     ζ((n + 1)s)
+where Q is a polynomial.
+Motivic setting
+         Work in progress with A Chambert-Loir.
+The ring of motivic integration
+      (Kontsevich, Denef, Loeser)
+      Definition: Let k be a field, and let Mk be the ring with generators [V ] as V ranges
+through varieties over k, subject to the relations [V ] = [V 0 ] if V = V 0 and [V ] = [U ]+[V −U ],
+for U open in V , and with multiplication given by the product of varieties.
+      (Note: De Jong pointed out some problem with this definition in positive characteris-
+tic.)
+      Now let L = [A1k ], Mloc = Mk [L−1 ]. Define a filtration by
+                       F m Mloc = subring generated by [V ]L−i if i − dim V ≥ m.
+Let M̂ = invlimMloc /F m Mloc .
+Motivic height Let the notation be as in Section . Given an embedding φ : V → PNK
+we get a height h : V (K) → N. Given an open U ⊂ V , we can define varieties Un /k such
+that for all k 0 /k,
+                              Un (k 0 ) = {x ∈ V (K 0 )|hK 0 (x) = n},
+where K 0 = k 0 (C). Then define
+                                            X
+                               ZU,k (T ) =     [Un ]T n ∈ Mk [[T ]].
+                                                    n∈N
+
+Examples:
+   • If V is defined over k, V0 = V , Vn = Morn (C, V ), morphisms of degree n
+   • If V = PnK ,                           X
+                                  ZK (T ) =    [C (i) ]T i
+                                                          i∈N
+                     (i)
+           where C         is the ith symmetric product.
+                                                        ZK (T n+1 Ln )     Q(T )
+                                 ZPNK ,h (T ) = Ln(1−g)        n+1
+                                                                       +
+                                                         ZK (T     )     ZK (T n+1 )
+           Proposition (Kapanov).        A. ZK (T ) is a rational function.
+              B. (1 − T )(1 − LT )ZK (T ) is a polynomial.
+              C. ZK (1/LT ) = L1−g T 2−2g ZK (T ).
+           Theorem (Follows from Kapanov). Let G be a split semi-simple proper algebraic
+           group over k, P ⊂ G a standard parabolic subgroup, V = G/P . Assume that
+           φ∗ (O(1)) = ωV−1 . Then
+                                                                                           27
+
+            A. ZV,k (T ) converges in M̂ for T = L−k , k > 1.
+            B. [(1 − LT )t ZV,k (T )](L−1 ) converges in M̂.
+            C. One can give a description of its value similar to the functional case.
+        Theorem (D. Bourgui). Suppose that V is a split toric variety over k. Then 1, 2,
+        and 3 of the previous theorem hold for U ⊂ V , U an open orbit.
+     Hope: generalize this to smooth cellular varieties over k.
+     Remark: Batyrev has a nice idea to attack this when V is defined over k. But we have
+no idea what the relevant harmonic analysis is in this case.
+A realization map Suppose k = Fq , and define a map Mk → Z, [V ] 7→ #V (Fq ).
+Then we get a map
+                                          Mloc → Z[q −1 ]
+                                          L−1 7→ q −1
+             M ot          f unct
+which takes ZU,k  (T ) to ZU,k    (T ).
+
+A.12 Raskind: Descent on Simply Connected Algebraic Surfaces
+      This is joint work with V. Scharaskin.
+K3 Surfaces of Picard Number 20
+      Let k be a field, usually finitely generated over the prime subfield (Q), k a separable
+closure of k. Let X/k be a smooth, projective geometryicall connected, geometrically simply
+connected surface. (π1 (X) = {1}, where X = X ×k k.) Let G = Gal(k/k), ` a prime number,
+` 6= char k.
+      Point of the talk: It should be possible to do descent on (at least some) surfaces with
+nonzero geometric genus.
+      For example, we consider K3 surfaces with geometric Picard number 20 (maximal) in
+characteristic zero:
+Proposition (Inose-Shioda). All K3 surfaces over C with Picard number 20 are defined
+over Q, and may be realized as (double covers) of Kum(E × E 0 ), where E, E 0 are isogenous
+elliptic curves with CM.
+      Kummer theory says: There is an exact sequence
+                 0 → Pic(X)/`m Pic(X) → H 2 (X, Z/`m (1)) → Br(X)[`m ] → 0;
+since Pic(X) ∼
+             = N S(X), as you pass to the limit over m, one has the exact sequence
+                     0 → N S(X) ⊗ Z` → H 2 (X, Z` (1)) → T` (Br(X)) → 0.
+The term N S(X) ⊗ Z` is algebraic, the term T` (Br(X)) transcendental.
+     Tensoring with Q` , we expect:
+Conjecture (Tate Conjecture). The map
+                                  Pic(X) ⊗ Q` → H 2 (X, Q` (1))G
+is surjective.
+28
+
+Proposition. If X is a geometrically simply connected surface, and the Tate conjecture is
+true, then the `-primary component of Br(X)/ Br(k) is finite.
+Proposition. Suppose X as above has a good reduction modulo p with the same geometric
+Picard number (not always true), and k is a number field. If the Tate conjecture is true,
+then Br(X)/ Br(k) is finite.
+Corollary. If X is a K3 of geometric Picard number 20, then Br(X)/ Br(k) is finite.
+Sketch of proof. Use Inose-Shioda result and Faltings-Deligne which prove Tate for X, and
+go modulo a prime that splits in the CM-field of E.                                     ¤
+
+Rapid review of descent
+      Descent by Colliot-Thélène and Sansuc. Let X be a geometrically simply connected
+surface, and pg = 0. Let Sk be the torus whose group of characters is Pic(X), and SX =
+Sk ×k X. There is an exact sequence
+                                         χ
+            0 → H 1 (k, S) → H 1 (X, S) −
+                                        → H 1 (X, S)G → H 2 (k, S) → H 2 (X, S)
+coming from the Hochschild-Serre spectral sequence. We identify
+                          H 1 (X, S)G ∼
+                                      = HomG (Pic X, Pic X),
+and we think of H 1 (X, S) as principal homogeneous spaces under S; an element [T ] ∈
+H 1 (X, S) is a universal torsor if χ([T ]) = id.
+      One has a pairing
+                               X(k) × H 1 (X, S) → H 1 (k, S)
+                                             P, [T ] 7→ TP ;
+every torsor T comes with a map fT : T → X, and TP = 0 if and only if P ∈ fT (T (k)).
+     Now assume X only geometrically simply connected (not necessarily pg = 0). H 2 (X, Z` (1))
+has no integral structure (i.e. there is not a Z[G] module M such that M ⊗ Z` ∼         =G
+H (X, Z` (1)), so we must use étale cohomology.
+  2
+
+     If p : X → Y is any morphism of schemes, and F a sheaf on Y ét , G a sheaf on X ét ,
+then there is a spectral sequence
+                        E2r,s = ExtrY (F , Rs p∗ G ) ⇒ ExtX
+                                                          r+s ∗
+                                                             (p F , G ).
+    Apply this general situation with p : X → Spec(k) the structure morphism, F =
+H (X, Z/nZ(1)), G = Z/nZ(1). One obtains a map
+     2
+
+
+              Ext2X (p∗ H 2 (X, Z/nZ(1)), Z/nZ(1)) → Endk (H 2 (X, Z/nZ(1)))
+coming from the E20,2 term in the spectral sequence. We expect that the group Endk (H 2 (X, Z/nZ(1)))
+will play the role of HomG (Pic X, Pic X) in the above.
+      Why is there a shift, and how does this relate to the Colliot-Thélène-Sansuc result
+when pg = 0? Kummer theory on S gives
+                                                    n
+                                  0 → S[n] → S −
+                                               →S→0
+and
+              0 → H 1 (X, S)/nH 1 (X, S) → H 2 (X, S[n]) → H 2 (X, S)[n] → 0.
+                                                                                           29
+
+     We have a map
+                        H 2 (X, H om(p∗ H 2 (X, Z/nZ(1)), Z/nZ(1))
+                              → Ext2X (p∗ H 2 (X, Z/nZ(1)), Z/nZ(1))
+coming from the local-to-global spectral sequence, and we can identify
+        H 2 (X, H om(p∗ H 2 (X, Z/nZ(1)), Z/nZ(1)))) ∼
+                                                     = H 2 (X, p∗ H 2 (X, Z/nZ(2))).
+Let χ be the composite of these three maps. Let n = `m .
+Definition. A universal n-gerbe is an element G ∈ H 2 (X, p∗ H 2 (X, Z/nZ(2))) such that
+χ([G]) = id.
+
+      One can (with care and difficulty) pass to limm to speak of universal `-adic gerbes.
+                                                         −→
+The set of universal `-adic gerbes is either empty or a principal homogeneous space under
+the image of H 2 (k, H 2 (X, Z` (2))) in H 2 (X, p∗ H 2 (X, Z` (2))).
+      One has a pairing
+                       X(k) × Gerbes(X, k, `) → H 2 (k, H 2 (X, Z` (2)))
+                                       P, G 7→ GP
+which gives a partition of X(k). This can be extended to a map
+                            θG : CH0 (X) → H 2 (k, H 2 (X, Z` (2)))
+where G is a chosen universal gerbe. On A0 (X), zero-cycles of degree 0, this is the higher
+`-adic Abel-Jacobi map, and the image of this map is a finitely generated Z` -module; if k is
+a number field, one can show in some cases that that the image is finite, e.g. K3 of Picard
+number 20 over Q or over the CM field.
+                                     F
+      So, in these cases, have X(k) = fα Gα (k), where α ranges over a finite set.
+      We can show X(Ak )Br` 6= ∅ if and only if there exists a universal gerbe G with points
+everywhere locally.
+A.13 Rotger: Shimura varieties
+      Let k be an algebraically closed field, A, L/k a polarized abelian variety. We are
+interested in:
+    A. Field of moduli of (A, L) and field of moduli of End(A)
+    B. Fields of definition of (A, L) and fields of definition of End(A).
+     The field of moduli of (A, L) KA,L is the unique minimal field in k such that (A, L)σ =
+(A, L) for all σ ∈ Gal(k/KA,L ).
+                                                             KEnd(A)
+                                                              v
+                                                            vv
+                                                         vvv
+                                                        v
+                                                      vv
+                                                 KS
+                                            xx
+                                         xxx
+                                        x
+                                      xx
+                                K(A,L)
+30
+
+Z ⊂ S ⊂ End(A). The top field is the unique field fixed by all σ such that there exists
+A = Aσ making the following diagram commute:
+                                                A      / Aσ
+
+                                     β∈End(A)                βσ
+                                                 ²       ²
+                                             A     / Aσ
+
+Shimura: the generic odd dimensional polarized abelian variety admits a model over K A,L .
+The generic even dimensional polarized abelian variety does not admit a model over KA,L .
+     (Silverberg) Fix KA,L . There is a (unique, Galois) minimal field of definition KS /K(A,L)
+of S ⊂ End(A).
+     (Silverberg) There is a Hd,r such that | Gal(KS /KA,L )| ≤ Hd,r for any abelian variety
+A such that dim A = d and S ⊂ End(A) with [S : Z] = r.
+     If A is simple, End(A) is an order in either a totally real field, a division algebra over
+a CM-field, or a quaternion algebra.
+     We will focus on the latter case.
+Forgetful maps between Shimura varieties and rational points
+      Let F be a totally real number field, with [F : Q] = n. Let B be an indefinite
+quaternion algebra over F (that is, B ⊗Q R = M2 (R)n ). Let OB be a maximal order in B.
+Let
+                         ΓB = {γ ∈ OB : NB/F (γ) = 1} ⊂ SL2 (R)n .
+      Moduli problem (OB , µ): classify principally polarized abelian varieties (A, i, L) where
+A is an abelian variety of dim A = 2n, i : OB → End(A),and the Rosati involution has the
+form ∗L : OB → OB , b 7→ µ−1 bµ where µ ∈ OB such that µ2 + δ = 0 and δ ∈ F × .
+Proposition. If (A, L) is a principally polarized abelian variety, then it forces δ = D where
+D is a totally positive generator of disc(B).
+      (Shimura): The moduli functor is coarsely represented over Q by a complete algebraic
+variety XD /Q = X(OB ,µ) /Q, with dim XD = n. We havea XD (C) = ΓB \hn , where h is the
+Poincaré upper half plane.
+      Let RF be the ring of integers of F , RF ⊂ S ⊂ OB , where S is a totally real quadratic
+order over RF . There are forgetful finite maps over Q
+                     XOB ,µ            / MS                  / MR          / A2n
+                                                                    F
+
+
+
+
+                  [A, i, L] = P Â   / [A, i|S , L] Â   / [A, i|R , L] Â   / [A, L]
+                                                                  F
+
+where M is the Hilbert modular variety classifying varieties with real multiplication by the
+subscript. The dimensions of these moduli spaces are, respectively, n, n, 3n, 2n2 + n.
+
+
+The picture in n = 1 is
+             Shimura curve: X(O,µ) → Hilbert surface:MS → Igusa’s space:A2 .
+We have a tower of fields
+            KEnd(A) = Q(P ) ⊂ KS = Q(P |S ) ⊂ KRF = Q(P |F ) ⊂ KA,L = Q(P0 ).
+                                                                                                                    31
+
+          The automorphism group of XD = X(OB ,µ) : is
+                                                                NormB+× (ΓB )
+                                 (Z/2)2r = W =                                   ⊂ AutQ(XD )
+                                                                   ΓB · F ×
+     where 2r = #{p| disc(B)}.
+     Theorem.
+           A.
+                            πF
+                 X(O,µ)            / MR
+                                                F
+
+
+                                               birational onto the image, isomorphism away from Heegner points
+                                           ²
+                                 X(OB ,µ) /W0
+     where
+                    (                                                                  ¡ −D,m ¢
+                        (Z/2)2wif B + F + F µ + F χ + F µχ =                                F
+                                                                                                  (twisting case)
+            W0 =
+                        (Z/2)2 otherwise (non twisting case)
+                                          √
+     w = #{primitive roots of unity in F ( −D) of odd order}
+B.
+                            πF
+                 X(O,µ)             / MS
+
+                                               birational onto the image, isomorphism away from Heegner points
+                                       ²
+                                 X(OB ,µ) /V0
+     where V0 ⊂ W0 ,                                (
+                                                        (Z/2)     in the twisting case
+                                    V0 =
+                                                        {1}      otherwise
+     Corollary. Let (A, L) be a principally polarized abelian variety with End(A) = O B , dim A =
+     2n. Then                                   (
+                                                   (Z/2)2w twisting case
+                            Gal(KEnd A /KF ) ⊂
+                                                   (Z/2)w otherwise
+     For any totally real RF properly in S properly in OB .
+                                                 (
+                                                   (Z/2) twisting case
+                              Gal(KEnd A /KS ) ⊂
+                                                   {1}      otherwise
+
+     Field of definition for abelian surfaces
+         Let (A, L)/K be a principally polarized abelian surface over a number field K with
+     EndK (A) = OB , disc(B) = D. There is a diagram
+                                                             KEnd(A)
+                                                                      KKK
+                                                            xx          |G|
+                                                                         KKKK≤ 2 (Jordan)
+                                                         xxx
+                                                      x |G||48 (Silverberg) KKK
+                                                       x
+                                                    xx
+                                               K FF                           KEnd(A)
+                                                        FF|G| ≤ 2 (Mestre)
+                                                          FF
+                                                            FF
+                                                              F
+                                                                KA,L
+   32
+                    ³          ´
+                        −D,m
+        A. If B =        Q
+                          for 0 < m < D, m|D, then (with Dieulefait)
+                           
+                           Z/2 × Z/2 in this case EndK (A)
+                           
+                                                           √
+                                                             =Z
+                                                                     √   p
+         Gal(KEnd(A) /K) = Z/2           EndK (A) ⊗ Q = Q( −D), Q( m), Q( D/m)
+                           
+                           {1}          EndK (A) = OB
+        B. Otherwise,
+                                              (                        √
+                                                  Z/2 EndK (A) ⊗ Q = Q( −D)
+                          Gal(KEnd(A) /K) =
+                                                  {1} otherwise
+
+   A.14 Salberger: Arithmetic Bezout and Rational Points of Bounded
+   Height
+         We take the height function
+                                           H : Pn (k) → R>0
+                                                             Y
+                                   x = (x0 : · · · : xn ) 7→   sup |xi |v
+                                                               0≤i≤n
+                                                           v
+   If X ⊂ Pn is a closed subvariety over k, U ⊂ X an open subvariety also over k, we have the
+   counting function
+                              N (U, B) = #{x ∈ U (k) : H(x) ≤ B}.
+   Conjecture (Batyrev-Manin). We have
+                                         N (U, B) ¿X,² B α(D)+²
+   if U is sufficiently small, X is smooth, and D a hyperplane divisor.
+         Already the case of smooth cubic surfaces, away from the 27 lines, this conjecture
+   would imply linear growth, but it was only known recently for quadratic growth; therefore
+   this is hard enough, looking for asymptotic formulas is often asking for too much.
+         Recently, there has been work which also works in low dimension (curves and surfaces),
+   due to Heath-Brown (2002); this also has applications to other problems (e.g. Waring’s
+   problem).
+   Theorem (Heath-Brown). Let Xd ⊂ Pn be an absolutely irreducible curve of degree d; then
+                                        N (Xd , B) ¿n,d,² B 2/d+² .
+         The implicit constant does not depend on Xd ; the results of Faltings have no uniformity.
+   We have applications to surfaces. This result is also best possible, taking the Veronese
+   embedding of P1 . There was a result of Bombieri-Pila which proved ¿d,² B 1+1/d+² . Broberg
+   treats arbitrary number fields k (and the case n > 3).
+         This theorem relies on the following result, which is Theorem 14 in the paper of Heath-
+   Brown.
+   Theorem (Theorem 14). Let Xd ⊂ Pn be an absolutely irreducible projective Q-variety of
+   dimension r defined by forms of degree ≤ δ. Let ² > 0, B ≥ 1 be given. Then there exists a
+   Q-hypersurface Y ⊂ Pn such that:
+(i) Xd 6⊂ Y ;
+                                                                                                     33
+
+ (ii) All Q-points on Xd of height ≤ B lie on Y ;
+(iii) We have
+                                                        r+1
+                                                            +²
+                                       deg(Y ) ¿n,δ,² B d1/r ;
+(iv) The irreducible components of Y have degrees bounded in terms of n, δ, ².
+    Remark. Heath-Brown treats only the case r = n − 1. Taking r = 1, the result of Heath-
+    Brown is an immediate consequence of this theorem if one applies Bezout’s theorem in the
+    plane. The case r < n − 1 is due to Broberg, and with arbitrary k.
+         If X is smooth, then you may replace δ by d in (iii) and (iv).
+    Lemma (Colliot-Thélène). Let Xd ⊂ P3 be a smooth projective surface. Then there exists
+    at most ¿d 1 curves of degree d − 2 on X.
+          This implies that a cubic has only finitely many lines, a quartic has only finitely many
+    conics, and so on. This is best possible, for d − 1 one might have infinitely many such curves,
+    for example, infinitely many conics on a cubic surface. Removing these curves, we still have
+    a surface, and we get:
+    Theorem (Heath-Brown). Let Xd ⊂ P3 be a smooth projective surface and let U be the
+    complement of all curves of degree ≤ d − 2. Then
+                                                           √3      2
+                                                                + d−1 +²
+                                        N (U, B) ¿d,² B d                  .
+         This is the best known result if d ≥ 6. To do this, apply Theorem 14 by cutting √
+    with an auxiliary hyperplane; the same implicit constant applies everywhere, the B 3/ d+² is
+    the maximum number of irreducible components. We considering for example
+                                                                          √
+                                                                                  the Veronese
+                                                                        3/ d+²
+    embedding of the projective plane to see that we would expect ¿ B          .
+      Theorem (S). Let Xd ⊂ Pn be a smooth absolutely irreducible projective Q-variety of di-
+      mension r defined by forms of degree ≤ δ. Let ² > 0, B ≥ 1 be given. Then there exists a
+      Q-hypersurface Y ⊂ Pn such that:
+  (i) Xd 6⊂ Y ;
+ (ii) All Q-points on Xd of height ≤ B lie on Y ;
+(iii) We have
+                                                         r+1
+                                                             +²
+                                       deg(Y ) ¿n,δ,² B rd1/r .
+                                                                                           √
+          For the moment, it is not clear how to use this theorem to deduce ¿ B 3/ d+² .
+    Proof. Let Q1 (x), . . . , Qm (x) be monomials in x = (x0 , . . . , xn ) which form a basis of
+                                  img(H 0 (Pn , O(D)) → H 0 (X, O(D))),
+                           1/r
+    where D ∼ B (r+1)/(rd )+² . Let P1 , . . . , P` ∈ An+1 (Z) represent the Q-points on Xd of height
+    ≤ B. We need to show that the rank of the matrix
+                                                                  
+                                         Q1 (P1 ) . . . Q1 (P` )
+                                      ...            ...      .. 
+                                                                .
+                                          Qm (P1 ) . . .   Qm (P` )
+    is < m. This is trivial if m > `; otherwise, we must look at all sub (m × m)-determinants.
+    Since these points are of bounded height, each term in the determinant is bounded by B D ,
+   34
+
+   so one has a bound on the archimedean height of the determinant. With more points, the
+   determinants are divisible by high powers of prime numbers (by the Weil conjectures, points
+   must coincide); under certain circumstances, these divisibilities contradict the bounds on the
+   determinant. We use for example that
+                                        X log p
+                                                  ∼ log R.
+                                        p≤R
+                                              p
+   This gives the result.                                                                       ¤
+   Remark. The theorem is also true for surfaces with at most rational double points. Already,
+   the theorem is not known for elliptic singularities.
+        We apply this √
+                          theorem to count Q-points on Xd ∩ Y when dim Xd = 2.              Then
+                  3/(2 d)+²
+   deg(Y ) ¿d,² B           . By the adjunction formula (and Bezout),
+                                                                        √
+                             #(Xd ∩ Y )sing (Q) ¿d deg(Y )2 ¿ B 3/ d+² .
+         All Q-points on irreducible, not absolutely irreducible components are singular. There-
+   fore it suffices to count smooth Q-points on absolutely irreducible components of X d ∩ Y .
+   Let Z1 , . . . , Zs be absolutely irreducible components of Xd ∩ Y of degree ≤ f (d, ²), then
+                                  Xs
+                                                        P
+                                      #N (Zi , B) ¿d,² ( i deg Zi )B (2/e)+²
+                              i=1
+
+   where e = min deg(Zi ). This is
+                             P                               √
+                            ( i deg Zi )B (2/e)+² ¿d,² B 3/(2 d)+2/e+² .
+                                                                            √
+   If you throw out curves of smallest degree, this is smaller than ¿ B 3/ d .
+         But we still must deal with curves of high degree, e.g. the case when Xd ∩ Y is
+   irreducible.
+     Lemma. Let Zδ ⊂ Pn be an absolutely irreducible degree δ, and p a prime Àn,² B (2/δ)+² .
+     Then:
+ (i) The number of Q-points on Zδ of height ≤ B which specializes to a given smooth Fp -point
+     on Zδ is ¿n,² δ.
+(ii) The number of Q-points on Zδ with smooth specialization at p is ¿n,² δB (2n/δ)+² .
+   Corollary. We have
+                                 #N (Zδ,smooth , B) ¿n,² δ 4 B (2n/δ)+² .
+                                                                                  √
+          If we could replace δ 4 by δ 2 , then we would have get N (U, B) ¿ B (3/ d)+² . It might
+   still be useful to find something like δ 5/2 . Using arithmetic Bezout, bounding the heights
+   of the subvarieties (due to Faltings), this might succeed. It would also be better to work
+   systematically with all primes p, some savings might arise.
+   A.15 Skorobogatov: Counterexamples to the Hasse Principle...
+         This is joint work with Laura Basile.
+         We work over a field k with char k = 0, k its algebraic closure.
+   Definition. A bielliptic surface X is a k/k-form of a smooth projective surface of Kodaira
+   dimension 0 that is not K3, neither abelian nor Enriques.
+                                                                                                    35
+
+          There is a complete list of such available. We have KX 6= 0, but nKX = 0, for n = 2, 3, 4
+    or 6. Over the algebraic closure, X = E × F/Γ, where Γ acts on E 0 by translations.
+    Proposition. There exists an abelian surface A/k, a principal homogeneous space Y of A,
+    and a finite étale morphism f : Y → X, deg f = n.
+    Proof. Since nKX = (g), then consider tn = g and normalize; the map is unramified, so
+    KY = f ∗ KX = 0. By the classification of surfaces, Y is an abelian surface. (f is a torsor
+    under µn .)                                                                              ¤
+    Remark. This will not hold in higher dimension; there are just many more possibilities.
+         Consider A = E × F , Y = C × D, C a principal homogeneous space of E, and likewise
+    D for F . Now µn acts on Y so that µn acts on D by translations, µn ⊂ F ; the action on µn
+    on C cannot be by translations or else X itself would be a principal homogeneous space, so
+    the action has fixed points.
+    Proposition. [C] ∈ img(H 1 (k, E µn ) → H 1 (k, E)).
+    Proof. Take x ∈ C(k), fixed by µn , and write down the usual cocycle: if g ∈ Gal(k/k),
+    gx − x ∈ E µn (k).
+         (It arises from [C µn ].)                                                      ¤
+    Corollary. Let α : E → E1 be the isogeny with kernel E µn . Then [C] ∈ H 1 (k, E)[α∗ ].
+          We have one of the following possibilities:
+                                      n      #E µn
+                                      6 1 (so C(k) 6= ∅)
+                                      4        2
+                                      3        3
+                                      2        4
+                                           Q
+         Now assume k = Q, and X(AQ ) = v X(Qv ); we want an example where X(AQ )Br 6=
+    ∅, but X(Q) = ∅. We do the case n = 3.
+         With the notation as above:
+    Theorem. Assume that:
+  (i) Gal(Q/Q) acts nontrivially on E µ3 , which is ∼  = Z/3Z as an abstract group;
+ (ii) #X(E)[α∗ ] = 3;
+(iii) [C] ∈ X(E)[α∗ ];
+(iv) µ3 ⊂ F ;
+ (v) Sel(F, µ3 ) = 0, that is, for any principal homogeneous space of F obtained from a class in
+      H 1 (Q, µ3 ), there exists a place v where it has no point.
+    Then X = (C ×F )/µ3 is a counterexample to the Hasse principal not explained by the Manin
+    obstruction.
+    Example. If C : x3 + 11y 3 + 43z 3 = 0, µ3 acts by (x : y : z) 7→ (x : y : ζ3 z), F = D :
+    u3 + v 3 + w3 = 0, with µ3 acting by (u, v, w) 7→ (u : ζ3 v : ζ32 w); looking at the Selmer group,
+    you look at principal homogeneous spaces of the form u3 + av 3 + a2 u3 = 0, so if p | a, this
+    has no Qp point.
+36
+
+      We have Br X = Hom(N S(X)tors , Q/Z) as Galois modules (this holds more generally if
+X is a surface and h2,0 = 0), and N S(X)tors = E µ3 . Then (i) implies that (Br X)Gal(Q/Q) = 0.
+      The kernel of the restricted Cassels pairing X(E)[α∗ ] × X(E)[α∗ ] → Q/Z consists of
+                                   αt
+                                         X(E), where αt : E1 → E is the dual isogeny. Since
+                                      ∗
+elements in the image of X(E1 ) −→
+X(E)[α∗ ] ∼= Z/3Z must be zero because it is alternating, so lift C1 → C; then we have étale
+maps
+                               C1 × F = Y1 → C × F = Y → X;
+to find an adelic point, find a rational point R ∈ F (Q) and a collection {P v } ∈ C1 (AQ ); then
+f1 : Y1 → X has f1∗ (Br1 X) ⊂ π ∗ (Br F ), where π : Y1 → F is the projection.
+      The last condition (v) says that there are no rational points on X; rational points on
+X comes from twists of Y , but by assumption these have no point over a place v, so they
+arise from X.
+A.16 Vojta: Big semistable vector bundles
+Bigness
+      Throughout this talk, k is a field of characteristic zero, algebraically closed unless
+otherwise specified.
+      A variety is an integral scheme, separated and of finite type over a field.
+      Throughout this talk, X is a complete variety over k.
+Definition: Let L be a line sheaf on X. We say that L is big if there is a constant c > 0
+such that h0 (X, L⊗n ) ≥ cndim X for all sufficiently large and divisible n ∈ Z.
+Lemma. (Kodaira) Let L be a line sheaf and A an ample line sheaf on X. Then L is big
+iff L⊗n ⊗ A∨ has a (nonzero) global section for some n > 0.
+Proof: “ ⇐= ” is obvious.
+      “ =⇒ ”: Write A ∼   = O(A1 − A2 ) with A1 a reduced effective very ample divisor. It
+will suffice to show that L⊗n (−A1 ) has a global section for some n > 0. Consider the exact
+sequence
+                   0 → H 0 (X, L⊗n (−A1 )) → H 0 (X, L⊗n ) → H 0 (A1 , L⊗n ) .
+The middle term has rank À ndim X , but the rightmost term has rank ¿ ndim X−1 , for n À 0
+divisible.                                                                                ¤
+Definition: A vector sheaf E of rank r on X is big if there is a c > 0 such that
+                                   h0 (X, S n E) ≥ cndim X+r−1
+for all n À 0 divisible.
+      Equivalently, E is big iff O(1) on P(E) is big.
+Essential base locus
+Definition: Assume that X is projective, and let L be a (big) line sheaf on X. The
+essential base locus of L is the subset
+                               \
+                                   (base locus of L⊗n (−A))
+                                n∈Z>0
+
+for any ample divisor A on X (it is independent of A). The essential base locus of a vector
+sheaf E on X is the set π(E), where E is the essential base locus of O(1) on P(E) and
+π P(E) → X is the canonical morphism.
+                                                                                           37
+
+Question: If E is a big vector sheaf, is its essential base locus properly contained in X?
+Answer: No. Example: Unstable E over curves.
+Question: What if E is big and semistable?
+Curves
+     Throughout this section, X is a (projective) curve.
+Definition:  (Mumford) A vector sheaf E on X is semistable if, for all short exact
+sequences
+                                 0 → E 0 → E → E 00 → 0
+of nontrivial vector sheaves on X,
+                                         deg E 0   deg E
+                                               0
+                                                 ≤
+                                          rk E      rk E
+or (equivalently)
+                                       deg E 00   deg E
+                                             00
+                                                ≥       .
+                                        rk E       rk E
+Theorem. Let E be a big semistable vector sheaf on X. Then E is ample (i.e., O(1) is
+ample on P(E)). In particular, the essential base locus of E is empty.
+Proof: By Kleiman’s criterion for ampleness, the sum of an ample and a nef divisor is again
+ample, so by Kodaira’s lemma it suffices to show that if E is a semistable vector sheaf on X,
+then all effective divisors D on P(E) are nef.
+     So, let D be an effective divisor and C a curve on P(E). We want to show:
+                                          (DC) ≥ 0 .
+                                   ¡ ¯ ¢∗
+     Since E is semistable, so is π ¯C E (proof later).
+     Therefore we may assume that C is a section of π, and that D is a prime divisor. ¯
+     Since C is a section, it corresponds to a surjection E → L → 0. Moreover, L ∼
+                                                                                 = O(1)¯C .
+By semistability, therefore,
+                            deg E
+                (O(1)C) ≥         .                                       (∗)
+                             rk E
+     Now consider D. Let d be the degree of D on fibers of π; d > 0. Then O(D) ∼  =
+         ∗                                                             d
+O(d) ⊗ π M for some M ∈ Pic X. Thus D corresponds to a section of M ⊗ S E, hence we
+have an injection
+                               0 → OX → M ⊗ S d E
+with locally free quotient.
+      Since E is semistable, so is S d E (proof later); hence
+               deg(M ⊗ S d E) ≥ 0                                         (∗∗)
+                                                ¡r+d−1¢
+     Let r = rk E; then S d E has rank r 0 :=      d
+                                                          . The diagram
+
+                                      GLr (k)          / GLr0 (k)
+
+
+                                         ²                   ²
+                                        k∗                / k∗
+38
+
+commutes for all diagonal matrices, hence for all diagonalizable matrices, hence for all ma-
+trices. Thus
+                                                     µ          ¶
+                              d          0             r+d−1
+                    deg(M ⊗ S E)      = r deg M +                 deg E
+                                                        d−1
+                                                     d
+                                      = r0 deg M + r0 deg E
+                                                     r
+and therefore by (**),
+                                               d
+                                   deg M ≥ − deg E .
+                                               r
+Thus by (*),
+                                                  d        d
+                 (DC) = d(O(1)C) + deg M ≥          deg E − deg E ≥ 0 . ¤
+                                                  r        r
+Higher Dimensional Varieties
+    Let X again be a complete variety of arbitrary dimension.
+Construction: Given a vector sheaf E on X of rank r and a representation
+                                   ρ : GLr (k) → GLr0 (k) ,
+we can construct a vector sheaf E (ρ) on X of rank r 0 by applying ρ to the transition matrices
+of E. Equivalently, if E corresponds to ξ ∈ H 1 (X, GLr (OX )), then ρ(ξ) ∈ H 1 (X, GLr0 (OX ))
+corresponds to E (ρ) .
+       Examples of this include S d , det, and ∧d .
+Definition: (Bogomolov) A vector sheaf E of rank r on X is unstable if there exists a
+representation ρ GLr (k) → GLr0 (k) of determinant 1 (i.e., factoring through P GLr (k)) such
+that E (ρ) has a nonzero section that vanishes at at least one point. It is semistable if it is
+not unstable.
+Theorem. (Bogomolov) If X is a curve, then Bogomolov’s definition of semistability agrees
+with Mumford’s.
+Remark: If ρ has determinant 1 then Im ρ ⊆ SLr0 (k), but      µ not conversely.
+                                                                         ¶
+                                                                 z 0
+       Indeed, the representation GL1 (k) → GL2 (k), z 7→                  , has image contained
+                                                                 0 z −1
+in SL2 (k) but its does not factor through P GL1 (k).
+       To see that the (true) converse holds, first show that the vanishing of the determinant
+                                     2
+defines an irreducible subset of k r ; this is left as an exercise for the reader. Now suppose
+that ρ GLr (k) → GLr0 (k) is a representation that factors through P GLr (k), and suppose
+also that its image is not contained in SLr0 (k). Then det ◦ρ is a nonconstant regular function
+                                                                                 2
+P GLr (k) → k ∗ , hence it determines a nonconstant rational function on Prk with zeros and
+poles contained in {det = 0}. But the latter is irreducible, so it can’t have both zeroes and
+poles there, contradiction.
+       So now we can pose:
+Question: If X is a projective variety and E is a big, semistable vector sheaf on X, then
+is the essential base locus of E a proper subset of X?
+Remark:        We can’t conclude that E is ample in the above, as the following example
+illustrates. Let X be a projective variety of dimension > 1, let E be a big semistable vector
+                                                                                              39
+
+sheaf on X of rank > 1, let π X 0 → X be the blowing-up of X at a closed point, and let F
+be the exceptional divisor. Then the essential base locus of π ∗ E must contain F .
+My Mitteljahrentraum
+      The question of an essential base locus being a proper subset comes up in Nevanlinna
+theory, and I hope to be able to use it in number theory, as well. Here’s how.
+      Bogomolov has shown that Ω1X is semistable for a smooth surface X. One would hope
+to generalize this, to Ω1X (log D) for a normal crossings divisor D on X, and also to higher
+dimensions. Then it would suffice to prove that one of these bundles is big to get arithmetical
+consequences.
+      Moreover, Bogomolov’s definition of semistability can be generalized to defining semista-
+bility of higher jet bundles. These are not vector bundles, because they correspond to el-
+ements of H 1 (X, G(OX )) for a group G other than GLn . But, one can make the same
+definition, using those representations of G having the appropriate kernel: k ∗ again (Green-
+Griffiths), or a certain bigger group (Semple-Demailly). Probably the latter.
+      Bigness is easy to define in this context, and then one hopefully can use the two
+properties to talk about the exceptional base locus. Already the proof of Bloch’s theorem in
+Nevanlinna theory can probably be recast in this mold.
+Is Semistability Really Necessary?
+      The proof of the main theorem of this talk didn’t really need the full definition of
+semistability; it only used the condition on the degrees of subbundles for subbundles of rank
+1 and corank 1. Would the following definition make sense, and would it be preserved under
+pull-back and symmetric power?
+Definition: Let X be a projective curve and let E be a vector sheaf of rank r on X. Then
+E is ±1-semistable if the condition on degrees and ranks of subbundles holds for all full
+subbundles E 0 of rank 1 and corank 1.
+      Again, what would be a reasonable representation-theoretic formulation of this defini-
+tion?
+Loose Ends
+     In the proof of the main theorem it remains to show that semistability is preserved
+under pull-back and under taking S d .
+     To show the first assertion, let f X 0 → X be generically finite, and let E be a semistable
+vector sheaf on X. Suppose that f ∗ E is unstable. Let ρGLr (k) → GL(V ) be a representation
+such that (f ∗ E)(ρ) has a nonzero global section that vanishes somewhere. Let d = deg f .
+Then taking norms gives a global section of
+                                                        d
+                                      S d (E (ρ) ) = E (S ◦ρ)
+
+with the same properties, contradiction.
+     The second assertion is proved similarly: suppose there is a representation
+
+                                   ρ GL(S d (k r )) → GL(V )
+
+with the required properties. Then ρ ◦ S d gives a representation GLr → GL(V ), leading to a
+contradiction as before. It only remains to check that ρ ◦ S d has determinant 1. This follows
+40
+
+by commutativity of the following diagram:
+                                               GLr (k)               / GLr0 (k)
+
+
+                                                  ²                       ²
+                                           P GLr (k)                / P GLr0 (k)
+
+(here r0 is the rank of S d E).
+A.17 Wooley: The Circle Method
+Introduction
+    The circle method is the Hardy-Littlewood method (1920s), “any method involving
+Harmonic analysis that counts solutions of Diophantine questions”, including Kloosterman
+methods.
+Example. Consider a homogeneous polynomial F (x1 , . . . , xs ) ∈ Z[x1 , . . . , xs ] of degree d. We
+count
+                             NF (B) = #{(x1 , . . . , xs ) ∈ [−B, B]s : F (x) = 0}
+                                      Z 1
+                                    =     G(α) dα,
+                                           0
+where                                                 X
+                                      G(α) =                  e(αF (x1 , . . . , xs )),
+                                                      |x|≤B
+               2πiz
+and e(z) = e          .
+      Let ψ(B) → ∞ as B → ∞ as slowly as you like, ψ(B) < B d/2 . We look at
+                               M(q, a) = {α ∈ [0, 1] : |qα − a| ≤ ψ(B)B −d },
+and let                                                       [
+                                           M=                         M(q, a),
+                                                      0≤a≤q≤ψ(B)
+                                                       gcd(a,q)=1
+the major arcs. Then                   Z                              Y
+                                               G(α)dα ∼ v∞                 vp B s−d ,
+                                           M                           p
+
+the product of local densities, where v∞ is the volume of the real manifold defined by F (x) = 0
+in [−1, 1]s , and
+                          vp = lim ph(1−s) #{F (x) = 0 (mod pn ) : x ∈ (Z/ph Z)s }.
+                               h→∞
+
+This particular statement is true in a very broad sence, provided that s is not small and that
+the geometry of F = 0 is not too wild, e.g. nonsingular.
+       For m = [0, 1) \ M, the minor arcs, then G(α) should be “randomly” behaved, so one
+tries to show: G(α) = o(B s−d ) when α ∈ m. If true, then
+                         Z              Z                 Y
+               NF (B) =      G(α) dα +     G(α) dα ∼ v∞      vp B s−d + o(B s−d ).
+                                 M                     m                         p
+                                                                                                      41
+
+For this one needs non-singular R and Qp -points. When this method works, one gets weak
+approximation and the Hasse principle.
+     In particular, this will not work for varieties which fail the Hasse principle. The basic
+techniques work for all number fields K/Q, or even for Fq [t] or other function fields.
+Scope of the Circle Method
+      The circle method works with “sufficiently many” variables.
+Proposition (Birch 1957). Given forms F1 , . . . , Fr ∈ Q[x1 , . . . , xs ], of respectively odd de-
+grees d1 , . . . , dr , and provided that s > s0 (d1 , . . . , dr ) is large enough, then there exists a
+rational point on F1 = · · · = Fr = 0.
+
+      This method diagonalizes each of the forms, but at a great cost:
+                              s0 (d1 , . . . , dr ) ≤ ψ(d−5)/2 (d1 + · · · + dr )
+where d = max di , and ψ0 (x) = exp(x), ψ1 (x) = (exp ◦ · · · ◦ exp)(x), ψ2 (x) = (ψ1 ◦ · · · ◦ ψ1 )(x)
+                                                  |      {z       }                |    {z       }
+                                                                42 log x                   42 log x
+and so on.
+Example. For d = 3, one has s0 (3) = 15 (Davenport 1963); s0 (3, . . . , 3) = (10r)5 (Schmidt
+                                                              | {z }
+                                                                                    r
+1984). s0 (3, 3) = 831 (Dietmann-W).
+Proposition (Birch 1962). Let F (x) ∈ Z[x1 , . . . , xs ] be homogeneous of degree d. Let V =
+{F (x) = 0}. Then whenever s − dim(Vsing ) > (d − 1)2d , one has NF (B) asymptotic to a
+product of local densities as before.
+
+       The difficulty of this result depends on the singular locus being reasonably small in
+dimension. This holds for any number field, and it is probable that this holds for a function
+field assuming the characteristic is sufficiently large.
+Proposition (Heath-Brown 1983, Hooley 1988). For s0 (3) = 8, we have the Hasse principle
+for nonsingular cubic forms.
+
+      We now turn to some simpler situations.
+Proposition (Brudem-W). If F = Φ1 (x1 , x2 ) + · · · + Φs/2 (xs−1 , xs ), Φi ∈ Z[x, y] binary,
+homogeneous of degree d, then NF (B) is asymptotic to the product of local densities whenever
+                                
+                                  d
+                                2 ,                 d = 3, 4
+                            s > (17/16)2d ,          5 ≤ d ≤ 10
+                                
+                                2d2 log d + . . . , d large.
+
+     For a diagonal form a1 xd1 + · · · + as xds = 0, work by Hua, Vaughan, Heath-Brown, the
+same conclusion holds for
+                                
+                                    d
+                                2 ,                  d=3≤d≤5
+                                           d
+                          s > (7/8)2                  6≤d≤8
+                                
+                                d2 log d + . . . , d large;
+42
+
+One also has the weaker statement that NF (B) is greater than a constant times the product
+of local densities in the cases that
+                             
+                             
+                              7,                              d=3
+                             
+                             
+                             12,                              d=4
+                         s≥ .
+                             
+                              ..
+                             
+                             
+                             d(log d + log log d + 2 + o(1)), d large.
+
+      Presumably: s > 2d should suffice for the method to work.
+      Simultaneous equations: we expect need s0 (d) variables P
+                                                              for 1 form of degree d makes
+it look we need rs0 (d) variables for r forms of degree d. For sj=1 aij xdj = 0, (1 ≤ i ≤ r),
+the number of variables required is given by: if the forms are in general position, and
+s > (3r + 1)2d−2 , then we have an asymptotic formula. For r diagonal cubics, s ≥ 6r + 3.
+For 2 diagonal cubics, one has the Hasse principle whenever s ≥ 13 (Brudeur, W).
+Keys to Success
+       We have the major arcs
+                           M(q, a) = {α ∈ [0, 1) : |qα − a| ≤ ψ(B)B −d }
+with                                                           [
+                                               M=                         M(q, a).
+                                                        0≤a≤q≤ψ(B)
+                                                         gcd(a,q)=1
+
+       For α = a/q a rational number, we have
+                                                   q               q
+                     X                             X               X         X
+            G(α) =           e(αF (x)) =                     ···                          e((a/q)F (r1 , . . . , rs ))
+                     |x|≤B                        r1 =1            rs =1 xi ≡ri (mod q)
+                                                                             1≤i≤s
+                                 q             q
+                                 X             X
+                  = (B/q)    s
+                                         ···           e((a/q)F (r)) + O((B/q)s−1 q s )
+                                 r1 =1         rs =1
+                      −s                 s
+                  ∼ q S(q, a)B .
+One can handle the case α = (a/q) + β for β small by using the mean value theorem,
+                           G(α) = q −s S(q, a)v(β) + O((q(1 + B d |β|))s )
+and
+                                             Z B             Z B
+                              v(β) =                   ...          e(βF (γ1 , . . . , γs )) dγ.
+                                               −B             −B
+One can apply Poisson summation and Kloosterman methods to get the error to be of type
+B ds/4 .                                  R
+       For the minor arcs, we want to show m G(α) dα = o(B s−d ). One has Weyl differencing:
+                 P
+letting f (α) = |x|≤B e(αxd ), we have
+                          X X                       X X
+               |f (α)|2 =         e(α(xd − y d )) =       e(α((y + h)d − y d ))
+                           |x|≤B |y|≤B                                    h∈I y∈I(h)
+                                                                                                 43
+
+where now (y + h)d − y d = hpd−1 (y, h). Repeating in this way, one can get down to sums of
+linear polynomials. Provided α ∈ R, a ∈ Z, q ∈ N, gcd(a, q) = 1, with |α − a/q| ≤ q −2 , then
+                                                                     1−d
+                              |f (α)| ¿ B 1+² (a−1 B −1 + qB −d )2         .
+      Finally, there is recent work of Heath-Brown and Skorobogatov: For at` (1−t)m = N (x),
+N a norm form of degree k, then the Brauer-Manin obstruction is the only one to weak
+approximation and the Hasse principle. One uses descent to cN (y) + dN (z) = λw k , where
+the circle method gives weak approximation and the Hasse principle. One can generalize
+this to the case
+                                   aL1 (x)`1 L2r (x)`2r = N (v),
+where Li (x) ∈ Q[x1 , . . . , xr ] linear forms, gcd(`1 , . . . , `2r ) = 1. Again we have that the
+Brauer-Manin obstruction is the only one, and one has descent to
+                                       2r
+                                       X
+                                             cij N (yi ) = λi wk
+                                       j=1
+
+for (1 ≤ i ≤ r).
+A.18 Yafaev: Descent on certain Shimura curves
+      Joint work with A. Skorobogatov.
+      Let B be an indefinite division quaternion algebra over Q (indefinite means that R⊗B =
+M2 (R)). Let OB be a maximal order in B. Let D be the discriminant of B (the product
+of primes that do not split B), and suppose D > 1. Let H± be the union of the upper and
+lower half planes and consider the Shimura curve
+                                                  ×
+                                             S = OB \H± .
+Then S is a compact Riemann surface S with a canonical model over Q.
+                                                                                  ×
+     Let N be a prime, (N, D) = 1. Let Γ0 (N ), Γ1 (N ) be the inverse images in OB  of the
+                                                   ±                 ±
+usual subgroups of GL2 (Z/N ). Let X = Γ1 (N )\H , Y = Γ0 (N )\H . Then X → Y is a
+Galois covering, with Galois group Z/N Z× , which is unramified if ∃p, q|D such that p ≡ 1
+(mod 4), q ≡ 1 (mod 3).
+Theorem (Shimura). We have S(R) = ∅, and if k is imaginary quadratic, k ⊗ B = M 2 (k),
+and |Cl(k)| = 1, then S(k) 6= ∅.
+     • Jordan and Livne gave a complete description of points of S over local fields.
+     • Jordan gave some √results on points of S over imaginary quadratic fields. For example,
+       if D = 39, k = Q( −3), then Sk does not satisfy the Hasse Principle.
+     • Skorobogatov and Siksek showed that if Sk does not have a k-rational divisor class
+       of degree 1 and (Jac(Sk )) is finite, then the failure of the Hasse Principle for Sk is
+       accounted for by the Manin obstruction.
+      Consider now the covering X → Y of curves over Q, as defined above. We want
+to find an imaginary quadratic field k and X and Y such that for any twist of X by a
+                   σ
+               S −
+character Gal(k/k) → (Z/N )× /±1, X σ (Ak ) = ∅ but Y (Ak ) 6= ∅. Since, as in Skorobogatov’s
+talk, Y (k) = σ X σ (k), this shows that the Hasse principle for Y fails and provides a
+cohomological obstruction that explains this failure.
+44
+
+      Suppose first that v|p for a prime p dividing D. Then Y has bad reduction at v.
+Furthermore, it is known (Jordan-Livne-Varshavsky) that Y (kv ) 6= ∅ if p is inert. So we
+suppose that all primes dividing D are inert in k.
+      Now consider what happens at N . We have the usual model of YFN with two compo-
+nents SFN , intersecting at supersingular points defined over FN 2 . We assume again that N
+is inert. It can be shown that |S(FN 2 ) \ {Supersingular Points}| > 0. This then shows that
+if N is inert, Y (kv ) 6= ∅ for v|N .
+      Finally, we consider places v which do not divide N D. If σ : Gal(k/k) → (Z/N ) × / ± 1
+is ramified at such a place v, X σ (kv ) = ∅. So we need only consider characters unramified
+outside N D. If we suppose further
+     A. that (N − 1)/2 is prime to p(p2 − 1) for any p|D
+     B. |Cl(k)| is prime to (N − 1)/2
+then we are left with characters corresponding to Q(ζN )+ k/k.
+      Now, Y and X σ have good reduction outside N D. To deal with places v - N D, we
+count points to show that the curve has points over Fv (which is Fp or Fp2 according as p is
+split or inert in k), then lift them using Hensels Lemma.
+      The point counts make use of the following trace formulas: p - N D then
+                  Tr(Fpr |Hét
+                           1
+                               (YFp , Q` )) = Tr(pTpr−2 − Tpr |H 0 (YFp , Ω1 ))
+                 Tr(Fpr |Hét
+                          1
+                              (XFσp , Q` )) = Tr(γ r pTpr−2 − γ r Tpr |H 0 (XF p , Ω1 ))
+
+
+where Fp is Frobenius and γ = σ(Fp ). We get Y (Fp2 )| > 0, and Y (Fp )| > 0 if ∃t ∈ Z,
+       √
+|t| < 2 p such that
+                                              p
+                                    p in Q( t − 4p)
+     A. all primes dividing D are split         2
+
+     B. p - t or p is not splitp
+                               in Q( t2 − 4p)
+     C. N is not inert in Q( t2 − 4p).
+      Putting these together we get the following proposition:
+Proposition (Local points on X σ ). Suppose that for all m ∈ {0, 1, . . . , (N − 3)/2} there
+exists p - N D split or ramified in k such that
+                                                                       √
+                 p2m + tpm + p 6= 0 (mod N )    (for all t ∈ Z, |t| < 2 p)               (2)
+then for all characters σ we have X σ (Ak ) = ∅.
+      We can now find counterexamples to the Hasse principle as follows:
+     A. Choose D = q1 q2 , with q1 ≡ 1 (mod 4) and q2 ≡ 1 (mod 3).
+     B. Choose N such that (N − 1)/2 is coprime to q1 (q22 − 1) q2 (q22 − 1).
+     C. Let p be a prime such that p - N D. Call p good if there exists t such that condition 1
+        above is satisfied, bad otherwise. (The set of bad primes is finite.) Now find a good
+        p such that (2) is satisfied.
+     D. Now choose a field k imaginary quadratic such that q1 , q2 , N are inert in k, bad primes
+        are inert, primes from Step 3 are split or ramified, and |Cl(k)| is prime to (N − 1)/2.
+        Ono can prove that if there is one ksatisfying these conditions there are infinitely
+        many.
+                                          √
+      Example: D = 35, N = 23, k = Q( −127).
+                                                                                                45
+
+                                      Chapter B: Problems
+         The workshop featured two problem/discussion sessions. The sessions were moderated
+    by Jean-Louis Colliot-Thélène and William McCallum. People took turns suggesting prob-
+    lems and the moderator led the other participants to share their thoughts and perspectives.
+         The material from both sessions has been combined into one list.
+         A followup session, discussing the progress made during the workshop, was moderated
+    by Trevor Wooley. The material from the followup session has been incorporated in the
+    problem list.
+    B.1 List of open problems
+    Problem/Question 1. Consider hypersurfaces fd ∈ Z[x0 , . . . , xn ] of degree d in Pn , n ≥ 2.
+    Let
+
+            N (H) = {fd : max coefficient of fd is ≤ H, fd has a solution in Zn+1 \ {0}}.
+
+(a) For d > n + 1, is it true that N (H)/Ntot (H) → 0? Does this follow from Lang’s conjectures?
+    (Voloch)
+(b) Instead, look at those with those with points locally everywhere Nloc (Poonen). Is this a
+    positive fraction, i.e. is Nloc (H)/Ntot (H) > c?
+(c) As a special case, if you write down a plane cubic, how likely is it to have a rational point?
+    (Voloch)
+(d) For cubic surfaces, there are examples where the Hasse principle fails, but maybe for almost
+    all values of a parameter in a family, the Hasse principle holds. We should have asympotically
+    that the N (H)/Ntot (H) ∼ Nloc (H)/Ntot (H)? (Colliot-Thélène) For d ≤ n, we hope this will
+    hold in general.
+
+    Remarks.
+  (i) The set of reducible such hypersurfaces are a very small fraction (usually codimension ≥ 2)—
+      they affect this calculation very little (Poonen).
+ (ii) Serre looked at d = 2; here one has the Hasse principle. (Tschinkel) For d = 2, n = 2,
+      the proportion of everywhere locally solvable ones tends to zero; but we should exclude this
+      case because of the codimension 2 condition. (Heath-Brown) Instead, we should restrict to
+      families X → S such that the codimension of reducible fibers is at ≥ 2.
+(iii) Computational evidence is all over the place, so one must rephrase the question better to
+      get some kind of answer. For example, for cubics, those with prime power discriminant and
+      the general evidence are quite different. (Swinnerton-Dyer)
+(iv) How is this related to 3-torsion elements in X? (Ellenberg)
+
+         Update (4/21/04): Poonen and Volloch have tackled this problem: http://www.math.princeton.edu/∼
+    html/poonen-voloch/random.pdf
+
+    Problem/Question 2. If X is smooth projective geometrically rationally connected defined
+    over a number field k, then the Brauer-Manin obstruction should be the only one to the Hasse
+    principle. That is, is
+                                         X(k) = X(Ak )Br X ?
+    46
+
+           As special cases, this should be the case for Fano varieties of dimension ≥ 3, e.g.
+    (smooth) complete intersections of degree (d1 , . . . , dr ) in Pn with d1 + · · · + dr ≤ n. (Colliot-
+    Thélène)
+      Remarks.
+  (i) It would be worth doing a reasonably large search on diagonal quartic 3-folds. (Swinnerton-
+      Dyer)
+ (ii) It is an old problem that for nonsingular cubic forms in at least 5 variables, the Hasse
+      principle holds. For diagonal cubic forms over Q, this is proved modulo finiteness of X.
+      (Swinnerton-Dyer)
+(iii) For the smooth intersection of two quadrics in P5 , the Hasse principle should hold? If it has
+      a rational point, then it in fact satisfies weak approximation. The critical problem is in 6
+      variables. (Colliot-Thélène)
+    Problem/Question 3. Let f1 (x0 , . . . , xn ) = 0, f2 (x0 , . . . , xn ) = 0 define the smooth com-
+    plete intersection of two quadrics X 2,2 ⊂ Pn over k a number field. For simplicity, assume
+    k = Q. If n ≥ 8, X(R) 6= ∅ implies X(Q) 6= ∅. (Sansuc, Swinnerton-Dyer, Colliot-Thélène)
+(a) For n ≥ 9 (10 variables), this can be provably done by the circle method. (Heath-Brown)
+(b) For n = 7, there is the concrete problem: given two quadratic forms f1 , f2 as above in 8
+    variables over k a p-adic field, assume f1 = f2 = 0 is smooth, so that det(λf1 +µf2 ) = p(λ, µ)
+    is separable. Does there exist (λ, µ) ∈ P1 (k) such that λf1 + µf2 contains 3 hyperbolics (split
+    off an extra xy in its decomposition). Solution to this problem would give a local-global
+    principle for n = 7. (Colliot-Thélène)
+     Remarks.
+ (i) It is possible in odd characteristic after an odd degree field extension (Heath-Brown), un-
+     written.
+(ii) If in the pencil, there is one of rank ≤ 7, then it is possible; or other conditions with n ≥ 5
+     (e.g. two conjugate lines or contains a conic defined over the ground field).
+                                                                          P
+     Problem/Question 4. Consider the hypersurface given by i xi yi2 = 0 in P3 × P3 . Take
+     the height
+                                        H(x, y) = sup |xi |3 · sup |yi |2
+     and throw out the set where some xi = 0, yi = 0. Can one estimate the counting function?
+     (Peyre)
+    Remarks. Some people are working on this. What news?
+    Problem/Question 5. Consider xyz = t(x + y + z)2 , with height function H(x, y, z, t) =
+    max(|x|, |y|, |z|, |t|), and restrict to gcd(x, y, z, t) = 1. Excluding trivial solutions (on lines),
+    can you prove a counting function which is
+                                          ∼ cB(log B)6 < B 1+² ?
+    This is a singular cubic surface so we also expect an explicit constant. (Tschinkel)
+     Remarks.
+ (i) This has a D4 -singular point. On top of the singularity, one gets a configuration of 4 lines
+     all of which have self-intersection 2.
+(ii) Are numerics possible? (Voloch)
+                                                                                                        47
+
+  (iii) This is a compactification of the affine plane (solve for t), but it is not equivariantly embed-
+        ded. (Tschinkel)
+  (iv) For the singular cubic surface 1/x + 1/y + 1/z + 1/t = 0, Heath-Brown has established that
+        the counting function has exact order of magnitude B(log B)6 . Proceedings of the session in
+        analytic number theory and Diophantine equations, Bonner Math. Schriften 360 (2003).
+   (v) Progress: Using the universal torsor (as calculated by Hassett and Tschinkel) Browning
+        has established that the counting function has exact order of magnitude B(log B) 6 . See
+        math.AG/0403530, http://front.math.ucdavis.edu/math.NT/04042451.
+  (vi) Update (4/21/04) Tim Browning has shown B(logB)6 ¿ N (B) ¿ B(logB)6 . He makes use
+        of the universal torsor. See [arXiv:math.NT/0404245]
+ (vii) Takloo-Bighash: for w 2 x+wy 2 +z 3 = 0, have an effective lower bound of B log B, and should
+        be able to get B log2 B by a similar method, but can’t push it any further. Expected upper
+        bound in this case is again B(log B)6 . Hassett: the universal torsor was in his lecture.
+(viii) Hassett: there are 13(ish) singular cubics (zero-dimensional in moduli), the list is in a paper,
+        reference available.
+      Problem/Question 6. (Swinnerton-Dyer)
+  (a) Is there a K3 surface X over Q which has a finite nonzero number of rational points #X(Q) <
+      ∞?
+  (b) Is there a nonsingular quartic surface X with this property?
+  (c) Find a third rational point on X14 + 2X24 = X34 + 4X44 . (There are only 2 points with height
+      ≤ 215 , and other non-public reasons to believe that there are only finitely many points.)
+  (d) Find a smooth quartic X 4 ⊂ P3 with Pic X ∼  = Z and X(K) infinite.
+        Remarks.
+    (i) Over Q would be the first place to try, but over any number field is OK. It seems as though
+        this is possible for either all such families or no such family.
+   (ii) There are K3 surfaces with no rational lines with infinitely many rational points. (Peyre)
+  (iii) Do you hope that the Brauer-Manin obstruction is the only one to weak approximation?
+        (Harari)
+  (iv) The rank of the Neron-Severi group over C is rank 20, but is only rank 1 over Q coming
+        from the hyperplane section. Therefore it looks like a Kummer surface, the product of two
+        CM elliptic curves.
+                      √        What are the elliptic curves? (Read the right paper of Shioda.) The
+        CM is by Q( −2)?
+   (v) It does not seem helpful to look over a finite extension. (Colliot-Thélène)
+  (vi) Are there any heuristics looking modulo any primes? (Poonen) The zeta function does not
+        say anything about solubility. (Swinnerton-Dyer)
+ (vii) On x4 + y 4 + z 4 = t4 , Elkies found another point, with smallest height on the order of 215
+        (Colliot-Thélène); he uses a fibered pencil of elliptic curves, looks at values of the parameter
+        for which there was a point everywhere locally and then looked for a global point. There is
+        no such fibration in this case. Maybe one could go to an extension and then look for rational
+        points (Villegas).
+(viii) What restrictions are necessary for such a surface to occur? (Poonen) The condition to
+        ensure that Pic X ∼  = Z is a black-board full. (Swinnerton-Dyer)
+        1http://front.math.ucdavis.edu/math.NT/0404245
+     48
+
+ (ix) Is it possible for the given surface that (Br X)Gal(Q/Q) is finite? If so, there might be many
+      rational points. (Harari) In the computations of Brauer-Manin obstructions, there are many
+      with ker(Br X → Br X) = Br X, there are a lack of examples with ‘transcendental elements’.
+      We expect (Br X)Gal(Q/Q) to be finite, proven in certain cases because of the Tate conjecture.
+  (x) Are there any known examples of quartic surfaces with Pic X ∼        = Z with infinitely many
+      rational points? (Poonen) Maybe almost always they have infinitely many. (Swinnerton-
+      Dyer)
+ (xi) If there are infinitely many points on a quartic, will they be Zariski dense? Look in Mordell’s
+      book, perhaps. (Colliot-Thélène)
+(xii) Silverman has examples of surfaces in P2 × P2 with two noncommuting endomorphisms, so
+      this gives infinitely many points, but this has Picard group rank 2. (Voloch)
+     Problem/Question 7. The distribution of rational points on Enriques surfaces has not
+     been well studied. (Skorobogatov)
+           Let X be an Enriques surface.
+ (a) If X(k) 6= ∅, is X(k) Zariski dense?
+ (b) Is there an X which violates the Hasse principle?
+ (c) Is there an X such that X(Ak )Br = ∅ but X(Ak ) 6= ∅?
+ (d) Is there an X with X(k) = ∅, X(Ak )Br 6= ∅?
+     Remark. There is a Z/2Z cover of the Enriques surface X which is a K3 surface; is there
+     some torsor over the K3 surface for the torus for which the total space is a torsor for X
+     under a nonabelian group? For a bi-elliptic surface, is this possible? (Harari)
+                                                                                           p
+     Problem/Question 8. Let X an Enriques surface over a number field K, Y → X the
+     double cover (K3 surface), X(AK )Br the Brauer-Manin set. Take mv ∈ X(AK )Br , lift it to
+     an adelic point Pv on Y . Under what assumptions on mv will it be liftable to Pv on Y (AK )Br ,
+     or at least Y (AK )Br1 ?
+                                                                                            φ
+     Remark. Guess (reported by Harari): there should be some nonabelian torsor Z → X for
+     the group G which is the semidirect product T o Z/2, where T is Neron-Severi torus of Y .
+     The points p(Y (AK )Br ) should correspond to X(AK )f , where f : Z → X.
+     Remark. About Pb/question 8 (which is closely related to Pb 7), David Harari adds the fol-
+     lowing update (2004-09-25): “Skorobogatov and myself have recently proved that there exist
+     Enriques surfaces X with adelic points in X(Ak )Br but not in the closure of the set of rational
+     points X(k) (”The Manin obstruction to weak approximation is not the only one”). In partic-
+     ular, some adelic points of X(Ak )Br are not liftable to Y (Ak )Br1 , see the paper “Non-abelian
+     descent and the arithmetic of Enriques surfaces” at http://www.dma.ens.fr/˜harari/ 2.”
+     Problem/Question 9. Use the intermediate Jacobian (when it is an abelian variety) in
+     arithmetic? To fix ideas, dim X = 3, look at algebraic 1-cycles modulo rational equivalence.
+           Compute this for a rigid Calabi-Yau 3-fold X (over C), i.e. KX ∼ 0, X simply con-
+     nected, h1,0 = 0, h2,0 = 0, h2,1 = 0, h3,0 = 1. In this case, the intermediate Jacobian
+     J 2 (X) ∼
+             = E is of dimension 1. Determine E given X, i.e. give its j-invariant.
+     Remarks.
+          2http://www.dma.ens.fr/∼harari/
+                                                                                                      49
+
+ (i) For two quadratic forms f1 , f2 in 6 variables, i.e. X 2,2 ⊂ P5 , look at the Jacobian of the genus
+     2 curve given by y 2 = det(λf1 + µf2 ). (Colliot-Thélène) Over Fp , you can prove the Weil
+     conjecture for X 2,2 . Can you use this to prove something? You can also look at the variety
+     of lines on X 2,2 , also a principal homogeneous space for an abelian variety; so over a finite
+     field, this will have a rational point, so there will be a line over Fp . We can say something
+     with X 2,2 contains a pair of skew conjugate lines or a conic defined over the ground field;
+     how can you do these things such as finding a line over a quadratic field...?
+(ii) Explicit examples of rigid Calabi-Yau 3-folds? Take an elliptic curve E with complex mul-
+     tiplication by Q(ζ3 ), take the kernel of the endomorphism ζ3 − 1, T1 ; T1 × T2 × T3 has 27
+     singularP points, blowingQ   up these points gives h2,1 = 0 (Candela). Also the quintic hyper-
+                 5              5
+     surface i=1 x5i − 5ψ i=1 xi = 0 with ψ 5 = 1 has 125 nodes; the resolution has h2,1 = 0.
+     There are more such examples. (Yui)
+
+    Problem/Question 10. Are there results at the level of number fields arising from the
+    techniques of rationally connected varieties? (Colliot-Thélène)
+          For example, recently Kollàr got nice results over local fields: if X/k is a projective
+    variety, we say P, Q ∈ X(k) are R-equivalent if you can link them by a chain of curves of
+    genus zero over k; if X is smooth with k ,→ C, then X is rationally connected if X(C)/R is
+    a single point. Kollar proved that if k is a local field, and X/k is rationally connected, then
+    X(k)/R is finite. (Szobó)
+          Kollàr and Szabo proved that if k is a number field, and X/k is rationally connected,
+    then X(kv )/R is trivial for almost all v.
+
+    Remark. If X/k is a variety over a number field, and X is rationally connected, then does
+    there exist a field K ⊃ k such that for all L ⊃ K that X(L)/R consists of a point? (Ellenberg)
+    Negative answer by a conic bundle over P2 . (Raskind)
+
+    Problem/Question 11. Let X/k be a smooth projective rationally connected variety with
+    the cohomological dimension of k ≤ 1. Does X have a rational point? (Colliot-Thélène)
+
+    Remarks.
+  (i) There was a false proof for X 2,2 ⊂ P4 .
+ (ii) Yes if k = Fq . (Esnault) Yes if k is the function field of a curve. (Harris, Graber, Starr)
+(iii) At least for surfaces, we hoped that universal torsors would be nice objects, e.g. they are
+      birational to homogeneous spaces under a nice group, so they would be close to k-rational if
+      they had a k-point. An example of X/k (k a horrible field) a cubic surface with X(k) = ∅
+      but (Br k)[3] = 0. (Madore, Colliot-Thélène)
+(iv) Colliot-Thélène adds the following: With hindsight, Problem 11, as phrased, had been settled
+      by J. Ax in Bull. Am. Math. Soc. 71 (1965) p. 717. Ax produced a smooth hypersurface in
+      9-dimensional projective space, of degree 5, over a field k of cohomological dimension 1, with
+      no rational point (that such hypersurfaces are rationally connected was proven much later).
+      Ax’example has index 1, i.e. the g.c.d. of the degree of the finite field extensions over which
+      the hypersurface acquires a rational point is 1. In Journal of the Inst. of Math. Jussieu
+      (2004) 3 p. 1-16, J.-L. Colliot-Thélène and D. Madore produce a field of cohomological
+      dimension 1 and a smooth cubic surface over that field which has index 3, thus settling
+      negatively a question of Kato and Kuzumaki (1986).
+    50
+
+    Problem/Question 12. Describe all pairs of sets A, B ⊂ µ∞ , #A = #B, stable under
+    Gal(Q/Q), where the elements of A and B are alternately placed around the unit circle.
+    (Rodriguez-Villegas)
+     Remarks.
+ (i) There is a solution but it is much more complicated than the statement of the problem. The
+     solution is used in the classification of algebraic hypergeometric functions.
+(ii) There is the infinite family A = µm+n \ {1} and µm ∪ µn with gcd(m, n) = 1.
+    Problem/Question 13. Find a smooth quintic hypersurface in P3 with Picard number 1
+    over F2 . (Voloch)
+      Remarks.
+  (i) This is used in constructing error correcting codes.
+ (ii) If you compute the analytic rank (the zeta function), by Tate’s theorem, the second Betti
+      number is 53 so compute the number of points up to something like F228 (Voloch). So testing
+      them exhaustively would be very costly.
+(iii) Shioda has examples over Q of Picard number 1, so they might be defined over F2 . (Raskind)
+      This has been tried once. (Voloch)
+    Problem/Question 14. Consider cubic hypersurfaces a0 X03 + a1 X13 + a2 X23 + a3 X33 = 0.
+    (Swinnerton-Dyer)
+(a) If soluble, give upper bound for smallest solution in terms of the ai .
+(b) Look at |ai | < A, tabulate the size of the smallest solution and conjecture a particular growth
+    rate in terms of A.
+    Remarks. If a1 x31 + · · · + a4 x34 = 0 has a solution x ∈ Z4 \ {0}, how large is the smallest
+    solution? Let x0 be a solution with max{|xi |} minimal. Swinnerton-Dyer had suggested: if
+    A = max1≤i≤4 {|ai |}, then maxx=x0 {|xi |} << A4/3 . Wooley had suggested instead A1+² .
+          Progress: Stoll, Stein: computations up to |ai | ≤ 60 suggest an upper bound of A2 .
+    Also, assuming Schinzel, finiteness of Sha, and one unproven lemma, Stoll can produce a ∈ Z 4
+    with least solution >> A2−² . (Need the hypotheses to ensure that the examples do have
+    rational solutions.)
+          Shape of examples: if p, q prime, look at px31 + 2px32 + qx33 + 5qx34 . Assume 2p and 5q
+    are approximately of the same size, p ≡ q ≡ 1 (mod 3), that 2 is a cube mod p but not mod
+    q, and that 5 is a cube mod q but not mod p (plus some additional technical conditions).
+      Remarks.
+  (i) The growth rate should be like A4/3 . If you do the corresponding thing with 3 squares,
+      a0 X02 + a1 X12 + a2 X 2 = 0, the answer is A. (Swinnerton-Dyer)
+ (ii) Seems more like A1+² . (Wooley)
+(iii) Is there a heuristic which suggests this? (Poonen) No. (Swinnerton-Dyer)
+    Problem/Question 15. Characterize the rational numbers α that can be written as
+                                         2         2             2
+                                 α= 2         + 2     + ··· + 2
+                                      x1 − 2 x2 − 2           xn − 2
+    for xi ∈ Q and fixed n. (Poonen)
+          It is necessary that |α|p ≤ 1 for (2/p) = −1 and p = 2. Is it sufficient?
+                                                                                                   51
+
+    Remarks.
+  (i) You might repeat this kind of problem with any rational function with no rational poles.
+      (As in Waring’s problem.) Something has already been done for a function with rational
+      poles. (Poonen)
+ (ii) You can phrase this problem a different kind of way: prove or disprove the Hasse principle
+      for this equation for all α ∈ Q. (Swinnerton-Dyer) You can probably show for n sufficiently
+      large (and fixed) that there is a solution locally.
+(iii) There are applications to Diophantine definitions: this would show that inside Q, the set of
+      these rational numbers which are integral at half of the places, is Diophantine. (Poonen)
+    Problem/Question 16. Solve the local-global solubility problem for finding lines on a cubic
+    hypersurface. (Wooley)
+(a) Find an example of a cubic hypersurface over Qp (in as many variables as possible) with no
+    rational line.
+(b) Find an example of a cubic hypersurface over Q (in as many variables as possible) with no
+    rational line.
+    Remarks.
+  (i) For (a), we must have at least 10 variables, since there are cubic forms in ≤ 9 variables with
+      no point. If you have 14 variables, then there is a rational line. (Wooley)
+ (ii) For (b), for 37? variables, there is a rational line. (Wooley)
+(iii) Also, find one with a rational point but no rational line. (Colliot-Thélène)
+    Problem/Question 17. Draw a regular pentagon P , construct the circle through the 5
+    vertices C, and consider the curve E : P + λC 2 = 0. This is a quintic curve with 5 double
+    points, and therefore has geometric genus 1. This curve has five points at ∞ (given by the
+    slopes of the lines). Compute the 5-torsion of E. (McCallum)
+    Remarks.
+  (i) The points at ∞ are among the 5-torsion.
+ (ii) The motivation is: these curves are principal homogeneous spaces, and are candidates for
+      5-torsion elements in X. If λ is the parameter on X1 (5), then this is a twist of the universal
+      elliptic curve of X1 (5). Here we have explicit models. (McCallum)
+(iii) If you consider this as a pencil of elliptic curves, how does this relate to the talks at this
+      conference? (Ellenberg)
+(iv) Does the pentagon have to be regular? (Voloch) There are various variations, such as
+      replacing the circle with a star pentagon.
+    Problem/Question 18.
+(a) Find a separable polynomial g(t) ∈ Q[t] such that the Jacobian of the hyperelliptic curve
+    s2 = g(t) is isogeneous over Q to E r × B, E an elliptic curve, with r ≥ 4 or r = 3 and
+    dim B ≤ 1. (Silverberg)
+(b) Related problem: Give an example of a map P1 → E 4 /{±1}, where ±1 acts diagonally,
+    whose image does not lie in H/{±1} for any subgroup H ( E 4 . (Ellenberg)
+    Remarks.
+    52
+
+  (i) The case r = 2 and dim B = 0 is possible, as is the case r = 3 and dim B = 2. A consequence
+      of this construction would be better bounds on the density of quadratic twists of E of rank
+      ≥ r. (Silverberg)
+ (ii) What if you ask this question over C? (Voloch) Can at least do r = 3 and dim B = 0 over
+      C. (Poonen) Even over C, maybe it cannot be done for large r. (Ellenberg)
+(iii) One might consider the curve s2 = tk + 1 over Q, for k composite. If 3 | k, for example, it
+      maps to s2 = t3 + 1?
+(iv) Does it have to be hyperelliptic? (Rodriguez-Villegas) Yes, for applications. (Ellenberg)
+ (v) The random matrix heuristics suggest that there is a positive power, so there should be a
+      curve there, and finding such a curve would give a proof of a density result. (Ellenberg)
+(vi) Take E1 , E2 , E3 /Q pairwise isogeneous elliptic curves, A = E1 × E2 × E3 , and look at the set
+      of principal polarizations on X. Find a nonsplit principal polarization on A; then it comes
+      from A = Jac(C), g(C) = 3. Now you just need to show that C is hyperelliptic.
+    Problem/Question 19. Let X be a variety over a number field k and suppose that for
+    every open Zariski dense U ⊂ X, the map π1 (U ) → Gal(k/k) has a splitting s (e.g. if X(k)
+    is Zariski dense). In this case, if X(Ak ) 6= ∅, is there no Brauer-Manin obstruction to the
+    Hasse principle for X, i.e. is X(Ak )Br 6= ∅? (Ellenberg)
+     Remarks.
+ (i) Is it possible that X(Ak ) 6= ∅ follows from the splitting condition? (Poonen) You might also
+     ask the corresponding question for a local field. (McCallum)
+(ii) You might also ask this question for other obstructions. (Ellenberg)
+    Problem/Question 20. Let p(t) = 3(t4 − 54t2 − 117t − 243). Write the system of two
+    equations y 2 = p(t)(x2 + 1), z 2 = p(t)(x2 + 2); think of this as a one-parameter family X of
+    curves of genus one; X(Q) is empty and X(AQ )Br 6= ∅ (Skorobogatov).
+         Is X(k) 6= ∅ for some [k : Q] odd? (Colliot-Thélène)
+      Remarks.
+  (i) The secret reason for asking: then X has a zero-cycle of degree 1. (Colliot-Thélène) If you
+      have a zero cycle of degree 1, then there is such a point.
+ (ii) Even in a given number field of degree 3, looking at a random way, the evidence you will
+      find is zero. (Colliot-Thélène)
+(iii) What about X × X × X modulo the action by three? (Ellenberg)
+(iv) Reduce the search by finding one elliptic curve with many rational points (fix x, consider
+      y 2 = p(t)(x2 + 1)), then search for z. (Voloch) But the ratio y/z is only dependent on x.
+      (Poonen)
+ (v) Do we expect [k : Q] = 3? (McCallum) Not necessarily. (Colliot-Thélène)
+(vi) Consider instead w 2 = (x2 + 2)(x2 + 1) and y 2 = p(t)(x2 + 1); search now in the first curve for
+      a cubic point, and search for t. (Poonen) Put the first one in Weierstrass form, and generate
+      the cubic fields.
+    Problem/Question 21. Let A/Z be an algebra with rkZ A = 9 given by its multiplica-
+    tion table. Suppose you know that A ≃ M3 (Z); find an algorithm which gives an explicit
+    isomorphism. (Stoll)
+    Remarks.
+                                                                                                53
+
+  (i) The motivation comes from very explicit 3-descent on elliptic curves.
+ (ii) The case of M2 (Z) reduces to finding rational points on conics. (Stoll)
+(iii) Is this an LLL problem? (Voloch) In some sense, but one needs nine 3 × 3-matrices, not one
+      9 × 9-matrix; the equations are not all linear. (Stoll)
+    Problem/Question 22. Let k be a number field, k 6⊂ R. Construct an algebraic set S ⊂ k n
+    for some n such that the projection onto one of the coordinates is exactly the set of elements
+    of k with |k| ≤ 1 for some (archimedean) absolute value | | of k. (Shlapentokh)
+    Remark. This would imply results on Hilbert’s tenth problem for rings of integers. It prob-
+    ably is hard because it is close to being equivalent.
+    Problem/Question 23. Let E ⊂ P2 be an elliptic curve over Q, and suppose E(Q) ≃ Z.
+    (Poonen)
+(a) Describe S ⊂ E(Q) where S = {(x, y) : y = a2 + b2 , a, b ∈ Q}. Is S is finite?
+(b) More generally, π : X → E gives a subset π(X(Q)) ⊂ E(Q); what others can you build?
+    Remark. It is possible to describe in a Diophantine way the set of points S = {(x, y) : 1 ≤
+    y ≤ 2}; this is an infinite set. (Poonen)
+    Problem/Question 24. Given an elliptic curve E/Q, rk E(Q) > 0, describe the set of
+    primes p such that E(Q) is dense in E(Qp ). Is this set nonempty? Is there a modular
+    interpretation of this problem? (Takloo-Bighash)
+    Remarks.
+  (i) You need surjectivity of the reduction map (Murty and Gupta have some results) and the
+      surjectivity of the map on formal groups (Silverman). One suspects that for any such curve
+      E there exists a prime p with this property.
+ (ii) This is related to Brauer-type problems for surfaces.
+(iii) You should be able to collect data on this to see if there is a positive density. (McCallum)
+    Problem/Question 25. Is there an algorithm to decide solubility of a system of linear
+    equations
+                                         ai1 x1 + · · · + ain xn = bi
+    for ai , b, xi ∈ Z, together with equations of the form
+                                             {xi αj } < rj
+    for αj ∈ R \ Q, ri ∈ Q? (Poonen)
+    Remarks.
+ (i) This is a problem in linear programming; add variables. (Voloch)
+(ii) A negative answer would have implied undecidability for Hilbert’s tenth problem over Q.
+    Problem/Question 26. Describe the variety of curves of low degree on the Fermat variety
+    F : xd1 + xd2 + · · · + xd6 = 0. (Heath-Brown)
+    Remarks.
+ (i) Lines are known, but that is all. Hope that there are none or very few.
+(ii) The curves should be over C (for now).
+54
+
+Problem/Question 27. Given a plane curve of degree d, the number of points on X of
+height at most d is ¿ d3 . There are curves which have the number of rational points À d2 .
+Can you do better than ¿ d3 ? (Heath-Brown)
+Remarks. (Roger Heath-Brown, 2004-09-25) observes that actually d5/2 is easy, so the chal-
+lenge should be to improve on this.
+Problem/Question 28. Let E be an elliptic curve over Q, and P ∈ E(Q)[3], P 6= O,
+such that rk E(Q) = 0. Let K/Q be a cyclic extension of degree 3 of conductor f , and let
+ν = ν(f ) be the number of distinct primes dividing f . It is true that 3ν−1 | # Sel3 (E, K)?
+(Chantal David)
+Remarks. Let K/Q be a cyclic cubic extension. Then the 3-rank of the class group of K is
+controlled by primes dividing discriminant of K; if there are d such primes, then 3 d−1 divides
+the class number hK (genus theory). Problem: carry this over to a guaranteed contribution
+of 3-primary component of the 3-Selmer group (over K) of an elliptic curve E/Q. Does 3 d−1
+divide the Selmer order?
+       Progress: Fix E/Q with a rational 3-torsion point, and let K vary as above. Then there
+is a constant cE depending only on E such that 3d−cE divides the Selmer order. (Clarification
+request: do the mean the algebraic part of the L-function, or the 3-part of the Selmer group,
+or the group obtained from a 3-descent? That affects the value of cE .)
+       This has been checked computationally (by checking special values of L-series).
+       Other problems? Poonen: replace 3 by another prime p, or replace Q by another
+number field, etc.
+Problem/Question 29. If K is a field such that all O-acyclic varieties over K have a point,
+is Gal(K/K) topologically generated by one element?
+Problem/Question 30. This problem has been withdrawn.
+Problem/Question 31. Harmonic analysis and nonabelian torsors: Takloo-Bighash:
+Do these give you methods to find rational points? Hassett: Is there a harmonic analysis
+argument to count points on the quintic del Pezzo surface? Wooley: no examples known
+where you can combine harmonic analysis with torsors.
+Problem/Question 32. (Voloch): Given a family of hypersurfaces, show that “almost
+all” members of the family satisfy the Hasse Principle in “interesting” circumstances.
+      Colliot-Thélène: maybe the opposite?
+      Poonen: the family was all hypersurfaces of degree d in Pn with coefficients of height
+≤ H, over some fixed number field K. The problem was: find the proportion of these that
+satisfy the Hasse Principle (originally, that have rational points, but we can find the local
+points easily).
+      Wooley and Venkatesh (tentative):
+             A−s #{(a1 , . . . , as ) : |ai | ≤ A, a1 xd1 + · · · + as xds = 0 satisfies HP}
+is asymptotic to the product of local densities, at least for s ≥ 3d + 1. This is progress for
+d large: for an individual a, one has HP (using current technology) for s >> d log d. Proof
+uses (of course) circle method.
+       de Jong: for cubics in P2 , what do conclusions of this type say about 3-Selmer groups
+of elliptic curves?
+                                                                                               55
+
+        Stoll: given local points, proportion that have rational points (i.e., satisfy HP) should
+be 0.
+        Mazur: can you put an exponent on that?
+        Stoll: wait for experimental evidence.
+Problem/Question 33. (Poonen) Instead of counting points of bounded height on a va-
+riety, count points of bounded height in a Diophantine set. (I.e., counting points in a base
+the fibre above which has a rational point.) What rates of growth can you get? Example:
+conic bundle over an elliptic curve. Heuristically, it appears rate of growth can be log log B,
+whereas for varieties it always turns out to be cB α (log B)β .
+Problem/Question 34. (Bogomolov) Replace Heath-Brown by Arakelov (et al).
+                   #{(x, y, z) ∈ P2 : |x|, |y|, |z| ≤ B, P (x, y, z) = 0} << B α+²
+with α ≤ d2 , d = deg P . Analogue for surfaces, etc.
+Problem/Question 35. Weak approximation for complex function fields: Weak
+approximation over a finite extension L of C(t), from Hassett’s lecture.
+       Colliot-Thélène: Known for X a connected linear algebraic group over L (reduce to
+reductive groups immediately; since field has cohomological dimension 1, one has Borel
+subgroup, reduce to tori; reduce to quasi-trivial tori, which are open subsets of affine space).
+       CT: X = G/H, where H is a subgroup of G (not necessarily normal). Same should go
+through if H is connected (techniques of Borovoi et al.).
+       CT: Question: Decide whether weak approximation holds for GLn /G, where G is a
+finite subgroup of GLn . This seems nontrivial. (de Jong thinks he can do this; Graber is
+unsure.) CT says de Jong claims: Let X/L be an arbitrary smooth projective, geometrically
+and rationally connected variety. Then weak approxmation holds. (de Jong: do this by
+reducing to characteristic p. Not in the dJ-H-S paper.)
+       CT: there is an Enriques surface over C(t) that has a rational point but does not satisfy
+weak approximation.
+Remarks. Yuri Tschinkel remarks that there is progress on Nr 35 due to Colliot-Thelene/Gille
+and Madore. To this Brendan Hasset adds that Madore has announced a proof of weak
+approximation in smooth fibers for a cubic surface over the function field K(C), where C is
+a curve and K is algebraically closed of characteristic zero.
+
+B.2 Photos
+        William Stein has prepared a gallery of photos3.
+
+                                     Chapter C: Glossary
+
+Abelian variety: A smooth projective geometrically integral group variety over a field.
+Over the complex numbers abelian varieties are tori.
+Brauer-Manin obstruction: The terminology is utterly awful! Many families don’t sat-
+isfy Hasse Principle. One explanation of Manin (see his paper): a cohomological obstruction
+using the Brauer group of the variety.
+  3http://modular.fas.harvard.edu/pics/ascent11/12-2002/AIM rational-points-workshop/
+56
+
+       If a variety has a local point everywhere then it has an adelic point. Manin defined,
+using a cohomological condition involving Brauer group, a subset of the adelic points that
+must contain the global points. Let X(Ak ) be the adelic points of X. Consider the subset
+of points P with the property that for every element z ∈ Br(X) the system of elements
+(zv (P ))v has sum of invariants = 0.
+       The B-M is an interesting construction in English. It is a nounal-phrase defined purely
+in terms of the sentences in which in which it may occur. There is no such actual object
+“the Brauer-Manin obstruction”.
+       Example: A variety that satisfies X(Ak ) 6= ∅ and X(Ak )Br = ∅ is a counterexample to
+the Hasse principle explained by the Brauer-Manin obstruction.
+       For a long time people were interested in whether there are counterexamples ot Hasse
+principle not explained by the Brauer-Manin obstruction. X(Ak )Br 6= ∅ but still has no
+global point (Skorobogotav found first example).
+       After one glass of wine, McCallum advocates “X(Ak )Br should be called the set of
+Brauer points”.
+Brauer-Severi variety: A twist of projective space Pn . Brauer-Severi varieties satisfy the
+Hasse principle.
+BSD conjecture—BSD—Birch and Swinnerton-Dyer: Let A be an abelian variety
+over a global field K and let L(A, s) be the associated L-function. The Birch and Swinnerton-
+Dyer conjecture asserts that L(A, s) extends to an entire function and ords=1 L(A, s) equals
+the rank of A(K). Moreover, the conjecture provides a formula for the leading coefficient of
+the Taylor expansions of L(A, s) about s = 1 in terms of invariants of A.
+Calabi-Yau variety: An algebraic variety X over C is a Calabi-Yau variety if it has trivial
+canonical sheaf (i.e., the canonical sheaf is isomorphic to the structure sheaf). [Noriko just
+deleted the simply connected assumption.]
+Del Pezzo surface: A Del Pezzo surface is a Fano variety of dimension two.
+      It can be shown that the Del Pezzo surfaces are exactly the surfaces that are geomet-
+rically either P1 × P1 or a blowup of P2 at up to 8 points in general position. By general
+position we mean that no three points lie on a line, no six points lie on a conic, and no eight
+lie points lie on a singular cubic with one of the eight points on the singularity.
+Descent:
+     A. The process of expressing the rational points on a variety as the union of images of
+        rational points from other varieties.
+     B. The descent problem is as follows: Given a field extension L/K and a variety X
+        over L, try to find a variety Y over K such that X = Y ×K L.
+Diophantine set: Let R be a ring. A subset A ⊂ Rn is diophantine over R if there exists
+a polynomial f ∈ R[t1 , . . . , tn , x1 , . . . , xm ] such that
+                       A = {~t ∈ Rn : ∃~x ∈ Rm such that f (~t, ~x) = 0}.
+
+
+Enriques Surface: A quotient of a K3 surface by a fixed-point free involution.
+       Equivalently, the normalization of the singular surface of degree 6 in P3 whose singu-
+larities are double lines that form a general tetrahedron.
+                                                                                            57
+
+     Over C an Enriques surface can be characterized cohomologically as follows: H 0 (Ω2X ) =
+0 and 2KX = 0 but KX 6= 0.
+Fano variety—Fano: Anticanonical divisor ω ⊗−1 is ample. This class of varieties is “sim-
+ple” or “close to rational”. For example, one conjectures that Brauer-Manin is only obstruc-
+tion. Manin-Batyrev conjecture: asymptotic for number of points of bounded height. A
+Fano variety of dimension two is also called a Del Pezzo surface.
+Fermat curve: A curve of the form xd + y d = z d . Good examples of many phenomenon.
+Good source of challenge problems. (E.g., FLT.) Lot of symmetry so you can compute a
+lot with them. Computations are surprising and nontrivial. They’re abelian covers of P 1
+ramified at 3 points, so they occur in the fund. group of...
+      More generally xd1 + · · · + xdn = 0 is sometimes called a Fermat variety.
+General type: A variety X is of general type if there is a positive power of the canonical
+bundle whose global sections determine a rational map f : X → Pn with dim f (X) = dim X.
+(If X is of general type then there exists some positive power of the canonical bundle such
+that the corresponding map is birational to its image.)
+      “It is a moral judgement of geometers that you would be wise to stay away from the
+bloody things.” – Swinnerton-Dyer
+Hardy-Littlewood circle method: An analytic method for obtaining asymptotic formu-
+las for the number of solutions to certain equations satisfying certain bounds.
+Hasse principle: A family of varieties satisfies the Hasse principle if whenever a variety in
+the family has points everywhere locally it has a point globally. Here “everywhere locally”
+means over the reals and p-adically for every p, and “globally” means over the rationals.
+      Everywhere local solubility is necessary for global solubility. Hasse proved that it is
+also sufficient in the case of quatratic forms.
+Hilbert’s tenth problem: Let R be a commutative ring. Hilbert’s tenth problem for R is to
+determine if there is an algorithm that decides whether or not a given system of polynomial
+equations with coefficients in R has a solution over R.
+Jacobian: The Jacobian of a nonsingular projective curve X is an abelian variety whose
+points are in bijection with the group Pic0 (X) of isomorphism classes of invertible sheaves
+(or divisor classes) of degree 0.
+K3 surface: A surface with trivial canonical bundle and trivial fundamental group (i.e., a
+Calabi-Yau variety of dimension 2).
+Lang’s conjectures:
+    A. Suppose k is a number field and X is a variety over k of general type. Then X(k) is
+       not Zariski dense in X. (Also there are refinements where we specify which Zariski
+       closed subset is supposed to contain X(k).)
+    B. Suppose k is a number field and X is a variety over k. All but finitely many k-rational
+       points on X lie in the special set.
+    C. Let X be a variety over a number field k. Choose an embedding of k into the complex
+       number C, and suppose that X(C) is hyperbolic: this means that every holomorphic
+       map C → X(C) is constant. Then X(k) is finite.
+
+Local to global principle: Another name for the Hasse principle.
+58
+
+Picard group: The Picard group of a variety is the group of isomorphism classes of invertible
+sheaves.
+Prym variety: A Prym variety is an abelian variety constructed in the following way. Let
+X and Y be curves and suppose f : X → Y is a degree 2 étale (unramified) cover. The
+associated Prym variety is the connected component of the kernel of the Albanese map
+Jac(X) → Jac(Y ). The Prym variety can also be defined as the connected component of the
+−1 eigenspace of the involution on Jac(X) induced by f .
+Rationally connected variety: There are three definitions of rationally connected. These
+are equivalent in characteristic zero but not in characteristic p.
+     A. For any two points x, y ∈ X there exists a morphism φ : P1 → X such that φ(0) = x
+        and φ(∞) = y.
+     B. For any n points x1 , . . . , xn ∈ X there exists a morphism φ : P1 → X such that
+        {x1 , . . . , xn } is a subset of φ(P1 ).
+     C. For any two points x, y ∈ X there exist morphisms φi : P1 → X for i = 1, . . . , r such
+        that φ1 (0) = x, φr (0) = y, and for each i = 1, . . . , r − 1 the images of φi and φi+1
+        have nontrivial intersection.
+Schinzel’s Hypothesis: Suppose f1 , . . . , fr ∈ Z[x] are irreducible and no prime divides
+                                      f1 (n)f2 (n) · · · fr (n)
+for all n ∈ Z. Then there are infinitely many integers n such that |f1 (n)|, . . . , |fr (n)| are
+simultaneously prime.
+Selmer group: Given Galois cohomology definition for any A ⊂ B. Example A = ker(φ)
+where φ is an isogeny of abelian variety. Accessible. It’s what we can compute, at least in
+theory.
+Shimura variety: A variety having a Zariski open subset whose set of complex points is
+analytically isomorphic to a quotient of a bounded symmetric domain X by a congruence
+subgroup of an algebraic group G that acts transitively on X. Examples include moduli
+spaces X0 (N ) of elliptic curves with extra structure and Shimura curves which parametrize
+quaternionic multiplication abelian surfaces with extra structure.
+Special Set: The (algebraic) special set of a variety X is the Zariski closure of the union
+of all positive-dimensional images of morphisms from abelian varieties to X. Note that this
+contains all rational curves (since elliptic curves cover P1 ).
+Torsor: Let B be a variety over a field k and let G be an algebraic group over k. A left
+B-torsor under G is a B-scheme X with a B-morphism G ×k X → X such that for some
+étale covering {Ui → B} there is a G-equivariant isomorphism of Ui -schemes from X × Ui
+to G × Ui , for all i. If B = Spec(k) these are also called principal homogenous spaces.
+Waring’s problem: Given k, find the smallest number gk such that every positive integer
+is a sum of gk positive kth powers. The “easier” Waring’s problem refers to the analogous
+problem where the kth powers are permitted to be either positive or negative. Modification:
+Given k, find the smallest number Gk such that every sufficiently large positive integer is a
+sum of Gk positive kth powers.
+Weak approximation: For a projective variety X over a global field, say weak approxi-
+mation holds if X(K) is dense in the adelic points X(AK ). Simplest example where it holds:
+                                                                                             59
+
+P0 , also P1 . It does not hold for an elliptic curve over K. (For example, if E has rank 0
+it clearly doesn’t hold... but more generally could divide all generators by 2 and choose a
+prime that splits completely.)
+      Example: “Weak approximation does not hold for cubic surfaces.”
+      Example: “The theory of abelian descent in some cases reduces the question of whether
+the Brauer-Manin obstruction is the only obstruction to Hasse on a base variety X to the
+question of whether weak approximation holds for a universal torsor.”
+      Example: “Weak approximation on a moduli space of varieties yields the existence of
+varieties over a global field satisfying certain local conditions. For example, we want to know
+there is an elliptic curve over Q with certain behavior at 3, 5, 13, as long as can do it over
+local fields with that behavior, weak approximation on the moduli space gives you a global
+curve that has those properties (because P1 satisfies weak approximation).’
+
+                           Chapter D: Miscellaneous Photos
+     William Stein has prepared a gallery of photos4.
+
+
+
+
+  4http://modular.fas.harvard.edu/pics/ascent11/12-2002/AIM rational-points-workshop/
+

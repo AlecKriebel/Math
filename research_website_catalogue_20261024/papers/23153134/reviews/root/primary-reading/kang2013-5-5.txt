@@ -1,0 +1,56 @@
+1 A Survey of Observers for Nonlinear Dynamical Systems                               5
+
+
+Therefore, the eigenvalues of G represent the gain from the initial state to the
+output. If G has a zero eigenvalue, then its eigenvector results in a zero output. The
+system is unobservable. If G has a very small eigenvalue, then the system is weakly
+observable, i.e. a small noise in y.t/ can cause a large estimation error. Therefore,
+the smallest eigenvalue of G is used as a quantitative measure of observability.
+   For nonlinear systems, an empirical observability Gramian can be numerically
+computed (Krener and Ide 2009). Consider (1.2) and a nominal trajectory x.t/ with
+initial state x.0/ D x0 . Define a mapping
+
+                              ıx0 ! h. Ox.t//  h.x.t//
+                            subject to
+                              PO                                                  (1.4)
+                              x.t/ D f . Ox.t//
+                              x.0/ D x0 C ıx0
+                              O
+
+Let v1 ; v2 ;    ; vn be an orthonormal basis in Rn . Let  > 0 be a small number. In
+the direction of vi , the variation of the output can be estimated empirically by
+
+                                    1                        
+                        i .t/ D       h.x C .t//  h.x  .t// ;                  (1.5)
+                                   2
+
+where
+                                   xP ˙ .t/ D f .x ˙ .t//
+                                   xO ˙ .0/ D x0 ˙ vi ;
+The mapping, (1.4), from the initial state to the output space can be locally
+approximated by a linear function
+
+                                    X
+                                    n                X
+                                                     n
+                           ıx0 D           ˛i vi !          ˛i i .t/             (1.6)
+                                    i D0             i D0
+
+Therefore, the observability Gramian of the nonlinear system can be approximated
+by the Gramian associated to (1.6)
+
+                               G D .Gij /ni;j D1
+                                    Z t1
+                                                                                  (1.7)
+                              Gij D      Ti .t/j .t/dt
+                                           t0
+
+Locally around the nominal trajectory, the eigenvalues of (1.7) measure the gain
+from the variation of the initial state to the variation of the output. If G has a small
+eigenvalue, then x.t/ is weakly observable. A small noise in y.t/ can result in a
+large estimation error.
+   The Gramian or empirical Gramian in Kailath (1980) and Krener and Ide (2009)
+measures the observability of full initial states. However, for systems with very high
+dimensions, the problem of full observability is, in many cases, ill-posed. Some
+discussions on the partial observability, or Z-observability, for complex systems
+

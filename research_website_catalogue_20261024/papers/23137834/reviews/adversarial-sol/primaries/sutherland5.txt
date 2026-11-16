@@ -1,0 +1,846 @@
+18.783 Elliptic Curves                                                                          Fall 2023
+Lecture #5                                                                                    09/26/2023
+
+5       Isogeny kernels and division polynomials
+In this lecture we continue our study of isogenies of elliptic curves. Recall that an isogeny
+is a surjective morphism that is also a group homomorphism, equivalently, a non-constant
+rational map that fixes the identity. In the previous lecture we showed that every nonzero
+isogeny α : E1 → E2 between elliptic curves of the form y 2 = f (x) can be written in the
+standard affine form                                     
+                                             u(x) s(x)
+                                 α(x, y) =        ,     y ,
+                                             v(x) t(x)
+where u ⊥ v and s ⊥ t are pairs of relatively prime polynomials in k[x].1 For any affine
+point (x0 , y0 ) ∈ E1 (k̄), we have α(x0 , y0 ) = 0 if and only if v(x0 ) = 0 (equivalently, if and
+only if t(x0 ) = 0; see Lemma 4.27 and Corollary 4.28). This follows from the fact that ker α
+is a subgroup, so if P = (x0 , y0 ) ∈ ker α then so is −P = (x0 , −y0 ), and this accounts for
+every point in E(k̄) with x-coordinate x0 . It follows that
+
+                             ker α = {(x0 , y0 ) ∈ E1 (k̄) : v(x0 ) = 0} ∪ {0}
+
+is determined by the polynomial v(x) (here 0 := (0 : 1 : 0) is the point at infinity).
+    When α is the multiplication-by-n map P 7→ nP = P + · · · + P (which is an isogeny
+because it is a group homomorphism defined by a non-constant rational map), the kernel of
+α is the n-torsion subgroup
+
+                                     E[n] := {P ∈ E(k̄) : nP = 0}.
+
+Torsion subgroups play a key role in the theory of elliptic curves. In particular, when
+k = Fq is a finite field, the finite abelian group E(Fq ) is completely determined by its
+intersection with the n-torsion subgroups E[n]. Understanding the structure of E[n] will
+allow us to understand the structure of E(Fq ), and will also turn out to be the key to
+efficiently computing #E(Fq ).
+
+5.1     Kernels of isogenies
+Recall that the degree of an isogeny  α in standard form is defined to be max{deg u, deg v},
+                               u 0
+                                 
+and α is separable whenever v 6= 0. We are going to prove that for separable isogenies,
+the order of its kernel is equal to its degree. But we will first dispose of the inseparable
+case by showing that every isogeny can be decomposed into the composition of a separable
+isogeny and a power of the p-power Frobenius morphism (which has trivial kernel).
+
+Lemma 5.1. Let u and v be relatively prime polynomials in k[x].
+                u 0
+                        =0    ⇐⇒      u0 = v 0 = 0     ⇐⇒       u = f (xp ) and v = g(xp ),
+                 v
+where f and g are polynomials in k[x] and p is the characteristic of k (which may be zero).
+    1
+    The assumption that E1 and E2 are defined by equations of the form y 2 = f (x) implies we are not in
+characteristic 2. Most of the results we will prove can easily be extended to curves in general Weierstrass
+form and thus apply to all elliptic curves. When this is true we will state our theorems generally, but in our
+proofs we will restrict to elliptic curves y 2 = f (x).
+
+
+
+
+                                                                               Lecture by Andrew Sutherland
+                    u 0    0    0u
+                        = u v−v
+                      
+Proof. Suppose      v        v2
+                                   = 0. Then
+
+                                                 u0 v = v 0 u.
+
+The polynomials u and v have no common roots in k̄, therefore every root of u in k̄ must
+also be a root of u0 , with at least the same multiplicity. But deg u0 < deg u, so this is
+possible only if u0 = 0, and by the same argument we must also have v 0 = 0. Conversely, if
+u0 = v 0 = 0 then u0 vP
+                      = v 0 u. This proves the
+                                            P first equivalence.
+                               n     0
+    Now let u(x) = n an x . If u (x) =         nan xn−1 = 0, then nan = 0 for every n, which
+means that n must be a multiple of p for every nonzero an (if p = 0 this means u0 = 0). In
+this case we can write u as
+                                         X
+                                 u(x) =      apm (xp )m = f (xp ),
+                                             m
+
+where f = m am xm . Similarly, if v 0 (x) = 0 then v(x) = g(xp ) for some g ∈ k[x]. Con-
+             P
+versely, if u(x) = f (xp ) then u0 (x) = pxp−1 f 0 (xp ) = 0, and similarly for v(x).
+
+Corollary 5.2. Over a field of characteristic zero, every isogeny is separable.
+
+    We now show that every inseparable isogeny arises as the composition of a separable
+isogeny with some power of the p-power Frobenius map π : (x, y, z) 7→ (xp , y p , z p ).
+
+Lemma 5.3. Let α : E1 → E2 be an inseparable isogeny of elliptic curves E1 : y 2 = f1 (x)
+and E2 : y 2 = f2 (x) over a field k of characteristic p > 0, Then α can be written in the form
+
+                                         α = (a(xp ), b(xp )y p )
+
+for some rational functions a, b ∈ k(x).
+
+Proof. Let α(x, y) = u(x)      s(x) 
+                        v(x) , t(x) y be in standard form. It follows from Lemma 5.1 that
+u(x)         p                                               s(x)
+v(x) = a(x ) for some a ∈ k(x), we only need to show that t(x) y can be put in the form
+b(xp )y p for some b ∈ k(x). As in the proof of Lemma 4.27, substituting u/v and s/t into
+the equation for E2 and using the equation for E1 to eliminate y 2 yields the equality
+
+                                             v 3 s2 f1 = t2 w,
+
+where w = v 3 f2 (u/v)      ∈ k[x]. Since  α is inseparable, we have u0 = v 0 = 0, hence w0 = 0,
+                          0              0
+and therefore w/v 3 = s2 f1 /t2 = 0. Thus s(x)2 f1 (x) = g(xp ) and t(x)2 = h(xp ), for
+                                      
+
+some polynomials g and h. If x0 ∈ k̄ is a root of f1 , then xp0 is a root of g, so (x − xp0 )
+divides g and (xp − xp0 ) = (x − x0 )p divides g(xp ).2 The roots of f1 are distinct, so f1 (x)p
+divides g(xp ) and g(xp ) = g1 (xp )f1 (x)p for some g1 ∈ k[x].3
+    We have s(x)2 f1 (x) = g1 (x)f1 (x)p , so s(x)2 = g1 (xp )f1 (x)p−1 . Now p is odd, so g1 (xp ) is
+                                                       (p−1)/2
+a square; indeed, g1 (xp ) = h1 (x)2 where h1 = s/f1           ∈ k[x]. We have (h21 )0 = 2h1 h01 = 0,
+since g(xp )0 = 0, which implies h01 = 0, since h1 cannot be zero (s is not) and p 6= 2. So
+h1 (x) = g2 (xp ) for some g2 ∈ k[x] and s(x)2 f1 (x) = g2 (xp )2 f1 (x)p . We now note that
+
+                      (s(x)y)2 ≡ s(x)2 f1 (x) = g2 (xp )2 f1 (x)p ≡ (g2 (xp )y p )2 ,
+   2
+    We are not assuming k is perfect, this argument applies to any k. The key point is that even though k̄
+may contain inseparable elements, the roots of f1 are separable (because disc f1 6= 0).
+  3
+    Note that f1 (x)p is not necessarily equal to f1 (xp ), but it is a polynomial in xp .
+
+
+                                                                     18.783 Fall 2023, Lecture #5, Page 2
+where the equivalences are modulo the curve equation for E1 . Therefore
+                                        2
+                                                     g2 (xp )y p
+                                                                 
+                               s(x)
+                                    y        ≡                         = (r(xp )y p )2 ,
+                               t(x)                   h(xp )
+
+where r(x) = g2 (x)/h(x). It follows that s(x)        p p
+                                          t(x) y ≡ b(x )y with b = ±r; two rational functions
+that agree up to sign at infinitely many k̄-points can differ only in sign.
+
+Corollary 5.4. Let α be an isogeny of elliptic curves over a field k of characteristic p > 0.
+Then
+                                     α = αsep ◦ π n
+for some separable isogeny αsep and integer n ≥ 0, where π is the p-power Frobenius mor-
+phism (x : y : z) 7→ (xp : y p : z p ). We then have deg α = pn deg αsep .
+
+Proof. This holds in general, but we will only prove it for p > 3. If α is separable then
+αsep = α and n = 0, so we now assume α is inseparable. By Lemma 5.3 we may write
+α = (r1 (xp ), r2 (xp )y p ) for some r1 , r2 ∈ k(x). Then α = α1 ◦ π with α1 = (r1 (x), r2 (x)y).
+If α1 is inseparable we apply the same procedure to α1 (recursively) and eventually obtain
+α = αn ◦ π n where αn is a separable isogeny (this process terminates because each step
+reduces the degree of αn by a factor of p). We may then take αsep = αn . If αsep = ( u(x)   s(x)
+                                                                                     v(x) , t(x) y)
+                                                                    n                     n
+is in standard form, composing with π n replaces u(x) by u(xp ) and v(x) by v(xp ), and
+then deg α = max(pn deg u, pn deg v) = pn max(deg u, deg v) = pn deg αsep .
+
+Remark 5.5. The isogeny αsep does not necessarily have the same domain as α : E1 → E2 ,
+since the image of π n is not necessarily E1 (but π n will map E1 to E1 whenever E1 is defined
+over Fpn ). We also note that when k is a perfect field (including all finite fields), we can
+also decompose α as α = π n ◦ α̃sep , where α̃sep is separable and has the same degree as αsep
+(indeed, αsep is just α̃sep with each coefficient replaced by its pth power).
+
+Definition 5.6. For an isogeny α = αsep ◦ π n decomposed as in Corollary 5.4, we define the
+separable degree degs α and inseparable degree degi α of α as
+
+                               degs α := deg αsep ,                degi α = pn ,
+
+and we always have
+                                    deg α = (degs α)(degi α).
+
+    The inseparable isogeny π n has separable degree 1; such isogenies are said to be purely
+inseparable. The degree of a purely inseparable isogeny is always a power of p, but the
+converse does not hold (as we shall see in the next lecture).
+
+Remark 5.7. Note that isogenies of degree 1 (isomorphisms) are both separable and purely
+inseparable. We are primarily interested in purely inseparable isogenies of degree greater
+than 1.
+
+   We can now prove our first main result.
+
+Theorem 5.8. The order of the kernel of an isogeny is equal to its separable degree.
+
+
+
+
+                                                                               18.783 Fall 2023, Lecture #5, Page 3
+Proof. Let α = αsep ◦ π n . Then # ker α = # ker αsep , since the kernel of π (and hence π n )
+is trivial: we can have (xp : y p : z p ) = (0 : 1 : 0) if and only if (x : y : z) = (0 : 1 : 0). It thus
+suffices to consider the case α = αsep , which we now assume.
+     Let α(x, y) = ( u(x)   s(x)
+                     v(x) , t(x) y) be in standard form and pick a point (a, b) in α(E1 (k̄)) with
+a, b 6= 0 and such that a is not equal to the ratio of the leading coefficients of u and v (such
+a point (a, b) certainly exists, since α(E1 (k̄) is infinite). We now consider the set
+
+                         S(a, b) = {(x0 , y0 ) ∈ E1 (k̄) : α(x0 , y0 ) = (a, b)}
+
+of points in the pre-image of (a, b). Since α is a group homomorphism, #S(a, b) = # ker α.
+    If (x0 , y0 ) ∈ S(a, b) then
+                                    u(x0 )             s(x0 )
+                                           = a,               y0 = b.
+                                    v(x0 )             t(x0 )
+We must have t(x0 ) 6= 0, since α is defined at (x0 , y0 ), and b 6= 0 implies s(x0 ) 6= 0. It
+                    t(x0 )
+follows that y0 = s(x  0)
+                           b is uniquely determined by x0 . Thus to compute #S(a, b) it suffices
+to count the number of distinct values of x0 that occur among the points in S(a, b).
+    We now let let g = u − av so that α(x0 , y0 ) = (a, b) if and only if g(x0 ) = 0. We must
+have deg g = deg α, since a is not equal to the ratio of the leading coefficients of u and v
+(so the leading terms of u and av do not cancel when we subtract them). The cardinality
+of S(a, b) is then equal to the number of distinct roots of g.
+    Any x0 ∈ k̄ is a multiple root of g if and only if g(x0 ) = g 0 (x0 ) = 0, equivalently, if and
+only if av(x0 ) = u(x0 ) and av 0 (x0 ) = u0 (x0 ). If we multiply opposite sides of these equations
+and cancel the a’s we get
+                                     u0 (x0 )v(x0 ) = v 0 (x0 )u(x0 ).                           (1)
+Now α is separable, so u0 v − v 0 u 6= 0 has only a finite number of roots. Since α(E1 (k̄)) is
+infinite and #S(a, b) = # ker α is finite, we may assume that (a, b) was chosen so that (1)
+is not satisfied for any (x0 , y0 ) in S(a, b). Then every root x0 of g is distinct and we have
+
+                               # ker α = #S(a, b) = deg g = deg α,
+
+as desired.
+
+Corollary 5.9. Every purely inseparable isogeny has trivial kernel.
+Corollary 5.10. For any composition of isogenies α = β ◦ γ we have
+
+   deg α = (deg β)(deg γ),          degs α = (degs β)(degs γ),             degi α = (degi β)(degi γ).
+
+Proof. It suffices to prove the last two equalities. The fact that γ is surjective group homo-
+morphism implies
+                                 #(ker α) = #(ker β)#(ker γ),
+since ker α is the preimage of ker β under γ, which is a union of # ker β cosets of ker α;
+Theorem 5.8 implies degs α = (degs β)(degs γ). Applying Corollary 5.4 to α, β, γ yields
+
+                                  αsep ◦ π a = βsep ◦ π b ◦ γsep ◦ π c .
+
+The isogeny δ = π b ◦ γsep has the same kernel, hence the same separable degree, as γsep , and
+we can apply Corollary 5.4 to write it as δ = δsep ◦ π b . We then have
+
+                                    αsep ◦ π a = βsep ◦ δsep ◦ π bc ,
+
+                                                                     18.783 Fall 2023, Lecture #5, Page 4
+so degs α = degs (βsep ◦δsep ) = (degs β)(degs δ) = (degs β)(degs γ). We must have a = bc and
+therefore degi α = (degi β)(degi γ), since βsep ◦ δsep is separable (this follows from the chain
+rule, the derivative of a composition of functions with nonzero derivative is nonzero).
+
+5.2   Isogenies from kernels
+We have seen that for each isogeny α : E1 → E2 the kernel of α is a finite subgroup of E1 (k̄).
+It is reasonable to ask whether the converse holds, that is, given a finite subgroup G of
+E1 (k̄), is there an isogeny α from E1 to some elliptic curve E2 that has G as its kernel?
+    The answer is yes. Moreover, if we restrict our attention to separable isogenies (which
+we should, since if α = αsep ◦ π n then the purely inseparable isogeny π n has trivial kernel),
+the isogeny α and the elliptic curve E2 are uniquely determined up to isomorphism.
+    The proof of this theorem relies on some standard facts from algebraic geometry that
+are slightly outside the scope of this course (such as the Hurwitz genus formula), but the
+theorem is so striking and useful that we will take a moment to sketch the proof. We will
+then present explicit formulas for constructing α and E2 from G due to Vélu [2].
+
+Theorem 5.11. Let E/k be an elliptic curve and let G be a finite subgroup of E(k̄). There
+exists an elliptic curve E 0 and a separable isogeny φ : E → E 0 with ker φ = G. The curve E 0
+and the isogeny φ are defined over a finite extension of k and unique up to isomorphism.
+
+   We can be more precise about the field over which the elliptic curve E 0 and the isogeny
+φ are defined; it is the minimal extension L/k for which G is invariant under the action of
+Gal(k̄/L) (each field automorphism in Gal(k̄/k) acts on points P ∈ E(k̄) via its action on
+the coordinates of P ); we then say that G is defined over L. To say that G is invariant
+under the action of Gal(k̄/L) means that the image of G under each σ ∈ Gal(k̄/L) is G; it
+does not mean that every point in G is necessarily fixed by Gal(k̄/L), which is a stronger
+condition (G may be defined over L even when it contains points that are not).
+
+Proof sketch. Given any smooth projective curve C and a finite group G of automorphisms
+of the curve (invertible morphisms from the curve to itself), there is a smooth projective
+curve C/G and a surjective morphism φ : C → C/G that maps each G-orbit {σ(P ) : σ ∈ G}
+of points P ∈ C(k̄) to a distinct point in C/G. The curve C/G is called the quotient of
+C by G. The standard way to prove this is to use the categorical equivalence of smooth
+projective curves and their function fields to derive C/G and φ from the field embedding
+                                             ∗
+                                       k(C)G ,→ k(C),
+
+where G∗ denotes the group of automorphisms σ ∗ : k(C) → k(C)) induced by the auto-
+                                                             ∗
+morphisms σ : C → C in G (so σ ∗ (f ) = f ◦ σ), and k(C)G is the subfield of k(C) fixed
+                                                          ∗
+by G∗ . The morphism φ is separable because k(C)/k(C)G is separable, and provided that
+the group G is defined over k, both φ and C/G are defined over k (if not we can always base
+change E to the minimal field over which G is defined).
+    In our situation the curve C is an elliptic curve, and we can associate to each point
+P ∈ E(k̄) the automorphism τP : Q 7→ Q + P , the translation-by-P map. Note that τP is
+not an isogeny because it does not fix the point 0 (unless P = 0), but it is a morphism
+E → E, and it has an inverse τ−P , so it is an automorphism. We can thus associate a group
+of automorphisms G to any finite subgroup of E(k̄), consisting of translation-by-P maps τP
+for each P ∈ G, and we obtain a morphism φ : E 7→ E/G from E to its quotient by G.
+
+
+                                                              18.783 Fall 2023, Lecture #5, Page 5
+   It is not immediately clear that the smooth projective curve E/G is actually an elliptic
+curve, but this is indeed the case. This follows from the Hurwitz genus formula [1, II.2.7],
+which implies that for any unramified morphism φ : C1 → C2 we must have
+
+                                     (2g1 − 2) = (deg φ)(2g2 − 2).
+
+Here gi denotes the genus of Ci , and φ is unramified if its fibers φ−1 (P ) ⊆ C1 (k̄) have the
+same cardinality for every point P ∈ C2 (k̄).
+     In our situation φ : E → E/G is unramified because the G-orbits of E(k̄) are cosets,
+which necessarily all have the same size, and the Hurwitz genus formula then implies that
+E/G must have genus 1 (since E has genus 1), no matter what the degree of φ is.4 Assuming
+G is defined over k, the point φ(0) will be rational and we can take it as our distinguished
+rational point (in any case φ(0) will be defined over the field of definition of E/G). So E/G
+is an elliptic curve, and φ : E → E/G is a surjective morphism that fixes the identity, hence
+an isogeny, and as noted above, it is separable. The kernel of φ is the G-orbit of 0 in E(k̄),
+which is precisely the subgroup G of E(k̄) that we started with.
+     Moreover, if we have another separable isogeny φ0 : E → E 0 with the same kernel G, then
+we can view k(E 0 ) as a subfield of k(E) via the induced embedding φ∗ : k(E 0 ) → k(E), and
+k(E 0 ) is then fixed by every automorphism in G, hence a subgroup of k(E)G . Since φ0 is
+separable, we have deg φ = [k(E) : k(E 0 )] = #G, so k(E 0 ) must be (isomorphic to) the fixed
+                                                                     ∼
+field k(E)G . It follows that there exists an isomorphism ι : E/G → E 0 for which φ0 = ι ◦ φ;
+the curve E/G and the isogeny φ are thus unique up to such an isomorphism.
+
+Corollary 5.12. An isogeny of composite degree can always be decomposed into a sequence
+of isogenies of prime degree.
+Proof. Let α : E1 → E2 be an isogeny. If we are working in a field of characteristic p > 0,
+by writing α as α = αsep ◦ π n we can decompose π n = π ◦ · · · ◦ π as a sequence of isogenies of
+prime degree p. Thus it suffices to consider the case where α is separable. As a non-trivial
+abelian group, G = ker α contains a subgroup H of prime order. By Theorem 5.11, there
+exists a separable isogeny α1 : E1 → E3 with H as its kernel. Then α1 (G) is a finite subgroup
+of E3 (k̄) isomorphic to G/H, and (applying Theorem 5.11 again), there exists a separable
+isogeny α2 : E3 → E4 with α1 (G) as its kernel. The kernel of the composition α2 ◦ α1 is
+G = ker α, so there exists an isomorphism ι : E4 → E2 such that α = ι ◦ α2 ◦ α1 .
+    We can now proceed by induction and apply the same decomposition to ι ◦ α2 , which
+has smaller degree than α. We eventually obtain a sequence of separable isogenies of prime
+degree whose composition is equal to α.
+
+    This is all very nice from an abstract point of view, but it is not immediately useful for
+practical applications. We would really like to have an explicit description of the elliptic
+curve E/G and the isogeny φ. So let E : y 2 = x3 + Ax + B be an elliptic curve and let G be
+a finite subgroup of E(k̄). Let G6=0 denote the set of nonzero points in G, all of which are
+affine points Q = (xQ , yQ ), and for each point P = (xP , yP ) in E(k̄) that is not in G, let us
+define                                                                         
+                                 X                          X
+              φ(P ) := xP +          (xP +Q − xQ ) , yP +        (yP +Q − yQ ) .
+                                   Q∈G6=0                           Q∈G6=0
+
+   This is yet another remarkable property of elliptic curves; isogenies φ : E → E 0 are necessarily unramified
+   4
+
+and we always get zero on both sides of the Hurwitz genus formula (allowing φ to have any degree); this
+phenomenon does not occur for curves of any other genus.
+
+
+                                                                       18.783 Fall 2023, Lecture #5, Page 6
+Here xP and yP are variables, xQ and yQ are fixed elements of k̄, and xP +Q and yP +Q are
+the affine coordinates of P + Q, which we can view as rational functions of xP and yP by
+plugging the coordinates of P and Q into the formulas for the group law.
+    It’s not immediately obvious what the image of this map is, but it is clearly a non-
+constant rational map, so it defines a morphism from E to some smooth projective curve E 0 .
+Moreover, we can see that the group law on E induces a group law on E 0 that is defined by
+rational maps, thus E 0 is an abelian variety (of dimension one), hence an elliptic curve. For
+any P 6∈ G we have φ(P ) = φ(P + Q) if and only if Q ∈ G, so the kernel of φ must be G.
+    Thus, assuming it is separable, φ is the isogeny we are looking for (up to isomorphism).
+By using the group law to write xP +Q and yP +Q as rational functions in terms of xP and yP
+(and the coordinates of the points in G, which we regard as constants), we can get explicit
+equations for φ and determine an equation for its image E 0 . The details are somewhat
+involved (see [3, Thm. 12.16]), so we will just give the formulas. To simplify the expressions
+we will assume that the order of G is either 2 or odd; this covers all separable isogenies of
+prime degree, and by the corollary above, we can obtain any isogeny by composing separable
+isogenies of prime degree and copies of the Frobenius morphism (if necessary).
+
+Theorem 5.13 (Vélu). Let E : y 2 = x3 + Ax + B be an elliptic curve over k and let x0 ∈ k̄
+be a root of x3 + Ax + B. Define t := 3x20 + A and w := x0 t. The rational map
+                                   2
+                                    x − x0 x + t (x − x0 )2 − t
+                                                                  
+                       φ(x, y) :=               ,               y
+                                       x − x0       (x − x0 )2
+
+is a separable isogeny from E to E 0 : y 2 = x3 +A0 x+B 0 , where A0 := A−5t and B 0 := B−7w.
+The kernel of φ is the group of order 2 generated by (x0 , 0).
+
+Proof. It is clear that φ is a separable isogeny of degree 2 with (x0 , 0) in its kernel. the only
+thing to check is that E 0 is its image, which is an easy verification (just plug the formulas
+for φ(x, y) into the equation for E 0 ).
+
+Remark 5.14. If x0 ∈ k then φ and E 0 will both be defined over k, but in general they will
+be defined over the extension field k(x0 ) which contains A0 and B 0 .
+
+Theorem 5.15 (Vélu). Let E : y 2 = x3 + Ax + B be an elliptic curve over k and let G be
+a finite subgroup of E(k̄) of odd order. For each nonzero Q = (xQ , yQ ) in G define
+
+                       tQ := 3x2Q + A,                2
+                                              uQ := 2yQ ,     wQ := uQ + tQ xQ ,
+
+and let
+              X                      X                                   X        tQ      uQ
+                                                                                                       
+      t :=            tQ ,   w :=            wQ ,     r(x) := x +                      +                   .
+                                                                                 x − xQ (x − xQ )2
+             Q∈G6=0                 Q∈G6=0                              Q∈G6=0
+
+The rational map
+                                         φ(x, y) := r(x), r0 (x)y
+                                                                    
+
+is a separable isogeny from E to E 0 : y 2 = x3 +A0 x+B 0 , where A0 := A−5t and B 0 := B−7w,
+with ker φ = G.
+
+Proof. This is a special case of [3, Thm. 12.16].
+
+
+
+                                                                        18.783 Fall 2023, Lecture #5, Page 7
+Remark 5.16. The formulas for t, w, r(x) sum over all the nonzero points in G but notice
+that they depend only on the x-coordinates xQ . Since |G| is odd and Q = (xQ , yQ ) ∈ G
+if and only if −Q = (xQ , −yQ ) ∈ G, it suffices to sum over just half the points in G6=0
+(representatives of G/{±1}), and double the result. The elliptic curve E 0 and φ are defined
+over any extension L/k where G is defined.
+Remark 5.17. Theorem 5.15 implies that (possibly after composing with an isomorphism)
+we can put any separable isogeny α of odd degree in the form
+                                                  u u0 w − 2w0 u
+                                                               
+                                u  u 0
+                   α(x, y) =      ,       y =        ,           y ,
+                               w2 w2              w2       w3
+for some relatively prime polynomials u and w in k[x].
+
+5.3   Jacobian coordinates
+We now turn to the multiplication-by-n map P 7→ nP , which we will denote by [n]. We want
+to write the isogeny [n] in standard form. To do this, it turns out to be more convenient to
+work with Jacobian coordinates, which we now define.
+   Recall that points in standard projective coordinates are nonzero triples (x : y : z)
+subject to the equivalence relation
+
+                                  (x : y : z) ∼ (λx : λy : λz),
+
+for any λ ∈ k × . We will instead work with the equivalence relation
+
+                                 (x : y : z) ∼ (λ2 x : λ3 y : λz),
+
+which corresponds to assigning weights 2, 3, 1 to the variables x, y, z, respectively. Projective
+coordinates with these weights are called Jacobian coordinates. The homogeneous curve
+equation for E in Jacobian coordinates then has the form
+
+                                    y 2 = x3 + Axz 4 + Bz 6 ,
+
+which makes visible the motivation for giving x weight 2 and y weight 3: the leading terms
+for x and y do not involve z. In Jacobian coordinates, each point (x : y : z) with z 6= 0
+corresponds to the affine point (x/z 2 , y/z 3 ), and the point at infinity is now (1 : 1 : 0).
+Remark 5.18. As an aside, the general Weierstrass form of an elliptic curve in Jacobian
+coordinates is
+                y 2 + a1 xyz + a3 yz 3 = x3 + a2 x2 z 2 + a4 xz 4 + a6 z 6 ,
+which is a weighted homogeneous equation of degree 6. Each ai is the coefficient of a term
+with degree i in z. This explains the otherwise mysterious fact that there is no Weierstrass
+coefficient a5 .
+
+5.4   The group law in Jacobian coordinates
+We now compute formulas for the elliptic curve group law in Jacobian coordinates, beginning
+with addition. Recall that in affine coordinates, to compute the sum P3 = (x3 , y3 ) of two
+affine points P1 = (x1 , y1 ) and P2 = (x2 , y2 ) with P1 6= ±P2 we use the formulas
+
+                     x3 = m2 − (x1 + x2 ) and y3 = m(x1 − x3 ) − y1 ,
+
+                                                                  18.783 Fall 2023, Lecture #5, Page 8
+                −y2
+where m = xy11 −x  2
+                     is the slope of the line through P1 and P2 . In Jacobian coordinates we
+                 2
+have Pi = (xi /zi , yi /zi3 ) and the formula for the x-coordinate becomes
+                            2 
+         y1 /z13 − y2 /z23                        (y1 z23 − y2 z13 )2 − (x1 z22 + x2 z12 )(x1 z22 − x2 z12 )2
+                                             
+ x3                                 x1 x2
+     =                          −       +       =                                                             .
+ z32     x1 /z12 − x2 /z22          z12   z22                       (x1 z22 − x2 z12 )2 z12 z22
+
+This formula can be simplified by using yi2 − x3i = Axi zi4 + Bzi6 to get rid of the terms in
+the numerator containing yi2 or x3i . This makes the numerator divisible by z12 z22 allowing us
+to cancel this with the corresponding factor in the denominator. We have
+       x3   (y 2 z 6 − x31 z26 ) + (y22 z16 − x32 z16 ) + x21 x2 z12 z24 + x1 x22 z14 z22 − 2y1 y2 z13 z23
+          = 1 2
+        2
+       z3                                    (x1 z22 − x2 z12 )2 z12 z22
+            (Ax1 z14 + Bz16 )z26 + (Ax2 z24 + Bz26 )z16 + x21 x2 z12 z24 + x1 x22 z14 z22 − 2y1 y2 z13 z23
+          =
+                                                   (x1 z22 − x2 z12 )2 z12 z22
+            A(x1 z22 + x2 z12 )z12 z22 + 2Bz14 z24 − 2y1 y2 z1 z2
+          =                                                              .
+                                 (x1 z22 − x2 z12 )2
+
+    For the y-coordinate, using y3 = m(x1 − x3 ) − y1 = m(2x1 + x2 ) − m3 − y1 we have
+                                                                             3
+          y1 /z13 − y2 /z23                             y1 /z13 − y2 /z23
+                                             
+  y3                               2x1 x2                                        y1
+      =                                 +         −                             − 3
+  z33     x1 /z12 − x2 /z22         z12    z22         x1 /z12 − x2 /z22         z1
+        (y1 z23 − y2 z13 )(2x1 z22 + x2 z12 )(x1 z22 − x2 z12 )2 − (y1 z23 − y2 z13 )3 − y1 z23 (x1 z22 − x2 z12 )3
+      =
+                                                 (x1 z22 − x2 z12 )3 z13 z23
+                ···
+      =
+        (x1 z2 − x2 z12 )3
+              2
+
+
+where the missing numerator is some complicated polynomial in x1 , y1 , z1 , x2 , y2 , z2 , A, B.
+These formulas look horrible, but the key point is in Jacobian coordinates we now have
+
+                                               z3 = x1 z22 − x2 z12 ,                                             (2)
+
+which is actually a lot simpler than it would have otherwise been; note that the z-coordinate
+is the most interesting to us, because it will determine the kernel we are interested in.
+     The doubling formulas are simpler. In affine coordinates the slope of the tangent line is
+m = (3x21 + A)/(2y1 ). For the x-coordinate we have
+                          2
+         3(x1 /z12 )2 + A              (3x21 + Az14 )2 − 8x1 y12   x41 − 2Ax21 z14 − 8Bx1 z16 + A2 z18
+       
+ x3                              x1
+     =                       − 2     =                           =
+ z32        2y1 /z13             z12          (2y1 z1 )2                        (2y1 z1 )2
+and for the y-coordinate we get
+                                                               3
+                 3(x1 /z12 )2 + A 3x1         3(x1 /z12 )2 + A
+                                          
+          y3                                                       y1
+           3 =               3        2  −                3       − 3
+          z3          2y1 /z1       z1            2y1 /z1          z1
+                      2     2     4         2      4  3
+                12x1 y1 (3x1 + Az1 ) − (3x1 + Az1 ) − 8y1    4
+             =
+                                 (2y1 z1 )3
+                x + 5Ax1 z1 + 20Bx31 z16 − 5A2 x21 z18 − 4ABx1 z110 − (A3 + 8B 2 )z112
+                 6         4  4
+             = 1                                                                       .
+                                                (2y1 z1 )3
+Thus
+                                                   z3 = 2y1 z1 .                                                  (3)
+
+                                                                            18.783 Fall 2023, Lecture #5, Page 9
+5.5   Division polynomials
+We now wish to apply our addition formulas to a “generic” point P = (x : y : 1) on the
+elliptic curve E defined by y 2 = x3 + Ax + B, and use them to compute 2P, 3P, 4P, . . . , nP .
+In Jacobian coordinates, the point nP has the form (φn : ωn : ψn ), where φn , ωn , and ψn
+are integer polynomials in x, y, A, B that we reduce modulo the curve equation so that the
+degree in y is at most 1. In affine coordinates we then have
+                                                     
+                                              φ n ωn
+                                      nP =       ,      .                                   (4)
+                                              ψn2 ψn3
+
+We will see that φn and ψn2 do not depend on y, so for fixed A and B they are univariate
+polynomials in x, and exactly one of ωn and ψn3 depends on an odd power of y, so this will
+give us [n] in standard form. This Sage notebook computes the polynomials φn , ωn , ψn for
+the first several values of n.
+
+Remark 5.19. Another way to think of division polynomials is to view E as an elliptic curve
+over k(E). In concrete terms, let F be the fraction field of the ring k[x, y]/(y 2 −x3 −Ax−B),
+and let P be the affine point (x, y) ∈ E(F ), which is by construction a point on E of infinite
+order. Equation (4) then gives the coordinates of the point nP ∈ E(F ).
+
+    The polynomial ψn is known as the nth division polynomial. So far we have really only
+defined the ratios φn /ψn2 and ωn /ψn3 , since we have been working in projective coordinates.
+In order to nail down φn ωn and ψn precisely, we make the following recursive definition.
+Let ψ0 = 0, and define ψ1 , ψ2 , ψ3 , ψ4 via the formulas:
+
+                ψ1 = 1,
+                ψ2 = 2y,
+                ψ3 = 3x4 + 6Ax2 + 12Bx − A2 ,
+                ψ4 = 4y(x6 + 5Ax4 + 20Bx3 − 5A2 x2 − 4ABx − A3 − 8B 2 ).
+
+These are exactly the same polynomials computed in the Sage worksheet linked to above (up
+to a sign). We then define the division polynomials ψn for integers n > 4 via the recurrences
+
+                           ψ2n+1 = ψn+2 ψn3 − ψn−1 ψn+1
+                                                    3
+                                                        ,
+                                    1           2           2
+                             ψ2n =    ψn (ψn+2 ψn−1 − ψn−2 ψn+1 ),
+                                   2y
+where we reduce the result modulo the curve equation so that ψn is at most linear in y. It
+                                         2
+is not difficult to show that ψn (ψn+2 ψn−1          2 ) is always divisible by 2y, so that
+                                             − ψn−2 ψn+1
+ψ2n is in fact a polynomial; see Lemma 5.20 below. If we define ψ−n := −ψn , one can check
+that these recurrences hold for all integers n.
+    We then define φn and ωn via
+
+                             φn := xψn2 − ψn+1 ψn−1 ,
+                                    1        2           2
+                             ωn :=    (ψn+2 ψn−1 − ψn−2 ψn+1 ).
+                                   4y
+These equations hold for all integers n, and one finds that φn = φ−n and ωn = ω−n . As
+above, we reduce φn and ωn modulo the curve equation to make them at most linear in y.
+
+                                                            18.783 Fall 2023, Lecture #5, Page 10
+Lemma 5.20. For every integer n,
+                                         (
+                                          Z[x, A, B]                   n odd
+                              ψn lies in
+                                          2yZ[x, A, B]                 n even,
+                              φn lies in   Z[x, A, B]                   for all n,
+                                         (
+                                          Z[x, A, B]                   n even
+                              ωn lies in
+                                          yZ[x, A, B]                  n odd.
+
+Proof. These are easy inductions; see [3, Lemmas 3.3 and 3.4].
+
+     It follows from the lemma that, after replacing y 2 with x3 + Ax + B if necessary, ψn2
+lies in Z[x, A, B] for all positive n, so we view φn and ψn2 as polynomials in x, while exactly
+one of ωn and ψn3 depends on y. In the latter case we can multiply the numerator and
+denominator of ωn /ψn3 by y and then replace y 2 in the denominator with x3 + Ax + B so
+that ωn /ψn ∈ yZ(x, A, B). With this understanding, we can view
+                                                            
+                                          φn (x) ωn (x, y)
+                                                 ,
+                                          ψn2 (x) ψn3 (x, y)
+as an isogeny in standard form provided that the numerators and denominators are relatively
+prime (which we will verify below).
+
+5.6    Multiplication-by-n maps
+At this point it is not at all obvious that the polynomials φn , ωn ,ψn defined by our recursive
+equations actually satisfy equation (4) for nP , but this is indeed the case.
+Theorem 5.21. Let E/k be an elliptic curve defined by the equation y 2 = x3 + Ax + B and
+let n be a nonzero integer. The rational map
+                                                              
+                                            φn (x) ωn (x, y)
+                              [n](x, y) =          ,
+                                            ψn2 (x) ψn3 (x, y)
+
+sends each point P ∈ E(k̄) to nP .
+Proof. We have
+                                                                                                            
+                       φ−n (x) ω−n (x, y)                φn (x) ωn (x, y)                   φn (x) ωn (x, y)
+   [−n](x, y) =         2 (x) , ψ 3 (x, y)       =              ,                  =−              ,                 ,
+                       ψ−n       −n                      ψn2 (x) −ψn3 (x, y)                ψn2 (x) ψn3 (x, y)
+
+so it suffices to consider positive n. The proof given in [3, Thm. 9.33] uses complex analysis
+and the Weierstrass ℘-function, which we will see later in the course. However, as noted in
+[1, Ex. 3.7], one can give a purely algebraic proof by induction, using the formulas for the
+group law. This approach has the virtue of being completely elementary and works over any
+field, but it is computationally intensive (and really should be done with a computer algebra
+system).5 Here we will just verify that the formulas for ψn are correct; the verifications for
+φn and ωn are similar.
+   5
+    If k has characteristic 2 or 3 one needs to modify the formulas to use a general Weierstrass equation;
+this changes ψ2 , ψ3 , ψ4 , and the recurrence for ωn , but the recurrences for φn and ψn are unaffected. Be
+aware that there are a few typos in the formulas given in [1, Ex. 3.7] on page 105 that are corrected in the
+errata.
+
+
+                                                                         18.783 Fall 2023, Lecture #5, Page 11
+    For 1 ≤ n ≤ 4 the formulas given for ψn match our computations in Sage using the
+group law. To verify the formula for ψn when n = 2m + 1 > 4 is odd, we let Pm be the point
+(φm , ωm , ψm ) in Jacobian coordinates and compute Pm + Pm+1 using the group law. The
+z-coordinate of the sum is given by the formula z3 = x1 z22 − x2 z12 from (2). Substituting φm
+for x1 , ψm for z1 , φm+1 for x2 , and ψm+1 for z2 yields
+                                                    2           2
+                                                φm ψm+1 − φm+1 ψm ,
+
+which we wish to show is equal to ψ2m+1 . Applying the formulas for φm and φm+1 gives
+             2           2      2               2        2               2
+         φm ψm+1 − φm+1 ψm = (xψm − ψm+1 ψm−1 )ψm+1 − (xψm+1 − ψm+2 ψm )ψm
+                                             3         3
+                                     = ψm+2 ψm − ψm−1 ψm+1
+                                     = ψ2m+1 ,
+
+    To verify the formula for ψn when n = 2m > 4 is even, we now compute Pm + Pm . The
+z-coordinate of the sum is given by the formula z3 = 2y1 z1 from (3). We then have
+                                            1         2           2
+                            2ωm ψm = 2 ·       (ψm+2 ψm−1 − ψm−2 ψm+1 )ψm
+                                           4y
+                                       = ψ2m .
+
+as desired. This completes the verification for ψn . To complete the proof one performs a
+similar verification for φn and ωn using the group law formulas for x3 and y3 in Jacobian
+coordinates that we derived earlier.
+
+    To compute the degree of [n] : E → E, we need to know the degrees of the polynomials
+φn (x) and ψn2 (x), and we need to verify that they are relatively prime.
+Lemma 5.22. For every positive integer n the polynomials φn and ψn satisfy
+                                                 2
+                               φn (x) = xn + · · · ,
+                                        
+                                            n2 −1
+                                        nx 2 + · · · ,
+                                                                     n odd
+                               ψn (x) =
+                                                       
+                                                 n2 −4
+                                        y nx 2 + · · · ,
+                                                                     n even.
+
+where each ellipsis hides terms of lower degree in x.
+Proof. We first prove the formula for ψn by induction on n. By inspection, the formulas hold
+for n = 1, 2, 3, 4. There are then four cases to consider, depending on the value of n mod 4.
+For any polynomial f (x, y) we let ltx f denote the leading term of f as a polynomial in x.
+
+Case 0: n ≡ 0 mod 4. Let n = 2m, with m even. We have
+                                                  
+                 1             2                2
+ltx ψ2m = ltx      ψm (ψm+2 ψm−1 − ψm−2 ψm+1 )
+                2y
+                                                                                                         
+           1        m2 −4             (m+2)2 −4
+                                                     2
+                                                        2(m−1)2 −2           (m−2)2 −4
+                                                                                             2
+                                                                                               2(m+1)2 −2
+        =     · ymx   2     y(m+2)x       2     (m−1) x     2      − y(m−2)x     2     (m+1) x     2
+          2y
+          ym                     m2 −4+m2 +4m+4−4+2m2 −4m                     m2 −4+m2 −4m+4−4+2m2 +4m
+                                                                                                          
+        =        (m−1)2 (m+2)x                   2          − (m−2)(m+1)2 x                2
+            2
+          ym                                            4m2 −4
+        =        (m − 1)2 (m + 2) − (m − 2)(m + 1)2 x 2
+            2
+                   4m2 −4           n2 −4
+        = y(2m)x     2      = ynx     2     .
+
+
+                                                                      18.783 Fall 2023, Lecture #5, Page 12
+Case 1: n ≡ 1 mod 4. Let n = 2m + 1, with m even. We have
+                       3            3
+                                        
+ ltx ψ2m+1 = ltx ψm+2 ψm − ψm−1 ψm+1
+                                                                                           
+                           (m+2)2 −4        2                (m−1)2 −1           3(m+1)2 −3
+                                      3 3 3m 2−12                             3
+           = ltx y(m + 2)x    2      y m x        − (m − 1)x    2      (m + 1) x     2
+
+
+                                       m2 +4m+3m2 −12                                m2 −2m+3m2 +6m
+            = (m + 2)m3 x6 x                 2                 − (m − 1)(m + 1)3 x         2
+
+                                4m2 +4m            n2 −1
+            = (2m + 1)x            2       = nx      2     .
+Here we used the curve equation to replace y 4 with x6 , the leading term of (x3 + Ax + B)2 .
+Case 2: n ≡ 2 mod 4. Let n = 2m, with m odd. We have
+               1           2                  2
+ltx ψ2m = ltx    ψm (ψm+2 ψm−1   − ψm−2 ψm+1     )
+              2y
+                                                                                                          
+          1     m2 −1         (m+2)2−1                2(m−1)2−8          (m−2)2−1                2(m+1)2−8
+       =    mx 2       (m+2)x     2    y 2 (m−1)2 x       2     − (m−2)x    2     y 2 (m+1)2 x       2
+         2y
+                                                                                                 
+         y                      m2−1+(m+2)2−1+2(m−1)2 −8                  m2−1+(m−2)2−1+2(m+1)2−8
+       = m (m+2)(m−1)2 x                    2            −(m−2)(m+1)2 x               2
+         2
+         y                                              4m2 −4
+       = m (m + 2)(m − 1)2 − (m − 2)(m + 1)2 x 2
+         2
+                   4m2 −4              n2 −4
+       = y(2m)x      2         = ynx     2     .
+
+Case 3: n ≡ 3 mod 4. Let n = 2m + 1, with m odd. We have
+                       3            3
+                                        
+ ltx ψ2m+1 = ltx ψm+2 ψm − ψm−1 ψm+1
+                                                                                       
+                          (m+2)2 −1     3m2 −3        (m−1)2 −4             3(m+1)2 −12
+                                      3                          3       3
+           = ltx (m + 2)x    2      m x 2 − y(m − 1)x    2      y (m + 1) x     2
+
+
+                                4m2 +4m
+            = (2m + 1)x            2
+
+                   n2 −1
+            = nx     2     .
+Here we have again used the curve equation to replace y 4 with x6 .
+   Now that we have verified the formulas for ψn , we need to check φn . There are two cases,
+depending on the parity of n. If n is even we have
+             ltx φn = ltx xψn2 − ψn+1 ψn−1
+                                            
+                                                                               
+                                   2n2 −8           (n+1)2 −1         (n−1)2 −1
+                    = ltx xy 2 n2 x 2 − (n + 1)x 2            (n − 1)x 2
+                                      2                        2
+                           = n2 xn − (n2 − 1)xn
+                                 2
+                           = xn ,
+and if n is odd we have
+                ltx φn = ltx xψn2 − ψn+1 ψn−1
+                                              
+                                                                               
+                                                   (n+1)2 −4          (n−1)2 −4
+                                2 n2 −1
+                       = ltx xn x       − y(n + 1)x 2        y(n − 1)x 2
+                                       2                       2
+                           = n2 xn − (n2 − 1)xn
+                                  2
+                           = xn ,
+where we have used the curve equation to replace y 2 with x3 .
+
+                                                                              18.783 Fall 2023, Lecture #5, Page 13
+                                                                                   2
+Corollary 5.23. For all positive integers n, we have ψn2 (x) = n2 xn −1 + · · · , where the
+ellipsis denotes terms of degree less than n2 − 1.
+
+Lemma 5.24. Let E/k be an elliptic curve defined by y 2 = x3 + Ax + B. The polynomials
+φn (x) and ψn2 (x) are relatively prime.
+
+Proof. Suppose not. Let x0 ∈ k̄ be a common root of φn (x) and ψn2 (x), and let P = (x0 , y0 )
+be a nonzero point in E(k̄). Then nP = 0, since ψn2 (x0 ) = 0, and we also have
+
+                        φn (x0 ) = x0 ψn2 (x0 ) − ψn+1 (x0 , y0 )ψn−1 (x0 , y0 )
+                               0 = 0 − ψn+1 (x0 , y0 )ψn−1 (x0 , y0 ),
+
+so at least one of ψn+1 (x0 , y0 ) and ψn−1 (x0 , y0 ) is zero. But then either (n − 1)P = 0 or
+(n + 1)P = 0, and after subtracting nP = 0 we see that either −P = 0 or P = 0, which is
+a contradiction.
+
+Theorem 5.25. Let E/k be an elliptic curve. The multiplication-by-n map [n] : E → E has
+degree n2 . It is separable if and only if n is not divisible by the characteristic of k.
+
+Proof. From Lemma 5.22, we have deg φn = n2 and deg ψn2 ≤ n − 1, and from Lemma 5.24
+we know that φn ⊥ ψn2 . It follows that deg[n] = n2 . If n is not divisible by the characteristic
+                                 2
+of k, then the leading term n2 xn −1 of φ0n (x) is nonzero and therefore
+                                                       0
+                                              φn (x)
+                                                             6= 0,
+                                              ψn2 (x)
+                                                                                                      2
+which implies that [n] is separable. If n is divisible by the characteristic of k then the n2 xn −1
+leading term in ψn2 vanishes and deg ψn2 is less than n2 − 1. This implies that the kernel of
+[n], which consists of 0 and the affine points (x0 , y0 ) for which ψn (x0 ) = 0, is strictly smaller
+than its degree n2 , in which case [n] must be inseparable, by Theorem 5.8.
+
+
+References
+[1] J. H. Silverman, The Arithmetic of Elliptic Curves, Graduate Texts in Mathematics 106,
+    second edition, Springer 2009.
+
+[2] J. Vélu, Isogénies entre courbe elliptiques, C. R. Acad. Sci. Paris Séries A 273 (1971),
+    238–241, English translation by Alex Ghitza.
+
+[3] L. C. Washington, Elliptic Curves: Number Theory and Cryptography, second edition,
+    Chapman and Hall/CRC, 2008.
+
+
+
+
+                                                                     18.783 Fall 2023, Lecture #5, Page 14
+

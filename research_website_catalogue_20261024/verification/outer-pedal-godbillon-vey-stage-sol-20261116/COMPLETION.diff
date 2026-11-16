@@ -1,0 +1,41 @@
+--- stage_builder.py	2026-11-16 14:54:24
++++ stage_complete.py	2026-11-16 15:00:17
+@@ -106,13 +106,27 @@
+             need(path[7:] not in indexed, 'Duplicate public index path')
+             indexed[path[7:]] = {'Git_blob_SHA1': blob, 'Git_mode': format(mode, 'o')}
+     need(hashlib.sha1(data[:-20]).digest() == data[-20:], 'Native index checksum mismatch')
+-    need(set(indexed) == {x['path'] for x in public['files']}, 'Public/native-index path set drift')
++    disposition_path = P / 'verification/root-three-stage-index-path-disposition-20261116.json'
++    diagnostic_path = P / 'verification/root-three-stage-index-path-diagnostic-20261116.json'
++    disposition_pin, diagnostic_pin = pin(disposition_path), pin(diagnostic_path)
++    need(disposition_pin['bytes'] == 1793 and disposition_pin['sha256'] == 'bbaa526a6874d4f4a9b393cb933a0d6476012f71c11440e92b84ecde4f199423', 'Root disposition changed')
++    need(diagnostic_pin['bytes'] == 4499 and diagnostic_pin['sha256'] == '68e379303f4dfa783246abe49af14ac84d97412d21d5e2c865315e26409fbced', 'Root diagnostic changed')
++    diagnostic = json.loads(diagnostic_path.read_bytes())
++    need(diagnostic['native_public_unique_paths'] == 710 and diagnostic['actual_public_regular_files'] == 727 and diagnostic['index_only_paths'] == [], 'Wrong diagnostic counts')
++    extras = {x['path'].removeprefix('public/'): x for x in diagnostic['filesystem_only_pins']}
++    need(len(extras) == 17 and set(extras) == {x.removeprefix('public/') for x in diagnostic['filesystem_only_paths']}, 'Wrong exact extras data')
++    fs_paths = {x['path'] for x in public['files']}
++    need(len(indexed) == 710 and set(indexed).issubset(fs_paths) and fs_paths - set(indexed) == set(extras), 'Unexpected indexed subset or exact extras drift')
+     for item in public['files']:
++        if item['path'] in extras:
++            expected = extras[item['path']]
++            need(item['bytes'] == expected['bytes'] and item['sha256'] == expected['SHA256'] and int(item['mode'], 8) == int(expected['mode'], 8), 'Pinned filesystem-only file drift')
++            continue
+         entry = indexed[item['path']]
+         need(item['Git_blob_SHA1'] == entry['Git_blob_SHA1'], 'Public/native-index content drift: ' + item['path'])
+         need(entry['Git_mode'] in ['100644', '100755'], 'Nonregular public Git entry')
+         need(bool(int(item['mode'], 8) & 0o111) == (entry['Git_mode'] == '100755'), 'Public execute-mode drift')
+-    return {'public_entries_bound': len(indexed), 'all58667_entries_decoded': count, 'index_checksum_valid': True, 'public_blobs_and_exec_bits_match': True}
++    return {'public_entries_bound': len(indexed), 'all58667_entries_decoded': count, 'index_checksum_valid': True, 'public_blobs_and_exec_bits_match': True, 'all_filesystem_entries_retained': len(public['files']), 'exact_filesystem_only_pins_checked': list(extras.values()), 'root_disposition': disposition_pin, 'root_diagnostic': diagnostic_pin}
+ def guards(authority):
+     public = inventory(W / 'public')
+     need(len(public['files']) == 727 and len(public['directories']) == 364, 'Public topology drift')
+@@ -240,7 +254,7 @@
+     return result, {'record': record['record'], 'slug': record['proposed_slug'], 'canonical': canonical, 'title': title, 'description': description, 'date': scholarly['datePublished'], 'MAIN_inner_bytes': len(main_bytes(result)), 'MAIN_inner_sha256': sha(main_bytes(result)), 'body_exterior_exact': True, 'abstract_visible_schema_DC_exact': True}
+ 
+ def main():
+-    need(Path(__file__).resolve() == R / 'stage_builder.py', 'Unexpected builder location')
++    need(Path(__file__).resolve() == R / 'stage_complete.py', 'Unexpected builder location')
+     need(sys.argv[1:] in ([], ['--build']), 'Only explicit --build or read-only default accepted')
+     build = sys.argv[1:] == ['--build']
+     need(sha(A.read_bytes()) == '7b5367a6c98c13e304f93d8a582cc22c7fe0688e5cc0378bbbf1dce04b182cab' and A.stat().st_size == 18652, 'Root authority mismatch')

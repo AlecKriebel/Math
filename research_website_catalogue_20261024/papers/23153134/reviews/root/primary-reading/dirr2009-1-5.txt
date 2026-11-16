@@ -1,0 +1,392 @@
+Proceedings of the European Control Conference 2009 • Budapest, Hungary, August 23–26, 2009                                                     WeB15.4
+
+
+
+                            Global
+                            Global Observability
+                                   observability of
+                                                 of Real
+                                                    real Analytic
+                                                         analytic Systems
+                                                                  systems
+                                                    G. Dirr, U. Helmke and J. Jordan
+
+
+   Abstract— In this paper we present a sufﬁcient condition                     ﬁnding observability conditions, which are easier to verify.
+for global observability of nonlinear systems on manifolds that                 If the limiting dynamics on an attractor of f is known
+generalizes Aeyels’ global observability result for Morse–Smale                 a priori, then a sensible observability condition might
+systems. Our main theorem establishes global observability
+under considerably weaker assumptions than Aeyels’ Morse-                       consist of combining local observability criteria together
+Smale condition. However, we have to assume additionally real                   with some global information on the phase portrait on
+analyticity of the system. With this result at hand, we re-derive               the attractor. Aeyels [1] has been the ﬁrst who proposed
+and extend the work of Ghosh and Rosenthal on perspective                       such an asymptotic dynamics based observability condition
+observability of linear systems — an issue which naturally arises               for the special class of nonlinear Morse-Smale systems.
+e.g. in computer vision. Further applications yield sufﬁcient
+conditions for observability of nonlinear cascade systems and                   The trajectories of a Morse-Smale system converge to
+generalized double bracket ﬂows on Grassmann manifolds.                         ﬁnitely many critical elements, i.e., equilibrium points and
+                                                                                periodic orbits. Aeyels realized that this allows to localize
+                      I. INTRODUCTION                                           the observability problem of a Morse-Smale systems at its
+   The motivation for this work comes from perspec-                             critical elements. His result reads as follows.
+tive observability problems in robotics and computer vi-
+sion, where perspective measurements in distributed state-                        Theorem 1.1 (Aeyels [1]): Given a smooth Morse-Smale
+estimation tasks have to be taken into account, cf. [12].                      system Σ on a compact manifold with ﬁnitely many critical
+In the simplest, centralized case, this leads to nonlinear                     elements. Assume that h : M → R is a smooth output
+observability problems on projective spaces which are only                     function, such that
+partially solved, using multilinear algebra techniques [9].                    C1: Every output trajectory of a periodic orbit γ of f has
+In this paper we develop a new approach to perspective                              minimal period equal to the period of γ.
+observability that exploits the Morse-Smale properties of the                  C2: h separates critical points and the images of the periodic
+underlying dynamical system. This raises the question to                            orbits under h are different.
+what extent nonlinear observability problems can be tackled                    C3: The observability rank condition is satisﬁed at the
+by methods that use the global asymptotic behaviour of the                          critical elements.
+system.                                                                        Then, the system is globally observable on a suitable ﬁnite
+   Here, we address the issue of ﬁnding sufﬁcient conditions                   time interval [0, T ].
+for global observability of real analytic nonlinear systems Σ
+                                                                                   Here C3 guarantees local observability around the critical
+                        ẋ = f (x), y = h(x)                                    elements, while C1 is equivalent to requiring observability
+on a manifold M . Global observability of Σ refers to                           on the critical elements. As elegant as the result appears,
+the case where the initial state of the system is uniquely                      it has some drawbacks, which prevents the theorem to
+determined by an output measurement of y on a ﬁnite                             be widely applicable. The ﬁrst such difﬁculty lies in the
+time interval [0, T ]. A well–known sufﬁcient condition for                     deﬁnition of a Morse–Smale system, which requires that
+local observability requires that the co-distribution dO(x)                     the stable and unstable manifolds of the critical elements
+that is spanned by the differentials dLjf h(x) of the Lie                       intersect transversally. This condition is hard to verify in
+derivatives generates the cotangent space Tx∗ M at each                         speciﬁc examples and is not even satisﬁed by arbitrary
+x ∈ M , cf. [16]. Necessary and sufﬁcient condition for                         gradient ﬂows. The second problem is the assumption, that
+observability of analytic systems are due to [5], who showed                    the ω–limit sets of each trajectory are isolated equilibrium
+that observability holds if and only if the observation space                   points or periodic orbits. A lot of examples to which we
+O, spanned by iterated Lie derivatives Ljf h, separates points                  want to apply such a result do not satisfy this condition. For
+on M . However, this condition is hard to test, since the                       example, a matrix Riccati differential equation usually will
+observation space O is inﬁnite dimensional and therefore                        have equilibria, periodic orbits and invariant tori as ω–limit
+checking the condition that O separates points can be                           sets; see e.g. [14]. In order to obtain more applicable results
+quite a formidable task. Thus, there is great interest in                       we thus have to abandon such assumptions. In this paper,
+                                                                                we show that this is possible by proving the following result.
+  This work was supported by the grant HE 1858/12-1 of the DFG-
+Schwerpunktprogramm 1305                                                          Theorem 1.2: Let f : M → T M be a real analytic
+  All three authors are with the Institute of Mathematics,
+University of Würzburg, Am Hubland, 97074 Würzburg, Germany                   complete vector ﬁeld on a manifold M and let h : M → Rp
+jordan@mathematik.uni-wuerzburg.de                                              be a real analytic output function. Assume:
+
+
+
+
+978-3-9524173-9-3
+© Copyright EUCA 2009                                                     4582
+
+      Authorized licensed use limited to: Istanbul Universitesi. Downloaded on November 17,2022 at 13:20:12 UTC from IEEE Xplore. Restrictions apply.
+Proceedings of the European Control Conference 2009 • Budapest, Hungary, August 23–26, 2009                                                     WeB15.4
+
+
+
+A1: The ω–limit set ω(x) of any x ∈ M is a nonempty                             denotes the Lie derivative of hi along f at x, cf. [16]. Let
+     compact subset of M .
+A2: The system is observable on each ω–limit set ω(x).                                  ω(x)     := { lim Φtk (x) | tk > 0, tk → ∞},
+                                                                                                         k→∞
+A3: For any points x1 , x2 ∈ M with ω(x1 ) = ω(x2 ) one                                α(x)     := { lim Φtk (x) | tk < 0, tk → −∞}
+                                                                                                         k→∞
+     has h(ω(x1 )) = h(ω(x2 )).
+A4: For any x ∈ M there exists some p ∈ ω(x) such that                          denote the α– and ω–limit sets of x, respectively. Remember,
+     Σ is locally observable at p.                                              that for every forward bounded trajectory Φt (x) the ω–limit
+Then system (1) is globally observable on an arbitrary time                     set of x is a nonempty, compact and connected subset of
+interval [0, T ].                                                               M that is invariant under the ﬂow. To prove Theorem 1.2,
+                                                                                we need the following lemmata.
+   In the subsequent sections we will prove this as well as
+related results and then discuss applications to perspective                       Lemma 2.1: Let M be a complete Riemannian manifold
+observability and observability of cascade systems, general-                    and C a topological space. Assume that H : M → C is
+ized double bracket ﬂows and associated Riccati differential                    continuous and A ⊂ M compact, such that
+equations. This extends earlier work in [7] and [13]. In                         (i) H|A is injective,
+future applications we plan to extend the scope of this work                    (ii) H is locally injective at each point x ∈ A.
+towards perspective and partial estimation tasks for networks                   Then H is injective on a neighborhood of A.
+of dynamical systems.
+                                                                                Proof. Suppose, that H is not injective on any sufﬁciently
+ II. G LOBAL OBSERVABILITY FOR NONLINEAR SYSTEMS                                small neighborhood of A. Consider the compact sets
+   In the sequel we assume that M is a ﬁnite dimen-                             Ak := {x ∈ M | dist(x, A) ≤ k1 }. For any k ∈ N there
+sional complete Riemannian manifold. Note that a complete                       exists xk , yk ∈ Ak with xk = yk such that H(xk ) = H(yk ).
+Riemannian metric exists on every smooth manifold and                           The sequences (xk )k∈N and (yk )k∈N converge to A. Thus,
+explicit forms of such will not be needed in the subsequent                     there are subsequences converging to x ∈ A and y ∈ A,
+arguments. Let dist(x, y) denote the corresponding metric                       respectively. Since H is continuous we have H(x) = H(y)
+on M . By the Hopf-Rinow theorem, (M, dist) is complete                         and since H is injective on A we conclude x = y. But this
+as a metric space. The associated topology coincides with                       is a contradiction, since H is locally injective in x = y. 
+the manifold topology and therefore any continuous map on
+M is also continuous with respect to this metric. Consider                        The next lemma generalizes a result of Aeyels [1]
+any real analytic nonlinear system Σ                                            concerning local observability around a periodic orbit.
+
+                        ẋ = f (x), y = h(x)                            (1)         Lemma 2.2: Let f : M → T M be a real analytic
+                                                                                complete vector ﬁeld on a manifold M and let h : M → Rp
+on M , where f : M → T M denotes a complete real analytic                       be a real analytic output function. Let A be a compact subset
+vector ﬁeld on M and h = (h1 , · · · , hp ) : M → Rp is any                     of M , which is invariant with respect to the ﬂow of f .
+real analytic output function. We begin with some general                       Assume:
+deﬁnitions and basic facts.
+                                                                                  (i) The system Σ is observable on A.
+   Let Φt : M → M, t ∈ R, the associated ﬂow of
+                                                                                 (ii) For any x ∈ A there exists p ∈ ω(x) such that Σ is
+the system. Σ is called observable in time T > 0 if
+                                                                                      locally observable at p.
+h ◦ Φt (x1 ) = h ◦ Φt (x2 ) for all t ∈ [0, T ] implies x1 = x2 .
+The system Σ is observable if it is observable in time T                        Then there exists an open neighborhood U of A in M , such
+for some T > 0. Since Σ is assumed to be real analytic,                         that Σ is observable on U .
+Σ is observable if there exists any nontrivial time interval
+I ⊂ R such that h ◦ Φt (x1 ) = h ◦ Φt (x2 ) for all t ∈ I                         Proof. We ﬁrst prove the result under the stronger as-
+implies x1 = x2 . The choice of I does not really matter                        sumption (ii’) that Σ is locally observable in M at any point
+in our subsequent arguments; a real analytic system that is                     x ∈ A. For a ﬁxed time T > 0 consider the map
+observable on some open subinterval J ⊂ R is observable on                           HT : M → C([0, T ], Rp ), x → (t → h (Φt (x))) .                   (2)
+any nontrivial interval I ⊂ R. This fact will be frequently
+used in the sequel. Σ is called locally observable at z in                      Note that C([0, T ], Rp ) is a Banach space with respect to
+time T > 0 if there exists a neighborhood U of z such                           supremum norm and then HT is a continuous map. By (ii’),
+that h ◦ Φt (x1 ) = h ◦ Φt (x2 ) for all t ∈ [0, T ] implies                    HT is locally injective at any point x ∈ A. Thus Lemma 2.1
+x1 = x2 if x1 , x2 ∈ U . Note that there exists simple                          implies, that HT is injective on a suitable neighborhood U
+sufﬁcient conditions for local observability. In particular, Σ                  of A. Hence, system (1) is observable on U .
+is locally observable at x if Σ satisﬁes the observability                        Next we have to show, that the strong local observability
+rank condition at x ∈ M , i.e., if the vector space dO(x)                       condition (ii’) holds. Assume that x ∈ A is arbitrary and
+spanned by the co-vectors dhi (x), dLf hi (x), dL2f hi (x), . . . ,             Σ is locally observable at a point p ∈ ω(x). Let V ⊂ M
+i = 1, . . . , p has dimension n. Here, Lf hi (x) = dhi (x)f (x)                be any open neighborhood of p in M , such that the system
+
+
+
+                                                                          4583
+
+      Authorized licensed use limited to: Istanbul Universitesi. Downloaded on November 17,2022 at 13:20:12 UTC from IEEE Xplore. Restrictions apply.
+G. Dirr et al.: Global Observability of Real Analytic Systems                                                                                   WeB15.4
+
+
+
+is observable on V . Then there exists T > 0 such that                            Corollary 2.1: Given a real analytic vector ﬁeld f on a
+ΦT (x) ∈ V . Thus for any sufﬁciently small neighborhood                        manifold M and let h : M → Rp be a real analytic output
+U of x in M we have ΦT (U ) ⊂ V . Since f, h is real                            function. Then system (1) is observable if
+analytic, the system is observable on V in arbitrary small                      C0: Every trajectory of f converges to a critical element,
+time. Thus the system is also observable on U , which shows                         i.e. either to an equilibrium point or to a periodic orbit.
+local observability in x.                                                      C1: Every output trajectory of a periodic orbit γ of f has
+                                                                                    minimal period equal to the period of γ.
+   With these preliminary results in hand, we can now easily                    C2: h separates critical points and the images of the periodic
+prove our main result.                                                              orbits under h are different.
+   Proof of Theorem 1.2. From Lemma 2.2 and assumptions                         C3: The observability rank condition is satisﬁed at the
+A2, A4 we conclude that Σ is observable on a neighborhood                           critical elements.
+U of each ω–limit set ω(x). Let x1 , x2 be any two points in
+M whose output trajectories h ◦ Φt (x1 ), h ◦ Φt (x2 ) coincide                 Proof. Condition C0 implies assumption A1 in Theorem
+on some time interval I. Thus, by real analyticity of t →                       1.2, i.e. that every ω–limit set of f is a nonempty
+h ◦ Φt (x), they coincide on R. Suppose, that the ω–limit                       compact set. Similarly, C3 implies the local observability
+sets ω(x1 ) = ω(x2 ) are not equal. Then, by assumption A2,                    condition A4, while C2 is equivalent to A3. Finally, C1
+the corresponding image sets satisfy h(ω(x1 )) = h(ω(x2 )).                    is equivalent to assuming observability on each critical
+From the identity h ◦ Φt (x1 ) = h ◦ Φt (x2 ) for all t, we                     element, i.e. to assumption A2. In particular, assuming
+obtain that h(ω(x1 )) = h(ω(x2 )), which is a contradiction.                    h(x) = h(z) for different elements x and z of one periodic
+Therefore, A := ω(x1 ) = ω(x2 ). Since the trajectories                         orbit implies Φτ (x) = z for some τ > 0 and therefore
+converge to their ω-limit sets, we have                                         h ◦ Φt (x) ≡ h ◦ Φt+τ (x). By the assumption C1, τ coincides
+       lim dist(Φt (x1 ), A) = lim dist(Φt (x2 ), A) = 0,                       with the period of the orbit and thus x = z. Hence,
+      t→∞                           t→∞                                         observability of the entire system follows from Theorem
+we conclude that Φt (x1 ), Φt (x2 ) ∈ U and h ◦ Φt (x1 ) =                      1.2.                                                      
+h ◦ Φt (x2 ) for sufﬁciently large t > 0. From observability
+on U it follows Φt (x1 ) = Φt (x2 ) for sufﬁciently large t > 0                    In certain situations it is easily possible to decide,
+and thus x1 = x2 . This completes the proof.                                    if the system on an ω–limit set is observable. An ω–
+                                                                               limit set ω(x) is minimal, if ω(p) = ω(x) holds for
+    Note that Theorem 1.2 is a far reaching generalization of                   p ∈ ω(x). The restricted system on ω(x) is called distal
+Aeyels observability condition [1], at least in the real analytic               if 0 < inf{dist(Φt (p), Φt (q)) | t ∈ R+ } holds for all
+case. Recall, that a Morse–Smale system is a complete vector                    p = q ∈ ω(x). By a result of Byrnes and Crouch [4], a
+ﬁeld f on a manifold M which satisﬁes the following three                       minimal distal system with non constant observation law is
+conditions:                                                                     observable if there exists a point a ∈ Rp such that h−1 (a)
+  (i) Every solution converges to a critical element, i.e. either               is a singleton. In the subsequent corollary, this condition
+      to an equilibrium point or to a periodic orbit of f .                     replaces the observability assumption A2 from Theorem
+ (ii) The critical elements of f are hyperbolic.                                1.2.
+(iii) The stable and unstable manifolds of the critical ele-
+      ments intersect transversally.                                              Corollary 2.2: Let f : M → T M be a real analytic
+                                                                                complete vector ﬁeld on a manifold M and let h : M → Rp
+While the ﬁrst two conditions are usually satisﬁed in most
+                                                                                be a real analytic non constant output function. Assume:
+examples, condition (iii) is quite restrictive and indeed often
+not satisﬁed. For instance, the gradient ﬂow of the standard                  A1’: The ω–limit set ω(x) of any x ∈ M is minimal,
+height function on the 2-torus T 2 ⊂ R3 is not Morse-Smale,                        nonempty, compact and distal.
+at least not for the induced standard Riemannian metric on                    A2’: For any x ∈ M there exists a ∈ ω(x) such that
+T 2 . The problem here is the presence of a heteroclinic orbit                     h|−1
+                                                                                     ω(x) (h(a)) = {a}.
+between the two index 1 saddles which causes the respective                   A3: For any points x1 , x2 ∈ M with ω(x1 ) = ω(x2 ) one
+stable and unstable manifolds to coincide. Although a generic                      has h(ω(x1 )) = h(ω(x2 )).
+change in the Riemannian metric will alter the gradient                       A4: For any x ∈ M there exists p ∈ ω(x) such that Σ is
+ﬂow to become Morse-Smale, this does not really help,                              locally observable at p.
+as such generic selections of a Riemannian metric may be                        Then system (1) is globally observable on an arbitrary time
+hard to specify. Thus, gradient ﬂows can fail to be Morse-                      interval [0, T ].
+Smale, while—on the other hand—having perfectly simple
+convergence properties.
+    From Theorem 1.2 we deduce the following statement,                                                  III. A PPLICATIONS
+which includes Theorem 1.1 for real analytic systems as a
+special case.                                                                     Subsequently, we discuss three examples that show how
+                                                                                the above results can be applied in speciﬁc circumstances.
+
+
+
+                                                                          4584
+
+      Authorized licensed use limited to: Istanbul Universitesi. Downloaded on November 17,2022 at 13:20:12 UTC from IEEE Xplore. Restrictions apply.
+Proceedings of the European Control Conference 2009 • Budapest, Hungary, August 23–26, 2009                                                     WeB15.4
+
+
+
+Our ﬁrst example are cascade systems of the form                                whose output is the image space C[X] of [X] under C. Our
+                                                                                basic assumption will be that rkC = p ≥ m + 1. We can
+           ẋ = f (x, z), ż = g(z), y = h(x) + k(z)                    (3)
+                                                                                regard system (6) as a real analytic system on the Grassmann
+where M is a compact manifold and f : M × Rm → T M ,                            manifold, that acts on Gm (Cn ) via [X] → etA [X]. Thus we
+g : Rm → Rm , h : M → Rp , k : Rm → Rp are real                                 can apply our previous results.
+analytic. The zero dynamics and the driving system are then                        Observe, that the image of CetA [X] is not entirely con-
+deﬁned as                                                                       tained in Gm (Cp ). However, C[X] belongs to Gm (Cp )
+                   ẋ = f (x, 0), y = h(x)               (4)                    for almost all [X] ∈ Gm (Cn ). Then, the pair (C, A) is
+                                                                                called perspectively observable on Gm (Cn ) if for any two
+                        ż = g(z), w = k(z),                            (5)
+                                                                                subspaces [X1 ], [X2 ] ∈ Gm (Cn )
+respectively.
+                                                                                CetA [X1 ] = CetA [X2 ] for almost all t ∈ R =⇒ [X1 ] = [X2 ].
+    Theorem 3.1: Assume that 0 ∈ Rm is a globally asymp-                        In order to state our main result we need one further
+totic stable equilibrium point of ż = g(z) and (5) is observ-                  deﬁnition. A matrix A ∈ Cn×n is called strongly regular,
+able. Assume further, that the zero dynamics (4) satisfy                        whenever A has exactly n distinct eigenvalues λ1 , · · · , λn
+  (i) Every solution of (4) converges to a compact invariant                    whose real parts are ordered as Reλ1 > · · · > Reλn .
+      subset A ⊂ M and there exist ﬁnitelymany ω–limit                         Strongly regular matrices exist and are generic in the class
+                                                    k
+      sets ω(xi ), x1 , . . . , xk ∈ M with A := i=1 ω(xi ).                    of all complex n×n–matrices. Ghosh and Rosenthal [9], [13]
+ (ii) Each ω(xi ) is minimal, nonempty, compact and distal.                    have characterized perspective observability of complex
+              k
+(iii) A = i=1 ω(xi ) satisﬁes the non cycle condition, i.e.                     linear systems through a generalization of the Hautus–
+      for any indices 1 ≤ j1 < · · · < jr ≤ k and Λj := ω(xj )                  criterion. Their proof of the sufﬁciency part was rather
+      there exist no q1 , · · · , qr ∈
+                                     / A, such that                             complicated and used delicate arguments via compound
+                                                                                matrices that worked only in the complex case. Here, we
+           α(qi ) ⊂ Λji      ,    ω(qi ) ⊂ Λji+1 , i = 1, · · · , r,            give a much simpler proof using our global observability
+     where Λjr+1 := Λj1 .                                                       result.
+(iv) For each i = 1, · · · , k there exists ai ∈ ω(xi ) such that
+     h|−1
+       ω(xi ) (h(ai )) = {ai }.
+                                                                                   Theorem 3.2: Assume that A ∈ Cn×n is strongly regular.
+ (v) h(ω(xi )) = h(ω(xj )) holds whenever i = j.                              The system (6) is perspectively observable on Gm (Cn ) if for
+(vi) For any i = 1, · · · , k there exists pi ∈ ω(xi ) such that                all monic polynomials π ∈ C[x] of degree deg π = m + 1
+     (4) is locally observable at pi .                                          one has                        
+                                                                                                          π(A)
+Then system (3) is globally observable on an arbitrary time                                           rk          = n.                    (7)
+                                                                                                            C
+interval [0, T ].
+
+Proof. By (i) and (iii), a result of [10] implies that the
+                                                                                   Proof. Due to the strong regularity assumption on A
+ω–limit set of any trajectory of the cascade system coincides
+                                                                                one can show, that the ω–limit sets of the linear induced
+with one of the ω–limit sets ω(xi ). Hence, observability of
+                                                                                ﬂow etA on the Grassmann manifold Gm (Cn ) are exactly
+the entire system follows from Corollary 2.2.              
+                                                                                given by the m-dimensional invariant subspaces of A; see
+                                                                                e.g. [14]. Thus every trajectory t → etA [X] converges for
+   As a second example, we analyze the question of ob-
+                                                                                t → ∞ to a a unique m–dimensional invariant subspace E
+servability for perspective linear system. These are linear
+                                                                                of A. In particularly, the ω–limit sets are isolated equilibria
+dynamical systems, whose outputs are deﬁned only up to
+                                                                                and thus satisfy assumption A1 of Theorem 1.2. Moreover,
+an arbitrary scaling factor. Such systems naturally arise in
+                                                                                the observability assumption A2 on the ω–limit sets is
+computer vision and have been ﬁrst introduced by Ghosh
+                                                                                trivially satisﬁed. Assumptions A3 of Theorem 1.2 becomes
+et. al. in [9]; see also [13]. In the sequel we will focus on
+                                                                                equivalent to the condition that CE1 = CE2 holds for
+perspective linear systems with complex coefﬁcients; the real
+                                                                                any pair of different A–invariant subspaces E1 , E2 . But
+case is more complicated and will be discussed elsewhere [8].
+                                                                                this in turn is easily seen as being equivalent to the full
+We begin with some basic terminology. Let Gm (Cn ) denote
+                                                                                rank condition (7); see [8] for further details. Finally, by
+the complex Grassmann manifold, i.e. the set of all m-
+                                                                                inspection, the local observability condition A4 for the
+dimensional complex linear subspaces of Cn . In particular,
+                                                                                perspective system (6) is immediately implied by A3. Thus,
+let P(Cn ) := G1 (Cn ) denote the complex projective space
+                                                                                the result follows.                                          
+of one-dimensional complex linear subspaces of Cn . For
+any full rank matrix X ∈ Cn×m , let [X] denote the m-
+                                                                                   The situation of systems with real coefﬁcients is much
+dimsnional subspace of Cn that is spanned by the columns
+                                                                                more complicated and has been treated in [9] only in
+of X. Given A ∈ Cn×n and C ∈ Cp×n , a perspective linear
+                                                                                the very special case, where A has only real eigenvalues.
+system then consists of a linear system
+                                                                                Our method here leads to stronger results. Note, that a
+                      Ẋ = AX,        Y = C[X].                         (6)     straightforward extension of Theorem 3.2 without any
+
+
+
+                                                                          4585
+
+      Authorized licensed use limited to: Istanbul Universitesi. Downloaded on November 17,2022 at 13:20:12 UTC from IEEE Xplore. Restrictions apply.
+G. Dirr et al.: Global Observability of Real Analytic Systems                                                                                   WeB15.4
+
+
+
+further assumptions is wrong. We only give a sufﬁcient                          denote the span of the j-th iterates of Li on C. Observability
+condition for m = 1; full details and more general results                      of (10) then is equivalent to the transversality condition
+are given elsewhere [8].                                                        Vi + Ker adPi = her(n), where her(n) denotes the set of
+                                                                                hermitian matrices with trace zero. We extend a result of
+   Theorem 3.3: Assume that A ∈ Rn×n is a strongly                              [7] on the observability of such ﬂows.
+regular real matrix and that all imaginary parts of pairs of
+complex eigenvalues are rationally independent. The system                          Theorem 3.4: Assume that A is strongly regular and let
+(6) is perspectively observable on the real projective space                    S, Ω denote the Hermitian and skew-Hermitian parts of A,
+P(Rn ) if for all real coefﬁcients α, β ∈ R                                     respectively. The generalized double bracket ﬂow (9) is
+                      2                                                       observable on Grassm,n , if the following conditions hold:
+                      A + αA + βIn
+                  rk                     = n.            (8)                      (i) tr(CPi ) = tr(CPj ) for each 1 ≤ i < j ≤ N .
+                             C
+                                                                                 (ii) For each i = 1, · · · , N
+                                                                                                        dim adPi (Vi ) = m(n − m).
+  Finally, we discuss a generalization of the matrix Ric-
+cati differential equation to an isospectral ﬂow on complex
+Hermitian projection operators. Let Grassm,n denote the
+Grassmannian of all complex Hermitian rank m projection                            This result shows that observability of (9) holds for generic
+operators on Cn and let                                                         choices of matrices Ω, S. It implies corresponding observ-
+                                                                              ability results for the matrix Riccati differential equation,
+                               Im 0                                             that are not covered by the results of Rosenthal [13].
+                     P0 :=               .
+                                0 0
+                                                                                                             R EFERENCES
+By the spectral theorem, the set O(P0 ) := {U P0 U ∗ | U ∈
+                                                                                 [1] D. Aeyels. Global observability of Morse-Smale vector ﬁelds. J.
+SUn } coincides with Grassm,n . Note, that Grassm,n carries                          Differential Equations, vol 45, 1982, pp 1-15.
+a natural real analytic manifold structure as a compact                          [2] R.W. Brockett. Dynamical systems that sort lists, diagonalize matrices
+homogeneous space. In fact, Grassm,n is real analytically                            and solve linear programming problems. Proc. IEEE of the 27th
+                                                                                     Conference on Decision and Control, 799–803, Austin, Texas, 1988.
+diffeomorphic to the Grassmann manifold Gm (Cn ) of m-                               See also Linear Algebra Appl., 146, 79–91, 1991.
+dimensional linear subspaces of Cn via the map P → Im P .                        [3] R.W. Brockett. An estimation theoretic basis for the design of sorting
+   Let S, Ω denote arbitrary complex Hermitian and skew-                             and classiﬁcation networks. Neural Networks, 23–41, Academic Press,
+                                                                                     1991.
+Hermitian matrices, respectively. Let A := S + Ω denote                          [4] C. I. Byrnes and P. E. Crouch. Observability of minimal distal systems.
+the associated complex matrix. We consider the generalized                           Int. J. Contr. vol 44, No 4, 1986, pp 919 - 926
+double bracket ﬂow on the Grassmannian Grassm,n                                  [5] P. Crouch. Dynamical realizations of ﬁnite Volterra series. SIAM J.
+                                                                                     Control Optim., Vol. 19, 1981, 177–202.
+          Ṗ   =     [P, Ω + [S, P ]],      P0 ∈ Grassm,n               (9)      [6] G. Dirr and U. Helmke. Accessibility of a class of generalized double
+                                                                                     bracket ﬂows. Communications in Information and Systems, to appear,
+           y   =     trace(CP ),                                                     2008.
+                                                                                 [7] G. Dirr, U. Helmke and J. Jordan. Observation of generalized Euler
+where C is any Hermitian matrix that deﬁnes the output                               equations. Proceedings in Applied Mathematics and Mechanics, to
+                                                                                     appear, 2009
+functional; see [2], [3], [11] for further results and engi-                     [8] G. Dirr, U. Helmke and J. Jordan. Control and observation of the
+neering applications of such double bracket ﬂows. In [6] it                          Matrix Riccati differential equation. Preprint, 2008.
+is shown, that (9) is equivalent to the linear induced ﬂow                       [9] B. J. Ghosh and J. Rosenthal. A generalized Popov–Belevitch–Hautus
+                                                                                     test of observability. IEEE Trans. Autom. Control, 40(1), 176–180,
+etA V, V ∈ Gm (Cn ) on the complex Grassmann manifold                                1995.
+Gm (Cn ). Assume, that A = S + Ω is strongly regular.                           [10] U. Helmke. Global convergence of nonlinear cascade systems with
+The above arguments then show, that the ω-limit set of                               Morse–Bott zero dynamics. Systems and Control Letters, submitted
+                                                                                     2008
+each X0 ∈ Grassm,n consists of a Hermitian projection                           [11] U. Helmke and J. Moore. Optimization and Dynamical Systems.
+operator, corresponding to a unique m-dimensional invariant                          Springer–Publ., London, 1994.
+subspace of A. Thus, under this generic assumption on A,                        [12] J. Hespanha, State estimation and control for systems with perspective
+                                                                                     outputs, Technical Report, UC Santa Barbara, 2002.
+the generalized double bracket ﬂow (9) has ﬁnitely many                         [13] J. Rosenthal. An observability criterion for dynamical systems gov-
+equilibrium points P∞ = P1 , · · · , PN , characterized by                           erned by Riccati differential equations. IEEE Trans. Autom. Control,
+the ﬁnitely many m-dimensional A-invariant subspaces. By                             41(3), 434–436, 1996.
+                                                                                [14] M. A. Shayman. Phase portrait of the matrix Riccati equation. SIAM
+inspection, the linearization of (9) at any such equilibrium                         J. Control Optim., vol 24, 1986, pp 1 - 65.
+point P∞ = Pi ∈ Grassm,n is the linear system                                   [15] K.E. Starkov. Observability of smooth control systems. Journal of
+                                                                                     Mathematical Science, vol 78, No. 4, 1996, pp 433 - 496
+                   ξ˙ =       [ξ, Ω] + [Pi , [S, ξ]],                 (10)      [16] N. Nijmeijer and A.J. van der Schaft. Nonlinear Dynamical Control
+                                                                                     Systems. Springer-Publ., New York, 1990
+                   y =        trace(Cξ).
+Let Li = adΩ + adS ◦ adPi denote the dual of the linear
+matrix operator deﬁned by (10) and let
+                   Vi := span{Lji (C) | j ∈ N0 }
+
+
+
+
+                                                                          4586
+
+      Authorized licensed use limited to: Istanbul Universitesi. Downloaded on November 17,2022 at 13:20:12 UTC from IEEE Xplore. Restrictions apply.
+

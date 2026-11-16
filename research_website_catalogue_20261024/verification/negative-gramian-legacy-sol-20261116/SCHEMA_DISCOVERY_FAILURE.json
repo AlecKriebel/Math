@@ -1,0 +1,12 @@
+{
+  "recorded_UTC": "2026-11-16T22:46:51.451102+00:00",
+  "phase": "metadata/schema discovery before new search utility execution",
+  "actual_exit": 1,
+  "error": "KeyError: tree",
+  "failed_expression": "connector[structuredContent][structuredContent][tree]",
+  "literal_stdout": "TREE STRUCTURED INNER KEYS ['title', 'content', 'display_url']\nKNUDSON CONTAINER 1863 ae49d075d4397ea90e634042a41c463251e7bc7e47d4ee836a0f2520167c59e3 TOP ['content', 'structuredContent', 'isError'] isError False SC KEYS ['content'] CONTENT TYPE str\n",
+  "literal_stderr": "Traceback (most recent call last):\n  File \"<stdin>\", line 7, in <module>\nKeyError: 'tree'\n",
+  "full_original_command_retained_in": "current tool history; inline python metadata probe, not an acquisition/search helper",
+  "correction": "The already observed exact tree wrapper is structuredContent.content (string JSON); nested structuredContent is display metadata. No generic fallback, helper replay, GET or source mutation.",
+  "literal_command": "python3 - <<'PY'\nfrom pathlib import Path\nimport json,hashlib\nb=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/odd-areas-boolean-city-stage-audit-sol-20261116')\nx=json.loads((b/'LEGACY160_DOCS_TREE.connector.json').read_text());print('TREE STRUCTURED INNER KEYS',list(x['structuredContent']['structuredContent']))\nr=json.loads((b/'LEGACY160_SEARCH.stdout.json').read_text())['rows'];q=Path(next(x for x in r if 'knudson-gradient-path' in x['path'])['body_reference']['path']);raw=q.read_bytes();x=json.loads(raw)\nprint('KNUDSON CONTAINER',len(raw),hashlib.sha256(raw).hexdigest(),'TOP',list(x),'isError',x.get('isError'),'SC KEYS',list(x['structuredContent']),'CONTENT TYPE',type(x['structuredContent']['content']).__name__)\nprint('TREE MODES/TYPES',sorted(set((y['mode'],y['type']) for y in json.loads((b/'LEGACY160_DOCS_TREE.connector.json').read_text())['structuredContent']['structuredContent']['tree'])))\nPY"
+}

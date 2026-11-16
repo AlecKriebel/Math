@@ -1,0 +1,1815 @@
+J. Eur. Math. Soc. 3, 169–201 (2001)
+Digital Object Identifier (DOI) 10.1007/s100970100030
+
+
+
+
+Tom Fisher
+
+Some examples of 5 and 7 descent
+for elliptic curves over Q
+Received October 6, 2000 / final version received November 14, 2000
+Published online February 15, 2001 – c Springer-Verlag & EMS 2001
+
+Abstract. We perform descent calculations for the families of elliptic curves over Q with
+a rational point of order n = 5 or 7. These calculations give an estimate for the Mordell-
+Weil rank which we relate to the parity conjecture. We exhibit explicit elements of the
+Tate-Shafarevich group of order 5 and 7, and show that the 5-torsion of the Tate-Shafarevich
+group of an elliptic curve over Q may become arbitrarily large.
+
+
+
+Introduction
+
+Let E be an elliptic curve over a number field K . The Mordell-Weil theorem
+asserts that the group E(K ) of K -rational points on E is a finitely generated
+
+                                                    X
+abelian group. We call E(K ) the Mordell-Weil group. Another important group
+associated to E is the Tate-Shafarevich group (E/K ). It is defined as the set of
+torsors under E which have points everywhere locally. Thus a non-zero element of
+the Tate-Shafarevich group corresponds to a smooth curve of genus 1 that violates
+
+                                                X
+the Hasse Principle, i.e. it has (local) K v -rational points at all places v, but no
+(global) K -rational points. It is known that (E/K ) is torsion, and that the torsor
+corresponding to an element of order n admits a divisor class of degree n defined
+over K . On a curve of genus 1 a complete linear system of degree n also has
+dimension n. Thus for n = 2 we consider double covers of P1 , for n = 3 plane
+cubics, for n = 4 complete intersections of two quadrics in P3 , and so on.
+    There is no known algorithm guaranteed to compute the Mordell-Weil group,
+and the situation for the Tate-Shafarevich group is no better. However, for any in-
+teger n ≥ 2 the proof of the Mordell-Weil theorem gives an effective upper bound
+
+                                                         X
+on the order of E(K )/n E(K ). This yields an upper bound on the Mordell-Weil
+rank which is an overestimate precisely whenever (E/K ) contains non-trivial
+n-torsion. Such calculations are referred to as descent calculations. By perform-
+
+X
+ing an n-descent we obtain partial information concerning the groups E(K ) and
+   (E/K ). It is therefore of interest to make descent calculations practical for as
+many different values of n as possible.
+    A great deal of work has been done on 2- and 3-descents, the advantage of
+n being small outweighing the fact that the primes 2 and 3 often require special
+
+T. Fisher: University of Cambridge, DPMMS, Centre for Mathematical Sciences, Wilber-
+force Road, Cambridge CB3 0WB, UK
+170                                                                         Tom Fisher
+
+
+treatment in the study of elliptic curves. We give some examples of 5- and 7-
+descents. Unfortunately we work in a special case, so our results do not apply to an
+arbitrary elliptic curve. Firstly, our descent calculations assume the existence of an
+isogeny of degree n = 5 or 7. Secondly, we assume one of our pair of elliptic curves
+has a rational point of order n. Notice that by a result of Serre [Se1], the second
+condition is automatically satisfied if we restrict to semi-stable elliptic curves.
+Here we recall a curve is semi-stable if it has good or multiplicative reduction at
+all primes.
+     Accordingly we consider pairs of elliptic curves C and D defined over K ,
+related by the exact sequences of Galois modules
+
+                         φ                                         
+                                                                   φ
+        0 → µn → C → D → 0              and    0 → Z/nZ → D → C → 0.                (1)
+
+In other words φ : C → D is an isogeny of degree n with kernel a labelled copy
+of µn inside C. The Weil pairing tells us that the dual isogeny φ : D → C has
+kernel a labelled copy of Z/nZ inside D. We estimate the Mordell-Weil rank by
+bounding the groups D(K )/φC(K ) and C(K )/     φD(K ). This process is known as
+
+                          X               X
+descent via n-isogeny. In many cases it enables us to compute the n-torsion of the
+Tate-Shafarevich groups (C/K ) and (D/K ).
+    Selmer wrote down the following example of a plane cubic which violates the
+Hasse principle.
+                                                   
+                       T = 3x 03 + 4x 13 + 5x 23 = 0 ⊂ P2 .
+                                                                       X
+As explained in [Ca3], T corresponds to an element of order 3 in (C/Q) where
+the Jacobian C has equation x 03 + x 13 + 60x 23 = 0. There is an action of µ3 on T
+given by x i → ζ3i x i . The quotient is the elliptic curve D with Weierstrass equation
+
+                                   y2 = x 3 + 302.
+
+A 2-descent shows D(Q) ∼  = Z/3Z. Writing down explicit equations for the quotient
+map it is then easy to check T(Q) = ∅.
+   We now give an example of an element of order 5 in the Tate-Shafarevich
+group.
+                           2                               
+                          
+                             x 0 + x 1 x 4 − 6x 2 x 3 = 0 
+                          
+                                                           
+                                                            
+                                                           
+                           x 1 + x 0 x 2 − 15x 3 x 4 = 0 
+                              2
+                                                           
+                     T = 2x 2 + x 1 x 3 − 5x 0 x 4 = 0 ⊂ P4 .
+                                2
+                          
+                                                           
+                                                            
+                          
+                             3x 32 + x 2 x 4 − x 0 x 1 = 0 
+                                                            
+                          
+                                                           
+                                                            
+                           2                               
+                            5x 4 + x 0 x 3 − 2x 1 x 2 = 0
+To show T has points everywhere locally it suffices to consider the primes p =
+2, 3, 5, 569, at all other primes the reduction being a smooth curve of genus 1.
+For p = 2, 3, 5 the reduction is a rational nodal curve of degree 5 and again local
+solubility
+   √       is clear. Finally T meets the hyperplane {x 4 = 0} in a point defined over
+Q( 5 12) and p = 569 splits in this field. To show T has no Q-rational points we
+quotient out by the action of µ5 on T given by x i → ζ5i x i . The quotient is an
+Some examples of 5 and 7 descent for elliptic curves over Q                          171
+
+
+elliptic curve D with Weierstrass equation
+
+                           y2 − 29xy − 30y = x 3 − 30x 2 .
+
+A 2-descent, courtesy of Cremona’s program mwrank, shows D(Q) ∼ = Z/5Z. It is
+
+                                                                  X
+then easy to check T(Q) = ∅.
+     The curve T corresponds to an element of order 5 in    (C/Q) where the
+Jacobian C is related to D by the exact sequences (1). In our example C and
+D have conductor N = 17070. We perform similar calculations for all pairs of
+elliptic curves C and D appearing in Cremona’s tables [Cr3] of elliptic curves
+
+X
+of conductor N ≤ 5300. We find the following examples of curves C with
+    (C/Q)[5] ∼= (Z/5Z)2
+    570L3, 570L4, 870I3, 870I4, 1050O2, 1342C3, 1938J2, 1950Y2, 2370M2,
+    2550EE2, 3270H2.
+
+
+                                        X
+We are able to treat the case n = 7 in the same explicit manner, and find the
+following examples of curves C with (C/Q)[7] ∼ = (Z/7Z)2
+                          546F2, 858K2, 1230K2, 5010H2.
+
+
+                                             X
+It is pleasing to note that, with one exception, we have recovered Cremona’s list
+
+                    X
+of all curves of conductor N ≤ 1000 and           of analytic order n 2 . The exceptional
+
+                                                   X
+curve 275B3, with       of analytic order 25, is the 5-twist of one of our curves C. We
+are also able to exhibit examples of non-trivial        for elliptic curves with positive
+Mordell-Weil rank.
+     Let us make two remarks that may help the reader. Firstly, as the title of this
+article indicates, we often treat the cases n = 5 and n = 7 concurrently. It then
+becomes necessary, when giving formulae, to split into these two cases. At times
+we tire of reminding the reader that these are the cases n = 5 and n = 7. It is hoped
+that this will cause no confusion.
+     Secondly, we encounter many calculations that are straightforward to check
+with the aid of any computer algebra package, but which would be rather laborious
+to check by hand. The reader should either take these results on trust, or reach
+for his own computer. Whenever our computer calculations extend beyond these
+menial algebraic manipulations, we give explicit mention of the fact. For example
+in Sect. 1.4 we use Cremona’s program mwrank which computes ranks of elliptic
+curves over Q via 2-descent.
+
+
+1. Descent calculations
+
+1.1. Weierstrass equations and reduction types
+
+Let K be a number field and n ≥ 4 an integer. We consider pairs of n-isogenous
+elliptic curves C and D over K . We assume φ : C → D has kernel a labelled copy
+of µn and φ : D → C has kernel a labelled copy of Z/nZ. The pairs of such curves
+C and D are parametrised by the modular curve Y1 (n). For n prime, X 1 (n) has
+n − 1 cusps, of which half are defined over Q and half are defined over Q(µn ) ∩ R.
+172                                                                        Tom Fisher
+
+
+Our interest is in the cases n = 5 and n = 7 when X 1 (n) ∼= P1 . We shall shortly
+specify a co-ordinate λ on X 1 (n) and write Cλ and Dλ for the pair of n-isogenous
+elliptic curves above λ.
+
+Lemma 1.1. Let E/K be an elliptic curve and P ∈ E(K ) a point of order at
+least 4.
+(i) E has a Weierstrass equation y2 + uxy + vy = x 3 + vx 2 with P = (0, 0).
+(ii) The pair (E, P) uniquely determines (u, v) ∈ A2 (K ).
+(iii) The pair (E, P) has no automorphisms.
+
+Proof. [Si1, Exercise 8.13] or [Si2, Exercise 3.1].                                 
+                                                                                    
+
+    We now compute m P = (x m (u, v), ym (u, v)) for small integers m. Equating
+some of these expressions we quickly write down some affine curves whose smooth
+projective model is X 1 (n). In the cases n = 5 and n = 7 we find Dλ has Weierstrass
+equation
+
+          n=5                   y2 + (1 − λ)xy − λy = x 3 − λx 2
+                                                                                  (2)
+          n = 7 y2 + (1 + λ − λ2 )xy + (λ2 − λ3 )y = x 3 + (λ2 − λ3 )x 2 .
+Computing the discriminant we find the cusps of X 1 (n).
+                  Rational cusps at λ = 0, ∞.
+         n=5
+                  Irrational cusps at the roots of λ2 − 11λ − 1 = 0.
+                  Rational cusps at λ = 0, 1, ∞.
+         n=7
+                  Irrational cusps at the roots of λ3 − 8λ2 + 5λ + 1 = 0.
+
+The automorphisms of Y1 (n) are precisely the automorphisms of P1 that map cusps
+to cusps. There are (n − 1)/2 automorphisms preserving the rational cusps. These
+correspond to relabelling our copy of µn → C respectively Z/nZ → D. In addition
+there is an involution η that swaps over the rational cusps with the irrational cusps.
+We find η is defined over Q(µn )∩R and µn → Cλ is isomorphic to Z/nZ → Dη(λ)
+over Q(µn ). Since there is no canonical choice of isomorphism µn ∼     = Z/nZ there
+is no canonical choice of involution η. As far as possible we shall avoid making
+such a choice.
+
+Remark 1.2. The proof of Lemma 1.1 involves writing down a Weierstrass equation
+and then making substitutions of the form
+
+                       x → π 2 x + r,   y → π 3 y + π 2 sx + t.
+
+By this method we may easily check that for n = 5, (Dλ , 2P) ∼
+                                                             = (D−1/λ , P), and
+for n = 7, (Dλ , 2P) ∼ (D
+                     = (λ−1)/λ , P).
+
+      Vélu’s formulae [V] tell us that Cλ has Weierstrass equation
+
+                  y2 + (1 − λ)xy − λy = x 3 − λx 2 − 5tx − b2 t − 7w
+                                                                                  (3)
+  y2 + (1 + λ − λ2 )xy + (λ2 − λ3 )y = x 3 + (λ2 − λ3 )x 2 − 5tx − b2 t − 7w
+Some examples of 5 and 7 descent for elliptic curves over Q                       173
+
+
+where
+         
+          b2 = λ2 − 6λ + 1
+     n=5    t = λ(λ2 + 2λ − 1)
+         
+           w = λ2 (2λ2 + λ + 1)
+         
+          b2 = λ4 − 6λ3 + 3λ2 + 2λ + 1
+     n=7    t = λ(λ − 1)(λ2 − λ + 1)(λ3 + 2λ2 − 5λ + 1)
+         
+           w = λ2 (λ − 1)2 (2λ6 − 2λ5 + λ4 − 8λ3 + 15λ2 − 9λ + 2).
+
+The Weierstrass equations (2) and (3) have discriminant
+
+                          (Cλ ) = λ(λ2 − 11λ − 1)5
+               n=5                                                                (4)
+                          (Dλ ) = λ5 (λ2 − 11λ − 1)
+                          (Cλ ) = λ(λ − 1)(λ3 − 8λ2 + 5λ + 1)7
+               n=7                                                                (5)
+                          (Dλ ) = λ7 (λ − 1)7 (λ3 − 8λ2 + 5λ + 1).
+
+    Although our descent calculations shall make remarkably little explicit use of
+the reduction types for Cλ and Dλ , it is good culture to describe them now. We
+recall that isogenous elliptic curves always have the same reduction type. Applying
+Tate’s algorithm, as described in [Si2] for example, we find
+Lemma 1.3. Let p be a prime of K with p  n. For λ ∈ K p with ordp (λ) ≥ 0
+the Weierstrass equations (2) and (3) are minimal and the reduction types are as
+follows.
+(i) If λ reduces to a rational cusp, i.e. λ ≡ 0 (mod p), respectively λ(λ − 1) ≡ 0
+(mod p), then Cλ and Dλ have split multiplicative reduction.
+(ii) If λ reduces to an irrational cusp, i.e. λ2 − 11λ − 1 ≡ 0 (mod p), respectively
+λ3 − 8λ2 + 5λ + 1 ≡ 0 (mod p), then Cλ and Dλ have multiplicative reduction
+and the reduction is split if and only if Norm p ≡ 1 (mod n).
+(iii) In the remaining cases Cλ and Dλ have good reduction.
+The assumption ordp (λ) ≥ 0 here is no loss since we are always free to replace λ
+by −1/λ, respectively (λ − 1)/λ. It remains to describe the reduction types for p|n.
+We find that cases (i) and (iii) go through as before. However if λ reduces to an
+irrational cusp it seems no longer possible to treat all number fields at once. If
+K = Q the Weierstrass equation (2) is still minimal and the reduction is additive.
+However, in this case the Weierstrass equation (3) need not be minimal, specifically
+if λ ≡ 18 (mod 25), respectively λ ≡ 5 (mod 7).
+
+
+1.2. Selmer groups and torsors
+
+Let E be an elliptic curve over a number field K . Let T/K be a smooth curve of
+genus 1. We say that T has the structure of torsor under E if there is a simple
+transitive action E × T → T defined over K . Since T has K -rational points, it is
+clear that T is a twist of E. It is a general principle that the twists of an object X
+are parametrised by H 1 (K, Aut(X )) := H 1 (Gal(K /K), Aut(X )).
+174                                                                           Tom Fisher
+
+
+      Writing τ P for translation by P ∈ E there is an exact sequence
+
+                0 → {translations τ P } → Aut(E) → Aut(E, 0) → 0                     (6)
+
+where Aut(E) and Aut(E, 0) are the automorphism groups of E as a curve and as
+a group variety respectively. The translations are the automorphisms of E as a torsor
+under itself. Thus the torsors under E are parametrised by the Weil-Châtelet group
+WC(E/K ) := H 1(K, E). Concretely, T is a torsor under E if and only if there
+                ∼
+exists ψ : T −→ E an isomorphism over K such that the cocycle σ → σ(ψ)ψ −1
+takes values in the translation subgroup of Aut(E). We remark that in this situation
+the curve T uniquely determines the curve E. In fact E is the Jacobian of T .
+    We write ξT ∈ WC(E/K ) for the cohomology class determined by the torsor
+T/K . It is clear T(K ) = ∅ if and only if ξT = 0. Thus the Tate-Shafarevich group
+
+                  X(E/K ) := ker WC(E/K ) →             v WC(E/K v )
+
+measures the failure of the Hasse Principle for torsors T under E.
+   We now take λ ∈ K , not a cusp of X 1 (n), and consider the elliptic curves Cλ
+and Dλ introduced in Sect. 1.1. There is an exact sequence of Galois modules
+
+                             0 → µn → Cλ → Dλ → 0.
+
+Taking Galois cohomology yields
+
+                                     δ
+           0 → Dλ (K )/φCλ (K ) → H 1 (K, µn ) → WC(Cλ /K )[φ] → 0                   (7)
+
+and by Hilbert’s Theorem 90 we identify H 1(K, µn ) = K × /(K × )n . We write Cλ,θ
+for the torsor under Cλ described by θ ∈ K × /(K × )n . The Selmer group attached
+to the isogeny φ is defined by
+
+         S(φ) (Cλ /K ) = { θ ∈ K × /(K × )n | Cλ,θ (K p ) = ∅ for all primes p }.   (8)
+
+Notice that, since n is odd, we are able to ignore the infinite places. We give
+equations for the curves Cλ,θ via two different methods, which we refer to as the
+push-out method and the projective space method.
+
+Equations via Push-Out. Let Cλ and Dλ be as above and write 1 for the generator
+of Z/nZ → Dλ (K ). We label our copy of µn → Cλ such that eφ (ζ, 1) = ζ for all
+ζ ∈ µn . Here eφ is the Weil pairing as defined in [Si1, Exercise 3.15].
+
+Lemma 1.4. Let f ∈ K(Dλ ) have divisor ( f ) = n.1 − n.0 and be scaled, up to
+nth powers, such that f ◦ φ = gn for some g ∈ K(Cλ ). Then the map δ in
+
+                                             φ           δ
+                 0 → µn (K ) → Cλ (K ) → Dλ (K ) → K × /(K × )n
+
+is given by δ(P) = f(P) mod (K × )n , for P = 0, 1.
+Some examples of 5 and 7 descent for elliptic curves over Q                         175
+
+
+Proof. Pick P  ∈ Cλ with φ(P  ) = P. For σ ∈ G K := Gal(K /K) we compute
+
+          σ(P  ) − P  = eφ (σ(P  ) − P  , 1)
+                        = g(X + σ(P  ) − P  )/g(X )           for any X ∈ Cλ
+                        = σ(g(P  ))/g(P  ).
+
+Thus δ(P) = g(P  )n = f ◦ φ(P  ) = f(P) mod (K × )n .                               
+                                                                                      
+
+    Taking Dλ with Weierstrass equation (2) and 1 = (0, 0) we claim that the
+rational function f ∈ K(Dλ ) is given by
+
+        n=5        f(x, y) = xy + y − x 2
+                                                                                     (9)
+        n=7        f(x, y) = (λ + 1)x 3 − x 2 y + λ2 x 2 − (2λ + 1)xy − λ2 y.
+
+Indeed on the affine piece of Dλ described, f only vanishes at 1 = (0, 0), as is
+seen by computing some resultants. It follows that f has the correct divisor. Since
+δ is a homomorphism it is easy to check that f is correctly scaled. To this end we
+compute f on the torsion Z/nZ → Dλ (K ).
+
+          x    y      f                        x            y              f
+      2 λ λ2         λ3            2 λ2 (λ − 1) λ3 (λ − 1)2          −λ6 (λ − 1)5
+      3 λ 0         −λ2            3 λ(λ − 1) λ(λ − 1)2              λ2 (λ − 1)4
+      4 0 λ          λ             4 λ(λ − 1) λ2 (λ − 1)2            −λ5 (λ − 1)3
+                                   5 λ2 (λ − 1)      0               λ8 (λ − 1)2
+                                   6      0     λ (λ − 1)
+                                                  2                  −λ4 (λ − 1)
+
+Thus Cλ,θ has affine model
+                                              
+                              f(x, y) = θz n
+                                                   ⊂ A2 × Gm .                      (10)
+                               (x, y) ∈ Dλ
+
+Equations in Projective Space. We recall [Si1, Chapter III] that for D a divisor on
+the elliptic curve E
+
+                    D ∼ 0 ⇐⇒ deg D = 0 and sum D = 0.                               (11)
+
+Thus if we embed E → Pn−1 by means of a complete linear system of degree
+n then the translation map τ P lifts to an automorphism of Pn−1 if and only if
+P ∈ E[n].
+    Now take T → Pn−1 a smooth curve of genus 1 and degree n. In this situation
+we always take it as read that T is embedded via a complete linear system. It
+is equivalent to demand that T is contained in no hyperplane. We claim that the
+action of Jac(T ) on T determines an inclusion of G K -modules Jac(T )[n] → PGLn .
+Indeed, from a geometric point of view this situation is no different from that
+described in the last paragraph.
+176                                                                        Tom Fisher
+
+
+   Suppose given T a torsor under Cλ with ξT ∈ WC(Cλ /K )[φ]. We know
+µn → Cλ acts on T with quotient U a torsor under Dλ . Then
+                 φ : WC(Cλ /K ) → WC(Dλ /K ); ξT → ξU = 0.
+Choosing a K -point on U gives a divisor of degree n on T and so an embedding
+T → Pn−1 . As explained above, µn → Cλ lifts to an action on Pn−1 . Geometrically
+there are exactly n hyperplanes fixed under this action. They correspond to our
+original choice of K -point on U and its translates under Z/nZ → Dλ . In particular
+these hyperplanes are defined over K , so for a suitable choice of co-ordinates on
+Pn−1 the action µn → PGLn is given by
+                           ζ → Diag(1 : ζ : . . . : ζ n−1 ).                    (12)
+Thus the torsors Cλ,θ all arise as smooth curves of genus 1, degree n in Pn−1
+invariant under (12). In Sect. 2.2 we shall give equations for all such curves. In the
+meantime, let us reverse the above argument to show that all the curves we obtain
+are of the form Cλ,θ for suitable λ and θ.
+    So let T be a smooth curve of genus 1, degree n in Pn−1 invariant under the
+diagonal action of µn given by (12). Since n is prime to 6 we know µn → Jac(T )
+and so Jac(T ) ∼
+               = Cλ for some λ ∈ K . Now T is a torsor under Cλ and U := T/µn is
+a torsor under Dλ . But the intersection of T with one of the co-ordinate hyperplanes
+is an orbit under µn globally defined over K . Thus U is trivial as a torsor under
+Dλ and ξT ∈ WC(Cλ /K )[φ]. From the exact sequence (7) it follows T ∼      = Cλ,θ for
+some θ ∈ K × /(K × )n .
+Remark 1.5. The action (12) of µn on Pn−1 is the unique one that lifts to GLn . By
+unique here we mean unique up to change of co-ordinates defined over K . In general
+the obstruction to lifting µn → PGLn to µn → GLn is given by H 1 (K, Z/nZ).
+Remark 1.6. The above arguments show that the torsors parametrised by
+
+                 X
+WC(C/K )[φ] may be embedded in Pn−1 . This is also known for the torsors
+parametrised by (C/K )[n], and we suspect the local assumptions here are es-
+sential. We refer to [CM] where it is explained how this result is a consequence of
+the Hasse Principle for Brauer-Severi varieties.
+
+
+1.3. Statement of the descent theorem
+
+Let n = 5 or 7 and let λ ∈ Q with λ = 0, respectively λ = 0, 1. We consider the
+elliptic curves Cλ and Dλ over Q defined by (3) and (2). In each case Z/nZ → Dλ
+is generated by (x, y) = (0, 0) and the isogenous curve Cλ is defined as the quotient
+by this subgroup. We write φ : Cλ → Dλ for the n-isogeny with C[φ] ∼       = µn and
+D[ φ] ∼
+       = Z/nZ. In this section we state our main results describing the Selmer
+                           
+groups S(φ) (Cλ /Q) and S(φ) (Dλ /Q).
+     To help us carry the cases n = 5 and n = 7 together we write α(λ) and β(λ)
+for the polynomials
+                                               2
+                         λ                      λ − 11λ − 1
+               α(λ) =                  β(λ)  =
+                         λ4 (λ − 1)             λ3 − 8λ2 + 5λ + 1.
+Some examples of 5 and 7 descent for elliptic curves over Q                       177
+
+
+The zeros of these polynomials are cusps of X 1 (n). We define disjoint sets of
+rational primes.
+          A = { p prime | ord p (λ) < 0 or α(λ) ≡ 0 (mod p) }
+                                                            
+                         β(λ) ≡ 0 (mod p) and p ≡ 1 (mod n) 
+                         
+          B = p prime  or p = n = 5 and λ ≡ 18 (mod 25) .
+                         or p = n = 7 and λ ≡ 5 (mod 7) 
+
+For S a set of rational primes, we write [S] for the subspace of Q×/(Q× )n generated
+by S. For  a pairing of Z/nZ-vector spaces we write ker L () and ker R () for
+the left and right kernels.
+
+Theorem 1. Let n = 5 or 7 and let λ ∈ Q with λ = 0, respectively λ = 0, 1.
+Let A and B be the disjoint sets of rational primes defined above. Then the Selmer
+group attached to the n-isogeny φ : Cλ → Dλ is given by
+                                                                
+              S(φ) (Cλ /Q) ∼
+                           = θ ∈ [A]θ ∈ Q×
+                                                   n
+                                                 p   for all p ∈ B .
+
+The contribution to S(φ)(Cλ /Q) coming from Z/nZ → Dλ (Q) is generated by α(λ).
+Furthermore there is a pairing  : [A] × [B] → Z/nZ such that S(φ) (Cλ /Q) ∼=
+                
+ker L () and S(φ) (Dλ /Q) ∼
+                           = ker R ().
+
+Remark 1.7. The pairing  is straightforward to compute. For each prime q ∈ B
+we choose a non-trivial character χq : (Z/qZ)× → Z/nZ, respectively χn :
+(Z/n 2 Z)× → Z/nZ. Then  is represented by the matrix (χq ( p)) p∈A,q∈B .
+
+Lemma 1.8. For p a rational prime, the congruence β(λ) ≡ 0 (mod p) is soluble
+if and only if p = n or p ≡ ±1 (mod n).
+
+Proof. Consider how p factors in Q(µn ) ∩ R.                                        
+                                                                                    
+
+Remark 1.9. In view of the identities λ2 − 11λ − 1 = (λ + 7)(λ − 18) + 125 and
+λ3 − 8λ2 + 5λ + 1 = (λ + 2)(λ − 5)2 − 49, the condition for n to belong to B is
+β(λ) ≡ 0 (mod 125), respectively β(λ) ≡ 0 (mod 49). As seen in Sect. 1.1 this
+is also the condition for the Weierstrass equation (3) to no longer be minimal.
+
+    We sketch the proof of Theorem 1. The definition (8) reads
+                                                                     
+       S(φ) (Cλ /Q) = θ ∈ Q× /(Q× )n Cλ,θ (Q p ) = ∅ for all primes p .
+
+In Sect. 2.2 we give equations for the Cλ,θ as curves in Pn−1 . We then describe
+the geometry of the reductions mod p and so derive some simple criteria for the
+existence of local points. We find that S(φ) (Cλ /Q) is the subspace of [A] consisting
+of nth powers modulo the primes in B. To treat the dual isogeny     φ, the rough idea
+                                                                            
+is that the involution η swaps over the sets of primes A and B. Then S(φ) (Dλ /Q)
+is the subspace of [B] consisting of nth powers modulo the primes in A, and
+the existence of the pairing  is nothing more than a statement of the nth power
+reciprocity law. To make these ideas precise it is natural to work over K = Q(µn ).
+Since [K : Q] = n − 1 is prime to n, there is no difficulty in descending back to Q.
+178                                                                        Tom Fisher
+
+
+    In this article we give a proof of Theorem 1 working entirely over Q. In [F] we
+generalise Theorem 1 to K = Q(µn ) and so give an alternative proof of the result
+over Q which is much closer to the above sketch.
+    We should mention that in the case p = n the projective space method fails
+to give complete criteria for the existence of local points. Our solution is to revert
+to the push-out method and perform some further Hensel lemma calculations. It is
+these calculations which make it difficult to work over a general number field.
+
+
+1.4. Initial examples
+
+Let n = 5 or 7 and let λ ∈ Q with λ = 0, respectively λ = 0, 1. Theorem 1 gives
+
+                             X              X
+us information about both the Mordell-Weil groups Cλ (Q) and Dλ (Q) and the
+Tate-Shafarevich groups (Cλ /Q) and (Dλ /Q). We now make this explicit.
+Following Mazur’s classification of torsion groups for elliptic curves over Q we
+find                           
+                                 Z/5Z or Z/10Z if n = 5
+                  Dλ (Q)tors ∼
+                             =
+                                 Z/7Z                 if n = 7.
+Let r = rank Cλ (Q) = rank Dλ (Q) and ι = dimn Cλ (Q)[n]. Then ι = 0 unless
+α(λ) ∈ (Q× )n and this can only happen in the case n = 5. Now Theorem 1 together
+with the exact sequences
+
+          0 → Dλ (Q)/φCλ (Q) → S(φ) (Cλ /Q) →          X(C /Q)[φ] → 0
+                                                               λ
+
+          0 → Cλ (Q)/
+                                  
+                     φ Dλ (Q) → S(φ) (Dλ /Q) →         X(D /Q)[φ] → 0
+                                                               λ
+
+tells us r = r1 + r2 with r1 , r2 ≥ 0 and
+
+                |A| − rank() = r1 + 1 − ι + dimn      X(C /Q)[φ]
+                                                    X(D /Q)[φ].
+                                                               λ
+                |B| − rank() = r2 + ι + dimn              λ
+
+Thus our upper bound for the Mordell-Weil rank is
+
+                             |A| + |B| − 1 − 2 rank().                          (13)
+
+In the following examples we make use of the trivial exact sequences
+
+             0→  X(C /Q)[φ] → X(C /Q)[n] → X(D /Q)[φ]
+                        λ                   λ
+                                                      φ
+                                                                   λ
+
+             0 → X(D /Q)[
+                         φ] → X(D /Q)[n] → X(C /Q)[φ].
+                                                       
+                                                       φ
+                         λ                  λ                      λ
+
+Example 1.10. Let n = 5 and λ = 38. Then A = {2, 19} and B = {41}.
+
+                                    X                     X
+Since 28 ≡ 1 (mod 41) it is clear that  has rank 1. By Theorem 1 we deduce
+C38 (Q) = 0, D38 (Q) ∼
+                     = Z/5Z and (C38 /Q)(5) = (D38 /Q)(5) = 0.
+
+Example 1.11. Let n = 7 and λ = 8. Then A = {2, 7} and B = ∅. A computer
+
+                                                X                      X
+search yields the point of infinite order (x, y) = (30, 198) on D8 . By Theorem 1 we
+deduce C8 (Q) ∼ = Z, D8 (Q) ∼ = Z/7Z ⊕ Z and (C8 /Q)(7) = (D8 /Q)(7) = 0.
+Some examples of 5 and 7 descent for elliptic curves over Q                               179
+
+
+    We may use Theorem 1 together with Cremona’s program mwrank, which
+performs a 2-descent, to exhibit some elements of the Tate-Shafarevich group. As
+explained in the introduction these elements are explicit in the sense that we are
+able to give equations in Pn−1 for the corresponding curves of genus 1 that violate
+the Hasse principle.
+Example 1.12. Let n = 5 and λ = −60, −42, −30, 30, 60 or 90. In all these
+
+                              X
+examples we have |A| = 3 and B = ∅. According to mwrank, rank Dλ (Q) = 0.
+By Theorem 1 we deduce (Cλ /Q)[5] ∼ = (Z/5Z)2 .
+Example 1.13. Let n = 7 and λ = −6, −5, 6, 7, 10 or 11. In all these examples
+
+        X
+|A| = 3 and B = ∅. According to mwrank, rank Dλ (Q) = 0. By Theorem 1 we
+deduce (Cλ /Q)[7] ∼ = (Z/7Z)2 .
+As promised in the introduction, we give some examples of non-trivial                 X for
+elliptic curves with positive Mordell-Weil rank.
+Example 1.14. Let n = 5 and λ = ±30/7, ±35/6 or 14/15. In all these exam-
+
+                          X
+ples A = {2, 3, 5, 7} and B = ∅. According to mwrank, rank Dλ (Q) = 1. By
+Theorem 1 we deduce (Cλ /Q)[5] ∼  = (Z/5Z)2 .
+
+
+2. Geometric results
+
+2.1. The geometry of elliptic normal curves
+
+Let K be an algebraically closed field and n ≥ 3 an integer. We assume char(K )  n
+and fix ζ = ζn a primitive nth root of unity. We make further restrictions on n in
+due course.
+Definition 2.1. (i) An elliptic normal curve of degree n is an elliptic curve
+E → Pn−1 of degree n contained in no hyperplane.
+(ii) A Néron polygon of degree n is a collection of n lines 0 , . . . , n−1 in Pn−1 ,
+contained in no hyperplane and arranged such that i meets  j if and only if
+i − j ≡ ±1 (mod n).
+Lemma 2.2. Let E → Pn−1 be either (i) an elliptic normal curve or (ii) a Néron
+polygon. Then E lies on n(n − 3)/2 quadrics and for n ≥ 4 these quadrics suffice
+to define E.
+Proof. (i) See [H, Chapter IV].
+(ii) We move the n points of intersection to (1 : 0 : 0 : . . . ), (0 : 1 : 0 : . . . ), . . .
+and the result is clear.                                                                    
+                                                                                            
+    The modular curve Y(n) = X(n) \ {cusps} parametrises the triples (E, P, Q)
+where E is an elliptic curve and P, Q ∈ E[n] satisfy en (P, Q) = ζn . For future
+reference we note there is an action of µn on X(n) given by
+                            ζn : (E, P, Q) → (E, P, Q + P)                              (14)
+with quotient X 1 (n).
+180                                                                        Tom Fisher
+
+
+Proposition 2.3. Let (E, P, Q) be as above. If we embed E → Pn−1 by means of
+a complete linear system, then we may choose co-ordinates on Pn−1 such that the
+translation maps τ P and τ Q are given by
+                                                                 
+                    1 0 0 ··· 0                     0 0 ··· 0 1
+                 0 ζ 0 · · · 0                  1 0 · · · 0 0
+                                                                 
+                 0 0 ζ 2 · · · 0                                 
+          M P :=                        M Q := 0 1 · · · 0 0.
+                  .. .. ..          ..           .. ..     .. .. 
+                 . . .               .          . .         . .
+                    0 0 0 ··· ζ     n−1             0 0 ··· 1 0
+
+Proof. As explained in Sect. 1.2, τ P and τ Q lift to elements of Aut(Pn−1 ) = PGLn .
+Since no hyperplane may contain more than n points of E we deduce that M P has
+distinct eigenvalues and that M Q cyclically permutes the hyperplanes fixed by M P .
+Thus we may choose co-ordinates on Pn−1 such that M P and M Q are as given,
+at least if we replace ζ by ζ r for some r prime to n. We observe that M P and
+M Q commute as elements of PGLn , but do not commute when lifted to GLn . In
+fact their commutator in GLn gives one possible definition of the Weil pairing. It
+follows that r = 1 as required.                                                   
+                                                                                  
+
+Proposition 2.4. Let n ≥ 3 odd and let (E, P, Q) be as above. If we embed
+E → Pn−1 by means of a complete linear system |D| with [−1]∗ D ∼ D then there
+is a unique choice of co-ordinates on Pn−1 such that τ P , τ Q and [−1] are given by
+M P , M Q and
+                                                    
+                                      1 0 ··· 0 0
+                                    0 0 · · · 0 1
+                                                    
+                                                    
+                           [−1] := 0 0 · · · 1 0.
+                                     .. ..    .. .. 
+                                    . .        . .
+                                      0 1 ··· 0 0
+
+Proof. We first choose co-ordinates as described in Proposition 2.3. Since the
+subgroup generated by M P and M Q is its own centraliser inside PGLn our co-
+ordinates are uniquely determined up to the action of this subgroup. We require
+
+       [−1]M P [−1] = M −1
+                        P        [−1]M Q [−1] = M −1
+                                                  Q        and    [−1]2 = I.
+
+These commutator relations determine [−1] up to multiplication by elements of
+%M P , M Q &. Since n is odd, the n 2 possible matrices representing the map [−1]
+form a single orbit under the action of %M P , M Q & via conjugation. Taking [−1] as
+given now fixes our choice of co-ordinates.                                       
+                                                                                  
+
+    We restrict to n ≥ 5 odd, so that E is defined by quadrics. For (E, P, Q) a triple
+as above, we embed E → Pn−1 via the linear system |n.0| and choose co-ordinates
+as in Proposition 2.4. Then (E, P, Q) is uniquely determined by the co-ordinates
+of the point 0 ∈ Pn−1 . Indeed, given the co-ordinates of this point, the action of
+M P and M Q allows us to write down n 2 points on E. But E is defined by quadrics.
+So by Bézout’s theorem these n 2 points suffice to determine E. Thus the above
+Some examples of 5 and 7 descent for elliptic curves over Q                         181
+
+
+procedure gives an embedding X(n) → Pn−1 . We shall describe the image of this
+map in the cases n = 5 and 7.
+   We write x 0 , x 1 , . . . , x n−1 for our co-ordinates on Pn−1 and agree that all
+subscripts are to be read mod n. Our assumption n is odd tells us
+
+                       n.0 ∼ 0 + P + 2P + . . . + (n − 1)P.                        (15)
+
+Therefore 0 belongs to exactly one of the hyperplanes fixed by M P . But 0 is fixed
+by [−1] so we have either
+
+                      0 = (0 : a1 : a2 : . . . : a2 : a1 )          (+)
+                or    0 = (0 : a1 : a2 : . . . : −a2 : −a1 )        (−)
+
+for some a1 , a2 , . . . , a(n−1)/2 non-zero. We consider the vector spaces
+
+                V := H 0 Pn−1 , I E (2) ⊂ W := H 0(Pn−1 , O(2)).
+
+The action of M P allows us to write these as direct sums V = ⊕i Vi and W = ⊕i Wi
+with Vi ⊂ Wi = %x i2 , x i−1 x i+1 , . . . &. Since n is odd we deduce via the action of
+M Q that dim Vi = (n −3)/2 and dim Wi = (n +1)/2. The point 0 and its translates
+under M Q impose some linear conditions on the coefficients of the quadrics in V0 .
+This leads us to rule out the case (+) and to make the following definition.
+
+Definition 2.5. For n ≥ 5 odd, let A(n) ⊂ Pn−1 be the subscheme defined by
+a0 = 0, an−i = −ai and
+
+                              rank(ai− j ai+ j )n−1
+                                                i, j=0 ≤ 2.                        (16)
+
+More precisely A(n) is defined by the leading 4 × 4 Pfaffians.
+
+    The above construction shows X(n) ⊂ A(n). In fact, for p a prime, it is
+a theorem of Vélu that X( p) = A( p). In other words, the quartics (16) suffice to
+define X( p). Since our interest is in the cases n = 5 and 7, there is no need to
+appeal to this general theorem.
+
+Equations for X(5). Let 0 = (0 : a : b : −b : −a). A(5) is defined by
+                                              
+                                  0 −a2 −b2
+                          rank a2 0 ab  ≤ 2.
+                                 b2 −ab 0
+
+Thus X(5) = A(5) is a copy of P1 and V = ⊕i Vi is spanned by
+
+                            abx 02 + b2 x 1 x 4 − a2 x 2 x 3 = 0                   (17)
+
+and cyclic permutes. There are cusps of X(5) at (a : b) = (1 : 0), (0 : 1). We call
+these the rational cusps.
+182                                                                               Tom Fisher
+
+
+Equations for X(7). Let 0 = (0 : a : b : −c : c : −b : −a). A(7) is defined by
+                              
+            0 −a2 −b2 −c2
+         a 2 0       ac −bc
+    rank 
+         b2 −ac 0
+                               ≤2        ⇐⇒        a3 b + b3 c + c3 a = 0.
+                           ab 
+            c2 bc −ab 0
+
+Thus X(7) = A(7) is the Klein quartic [Kl] and V = ⊕i Vi is spanned by
+
+                               abx 1 x 6 + bcx 2 x 5 + cax 3 x 4 = 0
+                      abx 02              + c2 x 2 x 5 − b2 x 3 x 4 = 0
+                                                                                         (18)
+                      bcx 0 − c x 1 x 6
+                           2    2                      + a2 x 3 x 4 = 0
+                      cax 02 + b2 x 1 x 6 − a2 x 2 x 5              =0
+
+and cyclic permutes. There are cusps of X(7) at (a : b : c) = (1 : 0 : 0), (0 : 1 : 0),
+(0 : 0 : 1). We call these the rational cusps.
+    Let n = 5 or 7. The equations (17) and (18) each define a family of curves
+X (n) → X(n), whose fibres above Y(n) are elliptic normal curves. Furthermore,
+there is an action of PSL2 (Z/nZ) on X(n) given by relabelling torsion, and this
+extends to an action of SL2 (Z/nZ) on X (n). Directly from the equations we see
+that the fibres of X (n) → X(n) above the rational cusps are Néron polygons. But
+the cusps form a single orbit under the action of PSL2 (Z/nZ), so the same is true
+at all the cusps.
+    One way to find the irrational cusps is by explicitly writing down the action of
+PSL2 (Z/nZ) on X(n). We give an alternative method. We begin by computing the
+action (14) of µn on X(n),
+
+   n = 5 (a : b) → (ζa : b),               n=7       (a : b : c) → (ζ 3 a : ζb : c).   (19)
+
+Up to this action, the irrational cusps (0 : a1 : a2 : . . . ) satisfy
+
+                                   rank(ai− j )n−1
+                                               i, j=0 ≤ 2.                               (20)
+
+Indeed (20) may be viewed both as the condition for (0 : a1 : a2 : . . . ) and its
+translates under M Q to be collinear, and as the condition for M Q to fix a point
+on the fibre of X (n) → X(n). Either of these conditions is sufficient to establish
+degeneration from an elliptic normal curve to a Néron polygon. Essentially by
+solving a second order recurrence relation, we find that the solutions to (20) with
+a0 = 0 and an−i = −ai are
+
+                 (0 : a1 : a2 : . . . ) = (0 : ζ − ζ −1 : ζ 2 − ζ −2 : . . . )           (21)
+
+for ζ a primitive nth root of unity. Finally (19) and (21) allow us to list the irrational
+cusps.
+Case n = 5. The cusps are at a/b = 0, ∞, ζ i φ, ζ i φ where φ is the golden ratio and
+φ is its conjugate. These points may be viewed, under stereographic projection, as
+the vertices of an icosahedron.
+Some examples of 5 and 7 descent for elliptic curves over Q                                  183
+
+
+Case n = 7. The irrational cusps are at
+
+                 (a : b : c) = (ζ 3i (ζ − ζ 6 ) : ζ i (ζ 2 − ζ 5 ) : ζ 4 − ζ 3 )
+
+and its translates under (a : b : c) → (c : a : b). Together with the rational cusps,
+these are the points of inflection of the Klein quartic [Kl].
+
+
+2.2. Equations for torsors in Pn−1
+
+Let n = 5 or 7. As explained in Sect. 1.2 we aim to give explicit equations for the
+torsors Cλ,θ as curves in Pn−1 . We work over a perfect field K and until further
+notice assume char(K ) = n.
+    Let T → Pn−1 be a smooth curve of genus 1 and degree n which is invariant
+under the action µn → Aut(Pn−1 ) given by
+
+                             ζ → Diag(1 : ζ : . . . : ζ n−1 ).                              (22)
+
+We write (x 0 : . . . : x n−1 ) for our co-ordinates on Pn−1 and agree that all subscripts
+are to be read mod n. The hyperplanes fixed by (22) are the co-ordinate hyperplanes
+Hi := {x i = 0}. As explained in Sect. 1.2 the action of Jac(T )[n] on T lifts to
+Pn−1 . Since n is prime to 6 we know µn → Jac(T ) and so this action is generated
+by
+                                                                          
+                       1 0 0 ··· 0                        0 0 ··· 0 ∗
+                    0 ζ 0 · · · 0                     ∗ 0 ··· 0 0
+                                                                          
+                    0 0 ζ 2 · · · 0                                       
+            M1 =                             M2 =  0 ∗ · · · 0 0 
+                     .. .. ..            ..             . .        .. .. 
+                    . . .                 .            .. ..        . .
+                     0 0 0 · · · ζ n−1                        0 0 ··· ∗ 0
+
+where ∗ denotes a non-zero element of K . By Lemma 2.2 the curve T is defined
+by 5 quadrics, respectively 14 quadrics. The action of M1 divides these quadrics
+up into n-eigenspaces, and the action of M2 tells us that these eigenspaces all have
+the same dimension. Concretely
+
+           H 0 Pn−1 , IT (2) = ⊕i Vi          with     Vi ⊂ %x i2 , x i−1 x i+1 , . . . &.
+
+Lemma 2.6. Let T → Pn−1 satisfy the above hypotheses.
+(i) The curve T meets the hyperplanes Hi in a total of n 2 points.
+(ii) Every non-zero quadric containing T has at least three non-zero terms.
+
+Proof. (i) Let P ∈ T ∩ H0. Then the translates of P under M1 and M2 give the
+required n 2 distinct points.
+(ii) Suppose V0 contains a quadric with exactly two non-zero terms. Then the n 2
+points in (i) fail to be distinct.                                            
+                                                                              
+184                                                                                    Tom Fisher
+
+
+Definition 2.7. Let λ, τ0 , . . . , τn−1 ∈ K satisfy α(λ) =        τi = 0. We define
+T [λ; τ0 , . . . , τn−1 ] to be the subscheme of Pn−1 with equations
+
+   n=5                          τ0 x 02 + x 1 x 4 − τ2 τ3 x 2 x 3 = 0 & cyclic permutes
+            
+                  τ0 x 02 + x 1 x 6 − (1/λ2 )τ2 τ3 τ4 τ5 x 2 x 5 = 0
+   n=7                                                                  & cyclic permutes.
+                τ0 x 02 + λx 1 x 6 − (1/λ3 )τ2 τ32 τ42 τ5 x 3 x 4 = 0
+
+Proposition 2.8. Every curve T → Pn−1 satisfying the above hypotheses is equal
+to T [λ; τ0 , . . . , τn−1 ] for some λ, τ0 , . . . , τn−1 ∈ K .
+
+Proof. (i) Case n = 5. Lemma 2.6(ii) tells us that T has equations
+
+                  τ0 x 02 + x 1 x 4 + a0 x 2 x 3 = 0           & cyclic permutes
+
+for some non-zero constants τi , ai ∈ K . By Lemma 2.6(i) we may choose (0 : z 1 :
+z 2 : z 3 : z 4 ) ∈ T ∩ H0 with all z i = 0. Then
+                                                   
+                         z 1 z 4 + a0 z 2 z 3 = 0 
+                             τ2 z 22 + z 1 z 3 = 0 '⇒ a0 = −τ2 τ3 .
+                                                   
+                                                   
+                             τ3 z 23 + z 2 z 4 = 0
+
+By symmetry this completes the proof in the case n = 5.
+(ii) Case n = 7. Lemma 2.6(ii) tells us that T has equations
+
+                      τ0 x 02 + x 1 x 6 + a0 x 2 x 5 = 0
+                                                               & cyclic permutes
+                  τ0 x 02 + λ0 x 1 x 6 + b0 x 3 x 4 = 0
+
+for some non-zero constants τi , λi , ai , bi ∈ K . The action of M2 tells us λ0 =
+λ1 = . . . = λn−1 and we write λ for the common value. Similarly, the action of
+M2 suggests we write a0 = aτ2 τ3 τ4 τ5 and b0 = bτ2 τ32 τ42 τ5 since these relations
+will still hold when we cyclically permute the subscripts. It remains to see how the
+quantities a, b, λ and τi are related. By Lemma 2.6(i) we may choose (0 : z 1 :
+. . . : z 6 ) ∈ T ∩ H0 with all z i = 0. We find
+
+      τ2 z 22 + z 1 z 3 = τ3 z 23 + λz 2 z 4 = τ4 z 24 + λz 3 z 5 = τ5 z 25 + z 4 z 6 = 0.    (23)
+       µ                                                                                  
+If z i i and z νi i are two monomials with                    µi =         νi and      iµi =   iνi
+then (23) allows us to express their ratio in terms of λ and the τi . In particular
+
+                          z 1 z 6 + aτ2 τ3 τ4 τ5 z 2 z 5 = 0 '⇒          a = −1/λ2
+                   λz 1 z 6 + bτ2 τ32 τ42 τ5 z 3 z 4 = 0 '⇒      b = −1/λ3
+                                                        
+            (λ − 1)z 1 z 3 + bτ4 τ52 τ62 τ0 z 5 z 6 = 0
+                                                          '⇒ λ4 (λ − 1) = τi .
+                   τ1 z 21 + bτ3 τ42 τ52 τ6 z 4 z 5 = 0
+
+This completes the proof in the case n = 7.                                                     
+                                                                                                
+
+      We proceed to study the schemes T = T [λ; τ0 , . . . , τn−1 ].
+Some examples of 5 and 7 descent for elliptic curves over Q                                  185
+
+
+Lemma 2.9. Up to rescaling co-ordinates, the schemes T [λ; τ0 , . . ., τn−1 ] over K
+are uniquely determined by λ ∈ K and θ = τi−i ∈ K × /(K × )n .
+Proof. Rescaling the co-ordinate x 1 by u ∈ K × gives
+                                                                                     
+         T [λ; τ0 , τ1 , τ2 , . . . , τn−1 ] ∼
+                                             = T λ; uτ0 , u −2 τ1 , uτ2 , . . . , τn−1 .
+Repeating for the other co-ordinates we find
+                                                                                       
+         T [λ; τ0 , τ1 , τ2 , . . . , τn−1 ] ∼
+                                             = T λ; u −n τ0 , u n τ1 , τ2 , . . . , τn−1 .
+The lemma follows easily from these observations.                                             
+                                                                                              
+   An important consequence of Lemma 2.9 is that geometrically, i.e. over K , the
+schemes T = T [λ; τ0 , . . . , τn−1 ] are determined by λ.
+Proposition 2.10. Let λ, τ0 , . . . , τn−1 ∈ K with α(λ) =                  τi = 0.
+(i) If β(λ) = 0 then T is a smooth curve of genus 1.
+(ii) If β(λ) = 0 then T is a Néron polygon.
+Proof. By Lemma 2.9 we may suppose K = K and that τ0 = τ1 = . . . = τn−1 .
+We apply the results of Sect. 2.1.
+Case n = 5. The curve defined by (17) is T [λ; τ, . . . , τ] where τ = a/b and λ = τ 5 .
+Thus T is either a smooth curve of genus 1, or degenerates to a Néron polygon.
+The condition for degeneration is λ = φ5 or φ5 , equivalently λ2 − 11λ − 1 = 0.
+Case n = 7. The curve defined by (18) is T [λ; τ, . . . , τ] where λ = −ac2 /b3 and
+τ = ac/b2 . So the following birational map comes for free.
+
+                      {a3 b + b3 c + c3 a = 0} → {λ4 (λ − 1) = τ 7 }
+                                        (a : b : c) → (−ac2 /b3 , ac/b2 )
+                                (τ 3 : −λτ : λ2 )    →   (λ, τ)
+Again we deduce T is either a smooth curve of genus 1, or degenerates to a Néron
+polygon. The condition for degeneration is λ = −(ζ − ζ 6 )(ζ 4 − ζ 3 )2 /(ζ 2 − ζ 5 )3
+or one of its conjugates, equivalently λ3 − 8λ2 + 5λ + 1 = 0.                       
+                                                                                    
+Lemma 2.11. The scheme T [λ; τ0 , . . . , τn−1 ] meets the co-ordinate hyperplanes
+Hi ina total of n 2 points. The points of intersection with Hi are defined over
+K(ζ, n α(λ)i θ) where θ = τi−i .
+Proof. Directly from the equations we may check T ∩ Hi ∩ H j = ∅ for all i = j.
+Our first claim now follows from the above geometric description of T . For our
+           √ it suffices, by symmetry, to show that the points T ∩ H0 are defined
+second claim
+over K(ζ, n θ). But if T = T [λ; α(λ), 1, . . . , 1] then T ∩ H0 has a unique fixed
+point under
+                  [−1] : (x 0 : x 1 : . . . : x n−1 ) → (x 0 : x n−1 : . . . : x 1 ).
+The uniqueness statement tells us that this point is K -rational. We are now done
+by Lemma 2.9.                                                                   
+                                                                                
+186                                                                                  Tom Fisher
+
+
+      We relate the curves T [λ; τ0 , . . . , τn−1 ] to the torsors Cλ,θ defined in Sect. 1.2.
+
+Proposition 2.12. Let λ ∈ K not a cusp of X 1 (n).
+(i) If τ0 , . . . , τn−1 ∈ K with α(λ) = τi and θ =                τi−i then
+
+                                  T [λ; τ0 , . . . , τn−1 ] ∼
+                                                            = Cλ,θ .
+
+(ii) The image of Z/nZ → Dλ (K ) under δ is generated by α(λ).
+
+Proof. (i) We temporarily write Tλ := T [λ; α(λ), 1, . . . , 1]. By Lemma 2.11,
+Tλ (K ) = ∅ and an explicit calculation reveals the rational point
+                              
+                                  (0 : 1 : 1 : −1 : −1)
+                         0=
+                                  (0 : 1 : −λ : −λ2 : λ2 : λ : −1).
+
+The case θ = 1 of the proposition is equivalent to the statement that the families of
+elliptic curves Cλ and Tλ are equal. So let C/K be an elliptic curve with µn → C.
+We claim that µn → C is isomorphic to µn → Tλ for some unique λ ∈ K . We
+embed C → Pn−1 via the complete linear system |n.0|. Then by (15) and the
+argument at the end of Sect. 1.2, we may choose co-ordinates such that the action
+of µn on C via translation is the diagonal action (22). We may further assume
+0 ∈ C ∩ {x 0 = 0}. Now Proposition 2.8 tells us C ∼  = T [λ; τ0 , . . . , τn−1 ] for some
+λ, τ0 , . . . , τn−1 ∈ K . By Lemma 2.11 we have θ =          τi−i ∈ (K × )n and by
+                             ∼
+Lemma 2.9 it follows C = Tλ . To check the uniqueness statement we consider the
+automorphisms of Pn−1 that commute with (22). These are given by rescaling and
+cyclically permuting our co-ordinates. In particular they do not alter λ and this
+proves our claim.
+    To show that the families Cλ and Tλ are equal, it only remains to check that
+we have chosen the same co-ordinate λ on X 1 (n) ∼  = P1 here as in Sect. 1.1. But in
+both cases our co-ordinate λ has been chosen such that the cusps are as listed in
+Sect. 1.1. We have now shown Cλ = T [λ; α(λ), 1, . . . , 1].
+    Let τ0 , . . . , τn−1 be as above. By Lemma 2.9 there is an isomorphism defined
+over K
+                                                 ∼
+              ψ : T [λ; τ0 , τ1 , . . . , τn−1 ] −→ Cλ = T [λ; α(λ), 1, . . . , 1]        (24)
+
+given by rescaling co-ordinates. But the only automorphisms of Cλ given by
+rescaling co-ordinates belong to our diagonal action of µn . √               Thus √
+                                                                                  the cocycle
+σ → σ(ψ)ψ −1 takes values in µn . We compute σ(ψ)ψ −1 = σ( n θ )/ n θ.
+(ii) Since
+               T [λ; τ0 , τ1 , . . . , τn−1 ] ∼
+                                              = T [λ; τn−1 , τ0 , . . . , τn−2 ]
+it is clear from (i) and the exact sequence (7) that α(λ) ∈ im δ. Taking τ0 = . . . =
+τn−2 = 1 and τn−1 = α(λ) in (24) we construct √ ψ:C     √λ → Cλ , translation by an
+element of Cλ [n], such that σ(ψ)ψ −1 = σ( n α(λ) )/ n α(λ). Thus α(λ) ∈ im δ is
+in fact the image of the torsion Z/nZ → Dλ (K ).                                    
+                                                                                    
+Some examples of 5 and 7 descent for elliptic curves over Q                              187
+
+
+Remark 2.13. Relabelling our copy of µn gives isomorphisms Cλ,θ ∼           = C−1/λ,θ 2
+respectively Cλ,θ ∼
+                  = C(λ−1)/λ,θ 2 . Proposition 2.12 allows us to explicitly write down
+these isomorphisms. For example in the case n = 5 we have
+      T [λ; τ0 , τ1 , τ2 , τ3 , τ4 ] ∼= T [−1/λ; −τ0 /(τ2 τ3 ), . . . , −τ3 /(τ0 τ1 )]
+      (x 0 : x 1 : x 2 : x 3 : x 4 ) → (x 0 : x 2 : x 4 : x 1 : x 3 ).
+    Finally we drop our assumption char(K ) = n. The equations appearing in the
+statement of the next proposition are obtained from those for T [λ; τ0 , . . . , τn−1 ]
+by manipulating under the assumption α(λ) = τi = 0 and then setting λ = 0,
+respectively λ = 1. We write P0 = (1 : 0 : 0 : . . . ), P1 = (0 : 1 : 0 : . . . ), . . . .
+Proposition 2.14. Let τ0 , . . . , τn−1 ∈ K with I = {i | τi = 0} = ∅. Then the
+subscheme of Pn−1 with equations
+          n=5               τ0 x 02 + x 1 x 4 − τ2 τ3 x 2 x 3 = 0 & cyclic permutes
+                  
+                      τ0 x 02 + x 1 x 6 − τ2 τ3 τ4 τ5 x 2 x 5 = 0
+          n=7                                                        & cyclic permutes
+                      τ02 τ1 τ6 x 02 − x 2 x 5 + τ3 τ4 x 3 x 4 = 0
+is the union of |I| rational curves. More precisely for each consecutive pair
+i, i + d ∈ I we have a rational curve of degree d joining Pi and Pi+d .
+Proof. Rescaling co-ordinates, over K if necessary, we may suppose that the non-
+zero τi are all 1. We split into cases according as the τi are 0 or 1. In each
+case a straightforward calculation proves the proposition. Notice that in the most
+degenerate case, namely when all the τi are 0, we obtain a Néron polygon.       
+                                                                                
+
+
+2.3. Local solubility for torsors
+
+In this section we work over a field which is complete with respect to a discrete
+valuation and has finite residue field. We use the results of Sect. 2.2 to give some
+criteria for the existence of rational points on the torsors Cλ,θ . We adopt the
+following notation.
+      K       a field complete with respect to the valuation ord : K ×  Z
+      O       the ring of integers of K = {x ∈ K | ord(x) ≥ 0}
+      p       the maximal ideal of O = {x ∈ K | ord(x) > 0}
+      k       the residue field of O = O/p (assumed finite).
+We define ord∗ (λ) to be the non-negative integer r with
+     n=5        {ord(λ), ord(−1/λ)}                      = {−r, r}
+     n=7        {ord(λ), ord((λ − 1)/λ), ord(1/(1 − λ))} = {−r, 0, r}.
+Proposition 2.15. Let λ ∈ K not a cusp of X 1 (n). We describe the image of the
+connecting homomorphism δ : Dλ (K ) → K × /(K × )n .
+(a) If ord∗ (λ) > 0 then im δ = K × /(K × )n .
+(b) If ord∗ (λ) = 0 then im δ ⊂ O× /(O× )n .
+(c) If ord∗ (λ) = 0 and char(k) = n then
+    (i) If β(λ) ≡ 0 (mod p) then im δ = O× /(O× )n .
+    (ii) If β(λ) ≡ 0 (mod p) then im δ = 0.
+188                                                                            Tom Fisher
+
+
+Proof. Let us note that by the work of Sect. 1.2, Cλ,θ (K ) = ∅ ⇐⇒ θ ∈ im δ.
+(a) Let θ ∈ K × /(K × )n . By Remark 2.13 we may assume ord(λ) > 0, respectively
+ord(λ − 1) > 0. We write Cλ,θ in the form T [λ; τ0 , . . . , τn−1 ] with ord(τi ) ≥ 0
+for all i. By Proposition 2.14 the reduction of this curve is a collection of rational
+curves each defined over k. At least one of these curves has odd degree and so is
+isomorphic to P1 over k. We pick a smooth point on the reduction and lift using
+Hensel’s lemma to give Cλ,θ (K ) = ∅ as required.
+(b) Suppose θ ∈ K × /(K × )n with ord(θ) ≡ 1 (mod n). We write Cλ,θ in the form
+T [λ; τ0 , . . . , τn−1 ] with ord(τ0 ) = −1, ord(τn−1 ) = 1 and ord(τi ) = 0 for all
+other i. We take (x 0 : . . . : x n−1 ) a K -point with min{ord(x i )} = 0. Examining
+the equations for T [λ; τ0 , . . . , τn−1 ] we successively deduce ord(x i ) > 0 for i =
+0, 1, . . . , n − 1. This contradiction tells us Cλ,θ (K ) = ∅. Thus im δ ⊂ O× /(O× )n .
+(c) Let θ ∈ O× /(O× )n and write Cλ,θ in the form T [λ; τ0 , . . . , τn−1 ] with
+ord(τi ) = 0 for all i. The reduction of this curve is described by Proposition 2.10.
+In case (i) the reduction is a smooth curve of genus 1. By [Ca3, Chapter 25] we have
+a rational point which we lift using Hensel’s lemma. Thus im δ = O× /(O× )n as
+required. In case (ii) the reduction is a collection of n distinct lines. If Cλ,θ (K ) = ∅
+then one of these lines must be defined over k. This line meets each of the hyper-
+planes Hi . By Lemma 2.11 we deduce that both α(λ) and θ are nth powers mod p.
+Since char(k) = n it follows θ ∈ (K × )n . Thus im δ = 0 as required.                    
+                                                                                          
+
+    Proposition 2.15 is incomplete in that we do not fully treat the case char(k) = n.
+In particular, if β(λ) ≡ 0 (mod p), then the equations for T [λ; τ0 , . . . , τn−1 ]
+reduce to give a line with multiplicity n. This makes it difficult to apply Hensel’s
+lemma. We therefore abandon the projective space method and revert to using the
+push-out method also described in Sect. 1.2. Specifically we recall that the map
+
+                              δ : Dλ (K ) → K × /(K × )n
+
+may be described in terms of a rational function f ∈ K(Dλ ), explicitly given
+by (9). We use the formal group defined by Dλ as a vehicle for our Hensel lemma
+calculations. We recall [Si1, Chapter IV] that the Weierstrass equation
+
+                     y2 + a1 xy + a3 y = x 3 + a2 x 2 + a4 x + a6
+
+is satisfied by the power series
+                      1     a1
+               x(z) =     −     − a2 − a3 z − (a4 + a1 a3 )z 2 − . . .
+                      z2    z
+                         1    a1    a2
+               y(z) = − 3 + 2 +        + a3 + (a4 + a1 a3 )z + . . . .
+                        z     z      z
+Applying this to the curves Dλ defined by (2) we find that x(z) and y(z) are power
+series with coefficients in Z[λ]. We compute the first few terms of the power series
+F(z) := ±z n f(x(z), y(z)).
+
+      F(z) = 1 + (2λ − 1)z + λ(λ + 2)z 2 + . . .
+      F(z) = 1 + (3λ2 − 2λ − 2)z + (λ − 1)(3λ3 + 3λ2 − 3λ − 1)z 2 + . . .
+Some examples of 5 and 7 descent for elliptic curves over Q                            189
+
+
+Our interest is in the case char(k) = n. We find β(λ) ≡ (λ − 3)2 (mod p),
+respectively β(λ) ≡ (λ − 5)3 (mod p), and F  (0) ≡ β  (λ) (mod p). Thus
+                   F(pO) = 1 + pO             if β(λ) ≡ 0 (mod p)                    (25)
+                   F(pO) ⊂ 1 + p2 O           if β(λ) ≡ 0 (mod p).                    (26)
+In the case K = Q p this gives us all we need.
+Proposition 2.16. Let p = n. Let λ ∈ Q p not a cusp of X 1 (n). We describe the
+                                                    ∗
+image of δ : Dλ (Q p ) → Q×     × n
+                           p /(Q p ) in the case ord (λ) = 0.
+                                       ×     ×
+(i) If β(λ) ≡ 0 (mod p) then im δ = Z p /(Z p ) .
+                                                n
+
+(ii) If β(λ) ≡ 0 (mod p) then im δ is generated by α(λ). Thus the condition for δ
+to be the zero map is λ ≡ 18 (mod 25), respectively λ ≡ 5 (mod 7).
+Proof. As observed in Sect. 1.1, the Weierstrass equation (2) is minimal. We write
+E = Dλ and recall [Si1, Chapter VII] there is a filtration
+                            E(Q p ) ⊃ E 0 (Q p ) ⊃ E 1 (Q p ).
+By Lemma 1.4 the image of δ restricted to E 1 (Q p ) is generated by F( pZ p ).
+(i) By Proposition 2.15(b) we have im δ ⊂ Z×              × n
+                                                     p /(Z p ) . Since 1 + pZ p generates
+Z×       × n
+  p /(Z p ) it follows from (25) that we have equality.
+(ii) Since 1 + p2Z p ⊂ (Z×       p ) , it follows from (26) that δ restricted to E 1 (Q p )
+                                    n
+
+is trivial. Next E 0 (Q p )/E 1 (Q p ) ∼=E ns (Z/nZ) ∼
+                                                      = Z/nZ, so by Proposition 2.12(ii)
+the image of δ restricted to E 0 (Q p ) is generated by α(λ). Finally in the case of
+additive reduction, the Tamagawa number [E(Q p ) : E 0 (Q p )] is at most 4, and so
+prime to n. It follows that there is no further contribution to the image of δ. For the
+last statement we compute
+                                            
+                        λ ≡ 3 (mod 5)
+                                                  ⇐⇒ λ ≡ 18 (mod 25)
+                            λ ∈ Q×
+                                        5
+                                      5
+                                               
+                        λ ≡ 5 (mod 7)
+                                                  ⇐⇒ λ ≡ 5 (mod 7).
+                      λ4 (λ − 1) ∈ Q×
+                                             7
+                                          7
+                                                                                        
+                                                                                        
+
+
+2.4. Proof of the descent theorem
+
+Let n = 5 or 7. Let λ ∈ Q not a cusp of X 1 (n) and let A, B be the sets of
+rational primes defined in Sect. 1.3. In this section we prove that the Selmer groups
+                    
+S(φ) (Cλ /Q) and S(φ) (Dλ /Q) are as described in Theorem 1.
+    Let p be a rational prime. The Tate pairing
+                                                          ] → Q/Z
+                 (·, ·) p : H 1(Q p , C[φ]) × H 1 Q p , D[φ                           (27)
+is induced by cup product from the Weil pairing, followed by the “invariant” map
+Br(Q p ) → Q/Z. Since C[φ] ∼  = µn and D[ φ] ∼
+                                              = Z/nZ we identify H 1(Q p , C[φ]) =
+  ×     ×                   
+Q p /(Q p ) and H (Q p , D[φ]) = Hom(G p , Z/nZ). Here our notation is G p :=
+           n       1
+
+Gal(Q p /Q p ) and we write I p ⊂ G p for the inertia subgroup.
+190                                                                         Tom Fisher
+
+
+Proposition 2.17. Let λ ∈ Q not a cusp of X 1 (n). The connecting maps
+
+                         δφ : Dλ (Q p ) → H 1(Q p , Cλ [φ])
+                         δφ : Cλ (Q p ) → H 1 (Q p , Dλ [
+                                                          φ])
+
+have images              ×      × n
+                         Qp / Qp
+                                                       if p ∈ A
+                 im δφ = Z×      × n
+                           p / Zp                      if p ∈ A ∪ B
+                        
+                          0                             if p ∈ B
+and                      
+                         0                     if p ∈ A
+                 im δ
+                     φ =   Hom(G p /I p , Z/nZ) if p ∈ A ∪ B
+                         
+                           Hom(G p , Z/nZ)      if p ∈ B.
+
+Proof. (i) The description of im δφ is given by combining Propositions 2.15
+and 2.16. Note that Z×       × n
+                       p /(Z p ) is trivial unless p = n or p ≡ 1 (mod n).
+(ii) Tate local duality [T1, Theorem 2.3] tells us that for E an elliptic curve over
+Q p there is a non-degenerate pairing E(Q p ) × H 1 (Q p , E) → Q/Z compatible
+with the Tate pairing (27). We obtain a commutative diagram with exact rows
+                            δφ
+      0→D(Q p )/φC(Q p ) → H 1(Q p , C[φ]) →              H 1(Q p , C)[φ]   →0
+                                                              
+                                                              
+                                                 δ ∗
+                                                  φ
+                      ]∗ → H 1(Q p , D[φ
+      0→ H 1(Q p , D)[φ                 ])∗ → (C(Q p )/φ
+                                                        D(Q p ))∗ → 0.
+
+Since the vertical maps are isomorphisms we learn that im δφ and im δφ are ex-
+act annihilators with respect to the Tate pairing. Thus the description of im δφ
+follows from the description of im δφ . It remains to check that Z×       × n
+                                                                     p /(Z p ) and
+Hom(G p /I p , Z/nZ) are exact annihilators. We recall [Se2, Chapter XIV] that the
+Tate pairing
+                    Q×     × n
+                      p / Qp    × Hom(G p , Z/nZ) → Z/nZ
+
+is given by (θ, χ) → −χ(ρ(θ)) where ρ : Q×
+                                          p → G p is the local reciprocity map.
+                                                 ab
+
+Thus our claim follows from the description of the local reciprocity map in the
+unramified case [CF, Chapter VI, §2.5].                                       
+                                                                              
+
+     The description of S(φ) (Cλ /Q) given in Theorem 1 is immediate from Propo-
+sition 2.17(i).
+                                                                        
+         S(φ) (Cλ /Q) = θ ∈ Q× /(Q× )n Cλ,θ (Q p ) = ∅ for all primes p
+                                                          
+                      = θ ∈ [A]θ ∈ (Q×    p ) for all p ∈ B .
+                                              n
+
+
+We have already seen two proofs of the statement concerning torsion, in Sect. 1.2
+via the push-out method, and in Sect. 2.2 via the projective space method. So to
+prove Theorem 1 it only remains to explain the relationship between S(φ) (Cλ /Q)
+       
+and S(φ) (Dλ /Q). We shall make use of the “product” formula for the local Tate
+Some examples of 5 and 7 descent for elliptic curves over Q                     191
+
+
+pairings, namely
+                                    
+                                        p (a, b) p = 0.
+
+This is a consequence of the well known exact sequence of class field theory
+                                                     
+                                                          inv
+                  0 −→ Br(Q) −→ ⊕v Br(Qv ) −→ Q/Z −→ 0.
+
+where again we have used the fact n is odd to ignore the infinite places. For S
+a finite set of rational primes we write
+
+         [S] := { θ ∈ Q× /(Q× )n | ord p (θ) ≡ 0 (mod n) for all p ∈ S }
+         %S& := { χ ∈ Hom(G Q , Z/nZ) | χ(I p ) = 0 for all p ∈ S }
+
+We define  : [A] × %B& → Z/nZ via
+                                                         
+                    (a, b) =       p∈B (a, b) p = −          p∈A (a, b) p     (28)
+
+where the two expressions given are equal by Proposition 2.17 and the product
+formula. Since B consists of primes p ≡ 0, 1 (mod n) it follows by class field
+theory, specifically the Kronecker-Weber theorem, that %B& has dimension |B|.
+Thus [B] ∼= %B& as Z/nZ-vector spaces. So to complete the proof of Theorem 1 it
+only remains to identify the left and right kernels of  as Selmer groups. For any
+element (∗) we write (∗) p for the corresponding local element.
+                                                                 
+       S(φ) (Cλ /Q) = a ∈ Q× /(Q× )n a p ∈ im δφ for all primes p
+                    = { a ∈ [A] | a p = 0 for all p ∈ B }
+                    ⊂ ker L ()
+        
+      S(φ) (Dλ /Q) = { b ∈ Hom(G Q , Z/nZ) | b p ∈ im δφ for all primes p }
+                   = { b ∈ %B& | b p = 0 for all p ∈ A }
+                   ⊂ ker R ().
+
+To show that these inclusions are in fact equalities we need a lemma.
+
+Lemma 2.18. The following natural maps are isomorphisms.
+(i) [A] → ⊕ p∈A Q×     × n / Z× / Z× n
+                  p / Qp      p    p
+(ii) %B& → ⊕ p∈B Hom(G p , Z/nZ) / Hom(G p /I p , Z/nZ)
+
+Proof. (i) The map is injective since
+                                                                
+                 θ ∈ Q× /(Q× )n  ord p (θ) ≡ 0 (mod n) for all p
+
+is trivial. Both spaces have dimension |A|.
+(ii) The map is injective since Q has no unramified (abelian) extensions. For
+p ≡ 0, 1 (mod n) we know Z×         × n
+                               p /(Z p ) is cyclic of order n. Thus both spaces have
+dimension |B|.                                                                     
+                                                                                   
+192                                                                    Tom Fisher
+
+
+  Theorem 1 now follows by (28) and the exact annihilation of Z×    × n
+                                                               p /(Z p ) and
+Hom(G p /I p , Z/nZ).
+
+
+3. Examples and applications
+
+3.1. Relationship with the parity conjecture
+
+The estimate (13) for r = rank Cλ (Q) = rank Dλ (Q) differs from the true rank by
+
+                   dimnX(C /Q)[φ] + dim X(D /Q)[φ]
+                              λ                n          λ              (29)
+
+Let us assume that X(C /Q)(n) and X(D /Q)(n) are both finite. Since the maps
+                        λ                  λ
+       
+φ and φ on Tate-Shafarevich groups are adjoints with respect to the Cassels-Tate
+pairing [Ca2, Theorem 1.2], it follows that (29) is even. So Theorem 1 furnishes
+the following parity result.
+
+
+              X
+Corollary 1. Let E/Q be an elliptic curve with a rational point of order n = 5
+or 7. Assume      (E/Q)(n) is finite. Then the parity of the rank of E(Q) is as
+predicted by the Birch Swinnerton-Dyer conjecture.
+
+Proof. Theorem 1 and the finiteness assumption on     X tells us
+                     rank E(Q) ≡ |A| + |B| − 1 (mod 2).
+
+On the other hand, the Birch Swinnerton-Dyer conjecture predicts
+
+                             (−1)rank E(Q) =       v Wv
+
+where Wv = ±1 are the local root numbers. Since W∞ = −1 for any elliptic curve
+over Q it suffices for us to prove
+
+                        { p prime | W p = −1} = A ∪ B.                       (30)
+
+The following explicit description of the local root numbers for an elliptic curve
+over Q is taken from [R]. See also [Co].
+
+Proposition 3.1. Let E be an elliptic curve over Q and let p be a prime.
+(i) If E has good reduction at p then W p = +1.
+(ii) If E has multiplicative reduction at p then
+                             
+                               −1 if E has split reduction
+                     Wp =
+                               +1 if E has non-split reduction.
+(iii) If E has additive reduction at p and p ≥ 5 then
+                                 
+                                  (−1/ p) if e = 2 or 6
+                           W p = (−3/ p) if e = 3
+                                 
+                                    (−2/ p) if e = 4
+where (a/ p) is the quadratic Legendre symbol and e = 12/ gcd(ord p (), 12).
+Some examples of 5 and 7 descent for elliptic curves over Q                      193
+
+
+Our claim (30) now follows from the description of the reduction types in Lem-
+ma 1.3. The following table summarises the calculations required in the case of
+additive reduction.
+
+              p=n          λ        ord p (β(λ))              e   Wp
+               5  ord5 (λ − 18) = 1       2                   6   +1
+               5  ord5 (λ − 18) ≥ 2       3                   4   −1
+               7   ord7 (λ − 5) ≥ 1       2                   6   −1
+                                                                                   
+                                                                                   
+
+Remark 3.2. Corollary 1 is in fact a special case of a result of Monsky [Mo], who
+works with elliptic curves E over Q admitting a rational isogeny of prime degree.
+His method is to find a quadratic twist of E with analytic rank 0, and then to apply
+the work of Kolyvagin and others.
+
+
+
+3.2. Exhibiting large selmer groups
+
+We may use Theorem 1 to exhibit elliptic curves with large n-Selmer group. To do
+this we choose λ ∈ Q such that |A| is large and |B| is small, or vice versa. I am
+grateful to Ed Schaefer for bringing to my attention the following result.
+
+Proposition 3.3. Let F(x) be an irreducible polynomial of degree d with integer
+coefficients. Suppose that for all primes p the congruence F(x) ≡ 0 (mod p) has
+fewer than p solutions. Then there exist infinitely many integers y such that F(y)
+consists of at most d + 1 prime factors.
+
+Proof. [HR, Theorem 9.7].                                                          
+                                                                                   
+
+Corollary 2. For n = 5 or 7 the n-Selmer group of an elliptic curve over Q may
+become arbitrarily large.
+
+Proof. Let M be the product of the first m primes. Applying Proposition 3.3 to the
+polynomial F(x) = β(Mx) gives infinitely many integers λ = My with |A| ≥ m
+and |B| ≤ (n + 1)/2. The corollary is now immediate from Theorem 1.              
+                                                                                 
+
+    We could equally prove Corollary 2 by taking |A| small and |B| large. Lem-
+ma 1.8 shows how we may force |B| to be large by imposing linear congruences
+on λ. In the case n = 5 we then appeal to Dirichlet’s theorem on primes in arithmetic
+progression to give |A| = 1. (In fact this is all we shall need in the next section
+to show that the 5-torsion of the Tate-Shafarevich group may become arbitrarily
+large.) In the case n = 7 we appeal to [HR, Theorem 10.11] which generalises
+Proposition 3.3 to F(x) a product of distinct irreducible polynomials. It seems we
+must take λ = (integer)/2 in order to satisfy the hypothesis at p = 2.
+194                                                                      Tom Fisher
+
+
+3.3. Exhibiting large Tate-Shafarevich groups
+
+Results of Cassels [Ca1], Bölling [Bö] and Kramer [Kr] show that the 2- and
+3-torsion of the Tate-Shafarevich group of an elliptic curve over Q may become
+arbitrarily large. In this section we give a corresponding result for the 5-torsion.
+The idea is that the elliptic curves E/Q with E[5] ∼
+                                                   = µ5 ⊕ Z/5Z belong to both the
+families Cλ and Dλ . We may therefore estimate rank E(Q) by applying Theorem 1
+for two different values of λ. We then arrange for these estimates to differ.
+
+Corollary 3. The 5-torsion of the Tate-Shafarevich group of an elliptic curve over
+Q may become arbitrarily large.
+
+We define polynomials
+
+          f(τ) = τ 4 + 3τ 3 + 4τ 2 + 2τ + 1 = ((τ + 1)5 + 1)/(τ + 2)
+          g(τ) = τ 4 − 2τ 3 + 4τ 2 − 3τ + 1 = ((τ − 1)5 + τ 5 )/(2τ − 1).
+
+Lemma 3.4. The elliptic curves E/Q with E[5] ∼    = µ5 ⊕ Z/5Z are the curves
+E τ := Cτ 5 ∼
+            = Dτ f(τ)/g(τ) for τ ∈ Q with τ = 0.
+
+Proof. The statement concerning torsion in Theorem 1 tells us that the required
+universal family is E τ := Cτ 5 . Here τ is a co-ordinate on X(5) ∼
+                                                                  = P1 and the
+cusps are at τ = 0, ∞, ζ φ, ζ φ, where φ = 1 + ζ + ζ is the golden ratio and
+                           i    i                         4
+
+φ = 1 + ζ 2 + ζ 3 is its conjugate. There are involutions
+
+                η : X 1 (5) → X 1 (5) ;    λ → (φ5 λ + 1)/(λ − φ5 )
+                 ε : X(5) → X(5) ;          τ → (φτ + 1)/(τ − φ)
+mapping cusps to cusps. In fact Cλ ∼= Dη(λ) over Q(µ5 ), whereas ε belongs to
+the action of PSL2 (Z/5Z) on X(5). The following isomorphisms are defined over
+Q(µ5 )
+
+                       Cτ 5 ∼
+                            = Eτ ∼
+                                 = E ε(τ) ∼
+                                          = Cε(τ)5 ∼
+                                                   = Dη(ε(τ)5 ) .              (31)
+
+We find η(ε(τ)5 ) = τ f(τ)/g(τ) and the isomorphism (31) maps Z/5Z → Cτ 5 onto
+Z/5Z → Dτ f(τ)/g(τ) . Comparing this isomorphism with its Galois conjugates, and
+appealing to Lemma 1.1(iii), we deduce Cτ 5 ∼= Dτ f(τ)/g(τ) over Q.            
+                                                                               
+
+For τ ∈ Q with τ = 0 we define disjoint sets of rational primes
+      P = { p prime | ord p (τ) = 0 }
+      Q = { p prime | f(τ)g(τ) ≡ 0 (mod p) and p ≡ 1 (mod 5) }
+      R = { p prime | τ 2 − τ − 1 ≡ 0 (mod p) and p ≡ 0, 1 (mod 5) }.
+Lemma 3.5. For p a rational prime,
+(i) f(τ) ≡ 0 (mod p) is soluble ⇐⇒ p = 5 or p ≡ 1 (mod 5)
+(ii) g(τ) ≡ 0 (mod p) is soluble ⇐⇒ p = 5 or p ≡ 1 (mod 5)
+(iii) τ 2 − τ − 1 ≡ 0 (mod p) is soluble ⇐⇒ p = 5 or p ≡ ±1 (mod 5).
+
+Proof. Consider how p factors in Q(µ5 ).                                          
+                                                                                  
+Some examples of 5 and 7 descent for elliptic curves over Q                      195
+
+
+Lemma 3.6. We apply Theorem 1 for λ = τ 5 and λ = τ f(τ)/g(τ).
+(i) If λ = τ 5 then A = P and B = Q ∪ R.
+(ii) If λ = τ f(τ)/g(τ) then A = P ∪ Q and B = R.
+
+Proof. These claims follow from the identities
+
+                               τ 10 − 11τ 5 − 1 = (τ 2 − τ − 1) f(τ)g(τ)
+             τ 2 f(τ)2 − 11τ f(τ)g(τ) − g(τ)2 = (τ 2 − τ − 1)5 .
+
+For τ prime to 5 we are assisted by the observation
+
+              ord5 (τ 2 − τ − 1) = ord5 ( f(τ)) = ord5 (g(τ)) = 0 or 1.
+                                                                                   
+                                                                                   
+
+Proof of Corollary 3. Let τ ∈ Q with τ = 0. Theorem 1 gives two estimates for
+rank E τ (Q). Writing [A, B] for the matrix (χq ( p)) p∈A,q∈B , these are
+
+                     |P| + |Q| + |R| − 1 − 2 rank[P, Q ∪ R]
+                                                                                (32)
+                     |P| + |Q| + |R| − 1 − 2 rank[P ∪ Q, R].
+
+By repeated use of Dirichlet’s theorem on primes in arithmetic progression, we
+choose Q0 and R0 disjoint sets of primes p ≡ 1 (mod 5) with rank[Q0 , R0 ]
+arbitrarily large. With one final application of Dirichlet we choose τ prime such
+that Q ⊃ Q0 and R ⊃ R0 . Then |P| = 1 and
+
+                        rank[P, Q ∪ R] * rank[P ∪ Q, R].
+
+The difference in the estimates (32) now proves the corollary.                     
+                                                                                   
+
+    A closer inspection of the proof of Corollary 3 shows that we are forcing
+elements of order 5 in the Tate-Shafarevich group of the elliptic curves isogenous
+to E τ rather than for E τ itself.
+
+
+3.4. Relationship with a formula of Cassels
+
+We compare our Theorem 1 with a formula of Cassels. This section is based on
+similar calculations in [Lo, §7].
+    Let φ : E → E  and  φ : E  → E be dual isogenies of elliptic curves over Q. We
+recall a formula of Cassels [Ca2], relating the order of the Selmer group attached
+to φ to the order of the Selmer group attached to φ.
+
+                 #S(φ) (E/Q)          #E(Q)[φ]    !E           c p (E  )
+                                  =             ×     ×                    .    (33)
+                 #S(
+                    φ) (E  /Q)       #E (Q)[
+                                            φ]   !E          p
+                                                                c p (E)
+               !
+Here ! E = E(R) ω with ω the canonical Néron differential on E, and c p (E) =
+[E(Q p ) : E 0 (Q p )] is the Tamagawa number at the prime p.
+196                                                                       Tom Fisher
+
+
+    Let n = 5 or 7 and let λ ∈ Q with λ = 0, respectively λ = 0, 1. We check
+that (33), applied to the n-isogeny φ : Cλ → Dλ is compatible with our descent
+calculations. By Theorem 1 the LHS of (33) is
+                                       
+                      #S(φ) (Cλ /Q)/#S(φ) (Dλ /Q) = n |A|−|B| .
+
+We now compute the RHS of (33). As seen in Sect. 1.1 we are always free to assume
+ord p (λ) ≥ 0. The only primes p to contribute to the product of Tamagawa numbers
+are the primes where Cλ and Dλ have split multiplicative reduction. For these
+primes the Weierstrass equations (2) and (3) are minimal and so c p = ord p ().
+By inspection of the discriminants (4) and (5) we find
+                                              
+                                                n    if p ∈ A
+                        c p (Dλ )/c p (Cλ ) =
+                                                n −1 if p ∈ B.
+
+We write ωC and ω D for the Néron differentials on Cλ and Dλ respectively.
+Assuming n ∈ B, the Weierstrass equations (2) and (3) are both globally minimal.
+Since (3) was obtained from (2) using Vélu’s formulae, it follows [V, Remarque 2]
+           ∗ ωC . Thus
+that ω D = φ
+            "             "              "                 "
+     !D =           ωD =         ∗ ωC =
+                                 φ               ωC = n           ωC = n!C
+             Dλ (R)         Dλ (R)           
+                                             φ Dλ (R)            Cλ (R)
+
+where φ : Dλ (R) → Cλ (R) is an n-fold cover. If n ∈ B then the Weierstrass
+equation (3) is no longer minimal at p = n. We then find ω D = n −1
+                                                                   φ∗ ωC and
+! D = !C . Finally the RHS of (33) is
+                        1 !D            c p (Dλ )
+                          ×    ×                   = n |A|−|B|
+                        n   !C        p
+                                        c p (C λ )
+
+and the formula is verified. This verification could equally be viewed as giving an
+alternative proof of the last part of Theorem 1.
+
+
+3.5. Tables of examples
+
+We apply Theorem 1 for some values λ ∈ Q chosen such that the elliptic curves
+Cλ and Dλ have conductor N ≤ 5300. The list of curves considered is extracted
+from Cremona’s tables [Cr3] by searching for curves with rational torsion of
+order 5, 7 or 10. We recall that Cremona lists the curves by conductor, with
+a letter to distinguish isogeny classes with the same conductor, and a number to
+distinguish curves within each isogeny class. The quantities we tabulate are the
+conductor N, the Cremona labels #, the sets of primes A and B, the rank of the
+                                                                       
+pairing , the dimensions of the Selmer groups S(φ) (Cλ /Q) and S(φ) (Dλ /Q) and
+our estimate rφ = |A| + |B| − 1 − 2 rank() for the rank. Finally we compare with
+r = rank Dλ (Q) taken directly from Cremona’s tables. Whenever the columns rφ
+and r differ, we deduce that there are elements of order n in the Tate-Shafarevich
+group. We thus arrive at the lists of curves cited in the introduction.
+Some examples of 5 and 7 descent for elliptic curves over Q                   197
+
+                     Table 1. (n = 5) Descent via φ : Cλ → Dλ over Q
+                 λ       N      #        A       B           φ   
+                                                                  φ rφ    r
+                  1      11   A1, 3        ∅    {11}    0     0   1   0   0
+                 11      11   A2, 1      {11}     ∅     0     1   0   0   0
+                  2      38   B2, 1       {2}     ∅     0     1   0   0   0
+                −2       50   B3, 1       {2}     ∅     0     1   0   0   0
+                  8      50   B4, 2       {2}     ∅     0     1   0   0   0
+                  9      57   C2, 1       {3}     ∅     0     1   0   0   0
+                  4      58   B2, 1       {2}     ∅     0     1   0   0   0
+                 12      66   C3, 1     {2, 3} {11}     1     1   0   0   0
+                9/2      66   C4, 2     {2, 3} {11}     1     1   0   0   0
+                  3      75   C2, 1       {3}     ∅     0     1   0   0   0
+                 10     110   A2, 1     {2, 5} {11}     1     1   0   0   0
+                −4      118   B2, 1       {2}     ∅     0     1   0   0   0
+                −3      123   A2, 1       {3}   {41}    0     1   1   1   1
+                4/3     150   A1, 3     {2, 3} {5}      1     1   0   0   0
+                 18     150   A2, 4     {2, 3} {5}      1     1   0   0   0
+                  5     155   A2, 1       {5}   {31}    0     1   1   1   1
+                 16     158   C2, 1       {2}     ∅     0     1   0   0   0
+                −7      175   A1, 2       {7}    {5}    0     1   1   1   1
+                  6     186   B2, 1     {2, 3} {31}     1     1   0   0   0
+                  7     203   A2, 1       {7}     ∅     0     1   0   0   0
+               32/3     246   B2, 1     {2, 3} {41}     1     1   0   0   0
+               13/2     286   D2, 1    {2, 13} {11}     1     1   0   0   0
+                −8      302   A2, 1       {2} {151}     0     1   1   1   1
+                 13     325   E2, 1      {13}     ∅     0     1   0   0   0
+                3/2     366   B2, 1     {2, 3} {61}     1     1   0   0   0
+                −5      395   C2, 1       {5}     ∅     0     1   0   0   0
+              −3/2      426   A2, 1     {2, 3} {71}     1     1   0   0   0
+                −9      537   E2, 1       {3}     ∅     0     1   0   0   0
+               11/2     550   K1, 2    {2, 11} {5}      1     1   0   0   0
+               −32      550   K2, 3       {2} {5, 11}   1     0   1   0   0
+               48/5     570   L3, 1   {2, 3, 5} ∅       0     3   0   2   0
+              100/9     570   L4, 2   {2, 3, 5} ∅       0     3   0   2   0
+                 14     574   J2, 1     {2, 7} {41}     1     1   0   0   0
+                −6      606   F2, 1     {2, 3} {101}    1     1   0   0   0
+                7/5     665   D2, 1     {5, 7}    ∅     0     2   0   1   1
+               25/2     710   D2, 1     {2, 5} {71}     1     1   0   0   0
+               27/2     786   M2, 1     {2, 3} {131}    1     1   0   0   0
+               −26      806   F2, 1    {2, 13} {31}     1     1   0   0   0
+              −4/3      834   G2, 1     {2, 3}    ∅     0     2   0   1   1
+               −16      862   E2, 1       {2} {431}     0     1   1   1   1
+               45/4     870   I3, 1   {2, 3, 5} ∅       0     3   0   2   0
+               50/3     870   I4, 2   {2, 3, 5} ∅       0     3   0   2   0
+               23/2     874   E2, 1    {2, 23}    ∅     0     2   0   1   1
+198                                                                       Tom Fisher
+
+
+         λ      N       #          A         B           φ    rφ
+                                                              φ       r
+          15    885   D2, 1        {3, 5}      ∅      0   2   0   1   1
+         5/2    890   G2, 1        {2, 5}      ∅      0   2   0   1   1
+        21/2   1050   O2, 1      {2, 3, 7}     ∅      0   3   0   2   0
+          37   1147   B2, 1         {37}     {31}     0   1   1   1   1
+      −15/7    1155   N2, 1      {3, 5, 7} {11}       1   2   0   1   1
+         8/3   1254   K2, 1        {2, 3}    {11}     1   1   0   0   0
+          27   1293   E2, 1          {3}    {431}     0   1   1   1   1
+       −5/2    1310   C2, 1        {2, 5}   {131}     1   1   0   0   0
+          32   1342   C2, 1          {2}   {11, 61}   1   0   1   0   0
+      122/11   1342   C3, 2    {2, 11, 61}     ∅      0   3   0   2   0
+      −17/3    1479   F2, 1       {3, 17}      ∅      0   2   0   1   1
+         7/2   1526   E2, 1        {2, 7}      ∅      0   2   0   1   1
+       32/13   1586   D2, 1       {2, 13}    {61}     1   1   0   0   0
+       −9/2    1650   R2, 1        {2, 3}    {11}     1   1   0   0   0
+        −12    1650   S2, 1        {2, 3}    {11}     1   1   0   0   0
+        16/3   1686   C2, 1        {2, 3}   {281}     1   1   0   0   0
+          17   1717   C2, 1         {17}    {101}     0   1   1   1   1
+          25   1745   E2, 1          {5}       ∅      0   1   0   0   0
+          20   1790   D2, 1        {2, 5}      ∅      0   2   0   1   1
+          24   1866   I2, 1        {2, 3}   {311}     1   1   0   0   0
+      −85/8    1870   H2, 1     {2, 5, 17} {11}       1   2   0   1   1
+       −8/3    1914   O2, 1        {2, 3}    {11}     1   1   0   0   0
+        −54    1914   P2, 1        {2, 3}    {11}     1   1   0   0   0
+      −68/3    1938   J2, 1     {2, 3, 17}     ∅      0   3   0   2   0
+      144/13   1950   Y2, 1     {2, 3, 13}     ∅      0   3   0   2   0
+         9/4   1986   G2, 1        {2, 3}   {331}     1   1   0   0   0
+        −10    2090   N2, 1        {2, 5}    {11}     1   1   0   0   0
+         5/4   2110   E2, 1        {2, 5}   {211}     1   1   0   0   0
+        56/5   2170   Q2, 1      {2, 5, 7} {31}       1   2   0   1   1
+        29/3   2175   J1, 2       {3, 29}     {5}     1   1   0   0   0
+         5/3   2235   F2, 1        {3, 5}      ∅      0   2   0   1   1
+       −5/4    2290   D2, 1        {2, 5}      ∅      0   2   0   1   1
+        19/2   2318   E2, 1       {2, 19}    {61}     1   1   0   0   0
+        47/4   2350   N1, 2       {2, 47}     {5}     1   1   0   0   0
+        54/5   2370   M2, 1      {2, 3, 5}     ∅      0   3   0   2   0
+        34/3   2550   EE2, 1    {2, 3, 17}     ∅      0   3   0   2   0
+        −11    2651   C2, 1         {11}    {241}     0   1   1   1   1
+       −5/3    2715   C2, 1        {3, 5}   {181}     1   1   0   0   0
+       −9/4    2766   I2, 1        {2, 3}   {461}     1   1   0   0   0
+       −7/2    2786   D2, 1        {2, 7}      ∅      0   2   0   1   1
+        27/4   2850   W2, 1        {2, 3}      ∅      0   2   0   1   1
+          19   2869   B2, 1         {19}    {151}     0   1   1   1   1
+        17/2   3026   D2, 1       {2, 17}      ∅      0   2   0   1   1
+        −27    3075   L2, 1          {3}     {41}     0   1   1   1   1
+Some examples of 5 and 7 descent for elliptic curves over Q                    199
+
+
+                λ      N       #         A         B          φ    rφ
+                                                                   φ       r
+             −18     3126    C2, 1       {2, 3} {521}      1   1   0   0   0
+            25/3     3135    H2, 1       {3, 5}   {11}     1   1   0   0   0
+            49/4     3206    E2, 1       {2, 7}    ∅       0   2   0   1   1
+            15/2     3270    H2, 1     {2, 3, 5}   ∅       0   3   0   2   0
+           101/9     3333    G2, 1     {3, 101} {11}       1   1   0   0   0
+            92/7     3542    R2, 1    {2, 7, 23} {11}      1   2   0   1   1
+            81/8     3786    G2, 1       {2, 3} {631}      1   1   0   0   0
+           173/8     3806    K2, 1     {2, 173} {11}       1   1   0   0   0
+             7/4     3850    T2, 1       {2, 7}   {11}     1   1   0   0   0
+             8/5     4010    E2, 1       {2, 5} {401}      1   1   0   0   0
+             7/3     4011    D2, 1       {3, 7} {191}      1   1   0   0   0
+             −13     4043    A2, 1        {13}   {311}     0   1   1   1   1
+              21     4389    K2, 1       {3, 7}   {11}     1   1   0   0   0
+            89/8     4450    K2, 1      {2, 89}    ∅       0   2   0   1   1
+             −25     4495    D2, 1         {5}    {31}     0   1   1   1   1
+           −16/3     4650    LL2, 1      {2, 3}   {31}     1   1   0   0   0
+             9/8     4650    PP2, 1      {2, 3}   {31}     1   1   0   0   0
+             −56     4774    J2, 1       {2, 7} {11, 31}   1   1   1   1   1
+            −7/4     4774    K2, 1       {2, 7} {11, 31}   1   1   1   1   1
+            −8/5     4790    C2, 1       {2, 5}    ∅       0   2   0   1   1
+            −9/8     4854    C2, 1       {2, 3}    ∅       0   2   0   1   1
+             −14     4886    F2, 1       {2, 7}    ∅       0   2   0   1   1
+            25/4     4910    G2, 1       {2, 5} {491}      1   1   0   0   0
+             −24     5034    E2, 1       {2, 3}    ∅       0   2   0   1   1
+            43/4     5074    D2, 1      {2, 43}    ∅       0   2   0   1   1
+
+
+
+                    Table 2. (n = 7) Descent via φ : Cλ → Dλ over Q
+                λ      N       #         A         B          φ    rφ
+                                                                   φ       r
+                2      26    B2, 1       {2}       ∅       0   1   0   0   0
+                3     174    B2, 1      {2, 3}   {29}      1   1   0   0   0
+                4     258    F2, 1      {2, 3}   {43}      1   1   0   0   0
+               −2     294    B1, 2      {2, 3}    {7}      1   1   0   0   0
+                5     490    K1, 2      {2, 5}    {7}      1   1   0   0   0
+                7     546    F2, 1     {2, 3, 7}   ∅       0   3   0   2   0
+                8     574    I2, 1      {2, 7}     ∅       0   2   0   1   1
+               −3     678    D2, 1      {2, 3} {113}       1   1   0   0   0
+                9     762    G2, 1      {2, 3} {127}       1   1   0   0   0
+             −9/2     858    K2, 1    {2, 3, 11}   ∅       0   3   0   2   0
+                6    1230    K2, 1     {2, 3, 5}   ∅       0   3   0   2   0
+               −4    2110    H2, 1      {2, 5} {211}       1   1   0   0   0
+              −10    4730    K2, 1    {2, 5, 11} {43}      1   2   0   1   1
+              5/2    5010    H2, 1     {2, 3, 5}   ∅       0   3   0   2   0
+200                                                                             Tom Fisher
+
+
+Acknowledgements. The author would like to thank his supervisor Nick Shepherd-Barron
+for his guidance in researching this topic; John Coates, John Cremona, Cathy O’Neil and Ed
+Schaefer for comments and suggestions along the way; and John Cremona in particular for
+the use of his computer program mwrank. Nearly all of this article is taken directly from
+the author’s PhD thesis.
+
+
+References
+
+[Bö]  R. Bölling: Die Ordnung der Schafarewitsch-Tate-Gruppe kann beliebig gross wer-
+      den. Math. Nachr. 67, 157–179 (1975)
+[Ca1] J.W.S. Cassels: Arithmetic on curves of genus 1, VI. The Tate-Shafarevich group
+      can be arbitrarily large. J. Reine Angew. Math. 214/215, 65–70 (1964)
+[Ca2] J.W.S. Cassels: Arithmetic on curves of genus 1, VIII. On conjectures of Birch and
+      Swinnerton-Dyer. J. Reine Angew. Math. 217, 180–199 (1965)
+[Ca3] J.W.S. Cassels: Lectures on elliptic curves. LMSST 24: Cambridge University Press
+      1991
+[CF] J.W.S. Cassels, A. Fröhlich (eds.): Algebraic number theory. Academic Press 1967
+[Co] I. Connell: Calculating root numbers of elliptic curves over Q. Manuscripta Math.
+      82, 93–104 (1994)
+[CM] J.E. Cremona, B. Mazur: Visualizing elements in the Shafarevich-Tate group. Exp.
+      Math. 9(1), 13–28 (2000)
+[Cr1] J.E. Cremona: Algorithms for modular elliptic curves (second edition). Cambridge
+      University Press 1997
+[Cr2] J.E. Cremona: mwrank, a program for 2-descent on elliptic curves over Q. See
+      http://www.maths.nottingham.ac.uk/personal/jec/ftp/progs
+[Cr3] J.E. Cremona: Modular elliptic curve data for conductors up to 5300. See
+      http://www.maths.nottingham.ac.uk/personal/jec/ftp/data
+[F]   T.A. Fisher: On 5 and 7 descents for elliptic curves. Cambridge PhD Thesis (2000)
+[HR] H. Halberstam, H.-E. Richert: Sieve methods. LMS Monographs 4: Academic Press
+      1974
+[H]   K. Hulek: Projective geometry of elliptic curves. Soc. Math. de France, Astérisque
+      137 (1986)
+[Kl] F. Klein: Über die Transformation siebenter Ordnung der elliptischen Funktionen.
+      Math. Ann. 14, 428–471 (1879). English translation in [Le] 287–331
+[Kr] K. Kramer: A family of semistable elliptic curves with large Tate-Shafarevich groups.
+      Proc. Am. Math. Soc. 89, 379–386 (1983)
+[Le] S. Levy (ed.): The eightfold way, the beauty of Klein’s quartic curve. MSRI Publi-
+      cations 35, Cambridge University Press 1999
+[Lo] M. DeLong: A formula for the selmer group of a rational three-isogeny (1999)
+[Ma1] B. Mazur: Arithmetic on curves. Bull. Am. Math. Soc. 14, 207–259 (1986)
+[Ma2] B. Mazur: On the passage from local to global in number theory. Bull. Am. Math.
+      Soc. 29, 14–50 (1993)
+[Mi] J.S. Milne: Arithmetic duality theorems. Persp. in Math. 1. Academic Press 1986
+[Mo] P. Monsky: Generalizing the Birch-Stephens theorem. Math. Z. 221, 415–420 (1996)
+[Mu1] D. Mumford: On the equations defining abelian varieties. I. Invent. math. 1, 287–354
+      (1966)
+[Mu2] D. Mumford: Abelian varieties. TIFR Studies in Math. 5: Oxford University Press
+      1970
+[O’N] C.H. O’Neil: Jacobians of curves of genus one. Harvard PhD thesis (1999)
+[R]   D.E. Rohrlich: Variation of the root number in families of elliptic curves. Compositio
+      Math. 87, 119–151 (1993)
+[Se1] J.-P. Serre: Propriétés galoisiennes des points d’ordre fini des courbes elliptiques.
+      Invent. math. 15, 259–331 (1972)
+[Se2] J.-P. Serre: Local fields. GTM 67. Springer 1979
+Some examples of 5 and 7 descent for elliptic curves over Q                          201
+
+
+[Si1]   J.H. Silverman: The arithmetic of elliptic curves. GTM 106. Springer 1986
+[Si2]   J.H. Silverman: Advanced topics in the arithmetic of elliptic curves. GTM 151.
+        Springer 1994
+[T1]    J. Tate: Duality theorems in Galois cohomology over number fields. Proc. Intern.
+        Congress Math. Stockholm (1962), 288–295
+[T2]    J. Tate: The arithmetic of elliptic curves. Invent. math. 23, 179–206 (1974)
+[V]     J. Vélu: Isogénies entre courbes elliptiques. C. R. Acad. Sci. Paris 273, 238–241
+        (1971)
+

@@ -1,0 +1,863 @@
+18.783 Elliptic Curves                                                                           Fall 2023
+Lecture #23                                                                                     12/5/2023
+
+23      Divisors and the Weil pairing
+In this lecture we address a completely new topic, the Weil pairing, which has many practical
+and theoretical applications. In order to define the Weil pairing we first need to expand our
+discussion of the function field of a curve from Lecture 4. This requires a few basic results
+from commutative algebra and algebraic geometry that we will not take the time to prove;
+almost everything we need it is summarized in the first two chapters of Silverman’s book [6],
+which I recommend reviewing if you have not seen this material before.
+
+23.1     Valuations on the function field of a curve
+Let C/k be a smooth projective curve defined by a homogeneous polynomial fC (x, y, z) = 0
+that (as always) we assume is irreducible over k̄.1 For the sake of simplicity we assume
+throughout this section that k is a perfect field (every algebraic extension is separable).
+   In Lecture 4 we defined the function field k(C) as the field of rational functions g/h,
+where g, h ∈ k[x, y, z] are homogeneous polynomials of the same degree with h ̸∈ (fC ),
+modulo the equivalence relation
+                             g1   g2
+                                ∼             ⇐⇒         g1 h2 − g2 h1 ∈ (fC ).
+                             h1   h2
+
+Alternatively, we can view the function g/h as a rational map (g : h) from C to P1 . Our
+assumption that C is smooth implies that this rational map is actually a morphism, meaning
+that it is defined at every point P ∈ C(k̄); this was stated as Theorem 4.15 and we will
+prove it below. This means that even though the rational map (g1 : h1 ) : C → P1 associated
+to particular representative g1 /h1 of an element of k(C) might not be defined at at point P
+(this occurs when g1 (P ) = h1 (P ) = 0, since (0 : 0) is not a point in P1 ), there is always an
+equivalent g2 /h2 representing the same element of k(C) that is defined at P .
+
+Example 23.1. Consider the function x/z on the elliptic curve E : y 2 z = x3 + Axz 2 + Bz 3 .
+We can evaluate the map (x : z) at any affine point, but not at the point (0 : 1 : 0), where
+we get (0 : 0). But the maps
+
+           (x : z) ∼ (x3 : x2 z) ∼ (y 2 z − Axz 2 − Bz 3 : x2 z) ∼ (y 2 − Axz − Bz 2 : x2 )
+
+all represent the same element of k(E), and the last one sends (0 : 1 : 0) to (1 : 0) ∈ P1 ,
+which is defined. Moreover, any other representative of the function x/z that is defined
+at (0 : 1 : 0) will give the same value. Notice that√ the right-most map is also not defined
+everywhere, since it gives (0 : 0) at the point (0 : B : 1). The moral is that there typically
+will not be a single representative for a function in k(E) that is defined at every point, even
+though the function itself is defined everywhere.
+
+Remark 23.2. It is often more convenient to write elements of the function field in affine
+form, just as we typically use the equation y 2 = x3 + Ax + B to refer to the projective
+curve defined by its homogenization; so we may write x instead of x/z, for example. In
+general, any time we refer to a function r(x, y) as an element of k(C) that is not a ratio
+   1
+     Here we are assuming for simplicity that C is a plane curve (e.g. an elliptic curve in Weierstrass form).
+One can work more generally in Pn by replacing (f ) with a homogeneous ideal I in k[x0 , . . . kn ] whose zero
+locus is a smooth absolutely irreducible projective variety of dimension one in Pn . Everything in this section
+applies to any smooth projective (geometrically integral) curve, we use plane curves only for the sake of
+concreteness.
+
+
+                                                                               Lecture by Andrew Sutherland
+g(x, y, z)/h(x, y, z) of two homogeneous polynomials g and h of the same degree, it should
+be understood that we mean the function one obtains by multiplying the numerator and
+denominator of r(x, y) by suitable powers of z to put it in the form g/h with g and h
+homogeneous polynomials of the same degree.
+Definition 23.3. For any point P ∈ C(k̄), we define the local ring at P (or the ring of
+regular functions at P ) by
+                           OP := {f ∈ k(C) : f (P ) ̸= ∞} ⊆ k(C),
+where ∞ = (1 : 0) ∈ P1 . It is a principal ideal domain (PID) with a unique maximal ideal
+                                 mP := {f ∈ OP : f (P ) = 0}.
+Any generator uP for the principal ideal mP = (uP ) is called a uniformizer at P .
+Definition 23.4. A discrete valuation on a field F is a surjective homomorphism v : F × → Z
+that satisfies the inequality
+                               v(x + y) ≥ min(v(x), v(y)).
+for all x, y ∈ F × . If v is a discrete valuation on F , then the subring
+                                    R := {x ∈ F : v(x) ≥ 0}
+is a PID with the unique maximal ideal
+                                   m := {x ∈ R : v(x) ≥ 1},
+Every nonzero ideal (x) of R is then of the form mn , where n = v(x). Any u ∈ F for which
+v(u) = 1 generates m and is called a uniformizer for m.
+    Given a principal ideal domain R with a unique nonzero maximal ideal m = (u), we can
+define a discrete valuation on its fraction field F via
+                               v(x) := min{n ∈ Z : u−n x ∈ R},
+and we then have R = {x ∈ F : v(x) ≥ 0}. Note that v(x) does not depend on the choice
+of the uniformizer u. We call any such ring R a discrete valuation ring (DVR).
+     For the curve C/k, the local rings OP are a family of DVRs that all have the same
+fraction field k(C). We thus have a discrete valuation vP for each point P ∈ C(k̄) which
+we think of as measuring the “order of vanishing” of a function f ∈ k(C) at P (one can
+formally expand f as a Laurent series in any uniformizer uP for mP , and the degree of the
+first nonzero term will be vP (f ), just as with meromorphic functions over C).
+Remark 23.5. When k is not algebraically closed the function field k(C) has many val-
+uations that are not associated to rational points P ∈ C(k). One can always work with
+k̄-points as above (and in [6]), but a more natural approach is to work with closed points:
+Gal(k̄/k)-orbits in C(k̄), which we also denote P (we do assume that k is a perfect field so
+that k̄/k is separable, otherwise one should replace k̄ with the separable closure of k in k̄).
+Each closed point is a finite subset of C(k̄) whose cardinality we denote deg P ; this is the
+same as the degree of the minimal extension of k over which all the points in P are defined
+(which is necessarily a finite Galois extension), and it is also the degree of the residue field
+OP /mP as an extension of k. Rational points (elements of C(k)) are closed points of degree
+one. Each closed point corresponds to a maximal ideal mP of the coordinate ring k[C]. Note
+that it still makes sense to “evaluate” a rational function f ∈ k(C) at a closed point P ; the
+result is a closed point f (P ) of P1 (k) (because f ∈ k(C) is, by definition, Galois invariant).
+
+                                                              18.783 Fall 2023, Lecture #23, Page 2
+   Now that we have valuations vP and uniformizers uP associated to each point P of a
+smooth projective curve we can easily prove Theorem 4.15, which was stated without proof.
+
+Theorem 23.6. Let C1 /k be a smooth projective curve and let ϕ : C1 → C2 be a rational
+map. Then ϕ is a morphism.
+
+Proof. Let ϕ = (ϕ0 : · · · : ϕm ), let P ∈ C1 (k̄) be any point, let uP be a uniformizer at P ,
+and let n = mini vP (ϕi ). Then
+
+                                  ϕ = (u−n              −n
+                                        P ϕ0 : · · · : uP ϕm )
+
+is defined at P because vP (u−n                            −n
+                             P ϕi ) ≥ 0 for all i and vP (uP ϕi ) = 0 for at least one i.
+
+Remark 23.7. When C1 is not smooth one can construct counter-examples to the theorem
+above. Smoothness guarantees that the local rings OP are all DVRs, so that we have a
+valuation vP to work with. Indeed, a curve is smooth if and only if all its local rings
+are DVRs; this gives an alternative criterion for smoothness that does not depend on the
+equation of the curve or even the dimension of the projective space in which it is embedded.
+
+Example 23.8. For the function x on the elliptic curve E : y 2 = x3 + Ax + B we have
+                            
+                            0    if P = (1 : ∗ : ∗)
+                                                 √
+                            
+                            
+                                  if P = (0 : ± B : 1) (B ̸= 0)
+                            
+                            1
+                   vP (x) =
+                            
+                            
+                            2    if P = (0 : 0 : 1)       (B = 0)
+                            −2 if P = (0 : 1 : 0)
+                            
+
+For the function y we have
+
+                              if P = (∗ : 1 : z0 )
+                         
+                         0
+                                                         (z0 ̸= 0)
+                 vP (y) = 1   if P = (x0 : 0 : 1)         (x30 + Ax0 + B = 0)
+                           −3 if P = (0 : 1 : 0)
+                         
+                         
+
+   You may wonder how we computed these valuations. In particular, how do we know
+that v∞ (x) = −2 and v∞ (y) = −3? There are a couple   P of ways to see this. One is to use
+the fact that for any f ∈ k(C) we always have have P vP (f ) = 0 (see below), so every
+function in k(C) has the same number of zeros and poles. Thus if we know all the zeros
+(and the order of vanishing at each) and there is only one pole, we know its order.
+   A more general approach is to consider the degree of the morphism f : C → P1 . For
+non-constant functions f this is defined as
+
+                                  deg f := [k(C) : f ∗ (k(P1 ))]
+
+where f ∗ : k(P1 ) → k(C) is the morphism of function fields that sends g ∈ k(P1 ) to the
+function g ◦ f in k(C); for f ∈ k × the convention is to define deg f = 0. In explicit examples
+it is often obvious what the degree is, it is the cardinality of the fibers f −1 (P ) for all but
+finitely many P ∈ P1 (k̄). In our example, the function x defines a morphism of degree two
+from E to P1 , because if we pick an arbitrary point on P1 there will generically be two points
+on E that get mapped to it (points with the same x-coordinate). Any time this is not the
+case, we have a ramified point, and in the case of a zero or pole the degree of ramification
+is what determines its multiplicity.
+
+                                                               18.783 Fall 2023, Lecture #23, Page 3
+    Whenever we have f (P ) = Q ∈ P1 (k̄) and the size of the preimage f −1 (Q) is the same as
+the degree of f as a morphism (which happens for all but finitely many Q), no ramification
+occurs and if Q = 0 or Q = ∞ then f has a simple zero or pole at P . More generally, we
+have the following theorem, which says that so long as we count points with multiplicity,
+every fiber of the morphism f : C → P1 has the same size, equal to the degree of f .
+Theorem 23.9. Let C be a smooth projective curve over an algebraically closed field k and
+let f ∈ k(C)× be an element of its function field (viewed as a morphism f : C → P1 ). For
+every point Q ∈ P1 (k) we have
+                                          X
+                               deg f =          vP (uQ ◦ f ).
+                                             f (P )=Q
+
+where uQ ∈ k(P1 ) denotes any uniformizer for mQ .
+Proof. This is a special case of Proposition 2.6 in [6].
+
+    If t is our coordinate for P1 (which we may view as taking values in k ∪ {∞}), then we
+can take uQ := t − Q to be a simple translation. Computing vP (uQ ◦ f ) then amounts to
+re-interpreting the order of “vanishing” at P with the order of “Q-ing” at P .
+Corollary 23.10. Let C be a smooth projective curve over an algebraically closed field k.
+For every f ∈ k(C)× we have       X
+                                       vP (f ) = 0,
+                                        P ∈C(k)
+
+and vP (f ) = 0 for all but finitely many P ; we have vP (f ) = 0 for all P if and only if f ∈ k × .
+Proof. We have vP (f ) ̸= 0 only when f (P ) = 0 or f (P ) = ∞. Applying Theorem 23.9 to
+Q = 0 using the uniformizer u0 = t yields
+                                             X
+                                  deg f =         vP (f ),
+                                                  f (P )=0
+
+and if we apply it to Q = ∞ with uniformizer u∞ = 1/t we have
+                               X                    X
+                       deg f =       vP (u∞ ◦ f ) =      −vP (f ),
+                                  f (P )=∞                   f (P )=∞
+
+which implies      vP (f ) = 0. The cardinalities of f −1 (0) and f −1 (∞) are each bounded by
+               P
+deg f , hence finite, so vP (f ) ̸= 0 for only finitely many P , and these cardinalities can be
+zero if and only if f ∈ k × , since otherwise deg f ≥ 1.
+
+Remark 23.11. When working with closed points over a non-algebraically closed field the
+formula in Theorem 23.9 needs to be modified to account for the degrees of the points. We
+then have                              X
+                         deg f deg Q =        vP (uQ ◦ f ) deg P,
+                                             f (P )=Q
+
+which holds for any closed point Q of P1 /k; the formula in Corollary 23.10 becomes
+                                   X
+                                       vP (f ) deg P = 0,
+
+where the sum is over closed points P .
+
+                                                                   18.783 Fall 2023, Lecture #23, Page 4
+Example 23.12. Another way to compute valuations is to work directly from the defini-
+tion using, a uniformizer uP . We did not do this in Example 23.8 because we hadn’t yet
+determined uniformizers for the points on an elliptic curve. But from the example it is clear
+that we can take
+
+                          x − x(P ) if y(P ) ̸= 0 and P ̸= (0 : 1 : 0)
+                          
+                          
+                     uP = y             if y(P ) = 0
+                                        if P = (0 : 1 : 0)
+                          
+                             x/y
+                          
+
+Note that vp (x/y) = vp (x) − vp (y) = −2 − (−3) = 1. To check that v∞ (y) = −3 using the
+uniformizer u∞ , for example, it suffices to show that 1/y and u3∞ generate the same ideal
+in O∞ : the function s := y 2 /x3 = y 2 /(y 2 − Ax − B) is a unit in O∞ and we have 1/y = su3∞ .
+
+23.2    The divisor class group of a curve
+As in the previous section, we continue to assume that C is a smooth projective curve over
+a perfect field k.
+Definition 23.13. To each point P ∈ C(k̄) we associate a formal symbol [P ]. The divisor
+group of C is the free abelian group on the set {[P ] : P ∈ C(k̄)}, denoted Div C. Its elements
+are called divisors. Each is a finite sum of the form
+                                              X
+                                        D=        nP [P ]
+                                                P
+
+in which the nP are integers (so nP = 0 for all but finitely many P ). The integer nP is the
+valuation of D at P , also denoted by vP (D) := nP . For each divisor D the finite set
+
+                                  supp(D) := {[P ] : vP (D) ̸= 0}
+
+is its support, and the integer                   X
+                                       deg D :=         vP (D)
+                                                    P
+is its degree. The degree map D 7→ deg D is a surjective homomorphism of abelian groups
+whose kernel is the subgroup Div0 C of divisors of degree zero. Associated to each function
+f ∈ k(C)× there is a divisor               X
+                                  div f :=     vP (f )[P ],
+                                                P
+
+which is called a principal divisor. Because each vP : k(C)× → Z is a group homomorphism,
+we have divf g = divf + divg, and the map
+
+                                      div : k(C)× → Div C
+
+is a group homomorphism whose image Princ C is a subgroup of Div C, and whose kernel
+consists of the nonzero constant functions k × , by Corollary 23.10.
+    The quotient group
+                                  Pic C := Div C/Princ C,
+is the Picard group of C. Since Princ C lies in the kernel of deg : Div C → Z, we also have
+a degree map
+                                     deg : Pic C → Z
+
+                                                                 18.783 Fall 2023, Lecture #23, Page 5
+on divisor classes, and its kernel is the group
+
+                                   Pic0 C := Div0 C/Princ C
+
+also known as the (degree zero) divisor class group of C. We then have an exact sequence
+
+                     1 −→ k × −→ k(C)× −→ Div0 C −→ Pic0 C −→ 0.
+
+Remark 23.14. When k is not algebraically closed one typically   Pdefine divisors as sums
+over closed points P and the degree of a divisor is then deg D := P vP (D) deg P .
+
+     Of the various groups defined above, the divisor class group Pic0 C is the one of greatest
+interest to us, because it is intimately related to the curve C. When C(k) is non-empty
+(always true if k = k̄, and can be achieved by extending the field k) it often goes by another
+name, the Jacobian of the curve C. Although this is not at all obvious from the definition
+above, in addition to is structure as an abelian group, Pic0 C can also be given the structure
+of an algebraic variety, making it an abelian variety. In general, the construction of the
+Jacobian is quite complicated; strictly speaking it is an object separate from Pic0 C that
+is isomorphic to Pic0 C as an abelian group and geometrically characterized by a universal
+property that distinguishes it (up to a canonical isomorphism) within the category of abelian
+varieties in terms of the Abel-Jacobi map defined below. The details of this construction
+do not matter to us, because when C is an elliptic curve we already know exactly what its
+Jacobian looks like: it is the curve C together with the distinguished point 0 and the group
+law that makes it an abelian variety.
+
+Definition 23.15. Let C/k be a smooth projective curve with a rational point 0 ∈ C(k);
+The Abel-Jacobi map is the map C(k) → Pic0 C defined by
+
+                                        P 7→ [P ] − [0].
+
+    Although we will not prove this here, for a curve C/k of genus g, over an algebraically
+closed field the Abel-Jacobi map is surjective if and only if the g ≤ 1 and injective if and
+if only if g ≥ 1. As usual, genus g = 1 is the sweet spot, and we will prove in the next
+section that for smooth projective curves of genus 1 with a rational point (elliptic curves),
+the Abel-Jacobi map is an isomorphism.
+
+23.3    The Jacobian of an elliptic curve
+Definition 23.16. Let E/k be an elliptic curve with 0 as its distinguished point (for curves
+in Weierstrass form this is the projective point (0 : 1 : 0), the point “at infinity”). For each
+pair of points P, Q ∈ E(k) let LP,Q ∈ k(E) denote the function corresponding to the line
+P Q, which we define as the tangent to the curve when P = Q. For example, if P = (x1 , y1 )
+and Q = (x2 , y2 ) are distinct affine points then the point-slope formula tells us that
+
+                        LP,Q = (y − y1 )(x2 − x1 ) − (x − x1 )(y2 − y1 ),
+
+which has zeros at P , Q, and −(P + Q) where it intersects the curve E, but here we are
+thinking of LP,Q ∈ k(E) as a map E → P1 that we can evaluate at any point R on E. We
+now define
+                                            LP,Q
+                                GP,Q :=               .
+                                        LP +Q,−(P +Q)
+
+                                                              18.783 Fall 2023, Lecture #23, Page 6
+    The motivation for this is that GP,Q effectively encodes our geometric definition of the
+group law on E: to add P and Q we construct the line P Q, which intersects the curve E at
+a third point −(P + Q), and we then compute P + Q as the point on the line through 0 and
+−(P + Q); in the formula for GP,Q above this is the line LP +Q,−(P +Q) in the denominator.
+    To see this more clearly, let us compute the principal divisors corresponding to the
+functions LP,Q and GP,Q . By definition, the function LP,Q has zeros at the points P, Q and
+−(P + Q) (possibly with multiplicity if any of these points coincide); it has no other zeros
+and no poles at any affine points, so it must have a triple point at the point at infinity. Thus
+
+                           divLP,Q = [P ] + [Q] + [−(P + Q)] − 3[0]
+
+We can then compute
+
+      div GP,Q = [P ] + [Q] + [−(P + Q)] − 3[0] − ([P + Q] + [−(P + Q)] + [0] − 3[0])
+                = [P ] + [Q] − [P + Q] − [0]
+
+Since div Gp,q is a principal divisor, it follows that [P ] + [Q] and [P + Q] + [0] represent the
+same equivalence class in Pic E; such divisors are said to be linearly equivalent, and we write
+
+                                   [P ] + [Q] ∼ [P + Q] + [0]                                 (1)
+
+to denote this relation.
+Theorem 23.17. Let E/k be an elliptic curve the distinguished point 0. The Abel-Jacobi
+map E 7→ Pic0 E defined by P 7→ [P ] − [0] is a group isomorphism.
+Proof. By (1) we have
+
+               ([P ] − [0]) + ([Q] − [0]) ∼ [P + Q] + [0] − 2[0] = [P + Q] − [0],
+
+and clearly [0] − [0] = 0, so the Abel-Jacobi map is a group homomorphism.
+    To show surjectivity, let D =    nP P represent a divisor class in Pic0 E. By splitting D
+                                   P
+into separate sums with nP > 0 and nP < 0, we can write
+                                    X             X
+                               D=       nP [P ] −    (−nP )[P ],
+                                   nP >0          nP <0
+
+and by applying (1) repeatedly we obtain
+                            "         # "          #
+                              X           X
+                       D∼         nP P −    (−nP )P + m[0],
+                                nP >0           nP <0
+
+for some integer m (note that the sums      nP P and (−nP )P inside the brackets are sums
+                                         P           P
+of points in E(k) that yield a single point in E(k) in each case). Since D represents a class
+in Pic0 E, we have deg D = 0, and computing degrees of both sides above yields
+
+                                   0 = 1 − 1 + m,
+
+so m = 0. If now let Q = nP P  >0 nP P and R =      nP <0 (−nP )P be the points in E(k)
+                           P                      P
+obtained by computing the sums    nP P using the group law in E(k), we have
+
+                   D ∼ [Q] − [R] = [Q] − [0] − ([R] − [0]) = [Q − R] − [0],
+
+                                                             18.783 Fall 2023, Lecture #23, Page 7
+where we have used the fact that the Abel-Jacobi map is a group homomorphism to get the
+rightmost equality, which shows that D is in the image of the Abel-Jacobi map, which is
+thus surjective.
+    To show injectivity we need to show P   that the kernel of the Abel-Jacobi map  P is trivial,
+which amounts to showing that if D =           nP [P ] is a principal divisor, then  nP P = 0.
+As above, by applying (1) repeatedly we can obtain D ∼ [Q] − [R]. By adding GR,−Q and
+negating, we obtain the principal divisor [T ] − [0], where T = Q − P   R.
+    We claim that T = 0, which implies Q = R and therefore                 nP P = 0 as desired.
+Suppose not. Let t ∈ k(E)× be a function with div t = [T ] − [0] (in fact no such functions
+exist, we are supposing that [T ] − [0] is a principal divisor with T ̸= 0 and this is going to
+lead to a contradiction). For any f ∈ k(E)× − k × , define
+                                          Y
+                                   f˜ :=     (t − t(Q))vQ (f )
+                                           Q
+
+
+If f does not have a zero or pole at 0, then f and f˜ have the same divisor and f is a rational
+function of t. If f has a zero or pole at 0, we can replace f by f t−v0 (f ) , which does not have
+a zero or pole at 0, and we again find that f is a rational function of t. Thus every function
+in k(E) is a rational function of t, so k(E) = k(t). But k(t) ≃ k(P1 ) and P1 has genus 0
+while E has genus 1, a contradiction, so S = 0 as claimed.
+
+23.4    The Weil pairing
+In this section we define the Weil pairing for torsion points in Pic0 C, where C/k is a smooth
+projective curve and k is an algebraically closed field. In the next section we will specialize
+to elliptic curves and drop our assumption that k is algebraically closed.
+
+Definition 23.18. Let C/k be a smooth projective curve, and let f ∈ k(C)× . For each
+divisor D ∈ Div C with support disjoint from divf we define
+                                       Y
+                          f (D) :=           f (P )vP (D) ∈ k × ,
+                                       P ∈supp(D)
+
+which satisfies f (D1 + D2 ) = f (D1 )f (D2 ) for any D1 , D2 with support disjoint from divf .
+
+    We are now ready to define the Weil pairing. In order to do so it will be convenient to
+work with normalized functions. Recall that the kernel of the map div : k(C)× → Div C
+consists of the constant functions, so the divisor of a function f ∈ k(C)× determines f only
+up to a scalar in k × . In order to pin down this scalar, let us fix a rational point 0 ∈ C(k),
+the same point used to define the Abel-Jacobi map, and fix a uniformizer u0 at 0. We may
+then associate to each principal divisor D the unique f ∈ k(C)× for which divf = D and
+                                         −v (f )
+                                       (u0 0       f )(0) = 1.
+
+and call this the normalized function f with divisor divf . The particular choice of the
+point 0 and the uniformizer u0 , does not matter, all that matters is that we scale all of our
+normalized functions consistently. The constant function 1 is normalized, and products and
+inverses of normalized functions are normalized, so if we restrict our attention to normalized
+functions we get an isomorphism between the multiplicative subgroup of k(C)× consisting
+of normalized functions and the group Princ C of principal divisors.
+
+                                                                 18.783 Fall 2023, Lecture #23, Page 8
+Definition 23.19. Let n be a positive integer and let k be an algebraically closed field
+whose characteristic does not divide n. Let C/k be a smooth projective curve and let
+D1 , D2 be divisors with disjoint support representing n-torsion elements of Pic0 C (this means
+D1 , D2 ∈ Div0 C and nD1 , nD2 ∈ Princ C). Let f1 , f2 ∈ k(C)× be the unique normalized
+functions for which nD1 = divf1 and nD2 = div f2 . We then define
+                                                       f1 (D2 )
+                                    en (D1 , D2 ) :=            ∈ k× .
+                                                       f2 (D1 )
+
+For each integer n, the map (D1 , D2 ) 7→ en (D1 , D2 ) is called the Weil pairing.
+   The Weil pairing actually defines a map
+
+                              en : (Pic0 C)[n] × (Pic0 C)[n] → µn ,
+
+where µn denotes the group of nth roots of unity in k × (which we continue to assume is
+algebraically closed). In order to prove this, we need the Weil reciprocity law.
+Theorem 23.20. Let C/k be a smooth projective curve and let f, g ∈ k(C)× be functions
+whose divisors have disjoint support. Then
+
+                                         f (divg) = g(divf ).
+
+Proof. See [6, Ex. 2.11].
+
+Lemma 23.21. The value of the Weil pairing en (D1 , D2 ) ∈ k × depends only on the divisor
+classes of D1 and D2 and is an element of µn ⊆ k × .
+Proof. Let g ∈ k(C)× be any normalized function for which div g, D1 , D2 all have disjoint
+support, and let f1 and f2 be the normalized functions with divf1 = nD1 and divf2 = nD2 .
+Then f1 g n is the normalized function for n(D1 + divg), and we have
+
+                                         f1 (D2 )g n (D2 )    f1 (D2 )g n (D2 )
+                en (D1 + divg, D2 ) =                      =
+                                         f2 (D1 + divg)      f2 (D1 )f2 (divg))
+                                                    n
+                                          f1 (D2 )g (D2 )     f1 (D2 )g n (D2 )
+                                       =                    =
+                                         f2 (D1 )g(divf2 )    f2 (D1 )g(nD2 )
+                                                   n
+                                         f1 (D2 )g (D2 )     f1 (D2 )
+                                       =           n
+                                                           =          = en (D1 , D2 ).
+                                         f2 (D1 )g (D2 )     f2 (D1 )
+
+If the supports of divg and D2 are disjoint, we similarly have en (D1 , D2 +divg) = en (D1 , D2 );
+thus en (D1 , D2 ) depends only on the divisor classes of D1 and D2 . We also have
+
+                                       f1 (D2 )n   f1 (nD2 )   f1 (divf2 )
+                    en (D1 , D2 )n =           n
+                                                 =           =             = 1,
+                                       f2 (D1 )    f2 (nD1 )   f2 (divf1 )
+
+so en (D1 , D2 ) ∈ µn as claimed.
+
+Theorem 23.22. Let n be a positive integer, let k be an algebraically closed field whose
+characteristic does not divide n, and let C/k be a smooth projective curve. Let D1 , D2 , D3
+denote divisors with disjoint support that represent n-torsion elements of Pic0 C. The Weil
+pairing en : (Pic0 C)[n] × (Pic0 C)[n] → µn satisfies:
+   • Bilinear: en (D1 + D2 , D3 ) = en (D1 , D3 )en (D2 , D3 );
+
+                                                                    18.783 Fall 2023, Lecture #23, Page 9
+   • Alternating: en (D1 , D2 ) = en (D2 , D1 )−1 .
+
+Note that the two properties together imply that en is bilinear in both variables.
+
+Proof. For i = 1, 2, 3 let fi be the normalized function with divfi = nDi . We then have
+                                       f1 (D3 )f2 (D3 )
+                en (D1 + D2 , D3 ) =                    = en (D1 , D3 )en (D2 , D3 ),
+                                       f3 (D1 )f3 (D2 )
+and
+                                                        f1 (D2 ) f2 (D1 )
+                         en (D1 , D2 )en (D2 , D1 ) =                     = 1,
+                                                        f2 (D1 ) f1 (D2 )
+so the alternating property holds.
+
+   The Weil pairing has many other important properties that hold in general, but to
+simplify their presentation (and proofs), we now specialize to the case of elliptic curves.
+
+23.5    The Weil pairing on an elliptic curve
+                                                        ∼
+For an elliptic curve E/k, the isomorphism E −→ Pic0 E given by the Abel-Jacobi map
+P 7→ [P ] − [0] allows us to view the Weil pairing as a map
+
+                                     en : E[n] × E[n] → µn
+
+defined on pairs of n-torsion points of E/k (for n prime to the characteristic of k). At first
+glance it might appear that we have a problem, since for P, Q ∈ E[n] the divisors [P ] − [0]
+and [Q] − [0] do not have disjoint support, which we assumed in our definition of en .
+     But note that we can always use (1) to translate these divisors them to linearly equivalent
+divisors with disjoint support by picking some point T ̸= 0, Q, −P, Q − P and replacing
+[P ] − [0] with the linearly equivalent divisor [P + T ] − [T ]; this does not change the element
+of Pic0 E represented by [P ] − [0] nor does it change the value of the Weil pairing, by
+Lemma 23.21.
+     For practical applications we want to be able to compute en (P, Q) explicitly, and in a
+computationally efficient manner. For this purpose we use the following sequence of functions
+proposed by Miller [4].
+
+Definition 23.23. Let E/k be an elliptic curve and let P ∈ E(k). For each integer n we
+recursively define the function fn,P via
+
+        f0,P = f1,P := 1,       fn+1,P := fn,P GP,nP ,          f−n,P := (fn,P GnP,−nP )−1 ,
+
+where GP,Q is as in Definition 23.16.
+
+    We assume that the line functions LP,Q are all normalized (they will still be defined by
+an equation for the line P Q); this implies that the functions GP,Q are also normalized, as
+are the functions fn,P .
+
+Lemma 23.24. The functions fn,P satisfy the following properties:
+
+  (i) divfn,P = n[P ] − (n − 1)[0] − [nP ];
+ (ii) fm+n,P = fm,P fn,P GmP,nP ;
+(iii) fmn,P = fm,P
+               n f         m
+                   n,mP = fn,P fm,nP .
+
+
+                                                                 18.783 Fall 2023, Lecture #23, Page 10
+Proof. For (i) we proceed by induction on n ≥ 0. For n = 0, 1 we have
+
+  divf0,P = 0 = 0[P ] − (0 − 1)[0] − [0P ]   and     div f1,P = 0 = 1[P ] − (1 − 1)[0] − [1P ],
+
+and for n > 1 the inductive hypothesis yields
+
+             divfn+1 = divfn,P + divGP,nP
+                      = n[P ] − (n − 1)[0] − [nP ] + [P ] + [nP ] − [P + nP ] − [0]
+                      = (n + 1)[P ] − (n + 1 − 1)[0] − [(n + 1)P ].
+
+We then note that
+
+         divf−n,P = −divfn,P − GnP,−nP
+                    = −n[P ] + (n − 1)[0] + [nP ] − [nP ] − [−nP ] + [nP − nP ] + [0]
+                    = −n[P ] − (−n − 1)[0] − [−nP ].
+
+which establishes (i) for all n ∈ Z.
+   For (ii) we use (i) to compute
+
+            divfm,P fn,P GmP,nP = (m + n)[P ] − (m + n − 2)[0] − [mP ] − [nP ]
+                                                 + [mP ] + [nP ] − [mP + nP ] − [0]
+                                 = (m + n)[P ] − (m + n − 1)[0] − [(m + n)P ]
+                                 = divfm+n,P ,
+
+and since these are all normalized functions, (ii) follows.
+   For (iii) we use (i) to compute
+           n
+       divfm,P fn,mP = n(m[P ] − (m − 1)[0] − [mP ]) + n[mP ] − (n − 1)[0] − [mnP ]
+                      = nm[P ] − (nm − 1)[0] − [mnP ]
+                      = divfmn,P .
+
+which establishes the first equality in (iii), since these are normalized functions. The second
+equality is proved similarly.
+
+    The key part of Lemma 23.24 is (ii), which allows us to efficiently compute fn,P using
+a double-and-add approach, or any generic exponentiation algorithm, in O(log n) steps.
+Lemma 23.24 allows us to reduce the computation of fn,P (Q) to computations of GaP,bP (Q),
+for various integers a and b. Computing GaP,bP (Q) involves evaluating the line functions
+LaP,bP and LaP +bP,−(aP +bP ) at Q. Assuming we know the coordinates of the points aP and
+bP (which we will have computed in previous steps of an addition chain), this involves a
+single application of the group law on E to compute the coordinates of the pointaP + bP
+which we can then negate to compute −(aP + bP ) (for curves in short Weierstrass form,
+this means negating the y-coordinate), followed by O(1) operations in k to evaluate the line
+functions at Q. Each group operation in E(k) involves just O(1) field operations, and we
+thus obtain the following corollary,
+
+Corollary 23.25. Let E/k be an elliptic curve and let n be a positive integer. For any
+P, Q ∈ E(k) we can evaluate fn,P (Q) using O(log n) field operations in k.
+
+
+                                                              18.783 Fall 2023, Lecture #23, Page 11
+   The following lemma allows us to use the Miller functions to compute the Weil pairing.
+Lemma 23.26. Let E/k be an elliptic curve, let n be a positive integer not divisible by the
+characteristic of k, and let P, Q ∈ E(k)[n]. For any point T ̸∈ {0, Q, −P, Q − P } on E we
+have
+                                          fn,Q (T )fn,P (Q − T ))
+                              en (P, Q) =                         .
+                                          fn,P (−T )fn,Q (P + T )
+Proof. We have div GP,T = [P ] + [T ] − [P + T ] − [0], so the divisors [P ] − [0] and [P + T ] − [T ]
+are linearly equivalent, and the hypotheses ensure that the divisors [P +T ]−[T ] and [Q]−[0]
+have disjoint support. Let f1 be the normalized function with divf1 = n[P − T ] − n[−T ]
+and let f2 be the normalized function with divf2 = n[Q] − n[0]. Let τ ∈ k(E)× denote
+the translation morphism E → E defined by R 7→ R − T (so plug −T into the formula for
+point addition on E, treating the coordinates of the other point as variables, to obtain the
+coordinate functions of τ ; note that τ is a morphism of smooth projective curves but not
+an isogeny of elliptic curves because it maps 0 to −T ). Composing fn,P with τ yields a
+map E → P1 corresponding to an element of k(E)× that we then normalize. Composition
+with τ shifts all the zeros and poles of fn,P by −T , which means that each point in the
+corresponding divisor gets shifted by −T . Using part (i) of Lemma 23.24 we compute
+
+     div(fn,P ◦ τ ) = n[P − T ] − (n − 1)[−T ] − [nP − T ] = n[P − T ] − n[−T ] = divf1 ,
+
+since nP = 0, and fn,P ◦ τ is normalized, so f1 = fn,P ◦ τ . We also have
+
+                   divfn,Q = n[Q] − (n − 1)[0] − [nQ] = n([Q] − [0]) = divf2 ,
+
+since nQ = 0, and fn,Q is normalized, so fn,Q = f2 . Thus by definition
+                  (fn,P ◦ τ )([Q] − [0])   fn,P (Q − T )/fn,P (−T )   fn,Q (T )fn,P (Q − T ))
+    en (P, Q) =                          =                          =                         .
+                  fn,Q ([P + T ] − [T ])    fn,Q (P + T )/fn,Q (T )   fn,P (−T )fn,Q (P + T )
+Corollary 23.27. Let E/k be an elliptic curve with distinct points P, Q ∈ E(k)[n], where
+n > 1 is prime to the characteristic of k. Then
+                                                        fn,P (Q)
+                                    en (P, Q) = (−1)n             .
+                                                        fn,Q (P )
+Proof. See [4, Prop. 8].
+
+Warning 23.28. The factor (−1)n is sometimes inadvertently omitted from this formula
+in the literature ([3, p. 387], for example).
+    Note that the definition of fn,P does not require k to be algebraically closed, we just
+need to work over a field where P is defined, in which case all the points in the support
+of divfn,P will be closed points of degree 1 and everything we have done over algebraically
+closed fields still applies. In particular, the lemma and the corollary imply that if P and Q
+are k-rational n-torsion points, then en (P, Q) is also k-rational.
+    When working with elliptic curves E/k with k not algebraically closed, for any integer n
+not divisible by the characteristic of k, we define en (P, Q) for arbitrary P, Q ∈ E[n] by
+simply working with the base-change of E to the field k(E[n]), the minimal field over which
+the n-torsion points of E are all defined (which is necessarily a Galois extension of k).
+    The following theorem gives a more complete list of the properties of the Weil pairing
+than given in Theorem 23.22.
+
+                                                                18.783 Fall 2023, Lecture #23, Page 12
+Theorem 23.29. Let E/k be an elliptic curve and let m and n be positive integers prime
+to the characteristic of k. The Weil pairing en : E[n] × E[n] → µn satisfies the following
+properties.
+   • Bilinear: en (P + Q, R) = en (P, R)en (Q, R) and en (P, Q + R) = en (P, Q)en (P, R);
+   • Alternating: en (P, P ) = 1 and en (P, Q) = en (Q, P )−1 ;
+   • Non-degenerate: If P ̸= 0 then en (P, Q) ̸= 1 for some Q ∈ E[n];
+   • Compatibility: emn (P, Q) = en (mP, Q) for all P ∈ E[mn] and Q ∈ E[n];
+   • Galois-equivariant: en (P σ , Qσ ) = en (P, Q)σ for all σ ∈ Gal(k̄/k);
+   • Endomorphisms: en (α(P ), α(Q)) = en (P, Q)deg α for all α ∈ End(E);
+   • Surjective: for each P ∈ E[n] we have {en (P, Q) : Q ∈ E[n]} = µr , where r := |P |.
+Proof. We already proved the bilinearity and alternating properties in Theorem 23.22. For
+non-degeneracy and compatibility, see [4, Prop. 7], or [6, Prop. III.8.1]. Galois equivariance
+follows immediately from the explicit formula for en (P, Q) given by Corollary 23.27: the
+formulas for fn,P and fn,Q are algebraic expressions that depend only on the coefficients of
+E, which are fixed by σ, and the points P and Q, so fn,P σ (Qσ ) = fn,P (Q)σ and similarly,
+fn,Qσ (P σ ) = fn,Q (P )σ . See [7, Thm. 11.7] for a proof of the endomorphism compatibility.
+    Surjectivity follows from non-degeneracy. Fix any P ∈ E[n]. Bilinearity implies that
+{en (P, Q) : Q ∈ E[n]} is a subgroup µm of µn . For all Q ∈ E[n] we have
+                                1 = en (P, Q)m = en (mP, Q),
+so by non-degeneracy, mP = 0 and m is a multiple of |P |. On the other hand, if en (P, Q)
+has order m greater than e = |P | for any Q, then en (eP, Q) = en (0, Q) ̸= 1, which is a
+contradiction, because en (0, Q) = en (0, Q)en (Q, Q) = en (Q + 0, Q) = en (Q, Q) = 1, by the
+alternating property.
+
+Corollary 23.30. Let E/k be an elliptic curve and let n be a positive integer prime to the
+characteristic of k. If E[n] ⊆ E(k) then µn ⊆ k × . In particular, if k = Q then E[n] ⊆ E(k)
+can occur only for n ≤ 2, and if k = Fq then E[n] ⊆ E(k) can occur only if q ≡ 1 mod n.
+Corollary 23.31. Let E/k be an elliptic curve and let P ∈ E(k̄) be a point of order n prime
+to the characteristic of k. For every Q ∈ E[n] the order of en (P, Q) in µn is the largest m|n
+for which E[m] ⊆ ⟨P, Q⟩, equivalently, the least m|n for which mQ ∈ ⟨P ⟩. In particular,
+en (P, Q) = 1 if and only if ⟨P, Q⟩ is cyclic.
+Proof. Let us first suppose m = n, in which case ⟨P, Q⟩ = E[n]. By the surjectivity of
+en : E[n] × E[n] → µn , we have en (P, aP + bQ) = ζn for some a, b ∈ Z, and
+                  ζn = en (P, aP + bQ) = en (P, P )a en (P, Q)b = en (P, Q)b
+(by the bilinear and alternating properties of en ), so en (P, Q) generates µn = ⟨ζn ⟩ ≃ Z/nZ
+and must have order n.
+   In the general case we have mQ = aP with 0 ≤ a < n. The order of aP = mQ is at
+most r := n/m, so a is divisible by m, and if we put c = −a/m then ⟨rP, Q + cP ⟩ = E[m].
+By the case we have already proved, em (rP, Q + cP ) has order m, and therefore
+   en (P, Q) = en (P, Q)en (P, P )c = en (P, Q + cP ) = emr (P, Q + cP ) = em (rP, Q + cP )
+also has order m (the last equality follows from compatibility).
+
+                                                            18.783 Fall 2023, Lecture #23, Page 13
+23.6    Applications of the Weil pairing
+There are many applications of the Weil pairing, two of which you will have the opportunity
+to explore on Problem Set 13. These include an efficient algorithm to compute the structure
+of the group E(Fq ), which was the original motivation of Miller’s work in [4], and a method
+for transferring the discrete logarithm problem on an elliptic curve E/Fq to the multiplicative
+group of an extension of Fq containing µn , where n is the cardinality of the subgroup of E(Fq )
+in which one wishes to compute a discrete logarithm. In most cases the minimal extension
+of Fq containing µn will be impractically large, but when this is not the case it may be easier
+to solve the discrete logarithm problem in this extension of Fq rather than in E(Fq ). The
+degree of this minimal extension is known as the embedding degree, which we discuss in the
+next section. For cryptographic applications that depend on the difficulty of the discrete
+logarithm problem, it is important that the embedding degree is not too small. On the
+other hand, if the embedding degree is not too large, one can then use pairings to efficiently
+implement cryptographic protocols that would otherwise be impractical.
+    This brings us to the notion of pairing-based cryptography, a topic that we unfortunately
+do not have time to address in any detail. But we will give one example to demonstrate its
+utility: a one round tripartite Diffie-Hellman key exchange, due to Joux [3]. For the sake
+of presentation we will describe it in terms of the Weil pairing, but in practice one uses the
+more efficient Tate pairing defined in §23.8 below.
+    We assume that Alice, Bob, and Carol all know an elliptic curve E/Fq and two in-
+dependent n-torsion points P and Q in E[n]. They want to agree on a random secret,
+and they would like to do this with a single round of messaging that does not require any
+back-and-forth communication.
+    To begin the protocol, Alice, Bob, and Carol individually generate random integers a, b,
+and c, respectively. Alice then sends PA := aP and QA := aQ to Bob and Carol, Bob sends
+PB := bP and QB := bQ to Alice and Carol, and Carol sends PC := cP and QC := cQ to
+Alice and Bob.
+    Alice then computes
+
+                          en (PB , QC )a = en (bP, cQ)a = en (P, Q)bca ,
+
+Bob computes
+                          en (PA , QC )b = en (aP, cQ)b = en (P, Q)acb ,
+and Carol computes
+                          en (PA , QB )c = en (aP, bQ)c = en (P, Q)abc .
+The common value en (P, Q)abc ∈ µn is now known to Alice, Bob, and Carol. If one assumes
+that the discrete logarithm problem is hard, an eavesdropper cannot readily determine the
+values of a, b, or c, and if one further assumes that the computational Diffie-Hellman problem
+is hard, an eavesdropper cannot readily determine µn either. The computational Diffie-
+Hellman problem is to compute abP , given P , aP , and bP ; this can clearly be solved
+efficiently if one can compute discrete logarithms efficiently, but the converse is not known.
+
+23.7    Embedding degree
+For practical applications one typically applies Miller’s algorithm to n-torsion points of an
+elliptic curve E/Fq , where Fq is a finite field and n is a prime dividing #E(Fq ). While we
+typically will not have E[n] ⊆ E(Fq ) (indeed, E(Fq ) will often be cyclic), we can always
+
+
+                                                             18.783 Fall 2023, Lecture #23, Page 14
+choose an n that divides #E(Fq ), in which case we at least have a cyclic subgroup of E[n] or
+order n that lies in E(Fq ) (assuming n is prime). The remaining points in E[n] will then lie
+in a finite extension of Fq ; as indicated in the previous section, the degree of this extension
+is a key parameter.
+
+Definition 23.32. Let E/K be an elliptic curve over a field K and let n be a positive
+integer. The embedding degree of E with respect to n is the degree of the minimal extension
+L/K for which E[n] ⊆ E(L).
+
+   An easy lower bound on the embedding degree k arises from the fact that the Weil pairing
+E[n] × E[n] → µn is surjective. If E[n] ⊆ Fqk then we must have µn ⊆ F×     qk
+                                                                               . The group
+F×
+ qk
+    is cyclic, so this is the same as requiring n to divide q k − 1, equivalently, q k ≡ 1 mod n.
+When E(Fq ) contains a cyclic group of order n, this necessary condition is also sufficient.
+
+Lemma 23.33. Let E/Fq be an elliptic curve, let n ⊥ q be a prime divisor of #E(Fq ), and
+let πn denote the restriction of the Frobenius endomorphism πE to End(E[n]) ≃ GL2 (Z/nZ).
+Then either E[n] ⊆ E(Fq ) or E[n] ≃ ker(πn − 1) ⊕ ker(πn − q), and the embedding degree
+of E with respect to n is the least integer k > 0 such that q k ≡ 1 mod n.
+
+Proof. Let t = tr πE , so that #E(Fq ) = q+1−t. Then t ≡ q+1 mod n and the characteristic
+polynomial of πE satisfies x2 − tx + q ≡ x2 − (q + 1)x + q ≡ (x − 1)(x − q) mod n. It follows
+that (πn − 1)(πn − q) = 0 in End(E[n]). If q ≡ 1 mod n then πE acts trivially on E[n] and
+E[n] ⊆ E(Fq ); otherwise πn ∈ End(E[n]) ≃ GL2 (Z/nZ) can be diagonalized and E[n] can
+be decomposed as the sum of the distinct eigenspaces ker(πn − 1) and ker(πn − q) of πn .
+    As observed above, the embedding degree e necessarily satisfies q e ≡ 1 mod n, since
+µn ⊆ F ×q e , so e ≥ k. On the other hand, for P ∈ ker(πn − 1) we have P ∈ E(Fq ) ⊆ E(Fq k ),
+and for P ∈ ker(πn − q) we have πnk (P ) = q k (P ) = P , in which case P is fixed by πEk and
+
+lies in E(Fqk ). It follows that E[n] ⊆ E(Fqk ) and therefore e ≤ k, so e = k as claimed.
+
+    Lemma 23.33 gives us an easy way to compute the embedding degree k when n|#E(Fq ).
+If we suppose E is chosen arbitrarily, we should expect q to be roughly equidistributed
+modulo n, and for must values of n this means it is likely that q is a primitive root modulo n,
+in which case we must have k = n − 1 (assuming n is prime). This is bad news for practical
+applications: if k = n − 1 it will take log2 (#Fqk ) = (n − 1) log2 q ≈ n log n bits just to write
+down a typical n-torsion point, which is hopeless if n is of cryptographic size (say n ≈ 2256 ),
+since this will be more bits than there are atoms in the universe.
+    Practical applications of the Weil pairing are feasible only when k is small. It is possible
+to have k as small as 1 or 2 when E is supersingular (see Problem Set 12), but this is
+too small for cryptographic applications, as you will demonstrate on Problem Set 12, since
+one can transfer the discrete logarithm problem in E(Fq ) to the discrete logarithm problem
+in F×
+    qk
+       . Ideally one wants k to be around 10 or 20 to balance the difficulty of the discrete
+logarithm problems in E(Fq ) and F×    qk
+                                          ; for q ≈ 2256 using k = 12 yields #F×   qk
+                                                                                      ≈ 23072 , in
+which case the discrete logarithm problems have similar difficulty.
+    Elliptic curves with embedding degrees in this range are known as pairing friendly curves.
+They are quite rare, far too rare to find by brute force search, but they can be constructed
+using the CM method. See [2] for an extensive survey of methods to compute suitable
+parameters q, n, k, D, where q and n are cryptographic size primes, k is small, q k ≡ 1 mod n,
+and D is an imaginary quadratic discriminant with |D| small enough so that the CM method
+can be used to construct an elliptic curve E/Fq so that n divides #E(Fq ).
+
+                                                             18.783 Fall 2023, Lecture #23, Page 15
+23.8    Tate pairing
+In most practical applications of pairings, rather than using the Weil pairing one instead
+uses the Tate pairing, or variations thereof, which can be computed much more efficiently.
+Definition 23.34. Let n > 2 be an integer and let E/Fq be an elliptic curve over a finite
+field with embedding degree k with respect to n. The (modified) Tate pairing is the map
+tn : E[n] × E[n] → µn defined by
+                                                              (qk −1)/n
+                                               fn,P (Q + T )
+                            tn (P, Q) :=
+                                                 fn,P (T )
+where T ∈ E[n] − {0, P, −Q, P − Q}.
+    The exponentiation by (q k − 1)/n included in our definition of the Tate pairing means
+that if P ∈ E[n] we can actually compute tn (P, Q) using any Q ∈ E(Fqk ); the value of of
+tn (P, Q) depends only on the image of Q ∈ E(Fqk ) under the quotient map
+
+                             E(Fqk ) → E(Fqk )/nE(Fqk ) ≃ E[n],
+
+and we can view Q ∈ E(Fqk ) as representing a coset of nE(Fqk ) corresponding to an element
+of E[n] (the Tate pairing is sometimes defined with this interpretation in mind).
+    Like the Weil pairing, the Tate pairing is a non-degenerate bilinear pairing that is sur-
+jective and Galois-equivariant. Unlike the Weil pairing, the Tate pairing is not alternating,
+and may have tn (P, P ) ̸= 1; this is an advantage in many practical applications, because it
+means that the pairing may be non-trivial even when we restrict to points in a cyclic sub-
+group of E[n], which is never true of the Weil pairing. Another advantage is that we only
+need to compute one Miller function fn,P , rather than the two Miller functions fn,P and fn,Q
+required by the Weil pairing, and in the typical case where n is a prime dividing #E(Fq ),
+we can choose P ∈ E(Fq ) to be rational, which greatly accelerates this computation.
+    In the practically interesting scenario where n ⊥ q is a prime dividing #E(Fq ) and k > 1,
+Lemma 23.33 gives us a natural decomposition of E[n] ≃ ker(πn − 1) ⊕ ker(πn − q) into two
+cyclic subgroups of order n, the first of which is just E(Fq )[n]. In many applications (and in
+many descriptions of the Tate pairing in the literature), one restricts the inputs of the Tate
+pairing to P ∈ ker(πn − 1) = E(Fq )[n] and Q ∈ ker(πn − q) ⊆ E(Fqk ).
+
+
+References
+[1] Dan Boneh and Matthew Franklin, Identity-based encryption from the Weil pairing, Siam
+    Journal of Computing 32 (2003), 586–615.
+[2] David Freeman, Michael Scott, and Edyln J. Teske, A taxonomy of pairing-friendly
+    elliptic curves, J. Cryptology 23 (2010), 224-280.
+[3] Antoine Joux, A one round protocol for tripartite Diffie-Hellman, Algorithm Number
+    Theory 4th International Symposium (ANTS IV), LNCS 1838 (2000), 385–394.
+[4] Victor S. Miller, The Weil pairing and its efficient calculation, J. Cryptology 17 (2004),
+    235–261.
+[5] Adi Shamir, Identity based cryptosystems and signature schemes, Advances in Cryptology
+    – Proceedings of CRYPTO ‘84, LNCS 196 (1985), 47–53.
+
+                                                                  18.783 Fall 2023, Lecture #23, Page 16
+[6] Joseph H. Silverman, The arithmetic of elliptic curves, second edition, Springer, 2009.
+
+[7] Lawrence C. Washington, Elliptic curves: Number theory and c1ryptography, second
+    edition, Chapman and Hall/CRC, 2008.
+
+
+
+
+                                                         18.783 Fall 2023, Lecture #23, Page 17
+

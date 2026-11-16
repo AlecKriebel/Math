@@ -1,0 +1,5 @@
+# Private stage log
+
+2026-11-16T22:36:30Z —20%. Full actual adoption authority and both complete admitted preview HTML bodies personally read. W/Math baseline refs, native indices/configs and public count match assignment. No writes outside this new namespace, Git command, render/native/scientific/old-helper execution or publication action. Independent stage auditor remains separate; no candidate conclusions or patches shared before its INITIAL.
+
+Literal locator/display history: Math loose refs/heads/main cat failed with “No such file or directory”; packed-refs then resolved the exact expected a4ce3c37 head. Incorrect public/sitemap.xml guess caused wc/head/tail missing-file errors; actual public/research/sitemap.xml located and read. A broad first index display and tail display were truncated; no whole personal reading is claimed from them. The complete aggregate raw units and typed data will instead be machine-authenticated and checked reversibly. No baseline drift or changes were inferred from locator errors.
