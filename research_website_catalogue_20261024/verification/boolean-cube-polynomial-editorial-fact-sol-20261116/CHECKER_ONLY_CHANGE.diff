@@ -1,0 +1,12 @@
+--- check_copy.v1.py	2026-11-16 11:50:40
++++ check_copy.py	2026-11-16 11:50:40
+@@ -65,7 +65,8 @@
+ main = raw(E / 'MAIN.html').decode()
+ head = raw(E / 'HEAD.html').decode()
+ model, expectations = obj(E / 'PAGE_MODEL.json'), obj(E / 'EXPECTATIONS.json')
+-assert page.count(main) == page.count(head) == 1
++# Remove only external fragment-file trailing LF padding; preserve all HTML/content bytes.
++assert page.count(main.rstrip('\n')) == page.count(head.rstrip('\n')) == 1
+ assert raw(E / 'citation.bib') == raw(E / 'preview/citation.bib')
+ for k in ['whole_MAIN', 'head', 'whole_page', 'page_model']:
+     f = obj(E / 'FINAL.json')[k]

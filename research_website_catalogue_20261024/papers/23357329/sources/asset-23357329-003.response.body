@@ -1,0 +1,238 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\GV}{\operatorname{gv}}
+\newcommand{\Diff}{\operatorname{Diff}}
+\title{Unbounded Godbillon--Vey numbers on a fixed hyperbolic manifold}
+\author{Alec Kriebel\\[2pt]
+\small Independent researcher\\
+\small\url{https://orcid.org/0009-0001-9320-500X}}
+\date{13 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Classical compact-support suspension theory yields a smooth foliated
+surface-times-interval with product endpoint collars and nonzero
+Godbillon--Vey integral. We place arbitrarily many copies inside one fixed
+pseudo-Anosov mapping torus. One embedded closed transversal meets every
+leaf, and the Godbillon--Vey numbers grow linearly with the number of
+copies. This gives a negative answer to the unrestricted volume-bound
+question printed as Question~10.6 in Calegari's 2002 manuscript.
+The construction uses classical ingredients; historical priority of this
+specific consequence remains unestablished.
+\end{abstract}
+
+\section{Statement and scope}
+For a smooth cooriented codimension-one foliation $\mathcal F$ of a closed
+oriented three-manifold, choose a defining form $\alpha$ and a form $\eta$
+with $d\alpha=\alpha\wedge\eta$. We use the ordinary Godbillon--Vey number
+\[
+       \GV(\mathcal F)=\int_M\eta\wedge d\eta .
+\]
+The closed integral is independent of these choices. We call $\mathcal F$
+taut when a closed transversal meets every leaf.
+
+\begin{theorem}\label{thm:main}
+There exist a closed connected oriented hyperbolic three-manifold $M$,
+a number $a>0$, and an embedded smooth circle $\gamma\subset M$ such that,
+for every integer $N\geq1$, $M$ admits a smooth cooriented taut foliation
+$\mathcal F_N$ with
+\[
+             \GV(\mathcal F_N)=Na .
+\]
+The same $\gamma$ is positively transverse to, and meets every leaf of,
+each $\mathcal F_N$.
+\end{theorem}
+
+Fixing one hyperbolic metric on $M$ fixes its positive finite volume.
+The theorem therefore rules out any finite bound determined solely by
+that volume, including a bound on $|\GV|$. It answers the literal
+Question~10.6 of \cite[p.~25]{C02}, using the single-circle definition
+in \cite[Definition~1.1]{C02}. Compact leaves are permitted.
+This note makes no assertion for minimal foliations, a condition imposed
+in the different Question~13.1 of that source.
+
+\paragraph{Attribution and priority.}
+The nonzero suspension input is classical Mather--Thurston theory,
+with the precise compatibility recorded by Tsuboi~\cite{T81}.
+Interval-bundle replacement is classical; see
+Gabai~\cite[Operation~2.1.3]{G92}. Hyperbolization is due to
+Thurston~\cite{Th98}. A bounded primary-source audit did not authenticate
+an earlier explicit statement of Theorem~\ref{thm:main}, but does not
+establish its novelty, firstness, or present-day open status.
+Several relevant historical full texts remained inaccessible or unread.
+Our target is the specified 2002 manuscript version; the final 2003
+chapter was not compared. Detailed read-depths and gaps accompany this
+note.
+
+\section{A classical suspension block}
+Write $I=[0,1]$ and let $G=\Diff^\infty_c(\mathbb R)$, regarded as a
+discrete group. These diffeomorphisms preserve orientation.
+
+\begin{lemma}\label{lem:block}
+There are a closed connected oriented surface $\Sigma$ of genus at least
+two and a smooth cooriented foliation $\mathcal H$ on $\Sigma\times I$,
+transverse to every interval fiber and product on endpoint collars,
+with defining forms satisfying
+\[
+ \alpha(\partial_s)=1,\qquad d\alpha=\alpha\wedge\eta,\qquad
+ (\alpha,\eta)=(ds,0)\ \text{on both collars},\qquad
+ \int_{\Sigma\times I}\eta\wedge d\eta=a>0 .
+\]
+Every leaf of $\mathcal H$ meets the interval fiber over each $p\in\Sigma$.
+\end{lemma}
+
+\begin{proof}
+We first specify the classical input. Tsuboi~\cite[pp.~1--3,6]{T81}
+records the surjective smooth GV map
+$H_3(B\overline\Gamma^\infty_1;\mathbb Z)\to\mathbb R$, Mather's
+isomorphism from $H_2(G;\mathbb Z)$ to this homology group, and the
+commutative diagram identifying that map with compactification into
+circle diffeomorphisms followed by the actual circle-bundle suspension.
+Integral group-homology two-classes are represented by closed oriented
+surfaces. Choose a class with positive GV suspension value, then a
+positive connected component of a surface representative. Adding
+trivially mapped handles, via a degree-one collapse, preserves its
+class and arranges genus at least two. Thus one representation
+$\rho:\pi_1\Sigma\to G$ has compactified circle suspension of value $a>0$.
+No uniform genus bound over all GV values is needed.
+
+Finitely many generator images have supports in a common compact
+interval. Every word fixes its complement. Compactifying $\mathbb R$
+to $(0,1)$ gives a suspension
+\[
+         E=(\widetilde\Sigma\times I)/\pi_1\Sigma
+\]
+with common product collars. It admits a smooth fiber trivialization
+relative to those collars: take increasing local fiber coordinates
+$s_i$ agreeing with the collar coordinate and a base partition of unity
+$\lambda_i$. The average $\sum_i\lambda_i s_i$ has positive vertical
+derivative, endpoint values $0,1$, and the prescribed collar values.
+It is consequently a smooth coordinate on every fiber, with smooth
+inverse. This trivializes the bundle, while preserving its possibly
+nontrivial horizontal foliation.
+
+In this trivialization let $V=\partial_s$ and normalize the cooriented
+defining form by $\alpha(V)=1$. Then $\alpha=ds$ on the collars.
+Frobenius and contraction give
+\[
+  0=\iota_V(\alpha\wedge d\alpha)
+    =d\alpha-\alpha\wedge\iota_Vd\alpha .
+\]
+Set $\eta=\iota_Vd\alpha$; it vanishes on the collars.
+Complete $I$ to a circle with an additional product interval, extending
+$\alpha$ by the circle-coordinate form and $\eta$ by zero.
+This recovers the classical compactified suspension. The added region
+has zero GV integrand, proving the asserted block integral.
+
+Finally the suspension leaf through $u\in I$ is
+$\widetilde\Sigma/\operatorname{Stab}(u)$ and projects as a covering
+onto $\Sigma$. Hence every leaf meets every prescribed interval fiber.
+\end{proof}
+
+\section{Fixed ambient manifold and finite stacking}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Choose an orientation-preserving pseudo-Anosov mapping class on $\Sigma$.
+A smooth representative $\varphi$ can fix a small disk pointwise.
+For example, the filling-multicurve twist construction
+\cite[Theorem~3.1]{P88}, also proved in \cite[pp.~467--468]{F92},
+uses smooth twists in thin annuli leaving a complementary disk fixed.
+The pseudo-Anosov property is required of the mapping class; the chosen
+disk-fixed representative need not itself be a pseudo-Anosov normal form.
+Fix $\varphi$ and
+\[
+ M=(\Sigma\times[0,1])/\bigl((x,1)\sim(\varphi(x),0)\bigr).
+\]
+Mapping-torus hyperbolization \cite[Theorem~0.1, Proposition~2.6,
+\S5]{Th98} makes this closed oriented manifold hyperbolic.
+Fix one such metric once and for all.
+
+Take $p$ in the fixed disk. The curve $\gamma(t)=[p,t]$ is a smooth
+embedded circle, and $V=\partial_t$ descends through the seam.
+For a given finite $N$, choose pairwise disjoint closed intervals
+$[a_j,b_j]\subset(0,1)$ with positive intervening gaps, and write
+$\ell_j=b_j-a_j>0$. On the $j$th slab use
+\[
+ h_j(x,t)=\left(x,\frac{t-a_j}{\ell_j}\right),\qquad
+ \alpha_j=\ell_j h_j^*\alpha,\qquad \eta_j=h_j^*\eta .
+\]
+They satisfy $d\alpha_j=\alpha_j\wedge\eta_j$ and
+$\alpha_j(V)=1$. On open endpoint collars they equal $dt,0$,
+with equality of all derivatives. Extend by $dt,0$ on the complement,
+including the mapping-torus seam. The resulting smooth nonvanishing
+form $\alpha_N$ is integrable and defines a cooriented foliation
+$\mathcal F_N$. The manifold, metric, and seam identification have not
+changed.
+
+In each slab every suspension leaf meets the vertical interval over $p$,
+by Lemma~\ref{lem:block}. In gaps, collars, and the seam neighborhood
+every leaf is a surface fiber and meets $\gamma$. Interior block leaves
+cannot cross a product collar leaf, so this accounts for every leaf.
+Also $\alpha_N(V)=1$ everywhere. Thus the same $\gamma$ is a positive
+closed transversal meeting every leaf, proving tautness.
+No condition intertwining $\rho$ with $\varphi$ is needed: insertion
+takes place in interior slabs with product behavior near the seam.
+
+The form $\eta_N$ vanishes off the inserted blocks and near all
+interfaces. Each $h_j$ preserves orientation, so
+\[
+ \int_{\Sigma\times[a_j,b_j]}\eta_j\wedge d\eta_j
+       =\int_{\Sigma\times I}\eta\wedge d\eta=a .
+\]
+Summing gives $\GV(\mathcal F_N)=Na$. Only finite stacks are used;
+derivatives may grow with $N$ while each foliation remains smooth.
+\end{proof}
+
+\paragraph{Verification and limitations.}
+The existence proof uses the cited classical suspension and
+hyperbolization theorems. It supplies no explicit numerical holonomy
+representation or certified hyperbolic metric.
+The accompanying exact-rational and symbolic controls check local
+form identities, compression, and finite bookkeeping; they do not
+replace the global proof. Their explicit failure checks remain active
+under Python optimization. Historical verifier deficiencies, independent
+adversarial audits, and the bounded priority search are documented
+separately. All primary-source PDFs are excluded from the supplement.
+
+\paragraph{AI and review disclosure.}
+AI tools were used extensively in development, drafting, source checking,
+computational reproduction, and adversarial review. This preprint is
+unrefereed and has not undergone conventional human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{C02} D.~Calegari,
+\emph{Problems in foliations and laminations of 3-manifolds},
+arXiv:math/0209081v1 (2002), Question~10.6.
+Published citation: Proc.\ Sympos.\ Pure Math.\ \textbf{71} (2003), 297--335;
+\href{https://doi.org/10.1090/pspum/071/2024640}{doi:10.1090/pspum/071/2024640}.
+\bibitem{T81} T.~Tsuboi,
+\emph{On 2-cycles of $B\Diff(S^1)$ which are represented by foliated
+$S^1$-bundles over $T^2$},
+Ann.\ Inst.\ Fourier \textbf{31}(2) (1981), 1--59;
+\href{https://doi.org/10.5802/aif.828}{doi:10.5802/aif.828}.
+\bibitem{G92} D.~Gabai,
+\emph{Taut foliations of 3-manifolds and suspensions of $S^1$},
+Ann.\ Inst.\ Fourier \textbf{42}(1--2) (1992), 193--208;
+\href{https://doi.org/10.5802/aif.1289}{doi:10.5802/aif.1289}.
+\bibitem{P88} R.~C.~Penner,
+\emph{A construction of pseudo-Anosov homeomorphisms},
+Trans.\ Amer.\ Math.\ Soc.\ \textbf{310}(1) (1988), 179--197;
+\href{https://doi.org/10.1090/S0002-9947-1988-0930079-9}
+{doi:10.1090/S0002-9947-1988-0930079-9}.
+\bibitem{F92} A.~Fathi,
+\emph{D\'emonstration d'un th\'eor\`eme de Penner sur la composition
+des twists de Dehn},
+Bull.\ Soc.\ Math.\ France \textbf{120}(4) (1992), 467--484.
+\bibitem{Th98} W.~P.~Thurston,
+\emph{Hyperbolic structures on 3-manifolds, II: Surface groups and
+3-manifolds which fiber over the circle},
+August 1986 preprint, January 1998 eprint,
+\href{https://arxiv.org/abs/math/9801045v1}{arXiv:math/9801045v1}.
+\end{thebibliography}
+\end{document}
+

@@ -1,0 +1,1556 @@
+Mathematische Zeitschrift (2024) 308:58
+https://doi.org/10.1007/s00209-024-03589-3                               Mathematische Zeitschrift
+
+
+Hopfian wreath products and the stable finiteness conjecture
+
+Henry Bradford1 · Francesco Fournier-Facio2
+
+Received: 6 December 2022 / Accepted: 29 August 2024 / Published online: 21 October 2024
+© The Author(s) 2024
+
+
+Abstract
+We study the Hopf property for wreath products of finitely generated groups, focusing on
+the case of an abelian base group. Our main result establishes a strong connection between
+this problem and Kaplansky’s stable finiteness conjecture. Namely, the latter holds true if
+and only if for every finitely generated abelian group A and every finitely generated Hopfian
+group  the wreath product A   is Hopfian. In fact, we characterize precisely when A   is
+Hopfian, in terms of the existence of one-sided units in certain matrix algebras over F p [],
+for every prime p occurring as the order of some element in A. A tool in our arguments is
+the fact that fields of positive characteristic locally embed into matrix algebras over F p thus
+reducing the stable finiteness conjecture to the case of F p . A further application of this result
+shows that the validity of Kaplansky’s stable finiteness conjecture is equivalent to a version
+of Gottschalk’s surjunctivity conjecture for additive cellular automata.
+
+
+1 Introduction
+
+Given two discrete
+                     groups  and , their (standard, restricted) wreath product is the group
+   :=           , where  acts on the direct sum by shifting coordinates. Wreath
+products are part of the standard toolbox in modern combinatorial and geometric group
+theory, providing examples of interesting behaviour, while still being intuitive and susceptible
+to explicit computations.
+    One of the first and most influential occurrences of wreath products in combinatorial group
+theory was in Gruenberg’s study of residual properties of solvable groups [23]. Along the
+way, he showed the that a wreath product of two (not necessarily solvable) groups    is
+residually finite if and only if  and  are residually finite, and either  is abelian or  is
+finite. When  and  are both finitely generated,    is also finitely generated, and so in
+particular if  is abelian and  is residually finite, then    is Hopfian.
+    Recall that a group is Hopfian if every self-epimorphism is an automorphism. They are
+named after Hopf, who first showed that surface groups are Hopfian (see [37, p. 415]). The
+fact that finitely generated residually finite groups are Hopfian was proven by Mal’cev [33].
+
+B Francesco Fournier-Facio
+    ff373@cam.ac.uk
+    Henry Bradford
+    hb470@cam.ac.uk
+1   Christ’s College, Cambridge, UK
+2   Department of Pure Mathematics and Mathematical Statistics, University of Cambridge, Cambridge, UK
+
+
+                                                                                           123
+58   Page 2 of 28                                                        H. Bradford, F. Fournier-Facio
+
+
+The first examples of finitely generated non-Hopfian groups were given by Neumann [42],
+and of finitely presented ones by Higman [27], but the simplest and most important example
+is probably that of Baumslag–Solitar groups, such as BS(2, 3) = a, t | ta 2 t −1 = a 3  [6, 17,
+36]. The class of Hopfian groups has received much attention in geometric group theory ever
+since, and the connection with residual finiteness is an important reason for this. A standout
+example is the fact that hyperbolic groups are Hopfian [47, 51], which may be seen as a
+weaker version of the longstanding conjecture that all hyperbolic groups are residually finite.
+In another direction, let us mention that the Hopf property is undecidable [8], and this is not a
+straightforward application of the Adian–Rabin Theorem, since the Hopf property is neither
+Markov nor co-Markov [39].
+    The starting point of this paper is the following general question:
+
+Question 1.1 Let ,  be finitely generated groups. When is the wreath product   
+Hopfian?
+
+    Despite the fact that finitely generated residually finite groups are Hopfian, the two prop-
+erties are very different in flavour. Indeed, residual finiteness ensures the existence of many
+normal subgroups, while Hopficity prevents the existence of certain normal subgroups. The
+most striking illustration of this, is that an infinite simple group cannot be residually finite,
+but it is Hopfian. Therefore, without any assumption of residual finiteness, trying to establish
+Hopficity of a group requires a different approach. Hence, while Question 1.1 is related to
+Gruenberg’s result, the techniques needed to attack it are bound to be different.
+    Let us start by mentioning some easy reductions for Question 1.1:
+
+Proposition 1.2 (Lemmata 2.4 and 2.5) If    is Hopfian, then  is Hopfian. If moreover
+ is abelian, then  is Hopfian.
+
+    Given this, and the relevance of abelian groups in Gruenberg’s result, for most of the
+paper we focus on the case in which  is a finitely generated abelian group. To make this
+assumption clear, we denote it by A instead.
+    As mentioned above, by Gruenberg’s result, if  is finitely generated residually finite then
+A   Hopfian. In light of this, and of Proposition 1.2 above, it is natural to conjecture that 
+finitely generated Hopfian implies A   Hopfian. Our main result shows that this conjecture
+is equivalent to one of the most longstanding open problems in group theory:
+
+Theorem 1.3 (Theorem 4.11) The following are equivalent:
+1. For every finitely generated abelian group A and every finitely generated Hopfian group
+   , the wreath product A   is Hopfian.
+2. Kaplansky’s direct finiteness conjecture holds.
+
+Remark 1.4 All of the statements in this paper assume  to be finitely generated. Other less
+elegant assumptions on  also ensure that our main results hold (see Remark 2.12).
+
+    Recall that a ring with identity R is directly finite if every element with a one-sided inverse
+is a unit; equivalently, if x y = 1 implies yx = 1 (Lemma 3.1). It is stably finite if the matrix
+rings Md (R) are directly finite for all d ≥ 1. Kaplansky’s direct (resp. stable) finiteness
+conjecture asserts that the group ring F[] is directly (resp. stably) finite for every group
+ and every field F. It turns out that the two conjectures are equivalent [16] and hold over
+fields of characteristic 0 [31, p. 122]. The case of positive characteristic is still wide open.
+It is known to hold for sofic groups [18], and more generally for surjunctive groups [45],
+
+123
+Hopfian wreath products and the stable...                                         Page 3 of 28       58
+
+
+therefore a counterexample to the stable finiteness conjecture would also imply the existence
+of a non-sofic group, and would disprove Gottshalk’s surjunctivity conjecture [14]. Moreover,
+a torsion-free counterexample to the direct finiteness conjecture would also produce the first
+counterexample to Kaplansky’s idempotent and zero-divisor conjectures, as well as a new
+counterexample to Kaplansky’s unit conjecture, which was recently disproven by Gardam
+[20] (see also [40]).
+   Because of this, Theorem 1.3 is all the more striking: the innocent-looking group-theoretic
+Question 1.1 shows a surprising connection to group rings and turns out to be at least as hard
+as some of the main open problems in modern group theory.
+   A connection between morphisms of wreath products and properties of units in group rings
+had already appeared in the literature. This can be traced back to the remark that surjunctive
+groups satisfy Kaplansky’s stable finiteness conjecture over finite fields [18], to which we
+shall also return. For a more recent example, in [24] the authors study morphisms to wreath
+products via geometric methods, and apply this to give a description of the automorphism
+group of A  , where A is a finite cyclic group and  is a one-ended finitely presented
+group, in terms of the units of the group ring A[]. Their starting point is similar to ours, but
+their analysis is completely geometric. Moreover, we believe that our methods could help to
+extend their analysis to the case in which the base is an arbitrary finite abelian group.
+   Theorem 1.3 is a consequence of the following more precise statement:
+Theorem 1.5 (Proposition 2.13, Corollary 4.3, Theorem 4.4) Let  be  a finitely generated
+group. Let A be a finitely generated abelian group, decomposed as A0 ⊕ p A p , where A0 is
+                                                                                                 p
+free abelian, and A p is a p-group for each prime p. Decompose further A p as (Z/ pZ)d1 ⊕
+                   p           p
+· · · ⊕ (Z/ p m Z)dm , where di ∈ N. Then the following are equivalent.
+1. A   is Hopfian.
+2.  is Hopfian, and for each prime p the ring Mmaxi (d p ) (F p []) is directly finite.
+                                                           i
+
+   Appealing to solutions of the stable finiteness conjecture in certain cases, we deduce:
+Corollary 1.6 (Corollary 3.10) Let  be a finitely generated group, and let A be a finitely
+generated abelian group. Suppose that one of the following holds:
+1. A is torsion-free;
+2.  is sofic;
+3.  is bi-orderable;
+4. A is cyclic and  has the unique product property.
+Then A   is Hopfian if and only if  is Hopfian.
+   Up to embedding arguments, Theorem 1.5 shows how Hopficity of such wreath products
+is equivalent to Kaplansky’s stable finiteness conjecture over F p . To move to all fields of
+characteristic p, we use the following result:
+Proposition 1.7 (Proposition 3.14) Let F be a field of characteristic p > 0. Then F is locally
+embeddable into finite fields of characteristic p. In particular, F is locally embeddable into
+matrix algebras over F p .
+    This means that for every finite subset K ⊂ F there exists an integer d ≥ 1 and a map
+ f : F → Md (F p ) whose restriction to K behaves like a ring homomorphism (see Definition
+3.11). The conclusion of Proposition 1.7 is well-known to experts but, having been unable to
+locate in the literature of the precise formulation we need, we include a self-contained proof
+below. We apply this to our setting to obtain:
+
+                                                                                      123
+58   Page 4 of 28                                                       H. Bradford, F. Fournier-Facio
+
+
+Corollary 1.8 (Corollary 3.15) Let p be a prime. Kaplansky’s stable finiteness conjecture
+over some field of characteristic p implies Kaplansky’s stable finiteness conjecture over all
+fields of characteristic p.
+
+   After reading a preliminary version of this paper, Giles Gardam pointed out to us that a
+reduction to finite fields can be achieved for all of the Kaplansky Conjectures via a Nullstel-
+lensatz argument: see [35, Section 3.4.3] for a proof in the case of the zero-divisor conjecture.
+That said, a peculiarity of the stable finiteness conjecture is that it allows to move between
+matrix algebras of different degrees. This makes it possible to reduce to F p , rather than to the
+class of all finite fields. We do not know if such a strong reduction holds for the zero-divisor
+and idempotent conjectures.
+   Corollary 1.8 gives a new, elementary proof of the following fact:
+
+Corollary 1.9 (Corollary 3.25) Surjunctive groups satisfy Kaplansky’s stable finiteness con-
+jecture.
+
+    Indeed, it was already noticed in [18] that surjunctive groups satisfy Kaplansky’s stable
+finiteness conjecture over finite fields, which follows easily from the definition. The statement
+for surjunctive groups was recently proven by Phung [45] via operator algebras (see [15] for
+an alternative proof via model theory). Via the Gromov–Weiss Theorem [22, 50], we also
+obtain a new proof of the following classical result:
+
+Corollary 1.10 (Corollary 3.25) Sofic groups satisfy Kaplansky’s stable finiteness conjecture.
+
+   This statement has now been proven several times: via operator algebras [18], via linear
+cellular automata [10] and via metric approximations of groups [4]; Corollary 1.10 adds a
+commutative algebra approach to this list of proofs.
+   A further application of Proposition 1.7 is to provide yet another equivalence with the
+stable finiteness conjecture:
+
+Theorem 1.11 (Theorem 3.24) Let  be a group. Then Kaplansky’s stable finiteness conjec-
+ture holds over  if and only if  is A-surjunctive.
+
+   Here a group is said to be A-surjunctive if every injective additive cellular automaton over
+ is surjective (Definition 3.21). The analogous statement for linear cellular automata, which
+yields the notion of L-surjunctive groups, was proven in [10].
+   We are also able to treat some non-abelian base groups. On the one hand, we treat nilpotent
+groups, where an induction argument on the nilpotency class allows to extend our results in
+the abelian case:
+
+Theorem 1.12 (Theorem 5.5 and Corollary 5.6) Let  be a finitely generated nilpotent group,
+with upper central series {Z i }i=0c . Let  be a finitely generated group and suppose that
+
+(Z i /Z i−1 )   is Hopfian for all i = 1, . . . , c. Then    is Hopfian.
+    In particular, Kaplansky’s stable finiteness conjecture holds if and only if    is Hopfian
+for every finitely generated nilpotent group  and every finitely generated Hopfian group .
+
+   On the opposite end of the spectrum, we examine the case in which  has certain properties
+that are incompatible with properties of . In this case, Hopficity is easier to show directly,
+and leads to many examples of the following phenomenon.
+
+Theorem 1.13 (Theorem 5.3) There exist finitely generated groups ,  such that  is non-
+Hopfian but    is Hopfian.
+
+123
+Hopfian wreath products and the stable...                                              Page 5 of 28   58
+
+
+   This result shows that the abelian hypothesis in the second part of Proposition 1.2 cannot
+be entirely removed. The proof is closely reminiscent of that of Gruenberg’s criterion for
+non-residual finiteness of wreath products from [23]. In spite of Theorem 1.13, the motivating
+Question 1.1 is still open in its generality. In particular, we end with the following special
+case:
+
+Question 1.14 Do there exist finitely generated Hopfian groups ,  such that    is
+non-Hopfian?
+
+   In light of one direction of Theorem 1.3, such an example could be seen as a “non-
+commutative” negative answer to Kaplansky’s stable finiteness conjecture. In view of our
+main results, to construct such an example one would expect that  should be far from
+abelian. So in particular we isolate the following special case of Question 1.14:
+
+Question 1.15 Let F be a non-abelian free group of finite rank, and let  be a finitely
+generated Hopfian group. Is F   Hopfian?
+
+   This is a promising case to treat since, on top of being far from abelian, free groups are
+also far from satisfying any of the properties that are exploited in the proof of Theorem 1.13
+(see also Remark 5.4).
+   Outline. We start with some group-theoretic results on wreath products and their epi-
+morphisms in Sect. 2. Then we move on to stable finiteness in Sect. 3, proving Proposition
+1.7 and its consequences. We combine the two approaches in Sect. 4, proving Theorem 1.5.
+Finally, we analyse non-abelian bases in Sect. 5, proving Theorems 1.12 and 1.13.
+   Notations. Throughout the rest of this paper,  and  will always denote discrete groups,
+and A will always denote an abelian group. We will use · to denote the multiplication in ,
+and 1 to denote the identity, while for A we use the additive notation +, 0. Conjugacy is
+denoted by γ f := γ f γ −1 , and accordingly commutators are defined as [γ , f ] := γ f · f −1 =
+γ f γ −1 f −1 . The set of natural numbers N contains 0.
+
+
+2 Wreath products
+
+In this section we establish notations and terminology, and prove some group-theoretic facts
+about wreath products and their self-epimorphisms, before moving to the ring-theoretic
+approach in Sect. 3.
+                               
+Definition 2.1 The subgroup   ≤    is called the base group, and is denoted [].
+A subgroup of the base group is called basic. A morphism ϕ :    →    is called basic
+if the image of the base group is basic.
+
+    We will denote elements of the base group as functions f :  →  of finite support,
+assigning to each γ ∈  the corresponding coordinate. Then the action of  takes the form
+               −1 x), and the group operation is:
+γ f (x) = f (γ
+
+                                ( f 1 , γ1 )( f 2 , γ2 ) = ( f 1 · γ1 f 2 , γ1 γ2 ).
+When specializing to abelian bases, we will use + to denote the operation on the base group,
+which makes the notation less confusing.
+
+Remark 2.2 Later on, we will make a connection between the base group [], when 
+is isomorphic to the additive group of a field F, and the group ring F[]. To make the
+
+                                                                                           123
+58   Page 6 of 28                                                                     H. Bradford, F. Fournier-Facio
+
+
+distinction clear, we will denote elements of the group ring not as functions but as formal
+linear combinations of group elements.
+Notation 2.3 Given δ ∈  and γ ∈  we denote by δ(γ ) ∈ [] the element defined by
+                                        
+                                          δ if x = γ ;
+                            δ(γ ) (x) =
+                                          1 otherwise.
+We denote by (γ ) := {δ(γ ) : δ ∈ }, that is the copy of  sitting at the coordinate γ .
+   Notice that    is generated by  and (γ ) for any choice of γ ∈ . In particular, if 
+and  are finitely generated, then so is   . One can also show that the converse is true,
+however this is less relevant for our purposes.
+
+2.1 Constructions of morphisms
+
+Here we prove Proposition 1.2; the constructions will also be used later on. First, we show
+that if  is non-Hopfian, then    is non-Hopfian:
+Lemma 2.4 Let ϕ :  →  be an epimorphism. Then
+                              :    →    : ( f , γ ) → (ϕ ◦ f , γ )
+is an epimorphism. It is an isomorphism if and only if ϕ is.
+    In particular, if  is non-Hopfian, then    is non-Hopfian.
+   The proof is elementary and left to the reader. The other case is more interesting, and was
+already noticed by Gruenberg [23, Lemma 3.2]:
+Lemma 2.5 Suppose that A is abelian. Let ϕ :  →  be an epimorphism. Given f ∈ A[]
+define ϕ ∗ ( f ) ∈ A[ ] by:
+                                                   
+                             ϕ∗( f ) :  → A : x →     f (y).
+                                                               y∈ϕ −1 (x)
+
+Then
+                           : A   → A   : ( f , γ ) → (ϕ ∗ ( f ), ϕ(γ ))
+is an epimorphism. It is an isomorphism if and only if ϕ is.
+    In particular, if  is non-Hopfian, then A   is non-Hopfian.
+Proof We start by noticing that ϕ ∗ : A[] → A[ ] is a homomorphism, and moreover
+                                             
+      ϕ ∗ (γ f )(x) =         f (γ −1 y) =               f (z) = ϕ ∗ ( f )(ϕ(γ −1 )x);
+                          y∈ϕ −1 (x)                 z∈ϕ −1 (ϕ(γ −1 )x)
+
+therefore ϕ ∗ (γ f ) = ϕ(γ ) ϕ ∗ ( f ). This easily implies that  is a homomorphism:
+     (( f 1 , γ1 )( f 2 , γ2 )) = ( f 1 + γ1 f 2 , γ1 γ2 ) = (ϕ ∗ ( f 1 ) + ϕ(γ1 ) ϕ ∗ ( f 2 ), ϕ(γ1 )ϕ(γ2 ))
+                               = (ϕ ∗ ( f 1 ), ϕ(γ1 ))(ϕ ∗ ( f 2 ), ϕ(γ2 )) = ( f 1 , γ1 )( f 2 , γ2 ).
+   Since () = ϕ(), and ((γ ) ) = (ϕ(γ )) , the surjectivity of ϕ implies the surjectivity
+of . Since | = ϕ, it follows that  can only be injective if ϕ is injective. Conversely, if
+ϕ is injective, then it is an isomorphism, and so we may rewrite ( f , γ ) = ( f ◦ ϕ −1 , ϕ(γ )),
+which shows that  is injective.                                                                
+                                                                                                
+
+123
+Hopfian wreath products and the stable...                                                       Page 7 of 28   58
+
+
+    We will see in Theorem 5.3 that the assumption that the base group be abelian is necessary.
+Indeed, if  is non-abelian, it is possible for  to be Hopfian even if  is itself not Hopfian.
+Here the assumption was used to make sense of the definition of ϕ ∗ by means of a sum of
+finitely many elements. However, this ambiguity only occurs in the case in which ϕ is not
+injective.
+
+2.2 Basic morphisms
+
+Recall that a self-epimorphism is called basic if it sends the base group to inside the base group.
+The ring-theoretic approach of the next sections will work only with basic epimorphisms,
+therefore the following result is an important starting point, which will crucially use the fact
+that the base group is abelian:
+
+Proposition 2.6 Let A be an abelian group, and let  be a finitely generated infinite group.
+Then every epimorphism A   → A   is basic.
+
+   The hypothesis that  is infinite is needed, as the next example shows:
+
+Example 2.7 There is a non-basic automorphism ϕ ∈ Aut(Z/2Z  Z/2Z) given by:
+                ϕ : ((x, y), 0) → ((x, x), x + y) and ϕ((0, 0), 1) = ((1, 0), 0).
+Under the isomorphism Z/2Z  Z/2Z ∼  = D8 , where D8 is the dihedral group of order 8, this
+is the outer automorphism given by swapping vertices and edges of the square on which D8
+acts.
+
+   We start with the following lemma.
+
+Lemma 2.8 Let A be a non-trivial abelian group. Let N ≤ A   be an abelian normal
+subgroup that is not basic. Then:
+1. A has exponent 2;
+2. There exists a central element γ ∈  of order 2;
+3. N equals the kernel of the epimorphism A   → A  (/γ ) from Lemma 2.5.
+
+Proof Suppose that ( f , γ ) ∈ N and γ  = 1 . For every non-identity a ∈ A and every g ∈ ,
+using that A is abelian and N is normal:
+                                  [( f , γ ), a(g) ] = a(γ g) − a(g) ∈ N .
+Moreover, using that N is abelian:
+                a(γ g) − a(g) = ( f , γ )(a(γ g) − a(g) )( f , γ )−1 = a(γ 2 g) − a(γ g) .
+
+Taking g = 1 , since γ  = 1 we obtain γ 2 = 1 and a = −a. This shows that A has
+exponent 2 and that γ has order 2.
+   Now suppose that ( f 1 , γ1 ) ∈ N . Then we have
+               a(γ ) − a(1 ) = ( f 1 , γ1 )(a(γ ) − a(1 ) )( f 1 , γ1 )−1 = a(γ1 γ ) − a(γ1 ) .
+Therefore either γ1 = γ or γ1 = 1 . This shows that the -coordinate of an element of N
+belongs to γ . In particular, since N is normal, we deduce that γ is central.
+   Finally, consider the epimorphism π : A   → A  (/γ ), as defined in Lemma 2.5.
+Explicitly, this is defined on  as the quotient π :  → /γ  and on A[] as the map
+
+                                                                                                    123
+58    Page 8 of 28                                                                         H. Bradford, F. Fournier-Facio
+
+
+π ∗ : A[] → A[/γ ] where π ∗ ( f )(π(x)) = f (x) + f (xγ ). The kernel K consists of
+elements ( f 1 , γ1 ), where γ1 ∈ γ  and f 1 is such that f 1 (x) + f 1 (γ x) = 0 for all x ∈ .
+Since A has exponent 2, this is equivalent to f 1 being γ -invariant. Now if ( f 1 , γ1 ) ∈ N ,
+then we have already seen that γ1 ∈ γ , and conjugating by ( f , γ ) ∈ N shows that f 1
+is γ -invariant. Therefore N ≤ K . For the other inclusion, a finitely supported γ -invariant
+function f may be written as a sum of elements of the form a(γ g) − a(g) . Since all of these
+belong to N , we have f ∈ N . In particular, taking ( f , γ ) ∈ N we also have γ ∈ N . It
+follows that K ≤ N , which concludes the proof.                                                 
+                                                                                                
+
+   Next, we recall two well-known structural results about wreath products. The first concerns
+the centre:
+
+Lemma 2.9 If  is infinite and  is non-trivial, then    is centreless.
+
+Proof Suppose that ( f , γ ) ∈ Z(  ). Then for every g ∈  it holds ( f , γ ) = g ( f , γ ) =
+(g f , g γ ). Identifying the first coordinates shows that f is -invariant, and since  is infinite
+this implies that f = 0, therefore γ ∈ Z( ). But then δ(g) = γ δ(g) = δ(γ g) and so γ g = g
+for all g ∈ , which implies γ = 1 .                                                             
+                                                                                                  
+
+     The second concerns the abelianisation.
+
+Definition 2.10 Given an abelian group A and a group , the augmentation map is the
+homomorphism
+                                               
+                           ε : A[] → A : f →      f (x).
+                                                                    x∈
+
+Lemma 2.11 If A is abelian, the abelianisation of A   is given by:
+                          A   → A × Ab() : ( f , γ ) → (ε( f ), Ab(γ )).
+
+Proof The kernel of the above map is the group K := {( f , γ ) : ε( f ) = 0, γ ∈ [, ]}.
+Therefore it suffices to show that if ϕ : A   → B is a homomorphism and B is abelian, then
+ϕ(K ) = 0 B . For the -coordinate this is tautological, so it suffices to show that if ε( f ) = 0,
+then ϕ( f ) = 0 B . This follows from the following computation:
+                                                            
+                                                                 
+           ϕ( f ) = ϕ         f (x)(x) = ϕ       x ( f (x)(e) ) =       ϕ(x) ϕ( f (x)(e) )
+                               x∈                      x∈                          x∈
+                                                                       
+                                                      
+                     =         ϕ( f (x)(e) ) = ϕ             f (x)(e)       = ϕ(ε( f )(e) ).
+                         x∈                           x∈
+
+Note that all expressions above are well-defined, since f (x) = 0 A for all but finitely many
+x ∈ .                                                                                      
+                                                                                            
+
+We are finally ready to prove the main result of this subsection.
+
+Proof of Proposition 2.6 Let ϕ : A   → A   be an epimorphism, and suppose that it is
+not basic. If A is trivial the statement is void, so let us assume that A is non-trivial. Then
+ϕ(A[]) = N is abelian, normal and non-basic. Thus we are in the situation of Lemma 2.8,
+in particular N equals the kernel of the epimorphism A   → A  (/γ ), where γ ∈  is
+central and of order 2. Therefore ϕ descends to an epimorphism
+                         ϕ:  ∼
+                              = (A  )/A[] → (A  )/N ∼
+                                                         = A  (/γ ).
+
+123
+Hopfian wreath products and the stable...                                       Page 9 of 28   58
+
+
+Since  is infinite, so is /γ , thus A  (/γ ) is centreless by Lemma 2.9. But then
+γ ∈ Z() must be in the kernel of ϕ, which therefore induces a further epimorphism
+
+                                            /γ  → A  /γ .
+
+   Passing to the abelianisation, by Lemma 2.11 we obtain an epimorphism
+
+                                   Ab(/γ ) → A × Ab(/γ )
+
+of finitely generated abelian groups. Composing this with the (non-injective) projection onto
+Ab(/γ ), we have produced a self-epimorphism of Ab(/γ ) that is not injective. This
+shows that Ab(/γ ) is non-Hopfian. But , and thus Ab(/γ ), is finitely generated, and
+finitely generated abelian groups are residually finite thus Hopfian.                       
+                                                                                            
+
+Remark 2.12 The hypothesis that  be finitely generated is used throughout this paper only
+in order to apply Proposition 2.6. However, it is apparent from the proof that it is enough
+to assume that /γ  has a Hopfian abelianisation. Other assumptions ensure that every
+epimorphism is basic just by using Lemma 2.8, for instance one may assume that  has no
+central involution, or that A does not have exponent 2. We stick to finite generation for the
+sake of elegance of the statements.
+
+2.3 Some reductions
+
+The main goal of this subsection is to prove the following reduction result:
+                                                                                      
+Proposition 2.13 Let A be a finitely generated abelian group, and write A = A0 ⊕ p A p ,
+where p is ranges over all primes, A0 is free abelian and A p is a finite abelian p-group. Let
+ be a finitely generated Hopfian group. Then the following are equivalent:
+1. A   is Hopfian;
+2. A0   and A p   are Hopfian, for every p.
+
+  In fact, we will see in Corollary 4.3 that A0   is always Hopfian.
+  Let us start by proving a general fact about self-epimorphisms of semidirect products,
+which will combine well with Proposition 2.6:
+
+Lemma 2.14 Let ϕ :   →   be an epimorphism, and suppose that ϕ( ) ≤ , and
+that  is Hopfian. Then ϕ( ) = and ker(ϕ) ≤ .
+   Suppose moreover that is abelian. Then there exists an automorphism α of  such that
+
+                          ψ:       →            : (λ, γ ) → (ϕ(λ), α(γ ))
+
+is an epimorphism with ker(ψ) = ker(ϕ). In particular, ϕ is injective if and only if ψ is
+injective.
+
+Proof Consider the following commutative diagram:
+                                                   ϕ
+                                                            
+
+
+
+                                                      (    )/ϕ( )
+
+                                                                                    123
+58    Page 10 of 28                                                      H. Bradford, F. Fournier-Facio
+
+
+ The right arrow is the quotient by the normal subgroup ϕ( ). Precomposing with ϕ gives
+a morphism whose kernel contains , so this morphism factors through the quotient by ;
+this defines the lower arrow and completes the square.
+   Since ϕ( ) ≤ , the group (  )/ϕ( ) admits  as a quotient. If ϕ( ) were a proper
+subgroup of , then the lower arrow composed with this quotient would contradict that 
+is Hopfian. Therefore ϕ( ) = and the commutative diagram above can be rewritten as
+follows:
+                                                ϕ
+                                                       
+
+
+                                                ∼
+                                                =
+                                                        
+ Now if ( f , γ ) ∈ ker(ϕ), then ( f , γ ) is in the kernel of the composition of the left arrow
+and the bottom arrow; since the latter is injective, this implies that γ = 1 . In other words,
+ker(ϕ) ≤ .
+   For every endomorphism ϕ of  , there exist maps b :  → and α :  →  such
+that ϕ(γ ) = (b(γ ), α(γ )), and α is a homomorphism. The previous paragraph shows that,
+under our assumptions, α is a isomorphism. Suppose that is abelian. We define ψ as in
+the statement, namely ψ(λ, γ ) := (ϕ(λ), α(γ )) (recall that ϕ( ) = ) and check that it is
+a homomorphism. Clearly ψ| = ϕ| and ψ| = α are homomorphisms. We check that ψ
+satisfies the conjugacy relation:
+           ψ(γ λ) = ϕ(γ λ) = ϕ(γ ) ϕ(λ) = (b(γ ),α(γ )) ϕ(λ) = α(γ ) ϕ(λ) = ψ(γ ) ψ(λ);
+where we used that is abelian.
+   Since ψ() = α() =  and ψ( ) = ϕ( ) = , it follows that ψ is an epimorphism.
+Moreover, ker(ϕ), ker(ψ) ≤ by the first statement, and ψ| = ϕ| , therefore ker(ψ) =
+ker(ϕ).                                                                           
+                                                                                  
+     This takes the following form for wreath products, which will be useful later on:
+Proposition 2.15 Let A be an abelian group, let  be an infinite finitely generated group,
+and let ϕ : A   → A   be an epimorphism. Then ϕ(A[]) = A[] and ker(ϕ) ≤ A[].
+   Moreover, ψ : ( f , γ ) → (ϕ( f ), γ ) is an epimorphism such that ker(ψ) = ker(ϕ). In
+particular, ϕ is injective if and only if ψ is injective.
+Proof We write A  ∼  = A[]. Proposition 2.6 shows that ϕ(A[]) ≤ A[], thus we may
+apply Lemma 2.14, which shows the first part of the statement, and gives an automorphism
+α of  such that ( f , γ ) → (ϕ( f ), α(γ )) is a self-epimorphism with the same kernel as ϕ.
+We can then postcompose this with the automorphism ( f , γ ) → ((α −1 )∗ ( f ), α −1 (γ )), as
+described in Lemma 2.5, to conclude.                                                        
+                                                                                            
+    Now let us move to the matter at hand, namely Proposition 2.13. In order to apply Lemma
+2.14, we start by noticing a decomposition for wreath products with base a direct product.
+Let A, B be abelian groups, and let  be a group. Then (A × B)   ∼= A[]  (B  ), where
+B   acts on A[] by letting B act trivially and  act as usual. We will use the notation
+( f A , f B , γ ) to denote elements in this form.
+    We start with the easier direction:
+Lemma 2.16 Let A, B be abelian groups, and let  be an infinite finitely generated group. If
+(A × B)   is Hopfian, then A   and B   are Hopfian.
+
+123
+Hopfian wreath products and the stable...                                           Page 11 of 28   58
+
+
+Proof If  is non-Hopfian then none of the groups above is Hopfian by Lemma 2.5, so
+we may assume that  is Hopfian. Suppose that B   is non-Hopfian: we will show that
+(A × B)   is non-Hopfian (the other case follows by symmetry). Let ϕ : B   → B   be
+a self-epimorphism that is not injective. Using Proposition 2.15, we may assume that ϕ is of
+the form ϕ( f , γ ) = (ϕ( f ), γ ).
+   Write (A × B)   ∼ = A[]  (B  ), and define
+           : A[]  (B  ) → A[]  (B  ) : ( f A , f B , γ ) → ( f A , ϕ( f B ), γ ).
+This is a homomorphism when restricted to both A[] and B  , and it is easily seen to
+satisfy the conjugacy relation, therefore it is a homomorphism. It is an epimorphism since
+(A[]) = A[] and (B  ) = ϕ(B  ) = B  , and it is not injective since | B = ϕ,
+and the latter is not injective.                                                         
+                                                                                         
+   Now we move to a partial converse of Lemma 2.16, which needs some additional assump-
+tions.
+Lemma 2.17 Let A, B be abelian groups. Suppose that A is torsion, and any two torsion
+elements of A and B have coprime orders. Let  be an infinite finitely generated group. If
+A   and B   are Hopfian, then (A × B)   is Hopfian. In particular, this holds if A is
+finite, and B is either free abelian, or finite and of order coprime to A.
+Proof Again we may assume that  is Hopfian by appealing to Lemma 2.5. Suppose that
+(A × B)   is non-Hopfian, and B   is Hopfian: we will show that A   is non-Hopfian. Let
+ϕ : (A × B)   → (A × B)   be a self-epimorphism that is not injective. Using Proposition
+2.15, we may assume that ϕ( f , γ ) = (ϕ( f ), γ ), and ϕ|(A×B)[] is a self-epimorphism of
+(A × B)[].
+    The restiction of ϕ to A[] → (A × B)[] actually has image in A[]: indeed, every
+element of A[] is torsion and its order does not divide the order of any element in B[].
+Therefore writing (A × B)   ∼   = A[]  (B  ), we have ϕ(A[]) ≤ A[]. Since B   is
+Hopfian and A[] is abelian, we are in the setting of Lemma 2.14, and thus ϕ(A[]) = A[]
+and ker(ϕ) ≤ A[]. Moreover we may assume that there exists an automorphism α of B  
+such that ϕ( f A , f B , γ ) = (ϕ( f A ), α( f B , γ )). Applying Proposition 2.15 to α, we obtain
+an automorphism β of  and reduce to the case in which ϕ takes the form ϕ( f A , f B , γ ) =
+(ϕ( f A ), ϕ( f B ), β(γ )).
+    Define  : A   → A   : ( f , γ ) → (ϕ( f A ), β(γ )). Then  is a homomorphism, being
+the restriction of ϕ to A[]  , it is an epimorphism since (A[]) = A[] and () = ,
+and it is not injective since | A[] = ϕ| A[] and ker(ϕ) is non-trivial and contained in A[].
+Therefore A   is not Hopfian and we conclude.                                                  
+                                                                                                 
+   We deduce the main result of this subsection.
+Proof of Proposition 2.13 If  is finite, then A   is virtually finitely generated abelian, thus
+residually finite. In particular, A   is Hopfian for every finitely generated abelian group A.
+Therefore we may assume that  is infinite, and then the result follows from Lemmata 2.16
+and 2.17.                                                                                        
+                                                                                                 
+
+
+3 Stable finiteness
+
+In this section we discuss direct and stable finiteness of group rings. We will start by recall-
+ing some known cases of Kaplansky’s conjectures, and then prove Proposition 1.7 and its
+consequences: Corollaries 1.8 and 1.9, and Theorem 1.11.
+
+                                                                                         123
+58    Page 12 of 28                                                      H. Bradford, F. Fournier-Facio
+
+
+3.1 Known results
+
+Let us start by pointing out the following elementary but useful fact:
+
+Lemma 3.1 Let R be a unital ring, and suppose that x ∈ R admits both a left and a right
+inverse. Then the inverses coincide. In particular, the following are equivalent:
+1. R is directly finite; that is, every element with a left inverse is a unit.
+2. For all x, y ∈ R, if x y = 1 R then yx = 1 R
+
+Proof Suppose that x y = yz = 1 R . Then x = x(yz) = (x y)z = z.                                     
+                                                                                                     
+
+     This immediately implies the following:
+
+Lemma 3.2 If S is a unital subring of R and R is directly finite, then S is directly finite. In
+particular, if S is a unital subring of R, d ≥ d and Md (R) is directly finite, then Md (S) is
+directly finite.
+
+  As mentioned in the Introduction, the two conjectures are equivalent. This fact was already
+known to Passman (see the Mathscinet review [44]), but first appeared in print in [16]:
+
+Theorem 3.3 Let F be a field and let  be a group. Then F[] is stably finite if and only if
+F[ × H ] is directly finite for every finite group H . Therefore, Kaplansky’s direct finiteness
+conjecture is equivalent to Kaplansky’s stable finiteness conjecture.
+
+     The most important fact about these conjectures is that they hold in characteristic 0:
+
+Theorem 3.4 [31, p. 122] Let F be a field of characteristic 0 and let  be any group. Then
+F[] is stably finite.
+
+   In fact, Kaplansky’s original formulation of the conjecture [31, p. 123] only concerns
+stable finiteness over fields of positive characteristic. Let us record a corollary that will be
+useful for our purposes:
+
+Corollary 3.5 Let  be a group. Then Z[] is stably finite.
+
+Proof This follows form Theorem 3.4 and Lemma 3.2, by embedding Z[] as a subring of
+Q[].                                                                             
+                                                                                  
+
+   Now let us mention some groups that are known to satisfy these conjectures. The main
+example is that of sofic groups:
+
+Definition 3.6 Let  be a group. Let 0 < ε < 1, n ≥ 1 and let F ⊂  be a finite subset of .
+A map ϕ : F → Sn is called an (F, ε)-approximation if the following two conditions hold:
+1. For all g, h ∈ F, if gh ∈ F, then it holds d H (ϕ(gh), ϕ(g)ϕ(h)) ≤ ε;
+2. For all 1  = g ∈ F it holds d H (ϕ(g), id) ≥ (1 − ε).
+Here d H denotes the normalised Hamming distance on Sn , that is d H (σ, τ ) = n1 #{i : σ (i)  =
+τ (i)}.
+    The group  is said to be sofic if for every 0 < ε < 1 and every finite subset F ⊂  there
+exists an (F, ε)-approximation into some Sn .
+
+123
+Hopfian wreath products and the stable...                                         Page 13 of 28   58
+
+
+   The class of sofic groups was introduced by Gromov [22] and Weiss [50] as a large class of
+groups for which Gottschalk’s surjunctivity conjecture could be proven. We will discuss this
+more in Subsection 3.3. The main examples of sofic groups are amenable and residually finite
+groups, and several constructions (subgroups, directed unions, marked limits, extensions by
+amenable groups) preserve soficity: we refer the reader to [14] for more detail. To this day,
+there is no known example of a non-sofic group.
+
+Theorem 3.7 ([18]) Sofic groups satisfy Kaplansky’s stable finiteness conjecture.
+
+    Theorem 3.7 was proven again by different methods in [10] and then in [4]. In Subsection
+3.3, we will provide yet another proof. Let us however mention that we will only be dealing
+with group rings over fields, but the stable finiteness for group rings of sofic groups holds
+more generally over division rings [18], and in fact over Noetherian rings [32].
+    Another relevant class of examples is that of groups with the unique product property,
+or more succintly UPP groups. We say that  is a UPP group if for every pair of nonempty
+finite subsets S, T ⊂  there exists an element g ∈  that can be uniquely expressed as the
+product of an element of S and an element of T . Relevant examples of UPP groups are left
+orderable groups, that is, groups admitting a total order that is invariant by left translation. It
+can be shown that for every field F and every UPP group , the group ring F[] is directly
+finite (the proof is the same as the fact that UPP groups have no nontrivial units, see e.g. [43,
+Chapter 13]). However, we do not know whether UPP groups, or even left orderable groups,
+satisfy Kaplansky’s stable finiteness conjecture. Theorem 3.3 does not help in this case, since
+no group with torsion is UPP.
+
+Question 3.8 Do UPP groups satisfy Kaplansky’s stable finiteness conjecture? Do left order-
+able groups?
+
+   For left orderable groups, the following special case is known:
+
+Proposition 3.9 Bi-orderable groups satisfy Kaplansky’s stable finiteness conjecture.
+
+   A group is bi-orderable if it admits a total order that is invariant under both left and right
+translation.
+
+Proof This follows from the fact that if  is bi-orderable and F is a field, then F[] embeds
+into a division ring [34, 41].                                                              
+                                                                                            
+
+   An intermediate notion between bi-orderability and left orderability is local indicability:
+a group is locally indicable if every finitely generated subgroup surjects onto Z, and this is
+equivalent to the existence of a left invariant order satisfying a weak version of bi-invariance
+[5, 9]. Group rings of locally indicable groups embed into division rings in characteristic 0
+[30], but to our knowledge this is still open in positive characteristic, which is the case of
+relevance for the stable finiteness conjecture.
+   Using these known results, we can deduce Corollary 1.6 from the Introduction, assuming
+Theorem 1.5.
+
+Corollary 3.10 Let  be a finitely generated group, and let A be a finitely generated abelian
+group. Suppose that one of the following holds:
+1. A is torsion-free;
+2.  is sofic;
+3.  is bi-orderable;
+
+                                                                                       123
+58    Page 14 of 28                                                      H. Bradford, F. Fournier-Facio
+
+
+4. A is cyclic and  has the unique product property.
+Then A   is Hopfian if and only if  is Hopfian.
+                      
+Proof Let A := A0 ⊕ A p , where A0 is free abelian, and A p is a p-group which decomposes
+                           p                     p           p
+further as A p := (Z/ pZ)d1 ⊕ · · · ⊕ (Z/ p m Z)dm , where di ∈ N. By Theorem 1.5, it suffices
+to show that, under each of the four assumptions above, the ring Mmaxi (d p ) (F p []) is directly
+                                                                          i
+finite.
+    When A is torsion-free, there is nothing to check. When  is sofic, this follows from
+Theorem 3.7, and when  is bi-orderable, this follows from Proposition 3.9. When A is
+               p
+cyclic, each di = 1, and so this amounts to direct finiteness of F p [], which holds for UPP
+groups [43, Chapter 13].                                                                          
+                                                                                                  
+
+3.2 Local embeddings
+
+The notion of a local embedding goes back to the work of Mal’cev [33] although it is
+commonly attributed to [48]. Let us recall the definition for rings:
+Definition 3.11 Let R be a ring and S a class of rings. We say that R is locally embeddable
+into S if for every finite set F ⊂ R there exists a map f : F → S ∈ S such that:
+1. For all x, y ∈ F, if x + y ∈ F, then it holds f (x + y) = f (x) + f (y);
+2. For all x, y ∈ F, if x y ∈ F, then it holds f (x y) = f (x) f (y);
+3. f | F is injective.
+   If R has an identity, we also require that each S ∈ S has an identity, and f (1 R ) = 1 S (if
+1 R ∈ F). Such a map f is called a local embedding of F into S.
+     This is an exact version of the notion of approximation we used to introduce sofic groups.
+Example 3.12 If f : R → S is an injective homomorphism of rings, then the restriction of
+f to any finite subset of R is a local embedding. Thus R locally embeds into the class {S}.
+Remark 3.13 Let R be a unital ring and S , T be classes of unital rings. If R locally embeds
+into S and every S ∈ S locally embeds into T , then R locally embeds into T . In particular, if
+ f : R → S is an injective homomorphism of rings and S is locally embeddable into T , then
+taking S = {S} in the above and using Example 3.12, we have that local embeddability into
+a class T is preserved under taking subrings.
+   The main result of this subsection is Proposition 1.7 from the Introduction, which we
+recall for the reader’s convenience:
+Proposition 3.14 Let F be a field of characteristic p > 0. Then F is locally embeddable into
+finite fields of characteristic p. In particular, F is locally embeddable into matrix algebras
+over F p , namely {Md (F p ) : d ≥ 1}.
+   Before moving on to the proof, let us record the following corollary (Corollary 1.8 from
+the Introduction):
+Corollary 3.15 Let  be a group; let p be a prime and let F be a field of characteristic
+p. Then F[] is stably finite if and only if F p [] is stably finite. Thus Kaplansky’s stable
+finiteness conjecture over F implies Kaplansky’s stable finiteness conjecture over all fields
+of characteristic p.
+
+123
+Hopfian wreath products and the stable...                                        Page 15 of 28   58
+
+
+Proof For the first statement, if F[] is stably finite, then the subring F p [] is stably finite
+by Lemma 3.2. Conversely suppose that F[] is not stably finite. Then by Theorem 3.3 there
+exists a finite group H such that F[ × H ] is not directly finite. Write  =  × H , so that
+there exist x, y ∈ F[] such that x y = 1F[] but yx  = 1F[] . Let E ⊂ F be the union of all
+coefficients of x, y, x y and yx (a finite set containing 0 and 1). Let n ∈ N be such that there
+exists a subset of  of size n spanning both x and y. Let:
+                                    n                       
+                                      
+                             F :=         λi μi : λi , μi ∈ E ⊆ F
+                                            i=1
+
+and let f : F → Md (F p ) be a local embedding: The latter exists by Proposition 3.14. We
+extend f to a map F[] → Md (F p )[] - where F[] denotes the subset of elements of
+F[] such that all images belong to F - as follows:
+                                         
+                                               
+                              f       z·δ =         f (z) · δ.
+                                            δ∈   δ∈
+
+Then by construction of F and the local embedding property, f (x) f (y) = f (x y) =
+ f (1F[] ) = Id , while f (y) f (x) = f (yx)  = Id by injectivity. Therefore Md (F p )[] is
+not directly finite. But Md (F p )[] is naturally isomorphic to Md (F p []), so F p [] is not
+stably finite. By Theorem 3.3, there exists a finite group K such that F p [× K ] is not directly
+finite. Since  × K ∼ =  × (H × K ) and H × K is a finite group, one more application of
+Theorem 3.3 yields that F p [] is not stably finite.                                            
+                                                                                                 
+
+   As a consequence, we have the following neat reformulation of the stable finiteness con-
+jecture.
+
+Corollary 3.16 Kaplansky’s stable finiteness conjecture holds iff for every group  and every
+prime p, F p [] is directly finite.
+
+Proof One direction is clear. Converesly, for fixed p, direct finiteness of F p [] for every
+group  implies stable finiteness of F p [] for every group , by Theorem 3.3. Corollary
+3.15 then implies stable finiteness of F[] for every field F of characteristic p and every
+group . Finally, the characteristic zero case follows from Theorem 3.4.                    
+                                                                                            
+
+Remark 3.17 The first statement of Proposition 3.14 allows to show, with a similar argument,
+that the zero-divisor and idempotent conjectures over field of characteristic p reduce to the
+case of finite fields of characteristic p. See [35, Section 3.4.3] for an argument covering the
+zero-divisor conjecture. But to reduce to F p specifically, we crucially exploit the flexibility
+of changing the degree of the matrix algebras, and this is allowed by the stable finiteness
+conjecture only.
+
+    We now turn to the proof of Proposition 3.14. First, we explain how the second statement
+in Proposition 3.14 follows from the first. Recall that if A is a finite-dimensional algebra over
+a field K, then A naturally acts on itself faithfully by linear transformations, so that a choice
+of K-basis for A induces an embedding of A as a subring of Md (K), where d = dimK (A).
+In particular we have the following:
+
+Lemma 3.18 If F is a finite field of characteristic p, then F is isomorphic to a subring of
+Md (F p ) for some d ≥ 1.
+
+                                                                                      123
+58    Page 16 of 28                                                     H. Bradford, F. Fournier-Facio
+
+
+  The key to the proof of Proposition 3.14 is Zariski’s Lemma (a close cousin of Hilbert’s
+Nullstellensatz, see [3] Proposition 7.9).
+Theorem 3.19 Let E be a subfield of F. Suppose that F is finitely generated as an associative
+algebra over E. Then |F : E| is finite.
+Proof of Proposition 3.14 Let F be a finite subset of F. Let R be the subring of F generated
+by A = F ∪ {(x − y)−1 : x, y ∈ F, x  = y}, and let M  R be a maximal (not necessarily
+nonzero) ideal in R. Then R/M is a field, which as an F p -algebra is generated by the finite set
+A + M. Thus by Theorem 3.19 R/M is a finite field, and hence by Lemma 3.18 is isomorphic
+to a subring of some Md (F p ). Finally, the quotient homomorphism R → R/M restricts to
+an injection of F, since by construction of A, whenever x, y ∈ F with x  = y, x − y is a unit
+in R, so does not lie in M.                                                                    
+                                                                                               
+
+3.3 Additive cellular automata
+
+In this subsection, we apply Corollary 3.15 to obtain yet another equivalent version of
+Kaplansky’s stable finiteness conjecture, proving Theorem 1.11 and Corollary 1.9 from the
+Introduction. We start by introducing the relevant definitions.
+Definition
+          3.20 Let  be a group, and let F be a finite set, called the alphabet. Let F  be the
+set     F endowed with the usual left action of  and the prodiscrete topology. A cellular
+     γ ∈
+automaton over  is a continuous -equivariant map f : F  → F  .
+   If F is a finite-dimensional vector space over a field K, and f is a linear map, then f is
+called a linear cellular automaton.
+   If F is a finite abelian group, and f is a homomorphism, then f is a called an additive
+cellular automaton.
+   The classical definition of cellular automaton is usually given in terms of memory sets
+and local defining maps [14, Definition 1.4.1], however the above definition is equivalent
+in case the underlying alphabet F is finite [14, Theorem 1.8.1], which will be our case of
+interest. There is an immense literature on cellular automata; we refer the reader to the book
+[14] for a group-theoretic viewpoint, which is most relevant for our purposes. Linear cellular
+automata over groups have been extensively studied by Ceccherini-Silberstein and Coornaert
+[14, Chapter 8]. On the other hand, while the study of additive cellular automata is very well-
+developed in theoretical computer science (see [49] for a survey), to our knowledge an analysis
+parallel to the one of linear cellular automata over groups is absent from the literature.
+   One of the fundamental problems in the theory of cellular automata is to understand so-
+called Garden of Eden states, that is elements that lie outside the image of a given cellular
+automaton. This leads naturally to the study of the classes of groups for which Garden of
+Eden states do not exist, under the natural assumption of injectivity (which in certain classical
+settings is equivalent to reversibility):
+Definition 3.21 A group  is said to be surjunctive if every injective cellular automaton over
+ (with alphabet a finite set) is surjective. It is said to be L-surjunctive if every injective
+linear cellular automaton over  is surjective. It is said to be A-surjunctive if every injective
+additive cellular automaton is surjective.
+    The property of surjunctivity was introduced by Gottschalk in [21], who asked whether
+all groups are surjunctive: this is now known as the Gottschalk surjunctivity conjecture.
+
+123
+Hopfian wreath products and the stable...                                          Page 17 of 28   58
+
+
+The class of sofic groups was introduced by Gromov [22] and Weiss [50] precisely in this
+context, for proving at once surjunctivity of many groups, including amenable and residually
+finite groups. As mentioned above, the notion of A-surjunctivity seems to be absent from
+the literature. The problem of L-surjunctivity has been studied extensively by Ceccherini-
+Silberstein and Coornaert [10–13]. In particular, they proved the following striking connection
+to Kaplansky’s stable finiteness conjecture:
+
+Theorem 3.22 ([10]) Let  be a group. Then  is L-surjunctive if and only if  satisfies
+Kaplansky’s stable finiteness conjecture. More precisely, given a d-dimensional vector space
+V over a field K, the following are equivalent:
+1. Every injective linear cellular automaton V  → V  is surjective.
+2. The ring Md (K[]) is directly finite.
+
+   Here the field K, and thus the vector space V , need not be finite, and in that case the
+definition of cellular automaton assumed in the statement is the classical one [14, Definition
+1.4.1]. However, thanks to our results of the previous subsection, we deduce that for the
+characterization it suffices to look at finite fields:
+
+Corollary 3.23 Let  be a group. Then  is L-surjunctive if and only if  satisfies Kaplansky’s
+stable finiteness conjecture over F p , for all primes p.
+
+Proof This follows directly by combining Theorem 3.22 and the fact that Kaplansky’s stable
+finiteness conjecture reduces to the fields F p , by Theorem 3.4 and Corollary 3.15.    
+                                                                                        
+
+   Our goal in this subsection is to show that the notions of L-surjunctivity and A-surjunctivity
+coincide:
+
+Theorem 3.24 Let  be a group. Then  is A-surjunctive if and only if it is L-surjunctive.
+
+   Our proof will use Theorem 3.22 as a base case for an induction argument, which is a
+mild version of the more involved induction argument that we will use in the next section.
+
+ Proof of Theorem 3.24 If  is A-surjunctive, then every injective additive cellular automaton
+(Fdp ) → (Fdp ) is surjective. This applies in particular to linear cellular automata, so  is
+L-surjunctive.
+    Conversely, suppose that  is L-surjunctive,
+                                                 and let A be a finite abelian group, which we
+decompose as a sum of p-groups A =                                                     
+                                             p A p . Then A decomposes as           p A p , and this
+decomposition is -equivariant, where  acts on the direct sum by shifting diagonally. Let
+ f : A → A be an injective additive cellular automaton. Then, as in the proof of Lemma
+2.17, the image of Ap is a p-group, so it belongs to Ap . It follows that f restricts to injective
+additive cellular automata Ap → Ap , and therefore we reduce to the case in which A is a
+p-group.
+    We proceed by induction on the exponent of A. Let Q be the subgroup of elements of order
+dividing p. Then Q is a finite abelian group of exponent p, and therefore it is the additive
+group of a finite-dimensional vector space over F p . Moreover, the image of Q  under f
+also has exponent p, which implies that f restricts to an injective additive cellular automaton
+Q  → Q  . This is automatically linear, and since Q is a finite-dimensional F p -vector space,
+by the assumption on L-surjunctivity we have f (Q  ) = Q  , and moreover by injectivity
+ f −1 (Q  ) = Q  as well. Since Q  is closed and -invariant, it follows that f induces an
+injective additive cellular automaton (A/Q) → (A/Q) . The exponent of A/Q is strictly
+smaller than the exponent of A, and thus we conclude by induction.                                 
+                                                                                                   
+
+                                                                                        123
+58    Page 18 of 28                                                        H. Bradford, F. Fournier-Facio
+
+
+     In particular we obtain Corollary 1.9 from the Introduction:
+
+Corollary 3.25 Surjunctive groups satisfy Kaplansky’s stable finiteness conjecture. In partic-
+ular, sofic groups satisfy Kaplansky’s stable finiteness conjecture.
+
+Proof Surjunctive groups are clearly A-surjunctive, thus L-surjunctive by Theorem 3.24. We
+conclude by Theorem 3.22. The last statement follows from the Gromov–Weiss Theorem
+[22, 50].                                                                                
+                                                                                         
+
+Remark 3.26 Our argument went through A-surjunctivity, which in turn used the result for L-
+surjunctivity from [10]. However, the corollary for surjunctive groups is really an elementary
+consequence of Corollary 3.15: indeed, it was noticed already in [18] that surjunctive groups
+satisfy the direct finiteness conjecture over group rings, and virtually surjunctive groups are
+surjunctive [2].
+
+   Corollary 3.25 was recently independently proven by Phung [45] using methods from the
+theory of symbolic algebraic varieties. Still, the blueprint of his proof is similar to ours, in
+that it goes through the surjunctivity property for an algebro-geometric category of cellular
+automata.
+   Let us end this section by pointing out that surjunctivity and Hopficity are in some sense
+dual to each other. In one case, injectivity implies surjectivity, and in the other case surjectivity
+implies injectivity. The relation between the two only occurs via direct finiteness, which is
+a symmetric property. In fact, in the results of the next section (for instance in the proof of
+Theorem 4.2) one direction is elementary and follows a similar approach as the proof that
+surjunctivity implies stable finiteness; but the other direction will need an ad-hoc approach,
+which is moreover only possible thanks to the preliminary work in Sect. 2.
+
+
+4 Wreath products and stable finiteness
+
+In this section we prove Theorem 4.4, which combined with Proposition 2.13 and Corollary
+4.3 gives Theorem 1.5 from the Introduction. Using Corollary 3.15 we then deduce Theorem
+1.3 (Theorem 4.11 below).
+   The following observation appears as Exercise 8.13 in [14]. Since (a special case of) this
+observation is essential for our purposes, we give a self-contained proof. For R a ring and
+d ≥ 1, we write elements of R d as row-vectors (so that matrices act on the right).
+
+Lemma 4.1 Let R be a unital ring and let d ≥ 1. Then R d is a Hopfian left R-module if and
+only if the ring Md (R) is directly finite.
+
+Proof First suppose that Md (R) is directly finite and that ϕ : R d → R d is a surjective left
+R-module endomorphism. Let B be the standard free basis for R d . For each b ∈ B, let
+cb ∈ ϕ −1 (b). Let ψ : R d → R d be the (unique) left R-module endomorphism of R d given
+by ψ(b) = cb for all b ∈ B. Then ϕ ◦ ψ = id R d . Since End R (R d ) ∼  = Md (R), we deduce
+ψ ◦ ϕ = id R d also, and ϕ is an isomorphism.
+    Conversely suppose that X , Y ∈ Md (R) satisfy X Y = Id but Y X  = Id . Define ϕ : R d →
+R by ϕ(v) = vY . Then ϕ is clearly a left R-module homomorphism. Moreover v = ϕ(v X ),
+  d
+
+so ϕ is surjective. Since Y X  = Id , there exists v ∈ R d such that vY X  = v. Let 0  = u =
+vY X − v ∈ R d . Then uY = 0 so u ∈ ker(ϕ), so ϕ is not injective, and R d is not Hopfian.   
+
+123
+Hopfian wreath products and the stable...                                       Page 19 of 28   58
+
+
+   Next, we examine the special case in which the base group is a power of a fixed cyclic
+group, which will serve as the basis of an induction in the general case. We use the convention
+that Z/nZ = Z when n = 0.
+
+Theorem 4.2 Let  be a finitely generated Hopfian group; let n ≥ 0, and let d ≥ 1. Then
+ (Z/nZ)d   is Hopfian if and only if Md (Z/nZ)[] is directly finite.
+
+Proof If  is finite, then (Z/nZ)d   is Hopfian, being finitely generated and residually
+finite by [23] (note that (Z/nZ)d   is not necessarily finite, since n is allowed to be equal
+to 0). Moreover (Z/nZ)[] is stably finite: this is immediate when n ≥ 1 since finite rings
+are stably finite, and it is Corollary 3.5 in case n = 0. Therefore we may assume that  is
+infinite, which allows us to use the results from Sect. 2.
+    Let R = (Z/nZ)[]. Then (Z/nZ)d [] is naturally a left R-module. Indeed, it is isomor-
+phic to R d as a left R-module: given f ∈ (Z/nZ)d [], write:
+
+                                       f (g) = f (g)1 , . . . , f (g)d
+
+for g ∈  (with f (g)i ∈ Z/nZ), and identify f with ( f 1 , . . . f d ) ∈ R d , where f i ∈ R =
+(Z/nZ)[] is given by f i (g) = f (g)i . Under this identification, we have (Z/nZ)d   ∼     =
+R d  , where the group operation is given by:
+
+                                 (v1 g1 )(v2 , g2 ) = (v1 + g1 · v2 , g1 g2 )
+
+(where g1 · v2 denotes the left action of  on R d under the left (Z/nZ)[]-module structure
+of R d ). For the remainder of the proof we work with R d  .
+   First suppose that R d  is non-Hopfian, and that ϕ : R d  → R d  is a non-injective
+group epimorphism. Let ψ : R d   → R d   be as in Proposition 2.15; that is ψ(v, γ ) =
+(ϕ(v), γ ), and ψ is also a non-injective group epimorphism. Then the homomorphism relation
+implies:
+
+                  ϕ(g · v), g = ψ(g · v, g) = ψ(0, g)ψ(v, 1 ) = g · ϕ(v), g
+
+for all v ∈ R d and g ∈ , so the restriction of ϕ to R d is in fact a left R-module homo-
+morphism, which by Proposition 2.15 is surjective but not injective. In other words, R d is a
+non-Hopfian left R-module, and by Lemma 4.1, Md (R) is not directly finite.
+    Conversely suppose that Md (R) is not directly finite, so that by Lemma 4.1 there exists
+a surjective left R-module homomorphism ψ : R d → R d which is not injective. Define
+ϕ : R d   → R d   by ϕ(v, g) = (ψ(v), g). Then ϕ is a homomorphism of groups, which
+is surjective but not injective.                                                           
+                                                                                           
+
+   This already implies the full solution to our problem for free abelian groups:
+
+Corollary 4.3 Let A be a free abelian group of finite rank, and let  be a finitely generated
+group. Then  is Hopfian if and only if A   is Hopfian.
+
+Proof Let A = Zd . If A   is Hopfian, then by Lemma 2.5, so too is . Conversely, if 
+is Hopfian and A   is non-Hopfian, then Theorem 4.2 (applied with n = 0) implies that
+Md (Z[]) is not directly finite, contradicting Corollary 3.5.                         
+                                                                                       
+
+    Thanks to Proposition 2.13, we are left to understand when P   is Hopfian, where P is
+a finite abelian p-group.
+
+                                                                                     123
+58   Page 20 of 28                                                        H. Bradford, F. Fournier-Facio
+
+
+Theorem 4.4 Let  be a finitely generated Hopfian group. Let P = (Z/ pZ)d1 ⊕ · · · ⊕
+(Z/ p m Z)dm be a finite abelian p-group. Then P  is Hopfian if and only if Mmaxi (di ) F p []
+is directly finite.
+
+   Note that Theorems 4.2 and 4.4 combine to immediately yield the following conclusion
+about directly finite rings.
+
+Corollary 4.5 Let  be a finitely generated Hopfian group and let d, m ≥ 1. Then Md F p []
+is directly finite iff Md (Z/ p m Z)[] is directly finite.
+
+   As a first step towards Theorem 4.4, we have the following reduction, which is essentially
+an application of Hensel’s Lemma.
+
+Lemma 4.6 Let  be a group and let d, m ≥ 1. If Md (Z/ p m+1 Z)[] is directly finite, then
+so is Md (Z/ p m Z)[] .
+
+Proof Let X , Y ∈ Md (Z/ p m Z)[] and suppose X Y = Id . Let X̃ , Ỹ ∈ Md Z[] with
+X̃ ≡ X , Ỹ ≡ Y mod p m , so that there exists Z ∈ Md Z[] such that X̃ Ỹ = Id + p m Z . Set
+X = X̃ , Y = Ỹ (Id − p m Z ), so that X Y = Id − p 2 m Z ≡ Id mod p m+1 . By direct finiteness
+of Md (Z/ p m+1 Z)[] , we have Y X ≡ Id mod p m+1 , but X ≡ X , Y ≡ Y mod p m , so
+Y X = Id also.                                                                               
+                                                                                             
+
+Notation 4.7 For d = (d1 , . . . , dm ) ∈ Nm ; D = d1 + · · · + dm , and R a unital ring, let
+Bd (R) ≤ M D (R) be the subring given by:
+                               ⎧⎛                  ⎞                 ⎫
+                               ⎪     A1 ∗ · · · ∗                    ⎪
+                               ⎪
+                               ⎪                                     ⎪
+                                                                     ⎪
+                               ⎨⎜
+                               ⎪              .  . ⎟                 ⎪
+                                                                     ⎬
+                                  ⎜ 0 A2 . . .. ⎟
+                  Bd (R) := ⎜     ⎜ . . .
+                                                   ⎟ : Ai ∈ Md (R) .
+                                                   ⎟
+                               ⎪
+                               ⎪  ⎝ .. . . . . ∗ ⎠
+                                                               i
+                                                                     ⎪
+                                                                     ⎪
+                               ⎪
+                               ⎪                                     ⎪
+                                                                     ⎪
+                               ⎩                                     ⎭
+                                      0 · · · 0 Am
+
+Lemma 4.8 Keep the terminology from Notation 4.7. Suppose that Mmaxi (di ) (R) is directly
+finite. Let X ∈ Bd (R) and Y ∈ M D (R) be such that Y X = I D . Then Y ∈ Bd (R).
+
+Proof We proceed by induction on m; the base case m = 1 is vacuous. Write X =
+(X i, j )1≤i, j≤m and Y = (Yi, j )1≤i, j≤m as block-matrices, with X i, j , Yi, j ∈ Mdi ×d j (R) and
+X i, j = 0 for i > j. We have Y1,1 X 11 = Id1 , so by the direct finiteness hypothesis and
+Lemma 3.2, X 1,1 is invertible. Now, Y j,1 X 1,1 = 0 for 2 ≤ j ≤ m, so Y j,1 = 0. Thus, letting
+X , Y ∈ M D−d1 (R) be the bottom-right blocks of X and Y , we have X Y = I D−d1 . Since
+X ∈ Bd (R), where d = (d2 , . . . , dm ), we have Y ∈ Bd (R) by inductive hypothesis, so
+Y ∈ Bd (R).                                                                                        
+                                                                                                   
+
+Lemma 4.9 Let R be a unital ring and let U D (R) be the set of D-by-D upper-unitriangular
+matrices over R. Then U D (R) forms a group under matrix multiplication.
+
+Proof For 0 ≤ k ≤ (D − 1) let U D,k (R) ⊆ U D (R) be the set of matrices A ∈ U D (R)
+satisfying Ai, j = 0 for 1 ≤ j − i ≤ k, so that U D,0 (R) = U D (R); U D,k+1 (R) ⊆ U D,k (R)
+and U D,D−1 (R) = {I D }. We claim that every element of U D (R) has a right-inverse. By
+induction on k, it suffices to show that, if A ∈ U D,k (R) then there exists B ∈ U D,k (R) such
+that AB ∈ U D,k+1 (R). Taking B = 2I D − A suffices.                                          
+                                                                                              
+
+
+123
+Hopfian wreath products and the stable...                                          Page 21 of 28   58
+
+
+Lemma 4.10 Keeping the terminology from Notation 4.7, Bd (R) is directly finite if and only
+if Mmaxi (di ) (R) is directly finite.
+Proof The forward direction is an application of Lemma 3.2.
+   Conversely, let U D (R) be the group of upper-unitriangular matrices over R (by Lemma
+4.9 this is indeed a group); let:
+                    ⎛                  ⎞         ⎛               ⎞
+                       A1 ∗ · · · ∗                B1 ∗ · · · ∗
+                    ⎜                . ⎟         ⎜             . ⎟
+                    ⎜ 0 A2 . . . .. ⎟            ⎜ 0 B2 . . . .. ⎟
+                    ⎜                  ⎟         ⎜               ⎟ ∈ Bd (R)
+               X =⎜ .                  ⎟ and Y = ⎜ . . .         ⎟
+                    ⎝ .. . . . . . . ∗ ⎠         ⎝ .. . . . . ∗ ⎠
+                       0 · · · 0 Am                0 · · · 0 Bm
+(with Ai , Bi ∈ Mdi (R)), and suppose that X Y = I D . Then for 1 ≤ i ≤ m, Ai Bi = Idi , so
+by direct finiteness of Mdi (R), all Bi Ai = Idi also, hence Y X ∈ U D (R). It follows that Y
+has a right-inverse X (Y X )−1 , but since X is a left-inverse to Y , X = X (Y X )−1 by Lemma
+3.1. Thus Y X = I D also.                                                                   
+                                                                                            
+Proof of Theorem 4.4 The case in which  is finite can be dealt with as in the beginning of
+the proof of Theorem 4.2, so once again we may assume that  is infinite and use the results
+from Sect. 2.
+    For 1 ≤ i ≤ m and 1 ≤ j ≤ di , let ai, j ∈ P generate the jth (Z/ pi Z)-factor of P. Let
+Q ≤ P be the set of elements of P of order dividing p. Then Q is an elementary abelian
+p-group with basis {bi, j : 1 ≤ i ≤ m, 1 ≤ j ≤ di }, where bi, j = pi−1 ai, j , and Q[] is a
+free left F p []-module of rank D, with free basis B = {bi, j 1 : 1 ≤ i ≤ m, 1 ≤ j ≤ di }. For
+1 ≤ i ≤ m let Wi ≤ Q[] be the left F p []-submodule generated by {bi, j 1 : 1 ≤ j ≤ di },
+and let Vi = Wi + Wi+1 + . . . + Wm ≤ Q[].
+    Suppose first that Mmaxi (di ) F p [] is directly finite. By Lemma 4.10, Bd F p [] is
+directly finite. We proceed by induction on the exponent of P. The base case exp(P) = p
+follows from Theorem 4.2. Let ϕ : P   → P   be an epimorphism. By Proposition 2.15,
+we may assume that there is a left--equivariant epimorphism ψ : P[] → P[] such that
+for all v ∈ P[] and g ∈ , ϕ(v, g) = (ψ(v), g) (see the proof of Theorem 4.2). The set of
+elements of P[] of additive order dividing p is precisely Q[], so ψ(Q[]) ≤ Q[]. Thus
+ϕ descends to a well-defined surjective homomorphism ϕ from (P )/Q[] ∼          = (P/Q) to
+itself. Since P/Q ∼ = (Z/ pZ)d2 ⊕ · · · ⊕ (Z/ p m−1 Z)dm has smaller exponent than P, and by
+assumption Bdi F p [] is directly finite for 2 ≤ i ≤ m, ϕ is an isomorphism, by induction.
+It follows that ker(ϕ) ≤ Q[].
+    We claim that ψ(Q[]) = Q[]. Let v ∈ Q[]. Since ϕ(P[]) = P[] ≥ Q[], there
+exists u ∈ P[] with ϕ(u) = v. Thus ϕ(u + Q[]) = v + Q[] = 0, so by injectivity of ϕ,
+u ∈ Q[], as required. Thus the restriction of ψ to Q[] is a left--equivariant epimorphism,
+hence an epimorphism of left F p []-modules.
+    As in the proof of Lemma 4.1, the left F p []-module homomorphism ψ| Q[] has a right-
+inverse ρ : Q[] → Q[]. Let X and Y be the matrices of ψ| Q[] and ρ, respectively, with
+respect to the basis B, so that Y X = I D (note that our matrices act on the right, to ensure
+left--equivariance, so the order of matrix multiplication is the reverse of that for function
+composition). We claim that X ∈ Bd1 F p [] . It will then follow from Lemma 4.8 and direct
+finiteness of Bd1 F p [] that X Y = I D and ρ ◦(ψ| Q[] ) = id Q[] , so that ψ| Q[] is injective.
+Since, from the above, ker(ϕ) = ker(ψ| Q[] ), ϕ is an isomorphism, and we conclude that
+P   is Hopfian.
+    It suffices then to show that X ∈ Bd1 F p [] . In other words, it suffices to show that
+for each 1 ≤ i ≤ m, ψ(Wi ) ≤ Vi . Recall that Wi is generated as an abelian group by the
+
+                                                                                        123
+58   Page 22 of 28                                                     H. Bradford, F. Fournier-Facio
+
+
+elements bi, j g = pi−1 ai, j g (for 1 ≤ j ≤ di and g ∈ ), which are pi−1 th powers in the
+group P[]. Thus ψ(bi, j g) is a pi−1 th power in P[]. Since P[] is generated as an abelian
+group by all elements of the form ak,l h (for 1 ≤ k ≤ m; 1 ≤ l ≤ dk and h ∈ ), and
+pi−1 ak,l h = 0 for k ≤ i − 1, it follows that ψ(bi, j g) lies in:
+                                                                     
+                       Q[] ∩ pi−1 ak,l h : k ≥ i, 1 ≤ l ≤ dk , h ∈ 
+which is precisely Vi , as desired.
+   Conversely suppose that P   is Hopfian. Then by Lemma 2.16, (Z/ pi Z)di   is Hopfian
+for each 1 ≤ i ≤ m. Thus by Theorem 4.2, each ring Mdi (Z/ pi Z)[] is directly finite.
+Finally, by Lemma 4.6, each ring Mdi F p [] is directly finite.                          
+                                                                                          
+
+  We conclude our study of wreath products with abelian bases by completing the proof of
+Theorem 1.3 from the Introduction, the statement of which we recall here.
+
+Theorem 4.11 The following are equivalent:
+1. For every finitely generated abelian group A and every finitely generated Hopfian group
+   , the wreath product A   is Hopfian.
+2. Kaplansky’s direct finiteness conjecture holds.
+
+Proof Kaplansky’s direct finiteness conjecture is equivalent to Kaplansky’s stable finiteness
+conjecture by Theorem 3.3. By Theorem 1.5 and Corollary 3.15 the first item is equivalent
+to the fact that for every finitely generated Hopfian group  and every field F, the group ring
+F[] is stably finite. By Lemma 3.2, it suffices to notice that every finitely generated group
+embeds into a finitely generated Hopfian group [39].                                          
+                                                                                              
+
+
+5 Beyond abelian bases
+
+We end by considering cases in which the base is not abelian. We start by looking at certain
+centreless bases, in which case the structure will be such that Hopficity is much easier to
+show, and in particular we will obtain examples of Hopfian wreath products    where 
+is non-Hopfian (Theorem 5.3). Secondly, we extend the results on abelian bases to nilpotent
+bases (Theorem 5.5).
+
+5.1 Centreless bases
+
+The proof of the following proposition is essentially contained in the literature [23, 26]. We
+include a proof for the reader’s convenience.
+
+Proposition 5.1 Let N ≤    be a normal subgroup.
+1. Suppose N is not basic. Then N contains  [].
+2. Suppose N is basic, and let K be the projection of N onto (e) . Then K is a nontrivial
+   normal subgroup of , and ([K , ])[] ≤ N ≤ K [].
+
+Proof For the first part, suppose N is not basic, and let ( f , γ ) ∈ N with 1  = γ . Then for
+any δ, η ∈  and g ∈ ,
+                               −1 
+                    ( f , γ ), δ(g)  = f (γ g)δ −1 f (γ g)−1 (γ g) · δ(g) ∈ N
+
+123
+Hopfian wreath products and the stable...                                       Page 23 of 28   58
+
+
+so:
+                                                −1         
+                                    [( f , γ ), δ(g) ], η(g) = [δ, η](g) ∈ N
+
+and the set of all elements of the form [δ, η](g) generates  [].
+    For the second part, since for any g ∈  we have N = g N g −1 , the projection of N
+to (g) is also equal to K . Thus N ≤ K []. For the other inclusion, given k ∈ K and
+g ∈ , let f ∈ [] with f (g) = k (such f exists by the above). Then for any δ ∈ ,
+[ f , δ(g) ] = [k, δ](g) ∈ N .                                                        
+                                                                                      
+
+   Recall that a group  is called just-non-solvable if  is not solvable, but every proper
+quotient of  is solvable. For instance every non-abelian simple group is just-non-solvable.
+Thompson’s group F is an example of a finitely generated just-non-solvable group which
+is not simple, as F is infinite simple and contained in every nontrivial normal subgroup
+of F [7]. Just-infinite p-torsion groups, such as Grigorchuk’s groups and the Gupta-Sidki
+p-groups, are further examples, as is the Basilica group [25].
+
+Proposition 5.2 If  is solvable and  is just-non-solvable, then    is just-non-solvable.
+
+Proof A central extension of a solvable group is solvable, so  is centreless. It follows that 
+and [K , ] are nontrivial normal subgroups of  for every nontrivial K  . By Proposition
+5.1, for any nontrivial N     there exists a nontrivial L   such that L[] ≤ N . Thus
+(  )/N is a quotient of (  )/L[] ∼ = (/L  ), which is solvable, since /L and 
+are.                                                                                            
+                                                                                                
+
+  Using Proposition 5.2, we complete the proof of Theorem 1.13, the statement of which
+we recall.
+
+Theorem 5.3 There exist finitely generated groups  and , with  non-Hopfian, such that
+   is Hopfian.
+
+Proof Let  be any finitely generated just-non-solvable group (for instance a finite nonabelian
+simple group). Let  be any finitely generated non-Hopfian solvable group (for instance the
+Abels group [1]). Then by Proposition 5.2,    is just non-solvable. The result follows,
+since every just non-solvable group is Hopfian.                                               
+                                                                                              
+
+Remark 5.4 The previous proof admits a far-reaching generalization. Let P be a property of
+groups such that:
+1. If  has P , then so does every subgroup of ;
+2. If  and  are groups with P , then    has P .
+   Then    is just-non-P whenever  has P and  is just-non-P and centreless (note
+that if a central extension of a group with P has P , then just-non-P groups are automatically
+centreless; this was the case for solvability). In particular this implies that    is Hopfian.
+Examples of properties P satisfying the above include “finite”; “amenable”; “torsion-free”;
+“torsion”; “left orderable”; and “sofic” (by [28]).
+
+5.2 Nilpotent bases
+
+In this subsection, we extend the case of abelian bases to all nilpotent bases:
+
+                                                                                     123
+58   Page 24 of 28                                                          H. Bradford, F. Fournier-Facio
+
+
+Theorem 5.5 Let  be a finitely generated nilpotent group, and let {Z i }i=0       c be the upper
+central series of , so that Z 1 = Z (). Let  be a finitely generated group, and suppose
+that (Z i /Z i−1 )   is Hopfian for all i = 1, . . . , c. Then    is Hopfian.
+Corollary 5.6 The following are equivalent:
+1. For every finitely generated nilpotent group  and every finitely generated Hopfian group
+   , the wreath product    is Hopfian.
+2. Kaplansky’s stable finiteness conjecture holds.
+Proof This follows by combining Theorem 1.3 with Theorem 5.5. Note that in order to apply
+Theorem 1.3 to the terms of the upper central series, we are using the fact that every subgroup
+of  is finitely generated [46, Section 15.3].                                                
+                                                                                              
+   The proof of Theorem 5.5 will be by induction on c. The induction step is of independent
+interest.
+Lemma 5.7 Let  be a non-abelian group, and let Z := Z () be its centre. Let  be a
+Hopfian group. Then every epimorphism ϕ :    →    satisfies ϕ(Z []) ≤ Z [].
+Proof We start by showing that ϕ([]) ∩ [] has a surjective projection onto (e) . In
+case ϕ is basic, this follows from Lemma 2.14. Otherwise let ( f , γ ) ∈ ϕ([]) be such that
+γ  = 1 . We then argue as in Lemma 2.8: Since ϕ([]) is normal (because ϕ is surjective),
+it must also contain, for any δ ∈ , [( f , γ ), (δ −1 )(e) ] = f (δ −1 )(γ ) · δ(e) , whose projection
+onto (e) is δ.
+    In fact, the above argument shows that if ≤  is a normal subgroup such that ϕ( [])
+is non-basic, then ϕ( []) ∩ [] has a surjective projection onto (e) . Since (e) ∼          =  is
+non-abelian, this implies that ϕ(Z []) ≤ [].
+    Now, ϕ(Z []) and ϕ([]) ∩ [] commute elementwise, and since the projection of
+the latter to (e) is surjective, it follows that the projection of ϕ(Z []) to (e) has image
+contained in Z (e) . Finally, for every γ ∈ , (γ ) is conjugate to (e) in , so by normality
+of ϕ(Z []) in    we have that that the projection of ϕ(Z []) to (γ ) has image contained
+in Z (γ ) . Thus ϕ(Z []) ≤ Z [].                                                                    
+                                                                                                      
+Proposition 5.8 Let ,  be groups, with  finitely generated and infinite, and let Z := Z ().
+Suppose that Z   is Hopfian, and that (/Z )   is Hopfian, and every automorphism of
+(/Z )   is basic. Then    is Hopfian, and every automorphism of    is basic.
+Proof Let ϕ :    →    be an epimorphism. If  is abelian, then  = Z , and we are
+done by Proposition 2.6. Otherwise we can apply Lemma 5.7 and we have ϕ(Z []) ≤ Z []
+(noting the assumption that Z   is Hopfian implies  is Hopfian, by Lemma 2.5). We now
+proceed as in the proof of Lemma 2.14:
+                                                ϕ
+                                                         
+
+
+
+                             (/Z )                 (  )/ϕ(Z [])
+   By assumption (/Z )   is Hopfian. Since (  )/ϕ(Z []) surjects onto (/Z )  , it
+follows that ϕ(Z []) = Z [], and ϕ descends to an automorphism of (/Z )  , which is
+basic by hypothesis. It follows that ϕ itself is basic, and so we may write ϕ(γ ) = (b(γ ), α(γ )),
+for a map b :  → [] and an automorphism α :  → .
+
+123
+Hopfian wreath products and the stable...                                           Page 25 of 28   58
+
+
+   Define ψ : Z   → Z   by ψ| Z [] = ϕ| Z [] , and ψ| = α. Then ψ is a homomorphism:
+indeed, it is clearly a homomorphism on Z [] and on , and it satisfies the conjugacy
+relation because [] centralizes Z []. Moreover it is surjective, since ϕ(Z []) = Z []
+and α() = . Since Z   is Hopfian by assumption, ψ is injective. Since ϕ induces an
+automorphism of (/Z )   = (  )/Z [], we have ker(ϕ) ≤ Z [] and using that
+ψ| Z [] = ϕ| Z [] , we conclude that ϕ is also injective.                               
+                                                                                          
+
+   We now easily obtain Theorem 5.5:
+
+Proof of Theorem 5.5 If  is finite, then    is finitely generated and residually finite by
+[23], therefore it is Hopfian (here we are using that finitely generated nilpotent groups are
+residually finite [46, Section 15.4]). Moreover since Z 1 is abelian, and Z 1   is Hopfian,
+by Lemma 2.5 we obtain that  is Hopfian. Thus from now on, we let  be a fixed finitely
+generated infinite Hopfian group.
+    We will prove the following stronger statement by induction. Let  be a finitely generated
+nilpotent group, and let {Z i }i=0
+                                 c    be the upper central series of . Suppose that (Z i /Z i−1 )  
+is Hopfian for all i = 1, . . . , c. Then    is Hopfian, and moreover every automorphism of
+   is basic. The case c = 1 is already included in Proposition 5.8. Now suppose that c > 1.
+Then /Z is a finitely generated nilpotent group of class (c − 1) with upper central series
+{Z i }i=1
+      c . Therefore by induction (/Z )   is Hopfian, and every automorphism is basic. We
+
+conclude by Proposition 5.8 that    is Hopfian, and every automorphism is basic.                  
+                                                                                                     
+
+
+6 Co-Hopfian groups
+
+Following circulation of a preliminary version of this article, we have been asked several times
+what can be said about the co-Hopf property for wreath products (recall that a group  is co-
+Hopfian if every monomorphism  →  is an isomorphism). Examples of co-Hopfian groups
+include finite groups, and several important groups from geometric group theory, including
+one-ended hyperbolic groups [38, 47], mapping class groups [29] and outer automorphism
+groups of free groups [19]. Non-examples include free groups, or more generally right-angled
+Artin groups, and infinite finitely generated abelian groups.
+   In one respect, the co-Hopf property for wreath products is better behaved than the Hopf
+property, in that examples as in Theorem 1.13 do not occur:
+
+Proposition 6.1 Let  and  be groups and suppose    is co-Hopfian. Then  and  are
+co-Hopfian.
+
+Proof Let φ :  →  and ψ :  →  be monomorphisms. Then we have monomorphisms
+,  :    →    given by:
+                        ( f , γ ) = (φ ◦ f , γ ) and ( f , γ ) = ( f , ψ(γ ))
+where f :  →  is given by:
+                                              
+                                                  f (γ ) if γ = ψ(γ );
+                                   f (γ ) =
+                                                  1 if γ ∈/ im(ψ).
+If φ (respectively ψ) is not surjective, then neither is  (respectively ).                        
+                                                                                                    
+
+    It seems not unreasonable to expect that, if  is a co-Hopfian group and A is an abelian
+finite (hence co-Hopfian) group, then the existence (or not) of basic monomorphisms A 
+
+                                                                                          123
+58   Page 26 of 28                                                                H. Bradford, F. Fournier-Facio
+
+
+ → A   which are not surjective should be related to stable finiteness properties of .
+Unfortunately, there does not presently seem to be much hope of reducing all monomorphisms
+to basic monomorphisms, since the image of the base group under a monomorphism need not
+be normal in A  , hence Lemma 2.8 is no longer directly relevant. We leave the analogue
+of Question 1.1 as a further open question:
+
+Question 6.2 Let ,  be finitely generated groups. When is the wreath product    co-
+Hopfian?
+Acknowledgements The authors are indebted to Giles Gardam, Anthony Genevois, Peter Kropholler, Markus
+Steenbock and John Wilson for useful conversations. They thank the anonymous referee for many useful
+comments that improved the exposition. They also wish to thank the organisers of the conference YGGT X -
+Newcastle (Online), where this work was started.
+
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which
+permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give
+appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence,
+and indicate if changes were made. The images or other third party material in this article are included in the
+article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is
+not included in the article’s Creative Commons licence and your intended use is not permitted by statutory
+regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder.
+To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.
+
+
+
+References
+ 1. Abels, H.: An example of a finitely presented solvable group, Homological group theory (Proc. Sympos.,
+    Durham, London Math. Soc. Lecture Note Ser., vol. 36, Cambridge Univ. Press, Cambridge-New York
+    1979, 205–211 (1977)
+ 2. Arzhantseva, G., Gal, S.R.: On approximation properties of semidirect products of groups. Ann. Math.
+    Blaise Pascal 27(1), 125–130 (2020)
+ 3. Atiyah, M.F., MacDonald, I.G.: Introduction to commutative algebra, Addison-Wesley Series in Mathe-
+    matics, Addison-Wesley, 1969
+ 4. Arzhantseva, G., Păunescu, L.: Linear sofic groups and algebras. Trans. Amer. Math. Soc. 369(4), 2285–
+    2310 (2017)
+ 5. Brodskiı̆, S.D.: Equations over groups, and groups with one defining relation. Sibirsk. Mat. Zh. 25(2),
+    84–103 (1984)
+ 6. Baumslag, G., Solitar, D.: Some two-generator one-relator non-Hopfian groups. Bull. Amer. Math. Soc.
+    68, 199–201 (1962)
+ 7. Cannon, J.W., Floyd, W.J., Parry, W.R.: Introductory notes on Richard Thompson’s groups, Enseign.
+    Math. (2) 42 (1996), no. 3-4, 215–256
+ 8. Collins, D.J.: On recognizing Hopf groups. Arch. Math. (Basel) 20, 235–240 (1969)
+ 9. Conrad, P.: Right-ordered groups. Michigan Math. J. 6, 267–275 (1959)
+10. Ceccherini-Silberstein, T., Coornaert, M.: Injective linear cellular automata and sofic groups. Israel J.
+    Math. 161, 1–15 (2007)
+11. Ceccherini-Silberstein, T., Coornaert, M.: Linear cellular automata over modules of finite length and
+    stable finiteness of group rings. J. Algebra 317(2), 743–758 (2007)
+12. Ceccherini-Silberstein, T., Coornaert, M.: On the surjunctivity of Artinian linear cellular automata over
+    residually finite groups, Geometric group theory, pp. 37–44. Birkhäuser, Basel, Trends Math. (2007)
+13. Ceccherini-Silberstein, T., Coornaert, M.: Amenability and linear cellular automata over semisimple
+    modules of finite length. Comm. Algebra 36(4), 1320–1335 (2008)
+14. Ceccherini-Silberstein, T., Coornaert, M.: Cellular automata and groups, Springer Monographs in Math-
+    ematics, Springer-Verlag, Berlin, 2010
+15. Ceccherini-Silberstein, T., Coornaert, M., Phung, X.K.: First-order model theory and Kaplansky’s stable
+    finiteness conjecture. arXiv preprint arXiv:2310.09451. To appear in Groups Geom. Dyn. (2023)
+16. Dykema, K., Juschenko, K.: On stable finiteness of group rings. Algebra Discr. Math. 19(1), 44–47 (2015)
+
+
+
+
+123
+Hopfian wreath products and the stable...                                                  Page 27 of 28   58
+
+
+17. Edletzberger, A.: Residual finiteness in hyperbolic groups, Master’s thesis, Universität Wien, 2019
+18. Elek, G., Szabó, E.: Sofic groups and direct finiteness. J. Algebra 280(2), 426–434 (2004)
+19. Farb, B., Handel, M.: Commensurations of Out(Fn ). Publ. Math. Inst. Hautes Études Sci. 105, 1–48
+    (2007)
+20. Gardam, G.: A counterexample to the unit conjecture for group rings. Ann. Math. 194(3), 967–979 (2021)
+21. Gottschalk, W.: Some general dynamical notions, Recent advances in topological dynamics (Proc. Conf.
+    Topological Dynamics, Yale Univ., New Haven, Conn., 1972; in honor of Gustav Arnold Hedlund),
+    Lecture Notes in Math., Vol. 318, Springer, Berlin, 1973, pp. 120–125
+22. Gromov, M.: Endomorphisms of symbolic algebraic varieties. J. Eur. Math. Soc. (JEMS) 1(2), 109–197
+    (1999)
+23. Gruenberg, K.W.: Residual properties of infinite soluble groups. Proc. Lond. Math. Soc. 7, 29–62 (1957)
+24. Genevois, A., Tessera, R.: A note on morphisms to wreath products, arXiv preprint arXiv:2110.09822,
+    2021
+25. Grigorchuk, R.I., Żuk, A.: On a torsion-free weakly branch group defined by a three state automaton,
+    vol. 12, 2002, International Conference on Geometric and Combinatorial Methods in Group Theory and
+    Semigroup Theory (Lincoln, NE, 2000), pp. 223–246
+26. Hall, P.: Wreath powers and characteristically simple groups. Proc. Cambr. Philos. Soc. 58, 170–184
+    (1962)
+27. Higman, G.: A finitely related group with an isomorphic proper factor group. J. London Math. Soc. 26,
+    59–61 (1951)
+28. Hayes, B., Sale, A.W.: Metric approximations of wreath products. Ann. Inst. Fourier (Grenoble) 68(1),
+    423–455 (2018)
+29. Ivanov, N.V., McCarthy, J.D.: On injective homomorphisms between Teichmüller modular groups. I,
+    Invent. Math. 135 (1999), no. 2, 425–486
+30. Jaikin-Zapirain, A., López-Álvarez, D.: The strong Atiyah and Lück approximation conjectures for one-
+    relator groups. Math. Ann. 376(3–4), 1741–1793 (2020)
+31. Kaplansky, I.: Fields and rings, Chicago Lectures in Mathematics, University of Chicago Press, Chicago,
+    IL, 1995, Reprint of the second (1972) edition
+32. Li, H., Liang, B.: Sofic mean length. Adv. Math. 353, 802–858 (2019)
+33. Malcev, A.I.: On isomorphic matrix representations of infinite groups, Rec. Math. [Mat. Sbornik] N.S. 8
+    (50) (1940), 405–422
+34. Malcev, A.I.: On the embedding of group algebras in division algebras, Doklady Akad. Nauk SSSR (N.S.)
+    60 (1948), 1499–1501
+35. Malman, B.: Zero-divisors and idempotents in group rings, Master’s thesis, Lund University, 2014
+36. Meskin, S.: Nonresidually finite one-relator groups. Trans. Am. Math. Soc. 164, 105–114 (1972)
+37. Magnus, W., Karrass, A., Solitar, D.: Combinatorial group theory: Presentations of groups in terms of
+    generators and relations, Interscience Publishers [John Wiley & Sons], New York-London-Sydney, 1966
+38. Moioli, C.: Graphs of groups and co-hopfian groups, Ph.D. thesis, Université Paul Sabatier - Toulouse
+    III, 2013
+39. Miller, C.F., III., Schupp, P.E.: Embeddings into Hopfian groups. J. Algebra 17, 171–176 (1971)
+40. Murray, A.G.: More counterexamples to the unit conjecture for group rings, arXiv preprint
+    arXiv:2106.02147 (2021)
+41. Neumann, B.H.: On ordered division rings. Trans. Am. Math. Soc. 66, 202–252 (1949)
+42. Neumann, B.H.: A two-generator group isomorphic to a proper factor group. J. Lond. Math. Soc. 25,
+    247–248 (1950)
+43. Passman, D. S.: The algebraic structure of group rings, Robert E. Krieger Publishing Co., Inc., Melbourne,
+    FL, 1985, Reprint of the 1977 original
+44. Passman, D.S.: Review of the article “Stable finiteness of group rings in arbitrary characteristic”, by P.
+    K. C. O’Meara and F. Perera, Mathematical Reviews, Ara (2002)
+45. Phung, X.K.: A geometric generalization of Kaplansky’s direct finiteness conjecture. Proc. Am. Math.
+    Soc. 151(7), 2863–2871 (2023)
+46. Robinson, D.J.S.: A course in the theory of groups, second ed., Graduate Texts in Mathematics, vol. 80,
+    Springer-Verlag, New York, 1996
+47. Sela, Z.: Endomorphisms of hyperbolic groups. I. The Hopf property. Topology 38(2), 301–321 (1999)
+48. Vershik, A.M., Gordon, E.I.: Groups that are locally embeddable in the class of finite groups. Algebra i
+    Analiz 9(1), 71–97 (1997)
+49. Voorhees, B.: Additive cellular automata, Cellular automata, pp. 129–151. Springer, New York, Encycl.
+    Complex. Syst. Sci. (2018)
+
+
+
+
+                                                                                                 123
+58   Page 28 of 28                                                             H. Bradford, F. Fournier-Facio
+
+
+50. Weiss, B.: Sofic groups and dynamical systems, vol. 62, 2000, Ergodic theory and harmonic analysis
+    (Mumbai, 1999), pp. 350–359
+51. Weidmann, R., Reinfeldt, C.: Makanin–Razborov diagrams for hyperbolic groups. Ann. Math. Blaise
+    Pascal 26(2), 119–208 (2019)
+
+
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps and
+institutional affiliations.
+
+
+
+
+123
+

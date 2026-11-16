@@ -1,0 +1,1 @@
+2026-11-16T20:25:26.423085+00:00 — Full original claim PASS100% after ownsource-firstderivations, twoindependentfamilies and actualclassicalinterfaces. Source/rootINITIALimmutable; no repair/narrowing/followup. Local scientific128/203=63.0541872%; native126/203transitionpending.

@@ -1,0 +1,1203 @@
+A semidefinite programming hierarchy for packing problems in discrete geometry
+Report GitHub Issue
+×
+Title:
+Content selection saved. Describe the issue below:
+Description:
+Submit without GitHub
+Submit in GitHub
+arXiv is now an independent nonprofit!
+Learn more
+×
+Back to arXiv
+Why HTML?
+Report Issue
+Back to Abstract
+Download PDF
+Abstract
+1 Introduction
+1.1 Packing problems in discrete geometry
+1.2 Lasserre’s hierarchy for finite graphs
+1.3 Topological packing graphs
+1.4 Generalization of Lasserre’s hierarchy
+1.5 Explicit computations in the literature
+2 Topology on sets of independent sets
+3 Duality theory of the generalized hierarchy
+3.1 A primal-dual pair
+3.2 Strong duality; Proof of Theorem
+4 Convergence to the independence number; Proof of
+Theorem
+5 Two and three-point bounds
+5.1 Two-point bounds
+5.2 Three-point bounds
+Acknowledgements
+References
+License: arXiv.org perpetual non-exclusive license
+arXiv:1311.3789v3 [math.OC] 24 Aug 2021
+∎∎
+A semidefinite programming hierarchy for packing problems in
+discrete geometry
+Thanks: The authors were supported by Vidi grant
+639.032.917 from the Netherlands Organization for Scientific
+Research (NWO).
+David de Laat
+Frank Vallentin
+Affiliation: Delft Institute of Applied Mathematics, Delft
+University of Technology, P.O. Box 5031, 2600 GA Delft, The
+Netherlands
+E-mail: mail@daviddelaat.nl
+Affiliation: Mathematisches Institut, Universität zu
+Köln, Weyertal 86–90, 50931 Köln, Germany
+E-mail: frank.vallentin@uni-koeln.de
+Received: date / Accepted: date
+Abstract
+Packing problems in discrete geometry can be modeled as finding
+independent sets in infinite graphs where one is interested in
+independent sets which are as large as possible. For finite graphs
+one popular way to compute upper bounds for the maximal size of an
+independent set is to use Lasserre’s semidefinite programming
+hierarchy. We generalize this approach to infinite graphs. For this
+we introduce topological packing graphs as an abstraction for
+infinite graphs coming from packing problems in discrete
+geometry. We show that our hierarchy converges to the independence
+number.
+Keywords: Lasserre hierarchy weighted independence number (stability number) infinite graphs geometric packing problems moment measures
+MSC90C22 52C17
+1 Introduction
+1.1 Packing problems in discrete geometry
+Many, often notoriously difficult, problems in discrete geometry can
+be modeled as packing problems in graphs where the vertex set is an
+uncountable set having additional geometric structure.
+The most famous
+example is the sphere packing problem in 33-dimensional space, the
+Kepler problem, which was solved by Hales [17] in
+1998. Here the vertex set is ℝ3\mathbb{R}^{3} and two points are adjacent
+whenever their Euclidean distance is in the open interval (0,2)(0,2).
+An independent set of an undirected graph G=(V,E)G=(V,E) is a
+subset of the vertex set which does not span an edge. In the sphere
+packing case, an independent set corresponds to centers of unit balls
+which do not intersect in their interior. Now one is trying to find an
+independent set which covers as much space as possible. What “much”
+means depends on the situation. When the vertex set VV, the
+container, is compact and when we pack identical shapes we can
+simply count and we use the independence number
+α(G)=sup{|I|:I⊆V,I is independent}.\alpha(G)=\sup\{|I|:I\subseteq V,\,I\text{ is independent}\}.
+If the objects are of different size we provide them with a weight
+w⁡(x)w(x) and we use the weighted independence number
+αw(G)=sup{∑x∈Iw(x):I⊆V,I is independent}.\alpha_{w}(G)=\sup\Big\{\sum_{x\in I}w(x):I\subseteq V,\,I\text{ is independent}\Big\}.
+In the non-compact sphere packing case one needs to use a density
+version of the independence number since maximal independent sets have
+infinite cardinality: The (upper) point density of an independent set
+I⊂ℝ3I\subset\mathbb{R}^{3} is
+δ⁡(I)=lim supR→∞|I∩[−R,R]3|vol⁡([−R,R]3),\delta(I)=\limsup_{R\to\infty}\frac{|I\cap[-R,R]^{3}|}{\mathrm{vol}([-R,R]^{3})},
+where [−R,R]3[-R,R]^{3} is the cube centered at the origin with side length 2​R2R.
+This measures the number of centers of unit balls per unit volume. To
+determine the geometric density of the corresponding sphere packing we
+multiply δ⁡(I)\delta(I) by the volume of the unit ball.
+More examples include:
+—
+Error correcting qq-ary codes:
+V=𝔽qnV=\mathbb{F}_{q}^{n}, where {x,y}∈E\{x,y\}\in E if their
+Hamming distance lies in the open interval (0,d)(0,d). If q=2q=2 we
+speak about binary codes and if we restrict to all code words
+having the same Hamming norm we speak about constant weight codes.
+—
+Spherical codes: V=Sn−1V=S^{n-1}, where {x,y}∈E\{x,y\}\in E
+if their inner product lies in the open interval (cos⁡(θ),1)(\cos(\theta),1).
+—
+Codes in real projective space: V=ℝ​Pn−1V=\mathbb{R}\mathrm{P}^{n-1}, where {x,y}∈E\{x,y\}\in E
+if their distance lies in the open interval (0,d)(0,d).
+—
+Sphere packings: V=ℝnV=\mathbb{R}^{n}, where {x,y}∈E\{x,y\}\in E if
+their Euclidean distance lies in the open interval (0,2)(0,2).
+—
+Binary sphere packings: V=ℝn×{1,2}V=\mathbb{R}^{n}\times\{1,2\} where
+{(x,i),(y,j)}∈E\{(x,i),(y,j)\}\in E if the Euclidean distance between xx and
+yy lies in the open interval (0,ri+rj)(0,r_{i}+r_{j}) and
+w⁡(x,i)=rin​vol​Bnw(x,i)=r_{i}^{n}\mathrm{vol}B_{n}, where BnB_{n} is the unit ball.
+—
+Binary spherical cap packings: V=Sn−1×{1,2}V=S^{n-1}\times\{1,2\}
+where {(x,i),(y,j)}∈E\{(x,i),(y,j)\}\in E if the inner product of xx and yy lies in the
+open interval (cos⁡(θi+θj),1)(\cos(\theta_{i}+\theta_{j}),1) and w⁡(x,i)w(x,i) is the volume of the
+spherical cap {z∈Sn−1:x⋅z≥cos⁡(θi)}\{z\in S^{n-1}:x\cdot z\geq\cos(\theta_{i})\}.
+—
+Packings of congruent copies of a convex body: V=ℝn⋊SO⁡(n)V=\mathbb{R}^{n}\rtimes\mathrm{SO}(n) where (x,A)(x,A) and (y,B)(y,B) are adjacent if x+A​𝒦∘∩y+B​𝒦∘≠∅x+A\mathcal{K}^{\circ}\cap y+B\mathcal{K}^{\circ}\neq\emptyset, where
+𝒦∘\mathcal{K}^{\circ} is the interior of the convex body 𝒦\mathcal{K}.
+Currently, these problems have been solved in only a few special
+cases. One might expect that they will never be solved in full
+generality, for all parameters. Finding good lower bounds by
+constructions and good upper bounds by obstructions are both
+challenging tasks. Over the last years the best known results were
+achieved with computer assistance: Algorithms like the adaptive
+shrinking cell scheme of Torquato and Jiao [36]
+generate dense packings and give very good lower bounds. The
+combination of semidefinite programming and harmonic analysis often
+gives the best known upper bounds for these packing problems. This
+method originated from work of Hoffman [19],
+Delsarte [11], and Lovász [28].
+1.2 Lasserre’s hierarchy for finite graphs
+Computing the independence number of a finite graph is an
+NP\mathrm{NP}-hard problem as shown by Karp [21]. Approximating
+optimal solutions of NP\mathrm{NP}-hard problems in combinatorial
+optimization with the help of linear and semidefinite optimization is
+a very wide and active area of research. The most popular semidefinite
+programming hierarchies for NP\mathrm{NP}-hard combinatorial
+optimization problems are the Lovász-Schrijver hierarchy
+[29] (the N+N^{+}-operator) and the hierarchy of
+Lasserre [24]. Laurent [25] showed that
+Lasserre’s hierarchy is stronger than the Lovász-Schrijver
+hierarchy.
+We now give a formulation of Lasserre’s hierarchy for computing the
+independence number of a finite graph G=(V,E)G=(V,E). Here we follow
+Laurent [25]. The tt-th step of Lasserre’s
+hierarchy is:
+last(G)=max{∑x∈Vy{x}:y∈ℝ≥0I2​t,y∅=1,Mt(y) is
+positive semidefinite},\mathrm{las}_{t}(G)=\max\Big\{\sum_{x\in V}y_{\{x\}}:y\in\mathbb{R}^{I_{2t}}_{\geq 0},\;y_{\emptyset}=1,\;M_{t}(y)\text{ is
+positive semidefinite}\Big\},
+where ItI_{t} is the set of all independent sets with at most
+tt elements and where Mt​(y)∈ℝIt×ItM_{t}(y)\in\mathbb{R}^{I_{t}\times I_{t}} is the moment
+matrix defined by the vector yy: Its (J,J′)(J,J^{\prime})-entry equals
+(Mt​(y))J,J′={yJ∪J′if ​J∪J′∈I2​t,0otherwise.\left(M_{t}(y)\right)_{J,J^{\prime}}=\begin{cases}y_{J\cup J^{\prime}}&\text{if }J\cup J^{\prime}\in I_{2t},\\
+0&\text{otherwise.}\end{cases}
+The first step in Lasserre’s hierarchy coincides with
+the ϑ′\vartheta^{\prime}-number, the strengthened version of Lovász
+ϑ\vartheta-number [28] which is due to Schrijver
+[33]; for a proof see for instance the book by Schrijver (34, Theorem
+67.11). Furthermore the hierarchy converges to
+α⁡(G)\alpha(G) after at most α⁡(G)\alpha(G) steps:
+ϑ′​(G)=las1​(G)≥las2​(G)≥…≥lasα⁡(G)​(G)=α⁡(G).\vartheta^{\prime}(G)=\mathrm{las}_{1}(G)\geq\mathrm{las}_{2}(G)\geq\ldots\geq\mathrm{las}_{\alpha(G)}(G)=\alpha(G).
+Lasserre [24] showed this convergence in the general
+setting of hierarchies for 00/11 polynomial optimization problems by
+using Putinar’s Positivstellensatz [31]. Laurent
+[25] gave an elementary proof, which we discuss in
+Section 4.
+Many variations are possible to set up a semidefinite programming
+hierarchy: For instance one can consider only “interesting”
+principal submatrices to simplify the computation and one can also add
+more constraints coming from problem specific arguments. In fact, in
+the definition of last​(G)\mathrm{las}_{t}(G) we used the nonnegativity
+constraints yS≥0y_{S}\geq 0 for S∈I2​tS\in I_{2t}. Even without them, the
+convergence result holds, and the first step in the hierarchy
+coincides with the Lovász ϑ\vartheta-number.
+A rough classification for all these variations can be given in terms
+of nn-point bounds. This refers to all variations which make
+use of variables ySy_{S} with |S|≤n|S|\leq n. An nn-point bound is
+capable of using obstructions coming from the local interaction of
+configurations having at most nn points. For instance the Lovász
+ϑ\vartheta-number is a 22-point bound and the tt-th step in
+Lasserre’s hierarchy is a 2​t2t-point bound. The relation between
+nn-point bounds and Lasserre’s hierarchy was first made explicit by
+Laurent [26] in the case of bounds for binary codes.
+1.3 Topological packing graphs
+The aim of this paper is to define and analyze a semidefinite
+programming hierarchy which upper bounds the independence number for
+infinite graphs arising from packing problems in discrete
+geometry. For this we consider graphs where vertices which are close
+are adjacent, and where vertices which are adjacent will stay adjacent
+after small enough perturbations. These two conditions will be essential at
+many places in this paper. We formalize them by the following
+definition.
+Definition 1
+A graph whose vertex set is a Hausdorff topological space is called a
+topological packing graph if each finite clique is contained in
+an open clique. An open clique is an open subset of the vertex set where every two vertices are adjacent.
+It clearly suffices to verify the condition for cliques of size one and
+two.
+Of course, every graph is a packing graph when we endow the vertex set
+with the discrete topology. However, weaker topologies give stronger
+conditions on the edge sets. For instance, when the vertex set of a
+topological packing graph is compact, then the independence number is
+finite because every single vertex is a clique.
+A distance graph G=(V,E)G=(V,E) is a graph where (V,d)(V,d) is a metric
+space, and where there exists D⊆(0,∞)D\subseteq(0,\infty) such that xx
+and yy are adjacent precisely when d⁡(x,y)∈Dd(x,y)\in D. If DD is open
+and contains the interval (0,δ)(0,\delta) for some δ>0\delta>0, then
+GG is a topological packing graph. That DD contains an interval
+starting from 00 implies that vertices which are close are adjacent,
+and that DD is open implies that adjacent vertices will stay adjacent
+after small enough perturbations. The binary spherical cap packing graph as
+defined in Section 1.1 is
+a compact topological packing graph with the usual topology on the
+vertex set Sn−1×{1,2}S^{n-1}\times\{1,2\}. And although there exists a
+metric compatible with this topology which gives the graph as a
+distance graph11
+1
+Assume θ1<θ2\theta_{1}<\theta_{2} and let
+ϵ\epsilon be some number strictly between (1−θ1/θ2)/2(1-\theta_{1}/\theta_{2})/2 and 11. Let D=(0,1)D=(0,1), and let d⁡((x,i),(y,j))d((x,i),(y,j)) be given by ϵ​δi≠j+(1−ϵ​δi≠j)​arccos⁡(x⋅y)​(θ1+θ2)−1\epsilon\delta_{i\neq j}+(1-\epsilon\delta_{i\neq j})\arccos(x\cdot y)\,(\theta_{1}+\theta_{2})^{-1}
+when x⋅y<cos⁡(θi+θj)x\cdot y<\cos(\theta_{i}+\theta_{j}) and 11 otherwise., it
+is easier and more natural to work directly with the topological
+packing graph structure.
+Notice that in Definition 1
+requiring all cliques to be contained in an open clique --- which by Zorn’s lemma is
+equivalent to all maximal cliques being open --- would give a strictly
+stronger condition.22
+2
+Consider the graph with vertex set [0,1]×ℤ[0,1]\times\mathbb{Z} where (x,i)(x,i) and (y,j)(y,j) are adjacent if i=ji=j or when xx and yy are both strictly smaller than |i−j|−1|i-j|^{-1}
+(for i≠ji\neq j). Here each finite clique is contained in an open clique,
+but the countable clique {0}×ℤ\{0\}\times\mathbb{Z} is not.
+1.4 Generalization of Lasserre’s hierarchy
+Now we introduce our generalization of Lasserre’s hierarchy for
+compact topological packing graphs.
+Before we go into the technical details we like to comment on the
+choice of spaces in our generalization: In Lasserre’s hierarchy for
+finite graphs the optimization variable yy lies in the cone33
+3
+In this paper cones are always assumed to be convex.
+ℝ≥0I2​t\mathbb{R}^{I_{2t}}_{\geq 0}. One might try to use the same cone when
+I2​tI_{2t} is uncountable. But then there are too many variables and it
+is impossible to express the objective function. At the other extreme
+one might try to restrict this cone to finitely (or countably)
+supported vectors. But then we do not know how to develop a duality
+theory like the one in Section 3. A duality theory is
+important for concrete computations: Minimization problems can be used
+to derive upper bounds rigorously. We use a cone of Borel
+measures where we have “one degree of freedom” for every open set.
+In Section 2 we use the topology of VV to equip the
+set ItI_{t}, consisting of the independent sets which have at most tt
+elements, with a Hausdorff topology. There we also use the topological packing graph condition to show that ItI_{t} is compact.
+Let 𝒞⁡(I2​t)\mathcal{C}(I_{2t}) be
+the set of continuous real-valued functions on I2​tI_{2t}. By the Riesz
+representation theorem (see e.g. (6, Chapter
+2.2)) the topological dual of
+𝒞⁡(I2​t)\mathcal{C}(I_{2t}), where the topology is defined by the supremum norm,
+can be identified with the space ℳ⁡(I2​t)\mathcal{M}(I_{2t}) of signed Radon
+measures. A signed Radon measure is the difference of two Radon
+measures, where a Radon measure ν\nu is a locally finite
+measure on the Borel algebra satisfying inner regularity:
+ν(B)=sup{ν(C):C⊆B,C compact}\nu(B)=\sup\{\nu(C):C\subseteq B,\,C\text{ compact}\} for
+each Borel set BB. Nonnegative functions in 𝒞⁡(I2​t)\mathcal{C}(I_{2t}) form the
+cone 𝒞​(I2​t)≥0\mathcal{C}(I_{2t})_{\geq 0}. Its conic dual (𝒞​(I2​t)≥0)∗(\mathcal{C}(I_{2t})_{\geq 0})^{*} is the cone of positive Radon measures
+ℳ​(I2​t)≥0={λ∈ℳ⁡(I2​t):λ⁡(f)≥0​ for all ​f∈𝒞​(I2​t)≥0}.\mathcal{M}(I_{2t})_{\geq 0}=\{\lambda\in\mathcal{M}(I_{2t}):\lambda(f)\geq 0\text{ for all }f\in\mathcal{C}(I_{2t})_{\geq 0}\}.
+Denote by 𝒞​(It×It)sym\mathcal{C}(I_{t}\times I_{t})_{\text{sym}} the space of
+symmetric kernels, which are the continuous functions K:It×It→ℝK\colon I_{t}\times I_{t}\to\mathbb{R} such that
+K⁡(J,J′)=K⁡(J′,J)​ for all ​J,J′∈It.K(J,J^{\prime})=K(J^{\prime},J)\text{ for all }J,J^{\prime}\in I_{t}.
+We say that a symmetric kernel KK is
+positive definite if
+(K(Ji,Jj))i,j=1m is
+positive semidefinite for all m∈ℕ and J1,…,Jm∈It.(K(J_{i},J_{j}))_{i,j=1}^{m}\text{ is
+positive semidefinite for all }m\in\mathbb{N}\text{ and }J_{1},\ldots,J_{m}\in I_{t}.
+The positive definite kernels form the cone 𝒞​(It×It)⪰0\mathcal{C}(I_{t}\times I_{t})_{\succeq 0}. The dual of 𝒞​(It×It)sym\mathcal{C}(I_{t}\times I_{t})_{\text{sym}} can be
+identified with the space of symmetric signed Radon measures
+ℳ​(It×It)sym\mathcal{M}(I_{t}\times I_{t})_{\text{sym}}. Here a signed Radon
+measure μ∈ℳ⁡(It×It)\mu\in\mathcal{M}(I_{t}\times I_{t}) is symmetric
+if
+μ⁡(E×E′)=μ⁡(E′×E)​ for all Borel sets ​E​ and ​E′.\mu(E\times E^{\prime})=\mu(E^{\prime}\times E)\text{ for all Borel sets }E\text{ and }E^{\prime}.
+We say that a measure μ∈ℳ​(It×It)sym\mu\in\mathcal{M}(I_{t}\times I_{t})_{\text{sym}} is positive definite if it lies in the
+dual cone ℳ​(It×It)⪰0=(𝒞​(It×It)⪰0)∗\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}=(\mathcal{C}(I_{t}\times I_{t})_{\succeq 0})^{*}.
+Now we are ready to define our generalization:
+—
+The optimization variable is λ∈ℳ​(I2​t)≥0\lambda\in\mathcal{M}(I_{2t})_{\geq 0}.
+—
+The objective
+function evaluates λ\lambda at I=1I_{=1}, where in general,
+I=t={S∈It:|S|=t},I_{=t}=\{S\in I_{t}:|S|=t\},
+and so when t=1t=1 we simply deal with all vertices, as singleton
+sets. This is similar to the objective function ∑x∈Vy{x}\sum_{x\in V}y_{\{x\}} in Lasserre’s hierarchy for finite graphs.
+—
+The normalization condition reads λ⁡({∅})=1\lambda(\{\emptyset\})=1.
+—
+For generalizing the moment matrix condition “Mt​(y)M_{t}(y) is
+positive semidefinite” we use a dual approach. Let TtT_{t} be the operator such that for all vectors yy and all matrices YY we have ⟨Mt​(y),Y⟩1=⟨y,Tt​Y⟩2\langle M_{t}(y),Y\rangle_{1}=\langle y,T_{t}Y\rangle_{2}, where ⟨⋅,⋅⟩1\langle\cdot,\cdot\rangle_{1} is the trace inner product of matrices and ⟨⋅,⋅⟩2\langle\cdot,\cdot\rangle_{2} is standard vector inner product. Instead of directly generalizing the operator MtM_{t}, we will dualize the following generalization of the operator TtT_{t}:
+At:𝒞(It×It)sym→𝒞(I2​t) by AtK(S)=∑J,J′∈It:J∪J′=SK(J,J′).A_{t}\colon\mathcal{C}(I_{t}\times I_{t})_{\text{sym}}\to\mathcal{C}(I_{2t})\;\text{ by }\;A_{t}K(S)=\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=S}K(J,J^{\prime}).
+We have ‖At​K‖∞≤22​t​‖K‖∞\|A_{t}K\|_{\infty}\leq 2^{2t}\|K\|_{\infty}, so AtA_{t} is
+bounded and hence continuous. Thus there exists the adjoint At∗:ℳ⁡(I2​t)→ℳ​(It×It)symA_{t}^{*}\colon\mathcal{M}(I_{2t})\to\mathcal{M}(I_{t}\times I_{t})_{\text{sym}} and the moment matrix condition reads At∗​λ∈ℳ​(It×It)⪰0A_{t}^{*}\lambda\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}.
+Definition 2
+The tt-th step of the generalized hierarchy is
+last(G)=sup{λ(I=1):λ∈ℳ(I2​t)≥0,λ({∅})=1,At∗λ∈ℳ(It×It)⪰0}.\mathrm{las}_{t}(G)=\sup\Big\{\lambda(I_{=1}):\lambda\in\mathcal{M}(I_{2t})_{\geq 0},\;\lambda(\{\emptyset\})=1,\;A_{t}^{*}\lambda\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}\Big\}.
+Clearly, we have a nonincreasing chain
+las1​(G)≥las2​(G)≥…≥lasα⁡(G)​(G)=lasα⁡(G)+1​(G)=…\text{las}_{1}(G)\geq\text{las}_{2}(G)\geq\ldots\geq\text{las}_{\alpha(G)}(G)=\text{las}_{\alpha(G)+1}(G)=\ldots
+(1)
+which stabilizes after α⁡(G)\alpha(G) steps, and specializes to the original hierarchy if
+GG is a finite graph. Each step gives an upper bound for
+α⁡(G)\alpha(G) because for every independent set SS the measure
+λ=∑R∈I2​t:R⊆SδR,where δR is the
+delta measure at R,\lambda=\sum_{R\in I_{2t}:R\subseteq S}\delta_{R},\quad\text{where }\delta_{R}\text{ is the
+delta measure at }R,
+is a feasible solution for last​(G)\text{las}_{t}(G) with objective value
+|S||S|. To see this we note that λ⁡({∅})=1\lambda(\{\emptyset\})=1, and for
+any K∈𝒞​(It×It)⪰0K\in\mathcal{C}(I_{t}\times I_{t})_{\succeq 0} we have
+⟨K,At∗​λ⟩=⟨At​K,λ⟩\displaystyle\langle K,A_{t}^{*}\lambda\rangle=\langle A_{t}K,\lambda\rangle
+=∑R∈I2​t:R⊆S∑J,J′∈It:J∪J′=RK(J,J′)\displaystyle=\sum_{R\in I_{2t}:R\subseteq S}\;\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=R}K(J,J^{\prime})
+=∑J,J′∈It:J,J′⊆SK(J,J′)≥0.\displaystyle=\sum_{J,J^{\prime}\in I_{t}:J,J^{\prime}\subseteq S}K(J,J^{\prime})\geq 0.
+In Section 3 we consider the dual program of
+last​(G)\mathrm{las}_{t}(G), which is
+last(G)∗=inf{K(∅,∅):\displaystyle\mathrm{las}_{t}(G)^{*}=\inf\Big\{K(\emptyset,\emptyset):\;
+K∈𝒞​(It×It)⪰0,\displaystyle K\in\mathcal{C}(I_{t}\times I_{t})_{\succeq 0},
+AtK(S)≤−1I=1(S) for S∈I2​t∖{∅}},\displaystyle A_{t}K(S)\leq-1_{I_{=1}}(S)\text{ for }S\in I_{2t}\setminus\{\emptyset\}\Big\},
+and we show that strong duality holds in every step:
+Theorem 1.1
+Let GG be a compact topological packing graph. For every t∈ℕt\in\mathbb{N} we have last​(G)=last​(G)∗\mathrm{las}_{t}(G)=\mathrm{las}_{t}(G)^{*}, and if
+last​(G)\mathrm{las}_{t}(G) is finite44
+4
+We show this in Remark 3., then the optimum in
+last​(G)\mathrm{las}_{t}(G) is attained.
+In Section 4 we show that the
+chain (1) converges to the independence number:
+Theorem 1.2
+Let GG be a compact topological packing graph. Then,
+lasα⁡(G)​(G)=α​(G).\mathrm{las}_{\alpha(G)}(G)=\alpha(G).
+A variation of last​(G)\text{las}_{t}(G) can be used to upper bound the
+weighted independence number of a weighted compact topological packing
+graph GG with a continuous weight function w:V→ℝ≥0w\colon V\to\mathbb{R}_{\geq 0}. We extend ww, with the obvious abuse of notation, to a
+function w:I2​t→ℝ≥0w\colon I_{2t}\to\mathbb{R}_{\geq 0} where only singleton sets
+have positive weight. It turns out, by Lemma 2, that
+also the extension is continuous. Then we replace the objective
+function λ⁡(I=1)\lambda(I_{=1}) by λ⁡(w)\lambda(w).
+1.5 Explicit computations in the literature
+Explicit computations of nn-point bounds have been done in a variety
+of situations. The following table provides a guide to the literature:
+Packing problem
+22-point bound
+33-point bound
+44-point bound
+Binary codes
+Delsarte [11]
+Schrijver [35]
+Gijswijt,
+Mittelmann,
+Schrijver [16]
+qq-ary codes
+Delsarte [11]
+Gijswijt,
+Schrijver,
+Tanaka [15]
+Constant weight codes
+Delsarte [11]
+Schrijver [35],
+Regts [32]
+Spherical codes
+Delsarte,
+Goethals,
+Seidel [12]
+Bachoc,
+Vallentin [3]
+Codes in ℝ​Pn−1\mathbb{R}\mathrm{P}^{n-1}
+Kabatiansky,
+Levenshtein [20]
+Cohn,
+Woo [10]
+Sphere packings
+Cohn,
+Elkies [9]
+Binary sphere and
+spherical cap packings
+de Laat,
+Oliveira,
+Vallentin
+[23]
+Congruent copies
+of a convex body
+Oliveira,
+Vallentin
+[30]
+For the first three packing problems in this table one can use
+Lasserre’s hierarchy for finite graphs. For the last five packing
+problems in this table our generalization can be used, where in the
+last three cases one has to perform a compactification of the vertex
+set first.
+We elaborate on the connection between these nn-point bounds and our
+hierarchy in Section 5. The convergence of the
+hierarchy, shows that this approach is in theory capable of solving
+any given packing problem in discrete geometry. One attractive
+feature of the hierarchy is that already its first steps give strong
+upper bounds as one can see from the papers cited in the table above.
+2 Topology on sets of independent sets
+Let G=(V,E)G=(V,E) be a topological packing graph. In this section we
+introduce a topology on ItI_{t}, the set of independent sets having
+cardinality at most tt.
+We equip the direct product VtV^{t} with the product topology and the
+image of VtV^{t} under the map
+q:(v1,…,vt)↦{v1,…,vt}q\colon(v_{1},\ldots,v_{t})\mapsto\{v_{1},\ldots,v_{t}\}
+with the quotient topology. When we add the empty set to the image we
+obtain the collection subt​(V)\mathrm{sub}_{t}(V) of all subsets of VV of
+cardinality at most tt, which obtains its topology from the disjoint
+union topology. Compactness of subt​(V)\mathrm{sub}_{t}(V) follows immediately from
+compactness of VV. Handel (18, Proposition 2.7) shows
+that it is Hausdorff.
+Given U1,…,Ur⊆VU_{1},\ldots,U_{r}\subseteq V, define
+(U1,…,Ur)t={S∈subt(V):S⊆U1∪⋯∪Ur,S∩Ui≠∅ for 1≤i≤r}.(U_{1},\ldots,U_{r})_{t}=\{S\in\mathrm{sub}_{t}(V):S\subseteq U_{1}\cup\cdots\cup U_{r},\;S\cap U_{i}\neq\emptyset\text{ for }1\leq i\leq r\}.
+Handel [18] observes
+q−1((U1,…,Ur)t)=⋃τ:{1,…,t}→{1,…,r}τ​ surjectiveUτ⁡(1)×⋯×Uτ⁡(t).q^{-1}((U_{1},\ldots,U_{r})_{t})=\bigcup_{\begin{subarray}{c}\tau:\{1,\ldots,t\}\to\{1,\ldots,r\}\\
+\tau\text{ surjective}\end{subarray}}U_{\tau(1)}\times\cdots\times U_{\tau(t)}.
+This shows that if the sets UiU_{i} are open, then (U1,…,Ur)t(U_{1},\ldots,U_{r})_{t} is open. In fact, if ℬ\mathcal{B} is a base for VV, then
+ℬt={(U1,…,Ur)t:1≤r≤t,U1,…,Ur∈ℬ}\mathcal{B}_{t}=\{(U_{1},\ldots,U_{r})_{t}:1\leq r\leq t,\;U_{1},\ldots,U_{r}\in\mathcal{B}\}
+is a base for subt​(V)\mathrm{sub}_{t}(V).
+Moreover, if {u1,…,ur}\{u_{1},\ldots,u_{r}\} is an element in an open set UU in
+subt​(V)\mathrm{sub}_{t}(V), then there are open neighborhoods UiU_{i} of uiu_{i}
+such that the open neighborhood (U1,…,Ur)t(U_{1},\ldots,U_{r})_{t} of {u1,…,ur}\{u_{1},\ldots,u_{r}\} is a contained in UU.
+We now endow ItI_{t} with a topology as a subset of
+subt​(V)\mathrm{sub}_{t}(V). Clearly, I=1I_{=1} is homeomorphic to VV. It is
+also immediate that ItI_{t} is Hausdorff. Furthermore, it is compact:
+Lemma 1
+Let G=(V,E)G=(V,E) be a compact topological packing graph. Then ItI_{t}
+is compact for every t∈ℕt\in\mathbb{N}.
+Proof
+We will show that ItI_{t} is closed, respectively that its complement
+Dt=subt​(V)∖ItD_{t}=\mathrm{sub}_{t}(V)\setminus I_{t} is open in the compact space
+subt​(V)\mathrm{sub}_{t}(V). Let {x1,…,xr}∈Dt\{x_{1},\ldots,x_{r}\}\in D_{t} be
+arbitrary. Without loss of generality we may assume that x1x_{1} and
+x2x_{2} are adjacent. By the topological packing graph condition there
+exists an open clique U⊆VU\subseteq V containing both x1x_{1} and
+x2x_{2}. Since VV is a Hausdorff space there exist disjoint open sets
+U1U_{1} and U2U_{2} such that x1∈U1⊆Ux_{1}\in U_{1}\subseteq U and x2∈U2⊆Ux_{2}\in U_{2}\subseteq U. Each set in (U1,U2,V,…,V)t(U_{1},U_{2},V,\ldots,V)_{t} contains at
+least one edge, so (U1,U2,V,…,V)t⊆Dt.(U_{1},U_{2},V,\ldots,V)_{t}\subseteq D_{t}.
+The set (U1,U2,V,…,V)t(U_{1},U_{2},V,\ldots,V)_{t} is an open neighborhood of
+{x1,…,xr}\{x_{1},\ldots,x_{r}\}. Hence, DtD_{t} is open. ∎
+If the topology on VV comes from a metric, then the topology on
+subt​(V)\mathrm{sub}_{t}(V) is given by the Hausdorff distance, see for
+example Borsuk and Ulam [7]. This indicates that
+subsets of nonequal cardinality can be close in the topology on
+subt​(V)\mathrm{sub}_{t}(V). However, in the following lemma, we use the
+topological packing graph condition to show that independent sets of
+different cardinality are in different connected components of
+ItI_{t}.
+Lemma 2
+Let G=(V,E)G=(V,E) be a topological packing graph. The map
+It→ℕI_{t}\to\mathbb{N}, S↦|S|S\mapsto|S| is continuous for every t∈ℕt\in\mathbb{N}. In
+particular, I=tI_{=t} is both open and closed.
+Proof
+Let {Sα}\{S_{\alpha}\} be a net in ItI_{t} converging to {x1,…,xr}∈It\{x_{1},\ldots,x_{r}\}\in I_{t}, where we assume the xix_{i} to be pairwise
+different. By the topological packing graph condition, there exist
+pairwise disjoint open cliques UiU_{i} such that xi∈Uix_{i}\in U_{i}. The
+set (U1,…,Ur)t(U_{1},\ldots,U_{r})_{t} is open and contains {x1,…,xr}\{x_{1},\ldots,x_{r}\}. Hence, we eventually have Sα∈(U1,…,Ur)tS_{\alpha}\in(U_{1},\ldots,U_{r})_{t}. Then |Sα|≥r|S_{\alpha}|\geq r since the UiU_{i} are pairwise
+disjoint and |Sα|≤r|S_{\alpha}|\leq r since the UiU_{i} are cliques. ∎
+3 Duality theory of the generalized hierarchy
+3.1 A primal-dual pair
+In this section we derive the dual program of the tt-th step in our
+hierarchy last​(G)\mathrm{las}_{t}(G).
+We want to have a symmetric situation between primal and dual. We
+consider the dual pairs (𝒞⁡(I2​t),ℳ⁡(I2​t))(\mathcal{C}(I_{2t}),\mathcal{M}(I_{2t})) and
+(𝒞​(It×It)sym,ℳ​(It×It)sym)(\mathcal{C}(I_{t}\times I_{t})_{\text{sym}},\mathcal{M}(I_{t}\times I_{t})_{\text{sym}}) together with the corresponding nondegenerate
+bilinear forms
+⟨f,λ⟩=λ⁡(f)=∫f⁡(S)​𝑑λ​(S)and⟨K,μ⟩=μ⁡(K)=∫K⁡(J,J′)​𝑑μ​(J,J′).\langle f,\lambda\rangle=\lambda(f)=\int f(S)\,d\lambda(S)\quad\text{and}\quad\langle K,\mu\rangle=\mu(K)=\int K(J,J^{\prime})\,d\mu(J,J^{\prime}).
+We endow the spaces with the weakest topologies compatible with the
+pairing: the weak topology on the function spaces and the weak*
+topology on the measure spaces. From now on we will always use these
+topologies unless explicitly stated otherwise. Because the cones
+defined in Section 1.4 are closed, it follows
+from the bipolar theorem that
+(ℳ​(I2​t)≥0)∗=𝒞​(I2​t)≥0and(ℳ​(It×It)⪰0)∗=𝒞​(It×It)⪰0.(\mathcal{M}(I_{2t})_{\geq 0})^{*}=\mathcal{C}(I_{2t})_{\geq 0}\quad\text{and}\quad(\mathcal{M}(I_{t}\times I_{t})_{\succeq 0})^{*}=\mathcal{C}(I_{t}\times I_{t})_{\succeq 0}.
+Hence, the situation is completely symmetric.
+Recall that the operator
+At:𝒞(It×It)sym→𝒞(I2​t),AtK(S)=∑J,J′∈It:J∪J′=SK(J,J′)A_{t}\colon\mathcal{C}(I_{t}\times I_{t})_{\text{sym}}\to\mathcal{C}(I_{2t}),\quad A_{t}K(S)=\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=S}K(J,J^{\prime})
+is continuous in the norm topologies, so it follows that it is
+continuous in the weak topologies. In the next subsection we use that
+its adjoint At∗A_{t}^{*} is injective:
+Lemma 3
+Let G=(V,E)G=(V,E) be a compact topological packing graph.
+Then the operator AtA_{t} is surjective for every t∈ℕt\in\mathbb{N}.
+Proof
+Let gg be a function in 𝒞⁡(I2​t)\mathcal{C}(I_{2t}). The continuity of
+u:It×It→sub2​t​(V),(J,J′)↦J∪J′u\colon I_{t}\times I_{t}\to\mathrm{sub}_{2t}(V),\;(J,J^{\prime})\mapsto J\cup J^{\prime}
+follows from [18]. Hence
+h:u−1​(I2​t)→ℝ,(J,J′)↦g⁡(J∪J′)At​𝟙​(J∪J′)h\colon u^{-1}(I_{2t})\to\mathbb{R},\;(J,J^{\prime})\mapsto\frac{g(J\cup J^{\prime})}{A_{t}\mathbbm{1}(J\cup J^{\prime})}
+is continuous where 𝟙\mathbbm{1} is the kernel which evaluates to 11
+everywhere.
+The set I2​tI_{2t} is closed in sub2​t​(V)\mathrm{sub}_{2t}(V),
+so the preimage u−1​(I2​t)u^{-1}(I_{2t}) is closed in It×ItI_{t}\times I_{t}. Since
+It×ItI_{t}\times I_{t} is a compact Hausdorff space there exists, by
+Tietze’s extension theorem, a function H∈𝒞⁡(It×It)H\in\mathcal{C}(I_{t}\times I_{t}) such that H⁡(J,J′)=h⁡(J,J′)H(J,J^{\prime})=h(J,J^{\prime}) for all J,J′∈ItJ,J^{\prime}\in I_{t}. For
+each S∈I2​tS\in I_{2t} we then have
+At​H​(S)\displaystyle A_{t}H(S)
+=∑J,J′∈It:J∪J′=SH(J,J′)=∑J,J′∈It:J∪J′=Sh(J,J′)\displaystyle\;=\;\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=S}H(J,J^{\prime})\;=\;\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=S}h(J,J^{\prime})
+=1At​𝟙​(S)∑J,J′∈It:J∪J′=Sg(J∪J′)=g(S).\displaystyle\;=\;\frac{1}{A_{t}\mathbbm{1}(S)}\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=S}g(J\cup J^{\prime})=g(S).
+∎
+Using the theory of duality in conic optimization problems, see for
+instance Barvinok [5], we derive the dual hierarchy:
+last(G)∗=inf{K(∅,∅):\displaystyle\mathrm{las}_{t}(G)^{*}=\inf\Big\{K(\emptyset,\emptyset):\;
+K∈𝒞​(It×It)⪰0,\displaystyle K\in\mathcal{C}(I_{t}\times I_{t})_{\succeq 0},
+AtK(S)≤−1I=1(S) for S∈I2​t∖{∅}},\displaystyle A_{t}K(S)\leq-1_{I_{=1}}(S)\text{ for }S\in I_{2t}\setminus\{\emptyset\}\Big\},
+where one should note that by Lemma 2 the
+characteristic function 1I=11_{I_{=1}} is continuous. It follows from
+weak duality that last​(G)≤last​(G)∗\mathrm{las}_{t}(G)\leq\mathrm{las}_{t}(G)^{*}, and
+hence last​(G)∗\mathrm{las}_{t}(G)^{*} upper bounds the independence number. In
+the following lemma we give a simple direct proof.
+Lemma 4
+Let G=(V,E)G=(V,E) be a compact topological packing graph. Then
+α⁡(G)≤last​(G)∗\alpha(G)\leq\mathrm{las}_{t}(G)^{*}
+holds for all t∈ℕt\in\mathbb{N}.
+Proof
+Suppose KK is feasible and LL is an independent set. Then
+0\displaystyle 0
+≤∑J,J′∈subt⁡(L)K⁡(J,J′)=∑S∈sub2​t⁡(L)At​K​(S)\displaystyle\leq\sum_{J,J^{\prime}\in\operatorname{sub}_{t}(L)}K(J,J^{\prime})=\sum_{S\in\operatorname{sub}_{2t}(L)}A_{t}K(S)
+=K⁡(∅,∅)+∑x∈LAt​K​({x})+∑S∈sub2​t⁡(L)∖sub1⁡(L)At​K​(S)≤K⁡(∅,∅)−|L|.\displaystyle=K(\emptyset,\emptyset)+\sum_{x\in L}A_{t}K(\{x\})+\sum_{S\in\operatorname{sub}_{2t}(L)\setminus\operatorname{sub}_{1}(L)}A_{t}K(S)\leq K(\emptyset,\emptyset)-|L|.
+∎
+The hierarchy last​(G)∗\mathrm{las}_{t}(G)^{*} stabilizes after α⁡(G)\alpha(G) steps, because the variables and constraints are the same for each t≥α⁡(G)t\geq\alpha(G). By Lemma 2 the set ItI_{t} is both open and closed in It+1I_{t+1}, which means we can extend a feasible kernel KK of last​(G)∗\mathrm{las}_{t}(G)^{*} by zeros to obtain a feasible solution to last+1​(G)∗\mathrm{las}_{t+1}(G)^{*} with the same objective value. This shows that the hierarchy is nonincreasing; that is, last+1​(G)∗≤last​(G)∗\mathrm{las}_{t+1}(G)^{*}\leq\mathrm{las}_{t}(G)^{*} for all tt. These results also follow from strong duality as discussed next.
+3.2 Strong duality; Proof of Theorem 1.1
+In this section we prove Theorem 1.1: We have
+strong duality between the problems last​(G)\mathrm{las}_{t}(G) and
+last​(G)∗\mathrm{las}_{t}(G)^{*}. We will show the finiteness of
+last​(G)∗\mathrm{las}_{t}(G)^{*} in Remark 3.
+For proving Theorem 1.1 we make use of a closed
+cone condition, which for example is explained in
+Barvinok (5, Chapter IV.7). For this we have to show
+that last​(G)\mathrm{las}_{t}(G) has a feasible solution, which we already
+know from Section 1.4, and that the cone
+K={(At∗ξ−μ,ξ(I=1)):μ∈ℳ(It×It)⪰0,ξ∈ℳ(I2​t)≥0,ξ({∅})=0}K=\big\{(A_{t}^{*}\xi-\mu,\xi(I_{=1})):\mu\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0},\,\xi\in\mathcal{M}(I_{2t})_{\geq 0},\,\xi(\{\emptyset\})=0\big\}
+is closed in ℳ​(It×It)sym×ℝ\mathcal{M}(I_{t}\times I_{t})_{\mathrm{sym}}\times\mathbb{R}. The above cone is the Minkowski difference of
+K1={(At∗ξ,ξ(I=1)):ξ∈ℳ(I2​t)≥0,ξ({∅})=0}K_{1}=\big\{(A_{t}^{*}\xi,\xi(I_{=1})):\xi\in\mathcal{M}(I_{2t})_{\geq 0},\,\xi(\{\emptyset\})=0\big\}
+and
+K2={(μ,0):μ∈ℳ​(It×It)⪰0}.K_{2}=\big\{(\mu,0):\mu\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}\big\}.
+By a theorem of Klee [22] and
+Dieudonné [13] the Minkowski difference K1−K2K_{1}-K_{2}
+is closed when the three conditions
+(A)
+K1∩K2={0}K_{1}\cap K_{2}=\{0\},
+(B)
+K1K_{1} and K2K_{2} are closed,
+(C)
+K1K_{1} is locally compact.
+are satisfied. The fact that K2K_{2} is closed follows immediately since
+ℳ​(It×It)⪰0\mathcal{M}(I_{t}\times I_{t})_{\succeq 0} is closed. We now verify the
+other conditions55
+5
+The proof of this lemma has been updated compared to the published version, fixing a problem found independently by Jan Rolfes and Andrew Salmon.:
+Lemma 5
+K1∩K2={0}K_{1}\cap K_{2}=\{0\}.
+Proof
+We will show that ξ∈ℳ​(I2​t)≥0\xi\in\mathcal{M}(I_{2t})_{\geq 0} with
+ξ⁡({∅})=0\xi(\{\emptyset\})=0 is the zero measure if At∗​ξ∈ℳ​(It×It)⪰0A_{t}^{*}\xi\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}.
+Let f∈𝒞​(It×It)symf\in\mathcal{C}(I_{t}\times I_{t})_{\mathrm{sym}} be given by
+f⁡(J,J′)={1if ​J=J′=∅,0otherwise.f(J,J^{\prime})=\begin{cases}1&\text{if }J=J^{\prime}=\emptyset,\\
+0&\text{otherwise}.\end{cases}
+Then
+At∗​ξ​({(∅,∅)})=⟨f,At∗​ξ⟩=⟨At​f,ξ⟩=ξ⁡({∅})=0.A_{t}^{*}\xi(\{(\emptyset,\emptyset)\})=\langle f,A_{t}^{*}\xi\rangle=\langle A_{t}f,\xi\rangle=\xi(\{\emptyset\})=0.
+For n∈ℤn\in\mathbb{Z} define gn∈𝒞⁡(It)g_{n}\in\mathcal{C}(I_{t}) by
+gn​(S)={|n|if ​S=∅,1/notherwise.g_{n}(S)=\begin{cases}|n|&\text{if }S=\emptyset,\\
+1/n&\text{otherwise.}\end{cases}
+Since gn⊗gn∈𝒞​(It×It)⪰0g_{n}\otimes g_{n}\in\mathcal{C}(I_{t}\times I_{t})_{\succeq 0} and
+At∗​ξ∈ℳ​(It×It)⪰0A_{t}^{*}\xi\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0} we have
+At∗​ξ​(gn⊗gn)≥0A_{t}^{*}\xi(g_{n}\otimes g_{n})\geq 0. We have that At∗​ξ​(gn⊗gn)A_{t}^{*}\xi(g_{n}\otimes g_{n}) equates to
+n2​At∗​ξ​({(∅,∅)})+1n2​At∗​ξ​(It∖{∅}×It∖{∅})+ 2​sign⁡(n)​At∗​ξ​({∅}×It∖{∅}).n^{2}A_{t}^{*}\xi\big(\{(\emptyset,\emptyset)\}\big)\;+\;\frac{1}{n^{2}}A_{t}^{*}\xi\big(I_{t}\setminus\{\emptyset\}\times I_{t}\setminus\{\emptyset\}\big)\;+\;2\operatorname{sign}(n)A_{t}^{*}\xi\big(\{\emptyset\}\times I_{t}\setminus\{\emptyset\}\big).
+The first term is zero, so the sum of the last two terms is
+nonnegative for each nn. By letting nn tend to plus and minus
+infinity we see that At∗​ξ​({∅}×It∖{∅})=0A_{t}^{*}\xi(\{\emptyset\}\times I_{t}\setminus\{\emptyset\})=0.
+Define h∈𝒞​(It×It)symh\in\mathcal{C}(I_{t}\times I_{t})_{\text{sym}} by
+h⁡(J,J′)={1if ​J=∅​ and ​J′=∅,1/2if ​J=∅​ xor ​J′=∅,0otherwise.h(J,J^{\prime})=\begin{cases}1&\text{if }J=\emptyset\text{ and }J^{\prime}=\emptyset,\\
+1/2&\text{if }J=\emptyset\text{ xor }J^{\prime}=\emptyset,\\
+0&\text{otherwise}.\end{cases}
+Since ξ≥0\xi\geq 0 and
+ξ⁡(It)=⟨At​h,ξ⟩=⟨h,At∗​ξ⟩=At∗​ξ​({(∅,∅)})+At∗​ξ​({∅}×It∖{∅})=0,\xi(I_{t})=\langle A_{t}h,\xi\rangle=\langle h,A_{t}^{*}\xi\rangle=A_{t}^{*}\xi(\{(\emptyset,\emptyset)\})+A_{t}^{*}\xi(\{\emptyset\}\times I_{t}\setminus\{\emptyset\})=0,
+we have ξ|It=0\xi|_{I_{t}}=0.
+If VV is a sufficiently small open set in ItI_{t}, then the union of two distinct sets in VV cannot be independent. This shows that
+At(1V×1V)(S)=∑J,J′∈It:J∪J′=S1V(J)1V(J′)=0A_{t}(1_{V}\times 1_{V})(S)=\sum_{J,J^{\prime}\in I_{t}:J\cup J^{\prime}=S}1_{V}(J)1_{V}(J^{\prime})=0
+whenever S∈I2​t∖ItS\in I_{2t}\setminus I_{t}.
+Let SS and S′S^{\prime} be arbitrary elements in ItI_{t}, and let UU and U′U^{\prime} be small open neighborhoods around SS and S′S^{\prime}.
+For s=±1s=\pm 1 we have
+0\displaystyle 0
+≤At∗​ξ​((1U+s​1U′)⊗(1U+s​1U′))\displaystyle\leq A_{t}^{*}\xi((1_{U}+s1_{U^{\prime}})\otimes(1_{U}+s1_{U^{\prime}}))
+=At∗​ξ​(U×U)+At∗​ξ​(U′×U′)+2​s​At∗​ξ​(U×U′),\displaystyle=A_{t}^{*}\xi(U\times U)+A_{t}^{*}\xi(U^{\prime}\times U^{\prime})+2sA_{t}^{*}\xi(U\times U^{\prime}),
+where the inequality follows because Urysohn’s lemma says that 1U+s​1U′1_{U}+s1_{U^{\prime}} can be approximated arbitrarily well by continuous functions.
+Since ξ|It=0\xi|_{I_{t}}=0, we have
+At∗​ξ​(1U×1U)=At∗​ξ​(1U′×1U′)=0A_{t}^{*}\xi(1_{U}\times 1_{U})=A_{t}^{*}\xi(1_{U^{\prime}}\times 1_{U^{\prime}})=0
+for UU and U′U^{\prime} small enough.
+This shows 2​s​At∗​ξ​(U×U′)≥02sA_{t}^{*}\xi(U\times U^{\prime})\geq 0, and since s=±1s=\pm 1 we have At∗​ξ​(U×U′)=0A_{t}^{*}\xi(U\times U^{\prime})=0. Since SS and S′S^{\prime} are arbitrary this shows At∗​ξ=0A_{t}^{*}\xi=0, and since At∗A_{t}^{*} is injective, we have ξ=0\xi=0.
+∎
+Remark 1
+The set I2​tI_{2t} is a subset of the power set 2V2^{V}. A power set is
+a monoid with the associative binary operation ∪\cup and
+unit element ∅\emptyset. Monoids have sufficient structure for
+defining functions of positive type, which in this case are
+functions f:2V→ℝf\colon 2^{V}\to\mathbb{R} for which the matrices (f⁡(Ji∪Jj))i,j=1m(f(J_{i}\cup J_{j}))_{i,j=1}^{m} are positive semidefinite for all m∈ℕm\in\mathbb{N} and
+J1,…,Jm∈2VJ_{1},\ldots,J_{m}\in 2^{V}. This monoid is commutative (i.e., J∪J′=J′∪JJ\cup J^{\prime}=J^{\prime}\cup J for all J,J′∈2VJ,J^{\prime}\in 2^{V}) and
+idempotent (i.e., J∪J=JJ\cup J=J for all J∈2VJ\in 2^{V}), so the matrix
+(f⁡(∅)f⁡(J)f⁡(J)f⁡(J))is positive semidefinite,\begin{pmatrix}f(\emptyset)&f(J)\\
+f(J)&f(J)\end{pmatrix}\quad\text{is positive semidefinite},
+and so 0≤f⁡(J)≤f⁡(∅)0\leq f(J)\leq f(\emptyset) for all J∈2VJ\in 2^{V} (6, p. 119). In
+particular, a function of positive type which vanishes at the unit
+element is identically zero. This resembles the situation in the proof
+of Lemma 5. To see this we show that one
+can view λ∈ℳ⁡(I2​t)\lambda\in\mathcal{M}(I_{2t}) with At∗​λ∈ℳ​(It×It)⪰0A_{t}^{*}\lambda\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0} as a “measure of positive
+type”. For this we notice that a function f:2V→ℝf\colon 2^{V}\to\mathbb{R} is of
+positive type if and only if ∑S∈2Vf⁡(S)​∑J∪J′=Sg⁡(J)​g​(J′)≥0\sum_{S\in 2^{V}}f(S)\sum_{J\cup J^{\prime}=S}g(J)g(J^{\prime})\geq 0 for all finitely supported functions g:2V→ℝg\colon 2^{V}\to\mathbb{R}. Going from the monoid 2V2^{V} to the “truncated monoid”
+I2​tI_{2t}, and from functions to measures, we have the natural
+definition that a measure λ∈ℳ⁡(I2​t)\lambda\in\mathcal{M}(I_{2t}) is of
+positive type if ∫At​(g⊗g)​(S)​𝑑λ​(S)≥0\int A_{t}(g\otimes g)(S)\,d\lambda(S)\geq 0 for
+all g∈𝒞⁡(I2​t)g\in\mathcal{C}(I_{2t}), which is the case if and only if
+At∗​λ∈ℳ​(It×It)⪰0A_{t}^{*}\lambda\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}. Moreover,
+if we define a convolution and an involution on 𝒞⁡(I2​t)\mathcal{C}(I_{2t}) by f∗g=At​(f⊗g)f*g=A_{t}(f\otimes g) and f∗=ff^{*}=f,
+respectively, then a measure λ\lambda is of positive type if and only
+if λ⁡(f∗∗f)≥0\lambda(f^{*}*f)\geq 0 for all f∈𝒞⁡(I2​t)f\in\mathcal{C}(I_{2t}). This
+agrees with the definition of measures of positive type as given for
+instance in (14, Chapter 6.3) for locally compact
+groups, where a different algebra is used.
+Before we consider condition (C) we need some background: A cone is
+locally compact if it is locally compact as a topological
+space, that is, each point in the cone is contained in a compact
+neighborhood relative to the cone. A cone is locally compact if the
+origin has a compact neighborhood relative to the cone: For each point
+xx in the cone and each neighborhood UU of the origin there is an r>0r>0 such that x∈r​Ux\in rU. A convex base BB of a cone
+KK is a convex subset of the cone such that every nonzero x∈Kx\in K can
+be written in a unique way as a positive multiple of an element in BB. A
+cone is pointed if it does not contain a line. Now we can state
+a theorem of Klee and Dieudonné (22, (2.4)): A nonempty
+pointed cone in a locally convex vector space is closed and
+locally compact if and only if it admits a compact convex base.
+Lemma 6
+K1K_{1} is closed and locally compact.
+Proof
+Set
+B={ξ∈ℳ(I2​t)≥0:⟨1I2​t,ξ⟩=1,⟨1∅,ξ⟩=0}.B=\{\xi\in\mathcal{M}(I_{2t})_{\geq 0}:\langle 1_{I_{2t}},\xi\rangle=1,\,\langle 1_{\emptyset},\xi\rangle=0\}.
+The maps
+ℳ(I2​t)→ℝ,ξ↦⟨1I2​t,ξ⟩andℳ(I2​t)→ℝ,ξ↦⟨1∅,ξ⟩\mathcal{M}(I_{2t})\to\mathbb{R},\;\xi\mapsto\langle 1_{I_{2t}},\xi\rangle\quad\text{and}\quad\mathcal{M}(I_{2t})\to\mathbb{R},\;\xi\mapsto\langle 1_{\emptyset},\xi\rangle
+are continuous, so the preimage of {1}\{1\} under the first map and the
+preimage of {0}\{0\} under the second map is closed. Hence, BB is
+closed in the space of probability measures on I2​tI_{2t}, which is
+compact by the Banach-Alaoglu theorem. So, BB is compact as well.
+By Lemma 3 At∗A_{t}^{*} is injective, so the
+map ξ↦(At∗​ξ,ξ⁡(I=1))\xi\mapsto(A_{t}^{*}\xi,\xi(I_{=1})) is injective and the image
+of BB under this map is a compact convex base for K1K_{1}. Hence, by
+Klee, Dieudonné, the cone K1K_{1} is closed and locally compact.
+∎
+Remark 2
+In this remark we show that for infinite graphs the cone K2K_{2} is not locally
+compact, and hence it is important that only one of the two cones is
+required to be locally compact in condition (C). If VV is an
+infinite set, then so is ItI_{t}, which means that ℳ⁡(It)\mathcal{M}(I_{t})
+is an infinite dimensional (Hausdorff) topological vector space
+which is therefore not locally compact. The Banach-Alaoglu theorem
+says that the closed ball of radius rr centered about the origin in
+ℳ⁡(It)\mathcal{M}(I_{t}) is compact. This means that it cannot be a
+neighborhood of the origin. Thus, for each r>0r>0 there exists a
+net {λβ}⊆ℳ⁡(It)\{\lambda_{\beta}\}\subseteq\mathcal{M}(I_{t}) converging to the
+origin, such that ‖λβ‖=r\|\lambda_{\beta}\|=r for all β\beta.
+Let f∈𝒞​(It×It)symf\in\mathcal{C}(I_{t}\times I_{t})_{\mathrm{sym}} and ϵ>0\epsilon>0. The set
+span{cg⊗g:c∈ℝ,g∈𝒞(It)}\mathrm{span}\{c\,g\otimes g:c\in\mathbb{R},\,g\in\mathcal{C}(I_{t})\}
+is a point separating and nowhere vanishing subalgebra of 𝒞​(It×It)sym\mathcal{C}(I_{t}\times I_{t})_{\mathrm{sym}}, so it follows from the Stone-Weierstrass
+theorem that it is dense in the uniform topology. This means that
+there exists a function f~=∑i=1mci​gi⊗gi\tilde{f}=\sum_{i=1}^{m}c_{i}g_{i}\otimes g_{i}
+such that ‖f~−f‖∞≤ϵ/r2\|\tilde{f}-f\|_{\infty}\leq\epsilon/r^{2}. Then,
+|λβ⊗λβ​(f)|\displaystyle|\lambda_{\beta}\otimes\lambda_{\beta}(f)|
+≤|λβ⊗λβ​(f)−λβ⊗λβ​(f~)|+|λβ⊗λβ​(f~)|\displaystyle\leq|\lambda_{\beta}\otimes\lambda_{\beta}(f)-\lambda_{\beta}\otimes\lambda_{\beta}(\tilde{f})|+|\lambda_{\beta}\otimes\lambda_{\beta}(\tilde{f})|
+≤‖λβ⊗λβ‖​‖f−f~‖∞+∑i=1mci​λβ​(gi)2→ϵ.\displaystyle\leq\|\lambda_{\beta}\otimes\lambda_{\beta}\|\|f-\tilde{f}\|_{\infty}+\sum_{i=1}^{m}c_{i}\lambda_{\beta}(g_{i})^{2}\to\epsilon.
+So, the net {λβ⊗λβ}\{\lambda_{\beta}\otimes\lambda_{\beta}\} in
+ℳ​(It×It)⪰0\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}, which satisfies
+‖λβ⊗λβ‖=r2\|\lambda_{\beta}\otimes\lambda_{\beta}\|=r^{2} for each β\beta,
+converges to the origin. Therefore, none of the closed balls centered
+about the origin is a neighborhood of the origin in ℳ​(It×It)⪰0\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}. Since compact sets are bounded, this means
+that the origin does not have a compact neighborhood in
+ℳ​(It×It)⪰0\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}, so this cone is not locally
+compact and neither is K2K_{2}.
+4 Convergence to the independence number; Proof of
+Theorem 1.2
+In this section we prove Theorem 1.2: The
+chain (1) converges to the independence
+number α⁡(G)\alpha(G).
+Our proof can be seen as an infinite-dimensional version of Laurent’s
+proof of the convergence of the hierarchy for finite
+graphs G=(V,E)G=(V,E). In [25] she makes use of the fact that the cone
+of positive semidefinite moment matrices where rows and columns are
+indexed by the power set 2V2^{V} is a simplicial polyhedral cone; an
+observation due to Lindström [27] and Wilf
+[37]. More specifically,
+{M∈ℝ2V×2V:M⪰0,M is a moment matrix}=cone{χSχS𝖳:S⊆V},\{M\in\mathbb{R}^{2^{V}\times 2^{V}}\hskip-1.00006pt:M\succeq 0,M\text{ is a moment matrix}\}=\mathrm{cone}\{\chi_{S}\chi_{S}^{\sf T}:S\subseteq V\},
+(2)
+where a moment matrix MM is a matrix where the entry MJ,J′M_{J,J^{\prime}} only
+depends on the union J∪J′J\cup J^{\prime} and where the vector χS∈ℝ2V\chi_{S}\in\mathbb{R}^{2^{V}} is defined componentwise by
+χS​(R)={1if R⊆S,0otherwise.\chi_{S}(R)=\begin{cases}1&\text{if $R\subseteq S$},\\
+0&\text{otherwise.}\end{cases}
+The proof of (2) uses the inclusion-exclusion
+principle. In our proof the following form of the
+inclusion-exclusion principle will be crucial: Given finite sets AA
+and CC,
+∑B:A⊆B⊆C(−1)|B|\displaystyle\sum_{B:A\subseteq B\subseteq C}(-1)^{|B|}
+=(−1)|A|​∑B⊆C∖A(−1)|B|\displaystyle=(-1)^{|A|}\sum_{B\subseteq C\setminus A}(-1)^{|B|}
+=(−1)|A|​∑i=0|C∖A|(|C∖A|i)​1|C∖A|−i​(−1)i\displaystyle=(-1)^{|A|}\sum_{i=0}^{|C\setminus A|}\binom{|C\setminus A|}{i}1^{|C\setminus A|-i}(-1)^{i}
+=(−1)|A|​(1−1)|C∖A|={(−1)|A|if ​A=C,0otherwise.\displaystyle=(-1)^{|A|}(1-1)^{|C\setminus A|}=\begin{cases}(-1)^{|A|}&\text{if }A=C,\\
+0&\text{otherwise.}\end{cases}
+In our proof we are also faced with two analytical difficuties because we consider infinite graphs: 1. The
+cone {At∗​λ:λ∈ℳ⁡(I2​t)}∩ℳ​(It×It)⪰0\{A_{t}^{*}\lambda:\lambda\in\mathcal{M}(I_{2t})\}\cap\mathcal{M}(I_{t}\times I_{t})_{\succeq 0} is not finitely
+generated. 2. Also the power set 2V2^{V} is too large.
+The second problem we solve by considering the set I=Iα⁡(G)I=I_{\alpha(G)} instead of 2V2^{V}. In fact, already when we defined
+the hierarchy we used measures on independent sets instead of
+measures on subsets of the vertices.
+The first problem we solve by using weak vector valued integrals
+(as discussed in for instance (14, Appendix 3))
+instead of finite conic combinations: Let τ∈ℳ⁡(I)\tau\in\mathcal{M}(I)
+and νS∈ℳ⁡(I)\nu_{S}\in\mathcal{M}(I) so that S↦νSS\mapsto\nu_{S} is a
+continuous map from II to ℳ⁡(I)\mathcal{M}(I) with supS∈I‖νS‖<∞\sup_{S\in I}\|\nu_{S}\|<\infty. Then f↦∫νS​(f)​𝑑τ​(S)f\mapsto\int\nu_{S}(f)\,d\tau(S) is a
+bounded linear map on 𝒞⁡(I)\mathcal{C}(I), and hence defines a unique signed
+Radon measure ν\nu on II which we denote by ν=∫νS​𝑑τ​(S)\nu=\int\nu_{S}\,d\tau(S). The point measures
+δSandχR=∑Q⊆RδQ\delta_{S}\quad\text{and}\quad\chi_{R}=\sum_{Q\subseteq R}\delta_{Q}
+which we will use in the next proposition satisfy the above
+conditions, so we can use them as integrants in vector valued
+integrals.
+Now the proof of Theorem 1.2 will follow
+immediately from the following proposition.
+Proposition 1
+Let GG be a compact topological packing graph and suppose λ\lambda
+is feasible for lasα⁡(G)​(G)\mathrm{las}_{\alpha(G)}(G). Then there exists a
+unique probability measure
+σ∈𝒫⁡(I)={λ∈ℳ​(I)≥0:‖λ‖=1}\sigma\in\mathcal{P}(I)=\{\lambda\in\mathcal{M}(I)_{\geq 0}:\|\lambda\|=1\}
+such that
+λ=∫χR​𝑑σ​(R).\lambda=\int\chi_{R}\,d\sigma(R).
+Proof
+Existence:
+We have
+λ=∫δS​𝑑λ​(S)=∫∑R⊆S(−1)|S∖R|​χR​𝑑λ​(S),\lambda=\int\delta_{S}\,d\lambda(S)=\int\sum_{R\subseteq S}(-1)^{|S\setminus R|}\chi_{R}\,d\lambda(S),
+because by the inclusion-exclusion principle
+∑R⊆S(−1)|S∖R|χR=∑R⊆S(−1)|S∖R|∑Q⊆RδQ=∑Q⊆SδQ∑R:Q⊆R⊆S(−1)|S∖R|=δS.\sum_{R\subseteq S}(-1)^{|S\setminus R|}\chi_{R}=\sum_{R\subseteq S}(-1)^{|S\setminus R|}\sum_{Q\subseteq R}\delta_{Q}=\sum_{Q\subseteq S}\delta_{Q}\sum_{R:Q\subseteq R\subseteq S}(-1)^{|S\setminus R|}=\delta_{S}.
+The image of f∈𝒞⁡(I)f\in\mathcal{C}(I) under the linear map
+𝒞⁡(I)→ℝ,f↦∫∑R⊆S(−1)|S∖R|​f​(R)​𝑑λ​(S)\mathcal{C}(I)\to\mathbb{R},\;f\mapsto\int\sum_{R\subseteq S}(-1)^{|S\setminus R|}f(R)\,d\lambda(S)
+has norm at most 2α⁡(G)​‖λ‖​‖f‖∞2^{\alpha(G)}\|\lambda\|\|f\|_{\infty}, so the above linear functional is bounded and hence defines a signed Radon measure σ\sigma on II. Then
+∫χR​(f)​𝑑σ​(R)=∫∑R⊆S(−1)|S∖R|​χR​(f)​𝑑λ​(S)=λ⁡(f),\int\chi_{R}(f)\,d\sigma(R)=\int\sum_{R\subseteq S}(-1)^{|S\setminus R|}\chi_{R}(f)\,d\lambda(S)=\lambda(f),
+for each f∈𝒞⁡(I)f\in\mathcal{C}(I), so λ=∫χR​𝑑σ​(R)\lambda=\int\chi_{R}\,d\sigma(R).
+Uniqueness: If σ′∈ℳ⁡(I2​t)\sigma^{\prime}\in\mathcal{M}(I_{2t}) is another measure such that λ=∫χR​d​σ′​(R)\lambda=\int\chi_{R}\,d\sigma^{\prime}(R), then ∫χR​d​(σ−σ′)​(R)=0\int\chi_{R}\,d(\sigma-\sigma^{\prime})(R)=0. Evaluating the above measure at a Borel set L⊆I=tL\subseteq I_{=t} with t=α⁡(G)t=\alpha(G) gives
+0=∫χR​(L)​d​(σ−σ′)​(R)=(σ−σ′)​(L),0=\int\chi_{R}(L)\,d(\sigma-\sigma^{\prime})(R)=(\sigma-\sigma^{\prime})(L),
+so σ|I=t=σ′|I=t\sigma|_{I_{=t}}=\sigma^{\prime}|_{I_{=t}}. Repeating this argument for t=α⁡(G)−1,…,1,0t=\alpha(G)-1,\ldots,1,0 shows σ=σ′\sigma=\sigma^{\prime}, which shows that σ\sigma is unique.
+Positivity: Let g∈𝒞​(I)≥0g\in\mathcal{C}(I)_{\geq 0} be arbitrary and define f∈𝒞⁡(I)f\in\mathcal{C}(I) by
+f⁡(Q)=∑P⊆Q(−1)|Q∖P|​g⁡(P),f(Q)=\sum_{P\subseteq Q}(-1)^{|Q\setminus P|}\sqrt{g(P)},
+so that
+∑Q⊆Rf⁡(Q)\displaystyle\sum_{Q\subseteq R}f(Q)
+=∑Q⊆R∑P⊆Q(−1)|Q∖P|​g⁡(P)\displaystyle=\sum_{Q\subseteq R}\sum_{P\subseteq Q}(-1)^{|Q\setminus P|}\sqrt{g(P)}
+=∑P⊆R(−1)|P|g⁡(P)∑Q:P⊆Q⊆R(−1)|Q|=g⁡(R).\displaystyle=\sum_{P\subseteq R}(-1)^{|P|}\sqrt{g(P)}\sum_{Q:P\subseteq Q\subseteq R}(-1)^{|Q|}=\sqrt{g(R)}.
+We have
+0≤⟨f⊗f,Aα⁡(G)∗​λ⟩=⟨Aα⁡(G)​f⊗f,λ⟩,0\leq\langle f\otimes f,A_{\alpha(G)}^{*}\lambda\rangle=\langle A_{\alpha(G)}f\otimes f,\lambda\rangle,
+and since λ=∫χR​𝑑σ​(R)\lambda=\int\chi_{R}\,d\sigma(R), the right hand side above is equal to
+∫∑Q⊆RAα⁡(G)​(f⊗f)​(Q)​𝑑σ​(R).\int\sum_{Q\subseteq R}A_{\alpha(G)}(f\otimes f)(Q)\,d\sigma(R).
+Since we are in the final step of the hierarchy, we have that Aα⁡(G)​(f⊗f)​(Q)A_{\alpha(G)}(f\otimes f)(Q) can be written as ∑J∪J′=Qf⁡(J)​f​(J′),\sum_{J\cup J^{\prime}=Q}f(J)f(J^{\prime}), so the above equals
+∫∑Q⊆R∑J∪J′=Qf⁡(J)​f​(J′)​𝑑σ​(R)=∫(∑Q⊆Rf⁡(Q))2​𝑑σ​(R)=∫g⁡(R)​𝑑σ​(R),\int\sum_{Q\subseteq R}\;\sum_{J\cup J^{\prime}=Q}f(J)f(J^{\prime})\,d\sigma(R)=\int\left(\sum_{Q\subseteq R}f(Q)\right)^{2}\,d\sigma(R)=\int g(R)\,d\sigma(R),
+which shows that σ\sigma is a positive measure.
+Normalization: σ\sigma is a probability measure, because
+1=λ⁡({∅})=∫χS​({∅})​𝑑σ​(S)=‖σ‖.1=\lambda(\{\emptyset\})=\int\chi_{S}(\{\emptyset\})\,d\sigma(S)=\|\sigma\|.
+∎
+Proposition 2
+Let GG be a compact topological packing graph. Then the extreme points of the feasible region of lasα⁡(G)​(G)\mathrm{las}_{\alpha(G)}(G) are precisely the measures χR\chi_{R} with R∈IR\in I.
+Proof
+If σ∈𝒫⁡(I)\sigma\in\mathcal{P}(I) and λ=∫χR​𝑑σ​(R)\lambda=\int\chi_{R}\,d\sigma(R), then
+λ⁡({∅})=∫χR​({∅})​𝑑σ​(R)=1,\lambda(\{\emptyset\})=\int\chi_{R}(\{\emptyset\})\,d\sigma(R)=1,
+and for each K∈𝒞​(I×I)⪰0K\in\mathcal{C}(I\times I)_{\succeq 0} we have
+⟨K,Aα⁡(G)∗​λ⟩=∫χR​(Aα⁡(G)​K)​𝑑σ​(R)=∫∑J,J′⊆RK⁡(J,J′)​𝑑σ​(R)≥0,\langle K,A_{\alpha(G)}^{*}\lambda\rangle=\int\chi_{R}(A_{\alpha(G)}K)\,d\sigma(R)=\int\sum_{J,J^{\prime}\subseteq R}K(J,J^{\prime})\,d\sigma(R)\geq 0,
+so λ\lambda is feasible for lasα⁡(G)​(G)\mathrm{las}_{\alpha(G)}(G).
+So we have the surjective linear map
+L:𝒫⁡(I)→ℱ,σ↦∫χR​𝑑σ​(R),L\colon\mathcal{P}(I)\to\mathcal{F},\;\sigma\mapsto\int\chi_{R}\,d\sigma(R),
+where ℱ\mathcal{F} denotes the feasible set of lasα⁡(G)​(G)\mathrm{las}_{\alpha(G)}(G).
+By Proposition 1 the map LL is also injective. This means that
+ex⁡(ℱ)=ex⁡(L⁡(𝒫⁡(I)))=L⁡(ex⁡(𝒫⁡(I)))\mathrm{ex}(\mathcal{F})=\mathrm{ex}(L(\mathcal{P}(I)))=L(\mathrm{ex}(\mathcal{P}(I)))
+and since ex⁡(𝒫⁡(I))={δS:S∈I}\mathrm{ex}(\mathcal{P}(I))=\{\delta_{S}:S\in I\} (see
+for instance Barvinok (5, Proposition 8.4)), the right hand side above is equal to L⁡({δS:S∈I})={χR:R∈I}L(\{\delta_{S}:S\in I\})=\{\chi_{R}:R\in I\}.
+∎
+Proof ( of Theorem 1.2 )
+Let λ\lambda be feasible for lasα⁡(G)​(G)\mathrm{las}_{\alpha(G)}(G). By Proposition 1 there exists a probability measure σ\sigma on II such that λ=∫χS​𝑑σ​(S)\lambda=\int\chi_{S}\,d\sigma(S). Substituting this integral for λ\lambda in the definition of lasα⁡(G)​(G)\mathrm{las}_{\alpha(G)}(G) gives
+lasα⁡(G)​(G)≤max⁡{∫χR​(I=1)⏟|R|​𝑑σ​(R):σ∈𝒫⁡(I)}=α⁡(G),\mathrm{las}_{\alpha(G)}(G)\leq\max\Big\{\int\underbrace{\chi_{R}(I_{=1})}_{|R|}d\sigma(R):\sigma\in\mathcal{P}(I)\Big\}=\alpha(G),
+and since we already know that lasα⁡(G)​(G)≥α⁡(G)\mathrm{las}_{\alpha(G)}(G)\geq\alpha(G), this completes the proof. ∎
+5 Two and three-point bounds
+5.1 Two-point bounds
+The Lovász ϑ\vartheta-number is a two-point bound originally
+defined for finite graphs. Bachoc, Nebe, Oliveira, and
+Vallentin [4] generalized this to
+the spherical code graph, and they showed that it is equivalent to the
+linear programming bound of Delsarte, Goethals, and
+Seidel [12]. The following generalization
+of the ϑ′\vartheta^{\prime}-number for compact topological packing graphs GG
+is natural:
+ϑ′(G)∗=inf{a:\displaystyle\vartheta^{\prime}(G)^{*}=\inf\Big\{a:\;
+a∈ℝ,F∈𝒞​(V×V)⪰0,\displaystyle a\in\mathbb{R},\,F\in\mathcal{C}(V\times V)_{\succeq 0},
+F⁡(x,x)≤a−1​ for ​x∈V,\displaystyle F(x,x)\leq a-1\text{ for }x\in V,
+F(x,y)≤−1 for {x,y}∈I=2}.\displaystyle F(x,y)\leq-1\text{ for }\{x,y\}\in I_{=2}\Big\}.
+Lemma 7
+Let GG be a compact topological packing graph. Then ϑ′​(G)∗\vartheta^{\prime}(G)^{*}
+has a feasible solution.
+For finite graphs one can show ϑ′​(G)∗\vartheta^{\prime}(G)^{*} admits a feasible
+solution by selecting a matrix FF with F⁡(x,y)=−1F(x,y)=-1 for {x,y}∈I=2\{x,y\}\in I_{=2} and the diagonal of FF large enough so as to make it
+diagonally dominant and hence positive semidefinite. For infinite
+graphs it is not clear how to adapt this argument, so we use a different
+approach.
+Proof (of Lemma 7 )
+By the topological packing graph condition there is for each x∈Vx\in V an open clique CxC_{x} containing xx. Since VV is a compact
+Hausdorff space, it is a normal space, so there exists an open
+neighborhood UxU_{x} of xx such that its closure does not intersect
+V∖CxV\setminus C_{x}. By compactness there exists an S⊆VS\subseteq V
+such that {Ux:x∈S}\{U_{x}:x\in S\} is a finite open cover of VV. By
+Urysohn’s lemma there is a function fx∈𝒞⁡(V)f_{x}\in\mathcal{C}(V) such that
+fx​(y)​{=|S| if ​y∈Ux,∈[−1,|S|] if ​y∈Cx∖Ux,=−1 if ​y∈V∖Cx.f_{x}(y)\begin{cases}=|S|&\text{ if }y\in U_{x},\\
+\in[-1,|S|]&\text{ if }y\in C_{x}\setminus U_{x},\\
+=-1&\text{ if }y\in V\setminus C_{x}.\end{cases}
+Define
+F∈𝒞​(V×V)⪰0​ by ​F=∑x∈Sfx⊗fx, and ​a=|S|3+1.F\in\mathcal{C}(V\times V)_{\succeq 0}\text{ by }F=\sum_{x\in S}f_{x}\otimes f_{x},\;\text{ and }a=|S|^{3}+1.
+Then,
+F⁡(y,y)=∑x∈Sfx​(y)2≤|S|3=a−1​ for all ​y∈V.F(y,y)=\sum_{x\in S}f_{x}(y)^{2}\leq|S|^{3}=a-1\text{ for all }y\in V.
+Moreover, if {y,y′}∈I=2\{y,y^{\prime}\}\in I_{=2}, then at most one of yy and y′y^{\prime} lies in CxC_{x} for every given
+x∈Sx\in S. So, fx​(y)​fx​(y′)=−|S|f_{x}(y)f_{x}(y^{\prime})=-|S| if either yy or y′y^{\prime} lies in UxU_{x}
+and fx​(y)​fx​(y′)≤1f_{x}(y)f_{x}(y^{\prime})\leq 1 if neither yy nor y′y^{\prime} lies in
+UxU_{x}. Hence, F⁡(y,y′)≤−1F(y,y^{\prime})\leq-1 for all {y,y′}∈I=2\{y,y^{\prime}\}\in I_{=2}, and
+it follows that (a,F)(a,F) is feasible for ϑ′​(G)∗\vartheta^{\prime}(G)^{*}.
+∎
+Now we show that the first step of our hierarchy equals the
+ϑ′\vartheta^{\prime}-number for compact topological packing graphs, as it is
+known for finite graphs.
+Theorem 5.1
+Let GG be a compact topological packing graph. Then
+las1​(G)∗=ϑ′​(G)∗.\mathrm{las}_{1}(G)^{*}=\vartheta^{\prime}(G)^{*}.
+We prove this theorem by Lemma 8 and
+Lemma 10. We first show the easy inequality.
+Lemma 8
+las1​(G)∗≤ϑ′​(G)∗.\mathrm{las}_{1}(G)^{*}\leq\vartheta^{\prime}(G)^{*}.
+Proof
+Assume (a,F)(a,F) is feasible for ϑ′​(G)∗\vartheta^{\prime}(G)^{*} and define K∈𝒞​(I1×I1)symK\in\mathcal{C}(I_{1}\times I_{1})_{\text{sym}} by
+K⁡(∅,∅)=a,\displaystyle K(\emptyset,\emptyset)=a,
+K⁡(∅,{x})=K⁡({x},∅)=−1​ for ​x∈V,\displaystyle K(\emptyset,\{x\})=K(\{x\},\emptyset)=-1\text{ for }x\in V,
+K⁡({x},{y})=(F⁡(x,y)+1)/a​ for ​x,y∈V.\displaystyle K(\{x\},\{y\})=(F(x,y)+1)/a\text{ for }x,y\in V.
+To show that KK is positive definite we show that the matrix
+(K⁡(Ji,Jj))i,j=1m(K(J_{i},J_{j}))_{i,j=1}^{m} is positive semidefinite for all m∈ℕm\in\mathbb{N} and J1,…,Jm∈I1J_{1},\ldots,J_{m}\in I_{1} pairwise different. If none of
+the JiJ_{i}’s is empty, then it follows directly. Otherwise we may assume
+that there are x2,…,xm∈Vx_{2},\ldots,x_{m}\in V such that J1=∅J_{1}=\emptyset and
+Ji={xi}J_{i}=\{x_{i}\} for i=2,…,mi=2,\ldots,m. We have
+(K⁡(Ji,Jj)−K⁡(Ji,J1)​K​(J1,J1)−1​K​(J1,Jj))i,j=2m=a−1​(F⁡(xi,xj))i,j=2m,\Big(K(J_{i},J_{j})-K(J_{i},J_{1})K(J_{1},J_{1})^{-1}K(J_{1},J_{j})\Big)_{i,j=2}^{m}=a^{-1}\big(F(x_{i},x_{j})\big)_{i,j=2}^{m},
+so by the Schur complement (K⁡(Ji,Jj))i,j=1m\big(K(J_{i},J_{j})\big)_{i,j=1}^{m} is positive semidefinite.
+For x∈Vx\in V we have
+A1​K​({x})=K⁡({x},{x})+K⁡({x},∅)+K⁡(∅,{x})=(F⁡(x,x)+1)/a−2≤−1,A_{1}K(\{x\})=K(\{x\},\{x\})+K(\{x\},\emptyset)+K(\emptyset,\{x\})=(F(x,x)+1)/a-2\leq-1,
+and for {x,y}∈I=2\{x,y\}\in I_{=2} we have
+A1​K​({x,y})\displaystyle A_{1}K(\{x,y\})
+=K⁡({x},{y})+K⁡({y},{x})\displaystyle=K(\{x\},\{y\})+K(\{y\},\{x\})
+=(F⁡(x,y)+1)/a+(F⁡(y,x)+1)/a≤0.\displaystyle=(F(x,y)+1)/a+(F(y,x)+1)/a\leq 0.
+So KK is feasible for last​(G)∗\mathrm{las}_{t}(G)^{*} and since K⁡(∅,∅)=aK(\emptyset,\emptyset)=a we have last​(G)∗≤ϑ′​(G)∗\mathrm{las}_{t}(G)^{*}\leq\vartheta^{\prime}(G)^{*}.
+∎
+Remark 3
+From this lemma we can see that for each t∈ℕt\in\mathbb{N} the optimization
+problem last​(G)∗\mathrm{las}_{t}(G)^{*} has a feasible solution and so by
+strong duality the maximum in
+last​(G)\mathrm{las}_{t}(G) is attained: By Lemma 7, ϑ′​(G)∗\vartheta^{\prime}(G)^{*} has a feasible solution, hence by the
+lemma above las1​(G)∗\mathrm{las}_{1}(G)^{*} also has one. Then this can be extended
+trivially to a feasible solution for every
+last​(G)∗\mathrm{las}_{t}(G)^{*}.
+To prove the other inequality we will use the following generalization of
+the Schur complement.
+Lemma 9
+Let XX be a compact Hausdorff space and let x1,…,xn∈Xx_{1},\ldots,x_{n}\in X be
+elements such that the singletons {xi}\{x_{i}\} are open. Suppose μ∈ℳ​(X×X)sym\mu\in\mathcal{M}(X\times X)_{\text{sym}} is such that the matrix A=(μ⁡({(xi,xj)}))i,j=1nA=(\mu(\{(x_{i},x_{j})\}))_{i,j=1}^{n} is positive definite. Denote by
+ℱ⊆𝒞⁡(X)\mathcal{F}\subseteq\mathcal{C}(X) the set of functions which are zero on
+{x1,…,xn}\{x_{1},\ldots,x_{n}\} and for g∈ℱg\in\mathcal{F} define the vector
+vg∈ℝnv_{g}\in\mathbb{R}^{n} by (vg)i=μ⁡(1{xi}⊗g)(v_{g})_{i}=\mu(1_{\{x_{i}\}}\otimes g). Then μ\mu
+is positive definite if and only if
+μ⁡(g⊗g)−vg𝖳​A−1​vg≥0for allg∈ℱ.\mu(g\otimes g)-v_{g}^{\sf T}A^{-1}v_{g}\geq 0\quad\text{for all}\quad g\in\mathcal{F}.
+Proof
+Mercer’s theorem says that a kernel K∈𝒞​(X×X)symK\in\mathcal{C}(X\times X)_{\text{sym}} is positive definite if and only if there exist
+sequences (fi)i(f_{i})_{i} and (λi)i(\lambda_{i})_{i} in 𝒞⁡(X)\mathcal{C}(X) and ℝ≥0\mathbb{R}_{\geq 0} such that K⁡(x,y)=∑i=1∞λi​fi⊗fi​(x,y)K(x,y)=\sum_{i=1}^{\infty}\lambda_{i}f_{i}\otimes f_{i}(x,y), where convergence is uniform and absolute. It follows
+that μ∈ℳ​(X×X)⪰0\mu\in\mathcal{M}(X\times X)_{\succeq 0} if and only if
+μ⁡(f⊗f)≥0\mu(f\otimes f)\geq 0 for all f∈𝒞⁡(X)f\in\mathcal{C}(X). Now we use the
+technique as described in for instance the book by Boyd and Vandenberghe
+(8, Appendix A.5.5) and note that the
+measure μ\mu is positive definite if and only if the function p:ℝn×ℱ→ℝp\colon\mathbb{R}^{n}\times\mathcal{F}\to\mathbb{R} given by
+p⁡(r,g)\displaystyle p(r,g)
+=μ⁡((r1​1{x1}+⋯+rn​1{xn}+g)⊗(r1​1{x1}+⋯+rn​1{xn}+g))\displaystyle=\mu((r_{1}1_{\{x_{1}\}}+\cdots+r_{n}1_{\{x_{n}\}}+g)\otimes(r_{1}1_{\{x_{1}\}}+\cdots+r_{n}1_{\{x_{n}\}}+g))
+=μ⁡(g⊗g)+r𝖳​A​r+2​r𝖳​vg\displaystyle=\mu(g\otimes g)+r^{\sf T}Ar+2r^{\sf T}v_{g}
+is nonnegative on its domain. We have ∇rp​(r,g)=2​A​r+2​vg\nabla\!_{r}\,p(r,g)=2Ar+2v_{g}, so for fixed gg, the minimum of pp is attained for r=−A−1​vgr=-A^{-1}v_{g}. Hence pp is nonnegative on its domain if and only if
+μ⁡(g⊗g)−vg𝖳​A−1​vg≥0\mu(g\otimes g)-v_{g}^{\sf T}A^{-1}v_{g}\geq 0 for all g∈ℱg\in\mathcal{F}.
+∎
+Lemma 10
+las1​(G)∗≥ϑ′​(G)∗.\mathrm{las}_{1}(G)^{*}\geq\vartheta^{\prime}(G)^{*}.
+Proof
+We will use the duals of ϑ′​(G)∗\vartheta^{\prime}(G)^{*} and
+las1​(G)∗\mathrm{las}_{1}(G)^{*}. We derive the dual ϑ′​(G)\vartheta^{\prime}(G) of
+ϑ′​(G)∗\vartheta^{\prime}(G)^{*} similarly to
+Section 3.1. We have
+ϑ′(G)=sup{η(I2∖{∅}):\displaystyle\vartheta^{\prime}(G)=\sup\Big\{\eta(I_{2}\setminus\{\emptyset\}):\;
+η∈ℳ​(I2∖{∅})≥0,\displaystyle\eta\in\mathcal{M}(I_{2}\setminus\{\emptyset\})_{\geq 0},
+η(I=1)=1,T∗η∈ℳ(I=1×I=1)⪰0},\displaystyle\eta(I_{=1})=1,\;T^{*}\eta\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0}\Big\},
+where T:𝒞⁡(I=1×I=1)→𝒞⁡(I2∖{∅})T\colon\mathcal{C}(I_{=1}\times I_{=1})\to\mathcal{C}(I_{2}\setminus\{\emptyset\}) is the operator defined by
+T​F​(S)={F⁡({x},{x})if S={x},12​(F⁡({x},{y})+F⁡({y},{x}))if S={x,y}.TF(S)=\begin{cases}F(\{x\},\{x\})&\text{if $S=\{x\}$},\\
+\frac{1}{2}(F(\{x\},\{y\})+F(\{y\},\{x\}))&\text{if $S=\{x,y\}$}.\end{cases}
+Now we prove strong duality: ϑ′​(G)=ϑ′​(G)∗\vartheta^{\prime}(G)=\vartheta^{\prime}(G)^{*} and the
+optimum in ϑ′​(G)\vartheta^{\prime}(G) is attained. Following the approach from
+Section 3.2 we first observe that every
+probability measure on I=1I_{=1} is feasible for ϑ′​(G)\vartheta^{\prime}(G). To
+complete the proof we show that
+K={(T∗η−ν,η(I2∖{∅})):\displaystyle K=\{(T^{*}\eta-\nu,\eta(I_{2}\setminus\{\emptyset\})):\;
+ν∈ℳ​(I=1×I=1)⪰0,\displaystyle\nu\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0},
+η∈ℳ(I2∖{∅})≥0,η(I=1)=0}\displaystyle\eta\in\mathcal{M}(I_{2}\setminus\{\emptyset\})_{\geq 0},\,\eta(I_{=1})=0\}
+is closed in ℳ​(I=1×I=1)sym×ℝ\mathcal{M}(I_{=1}\times I_{=1})_{\text{sym}}\times\mathbb{R}. We decompose KK as the Minkowski difference of
+K1={(T∗η,η(I2∖{∅})):η∈ℳ(I2∖{∅})≥0,η(I=1)=0}K_{1}=\{(T^{*}\eta,\eta(I_{2}\setminus\{\emptyset\})):\eta\in\mathcal{M}(I_{2}\setminus\{\emptyset\})_{\geq 0},\,\eta(I_{=1})=0\}
+and
+K2={(ν,0):ν∈ℳ​(I=1×I=1)⪰0}.K_{2}=\{(\nu,0):\nu\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0}\}.
+It is immediate that K1∩K2={0}K_{1}\cap K_{2}=\{0\} and again using the
+approach from Section 3.2 we see that K1K_{1} and
+K2K_{2} are closed and that K1K_{1} is locally compact.
+Now we show the inequality ϑ′​(G)≤las1​(G)\vartheta^{\prime}(G)\leq\mathrm{las}_{1}(G). Let
+η\eta be an optimal solution for ϑ′​(G)\vartheta^{\prime}(G) and define λ∈ℳ⁡(I2)\lambda\in\mathcal{M}(I_{2}) by λ⁡({∅})=1\lambda(\{\emptyset\})=1 and
+λ⁡(L)={ϑ′​(G)​η​(L)if L is a Borel set in I=1,12​ϑ′​(G)​η​(L)if L is a Borel set in I=2.\lambda(L)=\begin{cases}\vartheta^{\prime}(G)\eta(L)&\text{if $L$ is a Borel set in $I_{=1}$},\\
+\frac{1}{2}\vartheta^{\prime}(G)\eta(L)&\text{if $L$ is a Borel set in $I_{=2}$}.\end{cases}
+Then
+λ⁡(I=1)=ϑ′​(G)​η​(I=1)=ϑ′​(G).\lambda(I_{=1})=\vartheta^{\prime}(G)\eta(I_{=1})=\vartheta^{\prime}(G).
+To complete the proof we have to show A1∗​λ∈ℳ​(I1×I1)⪰0A_{1}^{*}\lambda\in\mathcal{M}(I_{1}\times I_{1})_{\succeq 0}. We apply our generalized Schur
+complement: Let g∈𝒞⁡(I1)g\in\mathcal{C}(I_{1}) be a function with g⁡(∅)=0g(\emptyset)=0. We have
+A1∗​λ​(g⊗g)=ϑ′​(G)​T∗​η​(g⊗g).A_{1}^{*}\lambda(g\otimes g)=\vartheta^{\prime}(G)T^{*}\eta(g\otimes g).
+The symmetric bilinear form (h,g)↦T∗​η​(h⊗g)(h,g)\mapsto T^{*}\eta(h\otimes g) is
+positive semidefinite because T∗​η∈ℳ​(I=1×I=1)⪰0T^{*}\eta\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0}, so we can apply the Cauchy-Schwarz inequality
+and optimality of η\eta to obtain
+ϑ′​(G)​T∗​η​(g⊗g)≥ϑ′​(G)T∗​η​(1I=1⊗1I=1)​(T∗​η​(1I=1⊗g))2=(T∗​η​(1I=1⊗g))2.\vartheta^{\prime}(G)T^{*}\eta(g\otimes g)\geq\frac{\vartheta^{\prime}(G)}{T^{*}\eta(1_{I_{=1}}\otimes 1_{I_{=1}})}(T^{*}\eta(1_{I_{=1}}\otimes g))^{2}=(T^{*}\eta(1_{I_{=1}}\otimes g))^{2}.
+In the remainder of this proof we show
+T∗​η​(1I=1⊗g)=ϑ′​(G)​η​(g).T^{*}\eta(1_{I_{=1}}\otimes g)=\vartheta^{\prime}(G)\eta(g).
+Since
+ϑ′​(G)​η​(g)=λ⁡(g)=A1∗​λ​(1∅⊗g)\vartheta^{\prime}(G)\eta(g)=\lambda(g)=A_{1}^{*}\lambda(1_{\emptyset}\otimes g)
+the proof is then complete by using the generalized Schur complement,
+Lemma 9.
+Inspired by Schrijver (34, Theorem 67.10) we use
+Lagrange multipliers. First observe that
+T⁡(1I=1⊗1I=1)=1I2∖{∅}andT∗​η​(1I=1⊗1I=1)=η⁡(I2∖{∅}).T(1_{I_{=1}}\otimes 1_{I_{=1}})=1_{I_{2}\setminus\{\emptyset\}}\quad\text{and}\quad T^{*}\eta(1_{I_{=1}}\otimes 1_{I_{=1}})=\eta(I_{2}\setminus\{\emptyset\}).
+For u∈ℝ2u\in\mathbb{R}^{2} define gu∈𝒞⁡(I=1)g_{u}\in\mathcal{C}(I_{=1})
+by gu=u1​g+u2​(1I=1−g)g_{u}=u_{1}g+u_{2}(1_{I_{=1}}-g). For each u∈ℝ2u\in\mathbb{R}^{2} with
+η⁡(gu2)=1\eta(g_{u}^{2})=1, the measure η~\tilde{\eta} defined by d​η~​(S)=T⁡(gu⊗gu)​(S)​d​η​(S)d\tilde{\eta}(S)=T(g_{u}\otimes g_{u})(S)d\eta(S) is feasible for ϑ′​(G)\vartheta^{\prime}(G). So,
+if we consider the problem of maximizing T∗​η​(gu⊗gu)T^{*}\eta(g_{u}\otimes g_{u})
+over all u∈ℝ2u\in\mathbb{R}^{2} for which η⁡(gu2)=1\eta(g_{u}^{2})=1, then optimality of
+η\eta implies that an optimal solution is attained for u=1u=1.
+It follows that there exists a Lagrange multiplier c∈ℝc\in\mathbb{R} such that
+∂∂ui|u=(1,1)​T∗​η​(gu⊗gu)=c​∂∂ui|u=(1,1)​η​(gu2)fori=1,2.\frac{\partial}{\partial u_{i}}\bigg|_{u=(1,1)}T^{*}\eta(g_{u}\otimes g_{u})=c\frac{\partial}{\partial u_{i}}\bigg|_{u=(1,1)}\eta(g_{u}^{2})\quad\text{for}\quad i=1,2.
+Since
+T∗​η​(gu⊗gu)=u𝖳​(T∗​η​(g⊗g)T∗​η​(g⊗(1I=1−g))T∗​η​(g⊗(1I=1−g))T∗​η​((1I=1−g)⊗(1I=1−g)))​uT^{*}\eta(g_{u}\otimes g_{u})=u^{\sf T}\begin{pmatrix}T^{*}\eta(g\otimes g)&T^{*}\eta(g\otimes(1_{I_{=1}}-g))\\
+T^{*}\eta(g\otimes(1_{I_{=1}}-g))&T^{*}\eta((1_{I_{=1}}-g)\otimes(1_{I_{=1}}-g))\end{pmatrix}u
+and
+η⁡(gu2)=u𝖳​(η⁡(g2)η⁡(g⁡(1I=1−g))η⁡(g⁡(1I=1−g))η⁡((1I=1−g)2))​u\eta(g_{u}^{2})=u^{\sf T}\begin{pmatrix}\eta(g^{2})&\eta(g(1_{I_{=1}}-g))\\
+\eta(g(1_{I_{=1}}-g))&\eta((1_{I_{=1}}-g)^{2})\end{pmatrix}u
+we have
+T∗​η​(g⊗1I=1)=c​η​(g)andT∗​η​((1I=1−g)⊗1I=1)=c​η​(1I=1−g).T^{*}\eta(g\otimes 1_{I_{=1}})=c\eta(g)\quad\text{and}\quad T^{*}\eta((1_{I_{=1}}-g)\otimes 1_{I_{=1}})=c\eta(1_{I_{=1}}-g).
+By summing the last two equations we see that c=ϑ′​(G)c=\vartheta^{\prime}(G), hence
+we have the desired equality T∗​η​(g⊗1I=1)=ϑ′​(G)​η​(g)T^{*}\eta(g\otimes 1_{I_{=1}})=\vartheta^{\prime}(G)\eta(g).
+∎
+5.2 Three-point bounds
+In this section we modify the 2​t2t-point bound last​(G)\mathrm{las}_{t}(G) to obtain a 2​t+12t+1-point bound for sufficiently symmetric graphs GG. For the spherical code graph this gives an easy derivation of a variation of the three-point bound given by Bachoc and Vallentin in [3].
+Let G=(V,E)G=(V,E) be a compact topological packing graph. We are interested in two groups related to GG. The group of graph automorphisms of GG and the
+group of homeomorphisms of the topological space VV. When we endow the
+latter group with the compact-open topology, it is a topological group
+with a continuous action on VV; see Arens [1]. In the
+special case when GG is a distance graph, as defined in
+Section 1.3, the former group is
+contained in the latter. We say that GG is homogeneous if
+there exists a compact subgroup of the group of homeomorphisms which
+consists only of graph automorphisms and is such that the action of
+Γ\Gamma on VV is transitive.
+Fix a point e∈Ve\in V. By GeG^{e} we denote the induced subgraph of GG
+with vertex set
+Ve={x∈V:x≠e​ and ​{e,x}∉E}.V^{e}=\{x\in V:x\neq e\text{ and }\{e,x\}\not\in E\}.
+It follows that GeG^{e} is also a compact topological packing graph. We have α⁡(G)≥1+α⁡(Ge)\alpha(G)\geq 1+\alpha(G^{e}), and if GG
+is homogeneous, then α⁡(G)=1+α⁡(Ge)\alpha(G)=1+\alpha(G^{e}): If SS is an independent set of GG, then there exists a graph automorphism γ\gamma with e∈γ​Se\in\gamma S, and (γ​S)∖{e}⊆Ve(\gamma S)\setminus\{e\}\subseteq V^{e} is an independent set for α⁡(Ge)\alpha(G^{e}). So, for
+computing an upper bound on the independence number of GG we can also
+compute 1+last​(Ge)1+\mathrm{las}_{t}(G^{e}). This yields a bound which is at
+least as good as last​(G)\mathrm{las}_{t}(G):
+Lemma 11
+Suppose GG is a compact topological packing graph. Then
+1+last​(Ge)≤last​(G).1+\mathrm{las}_{t}(G^{e})\leq\mathrm{las}_{t}(G).
+Proof
+We denote the sets of independent sets of GeG^{e} by IteI_{t}^{e} and
+I=teI_{=t}^{e}.
+Suppose λe\lambda^{e} is feasible for last​(Ge)\text{las}_{t}(G^{e}). Let
+λ=δe+λe\lambda=\delta_{e}+\lambda^{e}. We have λ≥0\lambda\geq 0 and
+λ⁡({∅})=1\lambda(\{\emptyset\})=1. Moreover, since At∗​λ=δe⊗δe+At∗​λeA_{t}^{*}\lambda=\delta_{e}\otimes\delta_{e}+A_{t}^{*}\lambda^{e} and At∗​λe∈ℳ​(Ite×Ite)⪰0⊆ℳ​(It×It)⪰0A_{t}^{*}\lambda^{e}\in\mathcal{M}(I_{t}^{e}\times I_{t}^{e})_{\succeq 0}\subseteq\mathcal{M}(I_{t}\times I_{t})_{\succeq 0} we have At∗​λ∈ℳ​(It×It)⪰0A_{t}^{*}\lambda\in\mathcal{M}(I_{t}\times I_{t})_{\succeq 0}. So λ\lambda is feasible
+for last​(G)\mathrm{las}_{t}(G). We have 1+λe​(I=1e)=λ⁡(I=1)1+\lambda^{e}(I_{=1}^{e})=\lambda(I_{=1}) which completes the proof.
+∎
+In the handbook chapter
+(2, Theorem 9.15) Bachoc, Gijswijt,
+Schrijver, and Vallentin gave a simplified, but computationally
+slightly less powerful, variation of the three-point bound given by Bachoc and Vallentin [3] for spherical codes. In both
+cases the bounds are formulated using the representation theory coming
+from the action of the orthogonal group on the unit sphere
+Sn−1S^{n-1}. The variation admits a generalization to compact
+topological packing graphs wich we can formulate as
+1+inf{F(e,e):\displaystyle 1+\inf\Big\{F(e,e):\;
+F∈𝒞​(Ve∪{e}×Ve∪{e})⪰0,\displaystyle F\in\mathcal{C}(V^{e}\cup\{e\}\times V^{e}\cup\{e\})_{\succeq 0},
+F⁡(x,x)+F⁡(e,x)+F⁡(x,e)≤−1​ for ​{e,x}∈I=2,\displaystyle F(x,x)+F(e,x)+F(x,e)\leq-1\text{ for }\{e,x\}\in I_{=2},
+F(x,y)≤0 for {e,x,y}∈I=3}.\displaystyle F(x,y)\leq 0\text{ for }\{e,x,y\}\in I_{=3}\Big\}.
+Proposition 3
+Suppose GG is a compact topological packing graph. Then the optimal value of the optimization problem above equals 1+las1​(Ge)∗1+\mathrm{las}_{1}(G^{e})^{*}.
+Proof
+Given F∈𝒞​(Ve∪{e}×Ve∪{e})symF\in\mathcal{C}(V^{e}\cup\{e\}\times V^{e}\cup\{e\})_{\text{sym}} we define K∈𝒞​(I1×I1)symK\in\mathcal{C}(I_{1}\times I_{1})_{\text{sym}} by
+K⁡(∅,∅)=F⁡(e,e),\displaystyle K(\emptyset,\emptyset)=F(e,e),
+K⁡(∅,{x})=K⁡({x},∅)=F⁡(e,x)​ for ​{e,x}∈I=2,\displaystyle K(\emptyset,\{x\})=K(\{x\},\emptyset)=F(e,x)\text{ for }\{e,x\}\in I_{=2},
+K⁡({x},{y})=F⁡(x,y)​ for ​{e,x,y}∈I=3.\displaystyle K(\{x\},\{y\})=F(x,y)\text{ for }\{e,x,y\}\in I_{=3}.
+The above construction gives a bijection from the feasible region of the above optimization problem onto the feasible region of las1​(Ge)\mathrm{las}_{1}(G^{e}), and since it preserves objective values this completes the proof.
+∎
+Acknowledgements.
+We would like to thank Evan DeCorte and Cristóbal Guzmán for very helpful
+discussions. We also thank the referee whose suggestions helped to improve the paper.
+References
+(1)
+R. Arens:
+Topologies for homeomorphism groups.
+Amer. J. Math. 68, 593–610 (1946)
+(2)
+C. Bachoc, D.C. Gijswijt, A. Schrijver, F. Vallentin:
+Invariant semidefinite programs.
+In: M.F. Anjos, J.B. Lasserre (eds.) Handbook on Semidefinite, Conic and Polynomial
+Optimization, pp. 219–269. Springer (2012) (http://arxiv.org/abs/1007.2905)
+(3)
+C. Bachoc, F. Vallentin:
+New upper bounds for kissing numbers from semidefinite programming.
+J. Amer. Math. Soc. 21, 909–924 (2008) (http://arxiv.org/abs/math/0608426)
+(4)
+C. Bachoc, G. Nebe, F.M. de Oliveira Filho, F. Vallentin:
+Lower bounds for measurable chromatic numbers.
+Geom. Funct. Anal. 19, 645–661 (2009) (http://arxiv.org/abs/0801.1059)
+(5)
+A. Barvinok:
+A Course in Convexity.
+Grad. Stud. Math. 54, American Mathematical Society (2002)
+(6)
+C. Berg, J.P.R. Christensen, P. Ressel:
+Harmonic analysis on semigroups: theory of positive definite and related functions.
+Springer-Verlag (1984)
+(7)
+K. Borsuk, S. Ulam:
+On symmetric products of topological spaces.
+Bull. Amer. Math. Soc. 37, 875–882 (1931)
+(8)
+S. Boyd, L. Vandenberghe:
+Convex Optimization.
+Cambridge University Press (2004)
+(9)
+H. Cohn, N.D. Elkies:
+New upper bounds on sphere packings I.
+Ann. of Math. 157, 689–714 (2003) (http://arxiv.org/abs/math/0110009)
+(10)
+H. Cohn, J. Woo:
+Three-point bounds for energy minimization.
+J. Amer. Math. Soc. 25, 929–958 (2012) (http://arxiv.org/abs/1103.0485)
+(11)
+P. Delsarte:
+An algebraic approach to the association schemes of coding theory.
+Philips Res. Rep. Suppl. vi+97, (2012)
+(12)
+P. Delsarte, J.M. Goethals, and J.J. Seidel:
+Spherical codes and designs.
+Geom. Dedicata 6, 363–388 (1977)
+(13)
+J. Dieudonné:
+Sur la séparation des ensembles convexes.
+Math. Ann. 163, 1–3 (1966)
+(14)
+G.B. Folland:
+A course in abstract harmonic analysis.
+Studies in Advanced Mathematics, CRC Press (1995)
+(15)
+D. Gijswijt, A. Schrijver, H. Tanaka:
+New upper bounds for nonbinary codes based on the Terwilliger algebra and semidefinite programming.
+J. Comb. Theory, Ser. A 113, 1719–1731 (2006)
+(16)
+D. Gijswijt, H.D. Mittelmann, A. Schrijver:
+Semidefinite code bounds based on quadruple distances.
+IEEE Transactions on Information Theory 58, 2697–2705 (2012) (http://arxiv.org/abs/1005.4959)
+(17)
+T.C. Hales:
+A proof of the Kepler conjecture.
+Ann. of Math. 162, 1065–1185 (2005)
+(18)
+D. Handel:
+Some homotopy properties of spaces of finite subsets of topological spaces.
+Houston J. Math. 26, 747–764 (2000)
+(19)
+A.J. Hoffman:
+On eigenvalues and colorings of graphs.
+In: B. Harris (ed.) Graph Theory and its Applications, pp. 79–91. Academic Press (1970)
+(20)
+G.A. Kabatiansky, V.I. Levenshtein:
+On bounds for packings on a sphere and in space.
+Probl. Peredachi Inf. 14, 3–25 (1978)
+(21)
+R.M. Karp:
+Reducibility among combinatorial problems.
+In: R.E. Miller, J.W. Thatcher (eds.) Complexity of Computer Computations,
+pp. 85–103. Plenum Press, New York (1972)
+(22)
+V.L. Klee, Jr.:
+Separation properties of convex cones.
+Proc. Amer. Math. Soc. 6, 313–318 (1955)
+(23)
+D. de Laat, F.M. de Oliveira Filho, F. Vallentin:
+Upper bounds for packings of spheres of several radii.
+preprint (2012) (http://arxiv.org/abs/1206.2608)
+(24)
+J.B. Lasserre:
+An explicit equivalent positive semidefinite program for nonlinear 0-1 programs.
+SIAM J. Optim. 12, 756–769 (2002)
+(25)
+M. Laurent:
+A comparison of the Sherali-Adams, Lovász-Schrijver, and Lasserre relaxations for 0-1 programming.
+Math. Oper. Res. 28, 470–496 (2003)
+(26)
+M. Laurent:
+Strengthened semidefinite programming bounds for codes.
+Math. Program., Ser. B 109, 239–261 (2007)
+(27)
+B. Lindström:
+Determinants on semilattices.
+Proc. Amer. Math. Soc. 20, 207–208 (1969)
+(28)
+L. Lovász:
+On the Shannon capacity of a graph.
+IEEE Trans. Inf. Th. 25, 1–7 (1979)
+(29)
+L. Lovász, A. Schrijver:
+Cones of matrices and set-functions and 0-1 optimization.
+SIAM J. Optim. 1, 166–190 (1991)
+(30)
+F.M. de Oliveira Filho, F. Vallentin:
+Computing upper bounds for packing densities of congruent copies of a convex body I.
+preprint (2013) (http://arxiv.org/abs/1308.4893)
+(31)
+M. Putinar:
+Positive polynomials on compact semi-algebraic sets.
+Ind. Univ. Math. J. 42, 969–984 (1993)
+(32)
+G. Regts:
+Upper bounds for ternary constant weight codes from semidefinite programming and representation theory.
+Master thesis, University of Amsterdam (2009)
+(33)
+A. Schrijver:
+A comparison of the Delsarte and Lovász bounds.
+IEEE Trans. Inf. Th. 25, 425–429 (1979)
+(34)
+A. Schrijver:
+Combinatorial Optimization: Polyhedra and Efficiency.
+Springer-Verlag (2003)
+(35)
+A. Schrijver:
+New code upper bounds from the Terwilliger algebra and semidefinite programming.
+IEEE Trans. Inf. Th. 51, 2859–2866 (2005)
+(36)
+S. Torquato, Y. Jiao:
+Dense packings of the Platonic and Archimedean solids.
+Nature 460, 876–879 (2009)
+(37)
+H.S. Wilf:
+Hadamard determinants, Möbius functions, and the chromatic number of a graph.
+Bull. Amer. Math. Soc. 74, 960–964 (1968)
+Experimental support, please
+view the build logs
+for errors. Generated by
+L
+A
+T
+E
+xml
+.
+Instructions for reporting errors
+We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+methods listed below:
+Click the "Report Issue" (
+) button, located in the page header.
+Tip: You can select the relevant text first, to include it in your report.
+Our team has already identified the following issues. We appreciate your time reviewing and reporting rendering errors we
+may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+all.
+Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion, and welcome developer contributions.
+We gratefully acknowledge support from
+our major funders,
+member institutions, ,
+and all contributors.
+About
+·
+Help
+·
+Contact
+·
+Subscribe
+·
+Copyright
+·
+Privacy
+·
+Accessibility
+·
+Operational Status (opens in new tab)
+Major funding support from

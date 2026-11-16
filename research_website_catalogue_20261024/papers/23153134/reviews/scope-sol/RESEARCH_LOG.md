@@ -1,0 +1,8 @@
+# Research log — row166 / 23153134 scope-sol
+
+- 2026-11-16 20:17:02 UTC — Began dedicated scope folder and authenticated frozen source identity. Read complete actual282-line controlling TeX. SOURCE_AUDIT, README, native verification results/program and all current/archived review bodies remained closed. Full review estimate25%.
+- 2026-11-16 20:19:37 UTC — Read all five actual native PDF pages from fresh own130-dpi rasters and the complete extracted PDF text. Render/extraction exited0; literal empty render streams and reading text retained. Read native record/files order/status/dates and targeted actual all-original-files CC BY4.0 licence. Authored proof/context/audit assertions are disclosed exposure.
+- Source-first derivation boundary — Completed exact octagon/link/smoothness reasoning, independent cross-glued connected cover, Gramian/history proof, scaling/direct curvature, completeness, tensor/atlas comparisons and exact full-interval/time/deck controls. Primary Nash/target/context interfaces explicitly remain pending. Source-first freeze100%; full original scientific scope estimate60%.
+- INITIAL seal — Its actual UTC and finite payload pins are in INITIAL_SEAL.json. No new foreign mathematical body, current/archived review result/opinion or native scientific program preceded this seal. Preserve all source-first bytes and use new post-INITIAL notes thereafter. Root's own INITIAL has not begun; send only readiness/paths/pins, no substantive findings.
+
+No source, prior packet, W, Git, Sheet, external contact or prepared outreach change. Publication authority false; AA/canonical/follow-up null.
