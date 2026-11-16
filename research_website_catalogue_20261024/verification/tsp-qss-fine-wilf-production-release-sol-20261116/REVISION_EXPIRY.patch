@@ -1,0 +1,18 @@
+--- release_three.pending-v1.py
++++ release_three.py
+@@ -281,5 +281,5 @@
+         check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_three.py'))==a['helper_SHA256'],'same current Git authority/code')
+     try:
+-        current(); routing(p,state['routing']); need(git('ls-remote','--exit-code','origin',p['branch'])==(p['website_HEAD']+'\t'+p['branch']+'\n').encode(),'remote parent exact')
++        current(); routing(p,state['routing']); current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(p['website_HEAD']+'\t'+p['branch']+'\n').encode(),'remote parent exact')
+         native=t/'native-successor.index'; commit_index=t/'commit.index'; new_file(t/'shared-index.before',old); new_file(native,old)
+         oids={n:hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest() for n,b in buffers.items()}
+@@ -312,6 +312,6 @@
+             need(read(W/'.git/index')==staged and mode(W/'.git/index')==0o600 and git('rev-parse',p['branch']).strip().decode()==commit,'exact final W ref/index')
+             need(git('symbolic-ref','HEAD').strip().decode()==p['branch'],'existing master retained'); public_fence(p,buffers,old_files,old_dirs,new_dirs,True); math_fence(p); contract()
+-        current(); final_local(); routing(p,state['routing']); git('push','--no-follow-tags','--recurse-submodules=no','origin',commit+':'+p['branch'])
+-        routing(p,state['routing']); need(git('ls-remote','--exit-code','origin',p['branch'])==(commit+'\t'+p['branch']+'\n').encode(),'remote immutable commit verified'); final_local()
++        current(); final_local(); current(); routing(p,state['routing']); current(); git('push','--no-follow-tags','--recurse-submodules=no','origin',commit+':'+p['branch'])
++        current(); routing(p,state['routing']); current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(commit+'\t'+p['branch']+'\n').encode(),'remote immutable commit verified'); final_local()
+         result={'status':'SCOPED15_COMMIT_AND_PUSH_VERIFIED','commit':commit,'tree':tree,'paths':15,'delta':'13A2M','protected_full_raw_records':58599,'successor_index_records':58614,'index_SHA256':sha(staged),'index_mode':'0600','Math_HEAD_index_unchanged':True,'deployment_or_Sheet_actions':False,'new_Git_lock_retained':True,'old_completed_lock_untouched':True}
+         new_file(t/'SUCCESS.json',packed(result)); event('GIT_SUCCESS',**result); return result

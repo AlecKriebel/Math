@@ -1,0 +1,61 @@
+{
+  "UTC": "2026-11-16T10:05:31.309763+00:00",
+  "reviewed_assigned_helper": {
+    "path": "verification/tsp-qss-fine-wilf-production-release-sol-20261116/release_three.py",
+    "bytes": 29494,
+    "SHA256": "15da8988a3a4445080dc5ecbb0d23c60ebae8212400a45d2203ad60a79373022"
+  },
+  "mode": "STATIC_DESIGN_REVIEW_NO_HELPER_EXECUTION",
+  "pre_patch_verdict": "NO_GO_FOR_EXECUTION_PENDING_TWO_CORRECTIONS_AND_ROOT_ADOPTION",
+  "findings": [
+    {
+      "id": "F1",
+      "title": "Authorization may expire during final scans before push",
+      "where": "publish current() before final_local() at line314; final scan and routing precede push without a fresh current()",
+      "mechanism": "A valid deadline can pass during the potentially lengthy public/source/Math scan. The subsequent push then begins after expiry. The smaller analogous window exists at the initial remote check.",
+      "required_correction": "Recheck current authorization after lengthy fences and routing immediately before each remote action; root/designer are also placing appropriate current fences around irreversible local Git publication.",
+      "status": "Root accepted; exact patch pending review"
+    },
+    {
+      "id": "F2",
+      "title": "Effective origin.vcs transport selector is outside routing contract",
+      "where": "PLAN routing_config_key_regex and routing() lines71-82; GIT_OPTIONS does not neutralize origin.vcs",
+      "mechanism": "An inherited origin.vcs value selects git-remote-<transport> while origin URL/get-url outputs and local config hash may remain unchanged. Existing URL/rewrite-only opaque fingerprint misses that selector. No claim it is present in the actual baseline.",
+      "primary_evidence": [
+        {
+          "path": "/Library/Developer/CommandLineTools/usr/share/man/man7/gitremote-helpers.7",
+          "lines": "44-55",
+          "scope": "configured remote.vcs explicitly selects remote helper"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/usr/share/man/man1/git-config.1",
+          "lines": "8185-8187",
+          "scope": "remote.<name>.vcs transport selector"
+        },
+        {
+          "path": "/Library/Developer/CommandLineTools/usr/share/man/man1/git-remote.1",
+          "lines": "207-219",
+          "scope": "get-url retrieves URLs and expands URL rewrite rules"
+        }
+      ],
+      "required_correction": "Reject effective origin.vcs configuration and pin/recheck its absence before each remote action; no expanded transport campaign.",
+      "status": "Root accepted; exact patch pending review"
+    }
+  ],
+  "already_satisfactory_in_assigned_design": [
+    "Pending null adoption rejects contract before any Git call",
+    "Separate FS and Git exact root authorization objects/fingerprints",
+    "All15 complete staged buffers and2 original aggregate backups fsynced before first W write",
+    "Darwin RENAME_EXCL=4 matches installed SDK constant; held exclusive leaves and atomic aggregate replacement",
+    "Separate entire-index successor and HEAD-tree commit index;58599 full raw protected records and exact13A2M delta",
+    "Retained old/new locks and partial failures; no automatic retry/rollback/deletion",
+    "Immutable commit-ID nonforce push and remote exact verification"
+  ],
+  "remaining": "Actual root-adoption binding and bounded exact correction patch review; no helper/default run by auditor",
+  "baseline": "Own BASELINE_READ.json independently confirms current W/Math/public/native-index and15 candidate metadata",
+  "executions": [
+    "one own minimal data-only baseline read/parser only"
+  ],
+  "child_review": "One read-only static subreview; no child writes/execution. No further child is needed.",
+  "completion_percent": 80
+}

@@ -1,0 +1,137 @@
+1628                                                    Oberwolfach Report 29/2008
+
+region, there are many isolated components, and we can repeat the argument
+from the sparse regime. A little care is required at the boundary between these
+regions.
+   Connected regime: Eventually the radius r(n) is large enough that every ver-
+tex has at least one edge. In this same range, we see that the Čech complex is
+homotopy equivalent to a star-shaped domain in the plane. Similarly, one can use
+Morse theory to show that the Rips complex is contractible.
+   This seems to give a relatively complete picture of the rate of growth of the
+Betti numbers of Gaussian random complexes. Many of the techniques used here
+(and even some of the results, as stated) are applicable to any density function,
+and not just normally distributed points.
+   One notable feature of these results is that they actually tell us quite a lot about
+persistent homology. First of all, they give strong evidence that persistence should
+give us a much better picture than homology on its own, since the persistence bars
+should all be quite short. This is intuitively clear, but we are not aware of any
+results in that direction. Second, the results show that the most natural thing
+to check when measuring the length of a persistence bar is not the difference
+between the two endpoints, but the ratio. This might be the most interesting
+aspect of this research in terms of applying the ideas to real world implementations
+of computational homology.
+
+
+              Persistent homology and discrete Morse theory
+                            Kevin P. Knudson
+
+Let K be a finite simplicial complex equipped with a filtration
+                       ∅ = K−1 ⊂ K0 ⊂ K1 ⊂ · · · ⊂ Kn = K.
+We assume that each subcomplex Ki+1 is obtained from Ki by attaching a single
+simplex: Ki+1 = Ki ∪ σi+1 . In this talk we explore the relationship between
+the persistent homology pairing of Edelsbrunner–Letscher–Zomorodian [1] and
+Forman’s discrete Morse theory [2]. In what follows, we use the notation α < β
+to indicate that α is a codimension-one face of β.
+   The basic idea behind persistence is the following. As simplices enter the com-
+plex K homology classes are created or destroyed. If a class α is born at filtration
+level i and dies at level j, we say the persistence of α is j − i − 1. This concept is
+useful in topological data analysis as homology classes that persist for long inter-
+vals may be considered to be real features of a point cloud while those that live
+for short intervals may be regarded as noise.
+   The persistence pairing is defined using homology with Z/2-coefficients. Say the
+simplex σ has dimension k. When σ enters the complex, one of two events occurs.
+Either σ creates a new k-cycle, or it destroys a (k − 1)-dimensional homology class.
+In the first case, we call σ positive and in the second case it is called negative. This
+allows one to pair the simplices of K in the following way. Given a simplex τ ,
+consider the list of positive simplices in ∂τ . Say σ is the youngest simplex in ∂τ in
+Computational Algebraic Topology                                                   1629
+
+the sense that it entered the filtration at the latest stage. If σ is not already paired
+with one of its cofaces, then we pair σ and τ . If σ is paired with some τ ′ , then we
+may write ∂τ in terms of ∂τ ′ and some other positive simplices, and we then pair
+τ with the youngest in this list of positive simplices, unless it is already paired.
+We iterate this procedure until an unpaired positive simplex is found (which must
+occur since we always search backwards in the filtration). A complete description
+of the algorithm may be found in [1]. Denote the resulting collection of pairs {σ, τ }
+by P . Note that it is possible that σ is not a face of τ in such a pair.
+   Forman’s discrete Morse theory is meant to mimic the smooth theory on an
+arbitrary simplicial complex (or more generally a regular cell complex). The most
+convenient formulation of this theory is in terms of discrete vector fields on the
+complex. A discrete vector field V on K is a collection of pairs of simplices {α < β}
+such that each simplex of K is in at most one pair in V . A V -path is a collection
+of simplices
+                    α0 < β0 > α1 < β1 > · · · > αr < βr > αr+1 ,
+where each {αi < βi } ∈ V . Such a path is called closed if αr+1 = α0 . The vector
+field V is a gradient if there are no closed V -paths. A simplex in K which does
+not appear in any pair in V is called critical, while those which are paired are
+called regular. The usual theorems of smooth Morse theory have their analogues
+in the discrete case; in particular, if V is a discrete gradient on K, then K has
+the homotopy type of a CW-complex with one cell of dimension p for each critical
+simplex of dimension p.
+    Now suppose we have a filtered complex as above, and we produce a persistence
+pairing P . For the pairs {σ, τ } in P , there are two possibilities: either σ < τ or σ
+is not a face of τ . Define a discrete vector field VP on K by
+                        {σ, τ } ∈ VP ⇔ σ < τ and {σ, τ } ∈ P.
+If a simplex is unpaired by P or if a simplex is paired with another simplex not
+containing it as a face, then the simplex is critical for VP .
+Theorem 1. VP is a gradient vector field on K.
+   Note that simplices not included in P correspond to homology classes in the
+complex K. If two non-adjacent simplices are a pair in P , then the persistence
+of the associated homology class is probably somewhat large, and we may want
+to view them as defining some topologically interesting feature. There will be
+gradient paths between them, however, and we expect the following to be true.
+Conjecture 2. If {σ, τ } ∈ P are such that σ is not a face of τ , then there is a
+single gradient path from τ to σ in the vector field VP .
+   Since the cells σ and τ do not correspond to homology classes in K, the existence
+of a single gradient path joining them implies that we may cancel the cells (see
+[2]), thereby simplifying the vector field. In general, though, this procedure is
+computationally expensive, which we should expect in light of the result of Joswig
+and Pfetsch [3] which asserts that the construction of optimal discrete gradients
+1630                                                       Oberwolfach Report 29/2008
+
+is NP-complete (the persistence pairing runs in polynomial time, so cancellation
+must be complicated).
+    Now, suppose V is a discrete gradient on K. A useful way to visualize this is to
+modify the Hasse diagram of K in following way. Recall that the Hasse diagram
+of K is the directed graph whose vertices correspond to the simplices of K, and
+there is an arrow from β to α if α < β. We modify the Hasse diagram by reversing
+the arrows for every {α < β} ∈ V . Since V is a gradient, the resulting directed
+graph G has no directed loops. There is therefore an integer-valued function f
+on the vertices of G which is strictly decreasing along every directed path. We
+may assume that the absolute minimum of f is 0. Given such an f , we define a
+filtration of K by setting Ki to be the subcomplex generated by f −1 (−∞, i]. This
+may lead to multiple simplices entering at one time, but we may order the simplices
+in such a way that we may still talk about the persistence pairing associated to
+this filtration. We therefore obtain a persistence pairing P{V,f } . Of course, this
+also depends on the choice of the function f , but we expect the following to hold.
+Conjecture 3. Suppose P is a persistence pairing on K. Then with the correct
+choice of f , we have P{VP ,f } = P .
+   Of course, we cannot expect to have VP{V,f } = V for an arbitrary gradient V .
+Indeed, the easiest example of this is V = ∅, in which every simplex is critical.
+Since any associated persistence pairing P{V,f } will contain a pair of adjacent
+simplices (in particular an edge and one of its vertices), VP{V,f } 6= ∅.
+
+                                      References
+ [1] H. Edelsbrunner, D. Letscher, A. Zomorodian, Topological persistence and simplification,
+     Discrete Comput. Geom. 28 (2002), 511–533.
+ [2] R. Forman, Morse theory for cell complexes, Adv. Math. 134 (1998), 90–145.
+ [3] M. Joswig, M. Pfetsch, Computing optimal Morse matchings, SIAM J. Discrete Math. 20
+     (2006), 11–25.
+
+
+
+       Combinatorial Algebraic Topology: Structures, Methods, and
+                              Applications
+                            Dmitry Kozlov
+
+   Combinatorial Algebraic Topology is a contemporary field of mathematics which
+concerns itself with computing invariants in Algebraic Topology for combinato-
+rial cell complexes by combinatorial means.
+   Here, by combinatorial cell complexes we mean CW complexes which are com-
+binatorial locally, i.e., having simple cell attachments, for example - simplicial or
+prodsimplicial complexes, as well as globally, which means that their cells are in-
+dexed by various combinatorial objects, such as graphs, partitions, permutations,
+various combinations and taking boundary is described by a combinatorial rule for
+the indexing objects, for example - removing vertices in graphs, merging blocks in
+partitions, relabeling, etc.
+

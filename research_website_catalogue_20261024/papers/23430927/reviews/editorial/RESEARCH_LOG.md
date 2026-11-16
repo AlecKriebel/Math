@@ -1,0 +1,3 @@
+# Editorial research log — 23430927
+
+2026-11-16T10:13:33Z — Source-first checkpoint; 30% of private editorial preparation. Read actual7PDFpages, all160controllingTeXlines, complete native record/files/Description, outer README/LICENSE; made and individually viewed7fresh rasters. Kept assignment’s passed-science status exposure distinct from unopened current root authority. Overlarge output truncations were resolved for required reading with bounded displays; whole SOURCE_READY read is not claimed. No native/scientific/old-helper execution, public copy, external action or writes outside this owned namespace. INITIAL now freezes the exact reconstruction; authority/copy GO remains pending.

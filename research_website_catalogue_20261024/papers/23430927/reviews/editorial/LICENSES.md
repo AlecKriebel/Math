@@ -1,0 +1,7 @@
+# Rights
+
+The original authored note and authored verification-kit materials are licensed by Alec Kriebel under Creative Commons Attribution 4.0 International (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/ . This includes authored kit code; it is not MIT-licensed. The native ZIP and PDF are retained unchanged. Third-party bibliographic metadata remains attributed to its source, and retained historical materials keep their original dates, claims and rights. This document does not grant new rights over third-party material or relicense the mixed archive as new editorial work.
+
+New editorial prose, metadata, page markup and the small authored preview utility in this owned folder are also offered by Alec Kriebel under CC BY 4.0. Attribution should identify Alec Kriebel and this paper, preserve notices, link the license and indicate changes. The license permits sharing and adaptation, including commercially, subject to its terms; no additional restrictions are imposed. Legal code: https://creativecommons.org/licenses/by/4.0/legalcode.en . No warranty is provided; other rights may apply.
+
+The shared research.css is an unchanged reference copy from Alec Kriebel’s established website frame; its authorship and rights remain with its existing owner. Chrome/Playwright/Poppler are external installed tools, not redistributed packet code. Saved browser/PDF rasters document private inspection and do not create rights in third-party tool UI.

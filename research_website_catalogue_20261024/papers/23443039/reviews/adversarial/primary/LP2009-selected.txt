@@ -1,0 +1,484 @@
+PDF pages 6-6
+Figure 2: The obstacles γ corresponding to starting mass 1 on each of two
+overlapping disks (top) and mass 100 on each of two nonoverlapping disks.
+
+    Lemma 1.1 allows us to formulate the problem in a way which translates
+naturally to the continuum. Given a function σ on Rd representing the
+initial mass density, by analogy with (2) we define the obstacle
+                                     Z
+                                  2
+                       γ(x) = −|x| −      g(x, y)σ(y)dy
+                                       Rd
+
+where g(x, y) is the harmonic potential on Rd proportional to |x − y|2−d in
+dimensions d ≥ 3 and to − log |x − y| in dimension two. We then let
+       s(x) = inf{f (x)|f is continuous, superharmonic and f ≥ γ}.
+The odometer function for σ is then given by u = s−γ, and the final domain
+of occupied sites is given by
+                        D = {x ∈ Rd |s(x) > γ(x)}.                        (3)
+This domain D is called the noncoincidence set for the obstacle problem with
+obstacle γ; for an in-depth discussion of the obstacle problem, see [10].
+   If A, B are bounded open sets in Rd , we define the smash sum of A and
+B as
+                            A⊕B =A∪B∪D                                    (4)
+
+                                     6
+
+PDF pages 12-17
+2.1   Least Superharmonic Majorant
+Since we will often be working with functions on Rd which may not be twice
+differentiable, it is desirable to define superharmonicity without making ref-
+erence to the Laplacian. Instead we use the mean value property. A function
+u on an open set Ω ⊂ Rd is superharmonic if it is lower-semicontinuous and
+for any ball B(x, r) ⊂ Ω
+                                               Z
+                                           1
+                      u(x) ≥ Ar u(x) :=                u(y)dy.           (12)
+                                          ωd rd B(x,r)
+
+Here ωd is the volume of the unit ball in Rd . We say that u is subharmonic
+if −u is superharmonic, and harmonic if it is both super- and subharmonic.
+    The following properties of superharmonic functions are well known; for
+proofs, see e.g. [3], [8] or [22].
+
+Lemma 2.1. Let u be a superharmonic function on an open set Ω ⊂ Rd
+extending continuously to Ω̄. Then
+
+  (i) u attains its minimum in Ω̄ on the boundary.
+
+ (ii) If h is continuous on Ω̄, harmonic on Ω, and h = u on ∂Ω, then u ≥ h.
+
+(iii) If B(x, r0 ) ⊂ B(x, r1 ) ⊂ Ω, then
+
+                                Ar0 u(x) ≥ Ar1 u(x).
+
+(iv) If u is twice differentiable on Ω, then ∆u ≤ 0 on Ω.
+
+ (v) If B ⊂ Ω is an open ball, and v is a function on Ω which is har-
+     monic on B, continuous on B̄, and agrees with u on B c , then v is
+     superharmonic.
+
+   Given a function γ on Rd which is bounded above, the least superhar-
+monic majorant of γ (also called the solution to the obstacle problem with
+obstacle γ) is the function
+
+      s(x) = inf{f (x)|f is continuous, superharmonic and f ≥ γ}.        (13)
+
+Note that since γ is bounded above, the infimum is taken over a nonempty
+set.
+
+Lemma 2.2. Let γ be a uniformly continuous function which is bounded
+above, and let s be given by (13). Then
+
+                                      12
+  (i) s is superharmonic.
+
+ (ii) s is continuous.
+
+(iii) s is harmonic on the domain
+
+                            D = {x ∈ Rd |s(x) > γ(x)}.
+
+2.2     Superharmonic Potentials
+Next we describe the particular class of obstacles which relate to the aggre-
+gation models we are studying. For a bounded measurable function σ on Rd
+with compact support, write
+                                 Z
+                        Gσ(x) =       g(x, y)σ(y)dy,                     (14)
+                                    Rd
+
+where                          (
+                                − π2 log |x − y|, d = 2;
+                     g(x, y) =                                            (15)
+                                ad |x − y|2−d ,   d ≥ 3.
+             2
+Here ad = (d−2)ωd
+                  , where ωd is the volume of the unit ball in Rd . Note that
+(15) differs by a factor of 2d from the standard harmonic potential in Rd ;
+however, the normalization we have chosen is most convenient when working
+with the discrete Laplacian and random walk.
+   The following result is standard; see [8, Theorem 1.I.7.2].
+
+Lemma 2.3. Let σ be a measurable function on Rd with compact support.
+
+  (i) If σ is bounded, then Gσ is continuous.
+
+ (ii) If σ is C 1 , then Gσ is C 2 and
+
+                                   ∆Gσ = −2dσ.                            (16)
+
+   Regarding (ii), if we remove the smoothness assumption on σ, equation
+(16) remains true in the sense of distributions. For our applications, however,
+we will not need this, and the following lemma will suffice.
+
+Lemma 2.4. Let σ be a bounded measurable function on Rd with compact
+support. If σ ≥ 0 on an open set Ω ⊂ Rd , then Gσ is superharmonic on Ω.
+
+
+
+
+                                         13
+By applying Lemma 2.4 both to σ and to −σ, we obtain that Gσ is harmonic
+off the support of σ.
+    Let B = B(o, r) be the ball of radius r centered at the origin in Rd . We
+compute in dimensions d ≥ 3
+                                2
+                                dr − |x|2 ,     |x| < r
+                                 d−2
+                     G1B (x) = 2r2  r d−2                               (17)
+                               
+                                 d−2 |x|      , |x| ≥ r.
+
+Likewise in two dimensions
+                          (
+                           r2 (1 − 2 log r) − |x|2 , |x| < r
+                G1B (x) =                                                (18)
+                           −2r2 log |x|,             |x| ≥ r.
+
+      Fix a bounded nonnegative function σ on Rd with compact support, and
+let
+                             γ(x) = −|x|2 − Gσ(x).                       (19)
+Let
+
+        s(x) = inf{f (x)|f is continuous, superharmonic and f ≥ γ}       (20)
+
+be the least superharmonic majorant of γ, and let
+
+                          D = {x ∈ Rd |s(x) > γ(x)}                      (21)
+
+be the noncoincidence set.
+Lemma 2.5.        (i) γ(x) + |x|2 is subharmonic on Rd .
+
+ (ii) If σ ≤ M on an open set Ω ⊂ Rd , then γ(x) − (M − 1)|x|2 is super-
+      harmonic on Ω.
+Lemma 2.6. Let u = s − γ, where γ and s are given by (19) and (20).
+Then
+  (i) u(x) − |x|2 is superharmonic on Rd .
+
+ (ii) If σ ≤ M on an open set Ω ⊂ Rd , then u(x) + M |x|2 is subharmonic
+      on Ω.
+Lemma 2.7. Let D be given by (21). Then {σ > 1}o ⊂ D.
+    The next lemma concerns the monotonicity of our model: by starting
+with more mass, we obtain a larger odometer and a larger noncoincidence
+set; see also [27, Lemma 7.1].
+
+                                      14
+Lemma 2.8.R Let σ1 ≤ σ2 be functions on Rd with compact support, and
+suppose that Rd σ2 (x)dx < ∞. Let
+
+                    γi (x) = −|x|2 − Gσi (x),     i = 1, 2.
+
+Let si be the least superharmonic majorant of γi , let ui = si − γi , and let
+
+                           Di = {x|si (x) > γi (x)}.
+
+Then u1 ≤ u2 and D1 ⊂ D2 .
+    Our next lemma shows that we can restrict to a domain Ω ⊂ Rd when
+taking the least superharmonic majorant, provided that Ω contains the non-
+coincidence set.
+Lemma 2.9. Let γ, s, D be given by (19)-(21). Let Ω ⊂ Rd be an open set
+with D ⊂ Ω. Then
+
+  s(x) = inf{f (x)|f is superharmonic on Ω, continuous, and f ≥ γ}. (22)
+
+2.3   Boundary Regularity for the Obstacle Problem
+Next we turn to the regularity of the solution to the obstacle problem (20)
+and of the free boundary ∂D. There is a substantial literature on boundary
+regularity for the obstacle problem. In our setting, however, extra care must
+be taken near points where σ(x) = 1: at these points the obstacle (19) is
+harmonic, and the free boundary can be badly behaved.
+    One approach, adopted in [17], is to reformulate the obstacle problem
+in Rd as an obstacle problem on the set {σ > 1}. The results of [17] apply in
+the situation that σ ≥ 1 everywhere, but we will want to relax this condition.
+We show only the minimal amount of regularity required for the proofs of
+our main theorems. Much stronger regularity results are known in related
+settings; see, for example, [4, 5].
+    The following lemma shows that if the obstacle is sufficiently smooth,
+then the superharmonic majorant cannot separate too quickly from the ob-
+stacle near the boundary of the noncoincidence set. As usual, we write
+
+                         D = {x ∈ D | B(x, ) ⊂ D}                        (23)
+
+for the inner -neighborhood of D.
+Lemma 2.10. Let σ be a C 1 function on Rd with compact support. Let
+γ, s, D be given by (19)-(21), and write u = s − γ. Then u is C 1 , and for
+y ∈ ∂D we have |∇u(y)| ≤ C0 , for a constant C0 depending on σ.
+
+                                      15
+    Next we showR that mass is conserved in our model: the amount of mass
+starting in D is D σ(x)dx, while the amount of mass ending in D is L(D),
+the Lebesgue measure of D. Since no mass moves outside of D, we expect
+these two quantities to be equal. Although this seems intuitively obvious, the
+proof takes some work because we have no a priori control of the domain D.
+In particular, we first need to show that the boundary of D cannot have
+positive d-dimensional Lebesgue measure.
+Proposition 2.11. Let σ be a C 1 function on Rd with compact support,
+such that L(σ −1 (1)) = 0. Let D be given by (21). Then
+  (i) L(∂D) = 0.
+
+ (ii) For any function h ∈ C 1 (D̄) which is superharmonic on D,
+                          Z             Z
+                             h(x)dx ≤       h(x)σ(x)dx.
+                            D             D
+
+    Note that by applying (ii) both to h and to −h, equality holds whenever
+h is harmonic
+       R        on D. In particular, taking h ≡ 1 yields the conservation of
+mass: D σ(x)dx = L(D).
+    We will also need a version of Proposition 2.11 which does not assume
+that σ is C 1 or even continuous. We can replace the C 1 assumption and the
+condition that L(σ −1 (1)) = 0 by the following condition.
+
+                 For all x ∈ Rd either σ(x) ≤ λ or σ(x) ≥ 1              (24)
+
+for a constant λ < 1. Then we have the following result.
+Proposition 2.12. Let σ be a bounded function on Rd with compact support.
+                                e = D ∪ {σ ≥ 1}o . If σ is continuous almost
+Let D be given by (21), and let D
+everywhere and satisfies (24), then
+             
+   (i) L ∂ D
+           e = 0.
+            R
+  (ii) L D = D σ(x)dx.
+            R
+ (iii) L D
+         e = e σ(x)dx.
+               D
+
+   In particular, taking σ = 1A + 1B , we have
+
+                          A⊕B =A∪B∪D =D
+                                      e
+
+where ⊕ denotes the smash sum (4). From (iii) we obtain the volume addi-
+tivity of the smash sum.
+
+                                     16
+Corollary 2.13. Let A, B ⊂ Rd be bounded open sets whose boundaries
+have measure zero. Then
+
+                        L(A ⊕ B) = L(A) + L(B).
+
+    Our next lemma describes the domain resulting from an initial mass
+density m > 1 on a ball in Rd . Not surprisingly, the result is another ball,
+concentric with the original, of m times the volume. In particular, if m is
+an integer, the m-fold smash sum of a ball with itself is again a ball.
+
+Lemma 2.14. Fix m > 1, and let D be given by (21) with σ = m1B(o,r) .
+Then D = B(o, m1/d r).
+
+Proof. Since γ(x) = −|x|2 − Gσ(x) is spherically symmetric and the least
+superharmonic majorant commutes with rotations, D is a ball centered at
+the origin. By Proposition 2.12(ii) we have L(D) = mL(B(o, r)).
+
+   Next we show that the noncoincidence set is bounded; see also [27,
+Lemma 7.2].
+
+Lemma 2.15. Let σ be a function on Rd with compact support, satisfying
+0 ≤ σ ≤ M . Let D be given by (21). Then D is bounded.
+
+Proof. Let B = B(o, r) be a ball containing the support of σ. By Lemmas 2.8
+and 2.14, the difference s − γ is supported in B(o, M 1/d r).
+
+2.4   Convergence of Obstacles, Majorants and Domains
+In broad outline, many of our arguments have the following basic structure:
+
+          convergence of densities =⇒ convergence of obstacles
+                                   =⇒ convergence of majorants
+                                   =⇒ convergence of domains.
+
+An appropriate convergence of starting densities is built into the hypotheses
+of the theorems. From these hypotheses we use Green’s function estimates
+to deduce the relevant convergence of obstacles. Next, properties of the
+obstacle can often be parlayed into corresponding properties of the least
+superharmonic majorant. Finally, deducing convergence of domains (i.e.,
+noncoincidence sets) from the convergence of the majorants often requires
+additional regularity assumptions. The following lemma illustrates this basic
+three-step approach.
+
+
+                                     17
+
+PDF pages 54-55
+6.1   Associativity and Continuity of the Smash Sum
+In this section we establish a few basic properties of the smash sum (4).
+In Lemma 6.1 we show that the smash sum is associative. In Lemma 6.2
+we show that the smash sum is continuous with respect to the metric on
+bounded open sets A, B ⊂ Rd given by
+
+                           d∆ (A, B) = L(A ∆ B)
+
+where A ∆ B denotes the symmetric difference A ∪ B − A ∩ B, and L is
+Lebesgue measure on Rd . Lastly, in Lemma 6.4 we show that the smash
+sum is also continuous in a variant of the Hausdorff metric.
+
+Lemma 6.1. Let A, B, C ⊂ Rd be bounded open sets whose boundaries have
+Lebesgue measure zero. Then
+
+                       (A ⊕ B) ⊕ C = A ⊕ (B ⊕ C)
+                                    =A∪B∪C ∪D
+
+where D is given by (21) with σ = 1A + 1B + 1C .
+
+Proof. Let
+                       γ(x) = −|x|2 − G(1A + 1B )(x)
+and
+                     γ̂(x) = −|x|2 − G(1A⊕B + 1C )(x).
+Let u = s−γ and û = ŝ−γ̂, where s, ŝ are the least superharmonic majorants
+of γ, γ̂. Then
+
+              (A ⊕ B) ⊕ C = (A ⊕ B) ∪ C ∪ {û > 0}
+                            = A ∪ B ∪ {u > 0} ∪ C ∪ {û > 0}
+                            = A ∪ B ∪ C ∪ {u + û > 0}.                  (90)
+
+Let νn be the final mass density for the divisible sandpile in δn Zd started
+from initial density 1A:: + 1B :: , and let un be the corresponding odometer
+function. By Theorem 3.3 we have un → u as n → ∞. Moreover, by
+Theorem 3.9 we have
+                             νn (x) → 1A⊕B (x)                         (91)
+for all x ∈
+          / ∂(A ⊕ B). Let ûn be the odometer function for the divisible sand-
+pile on δn Zd started from initial density νn + 1C :: . By Proposition 2.12(i)
+the right side of (91) is continuous almost everywhere, so by Theorem 3.3
+
+                                     54
+we have ûn → û as n → ∞. On the other hand, by the abelian property,
+Lemma 3.1, the sum un + ûn is the odometer function for the divisible sand-
+pile on δn Zd started from initial density 1A:: + 1B :: + 1C :: , so by Theorem 3.3
+we have un + ûn → ũ := s̃ − γ̃, where
+
+                     γ̃(x) = −|x|2 − G(1A + 1B + 1C )(x)
+
+and s̃ is the least superharmonic majorant of γ̃. In particular,
+
+                          u + û = lim (un + ûn ) = ũ,
+                                   n→∞
+
+so the right side of (90) is equal to A ∪ B ∪ C ∪ D.
+
+Lemma 6.2. Let A1 , A2 , B be bounded open subsets of Rd whose boundaries
+have measure zero. Then
+
+                      d∆ (A1 ⊕ B, A2 ⊕ B) ≤ d∆ (A1 , A2 ).
+
+Proof. Let A = A1 ∪ A2 , and A0i = A − Ai for i = 1, 2. Then by Lemma 6.1,
+
+                  A ⊕ B = (A0i ⊕ Ai ) ⊕ B = A0i ⊕ (Ai ⊕ B).
+
+By Corollary 2.13,
+
+                       L(A ⊕ B) = L(A0i ) + L(Ai ⊕ B)
+
+hence
+                         d∆ (A ⊕ B, Ai ⊕ B) = L(A0i ).
+By the triangle inequality, we conclude that
+
+          d∆ (A1 ⊕ B, A2 ⊕ B) ≤ L(A01 ) + L(A02 ) = d∆ (A1 , A2 ).
+
+
+
+    The following lemma shows that the smash sum of two sets with a small
+intersection cannot extend very far beyond their union. As usual, A denotes
+the outer -neighborhood (8) of a set A ⊂ Rd .
+
+Lemma 6.3. Let A, B ⊂ Rd be bounded open sets whose boundaries have
+measure zero, and let ρ = (L(A ∩ B))1/d . There is a constant c, independent
+of A and B, such that
+                            A ⊕ B ⊂ (A ∪ B)cρ .
+
+
+                                        55
+
+PDF pages 58-59
+    Next we argue that the domains Dn , Rn , In can be understood as smash
+sums of Dni , Rni , Ini as i ranges over the integers 1, . . . , k. By the abelian
+property [7], the domain In is the Diaconis-Fulton smash sum in δn Zd of
+the domains Ini . Likewise, if r1 is an arbitrary rotor configuration on δn Zd ,
+let Sn2 be the smash sum of Rn1 and Rn2 formed using rotor-router dynamics
+with initial rotor configuration r1 , and let r2 be the resulting final rotor
+configuration. For i ≥ 3 define Sni inductively as the smash sum of Sni−1
+and Rni formed using rotor-router dynamics with initial rotor configuration
+ri−1 , and let ri be the resulting final rotor configuration. Then Rn = Snk .
+Finally, by Lemma 3.1, the domain Dn contains the smash sum of domains
+Dni formed using divisible sandpile dynamics, and Dn is contained in the
+smash sum of the domains Dni ∪ ∂Dni .
+    Fixing  > 0, by Theorem 1.3 and Lemma 2.8, it follows from (94) and
+(95) that for all sufficiently large n
+                           A::/2 ⊂ Dn , Rn , In ⊂ A
+                                                   e/2::                    (96)
+
+where A is the smash sum of the balls (Bi )η , and A
+                                                   e is the smash sum of the
+           η
+balls (Bi ) . By Lemma 6.4 we can take η sufficiently small so that
+                                          e ⊂ D/2
+                               D/2 ⊂ A ⊂ A
+where D = B1 ⊕ . . . ⊕ Bk . Together with (96), this completes the proof.
+
+Proposition 6.6. Fix x1 , . . . , xk ∈ Rd and λ1 , . . . , λk > 0. Let Bi be the
+ball of volume λi centered at xi . Then
+                       Z                         k
+                                                 X
+                                      h(x)dx ≤         λi h(xi )
+                         B1 ⊕...⊕Bk              i=1
+
+for all integrable superharmonic functions h on B1 ⊕ . . . ⊕ Bk .
+   We could deduce Proposition 6.6 from Proposition 2.11 by integrating
+smooth approximations to h against smooth densities σn converging to the
+sum of the indicators of the Bi . However, it more convenient to use the fol-
+lowing result of M. Sakai, which is proved by a similar type of approximation
+argument.
+Theorem 6.7. [27, Thm. 7.5] Let Ω ⊂ Rd be a bounded open set, and let
+σ be a bounded function on Rd supported on Ω̄ satisfying σ > 1 on Ω. Let
+γ, s, D be given by (19)-(21).
+                         Z           Z
+                            h(x)dx ≤   h(x)σ(x)dx
+                           D              D
+
+
+                                         58
+for all integrable superharmonic functions h on D.
+   We remark that the form of the obstacle in [27] is superficially different
+from ours: taking w = 1 and ω = σ in section 7 of [27], the obstacle is given
+by
+                           ψ(x) = G1B − Gσ
+for a large ball B, rather than our choice (19) of
+                               γ(x) = −|x|2 − Gσ.
+Note, however that γ − ψ is constant on B by (17) and (18). Thus if B is
+sufficiently large, the two obstacle problems have the same noncoincidence
+set D by Lemmas 2.9 and 2.15.
+    To prove Proposition 6.6 using Theorem 6.7, we must produce an appro-
+priate density σ on Rd strictly exceeding 1 on its support. We will take σ
+to be twice the sum of indicators of balls of half the volume of the Bi .
+
+Proof of Proposition 6.6. Let Bi0 be the ball of volume λi /2 centered at xi ,
+and consider the sum of indicators
+                                          k
+                                          X
+                                  σ=2           1Bi0 .
+                                          i=1
+
+Let γ, s, D be given by (19)-(21). By Theorem 6.7 and the mean value
+proprerty for superharmonic functions (12), we have
+                Z             Xk Z             Xk
+                   h(x)dx ≤ 2        h(x)dx ≤      λi h(xi )
+                   D               i=1   Bi0             i=1
+
+for all integrable superharmonic functions h on D.
+    It remains to show that D = B1 ⊕ . . . ⊕ Bk . By Lemma 2.7 we have
+  0
+Bi ⊂ D for all i, hence by Lemma 6.1
+                         D = B10 ⊕ B10 ⊕ . . . ⊕ Bk0 ⊕ Bk0 .
+By Lemma 2.14 we have Bi = Bi0 ⊕ Bi0 , completing the proof.
+
+    From Proposition 6.6 it follows [13, sec. 6] (see also [14, Lemma 1.1(a)])
+that if x1 , . . . , xk are distinct points in R2 , and Bi is a disk centered at xi ,
+the boundary of the smash sum B1 ⊕ . . . ⊕ Bk lies on an algebraic curve of
+degree 2k. The methods of [13] rely heavily on complex analysis, which is
+why they apply only in dimension two. Indeed, in higher dimensions it is
+not known whether classical quadrature domains have boundaries given by
+algebraic surfaces [29, Ch. 2].
+
+                                          59
+

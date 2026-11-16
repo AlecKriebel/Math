@@ -1,0 +1,53 @@
+--- release_three.pending-v2-expiry.py
++++ release_three.py
+@@ -14,5 +14,5 @@
+ N = P/'verification/tsp-qss-fine-wilf-production-release-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = '8c2230eb48eb47dafeb5810dbfa1d81d1e7e84edf36dcb6f6c3e26c5d0b59324'
++PLAN_SHA = '08a823c630a3697f4438e1a22e52bbd2b5168579fc7a868e15529f62abd1b10f'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+@@ -61,5 +61,5 @@
+     if LOG is not None:
+         LOG.write(packed({'UTC':utc().isoformat(),'phase':phase,**fields})); LOG.flush(); os.fsync(LOG.fileno())
+-def git(*args,data=None,index=None,identity=None,cwd=W,opaque=False):
++def git(*args,data=None,index=None,identity=None,cwd=W,opaque=False,absent_origin_vcs_ok=False):
+     env=dict(ENV)
+     if index is not None: env['GIT_INDEX_FILE']=str(index)
+@@ -67,9 +67,12 @@
+     cmd=['git',*GIT_OPTIONS,*args]; r=subprocess.run(cmd,cwd=cwd,env=env,input=data,capture_output=True)
+     event('git',argv=cmd,input_SHA256=None if data is None else sha(data),exit=r.returncode,stdout_SHA256=sha(r.stdout),stderr_SHA256=sha(r.stderr),stdout_base64=None if opaque else base64.b64encode(r.stdout).decode(),stderr_base64=None if opaque else base64.b64encode(r.stderr).decode())
+-    need(r.returncode==0,'Git failed: '+args[0]); return r.stdout
++    absent = absent_origin_vcs_ok and args==('config','--null','--get-all','remote.origin.vcs') and r.returncode==1 and r.stdout==b'' and r.stderr==b''
++    need(r.returncode==0 or absent,'Git failed: '+args[0]); return r.stdout
+ 
+ def routing(p,expected=None):
+     args=('config','--null','--show-origin','--show-scope','--get-regexp',p['routing_config_key_regex'])
+     before=git(*args,opaque=True)
++    selector=git('config','--null','--get-all','remote.origin.vcs',opaque=True,absent_origin_vcs_ok=True)
++    need(selector==b'','remote.origin.vcs transport selector must be absent')
+     fetch=git('remote','get-url','--all','origin',opaque=True)
+     push=git('remote','get-url','--push','--all','origin',opaque=True)
+@@ -78,5 +81,5 @@
+     intended=(p['origin']+'\n').encode()
+     need(fetch==intended and push==intended,'exact singleton effective origin fetch/push URLs')
+-    state={'configuration':pin(before),'effective_fetch_URL_SHA256':sha(fetch),'effective_push_URL_SHA256':sha(push),'singletons_match_intended_origin':True}
++    state={'configuration':pin(before),'effective_fetch_URL_SHA256':sha(fetch),'effective_push_URL_SHA256':sha(push),'singletons_match_intended_origin':True,'origin_vcs_selector_absent':True}
+     need(expected is None or state==expected,'authorization-bound routing configuration unchanged')
+     return state
+--- PLAN.pending-v2-expiry.json
++++ PLAN.json
+@@ -31,5 +31,5 @@
+   "firebase_config_SHA256": "47bc3e4c1a61d99890ef108a28e7504eeafe2aa1c81bbfd51c20f62d808852a4",
+   "origin": "https://github.com/AlecKriebel/aleckriebel.com.git",
+-  "routing_config_key_regex": "^(remote\\.origin\\.(url|pushurl|mirror)|url\\..*\\.(insteadof|pushinsteadof))$",
++  "routing_config_key_regex": "^(remote\\.origin\\.(url|pushurl|mirror|vcs)|url\\..*\\.(insteadof|pushinsteadof))$",
+   "routing_policy": "EXACT_SINGLETON_EFFECTIVE_ORIGIN_FETCH_AND_PUSH_URLS;OPAQUE_CONFIG_PIN_RECHECKED_IMMEDIATELY_BEFORE_EVERY_REMOTE_ACTION",
+   "branch": "refs/heads/master",
+@@ -99,4 +99,5 @@
+   "AA": null,
+   "canonical_url": null,
+-  "follow_up": null
++  "follow_up": null,
++  "origin_vcs_policy": "ABSENT_ONLY;REJECT_ANY_CONFIGURED_REMOTE_ORIGIN_VCS_SELECTOR"
+ }
