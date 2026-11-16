@@ -13,7 +13,7 @@ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
 M = P.parent
 N = P/'verification/habiro-fixed-area-production-release-sol-20261116'
 W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
-PLAN_SHA = '0a17cffc91c0bb6124c87457e1c6d25e6b818d077521e52eed7cada952bdd4fc'
+PLAN_SHA = '403f35a7f739779faa78b7db11367a0765031ac93393c8d742ae51c7cfcb39d2'
 LOG = None
 ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
 ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')
