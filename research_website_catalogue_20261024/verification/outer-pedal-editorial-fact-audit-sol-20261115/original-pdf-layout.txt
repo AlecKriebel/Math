@@ -1,0 +1,261 @@
+      The outer-pedal area centroid in even-period elliptic billiards
+                                                Alec Kriebel
+                                           Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                            13 October 2026         (version 1.0, unrefereed)
+
+
+                                                 Abstract
+         Reznik, Garcia and Koiller observed that the area centroid of the outer-side pedal polygon of
+     an even-period elliptic billiard is independent of the orbit phase (invariant k307). We prove this
+     observation on the natural domain of the signed-area centroid and give its explicit value. The proof
+     uses antipodal pairing, support coordinates and telescoping edge moments. For simple even orbits
+     the centroid exists for every ﬁxed pedal point. For even star orbits it can be undeﬁned on a ﬁxed
+     circle, which we determine exactly and realize in a noncircular eight-period example. The note
+     includes a reproducible veriﬁcation package; the written identities give the all-period proof.
+
+
+1    The statement and its domain
+Let the billiard boundary and its ﬁxed caustic be
+
+                 x2 y 2                      x2     y2
+            E:      + 2 = 1,        Ec :         +       = 1,         a > b > 0,     0 < λ < b2 .
+                 a2  b                     a2 − λ b2 − λ
+Assume this pair supports a Poncelet billiard family of least even period N ≥ 4. Primitive star
+trajectories are allowed. The vertices Pi are ordered along the trajectory, with indices modulo N . The
+outer polygon has as its side lines the tangents to E at the Pi . For a ﬁxed point M , let Qi be its
+perpendicular foot on that full tangent line. For any ordered polygon qi , identify the plane with C
+and set
+                      1∑                         ∑                                   T (q)
+              S(q) =       [qi , qi+1 ], T (q) =    [qi , qi+1 ](qi + qi+1 ), C(q) =       ,         (1)
+                      2 i                         i
+                                                                                     6S(q)
+where [p, q] = Im(pq), and C is deﬁned only if S ̸= 0. These are signed moments, including multi-
+plicity for self intersections. They agree with the area-centroid convention of [1]; they are neither the
+arithmetic vertex mean nor an unsigned union-of-regions centroid.
+    Put
+
+                      H = (a2 + b2 )/2,                               e = (a2 − b2 )/2,
+                      d = 1 − λ(a−2 + b−2 ),                          F = Hd + 2λ,
+                            −4eλd
+                      v= 2          ,                                 z = Mx + iMy ,
+                          F − e2 d2
+                     R2 = |z|2 ,                                      G = 2F + dR2 .
+
+Write S(M ) = S(Q(M )) for the chosen member of the family.
+
+
+
+
+                                                      1
+Theorem 1. Orient the billiard counterclockwise around its elliptic caustic. Then F > 0, F 2 − e2 d2 >
+0, S(0) > 0, and
+                                                  2F + d|z|2
+                                     S(M ) = S(0)            .                                      (2)
+                                                     2F
+Whenever G ̸= 0, the signed area centroid is
+
+                                z z(F + 2Hd + evd) + z(2F v + 3ed + vd|z|2 /2)
+                   C(Q(M )) =     −                                            .                    (3)
+                                2               3(2F + d|z|2 )
+
+Thus it is independent of the orbit phase wherever deﬁned. If d ≥ 0, it is deﬁned for every M . If
+d < 0, its exact undeﬁned locus is the phase-independent circle |M |2 = −2F/d. Least period four is
+equivalent to d = 0, when the centroid is M/3. Every simple winding-one even family has d ≥ 0.
+
+    The theorem proves the k307 observation in Table 4 and Section 3.4 of [1], with the denominator
+qualiﬁcation already inherent in its signed centroid deﬁnition. An unqualiﬁed assertion that a centroid
+exists for every M in every even star family would be false. Equation (2) does not assert that S(0)
+is phase independent. Reversal changes both signed moments by a sign and leaves the centroid
+unchanged. Repeated traversals of an even least-period orbit give the same centroid; repeating an odd
+primitive orbit does not create the antipodal hypothesis. Hyperbolic and degenerate caustics, and the
+circular boundary case, are outside the theorem.
+    The originating observation is due to Reznik–Garcia–Koiller. Bialy–Tabachnikov [2, Theorems
+4.1 and 4.3] prove the neighboring vertex-centroid invariant k306 and recall the classical even-period
+symmetry. Schwartz–Tabachnikov [3] study signed centroid loci of Poncelet polygons between conics.
+We do not claim novelty for those methods, the symmetry, or the cyclic lemma below. Two independent
+bounded primary-source audits completed on 13 October 2026 found no earlier proof covering the
+present full statement; this is not a certiﬁcation of historical ﬁrstness.
+
+
+2    Support coordinates and antipodal pairing
+Let T be the counterclockwise Poncelet map on E with the speciﬁed tangent choice, and A(P ) = −P
+its half-turn. The porism gives T N = id, and A commutes with T . The ﬁnite group generated
+by them consists of orientation-preserving circle homeomorphisms and is cyclic. Indeed a ﬁnite order
+orientation-preserving circle homeomorphism ﬁxing a point is the identity: after cutting there, a moved
+point has strictly monotone iterates. The group therefore acts faithfully on a ﬁnite orbit, preserving
+its circular order, and embeds into its cyclic permutation group. Uniqueness of the involution gives
+T N/2 = A. Consequently
+                                            Pi+N/2 = −Pi .                                          (4)
+Let ni = (cos ψi , sin ψi ) be the outward unit normal and hi > 0 the support number. Then
+
+                       h2i = H + e cos 2ψi ,   ni+N/2 = −ni ,      hi+N/2 = hi .
+
+The caustic strictly contains the origin. Each oriented tangent chord has its next endpoint less than
+a half-turn ahead on E. The increasing Gauss map commutes with the half-turn, so successive lifted
+normal angles satisfy 0 < ∆i = ψi+1 − ψi < π. In particular the outer tangent intersections are ﬁnite,
+and
+                                            1∑
+                                    S(0) =       hi hi+1 sin ∆i > 0.                               (5)
+                                            2 i
+This uses trajectory order and applies to stars too.
+
+
+
+                                                   2
+    For consecutive eccentric angles u, w, put τ = (u + w)/2 and q = (w − u)/2 ∈ (0, π/2). Their chord
+is (cos τ /a)x + (sin τ /b)y = cos q. Tangency to Ec gives sin2 q = λ(cos2 τ /a2 + sin2 τ /b2 ), equivalently
+                   d = [1 + λ(a−2 − b−2 )] cos u cos w + [1 − λ(a−2 − b−2 )] sin u sin w.
+Since the normal is hi (cos u/a, sin u/b), this yields
+                                 dhi hi+1 = F cos ∆i + ed cos(ψi + ψi+1 ).                               (6)
+All denominators in the theorem are controlled by
+              F + ed = a2 − λ(a2 /b2 − 1) > b2 > 0,          F − ed = b2 + λ(1 − b2 /a2 ) > 0.
+In particular F > 0 and F 2 − e2 d2 > 0.
+    If N = 4, apply (6) to (n0 , n1 ) and (n1 , n2 ). Their right sides negate because n2 = −n0 , whereas
+both left sides are dh0 h1 . Hence 2dh0 h1 = 0 and d = 0. Conversely d = 0 makes cos ∆i = 0, so each
+normal advances π/2 and the least period is four. Its outer polygon is a rectangle. In an orthonormal
+side frame its pedal vertices are
+                        (A, My ), (Mx , B), (−A, My ), (Mx , −B),         A, B > 0.
+Direct shoelace gives S = 2AB and T = 4ABM , proving both formulas and C = M/3. For the
+remaining proof assume d ̸= 0 and set D = F/d. Then D2 − e2 > 0 and (6) reads
+                                  hi hi+1 = D cos ∆i + e cos(ψi + ψi+1 ).                                (7)
+
+
+3    A doubled-normal telescope
+Regard ni as a unit complex number and put Zi = n2i . Squaring (7) and substituting the support
+squares gives
+                   (D2 − e2 ) cos2 ∆i = H 2 − e2 + e(H − D)(cos 2ψi + cos 2ψi+1 ).
+Thus, with u = 2(H 2 − e2 )/(D2 − e2 ) − 1,
+                                                                   2e(H − D)   −4eλd
+               Re(Z i Zi+1 ) = u + v(Re Zi + Re Zi+1 ),       v=             = 2        .                (8)
+                                                                    D 2 − e2  F − e2 d2
+Lemma 1. For ordered unit complex vertices satisfying (8), T (Z) = 2vS(Z). No simplicity or
+nonzero-area assumption is needed.
+Proof. For unit U, V the division-free identity
+                                [U, V ](U + V ) = −i(1 + Re(U V ))(V − U )
+follows by multiplication. The constant part telescopes. Write Zi = Xi + iYi . The real part of
+∑                                           ∑                                          ∑
+   i (Xi + Xi+1 )(Zi+1 − Zi ) telescopes as  i (Xi+1 − Xi ) = 0. Its imaginary part is
+                                                  2         2
+                                                                                        i [Zi , Zi+1 ],
+because
+                        (Xi + Xi+1 )(Yi+1 − Yi ) = [Zi , Zi+1 ] + Xi+1 Yi+1 − Xi Yi .
+Multiplication by −iv proves the assertion.
+
+    Write SZ = S(Z) and TZ = T (Z). The origin-area identity is
+                                                         D
+                                               S(0) =      SZ .                                          (9)
+                                                         2
+Indeed multiply (7) by sin ∆i and use cos(ψi + ψi+1 ) sin ∆i = (sin 2ψi+1 − sin 2ψi )/2; the latter terms
+telescope. By (5), SZ ̸= 0 when d ̸= 0.
+
+                                                     3
+4    The pedal area and full ﬁrst moment
+Projection onto ni · x = hi gives Qi = M + (hi − M · ni )ni . Put t = z/2 and wi = hi ni . In complex
+notation,
+                                  Qi = z/2 + Vi ,  Vi = wi − tZi .                               (10)
+Opposite indices negate wi and ﬁx Zi ; hence terms odd in the w’s cancel in cyclic sums. Area is
+translation invariant, so
+                           S(M ) = S(0) + |t|2 SZ = (D/2 + |z|2 /4)SZ ,                     (11)
+which proves (2).
+   We give the complete cubic reduction to make the essential calculation checkable. In T (V ), the
+pure-w and quadratic-in-t terms cancel by antipodal pairing. The cubic term is −|t|2 tTZ . For one
+edge put x = ni , y = ni+1 , h = hi , k = hi+1 , Z = x2 , W = y 2 . Average the edge moment with its
+antipodal edge moment. In 2i times that average the coeﬃcients of t and t are, respectively,
+
+                                 c = k 2 x2 − h2 y 2 + 2hk(x3 /y − y 3 /x),
+                                 b = h2 x2 /y 2 − k 2 y 2 /x2 + hk(x/y − y/x).
+
+Substitute
+
+      h2 = H + 2e (x2 + x−2 ),     k 2 = H + 2e (y 2 + y −2 ),   hk = D               e           −1
+                                                                      2 (y/x + x/y) + 2 (xy + (xy) ).
+
+With r = Z/W − W/Z and s = Z 2 /W − W 2 /Z, multiplication gives the exact edge identities
+
+                                  2 r + (D + H)(Z − W ) + e(Z − W ),
+                                                             2   2
+                         c = Ds + 3e
+                         b = (D/2 + H)r + 2e s + 2e (Z − W ) + e(W −1 − Z −1 ).
+
+The endpoint diﬀerences telescope. Moreover
+          ∑                                                              ∑
+              r = −4iSZ ,        s + 2i[Z, W ](Z + W ) = W − Z,               s = −2iTZ = −4ivSZ .
+
+Consequently the two linear terms together with the cubic term give
+
+                     T (V ) = −2SZ {t(Dv + 3e/2 + v|t|2 ) + t(D/2 + H + ev/2)}.                         (12)
+
+These identities involve no division by S(M ). For an arbitrary ordered polygon, translation by c
+changes T by 6cS. This follows by expanding [Vi + c, Vi+1 + c] and telescoping the coordinate-square
+and coordinate-product endpoint diﬀerences. Divide (12) by 6S(M ), translate by z/2 and use (11) to
+obtain
+                              z z(D + 2H + ev) + z(2Dv + 3e + v|z|2 /2)
+                         C= −                                              .
+                              2                3(2D + |z|2 )
+Multiplying numerator and denominator by d proves (3).
+
+
+5    Deﬁnedness and an exact star example
+Positivity of S(0) and F makes (2) an exact classiﬁcation of the zero-area locus. For a simple winding-
+one family with N ≥ 6, the ﬁrst N/2 normals occupy a half-turn in circular order. Their squares are
+at least three distinct circularly ordered unit-circle points. The full Z-polygon traverses their convex
+polygon twice, so SZ > 0. Equation (9) implies D > 0, hence d > 0. Period four was treated above.
+This completes Theorem 1.
+
+                                                        4
+   The negative-d case occurs in an exact primitive star. Take
+                        a2 = 221/96,       b2 = 27625/20736,       λ = 125/96.
+The caustic semiaxes are 1 and 25/144. Multiply the following normalized pairs coordinatewise by
+(a, b), retaining their order:
+                           (0, 1), (−12/13, −5/13), (1, 0), (−12/13, 5/13),
+                           (0, −1), (12/13, 5/13), (−1, 0), (12/13, −5/13).
+The veriﬁcation package checks exactly that every chord is tangent to the caustic and obeys the
+specular reﬂection law. The eight vertices are distinct, and an oriented-ray crossing count gives
+winding three. This example was previously used in the repository’s problem 5100065; no novelty is
+claimed for its construction. Here
+           d = −120/221,       F = 2795/1728,          v = 7/13,   −2F/d = 123539/20736.
+For M = (X, Y ), direct Cartesian projection and signed shoelace give
+                                        √
+                                          30
+                            S(M ) = −         (20736(X 2 + Y 2 ) − 123539),
+                                       134784
+                                       √
+                                         30X
+                          Tx (M ) = −         (41472(X 2 + Y 2 ) − 272935),
+                                       109512
+                                       √
+                                         30Y
+                           Ty (M ) = −       (52992(X 2 + Y 2 ) − 347633).
+                                       97344
+             √                                   √
+At M = (13 731/144, 0), S = 0 but T = (221 21930/10368, 0) ̸= 0. Thus even a removable-zero
+interpretation cannot supply a centroid at this diagnostic point.
+
+
+Veriﬁcation and disclosure
+The accompanying source and veriﬁcation archive provides exact symbolic checks of the displayed edge
+identities, unrestricted Cartesian star polynomials and a separately derived real-coordinate certiﬁcate.
+Independent orbit generators supply high-precision numerical controls, including stars, large periods
+and near-degenerate caustics. Initial ﬂoating-point failures and their precision repairs are recorded.
+Numerical tests corroborate, but do not replace, the all-period proof above.
+    AI tools were used extensively in solving, verifying, literature research, writing and adversarial
+review. Independent AI reviews are not external human peer review or proof-assistant formalization.
+This is an unrefereed research note; it has not received external human peer review. The bounded pri-
+ority reports, assumptions and reproducibility instructions accompany the note. No claim of exclusive
+historical priority is made.
+
+
+References
+[1] D. Reznik, R. Garcia and J. Koiller, Fifty new invariants of N-periodics in the elliptic billiard,
+    Arnold Math. J. 7 (2021), 341–355. doi:10.1007/s40598-021-00174-y. See also Eighty new invari-
+    ants, arXiv:2004.12497v11, Table 4.
+[2] M. Bialy and S. Tabachnikov, Dan Reznik’s identities and more, Eur. J. Math. 8 (2022), 1341–1354.
+    doi:10.1007/s40879-020-00428-7.
+[3] R. E. Schwartz and S. Tabachnikov, Centers of mass of Poncelet polygons, 200 years after, Math.
+    Intelligencer 38 (2016), no. 2, 29–34. arXiv:1607.04766.
+
+
+                                                   5
+

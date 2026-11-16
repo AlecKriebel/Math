@@ -1,0 +1,127 @@
+"""Proposed read-only adapter for exactly two root-cleared immutable editions.
+
+Original receipts and custom verdicts stay whole. Only the returned temporary
+in-memory asset view uses PublishedAssets' consumer vocabulary; none is stored.
+"""
+from pathlib import Path
+from copy import deepcopy
+import hashlib
+import json
+import re
+from bosonic_source import contained_file,digest
+from published_assets import safe_relative
+
+CD_IDS={'23387774','23074543'}
+PINS={
+ '23387774':{'publication':'cf35695514f8f3943e7a5967799390bc2fa182f6721b36a628289b129e383a7e','promotion':'75b7be5a6f45354192f5a0619d47abfb96a10e59091cec699ecb442e7906bf9d','science':'71c30130a7d421c601669d56bf8a20f3416f57be0fb7da6694fd54dd9dadc3a3','editorial':'9ea090b979a2e25bd1b59bdf20e84d11d824d9a8d70c7be4048d8da3b84516bb','receipt':'c18de70258995903a5118cb065c0ddcec13bd9fcab9d09a54c5796ca3fb53b0b','metadata':'f3a02fe2d4145de7db14f5b606bc116ac496fc103c61a4fded6911a49e1901a0','record':'1519c8b2f64e1dccdc913cf1949cbaffbbaa5c66ce25c2773e2a563861b71bc3','tex':'7da26974ef1e8b15922bff398424954874177d20580cf5b0526cd998e34de6b8','seal':'25f94cf91866cbcfd465a7bf00492180a75a862849ef78c640b7ed610e4319a0','manifest':'58dce35bcdacac98137fd27c629ee6b9d8f6f168853d0005b59eddcf83396407','pdf':'cylinder_areas.pdf','zip':'cylinder_areas_verification.zip','pages':7,'created':'2026-10-15T07:26:58.176137+00:00','asset_key':'exact_assets','sha_key':'sha256','md5_key':'md5','api_flag':'api_size_checksum_pass','metadata_assets':'exact_file_objects'},
+ '23074543':{'publication':'0a94786bcae437c08b2062cd589c06c50dd6ece619c5550f6f106c097ea5c3b5','promotion':'9fd6b7476d8a7b23af715f394fae1b01efb3b93d0a2a5655609d622003aa719a','science':'4b826fb8e8e99805ebf23d0d8435846ed1983a90a738bb536c665cd3606a2fc5','editorial':'9dbaf3dea7dca8a7b749c683567d2449237bb5e242709c300c5fe238810a9012','receipt':'4df529a4809b294fc7e623ff45e66309537bd0f45b2c0110bc83a1d7e9e6122d','metadata':'6b784a98e297106853c4842abb0b5485e717252b2471f5a2d4916f142cd7bb5d','record':'072d9ad24f2f3901cd87198266a8e6084231bcc4c670f7ee0b320c7de0becf57','tex':'3576dcc78bf1a9188ee8a8b5c56f5914357d90d437767e29dc42e3a85ceedab4','seal':'4cbe2044565d30ffe4a517eaa14d396103b5ed4a8b37b52f017bc4c382b11456','manifest':'ff087f3a5cb50f90c1f85579847c3684f2ed989e978e48372147a7385ded76b8','pdf':'paper.pdf','zip':'source-and-verification.zip','pages':4,'created':'2026-10-01T04:23:09.001448+00:00','asset_key':'actual_assets','sha_key':'SHA256','md5_key':'MD5','api_flag':'api_checksum_pass','metadata_assets':'complete_file_objects'}
+}
+
+def require(condition,tag):
+    if not condition:raise ValueError('cylinder_discotope:'+tag)
+
+def normalized_cd_abstract(rid,body):
+    require(rid in CD_IDS,'unsupported_id')
+    return ' '.join(body.split()).replace('\\Poi','\\operatorname{Poisson}').replace('--','–')
+
+def display_cd_abstract(rid,body):
+    """Formatting only; all words and mathematical assertions are retained."""
+    require(rid in CD_IDS,'unsupported_id')
+    if rid=='23387774':
+        pairs=[('$[g^{-1/2},2g^{-1/2}]$','[g^(−1/2),2g^(−1/2)]'),('$s_g\\to0$','s_g→0'),('$gs_g\\to\\infty$','g s_g→∞'),('$dx/(2x)$','dx/(2x)'),('$\\operatorname{Poisson}((\\log2)/2)$','Poisson((log2)/2)')]
+        for old,new in pairs:
+            require(body.count(old)==1,'abstract_expected_math_token')
+            body=body.replace(old,new)
+    require('\\' not in body and '$' not in body,'unrecognized_abstract_command')
+    return body
+
+def validate_original_receipt(paper,rid,raw,api):
+    """Pure structural check, independently exercised by actual-object controls."""
+    require(rid in CD_IDS and isinstance(raw,dict),'receipt_type_or_id')
+    pin=PINS[rid];key=pin['asset_key']
+    require(key in raw and isinstance(raw[key],list),'receipt_original_asset_key')
+    forbidden={'files','assets','actual_assets','exact_assets','selected_PDF'}-{key}
+    if rid=='23387774':forbidden.remove('selected_PDF')
+    require(not (forbidden & set(raw)),'receipt_no_schema_alias')
+    require(str(raw['record_id'])==rid and len(raw[key])==len(api['files'])==2,'receipt_record_and_asset_count')
+    names=[]
+    for item in raw[key]:
+        require(isinstance(item,dict) and isinstance(item.get('file_object'),dict),'complete_file_object')
+        obj=item['file_object'];name=safe_relative(obj['key'],basename=True);names.append(name)
+        fields={'file_object','path','bytes',pin['sha_key'],pin['md5_key'],pin['api_flag']}|({'pages'} if name==pin['pdf'] else set())
+        require(set(item)==fields,'receipt_exact_original_asset_fields')
+        require(obj in api['files'],'actual_API_file_object_exact')
+        require(type(item['bytes']) is int and item['bytes']==obj['size'],'receipt_API_size')
+        require(item[pin['api_flag']] is True,'recorded_API_checksum_flag')
+        require(re.fullmatch('[0-9a-f]{64}',item[pin['sha_key']]) is not None,'receipt_SHA256_type')
+        require(re.fullmatch('[0-9a-f]{32}',item[pin['md5_key']]) is not None,'receipt_MD5_type')
+        require(obj['checksum']=='md5:'+item[pin['md5_key']],'API_MD5_checksum')
+        require(item['path']==str(Path(paper)/'sources'/name),'original_contained_asset_path')
+        if name==pin['pdf']:require(item['pages']==pin['pages'],'selected_reader_page_count')
+    require(len(set(names))==2 and set(names)=={pin['pdf'],pin['zip']},'exact_selected_asset_names')
+    if rid=='23387774':
+        require(raw['selected_PDF']==[next(x for x in raw[key] if x['file_object']['key']==pin['pdf'])],'original_selected_PDF_object')
+    return raw[key]
+
+def cylinder_discotope_source_view(paper,config,gate):
+    paper=Path(paper);rid=paper.name;require(rid in CD_IDS,'unsupported_id');pin=PINS[rid];programme=paper.parents[1]
+    cp=contained_file(paper,'publication.json');gp=contained_file(paper,'promotion.json')
+    require(digest(cp)==pin['publication'] and digest(gp)==pin['promotion'],'pinned_config_bytes')
+    require(json.loads(cp.read_bytes())==config and json.loads(gp.read_bytes())==gate,'passed_objects_equal_actual_configs')
+    b=config['source_binding'];require(b['record_id']==gate['record_id']==rid and gate['status']=='PASS' and gate['disposition_by']=='root','root_record_disposition')
+    require(gate['publication_sha256']==pin['publication'],'promotion_publication_binding')
+    require(b['source_receipt_path']==gate['source_receipt_path']=='sources/receipt.json','original_receipt_path')
+    rp=contained_file(paper,'sources/receipt.json');mp=contained_file(paper,'sources/metadata.normalized.json');ap=contained_file(paper,'sources/zenodo-record.raw.json')
+    require(b['metadata_path']==gate['metadata_path']=='sources/metadata.normalized.json' and b['raw_record_path']=='sources/zenodo-record.raw.json','actual_metadata_record_paths')
+    require(digest(rp)==b['source_receipt_sha256']==gate['source_receipt_sha256']==pin['receipt'],'receipt_bytes')
+    require(digest(mp)==b['metadata_sha256']==gate['metadata_sha256']==pin['metadata'],'metadata_bytes')
+    require(digest(ap)==b['raw_record_sha256']==pin['record'],'raw_record_bytes')
+    raw=json.loads(rp.read_bytes());meta=json.loads(mp.read_bytes());api=json.loads(ap.read_bytes())
+    require(raw==b['source_receipt_original']==gate['source_receipt_original'],'whole_original_receipt_object')
+    require(meta['metadata']==api['metadata'] and meta[pin['metadata_assets']]==api['files'],'actual_normalized_metadata_fields')
+    require(str(meta['record_id' if rid=='23387774' else 'id'])==str(api['id'])==rid,'actual_metadata_record_id')
+    require(meta['created']==api['created']==b['record_created_utc']==pin['created'] and meta['updated']==api['updated']==b['record_updated_utc'],'separate_actual_creation_update')
+    require(api['status']=='published' and str(api['conceptrecid'])==b['concept_record_id'],'actual_published_record')
+    m=api['metadata'];require(all(config[k]==m[k] for k in ['title','doi','version','publication_date']),'actual_edition_metadata')
+    require(config['author']=='Alec Kriebel' and m['creators'][0]['name']=='Kriebel, Alec' and m['creators'][0]['orcid']=='0009-0001-9320-500X','actual_author_metadata')
+    require(m['license']['id']=='cc-by-4.0','actual_record_license')
+    science_path=contained_file(programme,'verification/root-clearance-'+rid+'-20261025.json');editorial_path=contained_file(programme,'verification/root-editorial-'+rid+'-20261025.json')
+    require(digest(science_path)==gate['root_clearance_sha256']==config['review_metadata']['root_clearance_sha256']==pin['science'],'exact_scientific_authority')
+    require(gate['root_clearance_file']==config['review_metadata']['root_clearance_file']=='verification/root-clearance-'+rid+'-20261025.json','exact_scientific_authority_path')
+    require(digest(editorial_path)==pin['editorial'],'exact_editorial_authority')
+    science=json.loads(science_path.read_bytes());editorial=json.loads(editorial_path.read_bytes())
+    require(science==gate['root_clearance_record'] and science['status']=='PASS' and science['approved_scope']==gate['approved_scope'],'whole_original_scientific_authority')
+    require(editorial['status']=='ROOT_APPROVED_EXACT_EDITORIAL_COPY_FOR_PRIVATE_STAGING' and editorial['private_staging_authorized'] is True and editorial['production_integration_authorized'] is False,'private_stage_only_authority')
+    require(editorial['publication_sha256']==pin['publication'] and editorial['promotion_sha256']==pin['promotion'],'exact_approved_editorial_configs')
+    ed=paper/'reviews/editorial';seal=contained_file(ed,'FINAL_SEAL.json');manifest=contained_file(ed,'FINAL_MANIFEST.json')
+    require(digest(seal)==editorial['editorial_seal_sha256']==pin['seal'] and digest(manifest)==editorial['editorial_manifest_sha256']==pin['manifest'],'exact_editorial_seal_manifest')
+    for item in json.loads(manifest.read_bytes())['files']:
+        path=contained_file(ed,item['path']);require(digest(path)==item['SHA256'] and path.stat().st_size==item['bytes'],'editorial_owned_binding')
+    require(set(gate['reviews'])==set(science['reviews'])=={'scope','analytic','adversarial'},'all_original_review_roles')
+    for role,item in gate['reviews'].items():
+        ref=science['reviews'][role]
+        require(ref['report']=='papers/'+rid+'/'+item['report'] and ref['verdict']=='papers/'+rid+'/'+item['verdict_file'],'exact_review_paths')
+        require(digest(contained_file(paper,item['report']))==item['report_sha256']==ref['report_sha256'],'complete_report_binding')
+        vf=contained_file(paper,item['verdict_file']);require(digest(vf)==item['verdict_sha256']==ref['verdict_sha256'] and json.loads(vf.read_bytes())==item['verdict'],'whole_custom_verdict_original_shape')
+    require(science['source_receipt_sha256']==pin['receipt'] and science['metadata_sha256']==pin['metadata'],'scientific_source_bindings')
+    require(digest(contained_file(programme,science['root_review']))==science['root_review_sha256'] and digest(contained_file(programme,science['root_custody_receipt']))==science['root_custody_receipt_sha256'],'final_root_evidence_bindings')
+    require(config['follow_up'] is gate['follow_up'] is science['follow_up'] is editorial['follow_up'] is None and config['AA'] is gate['AA'] is None,'no_followup_AA')
+    for obj in [gate,config['review_metadata']]:
+        require(all(obj[k] is False for k in ['rendered_public_copy_approved','local_http_verified','live_http_verified','browser_verified','native_sheet_publication_verified','public_page_published']),'unchanged_false_publication_gates')
+    require(config['canonical_url']==('' if rid=='23387774' else None),'unverified_site_URL_preserved')
+    tp=contained_file(paper,b['source_tex_path']);require(digest(tp)==b['source_tex_sha256']==pin['tex'],'actual_controlling_TeX')
+    abstract=re.search(r'\\begin\{abstract\}(.*?)\\end\{abstract\}',tp.read_text(),re.S).group(1)
+    require(normalized_cd_abstract(rid,abstract)==config['abstract'],'complete_original_abstract')
+    require((ed/'ORIGINAL_ABSTRACT.tex').read_text()==abstract and (ed/'PUBLIC_COPY.md').read_text()==config['public_copy_markdown'],'exact_approved_public_copy')
+    require(config['pdf_filename']==pin['pdf'] and config['supplement_filename']==pin['zip'] and config['pdf_pages']==pin['pages'] and config['additional_assets']==[],'only_selected_full_reader_and_support')
+    original_snapshot=deepcopy(raw);selected=[]
+    for item in validate_original_receipt(paper,rid,raw,api):
+        obj=item['file_object'];name=obj['key'];path=contained_file(paper,'sources/'+name);data=path.read_bytes()
+        require(len(data)==obj['size']==item['bytes'],'actual_asset_bytes')
+        require(hashlib.md5(data).hexdigest()==item[pin['md5_key']],'actual_asset_MD5')
+        require(digest(path)==item[pin['sha_key']],'actual_asset_SHA256')
+        kind='pdf_sha256' if name==pin['pdf'] else 'supplement_sha256'
+        require(digest(path)==b[kind]==gate[kind]==science[kind],'selected_asset_authority_binding')
+        selected.append({'name':name,'url':obj['links']['self'],'bytes':item['bytes'],'sha256':item[pin['sha_key']],'zenodo_checksum':obj['checksum']})
+    require(raw==original_snapshot,'original_receipt_unmodified')
+    return raw,{'record_id':rid,'files':selected},contained_file(paper,'sources/'+pin['pdf']).parent

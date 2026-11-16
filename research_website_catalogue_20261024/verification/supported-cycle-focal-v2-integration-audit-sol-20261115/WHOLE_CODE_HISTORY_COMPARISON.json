@@ -1,0 +1,41 @@
+[
+  {
+    "earlier": "prepare_v2-before-final-seal-qualifications.py",
+    "earlier_pin": {
+      "bytes": 7314,
+      "SHA256": "ad3030c7ae8a403a206c22f6e229e17268d8c8b8652221f0c09d1de16900d17b"
+    },
+    "current": "prepare_v2.py",
+    "current_pin": {
+      "bytes": 7994,
+      "SHA256": "5ece40747a4528b5643c50cfe8f1f598a007ad53ae32133107d03682d1f1cee9"
+    },
+    "exact_diff": "--- prepare_v2-before-final-seal-qualifications.py\n+++ prepare_v2.py\n@@ -79,6 +79,9 @@\n \n def seal():\n     V.need(not (N/'OWNED_MANIFEST.json').exists(),'new exact root terminals only')\n+    for mode in ('normal','optimized'):\n+        r=json.loads(V.read(N/('PRESEAL-current-'+mode+'.stdout')))\n+        V.need(r['status']=='CORRECTIVE_PRIVATE_EXACT10_CUSTODY_PASSED' and V.read(N/('PRESEAL-current-'+mode+'.stderr'))==b'','actual current normal/optimized preseal streams')\n     fs,ds=V.extent(N);payloads={}\n     for n in fs:\n         b=V.read(N/n);payloads[n]={'bytes':len(b),'SHA256':V.digest(b)}\n@@ -86,6 +89,7 @@\n     mb=(json.dumps({'payloads':payloads,'directories':ds,'only_exact_root_terminals':['OWNED_MANIFEST.json','FINAL_SEAL.json'],'future_exclusions':[]},indent=2)+'\\n').encode()\n     new(N/'OWNED_MANIFEST.json',mb)\n     s={'UTC':datetime.now(timezone.utc).isoformat(),'status':'FINAL_CORRECTIVE_PRIVATE_EXACT10_PENDING_NEW_INDEPENDENT_AUDIT_AND_ROOT_ADOPTION','manifest_SHA256':V.digest(mb),'payload_files':len(fs),'total_files_including2exact_root_terminals':len(fs)+2,'directories':ds,'root_authorization_SHA256':V.AUTH,'original_stage_SHA256':'edf8e4e64ea345e950f6d94e678b4d6c8530df37089e80ef6681a519b7fedf54','original_audit_SHA256':'780e71570c61a0604c582b2a851b4fe8165105652ddf46446c06182995f36412','original_NO_GO_literal_retained':True,'production_authority':False,'root_V2_adopted':False,'new_independent_audit':None,'AA':None,'canonical_url':None,'follow_up':None,'completion_percent':100,'postseal_writes_allowed':False}\n+    s.update({'publication_authority':False,'production_installation_authorized':False,'installed':False,'deployed':False,'live_verified':False,'browser_verified':False,'native_sheet_publication_verified':False,'whole_MAIN_transforms':0,'other8_whole_original_buffers_unchanged':True,'actual_baseline_counts':[623,94,95],'virtual_proposed_counts':[631,96,97],'future_namespace_exclusions':[]})\n     new(N/'FINAL_SEAL.json',(json.dumps(s,indent=2)+'\\n').encode());V.close(N,fs,ds,['OWNED_MANIFEST.json','FINAL_SEAL.json'])\n     print(json.dumps({'status':s['status'],'seal_SHA256':V.digest(V.read(N/'FINAL_SEAL.json')),'manifest_SHA256':V.digest(mb),'files':len(fs)+2,'directories':len(ds),'production_authority':False},sort_keys=True))\n \n"
+  },
+  {
+    "earlier": "verify_v2-before-author-receipt-checks.py",
+    "earlier_pin": {
+      "bytes": 11945,
+      "SHA256": "9d49b2e271f293f7f359834f56f8abfa102c7cc24d55bdcb8946330fe3506118"
+    },
+    "current": "verify_v2.py",
+    "current_pin": {
+      "bytes": 12558,
+      "SHA256": "2705c717446437980a3d6391c98206af58f66b034aa033b060f0a3596a423b84"
+    },
+    "exact_diff": "--- verify_v2-before-author-receipt-checks.py\n+++ verify_v2.py\n@@ -148,6 +148,12 @@\n     if sys.argv[1:]==['--initial']:\n         print(json.dumps({'status':'INITIAL_REFERENCED_CUSTODY_PASSED','old_stage_files':1335,'old_audit_files':1352,'source_context_files':819,'original_NO_GO_preserved':True,'no_old_execution_or_live_reads':True}));return\n     paths=check_outputs(inputs,base,rows)\n+    for mode,opt,folder in [('normal',0,'candidate-a'),('optimized',1,'candidate-b')]:\n+        rec=json.loads(read(N/('AUTHOR-'+mode+'.stdout')))\n+        need(rec['mode']==mode and rec['optimization_level']==opt and read(N/('AUTHOR-'+mode+'.stderr'))==b'','actual separate author modes/empty stderr')\n+        need([r['path'] for r in rec['files']]==paths,'whole actual10 author receipt')\n+        for r in rec['files']:pin(N/folder/'public'/r['path'],r)\n+    need(json.loads(read(N/'CONTROLS.stdout'))['status']=='NEW_NARROW_ADAPTER_CONTROLS_PASSED' and read(N/'CONTROLS.stderr')==b'','actual new control receipt')\n     for n in ['PRE_GUARD.json','POST_GUARD.json']:\n         g=json.loads(read(N/n));need(g['status']=='ALL_ACTUAL_READONLY_FENCES_UNCHANGED' and g['production_mutation'] is False,'actual new fresh drift fences')\n         need(g['baseline_counts']==[623,94,95] and g['index_SHA256']=='35181f4046df6e197ba5c5c6e34c348b2b46783c0cc073a5b7f066692ba332b6','actual623 rawindex fence')\n"
+  },
+  {
+    "earlier": "verify_v2-initial-recovered.py",
+    "earlier_pin": {
+      "bytes": 10659,
+      "SHA256": "abdae3f3d4592af24fae87c1016b0e735160317e6b3068a66801482d8102f525"
+    },
+    "current": "verify_v2.py",
+    "current_pin": {
+      "bytes": 12558,
+      "SHA256": "2705c717446437980a3d6391c98206af58f66b034aa033b060f0a3596a423b84"
+    },
+    "exact_diff": "--- verify_v2-initial-recovered.py\n+++ verify_v2.py\n@@ -148,9 +148,27 @@\n     if sys.argv[1:]==['--initial']:\n         print(json.dumps({'status':'INITIAL_REFERENCED_CUSTODY_PASSED','old_stage_files':1335,'old_audit_files':1352,'source_context_files':819,'original_NO_GO_preserved':True,'no_old_execution_or_live_reads':True}));return\n     paths=check_outputs(inputs,base,rows)\n+    for mode,opt,folder in [('normal',0,'candidate-a'),('optimized',1,'candidate-b')]:\n+        rec=json.loads(read(N/('AUTHOR-'+mode+'.stdout')))\n+        need(rec['mode']==mode and rec['optimization_level']==opt and read(N/('AUTHOR-'+mode+'.stderr'))==b'','actual separate author modes/empty stderr')\n+        need([r['path'] for r in rec['files']]==paths,'whole actual10 author receipt')\n+        for r in rec['files']:pin(N/folder/'public'/r['path'],r)\n+    need(json.loads(read(N/'CONTROLS.stdout'))['status']=='NEW_NARROW_ADAPTER_CONTROLS_PASSED' and read(N/'CONTROLS.stderr')==b'','actual new control receipt')\n     for n in ['PRE_GUARD.json','POST_GUARD.json']:\n         g=json.loads(read(N/n));need(g['status']=='ALL_ACTUAL_READONLY_FENCES_UNCHANGED' and g['production_mutation'] is False,'actual new fresh drift fences')\n         need(g['baseline_counts']==[623,94,95] and g['index_SHA256']=='35181f4046df6e197ba5c5c6e34c348b2b46783c0cc073a5b7f066692ba332b6','actual623 rawindex fence')\n+        need(g['root_corrective_authorization_SHA256']==AUTH and g['HEAD']==g['master']==base['Git']['HEAD'] and g['tree']==base['Git']['tree'] and g['remote_advertisement']==base['Git']['actual_remote_advertisement'],'whole captured actual Git identity')\n+        same(g['all623_configs_controls_whole_observations'],[{k:r[k] for k in ('path','bytes','SHA256','role')} for r in base['files']])\n+        protected={}\n+        for rid in ['23578142','23306203']:\n+            p=json.loads(cached(rows,P/'papers'/rid/'reviews/editorial/PROTECTED_INPUTS.json'))\n+            for r in p['files']:protected[r['path']]={k:r[k] for k in ('bytes','SHA256')}\n+        same(g['protected_source_science_core_whole_bindings'],protected)\n+        need(g['source_context_files']==819 and g['native_index_records']==58563 and g['protected_raw_records']==58561 and g['actual_staged_deletions']==0 and g['raw_protected_fingerprint']==base['native_index']['protected_native_raw_records_SHA256'],'complete native/source fence contract')\n+        need(len(g['actual_Git_receipts'])==12,'bounded12 actual Git receipts per phase')\n+        for rec in g['actual_Git_receipts']:\n+            need(rec['exit']==0,'actual Git exit')\n+            for stream in ('stdout','stderr'):pin(Path(rec[stream]['path']),rec[stream])\n     if not sys.argv[1:]:\n         sb=read(N/'FINAL_SEAL.json');seal=json.loads(sb);mb=read(N/'OWNED_MANIFEST.json');need(digest(mb)==seal['manifest_SHA256'],'same-buffer final manifest');m=json.loads(mb)\n         close(N,m['payloads'],m['directories'],['OWNED_MANIFEST.json','FINAL_SEAL.json'])\n"
+  }
+]

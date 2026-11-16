@@ -1,0 +1,11 @@
+--- compare_integration_read_only.py
++++ compare_integration_read_only_v2.py
+@@ -116,7 +116,7 @@
+   need(rec['exit']==0,'actual owner Git exit')
+   for role in ['stdout','stderr']:
+    stream=rec[role];need(pin(read(stream['path']))=={k:stream[k] for k in ['bytes','SHA256']},'whole owner guard stream')
+-history=obj(V/'EXECUTIONS.json')['actual_processes'];need(len(history)==10,'actual ten recorded process objects')
++history=obj(V/'EXECUTIONS.json')['actual_processes'];need(len(history)==9,'actual nine recorded process objects')
+ for rec in history:
+  need(rec['actual_observed_exit']==0,'owner actual exit')
+  for role in ['stdout','stderr']:

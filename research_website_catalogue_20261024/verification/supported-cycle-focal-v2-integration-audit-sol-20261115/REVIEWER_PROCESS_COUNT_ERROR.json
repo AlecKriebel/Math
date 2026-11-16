@@ -1,0 +1,26 @@
+{
+  "UTC": "2026-11-15T23:44:40.940916+00:00",
+  "schema": "reviewer-own-process-count-error-history-v1",
+  "actual_process_exit": 1,
+  "actual_tool_chunk_id": "e7f17b",
+  "actual_wall_time_seconds": 4.554530084,
+  "original_helper": "compare_integration_read_only.py",
+  "original_helper_SHA256": "8912b62441378201cacdd1ededb559f9c3010b7765c234c18b67bf0677a999b0",
+  "stdout_utf8": "",
+  "stderr_utf8": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/supported-cycle-focal-v2-integration-audit-sol-20261115/compare_integration_read_only.py\", line 119, in <module>\n    history=obj(V/'EXECUTIONS.json')['actual_processes'];need(len(history)==10,'actual ten recorded process objects')\n                                                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/supported-cycle-focal-v2-integration-audit-sol-20261115/compare_integration_read_only.py\", line 10, in need\n    if not ok:raise RuntimeError(label)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: actual ten recorded process objects\n",
+  "cause": "Auditor miscounted the actual nine process objects as ten. All earlier comparison predicates through complete head/frame/output/aggregate/guard-stream checks passed before this own count assertion failed. Owner REPORT correctly says nine.",
+  "correction": "Additive v2 helper changes only the expected count10 to9 and the corresponding diagnostic label ten to nine. Original body and failed streams are immutable. No product/source/scientific defect or owner change.",
+  "actual_commands": [
+    "python3 -B verify_v2.py --initial",
+    "python3 -B guard_v2.py pre",
+    "python3 -B prepare_v2.py normal",
+    "python3 -B -O prepare_v2.py optimized",
+    "python3 -B prepare_v2.py controls",
+    "python3 -B guard_v2.py post",
+    "python3 -B verify_v2.py --preseal [before additive author stream checks]",
+    "python3 -B verify_v2.py --preseal",
+    "python3 -B -O verify_v2.py --preseal"
+  ],
+  "new_helper_full_read_required_before_execution": true,
+  "root_adoption": false
+}
