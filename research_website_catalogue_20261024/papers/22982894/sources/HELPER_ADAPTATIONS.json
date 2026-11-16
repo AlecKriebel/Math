@@ -1,0 +1,52 @@
+{
+  "UTC": "2026-11-16T02:09:12.429484+00:00",
+  "copied_fully_read_source141_helpers": [
+    {
+      "helper": "assemble_ready.py",
+      "fully_read_original": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23130727/sources/assemble_ready.py",
+        "bytes": 12448,
+        "SHA256": "9e5f1729749d5f57143ceea3669d9c766d63c17d632d146b29a4354d2998660c"
+      },
+      "current": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22982894/sources/assemble_ready.py",
+        "bytes": 12448,
+        "SHA256": "b131d3b8fd32ace7efcd66e8d03867fd13d77516bbf32584ffbd3bdfb6088228"
+      },
+      "actual_complete_diff": "--- source141/assemble_ready.py\n+++ 22982894/assemble_ready.py\n@@ -34,7 +34,7 @@\n     need(not (R/'SOURCE_READY.json').exists(),'READY already exists; preserve earlier packet')\n     a=load(R/'ACQUIRED_NATIVE.json');m=load(R/'MANUSCRIPT_CUSTODY.json');arc=load(R/'ARCHIVE_CUSTODY.json')\n     q=load(R/'QUEUE_BINDING.json');record=load(R/'record.response.body');meta=record['metadata']\n-    need(record['id']==23130727 and q['identity_only']['sheet_row']==141,'exact target')\n+    need(record['id']==22982894 and q['identity_only']['sheet_row']==143,'exact target')\n     need(record['status']=='published' and meta['resource_type']['type']=='publication','published paper record')\n     receipts=load(R/'ALL_TRANSPORT_RECEIPTS.json')\n     native={row['role']:load(Path(row['path'])) for row in a['whole_native_API_objects']}\n@@ -83,7 +83,7 @@\n         readers.append(enriched)\n     ordered={\n       'schema':'fresh_source_only_native_custody_126_128_v1','status':'SOURCE_READY','UTC':now,\n-      'record_id':a['record_id'],'sheet_row':141,'title':a['title'],'DOI':a['doi'],\n+      'record_id':a['record_id'],'sheet_row':143,'title':a['title'],'DOI':a['doi'],\n       'version_field_present':a['version_field_present'],'version':a['version_original'],\n       'publication_date':a['publication_date'],'created':a['created'],'updated':a['updated'],\n       'native_conceptrecid_whole_field':field(record,'conceptrecid'),'native_version_whole_field':field(meta,'version'),\n@@ -141,7 +141,7 @@\n     write('SOURCE_READY.json',ordered)\n     with (R/'SOURCE_LOG.md').open('a') as f:\n         f.write('\\n'+now+' \u2014 90%: Complete SOURCE_READY assembled in original base field order; live-Sheet fields explicitly unknown/null, existingqueue/native identity separately bound. Source/science body/pixels/programs/results/opinions remain unread. Strict closure/seal pending.\\n')\n-    print(json.dumps({'status':'SOURCE_READY_PRESEAL','record_id':23130727,'source_only':True,'scientific_verdict':None,\n+    print(json.dumps({'status':'SOURCE_READY_PRESEAL','record_id':22982894,'source_only':True,'scientific_verdict':None,\n         'PDF_pages':m['PDF_pages'],'TeX_lines':chosen['opaque_byte_splitlines_count'],'native_assets':len(a['all_assets_in_original_order']),\n         'archive_regular_payloads':arc['whole_regular_payload_occurrences'],'native_Sheet_read':False,'publication_authority':False}))\n \n",
+      "original_executed": false
+    },
+    {
+      "helper": "verify_custody.py",
+      "fully_read_original": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23130727/sources/verify_custody.py",
+        "bytes": 19172,
+        "SHA256": "dbea39c5dada28077de01d3e6e4dd0170048e5421ea0b27f061fdf77a34f2636"
+      },
+      "current": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22982894/sources/verify_custody.py",
+        "bytes": 19172,
+        "SHA256": "2a95db3cc2a58980197024a6d7d71e0453bfa94e1074a91c9eaae2eff13edeba"
+      },
+      "actual_complete_diff": "--- source141/verify_custody.py\n+++ 22982894/verify_custody.py\n@@ -112,10 +112,10 @@\n     typed(core['files'],[{k:r[k] for k in ['path','bytes','SHA256']} for r in prior_core['files']])\n     q=obj(R/'QUEUE_BINDING.json');ready=obj(R/'SOURCE_READY.json');a=obj(R/'ACQUIRED_NATIVE.json')\n     record=obj(R/'record.response.body');meta=record['metadata']\n-    need(record['id']==q['identity_only']['record_id']==ready['record_id']==23130727,'exact record identity')\n-    need(ready['sheet_row']==q['identity_only']['sheet_row']==141,'queue row identity')\n+    need(record['id']==q['identity_only']['record_id']==ready['record_id']==22982894,'exact record identity')\n+    need(ready['sheet_row']==q['identity_only']['sheet_row']==143,'queue row identity')\n     need(meta['title']==q['identity_only']['title']==ready['title'] and record['doi']==q['identity_only']['doi']==ready['DOI'],'title DOI identity')\n-    need(q['current_native_Sheet_read'] is False and q['root141_scientific_gate']=='CLOSED','neutral existing-queue gate')\n+    need(q['current_native_Sheet_read'] is False and q['root143_scientific_gate']=='CLOSED','neutral existing-queue gate')\n     for field in ['publication_date','created','updated']:\n         need(ready[field]==(meta[field] if field=='publication_date' else record[field]),'literal native date')\n     need(type(ready['version_field_present']) is bool and ready['version_field_present']==('version' in meta),'native version presence')\n@@ -217,7 +217,7 @@\n     base=obj(R/'READY_KEY_SCHEMA.json')\n     suffix=['source_custody_schema_additions','additional_controlling_TeX_sources','controlling_TeX_sources_in_original_archive_order','native_reader_source_structural_associations','whole_record_source_reading_requirement_for_future_science','all_native_reader_total_pages','source_mapping_is_structural_only_no_typeset_or_scientific_equivalence_certified','source_identity_binding','source_identity_provenance_qualification','qualified_core_original17_plus_authorized405b']\n     need(list(ready)==base['SOURCE_READY_key_order']+suffix and ready['schema']==base['schema'],'same established READY order plus exact declared additions')\n-    print(json.dumps({'status':'SOURCE_CUSTODY_PASS','record_id':23130727,'mode':'pure-offline-default','checks':N,\n+    print(json.dumps({'status':'SOURCE_CUSTODY_PASS','record_id':22982894,'mode':'pure-offline-default','checks':N,\n         'owned_payloads':len(actual),'owned_directories':len(dirs),'exact_root_terminal_files':sorted(TERMS),\n         'whole_regular_payload_occurrences':len(occurrences),'nested_archives':arc['nested_archive_count'],\n         'PDF_pages':m['PDF_pages'],'all_native_reader_pages':ready['all_native_reader_total_pages'],\n",
+      "original_executed": false
+    },
+    {
+      "helper": "seal_source.py",
+      "fully_read_original": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/23130727/sources/seal_source.py",
+        "bytes": 7744,
+        "SHA256": "9ac206b118de0d3c9854edf926500d8c181f9df6473bbceaa4b8febad4770da2"
+      },
+      "current": {
+        "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/papers/22982894/sources/seal_source.py",
+        "bytes": 7744,
+        "SHA256": "06b9347c4e99acbb207d991e814447b2b3b1697ba805438133b5e20f3db2e881"
+      },
+      "actual_complete_diff": "--- source141/seal_source.py\n+++ 22982894/seal_source.py\n@@ -60,7 +60,7 @@\n             write('SOURCE_READY_CLOSURE.json',{'UTC':utc(),'status':'FAILED_FINALIZATION_HISTORY_RETAINED','runs':runs})\n             raise ValueError('actual offline closure failed; no final seal, all streams retained')\n     if extent()!=(files,dirs):raise ValueError('payload/directory mutation during read-only default closure')\n-    closure={'UTC':utc(),'record_id':23130727,'pure_offline_default_mode':True,\n+    closure={'UTC':utc(),'record_id':22982894,'pure_offline_default_mode':True,\n         'fully_read_current_helper':bind(R/'verify_custody.py'),'helper_read_receipt':bind(R/'HELPER_READS.json'),\n         'runs':runs,'all_actual_output_bytes_retained':True,'both_default_normal_O_exit_zero':True,\n         'normal_O_stdout_identical':runs[0]['stdout_SHA256']==runs[1]['stdout_SHA256'],\n@@ -70,7 +70,7 @@\n         'terminal_seal_binding':'Separate final seal binds READY, manifest and this whole actual closure receipt.'}\n     write('SOURCE_READY_CLOSURE.json',closure)\n     ready=json.loads((R/'SOURCE_READY.json').read_bytes())\n-    final={'UTC':utc(),'status':'SOURCE_READY_SEALED','record_id':23130727,'sheet_row':141,\n+    final={'UTC':utc(),'status':'SOURCE_READY_SEALED','record_id':22982894,'sheet_row':143,\n         'SOURCE_READY_SHA256':pin((R/'SOURCE_READY.json').read_bytes())['SHA256'],\n         'MANIFEST_SHA256':pin((R/'SOURCE_READY_MANIFEST.json').read_bytes())['SHA256'],\n         'CLOSURE_SHA256':pin((R/'SOURCE_READY_CLOSURE.json').read_bytes())['SHA256'],\n",
+      "original_executed": false
+    }
+  ],
+  "all_remaining_current_bytes_equal_full_read_original": true,
+  "scientific_programs_executed": false
+}
