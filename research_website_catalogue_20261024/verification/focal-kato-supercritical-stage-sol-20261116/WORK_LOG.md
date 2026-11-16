@@ -1,0 +1,5 @@
+# Post-INITIAL stage work
+
+2026-11-16T15:45:41.412979+00:00 — Stage35%: optional152/153 bounded legacy query complete with zerohits, first two reference-schema failures and helper bodies preserved. Concrete root assembly GO and all three whole-copy adoptions read; exact approvedMAINs/models/Bibs/native metadata/assets bound. Combined source reading output truncated centrally, then missing151tail/152modelprefix recovered before continuation. No copy edit, independent fact claim or production authority. Original7-file baseline freeze unchanged.
+
+2026-11-16T15:52:34.238170+00:00 — Stage100%: sole11667B fully-read build/comparison exit0/empty stderr, exact14buffers. Sole4385B fully-read offline render exit0/empty stderr; all6images inspected with no page-width overflow, partial desktop native PDF page1 only. Source/INITIAL/config/W-Math HEAD/index guards unchanged. Actualpublic heads fully read. Bounded152/153legacy negative/report retained with both failed attempts. FINAL/manifest frozen, no production action.

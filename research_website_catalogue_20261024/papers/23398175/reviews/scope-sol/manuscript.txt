@@ -1,0 +1,307 @@
+       The outer focal-pedal area product in odd elliptic billiards
+                                             Alec Kriebel
+                                        Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                            15 October 2026
+
+
+                                                 Abstract
+          For a fixed odd-periodic billiard family between strictly nested confocal ellipses, project
+      each original focus onto the ordered side lines of the outer tangent polygon. We prove that
+      the product of the two signed pedal areas is constant, for every coprime winding, including
+      stars. This proves the experimental assertion labelled k605,a in the 2020 arXiv invariant list and
+      k606 in its published companion. The focal-foot map has paired collinear residues; its cyclic
+      area consequently has only two possible simple poles on a reduced torus. Reflection and an
+      imaginary antiperiod provide the complementary zeros. The argument uses established elliptic-
+      function methods. We explain connections to generalized Landen identities and recent focal
+      inversion results; historical priority of this particular application remains undetermined. Exact
+      controls and separately labelled numerical diagnostics accompany this unrefereed, extensively
+      AI-assisted note.
+
+
+1    The assertion and its precise formulation
+For an ordered closed polygon W = (W0 , . . . , WN −1 ), set
+                                         N −1
+                                       1∑
+                            A(W ) =       det(Wj , Wj+1 ),          W N = W0 .                             (1)
+                                       2
+                                         j=0
+
+This is signed shoelace area in trajectory order, also for a star. Let E : x2 /a2 +y 2 /b2 = 1, a > b > 0,
+have foci F± = (±c, 0), where c2 = a2 − b2 . Given a billiard polygon P = (Pj ), let ℓj be the tangent
+to E at Pj , and let Vj = ℓj ∩ ℓj+1 . The outer polygon has side lines Vj−1 Vj = ℓj . Write Q±,j for
+the orthogonal foot of F± on this line, and B± = A((Q±,j )j ).
+
+Theorem 1. Fix a strictly nested, nondegenerate confocal elliptical caustic inside E supporting a
+billiard family of odd least period N ≥ 3. Then B+ B− is independent of the initial vertex. Every
+admissible coprime star winding is included, with the order and signed-area convention above.
+
+    Reznik, Garcia and Koiller state this primed-area product experimentally in [1, Table 7, p. 9,
+k605,a ], and in the published edition [2, Table 7, p. 349, k606 ]. The published k605 concerns the
+different, original-chord pedal polygons. The outer construction is in Figure 1 and Sections 3.4
+and 3.7 of those sources; Section 2 specifies signed area. The assertion already occurs as k604 in
+Table 5, p. 6 of arXiv:2004.12497v1, submitted 26 April 2020. The source tables do not explicitly
+define least-period, star or repetition conventions; these are made precise in the theorem and
+corollary here. Hyperbolic, collapsed and grazing caustics are outside the stated domain.
+
+
+                                                      1
+2   Canonical coordinates and the focal foot
+Let the caustic semiaxes be α > β > 0, so that α2 −β 2 = c2 . Put k = c/α, k ′ = β/α, K = K(k) and
+K ′ = K(k ′ ). In this section Jacobi functions use modulus k, not parameter k 2 . Stachel’s canonical
+parametrization [3, Theorem 4.3, equation (4.9), p. 1614] gives, after choosing orientation,
+                                                                             α dn v               β
+           P (w) = (−a sn w, b cn w),        Pj (w) = P (w + jδ),       a=          ,     b=          ,   (2)
+                                                                              cn v               cn v
+                            4Kτ
+                 δ = 2v =       ,          gcd(τ, N ) = 1,   0 < τ < N/2,      0 < v < K.
+                             N
+Only windings admitted by the fixed confocal pair are asserted. This is uniform canonical phase,
+rather than uniform eccentric anomaly.
+    The tangent at P (w) is n(w) · X = 1, with n(w) = (− sn w/a, cn w/b). Perpendicular projection
+gives                                        (                        )
+                                               a(c − a sn w) ab cn w
+                          Q(w) = Q+ (w) =                   ,           .                       (3)
+                                                a − c sn w a − c sn w
+Indeed n · n = (a − cs)(a + cs)/(a2 b2 ) for s = sn w, and the factor a + cs cancels in F+ + (1 − n ·
+F+ )n/(n · n). The real denominator is at least a − c > 0. Direct substitution gives Q(w) · Q(w) = a2 ,
+the classical auxiliary-circle property (also recorded as k301 in [1]). All complex dot products below
+are bilinear, not Hermitian.
+    The real phase parametrization is injective modulo 4K. Consecutive vertices are distinct and
+nonantipodal since 0 < δ < 2K, so their tangents meet finitely. Three distinct tangents to a
+nondegenerate conic cannot be concurrent; thus no outer side collapses. The ordered feet on the
+outer sides are precisely (3) at w + jδ, up to a cyclic shift. Define
+                                      N −1
+                                    1∑        (                          )
+                          T (w) =          det Q(w + jδ), Q(w + (j + 1)δ) .                               (4)
+                                    2
+                                       j=0
+
+The real half-period identities give
+
+               Q− (w) = −Q(w + 2K),              B+ (w) = T (w),      B− (w) = T (w + 2K).                (5)
+
+Central negation leaves signed area unchanged.
+
+
+3   The two possible simple poles of the area
+We use standard periods, addition and quarter-period identities [4, Sections 22.4 and 22.8]. Set
+p = iK ′ and r = K + p. At a common pole of sn and cn, the numerator and denominator in (3)
+have at most simple poles with nonzero leading denominator, so the singularity is removable. All
+other possible poles solve
+                                              a    dn v
+                                      sn w = =           .
+                                              c   k cn v
+The quarter-period identities are
+                                 dn z                      −ik ′                   ik ′ sn z
+                  sn(r + z) =          ,    cn(r + z) =          ,   dn(r + z) =             .            (6)
+                                k cn z                    k cn z                     cn z
+On the sn torus with periods 4K, 2p, the two roots are r − v, r + v. They are distinct, and the
+derivative −c cn w dn w of the denominator is nonzero there. Since sn has degree two on this torus,
+
+                                                      2
+the list is exhaustive. The common torus for the vector Q has periods 4K, 4p; it also includes the
+two roots translated by 2p. In particular, 2p must not be treated as a period of the full vector.
+    At r − v and r + v, the values of sn and cn are respectively a/c and −ib/c. The two numerator
+vectors in (3) are therefore both (−ab2 /c, −iab2 /c). The denominator derivatives have opposite
+signs by (6). The residue vectors of Q are consequently opposite and collinear.
+Lemma 2. On X = C/(LZ + 4pZ), L = 4K/N , the function T has at most simple poles, only at
+b0 + p, b0 + 3p, where b0 = K − v.
+Proof. The poles of Q at r − v and r + v differ by δ = 2v. At a singular phase of the cyclic
+sum, exactly two vertices are singular, at adjacent indices: coprimality makes all N phases distinct
+modulo 4K. There are no additional copies from the other imaginary row. Write the two adjacent
+expansions as
+
+              Q(r − v + ε) = R/ε + A + O(ε),           Q(r + v + ε) = −R/ε + B + O(ε).
+
+The possible double coeﬀicient of their determinant is det(R, −R) = 0. Every other edge determi-
+nant has at most one singular endpoint, hence has at most a simple pole. This also handles N = 3,
+where the other two incident edges share their regular vertex, and the edge crossing the cyclic index
+cut: N δ = 4Kτ is a true period. The same argument applies in the translated row.
+    Cyclic relabelling gives period δ for T ; it also has period 4K. Bezout’s identity with gcd(τ, N ) =
+1 gives period L. The possible pole phases r − v − jδ and their 2p translates then collapse to the
+two displayed points on X.
+
+
+4    Reflection, complementary zeros and the product
+Let J = diag(1, −1). The Jacobi identities give
+
+                          Q(w + 2p) = JQ(w),           Q(2K − w) = JQ(w).
+
+The first changes each determinant sign. In the second, reflection and cyclic order reversal each
+contribute a minus sign, which cancel. Thus
+
+                           T (w + 2p) = −T (w),         T (2K − w) = T (w).                         (7)
+
+Since 2v = δ is a period, F (z) = T (b0 + z) is even. It has periods L, 4p, antiperiod 2p, and by
+Lemma 2 at most simple poles at p, 3p.
+   At the regular point z0 = p + L/2, evenness and real periodicity give F (−p − L/2) = F (−p +
+L/2) = F (p + L/2), whereas the antiperiod gives F (−p + L/2) = −F (p + L/2). Hence F (z0 ) = 0.
+The same holds at 3p + L/2 by translation. These points are distinct from p, 3p on X. Every
+possible pole of
+                                         F (z)F (z + L/2)                                      (8)
+is cancelled by one of those zeros in the other factor, because all possible poles are simple. The
+product is holomorphic on a compact torus and therefore constant. This also covers the pole-free
+case (then the antiperiod forces F = 0). No division by a possibly zero area is involved. This
+elementary complementary-divisor argument is a classical elliptic-function mechanism, not a new
+general method.
+    For odd N , 2K = (N/2)L ≡ L/2 (mod LZ). Equations (5) and (8) prove B+ (w)B− (w) =
+constant, establishing Theorem 1. The argument used no restriction to winding one, so includes
+all admitted primitive stars.
+
+                                                   3
+Corollary 3. An s-fold traversal of a fixed odd primitive family has areas sB± and product s2 B+ B− .
+Orientation reversal changes both area signs and preserves the product. For a circular boundary,
+the coincident-focus pedal polygons are regular stars and their product is constant by rotation.
+
+Proof. Each ordered edge determinant occurs exactly s times in a repeated list; reversal negates the
+sum. On a circle the feet from its center to its tangents are the original regular-star vertices.
+
+   For even primitive periods the focus shift is a full reduced real period, yielding equal focal areas
+rather than constancy of their square. The exact counterexample in Section 6 shows that the odd
+hypothesis is essential for primitive families.
+
+
+5    Related identities, current work and priority
+The auxiliary circle, canonical coordinates, Jacobi identities and compact torus reasoning are es-
+tablished tools. Complex continuation and pole removal occur in earlier Poncelet-area work [5, 6]
+and bicentric-invariant work [7]. General cyclic elliptic-function identities and principal-part recon-
+struction also predate this application [8].
+    There is a second exact proof route using the old arbitrary-order Landen identity of Khare
+and Sukhatme [9, equation (7), p. 923; Section 2.1]. For clarity, the full geometric reduction, sign
+analysis for stars and an independent Fourier-series derivation are in the accompanying source
+archive, under verification/audits/priority_classical_general_01/ in EXACT_BICENTRIC_
+DN_BRIDGE.md. Briefly, the focal foot is the restriction to E of the projectivity
+                                             ( 2                  )
+                                              a (x + c)     a2 y
+                                  (x, y) 7−→             ,          .
+                                               a2 + cx a2 + cx
+
+It maps the caustic to an ellipse with a focus at the auxiliary-circle center. Polarity q · R = a2 then
+gives a genuine bicentric polygon whose contact polygon is Q. With λ = a2 − α2 = b2 − β 2 , its
+incircle radius, circumcenter and circumradius are
+
+                            rb = a,      db = −cλ/β 2 ,     Rb = αb2 /β 2 .
+
+A local addition identity and cyclic reindexing give B+ /A(R) = rb2 /(Rb2 − d2b ) and
+                                                N −1
+                                       rb3 tM ∑
+                           B+ (w) =                  dn(u + 2jKb τ /N, mb ),
+                                      Rb2 − d2b j=0
+                                                                   √
+where this display uses parameter mb = 4k/(1 + k)2 , Kb = K( mb ) = (1 + k)K, u = (1 + k)(w +
+v − K)/2, and t2M = (Rb + |db |)2 − rb2 . The focus switch is exactly u 7→ u + Kb . The published
+arbitrary-order identity reduces this sum to a scaled dn with nome qbN ; for odd N the focus switch
+becomes its real half-period. The classical half-period product proves the same constant. The
+analytic identity is old; the complete geometric application above was derived during this audit.
+Its derivability does not establish its earlier publication or its historical novelty.
+    Recent work of Ferudun proves the odd product for unit inversions of the original vertices about
+the two foci [10], and a related outer-pedal area product for other parity/reference-point hypotheses
+[11]. The latter includes parallel-residue cancellation, a close methodological antecedent. These
+results warrant substantive credit. An explicit comparison in the archive, under verification/
+audits/priority_author_updates_01/ in CHECKABLE_TRANSFER.md, shows that Be = γD−e for
+a phase-independent scalar, where De is the original-vertex unit-inversion area. The additional
+
+                                                  4
+outer-foot pole bound of Lemma 2, together with the inverse area’s proved pole and antiperiod
+facts, puts both traces in the same at-most-one-dimensional function space. Matching residues
+proves proportionality without dividing through zeros. That geometric application is not printed
+in [10]. Its inverse theorem with this additional lemma also proves the present product. Neither
+an inverse/pedal label mismatch nor a generic projective correspondence alone settles priority or
+transports Euclidean area.
+    Two independent, bounded priority investigations, integrated with primary source checks, ver-
+ified no earlier printed general proof of this exact outer focal-pedal assertion. This is not an
+exhaustive literature result. Historical novelty and public proof priority remain undetermined;
+no first-proof, new general elliptic-method or current worldwide-open claim is made. The source
+archive records actual editions, passages, hashes, coverage and access gaps, including the inaccessi-
+ble full text of Stachel’s A Triple of Projective Billiards and the incompletely compared final journal
+edition of The Talented Mr. Inversive Triangle. Open author versions and selected related primary
+proofs were inspected.
+
+
+6   Checkable evidence and research status
+For a2 = 21, b2 = 16, λ = 336/25, two genuine triangular phases are
+                             √           √                √
+                       H = (( 21, 0), (−3 21/5, 16/5), (−3 21/5, −16/5)),
+
+                               V = ((0, 4), (−21/5, −8/5), (21/5, −8/5)).
+These example inputs also occur in [10, Section 6]; their reuse is not a new parameter discovery.
+Direct exact reflection, common-caustic tangency, actual tangent intersections and independent
+perpendicular feet give
+                             √      √
+                           49 21 ± 7 5                 112                 12544
+                B± (H) =               ,     B± (V ) =      ,    B + B− =        .
+                               10                        5                  25
+The original-chord pedal product is instead 7225344/390625 in these phases. The original-vertex
+unit-inverse product is 1/324, and Be = (2016/5)D−e in both phases. These finite exact checks
+distinguish the objects; the universal claims are proved above and in the cited comparison deriva-
+tions.                                                                                         √
+    Oddness cannot be dropped for primitive families. On x2 /4+y 2 = 1 with λ = 4/5, put t = 1/ 5.
+The two primitive four-periodic phases
+
+          D = ((2, 0), (0, 1), (−2, 0), (0, −1)),   C = ((4t, t), (−4t, t), (−4t, −t), (4t, −t))
+
+satisfy the same caustic equation x2 /(16/5) + y 2 /(1/5) = 1 and the unit reflection law. Direct
+substitution in the focal-foot formula and shoelace sum gives B± (D) = 4 and B± (C) = 5, hence
+products 16 and 25. The archive supplies 96 exact zero residuals for boundary, reflection, caustic
+and actual outer-side projection checks. The rectangle coordinates printed in [10, Section 6, p. 6]
+differ from C and fail reflection; its printed inverse-product values fit the corrected rectangle C.
+The supporting source-correction note documents this local fixture error; the cited all-odd proof
+and credited triangular inputs remain valid.
+    The portable archive preserves the original submission, independent audit reports, exact sym-
+bolic and finite lattice controls and separately labelled high-precision diagnostics. New checks in-
+clude physical reflection stepping without Jacobi coordinates, complex pole behavior, near-circular
+and thin-caustic families, stars and even negative controls. Numerical agreement has no interval
+
+                                                    5
+certification and is not a substitute for the all-period proof. The package gives pinned dependen-
+cies, hashes and an isolated replay harness, with source-access and reproducibility limits stated
+explicitly.
+    AI tools were used extensively in solving, source investigation, algebra, computation, writing
+and independent internal adversarial checking. The author is responsible for the claims. This is
+an unrefereed preprint; no independent human peer review or formal proof-assistant verification
+is represented. The proof, original submission and verification materials are provided so that
+independent readers can check the result.
+
+
+References
+ [1] D. Reznik, R. Garcia and J. Koiller, Eighty New Invariants of N-Periodics in the Elliptic Billiard,
+     arXiv:2004.12497v11 (2020). Earlier v1 (26 April 2020) is titled Forty New Invariants of N-Periodics
+     in the Elliptic Billiard. https://arxiv.org/abs/2004.12497v11.
+
+ [2] D. Reznik, R. Garcia and J. Koiller, Fifty New Invariants of N-Periodics in the Elliptic Billiard, Arnold
+     Mathematical Journal 7 (2021), 341–355. doi:10.1007/s40598-021-00174-y.
+
+ [3] H. Stachel, On the motion of billiards in ellipses, European Journal of Mathematics 8 (2022), 1602–1622.
+     doi:10.1007/s40879-021-00524-2.
+
+ [4] F. W. J. Olver et al., eds., NIST Digital Library of Mathematical Functions, Sections 22.4, 22.7, 22.8
+     and 22.11. https://dlmf.nist.gov/22.
+
+ [5] A. Akopyan, R. Schwartz and S. Tabachnikov, Billiards in ellipses revisited, European Journal of
+     Mathematics 8 (2022), 1313–1327. Author version: https://arxiv.org/abs/2001.02934v2.
+
+ [6] A. Chávez-Caliz, More About Areas and Centers of Poncelet Polygons, Arnold Mathematical Journal 7
+     (2021), 91–106. https://armj.math.stonybrook.edu/pdf-Springer-final/020-0154.pdf.
+
+ [7] P. Roitman, R. Garcia and D. Reznik, New Invariants of Poncelet–Jacobi Bicentric Polygons, Arnold
+     Mathematical Journal 7 (2021), 619–637. doi:10.1007/s40598-021-00188-6.
+
+ [8] A. Khare, A. Lakshminarayan and U. Sukhatme, Cyclic Identities Involving Jacobi Elliptic Functions. II,
+     Journal of Mathematical Physics 44 (2003), 1822–1841. https://arxiv.org/abs/math-ph/0207019v2.
+
+ [9] A. Khare and U. Sukhatme, Connecting Jacobi elliptic functions with different modulus parameters,
+     Pramana 63 (2004), 921–936. doi:10.1007/BF02704331.
+
+[10] A. Ferudun, Products of the Two Focal Inversion Areas in Elliptic Billiards, unrefereed preprint, version
+     1.0, 2 October 2026. doi:10.5281/zenodo.23096994.
+
+[11] A. Ferudun, Outer-Pedal Area Products in Elliptic Billiards, unrefereed preprint, version 1.1, 1 October
+     2026. doi:10.5281/zenodo.23088516.
+
+
+
+
+                                                      6
+

@@ -1,0 +1,1032 @@
+    On Conjecture 1 of Aldous for a Spatial Model of City Growth: A
+     Proof of Part (a), and Counterexamples
+                               √             to Parts (b) and (c) for
+                            2α/ 3 < β < 2α
+
+                                                 Alper Ferudun∗
+
+                                                October 14, 2026
+
+
+                                                     Abstract
+            In rough notes of 2007 on a spatial model of city growth, D. J. Aldous stated a three-part
+        conjecture about the unbalanced regime. Immigrants arrive one at a time at uniform random
+        points of the unit square; a city of population n exerts the inﬂuence c0 nα r−β at distance r; an
+        immigrant founds a new city with probability 1/(1 + I), where I is the largest inﬂuence at its
+        position, and otherwise joins the city whose inﬂuence there is largest. The conjecture asserts,
+        almost surely: (a) if α > 1, only ﬁnitely many cities are founded; (b) if β < 2α, the share of the
+        largest city tends to 1; (c) if α > 1 and β < 2α, only ﬁnitely many inhabitants ever live outside
+        the largest city. We prove (a) for all c0 > 0, α > 1, β > 0. A packing bound for the cities founded
+        where the inﬂuence is small, combined with Ville’s maximal inequality, shows that the number of
+        cities is O(t2/(β+2) ) almost surely for all parameters; for α > 1 the exponent is then lowered in
+        ﬁnitely many steps until the founding
+                                        √        probabilities are summable. Parts (b) and (c) are false for
+        every c0 > 0, α > 1 and 2α/ 3 < β < 2α: with positive probability two cities near ( 21 ∓ a, 12 )
+        share the population in nearly equal parts forever. The reason is that the two-city share map,
+        the area of a city’s sphere of inﬂuence as a function of its share of the population, has the slope
+                      1
+        (2α/β)(a + 12a  ) at the symmetric point, and this slope is less than 1 for a suitable spacing exactly
+                        √
+        when 2α/β < 3. Part (b) is also false for every α > 0 in the same range of β, in particular in
+        the range 0 < α ≤ 1 of the companion paper of Aldous and Huang. An explicit instance√(α = 2,
+        β = 3, any c0 ) is given with all constants. Parts (b) and (c) remain open for β ≤ 2α/ 3. The
+        model and the conjecture are Aldous’s, and the tools (Ville’s and Doob’s inequalities, circles of
+        Apollonius) are standard. To our knowledge the results are new; no answer to the conjecture was
+        found in the literature accessible to us, and a search that ﬁnds nothing is not a proof of novelty.
+        This is an unrefereed note.
+
+
+1       Introduction
+1.1      The model
+We use the model of Aldous’s notes [Ald07, §1, (1)–(3)], which are linked as technical notes from
+his open problem page [Ald]; the companion paper of Aldous and Huang [AH12, §2] describes the
+same model for 0 < α ≤ 1. At each time t = 1, 2, 3, . . . there are M (t) cities, indexed i = 1, 2, . . . in
+the order of their founding, with positions xP                                        2
+                                               i in the closed unit square Q = [0, 1] and populations
+Ni (t) ≥ 1 (integers); the total population is i Ni (t) = t. The model has three parameters
+
+                                    0 < c0 < ∞,        0 < α < ∞,         β > 0.
+    ∗
+   Mercury Software GmbH. Email: alper@mercurycodelab.com. GitHub: https://github.com/AlperTheKing.
+Unrefereed preprint. CC BY 4.0.
+
+
+                                                          1
+A city of population n exerts the inﬂuence I0 (n, r) = c0 nα r−β at Euclidean distance r. The inﬂuence
+ﬁeld and the sphere of inﬂuence of city i are
+                                                 
+               I(y, t) = max I0 Ni (t), |y − xi | = c0 max Ni (t)α |y − xi |−β  (y ∈ Q),
+                          i                             i
+                                                                
+                           S(i, t) = y ∈ Q : I0 Ni (t), |y − xi | = I(y, t) .
+
+At time 1 there is one city, of population 1, at a uniform random point of Q. At time t + 1 an
+immigrant arrives at a uniform random point U of Q, independent of the past, and
+  (i) with probability 1/(1 + I(U, t)) it founds a new city at U , of population 1;
+
+ (ii) otherwise, that is with probability I(U, t)/(1 + I(U, t)), it joins the city i with U ∈ S(i, t), whose
+      population becomes Ni (t) + 1.
+The boundaries between spheres of inﬂuence have area zero (Lemma 2.1), so the convention used on
+them does not matter. Write N(1) (t) ≥ N(2) (t) ≥ · · · for the ordered populations and N(≥2) (t) =
+t − N(1) (t) for the population outside a largest city. Since M (t) and N(≥2) (t) are nondecreasing in t
+(the largest population grows by at most one per step), the limits
+
+                 M (∞) = lim M (t) ∈ [1, ∞],         N(≥2) (∞) = lim N(≥2) (t) ∈ [0, ∞]
+                           t→∞                                     t→∞
+
+exist [Ald07, §2]. Aldous’s heuristics [Ald07, §1], [AH12, §3] predict balanced growth, with many cities
+of comparable size, for 0 < α < 1 and β > 2α, and unbalanced growth, with most of the population
+in one city or in a few cities, for α > 1 or β < 2α.
+
+1.2   The conjecture
+Conjecture (Aldous [Ald07, §2, Conjecture 1]). (a) If α > 1, then M (∞) < ∞ almost surely. (b) If
+β < 2α, then N(1) (t)/t → 1 almost surely as t → ∞. (c) If α > 1 and β < 2α, then N(≥2) (∞) < ∞
+almost surely.
+    Each part is claimed for every c0 > 0 and every (α, β) in the stated range. A proof of a part
+must therefore cover all such parameters, while one parameter triple in the range, together with an
+event of positive probability on which the conclusion fails, refutes it. For α > 1 and β < 2α, part (c)
+implies parts (a) and (b), since M (∞) ≤ 1 + N(≥2) (∞) and N(≥2) (∞) < ∞ forces N(1) (t)/t → 1. The
+conjecture is record AMR-096-0023 of the UnsolvedMath dataset [ula26], in the same form.
+    The notes prove weaker statements [Ald07, Theorem 2]: if α > 1, then P(N(≥2) (∞) = 0) > 0; if
+β < 2α, then P(N(1) (t) > t1−ε ) → 1 for every ε > 0; and if α < 1 and β < 2α, then P(N(1) (t)/t →
+1) > 0, a statement whose proof the notes write out only in part. In the notes the conjecture is followed
+by the words “What we can actually prove is somewhat weaker” [Ald07, p. 8], which introduce this
+theorem. Remark
+            P       (ii) after their Theorem 2 observes that M (∞) < ∞ almost surely if and only if
+E area{y : t 1/I(y, t) < ∞} = 1, so that (a) would follow from N(1) (t)/t1−ε → ∞ almost surely, and
+asks whether the convergence in probability can be improved to almost sure convergence. The web
+page [Ald] presents the notes as an unﬁnished attempt to prove some of the predictions rigorously.
+
+1.3   Results
+Throughout, κ = 2β/2 /c0 (the constant of the proof of [Ald07, Theorem 2(a)]), k = 2α/β, and pt is
+the conditional probability that a city is founded at time t + 1, given the history up to time t.
+                                                                                         2(e−1)  2/(β+2)
+Theorem A (all parameters). Let c0 , α, β > 0. Almost surely, M (t) ≤ 1+log2 t+ 16   π + c0      t
+for all large t; in particular supt M (t) t −2/(β+2) < ∞.
+
+                                                     2
+    Part    Hypothesis      Outcome                                         Where
+    (a)     α>1             true for all c0 > 0, α > 1, β > √
+                                                            0               Theorems A and B
+    (b)     β < 2α          false for all c0 > 0,
+                                               √ α > 0, 2α/ 3 < β < 2α      Theorem C (α > 1), Theorem D
+                            open for β ≤ 2α/ 3              √               Section 8
+    (c)     α > 1, β < 2α   false for all c0 > 0,
+                                               √ α > 1, 2α/ 3 < β < 2α      Theorem C
+                            open for β ≤ 2α/ 3                              Section 8
+
+                     Table 1: The three parts of the conjecture: per-part outcome.
+
+                                                                                            P
+Theorem B (part (a) of the conjecture). Let c0 > 0, α > 1 and β > 0. Then                     t pt < ∞ and
+M (∞) < ∞ almost surely. Consequently N(1) (t) ≥ t/M (∞) for all t, and N(1) (t)/t1−ε → ∞ almost
+surely for every ε > 0.
+                                                                                   √
+Theorem C (parts (b) and (c) fail for α > 1). Let c0 > 0, α > 1 and 2α/ 3 < β < 2α. There are
+δ ∈ (0, 18 ) and an integer T such that, with positive probability, M (t) = 2 and |N1 (t)/t − 21 | ≤ δ for
+all t ≥ T . Consequently P(N(1) (t)/t → 1) < 1 and P(N(≥2) (∞) = ∞) > 0.
+                                                                                  √
+Theorem D (part (b) fails for every α > 0). Let c0 > 0, α > 0 and 2α/ 3 < β < 2α. There are
+δ ∈ (0, 81 ) and integers j0 , T such that, with positive probability, for all t ≥ T : N1 (t) + N2 (t) ≥ 34 t,
+|N1 (t)/(N1 (t) + N2 (t)) − 21 | ≤ δ, and every city other than cities 1 and 2 has fewer than j0 inhabitants.
+Consequently N(1) (t)/t ≤ 21 + δ for all t ≥ T on this event, and P(N(1) (t)/t → 1) < 1.
+
+Corollary 1.1. Part (a) of the conjecture
+                                 √        holds for every c0 > 0, α > 1, β > 0. Part (b) is false
+for √
+    every c0 > 0, α > 0 and 2α/ 3 < β < 2α. Part (c) is false for every c0 > 0, α > 1 and
+2α/ 3 < β < 2α.
+
+   Table 1 summarises the outcome. Section 6 gives an explicit counterexample to (b) and (c):
+α = 2, β = 3, any c0 > 0, cities near ( 14 , 21 ) and ( 34 , 12 ), δ = 20
+                                                                        1
+                                                                          , and T = max(105 , d100/c0 e), with all
+constants.
+   The mechanism. The threshold β = 2α governs a small city next to a large one: the sphere of
+inﬂuence of a city of population n near a city of population N  n has area O((n/N )2α/β ) [Ald07,
+Lemma 3], so for 2α/β > 1 the small city falls behind. It does not govern two large cities of
+comparable size. If only two cities are present, the share z of city 1 evolves like a generalized Pólya
+urn [HLS80, Pem07] whose urn function f (z) is the area of the sphere of inﬂuence of city 1. For
+two cities at ( 12 ∓ a, 12 ) we have f ( 21 ) = 12 by symmetry and f ′ ( 12 ) = k(a + 12a
+                                                                                        1
+                                                                                          ) (Lemma 4.1). The
+                                     √                          √
+minimum over a of a + 12a is 1/ 3, so for 1 < k < 3 there are spacings with f ′ ( 12 ) < 1; then the
+                              1
+
+share is pushed back towards 21 (Figure 1), and a martingale argument keeps it near 12 forever with
+positive probability. For k = 43 and a = 14 the function f (z) − z has, numerically, the zeros 0.3191, 21
+and 0.6809 in (0, 1), the outer two unstable; so for the two-city dynamics domination by either city
+and coexistence are all locally stable.
+
+1.4       Credits, novelty, and what remains open
+The model, the heuristics and the conjecture are Aldous’s [Ald07]; the companion paper [AH12]
+restricts to 0 < α ≤ 1 and contains heuristics and simulations, the partial results being those of
+the notes. The tools are standard: Ville’s maximal inequality [Vil39], Doob’s maximal inequality for
+submartingales and optional stopping [Wil91], circles of Apollonius, and the trapping of an urn near
+a stable zero of its drift, for which we claim no novelty. The treatment of small cities in the proof
+of Theorem D follows the strategy of the notes’ sketch of their Theorem 2(c) [Ald07, §2.1], including
+the comparison with the particle process of [Ald07, Lemma 4]. To our knowledge, and relative to the
+
+                                                        3
+                                               S(1, t)           S(2, t)
+
+
+
+                                                  x1            x2
+
+
+
+
+                                           0                               1
+
+Figure 1: Two cities at x1 = ( 41 , 12 ) and x2 = ( 43 , 21 ), with k = 2α/β = 43 . When city 1 holds the
+share z = 0.6 of their joint population, the boundary of its sphere of inﬂuence is the solid arc, part
+of a circle of Apollonius with centre (1.447, 21 ) outside the square; S(2, t) is shaded. For z = 12 the
+boundary is the dashed line. The area of S(1, t) is f (0.6) ≈ 0.581 < 0.6, so city 1 grows more slowly
+than its share demands.
+
+literature we found, Theorems A to D are new; no answer to [Ald07, Conjecture 1] was found in the
+literature accessible to us, and a search that ﬁnds nothing is not a proof of novelty (see “Scope and
+priority” at the end).                                                   √
+    Two questions remain √ open: whether√(b) holds for 0 < β ≤ 2α/ 3, and whether (c) holds for
+α > 1 and 0 < β ≤ 2α/ 3. For 2α/β > 3 the symmetric two-city equilibrium is unstable for every
+spacing, so the method of this note says nothing there (Section 8).
+    Section 2 sets up the process and three lemmas, Section 3 proves Theorems A and B, Section 4
+studies the two-city share map, Sections 5 and 7 prove Theorems C and D, Section 6 gives the
+explicit instance, Section 8 collects remarks, and Section 9 describes the computations, which test the
+statements but are not used in the proofs.
+
+
+2     Preliminaries
+Construction. Let U1 , U2 , . . . be independent uniform points of Q and V2 , V3 , . . . independent uniform
+variables on [0, 1], all independent. City 1 is at U1 . At time t + 1 (t ≥ 1) the immigrant arrives at
+Ut+1 ; it founds a city there if Vt+1 < 1/(1 + I(Ut+1 , t)), where 1/(1 + ∞) := 0, and otherwise it joins
+the city i with Ut+1 ∈ S(i, t) (the smallest such i in case of a tie). Let Gt = σ(U1 , . . . , Ut , V2 , . . . , Vt ).
+The state at time t (positions and populations) is Gt -measurable, and (Ut+1 , Vt+1 ) is independent of
+Gt , so this is a realization of the model. The conjecture concerns the law of the process, so we may
+work with this realization; the natural ﬁltration of the process is contained in (Gt ). “Found at t + 1”
+and “join city i at t + 1” refer to the immigrant arriving at time t + 1.
+
+Lemma 2.1. (i) Distinct cities have distinct positions. For two cities i 6= j the set {y : Ni (t)α |y −
+xi |−β = Nj (t)α |y − xj |−β } is a line or a circle; hence two spheres of inﬂuence meet in a set of area
+zero.
+     (ii) With pt := P(found at t + 1 | Gt ),
+                     Z                                                     Z
+                              dy                                                      I(y, t)
+                pt =                 ,     P(join city i at t + 1 | Gt ) =                      dy.
+                       Q 1 + I(y, t)                                         S(i,t) 1 + I(y, t)
+
+Proof. (i) A city is founded at Ut+1 only if I(Ut+1 , t) < ∞, that is, not at the position of an existing
+city. The set in question is {|y − xi | = σ|y − xj |} with σ = (Ni (t)/Nj (t))α/β , a line if σ = 1 and a
+
+                                                          4
+circle of Apollonius otherwise. (ii) Integrate over (Ut+1 , Vt+1 ), which is independent of Gt ; by (i) the
+tie-breaking rule concerns a null set.
+
+   The display of the founding probability in [Ald07, §1.3] carries an extra indicator 1(y ∈ S(i, t));
+formula (ii) is the one implied by the dynamics of [Ald07, §1].
+   The following form of Ville’s maximal inequality [Vil39] is used three times, in the proofs of
+Theorems A, B and D.
+
+Lemma 2.2. Let Ys ∈ {0, 1} be Gs+1 -measurable and bs ≥ 0 be Gs -measurable with P(Ys = 1 | Gs ) ≤ bs
+(s ≥ 1). Then for all integers t0 ≥ 1 and all x ≥ 0,
+
+                              X
+                               t                     X
+                                                     t                
+                P ∃ t ≥ t0 :          Ys ≥ (e − 1)          bs + x Gt0 ≤ e−x    almost surely.
+                               s=t0                  s=t0
+                       Pt                  Pt          
+In particular supt≥1    s=1 Ys − (e − 1)      s=1 bs       < ∞ almost surely.
+
+Proof. Let qs = P(Ys = 1 | Gs ) ≤ bs . Then E[eYs | Gs ] = 1 + (e − 1)qs ≤ exp((e − 1)bs ). Put Zt0 −1 = 1
+and Zt = Zt−1 exp(Yt − (e − 1)bt ) for t ≥ t0 . Then Zt is Gt+1 -measurable and E[Zt | Gt ] ≤ Zt−1 , so
+(Zt )t≥t0 −1 is a nonnegative supermartingale with respect to (Gt+1 )t≥t0 −1 , starting at 1. The event in
+question is {∃ t ≥ t0 : Zt ≥ ex }. Let θ be the ﬁrst t ≥ t0 with Zt ≥ ex . By optional stopping at the
+bounded time θ ∧ n [Wil91], ex P(θ ≤ n | Gt0 ) ≤ E[Zθ∧n | Gt0 ] ≤ 1; let n → ∞. The last sentence
+follows with t0 = 1 and x → ∞.
+
+Lemma 2.3 (packing). Let λ ≥ c0 and r = (c0 /λ)1/β ≤ 1. Call a city j ≥ 2, founded at time s + 1,
+λ-low if I(xj , s) < λ. Then on every path at most 16
+                                                   π (λ/c0 )
+                                                             2/β cities are λ-low.
+
+
+Proof. Every city has population at least 1, so I(y, s) ≥ c0 |y − xi |−β for every city i existing at time
+s. If city j is founded at time s + 1 and I(xj , s) < λ, then |xj − xi | > r for every city i existing at
+time s. Cities are never removed, so any two λ-low cities are more than r apart. The open discs of
+radius r/2 around them are disjoint and lie in [− 2r , 1 + 2r ]2 , whose area is (1 + r)2 ≤ 4. Hence there
+are at most 4/(πr2 /4) = 16π (λ/c0 )
+                                     2/β of them.
+
+
+Lemma 2.4. For every t, pt ≤ κ N(1) (t)−α with κ = 2β/2 /c0 , and N(1) (t) ≥ t/M (t).
+                                          √
+Proof. Every y ∈ Q is within distance 2 of a largest city, so I(y, t) ≥ c0 N(1) (t)α 2−β/2 and 1/(1 +
+I(y, t)) ≤ κN(1) (t)−α . Integrate over Q (Lemma 2.1). The second inequality holds because the M (t)
+populations sum to t.
+
+
+3    Part (a): ﬁnitely many cities when α > 1
+                                                                                         (m)
+Proof of Theorem A. For integers m ≥ 1 let λm = c0 2mβ/(β+2) ≥ c0 and let Ys        be the indicator
+that a city is founded at time s + 1 at a point where I(Us+1 , s) ≥ λm . By Lemma 2.1,
+                                              Z
+                                                  1{I(y, s) ≥ λm }        1
+                          P(Ys = 1 | Gs ) =
+                               (m)
+                                                                   dy ≤     .
+                                                Q   1 + I(y, s)          λm
+             P       (m)
+Let Hm (t) = t−1
+               s=1 Ys    be the number of such foundings up to time t. Lemma 2.2 with bs = 1/λm ,
+                                                               −m (apply it at time t − 1 and note
+t0 = 1 and x = m gives P(∃ Pt : H m (t) ≥ (e − 1)t/λm + m) ≤ e
+(t − 1)/λm ≤ t/λm ). Since m e  −m  < ∞, the Borel–Cantelli lemma gives an almost surely ﬁnite m0
+
+
+
+                                                            5
+such that Hm (t) < (e − 1)t/λm + m for all m ≥ m0 and all t. Every city other than city 1 is either
+λm -low or counted by Hm , so Lemma 2.3 gives, for m ≥ m0 and all t,
+
+                                           16 2m/(β+2)     (e − 1) t
+                             M (t) ≤ 1 +     2         +              + m.
+                                           π             c0 2mβ/(β+2)
+
+For t ≥ 2m0 take m = blog2 tc ≥ m0 , so that 2m ≤ t < 2m+1 . Then 22m/(β+2) ≤ t2/(β+2) and
+t 2−mβ/(β+2) < 2·2m−mβ/(β+2) = 2·22m/(β+2) ≤ 2t2/(β+2) , hence M (t) ≤ 1+log2 t+( 16 2(e−1) 2/(β+2)
+                                                                                  π + c0 )t         .
+For t < 2 we have M (t) ≤ t < 2 .
+         m 0                     m 0
+
+
+
+Proof
+Pt−1 of Theorem B. Apply Lemma 2.2 to Ys = 1{found at s + 1} P        and bs = ps . Since M (t) − 1 =
+                                                                        t−1
+  s=1 Ys , the random variable K = max 0, supt (M (t) − 1 − (e − 1)     s=1 ps ) is ﬁnite almost surely,
+and
+                                                   X
+                                                   t−1
+                           M (t) ≤ 1 + K + (e − 1)     ps    for all t ≥ 1.                         (1)
+                                                        s=1
+
+     Step. Suppose that, almost surely, M (t) ≤ C t1−g for all t ≥ 1, where g ∈ (0, 1) is deterministic
+and C is an almost surely ﬁnite random variable. By Lemma 2.4, N(1) (t) ≥ tg /C and pt ≤ κC α t−αg .
+                   P                R
+                           −αg ≤ 1 + t x−αg dx ≤ t1−αg /(1 − αg), and (1) gives M (t) ≤ 1 + K + (e −
+If αg < 1, then  t−1s=1 s            1
+1)κC   α /(1 − αg) t1−αg for all t ≥ 1: the hypothesis holds with αg in place of g. If αg > 1, then
+P               P −αg
+   t pt ≤ κC
+              α
+                  tt    < ∞, and (1) gives M (∞) < ∞.
+     Iteration. Let g0 = β/(β + 2) ∈ (0, 1), and choose g ∈ (0, g0 ] with αn g 6= 1 for all integers
+n ≥ 1 (all but countably many g qualify). By Theorem A, M (t) ≤ C0 t1−g0 ≤ C0 t1−g with C0 =
+supt M (t)t−2/(β+2) < ∞. Since α > 1, the integer n∗ = min{n ≥ 0 : αn+1 g > 1} exists, and
+αn+1 gP< 1 for n < n∗ . Applying the ﬁrst case of the Step n∗ times and then the second case once
+gives t pt < ∞ and M (∞) < ∞ almost surely (each application holds outside a null set, and there
+are ﬁnitely many). Finally N(1) (t) ≥ t/M (t) ≥ t/M (∞) by Lemma 2.4.
+
+Remark 3.1. (i) The hypothesis α > 1 is used only to make g 7→ αg increase. For α ≤ 1 the Step
+gives nothing beyond Theorem A, consistent with the heuristic expectation that MP      (∞) = ∞ there.
+    (ii) By Lévy’s extension of the Borel–Cantelli lemma [Wil91], {M (∞) < ∞} = { t pt < ∞} up to
+a null set, so Theorem B is the integrated form of the criterion in Remark (ii) of [Ald07, Theorem 2].
+It answers the question asked there, whether N(1) (t)/t1−ε → ∞ almost surely, positively for α > 1
+and every β > 0; for α ≤ 1 the question stays open. The proof needs no lower bound on N(1) beyond
+t/M (t): the packing bound gives a ﬁrst polynomial gap, and α > 1 ampliﬁes it.
+    (iii) The exponent of Theorem A does not depend on α. The heuristic growth exponent of the
+notes for the balanced case, θ = (1 − α)/(1 − α + β/2) for 0 < α < 1 [Ald07, §1], satisﬁes θ < 2/(β + 2)
+for every 0 < α < 1 (the inequality is equivalent to (1 − α)β/2 < β/2), and θ → 2/(β + 2) as α → 0.
+So Theorem A agrees with the heuristics, and in the limit α → 0 its exponent is the heuristic one.
+
+
+4    The two-city share map
+For distinct points x = (x1 , x2 ) of Q and σ > 0 let
+
+                             A(x; σ) = area{y ∈ Q : |y − x1 | ≤ σ|y − x2 |},
+                                                      z α/β  z k/2
+                      fx (z) = A x; s(z) ,    s(z) =               =         ,
+                                                       1−z             1−z
+
+
+
+
+                                                    6
+for 0 < z < 1, where k = 2α/β. The function A(x; σ) is nondecreasing in σ. If at time t the only cities
+are city 1 at x1 and city 2 at x2 , with N1 and N2 inhabitants, then city 1 has at least the inﬂuence
+of city 2 at y if and only if N1α |y − x1 |−β ≥ N2α |y − x2 |−β , that is, |y − x1 | ≤ (N1 /N2 )α/β |y − x2 |. So
+                                                                               N1
+                                     area S(1, t) = fx (z),             z=           ,                         (2)
+                                                                             N1 + N2
+and area S(2, t) = 1 − fx (z) (Lemma 2.1).
+
+4.1    The symmetric conﬁguration
+                                                            
+Fix a ∈ (0, 12 ) and let x0 = ( 12 − a, 12 ), ( 21 + a, 12 ) . Put
+                                                     1
+                                             k (a + 12a )                            a
+                               qa (h) =         2           2   ,         ha =              .
+                                          1 − (a +1/4)(2kh)                      k(4a2 + 1)
+                                                   2a2
+
+Lemma 4.1. (i) fx0 ( 12 − h) = 1 − fx0 ( 12 + h) for 0 ≤ h < 12 .
+    (ii) Let k ≥ 1. For 0 < h < ha the denominator of qa (h) exceeds 21 , qa is increasing on (0, ha ),
+and fx0 ( 21 + h) − 12 ≤ h qa (h).           
+    (iii) For every k > 0, fx0 ( 12 + h) − 12 /h → k(a + 12a
+                                                           1
+                                                             ) as h ↓ 0. Hence fx0 is diﬀerentiable at 21
+with fx′ 0 ( 12 ) = k(a + 12a
+                           1
+                              ).
+
+Proof. Shift coordinates by ( 21 , 21 ): Q becomes [− 21 , 12 ]2 , x1 = (−a, 0) and x2 = (a, 0).
+   (i) The reﬂection R(y1 , y2 ) = (−y1 , y2 ) preserves Q and area and exchanges x1 and x2 , and
+s(1 − z) = 1/s(z). Hence f (1 − z) = area{s(z)|y − x1 | ≤ |y − x2 |} = area{s(z)|y − x2 | ≤ |y − x1 |} =
+1 − f (z), the set {|y − x1 | = s(z)|y − x2 |} being a null set.
+   (ii) Let z = 12 + h, σ = s(z) > 1 and c = (σ 2 + 1)/(σ 2 − 1) > 1, so that 1/c = tanh(log σ). Since
+z/(1 − z) = (1 + 2h)/(1 − 2h), we have log σ = k2 log 1−2h         1+2h
+                                                                        = k artanh(2h). The function tanh is
+concave on [0, ∞) with tanh 0 = 0, so tanh(kx) ≤ k tanh x for x ≥ 0 and k ≥ 1, and therefore
+                                                                     
+                                       1/c = tanh k artanh(2h) ≤ 2kh.                                    (3)
+
+Expanding, |y − x1 |2 − σ 2 |y − x2 |2 = (1 − σ 2 )(|y|2 + a2 ) + 2a(1 + σ 2 )y1 , which is positive if and only if
+|y|2 + a2 < 2acy1 , that is, (y1 − ac)2 + y22 < a2 (c2 − 1). So the complement of S1 := {y ∈ Q :√|y − x1 | ≤
+σ|y − x2 |} in Q is the intersection of Q with the open disc of centre (ac, 0) and radius a c2 − 1, a
+disc of Apollonius. For h < ha , (3) gives 1/c < 2kha = 2a/(4a2 + 1), that is,
+
+                                                4a2 + 1   2(a2 + 41 )
+                                             c>         =             ;
+                                                  2a          a
+we call this inequality condition (V). Condition
+                                           √     (V) implies c2 > (4a2 + 1)2 /(4a2 ) ≥ 1 + 1/(4a2 ) and
+ac > 2a + 2 > 2 . For |u| ≤ 2 put w(u) = a c − a2 − u2 , which is real since a2 (c2 − 1) > 14 , and
+        2    1   1            1                2 2
+
+
+                                                                         a2 + u2
+                                          ψ(u) = ac − w(u) =                      .
+                                                                        ac + w(u)
+
+The section of the disc at height u is the interval (ψ(u), ac + w(u)). Its right end is at least ac > 12 ,
+and its left end satisﬁes 0 < ψ(u) ≤ (a2 + 14 )/(ac) < 21 by (V). Hence the section of Q \ S1 at height
+u is (ψ(u), 21 ], and
+                                               Z 1/2                                 Z 1/2
+                                                                              1
+                         fx0 ( 12 + h) = 1 −           2 − ψ(u)
+                                                       1
+                                                                        du =     +           ψ(u) du.          (4)
+                                                −1/2                           2      −1/2
+
+
+                                                            7
+                                  √
+For 0 ≤ B ≤ A2 and A > 0 we have A2 − B ≥ A − B/A (square both sides when the right side is
+nonnegative). With A = ac and B = a2 + u2 this gives w(u) ≥ ac − (a2 + u2 )/(ac), hence
+
+                                          a2 + u2                a2 + u2
+                           ψ(u) ≤                         =                    .
+                                    2ac − (a2 + 14 )/(ac)
+                                                                     2
+                                                            2ac 1 − a +1/4
+                                                                       2   c−2
+                                                                            2a
+
+Let Ka = (a2 + 14 )/(2a2 ). By (V), Ka c−2 < Ka · 4a2 /(4a2 + 1)2 = 1/(2(4a2 + 1)) < 21 , so the
+                                          R 1/2                       1
+denominator is positive. Integrating, with −1/2 (a2 + u2 ) du = a2 + 12 ,
+                            Z 1/2                     1
+                                                a2 + 12       v
+                                    ψ(u) du ≤           ·            ,       v = 1/c.
+                             −1/2                  2a     1 − Ka v 2
+
+For 0 < h < ha we have Ka (2kh)2 < Ka (2kha )2 = 1/(2(4a2 + 1)) < 12 ; so the denominator of
+                                                                                  R the map v 7→ v/(1−Ka v )
+                 1
+qa (h) = k(a+ 12a    )/(1−Ka (2kh)2 ) exceeds 21 , qa is increasing on (0, ha ), and                      2
+
+is increasing on [0, 2kh]. By (3) we may replace v by 2kh, which gives ψ ≤ h qa (h). With (4) this
+proves (ii).
+    (iii) As h ↓ 0 we have c → ∞, so (V) holds for small h and the computation above applies
+for every k > 0 (only the step (3) used k ≥ 1). From ψ(u) ≥ (a2 + u2 )/(2ac) and the upper
+          R        2
+bound, ψ = a +1/12    2a  c−1 (1 + O(c−2 )). Moreover 1/c = tanh(k artanh(2h)) = 2kh + O(h3 ). Hence
+(fx0 ( 2 + h) − 2 )/h → k(a2 + 12
+       1        1                 1
+                                    )/a = k(a + 12a1
+                                                      ); by (i) the same limit holds from the left.
+                                 √                                1
+                                                                                        √
+Remark 4.2 (the threshold 3). The minimum of a + 12a                  over a > 0 is 1/ 3, attained at a =
+      √                                                                                 √            √
+1/(2 3) ∈ (0, 12 ). Hence some spacing gives fx′ 0 ( 21 ) < 1 if and only if k < 3; for k > 3 the
+                                                                    √                               √
+symmetric equilibrium is unstable for every a, and for k = 3 it is degenerate at a = 1/(2 3). For
+a = 41 the slope is 7k/12, less than 1 if and only if k < 12/7.
+
+4.2    Nearby positions
+Lemma 4.3. Let 0 < ρ < r and ω = (1 + ρ/r)/(1 − ρ/r). If |xi − x0i | ≤ ρ for i = 1, 2, then for every
+σ>0
+                      A(x0 ; σ/ω) − 2πr2 ≤ A(x; σ) ≤ A(x0 ; σω) + 2πr2 .
+
+Proof. Let B = D(x01 , r) ∪ D(x02 , r), of area at most 2πr2 . For y ∈  / B and i = 1, 2 we have (1 − ρ/r)|y −
+x0i | ≤ |y − xi | ≤ (1 + ρ/r)|y − x0i |. If y ∈ Q \ B and |y − x01 | ≤ (σ/ω)|y − x02 |, then
+
+                                        σ                      σ |y − x2 |
+                   |y − x1 | ≤ (1 + ρ/r) |y − x02 | ≤ (1 + ρ/r) ·          = σ|y − x2 |.
+                                        ω                      ω 1 − ρ/r
+
+This proves the left inequality; the right one is the same argument with the roles of x and x0 exchanged.
+
+                                                   √
+Corollary 4.4 (strip estimates). Let 1 ≤ k < 3 and ﬁx a ∈ (0, 12 ) with q0 := k(a + 12a   1
+                                                                                            ) < 1. Choose
+δ ∈ (0, ha /2) with qa (2δ) < 1 (possible since qa (h) → q0 as h ↓ 0), then r > 0 and ρ ∈ (0, min(r, 12 − a))
+so small that ε := (log ω)/(2k) ≤ δ and
+
+                                           δ               
+                                    η :=     1 − qa (δ + ε) − ε − 2πr2 > 0.
+                                           2
+Let G = D(x01 , ρ) × D(x02 , ρ). Then for every x ∈ G
+
+           fx (z) − z ≤ −η for z ∈ [ 21 + 2δ , 21 + δ],       fx (z) − z ≥ η for z ∈ [ 12 − δ, 12 − 2δ ].
+
+                                                          8
+   Such a choice exists: take r with 2πr2 < 4δ (1 − qa (2δ)), then ρ/r so small that ε ≤ δ and
+ε < 4δ (1 − qa (2δ)); since qa is increasing and δ + ε ≤ 2δ < ha , this gives η > 0. Only qa (δ + ε) < 1 and
+η > 0 are used below; qa (2δ) < 1 is a convenient suﬃcient condition. The condition ρ < 12 − a puts
+the discs D(x0i , ρ) inside Q.
+
+Proof. Let z = 12 + h with h ∈ [ 2δ , δ], and deﬁne h′ by artanh(2h′ ) = artanh(2h) + (log ω)/k. Then
+log(s(z)ω) = k artanh(2h′ ), that is, s(z)ω = s( 21 + h′ ); and h ≤ h′ ≤ h + ε ≤ 2δ < ha , because tanh is
+1-Lipschitz. Put q = qa (δ + ε) < 1. By Lemma 4.3, the monotonicity of A in σ, and Lemma 4.1(ii),
+
+                               fx (z) ≤ fx0 ( 12 + h′ ) + 2πr2 ≤ 12 + h′ q + 2πr2 ,
+
+so fx (z) − z ≤ (h + ε)q − h + 2πr2 ≤ − 2δ (1 − q) + ε + 2πr2 = −η. For z = 21 − h with the same h and h′
+we have s(z)/ω = s( 21 − h′ ), and Lemma 4.3 with Lemma 4.1(i),(ii) gives fx (z) ≥ fx0 ( 12 − h′ ) − 2πr2 =
+1 − fx0 ( 21 + h′ ) − 2πr2 ≥ 12 − h′ q − 2πr2 , so fx (z) − z ≥ h(1 − q) − εq − 2πr2 ≥ η.
+
+
+5    Proof of Theorem C
+                                    √
+Let c0 > 0, α > 1 and k = 2α/β ∈ (1, 3). Choose a with k(a + 12a
+                                                              1
+                                                                 ) < 1 (Remark 4.2) and δ, r, ρ, η, G
+as in Corollary 4.4. Since ha = a/(k(4a + 1)) ≤ 1/(4k) < 4 , we have δ < ha /2 < 81 . Choose an
+                                       2                   1
+
+integer T ≥ 2 so large that
+                                                   64           X      1                     1  δ
+               (T1) κ(T /2)−α ≤ η,         (T2)       2
+                                                        + κ 2 α
+                                                                  s−α ≤ ,             (T3)     ≤ ;          (5)
+                                                   Tδ                  2                     T  4
+                                                               s≥T
+
+this is possible because α > 1.
+    The event ET . Let ET be the event that U1 ∈ D(x01 , ρ), that the immigrant of time 2 founds a
+city at a point of D(x02 , ρ), and that the immigrants of times 3, . . . , T join city 2 and city 1 alternately,
+beginning with city 2. On ET there are exactly two cities at time T , their positions x = (x1 , x2 ) lie
+                                                     R − 2 | ≤ 2T ≤ 8 . We
+in G, and |N1 (T ) − N2 (T )| ≤ 1, so that R|N1 (T )/T    1     1      δ
+                                                                                have P(ET ) > 0. Indeed, the
+ﬁrst two requirements have probability D(x0 ,ρ) D(x0 ,ρ) (1 + c0 |y − x|−β )−1 dy dx > 0. Given Gt , on
+                                                 1      2
+the eventR that there are exactly two cities i 6= j, the conditional probability of joining city i at time
+t + 1 is S(i,t) I/(1 + I) dy > 0, because S(i, t) contains Q ∩ D(xi , σd/(1 + σ)), where d = |xi − xj |
+and σ = (Ni (t)/Nj (t))α/β : if |y − xi | ≤ σd/(1 + σ), then |y − xj | ≥ d/(1 + σ) ≥ |y − xi |/σ. By the
+tower property, P(ET ) is the expectation, over an event of positive probability, of a product of T − 2
+positive conditional probabilities. Note that ET is an event of the process started from its own initial
+condition.
+   No founding after T . Let τ = inf{t ≥ T : found at t + 1} (inf ∅ = ∞); then {τ ≥ t} ∈ Gt . On
+ET ∩ {τ ≥ t} there are exactly two cities at time t and N(1) (t) ≥ t/2, so pt ≤ κ(t/2)−α by Lemma 2.4.
+Hence, on ET ,                             X                             X
+                                                                 
+                       P(τ < ∞ | GT ) =        E 1{τ ≥ t} pt GT ≤ κ 2α        t−α .                   (6)
+                                             t≥T                                t≥T
+
+    The share. On ET ∩ {τ ≥ t} let zt = N1 (t)/t; there N1 (t) + N2 (t) = t. Let ξt+1 be the indicator
+that the immigrant of time t + 1 joins city 1, and for t ≥ T let Dt = 1ET 1{τ ≥ t}(ξt+1 − zt )/(t + 1). If
+τ ≥ t+1, then N1 (t+1) = N1 (t)+ξt+1 and zt+1 = zt +Dt ; so on ET ∩{τ = ∞} we have zt+1 = zt +Dt
+for all t ≥ T . Always |Dt | ≤ 1/(t + 1). By (2) and Lemma 2.1, on ET ∩ {τ ≥ t}
+                                                        Z
+                         fx (zt ) − et − zt                          dy
+           E[Dt | Gt ] =                    , 0 ≤ et :=                      ≤ pt ≤ κ(t/2)−α ≤ η,      (7)
+                                t+1                       S(1,t) 1 + I(y, t)
+
+the last inequality by (T1).
+
+                                                        9
+                                                          P
+     The martingale. Let mt = Dt − E[Dt | Gt ] and Λt = t−1   s=T ms for t ≥ T . Then (Λt )t≥T is a
+martingale with respect to (Gt )t≥T , ΛT = 0, and E[m2t | Gt ] ≤ Var(ξt+1 | Gt )/(t + 1)2 ≤ 1/(4(t +
+1)2 ). Doob’s maximal inequality [Wil91] for the nonnegative submartingale
+                                                                    Pn−1    (Λ2t )t≥T (Kolmogorov’s
+                                              −2
+inequality), P(maxT ≤t≤n |Λt | ≥ c | GT ) ≤ c E[Λn | GT ] = c    −2
+                                                                     t=T E[mt | GT ], applied with
+                                                   2                          2
+
+c = δ/16 and then with n → ∞, gives
+                                          δ     16 2 X     1         64
+                      P ∃ t ≥ T : |Λt | ≥    GT ≤                   2
+                                                                      ≤      .                           (8)
+                                          16        δ      4(t + 1)     T δ2
+                                                                t≥T
+
+    No exit. Let A = ET ∩ {τ = ∞} ∩ {|Λt | < δ/16 for all t ≥ T }. We claim that |zt − 21 | ≤ δ for
+all t ≥ T on A. If not, let ν = min{t ≥ T : |zt − 12 | > δ}; then ν > T . Suppose zν > 21 + δ, and
+let σ ′ = max{s ∈ [T, ν) : zs ≤ 21 + 2δ }, which exists because zT ≤ 21 + 8δ . For σ ′ < s < ν we have
+zs ∈ ( 21 + 2δ , 21 + δ], so E[Ds | Gs ] ≤ (fx (zs ) − zs )/(s + 1) < 0 by (7) and Corollary 4.4. Therefore
+
+        δ                        X
+                                 ν−1
+                                                                1                        1  δ 3δ
+          < z ν − zσ ′ = D σ ′ +         E[Ds | Gs ] + ms ≤             + Λν − Λσ′ +1 <     + ≤ ,
+        2                          ′
+                                                               σ′ + 1                     T  8 8
+                                s=σ +1
+
+a contradiction. If zν < 21 − δ, the same argument with σ ′ = max{s ∈ [T, ν) : zs ≥ 21 − 2δ } uses
+E[Ds | Gs ] ≥ (η − es )/(s +1) ≥ 0 on the lower strip (Corollary 4.4 and (7)) and gives zσ′ − zν < 3δ   δ
+                                                                                                    8 < 2,
+again a contradiction.
+   Conclusion. By (6), (8) and (T2), P(A | GT ) ≥ 21 on ET , so P(A) ≥ 12 P(ET ) > 0. On A, for all
+t ≥ T , M (t) = 2 and |N1 (t)/t − 21 | ≤ δ; hence N(1) (t)/t ≤ 12 + δ < 1 and N(≥2) (t) ≥ ( 21 − δ)t → ∞.
+The parameters satisfy α > 1 and β < 2α, the hypotheses of (b) and (c).
+
+
+6    An explicit instance
+                                                  √
+Let α = 2 and β = 3, so that k = 43 ∈ (1, 3), and let c0 > 0 be arbitrary. Take a = 14 ; the cities of
+Theorem C are then near ( 14 , 21 ) and ( 43 , 21 ). Table 2 lists the constants of Lemma 4.1, Corollary 4.4
+and (5).
+
+             Quantity     Deﬁnition                            Value
+             q0           k(a + 1/(12a))                       7/9
+             ha           a/(k(4a2 + 1))                       3/20
+             qa (h)       Lemma 4.1                            (7/9)/(1 − (160/9)h2 )
+             δ            δ < ha /2 = 3/40                     1/20; qa (2δ) = 35/37
+             r, ρ         ρ < min(r, 1/2 − a)                  1/100, 10−5
+             ω            (1 + ρ/r)/(1 − ρ/r)                  1001/999
+             ε            (log ω)/(2k) = (3/4) artanh(10−3 )   ∈ [0.00075000025, 0.00075000026]
+             qa (δ + ε)                                        < 0.81510
+             η            (δ/2)(1 − qa (δ + ε)) − ε − 2πr2     > 0.0032441
+             κ            2β/2 /c0                             23/2 /c0
+             T            (T1)–(T3)                            max(105 , d100/c0 e)
+
+                   Table 2: Constants of the explicit instance α = 2, β = 3, a = 41 .
+
+   Each entry is an elementary statement about explicit numbers. The value of ε follows from
+x + x3 /3 ≤ artanh x ≤ x + x3 /(3(1 − x2 )) for 0 < x < 1, and the bound on η from it and π < 113
+                                                                                              355
+                                                                                                  .
+
+                                                      10
+                          P
+For (T1)–(T3) we use s≥T s−2 ≤ 1/(T − 1) and 23/2 < 35           99
+                                                                    . If c0 ≥ 1, then T = 105 and κ < 99      35 ,
+           −2             −9
+so κ(T /2) < 1.2 · 10 and 64/(T δ ) + 4κ/(T − 1) < 0.2562. If 0 < c0 < 1, then T ≥ 105 and
+                                          2
+
+c0 T ≥ 100, so κ(T /2)−2 = 4 · 23/2 /(c0 T 2 ) ≤ 4 · 23/2 c0 /104 < 0.0012 and 64/(T δ 2 ) + 4κ/(T − 1) ≤
+0.256 + 4 · 23/2 /(c0 T − c0 ) < 0.256 + 4 · 23/2 /99 < 0.371. In both cases (T1) and (T2) hold, and (T3)
+holds because T ≥ 80. The program check_note.py of Section 9 checks every entry of Table 2 and
+these inequalities in exact rational arithmetic.
+    Hence, for α = 2, β = 3 and every c0 > 0: with positive probability, from time T =
+max(105 , d100/c0 e) on there are exactly two cities, near ( 14 , 12 ) and ( 43 , 12 ), and each has between 20
+                                                                                                              9
+                                                                                                                t
+and 20 t inhabitants at every time t ≥ T . So P(N(1) (t)/t → 1) < 1 and P(N(≥2) (∞) = ∞) > 0, while
+     11
+
+M (∞) < ∞ almost surely by Theorem B.
+
+
+7    Proof of Theorem D
+For α ≤ 1 new cities may keep being founded (the heuristics of the notes predict that they do), so the
+two-city picture must be protected against them. The argument for small cities follows the strategy
+of the notes’ sketch of their Theorem 2(c) [Ald07, §2.1]: the bound below for a small city to reach j0
+inhabitants is a discrete form of [Ald07, Lemma 4], with the same condition on j0 (their γ is our k).
+For a city i write Ii (y) = Ni (t)α |y − xi |−β .
+Lemma 7.1 (a small city next to a large one). Let A and B be cities with R := (NA /NB )α/β ≥ 2.
+Then area{y ∈ Q : IB (y) ≥ IA (y)} ≤ 8π(NB /NA )2α/β .
+                            √
+Proof. Let d = |xA − xB | ≤ 2. If IB (y) ≥ IA (y) and s = |y − xB |, then Rs ≤ |y − xA | ≤ s + d, so
+s ≤ d/(R − 1) ≤ 2d/R. The set lies in a disc of area 4πd2 /R2 ≤ 8πR−2 .
+
+   This is [Ald07, Lemma 3(b)] with a diﬀerent constant and hypothesis.
+                                           √
+Proof of Theorem D. Let k = 2α/β ∈ (1, 3) and choose a, δ, r, ρ, η, G as inQthe    proof of Theorem C;
+                                                                              0 −1
+again δ < 18 . Fix an integer j0 ≥ 2 with α + (k − 1)(j0 − 1) > 1, put C1 = ji=1   8π(6i)k /(k − 1) and
+x0 = log 8. For integers 2 ≤ T ≤ t let
+                                        X
+                                        t−1                                      X
+                                                                                 t−1
+                 BT (t) = (e − 1)κ4α          s−α + x0 ≤ B̄(t) := (e − 1)κ4α              s−α + x0 .
+                                        s=T                                         s=1
+
+The majorant B̄(t) does not depend on T , and it is O(t1−α ), O(log t) or O(1) for α < 1, α = 1, α > 1;
+since k > 1, B̄(t)/t → 0 and B̄(t)t−k → 0. Choose T so large that, for all t ≥ T ,
+         (D1) j0 B̄(t) ≤ t/4,       (D2) t ≥ 6j0 2β/α ,        (D3) 8π(6j0 )k B̄(t) t−k + κ(t/4)−α ≤ η,
+and moreover
+                         X                       1                     512     1                   4  δ
+           (D4) κ4α C1         s−α−(k−1)(j0 −1) ≤ ,        (D5)               ≤ ,          (D6)      ≤ .
+                                                 8                δ 2 (T − 1)  8                  3T  4
+                         s≥T
+
+Because B̄ does not depend on T , these are conditions on T alone, and each holds for all large T ; so
+the choice of T is not circular. Write B(t) = BT (t).
+    Let ET be the event of the proof of Theorem C; P(ET ) > 0 by the same argument. Let nt =
+N1 (t) + N2 (t) and zt = N1 (t)/nt , and call the cities j ≥ 3 small. Deﬁne the stopping times (all ≥ T ,
+inf ∅ = ∞)
+                      τz = inf{t : |zt − 21 | > δ},       τM = inf{t : M (t) − 2 > B(t)},
+                                 τj = inf{t : a small city has j0 inhabitants},
+
+
+                                                          11
+and τ ∗ = min(τz , τj , τM ). On ET we have τ ∗ > T : at time T there is no small city, |zT − 21 | ≤ 8δ ,
+and M (T ) − 2 = 0 < x0 = B(T ). All events below are intersected with ET ∈ GT , and all conditional
+probabilities given GT are bounded on ET .
+    Bounds before τ ∗ . Let T ≤ t < τ ∗ , on ET . There are at most B(t) small cities, each with fewer
+than j0 inhabitants, so nt ≥ t − j0 B(t) ≥ 43 t by (D1). Since δ < 41 , Ni (t) ≥ ( 12 − δ)nt ≥ t/6 for i = 1, 2,
+and N(1) (t) ≥ nt /2 ≥ t/4, so pt ≤ κ(t/4)−α by Lemma 2.4. For i ∈ {1, 2} and a small city B, (D2)
+gives Ni (t)/NB (t) ≥ t/(6j0 ) ≥ 2β/α , so by Lemma 7.1
+                                                                         k
+                                 area{y : IB (y) ≥ Ii (y)} ≤ 8π 6NB (t)/t .                                 (9)
+
+    Too many foundings. Apply Lemma 2.2 with t0 = T , bs = κ(s/4)−α , Ys = 0 for s < T and
+Ys = 1ET 1{s < τ ∗ , found at s + 1} for s ≥ T . Then Ys is Gs+1 -measurable, since ET ∈ GT and
+{s < τ ∗ } ∈ Gs , and P(Ys = 1 | Gs ) ≤ bs for every s ≥ 1, by the bound on ps before τ ∗ . If
+τ ∗ = τM < ∞, then every founding at the times
+P                                               P    T + 1, . . . , τM happens at a time s + 1 with s < τ ∗ , so
+   τM −1                                           τM −1                       ∗                      −x0 = 1 .
+   s=T Ys = M (τM ) − 2 > B(τM ) = (e − 1)         s=T bs + x0 . Hence P(τ = τM < ∞ | GT ) ≤ e                 8
+                                                                                                  ∗
+    A small city reaches j0 . Consider a small city founded at time t1 + 1 with T ≤ t1 < τ , and let θi
+be the time at which it reaches i inhabitants (θ1 = t1 + 1; θi = ∞ if this never happens); these are
+stopping times. If θi+1 ≤ τ ∗ , the city grew from i to i + 1 inhabitants at a time s + 1 with θi ≤ s < τ ∗ ;
+given Gs , on {s < τ ∗ }, this has probability at most the area of its sphere of inﬂuence, P which is at most
+                                                                                 ∗
+8π(6i/s) by (9), applied with city 1 and NB (s) = i. Hence P(θi+1 ≤ τ | Gθi ) ≤ s>t1 8π(6i/s)k ≤
+         k
+                                                                                        ∗
+         1 /(k − 1), and conditioning successively at θj0 −1 , . . . , θ2 (note {θi ≤ τ } ∈ Gθi ) gives
+8π(6i)k t1−k
+                                                               −(k−1)(j0 −1)
+                                   P(θj0 ≤ τ ∗ | Gt1 +1 ) ≤ C1 t1              .
+
+On ET there is no small city at time T , so if τ ∗ = τj < ∞, the city that reaches j0 inhabitants at time
+τ ∗ was founded at a time t1 + 1 with T ≤ t1 < τ ∗ . Since P(found at t1 + 1, t1 < τ ∗ | Gt1 ) ≤ κ(t1 /4)−α ,
+                                                                          P        −α−(k−1)(j0 −1)
+summing over t1 and using (D4) gives P(τ ∗ = τj < ∞ | GT ) ≤ κ4α C1 t1 ≥T t1                         ≤ 81 .
+                                                  ′
+    The share leaves the strip. Let ζt+1 and ζt+1 be the indicators that the immigrant of time             t+1
+                                                                                                    
+joins city 1, city 2. For t < τ ∗ the share changes by Dt = 1ET 1{t < τ ∗ } ζt+1 (1 − zt ) − ζt+1
+                                                                                              ′ z /(n + 1),
+                                                                                                  t      t
+                                                                       (2)
+that is, zt+1 = zt + Dt , and |Dt | ≤ 1/(nt + 1) ≤ 4/(3t). Let Si be the region of city i when only
+cities 1 and 2 are taken into account; by (2) its area is fx (zt ) for i = 1 and 1 − fx (zt ) for i = 2. Up
+                          (2)        (2)
+to null sets, S(i, t) ⊂ Si , and Si \ S(i, t) lies in the union over small B of {IB ≥ Ii }, whose area is
+at most σt := R (M (t) − 2)   8π(6j0 /t)k ≤ 8π(6j0 )k B(t)t−k by (9). With Pi = P(join i at t + 1 | Gt ) =
+area S(i, t)− S(i,t) (1+I)−1 we get fx (zt )−σt −pt ≤ P1 ≤ fx (zt ) and 1−fx (zt )−σt −pt ≤ P2 ≤ 1−fx (zt ).
+Since (nt + 1)E[Dt | Gt ] = P1 (1 − zt ) − P2 zt , it follows that
+                                                          
+                     (nt + 1) E[Dt | Gt ] − fx (zt ) − zt ≤ σt + pt ≤ η     (T ≤ t < τ ∗ )
+
+by (D3). By Corollary 4.4, E[Dt | Gt ] ≤ 0 when zt ∈ [ 21 + 2δ , 21 + δ] and E[Dt | Gt ] ≥ 0 when
+zt ∈ [ 12 − δ, 21 − 2δ ], for T ≤ t < τ ∗ . With mt = Dt − E[Dt | Gt ] we have E[m2t | Gt ] ≤ (4/(3t))2 ≤ 2/t2 ,
+                                                                                        Pt−1
+                                                                                ≥     |  s=T ms | ≥ 16 | GT ) ≤
+                                                                                                     δ
+and Doob’s
+         P       maximal     inequality, in the form used for  (8), gives P(∃ t   T :
+                                                                       ∗
+           t≥T t2 ≤ δ 2 (T −1) ≤ 8 by (D5). Outside this event, τ = τz < ∞ is impossible: the no-exit
+                          512      1
+( 16
+   δ )
+       2        2
+                                                              ∗
+argument of the proof of Theorem C applies on [T, τ ], with the step bound |Dt | ≤ 4/(3T ) ≤ δ/4 of
+(D6) in place of 1/T . So P(τ ∗ = τz < ∞ | GT ) ≤ 18 .
+      Conclusion. On ET , P(τ ∗ < ∞ | GT ) ≤ 83 , so P(ET ∩ {τ ∗ = ∞}) ≥ 85 P(ET ) > 0. On this event,
+for all t ≥ T : nt ≥ 43 t, |zt − 21 | ≤ δ, and every small city has fewer than j0 ≤ t/6 ≤ Ni (t) inhabitants
+by (D2); hence N(1) (t) = max(N1 (t), N2 (t)) ≤ ( 21 + δ)nt ≤ ( 21 + δ)t.
+
+
+
+                                                      12
+8     Further remarks and open questions
+Consistency with the notes. The results do not contradict [Ald07, Theorem 2]. For α > 1 the event that
+the whole population stays in one city has positive probability (Theorem 2(a) there), and Theorem C
+exhibits a diﬀerent event of positive probability; the notes already observe that no simple 0–1 law
+holds (Remark (i) after their Theorem 2). On the events of Theorems C and D we have N(1) (t) ≥ t/2
+                                                                                                      √
+and N(1) (t) ≥ 83 t, in agreement with Theorem 2(b) there. For α < 1 and 2α/ 3 < β < 2α, the
+probability of {N(1) (t)/t → 1}, positive by Theorem 2(c) there (whose proof the notes write out only
+in part), is less than 1 by Theorem D. The small-city bound [Ald07, Lemma 3] (our Lemma 7.1) shows
+that for k > 1 the shares 0 and 1 are also stable for two cities; the counterexample is a third, interior
+stable state. For k = 43 and a = 41 , high-precision quadrature in the two veriﬁcation runs puts the
+two unstable zeros of fx0 (z) − z at 0.31907 and 0.68093; this is a numerical observation, not used in
+any proof.
+      The associated dynamic system. For n cities at ﬁxed positions and no foundings, the notes intro-
+duce the deterministic system dzi /dt = −zi + area Si (z1 , . . . , zn ), where Si is deﬁned with the weights
+ziα |y − xi |−β , and conjecture [Ald07, Conjecture 32(a)] that some zi (t) → 1 if α > 1 or 0 < β < 2α,
+for positions  √ and initial values in general position. For n = 2 the system is dz/dt = fx (z) − z. If
+1 ≤ k < 3, choose a, δ, ρ, η, G as in Corollary 4.4; for x ∈ G the ﬁeld fx (z) − z is at most −η on
+[ 12 + 2δ , 12 + δ] and at least η on [ 21 − δ, 21 − 2δ ], so no solution starting in [ 12 − δ, 12 + δ] leaves this interval
+(fx is continuous and nondecreasing, so solutions exist; at a ﬁrst exit time the solution would have
+crossed a strip in which its derivative has the opposite sign). The positions in the open set G and
+the initial values in an interval form an open set of data, which a general-position               √ assumption cannot
+exclude. Hence Conjecture 32(a) of the notes fails for every (α, β) with 2α/ 3 < β < 2α, and for
+β = 2α with α > 1. For 0 < k < 1 and α > 1 the same conclusion should follow by replacing (3)
+with 1/c ≤ k artanh(2h) ≤ 2kh/(1 − 4h2 ), which changes qa (h) only by factors 1 + O(h2 ), so that the
+                                                   1
+strip estimates hold whenever k(a + 12a               ) < 1; we have not written this out, and this part is only a
+sketch. Independently of it, the system depends on (α, β) only through α/β, since Si is unchanged
+when the weights are raised to the power 1/β; so for α > 1 and β > 2α the two clauses (a) and (b) of
+Conjecture 32, the latter applied to (α/m, β/m) with m > α, make incompatible predictions for the
+same system. The dynamic system is not               √ part of Conjecture 1.
+      The open range. For k = 2α/β √           > 3 the symmetric two-city equilibrium is unstable for every
+spacing (Remark 4.2), and for k = 3 it is degenerate. Whether some other conﬁguration, such as
+two cities placed asymmetrically  √        or near the boundary, or three or more cities, has a stable interior
+equilibrium
+      √            for some  k ≥    3 is  not  settled here. So it remains√     open whether (b) holds for 0 < β ≤
+2α/ 3 and whether (c) holds for α > 1 and√0 < β ≤ 2α/ 3. An exploratory grid scan of two-city
+conﬁgurations (Section 9) is consistent with 3 being the two-city threshold but proves nothing. The
+question of Remark (ii) of [Ald07, Theorem 2], whether N(1) (t)/t1−ε → ∞ almost surely, also remains
+open for α ≤ 1 and β < 2α.
+
+
+9     Computations and reproducibility
+Proved, and checkable by reading: Theorems A to D, all lemmas and corollaries, and the inequalities
+of Table 2; no proof depends on a computation. The inequalities of Table 2 are derived in Section 6
+with rational bounds and are also checked by programs in exact or interval arithmetic. Only tested:
+the location of the unstable zeros 0.319 and 0.681 of fx0 (z) − z, the size (about 0.0055) of the margin
+in Corollary 4.4 for the explicit instance, the classiﬁcations made by the grid programs, and every
+statement about simulations; simulations cannot prove almost sure statements, and grid or quadrature
+computations of areas are not certiﬁed. The reproducibility package (Python 3.13.5 with numpy 2.5.2
+
+
+                                                            13
+and mpmath 1.3.0, scipy 1.18.1 for one comparison, sympy 1.14.0 for one symbolic check, and one C
+program) has ﬁve parts; all programs use ﬁxed seeds.
+    Written with this note (writing_stage/). The program check_note.py uses only          √ the Python
+standard library and exact rational arithmetic. It checks the hypotheses k = 43 ∈ (1, 3), every entry
+of Table 2, the denominator bound of Lemma 4.1(ii) at ha , and (T1)–(T3) for T = max(105 , d100/c0 e),
+both for ﬁve values of c0 from 10−6 to 103 and for all c0 > 0 at once through the two cases of Section 6;
+                                                                   355
+41 checks, all passed, in well under a second; it also proves π < 113  from Machin’s formula.
+    Programs with which the results were ﬁrst obtained (original/). explicit_constants.py
+certiﬁes the constants of Table 2 for c0 = 1, T = 105 in interval arithmetic; all checks passed.
+f_sym_check.py compares (4), evaluated by quadrature, with a count on a 6000 × 6000 grid (agree-
+ment to about 10−5 , the grid resolution), and evaluates the bound of Lemma 4.1(ii) and the diﬀerence
+quotients at 21 , which approach 0.7778, 0.7698, 1.1667 and 0.875 for (k, a) = ( 34 , 41 ), ( 43 , 2√
+                                                                                                    1
+                                                                                                      3
+                                                                                                        ), (2, 14 )
+and ( 32 , 14 ), as Lemma 4.1(iii) predicts. The simulator sim_city.py implements the model literally.
+With it, two cities of 500 inhabitants at ( 14 , 21 ) and ( 34 , 21 ), α = 2, c0 = 1, four runs each to t = 107 ,
+gave: for β = 3 (slope 79 ) the share of the larger city was within 0.013 of 21 at t = 117,549 and
+                                                    35
+within 0.006 at t = 107 ; for β = 2.4 (slope 36        ) it stayed between 0.50 and 0.53; for β = 2.2 and
+β = 2 (slopes 1.06 and 6 ) it drifted slowly away from 21 , up to 0.62; for β = 1 one city held at least
+                           7
+
+99.96% at t = 107 ; no city was founded in any of these runs. Started at t = 105 with share z0 of
+city 1 (α = 2, β = 3, two runs each), the share at t = 107 was 0.513–0.563 for z0 ∈ {0.54, 0.60, 0.64}
+and 0.92–0.98 for z0 ∈ {0.72, 0.78}, in agreement with the zeros 0.319, 21 , 0.681 of fx0 (z) − z. For
+(α, β) = (1, 1.5) and (0.8, 1.2) (so k = 34 ), two cities of 500, three runs each to 2 · 106 : shares within
+0.003 of 12 , and 1 to 40 further cities with at most 2 inhabitants each, as in Theorem D. From the
+model’s own initial condition with α = 2, β = 3 and c0 = 1, no run of 40 had a second city with
+more than 20% of the population at t = 106 ; with c0 = 0.01 and c0 = 0.001, 7 runs of 40 each did,
+and in these runs the share of the second city changed by at most 0.07 between t = 117,549 and
+t = 106 . For α ∈ {1.2, 2} and β ∈ {1, 3} (16 runs to 106 ), M (106 ) ≤ 4 and the last founding was
+at t ≤ 573,382. Two exploratory programs estimate fx (z) − z on grids: f_general.py for given
+positions, and scan_two_city.py on 2463 two-city conﬁgurations per value of k; the scan found
+conﬁgurations with a robustly stable interior zero for k = 1.5 (8 of them) and none √          for k = 1.7, 1.75,
+1.8, 2, 2.5. At k = 1.7 stable symmetric conﬁgurations exist (slope 0.98 for a = 1/(2 3)) but are too
+weak for the scan’s robustness margin.
+     Veriﬁcation run A (verification_run_A/). vA_constants.py re-checks the instance in exact
+rational arithmetic (15 checks passed; η ≥ 0.0032439; its search for a T satisfying (T1)–(T3) stops at
+51,229 for c0 = 1 and at 73,856 for c0 = 10−3 ; the smallest such T , with the tail bound 1/(T − 1), is
+51,223 and 73,828, by independent run 2 below). vA_area.py computes the disc of Apollonius from
+scratch and integrates its area in Q: the bound of Lemma 4.1(ii) holds at 12 values of h ∈ [10−6 , 0.149]
+(smallest margin 1.1 · 10−17 at h = 10−6 , as expected since both sides are 79 h + O(h3 )); the zeros of
+fx0 (z) − z are 0.319066, 0.5, 0.680934; for 40 random positions in G the largest value of fx (z) − z
+on the upper strip is −0.005498 and the smallest on the lower strip 0.005498 (for ρ = 0.01 the strip
+estimate fails, as expected); and the smallest sampled slope at 21 is 0.9815 for k = 1.7 and 1.0392 for
+k = 1.8. Its own simulator vA_sim.py gave, for α = 2, β = 3, c0 = 1: from two cities of 500, largest
+deviation of the share from 12 after t = 105 at most 0.0088 in 3 runs to 3 · 106 and at most 0.0145 in
+20 runs to 106 ; from two cities of 50,000 at the explicit time T = 105 , at most 0.0018 in 10 runs to
+106 ; no founding in any of these runs. It also gave monopoly for β = 1 (N(1) /t ≥ 0.996 at 106 ), the
+picture of Theorem D for α = 0.8, β = 1.2, and a second city above 20% in 11 of 30 fresh runs with
+c0 = 10−3 at t = 2 · 105 .
+     Veriﬁcation run B (verification_run_B/). B1_share_map.py computes fx for arbitrary posi-
+tions by an independent exact method (vertical chords of the disc, closed-form antiderivatives, 50
+
+
+                                                       14
+digits): the slope at 12 agrees with k(a + 12a1
+                                                ) to within 3 · 10−15 for six pairs (k, a), and a delib-
+erately wrong formula is detected; Lemma 4.1(i) holds to 10−47 at 299 values of h; the bound of
+Lemma 4.1(ii) holds at these 299 values and at 975 points for 25 pairs (k, a) with 1 ≤ k ≤ 1.73.
+B2_constants_exact.py re-checks the instance in exact rational arithmetic for c0 = 1 (T = 105 )
+and c0 = 10−2 , 10−3 (T = 106 ), with ﬁve negative controls (δ = 0.07, r = 0.03, T = 1000, β = 2,
+      1
+a = 20  ), each of which violates a condition. B5_strip_check.py ﬁnds the margin of Corollary 4.4
+to be about 0.0055 against the certiﬁed η > 0.0032 (for 40 positions in G), still above 0.0046 for
+ρ = 10−3 , and violated for ρ = 10−2 . Its C simulator B3_simcity.c was tested against the exact
+transition probabilities of Lemma 2.1 (|z| ≤ 2.14 in 12 comparisons; a kernel with β doubled is clearly
+rejected, with |z| up to 1116). Its campaign B4_sim_campaign.py (runs to 107 ) agrees with the runs
+above, including the basins and the picture of Theorem D for α ∈ {1, 0.8, 0.5}, and found from the
+model’s own initial condition (α = 2, β = 3, 100 runs to 106 ) a second city above 20% in 1, 21 and
+37 runs for c0 = 1, 0.01 and 0.001; with more runs (B6_*) the frequency for c0 = 0.001 is between
+34% and 39% (34 of 100 with sim_city.py on new seeds, 77 of 200 with the C simulator), so the 7 of
+40 reported above is a low draw. B7_packing_thmA.py records the inﬂuence at every founding and
+conﬁrms Lemma 2.3 on every tested path (12 runs, 16 values of λ).
+    Independent run 2 (independent_run_2/). Its three programs were written for the ﬁnal text of
+this note. The program r2_constants.py checks Table 2 and (T1)–(T3) in exact rational arithmetic
+with enclosures diﬀerent√from those above (artanh by its series with a tail bound, π by the Bailey–
+Borwein–Plouﬀe series, 2 by bisection): 28 checks passed, η ≥ 0.003244197; (T1)–(T3) hold for every
+c0 > 0 because c0 T ≥ 100, T ≥ 105 and c0 (T − 1) ≥ 99, and were also checked at 67 values of c0 from
+10−9 to 106 ; the smallest T satisfying (T1)–(T3), with the tail bound 1/(T − 1), is 51,223 for c0 = 1
+and 73,828 for c0 = 10−3 . r2_sharemap.py computes fx by Green’s theorem on the boundary of the
+intersection of the disc of Apollonius with the square (40 to 60 digits): (4) to 10−40 ; Lemma 4.1(i) to
+10−38 ; the bound of Lemma 4.1(ii) at 590 points for ten pairs (k, a) with k ≥ 1; the slope k(a + 12a1
+                                                                                                        )
+at six pairs, two of them with k < 1; exactly three zeros 0.31907, 2 , 0.68093 of fx0 (z) − z for k = 34 ,
+                                                                     1
+
+a = 41 ; the centre, radius and area of Figure 1; and the margin of Corollary 4.4, 0.0055 at x0 and
+over 29 position pairs in G (violated for ρ = 10−2 ). r2_symbolic.py checks 44 algebraic steps of the
+proofs with sympy. Each of the three programs takes a few seconds.
+    Re-runs. On 14 October 2026 every program of the package was run again with the command
+lines of the README, ﬁrst from a copy of the package when this note was written and again, by
+independent run 2, from an extracted copy of the archive; both times all 33 outputs were identical
+to the recorded ﬁles. (One recorded ﬁle of run B, a negative control for Lemma 2.3, was produced
+by a temporary variant of the C simulator that is not part of the package.) One recorded ﬁle of
+original/, f_general_simE.out, had been saved without the table lines beginning with z=; the
+complete output was regenerated and is included as f_general_simE_complete.out, and it agrees
+with the recorded ﬁle after removing those lines. The longest single program takes about six minutes.
+Details and command lines are in reproducibility/README.md.
+
+Veriﬁcation. The results were ﬁrst obtained, with proofs, together with the programs in original/.
+Two independent veriﬁcation runs, both AI-assisted, followed; each re-derived the proofs step by step
+and wrote its own programs, without access to the other’s report. Run A compared the statement with
+the notes and the companion paper, re-derived every lemma and theorem, tried to break Theorem B
+in three ways, certiﬁed the explicit instance in exact rational arithmetic, and wrote an independent
+area code and an independent simulator. Run B re-derived the proofs, computed the share map by an
+independent exact method, re-checked the constants with negative controls, tested its own simulator
+against the exact transition probabilities, re-ran all programs of original/ (with identical outputs,
+except the ﬁltered ﬁle mentioned above), checked the bibliography against Crossref and the arXiv, and
+
+
+                                                   15
+repeated the literature search. Both runs conﬁrmed the outcome stated in Corollary 1.1 and found
+no mathematical gap. They required corrections of wording, which were made: the outcome is stated
+part by part everywhere; the comparison with the heuristic exponent θ is restricted to 0 < α < 1
+(Remark 3.1(iii)); the case 0 < k < 1 of the remark on Conjecture 32 is marked as a sketch; the
+dependence of BT (t) on T in the proof of Theorem D is resolved by the T -free majorant B̄(t); the
+description of the companion paper does not attribute theorems to it; a range of simulated shares
+was corrected to 0.50–0.53; and the ﬁltered output ﬁle was regenerated. The runs examined the ﬁrst
+written version of the results. This note follows that version with these corrections, with the choice
+T = max(105 , d100/c0 e) for every c0 in Section 6, and with the proofs rearranged.
+    A second round of veriﬁcation, one further independent AI-assisted run (independent run 2), then
+examined the ﬁnal text of this note. It compared every statement about [Ald07, AH12, Ald] with
+the sources, re-derived every lemma, theorem and corollary line by line, wrote three programs of
+its own (independent_run_2/), re-ran every program of the package from an extracted copy of the
+archive with identical outputs, and repeated the literature search. It found no mathematical error and
+required ten corrections, which were made: the inequality used for (8) is named as Doob’s maximal
+inequality for the submartingale Λ2t , in the form used; in the proof of Theorem D, Lemma 2.2 is
+applied with Ys = 0 for s < T , so that its hypotheses hold; the opening sentence of Section 7 no
+longer asserts that new cities keep being founded for α ≤ 1, which is not proved; the bound for small
+cities is credited to [Ald07, Lemma 4]; the position of the sentence quoted from the notes, the status
+of their Theorem 2(c) in Section 8, the number of uses of Lemma 2.2, an inequality sign in Section 6,
+the deﬁnition of N(≥2) (t) and the description of a search of run A for admissible T were corrected;
+and this record of the run was added.
+
+Scope and priority. The note answers Conjecture 1 of [Ald07] part by part: part (a) is proved
+     √ parameters in its range (Theorem B); parts (b) and (c) are disproved for every c0 > 0 and
+for all
+2α/ 3 < β < 2α√(with α > 0 for (b) and α > 1 for (c); Theorems C and D); whether (b) and (c)
+hold for β ≤ 2α/ 3 remains open. The model, its heuristics and the conjecture are due to Aldous
+[Ald07, Ald]; the companion paper of Aldous and Huang [AH12] restricts the model to 0 < α ≤ 1
+and contains heuristics and simulations, while the partial results are those of [Ald07, Theorem 2].
+The constant κ and the small-city bound (Lemma 7.1) are taken from the notes, and the treatment
+of small cities in the proof of Theorem D follows the notes’ sketch of their Theorem 2(c), with the
+comparison of their Lemma 4. The tools are standard: Ville’s inequality [Vil39], Doob’s maximal
+inequality, optional stopping and Lévy’s extension of the Borel–Cantelli lemma [Wil91], and circles of
+Apollonius; the trapping of an urn near a stable zero of its drift is of the kind studied for generalized
+Pólya urns [HLS80, Pem07], and we claim no novelty for it. New, to our knowledge and relative to
+the literature we found, are Theorems A to D, that is, the proof of (a) and the counterexamples to (b)
+and (c) in the stated range.
+    What was read: the notes [Ald07], in the author’s ﬁle, pages 1–14 and 38–41 in full and pages 15–37
+(on the balanced and critical cases, not used here) for their statements, while veriﬁcation run A read
+all 41 pages and independent run 2 read pages 1–15 and 37–41 again; the companion paper [AH12] in
+full (version 1, the only version on the arXiv); and the web page [Ald]. The papers [HLS80, Pem07]
+and the books [Vil39, Wil91] were not read for this note; none of their results is used beyond the
+standard facts named above, and Lemma 2.2 is proved in the form used.
+    The searches were made on 14 October 2026, when the results were ﬁrst obtained, again by
+veriﬁcation runs A and B, and once more by independent run 2: queries to the arXiv (for the title
+and authors of [AH12], for city growth, spheres of inﬂuence, weighted Voronoi tessellations combined
+with urns or reinforcement, and spatial Chinese-restaurant processes, and for all later arXiv papers
+of Aldous), to Crossref, to zbMATH Open (no document on the model), to OpenAlex (no work citing
+
+
+                                                   16
+[AH12], checked again at the writing and by run 2) and to Semantic Scholar (an empty list of citing
+works), and seven web searches in all. They found the sources above, two undergraduate simulation
+reports linked from Aldous’s pages, and unrelated work; neither the reports nor any other item found
+addresses Conjecture 1. No answer to Conjecture 1 was found in the literature accessible to us; a
+search that ﬁnds nothing is not a proof of novelty, and we make no priority claim.
+    AI-assisted tools were used to search the problem corpus and the literature, to ﬁnd the arguments,
+to write and run the veriﬁcation programs, and to help prepare this manuscript. The author has
+reviewed the proofs, the computations and the sources and is responsible for all claims. The note has
+not been peer reviewed.
+
+
+References
+[AH12] David J. Aldous and Bowen Huang. A spatial model of city growth and formation, 2012.
+       Version 1, 23 September 2012. arXiv:1209.5120.
+
+[Ald]   David J. Aldous. Cities: A spatial model of city growth and formation. Open problem page,
+        https://www.stat.berkeley.edu/~aldous/Research/OP/cities.html. Accessed 14
+        October 2026.
+
+[Ald07] David J. Aldous. Technical notes on a spatial model of city growth.
+       https://www.stat.berkeley.edu/~aldous/Research/OP/cities-notes.pdf, 2007.
+       Untitled rough notes dated April 25, 2007, 41 pages, linked as “technical notes” from
+       https://www.stat.berkeley.edu/~aldous/Research/OP/cities.html; accessed 14
+       October 2026.
+
+[HLS80] Bruce M. Hill, David Lane, and William Sudderth. A strong law for some generalized urn
+       processes. The Annals of Probability, 8(2), 1980. doi:10.1214/aop/1176994772.
+
+[Pem07] Robin Pemantle. A survey of random processes with reinforcement. Probability Surveys,
+       4:1–79, 2007. doi:10.1214/07-PS094.
+
+[ula26] ulamai. UnsolvedMath. Hugging Face dataset,
+        https://huggingface.co/datasets/ulamai/UnsolvedMath, 2026. Version 1.6.0; record
+        AMR-096-0023.
+
+[Vil39] Jean Ville. Étude critique de la notion de collectif. Gauthier-Villars, Paris, 1939.
+
+[Wil91] David Williams. Probability with Martingales. Cambridge University Press, Cambridge,
+       1991. doi:10.1017/CBO9780511813658.
+
+
+
+
+                                                  17
+

@@ -1,0 +1,368 @@
+                                                  A spatial model of city growth and formation
+
+
+
+
+arXiv:1209.5120v1 [physics.soc-ph] 23 Sep 2012
+                                                                          D J Aldous∗               B Huang
+
+
+                                                                                        Abstract
+                                                             We introduce a model in which city populations grow at rates pro-
+                                                         portional to the area of their “sphere of influence”, where the influence
+                                                         of a city depends on its population (to power α) and distance from
+                                                         city (to power −β) and where new cities arise according to a certain
+                                                         random rule. A simple non-rigorous analysis of asymptotics indicates
+                                                         that for β > 2α the system exhibits “balanced growth” in which there
+                                                         are an increasing number of large cities, whose populations have the
+                                                         same order of magnitude, whereas for β < 2α the system exhibits
+                                                         “unbalanced growth” in which a few cities capture most of the to-
+                                                         tal population. Conceptually the model is best regarded as a spatial
+                                                         analog of the combinatorial “Chinese restaurant process”.
+
+                                                 Keywords: spatial growth, Voronoi diagram, Chinese restaurant process.
+
+
+                                                 1       Introduction
+                                                 There is substantial literature in Economics concerning locations and pop-
+                                                 ulation sizes of cities, a central quantitative feature of the latter being the
+                                                 observation (Zipf ’s law) that the number of cities with populations larger
+                                                 than s scales roughly as s−1 . Useful background can be found in the 2004
+                                                 survey [1] which describes “both bare-bone statistical theories and more de-
+                                                 veloped economic theories.” The former, exemplified by the Gibrat model
+                                                 (proportional growth rates of cities are random but independent of popula-
+                                                 tion size) might better be called purely mathematical models, while the latter
+                                                     ∗
+                                                     Department of Statistics, 367 Evans Hall # 3860, U.C. Berkeley CA 94720; al-
+                                                 dous@stat.berkeley.edu; www.stat.berkeley.edu/users/aldous. Aldous’s research sup-
+                                                 ported by N.S.F Grant DMS-0704159.
+
+
+                                                                                            1
+(quoting [1]) “reflect such important economic forces as increasing returns,
+congestion, trade and non-market interactions”. But (as in the broader lit-
+erature on spatial economics featured in the monograph [2]) most models
+are not truly “spatial” in the sense that the geometry of two-dimensional
+space plays an essential role. The purpose of this paper is to present a purely
+mathematical model which is explicitly spatial in this sense. The model is
+not intended as literally realistic for cities, but rather as a novel style of
+model (see discussion of related models in section 4) and one for which (un-
+like many explicitly spatial models in other contexts) non-obvious properties
+can be derived via quite simple albeit non-rigorous arguments.
+
+
+2    The model
+At each time step t = 1, 2, 3, . . . there are cities at positions xi in the
+unit square [0, 1]2 , with populations Ni (t) ≥ 1, the total population being
+P
+  i Ni (t) = t. The model has three parameters
+
+                      0 < c0 < ∞,       0 < α ≤ 1,         β>0
+
+which are used to define a function
+
+                               I0 (n, r) = c0 nα r−β                         (1)
+
+interpreted as the “influence” of a city of population n at a point at distance
+r from the city. For a position y ∈ [0, 1]2 define
+
+          I(y, t) = max I0 (Ni (t), |y − xi |) = c0 max Niα (t)|y − xi |−β   (2)
+                      i                                i
+
+(the maximum influence at that position) and then define the sphere of in-
+fluence of city i to be the region
+
+                  SS(i, t) = {y : I0 (Ni (t), |y − xi |) = I(y, t)}          (3)
+
+in which city i has larger influence than any other city. At time 1 there is a
+single city of population 1 at a uniform random point of [0, 1]2 . The general
+evolution rule is:
+
+     At time t + 1 an immigrant arrives at a uniform random position
+     U in [0, 1]2 , and either
+
+                                         2
+      (i) (with probability 1/(1 + I(U, t))) founds a new city at position
+      U with population 1;
+      or (ii) (with probability I(U, t)/(1+I(U, t))) joins the city i whose
+      sphere of influence contains U , thereby increasing its population
+      to Ni (t + 1) = Ni (t) + 1.
+
+2.1    Remarks on the model
+1. If city populations were equal then the partition into spheres of influence
+would be just the usual Voronoi tessellation [3]; in general one can consider
+it as a form of weighted Voronoi tessellation.
+2. The two qualitative features of the model are
+(i) the growth rate of a city depends on its size and on the sizes and distances
+of other cities
+(ii) a certain stochastic rule for founding of new cities.
+One could imagine many different rules to formalize these features; while
+there is no necessary connection between the two features, our formulation
+in which both are derived via the same influence function is mathematically
+convenient.
+3. Given the configuration at a large time t, the subsequent evolution over
+a relatively small time interval is deterministic to first order, because a city
+population grows at rate proportion to the area of its sphere of influence.
+Randomness plays a role both via a “founder effect” (the random positions
+of the first few cities) and more subtly, in the “balanced growth” case, because
+the newly-founded cities at (non-uniform) random positions grow compara-
+tively rapidly to attain the same order of magnitude population as the older
+cities.
+4. The parameter c0 has a quantitative influence via the founder effect but
+does not affect the types of asymptotic behavior we discuss; the model has
+the two essential parameters α and β which do affect this behavior.
+5. The case α = 1 is conceptually closest to previous models (see section
+4) and seems worthy of more detailed study. The case α > 1 is less in-
+teresting because one gets explosive growth without considering any spatial
+interaction.
+6. We modeled population growth as via single “immigrants” for simplicity –
+more elaborate models with population growth caused by a surplus of births
+over deaths can be expected to exhibit similar behavior.
+
+
+                                       3
+3    Analysis of long-time behavior
+We first consider the case 0 < α < 1. We can analyze quantitatively the
+growth exponents of several quantities, implicitly assuming certain qualita-
+tive behavior discussed below. The quantities we study are
+    N ∗ (t) = typical city population
+    R∗ (t) = distance from from typical point to nearest city
+    I ∗ (t) = value of the influence function I(y, t) at a typical point y.
+Write M (t) for the number of cities at time t, and suppose their populations
+are mostly the same order of magnitude. Clearly
+
+                      N ∗ (t) ≈ t/M (t);       R∗ (t) ≈ M −1/2 (t)
+
+and this implies
+                                            t α β/2
+     I(y, t) ≈ (N ∗ (t))α (R∗ (t))−β ≈ (         ) M (t) ≈ tα M −α+β/2 (t).
+                                           M (t)
+
+The probability that a new arrival founds a new city is ≈ 1/I ∗ (t), so we get
+an equation
+                         dM
+                          dt
+                             ≈ I ∗1(t) ≈ t−α M −β/2+α .                    (4)
+This has solution
+                                                      1−α
+                       M (t) ≈ tθ ,    for θ =
+                                                   1 − α + β/2
+
+obtained from solving θ−1 = −α+θ(α−β/2). Note that the typical influence
+is therefore
+
+               I ∗ (t) ≈ (dM (t)/dt)−1 ≈ t1−θ ;                   β
+                                                       1 − θ = 2−2α+β         (5)
+
+and the typical distance to nearest city is
+
+                   R∗ (t) ≈ M −1/2 (t) ≈ t−θ/2 ;              1−α
+                                                      θ/2 = 2−2α+β            (6)
+
+and the typical city population size is
+
+                    N ∗ (t) ≈ Mt(t) ≈ t1−θ ;                 β
+                                                  1 − θ = 2−2α+β .            (7)
+
+    Now the calculations above rest upon an intuitive picture of the qualita-
+tive behavior of the process, that for large t and a typical position y
+
+                                           4
+(a) most different cities’ populations are the same order of magnitude
+(b) y is in the sphere of influence of some nearby city
+(c) a city newly founded at t will grow, in time δt, to some population which
+is ε(δ) times the typical time-t city population.
+Call this the balanced growth scenario. But one can imagine an alternative
+picture, the unbalanced growth scenario, in which, for large t and a typical
+position y
+(d) y is in the sphere of influence of some city A at distance r which is much
+larger than the distance to nearby cities
+(e) the nearby cities’ populations are a smaller order of magnitude than city
+A’s, and their spheres of influence are surrounded by that of city A
+(f) New cities grow extremely slowly.
+    To investigate these scenarios we use a self-consistency calculation. Con-
+sider a city founded at time t, and consider
+          N (s) = population of this city at time s after founding,
+                                                       1
+looked at over a relatively short time period 0 < s < 100 t, say. The radius
+r(s) of its sphere of influence satisfies
+                          N α (s)r−β (s) ≈ I ∗ (t) ≈ t1−θ .
+The rate of population growth is proportional to area of sphere of influence,
+so we get the equation
+             dN (s)
+                    ≈ r2 (s) ≈ t−2(1−θ)/β N 2α/β (s);         N (0) = 1.          (8)
+              ds
+We now have two cases.
+    Case 1. β < 2α. Here the solution of dy(s)/ds = y 2α/β (s) explodes in
+finite time s, but stays bounded for some small time. So the solution N (s)
+of (8) stays bounded for some time s of order t2(1−θ)/β . But the assumption
+                                 1                           1
+β < 2α implies 2(1 − θ)/β = 1−α+β/2   > 1 implying that N ( 100 t) is bounded,
+in contradiction to behavior (c) above.
+    Case 2. β > 2α. Here the solution of (8) is
+                                                    β                2(θ − 1)
+       N (s) ≈ tξ (s + t−ξ/φ )φ ;   where φ =            ,      ξ=            .
+                                                  β − 2α              β − 2α
+                                 1                    1
+Here −ξ/φ works out to be 1−α+β/2     < 1 and so N ( 100 t) is order tξ+φ . A
+calculation shows ξ + φ = 1 − θ, consistent with behavior (c) above.
+
+                                         5
+Conclusion of the analysis. The self-consistency check provides convinc-
+ing evidence for the conclusion
+
+      for β > 2α, the balanced growth scenario holds, with growth
+      exponents given by (5 - 7).
+
+This cannot be true in the other case, so we predict the natural alternative
+qualitative behavior
+
+      for β < 2α, the unbalanced growth scenario holds, with growth
+      exponents
+
+             N ∗ (t) = t1−o(1) ;   R∗ (t) = t−o(1) ;   I ∗ (t) = t1−o(1) .   (9)
+
+and one can give analogous self-consistency arguments for this case. Note
+that these exponents are therefore discontinuous as (α, β) cross the boundary
+between the balanced and unbalanced regions.
+    In fact one can now a posteriori see a conceptually simpler distinction be-
+tween the two scenarios. Consider a city founded at time t. If the area of its
+sphere of influence upon founding is > 1/t then its initial growth rate (pro-
+portional to size) will be larger than the average growth rate of other cities,
+while if this area is smaller than 1/t its initial growth rate will be slower.
+This is the distinction between (c) and (f). But to calculate this initial area
+in terms of α and β one needs to go through the same calculations as before
+– we do not see any simpler argument that these alternatives correspond to
+β > 2α and β < 2α.
+
+3.1    The case α = 1.
+The arguments above hold for α = 1, but here the distinction between the
+two cases (β < 2α or β > 2α) disappears, in that the predictions (5 - 7) and
+(9) of the two cases are the same. For this case α = 1 we expect the number
+of cities to grow as some power of log t, but we do not have any convincing
+argument for how this rate depends on β. Note that α = 1 is the case
+where proportional growth rates do not depend on city size, as in the (non-
+spatial) Gibrat model [1] often invoked to explain Zipf’s law. As observed
+in section 4 this case is loosely analogous to other models and perhaps the
+main contribution of this paper is to spotlight the case α = 1 as a topic for
+more detailed future study.
+
+                                          6
+3.2    Simulation results
+We show simulations in the balanced growth scenario. Figure 1 shows city
+positions and sizes (indicated by the volume of the cubes) in a simulation
+with α = 0.2, β = 4.8 and total population 300. This is visually consistent
+with the qualitative behavior described earlier.
+
+
+
+
+   Figure 1. City positions and sizes in a simulation of the balanced growth
+scenario.
+Figure 2 shows results from simulations with α = 0.2 and three values of
+β chosen to make θ = 0.25, 0.5, 0.75. The jagged lines are the simulation
+results and the straight lines have the slopes predicted by (5 - 7).
+
+
+
+
+                                     7
+8
+     Figure 2. Simulation data fits the predicted power laws.
+
+
+4       Related models
+We do not know any previous models that are closely related to ours. Amongst
+numerous distantly related models that have appeared in different disciplines
+within the mathematical sciences, let us mention four.
+
+The Chinese restaurant process. In our terminology, this is the process
+where the arrival at time t + 1 either
+(i) (with probability c0 /(t + c0 )) founds a new city with population 1;
+or (ii) (with probability Ni (t)/(t + c0 )) joins city i.
+See [4] for a treatment of this model and some generalizations; these do
+not involve any spatial structure. A key feature of this model is that, for
+ordered city sizes N(1) (t) ≥ N(2) (t) ≥ . . ., there is a limit distribution after
+normalizing by total population t:
+    t−1 (N(1) (t), N(2) (t), . . .) → (X1 , X2 , . . .),
+                                                                           X
+                                                           where Xi > 0,       Xi = 1 (10)
+                                                                           i
+
+and the limit is the Poisson-Dirichlet distribution. The α = 1 case of our
+model is a spatial analog, so it is natural to ask whether it has the same be-
+havior (10), after appropriate normalization. If so, then one can ask whether
+
+                                                  9
+these limit sizes for large cities have power law distribution (as in Zipf’s law)
+or a geometrically decreasing distribution (as in Poisson-Dirichlet). But such
+questions seem currently out of reach of analytic arguments.
+    Note that after originating in probabilistic combinatorics and mathemati-
+cal genetics, the Chinese restaurant process and variants have found extensive
+use as general-purpose Bayes priors for statistical problems involving groups
+of data [5], so it is not inconceivable that variants of our model would make
+useful priors for explicitly spatial data.
+
+Coagulation models. There is a large literature in physical chemistry on
+coagulation, meaning coalescence of clusters of mass. Though the underlying
+picture is of motion in space (with coalescence when clusters meet), the usual
+models [6] ignore spatial position and study deterministic equations for the
+density fi (t) of mass-i clusters at time t; a parameter in the equations is a
+kernel K(i, j) giving the propensity for mass-i and mass-j clusters to merge.
+Closest to our model is the special case of the Becker-Döring equations [7]
+of polymers growing by collisions with monomers; mass-i clusters can grow
+only by coalescing with mass-1 clusters.
+
+Random tessellations. Turning to explicitly spatial models, within the
+discipline of stochastic geometry there are many models for random partitions
+of the plane, for instance random Johnson-Mehl tessellations [8]. But we
+do not know models where such tessellations evolve by stochastic dynamics
+comparable to our model.
+
+A spatial network model. A spatial analog of the popular “proportional
+attachment” network models was studied by simulation in [9]. This model
+has additional graph structure, but (interpreting their “number of edges” as
+“population”) is essentially the following model. Take an integer parameter
+m ≥ 1 and a “distance scale” parameter rc .
+(i) A city arrives at a uniform random point y in a given region, and is given
+population m.
+(ii) Simultaneously m existing cities have their population increased by 1,
+with city i chosen with probability proportional to Ni exp(−|y − xi |/rc ).
+This has similar ingredients to our model, but their conclusions focus on
+network traffic properties, and so are not comparable to ours.
+
+
+
+                                       10
+References
+[1] Gabaix X and Ioannides Y M 2004 The evolution of city size distribu-
+    tions Handbook of Regional and Urban Economics vol 4 (Amsterdam:
+    North-Holland) p 2341
+
+[2] Fujita M, Krugman P and Venables A J 2001 The Spatial Economy:
+    Cities, Regions, and International Trade (Cambridge MA: The MIT
+    Press)
+
+[3] Okabe, A, Boots B, Sugihara K and Chiu S N 2000 Spatial Tessellations:
+    Concepts and Applications of Voronoi Diagrams (Chichester UK: Wiley)
+
+[4] Pitman J 2006 Combinatorial Stochastic Processes (Lecture Notes in
+    Mathematics vol 1875) (Berlin: Springer)
+
+[5] Teh, Y W, Jordan M I, Beal M J and Blei D M 2006 J. Amer. Statist.
+    Assoc. 101 1566–81
+
+[6] Ball J M and Carr J 1990 J. Statist. Phys. 61 203–34
+
+[7] King J R and Wattis J A D 1998 J. Phys. A 31 7169–89
+
+[8] Moller J 1992 Adv. Appl. Probab. 24 814–44
+
+[9] Barrat A, Barthélemy M and Vespignani A 2005 J. Stat. Mech. Theory
+    Exp. P05003
+
+
+
+
+                                   11
+

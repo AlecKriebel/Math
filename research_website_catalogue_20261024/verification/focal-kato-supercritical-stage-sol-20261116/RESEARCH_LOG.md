@@ -1,0 +1,3 @@
+# Focal/Kato/supercritical stage log
+
+2026-11-16T15:37:41.087001+00:00 — Site-control100%, stage15%: current W/Math HEAD/index and699public byte/mode pins frozen;111typed/visible and112sitemap old order/raw buffers captured. Prior153authorship disclosed. Source152/153 adoptions pending; no candidate/build/render. Read-only preliminary errors: incorrect top-level ItemList assumption, parse-time parenthesis SyntaxError (no execution), then absent loose Math main ref (one optional-locks-disabled Git read completed, no writes). Corrected actual mainEntity and packed-ref lookup; current capture passed. This capture retains its sole Git command receipt; both executed Git reads used --no-optional-locks/GIT_OPTIONAL_LOCKS=0. No foreign mutation.

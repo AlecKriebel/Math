@@ -1,0 +1,2227 @@
+                                                  xxx
+
+                                      David J. Aldous∗ et al ???
+
+                                       University of California
+                                       Department of Statistics
+                                       367 Evans Hall # 3860
+                                       Berkeley CA 94720-3860
+
+                                             April 25, 2007
+
+
+
+rough notes
+
+
+                                                Abstract
+
+           xxx
+
+
+
+
+Key words. xx
+
+MSC2000 subject classification. xxx
+
+
+
+
+  ∗
+      Research supported by N.S.F. Grant DMS0203062
+
+
+                                                      1
+1    Introduction
+
+xxx the model is “made up” to be mathematically interesting. Use “cities” as convenient language,
+not literally.
+
+
+                                                             positions xi in the unit square [0, 1]2 ,
+The model At each time t = 1, 2, 3, . . . there are cities atP
+with populations Ni (t) ≥ 1, the total population being       i Ni (t) = t. The model has three
+parameters
+                             0 < c0 < ∞, 0 < α < ∞, β > 0
+(though we focus on the case 0 < α < 1) which are used to define a function
+
+                                           I0 (n, r) = c0 nα r−β                                    (1)
+
+interpreted as the “influence” of a city of population n at distance r from the city. For a position
+y ∈ [0, 1]2 define
+
+                     I(y, t) = max I0 (Ni (t), |y − xi |) = c0 max Niα (t)|y − xi |−β               (2)
+                                 i                                 i
+
+and then define the sphere of influence of city i to be
+
+                              S(i, t) = {y : I0 (Ni (t), |y − xi |) = I(y, t)}                      (3)
+
+where the convention about boundaries between cities’ spheres is unimportant. At time 1 there
+is a single city of population 1 at a uniform random point of [0, 1]2 . The general evolution rule is:
+
+At time t + 1 an immigrant arrives at a uniform random position U in [0, 1]2 , and either
+(i) (with probability 1/(1 + I(U, t))) founds a new city at position U with population 1;
+or (ii) (with probability I(U, t)/(1 + I(U, t))) joins the city i for which U ∈ S(i, t), thereby
+increasing its population to Ni (t + 1) = Ni (t) + 1.
+
+
+Remarks If city populations were equal then the partition into spheres of influence is just the
+usual Voronoi tessellation [10]; so in general it is a form of weighted Voronoi tessellation.
+
+
+Comments on model The two qualitative features of the model are
+the growth rate of a city depends on its size and on the sizes and distances of other cities
+some stochastic rule for founding of new cities.
+One could imagine any different rules to formalize these features; while there is no necessary
+connection between the two features, we are using a “slick” formulation in which both are xxx
+via the same influence function.
+
+
+Heuristic analysis Take 0 < α < 1. We study the order of magnitude of several quantities.
+Suppose there are M (t) cities at time t, and suppose their populations are mostly the same order
+of magnitude. Then typical city population N ∗ (t) ≈ t/M (t) and distance R∗ (t) from typical
+point to nearest city is ≈ M −1/2 (t), so the typical value I ∗ (t) of the influence function I(y, t) is
+≈ ( Mt(t) )α M β/2 (t) = tα M −α+β/2 (t). The chance that a new arrival founds a new city is about
+1/I ∗ (t), so we get an equation
+                                                        −α
+                                      dM       1
+                                       dt ≈ I ∗ (t) ≈ t    M −β/2+α .                               (4)
+
+                                                     2
+This has solution
+                                                            1−α
+                                    M (t) ≈ tθ ,    θ=
+                                                         1 − α + β/2
+obtained from solving θ − 1 = −α + θ(α − β/2). Note that the typical influence is therefore
+
+                          I ∗ (t) ≈ (dM (t)/dt)−1 ≈ t1−θ ;                β
+                                                               1 − θ = 2−2α+β                   (5)
+
+and the typical distance to nearest city is
+
+                             R∗ (t) ≈ M −1/2 (t) ≈ t−θ/2 ;            1−α
+                                                              θ/2 = 2−2α+β                      (6)
+
+and the typical city population size is
+
+                              N ∗ (t) ≈ Mt(t) ≈ t1−θ ;              β
+                                                         1 − θ = 2−2α+β .                       (7)
+
+
+The heuristic argument above rests upon an intuitive picture of the qualitative behavior of the
+process, that for large t and a typical position y
+(a) most different cities’ populations are the same order of magnitude
+(b) y is in the sphere of influence of some nearby city
+(c) a city newly founded at t will grow, in time δt, to some population which is ε(δ) times the
+typical time-t city population.
+
+Call this the balanced growth scenario. But one can imagine an alternative picture, the unbalanced
+growth scenario, in which
+(d) y is in the sphere of influence of some city A at distance r which is much larger than the
+distance to nearby cities
+(e) the nearby cities’ populations are a smaller order of magnitude than city A’s, and their spheres
+of influence are surrounded by that of city A.
+
+
+To investigate these scenarios we try a self-consistency check. Consider a city founded at time t,
+and consider N (s) = population of this city at time s after founding, looked at over a relatively
+                            1
+short time period 0 < s < 100 t, say. The radius r(s) of its sphere of influence satisfies
+
+                                     N α (s)r−β (s) ≈ I ∗ (t) ≈ t1−θ .
+
+The rate of population growth is proportional to area of sphere of influence, so
+                         dN (s)
+                                ≈ r2 (s) ≈ t−2(1−θ)/β N 2α/β (s);        N (0) = 1.
+                          ds
+We now have two cases.
+
+Case 1. β < 2α.
+The solution of dy(s)/ds = y 2α/β (s) explodes in finite time s, but stays bounded for some small
+time, and so N (s) stays bounded for some time s of order t2(1−θ)/β . But the assumption β < 2α
+                         1                            1
+implies 2(1 − θ)/β = 1−α+β/2  > 1 implying that N ( 100 t) is bounded, in contradiction to behavior
+(c) above.
+
+Case 2. β > 2α.
+Here the solution is
+                                                           β               2(θ − 1)
+                       N (s) ≈ tξ (s + t−ξ/φ )φ ;   φ=          ,    ξ=             .
+                                                         β − 2α             β − 2α
+
+                                                    3
+                                1                     1
+Here −ξ/φ works out to be 1−α+β/2     < 1 and so N ( 100 t) is order tξ+φ . Then (somewhat magi-
+cally?) a calculation shows ξ + φ = 1 − θ, consistent with behavior (c) above.
+
+So the conclusion of these heuristics is that we predict (recall 0 < α < 1)
+
+      the balanced growth scenario holds when β > 2α
+      the unbalanced growth scenario holds when β < 2α.
+
+One can a posteriori see a conceptually simpler distinction between the two cases. Consider a
+city founded at time t. If the area of its sphere of influence upon founding is > 1/t then it will
+tend to grow faster (proportional to size) than average, while if this area is smaller than 1/t it will
+tend to grow slower. But to calculate this area one needs some information about the behavior
+of the process, so we do not see any simple a priori heuristic that these two cases are β < 2α and
+β > 2α.
+
+In the unbalanced case we envisage that most of the population is in one city, or in a small
+number of cities, and so the analogs of (5 - 7) are
+                        N ∗ (t) = t1−o(1) ;   R∗ (t) = t−o(1) ;   I ∗ (t) = t1−o(1) .
+Note that these exponents are therefore discontinuous as (α, β) cross the boundary between the
+balanced and unbalanced regions.
+
+In the case α > 1 we expect unbalanced growth (the solution of dy(s)/ds = y 2α/β (s) explodes
+in finite time s). The case α = 1 can be considered critical, in that growth rate is proportional
+to population size. This case is loosely analogous to other models (see Gibrat’s law (section 1.2)
+and the Chinese restaurant processs (section 1.2).
+
+To summarize: heuristics suggest the parameter space should divide into three regions:
+
+ 0 < α < 1 and β > 2α      balanced growth
+ α > 1 or β < 2α           unbalanced growth
+ α = 1 and β > 2α          critical growth
+
+and this guides our theoretical development.
+
+
+1.1   Methodology
+
+Our methodology is to seek statistics S(t) of the process for which we can control (upper or lower
+bound) the incremental conditional expectation E(S(t + 1) − S(t)|F(t)) and thereby upper or
+lower bound the growth rate of S(t) by martingale methods. Conceptually we imagine I(y, t)
+as a time-varying “random environment” and study how the environment affects growth of city
+population and distance to nearest city, and how these changes feed back into changing the
+environment. The fact that I(y, t) is monotone in t is technically helpful.
+
+xxx in balanced case, end up with a bunch of inequalities between rigorously-defined upper and
+lower exponents for growth rates. In other cases, scattered results.
+
+xxx state results!
+
+As described in section 6.4 there is a certain associated dynamical system whose study might
+lead to stronger results. xxx future work!
+
+                                                     4
+1.1.1    Methodological difficulties
+
+xxx geometry. Regardless of the parameter values, the first 1, 000 (say) immigrants might go to
+one city, or 1, 000 different cities, or 50 cities in one corner of the square, . . . . xxx hard to track
+evolution from atypical start.
+
+Here are some specific intuitive ideas which we have not been able to implement.
+
+
+Coupling When the time-t + 1 immigrant arrives at a given position, there are two alternatives
+(join existing city or found new city). One might hope that the two conditioned future processes
+could be coupled in some manageable way (e.g. the second alternative differs from the first only
+by transferring some inhabitants of other cities to the new city). But we do not have any rigorous
+coupling construction of this type.
+
+
+0−1 laws We do not know any general result saying that the asymptotic behavior of the process
+is unaffected by initial behavior; and indeed in certain settings we know 0 − 1 laws do not hold
+(see remarks after Theorem 2).
+
+
+Repulsion of cities Because the influence function is infinite at a city, the positions of cities
+should intuitively be “less clustered” than random cities. But we don’t know any simple formal-
+ization of this idea.
+
+
+1.2     Related work
+
+We do not know any closely related previous work, but here are some more distantly related
+topics.
+
+
+Random processes with reinforcement See [11] for an elegant survey of such processes,
+generalizing classical urn models. Such models typically do not have spatial structure, or else
+spatial structure is represented by edges of a graph.
+
+
+The Chinese restaurant process In our terminology, this is the process where the arrival at
+time t + 1 either
+(i) (with probability θ/(t + θ)) founds a new city with population 1;
+or (ii) (with probability Ni (t)/(t + θ)) joins city i.
+See [12] for a treatment of this model and generalizations; these do not involve any spatial
+structure. A key feature of this model is that there exists a limit for normalized ordered city sizes
+                                                  d
+                                                                               X
+                  t−1 (N(1) (t), N(2) (t), . . .) → (X1 , X2 , . . .), Xi > 0,   Xi = 1           (8)
+                                                                            i
+
+where the limit has Poisson-Dirichlet distribution. The α = 1 case of our model is somewhat
+analogous, so it is natural to ask whether it has the same behavior (8).
+
+xxx add discussion. In the balanced (β > 2) case the growth seems to be slightly sublinear
+(Theorem 23); could conjecture (8) holds for β < 2 but I haven’t thought about it yet . . .
+
+                                                   5
+Note we could consider a variant of our model in which an immigrant at position y may join
+any city i, with probabilities proportional to I0 (Ni (t), |y − xi |); we have not studied this variant,
+which is more similar to the Chinese restaurant process.
+
+
+Random Johnson-Mehl tessellations [9] . In this model (in our language) cities appear as a
+space-time Poisson process (xi , ti ), and we imagine a wave traveling at speed one in all directions
+starting from xi at time ti ; the cell of the tessellation of xi is the set of points which are reached
+by the wave from xi before being reached by the wave from any xj , j 6= i. So (indentifying
+cell areas Ai with population) this gives a “static” model of positions and populations (xi , Ai ) of
+cities which involves spatial interaction.
+
+
+Coagulation models There is a large literature in physical chemistry on coagulation, meaning
+coalescence of clusters of mass. Though the underlying picture is of motion in space (with coa-
+lescence when clusters meet), the usual models [1] ignore spatial position and study deterministic
+equations for the density fi (t) of mass-i clusters at time t; a parameter in the equations is a kernel
+K(i, j) giving the propensity for mass-i and mass-j clusters to merge. Closest to our model is the
+special case of the Becker-Döring equations [8] of polymers growing by collisions with monomers;
+mass -i clusters can grow only by coalescing with mass-1 clusters.
+
+
+A spatial network model The only model we have found fitting our introductory xxx is one
+studied by simulation in [2]. This model has additional graph structure, but (interpreting their
+“number of edges” as “population”) is essentially the following model. Take an integer parameter
+m ≥ 1 and a “distance scale” parameter rc .
+
+(i) A city arrives at a uniform random point y in a given region, and is given population m.
+(ii) Simultaneously m existing cities have their population increased by 1, with city i chosen with
+probability proportional to Ni exp(−|y − xi |/rc ).
+
+This model was intended as a spatial analog of the “proportional attachment” models popular in
+the statistical physics of complex networks literature. Their conclusions focus on network traffic
+properties, and so are not comparable to ours.
+
+
+Real-world cities: size and spatial distribution           Two classic notions from economic geog-
+raphy are
+
+Zipf ’s law: that the distribution of city size N follows (for larger cities) approximately the power
+law P (N > n) ≈ cn−1 of exponent 1;
+
+Gibrat’s law: that the (percentage) growth rate of cities is independent of their size.
+
+See [5] for discussion. Empirical studies [6] generally find Zipf’s law to be quite accurate and
+Gibrat’s law to be more crudely realistic. The simplest stochastic model for Gibrat’s law is that
+percentage growth in successive time units is i.i.d. (over cities and times). This model of course
+leads to a log-normal distribution for city size; attempts to reconcile mathematically the two laws
+have led to a body of literature [5] which the authors find rather confused.
+
+A modern big picture of spatial aspects of economics is provided by the textbook [4]. We do not
+know any treatment in economic geography of an explicitly stochastic model of cities sizes and
+
+                                                   6
+positions. Interesting empirical study in [7] concludes
+
+
+      City location is essentially a random process and interactions between cities do not
+      help determine the size of a city. Both of these findings contradict our theoretical
+      priors about the role of geography (physical and economic) in determining city out-
+      comes.
+
+
+1.3    Notation
+
+Here we fix notation for the rest of the paper. Index cities as i = 1, 2, . . . in their order of founding.
+The state of the process at time t can be described as (Ni (t), xi ; 1 ≤ i ≤ M (t)) where M (t) is
+the number of cities at t, and Ni (t) and xi denote the population and position of city i. Write
+the ordered city sizes as N(1) (t) ≥ N(2) (t) ≥ . . . ≥ NM (t) (t) ≥ 1. Write (F(t)) for the natural
+filtration. Recall from (2,3) the influence random field
+
+                                   I(y, t) = c0 max Niα (t)|y − xi |−β
+                                                  i
+
+and the sphere of influence of city i
+
+                       S(i, t) = {y : Niα (t)|y − xi |−β = max Njα (t)|y − xj |−β }.
+                                                            j
+
+The definition of process dynamics says
+                                                                                 Z
+                                                                                           I(y, t)
+                                         P (Ni (t + 1) = Ni (t) + 1|F(t)) =                          dy
+                                                                                  S(i,t) 1 + I(y, t)
+                                                                                 1(y∈S(i,t))
+   P (M (t + 1) = M (t) + 1, NM (t+1) (t + 1) = 1, xM (t+1) ∈ dy|F(t)) =                      dy
+                                                                                 1 + I(y, t)
+                                                                M (t)
+                                                                X
+                                                                        Ni (t) = t.
+                                                                i=1
+
+We also study
+                         R(y, t) = distance from y to closest city at time t.
+We write D(y, r) for the disc of center y and radius r.
+
+Convention: Write κ < ∞ and κ−1 > 0 for constants depending only on the model parameters
+(c0 , α, β).
+
+
+
+
+                                                      7
+2    The unbalanced scenario
+
+In the case α > 1 or β < 2α we heuristically expect most of the population to be attracted into
+one or several large cities. There are many possible ways to xxx; here is our conjecture for xxx.
+Note that the number M (t) of cities, and the population t − N(1) (t) outside the largest city, are
+increasing in t, so there exist a.s. limits
+
+                 M (∞) := lim M (t) ≤ ∞;         N(≥2) (∞) := lim (t − N(1) (t)) ≤ ∞.
+                              t→∞                             t→∞
+
+
+Conjecture 1 (a) If α > 1 then M (∞) < ∞ a.s.
+(b) If β < 2α then N(1) (t)/t → 1 a.s. as t → ∞.
+(c) If α > 1 and β < 2α then N(≥2) (∞) < ∞ a.s.
+
+
+What we can actually prove is somewhat weaker.
+
+
+Theorem 2 (a) If α > 1 then P (N(≥2) (∞) = 0) > 0.
+(b) If β < 2α, then for all ε > 0
+
+                                    P (N(1) (t) > t1−ε ) → 1 as t → ∞.
+
+(c) Suppose α < 1 and β < 2α. Then there exists κ such that
+
+                                      P (N(≥2) (t) ≤ κt1−α ∀t) > 0
+
+and hence
+                                         P (N(1) (t)/t → 1) > 0.
+
+
+Remarks. (i) Of course it is possible that the first t + 1 arrivals form different cities, so
+P (N(≥2) (∞) ≥ t) ≥ P (M (∞) ≥ t + 1) > 0 for each t < ∞. Thus Theorem 2(a) shows there can
+be no simple 0 − 1 law for tail events, and we see no simple way to improve the conclusion of (c)
+to “with probability one”.
+
+(ii) It is easy to see that
+                                                               X         1
+                  M (∞) < ∞ a.s. if and only if Earea {y :                     < ∞} = 1.
+                                                                   t
+                                                                       I(y, t)
+
+So by considering the influence of the largest city, we see
+                                     N(1) (t)
+              if α > 1 and if limt    t1−ε
+                                              = ∞ a.s. for all ε > 0 then M (∞) < ∞ a.s.           (9)
+
+                                                   N(1) (t)
+In the case β < 2α, Theorem 2(b) shows limt         t1−ε
+                                                            = ∞ in probability; can we improve this to
+“a.s.”?
+
+(iii) To study the conjectures in the case β < 2α, the conjectured instability of the associated
+dynamic system (Conjecture 32) may be relevant.
+
+
+
+
+                                                    8
+Proof of Theorem 2(a) This is easy, by considering the event “at time t the whole population
+is in one city” and observing
+(i) P (N1 (t) = t) > 0 for each t ≥ 1.
+(ii) P (N1 (t + 1) = t + 1|Ft ) ≥ 1 − κt−α on {N1 (t) = t}
+for κ = 2β/2 /c0 . These imply
+
+                                if α > 1 then P (N1 (t) = t ∀t) > 0
+
+as required.
+
+
+2.1   Proof of Theorem 2(c)
+
+We start with a simple fixed-time geometry lemma. Let NA and xA be the population and
+position of city A.
+
+
+Lemma 3 (a) If NA > NB then {y : I(B, y) ≥ I(A, y)} is contained in the disc with center xB
+and radius r solving
+                            1 + |xA −x
+                                    r
+                                       B|
+                                          = (NA /NB )α/β .                              (10)
+(b) If NA /NB ≥ κ := (1 − π 1/2 /4)−β/α then the area of the sphere of influence of B is at most
+8(NB /NA )2α/β .
+
+
+Proof. For any point y with |y − xB | = s,
+                                                  α                     β
+                             I(B, y)          NB          s + |xA − xB |
+                                     ≤                                          .
+                             I(A, y)          NA                s
+
+For the left side to be ≥ 1, we require s to be smaller than the solution r of
+                                              α                     β
+                                          NB          r + |xA − xB |
+                                 1=
+                                          NA                r
+
+which reduces to (10). For (b), the choice of κ is such that NA /NB ≥ κ implies (NA /NB )α/β −1 ≥
+p
+  π/4 (NA /NB )α/β . Then the solution r of (10) satisfies
+                                     p                      p
+                     r ≤ |xA − xB | 4/π(NB /NA )α/β ≤ 8/π(NB /NA )α/β
+
+and the area in question is at most πr2 .
+
+The next lemma studies a process which will be used for comparison.
+
+
+Lemma 4 Let α > 0, γ > 1. Consider the continuous time particle process on sites {1, 2, 3, . . .},
+starting at time t0 with no particles, where particles arrive at site 1 at rate t−α , and where a
+particle at site j jumps to site j + 1 at rate (j/t)γ . Suppose j is sufficiently large that α + (γ −
+1)(j − 1) > 1. Then
+
+                E( number of particles which ever reach site j ) → 0 as t0 → ∞.
+
+
+
+
+                                                      9
+Proof. First consider the continuous-time Markov chain on sites {1, 2, 3, . . .}, with transitions
+j → j + 1 at rate j γ , and started at time 0 at site 1. Let Tj be the first hitting time to site j.
+Because Tj is the sum of j − 1 independent Exponentials,
+
+                                     P (Tj ≤ u) = O(uj−1 ) as u ↓ 0.
+
+Now consider a particle in the particle process arriving at time t1 > t0 , and write hj (t1 ) for the
+chance it ever reaches site j. Its motion is a deterministic time-change of the Markov chain, with
+time τ > t1 for the particle process corresponding to time
+
+                                                   t1−γ − τ 1−γ
+                                     Z τ
+                                          t−γ dt = 1
+                                       t1             γ−1
+for the Markov chain. So
+                                                    
+                                              t1−γ
+                                                                        
+                                                              (1−γ)(j−1)
+                      hj (t1 ) = P       Tj < γ−1
+                                               1
+                                                         = O t1            as t1 → ∞.
+
+Now                                                                         Z ∞
+               E( number of particles which ever reach site j ) =                 t−α hj (t) dt
+                                                                             t0
+and the result follows.
+
+Returning to our “cities” process, set γ = 2α/β > 1. Fix large t0 and suppose the first t0 arrivals
+join the same city. Let C(t) be the population of this city. Fix large K and consider the event
+
+                                Bt := {s − C(s) ≤ Ks1−α , 1 ≤ s ≤ t}.
+
+Given K, by choosing t0 sufficiently large we can assume
+
+                                     Bt ⊆ {C(s) ≥ s/2, 1 ≤ s ≤ t}.                                (11)
+
+
+xxx rest of argument only sketched. key points are that we are working on Bt at each t, and that
+constants κ and j0 do not depend on K.
+
+On the event Bt , using (11),
+                                            min I(y, t) ≥ κ−1 tα ∀t.                              (12)
+                                             y
+
+We now claim that the process of “populations of other cities” evolves as a discrete-time analog
+of the particle process in Lemma 4. That is, at time t
+
+(i) chance ≤ κt−α to found a new city
+(ii) for a city of population j, chance ≤ κ(j/t)γ to increase to j + 1
+
+the former by (12) and the latter by Lemma 3(b). So by the conclusion of Lemma 4 (xxx modified
+to discrete time and the extra constants) we can choose j0 and t0 such that the probability that
+any other city ever reaches population j0 is less than 1/100. The expected number of new cities
+up to time t is by (i) bounded by κt1−α and so (outside the event of probability < 1/100) the
+expected total population of the other cities is bounded by κj0 t1−α . Now specify
+
+                                                     K = 4κj0
+
+and we have shown
+                                                            99
+                                                 P (Bt ) ≥ 100 − 41 .
+This gives the result, recalling (12).
+
+                                                          10
+2.2   Proof of Theorem 2(b)
+
+Note that Lemmas 5 - 7 are true for all parameter values.
+
+Lemma 5
+
+                                  min I(y, t) ↑ ∞ a.s. as t → ∞.
+                                   y
+
+
+
+Proof. Fix K and define r(K) by
+                                           c0 (3r(K))−β = K.
+Fix a position y. We must have
+
+                                   sup         I(u, t) ↑ ∞ a.s. as t → ∞
+                               u∈D(y,r(K))
+
+otherwise cities would be founded in the disc, making the sup be infinite. If the nearest city to y
+                                      sup             I(u,t)
+is at distance ≥ 2r(K) then the ratio inf u∈D(y,r(K)) I(u,t) is bounded, and hence
+                                               u∈D(y,r(K))
+
+
+                         P (R(y, t) ≥ 2r(K),           inf       I(u, t) ≤ K) → 0.
+                                                   u∈D(y,r(K))
+
+But by definition of r(K)
+
+                         if R(y, t) < 2r(K) then inf u∈D(y,r(K)) I(u, t) > K
+
+and so we have shown that for each y
+
+                                  P(       inf       I(u, t) ≤ K) → 0.
+                                       u∈D(y,r(K))
+
+The result now follows by compactness (apply to a finite r(K)-dense set (yj ) ).
+
+
+Lemma 6 For each K < ∞                     X
+                                       E       ai (t)1(Ni (t)≤K) → 0.
+                                           i
+
+
+
+Proof. Fix K and define                    X
+                                 Wt =            ai (t)(K + 1 − Ni (t))+ .
+                                           i
+
+We want to upper bound the increment Wt+1 − Wt . There are three cases for the arrival at time
+t + 1.
+(i) If the arrival joins a city with population > K then Wt+1 − Wt ≤ 0.
+(ii) If the arrival joins a city i with population 1 ≤ Ni (t) ≤ K then Wt+1 − Wt ≤ −ai (t).
+(iii) If the arrival founds a new city whose sphere of influence has area a∗ then Wt+1 − Wt ≤ Ka∗ .
+Write I∗ = miny I(y, t). In case (iii) the sphere of influence is contained within a disc of radius r
+satisfying c0 r−β = I∗ and so a∗ ≤ π(c0 /I∗ )2/β . Thus
+                                                  X
+                   E(Wt+1 − Wt |Ft ) ≤ − I∗I+1 ∗
+                                                     ai (t)1(Ni (t)≤K) + Kπ(c0 /I∗ )2/β
+                                                    i
+                                       ≤   − I∗ +1 K + Kπ(c0 /I∗ )2/β .
+                                              I∗ Wt
+
+
+
+                                                      11
+Fix t0 and J, and for t ≥ t0 consider
+
+                                              w(t) = EWt 1(miny I(y,t0 )≥J) .
+
+Then
+                                                          J w(t)          2/β
+                                     w(t + 1) − w(t) ≤ − J+1 K + Kπ(c0 /J)
+
+which implies
+                                                              2        2/β
+                                           lim sup w(t) ≤ J+1
+                                                           J K π(c0 /J)    .
+                                               t
+
+Observe                   X
+                                ai (t)1(Ni (t)≤K) ≤ Wt 1(miny I(y,t0 )≥J) + 1(miny I(y,t0 )<J) .
+                            i
+
+So                              X
+                                                             2        2/β
+             lim sup E               ai (t)1(Ni (t)≤K) ≤ J+1
+                                                          J K π(c0 /J)    + P (min I(y, t0 ) < J).
+                    t                                                                           y
+                                i
+
+By Lemma 5 we can let t0 → ∞ to make the final term → 0, and then letting J → ∞ we see the
+right side equals 0.
+
+                R
+Lemma 7 E           log I(y, t) dy ≥ (α − o(1)) log t as t → ∞.
+
+
+Remarks. Thus is true for all parameter values. But in the balanced (β > 2α) case the
+conjectured exponent ζ[I] satisfies ζ[I] > α and so the assertion of the lemma is not sharp.
+
+Proof. Write                                                Z
+                                                    Vt :=       log I(y, t) dy.
+
+Monotonicity of I implies log I(y, t + 1) − log I(y, t) ≥ 0. To get a quantitative lower bound on
+this increment, observe that if the arrival at time t + 1 joins city i then for y ∈ S(i, t) we have
+I(y, t + 1) = I(y, t)( NNi (t)+1
+                            i (t)
+                                  )α and so
+
+                                    log I(y, t + 1) − log I(y, t) = α log(1 + Ni−1 (t)).
+
+So                                                         X
+                                E(Vt+1 − Vt |Ft ) ≥             p(i, t)ai (t)α log(1 + Ni−1 (t))
+                                                            i
+
+where p(i, t) is the conditional probability that the arrival at time t + 1 joins city i. Now
+                                                       J
+                                            p(i, t) ≥ J+1 ai (t)1(miny I(y,t)≥J)
+
+and so
+                                              αJ X 2
+                E(Vt+1 − Vt |Ft ) ≥               ai (t) log(1 + Ni−1 (t)) × 1(miny I(y,t)≥J) .
+                                             J +1
+                                                       i
+
+Choose n(J) such that
+                                             log(1 + n−1 ) ≥ J−1
+                                                              Jn , n ≥ n(J)
+
+we see
+                                                   α(J − 1)         X           a2i (t)
+                        E(Vt+1 − Vt |Ft ) ≥                                     Ni (t))   × 1(miny I(y,t)≥J) .
+                                                    J +1
+                                                                i:Ni (t)≥n(J)
+
+
+
+
+                                                                 12
+Using the inequality (from Cauchy-Schwarz)
+                                X              X         X
+                                    a2i /νi ≥ (  ai )2 /(  νi )
+                                      i                 i              i
+
+this becomes
+                                                                                  !2
+                                   α(J − 1)   X
+               E(Vt+1 − Vt |Ft ) ≥                     ai (t)1(Ni (t)≥n(J))            × 1(miny I(y,t)≥J) .
+                                   t(J + 1)
+                                                   i
+
+Using Lemmas 5 and 6 we can put this into the format
+
+                                 E(Vt+1 − Vt |Ft ) ≥ α(J−1)
+                                                     t(J+1) (1 − ∆J,t )
+
+where
+                                    0 ≤ ∆J,t ≤ 1;           lim E∆J,t = 0.
+                                                             t
+
+This implies
+                                EVt+1 − EVt ≥ (α − o(1))/t as t → ∞
+and the result follows
+
+The next lemma
+            R   shows that, in the unbalanced case, we can relate the presence of large cities to
+the value of log I(y, t) dy.
+
+                                                                           β/2
+Lemma 8 Let 0 < α < ∞ and β < 2α. Set κ = β2 log(eπc0 ). Consider an arbitrary configura-
+tionRat time t.
+      R I(y) dy ≤ α log t + κ.
+(a) log
+                                                           2
+(b) If log I(y) dy ≥ α log t + κ − J then N(1) ≥ t exp(− 2α−β J).
+
+
+Proof. By solving for r the equation c0 Niα r−β = x we get
+
+                area {y : influence of city i at y is ≥ x } ≤ πr2 = π(c0 x−1 Niα )2/β
+
+and so
+                                                             2/β           2α/β
+                                                                   X
+                             area {y : I(y) ≥ x} ≤ πc0                 Ni         x−2/β .
+                                                                   i
+                  2/β P   2α/β
+So, setting A = πc0    i Ni    ,
+                         Z                    Z ∞
+                             log I(y) dy =             area {y : log I(y) ≥ u} du
+                                               0
+                                              Z ∞
+                                          ≤            min(1, A exp(−2u/β) du
+                                               0
+                                              β
+                                          =   2 (1 + log A)
+                                                         X 2α/β
+                                          =   κ + β2 log(   Ni  ).                                            (13)
+                                                          i
+
+                                                P 2α/β                          P
+Now 2α/β > 1, so the maximum possible value of i Ni       under the constraint i Ni = t is
+                                   P 2α/β
+attained by taking N1 = t. That is, i Ni   ≤ t2α/β and then (13) gives (a). Alternatively, fix
+                                                                                   P 2α/β
+m < t and constrain each Ni to be at most m. Then the maximum possible value of i Ni
+
+
+                                                       13
+is attained by taking N1 = N2 = . . . = m for t/m cities (xxx say more carefully) and so
+P 2α/β
+   i Ni    ≤ mt m2α/β . In other words,
+                                                          2α−β
+                                             2α/β
+                                        X
+                                            Ni       ≤ tN(1)β .
+                                        i
+
+Using (13) and the hypothesis of (b),
+
+                          α log t + κ − J ≤ κ + β2 log t + 2α−β
+                                                             2 log N(1)
+
+which rearranges to the conclusion of (b).
+
+                                                 R
+Proof of Theorem 2(b) Again write Vt :=              log I(y, t) dy. By Lemmas 8(a) and 7
+
+                            Vt ≤ α log t + κ;    EVt ≥ (α − o(1)) log t
+
+which imply that for fixed ε > 0
+
+                                   P (Vt < (α − ε) log t) → 0.
+
+Lemma 8(b) now implies that for each ε > 0
+
+                                     P (N(1) (t) ≥ t1−ε ) → 0
+
+as required.
+
+
+
+
+                                                 14
+3    The balanced scenario: α < 1 and β > 2α
+
+Recall notation:
+Ni (t) = size of city i at time t
+R(y, t) = distance from y to nearest city at time t.
+
+We seek to formalize the heuristics in section 1 by studying the following rigorously defined upper
+and lower exponents for the growth rates of three quantities. In each case we have ζ∗ ≤ ζ ∗ .
+
+ζ ∗ [I] is the infimum of φ such that
+
+                                       Earea {y : I(y, t) ≥ tφ } → 0.
+
+ζ∗ [I] is the supremum of φ such that
+
+                                       Earea {y : I(y, t) ≤ tφ } → 0.
+
+ζ ∗ [R] is the infimum of ξ such that
+
+                                       Earea {y : R(y, t) ≥ tξ } → 0.
+
+ζ∗ [R] is the supremum of ξ such that
+
+                                       Earea {y : R(y, t) ≤ tξ } → 0.
+
+ζ ∗ [N ] is the infimum of ψ such that
+                                                X
+                                            E       ai (t)1(Ni (t)≥tψ ) → 0.
+                                                i
+
+ζ∗ [N ] is the supremum of ψ such that
+                                      X
+                                    E   ai (t)1(Ni (t)≤tψ ) → 0.
+                                                i
+
+
+
+In the final two definitions, ai (t) = area S(i, t), and the quantity under consideration is a tech-
+nically convenient proxy for the more intuitive quantity t−1 i Ni (t)1(Ni (t)≥tψ ) representing pro-
+                                                               P
+portion of population in large cities (see Lemma 12).
+
+The heuristic arguments suggest the conjectures
+
+            ζ∗ [I] = ζ ∗ [I] = ζ∗ [N ] = ζ ∗ [N ] = 2−2α+β
+                                                       β
+                                                           > 0;        ζ∗ [R] = ζ ∗ [R] = 2−2α+β
+                                                                                            α−1
+                                                                                                 < 0.
+
+
+We summarize our analysis as follows.
+
+ P rop.9    ζ ∗ [I] ≤ αζ ∗ [N ] − βζ∗ [R]       definition of I(y, t)
+ P rop.11   ζ ∗ [N ] ≤ β−2ζ
+                        β−2α
+                             ∗ [I]
+                                                I large implies cities can’t grow fast
+ P rop.15   ζ ∗ [I] ≥ 1 + 2ζ ∗ [R]              I small implies nearby cities founded often
+ P rop.15   ζ∗ [I] ≥ 1 + 2ζ∗ [R]                I small implies nearby cities founded often
+ P rop.18   ζ∗ [I] ≤ 1 + 2ζ∗ [R]                I large implies nearby cities founded seldom
+
+Note these are all “sharp” in the sense of being equalities for the conjectured values.
+
+
+                                                           15
+xxx obviously this isn’t enough to prove the conjectures, but organizes what we know. Maybe
+helps us to formulate what we need to prove!
+
+xxx the inequalities above imply
+                                          ζ∗ [I] = 1 + 2ζ∗ [R]
+and then (using the first two inequalities) we get
+
+                            (β 2 − 2αβ + 4α)ζ∗ [I] + 2(β − 2α)ζ ∗ [I] ≤ β 2 .
+
+Then using ζ∗ [I] ≤ ζ ∗ [I] we get
+                                                        β
+                                            ζ∗ [I] ≤ 2−2α+β
+where the right side is the conjectured value.
+
+xxx need 12 inequalities; 3 are trivial; so we have gotten 8 so far!!!!!!
+
+
+
+
+                                                   16
+3.1    From the definition of I(y, t)
+
+Proposition 9 ζ ∗ [I] ≤ αζ ∗ [N ] − βζ∗ [R].
+
+
+Proof. Write σ(y) for the city in whose sphere of influence y resides. Then
+                                       α
+                            I(y) = c0 Nσ(y) |y − xσ(y) |−β ≤ c0 Nσ(y)
+                                                                 α
+                                                                      r−β (y).
+
+So if ψ and ξ are such that
+
+                           Earea {y : Nσ(y,t) (t) < tψ and R(y, t) > tξ } → 1                                      (14)
+
+then
+                                  Earea {y : I(y, t) ≤ c0 tαψ−βξ } → 1
+and so ζ ∗ [I] ≤ αψ − βξ. Now because
+                                                                    X
+                         Earea {y : Nσ(y,t) (t) ≥ tψ } = E                 ai (t)1(Ni (t)≥tψ ) ,
+                                                                      i
+
+(14) holds when ξ < ζ∗ [R] and ψ > ζ ∗ [N ], establishing the result.
+
+xxx next lemma is similar; not yet used. Its point is that the conjectured exponents satisfy
+
+                                          1 = α1 ζ[I] + β−2α
+                                                         α ζ[R]
+
+and so it says that, if I ∗ is larger than the conjectured value, this cannot be caused by cities
+farther away than the conjectured value r∗ (t).
+
+
+Lemma 10 Let β > 2α. For an arbitrary configuration at time t,
+                                                                                                       κt
+          area {y : I(y, t) ≥ b and y ∈ S(i, t) for some i with |y − xi | ≥ r} ≤                            β−2α
+                                                                                                   b1/α r    α
+
+
+              1/α
+where κ = πc0 .
+
+
+Proof. Fix b and r. Let city i have population ni . Then
+
+                      area {y : |y − xi | ≥ r, I0 (ni , |y − xi |) ≥ b} ≤ π(s2i − r2 )+
+
+where si is the solution of c0 nαi s−β
+                                    i  = b, so s2i = (c0 nαi b−1 )2/β . Define n0 by
+
+                                           r2 = (c0 nα0 b−1 )2/β .
+
+Then the area under consideration in the lemma (A, say) satisfies
+                                         X
+                               A ≤ π        (s2i − r2 )+
+                                                i
+                                                X
+                                        ≤ π               s2i
+                                               i:ni ≥n0
+                                                2/β                         2α/β
+                                                                 X
+                                        = πc0 b−2/β                        ni      .
+                                                                i:ni ≥n0
+
+
+                                                      17
+Note the general inequality
+                                            P
+                                              i ni
+                                  nγi ≤
+                              X
+                                                    , 0 < γ < 1, ni > 0.     (15)
+                              i           mini n1−γ
+                                                 i
+
+Applying this with γ = 2α/β gives
+
+                                             2/β                 t
+                                    A ≤ πc0 b−2/β ×           1−2α/β
+                                                                         .
+                                                             n0
+
+Solving the equation for n0 leads to
+                                                     β−2α            β−2α
+                                     1−2α/β
+                                    n0          =r    α     (b/c0 ) αβ
+
+and the result follows.
+
+
+
+
+                                                     18
+3.2    I large implies cities can’t grow fast
+
+xxx idea: if the typical value I ∗ (t) is large then the sphere of influence of a city is small and so
+cities can’t grow fast. So an lower bound on I ∗ (t) gives an upper bound on city size.
+
+
+Proposition 11 Let β > 2α. Let α < φ < β/2 and suppose
+
+                                 Earea {y : I(y, t) ≤ tφ } → 0 as t → ∞.                             (16)
+
+Then                                           X
+                                           E       ai (t)1(Ni (t)≥tψ ) → 0.                          (17)
+                                               i
+
+for all ψ satisfying
+                                                               β − 2φ
+                                                   1>ψ>               .                              (18)
+                                                               β − 2α
+That is,
+                                                            β − 2ζ∗ [I]
+                                               ζ ∗ [N ] ≤               .
+                                                             β − 2α
+
+
+Proof. The general inequality (15) implies that for each t
+                                                                            t
+                                           Niγ (t)1(Ni (t)≥tψ ) ≤
+                                     X
+                                                                                  .
+                                       i
+                                                                        tψ(1−γ)
+
+Applying this with γ = 2α/β gives
+                                                            2α/β
+                                                    X
+                                tψ(1−2α/β)−1 E            Ni       (t)1(Ni (t)≥tψ ) ≤ 1.
+                                                     i
+
+Let ri (t) be the solution of
+                                               c0 Niα (t)/riβ (t) = tφ .
+Then
+                                                    1/β     2α/β
+                                      ri2 (t) = c0 Ni              (t) t−2φ/β .
+The lower bound on ψ implies −2φ/β < ψ(1 − 2α/β) − 1 and so
+                                  X
+                                E    ri2 (t)1(Ni (t)≥tψ ) → 0.                                       (19)
+                                               i
+
+Now let ai (t) be the area of the sphere of influence of city i and let a(t) = area {y : I(y, t) ≤ tφ }.
+Then                      X                                X
+                              ai (t)1(Ni (t)≥tψ ) ≤ a(t) +   πri2 (t)1(Ni (t)≥tψ )
+                           i                                        i
+
+the two terms corresponding the the regions y where I(y, t) < tφ and where I(y, t) > tφ . So using
+(19) and (16)                        X
+                                  E      ai (t)1(Ni (t)≥tψ ) → 0.
+                                               i
+
+
+
+The next lemma records a relation between ζ ∗ [N ] and the more intuitive quantity t−1
+                                                                                           P
+                                                                                            i Ni (t)1(Ni (t)≥tψ ) .
+
+
+
+                                                            19
+Lemma 12 For all ψ > ζ ∗ [N ],
+                                              X
+                                      t−1 E           Ni (t)1(Ni (t)≥tψ ) → 0.
+                                                  i
+
+
+
+Proof. Take ψ > ζ ∗ [N ], so by definition
+                                       X
+                                     E     ai (t)1(Ni (t)≥tψ ) → 0.
+                                              i
+
+Let q(t + 1) be the probability that the arrival at time t + 1 joins a city with population ≥ tψ .
+Then                                       X
+                              q(t + 1) ≤ E     ai (t)1(Ni (t)≥tψ ) → 0
+                                                        i
+
+the inequality arising from the possibility of founding a new city. Now consider at time t a city
+with population Ni (t) ≥ 2tψ . Then at least half the population arrived at times s + 1 ≤ t for
+which Ni (s + 1) ≥ tψ ≥ sψ , and so
+
+                                  X                                t
+                                                                   X
+                                      1
+                              E       2 Ni (t)1(Ni (t)≥2tψ ) ≤           q(s) = o(t).
+                                  i                                s=1
+
+This establishes the Proposition, since we may replace ψ by a slightly smaller ψ 0 .
+
+
+
+
+                                                            20
+3.3    I small implies nearby cities founded often
+
+xxx these arguments use D(y, r) = disc of radius r around center y and implicitly assume disc is
+inside the unit square, so they’re not precisely correct as stated in this version, but “essentially
+correct” because we only care about typical positions y and small r.
+
+xxx study trade-off between influence at a point y and the distance to nearest city. Proposition
+15 shows we cannot have both the influence being small and the distance being large.
+
+We start with an easy geometry lemma.
+
+Lemma 13 Suppose the nearest city to position y is at distance r∗ . Then for all x ∈ D(y, r∗ )
+                                            −β       I(x)            −β
+                                 1 + |x−y|
+                                       r∗          ≤        ≤ 1 − |x−y|
+                                                                    r∗      .
+                                                       I(y)
+
+Proof. I(x) = I(x, B) for some city B at some position z with |z − y| ≥ r∗ . Since I(y) ≥ I(y, B),
+                                                                 −β
+                            I(x)    I(x, B)                 |z−x|
+                                  ≤         ≤       inf
+                            I(y)    I(y, B)    z: |z−y|≥r ∗ |z−y|
+
+and the infimum is attained at the point on the boundary closest to x, where the ratio equals
+(r∗ − |x − y|)/r∗ . For the lower bound, I(y) = I(y, B) for some city B at some position z with
+|z − y| ≥ r∗ , so
+                          I(x)    I(x, B)  |z−x| −β  |z−y|+|y−x| −β
+                               ≥          = |z−y|     ≥      |z−y|
+                          I(y)    I(y, B)
+and the fraction is maximized when |z − y| = r∗ .
+
+The next result is an immediate consequence, using the rule for founding new cities.
+
+Corollary 14 Consider an arbitrary configuration at time t and a position y. Let r∗ be the
+distance from y to the nearest city. Define f (r), 0 < r < r∗ by
+
+         f (r)dr = P (arrival at time t + 1 founds city at distance ∈ (r, r + dr) from y).
+
+Then
+                              2πr         r β            2πr        r β
+                             1+I(y) (1 − r ∗ ) ≤ f (r) ≤ I(y) (1 + r∗ ) .
+
+
+
+Proposition 15 Fix a position y. Let R(y, t) be the distance from y to the nearest city. Then
+                                                             κ(b + 1)
+                     P (I(y, t) ≤ b, R(y, t) ≥ z) ≤                   ,   t ≥ 1, 0 < b, z      (20)
+                                                               tz 2
+where κ = 2β+2 /π. So
+                             ζ ∗ [I] ≥ 1 + 2ζ ∗ [R];         ζ∗ [I] ≥ 1 + 2ζ∗ [R].
+
+
+Proof. Consider T := min{t : I(y, t) > b or R(y, t) < z}. On the event {T > t} the lower bound
+in Corollary 14 implies
+                                       Z z/2                         Z z/2
+                                2π                         β      2π                        z2
+                 z
+   P (r(t + 1) ≤ 2 |F(t)) ≥                          r
+                                             r(1 − R(y,t) ) dr ≥           r( 21 )β dr =          .
+                            1 + I(y, t) 0                        1+b 0                   κ(b + 1)
+
+                                                        21
+But
+                       P (T = t + 1|F(t)) ≥ P (r(t + 1) ≤ z2 |F(t)) on {T > t}
+and so the distribution of T − 1 is stochastically bounded by the Geometric distribution with
+mean κ(b + 1)/z 2 . The event in (20) is {T ≥ t + 1}, so inequality (20) follows from Markov’s
+inequality.
+
+Now consider ξ < ζ∗ [R], so
+                                    Earea {y : R(y, t) ≤ tξ } → 0.
+Applying (20) with z = tξ shows
+
+                      Earea {y : I(y, t) ≤ b(t)} → 0 whenever b(t)/t1+2ξ → 0
+
+implying ζ∗ [I] ≥ 1 + 2ξ and thus ζ∗ [I] ≥ 1 + 2ζ∗ [R]. Conversely, consider φ > ζ ∗ [I], so
+
+                                     Earea {y : I(y, t) ≥ tφ } → 0.
+
+Applying (20) with b = tφ shows
+
+                     Earea {y : R(y, t) ≥ z(t)} → 0 whenever tφ /(tz 2 (t)) → 0
+
+implying φ ≥ 1 + 2ζ ∗ [R] and thus ζ ∗ [I] ≥ 1 + 2ζ ∗ [R].
+
+
+
+
+                                                   22
+3.4   I large implies nearby cities founded seldom
+
+xxx continues ideas of previous section.
+
+
+Lemma 16 Let 0 < ν < µ < 1. Then there exists a constant J = J(ν, µ) such that for each T
+there exist integers 1 = s1 ≤ s2 ≤ . . . ≤ sJ+1 = T + 1 such that
+
+                                   s−µ
+                                    j (sj+1 − sj ) ≤ T
+                                                       1−ν
+                                                           , 1 ≤ j ≤ J.
+
+
+Proof. (xxx sketch). Define sj inductively by s−µ
+                                               j (sj+1 − sj ) = T
+                                                                  1−ν . Then s       µ 1−ν
+                                                                              j+1 ≈ sj T   and
+inductively
+                               sj ≈ T aj ; aj+1 = µaj + (1 − ν)
+             1−ν
+so that aj → 1−µ > 1 and we just choose J such that aJ+1 > 1.
+
+The next lemma relates exponents for the quantities to exponents for sums of inverses. It uses
+only the momotonicity property of I(y, ·).
+
+
+Lemma 17 For all φ < ζ∗ [I]
+                                                 t
+                                                 X
+                                  Earea {y :           I −1 (y, s) ≥ t1−φ } → 0.
+                                                 s=1
+
+
+
+Proof. Take 0 < φ < ζ∗ [I], so by definition
+
+                                     Earea {y : I −1 (y, t) ≥ t−φ } → 0.
+
+Given ε > 0 we can choose Kε < ∞ such that
+
+                                Earea {y : I −1 (y, t) ≥ Kε t−φ } ≤ ps,        ∀t.           (21)
+
+Take 0 < ν < φ. Take J = J(ν, φ) as in Lemma 16 and for given t take (1 = s1 , s2 , . . . , sJ+1 =
+t + 1) as in that lemma. If
+                              I −1 (y, sj ) ≤ Kε s−ν
+                                                  j , 1≤j ≤J
+
+then by monotonicity
+                          t                     J
+                                                      Kε s−φ
+                          X                     X
+                                I −1 (y, s) ≤             j (sj+1 − sj ) ≤ JKε t
+                                                                                 1−ν
+                                                                                     .
+                          s=1                   j=1
+
+So using (21)
+                                             t
+                                             X
+                                Earea {y :         I −1 (y, s) > JKε t1−ν ) ≤ Jε
+                                             s=1
+
+and the result follows.
+
+
+Proposition 18 ζ∗ [I] ≥ 1 + 2ζ∗ [R].
+
+
+
+
+                                                          23
+Proof. (xxx sketchy). Fix a position y. We want to compare the joint process (I(y, t), R(y, t))
+with a joint process (I(y, t), r̂(y, t)) where r̂(y, t) is defined as follows. Create “virtual points”
+according to the rule:
+
+given the configuration at time t, place a virtual point at time t + 1 uniformly in the disc with
+center y and area I(y)/2β .
+
+Let r̂(y, t) be the distance from y to the closest virtual point. Using the upper bound in Corollary
+14, (xxx details omitted) we can couple R(y, t) and r̂(y, t) such that
+
+                                          r̂(y, t) ≤ R(y, t).
+
+Then
+
+                  P (R(y, t) ≤ r|I(y, s), s ≤ t) ≤ P (r̂(y, t) ≤ r|I(y, s), s ≤ t)
+                                                           X t
+                                                    β
+                                                 ≤ 2 πr  2
+                                                               I −1 (y, s).
+                                                                  s=1
+
+So if 2φ + q < 0 then
+                                                 t
+                                                 X
+                                            φ
+                              P (R(y, t) ≤ t ,         I −1 (y, s) ≤ tq ) → 0.
+                                                 s=1
+
+Now using Lemma 17,
+                                   Earea {y : R(y, t) ≤ tφ } → 0
+provided 2φ + (1 − ζ∗ [I]) < 0 and the result follows.
+
+
+
+
+                                                   24
+4    xxx nontrivial geometry
+
+Proposition 19 gives (in the case β > 2α) a lower bound on the influence function over discs of
+the size that contains Θ(1) cities. Here’s the essential idea. Suppose there are at least 1 and at
+most K cities in a disc at time t. If the influence function is small, then at least one city must
+                                      t
+grow, over the time interval [t, t + 10 ], and this growth in population implies a lower bound on
+                                    t
+the influence function at time t + 10 .
+
+
+Proposition 19 Let 0 < α < ∞ and β > 2α. Let D(y, 2r) be in the unit square. Consider an
+arbitrary feasible configuration at time t0 . Fix t1 > t0 and fix b, K. Suppose
+
+                                    sup{I(z, t0 ) : z ∈ D(y, r/2)} ≥ b.                             (22)
+
+Write Q(y, t, 2r) for the number of cities in D(y, 2r) at time t. Then,
+                                                           
+                                                        −β        κ∆(q) 1/α β −2
+                P Q(y, t, 2r) ≤ q;     inf I(z, t1 ) ≤ 3 b ≤                b rα                    (23)
+                                    z∈D(y,r)                     (t1 − t0 )
+where κ depends only on the model parameters and ∆(q) depends only on q.
+
+
+Note in particular that hypothesis (22) holds for all b if there is some city in D(y, r/2).
+
+xxx in proof below we have written K(t) = Q(y, t, 2r).
+
+We start with a “pure geometry” lemma, not involving our process. Write D(r) for the disc of
+radius r centered at the origin.
+
+Lemma 20 Fix K ≥ 1. Let D1 , . . . , DK be discs of arbitrary radii, each centered at some point
+in D(2) . Let S = ∪K                                            (1)
+                    i=1 Di and let Ai ⊆ Di be such that (Ai ∩ D , 1 ≤ i ≤ K) is a partition of
+S ∩ D(1) . Suppose
+(i) S intersects D(1/2) ;
+(ii) S does not cover D(1) .
+Then
+                                       area (Ai ∩ D(1) )
+                                  max                    ≥ δ(K)                             (24)
+                                 1≤i≤K    area (Di )
+where δ(K) > 0 depends only on K.
+
+Note that we may take δ(K) to be decreasing in K. Our argument gives δ(K) ∼ K −3 , which
+presumably could be improved (xxx but improvement would not help of arguments, I guess).
+
+Proof. We may suppose D1 intersects D(1/2) . Consider the connected cluster, say D1 , . . . , DL
+(1 ≤ L ≤ K) of overlapping discs containing disc D1 . Consider first the case where this cluster
+lies within D(1) . We assert, in this case,
+                                            area (Ai )
+                                      max              ≥ L−1 ≥ K −1                                 (25)
+                                      1≤i≤L area (Di )
+
+establishing (24). If (25) fails then, for each 1 ≤ j ≤ L,
+                              L
+                              X                         L
+                                                        X                        L
+                                                                                 X
+               area (Dj ) =         area (Dj ∩ Ai ) ≤         area (Ai ) < L−1         area (Di )
+                              i=1                       i=1                      i=1
+
+
+                                                    25
+and summing over j gives a contradiction.
+
+Now consider the alternate case. Here we can choose a sequence D1 , D2 , . . . , DL where each
+successive pair Di , Di+1 overlap and where
+
+                   L = min{i : Di is not contained in D(1) } satisfies 1 ≤ L ≤ K.
+
+We assert that
+                                        area (S ∩ D(1) ) ≥ π( 8K
+                                                               1 2
+                                                                 ) .                                (26)
+If L = 1 then D1 intersects both D(1/2) and the complement of D(1) , so D1 ∩ D(1) contains a
+                                                                                                 1
+disc of diameter 1/2, implying (26). If L ≥ 2 and one of D1 , . . . , DL−1 has radius ≥ 8K         , then
+                                                                             1
+(26) is clearly true. If L ≥ 2 and none of D1 , . . . , DL−1 has radius ≥ 8K    , then DL−1 is contained
+inside D(3/4) and so DL intersects both D(3/4) and the complement of D(1) , and thus (repeating
+the argument for D1 above) area (DL ∩ D(1) ) ≥ π(1/8)2 . This establishes (26). Now each Di has
+radius at most 3, because it is centered in D(2) and does not cover D(1) . So
+                                                         PK                   (1)
+                               area (Ai ∩ D(1) )           i=1 area (Ai ∩ D )
+                          max                        ≥       PK
+                         1≤i≤K    area (Di )                   i=1 area (Di )
+                                                           area (S ∩ D(1) )
+                                                     ≥
+                                                                K π32
+                                                               1 2
+                                                           π( 8K )
+                                                     ≥             .
+                                                            9πK
+
+
+The next lemma is a routine martingale-type bound.
+
+Lemma 21 Let (Ni (t), 1 ≤ i ≤ K, t = 1, 2, . . .) be {0, 1, 2, . . .}-valued and adapted to a filtration
+(F(t)). Suppose that, for each t,
+either Ni (t + 1) = Ni (t) ∀i;
+or Nj (t + 1) = Nj (t) + 1 and Ni (t + 1) = Ni (t) ∀i 6= j, for some random j.
+Define qi (t) = P (Ni (t + 1) = Ni (t) + 1|F(t)). Fix a time interval [t0 , t1 ] and fix c > 0 and
+0 < γ < 1. Suppose that, for each t0 ≤ t < t1 ,
+
+                            qi (t) ≥ c(Ni (t))γ , for some i with Ni (t) ≥ 1.                       (27)
+
+Suppose maxi Ni (t0 ) ≥ 1. Then for any integer z,
+
+                                                              K 2 z 1−γ
+                               P (max Ni (t1 ) < z) ≤                        .
+                                    i                     (1 − γ)c(t1 − t0 )
+
+Proof. Define τi (0) = min{t ≥ t0 : Ni (t) ≥ 1, qi (t) ≥ c(Ni (t))γ } and then inductively for
+s = 1, 2, 3, . . . define
+                            τi (s) = min{t > τi (s − 1) : qi (t) ≥ c(Ni (t))γ }.
+    ei (s) = Ni (τi (s)) and Fei (s) = F(τi (s)). Then N
+Set N                                                   ei (0) ≥ 1 and
+
+                               ei (s + 1) ≥ N
+                            P (N            ei (s) + 1|F(s))
+                                                       e         ei (s))γ .
+                                                             ≥ c(N
+                                                                 ei (t) ≥ z} satisfies
+By comparison with the related pure birth process, Ti := min{t : N
+                                              z−1
+                                              X    1       z 1−γ
+                                        ETi ≤          ≤          .
+                                                  cj γ   (1 − γ)c
+                                               j=1
+
+
+                                                     26
+Using Markov’s inequality, for any σ
+
+                                 ei (σ) < z) = P (Ti > σ) ≤          z 1−γ
+                              P (N
+                                                                   σ(1 − γ)c
+and so
+                                                                    Kz 1−γ
+                             P (Ni (τi (σ)) < z for some i) ≤                .
+                                                                   σ(1 − γ)c
+Setting σ = (t1 − t0 )/K, the hypothesis (27) implies τi (σ) ≤ t1 − t0 for some (random) i, so
+
+                                                             Kz 1−γ
+                                  P (max Ni (t1 ) < z) ≤              .
+                                       i                    σ(1 − γ)c
+
+
+xxx some unimportant details slid over in proof above: τi (s) may be ∞; as defined σ not integer.
+
+
+Proof of Proposition 19 Index the cities in D(y, 2r) at time t by 1 ≤ i ≤ K(t), and write
+
+                                      Di (t) = {z : Ii (z, t) ≥ b}.
+
+Suppose, at some time t0 ≤ t ≤ t1 , the influence I(A, z, t) at some z ∈ D(y, r) from some city
+A outside D(y, 2r) is ≥ b. Then min{I(A, z, t1 ) : y ∈ D(y, r)} ≥ 3−β b and so the event in (23)
+cannot happen. So we may ignore the possibility that the influence within D(y, r) from some city
+outside D(y, 2r) exceeds b. That is, defining
+                                                     K(t)
+                                           S(t) = ∪i=1 Di (t),
+
+we may assume that S(t) coincides with {z : I(z, t) ≥ b} on D(y, r). Note that the quantity in
+(23) can now be bounded as
+
+                           P (K(t1 ) ≤ K, S(t1 ) does not cover D(y, r)).
+
+Write Ni (t) for the population of city i. Let Ai (t) be the “sphere of influence” of city i at time t.
+We now claim that we can apply Lemma 20 at each time t0 ≤ t < t1 . Hypothesis (i) of Lemma
+20 follows from hypothesis (22); and if hypothesis (ii) fails we are done. From the conclusion of
+Lemma 20, at each time t0 ≤ t < t1 there is a random i such that
+
+                                  area (Ai (t)) ≥ δ(K)area (Di (t)).
+
+(xxx notes: we have scaled Lemma 20 by r; and we may assume Ki (t) ≤ K or we are done).
+From the explicit form of the influence function
+
+                                           I0 (m, r) = c0 mα r−β
+
+we calculate
+                                 area (Di (t)) = π(c0 b−1 Niα (t))2/β .
+So (xxx ignoring possibility that a new arrival founds a new city) condition (27) holds with
+
+                                 c = δ(K)π(c0 b−1 )2/β ,     γ = 2α/β
+
+and by assumption we are in the case 0 < γ < 1. Now define w by
+
+                                            c0 wα (3r)−β = b.
+
+                                                    27
+At time t1 , if some city in D(y, 2r) has size at least w, then its influence is at least b over all of
+D(y, r). So by the conclusion of Lemma 21
+
+       P (K(t1 ) ≤ K, S(t1 ) does not cover D(y, r)) ≤ P (K(t1 ) ≤ K, max Ni (t1 ) < w)
+                                                                                  i
+                                                                 K 2 w1−γ
+                                                         ≤
+                                                             (1 − γ)c(t1 − t0 )
+
+and this bound reduces to the form stated in (23).
+
+
+
+
+                                                  28
+5    The critical case
+
+xxx haven’t tried to study the unbalanced case yet . . . . . .
+
+Here we take α = 1 and β > 2.
+
+
+Heuristics    Looking at the heuristic argument in section 1, equation (4) becomes
+                                           dM     −1 −β/2+1
+                                            dt ≈ t M
+
+whose solution is
+                                            M (t) ≈ log2/β t.
+Continuing the heuristics as before gives
+                                                      1− β2
+                          I ∗ (t) ≈ N ∗ (t) ≈ t log           t;   R∗ (t) ≈ log−1/β t.
+
+So in particular we may conjecture the following “just sublinear” growth rate for the largest city.
+
+                                                                     1− β2 ±o(1)
+Conjecture 22 If α = 1 and β > 2 then N(1) (t) = t log                             t a.s.
+
+
+A natural first step would be to prove t−1 N(1) (t) → 0 a.s.. In this draft we have managed only
+to prove the “lim inf” version.
+
+
+Theorem 23 If α = 1 and β > 2 then lim inf t t−1 N(1) (t) = 0 a.s.
+
+
+Remarks. Not only is the result unsatisfactory, but the proof “by contradiction” is complicated.
+Hopefully one can use these ingredients to find a better proof of a better result! The proof uses
+the “geometry” result, Proposition 19.
+
+
+Proof of Theorem 23 To start the proof by contradiction, we take the negation of “lim inf t t−1 N(1) (t) =
+0 a.s.” to be (xxx not precise, but fix-able)
+
+                                   ∃a0 such that N(1) (s) ≥ a0 s ∀s.
+
+This implies there exists c1 such that
+
+                                         min I(y, s) ≥ c1 s ∀s.                                (28)
+                                           y
+
+We now embark upon a series of lemmas.
+
+The first lemma uses a more delicate analysis of the interplay between R(y, t) and I(y, t) given in
+Corollary 14. The main idea in its proof is to compare R(y, t) to the process on states {2−j } which
+transitions from 2−j to 2−j−1 at rate 2−2j . We will apply with r = O(log−1/2 t) and q = O(1),
+making the bound small.
+
+
+
+
+                                                        29
+Lemma 24 Let α = 1 and β > 2. Suppose (28) holds, where we may take c1 < 1. Take constants
+0 < c2 , r < 1 < K < ∞, a position y and a time t0 , and an integer q ≥ 1. Let Q(y, t1 , 2r) be the
+number of cities at time t1 > t0 within distance 2r from y. Then
+                    t0
+                                                                                        !
+                    X
+                 1      −1
+           P log t0    s 1(1+I(y,s)≤Ks) > c2 and {R(y, t0 ) > r/2 or Q(y, t1 , 2r) ≥ q}
+                         s=1
+                                                                                          !
+                          4πr2 (1 + log t1 )           2−3 r2 (c2 log t0 − 27 + log2 r)
+                        ≤                    + C exp −                                                   (29)
+                                 qc1                                 κK
+where κ depends only on β and C is the numerical constant defined at (36).
+
+
+Proof. The expected density of cities at position x at time t equals
+        t−1                         t−1                    Z t
+        X          1           X    1                            1
+E(1 +                     )≤1+            ≤1+                          ds = 1 + c−1             −1
+                                                                                 1 log(c1 t) ≤ c1 (1 + log t)
+              1 + I(x, s)        1 + c1 s                   0 1 + c1 s
+        s=1                         s=1
+
+the final inequality because c1 < 1. So
+
+                                    EQ(y, t, 2r) ≤ c−1
+                                                    1 (1 + log t) × π(2r)
+                                                                         2
+
+
+and Markov’s inequality gives
+
+                                 P (Q(y, t, 2r) ≥ q) ≤ c−1                2
+                                                        1 (1 + log t)π(2r) /q
+
+which (for t = t1 ) is the first term in (29). Thus it remains to show
+           t0
+                                                         !                                            !
+                                                                       2 −3 r 2 (c log t − 5 + log r)
+          X                                                                       2     0         2
+P log1 t0     s−1 1(1+I(y,s)≤Ks) > c2 and R(y, t0 ) > r/2 ≤ C exp −                        2
+                                                                                                        .
+                                                                                      κK
+          s=1
+                                                                                                  (30)
+Write R(s) = R(y, s). Using the lower bound in Corollary 14, (xxx provided disc in square)
+
+                                                                         R2 (s)
+                                P (R(s + 1) ≤ 12 R(s)|F(s)) ≥ κ−1                                        (31)
+                                                                       1 + I(y, s)
+              R 1/2
+for κ−1 =      0      2πr(1 − r)β dr. Define stopping times
+                                                             3
+                       Hj = min{u : R(u) ≤ 2 2 −j }, j = 1, 2, 3, . . .
+                           √
+where H1 = 1 because R(1) ≤ 2. Define stopping times τ1 = 0 and
+                                                   u
+                                                   X
+                        τj = min{u > τj−1 :                s−1 1(1+I(y,s)≤Ks) ≥ wj − wj−1 }
+                                               s=τj−1 +1
+
+                                                                             1       1
+where 0 = w1 < w2 < w3 < . . . are constants to be defined later. Because 1+I(y,s) ≥ Ks on
+{1 + I(y, s) ≤ Ks}, this definition implies
+                                          τj
+                                          X           1         wj − wj−1
+                                                              ≥           .                              (32)
+                                                  1 + I(y, s)       K
+                                      s=τj−1 +1
+
+
+
+
+                                                        30
+We seek to upper bound P (Hj > τj + 1), inductively on j. Fix j and u and consider the event
+               1               3
+{τj = u − 1, 2 2 −j < R(u) ≤ 2 2 −j }. On this event
+                                                                             1
+   P (Hj+1 > τj+1 + 1|F(u)) = P (R(τj+1 + 1) > 2 2 −j |F(u))
+                                                                                             1
+                                            ≤ P (R(s + 1) ≥ 12 R(s), R(s) > 2 2 −j , ∀u ≤ s ≤ τj+1 |F(u))
+                                                  τj+1                                                !
+                                                  Y
+                                                                     1
+                                            = E        P (R(s + 1) ≥ 2 R(s)|F(s)) 1         1 −j F(u)
+                                                                                            2          (R(s)>2      )
+                                                         s=u
+                                                         τj+1                                                          !
+                                                                            R2 (s)
+                                                         Y                               
+                                            ≤ E                   1 − κ−1                    1             1      F(u)      by (31)
+                                                                          1 + I(y, s)            (R(s)>2 2 −j )
+                                                         s=u
+                                                         τj+1                                                          !
+                                                                            21−2j
+                                                         Y                               
+                                            ≤ E                   1 − κ−1                    1             1      F(u)
+                                                                          1 + I(y, s)            (R(s)>2 2 −j )
+                                                         s=u
+                                                                                 τj+1
+                                                                                 !     !
+                                                                          1
+                                                                       −1 1−2j
+                                                                                 X
+                                            ≤ E exp −κ 2                           F(u)
+                                                                s=u
+                                                                     1 + I(y, s)
+                                                  1−2j              
+                                                    2   (wj+1 − wj )
+                                            ≤ exp −                     by (32) .
+                                                         κK
+                                                                                                       3                     1
+Now consider the event {τj = u − 1, Hj ≤ u}. On this event, R(u) ≤ 2 2 −j . If R(u) ≤ 2 2 −j then
+Hj+1 ≤ u ≤ τj+1 , and so the previous bound implies
+                                        1−2j               
+                                          2    (wj+1 − wj )
+      P (Hj+1 > τj+1 + 1|F(u)) ≤ exp −                        on {τj = u − 1, Hj ≤ u}.
+                                                 κK
+This can be rewritten as
+                                                 21−2j (wj+1 − wj )
+                                                                                                
+           P (Hj+1 > τj+1 + 1|F(τj + 1)) ≤ exp −                                                     on {Hj ≤ τj + 1}.
+                                                        κK
+By induction (xxx details)
+                                                            J−1
+                                                                         21−2j (wj+1 − wj )
+                                                            X                                         
+                               P (HJ > τJ + 1) ≤                   exp −                                   .                      (33)
+                                                                                κK
+                                                            j=1
+
+To relate this to (30), note first that the definition of (τj ) implies
+                                                 τJ
+                                                 X
+                                                       s−1 1(1+I(y,s)≤Ks) ≤ wJ + J
+                                                 s=1
+
+the final “+1” term from overshoot at each stage. Suppose we choose (wj ) and J such that
+
+                                                         wJ + J ≤ c2 log t0 .                                                     (34)
+
+Then
+                                           t0
+                                           X
+                               { log1 t0         s−1 1(1+I(y,s)≤Ks) > c2 } implies {τJ < t0 }
+                                           s=1
+                     3
+                       −J
+and {R(t0 ) > 2      2      } implies {HJ ≥ t0 + 1}. So
+                   t0
+                   X                                                             3
+     P ( log1 t0         s−1 1(1+I(y,s)≤Ks) > c2 and R(y, t0 ) > 2 2 −J ) ≤ P (τJ < t and HJ ≥ t + 1)
+                   s=1
+                                                                                        ≤ P (HJ > τJ + 1).                        (35)
+
+                                                                    31
+Given J, set w1 = 0 and
+
+                                            wj+1 − wj = (c2 log t − J)2j−J , 1 ≤ j ≤ J − 1
+               PJ−1
+so that wj =      j=1 (wj+1 − wj ) < (c2 log t − J) and hence (34) is satisfied. Note for future
+reference that there exists a numerical constant C such that
+                                ∞
+                                               !
+                                X
+                        min 1,     exp(−a2i ) ≤ C exp(−a), 0 < a < ∞.                       (36)
+                                                     i=0
+
+Combining (35) and (33),
+              t0                                                                                 J−1
+                                                                                                             21−j−J (c2 log t0 − J)
+                                                                                                                                     
+              X                                                                     3            X
+                        −1                                                            −J
+P ( log1 t0         s        1(1+I(y,s)≤Ks) > c2 and R(y, t0 ) > 2                  2      ) ≤         exp −
+                                                                                                                      κK
+              s=1                                                                                j=1
+                                                                                                 J−2
+                                                                                                 X
+                                                                                            =          exp(−a2i )
+                                                                                                 i=0
+
+where we have substituted i = J − 1 − j and set
+
+                                                                  4(c2 log t0 − J)2−2J
+                                                             a=                        ;
+                                                                           κK
+so now
+                                      t0
+                                      X                                                            3
+                        P ( log1 t0         s−1 1(1+I(y,s)≤Ks) > c2 and R(y, t0 ) > 2 2 −J ) ≤ C exp(−a).
+                                      s=1
+                                                                                3                      3
+Given r, let J be the smallest integer such that 2 2 −J ≤ r/2; so 2 2 −J > 2−2 r and so
+
+                                                         2−2J > 2−7 r2 ;    −J > log2 r − 27
+
+giving finally
+              t0
+                                                                                                                                      !
+              X
+                    −1                                                       2−3 r2 (c2 log t0 − 27 + log2 r)
+P ( log1 t0         s     1(1+I(y,s)≤Ks) > c2 and R(y, t0 ) > r/2) ≤ C exp −
+                                                                                           κK
+              s=1
+
+which is (30).
+
+
+Lemma 25 Under the hypotheses of Lemma 24, for K ≤ B < ∞,
+                                               t0
+                                                                                                               !
+                                               X
+                                        1            −1
+                               P      log t0         s     1(1+I(y,s)≤Ks) > c2 and I(y, t1 ) ≤ Bt1 )               →0
+                                               s=1
+
+uniformly over the range t0 → ∞, t1 → ∞, 1 + D−1 ≤ tt10 ≤ D for fixed 1 < D < ∞.
+
+
+Proof. This is basically just a matter of identifying the conclusions of Lemma 24 with the
+hypotheses of Proposition 19. In fact Proposition 19 implies that for any b
+                                                                             κ∆(q)
+                              P Q(y, t1 , 2r) ≤ q; I(y, t1 ) ≤ 3−β b|F(t0 ) ≤            b rβ−2                                  (37)
+                                                                              (t1 − t0 )
+
+
+
+                                                                           32
+on the event {R(y, t0 ) ≤ r/2}. We apply this inequality with b defined by 3−β b = Bt1 . Combining
+with Lemma 24 (the logic here is abstracted in Lemma 26 below) we conclude that
+                               t0
+                                                                             !
+                              X
+                           1       −1
+                     P log t0     s 1(1+I(y,s)≤Ks) > c2 and I(y, t1 ) ≤ Bt1 )
+                                 s=1
+                                                                            !
+       4πr2 (1 + log t1 )           2−3 r2 (c2 log t0 − 27 + log2 r)                 κ∆(q)
+     ≤                    + C exp −                                             +              (3β Bt1 )rβ−2 .
+              qc1                                 κK                                (t1 − t0 )
+Here we may choose 0 < r < 1 and integer q ≥ 1. To obtain asymptotics (xxx very messy to
+say this precisely, so I haven’t tried!) first set r = w log−1/2 t0 for large w, and the terms are
+essentially                                                                      
+                                                                     −(β−2)/2
+                    O(w2 /q) + O(exp(−κw2 )) + O ∆(q) t1t−t  1
+                                                               0
+                                                                 log          t 0   .
+By taking q = q(t0 ) ↑ ∞ very slowly we make the first and third terms tend to 0; finally we can
+take w arbitrarily large.
+
+The logic used to combine (37) with Lemma 24 can be abstracted as follows; the proof is straight-
+forward.
+
+Lemma 26 Let A1 (t0 ), A2 (t0 ) be arbitrary events in F(t0 ) and let A3 (t1 ), A4 (t1 ) be arbitrary
+events in F(t1 ), where t1 > t0 . If
+
+                                P (A1 (t0 ) and {A2 (t0 ) or A3 (t1 )}) ≤ a1
+
+                              P (Ac3 (t1 ) and A4 (t1 )|F(t0 )) ≤ a2 on Ac2 (t0 )
+then P (A1 (t0 ) and A4 (t1 )) ≤ a1 + a2 .
+
+To continue, we isolate the following lemma, perhaps suitable for a homework problem in a
+graduate probability course.
+
+                         Pn
+Lemma 27 Let Sn =           i=1 Xi where 0 ≤ Xi ≤ 1. Suppose that for each ε > 0
+
+                                        E(Xn+1 − ε)+ 1(Sn >εn) → 0.
+
+Then n−1 Sn → 0 in probability.
+
+Proof. Fix ε and consider T := max{m ≤ n : Sm ≤ εm} ≥ 0. On the event {Sn ≥ 2εn} we have
+                                                 n
+                                                 X                           n
+                                                                             X
+                   2εn − εT ≤ Sn − ST =                  Xi ≤ (n − T )ε +            (Xi − ε)+ .
+                                                i=T =1                      i=T +1
+
+This implies
+                                       n−1
+                                       X
+                          εn ≤ 1 +           (Xi+1 − ε)+ 1(Si >εi) on {Sn ≥ 2εn}.
+                                       i=1
+Taking expectations,
+                                                   n−1
+                                                   X
+                       εnP (Sn ≥ 2εn) ≤ 1 +              E(Xi+1 − ε)+ 1(Si >εi) = o(n)
+                                                   i=1
+
+by hypothesis, so P (Sn ≥ 2εn) → 0 as required.
+
+                                                         33
+Lemma 28 Let α = 1 and β > 2, and suppose (28) holds. Then
+                                 t
+                                 X
+                    lim log1 t         s−1 Earea {y : I(y, s) ≤ Ks} = 0 for each K < ∞.                         (38)
+                      t
+                                 s=1
+
+
+
+Proof. Fix B = K and c2 and a position y, and set
+
+                                                         2i
+                                                         X
+                                            Xi =                  s−1 1(1+I(y,s)≤Ks) .
+                                                    s=2i−1 +1
+
+From the conclusion of Lemma 25 we may apply Lemma 27 (xxx details omitted; really need to
+put in small gap and sum over [(1 + η)2i−1 , 2i ]) to show
+                                          t
+                                          X
+                                    1
+                                  log t         s−1 1(1+I(y,s)≤Ks) → 0 in probability.
+                                          s=1
+
+Taking expectations and integrating over y gives (38) .
+
+Lemma 28 and the next lemma now complete the “proof by contradiction” of Theorem 23. Recall
+we are seeking to prove (40) by assuming it false, which implies (28), so then Lemmas 28 and 29
+imply (40) true. Note however that, because of this peculiar proof structure, we have not actually
+proved (39) to be true!
+
+
+Lemma 29 Let α = 1 and β > 2. Suppose (28) and (38) hold. Then
+                                                        t
+                                                        X
+                                           lim log1 t         s−1 E(s−1 N(1) (s)) = 0                           (39)
+                                            t
+                                                        s=1
+
+and in particular
+                                                 lim inf t−1 N(1) (t) = 0 a.s.                                  (40)
+                                                    t
+
+
+
+Remark The lemma remains true if we omit the logarithmic averaging in both hypothesis (38)
+and conclusion (39).
+
+Proof. Set γ = 2 − β2 , so 1 < γ < 2, and consider
+
+                                                                            Niγ (t).
+                                                                  X
+                                                        S(t) :=
+                                                                    i
+
+From the process dynamics,
+
+                                                                             ai (t) ((Ni (t) + 1)γ − Niγ (t))
+                                                                   X
+                    E(S(t + 1) − S(t)|F(t)) ≤ 1 +
+                                                                        i
+
+where the 1 bounds the contribution from possible founding of a new city. Taking κ such that
+(n + 1)γ − nγ ≤ κnγ−1 for all n ≥ 1,
+
+                                                         ai (t)Niγ−1 (t).
+                                                      X
+                      E(S(t + 1) − S(t)|F(t)) ≤ 1 + κ                                   (41)
+                                                                                       i
+
+
+
+                                                                  34
+Fix K and write
+
+                                    AK (t) = area {y : I(y, t) ≤ Kt}
+                                   AK,i (t) = area {y ∈ S(i, t) : I(y, t) ≤ Kt}.
+
+Now
+                        area S(i, t) ≤ πr2 + AK,i (t) where r solves c0 Ni (t)r−β = Kt
+and so                                                                   2/β
+                                                             c0 Ni (t)
+                                          ai (t) ≤ π            Kt               + AK,i (t).
+
+Inserting into (41), we can bound by the case where the largest city i has AK,i (t) = AK (t), and
+so
+                                                             c0 2/β
+                                               γ−1              X 2/β
+        E(S(t + 1) − S(t)|F(t)) ≤ 1 + κAK (t)N(1)  (t) + κπ Kt          Ni (t)Niγ−1 (t).
+                                                                                                     i
+
+We chose γ to make β2 + γ − 1 = 1, so the final sum equals t; crudely bounding N(1) (t) by t in
+the other term leads to
+
+                       E(S(t + 1) − S(t)|F(t)) ≤ 1 + κtγ−1 AK (t) + κπ(c0 /K)2/β tγ−1 .
+
+Now take expectation, multiply by t−γ and sum:
+                 t
+                 X                                                                     t
+                                                                                       X
+           1
+         log t         s−γ (ES(s + 1) − ES(s)) ≤ O( log1 t ) + log
+                                                                 κ
+                                                                   t                          s−1 EAK (s) + O(K −2/β ).
+                 s=1                                                                    s=1
+
+Taking K arbitrarily large and using hypothesis (??), the right side is o(1), so summing by parts
+gives
+                                        t
+                                        X
+                                    1
+                                  log t   s−γ−1 ES(s) = o(1).
+                                                     s=1
+
+For fixed ε > 0,
+
+                          E(s−1 N(1) (s)) ≤ ε + P (N(1) (s) ≥ εs) ≤ ε + (εs)−γ ES(s)
+
+and so
+                                               t
+                                               X
+                                         1
+                                       log t         s−1 E(s−1 N(1) (s)) ≤ ε + o(1)
+                                               s=1
+
+giving (39). Now note that for any real sequence (as ) we have
+                                                                                 t
+                                                                                 X
+                                         lim inf at ≤ lim inf log1 t                   s−1 as .
+                                               t                  t
+                                                                                 s=1
+
+So by Fatou’s lemma
+
+                          E lim inf t−1 N(1) (t) ≤ lim inf E(t−1 N(1) (t))
+                               t                                      t
+                                                                                  t
+                                                                                  X
+                                                        ≤      lim inf log1 t           s−1 E(s−1 N(1) (s))
+                                                                  t
+                                                                                  s=1
+                                                        = 0.
+
+
+
+
+                                                                  35
+6     Ideas not used
+
+6.1   xxx
+
+xxx idea: if I ∗ (t) too small then new cities appear locally and increase it
+
+xxx seek to argue ζ[I] ≥ α − (β − 2α)ζ[R]
+
+
+Proposition 30 Fix a position y and time t0 , and consider an arbitrary configuration at time
+t0 . Suppose at time t0 the closest point to y is at distance r∗ . Suppose at time t0 + 1 a new city
+A is founded at distance r < r∗ from y. Let t1 > 0. Then
+
+               P (I(y, t0 + t1 ) < b, no other city in D(y, r∗ ) at time t0 + t1 ) = o(1)
+
+for
+                                    c [(1 − 2α/β)πt1 (r∗ − r)/(4r∗ )]α
+                               b=                                      .                          (42)
+                                                (r∗ )β−2α
+
+xxx vague about meaning of o(1).
+
+Proof. Set
+                                                      ∗
+                                                ε = r2r−r
+                                                       ∗ .
+
+Write J(·) for influence function when we exclude the influence of city A. Note that for x ∈
+D(y, (1 − ε)r∗ ) and z 6∈ D(y, r∗ ) we have |z − x|/|z − y| ≥ ε and hence, if there are no other cities
+inside D(y, r∗ ).
+                           max{J(x)/J(y) : x ∈ D(y, (1 − ε)r∗ )} ≤ ε−β
+Thus we may assume (xxx explain)
+
+                                J(x) ≤ bε−β ,       x ∈ D(y, (1 − ε)r∗ ).
+
+Let N (t) be the population of city A at time t0 + t. Define n0 by
+
+                                        c0 nα0 /(εr∗ )β = bε−β .
+
+As long as N (t) ≤ n0 , the sphere of influence of city A contains the disc, centered at city A, of
+radius r(t) ≤ εr∗ given by
+                                      c0 N α (t)/rβ (t) = bε−β .
+So, as long as N (t) ≤ n0 ,
+
+                  P (N (t + 1) = N (t) + 1|N (t)) ≥ πr2 (t) = πε(c0 /b)2/β N 2α/β (t).
+
+Temporarily write the right side as cN γ (t). Consider T := min{t : N (t) = n0 }. By comparison
+with the related pure birth process,
+                                            n0 −1
+                                            X        1       n1−γ
+                                                              0
+                                     ET ≤                ≤          .
+                                                    cj γ   (1 − γ)c
+                                             j=1
+
+By calculating the variance of the related pure birth process and using Chebyshev’s inequality
+(xxx details omitted)                                !
+                                             2n1−γ
+                                                0
+                                   P T >               = o(1)
+                                            (1 − γ)c
+
+                                                     36
+xxx vague about sense of limit.
+
+From the definitions of n0 and c
+
+                              2n1−γ           2                      β−2α
+                                 0
+                                      =              (b/c0 )1/α (r∗ ) α .
+                             (1 − γ)c   (1 − 2α/β)πε
+
+The choice (42) for b makes this equals t1 , so
+
+                                P (N (t1 ) < n0 ) = P (T > t1 ) = o(1).
+
+But when N (t1 ) ≥ n0 the influence of city A at t is at least
+
+                                           c0 nα0 /(r∗ )β = b
+
+and so I(y, t0 + t1 ) ≥ b.
+
+
+
+
+                                                  37
+6.2   xxx
+
+Heuristics. Let’s indicate one way to try to use Proposition 19. Choose r(t) such that at time
+≈ t a typical disc of radius ≈ r(t) is likely to have at least 1 but at most O(1) vertices. Apply
+Proposition 19: we get a lower bound
+
+                    P (min{I(y, t) : y in typical radius-r disc} ≤ b(t)) is small
+
+where b(t) solves
+                                  β
+                            b1/α r α −2
+                                        ≈ 1; so b(t) ≈ tα (r(t))−(β−2α) .
+                                 t
+If this were a lower bound over the entire square then we would have an upper bound on the
+rate of growth of M (t) = number of cities: dM (t)/dt ≤ 1/b(t). Suppose we can show this. Then
+suppose M (t) ≈ tθ for some θ. A disc of radius r(t) = t(1−θ)/2 has mean O(1) cities; suppose we
+can show enough non-clustering that such discs are likely to have at least one city. Then, since
+dM (t)/dt ≈ tθ−1 , we get the inequality
+
+                                 θ − 1 ≤ −α + (β − 2α)(1 − θ)/2
+
+which becomes
+                                              1 − 2α + β/2
+                                         θ≤                .
+                                              1 − α + β/2
+This is consistent with the previous heuristic which gave
+                                                 1−α
+                                         θ=               .
+                                              1 − α + β/2
+
+
+
+
+                                                 38
+6.3   xxx
+
+Lemma 31 Let 1 = W1 ≥ W2 ≥ . . . > 0 be adapted to (Ft ), and suppose
+
+                                           E(Wt+1 − Wt |Ft ) ≤ − aW
+                                                                  t
+                                                                    t
+
+
+
+for fixed a > 0. Then
+                                        P (Wt ≥ tε−a ) → 0;           all ε > 0.
+
+
+Proof. Set Vt+1 = Wt −W
+                     Wt
+                        t+1
+                            , so that 0 ≤ Vt+1 < 1 and E(Vt+1 |Ft ) ≥ a/t. Then
+
+                      t        t                   t              t
+                      Y  Ws    Y                   X              X
+                 Wt =        =   (1 − Vs ) ≤ exp(−   Vs ) ≤ exp(−   Ṽs )                              (43)
+                        Ws−1
+                         s=2               s=2                          2                    2
+
+where 0 ≤ Ṽs ≤ Vs is constructed such that E(Ṽs+1 |Fs ) = a/s. Now
+                         t−1
+                         X                 t−1
+                                           X                    t−1
+                                                                X           t−1
+                                                                            X
+                                                 a      a             a
+                 var (         Ṽs+1 ) ≤         s (1 − s ) ≤         s = E(       Ṽs+1 ) ∼ a log t
+                          1                 1                    1             1
+
+and Chebyshev’s inequality implies that for ε > 0
+
+                                  Xt−1
+                                P(     Ṽs+1 ≤ (a − ε) log t) → 0 as t → ∞.
+                                    1
+
+Applying (43) gives the result.
+
+
+
+
+                                                          39
+6.4   The associated dynamic system
+
+Suppose we modify the model by starting with n cities in given positions x1 , . . . , xn ∈ [0, 1]2 , and
+then not allowing any new cities to be founded. Writing Ni (t) for city i population at time t in this
+setting, it is intuitively clear that normalized and time-changed populations Zi (t) = e−t Ni (et )
+should approximate the following deterministic process which we call the associated dynamic
+system (zi (t), 1 ≤ i ≤ n). Its state space is
+                                                                 X
+                                   {(z1 , . . . , zn ) : zi ≥ 0,   zi = 1}
+                                                                 i
+
+and its dynamics are
+                                  dzi
+                                      = −zi + area Si (z1 , . . . , zn )
+                                  dt
+where Si is the “sphere of influence of city i” defined in essentially the same way as before:
+
+                 Si (z1 , . . . , zn ) = {y ∈ [0, 1]2 : ziα |y − xi |−β = max zjα |y − xj |−β }.
+                                                                          j
+
+In the following conjecture, we suppose the city positions (xi ) and the initial values zi (0) are “in
+general position” and that each zi (0) > 0.
+
+
+Conjecture 32 (a) If α > 1 or 0 < β < 2α then there exists an i such that zi (t) → 1.
+(b) If 0 < α < 1 and β > 2α then zi (t) → zi (∞), the limit not depending on initial values and
+satisfying zi (∞) > 0 ∀i.
+
+
+xxx relate to our stochastic model.
+
+In this connection we mention the notion of centroidal Voronoi tessellation [3], an unweighted
+tessellation in which each point is the centroid (center of mass) of its cell. Such tessellations
+are obviously the fixed points of a dynamical system in which points (xi ) are moved toward the
+centroids of their cells.
+
+
+
+
+                                                       40
+References
+
+ [1] J.M. Ball and J. Carr. The discrete coagulation-fragmentation equations: Existence, unique-
+     ness and density conservation. J. Statist. Phys., 61:203–234, 1990.
+
+ [2] A. Barrat, M. Barthélemy, and A.Vespignani. The effects of spatial constraints on the
+     evolution of weighted complex networks. J. Stat. Mech. Theory Exp., 2005:P05003, 2005.
+
+ [3] Q. Du, V. Faber, and M. Gunzburger. Centroidal Voronoi tessellations: Applications and
+     algorithms. SIAM Review, 41(4):637–676, 1999.
+
+ [4] M. Fujita, P. Krugman, and A.J. Venables. The Spatial Economy: Cities, Regions, and
+     International Trade. MIT Press, 1999.
+
+ [5] X. Gabaix. Zipf’s law for cities: An explanation. Quarterly J. Economics, 114:739–767,
+     1999.
+
+ [6] Y. M. Ioannides and H. G. Overman. Zipf’s law for cities: an empirical examination. Regional
+     Science and Urban Economics, 33:127–137, 2003.
+
+ [7] Y. M. Ioannides and H. G. Overman. Spatial evolution of the US urban system. J. Economic
+     Geography, 4:131–156, 2004.
+
+ [8] J. R. King and J. A. D. Wattis. Asymptotic solutions of the Becker-Döring equations. J.
+     Phys. A, 31:7169–7189, 1998.
+
+ [9] J. Moller. Random Johnson-Mehl tessellations. Advances in Applied Probability, 24(4):814–
+     844, 1992.
+
+[10] A. Okabe, B. Boots, and K. Sugihara. Spatial tessellations: concepts and applications of
+     Voronoı̆ diagrams. Wiley Series in Probability and Mathematical Statistics: Applied Prob-
+     ability and Statistics. John Wiley & Sons Ltd., Chichester, 1992. With a foreword by D. G.
+     Kendall.
+
+[11] R. Pemantle. A survey of random processes with reinforcement. Probab. Surv., 4:1–79, 2007.
+
+[12] J. Pitman. Combinatorial stochastic processes, volume 1875 of Lecture Notes in Mathematics.
+     Springer-Verlag, Berlin, 2006. Lectures from the 32nd Summer School on Probability Theory
+     held in Saint-Flour, July 7–24, 2002, With a foreword by Jean Picard.
+
+
+
+
+                                               41
+
