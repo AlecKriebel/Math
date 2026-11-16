@@ -919,3 +919,17 @@ Root adopted the fixed132/135/136 private candidate after full current stage/aud
 Root139 full6PDFpages/189TeXlines and6fresh rasters read before mathematical peer/foreign findings; INITIAL3806249d frozen. Reconstructed fourteen claim families and central external matching-proof gap;30% review, no clearance. Root138 editorial/fact source-first INITIALs frozen before writer exposure and private copy authoring authorized.
 
 Authoritative completion remains110/203scientific54.19%,104/203finalized51.23%,96verifiedpublished;private three-page stage adoption100%, production0%. Overall goal active.
+
+### 2026-11-16T06:05:58.976433+00:00 — root139 central-primary reading checkpoint
+
+65% scientific review estimate: all1422required pinned matching proof-section lines personally read,12nativeupstreampins independently matched,7fresh critical primary rasters viewed. No substantive gap found so far; no final scientific clearance, nativeprogramme replay, formalbuild, publicationorSheettransition. Classical/formal/support/custody checks remain. Programmecheckpoint587518f02 pushed162ownedfiles preserving159siblings/Mathindex/localHEAD.
+
+### 2026-11-16T06:55:43.333198+00:00 — actual three-page deployment; root139 full review
+
+Fixed132/135/136 installation passed with647public/99index/100sitemap and unchanged58571-entry rawindex; separate scopedGit15cc committed/pushed52c72c60f2913f22d8a323aff1339759fb4ac7b9 with19exactpaths/58568untargetedrawrecordspreserved/58587entries. ActualFirebaseversiond0d8c2e3e5546871 deployed;20HTTPwholebuffermatches include10nativeassets4PDFsand5370BREADME. BrowserQApartial is literal BROWSER_PARTIAL.json; Maclocked/nativeUI andCDPinputtimeouts leave3canonicalAAentriespending. No nativepublishedcountincrease yet.
+
+Root139scientific100%,fulloriginal2^Theta(N)claim passed,b8b89c874 clearance/root23files2dirs frozen. Native111transitionpending. Editorial/factINITIALs frozen; writerbrieflyquietforcheckpoint.
+
+Completion:111/203scientific54.68%includingpendingtracker;authoritative native110science54.19%,96verifiedpublished,104/203finalized51.23%. Website99deployed;browserpublicationQAroughly65%ofcurrentthree-pagebatch. Overallgoalactive,notcomplete;nooutsidecommunication.
+
+Pre-push packaging correction: first111file dry proposal included5owned Hilbertfact manuscript PNGs and1text derivative. Added two programme-level exactignore anchors beforepush; frozen20/1audit/localbytes unchanged, no source/scientificdefect or externalupload.

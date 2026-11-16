@@ -1,0 +1,105 @@
+{
+  "UTC": "2026-11-16T06:07:55.714052+00:00",
+  "status": "FIRST_CODE_REVIEW_PRESERVED_PENDING_REQUESTED_CORRECTIONS_NOT_FINAL_VERDICT",
+  "current_code_at_review": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/three-research-production-release-sol-20261115/install_three.py",
+    "bytes": 17965,
+    "SHA256": "75118f4200613f890152e9649ba51b4b6aed2884b80deae440f25914d1e6b491"
+  },
+  "full_read_tool": "c1caac",
+  "whole_plan_initial_auth_read_tool": "d79651",
+  "current_default_actual_receipt": "CURRENT_INSTALLER_PREFLIGHT.json",
+  "default_exit": 0,
+  "default_counts": [
+    631,
+    96,
+    97
+  ],
+  "default_authorization_present": false,
+  "default_writes": 0,
+  "static_scope_checks": {
+    "targets_exact_adopted19": true,
+    "install_order": [
+      "16new leaves",
+      "research index replacement",
+      "research sitemap replacement",
+      "firebase replacement"
+    ],
+    "all19source_buffers_authenticated_in_memory_before_mutation": true,
+    "imports": [
+      "pathlib",
+      "ctypes",
+      "datetime",
+      "hashlib",
+      "json",
+      "os",
+      "re",
+      "stat",
+      "sys",
+      "xml.etree.ElementTree"
+    ],
+    "no_old_science_source_stage_helper_imports": true,
+    "filesystem_only_native_index_entries": 58571,
+    "future_separate_Git_entries": 58587,
+    "future_protected_records": 58568
+  },
+  "findings": [
+    {
+      "id": "D1",
+      "severity": "requires correction before root authorization",
+      "lines": [
+        147,
+        154
+      ],
+      "gap": "New transactions/transaction/staged/backups directory links and journal pathname are created without fsyncing their parent directories before W-side durable renames. Fsync of journal data or child directory contents does not itself establish parent-link durability. No crash execution was performed.",
+      "requested_correction": "Fsync recovery namespace parent directories, including the journal directory link, before any W mutation."
+    },
+    {
+      "id": "L1",
+      "severity": "requires correction before root authorization",
+      "lines": [
+        147,
+        150
+      ],
+      "gap": "Only a directory named by raw authorization SHA excludes a repeated same-serialization run. Equivalent valid root authorization objects can serialize differently, yield distinct hashes and transaction dirs, and overlap this mechanism.",
+      "pure_authorization_witness": {
+        "parsed_values_identical": true,
+        "SHA_compact": "f5dc1f00d83b2ffe4d22ed8ebb8a620d8e2f546ec464c5f4a1130993605c5c89",
+        "SHA_indented": "1b0db253dd39ea82bdb01553e8d629e90e7bf944cd510c327205d7475720b260",
+        "transaction_names_differ": true
+      },
+      "requested_correction": "One fixed owned active-install protocol lock, held throughout and preserved on partial failure, separate from .git/index.lock. No claim of hostile global W concurrency isolation required."
+    },
+    {
+      "id": "S1",
+      "severity": "root requested correction",
+      "lines": [
+        185,
+        211
+      ],
+      "gap": "Each disk buffer is staged and published inside one loop; a later staging failure can occur after earlier W mutations. All19in-memory buffers are already authenticated; this is not an authentication omission.",
+      "requested_correction": "Prepare/fsync/verify all19disk buffers before any W target or new article directory mutation."
+    }
+  ],
+  "partial_failure_policy": {
+    "supported_policy": "Stop and preserve durable intent/completion/partial evidence for manual root recovery; no automatic rollback.",
+    "example": "Failure after parking the first old aggregate (step17) but before publishing its replacement leaves16newfiles present, that aggregate absent and original parked in the transaction. Both ordinary preflight and successful-postinstall guard should then refuse. Recovery is manual, not safe rerun of install.",
+    "not_automatic_defect": "Lack of automatic rollback alone is not a defect under the allowed honest partial-recovery route. Recovery infrastructure must first be durable and transaction-excluded.",
+    "later_backups": "Keep originals near their replacements rather than parking all3first, as root requested."
+  },
+  "exclusive_rename_local_primary_check": {
+    "path": "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sys/stdio.h",
+    "tool": "c54b88",
+    "lines": [
+      37,
+      52
+    ],
+    "RENAME_EXCL": 4,
+    "renameatx_np_declared": true
+  },
+  "root_requested_revision": "Durable parent links; fixed owned active mechanism lock preserved on partial failure; all19disk buffers prepared first;16new first/3replacements last; explicit stop/preserve/manual recovery. No W or install authority granted.",
+  "new_actual_code_required_before_current_verdict": true,
+  "W_Git_network_or_install_mutations_by_this_lane": false,
+  "completed_integration_packet_unchanged": true,
+  "completion_estimate_percent": 60
+}

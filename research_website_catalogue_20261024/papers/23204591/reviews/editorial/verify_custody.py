@@ -152,11 +152,11 @@ def run():
     require(authority["private_full_original_editorial_preparation_authorized"] is True and authority["production_publish_or_deploy_authority"] is False, "Authority boundary changed")
     match_file(HERE.parent / "root/ROOT_REVIEW_20261115.md", {"bytes": 9321, "sha256": "3430f3770a7f33add54655f3c7739d3f29b014ef15f345acfb4200dbd479ca75"})
 
-    initial, _, _ = read_json(HERE / "INITIAL_SEAL.json")
+    initial, _, initial_pin = read_json(HERE / "INITIAL_SEAL.json")
     for row in initial["files"]:
         match_file(HERE / row["path"], row)
     ack, _, _ = read_json(HERE / "PARENT_ACKNOWLEDGMENT.json")
-    require(ack["initial_seal_sha256"] == hashlib.sha256((HERE / "INITIAL_SEAL.json").read_bytes()).hexdigest(), "Parent acknowledgment does not bind initial")
+    require(ack["initial_seal_sha256"] == initial_pin["sha256"], "Parent acknowledgment does not bind initial")
     require(ack["production_authority"] is False, "Private authorization changed")
 
     model, _, _ = read_json(HERE / "PAGE_MODEL.json")
@@ -237,6 +237,8 @@ def run():
     if (HERE / "FINAL_SEAL.json").exists():
         final, _, _ = read_json(HERE / "FINAL_SEAL.json")
         require(final["local_manifest_pin"] == manifest_pin, "FINAL does not bind current manifest")
+        require(sorted(row["path"] for row in final["terminal_pins"]) == [x for x in TERMINALS if x != "FINAL_SEAL.json"], "Incomplete final terminal closure")
+        require(all(x in files for x in TERMINALS), "Final terminal file missing")
         for row in final["terminal_pins"]:
             require(row["path"] in TERMINALS and row["path"] != "FINAL_SEAL.json", "Unexpected terminal pin")
             match_file(HERE / row["path"], row)

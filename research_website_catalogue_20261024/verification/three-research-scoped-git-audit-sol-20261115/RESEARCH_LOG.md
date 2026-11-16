@@ -1,0 +1,11 @@
+# 2026-11-16T06:09:54.400444+00:00 — 10%
+Independent expectations frozen before Git author-folder/code exposure. Exact19candidate paths and complete buffers authenticated from adopted immutable stage controls. Old shared-index and base-ref prefix expectations are explicitly root-supplied, not newly observed W/Git state. No W/Git/network/native/science operations. Waiting for root current-helper handoff; read-only preflight additionally requires actual installation and a separate root gate. Completed legacy32/1packet remains immutable.
+
+# 2026-11-16T06:15:47.079798+00:00 — 60%
+Entire first actual release helper14528B/f01733d6 read and independently reviewed statically, with no execution/import/compile/W/Git/network access. Critical mutable-push-source race retained literally; independent peer found same schedule. Root also identified and requested correction. Temp-index exact19delta/58568rawrecord/CAS/owned-lock mechanisms otherwise supported statically; leftover-lock and crash-durability limits recorded. No unseen corrected body approved. Awaiting root actual corrected handoff; Wstillold means no preflight authority.
+
+# 2026-11-16T06:17:37.801872+00:00 — 90% overall audit; 100% bounded static phase
+Full actual current15cc167linebody and exactf94f diff read; saved firstf017 and currentpins verified and diff independently regenerated. Immutable capturedcommit push closes preserved firstbody scope race; three directory fsync additions verified. Independent peer fullcurrentread reports no furthercriticalgap. Concise current literalverdict and recovery/runtime limits retained. No helperexecution/import/compile/parser/W/Git/network actions. Rootgate for postinstall read-only preflight remains absent; no external authority inferred.
+
+# 2026-11-16T06:23:11.062565+00:00 — 100% bounded static plus gated read-only preflight audit
+Root actual-install100979/correctedpostinstalld21e04 gate received. Single current15cc default completed exit0/emptyerr/writes0/remote_checkedfalse. Exact19scope list equals independent frozen INITIAL; complete647public namespace, master2b78/tree439281 and original58571index passed. Whole9002656B5f9cindex0600 and14705B15cchelper unchanged before/after. Exact3292Bstdout and0Bstderr retained. No --commit/extraGit/network; installerlock untouched. Release/deploy/live/Sheet/redirect remain separate root work.

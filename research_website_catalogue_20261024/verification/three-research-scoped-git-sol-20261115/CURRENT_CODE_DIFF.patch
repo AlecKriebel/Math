@@ -1,0 +1,40 @@
+--- first-f017-release_three.py
++++ current-release_three.py
+@@ -25,6 +25,10 @@
+ def sha(b): return hashlib.sha256(b).hexdigest()
+ def blob(b): return hashlib.sha1(b'blob ' + str(len(b)).encode() + b'\0' + b).hexdigest()
+ def packed(x): return (json.dumps(x, sort_keys=True, separators=(',', ':')) + '\n').encode()
++def sync_dir(path):
++    fd = os.open(path, os.O_RDONLY | os.O_DIRECTORY)
++    try: os.fsync(fd)
++    finally: os.close(fd)
+ def read(p):
+     need(p.is_absolute() and '..' not in p.parts, 'absolute input')
+     need(all(stat.S_ISDIR(q.lstat().st_mode) for q in p.parents), 'ordinary ancestors')
+@@ -123,9 +127,11 @@
+     raw = A/'raw'; need(stat.S_ISDIR(raw.lstat().st_mode), 'preignored ordinary owned raw directory')
+     fd = os.open(raw/'events.jsonl', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600); os.fchmod(fd, 0o600); LOG = os.fdopen(fd, 'wb')
+     event('authorized', authorization_SHA256=sha(auth_raw), preflight_SHA256=fingerprint)
++    sync_dir(raw)
+     need(git('ls-remote', '--exit-code', 'origin', BRANCH) == (PARENT+'\t'+BRANCH+'\n').encode(), 'remote parent unchanged')
+     temp = raw/'scoped.index'; fd = os.open(temp, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600); os.fchmod(fd, 0o600)
+     with os.fdopen(fd, 'wb') as stream: stream.write(old); stream.flush(); os.fsync(stream.fileno())
++    sync_dir(raw)
+     oids = {n: blob(b) for n, b in buffers.items()}
+     for name, b in sorted(buffers.items()): need(git('hash-object', '--no-filters', '-w', '--stdin', data=b).strip().decode() == oids[name], 'raw unfiltered blob')
+     git('update-index', '--add', '-z', '--index-info', data=b''.join(('100644 '+oids[n]+'\t'+n).encode()+b'\0' for n in sorted(buffers)), index=temp)
+@@ -145,12 +151,12 @@
+         commit = git('commit-tree', tree, '-p', PARENT, data=(MESSAGE+'\n').encode(), identity=identity).strip().decode(); event('commit_object', commit=commit, tree=tree)
+         need(read(A/'AUTHORIZATION.json') == auth_raw and datetime.datetime.now(datetime.timezone.utc) < expiry, 'same current authorization before CAS')
+         event('CAS_REF_ATTEMPT', commit=commit); ref_attempted = True; git('update-ref', BRANCH, commit, PARENT); event('local_ref_advanced', commit=commit)
+-        need((lock.lstat().st_dev, lock.lstat().st_ino) == owner, 'own lock before atomic replacement'); os.replace(lock, W/'.git/index'); event('shared_index_replaced', SHA256=sha(staged))
++        need((lock.lstat().st_dev, lock.lstat().st_ino) == owner, 'own lock before atomic replacement'); os.replace(lock, W/'.git/index'); sync_dir(W/'.git'); event('shared_index_replaced', SHA256=sha(staged))
+     except BaseException:
+         if not ref_attempted and os.path.lexists(lock) and (lock.lstat().st_dev, lock.lstat().st_ino) == owner: lock.unlink(); event('own_pre_ref_lock_removed')
+         raise
+     need(read(W/'.git/index') == staged and stat.S_IMODE((W/'.git/index').stat().st_mode) == 0o600 and git('rev-parse', BRANCH).strip().decode() == commit, 'local committed state exact')
+-    git('push', '--no-follow-tags', '--recurse-submodules=no', 'origin', BRANCH+':'+BRANCH)
++    git('push', '--no-follow-tags', '--recurse-submodules=no', 'origin', commit+':'+BRANCH)
+     need(git('ls-remote', '--exit-code', 'origin', BRANCH) == (commit+'\t'+BRANCH+'\n').encode(), 'remote commit verified')
+     need(read(W/'.git/index') == staged and stat.S_IMODE((W/'.git/index').stat().st_mode) == 0o600 and git('rev-parse', BRANCH).strip().decode() == commit, 'local index/ref preserved through push')
+     event('release_verified', commit=commit, tree=tree); print(json.dumps({'status': 'SCOPED_COMMIT_AND_PUSH_VERIFIED', 'commit': commit, 'tree': tree, 'paths': 19, 'protected_raw_records': 58568}))

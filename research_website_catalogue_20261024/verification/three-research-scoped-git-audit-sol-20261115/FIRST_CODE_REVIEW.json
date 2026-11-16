@@ -1,0 +1,45 @@
+{
+  "schema": "first-current-body-independent-static-review-v1",
+  "UTC": "2026-11-16T06:15:47.079798+00:00",
+  "literal_verdict": "CRITICAL_SCOPE_GAP_IN_FIRST_BODY; CORRECTED_CURRENT_BODY_REVIEW_REQUIRED",
+  "code": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/three-research-scoped-git-sol-20261115/release_three.py",
+    "bytes": 14528,
+    "lines": 161,
+    "SHA256": "f01733d6996c570d67c6c0eb3cfed20b038485a7b6641a493f81b2e26051c6ef"
+  },
+  "whole_current_source_personally_read": true,
+  "critical_gaps": [
+    {
+      "line": 153,
+      "mechanism": "Mutable BRANCH:BRANCH push source resolution after the local branch equality check.",
+      "falsifiable_schedule": "After the line152 branch==capturedcommit check and before Git resolves the line153 push source, another ordinary Git operation advances master. This push can publish that later commit with unrelated changes. The subsequent equality checks detect the wrong publication only after it occurs.",
+      "violated_invariant": "Only the captured exact19path commit may be published."
+    }
+  ],
+  "supported_static_mechanisms": [
+    "Temp index is copied from exact original v2 index; only exact19immutable candidate buffers are inserted through unfiltered blob IDs.",
+    "Exact19path tree delta plus16additions/3replacements checked; all58568untargeted whole rawv2records preserved; finalcount58587.",
+    "Original shared index0600/hash and master/base/tree are checked; real index.lock uses O_EXCL and owner dev/inode identity.",
+    "Final preflight runs under owned index lock before commit-tree and expected-old CAS update-ref.",
+    "After any ref attempt, failure conservatively retains lock instead of claiming rollback; pre-ref cleanup only unlinks matching owned identity.",
+    "No broad status/add/reset/clean/force, hooks, native/scientific code execution, persistent Git config change or arbitrary staged-worktree bytes."
+  ],
+  "failure_limits": [
+    "Lock-setup errors before entering the try can leave an owned lock requiring recovery; conservative leftover is not a rollback or never-mutated claim.",
+    "Process-level literal failure phases are not a crash-atomic transaction. Directory fsync durability follow-up was separately requested by root.",
+    "No hostile concurrent filesystem/path replacement certificate inferred from static ordinary-path checks."
+  ],
+  "independent_peer": {
+    "task": "/root/sol_three_legacy_resume/scoped_git_failure_design",
+    "full_same_body_static_read": true,
+    "same_critical_gap_found": true,
+    "no_other_critical_gap_reported": true
+  },
+  "root_coordination": "Root independently reported the same mutable-source race while this review was in progress and requested a corrected immutable-source body plus durability follow-up. This report retains first-body outcome and does not approve an unseen correction.",
+  "executed_imported_compiled_helper_or_parser": false,
+  "W_Git_network_read_or_mutation": false,
+  "source_or_author_code_modified": false,
+  "current_corrected_body_handoff_pending": true,
+  "completion_percent_of_bounded_code_audit": 60
+}

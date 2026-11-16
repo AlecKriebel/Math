@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Root-created scoped Git release authorization",
+  "description": "Schema only. No authorization file has been created or action authorized by this preparation. Root supplies identity and dates after an actual installed-state offline preflight.",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "three-scoped-git-release-v1"
+    },
+    "action": {
+      "const": "COMMIT_AND_FAST_FORWARD_PUSH_19_PATHS"
+    },
+    "helper_SHA256": {
+      "const": "15cc408bafa3180af9b012e558e3b66748d3362463c905fd87cb8521ba1a7ef0"
+    },
+    "preflight_SHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "stage_FINAL_SHA256": {
+      "const": "4f9cb2f5c8779a586bbfa34efc6f498d677bcd15826f28f7c4f4ecf33cd43b11"
+    },
+    "adoption_SHA256": {
+      "const": "d0f165bf8e35935684b2580489a341587a376421e6838790d3c07c9e1472be4c"
+    },
+    "parent": {
+      "const": "2b78e689e571e658daa859f29b97a61b9ec479ed"
+    },
+    "remote_parent": {
+      "const": "2b78e689e571e658daa859f29b97a61b9ec479ed"
+    },
+    "branch": {
+      "const": "refs/heads/master"
+    },
+    "commit_message": {
+      "const": "Publish three reviewed Zenodo research pages"
+    },
+    "author_name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\n\\r\\u0000]+$"
+    },
+    "author_email": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\n\\r\\u0000]+$"
+    },
+    "commit_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_UTC": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "schema",
+    "action",
+    "helper_SHA256",
+    "preflight_SHA256",
+    "stage_FINAL_SHA256",
+    "adoption_SHA256",
+    "parent",
+    "remote_parent",
+    "branch",
+    "commit_message",
+    "author_name",
+    "author_email",
+    "commit_date",
+    "expires_UTC"
+  ],
+  "additionalProperties": false
+}

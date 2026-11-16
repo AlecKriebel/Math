@@ -1,0 +1,233 @@
+--- preserved-first-installer
++++ current-corrected-installer
+@@ -13,7 +13,7 @@
+ 
+ N = Path(__file__).absolute().parent
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = '0f044fb16240e81bf9a315c0da76cdac3b94b0baadba4055990f9c39ebeee668'
++PLAN_SHA = '2c22489f84d2660b0e40b9ac0e86e44b017b07c0fd5a1d2afef4743a48e6117c'
+ NOFOLLOW = os.O_NOFOLLOW
+ DIRECTORY = os.O_DIRECTORY
+ 
+@@ -56,8 +56,10 @@
+     return data
+ 
+ def contract():
+-    raw = read(N / 'INSTALL_PLAN.json'); need(pin(raw)['SHA256'] == PLAN_SHA, 'exact current plan')
++    raw = read(N / 'INSTALL_PLAN_CORRECTED.json'); need(pin(raw)['SHA256'] == PLAN_SHA, 'exact current plan')
+     plan = json.loads(raw); initial = json.loads(bound(plan['initial']))
++    need(plan['schema'] == 'three-research-filesystem-install-plan-v2-corrected', 'corrected protocol plan')
++    need(plan['active_install_lock'] == str(N / 'ACTIVE_INSTALL.lock'), 'one fixed protocol lock')
+     need(plan['website_root'] == str(W), 'exact website root')
+     need(len(plan['targets']) == 19 and len({row['path'] for row in plan['targets']}) == 19, 'exact19 unique paths')
+     need(set(plan['install_order']) == {row['path'] for row in plan['targets']} and len(plan['install_order']) == 19, 'finite install order')
+@@ -80,7 +82,7 @@
+         return None
+     raw = read(path); value = json.loads(raw)
+     need(value['schema'] == 'three-research-install-authorization-v1' and value['status'] == 'ROOT_AUTHORIZED_EXACT19PATH_FILESYSTEM_INSTALL', 'exact separate root authorization')
+-    for key, expected in [('root_private_adoption', initial['root_private_adoption']), ('release_initial', plan['initial']), ('install_plan', {'path': str(N / 'INSTALL_PLAN.json'), **pin(read(N / 'INSTALL_PLAN.json'))}), ('installer', {'path': str(N / 'install_three.py'), **pin(read(N / 'install_three.py'))})]:
++    for key, expected in [('root_private_adoption', initial['root_private_adoption']), ('release_initial', plan['initial']), ('install_plan', {'path': str(N / 'INSTALL_PLAN_CORRECTED.json'), **pin(read(N / 'INSTALL_PLAN_CORRECTED.json'))}), ('installer', {'path': str(N / 'install_three_corrected.py'), **pin(read(N / 'install_three_corrected.py'))})]:
+         need(value[key] == expected, 'authorization binds ' + key); bound(value[key])
+     need(value['filesystem_install_authorized'] is True, 'explicit filesystem install authority')
+     for key in ['Git_mutation_authorized', 'deployment_authorized', 'Sheet_mutation_authorized', 'browser_or_network_authorized']:
+@@ -140,93 +142,131 @@
+     rename = libc.renameatx_np
+     rename.argtypes = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint]; rename.restype = ctypes.c_int
+     # Local SDK sys/stdio.h defines RENAME_EXCL=0x00000004.
+-    def move(src_fd, src, dst_fd, dst):
+-        if rename(src_fd, os.fsencode(src), dst_fd, os.fsencode(dst), 4):
+-            error = ctypes.get_errno(); raise OSError(error, os.strerror(error))
+-        os.fsync(src_fd); os.fsync(dst_fd)
+-    transactions = N / 'transactions'; safe(N)
+-    if not transactions.exists(): transactions.mkdir(mode=0o700)
+-    safe(transactions)
+-    transaction = transactions / hashlib.sha256(auth_raw).hexdigest(); transaction.mkdir(mode=0o700)
+-    staged = transaction / 'staged'; backups = transaction / 'backups'; staged.mkdir(mode=0o700); backups.mkdir(mode=0o700)
+-    journal = (transaction / 'journal.jsonl').open('xb')
++    directory_fds = []; descriptors = []; journal = None; lock_fd = None
++    transaction = None; published = {}; original_fds = {}; moved_backups = {}; made_dirs = {}
++    lock_body = (json.dumps({'authorization_SHA256': hashlib.sha256(auth_raw).hexdigest(), 'PID': os.getpid(), 'protocol': 'fixed-three-filesystem-install-v2'}) + '\n').encode()
++    def write_all(fd, data):
++        offset = 0
++        while offset < len(data):
++            written = os.write(fd, data[offset:]); need(written > 0, 'nonzero complete write'); offset += written
++    def directory(parent_fd, name):
++        fd = os.open(name, os.O_RDONLY | DIRECTORY | NOFOLLOW, dir_fd=parent_fd)
++        need(identity(os.stat(name, dir_fd=parent_fd, follow_symlinks=False)) == identity(os.fstat(fd)), 'owned directory identity')
++        directory_fds.append(fd); return fd
+     def event(value):
+         journal.write((json.dumps({'UTC': utc(), **value}, sort_keys=True) + '\n').encode()); journal.flush(); os.fsync(journal.fileno())
+-    root_fd = os.open(W, os.O_RDONLY | DIRECTORY | NOFOLLOW)
+-    staged_fd = os.open(staged, os.O_RDONLY | DIRECTORY | NOFOLLOW); backup_fd = os.open(backups, os.O_RDONLY | DIRECTORY | NOFOLLOW)
+-    descriptors = []; published = {}; original_fds = {}; moved_backups = {}; made_dirs = {}
+-    def recheck(fds, relative):
+-        need(identity(W.lstat()) == identity(os.fstat(root_fd)), 'live W root immediately before mutation')
+-        for index, part in enumerate(Path(relative).parts[:-1]):
+-            need(identity(os.stat(part, dir_fd=fds[index], follow_symlinks=False)) == identity(os.fstat(fds[index + 1])), 'live ancestor immediately before mutation')
+-    def parents(relative, create=False):
+-        fds = [os.dup(root_fd)]; chain = []
+-        try:
+-            need(identity(W.lstat()) == identity(os.fstat(root_fd)), 'live W root identity')
+-            for part in Path(relative).parts[:-1]:
+-                chain.append(part); parent_name = '/'.join(chain)
+-                if create and parent_name in plan['new_directories'] and parent_name not in made_dirs:
+-                    need(not os.path.lexists(W / parent_name), 'do not adopt a concurrently created article directory')
+-                    event({'intent': 'mkdir', 'path': parent_name}); os.mkdir(part, 0o755, dir_fd=fds[-1]); os.fsync(fds[-1])
+-                    child = os.open(part, os.O_RDONLY | DIRECTORY | NOFOLLOW, dir_fd=fds[-1]); os.fchmod(child, 0o755); os.fsync(child)
+-                    made_dirs[parent_name] = identity(os.fstat(child))
+-                    event({'complete': 'mkdir', 'path': parent_name})
+-                else: child = os.open(part, os.O_RDONLY | DIRECTORY | NOFOLLOW, dir_fd=fds[-1])
+-                need(identity(os.stat(part, dir_fd=fds[-1], follow_symlinks=False)) == identity(os.fstat(child)), 'live ancestor identity')
+-                if parent_name in made_dirs: need(identity(os.fstat(child)) == made_dirs[parent_name], 'same created article directory')
+-                fds.append(child)
+-            return fds
+-        except BaseException:
+-            for fd in reversed(fds): os.close(fd)
+-            raise
+     try:
+-        event({'status': 'AUTHORIZED_PREFLIGHT_COMPLETE', 'authorization_SHA256': hashlib.sha256(auth_raw).hexdigest(), 'targets': plan['install_order']})
++        safe(N); owned_fd = os.open(N, os.O_RDONLY | DIRECTORY | NOFOLLOW); directory_fds.append(owned_fd)
++        lock_fd = os.open('ACTIVE_INSTALL.lock', os.O_RDWR | os.O_CREAT | os.O_EXCL | NOFOLLOW, 0o600, dir_fd=owned_fd)
++        write_all(lock_fd, lock_body); os.fchmod(lock_fd, 0o600); os.fsync(lock_fd); os.fsync(owned_fd)
++        def check_lock():
++            need(identity(N.lstat()) == identity(os.fstat(owned_fd)), 'live owned root identity')
++            info = os.stat('ACTIVE_INSTALL.lock', dir_fd=owned_fd, follow_symlinks=False)
++            need(stat.S_ISREG(info.st_mode) and identity(info) == identity(os.fstat(lock_fd)), 'held fixed active-install lock')
++            need(stat.S_IMODE(info.st_mode) == 0o600 and held(lock_fd) == lock_body, 'exact durable lock body/mode')
++        check_lock()
++        if not os.path.lexists(N / 'transactions'): os.mkdir('transactions', 0o700, dir_fd=owned_fd)
++        transactions_fd = directory(owned_fd, 'transactions'); os.fsync(owned_fd)
++        transaction_name = hashlib.sha256(auth_raw).hexdigest()
++        os.mkdir(transaction_name, 0o700, dir_fd=transactions_fd)
++        transaction_fd = directory(transactions_fd, transaction_name); os.fsync(transactions_fd)
++        transaction = N / 'transactions' / transaction_name
++        os.mkdir('staged', 0o700, dir_fd=transaction_fd); os.mkdir('backups', 0o700, dir_fd=transaction_fd)
++        staged_fd = directory(transaction_fd, 'staged'); backup_fd = directory(transaction_fd, 'backups')
++        journal_fd = os.open('journal.jsonl', os.O_WRONLY | os.O_CREAT | os.O_EXCL | NOFOLLOW, 0o600, dir_fd=transaction_fd)
++        journal = os.fdopen(journal_fd, 'wb')
++        event({'status': 'LOCKED_AUTHORIZED_PREFLIGHT_COMPLETE', 'authorization_SHA256': hashlib.sha256(auth_raw).hexdigest(), 'targets': plan['install_order']})
++        # Persist every parent link, including the journal entry, before W moves.
++        for fd in [staged_fd, backup_fd, transaction_fd, transactions_fd, owned_fd]: os.fsync(fd)
++        root_fd = os.open(W, os.O_RDONLY | DIRECTORY | NOFOLLOW); directory_fds.append(root_fd)
++        def move(src_fd, src, dst_fd, dst):
++            check_lock()
++            if rename(src_fd, os.fsencode(src), dst_fd, os.fsencode(dst), 4):
++                error = ctypes.get_errno(); raise OSError(error, os.strerror(error))
++            os.fsync(src_fd); os.fsync(dst_fd)
++        def recheck(fds, relative):
++            check_lock(); need(identity(W.lstat()) == identity(os.fstat(root_fd)), 'live W root immediately before mutation')
++            for index, part in enumerate(Path(relative).parts[:len(fds) - 1]):
++                need(identity(os.stat(part, dir_fd=fds[index], follow_symlinks=False)) == identity(os.fstat(fds[index + 1])), 'live ancestor immediately before mutation')
++        def parents(relative):
++            fds = [os.dup(root_fd)]; chain = []
++            try:
++                recheck(fds, relative)
++                for part in Path(relative).parts[:-1]:
++                    chain.append(part); parent_name = '/'.join(chain)
++                    if parent_name in plan['new_directories'] and parent_name not in made_dirs:
++                        need(not os.path.lexists(W / parent_name), 'do not adopt a concurrently created article directory')
++                        recheck(fds, relative); event({'intent': 'mkdir', 'path': parent_name})
++                        os.mkdir(part, 0o755, dir_fd=fds[-1]); os.fsync(fds[-1])
++                        child = os.open(part, os.O_RDONLY | DIRECTORY | NOFOLLOW, dir_fd=fds[-1]); os.fchmod(child, 0o755); os.fsync(child)
++                        made_dirs[parent_name] = identity(os.fstat(child)); event({'complete': 'mkdir', 'path': parent_name})
++                    else: child = os.open(part, os.O_RDONLY | DIRECTORY | NOFOLLOW, dir_fd=fds[-1])
++                    need(identity(os.stat(part, dir_fd=fds[-1], follow_symlinks=False)) == identity(os.fstat(child)), 'live ancestor identity')
++                    if parent_name in made_dirs: need(identity(os.fstat(child)) == made_dirs[parent_name], 'same created article directory')
++                    fds.append(child)
++                return fds
++            except BaseException:
++                for fd in reversed(fds): os.close(fd)
++                raise
+         rows = {row['path']: row for row in plan['targets']}
++        need([rows[name]['kind'] for name in plan['install_order']] == ['new'] * 16 + ['replacement'] * 3, 'all new leaves before replacements')
++        prepared = {}
++        # Phase one touches only owned files: all19 are complete and durable first.
+         for number, relative in enumerate(plan['install_order']):
+-            row = rows[relative]; temporary = str(number)
++            check_lock(); row = rows[relative]; temporary = str(number)
+             fd = os.open(temporary, os.O_RDWR | os.O_CREAT | os.O_EXCL | NOFOLLOW, row['mode'], dir_fd=staged_fd); descriptors.append(fd)
+-            data = buffers[relative]; offset = 0
+-            while offset < len(data):
+-                written = os.write(fd, data[offset:]); need(written > 0, 'nonzero temporary write'); offset += written
+-            os.fchmod(fd, row['mode']); os.fsync(fd); need(held(fd) == data, 'complete owned temporary buffer')
+-            fds = parents(relative, create=True); parent_fd = fds[-1]; leaf = Path(relative).name
++            write_all(fd, buffers[relative]); os.fchmod(fd, row['mode']); os.fsync(fd)
++            need(held(fd) == buffers[relative], 'complete owned temporary buffer')
++            need(identity(os.stat(temporary, dir_fd=staged_fd, follow_symlinks=False)) == identity(os.fstat(fd)), 'held prepared source identity')
++            prepared[relative] = (temporary, fd)
++        need(len(prepared) == 19, 'all19 buffers prepared before W mutation'); os.fsync(staged_fd)
++        event({'status': 'ALL19_BUFFERS_AND_STAGED_DIRECTORY_DURABLE_BEFORE_ANY_W_MUTATION'})
++        # Phase two creates only planned directories and publishes new leaves first.
++        for relative in plan['install_order']:
++            check_lock(); row = rows[relative]; temporary, fd = prepared[relative]
++            fds = parents(relative); parent_fd = fds[-1]; leaf = Path(relative).name
+             try:
+-                need(identity(os.stat(temporary, dir_fd=staged_fd, follow_symlinks=False)) == identity(os.fstat(fd)), 'held prepared source identity')
++                need(identity(os.stat(temporary, dir_fd=staged_fd, follow_symlinks=False)) == identity(os.fstat(fd)), 'same fully prepared source')
+                 if row['kind'] == 'replacement':
+                     old_fd = os.open(leaf, os.O_RDONLY | NOFOLLOW, dir_fd=parent_fd); descriptors.append(old_fd); original_fds[relative] = old_fd
+                     old = initial['three_old_targets'][relative]
+                     need(pin(held(old_fd)) == {key: old[key] for key in ['bytes', 'SHA256']} and identity(os.fstat(old_fd)) == [old['device'], old['inode']], 'held original before move')
+                     need(stat.S_IMODE(os.fstat(old_fd).st_mode) == old['mode'], 'original mode before move')
+                     need(identity(os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)) == identity(os.fstat(old_fd)), 'live original before parking')
+-                    recheck(fds, relative)
+-                    event({'intent': 'park_original', 'path': relative, 'backup': temporary})
++                    recheck(fds, relative); event({'intent': 'park_original', 'path': relative, 'backup': temporary})
+                     move(parent_fd, leaf, backup_fd, temporary)
+                     need(identity(os.stat(temporary, dir_fd=backup_fd, follow_symlinks=False)) == identity(os.fstat(old_fd)), 'parked original is held original')
+-                    need(pin(read(backups / temporary)) == {key: old[key] for key in ['bytes', 'SHA256']}, 'whole parked original')
++                    need(pin(read(transaction / 'backups' / temporary)) == {key: old[key] for key in ['bytes', 'SHA256']}, 'whole parked original')
+                     moved_backups[relative] = temporary; event({'complete': 'park_original', 'path': relative, 'backup': temporary})
+-                recheck(fds, relative)
+-                event({'intent': 'publish_exclusive', 'path': relative, 'prepared': temporary})
++                recheck(fds, relative); event({'intent': 'publish_exclusive', 'path': relative, 'prepared': temporary})
+                 move(staged_fd, temporary, parent_fd, leaf)
+-                need(identity(os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)) == identity(os.fstat(fd)) and held(fd) == data, 'published source identity/buffer')
++                need(identity(os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)) == identity(os.fstat(fd)) and held(fd) == buffers[relative], 'published source identity/buffer')
+                 published[relative] = identity(os.fstat(fd)); event({'complete': 'publish_exclusive', 'path': relative})
+             finally:
+                 for directory_fd in reversed(fds): os.close(directory_fd)
+-        counts = fence(plan, initial, base, buffers, installed=True)
++        check_lock(); counts = fence(plan, initial, base, buffers, installed=True)
+         for relative, expected in published.items(): need(identity((W / relative).lstat()) == expected, 'all19 final published identities')
+         for relative, name in moved_backups.items():
+-            old = initial['three_old_targets'][relative]
+-            need(identity((backups / name).lstat()) == identity(os.fstat(original_fds[relative])), 'all3 backup identities')
+-            need(pin(read(backups / name)) == {key: old[key] for key in ['bytes', 'SHA256']} and mode(backups / name) == old['mode'], 'all3 final backup buffers/modes')
+-        need(len(moved_backups) == 3 and not list(staged.iterdir()) and len(list(backups.iterdir())) == 3, 'no unresolved temporary/moved entries')
+-        event({'status': 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'counts': counts, 'native_index_entries_unchanged': 58571})
+-        return {'status': 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'transaction': str(transaction), 'counts': counts, 'native_index_entries_unchanged': 58571, 'Git_deploy_Sheet_actions': False}
++            old = initial['three_old_targets'][relative]; backup = transaction / 'backups' / name
++            need(identity(backup.lstat()) == identity(os.fstat(original_fds[relative])), 'all3 backup identities')
++            need(pin(read(backup)) == {key: old[key] for key in ['bytes', 'SHA256']} and mode(backup) == old['mode'], 'all3 final backup buffers/modes')
++        need(len(moved_backups) == 3 and not list((transaction / 'staged').iterdir()) and len(list((transaction / 'backups').iterdir())) == 3, 'no unresolved temporary/moved entries')
++        check_lock()
++        result = {'status': 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'transaction': str(transaction), 'counts': counts, 'native_index_entries_unchanged': 58571, 'active_install_lock_preserved_for_root_release': str(N / 'ACTIVE_INSTALL.lock'), 'Git_deploy_Sheet_actions': False}
++        receipt_fd = os.open('SUCCESS.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL | NOFOLLOW, 0o600, dir_fd=transaction_fd)
++        try: write_all(receipt_fd, (json.dumps(result, indent=2) + '\n').encode()); os.fsync(receipt_fd)
++        finally: os.close(receipt_fd)
++        os.fsync(transaction_fd); event(result); check_lock()
++        return result
+     except BaseException as error:
+-        event({'status': 'STOPPED_PARTIAL_OR_UNCERTAIN_STATE_PRESERVED', 'error': repr(error), 'completed_targets': list(published), 'known_backups': moved_backups, 'automatic_rollback': False})
++        if journal is not None:
++            event({'status': 'STOPPED_PARTIAL_OR_UNCERTAIN_STATE_PRESERVED', 'error': repr(error), 'completed_targets': list(published), 'known_backups': moved_backups, 'automatic_rollback': False, 'active_install_lock_preserved': True})
+         raise
+     finally:
+         for fd in descriptors: os.close(fd)
+-        for fd in [root_fd, staged_fd, backup_fd]: os.close(fd)
+-        journal.close()
++        for fd in reversed(directory_fds): os.close(fd)
++        if journal is not None: journal.close()
++        if lock_fd is not None: os.close(lock_fd)
+ 
+ def main():
+     need(sys.argv[1:] in [[], ['--install'], ['--verify-installed']], 'finite explicit modes')
+@@ -238,6 +278,6 @@
+         print(json.dumps(install(plan, initial, base, buffers, raw), sort_keys=True))
+     else:
+         authorized = authorization(plan, initial) is not None
+-        print(json.dumps({'status': 'POSTINSTALL_READONLY_VERIFIED' if installed else 'READONLY_PLAN_PREFLIGHT_PASS', 'counts': counts, 'target_paths': 19, 'new_leaves': 16, 'replacements': 3, 'current_native_entries_unchanged': 58571, 'future_root_staging_entries': 58587, 'future_protected_original_raw_records': 58568, 'separate_root_install_authorization_present': authorized, 'writes': 0, 'Git_network_deploy_Sheet_browser_actions': False}, sort_keys=True))
++        print(json.dumps({'status': 'POSTINSTALL_READONLY_VERIFIED' if installed else 'READONLY_PLAN_PREFLIGHT_PASS', 'counts': counts, 'target_paths': 19, 'new_leaves': 16, 'replacements': 3, 'current_native_entries_unchanged': 58571, 'future_root_staging_entries': 58587, 'future_protected_original_raw_records': 58568, 'separate_root_install_authorization_present': authorized, 'active_install_lock_present': os.path.lexists(N / 'ACTIVE_INSTALL.lock'), 'writes': 0, 'Git_network_deploy_Sheet_browser_actions': False}, sort_keys=True))
+ 
+ if __name__ == '__main__': main()

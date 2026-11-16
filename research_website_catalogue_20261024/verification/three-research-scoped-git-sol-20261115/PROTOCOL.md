@@ -1,0 +1,29 @@
+# Scoped Git release helper
+
+Preparation only. The167-line standalone release_three.py has not been imported or run as a program; no Git command, network request, staging, commit or push occurred in this task. The existing safety38/1FINAL and all source/frozen packets remain untouched. Root must read/adopt the actual current helper and separately authorize execution after the filesystem installation.
+
+## Offline default and authorization
+
+The default checks the installed19 candidate files, including nonpublic firebase.json, against the frozen writer FINAL4f9cb2…/manifest and private adoptiond0f165…. It reconstructs and checks all647 expected public file buffers and exact directory names, the unchanged controls, original9,002,656B index5f9c24…/0600/58,571records, and existing master/HEAD2b78e6…/tree439281…. It uses only offline Git reads with optional locking disabled. It does not call the old pre-install stage default.
+
+Its JSON result contains all19 path/length/SHA256 pins, expected647-public and directory-manifest digests, current index/HEAD/tree/branch pins, helper hash and a canonical preflight fingerprint. It explicitly says remote_checked:false and writes:0. Root should retain the literal actual default output before making AUTHORIZATION.json. No default receipt is fabricated here; W was still awaiting installation when this helper was prepared.
+
+AUTHORIZATION_SCHEMA.json is a schema, not authority. Only root creates the ignored AUTHORIZATION.json after an actual installed-state default. Exactly14 fields are required: the10 fixed/preflight values in the schema plus author_name, author_email, commit_date and expires_UTC. Use the intended real Git author identity; both dates require an explicit timezone. The fixed message is “Publish three reviewed Zenodo research pages”. The helper requires the exact current helper hash and installed preflight fingerprint and rechecks unchanged authorization bytes and expiry before creating the commit and immediately before CAS.
+
+## Explicit commit mode
+
+With separately granted authority, --commit first repeats offline preflight. It exclusively creates0600 raw/events.jsonl, records/fsyncs full command stdout/stderr and phase evidence, then checks remote refs/heads/master is still2b78e6… . Git command environment controls are process-local: inherited GIT_* overrides are removed; hooks, fsmonitor, untracked cache, auto-maintenance, signing, split index and mirror push are disabled without writing configuration. Raw hash-object --no-filters --stdin bypasses content filters; no project/native code is imported or executed.
+
+The old index is copied only then to preignored raw/scoped.index at0600. Nineteen raw candidate blob OIDs are independently computed and compared with Git hash-object. update-index --index-info touches only that private index; write-tree constructs the proposed tree. The v2 parser checks SHA1 trailer, exact entry extent, sorted names, flags and padding. All58,568 untargeted complete raw records, including cached stat bytes, must equal the old records. Exactly58,587 entries and19 target100644 raw blob IDs are required. The complete tree diff must contain exactly16 additions and3 replacements at the19 exact paths. Only an optional Git TREE cache extension is accepted; no mandatory or unknown extension is accepted.
+
+Only after those checks does the helper exclusively acquire0600 W/.git/index.lock, write/fsync the exact prepared index, and repeat installed files/HEAD/old-index/authorization fences. commit-tree creates the fixed reviewed tree with sole parent2b78e6… and explicit authorized author/committer identity/date. CAS update-ref targets the existing refs/heads/master and expected old parent. The owned lock is then atomically renamed to the shared index and W/.git is fsynced. Journal/temp-index parent entries are fsynced at creation. These are bounded durability measures, not a universal power-loss or hostile-concurrency certificate.
+
+Push uses the immutable new commit OID as the sole source: <commit>:refs/heads/master. It cannot publish a concurrently advanced local branch. Push is ordinary fast-forward only, with no force, tag following or submodule recursion. The exact remote commit and unchanged local commit/index are checked after push. Ordinary Git object, reflog and remote-tracking metadata effects belong to this separately authorized release; the helper never installs or edits public/configuration files.
+
+## Failure boundaries
+
+All command exits and complete streams are retained in the ignored exclusive journal. No automatic rollback, reset, clean, force push or retry occurs. A failure before any CAS attempt removes only the helper’s still-owned shared lock; raw journal/temp-index and written objects remain evidence. Once CAS has been attempted, uncertain ref/index failures retain the lock rather than guess whether Git advanced the ref. After local index replacement, a push or remote-verification failure leaves the actual local state and all phase records intact for root review. A repeated --commit refuses the preexisting journal instead of overwriting history. Do not delete an uncertain lock or rerun the transaction without examining its exact phase and current refs/index.
+
+## Validation performed
+
+Current code syntax was checked. Only its own pure need/entries functions were isolated and exercised on the old raw index;58,571 parsed records exactly reconstructed the original d54cd598… full native stage stream. No full helper import/default/main or Git/network action was used. The first reviewed14528B bodyf01733… is preserved at raw/release_three.first.py. CURRENT_CODE_DIFF.patch records only the immutable-push and directory-fsync correction; CURRENT_CODE_UPDATE.json binds both bodies. No installation, release or deployment success is claimed.

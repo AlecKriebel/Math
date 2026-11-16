@@ -1,0 +1,17 @@
+# Post-INITIAL authority comparison
+
+2026-11-16T06:54:00Z. Completion estimate: 40%. This comparison follows the frozen INITIAL and precedes public-copy authoring. The assignment had already disclosed science-passed status. The current authority and proof were read in full only after INITIAL_SEAL.json was written.
+
+Read: `verification/root-clearance-23204250-20261115.json` (6,319 bytes; SHA256 `b8b89c874818ca9b6e8568e53745b1ce3384788e4aade73f7eead426d0d61852`) and `reviews/root/ROOT_REVIEW_20261115.md` (5,846 bytes; `97cb0138a591b0a7eb6ef1aac14446cd6ca577cc27368940ce390f2a8e75ad32`). Both support the full original claim, not a narrower conditional replacement. The theorem's exact real affine total-order convention, both reductions, all-N padding, and stated upper bound agree with my source reconstruction. No substantive defect or repair is reported. Root directly scrutinized the central external exponential matching proof. Public copy can describe that scrutiny without claiming this editorial lane performed the same primary-proof audit.
+
+Root confirms classical-source attribution and the LPDWY correction to the tilde 1/11 exponent. It confirms the actual Lean statements are superpolynomial n^C, and no formal build or axiom audit or conventional human refereeing has occurred. Held-Karp's original body was unavailable in that review, while the complete upper-bound construction was independently proved; copy should attribute the established dynamic-programming connection without pretending to have inspected the inaccessible article. No priority or present worldwide openness was certified. Follow-up remains null.
+
+Root reports designated finite-code verification elsewhere; I ran none. Its actual output differs from the original in timestamp and Python version, so byte-identical scientific output must not be implied. Public copy should summarize finite support without narrating the audit log. The source seal's historical unread flags and null fields remain literally intact. Native/printed version absence and the declared/printed versus creation date distinction agree.
+
+The root namespace manifest/seal and qualified core custody were read as finite custody records only. The core qualification is 17 original files plus the separately authorized `405b` checkpoint helper, not 18 original objects and not any global cache assertion. Protected sources/scope/adversarial/root extents will be verified by their exact finite manifests; their scientific bodies have not been copied into this editorial packet.
+
+The actual native site reference and complete shared CSS were read after INITIAL. The page will reuse only the plain frame conventions (Arial, white background, simple header/nav, semantic article, PDF viewer and footer), with original TSP content. No website tree is writable from this assignment.
+
+Operational failures preserved: an exploratory unmatched shell glob for absent Chromium applications exited before listing possible browser dependencies; the corrected explicit directory inventory found Chrome and cached Chromium. An initial attempt to hash nonexistent `reviews/root/FINAL.json` reported no such file; the actual root terminal is `ROOT_FINAL_SEAL_20261115.json`. No protected file was modified by either read-only attempt. No earlier claim depended on either failed probe.
+
+No copy has yet been authored. Root acknowledgement of the independent fact INITIAL is still required before that next step. Timestamp is a checkpoint label; actual authority read occurred after the INITIAL freeze.
