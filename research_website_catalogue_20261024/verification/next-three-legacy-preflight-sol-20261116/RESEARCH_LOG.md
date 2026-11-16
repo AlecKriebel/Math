@@ -1,0 +1,5 @@
+# 2026-11-16T08:03:54.582540+00:00 — 15%
+New namespace and exact next3native/source/editorial identities with bounded aliases frozen before legacy matching/candidate HTML reads. Prior authenticated corpus metadata referenced only; old target findings/helpers not reused. No W/Git mutations or private stage/scientific programme reads. Next: actual current main/docs identity and local whole-corpus bounded search.
+
+# 2026-11-16T08:08:40.029014+00:00 — 100% bounded correspondence findings
+Fresh current public opening+closing main agree e712/rootf0f1/docsf5f5. Entire160root/51docsobjects and254wholebodies/260completeavailabletexts authenticated; all47HTML raw+decoded coverage. Fixed133/137/138 exactnativeidentities and frozenboundedaliases yield zero text/pathhits, hence no genuine HTML/candidate redirect identified. Actual newfullyread offlinehelper c187bf exit0/emptyerr/writes0. No oldhelper replay; prior32/1packet full digest unchanged. Scope/opaque/unsearched/date/metadata limits retained. No W/Git/Sheet/deploy/redirect/contact mutation. Flat finite manifest/final sealing next.

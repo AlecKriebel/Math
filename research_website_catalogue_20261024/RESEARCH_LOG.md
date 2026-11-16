@@ -957,3 +957,23 @@ Root140 full4PDF/267TeX/fourfreshrasters independently read; INITIAL0a2473fe fro
 Independentmanuscript-first INITIAL0a2473fe andfullactualprimary/code/process/custodyreviewnowcomplete. FullclaimPASS,rootnamespacefrozen withoutsideauthority;trackertransitionpending.112/203scientific55.17%includingonependingnative;authoritative111science/99published/107finalized52.71%. Programmecheckpoint465d8a actual53files,parent eec,159siblings/index/localHEADpreserved;actualvsdryextraonlypublished dryreceipt,notunreviewedpaperpayloads. Currentprivate3stageassemblyauthorizedafteritsINITIAL4960; independentauditINITIALpreparedandcandidateclosed.
 
 2026-11-16T07:47:42.088746+00:00 — Pre-push packaging: six native-paper TSP fact reading PNGs appeared in dry proposal27. They are original author-owned paper derivatives, not foreign works, but unnecessary reading copies. Added one exact programme-level rasters ignore anchor before any push; frozen fact18/1 bytes unchanged. Detailed manuscript/text/fact evidence retained.
+
+### 2026-11-16T07:53:44.912330+00:00 — authoritative native112 review transition
+
+AB140/AD140 onlyUEVwrites;989wholeCellData/987untouched andall246AA/ACfullcells+metadataexact.100%Arial10nativevisual full358characternote/status/blankAA/editionfit;postUIfullreadbackidentical.112/203scientific55.17%,99published+8deferred=107/203finalized52.71%;fivepreparing/threeinreview/86queued/2holds. ActualPcheckpointe71223files,parent465d8,publishedroot140fullscientificclearanceandfrozenTSPfact;reading6PNGsneveruploaded,frozen18/1localbytesretained. Threeprivate16payloadcandidateunchangedafterfirstbuilderverifierroot-slashfailure,currentread-only3c300guardpassa5b136;independentmechanicalaudit/browserchecksongoing. NoWinstall/AApublicationofnewdrafts.
+
+### 2026-11-16T07:56:56.126823+00:00 — TSPfulloriginal editorial adopted with administrative label removal
+
+Rootreadentireactualpreview/head/MAINandfactreport/FINALs;vieweddesktopresult/mobilereview. Exactwriter52/4andfact18/1currentwholefinitepincheckspluspublishedoutercontrols passed;native3assetswholeMD5/SHAequal. Rootcreatedone separateapprovedMAIN removingonlythe40-bytePrivatepreviewparagraph, preservingallscientific/abstract/rights/status/nativecontent;frozenwriter/fact/source unchanged. Currentwriterdefault16782Bsealer NOT executed; priorsafe-defaultdescription withdrawn, fact405-bytehelperclericalsentencequalifiedactual6213B/SHA405b. Rootadoptionprivateonly,livePDFgateexplicitlypending/headlessblank. Editorialadoption100%;112science/99published/107finalized52.71%;goalactive.
+
+2026-11-16T07:59:16.378274+00:00 — TSPadministrativelabel-removal length clarification: actual removedbuffer42bytes, ascomputedinRELEASE_LABEL_CORRECTION; priorlogsaid40. AuthoritativecorrectedMAIN13761Bc714a3bd and allotherbytes unchanged. ProposedTSPslug is rootselectedprivatecandidate, not canonicalassignment; localrouteabsencechecked.
+
+2026-11-16T07:59:55.479697+00:00 — TSPprivateproposedroute finalized to writer model exact-semidefinite-tsp, checkedlocallyabsent; firstlongerrootproposal supersededbeforepublication. No canonical/AAassignment orbodychange. Rooteditorialadoptioncurrent50bee6e90920cb77f2bf23b5c12f6d4ecf6ddb9288742ff499b36c50e6f4f739.
+
+### 2026-11-16T08:13:38.747392+00:00 — nextthreeprivate16pathstage adopted
+
+Rootfullcurrentmechanismknownfromreadv1+exactone-linecurrentdelta;newHEAD/wrappers/peerreports/FINALsread; actualread-onlydefault8d612bexit0. Separatedata-onlyfinite66/8writer+12/0auditor/current64+11pins+matching16candidatepinschecked. Firstowncomparatorstoppedon ./manifestpathspelling; allcontenthasheswerecorrect, safeexactprefixcomparisonresolvednamespace,historynotdeleted. MAIN3/native8/Bibs3 exact;99oldindex/100oldsitemappreserved;projected661/102/103. Ownerprivatebrowser/HTTP/no-JPGbounds andfirstbuild/readorderhistoryliteral. Stage100%,Winstall/deploy/live0%;native99published112science/107finalized52.71%. Newlegacy3preflightcompletependingrootread;goalactive.
+
+### 2026-11-16T08:18:21.607499+00:00 — nextthreelegacyboundednegativeadopted
+
+Rootreadcomplete8963B897bcurrentpurehelper,REPORT/FINAL/manifest andfixedaliases;actual3a4322exit0zerooutputsnewscience/writes/network. Authenticated254bodies260representations/47raw+decodedHTML51treeobjects,e712openingclosingmainidentical. Zerotitle/DOI/ID/alias/pathhits,41opaqueblobsnottextsearched. No genuineHTMLcandidate/no redirects/no allhistoryclaim. New16pathproductionmechanismsprepareractiveonly,rootwillreadcurrentcodebeforeanyexecution. Stageandlegacy100%;Winstallation/live0%,overall107/20352.71%finalized,112/20355.17%science.
