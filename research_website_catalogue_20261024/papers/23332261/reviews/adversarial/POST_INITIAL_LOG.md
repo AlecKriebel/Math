@@ -1,0 +1,7 @@
+# Post-INITIAL research log — 23332261
+
+- 2026-11-16T11:17:38.497063+00:00 — Initial payloads remain frozen; later work is recorded only in new files. Parent's per-paper PRIMARY_BODY_GO was received after both independent source-first freezes. Completion estimate65% at that gate.
+- 2026-11-16T11:17:38.497063+00:00 — Programme checkpoint pause honored at a clean boundary, with no active native/GET; no owned writes resumed until explicit CHECKPOINT_DONE. Read-only selected-primary inspection continued while paused. Completion estimate70%.
+- 2026-11-16T11:17:38.497063+00:00 — Critical primary interfaces inspected at finite paths; primary reading scopes and fresh selected-page rasters recorded. Filename/grep discovery outputs that truncated were not treated as fully read; targeted reads were repeated. No old review proof/findings body or current peer/root findings opened. Completion estimate90%.
+- 2026-11-16T11:17:38.497063+00:00 — One own control run, exit0; no native run. Native scripts, inputs, expected and safety were wholly inspected before the selected ordinary runs. No -O/-OO, campaign/build/seal or redundant native replay.
+- 2026-11-16T11:17:38.497063+00:00 — Written derivations, primary interfaces, limitations and exact custody checked; final scientific verdict in REVIEW.md. Completion estimate100% for this bounded independent adversarial review. Findings remain withheld from root pending root's own INITIAL gate; readiness/pins only are handed off. Follow-up null.
