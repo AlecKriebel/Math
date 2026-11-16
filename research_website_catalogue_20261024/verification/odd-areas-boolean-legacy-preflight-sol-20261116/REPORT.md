@@ -1,0 +1,23 @@
+# Odd-area and Boolean legacy correspondence preflight
+
+**Bounded negative for rows154,155,159: no genuinely corresponding article identified among the current47 HTML bodies with the frozen identity/label queries.** No old route, article alias, fragment mapping or redirect is proposed. Targets are not live-verified; no intended canonical is invented.
+
+| Row | Record | Native title | DOI | Native version | Publication date |
+| --- | --- | --- | --- | --- | --- |
+| 154 | 23334001 | An odd-period pedal-antipedal area invariant in elliptic billiards | `10.5281/zenodo.23334001` | 1.0 | 2026-10-13 |
+| 155 | 23394004 | An odd-period product for focal inversions of outer billiard polygons | `10.5281/zenodo.23394004` | 1.0 | 2026-10-15 |
+| 159 | 23443301 | Polynomial compatibility on the Boolean cube from disjoint-support separators | `10.5281/zenodo.23443301` | 1.0.0 | 2026-10-17 |
+
+Actual native metadata, descriptions, creators, concept IDs/DOIs, related-identifier fields and file names were read for correspondence. Native154 supplies k403,a and origin pedal/antipedal area-product labels; native155 supplies k904,a, earlier k808,a and AMR-050-0063; native159 supplies polynomial compatibility/Boolean-cube/disjoint-support separator/OSSS,30006210 and OWR-14299088-012 labels. Exact complete titles, record/concept IDs and DOIs, asset-name literals and the finite known-label regexes are retained in NATIVE_IDENTITIES.json and literal SEARCH.stdout.json. No proof reading or scientific/native helper execution was needed to identify those labels. Historical validation/priority claims in native descriptions were treated as metadata, not reproduced findings.
+
+Related identifiers are absent in154/155. In159 they are cited prior literature plus isSupplementTo PR1141, a source supplement rather than evidence of a hosted legacy article. No isDocumentedBy article route is supplied by these native objects. No source/asset/catalogue relation was promoted to an article URL. Prior catalogue/editorial/integration exposure, including previously seeing154metadata in a title lookup, is disclosed; this is no new blind scientific family.
+
+Fresh connected GitHub reads opened and closed main `9d9c389718f51d9f2dd8abf603c84169cdabb9ea`, root `1f2a1e3b39b0d5f3425e78c875c8ecac4bcd6bb6`, docs `e63ba1f227e5aa2f0e06fd6a52b36afa1531a4d0`. Four completed GET receipts are retained. The exact unchanged current47-body map and cached tree authentication were reused by pinned reference from the frozen supercritical preflight; each selected whole HTML buffer was independently SHA256/Git-blob authenticated before this query. This includes decoding the one explicitly marked MCP body container. No old helper,304-entry tree campaign,254-asset acquisition, PDF/ZIP or history search was performed.
+
+One fully read3,525-byte own data-only utility ran once offline: exit0, empty stderr. Literal stdout40,486bytes/stderr/exit are retained. It searched all612,221whole HTML bytes as rawHTML and decoded normalized text, with an additional spacing-free decoded view to catch labels split across markup/spacing. RawHTML and normal decoded views had zero hits for all three targets. Rows154/155 had no hits in any view.
+
+For159, only the additional compact view produced a keyword artifact: four occurrences of OSSS across word boundaries in `docs/research/gamma-theta-conjecture/index.html`. Reconstructed ordinary text reads “across separated”, “Across states”, and twice “target-cross state”; in each case the matched span is “oss s”. This is unrelated graph-theory prose, not the OSSS inequality, Boolean-cube polynomial question or a matching article. All four compact and reconstructed normal contexts were personally read; FALSE_POSITIVES.json preserves the precise distinction. The source article was not selected or personally reread end-to-end as a scientific proof.
+
+No genuine candidate required a complete correspondence-article reading, and no old title/author/version/result identity or old fragment set is established. Query/hash/fragment compatibility therefore remains unestablished rather than being guessed. Any later redirect would require actual article identity and a separately verified live target with root authorization; assets and catalogue pages are excluded.
+
+Math local HEAD/index bytes/hash/mode match the frozen before-state after inspection. Native identities and old packets are unchanged. Writes stayed only in this new folder; no W/Git/Sheet/deploy/source change or external-human contact occurred. This conclusion is limited to the exact current47 HTML buffers and frozen queries, not unknown aliases, other assets, past commits, the public web or global absence. Bounded preflight100% at 2026-11-16T16:51:42.456224+00:00; quiescent.
