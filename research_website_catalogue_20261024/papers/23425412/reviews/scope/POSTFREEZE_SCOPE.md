@@ -1,0 +1,9 @@
+# Postfreeze scope and custody
+
+Checkpoint UTC 2026-11-16 09:38:24. Completion estimate 50%. INITIAL.md remains unchanged and predates these reads. Foreign primary bodies and family comparison remain closed.
+
+Verified the final source-owner seal by ordinary SHA256 reading: `sources/SOURCE_FINAL.json` = `60947992a60c47fd044b5155dc2118c26055fa1df37069a1106193be87a373af` (828 bytes), and its referenced `sources/SOURCE_MANIFEST.json` = `eeb338b5e244ecf2e7061565d19e85d7c938832b02fec33deb85a527aa34e0bd` (47341 bytes). The final seal records 198 actual files/23 child directories, two native assets, one TeX candidate, and native/embedded manuscript copies. This source-only seal is custody evidence, not scientific evidence. The source namespace was not written.
+
+After the INITIAL actual-result freeze, statically read the entire 173-line supplied `checks/independent_math.py`, SHA256 `ff44cdce74d36b40995843f7bc450e31fcac532163f3a411da51f3244ea82601`. It performs exact Fraction/integer polynomial arithmetic for finite coefficient truncations, polynomial-in-n finite-difference identities, finite monic node checks, finitely many summand valuations/product factorizations, the printed coefficient triple and boundary controls. The implementation explicitly leaves the topological bridge external and the general all-tail proof written. Its loops over selected finite jet/rank/summand ranges do not prove the inverse-limit/topological input by exhaustive computation. Checks use explicit exceptions rather than optimizable assertions. No import, execution, recorded-result read, native audit/retrieval/builder run, or prior review-body read was performed. The source code's reference to an old report was not followed.
+
+No additional external input is logically needed to prove the frozen local algebra, but exact critical primary statements are needed to validate the claimed application. Followup remains null and no change to the published proof is proposed.

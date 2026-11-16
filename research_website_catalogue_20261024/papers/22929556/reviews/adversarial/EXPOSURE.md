@@ -1,0 +1,5 @@
+# Source-first adversarial exposure boundary
+
+2026-11-16T09:41:57Z. New adversarial family for row148/22929556. Prior source-only custody for rows146–148 is frozen at verification packet SHA2567901cbfd82d12d57eff33e5e1bbefe139d56f9c704db714c24b7351cf779a4a2. I saw public identity/version/date/license/schema/filename and opaque count/hash/pdfinfo metadata, including absent native version and an archive-folder v1.0.1 label. Mathematical PDF text/pixels, TeX bodies, code/results/README/opinions were not read. No metadata-blindness claim is made.
+
+First phase opens only exact native PDF/controlling TeX and fresh own render/text extraction. Current scope/root scientific findings, archived support/code/results/opinions and foreign critical bodies remain closed until own source-first INITIAL and actual proof/controls freeze. At most one meaningful unchanged normal native route later after complete safety/body/input/expected reading; no optimized duplicate/builders/campaign. Foreign primary/comparison requires root GO. Follow-up null.
