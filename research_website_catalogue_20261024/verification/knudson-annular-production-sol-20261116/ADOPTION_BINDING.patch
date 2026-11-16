@@ -1,0 +1,28 @@
+--- PLAN.pending.json
++++ PLAN.json
+@@ -3,8 +3,12 @@
+   "website": "/Users/alec/Desktop/alec-dev/aleckriebel.com",
+   "project": "/Users/alec/Documents/Math/research_website_catalogue_20261024",
+   "stage": "verification/knudson-annular-private-stage-sol-20261116",
+-  "root_adoption": null,
+-  "root_adoption_state": "PENDING_ROOT_STAGE_ADOPTION",
++  "root_adoption": {
++    "path": "verification/root-knudson-annular-stage-adoption-20261116.json",
++    "bytes": 9389,
++    "SHA256": "002046cb349e7af935dec697f2293534d4707b7e24bd32bbdcbc9d27b8da7b3e"
++  },
++  "root_adoption_state": "ROOT_PROVIDED_AND_ADOPTED",
+   "website_HEAD": "a4cc214f0e3c6f65357ad5aef132dcea9ef84c5c",
+   "website_tree": "976ac25353272a6518e06ff5c5ee3159b3001e05",
+   "website_index": {
+--- release_two.pending.py
++++ release_two.py
+@@ -13,7 +13,7 @@
+ M = P.parent
+ N = P/'verification/knudson-annular-production-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = '6223d5a903100bc263f6e8e6cd5ffb05e4186663e332d66570175cb0a8d1a6f6'
++PLAN_SHA = '0a0a9cd3a3de68575a13fd06047e3c73ccb124d077f066cab7e98954a66b2ec0'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')

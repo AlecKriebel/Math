@@ -1,0 +1,20 @@
+--- audit.initial.py
++++ audit.py
+@@ -150,7 +150,7 @@
+     oldtyped=raw_items(oldscript);typed=raw_items(script);collection=json.loads(script)['mainEntity']
+     assert len(oldvisible)==len(oldtyped)==109 and len(visible)==len(typed)==collection['numberOfItems']==111
+     assert visible[:109]==oldvisible and typed[:109]==oldtyped
+-    assert pin(''.join(oldvisible).encode())==base['old_visible_item_bytes']
++    assert pin('\n'.join(oldvisible).encode())==base['old_visible_item_bytes']
+     values=collection['itemListElement'];assert [x['position'] for x in values]==list(range(1,112))
+     assert len({x['url'] for x in values})==111
+     for row,item,htmlitem in zip(inputs['pages'],values[109:],visible[109:]):
+@@ -159,7 +159,7 @@
+     oldxml=(W/'public/research/sitemap.xml').read_text();xml=candidates['public/research/sitemap.xml'].read_text()
+     oldnodes=re.findall(r'<url>[\s\S]*?</url>',oldxml);nodes=re.findall(r'<url>[\s\S]*?</url>',xml)
+     assert len(oldnodes)==110 and len(nodes)==112 and nodes[:110]==oldnodes
+-    assert pin(''.join(oldnodes).encode())==base['old_sitemap_node_bytes']
++    assert pin('\n'.join(oldnodes).encode())==base['old_sitemap_node_bytes']
+     assert [one(x,r'<loc>([\s\S]*?)</loc>') for x in nodes[110:]]==[x['canonical'] for x in inputs['pages']]
+     for node in nodes[110:]:assert '<lastmod>'+inputs['build_date']+'</lastmod>' in node
+     references=0
