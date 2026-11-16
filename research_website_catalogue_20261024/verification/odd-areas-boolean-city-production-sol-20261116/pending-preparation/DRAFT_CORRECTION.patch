@@ -1,0 +1,37 @@
+--- first_draft/release_four.py
++++ current/release_four.py
+@@ -14,7 +14,7 @@
+ M = P.parent
+ N = P/'verification/odd-areas-boolean-city-production-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = '04bedcae80908b0b772c319ef12ef8b35a533f4cc3fd110d04443737f5b453fd'
++PLAN_SHA = 'a5578e0e108703343ede4d0f84207798362330451c5c156da2d7e0e4fdf4e605'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')
+@@ -156,9 +156,10 @@
+     for k in ('old_completed_lock','old_SUCCESS','old_install_authorization','old_Git_lock','old_Git_SUCCESS','old_Git_authorization','old_publication'): bound(p[k])
+     oldsuccess=json.loads(bound(p['old_SUCCESS'])); need(oldsuccess['counts']==[711,114,115] and oldsuccess['authorization_SHA256']==p['old_install_authorization']['SHA256'],'completed prior711 installation context')
+     oldgit=json.loads(bound(p['old_Git_SUCCESS']))
+-    need(oldgit['status']=='SCOPED18_COMMIT_AND_PUSH_VERIFIED' and oldgit['delta']=='12A2M' and oldgit['commit']==p['website_HEAD'] and oldgit['tree']==p['website_tree'] and oldgit['index_SHA256']==p['previous_published_native_index']['SHA256'] and oldgit['index_mode']=='0600' and oldgit['successor_index_records']==58651,'completed prior f632/0f58 context, not fresh-index continuity')
++    need(oldgit['status']=='SCOPED14_COMMIT_AND_PUSH_VERIFIED' and oldgit['delta']=='12A2M' and oldgit['commit']==p['website_HEAD'] and oldgit['tree']==p['website_tree'] and oldgit['index_SHA256']==p['previous_published_native_index']['SHA256'] and oldgit['index_mode']=='0600' and oldgit['successor_index_records']==58651,'completed prior f632/0f58 context, not fresh-index continuity')
+     transition=json.loads(bound(p['index_transition']))
+     need(transition['status']=='OBSERVED_STAT_CACHE_AND_NATIVE_FILE_MODE_TRANSITION_NO_STAGING_CONTENT_CHANGE' and transition['current_native_index']=={'bytes':p['website_index']['bytes'],'SHA256':p['website_index']['SHA256'],'mode':'0644'} and transition['records']==58651 and transition['path_object_ID_mode_flags_stage_and_padding_semantic_differences']==[] and transition['only_record_stat_fields_changed'] is True,'root adopted fresh8db8/0644 baseline')
++    cache_requirement=json.loads(bound(p['root_cache_requirement'])); need(cache_requirement['baseline_index_SHA256']==p['website_index']['SHA256'] and cache_requirement['extension_region_SHA256']==p['baseline_extension']['SHA256'] and cache_requirement['sole_extension']=='TREE' and cache_requirement['shared_index_write_by_this_check'] is False,'actual root TREE-only derived-cache correction bound')
+     publication=json.loads(bound(p['old_publication']))
+     need(publication['website_commit']==p['website_HEAD'] and publication['tree']==p['website_tree'] and publication['hosting_version']==p['old_hosting_version'],'prior exact hosting context')
+     new_dirs=set()
+--- first_draft/PLAN.json
++++ current/PLAN.json
+@@ -216,5 +216,10 @@
+     "candidate_files": 18,
+     "candidate_child_directories": 6
+   },
+-  "preparation_helper_execution": false
++  "preparation_helper_execution": false,
++  "root_cache_requirement": {
++    "path": "verification/root-next-four-index-cache-requirement-20261116.json",
++    "bytes": 1177,
++    "SHA256": "dbaa21833f8d35f95857d9ad6845c5474d954b4c440f2b8070052e4209442d4b"
++  }
+ }

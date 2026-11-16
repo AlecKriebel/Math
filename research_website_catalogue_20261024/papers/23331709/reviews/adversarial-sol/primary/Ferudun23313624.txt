@@ -1,0 +1,1038 @@
+    Free Hyperplane Arrangements with Exponents 1, 2 and at Most
+    One 3 Are Supersolvable: A Proof of a Conjecture of Tohăneanu
+                                               Alper Ferudun∗
+
+                                      October 12, 2026 (version 1.1)
+
+
+
+                                                   Abstract
+          Ş. O. Tohăneanu conjectured (Oberwolfach Report 5/2021, p. 284; Conjecture 4.1 of the preprint
+      arXiv:1707.07091v3) that every central free hyperplane arrangement over a ﬁeld of characteristic
+      zero whose exponents are 1’s, 2’s and at most one 3 is supersolvable. We prove this conjecture in
+      every rank. The preprint was withdrawn by its author on 16 January 2022; no result of it is used
+      here, but the strategy of our proof is that of the preprint and of the Oberwolfach abstract. The case
+      of exponents 1 and 2 only was ﬁrst proved by Tohăneanu, in the ﬁrst version of the preprint (2017).
+      This case, and the case of one exponent 3 together with a codimension-two ﬂat in four hyperplanes,
+      also follow from a theorem of DiPasquale (Math. Ann. 385 (2023)); both are proved again here.
+      Rank three was also known. New, to our knowledge and relative to the literature we found, is
+      the case without such a ﬂat in rank at least 4, and therefore the conjecture in general. With
+      two exponents 3 the statement is false: the non-Fano arrangement (exponents (1, 3, 3)) and nine
+      hyperplanes of rank four (exponents (1, 2, 3, 3)) are free and not supersolvable. No computation
+      enters the proof; the computations reported are tests. The book of Orlik and Terao was not
+      accessible to us and was not read. No proof and no counterexample of the conjecture was found
+      in the literature accessible to us; a search that ﬁnds nothing is not a proof of novelty. This is an
+      unrefereed note.
+
+
+1     Introduction
+1.1   The conjecture
+Let K be a ﬁeld, V a K-vector space of dimension k, and S = Sym(V ∗ ) = K[x1 , . . . , xk ]. An
+arrangement in V is a ﬁnite set A of hyperplanes of V , that is, of linear subspaces of codimension one;
+so all arrangements in∏this note are central. For H ∈ A we ﬁx αH ∈ V ∗∩with H = ker αH , and we put
+n = |A| and Q(A) = H∈A αH . The rank r(A) is the codimension of H∈A H, and A is essential if
+r(A) = k.
+    The module of logarithmic derivations of A is
+
+                         D(A) = {θ ∈ DerK (S) : θ(αH ) ∈ αH S for all H ∈ A}.
+                   ∑
+A derivation θ = j Pj ∂j , where ∂j = ∂/∂xj , is homogeneous
+                                                          ∑ of degree d if all Pj are homogeneous
+polynomials of degree d. Thus the Euler derivation θE = j xj ∂j , which lies in D(A), has degree 1.
+The arrangement A is free if D(A) is a free S-module. Then D(A) has a basis of k homogeneous
+derivations; their degrees form a multiset of k non-negative integers which does not depend on the
+  ∗
+    Mercury Software GmbH. Email: alper@mercurycodelab.com. GitHub: https://github.com/AlperTheKing.
+Unrefereed preprint. CC BY 4.0.
+
+
+
+                                                       1
+basis, the exponents exp(A). We write (1, 2k−2 , 3) for the multiset consisting of one 1, k − 2 entries 2
+and one 3, and so on.
+    The intersection lattice L(A) is the set of all intersections of hyperplanes of A, including V , ordered
+by reverse inclusion. An element X ∈ L(A) is modular if X +Y ∈ L(A) for all Y ∈ L(A). An essential
+arrangement A of rank k is supersolvable if L(A) contains a chain V = X0 < X1 < · · · < Xk = 0 of
+modular elements.
+    These are the deﬁnitions of Tohăneanu’s Oberwolfach abstract [Toh21, p. 283] and of the preprint
+[Toh20, Section 1] on which it is based; the degree of a derivation is deﬁned in the preprint. In both
+texts K has characteristic zero and the arrangements are central and essential. The abstract contains
+the following conjecture.
+
+      Conjecture (Tohăneanu [Toh21, p. 284]). Every central free hyperplane arrangement
+      with “exponents 1’s, 2’s, and at most one 3” is supersolvable.
+
+   In the preprint it is Conjecture 4.1, stated for arrangements with exp(A) = (1, 2k−2 , 3). The
+conjecture is record OWR-4990374-015 of the UnsolvedMath collection [ula26], where it is listed as
+open.
+
+1.2    Results
+Theorem 1.1 (the conjecture). Let K be a ﬁeld of characteristic zero, and let A be a central ar-
+rangement in K k which is free and whose exponents are 0’s, 1’s, 2’s and at most one 3. Then A is
+supersolvable.
+     Exponents 0 occur exactly when A is∩not essential, and supersolvability then refers to the essential
+arrangement A/C in V /C, where C = H∈A H (Sections 1.3 and 2.1).
+     To state the result on which the proof rests, let L2 (A) be the set of all Z ∈ L(A) of codimension
+two, and let mZ be the number of hyperplanes of A containing Z. We call Z multiple if mZ ≥ 3,
+a triple point if mZ = 3, and a quadruple point if mZ = 4. An essential arrangement is irreducible
+if it is not a product
+                     ∑ of two arrangements in spaces of positive dimension. The relation space is
+                 A
+F (A) = {r ∈ K : H rH αH = 0}, and A is formal if F (A) is spanned by its elements with at most
+three non-zero coordinates [BT94, Section 3]. Details are in Section 2.1.
+Theorem 1.2 (core statement). Let K be any ﬁeld, and let A be an essential, irreducible, formal
+arrangement of rank k ≥ 2 with 2k hyperplanes such that
+                                                        ∑ ( m Z − 1)
+                mZ ≤ 4 for all Z ∈ L2 (A)     and                    = k + 1.
+                                                               2
+                                                            Z∈L2 (A)
+
+Then A is supersolvable. More precisely, let k ≥ 3, and for k = 3 suppose that A is not the arrangement
+of the six lines joining the pairs of four points of the projective plane, no three of them collinear. Then
+there is a triple point Z0 , contained in the hyperplanes H0 , H1 , H2 of∩A, such that H1 and H2 contain
+no other multiple element of L2 (A). For such Z0 the subspace X = {H ∈ A : H 6= H1 , H2 } is a line
+and a modular element of L(A), we have AX = A \ {H1 , H2 }, and the arrangement AX /X in V /X
+satisﬁes the same hypotheses in rank k − 1.
+    In Theorem 1.2 freeness does not occur. An essential free arrangement with exponents (1, 2k−2 , 3)
+satisﬁes its hypotheses (Proposition 3.2); the analogous statements for exponents (1, 2k−1 ) are Theo-
+rem 5.2(a) and Corollary 5.3(a). Theorem 1.1 follows by a reduction to essential, irreducible arrange-
+ments (Section 5). The arrangement excluded for k = 3, which we call the complete quadrilateral, is
+supersolvable (Lemma 5.1).
+
+                                                     2
+1.3    Conventions that could change the answer
+The degree of a derivation is the degree of its coeﬃcients, so the Euler derivation has degree 1 [Toh20,
+Section 1]; with the other usual convention all exponents would be smaller by one. “At most one 3”
+refers to the multiset of exponents: (1, 1, 2, 3) and (1, 3) are admitted, (1, 2, 3, 3) is not, and with two
+exponents 3 the statement is false (Section 7). An essential free arrangement has exactly one exponent
+1 if it is irreducible, and at least two otherwise (Lemma 2.3); so the 1’s of the conjecture admit reducible
+arrangements, and Conjecture 4.1 of the preprint is the irreducible case. The sources assume that A
+is essential; Theorem 1.1 also covers arrangements which are not. It is claimed for characteristic zero,
+the setting of the conjecture; see Remark 6.5. Aﬃne arrangements, multi-arrangements and other
+exponents are not part of the conjecture and are not treated.
+
+1.4    What was known, what is not new, and what is new
+The conjecture and the preprint. The conjecture is due to Ş. O. Tohăneanu. According to the abstract
+[Toh21, p. 284] it was veriﬁed in the preprint [Toh20] when the exponents are only 1’s and 2’s, for
+inductively free arrangements, and for free arrangements of rank 3, 4 or 5. The case of exponents 1
+and 2 only is the theorem of the ﬁrst version of the preprint, of 22 July 2017, and it is Section 3 of
+version 3; this is the ﬁrst proof of that case. The preprint was withdrawn by its author on 16 January
+2022 (version 4); the withdrawal notice names Sections 4.2.1 and 4.2.2 and case (a) of the proof of
+Proposition 4.8 of version 3, and not Section 3. We record these facts only. No result of the preprint
+is used in our proofs; in particular the case of exponents 1 and 2 is proved here.
+     The strategy of this note is that of the preprint and of the abstract, and we credit it to them: the
+formality of free arrangements as the tool; the modular coatom obtained from two hyperplanes which
+lie in a single dependent triple ([Toh20, Lemma 2.2], [Toh21, item iii, p. 284]); induction on the rank;
+the counts n = 2k and u + 3v = k + 1 [Toh20, Lemma 4.2]; and the pigeonhole count for exponents
+(1, 2k−1 ) [Toh20, Lemmas 3.1 and 3.2]. The bound mZ ≤ maxi di + 1 is [Toh20, Lemma 2.1] and,
+according to [Toh21, p. 284], [Sch03, Lemma 5.2]; Lemma 2.5 generalizes it.
+     Not new, and proved again. For exponents (1, 2k−1 ) supersolvability was ﬁrst proved by Tohăneanu
+[Toh20, Section 3], in the ﬁrst version of the preprint (2017). For these exponents, and for exponents
+(1, 2k−2 , 3) when there is a quadruple point (v = 1), supersolvability also follows from a theorem
+of DiPasquale [DiP23, Proposition 6.1 with Corollary 4.10], whose arXiv version is of 2018; the
+derivation is in Remark 6.4. The combinatorial analogue of Theorem 5.2(a) and of the induction
+step is in [DGT14, Theorems 5.6 and 5.11]. Rank three is covered by the classiﬁcation [Toh16,
+Theorem 2.4], as noted in [Toh20], and the question whether free arrangements with exponents 1
+and 2 are supersolvable is posed in the introduction of [Toh16]. For arrangements whose underlying
+matroid is regular, freeness is equivalent to supersolvability by a recent preprint of Liang and Wang
+[LW26], of which we read the abstract and the introduction. This does not give the conjecture, because
+the matroid of a free arrangement with these exponents is not known to be regular in advance; when
+there is no quadruple point it turns out to be graphic (Remark 6.1), and with a quadruple point it
+is not regular. Further attributions, to [Yuz93, BT94, MMR24, BEZ90], are given after Lemmas 4.1
+to 4.3. The numbers of [DiP23, DGT14, Toh16, MMR24] are those of their arXiv versions.
+     New, to our knowledge and relative to the literature we found, is the case without a quadruple
+point (v = 0) in rank k ≥ 4, and therefore the conjecture in general; the other cases are proved again.
+The new case is Lemma 4.3(ii): there are k + 1 triple points, their k + 1 relations lie in the relation
+space, which has dimension k, and the support of a linear dependency among them leads to a triple
+point two of whose three hyperplanes contain no other multiple ﬂat. The same count of dimensions
+gives v ≤ 1, and the induction runs inside the classes Ck and Ck′ of Deﬁnition 3.1, so that one proof
+covers all cases. We claim no priority; see “Scope and priority” at the end of Section 9.
+
+
+                                                     3
+2     Preliminaries
+2.1    Notation
+Throughout, K is a ﬁeld, V = K k , and A is an arrangement in V with n hyperplanes and forms αH
+as in Section 1.1.                                                        ∩
+    Ranks and ﬂats. For B ⊆ A let r(B) = dim span{αH : H ∈∩B} = codim H∈B H. For X ∈ L(A)
+let r(X) = codim X and AX = {H ∈ A : X ⊆ H}; then X = H∈AX H and L(AX ) = {Y ∈ L(A) :
+Y ⊇ X}. For two distinct hyperplanes H, H ′ of A there is exactly one Z ∈ L2 (A) with H, H ′ ∈ AZ ,
+namely Z = H ∩ H ′ . Hence
+                                                             ∑ ( mZ ) ( n )
+                 |AZ ∩ AZ ′ | ≤ 1 for Z 6= Z ′ in L2 (A),                 =      .              (1)
+                                                                      2       2
+                                                                   Z∈L2 (A)
+
+The degree deg(H) of H ∈ A is the number of multiple Z ∈ L2 (A) with H ∈ AZ . The hypergraph of
+A has the vertex set A and the hyperedges AZ , Z multiple. It is connected if A is not the disjoint
+union of two non-empty subsets such that every hyperedge lies in one of them.
+    Products and irreducibility. For arrangements A1 in V1 and A2 in V2 , the product A1 × A2 is the
+arrangement {H ⊕ V2 : H ∈ A1 } ∪ {V1 ⊕ H : H ∈ A2 } in V1 ⊕ V2 . Let A be essential. Then A is
+reducible if A = A′ t A′′ with non-empty A′ , A′′ and r(A′ ) + r(A′′ ) = k, and irreducible otherwise. In
+the reducible case V ∗ = U ′ ⊕ U ′′ , where U ′ and U ′′ are spanned by the forms of A′ and of A′′ ; with
+V ′ and V ′′ the annihilators of U ′′ and U ′ we get V = V ′ ⊕ V ′′ and A = A′ |V ′ × A′′ |V ′′ , a product of
+essential arrangements, where A′ |V ′ = {H ∩ V ′ : H ∈ A′ }. By induction, every essential arrangement
+is a product of irreducible essential arrangements of positive
+                                                          ∩      rank.
+    Arrangements which are not essential. Let C = H∈A H. Then A/C = {H/C : H ∈ A} is an
+essential arrangement in V /C, and Y 7→ Y /C is a bijection from L(A) to L(A/C) which is compatible
+with sums of subspaces. We call A supersolvable if A/C is supersolvable; equivalently, if L(A) contains
+a chain V = X0 < · · · < Xr = C, r = r(A), of modular elements.
+    The relation space. We have dim F (A) = n − r(A). For Z ∈ L2 (A) let FZ = F (A) ∩ K AZ be the
+space of relations supported on AZ ; then dim FZ = mZ − 2. A relation with exactly three non-zero
+coordinates involves three forms, any two of which are independent; they span a plane, so the relation
+lies in one FZ . No non-zero relation has fewer non-zero coordinates, and each FZ is spanned by
+relations among three forms. Hence
+                                                                 ∑
+                                  A is formal ⇐⇒ F (A) =              FZ
+                                                               Z∈L2 (A)
+
+[BT94, Remark 3.5]. If Z is a triple point, then FZ = KρZ , and all three coordinates of ρZ on AZ
+are non-zero. Formality is not determined by the lattice L(A) in general: [Yuz93, Example 2.2] gives
+two arrangements of rank three with isomorphic intersection lattices, one formal and the other not (a
+footnote to the introduction of [Yuz93] gives the priority to an example of Ziegler). This is why we
+do not call Theorem 1.2 a combinatorial statement.
+
+2.2    Cited theorems
+(T1) Terao’s factorization theorem [Ter81],
+                                          ∏       in the form of [PT20,∑Theorem 3.9]: if A is free with
+exponents d1 , . . . , dk , then χ(A, t) = i (t − di ), where χ(A, t) = X∈L(A) µ(X) tdim X and µ is the
+                                                         ∑
+Möbius function of L(A) (µ(V ) = 1 and µ(X) = − Y ⊋X µ(Y )). We use only the coeﬃcient of tk−2 .
+Since µ(H) = −1 for H ∈ A, we have µ(Z) = mZ − 1 for Z ∈ L2 (A), and therefore
+                                           ∑                  ∑
+                                                 (mZ − 1) =      di dj .                             (2)
+                                       Z∈L2 (A)              i<j
+
+
+                                                      4
+We did not read [Ter81]. The theorem is cited as [OT92, Theorem 4.137] in [BT94, p. 63] and as
+[OT92, Theorem 4.61] in [Toh21, Toh20]. We apply it only in characteristic zero.
+    (T2) Saito’s criterion [PT20, Theorem 3.7], where it is stated for an arbitrary ﬁeld; cited as [OT92,
+Theorem 4.19] in [Toh20]. Homogeneous derivations θ1 , . . . , θk ∈ D(A) form a basis of D(A) if and
+only if det(θi (xj )) = c Q(A) with c ∈ K \ {0}. In particular the exponents of a free arrangement sum
+to n.
+
+Theorem 2.1 (Yuzvinsky [Yuz93, Corollary 2.5]). Let A be an essential arrangement over any ﬁeld.
+If A is free, then A is formal.
+
+    In [Yuz93] the ﬁeld is arbitrary, the rank is assumed to be at least three (in rank at most two
+every arrangement is formal), the proof uses sheaf cohomology on the intersection lattice, and formal
+arrangements are deﬁned, following Falk and Randell, as the 3-generated ones [Yuz93, Deﬁnition 2.1]:
+the dependencies of length at most three among the forms impose the same linear conditions as all
+dependencies. This is the deﬁnition of Section 2.1 in dual form. Appendix A contains a complete
+proof of Theorem 2.1 which follows Brandt and Terao [BT94, Proposition 4.13 and Theorem 4.15];
+[DiP23, Corollary 4.10] is a further published proof.
+
+2.3   Four elementary lemmas
+Lemma 2.2 (rank two). Let Z ∈ L2 (A). Then AZ is free with exponents (0k−2 , 1, mZ − 1).
+
+Proof. Choose coordinates such that Z = {x1 = x2 = 0} and x1 is the form of one hyperplane of
+AZ ; then all forms of AZ lie in span(x1 , x2 ). Put Q = Q(AZ ), θ1 = x1 ∂1 + x2 ∂2 , θ2 = (Q/x1 )∂2 and
+θj = ∂j for j ≥ 3. We have θ1 (α) = α for α ∈ span(x1 , x2 ); θ2 (x1 ) = 0; for another form α = ax1 + bx2
+of AZ , θ2 (α) = b Q/x1 is divisible by α; and θj (α) = 0 for j ≥ 3. The matrix (θi (xj )) is triangular
+with the diagonal x1 , Q/x1 , 1, . . . , 1, so its determinant is Q. By (T2) the θi form a basis of D(AZ ),
+and their degrees are 1, mZ − 1, 0, . . . , 0.
+
+Lemma 2.3 (exponents 0 and 1). Let A be essential and free. Then no exponent is 0, and the number
+of exponents equal to 1 is 1 if A is irreducible and at least 2 if A is reducible.
+
+Proof. The number of exponents 0 is dimK D(A)0 . A derivation
+                                                            ∼  ∩ of degree 0 is ∂v : α 7→ α(v) for some
+v ∈ V , and ∂v (αH ) ∈ αH S means αH (v) = 0. So D(A)0 = H H = 0. Hence all exponents are at
+least 1, and the number of exponents 1 is dimK D(A)1 . A derivation θ of degree 1 is determined by
+the endomorphism N = θ|V ∗ of V ∗ , and θ ∈ D(A) if and only if every αH is an eigenvector of N .
+Suppose this holds. The αH span V ∗ , so V ∗ is the direct sum of the eigenspaces
+                                                                                ⊔ Ec of N ; each αH
+lies in one of them, and each Ec is spanned by the αH it contains. Thus A = c {H : αH ∈ Ec } with
+ranks adding up to k. If A is irreducible, only one eigenvalue occurs, N is a scalar and θ is a multiple
+of θE ; so dim D(A)1 = 1. If A = A′ t A′′ is reducible, with V ∗ = U ′ ⊕ U ′′ as in Section 2.1, the
+endomorphism which is the identity on U ′ and zero on U ′′ gives an element of D(A)1 which is not a
+multiple of θE .
+
+Lemma 2.4 (products). Let A = A1 × A2 . Then A is free if and only if A1 and A2 are free, and
+then exp(A) is the union of the multisets exp(A1 ) and exp(A2 ). The empty arrangement in K c is
+free with exponents 0c .
+
+   This is [OT92, Proposition 4.28], as cited in [HR15, Proposition 2.4], where K = C; for a product
+with an empty arrangement see also [Yuz93, (1.1)]. The following proof works over every ﬁeld.
+
+
+
+
+                                                    5
+Proof. Let Si = Sym(Vi∗ ), so that S = S1 ⊗K S2 and DerK (S) = (S ⊗ V1 ) ⊕ (S ⊗ V2 ). Write
+θ = θ′ + θ′′ accordingly. For H ∈ A1 the form αH lies in V1∗ , so θ(αH ) = θ′ (αH ); similarly for A2 .
+Hence D(A) = D′ ⊕ D′′ , where D′ consists of the θ′ ∈ S ⊗ V1 with        ′
+                                                                      ∑θ (α′ Hµ) ∈ αH S′ for all H ∈ A1 .
+                                  ′                              ′
+Expanding the∑coeﬃcients of θ in the monomials⊕y of S2 , θ = µ θµ y with θµ ∈ S1 ⊗ V1 , we
+                                                     µ
+
+get θ′ (αH ) = µ θµ′ (αH )y µ , which lies in αH S = µ αH S1 y µ if and only if all θµ′ lie in D(A1 ). So
+D′ = D(A1 ) ⊗K S2 , likewise D′′ = S1 ⊗K D(A2 ), and D(A) ∼    = (D(A1 ) ⊗K S2 ) ⊕ (S1 ⊗K D(A2 )) as
+graded modules. If A1 and A2 are free, homogeneous bases of D(A1 ) and D(A2 ) together give a
+homogeneous basis of D(A). Conversely, if D(A) is free, its graded direct summand D(A1 ) ⊗K S2 is
+a ﬁnitely generated graded projective S-module, hence free; modulo the ideal n of S generated by V2∗ ,
+a homogeneous basis of it gives a basis of (D(A1 ) ⊗K S2 )/n(D(A1 ) ⊗K S2 ) = D(A1 ) over S/n = S1 ,
+with the same degrees. The last statement is clear.
+
+Lemma 2.5 (sub-arrangements). Let B ⊆ A be arrangements in K k , both free, with exponents
+e1 ≤ · · · ≤ ek and d1 ≤ · · · ≤ dk . Then ei ≤ di for all i.
+Proof. We have D(A) ⊆ D(B). Let θ1 , . . .∑ , θk and φ1 , . . . , φk be homogeneous bases of D(A) and D(B)
+with degrees di and ei , and write θj = l fjl φl ; the fjl are unique, hence homogeneous of degree
+dj − el . Suppose ei > di . For j ≤ i ≤ l we have dj ≤ di < ei ≤ el , so fjl = 0. Thus θ1 , . . . , θi lie in the
+free module Sφ1 ⊕ · · · ⊕ Sφi−1 of rank i − 1, and are linearly dependent over S, a contradiction.
+
+
+3     The numerical conditions
+Deﬁnition 3.1. Let A be an essential arrangement of rank k.
+    • A ∈ Ck′ (k ≥ 1) if: (C1) A is irreducible; (C2) A is formal; (C3′ ) n = 2k − 1; (C4′ ) mZ ≤ 3 for
+      all Z ∈ L2 (A); (C5′ ) the number of triple points is k − 1.
+    • A
+      ∑ ∈ Ck (k  (mZ≥−12)
+                       ) if: (C1); (C2); (C3) n = 2k; (C4) mZ ≤ 4 for all Z ∈ L2 (A); (C5)
+        Z∈L2 (A)    2    = k + 1.
+For A ∈ Ck we write u for the number of triple points and v for the number of quadruple points. By
+(C4) and (C5),
+                                         u + 3v = k + 1.                                        (3)
+    The arrangements of Theorem 1.2 are the members of Ck .
+Proposition 3.2. Let K have characteristic zero, and let A be essential and free. If exp(A) =
+(1, 2k−1 ) with k ≥ 1, then A ∈ Ck′ . If exp(A) = (1, 2k−2 , 3) with k ≥ 2, then A ∈ Ck .
+Proof. (C1): exactly one exponent is 1, so A is irreducible by Lemma 2.3. (C2) is Theorem 2.1. (C3),
+(C3′ ): the exponents sum to n by (T2). (C4), (C4′ ): for Z ∈ L2 (A) the largest exponent of AZ is
+mZ − 1 (Lemma 2.2), and Lemma 2.5 for AZ ⊆ A gives mZ − 1 ≤ dk , that is      ( m) Z ≤ 4, respectively
+                                                                                                (m−1)
+mZ ≤ 3. ∑ (C5), (C5′ ): subtracting (2) from the second part of (1), and using m
+                                                                               2 − (m − 1) =      2
+and n = i di , we get
+                 ∑ ( m Z − 1) ( n ) ∑                    1 (∑ 2 ∑ ) ∑ d i
+                                                                                ( )
+                                   =       −     di dj =       di −     di =          .            (4)
+                             2          2                2                         2
+                Z∈L2 (A)                         i<j              i        i          i
+
+The right-hand side is (k − 2) + 3 = k + 1 for (1, 2k−2 , 3) and k − 1 for (1, 2k−1 ); in the second case
+every multiple Z is a triple point and contributes 1.
+
+    The characteristic enters only through (T1), that is, through (4); see Remark 6.5. The identity
+(3) for free arrangements is [Toh20, Lemma 4.2].
+
+                                                       6
+4      Three lemmas on formal arrangements
+Lemma 4.1. Let A be essential, irreducible and formal, of rank k ≥ 2. Then
+
+ (a) deg(H) ≥ 1 for every H ∈ A;
+
+ (b) the hypergraph of A is connected.
+
+Proof. (a) Suppose that H ∈ AZ for no multiple Z. Then every FZ lies in the coordinate hyperplane
+{rH = 0}∑of K A : this is clear if H ∈
+                                     / AZ , and if H ∈ AZ , then mZ = 2 and FZ = 0. Hence so does
+F (A) = Z FZ , which means that αH is not in the span of the other forms. So r(A \ {H}) = k − 1,
+and A = {H} t (A \ {H}) shows that A is reducible; note that A \ {H} 6= ∅ because n ≥ k ≥ 2.
+    (b) Let A = A′ t A′′ such that every hyperedge lies in A′ or in A′′ . Let F ′ be the sum of the
+                                                                                                       ′
+FZ with AZ ⊆ A′ , and F ′′ the sum of those with AZ ⊆ A′′ ; all other FZ are zero. Then F ′ ⊆ K A ,
+           ′′                                                ′                         ′
+F ′′ ⊆ K A and F (A) = F ′ ⊕ F ′′ , so that F (A) ∩ K A = F ′ . As F (A) ∩ K A is the relation
+space of A′ , we get r(A′ ) = |A′ | − dim F ′ , and in the same way r(A′′ ) = |A′′ | − dim F ′′ . Adding,
+r(A′ ) + r(A′′ ) = n − dim F (A) = k. As A is irreducible, A′ or A′′ is empty.
+
+   Part (a) is stated in [Yuz93, p. 239, (4.3)′ ] and is [BT94, Proposition 3.9(ii)]; it is the ﬁrst step of
+the proof of [Toh20, Lemma 3.2]; see also [DiP23, Corollary 4.13].
+
+Lemma 4.2. Let A be essential and formal of rank k ≥∩2, and let Z0 be a triple point, AZ0 =
+{H0 , H1 , H2 }, such that deg(H1 ) = deg(H2 ) = 1. Put X = {H ∈ A : H 6= H1 , H2 }. Then
+
+ (a) X is a line, X ∈ L(A), and AX = A \ {H1 , H2 };
+
+ (b) X is modular in L(A);
+
+    (c) every Y ∈ L(AX ) which is modular in L(AX ) is modular in L(A); hence, if AX is supersolvable,
+        then so is A;
+
+ (d) the multiple elements of L2 (AX ) are the multiple elements of L2 (A) other than Z0 , with the
+     same multiplicities; the arrangement AX is formal; and if A is irreducible, then so is AX /X.
+
+Proof. Write αi for the form of Hi (i = 0, 1, 2) and ri for the coordinate rHi of r ∈ K A .
+    (a) Let ρ be a generator of FZ0 , with coordinates a0 , a1 , a2 6= 0 on H0 , H1 , H2 . By hypothesis Z0
+is the only multiple element of L2 (A) which lies in H1 or in H2 . So for every Z 6= Z0 all elements
+of FZ∑have r1 = r2 = 0. By formality every r ∈ F (A) has the form r = tρ + f with t ∈ K and
+f ∈ Z̸=Z0 FZ ; hence (r1 , r2 ) = t (a1 , a2 ), and the linear form λ(r) = a2 r1 − a1 r2 vanishes on F (A).
+                                                                   ∑
+The map ι : V → (K A )∗ which sends v to the linear form r 7→ H rH αH (v) is injective, because A is
+essential; its image lies in the annihilator of F (A); and both have dimension k. So λ = ι(v0 ) for some
+v0 ∈ V : we have α1 (v0 ) = a2 , α2 (v0 ) = −a1 , and αH (v0 ) = 0 for all H 6= H1 , H2 . Thus 0 6= v0 ∈ X,
+and v0 ∈ / H1 ∪ H2 . Since α2 ∈ span(α0 , α1 ), the forms αH with H 6= H1 , H2 span V ∗ together with
+α1 ; so r(A \ {H1 , H2 }) ≥ k − 1 and dim X ≤ 1. Hence X = Kv0 , and AX = A \ {H1 , H2 }.
+    (b) Let Y ∈ L(A). If AY ⊆ AX , then Y ⊇ X and     ∩ X + Y = Y . Otherwise Y lies in H1 or in H2 , so
+X 6⊆ Y and dim(X + Y ) = dim Y + 1. Put W = (AY ∩ AX ) ∈ L(A), with W = V if AY ∩ AX = ∅;
+then W ⊇ X + Y . If AY \ AX is a single hyperplane H, then Y = W ∩ H and dim W ≤ dim Y + 1.
+If AY ⊇ {H1 , H2 }, then Y ⊆ H1 ∩ H2 = Z0 ⊆ H0 , so H0 ∈ AY ∩ AX and W ⊆ H0 ; on W ∩ H1 the
+forms α0 and α1 vanish, hence so does α2 ; therefore Y = W ∩ H1 , and again dim W ≤ dim Y + 1. In
+both cases W = X + Y .
+    (c) Let Y ∈ L(AX ) be modular in L(AX ), and let Y ′ ∈ L(A). By (b), X + Y ′ ∈ L(A); it
+contains X, so it lies in L(AX ). As X ⊆ Y , we get Y + Y ′ = Y + (X + Y ′ ) ∈ L(AX ) ⊆ L(A). If
+
+
+                                                     7
+V = X0 < · · · < Xk−1 = X is a chain of modular elements of L(AX ), then together with Xk = 0 it is
+a chain of modular elements of L(A).
+   (d) The elements of L2 (AX ) are the Z ∈ L2 (A) with Z ⊇ X, that is, with AZ ⊆ AX , and for them
+(AX )Z = AZ . A multiple Z ∈ L2 (A) with AZ 6⊆ AX lies in H1 or in H2 , so it is Z0 . This proves the
+ﬁrst statement. Formality: F (AX ) = F (A) ∩ K AX , and an element   ∑     r = tρ + f of F (A) as in (a) has
+r1 = ta1 , so it lies in K A X if and only if t = 0. Hence F (AX ) = Z̸=Z0 FZ , and for multiple Z 6= Z0 the
+space FZ is the space of relations of AX supported on (AX )Z . Irreducibility: the forms of AX /X are
+those of AX . Let AX = B ′ tB ′′ with non-empty B ′ , B ′′ and r(B ′ )+r(B ′′ ) = k−1, and let H0 ∈ B ′ . Then
+r(B ′ ∪ {H1 , H2 }) ≤ r(B ′ ) + 1, because α2 ∈ span(α0 , α1 ). So k = r(A) ≤ r(B ′ ∪ {H1 , H2 }) + r(B ′′ ) ≤ k,
+and A = (B ′ ∪ {H1 , H2 }) t B ′′ is reducible.
+
+    Parts (a) and (b) are the mechanism of [Toh20, Lemma 2.2], stated there for free arrangements
+and proved in coordinates. Part (b) also follows from the criterion of [BEZ90] quoted in [MMR24,
+Lemma 2.1], and the formality of AX from [MMR24, Corollary 5.2] (if X is modular and A is formal,
+then AX is formal); the proofs above are direct. In general a localization of a formal arrangement
+need not be formal (the example after Deﬁnition 2.3 in [Yuz93]), so the statement on formality in (d)
+is needed for the induction.
+
+Lemma 4.3. Let k ≥ 3.
+
+  (i) If A ∈ Ck′ , then some triple point lies in two hyperplanes of degree 1.
+
+  (ii) If A ∈ Ck , then v ≤ 1, and unless (k, v) = (3, 0), some triple point lies in two hyperplanes of
+       degree 1.
+
+Proof. In both cases deg(H) ≥ 1 for all H and the hypergraph is connected (Lemma 4.1), and two
+hyperedges share at most one vertex (1). Let s be the number
+                                                         ∑    of hyperplanes of degree 1.
+    (i) There are k − 1 hyperedges, all of size three, so H deg(H) = 3(k − 1). As the 2k − 1 − s
+hyperplanes of degree at least 2 contribute at least 2 each, 3(k − 1) ≥ s + 2(2k − 1 − s), that is,
+s ≥ k + 1 > k − 1. Each hyperplane of degree 1 contains exactly one triple point, and there are k − 1
+triple points; so two of them contain the same one.
+    (ii) By (C2) and (C3),
+                                                  ∑        ∑
+                    k = n − k = dim F (A) = dim       FZ ≤   (mZ − 2) = u + 2v.                   (5)
+                                                        Z         Z
+
+With (3) this gives v = (u + 3v) − (u + 2v)
+                                         ∑ ≤ 1.
+   Case v = 1. Then u = k − 2 and H deg(H) = 3(k − 2) + 4 = 3k − 2 ≥ s + 2(2k − s), so
+s ≥ k + 2. Suppose that no triple point lies in two hyperplanes of degree 1. The only multiple ﬂat in
+a hyperplane of degree 1 is a triple point or the quadruple point; so s ≤ (k − 2) + 4. Hence equality
+holds, and all four hyperplanes through the quadruple point have degree 1. Then no other hyperedge
+meets the hyperedge of the quadruple point, and as n = 2k > 4, this contradicts the connectedness.
+   Case v = 0, k ≥ 4. There are u = k + 1 triple points Z, with generators ρZ of FZ , and
+                                                                                       ∑ these k + 1
+vectors lie in F (A), which has dimension k. Choose a non-trivial linear dependency Z cZ ρZ = 0,
+and put                                                      ∪
+                    T = {Z : cZ 6= 0},     t = |T |,   W =      AZ ,     w = |W |.
+                                                                  Z∈T
+
+Every H ∈ W contains at least two members of T : if it contained exactly one, Z, the H-coordinate
+of the dependency would be cZ (ρZ )H 6= 0. Counting the pairs (H, Z) with Z ∈ T and H ∈ AZ gives
+
+                                                   3t ≥ 2w.                                                  (6)
+
+                                                       8
+Moreover t ≥ 4: let Z1 ∈ T and AZ1 = {G1 , G2 , G3 }; each Ga contains a second member Za′ 6= Z1 of
+T , and AZa′ ∩ AZ1 = {Ga } by (1), so Z1 , Z1′ , Z2′ , Z3′ are four diﬀerent members of T .
+    Let c be the number of pairs (H, Z) with H ∈ W , Z ∈         / T a triple point, and H ∈ AZ . The triple
+points in the 2k−w hyperplanes outside W are not in T . There are k+1−t       ∑ triple points outside T , with
+3(k+1−t) incidences in total, of which c are with hyperplanes in W . So H /∈W deg(H) = 3(k+1−t)−c.
+Let s′ be the number of hyperplanes outside W of degree 1. Then 3(k + 1 − t) − c ≥ s′ + 2(2k − w − s′ ),
+that is, s′ ≥ k − 3 + 3t − 2w + c, and with (6)
+
+                           s′ − (k + 1 − t) ≥ (4t − 2w) + c − 4 ≥ t + c − 4.                              (7)
+
+If t ≥ 5 or c ≥ 1, the right-hand side is at least 1. In the remaining case t = 4, c = 0, no triple
+point outside T lies in a hyperplane of W ; so every hyperedge lies in W or in A \ W , and W = A by
+connectedness; then there is no triple point outside T at all, and k + 1 = t = 4, contradicting k ≥ 4.
+Hence
+                                         s′ ≥ (k + 1 − t) + 1.
+In particular s′ ≥ 1, so W 6= A and T is not the set of all triple points (if it were, we would have
+W = A by Lemma 4.1(a), hence s′ = 0); thus k + 1 − t ≥ 1. Each of the s′ hyperplanes outside W
+of degree 1 contains exactly one triple point, which is not in T . As there are more such hyperplanes
+than triple points outside T , some triple point lies in two hyperplanes of degree 1.
+
+    Part (i) is [Toh20, Lemmas 3.1 and 3.2]. The inequality between the second and the ﬁfth term of
+(5) is [BT94, Remark 3.7]; in the equality case, which is (i) and the case v = 1, it is the ﬁrst assertion
+of [DiP23, Proposition 6.1]. For k = 3 and v = 0 the conclusion of (ii) fails: the four triple points
+of the complete quadrilateral form a dependency with t = 4, w = 6, c = 0, and all six lines have
+degree 2.
+
+
+5    Proofs of the theorems
+In an essential arrangement the elements V and 0 of L(A) and all hyperplanes of A are modular,
+since H + Y is H or V . So essential arrangements of rank at most 2 are supersolvable.
+
+Lemma 5.1 (the complete quadrilateral). Let A ∈ C3 with v = 0. Then A consists of the six
+lines joining the pairs of four points of the projective plane P(V ), no three of which are collinear; in
+suitable coordinates Q(A) = xyz(x − y)(x − z)(y − z). Every triple point of A is modular, and A is
+supersolvable.
+
+Proof. We regard the hyperplanes of A as lines and the elements of L2 (A) as points of P(V ). By
+(C3)–(C5), A has six lines, exactly four triple points and no other multiple point. A line contains
+at most two triple points, since each of them needs two of the ﬁve other lines, and these pairs are
+disjoint by (1). There are 4 · 3 = 12 = 6 · 2 incidences between triple points and lines, so every line
+contains exactly
+              (4) two triple points. Two triple points lie on at most one common line, and there are
+six lines and 2 = 6 pairs of triple points. So every pair of triple points is joined by exactly one line
+of A, these are all lines of A, and no three of the four points are collinear. Four such points are the
+points (1:0:0), (0:1:0), (0:0:1), (1:1:1) in suitable coordinates, which gives the polynomial.
+    Let P be a triple point, and let R 6= P be another point of L2 (A). If R is a triple point, it is
+joined to P by a line of A. If R is a double point, it is the intersection of two lines of A which have
+no triple point in common; so they contain all four triple points, and one of them passes through P .
+In both cases the subspace P + R of V is a hyperplane of A. Further P + H ∈ {H, V } for H ∈ A. So
+P is modular, and V < H < P < 0, for any H ∈ A through P , is a chain of modular elements.
+
+
+                                                      9
+Theorem 5.2. The arrangements of Deﬁnition 3.1 are supersolvable. More precisely:
+
+  (a) Every A ∈ Ck′ (k ≥ 1) is supersolvable.
+
+ (b) Every A ∈ Ck (k ≥ 2) is supersolvable. If k ≥ 3 and A is not a complete quadrilateral, there is
+     a triple point Z0 as in Lemma 4.2, and for every such triple point the arrangement AX /X lies
+     in Ck−1 .
+
+Proof. Induction on k; ranks 1 and 2 are settled. Let k ≥ 3. If A ∈ C3 and v = 0, then A is a
+complete quadrilateral and supersolvable by Lemma 5.1. In all other cases Lemma 4.3 gives a triple
+point Z0 with AZ0 = {H0 , H1 , H2∩} and deg(H1 ) = deg(H2 ) = 1. Let Z0 be any such triple point.
+By Lemma 4.2(a) and (b), X = {H 6= H1 , H2 } is a modular line with AX = A \ {H1 , H2 }. Let
+B = AX /X, an essential arrangement of rank k − 1 ≥ 2 in V /X. Its forms are those of AX , so
+F (B) = F (AX ), and Y 7→ Y /X identiﬁes L(AX ) with L(B). By Lemma 4.2(d), B is irreducible
+and formal, and its multiple elements of codimension two are those of A except Z0 , with the same
+multiplicities. Therefore: if A ∈ Ck′ , then B has 2k − 3 = 2(k − 1) − 1 hyperplanes, all mZ ≤ 3 and
+                                    ′
+k − 2 triple points, that is, B ∈ Ck−1  ; if A ∈ Ck , then B has 2(k − 1) hyperplanes, all mZ ≤ 4, and
+∑ (mZ −1)
+   Z    2    =  (k + 1) − 1 = (k − 1)  + 1, that is, B ∈ Ck−1 . By induction B is supersolvable; hence so
+is AX , and A is supersolvable by Lemma 4.2(c).
+
+Proof of Theorem 1.2. The hypotheses say that A ∈ Ck .            The statements are Theorem 5.2(b),
+Lemma 5.1 and Lemma 4.2(a), (b).
+
+Corollary 5.3. Let K have characteristic zero, and let A be essential and free.
+
+  (a) If exp(A) = (1, 2k−1 ), then A is supersolvable.
+
+ (b) If exp(A) = (1, 2k−2 , 3), k ≥ 2, then A is supersolvable.
+
+Proof. Proposition 3.2 and Theorem 5.2.
+
+    Part (a) is the statement of [Toh20, Section 3]; it also follows from [DiP23] (Remark 6.4). Part
+(b) is [Toh20, Conjecture 4.1].
+                                        ∩
+Proof of Theorem 1.1. Let C = H∈A H, and let V1 be a complement of C in V . Then A = A1 × ∅C ,
+where A1 = {H ∩ V1 : H ∈ A} is an essential arrangement in V1 , linearly isomorphic to A/C, and ∅C
+is the empty arrangement in C. By Lemma 2.4, A1 is free and exp(A) is the union of exp(A1 ) and
+0dim C ; by Lemma 2.3, A1 has no exponent 0. So the exponents 0 of A are exactly dim C in number,
+and we may assume that A is essential.
+    Write A = A1 × · · · × Ac with irreducible essential arrangements Al of rank rl ≥ 1 (Section 2.1).
+By Lemma 2.4 each Al is free, and exp(A) is the union of the exp(Al ). By Lemma 2.3 each exp(Al )
+contains exactly one 1 and no 0; its other entries are 2’s and, for at most one l, a single 3. So exp(Al )
+is (1, 2rl −1 ) or (1, 2rl −2 , 3), and Al is supersolvable by Corollary 5.3.
+    Finally a product of supersolvable arrangements is supersolvable: the elements of L(A1 × A2 ) are
+the subspaces X1 ⊕ X2 with Xi ∈ L(Ai ), and (X1 ⊕ X2 ) + (Y1 ⊕ Y2 ) = (X1 + Y1 ) ⊕ (X2 + Y2 ); so
+X1 ⊕ X2 is modular if X1 and X2 are, and a chain of modular elements Xa1 ⊕ V2 (0 ≤ a ≤ r1 ), followed
+by 0 ⊕ Xb2 (1 ≤ b ≤ r2 ), is obtained from chains for A1 and A2 .
+
+
+
+
+                                                   10
+6    Remarks
+Remark 6.1 (what the induction produces). Let A ∈ Ck , for instance an essential free arrangement
+with exponents (1, 2k−2 , 3) in characteristic zero. Each step of the induction removes two hyperplanes
+and one triple point, and keeps the quadruple point if there is one. If v = 1, the induction ends with
+four concurrent lines in rank 2; if v = 0, it ends with a complete quadrilateral in rank 3. So the proof
+gives a chain of modular elements V = X0 < X1 < · · · < Xk = 0 with |AXl \ AXl−1 | = 2 for l ≥ 4,
+and the sizes of the steps |AXl \ AXl−1 |, l = 1, . . . , k, are
+
+                      1, 3, 2, 2, . . . , 2   if v = 1,        1, 2, 3, 2, . . . , 2   if v = 0.
+
+In other words, A arises from a pencil of four lines or from a complete quadrilateral by adding, k −2 or
+k − 3 times, one dimension and two hyperplanes which form a triple point with an existing hyperplane
+and contain no other multiple ﬂat. For A ∈ Ck′ the sizes are 1, 2, 2, . . . , 2.
+    In terms of matroids each step is a parallel connection with a line of three points: as α2 ∈
+span(α0 , α1 ) with both coeﬃcients non-zero (Lemma 4.2) and α1 is not in the span of the forms of
+AX , a subset of A which contains exactly one of H1 , H2 is independent if and only if its other members
+are, and a subset which contains both is independent if and only if its other members do not include
+H0 and are independent together with H0 . The forests of a graph to which a triangle is glued along an
+edge obey the same rule. Hence the matroid of A is the cycle matroid of the complete graph K4 with
+k − 3 triangles glued successively along edges if v = 0, and of a triangle with k − 2 further triangles
+glued in this way if A ∈ Ck′ , k ≥ 2 (compare [DGT14, Theorem 5.6]).
+Remark 6.2 (the converse). Every A ∈ Ck is free with exponents (1, 2k−2 , 3), and every A ∈ Ck′ is free
+with exponents (1, 2k−1 ). Indeed, A is supersolvable by Theorem 5.2, and supersolvable arrangements
+are free by the theorem of Jambu and Terao [JT84], which we use as it is cited in [Toh21, p. 284]; we
+did not read [JT84]. By Lemma 2.3 exactly one exponent is 1 and the other k − 1 exponents are at
+least 2; by (T2) they sum to 2k − 1, respectively 2k − 2. So, for an essential irreducible arrangement
+of rank k ≥ 2 in characteristic zero, being free with exponents (1, 2k−2 , 3) is equivalent to membership
+in Ck . This remark rests on the cited theorem and is not used elsewhere.
+Remark 6.3 (a question of the preprint). Let s be the number of hyperplanes which lie in exactly one
+dependent triple. In [Toh20, Remark 4.7] the inequality s ≥ u + 1 is stated for free arrangements of
+rank 4 and 5 with exponents (1, 2, 2, 3) and (1, 2, 2, 2, 3), and it is asked whether it can be proved in
+rank at least 6. The graphic arrangement of the complete graph K4 with a triangle glued along an
+edge, which is the arrangement of Section 8, has rank 4, is free with exponents (1, 2, 2, 3), and has
+u = 5 and s = 2.
+Remark 6.4 (the cases covered by DiPasquale’s theorem). Let A be essential, irreducible and free of
+rank k ≥ 3, with exponents (1, 2k−1 ), or with exponents (1, 2k−2 , 3) and v = 1. By Proposition 3.2,
+∑
+   Z (mZ −2)
+          ∑ equals k −1 = n−k in the ﬁrst ∑ case and u+2v = k = n−k in the second. As A is formal,
+F (A) = Z FZ has dimension n − k = Z dim FZ , so this sum ⊕           is direct. In the notation of [DiP23,
+Sections 4–6], where R2 (A) = F (A) and R3 (AY ) is the kernel of Z∈L2 (AY ) FZ → F (AY ), this gives
+                 ∑ i ≥ 3 and all Y ∈ L(A); hence the modules S (A) of [DiP23, Deﬁnition 5.1], which
+Ri (AY ) = 0 for all                                                i
+
+are free of rank Y dim Ri (AY ) (Y of codimension i), vanish for i > 2. Since free arrangements are
+totally formal [DiP23, Corollary 4.10], A is a T F2 arrangement as deﬁned at the beginning of Section 6
+of that paper, which works over an arbitrary ﬁeld. By [DiP23, Proposition 6.1], an irreducible T F2
+arrangement of rank r ≥ 3 is free if and only if it has exactly r − 1 multiple elements of codimension
+two, and if and only if it is supersolvable. So Corollary 5.3(a) and the case v = 1 of Corollary 5.3(b)
+follow from [DiP23]. For v = 0 there are k + 1 multiple elements of codimension two; so, by the same
+proposition, A is not T F2 , and the proposition does not give its supersolvability. The proof in [DiP23]
+
+
+                                                          11
+that r − 1 multiple ﬂats imply supersolvability adds the multiple ﬂats one at a time; Lemma 4.1 and
+the induction for Ck′ and for v = 1 are arguments of the same kind. For arrangements which are
+formal but not assumed free, Theorem 5.2 is not literally contained in [DiP23, Proposition 6.1], whose
+hypothesis is total formality. So, relative to the literature we found, what is new is the case v = 0 in
+rank k ≥ 4, and therefore the conjecture in general; the other cases are proved again.
+Remark 6.5 (the ﬁeld). The conjecture is stated for ﬁelds of characteristic zero, and Theorem 1.1 is
+claimed in this setting. Our own arguments do not use the characteristic: Lemmas 2.2 to 2.5, Section 4,
+Lemma 5.1, Theorem 5.2 and Appendix A hold over every ﬁeld over which Saito’s criterion (T2) holds.
+The characteristic was restricted only because of (T1), and Proposition B.1∑in Appendix B proves the
+two consequences of (T1) and (T2) which enter Proposition 3.2, namely i di = n and (4), without
+the factorization theorem. Therefore Proposition 3.2, Corollary 5.3 and Theorem 1.1 hold over every
+ﬁeld for which Saito’s criterion holds; in [PT20, Theorem 3.7] the criterion is stated for an arbitrary
+ﬁeld, with a reference to Terao for positive characteristic. The exponents of an arrangement deﬁned
+over the integers may depend on the characteristic [PT20, Example 3.3]; the statement concerns the
+exponents over the given ﬁeld. Theorem 1.2 holds over every ﬁeld without any proviso; for tests over
+ﬁnite ﬁelds see Section 9.
+
+
+7    The hypotheses, the limits of the argument, and sharpness
+Where each hypothesis is used. Freeness enters through the reduction in the proof of Theorem 1.1
+(Lemmas 2.3 and 2.4) and through Proposition 3.2, that is, through (T1), (T2), Lemmas 2.3 and 2.5
+and Theorem 2.1. The exponents enter only through the numerical conditions (C3)–(C5). Irreducibil-
+ity is used in Lemma 4.1 and is inherited by Lemma 4.2(d). Formality is used in Lemma 4.1, in
+Lemma 4.2(a) and (d), and in (5). Neither can be dropped in Theorem 1.2: the second veriﬁcation
+run found ten hyperplanes of the Coxeter arrangement B5 , with one quadruple and three triple points,
+which satisfy all hypotheses except formality, and eight hyperplanes in Q4 which satisfy all hypotheses
+except irreducibility; neither arrangement is supersolvable.
+    Why the argument stops outside the range of the conjecture. For∑  a formal arrangement the number
+of independent linear dependencies among the local relations is         Z (mZ − 2) − (n − k); it is the
+dimension of the space of dependencies among the dependencies of length three, which Yuzvinsky
+relates to the second of his obstructions to freeness [Yuz93, Section 4; see Remark(m−1) 4.13]. If A is
+          and free with exponents di in characteristic zero, then, since m − 2 ≤ 2 for m ≥ 2, (4)
+essential ∑
+and n = i di give
+                   ∑                          ∑ (d i ) ∑                 ∑ (di − 1)
+                      (mZ − 2) − (n − k) ≤             −     (di − 1) =              .               (8)
+                                                    2                           2
+                   Z                           i           i             i
+
+The bound is 0 if all exponents are at most 2, and 1 if exactly one exponent is 3 and the others are at
+most 2: this is the range of the conjecture. With no dependency the count of Lemma 4.3(i) applies;
+with one dependency its support can be controlled as in Lemma 4.3(ii). For two exponents 3 the
+bound is 2, and the statement fails: in the non-Fano arrangement below, six local relations lie in a
+relation space of dimension 4, there are two independent dependencies, and every line has degree 2
+or 3, so that Lemma                                                            k−2
+                ∑ (m4.2Z −1
+                            )has nothing to start from. For exponents (1, 2 , 4) the bound is 3; here
+n = 2k +1 and Z         2     = k +4, and if all multiple ﬂats are triple points the count 3u ≥ s+2(n−s)
+gives only s ≥ k − 10. We make no statement about these exponents.
+    Sharpness. The hypothesis “at most one 3” cannot be replaced by “at most two 3’s”, in rank three
+and in rank four.
+    (a) The non-Fano arrangement A with Q(A) = xyz(x − y)(x − z)(y − z)(x + y − z) over a ﬁeld
+of characteristic diﬀerent from 2; it is the example given in [Toh21, p. 284] and [Toh20, Section 4.1].
+
+                                                   12
+It is free with exponents (1, 3, 3): the derivations
+                          (                          )
+      θE ,     (x + y − z) x(x − z)∂x + y(y − z)∂y ,             x(x − z)(2y − z)∂x + y(y − z)(2x − z)∂y
+
+lie in D(A), and the determinant of their coeﬃcients is 2 Q(A); this basis is the one of [PT20,
+Example 3.3] after the substitution z 7→ −z. It has six triple points and no other multiple point,
+the degrees of its seven lines are 3, 3, 2, 2, 3, 3, 2, and no element of L2 (A) is modular; so it is not
+supersolvable.
+    (b) Nine hyperplanes in rank four, in characteristic zero, found by the second veriﬁcation run in
+the Coxeter arrangement B4 :
+
+          x4 , x 3 − x4 , x 3 + x4 , x 2 − x3 , x 2 − x4 , x 2 + x4 , x 2 + x3 , x 1 − x2 , x 1 − x3 .
+
+The ﬁrst seven hyperplanes form a non-Fano arrangement in the coordinates x2 , x3 , x4 , and the last
+two form a triple point with x2 − x3 . The arrangement is irreducible, has seven triple points and
+no quadruple point, and χ(A, t) = (t − 1)(t − 2)(t − 3)2 . It is free with exponents (1, 2, 3, 3): the
+derivations
+                                  ∑4
+θE ,     (x1 − x2 )(x1 − x3 )∂1 ,       3
+                                   i=1 xi ∂i ,  x24 (x2 + x3 − x1 )∂1 + x3 x24 ∂2 + x2 x24 ∂3 + x2 x3 x4 ∂4
+
+lie in D(A), and the determinant of their coeﬃcients is Q(A). It is not supersolvable: its only modular
+element of codimension three is the line X = {x2 = x3 = x4 = 0}; a chain of modular elements would
+pass through X and give such a chain for AX /X, which is the non-Fano arrangement. The ﬁrst
+veriﬁcation run found 180 such sub-arrangements of B4 , among them x1 , x2 , x1 + x2 , x1 ± x3 , x1 ± x4 ,
+x3 ± x4 ; for the veriﬁcation of the data of this section see Section 9.
+
+
+8    A worked example
+Let A be the arrangement in V = K 4 , char K = 0, with the eight forms
+
+α 1 = x1 , α 2 = x2 , α 3 = x3 , α 4 = x1 − x2 , α 5 = x1 − x3 , α 6 = x2 − x3 , α 7 = x4 , α 8 = x1 − x4 ,
+
+and let Hi = ker αi . It is the graphic arrangement of the graph with the vertices 0, . . . , 4 and the
+eight edges {0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}, {2, 3}, {0, 4}, {1, 4}, in this order: the complete graph
+on {0, 1, 2, 3} with the triangle {0, 1, 4} glued along the edge {0, 1}. With x0 = 0, the edge {i, j} gives
+the form xi − xj .
+    Flats and degrees. The arrangement is essential of rank 4 and irreducible, and n = 8 = 2k. A set
+of three forms xi − xj is dependent if and only if the edges form a triangle, so the multiple elements
+of L2 (A) are the ﬁve triple points
+
+ Z1 : {H1 , H2 , H4 },   Z2 : {H1 , H3 , H5 },   Z3 : {H2 , H3 , H6 },   Z4 : {H4 , H5 , H6 },   Z0 : {H1 , H7 , H8 },
+
+with the relations ρZ1 = e1 − e2 − e4 , ρZ2 = e1 − e3 − e5 , ρ∑        Z3 =     −)e3 − e6 , ρZ4 = e4 − e5 + e6 ,
+                                                                          (meZ2−1
+ρZ0 = e1 − e7 − e8 , where ei = eHi . So u = 5, v = 0 and Z                   2    = 5 = k + 1. The degrees
+of H1 , . . . , H8 are 3, 2, 2, 2, 2, 2, 1, 1; thus s = 2. The relation space has dimension n − k = 4, and
+ρZ1 , ρZ2 , ρZ3 , ρZ0 are linearly independent; so A is formal and A ∈ C4 .
+    Freeness. The derivations
+                                         ∑4              ∑4
+                              θE ,                2
+                                             i=1 xi ∂i ,
+                                                                3
+                                                           i=1 xi ∂i ,  x4 (x1 − x4 )∂4
+
+lie in D(A), and the determinant of their coeﬃcients is −x4 (x1 −x4 )·x1 x2 x3 (x1 −x2 )(x1 −x3 )(x2 −x3 ) =
+−Q(A). By (T2), A is free with exponents (1, 2, 2, 3), and (4) reads 5 = 0 + 1 + 1 + 3.
+
+                                                          13
+    The dependency of Lemma 4.3. The ﬁve relations lie in a space of dimension 4, and the only
+dependency is ρZ1 − ρZ2 + ρZ3 + ρZ4 = 0. So T = {Z1 , . . . , Z4 } consists of the four triangles of K4 ,
+W = {H1 , . . . , H6 }, t = 4, w = 6, and (6) reads 12 ≥ 12. The triple point Z0 outside T lies in
+H1 ∈ W , so c = 1; the hyperplanes outside W are H7 , H8 , both of degree 1, so s′ = 2. Inequality (7)
+reads s′ − (k + 1 − t) = 1 ≥ t + c − 4 = 1: there are more hyperplanes of degree 1 outside W than
+triple points outside T , and Z0 lies in two of them.
+    The modular line and the chain. Lemma 4.2 applies to Z0 with H0 = H1 and the two hyperplanes
+H7 , H8 of degree 1: ρ = e1 − e7 − e8 , λ(r) = −r7 + r8 , and v0 = (0, 0, 0, −1) satisﬁes α7 (v0 ) = −1,
+α8 (v0 ) = 1 and αi (v0 ) = 0 for i ≤ 6. So X = H1 ∩ · · · ∩ H6 = Ke4 is a modular line, and AX /X is the
+arrangement x1 x2 x3 (x1 − x2 )(x1 − x3 )(x2 − x3 ) in K 3 : the complete quadrilateral, the exceptional
+case of Theorem 1.2. Its triple point {x1 = x2 = 0} is modular (Lemma 5.1). The resulting chain of
+modular elements of L(A) is
+
+                  V < {x1 = 0} < {x1 = x2 = 0} < {x1 = x2 = x3 = 0} = Ke4 < 0,
+
+with |AXl | = 1, 3, 6, 8 for l = 1, . . . , 4 and steps 1, 2, 3, 2, as in Remark 6.1 for v = 0.
+
+
+9    Computations and reproducibility
+All theorems, propositions and lemmas of this note are proved without computation. The compu-
+tations of this section are tests: a search that ﬁnds no counterexample is not a proof. They are
+exact (rational arithmetic, or arithmetic in a ﬁnite ﬁeld). The reproducibility package contains
+the programs, the command lines and the recorded outputs: the programs with which the result
+was ﬁrst tested (original/), those of three independent veriﬁcation runs (verification_run_A/,
+verification_run_B/, independent_run_2/), and the program of this note (writing_stage/).
+Freeness with prescribed exponents is decided in both directions, by four diﬀerent implementations
+which all rest on (T2): an answer “free” comes with a basis, and an answer “not free with these
+exponents” is the failure of a necessary condition. Supersolvability is decided from the deﬁnition.
+The veriﬁcation report of the package lists every test with its numbers.
+
+Exhaustive enumerations. Table 1 lists all subsets of size 2k, up to signed permutations of the
+coordinates, of four sets of hyperplanes: the 13 lines with normals in {0, ±1}3 , the 40 hyperplanes
+with normals in {0, ±1}4 , and the Coxeter arrangements B5 and B6 .
+
+     ground set    k   subsets of size 2k    orbits   ess., irred.    free   (k+1, 0)   (k−2, 1)   size 2k−1
+     {0, ±1} 3
+                   3               1,716        106          106        26         9         17           26
+     {0, ±1}4      4          76,904,685    415,920      410,655     2,929       913      2,016        2,056
+     B5            5           3,268,760      3,071        2,363       134        66         68           78
+     B6            6       1,251,677,700     86,764       59,779       726       382        344          333
+
+Table 1: Exhaustive enumerations. “Orbits”: orbits of subsets of size 2k; “ess., irred.”: essential
+irreducible orbits; “free”: orbits which are free with exponents (1, 2k−2 , 3), split by (u, v) in the next
+two columns; last column: orbits of subsets of size 2k − 1 which are free with exponents (1, 2k−1 ) (for
+k = 3 from the second and third runs). All free arrangements found are supersolvable.
+
+    Every free arrangement found is formal, has all mZ ≤ 4 and v ≤ 1, and, except for the nine
+orbits of complete quadrilaterals, has a triple point with two hyperplanes of degree 1 whose line X
+is a modular coatom. Among the essential irreducible orbits with (C3)–(C5), or with (C3′ )–(C5′ ),
+the formal ones are supersolvable and the others are not. The table was computed with the original
+
+                                                       14
+programs, which discard the sets that are not essential or not irreducible before the freeness test (by
+Lemma 2.3 they are not free with these exponents). The second veriﬁcation run reproduced it with
+its own program, orbit by orbit. The third run reproduced its ﬁrst three rows with a third program,
+which decides freeness for every orbit and discards nothing.
+
+Further tests. None of the following tests found a deviation from a statement of this note. The
+ﬁrst veriﬁcation run tested 966,449 sets of hyperplanes over Q and over Fp , p ≤ 11, in ranks 3 to 6,
+and Theorem 1.2 on all 36,288,252 sets formed by the standard basis and six further vectors of F62 .
+The second run tested Theorem 1.1 with reducible and non-essential arrangements on the orbits of all
+subsets with at most 6, 7, 10 and 11 hyperplanes of the four ground sets, and random arrangements
+over Q and over four prime ﬁelds. The third run decided freeness for 60,000 random sets of hyperplanes
+of rank 4 over Q; it tested Theorem 5.2 on sets which contain the coordinate hyperplanes and satisfy
+the numerical conditions, 201,696 of them in Q4 and all 87,616 of them in F44 and F45 ; and it tested the
+identities of Proposition B.1, Theorem 2.1 and Lemmas 2.3 and 2.5 for arbitrary exponents on 558,955
+sets of hyperplanes over the ﬁelds with 2, 3, 4, 5, 7, 8 and 9 elements. The statements on hypergraphs
+which the proof of Lemma 4.3 uses were enumerated for k ≤ 6 in (i), for k ≤ 6 with a quadruple
+point and for k ≤ 5 without one, and further up to isomorphism: the only conﬁguration without a
+triple point carrying two hyperplanes of degree 1 is that of the complete quadrilateral. Every printed
+statement of Sections 7 and 8 was veriﬁed by the program check_note.py of this note and again by
+the third run. Outside the range of the conjecture the same programs ﬁnd free arrangements which
+are not supersolvable (Section 7).
+     Limits of the tests. The enumerations cover the ground sets named here and in the veriﬁcation
+report and no others; ranks 7 and higher were tested only at random. In some families the freeness
+of the members of the classes was decided for a sample only (one member in eight in ranks 5 and 6 of
+the ﬁrst run; one set in twenty among the 201,696 sets of the third run). Arrangements over number
+ﬁelds were tested only through reductions to ﬁnite ﬁelds. The original library stores its linear systems
+in 64-bit integers and stops with an overﬂow error when the coeﬃcients of the forms have size about
+105 ; it returns no wrong answer in that case, and all its runs have coeﬃcients of a few units.
+
+Veriﬁcation. The proof was ﬁrst written with the programs in original/. Three independent
+veriﬁcation runs, all AI-assisted, followed; each wrote its own programs.
+    The ﬁrst two runs did not see each other and examined the ﬁrst written version of the proof. The
+ﬁrst run compared the statement with [Toh21, Toh20], read [BT94], derived every step of Sections 2
+to 5 and of Appendix A again, and proved Saito’s criterion and Lemma 2.4 over arbitrary ﬁelds for
+itself. The second run recomputed the enumerations, read and ran the original programs, searched
+for counterexamples, and examined the literature; it found the theorem of DiPasquale. Neither found
+a mathematical error or a gap. All corrections required by them were made, with one exception: a
+further citation search with MathSciNet and Google Scholar, which we could not make.
+    The third run examined the ﬁnal text, and ﬁrst what had been written after the ﬁrst two runs:
+the proof of Proposition B.1 in its present form, Remarks 6.4 and 6.5, the references to [MMR24]
+and [Yuz93], Section 8 and the explicit bases of Sections 7 and 8. It derived every proof of Sections 2
+to 5 and of both appendices again, line by line; compared the statement with the Oberwolfach
+abstract, with version 3 of the preprint and with the withdrawal notice; and compared the citations
+of [Yuz93, BT94, DiP23, DGT14, Toh16, MMR24, PT20, HR15] with the cited texts. It found no
+wrong theorem, proposition or lemma and no gap. It required twelve corrections of the text and of
+the package, which were made; none changes a statement or a proof. It found the preprint [LW26];
+the last paragraph of Remark 6.1 was added at this revision and has been examined by this run only.
+It also ran the quick part of the package and the program of this note again from the archive, and all
+
+
+                                                   15
+recorded outputs were reproduced. No proof depends on a computation.
+
+Scope and priority. The note proves the conjecture stated in [Toh21, p. 284] and, for irreducible
+arrangements, as Conjecture 4.1 in [Toh20]: over a ﬁeld of characteristic zero, in every rank, for
+central arrangements, including reducible and non-essential ones (Theorem 1.1); for other ﬁelds see
+Remark 6.5. The conjecture and the strategy of the proof are due to Tohăneanu [Toh21, Toh20].
+The preprint [Toh20] was withdrawn by its author on 16 January 2022; the withdrawal notice names
+Sections 4.2.1 and 4.2.2 and case (a) of the proof of Proposition 4.8; no result of the preprint is used
+here. New, to our knowledge and relative to the literature we found, is the case without a quadruple
+point (v = 0) in rank k ≥ 4, and therefore the conjecture in general; the other cases are proved again:
+the case of exponents 1 and 2 only was ﬁrst proved in [Toh20, Section 3]; this case and the case v = 1
+follow from [DiP23, Proposition 6.1 and Corollary 4.10]; rank three follows from [Toh16, Theorem 2.4].
+The other attributions, to [DGT14, Yuz93, BT94, MMR24, BEZ90, Sch03, LW26], are in Sections 1.4
+and 4. We claim no priority.
+    What was read: [Toh21] (pp. 283–286 and p. 228) in the publisher’s ﬁle; version 3 of [Toh20]
+completely, with the withdrawal notice of version 4; [Yuz93] and [BT94] completely, in the publishers’
+ﬁles; and, in their arXiv versions, to which our numbers refer, the parts of [DiP23, DGT14, Toh16,
+MMR24, PT20, HR15] which are cited and the abstract and the introduction of [LW26] (the sections
+are listed in the veriﬁcation report). The journal versions were not compared. Not read: [OT92],
+which was not accessible to us, and [Ter81], [JT84], [Sch03], [BEZ90], [BH98]; what we say about
+them is taken from the papers named where they are cited.
+    The searches were made on 11 October 2026, at each stage of the work, and repeated in part
+on 12 October 2026 by the third veriﬁcation run: queries to the arXiv (by topic, and the list of the
+arXiv papers of the author of the conjecture), zbMATH Open, OpenAlex (which lists no work citing
+[Toh20]), Crossref, Semantic Scholar (at the ﬁrst stage), MathOverﬂow, and nine web searches. The
+texts found which cite the preprint are [Toh21] and one paper which only lists it. MathSciNet and
+Google Scholar were not searched, and the author of the conjecture was not contacted. No proof and
+no counterexample of the conjecture was found in the literature accessible to us; a search that ﬁnds
+nothing is not a proof of novelty.
+
+Version history. Version 1.0 of this note is dated October 12, 2026. Version 1.1, of the same day,
+corrects the credit for the case of exponents 1 and 2 only: this case was ﬁrst proved by Tohăneanu in
+the ﬁrst version of the preprint [Toh20], of 2017; version 1.0 named only the theorem of DiPasquale
+[DiP23] for it. The changes are in the abstract, in Section 1.4, in the paragraph “Scope and priority”,
+and this paragraph. No statement and no proof is changed.
+    AI-assisted tools were used to search the problem corpus and the literature, to ﬁnd the arguments,
+to write and run the veriﬁcation programs, and to help prepare this manuscript. The author has
+reviewed the proofs, the computations and the sources and is responsible for all claims. The note has
+not been peer reviewed.
+
+
+A     Free arrangements are formal
+We prove Theorem 2.1, following Brandt and Terao [BT94, Proposition 4.13 and Theorem 4.15], in
+the case k = 2 of their Theorem 4.15:⊕the module M below is their D2 (A), the modules MZ are their
+D2 (AZ ), and the injectivity of M → Z MZ is the vanishing of their K3 (A). We use three standard
+facts on a ﬁnitely generated graded module N 6= 0 over S = K[x1 , . . . , xk ]: the Auslander–Buchsbaum
+formula pd N + depth N = k; the inequality depth N ≤ dim S/p for every associated prime p of N
+[BT94, Theorem 4.14]; and, in Appendix B, the theorem of Hilbert and Serre that (1 − t)dim N times
+
+
+                                                  16
+the Hilbert series of N is a polynomial. These facts are standard (see for instance [BH98], which we
+did not consult for this note).
+Proposition A.1. Let A                                     k
+                      ∑be an essential arrangement in V = K over any ﬁeld K. If D(A) is a free
+S-module, then F (A) = Z∈L2 (A) FZ .
+                                        = αHi , E = K n with coordinate functions e∗1 , . . . , e∗n , and F =
+Proof. Write A = {H1 , . . . , Hn }, αi ∑
+F (A) ⊆ E. Let ι : V → E ∗ , ι(v) = i αi (v) e∗i . It is injective, because A is essential, and its image
+is the annihilator of F : it lies in the annihilator, and both have dimension k. So E ∗ /ι(V ) = F ∗ by
+restriction of linear forms to F . Let ēi ∈ F ∗ be the restriction of e∗i .
+    We⊕have DerK (S) = S ⊗K V , and ε = 1 ⊗ ι : S ⊗ V → S ⊗ E ∗ = S n is the map θ 7→ (θ(αi ))i . Let
+N0 = i αi S ⊆ S n . By deﬁnition D(A) = ε−1 (N0 ), so there is an exact sequence of ﬁnitely generated
+graded S-modules, with maps of degree zero,
+                               0 → D(A) → S ⊗ V → S n /N0 → M → 0,
+                                                             /                                            (9)
+                     M := S n /(ε(S ⊗ V ) + N0 ) = (S ⊗ F ∗ ) hαi ⊗ ēi : 1 ≤ i ≤ ni.
+Here V and F ∗ are in degree 0; the relations αi ⊗ ⊕
+                                                   ēi have degree 1, so M0 = F ∗ .
+                                          n
+    Projective dimension. The module S /N0 =           i S/αi S has projective dimension 1. If D(A) is
+free, the image I of S ⊗ V in S /N0 has projective dimension at most 1, and the exact sequence
+                                    n
+
+0 → I → S n /N0 → M → 0 gives pd M ≤ 2. If M = 0, then F ∗ = M0 = 0 and there is nothing to
+prove. Let M 6= 0; then depth M ≥ k − 2.
+    Localization. Let p be a prime ideal of S and Ap = {i : αi ∈ p}. For i ∈  / Ap the form αi is a unit
+in Sp , so 1 ⊗ ēi = 0 in Mp . Therefore
+          (             )/
+   Mp = Sp ⊗ F ∗ /U hαi ⊗ ēi : i ∈ Ap i,      U = span{ēi : i ∈/ Ap },     F ∗ /U = (F ∩ K Ap )∗ , (10)
+because the subspace of F on which all ēi with i ∈ / Ap vanish is F ∩ K Ap .
+    Associated primes. If Mp 6= 0, then F ∩ K Ap 6= 0 by (10): the forms αi , i ∈ Ap , are linearly
+dependent. As they are pairwise non-proportional, p contains two linearly independent linear forms,
+and ht p ≥ 2. Now let p be an associated prime of M . Then k − 2 ≤ depth M ≤ dim S/p = k − ht p, so
+ht p = 2. Hence p = (αi , αj ) for two independent forms of A, which is the ideal I(Z) of Z = Hi ∩ Hj ∈
+L2 (A). The linear forms in I(Z) are the forms vanishing on Z, so Ap = AZ , and F ∩ K AZ = FZ 6= 0
+means that Z is multiple.
+    The local modules. For a multiple Z ∈ L2 (A) let
+                                                /
+                                 MZ = (S ⊗ FZ∗ ) hαi ⊗ ēi |FZ : Hi ∈ AZ i.
+Restriction F ∗ → FZ∗ induces a surjection πZ : M → MZ : a generator αi ⊗ ēi is mapped to a generator
+if Hi ∈ AZ , and to 0 otherwise, since ēi vanishes on FZ ⊆ K AZ for Hi ∈   / AZ . By (10) for p = I(Z),
+where F ∩ K Ap =    F
+                  ⊕ Z  , the map π Z becomes  an  isomorphism  after localization at I(Z). Let N ′ be the
+kernel of M → Z MZ , m 7→ (πZ (m))Z , the sum over the multiple Z. Then Np′ = 0 for p = I(Z),
+Z multiple, that is, for every prime which can be associated to M . An associated prime p of N ′ is
+associated to M and satisﬁes Np′ 6= 0. So ⊕ N ′ has no associated prime, and N ′ =⊕  0.
+    Degree zero. The injective map M → Z MZ is in degree 0 the map F → Z FZ∗ ∑ ∗           , λ 7→ (λ|FZ )Z .
+Its injectivity says that no non-zero linear form on F vanishes on all FZ , that is, F = Z FZ .
+
+
+B     The identity (4) without the factorization theorem
+Proposition B.1. Let K be a ﬁeld over which Saito’s criterion (T2) holds, and let A be an essential
+free arrangement over K with exponents d1 , . . . , dk . Then
+                      ∑                             ∑ ( m Z − 1) ∑ ( d i )
+                         di = n    and                          =          .
+                                                              2        2
+                          i                       Z∈L2 (A)                 i
+
+
+                                                     17
+                                                                    ∑
+Proof. For a ﬁnitely generated graded S-module N let hN (t) = ∑ d dimK Nd td . We have hS =
+(1 − t)−k , hS/αS = (1 − t)1−k for a linear form α 6= 0, and hD(A) = i tdi (1 − t)−k . By (9),
+
+                                       P (t)                                ∑
+                          hM (t) =            ,   P (t) = n(1 − t) − k +         td i .                          (11)
+                                     (1 − t)k
+                                                                            i
+
+Let Z ∈ L2 (A) be multiple and m = mZ . The arrangement AZ is not essential, but the image of
+V → (K AZ )∗ , v 7→ (αH (v))H∈AZ , is again the annihilator of F (AZ ) = FZ : both have dimension 2.
+So the sequence (9) for AZ ,
+                                                   ⊕
+                         0 → D(AZ ) → S ⊗ V →           S/αH S → MZ → 0,
+                                                     H∈AZ
+
+is exact, with the module MZ of Appendix A. By Lemma 2.2, D(AZ ) is free with exponents
+(0k−2 , 1, m − 1). Hence
+
+                      m(1 − t) − 2 + t + tm−1     Rm (t)                         ∑
+                                                                                 m−3
+          hMZ (t) =                           =            ,       Rm (t) =               (m − 2 − j) tj ,       (12)
+                             (1 − t) k          (1 − t)k−2
+                                                                                 j=0
+                                              ∑m−3
+where we(used) (1 − t)2 Rm (t) = (1 − t) i=0 (1 − ti+1 ) = (m − 2) − (m − 1)t + tm−1 ; note that
+Rm (1) = m−1  2  .                                    ⊕
+    By the proof of Proposition A.1 the map M →          Z MZ is injective; let C be its cokernel. We
+claim that Cp = 0 for every prime p of height at most 2. The description (10) holds for MZ as well,
+so (MZ )p 6= 0 implies that p contains three forms of AZ , hence p ⊇ I(Z), and p = I(Z) if ht p ≤ 2.
+If p is not of the form I(Z) with Z multiple, then all (MZ )p vanish. If p = I(Z1 ), then (MZ )p = 0
+for Z 6= Z1 , and Mp → (MZ1 )p is an isomorphism. In both cases Cp = 0. Hence dim C ≤ k − 3, and
+C = 0∑  if k ≤ 2. By the theorem of Hilbert and Serre, (1 − t)k−3 hC (t) is a polynomial if k ≥ 3. Since
+hC = Z hMZ − hM , we get from (11) and (12) that the polynomial
+                                       ∑
+                              (1 − t)2   RmZ (t) − P (t) = (1 − t)k hC (t)
+                                          Z
+                                                                            ∑                      ∑ (mZ −1)
+                ∑− t) . Therefore
+is divisible by (1   3            P∑(1) = 0, P ′ (1) = 0 and P ′′ (1) = 2       Z RmZ (1) = 2         Z      2   . As
+  ′                        ′′
+P (1) = −n + i di and P (1) = i di (di − 1), this is the claim.
+
+   The proof uses (T2) only through Lemma 2.2. The ﬁrst veriﬁcation run obtained the same identity
+from (11) and (12) by the associativity formula for multiplicities; the third run tested both identities
+over seven ﬁnite ﬁelds (Section 9).
+
+
+References
+[BEZ90]    Anders Björner, Paul H. Edelman, and Günter M. Ziegler. Hyperplane arrangements
+           with a lattice of regions. Discrete & Computational Geometry, 5(3):263–288, 1990.
+           doi:10.1007/BF02187790.
+
+[BH98]     Winfried Bruns and H. Jürgen Herzog. Cohen–Macaulay Rings, volume 39 of Cambridge
+           Studies in Advanced Mathematics. Cambridge University Press, Cambridge, 2nd edition,
+           1998. doi:10.1017/CBO9780511608681.
+
+[BT94]     K. A. Brandt and Hiroaki Terao. Free arrangements and relation spaces. Discrete &
+           Computational Geometry, 12(1):49–63, 1994. doi:10.1007/BF02574365.
+
+                                                     18
+[DGT14] Graham Denham, Mehdi Garrousian, and Ştefan O. Tohăneanu. Modular decomposition
+        of the Orlik–Terao algebra. Annals of Combinatorics, 18(2):289–312, 2014.
+        arXiv:1211.4562, doi:10.1007/s00026-014-0223-z.
+[DiP23]   Michael DiPasquale. A homological characterization for freeness of multi-arrangements.
+          Mathematische Annalen, 385(1–2):745–786, 2023. arXiv:1806.05295,
+          doi:10.1007/s00208-021-02357-6.
+[HR15]    Torsten Hoge and Gerhard Röhrle. On inductively free reﬂection arrangements. Journal
+          für die reine und angewandte Mathematik, 701:205–220, 2015. arXiv:1208.3131,
+          doi:10.1515/crelle-2013-0022.
+[JT84]    Michel Jambu and Hiroaki Terao. Free arrangements of hyperplanes and supersolvable
+          lattices. Advances in Mathematics, 52(3):248–258, 1984.
+          doi:10.1016/0001-8708(84)90024-0.
+[LW26]    Weikang Liang and Suijie Wang. Freeness of arrangements with regular underlying
+          matroids. Preprint, https://arxiv.org/abs/2608.01331, 2026. Version 1 of 2 August
+          2026.
+[MMR24] Tilman Möller, Paul Mücksch, and Gerhard Röhrle. On formality and combinatorial
+        formality for hyperplane arrangements. Discrete & Computational Geometry, 72(1):73–90,
+        2024. arXiv:2202.09104, doi:10.1007/s00454-022-00479-5.
+[OT92]    Peter Orlik and Hiroaki Terao. Arrangements of Hyperplanes, volume 300 of Grundlehren
+          der mathematischen Wissenschaften. Springer, Berlin, 1992.
+          doi:10.1007/978-3-662-02772-1.
+[PT20]    Elisa Palezzato and Michele Torielli. Free hyperplane arrangements over arbitrary ﬁelds.
+          Journal of Algebraic Combinatorics, 52(2):237–249, 2020. arXiv:1803.09908,
+          doi:10.1007/s10801-019-00901-x.
+[Sch03]   Henry K. Schenck. Elementary modiﬁcations and line conﬁgurations in P2 . Commentarii
+          Mathematici Helvetici, 78(3):447–462, 2003. doi:10.1007/s00014-003-0762-0.
+[Ter81]   Hiroaki Terao. Generalized exponents of a free arrangement of hyperplanes and
+          Shepherd–Todd–Brieskorn formula. Inventiones Mathematicae, 63(1):159–179, 1981.
+          doi:10.1007/BF01389197.
+[Toh16]   Ştefan O. Tohăneanu. Projective duality of arrangements with quadratic logarithmic
+          vector ﬁelds. Discrete Mathematics, 339(1):54–61, 2016. arXiv:1405.2122,
+          doi:10.1016/j.disc.2015.07.004.
+[Toh20]   Ştefan O. Tohăneanu. Free arrangements with low exponents. Preprint,
+          https://arxiv.org/abs/1707.07091, 2020. Version 3 of 16 November 2020; withdrawn
+          by its author on 16 January 2022 (version 4).
+[Toh21]   Ştefan O. Tohăneanu. Free arrangements with low exponents. Oberwolfach Reports,
+          18(1):283–286, 2021. Abstract in Report No. 5/2021, “Logarithmic Vector Fields and
+          Freeness of Divisors and Arrangements”, pp. 225–300. doi:10.4171/OWR/2021/5.
+[ula26]   ulamai. UnsolvedMath. Hugging Face dataset,
+          https://huggingface.co/datasets/ulamai/UnsolvedMath, 2026. Version 1.6.0; record
+          OWR-4990374-015.
+
+                                                19
+[Yuz93]   Sergey Yuzvinsky. The ﬁrst two obstructions to the freeness of arrangements.
+          Transactions of the American Mathematical Society, 335(1):231–244, 1993.
+          doi:10.1090/S0002-9947-1993-1089421-5.
+
+
+
+
+                                               20
+

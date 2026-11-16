@@ -1,0 +1,1 @@
+2026-11-16T21:40:01.815713+00:00 — Root source-first manuscript/PDF/pixels/native identity and independent hand reconstruction frozen. Source100%, full scientific review55%; peer/currentprimary/archive/code closed, no disposition.

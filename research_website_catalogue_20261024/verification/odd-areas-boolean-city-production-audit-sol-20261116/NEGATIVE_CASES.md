@@ -1,0 +1,16 @@
+# Independent pre-code adversarial cases
+
+These are static review questions, not executed experiments or findings about the unopened helper.
+
+1. The index has the same logical OIDs but one refreshed stat entry or chmod differs. The exact lease must fail until root adopts a new baseline; old 0600 must not be restored over actual 0644.
+2. An unrelated path has foreign staged content. The published tree must retain HEAD's untargeted entry while the native successor retains the complete foreign staged raw record. One full-index write-tree cannot satisfy both by assumption.
+3. A changed target raw entry is correct but a valid TREE descendant still names the old subtree. An apparently successful write-tree can be wrong. Drop/rebuild/invalidate the derived cache coherently and check the actual result; root-only invalidation is not enough if a changed child remains valid.
+4. A non-TREE extension appears, an index format differs, a staged conflict is present, or a path requires nontrivial UTF-8 byte length/padding. Reject unsupported inputs and preserve authorized foreign flags/stages exactly; do not silently reconstruct normalized entries.
+5. A candidate source changes after validation, a new destination appears after absence checks, or another writer edits an aggregate. Hold validated source bytes and use no-clobber additions plus fresh aggregate/baseline CAS checks. A prior preflight is not a perpetual lease.
+6. The second aggregate backup or journal fsync fails before writing. No website change should have occurred. Failure after the seventh new file or first aggregate replacement must remain a recorded partial transition, not a clean success or automatic reseal.
+7. A partial output is later edited by somebody else. Rollback cannot overwrite it merely because its path belongs to this scope; it needs transaction-owned byte identity and must retain evidence instead of guessing.
+8. The native index lock already exists, native bytes change immediately before replace, local master advances before update-ref, or index/ref changes fail between phases. CAS/lock ownership and honest recovery must protect foreign work; no broad reset or blind ref rollback.
+9. Fetch origin matches but remote.origin.pushurl or url.*.pushInsteadOf redirects the actual push; a conditional configuration/environment change occurs between preflight and remote action. Exact effective singleton routing and relevant configuration snapshots must be checked at the action boundary. No remote command is authorized by this audit.
+10. Remote master advances or push reports an ambiguous transport failure. Do not force, push an implicit mutable HEAD, claim remote success from a local commit, or retry without bounded identity verification and root authority.
+11. A historical SUCCESS, completed lock, private stage adoption or default invocation is mistaken for new install/Git authority. Separate bound action objects and a fresh owned transaction are required; old locks and receipts stay retained.
+12. A Git push succeeds but delivery, PDF rendering, mobile presentation or downloads were not actually checked. Keep those gates and AA pending. Earlier renderer limitations and the stage builder's literal 404-byte SyntaxWarning remain historical evidence, not clean-success certificates.

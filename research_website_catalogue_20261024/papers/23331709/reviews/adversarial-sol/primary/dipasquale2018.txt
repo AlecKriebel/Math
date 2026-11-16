@@ -1,0 +1,2280 @@
+                                            A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF
+                                                         MULTI-ARRANGEMENTS
+
+
+
+
+arXiv:1806.05295v1 [math.AG] 13 Jun 2018
+                                                                            MICHAEL DIPASQUALE
+
+
+
+
+                                                   Abstract. Building on work of Brandt and Terao in their study of k-formality,
+                                                   we introduce a co-chain complex associated to a multi-arrangement and prove
+                                                   that its cohomologies determine freeness of the associated module of multi-
+                                                   derivations. This provides a new homological method for determining freeness
+                                                   of arrangements and multi-arrangements. We work out many applications of
+                                                   this homological method. For instance, we prove that if a multi-arrangement
+                                                   is free then the underlying arrangement is k-formal for all k ≥ 2. We also use
+                                                   this method to completely characterize freeness of certain families of multi-
+                                                   arrangements in moduli, showcasing how the geometry of multi-arrangements
+                                                   with the same intersection lattice may have considerable impact on freeness.
+                                                   New counter-examples to Orlik’s conjecture also arise in connection to this
+                                                   latter analysis.
+
+
+                                                                                   Contents
+                                             1. Introduction                                                                         1
+                                             2. Preliminaries                                                                        6
+                                             3. The homological criterion                                                            8
+                                             4. Multi-arrangements and k-formality                                                  12
+                                             5. Computing the chain complex                                                         15
+                                             6. T F2 arrangements                                                                   19
+                                             7. The case of line arrangements                                                       31
+                                             8. Concluding remarks                                                                  33
+                                             References                                                                             34
+                                             Appendix A. The moduli space of an arrangement                                         35
+                                             Appendix B. Two lemmas for multi-arrangements of points in P1                          37
+
+
+
+                                                                               1. Introduction
+                                              A central hyperplane arrangement, which we will denote by A, is a union of
+                                           hyperplanes passing through the origin in a vector space V ∼ = Kℓ , where K is a field.
+                                                                                   ∗
+                                           Write S for the symmetric algebra of V , which is isomorphic to a polynomial ring
+                                           in ℓ variables. Then A is the union of the zero-locus of linear forms αH , one for
+                                           each hyperplane H in A. The module of logarithmic A-derivations, denoted D(A),
+                                           consists of derivations θ ∈ DerK (S) satisfying θ(αH ) ∈ αH S for every H ∈ A.
+                                           Study of this module was initiated by Saito [24]; it is of particular interest to know
+
+                                             2010 Mathematics Subject Classification. Primary 14Q10, Secondary 13P20, 13D02, 13N15
+                                           Key words and phrases: multi-arrangements, logarithmic derivations, k-formality.
+                                                                                         1
+2                              MICHAEL DIPASQUALE
+
+
+when D(A) is a free S-module. In this case A is called a free arrangement. One of
+the central open questions in the theory of hyperplanes, due to Terao, is whether
+freeness of an arrangement is combinatorial, meaning that it can be detected from
+the lattice of intersections.
+   Let m : A → Z>0 be a function, called a multiplicity, associating to each hyper-
+plane H a positive integer m(H); the pair (A, m) is called a multi-arrangement.
+The module of derivations of (A, m), denoted D(A, m), consists of those deriva-
+                                             m(H)
+tions θ ∈ DerK (S) satisfying θ(αH ) ∈ αH S for every H ∈ A. If D(A, m) is
+a free S-module we say (A, m) free and m is a free multiplicity of A. Due to a
+criterion stated by Ziegler [40] and later improved by Yoshinaga [35], freeness of
+multi-arrangements is closely linked to freeness of arrangements.
+   There have been major advances in the understanding of multi-arrangements
+during the last decade. The characteristic polynomial has been defined for multi-
+arrangements by Abe, Terao, and Wakefield [6] and they show that Terao’s factor-
+ization theorem holds for this characteristic polynomial. Moreover, the addition-
+deletion theorem has also been extended by Abe, Terao, and Wakefield to multi-
+arrangements [7]. This improved theory of multi-arrangements has recently led
+to remarkable progress in understanding freeness of arrangements and of Terao’s
+question in particular [4, 1].
+   In this paper we add to the list of available tools for studying multi-arrangements
+by introducing a homological characterization for freeness. The characterization
+involves building a co-chain complex which we denote D• (A, m) from modules
+constructed by Brandt and Terao [12] to study k-formality (see Definition 3.5 for
+details). Chain complexes having very similar properties to D• (A, m) appear in the
+theory of algebraic splines [10, 27]; applying techniques of Schenck and Stiller [25,
+28] yields our main result, stated below.
+Theorem 1.1 (Homological characterization of freeness). The multi-arrangement
+(A, m) is free if and only if H k (D• (A, m)) = 0 for k > 0. Moreover, D(A, m) is
+locally free if and only if H k (D• (A, m)) has finite length for all k > 0.
+   Weaker versions of this statement have been proved recently and used to clas-
+sify free multiplicities on several rank three arrangements [15, 13, 14]. For simple
+arrangements, the forward direction of the first statement in Theorem 1.1 follows
+from work of Brandt and Terao [12]. Homological methods are not new in the
+study of freeness of arrangements; besides the aforementioned work of Brandt and
+Terao, Yuzvinsky developed and studied the theory of cohomology of sheaves of
+differentials on arrangement lattices to great effect in [37, 38, 39]. While we will
+not attempt to generalize this framework to multi-arrangements, Yuzvinsky’s work,
+along with Brandt and Terao’s, is an important motivation for this paper.
+   The remainder of the paper is devoted to applications of this homological crite-
+rion. In § 3 we extend a combinatorial bound on projective dimension of D(A, m)
+due to Kung and Schenck in the case of simple arrangements. In § 4 we elucidate the
+connection to k-formality and use the homological characterization of Theorem 1.1
+to extend a result of Brandt and Terao [12] to multi-arrangements in Corollary 4.10.
+   Following the initial applications of this homological characterization of free-
+ness, we describe in § 5 how the chain complex D• (A, m) can be concretely com-
+puted. We have implemented this construction in the computer algebra system
+Macaulay2 [19]. The code for constructing the chain complex, as well as a file
+working through many of the examples in this paper, may be found on the author’s
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 3
+
+
+website: math.okstate.edu/∼mdipasq. In § 5 we also explicitly work out the struc-
+ture of D• (A, m) for graphic arrangements and show that Theorem 1.1 recovers
+the main result of [15].
+   In § 6, we study a class of arrangements which we call T F2 arrangements; these
+are formal arrangements whose relations of length three are linearly independent.
+We believe this study is well-motivated by the interesting behavior of multi-T F2
+arrangements in moduli as well as additional counter-examples to Orlik’s conjecture
+which arise in the process. We illustrate this in § 1.1 before proceeding to the
+body of the paper. If A is a T F2 arrangement, freeness of (A, m) is determined
+by the vanishing of the single cohomology module H 1 (D• (A, m)), making these
+arrangements well-suited to the homological methods afforded by Theorem 1.1. We
+show that a T F2 arrangement is free if and only if it is supersolvable. We completely
+classify free multiplicities on non-free T F2 arrangements in Proposition 6.2 and
+Theorem 6.10. Moreover, we show that free multiplicities of free T F2 arrangements
+can be determined in a combinatorial fashion from the exponents of its rank two
+sub-arrangements in Theorem 6.6.
+   We also give in § 7 a syzygetic criterion for freeness of a multi-arrangement
+of lines, generalizing a criterion for freeness of A3 multi-arrangements from [13].
+Specializing to simple line arrangements gives an equivalent formulation of Terao’s
+question for line arrangements, phrased in terms of syzygies of a certain module
+presented by a matrix of linear forms (Question 7.4).
+   Acknowledgements: I am indebted to Stefan Tohaneanu for pointing out his
+paper [32], which provided the inspiration to generalize the homological arguments
+in [15]. The current work would not be possible without the collaboration of Chris
+Francisco, Jeff Mermin, Jay Schweig, and Max Wakefield on previous papers [13,
+14]. Takuro Abe has been a consistent source of inspiring discussions and many
+patient explanations via e-mail. Computations in the computer algebra system
+Macaulay2 [19] were very useful at all stages of research.
+
+1.1. Examples. In this section we illustrate results which can be obtained by
+applying the homological criterion for freeness (Theorem 1.1). The three examples
+in this section are T F2 arrangements, the definition and analysis of which appears
+in § 6.
+Example 1.2. Consider the line arrangement A(α, β) defined by xyz(x − αz)(x −
+βz)(y − z) where α, β ∈ K. See Figure 1 for a projective picture of this arrangement
+over R. Clearly if α 6= β, α 6= 0, and β 6= 0, then the intersection lattice L(A(α, β))
+does not change. In fact, the arrangements A(α, β) with α 6= β, α 6= 0, and β 6= 0
+comprise the moduli space of this lattice (see Appendix A for a brief summary of
+the moduli space of a lattice). It is easily checked that A(α, β) is supersolvable.
+   We will see in Theorem 6.6 that the freeness of the multi-arrangement (A(α, β), m)
+can be determined if the exponents of the rank two sub multi-arrangements are
+known. Write m(x), m(y), . . . for the multiplicity assigned to, respectively, x =
+0, y = 0, . . .. There are two rank-two sub multi-arrangements of (A(α, β), m) de-
+fined by
+                  X̃1 = y m(y) z m(z) (y − z)m(y−z) and
+                  X̃2 = xm(x) z m(z) (x − αz)m(x−αz) (x − βz)m(x−βz) .
+In Example 6.8, we deduce from Theorem 6.6 that (A(α, β), m) is free if and only
+if either X̃1 or X̃2 has m(z) as an exponent. This property is sensitive to the
+4                              MICHAEL DIPASQUALE
+
+
+
+
+                                      β           α
+
+
+
+
+     Figure 1. A projective picture emphasizing the moduli in Example 1.2
+
+
+characteristic of K; we will assume in the remainder of this example that K has
+characteristic zero.
+   Write M1 = m(y) + m(z) + m(y − z) and M2 = m(x) + m(z) + m(x − αz) +
+m(x − βz). If K has characteristic zero, the exponents of the multi-arrangement
+X̃1 are known [33]; m(z) is an exponent if and only if M1 ≤ 2m(z) + 1. So we
+assume M1 > 2m(z) + 1 and determine when X̃2 has an exponent of m(z).
+   It is not difficult to show that if m(z) is an exponent of X̃2 , then m(z) =
+max{m(x), m(z), m(x − αz), m(x − βz)} (see Lemma B.1). From [34] it is known
+that m(z) is an exponent of X̃2 if M2 ≤ 2m(z) + 1. Moreover it follows from [3,
+Theorem 1.6] that m(z) is not an exponent of X̃2 if M2 > 2 + 2m(z) (this also
+requires that K has characteristic zero). However if M2 = 2 + 2m(z) then it is only
+known that m(z) is not an exponent of X̃2 for generic choices of α and β (at least
+if K = C [34]).
+   To see what can happen if M2 = 2 + 2m(z), consider the multi-arrangement
+(A(α, β), m) defined by
+                         x3 y 3 z 3 (x − αz)(x − βz)(y − z)3 .
+
+Then X̃1 = x3 y 3 (y − z)3 and X̃2 = x3 z 3 (x − αz)(x − βz). The exponents of X̃1 are
+(4, 5), while the exponents of X̃2 are (4, 4) if α 6= −β and (3, 5) if α = −β (see [40]
+or Lemma B.2). By Theorem 6.6, (A(α, β), m) is free if and only if α = −β.
+   As a consequence, we see that for a fixed multiplicity m the free multi-arrangements
+(A, m) in the moduli space of L(A) can form a non-empty proper Zariski closed
+subset, even when A is supersolvable over a field of characteristic zero. In contrast,
+Yuzvinsky has shown that free arrangements form a Zariski open subset of the
+moduli space of L(A) [39].
+Example 1.3. Let A(α, β) be the arrangement with defining polynomial Q(A(α, β)) =
+xyz(x−αy)(x−βy)(y−z)(x−z), where α, β ∈ K. See Figure 2 for a projective draw-
+ing of this arrangement over R. It is straightforward to show that if α 6= 1, β 6= 1,
+and α 6= β, then the lattice L(A(α, β)) does not change. Just as in Example 1.2,
+these arrangements comprise the moduli space of this lattice. It is easily checked
+that A(α, β) is not free for any choice of α, β since its characteristic polynomial
+does not factor.
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 5
+
+
+  We will see in Theorem 6.10 that if K has characteristic 0, the multi-arrangement
+(A(α, β), m) is free if and only if its defining equation has the form
+                Q(A, m) = xn y n z n (x − αy)(x − βy)(y − z)(x − z),
+where n > 1 is an integer and αn−1 = β n−1 6= 1. In particular, if α/β is not a
+root of unity in K, then A is totally non-free, meaning it does not admit any free
+multiplicities. For instance, if K = R, then A admits a free multiplicity if and only
+if α = −β (the free multiplicities occur precisely when n > 1 is odd). Since the
+arrangements A(α, β) with α 6= 1, β 6= 1, and α 6= β all have the same intersection
+lattice, this shows that the property of being totally non-free is not combinatorial.
+In contrast, Abe, Terao, and Yoshinaga have shown that the property of being
+totally free is combinatorial [8].
+
+
+
+
+                                  α
+
+
+
+
+                                  β
+
+
+
+
+     Figure 2. A projective picture emphasizing the moduli in Example 1.3
+
+
+Example 1.4. Let S = K[x0 , . . . , xr ] and let A ⊂ Kr+1 be the arrangement defined
+by
+                     r
+                                      !
+                    Y
+                          2         2
+        Q(A) = x0      (xi − x0 ) (x1 − x2 ) · · · (xr−1 − xr )(xr + x1 )
+                        i=1
+Let H be the hyperplane defined by x0 . In Proposition 6.12, we will show that A
+is free using Yoshinaga’s theorem [35] and Theorem 6.10. Moreover, we will prove
+that pdim(D(AH )) = r − 3, the largest possible. In fact, we will show more: the
+minimal free resolution of D(AH ) is a truncated and shifted Koszul complex, so
+it is linear. As with the previous two examples, the key to our analysis is that
+the restriction AH is a T F2 arrangement, which is particularly well suited to the
+homological methods we introduce in this paper.
+    This family of examples is interesting because it adds to a short list of arrange-
+ments known to fail Orlik’s conjecture. This conjecture states that AH is free
+whenever A is free [22]. The only counterexamples to this conjecture of which we
+are aware appear in work of Edelman and Reiner [16, 17]. For the small ranks
+that we have been able to compute, our examples differ from theirs in that D(AH )
+for the examples of Edelman and Reiner seems to be always ‘almost free’ - that is
+D(AH ) has only one more generator than the rank of AH and there is only a single
+relation among these generators. This latter behavior has been studied in a recent
+article of Abe [1].
+6                              MICHAEL DIPASQUALE
+
+
+                                2. Preliminaries
+   Fix a field K, let V be a K-vector space of dimension ℓ, and V ∗ the dual vector
+space. Set S = Sym(V ∗ ), the symmetric algebra on V ∗ . A hyperplane arrangement
+A ⊂ V is a union of hyperplanes H defined by the vanishing   of the affine linear form
+αH ∈ V ∗ ; the defining polynomial of A is Q(A) = H∈A αH . We will consistently
+                                                     Q
+abuse notation and write H ∈ A if H is one of the hyperplanes whose union forms
+A. Moreover, we will write |A| for the number of hyperplanes in A.
+   The rank of a hyperplane arrangement A ⊂ V is r = r(A) := dim V −dim(∩H∈A H).
+The arrangement A ⊂ V is called essential if r(A) = dim V and central if ∩i Hi 6= ∅.
+We will always assume A is a central hyperplane arrangement. We refer the reader
+to the landmark book of Orlik and Terao [23] for further details on arrangements.
+   The intersection lattice L = L(A) of A is the lattice whose elements (flats) are
+all possible intersections of the hyperplanes of A, ordered with respect to reverse
+inclusion. We will use < to denote the ordering on the lattice, so if X, Y ∈ L(A)
+and X ⊆ Y as intersections, then Y ≤ X in L(A). This is a ranked lattice with
+rank function the codimension of the flat; we denote by Li = Li (A) the flats
+X ∈ L(A) with rank i. Given a flat X ∈ L(A), the (closed) subarrangement AX is
+the hyperplane arrangement of those hyperplanes of A which contain X, and the
+restriction of A to X, denoted AX , is the hyperplane arrangement (in linear space
+corresponding to X) with hyperplanes {H ∩ X : H 6< X in L(A)}. If X < Y , the
+interval [X, Y ] ⊂ L(A) is the sub-lattice of all flats Z ∈ L so that X ≤ Z ≤ Y .
+This is the intersection lattice of the arrangement AYX .
+   If A ⊂ V1 and B ⊂ V2 are two arrangements, then the product of A and B is the
+arrangement
+
+                A × B = {H ⊕ V2 : H ∈ A} ∪ {V1 ⊕ H ′ : H ′ ∈ B},
+
+and the arrangements A, B are factors of A × B. If an arrangement can be written
+as a product of two arrangements we say it is reducible, otherwise we call it irre-
+ducible. (Notice that an arrangement is not essential if and only if it has the empty
+arrangement as a factor).
+   If A ⊂ V is an arrangement the module of derivations of A, denoted D(A), is
+defined by
+               D(A) = {θ ∈ DerK (S)|θ(αH ) ∈ hαH i for all H ∈ A}.
+If D(A) is free as an S-module, we say A is free.
+
+Definition 2.1. A multi-arrangement (A, m) is an arrangement A ⊂ V , along
+with a function m : A → Z>0 assigning a positive integer to every hyperplane. The
+                                                                    Q       m(H)
+defining polynomial of a multi-arrangement (A, m) is Q(A, m) := H∈A αH .
+The module of multi-derivations D(A, m) is
+                                                      m(H)
+            D(A, m) = {θ ∈ DerK (S)|θ(αH ) ∈ hαH             i for all H ∈ A}
+
+Lemma 2.2. Let (A, m) be a multi-arrangement in V ∼     = Kℓ . Let αi be the form
+defining the hyperplane Hi , and set mi = m(Hi ). The module D(A, m) of multi-
+derivations on A is isomorphic to the kernel of the map
+
+                                  ψ : S ℓ+d → S d ,
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 7
+
+
+where ψ is the matrix
+                                          αm
+                                            1
+                                                            
+                                           1
+                                                 ..        
+                                B                     .    
+                                                αm
+                                                 k
+                                                   k
+
+                                                     P
+and B is the matrix with entry Bij = aij , where αj = i,j aij xi .
+Proof. See the comments preceding [11, Theorem 4.6].                                         
+    If D(A, m) is free as an S-module then we say that the multi-arrangement (A, m)
+is free and m is a free multiplicity of A. If D(A, m) is free there is (by definition)
+a basis of derivations θ1 , . . . , θℓ ∈ D(A, m) so that every other θ ∈ D(A, m) can be
+written uniquely as a polynomial combination of θ1 , . . . , θℓ . If A is central (which we
+will assume throughout), we may assume these derivations are homogeneous with
+degrees di = deg(θi ). The set (d1 , . . . , dℓ ) are called the
+                                                              P exponents of D(A, m). We
+will always assume d1 ≥ d2 ≥ · · · ≥ dℓ . Write |m| for H∈A m(H). It follows from
+Saito’s criterion (below) that if D(A, m) is free with exponents (d1 , . . . , dℓ ) then
+Pℓ
+   i=1 di = |m|.
+
+Proposition 2.3 (Saito’s criterion). Let (A, m) be a central arrangement in a vec-
+tor space V of dimension ℓ, and write K[x1 , . . . , xℓ ] for Sym(V ∗ ). Suppose θ1 , . . . , θℓ
+                           Pℓ         ∂
+are derivations with θi = j=1 θij ∂x    i
+                                          . Write M = M (θ1 , . . . , θℓ ) for the ℓ × ℓ ma-
+trix of coefficients Mij = θij . Then D(A, m) is free with basis θ1 , . . . , θℓ if and only
+if det(M ) is a scalar multiple of the defining polynomial Q(A, m).
+   If X ∈ L(A), we write (AX , mX ) for the multi-arrangement AX with multiplicity
+function mX = m|AX . If (AX , mX ) is free for every X 6= ∩H∈A H ∈ L, then we say
+                                                           ^
+(A, m) is locally free; equivalently the associated sheaf D(A, m) is a vector bundle
+on P .ℓ−1
+
+
+Proposition 2.4. [5, Proposition 1.7] Let (A, m) be a multi-arrangement, X ∈
+L(A), and (AX , mX ) the corresponding closed subarrangement with restricted mul-
+tiplicities. Then pdim(D(A, m)) ≥ pdim(D(AX , mX )).
+Lemma 2.5 (Ziegler [40]). For any arrangement A ⊂ V, pdim(D(A, m)) ≤ r(A) −
+2. In particular, if r(A) ≤ 2 then (A, m) is free.
+   If A is an arrangement and H ∈ A, we denote by (AH , m) the Ziegler restriction
+of A to AH ; this is the arrangement AH with the multiplicity function mH defined
+by
+                         mH (X) = #{H ′ ∈ A : H ′ ∩ H = X}
+                  H
+for every X ∈ A . We include the following criterion for freeness which is due to
+Yoshinaga [35]; the observation that we can restrict to codimension three was made
+in [9, Theorem 4.1].
+Theorem 2.6. [35, Theorem 2.2] An arrangement A over a field of characteristic
+zero is free if and only if, for some H ∈ A:
+    (1) (AH , mH ) is free and
+    (2) AX is free for every X 6= 0 ∈ L3 (A) so that H < X.
+  The second condition is sometimes stated as ‘A is locally free along H in codi-
+mension three.’
+8                                      MICHAEL DIPASQUALE
+
+
+                              3. The homological criterion
+   Let (A, m) be a multi-arrangement. In this section we prove Theorem 1.1; we
+describe the chain complex D• (A, m) and prove that (A, m) is free if and only if
+H i (D• (A, m)) = 0 for all i > 0. The construction of the modules which comprise
+D• (A, m) is due to Brandt and Terao if m ≡ 1 [31, 12]; we make the straightforward
+observation that the same definitions work also for multi-arrangements. We follow
+the presentation given in [12].
+Definition 3.1. Set D0 (A, m) = D(A, m) and for 1 ≤ k ≤ r = r(A) inductively
+define Dk (A, m) and Kk (A, m) as the cokernel and kernel, respectively of the map
+                                               M
+             τk−1 = τk−1 (A) : Dk−1 (A, m) →        Dk−1 (AX , mX ),
+                                                         X∈Lk−1
+
+where τk is a sum of maps φk (Y ) : Dk (A, m) → Dk (AY , mY ). For Y ∈ L with
+r(Y ) ≥ k, φk (Y ) is defined inductively (the map for k = 0 is the usual inclusion of
+derivations) via the diagram in Figure 3: The center vertical map is projection, the
+                        τk−1 (A)       L
+     Dk−1 (A, m)                             Dk−1 (AX , mX )          Dk (A, m)              0
+                                   X∈Lk−1
+            φk−1 (Y )                                                       φk (Y )
+                                                  pk−1 (Y )
+                    τk−1 (AY )     L
+    Dk−1 (AY , mY )                        Dk−1 ((AY )X , (mY )X )   Dk (AY , mY )           0
+                                X≤Y
+                              r(X)=k−1
+
+
+                            Figure 3. Diagram for Definition 3.1
+
+left-hand square commutes, so φk (Y ) may be defined so that the right-hand square
+commutes.
+Remark 3.2. Given an arrangement A, the only flat of L with rank 0 is V , the
+ambient space of A. The module D1 (A, m) is the cokernel of the map
+                                   τ0
+                                      M
+                        D0 (A, m) −→      D0 (AX , m),
+                                                 X∈L0
+
+in other words the cokernel of the inclusion
+                              D(A, m) → D(V ) = DerK (S) ∼
+                                                         = S ℓ,
+where ℓ = dim(V ).
+Remark 3.3. Fix a basis x1 , . . . , xℓ for S1 = Sym(V ∗ )1 and denote the correspond-
+ing basis of DerK (S) by ∂i = ∂/∂xi . Number    Pthe hyperplanes of A by H1 , . . . , Hk .
+AssumeP  H j =   V (αj ), where αj   =  α Hj =    i aij xi . For some H = Hj ∈ A let
+∂H = i aij ∂i .
+                                  m(H)                                 m(H)
+   For H ∈ A, let J(H) = hαH i, the ideal generated by αH                   in S. Then
+                                                             ℓ−1
+D(AH , mH ) ⊂ DerK (S) is isomorphic to J(H)∂H ⊕ S , where ℓ = dim(V ) and
+J(H)∂H denotes that J(H) is living inside of the copy of S corresponding to the
+basis element ∂H . So D1 (AH , mH ) is the cokernel of the inclusion D(AH , mH ) →
+DerK (S) ∼
+         = S ℓ , which may be identified as S∂H /J(H). There is then a natural map
+                                 B
+                                      M S
+                 DerK (S) ∼
+                                                     M
+                           = Sℓ −→               =          D1 (AX , mX ),
+                                           J(H)
+                                           H∈A                X∈L1
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 9
+
+
+                                0
+
+
+                                                Ki+1 (A, m)                                  0
+
+
+                                                                    Di+1 (A, m)
+                                                                                  τi+1 (A)
+
+                                δ i−1                                 δi
+             Di−1                                       Di                             Di+1
+                                               τi (A)
+                            Di (A, m)
+
+
+           Ki (A, m)                                    0
+
+
+ 0
+
+                       Figure 4. Components of Definition 3.5
+
+
+where B is the matrix with entries Bij = aij . The kernel of this map is D(A, m),
+its image is D1 (A, m), and its cokernel is D2 (A, m).
+
+Remark 3.4. We will discuss computations of Dk (A, m) further in § 5.
+                                                L
+  Extending Remark 3.3, we assemble the modules     Dk (AX , mX ) into a chain
+                                                             X∈Lk
+complex.
+
+Definition 3.5. Set Dk =                Dk (AX , mX ). Define δ k : Dk → Dk+1 by the
+                               L
+                              X∈Lk
+                                        τk+1
+composition Dk → Dk+1 (A, m) −−−→ Dk+1 , where the first map is the natural
+surjection from Definition 3.1. The derivation complex D• = D• (A, m) is the chain
+complex with modules Dk for k = 0, . . . , r(A) and maps δ k : Dk → Dk+1 for
+k = 0, . . . , r(A) − 1.
+
+Remark 3.6. The derivation complex D• is tautologically a complex from the
+definitions of Dk (A, m) and δ k . The commutative diagram in Figure 4 shows how
+all the definitions so far fit together. Note that Ki (A, m) from Definition 3.1 may
+be identified with H i (D• ).
+
+Remark 3.7. The chain complex D• in Definition 3.5 is essentially dual to a chain
+complex described in [32]; we will describe the precise connection in § 4.
+
+Lemma 3.8. For a multi-arrangement (A, m), H 0 (D• (A, m)) ∼
+                                                           = D(A, m).
+Proof. This is immediate from Remark 3.3.                                             
+
+     Now we proceed to the proof of Theorem 1.1. We use a few preliminary results.
+10                               MICHAEL DIPASQUALE
+
+
+Lemma 3.9. [12, Lemma 4.12] For any k, the functors X → Dk (AX , mX ) for
+X ∈ L are local in the sense
+                        T of [29, Definition 6.4]. Namely let P ∈ Spec(S),
+X ∈ L, and set X(P ) =       H. Then
+                         H∈AX
+                         αH ∈P
+     • Dk (AX , mX )P = Dk (AX(P ) , mX(P ) )P and
+     • D• (A, m)P = D• (AX(P ) , mX(P ) )P .
+Proof. For the first bullet, use the fact that X → D(AX , m) is local, the short
+exact sequences in Definition 3.1, and the fact that localization is an exact functor.
+The second bullet follows from the first.                                           
+Proposition 3.10. Let X ∈ Lk and I(X) ⊂ S denote the ideal generated by
+the linear forms αH for all H ≤ X. Then Dk (AX , mX ) is Cohen-Macaulay of
+codimension k and I(X) is its only associated prime.
+Remark 3.11. Proposition 3.10 is implicit in the proof of [12, Proposition 4.13];
+we provide a proof for completeness.
+Proof. As usual, set ℓ = dim(V ). By changing coordinates, we may assume X =
+V (x1 , . . . , xk ). The result is clear if k = 0 or k = 1, so we assume k ≥ 2. Let
+πX : V → X ⊥ = W be the projection with center X and set R = Sym(W ∗ ) ∼           =
+K[xk+1 , . . . , xℓ ]. Then we observe that
+       • Aπ = πX (AX ) is an essential arrangement in W of rank ℓ − k = dim W ,
+       • Dk (Aπ , mX ) ⊗R S = Dk (AX , mX ),
+       • xk+1 , . . . , xℓ is a regular sequence on Dk (AX , mX ),
+       • Dk (AX , mX )/hxk+1 , . . . , xℓ iDk (AX , mX ) ∼
+                                                         = Dk (Aπ , mX ),
+       • and Ass(Dk (AX , mX )) = {P S|P ∈ Ass(Dk (Aπ , mX ))},
+where the final bullet point follows from [21, Theorem 23.2], which describes be-
+havior of associated primes under flat extensions. Hence it suffices to show that the
+only associated prime of Dk (A, m) when k = r(A) = dim V is the maximal ideal
+of S. Consider the short exact sequence
+                                            M
+        0 → Dk−1 (A, m) → Dk−1 =                 Dk−1 (AX , mX ) → Dk (A, m) → 0
+                                    X∈Lk−1
+
+from Definition 3.1, and localize at a prime P ∈ Spec(S). If codim(P ) ≤ k − 1, then
+by induction either DPk−1 vanishes (in which case Dk (A, m)P = 0) or P = I(X)
+for some X ∈ L of codimension k − 1 and DPk−1 = Dk−1 (AX , mX )P . In the latter
+case, localizing the exact sequence above at P = I(X) and using Lemma 3.9 yields
+the exact sequence
+      0 → Dk−1 (AX , mX )I(X) → Dk−1 (AX , mX )I(X) → Dk (A, m)I(X) → 0,
+so clearly Dk (A, m)I(X) = 0. Hence the only prime in the support of Dk (A, m) is
+the homogeneous maximal ideal.                                                 
+Proof of Theorem 1.1. By Lemma 3.8, D(A, m) ∼      = H 0 (D• (A, m)). Now we use the
+following result of Schenck and Stiller (see also [25]).
+Theorem 3.12. [28, Theorem 3.4] Suppose C • = 0 → C 0 → C 1 → C 2 → · · · →
+C t → 0 is a complex of S = K[x1 , . . . , xℓ ]-modules so that, for k = 0, . . . t,
+     • C k is Cohen-Macaulay of codimension k
+     • H k (C • ) is supported in codimension ≥ k + 2.
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 11
+
+
+Then H 0 (C • ) is free if and only if H k (C • ) = 0 for k > 0 and locally free if and
+only if H k (C • ) has finite length for k > 0.
+By Proposition 3.10, Dk = Dk (A, m) is Cohen-Macaulay of codimension k. So we
+need to show that H k (D• ) is supported in codimension at least k + 2. We use the
+fact that taking homology commutes with localization. So let P be a prime and
+consider the localized complex
+                                               δ k−1   δk
+                D• (A, m)P = · · · → DPk−1 −−
+                                            P
+                                             −→ DPk −−→
+                                                      P
+                                                        DPk+1 → · · ·
+If codim(P ) ≤ k, then we have seen in the proof of Proposition 3.10 that the
+localized map δPk−1 becomes an isomorphism, hence H k (D• )P = H k (DP• ) = 0.
+Now suppose codim(P ) = k + 1. If P 6= I(X) for some X ∈ L of codimension
+k + 1, then let X ∈ Li (i ≤ k) be the flat of maximal rank so that I(X) ⊂ P . If
+r(X) ≤ k −1 then H k (DP• ) = 0 by Proposition 3.10. So suppose X has codimension
+k. Then the localized map δPk−1 becomes an isomorphism again as in the proof of
+Proposition 3.10.
+   Finally suppose P = I(X) for some X ∈ Lk+1 . Localizing yields
+                                k−1                        k
+      M                        δP    M                    δP
+             Dk−1 (AY , mY )P −− −→       Dk (AZ , mZ )P −−→ Dk+1 (AX , mX )P .
+     Y ≥X                              Z≥X
+   r(Y )=k−1                          r(Z)=k
+
+By definition δ k−1 factors through Dk (A, m). Hence H k (D• )P is the middle ho-
+mology of the three term complex
+                                                      k
+                         (τk )P M                    δP
+   0 → Dk (AX , mX )P −−−→           Dk (AZ , mZ )P −−→ Dk+1 (AX , mX )P → 0,
+                                 Z≥X
+                                r(Z)=k
+
+which is exact by Definition 3.1. It follows that H k (D• ) is supported in codimension
+≥ k + 2.                                                                              
+Remark 3.13. In the case of a simple arrangement, the forward implication of
+Theorem 1.1 follows from [12, Proposition 4.13].
+  Theorem 3.12 arises from a studying the hyperExt modules of D• (A, m). With-
+out the vanishing assumptions we may obtain the following.
+Proposition 3.14. Set pi = pdim(H i (D• (A, m))) for i > 0. Then
+                         pdim(D(A, m)) ≤ max{pi − i − 1},
+                                               i>0
+
+with equality if there is a single i > 0 for which H i (D• (A, m)) 6= 0.
+Proof. See [25, Lemma 4.11] or [15, § 3].                                            
+3.1. A combinatorial bound on projective dimension. We close this section
+by extending a combinatorial bound on projective dimension due to Kung and
+Schenck for simple arrangements [20, Corollary 2.3]. Recall that a generic arrange-
+ment of rank ℓ is one in which the intersection of every subset of k ≤ ℓ hyperplanes
+has codimension k.
+Corollary 3.15. Let (A, m) be a multi-arrangement. If AX is generic with |AX | >
+r(X), then pdim(D(A, m)) ≥ r(X) − 2. In particular, if the matroid of A has a
+closed circuit of length m, then pdim(D(A, m)) ≥ m − 3.
+12                              MICHAEL DIPASQUALE
+
+
+Proof. If r(A) = 2 the statement is trivial so we will assume r(A) > 2. Suppose
+AX is generic with |AX | > r(X). By Proposition 2.4, it suffices to show that
+pdim(D(AX , mX )) ≥ r(X) − 2. So we assume A = AX is essential and generic of
+rank r with |A| > r and prove pdim(D(A, m)) = r − 2.
+                                                                       δ0       S
+   In this case we claim the chain complex D• (A, m) has the form S r −→
+                                                                           L
+                                                                                   ,
+                                                                          H∈A J(H)
+where J(H) = hαH i. That D0 = S r and D1 = H∈A S/J(H) follows from the
+                   m(H)                            L
+
+definition of D• and Remark 3.3. To prove that Dk = 0 for k > 1, it suffices to
+show that D2 (AY , mY ) = 0 for all Y ∈ L2 . We have
+                                                               !
+                                            r δY
+                                                0  M       S
+                    D2 (AY , mY ) = coker S −−→                  .
+                                                         J(H)
+                                                    H∈AY
+
+Since A is generic, the set {αH : H ∈ AY } consists of r(Y ) linearly independent
+forms and the coefficient matrix δY1 has full rank. So D2 (AY , mY ) = 0.
+   It follows that H 1 (D• (A, m)) = coker(δ 0 ). Since |A| > r, we see that δ 0 cannot
+be surjective, so H 1 (D• (A, m)) 6= 0. We show that H 1 (D• ) is only supported at the
+maximal ideal. ToTthis end, let P ∈ spec(S) be a prime of codimension k ≤ r − 1.
+Write X(P ) =           H. Since A is generic, {αH : αH ∈ P } consists of at most
+                H∈AX
+                αH ∈P
+k linearly independent forms, so up to a change of coordinates AX(P ) is union of
+coordinate hyperplanes. By Lemma 3.9, D• (A, m)P ∼       = D• (AX(P ) , mX(P ) )P . The
+                                                       0
+                                                      δX(P )            S           0
+chain complex D• (AX(P ) , mX(P ) ) has the form S r −−−−→
+                                                               L
+                                                                           , and δX(P )
+                                                             H∈AX(P ) J(H)
+is clearly surjective, so
+       H 1 (D• (A, m))P ∼
+                        = H 1 (D• (A, m)P ) ∼
+                                            = H 1 (D• (AX(P ) , mX(P ) )P ) = 0.
+It follows that H 1 (D• (A, m)) is only supported at the maximal ideal. Since H 1 (D• (A, m)) 6=
+0, pdim(H 1 (D• )) = r and by Proposition 3.14, pdim(D(A, m)) = r − 2, the maxi-
+mal projective dimension.                                                            
+
+Remark 3.16. Corollary 3.15 implies that generic arrangements are totally non-
+free; this was first proved by Yoshinaga [36].
+Remark 3.17. Even for simple arrangements, the lower bound given by Corol-
+lary 3.15 may be arbitrarily far off from the actual projective dimension. See
+Remark 6.13.
+
+                  4. Multi-arrangements and k-formality
+   In this section we will show that if (A, m) is a free multi-arrangement then A
+is k-formal (in the sense of [12]) for 2 ≤ k ≤ r − 1, where r = r(A) is the rank of
+A (thus generalizing the result of Brandt and Terao [12] to multi-arrangements).
+Once we have set up the notation, this is an immediate corollary of Theorem 1.1.
+   We again followLthe presentation in [12]. Fix an arrangement A = ∪H∈A V (αH ) ⊂
+                     H∈A eH K and define φ : E(A) → V
+                                                            ∗
+V . Set E(A) :=                                               by φ(eH ) = αH . Put
+F (A) = ker(φ); this is called the relation space of A.
+   The arrangement A is 2-formal (or just formal ) if the relation space is generated
+by relations among three linear forms. Since three linear forms are dependent if and
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 13
+
+
+only if they define a codimension two flat, 2-formality is equivalent to surjectivity
+of the map                       M
+                            π2 :     F (AX ) → F (A),
+                                    X∈L2
+where π2 is the sum of natural inclusions F (AX ) ֒→ F (A) for each X ∈ L2 .
+Definition 4.1. Set R0 := T (A)∗ ⊂ V ∗ , where T (A) = ∩H∈A H. For 1 ≤ k ≤ r,
+recursively define Rk (A) as the kernel of the map
+                                      M
+                 πk−1 = πk−1 (A) :=          Rk−1 (AX ) → Rk−1 (A),
+                                          X∈Lk−1
+
+where πk is the sumLof natural inclusions for 0 ≤ k ≤ r − 1. To simplify notation,
+set Rk = Rk (A) = X∈Lk Rk (AX ).
+Remark 4.2. After chasing through the definitions one can see that R1 (A) is the
+kernel of the restriction map V ∗ → T (A)∗ and R2 (A) = F (A). See [12] for details.
+Definition 4.3. The arrangement A is
+     • 2-formal if A is formal
+     • k-formal,
+       L         for 3 ≤ k ≤ r − 1, if A is (k − 1)-formal and the map πk : Rk =
+          X∈Lk Rk (AX ) → Rk (A) is surjective.
+
+   In [32], Tohaneanu gives a homological formulation of k-formality as follows.
+First, notice that there is a natural differential δk : Rk → Rk−1 (similar to the
+                                                              πk−1
+differential for D• ) defined as the composition Rk → Rk (A) −−−→ Rk−1 .
+Lemma 4.4. [32, Lemma 2.5] With the differentials δk , 1 ≤ k ≤ r, the vector
+spaces Ri (0 ≤ k ≤ r) form a chain complex R• = R• (A). The arrangement A is
+k-formal if and only if Hi (R• ) = 0 for i = 1, . . . , k − 1.
+Remark 4.5. If m ≡ 1 (so (A, m) is a simple arrangement) we will denote
+Dk (A, m) (recall Definition 3.1) and D• (A, m) (recall Definition 3.5) by Dk (A)
+and D• (A), respectively.
+  Brandt and Terao show that the vector spaces Rk (A) are dual to the degree zero
+part of Dk (A).
+Proposition 4.6. [12, Proposition 4.10] For 0 ≤ k ≤ r, Dk (A)0 ∼
+                                                               = Rk (A)∗ , where
+Rk (A) is the K-vector space dual of Rk (A).
+      ∗
+
+
+Lemma 4.7. The modules Dk (A, m) for 1 ≤ k ≤ r are generated in degree
+zero. More precisely, we have an isomorphism (as K-vector spaces) Dk (A, m)0 ∼
+                                                                             =
+Dk (A)0 .
+Proof. Both claims are clear
+                           L for D1 (A, m) by Remark 3.2. By Definition 3.1,
+Dk (A, m) is a quotient of X∈Lk Dk−1 (AX , mX ). Hence by induction, Dk (A, m)
+is also generated in degree zero. Now we have the following commutative diagram:
+                    τk−1 (A)    L
+     Dk−1 (A, m)0                       Dk−1 (AX , mX )0   Dk (A, m)0          0
+                               X∈Lk−1
+            ∼
+            =                               ∼
+                                            =
+                    τk−1 (A)       L
+      Dk−1 (A)0                           Dk−1 (AX )0       Dk (A)0           0,
+                                 X∈Lk−1
+14                                MICHAEL DIPASQUALE
+
+
+where the first two vertical maps are isomorphisms by induction. Hence there is
+also an isomorphism Dk (A, m)0 ∼= Dk (A).                                    
+
+Corollary 4.8. An arrangement A is k-formal if and only if H i (D• (A, m)0 ) = 0
+for i = 1, . . . , k − 1.
+
+Proof. Immediate from Lemma 4.7, Lemma 4.4, and Proposition 4.6.                           
+
+Definition 4.9. An arrangement A is totally formal if AX is k-formal for 2 ≤ k ≤
+r(X) for all X ∈ L(A).
+
+  For example, a rank three arrangement is totally formal if and only if it is formal.
+See Remark 5.10 for further examples of totally formal arrangements.
+
+Corollary 4.10. If (A, m) is free then A is totally formal.
+
+Proof. Suppose to the contrary that AX is not k-formal for some X ∈ L and
+2 ≤ k ≤ r(X) − 1. Then, by Corollary 4.8, H i (D0• (AX , mX )) 6= 0 for some
+1 ≤ i ≤ k − 1. Hence by Theorem 1.1, D(AX , mX ) is not free, whence D(A, m) is
+not free by Proposition 2.4.                                                 
+
+Remark 4.11. We will see in Proposition 6.2 that there are totally formal arrange-
+ments which nevertheless are totally non-free. See also Example 6.5.
+
+Remark 4.12. The ranks of the vector spaces appearing in R• are not combi-
+natorial in general (see Example 6.5), however if A is totally formal then these
+ranks are determined by L(A). We can see this by inductively reading off the rank
+of Rk (AX ) (X ∈ Lk ) from the Euler characteristic of R• (AX ); since A is totally
+formal the Euler characteristic of R• (AX ) is zero by Lemma 4.4. This yields a
+number of combinatorial obstructions to freeness which can be read off L(A) (see
+for instance [12, Corollary 4.16]). By Corollary 4.10, if any of these combinatorial
+obstructions are satisfied, the arrangement is totally non-free.
+
+   In the following corollary, we call a hyperplane H ∈ A generic if, for all X ∈ L2
+so that H < X in L, there is a unique hyperplane H ′ 6= H so that H ′ < X.
+Moreover, we say H is a separator of A if r(A − H) < r(A). Part of the following
+result may be found in [12, Proposition 3.9]; we provide a proof for completeness.
+
+Corollary 4.13. Suppose A is an arrangement of rank ≥ 2. If A has a generic
+hyperplane which is not a separator, then A is not formal. In particular, A is
+totally non-free.
+
+Proof. Let H ∈ A be the generic hyperplane which is not a separator, and write
+vH for the corresponding row of δS0 . The condition that H is not a separator means
+                                                                              0
+that we can find r = r(A) linearly independent     Prrows v1 , . . . , vr of δS where vi 6= vH
+for i = 1, . . . , r. Hence there is a relation i=1 ci vi + cH vH = 0 (for constants
+c1 , . . . , cH ). Since r ≥ 2 and H is generic, there is no way to write this relation as
+a linear combination of relations among three hyperplanes (since vH is not in the
+support of any such relation). So A is not formal. The final conclusion follows from
+Corollary 4.10.                                                                              
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 15
+
+                                                      k−1                           k
+                                                     δJ                            δJ
+  J • (A, m) · · ·
+                           L                                  L
+                                   Jk−1 (AX , mX )                   Jk (AY , m)         ···
+                         X∈Lk−1                              Y ∈Lk
+
+
+                                                      k−1                           k
+                                                     δS                            δS
+    S • (A) · · ·
+                               L                                L
+                                     Sk−1 (AX )                       Sk (AY )           ···
+                           X∈Lk−1                             Y ∈Lk
+
+
+
+                                                     δ k−1                          δk
+  D• (A, m) · · ·
+                           L                                  L
+                                  Dk−1 (AX , mX )                    Dk (AY , m)         ···
+                        X∈Lk−1                               Y ∈Lk
+
+
+         Figure 5. Short exact sequence of complexes from Definition 5.1
+
+
+                        5. Computing the chain complex
+   In this section we work out concrete presentations for the modules appearing in
+D• (A, m) and illustrate the constructions via examples, with the goal of studying
+freeness and projective dimension of D(A, m). The following definition, which
+constructs D• as the cokernel of a map of chain complexes, is analogous to the setup
+of the Billera-Schenck-Stillman chain complex used in algebraic spline theory [10,
+27]. Since there are many details, the reader may find it easiest to read the following
+constructions while following along with Examples 5.7 and 5.8.
+Definition 5.1. For a multi-arrangement (A, m), set Sk (AX ) = Dk (AX , mX )0 ⊗K
+S, the degreeLzero part of Dk (AX , mX ) tensored with S, and set S • (A) := D• (A, m)0 ⊗K
+S, so S k = X∈Lk Sk (AX ). These are independent of the choice of multiplicities
+by Lemma 4.7.
+   For Y L ∈ L, write φSk (Y ), τkS for the maps φSk (Y ) : Sk (A) → Sk (AY ), τkS :
+Sk (A) → X∈Lk Sk (AX ) which are obtained from the maps φk (Y ) : Dk (A, m) →
+                                L
+Dk (AY , m), τk : Dk (A, m) → X∈Lk D(AX , mX ) (see Definition 3.1) by restrict-
+ing to degree zero and then tensoring with S. Likewise write δSi for the differential
+of S • .
+   Since each of the modules Dk (A, m) is generated in degree zero by Lemma 4.7,
+there is a natural surjective map Sk (AX ) → Dk (AX , mX ) for every m and X ∈
+Lk . Hence there is a surjective map of complexes S • (A) → D• (A, m) for any
+multiplicity m.
+   For each surjection Sk (AX ) → Dk (AX , mX ), write Jk (AX , mX ) for the kernel
+                                  •
+                            L J (A, m) for the kernel of the Jsurjection
+of this surjection, and write                                                S • (A) →
+D (A, m), so J (A, m) = X∈Lk Jk (AX , mX ). Denote by φi (Y ), τi , and δJi the
+  •              k                                                       J
+
+maps obtained from restricting φSi (Y ), τiS , and δSi . See figure 5 which shows the
+short exact sequence of complexes 0 → J • → S • → D• → 0.
+
+Remark 5.2. By Corollary 4.8, A is k-formal if and only if H i (S • (A)) = 0 for
+1 ≤ i ≤ k − 1. Furthermore A is essential if and only if H 0 (S • (A)) = 0.
+Remark 5.3. The short exact sequence 0 → J • → S • → D• → 0 gives rise to a
+long exact sequence starting as
+                                              ψ
+         0 → H 0 (S • ) → H 0 (D• ) ∼         → H 1 (J • ) → H 1 (S • ) → · · · ,
+                                    = D(A, m) −
+16                                 MICHAEL DIPASQUALE
+
+                                              P
+where ψ is defined on θ ∈ D(A, m) as ψ(θ) = H∈L1 θ(αH ) ∈ ⊕H∈L1 J(H). The
+map ψ is an isomorphism if (and only if) A is essential and formal.
+Remark 5.4. If A is essential and k-formal for all k ≥ 2, then the long exact se-
+quence from Remark 5.3 breaks into isomorphisms H i (D• (A, m)) ∼   = H i (J • (A, m))
+for i ≥ 0 (by Remark 5.2). In particular, if we wish to determine free multiplicities
+on an arrangement, we may assume by Corollary 4.10 that A is k-formal for all
+k ≥ 2, hence the isomorphism H i (D• (A, m)) ∼ = H i (J • (A, m)) holds for i ≥ 0.
+Lemma 5.5. Let (A, m) be a multi-arrangement. If H ∈ L1 , then set J(H) =
+                   m(H)
+J1 (AH , m(H)) = hαH i. If X ∈ Lk where k > 1, then the module Jk (AX , mX )
+satisfies                                              
+
+                 Jk (AX , mX ) = δSk−1 
+                                        L
+                                                            Jk−1 (AY , mY )
+                                                                           
+                                                  Y ∈Lk−1
+                                                   X<Y
+
+                                                  φSk−1 (X)(Jk−1 (AY , mY ))
+                                          P
+                                    =
+                                        Y ∈Lk−1
+                                         X<Y
+
+with δSk−1 : S k−1 → S k and φkS (X) : Sk (AY ) → Sk (AX ) the maps from Defini-
+tion 5.1.
+Proof. For simplicity we take AX = A, so A has rank k and X = ∩H∈A H. The tail
+end of the short exact sequence of complexes 0 → J • → S • → D• → 0 is shown
+below.
+                 k−2                                              k−1
+                δJ                                               δJ
+        J k−2           J k−1 =                                         J k = Jk (A, m)
+                                    L
+                                            Jk−1 (AY , mY )
+                                  Y ∈Lk−1
+
+
+                  k−2                                            k−1
+                 δS                                             δS
+        S k−2             S k−1 =                                        S k = Sk (A)
+                                        L
+                                              Sk−1 (AY )
+                                    Y ∈Lk−1
+
+
+
+                δ k−2                                           δ k−1
+        Dk−2             Dk−1 =                                         Dk = Dk (A, m)
+                                     L
+                                             Dk−1 (A, m)
+                                   Y ∈Lk−1
+
+
+
+
+The differentials δSk−2 and δ k−2 factor through Sk−1 (A) and Dk−1 (A, m), respec-
+tively, by Definition 3.5. It follows that H k−1 (S • ) = H k−1 (D• ) = H k (S • ) =
+H k (D• ) = 0 by Definition 3.1. Hence the long exact sequence in cohomology yields
+that H k (J • ) = 0, in other words δJk−1 is surjective. The first
+                                                             P equality follows from
+commutativity of the diagram. By definition, δJk = τkJ = Y ∈Lk−1 φJk−1 (X). Since
+φJk−1 (X) is the restriction of φSk−1 (X), this proves the second equality.        
+   From Lemma 5.5, we see that in order to explicitly determine the complexes J •
+and D• , it suffices to determining the maps φSk (Y ) for Y ∈ Lk , or equivalently to
+determine the differential δSk of the complex S • . In § 4, we saw that S • ∼
+                                                                            = (R∗• )⊗K S,
+                     k
+so the differential δS is just the transpose of the differential δk in the complex R• .
+By examining these matrices as they appear in [12] and [32], we obtain the following
+recipe for constructing δSk .
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 17
+
+
+Lemma 5.6. A matrix for δSk may be inductively defined as follows. The matrix
+for δS0 is the coefficient matrix for A, whose rows give coefficients of the linear
+forms defining A. Inductively, δSk may be represented by a matrix whose rows are
+naturally grouped according to flats X ∈ Lk . A row corresponding to X ∈ Lk
+encodes a relation among rows of δSk−1 which correspond to flats Y ∈ Lk−1 so that
+Y < X; the set of all rows corresponding to X ∈ Lk is a choice of basis for all
+relations among the rows of δSk−1 corresponding to flats Y ∈ Lk so that Y < X.
+
+Example 5.7 (Points in P1 ). Consider the arrangement A of k + 2 points in P1 ,
+corresponding to the product xy(x − a1 y) . . . (x − ak y). Let Hx = V (x), Hy = V (y),
+and Hi = V (x − ai y) for i = 1, . . . , k. By Lemma 5.6, the complex S • is
+                                          δ0        δ1
+                                   0 → S 2 −→
+                                            S
+                                              S k+2 −→
+                                                     S
+                                                       S k → 0,
+
+where
+                        
+                  1   0                                                            
+                 0                                   −1     a1    1 0     ···   0
+                      1                             −1
+                                                           a2    0 1     ···   0
+           δ 0 = 1
+                    −a1              and      δ1 =  .
+                                                     
+                                                              ..   .. ..         ..  .
+                                                                                    
+                  .. ..                             ..
+                         
+                 .                                            .    . .           .
+                       . 
+                                                      −1 ak        0 0     ···   1
+                   1 −ak
+Notice that S2 (A) ∼   = S k . Write mx , my for m(Hx ), m(Hy ), respectively, and mi
+for m(Hi ), i = 1, . . . , k. By Lemma 5.5, J2 (A, m) = J 2 (A, m) is generated by the
+columns of the matrix
+             −x x a1 y my (x − a1 y)m1
+            m                                                                 
+                                                    0        ···        0
+           −xmx a2 y my             0         (x − a2 y)m2 · · ·       0      
+     M = .                 ..        ..             ..                 ..     ,
+                                                                              
+            ..              .         .              .                  .     
+             −xmx       a k y my          0              0          ···    (x − ak y)mk
+
+so D2 (A, m)L ∼
+              = coker(M ). Notice                            1
+                            ∼  L that M is a matrix for δJ with the natural choice
+of basis for    H∈L1 J(H) =       H∈L1 S(−m(H)). Hence, by Remark 5.4, we may
+identify D(A, m) with H 1 (J • , m), which is exactly the syzygies on the columns
+of M (it is also straightforward to see this from the definition of D(A, m)). In
+particular, if k = 1 so A is the A2 braid arrangement, then D(A2 , m) may be
+identified with the syzygies on the forms xmx , y my , and (x − a1 y)m1 . This provides
+an alternative way to identify the generators and exponents of (A2 , m), which were
+originally found in [33] (see [18],[13, Example 3.6,Lemma 4.5] for more details).
+
+   For an arrangement defined by the vanishing of forms α1 , . . . , αn , we will write
+Hi for V (αi ) and denote the flat Hi1 ∩ · · · ∩ Hik by the list of indices i1 · · · ik . Fur-
+thermore, we will denote by Ltrip
+                               2   the set of rank two flats which are the intersection
+of at least three hyperplanes.
+
+Example 5.8 (X3 arrangement). Consider the arrangement At defined by the
+vanishing of the six linear forms
+                                       α1 = x   α4 = x − ty
+                                       α2 = y   α5 = x + z
+                                       α3 = z   α6 = y + z.
+18                                 MICHAEL DIPASQUALE
+
+
+The intersection lattice of At is constant as long as t 6= 0, 1, with six double points
+and three triple points Ltrip
+                          2   = {124, 135, 236}. Lemma 5.6 yields
+                                            δ0        δ1
+                           S • = 0 → S 3 −→
+                                          S
+                                            S 6 −→
+                                                 S
+                                                   S 3 → 0,
+where
+                 x y         z
+                              
+             1 1 0           0                    1        2       3   4  5 6
+             20 1          0                                               
+                                           124 1          −t      0   −1 0 0
+             3 0 0          1
+        δS0 =                       δS1 = 135  1        0       1   0 −1 0 .
+             4 1 −t        0            236 0          1       1   0  0 −1
+             51 0           1
+             6 0 1           1
+This complex is always exact, hence At is always formal for t 6= 0, 1 by Corollary 4.8.
+By Remark 5.4, H i (D• ) ∼= H i (J • ). By Theorem 1.1, we may check freeness of
+D(At , m) by determining vanishing of H 1 (J • ).
+   Now we consider the complex J • . Write J(i) for J1 ((At )Hi , mi ) = hαm    i i. If
+                                                                                  i
+
+       trip                                                                trip
+ijk ∈ L2 , we write J(ijk) for the ideal J(i)+J(j)+J(k), where ijk ∈ L2 . Then,
+by Lemma 5.5, J2 (124, m) = J(1) − tJ(3) − J(4) = J(1) + J(3) + J(4) = J(134).
+The same holds for any triple point, so J2 (ijk, m) = J(ijk) for every ijk ∈ Ltrip  2 .
+So J 2 = ⊕ijk∈Ltrip J(ijk) and
+                 2
+
+                                    6
+                                    M            δ1       M
+                        J• = 0 →                J
+                                          J(i) −→                 J(ijk),
+                                    i=1                    trip
+                                                      ijk∈L2
+
+where δJ1 is the restriction of δS1 . A presentation for H 2 (J • ) is worked out in [14]
+and is used to prove that (At , m) is free if and only if the defining equation has the
+form Q(A, m) = xn y n z n (x − ty)(x + z)(y + z), where tn = 1. We generalize this
+result in Theorem 6.10.
+5.1. Graphic arrangements. Let G be a simple graph (no loops or multiple
+edges) on ℓ vertices {v1 , . . . , vℓ } with edge set E(G), S = K[x1 , . . . , xℓ ] (with xi
+corresponding to vi ), and set Hij = V (xi − xj ). The graphic arrangement asso-
+ciated to G is the arrangement AG = ∪{vi ,vj }∈E(G) Hij ; AG is a sub-arrangement
+of the Aℓ−1 . A multiplicity m on AG is determined by the values mij = m(Hij )
+corresponding to edges {vi , vj } ∈ E(G).
+   Recall that the clique complex (or flag complex ) of a graph G is the simplicial
+complex ∆ = ∆(G) with an i-simplex for every complete graph on (i − 1) vertices.
+Lemma 5.9. The chain complex S • (AG ) may be identified with the simplicial co-
+chain complex of ∆(G) with coefficients in S. Hence AG is k-formal if and only if
+H i (∆(G); S) = 0 for 1 ≤ i ≤ k − 1.
+Proof. By [32, Lemma 3.1], R• (AG ) may be identified with the simplicial chain
+complex of ∆(G) with coefficients in K. Now use the isomorphism S • ∼
+                                                                    = (R• )∗ ⊗K
+S.                                                                            
+Remark 5.10. Using Lemma 5.9 we may easily see how the notions of k-formal
+for various k are distinct; this was part of the intent of [32]. This lemma also makes
+it clear that the condition that AG is k-formal for 2 ≤ k ≤ r − 1 is distinct from
+the condition of being totally formal. A graphic arrangement AG is k-formal for
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 19
+
+
+2 ≤ k ≤ r − 1 if and only if its clique complex ∆(G) is contractible. On the other
+hand, AG is totally formal if and only if G is chordal; a much stronger condition
+which coincides with both freeness and supersolvability of AG [30].
+   If σ ∈ ∆(G)k is a complete graph on the (k + 1) vertices {vi0 , . . . , vik } (where
+k ≥ 1), then write J(σ) for the ideal generated by the forms {(xis − xit )mis it : 0 ≤
+s < t ≤ k}. If σ = {vi } is a single vertex, then we take J(σ) = 0.
+Proposition 5.11. If G is a simple graph, then D• (AG , m) has modules
+                             Di ∼
+                                    M
+                                =         S/J(σ)
+                                      σ∈∆(G)i
+                   i
+and differentials δ induced from the simplicial co-chain complex with coefficients
+in S, which may be identified with S • (AG ).
+Proof. Use the identification of the differentials δ i in Lemma 5.9 as the simpli-
+cial co-chain differential for ∆(G) and the construction of Jk ((AG )X , mX ) from
+Lemma 5.5.                                                                       
+Remark 5.12. The chain complex in Proposition 5.11 was introduced in [15] by
+analogy with a natural class of chain complexes in the context of multivariate spline
+theory [10, 27]. Applying Theorem 1.1 yields the homological characterization of
+freeness obtained in [15, Corollary 5.6].
+Remark 5.13. The first non-trivial classification of free multiplicities on a graphic
+arrangement admitting both free and non-free multiplicities was completed in [2].
+Building on work of Abe, Nuida, and Numata [5], the classification of free multiplic-
+ities on the A3 braid arrangement has been completed in [13]. The key is a detailed
+analysis of H 2 (D• (A3 , m)), where D• is the complex described in Corollary 5.11.
+
+                              6. T F2 arrangements
+   In this section we introduce a subset of the totally formal arrangements which
+we shall call T Fk arrangements. These are totally formal arrangements which
+additionally satisfy that S i (A) = 0 for i > k. For instance, every totally formal
+arrangement is T Fk for k ≥ r(A). A graphic arrangement AG is T Fk if and
+only if G is chordal (see Remark 5.10) and dim(∆(G)) ≤ k. By Theorem 1.1
+and Remark 5.4, freeness of T Fk arrangements is determined by the vanishing of
+H i (J • ) for 2 ≤ i ≤ k. In the rest of this section we will assume that A is a T F2
+arrangement of rank at least three.
+6.1. Free T F2 arrangements. Recall that an arrangement A is supersolvable if
+there is a filtration A1 ⊂ · · · ⊂ Ar = A satisfying the following rank property (RP)
+and intersection property (IP):
+  (RP) r(Ai ) = i for i = 1, . . . , r(A).
+   (IP) For any H, H ′ ∈ Ai there exists some H ′′ ∈ Ai−1 so that H ∩ H ′ ⊂ H ′′ .
+Proposition 6.1. Let A be an irreducible T F2 arrangement of rank r = r(A).
+Then
+     • |A| = r − #Ltrip
+                         P
+                        + X∈Ltrip (|AX | − 1)
+                 P 2            2
+     • |A| ≤ 1 + X∈Ltrip (|AX | − 1)
+                         2
+     • #Ltrip
+         2 ≥ r−1
+20                                  MICHAEL DIPASQUALE
+
+
+Furthermore, the following are equivalent.
+   (1) A is free P
+   (2) |A| = 1 + X∈Ltrip (|AX | − 1)
+                          2
+    (3) #Ltrip
+            2 = r−1
+    (4) A is supersolvable
+In particular, if A is T F2 , its freeness may be determined from L(A).
+Proof. The first three bullet points are computed from the Euler characteristic of
+S • (A) and J • (A)1 as follows. Since A is T F2 , S • (A) is a short exact sequence of
+the form:                                     M
+                    0 → S ℓ = S r → S |A| →           S |AX |−2 → 0,
+                                                         trip
+                                                     X∈L2
+                                                      P
+so the alternating sum of the ranks yields |A| = r + X∈Ltrip (|AX | − 2) = r −
+                                                             2
+#Ltrip + X∈Ltrip (|AX | − 1). For the second bullet point, J • (A) has the form
+         P
+    2
+                  2
+
+                              M          δ1
+                                          J
+                                                     M
+                      0→            J(H) −→                  J2 (AX ) → 0.
+                              H∈A              X∈L2   trip
+
+
+Since ker(δJ1 ) = D(A) and we assumed A is irreducible, ker(δJ1 )1 is one dimensional,
+spanned by the Euler derivation. We may easily compute dim J2 (AX )1 = |AX | − 1
+for X ∈ Ltrip
+         2 , hence
+                                    X
+                  dim H 2 (J • )1 =     (|AX | − 1) − |A| + 1
+                                              trip
+                                        X∈L2
+
+by computingPthe Euler characteristic of J1• . This must be non-negative, yielding
+|A| ≤ 1 +       (|AX | − 1). The third bullet point follows from putting the first
+               trip
+           X∈L2
+two bullet points together.
+   Now we prove the equivalent conditions for freeness. The implication (4) =⇒
+(1) is a well known fact. Since supersolvability is determined from L(A), the final
+statement is immediate from (4). We first prove (1) ⇐⇒ (2). From Theorem 1.1
+and Remark 5.4, A is free if and only if H 2 (J • ) = 0. From the explicit description
+in Example 5.7, we see that J2 (AX ) is generated in degree one for every X ∈ Ltrip2 ,
+as is J(H) ∼= hαH i for everyPH ∈ A. So H 2 (J • ) must also be generated in degree
+one since it is a quotient of X∈Ltrip J2 (AX ). From our above computation,
+                                   2
+                                      X
+                           2  •
+                    dim H (J )1 =          (|AX | − 1) − |A| + 1,
+                                       X∈Ltrip
+                                          2
+                                                                              P
+hence A is free if and only if this expression vanishes, i.e. |A| = 1 +                (|AX | −
+                                                                                trip
+                                                                             X∈L2
+1). (3) follows immediately from (2) using the expression |A| = r − #Ltrip
+P                                                                             2   +
+   X∈L
+       trip (|AX | − 1) already proved. Finally, we show (3) =⇒ (4). First, for any
+      2
+X, X ′ ∈ Ltrip
+           2 , we prove there is a sequence X = X1 , H1 , X2 , . . . , Hk−1 , Xk = X
+                                                                                     ′
+
+satisfying
+    (1) Hi ∈ A for i = 1, . . . , k − 1
+    (2) Xi ∈ Ltrip
+               2   for i = 1, . . . , k.
+    (3) Hi < Xi and Hi+1 < Xi+1 in L(A) for i = 1, . . . , k − 1.
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 21
+
+                                             L               ∼
+                                                             =            L
+                                                   J(H)                         J(H)
+                                             H∈A                          H∈A
+
+                                                    ι                             1
+                                                                                 δJ
+                            P                           P 1
+      L                         ψX     L           L       (δJ )X     L
+              D(AX , mX )                            J(H)                     J2 (AX , mX )
+    X∈Ltrip                          X∈Ltrip       H<X              X∈Ltrip
+       2                                2                              2
+
+
+
+                       Figure 6. Diagram for Proposition 6.2
+
+To show this, let H1 , H2 ∈ AX and H1′ , H2′ ∈ AX ′ with corresponding linear forms
+α1 , α2 , α′1 , α′2 . Complete α1 , α2 , α′1 to a basis B of V ∗ using defining forms of A
+(this is possible because A is essential). Adding α′2 to B, we see there is a relation
+of length r + 1 among the forms B ∪ {α′2 }. Since A is formal, this relation can
+be expressed as a linear combination of relations of length three. We then read off
+the sequence X = X1 , H1 , . . . , Xk = X ′ from this linear combination of relations of
+length three.
+   Now we construct a filtration F = F (A) = A1 ⊆ A2 ⊆ · · · ⊆ Ar = A of A. Let
+A1 = H for any H ∈ A, and A2 = AX1 for some X1 ∈ Ltrip               2   so that H ∈ AX1
+(by Corollary 4.13, every H ∈ A passes through some X ∈ Ltrip            2 ). Build Ai+1
+from Ai for 2 ≤ i ≤ r inductively as follows. By our above claim, there exists
+Xi ∈ Ltrip2     so that Ai ∩ AXi 6= ∅. Then set Ai+1 = Ai ∪ AXi . This process finishes
+with A(r−1)+1 = Ar , when we have exhausted Ltrip         2 . Notice that F satisfies the
+intersection property (IP) by construction. Moreover, r(Ai ) ≤ r(Ai−1 ) + 1, hence
+since the filtration has length r with Ar = A, we must have r(Ai ) = i. Hence F (A)
+is a supersolvable filtration.                                                           
+6.2. Presentation for H 2 (J • ). Assuming A is a T F2 arrangement, we now obtain
+an explicit presentation for H 2 (J • (A, m)). Consider the diagram in Figure 6, where
+the chain complex J • appears on the right hand side (J • has only two terms since
+A is T F2 ). For book-keeping purposes we use the formal symbols [H] and [X, H] (or
+                                                                m(H)
+[αH ], [X, αH ]), of degree m(H), to denote the generators αH        of the summands
+             m(H)                    L                L          L
+J(H) = hαH i which appear in H∈A J(H) and X∈Ltrip H<X J(H), respec-
+                                                             L2
+tively. With this notation, the map ψX : D(AX , mX ) → H<X J(X) in Figure 6
+                       P θ(αH )                  L            L         L
+is the map ψX (θ) = H m(H) [X, H] and ι :           J(Hi ) → X∈Ltrip X<Hi J(Hi )
+                            αH                  P         P
+                                                                     2
+
+is the natural inclusion defined by ι([H]) = X∈Ltrip X<H [X, H] and extended
+                                                      2
+linearly. The main thing to check for commutativity is that ( (δJ1 )X ) ◦ ι = δJ1 ,
+                                                                   P
+which follows from the definition.
+Proposition 6.2. Suppose A is an irreducible T F2 arrangement of rank at least
+three. Then
+                                                                
+                                              P
+                                                ψX
+          H 2 (J • ) ∼           D(AX , mX ) −−−−→ coker(ι) ∼
+                               M
+                     = coker                               = S κ ,
+                                                                
+                                      trip
+                                 X∈L2
+           P
+where κ = ( X∈Ltrip |AX |) − |A|. Moreover,
+                 2
+                                     P
+   (1) (A, m) is free if and only if   ψX is surjective.
+22                                MICHAEL DIPASQUALE
+
+                           P
+     (2) κ > 0, i.e. |A| < X∈Ltrip |AX |.
+                                2
+     (3) If |A| < X∈Ltrip (|AX | − 1) or equivalently r < #Ltrip
+                   P
+                                                            2    then A is totally
+                         2
+                                                   ′
+         non-free. Furthermore in this case every A ∈ M(L(A)) is totally non-free.
+
+Remark 6.3. The presentation in Proposition 6.2 is similar in spirit to a presen-
+tation derived in [27, Lemma 3.8] for a homology module which governs freeness of
+bivariate splines on triangulations.
+
+Proof. Since the commutative diagram in Figure 6 has exact rows, the isomorphism
+                                                                 
+                                                   P
+                                                      ψX
+             H 2 (J • ) ∼
+                                 M
+                        = coker     D(AX , mX ) −−−−→ coker(ι)
+                                                                  
+                                        trip
+                                    X∈L2
+
+follows from the tail end of the snake lemma. The statement (1) now follows from
+the isomorphism H 1 (D• ) ∼
+                          = H 2 (J • ) and Theorem 1.1.
+   The ideals J(H) ∼
+                          m(H)
+                     = hαH i are principal,   Lso are isomorphic to the polynomial
+ring S (up to a graded shift). The rank of       J(H) is |A| and by the definition of
+the map ι, we see that the kernel is spanned by the basis elements [H] so that H
+does not pass through any X ∈ Ltrip 2 . However, any such hyperplane is a generic
+hyperplane; by Corollary 4.13 the existence of such a hyperplane
+                                                              "      forces# A to be
+                                                        L       L
+non-formal. Hence if A is T F2 , ι is injective. Since              J(Hi ) is a free
+                                                       X∈Ltrip   Hi <X
+                                                          2
+                               |AX |, we have proved that coker(ι) ∼
+                                                                   = S κ . The map ι
+                 P
+module of rank          trip
+                     X∈L2
+is surjective if and only if κ = 0, in which case H 2 (J • ) = 0 regardless of the
+multiplicity m. In this case A is totally free; by [8] A is a product of one and two
+dimensional arrangements, violating the assumption that A is irreducible. This
+proves (2).                                                               P
+   For (3), notice that, in order for D(A, m) to be free, the image of     ψX and
+                                                       L      L
+the image of ι must span the entire free module                   J(H) . Given (1),
+                                                     X∈L2
+                                                         trip   H<X
+the image of ι does not span this entire free module. This means that there are
+some basis elements [X, H] of degree m(H) (for some hyperplane H) that remain
+in coker(ι). In order to kill such basis elements, there must be a basis element
+θX ∈ D(AX , mX ) of degree m(H) which does not vanish on αH . Notice that for
+                                                           ′
+a fixed X ∈ Ltrip 2 , there cannot be two distinct H, H ∈ AX so that deg(θX ) =
+                           ′
+m(H), deg(ψX ) = m(H ), with θX (αH ) 6= 0 and ψX (αH ′ ) 6= 0 (see Lemma B.1).
+Hence there are at most #Ltrip    2  derivations (one per X ∈ Ltrip
+                                                                2 ) that can have the
+right formP   to cancel remaining basis elements of coker(ι); it follows that if |A| +
+#Ltrip
+    2    < X∈Ltrip (|AX |) then A is totally non-free, proving the first inequality
+                   2
+of (3). The equivalent     formulation for the inequality follows from the equation
+|A| = r −#Ltrip
+                     P
+                2  +   X∈L2trip (|AX |−1) from Proposition 6.1. For the final statement
+of (3), it follows from Lemma A.1 that A′ ∈ M(A) is T F2 on a Zariski open subset
+of M(L(A)). Hence on this open set, total non-freeness of A′ follows from the same
+computation. Moreover, if A′ is in the complement of this open set, A′ is totally
+non-free by Corollary 4.10.                                                          
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 23
+
+
+Corollary 6.4. Suppose A is a T F2 arrangement with r(A) > #Ltrip
+                                                             2 , and suppose
+B is an arrangement of rank four. If L(B) has two flats X, Y ∈ L(B) so that
+L(A) ∼
+     = [X, Y ], then B is not free.
+Proof. If L(A) is isomorphic to an interval in L(B), then B has either a closed
+sub-arrangement or a restriction which is in M(L(A)). In either case, the sub-
+arrangement or restriction is totally non-free by Proposition 6.2. If B is free, any
+closed sub-arrangement is also free. Moreover, the restriction of a free arrangement
+admits a free multiplicity by Theorem 2.6. Hence B cannot be free.                 
+Example 6.5 (Ziegler’s Pair). Consider a central arrangement A of rank three with
+nine hyperplanes α1 , . . . , α9 whose lattice has 18 double points and six triple points,
+explicitly we assume Ltrip
+                         2     = {145, 138, 256, 289, 367, 479}. This arrangement can be
+realized as a line arrangement in PK2 as the lines extending the edges of a hexagon,
+along with three lines joining opposite vertices (thus the set Ltrip2   forms the vertices
+of the hexagon). Since there is a non-empty Zariski open space of M(L) on which
+A is T F2 an #Ltrip2  = 6 > 3 = r(A), Proposition 6.2 implies that any A ∈ M(L)
+is totally non-free. By Corollary 6.4, no A ∈ M(L) can be the restriction of a free
+arrangement.
+    This arrangement appears in [40] and [38] as an example of the non-combinatorial
+behavior of the minimal free resolution of D(A) and the formality of A, respectively.
+More precisely, it is known (due to Yuzvinsky [38], see also [26, Example 13]) that
+A is formal if and only if the points of Ltrip 2   do not lie on a conic in P2 . We may
+                                           δ0        δ1
+compute that S • has the form 0 → S 3 −→
+                                       S
+                                         S 9 −→
+                                              S
+                                                S 6 → 0 if the six points do not
+                             δ0      δ1         δ2
+lie on a conic and 0 → S 3 −→S
+                               S 9 −→
+                                    S
+                                      S 5 −→
+                                           S
+                                             S → 0 if the six points of Ltrip
+                                                                         2    do lie
+on a conic (δS1 drops rank).
+6.3. A codimension two incidence graph. The data in the presentation of
+H 2 (J • ) in Proposition 6.2 can be combinatorially encoded using the codimension
+two incidence graph of A, which we denote by G(A). The graph G(A) = (V, E)
+is a bipartite graph whose vertex set is partitioned as V = Ltrip
+                                                               2  ∪ A. There is an
+edge [X, H] between X ∈ Ltrip  2  and H ∈  A if and  only if H < X  in L(A) (notice
+that we do not include codimension two flats which are intersections of just two
+hyperplanes). Moreover, we define the reduced codimension two incidence graph
+G(A) by removing the vertices H ∈ V (G(A)) of valence one (i.e. removing vertices
+corresponding to hyperplanes which only pass through a single flat X ∈ Ltrip
+                                                                           2 ).
+   Now we describe how G(A) and G(A) are useful in the context of Proposi-
+tion
+   L 6.2.LReferring to the diagram in Figure 6, consider the sub-module
+                                                                      P       N of
+               J(H) generated by the image of ι and the image of        ψX . Since
+    trip H<X
+X∈L2
+D(AX , mX ) is a free rank two module for every X ∈ Ltrip    2 , it is generated by two
+derivations; call these θX and ψX . Then N is generated by the columns of a matrix
+we denote M = M (θX , ψX | X ∈ Ltrip2 ). The rows of M areL    naturally Lindexed by the
+formal symbols [X, H] corresponding to basis elements of X∈Ltrip H<X J(H) -
+                                                                       2
+equivalently we may assume the rows are indexed by edges of G(A). The columns
+                                            ′
+of M are indexed eitherL by hyperplanes H ∈ A′ (these represent       the image of ι, one
+for each generator of H∈A J(H)) or pairs (X , θX ′ ) or (X ′ , ψX ′ ) where X ′ ∈ Ltrip2
+and θX ′ , ψX ′ are generators of D(AX ′ , mX ′ ) (each pair represents the inclusion of
+a generator of D(AX ′ , mX ′ )). The entries of M are
+24                                    MICHAEL DIPASQUALE
+
+
+                                                     1 H′ = H
+                                                     
+                               M[X,H],[H ′ ]     =          ′      ,
+                                                    0 H 6= H ′
+                                                     θX ′ (αH ) X = X
+                           M[X,H],[X ′ ,θX ′ ]   =                        ,
+                                                     0           X ′ 6= X
+                                                     ψ X ′ (αH ) X ′ = X
+                                                   
+                   and M[X,H],[X ′ ,ψX ′ ]       =                         ,
+                                                     0           X ′ 6= X
+                     θX ′ (αH )
+where θX ′ (αH ) =   m(H)
+                            .
+                    αH
+   Moreover we can associate the non-zero entries of M to oriented and labeled
+edges of G(A); the entry M[X,H],[H] corresponds to the orientation X → H of [X, H]
+and the entry M[X,H],[X,θX ] corresponds to the orientation H → X of [X, H], along
+with the label θX on the edge [X, H]. If a vertex LH ∈ G(A)L  has valence one, then
+the corresponding column of M is a generator of X∈Ltrip H<X J(H); since we
+                                                                  2
+are interested in the cokernel of M we may reduce the matrix M to the matrix M
+whose rows are indexed by pairs [X, H] so that H has valence at least two in G(A).
+Clearly the rows of M are in bijection with edges of the reduced incidence graph
+G(A). Likewise the non-zero entries of M correspond to oriented and labeled edges
+of G(A).
+   By Proposition 6.2, D(A, m) is freeLif and onlyL if the columns of M (θX , ψX |
+X ∈ Ltrip
+        2  ) generate the free module   X∈L
+                                             trip  H<X J(H). As in the proof of
+                                                         2
+Proposition 6.2, only one generator for each D(AX , mX ), X ∈ Ltrip   2 , can map
+                    L         L
+to a generator of    X∈L2
+                         trip   H<X  J(H). So  we  will consider sub-matrices of M
+obtained by choosing only a single generator for each D(AX , mX ). We write M ′ =
+M ′ (θX | X ∈ Ltrip
+               2 ) for the sub-matrix of M formed by choosing a single generator
+                                                                       ′
+θX of each D(AX , mX ), X ∈ Ltrip 2 . Notice that the columns of M are now in
+bijection with the vertices of G. In the two cases we consider, maximal minors
+of M ′ will be obtained by deleting at most one column. Thus the terms of a
+maximal minor of M ′ are in bijection with orientations of G so that every vertex
+corresponding to a non-deleted column has exactly one incoming edge. We will use
+this observation in the next section.
+6.4. Characterization of free multiplicities on T F2 arrangements. Using
+Proposition 6.2 we now characterize free multiplicities on T F2 arrangements. By
+Proposition 6.2 and Proposition 6.1 we are restricted to the two cases
+                  P
+      • |A| = 1 + X∈Ltrip (|AX | − 1) (equivalently A is a supersolvable T F2 ar-
+                        2
+        rangement)
+              P
+      • |A| = X∈Ltrip (|AX | − 1)
+                       2
+
+Theorem 6.6 (Free multiplicities on free T F2 arrangements). Suppose A is a free,
+hence supersolvable T F2 arrangement. By Proposition 6.1, G = G(A) is a tree.
+Then m is a free multiplicity on A if and only if there is an orientation of G
+satisfying
+    (1) Every vertex of G has at most one incoming edge.
+    (2) The root vertex (no incoming edges) is some X ∈ Ltrip    2 .
+    (3) Given a directed edge H → X, m(H) is an exponent of D(AX , mX )
+Equivalently, m is a free multiplicity if and only if there is an ordering X1 , . . . , Xr−1
+of Ltrip
+     2   and a supersolvable filtration A1 ⊂ · · · ⊂ Ar satisfying
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 25
+
+
+    (1) A2 = AX1 and Ai = Ai−1 ∪ AXi−1
+    (2) AXi ∩ Ai = {Hi } for some Hi ∈ A (H1 , . . . , Hr−1 not necessarily distinct)
+    (3) m(Hi ) is an exponent of D(Xi , mXi )
+Proof. By Proposition 6.2 and the preceding discussion, D(A, m) is free if and only
+if there are derivationsL    D(AX , mX ) so that the columns of M ′ = M ′ (θX |
+                         θX ∈L
+X ∈ Ltrip
+       2  ) generate            J(H); in other words there should be a maximal
+                         trip H<X
+                      X∈L2
+minor with P
+           determinant equal to a non-zero constant. By
+                                                      PProposition 6.1, we have
+|A| = 1 + X∈Ltrip (|AX | − 1) or |A| + #Ltrip
+                                            2  =  1 +   X∈Ltrip
+                                                                |AX |. It follows
+                  2                                             2
+that the matrix M ′ has one more column than row; so the maximal minors are
+obtained by deleting a column of M ′ . We may assume that the deleted column
+corresponds to some X ∈ Ltrip2 . Since G is a tree, an orientation of G satisfying
+that each vertex has at most one incoming edge is equivalent to a choice of root for
+the tree. This in turn is equivalent to choosing a maximal minor of M (leave out
+the column corresponding to the root). The maximal minor chosen in this way has
+determinant                         Y
+                                         θX (αH ),
+                                    H→X
+where the product is taken over directed edges H → X in the directed tree G.
+This expression is a non-zero constant if and only if θX (αH ) is a non-zero constant
+                            m(H)
+(equivalently θX (αH ) = αH        up to constant multiple) for every directed edge
+H → X. Since AX is not boolean for any X ∈ Ltrip    2 , we see by Lemma B.1 that
+(AX , mX ) cannot have an exponent smaller than m(H), so this is in turn equivalent
+to (AX , mX ) having an exponent of m(H) for every directed edge H → X. This
+proves the first characterization.
+    We now show the second characterization in terms of supersolvable filtrations
+is equivalent to the first. Given an orientation of G, we can build the required
+filtration by setting X1 equal to the root vertex and inductively selecting Xi+1 to
+satisfy 1) Xi and Xi+1 are both adjacent to some H ∈ G and 2) Xi → H → Xi+1
+is a directed path with respect to the chosen orientation on G. Conversely, given
+such a supersolvable filtration, we may orient G by taking X1 to be the root. 
+Example 6.7. Suppose A is defined by xyz(x − y)(y − z) (this is the graphic
+arrangement corresponding to a four-cycle with a chord). Then G consists of two
+vertices corresponding to the triple points X1 and X2 defined by xy(x−y) and yz(y−
+z), respectively. Clearly A is a supersolvable T F2 arrangement. By Theorem 6.6,
+(A, m) is free if and only if either D(X1 , mX1 ) or D(X2 , mX2 ) has an exponent
+equal to m(y).
+    If K has characteristic zero, this happens if and only if m(y) ≥ m(x)+m(x−y)−1
+or m(y) ≥ m(z)+m(y−z)−1 (by [33]), which recovers Abe’s classification in [2]. In
+fact Abe’s classification has a natural extension to any graphic T F2 arrangement
+(these correspond to chordal graphs with two-dimensional clique complex). For
+instance, suppose A is defined by xyzw(x − y)(y − z)(z − w). Then G(A) has three
+vertices and Theorem 6.6 combined with the classification in [33] yields that (A, m)
+is free if and only if
+       • m(y) ≥ m(x) + m(x − y) − 1 and m(z) ≥ m(y) + m(y − z) − 1 or
+       • m(y) ≥ m(z) + m(y − z) − 1 and m(z) ≥ m(w) + m(z − w) − 1 or
+       • m(y) ≥ m(x) + m(x − y) − 1 and m(z) ≥ m(w) + m(z − w) − 1.
+26                                 MICHAEL DIPASQUALE
+
+
+Each of the three possibilities corresponds to a choice of root for G.
+    By similar arguments it is not difficult to show that a constant multiplicity of
+value greater than one is never a free multiplicity on a graphic T F2 arrangement
+of rank at least three over a field of characteristic zero. In fact, if the constant
+multiplicity is free on a graphic arrangement over a field of characteristic zero then
+it is a product of braid arrangements [15, Theorem 6.6]. In contrast, suppose K is a
+field of characteristic p. Then it is straightforward to check (using Saito’s criterion),
+that
+                      k ∂      k ∂                  k+1 ∂       k+1 ∂
+                   xp      + yp           and     xp       + yp
+                       ∂x       ∂y                     ∂x          ∂y
+                                                              k   k          k
+form a basis for the multi-arrangement defined by xp y p (x − y)p (here k is any
+positive integer). It follows from Theorem 6.6 that the constant multiplicity of
+value pk is always free on a graphic T F2 arrangement over a field of characteristic
+p. Ziegler [41] has shown that freeness of simple arrangements may also depend on
+the characteristic of the field.
+Example 6.8 (Example 1.2, continued). Consider the arrangement A(α, β) defined
+by xyz(x − αz)(x − βz)(y − z) where α, β ∈ K. This is a T F2 arrangement with two
+rank two flats in Ltrip
+                   2 : the flat X1 defined by xz(x− αz)(x− βz) and the flat X2 de-
+fined by yz(y − z). The reduced graph G(A) consists of the three vertices H, X1 , X2
+joined by the two edges [H, X1 ] and [H, X2 ]. By Theorem 6.6 a multi-arrangement
+(A(α, β), m) is free if and only if either D(AX1 , mX1 ) or D(AX2 , mX2 ) has an
+exponent of m(z). Example 1.2 continues the analysis for this multi-arrangement.
+Remark 6.9. The characterization in Theorem 6.6 reduces the problem of deter-
+mining free multiplicities on free T F2 arrangements to the problem of determining
+when rank two multi-arrangements have an exponent which is equal to the multi-
+plicity of one of its points, which is a difficult problem in general [34]. Somewhat
+surprisingly, free multiplicities on non-free T F2 arrangements admit a complete
+description, at least in characteristic zero.
+  Suppose A is a non-free
+                        P T F2 arrangement which admits a Pfree multiplicity. As
+mentioned earlier, |A| = X∈Ltrip (|AX |−1) or |A|+#Ltrip
+                                                    2    =    |AX |. Since G(A)
+                                    2
+is connected (see the proof of Proposition 6.1) and G(A) has as many vertices as
+edges, there is a unique cycle in G(A). Write C = H0 , X0 , H1 , X1 , . . . , Hk−1 , Xk−1 , H0
+for this cycle, and let α0 , . . . , αk−1 be the corresponding linear forms to H0 , . . . , Hk−1 .
+We observe that the linear forms α0 , . . . , αk−1 must be linearly independent. To
+see this, define A′ = AX0 ∪ AX1 · · · ∪ AXk−2 . Then A′ has rank k, contains all
+hyperplanes defined by α0 , . . . , αk−1 , and every defining form of A′ is expressible
+using α0 , . . . , αk−1 .
+Theorem 6.10 (Free multiplicities on non-free T F2 arrangements). Suppose A is
+a non-free T F2 arrangement (over a field of characteristic zero) which admits a free
+multiplicity. As above, let C = H0 , X0 , H1 , X1 , . . . , Hk−1 , Xk−1 , H0 be the unique
+cycle in G = G(A). Then m is a free multiplicity on A if and only if the following
+conditions are satisfied
+    (1) m(H) = 1 for every H ∈ A which is not a vertex of C
+    (2) There is an integer n > 0 so that m(H) = n for every H ∈ A which is a
+        vertex of C
+    (3) There are B1 , . . . , Bk ∈ K satisfying
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 27
+
+
+           • B1 · · · Bk 6= 1 and
+           • for every H ∈ AXi \ {Hi , Hi+1 } (indices taken modulo k), αH can be
+             written (up to scalar multiple) as αH = αi + βiH αi+1 (indices taken
+             modulo k) for some βiH ∈ K satisfying (βiH )n−1 = Bi
+
+Proof. By Proposition 6.2, we have |A| = X∈Ltrip (|AX | − 1) or |A| + #Ltrip
+                                                   P
+                                                                              2  =
+                                                       2
+P                                                    trip          ′     ′
+   |AX |. So for any choice of θX for every X ∈ L2 the matrix M = M (θX | X ∈
+Ltrip                                                                ′
+  2 ) is a square matrix. We find its determinant. A term of det(M ) corresponds
+to an orientation of G in which every vertex has exactly one incoming edge. Since
+G has a unique cycle, such an orientation of G is determined by an orientation of
+the cycle (every other edge must be directed ‘away’ from the cycle). Since there
+are only two choices of orientation for the cycle C which satisfy that every vertex
+has exactly one incoming edge, there are only two terms in det(M ). In fact, if
+C = H0 , X0 , H1 , X1 , . . . , Hk−1 , Xk−1 , H0 ,
+
+                         k−1                 k−1
+                                                             !
+                         Y                   Y                     Y
+(1)         det(M ) =          θXi (αi ) −         θXi (αi+1 )             θ X (αH ),
+                         i=0                 i=0                 (H→X) /
+                                                                      ∈C
+
+
+
+where the index i + 1 is taken modulo k and the directed edge H → X is the unique
+direction ‘away’ from the cycle C. From Proposition 6.2, (A, m) is free if and only if
+there is a choice of θX for every X ∈ Ltrip2   so that the determinant (1) is a non-zero
+constant. We assume that we have such a choice of θX , X ∈ Ltrip    2 , and deduce the
+form for (A, m) given in the theorem. Lemma B.1 guarantees that θ X (αH ) 6= 0 for
+any X ∈ Ltrip
+            2   and H < X. Now, fixing an arbitrary Xi in the cycle C, we must
+                        m(α )                       m(α   )
+have θXi (αi ) = si αi i and θXi (αi+1 ) = ti αi+1 i+1 for some non-zero constants
+si and ti . Hence m(αi ) = m(αi+1 ) = deg(θXi ). Reading around the cycle C, we
+see that m(α0 ) = m(α1 ) = · · · = m(αk−1 ) = n for some positive integer n, proving
+(2).
+   Next again fix an arbitrary Xi in the cycle C and consider the multi-arrangement
+(AXi , mXi ). Since Xi has rank 2, we may assume (AXi , mXi ) is defined by
+                           Qk
+Q(AXi , mXi ) = xn y n j=1 (x− aj y)mj for some integer k ≥ 1 (since X ∈ Ltrip    2 ) and
+some non-zero constants a1 , . . . , ak (we are writing mj for m(x − aj y)). Notice that
+mj ≤ n for all j = 1, . . . , k since θXi has degree n (this is easily seen by applying
+                                                                                Pk
+Lemma B.1). In particular, (AX , mX ) is balanced - i.e. 2n ≤ |mX | = 2n+ i=1 mi .
+   Next, a result of Abe [3, Theorem 1.6] shows that the exponents of a balanced
+2-multi-arrangement differ by at most |A| − 2 = k. Write dX           1
+                                                                        i
+                                                                          ≥ dX2
+                                                                                i
+                                                                                   for the
+                                                                     Xi
+exponents of (AXi , mXi ), and remember that we are assuming d2 = deg(θXi ) = n.
+From Abe’s result we get that |dX            Xi
+                                      1 − d2 | = P
+                                        i
+                                                    dX                 Xi
+                                                     1 − n ≤ k, so d1 ≤ n + k. But
+                                                       i
+               Pk                  Xi     Xi          k
+|mXi | = 2n+ j=1 mj = n+d2 , so d2 = n+ i=1 mi ≤ n+k (this last inequality
+follows from the previous sentence). Since mj ≥ 1 for every j, we must have mj = 1
+for each j = 1, . . . , k. Now, applying Lemma B.2 implies that a1n−1 = · · · = akn−1 .
+This yields the second bullet point under (3).
+   As remarked just prior to the statement of Theorem 6.10, α0 , · · · , αk−1 are
+linearly independent. Change coordinates so that α0 = x0 , . . . , αk−1 = xk−1 .
+                                                                                     ∂
+Lemma B.2 again yields that the derivation θXi has the form θXi = xni ∂x               i
+                                                                                         +
+28                                  MICHAEL DIPASQUALE
+
+
+Bi xni+1 ∂x∂i+1 . Plugging this into equation (1) yields
+                                        k−1
+                                               !
+                                        Y           Y
+(2)                     det(M ) = 1 −       Bi             θX (αH ),
+                                         i=0     (H→X) /
+                                                      ∈C
+
+yielding the first bullet point under (3) since this must be a non-zero constant.
+   Now we prove (1). If H ∈ A is not a vertex of C but there is some X ∈ C so
+that H < X, then H ∈ AX and m(H) = 1 since H ∈         / C. So suppose H ∈ A but
+H ≮ X for any X ∈ C. Then H < X for some X ∈ Ltrip           2 , and X ∈ / C. Then
+there is a unique H ′ so that H ′ is closer to C than X as vertices of G. Thus
+H ′ → X is a directed edge in any orientation of G satisfying that every vertex has
+a unique incoming edge. Thus θX (αH ) appears in the expression of Equation (2)
+                   m(H)
+and θX (αH ) = αH        = αH (up to constant multiple, since we assume the right
+hand side of Equation (1) is a non-zero constant). It follows from Lemma B.1 that
+(AX , mX ) is simple, i.e. mX ≡ 1. Hence m(H) = 1 as well.
+   Finally, suppose A is a non-free T F2 arrangement and (A, m) has the form
+indicated in the statement of the theorem. Then clearly det(M ) is a non-zero
+constant by equation (2), so (A, m) is free by Proposition 6.2.                   
+
+Example 6.11 (Example 1.3, revisited). Consider the arrangement A(α, β) defined
+by xyz(x − αy)(x − βy)(y − z)(z − x), where α, β ∈ K. This is a non-free T F2
+arrangement with three rank two flats in Ltrip 2 : the flat X0 defined by xy(x −
+αy)(x − βy), the flat X1 defined by yz(y − z), and the flat X2 defined by xz(x − z).
+The reduced graph G(A) consists of the cycle C = {H0 , X0 , H1 , X1 , H2 , X2 , H0 },
+where H0 = V (x), H1 = V (y), and H2 = V (z). By Theorem 6.6 the (A(α, β), m)
+is free if and only if Q(A, m) has the form
+                  Q(A, m) = xn y n z n (x − αy)(x − βy)(y − z)(z − x),
+where αn−1 = β n−1 6= 1.
+6.5. Further counterexamples to Orlik’s conjecture. In this section we con-
+sider the family of arrangements Ar,t with defining polynomial
+                          r
+                                      !
+                         Y
+                              2    2
+         Q(Ar,t ) = x0      (xi − x0 ) (x1 − x2 ) · · · (xr−1 − xr )(xr − tx1 ),
+                           i=1
+                                                             0
+where t 6= 0 ∈ K. Write H0 = V (x0 ). The restriction AHr,t has defining polynomial
+                          r
+                               !
+                          Y
+              Q(AH  0
+                  r,t ) =   xi (x1 − x2 ) · · · (xr−1 − xr )(xr − tx1 ).
+                             i=1
+
+Ziegler’s multi-restriction has the defining polynomial
+                                r
+                                      !
+                               Y
+                H0     H0           2
+           Q(A , m ) =            xi (x1 − x2 ) · · · (xr−1 − xr )(xr − tx1 )
+                                   i=1
+
+Proposition 6.12. If t 6= 1 and K has characteristic zero, the arrangement Ar,t
+satisfies
+     (1) (AH
+           r,t , m
+             0     H0
+                      ) is free for t 6= 0, 1,
+     (2) Ar,t is free if and only if t = −1,
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 29
+
+
+    (3) The minimal free resolution of D(AH r,t ) is a twisted and truncated Koszul
+                                              0
+
+                          H0
+        complex, reg (D(Ar,t )) = 3, and pdim(D(AH   r,t )) = r − 2 (the maximum).
+                                                       0
+
+
+
+
+Proof. Write Xr,t for AH r,t , αi for xi (i = 1, . . . , r), βi for xi − xi+1 (i = 1, . . . , r − 1),
+                           0
+
+
+and βr for xr − tx1 . The space of all relations on the linear forms of Xr is an r-
+dimensional space. Write Yi for the ‘triple flat’ of codimension two given by the
+vanishing of the forms αi , αi+1 , βi for i = 1, . . . , r − 1, and write Yr for the flat
+determined by α1 , αr , βr . Clearly Ltrip
+                                         2   = {Y1 , . . . , Yr } and it is not difficult to see
+that each Yi contributes one relation to the relation space and they are all linearly
+independent, hence Xr,t is a T F2 arrangement. Since #Ltrip            2   = r, the rank of Xr,t ,
+it follows from Theorem 6.10 that mH0 is a free multiplicity on Xr,t , proving (1).
+    For (2), we use Theorem 2.6. We already have (AH              r,t , m
+                                                                    0     H0
+                                                                             ) free by (1), so we
+consider local freeness of Ar,t along H0 . If t 6= −1, then the closed sub-arrangement
+with defining equation
+
+                                (x21 − x20 )(x2r − x20 )(xr − tx1 )x0
+
+is not free, so neither is Ar,t . So we need to prove local freeness when t = −1. The
+closed sub-arrangements of Ar,−1 along H0 are isomorphic to A1 × A1 × A1 , A1 ×
+A2 , A3 with a hyperplane removed (the deleted A3 arrangement), or A3 . Since these
+are all free, Ar,−1 is free by Theorem 2.6.
+   For (3), we use the presentation from Proposition 6.2. We consider only the
+case m ≡ 1. As in Proposition 6.2, write formal symbols [H] (or [αH ]) for the
+generator of J(H) = L             hαH i andL  [X, H] (or [X, αH ]) for the generator of J(H)
+inside the direct sum               X∈L2
+                                         trip  H<X J(H). In the case of Xr,t , the map ι :
+L                 L
+    J(H) → X,H J(H) has the form ι([αi ]) = [Yi , αi ]+[Yi+1 , αi ] for i = 1, . . . , r−1,
+ι([αr ]) = [Yr , αr ] + [Yr , α1 ], and ι([βi ]) = [Yi , βi ]. Hence in coker(ι), we may
+disregard the generators corresponding to [Yi , βi ] and we can choose generators
+[Y1 , α1 ], · · · , [Yr , αr ] with [Y2 ,Pα1 ] = −[Y1 , α1 ], etc. With this choice of basis,
+we determine that the map                    ψX : ⊕D(AX , mX ) → coker(ι) is given on θ ∈
+D(AY1 , mY1 ) by θ → θ(α1 )[Y1 , α1 ] + θ(α2 )[Y1 , α2 ] = θ(α1 )[Y1 , α1 ] − θ(α2 )[Y2 , α2 ],
+where θ(αi ) = θ(αiP          )/αi (and similarly for θ ∈ D(AYi , mYi ), i > 1). Thus we may
+represent the map               ψ X by the matrix
+
+                    θ1          υ1         θ2         υ2          ···      θr           υr
+                                                                                               
+   [Y1 , α1 ]     θ1 (x1 )   υ 1 (x1 )      0          0          ···    −θr (x1 )    −υr (x1 )
+                −θ1 (x2 )
+    [Y2 , α2 ]              −υ1 (x2 )   θ2 (x2 )  υ 2 (x2 )      ···       0            0      
+                                                                                                
+   [Y3 , α3 ]      0           0       −θ2 (x3 ) −υ 2 (x3 )     ···       0            0      
+                                                                                                
+   ..                ..          ..         ..         ..        ..        ..           ..     
+    .                 .           .          .          .           .       .            .     
+   [Yr , αr ]       0           0           0          0          ···     θ r (xr )   υ r (xr )
+
+Now, for i = 1, . . . , r, D(AYi ) is generated by the derivations
+
+                                             ∂           ∂
+                                    θi = xi     + xi+1
+                                            ∂xi        ∂xi+1
+                                          2 ∂       2    ∂
+                                    υi = xi     + xi+1
+                                            ∂xi        ∂xi+1
+30                                MICHAEL DIPASQUALE
+
+
+for i = 1, . . . , r − 1 and D(Yr ) is generated by
+                                        ∂         ∂
+                                  θr = xr  + x1
+                                       ∂xr      ∂x1
+                                        ∂          ∂
+                              υr = x2r     + tx21
+                                       ∂xr        ∂x1
+So the above matrix simplifies to
+                              θ1  υ1         θ2  υ2         ···    θr     υr
+                                                                             
+                 [Y1 , α1 ]   1  x1           0  0          ···    −1    −tx1
+                 [Y2 , α2 ] 
+                             −1 −x   2       1  x2         ···     0     0  
+             M=  [Y3 , α3 ]  0   0          −1 −x3         ···     0     0 
+                ..           ..   ..         ..  ..                ..     .. 
+                                                                             
+                                                            ..
+                 .           .     .          .   .           .     .      . 
+                [Yr , αr ]    0   0           0  0          ···    1      xr
+Notice that in coker(M ), the Euler derivations θ1 , . . . , θr identify all basis elements
+[Y1 , α1 ], · · · , [Yr , α1 ] to a single basis element. Hence
+                                                        S(−1)
+        coker(M ) ∼
+                  = H 2 (J • ) ∼
+                               =                                                       ,
+                                   hx1 − x2 , x2 − x3 , . . . , xr−1 − xr , xr − tx1 i
+where the S(−1) encodes the fact that the degrees of [Yi , αi ] are all one. Since
+t 6= 0, 1, H 2 (J • ) ∼
+                      = S/m, where m is the maximal ideal of S.
+    Now, applying the snake lemma to the diagram in Figure 6 and using the fact
+that ι is injective (see the proof of Proposition 6.2), we get the four-term exact
+sequence
+                                                  M
+                          M
+      0 → D(Xr,t ) →           D((Xr,t )Y , mY ) −→ S(−1)κ → H 2 (J (Xr,t )) → 0,
+                       Y ∈Ltrip
+                           2
+
+where S(−1)κ = coker(ι). Above we noticed this prunes down to
+                                            T         S
+           0 → D(Xr,t ) → S(−1) ⊕ S(−2)r −  → S(−1) →   → 0,
+                                                      m
+                                 
+where T = 0 x1 − x2 · · · xr − tx1 . It follows that
+                    D(Xr,t ) ∼
+                             = S(−1) ⊕ K2 (m)(−1),
+where K2 (m)(−1) is the module  of second syzygies of m, twisted by −1. It is well-
+known that K2 (m) has r2 generators
+                          
+                                     of degree 2, so D(Xr,t ) is generated by the
+                             r
+Euler derivation along with      generators of degree 3. Its minimal free resolution
+                             2
+is given by truncating the Koszul complex at K2 (m), so it is linear of length r − 2,
+the maximum possible. Since the resolution is linear, reg (D(Xr,t )) = 3, where reg
+denotes Castelnuovo-Mumford regularity. This completes the proof of (3).           
+Remark 6.13. If t 6= 1, then the only non-boolean generic flats of Xr,t are the
+obvious ones of rank two corresponding to the closed circuits of length three. Hence
+the bound on pdim(Xr,t ) given by Corollary 3.15 is zero, while pdim(Xr,t ) = r − 2.
+If t = 1 then we can see that β1 , . . . , βr forms a closed circuit of length r, in which
+case pdim(D(Xr,1 , m)) ≥ r − 3 by Corollary 3.15. In fact, if we introduce the
+extra variable x0 and change coordinates by the rule xi → xi − x0 , we see that
+Xr,1 is the graphic arrangement corresponding to a wheel with r spokes. From [15,
+Example 7.1], pdim(D(Xr,1 , m)) = r − 3 for any multiplicity m.
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 31
+
+
+                                             n                    ∼               n
+                                             L                    =               L
+                                                   J(Hi )                               J(Hi )
+                                             i=1                                  i=1
+
+                                                    ι                                     1
+                                                                                         δJ
+                                                             #P
+                            P
+                                               "
+                                                                    1
+     L                          ψX    L            L              (δJ )X    L
+              D(AX , mX )                               J(Hi )                       J2 (AX , mX )
+   X∈L2
+       trip                             trip
+                                     X∈L2      Hi <X                          trip
+                                                                           X∈L2
+
+                                                    q                                     2
+                q̂                                                                       δJ
+
+          ker(∆)            i
+                                        coker(ι) ∼
+                                                 = Sκ
+                                                                     ∆
+                                                                                  J3 (A, m)
+
+                         Figure 7. Diagram for Proposition 7.1
+
+
+                         7. The case of line arrangements
+   It is well-known that D(A) may be identified with the module of syzygies on the
+Jacobian ideal Jac(A) of the defining polynomial of A; hence A is free if and only
+if Jac(A) is codimension two and Cohen-Macaulay. In this section we show that,
+for rank three arrangements, D(A, m) may be identified with potentially higher
+syzygies of a less geometric object. We use this to give another formulation of
+Terao’s conjecture for lines in P2 .
+   First, suppose A is a T F2 arrangement and consider the diagram in Figure 6.
+Since ι is injective (see the proof of Proposition 6.2) and H 1 (J • ) ∼
+                                                                       = D(A, m), the
+full snake lemma applied to this diagram yields the exact sequence
+                                M
+             0 → D(A, m) →            D(AX , mX ) → S κ → H 2 (J • ) → 0,
+                                      trip
+                                 X∈L2
+
+                                 L
+where the inclusion D(A, m) →       D(AX , mX ) is the sum of the restriction maps
+D(A, m) → D(AX , P  mX ) (recall that the isomorphism D(A, m) ∼ = H 1 (J ) is given
+by the map ψ(θ) = H∈L θ(αH )). By Theorem 1.1, D(A, m) is free if and only if
+                                                                 P
+                                        M                            ψX
+                     0 → D(A, m) →                 D(AX , mX ) −−−−→ S κ → 0
+                                      X∈Ltrip
+                                         2
+
+
+
+is a short exact sequence. Hence if D(A, m) is free we may identify it with the
+syzygies on a (necessarily non-minimal) set of generators for the free module S κ .
+    Now suppose A is rank three, irreducible and totally formal but not T F2 , so
+S 3 (A) = S3 (A) 6= 0. We can set up (see Figure 7) a very similar diagram to the
+one in Figure 6. All maps P    in the top two rows of Figure 7 are the same as in
+Figure 6; in particular κ = X∈Ltrip |AX | − |A| just as in Proposition 6.2. The
+                                     2
+chain complex J • (A, m) appears as the right-most column. The map labeled q is
+the quotient map. The existence of the bottom right horizontal map ∆ : coker(ι) →
+J3 (A, m) follows from the commutativity     of the upper right square; furthermore
+∆ is surjective since δJ1 and
+                                 P 1
+                                   (δJ )X are both surjective. The lower left map
+i : ker(∆) → S κ is the inclusion and the map q̂ is lifted from q in the obvious way.
+32                               MICHAEL DIPASQUALE
+
+
+Proposition 7.1. Let A be an essential, irreducible, formal arrangement of rank
+3 which is not T F2 . Then
+                                                            
+                                                     q̂
+                H 2 (J ) ∼
+                                   M
+                         = coker    D(AX , mX ) −  → ker(∆) .
+                                                            
+                                          trip
+                                     X∈L2
+
+and D(A, m) is free if and only if q̂ is surjective. Moreover, D(A, m) is free if and
+only if
+                                        M                  i◦q̂
+                  0 → D(A, m) →               D(AX , mX ) −−→ S κ
+                                             trip
+                                         X∈L2
+is exact in the first two positions and coker(i◦ q̂) = J2 (A, m); i.e. the above sequence
+La free resolution for J2 (A, m). Moreover, the left-most inclusion of D(A, m) into
+is
+    D(AX , mX ) is given by the sum of natural restriction maps.
+Proof. The identification of H 2 (J ) with coker(q̂) follows from a long exact sequence
+in homology. More precisely, the rows of the diagram in Figure 7 are all exact.
+Hence we may view this diagram as a short exact sequence of chain complexes;
+the chain complexes are the columns of the diagram. As we saw in the proof
+of Proposition 6.2, the map ι is injective so the middle column is exact. Thus
+the long exact sequence in homology splits into three isomorphisms. The first
+isomorphism yields H 1 (J ) ∼    = ker(q̂); which we may read as D(A, m) ∼     = ker(q̂)
+            ∼
+(H (J ) = D(A, m) since A is essential). The second isomorphisms yields H 2 (J ) ∼
+    1
+                                                                                     =
+coker(q̂), which is the first statement of the proposition. The third isomorphism
+yields H 3 (J ) = 0. Hence by Theorem 1.1, D(A, m) is free if and only if H 2 (J ) = 0,
+if and only if coker(q̂) = 0.
+    If q̂ is surjective (if and only if D(A, m) is free), then im(q̂) = ker(∆); by our
+previous identification of D(A, m) with ker(q̂) we have freeness of D(A, m) if and
+only if the sequence
+                                  M                i◦q̂     ∆
+              0 → D(A, m) →             D(AX , m) −−→ S κ −→ J3 (A, m) → 0
+                                  trip
+                              X∈L2
+
+is exact. Chasing the diagram
+L                            P in Figure 7, and using that the map D(A, m) →
+   J(H) is given by ψ(θ) =      θ(αH ), yields that the left-most inclusion is given
+by the sum of natural restriction maps, so we are done.                           
+   Given a matrix for ∆ in the natural choice of basis, we can identify the columns
+of ∆ with a (often non-minimal) set of generators for J3 (A, m). Thus ker(∆) can
+be identified with syzygies on this set of generators, which we denote by syz(∆).
+In this language, we have the following corollary.
+                                               P
+Corollary 7.2. D(A, m) is free if and only if X∈Ltrip (i ◦ q̂)(D(AX , mX )) gener-
+                                                      2
+ates syz(∆).
+Remark 7.3. Proposition 7.1 and Corollary 7.2 generalize Theorem 3.16 and
+Corollary 6.3 of [13], where the corresponding statements are worked out for A3
+multi-braid arrangements.
+   Now consider the case m ≡ 1, which is the setting of Terao’s question of whether
+freeness of A is combinatorial. In this case a special role is again played by the Euler
+derivations in D(AX ). In terms of corollary 7.2, Euler derivations represent syzygies
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 33
+
+
+of degree one, which in turn express redundant generators of J3 (A) (just like J2 (A),
+J3 (A) is generated in degree one). Write D(A) for D(A) modulo the summand
+generated by the Euler derivation. Then, for X ∈ Ltrip            ∼
+                                                     2 , D(AX ) = S(−|AX | + 1),
+as a graded S-module. Also write e for the rank of the free module spanned by the
+image of the Euler derivations of D(AX , mX ) inside of S κ . Once we have pruned
+away the Euler derivations, the chain complex from proposition 7.1 (written as a
+graded complex of S-modules) becomes
+                          M
+(3)       0 → D(A) →           S(−|AX | + 1) → S(−1)κ−e → J3 (A) → 0,
+                             trip
+                         X∈L2
+
+and the first two maps are now minimal (matrices for these maps will have no
+constants other than 0). Since it is shown in Proposition 6.1 that freeness of T F2
+arrangements is combinatorial, Terao’s question for line arrangements reduces to:
+Question 7.4 (Terao’s question for line arrangements). If A is a line arrangement
+in P2 which is not T F2 , is exactness of the chain complex (3) combinatorial?
+Example 7.5 (A3 braid arrangement). For A = A3 braid arrangement defined by
+the forms x, y, z, x − y, x − z, y − z, J3 (A3 ) = hx, y, z, x − y, x − z, y − zi. The A3
+arrangement has four triple points. The image of the Euler derivations D(AX ),
+X ∈ Ltrip
+        2  inside of S κ = S 12−6 = S 6 has rank 3, corresponding to the three
+redundant generators of J3 (A). Pruning off the Euler derivations yields the chain
+complex
+                    0 → D(A) → S(−2)4 → S(−1)3 → J3 (A) → 0,
+which is exact since the Koszul syzygies among x, y, z are obtained from the non-
+Euler derivations on D(AX ), X ∈ Ltrip   2 . This is not minimal since D(A) has a
+generator of degree 2 which expresses a relation among the four non-Euler deriva-
+tions around triple points. Once this generator of degree 2 is pruned off we obtain
+the Koszul complex resolving J3 (A),
+                  0 → S(−3) → S(−2)3 → S(−1)3 → J3 (A) → 0.
+As expected, D(A) is free with exponents 1, 2, 3 (the generators of degree 1, 2 were
+pruned off to produce the minimal resolution).
+
+                             8. Concluding remarks
+   We have implemented construction of the chain complexes J • , S • , D• in Macaulay2.
+Instructions for loading the functions and detailed examples may be found at
+http://math.okstate.edu/people/mdipasq/ under the Research tab.
+   So far, we have not studied the behavior of the chain complex D• (A, m) under
+deletion and restriction. In particular, we have the following question.
+Question 8.1. Is there a short exact sequence of complexes 0 → D• (A′ , m′ ) →
+D• (A, m) → D• (A′′ , m∗ ) → 0 corresponding to a triple (A′ , A, A′′ ) of arrangements
+(in the sense of [23, Definition 1.14]), where m∗ is the Euler multiplicity [7]?
+    The main difficulty here is to construct the maps between these chain complexes.
+Constructing such maps would provide a tight relationship to the addition-deletion
+theorem of [7]. We also are not aware of any relationships between the chain
+complex D• (A, m) and the characteristic polynomial of (A, m) or a supersolvable
+filtration of A.
+34                                 MICHAEL DIPASQUALE
+
+
+                                        References
+ [1] T. Abe. Deletion theorem and combinatorics of hyperplane arrangements. ArXiv e-prints,
+     September 2017.
+ [2] Takuro Abe. Free and non-free multiplicity on the deleted A3 arrangement. Proc. Japan Acad.
+     Ser. A Math. Sci., 83(7):99–103, 2007.
+ [3] Takuro Abe. Chambers of 2-affine arrangements and freeness of 3-arrangements. J. Algebraic
+     Combin., 38(1):65–78, 2013.
+ [4] Takuro Abe. Divisionally free arrangements of hyperplanes. Invent. Math., 204(1):317–346,
+     2016.
+ [5] Takuro Abe, Koji Nuida, and Yasuhide Numata. Signed-eliminable graphs and free multi-
+     plicities on the braid arrangement. J. Lond. Math. Soc. (2), 80(1):121–134, 2009.
+ [6] Takuro Abe, Hiroaki Terao, and Max Wakefield. The characteristic polynomial of a multiar-
+     rangement. Adv. Math., 215(2):825–838, 2007.
+ [7] Takuro Abe, Hiroaki Terao, and Max Wakefield. The Euler multiplicity and addition-deletion
+     theorems for multiarrangements. J. Lond. Math. Soc. (2), 77(2):335–348, 2008.
+ [8] Takuro Abe, Hiroaki Terao, and Masahiko Yoshinaga. Totally free arrangements of hyper-
+     planes. Proc. Amer. Math. Soc., 137(4):1405–1410, 2009.
+ [9] Takuro Abe and Masahiko Yoshinaga. Free arrangements and coefficients of characteristic
+     polynomials. Math. Z., 275(3-4):911–919, 2013.
+[10] Louis J. Billera. Homology of smooth splines: generic triangulations and a conjecture of
+     Strang. Trans. Amer. Math. Soc., 310(1):325–340, 1988.
+[11] Louis J. Billera and Lauren L. Rose. A dimension series for multivariate splines. Discrete
+     Comput. Geom., 6(2):107–128, 1991.
+[12] K. A. Brandt and H. Terao. Free arrangements and relation spaces. Discrete Comput. Geom.,
+     12(1):49–63, 1994.
+[13] M. DiPasquale, C. A. Francisco, J. Mermin, and J. Schweig. Free and Non-free Multiplicities
+     on the A3 Arrangement. ArXiv e-prints, September 2016.
+[14] M. DiPasquale and M. Wakefield. Free Multiplicities on the moduli of X3 . J. Pure Appl.
+     Algebra, to appear.
+[15] Michael DiPasquale. Generalized splines and graphic arrangements. J. Algebraic Combin.,
+     45(1):171–189, 2017.
+[16] Paul H. Edelman and Victor Reiner. A counterexample to Orlik’s conjecture. Proc. Amer.
+     Math. Soc., 118(3):927–929, 1993.
+[17] Paul H. Edelman and Victor Reiner. Free hyperplane arrangements between An−1 and Bn .
+     Math. Z., 215(3):347–365, 1994.
+[18] Anthony V. Geramita and Henry K. Schenck. Fat points, inverse systems, and piecewise
+     polynomial functions. J. Algebra, 204(1):116–128, 1998.
+[19] Daniel R. Grayson and Michael E. Stillman. Macaulay2, a software system for research in
+     algebraic geometry. Available at http://www.math.uiuc.edu/Macaulay2/.
+[20] Joseph P. S. Kung and Hal Schenck. Derivation modules of orthogonal duals of hyperplane
+     arrangements. J. Algebraic Combin., 24(3):253–262, 2006.
+[21] Hideyuki Matsumura. Commutative ring theory, volume 8 of Cambridge Studies in Advanced
+     Mathematics. Cambridge University Press, Cambridge, second edition, 1989. Translated from
+     the Japanese by M. Reid.
+[22] Peter Orlik. Introduction to arrangements, volume 72 of CBMS Regional Conference Series in
+     Mathematics. Published for the Conference Board of the Mathematical Sciences, Washington,
+     DC; by the American Mathematical Society, Providence, RI, 1989.
+[23] Peter Orlik and Hiroaki Terao. Arrangements of hyperplanes, volume 300 of Grundlehren
+     der Mathematischen Wissenschaften [Fundamental Principles of Mathematical Sciences].
+     Springer-Verlag, Berlin, 1992.
+[24] Kyoji Saito. Theory of logarithmic differential forms and logarithmic vector fields. J. Fac.
+     Sci. Univ. Tokyo Sect. IA Math., 27(2):265–291, 1980.
+[25] Hal Schenck. A spectral sequence for splines. Adv. in Appl. Math., 19(2):183–199, 1997.
+[26] Hal Schenck. Hyperplane arrangements: computations and conjectures. In Arrangements of
+     hyperplanes—Sapporo 2009, volume 62 of Adv. Stud. Pure Math., pages 323–358. Math. Soc.
+     Japan, Tokyo, 2012.
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 35
+
+
+[27] Hal Schenck and Mike Stillman. Local cohomology of bivariate splines. J. Pure Appl. Algebra,
+     117/118:535–548, 1997. Algorithms for algebra (Eindhoven, 1996).
+[28] Henry K. Schenck and Peter F. Stiller. Cohomology vanishing and a problem in approximation
+     theory. Manuscripta Math., 107(1):43–58, 2002.
+[29] L. Solomon and H. Terao. A formula for the characteristic polynomial of an arrangement.
+     Adv. in Math., 64(3):305–325, 1987.
+[30] R. P. Stanley. Supersolvable lattices. Algebra Universalis, 2:197–217, 1972.
+[31] Hiroaki Terao. Generalized exponents of a free arrangement of hyperplanes and Shepherd-
+     Todd-Brieskorn formula. Invent. Math., 63(1):159–179, 1981.
+[32] Stefan O. Tohǎneanu. Topological criteria for k-formal arrangements. Beiträge Algebra
+     Geom., 48(1):27–34, 2007.
+[33] Atsushi Wakamiko. On the exponents of 2-multiarrangements. Tokyo J. Math., 30(1):99–116,
+     2007.
+[34] Max Wakefield and Sergey Yuzvinsky. Derivations of an effective divisor on the complex
+     projective line. Trans. Amer. Math. Soc., 359(9):4389–4403, 2007.
+[35] Masahiko Yoshinaga. Characterization of a free arrangement and conjecture of Edelman and
+     Reiner. Invent. Math., 157(2):449–454, 2004.
+[36] Masahiko Yoshinaga. On the extendability of free multiarrangements. In Arrangements, local
+     systems and singularities, volume 283 of Progr. Math., pages 273–281. Birkhäuser Verlag,
+     Basel, 2010.
+[37] Sergey Yuzvinsky. Cohomology of local sheaves on arrangement lattices. Proc. Amer. Math.
+     Soc., 112(4):1207–1217, 1991.
+[38] Sergey Yuzvinsky. The first two obstructions to the freeness of arrangements. Trans. Amer.
+     Math. Soc., 335(1):231–244, 1993.
+[39] Sergey Yuzvinsky. Free and locally free arrangements with a given intersection lattice. Proc.
+     Amer. Math. Soc., 118(3):745–752, 1993.
+[40] Günter M. Ziegler. Multiarrangements of hyperplanes and their freeness. In Singularities
+     (Iowa City, IA, 1986), volume 90 of Contemp. Math., pages 345–359. Amer. Math. Soc.,
+     Providence, RI, 1989.
+[41] Günter M. Ziegler. Matroid representations and free arrangements. Trans. Amer. Math. Soc.,
+     320(2):525–541, 1990.
+
+
+
+
+              Appendix A. The moduli space of an arrangement
+   In this appendix we briefly summarize the construction of the moduli space of a
+lattice over an algebraically closed field K. Given the intersection lattice L of some
+central arrangement A ⊂ V ∼    = Kℓ with n hyperplanes,we obtain the moduli space
+of L in the following steps:
+    (1) Fix an ordering H1 , . . . , Hn of the hyperplanes of A. Then each flat X ∈ L
+        can be identified with the tuple of integers i1 , . . . , ij where His < X for
+        every s = 1, . . . , j.
+    (2) Let M be an n × ℓ coefficient matrix of variables and K[M ] the polynomial
+        ring in these variables. The rows of M correspond to the hyperplanes
+        H1 , . . . , Hn , in order.
+    (3) Suppose the flat X ∈ Lk is defined by hyperplanes Hi1 , . . . , Hij , with j > k.
+        Then the (k + 1) × (k + 1) minors of the submatrix of M formed by the
+        rows i1 , . . . , ij must all vanish. Let I ⊂ K[M ] be the radical of the ideal
+        generated by all of these minors for all flats X ∈ L.
+    (4) Now let B be the set of all possible tuples of ℓ hyperplanes which intersect
+        in only the origin. Each tuple in B gives rise to an ℓ × ℓ sub-matrix of M
+        whose determinant must not vanish. Let J be the principal ideal generated
+        by the product of all of these determinants.
+36                              MICHAEL DIPASQUALE
+
+
+     (5) The quasi-affine variety V = V(L) = V (I) \ V (J) ⊂ M, endowed with the
+         Zariski topology, corresponds to coefficient matrices of hyperplane arrange-
+         ments with intersection lattice L.
+     (6) Since the correspondence between a coefficient matrix and a hyperplane
+         arrangement is not one-to-one, the moduli space M(L) of L is obtained
+         from V(L) by quotienting out by the action of scaling rows of M and a
+         changing coordinates in V .
+   A property of an arrangement A is combinatorial if it can be determined from
+its lattice; equivalently if the property holds for all A′ ∈ M(L(A)). One of the key
+open questions in the theory of arrangements (posed by Terao), is whether freeness
+of arrangements is combinatorial. Yuzvinsky [39] has shown that free arrangements
+with intersection lattice L form a Zariski open subset of M(L). It is not difficult
+to show that a similar condition holds for totally formal arrangements.
+
+Lemma A.1. If A is an essential and totally formal arrangement then rank(S i (A))
+is determined by L for every i. Moreover, the set of essential totally formal arrange-
+ments with intersection lattice L is a Zariski open set in M(L).
+
+Proof. The arrangement A is essential L and totally   formal if and only if S • is exact
+                              k                k
+(see Corollary 4.8). Since S (A) = X∈Lk S (AX ), it suffices to show inductively
+that rk(S k (AX )) is determined from L(AX ) for k = rk(X). If X ∈ L(A) has rank
+one, then rk S 1 (AX ) = 1. Now the result follows inductively on the rank of AX ,
+using the Euler characteristic of S • (AX ). See also Remark 4.12.
+    Now decompose V(L) into its irreducible components V(L) = V1 ∪ · · · ∪ Vk ;
+algebraically, this corresponds to a prime decomposition I = P1 ∩ P2 · · · ∩ Pk (recall
+I is radical) where Vi = V (Pi ) \ V (J). Fix a component Vi of V(L) and work in
+its coordinate ring R = K[M ]/Pi . In other words, we consider an arrangement
+A whose coefficient matrix has entries in the integral domain R. By Lemma 5.6
+the differentials of the chain complex S • (A) (equivalently the differentials of R• )
+are elements of the rational function field K = frac(R). By the first statement,
+we see that the conditions for AX to be k-formal for every 2 ≤ i ≤ r(X) − 1 and
+                                                                                 i
+every X ∈ L are finitely many maximal rank conditions on the differentials δS,X      for
+S • (AX ). Since maximal rank conditions are given by the non-vanishing of certain
+minors, this shows that there are finitely many rational functions in K that should
+not vanish if A and all its closed sub-arrangements are to be k-formal for every k.
+Lifting this back to R by considering numerators and denominators gives the result
+for V(L). Since the determinants in question are multi-homogeneous in the row
+variables and quotienting by coordinate changes amounts to determining a scalar
+value for certain variables, this descends to the moduli space M(L).                  
+
+
+Remark A.2. For a rank three arrangement, the condition to be formal is ex-
+pressed by the non-vanishing of a maximal rank minor of the δS2 differential. Ex-
+ample 6.5 shows that the ranks of the free modules in S • (A) are not combinatorial,
+and that the condition to be totally formal can be non-trivial. For Example 6.5, it
+can be shown that, aside from the polynomials determining the lattice structure,
+there is a single irreducible quadratic in the coefficients of the forms of A whose
+non-vanishing determines formality.
+  A HOMOLOGICAL CHARACTERIZATION FOR FREENESS OF MULTI-ARRANGEMENTS 37
+
+
+   Appendix B. Two lemmas for multi-arrangements of points in P1
+   In this appendix we collect two simple lemmas for multi-arrangements of points
+in P1 . Lemma B.2 may also be found in [34], in slightly less generality.
+Lemma B.1. Suppose (A, m) is a multi-arrangement of k + 2 points in P1 defined
+by forms α1 , . . . , αk+2 . Suppose that, for some 1 ≤ j ≤ k + 2, θ ∈ D(A, m) satisfies
+                 m(α )
+that θ(αj ) = αj j (up to multiplication by a constant). If A is not boolean, then
+θ(αi ) 6= 0 for all i = 1, . . . , k + 2.
+                                                                              m(α )
+Proof. Without loss of generality, suppose θ(α2 ) = 0 and θ(α1 ) = α1 1 . Chang-
+                                                                  ∂      ∂
+ing coordinates, we may assume α1 = x and α2 = y. Write θ = f ∂x     + g ∂y and let
+                           d                       d
+d = deg(θ). Since θ(x) = x and θ(y) = 0, f = x and g = 0. Any other αj has
+the form x + aj y for some non-zero constant aj ; thus we have θ(αj ) = xd . Since
+θ ∈ D(A, m), we must have αj | xd , a contradiction unless A is boolean.         
+Lemma B.2. Let n be a positive integer and (A, m) a muli-arrangement of k + 2 ≤
+n + 2 points in P1 with Q(A, m) = xn y n ki=1 (x − ai y). Then (A, m) has exponents
+                                                 Q
+(n, n + k) if and only if a1 , . . . , ak are distinct (n − 1)st roots of a non-zero constant
+                                                                             ∂         ∂
+β. In this case, the derivation of degree n has the formula θ = xn ∂x          + βy n ∂y .
+Proof. Suppose a1 , . . . , ak are distinct (n − 1)st roots of a non-zero constant β.
+Then it is straightforward to check that the derivation θ indicated in the statement
+of the lemma is in D(A, m). Clearly there can be no derivation of smaller degree,
+so θ is a generator of D(A, m). Since the exponents sum to |m| = 2n + k, (A, m)
+has exponents (n, n + k). Now suppose that (A, m) has exponents (n, n + k). Then
+                                ∂     ∂
+there is a derivation θ = f ∂x    + g ∂y ∈ D(A, m) of degree n, the smallest possible
+degree. Up to constant multiple, we must have f = xn and g = y n . Dividing
+                                                                                 ∂         ∂
+through by the coefficient on xn , if necessary, we may assume θ = xn ∂x            + βy n ∂y ,
+                                                n        n
+where β is a constant. Then θ(x − ai y) = x − ai βy is divisible by x − ai y if and
+only if ani − ai β = 0, or ain−1 = β. Since this holds for i = 1, . . . , k, we are done. 
+
+  Michael DiPasquale, Department of Mathematics, Oklahoma State University, Still-
+water, OK 74078-1058, USA
+  E-mail address: mdipasq@okstate.edu
+  URL: http://math.okstate.edu/people/mdipasq/
+

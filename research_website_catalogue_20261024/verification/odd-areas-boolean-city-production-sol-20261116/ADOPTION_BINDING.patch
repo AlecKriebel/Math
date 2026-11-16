@@ -1,0 +1,28 @@
+--- pending-preparation/PLAN.json
++++ PLAN.json
+@@ -3,8 +3,12 @@
+   "website": "/Users/alec/Desktop/alec-dev/aleckriebel.com",
+   "project": "/Users/alec/Documents/Math/research_website_catalogue_20261024",
+   "stage": "verification/odd-areas-boolean-city-stage-sol-20261116",
+-  "root_adoption": null,
+-  "root_adoption_state": "PENDING_INDEPENDENT_STAGE_PASS_AND_ROOT_ADOPTION",
++  "root_adoption": {
++    "path": "verification/root-odd-areas-boolean-city-stage-adoption-20261116.json",
++    "bytes": 4933,
++    "SHA256": "c51608589a9f53348e5f8bd631445ae3436ab73e6cbef587fcc2b95da86d614f"
++  },
++  "root_adoption_state": "ROOT_PROVIDED_AND_ADOPTED",
+   "website_HEAD": "f632ad3949cecd62a92f711d5ba008cee92adb8c",
+   "website_tree": "7d5180d490008693987c000a1592214a3282a5c2",
+   "website_index": {
+--- pending-preparation/release_four.py
++++ release_four.py
+@@ -14,7 +14,7 @@
+ M = P.parent
+ N = P/'verification/odd-areas-boolean-city-production-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = 'a5578e0e108703343ede4d0f84207798362330451c5c156da2d7e0e4fdf4e605'
++PLAN_SHA = 'f048cfe3976f15d87cf06eeab73cfa89ca3c2c18c58cdb963bdb1813beef66b3'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')

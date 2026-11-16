@@ -1,0 +1,7 @@
+# Bounded legacy-correspondence log — records162/163
+
+2026-11-16 21:37:30 UTC — Partial checkpoint;20%. Read actual row162native identity/Description and source aliases; prior163source/root authority knowledge disclosed, with no new science claim. Read root-fixed-city legacy adoption and complete LEGACY160 FINAL/REPORT as locator/schema examples, not as this task's result. A combined view of the168822B cached DOCS connector was too large and truncated; no whole-entry personal-reading claim is made. First110lines of old search stdout identified the raw47-body cache reference scheme. Old helpers were not executed.
+
+Read-only Git commands (optional locks disabled) returned the exact repository path, local origin/main99c01c76e50a3575fe1b9eb3f40565783dde1150, actual ls-remote origin/main at the same commit, and docs treee63ba1f227e5aa2f0e06fd6a52b36afa1531a4d0. This authenticates the opening current tree only. No new helper, complete47-buffer authentication or search has run, no correspondence verdict is invented, and no history/global-absence or redirect claim is made.
+
+Root requested a programme checkpoint at this clean boundary. Saved this partial record, then HOLD all owned writes/executions until explicit root resume. Prior163writer37/2 and science packets remain unchanged;166findings remain closed to root. Only this new owned verification namespace is written. No W/Sheet/Git/source/redirect/publication mutation, external contact or prepared outreach.

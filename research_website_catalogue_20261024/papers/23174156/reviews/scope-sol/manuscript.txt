@@ -1,0 +1,260 @@
+      An explicit SU(5) lens-space counterexample to the printed
+                     Guadagnini–Pilo conjecture
+                                             Alec Kriebel
+                                        Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                             October 5, 2026
+
+
+                                                 Abstract
+          For the ordinary full SU(5) Reshetikhin–Turaev invariant at WZW level k = 5, or shifted
+      level r = 10, the lens spaces L(5, 1) and L(5, 2) have fundamental group√Z/5 but unequal nonzero
+                                                                                                  √
+      magnitudes. With τb(S 3 ) = 1, their squared magnitudes are 3475+1550 5 and 4025+1800 5. A
+      short exact root-lattice reduction proves the calculation, conditional on the established modular-
+      category and surgery formulas; finite cyclotomic programs provide reproducible checks. This
+      contradicts Conjecture 7.5 as printed in Ohtsuki’s collection. Historical priority is unresolved:
+      Takahito Kuriya’s directly relevant preprint could not be obtained, and no firstness or new
+      historical resolution is claimed. This is an unrefereed research note with extensive AI assistance
+      and no conventional human peer review.
+
+
+1    Claim and conventions
+Ohtsuki’s edited collection [1] prints Conjecture 7.5 on p. 474, attributed to Guadagnini and Pilo [2]:
+the absolute value of a nonzero quantum G invariant of a closed oriented 3-manifold is determined
+by its fundamental group. The volume is nominally dated 2002 and records publication on June
+1, 2004. We refer to this printed claim, without asserting its present literature status. Its scope
+includes compact simple simply connected G = SU(5); it is not restricted to the SU(2) lens-space
+theorem in [2].
+
+Theorem 1. In the full ordinary SU(5) theory at WZW level k = 5, shifted level r = k + h∨ = 10,
+let τb(M ) = τ (M )/τ (S 3 ). Then
+                                                               √
+                                   |τb(L(5, 1))|2 = 3475 + 1550 5,                          (1)
+                                                               √
+                                   |τb(L(5, 2))| = 4025 + 1800 5.
+                                                2
+                                                                                            (2)
+
+Both manifolds
+         √     have fundamental group Z/5. Both values are positive, and their difference is
+550 + 250 5 > 0. Thus the printed nonzero-magnitude claim fails.
+
+    We use the conventions of Hansen–Takata [3], specifically version 2 of their available preprint.
+Its final journal version has not been compared here. The invariant τ there has τ (S 3 ) = S00 > 0.
+Their L(p, q) is unknot surgery with coeﬀicient −p/q. A convention using +p/q reverses orientation
+and conjugates the ordinary unitary invariant, leaving the magnitudes unchanged. The quantum-
+group root is eπi/10 ; the renormalized coupling in Guadagnini–Pilo notation corresponds to shifted
+r = 10, not WZW k = 5.
+
+                                                      1
+                                                                                                            P
+    The full category has all dominant labels (a1 , a2 , a3 , a4 ) with ai ≥ 0 and i ai ≤ 5, hence
+ 9
+ 4 = 126 labels. No root-lattice restriction on those labels, projective quotient, bundle sector, spin
+choice, inserted link, or retained manifold framing is used. The root lattice below is a computational
+quotient in a formula for this full category. The existence and identification of the category, and
+the general RT surgery theorem, are standard imported mathematical inputs from [3]; we do not
+rebuild those foundations.
+
+
+2    Exact lattice reduction
+                                                               P
+Realize the A4 root system in H = {x ∈ R5 : i xi = 0} with root lattice Y = H ∩Z5 , weight lattice
+X = Y ∗ , and ρ = (2, 1, 0, −1, −2). Roots have squared length 2, |ρ|2 = 10,
+                                                                         √ rank is 4, and there
+                                                                                             √ are
+10 positive roots. The simple-root Gram determinant is 5, so vol(Y ) = 5 and vol(X) = 1/ 5.
+                                                                             P
+   Write S(q/p) = 12s(q, p) for the Dedekind symbol. For p > 0, s(q, p) = p−1  n=1 ((n/p))((qn/p)),
+with ((x)) = x − ⌊x⌋ − 1/2 off integers and zero at integers. Hansen–Takata Theorem 5.1 specializes
+to
+
+                         i10 eπiS(q/p) X                           X
+                                         det(w)e−2πi⟨ρ,wρ⟩/(10p)
+                                                                                      2
+      τ (L(p, q)) =               √                                      eπi(10q/p)|ν| e(2πi/p)⟨ν,qρ−wρ⟩ .           (3)
+                                2
+                          (10p) 5 w∈S5                           ν∈Y /pY
+
+Here gcd(p, q) = 1 and p ̸= 0. This theorem has no coprimality requirement between p and r; the
+coprime simplification in their Proposition 5.2 is inapplicable when p = 5, r = 10 and is not used.
+   Set p = 5. Representatives of Y /5Y are
+
+                            ν(a) = (a1 , a2 − a1 , a3 − a2 , a4 − a3 , −a4 ),               0 ≤ ai < 5.
+
+The simple roots are a free integral basis, so this gives all 54 = 625 classes. The quadratic phase in
+               2
+(3) is e2πiq|ν| = 1. For an integral sum-zero vector v, character orthogonality gives
+                                                                                (
+             X                            Y
+                                          4 X
+                                            4
+                                                                                625, v1 ≡ · · · ≡ v5      (mod 5),
+                         2πi⟨ν,v⟩/5                     2πia(vj −vj+1 )/5
+                     e                =             e                       =                                        (4)
+           ν∈Y /5Y                        j=1 a=0                               0,   otherwise.
+
+The criterion is v ∈ 5X, not v ∈ 5Y . Since ρ exhausts the five residues, precisely five permutations
+survive for each nonzero q (mod 5).
+   Put z = e2πi/50 , t = z 5 = eπi/5 , and
+                                                             X
+                                            Bq =                        det(w)z −⟨ρ,wρ⟩ .
+                                                        w: qρ−wρ∈5X
+
+Table 1 lists every survivor for q = 1, 2. Signs are permutation parities; dot products are elementary
+integer calculations. Thus
+
+                                 B1 = t−2 + 2 + 2t,                  B2 = −(1 + 2t−1 + 2t).                          (5)
+                                              √
+In the positive real embedding t + t−1 = (1 + 5)/2. Consequently
+                                            √                   √
+                             |B1 |2 = 11 + 2 5,   |B2 |2 = 9 + 4 5.                                                  (6)
+
+For the first√ identity, expand the norm as 9 + 4(t + t−1 ) + 2(t2 + t−2 ) + 2(t
+                                                                               √
+                                                                                 3 + t−3 ) and use
+
+t2 + t−2 = ( 5 − 1)/2 and t3 + t−3 = −(t2 + t−2 ). For the second, B2 = −(2 + 5).
+
+
+                                                                    2
+                                q                  wρ     det(w)    ⟨ρ, wρ⟩
+                                1    (2, 1, 0, −1, −2)        +1          10
+                                1    (1, 0, −1, −2, 2)        +1           0
+                                1    (0, −1, −2, 2, 1)        +1          −5
+                                1    (−1, −2, 2, 1, 0)        +1          −5
+                                1    (−2, 2, 1, 0, −1)        +1           0
+                                2    (2, 0, −2, 1, −1)        −1           5
+                                2    (1, −1, 2, 0, −2)        −1           5
+                                2    (0, −2, 1, −1, 2)        −1          −5
+                                2    (−1, 2, 0, −2, 1)        −1           0
+                                2    (−2, 1, −1, 2, 0)        −1          −5
+
+                    Table 1: The five Weyl survivors for each target lens space.
+
+
+3   Normalization and topology
+At p = 1 the quotient has one class and the Dedekind symbol is zero. Let
+                                           X
+                                     A=          det(w)e−2πi⟨ρ,wρ⟩/10 .
+                                          w∈S5
+
+The Weyl denominator identity gives A = −P , where
+
+                                    Y
+                                    4                        √
+                             P =        (2 sin(πj/10))5−j = 5 5 − 10 > 0.
+                                    j=1
+                                                               √                           √
+Indeed (2 sin 18◦ )(2 sin 54◦ ) = 1, (2 sin 36◦ )(2 sin 72◦ ) = 5, and (2 sin 36◦ )2 = (5 − 5)/2. There-
+fore
+                           √                           √                           −A
+              A = 10 − 5 5, |A|2 = 225 − 100 5, s = S00 = τ (S 3 ) =                 √ > 0.          (7)
+                                                                                100 5
+Canceling the prefactors of (3) at p = 5 and p = 1 gives
+
+                                                                               625|Bq |2
+                  τb(L(5, q)) = 25eπiS(q/5) Bq /A,        |τb(L(5, q))|2 =             √ .          (8)
+                                                                             225 − 100 5
+                   √              √
+Since (225 − 100 5)(225 + 100 5) = 625, equations (6) and (8) prove (1)–(2). The denominator
+is positive, for 2252 > 1002 · 5.                                                        √
+    For comparison    with vacuum   matrix words, the positive rank is D = s−1 = 100 + 40 5, and
+             √
+s2 = (9 − 4 5)/2000. The ordinary normalized modular matrix is
+                         1    X
+                                  det(w)e−2πi⟨w(λ+ρ),µ+ρ⟩/10 ,        θλ = eπi(|λ+ρ| −|ρ| )/10 .
+                                                                                     2    2
+             Sλµ = −      √
+                       100 5 w∈S5
+
+The categorical Hopf matrix is DS, not S. The two positive surgery chains are 5 = [5] and
+5/2 = [3, 2], giving words Sθ5 S and Sθ3 Sθ2 S. For either word F , the S 3 -normalized magnitude
+is |F00 |/s, with exactly one division by s. Hansen–Takata Corollary 4.2 and Eqs. (26)–(30), (35)
+supply this full-category normalization. Here central charge is 5 · 24/10 = 12, so the linear T is −θ
+and the anomaly ∆/D = −1. These and the signature corrections have modulus one.
+
+                                                      3
+    Replacing q by −q conjugates (3): use the longest Weyl element, which sends ρ to −ρ and has
+sign +1, and s(−q, 5) = −s(q, 5). Thus q = 4 gives the same magnitude as q = 1, and q = 3
+the same as q = 2. Inverse-denominator conventions also exchange 2 and 3. Neither convention
+removes the discrepancy. A fixed nonzero theory-wide rescaling cannot make unequal magnitudes
+equal.
+    Finally, the unknot exterior has fundamental group generated by its meridian µ, and its preferred
+longitude is nullhomotopic. Filling at −5/q kills µ5 , so van Kampen gives π1 (L(5, q)) = ⟨µ | µ5 =
+   ∼ Z/5. These are connected closed oriented manifolds. No homotopy-equivalence, minimality,
+1⟩ =
+or all-rank classification assertion is needed.
+
+
+4   Exact certificates and limits
+The accompanying archive contains two full root-lattice checks using Python’s standard library
+and an independent full-weight modular-word calculation using NumPy object arrays of arbitrary-
+precision integers. The latter enumerates all 126 labels, 120 Weyl permutations and 8,001 symmetric
+matrix entries in Z[ζ100 ], reduced modulo Φ100 = x40 −x30 +x20 −x10 +1. The lattice checks use Φ10
+and Φ50 and enumerate all 625 quotient representatives; the fresh Φ50 route also checks orientation,
+inverse-denominator, periodicity and S 3 boundaries.
+    Validation uses explicit exceptions that remain active under Python -O. A manifest-bound
+runner records fresh child-process exit codes, streams, source hashes and runtime information in
+both modes; deliberately false arithmetic targets must fail in both modes. The historical output
+field exact_assertions=2005 in one checker counts its explicit finite checks; it is not a quality
+measure or 2,005 independent mathematical results. Repetition in two modes does not double the
+distinct checks. Floating numbers in the fresh lattice output are labeled diagnostics and decide
+no exact identity or sign. The finite computations check this specialization; they do not prove the
+general modular-category theorem or establish historical priority.
+
+
+5   Priority, assistance, and review
+Takahito Kuriya’s The LMO invariant and the Guadagnini–Pilo conjecture for lens spaces is listed
+as a preprint by his Kyushu institutional record [4]. An institutional report records an exact-title
+talk on February 21, 2003 [5]. Its full text and complete conclusions and hypotheses could not be
+obtained. We cannot establish that it does not already contain or circumscribe this result. Historical
+priority therefore remains unresolved. Titles, aggregator abstracts, later perturbative results, and
+bounded searches cannot replace that comparison. No first counterexample, exhaustive novelty
+clearance, or new historical resolution is claimed.
+    The separate priority supplement documents the read boundaries. In particular, ordinary SU(N )
+WZNW is explicitly spin-independent in the later Kubo–Yokoyama comparison [6]; their proposed
+background phases are a separate issue. Those q = 1 tables do not establish an earlier instance of
+this target pair. We make no blanket dismissal of SU(N ) calculations as spin invariants.
+    AI tools were used extensively in solving, drafting, literature comparison, exact reproduction,
+and adversarial verification. Three separate AI validation families checked the arithmetic, normal-
+ization, and root-lattice/topological argument. This note has not undergone conventional human
+peer review and is unrefereed. The author takes responsibility for the stated claims and qualifica-
+tions. The original author effort was two of five substantive approaches; preparation and validation
+added no central proof-search turn.
+
+
+
+                                                  4
+References
+[1] T. Ohtsuki (ed.), Problems on invariants of knots and 3-manifolds, Geometry & Topology
+    Monographs 4 (nominal 2002; published June 1, 2004), 377–572; Conjecture 7.5, p. 474. https:
+    //msp.org/gtm/2002/04/gtm-2002-04-024s.pdf.
+
+[2] E. Guadagnini and L. Pilo, Three-manifold invariants and their relation with the fundamen-
+    tal group, Commun. Math. Phys. 192 (1998), 47–65. DOI: 10.1007/s002200050290. Available
+    preprint: arXiv:hep-th/9612090v1.
+
+[3] S. K. Hansen and T. Takata, Reshetikhin–Turaev invariants of Seifert 3-manifolds for
+    classical simple Lie algebras, and their asymptotic expansions, J. Knot Theory Ramifica-
+    tions 13(5) (2004), 617–668. DOI: 10.1142/S0218216504003342. Formula source used here:
+    arXiv:math/0209403v2, Eq. (12), Sections 4–5, Theorem 5.1 (preprint p. 39).
+
+[4] T. Kuriya, The LMO invariant and the Guadagnini–Pilo conjecture for lens spaces, preprint,
+    associated with a 2003 talk; full text unavailable to this work. Institutional listing: https:
+    //www2.math.kyushu-u.ac.jp/coe/staff/staff_sub/kuriya.html.
+
+[5] Kyushu University 21st Century COE program, institutional report, Kuriya activities, printed
+    p. 121, recording the February 21, 2003 talk. https://www2.math.kyushu-u.ac.jp/coe/
+    report/pdf3/report-6.pdf.
+
+[6] N. Kubo and S. Yokoyama, Topological phase, spin Chern–Simons theory and level rank duality
+    on lens space, JHEP 04 (2022), 074. DOI: 10.1007/JHEP04(2022)074; arXiv:2108.09300v2.
+
+
+
+
+                                                5
+

@@ -1,0 +1,326 @@
+--- reviewed_reference/release_three.py
++++ prepared/release_four.py
+@@ -1,8 +1,9 @@
+ #!/usr/bin/env python3
+-"""Fixed14 12A2M research-page release. Default/--verify-installed are offline read-only.
++"""Fixed18 16A2M private production preparation. Default is a literal no-action response.
+ 
+ --install and --publish are distinct, separately root-authorized transactions.
+-No default writes, remote call, project import, deploy, Sheet or lock release.
++Explicit preflights are offline; install/Git require separate current root authority.
++No project import, deploy, Sheet or lock release.
+ Failures preserve partial state/journals/locks; no automatic rollback/retry.
+ """
+ from pathlib import Path
+@@ -11,9 +12,9 @@
+ 
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ M = P.parent
+-N = P/'verification/focal-kato-supercritical-production-sol-20261116'
++N = P/'verification/odd-areas-boolean-city-production-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = 'ab776e9b85ae404e22cfed0f4dbad09f89f1c88f6b6740b1405c329e64ee2673'
++PLAN_SHA = 'a5578e0e108703343ede4d0f84207798362330451c5c156da2d7e0e4fdf4e605'
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')
+@@ -64,7 +65,7 @@
+     env=dict(ENV)
+     if index is not None: env['GIT_INDEX_FILE']=str(index)
+     if identity: env.update(identity)
+-    cmd=['git',*GIT_OPTIONS,*args]; r=subprocess.run(cmd,cwd=cwd,env=env,input=data,capture_output=True)
++    cmd=['git','--no-optional-locks',*GIT_OPTIONS,*args]; r=subprocess.run(cmd,cwd=cwd,env=env,input=data,capture_output=True)
+     event('git',argv=cmd,input_SHA256=None if data is None else sha(data),exit=r.returncode,stdout_SHA256=sha(r.stdout),stderr_SHA256=sha(r.stderr),stdout_base64=None if opaque else base64.b64encode(r.stdout).decode(),stderr_base64=None if opaque else base64.b64encode(r.stderr).decode())
+     absent = absent_origin_vcs_ok and args==('config','--null','--get-all','remote.origin.vcs') and r.returncode==1 and r.stdout==b'' and r.stderr==b''
+     need(r.returncode==0 or absent,'Git failed: '+args[0]); return r.stdout
+@@ -104,65 +105,71 @@
+     return spans
+ 
+ def contract():
+-    need(Path(__file__).absolute()==N/'release_three.py','fixed current helper location')
++    need(Path(__file__).absolute()==N/'release_four.py','fixed current helper location')
+     raw=read(N/'PLAN.json'); need(sha(raw)==PLAN_SHA,'exact plan'); p=json.loads(raw)
+-    need(p.get('root_adoption_state')=='ROOT_PROVIDED_AND_ADOPTED' and isinstance(p.get('root_adoption'),dict),'actual root stage adoption required; pending preparation is not authority')
++    need(p.get('root_adoption_state')=='ROOT_PROVIDED_AND_ADOPTED' and isinstance(p.get('root_adoption'),dict),'independent stage PASS and actual root adoption required; pending preparation is not authority')
+     need(p['root_adoption']['path']==p['root_adoption_expected_path'],'exact root receipt path')
+     adoption=json.loads(bound(p['root_adoption']))
+-    need(adoption['status']=='ROOT_ADOPTED_PRIVATE_14_PATH_THREE_PAGE_STAGE' and adoption['production_install_Git_deploy_or_tracker_authority'] is False,'private stage adoption only')
++    need(adoption['status']==p['root_adoption_required_status'] and adoption['production_install_Git_deploy_or_tracker_authority'] is False,'private stage adoption only')
++    need(adoption['independent_stage_audit_PASS'] is True and isinstance(adoption['independent_stage_audit_FINAL'],dict),'root-adopted independent integration PASS required')
++    bound(adoption['independent_stage_audit_FINAL'])
+     need(adoption['stage_FINAL']==p['stage_FINAL'] and adoption['stage_manifest']==p['stage_manifest'] and adoption['public_payloads']==p['public_payloads'],'exact adopted stage/manifest/public payloads')
+-    need(sorted(adoption['candidate_exact_paths'])==p['scope_paths'],'exact root-adopted fourteen scope paths')
++    need(sorted(adoption['candidate_exact_paths'])==p['scope_paths'],'exact root-adopted eighteen scope paths')
++    reading=json.loads(bound(p['root_stage_reading'])); need(reading['production_execution_authority'] is False,'earlier reading receipt is preparation only')
+     S=P/p['stage']; seal=json.loads(bound(p['stage_FINAL'])); manifest=json.loads(bound(p['stage_manifest']))
+-    need(p['stage_manifest']['path']==p['stage']+'/OWNED_MANIFEST.json' and all(p['stage_manifest'][k]==seal['manifest'][k] for k in ('bytes','SHA256')),'actual stage manifest schema and pin')
+-    need(seal['status']=='PRIVATE14_BUFFER_STAGE_COMPLETE_AWAIT_ROOT_AND_INDEPENDENT_ADOPTION' and seal['installation_Git_deploy_Sheet_redirect_authority'] is False,'private source stage only')
+-    terminals={'OWNED_MANIFEST.json','FINAL.json'}; rows_manifest=manifest['files']; expected_names=terminals|{x['path'] for x in rows_manifest}
+-    need(set(manifest['root_controls_excluded_from_own_list'])==terminals and len(rows_manifest)==63 and len(expected_names)==65 and seal['extent']['ordinary_files']==65 and seal['extent']['child_directories']==7,'exact63payload/65file/7directory source stage')
++    need(p['stage_manifest']['path']==p['stage']+'/MANIFEST.json' and all(p['stage_manifest'][k]==seal['manifest'][k] for k in ('bytes','SHA256')),'actual stage manifest schema and pin')
++    need(seal['status']=='PASS_PRIVATE_18_PATH_STAGE_PREPARED_NOT_INSTALLED' and seal['production_install_Git_deploy_tracker_or_publication_authority'] is False,'private source stage only')
++    terminals={'MANIFEST.json','FINAL.json'}; rows_manifest=manifest['files']; expected_names=terminals|{x['path'] for x in rows_manifest}
++    need(set(manifest['exact_existing_root_terminal_controls_excluded'])==terminals and len(rows_manifest)==38 and len(expected_names)==40 and seal['finite_extent']['regular_files']==40 and seal['finite_extent']['child_directories']==7,'exact38payload/40file/7directory source stage')
+     for row in rows_manifest:
+         name=row['path']; need('..' not in Path(name).parts and not Path(name).is_absolute(),'finite stage source path')
+         need(pin(read(S/name))=={k:row[k] for k in ('bytes','SHA256')},'whole frozen stage payload')
+-    sf,sd=census(S); need(set(sf)==expected_names and len(sf)==65 and len(sd)==8,'immutable source stage65/7')
+-    need(set(sd)-{'.'}==set(seal['extent']['directory_names'])==set(manifest['child_directories']) and all(x['mode']==0o644 for x in sf.values()) and set(sd.values())=={0o755},'stage source types/modes')
+-    need(p['source_guards']['path']==p['stage']+'/BUILD_INPUTS.json' and all(p['source_guards'][k]==seal['BUILD_INPUTS'][k] for k in ('bytes','SHA256')),'bound27-source guard container')
+-    inputs=json.loads(bound(p['source_guards'])); guards=inputs['source_guards']
+-    need(len(guards)==p['source_guard_count']==seal['source_guards']['count']==27,'complete fixed source guard table in bound container')
++    sf,sd=census(S); need(set(sf)==expected_names and len(sf)==40 and len(sd)==8,'immutable source stage40/7')
++    need(set(sd)-{'.'}=={x['path'] for x in manifest['directories']} and all(x['mode']==0o644 for x in sf.values()) and set(sd.values())=={0o755},'stage source types/modes')
++    need(p['source_guards']==p['baseline'] and p['source_guards']['path']==p['stage']+'/BASELINE.json','bound28-source guard container')
++    baseline=json.loads(bound(p['baseline'])); guards=baseline['source_guards']
++    need(len(guards)==p['source_guard_count']==28,'complete fixed source guard table in bound container')
+     for row in guards:
+-        bound(row); need(mode(Path(row['path']))==0o644,'source mode unchanged')
+-    need(p['root_editorial_adoptions']==seal['root_adoptions']==[article['adoption'] for article in inputs['articles']],'same three editorial adoptions')
++        bound(row); need(mode(Path(row['path']))==int(row['mode'],8),'source mode unchanged')
++    need(p['root_editorial_adoptions']==seal['root_copy_adoptions'],'same four editorial adoptions')
+     for row in p['root_editorial_adoptions']: bound(row)
+-    baseline=json.loads(bound(p['baseline']))
+-    need(baseline['W']['HEAD']==p['website_HEAD'] and baseline['W']['tree']==p['website_tree'] and baseline['W']['index']['SHA256']==p['website_index']['SHA256'],'same699 baseline authority')
+-    old_files={r['path'].removeprefix('public/'):{**{k:r[k] for k in ('bytes','SHA256')},'mode':int(r['mode'],8)} for r in baseline['public_file_pins']}
+-    old_dirs={'.':p['public_root_mode'],**{r['path'].removeprefix('public/'):int(r['mode'],8) for r in baseline['public_directory_modes']}}
+-    need(len(old_files)==baseline['public_files']==699 and len(old_dirs)==357 and baseline['public_child_directories']==356,'exact699/357public baseline/modes')
+-    payloads=json.loads(bound(p['public_payloads'])); need(payloads['candidate_pins']==seal['candidate_pins'] and payloads['candidate_files']==14 and payloads['production_authority'] is False,'same exact fourteen public buffers')
+-    rows=seal['candidate_pins']; names=[r['path'] for r in rows]
+-    need(len(rows)==len(set(names))==14 and sorted(names)==p['scope_paths'] and p['new_leaves']==12 and p['replacements']==2,'fixed fourteen paths12A2M')
++    need(baseline['website_git']['HEAD']['commit']==p['website_HEAD'] and baseline['website_tree_previously_read']==p['website_tree'] and baseline['website_git']['index']['SHA256']==p['website_index']['SHA256'],'same fresh711 baseline authority')
++    old_files={r['path']:{**{k:r[k] for k in ('bytes','SHA256')},'mode':int(r['mode'],8)} for r in baseline['public_files']}
++    old_dirs={r['path']:int(r['mode'],8) for r in baseline['public_directory_modes_including_root']}
++    need(len(old_files)==baseline['current_public_count']==711 and len(old_dirs)==360 and baseline['current_public_child_directory_count']==359,'exact711/360 public baseline/modes')
++    payloads=json.loads(bound(p['public_payloads'])); need(payloads==seal['whole_public_payload_bindings'] and len(payloads)==18,'same exact eighteen public buffers')
++    rows=payloads; names=[r['website_relative_path'] for r in rows]
++    need(len(rows)==len(set(names))==18 and sorted(names)==p['scope_paths'] and p['new_leaves']==16 and p['replacements']==2,'fixed eighteen paths16A2M')
+     need(p['replacement_paths']==['public/research/index.html','public/research/sitemap.xml'],'only two aggregate replacements')
+     buffers={}
+     for row in rows:
+-        name=row['path']; need(name.startswith('public/research/') and '..' not in Path(name).parts and not Path(name).is_absolute(),'finite exact public research path')
+-        b=read(S/'candidate'/name); need(pin(b)=={k:row[k] for k in ('bytes','SHA256')} and row['mode']=='0o644','exact candidate bytes/mode'); buffers[name]=b
+-        need((name[7:] in old_files)==(name in p['replacement_paths']),'twelve absent new targets/two existing aggregates')
++        name=row['website_relative_path']; need(name.startswith('public/research/') and '..' not in Path(name).parts and not Path(name).is_absolute(),'finite exact public research path')
++        b=read(S/'candidate'/name); need(pin(b)=={k:row[k] for k in ('bytes','SHA256')} and row['mode']=='0644','exact candidate bytes/mode'); buffers[name]=b
++        need((name[7:] in old_files)==(name in p['replacement_paths']),'sixteen absent new targets/two existing aggregates')
+     index=buffers['public/research/index.html'].decode()
+-    visible=re.findall(r'<li>[\s\S]*?</li>',index); rawjson=re.search(r'<script type="application/ld\+json">(.*?)</script>',index,re.S)[1]; entity=json.loads(rawjson)['mainEntity']
++    visible=re.findall(r'<li\b[^>]*>[\s\S]*?</li>',index); rawjson=re.search(r'<script type="application/ld\+json">(.*?)</script>',index,re.S)[1]; entity=json.loads(rawjson)['mainEntity']
+     nodes=re.findall(r'<url>[\s\S]*?</url>',buffers['public/research/sitemap.xml'].decode())
+-    need(len(visible)==len(entity['itemListElement'])==entity['numberOfItems']==114 and len(nodes)==115,'candidate114/115 actual aggregates')
+-    for units,key,count in [(visible,'old_visible_item_spans',111),(typed_spans(rawjson),'old_typed_item_raw_pins',111),(nodes,'old_sitemap_node_spans',112)]:
+-        old_rows=baseline[key]; need(len(old_rows)==count and all(pin(unit.encode())=={k:row[k] for k in ('bytes','SHA256')} for unit,row in zip(units[:count],old_rows)),'whole old111 visible/raw-typed items and112 XML nodes preserved')
+-    for k in ('old_completed_lock','old_SUCCESS','old_install_authorization','old_Git_lock','old_Git_SUCCESS','old_Git_authorization','old_deployment','old_publication'): bound(p[k])
+-    oldsuccess=json.loads(bound(p['old_SUCCESS'])); need(oldsuccess['counts']==[699,111,112] and oldsuccess['authorization_SHA256']==p['old_install_authorization']['SHA256'],'completed prior699 installation context')
++    need(len(visible)==len(entity['itemListElement'])==entity['numberOfItems']==118 and len(nodes)==119,'candidate118/119 actual aggregates')
++    for units,old_units,count in [(visible,baseline['visible_items_raw'],114),(typed_spans(rawjson),typed_spans(baseline['typed_script_complete_raw']),114),(nodes,baseline['sitemap_nodes_raw'],115)]:
++        need(len(old_units)==count and units[:count]==old_units,'whole old114 visible/raw-typed items and115 XML nodes preserved')
++    for row in baseline['website_configuration_guards']+baseline['template_guards']: bound(row); need(mode(Path(row['path']))==int(row['mode'],8),'website source/config mode')
++    for k in ('old_completed_lock','old_SUCCESS','old_install_authorization','old_Git_lock','old_Git_SUCCESS','old_Git_authorization','old_publication'): bound(p[k])
++    oldsuccess=json.loads(bound(p['old_SUCCESS'])); need(oldsuccess['counts']==[711,114,115] and oldsuccess['authorization_SHA256']==p['old_install_authorization']['SHA256'],'completed prior711 installation context')
+     oldgit=json.loads(bound(p['old_Git_SUCCESS']))
+-    need(oldgit['status']=='SCOPED11_COMMIT_AND_PUSH_VERIFIED' and oldgit['delta']=='9A2M' and oldgit['commit']==p['website_HEAD'] and oldgit['tree']==p['website_tree'] and oldgit['index_SHA256']==p['website_index']['SHA256'] and oldgit['successor_index_records']==58639,'completed prior473377/f8f028 Git context')
+-    need(json.loads(bound(p['old_deployment']))['website_commit']==p['website_HEAD'],'prior deployment context')
++    need(oldgit['status']=='SCOPED14_COMMIT_AND_PUSH_VERIFIED' and oldgit['delta']=='12A2M' and oldgit['commit']==p['website_HEAD'] and oldgit['tree']==p['website_tree'] and oldgit['index_SHA256']==p['previous_published_native_index']['SHA256'] and oldgit['index_mode']=='0600' and oldgit['successor_index_records']==58651,'completed prior f632/0f58 context, not fresh-index continuity')
++    transition=json.loads(bound(p['index_transition']))
++    need(transition['status']=='OBSERVED_STAT_CACHE_AND_NATIVE_FILE_MODE_TRANSITION_NO_STAGING_CONTENT_CHANGE' and transition['current_native_index']=={'bytes':p['website_index']['bytes'],'SHA256':p['website_index']['SHA256'],'mode':'0644'} and transition['records']==58651 and transition['path_object_ID_mode_flags_stage_and_padding_semantic_differences']==[] and transition['only_record_stat_fields_changed'] is True,'root adopted fresh8db8/0644 baseline')
++    cache_requirement=json.loads(bound(p['root_cache_requirement'])); need(cache_requirement['baseline_index_SHA256']==p['website_index']['SHA256'] and cache_requirement['extension_region_SHA256']==p['baseline_extension']['SHA256'] and cache_requirement['sole_extension']=='TREE' and cache_requirement['shared_index_write_by_this_check'] is False,'actual root TREE-only derived-cache correction bound')
+     publication=json.loads(bound(p['old_publication']))
+-    need(publication['website_commit']==p['website_HEAD'] and publication['website_tree']==p['website_tree'] and publication['hosting_version']==p['old_hosting_version'],'prior exact hosting context')
++    need(publication['website_commit']==p['website_HEAD'] and publication['tree']==p['website_tree'] and publication['hosting_version']==p['old_hosting_version'],'prior exact hosting context')
+     new_dirs=set()
+     for name in buffers: new_dirs.update(q.as_posix() for q in Path(name[7:]).parents if q.as_posix() not in old_dirs)
+-    need(new_dirs=={'research/focal-antipedal-sum-invariant','research/supercritical-nonuniqueness-square-lattice','research/three-summand-kato-kernel-counterexample'} and len(new_dirs)==p['new_directories']==3,'only three necessary new directories')
++    need(new_dirs=={'research/odd-period-pedal-antipedal-area-product','research/outer-focal-inversion-area-product','research/boolean-cube-polynomial-compatibility','research/fixed-city-quantitative-persistence'} and len(new_dirs)==p['new_directories']==4,'only four necessary new directories')
+     return p,buffers,old_files,old_dirs,new_dirs
+ 
+ def math_fence(p):
+     b=read(M/'.git/index'); need(pin(b)=={k:p['Math_index'][k] for k in ('bytes','SHA256')} and mode(M/'.git/index')==p['Math_index']['mode'],'Math shared index exact')
++    need(pin(read(M/'.git/config'))==p['Math_config'] and mode(M/'.git/config')==0o644,'Math config exact')
+     need(sha(read(M/'.git/HEAD'))==p['Math_HEAD_file_SHA256'] and git('rev-parse','HEAD',cwd=M).strip().decode()==p['Math_HEAD'],'Math localHEAD unchanged')
+ 
+ def public_fence(p,buffers,old_files,old_dirs,new_dirs,installed):
+@@ -184,9 +191,10 @@
+         end=b.index(b'\0',pos+62); name=b[pos+62:end]; pos=start+((end+1-start+7)//8)*8
+         need(name and (previous is None or previous<name) and not any(b[end+1:pos]) and flags&0xfff==min(len(name),0xfff),'sorted unique whole raw record')
+         result[name]=(b[start:pos],b[start+24:start+28],b[start+40:start+60]); previous=name
++    extension_start=pos
+     while pos<len(b)-20:
+         kind,size=b[pos:pos+4],struct.unpack('>I',b[pos+4:pos+8])[0]; need(kind==b'TREE' and pos+8+size<=len(b)-20,'only cache-tree extension'); pos+=8+size
+-    need(pos==len(b)-20,'whole index extent'); return result
++    need(pos==len(b)-20,'whole index extent'); return result,b[extension_start:-20]
+ 
+ def preflight(required=None,owned_index_lock=None):
+     p,buffers,old_files,old_dirs,new_dirs=contract(); math_fence(p)
+@@ -195,21 +203,22 @@
+     need(pin(read(W/'.git/config'))==p['website_config'] and mode(W/'.git/config')==0o644,'same local origin/config')
+     route=routing(p)
+     need(sha(read(W/'firebase.json'))==p['firebase_config_SHA256'] and mode(W/'firebase.json')==0o644,'unchanged hosting config')
+-    old=read(W/'.git/index'); need(pin(old)=={k:p['website_index'][k] for k in ('bytes','SHA256')} and mode(W/'.git/index')==0o600,'exact Windex0600')
+-    er=entries(old); targets={n.encode() for n in buffers}; replacements={n.encode() for n in p['replacement_paths']}
+-    need(len(er)==58639 and set(er)&targets==replacements and len(replacements)==2 and len(targets-set(er))==12 and len(set(er)-targets)==58637,'original index2M/12A scope and58637protected records')
++    old=read(W/'.git/index'); need(pin(old)=={k:p['website_index'][k] for k in ('bytes','SHA256')} and mode(W/'.git/index')==0o644,'exact fresh Windex0644')
++    er,extension=entries(old); need(pin(extension)=={k:p['baseline_extension'][k] for k in ('bytes','SHA256')} and len(old)-20-len(extension)==p['baseline_extension']['offset'],'exact baseline TREE extension')
++    targets={n.encode() for n in buffers}; replacements={n.encode() for n in p['replacement_paths']}
++    need(len(er)==58651 and set(er)&targets==replacements and len(replacements)==2 and len(targets-set(er))==16 and len(set(er)-targets)==58649,'original index2M/16A scope and58649protected records')
+     lock=W/'.git/index.lock'
+     need(not os.path.lexists(lock) if owned_index_lock is None else inode(lock.lstat())==owned_index_lock,'exclusive Git index lock state')
+     installed=all((W/n).is_file() and pin(read(W/n))==pin(b) for n,b in buffers.items())
+     actual,counts=public_fence(p,buffers,old_files,old_dirs,new_dirs,installed)
+     if required is not None: need(installed==required,'required installed/preinstall phase')
+     identities={n:[*inode((W/n).lstat()),(W/n).lstat().st_mtime_ns,(W/n).lstat().st_ctime_ns] for n in p['replacement_paths']}
+-    state={'installed':installed,'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_three.py')),'adoption':p['root_adoption'],'public':actual,'counts':counts,'W_HEAD':p['website_HEAD'],'W_tree':p['website_tree'],'W_index':pin(old),'Math_HEAD':p['Math_HEAD'],'Math_index':p['Math_index'],'routing':route,'aggregate_identities':identities,'scope':[(n,pin(b)) for n,b in sorted(buffers.items())]}
++    state={'installed':installed,'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_four.py')),'adoption':p['root_adoption'],'public':actual,'counts':counts,'W_HEAD':p['website_HEAD'],'W_tree':p['website_tree'],'W_index':pin(old),'Math_HEAD':p['Math_HEAD'],'Math_index':p['Math_index'],'routing':route,'aggregate_identities':identities,'scope':[(n,pin(b)) for n,b in sorted(buffers.items())]}
+     return p,buffers,old_files,old_dirs,new_dirs,old,sha(packed(state)),state
+ 
+ def authorization(kind,fp,p):
+     path=N/p['authorization_paths'][kind]; raw=read(path); a=json.loads(raw)
+-    fixed={'schema':'focal-kato-supercritical-root-authorization-v1','action':'INSTALL_EXACT14_FILESYSTEM' if kind=='install' else 'PUBLISH_EXACT14_GIT','plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_three.py')),'root_adoption':p['root_adoption'],'preflight_SHA256':fp,'scope_paths':p['scope_paths'],'concurrency':'ROOT_SERIALIZED_NO_OTHER_W_WRITER','old_lock_disposition':p['lock_disposition'],'deployment_authorized':False,'Sheet_authorized':False,'AA':None,'follow_up':None}
++    fixed={'schema':'odd-areas-boolean-city-root-authorization-v1','action':'INSTALL_EXACT18_FILESYSTEM' if kind=='install' else 'PUBLISH_EXACT18_GIT','plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_four.py')),'root_adoption':p['root_adoption'],'preflight_SHA256':fp,'scope_paths':p['scope_paths'],'concurrency':'ROOT_SERIALIZED_NO_OTHER_W_WRITER','old_lock_disposition':p['lock_disposition'],'deployment_authorized':False,'Sheet_authorized':False,'AA':None,'follow_up':None}
+     extras={'expires_UTC'} if kind=='install' else {'expires_UTC','author_name','author_email','commit_date','installation_SUCCESS'}
+     need(set(a)==set(fixed)|extras and all(a[k]==v for k,v in fixed.items()),'exact separate root '+kind+' authorization')
+     expiry=datetime.datetime.fromisoformat(a['expires_UTC']); need(expiry.utcoffset() is not None and utc()<expiry,'unexpired timezone-qualified authority')
+@@ -218,14 +227,14 @@
+         need(datetime.datetime.fromisoformat(a['commit_date']).utcoffset() is not None,'timezone-qualified commit date')
+         success=json.loads(bound(a['installation_SUCCESS'])); success_path=Path(a['installation_SUCCESS']['path'])
+         need(success_path.is_relative_to(N/'transactions') and success_path.name=='SUCCESS.json','current effort install receipt')
+-        need(success['status']=='FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT' and success['counts']==[711,114,115] and success['plan_SHA256']==PLAN_SHA,'completed exact new installation')
++        need(success['status']=='FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT' and success['counts']==[727,118,119] and success['plan_SHA256']==PLAN_SHA,'completed exact new installation')
+     return path,raw,a,expiry
+ 
+ def transaction(kind,auth_raw):
+     global LOG
+     safe(N); need(W.stat().st_dev==N.stat().st_dev,'same filesystem')
+     lock=N/('ACTIVE_INSTALL.lock' if kind=='install' else 'ACTIVE_GIT.lock')
+-    body=packed({'protocol':'focal-kato-supercritical-'+kind+'-v1','authorization_SHA256':sha(auth_raw),'PID':os.getpid()}); new_file(lock,body)
++    body=packed({'protocol':'odd-areas-boolean-city-'+kind+'-v1','authorization_SHA256':sha(auth_raw),'PID':os.getpid()}); new_file(lock,body)
+     lock_fd=os.open(lock,os.O_RDONLY|os.O_NOFOLLOW); owner=inode(os.fstat(lock_fd))
+     parent=N/('transactions' if kind=='install' else 'git-transactions')
+     if not os.path.lexists(parent): parent.mkdir(mode=0o700); sync_dir(N)
+@@ -242,7 +251,7 @@
+     libc=ctypes.CDLL('/usr/lib/libSystem.B.dylib',use_errno=True); rename=libc.renameatx_np
+     rename.argtypes=[ctypes.c_int,ctypes.c_char_p,ctypes.c_int,ctypes.c_char_p,ctypes.c_uint]; rename.restype=ctypes.c_int
+     def current():
+-        check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_three.py'))==a['helper_SHA256'],'same current installation authority/code')
++        check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_four.py'))==a['helper_SHA256'],'same current installation authority/code')
+     try:
+         staged=t/'staged'; backups=t/'backups'; staged.mkdir(mode=0o700); backups.mkdir(mode=0o700); sync_dir(t)
+         order=sorted(set(buffers)-set(p['replacement_paths']))+p['replacement_paths']; originals={}; prepared={}
+@@ -259,9 +268,10 @@
+                 if not os.path.lexists(parent): parent.mkdir(mode=0o700); sync_dir(parent.parent)
+                 safe(parent); need(stat.S_ISDIR(parent.lstat().st_mode) and mode(parent)==0o700,'ordinary private relative backup directory')
+             new_file(backups/n,b,0o644)
+-        absent=sorted(set(buffers)-set(p['replacement_paths'])); need(len(absent)==12 and all(not os.path.lexists(W/n) for n in absent),'twelve original target absences')
++        absent=sorted(set(buffers)-set(p['replacement_paths'])); need(len(absent)==16 and all(not os.path.lexists(W/n) for n in absent),'sixteen original target absences')
+         new_file(t/'new-targets.before.json',packed({n:'ABSENT' for n in absent}))
+-        sync_dir(staged); sync_dir(backups); sync_dir(t); event('ALL14_BUFFERS_2_RELATIVE_BACKUPS_12_ABSENCES_DURABLE_BEFORE_W_WRITE')
++        new_file(t/'rollback.before.json',packed({'original_replacements':{n:old_files[n[7:]] for n in p['replacement_paths']},'original_new_target_state':{n:'ABSENT' for n in absent},'original_new_directories':{n:'ABSENT' for n in sorted(new_dirs)},'original_index':pin(old),'recovery':'STOP_AND_ROOT_REVIEW_NO_AUTOMATIC_ROLLBACK_OR_RETRY'}))
++        sync_dir(staged); sync_dir(backups); sync_dir(t); event('ALL18_BUFFERS_2_RELATIVE_BACKUPS_16_ABSENCES_ROLLBACK_INPUTS_DURABLE_BEFORE_W_WRITE')
+         current(); need(preflight(False)[6]==fp,'full authorization fence after durable staging before W writes')
+         root_fd=os.open(W,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW); opened.append(root_fd)
+         stage_fd=os.open(staged,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW); opened.append(stage_fd)
+@@ -297,8 +307,8 @@
+             finally:
+                 for fd in reversed(fds): os.close(fd)
+         current(); verified=preflight(True); need(verified[5]==old,'Git index unchanged after filesystem install')
+-        need(not list(staged.iterdir()) and {f.relative_to(backups).as_posix() for f in backups.rglob('*') if f.is_file()}==set(p['replacement_paths']),'complete14 staged/two relative-backup extent')
+-        result={'status':'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT','counts':[711,114,115],'plan_SHA256':PLAN_SHA,'authorization_SHA256':sha(auth_raw),'helper_SHA256':sha(read(N/'release_three.py')),'targets':sorted(buffers),'W_index_unchanged':True,'Math_HEAD_index_unchanged':True,'Git_deploy_Sheet_actions':False,'transaction':str(t),'new_lock_retained':True,'old_completed_lock_untouched':True}
++        need(not list(staged.iterdir()) and {f.relative_to(backups).as_posix() for f in backups.rglob('*') if f.is_file()}==set(p['replacement_paths']),'complete18 staged/two relative-backup extent')
++        result={'status':'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT','counts':[727,118,119],'plan_SHA256':PLAN_SHA,'authorization_SHA256':sha(auth_raw),'helper_SHA256':sha(read(N/'release_four.py')),'targets':sorted(buffers),'W_index_unchanged':True,'Math_HEAD_index_unchanged':True,'Git_deploy_Sheet_actions':False,'transaction':str(t),'new_lock_retained':True,'old_completed_lock_untouched':True}
+         new_file(t/'SUCCESS.json',packed(result)); event('FILESYSTEM_SUCCESS',**result); return result
+     except BaseException as error:
+         event('STOPPED_PARTIAL_STATE_PRESERVED',error=repr(error),completed_targets=completed,created_directories=made,automatic_rollback=False); raise
+@@ -316,7 +326,7 @@
+     p,buffers,old_files,old_dirs,new_dirs,old,fp,state=snapshot; need(state['installed'],'publish requires installed phase')
+     path,auth_raw,a,expiry=authorization('Git',fp,p); t,check,lock_fd=transaction('Git',auth_raw); native_owner=None; ref_attempted=False
+     def current():
+-        check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_three.py'))==a['helper_SHA256'],'same current Git authority/code')
++        check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_four.py'))==a['helper_SHA256'],'same current Git authority/code')
+     try:
+         current(); routing(p,state['routing']); current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(p['website_HEAD']+'\t'+p['branch']+'\n').encode(),'remote parent exact')
+         native=t/'native-successor.index'; commit_index=t/'commit.index'; new_file(t/'shared-index.before',old); new_file(native,old)
+@@ -325,17 +335,32 @@
+         info=b''.join(('100644 '+oids[n]+'\t'+n).encode()+b'\0' for n in sorted(buffers))
+         git('update-index','--add','-z','--index-info',data=info,index=native)
+         git('read-tree',p['website_tree'],index=commit_index); git('update-index','--add','-z','--index-info',data=info,index=commit_index)
+-        tree=git('write-tree',index=commit_index).strip().decode(); staged=read(native); before,after=entries(old),entries(staged); targets={n.encode() for n in buffers}
+-        need(len(after)==58651 and set(after)==set(before)|targets and sum(n not in targets for n in before)==58637,'exact58651/58637raw scope')
+-        need(all(after[n]==record for n,record in before.items() if n not in targets),'all58637untargeted full raw records exact')
+-        need(all(after[n.encode()][1:]==(struct.pack('>I',0o100644),bytes.fromhex(oids[n])) for n in buffers),'all14index blob/mode targets')
++        tree=git('write-tree',index=commit_index).strip().decode(); staged=read(native); before,before_extension=entries(old); after,after_extension=entries(staged); targets={n.encode() for n in buffers}
++        need(len(after)==58667 and set(after)==set(before)|targets and sum(n not in targets for n in before)==58649,'exact58667/58649 raw scope')
++        need(all(after[n]==record for n,record in before.items() if n not in targets),'all58649untargeted full raw records exact')
++        need(all(after[n.encode()][1:]==(struct.pack('>I',0o100644),bytes.fromhex(oids[n])) for n in buffers),'all18index blob/mode targets')
++        def record_tree(records):
++            result={}
++            for name,record in records.items():
++                bits=struct.unpack('>I',record[1])[0]; need(bits in (0o100644,0o100755,0o120000,0o160000),'ordinary index tree mode')
++                result[name]=(format(bits,'06o')+' '+('commit' if bits==0o160000 else 'blob')+' '+record[2].hex()).encode()
++            return result
++        before_check=t/'before-semantic.index'; after_check=t/'after-semantic.index'
++        new_file(before_check,old); new_file(after_check,staged)
++        native_before=tree_entries(git('write-tree',index=before_check).strip().decode())
++        native_tree=git('write-tree',index=after_check).strip().decode(); native_after=tree_entries(native_tree)
++        need(native_before==record_tree(before) and native_after==record_tree(after),'isolated Git trees equal all raw index path/OID/mode semantics; derived TREE may invalidate/rebuild/drop')
++        need(read(native)==staged and read(W/'.git/index')==old,'semantic cache rebuilds confined to separate private checking indices')
++        event('NATIVE_SEMANTICS_VERIFIED',native_successor_tree=native_tree,TREE_extension_before=pin(before_extension),TREE_extension_after=pin(after_extension),TREE_extension_changed=before_extension!=after_extension)
+         bt,at=tree_entries(p['website_tree']),tree_entries(tree)
+-        need(set(at)==set(bt)|targets and all(at[n]==record for n,record in bt.items() if n not in targets),'all untargeted HEAD tree records exact plus twelve additions')
+-        delta=git('diff-tree','--raw','-r','--no-commit-id','--no-abbrev','--no-renames','--no-ext-diff','-z',p['website_tree'],tree).split(b'\0'); need(delta.pop()==b'' and len(delta)==28,'exact14tree delta')
+-        need({delta[i+1] for i in range(0,28,2)}==targets,'only fixed14paths in commit')
+-        need(all(delta[i].split()[1]==b'100644' and delta[i].split()[3].decode()==oids[delta[i+1].decode()] for i in range(0,28,2)),'all commit bytes/modes')
+-        need(all(delta[i].split()[4]==(b'M' if delta[i+1].decode() in p['replacement_paths'] else b'A') for i in range(0,28,2)),'exact12A2M; no unrelated additions/deletions')
+-        current(); lock=W/'.git/index.lock'; fd=os.open(lock,os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600); os.fchmod(fd,0o600); native_owner=inode(os.fstat(fd))
++        foreign=lambda native,head:{n:(native.get(n),head.get(n)) for n in (set(native)|set(head))-targets if native.get(n)!=head.get(n)}
++        need(foreign(native_before,bt)==foreign(native_after,at),'all foreign staging differences preserved against successor commit')
++        need(set(at)==set(bt)|targets and all(at[n]==record for n,record in bt.items() if n not in targets),'all untargeted HEAD tree records exact plus sixteen additions')
++        delta=git('diff-tree','--raw','-r','--no-commit-id','--no-abbrev','--no-renames','--no-ext-diff','-z',p['website_tree'],tree).split(b'\0'); need(delta.pop()==b'' and len(delta)==36,'exact18tree delta')
++        need({delta[i+1] for i in range(0,36,2)}==targets,'only fixed18paths in commit')
++        need(all(delta[i].split()[1]==b'100644' and delta[i].split()[3].decode()==oids[delta[i+1].decode()] for i in range(0,36,2)),'all commit bytes/modes')
++        need(all(delta[i].split()[4]==(b'M' if delta[i+1].decode() in p['replacement_paths'] else b'A') for i in range(0,36,2)),'exact16A2M; no unrelated additions/deletions')
++        current(); lock=W/'.git/index.lock'; fd=os.open(lock,os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600); os.fchmod(fd,0o644); native_owner=inode(os.fstat(fd))
+         try: write_all(fd,staged); os.fsync(fd); need(held(fd)==staged,'whole durable index successor')
+         finally: os.close(fd)
+         sync_dir(W/'.git'); event('SHARED_INDEX_LOCKED_DURABLE',owner=native_owner)
+@@ -344,27 +369,32 @@
+         commit=git('commit-tree',tree,'-p',p['website_HEAD'],data=(p['commit_message']+'\n').encode(),identity=identity).strip().decode(); event('COMMIT_OBJECT',commit=commit,tree=tree)
+         current(); need(git('rev-parse','HEAD').strip().decode()==p['website_HEAD'] and read(W/'.git/index')==old,'final CAS/index old state'); math_fence(p)
+         event('CAS_REF_INTENT',commit=commit); ref_attempted=True; git('update-ref',p['branch'],commit,p['website_HEAD']); event('CAS_REF_COMPLETE',commit=commit)
+-        need(inode(lock.lstat())==native_owner and read(lock)==staged and mode(lock)==0o600,'own durable index lock before replacement')
++        need(inode(lock.lstat())==native_owner and read(lock)==staged and mode(lock)==0o644,'own durable index lock before replacement')
+         os.replace(lock,W/'.git/index'); sync_dir(W/'.git'); event('INDEX_ATOMIC_REPLACEMENT_COMPLETE',SHA256=sha(staged))
+         def final_local():
+-            need(read(W/'.git/index')==staged and mode(W/'.git/index')==0o600 and git('rev-parse',p['branch']).strip().decode()==commit,'exact final W ref/index')
++            need(read(W/'.git/index')==staged and mode(W/'.git/index')==0o644 and git('rev-parse',p['branch']).strip().decode()==commit,'exact final W ref/index')
++            need(entries(read(W/'.git/index'))==(after,after_extension) and tree_entries(commit)==at and all(native_after[n]==at[n] for n in targets),'postshared-index raw/staged target semantics equal new commit; foreign staging unchanged')
+             need(git('symbolic-ref','HEAD').strip().decode()==p['branch'],'existing master retained'); public_fence(p,buffers,old_files,old_dirs,new_dirs,True); math_fence(p); contract()
+         current(); final_local(); current(); routing(p,state['routing']); current(); git('push','--no-follow-tags','--recurse-submodules=no','origin',commit+':'+p['branch'])
+         current(); routing(p,state['routing']); current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(commit+'\t'+p['branch']+'\n').encode(),'remote immutable commit verified'); final_local()
+-        result={'status':'SCOPED14_COMMIT_AND_PUSH_VERIFIED','commit':commit,'tree':tree,'paths':14,'delta':'12A2M','protected_full_raw_records':58637,'successor_index_records':58651,'index_SHA256':sha(staged),'index_mode':'0600','Math_HEAD_index_unchanged':True,'deployment_or_Sheet_actions':False,'new_Git_lock_retained':True,'old_completed_lock_untouched':True}
++        result={'status':'SCOPED18_COMMIT_AND_PUSH_VERIFIED','commit':commit,'tree':tree,'paths':18,'delta':'16A2M','protected_full_raw_records':58649,'successor_index_records':58667,'index_SHA256':sha(staged),'index_mode':'0644','native_successor_semantic_tree':native_tree,'TREE_extension_before':pin(before_extension),'TREE_extension_after':pin(after_extension),'TREE_extension_changed':before_extension!=after_extension,'foreign_staging_semantics_preserved':True,'Math_HEAD_index_unchanged':True,'deployment_or_Sheet_actions':False,'new_Git_lock_retained':True,'old_completed_lock_untouched':True}
+         new_file(t/'SUCCESS.json',packed(result)); event('GIT_SUCCESS',**result); return result
+     except BaseException as error:
+         event('STOPPED_GIT_STATE_PRESERVED',error=repr(error),CAS_attempted=ref_attempted,index_lock_owner=native_owner,automatic_rollback=False); raise
+     finally: os.close(lock_fd)
+ 
+ def main():
+-    need(sys.argv[1:] in [[],['--verify-installed'],['--install'],['--publish']],'four explicit finite modes only')
+-    snapshot=preflight(True if sys.argv[1:]==['--verify-installed'] else None)
+-    if sys.argv[1:]==['--install']: result=install(snapshot)
+-    elif sys.argv[1:]==['--publish']: result=publish(snapshot)
++    args=sys.argv[1:]
++    need(args in [[],['--preflight'],['--verify-installed'],['--install'],['--publish']],'literal default or four explicit finite modes only')
++    if not args:
++        print(json.dumps({'status':'NO_ACTION_EXPLICIT_MODE_REQUIRED','writes':0,'repository_reads':0,'remote_calls':0,'authority_inferred':False}))
++        return
++    snapshot=preflight(True if args==['--verify-installed'] else None)
++    if args==['--install']: result=install(snapshot)
++    elif args==['--publish']: result=publish(snapshot)
+     else:
+         p,buffers,old_files,old_dirs,new_dirs,old,fp,state=snapshot
+-        result={'status':'READONLY_INSTALLED_PREFLIGHT_PASS' if state['installed'] else 'READONLY_PREINSTALL_PREFLIGHT_PASS','preflight_SHA256':fp,'helper_SHA256':sha(read(N/'release_three.py')),'plan_SHA256':PLAN_SHA,'counts':state['counts'],'fixed_paths':sorted(buffers),'new_leaves':12,'replacements':2,'protected_raw_records':58637,'successor_raw_records':58651,'W_HEAD':p['website_HEAD'],'Math_HEAD':p['Math_HEAD'],'routing':state['routing'],'old_completed_lock_retained':True,'remote_checked':False,'writes':0,'publication_authority_inferred':False}
++        result={'status':'READONLY_INSTALLED_PREFLIGHT_PASS' if state['installed'] else 'READONLY_PREINSTALL_PREFLIGHT_PASS','preflight_SHA256':fp,'helper_SHA256':sha(read(N/'release_four.py')),'plan_SHA256':PLAN_SHA,'counts':state['counts'],'fixed_paths':sorted(buffers),'new_leaves':16,'replacements':2,'protected_raw_records':58649,'successor_raw_records':58667,'W_HEAD':p['website_HEAD'],'Math_HEAD':p['Math_HEAD'],'routing':state['routing'],'baseline_TREE_extension':p['baseline_extension'],'TREE_change_policy':p['extension_policy'],'old_completed_lock_retained':True,'remote_checked':False,'writes':0,'publication_authority_inferred':False}
+     print(json.dumps(result,sort_keys=True))
+ 
+ if __name__=='__main__':
