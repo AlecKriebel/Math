@@ -1,0 +1,245 @@
+              A supercritical nonuniqueness example on a graph
+                   roughly isometric to the square lattice
+                                                Alec Kriebel
+                                          Independent researcher
+                                        ORCID 0009-0001-9320-500X
+
+                                    22 October 2026         Version 1.0.0
+
+
+                                                   Abstract
+         We give an explicit deterministic graph of maximum degree four, roughly isometric to the
+     square lattice, on which iid bond percolation has at least two inﬁnite clusters with probability
+     greater than one third at parameter 19/20, while its critical probability is at most 9/10. Edges
+     internal to two opposite quadrants are retained; every other lattice edge is replaced by a path of
+     length 100. Elementary dual parity and all-distance path bounds prove the assertions without a
+     lattice threshold formula or a transitivity assumption. The example refutes the explicitly declared
+     all-supercritical interpretation of Benjamini’s 2013 Problem 9.6. The original question omits its
+     probability quantiﬁer; no unique author intent, exclusive priority, or current open status is asserted.
+
+
+1    Statement and the source question
+All graphs here are countable, simple, undirected and connected, with graph distance. In Bernoulli
+bond percolation every edge is independently retained with the same probability p. Write N∞ for the
+number of inﬁnite open components and
+
+                                    pc (G, o) = inf{p : Pp (o ↔ ∞) > 0}.
+
+For a connected graph, positive survival at one vertex implies positive survival at every vertex at the
+same p > 0: force open a ﬁxed ﬁnite connecting path. Indeed, conditioning those ﬁnitely many bonds
+to be open can only increase any increasing event, by coupling the other bonds identically. Hence
+Pp (o ↔ ∞) ≥ p|F | Pp (v ↔ ∞) for such a path F from o to v. We may therefore write pc (G).
+    We use precisely the multiplicative-plus-additive rough-isometry convention of [1, Deﬁnition 1.25,
+manuscript p. 9]: a map f : V (G) → V (H) and a constant C > 0 satisfy
+
+                      C −1 dH (f (x), f (y)) − C ≤ dG (x, y) ≤ CdH (f (x), f (y)) + C,
+
+and every vertex of H is at distance strictly less than C from the range.
+    Problem 9.6 of the 30 October 2013 author manuscript [1, p. 64] asks for uniqueness on bounded-
+degree graphs roughly isometric to Zd . Its sentence supplies no p-quantiﬁer. The chapter’s preceding
+page explicitly discusses p > pc , while transitivity is a separate hypothesis of nearby theorems. We
+address the following declared interpretation: for every such graph and every ﬁxed pc (G) < p ≤ 1,
+Pp (N∞ = 1) = 1. A negative example in dimension two refutes this interpretation. It does not refute
+a weaker assertion of uniqueness only suﬃciently near one, determine the author’s unexpressed intent,
+or require a simultaneous assertion for all p in one coupling.
+
+
+
+                                                       1
+Theorem 1. There is a deterministic graph G of maximum degree four, roughly isometric to Z2 with
+C = 100, such that
+                                  9  19                              2200741829  1
+                      pc (G) ≤      < ,          P19/20 (N∞ ≥ 2) >              > .
+                                 10  20                              6461571200  3
+At p = 9/10 every vertex has positive probability of an inﬁnite open cluster.
+
+
+2    The graph and the exact coarse model
+In the nearest-neighbor square lattice let
+
+                   A = {(x, y) : x ≥ 1, y ≥ 1},           B = {(x, y) : x ≤ −1, y ≤ −1}.
+
+Call edges internal to A or internal to B strong; all others are weak. Keep each strong edge, and
+replace every weak edge by a path of exactly 100 edges with 99 new internal vertices private to that
+path. There are no other edges. Original vertices have degree four; new vertices have degree two. The
+resulting graph is inﬁnite, countable, connected, simple and deterministic. The subdivision bound is
+global, not a length growing with location.
+    Fix original vertices under f : G → Z2 , and send an internal path vertex to its nearer orig-
+inal endpoint, choosing ties consistently. Adjacent vertices have equal or neighboring images, so
+dZ2 (f (x), f (y)) ≤ dG (x, y). Each vertex is within 50 actual edges of its image, and a lattice geodesic
+between original vertices expands to a path at most 100 times as long. Thus, for all vertices,
+
+                        dZ2 (f (x), f (y)) ≤ dG (x, y) ≤ 100dZ2 (f (x), f (y)) + 100.
+
+Surjectivity of f supplies the strict 100-net condition. These inequalities imply the displayed source
+convention with the single constant 100, including for chain midpoints.
+     At actual bond parameter p, declare a coarse strong edge open when its single bond is open,
+and a coarse weak edge open when all its 100 bonds are open. Coarse states are independent with
+probabilities p and q = p100 , respectively: their actual bond sets are disjoint. Sharing endpoints creates
+no dependence in a bond model. This familiar series reduction is used, for example, in [7, Section 2];
+it is not a new probabilistic mechanism.
+     Actual and coarse connectivity of original vertices agree. A simple actual path between originals
+must traverse every chain it enters completely, since its internal vertices have degree two. Conversely,
+expand open coarse edges. An actual component containing no original lies inside one ﬁnite chain. A
+component containing ﬁnitely many originals lies in those vertices and their ﬁnitely many incident ﬁnite
+chains, and is ﬁnite. Hence every inﬁnite component contains inﬁnitely many originals. Restriction
+to originals and expansion therefore give a bijection between actual and coarse inﬁnite components,
+even when partial chain branches are present. The inhomogeneous coarse description is exactly the
+requested homogeneous iid model on G.
+
+
+3    Survival inside a strong quadrant
+Let Q be the nearest-neighbor graph on N20 . We prove the explicit bound
+                                             (               )   143
+                                        PQ
+                                         9/10 (0, 0) ↔ ∞ ≥           .                                 (1)
+                                                                 245
+For a ﬁnite set D ⊂ N20 containing the origin, draw the dual edges crossing primal Q-edges with
+exactly one endpoint in D. Interior dual vertices are square centers (i + 1/2, j + 1/2). Boundary dual
+endpoints are (i + 1/2, −1/2) and (−1/2, j + 1/2), where i, j ≥ 0.
+
+                                                      2
+    At an interior dual vertex the degree is 0, 2 or 4, since the cyclic binary membership sequence
+around its square has an even number of changes. A bottom or left boundary vertex has degree at
+most one. On the primal bottom ray, membership starts at one and is eventually zero, so the number
+of bottom degree-one endpoints is odd. Some ﬁnite dual component consequently has an odd number
+of bottom endpoints. By the handshaking lemma it also has an odd, and hence positive, number of
+left endpoints. A simple path in that component joins a bottom endpoint (i + 1/2, −1/2) to a left
+endpoint (−1/2, j + 1/2). Boundary vertices cannot be internal because they have degree one. Its
+length m satisﬁes
+                                         m ≥ i + j + 2 ≥ 2.
+The argument allows holes, disconnected D, diagonal contacts and degree-four dual vertices; no choice
+of an outer-boundary tour is required.
+    If the open corner cluster is ﬁnite, take it as D. Every crossed primal edge is closed. For each
+length m ≥ 2 there are at most m possible bottom starts, since i ≤ m − 2. From one start there are
+at most 4 · 3m−1 self-avoiding dual paths of length m. Each eligible path crosses m distinct actual
+Q-edges, so its probability of being closed is (1 − t)m . Ineligible paths enlarge only the count; no
+probability is assigned to edges outside Q. For z = 3(1 − t) < 1, the union bound gives
+
+                                                           4 ∑          4 z 2 (2 − z)
+                        PQ
+                         t (corner cluster ﬁnite) ≤              mz m =               .             (2)
+                                                           3 m≥2        3 (1 − z)2
+                                                                       ∑
+The series identity follows by subtracting its m = 1 term from m≥1 mz m = z/(1 − z)2 . At t = 9/10,
+the last expression is 102/245, proving (1). In particular pc (G) ≤ 9/10, and the ﬁnite-path forcing
+argument gives positive survival at every actual vertex. Coupling edge states by common independent
+uniforms makes quadrant survival increasing in p. Thus at p = 19/20 the events SA , SB that the
+respective corners (1, 1), (−1, −1) survive using only their internal strong edges each have probability
+at least 143/245. This uses monotonicity of survival, not monotonicity of uniqueness.
+
+
+4    A bound on every weak connection
+Fix p = 19/20 and put q = p100 , r = 3q. If an open coarse path connects A to B, stop at its ﬁrst B
+vertex and begin at its last earlier A vertex. The retained segment has all internal vertices outside
+A ∪ B, so every edge is weak. Loop erasure preserves these properties. This handles arbitrary detours,
+distant crossings and earlier strong-edge excursions.
+    Let W denote existence of any ﬁnite self-avoiding all-weak open coarse path from A to B. Such
+a path starts at (1, n) or (n, 1), n ≥ 1, and its length m is at least its distance n + 3 to B. Double-
+counting the corner is harmless. There are at most 4 · 3m−1 candidate self-avoiding paths per start.
+Each eligible all-weak path has open probability q m ; paths containing strong edges are again used only
+to enlarge the count. For r < 1,
+                                          ∑   ∑                        8    r4
+                            Pp (W ) ≤ 2               4 · 3m−1 q m =              .                 (3)
+                                          n≥1 m≥n+3
+                                                                       3 (1 − r)2
+
+This sums every boundary start and every length. There is no ﬁnite-window cutoﬀ or assumed uniform
+closed barrier.
+    Bernoulli’s inequality gives (20/19)20 ≥ 1 + 20/19 > 2. Raising to the ﬁfth power yields q < 1/32,
+so r < 3/32. The positive series in (3) is increasing in r, whence
+
+                                                8 (3/32)4          27
+                                P19/20 (W ) <                  =        .                           (4)
+                                                3 (1 − 3/32) 2   107648
+
+                                                       3
+    The events SA , SB , W c depend respectively on the internal-A bonds, internal-B bonds and weak-
+chain bonds. These are disjoint families. Their generated sigma-ﬁelds are independent: independence
+for cylinder events extends to the sigma-ﬁelds by the monotone-class argument. All events are mea-
+surable, with survival a countable intersection of ﬁnite-distance connection events and W a countable
+union over ﬁnite paths. On SA ∩ SB ∩ W c , the two inﬁnite surviving clusters cannot lie in one actual
+component. Such a connection would supply a ﬁnite actual, hence coarse, A-to-B path and force W .
+Consequently
+                                                         (         )2
+                                                             143        107621   2200741829
+               P19/20 (N∞ ≥ 2) ≥ P(SA )P(SB )P(W c ) >                         =            .
+                                                             245        107648   6461571200
+
+Subtracting 1/3 gives 140654287/19384713600 > 0. This proves Theorem 1. The parameter is strictly
+supercritical; positive-probability nonuniqueness suﬃces to contradict almost-sure uniqueness. No 0–
+1–inﬁnity law, deterministic cluster count, transitivity, or uniqueness-monotonicity assertion is used.
+
+
+5    Related work, attribution and limits
+Bounded subdivision, series reduction, dual parity, path counting and product independence are es-
+tablished elementary tools. Benjamini and Schramm [2], Example 1 and Proposition 1, already give
+a planar example with a supercritical nonuniqueness regime. It is an enhanced binary tree roughly
+isometric to a hyperbolic sector, rather than a Euclidean lattice; its stated planar model is site per-
+colation. Their Lemma 1 concerns uniqueness suﬃciently near one. Benjamini–Kozma [3, Theorem
+1] give critical nonuniqueness on a subexponential-growth product graph, without the required lattice
+rough-isometry assertion.
+    Teixeira [4, Theorem 1.4] and Candellero–Teixeira [5, Theorem 1.8] prove high-density unique-
+ness under their respective local-isoperimetric/volume or rough-transitivity, growth, isoperimetric and
+decoupling assumptions, with site-model distinctions. Hutchcroft–Tointon [6, Theorem 1.8] give a
+high-density bond result under a uniform ﬁnite-exhaustion isoperimetric hypothesis, and their Theo-
+rem 1.10 has a separate uniform-connection premise. A threshold below one in these theorems is not
+an identiﬁcation with pc . The present example is compatible with a weaker near-one question.
+    Hilário–Sá–Sanchis–Teixeira [7, Section 2 and Remark 5] explicitly use independent coarse probabil-
+ities that are powers of p. Their full-supercritical uniqueness statement concerns an annealed random
+stretched-lattice law, using its translation invariance, ergodicity and ﬁnite energy. Those properties
+of the averaged law do not assert uniqueness for every deterministic angular stretching pattern. No
+comparison theorem is imported into the proof above.
+    The primary source question, deﬁnition, bond convention and chapter context were read in the
+pinned 30 October 2013 manuscript. The published chapter has diﬀerent pagination; byte identity
+with it is not asserted. Relevant statements of the comparison papers were read, not their complete
+proofs. Exact versions, hashes and access limits are in the source archive. Bounded primary-source,
+public-record and duplicate checks on 22 October 2026 authenticated no earlier publication of this
+exact result. This is not an exhaustive novelty, exclusive-ﬁrstness, or current-openness certiﬁcate.
+The earlier project PR1348, head 4222445, is an unpublished proof source, not an earlier published
+solution. Catalog 10000037/AMR-099-0037 is one result family. The source-question DOI is not a
+counterexample DOI.
+    The source archive supplies an exact standard-library checker for ﬁnite dual-boundary, series-
+connectivity, metric and rational-constant controls, with deliberately false mutations. These are
+supplementary diagnostics; the written argument supplies the unbounded paths, inﬁnite events and
+uniform metric quantiﬁers. We do not assert almost-sure multiplicity, exact cluster count, critical
+nonuniqueness, or a simultaneous-in-p law.
+
+
+                                                  4
+Authorship and review disclosure. AI tools were extensively used in all phases: planning, math-
+ematical exploration, proof development and reconstruction, computation, literature investigation,
+writing, editing, and adversarial veriﬁcation. Alec Kriebel is the named human author. This preprint
+is unrefereed, without conventional independent human peer review, journal acceptance, or formal
+proof-assistant certiﬁcation. Internal AI audits do not supply those certiﬁcations. Authored prose is
+CC BY 4.0; authored code is MIT licensed. Third-party bodies are cited rather than redistributed.
+
+
+References
+[1] I. Benjamini, Coarse Geometry and Randomness, Lecture Notes in Math. 2100, Springer, 2013. Author
+    manuscript, 30 October 2013, Deﬁnition 1.25 and Problem 9.6. Published chapter: doi:10.1007/978-3-319-
+    02576-6_9.
+
+[2] I. Benjamini and O. Schramm, Percolation beyond Zd , many questions and a few answers, Electron. Commun.
+    Probab. 1 (1996), 71–82. Primary PDF.
+
+[3] I. Benjamini and G. Kozma, Uniqueness of percolation on products with Z, ALEA 10 (2013), 15–25. Primary
+    PDF.
+
+[4] A. Teixeira, Percolation and local isoperimetric inequalities, Probab. Theory Relat. Fields 165 (2016), 963–
+    984. doi:10.1007/s00440-015-0653-5.
+
+[5] E. Candellero and A. Teixeira, Percolation and isoperimetry on roughly transitive graphs, Ann. Inst.
+    H. Poincaré Probab. Statist. 54 (2018), 1819–1847. doi:10.1214/17-AIHP857.
+
+[6] T. Hutchcroft and M. Tointon, Non-triviality of the phase transition for percolation on ﬁnite transitive
+    graphs, J. Eur. Math. Soc. 27 (2025), 4283–4346. doi:10.4171/JEMS/1453.
+
+[7] M. Hilário, M. Sá, R. Sanchis and A. Teixeira, Percolation on stretched lattices: a static renormalization
+    approach, Probab. Theory Relat. Fields 195 (2026), 451–496. doi:10.1007/s00440-026-01470-4.
+
+
+
+
+                                                       5
+

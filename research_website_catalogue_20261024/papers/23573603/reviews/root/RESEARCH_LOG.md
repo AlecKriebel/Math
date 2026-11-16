@@ -1,0 +1,2 @@
+2026-11-16T13:15:49.226738+00:00 — Full5PDF/323TeX/fresh5rasters and eight exact independent mechanism/edge-case checks completed before current findings; source-first INITIAL frozen45%, exact inline arithmetic1/native0. Primary/peer/custody comparisons pending, no clearance.
+2026-11-16T13:34:47.382422+00:00 — Full original scientific PASS100% after actual proof/primary/currentpeer/source/native-output comparisons; no repair/narrowing/follow-up. Native0 root/1 currentadversary; own exactarithmetic1. Native151AB/AD transition pending.
