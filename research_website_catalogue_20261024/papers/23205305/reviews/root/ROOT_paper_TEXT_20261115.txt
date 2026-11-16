@@ -1,0 +1,293 @@
+    Rational-point undecidability for smooth projective varieties
+                     over the rational numbers
+                                             Alec Kriebel
+                                   ORCID: 0009-0001-9320-500X
+
+                                          October 6, 2026
+
+
+                                               Abstract
+          Combining OpenAI’s negative solution of rational Hilbert’s tenth problem with Poo-
+      nen’s established eﬀective transfer, we obtain undecidability of rational-point existence
+      for arbitrary smooth projective geometrically integral varieties over Q. We specify a
+      homogeneous-equation input promise and reconstruct the terminating contradiction al-
+      gorithm. There is also no computable uniform bound on the height of one rational point
+      in terms of the size of the presented equations. The arithmetic input is used with two
+      explicit corrections documented here and in the accompanying veriﬁcation supplement.
+      This is a geometric consequence of that input; neither the geometric reduction nor the
+      base undecidability theorem is claimed as a new independent solution.
+
+
+1     Inputs and precise scope
+Let H10(Q) denote the decision problem with input an integer n ≥ 0 and a polynomial
+f ∈ Z[x1 , . . . , xn ], asking whether f (a) = 0 for some a ∈ Qn . The number of variables is
+part of the input. Constants, including f = 0, are allowed.
+    A projective presentation e consists of an integer N ≥ 0 and a ﬁnite list of homogeneous
+integer polynomials F1 , . . . , Fr in x0 , . . . , xN . It speciﬁes
+                                         (                                 )
+                            Xe = Proj Q[x0 , . . . , xN ]/(F1 , . . . , Fr ) .
+Deﬁne SPGI(Q) to ask whether Xe (Q) ̸= ∅, under the promise that Xe is smooth and
+geometrically integral. Projectivity is supplied by the presentation. Geometric integrality
+includes nonemptiness of the geometric scheme. There is no bound on N , dimension, de-
+grees, the number of equations, or coeﬃcient heights. The oracle need not terminate on a
+presentation violating its promise.
+    The geometric construction and the decision transfer below are due to Poonen [1]. His
+Remark 1.2(c) credits a prior Q-case route to R. Robinson, through Smoryński, Logical
+Number Theory I, §II.7. We do not claim a new reduction. Family 004 [2] asserts the
+arithmetic undecidability input that removes the hypothesis from this established implication.
+Section 4 speciﬁes the exact input used, its two proof corrections, and the scope of its
+source audit. The main contribution of this note is an explicit consequence with valid oracle
+queries and presentation conventions, together with the documented corrections. We make
+no assertion of ﬁrst priority for the consequence.
+
+
+2     Poonen’s eﬀective transfer and the promise
+We use the following established input from Poonen’s Theorem 1.3, specialized to Q: given
+a projective Q-variety X and an open U ⊆ X, one can algorithmically construct a regular
+
+                                                    1
+projective variety Y with a morphism π : Y → X whose image on rational points is exactly
+U (Q). The output need not be connected or geometrically integral.
+    The eﬀectivity clause matters. In Poonen’s §9, each permissible parameter c gives an
+output with πc (Yc (Q)) ⊆ U (Q). An eﬀective cardinality bound on the exceptional parameters
+allows a ﬁnite list containing a parameter for which equality holds. Taking the disjoint
+union of the outputs gives equality without identifying that good parameter. The boundary
+exclusion comes from his Châtelet-surface construction. Resolution preserves the lifts on the
+smooth ﬁbers used in the argument. These are parts of the cited eﬀective theorem, not a
+claim that naive projective closure preserves rational points.
+
+Lemma 1. If a connected smooth projective Q-scheme C has a rational point, then it is
+geometrically integral.
+
+Proof. A regular Noetherian scheme has disjoint irreducible components: at an intersection
+its local ring would have more than one minimal prime, whereas a regular local ring is
+a domain. Its ﬁnitely many components are therefore open and closed. Connectedness
+implies that C is integral. The ﬁnite algebra L = H 0 (C, OC ) is consequently a ﬁeld over
+Q. A rational point induces a Q-algebra map L → Q, forcing L = Q. Global functions
+commute with extension of the base ﬁeld here. Over Q, each smooth connected projective
+component has only constant functions and is integral. Thus the number of these components
+is dimQ L = 1. Smoothness also gives geometric reducedness, proving geometric integrality.
+This is the Q-projective instance of Poonen’s Lemma 10.1.
+
+    The component decomposition and geometric-integrality tests used below are eﬀective
+algebraic operations, as in Poonen’s proof of Theorem 1.1(i). For clarity, for a smooth projec-
+tive Y , eﬀective coherent cohomology computes the ﬁnite étale algebra H 0 (Y, OY ). Its ﬁeld
+factors give the connected components, and a connected component is geometrically inte-
+gral precisely when its global-functions ﬁeld has Q-dimension one. Projective constructions
+provide embeddings, and elimination gives homogeneous-equation presentations. Regularity
+and smoothness agree for ﬁnite-type schemes over the perfect ﬁeld Q. These conventions
+ensure that no invalid input is passed to the oracle.
+
+Theorem 2. An algorithm deciding SPGI(Q) on every valid input would decide H10(Q).
+Conversely, decidability of H10(Q) would decide SPGI(Q).
+
+Proof. For the forward implication let D be the promised decision procedure. On input f ,
+handle constant polynomials directly. Otherwise form the reduced aﬃne zero scheme U of
+f and its projective closure X, recording U as an open in X. If U is empty, return NO.
+Apply Poonen’s eﬀective theorem to obtain (Y, π). Compute the connected components
+C1 , . . . , Cs of Y and their projective presentations. Test geometric integrality and discard
+each component that fails. By Lemma 1, discarded components have no rational points.
+Every retained component is smooth, projective and geometrically integral. Query D on
+each retained presentation, and return YES if and only if some query answers YES.
+     Every preprocessing step terminates. The list of valid queries is ﬁnite, so D’s promise
+ensures termination of the whole algorithm. Correctness follows from
+
+            f (Qn ) ∋ 0 ⇐⇒ U (Q) ̸= ∅ ⇐⇒ Y (Q) ̸= ∅ ⇐⇒ ∃i : Ci (Q) ̸= ∅.
+
+The last condition is exactly the disjunction of the retained oracle answers. If there are no
+retained components it is false.
+    Conversely, on a projective presentation take the N + 1 standard aﬃne charts, setting
+xj = 1 on chart j. Their equations have a common rational zero precisely when the sum of
+their squares does, since Q is ordered. Call an H10(Q) decision procedure on these ﬁnitely
+
+                                              2
+many polynomials and take the disjunction. Every rational projective point lies in one of
+these charts, proving the reverse implication.
+
+    The forward construction yields a ﬁnite nonadaptive disjunctive oracle reduction, and
+in particular a Turing reduction. It does not establish a single-output many-one reduction
+into the promised geometrically integral class. No quantitative or dimension-preservation
+assertion is used.
+
+Corollary 3. No algorithm decides rational-point existence for every valid presentation in
+the class SPGI(Q).
+
+Proof. OpenAI’s Theorem 1.1 [2], with the proof corrections recorded in Section 4, gives un-
+decidability of H10(Q) with arbitrary input number of variables. Theorem 2 would contradict
+it if the stated algorithm existed.
+
+
+3    An explicit height consequence
+Specify a size parameter as follows. For a ≥ 0, let b(a) be its binary representation, with
+b(0) = 0, and let ℓ(a) be its length. Use the self-delimiting integer code c(a) = 1ℓ(a) 0b(a).
+Encode N , r, then the number of monomials in each polynomial. For every monomial encode
+a sign bit, c of the nonzero coeﬃcient magnitude, and c of each of its N + 1 exponents.
+Require increasing lexicographic exponent vectors and a common total degree within each
+polynomial. The zero polynomial has zero monomials. These conventions specify a uniquely
+parsable ﬁnite string e; let s(e) be its bit length. The size refers to this presentation and
+embedding, not to the isomorphism class of the abstract variety. The general connection
+between bounding the least height of a rational point and rational Hilbert’s tenth problem
+is prior work; see Skorobogatov–Sofos [5], Section 1.2.
+    For P ∈ PN (Q) choose its primitive integer coordinates (z0 , . . . , zN ) with the ﬁrst nonzero
+coordinate positive, and set H(P ) = maxj |zj |.
+
+Corollary 4. There is no total computable function B : N → N such that for every valid e
+with Xe (Q) ̸= ∅ there exists P ∈ Xe (Q) satisfying H(P ) ≤ B(s(e)).
+
+Proof. Compute M = B(s(e)). Enumerate all nonzero primitive integer vectors in
+[−M, M ]N +1 with ﬁrst nonzero coordinate positive, and evaluate the Fi exactly. Return
+YES if any vector satisﬁes every equation, and NO otherwise. The enumeration is ﬁnite. The
+hypothesized bound puts a point in the enumeration whenever one exists. This would decide
+SPGI(Q), contradicting Corollary 3. For M = 0 the enumeration is empty, consistently with
+H(P ) ≥ 1.
+
+    The proof also rules out a presentation-dependent computable bound that terminates
+on every valid input. It concerns the height of one point when points exist. It makes no
+assertion about a ﬁxed-dimensional family, ﬁnite rational-point sets, or all points on one
+variety.
+
+
+4    Arithmetic input and proof corrections
+The external arithmetic theorem used is precisely Theorem 1.1 of [2]: no algorithm decides
+the existence of a rational zero of an arbitrary integer polynomial, with the number of vari-
+ables part of the input. Its proof is not a geometric argument. A hypothetical rational
+solvability algorithm decides each ﬁnite existential polynomial test in an eﬀectively enumer-
+ated ring theory. Disequalities are replaced by inverse variables, and ﬁnite systems by sums
+
+                                                 3
+of squares. If all tests succeed, compactness gives a term-generated ring in a nonstandard
+rational ﬁeld, together with an injective additive elliptic index taking 1 to 1. Pole parity
+and a ﬁve-point height estimate bound the distinguished indices by ordinary integers, so
+the ring’s distinguished roots are ordinary integers. An elementary diagram used to justify
+compactness is not queried by the algorithm. Dovetailing an integer-zero search with the
+ﬁnite-test search would decide integral Hilbert’s tenth problem, yielding the contradiction.
+The source-body reconstruction and exact dependency checks are included in the veriﬁcation
+supplement; ﬁnite computation alone is not this proof.
+    The pole-parity application uses only the non-CM, full rational two-torsion branch of the
+new pointwise converse [3]. For the curves
+
+                                 El :   y 2 = x(x − l)(x + 3l),
+
+with l restricted to the parameters selected by family 004’s descent, that construction gives
+dimF2 Sel2 (El /Q) = 3 and full rational two-torsion. Thus, with r = rank El (Q),
+
+                                 r + dimF2 Sha(El /Q)[2] = 1.
+
+The extra Selmer class is realized by a rational point using the converse’s ﬁniteness conclusion
+for Sha(El /Q)[2∞ ]: the alternating perfect Cassels–Tate pairing forces even dimension of
+Sha[2], yielding r = 1 and Sha[2] = 0. Low Selmer corank alone does not supply that
+ﬁniteness. Indeed, the full 2∞ -Selmer corank is at most one, since the divisible corank of
+Sha[2∞ ] is at most dimF2 Sha[2]. This is the exact hypothesis of the converse. Each El
+is ﬁxed before its internal auxiliary twists are chosen; constants may depend on El . The
+internal odd twist discriminant must not be confused with l ≡ 3 (mod 4), whose quadratic
+ﬁeld has even discriminant. No CM branch or arbitrary rational-two-torsion case is needed.
+    Two technical substitutions are made in the proofs we use:
+
+   1. For the non-CM ﬁve-point height argument of [2], use coeﬃcient primes (5, 2). Pub-
+      lished Pan modularity at 5 [4] applies without a residual-image restriction; irreducibil-
+      ity, oddness, potential semistability and distinct Hodge–Tate weights are veriﬁed from
+      the surface’s Tate module. Prime-independent traces identify the same weight-two
+      form at 2, which supplies its conductor at 5. The modular factor and isogeny-height
+      deductions then give the required power bound. The standalone height supplement
+      details every step and explicitly states its retained geometric inputs. Its ﬁve branch
+      values come from the ﬁxed discriminant-210 quotient, not arbitrary ﬁve points.
+
+   2. In the non-CM cyclotomic determinant of [3], reconcile inverse Frobenius with the
+      direct Euler convention by the universal group-ring correction below. It is integral
+      before character evaluation, has central value one, and introduces no factor of two per
+      auxiliary prime. The real-place Tate error, smoothing denominators and ﬁxed-base
+      clearing are still bounded independently of the number of auxiliary primes.
+
+The supplied component reconstructions and integration audit check their joint use: actual
+Selmer-cone maps and homotopies, outer specializations, weighted theta traces, the nonvan-
+ishing estimates, and bounded central clearing all refer to the same ﬁnite arithmetic construc-
+tions. Their precise scopes and primary-source hypotheses are recorded in the supplement.
+No applicable complete Lean formalization of this deduction is claimed.
+
+Universal Euler correction. Write Λ = Z2 [[t]], let O be the completed localization at
+(2), and let G be the ﬁnite elementary two-group in that construction. For an auxiliary
+odd prime q, let gq ∈ G mark its active character and let Zq = θq γq , where θq2 = 1 and
+
+
+                                               4
+γq is the cyclotomic group-like unit. For the local inertia-cohomology module Vh (−1), the
+determinant is Pq (Z) = 1 − (aq /q)Z + (1/q)Z 2 . Put
+                                 Pq (Zq )                   rq − 1
+                        rq =                 ,   Uq = 1 +          (1 + gq ).
+                               Zq Pq (Zq−1 )
+                                2                              2
+
+The Euler denominators are O[G]-units in the construction. The identity Pq (Z) −
+Z 2 Pq (Z −1 ) = ((q − 1)/q)(1 − Z 2 ) gives rq − 1 ∈ 2O[G]. At an unused character (gq = 1),
+Uq = rq ; at an active character (gq = −1), Uq = 1. Multiplying the inverse-convention
+                      ∏     ∏
+universal class by q γq2 q Uq therefore gives the required direct Euler factor at every
+unused prime and a unit γq2 at each active one. These latter units specialize to one at
+t = 0. For a smoothing integer c, set A±        c = c − cγc
+                                                      2     ±1 and R = A+ /(γ A− ). Since
+                                                                     c       c    c c
+             −
+Ac − γc Ac = c(c + 1)(1 − γc ), Rc is an integral unit congruent to one modulo two,
+  +
+
+with Rc (0) = 1. Starting with the inverse-convention smoothed         class z − , multiply by
+                                                                 (∏ 2 ) −raw
+            ∏ 2                               +  +                                  − −
+γc γd Rc Rd q γq Uq before dividing by Ac Ad . This equals          q γq Uq zraw /(Ac Ad ).  It
+imposes the direct smoothing convention without changing central valuations. These are
+operations on the universal class, not divisions by character idempotents. The full Kato
+normalization and determinant calculation are in the supplement.
+
+
+5    Boundaries, attribution and veriﬁcation
+Naive compactiﬁcation cannot replace the eﬀective transfer: Spec Q[x, y]/(x2 + 1) has no
+rational point, whereas its closure V (X 2 +Z 2 ) ⊆ P2 contains [0 : 1 : 0]. Resolution alone need
+not preserve point existence in the other direction: V (x2 + y 2 ) has a rational singular point
+but its normalization is A1Q(i) , which has no rational point. A morphism from a resolution
+cannot create a rational point when its target has none. The issue is losing singular points
+or retaining boundary points introduced by compactiﬁcation.
+    No conclusion for curves, surfaces, ﬁxed dimension, Fano varieties, general type, or a
+ﬁnite-point promise follows automatically. This note asserts neither a Turing degree nor
+quantitative bounds beyond the stated oracle implication. The height corollary is an elemen-
+tary computability consequence and adds no independent arithmetic input.
+    The geometric implication was already established by Poonen, with a prior rational-ﬁeld
+route credited in his Remark 1.2(c). The arithmetic breakthrough is attributed to OpenAI’s
+manuscript-speciﬁc citation. The consequence and its elementary height corollary are not
+advertised as independent solutions of rational Hilbert’s tenth problem or as a new geometric
+reduction. The accompanying priority audit records public source dates separately from
+manuscript dates and search limitations.
+
+Disclosure. AI tools were used extensively in research, drafting and adversarial veriﬁca-
+tion. Those automated reviews are not conventional human peer review. The preprint has
+not undergone conventional human peer review or refereeing at publication. The veriﬁca-
+tion package supplies source identities, checkable derivations, independent automated review
+reports and exact ﬁnite checks; it does not claim formal veriﬁcation of the full theorem.
+
+
+References
+[1] Bjorn Poonen, Existence of rational points on smooth projective varieties, J. Eur. Math.
+    Soc. 11 (2009), 529–543. doi:10.4171/JEMS/159.
+[2] OpenAI, Hilbert’s tenth problem over the rational numbers, OpenAI Math Release
+    preprint, September 24, 2026. Manuscript key:
+
+                                                 5
+   OAI:Hilberts-tenth-problem-over-the-rational-numbers-September-24-2026. Source
+   version: commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. Pinned source and
+   citation metadata.
+
+[3] OpenAI, A pointwise 2-converse for elliptic curves with rational two-torsion, OpenAI
+    Math Release preprint, September 24, 2026, same pinned commit. Pinned source and
+    citation metadata.
+
+[4] Lue Pan, The Fontaine–Mazur conjecture in the residually reducible case, J. Amer.
+    Math. Soc. 35 (2022), 1031–1169, Theorem 1.0.4, doi:10.1090/jams/991.
+
+[5] Alexei N. Skorobogatov and Efthymios Sofos, Schinzel Hypothesis on average and
+    rational points, Invent. Math. 231 (2023), 673–739, Section 1.2.
+    doi:10.1007/s00222-022-01153-6.
+
+
+
+
+                                            6
+
