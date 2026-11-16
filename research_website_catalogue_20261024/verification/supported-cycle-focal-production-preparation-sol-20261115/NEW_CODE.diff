@@ -1,0 +1,812 @@
+--- /dev/null
++++ capture_readonly.py
+@@ -0,0 +1,120 @@
++"""Finite PRE/POST read-only website/source drift guard; no production operation.
++Self-contained stdlib body for root reading before any fresh website/Git access.
++Writes only new receipts in this preparation. Never imports old/project code.
++"""
++from datetime import datetime,timezone
++import hashlib
++import json
++import os
++from pathlib import Path
++import re
++import stat
++import subprocess
++import sys
++import xml.etree.ElementTree as ET
++
++N=Path(__file__).absolute().parent
++P=N.parent.parent
++W=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
++BASE='0880af3e389248dbcd098ac275a880d93e09ea99'
++INDEX='35181f4046df6e197ba5c5c6e34c348b2b46783c0cc073a5b7f066692ba332b6'
++ROOT='408b6cb8660952c23e54f803d543eb82d3f226338371558871c76e59701cbc20'
++INITIAL='143b8dcde67b8923122c3fe133814a552a154c3c0a9ca4ea822de743e74e59a5'
++
++def need(ok,why):
++    if not ok:raise ValueError(why)
++
++def sha(b):return hashlib.sha256(b).hexdigest()
++
++def read(p):
++    need(p.resolve()==p and stat.S_ISREG(p.lstat().st_mode),'ordinary no-link input '+str(p));return p.read_bytes()
++
++def extent(root):
++    need(root.resolve()==root and stat.S_ISDIR(root.lstat().st_mode),'ordinary real root')
++    fs,ds=[],[]
++    def walk(d):
++        for e in os.scandir(d):
++            q=Path(e.path);r=q.relative_to(root).as_posix();m=q.lstat().st_mode
++            if stat.S_ISDIR(m):ds.append(r);walk(q)
++            else:need(stat.S_ISREG(m),'reject namespace link/special');fs.append(r)
++    walk(root);return sorted(fs),sorted(ds)
++
++def pin(p,r):
++    b=read(p);need(len(b)==r['bytes'] and sha(b)==r['SHA256'],'whole reference pin '+str(p));return b
++
++def new(p,b):
++    need(p.is_relative_to(N),'owned receipt only')
++    with p.open('xb') as f:need(f.write(b)==len(b),'complete owned receipt')
++
++def main():
++    need(sys.argv[1:] in [['pre'],['post']],'finite explicit read-only phase');phase=sys.argv[1]
++    need(not (N/'FINAL_SEAL.json').exists() and not (N/(phase.upper()+'_GUARD.json')).exists(),'one pre-FINAL capture per phase')
++    ib=read(N/'INITIAL_SEAL.json');need(sha(ib)==INITIAL,'fixed source-only initial');initial=json.loads(ib)
++    ob=pin(N/'INPUT_ORACLE.json',initial['INPUT_ORACLE']);oracle=json.loads(ob)
++    rb=pin(Path(oracle['root_adoption']['path']),oracle['root_adoption']);need(sha(rb)==ROOT,'actual new root408b receipt');root=json.loads(rb)
++    need(root['root_complete_current_code_and_output_adopted'] is True and root['separate_bounded_production_mechanism_preparation_authorized'] is True and root['production_installation_authorized'] is False,'root grants preparation only')
++    # All above reads are source-only. Fresh website access starts below this gate.
++    ref=next(r for r in oracle['closed_reference_packets'] if r['kind']=='old');oldroot=Path(ref['root'])
++    sb=pin(oldroot/ref['seal_name'],ref['seal']);oldseal=json.loads(sb)
++    mb=pin(oldroot/ref['manifest_name'],ref['manifest']);need(sha(mb)==oldseal['manifest']['SHA256'],'same-buffer held baseline manifest');oldmanifest=json.loads(mb)
++    baseline_path=Path(oracle['old_baseline_reference']);need(baseline_path==oldroot/'WEBSITE_BASELINE.json','fixed old baseline location')
++    baseline=json.loads(pin(baseline_path,oldmanifest['payloads']['WEBSITE_BASELINE.json']))
++    raw_reference=Path(oracle['raw_index_reference']);need(raw_reference==oldroot/'private/shared-index.before' and sha(pin(raw_reference,oldmanifest['payloads']['private/shared-index.before']))==INDEX,'held whole index reference')
++    if phase=='pre':(N/'private').mkdir()
++    receipts=[]
++    def git(*args):
++        need(args[0] in {'rev-parse','symbolic-ref','remote','ls-remote','ls-files','diff'},'read-only Git allowlist')
++        env={k:v for k,v in os.environ.items() if not k.startswith('GIT_')};env['GIT_OPTIONAL_LOCKS']='0'
++        command=['git','-c','core.fsmonitor=false','-c','core.hooksPath=/dev/null',*args]
++        try:
++            r=subprocess.run(command,cwd=W,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=30)
++            output,error,code,timedout=r.stdout,r.stderr,r.returncode,False
++        except subprocess.TimeoutExpired as exc:
++            output,error,code,timedout=exc.output or b'',exc.stderr or b'',None,True
++        rec={'ordinal':len(receipts)+1,'operation':args[0],'arguments':[a if not(a.startswith('http') or a.startswith('git@')) else '<bound explicit push destination>' for a in args],'actual_exit':code,'timed_out':timedout}
++        for name,b in [('stdout',output),('stderr',error)]:
++            old=next((x for x in baseline['actual_readonly_Git_receipts'] if x['operation']==args[0]),None)
++            alias=oldroot/old[name] if old and args[0]=='ls-files' else None
++            if len(b)>4096 and alias is not None and pin(alias,oldmanifest['payloads'][alias.relative_to(oldroot).as_posix()])==b:
++                destination=alias;byref=True
++            else:
++                destination=N/'private'/('%s-git-%02d.%s'%(phase,len(receipts)+1,name));new(destination,b);byref=False
++            rec[name]={'path':str(destination),'bytes':len(b),'SHA256':sha(b),'whole_actual_bytes_retained_by_reference':byref}
++        receipts.append(rec)
++        if code!=0 or timedout:
++            new(N/(phase.upper()+'_FAILED_GIT.json'),(json.dumps(receipts,indent=2)+'\n').encode())
++            raise ValueError('read-only Git failed; full actual streams retained; no retry')
++        return output
++    def state():
++        need(git('rev-parse','--show-toplevel').decode().strip()==str(W),'exact website repository')
++        need(git('symbolic-ref','HEAD').strip()==b'refs/heads/master','existing master branch')
++        values=git('rev-parse','HEAD','refs/heads/master','HEAD^{tree}').decode().splitlines()
++        need(values==[BASE,BASE,'41a222e824f23b5efc0acd4f5a92ea50c4572cfa'],'actual0880master/tree')
++        urls=git('remote','get-url','--push','--all','origin').splitlines();need(len(urls)==1 and sha(urls[0])==baseline['Git']['origin_push_URL_SHA256'],'one exact actual push destination')
++        remote=git('ls-remote','--refs',urls[0].decode(),'refs/heads/master');need(remote.split()==[BASE.encode(),b'refs/heads/master'],'actual remote advertised oldSHA')
++        raw=read(W/'.git/index');need(sha(raw)==INDEX and raw==read(raw_reference),'every fresh native raw index byte equals held reference')
++        need(not os.path.lexists(W/'.git/index.lock'),'no shared index lock')
++        controls={n:sha(read(W/'.git'/n)) for n in ('HEAD','refs/heads/master','config')}
++        return {'HEAD':BASE,'master':BASE,'tree':values[2],'index_SHA256':sha(raw),'index_mode':stat.S_IMODE((W/'.git/index').lstat().st_mode),'remote_advertisement':remote.decode(),'push_URL_SHA256':sha(urls[0]),'controls_SHA256':controls}
++    before=state()
++    actual=git('ls-files','--stage','-z');oldls=next(x for x in baseline['actual_readonly_Git_receipts'] if x['operation']=='ls-files')
++    need(actual==read(oldroot/oldls['stdout']),'whole native stage tuples remain exact')
++    deletions=git('diff','--cached','--name-only','--diff-filter=D','-z',BASE);need(deletions==b'','zero actual staged deletions; raw records are protected records')
++    need(extent(W/'public')==(baseline['public_namespace'],baseline['public_directories']) and len(baseline['public_namespace'])==623,'whole exact623 public namespace')
++    observed=[]
++    for r in baseline['files']:
++        b=read(Path(r['path']));need(b==pin(oldroot/r['blob'],r),'all public/config/control bodies unchanged')
++        observed.append({k:r[k] for k in ('path','bytes','SHA256','role')})
++    graph=json.loads(re.findall(rb'<script type="application/ld\+json">\s*(.*?)\s*</script>',read(W/'public/research/index.html'),re.S)[0])['mainEntity']
++    need(graph['numberOfItems']==len(graph['itemListElement'])==94 and len(ET.fromstring(read(W/'public/research/sitemap.xml')))==95,'fresh94index95XML')
++    for r in oracle['frozen_original_files']:pin(Path(r['path']),r)
++    for ns in oracle['closed_original_namespaces']:need(extent(Path(ns['path']))==(ns['files'],ns['directories']),'complete source/editorial/science/root extent')
++    for r in oracle['exact10']:
++        pin(Path(r['source']),r)
++        if r['action']=='add':need(not os.path.lexists(W/'public'/r['path']),'all eight exact new leaves absent')
++    after=state();need(before==after,'complete start/end Git/index/control/remote guard')
++    value={'UTC':datetime.now(timezone.utc).isoformat(),'status':'PASS_FRESH_EXACT10_READONLY_DRIFT_FENCE','phase':phase,'root_adoption_SHA256':ROOT,'INPUT_ORACLE_SHA256':sha(ob),'Git':after,'baseline_counts':[623,94,95],'proposed_counts':[631,96,97],'public_configs_controls':observed,'raw_index_reference':str(raw_reference),'complete_raw_records':58563,'protected_raw_records':58561,'protected_raw_SHA256':baseline['native_index']['protected_native_raw_records_SHA256'],'actual_staged_deletions':0,'actual_original_files':len(oracle['frozen_original_files']),'actual_closed_original_namespaces':len(oracle['closed_original_namespaces']),'actual_Git_receipts':receipts,'programme_HEAD_sharedindex_refs_read_or_frozen':False,'current_native_context_only':107,'production_mutation':False}
++    new(N/(phase.upper()+'_GUARD.json'),(json.dumps(value,indent=2)+'\n').encode())
++    print(json.dumps({'status':value['status'],'phase':phase,'actual_counts':[623,94,95],'public_configs_controls':len(observed),'original_files':len(oracle['frozen_original_files']),'closed_original_namespaces':len(oracle['closed_original_namespaces']),'actual_readonly_Git_commands':len(receipts),'protected_raw_records':58561,'production_mutation':False},sort_keys=True))
++
++if __name__=='__main__':main()
+--- /dev/null
++++ controls.py
+@@ -0,0 +1,121 @@
++"""Narrow new source-only controls. No Git command, website or runtime access.
++Only owned temporary FD fixtures under private/, removed before final closure.
++Runtime content/extent fixtures are in-memory and have no actual authority.
++"""
++import copy
++import json
++import os
++from pathlib import Path
++import runpy
++import tempfile
++import custody as C
++import mechanism as M
++
++RESULTS=[]
++
++def check(name,condition):
++    C.need(condition,'control '+name);RESULTS.append({'control':name,'result':'PASS'})
++
++def rejected(name,call):
++    try:call()
++    except (ValueError,FileNotFoundError) as e:RESULTS.append({'control':name,'result':'EXPECTED_REJECTION','actual_error':str(e)})
++    else:raise ValueError('expected rejection missing '+name)
++
++def native(o,oids):
++    raw=C.read(Path(o['raw_index_reference']));targets={x.encode() for x in oids}
++    old=C.parse_index(raw,targets);newraw=C.splice(raw,oids);new=C.parse_index(newraw,targets)
++    check('actual58561-protected-record-bodies-identical',old['protected']==new['protected'] and len(old['protected'])==58561)
++    check('actual58563-to58571-version2-checksum-and-only-TREE-invalidated',old['count']==58563 and new['count']==58571 and old['version']==new['version']==2 and len(old['extensions'])==1 and old['extensions'][0][0]=='TREE' and new['extensions']==[])
++    rejected('corrupt-original-index-byte',lambda:C.splice(raw[:100]+bytes([raw[100]^1])+raw[101:],oids))
++    mutated=dict(oids);mutated.pop(next(iter(mutated)));rejected('nine-path-plan-not-exact10',lambda:C.splice(raw,mutated))
++    return newraw
++
++def descriptors():
++    with tempfile.TemporaryDirectory(prefix='fd-controls-',dir=C.N/'private') as d:
++        root=Path(d);lock=root/'index.lock';index=root/'index'
++        M.exclusive(index,b'old-index');fd=os.open(lock,os.O_RDWR|os.O_CREAT|os.O_EXCL,0o600)
++        try:
++            M.write_complete(fd,M.LOCK_BODY);short_calls=[];write=os.write
++            def short(f,b):short_calls.append(len(b));return write(f,b[:7])
++            os.write=short
++            try:M.publish_buffer(b'new-validated-index'*100,index,lock,fd,0o640)
++            finally:os.write=write
++            check('short-write-loop-exercised',len(short_calls)>2)
++            check('exact-validated-buffer-installed-owned-mode-preserved',index.read_bytes()==b'new-validated-index'*100 and (index.stat().st_mode&0o777)==0o640)
++            check('distinct-index-lock-retained-through-publication-return',M.owned_entry(lock,fd) and lock.read_bytes()==M.LOCK_BODY)
++            M.validate_owned_buffer(lock,fd,M.LOCK_BODY)
++            rejected('same-FD-content-mismatch',lambda:M.validate_owned_buffer(lock,fd,b'wrong'))
++            os.write=lambda *_:0
++            try:rejected('zero-write-cannot-loop-forever',lambda:M.write_complete(fd,b'x'))
++            finally:os.write=write
++        finally:
++            try:M.unlink_owned(lock,fd)
++            finally:os.close(fd)
++        check('owned-lock-cleaned-and-owned-FD-closed',not os.path.lexists(lock))
++        foreign=root/'foreign';foreign.write_bytes(b'foreign')
++        for kind in ('symlink','foreign-inode'):
++            fd=os.open(lock,os.O_RDWR|os.O_CREAT|os.O_EXCL,0o600)
++            try:
++                lock.unlink()
++                if kind=='symlink':lock.symlink_to(foreign)
++                else:lock.write_bytes(b'foreign-entry')
++                rejected('reject-substituted-'+kind,lambda:M.unlink_owned(lock,fd))
++                check('never-unlinked-'+kind,os.path.lexists(lock) and foreign.read_bytes()==b'foreign')
++                lock.unlink()
++            finally:os.close(fd)
++        check('no-extra-sibling-after-success-or-rejection',sorted(x.name for x in root.iterdir())==['foreign','index'])
++        rejected('closed-namespace-extra-empty-directory',lambda:closed_fixture(root,True))
++        fifo=root/'fifo';os.mkfifo(fifo)
++        try:rejected('closed-namespace-reject-FIFO',lambda:C.extent(root))
++        finally:fifo.unlink()
++
++def closed_fixture(root,extra):
++    before=C.extent(root)
++    if extra:(root/'unlisted-empty').mkdir()
++    try:C.need(C.extent(root)==before,'exact declared directory set changed')
++    finally:
++        if extra:(root/'unlisted-empty').rmdir()
++
++def hook():
++    accepted=runpy.run_path(str(C.N/'hooks/pre-push'))['accepted'];commit='1'*40;url='https://fixture.invalid/exact10.git'
++    env={'EXACT10_PARENT':C.BASE,'EXACT10_COMMIT':commit,'EXACT10_URL_SHA256':C.sha(url.encode())}
++    body=(commit+' '+commit+' refs/heads/master '+C.BASE+'\n').encode()
++    check('strict-one-approved-update-actual-advertisement',accepted(['origin',url],env,body))
++    for name,b in [('wrong-actual-remote-old-SHA',body.replace(C.BASE.encode(),b'0'*40)),('extra-ref',body+body),('deletion',body.replace(commit.encode(),b'0'*40))]:check('hook-reject-'+name,not accepted(['origin',url],env,b))
++    check('hook-reject-different-destination',not accepted(['origin',url+'x'],env,body))
++
++def runtime(oids,newraw):
++    contract=json.loads(C.read(C.N/'RUNTIME_CONTRACT.json'));prep='4'*64
++    template=json.loads(C.read(C.N/'ROOT_INSTALL_AUTHORITY_TEMPLATE.json'))
++    rejected('disabled-install-template-is-not-actual-authority',lambda:C.authority(template,oids,prep,C.sha(C.encoded(contract))))
++    a=copy.deepcopy(template);a.update(template_not_root_receipt=False,production_installation_authorized=True,current_mechanism_fully_adopted=True,independent_mechanism_audit_adopted=True,independent_mechanism_audit_SHA256='3'*64,preparation_seal_SHA256=prep,expected_blob_OIDs=oids)
++    ab=C.encoded(a);authsha=C.sha(ab)
++    pending={'parent':C.BASE,'commit':'1'*40,'tree':'2'*40,'gitpaths':sorted(oids),'blob_OIDs':oids,'protected_raw_SHA256':C.PROTECTED,'commit_index_SHA256':C.sha(b'fixture-not-a-Git-index'),'approved_index_SHA256':C.sha(newraw),'root_authority_SHA256':authsha}
++    pb=C.encoded(pending)
++    approval={'schema':'root-supported-cycle-focal-commit-v1','authority':'root','template_not_root_receipt':False,'publication_authorized':True,'preparation_seal_SHA256':prep,'root_install_authority_SHA256':authsha,'pending_commit_receipt_SHA256':C.sha(pb),**{k:pending[k] for k in ('parent','commit','tree','gitpaths','approved_index_SHA256','protected_raw_SHA256')}}
++    available={'ROOT_AUTHORITY.json':ab,'GIT_LOG.json':b'[]\n','PRE_INSTALL.json':C.encoded({'parent':C.BASE,'index_SHA256':C.INDEX,'gitpaths':sorted(oids)}),'PENDING_COMMIT.json':pb,'commit.index':b'fixture-not-a-Git-index','shared-index.approved':newraw,'ROOT_COMMIT_APPROVAL.json':C.encoded(approval),'PRE_PUBLICATION.json':C.encoded({'parent':C.BASE,'commit':pending['commit'],'index_SHA256':C.INDEX}),'PUBLICATION.json':C.encoded({'commit':pending['commit'],'tree':pending['tree'],'index_SHA256':C.sha(newraw),'protected_raw_SHA256':C.PROTECTED,'remote_advertised_master':pending['commit']})}
++    read,extent=C.read,C.extent;root=C.N/'private/not-created-runtime-fixture'
++    try:
++        for phase,plan in contract['phases'].items():
++            buffers={n:available[n] for n in plan['files']}
++            s={'phase':phase,'preparation_seal_SHA256':prep,'runtime_contract_SHA256':C.sha(C.encoded(contract)),'root_authority_SHA256':authsha,'root_commit_approval_SHA256':C.sha(available['ROOT_COMMIT_APPROVAL.json']) if phase=='PUBLISHED' else None,'files':{n:C.descriptor(b) for n,b in buffers.items()}}
++            buffers['STATE.json']=C.encoded(s);actual_dirs=[]
++            C.read=lambda p:buffers[p.name]
++            C.extent=lambda p:(sorted(buffers),actual_dirs)
++            check('finite-runtime-'+phase,C.runtime(root,contract,prep,oids)['phase']==phase)
++            actual_dirs.append('unlisted-empty');rejected('runtime-reject-extra-directory-'+phase,lambda:C.runtime(root,contract,prep,oids));actual_dirs.clear()
++            buffers['anonymous-future-state']=b'x';rejected('runtime-reject-unlisted-file-'+phase,lambda:C.runtime(root,contract,prep,oids));buffers.pop('anonymous-future-state')
++            if phase=='PUBLISHED':
++                broken=json.loads(buffers['PUBLICATION.json']);broken['commit']='5'*40;buffers['PUBLICATION.json']=C.encoded(broken)
++                s['files']['PUBLICATION.json']=C.descriptor(buffers['PUBLICATION.json']);buffers['STATE.json']=C.encoded(s)
++                rejected('rehashed-runtime-wrong-published-commit',lambda:C.runtime(root,contract,prep,oids))
++    finally:C.read,C.extent=read,extent
++    check('no-runtime-files-created',not os.path.lexists(root))
++
++def main():
++    C.need(not (C.N/'FINAL_SEAL.json').exists(),'new controls only before immutable FINAL')
++    o=json.loads(C.read(C.N/'INPUT_ORACLE.json'));oids=C.oracle(o);newraw=native(o,oids)
++    descriptors();hook();runtime(oids,newraw)
++    print(json.dumps({'status':'PASS_NEW_BOUNDED_EXACT10_CONTROLS','controls':RESULTS,'count':len(RESULTS),'approved_raw_index_SHA256':C.sha(newraw),'website_Git_or_actual_runtime_access':False,'actual_production_authority':False},indent=2,sort_keys=True))
++
++if __name__=='__main__':main()
+--- /dev/null
++++ custody.py
+@@ -0,0 +1,197 @@
++"""Pure, read-only custody and exact native-index transformation. Stdlib only.
++Default: authenticate this finite preparation and pinned original namespaces.
++No project import, subprocess, network, science execution, or write occurs here.
++"""
++import hashlib
++import json
++import os
++from pathlib import Path
++import stat
++import struct
++import sys
++
++N=Path(__file__).absolute().parent
++P=N.parent.parent
++W=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
++BASE='0880af3e389248dbcd098ac275a880d93e09ea99'
++TREE='41a222e824f23b5efc0acd4f5a92ea50c4572cfa'
++INDEX='35181f4046df6e197ba5c5c6e34c348b2b46783c0cc073a5b7f066692ba332b6'
++PROTECTED='2a39a160e0c4a832d0afaa4159ef023f28b0ae0be03ee839d9926c370789b46c'
++ROOT='408b6cb8660952c23e54f803d543eb82d3f226338371558871c76e59701cbc20'
++INITIAL='143b8dcde67b8923122c3fe133814a552a154c3c0a9ca4ea822de743e74e59a5'
++RUNTIME=P/'verification/supported-cycle-focal-production-runtime-sol-20261115'
++INSTALL_AUTH=P/'verification/root-supported-cycle-focal-production-install-authority-20261115.json'
++COMMIT_AUTH=P/'verification/root-supported-cycle-focal-production-commit-approval-20261115.json'
++TERMINALS={'FINAL_SEAL.json','OWNED_MANIFEST.json'}
++CHECKS=0
++
++def need(ok,why):
++    global CHECKS
++    CHECKS+=1
++    if not ok:raise ValueError(why)
++
++def sha(b):return hashlib.sha256(b).hexdigest()
++def descriptor(b):return {'bytes':len(b),'SHA256':sha(b)}
++def encoded(x):return (json.dumps(x,indent=2,sort_keys=True)+'\n').encode()
++
++def read(p):
++    p=Path(p)
++    need(p.is_absolute() and p.resolve()==p and stat.S_ISREG(p.lstat().st_mode),'ordinary real file '+str(p))
++    return p.read_bytes()
++
++def pinned(p,r):
++    b=read(p);need(descriptor(b)=={k:r[k] for k in ('bytes','SHA256')},'whole body pin '+str(p));return b
++
++def extent(root):
++    root=Path(root);need(root.resolve()==root and stat.S_ISDIR(root.lstat().st_mode),'ordinary real directory '+str(root))
++    files,dirs=[],[]
++    def walk(d):
++        with os.scandir(d) as entries:
++            for e in entries:
++                q=Path(e.path);r=q.relative_to(root).as_posix();m=q.lstat().st_mode
++                if stat.S_ISDIR(m):dirs.append(r);walk(q)
++                else:need(stat.S_ISREG(m),'reject all links and special entries '+str(q));files.append(r)
++    walk(root);return sorted(files),sorted(dirs)
++
++def sealed_reference(r):
++    """Authenticate and parse the SAME held seal and manifest buffers."""
++    root=Path(r['root']);sb=pinned(root/r['seal_name'],r['seal']);s=json.loads(sb)
++    mb=pinned(root/r['manifest_name'],r['manifest']);m=json.loads(mb)
++    if r['kind']=='old':binding=s['manifest']['SHA256']
++    elif r['kind']=='old_audit':binding=s['MANIFEST_SHA256']
++    elif r['kind']=='v2':binding=s['manifest_SHA256']
++    else:binding=s['manifest']['SHA256']
++    need(sha(mb)==binding,'seal binds exact parsed manifest buffer')
++    rows=m.get('payloads')
++    if rows is None:rows={x['path']:{k:x[k] for k in ('bytes','SHA256')} for x in m['files']}
++    expected=sorted([*rows,r['seal_name'],r['manifest_name']])
++    need(extent(root)==(expected,r['directories']),'closed ordinary files AND exact directories '+str(root))
++    need(len(rows)==r['payload_files'],'literal payload count')
++    for name,d in rows.items():pinned(root/name,d)
++    return m
++
++def inputs():
++    ib=read(N/'INITIAL_SEAL.json');need(sha(ib)==INITIAL,'immutable source-only initial')
++    initial=json.loads(ib);ob=pinned(N/'INPUT_ORACLE.json',initial['INPUT_ORACLE']);o=json.loads(ob)
++    pinned(N/'INITIAL_EXPECTATIONS.json',initial['INITIAL_EXPECTATIONS'])
++    root=json.loads(pinned(Path(o['root_adoption']['path']),o['root_adoption']))
++    need(o['root_adoption']['SHA256']==ROOT and root['root_complete_current_code_and_output_adopted'] is True,'actual separate stage/copy adoption')
++    need(root['production_installation_authorized'] is False,'stage receipt grants no production authority')
++    for r in o['closed_reference_packets']:sealed_reference(r)
++    for r in o['frozen_original_files']:pinned(Path(r['path']),r)
++    for ns in o['closed_original_namespaces']:need(extent(Path(ns['path']))==(ns['files'],ns['directories']),'whole original namespace '+ns['path'])
++    paths=[r['path'] for r in o['exact10']]
++    need(paths==sorted(set(paths)) and len(paths)==10,'exact unique ordered10')
++    need(sum(r['action']=='add' for r in o['exact10'])==8 and {r['path'] for r in o['exact10'] if r['action']=='replace'}=={'research/index.html','research/sitemap.xml'},'eight article-root leaves/two aggregates')
++    for r in o['exact10']:pinned(Path(r['source']),r)
++    return o
++
++def oracle(o):
++    return {'public/'+r['path']:hashlib.sha1(b'blob '+str(r['bytes']).encode()+b'\0'+pinned(Path(r['source']),r)).hexdigest() for r in o['exact10']}
++
++def parse_index(raw,targets):
++    """Conservative native v2 parser; retain each complete unmodified record."""
++    need(len(raw)>=32 and raw[:4]==b'DIRC' and hashlib.sha1(raw[:-20]).digest()==raw[-20:],'native index header/checksum')
++    version,count=struct.unpack('>II',raw[4:12]);need(version==2,'native index version2 only')
++    end=len(raw)-20;pos=12;entries=[]
++    for _ in range(count):
++        start=pos;need(pos+62<=end,'complete native record header');flags=struct.unpack('>H',raw[pos+60:pos+62])[0]
++        need(flags&0xf000==0,'native stage0/no extended/assume-valid flags')
++        stop=raw.find(b'\0',pos+62,end);need(stop>=0,'native path terminator');name=raw[pos+62:stop]
++        need(name and flags&0xfff==min(len(name),0xfff),'literal native path length')
++        pos=start+((stop-start+1+7)//8)*8;need(pos<=end and not any(raw[stop:pos]),'native zero padding')
++        mode=struct.unpack('>I',raw[start+24:start+28])[0];need(mode in (0o100644,0o100755,0o120000,0o160000),'native supported mode')
++        entries.append((name,raw[start:pos],mode,raw[start+40:start+60].hex()))
++    names=[x[0] for x in entries];need(names==sorted(set(names)),'native complete unique byte ordering')
++    extensions=[]
++    while pos<end:
++        need(pos+8<=end,'complete extension header');kind=raw[pos:pos+4];size=struct.unpack('>I',raw[pos+4:pos+8])[0]
++        need(kind==b'TREE' and not extensions and pos+8+size<=end,'only one known optional TREE extension')
++        extensions.append((kind.decode(),size,sha(raw[pos+8:pos+8+size])));pos+=8+size
++    need(pos==end,'exact native index extent')
++    protected=[(n,b) for n,b,_,_ in entries if n not in targets]
++    fingerprint=sha(b'\0'.join(n+b'\t'+b.hex().encode() for n,b in protected)+b'\0')
++    return {'version':version,'count':count,'entries':entries,'protected':protected,'fingerprint':fingerprint,'extensions':extensions}
++
++def splice(raw,oids):
++    """Replace only ten eligible records. No Git command, stat refresh or rebuild."""
++    targets={p.encode() for p in oids};old=parse_index(raw,targets)
++    need(sha(raw)==INDEX and old['count']==58563 and len(old['protected'])==58561 and old['fingerprint']==PROTECTED,'actual held original raw index contract')
++    need(len(targets)==10 and sum(n in targets for n,_,_,_ in old['entries'])==2,'eight new/two existing native records')
++    records={n:b for n,b,_,_ in old['entries'] if n not in targets}
++    for p,oid in oids.items():
++        name=p.encode();need(len(oid)==40 and bytes.fromhex(oid).hex()==oid,'exact lowercase blob OID')
++        record=struct.pack('>10I',0,0,0,0,0,0,0o100644,0,0,0)+bytes.fromhex(oid)+struct.pack('>H',min(len(name),0xfff))+name+b'\0'
++        records[name]=record+b'\0'*((-len(record))%8)
++    # TREE caches the obsolete path/blob graph; omit precisely this optional cache.
++    body=b'DIRC'+struct.pack('>II',old['version'],len(records))+b''.join(records[n] for n in sorted(records))
++    result=body+hashlib.sha1(body).digest();new=parse_index(result,targets)
++    need(new['count']==58571 and new['protected']==old['protected'] and new['fingerprint']==PROTECTED and not new['extensions'],'all58561 protected records byte-identical; only TREE invalidated')
++    actual={n.decode():(mode,oid) for n,_,mode,oid in new['entries'] if n in targets}
++    need(actual=={p:(0o100644,oid) for p,oid in oids.items()},'all ten exact replacement records')
++    return result
++
++def preparation_seal():
++    sb=read(N/'FINAL_SEAL.json');s=json.loads(sb);mb=pinned(N/'OWNED_MANIFEST.json',s['manifest']);m=json.loads(mb)
++    need(extent(N)==(sorted([*m['files'],*TERMINALS]),m['directories']),'finite preparation namespace; only two exact root terminals')
++    for name,d in m['files'].items():pinned(N/name,d)
++    need(s['production_installation_authorized'] is False and s['publication_authorized'] is False,'preparation is not production authority')
++    return sha(sb)
++
++def authority(a,expected,prep,contract):
++    need(a.get('schema')=='root-supported-cycle-focal-install-v1' and a.get('authority')=='root' and a.get('template_not_root_receipt') is False,'actual root installation receipt, not a template')
++    need(a.get('production_installation_authorized') is True and a.get('current_mechanism_fully_adopted') is True and a.get('independent_mechanism_audit_adopted') is True,'future distinct root mechanism/audit/installation authority')
++    need(a.get('root_stage_adoption_SHA256')==ROOT and a.get('preparation_seal_SHA256')==prep and a.get('runtime_contract_SHA256')==contract,'whole stage/preparation/runtime bindings')
++    need(a.get('parent')==BASE and a.get('raw_index_SHA256')==INDEX and a.get('protected_raw_SHA256')==PROTECTED and a.get('runtime_root')==str(RUNTIME),'fixed actual baseline/native index/runtime')
++    need(a.get('gitpaths')==sorted(expected) and a.get('expected_blob_OIDs')==expected,'exact ten candidate blob bindings')
++    audit=a.get('independent_mechanism_audit_SHA256');need(isinstance(audit,str) and len(audit)==64 and bytes.fromhex(audit).hex()==audit,'actual separately adopted audit pin')
++
++def runtime(root,contract,prep,expected):
++    """Pure durable-state closure. Does NOT verify current website/refs/remote."""
++    stateb=read(root/'STATE.json');s=json.loads(stateb);phase=s['phase'];need(phase in contract['phases'],'finite durable phase')
++    names=contract['phases'][phase]['files'];need(extent(root)==(sorted([*names,'STATE.json']),[]),'exact runtime ordinary files and zero directories')
++    need(s['preparation_seal_SHA256']==prep and s['runtime_contract_SHA256']==sha(encoded(contract)) and set(s['files'])==set(names),'state/preparation/contract/exact names')
++    buffers={n:pinned(root/n,d) for n,d in s['files'].items()}
++    auth=json.loads(buffers['ROOT_AUTHORITY.json']);authority(auth,expected,prep,s['runtime_contract_SHA256'])
++    need(s['root_authority_SHA256']==sha(buffers['ROOT_AUTHORITY.json']),'held root authority binding')
++    pre=json.loads(buffers['PRE_INSTALL.json']);need(pre['parent']==BASE and pre['index_SHA256']==INDEX and pre['gitpaths']==sorted(expected),'pre-install exact baseline')
++    need(isinstance(json.loads(buffers['GIT_LOG.json']),list),'whole actual command log array')
++    if phase!='INSTALL_STARTED':
++        p=json.loads(buffers['PENDING_COMMIT.json']);need(p['parent']==BASE and p['gitpaths']==sorted(expected) and p['blob_OIDs']==expected and p['protected_raw_SHA256']==PROTECTED and p['root_authority_SHA256']==s['root_authority_SHA256'],'pending exact parent/paths/blob/protected/authority bindings')
++        need(p['commit_index_SHA256']==sha(buffers['commit.index']) and p['approved_index_SHA256']==sha(buffers['shared-index.approved']),'actual temp and approved raw buffer bindings')
++        approved=parse_index(buffers['shared-index.approved'],{x.encode() for x in expected})
++        need(approved['fingerprint']==PROTECTED and approved['count']==58571,'approved native raw index preservation')
++        need({n.decode():(m,oid) for n,_,m,oid in approved['entries'] if n.decode() in expected}=={n:(0o100644,oid) for n,oid in expected.items()},'approved exact ten records')
++        need(all(len(p[k])==40 and bytes.fromhex(p[k]).hex()==p[k] for k in ('commit','tree')),'pending immutable object identities')
++    if phase=='PUBLISHED':
++        approval=json.loads(buffers['ROOT_COMMIT_APPROVAL.json']);commit_authority(approval,p,sha(buffers['PENDING_COMMIT.json']),sha(buffers['ROOT_AUTHORITY.json']),prep)
++        pub=json.loads(buffers['PUBLICATION.json']);need(pub['commit']==p['commit'] and pub['tree']==p['tree'] and pub['index_SHA256']==p['approved_index_SHA256'] and pub['protected_raw_SHA256']==PROTECTED and pub['remote_advertised_master']==p['commit'],'whole final object/index/remote receipt binding')
++        before=json.loads(buffers['PRE_PUBLICATION.json']);need(before['parent']==BASE and before['commit']==p['commit'] and before['index_SHA256']==INDEX,'pre-publication old/new binding')
++        need(s['root_commit_approval_SHA256']==sha(buffers['ROOT_COMMIT_APPROVAL.json']),'commit approval whole bytes binding')
++    return {'phase':phase,'files':len(names)+1,'live_state_reverified':False}
++
++def commit_authority(a,p,pending_sha,install_sha,prep):
++    need(a.get('schema')=='root-supported-cycle-focal-commit-v1' and a.get('authority')=='root' and a.get('template_not_root_receipt') is False and a.get('publication_authorized') is True,'separate actual root commit approval')
++    need(a.get('preparation_seal_SHA256')==prep and a.get('root_install_authority_SHA256')==install_sha and a.get('pending_commit_receipt_SHA256')==pending_sha,'whole authority/pending receipt bindings')
++    for k in ('parent','commit','tree','gitpaths','approved_index_SHA256','protected_raw_SHA256'):need(a.get(k)==p[k],'exact approved '+k)
++
++def main():
++    need(not sys.argv[1:],'default pure custody only; runtime is an explicit future caller interface')
++    o=inputs();oids=oracle(o);raw=read(Path(o['raw_index_reference']));newraw=splice(raw,oids)
++    go=json.loads(read(N/'READONLY_GO_REFERENCE.json'));gb=pinned(Path(go['path']),go);need(sha(gb)=='9e7a4a9274d45fe9699fdb9720f3c7b9991d4b704aac44b2de77c97444fae26a','actual root reviewed read-only capture GO')
++    code=json.loads(read(N/'CURRENT_CODE_PINS.json'))
++    for name,d in code.items():pinned(N/name,d)
++    need(json.loads(gb)['capture_helper_SHA256']==code['capture_readonly.py']['SHA256'],'root read exact current capture body')
++    template=json.loads(read(N/'ROOT_INSTALL_AUTHORITY_TEMPLATE.json'));need(template['production_installation_authorized'] is False and template['current_mechanism_fully_adopted'] is False and template['template_not_root_receipt'] is True,'current root install template disabled')
++    commit=json.loads(read(N/'ROOT_COMMIT_APPROVAL_TEMPLATE.json'));need(commit['publication_authorized'] is False and commit['template_not_root_receipt'] is True,'current commit template disabled')
++    contract=json.loads(read(N/'RUNTIME_CONTRACT.json'));need(encoded(contract)==read(N/'RUNTIME_CONTRACT.json') and contract['runtime_root']==str(RUNTIME) and all(v['directories']==[] for v in contract['phases'].values()),'canonical finite external runtime contract')
++    for phase in ('PRE','POST'):
++        g=json.loads(read(N/(phase+'_GUARD.json')));need(g['status']=='PASS_FRESH_EXACT10_READONLY_DRIFT_FENCE' and g['Git']['index_SHA256']==INDEX and g['baseline_counts']==[623,94,95] and g['production_mutation'] is False,'actual reviewed '+phase+' baseline')
++        for r in g['actual_Git_receipts']:
++            need(r['actual_exit']==0 and r['timed_out'] is False,'literal successful read-only Git receipt')
++            for stream in ('stdout','stderr'):pinned(Path(r[stream]['path']),r[stream])
++    sealed=(N/'FINAL_SEAL.json').exists()
++    if sealed:preparation_seal()
++    print(json.dumps({'status':'PASS_PURE_EXACT10_PREPARATION_CUSTODY','sealed':sealed,'checks':CHECKS,'original_files':len(o['frozen_original_files']),'original_namespaces':len(o['closed_original_namespaces']),'candidate_buffers':len(oids),'protected_raw_records':58561,'approved_raw_index_SHA256':sha(newraw),'originals_read_by_reference':True,'runtime_read':False,'production_executed':False},sort_keys=True))
++
++if __name__=='__main__':main()
+--- /dev/null
++++ freeze_inputs.py
+@@ -0,0 +1,71 @@
++"""Source-only reference intake and exact candidate oracle. No old code or live reads."""
++from datetime import datetime,timezone
++from pathlib import Path
++import hashlib
++import json
++import os
++import stat
++
++N=Path(__file__).absolute().parent
++P=N.parent.parent
++V=P/'verification'
++
++def need(ok,why):
++    if not ok:raise ValueError(why)
++
++def read(p):
++    need(p.is_relative_to(P) and '.git' not in p.parts and p.resolve()==p and stat.S_ISREG(p.lstat().st_mode),'ordinary source-only input')
++    return p.read_bytes()
++
++def desc(b):return {'bytes':len(b),'SHA256':hashlib.sha256(b).hexdigest()}
++
++def extent(root):
++    files,dirs=[],[]
++    def walk(d):
++        for e in os.scandir(d):
++            q=Path(e.path);r=q.relative_to(root).as_posix();m=q.lstat().st_mode
++            if stat.S_ISDIR(m):dirs.append(r);walk(q)
++            else:need(stat.S_ISREG(m),'no link/special');files.append(r)
++    need(root.resolve()==root and stat.S_ISDIR(root.lstat().st_mode),'ordinary source root');walk(root)
++    return sorted(files),sorted(dirs)
++
++def new(name,value):
++    with (N/name).open('xb') as f:f.write((json.dumps(value,ensure_ascii=False,indent=2)+'\n').encode())
++
++def main():
++    auth=V/'root-supported-cycle-focal-v2-adoption-20261115.json';ab=read(auth)
++    need(desc(ab)=={'bytes':24418,'SHA256':'408b6cb8660952c23e54f803d543eb82d3f226338371558871c76e59701cbc20'},'actual root408b adoption')
++    a=json.loads(ab);need(a['root_complete_current_code_and_output_adopted'] is True and a['separate_bounded_production_mechanism_preparation_authorized'] is True and a['production_installation_authorized'] is False,'preparation only')
++    specs=[('supported-cycle-focal-private-stage-sol-20261115','edf8e4e64ea345e950f6d94e678b4d6c8530df37089e80ef6681a519b7fedf54','OWNED_MANIFEST.json','old'),('supported-cycle-focal-independent-code-audit-sol-20261115','780e71570c61a0604c582b2a851b4fe8165105652ddf46446c06182995f36412','FINAL_MANIFEST.json','old_audit'),('supported-cycle-focal-private-stage-v2-sol-20261115','e3cdadbcddc446632a52e21b7d5d9f2b9de4901c62cb065770bdc5c1186700f6','OWNED_MANIFEST.json','v2'),('supported-cycle-focal-v2-integration-audit-sol-20261115','a5f46ca67692ebe8d67a25a54a5ebb3663adb66d685fdd653b6805162da28ca9','MANIFEST.json','audit')]
++    packets=[]
++    for folder,expected,mname,kind in specs:
++        root=V/folder;sb=read(root/'FINAL_SEAL.json');need(desc(sb)['SHA256']==expected,'same-buffer exact prior seal');s=json.loads(sb);mb=read(root/mname)
++        mh=s['MANIFEST_SHA256'] if kind=='old_audit' else s['manifest']['SHA256'] if kind in ('old','audit') else s['manifest_SHA256']
++        need(desc(mb)['SHA256']==mh,'same-buffer actual manifest');m=json.loads(mb)
++        rows=m['payloads'] if kind in ('old','v2') else {r['path']:{k:r[k] for k in ('bytes','SHA256')} for r in m['files']}
++        need(extent(root)==(sorted(list(rows)+[mname,'FINAL_SEAL.json']),m['directories']),'strict whole old/audit/V2 namespace')
++        for n,r in rows.items():need(desc(read(root/n))=={k:r[k] for k in ('bytes','SHA256')},'whole retained reference')
++        packets.append({'root':str(root),'kind':kind,'seal_name':'FINAL_SEAL.json','seal':desc(sb),'manifest_name':mname,'manifest':desc(mb),'payload_files':len(rows),'directories':m['directories']})
++    old=V/specs[0][0];stage=V/specs[2][0];source=json.loads(read(old/'SOURCE_INPUTS.json'));mapping={r['path']:r for r in source['files']}
++    originals={};namespaces={}
++    for r in source['files']:
++        b=read(Path(r['path']));need(b==read(old/r['blob']) and desc(b)=={k:r[k] for k in ('bytes','SHA256')},'actual source/context whole identity');originals[r['path']]={'path':r['path'],**desc(b)}
++    for ns in source['complete_original_namespaces']:namespaces[ns['path']]=ns
++    for rid in ('23578142','23306203'):
++        e=P/'papers'/rid/'reviews/editorial';protected=json.loads(read(old/mapping[str(e/'PROTECTED_INPUTS.json')]['blob']))
++        need(len(protected['core_files'])==18,'qualified17original plus405b')
++        for r in protected['files']:
++            b=read(Path(r['path']));need(desc(b)=={k:r[k] for k in ('bytes','SHA256')},'actual frozen source/science/root/core');originals[r['path']]={'path':r['path'],**desc(b)}
++        for ns in protected['whole_original_namespaces']:namespaces[ns['path']]=ns
++    for root,ns in namespaces.items():need(extent(Path(root))==(ns['files'],ns['directories']),'every complete source/editorial/science/root namespace')
++    oracle=[]
++    for r in a['adopted_exact10_manifest']['files']:
++        n=r['path'];b=read(stage/'candidate-a/public'/n);need(b==read(stage/'candidate-b/public'/n) and desc(b)=={k:r[k] for k in ('bytes','SHA256')},'root-adopted exact whole output oracle')
++        oracle.append({'path':n,'source':str(stage/'candidate-a/public'/n),**desc(b),'action':'replace' if n in ('research/index.html','research/sitemap.xml') else 'add'})
++    need(len(oracle)==10 and sum(r['action']=='add' for r in oracle)==8,'exact10 eightleaves/twoaggregates')
++    new('INPUT_ORACLE.json',{'UTC':datetime.now(timezone.utc).isoformat(),'root_adoption':{'path':str(auth),**desc(ab)},'closed_reference_packets':packets,'frozen_original_files':list(originals.values()),'closed_original_namespaces':list(namespaces.values()),'exact10':oracle,'old_baseline_reference':str(old/'WEBSITE_BASELINE.json'),'raw_index_reference':str(old/'private/shared-index.before'),'prior_qualified_pattern':{'root':str(V/'five-centers-mixed-face-production-integration-preparation-v2-sol-20261115'),'six_bodies_read_bytes':76890},'corpus_copied':False,'production_authority':False,'native_context_only':107})
++    new('INITIAL_EXPECTATIONS.json',{'UTC':datetime.now(timezone.utc).isoformat(),'claim':'Prepare only exact10 installer/checkedcommit/surgicalsharedindex/guardednonforcepush mechanism; never execute production during preparation.','stage_full_root_adopted':True,'new_mechanism_root_adopted':False,'future_root_install_and_separate_commitapproval_required':True,'baseline':[623,94,95],'proposal':[631,96,97],'actual_expected_BASE':'0880af3e389248dbcd098ac275a880d93e09ea99','actual_expected_index':'35181f4046df6e197ba5c5c6e34c348b2b46783c0cc073a5b7f066692ba332b6','actual_expected_raw_records':58563,'protected_records':58561,'unrelated_public_paths':621,'false_template_authorities':True,'no_future_prefix_exemptions':True,'finite_external_runtime_only_after_actualrootauthority':True,'no_W_read_yet':True,'production_authority':False,'AA':None,'canonical_url':None,'follow_up':None,'completion_percent':20})
++    new('INITIAL_SEAL.json',{'UTC':datetime.now(timezone.utc).isoformat(),'INPUT_ORACLE':desc(read(N/'INPUT_ORACLE.json')),'INITIAL_EXPECTATIONS':desc(read(N/'INITIAL_EXPECTATIONS.json')),'before_mechanism_authoring_and_live_reads':True,'production_authority':False})
++    print(json.dumps({'status':'INITIAL_REFERENCE_AND_EXACT10_ORACLE_FROZEN','original_files':len(originals),'closed_original_namespaces':len(namespaces),'closed_packets':len(packets),'oracle_outputs':len(oracle),'no_live_reads_or_corpuscopy':True}))
++
++if __name__=='__main__':main()
+--- /dev/null
++++ hooks/pre-push
+@@ -0,0 +1,17 @@
++#!/usr/bin/env python3
++"""Strict actual-advertisement fence; no write, import of project code or network."""
++import hashlib
++import os
++import sys
++
++def accepted(args,env,body):
++    parent=env.get('EXACT10_PARENT');commit=env.get('EXACT10_COMMIT');urlsha=env.get('EXACT10_URL_SHA256')
++    if len(args)!=2 or args[0]!='origin' or parent!='0880af3e389248dbcd098ac275a880d93e09ea99':return False
++    if not isinstance(commit,str) or len(commit)!=40 or any(c not in '0123456789abcdef' for c in commit):return False
++    if hashlib.sha256(args[1].encode()).hexdigest()!=urlsha:return False
++    expected=(commit+' '+commit+' refs/heads/master '+parent+'\n').encode()
++    return body==expected
++
++if __name__=='__main__':
++    if not accepted(sys.argv[1:],os.environ,sys.stdin.buffer.read()):
++        sys.stderr.write('Rejected: exact10 approved commit, one master update, bound destination and actual advertised old parent required.\n');sys.exit(1)
+--- /dev/null
++++ mechanism.py
+@@ -0,0 +1,268 @@
++"""Future root-authorized exact10 installation/commit/push; NOT run in preparation.
++Two explicit actions, with separate fixed actual root receipts. No deployment.
++Public files, native index, local ref and remote are not one transaction. Failures
++stop for root inspection, with literal command streams; no rollback or resume.
++Stable sealed/runtime namespaces and cooperative Git writers are assumptions.
++"""
++import base64
++from datetime import datetime,timezone
++import json
++import os
++from pathlib import Path
++import stat
++import subprocess
++import sys
++import tempfile
++import custody as C
++
++LOCK_BODY=b'root-supported-cycle-focal-exact10-owned-index-sentinel-v1\n'
++LOG=[]
++
++def owned_entry(path,fd,missing_ok=False):
++    try:p=path.lstat()
++    except FileNotFoundError:
++        C.need(missing_ok,'owned entry disappeared '+str(path));return False
++    f=os.fstat(fd)
++    C.need(stat.S_ISREG(p.st_mode) and stat.S_ISREG(f.st_mode) and (p.st_dev,p.st_ino)==(f.st_dev,f.st_ino),'owned ordinary inode '+str(path))
++    return True
++
++def write_complete(fd,body):
++    view=memoryview(body);offset=0
++    while offset<len(view):
++        try:n=os.write(fd,view[offset:])
++        except InterruptedError:continue
++        C.need(isinstance(n,int) and 0<n<=len(view)-offset,'complete write makes progress');offset+=n
++
++def validate_owned_buffer(path,fd,expected):
++    owned_entry(path,fd);os.fsync(fd);os.lseek(fd,0,os.SEEK_SET);parts=[]
++    while True:
++        try:b=os.read(fd,1024*1024)
++        except InterruptedError:continue
++        if not b:break
++        parts.append(b)
++    C.need(b''.join(parts)==expected,'same owned FD whole-byte readback');owned_entry(path,fd)
++
++def unlink_owned(path,fd):
++    if owned_entry(path,fd,missing_ok=True):path.unlink()
++
++def sync_dir(path):
++    fd=os.open(path,os.O_RDONLY)
++    try:os.fsync(fd)
++    finally:os.close(fd)
++
++def publish_buffer(newraw,destination,lock,lock_fd,mode):
++    """Write validated bytes to an owned O_RDWR sibling, not an alternate index.
++    Distinct index.lock sentinel remains held through caller's ref/push sequence.
++    lstat/fstat/content checks do not remove the final check-to-rename window.
++    """
++    fd,name=tempfile.mkstemp(prefix='.supported-cycle-focal-index-',dir=destination.parent);temp=Path(name)
++    try:
++        os.fchmod(fd,mode);write_complete(fd,newraw);validate_owned_buffer(temp,fd,newraw)
++        validate_owned_buffer(lock,lock_fd,LOCK_BODY);owned_entry(temp,fd)
++        os.replace(temp,destination)
++        validate_owned_buffer(destination,fd,newraw)
++    finally:
++        try:unlink_owned(temp,fd)
++        finally:os.close(fd)
++
++def exclusive(path,body,mode=0o600):
++    fd=os.open(path,os.O_RDWR|os.O_CREAT|os.O_EXCL,mode)
++    try:write_complete(fd,body);validate_owned_buffer(path,fd,body)
++    finally:os.close(fd)
++
++def replace_owned_metadata(path,body):
++    """Only future runtime metadata. An interrupted checkpoint fails closed."""
++    fd,name=tempfile.mkstemp(prefix='.checkpoint-',dir=path.parent);temp=Path(name)
++    try:
++        write_complete(fd,body);validate_owned_buffer(temp,fd,body);owned_entry(temp,fd);os.replace(temp,path);sync_dir(path.parent)
++    finally:
++        try:unlink_owned(temp,fd)
++        finally:os.close(fd)
++
++def git(args,body=None,index=None,hook=False,extra_env=None):
++    C.need(args[0] in {'rev-parse','symbolic-ref','remote','ls-remote','diff','read-tree','hash-object','update-index','write-tree','commit-tree','cat-file','diff-tree','ls-tree','update-ref','push'},'finite future Git vocabulary')
++    env={k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
++    env['GIT_OPTIONAL_LOCKS']='0'
++    if index is not None:env['GIT_INDEX_FILE']=str(index)
++    if extra_env:env.update(extra_env)
++    command=['git','-c','core.fsmonitor=false','-c','index.version=2','-c','commit.gpgsign=false','-c','core.hooksPath='+str(C.N/'hooks' if hook else '/dev/null'),*args]
++    try:
++        r=subprocess.run(command,cwd=C.W,env=env,input=body,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=60)
++        output,error,code,timeout=r.stdout,r.stderr,r.returncode,False
++    except subprocess.TimeoutExpired as e:output,error,code,timeout=e.output or b'',e.stderr or b'',None,True
++    LOG.append({'UTC':datetime.now(timezone.utc).isoformat(),'argv':command,'alternate_index':str(index) if index else None,'stdin':C.descriptor(body) if body is not None else None,'stdout_base64':base64.b64encode(output).decode(),'stderr_base64':base64.b64encode(error).decode(),'actual_exit':code,'timed_out':timeout})
++    replace_owned_metadata(C.RUNTIME/'GIT_LOG.json',C.encoded(LOG))
++    C.need(code==0 and not timeout,'actual future Git failure; literal streams preserved; stop, no retry')
++    return output
++
++def context():
++    prep=C.preparation_seal();o=C.inputs();oids=C.oracle(o)
++    old=next(r for r in o['closed_reference_packets'] if r['kind']=='old');oldroot=Path(old['root'])
++    baseline=json.loads(C.read(oldroot/'WEBSITE_BASELINE.json'))
++    contractb=C.read(C.N/'RUNTIME_CONTRACT.json');contract=json.loads(contractb)
++    C.need(contractb==C.encoded(contract),'canonical runtime buffer')
++    return prep,o,oids,oldroot,baseline,contract
++
++def root_install(pin,prep,oids,contract):
++    b=C.read(C.INSTALL_AUTH);C.need(len(pin)==64 and C.sha(b)==pin,'explicit whole actual root install authority SHA256')
++    a=json.loads(b);C.authority(a,oids,prep,C.sha(C.encoded(contract)))
++    return b
++
++def public_check(o,oldroot,baseline,installed,head):
++    targets={r['path']:r for r in o['exact10']}
++    additions=[r['path'] for r in o['exact10'] if r['action']=='add']
++    newdirs=sorted({str(Path(r).parent) for r in additions})
++    names=sorted([*baseline['public_namespace'],*additions]) if installed else baseline['public_namespace']
++    dirs=sorted([*baseline['public_directories'],*newdirs]) if installed else baseline['public_directories']
++    C.need(C.extent(C.W/'public')==(names,dirs),'whole finite public files/directories')
++    for r in baseline['files']:
++        p=Path(r['path']);b=C.read(p)
++        if r['role']=='public' and installed and p.relative_to(C.W/'public').as_posix() in targets:
++            row=targets[p.relative_to(C.W/'public').as_posix()];C.need(b==C.pinned(Path(row['source']),row),'whole approved aggregate bytes')
++        elif p==C.W/'.git/refs/heads/master':C.need(b==head.encode()+b'\n','literal actual master control')
++        else:C.need(b==C.pinned(oldroot/r['blob'],r),'all unrelated public/config/control bytes')
++    for r in o['exact10']:
++        p=C.W/'public'/r['path']
++        if installed:C.need(C.read(p)==C.pinned(Path(r['source']),r),'whole exact output')
++        elif r['action']=='add':C.need(not os.path.lexists(p),'new leaf absent')
++
++def live(o,oldroot,baseline,installed,head,raw,held_lock=None):
++    C.need(git(['rev-parse','--show-toplevel']).decode().strip()==str(C.W),'fixed website repo')
++    C.need(git(['symbolic-ref','HEAD']).strip()==b'refs/heads/master','fixed master branch')
++    values=git(['rev-parse','HEAD','refs/heads/master']).decode().splitlines();C.need(values==[head,head],'actual HEAD/master')
++    if head==C.BASE:C.need(git(['rev-parse','HEAD^{tree}']).strip().decode()==C.TREE,'actual old tree')
++    urls=git(['remote','get-url','--push','--all','origin']).splitlines();C.need(len(urls)==1 and C.sha(urls[0])==baseline['Git']['origin_push_URL_SHA256'],'single exact bound push URL')
++    C.need(git(['ls-remote','--refs',urls[0].decode(),'refs/heads/master']).split()==[head.encode(),b'refs/heads/master'],'actual remote advertised expected old/new SHA')
++    C.need(C.read(C.W/'.git/index')==raw,'complete expected raw shared index buffer')
++    if held_lock is None:C.need(not os.path.lexists(C.W/'.git/index.lock'),'no competing native lock')
++    else:validate_owned_buffer(C.W/'.git/index.lock',held_lock,LOCK_BODY)
++    public_check(o,oldroot,baseline,installed,head)
++    # These sources are outside the website; re-read whole pinned originals too.
++    C.inputs()
++    return urls[0].decode()
++
++def checkpoint(phase,contract,prep,auth_sha,approval_sha=None):
++    replace_owned_metadata(C.RUNTIME/'GIT_LOG.json',C.encoded(LOG))
++    names=contract['phases'][phase]['files'];files={n:C.descriptor(C.read(C.RUNTIME/n)) for n in names}
++    s={'phase':phase,'preparation_seal_SHA256':prep,'runtime_contract_SHA256':C.sha(C.encoded(contract)),'root_authority_SHA256':auth_sha,'root_commit_approval_SHA256':approval_sha,'files':files}
++    replace_owned_metadata(C.RUNTIME/'STATE.json',C.encoded(s))
++    return C.runtime(C.RUNTIME,contract,prep,C.oracle(json.loads(C.read(C.N/'INPUT_ORACLE.json'))))
++
++def safe_parent(path):
++    C.need(path.is_relative_to(C.W/'public'),'exact public destination')
++    q=path.parent
++    while q!=C.W:
++        C.need(q.resolve()==q and stat.S_ISDIR(q.lstat().st_mode),'ordinary existing public ancestor');q=q.parent
++
++def article_write(path,body,old=None):
++    safe_parent(path)
++    if old is None:C.need(not os.path.lexists(path),'no-clobber article leaf')
++    else:C.need(C.read(path)==old,'exact expected-before aggregate')
++    fd,name=tempfile.mkstemp(prefix='.exact10-',dir=path.parent);temp=Path(name)
++    try:
++        os.fchmod(fd,0o644);write_complete(fd,body);validate_owned_buffer(temp,fd,body)
++        if old is None:os.link(temp,path)  # Atomic no-clobber, same fully validated inode.
++        else:
++            C.need(C.read(path)==old,'aggregate expected-before immediately before replace')
++            owned_entry(temp,fd);os.replace(temp,path)
++        validate_owned_buffer(path,fd,body);sync_dir(path.parent)
++    finally:
++        try:unlink_owned(temp,fd)
++        finally:os.close(fd)
++
++def validate_commit(commit,oids):
++    C.need(len(commit)==40 and bytes.fromhex(commit).hex()==commit,'actual immutable commit OID')
++    data=git(['cat-file','commit',commit]);header=data.split(b'\n\n',1)[0].splitlines()
++    trees=[x[5:].decode() for x in header if x.startswith(b'tree ')];parents=[x[7:].decode() for x in header if x.startswith(b'parent ')]
++    C.need(len(trees)==1 and parents==[C.BASE],'exact one parent and tree')
++    diff=git(['diff-tree','--no-renames','--no-commit-id','--name-only','-r','-z',C.BASE,commit])
++    C.need(diff.split(b'\0')[:-1]==[p.encode() for p in sorted(oids)],'whole actual commit tree diff exactly ten paths')
++    entries=git(['ls-tree','-r','-z',commit,'--',*sorted(oids)]).split(b'\0')[:-1]
++    expected=[b'100644 blob '+oids[p].encode()+b'\t'+p.encode() for p in sorted(oids)]
++    C.need(entries==expected,'actual tree exact ten modes and candidate blob identities')
++    return trees[0]
++
++def install(auth_pin):
++    prep,o,oids,oldroot,baseline,contract=context();authb=root_install(auth_pin,prep,oids,contract)
++    # This is the first mutation, possible only after actual future authority.
++    C.RUNTIME.mkdir();exclusive(C.RUNTIME/'ROOT_AUTHORITY.json',authb)
++    exclusive(C.RUNTIME/'GIT_LOG.json',b'[]\n')
++    raw=C.read(Path(o['raw_index_reference']));newraw=C.splice(raw,oids)
++    pre={'parent':C.BASE,'index_SHA256':C.INDEX,'gitpaths':sorted(oids),'protected_raw_SHA256':C.PROTECTED}
++    exclusive(C.RUNTIME/'PRE_INSTALL.json',C.encoded(pre));checkpoint('INSTALL_STARTED',contract,prep,auth_pin)
++    live(o,oldroot,baseline,False,C.BASE,raw)
++    dirs=sorted({(C.W/'public'/r['path']).parent for r in o['exact10'] if r['action']=='add'})
++    C.need(len(dirs)==2,'two new article roots')
++    for d in dirs:C.need(not os.path.lexists(d),'new article root absent');safe_parent(d);d.mkdir();sync_dir(d.parent)
++    oldfiles={Path(r['path']):r for r in baseline['files']}
++    for r in o['exact10']:
++        destination=C.W/'public'/r['path'];before=C.pinned(oldroot/oldfiles[destination]['blob'],oldfiles[destination]) if r['action']=='replace' else None
++        article_write(destination,C.pinned(Path(r['source']),r),before)
++    live(o,oldroot,baseline,True,C.BASE,raw)
++    alternate=C.RUNTIME/'commit.index';C.need(not os.path.lexists(alternate),'fresh separate HEAD-seeded index')
++    git(['read-tree',C.BASE],index=alternate)
++    for r in o['exact10']:
++        body=C.pinned(Path(r['source']),r);oid=git(['hash-object','-w','--no-filters','--stdin'],body=body).strip().decode();path='public/'+r['path']
++        C.need(oid==oids[path],'actual unchanged candidate blob')
++        git(['update-index','--add','--cacheinfo','100644',oid,path],index=alternate)
++    diff=git(['diff','--cached','--no-renames','--name-only','-z',C.BASE],index=alternate)
++    C.need(diff.split(b'\0')[:-1]==[p.encode() for p in sorted(oids)],'HEAD-seeded alternate diff exactly ten')
++    git(['diff','--cached','--check',C.BASE],index=alternate)
++    tree=git(['write-tree'],index=alternate).strip().decode()
++    commit=git(['commit-tree',tree,'-p',C.BASE],body=b'Publish supported-cycle and focal-distance research articles\n').strip().decode()
++    C.need(validate_commit(commit,oids)==tree,'actual prepared commit tree')
++    live(o,oldroot,baseline,True,C.BASE,raw)
++    exclusive(C.RUNTIME/'shared-index.approved',newraw)
++    pending={'parent':C.BASE,'commit':commit,'tree':tree,'gitpaths':sorted(oids),'blob_OIDs':oids,'commit_index_SHA256':C.sha(C.read(alternate)),'approved_index_SHA256':C.sha(newraw),'protected_raw_SHA256':C.PROTECTED,'root_authority_SHA256':auth_pin,'publication_authorized':False}
++    exclusive(C.RUNTIME/'PENDING_COMMIT.json',C.encoded(pending));checkpoint('INSTALLED',contract,prep,auth_pin)
++    print(json.dumps({'status':'INSTALLED_COMMIT_PENDING_SEPARATE_ROOT_APPROVAL','pending':str(C.RUNTIME/'PENDING_COMMIT.json'),'commit':commit,'local_ref_and_remote_unchanged':True,'deployment_performed':False},sort_keys=True))
++
++def publish(auth_pin,approval_pin):
++    prep,o,oids,oldroot,baseline,contract=context();authb=root_install(auth_pin,prep,oids,contract)
++    C.need(C.runtime(C.RUNTIME,contract,prep,oids)['phase']=='INSTALLED','exact durable installed state; no automatic recovery')
++    C.need(C.read(C.RUNTIME/'ROOT_AUTHORITY.json')==authb,'same actual install authority')
++    LOG.extend(json.loads(C.read(C.RUNTIME/'GIT_LOG.json')))
++    pendingb=C.read(C.RUNTIME/'PENDING_COMMIT.json');p=json.loads(pendingb)
++    ab=C.read(C.COMMIT_AUTH);C.need(len(approval_pin)==64 and C.sha(ab)==approval_pin,'explicit actual root commit approval SHA256')
++    C.commit_authority(json.loads(ab),p,C.sha(pendingb),auth_pin,prep)
++    C.need(validate_commit(p['commit'],oids)==p['tree'],'revalidate actual prepared commit')
++    raw=C.read(Path(o['raw_index_reference']));newraw=C.splice(raw,oids)
++    C.need(newraw==C.read(C.RUNTIME/'shared-index.approved') and C.sha(newraw)==p['approved_index_SHA256'],'already validated exact approved buffer')
++    live(o,oldroot,baseline,True,C.BASE,raw)
++    index=C.W/'.git/index';mode=stat.S_IMODE(index.lstat().st_mode);lock=C.W/'.git/index.lock'
++    C.need(mode==json.loads(C.read(C.N/'PRE_GUARD.json'))['Git']['index_mode'],'preserve fresh originally captured native index file mode')
++    fd=os.open(lock,os.O_RDWR|os.O_CREAT|os.O_EXCL,0o600)
++    try:
++        write_complete(fd,LOCK_BODY);validate_owned_buffer(lock,fd,LOCK_BODY)
++        live(o,oldroot,baseline,True,C.BASE,raw,fd)
++        exclusive(C.RUNTIME/'ROOT_COMMIT_APPROVAL.json',ab)
++        exclusive(C.RUNTIME/'PRE_PUBLICATION.json',C.encoded({'parent':C.BASE,'commit':p['commit'],'index_SHA256':C.INDEX,'approved_index_SHA256':C.sha(newraw)}))
++        publish_buffer(newraw,index,lock,fd,mode);sync_dir(index.parent)
++        # Native lock remains owned and held. Ref mutation is atomic old-value CAS.
++        validate_owned_buffer(lock,fd,LOCK_BODY)
++        git(['update-ref','refs/heads/master',p['commit'],C.BASE])
++        C.need(C.read(index)==newraw,'exact published raw buffer before push')
++        validate_owned_buffer(lock,fd,LOCK_BODY)
++        urls=git(['remote','get-url','--push','--all','origin']).splitlines()
++        C.need(len(urls)==1 and C.sha(urls[0])==baseline['Git']['origin_push_URL_SHA256'],'actual bound push destination')
++        C.need(git(['ls-remote','--refs',urls[0].decode(),'refs/heads/master']).split()==[C.BASE.encode(),b'refs/heads/master'],'actual remote old SHA immediately before strict nonforce push')
++        hook_env={'EXACT10_PARENT':C.BASE,'EXACT10_COMMIT':p['commit'],'EXACT10_URL_SHA256':C.sha(urls[0])}
++        C.need(stat.S_IMODE((C.N/'hooks/pre-push').lstat().st_mode)==0o555,'sealed executable strict hook')
++        git(['push','--porcelain','--no-follow-tags','--recurse-submodules=no','origin',p['commit']+':refs/heads/master'],hook=True,extra_env=hook_env)
++        live(o,oldroot,baseline,True,p['commit'],newraw,fd)
++        C.need(validate_commit(p['commit'],oids)==p['tree'],'final actual tree still exact')
++        exclusive(C.RUNTIME/'PUBLICATION.json',C.encoded({'commit':p['commit'],'tree':p['tree'],'index_SHA256':C.sha(newraw),'protected_raw_SHA256':C.PROTECTED,'remote_advertised_master':p['commit'],'deployment_performed':False}))
++        checkpoint('PUBLISHED',contract,prep,auth_pin,approval_pin)
++    finally:
++        # Reject a substituted symlink or foreign inode; never blindly unlink.
++        try:unlink_owned(lock,fd)
++        finally:os.close(fd)
++    print(json.dumps({'status':'PUBLISHED_EXACT10_AFTER_SEPARATE_ROOT_APPROVAL','commit':p['commit'],'deployment_performed':False},sort_keys=True))
++
++def main():
++    args=sys.argv[1:]
++    C.need((len(args)==2 and args[0]=='install') or (len(args)==3 and args[0]=='publish'),'future explicit install <actual-root-SHA256> OR publish <install-SHA256> <separate-commit-SHA256>; preparation grants neither')
++    if args[0]=='install':install(args[1])
++    else:publish(args[1],args[2])
++
++if __name__=='__main__':main()

@@ -1,0 +1,732 @@
+       Pseudo-rigid p-Torsion Finite Flat Commutative Group
+                              Schemes
+
+                                                                    Yuichiro Hoshi
+
+                                                                       March 2021
+
+
+                                                      ———————————–
+
+             Abstract. — Let p be a prime number and k a perfect ﬁeld of characteristic p. In the
+             present paper, we study deformations of ﬁnite ﬂat commutative group schemes over k to the
+             ring W of Witt vectors with coeﬃcients in k. We prove that, for a given principally quasi-
+             polarizable p-torsion ﬁnite ﬂat commutative group scheme over k, it holds that the group
+             scheme is pseudo-rigid — i.e., roughly speaking, has a unique, up to isomorphism over W ,
+             deformation to W — if and only if the group scheme is superspecial.
+
+
+
+
+                                                                        Contents
+Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+§1. p-Torsion Finite Flat Commutative Group Schemes . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+§2. Review of a Linear Algebra Theory for Group Schemes over k . . . . . . . . . . . . 5
+§3. Review of a Linear Algebra Theory for Group Schemes over W . . . . . . . . . . . 6
+§4. Pseudo-rigid p-Torsion Finite Flat Commutative Group Schemes . . . . . . . . . . . 9
+References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+
+
+
+
+                                                                    Introduction
+   Let p be a prime number and k a perfect ﬁeld of characteristic p. In the present
+paper, we study deformations of ﬁnite ﬂat commutative group schemes over k to the ring
+    def
+W = W (k) of Witt vectors with coeﬃcients in k. More speciﬁcally, we study pseudo-rigid
+p-torsion ﬁnite ﬂat commutative group schemes over k.
+   A ﬁnite ﬂat commutative group scheme over W is one fundamental object in the study
+of arithmetic geometry from the point of view of Galois representations. Now let us
+observe that, for two ﬁnite ﬂat commutative group schemes H1 , H2 over W , if H1 is
+isomorphic to H2 over W , then it is immediate that H1 ×W k is isomorphic to H2 ×W k
+                                                                            ∼
+over k. However, in this situation, the existence of an isomorphism H1 ×W k → H2 ×W k
+                                                                     ∼
+over k does in general not imply the existence of an isomorphism H1 → H2 over W . Put
+another way, the isomorphism class of a ﬁnite ﬂat commutative group scheme over W is
+
+2010 Mathematics Subject Classification. — 14L15.
+Key words and phrases. — ﬁnite ﬂat commutative group scheme, pseudo-rigid.
+
+                                                                                  1
+2                                                                             Yuichiro Hoshi
+
+in general not determined by the isomorphism class of the special ﬁber over k. A central
+problem discussed in the present paper is as follows:
+        Give a suﬃcient and necessary condition for a ﬁnite ﬂat commutative group
+        scheme that ensures this converse implication.
+   Let G be a p-torsion ﬁnite ﬂat commutative group scheme over k. Then we shall say
+that G is principally quasi-polarizable [cf. Deﬁnition 1.4] if G is isomorphic to the Cartier
+dual of G over k. Moreover, we shall say that G is pseudo-rigid [cf. Deﬁnition 1.8] if the
+following two conditions are satisﬁed:
+  • There exists a p-torsion ﬁnite ﬂat commutative group scheme H over W such that
+H ×W k is isomorphic to G over k.
+  • If H1 , H2 are p-torsion ﬁnite ﬂat commutative group schemes over W such that
+Hi ×W k is isomorphic to G over k for each i ∈ {1, 2}, then H1 is isomorphic to H2 over
+W.
+Thus, roughly speaking, we say that G is pseudo-rigid if G has a deformation to W , and,
+moreover, arbitrary two deformations of G to W are isomorphic over W .
+   A typical example of a pseudo-rigid ﬁnite ﬂat commutative group scheme is an étale
+commutative group scheme over k. Moreover, one veriﬁes immediately, by considering
+the Cartier dual, that a multiplicative [cf. Deﬁnition 4.8, (i)] ﬁnite ﬂat commutative group
+scheme over k is pseudo-rigid. The main result of the present paper gives a suﬃcient and
+necessary condition for a principally quasi-polarizable p-torsion ﬁnite ﬂat commutative
+group scheme over k to be pseudo-rigid. The main result of the present paper is as follows
+[cf. Theorem 4.10, (i), (iii)]:
+
+T HEOREM. — Let G be a p-torsion ﬁnite ﬂat commutative group scheme over k. Suppose
+that either G or the Cartier dual of G is connected whenever p = 2. Then the following
+assertions hold:
+   (i) If G is either étale over k, multiplicative, or superspecial [cf. Deﬁnition 4.8,
+(ii)], then G is pseudo-rigid.
+  (ii) Suppose that G is principally quasi-polarizable. Then G is pseudo-rigid if
+and only if G is superspecial.
+
+   The present paper is organized as follows: In §1, we introduce the notion of pseudo-
+rigidity, that is one central notion of the present paper. In §2, we give a review of a certain
+linear algebra theory for p-torsion ﬁnite ﬂat commutative group schemes over k. In §3,
+we give a review of a certain linear algebra theory for p-torsion ﬁnite ﬂat commutative
+group schemes over W . In §4, we prove the main result of the present paper.
+
+
+                                   Acknowledgments
+The author would like to thank the referee for some helpful comments. In particular, the
+author would especially like to express his gratitude the referee for a comment concerning
+removing a connectedness hypothesis from Lemma 3.12 in an earlier version of this manu-
+script. This research was supported by JSPS KAKENHI Grant Number 18K03239 and by
+Pseudo-rigid Finite Flat Group Schemes                                                    3
+
+the Research Institute for Mathematical Sciences, an International Joint Usage/Research
+Center located in Kyoto University.
+
+
+
+            1. p-Torsion Finite Flat Commutative Group Schemes
+  In the present §1, we introduce the notion of pseudo-rigidity [cf. Deﬁnition 1.8 below],
+that is one central notion of the present paper.
+  In the present §1, let p be a prime number and k a perfect ﬁeld of characteristic p. Write
+   def
+W = W (k) for the ring of Witt vectors with coeﬃcients in k. Let R be a W -algebra.
+
+
+D EFINITION 1.1. — We shall write
+                                                        [p]
+                                                   ffgR
+for the category deﬁned as follows:
+                                      [p]
+  • An object of the category ffgR is deﬁned to be a p-torsion ﬁnite ﬂat commutative
+group scheme over R.
+                                            [p]
+  • A morphism in the category ffgR is deﬁned to be a homomorphism between ﬁnite
+ﬂat commutative group schemes over R.
+
+
+D EFINITION 1.2. — We shall write
+                                                  [p]         [p]
+                                             cffgR ⊆ ffgR
+                              [p]
+for the full subcategory of ffgR consisting of connected p-torsion ﬁnite ﬂat commutative
+group schemes over R.
+
+
+                                                                    [p]
+D EFINITION 1.3. — Let G be an object of the category ffgR . Then we shall write
+
+                                                    GD
+                                    [p]
+for the object of the category ffgR obtained by forming the Cartier dual of G.
+
+
+R EMARK 1.3.1. — One veriﬁes immediately that the assignment “G ⇝ GD ” deﬁnes a
+                           [p]    [p]
+[contravariant] functor ffgR → ffgR , that gives an anti-equivalence of categories.
+
+
+                                                                    [p]
+D EFINITION 1.4. — Let G be an object of the category ffgR . Then we shall say that G
+                                                                [p]
+is principally quasi-polarizable if G is isomorphic to GD in ffgR .
+4                                                                           Yuichiro Hoshi
+
+                                                              [p]
+D EFINITION 1.5. — Let G be an object of the category ffgW . Then one veriﬁes immedi-
+                                                                  [p]
+ately that G ×W R may be regarded as an object of the category ffgR . Moreover, one also
+                                                                            [p]      [p]
+veriﬁes immediately that the assignment “G ⇝ G ×W R” deﬁnes a functor ffgW → ffgR .
+We shall write
+                                            [p]
+                                   rdct : ffgW     / ffg[p]
+                                                        k
+
+for this functor in the case where we take the W -algebra “R” to be k = W/pW .
+
+                                                                              [p]
+    In the remainder of the present §1, let G be an object of the category ffgk .
+
+                                                              [p]
+D EFINITION 1.6. — Let H be an object of the category ffgW . Then we shall say that H
+                                                               [p]
+is a deformation of G to W if G is isomorphic to rdct(H) in ffgk .
+
+
+
+D EFINITION 1.7. — We shall say that G is deformable if there exists a deformation of G
+to W .
+
+
+    The following notion is one central notion of the present paper.
+
+
+D EFINITION 1.8. — We shall say that G is pseudo-rigid if the following two conditions
+are satisﬁed:
+    (1) The object G is deformable.
+                                                                                    [p]
+    (2) If H1 , H2 are deformations of G to W , then H1 is isomorphic to H2 in ffgW .
+
+
+
+R EMARK 1.8.1.
+  (i) Let us observe that an arbitrary deformation [cf. condition (1) of Deﬁnition 1.8]
+                                               [p]
+of a pseudo-rigid object of the category ffgk may be regarded as an object H of the
+            [p]
+category ffgW that satisﬁes the following condition [cf. condition (2) of Deﬁnition 1.8]:
+For an object H ′ of the category ffgW , it holds that H is isomorphic to H ′ in ffgW if and
+                                     [p]                                            [p]
+
+only if H ×W (W/pW ) is isomorphic to H ′ ×W (W/pW ) in ffgW/pW .
+                                                                 [p]
+
+
+                                                                             [p]          [p]
+   (ii) Suppose that p 6= 2. Then it follows from [6, §3] that the functor ffgW → ffgW [1/p]
+of Deﬁnition 1.5 in the case where we take the W -algebra “R” to be W [1/p] is fully
+faithful. In particular, one may conclude from [4, Corollary 8] that, for two objects H1 ,
+                         [p]                                              [p]
+H2 of the category ffgW , it holds that H1 is isomorphic to H2 in ffgW if and only if
+                                                             [p]
+H1 ×W (W/p2 W ) is isomorphic to H2 ×W (W/p2 W ) in ffgW/p2 W .
+Pseudo-rigid Finite Flat Group Schemes                                                     5
+
+      2. Review of a Linear Algebra Theory for Group Schemes over k
+   In the present §2, we maintain the notational conventions introduced at the beginning
+of the preceding §1. Write, moreover, Fr for the p-th power Frobenius automorphism of
+k.
+   In the present §2, we give a review of a certain linear algebra theory for p-torsion ﬁnite
+ﬂat commutative group schemes over k [cf. Deﬁnition 2.1 and Proposition 2.5 below].
+
+D EFINITION 2.1. — We shall write
+                                                Dm[p]
+for the category deﬁned as follows:
+  • An object of the category Dm[p] is deﬁned to be a collection D = (MD = M, FD =
+F, VD = V ) of data consisting of a ﬁnitely generated k-module M and endomorphisms F ,
+V of the module M such that the following three conditions are satisﬁed:
+      • The endomorphism F is Fr-semilinear.
+      • The endomorphism V is Fr−1 -semilinear.
+      • The sequence of modules
+                               M
+                                      F   /M     V       /M   F    /M
+
+forms a complex.
+   • Let (M1 , F1 , V1 ), (M2 , F2 , V2 ) be objects of the category Dm[p] . Then a morphism
+(M1 , F1 , V1 ) → (M2 , F2 , V2 ) in the category Dm[p] is deﬁned to be a homomorphism
+f : M1 → M2 of k-modules such that the equalities f ◦ F1 = F2 ◦ f , f ◦ V1 = V2 ◦ f hold.
+
+ In the remainder of the present §2, let D = (M, F, V ) be an object of the category
+Dm[p] .
+
+D EFINITION 2.2. — We shall say that D is connected if the endomorphism F of M is
+nilpotent.
+
+
+D EFINITION 2.3. — We shall write
+                                          def
+                                    M D = Homk (M, k)
+for the [necessarily ﬁnitely generated] k-module obtained by forming the k-dual of M ,
+                                    F D : MD              / MD
+
+for the [necessarily Fr-semilinear] endomorphism of M D given by mapping φ ∈ M D to
+the element of M D obtained by forming the composite
+                                                     ϕ
+                                M
+                                      V   /M             /k   Fr   / k,
+                                                              ∼
+
+and
+                                    V D : MD              / MD
+6                                                                            Yuichiro Hoshi
+
+for the [necessarily Fr−1 -semilinear] endomorphism of M D given by mapping φ ∈ M D to
+the element of M D obtained by forming the composite
+                                                  ϕ         −1
+                                 M
+                                       F   /M         / k Fr / k.
+                                                          ∼
+
+
+
+
+D EFINITION 2.4. — One veriﬁes immediately that the collection (M D , F D , V D ) of data
+may be regarded as an object of the category Dm[p] . We shall write
+                                                DD
+for this object.
+
+
+R EMARK 2.4.1. — One veriﬁes immediately that the assignment “D ⇝ DD ” deﬁnes a
+[contravariant] functor Dm[p] → Dm[p] , that gives an anti-equivalence of categories.
+
+
+P ROPOSITION 2.5. — There exists a contravariant functor
+                                            [p]
+                                     M : ffgk         / Dm[p]
+
+                                                                                          [p]
+that gives an anti-equivalence of categories and, for each object G of the category ffgk ,
+satisﬁes the following three conditions:
+    (1) It holds that G is connected if and only if M(G) is connected.
+   (2) The object M(GD ) is naturally isomorphic [cf. Remark 1.3.1 and Remark 2.4.1]
+to the object M(G)D in Dm[p] .
+    (3) It holds that G is étale over k if and only if FM(G) is an isomorphism.
+Proof. — This assertion follows from, for instance, [2, Chapitre III, §1].                 □
+
+
+     3. Review of a Linear Algebra Theory for Group Schemes over W
+   In the present §3, we maintain the notational conventions introduced at the beginning
+of the preceding §2.
+   In the present §3, we give a review of a certain linear algebra theory for p-torsion ﬁnite
+ﬂat commutative group schemes over W [cf. Deﬁnition 3.6 and Proposition 3.11 below].
+
+
+D EFINITION 3.1. — Let D = (M, F, V ) be an object of the category Dm[p] . Then we
+shall write
+                           def                                  def
+                   CD = C = Im(F ) ⊆ M,               HD = H = Im(V ) ⊆ M
+for the k-submodules of M obtained by forming the images of the Fr-, Fr−1 -semilinear
+endomorphisms F , V , respectively.
+Pseudo-rigid Finite Flat Group Schemes                                                    7
+
+L EMMA 3.2. — Let D1 , D2 be objects of the category Dm[p] and f : D1 → D2 a morphism
+in the category Dm[p] . Then the inclusions f (CD1 ) ⊆ CD2 , f (HD1 ) ⊆ HD2 hold.
+Proof. — This assertion follows from the deﬁnition of morphisms in the category Dm[p] .
+                                                                                   □
+
+
+L EMMA 3.3. — Let D be an object of the category Dm[p] . Then the following assertions
+hold:
+  (i) The equalities dimk (CD ) = dimk (HDD ), dimk (HD ) = dimk (CDD ) hold.
+  (ii) It holds that the inclusion HD ⊆ CD holds if and only if the inclusion CDD ⊆ HDD
+holds.
+Proof. — These assertions follow immediately from the various deﬁnitions involved. □
+
+
+D EFINITION 3.4. — Let D = (M, F, V ) be an object of the category Dm[p] . Then we
+                                                F    V      F
+shall say that D is deformable if the complex M → M → M → M [cf. Deﬁnition 2.1]
+forms an exact sequence.
+
+
+D EFINITION 3.5. — Let D be an object of the category Dm[p] . Suppose that D is de-
+formable. Then we shall refer to a k-linear splitting of the natural surjective homomor-
+phism MD ↠ MD /CD as a deformation structure on D.
+
+
+R EMARK 3.5.1. — Let D be an object of the category Dm[p] .
+  (i) Suppose that D is deformable. Let L ⊆ MD be a k-submodule of MD . Then
+one veriﬁes immediately that L determines a deformation structure on D in the sense of
+Deﬁnition 3.5 if and only if the pair (L, D) is a ﬁnite Honda system in the sense of [3,
+§9.4]. [Here, let us recall that a ﬁnite Honda system in the sense of [3, §9.4] is deﬁned to
+be a collection (J, (N, FN , VN )) of data consisting of
+     • a W -module N of ﬁnite length,
+     • an endomorphism FN of the module N semilinear with respect to the automor-
+phism of W that lifts Fr,
+     • an endomorphism VN of the module N semilinear with respect to the automor-
+phism of W that lifts Fr−1 , and
+     • a W -submodule J ⊆ N of N
+such that
+     • both FN ◦ VN and VN ◦ FN coincide with the endomorphism of N given by multi-
+plication by p,
+     • the restriction of VN to the submodule J ⊆ N is injective,
+    • the composite J ,→ N ↠ N/Im(FN ) factors through the natural surjective homo-
+morphism J ↠ J/pJ, and, moreover,
+8                                                                                Yuichiro Hoshi
+
+     • the resulting homomorphism J/pJ → N/Im(FN ) is an isomorphism.]
+  (ii) One also veriﬁes immediately from the discussion of (i) that D is deformable if
+and only if there exists a k-submodule L ⊆ MD of MD such that the pair (L, D) is a ﬁnite
+Honda system in the sense of [3, §9.4].
+
+
+D EFINITION 3.6. — We shall write fHs[p] for the category deﬁned as follows:
+  • An object of the category fHs[p] is deﬁned to be a collection H = (D, s) of data
+consisting of a deformable object D of the category Dm[p] and a deformation structure s
+on D.
+  • Let (D1 , s1 ), (D2 , s2 ) be objects of the category fHs[p] . Then a morphism (D1 , s1 ) →
+(D2 , s2 ) in the category fHs[p] is deﬁned to be a morphism f : D1 → D2 in the category
+Dm[p] such that the inclusion f (Im(s1 )) ⊆ Im(s2 ) holds.
+
+
+D EFINITION 3.7. — We shall write
+                                       R : fHs[p]     / Dm[p]
+
+for the functor deﬁned by the assignment “(D, s) ⇝ D”.
+
+
+D EFINITION 3.8. — Let H be an object of the category fHs[p] . Then we shall say that H
+is connected if the object R(H) of the category Dm[p] is connected.
+
+
+D EFINITION 3.9. — We shall write
+                                          cfHs[p] ⊆ fHs[p]
+for the full subcategory of fHs[p] consisting of connected objects of fHs[p] .
+
+
+D EFINITION 3.10. — Let H = (D, s) be an object of the category fHs[p] . Then one
+veriﬁes immediately that the k-submodule of MDD obtained by forming the kernel of the
+surjective homomorphism MDD ↠ Homk (MD /CD , k) of k-modules induced by the injective
+homomorphism s : MD /CD ,→ MD determines a deformation structure sD on DD . We shall
+write
+                                              def
+                                         HD = (DD , sD )
+for the resulting object of fHs[p] .
+
+
+R EMARK 3.10.1. — One veriﬁes immediately that the assignment “H ⇝ HD ” deﬁnes a
+[contravariant] functor fHs[p] → fHs[p] , that gives an anti-equivalence of categories.
+Pseudo-rigid Finite Flat Group Schemes                                                      9
+
+P ROPOSITION 3.11. — There exist contravariant functors
+
+                    M : ffgk
+                            [p]         / Dm[p] ,           LM : ffgW
+                                                                         [p]    / fHs[p]
+
+that satisfy the following ﬁve conditions:
+  (1) The functor M gives an anti-equivalence of categories and satisﬁes the three
+conditions in the statement of Proposition 2.5.
+  (2) The functor LM restricts to an anti-equivalence of categories
+                                              [p]   ∼      / cfHs[p] .
+                                         cffgW
+                                  [p]
+Moreover, the functor LM : ffgW → fHs[p] gives an anti-equivalence of categories when-
+ever p 6= 2.
+                                                           [p]
+  (3) Let G be an object of the category ffgW . Then it holds that G is connected if
+and only if LM(G) is connected.
+                                                    [p]
+   (4) Let G be an object of the category ffgW . Then LM(GD ) is naturally isomorphic
+[cf. Remark 1.3.1 and Remark 3.10.1] to LM(G)D in fHs[p] .
+                                                     [p]
+  (5) Let G be an object of the category ffgW . Then M(rdct(G)) is naturally isomor-
+phic to R(LM(G)) in Dm[p] .
+Proof. — This assertion follows from, for instance, [3, §9] and [1, §1] [cf. also Re-
+mark 3.5.1, (i), (ii), of the present paper].                                      □
+
+
+                                                                          [p]
+L EMMA 3.12. — Let G be an object of the category ffgk . Then it holds that G is de-
+formable if and only if M(G) is deformable.
+Proof. — Necessity follows from condition (5) of Proposition 3.11, together with Re-
+mark 3.5.1, (ii). Next, we verify suﬃciency. Suppose that M(G) is deformable. Let us
+ﬁrst observe that since [we have assumed that] k is perfect, there exist objects G1 and G2
+       [p]                         ∼                [p]
+of ffgk and an isomorphism G → G1 ×k G2 in ffgk [which thus induces an isomorphism
+           ∼
+M(G) → M(G1 ) ⊕ M(G2 ) in Dm[p] ] such that G1 is connected, and, moreover, G2 is
+                                                                            [p]
+étale over k. Thus, since [it is immediate that] an arbitrary object of ffgk étale over k is
+deformable, to verify suﬃciency, we may assume without loss of generality, by replacing
+G by G1 , that G is connected. In particular, it follows immediately, in light of condition
+(1) of Proposition 2.5, from conditions (1), (2), (5) of Proposition 3.11, together with Re-
+mark 3.5.1, (ii), that G is deformable, as desired. This completes the proof of suﬃciency,
+hence also of Lemma 3.12.                                                                   □
+
+
+
+    4. Pseudo-rigid p-Torsion Finite Flat Commutative Group Schemes
+  In the present §4, we prove the main result of the present paper [cf. Theorem 4.10
+below].
+10                                                                              Yuichiro Hoshi
+
+   In the present §4, we maintain the notational conventions introduced at the beginning
+of §2. Moreover, let D = (M, F, V ) be a deformable object of the category Dm[p] . Thus,
+we have a commutative diagram of k-modules
+                      0      / C ∩ H       / H             / H/(C ∩ H)   /0
+                                    _              _                _
+
+                                                                
+                      0        /C           /M                 / M/C       /0
+
+— where the horizontal sequences are exact, and the vertical arrows are injective. Now let
+us observe that it is immediate that the natural homomorphism AutDm[p] (D) → Autk (M )
+of groups is injective. Let us regard AutDm[p] (D) as a subgroup of Autk (M ) by means of
+this injective homomorphism:
+                                  AutDm[p] (D) ⊆ Autk (M ).
+
+
+L EMMA 4.1. — An arbitrary automorphism of M contained in the subgroup AutDm[p] (D) ⊆
+Autk (M ) preserves the k-submodules C, H ⊆ M of M . In particular, we have a natural
+action of the group AutDm[p] (D) on the set of deformation structures on D.
+Proof. — This assertion follows from Lemma 3.2.                                             □
+
+                                                       [p]
+L EMMA 4.2. — Let G be an object of ffgk such that M(G) [cf. Proposition 3.11] is
+isomorphic to D in Dm[p] . Suppose that either G or GD is connected whenever p = 2.
+Then it holds that G is pseudo-rigid if and only if the action of the group AutDm[p] (D)
+on the set of deformation structures on D [cf. Lemma 4.1] is transitive.
+Proof. — This assertion follows immediately from Proposition 3.11.                          □
+
+
+D EFINITION 4.3. — We shall write
+                                        U (D) ⊆ Autk (M )
+for the subgroup of Autk (M ) consisting of [necessarily unipotent] automorphisms of the
+k-module M that preserve the k-submodules C and H of M and, moreover, induce the
+identity automorphisms of the four subquotients C, H, M/C, and M/H of M .
+
+
+L EMMA 4.4. — The following assertions hold:
+     (i) The inclusion U (D) ⊆ AutDm[p] (D) holds.
+  (ii) Suppose that the equality C = H holds. Then the action of U (D) on the set of
+deformation structures on M [cf. (i) and Lemma 4.1] is transitive.
+Proof. — Assertion (i) follows immediately from the deﬁnition of the category Dm[p]
+and the deﬁnition of the notion of deformability. Next, we verify assertion (ii). Let us
+ﬁrst observe that it follows immediately from the various deﬁnitions involved that the set
+of deformation structures on D [i.e., the set of k-linear splittings of the natural surjective
+Pseudo-rigid Finite Flat Group Schemes                                                                 11
+
+homomorphism M ↠ M/C] has a natural structure of Homk (M/C, C)-torsor. Moreover,
+one also veriﬁes immediately that the equality C = H, together with the deﬁnition of
+                                                                       ∼
+the subgroup U (D), implies that there exists an isomorphism U (D) → Homk (M/C, C) of
+groups, that is compatible with the respective actions on the set of deformation structures
+on D. Thus, we conclude that the action of U (D) on the set of deformation structures
+on M is transitive, as desired. This completes the proof of assertion (ii), hence also of
+Lemma 4.4.                                                                               □
+
+
+D EFINITION 4.5. — Let s be a deformation structure on D. Then we shall say that s is
+H-full if the image of the k-submodule H/(C ∩H) ⊆ M/C by s : M/C ,→ M is contained
+in the k-submodule H ⊆ M [cf. the diagram in the discussion at the beginning of the
+present §4].
+
+
+L EMMA 4.6. — The following assertions hold:
+  (i) A deformation structure on D obtained as an element of the AutDm[p] (D)-orbit of
+an H-full deformation structure on D is H-full.
+  (ii) There exists an H-full deformation structure on D.
+  (iii) The following two conditions are equivalent:
+      (1) Either the inclusion C ⊆ H or the inclusion H ⊆ C holds.
+      (2) An arbitrary deformation structure on D is H-full.
+ (iv) Suppose that condition (2) in (iii) is not satisﬁed. Then the action of the group
+AutDm[p] (D) on the set of deformation structures on D is not transitive.
+Proof. — Assertion (i) follows from Lemma 4.1. Assertion (ii) follows from the elemen-
+tary theory of linear algebra. Next, we verify assertion (iii). If the inclusion C ⊆ H holds,
+then it follows immediately from assertion (ii) that condition (2) is satisﬁed. Moreover,
+if the inclusion H ⊆ C holds, then the k-module H/(C ∩ H) is zero, which thus implies
+that condition (2) is satisﬁed. This completes the proof of the implication (1) ⇒ (2).
+   Next, to verify the implication (2) ⇒ (1), suppose that condition (1) is not satisﬁed.
+Let s be an H-full deformation structure on D [cf. assertion (ii)] and e1 , . . . , ed elements of
+M/C that form a basis of the ﬁnitely generated k-module M/C such that e1 , . . . , eh form
+a basis of the k-submodule H/(C ∩ H) for some h ∈ {0, . . . , d}. Now let us observe that
+since [we have assumed that] H 6⊆ C, the inequality h 6= 0 holds. Moreover, let us also
+observe that since [we have assumed that] C 6⊆ H, there exists an element m of C\(C∩H).
+Then, by considering the assignment “(e1 , e2 , . . . , ed ) 7→ (s(e1 ) + m, s(e2 ), . . . , s(ed ))”, one
+may obtain a deformation structure on D that is not H-full, as desired. This completes
+the proof of the implication (2) ⇒ (1), hence also of assertion (iii).
+   Finally, we verify assertion (iv). It follows from assertion (ii) that there exists a defor-
+mation structure on D that is H-full. Moreover, it follows from our assumption that there
+exists a deformation structure on D that is not H-full. Thus, it follows from assertion
+(i) that the action of the group AutDm[p] (D) on the set of deformation structures on D
+is not transitive, as desired. This completes the proof of assertion (iv), hence also of
+Lemma 4.6.                                                                                              □
+12                                                                            Yuichiro Hoshi
+
+     One main technical observation of the present paper is as follows:
+
+L EMMA 4.7. — The following assertions hold:
+     (i) Suppose that one of the following three conditions is satisﬁed:
+       (1) The equality C = {0} holds.
+       (2) The equality H = {0} holds.
+       (3) The equality C = H holds.
+Then the action of the group AutDm[p] (D) on the set of deformation structures on D is
+transitive.
+   (ii) If the action of the group AutDm[p] (D) on the set of deformation structures on D
+is transitive, then either the inclusion C ⊆ H or the inclusion CDD ⊆ HDD holds.
+Proof. — First, we verify assertion (i). If condition (1) is satisﬁed, then it is immediate
+that the set of deformation structures on D is of cardinality one. If condition (2) is
+satisﬁed, then since D is deformable, the equality C = M holds, which thus implies that
+the set of deformation structures on D is of cardinality one. Thus, we conclude that
+assertion (i) holds if either condition (1) or condition (2) is satisﬁed. Assertion (i) in the
+case where condition (3) is satisﬁed follows from Lemma 4.4, (i), (ii). This completes the
+proof of assertion (i). Assertion (ii) follows from Lemma 3.3, (ii), and Lemma 4.6, (iii),
+(iv). This completes the proof of Lemma 4.7.                                                □
+
+                                                               [p]
+D EFINITION 4.8. — Let G be an object of the category ffgk .
+   (i) We shall say that G is multiplicative if either G is zero or the following condition
+is satisﬁed: Let k be an algebraic closure of k. Then the ﬁnite ﬂat commutative group
+scheme G ×k k over k is isomorphic to the ﬁber product of ﬁnitely many copies of the
+ﬁnite ﬂat commutative group scheme “µp ”, i.e., of p-th roots of unity, over k.
+   (ii) We shall say that G is superspecial if either G is zero or the following condition
+is satisﬁed: Let k be an algebraic closure of k. Then there exist a positive integer r
+and, for each i ∈ {1, . . . , r}, a supersingular elliptic curve Ei over k such that if, for
+each i ∈ {1, . . . , r}, one writes Ei [p] for the ﬁnite ﬂat commutative group scheme over k
+obtained by forming the kernel of the endomorphism of Ei given by multiplication by p,
+then the ﬁnite ﬂat commutative group scheme G ×k k over k is isomorphic to the ﬁber
+product E1 [p] ×k · · · ×k Er [p] over k.
+   (iii) Let n be a positive integer. Then we shall say that G is of Frobenius height ≤ n
+if the image of the n-th iterate of the Frobenius endomorphism of G is zero.
+
+
+R EMARK 4.8.1. — Let us recall that every elliptic curve over a ﬁeld admits a principal
+polarization. In particular, one veriﬁes immediately from the various deﬁnitions involved
+                                                                                     [p]
+that if k is algebraically closed, then every superspecial object of the category ffgk is
+principally quasi-polarizable.
+Pseudo-rigid Finite Flat Group Schemes                                                             13
+
+                                                  [p]
+L EMMA 4.9. — Let G be an object of ffgk such that M(G) [cf. Proposition 3.11] is
+isomorphic to D in Dm[p] . Then the following two conditions are equivalent:
+  (1) The ﬁnite ﬂat commutative group scheme G is superspecial.
+  (2) The equality C = H holds.
+
+Proof. — Let us ﬁrst observe that one veriﬁes immediately from, for instance, [2,
+Chapitre III, §2] that, to verify Lemma 4.9, we may assume without loss of generality, by
+replacing G by the base-change of G to an algebraic closure of k, that k is algebraically
+closed.
+   Now we verify the implication (1) ⇒ (2). Let us ﬁrst observe that it is immediate that,
+to verify the implication (1) ⇒ (2), we may assume without loss of generality that G is
+isomorphic to “Ei [p]” as in Deﬁnition 4.8, (ii). Then it is well-known [cf., e.g., [5, §5.6]]
+that condition (2) is satisﬁed, as desired. This completes the proof of the implication (1)
+⇒ (2).
+   Finally, we verify the implication (2) ⇒ (1). Suppose that condition (2) is satisﬁed.
+Let us ﬁrst observe that since the sequence M → M → M → M is exact, the Fr-, Fr−1 -
+                                                  F    V      F
+                                                                                            ∼
+semilinear endomorphisms F , V determine Fr-, Fr−1 -semilinear isomorphisms M/H →
+            ∼
+C, M/C → H, respectively. Write F , V for these Fr-, Fr−1 -semilinear isomorphisms
+                ∼
+M/C = M/H → C = H [cf. condition (2)], respectively. Then since k is algebraically
+closed, and the composite
+                                                      −1
+                                    M/C
+                                             F   /C V    / M/C
+                                             ∼          ∼
+
+
+is an Fr2 -semilinear isomorphism, it follows from [7, Exposé XXII, Proposition 1.1] that
+there exist elements e1 , . . . , ed of M/C such that these elements form a basis of the
+ﬁnitely generated k-module M/C, and, moreover, the equality (V −1 ◦ F )(ei ) = ei , i.e.,
+the equality F (ei ) = V (ei ), holds for each i ∈ {1, . . . , d}. For each i ∈ {1, . . . , d}, let us
+ﬁx a lifting eei ∈ M of ei ∈ M/C and write Mi ⊆ M for the k-submodule of M generated
+by F (ei ) = V (ei ) ∈ C ⊆ M and the ﬁxed lifting eei ∈ M . Then one veriﬁes immediately
+from condition (2), together with the various deﬁnitions involved, that
+                         def
+  • the collection Di = (Mi , F |Mi , V |Mi ) of data forms a deformable object of the cate-
+gory Dm[p] such that CDi = HDi for each i ∈ {1, . . . , d}, and, moreover,
+  • the natural inclusions Mi ,→ M — where i ranges over the elements of {1, . . . , d} —
+                                         ∼
+determine an isomorphism D1 ⊕ · · · ⊕ Dd → D in Dm[p] .
+In particular, we conclude immediately from Proposition 3.11 that, to verify the impli-
+cation (2) ⇒ (1), we may assume without loss of generality, by replacing D by Di for
+each i ∈ {1, . . . , d}, that dimk (M ) = 2. On the other hand, if dimk (M ) = 2, then the
+implication (2) ⇒ (1) is well-known [cf., e.g., [5, §5.6]]. This completes the proof of the
+implication (2) ⇒ (1), hence also of Lemma 4.9.                                          □
+
+
+  The main result of the present paper is as follows:
+14                                                                           Yuichiro Hoshi
+
+T HEOREM 4.10. — Let p be a prime number, k a perfect ﬁeld of characteristic p, and
+G a p-torsion ﬁnite ﬂat commutative group scheme over k. Suppose that either G or the
+Cartier dual of G is connected whenever p = 2. Then the following assertions hold:
+  (i) If G is either étale over k, multiplicative [cf. Deﬁnition 4.8, (i)], or superspe-
+cial [cf. Deﬁnition 4.8, (ii)], then G is pseudo-rigid [cf. Deﬁnition 1.8].
+  (ii) If G is pseudo-rigid, then either G or the Cartier dual of G is of Frobenius
+height ≤ 2 [cf. Deﬁnition 4.8, (iii)].
+   (iii) Suppose that G is principally quasi-polarizable [cf. Deﬁnition 1.4]. Then G
+is pseudo-rigid if and only if G is superspecial.
+Proof. — First, we verify assertion (i). Let us observe that it follows — in light of
+Lemma 3.12 — from Lemma 4.2 and Lemma 4.7, (i), that G is pseudo-rigid if M(G) [cf.
+Proposition 3.11] is deformable, and, moreover, one of the three conditions of Lemma 4.7,
+(i) — i.e., in the case where we take the “D” of Lemma 4.7, (i), to be M(G) — is satisﬁed.
+On the other hand,
+   • by conditions (2), (3) of Proposition 2.5, Lemma 3.3, (i), and condition (1) of Propo-
+sition 3.11, one concludes that, under the assumption that M(G) is deformable, condition
+(1) of Lemma 4.7, (i), is equivalent to the condition that G is multiplicative,
+   • by condition (3) of Proposition 2.5 and condition (1) of Proposition 3.11, one con-
+cludes that, under the assumption that M(G) is deformable, condition (2) of Lemma 4.7,
+(i), is equivalent to the condition that G is étale over k, and
+  • by Lemma 4.9, one concludes that, under the assumption that M(G) is deformable,
+condition (3) of Lemma 4.7, (i), is equivalent to the condition that G is superspecial.
+This completes the proof of assertion (i).
+   Next, we verify assertion (ii). Let us observe that it follows — in light of Lemma 3.12 —
+from Lemma 4.2 and Lemma 4.7, (ii), that if G is pseudo-rigid, then either the inclusion
+CM(G) ⊆ HM(G) or the inclusion CM(G)D ⊆ HM(G)D holds. Thus, it follows immediately
+                                         F      V     F
+from the exactness of the sequence M → M → M → M , together with condition (2) of
+Proposition 2.5 and condition (1) of Proposition 3.11, that either G or GD is of Frobenius
+height ≤ 2, as desired. This completes the proof of assertion (ii).
+   Finally, we verify assertion (iii). Suﬃciency follows from assertion (i). To verify neces-
+sity, suppose that G is principally quasi-polarizable and pseudo-rigid, which thus implies
+[cf. Lemma 4.2 and Lemma 4.7, (ii)] that either the inclusion CM(G) ⊆ HM(G) or the inclu-
+sion CM(G)D ⊆ HM(G)D holds. If the inclusion CM(G) ⊆ HM(G) (respectively, CM(G)D ⊆
+HM(G)D ) holds, then since G [hence also GD ] is principally quasi-polarizable, it follows
+from Lemma 3.3, (ii), together with condition (2) of Proposition 2.5 and condition (1)
+of Proposition 3.11, that the equality CM(G) = HM(G) (respectively, CM(G)D = HM(G)D )
+holds. In particular, it follows from Lemma 4.9 that G (respectively, GD , hence also
+G) is superspecial, as desired. This completes the proof of assertion (iii), hence also of
+Theorem 4.10.                                                                              □
+
+
+R EMARK 4.10.1. — Let p be a prime number and k a perfect ﬁeld of characteristic p.
+Then there exists a pseudo-rigid p-torsion ﬁnite ﬂat commutative group scheme over k
+Pseudo-rigid Finite Flat Group Schemes                                                               15
+
+which is neither étale over k, multiplicative, nor superspecial. Such an example may be
+obtained by considering the following object “D” of the category Dm[p] [cf. also the proof
+of Theorem 4.10]: Write
+        def
+  • M = k · e1 ⊕ k · e2 ⊕ k · e3 for the ﬁnitely generated k-module that admits a basis
+{e1 , e2 , e3 } ⊆ M ,
+  • F for the Fr-semilinear endomorphism of M given by mapping
+                                     (e1 , e2 , e3 ) 7→ (0, e1 , e2 ),
+and
+  • V for the Fr−1 -semilinear endomorphism of M given by mapping
+                                         (e1 , e2 , e3 ) 7→ (0, 0, e1 ).
+
+                                   def
+Then one veriﬁes easily that D = (M, F, V ) is an object of the category Dm[p] . Moreover,
+one also veriﬁes easily that
+  • this object D is connected and deformable, and
+  • neither CD = {0}, HD = {0}, nor CD = HD holds.
+  On the other hand, it follows from the various deﬁnitions involved that, for every a,
+b ∈ k, the automorphism of the k-module M given by mapping
+                         (e1 , e2 , e3 ) 7→ (e1 , bp e1 + e2 , ae1 + be2 + e3 )
+determines an automorphism of D in Dm[p] . In particular, one veriﬁes immediately that
+   • the action of the group AutDm[p] (D) on the set of deformation structures on D is
+transitive.
+
+
+                                              References
+[1] B. Conrad: Finite group schemes over bases with low ramiﬁcation. Compositio Math. 119 (1999),
+    no. 3, 239–320.
+[2] J.-M. Fontaine: Groupes p-divisibles sur les corps locaux. Astérisque, No. 47-48. Société
+    Mathématique de France, Paris, 1977.
+[3] J.-M. Fontaine and G. Laﬀaille: Construction de représentations p-adiques. Ann. Sci. École Norm.
+    Sup. (4) 15 (1982), no. 4, 547–608 (1983).
+[4] S. Hattori: Ramiﬁcation of a ﬁnite ﬂat group scheme over a local ﬁeld. J. Number Theory 118
+    (2006), no. 2, 145–154.
+[5] K.-Z. Li and F. Oort: Moduli of supersingular abelian varieties. Lecture Notes in Mathematics,
+    1680. Springer-Verlag, Berlin, 1998.
+[6] M. Raynaud: Schémas en groupes de type (p, . . . , p). Bull. Soc. Math. France 102 (1974), 241–280.
+[7] Groupes de monodromie en géométrie algébrique. II. Séminaire de Géométrie Algébrique du Bois-
+    Marie 1967-1969 (SGA 7 II). Dirigé par P. Deligne et N. Katz. Lecture Notes in Mathematics, Vol.
+    340. Springer-Verlag, Berlin-New York, 1973.
+
+  (Yuichiro Hoshi) Research Institute for Mathematical Sciences, Kyoto University, Ky-
+oto 606-8502, JAPAN
+  Email address: yuichiro@kurims.kyoto-u.ac.jp
+

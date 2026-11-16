@@ -1,0 +1,7 @@
+# Supported-cycle/focal exact10 production preparation
+
+2026-11-16T00:25:07.158385+00:00 —10%: complete root408b adoption24418B and qualified prior6body76890B mechanism read, including full parser/FD/indexlock/runtime/authority distinctions. No W/.git/Git reads, installs, object/index/ref/public/remote mutations or corpuscopy. Reference-only initial/oracle intake precedes mechanism authoring. All priorFINALs immutable.
+
+2026-11-16T00:48:49.870363+00:00 — 85%. Entire six current bodies (59,966 bytes) personally read before own narrow controls. Actual one-pass controls exit0, 34 PASS/expected-rejection outcomes; all 58,561 protected raw records whole-identical, correct version/checksum and only obsolete TREE removed in memory. Same-FD/owned-inode/short-write, finite runtime and strict hook controls exercised only in owned or in-memory fixtures. Authorized POST in progress. No production mechanism/old programme executed.
+
+2026-11-16T00:53:06.555888+00:00 — 100% of preparation. Authorized POST exit0/all current623/94/95/source/index/ref/actualremote guards unchanged. New default normal and -O pure runs both exit0/717885 checks/whole-identical stdout/empty stderr; explicitly pre-seal. Complete actual six-body addition diff byte-compared to all six current full-read bodies. All old packets frozen; production mechanism never run. Final strict closed namespace and seal are being written. Independent current safety and real root installation/commit authorities remain absent.
