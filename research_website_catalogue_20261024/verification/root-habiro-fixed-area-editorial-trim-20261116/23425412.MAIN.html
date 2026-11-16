@@ -1,0 +1,74 @@
+<main id="main">
+<article>
+  <h1>A first-order obstruction to Habiro's rank interpolation</h1>
+  <p class="entry-meta">By <a rel="author" href="https://orcid.org/0009-0001-9320-500X">Alec Kriebel</a>, independent researcher · <time datetime="2026-10-16">16 October 2026</time> · Version 1.0 · Unrefereed preprint</p>
+  <p>Rank interpolation asks for one expression recovering the standard unified quantum invariant of a homology sphere at every matrix size. For the ordinary integral completion displayed in Ohtsuki’s Conjecture 7.30, this note gives a negative answer whenever the sphere has nonzero Casson invariant. A finite quotient already forces a relation that the classical first-coefficient formula violates.</p>
+
+  <section id="paper" aria-labelledby="paper-heading">
+    <h2 id="paper-heading">Read the paper</h2>
+    <p><a href="habiro-rank-interpolation-v1.0.pdf" target="_blank" rel="noopener">Open the original PDF</a> · <a href="habiro-rank-interpolation-v1.0.pdf" download>Download the PDF</a> · <a href="https://doi.org/10.5281/zenodo.23425412">Zenodo record and DOI</a> · <a href="citation.bib" download>BibTeX</a></p>
+    <iframe class="paper-pdf" src="habiro-rank-interpolation-v1.0.pdf#view=FitH" title="Original three-page manuscript: A first-order obstruction to Habiro's rank interpolation"></iframe>
+    <p>The original PDF is unchanged. The manuscript and native record both identify version 1.0 and 16 October 2026; the deposit was created that day at 20:11 UTC.</p>
+  </section>
+
+  <section id="result" aria-labelledby="result-heading">
+    <h2 id="result-heading">The literal completion and the theorem</h2>
+    <p>The coefficient ring is the ordinary integral Habiro ring, and the rank variable is completed using the displayed products:</p>
+    <p class="equation">R = lim←<sub>m</sub> ℤ[q, q<sup>−1</sup>] / (∏<sub>j=1</sub><sup>m</sup> (q<sup>j</sup> − 1)).</p>
+    <p class="equation">E<sub>m</sub>(t) = ∏<sub>j=1</sub><sup>m</sup> (t − q<sup>j</sup>), and S = lim←<sub>m</sub> R[t] / (E<sub>m</sub>(t)).</p>
+    <p>The transition maps are quotient maps. For F in S, evaluation at t = q<sup>n</sup> uses any coordinate m ≥ n. Here n is the matrix size for sl<sub>n</sub>; its Lie rank is n − 1. All sizes use the same parameter q and the standard invariant normalization, with I<sub>1</sub>(M) assigned the value 1.</p>
+    <p>For <em>every integral homology 3-sphere M with nonzero Casson invariant</em>, there is no F<sub>M</sub> in S satisfying F<sub>M</sub>(q<sup>n</sup>) = I<sup>slₙ</sup>(M) for all integers n ≥ 2 and F<sub>M</sub>(q) = 1. The Casson–Walker invariant λ<sub>C</sub> is taken in Lê’s stated Lescop normalization. This is an obstruction to the literal displayed ordinary completion and normalization.</p>
+  </section>
+
+  <section aria-labelledby="proof-heading">
+    <h2 id="proof-heading">A contradiction in the first coefficient</h2>
+    <p>Work only to first order in x = q − 1, so x² = 0. The substitutions q = 1 + x and q<sup>−1</sup> = 1 − x define a map from R to ℤ[x]/(x²). In the third interpolation coordinate, a representative of F is a polynomial a + bt + ct². Its first coefficient after substituting t = q<sup>n</sup> has the form A + nB: it is affine, or a straight line, in n.</p>
+    <p>Write those first coefficients as v<sub>n</sub>. At sizes 1, 2 and 3, any interpolating F must therefore satisfy</p>
+    <p class="equation">v<sub>3</sub> − 2v<sub>2</sub> + v<sub>1</sub> = 0.</p>
+    <p>The established quantum-invariant coefficient is instead</p>
+    <p class="equation">v<sub>n</sub> = n(n² − 1)λ<sub>C</sub>(M), for n ≥ 2.</p>
+    <p>The common type-A convention has roots of squared length 2 and q = v² = exp(h). Replacing h with q − 1 leaves the first coefficient unchanged; no rank-dependent rescaling is introduced. Since the assigned size-1 invariant is 1, its first coefficient is zero. Sizes 1, 2 and 3 then give a second difference of 12λ<sub>C</sub>(M), which cannot vanish when λ<sub>C</sub>(M) ≠ 0. The argument uses finite coefficient and interpolation quotients, without Taylor injectivity or differentiation of an infinite sum.</p>
+    <p>Omitting size 1 does not remove the obstruction: sizes 2, 3 and 4 give the incompatible second difference 18λ<sub>C</sub>(M).</p>
+  </section>
+
+  <section aria-labelledby="witness-heading">
+    <h2 id="witness-heading">An explicit oriented witness</h2>
+    <p>Take the Poincaré homology sphere obtained by −1 surgery on the left-handed trefoil. The source’s unified series has constant term 1 and first coefficient −6 at size 2; its remaining terms contribute nothing in the fixed first-order quotient. The coefficient formula fixes λ<sub>C</sub> = −1 in the stated convention.</p>
+    <table>
+      <caption>First q − 1 coefficient for this orientation</caption>
+      <thead><tr><th scope="col">Matrix size n</th><th scope="col">First coefficient v<sub>n</sub></th></tr></thead>
+      <tbody><tr><th scope="row">1</th><td>0</td></tr><tr><th scope="row">2</th><td>−6</td></tr><tr><th scope="row">3</th><td>−24</td></tr></tbody>
+    </table>
+    <p>The second difference is −24 − 2(−6) + 0 = −12, giving the concrete contradiction.</p>
+  </section>
+
+  <section aria-labelledby="credit-heading">
+    <h2 id="credit-heading">Scope and established inputs</h2>
+    <p>This is a credited deduction from established quantum-invariant results and finite algebra. <a href="https://doi.org/10.1016/S0040-9383(99)00037-3">Lê’s 2000 coefficient formula</a> supplies the first coefficient, and <a href="https://doi.org/10.2140/gt.2016.20.2687">Habiro–Lê’s 2016 unification theorem</a> and Taylor identification connect it to the standard unified invariants. The classical cubic type-A behavior is already explicit in Lê–Murakami–Ohtsuki (1998) and Garoufalidis–Lê–Mariño (2008). The sphere-series locator in Habiro’s work refers specifically to arXiv:math/0605314v1, §16.1, equation (16.1).</p>
+    <p>The result gives no existence criterion when λ<sub>C</sub>(M) = 0 and proposes no corrected formulation. Allowing poles in q − 1, changing the completion or introducing rank-dependent normalization changes the question. Fixed-Lie unification, link-interpolation stability and enlarged knot-color Newton rings, including the works of Beliakova–Gorsky, Fang–Zhou and Fang cited in the manuscript, do not by themselves assert this S-valued homology-sphere interpolation.</p>
+    <p>No novelty, firstness, present-openness or exhaustive absence-of-earlier-resolution claim is made. Ohtsuki’s collection has volume year 2002; its <a href="https://msp.org/gtm/2002/04/p024.xhtml">publisher record</a> gives release on 1 June 2004. Those are different bibliographic dates.</p>
+  </section>
+
+  <section id="original-abstract" aria-labelledby="abstract-heading">
+    <h2 id="abstract-heading">Original manuscript abstract</h2>
+    <p>The rank completion printed in Ohtsuki's Conjecture 7.30 cannot interpolate the standard unified sl_n invariants of an integral homology sphere with nonzero Casson invariant. A finite quotient forces its first Taylor coefficients to be affine in n, contrary to the classical cubic coefficient formula. The specified Poincaré sphere gives the incompatible values 0,−6,−24. This is a negative answer to the literal displayed statement, obtained from established quantum-invariant results.</p>
+  </section>
+
+  <section aria-labelledby="downloads-heading">
+    <h2 id="downloads-heading">Original files and citation</h2>
+    <p>The original files are available here and from Zenodo, in the record’s order:</p>
+    <ol id="native-downloads">
+      <li><a href="habiro-rank-interpolation-v1.0.pdf" download>habiro-rank-interpolation-v1.0.pdf</a> (60,591 bytes) · <a href="https://zenodo.org/api/records/23425412/files/habiro-rank-interpolation-v1.0.pdf/content">Zenodo original PDF</a></li>
+      <li><a href="habiro-rank-interpolation-verification-v1.0.zip" download>habiro-rank-interpolation-verification-v1.0.zip</a> (1,660,004 bytes) · <a href="https://zenodo.org/api/records/23425412/files/habiro-rank-interpolation-verification-v1.0.zip/content">Zenodo original ZIP</a></li>
+    </ol>
+    <p>Kriebel, Alec. <cite>A first-order obstruction to Habiro's rank interpolation</cite>. Version 1.0, 16 October 2026. <a href="https://doi.org/10.5281/zenodo.23425412">doi:10.5281/zenodo.23425412</a>. <a href="citation.bib" download>Download BibTeX</a>.</p>
+    <p>The authored note and verification materials, including authored code, use <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>. Third-party works and retained historical material keep their original attribution and rights.</p>
+  </section>
+
+  <section aria-labelledby="status-heading">
+    <h2 id="status-heading">Status and collaboration</h2>
+    <p>Extensive AI tools assisted solving, source research, computation, writing and adversarial review. This preprint has undergone internal AI-assisted proof review. It is unrefereed; no independent human peer review, journal acceptance or formal proof-assistant certification is asserted. The written proof uses established topology results; finite arithmetic controls do not computationally certify those inputs.</p>
+    <p>Independent verification, substantive mathematical extensions and journal work would be useful contributions. Collaboration and any authorship would reflect actual scholarly contributions.</p>
+  </section>
+</article>
+</main>

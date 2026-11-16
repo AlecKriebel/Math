@@ -1,0 +1,24 @@
+--- /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source149-152-sol-20261116/acquire_sources.py
++++ /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source153-155-sol-20261116/acquire_sources.py
+@@ -7,9 +7,10 @@
+ import datetime, hashlib, http.client, io, json, os, ssl, stat, subprocess, sys, tarfile, traceback, urllib.parse, zipfile
+ 
+ P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+-N=P/'verification/source149-152-sol-20261116'
+-WORKS={23332261:149,23573603:151,23191247:152}
+-EXPECTED_TITLES={23332261:'A Martin kernel with isolated Harnack contact in an annulus',23573603:'A supercritical nonuniqueness example on a graph roughly isometric to the square lattice',23191247:'A telescoping proof of the focal antipedal sum invariant'}
++N=P/'verification/source153-155-sol-20261116'
++WORKS={23444050:153,23334001:154,23394004:155}
++EXPECTED_TITLES={23444050:'An explicit counterexample to three-summand Kato-kernel splitting',23334001:'An odd-period pedal-antipedal area invariant in elliptic billiards',23394004:'An odd-period product for focal inversions of outer billiard polygons'}
++EXPECTED_PDFS={23444050:('mixed-kato-counterexample.pdf','01ef963f6dbebc0c3aa91bfb10f13d293c983a46238c4465ae53bf4db99f1c96'),23334001:('odd_origin_area_product.pdf','687c633a92a61f1962d719be628ef5e119e077846254456f89a088d5fd13f34f'),23394004:('k904a-outer-focal-inverse-areas.pdf','82b2710dd69f706dc2018f8d7ee6de4e8d894688f8dc15c3e8006219e974ab06')}
+ TERMINALS={'SOURCE_MANIFEST.json','SOURCE_FINAL.json'}
+ 
+ def need(ok,why):
+@@ -145,6 +146,7 @@
+                 local_assets.append(asset); assets.append(asset); self.inspect(local,rid,{'native_asset':key,'ordinal_zero_based':ordinal})
+             summaries.append({'record_id':rid,'record_body_path':str(path),'title':meta['title'],'DOI':record['doi'],'creators':creators,'publication_date':meta.get('publication_date'),'created':record.get('created'),'updated':record.get('updated'),'native_record_state':field(record,'state'),'native_is_published':field(record,'is_published'),'native_version_whole_field':field(meta,'version'),'native_conceptrecid_whole_field':field(record,'conceptrecid'),'license_whole_field':field(meta,'license'),'resource_type_whole_field':field(meta,'resource_type'),'description_whole_field':field(meta,'description'),'files_endpoint_body_path':str(files_path),'files_endpoint_original_order_and_fields':files_obj,'all_native_assets_in_original_order':local_assets})
+         need(any(x['record_id']==latest['id'] and x['origin'].get('native_asset') for x in self.pdfs),'latest published native actual PDF exists')
++        need(any(x['record_id']==self.rid and x['key']==EXPECTED_PDFS[self.rid][0] and x['SHA256']==EXPECTED_PDFS[self.rid][1] for x in assets),'queued exact native PDF filename and SHA256')
+         pairs=[]
+         for pdf in self.pdfs:
+             candidates=[t for t in self.tex if t['record_id']==pdf['record_id'] and Path(t['path']).stem==Path(pdf['path']).stem]
