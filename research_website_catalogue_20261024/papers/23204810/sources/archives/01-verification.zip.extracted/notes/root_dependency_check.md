@@ -1,0 +1,22 @@
+# Integrated dependency check
+
+Checkpoint: 2026-10-06, America/Los_Angeles. Mathematical resolution estimate 85%; publication package 55%. These are planning estimates, not evidence.
+
+Root read both introductions, the relevant field-descent sections, and companion Sections 02–08. Independent auditors examined materially different components; the notes retain precise limitations. No material upstream gap has been identified. The necessary dependency is only full-length Artinian EGH over C, not Betti domination, partial-length reductions, or the later cohomology applications.
+
+The integrated dependency chain is: generic square-root division coefficients and no-small-curve characteristic sets → simple-factor annihilator systems → high-connectivity parameter complete intersections → binary-power-addition matrix families on Picard varieties → scalar-corrected module descent and unit mixed Picard index → integral equivariant K-theory comparison and p-adic rank divisibility → actual division algebra at every induction stage → invariant triangular identities → ordered Δ-basis → monomial HF extraction. This chain is noncircular: initial generic coefficients are constructed directly; the induction proves division before applying elimination. The matrix-only weakening explicitly fails the coefficient-space step, as the LPP audit records.
+
+Root independently checked the remaining primary sheaf comparison scope on October 6, 2026:
+
+- Schnürer–Soergel, *Proper base change for separated locally proper maps*, Rend. Sem. Mat. Univ. Padova 135 (2016), 223–250, [primary paper](https://www.numdam.org/item/10.4171/RSMUP/135-13.pdf), Theorems 5.9–5.10, printed p.234, and Corollary 2.11, printed p.228. Every continuous map from a locally compact Hausdorff space to a Hausdorff space is separated locally proper. The incidence manifolds, base punctured line bundle, and structure maps in companion Section 04 meet these conditions. Derived composition supplies compact-support Leray and base change identifies stalks with compact-support cohomology of fibers; local triviality of the full fibration is not needed.
+- Schapira, *An Introduction to Sheaves on Grothendieck Topologies*, [author notes](https://webusers.imj-prg.fr/~pierre.schapira/LectNotes/SHV.pdf), Proposition 5.1.2(ii), printed p.106: compact-support cohomology of any abelian sheaf on an n-manifold vanishes above n. The real base dimension is 2s; the gap to the next possible proper-support row is 2M−1. This justifies the spectral-sequence range rather than assuming only constant coefficients occur. The top orientation sheaf is constant by complex orientation and connected fibers.
+
+All relevant numeric ranges, monomial exponent direction, and the Frobenius order are consistent. The finite arithmetic was rerun by root; it supports the actual threshold and is explicitly not a proof of the global construction. The final proof of rank divisibility combines separate integer facts, not an unjustified cancellation in rational cohomology.
+
+The pinned source PDFs agree with the corresponding TeX theorem numbering and scope: companion construction Theorem 1.1, Artinian EGH Corollary 1.2, characteristic-zero Corollary 1.3. Both multi-file sources compile in local copies with Tectonic 0.16.9 after a cosmetic compatibility wrapper defining absent pdfTeX metadata primitives. Original source files were not changed. This reproduces content/layout from source, not the released PDF bytes or a formal proof.
+
+Read lean/README.md and searched lean/formalization.yaml plus available docs. No applicable family-200 formalization or lean/docs/200.md exists in the pinned tree. Unrelated declarations with “200” in their names were excluded. No Lean build or formalization of EGH/Sperner is claimed.
+
+The downstream proof is independently reconstructed in downstream_proof.md and manuscript/main.tex. All-ideal reduction uses m·in(I) ⊂ in(mI), with μ(I)≤μ(in(I)); degree-one elimination is a graded algebra isomorphism; finite coefficient-field descent avoids embedding arbitrary characteristic-zero fields in C. The published HWW conditional mechanism and all-ideal scope are attributed, and bounded priority evidence makes no first-priority claim.
+
+This is an audit record of checkable arguments and primary scopes, not human refereeing or machine formalization. Promotion awaits review of the complete exact publication candidate.
