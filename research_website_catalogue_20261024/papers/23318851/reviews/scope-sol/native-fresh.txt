@@ -1,0 +1,251 @@
+    No single polynomial inequality deﬁnes a real binary Gram locus
+                                                 Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                            12 October 2026
+                                  Version 1.0.0; unrefereed research note
+
+
+                                                  Abstract
+          For a real tensor with n binary factors, consider the determinants of its one-mode Gram
+      matrices as the tensor ranges over the closed Frobenius unit ball. For every n ≥ 3, this locus
+      cannot be deﬁned by one polynomial nonnegativity condition in the determinant coordinates,
+      even after imposing the cube bounds or the known convex-hull inequalities. This answers Sei-
+      gal’s single-polynomial question negatively for n ≥ 4. The proof combines established qubit
+      marginal polygon inequalities, an explicit real three-factor realization, a multiplicity obstruc-
+      tion, and exact zero-determinant slices. A strictly positive rational counterexample also refutes
+      the proposed polynomial. Our theorem was recorded in a September 30, 2026 GitHub submis-
+      sion. Ferudun’s October 2, 2026 preprint gives an overlapping stronger theorem; we credit it and
+      record the chronology without claiming exclusive priority or certifying mutual independence.
+
+
+1    Statement and the original question
+For T ∈ (R2 )⊗n , let Mi (T ) be its two-row mode-i ﬂattening. Deﬁne
+
+              di (T ) = det(Mi (T )Mi (T )T ),      Gn = {(d1 (T ), . . . , dn (T )) : kT kF ≤ 1}.
+
+Every Gram matrix has trace kT k2F , so Gn lies in
+                                                                   ∑
+                    Cn = [0, 1/4]n ,      Hn = {d ∈ Cn : di ≤        j6=i dj for every i}.
+
+Seigal identiﬁes Hn as the convex hull [1, Theorem 1.3]. Her Conjecture 1.5 proposes one polynomial
+inequality inside Cn for n ≥ 4; her Oberwolfach contribution points to the same question [2, p. 1226].
+The domain is the closed Frobenius unit ball, including zero-determinant tensors.
+Theorem 1. For every n ≥ 3, no polynomial P ∈ R[d1 , . . . , dn ] satisﬁes
+
+                                       Gn = {d ∈ Cn : P (d) ≥ 0}.
+
+The same conclusion holds with Cn replaced by Hn .
+    The variables are precisely the determinants. This concerns one additional polynomial sign
+condition in the indicated domain; it makes no assertion about auxiliary variables or Boolean
+combinations of polynomial conditions. For n = 2, the two determinants coincide and every value
+in [0, 1/4] is attained, so P = −(d1 − d2 )2 deﬁnes G2 inside C2 . For n = 1, the locus is {0}.
+    The marginal polygon criterion is prior work: Higuchi, Sudbery and Szulc [3] prove necessity
+and real realizability; Bravyi [4, Section 2] gives an even-parity construction. Domanov, Stegeman
+
+                                                      1
+and De Lathauwer’s higher-order singular-value criterion [5, Theorems 1.4–1.5] supplies further
+established antecedents. Polynomial boundary/interior multiplicity obstructions also have prior
+general formulations, for example Sinn [6, Lemma 4.2(b)]. We give the elementary argument for
+this determinant locus and do not claim a new general obstruction principle. We need only the
+necessary polygon inequality and the explicit three-factor realization below.
+
+
+2      Normalization and three factors
+                   √
+Set λ(d) = (1 −        1 − 4d)/2 for 0 ≤ d ≤ 1/4.
+                                            ∑
+Lemma 1. If d ∈ Gn , then λ(di ) ≤            j6=i λ(dj ) for every i. For n = 3, these conditions also suﬃce.
+
+Proof. We recall the published necessity argument [3]. For a unit real tensor, let a ≤ 1/2 be the
+smaller eigenvalue in the ﬁrst mode. If a = 0, the inequality is immediate. Otherwise a real Schmidt
+decomposition is
+                         √           √
+                    T = a e0 ⊗ u + 1 − a e1 ⊗ v,         u ⊥ v, kuk = kvk = 1.
+
+On the remaining factors let Pj project onto a smaller-eigenvalue eigenvector. Their sum N =
+∑
+  j≥2 Pj on the remaining tensor product satisﬁes N ≥ I − ww , where w is the product of the
+                                                                T
+
+complementary eigenvectors. Put p = |hw, ui| , q = |hw, vi| ; Bessel’s inequality gives p + q ≤ 1.
+                                             2             2
+
+Hence                ∑
+                         λj ≥ a(1 − p) + (1 − a)(1 − q) ≥ a(2 − p − q) ≥ a.
+                           j≥2
+
+Permuting factors proves all normalized polygon inequalities.
+    For a nonzero tensor in the ball, put s = kT k2F ∈ (0, 1]. Its unnormalized smaller eigenvalues
+are                                          √
+                                         s − s2 − 4d          2d
+                                as (d) =               =     √        .
+                                               2         s + s2 − 4d
+                                 ∑
+Normalization gives as (di ) ≤ j6=i as (dj ). Suppose the trace-one inequality fails for i. Since λ
+                                                                          √
+increases, di > dj for every j 6= i, and di > 0. For 0 < dj < di and s > 2 di ,
+
+                                   d      as (dj )      1          1
+                                      log          =√ 2      −√          > 0.
+                                   ds     as (di )   s − 4di    s2 − 4dj
+
+Each ratio increases with s. Zero dj ’s contribute zero and the lower endpoint follows by continuity.
+At s = 1, the sum of the ratios is less than one; it remains less than one at any allowed s ≤ 1, a
+contradiction. If di = 1/4, the only allowed s ≤ 1 is 1, so the contradiction is immediate. The zero
+tensor is harmless.
+   For suﬃciency in three factors, put ti = λ(di ) ∈ [0, 1/2]. Under the triangle inequalities, the
+weights
+
+    w0 = 1 − 21 (t1 + t2 + t3 ),     w1 = 21 (t2 + t3 − t1 ),   w2 = 21 (t1 + t3 − t2 ),   w3 = 21 (t1 + t2 − t3 )
+
+are nonnegative, sum to one, and satisfy w0 ≥ 1/4. The real unit tensor
+                          √            √         √           √
+                             w0 e000 + w1 e011 + w2 e101 + w3 e110
+
+has diagonal one-mode Gram matrices with eigenvalues ti , 1 − ti , and hence determinants di =
+ti (1 − ti ). This is the three-factor construction from the prior polygon criterion [3].
+
+                                                           2
+3    Multiplicities and exact slices
+Proof of Theorem 1. First suppose n = 3 and such a polynomial exists in C3 . Deﬁne
+
+                                F (t) = P (t1 (1 − t1 ), t2 (1 − t2 ), t3 (1 − t3 )).
+
+The coordinate map is an analytic diﬀeomorphism from D = (0, 1/2)3 onto the open cube. By
+Lemma 1, feasibility in D is exactly the triangle region. The polynomial F is invariant under each
+reﬂection ti 7→ 1 − ti .
+     Let L = t1 − t2 − t3 . Its plane has the relatively open patch t2 , t3 > 0, t2 + t3 < 1/2. Near
+this patch the other two triangle inequalities are strict; L < 0 is feasible and L > 0 is infeasible.
+Thus F ≥ 0 on the ﬁrst side and F < 0 on the second. Continuity forces F = 0 on the patch.
+In coordinates (L, t2 , t3 ), the coeﬃcient of L0 vanishes on an open set and is identically zero, so L
+divides F .
+     The polynomial F is nonzero, since the open cube contains infeasible points. Write F = Lm A,
+with exact multiplicity m ≥ 1. The restriction of A to the plane is nonzero, so there is a point of
+the boundary patch with A 6= 0. Across that point F changes sign; therefore m is odd.
+     The reﬂection τ (t) = (1 − t1 , t2 , t3 ) ﬁxes F and sends L to −L0 , where L0 = t1 + t2 + t3 − 1.
+Thus L0 has the same exact multiplicity m. A relatively open patch of L0 = 0 about (1/3, 1/3, 1/3)
+lies strictly inside D and the triangle region. At some point there, the residual factor after division
+by (L0 )m is nonzero. Since F ≥ 0 on a full neighborhood, its multiplicity is even. This contradicts
+odd m.
+     For H3 , both patches lie strictly inside its determinant inequalities. On the ﬁrst patch write
+t = (b + c, b, c); the determinant slacks are
+
+        d2 + d3 − d1 = 2bc,       d1 + d3 − d2 = 2c(1 − b − c),          d1 + d2 − d3 = 2b(1 − b − c),
+                                           ∑
+all positive. On the second patch ti = 1, each slack is 2tj tk > 0. Both local crossings therefore
+remain inside H3 . Moreover t = (5/16, 1/8, 1/8) is infeasible and gives the strict-H3 point d =
+(55, 28, 28)/256; hence F cannot vanish identically in this version either.
+    For n > 3, the exact slice is
+
+                                Gn ∩ {d4 = · · · = dn = 0} = G3 × {0}n−3 .
+
+A zero Gram determinant means that ﬂattening has rank at most one. A nonzero real tensor
+therefore factors as S ⊗ u in that mode. Make u unit by absorbing its length into S. This preserves
+the norm and every other one-mode Gram matrix. Repeat to peel oﬀ all zero-determinant factors.
+Conversely, adjoining unit vectors to a three-factor tensor realizes the reverse inclusion. The zero
+tensor causes no exception.
+    Restricting Pn to that face would deﬁne G3 in C3 , a contradiction. Since the same face of Hn
+is H3 × {0}n−3 , the other assertion follows.
+
+
+4    A strictly positive counterexample
+Seigal’s proposed polynomials [1, Conjecture 1.5] are
+                                                                                (       )
+                            ∏       ∑                             1    ∏      ∑ √
+                 Q1 (d) =                 dj − di  ,   Q2 (d) =               ϵi di .
+                            i       j6=i
+                                                                  2 ϵ∈{−1,1}n i
+
+
+                                                         3
+The full sign product is invariant under each square-root sign change, so it is a polynomial in the
+determinants. For four factors take
+                                       (                        )
+                                            2401 81 81     1
+                                  d=            ,   ,   ,      .
+                                           10000 625 625 10000
+
+This point is strictly inside C4 and H4 . Its square roots are (49, 36, 36, 1)/100; exact evaluation
+gives
+              168760917                23632249608                        2589624828909
+      Q1 =                ,   Q2 =                    ,      Q1 − Q2 =                    > 0.
+             305175781250            2384185791015625                    4768371582031250
+Yet
+                                    2                       1              1
+                          λ(d1 ) > ,        λ(d2 ), λ(d3 ) < ,   λ(d4 ) <     .
+                                    5                       6             100
+These follow respectively from d1 > 6/25, 81/625 < 5/36, and 1/10000 < 99/10000, using the in-
+creasing inverse t 7→ t(1 − t) on [0, 1/2]. The last three bounds sum to 103/300 < 2/5, contradicting
+Lemma 1. Thus d ∈    / G4 at any allowed norm. The general theorem answers the question for every
+n ≥ 4; this example also shows that the four-factor failure is not conﬁned to zero determinants.
+    We do not use the printed three-factor characterization [1, Theorem 1.4]. Its displayed secondary
+inequality direction fails at the unit GHZ tensor: for d = (1/4, 1/4, 1/4), Q1 = 1/64 < Q2 = 9/512,
+while the secondary pair expression is 1/4 > 3/16. Ferudun also identiﬁes this display issue [7].
+This caution concerns that direction, rather than other source results.
+
+
+5      Credit, chronology, and veriﬁcation
+Our original proof in GitHub PR170 [8] is byte-identical to the theorem-bearing ﬁle in commit
+aa5ed0878eee3f6d0b1d99f2f4e6ae96a24b2ba6. GitHub records PR creation at 13:15:23 UTC on
+September 30, 2026 and its last update at 13:21:36 UTC that day. The commit’s author and
+committer timestamps are 13:15:09 UTC; such commit timestamps are author-controlled. Current
+repository visibility is public; we lack an independent archive certifying its historical visibility.
+    Ferudun’s unrefereed preprint [7], DOI 10.5281/zenodo.23111048, has a Zenodo creation
+timestamp of October 2, 2026 at 20:58:52.851621 UTC. Its Theorem 1.4 gives the overlapping
+impossibility for every n ≥ 3, including an all-positive domain. Its reﬂection/multiplicity mecha-
+nism is equivalent under ri = 1−2ti . It also gives a diﬀerent positive counterexample and additional
+semialgebraic descriptions. Our higher-factor proof uses closed zero-determinant faces and does not
+claim that stronger positive-domain result.
+    We describe these as contemporaneous separate disclosures. The available GitHub record pre-
+cedes the October 2 Zenodo record. This formal preprint is dated October 12, rather than back-
+dated to GitHub. The records neither certify mutual independence of authorship nor establish
+literal simultaneity, exclusive ﬁrstness, or a complete historical absence of earlier work. The ac-
+companying bounded priority audit distinguishes established marginal criteria from an explicitly
+published determinant-only obstruction and records source coverage and access limits.
+    The support archive includes the standalone source, exact standard-library controls, ordinary
+and optimized outputs, deliberately false variants, source locators, chronology evidence and priority
+reports. These checks supplement the universal multiplicity and slice proofs. A ﬁnite run cannot
+prove polynomial nonexistence or certify historical priority.
+
+
+
+
+                                                  4
+AI use and review status. AI tools were used extensively in solving, drafting, source compar-
+ison, reproduction, and adversarial veriﬁcation. This work is unrefereed and has not undergone
+conventional human peer review. The author is responsible for its contents. No outside individual
+was contacted on behalf of the project.
+
+
+References
+[1] A. Seigal, Gram determinants of real binary tensors, Linear Algebra Appl. 544 (2018), 350–369.
+    doi:10.1016/j.laa.2018.01.019.
+
+[2] A. Seigal, Higher Order Singular Values: Gram Determinants of Real Binary Tensors, contri-
+    bution to Oberwolfach Reports 20/2017, 1226–1227. doi:10.4171/OWR/2017/20.
+
+[3] A. Higuchi, A. Sudbery and J. Szulc, One-qubit reduced states of a pure many-qubit state:
+    polygon inequalities, Phys. Rev. Lett. 90 (2003), 107902. doi:10.1103/PhysRevLett.90.107902.
+
+[4] S. Bravyi, Requirements for compatibility between local and multipartite quantum states, Quan-
+    tum Inf. Comput. 4 (2004), 12–26. arXiv:quant-ph/0301014v1.
+
+[5] I. Domanov, A. Stegeman and L. De Lathauwer, On the largest multilinear singu-
+    lar values of higher-order tensors, SIAM J. Matrix Anal. Appl. 38 (2017), 1434–1453.
+    doi:10.1137/16M110770X.
+
+[6] R. Sinn, The Algebraic Boundary of SO(2)-Orbitopes, preprint, 2011. arXiv:1108.2992v1.
+
+[7] A. Ferudun, Seigal’s Conjecture on Gram Determinants of Real Binary Tensors Fails for n ≥ 4,
+    unrefereed preprint, October 2, 2026. doi:10.5281/zenodo.23111048.
+
+[8] A. Kriebel, 30003480: rule out single-polynomial binary Gram-locus descriptions, GitHub
+    PR170, September 30, 2026. github.com/AlecKriebel/Math/pull/170.
+
+
+
+
+                                                5
+

@@ -1,0 +1,7 @@
+# Independent original-only INITIAL: record 23204212
+
+2026-11-17 13:32:35 UTC — Assigned new namespace was absent. Read only native custody metadata, complete original main.tex and complete native record API. Claims in the original and API Description, including assertions of upstream audit/formal inspection, are unverified exposure. No support programs, audit bodies, old reviews, peer findings or primary literature have been opened. Completion estimate: 15% of the full scientific review; original-only INITIAL gate remains in progress.
+
+The controlling source is the outer four-page, 56,917-byte paper.pdf. Native order is verification ZIP, source ZIP, then PDF. The API version field is absent; the host's v1 label is separate. Declared publication/manuscript date is 6 October 2026, and native creation/update dates are distinct. Metadata declares CC BY 4.0; the contents of a separately named code-license file remain unread at this INITIAL gate.
+
+2026-11-17T13:41:54.095693+00:00 — Full original TeX/API/native HTML Description and metadata read; all four fresh PDF text pages and all four separate page pixels personally read. Own scope/dependency reconstruction and falsifiable hand controls saved. Whole source55/14 exact before/after/final; safe archive path census retained; support/scientific-code/peer/primary exposure counts0. INITIAL completion100%; estimated full scientific review20%. No verdict. Freeze and stop pending checkpoint and explicit RESUME in a separate sibling.

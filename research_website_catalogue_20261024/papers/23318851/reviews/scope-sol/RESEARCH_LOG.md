@@ -1,0 +1,17 @@
+# Timestamped INITIAL research log
+
+All times UTC, 2026-11-17. This is the row194 / record23318851 SCOPE lane only. Completion estimates concern the full scoped review, with INITIAL phase completion separately stated. Old K3, Riesz and other frozen packets were not changed.
+
+| Time or bound | Event and decision | Full-review estimate |
+|---|---|---|
+| Before 13:03:41 | Root checkpoint write hold respected. No lane/render/reader/notes written. The absent intended lane and two terminal pins were checked. Whole original 185-line TeX, complete native API/Description, old native intake text and bounded HTML metadata/rights/JSON-LD surfaces were personally read. Truncated discovery output was not counted as read coverage. Original source's author priority/audit assertions were recognized as exposure, not adopted as evidence. | 25% |
+| By 13:03:41 | Developed a direct real feasibility/concavity and ambient-polytope reconstruction in memory. No support or primary bodies opened. Poppler availability confirmed; fresh output deferred until release. | 40% |
+| 13:06:18 | Root had released writes after checkpoint 15482acd0ef864af280a864758b2ac6aa24dfbe8. Initial lane creation encountered an absent reviews container. The routine diagnostic is preserved; required parent container and owned lane were created. No substantive/protected-state failure occurred. | 40% |
+| Between 13:06:18 and 13:08:25 | Saved and personally fully read own standard-library custody reader; its `before` invocation authenticated all 95 source files /16 child directories and source controls. No support code execution. Fresh ordinary PDF information, text extraction and five-page 120-dpi rendering completed with exit 0 and empty tool stderr. | 55% |
+| By 13:08:25 | Full fresh PDF text was read in two bounded chunks; individual fresh pages 1,2,3 had been viewed. TeX and fresh text/image pins recorded. | 60% |
+| By 13:08:55 | Fresh individual pages 4 and 5 also personally viewed. All five pages visually complete and legible. No source writes, support/README/audit reading, imported-primary reading, scientific runs or network. Own direct derivation includes boundary cases and exact hand arithmetic. | 75% |
+| 13:12:36 | Original derivation and INITIAL scope report written. No central unsupported inference identified in the reconstructed theorem; source/attribution/code/chronology checks remain explicitly deferred. Review is original-informed independent checking, not a claim of source-blind rediscovery. | 80% |
+| 13:15:38 | All seven own note files complete; the pre-seal lane has 21 regular files and no child directories. Actual zero-byte stderr files are retained. Fresh coverage and hand-derived arithmetic were reviewed; no new support exposure or scientific execution occurred. Proceed to the final repeat custody comparison and finite freeze. | 80% |
+| At seal UTC | Final whole-source authentication and exact before/after comparison must pass. Freeze all actual own objects, modes, hidden and empty topology in the finite manifest, excluding only the two already-created terminal payloads for recursive hashing. Stop pending root checkpoint and explicit resume in a separate sibling. | 80%; INITIAL 100% |
+
+The best guess of 80% is review coverage, not an assertion of a remaining necessary central mathematical gap. Falsifiable deferred checks are in their own file. No outside individual was contacted, no outreach was prepared, and follow-up is null. Root handles any eventual scientific disposition or publication.
