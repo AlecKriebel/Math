@@ -1,0 +1,15 @@
+Retained preparation read/collector limitations (not producer defects):
+
+1. Initial read-only metadata locator assumed uniform OWNED_MANIFEST.json. It failed before owned-folder writes:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/wreath-planar-editorial-sol-20261116/OWNED_MANIFEST.json'
+The actual writer FINAL/manifest was then read. Wreath/stress use MANIFEST.json; dyadic uses OWNED_MANIFEST.json. No producer helper ran.
+
+2. One combined cat of full-stress-labelled-graph-fact FINAL.json and REPORT.md returned:
+Output exceeded available model context and was truncated
+The hidden output was not credited as read. Both actual files were subsequently read wholly in separate bounded calls.
+
+3. collect_input_custody.py ran once: exit1, stdout0bytes, stderr870bytes. Literal streams in INPUT_CUSTODY.stdout.txt / INPUT_CUSTODY.stderr.txt and receipt in INPUT_CUSTODY_RECEIPT.json. It stopped at the generic fact FINAL writer-root/hash condition. No input ledger or staged payload was produced by that invocation.
+
+4. collect_input_custody_v2.py ran once: exit1, stdout0bytes, stderr811bytes. Literal streams in INPUT_CUSTODY_v2.stdout.txt / INPUT_CUSTODY_v2.stderr.txt and receipt in INPUT_CUSTODY_v2_RECEIPT.json. Wreath exact custody/fragment/native checks completed before this later dyadic-manifest failure; no full group check completed or ledger was produced. It stopped at absent dyadic fact manifest root_mode, a local checker assumption.
+
+5. collect_input_custody_v3.py was wholly read but NOT executed. Root directed no further preparation utility merely to obtain a clean status. Preserve all three actual bodies, both failures, and transparent input-ledger limits. No current or old producer/native/science/builder code executed, no W/Git/Sheet/browser/network/outreach actions.

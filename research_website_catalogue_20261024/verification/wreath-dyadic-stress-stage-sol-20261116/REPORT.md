@@ -1,0 +1,33 @@
+# Private wreath–dyadic–stress stage
+
+**READY_PRIVATE_STAGE_DATA_ONLY.** The private candidate contains the three adopted pages and an otherwise preserved copy of the current public tree. It is ready for B's independent stage audit. This is neither installation nor publication authority. Completion:100% of this producer task.
+
+Root's complete actual all-three adoption4eb948c3cec10111bceac2170efe5922085f1f498fa37d8f8eaf805c6863ddf1 was personally read before authoring the builder. B's prior independent INITIAL seal is e8097351d7f5444520b9b7181d34f7848b589288013296ec5393df9a0d94239a. The original15-file preparation boundary is unchanged. The successful build authenticates all155 files/eight child directories in the seven adopted writer/fact/legacy packets, all323 source files/44 child directories, and the15 original preparation files, before and after. Controls, all ignored/empty material, modes and topology are included; no source/scientific program or old helper was executed.
+
+## Candidate and exact changes
+
+The sole target plan is PUBLIC_PAYLOADS.json:14 leaves,12 additions and2 modifications. Each new article has its index.html, unchanged native PDF, unchanged native ZIP and unchanged citation.bib. Wreath and stress retain nested assets/; dyadic retains flat file paths. This requires exactly five new public directories. No private article-local stylesheet was added.
+
+The candidate public tree is772 files/373 child directories; the actual original W baseline is760/368. Its123 visible articles,123 typed JSON ListItems and123 literal raw JSON units remain exact ordered prefixes, with three appended units in164/177/183 order. All124 old raw and parsed sitemap nodes remain exact ordered prefixes, followed by three new nodes. The successor has126 articles/127 sitemap nodes. New index dates preserve the original6October,6October,12October publication dates; sitemap lastmod2026-11-17 is the private build date. Baseline aggregate bytes are retained in BASELINE_INDEX.html and BASELINE_SITEMAP.xml. AGGREGATE_PRESERVATION.json includes the exact old units and new entries.
+
+All760 old W public files and their modes remain unchanged on disk, including all17.DS_Store files. In the private candidate, all758 untargeted old files remain byte/mode-exact, while index and sitemap have only their planned count/appends. All old directory modes are preserved. PROSPECTIVE_PUBLIC.json records the whole candidate, including ignored and empty files.
+
+## Accepted copy and activated heads
+
+The complete accepted bodies and MAIN spans are unchanged for all three pages. Thus their full original visible abstracts, exact scientific scopes, attribution, rights, dates/versions, AI/unrefereed status, passive contribution-based collaboration and native asset links remain intact. All six staged native files are whole-byte identical to their original source assets and adopted writer copies; all three Bib files are unchanged. The original private models remain frozen and were not converted into production authority.
+
+Only HEAD identity was activated: removal of private robots/googlebot noindex tags; public canonical and OG URL/site identity; ScholarlyArticle URL/id/mainEntity identity and absolute local encodings; absolute scholarly PDF citation; shared /research/research.css. Other existing meta values and schema fields, including the complete abstract, dates, versions, original URLs and rights, are preserved. No base tag was introduced. Actual full activated heads and all three complete resulting HTML pages were personally read after the build, together with new visible/JSON index entries, sitemap nodes and the exact14-target plan. BODY_AND_HEAD_RECEIPTS.json records old/new head, abstract and MAIN bindings.
+
+Stress's existing iframe has no #view=FitH fragment. That is the explicitly accepted, nonblocking copy-contract note, and its MAIN was preserved. Wreath also retains its accepted iframe path; dyadic retains #view=FitH. This producer performed no browser, rendering, native PDF display, mobile, live URL or download check. Static iframe/link identity and exact PDF bytes are not a viewer/download certification.
+
+## Native repository guards
+
+Actual W HEAD resolves to b767102567ad89aff909f9f11c0e8b7d72b75c40. Its native index9056134B/SHA6e57311ffb524aabe230dec4962ebfa6983085674882606f5b8594aa1d4cee18, HEAD, master ref state, local branches and config are unchanged. Math remains on native main, resolved from its packed local main entry a4ce3c37dad209339e490d18dcced6c48cf912d2; native index25854746B/SHA91b10d938f7d737226662bbff3b07016dcc0e501376a045811ab4e930c6fbb11, HEAD, all observed loose/packed local branches and config are unchanged. Remote-tracking refs, FETCH_HEAD and nonlocal packed-ref lines were deliberately not bound. No Git command was executed. Full before/after guard objects are identical and retained.
+
+## Literal history and limits
+
+Build exit history is **[1,0]**, not a clean first pass. The first fully read fresh builder3b9c60f0 stopped before candidate creation at my wrongly assigned dyadic root-mode absence requirement, with stdout0/stderr1063B. Root renewed one narrow correction/run. The complete corrected builder edbf6c1692633077f084a186426720289bebf7abbe846fd0ea7057154dfc0377 was personally read in full, then invoked once: exit0, stdout160B, stderr0. Its internal ordinary_builder_invocations:1 counts that version's single invocation; BUILD_HISTORY.json and both run receipts record the complete two-version history. No failed builder or collector was replayed.
+
+The root-mode error had originated in preparation's misattribution of a later stress KeyError to dyadic. The sealed preparation remains literal, including that error. SCHEMA_ERRATUM.md corrects it: dyadic fact MANIFEST has integer root_mode493; stress fact OWNED_MANIFEST uses directories[{path:".",mode:"0755"}] without a top-level root_mode. Both failed preparation collector versions, all literal streams and the unexecuted v3 remain. Actual native modes were compared to their respective current declarations; no mode check was disabled. The earlier read-locator error and truncated display are also retained in READ_LIMITS.txt.
+
+No new science/priority conclusion, native/source/helper replay, renderer, network, website install, Git/Sheet/deploy/release action, redirect, external communication or outreach preparation occurred. The bounded47-page legacy finding remains root-adopted context; no historical/global absence claim was added. follow_up remains null. This entire finite stage freezes at FINAL and requires independent audit/root adoption before any separate production action.

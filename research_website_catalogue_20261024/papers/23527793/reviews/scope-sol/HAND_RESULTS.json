@@ -1,0 +1,84 @@
+{
+  "schema": "source-first-hand-derivations-and-falsification-controls-v1",
+  "UTC": "2026-11-17T03:59:55Z",
+  "record": 23527793,
+  "method": "Finite primal optimizer-face reconstruction, residual-cut proof for real capacities, rectangular-tail counting and explicit exact boundary witnesses; no native scientific execution.",
+  "universal_hand_checks": [
+    {
+      "item": "Tree size/design",
+      "derivation": "Full binary tree has2^(H+1)-1=4k-1 vertices. A descendant leaf set of size k_e carries k*k_e distinct cross-root unit commodities. Doubled loads force C_e>=2k*k_e separately; equality is feasible and any larger component strictly increases positive linear cost."
+    },
+    {
+      "item": "Physical-to-terminal constraint equivalence",
+      "derivation": "Every internal edge load is sum of the row loads or column loads below it. Individual terminal bounds2k imply internal bound2k*k_e; necessity follows from terminal edges. Nonnegative admitted demand and cross-root unique paths are essential."
+    },
+    {
+      "item": "Real-capacity cut import without algorithm-termination assumption",
+      "derivation": "A maximum flow exists by compactness of a finite bounded feasible polytope. If its residual graph had a positive-capacity s-t path, augment by the positive minimum along this finite path. Otherwise reachable vertices form a cut with all outgoing edges saturated and incoming flows zero, giving flow=cut capacity. This proves the exact finite real-valued import without assuming integer capacities or termination of a naive augmenting algorithm."
+    },
+    {
+      "item": "Cut orientation",
+      "derivation": "Source-side left A/right B gives2k(k-|A|)+sum_(A x (R\\B))d+2k|B|, exactly the printed formula. Every active slope is a subset sum of nonnegative X, in[0,S]. A finite minimum has right derivative the least active slope; no missing tie convention."
+    },
+    {
+      "item": "Optimizer quantifiers",
+      "derivation": "Full offered feasibility makes y=d the only matrix with the offered total, since every coordinate is upper-bounded. Strict terminal slack sums to strict slack at every physical edge. At F=2k^2 every row and every column must attain2k in every optimizer, so every internal descendant sum saturates too. The event is uniform over all optimal matrices, not a preferred solver output."
+    },
+    {
+      "item": "Gamma tail constants",
+      "derivation": "Direct exponential integral gives E exp(lambda X)=1/(1-lambda) for lambda<1. Independence gives power n; Markov with lambda=1-1/a gives exp(-n(a-1-log a)), also with negative lambda for the lower tail. Derivatives of I(1/(1-delta)) and I(1/(1+delta)) are delta/(1-delta)^2 and delta/(1+delta)^2, respectively. Integration gives delta^2/2 and delta^2/8 for0<delta<1."
+    },
+    {
+      "item": "Low event and endpoint",
+      "derivation": "At2-delta each offered terminal load is k+(1-delta)Gamma(k,1). A2k union bound gives2k exp(-k delta^2/2)=2k^-31 at the printed delta. Strict endpoint slack also holds in a positive right neighborhood for each finite realization; this is required for r=1 at the endpoint. Monotonic demands give all earlier times."
+    },
+    {
+      "item": "Upper all-cuts event",
+      "derivation": "Only a+d>k matters. Failure of a rectangle cut implies Z<ad/(1+delta), since ad-k(a+d-k)=(k-a)(k-d)>=0. Thus failure probability<=exp(-c ad), c>=delta^2/8. Different cuts can be dependent."
+    },
+    {
+      "item": "All-cuts counting",
+      "derivation": "Let q=min(a,d),ell=k-max(a,d), so0<=ell<q. For q<=k/2, orientation and binomial choices give at most2q k^(2q) over ell; area>=qk/2. For q>k/2, area>k^2/4 and all subset pairs are at most4^k. At c>=8log(k)/k these give sum_(q>=1)2q k^-2q=2k^-2/(1-k^-2)^2 and(4/k^2)^k exactly. The high endpoint plus increasing demand holds for all later times."
+    },
+    {
+      "item": "Limits and coupling",
+      "derivation": "E[S/k^2]=1, Var[S/k^2]=k^-2. Away from2 the same good event applies eventually. At2 squeeze k^2+(1-delta)S<=F(2)<=2k^2. This proves throughput convergence without interchanging a derivative limit. Summable dyadic failure bounds imply eventual good events under any common coupling by the first Borel-Cantelli argument."
+    }
+  ],
+  "exact_controls": [
+    {
+      "id": "H1",
+      "purpose": "Symmetric deterministic value/derivative boundary",
+      "assumptions": "Any dyadic k and deterministic all slopes x>0; algebraic diagnostic, not an independent Exp sample.",
+      "calculation": "Feasible y_ij=min(1+(t-1)x,2) attains the offered/terminal upper bound, so F=k^2 min(1+(t-1)x,2). S=k^2 x. Right marginal is1 below t*=1+1/x and0 at/above; every edge is saturated at equality."
+    },
+    {
+      "id": "H2",
+      "purpose": "Nonunique optimizer/spare graph and realized-slope normalization",
+      "assumptions": "k=2, t=2, X=[[3,3],[1/2,1/2]], all slopes positive.",
+      "calculation": "d=[[4,4],[3/2,3/2]]. F=7 via row1 total4,row2 total3. Optimizers y=[[a,4-a],[3/2,3/2]] for3/2<=a<=5/2. At a=2 only one leaf edge is saturated and M=6 of N=7; at a=5/2 two leaf edges are saturated and M=5. Near t=2, F=t+5, so F'_+=1 and r=1/7, not1/4. This is allowed inside the transition and outside the asymptotic delta<1 range."
+    },
+    {
+      "id": "H3",
+      "purpose": "All-cut feasibility cannot be replaced by terminal offered-load tests",
+      "assumptions": "k=4,t=2, demand rows1..3=(11/10,11/10,3,3), row4=(5,5,11/10,11/10); X=d-1 strictly positive.",
+      "calculation": "All offered row loads are>8 and all column loads>8, yet A={1,2,3},D={1,2} has rectangle demand33/5<8=2k(a+d-k). The associated cut is24+33/5=153/5<32. Thus high saturation is impossible on this input despite all terminal offered loads exceeding capacity. This validates the need for the all-cuts argument, not a counterexample to the claimed large-k probability bound."
+    },
+    {
+      "id": "H4",
+      "purpose": "Independence is an actual assumption, not merely exponential marginals",
+      "assumptions": "Hypothesis-violating control X_ij=X shared Exp(1).",
+      "calculation": "Each marginal still has the same Exp law/stream mean and quadratic variance, but F/k^2=min(1+(t-1)X,2) and the switch1+1/X remains random. At a fixed1<t<2 the saturated probability is exp(-1/(t-1))>0 independent of k, so the claimed concentration fails without independence."
+    },
+    {
+      "id": "H5",
+      "purpose": "Small-size and design boundaries",
+      "calculation": "At t=1 all demands1 and every edge has half its designed capacity load, so full tree spare for all k. k=2,4,...256 have delta>=1 and are outside the window theorem; k=512 is the first dyadic with64log(k)<k. Zero design prices would destroy uniqueness; d=0/no-vertex or general rerouting conventions are not part of this model."
+    }
+  ],
+  "unresolved_after_hand_phase": "No full scientific disposition is assigned here. Primary context/edition comparisons and the actual supporting program/input/replay policy remain unread and must be checked only after explicit resume. Printed historical audit claims are input assertions, not independently adopted evidence.",
+  "native_scientific_execution_count": 0,
+  "foreign_primary_bodies_read": [],
+  "current_peer_or_root_findings_read": [],
+  "follow_up": null
+}

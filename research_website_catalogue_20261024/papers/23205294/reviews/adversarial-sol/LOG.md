@@ -1,0 +1,6 @@
+# Timestamped research log
+
+- 2026-11-17T04:02:43Z — Started row186 independent adversarial source-first review. Prior same-input exposure disclosure and closed-body boundary adopted. Overall completion estimate5%.
+- 2026-11-17T04:06:00Z (approximate minute, not a separately sampled clock) — Fresh Poppler pdfinfo, full text extraction and six-page 140-dpi rasterization completed, all exits0, empty stderr; no scientific code. Source byte/mode/directory snapshots captured. Overall estimate20%.
+- 2026-11-17T04:13:18Z (sampled UTC clock) — Complete TeX/native metadata/rights and PDF text read. Two-image display had context truncation and was not counted; all six pages subsequently personally viewed individually. Exact reduction, zero-wrapper and sampling hand derivations recorded independently. Foreign proofs, support bodies, current root/peer findings remain closed. Overall estimate40%; no full-original disposition.
+- At the INITIAL seal UTC in INITIAL_SEAL.json — Exact source custody and full owned finite extent authenticated and INITIAL frozen. INITIAL_READY/HOLD; no handles remain and no further writes pending explicit checkpoint/resume. Overall estimate40%, source-first phase100%. Follow-up null. Scientific limitations are in INITIAL.md and INITIAL_HAND_RESULTS.md.
