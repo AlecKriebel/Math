@@ -1,0 +1,5 @@
+2026-11-17. Before the sole collection attempt, I personally read the entire saved `collect_correspondence.py` in two complete consecutive ranges, lines 1–120 and 121–end. It is a bounded standard-library data reader, with read-only Git object queries and text searches; it does not import or execute project material. The preliminary identity/schema intake is recorded in the conversation tool transcript and is distinct from this one collector attempt.
+
+The collector saves literal command arguments, exit codes, input where applicable, stdout, and stderr. A nonmatching search exit of 1 is explicitly an expected negative result. Any unexpected failure ends this collection route without repair or retry. The final report will distinguish physical docs, native HEAD docs, and scoped released docs, and will require personal reading of every candidate HTML body.
+
+Initial checkpoint: 30% complete for this bounded correspondence task. Row191 remains frozen and its scientific findings remain withheld.
