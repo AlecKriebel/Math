@@ -1,0 +1,90 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\hypersetup{
+ pdftitle={Nonattainment in the Harrell--Stubbe Dirichlet gap inequality},
+ pdfauthor={Alec Kriebel},
+ pdfsubject={Strict Yang inequality and nonattainment of the Dirichlet gap bound},
+ pdfkeywords={Dirichlet Laplacian, Yang inequality, spectral gap, OWR-3389-016}
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Dom}{\operatorname{Dom}}
+\newcommand{\R}{\mathbb R}
+\title{Nonattainment in the Harrell--Stubbe\protect\\ Dirichlet gap inequality}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{September 23, 2026 (version 1.0.1)}
+\begin{document}
+\maketitle
+\begin{abstract}
+The universal Harrell--Stubbe bound for a gap between consecutive Dirichlet eigenvalues is never attained on a nonempty bounded open subset of Euclidean space at a finite index. This answers negatively the corrected saturation question recorded in the 2009 Oberwolfach report on low eigenvalues. We prove the stronger statement that Yang's first inequality is strict at every real threshold above the lowest eigenvalue. The proof uses the classical spectral remainder and a short obstruction to finite spectral support of a coordinate times an eigenfunction. No boundary regularity or connectedness assumption is needed.
+\end{abstract}
+
+\section{Statement and relation to the problem}
+Let $n\ge1$ and let $\Omega\subset\R^n$ be nonempty, bounded and open. Write
+$0<E_1\le E_2\le\cdots$ for the eigenvalues of the form-defined Dirichlet Laplacian, with multiplicity, and put
+\[
+ A_J=\frac1J\sum_{j=1}^J E_j,\qquad
+ B_J=\frac1J\sum_{j=1}^J E_j^2,\qquad
+ M_1=\frac{n+2}{n}A_J,\qquad M_2^2=\frac{n+4}{n}B_J.
+\]
+Harrell and Stubbe's gap bound \cite[Proposition 6]{HS} is
+$M_1^2-M_2^2\ge (E_{J+1}-E_J)^2/4$. The saturation question appears in \cite[p.~415]{OWR}, in the final part of the problems on commutator methods, and is listed as OWR-3389-016 in \cite{UM}. Earlier, Ashbaugh \cite[p.~12]{Ash02} had explicitly left strictness of Yang's first inequality undecided while proving strict versions of the other classical bounds.
+
+\begin{theorem}\label{thm:gap}
+For every such $\Omega$ and every integer $J\ge1$,
+\begin{equation}\label{eq:gap}
+ \boxed{\quad M_1(J)^2-M_2(J)^2>
+ \frac14\bigl(E_{J+1}-E_J\bigr)^2.\quad}
+\end{equation}
+Consequently, no domain and finite index attain the gap bound.
+\end{theorem}
+
+\paragraph{Normalization of the source.}
+The report \cite[p.~415]{OWR} defines
+$M_p=((n+2p)n^{-1}J^{-1}\sum_{j\le J}E_j^p)^{1/p}$ but prints
+$M_1^2-M_2$ in its gap displays. We use $M_1^2-M_2^2$, the dimensionally consistent expression in \cite[Proposition 6]{HS} and the current reviewed statement of \cite{UM}. This correction is explicit: the literal unsquared expression is not the scale-homogeneous universal gap bound. The result concerns the saturation question only, not the adjacent question about quantitative growth bounds. Finite nonattainment is compatible with sharp leading Weyl asymptotics and supplies no uniform positive deficit.
+
+\section{The equality obstruction}
+Set $H=-\Delta_\Omega^D$. It is the self-adjoint operator of the form
+$q(u)=\int_\Omega|\nabla u|^2$ with domain $H_0^1(\Omega)$, and
+\begin{equation}\label{eq:dom}
+ \Dom H=\{u\in H_0^1(\Omega):-\Delta u\in L^2(\Omega)
+ \text{ in distributions}\}.
+\end{equation}
+Boundedness gives compact resolvent and $E_1>0$ by comparison with an enclosing box. No assertion that $\Dom H=H^2(\Omega)\cap H_0^1(\Omega)$ is used.
+Choose a real orthonormal eigenbasis $(u_j)$.
+
+If $u$ is real, $Hu=Eu$, and $\|u\|_2=1$, coordinate multiplication preserves $H_0^1(\Omega)$, and the product rule and \eqref{eq:dom} give, for $w=x_\alpha u$,
+\begin{equation}\label{eq:comm}
+ w\in\Dom H,\qquad (H-E)w=-2\partial_\alpha u.
+\end{equation}
+Integration by parts, justified by approximation in $H_0^1$, also gives
+\begin{equation}\label{eq:one}
+ \langle w,(H-E)w\rangle
+ =-2\int_\Omega x_\alpha u\,\partial_\alpha u=1.
+\end{equation}
+Indeed, this last identity holds for compactly supported smooth approximants by integrating $\partial_\alpha(x_\alpha u^2)$, and passes to the limit since $\Omega$ is bounded.
+
+\begin{lemma}\label{lem:support}
+For every real normalized eigenfunction $u$ and every coordinate $\alpha$, $x_\alpha u$ does not belong to a finite spectral subspace of $H$.
+\end{lemma}
+\begin{proof}
+Suppose $w=x_\alpha u$ were a finite sum of eigenfunctions. Then $w\in\Dom H^2$ and $v=(H-E)w=-2\partial_\alpha u\in\Dom H$. Differentiating $(-\Delta-E)u=0$ inside $\Omega$ gives $(-\Delta-E)v=0$ in distributions. By \eqref{eq:dom}, $(H-E)v=0$. Self-adjointness now implies
+\[
+ \|v\|_2^2=\langle (H-E)w,v\rangle
+ =\langle w,(H-E)v\rangle=0.
+\]
+This contradicts $\langle w,v\rangle=1$ in \eqref{eq:one}.
+\end{proof}
+
+\section{Strict Yang inequality and the gap}
+We include the spectral remainder so the argument can be checked without an external inequality. This is the standard commutator sum-rule mechanism underlying \cite{HS,LP,HS10}; the point needed here is that its nonnegative remainder cannot vanish.
+
+\begin{proposition}\label{prop:yang}
+For every real $z>E_1$,

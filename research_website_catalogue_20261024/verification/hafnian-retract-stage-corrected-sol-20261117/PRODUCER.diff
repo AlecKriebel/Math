@@ -1,0 +1,65 @@
+--- verification/hafnian-retract-stage-sol-20261117/build_private.py	2026-11-17 03:37:33
++++ verification/hafnian-retract-stage-corrected-sol-20261117/build_private.py	2026-11-17 04:08:08
+@@ -18,7 +18,9 @@
+ from xml.etree import ElementTree as ET
+ 
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+-OWN = P / 'verification/hafnian-retract-stage-sol-20261117'
++OWN = P / 'verification/hafnian-retract-stage-corrected-sol-20261117'
++FAILED = P / 'verification/hafnian-retract-stage-sol-20261117'
++DIAG = P / 'verification/hafnian-retract-stage-failure-diagnosis-sol-20261117'
+ INITIAL = P / 'verification/hafnian-retract-stage-initial-sol-20261117'
+ BINDINGS = P / 'verification/hafnian-retract-stage-initial-bindings-sol-20261117'
+ M = Path('/Users/alec/Documents/Math')
+@@ -30,6 +32,9 @@
+ FAMILIES = [('hafnian', '23205294', 'nonnegative-rational-hafnians'),
+             ('complex-retract', '23203270', 'complex-polynomial-retract-five-variables')]
+ CONTROL_PINS = {
++    P / 'verification/root-hafnian-retract-stage-failure-disposition-20261117.json': '1769c4a19b192b570492597b9cb7490158975e1fa9a6d781581d7f15db160a67',
++    DIAG / 'FINAL.json': 'f66273038a095916096d2f6167f0673a89714fa99dbd5779a6cb31fd592e8261',
++    DIAG / 'OWNED_MANIFEST.json': '1eea88fdb54a818856e25303ac2bd12ef87b11e2aa0bbd4b088b598f9cc60352',
+     INITIAL / 'CONTRACT.json': 'f88a8adef0a2960ea6a3a91afa6d64f88dde8ecfe7ed8cabbbadbce562bea49c',
+     BINDINGS / 'FINAL.json': '654b18de3078e4257c8fbfb033e13115220cef240fc9ef223e261e823a82273c',
+     BINDINGS / 'OWNED_MANIFEST.json': '04a19fe029763b14cb7370867ad42167e8abd5283c8e989d77d81b8f63399b36',
+@@ -163,6 +168,7 @@
+     return {'roots': {root: inventory(Path(root)) for root in prior['roots']},
+             'controls': {path: pin(Path(path)) for path in prior['controls']},
+             'public': inventory(PUBLIC), 'native_M': native(M), 'native_W': native(W),
++            'old_failed_lane': inventory(FAILED), 'frozen_diagnostic_lane': inventory(DIAG),
+             'binding_lane': inventory(BINDINGS), 'stage_control_pins': {str(path): pin(path) for path in CONTROL_PINS}}
+ 
+ def observe_remote():
+@@ -449,6 +455,15 @@
+     need(old['controls'] == guards['controls'] and old['native_M'] == guards['native_M'] and old['native_W'] == guards['native_W'], 'Root/native guard differs')
+     for path, digest in CONTROL_PINS.items():
+         need(guards['stage_control_pins'][str(path)]['SHA256'] == digest, 'Controlling input pin: ' + str(path))
++    diagnosis_guards = readj(DIAG / 'GUARDS_BEFORE.json')
++    need((DIAG / 'GUARDS_BEFORE.json').read_bytes() == (DIAG / 'GUARDS_AFTER.json').read_bytes(), 'Frozen diagnostic guards differ')
++    equal_snapshot(diagnosis_guards['producer_whole_packet'], guards['old_failed_lane'])
++    need(guards['old_failed_lane']['regular_files'] == 1579 and guards['old_failed_lane']['child_directories'] == 756, 'Old failed extent')
++    need(readj(FAILED / 'BUILD_EXECUTION.json')['exit_code'] == 1 and pin(FAILED / 'BUILD.stderr.txt')['SHA256'] == '2dda4324e50bf4997c0c45c49add0c751c404cf61b91d347f67242be6d75de78' and pin(FAILED / 'build_private.py')['SHA256'] == 'f5f0a6b84c69996194c8492dd3288a8b16893a7cbc4eac5f8f940452e583b700', 'Original literal failure/history changed')
++    diag_external = {'manifest': pin(DIAG / 'OWNED_MANIFEST.json'), 'terminal': pin(DIAG / 'FINAL.json')}
++    check_manifest(DIAG, guards['frozen_diagnostic_lane'], 'OWNED_MANIFEST.json', 'FINAL.json', 'finite-hafnian-retract-stage-failure-diagnostic-manifest-v1', 'payload_files', diag_external)
++    need(guards['frozen_diagnostic_lane']['regular_files'] == 12 and guards['frozen_diagnostic_lane']['child_directories'] == 0, 'Diagnostic12/0')
++    writej('CORRECTION_PROVENANCE.json', {'root_START_checkpoint': '386463ab847f283920e746a48f52079ac8b3d735', 'root_disposition': pin(P / 'verification/root-hafnian-retract-stage-failure-disposition-20261117.json'), 'old_failed_lane': str(FAILED), 'old_failed_extent': [1579, 756], 'original_exit': 1, 'original_stderr': pin(FAILED / 'BUILD.stderr.txt'), 'original_failure_not_reclassified': True, 'diagnostic_FINAL': pin(DIAG / 'FINAL.json'), 'diagnostic_manifest': pin(DIAG / 'OWNED_MANIFEST.json'), 'sole_content_criterion_correction': 'Binding BODY capture ends at </body>, excluding separator LF; stronger wholearticle/outsideHEAD and whole candidate BODY preservation retain LF', 'other_criteria_and_inputs_unchanged': True, 'old_failed_and_diagnostic_complete_guarded_unchanged': True, 'this_separately_authorized_new_lane_attempts': 1, 'no_old_helper_execution': True})
+     need(pin(BINDINGS / 'INPUT_BINDINGS.json')['bytes'] == 801813, 'Binding extent')
+     contract = readj(INITIAL / 'CONTRACT.json')
+     need(len(contract['criteria']) == 28 and [item['id'] for item in contract['criteria']] == ['C' + str(number).zfill(2) for number in range(1, 29)], 'Contract28 differs')
+@@ -510,7 +525,7 @@
+         article_data, head_data, main_data = [(writer / name).read_bytes() for name in ['article.html', 'head.html', 'main.html']]
+         need(pin(writer / 'article.html') == accepted['article'] and pin(writer / 'head.html') == accepted['head'] and pin(writer / 'main.html') == accepted['MAIN'] and pin(writer / 'citation.bib') == accepted['Bib'], 'Accepted article fragments/Bib pins')
+         need(only(rb'(<main id="main">.*?</main>\n)', article_data)[1] == main_data and scholar(head_data.decode()) == accepted['schema_object'], 'Accepted whole MAIN/schema')
+-        body = only(rb'(<body>.*?</body>\n)', article_data)[1]
++        body = only(rb'(<body>.*?</body>)', article_data)[1]
+         need(len(body) == accepted['BODY']['bytes'] and sha(body) == accepted['BODY']['SHA256'] and model['abstract'] == accepted['abstract'], 'Accepted whole BODY/abstract')
+         need([item['name'] for item in model['native_asset_order']] == accepted['native_encoding_names'], 'Native encoding names/order')
+         if family == 'hafnian':
+@@ -606,6 +621,8 @@
+     manifest = {'schema': 'finite-hafnian-retract-private-stage-manifest-v1', 'UTC': now, 'root': str(OWN), 'root_mode': snapshot['directories']['.']['mode'], 'regular_files': snapshot['regular_files'], 'child_directories': snapshot['child_directories'], 'payload_files': [{'path': name, **row, 'hidden': any(part.startswith('.') for part in Path(name).parts), 'empty': row['bytes'] == 0} for name, row in payload.items()], 'directories': [{'path': name, **row, 'hidden': any(part.startswith('.') for part in Path(name).parts if part != '.')} for name, row in snapshot['directories'].items()], 'exact_already_created_terminal_recursive_hash_exclusions': [str(OWN / name) for name in TERMINALS], 'other_exclusions': [], 'all_hidden_ignored_empty_bytes_modes_topology_included': True, 'no_future_subtree_or_basename_exclusions': True, 'terminal_modes': {name: '0644' for name in TERMINALS}}
+     (OWN / 'OWNED_MANIFEST.json').write_bytes((json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode())
+     final = {'schema': 'private-hafnian-retract-stage-final-v1', 'UTC': now, 'status': 'PASS_PRIVATE_STAGE_FROZEN_AWAITING_INDEPENDENT_IMPLEMENTATION_AUDIT', 'completion_percent_private_stage': 100, 'root': str(OWN), 'records': ['23205294', '23203270'], 'manifest': pin(OWN / 'OWNED_MANIFEST.json'), 'extent': {'regular_files': snapshot['regular_files'], 'child_directories': snapshot['child_directories'], 'root_mode': snapshot['directories']['.']['mode']}, 'baseline': {'files': 781, 'child_directories': 377, 'root_mode': '0750', 'index_items': 128, 'XML_nodes': 129}, 'candidate': {'files': 790, 'child_directories': 381, 'root_mode': '0750', 'index_items': 130, 'XML_nodes': 131}, 'projection': {'Git_targets': 11, 'additions': 9, 'modifications': 2, 'new_directories': 4}, 'whole_old128index_and129XML_units_and_full_aggregate_reversal': True, 'whole_accepted_BODY_MAIN_abstract_Bib_native_assets_unchanged': True, 'only_authorized_HEAD_activation': True, 'source153_22_private204_13_INITIAL14_bindings13_root_native_M_W_public_guards_exact': True, 'execution': execution, 'artifacts': {name: pin(OWN / name) for name in ['PLAN.md', 'TARGETS.json', 'build_private.py', 'INPUT_AUTHENTICATION.json', 'BASELINE_MANIFEST.json', 'CANDIDATE_MANIFEST.json', 'AGGREGATE_FIDELITY.json', 'HEAD_ACTIVATION.json', 'PROJECTION.json', 'GUARDS_BEFORE.json', 'GUARDS_AFTER.json', 'REMOTE_BEFORE.json', 'REMOTE_AFTER.json', 'REPORT.md', 'READ_LEDGER.json', 'BUILD_EXECUTION.json']}, 'source_scientific_or_archived_or_old_helper_execution_import_AST_compile_test': False, 'Git_network_W_source_otherpacket_mutations_children_contact_outreach': False, 'scientific_and_copy_clearance_inherited': True, 'new_scientific_copy_priority_formal_human_rendered_live_certificate': False, 'publication_authority': False, 'AA': None, 'follow_up': None, 'exact_already_created_terminal_recursive_hash_exclusions': [str(OWN / name) for name in TERMINALS], 'terminal_external_pins_required_at_handoff': True, 'all_handles_terminal_at_return': True, 'frozen_no_further_writes': True, 'remaining_gap': 'Independent implementation audit/root adoption. Any W installation/publication requires a separately authorized later lane.'}
++    final['corrected_continuation_history'] = {'old_failed_attempt_exit': 1, 'old_failed_attempt_immutable_not_reclassified': True, 'root_checkpoint': '386463ab847f283920e746a48f52079ac8b3d735', 'sole_content_criterion_change': 'Exclude following LF from binding BODY capture; preserve whole article/outside HEAD including LF', 'complete_old_failed1579_756_and_diagnostic12_0_before_after_guards_exact': True}
++    final['artifacts'].update({name: pin(OWN / name) for name in ['PRODUCER.diff', 'CORRECTION_PROVENANCE.json']})
+     (OWN / 'FINAL.json').write_bytes((json.dumps(final, ensure_ascii=False, indent=2) + '\n').encode())
+ 
+ def main():

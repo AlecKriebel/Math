@@ -1,0 +1,9 @@
+# Private editorial preparation: row190 /23202994
+
+This packet inherits the exact root scientific PASS and prepares private article/head/main/model/BibTeX plus the two unchanged native assets. It introduces no new scientific validation or public installation. The complete original abstract is derived from main.tex by whitespace normalization and the three explicitly declared math/TeX-dash replacements; it is identical in visible text, DC.description, model and the one ScholarlyArticle. Native asset and encoding order is PDF thenZIP. The rights statement is CC BY4.0 for original text/source/code/notes/results, with third-party rights retained and no invented code-license exception.
+
+The page explains each fixed s>2, ordered pairs, the covolume-one triangular Epstein sum, ambient/chordal distance, positive ordinary area and smooth boundary. It credits OpenAI, correctedHardin–Saff, knownHSS/HLSS reductions, periodic averaging and earlier conjectures. Verification language is concise and distinguishes finite checks from analytic proofs and formal verification. ExtensiveAIuse, unrefereedstatus and contribution-based collaboration/authorship are disclosed. Follow-up is null.
+
+Canonical/base/production URL, actual website publication date and AA remain null; the proposed canonical appears only as a separate model proposal. The actual current W/public target was checked absent without a directory census or mutation; /research/research.css is referenced and whole-byte guarded unchanged. Source39files/15dirs, hidden/empty topology and modes match the accepted source guard and actual native manifest before/after.
+
+Static consistency checks passed. No rendered/browser/live certificate, network request, source/helper import, scientific execution, Git/Sheet/W action, outreach or publication authority was exercised. Separate independent fact review and root actual copy reading remain required.

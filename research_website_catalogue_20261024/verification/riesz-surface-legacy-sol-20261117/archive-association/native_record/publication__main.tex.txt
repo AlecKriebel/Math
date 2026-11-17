@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,xcolor,amsmath,amssymb,amsthm,mathtools,microtype,xurl}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}\newcommand{\Z}{\mathbb Z}
+\newcommand{\Es}{\mathcal E_s}\newcommand{\Hs}{\mathcal H_s}
+\newcommand{\abs}[1]{\lvert#1\rvert}\newcommand{\norm}[1]{\lVert#1\rVert}
+\DeclareMathOperator{\covol}{covol}
+\hypersetup{pdftitle={Hypersingular Riesz-energy constants on surfaces from triangular-lattice universal optimality},pdfauthor={Alec Kriebel},pdfsubject={Exact two-dimensional hypersingular Riesz-energy constants, s greater than 2}}
+\title{Hypersingular Riesz-energy constants on surfaces\protect\\from triangular-lattice universal optimality}
+\author{Alec Kriebel\thanks{ORCID: \url{https://orcid.org/0009-0001-9320-500X}.}}
+\date{October 6, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+We deduce the exact two-dimensional hypersingular minimal Riesz-energy
+constant for every real $s>2$ from OpenAI's recently released triangular-lattice
+universal-optimality theorem. The constant is the Epstein sum of the
+covolume-one triangular lattice. An explicit gap-periodization argument
+relates the finite square problem to the source theorem's centered-disk
+lower energy, with an inter-box error of order $N^{1-s/2}$ for each fixed gap
+parameter. A lattice crop gives the matching upper bound. The corrected
+Hardin--Saff universality theorem then gives the ordered-pair leading
+asymptotic on every smooth compact embedded surface of positive area,
+including surfaces with smooth boundary, for ambient Euclidean distance.
+This resolves the two-dimensional $s>2$ case of the explicit lattice-constant
+conjecture recorded by Brauchart, Hardin and Saff. The universal-optimality
+breakthrough, finite-to-infinite reduction and manifold theorem are inherited
+results; this note gives a self-contained account of the known passage and
+records its planar surface consequence.
+\end{abstract}
+
+\section{Statement, provenance and conventions}
+Put $b=\sqrt3/2$ and
+\[
+ \Lambda=b^{-1/2}\{j(1,0)+k(1/2,b):j,k\in\Z\},\qquad
+ Z_s=\zeta_\Lambda(s)=\sum_{v\in\Lambda\setminus\{0\}}\abs{v}^{-s}.
+\]
+The lattice has covolume one. For a compact set $K\subset\R^p$, define
+\[
+ \Es(K,N)=\min_{x_1,\ldots,x_N\in K}
+        \sum_{i\ne j}\abs{x_i-x_j}^{-s},
+\]
+with collisions assigned energy $+\infty$. All pair sums in this note are
+\emph{ordered}. Distances are Euclidean distances in the ambient space,
+not intrinsic geodesic distances. The Hausdorff measure $\mathcal H^2$ is
+normalized to agree with planar Lebesgue area.
+
+\begin{theorem}\label{thm:main}
+For every real $s>2$,
+\begin{equation}\label{eq:square}
+ C_{s,2}:=\lim_{N\to\infty}\frac{\Es([0,1]^2,N)}{N^{1+s/2}}=Z_s.
+\end{equation}
+If $M\subset\R^p$ is a smooth compact embedded two-dimensional manifold,
+with or without smooth boundary, and $A=\mathcal H^2(M)>0$, then
+\begin{equation}\label{eq:surface}
+ \Es(M,N)\sim Z_s A^{-s/2}N^{1+s/2}.
+\end{equation}
+In particular, the unit sphere in $\R^3$, with chordal distance, has
+coefficient $Z_s/(4\pi)^{s/2}$.
+\end{theorem}
+
+The candidate constant in dimension two goes back to Kuijlaars and
+Saff~\cite[Conjecture 1]{KS1998}, whose unordered-pair coefficient must be
+doubled in our convention; Brauchart--Hardin--Saff~\cite[Conjecture 2]{BHS2012}
+state the formula $C_{s,d}=\covol(\Lambda_d)^{s/d}\zeta_{\Lambda_d}(s)$
+for $s>d$ in dimensions $2,4,8,24$. We establish only its $d=2$, $s>2$
+part. The result concerns the leading minimum value, not microscopic
+crystallization or uniqueness of finite minimizers. It makes no new assertion
+for $s\le2$ or about a second-order term.
+
+The new pivotal input is OpenAI's infinite-plane theorem
+\cite[Theorem 1.1]{OAIUniversal}, also proved in its atomic companion
+\cite[Theorem 1.1]{OAIAtomic}. We use the exact source version at repository
+commit \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+For a locally finite $\mathcal C\subset\R^2$, let $B_R$ be the closed disk
+centered at zero and $n_{\mathcal C}(R)=\#(\mathcal C\cap B_R)$. The source
+uses centered density $n_{\mathcal C}(R)/(\pi R^2)\to1$ and
+\begin{equation}\label{eq:infinite}
+ \Hs(\mathcal C)=\liminf_{R\to\infty}\frac1{n_{\mathcal C}(R)}
+   \sum_{\substack{x,y\in\mathcal C\cap B_R\\x\ne y}}\abs{x-y}^{-s}.
+\end{equation}
+The imported theorem says that $\Hs(\mathcal C)\ge Z_s$ for every such
+configuration. Indeed $g(t)=t^{-s/2}$ satisfies its smooth nonnegative
+complete-monotonicity hypotheses, since
+\[
+ (-1)^r g^{(r)}(t)=(s/2)_r t^{-s/2-r}>0\quad(t>0,\ r\ge0).
