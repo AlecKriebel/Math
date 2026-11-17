@@ -1,0 +1,41 @@
+--- V3/release_overlay.py
++++ V4/release_overlay.py
+@@ -36,11 +36,11 @@
+ 
+     P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+     M=P.parent
+-    N=P/'verification/gram-thompson-d4-production-prepare-v3-sol-20261117'
++    N=P/'verification/gram-thompson-d4-production-prepare-v4-sol-20261117'
+     RUN=P/'verification/gram-thompson-d4-runtime-sol-20261117'
+     W=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+     S=P/'verification/gram-thompson-d4-overlay-sol-20261117'
+-    PLAN_SHA='f01b666bfd446e7ea10c1a8694bacd2d2046af1800c77ead0ecb25b620492137'
++    PLAN_SHA='26c8f9548c1d51225e806278f32023a6de43d0c6bcc2152b6e828ad6ce310caa'
+     TARGETS=frozenset(["public/research/binary-gram-locus-polynomial-obstruction/citation.bib","public/research/binary-gram-locus-polynomial-obstruction/gram_locus_note.pdf","public/research/binary-gram-locus-polynomial-obstruction/gram_locus_support.zip","public/research/binary-gram-locus-polynomial-obstruction/index.html","public/research/d4-canonical-potential-exponent-converse/Canonical_W_D4_Note_v1.0.pdf","public/research/d4-canonical-potential-exponent-converse/Canonical_W_D4_Verification_v1.0.zip","public/research/d4-canonical-potential-exponent-converse/citation.bib","public/research/d4-canonical-potential-exponent-converse/index.html","public/research/index.html","public/research/sitemap.xml","public/research/thompson-reduced-cstar-consequences/citation.bib","public/research/thompson-reduced-cstar-consequences/index.html","public/research/thompson-reduced-cstar-consequences/paper.pdf","public/research/thompson-reduced-cstar-consequences/thompson-cstar-source.zip","public/research/thompson-reduced-cstar-consequences/thompson-cstar-verification.zip"])
+     REPLACEMENTS=["public/research/index.html","public/research/sitemap.xml"]
+     NEW_DIRS=["research/binary-gram-locus-polynomial-obstruction","research/thompson-reduced-cstar-consequences","research/d4-canonical-potential-exponent-converse"]
+@@ -892,7 +892,7 @@
+             mapping[name.decode()] = header.decode()
+         need(mapping == proof['root_entries'],'all remote root entries, including every sibling/file')
+         siblings = {name:header for name,header in mapping.items() if header.startswith('040000 tree ') and name != P.name}
+-        need(len(siblings)==159 and siblings == proof['protected_159_directory_siblings'],'all159 exact remote sibling tree OIDs')
++        need(len(siblings)==148 and siblings == proof['protected_148_directory_siblings'],'all148 exact remote directory sibling tree OIDs')
+         base=p['Math_remote_checkpoint_base']
+         need(base=='436ec422f9ae291a365b9ff2814cb88bc15db8f3','current verified checkpoint base, not stale parent')
+         git(p,'-C',str(M),'merge-base','--is-ancestor',base,proof['commit'])
+@@ -900,12 +900,12 @@
+         need(base_raw.pop()==b'','whole immutable base root map')
+         base_map={name.decode():header.decode() for header,name in (row.split(b'\t',1) for row in base_raw)}
+         base_siblings={name:header for name,header in base_map.items() if header.startswith('040000 tree ') and name!=P.name}
+-        need(base_siblings==siblings and base_map['docs']==mapping['docs'],'all159 siblings and docs unchanged from436ec base while P checkpoints may advance')
+-        need({name:header for name,header in base_map.items() if name!=P.name}=={name:header for name,header in mapping.items() if name!=P.name},'all untargeted Math root files/directories unchanged from436ec')
++        need(base_siblings==siblings and base_map['docs']==mapping['docs'],'all148 directory siblings and docs unchanged from436ec base while P checkpoints may advance')
++        need(len(set(mapping)-{P.name})==159 and {name:header for name,header in base_map.items() if name!=P.name}=={name:header for name,header in mapping.items() if name!=P.name},'all159 protected non-programme Math root entries including11 files unchanged from436ec')
+         need(mapping['docs'] == '040000 tree '+proof['docs_tree'],'exact whole remote docs tree')
+         docs = git(p,'-C',str(M),'ls-tree','-r','-z','--full-tree',proof['commit'],'--','docs',opaque=True)
+         need(sha(docs) == proof['docs_recursive_SHA256'],'complete remote docs leaf/mode/OID map')
+-        return {'commit':proof['commit'],'root_listing':pin(raw),'siblings':159,'docs':pin(docs)}
++        return {'commit':proof['commit'],'root_listing':pin(raw),'directory_siblings':148,'protected_nonprogramme_entries':159,'docs':pin(docs)}
+ 
+     def W_aux_fence(p,commit=None,pushed=False):
+         a = p['_root_authority']

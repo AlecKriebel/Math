@@ -1,0 +1,337 @@
+                                                  The EGH Conjecture and the Sperner property of
+                                                             complete intersections
+
+
+
+
+arXiv:1601.06928v1 [math.AC] 26 Jan 2016
+                                                                   T. Harima, Niigata University
+                                                    Department of Mathematics Education, Niigata, 950-2181 Japan ∗
+                                                                  A. Wachi, Hokkaido University of Education
+                                                                        Department of Mathematics,
+                                                                          Kushiro, 085-8580 Japan †
+                                                                     J. Watanabe, Tokai University
+                                                          Department of Mathematics, Hiratsuka, 259-1292 Japan
+                                                                                   September 19, 2018
+
+
+                                                                                           Abstract
+                                                      Let A be a graded complete intersection over a field and B the monomial complete
+                                                  intersection with the generators of the same degrees as A. The EGH conjecture says
+                                                  that if I is a graded ideal in A, then there should be an ideal J in B such that B/J
+                                                  and A/I have the same Hilbert function. We show that if the EGH conjecture is true,
+                                                  then it can be used to prove that every graded complete intersection over any field has
+                                                  the Sperner property.
+
+
+                                           1      Introduction
+                                           The Sperner theory for finite posets was started by the paper of Sperner [16] and was well
+                                           established by 1960s. The theory served as a model for the thoery of the weak and strong
+                                           Lefschetz properties of Artinian rings, which has been intensively studied in the recent years
+                                           by many authors ([6], [7], [10], [13], [12], [14], [15]). For the detail of the Sperner theory of
+                                           finite posets we refer the reader to Greene–Kleitman Anderson [2], Aigner [3], Bollobás [4],
+                                           Greene-Kleitman [9], for example.
+                                               A graded Artinian algebra A is said to have the Sperner property if Max{µ(a)}, where
+                                           a runs over all ideals in A, is equal to the dimension of a homogeneous component Ai of A
+                                           of the maximal size. It is known that the weak Lefschetz property immediately implies the
+                                           Sperner property of A ([18] Corollary, [17] Prop 3.2.(3)).
+                                               In this paper we introduce the notion of the matching property of Gorenstein algebras
+                                           (Definition 5). This is a ring theoretic version of the matching property of posets as defined
+                                           in Aigner [3] VIII §3.
+                                               Then we will prove that Gorenstein algebras with the matching property enjoy the
+                                           Sperner property (Proposition 8), as naturally expected from the definition. A reason we are
+                                           interested in the matching property of Gorenstein algebras is that it has a relation to the
+                                           EGH (Eisenbud-Green-Harris) conjecture ([8]) on complete intersections. In Theorem 11
+                                           of the present paper we prove that if the EGH conjecture is true it implies that all graded
+                                               ∗ Supported by Grant-in-Aid for Scientific Research (C) (15K04812).
+                                               † Supported by Grant-in-Aid for Scientific Research (C) (23540179).
+
+
+
+
+                                                                                                1
+complete intersections with a standard grading have the Sperner property. As a consequence
+it implies that all complete intersections for which the EGH conjecture have been proved
+true have the Sperner property. Theorem 13 is such a case.
+    It would be a good theorem if one could prove that all complete intersections have the
+Sperner property. Being weaker than the WLP, the Sperner property has one advantage
+over the WLP; we can expect it does not depend on the characteristic of the ground field,
+while the WLP and SLP inescapably depend on the characteristic.
+    Throughout this paper a field is used to mean any field (including finite fields) unless
+otherwise is specified.
+
+
+2     The Dilworth number of Artinian graded rings
+                      L∞
+Notation 1. Let V = i=0 Vi be a graded vector space, where dimK Vi < ∞ for all i. The
+map i 7→ H(V, i) := dimK Vi is called the Hilbert function of V .
+                        L
+Definition
+    Lc     2. Let A = ci=0 Ai be an Artinian graded algebra over a field A0 = K, and
+m = i=1 Ai the maximal ideal of A. The Dilworth number, denoted d(A), is defined to
+be
+                           d(A) := Max{µ(a) | ideals a ⊂ A}.
+We say that A has the Sperner property if
+
+                          d(A) = Max{dimK Ai | i = 0, 1, 2, · · · }.
+
+We denote by µ(a) and τ (a) respectively the minimal number of generators and the type of
+a. Namely µ(a) = dimK a/ma and τ (a) = dimK (a : m)/a. (These may apply to any local
+ring (A, m) not necessarily Artinian.)
+    For an Artinian Gorenstein local ring (A, m) we introduce two families of ideals:
+
+                  F (A) := {a | µ(a) = d(A)}, G(A) := {a | τ (a) = d(A)}.
+
+If A is graded, we assume that a runs over all graded ideals of A (although it does not make
+much difference). The following result was proved in Ikeda-Watanabe [11].
+Proposition 3. F (A) and G(A) are posets with the inclusion as an order, and moreover
+these are lattices with respect to + and ∩ as join and meet, and they are isomorphic as
+lattices via the correspondence:
+                                       F (A) ↔ G(A)
+                                  F (A) ∋ a 7→ ma ∈ G(A),
+and
+                                 G(A) ∋ a 7→ a : m ∈ F (A).
+Furthermore the correspondence
+                                       F (A) → G(A)
+defined by a 7→ 0 : a gives an order reversing isomorphism of lattices. We assume that A is
+Gorenstein so we have 0 : (0 : a) = a, which implies that the same correspondence a 7→ 0 : a
+gives us the isomorphism in the opposite direction also.
+
+
+
+
+                                              2
+3    Matching property of monomial complete intersec-
+     tions
+.
+                       L∞
+Notation 4. Let A =       i=0 Ai be a graded algebra over a field K = A0 . For a subset
+V ⊂ Ak , we denote by A1 · V the vector subspace in Ak+1 spanned by the set
+                                     {xv | x ∈ A1 , v ∈ V }.
+                            Lc
+Definition 5. Let A =      i=0 Ai be a graded Artinian Gorenstein algebra over a field
+K = A0 . We say that A has the matching property if we have
+                                   dimK V ≤ dimK (A1 · V )
+for any vector space V ⊂ Aj with j such that dimK Aj ≤ dimK Aj+1 .
+    Over a field of characteristic zero all monomial complete intersections have the WLP,
+which implies trivially the matching property of monomial complete intersections. In Propo-
+sition 7 we show that the matching property holds for all monomial complete intersections
+over a field of any characteristic.
+    Let N be a positive integer, and let P (N ) be the set of all positive divisors of N . Recall
+that a divisor lattice is the set P (N ) for some N endowed with a structure of a poset where
+the partial order is the
+                      Fc divisibility. It is a poset with rank function, hence we have the rank
+decomposition P = i=0 Pi . For details see [2] or [3].
+                               Fc
+Proposition 6. Let P = i=0 Pi be a divisor lattice. For a subset S ⊂ Pj , define the
+neighbor N (S) of S to be
+                        N (S) = {y ∈ Pj+1 | ∃x ∈ S such that x < y}.
+Then if |Pj | ≤ |Pj+1 |, then for any S ⊂ Pj , we have
+                                         |S| ≤ |N (S)|.
+Proof. This follows from the theorem which says P has a symmetric chain decomposition.
+(See deBruijn et. al. [5].) This also follows from the fact that the monomial complete
+intersections over a field of characteristic zero have the WLP. (See [10].)
+Proposition 7. Any monomial complete intersection over a field has the matching property.
+Proof. Let
+       Lc R = K[x1 , x2 , · · · , xn ] be the polynomial ring over a field K and write A =
+R/a = i=0 Ai , a = (x1a1 , xa2 2 , · · · , xann ). Let V ⊂ Aj be a vector space. We have to show
+that dimK V ≤ dimK (A1 · V ) if dimK Aj ≤ dimK Aj+1 . Let I be the ideal of A which is
+generated by V . Then we have
+                      dimK V = H(I, j), dimK (A1 · V ) = H(I, j + 1).
+Recall that there exists a monomial ideal J in A such that A/I and A/J have the same
+Hilbert function. To see this, let φ : R → A be the natural surjection. Then b := φ−1 (I)
+contains a. Let In(b) be the ideal generated by the set of monomials that occur as the head
+term of an element in b w.r.t. some monomial order, and let J be the image of In(b) under
+φ. It is well known that R/b and R/In(b) have the same Hilbert function. Furthermore
+we have that In(b) ⊃ a, since monomials are headterms of themselves. Since R/b = A/I
+and R/In(b) = A/J, it suffices to prove H(J, j) ≤ H(J, j + 1). Note that A has the
+monomial basis P = ⊔ci=0 Pi , which has a structure of the divisor lattice. Assume that
+dimK Aj ≤ dimK Aj+1 , or equivalently, |Pj | ≤ |Pj+1 |. Put S = J ∩ Pj and let J ′ be the
+ideal generated by S. Then by Proposition 6, we have µ(J ′ ) = |S| ≤ |N (S)| = µ(mJ ′ ),
+hence H(J, j) ≤ H(J, j + 1). Thus we have proved that H(I, j) ≤ H(I, j + 1).
+
+
+                                               3
+4     The Sperner property of Artinian Gorenstein rings
+                            Lc
+Proposition 8. Let A =       i=0 Ai be a graded Artinian Gorenstein algebra over a field
+A0 = K with a unimodal Hilbert function. Assume that A has the matching property. Then
+A has the Sperner property.
+Proof. Let I ⊂ A be an ideal with µ(I) = d(A), the Dilworth number of A. So I ∈ F (A).
+Let j0 = Min{j | dimK Aj > dimK Aj+1 }. We are going to show that µ(I) = dimK Aj0 . By
+Watanabe [17] Lemma 2.4 we may assume that I is graded.
+   Let α be the initial degree of I. We treat two cases; α ≥ j0 and α < j0 .
+   Case 1. Assume that α ≥ j0 . Then mj0 ⊃ I and mj0 +1 ⊃ mI. Put J = (0 : mI). Then,
+bearing in mind that A is Gorenstein, J ⊃ 0 : mj0 +1 = mc−j0 , and thanks to Proposition 3,
+we have J ∈ F (A). Since the Hilbert function of A is unimodal, we have c − j0 ≤ j0 . This
+means that J ⊃ mj0 and the initial degree of J is smaller than or equal to j0 . If the initial
+degree of J equals j0 , then J = mj0 . Otherwise we can use Sublemma 9 repeatedly to obtain
+an ideal J ′ ∈ F (A) whose initial degree is j0 which contains mj0 . This means that J ′ = mj0
+and µ(J ′ ) = dimK Aj0 .
+   Case 2. Assume that α < j0 . Then we use again Sublemma 9 repeatedly and we obtain
+an ideal I ′ ∈ F (A) such that the initial degree of I ′ is at least j0 . So this case reduces to
+Case 1.
+                                                                                    L
+Sublemma 9. With the same notation as Proposition 8 L           suppose that I =      j≥α Ij is a
+graded ideal of A and α is the initial degree. Put I ′ =          j≥α+1 j I . Let  j0 =  Min{j |
+dimK Aj > dimK Aj+1 } and assume that α < j0 . Then we have µ(I) ≤ µ(I ′ ). Hence if
+I ∈ F (A), then I ′ ∈ F (A).
+Proof. Note that
+
+             µ(I) = dimK Iα + dimK Iα+1 /(A1 · Iα ) + · · · + dimK Ic /(A1 · Ic−1 ),
+
+and
+          µ(I ′ ) = dimK Iα+1 + dimK Iα+2 /(A1 · Iα+1 ) + · · · + dimK Ic /(A1 · Ic−1 ).
+Since A has the matching property, we have
+
+              µ(I ′ ) − µ(I)   = dimK Iα+1 − {dimK Iα + dimK Iα+1 /(A1 · Iα )}
+                               = {dimK Iα+1 − dimK Iα+1 /(A1 · Iα )} − dimK Iα
+                               = dimK A1 · Iα − dimK Iα ≥ 0.
+
+
+
+
+5     Main result
+In this section we show that the EGA Conjecture implies the Sperner property of complete
+intersections. Recall that the EGH Conjecture is as follows:
+Conjecture 10 (EGH Conjecture [8]). Let R = K[x1 , x2 , · · · , xn ] be the polynomial ring
+over a field K. If I is a graded ideal in R containing a regular sequence f1 , f2 , · · · , fn of
+degrees a1 , a2 , · · · , an respectively, then I has the same Hilbert function as an ideal containing
+(xa1 1 , xa2 2 , · · · , xann ).
+Theorem 11. Suppose that Eisenbud-Green-Harris Conjecture is true for a graded complete
+intersection A over a field K. Then A has the Sperner property.
+
+
+
+                                                  4
+              Lc
+Proof. Let A = i=0 Ai be a graded complete intersection defined by the ideal generated
+by homogeneous elements
+
+                             f1 , f2 , · · · , fn ∈ R = K[x1 , x2 , · · · , xn ]
+
+of degrees a1 , a2 , · · · , an respectively. Let j be an integer such that dimK Aj ≤ dimK Aj+1
+and let V ⊂ Aj be any vector subspace. By Proposition 8 it is enough to show that
+
+                                     dimK V ≤ dimK (A1 · V ).
+
+Let I = V A, namely, I is the ideal in A generated by V . Then
+
+                            dimK V = µ(I), dimK (A1 · V ) = µ(mI).
+
+By Proposition 12, which we prove below, we have
+
+                            µ(I) = dimK V = H(A, j) − H(A/I, j),                                 (1)
+
+and
+                    µ(mI) = dimK (A1 · V ) = H(A, j + 1) − H(A/I, j + 1).                        (2)
+    Let a ⊂ R be a graded ideal such that A/I = R/a, where a ⊃ (f1 , f2 , · · · , fn ). Now
+we invoke the EGH Conjecture for A, which is to assume the following: There is an ideal
+b containing (xa1 1 , · · · , xann ) such that R/b has the same Hilbert function as that of R/a.
+Put B = R/(xa1 1 , · · · , xann ) and J = b/(xa1 1 , · · · , xann ). We regard J as an ideal in B. By
+definition I has initial degree j, so j is the initial degree of J. Let J ′ be the ideal of B
+generated by the elements of Jj .
+    We want to show that µ(mI) − µ(I) ≥ 0. By (1) and (2)
+
+         µ(mI) − µ(I) = {H(A, j + 1) − H(A/I, j + 1)} − {H(A, j) − H(A/I, j)}.
+
+Since A and B have the same Hilbert function and so do A/I and B/J, this is equal to
+
+       µ(mI) − µ(I) = {H(B, j + 1) − H(B/J, j + 1)} − {H(B, j) − H(B/J, j)}.                     (3)
+
+As well as for I, we have
+
+       µ(mJ ′ ) − µ(J ′ ) = {H(B, j + 1) − H(B/J ′ , j + 1)} − {H(B, j) − H(B/J ′ , j)},         (4)
+
+where we used the same m for the maximal ideal of B. Note that µ(J ′ ) = dimK Jj′ and
+µ(mJ ′ ) = dimK (A1 · J ′ ). Since B has the matching property (Proposition 7), we have
+µ(mJ ′ ) − µ(J ′ ) ≥ 0, which implies that the RHS of (4) is ≥ 0. Since J ′ ⊂ J, we have
+
+                              H(B/J ′ , j + 1) − H(B/J, j + 1) ≥ 0.
+
+Add this number to the RHS of (4). Then we obtain
+
+               {H(B, j + 1) − H(B/J, j + 1)} − {H(B, j) − H(B/J ′ , j)} ≥ 0.
+
+Since Jj′ = Jj , we have
+
+                {H(B, j + 1) − H(B/J, j + 1)} − {H(B, j) − H(B/J, j)} ≥ 0,
+
+which implies that the LHS of (3) is ≥ 0. Thus we have proved that
+
+                                     dimK V ≤ dimK (A1 · V ),
+
+as desired.
+
+                                                     5
+Proposition 12. Let R = K[x1 , · · · , xn ] be the polynomial ring and a a graded ideal of
+finite colength. Put A = R/a. Let I be an ideal of A generated by a subset in Aα .
+    Then
+                         µA (mi I) = H(A, α + i) − H(A/I, α + i).
+Proof.
+
+                         µA (mi I) =     dimK mi I/mi+1 I = dimK Iα+i
+                                   =     H(I, α + i)
+                                     =   H(A, α + i) − H(A/I, α + i)
+
+
+
+Theorem 13. Let R = K[x1 , x2 , · · · , xn ] be the polynomial ring. Suppose that I is a
+complete intersection ideal I = (L1 , L2 , · · · , Ln ), where each Lj is a product of linear forms.
+Then A := R/I has the Sperner property.
+Proof. By [1] Corollary 3.3, the EGH Conjecture is true for A. So Theorem 11 applies.
+Remark 14. In the above theorem we may require only that (n − 2) of the generators are
+products of linear forms and the other two are arbitrary homogeneous elements. Indeed, to
+prove the theorem we may assume that K is algebraically closed. The proof is carried out
+by induction on n. If n = 2, then any homogeneous form factors into a product of linear
+forms over K.
+
+
+References
+ [1] A. Abedelfatah, On the Eisenbud–Green–Haris conjecture, Proc. of AMS 143, no. 1,
+     105–115, (2014)
+ [2] I. Anderson, Combinatorics of Finite Sets, Dover Publication Inc. Mineola (2002).
+     Corrected reprint of the 1989 edition.
+ [3] M. Aigner, Combinatorial Theory, Grundlehren der mathematischen Wissenschaften
+     234, Springer-Verlag, New York, 1979.
+ [4] B. Bollobàs, Combinatorics: Set Systems, Hypergraphs, Families of Vectors and Com-
+     binatorial Probability, Cambridge University Press, Cambridge, 1986.
+ [5] N. G. deBruijn, C. A. van E. Tengbergen and D. R. Kruyswijk, On the set of divisors
+     of a number, Nieuw Arch. Wisk.,(2) 23, 191–193, (1952)
+ [6] D. Cook, II, The Lefschetz properties of monomial complete intersections in positive
+     characteristic, J. Algebra 369 (2012), 42-58.
+ [7] D. Cook, II, U. Nagel, The weak Lefschetz property, monomial ideals, and Lozenges,
+     Illinois J. Math. 55 (2011), no. 1, 377-395 (2012).
+ [8] D. Eisenbud, M. Green and J. Harris, Cayley–Bacharach theorems and conjectures,
+     Bull. Amer. Math. Soc. 33, 295–325 (1996)
+ [9] C. Greene and D. J. Kleitman, Proof techniques in the theory of finite sets, In: Studies
+     in Combinatorics. MAA Studies in Mathematics, vol. 17, pp. 22–79, Association of
+     American Mathematical Society, Washington (1978)
+
+
+
+                                                 6
+[10] T. Harima, T. Maeno, H. Morita, Y. Numata, A. Wachi, and J. Watanabe, The Lef-
+     schetz Properties, Springer Lecture Notes 2080, Springer-Verlag, 2013.
+[11] H. Ikeda and J. Watanabe, The Dilworth lattice of Artinian rings, J. Commut. Algebra,
+     1 (2), 315–326 (2009). MR2504938 (2010:13007)
+[12] C. McDaniel, The strong Lefschetz properyies for coinvariant rings of finite reflection
+     groups, J. Algebra 331, (2003), 99–126.
+[13] J. Migliore, R.–M. Mirò–Roig, S. Murai, and J. Watanabe, On ideals with the Rees
+     property, Arch. Math. 101, 445–454 (2013)
+[14] J. Migliore and R. M. Miró-Roig, Ideals of general forms and the ubiquity of the weak
+     Lefschetz property, J. Pure Appl. Algebra 182 (2003), no. 1, 79–107.
+[15] J. Migliore and U. Nagel, A tour of the weak and strong Lefschetz properties, J. commut.
+     algebras 5 110, 329–358 (2013)
+[16] E. Sperner, Ein Satz über Untermengen einer endlichen Menge, Math. Z. , 27, 544–548
+     (1928)
+[17] J. Watanabe, Dilworth number of Artinian rings and the finite posets with rank func-
+     tion, Commutative algebra and combinatorics (Kyoto, 1985), 303–312, Adv. Stud. Pure
+     Math., 11, North Holland, Amsterdam, 1987.
+[18] J. Watanabe, m-full ideals, Nagoya Math. J., 106, 101–111 (1987)
+
+
+
+
+                                             7
+

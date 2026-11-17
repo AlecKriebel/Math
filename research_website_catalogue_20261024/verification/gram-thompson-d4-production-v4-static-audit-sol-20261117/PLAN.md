@@ -1,0 +1,7 @@
+Independent V4 static source audit only
+
+Personally read every actual1709 source line,232 PLAN lines, complete saved and actual V3-to-V4 diffs, and the actual root-protected-math-entries disposition. Check the grounded148directory+11file=159nonprogramme-entry classification, full exact maps/file protection, renamed proof key/receipt labels, and all retained overlay/index/TREE/authority/capture/deadline/phase contracts. An independent Sol6.1 Ultra reader reviews complete text using authority/capture/failure-path reasoning; the main reader reviews whole raw-index/TREE/tree/scope and phase logic.
+
+Write only this new audit packet. No helper/mode/default/import/AST/compile/help/test, Git, network, W, RUN, ignore, Sheet, deployment or scientific action. Earlier failed assembler/source/private streams and all historical audits remain immutable; their outcomes are not retroactively changed. Current scientific writers are active, so no global quiescence or whole live/native/public custody is claimed.
+
+Guard13 exact fixed source/control files before and after using full SHA256, bytes, individual modes and literal nanosecond times. Only derived pins of the prior private outer receipt enter this packet. Do not assume V4 preparation metadata has finished freezing at intake. Freeze a finite brief REPORT/FINDINGS/FINAL/MANIFEST with exact scope and limits; static review grants no action authority. Completion at intake:0%.

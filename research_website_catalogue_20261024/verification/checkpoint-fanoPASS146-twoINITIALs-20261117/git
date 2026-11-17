@@ -1,0 +1,116 @@
+#!/usr/bin/python3
+"""Scoped Git adapter: bind fetched parent and approve exact tree before push."""
+import base64, datetime, hashlib, json, os, re, subprocess, sys
+from pathlib import Path
+
+if not __debug__:
+    raise RuntimeError('Checkpoint guards require Python assertions enabled')
+
+OWN = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/checkpoint-fanoPASS146-twoINITIALs-20261117')
+P = OWN.parents[1]
+M = P.parent
+EXPECTED = '436ec422f9ae291a365b9ff2814cb88bc15db8f3'
+release = json.loads((OWN/'ROOT_RELEASE.json').read_bytes())
+assert release['authorization'] == 'ROOT_RELEASE_TO_CHECKPOINT' and release['expected_parent'] == EXPECTED
+mode = os.environ['CHECKPOINT_ADAPTER_MODE']
+assert mode in ('dry-run','push') and Path.cwd() == M
+calls = []
+def real(args, data=None):
+    r = subprocess.run(['/usr/bin/git',*args],cwd=M,input=data,capture_output=True,check=False)
+    calls.append(dict(argv=['/usr/bin/git',*args],exit_code=r.returncode,stdout_base64=base64.b64encode(r.stdout).decode(),stderr_base64=base64.b64encode(r.stderr).decode()))
+    return r
+
+def checked(args):
+    r = real(args)
+    assert r.returncode == 0,r.stderr.decode(errors='replace')
+    return r.stdout
+
+def tree_map(tree):
+    rows = checked(['ls-tree','-z','--full-tree',tree])
+    rows += checked(['ls-tree','-r','-t','-z','--full-tree',tree,'--',P.name])
+    result = {}
+    for row in rows.split(b'\0'):
+        if row:
+            header,path = row.split(b'\t',1)
+            fields = header.decode().split()
+            path = path.decode()
+            assert path not in result or result[path] == fields
+            result[path] = fields
+    return result
+
+args = sys.argv[1:]
+assert args[:2] == ['-c','gc.auto=0']
+command = args[2:]
+while command[:1] == ['-c']:
+    assert len(command) >= 3 and command[1] == 'core.whitespace=-blank-at-eol,-blank-at-eof'
+    command = command[2:]
+assert command
+result = None
+error = None
+try:
+    if command[0] == 'push':
+        assert mode == 'push' and len(command) == 3 and command[1] == 'origin'
+        matched = re.fullmatch(r'([0-9a-f]{40}):refs/heads/main',command[2])
+        assert matched is not None,'Only ordinary exact-commit push to main allowed'
+        commit = matched.group(1)
+        approval = json.loads((OWN/'DRY_REVIEW.json').read_bytes())
+        assert approval['status'] == 'APPROVED_FOR_ORDINARY_SCOPED_PUSH' and approval['expected_parent'] == EXPECTED
+        assert approval['dry_run_exit'] == approval['dry_audit_exit'] == 0
+        dry = json.loads((OWN/'DRY_RUN.receipt.json').read_bytes())
+        assert dry['parent'] == EXPECTED and dry['tree'] == approval['approved_dry_tree']
+        raw = checked(['cat-file','commit',commit])
+        headers = raw.decode().split('\n\n',1)[0].splitlines()
+        assert [x for x in headers if x.startswith('parent ')] == ['parent '+EXPECTED]
+        assert any(x.startswith('author Alec Kriebel <me@aleckriebel.com> ') for x in headers)
+        assert any(x.startswith('committer Alec Kriebel <me@aleckriebel.com> ') for x in headers)
+        assert headers[0].startswith('tree ')
+        tree = headers[0][5:]
+        old,new = tree_map(dry['tree']),tree_map(tree)
+        target = P.name+'/verification/checkpoint-subtree-dry-run-20261025.json'
+        ancestors = {str(x) for x in Path(target).parents if str(x) != '.'}
+        assert set(old) == set(new),'Tree topology changed since approved dry run'
+        changed = []
+        for path in sorted(old):
+            if old[path] != new[path]:
+                changed.append(path)
+                if path in ancestors:
+                    assert old[path][:2] == new[path][:2] == ['040000','tree']
+                else:
+                    assert path == target and old[path][:2] == new[path][:2] == ['100644','blob']
+        assert target in changed and set(changed) == ancestors|{target},changed
+        expected_blob = (OWN/'DRY_RUN.receipt.json').read_bytes()
+        assert checked(['cat-file','blob',tree+':'+target]) == expected_blob
+        current_helper = (P/'scripts/checkpoint_subtree.py').read_bytes()
+        assert len(current_helper) == 6213 and hashlib.sha256(current_helper).hexdigest() == '405b0357fd20a2e14893ce6c3c1a0f81910894ccd8ffaddac4e25014138fb9c0'
+        assert checked(['ls-remote','origin','refs/heads/main']).split()[0].decode() == EXPECTED
+        result = real(args)
+    elif command[0] == 'fetch':
+        assert command == ['fetch','origin','main']
+        result = real(args)
+        if result.returncode == 0:
+            assert checked(['rev-parse','origin/main']).decode().strip() == EXPECTED,'Fetched parent differs from authorized parent'
+    elif command == ['rev-parse','origin/main']:
+        result = real(args)
+        assert result.returncode == 0 and result.stdout.decode().strip() == EXPECTED
+    else:
+        assert command[0] in ('branch','rev-parse','ls-tree','read-tree','add','diff','write-tree','mktree','diff-tree','commit-tree','ls-remote'),command[0]
+        if command[0] in ('read-tree','add','write-tree'):
+            assert os.environ.get('GIT_INDEX_FILE','').startswith('/'), 'Only helper isolated index operations allowed'
+            assert Path(os.environ['GIT_INDEX_FILE']) != M/'.git/index'
+        assert mode == 'push' or command[0] != 'commit-tree'
+        data = sys.stdin.buffer.read() if command[0] in ('mktree','commit-tree') else None
+        result = real(args,data)
+except BaseException as exc:
+    error = type(exc).__name__+': '+str(exc)
+finally:
+    record = dict(UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),mode=mode,helper_args=args,calls=calls,rejection=error)
+    with (OWN/('GIT_ADAPTER_'+mode+'.jsonl')).open('a') as stream:
+        stream.write(json.dumps(record,separators=(',',':'))+'\n')
+if result is not None:
+    sys.stdout.buffer.write(result.stdout)
+    sys.stderr.buffer.write(result.stderr)
+if error is not None:
+    sys.stderr.write('Checkpoint Git adapter rejected action: '+error+'\n')
+    raise SystemExit(96)
+assert result is not None
+raise SystemExit(result.returncode)

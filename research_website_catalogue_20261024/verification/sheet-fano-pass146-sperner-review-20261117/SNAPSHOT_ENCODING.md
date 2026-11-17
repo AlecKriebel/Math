@@ -1,0 +1,3 @@
+# Native structured snapshot encoding
+
+The four packed files preserve the complete native structuredContent objects returned by the before/after CellData and metadata reads. Redundant transport text is not represented. Each uses recursive-json-intern-v1: root and node children are JSON primitives or {$ref:n}; nodes[n] is either an array with ordered items, or an object with ordered [key,value] entries. Decode recursively. Repeated identical JSON subtrees share nodes; object entry order and all primitive values are retained. Before saving, each decoded object was compared by complete JSON serialization with its original structured response and matched. This is lossless native structured data, not a display capture or an Excel replacement.
