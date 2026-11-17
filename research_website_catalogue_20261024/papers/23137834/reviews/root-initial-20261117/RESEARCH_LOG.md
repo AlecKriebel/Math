@@ -1,0 +1,5 @@
+# Root original-only review: pentagon fifth torsion
+
+2026-11-17T16:00:04Z: all482controllingTeXlines, all7freshtextpages and complete native record personally read. Original-only partialgate20%; no current family, supporting code/results or primary body read. Independent hand derivations of the birational identity, exceptional cusp, primitivity value and Kummer/twist arithmetic are recorded. Await own7freshpage rasters before closing INITIAL. No scientific program or mathematical verdict. Programme144/203scientific dispositions,59remaining; active/incomplete.
+
+2026-11-17T16:25:55.578511+00:00: root personally viewed all7freshownPDFpages after all482TeXlines/fullnativeAPI/all7textpages. Original-only INITIAL35% complete; mathematicalverdict withheld. Twelve independenthanddeductions recorded; actualprimary/support/currentfamilies still unread. Checkpoint this frozen INITIAL before those interfaces. No scientific program executed. Programme144/203scientific/native dispositions,59remaining,70.935961%; active/incomplete.

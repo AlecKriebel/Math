@@ -1287,3 +1287,13 @@ Gram194 original-only root INITIAL22/0 complete, estimate45% of full scientific 
 ## 2026-11-17T15:53:15.675570+00:00 — D4 original counterexample review completed
 
 Root disposition PASS for record23439776 historical canonical-W claim with exact coordinate and priority exclusions. Two independent native routes exit0, root science executions0; original sources, actual primary interfaces and a fresh independent convention challenge were read. Finite custody237files/14dirs authenticated by independent reader; root9-file packet adopted. No follow-up. Scientific144/203 (136pass8defer59remain), 70.935961%; native143 pending checkpoint/row171. Programme active/incomplete.
+
+
+## 2026-11-17T16:20:49.516525+00:00 — Native review144 and completed local publication audit
+
+Checkpoint14013a3a isverified atremote main with all159siblings/docs and nativeM/W preserved. Rootadopted its57-fileevidence after preserving a passive-reader blanketmode assumptionfailure; actualexecutableGitadapter0755 isdeclared, and a distinctcorrecteddatareader passed without changing inputs. NativeD4row171AB/ADtwo-celltransitionreadback passed, preservedAC/nativeedition andallother252wholecells/eighttabmetadata. Scientific/native144of203,136passes8defer59remaining,70.935961%. Rootadopted independent22-filepostaudit of4cc09/public803387 and130-filecorrectedThompsonprivateeditorial/fact/legacypackets. NoactualUIorAA/redirectcertificate. Allthreepagehelpermodesstale; goalactive/incomplete.
+
+
+## 2026-11-17T16:26:53.939609+00:00 — Root original-only pentagon review frozen
+
+Record23137834 rootINITIAL17files/1dir frozen after all482TeXlines,7freshtextpages,7individuallyviewedrasters/fullnativeAPI. Twelve ownhandderivations cover conicinverse/globalprimitivity, cuspfiber, Tate-twist/Kummer signs andfielddegree logic. Native supportingprogram/results,currentfamilies and foreignprimary bodies stillunread. Review35%; noverdict. Root metadatafreezer firstfailed beforewrites due one mistypedfinalhex digit; actualmetadata matched fullfrozenSOURCE_READY/SOURCE_MANIFEST; unchangedoldsource/failure retained anddistinctone-pincorrectedV2passed0. CheckpointINITIAL before scientificcontinuation. Programme144/203reviewed,136PASS8defer59remain,70.935961%; active/incomplete.
