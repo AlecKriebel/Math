@@ -1,0 +1,5 @@
+# Scope-family research log
+
+* 2026-11-17T05:01:17.604984+00:00 — Created this dedicated owned folder; authenticated exact 65-file/11-directory original source tree and both terminal pins. Recorded a complete source guard. Freshly extracted and rendered the controlling native five-page PDF using ordinary read-only PDF tools. Scientific completion estimate: 10%.
+* 2026-11-17T05:02:18.881132+00:00 — Full controlling 327-line outer TeX, full native record/Description/rights, full extracted native PDF text, and all five actual fresh page images read. Compared manuscript/source section, theorem, equation, and bibliography contents; distinct embedded upstream PDF was not substituted. Complete source guard remained unchanged. Scientific completion estimate: 20%.
+* 2026-11-17T05:05:24.520240+00:00 — Froze own independent source-only hand derivation, exact original target, boundary cases, and outstanding primary dependencies in INITIAL.md. No scientific execution or support reading performed. Initial finite manifest and seal follow. Scientific completion estimate: 25%; held pending explicit release. No scientific verdict or publication authority.

@@ -1,0 +1,8 @@
+# Root review log
+
+- 2026-11-17T04:51:07Z — Complete320-line controlling TeX, all5 native text pages, all5 fresh pixels and full native metadata personally read; source162/23 and originals authenticated. Own full theorem, every-optimizer and all-cuts proof independently reconstructed. Source-only INITIAL sealed40%, no final disposition. Prior inventory/procedural exposure disclosed.
+- 2026-11-17T04:59:19Z — Independent readback confirms all17 original root intake files committed exactly in f98cdb2fc47f9a1c613c673bfc2255adc31546df, all159 siblings/native indices preserved. Primary/support/current-family reading gate opened after that checkpoint.
+- 2026-11-17T05:07:55Z — After full actual code/embedded-input/side-effect reading, one distinct exact rational flow route completed0,1520B stdout/empty stderr and generated record byte-identical to archived output. Both current families' advertised main replays failed at missing NumPy before any component and are not converted to passes. No retry/install/environment change or second root route. Review reached90% before final custody closure.
+- Final checkpoint — Complete primary-interface, both-family and source reconciliation recorded in ROOT_REVIEW and timestamped ROOT_FINAL_EVIDENCE_ADOPTION.json. Full-original PASS, scientific100%; no central gap, repair, narrowing, follow-up, priority certificate or live-publication claim. Source162/23,scope261/6,adversarial65/9 and root INITIAL exact. Native scientific root attempts1. Private page preparation is next.
+
+- 2026-11-17T05:11:33.161505+00:00 — Actual final scientific-clearance checkpoint; full-original PASS100%. Final report and evidence pinned below; publication/AA not granted.
