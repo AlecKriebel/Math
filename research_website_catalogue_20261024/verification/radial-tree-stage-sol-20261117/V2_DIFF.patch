@@ -1,0 +1,101 @@
+--- verification/radial-tree-stage-sol-20261117/build_private.py	2026-11-16 23:15:02
++++ verification/radial-tree-stage-sol-20261117/build_private_v2.py	2026-11-16 23:21:16
+@@ -1,4 +1,4 @@
+-"""One private, data-only website stage. No subprocesses, network or project imports."""
++"""Root-authorized v2 continuation; first failed builder and evidence stay exact."""
+ import copy
+ import hashlib
+ import html
+@@ -201,7 +201,8 @@
+     before_head = unique(r'<head>.*?</head>', original).group()
+     main = unique(r'<main id="main">.*?</main>\n', original).group()
+     need(main.encode() == data(root / main_name), 'Accepted whole MAIN differs')
+-    need((before_head + '\n').encode() == data(root / 'head.html'), 'Accepted whole head differs')
++    saved_head = unique(r'<head>\n(.*?)</head>', original).group(1) if row == 184 else before_head + '\n'
++    need(saved_head.encode() == data(root / 'head.html'), 'Accepted row-specific head representation differs')
+     script_hit, schema = json_script(before_head)
+     if row == 184:
+         need('@type' not in schema and [item.get('@type') for item in schema['@graph']] == ['WebPage', 'ScholarlyArticle'], 'Radial graph schema differs')
+@@ -376,8 +377,9 @@
+             need(ident in tags.ids, 'Label target missing')
+ 
+ def main():
+-    need(Path(__file__).resolve() == OWN / 'build_private.py', 'Builder location differs')
+-    allowed = {'RESEARCH_LOG.md', 'INTAKE_FAILURES.md', 'build_private.py', 'BUILD.stdout.txt', 'BUILD.stderr.txt'}
++    need(Path(__file__).resolve() == OWN / 'build_private_v2.py', 'Builder location differs')
++    allowed = {'RESEARCH_LOG.md', 'INTAKE_FAILURES.md', 'build_private.py', 'BUILD.stdout.txt', 'BUILD.stderr.txt',
++               'GUARDS_BEFORE.json', 'originals', 'candidate', 'FAILURE_1.json', 'build_private_v2.py', 'V2_DIFF.patch', 'BUILD_V2.stdout.txt', 'BUILD_V2.stderr.txt'}
+     need({path.name for path in OWN.iterdir()} <= allowed, 'Owned lane is not fresh')
+     started = now()
+     before_inputs = inputs()
+@@ -392,11 +394,26 @@
+     need((len(baseline['files']), len(baseline['directories']), mode(baseline['root_mode']), article_count(baseline)) == (772, 373, 0o750, 126), 'Published baseline extent differs')
+     need(sum(Path(name).name == '.DS_Store' for name in baseline['files']) == 17, 'Published DS_Store count differs')
+     pin(PUBLIC / 'research/research.css', 1170, 'f8cc0b3df011584d4e0266047af9c7c930266d0378909c0ca14e69e642653a6a')
+-    putj('GUARDS_BEFORE.json', {'inputs': before_inputs, 'native_controls': before_native, 'public': baseline})
++    first_pins = {
++        'build_private.py': pin(OWN / 'build_private.py', 35546, 'aaeb63247108dd6387a845750520f7a16510e1ae5ed0b7df836b1e46a9fdaeb7'),
++        'BUILD.stderr.txt': pin(OWN / 'BUILD.stderr.txt', 1028, 'cea2d4707584b4a16dab23e014043772cf4b58fcb488928ea97510dce23b1287'),
++        'BUILD.stdout.txt': pin(OWN / 'BUILD.stdout.txt', 0, 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')}
++    need(record(OWN / 'GUARDS_BEFORE.json')['SHA256'] == '9926571859c98ac23e39f81aedd071abd7d2edfe38953c59bab2271a9e76e0ce', 'First guard changed')
++    first_pins['GUARDS_BEFORE.json'] = record(OWN / 'GUARDS_BEFORE.json')
++    putj('GUARDS_BEFORE_V2.json', {'inputs': before_inputs, 'native_controls': before_native, 'public': baseline, 'retained_first_attempt': first_pins})
+     old_index, old_sitemap = text(PUBLIC / 'research/index.html'), text(PUBLIC / 'research/sitemap.xml')
+-    put('originals/research-index.html', old_index.encode())
+-    put('originals/research-sitemap.xml', old_sitemap.encode())
+-    shutil.copytree(PUBLIC, CANDIDATE, copy_function=shutil.copy2)
++    need(data(OWN / 'originals/research-index.html') == old_index.encode() and data(OWN / 'originals/research-sitemap.xml') == old_sitemap.encode(), 'Retained original aggregate buffers differ')
++    workbench = inventory(CANDIDATE)
++    need(all(workbench[key] == baseline[key] for key in ['root_mode', 'files', 'directories']), 'Retained candidate is not the exact current baseline')
++    absent_files, absent_dirs = [], []
++    for row, recid, lane, slug, main_name in ROWS:
++        model = readj(P / 'verification' / lane / 'page-model.json')
++        prefix = 'research/' + slug
++        absent_files += [prefix + '/index.html', prefix + '/citation.bib'] + [prefix + '/' + asset['local_path'] for asset in model['native_asset_order']]
++        absent_dirs += [prefix, prefix + '/assets']
++    need(len(absent_files) == len(set(absent_files)) == 9 and len(absent_dirs) == len(set(absent_dirs)) == 4, 'Expected new namespace differs')
++    need(all(not (CANDIDATE / name).exists() for name in absent_files + absent_dirs), 'New target exists in retained workbench')
++    putj('PRE_V2_WORKBENCH.json', {'UTC': now(), 'inventory': workbench, 'exact772files373dirs_baseline_authenticated': True, 'all9_new_leaves_absent': absent_files, 'all4_new_directories_absent': absent_dirs, 'first_attempt_evidence': first_pins})
+     pages = [page_activate(*row) for row in ROWS]
+     new_index, index_evidence = update_index(old_index, pages)
+     new_sitemap, sitemap_evidence = update_sitemap(old_sitemap, pages)
+@@ -426,12 +443,13 @@
+     need(all(mode(candidate['directories'][name]) == 0o755 for name in expected_dirs), 'New directory mode differs')
+     after_inputs, after_native, after_public = inputs(), {'M': controls(M), 'W': controls(W)}, inventory(PUBLIC)
+     need(before_inputs == after_inputs and before_native == after_native and baseline == after_public, 'Read-only input/native/public guard drift')
+-    putj('GUARDS_AFTER.json', {'inputs': after_inputs, 'native_controls': after_native, 'public': after_public})
++    need(all(record(OWN / name) == value for name, value in first_pins.items()), 'Retained failed-attempt evidence changed')
++    putj('GUARDS_AFTER_V2.json', {'inputs': after_inputs, 'native_controls': after_native, 'public': after_public, 'retained_first_attempt': first_pins})
+     target_plan = {'row_order': [184, 185], 'A': expected_adds, 'M': ['research/index.html', 'research/sitemap.xml'], 'D': [], 'new_directories': expected_dirs, 'production_target_count': 11}
+     putj('TARGETS.json', target_plan)
+     putj('CANDIDATE_MANIFEST.json', candidate)
+     finished = now()
+-    receipt = {'UTC_started': started, 'UTC_finished': finished, 'status': 'PASS_PRIVATE_STAGE_DATA_CHECKS', 'private_build_attempts': 1, 'row_order': [184, 185], 'pages': pages,
++    receipt = {'UTC_started': started, 'UTC_finished': finished, 'status': 'PASS_ROOT_AUTHORIZED_V2_PRIVATE_STAGE_DATA_CHECKS', 'private_build_attempts': 2, 'v2_build_attempts': 1, 'first_attempt_exit': 1, 'first_attempt_evidence': first_pins, 'row_order': [184, 185], 'pages': pages,
+                'baseline_files': 772, 'baseline_child_directories': 373, 'candidate_files': 781, 'candidate_child_directories': 377, 'old_articles': 126, 'candidate_articles': 128, 'old_sitemap_nodes': 127, 'candidate_sitemap_nodes': 129,
+                'all_126_old_visible_typed_raw_HTML_and_JSON_index_units_preserved_in_order': True, 'all_127_raw_and_parsed_XML_nodes_preserved_in_order': True, 'whole_aggregate_buffers_reversible': True,
+                'all_other_old_public_bytes_modes_hidden_empty_and_directory_topology_unchanged': True, 'full_private_and_native_source_namespaces_authenticated_before_after': True, 'M_W_native_HEAD_index_config_local_loose_and_packed_heads_unchanged': True,
+@@ -439,10 +457,12 @@
+                'scientific_and_copy_clearance_inherited': True, 'new_scientific_copy_or_rendered_live_certificate': False, 'W_Git_network_install_deploy_Sheet_AA_redirect_release_or_outreach_action': False, 'follow_up': None}
+     putj('BUILD_RECEIPT.json', receipt)
+     report = '# Private radial/tree website stage\n\nPASS for private-stage data preparation only. The candidate preserves the accepted complete MAIN/body/abstract/math/rights/collaboration and original assets/BibTeX for rows 184 then 185. The radial WebPage+ScholarlyArticle graph and three checksum→ZIP→PDF encodings are retained; only its private robots tag is removed. The tree single ScholarlyArticle retains its ZIP→PDF order while canonical/page identifiers, OG URL, absolute scholarly asset/PDF URLs and the existing shared stylesheet are activated. No public copy or scientific verdict is changed.\n\nBaseline W master96f04aa5544df69daba07a9ed4d6212172e9984a, native index v2/58712, public772 files/373 child directories and root0750 are preserved. Candidate public781 files/377 child directories contains128 articles and129 sitemap nodes. Exact11 production targets comprise9 additions and2 aggregate replacements, with4 necessary new directories. Every old126 visible/typed/raw index unit and127 raw/parsed XML nodes remains in order; complete aggregate buffers are reversible. Every other old public byte, mode, hidden/ignored/empty file and directory is unchanged. Seventeen DS_Store files remain exact.\n\nGUARDS_BEFORE/AFTER authenticate full accepted private/source packets and unchanged native M/W HEAD/index/config plus local loose/packed heads. Remote-tracking/FETCH_HEAD/nonlocal packed metadata is outside that native-main guard, as root directed. The new bounded builder was saved and personally read in full before its sole private build; no archived helper/source/scientific program or helper mode/import/test ran. All literal intake failures remain in INTAKE_FAILURES.md. No website/Git/network/install/deploy/tracker/AA/redirect/release action or outreach occurred. No child agents were used.\n\nThe private candidate requires independent implementation audit and root adoption. Rendered desktop/mobile/PDF-reader behavior, external/live downloads and actual publication remain unverified here. The radial legacy redirect is deferred until the actual replacement is live and verified; no redirect authority is supplied. Both follow-ups remain null.\n'
++    report = report.replace('GUARDS_BEFORE/AFTER authenticate', 'GUARDS_BEFORE_V2/GUARDS_AFTER_V2 authenticate', 1)
++    report = report.replace('The new bounded builder was saved and personally read in full before its sole private build;', 'The first fully read builder failed at an incorrect shared head-fragment assumption, before new articles or aggregate changes. Its exact builder, 1028-byte stderr, zero stdout and GUARDS_BEFORE remain preserved. Root authorized a separately saved and fully read v2 with an explicit row-specific fragment boundary. PRE_V2_WORKBENCH authenticates the retained candidate as the exact772/373 baseline with all9 new leaves and4 directories absent before reuse. One v2 execution succeeded; total attempts2, successful1;', 1)
+     put('REPORT.md', report.encode())
+-    need(data(OWN / 'BUILD.stdout.txt') == b'' and data(OWN / 'BUILD.stderr.txt') == b'', 'Build stream is not empty')
++    need(data(OWN / 'BUILD_V2.stdout.txt') == b'' and data(OWN / 'BUILD_V2.stderr.txt') == b'', 'V2 build stream is not empty')
+     with (OWN / 'RESEARCH_LOG.md').open('a', encoding='utf-8') as handle:
+-        handle.write('\n- ' + finished + ' — 100% complete toward the assigned private-stage preparation. One personally read new bounded builder completed all data checks; exact candidate781/377,128 articles/129 sitemap nodes,11 targets9A2M/4 new directories, accepted body/MAIN/assets/Bibs preserved. Full private/source/public/native guards passed before/after;126 old index units and127 XML nodes remain ordered and aggregate buffers reverse exactly. No scientific/copy/render/live or publication certificate is implied. Finite manifest/FINAL freeze follows; no later writes.\n')
++        handle.write('\n- ' + finished + ' — 100% complete toward the assigned private-stage preparation. One root-authorized fully read v2 execution completed all data checks after explicit exact772/373 retained-workbench and absent9leaves/4dirs authentication. The initial assertion failure and its original builder/streams/guard remain exact; total attempts2, successful1. Final candidate781/377,128 articles/129 sitemap nodes,11 targets9A2M/4 new directories preserves accepted body/MAIN/assets/Bibs. Full private/source/public/native guards passed before/after;126 old index units and127 XML nodes remain ordered and aggregate buffers reverse exactly. No scientific/copy/render/live or publication certificate is implied. Finite manifest/FINAL freeze follows; no later writes.\n')
+     own_inv = inventory(OWN)
+     manifest = {'schema': 'finite-private-stage-owned-manifest-v1', 'UTC': finished, 'root': str(OWN), 'root_mode': own_inv['root_mode'],
+                 'files': [{'path': name, **value} for name, value in own_inv['files'].items()], 'directories': [{'path': name, 'mode': value} for name, value in own_inv['directories'].items()],
+@@ -454,7 +474,7 @@
+              'candidate_root': str(CANDIDATE), 'candidate_files': 781, 'candidate_child_directories': 377, 'candidate_articles': 128, 'candidate_sitemap_nodes': 129,
+              'source_and_private_packets_unchanged': True, 'M_W_native_and_W_public_unchanged': True, 'accepted_MAIN_body_assets_Bibs_exact': True, 'full_aggregate_preservation_and_reversibility': True,
+              'scientific_copy_clearance_inherited': True, 'new_scientific_copy_or_rendered_live_certificate': False, 'actual_publication_date': None, 'AA': None, 'publication_authority': False, 'follow_up': None,
+-             'W_Git_network_install_deploy_Sheet_redirect_release_or_outreach_action': False, 'child_agents': 0, 'ordinary_private_stage_builds': 1, 'retained_intake_read_failures': 2,
++             'W_Git_network_install_deploy_Sheet_redirect_release_or_outreach_action': False, 'child_agents': 0, 'ordinary_private_stage_builds': 2, 'successful_private_stage_builds': 1, 'retained_first_attempt_exit': 1, 'retained_intake_location_read_failures': 2, 'retained_expected_absence_probe_exit': 1,
+              'extent': {'regular_files': len(own_inv['files']) + 2, 'child_directories': len(own_inv['directories']), 'root_mode': own_inv['root_mode'], 'all_paths': sorted(list(own_inv['files']) + ['OWNED_MANIFEST.json', 'FINAL.json'])},
+              'terminal_self_hash_excluded': True, 'all_handles_terminal_at_return': True, 'quiescent_after_freeze': True}
+     putj('FINAL.json', final)
