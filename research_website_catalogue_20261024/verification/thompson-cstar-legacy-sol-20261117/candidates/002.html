@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An explicit 44-variable, 538-term Hessian-nilpotent quartic from a 22-variable cubic Keller map, with exact certificates and corrected priority notes.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="An explicit 44-variable vanishing witness from a 22-variable cubic Keller map">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-21">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A 44-variable vanishing witness from a 22-variable cubic Keller map">
+  <meta property="og:description" content="An exact cubic-homogeneous and Hessian-nilpotent certificate, with a corrected audit of earlier six-variable and rank-compressed work.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/">
+  <title>A 44-variable vanishing witness from a 22-variable cubic Keller map · Alec Kriebel Research</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "An explicit 44-variable vanishing witness from a 22-variable cubic Keller map",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
+    "datePublished": "2026-07-21T14:42:57Z",
+    "dateModified": "2026-07-21T15:20:23Z",
+    "url": "https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/",
+    "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/paper.pdf", "encodingFormat": "application/pdf"}
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec Kriebel Research</a>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#certificates">Certificates</a><a href="#scope">Scope</a><a href="#appendix">Appendix</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_03_small_vanishing_counterexample">Source</a></div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Discovery 03 · Archived technical precursor · Priority corrected</p>
+      <h1>An explicit 44-variable vanishing witness from a 22-variable cubic Keller map</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">First public release: <time datetime="2026-07-21T14:42:57Z">21 July 2026, 14:42:57 UTC</time> (21 July 2026, 07:42:57 PDT)</p>
+      <p class="release">Priority correction: <time datetime="2026-07-21T15:20:23Z">21 July 2026, 15:20:23 UTC</time> (21 July 2026, 08:20:23 PDT)</p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">↪</div>
+      <div><h2>Superseded technical precursor with corrected priority.</h2><p>Discovery 07 is the canonical consequence paper and incorporates this 22/44-variable construction with a stronger every-order conclusion. The six-variable symmetric transport and rank-compression principle were also published earlier by Cassidy and Thompson, respectively; no novelty is claimed for those components. The residual 22/44-variable certificate was not found in an earlier source in the refreshed 9 August audit.</p></div>
+    </div>
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div><h2>Do not treat these claims as established mathematics.</h2><p>Alec Kriebel is a complete amateur and cannot independently verify this note. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, attribution, and novelty claim requires independent expert review. Exact checks are evidence about the encoded algebra, not peer review.</p></div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/symmetric_keller_and_vanishing.md">Full note</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/verify.py">Proof-side verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/verify_exported_stdlib.py">Independent checker</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/verify_exported_node.mjs">Node.js BigInt checker</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/PRIORITY_AUDIT.md">Priority audit</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">Starting from the recently announced three-dimensional noninjective Keller map, a rank-compressed homogenization gives a 22-variable cubic homogeneous noninjective Keller map. The de Bondt–van den Essen symmetric reduction then gives a homogeneous quartic Hessian-nilpotent polynomial in 44 variables, with 538 monomials and an exact collision. This was the consolidated paper for Explorations 01 and 02; Discovery 07 now incorporates its cubic-to-quartic construction into the canonical inverse-series consequence theorem.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Normalized companion</strong><span>6 variables · earlier equivalent transport now credited</span></div>
+          <div class="fact"><strong>Cubic model</strong><span>22 variables · 72 monomials · nilpotent \(Jh\)</span></div>
+          <div class="fact"><strong>Vanishing witness</strong><span>44 variables · 538 monomials · exact collision</span></div>
+        </div>
+      </section>
+
+      <section id="results">
+        <h2>1. The six-variable symmetric map</h2>
+        <p>Let \(\Phi:\mathbb C^3\to\mathbb C^3\) be the identity-linear normalization of the announced map. For \(A,B\in\mathbb C^3\), set</p>
+        <div class="equation">\[
+          X=A+iB,\qquad \Lambda=\frac{A-iB}{2},\qquad
+          \boxed{\mathcal S(A,B)=\Lambda^T\Phi(X).}
+        \]</div>
+        <div class="theorem-block">
+          <p><strong>Theorem A.</strong> The gradient \(\nabla\mathcal S:\mathbb C^6\to\mathbb C^6\) has symmetric Jacobian, identity linear part, and Jacobian determinant one. It maps the three distinct points</p>
+          <div class="equation">\[
+          (p_j/2,-ip_j/2),\qquad
+          p_j\in\{(0,0,-\tfrac14),(1,-\tfrac32,\tfrac{13}2),(-1,\tfrac32,\tfrac{13}2)\},
+          \]</div>
+          <p>to \((0,0,-1/8,0,0,i/8)\). The potential has degree eight and 204 expanded monomials.</p>
+        </div>
+        <p>This is a normalized instance of Meng's classical gradient lift. Cassidy's repository had already executed the equivalent six-dimensional symmetric transport and the same lifted fiber on 20 July 2026, before this note. No novelty is claimed for Theorem A. Its Hessian has constant determinant one by a two-block determinant formula followed by a complex linear congruence of determinant \(i\).</p>
+
+        <h2>2. Rank-compressed homogenization</h2>
+        <div class="theorem-block">
+          <p><strong>Lemma.</strong> Suppose \(\Psi=X+H_2+H_3:\mathbb C^n\to\mathbb C^n\) has determinant one and \(H_3=BK\), where \(B\) is a constant \(n\times r\) matrix and \(K\) is cubic homogeneous. Then</p>
+          <div class="equation">\[
+            h(X,U,t)=\bigl(tH_2(X)+t^2BU,-K(X),0\bigr)
+          \]</div>
+          <p>is cubic homogeneous in \(n+r+1\) variables, \(Jh\) is nilpotent, and every collision of \(\Psi\) lifts to one for \(W\mapsto W+h(W)\).</p>
+        </div>
+        <div class="equation">\[
+        \det(I+sJh)=\det\bigl(I+stJH_2+s^2t^2BJK\bigr)=\det J\Psi(stX)=1.
+        \]</div>
+        <p>In the certified 13-variable stable model, the thirteen cubic components span eight dimensions. Thus \(13+8+1=22\). The resulting cubic map has 72 monomials across 21 active nonlinear coordinates and an exact rational three-point fiber.</p>
+
+        <h2>3. The 44-variable quartic</h2>
+        <p>For that 22-variable cubic map, define</p>
+        <div class="equation">\[
+          \boxed{\mathcal P(A,B)=i\sum_{j=1}^{22}h_j(A+iB)B_j.}
+        \]</div>
+        <div class="theorem-block">
+          <p><strong>Theorem B.</strong> The polynomial \(\mathcal P\) is a homogeneous quartic in 44 variables, has 538 expanded monomials, and has nilpotent Hessian. The Keller map \(Z\mapsto Z-\nabla\mathcal P(Z)\) is noninjective. Therefore \(\mathcal P\) explicitly witnesses failure of Zhao's Vanishing Conjecture.</p>
+        </div>
+        <p>The de Bondt–van den Essen identity transfers nilpotence of \(Jh\) to nilpotence of \(\operatorname{Hess}(\mathcal P)\). The exact colliding 44-tuples have coordinates in \(\mathbb Q(i)\), with numerator at most 261 in absolute value and denominator at most 16.</p>
+      </section>
+
+      <section id="certificates">
+        <h2>4. Exact certificates</h2>
+        <p>The proof-side verifier rebuilds both maps and checks the structural identities. A Python standard-library checker and a separate Node.js BigInt checker read only the four JSON files and differentiate the sparse polynomials independently.</p>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/output/symmetric_potential_sparse.json"><code>symmetric_potential_sparse.json</code></a> — 204-term potential.<br><small>SHA-256: <code class="hash">1e0c97e1c4965c3ef7d85cdfb115d468f79d8b5195a7f34f498015c3c3f5fdd4</code></small></li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/output/symmetric_collision.json"><code>symmetric_collision.json</code></a> — exact three-point fiber.<br><small>SHA-256: <code class="hash">6b5b546f24e839a10ab330ae9b05d1d03d23a6fbbbff8cfa6d1ce742768f7169</code></small></li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/output/potential_sparse.json"><code>potential_sparse.json</code></a> — 538-term quartic.<br><small>SHA-256: <code class="hash">2a912728161888849e77d607ea1f635233576543ed12d5fe8b2a65e0751789f4</code></small></li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/output/collision.json"><code>collision.json</code></a> — exact colliding 44-tuples.<br><small>SHA-256: <code class="hash">aeab7adb021c07dea396d2c0eca0cc7880b93dc7b09b74f60289936a711addd0</code></small></li>
+        </ul>
+      </section>
+
+      <section id="scope">
+        <h2>5. Scope and priority</h2>
+        <p>The six-variable map was already public in equivalent form: Cassidy's commit <code>40e1e20…</code>, authored at 14:46:10 UTC on 20 July 2026, executes the de Bondt–van den Essen/Meng transport, checks symmetry, and gives the same lifted three-point fiber. Our determinant-one, identity-linear formula is a normalized presentation, not an independent discovery. The first version of this page missed that source.</p>
+        <p>Exploration 02's 27/54-variable construction is now an archival derivation subsumed by this paper. William Thompson posted a 24-variable cubic homogeneous reduction at 03:29:42 UTC on 21 July 2026 and has priority for the rank-compression idea. His map has 54 monomials across 23 active nonlinear coordinates; ours has 72 across 21. Both cubic maps are over \(\mathbb Q\) with rational collisions. Ours uses fewer ambient variables (22 versus 24), while Thompson's is sparser. The residual candidate contribution is the different \(13+8+1=22\) construction and its executed 44-variable quartic.</p>
+        <p>Source-specific searches found no earlier public 22-variable cubic certificate or executed 44-variable quartic certificate. This is not an exhaustive worldwide-priority claim; all novelty statements are provisional. <a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/PRIORITY_AUDIT.md">Read the full correction and source comparison.</a></p>
+      </section>
+
+      <section id="appendix">
+        <h2>Appendix A. A uniform rational collision</h2>
+        <p>Exploration 01's full-\(S_n\) theorem was already available in stronger form for the entire Gallagher weighted-lift family in <a href="https://github.com/MikhailSzh/weighted-lift-galois/commit/f8a6d6794febb551050d73b8cf6ffab9da52d047">Mikhail Szh's earlier commit</a>. We therefore preserve only its explicit specialization and rational collision, without a monodromy or deck-group novelty claim.</p>
+        <p>For \(n\ge3\), let \(s_n=(4-2^n)/(n-2)\), \(g_1=(n+2-2^n)/(n-2)\), and \(g_2=2^{n-1}\). The appendix defines an explicit weighted-lift map \(F_n\) and points</p>
+        <div class="equation">\[
+          X_{n,r}=\left(\frac1{g_r},\ r-g_r,
+          g_r^2\left[g_r-1+\frac n{n-1}\left(\frac r{g_r}-1\right)\right]\right),
+          \qquad r\in\{1,2\},
+        \]</div>
+        <p>for which \(F_n(X_{n,1})=F_n(X_{n,2})=(s_n,s_n,1)\) exactly. At \(n=3\), this is \(F_3(-1/3,4,-54)=F_3(1/4,-2,36)=(-4,-4,1)\). The archived checker verifies the identities in exact rational arithmetic.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The constructions, searches, proof organization, verification programs, website, and drafts were developed with heavy assistance from ChatGPT 5.6 Sol. Alec Kriebel is a complete amateur and cannot independently verify the claims. The note has not been peer reviewed.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit 44-variable vanishing witness from a 22-variable cubic Keller map,” provisional research note, first posted 21 July 2026; priority correction 21 July 2026.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The complete human-readable note and all source are public in the repository.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec Kriebel Research</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Thompson pass143 evidence checkpoint log
+
+2026-11-17T15:03:48.684640+00:00 — Prepare-only plan saved in a new absent-before-creation namespace. No current programme content was read or captured, no old helper/source was executed/imported/parsed/compiled, and no Git/network call occurred. Root-supplied target is scientific143/203=70.443350%,135passes8defer60remain; native142 still verified pending later transition. Programme active/incomplete; checkpoint preparation10%. Await explicit root release before fresh-source preparation/currentP capture. Global PROGRESS and programme RESEARCH_LOG untouched.
+
+2026-11-17T15:07:45.054721+00:00 — Explicit root release received; fresh source copies now prepared from actual frozen prior source text inertly. New expectedparent674c, scientific143/native142 distinction, own log only. Old helper/PUB sources remain unexecuted/unimported/unparsed/uncompiled. Full fresh reads and release-metadata binding precede actual guards/dry/push. Checkpoint estimate20%; goalactive/incomplete.
+
+2026-11-17T15:10:35.901821+00:00 — Root release bound to currentactual two existing active lanes and own;28closed packet/source roots and72keyfiles pinned, all old failure/source/INITIAL custody included with actual ignore boundaries. Fresh five sources and authorized94linecheckpointhelper fully read inertly before attempts. No programme-global PROGRESS/log mutation. Scientific143/20370.443350%, native142; goalactive/incomplete. Checkpoint estimate30%.
+
+2026-11-17T15:13:29.523842+00:00 — One fresh dry0 and closure audit0:300paths297A3M,159siblings/docs,28packet/sourceclosures,72keyblobs exact. Thompsonreview/clearance/sourceauth, originalUNFITstatic evidence and allpriorfailures included without producer execution or scientific reinterpretation. One ordinary actual push follows; checkpoint estimate65%, scientific143/native142 distinct, goalactive/incomplete.
+
+2026-11-17T15:15:28.117284+00:00 — All six guarded execution/verification steps returned 0. Ordinary scoped checkpoint 2d020358e466323f2f188ee84aa2ff1a535bed8c verified against actual remote main, parent, tree, changed paths/blobs/modes, 159 siblings/docs, durable closures and native/public guards. Checkpoint completion: 100%; overall scientific review: 70.443350%; research goal active and incomplete.

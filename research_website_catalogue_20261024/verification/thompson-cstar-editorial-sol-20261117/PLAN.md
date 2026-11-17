@@ -1,0 +1,7 @@
+# Active private editorial writer — row192
+
+Created2026-11-17after root's explicit namespace-creation request. This is an active, unsealed private-only writer namespace. Publication authorityfalse. All canonical/base/production/page-publication-date/AA/legacy fields will remainnull; noindex,nofollow. No network/Git/Sheet/deploy/source execution or outside contact is authorized.
+
+Read and authenticated exact root clearance cf26226d4c236473c5cb75ede27c50f77e486761df16a624d39cf26abdbb797c and root review71136fd6de5610566ccffa7142a2ecabac093e33bad245e06eb7a3d456d85501. Actual native scope is F,T,full Aut(F),full abstract Comm(F), plus the specified countable standard-F circle-overgroups. No other Thompson-family group is added. Native API author version is absent; hostv1 is only an edition label. Declared6October2026and record creation7October remain distinct.
+
+Native order: thompson-cstar-verification.zip, thompson-cstar-source.zip, paper.pdf. Source55/14 and exact root clearance/review/shared CSS inputs will be completely guarded before/after. Current task reads only the actual website CSS, not the moving website or repository as a whole. Source controlling TeX and native API have been read; rights metadata/READMEs are being completed. One fresh fully read private builder execution, literal failure preservation/stop if any, no automatic repair/retry. Final finite packet follows. Best guess10% writer completion; this PLAN is not a publication or final certificate.

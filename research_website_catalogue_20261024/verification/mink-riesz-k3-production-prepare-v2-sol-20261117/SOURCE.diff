@@ -1,0 +1,25 @@
+--- immutable_original_release_three.py
++++ corrected_v2_release_three.py
+@@ -29,11 +29,11 @@
+ 
+     P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+     M = P.parent
+-    N = P / 'verification/mink-riesz-k3-production-prepare-sol-20261117'
++    N = P / 'verification/mink-riesz-k3-production-prepare-v2-sol-20261117'
+     RUN = P / 'verification/mink-riesz-k3-runtime-sol-20261117'
+     W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+     S = P / 'verification/mink-riesz-k3-stage-sol-20261117'
+-    PLAN_SHA = '7ae4db13a10f9bb03de008fd9f06688bf44b9af54bb5b40c82dd7713d30e6654'
++    PLAN_SHA = 'a039e52df5a04d5e8a6c4dec4709bebb1858f4757efd11c09c9e35c1a67aaf24'
+     TARGETS = frozenset({
+         "public/research/even-minkowski-uniqueness/assets/README.md",
+         "public/research/even-minkowski-uniqueness/assets/paper.pdf",
+@@ -481,7 +481,7 @@
+         options = ['-c', 'core.hooksPath=/dev/null', '-c', 'core.fsmonitor=false', '-c', 'core.untrackedCache=false', '-c', 'gc.auto=0', '-c', 'maintenance.auto=false', '-c', 'commit.gpgsign=false', '-c', 'core.splitIndex=false', '-c', 'index.version=2', '-c', 'core.sparseCheckout=false', '-c', 'index.sparse=false', '-c', 'remote.origin.mirror=false', '-c', 'protocol.allow=never', '-c', 'protocol.https.allow=always']
+         command = [p['git_binary'], '--no-optional-locks', *options, *args]
+         result = subprocess.run(command, cwd=W, env=env, input=data, capture_output=True)
+-        event('Git', argv=command, input_SHA256=None if data is None else sha(data), exit=result.returncode, stdout_SHA256=sha(result.stdout), stderr_SHA256=sha(result.stderr), stdout_base64=None if opaque else base64.b64encode(result.stdout).decode(), stderr_base64=base64.b64encode(result.stderr).decode())
++        event('Git', argv=command, input_SHA256=None if data is None else sha(data), exit=result.returncode, stdout_SHA256=sha(result.stdout), stderr_SHA256=sha(result.stderr), stdout_base64=base64.b64encode(result.stdout).decode(), stderr_base64=base64.b64encode(result.stderr).decode())
+         absent = absent_vcs and args == ('config', '--null', '--get-all', 'remote.origin.vcs') and result.returncode == 1 and result.stdout == b'' and result.stderr == b''
+         need(result.returncode == 0 or absent, 'Git failed: ' + args[0])
+         return result.stdout
