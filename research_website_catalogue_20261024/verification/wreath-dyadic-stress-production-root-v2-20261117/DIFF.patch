@@ -1,0 +1,30 @@
+--- frozen-v1/release_three.py
++++ root-v2/release_three.py
+@@ -28,12 +28,12 @@
+     P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+     M = P.parent
+     PREP = P / 'verification/wreath-dyadic-stress-production-sol-20261117'
+-    N = PREP / 'continuation-20261117'
+-    RUN = P / 'verification/wreath-dyadic-stress-runtime-root-20261117'
++    N = P / 'verification/wreath-dyadic-stress-production-root-v2-20261117'
++    RUN = P / 'verification/wreath-dyadic-stress-runtime-root-v2-20261117'
+     W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+     S = P / 'verification/wreath-dyadic-stress-stage-sol-20261116'
+     A = P / 'verification/wreath-dyadic-stress-stage-audit-sol-20261116'
+-    PLAN_SHA = 'cbe3ec5c2dbdcf0727f837fc8dc08e77b639225e828698d30e16a3cca45f9bc1'
++    PLAN_SHA = '5b7d4b93cff056d20f3786d08b8a52fa5a7bad1b32d906fd86cc30072db4692c'
+     TARGETS = frozenset({
+         'public/research/wreath-products-planar-triangle-bounds/index.html',
+         'public/research/wreath-products-planar-triangle-bounds/assets/preprint.pdf',
+@@ -235,7 +235,10 @@
+ 
+     def whole_snapshot(expected):
+         tables(expected)
+-        need(census(Path(expected['root'])) == expected, 'whole namespace bytes/modes/topology: ' + expected['root'])
++        normalized = dict(expected)
++        normalized['files'] = sorted(expected['files'], key=lambda row: row['path'])
++        normalized['directories'] = sorted(expected['directories'], key=lambda row: row['path'])
++        need(census(Path(expected['root'])) == normalized, 'whole namespace bytes/modes/topology: ' + expected['root'])
+ 
+ 
+     def authenticate_manifest(root, manifest, final_pin, manifest_pin, count, dirs, schema, exclusion_key):

@@ -1,0 +1,7 @@
+# Preflight-discrepancy research log
+
+Approximately2026-11-17T05:56Z (retrospective start) — Received bounded root authorization to diagnose one failed production preflight, preserve frozen prior audit and write only this new lane. Read literal PREFLIGHT receipts and actual frozen snapshot rows; identified incompatible file ordering. Completion estimate:50% of bounded diagnosis; no content-drift conclusion yet.
+
+2026-11-17T05:57:56.984199+00:00 — After personally reading the complete saved data-only utility, invoked it once with -I -B. It recensed candidate772/373, found zero substantive differences and exactly12 row-order differences, and preserved its full observed inventory. Independent support agreed. Completion estimate:90%; strongest result exact finite order-only counterexample, remaining gap report/erratum/seal. No production execution.
+
+2026-11-17T06:00:27.189401+00:00 — Root independently confirms the same data result. Refined preliminary global-sort suggestion to local expected.files and expected.directories normalization after strict tables checks, because authenticate_manifest262 already string-sorts its expected rows. Recorded explicit prior STATIC_PASS missed-defect erratum. Verified original audit12/1 unchanged. Completion100% of diagnosis; v1 requires correction and any v2 needs fresh static audit/authority before execution. No repair, retry, Git/network/W/source/other-packet mutation, external contact or outreach.

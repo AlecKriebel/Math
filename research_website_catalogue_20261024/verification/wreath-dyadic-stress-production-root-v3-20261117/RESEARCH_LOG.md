@@ -1,0 +1,1 @@
+2026-11-17T06:04:26.103597+00:00 — Authored exact v3 separation correction before all execution; v2 new-directory producer root now explicitly excluded from audit location. Authoring100%, static preparation85%, runtime0%; v1 preflight[1], v2/v3invocations0, Wchanges0. Scientific136/20366.9951%. Independent exact-v3 static review pending.

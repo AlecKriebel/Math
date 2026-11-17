@@ -1,0 +1,3 @@
+# Independent diagnostic support
+
+The informed technical child independently read frozen snapshot data and builder/helper snippets without file writes or production/source execution. It independently found the identical12-position file-order permutation: frozen Path-component sorting from builder46–56 versus raw-string sorting at helper213; directories373 match. Its initial minimal proposal to switch census ordering is superseded by the main audit's local expected-row normalization proposal, because authenticate_manifest262 constructs string-sorted expected file rows. The child result supports the cause; it is not a v2 code audit or execution authorization.

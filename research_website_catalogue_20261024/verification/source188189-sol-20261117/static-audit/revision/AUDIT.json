@@ -1,0 +1,84 @@
+{
+  "created_utc": "2026-11-17T05:59:30.565834+00:00",
+  "verdict": "STATIC_PASS_NO_RESIDUAL_CONCRETE_CUSTODY_DEFECT_IDENTIFIED",
+  "scope": "Entire actual final collector and actual full-code read receipt reread as static text; no acquisition, collector execution, network, mathematical content or source archive inspection.",
+  "collector": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/acquire_sources.py",
+    "bytes": 20530,
+    "sha256": "26fcdf23635b8ae40a9d3112a34cd6cf429a0433341adcd8d21e7176fd8bb4c3"
+  },
+  "full_code_read_receipt": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/FULL_CODE_READ_RECEIPT.json",
+    "bytes": 569,
+    "sha256": "3a691eed5c39ccde69d95b5ee4fd943ac631d6d962abe8c66afb56e09c2cc9de"
+  },
+  "resolved_findings": [
+    {
+      "id": "C1",
+      "status": "resolved",
+      "mechanism": "NFC+casefold alias registry checks every native path prefix, including implicit directories, before member extraction."
+    },
+    {
+      "id": "C2",
+      "status": "resolved",
+      "mechanism": "Directory ZIP entries with nonzero uncompressed size are rejected before extraction."
+    },
+    {
+      "id": "followup-mode-zero",
+      "status": "resolved",
+      "mechanism": "Native permission 000 is preserved whenever full native Unix mode is nonzero. Fallback permissions apply only when full native mode is zero; both original mode and effective filesystem mode remain recorded."
+    },
+    {
+      "id": "followup-walk-error",
+      "status": "resolved-for-scan-errors",
+      "mechanism": "os.walk now receives a raising onerror callback; scan errors cannot silently skip subtrees through that documented error path. Subsequent lstat, digest and directory checks also propagate errors."
+    },
+    {
+      "id": "followup-native-NUL",
+      "status": "resolved",
+      "mechanism": "Preflight uses orig_filename and rejects any difference from ZipInfo.filename before path handling; NUL rejection now sees original decoded spelling."
+    }
+  ],
+  "additional_static_evidence": {
+    "python_stdlib_source_read": "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/zipfile/__init__.py",
+    "mechanism": "Static source introspection of ZipInfo.__init__ and _sanitize_filename confirmed orig_filename is stored before NUL truncation; no archive was constructed or read.",
+    "preserved_checks": [
+      "raw API/page source bytes and native full metadata",
+      "published file order and native filenames",
+      "literal MD5 plus independent padded comparison and byte length",
+      "safe paths, no links/devices/encryption or exact duplicates",
+      "complete dotfile/ignored/empty topology and modes",
+      "outer controlling paper.pdf distinct from embedded PDF pins",
+      "fresh sources only with exclusive writes",
+      "finite manifest/final plus external pins without circularity"
+    ]
+  },
+  "original_audit_files_unchanged": true,
+  "original_audit_control_pins": [
+    {
+      "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/static-audit/FINAL.json",
+      "bytes": 747,
+      "sha256": "a84fd967015a361a2a9d3720d2751a49680e8c847f68e65bb4746d63091559bf"
+    },
+    {
+      "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/static-audit/MANIFEST.json",
+      "bytes": 492,
+      "sha256": "307a12aa879133ab49c179e4f90ae5bda48f5cc8a7cfcd315d53b9283b9ad7a8"
+    },
+    {
+      "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/static-audit/AUDIT.json",
+      "bytes": 5161,
+      "sha256": "d1bd24c8a888f1df622b6af40ba9fff41cf7be5974b25f229b0118732b31347a"
+    }
+  ],
+  "limitations": [
+    "Static pass grants no execution or publication authority and is not an actual-source or runtime verification.",
+    "A two-record partial failure may leave first-record SOURCE_FINAL before the shared external pin file exists; report the overall acquisition incomplete and never overwrite existing source folders.",
+    "Native restrictive directory/file modes may prevent subsequent manifesting and fail closed; collector does not repair source modes.",
+    "Python os.walk can classify an entry as a nondirectory after an entry-type query error; no runtime I/O fault-injection audit was performed. Independent post-acquisition topology reconciliation remains useful.",
+    "Initial GET origins are restricted to zenodo.org; redirect destinations are recorded but not restricted before following.",
+    "Immutability remains procedural rather than OS-enforced."
+  ],
+  "completion_percent": 100,
+  "follow_up": null
+}

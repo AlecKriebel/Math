@@ -1,0 +1,27 @@
+--- frozen-v2/release_three.py
++++ root-v3/release_three.py
+@@ -28,12 +28,12 @@
+     P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+     M = P.parent
+     PREP = P / 'verification/wreath-dyadic-stress-production-sol-20261117'
+-    N = P / 'verification/wreath-dyadic-stress-production-root-v2-20261117'
+-    RUN = P / 'verification/wreath-dyadic-stress-runtime-root-v2-20261117'
++    N = P / 'verification/wreath-dyadic-stress-production-root-v3-20261117'
++    RUN = P / 'verification/wreath-dyadic-stress-runtime-root-v3-20261117'
+     W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+     S = P / 'verification/wreath-dyadic-stress-stage-sol-20261116'
+     A = P / 'verification/wreath-dyadic-stress-stage-audit-sol-20261116'
+-    PLAN_SHA = '5b7d4b93cff056d20f3786d08b8a52fa5a7bad1b32d906fd86cc30072db4692c'
++    PLAN_SHA = 'b16e72c5c1d8e100b5234263b0be33e48176ccdac7071388aa9e024ae8fde713'
+     TARGETS = frozenset({
+         'public/research/wreath-products-planar-triangle-bounds/index.html',
+         'public/research/wreath-products-planar-triangle-bounds/assets/preprint.pdf',
+@@ -297,7 +297,7 @@
+         need(set(review) == keys, 'explicit actual independent helper audit and root semantic disposition')
+         row = review['audit_FINAL']
+         path = Path(row['path'])
+-        need(path.name == 'FINAL.json' and path.is_relative_to(P / 'verification') and not any(path.is_relative_to(root) for root in (PREP, RUN, S, A)), 'actual distinct independent helper audit FINAL location')
++        need(path.name == 'FINAL.json' and path.is_relative_to(P / 'verification') and not any(path.is_relative_to(root) for root in (PREP, N, RUN, S, A)), 'actual distinct independent helper audit FINAL location')
+         audit = json.loads(bound(row))
+         need(isinstance(audit, dict), 'actual helper audit object')
+         for key in ('schema', 'status'):

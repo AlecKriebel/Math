@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-11-17T05:55:40.326125+00:00",
+  "verdict": "CONDITIONAL_CUSTODY_DEFECTS_FOUND",
+  "scope": "Complete static reading of acquisition contract, current collector, and full-code-read receipt only. No collector or prior helper execution, no network, no source content inspection, no paper-directory writes.",
+  "collector": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/acquire_sources.py",
+    "bytes": 20294,
+    "sha256": "5b99b6c3ea4f54b8ad47b1aeaa24a781dd50bcd628df9a8fa04a30e819009603"
+  },
+  "contract": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/ACQUISITION_CONTRACT.json",
+    "bytes": 3644,
+    "sha256": "79d86531af1782331393bf634cde3d26a662eec56be89dad4dfca32196682b62"
+  },
+  "code_read_receipt": {
+    "path": "/Users/alec/Documents/Math/research_website_catalogue_20261024/verification/source188189-sol-20261117/FULL_CODE_READ_RECEIPT.json",
+    "bytes": 766,
+    "sha256": "04c5faef364d10fb8189514718cf5fefad48e8e1cce72b491c894a29eb42f06d"
+  },
+  "findings": [
+    {
+      "id": "C1",
+      "priority": "medium",
+      "lines": [
+        106,
+        109,
+        141,
+        142
+      ],
+      "title": "Filesystem-alias collisions can merge distinct native directory members",
+      "mechanism": "Preflight seen-set compares case-sensitive normalized POSIX strings only. On a case-insensitive filesystem, distinct members A/ and a/ pass preflight but mkdir(exist_ok=True) resolves them to the same directory. Likewise canonically equivalent Unicode spellings can alias on some macOS filesystems. A successful final manifest can therefore contain fewer distinct directories than the native ZIP topology while member metadata lists both.",
+      "checkable_static_counterexample": [
+        "A/ (directory)",
+        "a/ (directory)"
+      ],
+      "condition": "Requires an archive with aliased names and a filesystem on which those names identify the same object; no claim about the actual two unopened archives is made.",
+      "recommended_correction": "Reject filesystem-alias paths during preflight or validate that every distinct normalized member resolves to a distinct extraction location; fail before closure if topology cannot be represented faithfully."
+    },
+    {
+      "id": "C2",
+      "priority": "medium",
+      "lines": [
+        112,
+        141,
+        143
+      ],
+      "title": "Directory-entry payloads are accepted without custody hashing",
+      "mechanism": "item.is_dir() depends on a trailing slash. No preflight assertion requires directory-member file_size to be zero. An entry named a/ with nonzero payload is recorded as native_uncompressed_bytes > 0, but extraction never reads the member, never checks its data CRC, and reports extracted_bytes=0. The outer ZIP is preserved, yet the claimed all-member extraction and per-member payload custody are incomplete for that accepted input.",
+      "condition": "Requires a ZIP directory entry with nonzero data; no claim about the actual two unopened archives is made.",
+      "recommended_correction": "Fail closed if a directory member has nonzero uncompressed bytes, or explicitly preserve and hash the directory member data as a separate byte object."
+    }
+  ],
+  "successful_static_checks": [
+    "Collector performs ordinary public GETs and does not contain source/program execution or mathematical text extraction.",
+    "Existing sources are checked and fresh directory creation is exclusive; source-file writes use exclusive creation.",
+    "Raw API JSON and record-page bytes, native full file entries and order, native MD5 literals, and independently computed length/MD5/SHA256 are preserved.",
+    "Path traversal, absolute paths, links, special entries, encryption and exact normalized duplicate ZIP members are rejected.",
+    "Complete filesystem enumeration ignores no dotfile or ignore patterns, records empty directories and effective permission modes.",
+    "Native ZIP member attributes/order and archive bytes remain separately pinned.",
+    "Outer paper.pdf identity is separate from every embedded PDF location/digest without mathematical content classification.",
+    "Manifest covers finite payload excluding two declared control files, final binds manifest, and lane external pins bind both without hash circularity."
+  ],
+  "limitations": [
+    "This is a static collector audit, not runtime or actual-archive verification.",
+    "On a partial two-record failure, the first record can have a completed SOURCE_FINAL before EXTERNAL_SOURCE_PINS is written at the end; the run must be reported incomplete and the already-created source folders must not be overwritten.",
+    "Initial URLs are restricted to zenodo.org; redirect destinations are recorded but not restricted before following.",
+    "Immutability is procedural; the collector does not apply OS-level immutable flags or remove write permission."
+  ],
+  "completion_percent": 100,
+  "follow_up": "Parent decides and performs any correction; auditor will not execute collector or mutate acquisition sources."
+}
