@@ -1,0 +1,216 @@
+--- /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/stage3-post-publication-audit-sol-v2-20261117/audit_native_public_v2.py
++++ /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/stage3-post-publication-native-audit-sol-v3-20261117/audit_native_v3.py
+@@ -1,11 +1,11 @@
+ #!/usr/bin/env python3
+-"""One bounded corrective audit of the already published fixed fourteen paths.
++"""One bounded native-first audit of the already published fourteen paths.
+ 
+ Only this lane receives writes. No helper is imported or executed. Git commands
+ are restricted to local read-only object/ref inspection; there is no network.
+-The v1 failure is preserved: traversal-ordered expected rows were compared with
+-globally string-sorted census rows. This continuation validates all schemas,
+-duplicates, paths, counts and roots before reordering complete rows.
++Both prior failures are preserved. Complete public and original-asset checks
++are inherited exactly from v2, which stopped at an erroneous HTML tag counter.
++This fresh continuation checks native indexes, commits, cache trees and guards.
+ """
+ import datetime
+ import hashlib
+@@ -18,12 +18,11 @@
+ import subprocess
+ import sys
+ import traceback
+-import xml.etree.ElementTree as ET
+ 
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ M = Path('/Users/alec/Documents/Math')
+-OWN = P / 'verification/stage3-post-publication-audit-sol-v2-20261117'
++OWN = P / 'verification/stage3-post-publication-native-audit-sol-v3-20261117'
+ PROD = P / 'verification/wreath-dyadic-stress-production-root-v3-20261117'
+ STAGE = P / 'verification/wreath-dyadic-stress-stage-sol-20261116'
+ OLDIDX = P / 'verification/wreath-dyadic-stress-runtime-root-v3-20261117/install/63e3fc9e7a3ec74f92eb0124f171bc90725519976119663ca5dfb6fb450a5a91/native-backups/index.before'
+@@ -79,24 +78,6 @@
+     run = subprocess.run(cmd, input=data, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env, timeout=120)
+     need(run.returncode == 0 and run.stderr == b'', 'read-only Git result', {'args': list(args), 'code': run.returncode, 'stderr': run.stderr.decode(errors='backslashreplace')})
+     return run.stdout
+-
+-def census(root):
+-    need(stat.S_ISDIR(root.lstat().st_mode), 'namespace root directory', str(root))
+-    files, dirs = [], []
+-    stack = [root]
+-    while stack:
+-        here = stack.pop()
+-        for path in sorted(here.iterdir(), key=lambda p: os.fsencode(p.name)):
+-            rel = path.relative_to(root).as_posix()
+-            kind = path.lstat().st_mode
+-            if stat.S_ISDIR(kind):
+-                dirs.append({'path': rel, 'mode': mode(path)})
+-                stack.append(path)
+-            elif stat.S_ISREG(kind):
+-                files.append({'path': rel, **filedata(path)})
+-            else:
+-                need(False, 'no symlink or special namespace entry', str(path))
+-    return {'root': str(root), 'root_mode': mode(root), 'files': sorted(files, key=lambda d: d['path']), 'directories': sorted(dirs, key=lambda d: d['path']), 'regular_files': len(files), 'child_directories': len(dirs)}
+ 
+ def parse_index(path, expected_count):
+     raw = path.read_bytes()
+@@ -136,38 +117,6 @@
+         offset += size
+     need(offset == len(raw) - 20, 'exact index end')
+     return raw, records, extensions
+-
+-def normalize_inventory(value, root):
+-    need(set(value) == {'root', 'root_mode', 'files', 'directories', 'regular_files', 'child_directories'}, 'exact inventory top schema', str(root))
+-    need(value['root'] == str(root) and root.is_absolute(), 'explicit inventory root identity', {'expected': str(root), 'observed': value['root']})
+-    need(isinstance(value['root_mode'], str) and re.fullmatch(r'0[0-7]{3}', value['root_mode']) is not None, 'inventory root mode schema', value['root_mode'])
+-    seen = {}
+-    for label, keys, countkey in [('files', {'path', 'bytes', 'SHA256', 'mode'}, 'regular_files'), ('directories', {'path', 'mode'}, 'child_directories')]:
+-        need(isinstance(value[label], list) and type(value[countkey]) is int and value[countkey] == len(value[label]), 'inventory exact list counts', [str(root), label])
+-        names = set()
+-        for row in value[label]:
+-            need(isinstance(row, dict) and set(row) == keys, 'inventory complete row schema', [str(root), label, row])
+-            path = row['path']
+-            need(isinstance(path, str) and path and not path.startswith('/') and all(x not in ('', '.', '..') for x in path.split('/')), 'inventory canonical relative paths', path)
+-            need(path not in names, 'inventory unique complete paths', [str(root), label, path])
+-            names.add(path)
+-            need(isinstance(row['mode'], str) and re.fullmatch(r'0[0-7]{3}', row['mode']) is not None, 'inventory row mode schema', [path, row['mode']])
+-            if label == 'files':
+-                need(type(row['bytes']) is int and row['bytes'] >= 0 and isinstance(row['SHA256'], str) and re.fullmatch(r'[0-9a-f]{64}', row['SHA256']) is not None, 'inventory byte and hash schema', path)
+-        seen[label] = names
+-    need(not (seen['files'] & seen['directories']), 'inventory no file directory path collision', str(root))
+-    for path in seen['files'] | seen['directories']:
+-        parent = path.rpartition('/')[0]
+-        need(not parent or parent in seen['directories'], 'inventory complete parent topology including empty and hidden directories', [str(root), path])
+-    return {**value, 'files': sorted(value['files'], key=lambda x: x['path']), 'directories': sorted(value['directories'], key=lambda x: x['path'])}
+-
+-def inventory_diagnosis(expected, observed):
+-    result = {'nonlist_differences': {k: {'expected': expected[k], 'observed': observed[k]} for k in expected if k not in ('files', 'directories') and expected[k] != observed[k]}}
+-    for key in ('files', 'directories'):
+-        oldmap = {x['path']: x for x in expected[key]}
+-        newmap = {x['path']: x for x in observed[key]}
+-        result[key] = {'missing': sorted(set(oldmap) - set(newmap)), 'extra': sorted(set(newmap) - set(oldmap)), 'different_complete_rows': {name: {'expected': oldmap[name], 'observed': newmap[name]} for name in sorted(set(oldmap) & set(newmap)) if oldmap[name] != newmap[name]}, 'order_differences': [{'index': i, 'expected_path': a['path'], 'observed_path': b['path']} for i, (a, b) in enumerate(zip(expected[key], observed[key])) if a['path'] != b['path']]}
+-    return result
+ 
+ def leaves(commit):
+     out = git(W, 'ls-tree', '-r', '-z', '--full-tree', commit)
+@@ -267,12 +216,20 @@
+     return {'nodes': len(nodes), 'valid_nodes_verified': len(valid), 'valid_nodes': [{'path': os.fsdecode(n['path']), 'entry_count': n['entry_count'], 'subtrees': n['subtrees'], 'oid': n['oid']} for n in valid], 'invalidated_nodes': [{'path': os.fsdecode(n['path']), 'entry_count': n['entry_count'], 'subtrees': n['subtrees']} for n in nodes if n['entry_count'] < 0], 'native_root_tree': trees[b'']['oid']}
+ 
+ def main():
+-    prior = load(OWN / 'V1_PACKET.json')
+-    priorroot = Path(prior['root'])
+-    need(sorted(str(x) for x in priorroot.iterdir()) == sorted(x['path'] for x in prior['files']) and mode(priorroot) == prior['root_mode'], 'prior failed packet exact finite root extent')
+-    for item in prior['files']:
+-        pin(Path(item['path']), item)
+-    DETAILS['prior_failed_audit'] = prior
++    prior = load(OWN / 'PRIOR_PACKETS.json')
++    for packet in prior['packets']:
++        root = Path(packet['root'])
++        need(sorted(str(x) for x in root.iterdir()) == sorted(x['path'] for x in packet['files']) and mode(root) == packet['root_mode'], 'prior failed packet exact finite root extent', str(root))
++        for item in packet['files']:
++            pin(Path(item['path']), item)
++    DETAILS['prior_failed_packets'] = prior
++    v2root = Path(prior['packets'][1]['root'])
++    v2 = load(v2root / 'AUDIT_RESULT.json')
++    required_inherited = ['entire live public namespace equals actual accepted stage with only explicit root rebasing', 'public exact counts and root mode', 'all seventeen DS_Store leaves retained', 'all old 368 directory modes preserved', 'exact five new directories mode 0755', 'all 758 untouched old public leaves exact', 'exact twelve added public leaves', 'all fourteen actual target pins and modes', 'original/stage/live asset byte equality', 'six original assets authenticated']
++    need(v2['schema'] == 'independent-post-publication-native-public-audit-v2' and v2['status'] == 'FAIL_STOP' and [x['check'] for x in v2['checks'] if not x['PASS']] == ['actual article and sitemap counts'], 'literal v2 failure correctly disclosed')
++    for name in required_inherited:
++        need(any(x['check'] == name and x['PASS'] for x in v2['checks']), 'exact successful inherited public check', name)
++    DETAILS['inherited_public_evidence'] = {'source': str(v2root / 'AUDIT_RESULT.json'), 'source_literal_status': v2['status'], 'observed_started_UTC': v2['started_UTC'], 'observed_completed_UTC': v2['completed_UTC'], 'successful_check_names': required_inherited, 'public_namespace': v2['details']['public_namespace'], 'six_original_assets': v2['details']['assets'], 'ordering_diagnosis': v2['details']['v1_failure_diagnosis'], 'scope_limit': 'Inherited observed v2 local public/asset snapshot; no fresh v3 public census, no article-count claim from the failed tag counter, and no HTTP/browser/PDF claim.'}
+     pin(PROD / 'PLAN.json', {'bytes': 18077, 'SHA256': 'b16e72c5c1d8e100b5234263b0be33e48176ccdac7071388aa9e024ae8fde713', 'mode': '0644'})
+     pin(PROD / 'release_three.py', {'bytes': 76195, 'SHA256': '878df1fff183a407371f4b298c45d5560e6349d4b4f2dfd6bdc3a1ea1eb53cc7', 'mode': '0644'})
+     plan = load(PROD / 'PLAN.json')
+@@ -283,42 +240,6 @@
+     targets = load(STAGE / 'PUBLIC_PAYLOADS.json')['targets']
+     targetmap = {os.fsencode(t['path']): t for t in targets}
+     need(len(targetmap) == 14 and sorted(t['path'] for t in targets) == plan['scope_paths'], 'exact fourteen target paths')
+-    expected_raw = load(STAGE / 'PROSPECTIVE_PUBLIC.json')
+-    expected = normalize_inventory(expected_raw, STAGE / 'candidate/public')
+-    staged = normalize_inventory(census(STAGE / 'candidate/public'), STAGE / 'candidate/public')
+-    actual = normalize_inventory(census(W / 'public'), W / 'public')
+-    DETAILS['v1_failure_diagnosis'] = {'accepted_to_actual_stage': inventory_diagnosis(expected_raw, staged), 'accepted_to_actual_live': inventory_diagnosis(expected_raw, actual), 'actual_stage_to_live': inventory_diagnosis(staged, actual), 'correction': 'Validate exact schema, duplicate-free canonical paths, counts, modes, hashes, bytes and complete topology; sort full rows only; explicitly bind both roots and permit only stage-to-live root rebasing.'}
+-    need(staged == expected, 'full actual stage matches accepted prospective namespace')
+-    need(actual == {**staged, 'root': str(W / 'public')}, 'entire live public namespace equals actual accepted stage with only explicit root rebasing')
+-    DETAILS['public_namespace'] = actual
+-    need((actual['regular_files'], actual['child_directories'], actual['root_mode']) == (772, 373, '0750'), 'public exact counts and root mode')
+-    need(sum(x['path'].split('/')[-1] == '.DS_Store' for x in actual['files']) == 17, 'all seventeen DS_Store leaves retained')
+-    baseline = load(STAGE / 'BUILD_GUARDS_BEFORE.json')
+-    oldpublic = {k: v for k, v in baseline['public'].items() if k != 'root'}
+-    olddirs = {x['path']: x for x in oldpublic['directories']}
+-    newdirs = {x['path']: x for x in actual['directories']}
+-    need(len(olddirs) == 368 and all(newdirs.get(k) == v for k, v in olddirs.items()), 'all old 368 directory modes preserved')
+-    need(set(newdirs) - set(olddirs) == set(plan['new_directories']) and all(newdirs[k]['mode'] == '0755' for k in set(newdirs) - set(olddirs)), 'exact five new directories mode 0755')
+-    oldfiles = {x['path']: x for x in oldpublic['files']}
+-    newfiles = {x['path']: x for x in actual['files']}
+-    targetrel = {t['path'][7:] for t in targets}
+-    need(len(oldfiles) == 760 and all(newfiles[k] == v for k, v in oldfiles.items() if k not in targetrel), 'all 758 untouched old public leaves exact')
+-    need(set(newfiles) - set(oldfiles) == {t['path'][7:] for t in targets if t['action'] == 'A'}, 'exact twelve added public leaves')
+-    need(all(newfiles[t['path'][7:]] == {'path': t['path'][7:], **t['candidate']} for t in targets), 'all fourteen actual target pins and modes')
+-    assets = [t for t in targets if t['path'].endswith(('.pdf', '.zip'))]
+-    asset_proofs = []
+-    for t in assets:
+-        matches = [(Path(source['root']) / f['path'], f) for source in baseline['original_sources'] for f in source['files'] if f['path'].endswith('.response.body') and f['SHA256'] == t['candidate']['SHA256'] and f['bytes'] == t['candidate']['bytes']]
+-        need(len(matches) == 1, 'unique original accepted asset binding', t['path'])
+-        sourcepath, sourcepin = matches[0]
+-        pin(sourcepath, sourcepin)
+-        need(sourcepath.read_bytes() == (W / t['path']).read_bytes() == (STAGE / 'candidate' / t['path']).read_bytes(), 'original/stage/live asset byte equality', t['path'])
+-        asset_proofs.append({'target': t['path'], 'original': str(sourcepath), 'SHA256': t['candidate']['SHA256']})
+-    need(len(asset_proofs) == 6, 'six original assets authenticated')
+-    DETAILS['assets'] = asset_proofs
+-    articles = len(re.findall(rb'<article\b', (W / 'public/research/index.html').read_bytes()))
+-    sitemap = len(ET.fromstring((W / 'public/research/sitemap.xml').read_bytes()).findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url'))
+-    need((articles, sitemap) == (126, 127), 'actual article and sitemap counts', [articles, sitemap])
+     pin(OLDIDX, {'bytes': 9056134, 'SHA256': '6e57311ffb524aabe230dec4962ebfa6983085674882606f5b8594aa1d4cee18', 'mode': '0644'})
+     oldraw, oldindex, oldext = parse_index(OLDIDX, 58700)
+     newraw, newindex, newext = parse_index(W / '.git/index', 58712)
+@@ -330,14 +251,12 @@
+     DETAILS['native_index_after'] = {'bytes': len(newraw), 'SHA256': sha(newraw), 'records': len(newindex)}
+     expectedoids = {}
+     for name, t in targetmap.items():
+-        blob = (STAGE / 'candidate' / t['path']).read_bytes()
++        assetpath = STAGE / 'candidate' / t['path']
++        pin(assetpath, t['candidate'])
++        blob = assetpath.read_bytes()
+         oid = hashlib.sha1(b'blob ' + str(len(blob)).encode() + b'\0' + blob).hexdigest()
+         expectedoids[name] = oid
+         need([(k, v['mode'], v['oid']) for k, v in newindex.items() if k[0] == name] == [((name, 0), '100644', oid)], 'exact new target index mode and blob oid', t['path'])
+-    need(len(oldext) == 1 and len(newext) == 1 and len(oldext[0][1]) == 35878 and sha(oldext[0][1]) == 'f12d2a0b795034ce5cab45ad6fa5da31b4d7ad6f4b22a5999ce27841b41350b3', 'known baseline TREE cache exact')
+-    need(oldext == newext, 'whole old/new TREE extension byte identity')
+-    DETAILS['TREE_before'] = validate_cache(oldext[0][1], oldindex, 'baseline')
+-    DETAILS['TREE_after'] = validate_cache(newext[0][1], newindex, 'published')
+     need(git(W, 'rev-parse', 'HEAD').strip().decode() == NEW, 'current website HEAD exact published commit')
+     commit = git(W, 'cat-file', 'commit', NEW)
+     headers = commit.split(b'\n\n', 1)[0].split(b'\n')
+@@ -351,6 +270,11 @@
+     need({k: v for k, v in oldhead.items() if k not in targetmap} == {k: v for k, v in newhead.items() if k not in targetmap}, 'all untargeted commit path mode type oid leaves exact')
+     oldforeign, newforeign = staging_delta(oldindex, oldhead), staging_delta(newindex, newhead)
+     need(oldforeign == newforeign, 'all foreign staging preserved relative to respective HEADs')
++    DETAILS.update({'old_commit_leaves': len(oldhead), 'new_commit_leaves': len(newhead), 'foreign_staging_paths': len(oldforeign), 'foreign_staging': [{'path': os.fsdecode(name), 'old_and_new': value} for name, value in sorted(oldforeign.items())], 'commit_delta': [{'path': os.fsdecode(name), **v} for name, v in sorted(delta.items())]})
++    need(len(oldext) == 1 and len(newext) == 1 and len(oldext[0][1]) == 35878 and sha(oldext[0][1]) == 'f12d2a0b795034ce5cab45ad6fa5da31b4d7ad6f4b22a5999ce27841b41350b3', 'known baseline TREE cache exact')
++    need(oldext == newext, 'whole old/new TREE extension byte identity')
++    DETAILS['TREE_before'] = validate_cache(oldext[0][1], oldindex, 'baseline')
++    DETAILS['TREE_after'] = validate_cache(newext[0][1], newindex, 'published')
+     guards = load(GUARDS)
+     for label, repo in [('Math', M), ('Website', W)]:
+         guard = guards[label]
+@@ -371,7 +295,6 @@
+         need(refs == expectedrefs, 'local heads unchanged except website master', label)
+     for config in plan['configuration_guards']:
+         pin(Path(config['path']), config)
+-    DETAILS.update({'assets': asset_proofs, 'public_namespace': actual, 'old_commit_leaves': len(oldhead), 'new_commit_leaves': len(newhead), 'foreign_staging_paths': len(oldforeign), 'foreign_staging': [{'path': os.fsdecode(name), 'old_and_new': value} for name, value in sorted(oldforeign.items())], 'commit_delta': [{'path': os.fsdecode(name), **v} for name, v in sorted(delta.items())], 'native_index_before': {'bytes': len(oldraw), 'SHA256': sha(oldraw), 'records': len(oldindex)}, 'native_index_after': {'bytes': len(newraw), 'SHA256': sha(newraw), 'records': len(newindex)}})
+ 
+ if __name__ == '__main__':
+     error = None
+@@ -381,9 +304,9 @@
+         error = traceback.format_exc()
+     end = datetime.datetime.now(datetime.timezone.utc).isoformat()
+     status = 'PASS' if error is None else 'FAIL_STOP'
+-    result = {'schema': 'independent-post-publication-native-public-audit-v2', 'status': status, 'started_UTC': START, 'completed_UTC': end, 'published_commit': NEW, 'checks': CHECKS, 'assertion_observations': sum(x['observations'] for x in CHECKS), 'details': DETAILS, 'literal_error': error, 'utility_invocations': 1, 'helper_invocations': 0, 'network_actions': 0, 'writes_outside_own_lane': 0, 'completion_percent': 100 if error is None else 65, 'limits': ['Observed local snapshots only; no claim of future persistence or concurrent-process exclusion.', 'No fresh scientific proof review, priority determination, live deployment, browser/mobile layout, PDF rendering, live download or network verification.', 'No helper execution, index refresh, write-tree, object/ref/index mutation, source-program execution, Sheet or AA changes, redirect work or external contact.']}
++    result = {'schema': 'independent-post-publication-native-audit-v3', 'status': status, 'started_UTC': START, 'completed_UTC': end, 'published_commit': NEW, 'checks': CHECKS, 'assertion_observations': sum(x['observations'] for x in CHECKS), 'details': DETAILS, 'literal_error': error, 'utility_invocations': 1, 'helper_invocations': 0, 'network_actions': 0, 'writes_outside_own_lane': 0, 'completion_percent': 100 if error is None else 65, 'limits': ['Observed local snapshots only; no claim of future persistence or concurrent-process exclusion.', 'No fresh scientific proof review, priority determination, live deployment, browser/mobile layout, PDF rendering, live download or network verification.', 'No helper execution, index refresh, write-tree, object/ref/index mutation, source-program execution, Sheet or AA changes, redirect work or external contact.']}
+     (OWN / 'AUDIT_RESULT.json').write_text(json.dumps(result, indent=2) + '\n')
+-    (OWN / 'REPORT.md').write_text('# Independent post-publication audit\n\n' + status + ': commit `' + NEW + '`.\n\n' + str(len(CHECKS)) + ' recorded check groups and ' + str(result['assertion_observations']) + ' assertion observations; literal error: ' + ('none' if error is None else 'retained in AUDIT_RESULT.json') + '.\n\nThe checks independently compare full accepted-stage/live public namespaces, raw native index records, TREE cache semantics and local object bytes, old/new commit leaves, foreign staging and native repository guards.\n\nCompletion estimate: ' + str(result['completion_percent']) + '%.\n\n' + '\n'.join('- ' + s for s in result['limits']) + '\n')
++    (OWN / 'REPORT.md').write_text('# Independent native-first post-publication audit\n\n' + status + ': commit `' + NEW + '`.\n\n' + str(len(CHECKS)) + ' recorded check groups and ' + str(result['assertion_observations']) + ' assertion observations; literal error: ' + ('none' if error is None else 'retained in AUDIT_RESULT.json') + '.\n\nFresh scope: raw native index records, TREE cache semantics and local object bytes, old/new commit leaves, foreign staging and native repository guards. Complete public772/373 and six-original-asset checks are inherited from pinned v2 successful check groups; v1 and v2 literal FAIL_STOP results remain unchanged. V3 makes no article-count assertion.\n\nCompletion estimate: ' + str(result['completion_percent']) + '%.\n\n' + '\n'.join('- ' + s for s in result['limits']) + '\n')
+     with (OWN / 'RESEARCH_LOG.md').open('a') as log:
+         log.write('\n' + end + ' — Sole audit invocation completed with ' + status + '; ' + str(len(CHECKS)) + ' recorded checks. Completion estimate ' + str(result['completion_percent']) + '%. Literal errors retained without retry.\n')
+     print(json.dumps({'schema': result['schema'], 'status': status, 'checks': len(CHECKS), 'literal_error': error, 'completion_percent': result['completion_percent']}))

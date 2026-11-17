@@ -1,0 +1,123 @@
+--- /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/stage3-post-publication-audit-sol-20261117/audit_native_public.py
++++ /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/stage3-post-publication-audit-sol-v2-20261117/audit_native_public_v2.py
+@@ -1,8 +1,11 @@
+ #!/usr/bin/env python3
+-"""One bounded, read-only audit of the already published fixed fourteen paths.
++"""One bounded corrective audit of the already published fixed fourteen paths.
+ 
+ Only this lane receives writes. No helper is imported or executed. Git commands
+ are restricted to local read-only object/ref inspection; there is no network.
++The v1 failure is preserved: traversal-ordered expected rows were compared with
++globally string-sorted census rows. This continuation validates all schemas,
++duplicates, paths, counts and roots before reordering complete rows.
+ """
+ import datetime
+ import hashlib
+@@ -20,7 +23,7 @@
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ M = Path('/Users/alec/Documents/Math')
+-OWN = P / 'verification/stage3-post-publication-audit-sol-20261117'
++OWN = P / 'verification/stage3-post-publication-audit-sol-v2-20261117'
+ PROD = P / 'verification/wreath-dyadic-stress-production-root-v3-20261117'
+ STAGE = P / 'verification/wreath-dyadic-stress-stage-sol-20261116'
+ OLDIDX = P / 'verification/wreath-dyadic-stress-runtime-root-v3-20261117/install/63e3fc9e7a3ec74f92eb0124f171bc90725519976119663ca5dfb6fb450a5a91/native-backups/index.before'
+@@ -93,7 +96,7 @@
+                 files.append({'path': rel, **filedata(path)})
+             else:
+                 need(False, 'no symlink or special namespace entry', str(path))
+-    return {'root_mode': mode(root), 'files': sorted(files, key=lambda d: d['path']), 'directories': sorted(dirs, key=lambda d: d['path']), 'regular_files': len(files), 'child_directories': len(dirs)}
++    return {'root': str(root), 'root_mode': mode(root), 'files': sorted(files, key=lambda d: d['path']), 'directories': sorted(dirs, key=lambda d: d['path']), 'regular_files': len(files), 'child_directories': len(dirs)}
+ 
+ def parse_index(path, expected_count):
+     raw = path.read_bytes()
+@@ -133,6 +136,38 @@
+         offset += size
+     need(offset == len(raw) - 20, 'exact index end')
+     return raw, records, extensions
++
++def normalize_inventory(value, root):
++    need(set(value) == {'root', 'root_mode', 'files', 'directories', 'regular_files', 'child_directories'}, 'exact inventory top schema', str(root))
++    need(value['root'] == str(root) and root.is_absolute(), 'explicit inventory root identity', {'expected': str(root), 'observed': value['root']})
++    need(isinstance(value['root_mode'], str) and re.fullmatch(r'0[0-7]{3}', value['root_mode']) is not None, 'inventory root mode schema', value['root_mode'])
++    seen = {}
++    for label, keys, countkey in [('files', {'path', 'bytes', 'SHA256', 'mode'}, 'regular_files'), ('directories', {'path', 'mode'}, 'child_directories')]:
++        need(isinstance(value[label], list) and type(value[countkey]) is int and value[countkey] == len(value[label]), 'inventory exact list counts', [str(root), label])
++        names = set()
++        for row in value[label]:
++            need(isinstance(row, dict) and set(row) == keys, 'inventory complete row schema', [str(root), label, row])
++            path = row['path']
++            need(isinstance(path, str) and path and not path.startswith('/') and all(x not in ('', '.', '..') for x in path.split('/')), 'inventory canonical relative paths', path)
++            need(path not in names, 'inventory unique complete paths', [str(root), label, path])
++            names.add(path)
++            need(isinstance(row['mode'], str) and re.fullmatch(r'0[0-7]{3}', row['mode']) is not None, 'inventory row mode schema', [path, row['mode']])
++            if label == 'files':
++                need(type(row['bytes']) is int and row['bytes'] >= 0 and isinstance(row['SHA256'], str) and re.fullmatch(r'[0-9a-f]{64}', row['SHA256']) is not None, 'inventory byte and hash schema', path)
++        seen[label] = names
++    need(not (seen['files'] & seen['directories']), 'inventory no file directory path collision', str(root))
++    for path in seen['files'] | seen['directories']:
++        parent = path.rpartition('/')[0]
++        need(not parent or parent in seen['directories'], 'inventory complete parent topology including empty and hidden directories', [str(root), path])
++    return {**value, 'files': sorted(value['files'], key=lambda x: x['path']), 'directories': sorted(value['directories'], key=lambda x: x['path'])}
++
++def inventory_diagnosis(expected, observed):
++    result = {'nonlist_differences': {k: {'expected': expected[k], 'observed': observed[k]} for k in expected if k not in ('files', 'directories') and expected[k] != observed[k]}}
++    for key in ('files', 'directories'):
++        oldmap = {x['path']: x for x in expected[key]}
++        newmap = {x['path']: x for x in observed[key]}
++        result[key] = {'missing': sorted(set(oldmap) - set(newmap)), 'extra': sorted(set(newmap) - set(oldmap)), 'different_complete_rows': {name: {'expected': oldmap[name], 'observed': newmap[name]} for name in sorted(set(oldmap) & set(newmap)) if oldmap[name] != newmap[name]}, 'order_differences': [{'index': i, 'expected_path': a['path'], 'observed_path': b['path']} for i, (a, b) in enumerate(zip(expected[key], observed[key])) if a['path'] != b['path']]}
++    return result
+ 
+ def leaves(commit):
+     out = git(W, 'ls-tree', '-r', '-z', '--full-tree', commit)
+@@ -232,7 +267,14 @@
+     return {'nodes': len(nodes), 'valid_nodes_verified': len(valid), 'valid_nodes': [{'path': os.fsdecode(n['path']), 'entry_count': n['entry_count'], 'subtrees': n['subtrees'], 'oid': n['oid']} for n in valid], 'invalidated_nodes': [{'path': os.fsdecode(n['path']), 'entry_count': n['entry_count'], 'subtrees': n['subtrees']} for n in nodes if n['entry_count'] < 0], 'native_root_tree': trees[b'']['oid']}
+ 
+ def main():
++    prior = load(OWN / 'V1_PACKET.json')
++    priorroot = Path(prior['root'])
++    need(sorted(str(x) for x in priorroot.iterdir()) == sorted(x['path'] for x in prior['files']) and mode(priorroot) == prior['root_mode'], 'prior failed packet exact finite root extent')
++    for item in prior['files']:
++        pin(Path(item['path']), item)
++    DETAILS['prior_failed_audit'] = prior
+     pin(PROD / 'PLAN.json', {'bytes': 18077, 'SHA256': 'b16e72c5c1d8e100b5234263b0be33e48176ccdac7071388aa9e024ae8fde713', 'mode': '0644'})
++    pin(PROD / 'release_three.py', {'bytes': 76195, 'SHA256': '878df1fff183a407371f4b298c45d5560e6349d4b4f2dfd6bdc3a1ea1eb53cc7', 'mode': '0644'})
+     plan = load(PROD / 'PLAN.json')
+     for label, expected in plan['controls'].items():
+         pin(Path(expected['path']), expected)
+@@ -241,12 +283,13 @@
+     targets = load(STAGE / 'PUBLIC_PAYLOADS.json')['targets']
+     targetmap = {os.fsencode(t['path']): t for t in targets}
+     need(len(targetmap) == 14 and sorted(t['path'] for t in targets) == plan['scope_paths'], 'exact fourteen target paths')
+-    expected = load(STAGE / 'PROSPECTIVE_PUBLIC.json')
+-    expected = {k: v for k, v in expected.items() if k != 'root'}
+-    staged = census(STAGE / 'candidate/public')
+-    actual = census(W / 'public')
++    expected_raw = load(STAGE / 'PROSPECTIVE_PUBLIC.json')
++    expected = normalize_inventory(expected_raw, STAGE / 'candidate/public')
++    staged = normalize_inventory(census(STAGE / 'candidate/public'), STAGE / 'candidate/public')
++    actual = normalize_inventory(census(W / 'public'), W / 'public')
++    DETAILS['v1_failure_diagnosis'] = {'accepted_to_actual_stage': inventory_diagnosis(expected_raw, staged), 'accepted_to_actual_live': inventory_diagnosis(expected_raw, actual), 'actual_stage_to_live': inventory_diagnosis(staged, actual), 'correction': 'Validate exact schema, duplicate-free canonical paths, counts, modes, hashes, bytes and complete topology; sort full rows only; explicitly bind both roots and permit only stage-to-live root rebasing.'}
+     need(staged == expected, 'full actual stage matches accepted prospective namespace')
+-    need(actual == staged, 'entire live public namespace equals actual accepted stage')
++    need(actual == {**staged, 'root': str(W / 'public')}, 'entire live public namespace equals actual accepted stage with only explicit root rebasing')
+     DETAILS['public_namespace'] = actual
+     need((actual['regular_files'], actual['child_directories'], actual['root_mode']) == (772, 373, '0750'), 'public exact counts and root mode')
+     need(sum(x['path'].split('/')[-1] == '.DS_Store' for x in actual['files']) == 17, 'all seventeen DS_Store leaves retained')
+@@ -303,6 +346,7 @@
+     delta = {name: {'old': oldhead.get(name), 'new': newhead.get(name)} for name in set(oldhead) | set(newhead) if oldhead.get(name) != newhead.get(name)}
+     need(set(delta) == set(targetmap), 'full commit leaf delta exact fourteen paths')
+     need(sum(v['old'] is None for v in delta.values()) == 12 and sum(v['old'] is not None and v['new'] is not None for v in delta.values()) == 2, 'commit exact 12 additions 2 modifications')
++    need(all((name not in oldhead) == (t['action'] == 'A') for name, t in targetmap.items()), 'each commit action matches exact target plan')
+     need(all(newhead[name] == ('100644', 'blob', expectedoids[name]) for name in targetmap), 'all fourteen commit target modes types and blob oids exact')
+     need({k: v for k, v in oldhead.items() if k not in targetmap} == {k: v for k, v in newhead.items() if k not in targetmap}, 'all untargeted commit path mode type oid leaves exact')
+     oldforeign, newforeign = staging_delta(oldindex, oldhead), staging_delta(newindex, newhead)
+@@ -337,7 +381,7 @@
+         error = traceback.format_exc()
+     end = datetime.datetime.now(datetime.timezone.utc).isoformat()
+     status = 'PASS' if error is None else 'FAIL_STOP'
+-    result = {'schema': 'independent-post-publication-native-public-audit-v1', 'status': status, 'started_UTC': START, 'completed_UTC': end, 'published_commit': NEW, 'checks': CHECKS, 'assertion_observations': sum(x['observations'] for x in CHECKS), 'details': DETAILS, 'literal_error': error, 'utility_invocations': 1, 'helper_invocations': 0, 'network_actions': 0, 'writes_outside_own_lane': 0, 'completion_percent': 100 if error is None else 65, 'limits': ['Observed local snapshots only; no claim of future persistence or concurrent-process exclusion.', 'No fresh scientific proof review, priority determination, live deployment, browser/mobile layout, PDF rendering, live download or network verification.', 'No helper execution, index refresh, write-tree, object/ref/index mutation, source-program execution, Sheet or AA changes, redirect work or external contact.']}
++    result = {'schema': 'independent-post-publication-native-public-audit-v2', 'status': status, 'started_UTC': START, 'completed_UTC': end, 'published_commit': NEW, 'checks': CHECKS, 'assertion_observations': sum(x['observations'] for x in CHECKS), 'details': DETAILS, 'literal_error': error, 'utility_invocations': 1, 'helper_invocations': 0, 'network_actions': 0, 'writes_outside_own_lane': 0, 'completion_percent': 100 if error is None else 65, 'limits': ['Observed local snapshots only; no claim of future persistence or concurrent-process exclusion.', 'No fresh scientific proof review, priority determination, live deployment, browser/mobile layout, PDF rendering, live download or network verification.', 'No helper execution, index refresh, write-tree, object/ref/index mutation, source-program execution, Sheet or AA changes, redirect work or external contact.']}
+     (OWN / 'AUDIT_RESULT.json').write_text(json.dumps(result, indent=2) + '\n')
+     (OWN / 'REPORT.md').write_text('# Independent post-publication audit\n\n' + status + ': commit `' + NEW + '`.\n\n' + str(len(CHECKS)) + ' recorded check groups and ' + str(result['assertion_observations']) + ' assertion observations; literal error: ' + ('none' if error is None else 'retained in AUDIT_RESULT.json') + '.\n\nThe checks independently compare full accepted-stage/live public namespaces, raw native index records, TREE cache semantics and local object bytes, old/new commit leaves, foreign staging and native repository guards.\n\nCompletion estimate: ' + str(result['completion_percent']) + '%.\n\n' + '\n'.join('- ' + s for s in result['limits']) + '\n')
+     with (OWN / 'RESEARCH_LOG.md').open('a') as log:

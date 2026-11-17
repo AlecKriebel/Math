@@ -1,0 +1,3 @@
+# Local primary-input custody
+
+The downloaded external primary PDFs and their extracted text are personal research inputs. Their hashes and access URLs are preserved. They are not owned review findings and are not proposed for public redistribution. Local ignore rules exclude those inputs from ordinary Git staging. The upstream OpenAI analytic source copies are likewise inspection inputs; published source provenance is captured in the fetch and pin receipts. The complete actual local namespace, including ignored inputs, is included in the finite review manifest for custody checking. No source copy was modified to repair a proof.
