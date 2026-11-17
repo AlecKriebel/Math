@@ -1,0 +1,5 @@
+# Radial/tree production preparation log
+
+2026-11-17T08:46:35.513206+00:00 — Dedicated preparation lane created. Complete old1073-line helper read as stale algorithm reference; actual root adoption/stage/dictionary snapshots/heterogeneous manifests inspected. PLAN binds current96f04aa/e628 baseline, exact11 paths9A2M/4 directories,58710 protected raw records and58721 successor. No action or baseline collector executed. Completion estimate30%.
+
+2026-11-17T09:01:04.559967+00:00 — Complete saved 1204-line helper and full PLAN personally read. Actual XML parsed-node evidence uses recursive tag/attributes/text/tail/children dictionaries; source contract adapted accordingly. Separate whole TREE and payload pins retained. No default, active mode, import, AST, compiler, test, baseline collector, Git or network action executed. Independent new pre-producer contract not consulted. Static preparation complete; completion estimate100% of this bounded preparation, pending independent static review.

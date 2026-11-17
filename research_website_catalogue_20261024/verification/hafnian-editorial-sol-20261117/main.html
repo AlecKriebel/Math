@@ -1,0 +1,98 @@
+<main id="main">
+  <article aria-labelledby="paper-title">
+    <h1 id="paper-title">Nonnegative binary rational hafnians: an exact reduction and approximation and sampling consequences</h1>
+    <p class="entry-meta"><a href="https://orcid.org/0009-0001-9320-500X">Alec Kriebel</a> · <time datetime="2026-10-06">6 October 2026</time> · Version 1.0.0 · Unrefereed, AI-assisted preprint</p>
+    <p>A hafnian adds the weights of every way to pair up a set of objects. This note explains how to turn nonnegative rational pairing weights into an ordinary, unweighted perfect-matching problem. It then transfers the cited general-graph approximation theorem to that rational model and specifies a sampler with a controlled total-variation error.</p>
+    <p>This is an attributed consequence, exposition and implementation note. Binary rational weight removal and counting self-reduction are established machinery; the approximation breakthrough is credited to OpenAI. The note supplies an explicit Horner construction, proofs, bit bounds, boundary handling and finite reproducibility materials.</p>
+
+    <section id="abstract" aria-labelledby="abstract-heading">
+      <h2 id="abstract-heading">Original abstract</h2>
+      <p id="abstract-text">We give a self-contained implementation of classical positive-integer weight removal for perfect matchings. A binary directed acyclic graph with W paths gives a simple two-terminal graph with matching signature (W,1,0,0) using 4 bits(W)−2 vertices. Gluing these gadgets and clearing denominators reduces every nonnegative binary rational hafnian to an unweighted simple-graph perfect-matching count with polynomial encoding length. Consequently, the general-graph FPRAS of OpenAI gives a uniform FPRAS for this rational model, with exact zero detection. We specify a bounded-bit counting self-reduction sampler with explicit total-variation and runtime bounds. The approximation breakthrough, logarithmic weight removal, and count-to-sample framework are inherited; this note supplies explicit proofs, bit bounds, boundary cases, and reproducible finite checks. Its approximation conclusions rely on the cited general-graph theorem and do not concern signed or complex hafnians.</p>
+    </section>
+
+    <section id="plain-language" aria-labelledby="plain-heading">
+      <h2 id="plain-heading">Replacing weights with choices</h2>
+      <p>A perfect matching pairs every vertex exactly once. In the weighted problem, each pairing contributes the product of its edge weights. The construction replaces an edge of positive integer weight <var>W</var> by a small graph with exactly <var>W</var> ways to use that pair of endpoints, and one way to leave both endpoints for other edges.</p>
+      <p>The graph reads the binary digits of <var>W</var>. Each digit doubles the number of directed paths and optionally adds one, just as binary arithmetic does. Splitting the internal path vertices turns those paths into perfect matchings. The graph grows with the number of bits in the weight, rather than with the weight's numerical value.</p>
+      <p>Clearing rational denominators supplies integer weights. When the small graphs are joined, each original pairing has exactly as many expanded matchings as its scaled weight requires. A uniform choice among expanded matchings therefore projects to the desired weighted pairing law.</p>
+    </section>
+
+    <section id="reduction" aria-labelledby="reduction-heading">
+      <h2 id="reduction-heading">The exact reduction and its fibers</h2>
+      <p>Let <var>A</var> be an explicitly given symmetric matrix of order 2<var>m</var>, with nonnegative rational off-diagonal entries encoded in binary. Its diagonal is ignored. Delete zero-weight edges and let <var>L</var> be the matrix's binary encoding length. The hafnian is</p>
+      <p class="equation"><var>Z</var><sub>A</sub> = haf(<var>A</var>) = ∑<sub><var>M</var> a perfect matching</sub> ∏<sub><var>e</var>∈<var>M</var></sub><var>A</var><sub>e</sub>.</p>
+      <p>For each positive entry write <var>A</var><sub>e</sub> = <var>p</var><sub>e</sub>/<var>q</var><sub>e</sub>, and put <var>D</var> = ∏<sub>e</sub><var>q</var><sub>e</sub> and <var>W</var><sub>e</sub> = <var>p</var><sub>e</sub>(<var>D</var>/<var>q</var><sub>e</sub>). The empty product is one. A positive integer <var>W</var> of bit length ℓ = 1+⌊log₂ <var>W</var>⌋ gives a simple two-terminal graph <var>H</var><sub>W</sub> with</p>
+      <p class="equation">(#PM(<var>H</var><sub>W</sub>), #PM(<var>H</var><sub>W</sub>−{<var>u</var>,<var>v</var>}), #PM(<var>H</var><sub>W</sub>−<var>u</var>), #PM(<var>H</var><sub>W</sub>−<var>v</var>)) = (<var>W</var>,1,0,0).</p>
+      <p>It has exactly 4ℓ−2 vertices, including 4ℓ−4 internal vertices, and at most 6ℓ−5 edges. After gluing one fresh gadget per positive support edge, the resulting simple graph <var>H</var> satisfies</p>
+      <p class="equation">#PM(<var>H</var>) = <var>D</var><sup>m</sup>haf(<var>A</var>), &nbsp; |π<sup>−1</sup>(<var>M</var>)| = <var>D</var><sup>m</sup>∏<sub><var>e</var>∈<var>M</var></sub><var>A</var><sub>e</sub>.</p>
+      <p>Here π projects an expanded perfect matching to the original edges whose gadgets use both endpoints. The fibers can have different sizes; their exact sizes give the weighted law. Even internal vertex counts force a gadget to cover either both original endpoints or neither. Acyclicity rules out extra directed cycles inside a gadget.</p>
+      <p>The construction takes polynomial bit time. Both the number of vertices and the number of edges are O(<var>L</var>²); the explicit graph encoding has length O(<var>L</var>² log(<var>L</var>+2)). The scale <var>D</var><sup>m</sup> has O(<var>mL</var>+1) bits. No weight is expanded into that many copies. Individual gadgets are bipartite; the glued graph need not be bipartite.</p>
+    </section>
+
+    <section id="approximation" aria-labelledby="approximation-heading">
+      <h2 id="approximation-heading">Approximation with exact zero detection</h2>
+      <p>The approximation input is <a href="https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Fully-Polynomial-Randomized-Approximation-Scheme-for-Perfect-Matchings-in-General-Graphs-September-23-2026/main.pdf">OpenAI's pinned general-graph perfect-matching theorem, Theorem 1.1</a>. A fully polynomial randomized approximation scheme, or FPRAS, estimates a count to relative error ε with failure probability at most δ in time polynomial in the input size, ε<sup>−1</sup> and log δ<sup>−1</sup>.</p>
+      <p>Using that theorem, the note obtains a uniform FPRAS for <var>Z</var><sub>A</sub> for rational 0 &lt; ε, δ &lt; 1. Its bit time on <em>every execution</em> is polynomial in the full input encoding length, ε<sup>−1</sup> and log δ<sup>−1</sup>. This full input includes the rational accuracy parameters.</p>
+      <p>An exact support-matching feasibility test handles zero separately. On infeasible support the algorithm returns zero; on feasible support it returns a positive rational on every execution, even when the estimate is inaccurate. It calls the unweighted theorem with failure parameter min(δ,1/4), replaces a failed zero estimate by one, and divides by <var>D</var><sup>m</sup>. This replacement changes no successful estimate. The output is therefore zero if and only if the hafnian is zero on every execution.</p>
+    </section>
+
+    <section id="sampling" aria-labelledby="sampling-heading">
+      <h2 id="sampling-heading">A finite-bit weighted sampler</h2>
+      <p>For <var>Z</var><sub>A</sub> &gt; 0 and rational 0 &lt; η &lt; 1, the sampler approximates</p>
+      <p class="equation">μ<sub>A</sub>(<var>M</var>) = ∏<sub><var>e</var>∈<var>M</var></sub><var>A</var><sub>e</sub>/<var>Z</var><sub>A</sub></p>
+      <p>within total-variation distance η. Total variation bounds the difference in probability assigned to any event. Every output is a support perfect matching. Infeasibility is reported exactly; the order-zero case returns the empty matching.</p>
+      <p>For the expanded graph of order <var>N</var> = 2<var>s</var> ≥ 2, put <var>C</var> = <var>s</var>² and choose</p>
+      <p class="equation">α = η/(4<var>s</var>), &nbsp; γ = η/(4<var>C</var>), &nbsp; <var>b</var> = ⌈log₂(4<var>C</var>/η)⌉.</p>
+      <p>The wrapper makes at most <var>C</var> counting calls, each with relative error α and failure parameter γ, and at most <var>C</var>+1 exact feasibility/witness checks. Its categorical choices use at most <var>sb</var> additional fair bits; the counting algorithms' own randomness is additional. If <var>T</var>(<var>B</var>,<var>a</var><sup>−1</sup>,log <var>d</var><sup>−1</sup>) bounds every execution of the unweighted counter, its counting-time budget is</p>
+      <p class="equation"><var>C T</var>(<var>B</var>′, 4<var>s</var>/η, log(4<var>C</var>/η)),</p>
+      <p>with polynomially bounded input length <var>B</var>′, plus polynomial witness work and exact rational arithmetic. The resulting every-execution bit time is polynomial in the full original input length and η<sup>−1</sup>.</p>
+      <p>At each step, exact witnesses remove infeasible children. Fresh count estimates choose among the remaining completions. Cumulative probabilities are rounded to a fixed dyadic grid, without rejection. If every estimate is zero, a stored witness supplies a feasible completion. A coupling over adaptive histories accounts for estimate failures and rounding without conditioning the final output on universal success:</p>
+      <p class="equation">TV ≤ <var>s</var>α/(1−α) + <var>C</var>γ + <var>C</var>2<sup>−b</sup> ≤ η/3 + η/4 + η/4 = 5η/6 &lt; η.</p>
+      <p>The proved fiber sizes turn the uniform expanded matching law into μ<sub>A</sub>, and projection cannot increase total variation.</p>
+    </section>
+
+    <section id="scope" aria-labelledby="scope-heading">
+      <h2 id="scope-heading">Scope and limitations</h2>
+      <p>The input is an explicit nonnegative rational matrix. Disconnected support, weights below one, large denominators and arbitrarily small positive hafnians are covered. No density, connectivity or minimum positive-weight promise is needed. The empty hafnian is one, and the diagonal has no effect.</p>
+      <p>The conclusions do not extend to signed or complex hafnians or unrestricted Gaussian boson sampling. Sampling is approximate in total variation; exact sampling, pointwise relative sampling error and polynomial dependence on log η<sup>−1</sup> are not asserted.</p>
+      <p>The approximation and efficient sampling consequences use the cited unweighted FPRAS and polynomial matching-witness algorithm. The supplied code contains exponential reference enumeration and finite synthetic-oracle tests; it includes no practical implementation or benchmark of the upstream FPRAS. Finite checks support the construction and wrapper rather than certify that external theorem.</p>
+      <p>This follow-on theorem is not formally verified. An independent upstream Lean kernel rebuild was not reproduced. The note makes no first-publication or new complexity-classification claim; its role is an attributed consequence, explicit exposition and implementation package.</p>
+    </section>
+
+    <section id="paper" aria-labelledby="paper-heading">
+      <h2 id="paper-heading">Original files and manuscript</h2>
+      <ol id="native-assets">
+        <li><a href="assets/source-and-verification.zip" download>Source and verification package (ZIP, 183,748 bytes)</a> · <a href="https://zenodo.org/api/records/23205294/files/source-and-verification.zip/content">Zenodo original ZIP</a></li>
+        <li><a href="assets/README.md" download>README.md (6,238 bytes)</a> · <a href="https://zenodo.org/api/records/23205294/files/README.md/content">Zenodo original README</a></li>
+        <li><a href="assets/paper.pdf" download>Manuscript (PDF, 75,751 bytes)</a> · <a href="https://zenodo.org/api/records/23205294/files/paper.pdf/content">Zenodo original PDF</a></li>
+      </ol>
+      <p><a href="assets/paper.pdf">Open the six-page PDF</a> · <a href="assets/paper.pdf" download>Download PDF</a> · <a href="https://doi.org/10.5281/zenodo.23205294">Zenodo record</a></p>
+      <iframe class="paper-pdf" src="assets/paper.pdf#view=FitH" title="Original manuscript: Nonnegative binary rational hafnians" loading="lazy"></iframe>
+      <p>These are unchanged copies of the current published files, in the record's order. The manuscript and declared publication date are 6 October 2026; the record reports creation on 7 October 2026 UTC and updates on 10 October 2026. The record version is 1.0.0. The README describes the package and its reproduction assumptions.</p>
+    </section>
+
+    <section id="prior-work" aria-labelledby="prior-heading">
+      <h2 id="prior-heading">Attribution and dependencies</h2>
+      <ul>
+        <li>C. McQuillan, <a href="https://arxiv.org/abs/1301.2880v1"><cite>Approximating Holant problems by winding</cite></a> (2013), Section 7.2, Lemmas 25–27: nonnegative binary rational weights reduce to simple unweighted perfect-matching counts with a computable scaling factor.</li>
+        <li>H. Dell, T. Husfeldt and M. Wahlén, <a href="https://eccc.weizmann.ac.il/report/2010/078/"><cite>Exponential Time Complexity of the Permanent and the Tutte Polynomial</cite></a> (2010), and the <a href="https://arxiv.org/abs/1206.1775">expanded version with D. Marx and N. Taslaman</a> (2014): earlier binary weight gadgets for permanents.</li>
+        <li>M. R. Jerrum, L. G. Valiant and V. V. Vazirani, <a href="https://doi.org/10.1016/0304-3975(86)90174-X"><cite>Random generation of combinatorial structures from a uniform distribution</cite></a> (1986): the established counting-to-sampling framework.</li>
+        <li>J. Edmonds, <a href="https://doi.org/10.4153/CJM-1965-045-4"><cite>Paths, trees, and flowers</cite></a> (1965): polynomial general-graph matching feasibility and witnesses.</li>
+        <li>OpenAI, <a href="https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Fully-Polynomial-Randomized-Approximation-Scheme-for-Perfect-Matchings-in-General-Graphs-September-23-2026/main.pdf"><cite>A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in General Graphs</cite></a>, Theorem 1.1, pinned at commit <code>adc7f1241b42e322a6451854ab7e4b4c146bf78a</code>: the approximation theorem used here, and an explicit unweighted deletion sampler.</li>
+      </ul>
+      <p>The Horner gadget is a transparent variant of established machinery. The rational approximation consequence follows by combining the classical equivalence with the cited general-graph theorem. The manuscript includes its broader bibliography and source-comparison limitations.</p>
+    </section>
+
+    <section id="citation" aria-labelledby="citation-heading">
+      <h2 id="citation-heading">Citation and rights</h2>
+      <p>Kriebel, Alec. (2026). <cite>Nonnegative binary rational hafnians: an exact reduction and approximation and sampling consequences</cite> (Version 1.0.0) [Unrefereed preprint]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23205294">doi:10.5281/zenodo.23205294</a>. <a href="citation.bib" download>Download BibTeX</a>.</p>
+      <p>Newly authored prose, proofs, explanatory documents and data are licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; newly authored Python code is MIT-licensed, as stated in the archive's LICENSES.md and LICENSE_CODE.txt. Cited works retain their authorship and rights.</p>
+    </section>
+
+    <section id="status" aria-labelledby="status-heading">
+      <h2 id="status-heading">Status and collaboration</h2>
+      <p>AI tools were used extensively in research, drafting, implementation and automated adversarial verification. This is an unrefereed, AI-assisted preprint; automated reviews are not conventional human peer review. The author is responsible for the claims.</p>
+      <p>Independent verification of the exact construction or quantitative sampler, substantive improvements to the exposition or implementation, and development of a journal version would be useful contributions. Collaboration and authorship would be based on actual contributions.</p>
+    </section>
+  </article>
+</main>
