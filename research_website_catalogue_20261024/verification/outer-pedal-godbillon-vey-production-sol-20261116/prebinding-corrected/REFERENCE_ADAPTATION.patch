@@ -1,0 +1,313 @@
+--- /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/odd-areas-boolean-city-production-sol-20261116/release_four.py
++++ /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/outer-pedal-godbillon-vey-production-sol-20261116/release_three.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Fixed18 16A2M private production preparation. Default is a literal no-action response.
++"""Fixed22 20A2M private production preparation. Default is a literal no-action response.
+ 
+ --install and --publish are distinct, separately root-authorized transactions.
+ Explicit preflights are offline; install/Git require separate current root authority.
+@@ -12,9 +12,12 @@
+ 
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ M = P.parent
+-N = P/'verification/odd-areas-boolean-city-production-sol-20261116'
++N = P/'verification/outer-pedal-godbillon-vey-production-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = 'f048cfe3976f15d87cf06eeab73cfa89ca3c2c18c58cdb963bdb1813beef66b3'
++PLAN_SHA = 'cf6e2c1b1d9aa1c7535e8d7ab2c3052967598a7a00f215fcb1008fa8a6e4e4f3'
++TARGETS = frozenset(['public/research/index.html', 'public/research/negative-curvature-observation-gramian/LICENSE.txt', 'public/research/negative-curvature-observation-gramian/README.md', 'public/research/negative-curvature-observation-gramian/SHA256SUMS.txt', 'public/research/negative-curvature-observation-gramian/SOURCE_AUDIT.md', 'public/research/negative-curvature-observation-gramian/citation.bib', 'public/research/negative-curvature-observation-gramian/index.html', 'public/research/negative-curvature-observation-gramian/negative_gramian_cover.pdf', 'public/research/negative-curvature-observation-gramian/negative_gramian_cover.tex', 'public/research/negative-curvature-observation-gramian/negative_gramian_cover_sources.zip', 'public/research/negative-curvature-observation-gramian/verification_results.json', 'public/research/negative-curvature-observation-gramian/verify_cover.py', 'public/research/outer-focal-pedal-area-product/citation.bib', 'public/research/outer-focal-pedal-area-product/index.html', 'public/research/outer-focal-pedal-area-product/k605a-outer-focal-pedal-areas.pdf', 'public/research/outer-focal-pedal-area-product/k605a-source-verification.zip', 'public/research/sitemap.xml', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/citation.bib', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/index.html', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/taut_godbillon_vey.pdf', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/taut_godbillon_vey.tex', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/verification-package.zip'])
++REPLACEMENTS = ['public/research/index.html', 'public/research/sitemap.xml']
++RECORDS = ['23398175', '23357329', '23153134']
+ LOG = None
+ ENV = {k:v for k,v in os.environ.items() if not k.startswith('GIT_')}
+ ENV.update(GIT_OPTIONAL_LOCKS='0', GIT_INDEX_VERSION='2', GIT_TERMINAL_PROMPT='0')
+@@ -105,66 +108,83 @@
+     return spans
+ 
+ def contract():
+-    need(Path(__file__).absolute()==N/'release_four.py','fixed current helper location')
++    need(Path(__file__).absolute()==N/'release_three.py','fixed current helper location')
+     raw=read(N/'PLAN.json'); need(sha(raw)==PLAN_SHA,'exact plan'); p=json.loads(raw)
+-    need(p.get('root_adoption_state')=='ROOT_PROVIDED_AND_ADOPTED' and isinstance(p.get('root_adoption'),dict),'independent stage PASS and actual root adoption required; pending preparation is not authority')
+-    need(p['root_adoption']['path']==p['root_adoption_expected_path'],'exact root receipt path')
+-    adoption=json.loads(bound(p['root_adoption']))
+-    need(adoption['status']==p['root_adoption_required_status'] and adoption['production_install_Git_deploy_or_tracker_authority'] is False,'private stage adoption only')
+-    need(adoption['independent_stage_audit_PASS'] is True and isinstance(adoption['independent_stage_audit_FINAL'],dict),'root-adopted independent integration PASS required')
+-    bound(adoption['independent_stage_audit_FINAL'])
+-    need(adoption['stage_FINAL']==p['stage_FINAL'] and adoption['stage_manifest']==p['stage_manifest'] and adoption['public_payloads']==p['public_payloads'],'exact adopted stage/manifest/public payloads')
+-    need(sorted(adoption['candidate_exact_paths'])==p['scope_paths'],'exact root-adopted eighteen scope paths')
+-    reading=json.loads(bound(p['root_stage_reading'])); need(reading['production_execution_authority'] is False,'earlier reading receipt is preparation only')
+-    S=P/p['stage']; seal=json.loads(bound(p['stage_FINAL'])); manifest=json.loads(bound(p['stage_manifest']))
+-    need(p['stage_manifest']['path']==p['stage']+'/MANIFEST.json' and all(p['stage_manifest'][k]==seal['manifest'][k] for k in ('bytes','SHA256')),'actual stage manifest schema and pin')
+-    need(seal['status']=='PASS_PRIVATE_18_PATH_STAGE_PREPARED_NOT_INSTALLED' and seal['production_install_Git_deploy_tracker_or_publication_authority'] is False,'private source stage only')
+-    terminals={'MANIFEST.json','FINAL.json'}; rows_manifest=manifest['files']; expected_names=terminals|{x['path'] for x in rows_manifest}
+-    need(set(manifest['exact_existing_root_terminal_controls_excluded'])==terminals and len(rows_manifest)==38 and len(expected_names)==40 and seal['finite_extent']['regular_files']==40 and seal['finite_extent']['child_directories']==7,'exact38payload/40file/7directory source stage')
+-    for row in rows_manifest:
+-        name=row['path']; need('..' not in Path(name).parts and not Path(name).is_absolute(),'finite stage source path')
+-        need(pin(read(S/name))=={k:row[k] for k in ('bytes','SHA256')},'whole frozen stage payload')
+-    sf,sd=census(S); need(set(sf)==expected_names and len(sf)==40 and len(sd)==8,'immutable source stage40/7')
+-    need(set(sd)-{'.'}=={x['path'] for x in manifest['directories']} and all(x['mode']==0o644 for x in sf.values()) and set(sd.values())=={0o755},'stage source types/modes')
+-    need(p['source_guards']==p['baseline'] and p['source_guards']['path']==p['stage']+'/BASELINE.json','bound28-source guard container')
+-    baseline=json.loads(bound(p['baseline'])); guards=baseline['source_guards']
+-    need(len(guards)==p['source_guard_count']==28,'complete fixed source guard table in bound container')
+-    for row in guards:
+-        bound(row); need(mode(Path(row['path']))==int(row['mode'],8),'source mode unchanged')
+-    need(p['root_editorial_adoptions']==seal['root_copy_adoptions'],'same four editorial adoptions')
+-    for row in p['root_editorial_adoptions']: bound(row)
+-    need(baseline['website_git']['HEAD']['commit']==p['website_HEAD'] and baseline['website_tree_previously_read']==p['website_tree'] and baseline['website_git']['index']['SHA256']==p['website_index']['SHA256'],'same fresh711 baseline authority')
+-    old_files={r['path']:{**{k:r[k] for k in ('bytes','SHA256')},'mode':int(r['mode'],8)} for r in baseline['public_files']}
+-    old_dirs={r['path']:int(r['mode'],8) for r in baseline['public_directory_modes_including_root']}
+-    need(len(old_files)==baseline['current_public_count']==711 and len(old_dirs)==360 and baseline['current_public_child_directory_count']==359,'exact711/360 public baseline/modes')
+-    payloads=json.loads(bound(p['public_payloads'])); need(payloads==seal['whole_public_payload_bindings'] and len(payloads)==18,'same exact eighteen public buffers')
+-    rows=payloads; names=[r['website_relative_path'] for r in rows]
+-    need(len(rows)==len(set(names))==18 and sorted(names)==p['scope_paths'] and p['new_leaves']==16 and p['replacements']==2,'fixed eighteen paths16A2M')
+-    need(p['replacement_paths']==['public/research/index.html','public/research/sitemap.xml'],'only two aggregate replacements')
++    # These two pending gates precede every repository, stage, source and Git read.
++    need(isinstance(p.get('root_stage_adoption'),dict) and isinstance(p.get('stage_binding'),dict),'both actual root stage adoption and typed frozen stage binding required; pending preparation is not authority')
++    need(p['project']==str(P) and p['website']==str(W) and p['stage']=='verification/outer-pedal-godbillon-vey-stage-sol-20261116','fixed three-page roots')
++    need(p['scope_paths']==sorted(TARGETS) and p['replacement_paths']==REPLACEMENTS and p['record_ids']==RECORDS and (p['paths'],p['new_leaves'],p['replacements'])==(22,20,2),'literal fixed22 membership/20A2M')
++    def relative(name):
++        need(isinstance(name,str) and name and '\0' not in name and not Path(name).is_absolute() and '..' not in Path(name).parts and '.' not in Path(name).parts and Path(name).as_posix()==name,'canonical finite relative path')
++        return name
++    def document(row,under):
++        need(isinstance(row,dict) and set(row)=={'path','bytes','SHA256'} and type(row['bytes']) is int and row['bytes']>=0 and re.fullmatch('[0-9a-f]{64}',row['SHA256']),'typed whole document pin')
++        q=Path(row['path']); q=q if q.is_absolute() else P/relative(row['path'])
++        need(q.is_relative_to(under) and q!=under,'document within exact permitted root'); return json.loads(bound(row))
++    binding=p['stage_binding']; need(set(binding)==set(p['stage_binding_contract']['required_keys']) and binding['status']==p['stage_binding_required_status'],'typed finite current stage binding')
++    S=P/p['stage']; adoption=document(p['root_stage_adoption'],P/'verification')
++    need(adoption['status']==p['root_stage_adoption_required_status'] and adoption['production_install_Git_deploy_or_tracker_authority'] is False,'private stage adoption only; not install/Git authority')
++    need(adoption['independent_stage_audit_PASS'] is True and adoption['independent_stage_audit_FINAL']==binding['audit_FINAL'],'actual independent stage PASS required')
++    document(binding['audit_FINAL'],P/'verification')
++    for key in ('stage_FINAL','stage_manifest','public_payloads'):
++        need(adoption[key]==binding[key],'root-adopted exact stage document: '+key); document(binding[key],S)
++    need(Path(binding['stage_FINAL']['path']) in (S/'FINAL.json',Path(p['stage'])/'FINAL.json'),'actual fixed stage FINAL path')
++    need(sorted(adoption['candidate_exact_paths'])==sorted(TARGETS) and len(adoption['candidate_exact_paths'])==22 and adoption['scope']=={'A':20,'M':2,'total':22,'projected_counts':[747,121,122]},'root exact3/22 stage scope and counts')
++    sf={}
++    for row in binding['stage_files']:
++        need(isinstance(row,dict) and set(row)=={'path','bytes','SHA256','mode'} and type(row['mode']) is int,'typed complete stage file row')
++        name=relative(row['path']); need(name not in sf,'unique stage file row'); sf[name]={k:row[k] for k in ('bytes','SHA256','mode')}
++    sd=binding['stage_directories']; need(isinstance(sd,dict) and '.' in sd and all(type(v) is int for v in sd.values()),'complete stage directory mode table')
++    for name in sd:
++        if name!='.': relative(name)
++    need(census(S)==(sf,sd),'whole frozen stage finite bytes/modes/topology, including terminal controls')
++    candidate=relative(binding['candidate_root']); need(candidate in sd,'candidate root is an actual stage directory')
++    need({n[len(candidate)+1:] for n in sf if n.startswith(candidate+'/')}==TARGETS,'candidate namespace contains only the fixed22 payload files')
++    candidate_dirs={candidate}|{candidate+'/'+q.as_posix() for name in TARGETS for q in Path(name).parents if q.as_posix()!='.'}
++    need({n for n in sd if n==candidate or n.startswith(candidate+'/')}==candidate_dirs,'exact fixed candidate directory topology')
+     buffers={}
+-    for row in rows:
+-        name=row['website_relative_path']; need(name.startswith('public/research/') and '..' not in Path(name).parts and not Path(name).is_absolute(),'finite exact public research path')
+-        b=read(S/'candidate'/name); need(pin(b)=={k:row[k] for k in ('bytes','SHA256')} and row['mode']=='0644','exact candidate bytes/mode'); buffers[name]=b
+-        need((name[7:] in old_files)==(name in p['replacement_paths']),'sixteen absent new targets/two existing aggregates')
+-    index=buffers['public/research/index.html'].decode()
+-    visible=re.findall(r'<li\b[^>]*>[\s\S]*?</li>',index); rawjson=re.search(r'<script type="application/ld\+json">(.*?)</script>',index,re.S)[1]; entity=json.loads(rawjson)['mainEntity']
++    for name in sorted(TARGETS):
++        row=sf[candidate+'/'+name]; b=read(S/candidate/name)
++        need(pin(b)=={k:row[k] for k in ('bytes','SHA256')} and row['mode']==0o644,'exact adopted candidate whole payload/mode'); buffers[name]=b
++    baseline=json.loads(bound(p['baseline'])); bound(p['original_baseline_receipt'])
++    need(baseline['W_HEAD']==p['website_HEAD'] and baseline['W_tree']==p['website_tree'] and baseline['W_index']=={k:p['website_index'][k] for k in ('bytes','SHA256','mode')},'same native ff36/1959 baseline')
++    old_files=baseline['public_files']; old_dirs=baseline['public_directories_including_root']
++    need(len(old_files)==727 and len(old_dirs)==364 and p['before_counts']==[727,118,119] and p['after_counts']==[747,121,122],'exact727 filesystem baseline and747 projection')
++    for name in TARGETS: need((name[7:] in old_files)==(name in REPLACEMENTS),'twenty absent filesystem leaves/two existing aggregates')
++    custody=json.loads(bound(p['source_contract'])); copy=document(p['copy_adoption'],P/'verification')
++    need(copy['status']=='ROOT_ADOPTED_THREE_FULL_PRIVATE_EDITORIAL_COPIES__EXACT22PATH_PRIVATE_STAGE_GO' and copy['public_install_Git_deploy_AA_authority'] is False,'source private copy adoption only')
++    need(custody['scope_paths']==sorted(TARGETS) and [r['record'] for r in custody['records']]==RECORDS and len(custody['namespaces'])==9 and custody['total_guarded_files']==703,'fixed three source/writer/fact namespace custody')
++    for namespace in custody['namespaces']:
++        need(census(Path(namespace['root']))==(namespace['files'],namespace['directories']),'whole frozen source/editorial/fact namespace')
++    for record in custody['records']:
++        base='public/research/'+record['slug']+'/'; main=bound(record['MAIN'])
++        # Only external fragment-file trailing LF padding is removed; no internal HTML/math byte normalization.
++        included=main.rstrip(b'\n'); actual=re.findall(rb'<main\b[^>]*>[\s\S]*?</main>',buffers[base+'index.html'])
++        need(actual==[included],'exact approved complete MAIN with only external trailing LF padding removed')
++        need(buffers[base+'citation.bib']==bound(record['Bib']),'original approved Bib whole bytes')
++        for asset in record['assets']:
++            native=P/'papers'/record['record']/'sources/assets'/asset['native_name']
++            need(buffers[base+asset['native_name']]==bound(asset['source'])==read(native),'original native asset whole bytes; never execute public programs')
++    index=buffers['public/research/index.html'].decode(); visible=re.findall(r'<li\b[^>]*>[\s\S]*?</li>',index)
++    rawjson=re.search(r'<script type="application/ld\+json">(.*?)</script>',index,re.S)[1]; entity=json.loads(rawjson)['mainEntity']
+     nodes=re.findall(r'<url>[\s\S]*?</url>',buffers['public/research/sitemap.xml'].decode())
+-    need(len(visible)==len(entity['itemListElement'])==entity['numberOfItems']==118 and len(nodes)==119,'candidate118/119 actual aggregates')
+-    for units,old_units,count in [(visible,baseline['visible_items_raw'],114),(typed_spans(rawjson),typed_spans(baseline['typed_script_complete_raw']),114),(nodes,baseline['sitemap_nodes_raw'],115)]:
+-        need(len(old_units)==count and units[:count]==old_units,'whole old114 visible/raw-typed items and115 XML nodes preserved')
+-    for row in baseline['website_configuration_guards']+baseline['template_guards']: bound(row); need(mode(Path(row['path']))==int(row['mode'],8),'website source/config mode')
+-    for k in ('old_completed_lock','old_SUCCESS','old_install_authorization','old_Git_lock','old_Git_SUCCESS','old_Git_authorization','old_publication'): bound(p[k])
+-    oldsuccess=json.loads(bound(p['old_SUCCESS'])); need(oldsuccess['counts']==[711,114,115] and oldsuccess['authorization_SHA256']==p['old_install_authorization']['SHA256'],'completed prior711 installation context')
+-    oldgit=json.loads(bound(p['old_Git_SUCCESS']))
+-    need(oldgit['status']=='SCOPED14_COMMIT_AND_PUSH_VERIFIED' and oldgit['delta']=='12A2M' and oldgit['commit']==p['website_HEAD'] and oldgit['tree']==p['website_tree'] and oldgit['index_SHA256']==p['previous_published_native_index']['SHA256'] and oldgit['index_mode']=='0600' and oldgit['successor_index_records']==58651,'completed prior f632/0f58 context, not fresh-index continuity')
+-    transition=json.loads(bound(p['index_transition']))
+-    need(transition['status']=='OBSERVED_STAT_CACHE_AND_NATIVE_FILE_MODE_TRANSITION_NO_STAGING_CONTENT_CHANGE' and transition['current_native_index']=={'bytes':p['website_index']['bytes'],'SHA256':p['website_index']['SHA256'],'mode':'0644'} and transition['records']==58651 and transition['path_object_ID_mode_flags_stage_and_padding_semantic_differences']==[] and transition['only_record_stat_fields_changed'] is True,'root adopted fresh8db8/0644 baseline')
+-    cache_requirement=json.loads(bound(p['root_cache_requirement'])); need(cache_requirement['baseline_index_SHA256']==p['website_index']['SHA256'] and cache_requirement['extension_region_SHA256']==p['baseline_extension']['SHA256'] and cache_requirement['sole_extension']=='TREE' and cache_requirement['shared_index_write_by_this_check'] is False,'actual root TREE-only derived-cache correction bound')
+-    publication=json.loads(bound(p['old_publication']))
+-    need(publication['website_commit']==p['website_HEAD'] and publication['tree']==p['website_tree'] and publication['hosting_version']==p['old_hosting_version'],'prior exact hosting context')
++    need(len(visible)==len(entity['itemListElement'])==entity['numberOfItems']==121 and len(nodes)==122,'actual121/122 projected aggregates')
++    for units,old_units,count in [(visible,baseline['visible_items_raw'],118),(typed_spans(rawjson),typed_spans(baseline['typed_script_complete_raw']),118),(nodes,baseline['sitemap_nodes_raw'],119)]:
++        need(len(old_units)==count and units[:count]==old_units,'old118 visible/raw typed items and119 XML nodes preserved in order')
++    for path,row in baseline['configuration_guards'].items():
++        need(pin(read(Path(path)))=={k:row[k] for k in ('bytes','SHA256')} and mode(Path(path))==row['mode'],'configuration/template bytes and native mode exact')
++    context=p['old_context']
++    for row in context.values(): bound(row)
++    need(mode(P/context['install_lock']['path'])==mode(P/context['Git_lock']['path'])==0o600,'retained completed old locks untouched')
++    old_install=json.loads(bound(context['install_SUCCESS'])); old_git=json.loads(bound(context['Git_SUCCESS']))
++    need(old_install['status']=='FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT' and old_install['counts']==[727,118,119] and old_install['authorization_SHA256']==context['install_authorization']['SHA256'],'prior completed installation context only')
++    need(old_git['status']=='SCOPED18_COMMIT_AND_PUSH_VERIFIED' and old_git['delta']=='16A2M' and old_git['commit']==p['website_HEAD'] and old_git['tree']==p['website_tree'] and old_git['index_SHA256']==p['website_index']['SHA256'] and old_git['index_mode']=='0644' and old_git['successor_index_records']==58667,'prior completed ff36/index1959 publication context only')
++    asym=p['baseline_tracking_asymmetry']; disposition=document(asym['disposition'],P/'verification'); diagnostic=document(asym['diagnostic'],P/'verification')
++    need(disposition['status']=='ROOT_CLASSIFIED_PREEXISTING_TRACKING_ASYMMETRY_NOT_BASELINE_DRIFT' and diagnostic['native_index_before_after_SHA256']==p['website_index']['SHA256'] and diagnostic['filesystem_only_paths']==asym['filesystem_only_paths'] and diagnostic['index_only_paths']==[],'exact preexisting17 filesystem-only asymmetry')
++    need(len(asym['filesystem_only_paths'])==17 and not set(asym['filesystem_only_paths'])&TARGETS,'all17 filesystem extras separately protected, never targets')
+     new_dirs=set()
+     for name in buffers: new_dirs.update(q.as_posix() for q in Path(name[7:]).parents if q.as_posix() not in old_dirs)
+-    need(new_dirs=={'research/odd-period-pedal-antipedal-area-product','research/outer-focal-inversion-area-product','research/boolean-cube-polynomial-compatibility','research/fixed-city-quantitative-persistence'} and len(new_dirs)==p['new_directories']==4,'only four necessary new directories')
++    need(new_dirs==set(p['new_directories']) and len(new_dirs)==3 and len(old_dirs|{q:0o755 for q in new_dirs})==367,'only three necessary new article directories')
+     return p,buffers,old_files,old_dirs,new_dirs
+ 
+ def math_fence(p):
+@@ -206,35 +226,38 @@
+     old=read(W/'.git/index'); need(pin(old)=={k:p['website_index'][k] for k in ('bytes','SHA256')} and mode(W/'.git/index')==0o644,'exact fresh Windex0644')
+     er,extension=entries(old); need(pin(extension)=={k:p['baseline_extension'][k] for k in ('bytes','SHA256')} and len(old)-20-len(extension)==p['baseline_extension']['offset'],'exact baseline TREE extension')
+     targets={n.encode() for n in buffers}; replacements={n.encode() for n in p['replacement_paths']}
+-    need(len(er)==58651 and set(er)&targets==replacements and len(replacements)==2 and len(targets-set(er))==16 and len(set(er)-targets)==58649,'original index2M/16A scope and58649protected records')
++    need(len(er)==58667 and set(er)&targets==replacements and len(replacements)==2 and len(targets-set(er))==20 and len(set(er)-targets)==58665,'original index2M/20A scope and58665protected records')
++    baseline=json.loads(bound(p['baseline'])); protected=b''.join(er[n][0] for n in sorted(set(er)-targets)); need(pin(protected)=={k:baseline['protected_raw_records_excluding_two_aggregates'][k] for k in ('bytes','SHA256')},'all58665 baseline whole raw records authenticated')
++    native_public={n.decode() for n in er if n.startswith(b'public/')}; fs_public={'public/'+n for n in old_files}; asym=p['baseline_tracking_asymmetry']
++    need(len(native_public)==710 and native_public<=fs_public and sorted(fs_public-native_public)==asym['filesystem_only_paths'],'separate exact native710/filesystem727 universes and17 untouched extras')
+     lock=W/'.git/index.lock'
+     need(not os.path.lexists(lock) if owned_index_lock is None else inode(lock.lstat())==owned_index_lock,'exclusive Git index lock state')
+     installed=all((W/n).is_file() and pin(read(W/n))==pin(b) for n,b in buffers.items())
+     actual,counts=public_fence(p,buffers,old_files,old_dirs,new_dirs,installed)
+     if required is not None: need(installed==required,'required installed/preinstall phase')
+     identities={n:[*inode((W/n).lstat()),(W/n).lstat().st_mtime_ns,(W/n).lstat().st_ctime_ns] for n in p['replacement_paths']}
+-    state={'installed':installed,'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_four.py')),'adoption':p['root_adoption'],'public':actual,'counts':counts,'W_HEAD':p['website_HEAD'],'W_tree':p['website_tree'],'W_index':pin(old),'Math_HEAD':p['Math_HEAD'],'Math_index':p['Math_index'],'routing':route,'aggregate_identities':identities,'scope':[(n,pin(b)) for n,b in sorted(buffers.items())]}
++    state={'installed':installed,'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_three.py')),'adoption':p['root_stage_adoption'],'public':actual,'counts':counts,'W_HEAD':p['website_HEAD'],'W_tree':p['website_tree'],'W_index':pin(old),'Math_HEAD':p['Math_HEAD'],'Math_index':p['Math_index'],'routing':route,'aggregate_identities':identities,'scope':[(n,pin(b)) for n,b in sorted(buffers.items())],'filesystem_only_paths':asym['filesystem_only_paths'],'MAIN_external_trailing_LF_removed':{r['record']:len(bound(r['MAIN']))-len(bound(r['MAIN']).rstrip(b'\n')) for r in json.loads(bound(p['source_contract']))['records']}}
+     return p,buffers,old_files,old_dirs,new_dirs,old,sha(packed(state)),state
+ 
+ def authorization(kind,fp,p):
+     path=N/p['authorization_paths'][kind]; raw=read(path); a=json.loads(raw)
+-    fixed={'schema':'odd-areas-boolean-city-root-authorization-v1','action':'INSTALL_EXACT18_FILESYSTEM' if kind=='install' else 'PUBLISH_EXACT18_GIT','plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_four.py')),'root_adoption':p['root_adoption'],'preflight_SHA256':fp,'scope_paths':p['scope_paths'],'concurrency':'ROOT_SERIALIZED_NO_OTHER_W_WRITER','old_lock_disposition':p['lock_disposition'],'deployment_authorized':False,'Sheet_authorized':False,'AA':None,'follow_up':None}
+-    extras={'expires_UTC'} if kind=='install' else {'expires_UTC','author_name','author_email','commit_date','installation_SUCCESS'}
++    fixed={'schema':'outer-pedal-godbillon-vey-gramian-root-authorization-v1','action':'INSTALL_EXACT22_FILESYSTEM' if kind=='install' else 'PUBLISH_EXACT22_GIT','plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_three.py')),'root_stage_adoption':p['root_stage_adoption'],'preflight_SHA256':fp,'scope_paths':p['scope_paths'],'concurrency':'ROOT_SERIALIZED_NO_OTHER_W_WRITER','old_lock_disposition':p['lock_disposition'],'deployment_authorized':False,'Sheet_authorized':False,'AA':None,'follow_up':None}
++    extras={'issued_UTC','expires_UTC','nonce'} if kind=='install' else {'issued_UTC','expires_UTC','nonce','author_name','author_email','commit_date','installation_SUCCESS'}
+     need(set(a)==set(fixed)|extras and all(a[k]==v for k,v in fixed.items()),'exact separate root '+kind+' authorization')
+-    expiry=datetime.datetime.fromisoformat(a['expires_UTC']); need(expiry.utcoffset() is not None and utc()<expiry,'unexpired timezone-qualified authority')
++    issued=datetime.datetime.fromisoformat(a['issued_UTC']); expiry=datetime.datetime.fromisoformat(a['expires_UTC']); need(issued.utcoffset() is not None and expiry.utcoffset() is not None and issued<=utc()<expiry,'current timezone-qualified issue/expiry interval'); need(isinstance(a['nonce'],str) and re.fullmatch('[0-9a-f]{32}',a['nonce']),'fresh root action nonce')
+     if kind=='Git':
+         for k in ('author_name','author_email','commit_date'): need(isinstance(a[k],str) and a[k] and '\n' not in a[k] and '\0' not in a[k],'literal commit identity/date')
+         need(datetime.datetime.fromisoformat(a['commit_date']).utcoffset() is not None,'timezone-qualified commit date')
+         success=json.loads(bound(a['installation_SUCCESS'])); success_path=Path(a['installation_SUCCESS']['path'])
+-        need(success_path.is_relative_to(N/'transactions') and success_path.name=='SUCCESS.json','current effort install receipt')
+-        need(success['status']=='FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT' and success['counts']==[727,118,119] and success['plan_SHA256']==PLAN_SHA,'completed exact new installation')
++        need(success_path.is_relative_to(N/'transactions') and success_path.name=='SUCCESS.json' and success_path.parent.parent==N/'transactions' and re.fullmatch('[0-9a-f]{64}',success_path.parent.name),'current effort install receipt')
++        need(success['status']=='FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT' and success['counts']==[747,121,122] and success['plan_SHA256']==PLAN_SHA and success['helper_SHA256']==a['helper_SHA256'] and success['targets']==sorted(TARGETS) and success['authorization_SHA256']==success_path.parent.name and success['nonce']!=a['nonce'],'completed exact new installation and distinct Git nonce')
+     return path,raw,a,expiry
+ 
+ def transaction(kind,auth_raw):
+     global LOG
+     safe(N); need(W.stat().st_dev==N.stat().st_dev,'same filesystem')
+     lock=N/('ACTIVE_INSTALL.lock' if kind=='install' else 'ACTIVE_GIT.lock')
+-    body=packed({'protocol':'odd-areas-boolean-city-'+kind+'-v1','authorization_SHA256':sha(auth_raw),'PID':os.getpid()}); new_file(lock,body)
++    body=packed({'protocol':'outer-pedal-godbillon-vey-gramian-'+kind+'-v1','authorization_SHA256':sha(auth_raw),'PID':os.getpid()}); new_file(lock,body)
+     lock_fd=os.open(lock,os.O_RDONLY|os.O_NOFOLLOW); owner=inode(os.fstat(lock_fd))
+     parent=N/('transactions' if kind=='install' else 'git-transactions')
+     if not os.path.lexists(parent): parent.mkdir(mode=0o700); sync_dir(N)
+@@ -251,7 +274,7 @@
+     libc=ctypes.CDLL('/usr/lib/libSystem.B.dylib',use_errno=True); rename=libc.renameatx_np
+     rename.argtypes=[ctypes.c_int,ctypes.c_char_p,ctypes.c_int,ctypes.c_char_p,ctypes.c_uint]; rename.restype=ctypes.c_int
+     def current():
+-        check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_four.py'))==a['helper_SHA256'],'same current installation authority/code')
++        check(); need(read(path)==auth_raw and datetime.datetime.fromisoformat(a['issued_UTC'])<=utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_three.py'))==a['helper_SHA256'],'same current installation authority/code')
+     try:
+         staged=t/'staged'; backups=t/'backups'; staged.mkdir(mode=0o700); backups.mkdir(mode=0o700); sync_dir(t)
+         order=sorted(set(buffers)-set(p['replacement_paths']))+p['replacement_paths']; originals={}; prepared={}
+@@ -268,10 +291,10 @@
+                 if not os.path.lexists(parent): parent.mkdir(mode=0o700); sync_dir(parent.parent)
+                 safe(parent); need(stat.S_ISDIR(parent.lstat().st_mode) and mode(parent)==0o700,'ordinary private relative backup directory')
+             new_file(backups/n,b,0o644)
+-        absent=sorted(set(buffers)-set(p['replacement_paths'])); need(len(absent)==16 and all(not os.path.lexists(W/n) for n in absent),'sixteen original target absences')
++        absent=sorted(set(buffers)-set(p['replacement_paths'])); need(len(absent)==20 and all(not os.path.lexists(W/n) for n in absent),'twenty original target absences')
+         new_file(t/'new-targets.before.json',packed({n:'ABSENT' for n in absent}))
+         new_file(t/'rollback.before.json',packed({'original_replacements':{n:old_files[n[7:]] for n in p['replacement_paths']},'original_new_target_state':{n:'ABSENT' for n in absent},'original_new_directories':{n:'ABSENT' for n in sorted(new_dirs)},'original_index':pin(old),'recovery':'STOP_AND_ROOT_REVIEW_NO_AUTOMATIC_ROLLBACK_OR_RETRY'}))
+-        sync_dir(staged); sync_dir(backups); sync_dir(t); event('ALL18_BUFFERS_2_RELATIVE_BACKUPS_16_ABSENCES_ROLLBACK_INPUTS_DURABLE_BEFORE_W_WRITE')
++        sync_dir(staged); sync_dir(backups); sync_dir(t); event('ALL22_BUFFERS_2_RELATIVE_BACKUPS_20_ABSENCES_ROLLBACK_INPUTS_DURABLE_BEFORE_W_WRITE')
+         current(); need(preflight(False)[6]==fp,'full authorization fence after durable staging before W writes')
+         root_fd=os.open(W,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW); opened.append(root_fd)
+         stage_fd=os.open(staged,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW); opened.append(stage_fd)
+@@ -307,8 +330,8 @@
+             finally:
+                 for fd in reversed(fds): os.close(fd)
+         current(); verified=preflight(True); need(verified[5]==old,'Git index unchanged after filesystem install')
+-        need(not list(staged.iterdir()) and {f.relative_to(backups).as_posix() for f in backups.rglob('*') if f.is_file()}==set(p['replacement_paths']),'complete18 staged/two relative-backup extent')
+-        result={'status':'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT','counts':[727,118,119],'plan_SHA256':PLAN_SHA,'authorization_SHA256':sha(auth_raw),'helper_SHA256':sha(read(N/'release_four.py')),'targets':sorted(buffers),'W_index_unchanged':True,'Math_HEAD_index_unchanged':True,'Git_deploy_Sheet_actions':False,'transaction':str(t),'new_lock_retained':True,'old_completed_lock_untouched':True}
++        need(not list(staged.iterdir()) and {f.relative_to(backups).as_posix() for f in backups.rglob('*') if f.is_file()}==set(p['replacement_paths']),'complete22 staged/two relative-backup extent')
++        result={'status':'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT','counts':[747,121,122],'plan_SHA256':PLAN_SHA,'authorization_SHA256':sha(auth_raw),'nonce':a['nonce'],'helper_SHA256':sha(read(N/'release_three.py')),'targets':sorted(buffers),'W_index_unchanged':True,'Math_HEAD_index_unchanged':True,'Git_deploy_Sheet_actions':False,'transaction':str(t),'new_lock_retained':True,'old_completed_lock_untouched':True}
+         new_file(t/'SUCCESS.json',packed(result)); event('FILESYSTEM_SUCCESS',**result); return result
+     except BaseException as error:
+         event('STOPPED_PARTIAL_STATE_PRESERVED',error=repr(error),completed_targets=completed,created_directories=made,automatic_rollback=False); raise
+@@ -326,7 +349,7 @@
+     p,buffers,old_files,old_dirs,new_dirs,old,fp,state=snapshot; need(state['installed'],'publish requires installed phase')
+     path,auth_raw,a,expiry=authorization('Git',fp,p); t,check,lock_fd=transaction('Git',auth_raw); native_owner=None; ref_attempted=False
+     def current():
+-        check(); need(read(path)==auth_raw and utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_four.py'))==a['helper_SHA256'],'same current Git authority/code')
++        check(); need(read(path)==auth_raw and datetime.datetime.fromisoformat(a['issued_UTC'])<=utc()<expiry and sha(read(N/'PLAN.json'))==PLAN_SHA and sha(read(N/'release_three.py'))==a['helper_SHA256'],'same current Git authority/code')
+     try:
+         current(); routing(p,state['routing']); current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(p['website_HEAD']+'\t'+p['branch']+'\n').encode(),'remote parent exact')
+         native=t/'native-successor.index'; commit_index=t/'commit.index'; new_file(t/'shared-index.before',old); new_file(native,old)
+@@ -336,9 +359,9 @@
+         git('update-index','--add','-z','--index-info',data=info,index=native)
+         git('read-tree',p['website_tree'],index=commit_index); git('update-index','--add','-z','--index-info',data=info,index=commit_index)
+         tree=git('write-tree',index=commit_index).strip().decode(); staged=read(native); before,before_extension=entries(old); after,after_extension=entries(staged); targets={n.encode() for n in buffers}
+-        need(len(after)==58667 and set(after)==set(before)|targets and sum(n not in targets for n in before)==58649,'exact58667/58649 raw scope')
+-        need(all(after[n]==record for n,record in before.items() if n not in targets),'all58649untargeted full raw records exact')
+-        need(all(after[n.encode()][1:]==(struct.pack('>I',0o100644),bytes.fromhex(oids[n])) for n in buffers),'all18index blob/mode targets')
++        need(len(after)==58687 and set(after)==set(before)|targets and sum(n not in targets for n in before)==58665,'exact58687/58665 raw scope')
++        need(all(after[n]==record for n,record in before.items() if n not in targets),'all58665untargeted full raw records exact')
++        need(all(after[n.encode()][1:]==(struct.pack('>I',0o100644),bytes.fromhex(oids[n])) for n in buffers),'all22index blob/mode targets')
+         def record_tree(records):
+             result={}
+             for name,record in records.items():
+@@ -355,21 +378,21 @@
+         bt,at=tree_entries(p['website_tree']),tree_entries(tree)
+         foreign=lambda native,head:{n:(native.get(n),head.get(n)) for n in (set(native)|set(head))-targets if native.get(n)!=head.get(n)}
+         need(foreign(native_before,bt)==foreign(native_after,at),'all foreign staging differences preserved against successor commit')
+-        need(set(at)==set(bt)|targets and all(at[n]==record for n,record in bt.items() if n not in targets),'all untargeted HEAD tree records exact plus sixteen additions')
+-        delta=git('diff-tree','--raw','-r','--no-commit-id','--no-abbrev','--no-renames','--no-ext-diff','-z',p['website_tree'],tree).split(b'\0'); need(delta.pop()==b'' and len(delta)==36,'exact18tree delta')
+-        need({delta[i+1] for i in range(0,36,2)}==targets,'only fixed18paths in commit')
+-        need(all(delta[i].split()[1]==b'100644' and delta[i].split()[3].decode()==oids[delta[i+1].decode()] for i in range(0,36,2)),'all commit bytes/modes')
+-        need(all(delta[i].split()[4]==(b'M' if delta[i+1].decode() in p['replacement_paths'] else b'A') for i in range(0,36,2)),'exact16A2M; no unrelated additions/deletions')
++        need(set(at)==set(bt)|targets and all(at[n]==record for n,record in bt.items() if n not in targets),'all untargeted HEAD tree records exact plus twenty additions')
++        delta=git('diff-tree','--raw','-r','--no-commit-id','--no-abbrev','--no-renames','--no-ext-diff','-z',p['website_tree'],tree).split(b'\0'); need(delta.pop()==b'' and len(delta)==44,'exact22tree delta')
++        need({delta[i+1] for i in range(0,44,2)}==targets,'only fixed22paths in commit')
++        need(all(delta[i].split()[1]==b'100644' and delta[i].split()[3].decode()==oids[delta[i+1].decode()] for i in range(0,44,2)),'all commit bytes/modes')
++        need(all(delta[i].split()[4]==(b'M' if delta[i+1].decode() in p['replacement_paths'] else b'A') for i in range(0,44,2)),'exact20A2M; no unrelated additions/deletions')
+         current(); lock=W/'.git/index.lock'; fd=os.open(lock,os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600); os.fchmod(fd,0o644); native_owner=inode(os.fstat(fd))
+         try: write_all(fd,staged); os.fsync(fd); need(held(fd)==staged,'whole durable index successor')
+         finally: os.close(fd)
+         sync_dir(W/'.git'); event('SHARED_INDEX_LOCKED_DURABLE',owner=native_owner)
+-        current(); need(preflight(True,native_owner)[6]==fp,'full final source/public/index/HEAD/Math fence under lock')
++        current(); need(preflight(True,native_owner)[6]==fp,'full final source/public/index/HEAD/Math fence under lock'); current()
+         identity={f'GIT_{role}_{key}':a[value] for role in ('AUTHOR','COMMITTER') for key,value in [('NAME','author_name'),('EMAIL','author_email'),('DATE','commit_date')]}
+         commit=git('commit-tree',tree,'-p',p['website_HEAD'],data=(p['commit_message']+'\n').encode(),identity=identity).strip().decode(); event('COMMIT_OBJECT',commit=commit,tree=tree)
+         current(); need(git('rev-parse','HEAD').strip().decode()==p['website_HEAD'] and read(W/'.git/index')==old,'final CAS/index old state'); math_fence(p)
+-        event('CAS_REF_INTENT',commit=commit); ref_attempted=True; git('update-ref',p['branch'],commit,p['website_HEAD']); event('CAS_REF_COMPLETE',commit=commit)
+-        need(inode(lock.lstat())==native_owner and read(lock)==staged and mode(lock)==0o644,'own durable index lock before replacement')
++        current(); event('CAS_REF_INTENT',commit=commit); ref_attempted=True; git('update-ref',p['branch'],commit,p['website_HEAD']); event('CAS_REF_COMPLETE',commit=commit)
++        current(); need(inode(lock.lstat())==native_owner and read(lock)==staged and mode(lock)==0o644,'own durable index lock before replacement')
+         os.replace(lock,W/'.git/index'); sync_dir(W/'.git'); event('INDEX_ATOMIC_REPLACEMENT_COMPLETE',SHA256=sha(staged))
+         def final_local():
+             need(read(W/'.git/index')==staged and mode(W/'.git/index')==0o644 and git('rev-parse',p['branch']).strip().decode()==commit,'exact final W ref/index')
+@@ -377,7 +400,7 @@
+             need(git('symbolic-ref','HEAD').strip().decode()==p['branch'],'existing master retained'); public_fence(p,buffers,old_files,old_dirs,new_dirs,True); math_fence(p); contract()
+         current(); final_local(); current(); routing(p,state['routing']); current(); git('push','--no-follow-tags','--recurse-submodules=no','origin',commit+':'+p['branch'])
+         current(); routing(p,state['routing']); current(); need(git('ls-remote','--exit-code','origin',p['branch'])==(commit+'\t'+p['branch']+'\n').encode(),'remote immutable commit verified'); final_local()
+-        result={'status':'SCOPED18_COMMIT_AND_PUSH_VERIFIED','commit':commit,'tree':tree,'paths':18,'delta':'16A2M','protected_full_raw_records':58649,'successor_index_records':58667,'index_SHA256':sha(staged),'index_mode':'0644','native_successor_semantic_tree':native_tree,'TREE_extension_before':pin(before_extension),'TREE_extension_after':pin(after_extension),'TREE_extension_changed':before_extension!=after_extension,'foreign_staging_semantics_preserved':True,'Math_HEAD_index_unchanged':True,'deployment_or_Sheet_actions':False,'new_Git_lock_retained':True,'old_completed_lock_untouched':True}
++        result={'status':'SCOPED22_COMMIT_AND_PUSH_VERIFIED','authorization_SHA256':sha(auth_raw),'nonce':a['nonce'],'plan_SHA256':PLAN_SHA,'helper_SHA256':sha(read(N/'release_three.py')),'commit':commit,'tree':tree,'paths':22,'delta':'20A2M','protected_full_raw_records':58665,'successor_index_records':58687,'index_SHA256':sha(staged),'index_mode':'0644','native_successor_semantic_tree':native_tree,'TREE_extension_before':pin(before_extension),'TREE_extension_after':pin(after_extension),'TREE_extension_changed':before_extension!=after_extension,'foreign_staging_semantics_preserved':True,'Math_HEAD_index_unchanged':True,'deployment_or_Sheet_actions':False,'new_Git_lock_retained':True,'old_completed_lock_untouched':True}
+         new_file(t/'SUCCESS.json',packed(result)); event('GIT_SUCCESS',**result); return result
+     except BaseException as error:
+         event('STOPPED_GIT_STATE_PRESERVED',error=repr(error),CAS_attempted=ref_attempted,index_lock_owner=native_owner,automatic_rollback=False); raise
+@@ -394,7 +417,7 @@
+     elif args==['--publish']: result=publish(snapshot)
+     else:
+         p,buffers,old_files,old_dirs,new_dirs,old,fp,state=snapshot
+-        result={'status':'READONLY_INSTALLED_PREFLIGHT_PASS' if state['installed'] else 'READONLY_PREINSTALL_PREFLIGHT_PASS','preflight_SHA256':fp,'helper_SHA256':sha(read(N/'release_four.py')),'plan_SHA256':PLAN_SHA,'counts':state['counts'],'fixed_paths':sorted(buffers),'new_leaves':16,'replacements':2,'protected_raw_records':58649,'successor_raw_records':58667,'W_HEAD':p['website_HEAD'],'Math_HEAD':p['Math_HEAD'],'routing':state['routing'],'baseline_TREE_extension':p['baseline_extension'],'TREE_change_policy':p['extension_policy'],'old_completed_lock_retained':True,'remote_checked':False,'writes':0,'publication_authority_inferred':False}
++        result={'status':'READONLY_INSTALLED_PREFLIGHT_PASS' if state['installed'] else 'READONLY_PREINSTALL_PREFLIGHT_PASS','preflight_SHA256':fp,'helper_SHA256':sha(read(N/'release_three.py')),'plan_SHA256':PLAN_SHA,'counts':state['counts'],'fixed_paths':sorted(buffers),'new_leaves':20,'replacements':2,'protected_raw_records':58665,'successor_raw_records':58687,'W_HEAD':p['website_HEAD'],'Math_HEAD':p['Math_HEAD'],'routing':state['routing'],'baseline_TREE_extension':p['baseline_extension'],'TREE_change_policy':p['extension_policy'],'old_completed_lock_retained':True,'remote_checked':False,'writes':0,'publication_authority_inferred':False}
+     print(json.dumps(result,sort_keys=True))
+ 
+ if __name__=='__main__':

@@ -1,0 +1,41 @@
+--- pending-original/PLAN.json
++++ PLAN.json
+@@ -176,7 +176,7 @@
+       "candidate_root"
+     ],
+     "file_rows": "Complete actual finite stage, including FINAL/manifest controls, with canonical relative path/bytes/SHA256/integer mode. Exact existing directories including dot map to integer modes.",
+-    "candidate_root": "Canonical relative directory under fixed stage; candidate files are candidate_root plus each exact website-relative scope path.",
++    "candidate_root": "Literal public. Website targets retain public/. Candidate-relative lookup removes exactly one fixed leading public/ prefix and joins beneath stage/public. Complete candidate membership and directory topology use this same mapping; no alternate layout.",
+     "public_payload_rows": "Authenticate the complete actual JSON document by its adopted pin. Producer schema is not guessed; the complete typed stage_files table supplies each candidate buffer pin, and the root adoption binds the same public_payloads document and exact22 membership.",
+     "adoption_keys": "status,production_install_Git_deploy_or_tracker_authority:false,independent_stage_audit_PASS:true,independent_stage_audit_FINAL,stage_FINAL,stage_manifest,public_payloads,candidate_exact_paths,scope:{A:20,M:2,total:22,projected_counts:[747,121,122]}. Copy authority is distinct.",
+     "stage_files": "List of exact {path,bytes,SHA256,mode} rows, including existing terminal controls; paths relative to fixed stage, modes integer. stage_directories is an exact relative-path to integer-mode mapping including dot."
+--- pending-original/release_three.py
++++ release_three.py
+@@ -14,7 +14,7 @@
+ M = P.parent
+ N = P/'verification/outer-pedal-godbillon-vey-production-sol-20261116'
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-PLAN_SHA = 'cf6e2c1b1d9aa1c7535e8d7ab2c3052967598a7a00f215fcb1008fa8a6e4e4f3'
++PLAN_SHA = '3608d183c4cd504ce7173012dea1b10594fbf35fded9471914c4dcf8ad75a8e3'
+ TARGETS = frozenset(['public/research/index.html', 'public/research/negative-curvature-observation-gramian/LICENSE.txt', 'public/research/negative-curvature-observation-gramian/README.md', 'public/research/negative-curvature-observation-gramian/SHA256SUMS.txt', 'public/research/negative-curvature-observation-gramian/SOURCE_AUDIT.md', 'public/research/negative-curvature-observation-gramian/citation.bib', 'public/research/negative-curvature-observation-gramian/index.html', 'public/research/negative-curvature-observation-gramian/negative_gramian_cover.pdf', 'public/research/negative-curvature-observation-gramian/negative_gramian_cover.tex', 'public/research/negative-curvature-observation-gramian/negative_gramian_cover_sources.zip', 'public/research/negative-curvature-observation-gramian/verification_results.json', 'public/research/negative-curvature-observation-gramian/verify_cover.py', 'public/research/outer-focal-pedal-area-product/citation.bib', 'public/research/outer-focal-pedal-area-product/index.html', 'public/research/outer-focal-pedal-area-product/k605a-outer-focal-pedal-areas.pdf', 'public/research/outer-focal-pedal-area-product/k605a-source-verification.zip', 'public/research/sitemap.xml', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/citation.bib', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/index.html', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/taut_godbillon_vey.pdf', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/taut_godbillon_vey.tex', 'public/research/unbounded-godbillon-vey-fixed-hyperbolic-manifold/verification-package.zip'])
+ REPLACEMENTS = ['public/research/index.html', 'public/research/sitemap.xml']
+ RECORDS = ['23398175', '23357329', '23153134']
+@@ -138,13 +138,14 @@
+     for name in sd:
+         if name!='.': relative(name)
+     need(census(S)==(sf,sd),'whole frozen stage finite bytes/modes/topology, including terminal controls')
+-    candidate=relative(binding['candidate_root']); need(candidate in sd,'candidate root is an actual stage directory')
+-    need({n[len(candidate)+1:] for n in sf if n.startswith(candidate+'/')}==TARGETS,'candidate namespace contains only the fixed22 payload files')
+-    candidate_dirs={candidate}|{candidate+'/'+q.as_posix() for name in TARGETS for q in Path(name).parents if q.as_posix()!='.'}
++    candidate=relative(binding['candidate_root']); need(candidate=='public' and candidate in sd,'literal actual public candidate root')
++    mapped={name:candidate+'/'+name[len('public/'):] for name in TARGETS}
++    need({n for n in sf if n.startswith(candidate+'/')}==set(mapped.values()),'candidate namespace contains only the fixed22 mapped website paths')
++    candidate_dirs={candidate}|{q.as_posix() for name in mapped.values() for q in Path(name).parents if q.as_posix()!='.'}
+     need({n for n in sd if n==candidate or n.startswith(candidate+'/')}==candidate_dirs,'exact fixed candidate directory topology')
+     buffers={}
+     for name in sorted(TARGETS):
+-        row=sf[candidate+'/'+name]; b=read(S/candidate/name)
++        row=sf[mapped[name]]; b=read(S/mapped[name])
+         need(pin(b)=={k:row[k] for k in ('bytes','SHA256')} and row['mode']==0o644,'exact adopted candidate whole payload/mode'); buffers[name]=b
+     baseline=json.loads(bound(p['baseline'])); bound(p['original_baseline_receipt'])
+     need(baseline['W_HEAD']==p['website_HEAD'] and baseline['W_tree']==p['website_tree'] and baseline['W_index']=={k:p['website_index'][k] for k in ('bytes','SHA256','mode')},'same native ff36/1959 baseline')

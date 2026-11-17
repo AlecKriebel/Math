@@ -1,0 +1,19 @@
+--- static-source171-reference
++++ current-source174-acquisition
+@@ -15,7 +15,7 @@
+ import zlib
+ 
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+-ROWS = {23439776: 171, 23411227: 172, 23383930: 173}
++ROWS = {23409879: 174, 23171212: 175, 23384924: 176}
+ LIMITS = {'native_assets': 32, 'native_asset_bytes': 104857600, 'version_pages': 10,
+           'redirects': 3, 'containers': 32, 'nested_depth': 3, 'members': 4096,
+           'member_bytes': 33554432, 'uncompressed_bytes': 268435456,
+@@ -365,6 +365,7 @@
+     check(len(sys.argv) == 2 and int(sys.argv[1]) in ROWS, 'exact authorized record argument required')
+     record = int(sys.argv[1])
+     S = P / 'papers' / str(record) / 'sources'
++    check(not S.parent.exists(), 'paper root already exists unexpectedly; halt this record without overwrite')
+     check(not S.exists(), 'source root already exists; immutable targets never rerun')
+     S.mkdir(parents=True)
+     try:

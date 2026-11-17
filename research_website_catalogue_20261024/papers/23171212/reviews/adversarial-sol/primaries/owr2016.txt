@@ -1,0 +1,2023 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                   Report No. 7/2016
+
+                             DOI: 10.4171/OWR/2016/7
+
+               Mini-Workshop:                Applied Koopmanism
+                                       Organised by
+                                 Didier Henrion, Toulouse
+                                Igor Mezić, Santa Barbara
+                               Mihai Putinar, Santa Barbara
+
+
+                           7 February – 13 February 2016
+
+         Abstract. Koopman and Perron–Frobenius operators are linear operators
+         that encapsulate dynamics of nonlinear dynamical systems without loss of
+         information. This is accomplished by embedding the dynamics into a larger
+         infinite-dimensional space where the focus of study is shifted from trajectory
+         curves to measurement functions evaluated along trajectories and densities
+         of trajectories evolving in time. Operator-theoretic approach to dynamics
+         shares many features with an optimization technique: the Lasserre moment–
+         sums-of-squares (SOS) hierarchies, which was developed for numerically solv-
+         ing non-convex optimization problems with semialgebraic data. This tech-
+         nique embeds the optimization problem into a larger primal semidefinite pro-
+         gramming (SDP) problem consisting of measure optimization over the set
+         of globally optimal solutions, where measures are manipulated through their
+         truncated moment sequences. The dual SDP problem uses SOS representa-
+         tions to certify bounds on the global optimum. This workshop highlighted
+         the common threads between the operator-theoretic dynamical systems and
+         moment–SOS hierarchies in optimization and explored the future directions
+         where the synergy of the two techniques could yield results in fluid dynamics,
+         control theory, optimization, and spectral theory.
+
+
+Mathematics Subject Classification (2010): 37M25, 90C22, 93B28.
+
+
+
+                        Introduction by the Organisers
+
+In a remarkable outline of mathematics and its future at the beginning of XX-
+th century, Poincaré suggested that complicated dynamics governed by non-linear
+partial differential equations can be reduced to and analyzed with the novel (at that
+time) linear infinite dimensional spectral methods advocated by Hilbert and Fred-
+holm, [23]. Prompted by the advance of spectral theory for unitary and unbounded
+298                                                   Oberwolfach Report 7/2016
+
+self-adjoint operators, Poincaré’s vision became reality a good two decades later
+by landmark contributions of Carleman [7], Koopman [11] and von Neumann [27].
+Although originally aimed at ergodic theory, these linear operator reductions of
+dynamical systems have far reaching implications and a much wider, unexpected
+area of applicability. The modern high potential of computer simulations and
+accumulation of big data have imposed a reconsideration and full appreciation
+of Poincaré’s bold prophecy. It suffices to note the recent surge of interest for
+Carleman linearization, spectral analysis of Koopman’s operator or Koopman-von
+Neumann mechanics. From our narrow perspective, we witness today a prolif-
+eration of results utilizing this very operator-theoretic approach in the study of
+dynamical and control systems [5, 9, 12, 22]. The need of integration of appar-
+ently disparate efforts into a comprehensive theory was the principal motivation
+of the mini-workshop. The main focus was the interplay between ergodic theory,
+operator theory, geometric dynamical systems and convex optimization methods.
+   Two classes of linear operators were of particular interest for the workshop:
+Koopman-type operators [5] and Perron–Frobenius-type operators [8, 12]. Koop-
+man (or composition) operator is a linear infinite-dimensional operator that can
+be defined for any nonlinear dynamical system. The linear operator retains the
+full information of the nonlinear state-space dynamics. The formalism based on
+Koopman operator representation holds promise for extension of dynamical sys-
+tems methods to systems in high-dimensional spaces as well as hybrid systems,
+with a mix of smooth and discontinuous dynamics. Recently, Koopman operator
+properties have been intensely studied, and applications pursued in fields as di-
+verse as fluid mechanics and power grid dynamics. Perron–Frobenius operator is
+also a linear operator, and, when defined in an appropriate function space, the
+adjoint to the Koopman operator. Physically, the Perron–Frobenius operator is
+useful in studying propagation of dynamical systems’ densities. It has shown major
+promise for applications such as Lagrangian properties of fluid flows and control
+and optimization of dynamical systems. Next we describe the main themes of the
+workshop.
+   One of the topics that indicates how merging of techniques from optimization
+and ergodic theory can be useful is the development of dedicated convex optimiza-
+tion techniques for the numerical study of dynamical systems. More specifically,
+we are interested in tailoring the moment-SOS hierarchies of semidefinite program-
+ming (SDP) – originally developed for polynomial optimization – to obtain rele-
+vant information on the support of invariant measures for dynamical systems with
+semialgebraic dynamics and constraints. Invariant measures have been studied ex-
+tensively in dynamical systems theory [12] and Markov decision processes [10] and
+it is now recognized that key properties of a dynamical system can be assessed
+by considering only a few moments of a measure transported along the system
+flow [1]. The constructive proof of the ergodic partition theorem [4, 19] provides
+characterization of ergodic sets, which are the smallest invariant sets that ensure
+measurability of partition. Ergodic sets are the supports of ergodic measures,
+that can in turn be studied via their moments, or their Fourier coefficients in the
+Mini-Workshop: Applied Koopmanism                                              299
+
+periodic case. Here too, the key idea consists in observing the action of invari-
+ant measures on a countable number of observables, or test functions, see e.g. [5]
+or [18]. Even more recently, invariant measures and weak Kolmogorov–Arnold–
+Moser (KAM) theory have been used to study geometrical properties of the joint
+spectral radius (JSR) of a set of linear operators [6, 21].
+    Hierarchies of finite-dimensional convex optimization problems have been intro-
+duced in the early 2000s to solve numerically non-convex optimization problems
+with semialgebraic data, with convergence guarantees [13]. The overall strategy
+consists of building a family of semidefinite programming (SDP) problems [2] of
+increasing size, with primal SDP problems relaxing the original polynomial opti-
+mization problem in the space of truncated moments of a measure supported on the
+globally optimal solutions, and dual SDP problems certifying bounds on the global
+optimum with specific polynomial sum-of-squares (SOS) representations. In the
+context of polynomial optimization, this is called the moment-SOS hierarchy [15]
+or sometimes Lasserre’s hierarchy [22], and this relies on fundamental results of
+convex algebraic geometry, see [24] or [3]. The approach has been extended in [14]
+to optimal control problems on ordinary differential equations (ODEs), and more
+recently, to construct families of semialgebraic approximations of the support of
+measures transported along the flow of controlled ODEs [9].
+    Another topic of interest was the relationship between geometric properties of
+dynamical systems and spectral properties of the associated operators. In fact, the
+hallmark of the work on the operator-theoretic approach in the last two decades
+is the linkage between geometrical properties of dynamical systems - whose study
+has been advocated and strongly developed by Poincaré and followers - with the
+geometrical properties of the level sets of Koopman eigenfunctions [16,17,19]. The
+operator-theoretic approach has been shown capable of detecting objects of key
+importance in geometric study, such as invariant sets, but doing so globally, as
+opposed to locally as in the geometric approach. It also provides an opportunity
+for study of high-dimensional evolution equations in terms of dynamical systems
+concepts [20,25] via a spectral decomposition, and links with associated numerical
+methods for such evolution equations [26].
+    Judging by the contents of the lively discussions during lectures or daily ad-
+hoc seminars, sometimes extended to the late hours of evening, we believe that
+the workshop was a success. It has offered a timely and unique opportunity of
+collaboration and exchange of views among experts in operator theory, convex
+optimization, dynamical systems, and systems control. The seeds of a new research
+group, strongly bonded by convergent mathematical interests, were laid on this
+occasion.
+    The abstracts below offer an accurate picture of the scientific themes touched
+during the mini-workshop.
+
+
+                                                                   Didier Henrion
+                                                                       Igor Mezić
+                                                                   Mihai Putinar
+300                                                            Oberwolfach Report 7/2016
+
+Acknowledgement: The MFO and the workshop organizers would like to thank the
+National Science Foundation for supporting the participation of junior researchers
+in the workshop by the grant DMS-1049268, “US Junior Oberwolfach Fellows”.
+
+                                       References
+ [1] D. Barkley, I. G. Kevrekidis, A. M. Stuart. The moment map: nonlinear dynamics of
+     density evolution via a few moments. SIAM J. Appl. Dyn. Syst., 5(3):403–434, 2006.
+ [2] A. Ben-Tal, A. Nemirovski. Lectures on modern convex optimization. SIAM, Philadelphia,
+     2001.
+ [3] G. Blekherman, P. A. Parrilo, R. R. Thomas (Editors). Semidefinite optimization and
+     convex algebraic geometry. SIAM, Philadelphia, 2013.
+ [4] M. Budišić. Ergodic quotients in analysis of dynamical systems. PhD thesis, Univ. Califor-
+     nia Santa Barbara, 2012.
+ [5] M. Budišić, R. Mohr, I. Mezić. Applied Koopmanism. Chaos 22:047510, 2012.
+ [6] V. Calvez, P. Gabriel, S. Gaubert. Non-linear eigenvalue problems arising from growth
+     maximization of positive linear dynamical systems. arXiv:1404.1868, April 2014.
+ [7] T. Carleman. Application de la théorie des équations intégrales linéaires aux systèmes
+     d’équations différentielles non linéaires, Acta Math. 59(1932), 63–87.
+ [8] M. Dellnitz, O. Junge. On the approximation of complicated dynamical behavior, SIAM
+     J. Numer. Anal., 36 (2), 1999.
+ [9] D. Henrion, M. Korda. Convex computation of the region of attraction of polynomial
+     control systems. IEEE Trans. Autom. Control, 59(2):297–312, 2014.
+[10] O. Hernández-Lerma, J. B. Lasserre. Markov chains and invariant probabilities. Birkhäuser,
+     Basel, 2003.
+[11] B. O. Koopman. Hamiltonian systems and transformations in Hilbert space, Proc. Natl.
+     Acad, Sci. USA, 17(1931), 315-318.
+[12] A. Lasota, M. C. Mackey. Probabilistic properties of deterministic systems. Cambridge
+     Univ. Press, Cambridge, UK, 1985.
+[13] J. B. Lasserre. Global optimization with polynomials and the problem of moments. SIAM
+     J. Optim. 11(3):796–817, 2001.
+[14] J. B. Lasserre, D. Henrion, C. Prieur, E. Trélat. Nonlinear optimal control via occupation
+     measures and LMI relaxations. SIAM J. Control Optim. 47(4):1643-1666, 2008.
+[15] J. B. Lasserre. Moments, positive polynomials and their applications. Imperial College
+     Press, London, UK, 2010.
+[16] A. Mauroy, I. Mezić. On the use of Fourier averages to compute the global isochrons of
+     (quasi)periodic dynamics, Chaos, 22(3):033112, 2012.
+[17] A. Mauroy, I. Mezić, J. Moehlis. Isostables, isochrons, and Koopman spectrum for the
+     action-angle reduction of stable fixed point dynamics, Physica D, 261:19-30, 2013.
+[18] A. Mauroy, I. Mezić. Global stability analysis using the eigenfunctions of the Koopman
+     operator arXiv:1408.1379, August 2014.
+[19] I. Mezić. On the geometrical and statistical properties of dynamical systems: theory and
+     applications. PhD Thesis, California Inst. Tech., 1994.
+[20] I. Mezić. Spectral properties of dynamical systems, model reduction and decompositions.
+     Nonlinear Dyn. 41:309-325, 2005.
+[21] I. D. Morris. Mather sets for sequences of matrices and applications to the study of joint
+     spectral radii. Proc. London Math. Soc., 107(3):121–150, 2013.
+[22] J. Nie. Optimality conditions and finite convergence of Lasserre’s hierarchy. Math. Prog.,
+     Ser. A, 146(1-2):97–121, 2014.
+[23] H. Poincaré. L’avenir des mathématiques, Proc. IV-th International Congress of Mathe-
+     maticians, Rome, 1908, Rend. Circolo Math. Palermo (26)1908, 152–168.
+[24] M. Putinar, S. Sullivant (Editors). Emerging applications of algebraic geometry. The IMA
+     Volumes in Mathematics and its Applications, vol. 149, Springer, Berlin, 2009.
+Mini-Workshop: Applied Koopmanism                                                       301
+
+[25] C.W. Rowley, I. Mezić, S. Bagheri, P. Schlatter, D.S. Henningson. Spectral analysis of
+     nonlinear flows, J. Fluid Mech. 641:115–127, 2009.
+[26] P. J. Schmid. Dynamic mode decomposition of numerical and experimental data. J. Fluid
+     Mech. 656:5-28, 2010.
+[27] J. von Neumann. Zur Opertatorenmethode in der klassischen Mechanik, Ann. Math.
+     33(1932), 587–642.
+Mini-Workshop: Applied Koopmanism                                                                                         303
+
+
+
+
+Mini-Workshop: Applied Koopmanism
+Table of Contents
+
+
+Amir Ali Ahmadi
+  Polynomial optimization for analysis of dynamical systems . . . . . . . . . . . . 305
+Marko Budišić (joint with Mihai Putinar)
+  Regularizing singular measures for maximum entropy reconstruction . . . 308
+Stéphane Gaubert (joint with X. Allamigeon, P. Benchimol and M. Joswig)
+    Nonarchimedean linear programming and mean payoff games . . . . . . . . . . 309
+Didier Henrion
+   The Lasserre hierarchy for polynomial optimization and optimal control                                                 311
+Roxana Hess (joint with Didier Henrion, Jean B. Lasserre, Tien Son Pham)
+   Semidefinite approximations of the polynomial abscissa . . . . . . . . . . . . . . . 312
+Oliver Junge
+   Set oriented numerics for dynamical systems . . . . . . . . . . . . . . . . . . . . . . . . 313
+Raphaël Jungers
+  Joint spectral characteristics of matrix semigroups . . . . . . . . . . . . . . . . . . . 315
+Milan Korda (joint with D. Henrion, Colin N. Jones)
+   Moment-sum-of-squares hierarchies for set approximation and optimal
+   control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 317
+Kari Küster
+   Pure Koopmanism . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 320
+Uwe Küster
+  Approximation of the Koopman-Operator eigenvalues of Trajectories . . . 322
+Yuri Latushkin
+   An invitation to evolution semigroups and linearized Euler operator . . . . 325
+Alexandre Mauroy (joint with Igor Mezić)
+   Analysis of dissipative nonlinear systems using the eigenfunctions of the
+   Koopman operator . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 327
+Igor Mezić
+   The Koopman Operator Formalism . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 328
+Ryan Mohr (joint with Igor Mezić)
+  Dissipative Dynamics, Spaces of Observables for the Associated Koopman
+  Operator, and the GLA Theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 331
+Mihai Putinar (joint with Marko Budišić)
+   Moment problems, maximal entropy and exponential transforms . . . . . . . 334
+304                                              Oberwolfach Report 7/2016
+
+Clarence W. Rowley (joint with Matthew O. Williams and Ioannis G.
+   Kevrekidis)
+   Connections between Koopman and Dynamic Mode Decomposition . . . . . 337
+Mini-Workshop: Applied Koopmanism                                                        305
+
+                                       Abstracts
+
+       Polynomial optimization for analysis of dynamical systems
+                          Amir Ali Ahmadi
+
+The miniworkshop on applied Koopmanism (MFO 1606b) brought together two
+mathematical communities who both work on computational analysis of dynamical
+systems but with very different sets of tools. The first camp studies the Koopman
+operator as a way of linearizing nonlinear dynamical systems but at the price of
+going to infinite dimensions. The second camp, roughly speaking, uses algebraic
+techniques in optimization to analyze dynamical systems through automatic con-
+struction of Lyapunov functions. As I belong to the second camp and was speaking
+in an early tutorial session by D. Henrion and myself, I spent my time giving an
+overview of sum of squares optimization, its connection to semidefinite program-
+ming, and its utility in proving Lyapunov inequalities for control problems. In this
+report, I give a brief summary of my talk.
+   At the core of most algebraic methods in optimization and control is the sim-
+ple idea of optimizing over polynomials that take only nonnegative values, either
+globally or on certain regions of the Euclidean space. A multivariate polynomial
+p(x) := p(x1 , . . . , xn ) is said to be (globally) nonnegative if p(x) ≥ 0 for all x ∈ Rn .
+As an example, consider the task of deciding whether the following polynomial in
+3 variables and degree 4 is nonnegative:
+                   p(x)   = x41 − 6x31 x2 + 2x31 x3 + 6x21 x23 + 9x21 x22
+(1)                         −6x21 x2 x3 − 14x1 x2 x23 + 4x1 x33
+                            +5x43 − 7x22 x23 + 16x42 .
+   This may seem like a daunting task (and indeed it is as testing for nonnegativity
+is NP-hard), but suppose we could “somehow” come up with a decomposition of
+the polynomial as a sum of squares:
+              p(x) =      (x21 − 3x1 x2 + x1 x3 + 2x23 )2 + (x1 x3 − x2 x3 )2
+(2)
+                          +(4x22 − x23 )2 .
+Then, we have at our hands an explicit algebraic certificate of nonnegativity of p(x),
+which can be easily checked (simply by multiplying the terms out).PA polynomial p
+is said to be a sum of squares (SOS), if it can be written as p(x) = qi2 (x) for some
+polynomials qi . What is appealing here is that the question of existence of an SOS
+decomposition (i.e., the task of going from (1) to (2)) can be cast as a semidefinite
+program (SDP) and be solved efficiently, e.g., by interior point methods. This is
+because of following equivalence [1] which is in fact very straightforward to prove:
+A polynomial p(x) of degree 2d is a sum of squares if and only if it can be written
+as
+                                 p(x) = z T (x)Qz(x),
+where z(x) is the vector of all monomials of degree d in x and Q is a positive
+semidefinite matrix.
+306                                                      Oberwolfach Report 7/2016
+
+   The question of when nonnegative polynomials admit a decomposition as a sum
+of squares is one of the central questions of real algebraic geometry, dating back to
+the seminal work of Hilbert [2], [3], and an active area of research today. This ques-
+tion is commonly faced when one attempts to prove guarantees for performance
+of algebraic algorithms in optimization and control.
+   In short, sum of squares decomposition is a sufficient condition for polynomial
+nonnegativity. It has become quite popular because of three reasons: (i) the
+decomposition can be obtained by semidefinite programming, (ii) the proof of
+nonnegativity is in form of an explicit certificate and is easily verifiable, and (iii)
+there is strong empirical (and in some cases theoretical) evidence showing that
+in relatively low dimensions and degrees, “most” nonnegative polynomials are
+sums of squares. Contrary to the low-dimensional situation, it is known that in
+very high dimensions (exceeding thousands of variables with the current bounds
+and with the degree fixed to four) most nonnegative polynomials are not sums of
+squares [4]. Fortunately, many problems of interest in control theory have fairly
+low dimensions.
+   Let us now explain why establishing nonnegativity of polynomials is an impor-
+tant problem. We briefly present two fundamental application areas: the polyno-
+mial optimization problem, and Lyapunov analysis of control systems.
+
+1.1. The polynomial optimization problem. The polynomial optimization
+problem (POP) is currently a very active area of research in the optimization
+community. It is the following problem:
+
+             minimize     p(x)
+(3)
+             subject to   x ∈ K := {x ∈ Rn | gi (x) ≥ 0, hi (x) = 0},
+where p, gi , and hi are multivariate polynomials. The special case of problem (3)
+where the polynomials p, gi , hi all have degree one is of course linear programming,
+which can be solved very efficiently. When the degree is larger than one, POP
+contains as special case many important problems in operations research; e.g.,
+all problems in the complexity class NP, such as MAXCUT, travelling salesman,
+computation of Nash equilibria, scheduling problems, etc.
+   A set defined by a finite number of polynomial inequalities (such as the set
+K in (3)) is called basic semialgebraic. By a straightforward reformulation of
+problem (3), we observe that if we could optimize over the set of polynomials,
+nonnegative on a basic semialgebraic set, then we could solve the POP problem to
+global optimality. To see this, note that the optimal value of problem (3) is equal
+to the optimal value of the following problem:
+                       maximize     γ
+(4)
+                       subject to   p(x) − γ ≥ 0, ∀x ∈ K.
+Here, we are trying to find the largest constant γ such that the polynomial p(x)−γ
+is nonnegative on the set K; i.e., the largest lower bound on problem (3). For ease
+of exposition, we only explained how a sum of squares decomposition provides a
+Mini-Workshop: Applied Koopmanism                                                         307
+
+sufficient condition for polynomial nonnegativity globally. But there are straight-
+forward generalizations for giving SOS certificates that ensure nonnegativity of a
+polynomial on a basic semialgebraic set; see, e.g., [1]. All these generalizations are
+amenable to semidefinite programming and commonly used to tackle the polyno-
+mial optimization problem.
+
+1.2. Lyapunov analysis of dynamical systems. Numerous fundamental prob-
+lems in nonlinear dynamics and control, such as stability, invariance, robustness,
+collision avoidance, controller synthesis, etc., can be turned by means of “Lyapunov
+theorems” into problems about finding special functions (the Lyapunov functions)
+that satisfy certain sign conditions. The task of constructing Lyapunov functions
+has traditionally been one of the most fundamental and challenging tasks in con-
+trol. In recent years, however, advances in convex programming and in particular
+in the theory of semidefinite optimization have allowed for the search for Lyapunov
+functions to become fully automated. As a simple example, if the task at hand is
+to establish global asymptotic stability of the origin for a polynomial differential
+equation ẋ = f (x), with f : Rn → Rn , f (0) = 0, then the Lyapunov inequalities
+that a radially unbounded Lyapunov function V would need to satisfy are [5]:
+
+                          V (x) > 0                        ∀x 6= 0
+(5)
+                          V̇ (x) = h∇V (x), f (x)i < 0     ∀x 6= 0.
+
+Here, V̇ denotes the time derivative of V along the trajectories of ẋ = f (x), ∇V (x)
+is the gradient vector of V , and h., .i is the standard inner product in Rn . If we
+parametrize V as an unknown polynomial function, then the Lyapunov inequalities
+in (5) become polynomial positivity conditions. The standard SOS relaxation for
+these inequalities would then be:
+
+(6)                 V    SOS        and       − V̇ = −h∇V, f i SOS.
+The search for a polynomial function V satisfying these two SOS constraints is a
+semidefinite program, which, if feasible, would imply1 a solution to (5) and hence
+a proof of global asymptotic stability through Lyapunov’s theorem.
+   In general, by restricting attention to polynomial Lyapunov functions one may
+introduce some conservatism. For example, the origin of the following simple
+differential equation
+                                      ẋ =     −x + xy
+                                      ẏ =     −y.
+is globally asymptotically stable and yet there is no polynomial Lyapunov function
+(of any degree!) that can prove this fact [7].
+
+    1Here, we are assuming a strictly feasible solution to the SDP (which unless the SDP has an
+empty interior will be automatically returned by the interior point solver). See the discussion
+in [6, p. 41].
+308                                                          Oberwolfach Report 7/2016
+
+                                       References
+ [1] P. A. Parrilo. Semidefinite programming relaxations for semialgebraic problems. Mathemat-
+     ical Programming, 96(2, Ser. B):293–320, 2003.
+ [2] D. Hilbert. Über die Darstellung Definiter Formen als Summe von Formenquadraten. Math.
+     Ann., 32, 1888.
+ [3] B. Reznick. Some concrete aspects of Hilbert’s 17th problem. In Contemporary Mathematics,
+     volume 253, pages 251–272. American Mathematical Society, 2000.
+ [4] Grigoriy Blekherman. There are significantly more nonegative polynomials than sums of
+     squares. Israel Journal of Mathematics, 153(1):355–380, 2006.
+ [5] H. Khalil. Nonlinear systems. Prentice Hall, 2002. Third edition.
+ [6] A. A. Ahmadi. Non-monotonic Lyapunov functions for stability of nonlinear and switched
+     systems: theory and computation. Master’s thesis, Massachusetts Institute of Technology,
+     June 2008. Available at http://aaa.lids.mit.edu/publications.
+ [7] A. A. Ahmadi, M. Krstic, and P. A. Parrilo. A globally asymptotically stable polynomial
+     vector field with no polynomial Lyapunov function. In Proceedings of the 50th IEEE Con-
+     ference on Decision and Control, 2011.
+
+
+ Regularizing singular measures for maximum entropy reconstruction
+                             Marko Budišić
+                     (joint work with Mihai Putinar)
+
+Moment problems are a class of inverse problems whose input data are moments:
+integrals of a basis set against an unknown measure or a distribution. The goal is
+to characterize the measure in some way, ranging from determining whether there
+is a (unique) measure that could generate the input data, to reconstruction or
+approximation of the measure itself.
+   In applied dynamical systems moment problems most commonly appear as at-
+tempts to reconstruct distributions of points in orbits from average values of func-
+tions evaluated along trajectories. Additionally, one can phrase the reconstruction
+of the spectral measure of the Koopman operator as a moment problem. Distri-
+butions that appear in both of these settings are often singularly continuous. As
+a result, they are poorly approximated by classical reconstruction techniques such
+as Padé approximations, adapted to point mass measures, or maximum entropy
+approximations, adapted to absolutely-continuous measures, i.e., those that have
+densities.
+   This presentation reported on the joint work with Mihai Putinar, described
+in two papers [1, 2] and in Putinar’s contribution to this volume, all of which
+contain further references. The work extends the reach of the maximum entropy
+algorithms from absolutely-continuous measures to a general class of measures.
+Figure 1 represents a schematic description of the algorithm, which starts at the
+finite set of input moments τµ and follows the full arrows to the approximation of
+the measure µ. The algorithm hinges on the use of the Riesz–Herglotz formula to
+represent the generating function for the moment sequence as an integral against
+an auxiliary measure φ, which is always absolutely continuous. The procedure
+calculates a finite set of moments τφ from a finite set of τµ and therefore regularize
+a moment sequence of a singular measure into a moment sequence that is suitable
+Mini-Workshop: Applied Koopmanism                                                                                309
+
+as an input to a maximum entropy reconstruction. Once maximum entropy is used
+to approximate the density dφ, the regularization of measures supported on one-
+dimensional spaces can be inverted on the density level using Plemelj–Sokhotski
+formulas, resulting in a density dµ serving as the approximation to the original
+unknown measure µ.
+   In future work we plan to apply this technique to reconstruction of spectral
+measures of the Koopman operator that arises in chaotic dynamical systems. Ad-
+ditionally, we plan to explore the possibilities for extending the approach to mea-
+sures with supports in higher-dimensional spaces.
+
+                                        Hilbert transform of density Hφ′
+            µ                                                                                          φ
+           i-li Plem                             exp(Hφ′ ) sin(φ′ )                            rm
+               m     elj                                                                   sf o
+                          –S                                                             an
+               z→           ok                                                       Tr        1 dφ
+                 e iϑ         ho                                                   y         −
+                        −                                                        ch     iϑ z
+                                                                                             )
+                          e-l tski                                            Ca
+                                                                                u
+                                                                                     e
+                                                                                      −
+                               im                       exp                     R (1−
+R                                 z→                                                                       Closure:
+    e−ikϑ dµ                        e iϑ µ̊(z)                        φ̊(z)
+                                                       Log
+                                                                                Po                         MAXENT
+                                                                                  we
+                                   es                                               re
+                               eri                                                    xp
+                          ls                                                            an
+                    r   ma                                                                si o
+                  Fo                                                                          n
+                                        Triangular moment transformation
+         τµ (k)                                                                                      τφ (k)
+
+          Figure 1. Relations between measures µ and φ, their moments,
+          and their analytic representations. Full arrows represent steps
+          actually performed in our implementation, while dashed arrows
+          represent analytical justifications that are not numerically evalu-
+          ated.
+
+
+                                                 References
+[1] Marko Budišić and Mihai Putinar. Conditioning moments of singular measures for entropy
+    optimization I. Indagationes Mathematicae, 23(4):848–883, December 2012.
+[2] Marko Budišić and Mihai Putinar. Conditioning moments of singular measures for entropy
+    maximization II: Numerical examples. Contemporary Mathematics (to appear), 6xx, 2016.
+
+
+
+       Nonarchimedean linear programming and mean payoff games
+                              Stéphane Gaubert
+          (joint work with X. Allamigeon, P. Benchimol and M. Joswig)
+
+Tropical linear programs are defined as the images by the valuation of classical
+linear programs over nonarchimedean ordered fields, like the field of Puiseux se-
+ries with real coefficients. We survey two recent applications of tropical linear
+programming:
+310                                                      Oberwolfach Report 7/2016
+
+      • bounding the complexity of mean payoff games by the complexity of piv-
+         oting methods in linear programming [3, 4];
+      • bounding the total curvature of the central path [2].
+   Mean payoff games are a class of deterministic zero-sum two-player perfect
+information games, in which each player wishes to maximize his average payoff
+per time unit. The question of the existence of a polynomial-time algorithm to
+solve these games was raised by Gurvich, Karzanov and Khachyan [8]. These
+games are among the problems known to be in NP ∩ coNP but not known to be
+in P.
+   We next relate this problem to an older question, raised by Dantzig at the time
+of the invention of the simplex algorithm, in 1947: the existence of a polynomial
+time pivoting rule.
+   We show that a positive answer to Dantzig’s problem, in a form satisfying a mild
+restriction, would yield a positive answer to the problem of Gurvich, Karzanov and
+Khachyan. Given a linear program
+                              min c · x, Ax ≤ b, x ≥ 0
+a rule is said to be combinatorial if it depends only on the signs of minors of the
+matrix ( Ac 0b ).
+Theorem 1. [4] A combinatorial pivoting rule for the simplex algorithm which
+would run in strongly polynomial time on all non-degenerate linear programs over
+R would allow one to solve mean payoff games in strongly polynomial time.
+   Recall that an algorithm is strongly polynomial if the number of arithmetic
+operations is bounded polynomially by the number of integers appearing in the
+instance, and if these arithmetic operations are applied to integers of bitsize poly-
+nomially bounded in the size of the input.
+   This theorem has been extended in [1] and [6] to cover more general semialge-
+braic pivoting rules.
+   The proof relies on the equivalence of mean payoff games problems and feasi-
+bility problems in tropical linear programming, established in an earlier work with
+Akian and Guterman [5].
+   A general unsolved question in linear programming is the existence of a strongly
+polynomial algorithm (Smale Problem 9). Interior point methods lead only to poly-
+nomial time estimates. These methods consists in following an algebraic curve: the
+central path arising from the logarithmic barrier. In order to analyse the complex-
+ity of central path following methods in a way independent of the technicalities of
+the method, Deza, Terlaky and Zinchenko proposed in [7] a continuous analogue
+of Hirsch’s conjecture, stating that the total curvature of the central path can be
+bounded linearly in the number of constraints.
+   We show in [2] that the image by the valuation of the central path over a
+nonarchimedean field may coincide with the image of a simplex path. This leads
+to the following counter example to the latter conjecture.
+Theorem 2 ( [2]). There is a linear program with 3r + 2 inequalities in dimension
+2r + 2 such that the total curvature of the primal-dual central path is Ω(2r ).
+Mini-Workshop: Applied Koopmanism                                                       311
+
+                                     References
+       [1] Xavier Allamigeon, Pascal Benchimol, and Stéphane Gaubert. The tropical shadow-
+           vertex algorithm solves mean payoff games in polynomial time on average. In Pro-
+           ceedings of the 41st International Colloquium on Automata, Languages, and Pro-
+           gramming (ICALP), number 8572 in Lecture Notes in Computer Science, pages
+           89–100. Springer, 2014.
+       [2] X. Allamigeon, P. Benchimol, S. Gaubert, and M. Joswig. Long and winding central
+           paths, 2014. arXiv:1405.4161.
+       [3] X. Allamigeon, P. Benchimol, S. Gaubert, and M. Joswig. Tropicalizing the simplex
+           algorithm. SIAM J. Disc. Math., 29(2):751–795, 2015.
+       [4] Xavier Allamigeon, Pascal Benchimol, Stéphane Gaubert, and Michael Joswig.
+           Combinatorial simplex algorithms can solve mean payoff games. SIAM J. Opt.,
+           24(4):2096–2117, 2015.
+       [5] M. Akian, S. Gaubert, and A. Guterman. Tropical polyhedra are equivalent to mean
+           payoff games. International Journal of Algebra and Computation, 22(1):125001 (43
+           pages), 2012.
+       [6] P. Benchimol. Tropical aspects of linear programming. PhD thesis, École Polytech-
+           nique, 2014.
+       [7] A. Deza, T. Terlaky, and Y. Zinchenko. Central path curvature and iteration-
+           complexity for redundant Klee-Minty cubes. In Advances in applied mathematics
+           and global optimization, volume 17 of Adv. Mech. Math., pages 223–256. Springer,
+           New York, 2009.
+       [8] V. A. Gurvich, A. V. Karzanov, and L. G. Khachiyan. Cyclic games and finding
+           minimax mean cycles in digraphs. Zh. Vychisl. Mat. i Mat. Fiz., 28(9):1407–1417,
+           1439, 1988.
+
+
+
+   The Lasserre hierarchy for polynomial optimization and optimal
+                               control
+                           Didier Henrion
+
+The objective of this tutorial talk was to introduce the Lasserre hierarchy for
+optimizing polynomials and solutions of differential equations with polynomial
+vector fields and semialgebraic constraints, based on the sketchy lecture notes [1].
+   The Lasserre hierarchy consists first in reformulating a non-convex problem
+as a linear optimization problem in a space of probability measures. Then, this
+infinite-dimensional linear optimization problem is solved approximately with a
+hierarchy of finite-dimensional semidefinite programming problems (i.e. linear
+optimization in the cone of non-negative quadratic forms) of increasing size, with
+convergence guarantees, obtained by exploiting the duality between the cone of
+positive polynomials and the cone of moments, see [4] for a nice introduction.
+   A parallel can be drawn with Koopman operator techniques which are also
+global linearizations. A non-linear differential equation is reformulated as an
+infinite-dimensional system of linear equations obtained by evaluating observables
+along trajectories.
+   The end of tutorial talk focused on applications of the Lasserre hierarchy to
+approximate the volume of a semialgebraic set [2] and to approximate the region
+of attraction of a controlled polynomial differential equation [3].
+312                                                            Oberwolfach Report 7/2016
+
+                                         References
+ [1] D. Henrion. Optimization on linear matrix inequalities for polynomial systems control. Lec-
+     ture notes used for a tutorial course given during the International Summer School of Au-
+     tomatic Control held at Grenoble, France, in September 2014.
+ [2] D. Henrion, J. B. Lasserre, C. Savorgnan. Approximate volume and integration for basic
+     semialgebraic sets. SIAM Review 51(4):722–743, 2009.
+ [3] D. Henrion, M. Korda. Convex computation of the region of attraction of polynomial control
+     systems. IEEE Transactions on Automatic Control 59(2):297–312, 2014.
+ [4] M. Laurent. Sums of squares, moment matrices and optimization over polynomials. Pages
+     157–270 in M. Putinar, S. Sullivant (Editors). Emerging applications of algebraic geometry,
+     Vol. 149 of IMA Volumes in Mathematics and its Applications, Springer-Verlag, New York,
+     2009.
+
+
+
+         Semidefinite approximations of the polynomial abscissa
+                                Roxana Hess
+       (joint work with Didier Henrion, Jean B. Lasserre, Tien Son Pham)
+
+This talk reports on some results of our joint work [3]. Let Q ⊂ Rn be compact
+and semi-algebraic. The abscissa of a univariate parameterized polynomial
+                                m
+                                X
+          p : s 7→ p(q, s) :=         pk (q)sk ∈ R[s],   s ∈ C, q ∈ Q, pk ∈ R[q]
+                                k=0
+
+with pm ≡ 1 is the maximal real part of its roots, i.e. the abscissa is the map
+a : Q → R, q 7→ a(q) := maxk=1,...,m ℜ(sk (q)), where sk (q) denote the roots of
+p(q, ·). It occurs, for example, when studying linear differential equations as a
+measure of the decay or growth rate of the solution. Furthermore, in the space
+of controller parameters one is interested in the zero sublevel set of the abscissa,
+called the stability region [2].
+   The abscissa function is continuous, but in general not locally Lipschitz. This
+low regularity causes numerical difficulties when designing and optimizing control
+laws and therefore motivates upper and lower approximations of the abscissa by
+less complex functions, in our case polynomials of fixed degree.
+   For the approximation from above we rewrite the set of zeros as the compact
+semi-algebraic set Z := {(q, x, y) ∈ Rn × R2 : q ∈ Q, pℜ (q, x, y) = pℑ (q, x, y) = 0}
+with x = ℜ(s), y = ℑ(s) and pℜ , pℑ ∈ R[q, x, y] such that p = pℜ + ipℑ . Then the
+abscissa is the optimal solution v of the infinite dimensional linear programming
+problem              Z
+                 inf        v(q) dq    s.t. v(q) − x ≥ 0 for all (q, x, y) ∈ Z,
+               v∈C(Q)   Q
+where C(Q) denotes the space of continuous functions from Q to R. In order to gain
+an implementable optimization problem, we build a hierarchy of finite dimensional
+semidefinite programming problems by replacing the nonnegativity constraint by
+a specific certificate of positivity as described in [4]. The resulting degree d poly-
+nomials vd are upper approximations of the abscissa function. Furthermore, our
+Mini-Workshop: Applied Koopmanism                                                           313
+
+main result states that the sequence (vd )d of increasing degree d converges to the
+abscissa a in L1 norm on Q.
+   Constructing a lower bound on the abscissa proved to be much more challeng-
+ing. We propose two methods: first, a direct one using elementary symmetric
+functions which is very neat and general, but involves many variables, and second,
+an approach using the Gauß-Lucas theorem which is computationally faster, but
+more complicated and subject to assumptions.
+
+                                       References
+[1] J.A. Cross, Spectral abscissa optimization using polynomial stability conditions, PhD thesis,
+    University of Washington, Seattle, 2010.
+[2] D. Henrion, J.B. Lasserre, Inner approximations for polynomial matrix inequalities and
+    robust stability regions, IEEE Transactions on Automatic Control 57(6):1456–1467, 2012.
+[3] R. Hess, D. Henrion, J.B. Lasserre, T.-S. Pham, Semidefinite approximations of the poly-
+    nomial abscissa, https://hal.archives-ouvertes.fr/hal-01181623, July 2015.
+[4] J.B. Lasserre, Moments, positive polynomials and their applications, Imperial College Press,
+    London, 2010.
+
+
+
+
+                Set oriented numerics for dynamical systems
+                               Oliver Junge
+
+Since the mid-nineties, set oriented numerical methods have been developed for
+the study of the global behavior of dynamical systems [2–4]. These methods can be
+used to, e.g., approximate different types of invariant sets or invariant manifolds
+but they also allow to extract statistical information on the dynamical behavior
+via the computation of invariant measures or almost invariant sets be means of
+the discretization of the Frobenius-Perron or the Koopman operator.
+   The methods are based on a multilevel approach which allows to cover the set
+of interest – e.g. an invariant manifold or the support of an invariant measure –
+by collections of subsets of state space. Since these methods yield outer approxi-
+mations and since numerically ill-conditioned long term simulations are avoided,
+these methods are quite robust. They are similar in spirit to the so-called cell
+mapping approach, see e.g. [9, 11]. However, a significant difference is that in the
+cell mapping case the numerical effort depends crucially on the dimension of state
+space whereas for the multilevel schemes the efficiency essentially depends on the
+complexity of the underlying invariant set.
+   More recent developments in this area comprise
+     • the rigorous verification of complicated dynamics in infinite-dimensional
+       systems, [1]: The method combines set-oriented numerical tools for the
+       computation of invariant sets and isolating neighborhoods, the Conley
+       index theory, and analytic considerations. For example, the existence of
+       period points, connecting orbits, and chaotic dynamics in the Kot-Schaffer
+       growth-dispersal model for plants has been shown.
+314                                                           Oberwolfach Report 7/2016
+
+      • the reliable quantification of transport rates among different subsets of
+        phase space [5]: Here, the concept of almost invariant sets is combined
+        with invariant manifold and lobe dynamics techniques. The result is a new
+        computational technique for computing key dynamical features, including
+        almost invariant sets, resonance regions as well as transport rates and
+        bottlenecks between regions in dynamical systems. This methodology can
+        be applied to a variety of multibody problems, including those in molecular
+        modeling, chemical reaction rates and dynamical astronomy.
+      • the construction of value functions for optimal control problems [10]: The
+        method is based on a set oriented approach for the discretization of the
+        problem in combination with graph-theoretic techniques. The central idea
+        is that a discretization of phase space of the given problem leads to an (all
+        source, single destination) shortest path problem on a finite graph.
+      • the construction of global optimal controllers for perturbed and quantized
+        systems [6–8]: The method is based on a set-oriented discretization of
+        the state space in combination with a new algorithm for the computation
+        of shortest paths in weighted directed hypergraphs. Based on this, tech-
+        niques for the design of optimal controllers are developed which are based
+        on a piecewise constant approximation of the value function of the under-
+        lying optimal control problem. The approach is particularly well suited
+        for problems with highly irregular value function, complicated state con-
+        straints and naturally handles hybrid and quantized systems.
+
+                                       References
+ [1] S. Day, O. Junge, and K. Mischaikow. A rigorous numerical method for the global analysis
+     of infinite-dimensional discrete dynamical systems. SIAM Journal on Applied Dynamical
+     Systems, 3(2), 117–160, 2004.
+ [2] M. Dellnitz and A. Hohmann. The computation of unstable manifolds using subdivision and
+     continuation. In H.W. Broer, S.A. van Gils, I. Hoveijn, and F. Takens, editors, Nonlinear
+     Dynamical Systems and Chaos, pages 449–459. Birkhäuser, PNLDE 19, 1996.
+ [3] M. Dellnitz and A. Hohmann. A subdivision algorithm for the computation of unstable
+     manifolds and global attractors. Num. Math., 75:293–317, 1997.
+ [4] M. Dellnitz and O. Junge. On the approximation of complicated dynamical behavior. SIAM
+     J. Numer. Anal., 36(2):491–515, 1999.
+ [5] M. Dellnitz, O. Junge, W.S. Koon, F.C. Lekien, M.W. Lo, J.E. Marsden. Transport in
+     dynamical astronomy and multibody problems. Int. J. Bifurcation Chaos Appl. Sci. Eng.,
+     15(3), 699–727, 2005.
+ [6] L. Grüne, O. Junge, Global optimal control of perturbed systems. Journal of Optimization
+     Theory and Applications, 136(3), 411–429, 2008.
+ [7] L. Grüne, O. Junge. Set Oriented Construction of Globally Optimal Controllers Mengenori-
+     entierte Konstruktion global optimaler Regler. At - Automatisierungstechnik, 57(6), 287–
+     295, 2009.
+ [8] S. Jerg, O. Junge, M. Post. Global optimal feedbacks for stochastic quantized nonlinear
+     event systems. J Comp Dyn, 1(1), 2015.
+ [9] H. Hsu. Global analysis by cell mapping. Int. J. Bif. Chaos, 2:727–771, 1992.
+[10] O. Junge and H. Osinga, A set oriented approach to global optimal control. ESAIM: Control,
+     Optimisation and Calculus of Variations, 10(2), 259–270, 2004.
+[11] E. Kreuzer. Numerische Untersuchung nichtlinearer dynamischer Systeme. Springer, 1987.
+Mini-Workshop: Applied Koopmanism                                                  315
+
+            Joint spectral characteristics of matrix semigroups
+                             Raphaël Jungers
+
+
+
+Introduction. We introduce the joint spectral characteristics, which are numeri-
+cal quantities that describe the asymptotic behaviour of matrix semigroups. They
+have found many applications, in particular in Systems and Control. The refer-
+ences mentioned are incomplete, and we apologize for omitting many important
+ones.
+   Consider a finite set of m matrices M ⊂ Rn×n . (Generalizations exist to com-
+plex matrices, infinite sets, etc. our goal here is to keep the discussion straightfor-
+ward and focus on the ideas.) In many applications (ranging through Engineer-
+ing, pure Mathematics, Computer Science), one may be interested in properties
+of products whose factors are from this finite set of matrices. That is, we are
+interested in the semigroup
+
+                           M∗ = {Ai1 . . . Ait : Ai ∈ M}.
+
+Joint spectral characteristics are numerical quantities that give quantitative char-
+acterizations of (different aspects of) the asymptotic behaviour of the semigroup
+M∗ . They have emerged quite independently during the second half of the 20th
+century. These quantities have attracted a lot of attention, not only because
+of their applications, but probably also because, despite the apparent simplic-
+ity of their definition, they turn out to be extremely hard to compute. See for
+instance [1, 13] for typical complexity results on the topic.
+   We here give an interpretation of these quantities in terms of linear discrete time
+switching systems, which are systems evolving according to the following law:
+
+(1)                    x(k + 1) = Aσk x(k)    σk ∈ {1, . . . , m}.
+
+Thus, these systems are not uniquely defined, but any ‘switching signal’ σ implies a
+well defined law of evolution for the system. The joint spectral characteristics can
+in fact be viewed as the rate of growth of the system corresponding to a particular
+definition of the switching signal.
+
+The joint spectral characteristics. The first one can easily be understood as a
+robust control quantity: it represents the worst case rate of growth of a switching
+system:
+                           ρ∞ (M) = lim maxt {||A||1/t },
+                                      t→∞ A∈M
+
+where Mt denotes the set of all products of length t. It is commonly referred to
+as the Joint Spectral Radius (JSR in short) of the set M. It has been introduced
+by Rota and Strang [12]. See [7] for a monograph on the topic.
+   The second quantity, often called the p-radius, finds motivations in functional
+analysis. See [6, 14] for early work on the topic, and [9] for a more computational
+316                                                      Oberwolfach Report 7/2016
+
+approach. It considers the average norm of all the products of length t :
+                                    "                   #1/(pt)
+                                      1 X             p
+                     ρp (M) = lim               ||A||           .
+                               t→∞ mt
+                                              t
+                                            A∈M
+
+  The next quantity also considers the asymptotic evolution of some average norm
+among all the products of length t, but, here, the geometric average is taken:
+                                     "             #1/(tmt )
+                                        Y
+                       ρ̄(M) = lim           ||A||           .
+                                  t→∞
+                                         A∈Mt
+
+In control, we often call it the Lyapunov exponent of the system (1) referring
+implicitely to a system where (equal) probabilities are appended to each matrix
+in the set, so that at each time step, one matrix is sampled from the set according
+to the probabilities. In this context, the Lyapunov exponent provides the rate of
+growth of the switching system with probability one. See [10,11] for a more formal
+statement of this result and recent computational approaches.
+   The joint spectral subradius is the direct counterpart of the JSR, where the
+minimal rate of growth is tracked, instead of the maximal one:
+                            ρ̌(M) = lim min t {||A||1/t }.
+                                     t→∞ A∈M
+
+It represents the minimal open-loop rate of growth that one can hope for System
+(1). The earliest reference we know of this quantity is [5]. See [4] for a recent
+computational approach of it.
+   Finally, the last quantity is also concerned with the smallest possible rate of
+growth, but now it is assumed that at every step k, one can choose the matrix
+depending on the present value of x(k). This last joint spectral quantity is thus
+smaller than the previous one. It has only been introduced formally recently [8],
+but the reader can find earlier implicit studies of it in [2, 3]. The stabilizability
+radius is defined as follows:
+ ρ̃ = sup inf{λ ∈ R : ∃σ(·), M > 0 s. t. ∀t ≥ 0, |x(t)| ≤ M λt |x0 |, x(0) = x0 }.
+      x0 ∈Rd
+
+Further work. Can these quantities be generalized to infinite dimensional linear
+operators, like the Koopman operator? Can some kind of unique Koopman oper-
+ator be defined for a given switching system? Normally, the Koopman operator
+is defined for a single, well defined, function from the state-space to itself, not for
+a switching system. Yet, we want to try the following definition (for the sake of
+clarity we restrict here our attention to sets with only two matrices): For a given
+set of matrices M = {A0 , A1 }, consider the normalized set M̂ = M/ρ(M), and
+suppose that M̂∗ is bounded (this happens generically, and the conditions for this
+nondefectiveness are well understood, see [7]). Then, one can define the following
+nonlinear operator:
+                      (
+                        A0 x, when supA∈M̂∗ ||Ax||2 = supA∈M̂∗ ||AA0 x||2
+(2)      f (x) =
+                        A1 x, otherwise.
+Mini-Workshop: Applied Koopmanism                                                             317
+
+We can then define a Koopman operator corresponding to the function f. Is this
+the ‘right’ definition for the Koopman operator of a switching system? Does it
+bring interesting information on the system?
+
+
+                                         References
+ [1] V. D. Blondel and J. N. Tsitsiklis. The boundedness of all products of a pair of matrices is
+     undecidable. Systems and Control Letters, 41:135–140, 2000.
+ [2] M. Fiacchini, A. Girard, and M. Jungers. On the stabilizability of discrete-time switched lin-
+     ear systems: novel conditions and comparisons. IEEE Transactions on Automatic Control,
+     2016. To appear.
+ [3] José C Geromel and Patrizio Colaneri. Stability and stabilization of discrete time switched
+     systems. International Journal of Control, 79(07):719–728, 2006.
+ [4] N. Guglielmi and V. Protasov. Exact computation of joint spectral characteristics of linear
+     operators. Foundations of Computational Mathematics, pages 1–61, 2012.
+ [5] L. Gurvits. Stability of discrete linear inclusions. Linear Algebra and its Applications,
+     231:47–85, 1995.
+ [6] R. Q. Jia. Subdivision schemes in lp spaces. Advances in Computational Mathematics, 3:309–
+     341, 1995.
+ [7] R. M. Jungers. The joint spectral radius, theory and applications. In Lecture Notes in
+     Control and Information Sciences, volume 385. Springer-Verlag, Berlin, 2009.
+ [8] R. M. Jungers and P. Mason. On feedback stabilization of linear switched systems via
+     switching signal control. arXiv preprint arXiv:1601.08141, 2016.
+ [9] R. M. Jungers and V. Yu. Protasov. Fast algorithms for the p-radius computation. SIAM
+     Journal on Scientific Computing, 3(33):1246–1266, 2016.
+[10] M. Pollicott. Maximal lyapunov exponent for random matrix productss. Inventiones Math-
+     ematicae, 181:209–226, 2010.
+[11] V.Yu. Protasov and R.M. Jungers. Lower and upper bounds for the largest lyapunov expo-
+     nent of matrices. Linear Algebra and its Applications, 438(11):4448–4468, 2013.
+[12] G. C. Rota and W. G. Strang. A note on the joint spectral radius. Indagationes Mathemat-
+     icae, 22:379–381, 1960.
+[13] J. N. Tsitsiklis and V.D. Blondel. The Lyapunov exponent and joint spectral radius of pairs
+     of matrices are hard- when not impossible- to compute and to approximate. Mathematics
+     of Control, Signals, and Systems, 10:31–40, 1997.
+[14] Y. Wang. Two-scale dilation equations and the mean spectral radius. Random and Compu-
+     tational Dynamics, 4(1):49–72, 1996.
+
+
+
+
+Moment-sum-of-squares hierarchies for set approximation and optimal
+                               control
+                            Milan Korda
+             (joint work with D. Henrion, Colin N. Jones)
+
+This talk revolved around the idea of lifting (or embedding) a difficult nonlin-
+ear problem into a higher dimensional (typically infinite dimensional) space where
+this problem becomes linear. This infinite-dimensional problem is then approxi-
+mated by a tractable finite-dimensional problem whose solutions provide informa-
+tion about the solutions to the original nonlinear problem.
+318                                                            Oberwolfach Report 7/2016
+
+   A particular instance that fits into this framework is the problem of analyzing
+the nonlinear discrete-time recurrence
+
+(1)                                     xt+1 = f (xt ).
+
+This recurrence is equivalently described by the infinite-dimensional linear Koop-
+man operator
+                                      v 7→ Kv := v ◦ f
+for all v ∈ F , where F is a suitable space of observables. This infinite dimensional
+operator is then approximated by a finite-dimensional one (i.e., by a matrix) whose
+spectral properties approximate the spectral properties of K which in turn give
+information on various properties of (1), e.g., on invariant sets, isochrons, ergodic
+partition, etc.
+
+Lifting for controlled ODEs. In this talk we focused in more detail on a dif-
+ferent lift-plus-approximate procedure particularly suited for studying problems
+involving the continuous-time controlled ODE
+                                    Z
+(2)                         ẋ(t) =   f (x(t), u) dνt (u),
+                                         U
+
+where νt ∈ P (U ) is the so-called relaxed control, where P (U ) is the space of
+probability measures on a compact control set U ⊂ Rm . Importantly from an
+application perspective, by Filippov-Ważewski theorem, the set of trajectories of
+the non-relaxed ODE ẋ(t) = f (x(t), u(t)), u ∈ L∞ ([0, T ]; U ), is dense in the
+supremum norm in the set of trajectories of (2).
+   The nonlinear ODE (2) is lifted into an infinite-dimensional space of nonnegative
+measures, where it is equivalently described by the so-called Liouville equation
+(3)
+Z                      Z                        Z
+                                                      ∂v
+     v(T, x) dµT (x) =     v(0, x) dµ0 (x)+              +∇v(t, x)·f (x, u) dµ(t, x, u),
+  Rn                    Rn                            ∂t
+                                               [0,T ]×Rn ×U
+
+
+which is required to hold for all v ∈ C 1 ([0, T ] × Rb ). The variables in this equation
+are the nonnegative measures (µ0 , µ, µT ) ∈ M(Rn )×M([0, T ]×Rn ×U )×M(Rn ).
+   This equation is a valid lifting only for the finite-time interval [0, T ]. For the
+infinite-time interval [0, ∞), a valid lifting reads
+
+        Z                     Z                    Z
+(4) β       v(x) dµ(x, u) =       v(x) dµ0 (x) +       ∇v · f (x, u) dµ(x, u) ∀v ∈ Cb1 (Rn )
+        Rn ×U                 Rn                   Rn ×U
+
+with variables (µ0 , µ) ∈ M(Rn ) × M(Rn × U ) and a given discount factor β > 0.
+   Equations (3) and (4) are linear equations in the cone of nonnegative mea-
+sures and the solutions to these equations are in one-to-one correspondence with
+trajectories of (2).
+Mini-Workshop: Applied Koopmanism                                                 319
+
+Approximation. The set of solutions to (3) and (4) over the cone of nonnegative
+measures is then approximated by a finite-dimensional set of linear equations over
+either a super-cone or sub-cone of the cone of nonnegative measures. If the set of
+solutions to the finite-dimensional approximation is larger than that of the original
+equation, then we obtain a relaxation of the original problem. If the set of solutions
+is smaller, then we obtain a tightening of the original problem.
+    Crucially for practical applications, these finite-dimensional approximations
+need to tractable in the sense that it is easy to optimize over the set of solu-
+tions of this finite-dimensional approximation. One such tractable approximation
+can be obtained provided that the supports of the measures are constrained to a
+basic semialgebraic set of the form
+
+                      X = {x ∈ Rn | gi (x) ≥ 0, i = 1, . . . , ng }
+
+with gi ∈ R[x] and provided that the vector field f (x, u) has polynomial entries,
+i.e., f ∈ R[x, u]n . One can then utilize the well-known Lasserre’s moment-sum-of-
+squares hierarchy [5], which provides a sequence of super-cones to M(X) defined
+by
+                                     n+d
+                Msup (X) = {y ∈ R( d ) | M (y)  0, M (y, g )  0,
+                 d                            d              d        i
+
+where Md (·) and Md (·, ·) are the so-called moment and localizing matrices and 
+denotes positive semidefiniteness. The cones Msupd (X) are semidefinite-program-
+ming representable for each d ≥ 0 and form a nested sequence of super-cones of
+M(X) indexed by the relaxation order d, i.e.,
+
+                         Msup      sup
+                          d (X) ⊃ Md+1 (X) ⊃ M(X).
+
+Restricting the set of test functions in either (3) or (4) to the basis spanning the
+set of all multivariate polynomials up to a degree d, we obtain a set of linear
+equations and an inclusion to an SDP representable cone Msup     d (X) and hence a
+set over which it is possible to optimize using semidefinite programming.
+   This lift-plus-approximate scheme can be used to derive a convex characteri-
+zation of the region of attraction (i.e., the backward reachable set), the forward
+reachable set (these are the results of [1]) and the maximum controlled invariant
+set [2] whose finite-dimensional relaxation provide a converging sequence of outer
+approximations to these sets. These are the results of [1] and [2]. A converging
+sequence of inner approximations to the region of attraction in the uncontrolled
+setting was proposed in [4]
+   If, on the other we try to tighten rather than relax the set of solutions to the
+Liouville’s equation over the cone of nonnegative measures, the situation is not as
+straightforward. A natural way to do this is to restrict the nonnegative measures
+to measures having a polynomial density belonging to an SDP representable qua-
+dratic module generated by gi ’s. This tightening, however, is too restrictive as no
+measures with polynomial densities solving (3) or (4) typically exist. One than
+has to resort to a modified lifting which leads to a different form of Liouville’s
+equation for which measures with polynomial densities are guaranteed to exist.
+320                                                           Oberwolfach Report 7/2016
+
+This lifting was developed in [3] and used to design a hierarchy of semidefinite-
+programming problems providing an asymptotically optimal sequence of rational
+feedback controllers for infinite-horizon discounted optimal control problems.
+
+                                       References
+ [1] D. Henrion, M. Korda. Convex computation of the region of attraction of polynomial control
+     systems. IEEE Trans. Autom. Control, 59:297-312, 2014.
+ [2] M. Korda, D. Henrion, C. N. Jones. Convex computation of the maximum controlled invari-
+     ant set for polynomial control systems. SIAM J. Control Optim., 52:2944-2969, 2014.
+ [3] M. Korda, D. Henrion, C. N. Jones. Controller design and value function approximation for
+     nonlinear dynamical systems. Automatica, 67: 54–66, 2016.
+ [4] M. Korda, D. Henrion, C. N. Jones. Inner approximations of the region of attraction for
+     polynomial dynamical systems, IFAC Symposium on Nonlinear Control Systems (NOL-
+     COS), Toulouse, July 2013.
+ [5] J. B. Lasserre. Global Optimization with Polynomials and the Problem of Moments, SIAM
+     J. Optim. 11(3):796-817, 2001.
+
+
+
+                                  Pure Koopmanism
+                                    Kari Küster
+
+Given a dynamical system ϕ : K → K, the idea of switching to a Koopman system
+consists of going from the state space K to an observable space F ⊆ {f : K → C}
+and from the dynamics ϕ to the Koopman operator Tϕ : F → F , f 7→ f ◦ ϕ.
+In the following, we choose F := C(K) for K compact and ϕ continuous. The
+linear system (C(K); Tϕ ) preserves all information about the underlying dynamical
+system (K; ϕ) in the following sense (see [1, Th. 4.13 and Cor. 4.15] or [3, Th.
+2.3.5]).
+Theorem 1. Two dynamical systems (K; ϕ) and (L; ψ) are isomorphic (i.e., there
+is a homeomorphism θ : K → L such that ψ ◦ θ = θ ◦ ϕ) if and only if the
+corresponding Koopman systems (C(K); Tϕ ) and (C(L); Tψ ) are isomorphic (i.e.
+there is an C ∗ -algebra isomorphism T : C(L) → C(K) such that T ◦ Tψ = Tϕ ◦ T ).
+   This makes it promising to investigate in detail the interplay between a dynam-
+ical system and its Koopman system and to find “translations” of properties of
+the dynamical system to properties of the Koopman system and vice versa.
+   Before giving examples, we recall the basic properties of the spectrum σ(Tϕ ) of
+the Koopman operator.
+Theorem 2. (i) The spectral radius is r(Tϕ ) = 1, hence σ(Tϕ ) is contained in
+      the unit disk D.
+ (ii) If Tϕ be bijective, then σ(Tϕ ) is a cyclic closed subset of the unit circle T.
+(iii) If Tϕ is not bijective, then σ(Tϕ ) = {0} ∪ M for M ⊆ T cyclic and closed or
+      σ(Tϕ ) = D.
+  This reveals that there are not so many possibilities for the spectrum σ(Tϕ ) and
+we therefore turn our attention to the point spectrum P σ(Tϕ ).
+Mini-Workshop: Applied Koopmanism                                                      321
+
+Theorem 3. (i) 1 ∈ P σ(Tϕ ).
+ (ii) If λ ∈ P σ(Tϕ ), then λk ∈ P σ(Tϕ ) for every k ∈ N0 .
+(iii) P σ(Tϕ ) is cyclic, that is, for every λ = |λ|eiϕλ ∈ P σ(Tϕ ) also |λ|eiϕλ k ∈
+      P σ(Tϕ ) for all k ∈ Z.
+(iv) If K is metrizable, then P σ(Tϕ ) ∩ T is countable.
+
+   We give an example how to obtain information on the Koopman system from
+the dynamical system (see [3, Th 3.0.2]).
+                                   
+Example 4. Take X := Ck ; k · k and a matrix A ∈ Ck×k with kAk ≤ 1 for the
+induced operator norm. For the closed unit ball U in X, consider the restriction
+A U : U → U , and the associated Koopman operator TA : C(U ) → C(U ), f 7→
+f ◦ A U . How is the spectrum of the corresponding Koopman operator determined
+by the spectrum of the dynamics A?
+
+Theorem 5. (see [3, Th. 3.1.5 and Th. 3.1.14])
+  (i) If σ(A) ⊆ T, then P σ(TA ) is the group hσ(A)i generated by σ(A).
+ (ii) If there is λ ∈ σ(A) such that 0 < |λ| < 1 and σ(A) ∩ T 6= ∅, then D◦ ∪
+      hσ(A) ∩ Ti ⊆ P σ(TA ).
+(iii) If there is λ ∈ σ(A) such that 0 < |λ| < 1 and σ(A) ∩ T = ∅, then P σ(TA ) =
+      D◦ ∪ {1}.
+
+Remark 6. Even though the system (U ; A U ) is itself linear it makes sense to
+investigate its Koopman linearization, since (U ; A U ) can be isomorphic to non-
+linear dynamical systems (K; ϕ), e.g., via linearized stability analysis. Since the
+point spectrum is an isomorphy invariant, we have P σ(TA ) = P σ(Tϕ ).
+
+   Next we draw conclusions from the Koopman system to its underlying dynamics.
+
+Example 7. Consider C(K)r := lin{f ∈ C(K) : Tϕ f = λf for some λ ∈ T}.
+Since C(K)r is a commutative C ∗ -subalgebra of C(K), there is some compact
+space L such that C(K)r ∼  = C(L) by the Gelfand-Naimark theorem. This yields
+the following partitioning of the state space.
+
+Theorem 8. (see [3, Th. 4.2.3])) There is a disjoint decomposition of the state
+              Ṡ
+space as K = s∈L Ks , where Ks := ψ −1 (s) for a surjective continuous mapping
+ψ : K → L. Moreover, for all s ∈ L exists some ts ∈ L such that ϕ(Ks ) ⊆ Kts
+and Kts1 6= Kts2 for s1 6= s2 .
+
+   For a root of unity contained in the spectrum of the Koopman operator, we
+even obtain a cyclic behavior of the dynamics.
+
+Theorem 9. (see [3, Th. 3.2.4]) If {1, ζk , ζk2 , ..., ζkk−1 } ⊆ P σ(Tϕ ) and dim fix (Tϕ )
+= 1, then K is a union of k pairwise disjoint, open and closed sets K1 , ..., Kk and
+ϕ(K1 ) ⊆ K2 , ϕ(K2 ) ⊆ K3 , ..., ϕ(Kk ) ⊆ K1 .
+
+   In some cases, the space C(K)r plays a particular important role.
+322                                                            Oberwolfach Report 7/2016
+
+Definition 10. If (K; ϕ) is a dynamical system with corresponding Koopman
+system (F ; Tϕ ) we say that there exists a Jacobs-de-Leeuw-Glicksberg splitting if
+F = Fs ⊕ Fr with stable part
+                                                                         i→∞
+      Fs := {f ∈ F ∃ (ni )i∈N ⊆ N with density 1 such that Tϕni f −→ 0 weakly}
+and reversible part Fr := lin{f ∈ F : ∃ λ ∈ T such that Tϕ f = λf }.
+Theorem 11. (see e.g. [2, Th. I.1.11 and Th. II.4.1]) If Tϕ has relatively weakly
+compact orbits, then it has a Jacobs-de Leeuw-Glicksberg splitting.
+
+                                   Acknowledgments
+This contribution is based on the author’s Master’s thesis, completed at the Uni-
+versity of Tübingen, under supervision of Prof. Dr. Rainer Nagel and Dr. Roland
+Derndinger.
+
+                                        References
+ [1] T. Eisner, B. Farkas, M. Haase, and R. Nagel. Operator theoretic aspects of ergodic theory.
+     Graduate Texts in Mathematics 272. Springer, 2015.
+ [2] Tanja Eisner. Stability of Operators and Operator Semigroups, volume 209 of Operator
+     Theory: Advances and Applications. Birkhäuser, 2010.
+ [3] K. Küster. The Koopman linearization of dynamical systems. Master’s thesis, Universität
+     Tübingen, 2015.
+
+
+
+Approximation of the Koopman-Operator eigenvalues of Trajectories
+                         Uwe Küster
+For a linear or nonlinear operator ϕ : K −→ K on a compact topological space K,
+the Koopman-operator or composition operator is given by Tϕ : F −→ F defined
+by Tϕ (f ) = f ◦ ϕ forall f ∈ F . The so-called observables F are a closed linear
+space of continuous functions on the state space K with the necessary stability
+property f ◦ ϕ ∈ F for all f ∈ F . F might be the complete space of continuous
+functions on the state space on the one hand or might be generated by a single
+element f together with the stability property on the other hand. If the space of
+observables increases, the Koopman operator on the inclosing space induces the
+Koopman operator on the enclosed space. The Koopman operator is bounded, has
+a spectrum and as subset the point spectrum of the eigenvalues and eigenvectors
+associated to these. The eigenvectors are elements of the observables F . Eigenpairs
+on an enclosed space are eigenpairs on the inclosing space. This approach enables
+applying the concept of the spectrum and the spectral decomposition of a linear
+operator to the analysis of nonlinear operators. Koopman theory is embedded in
+ergodic theory of functional analysis. For the whole theoretical framework see the
+book [1] and as introduction for the subject [7]. Reasoning the significance of the
+theory in physical and technical application fields is done in [2] and with regard to
+computational fluid dynamics in [6] and [8]. The generality of the approach can
+be understood as potential for gaining insight in the results of complex numerical
+Mini-Workshop: Applied Koopmanism                                                     323
+
+simulations as done by discretized Navier-Stokes equations (by any discretization
+technique) including turbulent flows or the even more complicated systems for
+weather forecast. In the case of the discretized partial diffferential equations the
+state space is a compact part of the space of discretized functions or parameters
+describing these, for example coefficients in spectral elements. It turns out, that it
+might be enough to analyse the values of the observables on the states belonging to
+one or a few trajectories to describe some spectral properties of the operator. This
+makes numerical analysis feasible. Important is an appropriate problem dependent
+selection of observables. The numerically spectrum as an approximation of the
+subset of the spectrum depends on this selection. If the selection allows, then
+the product of two numerically given eigenvalues is also an eigenvalue, unless the
+product of the eigenvector observables disappears. The generality of the Koopman
+approach enables for the analysis of dynamical systems where the state space
+K has no evident algebraic structure as for agent based systems, which can be
+used to describe emergence in complex systems based on simple rules. Unlike the
+state space the observables have an algebraic structure. The Koopman operator
+gives a linear view on all these nonlinear phenomena by its simple construction
+and reflects spectral attributes as eigenvalues and eigenvectors in the space of
+observables on the state space which can be used to decompose the state space in
+different domains as levelsets of eigenfunctions (see [2]). The operator has not to
+be known explicitly but its effect of iterating on the trajectories starting at some
+states seen by observables. We assume a finite set of observables given as a vector
+h ∈ ⊕ii=1
+       max
+           F . Starting with the state q0 we get n iterated states qk = ϕk q0 with the
+observed vectorial values gk = h (qk ). Reordering these as a Hankel type matrix
+G0:n−p, 0:p for some p ≤ n of lines, which are shifted element by element, we get
+(1)
+                                                                                   
+    h (q0 )   (Tϕ h) (q0 )    ...         Tϕp h (q0 )       g0      g1     ...   g0+p
+  h (q1 )
+             (T ϕ h) (q1 )   ...         Tϕp h (q1 ) 
+                                                        
+                                                            g1      g2     ...   g1+p 
+                                                                                       
+  h (q2 )
+             (T ϕ h) (q2 )   ...         Tϕp h (q2 )     
+                                                        =  g2      g3     ...   g2+p 
+                                                                                       
+                   ..                                              ..               
+                    .                                               .               
+                                            p
+                                               
+   h (qn−p ) (Tϕ h) (qn−p )   ...         Tϕ h (qn )        gn−p   gn−p+1   ...    gn
+If there exist a normalized vector c such that G0:n−p, 0:p c ≈ 0 we can extract
+approximated values ge0:n by applying a (n+1)×(n+1) projektion Q as G     e0:n, 0:0 =
+G0:n, 0:0 (I − Q) from the right, which depends on c. This leads to a decomposition
+of the approximating values
+                                  Xp
+(2)                         g̃k =    vl λkl ∀ k = 0, · · · , n
+                                    l=1
+where the complex values λl are the roots of the polynom λ 7→ c (λ) of degree p
+given by the cofficient vector c, assuming here that they are unique. The vectors
+vl are the so-called Koopman modes and have the same dimension as h. This de-
+composition is the result of the so called Dynamic modes Decomposition of [5] for
+the special case p = n. Preferable is a smaller number of modes p. Multiplying the
+324                                                            Oberwolfach Report 7/2016
+
+Hankelmatrix of the approximating values from the left by a polynom coefficient
+vector wi of degree p − 1 having all λl as roots except for l = i, we select a single
+element vi wi (λi ) meaning that we have a Koopman eigenvector of the approxi-
+mating sequence composed linearly on the values of h along the trajectory. Any
+linear combination of the components of the vector vi is a Koopman eigenvector
+for the approximating eigenvalue λi . The vector c can be the vector minimizing
+the Rayleigh quotient <H(q   0 ) c, c>
+                           <c,c>       for the matrix H (q0 ) = GT0:n−p, 0:p G0:n−p, 0:p .
+Summing up matrices of this type for some different initial states q0 , which are
+not part of the same trajectory, it will be possible to extent the approxiative
+decomposition for identical values λl on these different trajectories as long as
+G0:n−p, 0:p c ≈ 0. The error can be described explicitely. By this way ensembles of
+trajectories can be analysed by a common decomposition.
+   The composition allows for the extraction of approximative Koopman eigenfunc-
+tions on the set of trajectories and may help for a deeper numerical investigation
+of the properties of the behaviour of the operator on these trajectories. The role in
+sense of a physical interpretation of the eigenfunctions depends on the observables
+and might be not self-evident. For eigenvalues λ of modulus 1 the norm of the
+vector consisting on related Koopman eigenfunctions will remain constant, only
+the complex phase of this vector will vary with the number of iterations. A special
+well known case is the mean value along the trajectory, which is surely invariant
+for physically relevant cases. This is shown by von Neumanns mean ergodic theo-
+rem for measure preserving operators under very general conditions (see [1] page
+136).
+   Understanding nonlinear operators as given by a variety of applications in differ-
+ent areas by there Koopman operator counterpart gives the chance of recognizing
+structures in the state space motivated by a spectral decomposition.
+
+
+                                        References
+ [1] T. Eisner, B. Farkas, M. Haase, and R. Nagel. Operator theoretic aspects of ergodic theory.
+     Graduate Texts in Mathematics 272. Springer, 2015.
+ [2] Marko Budišić, Ryan Mohr, and Igor Mezić. Applied koopmanism. Chaos: An Interdisci-
+     plinary Journal of Nonlinear Science, 22(4):047510, 2012.
+ [3] B. O. Koopman. Hamiltonian systems and transformation in Hilbert space. Proceedings of
+     the National Academy of Sciences of the United States of America, 17 (1931), 315.
+ [4] V. V. Peller, ”An excursion into the theory of Hankel operators, in Holomorphic spaces”
+     (Berkeley, CA, 1995), vol. 33 of Math. Sci. Res. Inst. Publ., Cambridge Univ. Press, Cam-
+     bridge, 1998, pp. 65–120.
+ [5] Peter J Schmid. Dynamic mode decomposition of numerical and experimental data. Journal
+     of Fluid Mechanics, 656:5–28, 2010.
+ [6] K. K. Chen, J. H. Tu, and C. W. Rowley. ”Variants of dynamic mode decomposition:
+     boundary condition, Koopman, and Fourier analyse”. J. Nonlinear Sci. 22(6):887–915, 2012.
+ [7] Kari Küster, ”The Koopman Linearization of Dynamical Systems”, Diplomarbeit,Mrz 2015,
+     Arbeitsbereich Funktionalanalysis, Mathematisches Institut, Eberhard-Karls-Universität
+     Tübingen
+ [8] C.W. Rowley, I. Mezić, S. Bagheri, P. Schlatter, and D.S. Henningson. Spectral analysis of
+     nonlinear flows. Journal of Fluid Mechanics, 641(1):115–127, 2009.
+Mini-Workshop: Applied Koopmanism                                                      325
+
+ An invitation to evolution semigroups and linearized Euler operator
+                           Yuri Latushkin
+
+We survey results on the evolution semigroups and Koopman operators, and
+demonstrate how they can be applied to the study of the essential spectrum of
+the operator obtained by linearizing the two- or three-dimensional Euler equa-
+tions of ideal incompressible fluids about a steady state solution. The results on
+the evolution semigroups are taken from [1], while the applications to the Euler
+equations follow [2, 5–8].
+   The evolution semigroup is a semigroups of weighted Koopman operators of the
+type (E t u)(x) = B t (ϕ−t x)u(ϕ−t x) where u is a vector valued function on a set X
+with values in a Banach space, ϕt is a flow on X, and B t is a cocycle over the flow
+with values in the set of bounded linear operators in the Banach space, that is,
+B t+s (x) = B s (ϕt x)B t (x), x ∈ X. A typical example of the evolution semigroup is
+the push forward semigroup E t u = Dϕt ◦u◦ϕ−t , where Dϕt is the differential of the
+flow ϕt on the smooth manifold generated by the vector field u0 ; the infinitesimal
+generator of this semigroup is the Lie bracket Lu = −(u0 · ∇)u + (u · ∇)u0 .
+   Of particular interest is the evolution semigroup associated with the bicharac-
+teristic amplitude system (BAS) for the Euler equations linearized about its steady
+state solution u0 . The linearized equation is of the form ut = −(u0 · ∇)u − (u ·
+∇)u0 − ∇p where p is the pressure while the BAS is a finite dimensional system
+obtained by inserting into this equation a fast oscillating solution. Using some
+abstract isomorphism theorems for operator algebras we prove that the Fredholm
+spectrum of the propagator of the linearized Euler equation is related to the spec-
+trum of the generator of the evolution semigroup associated with the BAS.
+   One of the main set of results on the evolution semigroups is the construction of
+a sequence of norm one functions un such that the norm of (L − λ)un approaches
+zero as n → ∞; the sequence is called the approximate eigenfunction and λ is
+called the approximate eigenvalue of the generator L of the evolution semigroup.
+This general construction is applied and modified for the case of the linearized two
+dimensional Euler equations. It is then used to prove that the spectrum of the
+linearized operator on a Sobolev space is a vertical band whose width is determined
+by the top Lyapunov exponent of the flow generated by u0 and the smoothness of
+the space.
+   Another set of results relates the spectral radius of the evolution operator E,
+(Eu)(x) = B(ϕ−1 x)u(ϕ−1 x), x ∈ X, acting in the space of continuous Rd vector
+valued functions on a compact X and induced by a homeomorphism ϕ and a
+continuous function B with values in the set of (d × d) matrices. Fix any ergodic
+ϕ-invariant measure ν ∈ Erg(ϕ) on X. By the (Oseledets) Multiplicative Ergodic
+                                                                      (1)         (d)
+Theorem, for ν-almost all x ∈ X there exist Lyapunov exponents λν ≥ · · · ≥ λν
+                                                   (j)
+and a B-invariant decomposition Rd = ⊕dj=1 Wν (x) such that
+                      1
+        λ(j)
+         ν = lim          log kB n (x)wkRd for each w ∈ Wν(j) (x), j = 1, . . . , d.
+                n→∞ n
+
+Here, B n (x) = B(ϕn−1 x) · . . . · B(ϕx)B(x) is the cocycle over ϕn , n = 1, 2, . . . .
+326                                                                 Oberwolfach Report 7/2016
+
+  The following formula holds for the spectral radius of the operator E, see [1]
+and references therein:
+
+(1)              log sprad(E) = lim max kB n (x)kRd×d =                  sup    λ(1)
+                                                                                 ν .
+                                   n→∞ x∈X                           ν∈Erg(ϕ)
+
+This formula can be applied in computing the joint spectral radius ρ(A1 , . . . , Am )
+of given (d × d) matrices A1 , . . . , Am defined by the formula
+
+             ρ(A1 , . . . , Am ) = lim        max          kAj0 · . . . · Ajn−1 kRd×d .
+                                  n→∞ 1≤j0 ,...,jn−1 ≤m
+
+
+Let (X, ϕ) be the two sided full topological Markov shift with m symbols, that is, X
+is the set of all two sided sequences x = (jk )k∈Z with the entries jk ∈ {1, . . . , m}
+and ϕ : (jk ) 7→ (jk+1 ). We define a (constant on the cylinders Cj = {x =
+(jk )k∈Z : j0 = j} and continuous on X) function B with values in the set of
+(d × d) matrices by the formula B(x) = Aj0 where x = (. . . , j−1 , j0 , j1 , . . .). Then
+B n (x) = B(ϕn−1 x) · . . . · B(x) depends only on the entries j0 , . . . , jn−1 of the
+sequence x and max1≤j0 ,...,jn−1 ≤m kAj0 · . . . · Ajn−1 kRd×d = maxx∈X kB n (x)kRd×d .
+Formula (1) now yields the following relation:
+
+                               ρ(A1 , . . . , Am ) =     sup      λ(1)
+                                                                   ν .
+                                                       ν∈Erg(ϕ)
+
+For interesting connections of the Multiplicative Ergodic Theorem and joint spec-
+tral radii one should consult the important papers by I. Morris [3, 4].
+
+
+                                         References
+      [1] C. Chicone and Y. Latushkin, Evolution Semigroups in Dynamical Systems and Dif-
+          ferential Equations, Math. Surv. Monogr. 70, AMS, Providence, 1999.
+      [2] Y. Latushkin and M. Vishik, Linear stability in an ideal incompressible fluid, Comm.
+          Math. Phys., 233 (2003), 439–461.
+      [3] I. Morris, A rapidly-converging lower bound for the joint spectral radius via multiplica-
+          tive ergodic theory. Adv. Math. 225 (2010), 3425–3445.
+      [4] I. Morris, Mather sets for sequences of matrices and applications to the study of joint
+          spectral radii. Proc. Lond. Math. Soc. 107 (2013), 121–150.
+      [5] R. Shvydkoy and S. Friedlander, On recent developments in the spectral problem for the
+          linearized Euler equation. Nonlinear partial differential equations and related analysis,
+          271–295, Contemp. Math., 371, Amer. Math. Soc., Providence, RI, 2005.
+      [6] R. Shvydkoy and Y. Latushkin, Essential spectrum of the linearized 2D Euler equation
+          and Lyapunov-Oseledets exponents. J. Math. Fluid Mech. 7 (2005) 164–178.
+      [7] R. Shvydkoy and Y. Latushkin, The essential spectrum of the linearized 2D Euler
+          operator is a vertical band. Contemp. Math. 327 (2003) 299–304.
+      [8] R. Shvydkoy and Y. Latushkin, Operator algebras and the Fredholm spectrum of ad-
+          vective equations of linear hydrodynamics. J. Funct. Anal. 257 (2009) 3309 - 3328.
+Mini-Workshop: Applied Koopmanism                                               327
+
+ Analysis of dissipative nonlinear systems using the eigenfunctions of
+                         the Koopman operator
+                           Alexandre Mauroy
+                        (joint work with Igor Mezić)
+
+In this talk we investigated the interplay between the spectral properties of a
+semigroup of Koopman operators and the stability properties of the underlying
+nonlinear system. This result provides a new approach to global stability analysis
+which mirrors the spectral stability analysis of linear systems.
+
+Koopman eigenvalues and global stability. We consider a nonlinear dynam-
+ical system described by a flow ϕ : R+ × Rn → Rn . The semigroup of Koopman
+operators Uϕt : F → F , t > 0, is defined by the composition Uϕt f (x) = f ◦ ϕ(t, x)
+for all observable f : Rn → C, f ∈ F [2].
+    A Koopman eigenfunction φλ ∈ F satisfies Uϕt φλ = eλt φλ for all t > 0, and
+λ ∈ C is the corresponding Koopman eigenvalue. If the flow is induced by a vector
+field ẋ = F (x), with F ∈ C 1 , then the Koopman eigenfunction φλ ∈ F ⊆ C 1
+satisfies the eigenvalue equation F · ∇φλ = λφλ .
+    It can be shown that if the flow ϕ admits an attractor Γ ⊂ X ⊆ Rn , then the
+eigenfunctions φλ ∈ F ⊆ C 0 (X), with ℜ{λ} < 0, satisfy φλ (x) = 0 for all x ∈ Γ.
+Moreover, we have the following result.
+Theorem 1. Suppose that X ⊂ Rn is a forward invariant compact set and that the
+semigroup of Koopman operators Uϕt admits an eigenfunction φλ ∈ F ⊆ C 0 (X)
+with the eigenvalue ℜ{λ} < 0. Then the zero level set
+                            M0 = {x ∈ X|φλ (x) = 0}
+is forward invariant under ϕ and globally asymptotically stable.
+Hyperbolic attractors and numerical methods. Theorem 1 can be used to
+obtain necessary and sufficient (spectral) conditions for global stability of hyper-
+bolic attractors.
+Theorem 2 (Hyperbolic fixed point). Let X ⊂ Rn be a connected, forward in-
+variant, compact set and let ϕ be the flow induced by ẋ = F (x), with F ∈ C 2 (X).
+Assume that there exists x∗ ∈ X such that F (x∗ ) = x∗ and so that ∂F/∂x(x∗ )
+has N distinct eigenvalues with strictly negative real part. Then, the fixed point
+x∗ is globally asymptotically stable in X if and only if the semigroup of Koopman
+operators Uϕt has n distinct eigenfunctions φλk ∈ C 1 (X), with ℜ{λk } < 0 and
+∇φλk (x∗ ) 6= 0. Moreover, the eigenvalues λk are the eigenvalues of ∂F/∂x(x∗ ).
+   For a given vector field, the Koopman eigenfunctions φλk can be computed
+on a finite basis of polynomials, as an approximate (finite-dimensional) solution
+φ̃λk of the eigenvalue equation F (x) · ∇φλ = λφλ . According to Theorem 2, one
+can therefore obtain a systematic spectral method for global stability analysis of
+nonlinear systems. Moreover, the approximate eigenfunctions provide candidate
+328                                                             Oberwolfach Report 7/2016
+
+                               P                    1/p
+                                   n               p
+Lyapunov functions V(x) =          k=1 | φ̃λk
+                                              (x)|        , p ≥ 1, that can be used to
+estimate the basin of attraction of the fixed point.
+   Similar results and numerical methods can be derived in the case of stable
+hyperbolic limit cycles. See [3] for more details.
+Differential positivity. The last part of the talk briefly focused on differential
+positivity [1]. This is a joint work with F. Forni and R. Sepulchre. Let X be
+a smooth manifold and consider a flow ϕ : R+ × X → X and its differential
+∂ϕ(t, x) : Tx X → Tϕ(x) X , where Tx X denotes the tangent space at x ∈ X . The flow
+is differentially positive with respect to a cone field K(x) ⊂ Tx X if ∂ϕ(t, x)K(x) ⊆
+K(ϕ(t, x)) for all x ∈ X , t > 0.
+   In joint work with A. Sootla, it was shown in [5] that a flow is differentially
+positive if and only if the associated semigroup of Koopman operators is positive
+with respect to the cone of functions HK = {f ∈ C 1 (X ) | ∂f (x) ∈ K∗ (x)}, where
+K∗ (x) is the dual cone field of K(x). The cone HK can be derived from Koopman
+eigenfunctions φλk , and the cone field K(x) can be obtained through the differ-
+entials ∂φλk . It follows that the property of differential positivity is expressed
+in terms of properties of Koopman eigenfunctions, a result which yields converse
+results for differential positivity. In particular, stable hyperbolic nodes and limit
+cycles are always differentially positive in their basin of attraction [4].
+
+                                        References
+ [1] F. Forni, R. Sepulchre. Differentially positive systems. IEEE Transactions on Automatic
+     Control, 61 (2016), 346-359.
+ [2] B. O. Koopman. Hamiltonian systems and transformation in Hilbert space. Proceedings of
+     the National Academy of Sciences of the United States of America, 17 (1931), 315.
+ [3] A. Mauroy, I. Mezić. Global stability analysis using the eigenfunctions of the Koopman
+     operator. IEEE Transactions on Automatic Control, in press (2016).
+ [4] A. Mauroy, F. Forni, S. Sepulchre. An operator-theoretic approach to differential positivity.
+     Proceedings of the 54th IEEE Conference on Decision and Control (2015).
+ [5] A. Sootla, A. Mauroy. On (eventually) monotone dynamical systems and positive Koopman
+     semigroups. Submitted to the 22nd International Symposium on Mathematical Theory of
+     Networks and Systems (2016).
+
+
+                        The Koopman Operator Formalism
+                                 Igor Mezić
+Driven by success in operator-based framework in quantum theory, Bernard Koop-
+man proposed in his 1931 paper [1] to treat classical mechanics in a similar way,
+using the spectral properties of an operator associated with dynamical system
+evolution. It was only in the 1990’s that potential for wider applications of the
+operator-theoretic approach has been realized [2, 3]. In this century the trend of
+applications of this approach has continued, as summarized in [4]. This is partially
+due to the fact that strong connections have been made between the spectral prop-
+erties of the Koopman operator for dissipative systems and the geometry of the
+state space. In fact, the hallmark of the work on the operator-theoretic approach
+Mini-Workshop: Applied Koopmanism                                                   329
+
+in the last two decades is the linkage between geometrical properties of dynamical
+systems - whose study has been advocated and strongly developed by Poincaré and
+followers - with the geometrical properties of the level sets of Koopman eigenfunc-
+tions [3, 5]. The operator-theoretic approach has been shown capable of detecting
+objects of key importance in geometric study, such as invariant sets, but doing so
+globally, as opposed to locally as in the geometric approach. It also provides an
+opportunity for study of high-dimensional evolution equations in terms of dynam-
+ical systems concepts [6,7] via a spectral decomposition, and links with associated
+numerical methods for such evolution equations [8].
+   An idea that permeates applied mathematics, theoretical physics and engineer-
+ing is that of the expansion of a possibly complicated function of space and time
+into an infinite sum of simpler components, some of which are then retained -
+using criteria for “goodness” of approximation - for a simplified description of
+the problem. The most common such examples are the Taylor and Fourier expan-
+sions (or decompositions), with the more recent addition of wavelet decompositions
+that are inherently multi-scale, and the expansion into Proper Orthogonal Modes,
+called the Proper Orthogonal Decomposition (POD). An alternative concept has
+emerged in [6], in which the author studied the problem of decomposing evolution
+of a field from the perspective of operator theory. The idea is to provide a decom-
+position that is based on the projection onto eigenfunctions of a linear operator -
+the Koopman, or composition operator - associated with the dynamical evolution
+of the underlying field. The approach is not based on the concept of closeness of
+the projection to the full dynamics of the field, but on decomposition into dynam-
+ically relevant modes. In the case of time-evolving processes these modes have the
+property that they represent “collective” properties of evolution, where a spatial
+shape is multiplied by a time-dependent function of form exp(λt) for complex λ
+which is an eigenvalue of the Koopman operator.1 In fact, the resulting decom-
+position in the case of a linear system is the eigenvalue decomposition. Thus, by
+applying it, we achieve continuity in treatment of linear and nonlinear dynamics.
+The resulting modes - that were named Koopman modes in [7] - are not necessarily
+orthogonal.
+   Consider a general dynamical system
+(1)                                    ż = F (z),
+defined on a state-space A (i.e. z ∈ A), where z is a state (possibly infinite-
+dimensional) and F is a possibly nonlinear operator. We assume that A and N
+are compact metric spaces with the associated Borel σ-algebras B and C and mea-
+sures ν and ρ.
+
+   Denote by S t (z0 ) the position at time t of trajectory of (1) that starts at time 0
+at point z0 (provided solutions exist and are unique), for some value of parameter
+vector p.
+
+  1Time dependence can be more complicated in the case of degenerate eigenvalues.
+330                                                              Oberwolfach Report 7/2016
+
+    Denote by g an arbitrary observable from A to observation space O. For a fluid
+dynamics problem, an example is vorticity at a point, in which case O = R3 . The
+value of this observable g that the system trajectory starting from z0 at time 0
+sees at time t is
+(2)                              g(t, z0 ) = g(S t (z0 )).
+Note that the space of observables g is a vector space. The family of operators
+U t , acting on the space of observables parametrized by time t is defined by
+
+
+(3)                                 U t g(z0 ) = g(S t (z0 )).
+Thus, for a fixed time τ , U τ maps the vector-valued observable g(z0 ) to g(τ, z0 ).
+We call the family of operators U t the Koopman family associated with the the
+continuous-time system (1). Since the Koopman operator is linear, the approach
+we undertake is spectral. The Koopman family has the following spectral expan-
+sion for a large class of dynamical systems with an attractor supporting an ergodic
+invariant measure (see [6] for the discrete time version):
+
+                            k
+                            X                              Z ∞
+      t             ∗
+(4) U g(z, x) = g (x)+            exp(λj t)φj (z)sj (x)+         exp(i2παt)dE(α)(g(z, x)),
+                            j=1                             −∞
+
+where g ∗ (x) is the time-average at a “field” point x, φj (z) is the Koopman operator
+eigenfunction associated with eigenvalue λj , sj (x) is the Koopman mode - the
+projection of the observable g on the eigenspace associated with λj , and E is a
+complex continuous spectral measure on L2 , which in the last part of the expansion
+represents contribution from continuous part of the spectrum [9]. The expansion
+(4), discovered in the discrete-time case in [6], is known as the Koopman Mode
+Decomposition (KMD) [7].
+
+                                        References
+ [1] Bernard O. Koopman. Hamiltonian systems and transformation in Hilbert space. Proceed-
+     ings of the National Academy of Sciences of the United States of America, 17(5):315, 1931.
+ [2] Andrzej Lasota and Michael C. Mackey. Chaos, fractals, and noise: stochastic aspects of
+     dynamics, volume 97. Springer, 1994.
+ [3] Igor Mezić. On the geometrical and statistical properties of dynamical systems: theory and
+     applications. PhD thesis, California Institute of Technology, 1994.
+ [4] Marko Budišić, Ryan Mohr, and Igor Mezić. Applied koopmanism. Chaos: An Interdisci-
+     plinary Journal of Nonlinear Science, 22(4):047510, 2012.
+ [5] Alexandre Mauroy, Igor Mezić, and Jeff Moehlis. Isostables, isochrons, and koopman spec-
+     trum for the action–angle representation of stable fixed point dynamics. Physica D: Non-
+     linear Phenomena, 261:19–30, 2013.
+ [6] I. Mezić. Spectral Properties of Dynamical Systems, Model Reduction and Decompositions.
+     Nonlinear Dynamics, 41(1):309–325, 2005.
+ [7] C.W. Rowley, I. Mezić, S. Bagheri, P. Schlatter, and D.S. Henningson. Spectral analysis of
+     nonlinear flows. Journal of Fluid Mechanics, 641(1):115–127, 2009.
+ [8] Peter J Schmid. Dynamic mode decomposition of numerical and experimental data. Journal
+     of Fluid Mechanics, 656:5–28, 2010.
+Mini-Workshop: Applied Koopmanism                                                          331
+
+ [9] Ryan Mohr and Igor Mezić. Construction of eigenfunctions for scalar-type opera-
+     tors via Laplace averages with connections to the Koopman operator. arXiv preprint
+     arXiv:1403.6559, 2014.
+
+
+
+      Dissipative Dynamics, Spaces of Observables for the Associated
+                Koopman Operator, and the GLA Theorem
+                                Ryan Mohr
+                        (joint work with Igor Mezić)
+
+Let (X, Φ) be a dynamical system with state space X and flow map Φ : T ×X → X,
+where T is a group or semigroup representing time, and let F be a vector space of
+functions (the space of observables) whose domain is X. The Koopman operator
+UΦt : T × F → F is defined by composition1 with an observable
+(1)                    UΦt f (·) = f ◦ Φ(t, ·),       (t ∈ T, f ∈ F ).
+It is easy to see that this operator is linear which immediately puts the tools of
+functional analysis at our disposal. Thus we can analyze a nonlinear problem with
+linear tools.
+   Spectral properties of the Koopman operator – and its eigenfunctions in partic-
+ular – play an important role in the analysis of nonlinear dynamical systems [1].
+However, such spectral characteristics are highly dependent on the choice of the
+space F . Immediately, a few important questions arise. What space of observables
+F do we choose? To what extent are the properties of Φ encoded by the operator
+UΦ ? And, how do we construct eigenfunctions of the operator?
+   These questions are fully settled in the classical setting of measure preserving
+automorphisms. If (X, B(X), µ, Φ) is a measure preserving dynamical system,
+where Φ : X → X is an automorphism and µ is a finite Borel measure, the nicest
+and most natural choice for F is the Hilbert space L2 (X, µ). With this choice,
+UΦ : L2 (µ) → L2 (µ)R is unitary and by the Spectral Theorem has an integral
+                        π
+representation UΦ = −π eit dEΦ (t). In this case, the properties of Φ are encoded
+fully in the spectral properties of UΦ . Eigenfunctions can be constructed from
+certain generalized Fourier averages. That the limit of a function
+                                     n−1
+                                     X
+(2)                fω∗ = lim n−1           e−iωk UΦk f,     (f ∈ L2 (µ)),
+                         n→∞
+                                     k=0
+
+is an element of the eigenspace ker(eiω I − UΦ ) can be easily deduced from the
+continuity of UΦ . The existence of this limit in the L2 -norm for all f ∈ L2 (µ)
+is guaranteed by von Neumann’s [2] or Yosida’s [5] ergodic theorem. Pointwise
+convergence (µ-a.e. in X) is due to Birkhoff’s ergodic theorem (ω = 0) [2] or
+Wiener-Wintner’s ergodic theorem (ω 6= 0) [4].
+   For dissipative dynamics, the situation is not so clear cut. Consider the simplest
+example of dissipative dynamics, x′ = λx, for x ∈ R and 0 < λ < 1. This system
+  1For this reason, the Koopman operator is also called a composition operator in some contexts
+332                                                                 Oberwolfach Report 7/2016
+
+has a trivial invariant measure, δ0 , supported at the fixed point. Choosing the
+space of observables as L2 (δ0 ), as we would in the non-dissipative case, gives
+no information off the attractor since L2 (δ0 ) is isomorphic to C and we have no
+eigenfunctions other than the constant ones. At the other end, we can choose
+the space of observables to be C(K) for some compact K. It turns out that the
+spectrum is too large; there are simple examples where the point spectrum is all of
+the unit disc. So what is the appropriate space of observables so that the operator
+is spectral and we have an analog of (2)?
+    We give a construction of a natural F for Φ : Rd → Rd having a simple2
+hyperbolic attractor A and where Φ is at least C 2 . The space constructed is in
+essence a generalization of the Hardy space H 2 (D) on the open unit disc. The
+construction relies on four basic facts.       (i) If φ and ψ are eigenfunctions of
+the operator and φψ exists in F and is nonzero, then the product φψ is also
+an eigenfunction of the operator [1]. (ii) Topological conjugacies preserve point
+spectra. In particular, if Φ : X → X and Ψ : Y → Y are topologically conjugate
+via the homeomorphism h : X → Y and ψ is an eigenfunction of UΨ , then φ = ψ◦h
+is an eigenfunction of UΦ at the same eigenvalue [1]. (iii) The set of eigenfunctions
+is closed under complex-conjugation. (iv) Under certain technical conditions, for
+any positively invariant compact set K in the basin of attraction and containing
+the attractor, there is a topologically conjugacy h : Rd → Rd between Φ and its
+linearization A around the attractor which reduces to the identity on the attractor
+[3].
+    Let K be a compact, Φ-positively-invariant set in the basin of attraction of
+A which contains A. Let h : K → Rd be the topological conjugacy given by
+(iv). We build F in the following steps. (1) Find the principle eigenfunctions for
+the linearized system. The principle eigenfunctions are those associated with the
+generator A that are bounded on the compact, A-positively-invariant set L = h(K)
+in the basin of attraction. (2) Generate a unital ∗-algebra from the principle
+eigenfunctions. The elements of this have an expansion into eigenfunctions due to
+(i) and (iii) above. (3) Represent the algebra as a set of polynomials over a normed
+commutative ring and equip it with a polynomial norm. The indeterminants are
+the coordinates determined by the off-attractor principle eigenfunctions. The ring
+is the portion of the algebra that is only a function on the attractor. It is a subset
+of L2 (A, µ), where µ is a measure supported on the attractor A and preserved by
+A (or equivalently Φ since the two systems are identicalP      on A). An element of
+the algebra has a polynomial representation as g(θ, Y ) = |n|≤N fn (θ)Y n , where
+fn is a bounded L2 (µ) function on the attractor, θ represents the coordinates on
+the attractor, and Y = Y1 · · · Yd are the determinants defined by the off-attractor
+principle eigenfunctions. The polynomial norm is
+                                        N
+                                        X
+                                kgk =         kfn (·)k2L2 (A,µ) .
+                                        n=0
+
+
+  2Simple in this case means a fixed point or limit cycle in Rd .
+Mini-Workshop: Applied Koopmanism                                                    333
+
+As pointed out above, if the attractor is a fixed point then L2 (A, µ) = L2 ({0}, δ0 ) ∼
+                                                                                       =
+C and the above polynomial norm reduces to the regular polynomial norm.
+(4) Complete the algebra under this norm, denoted by G, and pullback to a space
+of functions defined on K by using the topological conjugacy h. The space of
+observables F has the form
+                            F = G ◦ h := {g ◦ h : g ∈ G}.
+The form that F takes depends on both the algebra and the form that the conju-
+gacy takes.
+    As a simple example, take Φ(x) = Ax + G(x) : Rd → Rd , where A is a diago-
+nalizable matrix, G = O(|x|2 ), and assume there is an asymptotically stable fixed
+point at the origin. Let (λi , vi ) be the eigenpairs of A and (λi , wi ) the eigenpairs
+of A∗ normalized such that hvi , wj i = δij . The principle eigenfunctions of UA are
+φi (x) = hx, wi i. The indeterminants are Yi = φi / kφi kL,∞ . The completion of the
+generated unital ∗-algebra under the polynomial norm is the space of powers series
+with square summable coefficients
+                                                                                       
+             X                                                             X           
+                                                                                    2
+       G=            cn (Y1n1 · · · Ydnd ) : n = (n1 , . . . , nd ) ∈ Nd0 ,    |cn | < ∞
+                  d                                                         d
+                                                                                        
+              n∈N0                                              n∈N0
+
+To get F for UΦ we use the topological conjugacy.
+   By the construction, the spectrum of UΦ : F → F is restricted to isolated
+circles centered at the origin and additionally UΦ is a contraction. When this
+is the case, we have an analog of (2) which constructs eigenfunctions from time
+averages. Instead of a generalized Fourier average, we now have a generalized
+Laplace average. For f ∈ F and λ in the point spectrum,
+                                       n−1
+                                       X
+(3)                    fλ∗ = lim n−1         λ−k U k (I − PΩ(λ) )f
+                             n→∞
+                                       k=0
+
+is an element of ker(λI − UΦ ), where PΩ(λ) : F → F is a projection onto
+span{ker(ωI − UΦ ) : |ω| > |λ|} which commutes with UΦ . The convergence is
+with respect to the norm and the proof is an application of Yosida’s mean ergodic
+theorem [5]. We sketch the argument. Since the spectrum is restricted to isolated
+circles, the projection I − PΩ is bounded and deletes the part of the spectrum
+of UΦ with modulus greater  than |λ|. It follows that λ is a peripheral eigenvalue
+of UΦ (I − PΩ(λ) ), hence (λ−1 UΦ (I − PΩ(λ) ))k : k ∈ N is a power bounded se-
+quence. The mean ergodic theorem gives that the Cesàro means of the sequence
+converge in the strong topology to a λ−1 UΦ (I − PΩ(λ) )-invariant function and,
+furthermore, the limit satisfies fλ∗ = (I − PΩ(λ) )fλ∗ . As of yet, the question of
+pointwise convergence remains open.
+    In practice, the polynomial norm on this space is hard to compute since we must
+first know the topological conjugacy and then get the polynomial representation
+of the observable. Are there other spaces that have easier to compute norms and
+such that (3) holds?
+334                                                           Oberwolfach Report 7/2016
+
+                                       References
+ [1] M. Budišić, R. Mohr, and I. Mezić, Applied Koopmanism, Chaos 22 (2012), 1–33.
+ [2] P. Halmos, Lectures on Ergodic Theory, AMS Chelsea (2006).
+ [3] Y. Lan and I. Mezić, Linearization in the large of nonlinear systems and Koopman operator
+     spectrum, Physica D 242 (2012), 42–53.
+ [4] N. Wiener and A. Wintner, On the Ergodic Dynamics of Almost Periodic Systems,
+     Amer. J. Math. 63 (1941), 794–824.
+ [5] K. Yosida, Functional Analysis, Springer (1978).
+
+
+
+    Moment problems, maximal entropy and exponential transforms
+                           Mihai Putinar
+                   (joint work with Marko Budišić)
+
+Maximum entropy has emerged as a natural additional assumption in numerous
+inverse problems, way beyond its original statistical mechanics motivation. The
+philosophical essay by Jaynes [6] contains convincing arguments for adopting max
+entropy on a large scale. However, the method has its limitations and pitfalls.
+We address one of these in the present abstract, and propose a remedy, based on
+recent joint work with M. Budišić [2].
+   We start by exploring a simple example in one variable. Assume n is a fixed
+degree and (a, b) is an interval on the real line, bounded or not. Given the mo-
+ment data γ0 , ..., γn , we seek a positive measure µ carried by the closure of (a, b)
+satisfying                         Z
+                              γk =     xk dµ(x), 0 ≤ k < n,
+and                                            Z
+                                       γn ≥        xn dµ.
+   The max entropy method proposes to search µ of the from dµ(x) = exp(λ0 +
+λ1 x + ... + λn xn )dx, assuming that the integrability condition
+                        Z b
+                            exp(λ0 + λ1 x + ... + λn xn )dx < ∞
+                          a
+is assured by the choice of the parity and sign of the leading term.
+   The proper choice of the parameters λk is made by imposing the optimality
+(maximum entropy) condition:
+               (                      Z b                               )
+                                                                    n
+(1)        sup λ0 γ0 + ... + λn γn −      exp(λ0 + λ1 x + ... + λn x )dx
+                                           a
+
+where the supremum is taken over all admissible (i.e. integrable exponential) tuples
+λ = (λ0 , ..., λn ). Let us similarly denote γ = (γ0 , ..., γn ) and x = (1, x, x2 , ..., xn ).
+  The starting point of our discussion is the observation that the functional
+                                             Z b
+                              L(λ) = λ · γ −     exp[λ · x]dx,
+                                                   a
+Mini-Workshop: Applied Koopmanism                                                 335
+
+is concave. Moreover, the inner critical points of the functional are given by the
+vanishing gradient conditions:
+                                   Z b
+                       ∂L
+                            = γj −     xj exp[λ · x]dx = 0,
+                       ∂λj           a
+which solve in a very elegant way the original moment problem.
+    The difficulty related to the above method lies in the complicated structure of
+the set of admissible multipliers. For instance, in the unbounded support case
+[0, ∞) it is possible that the extremal value in problem (1) is attained on the
+boundary of the set of admissible multipliers. For a detailed analysis of the inherent
+pathologies see [4, 8].
+    Even worse, starting with the moment data γ0 = 1, γj = 0, 1 ≤ j < p, derived
+from Dirac mass at x = 0, we immediately see that no exponential weight density
+will match them.
+    One way to avoid such complications is to rely on Markov’s original idea of treat-
+ing moment problems with a bounded weight (the L-moment problems). Specifi-
+cally, given a finite positive measure µ on the real line one proves with standard
+techniques of function theory of a complex variable that there exists an integrable
+function ξ : R −→ [0, 1], satisfying the asymptotic equivalence
+                      Z               Z
+                          dµ(t)          ξ(s)ds
+                  1+            ∼ exp(          ), ℑz > 0, z 7→ ∞,
+                        R t − z           s−z
+see for details the appendix in the monograph [7].
+   Denote by γj (ν) the j-th power moment of a measure ν. Note that at the level
+of generating functions of moments we obtain following Markov a formal series
+relation
+                     Xn                  n
+                                        X γj (ξds)
+                         γk (µ)                            1
+                 1−             ≡ exp[−            ] mod( n+2 ).
+                         z k+1          j=0
+                                            z j+1        z
+                     k=0
+This gives universal polynomial dependence relations
+                           γk (µ) = Pk (γ0 (ξds), ..., γk (ξds)),
+and
+                           γk (ξds) = Qk ((γ0 (µ), ..., γk (µ)).
+   Our recent works [2] aim at generalizing this classical exponential transform to
+several variables, with emphasis on solving truncated moment problems of singular
+measures, where the max entropy method fails. Quite specifically, let Γ ⊂ Rd be
+a closed, solid, acute convex cone and µ be a finite positive measure supported by
+its polar cone Γ∗ . We consider the analytic extension of the Fantappiè transform:
+                                Z
+                                      dµ(x)
+                     Φ(−z, y) =                , y ∈ Γ, ℑz > 0.
+                                 Γ∗ −z +x·y
+Note the positivity property
+                          1          1           z−z
+                                −           =              ,
+                      −z + x · y −z + x · y   |z − x · y|2
+336                                                           Oberwolfach Report 7/2016
+
+that is
+                         (y ∈ Γ, ℑz > 0) ⇒ ℑΦ(−z, y) > 0.
+  By adapting a classical observation of Verblunsky [11] we obtain the following
+multiplicative representation of the Fantappiè transform.
+
+   Theorem. Let µ be a finite positive measure supported on the cone Γ∗ . For ev-
+ery y ∈ Γ there exists a phase function ξy ∈ L1 ([0, ∞), dt), 0 ≤ ξy ≤ 1, measurably
+depending on y, such that
+                        Z                  Z ∞
+                            dµ(x)              ξy (t)dt
+(2)                1+                = exp              , ℑz > 0.
+                         Γ x · y − z        0    t−z
+              R                                            R∞
+Moreover, if Γ∗ |x|n dµ(x) < ∞ for some n ∈ N, then 0 tn ξy (t)dt < ∞ for all
+y ∈ Γ.
+   By combining this observation with the explicit form of the reproducing kernel
+in the Hardy space of the tube domain over Γ, we obtain a versatile technique
+of solving the original moment sequence via regularization and the max entropy
+method. Once the phase function ξ is well approximated, Radon transform in-
+version, or simply Hilbert transform inversion in one variable, contribute to the
+recovery of the original measure µ.
+   The two articles [2] contain numerous illustrations of the method, theoretical
+in nD, and numerical in 1D.
+
+                                       References
+ [1] N. Aronszajn and W. F. Donoghue, On exponential representations of analytic functions in
+     the upper half-plane with positive imaginary part, J. d’Analyse Math. 5 (1956), 321-388.
+ [2] M. Budisic and M. Putinar, Conditioning moments of singular measures for entropy opti-
+     mization.I, Indag. Math. 23(2012), 848-883; part II, Contemporary Math., to appear.
+ [3] J. Faraut and A. Korányi, Analysis on symmetric cones , Oxford University Press, Oxford,
+     1994.
+ [4] C.D. Hauck, C.D. Levermore and A.L. Tits, Convex duality and entropy-based moment
+     closures: characterizing degenerate densities, SIAM J. Control Optim. 47(2008), 1977–2015.
+ [5] G. M. Henkin and A. A. Shananin, Bernstein theorems and Radon transform. Application
+     to the theory of production functions , Transl. Math. Monogr. 81 , Amer. Math. Soc.,
+     Providence R. I., 1990.
+ [6] E.T. Jaynes, On the rationale of maximum-entropy methods, Proceedings of the IEEE
+     70(1982), 939-952.
+ [7] M.G. Kreain and A. Nudelman, The Markov moment problem and extremal problems, Amer-
+     ican Mathematical Society, Providence, R.I., 1977.
+ [8] M. Junk, Maximum entropy for reduced moment problems, Mathematical Models and Meth-
+     ods in Applied Sciences 10(2000), 1001–1025.
+ [9] H. J. Landau, Maximum entropy and the moment problem, Bull. Amer. Math. Soc. 161987,
+     47–77.
+[10] L. R. Mead and N. Papanicolaou, Maximum entropy in the problem of moments , J. Math.
+     Physics 25(1984), 2404–2417.
+[11] Verblunsky, On the initial moments of a bounded function, Proc. Cambridge Philos. Soc.
+     43(1947), 275–279.
+Mini-Workshop: Applied Koopmanism                                                     337
+
+ Connections between Koopman and Dynamic Mode Decomposition
+                        Clarence W. Rowley
+     (joint work with Matthew O. Williams and Ioannis G. Kevrekidis)
+
+We present a method for determining finite-dimensional approximations of the
+Koopman operator, directly from data, without the need for a model of the under-
+lying dynamical system. We show that dynamic mode decomposition, a technique
+developed in the fluid mechanics community, may be used to find such approxi-
+mations, and we illustrate the approach with a number of examples.
+   Dynamic mode decomposition (DMD) is a method for approximating dynamics
+from data. In the original formulation, introduced in [2, 3], one collects snapshots
+of measurements y1 , . . . , yM+1 (vectors in RN ), taken at equally spaced times, and
+one assumes they are linearly related, as
+                          ym+1 = Aym ,         m = 1, . . . , M,
+for some (unknown) N × N matrix A. One then uses a Krylov subspace algo-
+rithm (considering the subspace spanned by {y1 , y2 , . . . , yM+1 }) to approximate
+eigenvalues and eigenvectors of A, without explicit knowledge of A. These are
+called DMD eigenvalues and eigenvectors, and they provide information about the
+dynamics of the underlying system.
+   Here, we consider a more general definition, given in [4], in which one collects
+                          #                                      #
+pairs of snapshots (ym , ym ), for m = 1, . . . , M , such that ym is the measurement
+one timestep after ym (but the ym need not be at different times). One then seeks
+a matrix A such that
+                            #
+                           ym = Aym ,         m = 1, . . . , M.
+                                                                             #
+It is clear that this formulation is a generalization of the original, with ym = ym+1 .
+Stacking these snapshots into matrices
+                                                                   
+                  Y = y1 · · · yM ,           Y # = y1# · · · yM    #
+                                                                        ,
+one defines the DMD modes and eigenvalues as eigenvectors and eigenvalues of the
+matrix A = Y # Y + , where Y + denotes the pseudo-inverse of Y . It is shown in [4]
+that the resulting eigenvalues are identical to those obtained by the original DMD
+algorithm, and the DMD eigenvectors are nearly the same (more precisely, the
+DMD eigenvectors from the original algorithm are projections of the eigenvectors
+of A onto the subspace spanned by {ym }).
+    The connection with the Koopman operator was first established in [1], and
+described more explicitly in [4, §4.1]. Consider a discrete-time dynamical system
+evolving on a set X, according to the map x 7→ T (x). Here, we will take X
+to be a measure space and define the Koopman operator K : L2 (X) → L2 (X)
+by Kg = g ◦ T . Suppose we measure the system using a vector of observables
+ψ = (ψ1 , . . . , ψN ), where each ψn ∈ L2 (X): that is, if x ∈ X is the state, then ψ(x)
+is a vector of measurements of the state (suppose the ψn are continuous functions,
+so that pointwise evaluation is well defined). Let us sample the system at states
+x1 , . . . , xM , and at the images of these points, T (x1 ), . . . , T (xM ), but suppose
+338                                                          Oberwolfach Report 7/2016
+
+that we do not have access to the full states xm , but only to the measurements
+                #
+ym = ψ(xm ), ym   = ψ(T (xm )). One can then perform DMD on this dataset: one
+constructs the matrices Y , Y # as before, and defines A = Y # Y + . We then have
+the following result:
+Theorem 1. Suppose ϕ is an eigenfunction of K with eigenvalue λ, and suppose
+ϕ lies in the span of the observables {ψ1 , . . . , ψN }, so that
+                           ϕ = w̄1 ψ1 + · · · + w̄N ψN = w∗ ψ
+for some constants (w1 , . . . , wN ) = w ∈ CN . Suppose further that w lies in the
+range of the data matrix Y . Then λ is an eigenvalue of A = Y # Y + , and w is a
+left eigenvector of A: that is, w∗ A = λw∗ .
+   Thus, under the conditions of the theorem, Koopman eigenvalues are DMD
+eigenvalues, and the corresponding Koopman eigenfunction may be found from
+the left eigenvectors of the DMD matrix A.
+   The connection between DMD and the Koopman operator is explored further
+in [5], which shows that the DMD matrix may be viewed as an approximation of
+the Koopman operator, using a spectral collocation method, with basis functions
+given by the observables ψn . These basis functions may be given explicitly, as
+described above, or even implicitly, using a kernel function, as described in [6].
+   In the talk, a number of examples are shown, including approximating Koopman
+eigenfunctions on separate basins of attraction in the Duffing equation, finding
+almost-invariant sets in the double gyre, and finding low-dimensional descriptions
+of a one-dimensional PDE, the Fitzhugh-Nagumo equation.
+
+                                      References
+[1] C. W. Rowley, I. Mezić, S. Bagheri, P. Schlatter, and D. S. Henningson. Spectral analysis
+    of nonlinear flows. J. Fluid Mech., 641:115–127, Dec. 2009.
+[2] P. Schmid and J. Sesterhenn. Dynamic mode decomposition of numerical and experimental
+    data. 61st Annual Meeting of the APS Division of Fluid Dynamics, Nov. 2008.
+[3] P. J. Schmid. Dynamic mode decomposition of numerical and experimental data. J. Fluid
+    Mech., 656:5–28, 2010.
+[4] J. H. Tu, C. W. Rowley, D. M. Luchtenburg, S. L. Brunton, and J. N. Kutz. On dynamic
+    mode decomposition: theory and applications. J. Comput. Dyn., 1(2):391–421, Dec. 2014.
+[5] M. O. Williams, I. G. Kevrekidis, and C. W. Rowley. A data-driven approximation of the
+    Koopman operator: extending dynamic mode decomposition. J. Nonlin. Sci., 25(6):1307–
+    1346, Dec. 2015.
+[6] M. O. Williams, C. W. Rowley, and I. G. Kevrekidis. A kernel-based approach to data-driven
+    Koopman spectral analysis. arXiv:1411.2260, 2014.
+
+
+
+
+                                                                Reporter: Marko Budišić
+Mini-Workshop: Applied Koopmanism                                                 339
+
+                                    Participants
+
+
+Dr. Amir Ali Ahmadi                       Dr. Raphael Jungers
+Department of Operations Research         UCL / ICTEAM
+and Financial Engineering                 Euler Building (a 112)
+Princeton University                      Avenue Georges Lemaitre, 4-6
+Princeton, NJ 08540                       1348 Louvain-la-Neuve
+UNITED STATES                             BELGIUM
+
+Dr. Marko Budisic                         Dr. Milan Korda
+Department of Mathematics                 EPFL STI IGM LA3
+University of Wisconsin-Madison           ME C2 398 (Bâtiment ME)
+480 Lincoln Drive                         Station 9
+Madison, WI 53706-1388                    1015 Lausanne
+UNITED STATES                             SWITZERLAND
+
+Prof. Dr. Stéphane Gaubert               Kari Valentina Küster
+CMAP                                      Max-Planck-Institut für Meteorologie
+Ecole Polytechnique                       Angewandte Mathematik und
+91128 Palaiseau Cedex                     Computergestützte
+FRANCE                                    Physik (B 326)
+                                          Bundesstrasse 53
+                                          20146 Hamburg
+Prof. Dr. Didier Henrion
+                                          GERMANY
+LAAS - CNRS
+7, Avenue du Colonel Roche
+31400 Toulouse Cedex 4                    Prof. Dr. Uwe Küster
+FRANCE                                    High Performance Computing Center
+                                          Stuttgart (HLRS)
+                                          Department of Numerical Methods &
+Roxana Hess
+                                          Libraries
+LAAS-CNRS
+                                          Nobelstrasse 19
+7, avenue du Colonel Roche
+                                          70569 Stuttgart
+31400 Toulouse Cedex 4
+                                          GERMANY
+FRANCE
+
+                                          Prof. Dr. Yuri Latushkin
+Prof. Dr. Oliver Junge
+                                          Department of Mathematics
+Fakultät für Mathematik
+                                          University of Missouri-Columbia
+Technische Universität München
+                                          202 Mathematical Science Bldg.
+85748 Garching bei München
+                                          Columbia, MO 65211-4100
+GERMANY
+                                          UNITED STATES
+340                                                     Oberwolfach Report 7/2016
+
+Dr. Alexandre Mauroy                        Dr. Ian David Morris
+Luxembourg Centre for Systems               Department of Mathematics & Comp.
+Biomedicine                                 Sciences
+Université du Luxembourg                   University of Surrey
+6, avenue du Swing                          Guildford GU2 7XH
+4367 Belvaux                                UNITED KINGDOM
+LUXEMBOURG
+                                            Prof. Dr. Mihai Putinar
+Prof. Dr. Igor Mezic                        Department of Mathematics
+Department of Mechanical Engineering        University of California at
+University of California                    Santa Barbara
+Santa Barbara CA 93106-5070                 South Hall
+UNITED STATES                               Santa Barbara, CA 93106
+                                            UNITED STATES
+Dr. Ryan M. Mohr
+Department of Mechanical Engineering        Prof. Dr. Clarence W. Rowley
+University of California at Santa Barbara   Department of Mechanical and
+Building II                                 Aerospace Eng.
+Santa Barbara, CA 93106-5070                Princeton University
+UNITED STATES                               Engineering Quad
+                                            Olden Street
+                                            Princeton, NJ 08544-5263
+                                            UNITED STATES
+

@@ -1,0 +1,393 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newcommand{\sn}{\operatorname{sn}}
+\newcommand{\cn}{\operatorname{cn}}
+\newcommand{\dn}{\operatorname{dn}}
+\newcommand{\Div}{\operatorname{div}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\title{The least-period criterion for outer focal products\\in elliptic billiards}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{16 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Fix a noncircular ellipse and a proper nested confocal elliptical caustic
+supporting periodic billiards of least period $N\geq3$. Intersect the boundary
+tangents at consecutive impact points. The product of the ordinary distances
+from these outer vertices to either original focus is independent of phase
+if and only if $4\mid N$. The two constant products then agree. The positive
+direction is the primitive interpretation of the invariant $k_{115}$ and is
+also proved in Ferudun's contemporaneous note, which we explicitly credit.
+A paired-distance divisor proves both directions, including odd periods and
+the four-period degree drop. Repeated traversals cannot restore constancy.
+Historical priority and independent discovery are not certified.
+\end{abstract}
+
+\section{Statement and provenance}
+Write
+\[
+ E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ C:\frac{x^2}{\alpha^2}+\frac{y^2}{\beta^2}=1,
+ \qquad a>b>0,
+\]
+where
+\begin{equation}\label{pair}
+ a^2-\alpha^2=b^2-\beta^2=\lambda,\quad 0<\lambda<b^2,
+ \qquad c^2=a^2-b^2=\alpha^2-\beta^2.
+\end{equation}
+The foci used throughout are $F_\pm=(\pm c,0)$ of $E$ and $C$.
+For a billiard with successive impacts $P_j$ on $E$, let $Q_j$ be the
+intersection of the tangents to $E$ at $P_j,P_{j+1}$. Assume that the
+fixed pair supports a periodic family of \emph{least} period $N\geq3$.
+For either focus put
+\[
+ R_\pm=\prod_{j=0}^{N-1}|Q_j-F_\pm|.
+\]
+Distances are ordinary positive Euclidean lengths. Phase varies within the
+family for this fixed pair and winding.
+
+\begin{theorem}\label{main}
+Under \eqref{pair}, each of $R_+$ and $R_-$ is independent of phase if
+and only if $4\mid N$. When $4\mid N$, their constants are equal.
+Every admissible coprime star winding is included.
+\end{theorem}
+
+Reznik, Garcia and Koiller list the positive assertion as $k_{115}$ in
+Table~2, p.~5 of their 2020 preprint~\cite{RGKpre}, and Table~2,
+p.~345 of the distinct 2021 journal paper~\cite{RGK}. Those editions
+give a proof question mark. This is dated provenance, not evidence of
+present worldwide openness. Their table does not expressly settle a
+repeated-traversal convention. Theorem~\ref{main} uses least period;
+an unrestricted interpretation based only on the length of a repeated
+list is false, as Section~\ref{repeat} explains.
+
+Ferudun~\cite{Ferudun}, Theorem~1, proves the same positive assertion
+with an explicit constant, for the same primitive scope and all coprime
+windings. His Jacobi factorization and cyclic-divisor argument closely
+overlap the mechanism below. We present an attributed separate treatment
+and the necessary-and-sufficient criterion, without claiming firstness or
+historical novelty of that criterion. The dated records and limits of
+priority are stated in Section~\ref{credit}.
+
+\section{Geometry and the paired distance}
+All Jacobi functions below have modulus $k$, not parameter $k$. Put
+\[
+ k=\frac c\alpha\in(0,1),\qquad k'=\frac\beta\alpha=\sqrt{1-k^2},
+ \qquad K=K(k),\quad K'=K(k').
+\]
+Stachel's canonical parametrization~\cite[Theorem~4.3 and (4.9)]{Stachel}
+gives $v\in(0,K)$ such that
+\begin{equation}\label{canonical}
+ P(u)=(-a\sn u,b\cn u),\qquad
+ a=\frac{\alpha\dn v}{\cn v},\quad b=\frac\beta{\cn v},
+ \qquad\delta=2v.
+\end{equation}
+The billiard map is $u\mapsto u+\delta$. After choosing orientation,
+least period is equivalent to
+\begin{equation}\label{closure}
+ \delta=\frac{4K\tau}{N},\qquad
+ \gcd(\tau,N)=1,\qquad 0<\tau<N/2.
+\end{equation}
+The real parametrization has period $4K$; reversal only permutes the
+distance factors. For example, the chord through $P(u-v),P(u+v)$ is
+\[
+ -\frac{x\sn u}{\alpha}+\frac{y\cn u}{\beta}=1,
+\]
+the tangent to $C$ at $(-\alpha\sn u,\beta\cn u)$.
+The billiard dynamics input in \eqref{canonical} is established
+background, rather than a new parametrization.
+
+\begin{lemma}\label{geometry}
+The boundary tangents at $P(u-v),P(u+v)$ meet at
+\begin{equation}\label{Q}
+ Q(u)=(-A\sn u,B\cn u),\qquad
+ A=\frac{a\dn v}{\cn v}=\frac{a^2}{\alpha},\quad
+ B=\frac b{\cn v}=\frac{b^2}{\beta}.
+\end{equation}
+For real $u$ this point is finite and outside $E$.
+\end{lemma}
+\begin{proof}
+Put $s=\sn u$, $z=\cn u$, $d=\dn u$, $h=\sn v$,
+$C_v^0=\cn v$, $D_v^0=\dn v$, and $D_0=1-k^2s^2h^2$.
+The tangents have equations
+$-X\sn(u\pm v)/a+Y\cn(u\pm v)/b=1$.
+The Jacobi addition formulas~\cite[Section~22.8]{DLMF} reduce their
+sum and difference to
+\[
+ -\frac{XsC_v^0D_v^0}{a}+\frac{YzC_v^0}{b}=D_0,
+ \qquad -\frac{Xz}{a}-\frac{YsD_v^0}{b}=0.
+\]
+Their solution is \eqref{Q}. The original determinant, up to sign, is
+$2hC_v^0d/(abD_0)>0$. Finally
+\[
+ \frac{Q_x^2}{a^2}+\frac{Q_y^2}{b^2}-1
+ =\frac{h^2\dn^2u}{\cn^2v}>0.
+\]
+Thus neither focus is an outer vertex.
+\end{proof}
+
+The actual outer sequence is $Q(u_0+v+j\delta)$; its fixed offset is
+absorbed into phase. In particular $Q(u+2K)=-Q(u)$.
+The conic locus $X^2/A^2+Y^2/B^2=1$ is also the polar reciprocal
+of $C$ in $E$: its equation is
+$\alpha^2X^2/a^4+\beta^2Y^2/b^4=1$.
+This construction is classical polarity~\cite[Section~4]{Fouche}.
+The locus need not be confocal with $E$; we never replace $F_\pm$
+by its own foci.
+
+Define a meromorphic function without choosing complex square roots:
+\begin{equation}\label{Hdef}
+ H(u)=\big((Q_x-c)^2+Q_y^2\big)
+       \big((Q_x+c)^2+Q_y^2\big).
+\end{equation}
+For real $u$, $H(u)=(|Q(u)-F_+|\,|Q(u)-F_-|)^2>0$.
+\begin{lemma}\label{factor}
+For a positive constant $C_v$,
+\begin{equation}\label{factorH}
+ H(u)=C_v\dn^2u\,
+       [\dn^2\delta-k^2\cn^2\delta\,\sn^2u].
+\end{equation}
+This identity holds before imposing any parity condition on $N$.
+\end{lemma}
+\begin{proof}
+Put $\kappa=k^2$, $t=\sn^2v$, $q=1-t$, and
+\[
+ U=1-2\kappa t+\kappa t^2,\quad
+ V=1-2t+\kappa t^2,\quad W=1-\kappa t^2.
+\]
+Equation~\eqref{Q} gives
+\[
+ A=\frac{\alpha(1-\kappa t)}q,\quad
+ B=\frac{\alpha k'}q,\quad
+ A^2-B^2=\frac{\alpha^2\kappa V}{q^2},\quad
+ B^2+c^2=\frac{\alpha^2U}{q^2}.
+\]
+For $S=\sn^2u$, expand \eqref{Hdef} and use
+$U+V=2q(1-\kappa t)$ to obtain
+\begin{align*}
+ H(u)&=\frac{\alpha^4}{q^4}
+ [(U+\kappa VS)^2-4\kappa(1-\kappa t)^2q^2S]\\
+ &=\frac{\alpha^4}{q^4}(1-\kappa S)(U^2-\kappa V^2S).
+\end{align*}
+Now $\cn\delta=V/W$ and $\dn\delta=U/W$ by the double-angle
+formulas. This proves \eqref{factorH} with $C_v=\alpha^4W^2/q^4>0$.
+The paired factorization is also obtained by multiplying Ferudun's
+two one-focus factors~\cite[(5)]{Ferudun}.
+\end{proof}
+
+\section{The divisor and the exact period criterion}
+Work on the compact connected torus
+\[
+ T=\mathbb C/(2K\mathbb Z+2iK'\mathbb Z),\qquad p=iK'.
+\]
+The functions $\sn^2u$ and $\dn^2u$ are meromorphic on $T$.
+The first has one double pole at $p$; the second has that pole and
+a double zero at $p+K$. We use the standard shift
+\begin{equation}\label{shift}
+ \sn(z+K+iK')=\frac{\dn z}{k\cn z}
+\end{equation}
+and the periods in~\cite[Tables~22.4.1--3]{DLMF}.
+In particular $\dn(u+2K)=\dn u$.
+
+If $\delta\ne K$, the bracket in \eqref{factorH} has one double pole
+at $p$ and zeros at $p+K\pm\delta$, by \eqref{shift}.
+These zeros are distinct modulo the lattice: their coincidence would
+force $2\delta\in2K\mathbb Z$, hence $\delta=K$ since
+$0<\delta<2K$. Neither is $p$ or $p+K$ in this case.
+The two distinct zeros exhaust its degree-two zero divisor, and so are
+simple. Consequently
+\begin{equation}\label{divH}
+ \Div H=2[p+K]+[p+K+\delta]+[p+K-\delta]-4[p].
+\end{equation}
+There is exactly one exceptional primitive case. If $\delta=K$,
+\eqref{closure} and coprimality force $N=4$, $\tau=1$; the bracket
+is the nonzero constant $k'^2$, and instead
+\begin{equation}\label{exception}
+ \Div H=2[p+K]-2[p].
+\end{equation}
+This degree drop is essential.
+
+Let $G=\langle\delta\rangle\subset T$. Its order is
+\[
+ L=\frac N{\gcd(N,2)},
+\]
+because $\delta/(2K)=2\tau/N$. Define
+\[
+ \mathcal F(u)=\prod_{j=0}^{L-1}H(u+j\delta),\qquad
+ O_x=\sum_{g\in G}[x+g].
+\]
+For $N\ne4$, summing translated copies of \eqref{divH} gives
+\begin{equation}\label{normdiv}
+ \Div\mathcal F=4O_{p+K}-4O_p.
+\end{equation}
+All multiplicities and collisions between different factors are included:
+translation by $\delta$ or $-\delta$ permutes $G$.
+The two cosets in \eqref{normdiv} coincide if $K\in G$ and are
+otherwise disjoint. On the real period circle, $K$ is the unique point
+of order two, so
+\begin{equation}\label{parity}
+ K\in G\quad\Longleftrightarrow\quad L\text{ is even}
+ \quad\Longleftrightarrow\quad4\mid N.
+\end{equation}
+Thus $\mathcal F$ is constant for $4\mid N$: its zero divisor makes it
+holomorphic on the compact torus. At $N=4$, \eqref{exception} yields
+the same cancellation with coefficient two. Its constant is finite and
+positive, since every factor is positive for real $u$.
+For the other parities, \eqref{normdiv} is a nonzero divisor, hence
+$\mathcal F$ is nonconstant.
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+Write $R_\pm(u)=\prod_{j=0}^{N-1}|Q(u+j\delta)-F_\pm|$.
+For all $N$, the antipodal \emph{phase shift} gives
+\begin{equation}\label{swap}
+ R_-(u)=R_+(u+2K),\qquad
+ R_+(u)^2R_-(u)^2=\mathcal F(u)^{N/L}.
+\end{equation}
+If either focal product were constant, both would be constant by the
+first identity. The second would make the meromorphic function
+$\mathcal F^{N/L}$ constant on a real interval. It has no real poles;
+the identity theorem then makes it constant on $T$. For $4\nmid N$
+this contradicts its nonzero divisor \eqref{normdiv}.
+This proves necessity also for odd $N$, without assuming that an
+antipodal point belongs to the same odd primitive orbit.
+
+If $4\mid N$, then $L=N/2$ and coprimality makes $\tau$ odd.
+Now $L\delta=2K\tau$ really does pair the vertices inside the orbit:
+$Q(u+(j+L)\delta)=-Q(u+j\delta)$. Therefore
+\[
+ R_+(u)=R_-(u),\qquad R_+(u)^2=\mathcal F(u).
+\]
+The unique positive square root of the positive constant proves
+sufficiency and equality of the two constants. No complex
+square-root branch is used.
+\end{proof}
+
+The use of compact-torus pole cancellation is classical; compare
+Akopyan, Schwartz and Tabachnikov~\cite{AST}. The period condition
+depends on the subgroup, not the chosen coprime generator, so includes
+every star winding in \eqref{closure}.
+
+\section{Repeated traversals and an exact boundary example}\label{repeat}
+\begin{corollary}
+For any positive integer $r$, the product on $r$ traversals is
+phase independent exactly when the primitive product is.
+\end{corollary}
+\begin{proof}
+The repeated product is $R_\pm(u)^r$ and $x\mapsto x^r$ is injective
+on $(0,\infty)$.
+\end{proof}
+
+For an explicit same-caustic check, take $a=3$, $b=1$ and
+$\lambda=9/16$. Two primitive six-periodic orbits have vertices
+\[
+ (3,0),\ (9/4,\sqrt7/4),\ (-9/4,\sqrt7/4)
+ \quad\text{and their negatives,}
+\]
+and
+\[
+ (0,1),\ (-3\sqrt{15}/4,1/4),\ (-3\sqrt{15}/4,-1/4)
+ \quad\text{and their negatives,}
+\]
+respectively, in the indicated order followed by the negatives in order.
+The caustic has squared axes $135/16,7/16$.
+Boundary membership, tangency and the reflection law can be checked
+exactly; the verification package supplies these checks.
+The first three outer vertices are, respectively,
+\[
+ (3,1/\sqrt7),\ (0,4/\sqrt7),\ (-3,1/\sqrt7),
+\]
+and
+\[
+ (-9/\sqrt{15},1),\ (-12/\sqrt{15},0),\ (-9/\sqrt{15},-1),
+\]
+followed by their negatives. The products to $F_+=(\sqrt8,0)$ are
+\[
+ \frac{20736}{343}\qquad\text{and}\qquad\frac{6912}{125},
+\]
+which are unequal. Traversing each twice produces nominal length
+twelve and unequal squared products. Ferudun~\cite[Section~5]{Ferudun}
+gives a different repeated-triangle example for the same interpretive
+issue; this distinction is explicitly credited.
+
+For a circle, both foci coincide with the center and the outer radius
+of a regular star is $a/\cos(\pi\tau/N)$, so every admitted period has
+a constant product. Noncircularity is therefore essential to necessity.
+Hyperbolic or collapsed caustics, separatrices and $N=2$ are outside
+Theorem~\ref{main}; no conclusion about them is drawn by a limit.
+
+\section{Attribution, timeline and verification}\label{credit}
+The submitted positive-direction proof is retained at
+\href{https://github.com/AlecKriebel/Math/pull/200}{GitHub PR~200},
+whose server creation record is 1~October~2026, 05:03:51~UTC, with
+submitted head \texttt{379a95960995}.
+Ferudun's deposited record~\cite{Ferudun} reports creation on
+2~October~2026, 01:41:04.506303~UTC; DataCite records DOI registration
+at 01:41:05~UTC that day. These particular witnesses document
+contemporaneous separate treatments. They do not exclude an earlier
+website or other repository disclosure, establish absolute first
+publication, or certify independent discovery. The converse criterion
+was added and audited on 16~October, and is not backdated to the original
+submission. A bounded classical and modern literature audit did not
+establish its historical novelty.
+
+Canonical parametrization, polarity, Jacobi identities and the norm
+principle are credited background. Older alternating focal-product
+relations, such as~\cite[Section~2, p.~219]{Anonymous}, compare the two
+foci for a fixed circumscribed polygon; that assertion alone is not
+phase constancy of the full product. The supplementary priority ledger
+records exact source scopes and access/search limits. No exhaustive
+absence-of-prior-work claim is made.
+
+The supplementary verification includes exact coefficient identities,
+cyclic divisor arithmetic, physical reflection/tangency fixtures and
+high-precision direct tangent-intersection controls. Numerical samples
+are diagnostics, not the universal proof. Legacy assertion-based
+verifiers and their optimized-mode limitation are distinguished from
+the package's explicit-guard checker. Dependency versions and replay
+instructions are supplied. No formal proof-assistant certification is
+claimed.
+
+AI tools were used extensively in developing the original argument,
+extending and checking it, searching sources, drafting the manuscript
+and conducting adversarial audits. These audits are AI-assisted checks,
+not conventional independent human peer review. This is an unrefereed
+research note; the author is responsible for its claims and presentation.
+
+\begin{thebibliography}{9}
+\bibitem{RGKpre} D.~Reznik, R.~Garcia and J.~Koiller,
+\emph{Eighty New Invariants of $N$-Periodics in the Elliptic Billiard},
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11} (2020).
+\bibitem{RGK} D.~Reznik, R.~Garcia and J.~Koiller,
+Fifty New Invariants of $N$-Periodics in the Elliptic Billiard,
+\emph{Arnold Math. J.} \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+\bibitem{Ferudun} A.~Ferudun,
+\emph{Focal Distance Products of Outer Elliptic Billiard Polygons},
+unrefereed preprint (2026).
+\href{https://doi.org/10.5281/zenodo.23093258}{doi:10.5281/zenodo.23093258}.
+\bibitem{Stachel} H.~Stachel, On the motion of billiards in ellipses,
+\emph{Eur. J. Math.} \textbf{8} (2022), 1602--1622.
+\href{https://doi.org/10.1007/s40879-021-00524-2}{doi:10.1007/s40879-021-00524-2}.
+\bibitem{DLMF} NIST Digital Library of Mathematical Functions,
+Sections 22.4, 22.6 and 22.8,
+\url{https://dlmf.nist.gov/22} (accessed 16 October 2026).
+\bibitem{Fouche} M.~Fouch\'e, Sur les polygones inscrits \`a une conique
+et circonscrits \`a une autre et les polygones form\'es de g\'en\'eratrices
+d'une quadrique et inscrits \`a une autre quadrique,
+\emph{Bull. Soc. Math. France} \textbf{43} (1915), 146--160.
+\url{https://www.numdam.org/item/BSMF_1915__43__146_1/}.
+\bibitem{AST} A.~Akopyan, R.~Schwartz and S.~Tabachnikov,
+\emph{Billiards in ellipses revisited},
+\href{https://arxiv.org/abs/2001.02934v2}{arXiv:2001.02934v2} (2020).
+\bibitem{Anonymous} Anonymous, Th\'eor\`eme sur les polygones
+circonscrits \`a une conique, \emph{Nouvelles Annales de Math\'ematiques},
+1st series, \textbf{12} (1853), 218--220.
+\url{https://www.numdam.org/item/NAM_1853_1_12__218_1/}.
+\end{thebibliography}
+\end{document}

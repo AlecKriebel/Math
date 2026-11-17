@@ -1,0 +1,250 @@
+         Maximal norm discontinuity for a bounded-region
+                    continuum fermion interaction
+                                           Alec Kriebel
+                                    ORCID: 0009-0001-9320-500X
+
+                         Research note, version 1.0 — 14 October 2026
+
+
+                                              Abstract
+         For continuum fermions in three dimensions, we give one ﬁxed smooth compactly supported
+     pair potential and one ﬁxed bounded interaction region for which the Heisenberg orbit of a
+     ﬁxed annihilation operator is discontinuous in operator norm. Explicit ﬁnite-particle Slater
+     states and times tending to zero witness norm diﬀerences tending to the maximal value 2.
+     The construction works both with diagonal density pairs and with normal ordering, without
+     ultraviolet smearing. A ﬁxed-cutoﬀ commutator estimate, a Slater second-moment identity,
+     and a two-sector comparison supply a self-contained proof. Continuity on every ﬁxed vector
+     and in every ﬁxed normal state remains valid.
+
+Question and scope. Oberwolfach Report 7/2025, printed pp. 365 and 371 [1], distinguishes
+pointwise operator-norm continuity from strong-operator continuity and asks for a potential and
+states violating the former for an unregularized interaction restricted to a bounded region. We
+answer that existential question in dimension three, with kinetic energy on all of R3 . The Hartree
+discussion preceding the fermionic question concerns a separate bosonic model. We impose no
+ﬁxed-density or ﬁxed-energy restriction on the varying witnesses.
+    Siebert’s earlier 2026 preprint [3] proves full-space norm discontinuity by a high-density cluster
+and localized phase argument. That proof adapts directly to the bounded symmetric cutoﬀ kernel,
+yielding the qualitative conclusion here. Its Proposition 2.6 also gives the maximal limit 2 for the
+full-space constant-number reference. Our explicit free-Slater comparison transfers that limit to
+the ﬁxed spatial cutoﬀ. The audit also records an additional energy-bootstrap derivation using
+the earlier localized phase mechanism; neither cutoﬀ deduction is a theorem literally stated in
+the cited preprint. Siebert’s 2025 construction [2] uses an extended algebra, with norm continuity
+after time averaging. This note claims neither ﬁrst priority nor that the 2025 question remained
+open when this proof was prepared. The accompanying veriﬁcation archive records the bounded
+primary-source priority audit and the precise relation to earlier mechanisms.
+                                                                     ⊕     ∧
+Model and statement. Let h = L2 (R3 ), h = −∆, and F = n≥0 n h. Inner products are
+linear in the second variable; exterior products use normalized Slater determinants. Write a(f )
+and a∗ (f ) for the standard CAR operators, with {a(f ), a∗ (g)} = ⟨f, g⟩1 and ∥a(f )∥ = ∥f ∥. The
+ordering ﬂag κ ∈ {0, 1} below is distinct from an ultraviolet regularization parameter; neither model
+is smeared.
+
+
+
+
+                                                  1
+Theorem 1. Set Λ = B(0, 4) and L = dΓ(1Λ ). There exist a ﬁxed real radial V ∈ Cc∞ (R3 ),
+0 ≤ V ≤ 1, equal to one on Λ − Λ, and a ﬁxed normalized f ∈ Cc∞ (B(0, 1/2)), with the following
+property. For
+                                                               ∑
+                                                               n                            ∑
+                                                                                            n
+                Hn(κ) = Tn + Ln (Ln − κ),            Tn =            (−∆xj ),      Ln =           1Λ (xj ),   (1)
+                                                               j=1                          j=1
+
+
+and their self-adjoint maximal direct sum H (κ) , there are explicit unit Slaters, indexed by N ≥ 1,
+      ∧                           ∧
+ΨN ∈ N h and ΞN = a∗ (f )ΨN ∈ N +1 h such that
+                              π                                (κ)                  (κ)
+                                                                            a(f )e−itN H
+                   (κ)                             (κ)                (κ)                  (κ)
+                  tN =               ,           DN = eitN H                                     − a(f )      (2)
+                          2N + 1 − κ
+satisfy
+                    (κ)                                  (κ)                                (κ)
+                 ∥DN ΞN + 2ΨN ∥ −→ 0,                ∥DN ΞN ∥ −→ 2,                   ∥DN ∥ −→ 2.             (3)
+The same operator-norm limit holds for the creation diﬀerence. The normal vector states ωN (B) =
+⟨ΞN , BΞN ⟩ satisfy ωN ((DN )∗ DN ) → 4.
+                          (κ)   (κ)
+
+
+
+Fixed potential and sector domains.                Put b(s) = e−1/s for s > 0 and b(s) = 0 for s ≤ 0, and
+choose
+                                                     b(81 − |x|2 )
+                                  V (x) =                                  .                                  (4)
+                                              b(81 − |x|2 ) + b(|x|2 − 64)
+The denominator is positive everywhere. This smooth function equals one on B(0, 8) and vanishes
+outside B(0, 9). Thus the rigorous sector realization of the density-density interaction in Λ × Λ is
+
+                                  ∑
+                                  n
+                                          1Λ (xi )1Λ (xj )V (xi − xj ) = L2n .
+                                  i,j=1
+
+Omitting the diagonal terms gives Ln (Ln − 1), since V (0) = 1. We use the coeﬃcient 1 in this
+ordered-pair sum, without a factor 1/2. These multiplication operators deﬁne the ﬁeld-expression
+conventions without multiplying distributions. Each is real, symmetric in the particle coordinates,
+                                                                      ∧
+and bounded by n2 . Hence (1) is self-adjoint on D(Tn ) = H 2 (R3n ) ∩ n h. The vacuum sector is
+zero. The full domain is
+                                  {                                                                }
+                                                                       ∑
+                    D(H (κ) ) =    (ηn ) ∈ F : ηn ∈ D(Tn ),                  ∥Hn(κ) ηn ∥2 < ∞ .
+                                                                        n
+
+No uniform Fock-space bound on the interaction is presumed. Nor is invariance of the CAR algebra
+under the interacting evolution needed for this norm comparison in B(F).
+
+Packed Slaters. Choose f (x) = cf b(1 − 9|x|2 ), with cf > 0 normalizing its norm. Its support
+is B(0, 1/3). Let Q = 2e1 + (−1/4, 1/4)3 ⊂ B(0, 3), disjoint from supp f , and normalize φ(x) =
+   ∏
+cφ 3k=1 b(1 − 16(xk − 1/2)2 ). This belongs to Cc∞ ((0, 1)3 ). For mN = ⌈N 1/3 ⌉, subdivide Q into
+m3N cubes of side ℓN = (2mN )−1 . Choose the ﬁrst N lower corners cj,N in lexicographic order, and
+set
+                      −3/2
+          ψj,N (x) = ℓN φ((x − cj,N )/ℓN ), ΨN = ψ1,N ∧ · · · ∧ ψN,N , ΞN = a∗ (f )ΨN .
+
+
+
+
+                                                         2
+Disjoint supports give orthonormal orbitals and a(f )ΨN = 0, so both Slaters have norm one. Since
+mN ≤ 2N 1/3 ,
+                               ∑
+                               N
+                                     ∥∇ψj,N ∥2 = N ℓ−2
+                                                    N ∥∇φ∥ ≤ 16∥∇φ∥ N
+                                                          2        2 5/3
+                                                                         .
+                               j=1
+
+For either Slater with its actual particle number n = N or N + 1, and its initial orbitals g1 , . . . , gn ,
+therefore
+                        ∑
+                        n
+                              ∥gj ∥2H 1 ≤ C0 n5/3 ,         C0 = 1 + 16∥∇φ∥2 + ∥∇f ∥2 .                 (5)
+                        j=1
+
+All initial supports lie in B(0, 3).
+
+Uniform free leakage.           Use the single ﬁxed cutoﬀ
+
+                                                        b(49/4 − |x|2 )
+                                      χ(x) =                                    .
+                                                  b(49/4 − |x|2 ) + b(|x|2 − 9)
+
+It lies in Cc∞ (Λ) and equals one on B(0, 3). With q = 1Λc ,
+
+                         [h, χ]u = −(∆χ)u − 2∇χ · ∇u,
+                      ∥[h, χ]u∥ ≤ Cχ ∥u∥H 1 ,              Cχ = (∥∆χ∥2∞ + 4∥∇χ∥2∞ )1/2 .                (6)
+
+For any initial orbital g, diﬀerentiate e−i(s−r)h χe−irh g on its H 2 domain to obtain
+                                                               ∫ s
+                              −ish            −ish
+                         (e          χ − χe          )g = −i         e−i(s−r)h [h, χ]e−irh g dr.        (7)
+                                                                0
+
+The free group preserves H 2 and is isometric on H 1 ; multiplication by χ preserves H 2 . Thus the
+identity is justiﬁed for every packed smooth orbital, while its bound uses only the H 1 norm. From
+χg = g and qχ = 0, for every real s,
+
+                                              ∥qe−ish g∥ ≤ Cχ |s|∥g∥H 1 .                               (8)
+
+The indicator q is never diﬀerentiated.
+
+Second moment of the leaked number. Set Mn = n − Ln = dΓ(q) on the n-particle sector.
+For either initial Slater Φn , free evolution Φn (s) = e−isTn Φn remains a normalized Slater. Let P be
+its rank-n occupied projection and λ = Tr(P q). Expanding the determinant’s two-particle marginal
+gives
+                               ⟨Mn ⟩ = λ,      ⟨Mn2 ⟩ = λ2 + λ − Tr(P qP q).                        (9)
+                                      ∑
+Indeed the diagonal terms are j ⟨gj , qgj ⟩, as q 2 = q; the terms with j ̸= k are ⟨gj , qgj ⟩⟨gk , qgk ⟩ −
+                                                                                                √
+|⟨gj , qgk ⟩|2 . Their sum proves (9). All traces are ﬁnite, and Tr(P qP q) ≥ 0. With β = Cχ C0 , (5)
+and (8) yield
+
+                                 λn (s) ≤ β 2 s2 n5/3 ,
+                                              √
+                        ∥Mn Φn (s)∥ ≤             λn (s) + λn (s)2 ≤ β|s|n5/6 + β 2 s2 n5/3 .          (10)
+
+This variance estimate concerns Slaters; it is not asserted for general correlated or interacting states.
+
+
+
+                                                               3
+                                                                            (κ)
+Two-sector comparison.          Introduce only as a reference Kn                  = Tn + n(n − κ). Since Mn has
+spectrum {0, . . . , n},
+              Hn(κ) − Kn(κ) = −Mn (2n − κ − Mn ),            ∥(Hn(κ) − Kn(κ) )η∥ ≤ 2n∥Mn η∥.               (11)
+The diﬀerence is bounded on each sector, so strong Duhamel holds there. Reference evolution
+diﬀers from free evolution by a scalar phase. Applying (10), for either Φn and every real t, gives
+                                                                    ∫ |t|
+                                     (κ)          (κ)
+                 En (t) := ∥(e−itHn − e−itKn )Φn ∥ ≤ 2n                     ∥Mn Φn (sgn(t)s)∥ ds
+                                                                     0
+                        ≤ βn11/6 |t|2 + 32 β 2 n8/3 |t|3 .                                                 (12)
+                                                                    (κ)
+Thus for both n = N and n = N + 1, since n ≤ 2N and tN ≤ π/(2N ),
+
+                                 En (tN ) = O(N −1/6 + N −1/3 ) −→ 0.
+                                       (κ)
+                                                                                                           (13)
+The constants are independent of N and κ. We have used the Slater estimate only on free reference
+states, with no assumption that interacting evolution preserves Slaters or that a changing many-
+particle free state stays close to its initial vector.
+
+Phase and norm witness. Let A = a∗ (f ) and, suppressing the ﬁxed ordering ﬂag, write FNH (t) =
+⟨ΞN , eitH Ae−itH ΨN ⟩. Replacing the separately evolved bra and ket by their reference evolutions,
+unitarity and ∥A∥ = 1 imply
+                                 |FNH (t) − FNK (t)| ≤ EN +1 (t) + EN (t).                                 (14)
+For K = dΓ(h) + N (N − κ), free covariance and the CAR give exactly
+                             FNK (t) = eit(2N +1−κ) ⟨a∗ (f )ΨN , a∗ (eith f )ΨN ⟩
+                                     = eit(2N +1−κ) ⟨f, eith f ⟩.                                          (15)
+
+The last equality uses a(f )ΨN = 0; it does not require eith f to remain orthogonal to the occupied
+orbitals. At t = tN the scalar phase is −1, and ⟨f, eitN h f ⟩ → 1. Consequently FNH (tN ) → −1,
+whereas FNH (0) = 1. Taking adjoints,
+
+                                  ⟨ΨN , DN ΞN ⟩ = FNH (tN ) − 1 −→ −2.
+The universal upper bound ∥DN ∥ ≤ 2 now proves both norm limits. More quantitatively, since
+f ∈ D(h),
+                     2 ≥ ∥DN ΞN ∥ ≥ 2 − EN (tN ) − EN +1 (tN ) − tN ∥hf ∥.
+Finally ∥DN ΞN + 2ΨN ∥2 ≤ 8 + 4ℜ⟨ΨN , DN ΞN ⟩ → 0. This proves the ﬁrst limit in (3) and the
+vector-state conclusion, and completes the proof of Theorem 1.
+
+Topology and boundaries.           For every ﬁxed vector η, any self-adjoint H and bounded B obey
+                ∥(eitH Be−itH − B)η∥ ≤ ∥B∥∥(e−itH − 1)η∥ + ∥(eitH − 1)Bη∥ → 0.
+For B = a(f ), this also implies Tr(ρDt∗ Dt ) → 0 for every ﬁxed positive trace-class state ρ of trace
+one, by its spectral decomposition and the uniform bound 4. The witnesses in the theorem vary
+with N . The result concerns the chosen ball and potential; it does not assert all potentials or
+regions, ﬁxed-density thermodynamic behavior, or CAR non-invariance. The packing exponents
+−1/2 + 1/d and −1 + 2/d do not settle d = 1, 2.
+
+                                                        4
+Veriﬁcation and disclosure. The accompanying source archive contains the unchanged original
+mathematical packet, independent analytic and source audits, ﬁnite algebra/numerical controls,
+and publication veriﬁcation safeguards. Finite controls supplement the written universal proof;
+numerical diagnostics are not interval-certiﬁed proofs. Source hashes are consistency ﬁngerprints,
+not signatures. AI tools were used extensively in developing, checking, and preparing this work,
+including adversarial reviews by separate AI agents. This preprint is unrefereed, and no independent
+human peer review is claimed.
+
+
+References
+[1] Oberwolfach Report 7/2025, Mini-Workshop: New Directions in Correlated Quantum Systems,
+    doi:10.4171/owr/2025/7, printed pp. 364–365 and 371.
+
+[2] O. Siebert, On the thermodynamic limit of interacting fermions in the continuum, Letters in
+    Mathematical Physics 115, 33 (2025), doi:10.1007/s11005-025-01919-y; arXiv:2409.10495v2, 24
+    February 2025.
+
+[3] O. Siebert, Discontinuity of Continuum Fermion Dynamics, arXiv:2609.34402v1, submitted 28
+    September 2026.
+
+
+
+
+                                                 5
+

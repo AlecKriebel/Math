@@ -1,0 +1,3 @@
+# Opaque source174 next-three acquisition log
+
+2026-11-16T23:49:02.573869+00:00 — preparation5%. Authorized fixed rows174/175/176 only. All prior source/review/verification packets remain frozen. Full actual old acquisition code read statically, never executed. New scope-adapted helper written only here; current full-body read required before its first invocation. Paper-root absence is also enforced separately per record so unexpected material halts that record without overwrite. No mathematical/PDF/TeX/README/audit/results/program body read. No Git/website/Sheet/publication/Zenodo write/outreach.

@@ -1,0 +1,49 @@
+# Independent scope and proof-interface review
+
+This continuation follows the immutable 18-file source-only INITIAL. It uses the complete original theorem on the closed unit ball of the original complex norm and on all of C(U), not a holomorphic, polynomial, measure-space or renormed substitute. No peer/root findings or archived audit/results/README bodies were opened. Earlier same-record participation was opaque acquisition only.
+
+## Projection and the mixed boundary converse
+
+Power boundedness rules out a Jordan block of size greater than one at a unimodular eigenvalue: its first superdiagonal coefficient grows linearly with n, whereas equivalence of finite-dimensional norms preserves boundedness. Thus the peripheral space E is the sum of ordinary eigenspaces; the complementary generalized-eigenspace sum F has spectral radius less than one and its powers tend to zero, including nontrivial Jordan blocks.
+
+For the finitely many peripheral eigenvalues, take an increasing sequence m_j whose torus powers converge to one common limit. Then n_j=m_{2j}-m_j tends to infinity and every peripheral eigenvalue to the power n_j tends to 1. Consequently A^{n_j} tends in matrix operator norm to the canonical spectral projection P onto E along F. As every A^{n_j} is contractive in the original norm, P is contractive there. P(U)=U intersection E: one inclusion follows from contractivity, and the reverse follows from P restricted to E being identity. This explicitly supplies the norm/ball interface; a diagonalizing change of basis alone would not do so.
+
+B=A restricted to E is contractive. Also B^{n_j-1} tends to B^{-1}; its inverse is therefore contractive in the restricted original norm. Hence B is a surjective isometry on V=U intersection E. If E is zero, V is the singleton {0}, B is the unique bijection of that singleton, and its Koopman operator is identity on the constants; no empty peripheral product removes the eigenvalue 1.
+
+For a unimodular eigenpair K_A f=zeta f, both A^n x and A^n Px lie in U, and their distance tends uniformly to zero. Uniform continuity of f on the compact closed ball gives
+|f(x)-f(Px)|=|f(A^n x)-f(A^n Px)| tending to zero.
+Thus f=f composed with P. This works for singular A, nonnormal stable Jordan blocks, arbitrary peripheral phases and every continuous eigenfunction. It does not assume uniform convergence of the whole sequence A^n to P, convergence of the Koopman operators in operator norm, or any invariant measure.
+
+## Exact peripheral point spectrum, including dense subgroups
+
+Choose complex eigen-coordinates z_1,...,z_r on E. The coordinate polynomials in z and their conjugates form a unital, conjugation-invariant point-separating algebra on the compact V. The actual classical complex Stone-Weierstrass statement applies. Each monomial z^p conjugate(z)^q has eigenvalue product(lambda_i^(p_i-q_i)); the monomial is not identically zero on V because V has nonempty relative interior in E. This proves inclusion of the entire integer-generated Gamma, not just the forward semigroup or a closure. For E=0 the constant algebra supplies Gamma={1}.
+
+For zeta on the circle but outside Gamma, take M_m=(1/m)sum_{j=0}^{m-1} zeta^{-j}K_B^j. Its norm is at most one. On each fixed monomial, its scalar finite geometric mean tends to zero, since that monomial's frequency differs from zeta. It therefore tends to zero on every fixed finite polynomial. Uniform density and the uniform bound extend this conclusion to every continuous g: first choose one polynomial within epsilon, then take m large for its finitely many frequencies. But an eigenfunction of frequency zeta is fixed by every M_m, so must be zero. This is valid even when Gamma is dense and zeta is arbitrarily close to many frequencies; no uniform spectral separation of all frequencies is asserted.
+
+For the full peripheral spectrum, K_B and its inverse have norm one, so the spectrum lies on the circle. If Gamma is infinite, its closure is the full circle: arbitrarily small nontrivial group angles and their powers approximate every circle angle. The closed spectrum contains Gamma and hence the whole circle. If Gamma is finite of order q, every lambda_i^q=1, so B^q=I and K_B^q=I. Its spectrum is contained in the q-th roots of unity, precisely Gamma, and all are already eigenvalues. This includes Gamma={1}. Thus sigma(K_B)=closure(Gamma).
+
+## Open disk, zero and the remaining spectral cases
+
+If alpha is a nonzero stable eigenvalue, a nonzero left eigenfunctional ell satisfies ell A=alpha ell regardless of stable diagonalizability. Put a=|alpha| in (0,1) and R=max_U |ell|>0. For each nonzero |mu|<1 choose s=(log|mu|+i arg(mu))/log(a); Re(s)>0 and a^s=mu. Define f_mu(x)=exp(s log(|ell(x)|/R)) off ell=0 and zero on ell=0. Its modulus tends to zero at that hyperplane, so it is continuous; it is nonzero at a maximum point and satisfies f_mu(Ax)=mu f_mu(x). The radial construction deliberately ignores the phase of alpha; the chosen complex exponent supplies the phase of mu. No multi-valued logarithm of ell(x) is taken.
+
+The function f_0(x)=max(0, |ell(x)|/R-a) is nonzero somewhere in U and vanishes on A(U), supplying the zero eigenvalue even for invertible A. Together with the projection argument and norm bound this proves sigma_p(K_A)=open disk union Gamma when J is nonempty. The full spectrum is contained in the closed unit disk and contains its dense open disk, so equals the closed disk.
+
+If J is empty, the stable block has only the eigenvalue zero and is nilpotent. Qf=f composed with P is a bounded commuting projection on C(U); its range is isometrically C(V), with inverse restriction to V. Its kernel consists exactly of functions vanishing on V. For a sufficiently large d, A^d(U) lies in V, so K_A^d vanishes on that kernel. If A is nonsingular then F=0 and the kernel is zero. If A is singular, F is nonzero and the kernel is nonzero: a nonzero linear functional annihilating E but not F restricts to such a function on U. A nilpotent operator on a nonzero space has spectrum {0} and a nonzero kernel; finite geometric resolvent gives the spectral assertion without compactness or finite dimensionality of C(U). The invariant Banach direct sum therefore gives both complete formulas, including precisely the conditional zero singleton Z_A.
+
+Independent boundary controls retained from INITIAL cover A=I, A=0, nonzero nilpotent A, invertible scalar strict contraction, irrational scalar rotation, mixed diag(1,1/2), peripheral plus nilpotent blocks, and nonnormal examples contractive only in the specified adapted norm. None falsifies the full original. The eigenfunction at zero for an invertible strict contraction confirms that Z_A must not be used in the J-nonempty branch.
+
+## Classical JdLG appendix and exact import boundary
+
+For H=closure of the matrix powers including n=0, matrix norm compactness follows from contraction and finite dimension. For each fixed f, the map L -> f composed with L from H to C(U) is norm-continuous by uniform continuity of f. Hence its operator image is compact in the strong operator topology; it is also weak-operator compact and closed. Density of the powers in H identifies this image with the weak operator closure of the Koopman powers. This verifies the precise relatively weakly compact semigroup hypothesis of actual EFHN Theorem 16.33, without mistaking finite-dimensional matrix compactness for Koopman operator-norm compactness.
+
+The closure G_B of the peripheral powers is a compact group. For D in G_B, one can approximate D by powers with indices tending to infinity: if an approximating subsequence were bounded, add arbitrarily large common recurrence indices. Stable powers then vanish, so DP lies in H. The set G={DP:D in G_B} is a group ideal with identity P. Every nonempty ideal I of H meets G by multiplying any L in I by P. If g lies in I intersection G, multiplication by its G-inverse puts P in I, and then all of G lies in I. Thus G is the unique minimal ideal. Further, an idempotent R of H has RP an idempotent in G, hence RP=P; this identifies P as the unique minimal idempotent. The corresponding operator is exactly Qf=f composed with P.
+
+The actual author-manuscript construction at printed 308-309 defines the reversible part as range(Q); actual Theorem 16.33(a), printed 313, puts unimodular eigenvectors there. These interfaces validate the appendix as a concrete specialization of a pre-existing mechanism. The elementary projection/uniform-continuity proof above independently establishes the main converse, so there is no circular dependence on a supposed new general decomposition theorem.
+
+## Full-scope conclusion and limits
+
+The original full mathematical classification and its factorization assertion survive this scope/import review. No substantive unresolved central gap was found; no theorem was repaired, extended or narrowed. This is one independent AI review family, not conventional human peer review or a publication decision.
+
+Actual 2015 printed 35-43 and 2016 printed 320-322 establish the matching original closed-ball/full-C(U) target and the older inclusion. Their actual statements, not later paraphrases, were read. The 2015 text explicitly leaves the mixed converse open there; the 2016 text states the mixed case as inclusion. These observations support that bounded comparison only. No claim of exhaustive priority, continuous historical openness, or absence of any later completion is made. Archived priority/audit/results/README bodies remain unopened.
+
+The one ordinary native run checks 907 exact finite assertions. It does not prove infinite-dimensional spectral exclusion, topological density, continuity at ell=0, compact-semigroup applicability or historical novelty. Those are assessed by the hand proof and selected actual primary texts. No second native run or environment change was made.

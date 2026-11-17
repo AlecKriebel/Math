@@ -1,0 +1,3 @@
+# Post-INITIAL rights clarification
+
+The new authored proof/read/review notes and manifest data are CC BY4.0, and the new closing custody helper is MIT under LICENSE_CODE.txt. PRIMARY_SOURCES.json is a finite reference list. The primary-text extractions and primary-pages/source-page rasters remain third-party analysis derivatives under their original rights; they are not newly licensed CC BY or MIT, and this private review supplies no republication authority for them. Native deposited prose/code/archive contents retain actual original rights; no mixed-archive MIT inference. The original INITIAL license file is unchanged.

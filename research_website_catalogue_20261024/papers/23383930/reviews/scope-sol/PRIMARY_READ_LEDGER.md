@@ -1,0 +1,13 @@
+# Actual primary reading ledger
+
+All these bodies were opened after INITIAL_SEAL.json. None is a current peer/root finding. Exact delivered tool transcriptions are retained in ignored primary-reading; these are text transcriptions of actual tool responses, not native PDF byte pins or certification of every page in those foreign works.
+
+| Primary | Actual personally read scope | Limit |
+| --- | --- | --- |
+| [OWR 7/2025 official EMS PDF](https://ems.press/content/serial-article-files/51350), DOI 10.4171/OWR/2025/7 | Relevant printed 364–366 model/topology discussion, especially text lines 1591–1663; printed 371 separate bosonic and fermionic subsections, lines 1981–2022. | Text passages, no foreign PDF pixels or locally authenticated raw PDF. No claim that the entire report was read. |
+| [Siebert 2026, arXiv:2609.34402v1](https://arxiv.org/html/2609.34402v1) | Actual abstract/version timestamp; section 2 definitions/hypotheses and Theorem 2.4; Lemmas 3.1–3.4 at the relevant packing, energy/leakage, localized antisymmetrization and Duhamel passages; section 3.3 phase argument; complete Proposition 2.6 and its proof. | Selected decisive bodies, not every external-potential example or non-invariance proof. v1 is the cited edition. No current-open-status or blanket applicability inference. |
+| [Siebert 2025 accepted version, arXiv:2409.10495v2](https://arxiv.org/html/2409.10495v2) | Actual model/ordering, introduction's topology distinction, Theorem 2.1/Corollary 2.2 and time-average proof passages; actual v2 timestamp and journal reference. | The cited accepted v2 body was read; final journal PDF byte/text equivalence was not separately authenticated. No claim that every theorem of this paper was re-proved. |
+
+The original question's model and the proved cutoff construction are matched explicitly in IMPORT_DERIVATIONS.md. The earlier 2026 theorem is not literally a theorem for the nontranslation-invariant cutoff kernel; the required bounded-kernel deduction is separately checked there. The prior constant-number result and the 2025 time-averaged algebra are distinguished from this note's fixed spatial cutoff and unaveraged mode. No earlier-source theorem is silently strengthened.
+
+No primary request failed in this phase. Tool response sizes were checked: all selected displayed outputs were below their explicit displayed slice limits. The earlier native-metadata combined output truncation was remedied before INITIAL by full separate reads; it is not concealed as successful full initial delivery. Actual new tool responses are preserved without source normalization. No author/researcher was contacted, and no outreach was prepared.

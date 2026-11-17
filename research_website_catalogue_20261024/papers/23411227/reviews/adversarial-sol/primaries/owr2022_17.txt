@@ -1,0 +1,3072 @@
+      Mathematisches Forschungsinstitut Oberwolfach
+
+
+
+                                 Report No. 17/2022
+
+                           DOI: 10.4171/OWR/2022/17
+
+                                 Toric Geometry
+                                      Organized by
+                               Jürgen Hausen, Tübingen
+                               Milena Hering, Edinburgh
+                                 Nathan Ilten, Burnaby
+                               Diane Maclagan, Coventry
+
+
+                              27 March – 2 April 2022
+
+         Abstract. Toric geometry is a vibrant subﬁeld of algebraic geometry that
+         draws on strong connections to combinatorics. The 2022 workshop brought
+         together a broad group of mathematicians both in-person and virtually to
+         discuss aspects of the ﬁeld, ranging from K-stability to machine learning.
+
+
+Mathematics Subject Classification (2020): 14M25, 14B12, 14D06, 14L30, 52B20, 13F99, 14E15.
+
+
+
+                       Introduction by the Organizers
+
+The workshop Toric Geometry had 34 in-person participants, and 21 further vir-
+tual participants. Toric geometry is the rich interplay between algebraic and con-
+vex geometry relating varieties with almost transitive torus action to combinatorial
+and polyhedral data. The ﬁeld continues to develop, with lots of recent activity
+connecting toric geometry to deformation theory, K-stability, birational geometry,
+resolution of singularities, among other topics.
+   A major theme of the workshop was degenerations to, and deformations of,
+toric varieties, including relations to K-stability. Petracci discussed the use of
+deformation theory of toric varieties to study the local geometry of the moduli
+space of K-stable Fano varieties. Blum reported on recent work that constructs
+a canonical two-step degeneration of any klt Fano variety to a klt Fano admit-
+ting a Kähler-Ricci soliton. Filip presented work-in-progress on the connection
+between mutations of Laurent polynomials and deformations of toric Gorenstein
+3-folds with non-isolated singularities. Mutations of polytopes returned in the
+talk of Mohammadi, who described new techniques to obtain toric degenerations
+of Grassmannians. A major source of toric degenerations in recent years has come
+862                                                   Oberwolfach Report 17/2022
+
+from ﬁnitely generated semigroups arising in Newton-Okounkov theory. Haase pre-
+sented work showing the subtleties of this approach, giving a characterization of
+when these semigroups are ﬁnitely generated for non-toric ﬂags on a toric variety.
+   Another theme was toric methods in resolution of singularities. Temkin gave
+an overview of the recent much improved algorithm, joint with Abramovich and
+Wlodarczyk, for functorial resolution of singularities. In a second, example-oriented
+talk, Wlodarczyk presented further improvements that exploit torus actions. Sa-
+triano proposed a framework for computing stringy Hodge numbers of singular
+varieties using resolutions via Artin stacks, and veriﬁed this framework for toric
+varieties.
+   The study of birational geometry and singularities played a prominent role in
+the talks of Batyrev, Wrobel, Süß, and Laface. Batyrev discussed how to construct
+minimal models of nondegenerate hypersurfaces in toric varieties via the Fine in-
+terior of Newton polytopes. Wrobel considered complete intersections in toric va-
+rieties, describing the various types of singularities of the minimal model program
+in terms of the anticanonical complex, and giving applications to classiﬁcation of
+certain terminal Fano 3-folds. Süß bounded the possibilities for toric singularities
+via the normalized volume. Laface presented the recent breakthrough, joint with
+Castravet, Tevelev, and Ugaglia, on exhibiting toric surfaces whose blow-ups have
+non-polyhedral eﬀective cones. This shows that M 0,n has non-polyhedral eﬀective
+cone for n ≥ 10.
+   Higher-complexity torus actions continue to play a prominent role in the subject.
+Using the geometry of C∗ -actions, Romano presented a detailed study of certain
+Picard-rank three Mori Dream Spaces. Monin described the cohomology ring of
+ﬁber bundles whose ﬁbers are toric varieties. Kaveh extended the theory of toric
+vector bundles to equivariant vector bundles on toric schemes.
+   Other speakers developed core tools in toric geometry and made connections to
+other ﬁelds. Altmann continued the Oberwolfach tradition of progress on under-
+standing the derived category of toric varieties by giving a description of all full
+exceptional collections of line bundles on Picard-rank two toric varieties. Bruce
+described a connection between multigraded regularity on products of projective
+spaces and quasilinear resolutions, generalizing the classical case. Machine learn-
+ing starred in the talk of Hofscheier, who discussed his experiments with lattice
+polytopes. Sottile closed the conference by challenging us to return to underap-
+preciated connections of toric geometry to mathematical physics.
+   On Tuesday evening there was lively session of ﬁve minute talks by both junior
+and senior participants. Speakers were:
+
+      (1) Jarek Wisniewski Birational maps, C∗ -actions and Mori Dream Spaces
+      (2) Oliver Clarke Toric Degenerations via combinatorial mutations
+      (3) Leonid Monin Multi-polytopes and quasitoric manifolds
+      (4) Julius Giesler The plurigenera of minimal models of toric hypersurfaces
+      (5) Juliette Bruce Top weight cohomology of Ag
+      (6) Marie Brandenburg A problem from economics and lattice polytopes
+      (7) Benjamin Nill Thin polytopes
+Toric Geometry                                                                863
+
+    (8) Andreas Bäuerle Classiﬁcation of some Fano 3-folds with torus action
+    (9) Marti Salat Molti Monomial ideals via Klyachko ﬁltrations
+  (10) Johannes Hofscheier Generalised ﬂatness constants
+  (11) Fatemeh Mohammadi Double Schubert polynomials
+  (12) Kiumars Kaveh An extension of Brianchon-Gram theorem and toric vari-
+        eties
+  In-person participants were happy to meet again for intense mathematical dis-
+cussions after the pandemic pause, and many informal connections were created.
+We are grateful to Oberwolfach for hosting this workshop, and providing such
+excellent working conditions.
+Acknowledgement: The MFO and the workshop organizers would like to thank the
+National Science Foundation for supporting the participation of junior researchers
+in the workshop by the grant DMS-1641185, “US Junior Oberwolfach Fellows”.
+Toric Geometry                                                                                                              865
+
+
+
+
+Workshop: Toric Geometry
+Table of Contents
+
+
+Klaus Altmann (joint with Frederik Witt)
+   The structure of exceptional sequences on toric varieties of Picard rank
+   two . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 867
+Juliette Bruce (joint with Lauren Cranton Heller, Mahrud Sayraﬁ)
+    Multigraded Castelnuovo–Mumford Regularity on Products of Projective
+    Space . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 870
+Michael Temkin (joint with Dan Abramovich, Jaroslaw Wlodarczyk)
+   Resolution of singularities in characteristic zero: new tools and methods                                                874
+Andrea Petracci (joint with Anne-Sophie Kaloghiros)
+  K-moduli spaces of Fano varieties and toric geometry . . . . . . . . . . . . . . . . 878
+Christian Haase (joint with Klaus Altmann, Alex Küronya, Karin Schaller,
+   Lena Walter)
+   Non-toric valuation semi-groups for toric surfaces . . . . . . . . . . . . . . . . . . . 882
+Kiumars Kaveh (joint with Christopher Manon, Boris Tsvelikhovsky)
+   Toric vector bundles over a discrete valuation ring and aﬃne buildings . 885
+Harold Blum (joint with Yuchen Liu, Chenyang Xu, and Ziquan Zhuang)
+   Degenerations of unstable Fano varieties and Kahler-Ricci soliton . . . . . 888
+Milena Wrobel (joint with Jürgen Hausen, Christian Mauz)
+   The anticanonical complex for non-degenerate toric complete intersections 890
+Hendrik Süß (joint with Joaquı́n Moraga)
+   Bounding toric singularities via normalized volume . . . . . . . . . . . . . . . . . . 892
+Matej Filip
+  Laurent polynomials and deformations of toric Gorenstein varieties . . . . 894
+Antonio Laface (joint with Ana-Maria Castravet, Jenia Tevelev, Luca
+   Ugaglia)
+   Blown-up toric surfaces with non-polyhedral eﬀective cone . . . . . . . . . . . . 896
+Johannes Hofscheier (joint with Jiakang Bao, Yang-Hui He, Edward Hirst,
+   Alexander Kasprzyk, Suvajit Majumder)
+   Exploring lattice polytopes through machine learning . . . . . . . . . . . . . . . . . 899
+Jaroslaw Wlodarczyk
+   Resolution of singularities by torus actions . . . . . . . . . . . . . . . . . . . . . . . . . 902
+Matthew Satriano (joint with Jeremy Usatine)
+  Motivic Integration and Toric Stacks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 903
+866                                                                           Oberwolfach Report 17/2022
+
+Leonid Monin (joint with Johannes Hofscheier, Askold Khovanskii,
+   Hendrik Süß, and Milena Wrobel)
+   Toric bundles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 906
+Eleonora A. Romano (joint with Gianluca Occhetta, Luis E. Solá Conde,
+   Jaroslaw A. Wiśniewski)
+   C∗ -actions and Mori dream spaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 909
+Victor V. Batyrev
+   Minimal models of non-degenerate toric hypersurfaces . . . . . . . . . . . . . . . . 912
+Fatemeh Mohammadi (joint with Oliver Clarke, Francesca Zaﬀalon)
+   Computing toric degenerations of varieties . . . . . . . . . . . . . . . . . . . . . . . . . . 915
+Frank Sottile (joint with Matthew Faust)
+   Toric Geometry and Discrete Periodic Operators . . . . . . . . . . . . . . . . . . . . 918
+Toric Geometry                                                                      867
+
+                                    Abstracts
+
+  The structure of exceptional sequences on toric varieties of Picard
+                                rank two
+                            Klaus Altmann
+                     (joint work with Frederik Witt)
+
+We report on results obtained jointly with Frederik Witt, cf. [AW21].
+
+                               1. Picard rank two
+Smooth toric varieties X of Picard rank two provide the most basic class of
+projective toric varieties beyond projective spaces. According to Kleinschmidt’s
+classiﬁcation [Kle88] they are completely determined by integers ℓ1 , ℓ2 ≥ 2 and
+0 = c1 ≥ c2 ≥ . . . ≥ cℓ2 arising in the class map
+                                        
+             1 . . . 1 c1 . . . cℓ 2
+     π :=                                   : Zℓ1 +ℓ2 = DivT (X) → Pic(X) = Z2 .
+             0 ... 0 1 ... 1
+The usual toric lattices M and N occur as M = ker π and N = coker π ∗ . In other
+words, N is the quotient by the two rows of π, which leads to vectors u1 , . . . , uℓ1
+and v 1 , . . . , v ℓ2 ∈ N as the images of the unit vectors of Zℓ1 +ℓ2 . The fan Σ ⊆ NR
+for X arises from the maximal cones σi,j being generated by all rays except ui and
+v j . The classes of the divisors associated to the rays u1 and v 1 generate the nef
+cone and identify the Picard lattice with Z2 . The dimension of X is d = ℓ1 +ℓ2 −2.
+Actually, beyond ℓ1 , ℓ2 , only the invariants
+                                                      P      i
+                       α := −cℓ2 ≥ 0 and β := −         ic       ≥α
+will be important for us. The case α = β = 0 means X = Pℓ1 −1 × Pℓ2 −1 and will
+be refered to as the product case; in the remaining twisted case we merely have a
+ﬁbration X → Pℓ1 −1 with ﬁber Pℓ2 −1 .
+
+                           2. Exceptional sequences
+Assume that X is a smooth, projective variety with H≥1 (X, OX ) = 0. This applies,
+in particular, to all toric varieties.
+Definition 1. A sequence s = (L1 , . . . , LN ) of line bundles on X is called excep-
+tional if Ext• (Lj , Li ) = 0 whenever i < j. Moreover, it is called full (abreviated
+by FES), if L1 , . . . , LN generate the entire derived category D(X).
+   If, instead of line bundles, we allow arbitrary elements of D(X) it was shown
+in [Kaw06, Kaw13, Kaw16] that for toric varieties X FESs always exist. For the
+stronger version of the previous deﬁnition, however, this fails even for toric Fano
+varieties, cf. [Eﬁ14].
+On the other hand, for toric varieties of Picard rank two FESs of line bundles
+always exist. This is a well-known fact and follows, for instance, from the projective
+bundle structure. Indeed, one lifts a FES from the base Pℓ1 −1 and deﬁnes a
+868                                                     Oberwolfach Report 17/2022
+
+sequence from the union of several twists of this lifted FES. We shall refer to this
+sequence as being of Orlov type.
+Hence, the goal of the present note is not to discuss existence questions but to
+shed light on the structure of all possible FESs.
+
+                            3. The immaculate locus
+What makes this goal accessible for the Picard rank two case is the explicit knowl-
+edge of the immaculate locus
+              I(X) := {[L] ∈ Pic X | H• (X, L−1 ) = 0} ⊂ Pic X = Z2 .
+By [ABKW20], it consists of the interior lattice points of the horizontal strip
+                               H = [0 ≤ y ≤ ℓ2 ] ⊂ R2
+and of the parallelogram
+       P = {(x, y) | − β ≤ x ≤ ℓ1 , 0 ≤ h(1, α), (x, y)i ≤ ℓ1 + αℓ2 − β} ⊂ R2
+as sketched in Figure 1. Now, setting si := [Li ] the sequence s = (s1 , . . . , sN ) is
+
+
+
+
+                                               (ℓ1 − β, ℓ2 )
+
+                                                       H
+                                    0
+                                               P
+
+
+
+        Figure 1. The sets R (dark), B (medium), and G (light) for
+        ℓ1 = 4, ℓ2 = 3, α = 1, and β = 2.
+
+contained in Z2 and the condition for exceptionality turns into sj − si ∈ I(X).
+In particular, it becomes purely combinatorial. On algebro-geometric grounds
+|s| = N is bounded by |Σ(d)| = ℓ1 ℓ2 .
+
+                                  4. The results
+We call an exceptional sequence s maximal if |s| = ℓ1 ℓ2 . Using this terminology,
+we obtained the following results:
+
+4.1. Fullness. For the present special case of toric varieties with Picard rank two,
+we can conﬁrm Kuznetsov’s conjecture that if there exists a FES at all, then every
+exceptional sequence of maximal length is full.
+Toric Geometry                                                                           869
+
+4.2. Spatial constraints. In the twisted case, FESs have a height of at most
+2ℓ2 . In the product case we can guarantee this for either the height or the width.
+Interestingly (and almost strangely) enough, this fails if the exceptional sequence
+is not of maximal length. On (P1 )3 (which of course is of Picard rank three), this
+even fails for FES: Indeed, we present examples in [AA] spreading arbirarily far
+into all three directions.
+4.3. Lexicographic ordering. In the twisted case, imposing a vertical lexico-
+graphic order preserves exceptionality. In the product case either the vertical or
+the horizontal order works. Again, this fails for non-maximal exceptional sequences
+or for FES on (P1 )3 .
+4.4. Classification. We produce FESs of height ≤ 2ℓ2 as follows:
+(i) Start with some so-called admissible set R ⊂ P ∩ Z2 sitting in the strip H′ :=
+[ℓ2 ≤ y ≤ 2ℓ2 − 1]. Admissibility is explained in [AW21] – it does mainly say that
+R narrows with height, cf. Figure 1.
+(ii) Inside H′ supplement R with B such that at every height h the sets Bh :=
+B ∩ [y = h] and Rh := R ∩ [y = h] arranged in this order consist of ℓ1 consecutive
+points.
+(iii) Deﬁne G := B − (−β, ℓ2 ). Then s := R ∪ G together with lexicographic order
+deﬁnes a FES. Furthermore, any FES arises this way up to shifts and reordering,
+cf. Figure 1. Finally, the FESs of Orlov type correspond to the case of R = ∅.
+4.5. Exceptional posets. By deﬁnition, FESs come with a particular total order.
+We can switch our viewpoint though and consider subsets s ⊂ Z2 of size ℓ1 ℓ2 with a
+so-called exceptional partial order P (s) such that a total ordering of s is exceptional
+if and only if it reﬁnes P (s). This poset P (s) can be explicitely determined out of
+the data in (4.4). It always contains ≤eff deﬁned by A ≤eff B if and only if B − A
+lies in the eﬀective cone. To completely determine P (s), however, we also need to
+take into account the relative positions of those layers Bh with Rh = ∅.
+4.6. Strongly exceptional sequences. In connection with tilting bundles one
+looks for exceptional sequences which are strong, that is, they also satisfy
+                                    Ext≥1 (si , sj ) = 0
+for 0 ≤ i, j ≤ n. It turns out that s is strong if and only if P (s) equals the smallest
+possible choice, i.e., P (s) =≤eff .
+
+                                      References
+      [AA] Klaus Altmann and Martin Altmann. Exceptional sequences of 8 line bundles on
+           (P1 )3 . J. Algebr. Comb., 2022, DOI 10.1007/s10801-021-01112-z.
+[ABKW20] Klaus Altmann, Jaroslaw Buczyński, Lars Kastner, and Anna-Lena Winz. Immacu-
+           late line bundles on toric varieties. Pure Appl. Math. Q., 16(4):1147–1217, 2020.
+   [AW21] Klaus Altmann and Frederik Witt. The structure of exceptional sequences on toric
+           varieties of Picard rank two. arXiv:2112.14637 [math.AG], 2021.
+    [Eﬁ14] Alexander I. Eﬁmov. Maximal lengths of exceptional collections of line bundles. J.
+           Lond. Math. Soc., II. Ser., 90(2):350–372, 2014.
+870                                                          Oberwolfach Report 17/2022
+
+  [Kaw06] Yuriro Kawamata. Derived categories of toric varieties. Mich. Math. J., 54(3):517–
+           535, 2006.
+  [Kaw13] Yujiro Kawamata. Derived categories of toric varieties. II. Mich. Math. J., 62(2):353–
+           363, 2013.
+  [Kaw16] Yujiro Kawamata. Derived categories of toric varieties. III. Eur. J. Math., 2(1):196–
+           207, 2016.
+   [Kle88] Peter Kleinschmidt. A classiﬁcation of toric varieties with few generators. Aequa-
+           tiones Math., 35(2-3):254–266, 1988.
+
+
+
+
+      Multigraded Castelnuovo–Mumford Regularity on Products of
+                               Projective Space
+                               Juliette Bruce
+            (joint work with Lauren Cranton Heller, Mahrud Sayraﬁ)
+
+
+
+       1. Castelnuovo–Mumford regularity on Projective Spaces
+Before discussing multigraded Castelnuovo–Mumford regularity on products of
+projective spaces and our new work, we begin by brieﬂy recalling the standard
+graded story of Castelnuovo–Mumford regularity on a single projective space. In-
+troduced by Mumford in the mid-1960’s Castelnuovo–Mumford regularity is de-
+ﬁned in terms of cohomological vanishing.
+Definition 1.1. A coherent sheaf F on Pn is d-regular if and only if:
+                       H i (Pn , F (d − i)) = 0         for all i > 0.
+The Castelnuovo–Mumford regularity of F is then
+                               
+                 reg(F ) := min d ∈ Z F is d-regular .
+Roughly speaking one should think about Castelnuovo–Mumford regularity as be-
+ing a measure of geometric complexity. Mumford was interested in such a measure
+as it plays a key role in constructing Hilbert and Quot schemes. In particular, being
+d-regular implies that F (d) is globally generated. However, in the 1980’s Eisen-
+bud and Goto showed that being d-regular was also closely connected to interesting
+homological properties.
+                                                                 L
+Theorem 1.2. [4] Let F be a coherent sheaf on Pn and M = e∈Z H 0 (Pn , F (e))
+the corresponding section ring. The following are equivalent:
+      • M is d-regular;
+      • βi,j (M ) := dimK Tori (M, K)j = 0 for all i ≥ 0 and j > d + i;
+      • M≥d has a linear resolution.
+   The goal of our work is to try and understand how this theorem may be gener-
+alized to the multigraded setting, i.e. from coherent sheaves on a single projective
+space to sheaves on a product of projective spaces.
+Toric Geometry                                                                        871
+
+        2. Multigraded Setting: Products of Projective Spaces
+Shifting to the multgraded setting, we ﬁx a dimension vector n = (n1 , n2 , . . . , nr ) ∈
+Nr and let Pn := Pn1 × Pn2 × · · · × Pnr . We then let S = K[xi,j | 1 ≤ i ≤ r, 0 ≤ j ≤
+ni ] be the Cox ring of Pn with the Pic(X) ∼= Zr -grading given by deg xi,j = ei ∈ Zr ,
+where ei is the i-th standard basis vector in Zr .
+    Maclagan and Smith generalized Castelnuovo–Mumford regularity to this set-
+ting in terms of certain cohomology vanishing. Before we can state their deﬁnition
+of multigraded regularity we need to ﬁx some useful notation to described the
+regions in which we will require cohomology to vanish.
+Notation 2.1. Given d ∈ Zr and i ∈ Z≥0 we let:
+                                  [
+                        Li (d) :=   (d − v) + Nr .
+                                         v∈N
+                                        |v|=i
+
+   In order to get a sense for what these regions look like note when r = 2 the
+region Li (d) looks like a staircase with (i + 1)-corners. Below we’ve plotted the
+regions L1 (0, 0), L2 (0, 0), and L3 (0, 0). Roughly speaking we are going to deﬁne
+regularity by require H i to vanish on Li .
+
+
+
+
+ With this notation in hand we recall the notion of multigraded Castelnuovo–
+Mumford regularity as introduced by Maclagan and Smith.
+Definition 2.2. [5, Deﬁnition 6.1] A coherent sheaf F on Pn is d-regular if and
+only if
+                   H i (Pn , F (e)) = 0     for all e ∈ Li (d).
+The multigraded Castelnuovo–Mumford regularity of F is then the set:
+                              
+                  reg(F ) := d ∈ Zr     F is d-regular ⊂ Zr .
+    Even for relatively simple examples the multigraded Castelnuovo–Mumford reg-
+ularity does not necessarily have a unique minimal element (see Figure 1). That
+said reg(F ) does have the structure of a module over the semi-group Nef(Pn ) ∼
+                                                                              = Nr ,
+                                                      r
+i.e. if d ∈ reg(F ) then d + e ∈ reg(F ) for all e ∈ N .
+
+The obvious approaches to generalize Theorem 1.2 to a product of projective
+spaces turn out not to work. For example, the multigraded Betti numbers do not
+determine multigraded Castelnuovo–Mumford regularity [2, Example 5.1] With
+this in mind we focus on generalizing part (3) of Theorem 1.2.
+872                                                            Oberwolfach Report 17/2022
+
+
+
+
+          Figure 1. The multigraded Castelnuovo–Mumford regularity of
+          OX where X ⊂ P1 × P1 is the subscheme consisting of three
+          distinct points ([1 : 1], [1 : 4]), ([1 : 2], [1 : 5]), and ([1 : 3], [1 : 6]).
+
+
+Definition 2.3. [2] Let F• be a complex of Zr -graded free S-modules.
+      (1) We say that F• is d-linear if and only if F0 is generated in degree d and
+          each twist of Fi is contained in Li (d).
+      (2) We say that F• is d-quasilinear if and only if F0 is generated in degree d
+          and each twist of Fi is contained in Li−1 (d − 1).
+
+   In order to see the diﬀerence between linear and quasilinear resolutions we note
+that on a product of projective spaces the irrelevant ideal generally will have a
+quasilinear resolution, not a linear resolution. For example, if we consider P1 × P2
+so that S = K[x0 , x1 , y0 , y1 , y2 ] and B = hx0 , x1 i ∩ hy0 , y1 , y2 i then the minimal
+graded free resolution of S/B is:
+
+                                S(−1, −2)6           S(−1, −3)2
+  S        S(−1, −1)6              ⊕                    ⊕                 S(−2, −3)         0.
+                                S(−2, −1)3           S(−2, −2)3
+
+In particular, we see that the minimal graded free resolution S/B is not (0, 0)-linear
+since (−1, −1) 6∈ L1 (0, 0), however, it is (0, 0)-quasilinear.
+   It is not the case that M being d-regular implies M≥d has a linear resolution
+[2, Example 4.2], however, we can characterize being d-regular in terms of M≥d
+having a quasilinear resolution.
+
+Theorem 2.4. [2, Theorem A] Let M be a ﬁnitely generated Zr -graded S-module
+      0
+with HB (M ) = 0 then:
+
+              M is d-regular ⇐⇒ M≥d has a d-quasilinear resolution
+
+   We brieﬂy sketching the proof of the above theorem:
+      (1) Using a Fourier-Mukai argument we construct a complex G• of free Zr -
+          graded S-modules whose multigraded Betti numbers are given (in some
+          range) as follows:
+                                                                
+                      βi,a (G• ) = dim H |a|−i Pn , M̃ ⊗ ΩaPn (a) .
+Toric Geometry                                                                            873
+
+    (2) Making use of a spectral sequence argument we show that even though G•
+        is not a priori a resolution of M≥d we have that:
+                                 βi,a (M≥d ) = βi,a (G• ) .
+    (3) Finally, we characterize M being d-regular in terms of the vanishing of
+        the cohomology in (1) above.
+   Note the complex G• constructed in part (1) of the proof sketch above is a
+priori not a resolution of M≥d , but instead is a virtual resolution of M [1]. That
+said as noted above it does have the same Betti numbers as M≥d , and in all the
+examples we have done it turns out to be a resolution.
+Conjecture 2.5. [2, Conjecture 6.7] The complex G• is the minimal free resolu-
+tion of M≥d .
+
+                                3. Further Questions
+Since computing the minimal graded free resolution of M≥d can be eﬀectively
+done via Gröbner basis methods, Theorem 2.4 provides an eﬃcient algorithm for
+checking whether a module is d-regular for a particular d ∈ Zr . It would be
+interesting to know whether such an algorithm could be extended to computing
+all of the minimal elements of reg(M ).
+Question 3.1. Is there an eﬀective algorithm for computing the multigraded
+Castelnuovo–Mumford regularity of a coherent sheaf or module on Pn ?
+   This is equivalent to ﬁnding a ﬁnite box in Zr that contains all of the minimal
+elements of reg(M ). If such a ﬁnite box does exist, it is very special to the case of
+a product of projective spaces.
+   In particular, one may consider multigraded Castelnuovo–Mumford regularity
+of sheaves and modules on other toric varieties [5]. It turns out that there are
+examples of ﬁnitely generated modules on Hirzebruch surfaces whose multigraded
+Castelnuovo–Mumford regularity does not lie in ﬁnite a box [3]. This naturally
+leads one to ask what assumptions one needs to avoid such potential issues.
+Question 3.2. Let X be a smooth projective toric variety, and M a ﬁnitely
+generated Pic(X)-graded Cox(X)-module. Under what assumptions is reg(M )
+ﬁnitely generated as a module over the semi-group Nef(X)?
+
+                                       References
+[1] Christine Berkesch, Daniel Erman, and Gregory G. Smith, Virtual resolutions for a product
+    of projective spaces, Algebr. Geom. 7 (2020), no. 4, 460–481.
+[2] Juliette Bruce, Lauren Cranton Heller, and Mahrud Sayraﬁ, Characterizing Multi-
+    graded Regularity on Products of Projective Spaces (2021). ArXiv pre-print:
+    https://arxiv.org/abs/2110.10705.
+[3]         , Bounds on the Multigraded Regularity of Modules and Powers of Ideals (2022). To
+    appear.
+[4] David Eisenbud and Shiro Goto, Linear free resolutions and minimal multiplicity, Journal of
+    Algebra 88 (1984), no. 1, 89–133.
+874                                                     Oberwolfach Report 17/2022
+
+[5] Diane Maclagan and Gregory G. Smith, Multigraded Castelnuovo–Mumford regularity, J.
+    Reine Angew. Math. 571 (2004), 179–212.
+
+
+
+       Resolution of singularities in characteristic zero: new tools
+                               and methods
+                             Michael Temkin
+           (joint work with Dan Abramovich, Jaroslaw Wlodarczyk)
+
+
+                                  1. Intoduction
+In a series of joint projects with Abramovich and Wlodarczyk, we discovered log-
+arithmic and stack-theoretic versions of the classical embedded desingularization
+algorithm. These methods are simpler, faster, possess better functorial properties
+and apply to morphisms too. They are based on extending the pool of geometric
+objects one works with by log schemes and stacks. As a result more basic bira-
+tional operations are available for the new algorithms, including various versions
+of log blow ups and weighted blow ups.
+1.1. Classical desingularization. All canonical (or functorial) resolution meth-
+ods known so far are embedded: to desingularize a space X (variety, scheme, ana-
+lytic space, etc.) of characteristic zero one (locally) embeds it into a smooth or reg-
+ular space M , that will be called an ambient manifold, and principalizes the ideal
+IX ⊂ OM of X by ﬁnding a sequence of smooth blow ups Mn → · · · → M0 = M
+such that In = IOMn is invertible and supported on the exceptional divisor. In
+the classical situation smooth blow ups are blow ups with smooth centers. This
+guarantees that each Mi is a manifold and the last non-empty strict transform
+Xl ֒→Ml of X is a component of the l-th center, and hence is a resolution of X.
+Usage of more general centers is not possible because they usually produce non-
+smooth modiﬁcations of M and, excluding the case of smooth blow ups, there is
+no simple criterion which guarantees that the blown up space is again smooth.
+    The recent progress is related to the discovery that one can realize analogous
+principalization algorithms in wider settings of log smooth log schemes or their
+morphisms, smooth stacks or log smooth log stacks. In this case, the pool of
+basic admissible blow ups increases, and one can use this to construct better
+algorithms. To simplify notation we will only discuss the case of varieties over
+a ﬁeld k of characteristic zero, though everything works when the schemes have
+enough derivations in an appropriate sense.
+
+                                 2. Log methods
+2.1. Relative log manifolds. Relative principalization takes place in the follow-
+ing situation: M → B is an exact log smooth morphism of DM log stacks over
+k. We call such a morphism a B-manifold. In our paper [2] we only consider
+the case, when B is log smooth over k (or log regular). So, this is also assumed
+in the sequel. Étale locally a B-manifold can be modelled on charts of the form
+Toric Geometry                                                                           875
+
+Spec(AP [Q][t1 , . . . ,tn ]) → Spec(A), where P and Q give rise to the log structures
+and AP [Q] = A ⊗k[P ] k[Q]. Any B-submanifold can be modelled by V (t1 , . . . ,tr )
+in an appropriate chart.
+
+2.2. Kummer blow ups. By a Kummer submonomial center we mean a Kummer
+monomial ideal on a submanifold. Étale locally it can be described as the vanishing
+                                1/d         1/d
+locus of J = (t1 , . . . ,tr , m1 , . . . ,ms ) for appropriate coordinates t1 , . . . ,tn and
+monomials m1 , . . . ,ms . One can think about this as a weighted generalization of
+ideal with weights (1, . . . ,1, d, . . . ,d). Formally, this is an ideal in the Kummer
+étale topology of M , that is, an ideal J ⊂ OMket . We introduce the Kummer
+blow up M ′ = [BlJ (M )] → M along such a center. Its source is a stack which
+can be described as follows: ﬁnd a Kummer G-cover M → M such that J OM ket
+is a usual ideal on M , blow up J OM ket and divide the obtained log scheme by
+G stack-theoretically. Then M ′ is a partial coarsening of the quotient (we will
+describe more general weighted blow ups later). It turns out that M ′ is again a B-
+manifold and in this setting one can extend the classical principalization algorithm
+to morphisms and log schemes.
+
+2.3. Main results. Our main principalization result is as follows:
+
+Theorem 2.3.1 ([2]). There exists a relative principalization method P which
+obtains as an input a relative log manifold f : M → B with a log smooth B and an
+ideal I ⊂ OM , and outputs either the empty set (fails) or a sequence of Kummer
+blow ups Mn → · · · → M0 = M such that the ideal Jn = J OMn is monomial.
+This P satisﬁes the following properties:
+   (i) Non-failure up to reﬁning the base: for any input there exists a modiﬁcation
+B ′ → B such that P does not fail for X ′ = X ×B B ′ → B ′ and J ′ = J OX ′ .
+   (ii) Log smooth functoriality: if P(f, J ) is non-empty and g : M ′ → M is log
+smooth, then P(f ◦ g, g −1 J ) = P(f, J ) ×M M ′ .
+   (iii) Base change functoriality: if P(f, J ) is non-empty, then P(f ′ , J OM ′ ) =
+P(f, J ) ×M M ′ . for any base change g : B ′ → B with a log smooth B ′ and the
+base change f ′ : M ′ = M ×B B ′ → B ′ .
+
+   As in the classical case, principalization implies desingularization:
+
+Theorem 2.3.2 ([2]). There is a method F which assigns to a dominant morphism
+f : X → B of integral log varieties (or log DM stacks) over k with a log smooth
+B either a non-representable modiﬁcation Xres → X or a ”fail output” Xres = ∅
+such that Xres → B is log smooth and
+    (i) Non-failure up to reﬁning the base: for any f there exists a modiﬁcation
+B ′ → B with a log smooth B ′ such that (X ×B B ′ )res is non-empty.
+    (ii) Log smooth functoriality: if Xres is non-empty and X ′ → X is log smooth,
+          ′
+then Xres   = Xres ×X X ′ .
+    (iii) Base change functoriality: if Xres 6= ∅, then (X ×B B ′ )res = Xres ×B B ′ for
+any base change B ′ → B with a log smooth source.
+876                                                       Oberwolfach Report 17/2022
+
+Remark 2.3.3. (i) This theorem is the ﬁrst canonical semistable reduction for
+any dimension of X and B (a non-canonical version was obtained by Abramovich-
+Karu). Even when B is a trait this provides the ﬁrst known version of semistable
+reduction compatible with ramiﬁed extensions of the base. Log smooth functori-
+ality is new even when B is the spectrum of a ﬁeld (see [1]).
+   (ii) The choice of the modiﬁcation B ′ → B in the non-failure claims of the
+above results can also be done canonically (and even smooth-functorially), but
+this is still a work in progress.
+   (iii) The algorithm outputs a stack-theoretic modiﬁcation, but one can then
+ﬁnd a further modiﬁcation which is representable over the initial M or X. This is
+achieved by a destackiﬁcation operation, which is smooth-functorial, but not log
+smooth-functorial.
+
+
+                             3. The dream algorithm
+Using stacks and certain weighted blow ups seems inevitable already for the sake
+of constructing log smooth-functorial methods. The weights used in these case
+are of a special form and the centers can be interpreted as relatively classical
+object – Kummer ideals. However, it is very natural as a next step to try to use
+arbitrary centers like (xd11 , . . . ,xdnn ), especially, because it was known for decades
+that such weighted blow ups provide the fastest way to resolve quasi-homogeneous
+singularities. For example, the minimal resolution of the elliptic singularity X =
+V (x2 + y 3 + z 6 ) ⊂ M = A3k is obtained by the weighted blow up along (x2 , y 3 , z 6 ).
+To make this idea a working tool for resolution we should formalize the notion of
+weighted centers and deﬁne corresponding blow ups.
+
+                                                                         1/w         1/w
+3.1. h-ideals. We introduce generalized ideals of the form I = (t1 1 , . . . ,tn n )l
+as ideals for the h-topology, or simply ideals on ﬁne enough alterations of Y (an
+alternative approach is to deﬁne them using the Zariski-Riemann space of X). This
+idea resembles Kummer ideals, but there is one diﬀerence which is not essential
+for our applications: diﬀerent ideals can become equivalent after h-localization,
+                 1/w           1/w        l/w           l/w
+in particular, (t1 1 , . . . ,tn n )l = (t1 1 , . . . ,tn n ) as h-ideals. In addition, any
+ideal on Y is invertible as an h-ideal since it becomes invertible on an appropriate
+modiﬁcation.
+
+                                                                  1/w          1/w
+3.2. Weighted blow ups. Given a weighted ideal I = (t1 1 , . . . ,tn n ) on M
+                                                  [l]      [l]
+we considerQ
+           the associated
+               mi        PnRees algebra RI = ⊕l I , where I is generated by all
+monomials i ti with i=1 wi mi ≤ l. Then deﬁne the stack-theoretic weighted
+blow up [BlI (M )] to be the stack-theoretic proj
+                        ProjM (RI ) = [(SpecM (RI ) \ V )/Gm ],
+
+where V is the vanishing locus of the ideal ⊕l>0 I [l] and the quotient is stack-
+theoretic. The coarse moduli space is the classical blow up of t1 , . . . ,tn with weights
+w1 , . . . ,wn .
+Toric Geometry                                                                            877
+
+3.3. J -admissible centers. By a J -admissible center we mean an h-ideal I
+locally given by (td11 , . . . ,tdnn ) with d1 ≤ d2 ≤ . . . ≤ dn and such that J ⊆ I. The
+                                                           1/w      1/w
+associated weighted blow up is along J 1/N = (t1 1 , . . . ,tn n ), where N is such
+that wi = N/di are integral and (w1 , . . . ,wn ) = 1.
+3.4. The dream algorithm. Using the new tools we obtained in [3] a simplest
+possible principalization algorithm, which is arguably impossible in the classical
+setting. It was independently discovered by McQuillan in [4] using a bit diﬀerent
+language.
+Theorem 3.4.1. Let Y be a smooth stack of ﬁnite type over k and J ⊆ OY an
+ideal, then
+     (i) There exists a unique J -admissible center I = (td11 , . . . ,tdnn ) such that
+         inv(I) := (d1 , . . . ,dn ) is maximal possible with respect to the lexicographic
+         order. In particular, the invariant inv(J ) := inv(I) is well deﬁned.
+    (ii) Consider the weighted blow up Y ′ = BlI (Y ) and the transform J ′ =
+         (J OY ′ )(IOY ′ )−1 . Then inv(J ′ ) < inv(J ). In particular, iteratively blow-
+         ing up such centers one obtains a principalization sequence Yn → · · · → Y
+         for J .
+   (iii) The above construction is smooth-functorial.
+  Once again, this implies existence of a non-embedded resolution algorithm,
+which has no history.
+
+                                  4. Future research
+4.1. Logarithmic dream algorithm. Weighted log blow ups with arbitrary
+weights should give rise to a relative analog of the dream algorithm. In the abso-
+lute case this algorithm has been constructed by Quek in [5], and a similar method
+should apply to morphisms.
+4.2. Arbitrary bases. It seems probable that similar algorithms work over arbi-
+trary base log schemes, including log points or their thickenings. This is a topic
+of current research.
+4.3. Factorization. It is natural to expect that similarly to the classical case, the
+new desingularization algorithms can be used to obtain factorization results for
+modiﬁcations of log smooth schemes or stacks which possess stronger factorization
+properties. It is an interesting question if using the new blow ups one can even
+obtain a strong factorization, which is still open in the classical case.
+
+                                       References
+ [1] D. Abramovich, M. Temkin, J. Wlodarczyk, Principalization of ideals on toroidal orbifolds,
+     JEMS 22 (2020), 3805–3866.
+ [2] D. Abramovich, M. Temkin, J. Wlodarczyk, Relative desingularization and principalization
+     of ideals, arXiv[2003.03659].
+ [3] D. Abramovich, M. Temkin, J. Wlodarczyk, Functorial embedded resolution via weighted
+     blowings up, arXiv[1906.07106].
+878                                                          Oberwolfach Report 17/2022
+
+ [4] M. McQuillan, Very fast, very functorial, and very easy resolution of singularities, Geom.
+     Funct. Anal. 30 (2020), 858–909.
+ [5] M.-H. Quek, Logarithmic resolution via weighted toroidal blow-ups, arXiv[2005.05939], to
+     appear in Algebraic Geometry.
+
+
+
+
+           K-moduli spaces of Fano varieties and toric geometry
+                            Andrea Petracci
+                 (joint work with Anne-Sophie Kaloghiros)
+
+We work over an algebraically closed ﬁeld of characteristic zero, denoted by C.
+If X is a projective reduced variety with mild singularities, one can consider its
+canonical divisor KX , which is a Q-Cartier divisor. If, in addition, X is smooth,
+then KX is the divisor associated to the canonical sheaf ωX = det Ω1X . One can
+also consider the anticanonical divisor which is −KX . If X has pure dimension
+n, then its canonical (resp. anticanonical) volume (also called degree) is the self-
+               n
+intersection KX   (resp. (−KX )n ). X is called canonically polarised if KX is ample,
+whereas it is called Fano if −KX is ample.
+   The most nagging obsession of algebraic geometers is to construct moduli spaces,
+in particular moduli spaces of varieties. One usually considers the set of projective
+varieties with ﬁxed dimension, with ﬁxed sign of the canonical divisor (i.e. ample
+or antiample), with ﬁxed (anti)canonical volume and with certain classes of sin-
+gularities and hopes to get a well-behaved moduli stack. (One can also consider
+moduli of varieties with trivial canonical divisor, but we avoid to discuss this in
+this note.)
+   In dimension 1, the Fano case is obvious thanks to Riemann’s uniformisation,
+which says that P1 is the unique smooth projective curve of genus 0, hence the
+moduli space is just a point. The situation of canonically polarised curves has
+been clariﬁed by Deligne and Mumford:
+Theorem 1 (Deligne–Mumford [14]). For each integer g ≥ 2, smooth projective
+curves of genus g form a smooth Deligne–Mumford stack denoted by Mg . This
+stack Mg has a compactiﬁcation Mg which is a smooth proper Deligne–Mumford
+stack and parametrises projective curves with at most nodes and with arithmetic
+genus g. Moreover, Mg (resp. Mg ) admits a coarse moduli space Mg (resp. M g )
+which is a normal quasi-projective (resp. projective) variety with ﬁnite quotient
+singularities.
+  Moduli of canonically polarised surfaces has been studied by Gieseker [16]. This
+was generalised in any dimension by Viehweg [35]. The analogue of Theorem 1 for
+canonically polarised varieties of dimension ≥ 2 is:
+Theorem 2 (Kollár–Shepherd-Barron [22], Alexeev [2]). For every n ∈ Z≥1 and
+                                                        KSBA
+v ∈ Q>0 , there is a proper Deligne–Mumford stack Mn,v        which parametrises
+canonically polarised n-dimensional projective varieties with canonical volume v
+Toric Geometry                                                                                 879
+
+                                                                                 KSBA
+and with at most semi-log-canonical1 singularities. Moreover, Mn,v                       admits a
+                      KSBA
+coarse moduli space M n,v which is projective.
+   We refer the reader to the book [23] for a thorough and updated account. Note
+        KSBA
+that M1,2g−2 = Mg for every g ∈ Z≥2 .
+   The case of Fano varieties of dimension ≥ 2 has been elusive for decades, since
+moduli of Fanos are very non-separated. The most easy example that shows this
+is the family {x20 + x21 + x22 + tx23 = 0} ⊂ P3 over A1 , where the central ﬁbre is
+the quadric cone P(1, 1, 2) and all the other ﬁbres are the smooth quadric surface
+P1 × P1 . One can consider many more examples, e.g. degenerations of P2 [17, 29]
+or toric degenerations of toric Fano varieties [19].
+   One recent and spectacular discovery is that K-stability [15, 33], i.e. the study
+of Kähler–Einstein metrics on Fano varieties [12, 32], exactly selects a class of
+Fano varieties with well-behaved moduli. We will not even try to write down the
+deﬁnition of K-stability — we refer the reader to [38]; we just mention that one
+can deﬁne the notions of K-stable, K-polystable, and K-semistable for a normal
+Fano variety. The following implications hold:
+                    K-stable ⇒ K-polystable ⇒ K-semistable ⇒ klt.
+So, if one throws away the Fano varieties which are not K-semistable, one gets
+reasonable moduli. More precisely:
+Theorem 3 (K-moduli [4,9–11,20,25,28,36,37]). For every n ∈ Z≥1 and v ∈ Q>0 ,
+there exists an Artin stack of ﬁnite type MKss
+                                            n,v which parametrises K-semistable
+n-dimensional Fano varieties with anticanonical volume v and which admits a
+good moduli space2, denoted by Mn,vKps               Kps
+                                       . Moreover, Mn,v  is a projective scheme
+whose closed points are in a natural 1-to-1 correspondence with K-polystable n-
+dimensional Fano varieties with anticanonical volume v.
+   MKss                                         Kps
+      n,v is called the K-moduli stack and Mn,v is called the K-moduli space.
+   In dimension 1 we get MKss   1,2 = B PGL2 (i.e. this is the point with isotropy
+                                   Kps
+group Aut(P1 ) = PGL2 ) and M1,2       = Spec C.
+   It is a very interesting (and quite open) question to study the geometry of
+MKss              Kps
+   n,v and of Mn,v . The ﬁrst problem is to understand whether a Fano variety
+is K-(poly/semi)stable (Calabi problem). Pn (and more generally a product of
+projective spaces) is K-polystable, but not K-stable. The Calabi problem for
+smooth Fano varieties of dimension 2 is completely solved [33]. The Calabi problem
+for smooth Fano 3-folds is almost completely solved [6]. There is an easy criterion
+to understand the K-stability of toric varieties [8]: a toric Fano variety is K-
+polystable if and only if the polytope of its toric boundary has barycentre in the
+origin. Similar results exist for complexity-1 Fano T-varieties [18] and for spherical
+Fano varieties [13].
+    1Semi-log-canonical (slc, for short) singularities are deﬁned in [24, Chapter 5]. Varieties with
+slc singularities can be reducible.
+    2The notion of good moduli space is a generalisation of coarse moduli space [3].
+880                                                    Oberwolfach Report 17/2022
+
+   In general, the global geometry of K-moduli are understood for very few vari-
+eties, e.g. smooth(able) Fano varieties of dimension 2 [30], cubic 3-folds [26], cubic
+4-folds [27], double covers of P3 branched in quartic surfaces [7].
+   In the rest of this note we concentrate on the local properties of moduli. Let
+                           KSBA
+M be one of Mg , Mg , M n,v , MKss  n,v and let M denote the good moduli space of
+M. Let X be a variety which corresponds to a closed point [X] of M. Let Def(X)
+denote the base of miniversal deformation of X: this is the formal spectrum of
+a local noetherian C-algebra with residue ﬁeld C — one can also work in the
+analytic category. The automorphism group Aut(X) acts on Def(X). Then the
+quotient stack [Def(X)/ Aut(X)] gives an étale neighbourhood of [X] in M, and
+the quotient scheme Def(X)/ Aut(X) gives an étale neighbourhood of [X] in M .
+Therefore the local geometry of M and of M is clear once understands the action
+of Aut(X) on Def(X).
+   If X is a nodal curve, then Def(X) is smooth; if, in addition, the arithmetic
+genus of X is g ≥ 2, then Aut(X) is ﬁnite, hence Mg is smooth and M g is normal
+with ﬁnite quotient singularities. Therefore, for nodal curves, the moduli spaces
+are “almost smooth”. This is completely false for canonically polarised varieties
+of dimension ≥ 2:
+
+Theorem 4 (Murphy’s law by Vakil [34]). Let S be an analytic germ whose equa-
+tions are polynomials with coeﬃcients in Z. Then, for every integer n ≥ 2, there
+exists a smooth projective canonically polarised n-fold X such that Def(X) and S
+have the same singularity type, i.e. either there exists a smooth map Def(X) → S
+or a smooth map S → Def(X).
+
+   This implies that the moduli space/stack of canonically polarised can be very
+singular!
+   Now the question is: what happens for K-moduli of Fano varieties? A very
+easy consequence of deformation theory says that if X is a smooth Fano variety
+then Def(X) is smooth. The same is true also for singular Fano varieties of di-
+mension 2 [1]. This implies that MKss          Kps
+                                  n,v (resp. Mn,v ) is smooth (resp. normal) in a
+neighbourhood of every point corresponding to a K-polystable Fano variety that
+is either smooth or 2-dimensional. It was natural to ask whether the K-moduli
+stack is always smooth and the K-moduli space is always normal. In joint work
+with Kaloghiros, we have shown that this is not the case:
+
+Theorem 5 (Kaloghiros–P. [21]). For every integer n ≥ 3, there exist v ∈ Q>0
+and a K-polystable toric Fano variety X such that at least one of the following
+statements holds:
+      (1) MKss      Kps
+           n,v and Mn,v have ≥ 2 local branches at [X],
+      (2) MKss      Kps
+           n,v and Mn,v are non-reduced at [X].
+
+   In [31] we show that K-moduli of Fano varieties can be quite singular (but we
+don’t know if Murphy’s law in the sense of Vakil holds). In particular, we show
+that the number of local branches can be arbitrarily high:
+Toric Geometry                                                                                 881
+
+Theorem 6 (P. [31]). For every integer n ≥ 3 and for every integer m ≥ 0, there
+exist a number v ∈ Q>0 and a K-polystable n-dimensional toric Fano variety X
+such that (−KX )n = v and the number of local branches of Def(X), of MKssn,v at
+              Kps
+[X], and of Mn,v  at [X] is ≥ m.
+   The proof of this has the following three ingredients.
+     • We make use of Altmann’s description of the deformation theory of iso-
+       lated Gorenstein toric 3-fold singularities [5]. In particular, we construct
+       a sequence of lattice polygons Fm such the deformation space of UFm
+       (which is the isolated Gorenstein toric 3-fold singularity associated to Fm )
+       has ≥ m local branches.
+     • We pick a 3-dimensional polytope Pm which is quite symmetric (this im-
+       plies that the corresponding toric Fano 3-fold XPm is K-polystable) and
+       has some facets isomorphic to Fm .
+     • Since UFm is an open aﬃne subscheme of XPm we consider the restriction
+       map Def(XPm ) → Def(UFm ) and we show that is surjective.
+
+                                         References
+ [1] Akhtar, M., Coates, T., Corti, A., Heuberger, L., Kasprzyk, A., Oneto, A., Petracci, A.,
+     Prince, T. & Tveiten, K. Mirror symmetry and the classiﬁcation of orbifold del Pezzo sur-
+     faces. Proc. Amer. Math. Soc.. 144, 513-527 (2016)
+ [2] Alexeev, V. Moduli spaces Mg,n (W ) for surfaces. Higher-dimensional Complex Varieties
+     (Trento, 1994). pp. 1-22 (1996)
+ [3] Alper, J. Good moduli spaces for Artin stacks. Ann. Inst. Fourier (Grenoble). 63, 2349-2402
+     (2013)
+ [4] Alper, J., Blum, H., Halpern-Leistner, D. & Xu, C. Reductivity of the automorphism group
+     of K-polystable Fano varieties. Invent. Math.. 222, 995-1032 (2020)
+ [5] Altmann, K. The versal deformation of an isolated toric Gorenstein singularity. Invent.
+     Math.. 128, 443-479 (1997)
+ [6] Araujo, C., Castravet, A., Cheltsov, I., Fujita, K., Kaloghiros, A., Martinez-Garcia, J.,
+     Shramov, C., Süss, H. & Viswanathan, N. The Calabi problem for smooth Fano threefolds.,
+     https://www.maths.ed.ac.uk/cheltsov/pdf/Fanos.pdf
+ [7] Ascher, K., DeVleming, K. & Liu, Y. K-stability and birational models of moduli of quartic
+     K3 surfaces., arXiv:2108.06848
+ [8] Berman, R. K-polystability of Q-Fano varieties admitting Kähler-Einstein metrics. Invent.
+     Math.. 203, 973-1025 (2016)
+ [9] Blum, H. & Xu, C. Uniqueness of K-polystable degenerations of Fano varieties. Ann. Of
+     Math. (2). 190, 609-656 (2019)
+[10] Blum, H., Halpern-Leistner, D., Liu, Y. & Xu, C. On properness of K-moduli spaces and
+     optimal degenerations of Fano varieties. Selecta Math. (N.S.). 27, Paper No. 73, 39 (2021)
+[11] Blum, H., Liu, Y. & Xu, C. Openness of K-semistability for Fano varieties., To appear in
+     Duke Math. J., arXiv:1907.02408
+[12] Chen, X., Donaldson, S. & Sun, S. Kähler-Einstein metrics on Fano manifolds. I: Approxi-
+     mation of metrics with cone singularities. II: Limits with cone angle less than 2π. III: Limits
+     as cone angle approaches 2π and completion of the main proof. J. Amer. Math. Soc.. 28,
+     183-278 (2015)
+[13] Delcroix, T. K-stability of Fano spherical varieties. Ann. Sci. Éc. Norm. Supér. (4). 53,
+     615-662 (2020)
+[14] Deligne, P. & Mumford, D. The irreducibility of the space of curves of given genus. Inst.
+     Hautes Études Sci. Publ. Math.., 75-109 (1969)
+882                                                            Oberwolfach Report 17/2022
+
+[15] Donaldson, S. Scalar curvature and stability of toric varieties. J. Differential Geom.. 62,
+     289-349 (2002)
+[16] Gieseker, D. Global moduli for surfaces of general type. Invent. Math.. 43, 233-282 (1977)
+[17] Hacking, P. & Prokhorov, Y. Smoothable del Pezzo surfaces with quotient singularities.
+     Compos. Math.. 146, 169-192 (2010)
+[18] Ilten, N. & Süss, H. K-stability for Fano manifolds with torus action of complexity 1. Duke
+     Math. J.. 166, 177-204 (2017)
+[19] Ilten, N. Mutations of Laurent polynomials and ﬂat families with toric ﬁbers. SIGMA Sym-
+     metry Integrability Geom. Methods Appl.. 8 pp. Paper 047, 7 (2012)
+[20] Jiang, C. Boundedness of Q-Fano varieties with degrees and alpha-invariants bounded from
+     below. Ann. Sci. Éc. Norm. Supér. (4). 53, 1235-1248 (2020)
+[21] Kaloghiros, A. & Petracci, A. On toric geometry and K-stability of Fano varieties. Trans.
+     Amer. Math. Soc. Ser. B. 8 pp. 548-577 (2021)
+[22] Kollár, J. & Shepherd-Barron, N. Threefolds and deformations of surface singularities. In-
+     vent. Math.. 91, 299-338 (1988)
+[23] Kollár, J. Families of varieties of general type., Book in preparation, available at
+     https://web.math.princeton.edu/~ kollar/
+[24] Kollár, J. Singularities of the minimal model program. (Cambridge University Press, Cam-
+     bridge,2013), With a collaboration of Sándor Kovács
+[25] Li, C., Wang, X. & Xu, C. Algebraicity of the metric tangent cones and equivariant K-
+     stability. J. Amer. Math. Soc.. 34, 1175-1214 (2021)
+[26] Liu, Y. & Xu, C. K-stability of cubic threefolds. Duke Math. J.. 168, 2029-2073 (2019)
+[27] Liu, Y. K-stability of cubic fourfolds., To appear in J. Reine Angew. Math., arXiv:2007.14320
+[28] Liu, Y., Xu, C. & Zhuang, Z. Finite generation for valuations computing stability thresholds
+     and applications to K-stability., To appear in Ann. of Math., arXiv:2102.09405
+[29] Manetti, M. Normal degenerations of the complex projective plane. J. Reine Angew. Math..
+     419 pp. 89-118 (1991)
+[30] Odaka, Y., Spotti, C. & Sun, S. Compact moduli spaces of del Pezzo surfaces and Kähler-
+     Einstein metrics. J. Differential Geom.. 102, 127-172 (2016)
+[31] Petracci, A. On deformation spaces of toric singularities and on singularities of K-moduli of
+     Fano varieties., To appear in Trans. Amer. Math. Soc., arXiv:2105.01174
+[32] Tian, G. K-stability and Kähler-Einstein metrics. Comm. Pure Appl. Math.. 68, 1085-1156
+     (2015)
+[33] Tian, G. Kähler-Einstein metrics with positive scalar curvature. Invent. Math.. 130, 1-37
+     (1997)
+[34] Vakil, R. Murphy’s law in algebraic geometry: badly-behaved deformation spaces. Invent.
+     Math.. 164, 569-590 (2006)
+[35] Viehweg, E. Quasi-projective moduli for polarized manifolds. (Springer-Verlag, Berlin,1995)
+[36] Xu, C. & Zhuang, Z. On positivity of the CM line bundle on K-moduli spaces. Ann. Of
+     Math. (2). 192, 1005-1068 (2020)
+[37] Xu, C. A minimizing valuation is quasi-monomial. Ann. Of Math. (2). 191, 1003-1030 (2020)
+[38] Xu, C. K-stability of Fano varieties: an algebro-geometric approach. EMS Surv. Math. Sci..
+     8, 265-354 (2021)
+
+
+
+           Non-toric valuation semi-groups for toric surfaces
+                            Christian Haase
+ (joint work with Klaus Altmann, Alex Küronya, Karin Schaller, Lena Walter)
+
+We provide a combinatorial criterion for the ﬁnite generation for valuation semi-
+groups associated with an ample divisor on a smooth toric surface and certain
+non-toric valuations of maximal rank.
+Toric Geometry                                                                    883
+
+   The main idea behind Newton–Okounkov theory is to attach combinatorial/con-
+vex-geometric objects to situations in algebraic geometry in order to facilitate their
+analysis [KK12, LM09]. In other words, one tries to partially replicate the setup of
+toric geometry in settings without any useful group action. By now applications
+of Newton–Okounkov theory range from combinatorics and representation theory
+through birational geometry [KL17a, KL17b, KL19, KL18a] to mirror symmetry [9]
+and geometric quantization in mathematical physics.
+   The question of ﬁnite generation of the involved valuation semigroups appears
+to be diﬃcult in general, with little progress beyond the completely toric situation,
+but potentially great beneﬁts such as the existence of toric degenerations [And13]
+and completely integrable systems [HK15] to name but a few. In this talk, we take
+a few steps away from the situation where every participant is toric: we consider
+valuation semigroups associated to torus-invariant divisors on toric surfaces with
+respect to a slightliy non-toric valuation.
+Setup. We are concerned with a polarized toric surface (X, D) given by a polytope
+P in a 2-dimensional lattice M with normal fan Σ in the dual lattice N . A primitive
+v ∈ N determines a toric morphism ι : P1 → X. For our ﬂag, we choose Y1 = ι(P1 )
+and Y2 = ι(1 ∈ P1 ). (If we chose Y2 = ι(0) or Y2 = ι(∞) instead, we would be in
+the situation of [IM19] and ﬁnite generation would follow.) For ℓ ∈ Z≥0 and any
+non-trivial section s ∈ Γ(X, OX (ℓD)) we deﬁne
+                            valY• (s) := (ℓ, val1 (s), val2 (s))
+                                                 s|Y1 ), with se := s/f val1 (s) for a
+where val1 (s) = ordY1 (s) and val2 (s) = ordY2 (e
+local equation f of Y1 around Y2 . The valuation semigroup SY• (D) is then
+               SY• (D) := {valY• (s) | s ∈ Γ(X, OX (ℓD)) \ {0}} ⊆ N3 .
+
+
+           v
+
+
+                       Σ                            P
+
+
+           (a) Σ, v in NR                               (b) P in MR
+
+Main Result. Given the combinatorial data P and v, we deﬁne two cones, σ±
+based on the longest segment in P perpendicular to v.
+
+They are unions of cones in Σ with ±v ∈ int(σ± ).
+Theorem. The following are equivalent.
+  (1) The semigroup SY• (D) is ﬁnitely generated.
+  (2) ±v lies on the boundary of conv(int σ± ∩ N ), respectively.
+  (3) If X ′ is the toric variety with fan generated by σ± , the morphism P1 → X ′
+      given by v is a smooth embedding.
+884                                                          Oberwolfach Report 17/2022
+
+
+                                                                        σ+
+                             P                                           v
+
+
+                                                                       −v
+                                                                       σ−
+                                                                                Σ
+
+
+                                                   (b) The cones σ± are dual to the edge
+(a) The longest segment in P perpen-
+                                                   directions adjacent to the longest seg-
+dicular to v.
+                                                   ment.
+
+
+   We leave it as an exercise to the reader to convince herself that in our ﬁrst
+example, SY• (D) is not ﬁnitely generated while in our second example (taken
+from [CLTU20]) SY• (D) will be ﬁnitely generated for any choice of D.
+   We close with an example of a polarized toric surface (X, D) for which no v ∈ N
+yields a ﬁnitely generated semigroup.
+
+
+
+
+                                       References
+[AHKSW22] Klaus Altmann, Christian Haase, Alex Küronya, Karin Schaller, Lena Walter, On
+              the Finite Generation of Valuation Semigroups for Toric Surfaces with Non-Toric
+              Flags.
+     [And13] Dave Anderson. Okounkov bodies and toric degenerations. Math. Ann.,
+              356(3):1183–1202, 2013.
+  [CLTU20] Ana-Maria Castravet, Antonio Laface, Jenia Tevelev, and Luca Ugaglia. Blown-up
+              toric surfaces with non-polyhedral eﬀective cone. 2020. arXiv:2009.14298v3.
+   [HKW20] Christian Haase, Alex Küronya, Karin Schaller, Lena Walter, Toric Newton-
+              Okounkov Functions with an Application to the Rationality of Certain Seshadri
+              Constants on Surfaces, arXiv:2008.04018 [math.AG]
+      [HK15] Megumi Harada and Kiumars Kaveh. Integrable systems, toric degenerations and
+              Okounkov bodies. Invent. Math., 202(3):927–985, 2015.
+       [IM19] Nathan Ilten and Christopher Manon. Rational complexity-one T-varieties are well-
+              poised. IMRN, 13:4198–4232, 2019.
+      [KK12] Kiumars Kaveh and Askold G. Khovanskii. Newton-Okounkov bodies, semigroups
+              of integral points, graded algebras and intersection theory. Ann. Math. (2),
+              176(2):925–978, 2012.
+    [KL17a] Alex Küronya and Victor Lozovanu. Inﬁnitesimal Newton-Okounkov bodies and jet
+              separation. Duke Math. J., 166(7):1349–1376, 2017.
+    [KL17b] Alex Küronya and Victor Lozovanu. Positivity of line bundles and Newton-
+              Okounkov bodies. Doc. Math., 22:1285–1302, 2017.
+Toric Geometry                                                                             885
+
+   [KL18a] Alex Küronya and Victor Lozovanu. Geometric aspects of Newton-Okounkov bod-
+            ies. In Phenomenological approach to algebraic geometry, volume 116 of Banach
+            Center Publ., pages 137–212. Polish Acad. Sci. Inst. Math., Warsaw, 2018.
+   [KL18b] Alex Küronya and Victor Lozovanu. Local positivity of linear series on surfaces.
+            Algebra Number Theory, 12(1):1–34, 2018.
+     [KL19] Alex Küronya and Victor Lozovanu. A Reider-type theorem for higher syzygies on
+            abelian surfaces. Algebr. Geom., 6(5):548–570, 2019.
+    [LM09] Robert K. Lazarsfeld and Mircea Mustat.ă. Convex bodies associated to linear series.
+            Ann. Sci. Éc. Norm. Supér. (4), 42(5):783–835, 2009.
+    [RW19] K. Rietsch and L. Williams. Newton-Okounkov bodies, cluster duality, and mirror
+            symmetry for Grassmannians. Duke Math. J., 168(18):3437–3527, 2019.
+
+
+
+
+Toric vector bundles over a discrete valuation ring and affine buildings
+                             Kiumars Kaveh
+          (joint work with Christopher Manon, Boris Tsvelikhovsky)
+
+Let T be an n-dimensional split algebraic torus over a ﬁeld k with cocharacter
+lattice N ∼ = Zn . Let X = XΣ be a T -toric variety associated to a fan Σ in
+NR = N ⊗ R ∼   = Rn . A torus equivariant vector bundle (or toric vector bundle for
+short) on X is a vector bundle E on X together with a linear action of T that lifts
+that of X. Toric vector bundles have been classiﬁed by Kaneyama [Kan75] and
+by Klyachko [Kly89]. In the talk we discussed extending Klyachko’s classiﬁcation
+to toric schemes over a discrete valuation ring O. Our classiﬁcation, on the other
+hand, extends the known classiﬁcation of toric line bundles on toric schemes (see
+[KKMS73, §IV.3(e)], [BPS14, Section 3.6]). The classiﬁcation is in terms of the
+piecewise aﬃne maps to Bruhat-Tits buildings (also called aﬃne buildings) of
+general linear groups.
+   The present result can be considered as a continuation of ideas in [KM] where
+classifying torus equivariant principal bundles on toric varieties over a ﬁeld k (or
+toric principal bundles for short) is connected with the theory of Tits buildings of
+algebraic groups. The main result in [KM] states that for a reductive group G,
+toric principal G-bundles on XΣ are classiﬁed by piecewise linear maps from the
+fan Σ to the (cone over the) Tits building of G.
+   Let O be a discrete valuation ring with ﬁeld of fractions K and residue ﬁeld k.
+We let val : K → Z ∪ {∞} be the corresponding discrete valuation. The scheme
+Spec(O) has two points: the generic point η corresponding to the prime ideal {0}
+and the special point o corresponding to the unique maximal ideal m. For a scheme
+X over Spec(O), we let Xη and Xo denote the ﬁbers of X over η and o respectively.
+   Let T be a split torus over Spec(O). A toric scheme over Spec(O) is a normal
+integral separated scheme of ﬁnite type X over Spec(O) equipped with a dense
+open embedding TK ֒→ Xη and an action of T on X over Spec(O) which extends
+the translation action of TK on itself.
+   While toric varieties are classiﬁed by fans in NR ∼= Rn , toric schemes are clas-
+               e
+siﬁed by fans Σ in NR × R≥0 (see [KKMS73, §IV.3] and [BPS14, Section 3.5]). If
+886                                                         Oberwolfach Report 17/2022
+
+we intersect the fan Σe with the hyperplane NR × {1} we get a polyhedral complex
+             e
+Σ. The fan Σ can be recovered from Σ by taking cones over the polyhedra in Σ.
+    The insight from [KM] is that the right gadgets for classiﬁcation of toric prin-
+cipal bundles are buildings of algebraic groups. Buildings are special kind of
+simplicial complexes arising in the classiﬁcation theory of algebraic groups over
+arbitrary ﬁelds. Abstractly speaking, a building is an (inﬁnite) simplicial complex
+together with certain distinguished subcomplexes called apartments that satisfy a
+list of axioms.
+    Buildings come in two ﬂavors: spherical buildings and aﬃne buildings. In a
+spherical building each apartment is a triangulation of a sphere while in an aﬃne
+building each apartment is a triangulation of an aﬃne (or Euclidean) space. To a
+reductive algebraic group over a ﬁeld one associates its Tits building which is the
+typical example of a spherical building. Moreover, to a reductive algebraic group
+over a discretely valued ﬁeld K one associates its Bruhat-Tits building which is
+the typical example of an aﬃne building.
+    There is a nice descriptions of the Bruhat-Tits building of SL(r) and GL(r) as
+we brieﬂy recall. Let E ∼ = K r be an r-dimensional vector space over a discretely
+valued ﬁeld K.
+    Recall that an additive norm on E is a function v : E → R ∪ {∞} that satisﬁes
+the following axioms.
+      (a) v(e1 + e2 ) ≥ min{v(e1 ), v(e2 )}, for all e1 , e2 ∈ E
+      (b) v(λe) = val(λ) + v(e), for all e ∈ E and λ ∈ K
+      (c) v(e) = ∞ if and only if e = 0.
+                                                                                  P
+We say that v is adapted to a basis B = {b1 , . . . , br } for E if for any e =    i λi bi
+we have:
+                               v(e) = min{val(λi ) + v(bi )}.
+   An additive norm is integral if it attains values in Z∪{∞}. The integral additive
+norms on E are in one-to-one correspondence with O-lattices in E, that is, the full
+rank O-submodules in E.
+   Two prevaluations are said to be equivalent if their diﬀerence is a constant.
+The set of all equivalence classes of additive norms on E can be identiﬁed with
+the Bruhat-Tits building of GL(E). An apartment in the building consists of
+equivalence classes of additive norms adapted to a basis B. Each apartment is
+naturally an aﬃne space.
+   We denote the set of all additive norms on E by B   e aff (E) and call it the extended
+Bruhat-Tits building of GL(E). We also denote the set of additive norms adapted
+to a basis B by AeB call it the extended apartment associated to B.
+
+Definition 1 (Piecewise aﬃne map to a Bruhat-Tits building). Let Σ be a (ra-
+tional) polyhedral complex in NR . We say that a map Φ : |Σ| → B     e aff (E) is a
+piecewise aﬃne map if the following holds:
+                                                                   e∆ in B
+    (a) for every polyhedron ∆ ∈ Σ, there is an extended apartment A        e aff (E)
+                                 e
+        such that Φ(∆) lands in A∆ .
+Toric Geometry                                                                              887
+
+   (b) The map Φ|∆ : ∆ → A     e∆ is the restriction of an aﬃne map from NR to the
+                    e
+       aﬃne space A∆ .
+We say that Φ is integral if, for every ∆ ∈ Σ, Φ|∆ is the restriction of an integral
+aﬃne map from NR to A  e∆ .
+
+   Our main result is the following:
+Theorem 2. Let X = XΣ be a toric scheme over Spec(O) associated to a polyhe-
+dral complex Σ in NR . There is a one-to-one correspondence between the isomor-
+phism classes of toric vector bundles on XΣ and the integral piecewise aﬃne maps
+from |Σ| to e
+            Baff (E), where E is the ﬁber over the distinguished point 1 ∈ Tη ֒→ Xη .
+This correspondence in fact, gives an equivalence of categories.
+    Moreover, the linear part Φ0 of the piecewise aﬃne map Φ is a piecewise linear
+map from the recession fan of Σ to the cone over the Tits building of GL(E). This
+is equivalent to the Klyachko data of the toric vector bundle over the generic ﬁber
+of Xη . This ﬁts nicely with the general construction in building theory that the
+“boundary at inﬁnity” of an aﬃne building is a spherical building.
+    The morale of Theorem 2 is that the simplicial complex B   e aff (E) can be con-
+sidered as a kind of classifying space for rank r toric vector bundles over toric
+schemes.
+Remark 3. The theory of complexity-one T -varieties has similarities with the the-
+ory of toric schemes on a discrete valuation ring. During the workshop the speaker
+and N. Ilten and H. Süss had fruitful conversations and discussed connections with
+the results in [IS15].
+   It was mentioned to the speaker by Michel Brion that, in light of recent re-
+sults of V. Balaji and Y. Pandey [BP], it might be possible to extend the above
+classiﬁcation result to valuation rings of higher rank.
+
+                                        References
+       [BP] Balaji, V.; Pandey, Y. On Bruhat-Tits theory over a higher dimensional base.
+            arXiv:2203.09431
+  [BDP18] Biswas, I.; Dey, A.; Poddar, M. On equivariant Serre problem for principal bundles.
+            Internat. J. Math. 29 (2018), no. 9, 1850054, 7 pp.
+   [BPS14] Burgos Gil, J. I.; Philippon, P.; Sombra, M. Arithmetic geometry of toric varieties.
+            Metrics, measures and heights. Astérisque No. 360 (2014).
+     [IS15] Ilten, N.; Süss, H. Equivariant vector bundles on T -varieties. Transform. Groups 20
+            (2015), no. 4, 1043–1073.
+   [Kan75] Kaneyama, T. On equivariant vector bundles on an almost homogeneous variety.
+            Nagoya Math. J. 57 (1975), 65–86.
+      [KM] Kaveh, K.; Manon, C. Toric principal bundles and Tits buildings. arXiv.
+[KKMS73] Kempf, G.; Knudsen, F.; Mumford, D.; Saint-Donat, B. Toroidal embeddings. I. Lec-
+            ture Notes in Mathematics, Vol. 339. Springer-Verlag, Berlin-New York, 1973.
+    [Kly89] Klyachko, A. A. Equivariant bundles over toric varieties. (Russian) Izv. Akad. Nauk
+            SSSR Ser. Mat. 53 (1989), no. 5, 1001–1039, 1135; translation in Math. USSR-Izv.
+            35 (1990), no. 2, 337–375.
+888                                                     Oberwolfach Report 17/2022
+
+   Degenerations of unstable Fano varieties and Kahler-Ricci soliton
+                             Harold Blum
+      (joint work with Yuchen Liu, Chenyang Xu, and Ziquan Zhuang)
+
+A central problem in complex geometry is to ﬁnd canonical metrics on complex
+projective varieties. On a smooth Fano variety X, the natural metrics to consider
+are Kähler-Einstein metrics, which are Kähler metrics ω ∈ c1 (X) such that
+                                     Ric(ω) = ω.
+While such a metric does not always exist, the Yau-Tian-Donaldson Conjecture,
+which is a theorem by [4, 15], states that a Fano variety admits a Kähler-Einstein
+metric if and only if it is K-polystable. The latter notion is an algebraic criterion
+introduced by Tian and Donaldson to characterize the existence of such metrics.
+More recently, K-stability has received interest from algebraic geometers due to
+its use in constructing compact moduli spaces of Fano varieties.
+   To understand Fano varieties that are K-unstable and hence, do not admit
+Kähler-Einstein metrics, it is necessary to look at more general metrics. One class
+of metric to consider are Kähler-Ricci solition, which are the data of a Kähler
+metric ω ∈ c1 (X) and a vector ﬁeld ξ ∈ H 0 (TX ) such that
+                                  Ric(ω) = ω + Lξ ω,
+where Lξ denotes the Lie derivative. Similar to the case of Kähler-Einstein metrics,
+the existence of a Kähler-Ricci solition is equivalent to a version of K-stability for
+Fano varieties with vector ﬁelds (X, ξ) [5, 8].
+   To produce Kähler-Ricci soliton, one can ﬁx an initial metric ω0 ∈ c1 (X) and
+study the long term behavior of the normalized Kähler-Ricci ﬂow
+                               ∂ωt
+                                     = −Ric(ωt ) + ωt .
+                                ∂t
+The Tian-Hamilton Conjecture, now a theorem by [1, 6], states that, up to taking
+a subsequence, the Gromov-Hausdorﬀ limit of (X, ωt ) as t → ∞ is naturally a klt
+Fano variety with a Kähler-Ricci soliton (Y, ωY ). Chen, Sun, and Wang observed
+that the degeneration X      Y can be achieved in two steps
+                              X      (Z, ξZ )   (Y, ξY ),
+and conjectured that this degeneration process is uniquely determined by X, and
+independent of the choice of initial metric [5]. The latter was recently conﬁrmed
+in [11].
+   A natural problem is to try to construct the two step degeneration algebraically
+and for all singular Fano varieties. This is achieved in recent joint work with Liu,
+Xu, and Zhuang that builds on work of Han and Li.
+Main Theorem. [2, 11] Any klt Fano variety X admits a canonical two step
+degeneration
+                             X     (Z, ξZ )   (Y, ξY )
+Furthermore, (Y, ξY ) admits a Kähler-Ricci soliton.
+Toric Geometry                                                                               889
+
+   The ﬁrst degeneration in the above theorem is the unique R-degeneration min-
+imizing the H-functional of Dervan and Szekelyhidi and the pair (Z, ξZ ) is K-
+semistable. The pair (Y, ξY ) is the unique K-polystable degeneration of (Z, ξZ ).
+   The approach to proving this theorem is through valuations and their relation
+to degenerations, which has been particularly eﬀective in the algebraic study of
+K-stability, see e.g. [3, 10, 12]. In particular, Han and Li deﬁned a function
+                                  H : ValX → R ∪ {+∞},
+where ValX is the space of real valuations of X [11]. Constructing the ﬁrst degen-
+eration X    (Z, ξZ ) and proving it is canonical amounts to showing
+    (1) There exists a valuation v minimizing H [11],
+    (2) The minimizer v is unique [2, 11], and
+    (3) the associated graded ring of grv R of the ring R := ⊕m∈N H 0 (X, −mKX )
+        is ﬁnitely generated[2].
+Step (3) relies on using recent powerful ﬁnite generation results of Liu, Xu, and
+Zhuang in [13]. With these steps complete, Z := Proj(grv R) and there is a natural
+torus action T on Z and vector ﬁeld ξ ∈ NR := Hom(Gm , T) ⊗Z R.
+   A deﬁciency in the above theory is that it is entirely theoretical. While there
+do exist Fano varieties where the ﬁrst degeneration is non-trivial and X 6= Z
+(e.g. this will happen if X is a K-unstable Fano variety and Aut(X) does not
+contain Gm ) very few interesting examples have been explicitly computed. An
+important problem is to explicitly describe non-trivial examples and, hopefully,
+ﬁnd one where the valuation v is not divisorial.
+
+                                        References
+ [1] R. Bamler Convergence of Ricci flows with bounded scalar curvature, Ann. of Math. 188
+     (2018), 753–831.
+ [2] H. Blum, Y. Liu, C. Xu, and Z. Zhuang. The existence of the Kähler-Ricci soliton degener-
+     ation, arXiv:2103.15278.
+ [3] S. Boucksom, T. Hisamoto, and M. Jonsson. Uniform K-stability, Duistermaat-Heckman
+     measures and singularities of pairs, Ann. Inst. Fourier 67 (2017), no. 2, 743–841.
+ [4] X.X. Chen, S. K. Donaldson and S. Sun. Kähler-Einstein metrics on Fano manifolds, I-III,
+     J. Amer. Math. Soc. 28 (2015), 183–197, 199–234, 235–278.
+ [5] X.X. Chen, S. Sun, and B. Wang. Kähler-Ricci flow, Kähler-Einstein metric, and K-
+     stability, Geom. Topol. 22 (2018).
+ [6] X.X. Chen and B. Wang. Space of Ricci flows (II)–Part B: Weak compactness of the flows,
+     J. Diﬀerential Geom. 116 (2020), 1–123.
+ [7] S. K. Donaldson. Scalar curvature and stability of toric varieties, J. Diﬀerential Geom. 62
+     (2002), no. 2, 289–349.
+ [8] V. Datar and G. Székelyhidi. Kähler-Einstein metrics along the smooth continuity method,
+     Geom. Funct. Anal. 26 (2016) no. 4, 975–1010
+ [9] R. Dervan and G. Székelyhidi. The Kähler-Ricci flow and optimal degenerations, J. Diﬀer-
+     ential Geom. 116 (2020), 187–203.
+[10] K. Fujita. A valuative criterion for uniform K-stability of Q-Fano varieties, J. Reine Angew.
+     Math. 751 (2019), 309–338.
+[11] J. Han and C. Li. Algebraic uniqueness of Kähler-Ricci flow limits and optimal degenerations
+     of Fano varieties, arXiv:2009.01010.
+890                                                            Oberwolfach Report 17/2022
+
+[12] C. Li. K-semistability is equivariant volume minimization, Duke Math. J. 166 (2017), 3147–
+     3218.
+[13] Y. Liu, C. Xu, and Z. Zhuang. Finite generation for valuations computing stability thresholds
+     and applications to K-stability, arXiv:2102.09405. To appear in Ann. of Math.
+[14] G. Tian. Kähler-Einstein metrics with positive scalar curvature, Invent. Math. 130 (1997),
+     239–265.
+[15] G. Tian. K-stability and Kähler-Einstein metrics, Comm. Pure Appl. Math. 68 (2015),
+     1085–1156.
+
+
+
+
+             The anticanonical complex for non-degenerate toric
+                            complete intersections
+                               Milena Wrobel
+                (joint work with Jürgen Hausen, Christian Mauz)
+
+
+The idea behind anticanonical complexes is to extend the correspondence between
+the toric Fano varieties and the Fano polytopes to wider classes of varieties. After
+introducing their general construction, in this talk, we work out the case of non-
+degenerate toric complete intersections.
+   For an n-dimensional toric Fano variety Z, one deﬁnes the Fano polytope to
+be the convex hull A ⊆ Qn over the primitive ray generators of the describing
+fan of Z. For any toric resolution of singularities π : Z ′ → Z, the exceptional
+divisors E̺ are given by rays of the fan of Z ′ and one obtains the discrepancies as
+
+                                                    kv̺ k
+                                  discZ (E̺ ) =            − 1,
+                                                    kv̺′ k
+
+where v̺ ∈ ̺ is the shortest non-zero lattice vector and v̺′ ∈ ̺ is the intersection
+point of ̺ with the boundary ∂A of the Fano polytope. In particular, the toric
+Fano polytope encodes the singularity type of a toric Fano variety in terms of
+lattice points; see for example [1, 6, 7, 9] for work making use of this fact.
+   This principle has been extended to Q-Gorenstein varieties X with suﬃciently
+nice toric embedding X ⊆ Z by replacing the Fano polytope with a suitable
+starshaped region, named the anticanonical region, which is supported on the
+tropical variety of X ⊆ Z; see [4]. Such an anticanonical region is called an
+anticanonical complex if it can be endowed with the structure of a polyhedral
+complex, and in this case, it encodes the singularity type in full analogy to the
+toric Fano polytope. For instance, all Q-Gorenstein (not necessarily Fano) toric
+varieties have anticanonical complexes. One obtains for example the following
+ones, corresponding to a log terminal, canonical and terminal (hence smooth) Q-
+Gorenstein toric variety, deﬁned by the complete fan having the bullets diﬀerent
+from the origin as its primitive ray generators:
+Toric Geometry                                                                       891
+
+                     •        •             •       •              •       •
+                 •   •   •              •   •   •             •    •   •   •
+                     •   •0                 •   •0 •               •   •0 •
+                 •   •   •    •   •     •   •   •   •   •     •    •   •   •   •
+                     •        •             •       •              •       •
+
+Further classes of varieties with torus action having anticanonical complexes can
+be found in [2, 4, 5].
+   Leaving the setting of varieties with torus action, in [3], we investigate the
+case of non-degenerate toric complete intersections. In this talk, we restrict our-
+selves to the following construction, delivering general members of this class of
+varieties; see [3, Def. 3.4] for the precise deﬁnition. Let B1 , . . . , Bs ⊆ Qn be inte-
+gral polytopes and let fi ∈ K[T1±1 , . . . , Tn±1 ] be Laurent polynomials with Newton
+polytopes B(fi ) = Bi and general coeﬃcients. Then F := (f1 , . . . , fs ) forms a
+non-degenerate system of Laurent polynomials in the sense of Khovanskii; see [8].
+Let Σ be any fan in Zn reﬁning the normal fan of the Minkowski sum B1 + . . .+ Bs
+and let Z denote the toric variety associated with Σ. The non-degenerate toric
+complete intersection deﬁned by F and Σ is the subvariety
+                                  X := V (f1 , . . . , fs ) ⊆ Z.
+All varieties X arising this way are normal, and smoothness of the variety Z
+implies smoothness of X. As a ﬁrst step towards describing the structure of the
+anticanonical region in this case, we have a look at the tropical variety of X ⊆ Z.
+For this, we denote by Tn the dense open torus in Z and by zσ the distinguished
+point in the torus orbit deﬁned by σ ∈ Σ.
+Proposition. Let X ⊆ Z be an irreducible non-degenerate toric complete inter-
+section and set
+                    ΣX := {σ ∈ Σ; X ∩ Tn · zσ 6= ∅} .
+Then we have Supp(ΣX ) = trop(X).
+  We denote with ZX the toric variety associated to ΣX . Then the toric variety
+ZX is Q-Gorenstein, if and only if X is so. Moreover, one obtains the following
+connection between the anticanonical complexes of X and ZX :
+Theorem 1. Let X ⊆ Z be a Q-Gorenstein, irreducible non-degenerate toric
+complete intersection. Then X has an anticanonical complex
+                                        AX = AZX ,
+where AZX denotes the anticanonical complex of the Q-Gorenstein toric vari-
+ety ZX .
+   We observe, that in this setting each vertex of AX is a primitive ray generator
+of the fan Σ. In particular, all vertices of the anticanonical complex are integral
+vectors; this does not necessarily hold for anticanonical complexes in general, see [2,
+4]. Regarding the singularity types, we obtain the following result:
+892                                                          Oberwolfach Report 17/2022
+
+Corollary. Let X ⊆ Z be a Q-Gorenstein irreducible non-degenerate toric com-
+plete intersection.
+     (i) X has at most log-terminal singularities.
+    (ii) X has at most terminal (canonical) singularities if and only if ZX has at
+         most terminal (canonical) singularities.
+   As an application of our concrete description of the anticanonical complex, we
+gain the following classiﬁcation result in the terminal setting.
+Theorem 2. There are 42 families of non-toric terminal Fano general non-
+degenerate toric complete intersection threefolds in fake weighted projective spaces.
+
+                                       References
+ [1] Victor. V. Batyrev. Toric Fano threefolds. Izv. Akad. Nauk SSSR Ser. Mat., 45(4):704–717,
+     927, 1981
+ [2] Benjamin Bechtold, Jürgen Hausen, Elaine Huggenberger, and Michele Nicolussi. On termi-
+     nal Fano 3-folds with 2-torus action. Int. Math. Res. Not. IMRN, no. 5:1563–1602,2016.
+ [3] Jürgen Hausen, Christian Mauz, and Milena Wrobel. The anticanonical complex for non-
+     degenerate toric complete intersections, arXiv:2006.04723, 2020.
+ [4] Christoﬀ Hische, and Milena Wrobel. On the anticanonical complex, arXiv:1808.01997, 2018.
+ [5] Christoﬀ Hische, and Milena Wrobel. On Fano threefolds with C ∗ -action, arXiv:1912.08184,
+     2018.
+ [6] Alexander M. Kasprzyk. Toric Fano three-folds with terminal singularities. Tohoku Math.
+     J. (2), 58(1):101–121, 2006.
+ [7] Alexander M. Kasprzyk. Canonical toric Fano threefolds. Canad. J. Math., 62(6):1293–1309,
+     2010.
+ [8] Askold G. Khovanskiı̆. Newton polyhedra, and toroidal varieties, Funkcional. Anal. i
+     Priložen, 11(4):56–64, 1977 (Russian).
+ [9] Maximilian Kreuzer and Benjamin Nill. Classiﬁcation of toric Fano 5-folds. Adv.Geom.,
+     9(1):85–97, 2009.
+
+
+             Bounding toric singularities via normalized volume
+                               Hendrik Süß
+                      (joint work with Joaquı́n Moraga)
+
+We study the normalized volume of toric singularities. As it turns out, there
+is a close relation to the notion of Mahler volume from convex geometry. This
+observation allows us to use standard tools from convex geometry, such as the
+Blaschke-Santaló inequality to prove non-trivial facts about the normalized volume
+in the toric setting.
+   For a normal singularity (X, x) and a valuation v on X with centre in x ∈ X
+the volume was deﬁned in [2] as
+                                            ℓ(OX,x /am (v))
+                             vol(v) := lim                  .
+                                        m→∞    mn /n!
+Here, am (v) := {f ∈ OX,x | v(f ) ≥ m} and ℓ denotes the Artinian length of
+the module. For a log terminal singularity Li in [5] then deﬁned its normalised
+       c
+volume vol(X, x) to be the inﬁmum taken over all volumes of valuation with log
+Toric Geometry                                                                    893
+
+discrepancy equal to 1. From results in [1] we know that the inﬁmum in the
+deﬁnition of the normalised volume is actually a minimum.
+   The normalised volume plays an important role in the context of K-stability,
+see [5]. In particular, K-semistability can be seen as an algebraic version and
+far-reaching generalisation of the principle of volume minimisation known from
+Sasaki-Einstein geometry [6].
+   We now turn to the case of a toric Gorenstein singularity (X, x) corresponding
+to a cone R≥0 (P × {1}) ⊂ NR × R, where P is a lattice polytope in the real vector
+space NR . In this case the (torus invariant) valuation centred at the singularity
+correspond to interior elements of the cone and the ones with log discrepancy equal
+to 1 are exactly those which lie in the interior of the polytope P × {1}. Hence, we
+may identify any such valuation with an interior element v ∈ P . Now, the volume
+of such a valutation can be expressed in terms of the dual polytope
+
+               P v := (P − v)∗ = {u ∈ NR∗ | ∀w∈P −v : hu, wi ≥ −1}.
+
+Namely, we have vol(v) = (dim P + 1)! vol P v and the normalised volume of (X, x)
+is given by minv∈P vol(v). The unique element v ∈ P realising this minimum is
+known as Santaló point in convex geometry, see [7]. The minimal dual volume
+gives also rise to the notion of the Mahler volume of a context body, which is
+deﬁned as vol P · vol P v , where v ∈ P is the Santaló point. The Mahler volume
+of a convex body is known to be invariant under aﬃne transformations and to
+be bounded from above by the square of the volume of unit ball of the same
+dimension. The latter result is known as the Blaschke-Santaló Inequality, see [7].
+On the other hand, the conjectural lower bound is (n + 1)n+1 /(n!)2 , the Mahler
+volume of the simplex. This inequality is known as the Mahler Conjecture which
+plays a prominent role in convex geometry.
+   As a consequence of the Blaschke-Santaló inequality we see that every lower
+bound for the normalised volume of the toric singularity implies an upper bound
+for the volume of P . On the other hand, there are (up to unimodular equivalence)
+only ﬁnitely many polytopes for every upper bound on the volume [4]. Hence, we
+obtain the following result.
+
+Theorem. In each dimension and for any ǫ > 0 there are only ﬁnitely many toric
+Q-Gorenstein singularities with c
+                                vol(X) > ǫ.
+
+   This can be seen as a boundedness result for toric singularities in terms of the
+normalised volume. Such a boundedness statement had been conjectured more
+generally for log terminal singularities in [3]. For an alternative proof for the case
+of toric singularities see [8].
+   Note, that also the conjectural lower bound for the Mahler volume has an
+interpretation in terms of the normalised volume. The Mahler conjecture would
+imply that the inequality
+
+                                  c           dd
+(1)                               vol(X) ≥
+                                             χ( e
+                                               X)
+894                                                          Oberwolfach Report 17/2022
+
+holds, where χ(X)e denotes the number of ﬁxed points in a (toric) crepant resolution
+ e
+X of the toric Gorenstein singularity X. It would be interesting to know whether
+there is an interpretation of that number which leads to a reasonable generalisation
+of the conjectured inequality (1) to the non-toric case.
+
+                                       References
+ [1] H. Blum. Existence of valuations with smallest normalized volume. Compos. Math.,
+     154(4):820–849, 2018.
+ [2] L. Ein, R. Lazarsfeld, and K. E. Smith. Uniform approximation of Abhyankar valuation
+     ideals in smooth function ﬁelds. Amer. J. Math., 125(2):409–440, 2003.
+ [3] J. Han, Y. Liu, and L. Qi. Acc for local volumes and boundedness of singularities, 2020.
+ [4] J. C. Lagarias and G. M. Ziegler. Bounds for lattice polytopes containing a ﬁxed number of
+     interior points in a sublattice. Can. J. Math., 43(5):1022–1035, 1991.
+ [5] C. Li. Minimizing normalized volumes of valuations. Math. Z., 289(1-2):491–513, 2018.
+ [6] D. Martelli, J. Sparks, and S.-T. Yau. Sasaki-Einstein manifolds and volume minimisation.
+     Commun. Math. Phys., 280(3):611–673, 2008.
+ [7] L. Santaló. Un invariante aﬁn para los cuerpos convexos del espacio de n dimensiones.
+     Portugaliae mathematica, 8(4):155–161, 1949.
+ [8] Z. Zhuang. On boundedness of singularities and minimal log discrepancies of Kollár compo-
+     nents, 2021. In Preparation.
+
+
+
+  Laurent polynomials and deformations of toric Gorenstein varieties
+                            Matej Filip
+
+Mirror symmetry suggests that there is a relationship between Fano manifolds and
+certain Laurent polynomials, cf. [2]. More precisely, if a Laurent polynomial f is
+mirror to a Fano manifold Y , it is expected that a Fano manifold Y admits a Q-
+Gorenstein degeneration to a singular toric variety, whose fan is the spanning fan of
+the Newton polytope ∆(f ). In [3] the above conjectural relationship was extended
+to Q-factorial terminal Fano varieties and their mirrors called rigid maximally
+mutable Laurent polynomials, see also [5, Conjecture 29].
+   An aﬃne Gorenstein toric variety X is given by a cone
+                                 σ = cone{P } ⊂ N ⊕ Z,
+where P is a polytope in the lattice N , lying on height one. We want to understand
+deformation theory of X. By comparison theorem it is enough to understand
+deformation theory of aﬃne toric varieties in order to understand deformations of
+projective toric varieties.
+   In the case of isolated singularities the miniversal deformation was constructed
+by Altmann [1]. We are going to try to understand deformation theory of non-
+isolated Gorenstein toric varieties using mutations of Laurent polynomials which
+have Newton polytope equal to P .
+   A combinatorial mutation of a Laurent polynomial f with ∆(f ) = P is for us
+a pair (m, g), where m ∈ M ⊕ Z is an aﬃne function on N deﬁned by m(n) :=
+hm, n + ei, where e = (0, 1), and g is a Laurent polynomial such that we can write
+     P
+f = i∈Z fi with fi ∈ C[(m = i)] ⊂ C[N ] and that gfii is a Laurent polynomial;
+Toric Geometry                                                                     895
+
+     1                           1                         1
+
+     5                           5                         5
+
+     10   4                      10   10                   10   4
+
+     10   12    6                10   20    10             10   12     3
+
+     5    12    12     4         5    15    15   5         5    12     9   2
+
+     1    4     6      4     1   1    4     6    4     1   1    4      6   4   1
+
+           Figure 1. Rigid maximally mutable Laurent polynomials
+
+
+here (m = i) is the set of elements n ∈ N with m(n) = i. If the above is the case we
+                                                                     P
+say that f is (m, g)-mutable and denote its mutation by mutgm f := i∈Z gfii , which
+is a Laurent polynomial. We denote its Newton polytope by P(m,g) := ∆(mutgm f ).
+    The following result of Ilten [4] shows that X and TV(cone{P(m,g) }), which is a
+toric aﬃne Gorenstein variety deﬁned by the polytope P(m,g) , lie in the same defor-
+mation component: let f be (m, g)-mutable with ±m 6∈ σ ∨ ∩ (M ⊕ Z). Then there
+                        e → P1 with π −1 (0) = X and π −1 (∞) ∼
+exists a ﬂat family π : X                                     = TV(cone{P(m,g) }).
+    Note that there is a correspondence between mutations of f and one-parameter
+deformation of X. This correspondence is obtained by observing that ∆(g) is a
+Minkowski summand of the cross-cut
+
+                            σ ∩ {v ∈ N ⊕ Z | hv, mi = 1}.
+
+This is a one-parameter deformation of X over A1 = Spec C[t(m,g) ], where t(m,g)
+                      1
+is an element of TX       obtained by restricting the one parameter deformation to
+Spec C[t(m,g) ]/(t2(m,g) ).
+   The subspace
+                                                                 1
+                     T (f ) := {t(m,g) | f is (m, g)-mutable} ⊂ TX ,
+
+build from a Laurent polynomial f is crucial for understanding deformation theory
+of X.
+
+Conjecture: Aﬃne toric Gorenstein variety X is unobstructed in T (f ), i.e. there
+                                           1
+exists a ﬂat family over C[[T (f )]] ⊂ C[[TX ]] with the ﬁber over zero equal to X.
+Moreover, if f is rigid maximally mutable, then the generic ﬁber is terminal.
+
+   We provide some evidence in the three-dimensional case and state that f being
+rigid maximally mutable roughly means that f is uniquely determined by its mu-
+tations up to a scalar (see also [3]). We conclude the talk by describing all rigid
+maximally mutable polynomials on the following polytope (see Figure 1).
+896                                                        Oberwolfach Report 17/2022
+
+                                      References
+ [1] K. Altmann: The versal deformation of an isolated, toric Gorenstein singularity, Invent.
+     Math. 128 (1997), 443–479.
+ [2] T. Coates, A. Corti, S. Galkin, V. Golyshev, A. M. Kasprzyk, Mirror symmetry and Fano
+     manifolds, In European congress of mathematics, Eur. Math. Soc. (2013), 285–300.
+ [3] T. Coates, A. M. Kasprzyk, G. Pitton, K. Tveiten, Maximally mutable Laurent polynomials,
+     arXiv:2107.14253.
+ [4] N.O. Ilten, Mutations of Laurent polynomials and flat families with toric fibers, SIGMA
+     Symmetry Integr. Geom. Methods Appl. 8 (047), (2012).
+ [5] A. M. Kasprzyk, V. Przyjalkowski: Laurent polynomials in mirror symmetry: why and how?,
+     arXiv:2112.15339.
+
+
+        Blown-up toric surfaces with non-polyhedral effective cone
+                              Antonio Laface
+       (joint work with Ana-Maria Castravet, Jenia Tevelev, Luca Ugaglia)
+
+Let X be a normal projective variety deﬁned over an algebraically closed ﬁeld. The
+eﬀective cone of X is the cone Eﬀ(X) ⊆ N1 (X)R generated by classes of eﬀective
+divisors. Its closure in the euclidean topology is the pseudoeﬀective cone of X,
+denoted by Eﬀ(X). A cone is polyhedral if it is generated by ﬁnitely many vectors.
+The main application of our results is the following.
+Theorem 1 ([4]). The cone Eﬀ(M 0,n ) is not polyhedral for n ≥ 10 in any char-
+acteristic.
+Proof. Recall that a rational contraction is a dominant rational map X 99K Y of
+projective varieties that can be decomposed into a sequence of small Q-factorial
+modiﬁcations and surjective morphisms. There exist rational contractions and
+surjections [1]
+(1)                  Ble LM n+1 99K M 0,n → Ble LM n 99K Ble P,
+where LM n is the toric variety named Losev-Manin space, P is a (not unique)
+toric surface and e ∈ P is a point in the big torus orbit. When n = 10 the surface
+P can be chosen so that Eﬀ(Ble P) is not polyhedral, as shown in Theorem 3. This
+can be done for any characteristic. Then one uses the fact that given a surjective
+morphism of normal projective varieties f : X → Y if Eﬀ(X) is polyhedral then
+Eﬀ(Y ) is also polyhedral. Indeed Eﬀ(X) is dual to the cone of moving curves
+Mov1 (X) and proper pushforward of the latter cone is Mov1 (Y ), by [3].        
+  Using (1) it is possible to show that M 0,n is not a Mori dream space by pro-
+ducing a nef class in Ble P which is not semiample. This has been done in [6–8]
+producing each time a better lower bound for n until reaching n = 10. Concerning
+eﬀective cones the main criterion is the following.
+Proposition 2. Let X be a normal Q-factorial projective surface with ̺(X) ≥ 3.
+If Eﬀ(X) is polyhedral then the following hold.
+    (1) Eﬀ(X) is generated by ﬁnitely many classes of negative curves [9].
+Toric Geometry                                                                        897
+
+   (2) If C ∈ Pic(X) is a nef class with C 2 = 0, then [C] is in the relative interior
+                                                          P
+       of a maximal face of Eﬀ(X). In particular nC ∼ i ai Ci with n, ai ∈ Z>0
+       for any i where each curve Ci is irreducible with Ci ∩ C = ∅.
+   Before stating the next theorem, let us recall that a lattice polygon ∆ ⊆ Q2 is a
+polygon with integer vertices. Any such polygon deﬁnes a pair (P∆ , H∆ ) consisting
+of a normal toric P
+                  variety P∆ whose fan Σ(P) is the normal fan to ∆ and an ample
+divisor H∆ := − ρ∈Σ(P) minu∈∆ hu, ρiDρ on P∆ .
+
+Theorem 3 ([4]). There exists a lattice polygon ∆ ⊆ Q2 such that Eﬀ(Ble P∆ ) is
+non-polyhedral for all but a ﬁnite number of positive characteristics.
+Proof. (Char. = 0). Let ∆ ⊆ Q2 be a lattice polygon with at least 4 sides,
+Vol(∆) = m2 and |∂∆ ∩ Z2 | = m, like e.g.
+
+
+
+
+Let X := Ble (P∆ ) and let C ⊆ X be the strict transform of a curve of the linear
+system |H∆ | which has multiplicity
+                                    m at e. Such a curve exists because by Pick’s
+                  2       m+1
+formula #(∆ ∩ Z ) =         2   + 1. In the example a deﬁning equation for this
+curve in the torus is given by (underlined monomials correspond to vertices of the
+polygon)
+        −u5 v − 3u4 v 4 + 6u4 v 3 − 4u4 v 2 + 6u4 v − u3 v 5 + 8u3 v 4 − 10u3 v 3 +
+         4u3 v 2 − 11u3v − 6u2 v 3 + 6u2 v 2 + 10u2v + 4uv 2 − 9uv + 1 = 0.
+The numerical conditions on ∆ are equivalent to C 2 = C · KX = 0. So, if C is
+smooth and the Newton polygon of its deﬁning Laurent polynomial is ∆, then C is
+a Cartier divisor and it has genus one. In the previous example a minimal equation
+for C is y 2 + y = x3 − x2 − 2x + 2. This is the curve 57.a1 from the LMFDB
+database of elliptic curves with Mordell-Weil group Pic0 (C)(Q) ≃ Z. Since
+                           res(C) := OC (C) ∈ Pic0 (C)(Q)
+it follows that, in the example, either res(C) is trivial or it is not torsion. On the
+other hand, from the long exact cohomology sequence of
+          0        / OX ((n − 1)C)         / OX (nC)        / OC (nC)         /0
+
+one deduces that res(C) has order n if and only if dim H 0 (X, nC) > 1. Thus in the
+example res(C) cannot be trivial because one easily computes that dim H 0 (X, C) =
+1. So res(C) must be non-torsion, or equivalently dim H 0 (X, nC)P     = 1 for any
+n > 0 and one concludes that C cannot be linearly equivalent to i ai Ci with
+all the curves Ci disjoint from C. By Proposition 2 we deduce that Eﬀ(X) is not
+polyhedral.                                                                      
+898                                                         Oberwolfach Report 17/2022
+
+Proof. (Char. > 0). Let ∆ ⊆ Q2 be the following lattice polygon.
+
+
+
+
+    One can show that the corresponding curve C ⊆ Ble (P∆ ) is irreducible, smooth
+and with Newton polygon ∆ for all characteristics p 6= 2, 3, 5, 7, 11, 19, 71. In
+characteristic 0 a minimal equation for C is y 2 + xy + y = x3 + x2 − 520x + 4745.
+This is the curve labelled 2130.j4 in the LMFDB database. The Mordell-Weil
+group is Z × Z/4Z and one can show that res(C) is 4-torsion. The divisor KX + C
+is linearly equivalent to an eﬀective divisor by the long exact cohomology sequence
+of
+           0      / OX (KX )     / OX (KX + C)         / OC (KX + C)     /0
+and the fact that h0 (X, KX ) = h1 (X, KX ) = 0. A direct calculation shows that
+the Zariski decomposition of KX + C has no positive part. Then, by running the
+(KX + C)-MMP, one gets a sequence of contractions:
+                         X = X0 → X1 → · · · → Xs = Y,
+where all the exceptional loci consist of irreducible curves disjoint from C because
+C · (KX + C) = 0. Thus, with abuse of notation, we will denote by the same letter
+C the image of the curve C in Y . Observe that −KY ∼ C is Cartier so that Y
+has at most du Val singularities. Since −KY is eﬀective, the same holds for the
+anticanonical class of the minimal resolution Z of Y . Summarizing we have the
+following diagram
+                                  Z❅                 X
+                                    ❅❅             ⑥⑥
+                                      ❅❅          ⑥
+                                               ~⑥⑥
+                                           Y
+where Z is a smooth rational surface of Picard rank 10 with nef anticanonical class
+and each of the three surfaces contains a copy of C as a Cartier divisor disjoint
+from the exceptional locus. Being Y an anticanonical rational surface with nef
+Cartier anticanonical class, by Mori theory it follows that Eﬀ(Y ) is polyhedral if
+and only if KY⊥ is generated by classes of (−2)-curves and the same statement holds
+for Z. Since the map Z → Y only contracts (−2)-curves, one deduces that Eﬀ(Y )
+is polyhedral if and only if Eﬀ(Z) is polyhedral and both conditions are equivalent
+to the fact that KZ⊥ = C ⊥ ⊆ Pic(Z) is generated by classes of (−2)-curves. It is
+not diﬃcult to show that a class R ∈ Pic(Z) such that
+                      R2 = −2,     R · KZ = 0,           res(R) = 0
+Toric Geometry                                                                           899
+
+is eﬀective and it is union of (−2)-curves. On the other hand any class of (−2)-
+curve satisﬁes the above equalities. Thus Eﬀ(Z) is polyhedral if and only if KZ⊥ is
+generated by classes satisfying the above condition. By changing R with R + nC
+we get a class with the same numerical properties, so the third condition can be
+replaced by res(R) ∈ hres(C)i. One can show that, when res(C) is torsion, the
+latter condition is equivalent to ask that the kernel of the following surjection
+                                      KZ⊥    res
+                                                          ⊥
+                                                   / res(KZ )
+                               E8 ≃
+                                      hCi            hres(C)i
+is generated by roots. In the example E8 is not generated by roots in ker(res)
+for any p 6= 2, 3, 5, 7, 11, 19, 71. So for these primes Eﬀ(Z) and Eﬀ(Y ) are not
+polyhedral and thus Eﬀ(X) is not polyhedral as well. The remaining prime char-
+acteristics are analyzed by means of a similar argument applied to other lattice
+polygons.                                                                      
+
+                                      References
+[1] Ana-Maria Castravet and Jenia Tevelev, M 0,n is not a Mori dream space, Duke Math. J.
+    164 (2015), no. 8, 1641–1667.
+[2] Steven Dale Cutkosky and Kazuhiko Kurano, Asymptotic regularity of powers of ideals
+    of points in a weighted projective plane, Kyoto J. Math. 51 (2011), no. 1, 25–45, DOI
+    10.1215/0023608X-2010-019. MR2784746
+[3] Mihai Fulger and Brian Lehmann, Zariski decompositions of numerical cycle classes, J.
+    Algebraic Geom. 26 (2017), no. 1, 43–106.
+[4] Ana-Maria Castravet, Jenia Tevelev, Antonio Laface, and Luca Ugaglia, Blown-up toric
+    surfaces with non-polyhedral effective cone (2020). arXiv:2009.14298.
+[5] Javier González-Anaya, José Luis González, and Kalle Karu, Non-existence of negative
+    curves (2022). arXiv:2110.13333.
+[6] José Luis González and Kalle Karu, Some non-finitely generated Cox rings, Compos. Math.
+    152 (2016), no. 5, 984–996, DOI 10.1112/S0010437X15007745. MR3505645
+[7] Shiro Goto, Koji Nishida, and Keiichi Watanabe, Non-Cohen-Macaulay symbolic blow-ups
+    for space monomial curves and counterexamples to Cowsik’s question, Proc. Amer. Math.
+    Soc. 120 (1994), no. 2, 383–392, DOI 10.2307/2159873. MR1163334
+[8] Jürgen Hausen, Simon Keicher, and Antonio Laface, On blowing up the weighted pro-
+    jective plane, Math. Z. 290 (2018), no. 3-4, 1339–1358, DOI 10.1007/s00209-018-2065-6.
+    MR3856856
+[9] Viacheslav V. Nikulin, A remark on algebraic surfaces with polyhedral Mori cone, Nagoya
+    Math. J. 157 (2000), 73–92.
+
+
+
+          Exploring lattice polytopes through machine learning
+                           Johannes Hofscheier
+(joint work with Jiakang Bao, Yang-Hui He, Edward Hirst, Alexander Kasprzyk,
+                              Suvajit Majumder)
+
+Algebraic geometers and combinatorialists have a long-established culture of pro-
+ducing and interrogating classiﬁcation datasets. These datasets can be at the limit
+of current computing resources. For example, the list of 4-dimensional Gorenstein
+toric Fano varieties in terms of the 473 800 776 reﬂexive 4-polytopes [9] can be a
+900                                                        Oberwolfach Report 17/2022
+
+challenge to work with using modern (consumer) hardware. Another example is
+the ongoing Fanosearch programme [6], a ground-breaking new approach to the
+classiﬁcation of Fano varieties via Mirror Symmetry, that has already produced
+over 2 petabytes1 of data, and is still rapidly growing.
+   With this “explosion” of mathematical classiﬁcation datasets, the time is ripe
+to look for suitable tools to investigate such “big data”. Here, we explore to what
+extent tools from data science (more precisely, from machine learning (ML)) can:
+       • eﬃciently (i.e., performantly with only a small error) predict invariants of
+         mathematical objects,
+       • “ﬁnd” new mathematical results and theorems, and
+       • generate or approximate examples with prescribed properties.
+The ML tools that have been used in the explorations [2, 3] include principal
+component analysis (PCA), random forests, support vector machines, and artiﬁcial
+neural networks (NNs). We refer the interested reader to [8] for further details and
+references on ML. The book [7] gives a hands-on introduction to some industry-
+leading software libraries [1, 5, 10] that implement the aforementioned tools.
+   To get a better idea about the potential of ML, consider the following question:
+if P ⊆ Rd is a lattice polytope, can ML predict the dimension of P from its
+Ehrhart sequence (ehrP (k))k∈Z≥0 (recall that ehrP (k) = |kP ∩ Zd | for k ∈ Z≥0 )?
+Clearly, in practice a truncation of the Ehrhart sequence to ﬁnitely many terms
+will be used as input. Depending on the maximum dimension of lattice polytopes
+in the investigated dataset, relatively few entries of the Ehrhart sequence suﬃce.
+In our experiments we used (ehrP (0), . . . , ehrP (30)) but could reduce the number
+of entries further. Any of the above ML algorithms predict the dimension to an
+accuracy of ≥ 99.8% when trained on a relatively small dataset, i.e., the training
+set is 10% of the whole set (in this case study a total of ∼ 6 000 samples). Indeed,
+the high performance of ML on this task has a simple mathematical explanation.
+Recall the n-th forward diﬀerences ∆n ehrP (k) that are inductively deﬁned:
+                          (
+                            ehrP (k)                             if n = 0,
+           ∆n ehrP (k) =
+                            ∆n−1 ehrP (k + 1) − ∆n−1 ehrP (k) otherwise.
+Since the degree of ehrP (t) coincides with dim(P ), the dimension can be recov-
+ered form the Ehrhart sequence (ehrP (k))k∈Z≥0 (respectively from the forward
+diﬀerences (∆n ehrP (0))n∈Z≥0 ). More precisely, by [4, Theorem 1.1], we get that
+                        
+                 dim(P )
+                            < ∆n ehrP (0)     for 0 ≤ n ≤ dim(P ),
+                     n
+and ∆n ehrP (0) = 0 for n > dim(P ). By using the fundamental idea of data
+science to consider samples of the input as points in space, we consider Ehrhart
+sequences (ehrP (k))k∈Z≥0 as points in the vector space ℓ∞ of bounded sequences.
+                                                              Pn        j n
+                                                                           
+For (xk )k∈Z≥0 ∈ ℓ∞ , the n-th forward diﬀerences ∆n x0 =       j=0 (−1) j xn−j
+                                                           T ∞
+give linear forms on ℓ∞ . Then the linear subspaces Vi := n=i ker(∆n x0 ) ⊆ ℓ∞
+   1According to Wikipedia this is the same as roughly 4 000 years of MP3 encoded music at a
+constant bitrate of 128 kbit/s.
+Toric Geometry                                                                    901
+
+yield a ﬁltration of ℓ∞ , i.e., V0 ⊆ V1 ⊆ V2 ⊆ . . . It follows that, given an Ehrhart
+sequence x = (ehrP (k))k∈Z≥0 , the dimension of the corresponding polytope P is the
+smallest n ∈ Z≥0 such that x ∈ Vn+1 . Hence, the Ehrhart sequences of diﬀerent
+dimensions are separated by hyperplanes. The idea to separate input sample
+points by hyperplanes is at the heart of most (state-of-the-art) ML algorithms
+which explains the high performance of ML on this task.
+    On the ﬂip side, we want to argue that whenever ML performs well on a task,
+a mathematical argument is very likely to be found explaining the phenomenon.
+To illustrate this idea consider the following second question: can ML predict
+the normalised volume when polytopes themselves are used as input for the ML?
+This raises the question of how to represent polytopes appropriately for use in
+ML. Possible solutions include vertex or facet normal representations. Those rep-
+resentations have the downside that the input can no longer be considered as a
+“homogeneous” point in space. For example, when considering the representation
+of a polytope in terms of its vertices, the input is a matrix whose columns consist
+of the vertices of the polytope. Clearly, the matrix can be considered as a point
+in space, however, then distinct coordinates might correspond to distinct vertices,
+and thus the vector isn’t “homogeneous” any more (this can be partly mitigated
+by using convolutional NN layers which regard the input as a matrix).
+    We suggest to use another more homogeneous approach as follows. For sim-
+plicity, let us assume that the vertices of the polytope span the ambient lattice,
+i.e., if P ⊆ Rd is a lattice polytope with vertices V ⊆ Zd then spanZ V = Zd . By
+ordering the vertices of P , say V = {vi }, we obtain an exact sequence
+                                                ϕ
+                                              → Zd → 0
+                          0 → Z|V |−d → Z|V | −
+
+where the linear map ϕ is uniquely determined by assigning the i-th standard
+basis vector of Z|V | to the i-th vertex vi ∈ V . Then the map on the left-hand side
+is the integer kernel of ϕ. Notice that, since the vertices of V span the ambient
+lattice Zd , it follows that ker ϕ ⊆ Rd uniquely describes P . Indeed, P is equivalent
+to the image of the standard simplex in Z|V | under the natural projection map
+Z|V | /(ker ϕ ∩ Z|V | ). By classical algebraic geometry, the linear subspace ker ϕ
+                                                                             | 
+is uniquely given by its Plücker coordinates in PN −1 where N = |V|V|−d        . The
+advantage of this approach is that the Plücker coordinates can be regarded as
+“homogeneous”, i.e., no obvious distinction of coordinates is given.
+   We use this approach to study ML’s eﬃciency in predicting invariants of poly-
+topes. To our surprise, ML predicted the volume of 3-dimensional polytopes from
+their Plücker coordinates to a high accuracy (see [2, Section 4.3]). In forthcom-
+ing work, we will give a mathematical explanation for this phenomenon (for any
+dimensions). We also let ML predict the normalised volume of the polar dual
+polytope from the Plücker coordinates of the original polytope which, however,
+turned out to be not as successful (see [2, Section 4.3.2] for further details).
+   In conclusion, the availability of big datasets of mathematical objects is worth
+to be further explored for new invariants and relations between objects. Here,
+ML can be a valuable tool to observe new phenomena. However, it’s important
+902                                                            Oberwolfach Report 17/2022
+
+to keep in mind that those tools have their limitations and there is an upfront
+investment in developing representations of the mathematical objects suitable for
+ML. Ultimately, the dream would be to reverse the above approach, i.e., instead of
+predicting invariants, build an “oracle” that can suggest (approximate) examples
+that have a given set of properties/invariants.
+
+                                         References
+ [1] M. Abadi, A. Agarwal, P. Barham, E. Brevdo, Z. Chen, C. Citro, G. S. Corrado, A. Davis,
+     J. Dean, M. Devin, S. Ghemawat, I. Goodfellow, A. Harp, G. Irving, M. Isard, Y. Jia,
+     R. Jozefowicz, L. Kaiser, M. Kudlur, J. Levenberg, D. Mané, R. Monga, S. Moore, D. Murray,
+     C. Olah, M. Schuster, J. Shlens, B. Steiner, I. Sutskever, K. Talwar, P. Tucker, V. Vanhoucke,
+     V. Vasudevan, F. Viégas, O. Vinyals, P. Warden, M. Wattenberg, M. Wicke, Y. Yu, and
+     X. Zheng, TensorFlow: Large-scale machine learning on heterogeneous systems, Software
+     available from tensorflow.org, 2015.
+ [2] J. Bao, Y.-H. He, E. Hirst, J. Hofscheier, A. Kasprzyk, and S. Majumder, Polytopes and
+     machine learning, arXiv:2109.09602 (2021).
+ [3] J. Bao, Y.-H. He, E. Hirst, J. Hofscheier, A. Kasprzyk, and S. Majumder, Hilbert series,
+     machine learning, and applications to physics, Phys. Lett. B 827 (2022), Paper No. 136966.
+ [4] M. Beck, J. A. De Loera, M. Develin, J. Pfeiﬂe, and R. P. Stanley. Coefficients and roots
+     of Ehrhart polynomials, in Integer points in polyhedra—geometry, number theory, algebra,
+     optimization, Contemp. Math. 374 (2005), pages 15–36. Amer. Math. Soc., Providence, RI.
+ [5] F. Chollet et al, Keras, https://keras.io, 2015.
+ [6] T. Coates, A. Corti, S. Galkin, V. Golyshev, and A. Kasprzyk. Mirror symmetry and Fano
+     manifolds, in European Congress of Mathematics, pages 285–300. Eur. Math. Soc., Zürich,
+     2013.
+ [7] A. Géron, Hands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools,
+     and Techniques to Build Intelligent Systems, O’Reilly Media, Incorporated, Sebastopol,
+     2017.
+ [8] G. James, D. Witten, T. Hastie, and R. Tibshirani, An introduction to statistical learning—
+     with applications in R, Springer Texts in Statistics. Springer, New York, 2021, Second edi-
+     tion.
+ [9] M. Kreuzer and H. Skarke, Complete classification of reflexive polyhedra in four dimensions,
+     Adv. Theor. Math. Phys. 4 No. 6 (2000), 1209–1230.
+[10] F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blon-
+     del, P. Prettenhofer, R. Weiss, V. Dubourg, J. Vanderplas, A. Passos, D. Cournapeau,
+     M. Brucher, M. Perrot, and E. Duchesnay, Scikit-learn: Machine learning in Python, Journal
+     of Machine Learning Research 12 (2011), 2825–2830.
+
+
+
+                   Resolution of singularities by torus actions
+                            Jaroslaw Wlodarczyk
+We show a simple and fast embedded desingularization of varieties and principal-
+ization of ideals in the language of torus actions on ambient smooth schemes with
+or without SNC divisors. The canonical functorial resolution of varieties in char-
+acteristic zero is given by, the introduced here, operations of cobordant blow-ups
+of smooth weighted centers.
+    Recall that a functorial resolution without SNC divisors by stack-theoretic
+weighted blow-ups in characteristic zero was given ﬁrst in the paper by McQuillan
+[2], and the joint work of the author with Abramovich and Temkin [1].
+Toric Geometry                                                                              903
+
+   I will discuss a variant of this construction which uses slightly diﬀerent approach.
+The idea is to represent a weighted blow-up by a birational cobordism that means
+a smooth scheme with the torus action. The geometric quotient of this space
+deﬁnes a usual weighted blow-up. The stack-theoretic quotient determines the
+stack-theoretic weighted blow-up.
+   As the result of the resolution procedure we obtain a smooth variety with a
+torus action and the exceptional divisor having simple normal crossings. Moreover,
+its geometric quotient is birational to the resolved variety, has abelian quotient
+singularities, and can be desingularized directly by combinatorial methods.
+   As an application of the method we show the resolution of a certain class of
+isolated singularities in positive and mixed characteristic. In fact, the operation
+of coborodant blow-up does not require the use the Artin stacks in nonzero char-
+acteristic which makes it a very convenient resolution tool in this case. Moreover
+it carries additional information which can be used for resolving some classes of
+varieties.
+   The results are written in the very recent paper of the author [3].
+
+                                        References
+ [1] Dan Abramovich, Michael Temkin, and Jaroslaw Wlodarczyk, Functorial embedded resolu-
+     tion via weighted blowings up, arXiv e-prints (2019), arXiv:1906.07106.
+ [2] McQuillan, M. (2020). Very functorial, very fast, and very easy resolution of singularities.
+     Geometric and functional analysis, 30(3), 858-909.
+ [3] J. Wlodarczyk, Functorial resolution by torus actions arXiv:2203.03090.
+
+
+
+
+                      Motivic Integration and Toric Stacks
+                               Matthew Satriano
+                         (joint work with Jeremy Usatine)
+
+In 1995, Kontsevich [3] introduced Motivic Integration and applied his theory to
+prove that birational Calabi-Yau manifolds have equal Hodge numbers. An essen-
+tial ingredient in his proof is a motivic change of variables formula, which relates
+the motivic measures of smooth projective varieties X and Y under a birational
+modiﬁcation π : X → Y . Building oﬀ of Kontsevich’s theory as well as work of
+Denef–Loeser [2], Batyrev [1] introduced the stringy Hodge numbers hp,q st (Y ) of any
+log-terminal scheme Y with Q-Gorenstein singularities. His motivation came from
+Mirror Symmetry: one wants a mirror pair (Y, Y ∗ ) of d-dimensional Calabi-Yau
+manifolds to satisfy hp,q (Y ) = hd−p,q (Y ∗ ), however if Y ∗ is singular, one must
+replace the Hodge numbers by the stringy Hodge numbers. It is important to note
+that these stringy Hodge numbers are not deﬁned as dimensions of cohomology
+groups but rather the coeﬃcients of a certain polynomial build from a resolution
+of singularities; in particular, it is not clear that the stringy Hodge numbers are
+non-negative. In the case where Y admits a crepant resolution π : X → Y , we
+have hp,q
+       st (Y ) = h
+                   p,q
+                       (X) ≥ 0. Although crepant resolutions do not exist in general,
+904                                                   Oberwolfach Report 17/2022
+
+Batyrev conjectured [1, Conjecture 3.10] that the stringy Hodge numbers always
+satisfy hp,q
+          st (Y ) ≥ 0.
+   Yasuda [7] proved Batyrev’s conjecture when Y has ﬁnite quotient singulari-
+ties. He did so by extending the theory of motivic integration to include smooth
+Deligne–Mumford stacks and establishing a change of variables formula for the
+coarse space map π : X → Y , where X is the canonical smooth Deligne–Mumford
+stack of Y ; since X is smooth and the π is a proper coarse space map which is an
+isomorphism over the smooth locus Y sm , one may think of π as a stacky crepant
+resolution of singularities. Using his motivic change of variables formula, Yasuda
+                                                                    p,q
+showed that hp,q st (Y ) agrees with the orbifold Hodge numbers horb (X ) of X .
+   For varieties Y with worse than ﬁnite quotient singularities (e.g. many GIT
+quotients including non-simplicial toric varieties), there is never a smooth Deligne–
+Mumford stack with coarse space Y . As a result, one cannot apply Yasuda’s results
+in this setting. One may still hope to study Y through a stacky resolution π : X →
+Y , however, one is forced to consider smooth Artin stacks. In characteristic 0, such
+stacks are non-separated, and so arcs of Y may have many lifts to arcs of X .
+   In [5, 6], we deﬁned motivic integration for smooth Artin stacks and proved a
+general motivic change of variables formula. Much of our initial intuition came
+from developing motivic integration for toric stacks. Like toric varieties, toric
+stacks [4] are a concrete class of objects where one can form intuition and test
+conjectures. We ﬁrst state our general motivic change of variables formula and
+then focus on the toric setting.
+
+Theorem 1 ([6, Theorem 1.3]). Let k be an algebraically closed ﬁeld of charac-
+teristic 0. Let X be a smooth irreducible ﬁnite type Artin stack over k with aﬃne
+geometric stabilizers and separated diagonal, let Y be an irreducible ﬁnite type
+scheme over k with dim Y = dim X , let π : X → Y be a morphism, and let U be an
+open substack of X such that U ֒→ X → Y is an open immersion. Let σ : X → IX
+be the identity section of the inertia stack IX → X .
+   Let C ⊂ |L (X )| \ |L (X \ U)| ⊂ |L (X )| and D ⊂ L (Y ) be cylinders such that,
+for all ﬁeld extensions k ′ of k, the map C(k ′ ) → D(k ′ ) is a bijection. Then
+                                  Z     (0)           (0)
+                                      ht ∗        − htL
+                       µY (D) =      L Lσ LIX /X        X /Y
+                                                             dµX .
+                                  C
+
+   The relative canonical bundle plays a key role in Kontsevich’s change of vari-
+ables formula. In Theorem 1, the relative canonical bundle is replaced by the
+relative cotangent complexes LX /Y and LIX /X . Our formula also involves a new
+function that we call a height function: given a complex F • of coherent sheaves
+                                                                    (i)
+on X , to every arc ϕ : Spec(k ′ [[t]]) → X , the height function htF • (ϕ) is deﬁned
+as dimk′ Li ϕ∗ F • . Furthermore, it is worth mentioning that Lσ ∗ LIX /X is a novel
+contribution that only appears when X is an Artin stack that is not Deligne–
+Mumford.
+   The remainder of this article focuses on the toric case. In this setting, we
+proved:
+Toric Geometry                                                                   905
+
+Theorem 2 ([5, Proposition 1.5, Theorem 1.7, and Theorem 1.11]). Let X be a
+Q-Gorenstein toric variety, let π : X → X be its canonical smooth Artin stack,
+and assume X has connected stabilizers. Then
+                                       Z
+                         Gor
+                        µX (L (X)) =         sepX dµX
+                                           L (X )
+
+   From the quantity µGor
+                        X (L (X)), one may read oﬀ the stringy Hodge numbers.
+Thus, Theorem 2 encodes the stringy Hodge numbers of X as a motivic integral on
+the arc stack of X . The formula makes use of a new function sepX which measures
+the degree of non-separatedness of an arc: if ψ is an arc of X , then sepX (ψ) = n−1
+                                                                                  ψ ,
+where nψ is the number of isomorphism classes of arcs lifting π ◦ ψ.
+   Let us sketch the main ideas that go into the proof of Theorem 2. To prove the
+toric motivic change of variables, we must understand the ﬁbers of the map
+                             Ln (π) : Ln (X ) → Ln (X)
+on n-th order jet stacks. As a starting point, we begin with the easier problem of
+understanding the ﬁbers of the map
+                              L (π) : L (X ) → L (X)
+of arc stacks. Since this is a local problem, we may assume X = Spec k[P ] where
+P = σ ∨ ∩ M and σ is a pointed cone. We have the following tropicalization map
+                   trop : L (Xσ )(k ′ ) → Hom(σ ∨ ∩ M, N ∪ {∞})
+deﬁned by trop(ϕ)(p) := ordt ϕ∗ (χp ), where ϕ : Spec k ′ [[t]] → X and ordt denotes
+the order of vanishing at t. Since we may discard sets of measure zero, we may
+concentrate on arcs ϕ whose generic point lands in the torus T ⊂ X. For such ϕ,
+we have
+                      trop(ϕ) ∈ Hom(σ ∨ ∩ M, N) = σ ∩ N.
+In a similar manner, we have a tropicalization map for X given by
+                   trop : L (X )(k ′ ) → Hom(e    f, N ∪ {∞}),
+                                             σ∨ ∩ M
+where X = [Spec k[F ]/Grm ], L (X ) denotes isomorphism classes of arcs, F =
+     f is a free monoid, σ
+e∨ ∩ M
+σ                                                                e , and M
+                         e is a smooth pointed cone on a lattice N       f=N
+                                                                           e ∗.
+We have an induced map
+                                   e∩N
+                                β: σ  e → σ ∩ N.
+We proved that if ϕ ∈ L (X)(k ′ ) with trop(ϕ) = w ∈ σ ∩ N , then
+                           trop : L (π)−1 (ϕ) → β −1 (w)
+deﬁnes a canonical bijection between β −1 (w) and the isomorphism classes of arcs
+ψ ∈ L (X )(k ′ ) lifting ϕ.
+   Having now understood the ﬁbers of the map of arc stacks, we turn to the ﬁbers
+of the map of jet stacks. Let ϕ ∈ L (X)(k ′ ) and suppose trop(ϕ) = w ∈ σ ∩ N .
+For each n ≥ 0, let ϕn ∈ Ln (X)(k ′ ) denote the n-th truncation of ϕ. We proved
+906                                                            Oberwolfach Report 17/2022
+
+that for n suﬃciently large, the ﬁber of Ln (π) over ϕn has connected components
+Fwe indexed by we ∈ β −1 (w). Furthermore,
+                                  (Fwe )red ≃ [Arw /Gsawe ],
+where (Fwe )red denotes the reduced structure. This is the key local computation
+that goes into proving Theorem 2. From this, one can see how the function sepX
+shows up: the ﬁber of Ln (π) over ϕn has connected components indexed by β −1 (w)
+and |β −1 (w)| is precisely the number of isomorphism classes of arcs lifting ϕ.
+
+                                       References
+ [1] V. V. Batyrev, Stringy Hodge numbers of varieties with Gorenstein canonical singularities.
+     Integrable systems and algebraic geometry, 1–32, World Sci. Publ., River Edge, NJ, 1998.
+ [2] J. Denef and F. Loeser, Germs of arcs on singular algebraic varieties and motivic integra-
+     tion, Invent. Math. 135 (1999), no. 1, 201–232.
+ [3] M. Kontsevich, String cohomology, December 1995. Lecture at Orsay.
+ [4] A. Geraschenko and M. Satriano, Toric stacks I: The theory of stacky fans.
+     Trans. Amer. Math. Soc. 367 (2015), no. 2, 1033–1071.
+ [5] M. Satriano and J. Usatine, Stringy invariants and toric Artin stacks. Forum Math. Sigma
+     10 (2022), Paper No. e9, 60 pp.
+ [6] M. Satriano and J. Usatine, A motivic change of variables formula for Artin stacks.
+     https://arxiv.org/pdf/2109.09800.pdf , (2022).
+ [7] T. Yasuda, Twisted jets, motivic measures and orbifold cohomology. Compos. Math. 140
+     (2004), no. 2, 396–422.
+
+
+
+                               Toric bundles
+                              Leonid Monin
+  (joint work with Johannes Hofscheier, Askold Khovanskii, Hendrik Süß, and
+                               Milena Wrobel)
+
+Toric bundles are certain equivariant compactiﬁcations of torus principle bundles.
+More precisely, let p : E → B be a T -principal bundle over a topological space B
+where T ≃ (C∗ )n is an algebraic torus. Let also XΣ be a T -toric variety given by a
+fan Σ. The associated toric bundle is given as the quotient E×T XΣ := (E×XΣ )/T .
+It is a ﬁber bundle over B with ﬁber XΣ . We will denote E ×T XΣ by EΣ .
+One of the main examples of toric bundles are toric bundles over generalized ﬂag
+varieties which are also called toroidal horospherical varieties. We are interested
+in topological and geometric properties of toric bundles. Another familiar class of
+toric bundles are toric bundles over toric varieties [7]. They have a structure of
+toric varieties themselves, thus they form a special class of toric varieties which
+for instance include Bott towers [2].
+   First, let me explain a computation of cohomology ring of a toric bundle. A gen-
+eralization of the Stanley-Reisner description for the cohomology ring H ∗ (EΣ , R)
+was obtained by Sankaran and Uma [9]. Like in the classical toric case, the descrip-
+tion by Sankaran and Uma implicitly contains an algorithm to compute products
+of cohomology classes in the top degree. In [3] we studied such top degree products
+and obtained a generalization of the BKK theorem. Moreover, using a version of
+Toric Geometry                                                                    907
+
+Macaulay inverse system theorem for graded-commutative algebras with Poincaré
+duality we obtained a Pukhlikov-Khovanskii presentation of cohomology ring of
+toric bundles. Let me talk about these results in more detail.
+    Similar to the case of classical toric variety, every virtual polytope whose nor-
+mal fan coarsens Σ deﬁnes a class in H 2 (EΣ , R). Moreover, by Leray-Hirsch the-
+orem every class in H ∗ (EΣ , R) can be written as a combination of classes of type:
+p∗ (γ)∆1 . . . ∆r , where γ ∈ H ∗ (B, R) and ∆i is a polytope.
+    We reduce the computation of intersection numbers on the toric bundle to
+intersection numbers on the base. This provides a BKK-type theorem for any
+choice of a cohomology class in the base γ ∈ H ∗ (B, R).
+Theorem 1 ([3]). Let E → B be a T ≃ (C∗ )n -principal bundle with dimR B = k.
+Let Σ be a smooth projective fan and p : EΣ → B be the corresponding toric bundle.
+Finally, let ∆ be a polytope whose normal fan coarsens Σ and γ ∈ H k−2i (B, R).
+Then the intersection index p∗ (γ) · ∆n+i can be computed as
+                                               Z
+                                      (n + i)!
+                      p∗ (γ) · ∆n+i =             γ · c(x)i dx.
+                                          i!    ∆
+
+Here c : MR → H 2 (B, R) is a linear map which depends on principle bundle
+E → B only.
+It should be mentioned that as in a classical toric case Theorem 1 admits a polar-
+ized version. Also our statements above are true not only in the algebraic category,
+but more generally hold for smooth manifolds.
+   To obtain a computation of cohomology ring of toric bundles using Theorem 1,
+one needs to have a convenient description of graded commutative algebras with
+Poincaré duality. Such description was obtained in [3]. It turns out that the above
+description has a much nicer formulation if we focus on the even cohomology rings,
+let us focus on this slightly restrictive case. Even cohomology rings are examples
+of commutative algebras with Gorenstein duality. In [6] we provide an explicit
+form of Macauley inverse system for algebras with Gorenstein duality over ﬁeld of
+characteristic 0. Our description is very general and is applicable to not-necessarily
+Artinian algebras.
+   Let A be a commutative algebra over ﬁeld k of characteristic 0 with Gorenstein
+duality given by linear function ℓ : A → k. Let V ⊂ A be a (possibly inﬁnite
+dimensional) vector subspace which generates A as an algebra. Let us deﬁne Expℓ
+to be the formal sum of polynomials on V via
+                                               2       3
+                                                x         x
+                 Expℓ (x) = ℓ(1) + ℓ (x) + ℓ        +ℓ         + ....
+                                                2!        3!
+The symmetric algebra Sym(V ) can be identiﬁed with an algebra Diﬀ(V ) dif-
+ferential operators with constant coeﬃcients on V by sending a vector v to the
+Gateaux derivative in direction of v. We extend the action of Diﬀ(V ) on poly-
+nomial functions to the action on formal sums of polynomial such as Expℓ via
+termwise action.
+908                                                   Oberwolfach Report 17/2022
+
+Theorem 2 ([6]). Let A be an algebra with Gorenstein duality as before, then
+                             A ≃ Sym(V )/Ann(Expℓ ),
+where Ann(Expℓ ) = {D ∈ Diﬀ(V ) | D · Expℓ ≡ 0}. In other words, Expℓ is the
+inverse system of A.
+   In the case of graded algebras generated in degree 1 and satisfying Poincaré
+duality, Theorem 2 specializes to the statement used in [5, 8] to obtain descriptions
+of cohomology ring of toric varieties and full ﬂag varieties respectively.
+                      Ln
+Example. Let A = i=0 Ai be a commutative algebra generated in degree 1 and
+satisfying Poincaré duality. Then the potential Exp∗ ℓe of A on A1 is given by
+                                              n
+                                   ∗e      e   v
+                               Exp ℓ(v) = ℓ         .
+                                                n!
+In particular algebra A can be constructed as
+                                              n 
+                                               v
+                         A ≃ Diﬀ(A1 )/Ann ℓe         .
+                                               n!
+   Now we combine Theorems 1 and 2 to give a description of cohomology ring of
+a toric bundle EΣ in case when dimR B is even. Let us denote by ExpEΣ and ExpB
+the inverse systems of even cohomology rings H 2∗ (EΣ ) and H 2∗ (B, R) respectively.
+Theorem 3 ([6]). Let EΣ → B be a toric bundle with dimR B = 2k. Let ∆ be a
+polytope those normal fan coarsens Σ and γ ∈ H ∗ (X, R), then we have
+                                    Z
+                     ExpEΣ (γ, ∆) =    ExpB (c(λ) + γ)dx,
+                                          ∆
+where c : MR → H 2 (B, R) is as before.
+   Our description of cohomology rings is well suited to compute cohomology rings
+of toric bundles over a ﬁxed base manifold B. In particular, a computation of the
+ring of conditions of horospherical homogeneous spaces naturally follows. Recall
+that the ring of conditions is an intersection ring for (not necessarily complete)
+homogeneous spaces [1]. Furthermore, for a connected complex reductive group G
+a homogeneous space G/H is called horospherical if H is a closed subgroup in G
+containing a maximal unipotent subgroup.
+   Finally, in a work in progress [4] we study further geometric properties of toric
+bundles. We ﬁrst obtain a combinatorial criterion for a line bundle on EΣ to be
+ample. We also use it to give a combinatorial description of Fano toric bundles.
+Let c : M → Pic(B) be the homomorphism of lattices deﬁning the T -principal
+bundle E → B.
+Theorem 4 ([4]). Let p : EΣ → B be a toric bundle deﬁned by a homomorphism
+c : M → Pic(B) and a fan Σ. Then EΣ is Fano if and only if
+      • Σ is a Fano fan;
+      • for every λ ∈ ∆−KΣ ∩ MQ the divisor c(λ) − KB on B is Q-ample, where
+        ∆−KΣ is the anticanonical polytope of XΣ .
+Toric Geometry                                                                           909
+
+                                      References
+[1] C. De Concini, C. Procesi, Complete symmetric varieties II, Adv. Stud. Pure Math 6 (1985):
+    481-513.
+[2] M. Grossberg, Y. Karshon, Bott towers, complete integrability, and the extended character
+    of representations, Duke Mathematical Journal 76.1 (1994): 23-58.
+[3] J. Hofscheier, A. Khovanskii, and L. Monin, Cohomology rings of toric bundles and the ring
+    of conditions, arXiv preprint arXiv:2006.12043 (2020).
+[4] J. Hofscheier, L. Monin, H. Süß, and M. Wrobel Fano toric bundles, to appear.
+[5] K. Kaveh, Note on Cohomology Rings of Spherical Varieties and Volume Polynomial, Jour-
+    nal of Lie Theory 21 (2011): 263-283.
+[6] A. Khovanskii, L. Monin, Gorenstein algebras and toric bundles, arXiv preprint arXiv:
+    2106.15562 (2021).
+[7] A. Khovanskii, L. Monin, Toric bundles over toric varieties, to appear.
+[8] A. Pukhlikov, A. Khovanskii, The Riemann–Roch theorem for integrals and sums of
+    quasipolynomials on virtual polytopes, Algebra i Analiz 4.4 (1992): 188-216.
+[9] P. Sankaran, V. Uma, Cohomology of toric bundles, Commentarii Mathematici Helvetici
+    78.3 (2003): 540-554.
+
+
+
+                      C∗ -actions and Mori dream spaces
+                             Eleonora A. Romano
+             (joint work with Gianluca Occhetta, Luis E. Solá Conde,
+                             Jaroslaw A. Wiśniewski)
+
+The relation of birational geometry with the theory of quotients of C∗ -actions has
+been acknowledged since the early days of the Minimal Model Program. In this
+context, we recall for instance the contributions by Thaddeus and Reid [4,10] which
+focused on describing birational transformations in terms of variation of stability
+conditions yielding geometric quotients. This concept gave rise to the notions
+of Mori Dream Space (MDS) introduced by Hu and Keel in [5], and Cox ring,
+whose spectrum gives, as GIT quotients, small Q-factorial modiﬁcations (SQM
+for short) of an MDS. Furthermore, Wlodarczyk in [12] used C∗ -actions to prove
+the Weak Factorization Conjecture, which asserts that a birational map of smooth
+projective varieties can be factored as a sequence of blowups and blowdowns in
+smooth centers. The key tool in his work was the notion of birational cobordism,
+constructed by Morelli in the toric case.
+   We deal with C∗ -actions from the viewpoint of birational geometry, and we
+introduce here some recent results contained in [8]; we refer to this paper for de-
+tailed proofs and examples, and to [6, 7] and references therein for an account
+on torus actions and some applications. Our purpose is to investigate equivariant
+birational modiﬁcations of smooth projective varieties with a C∗ -action. More pre-
+cisely, when the action is equalized, which means that no point has ﬁnite isotropy,
+after blowing up the extremal ﬁxed components we obtain a variety which admits
+a system of small Q-factorial C∗ -equivariant modiﬁcations (see Theorem 3). We
+link these SQM with the GIT quotients of the C∗ -varieties. Each of these modiﬁ-
+cations is a projective version of a cobordism associated to the natural birational
+map between a pair of GIT quotients.
+910                                                     Oberwolfach Report 17/2022
+
+    Let X be a complex smooth projective variety admitting a non-trivial C∗ -
+action. We denote by Y the set of irreducible ﬁxed point components. Among
+these components there are two distinguished ones, called sink and source of the
+action, deﬁned by the property of containing, respectively, the limiting points
+limt→0 t−1 x, limt→0 tx where x ∈ X is a general point.
+    Moreover, we take an ample line bundle L on X, and a linearization µL of the
+C∗ -action on it, so that for every Y ∈ Y, C∗ acts on L|Y by multiplication with
+a character m ∈ M (C∗ ) = Hom(C∗ , C∗ ), that we call weight of the linearization
+on Y . By ﬁxing an isomorphism M (C∗ ) ≃ Z, this linearization deﬁnes a map
+µ : Y → Z, sending every ﬁxed point component to its weight. Considering all
+the weights µL (Y ), Y ∈ Y, in an increasing order, we obtain a chain of integers
+a0 < a1 < . . . < ar . We then deﬁne the criticality of the C∗ -action on the polarized
+pair (X, L) as the integer r. See [6, 9] for explicit examples of C∗ -actions on
+polarized pairs, and [4, 7] for some applications of classiﬁcation results of varieties
+admitting C∗ -actions of small criticality in the context of the LeBrun-Salamon
+conjecture.
+    For every Y ∈ Y we consider the Bialynicki-Birula cells of the action (cf. [2]):
+       X + (Y ) := {x ∈ X | lim tx ∈ Y },   X − (Y ) := {x ∈ X | lim tx ∈ Y }.
+                            t→0                                  t→∞
+
+   Following Mumford’s Geometric Invariant Theory (GIT), given a reductive
+group G acting on a variety X, one may consider the problem of describing all the
+possible proper geometric and semi-geometric quotients of G-invariant open sub-
+sets of X. In the case in which X is normal and proper, and G = C∗ the problem
+was treated in [3]; the solution was written in terms of the ordered set of ﬁxed
+point components of X by means of sections and semi-sections of C∗ -actions. We
+recall the description introduced there by means of linearizations of the C∗ -action
+on (X, L), since it provides a very clear geometric insight on the construction of
+the quotients we will work with. Moreover, we will consider only a certain type of
+sections and semi-sections, whose quotients will not only be proper, but projective,
+since they will be standard GIT quotients of X. The construction is the following.
+Construction 1. Let (X, L) be a polarized pair with a nontrivial C∗ -action, and
+denote by a0 < · · · < ar the weights of the linearization on the ﬁxed point com-
+ponents. We obtain a semi-section (respectively a section) of the action choosing
+an index i ∈ {0, . . . , r} (resp. i ∈ {0, . . . , r − 1}), and setting
+          Y− := {Y ∈ Y| µL (Y ) ≤ ai−1 },     Y0 := {Y ∈ Y| µL (Y ) = ai },
+          Y+ := {Y ∈ Y| µL (Y ) ≥ ai+1 },
+(resp. Y− := {Y ∈ Y| µL (Y ) ≤ ai }, Y+ := {Y ∈ Y| µL (Y )S≥ ai+1 }). Let
+                                                                         +
+us denote by X ss (i, i) (resp. X ss (i, i + 1)) the open set X \ Y ∈Y− X (Y ) ∪
+S        −
+              
+  Y ∈Y+ X (Y ) , and by GX (i, i) (resp. GX (i, i + 1)) the corresponding proper
+semi-geometric (resp. geometric) quotients. See Figure 1 below.
+Remark 2. Let us keep the above notation. Given a semi-section Y = Y− ⊔ Y0 ⊔
+Y+ , then for every possible index i, the quotient of X ss (i, i) by the induced action
+Toric Geometry                                                                           911
+
+
+
+
+         Figure 1. Weight representation of the semi-geometric and geo-
+         metric GIT quotients of X.
+
+
+of C∗ is semi-geometric. Furthermore, if the semi-section is a section, then the
+quotient of X ss (i, i + 1) by C∗ is geometric (see also [3, Theorem 2.1]).
+   We summarize our main result as follows. For clarity of exposition, we state it
+only in the case in which the sink and the source are positive dimensional. Our
+arguments work also in the remaining cases; a complete description, examples and
+proofs can be found in [8, Sections 4–5].
+Theorem 3. Let X be a complex smooth projective variety of Picard number one
+admitting a nontrivial C∗ -action. Assume that the action is equalized of critical-
+ity r, and that its extremal ﬁxed point components Y0 , Yr are not isolated points.
+Denote by GX (i, i + 1), i = 0, . . . , r − 1, the corresponding geometric quotients.
+Then:
+    (1) The varieties GX (i, i + 1) are smooth and the natural birational maps
+        GX (0, 1) ❴ ❴ ❴/ GX (1, 2) ❴ ❴ ❴/ . . . ❴ ❴ ❴/ GX (r − 1, r) are ﬂips.
+    (2) The blowup X ♭ of X along Y0 , Yr is a Mori dream space.
+    (3) Given a pair (i, j) of indices i, j ∈ {0, . . . , r}, i ≤ j, there exists a unique
+        small Q-factorial modiﬁcation X(i, j) of X ♭ that is smooth and admits a
+        C∗ -action with extremal ﬁxed point components GX (i, i + 1), GX (j − 1, j).
+    (4) Every small Q-factorial modiﬁcation of X ♭ is constructed as above.
+   The case of non-equalized actions is going to be investigated in [1], where we
+are studying torus actions in a more general setting, by allowing some mild sin-
+gularities for the C∗ -varieties. Our next purpose is to establish a correspondence
+between Mori dream regions and certain C∗ -actions which are called bordisms.
+
+                                      References
+ [1] L. Barban, E. A. Romano, L. E. Solá Conde, S. Urbinati, Local Cox rings and C∗ actions,
+     work in progress.
+ [2] A. Bialynicki-Birula, Some theorems on actions of algebraic groups, Ann. of Math. (2),
+     98:480–497, 1973.
+912                                                            Oberwolfach Report 17/2022
+
+ [3] A. Bialynicki-Birula, J. Świȩcicka, Complete quotients by algebraic torus actions. In Group
+     actions and vector ﬁelds (Vancouver, B.C., 1981), volume 956 of Lecture Notes in Math.,
+     pages 10–22. Springer, Berlin, 1982.
+ [4] J. Buczyński, J. A. Wiśniewski, A. Weber, Algebraic torus actions on contact manifolds, to
+     appear in J. Diﬀer. Geom., arXiv:1802.05002, 2018.
+ [5] Y. Hu, S. Keel, Mori dream spaces and GIT, Michigan Math. J., 48(2000), 331–348.
+ [6] G. Occhetta, E. A. Romano, L. E. Solá Conde, J. A. Wiśniewski, Small bandwidth varieties
+     with C∗ -actions and birational geometry, arXiv:1911.12129, 43 pages, 2019.
+ [7] G. Occhetta, E. A. Romano, L. E. Solá Conde, J. A. Wiśniewski, High rank torus
+     actions on contact manifolds, Sel. Math. New Ser. 27(10)(2021), published online
+     https://doi.org/10.1007/s00029-021-00621-w.
+ [8] G. Occhetta, E. A. Romano, L. E. Solá Conde, J. A. Wiśniewski, Small modifications of Mori
+     Dream Spaces arising from C∗ -actions, to appear in the European Journal of Mathematics,
+     arXiv:2103.07209, 29 pages, 2021.
+ [9] E. A. Romano, J. A. Wiśniewski, Adjunction for varieties with a C∗ action, Transformation
+     Groups (2020), published online https://doi.org/10.1007/s00031-020-09627-8.
+[10] M. Thaddeus, Complete collineations revisited, Math. Ann. (1999), 315(3), 469–495.
+[11] M. Reid, What is a flip?, http://homepages.warwick.ac.uk/staﬀ/Miles.Reid/3folds, 1992.
+[12] J. Wlodarczyk, Birational cobordisms and factorization of birational maps, J. Algebr.
+     Geom., 9(3)(2000), 425–449.
+
+
+
+           Minimal models of non-degenerate toric hypersurfaces
+                          Victor V. Batyrev
+
+
+                                      1. Introduction
+Let                        X
+                 f (t) =         am tm ∈ C[M ] ∼
+                                               = C[t1±1 , . . . , td±1 ] = C[M ]
+                           m∈M
+be a non-invertible Laurent polynomial. Denote by Zf := {f = 0} the aﬃne toric
+hypersurface in d-dimensional algebraic torus Td ∼
+                                                 = (C∗ )d with the character lattice
+M . Any primitive lattice vector ν ∈ N = Hom(M, Z) deﬁnes an elementary aﬃne
+torus embedding Td ֒→ Xν ∼  = Cd−1 × C consisting of exactly two torus orbits: Td
+and the closed torus invariant divisor Dν ∼
+                                          = Td−1 .
+Definition 1.1. A Laurent polynomial f ∈ C[M ] and the aﬃne toric hypersurface
+Zf ⊂ Td are called non-degenerate if for any primitive lattice vector ν ∈ N the
+Zariski closure Z f,ν ⊂ Xν is smooth and the intersection two divisors Dν ∩ Z f,ν
+is either emply or transversal.
+  Another equivalent characterization of non-degenerate toric hypersurfaces Zf
+can be more explicitly expressed via the Newton polytope P of f :
+                              P := Conv{m ∈ M | am 6= 0}.
+One can show that the property of the Laurent polynomial f to be non-degenerate
+is a Zariski open condition on the set of its coeﬃcients {am }. It means that the
+Zariski closure of Zf in the projective toric variety VP associated with the normal
+fan of P is transversal to all torus orbits in VP [1, 2].
+Toric Geometry                                                                913
+
+   The talk is devoted to a very explicit algorithmic combinatorial construction
+of minimal projective birational models of non-degenerate toric hypersurfaces Zf .
+The proposed construction runs in the opposite way if one compares it with
+the traditional Mori program based on ”extremal contractions” and ”ﬂips”.
+We show that if a non-degenerate toric hypersurface Zf admits a minimal model
+then such a model Z  cf can be obtained by a crepant partial desingularization
+of a uniquely determined projective birational model Z   ff , so called canonical
+model, having at worst canonical singularities [8]. The canonical model Z   ff is
+the Zariski closure of Zf in some projective Q-Gorenstein canonical toric variety
+Ve associated with a d-dimensional rational polytope Pe that depends only on the
+Newton polytope P .
+
+
+                     2. The canonical toric variety Ve
+Let P ⊂ MR ∼  = Rd be a d-dimensional lattice polytope. We consider below P as
+Newton polytope of a non-degenerate Laurent polynomial f (t).
+   Consider the dual lattice N := Hom(M, Z) ⊂ NR := Hom(M, R) and the
+piecewise linear function ordP : NR → R, y 7→ ordP (y) := minx∈P hx, yi, where
+h∗, ∗i denotes the canonical pairing between M and N . We will use the function
+ordQ also for some rational polytopes Q ⊂ MR .
+Definition 2.1 ([3, 4]). The convex set
+      F (P ) := {x ∈ MR | hx, ni ≥ ordP (n) + 1 ∀n ∈ N \ {0}} ⊂ P ⊂ MR
+is called the Fine interior of P .
+Remark 2.2. One can show that F (P ) is a convex hull of ﬁnitely many rational
+points in Int(P ) ∩ MQ := M ⊗ Q, where Int(P ) := P \ ∂P denotes the usual
+interior of P . Note that the Fine interior F (P ) ⊂ P may happen to be empty.
+Definition 2.3. [6, 8] Assume that F (P ) 6= ∅. Then we call the set
+            SF (P ) := {n ∈ N | ordF (P ) (n) = ordP (n) + 1} ⊂ N \ {0}
+the support of F (P ).
+Remark 2.4. The set SF (P ) consists of ﬁnitely many primitive lattice vectors
+in N such that R≥0 SF (P ) = NR . We will use below the SF (P ) as generating set
+b
+Σ[1] of 1-dimensional cones in a complete simplicial fan Σ b deﬁning a projective
+simplicial toric variety Vb that contains a minimal model Z
+                                                          cf of Zf .
+
+Definition 2.5 ([8]). Assume that F (P ) 6= ∅. Then we call the d-dimensional
+rational polytope
+               C(P ) := {x ∈ MR | hx, ni ≥ ordP (n) ∀n ∈ SF (P )}
+the canonical hull of P . It is clear that P ⊆ C(P ).
+914                                                   Oberwolfach Report 17/2022
+
+Theorem 2.6 ([8]). Assume that F (P ) 6= ∅. Consider the Minkowski sum
+                           Pe := C(P ) + F (P ).
+Then 1-dimensional cones in the normal fan Σ   e to the full-dimensional polytope
+Pe are spanned by elements of SF (P ), i.e., e
+                                             Σ[1] ⊆ SF (P ). The normal fan Σ   e
+                                  e      e
+deﬁnes a projective toric variety V = V (Σ) with at worst Q-Gorenstein canonical
+singularities.
+Proposition 2.7 ([8]). There exists a maximal projective simplicial reﬁnement Σ   b
+                    e such that b
+of the complete fan Σ             Σ[1] = SF (P ). The corresponding birational toric
+morphism V → V is crepant, i.e., Vb is a maximal projective partial desingulariza-
+            b    e
+tion of the canonical toric variety Ve .
+                                   ff and minimal models Z
+            3. The canonical model Z                     cf
+
+The following result is due to S. Ishii:
+Theorem 3.1 ([6]). A nondegenerate toric hypersurface Zf has a minimal model
+                                                                              cf can
+if and only if F (P ) 6= ∅. Moreover, if F (P ) 6= ∅, then a minimal model of Z
+be obtained as Zariski closure of Zf in some projective simplicial torus embedding
+Td ⊂ Vb having at worst terminal singularities whose deﬁning simplical fan Σ       b
+                         b
+satisﬁes the condition Σ[1] = SF (P ).
+                                                  ff of Zf in the toric variety Ve
+Definition 3.2 ([8]). We call the Zariski closure Z
+the canonical model of Zf .
+  The canonical model Zff is our new main tool. We construct minimal models
+c                          ff .
+Zf via the canonical model Z
+Theorem 3.3 ([8]). The canonical model Z    ff has at worst canonical singularities.
+                                c
+Moreover, the Zariski closure Zf of Zf in a maximal projective partial desingular-
+ization Vb := V ( b
+                 Σ) of Ve is a minimal model of Zf which is a maximal projective
+                                                         ff .
+crepant partial desingularization of the canonical model Z
+Remark 3.4. A reﬁnement Σ     b of Σ
+                                   e with bΣ[1] = SF (P ) in Proposition 2.7 is not
+unique in general. Therefore, there exist possibly many minimal models Z cf of the
+                 f
+canonical model Zf .
+Theorem 3.5 ([8]). Let κ(Z cf ) be the Kodaira dimension of the minimal model
+cf . Then κ(Z
+Z           cf ) = min{d − 1, dim F (P )}.
+Remark 3.6. On can show that a lattice polytope P ⊂ MR is reflexive if and
+only if F (P ) = {0} and C(P ) = P . In the latter case, we have Pe = P and
+SF (P ) = ∂P ∗ ∩ N , where
+                  P ∗ := {y ∈ NR | hx, yi ≥ −1 ∀x ∈ P } ⊂ NR
+is the polar dual reﬂexive polytope. Moreover, Ve is the Gorenstein toric Fano
+variety VP , and the above general construction of minimal models gives rise to
+Toric Geometry                                                                             915
+
+                                               cf used in the combinatorial
+already known minimal Calabi-Yau hypersurfaces Z
+Mirror Symmetry based on the polar duality P ←→ P ∗ for reﬂexive polytopes [5].
+Remark 3.7. Recently (see [9]), the proposed method was applied to all 674, 688
+three-dimensional canonical lattice polytopes classiﬁed by Kasprzyk [7].
+
+                                        References
+ [1] A. G. Khovanskiǐ, Newton polyhedra and toroidal varieties, Funct. Anal. Appl. 11 (1977),
+     289–296.
+ [2] A. G. Khovanskiǐ, Newton polyhedra and the genus of complete intersections, Funct. Anal.
+     Appl. 12 (1978), 38–46.
+ [3] J. Fine, Resolution and Completion of Algebraic Varieties, Ph.D. University of Warwick
+     1983.
+ [4] M. Reid, Young person’s guide to canonical singularities, Proc. Sympos. Pure Math., vol.
+     46, Amer. Math. Soc., Providence, RI, 1987, pp. 345–414.
+ [5] V. V. Batyrev, Dual Polyhedra and Mirror Symmetry for Calabi-Yau Hypersurfaces in Toric
+     Varieties, Journal of Algebraic Geometry 3 (1994), 493–535.
+ [6] S. Ishii, The minimal model theorem for divisors of toric varieties, Tohoku Math. J. (2) 51
+     (1999), 213–226.
+ [7] A. M. Kasprzyk, Canonical toric Fano threefolds, Can. J. Math. 62 (6) (2010), 1293–1309.
+ [8] V. V. Batyrev, Canonical models of toric hypersurfaces, arXiv:2008.05814 [math.AG]
+ [9] V. V. Batyrev, A. M. Kasprzyk, and K. Schaller, On the Fine interior of three-dimensional
+     canonical Fano polytopes, In ”Interactions with Lattice Polytopes”, Benjamin Nill and
+     Alexander Kasprzyk (eds.), Springer Proceedings in Mathematics & Statistics, Springer,
+     (2022), 11-52.
+
+
+
+                  Computing toric degenerations of varieties
+                              Fatemeh Mohammadi
+                 (joint work with Oliver Clarke, Francesca Zaﬀalon)
+
+In this note, we focus on toric degenerations of Grassmannians, however, the given
+constructions also apply to the case of (partial) ﬂag varieties [8].
+   A toric degeneration of an algebraic projective variety X is a ﬂat family F → A1
+whose ﬁbers Ft over all points t ∈ A1 \{0} are isomorphic to X and whose ﬁber
+over 0 is a toric variety X0 := F0 . Toric degenerations are particularly useful
+because many important algebraic and geometric invariants of X, such as the
+Hilbert polynomial and degree, coincide with those of X0 . It is often practical to
+study these invariants using the toric variety X0 because toric varieties are rich in
+combinatorial structure. This is due to a well-established dichotomy between toric
+varieties and discrete geometric objects, such as polyhedral fans and polytopes.
+   The study of toric degenerations is motivated by two natural questions:
+    (1) How do we compute toric degenerations of X?
+    (2) What is the relationship between two diﬀerent toric degenerations of a
+         ﬁxed algebraic variety X?
+To answer the ﬁrst question, one general approach is through Gröbner degener-
+ations [3, 11, 12]. Such toric degenerations of a closed subvariety V (I) of a large
+916                                                      Oberwolfach Report 17/2022
+
+space are produced by toric (binomial and prime) initial ideals of I. This is nat-
+urally linked to tropical geometry. More precisely, given a variety X as above,
+realized as Proj(A) ∼  = Proj(C[x1 , . . . , xn ]/I) where A is its homogeneous coordi-
+nate ring and C[x1 , . . . , xn ]/I a choice of presentation of A, the tropicalization of
+X, denoted by trop(X) is a subset of Rn consisting of those weight vectors whose
+corresponding initial ideals inw (I) contain no monomials. In particular, trop(X) is
+a subfan of the Gröbner fan, hence carrying a lot of combinatorial structure. Given
+that primality is impossible if inw (I) contains a monomial, the top-dimensional
+cones of the tropicalization provide a good search space for the weight vectors
+for which the initial ideal inw (I) is toric. Hence, the ﬁrst question boils down
+to computing the tropicalization of varieties, however, such computations are very
+challenging. For example for the Grassmannians, on the computational side [3,10],
+we currently only have the description for Gr(2, n), Gr(3, 6), and Gr(3, 7). For ﬂag
+varieties, such computations are only available for FL4 and Fl5 .
+    In the case of Gr(2, n), i.e. the tropical Grassmannian of 2-planes in n-space, it
+is shown by Speyer and Sturmfels that all the top-dimensional cones lead to toric
+degenerations, however, this is no longer true for higher Grassmannian. In [12],
+we used the correspondence between tropical line arrangements and the so-called
+coherent matching ﬁelds from [14] to provide a combinatorial characterization of
+the maximal cones in the case of Gr(3, n) which yields toric degenerations.
+    Extending this work, in [8] we study the tropicalization of Gr(k, n) and produce
+families of points in its top-dimensional cones. We prove that the associated initial
+ideal of every such point is binomial and prime, hence leading to toric degeneration.
+    The class of weight vectors that we study arises from matching ﬁelds. In the
+case of Grassmannians, the idea is the following. Consider the Plücker embedding,
+induced by the following polynomial map: φ : C[PI ] → C[xi,j ] : PI 7→ det(XI ),
+where X = (xi,j ) is a k × n matrix of variables and XI is the submatrix on the
+columns indexed by I for each k-subset I of {1, . . . , n}. A good candidate for
+a Gröbner degeneration of Gr(k, n) is given by deforming φ to a monomial map
+φΛ . This is done by sending each Plücker variable PI to one of the summands of
+det(XI ). A matching ﬁeld Λ is a combinatorial object which encodes this data.
+
+Matching ﬁelds were originally introduced by Sturmfels and Zelevinsky to study
+Newton polytopes of products of maximal minors. A matching ﬁeld is deﬁned as a
+map that sends each variable PI to a permutation. In particular, this gives a nat-
+ural monomial map that corresponds to a toric subvariety of the projective space.
+In order for a matching ﬁeld Λ to give rise to a toric degeneration of Gr(k, n), it
+is necessary for Λ to be coherent, i.e. induced by a weight matrix. Toric degen-
+erations arising from matching ﬁelds have been studied in great detail in [5, 7, 8].
+Such degenerations correspond to top-dimensional cones of trop(Gr(k, n)) as in
+[11]. There remain many open questions in this area. Notably, which matching
+ﬁelds produce toric degenerations? In studying this question, we use combinato-
+rial mutations introduced in [1]. A combinatorial mutation is a special kind of
+piecewise linear map between polytopes. We say that two polytopes are mutation
+equivalent if there exists a sequence of combinatorial mutations between them.
+Toric Geometry                                                                              917
+
+For the second question above, we need to understand the properties of algebraic
+varieties that are preserved under toric degeneration. We do this by looking into
+the associated polytopes of the resulted toric varieties. Recall that each mono-
+mial map obtained from a coherent matching ﬁeld Λ gives rise to a projective
+toric variety V (ker(φΛ )). In general, this is not a toric degeneration of Gr(k, n).
+We associate to Λ the matching ﬁeld polytope PΛ which is the toric polytope of
+V (ker(φΛ )). We prove in [8] that a matching ﬁeld Λ inherits the property of giving
+rise to a toric degeneration from another matching ﬁeld Λ′ whenever PΛ and PΛ′
+are mutation equivalent.
+Theorem ([8]). Let Λ be a matching ﬁeld for the Grassmannian Gr(k, n). If the
+matching ﬁeld polytope PΛ is combinatorial mutation equivalent to the Gelfand-
+Tsetlin polytope, then Λ gives rise to a toric degeneration of Gr(k, n).
+  We then construct a family of matching ﬁelds {Λσ } indexed by permutations
+and show that:
+Theorem ([8]). For each permutation σ ∈ Sn , the matching ﬁeld polytope PΛσ is a
+combinatorial mutation equivalent to the Gelfand-Tsetlin polytope. In particular,
+each Λσ gives rise to a toric degeneration of Gr(k, n).
+   Following up on the known results for the tropical Grassmannian, one may ask a
+more general question for arbitrary projective varieties X: what is the relationship
+between the diﬀerent toric degenerations which arise from diﬀerent maximal cones
+in trop(X)? In [9], Escobar and Harada have studied this problem and showed
+that the toric degenerations of adjacent maximal cones are related by certain ﬂip
+maps. In the case of Gr(2, n) the combinatorial mutation above is equivalent to
+the cluster mutation, and the ﬂip map. The natural question is to understand
+such mutations for higher Grassmannians.
+   The connection between cluster mutation and Escobar–Harada’s ﬂip map was
+ﬁrst observed in a discussion with Lara Bossinger and Megumi Harada during the
+MFO-Workshop on Toric geometry in 2019, see [2] and [4].
+
+                                        References
+ [1] Akhtar, Mohammad, Coates, Tom, Galkin, Sergey, and Kasprzyk, Alexander, Minkowski
+     polynomials and mutations, SIGMA. Symmetry, Integrability, and Geometry: Methods and
+     Applications 8 (2012): 094.
+ [2] Bossinger, Lara, Harada, Megumi, and Mohammadi, Fatemeh, Toric degenerations of trop-
+     ical Grassmannians, Extended abstract in Mathematisches Forschungsinstitut Oberwolfach
+     Workshop Report No. 43, 2019.
+ [3] Bossinger, Lara, Sara Lamboglia, Kalina Mincheva, and Fatemeh Mohammadi. Comput-
+     ing toric degenerations of flag varieties, In Combinatorial algebraic geometry, pp. 247-281.
+     Springer, New York, NY, 2017.
+ [4] Bossinger, Lara, Mohammadi, Fatemeh, and Nájera Chávez, Alfredo, Families of Gröbner
+     degenerations, Grassmannians and universal cluster algebras, SIGMA. Symmetry, Integra-
+     bility and Geometry: Methods and Applications 17 (2021): 059.
+ [5] Clarke, Oliver, Higashitani, Akihiro, and Mohammadi, Fatemeh, Combinatorial mutations
+     and block diagonal polytopes, Collectanea Mathematica (2021): 1-31.
+ [6] Clarke, Oliver, and Mohammadi, Fatemeh, Toric degenerations of flag varieties from match-
+     ing field tableaux, Journal of Pure and Applied Algebra, (2021) 225(8), p.106624.
+918                                                           Oberwolfach Report 17/2022
+
+ [7] Clarke, Oliver, and Mohammadi, Fatemeh, Toric degenerations of Grassmannians and Schu-
+     bert varieties from matching field tableaux, Journal of Algebra 559 (2020): 646-678.
+ [8] Clarke, Oliver, Mohammadi, Fatemeh, and Zaﬀalon, Francesca, Toric degenerations of par-
+     tial flag varieties and combinatorial mutations of matching field polytopes, in preparation.
+ [9] Escobar, Laura, and Harada, Megumi, Wall-crossing for Newton-Okounkov bodies and the
+     tropical Grassmannian, International Mathematics Research Notices 2022.7 (2022): 5152-
+     5203.
+[10] Herrmann, Sven, Jensen, Anders, Joswig, Michael, and Sturmfels, Bernd, How to Draw
+     Tropical Planes, The Electronic Journal of Combinatorics (2009): R6-R6.
+[11] Kaveh, Kiumars and Manon, Christopher, Khovanskii Bases, Higher Rank Valuations, and
+     Tropical Geometry, SIAM Journal on Applied Algebra and Geometry 3 (2019), no. 2, 292–
+     336.
+[12] Mohammadi, Fatemeh, and Shaw, Kristin, Toric degenerations of Grassmannians from
+     matching fields, to appear in Algebraic Combinatorics, Algebraic Combinatorics 2.6 (2019):
+     1109-1124.
+[13] Speyer, David and Williams, Lauren, The tropical totally positive Grassmannian, J. Alge-
+     braic Combinatorics 22 (2005) no. 2, 189–210.
+[14] Sturmfels, Bernd and Zelevinsky, Andrei, Maximal minors and their leading terms, Advances
+     in Mathematics 98 (1993), no. 1, 65–112.
+
+
+              Toric Geometry and Discrete Periodic Operators
+                               Frank Sottile
+                       (joint work with Matthew Faust)
+
+For background, see [2] and its references, including [5]. A fundamental problem
+in mathematical physics is to understand the spectrum σ(L) of a Schrödinger
+operator L. For a function f : Rd → C, we have
+                              Lf = L(f ) := −∆f + V f ,
+              P    ∂2
+where ∆ =             is the Laplacian and V : Rd → R is a potential. As L is a
+                 i ∂x2i
+self-adjoint operator on an appropriate Hilbert space, its spectrum σ(L) consists
+of a union of intervals in R, giving the familiar spectral bands and gaps.
+   Solid-state physics studies the Schrödinger operator in a crystalline material,
+with the Laplacian altered due to a periodic anisotropy and V periodic.
+   We consider a discrete version. Let Γ be a graph equipped with a free action
+of Zd having ﬁnitely many orbits on its edges, E(Γ), and vertices, V(Γ). Fix
+parameters, functions c : E(Γ) → R and V : V(Γ) → R that are Zd -periodic. For a
+function f : V(Γ) → C, our Schrödinger operator L is
+                                           X
+               Lf (v) := V (v)f (v) +             c(u,v) (f (v) − f (u)) .
+                                                (u,v)∈E(Γ)
+                                            2
+Then L is an operator on the space ℓ (Γ) of square-summable functions on V(Γ).
+    Fourier transform (called Floquet transform) reveals more structure of the spec-
+trum σ(L). Let T ⊂ C be the unit complex numbers. For x ∈ T, x = x−1 . Then
+Td := Hom(Zd , T) is the space of unitary characters of Zd . The evaluation of
+z ∈ Td at γ ∈ Zd is a monomial, z(γ) = z1γ1 · · · zdγd =: z γ . Fourier transform of
+f : V(Γ) → C is a function fˆ(z, v) on Td × V(Γ) satisfying fˆ(z, γ + v) = z γ fˆ(z, v).
+Toric Geometry                                                                                919
+
+If W ⊂ V(Γ) is a fundamental domain for the Zd -action, then Fourier trans-
+form is a linear isometry between ℓ2 (Γ) and L2 (Td )W , the space of functions
+fˆ: W → L2 (Td ). The action of the operator L on such functions fˆ becomes
+                                       X
+(1)       Lfˆ(v) := V (v)fˆ(v) +              c(γ+u,v) (fˆ(v) − z γ fˆ(u)) .
+                                      (γ+u,v)∈E(Γ)
+
+
+
+                                                                          u
+                                                                          r
+                                                             y
+                                                     v                    v
+                                                         q                    q
+                                                                     p
+                                                             u                    u
+                                                             r        x
+                                                                 v
+
+              Figure 1. Graphene and Z2 -periodic edge parameters
+
+Example. On the left in Figure 1 is graphene, a Z2 -periodic graph. Its funda-
+mental domain W has two vertices, and there are three orbits of edges. Fix edge
+parameters p, q, r, as on the right. The operator L is
+ Lfˆ(u) = V (u)fˆ(u) + p(fˆ(u) − fˆ(v)) + q(fˆ(u) − x−1 fˆ(v)) + r(fˆ(u) − y −1 fˆ(v)) ,
+ Lfˆ(v) = V (v)fˆ(v) + p(fˆ(v) − fˆ(u)) + q(fˆ(v) − xfˆ(u))          + r(fˆ(v) − y fˆ(u)) .
+
+Collecting coeﬃcients of fˆ(u), fˆ(v), we represent L by the 2 × 2-matrix,
+                                                               
+                        V (u) + p + q + r −p − qx−1 − ry −1
+                L =                                               ,
+                           −p − qx − ry       V (v) + p + q + r
+whose entries are Laurent polynomials in x, y. Observe that for (x, y) ∈ T2 ,
+LT = L, so that L is Hermitian.                                            ⋄
+   This holds in general. After Fourier transform, L is multiplication by a W × W
+matrix L(z) of Laurent polynomials in z. As z ∈ Td , we have L(z)T = L(z), so
+that L(z) is Hermitian and hence has |W | real eigenvalues.
+   These eigenvalues are the roots of D(z, λ) := det(L(z)−λI). As a polynomial in
+z, λ, it is the dispersion relation which deﬁnes the Bloch variety, {(z, λ) | D(z, λ) =
+0} ⊂ Td × R. Figure 2 shows two Bloch varieties for graphene with zero potential.
+On the left the edge parameters are 6, 3, 2, and on the right they are 1, 1, 1, giving
+the graph Laplacian. The spectrum σ(L) is the image of the Bloch variety under
+projection to the vertical λ-axis. On the left there are two spectral bands with a
+gap in between, while there is one spectral band on the right.
+   Since Bloch varieties are deﬁned by Laurent polynomials, we may complexify,
+allowing complex parameters c and V , z ∈ (C× )d , and λ ∈ C. This gives complex
+Bloch varieties in (C× )d × C.
+920                                                    Oberwolfach Report 17/2022
+
+
+                    R
+
+
+
+
+                                             σ(L)
+          ✏✏
+           ✶
+       ✏✏✏
+  σ(L) P
+        PP
+        y PP
+           P
+           qsqq
+           P                          T2
+                                     x
+
+
+         Figure 2. Bloch varieties with edge parameters 6,3,2 and 1,1,1
+
+   Several fundamental questions from physics may be understood in terms of the
+algebraic geometry of the Bloch variety. The spectral edges conjecture [5]*Conj.
+5.25 posits that for L suﬃciently general (e.g. c, V general), all extrema of the
+function λ on the real Bloch variety are nondegenerate. Important notions, such
+as eﬀective masses in solid state physics, the Liouville property, etc., depend upon
+this conjecture. This is discussed in [2, Sect. 1.4].
+   This holds for the Bloch varieties in Figure 2. On the left, λ is a Morse function,
+and all critical points are nondegenerate. The critical value from the singularities
+on the Bloch variety of the Laplacian lies in the interior of the spectrum and the
+extrema are nondegenerate. A ﬁrst step towards the spectral edges conjecture is
+to understand the critical points of λ. This was the approach in [2] to prove the
+spectral edges conjecture for the graph on the left of Figure 4.
+Classical work. In 12992, Gieseker, Knörrer, and Trubowicz [4] settled a number
+of questions in the following situation. Let Γ be the grid graph, with vertices Z2
+where α, β ∈ Z2 adjacent if kα − βk = 1. If we let the standard generators e1 , e2
+of Z2 act respectively as translation by ae1 and be2 , for a, b coprime integers, then
+Γ is Z2 -periodic with fundamental domain the integer points in any a × b box.
+   The Schrödinger operator with the graph Laplacian depends upon the ab values
+of the potential V on a fundamental domain. Gieseker, Knörrer, and Trubowicz [4]
+prove identiﬁability: if V and V ′ are general and give the same Bloch variety, then
+V and V ′ diﬀer only by obvious symmetries of relabeling the fundamental domain.
+   They also show that there is a dense open set of Cab consisting of potentials V
+such that the number of critical values of the function λ on the Bloch variety is
+(2)          2a2 b2 + 6ab(a + b) + 12ab − 12(a2 + b2 ) = 2(a + b) − 12
+For potentials in this open set, the Bloch variety is smooth and irreducible.
+   These and other results were obtained by compactifying the Bloch variety in a
+natural toric variety, followed by a toric resolution of singularities.
+Current work. We describe some work with Faust [3]. The dispersion rela-
+tion D(z, λ) is a Laurent polynomial which is an ordinary polynomial in λ. Let
+Toric Geometry                                                                       921
+
+PΓ ⊂ Rd+1 be its Newton polytope—the convex hull of the exponent vectors of all
+monomials in z, λ occurring in D(z, λ). Figure 3 shows typical Newton polytopes
+for graphene and for the two graphs of Figure 4.
+
+
+
+
+                        Figure 3. Three Newton Polytopes
+
+   Let X ◦ = (C× )d × C, the domain of the dispersion relation D(z, λ) and the
+ambient space of the Bloch variety. This has a compactiﬁcation given by the
+projective toric variety XΓ corresponding to the polytope PΓ , and the closure of
+the Bloch variety in XΓ compactiﬁes the Bloch variety.
+   Our main result is a generalization of the enumeration (2) of critical values.
+                                                   ∂              ∂           ∂λ
+Implicit diﬀerentiation of 0 = D(z, λ) gives 0 = ∂z  i
+                                                       D(z, λ) + ∂λ D(z, λ) · ∂z i
+                                                                                   . Thus
+           ◦
+(z, λ) ∈ X is a critical point of λ if it is a common zero of the polynomials
+                                    ∂                        ∂
+(3)                 D(z, λ) , z1       D(z, λ) , . . . , zd     D(z, λ) .
+                                   ∂z1                      ∂zd
+Each polynomial has Newton polytope a subset of PΓ . Consequently, the critical
+points are the common zeroes on X ◦ of d+1 sections of the line bundle O(PΓ ) on
+XΓ . We have the following bound.
+Theorem A. The number of critical points of the function λ on the Bloch variety
+is at most the degree of the toric variety XΓ , which is (d+1)!vol(PΓ ).
+   An application of Bernstein’s Theorem B [1] informs us that if the number of
+critical points of λ on the Bloch variety is less than the degree of XΓ , then the
+critical point equations (3) have solutions in ∂XΓ := XΓ \ X ◦ .
+   We obtain XΓ from X ◦ by adding divisors for each facet of PΓ , except its base
+(as {λ = 0} ⊂ X ◦ ). Each face F of PΓ corresponds to a torus orbit XF◦ on XΓ . The
+intersection of XF◦ with the compactiﬁed Bloch variety is deﬁned by the restriction
+D(z, λ)|F of D(z, λ) to the monomials whose exponent vectors lie in F .
+Theorem B. If the critical point equations (3) have a solution in XF◦ , for F a
+face of PΓ that is not its base, then either F is vertical or the hypersurface in XF◦
+deﬁned by D(z, λ)|F is singular at that point.
+   A periodic graph Γ is dense if it has all possible edges given its structure: if
+there is one edge between translates β + W and γ + W of the fundamental domain
+W then it has all edges between vertices in (β + W ) ∪ (γ + W ). Of the two graphs
+in Figure 4, the one on the left is dense.
+922                                                           Oberwolfach Report 17/2022
+
+
+
+
+                            Figure 4. More periodic graphs
+
+  Given a graph Γ, let A(Γ) be the set of γ ∈ Zd such that Γ has an edge between
+W and γ + W . Let P be the convex hull of A(Γ) and the point (0, 1), which is a
+pyramid over the convex hull Q of A(Γ) with apex (0, 1). It has no vertical faces.
+Theorem C. Suppose that Γ is dense. Then there is a dense open subset U of
+the space of parameters consisting of parameters c, V in U such that the Newton
+polytope PΓ of the dispersion relation D(z, λ) is |W | · P .
+   When d = 2, 3, we may choose U such that for parameters c, V from U and all
+faces F of PΓ , the hypersurface in XF◦ deﬁned by D(z, λ)|F is smooth.
+  Using the formula for the volume of a pyramid, we obtain the following result.
+Corollary. Suppose that Γ is dense and d = 2, 3. Then there is a dense open
+subset U of the space of parameters consisting of parameters c, V such that the
+function λ on the complex variety has exactly |W |d+1 d!vol(Q) critical points.
+
+                                        References
+[1] D.N. Bernstein, The number of roots of a system of equations, Functional Anal. Appl. 9
+    (1975), no. 3, 183–185.
+[2] N. Do, P. Kuchment, and F. Sottile, Generic properties of dispersion relations for discrete
+    periodic operators, J. Math. Phys. 61 (2020), no. 10, 103502, 19.
+[3] M. Faust and F. Sottile, Critical points of Discrete Periodic Operators, In preparation, 2022.
+[4] D. Gieseker, H. Knörrer, and E. Trubowitz, The geometry of algebraic Fermi curves, Per-
+    spectives in Mathematics, vol. 14, Academic Press, Inc., Boston, MA, 1993.
+[5] P. Kuchment, An overview of periodic elliptic operators, Bulletin AMS 53 (2016), Number
+    3, 343–414.
+
+
+
+
+                                                                     Reporter: Oliver Clarke
+Toric Geometry                                                                  923
+
+                                 Participants
+
+
+Prof. Dr. Dan Abramovich               Prof. Dr. Harold Blum
+Department of Mathematics              Department of Mathematics
+Brown University                       University of Utah
+Box 1917                               155 SOUTH 1400 EAST, JWB 233
+151 Thayer Street                      84112 Salt Lake City Utah 84112
+Providence RI 02912                    UNITED STATES
+UNITED STATES
+                                       Marie-Charlotte Brandenburg
+Prof. Dr. Klaus Altmann                Max-Planck-Institut für Mathematik
+Institut für Mathematik               in den Naturwissenschaften
+Freie Universität Berlin              Inselstr. 22 - 26
+Arnimallee 6                           04103 Leipzig
+14195 Berlin                           GERMANY
+GERMANY
+                                       Dr. Michel Brion
+Prof. Dr. Carolina Araujo              Laboratoire de Mathématiques
+Instituto de Matematica Pura e         Université de Grenoble Alpes
+Aplicada (IMPA)                        Institut Fourier, Bureau 43C
+Estrada Dona Castorina 110             100 rue des Maths
+Rio de Janeiro RJ 22460-320            38610 Gières Cedex
+BRAZIL                                 FRANCE
+
+Andreas Baeuerle                       Dr. Juliette Bruce
+Mathematisches Institut                Department of Mathematics
+Universität Tübingen                 University of California, Berkeley
+Auf der Morgenstelle 10                970 Evans Hall
+72076 Tübingen                        Berkeley CA 94720-3840
+GERMANY                                UNITED STATES
+
+Prof. Dr. Victor V. Batyrev            Dr. Jaroslaw Buczynski
+Fachbereich V - Mathematik             Institute of Mathematics of the Polish
+Universität Tübingen                 Academy of Sciences
+Auf der Morgenstelle 10                Sniadeckich 8
+72076 Tübingen                        00-656 Warszawa
+GERMANY                                POLAND
+
+Prof. Dr. Christine Berkesch           Prof. Dr. Cinzia Casagrande
+Department of Mathematics              Dipartimento di Matematica
+University of Minnesota                Università degli Studi di Torino
+127 Vincent Hall                       Via Carlo Alberto, 10
+206 Church Street S. E.                10123 Torino
+Minneapolis, MN 55455                  ITALY
+UNITED STATES
+924                                              Oberwolfach Report 17/2022
+
+Prof. Dr. Ana-Maria Castravet          Julius Giesler
+Laboratoire de Mathématiques          Mathematisches Institut
+Université Paris-Saclay, Versailles   Universität Tübingen
+Bâtiment Fermat 3304                  Auf der Morgenstelle 10
+45 Avenue des États Unis              72076 Tübingen
+78035 Versailles Cedex                 GERMANY
+FRANCE
+                                       Prof. Dr. Christian Haase
+Dr. Oliver Clarke                      Institut für Mathematik
+Department of Mathematics              Freie Universität Berlin
+University of Bristol                  Arnimallee 3
+Woodland Road                          14195 Berlin
+Bristol BS8 1UG                        GERMANY
+UNITED KINGDOM
+                                       Prof. Dr. Megumi Harada
+Prof. Dr. Alessio Corti                Department of Mathematics and
+Department of Mathematics              Statistics
+Imperial College London                McMaster University
+Huxley Building                        1280 Main Street West
+180 Queen’s Gate                       Hamilton ON L8S 4K1
+London SW7 2AZ                         CANADA
+UNITED KINGDOM
+                                       Prof. Dr. Jürgen Hausen
+Prof. Dr. Alicia Dickenstein           Mathematisches Institut
+Departamento de Matemática (FCEN)     Universität Tübingen
+Universidad de Buenos Aires            Auf der Morgenstelle 10
+Pabellon 1 - Ciudad Universitaria      72076 Tübingen
+1428 Buenos Aires EGA                  GERMANY
+ARGENTINA
+                                       Dr. Milena Hering
+Prof. Dr. Sandra Di Rocco              School of Mathematics
+Department of Mathematics              The University of Edinburgh
+Royal Institute of Technology          James Clerk Maxwell Building
+Lindstedtsvägen 25                    Peter Guthrie Tait Road
+100 44 Stockholm                       Edinburgh EH9 3FD
+SWEDEN                                 UNITED KINGDOM
+
+Dr. Matej Filip                        Dr. Johannes Hofscheier
+Institute of Mathematics, Physics      School of Mathematical Sciences
+and Mechanics                          The University of Nottingham
+University of Ljubljana                University Park
+1000 Ljubljana                         Nottingham NG7 2RD
+SLOVENIA                               UNITED KINGDOM
+Toric Geometry                                                                 925
+
+Dr. Nathan Ilten                          Prof. Dr. Antonio Laface
+Department of Mathematics                 Departamento de Matematica
+Simon Fraser University                   Facultad de Ciencias Fisicas y
+8888 University Drive                     Matematicas
+Burnaby BC V5A 1S6                        Universidad de Concepción
+CANADA                                    Casilla 160-C
+                                          4070412 Concepción
+                                          CHILE
+Dr. Joachim Jelisiejew
+Institute of Mathematics, University of
+Warsaw                                    Dr. Eveline Legendre
+Banacha 2                                 Institut de Mathématiques de Toulouse
+02-097 Warszawa                           Université Paul Sabatier
+POLAND                                    118, route de Narbonne
+                                          31062 Toulouse Cedex 9
+                                          FRANCE
+Prof. Dr. Elana Kalashnikov
+Department of Pure Mathematics,
+University of Waterloo                    Prof. Dr. Diane Maclagan
+200 University Avenue West                Mathematics Institute
+Waterloo Ontario, N2L 3G1                 University of Warwick
+CANADA                                    Gibbet Hill Road
+                                          Coventry CV4 7AL
+                                          UNITED KINGDOM
+Prof. Dr. Kalle Karu
+Department of Mathematics
+University of British Columbia            Prof. Dr. Christopher Manon
+121-1984 Mathematics Road                 Department of Mathematics
+Vancouver BC V6T 1Z2                      University of Kentucky
+CANADA                                    715 Patterson Office Tower
+                                          Lexington, KY 40506-0027
+                                          UNITED STATES
+Prof. Dr. Alexander M. Kasprzyk
+School of Mathematical Sciences
+The University of Nottingham              Prof. Dr. Fatemeh Mohammadi
+University Park                           Department of Mathematics
+Nottingham NG7 2RD                        Ghent University
+UNITED KINGDOM                            Krijgslaan 281
+                                          9000 Gent
+                                          BELGIUM
+Prof. Dr. Kiumars Kaveh
+Department of Mathematics
+University of Pittsburgh                  Dr. Leonid Monin
+301 Thackery Hall                         MPI MiS
+Pittsburgh PA 15260                       Inselstraße 22
+UNITED STATES                             Leipzig 04103
+                                          GERMANY
+926                                             Oberwolfach Report 17/2022
+
+Prof. Dr. Benjamin Nill               Martı́ Salat Moltó
+Fakultät für Mathematik             Facultat de Matematiques
+Institut für Algebra und Geometrie   Universitat de Barcelona
+Otto-von-Guericke-Universität        Departament d’Algebra i Geometria
+Magdeburg                             Gran Via 585
+Postfach 4120                         08007 Barcelona
+39016 Magdeburg                       SPAIN
+GERMANY
+                                      Dr. Matthew Satriano
+Prof. Dr. John Christian Ottem        Department of Pure Mathematics
+Department of Mathematics             University of Waterloo
+University of Oslo                    200 University Avenue West
+Blindern                              Waterloo ON, N2L 3G1
+P.O. Box 1053                         CANADA
+0316 Oslo
+NORWAY
+                                      Prof. Dr. Henry K. Schenck
+                                      Department of Mathematics
+Prof. Dr. Sam Payne                   Auburn University
+Department of Mathematics             Auburn, AL 36849
+The University of Texas at Austin     UNITED STATES
+1 University Station C1200
+Austin, TX 78712-1082
+                                      Prof. Dr. Gregory G. Smith
+UNITED STATES
+                                      Department of Mathematics and
+                                      Statistics
+Dr. Andrea Petracci                   Queen’s University
+Dipartimento di Matematica            Jeffery Hall
+Universita degli Studi di Bologna     Kingston ON K7L 3N6
+Piazza di Porta S. Donato, 5          CANADA
+40127 Bologna
+ITALY
+                                      Prof. Dr. Frank Sottile
+                                      Department of Mathematics
+Dr. Elisa Postinghel                  Texas A & M University
+Dipartimento di Matematica            College Station, TX 77843-3368
+Università degli Studi di Trento     UNITED STATES
+Via Sommarive, 14
+38123 Povo (TN)
+                                      Prof. Dr. Bernd Sturmfels
+ITALY
+                                      Max-Planck-Institut für Mathematik
+                                      in den Naturwissenschaften
+Dr. Eleonora Romano                   Inselstr. 22 - 26
+Dipartimento di Matematica            04103 Leipzig
+Universita di Genova                  GERMANY
+Via Dodecaneso 35
+16146 Genova
+ITALY
+Toric Geometry                                                         927
+
+Prof. Dr. Hendrik Süß               Prof. Dr. Jaroslaw Wisniewski
+Mathematisches Institut              Instytut Matematyki
+Universität Jena                    Uniwersytet Warszawski
+Ernst-Abbe-Platz 2-4                 ul. Banacha 2
+07743 Jena                           02-097 Warszawa
+GERMANY                              POLAND
+
+Dr. Bernard Teissier                 Prof. Dr. Jaroslaw Wlodarczyk
+IMJ - PRG                            Department of Mathematics
+Bâtiment Sophie Germain             Purdue University
+Case 7012                            150 N. University Street
+8, Place Aurélie Nemours            West Lafayette, IN 47907-1395
+75205 Paris Cedex 13                 UNITED STATES
+FRANCE
+                                     Dr. Milena Wrobel
+Prof. Dr. Michael Temkin             Institut für Mathematik
+Einstein Institute for Mathematics   Carl-von-Ossietzky-Universität
+The Hebrew University of Jerusalem   Oldenburg
+Givat Ram                            Ammerländer Heerstraße 114-118
+Jerusalem 91904 01                   26129 Oldenburg
+ISRAEL                               GERMANY
+
+Prof. Dr. Jenia Tevelev
+Department of Mathematics
+University of Massachusetts
+Lederle Graduate Research Tower
+710 North Pleasant Street
+Amherst, MA 01003-9305
+UNITED STATES
+

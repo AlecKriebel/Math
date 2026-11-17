@@ -1,0 +1,1493 @@
+                                           On the Motion of Billiards in Ellipses
+
+                                           Hellmuth Stachel
+
+
+
+
+arXiv:2105.03624v2 [math.DG] 19 May 2021
+                                           Abstract For billiards in an ellipse with an ellipse as caustic, there exist
+                                           canonical coordinates such that the billiard transformation from vertex to
+                                           vertex is equivalent to a shift of coordinates. A kinematic analysis of billiard
+                                           motions paves the way to an explicit canonical parametrization of the billiard
+                                           and even of the associated Poncelet grid. This parametrization uses Jacobian
+                                           elliptic functions to the numerical eccentricity of the caustic as modulus.
+                                           Keywords billiard · billiard motion · confocal conics, elliptic functions
+                                           Mathematics Subject Classification (2010) 51N20 · 53A17 · 33E05,
+                                           22E30
+
+
+                                           1 Introduction
+
+                                           Already for two centuries, billiards in ellipses have attracted the attention of
+                                           mathematicians, beginning with J.-V. Poncelet and A. Cayley. The assertion
+                                           that one periodic billiard inscribed in an ellipse e and tangent to a confocal
+                                           ellipse c implies a one-parameter family of such polygons, is known as the
+                                           standard example of a Poncelet porism. It was Cayley who derived analytical
+                                           conditions for such a pair (e, c) of ellipses.
+                                               In 2005 S. Tabachnikov published a book on billiards from the viewpoint of
+                                           integrable systems [14]. The book [6] and various papers by V. Dragović and
+                                           M. Radnović addressed billiards in conics and quadrics within the framework
+                                           of dynamical systems.
+                                               Computer animations carried out by D. Reznik, stimulated a new vivid
+                                           interest on this well studied topic, where algebraic and analytic methods are
+                                           meeting. Originally, Reznik’s experiments focused on billiard motions in el-
+                                           lipses, i.e., on the variation of billiards with a fixed circumscribed ellipse e and
+                                           Vienna Institute of Technology
+                                           E-mail: stachel@dmg.tuwien.ac.at
+                                           Vienna University of Technology
+2                                                                         Hellmuth Stachel
+
+
+a fixed caustic c . He published a list of more than 80 numerically detected
+invariants in [11] and contributed, together with his coauthors R. Garcia, J.
+Koiller and M. Helman, several proofs. Other authors like A. Akopyan, M.
+Bialy, A. Chavez-Caliz, R. Schwartz, and S. Tabachnikov published several
+proofs and found more invariants (e.g., in [1,2,4]).
+    For a long time, at least since Jacobi’s proof of the Poncelet theorem on
+periodic billiards (see further references in [5, p. 320]), it has been wellknown
+that there is a tight connection between billiards and elliptic functions (note
+also [7, Sect. 11.2] and [3]). On the other hand, S. Tabachnikov proved in his
+book [14] the existence of canonical parameters on ellipses with the property
+that the billiard transformation between consecutive vertices Pi 7→ Pi+1 of a
+billiard acts like a shift on the parameters.
+    The goal of this paper is to prove that Jacobian elliptic functions with the
+numerical eccentricity of the caustic c as modulus pave the way to canonical
+coordinates on the ellipse e . This is a consequence of a kinematic analysis
+of the billiard motion. It yields an infinitesimal transformation in the plane
+which preserves a family of confocal ellipses while it permutes the confocal
+hyperbolas as well as the tangents of the caustic. Integration results in a group
+of transformations with a canonical parameter. In terms of elliptic functions,
+we also obtain a mapping that sends a square grid together with the diagonals
+to a Poncelet grid.1 The paper concludes with applying the results of the
+velocity analysis to a few invariants of periodic billiards. These invariants deal
+mainly with the distances which occur on each side between the contact point
+with the caustic and the endpoints.
+
+
+2 Confocal conics and billiards
+
+At the begin, we recall a few properties of confocal conics. A family of confocal
+central conics is given by
+                   x2      y2
+                       +        = 1, where k ∈ R \ {−a2 , −b2 }                       (2.1)
+                 a2 + k b 2 + k
+serves as a parameter in the family. All these conics share the focal points
+F1,2 = (±d, 0), where d2 := a2 − b2 .
+    The confocal family sends through each point P outside the common axes
+of symmetry two orthogonally intersecting conics, one ellipse and one hyper-
+bola [8, p. 38]. The parameters (ke , kh ) of these two conics define the elliptic
+coordinates of P with
+                           −a2 < kh < −b2 < ke .
+If (x, y) are the cartesian coordinates of P , then (ke , kh ) are the roots of the
+quadratic equation
+              k 2 + (a2 + b2 − x2 − y 2 )k + (a2 b2 − b2 x2 − a2 y 2 ) = 0,           (2.2)
+  1 Recently, parametrizations of confocal conics in termins of elliptic functions were also
+
+presented in [3], but not from the viewpoint of billiards.
+On the Motion of Billiards in Ellipses                                                3
+
+
+while conversely
+
+                    (a2 + ke )(a2 + kh )                  (b2 + ke )(b2 + kh )
+             x2 =                        ,       y2 = −                        .   (2.3)
+                            d2                                    d2
+   Suppose that (a, b) in (2.1) are the semiaxes (ac , bc ) of the ellipse c with
+k = 0. Then, for points P on a confocal ellipse e with semiaxes (ae , be ) and
+k = ke > 0, i.e., exterior to c, the standard parametrization yields
+
+                    P = (x, y) = (ae cos t, be sin t), 0 ≤ t < 2π,
+                                                                                   (2.4)
+                        with a2e = a2c + ke , b2e = b2c + ke .
+
+For the elliptic coordinates (ke , kh ) of P follows from (2.2) that
+
+                      ke + kh = a2e cos2 t + b2e sin2 t − a2c − b2c .
+
+After introducing the respective tangent vectors of e and c, namely
+
+             te (t) := (−ae sin t, be cos t),
+                                              where kte k2 = ktc k2 + ke ,         (2.5)
+             tc (t) := (−ac sin t, bc cos t),
+
+we obtain
+
+    kh = kh (t) = −(a2c sin2 t + b2c cos2 t) = −ktc (t)k2 = −kte (t)k2 + ke        (2.6)
+
+and kte (t)k2 = ke − kh (t) . Note that points on the confocal ellipses e and c
+with the same parameter t have the same coordinate kh . Consequently, they
+belong to the same confocal hyperbola (Figure 1). Conversely, points of e or c
+on this hyperbola have a parameter out of {t, −t, π + t, π − t}.
+   Let θi /2 denote the angle between the tangents drawn from any point
+Pi ∈ e to c and the tangent to e at Pi (Figures 2 or 3). Then we obtain for
+Pi = (ae cos ti , be sin ti ) with elliptic coordinates (ke , kh (ti ))
+                                                                 r
+           2 θi          ke              ke               θi              ke
+        sin      =               =               , tan = ± −
+             2       kte (ti )k2   ke − kh (ti )           2           kh (ti )
+                              p                              √                  (2.7)
+                             2 −ke kh (ti )       2ktc (ti )k ke (kte (ti )k2
+        and sin θi = ±                      =±                                .
+                              ke − kh (ti )
+
+For a proof see [13]. We can assume a counter-clockwise order of the billiard.
+Hence, all exterior angles are positive.
+    From (2.6) follows
+
+                a2 tan2 t + b2c
+          kh = − c              ,        hence    tan2 t(a2c + kh ) = −b2c − kh
+                  1 + tan2 t
+and furthermore
+                                           p
+                            tan t           −(b2c + kh )(a2c + kh )   ah b h
+            sin t cos t =            =                              =              (2.8)
+                          1 + tan2 t              a2c − b2c            d2
+4                                                                                                                                                           Hellmuth Stachel
+
+                                                                                     (1)
+                                                                                     (1)
+                                                                                     (1)
+                                                                                  S2(1)
+                                                                                  S
+                                                                                 SS
+                                                                                  S
+                                                                                     (1)
+                                                                                    (1)
+                                                                                    2
+                                                                                    2
+                                                                                    2
+                                                                                     (1)
+                                                                                     2
+                                                                                     2
+                                                                                                                                    (1)
+                                                                                                                                    (1)
+                                                                                                                                     (1)
+                                                                                                                                    (1)
+                                                                                                       P                          S1(1)
+                                                                                                                                  S
+                                                                                                                                  S
+                                                                                                                                  S
+                                                                                                                                  S
+                                                                                                                                      (1)
+                                                                                                                                      (1)
+                                                                                                                                     (1)
+                                                                                                                                      (1)
+                                                                                                                                      (1)
+                                                                                                                                                                           (2)
+                                                                                                                                                                           (2)
+                                                                                                                                                                           (2)
+                                        (1)
+                                        (1)
+                                         (1)
+                                        (1)                                                            P222222
+                                                                                                       P
+                                                                                                       P                            111
+                                                                                                                                      1
+                                                                                                                                     11                                  (2)
+                                                                                                                                                                       S11111(2)
+                                                                                                                                                                       S     (2)
+         (2)(2)
+            (2)
+            (2)                      S3(1)
+                                     S
+                                     S
+                                     S
+                                     S
+                                        (1)
+                                       (1)
+                                       (1)
+                                        (1)
+                                       (1)                 P
+                                                           P333333
+                                                           P
+                                                           P                                                                                                           S
+                                                                                                                                                                       S
+       S4444(2)
+       S
+       S
+       S
+            (2)
+            4
+            4
+                                       3
+                                       3
+                                       3
+                                       3
+                                       33
+                                        3
+                                                                               Q                                         e
+                                                                                                                                                                             1
+                                                                               Q
+                                                                               Q222222             c                                          e(1)
+                                                                                                                      Q
+                                                                                                                      Q111111
+                                                                                                                      Q
+                                                                                                                      Q
+                                                 Q
+                                                 Q333333
+                                                 Q
+                                                 Q                                                                                        P
+                                                                                                                                          P
+                                                                                                                                          P111111
+                                                                                                                                          P                           e(2)
+                           P
+                           P444444
+                           P
+                           P                                                                                                                                  (1)
+                                                                                                                                                              (1)
+                                                                                                                                                               (1)
+                                                                                                                                                            (1)
+                   (1)
+                   (1)
+                    (1)
+                   (1)                                                                                                             Q                      S999(1)
+                                                                                                                                                          S
+                                                                                                                                                          S
+                                                                                                                                                          S
+                                                                                                                                                          S
+                                                                                                                                                               (1)
+                                                                                                                                                              (1)
+                                                                                                                                                              9
+                                                                                                                                                              9
+                  S4(1)
+                  S
+                  S
+                  S
+                  S
+                     (1)
+                    (1)
+                    (1)
+                    4
+                    44
+                     4
+                                                                                                                                   Q999999
+                                                                                                                                   Q
+                                                                                                                                   Q                          9
+                                                                                                                                                              9
+                    4
+                    4
+                    4                Q
+                                     Q444444
+                                     Q
+                                     Q
+                                                                                                                                                P
+                                                                                                                                                P
+                                                                                                                                                P999999
+                                                                                                                                                P
+                        P
+                        P555555
+                        P
+                        P                                                                                                                                                      (2) (2)
+                                                                                                                                                                                   (2)
+                                                                                                                                                                                 (2)(2)
+                                         Q
+                                                                                                                                Q
+                                                                                                                                Q888888
+                                                                                                                                Q
+                                                                                                                                Q                                            S999(2)
+                                                                                                                                                                             S
+                                                                                                                                                                             S
+                                                                                                                                                                             S
+                                                                                                                                                                                 (2)
+                                                                                                                                                                                 9
+                                                                                                                                                                                 9
+                                         Q555555
+                                         Q
+                                         Q
+                                         Q
+                                         Q                                                                                                                                       9
+      (2)
+      (2)
+      (2)
+      (2)
+        (2)                                                                                                                                               (1)
+                                                                                                                                                           (1)
+                                                                                                                                                          (1)
+                                                                                                                                                           (1)
+    S555(2)
+    S
+    S
+    S
+        (2)
+        5
+        5
+        5
+                                                                                                                                                     S8(1)
+                                                                                                                                                     S
+                                                                                                                                                    SS
+                                                                                                                                                     S 8
+                                                                                                                                                         (1)
+                                                                                                                                                        (1)
+                                                                                                                                                        (1)
+                                                                                                                                                        8
+                                                                                                                                                        8
+                                                                                                                                                       88
+                       (1)
+                        (1)
+                     S5(1)
+                     S   (1)
+                        (1)
+                        (1)                                                                                 Q
+                                                                                                            Q777777
+                                                                                                            Q
+                                                                                                            Q                     P
+                                                                                                                                  P888888
+                                                                                                                                  P
+                                                                                                                                  P
+                    SS
+                     S 55                      P
+                                               P666666               Q
+                                                                     Q666666
+                                                                     Q
+                                                                     Q
+                        5
+                       55                      P
+                                               P
+                                                                                         P
+                                                                                         P777777
+                                                                                         P
+                                                                                         P                                 (1)
+                                                                                                                            (1)
+                                                                                                                           (1)
+                                                                                                                            (1)
+                                                             (1)
+                                                              (1)
+                                                                                                                        S7(1)
+                                                                                                                        S
+                                                                                                                       SS
+                                                                                                                        S 7
+                                                                                                                           (1)
+                                                                                                                           (1)
+                                                                                                                           (1)
+                                                                                                                           7
+                                                                                                                           7
+                                                              (1)                                                         77
+                                                           S6(1)
+                                                           S
+                                                           S
+                                                           S
+                                                           S
+                                                             (1)
+                                                             (1)
+                                                              (1)
+                                                             (1)
+                                                             6
+                                                             66
+                                                                                                                                                                     (2)
+                                                                                                                                                                     (2)
+                                                                                                                                                                     (2)
+                                                                                                                                                                   (2)
+                                                                                                                                                                     (2)
+                                                                                                                                                                 S888(2)
+                                                                                                                                                                 S
+                                                                                                                                                                 S
+                                                                                                                                                                 S
+                                                                                                                                                                     (2)
+                                                             6
+                                                             66                                                                                                      8
+                                                                                                                                                                     8
+                                                                                                                                                                     8
+
+Fig. 1 Periodic billiard P1 P2 . . . P9 in e with the turning number τ = 1 and the caustic c as
+well as a part of the associated Poncelet grid. The extended sides form a billiard with τ = 2
+in e(1) and three triangles as billiards in e(2) .
+
+
+
+with ah and bh as semiaxes of the hyperbola corresponding to the parameter
+t, i.e., a2h = a2c + kh and b2h = −(b2c + kh ).
+
+    Let . . . P1 P2 P3 . . . be a billiard in the ellipse e. Then the extended sides
+intersect at points
+
+                                     
+                   (j)                   [Pi−k−1 , Pi−k ] ∩ [Pi+k , Pi+k+1 ] for j = 2k,
+                  Si :=                                                                                                                                                             (2.9)
+                                         [Pi−k , Pi−k+1 ] ∩ [Pi+k , Pi+k+1 ] for j = 2k − 1,
+
+
+where i = . . . , 1, 2, 3, . . . and j = 1, 2, . . . . These points are distributed on
+different confocal conics: For fixed j, there are ellipses e(j) passing through
+                  (j)                                      (2)  (4)
+the points Si . On the other hand, the points Si , Si , . . . are located on
+                                                    (1)  (3)
+the confocal hyperbola through Pi , while Si , Si , . . . belong to the confocal
+hyperbola through the contact point Qi between the side Pi Pi+1 and the
+caustic c . This configuration is called the associated Poncelet grid (Figure 1).
+                                                  (j)
+For periodic billiards the sets of points Si and associated conics are finite.
+The turning number τ of a periodic billiard in e with an ellipse as caustic
+counts how often one period of the billiard surrounds the center O of e (note
+Figure 1).
+     For each billiard P1 P2 . . . in e with caustic c there exists a conjugate billiard
+P1′ P2′ . . . in e with the same caustic. The axial scaling c → e maps the contact
+point Qi ∈ c of Pi Pi+1 to Pi′ while the inverse scaling brings Pi to the contact
+point Q′i−1 of Pi−1   ′
+                        Pi′ with the caustic. The relation between these billiards is
+symmetric. For further details see [13, Sect. 3.2].
+     On the Motion of Billiards in Ellipses                                            5
+
+
+     3 Velocity analysis
+
+     Let the first vertex of a billiard P1 P2 . . . move smoothly along the circum-
+     scribed ellipse e. Then this induces a continuous variation of all other vertices
+                                                     (j)
+     along e and also of the intersection points Si along e(j) . We call this a bil-
+     liard motion, though it neither preserves angles or distances nor is an affine or
+     projective motion.
+         According to Graves’s construction [8, p. 47], we can conceive the periodic
+     billiard P1 P2 . . . PN as a flexible chain of fixed total length Le and the caustic
+     c as a fixed non-circular chain wheel. The vertices P1 , P2 , . . . move along e
+     and relative to the chain such that they keep the chain strengthened, while
+     the chain contacts c only at the single points Q1 , Q2 , . . . , QN .
+         Let us pick out a single vertex P2 (see Figure 2). In the language of kine-
+     matics, the line spanned by the straight segment Q1 P2 rolls at Q1 on c (= fixed
+     polode) while point P2 moves along the line (= moving polode) with the veloc-
+     ity vector vt1 . The instantaneous rotation about Q1 with the angular velocity
+     ω1 assigns to P2 a velocity vector vn1 orthogonal to Q1 P2 in order to keep
+     the vector of absolute velocity of P2 , namely v2 = vt1 + vn1 , tangent to the
+     ellipse e.
+PSfrag replacements
+
+
+                 P2
+
+                                  vt 1
+                                         θ2        P2   tP
+                      vn1
+                                          2
+                            v2
+                                   ω2                                       e
+                      vn2                               r2
+                                  vt 2        l2
+
+
+                                                                       Q1
+                             Q2                              ω1
+                                   F1                             F2
+
+                                     c
+
+
+     Fig. 2 Graves’s string construction of an ellipse e confocal to c.
+
+
+
+
+        Similarly, we have a second decomposition v2 = vt2 +vn2 , since at the same
+     time the line [Q2 , P2 ] rotates about Q2 with the angular velocity ω2 , while
+     P2 moves relative to this line. Due to the constant length of the chain, the
+     tangential components in these two decompositions must be of equal lengths
+     kvt2 k = kvt1 k. Since the tangent tP to e at P2 bisects the exterior angle of
+     Q1 P2 Q2 , the second decomposition is symmetric w.r.t. tP to the first one.
+             6                                                                                                                                             Hellmuth Stachel
+
+
+             From kvn2 k = kvn1 k follows for the distances r2 := P2 Q1 and l2 := P2 Q2
+
+                                                                                                                        ω1  l2
+                                                                                    l2 ω2 = r2 ω1 ,               or       = ,                                                            (3.1)
+                                                                                                                        ω2  r2
+             and similarly for all other vertices. If the billiard is N -periodic, then the prod-
+             uct of all ratios li /ri for i = 1, . . . , N yields
+
+                                                                   l1 l2     lN   ωN ω1     ωN −1
+                                                                     ·   ···    =   ·   ···       = 1,
+                                                                   r1 r2     rN   ω1 ω2      ωN
+PSfrag replacements
+              which results in the equation
+
+                                                                                         l1 l2 . . . lN = r1 r2 . . . rN .                                                                (3.2)
+
+             listed as k116 in [11, Table 2].
+                 Figure 3 shows a graphical velocity analysis for the billiard motion of a 5-
+             sided periodic billiard in e. We can begin this analysis by choosing an arbitrary
+             length for the arrow representing the velocity vector v2 of P2 . This defines
+             the two components vt2 and vn2 , where the latter determines the angular
+             velocity ω2 of the side P2 P3 and furtheron the absolute velocity v3 of P3 .
+             This can be continued. From now on, we denote the norms kvt1 k = kvt2 k and
+             kvn1 k = kvn2 k of the respective components of the velocity vector vi of Pi
+             with vt|i and vn|i .
+
+                                                            vt 2
+                                                                                                           θ2/2                           R1
+                                             vn|2
+                                                                    θθθθθθ222222222/2
+                                                                                   /2
+                                                                                    /2
+                                                                                    /2
+                                                                                   /2
+                                                                                    /2                P2
+                                                                                                                              e
+                 vt 1                  R2           vv
+                                                    vv2222222222                                                   r2
+                                                    vv
+                 vn1                                                         l2                            c
+                 vt 2                                                                                                                  θ1/2               v
+                                                                                                                                                          v
+                                                                                                                                                          v
+                                                                                                                                                          v
+                                                                                                                                                          vv1111111111
+                                                                                                                                                           v
+                 vn2                                                                                                              Q1          l1
+                                                                                                                        ω1
+                   v                        r3         Q2                                                                                                                P1
+                                                                                                                                          ω
+                                                                                                                                          ω
+                                                                                                                                          ω
+                                                                                                                                          ω
+                                                                                                                                          ω
+                                                                                                                                          ωω55555555555
+                             P3                                                                                                                                                 θ1/2
+                                                    ω2
+                        v
+                        v                                                                                                                          Q5
+                        v
+                        v
+                        vv3333333333
+                         v
+                                                 Q3                                                                                                                                       R5
+                                                                                                                                                                              vv
+                                                                                                                                                                              v
+                                                                                                                                                                              vv5555555555
+                                                                                                                                                                               v
+                                                                     ω
+                                                                     ω
+                                                                     ω
+                                                                     ωω3333333333                                            ω4
+                                                                     ω
+                                                                     ω
+                    R3
+                                                                                                                   Q4
+                                                                                                                                                      P5
+                                                            P4
+
+                                                                                            vv
+                                                                                            v
+                                                                                            vv4444444444
+                                                                                             v
+
+                                                                                                                   R4
+
+             Fig. 3 Velocities of the vertices P1 , P2 , . . . , P5 of a periodic billiard in the ellipse e with the
+             caustic c .
+On the Motion of Billiards in Ellipses                                               7
+
+
+    In terms of the exterior angles θ1 , . . . , θN of the billiard, we obtain from
+(3.1)
+
+            θ2   l2 ω 2   r2 ω1         θ2   vt|2
+      sin      =        =       and cos    =      , where v2 := kv2 k.            (3.3)
+            2      v2      v2           2     v2
+
+Let Ri denote the pole of the line [Pi , Pi+1 ] with respect to (w.r.t. in brief) e .
+Since the poles of a line ℓ w.r.t. confocal conics lie on a line orthogonal to ℓ,
+the side P1 P2 is orthogonal to [Q1 , R1 ] (Figure 3), which means
+
+                                             θ1         θ2
+                            R1 Q1 = l1 tan      = r2 tan .                        (3.4)
+                                             2          2
+From (3.4) and (3.3) follows
+
+               θ1      l1 ω 1          θ1      r2 ω1     vt|2  r2    tan2 θ21
+      l1 tan      = l1        = r2 tan    = r2       and      = 22 =          .
+               2        vt|1           2        vt|2     vt|1   l1   tan2 θ22
+
+This shows that, by virtue of (2.7), the products
+
+                   θ1             θ2                     θN          ke
+       vt|1 tan2      = vt|2 tan2    = · · · = vt|N tan2    = vt|i                (3.5)
+                   2              2                       2        ktc|i k2
+
+for i = 1, 2, . . . , N are equal along the billiard. We denote this quantity with
+C. Instead of a free choice of v2 , it means no restriction of generality to set
+C = ke . Then we obtain for the point Pi = (ae cos ti , be sin ti ) of the ellipse e,
+by virtue of (2.7),
+                                                  θ        √    √
+         vt|i = ktc k2 = −kh ,    vn|i = vi sin     = ktc k ke = −ke kh
+                                                  2
+         ktc k2                p                                             (3.6)
+  vi =        θ
+                = ktc k kte k = kh (kh − ke ) for t = ti and kh = kh (ti ) .
+         cos 2
+
+
+4 Billiard motion and the underlying Lie group
+
+Our specification of the quantity C assigns to the vertex Pi ∈ e with parameter
+ti a non-vanishing velocity vector vi = ktc (ti )k te (ti ) . This assignment can
+immediately be extended to all points of e . There exists a parameter u on
+e such that the differentiation by u gives the said velocity vector. Let a dot
+indicate this differentiation. Then
+                    d p(t)
+                                              q
+    v(t) = ṗ(t) =         = ktc (t)k te (t) = a2c sin2 t + b2c cos2 t te (t). (4.1)
+                      du
+We can even extend this to all confocal ellipses of c . The assignment of a
+velocity vector
+                      v(t) = ktc (t)k te (t) = ṫ te (t)
+        8                                                                         Hellmuth Stachel
+
+
+
+
+                                                                                vn
+                        vt
+
+                                                                           tQ
+PSfrag replacements
+                                                   Q
+                                                   Q
+                                                   Q
+                                                   Q
+                                                   Q
+                                                   Q
+                       e
+                                 c
+
+
+
+        Fig. 4 The infinitesimal motion assigns to each point of the Poncelet grid a velocity vector
+        such that the points on each tangent tQ to the caustic c remain aligned.
+
+
+
+        to each point P = (ae cos t, be sin t) with a2e − b2e = a2c − b2c defines an ‘instant
+        motion’ of the plane, where
+                         dt
+                                                        q
+                            = ktc (t)k = −kh (t) = a2c sin2 t + b2c cos2 t .
+                                          p
+                    ṫ =                                                                (4.2)
+                         du
+            We prove below, that this ‘instant motion’ is compatible with the billiard
+        and the associated Poncelet grid. This means in particular, that the velocity
+                                            (j)
+        (3.6) is also valid for all points Si ∈ e(j) .
+            Figure 4 shows a portion of the Poncelet grid and the velocity vectors
+        of a couple of points, each represented by a scaled arrow. As indicated, for
+        all points on the tangent tQ to c at any point Q ∈ c, the normal components
+        kvn k of the respective velocity vectors v are proportional to the distance to Q.
+        On the other hand, all points on any confocal hyperbola share the tangential
+        component kvt k.
+        Theorem 1. Let the billiard P1 P2 . . . with the ellipse c as caustic be moving
+        along the circumscribed ellipse e . Then the motion is the action of a one-
+        parameter Lie group Γ . Each transformation γ(u) ∈ Γ preserves the confocal
+        ellipses and permutes the confocal hyperbolas as well as the tangents to c .
+         1. If (ac , bc ) are the semiaxes of the caustic c with the tangent vectors tc (t) =
+            (−ac sin t, bc cos t), then for all confocal ellipses e with semiaxes (ae , be ) the
+            Γ generating instant motion is defined, up to a scalar, by the vector field
+                                                                                     
+                                                             p             ae y b e x
+               (x, y) = (ae cos t, be sin t) 7→ ktc k te = −kh (t) −           ,          (4.3)
+                                                                            b e ae
+
+            with a2e − b2e = a2c − b2c = d2 and a2e − a2c ≥ 0.
+         2. If we parametrize the quadrant x, y > 0 by elliptic coordinates as X(ke , kh ),
+            then the vector field can be expressed as
+                                              p                          ∂X
+                             X(ke , kh ) 7→ −2 kh (a2c + kh )(b2c + kh )      .               (4.4)
+                                                                         ∂ kh
+On the Motion of Billiards in Ellipses                                                       9
+
+
+   The vector field defines a canonical parameter u for the one-parameter Lie
+group Γ , i.e., for transformations γ(u) ∈ Γ holds γ(u2 ) ◦ γ(u1 ) = γ(u1 + u2 ).
+At the same time, u provides canonical coordinates2 on each confocal ellipse
+with the property
+                                                       (j)        (j)
+                           γ(2∆u) : Pi 7→ Pi+1 , Si          7→ Si+1 .
+
+Proof. 1. The first derivative ṫ in (4.2) is independent of the choice of the
+ellipse e. Therefore γ(u) permutes the confocal hyperboloids. On the other
+hand, the representation v = ktc k te reveals that all confocal ellipses remain
+fixed. Furthermore, we verify that the position of any point P on the tangent
+tQ to c at Q (see Figure 4) is preserved under the infinitesimal motion:
+Given P = (ae cos t, be sin t) ∈ e and Q = (ac cos t′ , bc sin t′ ), the point P lies
+on tQ if and only if
+
+                       bc ae cos t′ cos t + ac be sin t′ sin t = ac bc .                 (4.5)
+
+This is preserved under the infinitesimal motion if differentiation by u based
+on (4.2) yields an identity, namely
+
+                     ktc (t′ )k (−bc ae sin t′ cos t + ac be cos t′ sin t)
+                                                                                         (4.6)
+                   = −ktc (t)k (−bc ae cos t′ sin t + ac be sin t′ cos t) .
+
+In order to verify this, we square both sides and substitute from the squared
+equation (4.5) the mixed term 2ac bc ae be sin t′ cos t′ sin t cos t . After some com-
+putations, this yields for both sides
+
+       d2 sin2 t − sin2 t′ a2c b2e sin2 t′ sin2 t + b2c a2e cos2 t′ cos2 t − a2c b2c .
+                                                                                   
+
+The velocity analysis in (3.6) for the particular ellipse e confirms, that also
+the signs of both sides in (4.6) are equal.
+2. From (2.3) follows for (x, y) = X(ke , kh )
+
+                           ∂x   a2 + ke               ∂y    b2 + ke
+                      2x       = c 2 ,           2y       =− c 2
+                           ∂kh     d                  ∂kh      d
+and therefore
+                                   2
+                                             b2 + ke
+                                                     
+                   ∂X     1        ac + ke                  −1
+          Xkh =         = 2                ,− c        = 2             te .
+                   ∂ kh  2d           x         y       2d sin t cos t
+
+This implies by (2.6) and (2.8)
+                                              p        p
+    ktc k te = λXkh with λ = −2ah bh           −kh = −2 kh (a2c + kh )(b2c + kh ) ,
+
+which confirms the claim in (4.4).                                                           ⊓
+                                                                                             ⊔
+  2 Of course, we still obtain canonical coordinates on the ellipses, when all velocity vectors
+
+are multiplied with any constant λ ∈ R \ 0.
+10                                                                 Hellmuth Stachel
+
+
+   In order to express the action of the transformation γ(u) ∈ Γ on an initial
+point (ae cos t, be sin t), we integrate the differential equation (4.2)
+                dt
+                       q                                  p
+          ṫ =      = a2c sin2 t + (a2c − d2 ) cos2 t = ac 1 − m2 cos2 t
+               du
+with m := d/ac < 1 as numerical eccentricity of the caustic c. The substitution
+                                               π
+                                    ϕ := t −
+                                               2
+
+results in
+                                 dϕ
+                            p              = ac du .
+                             1 − m2 sin2 ϕ
+The initial condition ϕ = 0 for u = 0 yields the unique solution
+                                        Z ϕ
+                                                   dϕ
+                   ac u(ϕ) = F (ϕ, m) =     p                                (4.7)
+                                         0     1 − m2 sin2 ϕ
+with F (ϕ, m) as the elliptic integral of the first kind with the modulus m. The
+equation (4.7) shows the canonical coordinate u in terms of ϕ with the quarter
+period
+                                 Z π/2              dϕ
+                                 π
+                   K := ac u        =         p
+                                 2       0       1 − m2 sin2 ϕ
+For the sake of simplicity, we introduce
+
+                                 ũ(ϕ) := ac u(ϕ)                            (4.8)
+
+as a new canonical coordinate.
+    The inverse function of ũ = F (ϕ, m), namely the Jacobian amplitude ϕ =
+am(ũ) leads to the Jacobian elliptic functions, the elliptic sine
+
+                       sn ũ = sin(am(ũ)) = sin ϕ = − cos t
+
+with sn(−ũ) = − sn ũ , the elliptic cosine
+
+                        cn ũ = cos(am(ũ)) = cos ϕ = sin t
+
+with cn(−ũ) = cn ũ , and the delta amplitude
+                                     p
+                             dn ũ = 1 − m2 sn2 ũ
+
+with dn(−ũ) = dn ũ as the third elliptic base function [9]. Moreover, for k ∈ Z
+holds
+         sn(ũ + 2kK) = (−1)k sn ũ , cn(ũ + 2kK) = (−1)k cn ũ ,
+                         dn(ũ + 2kK) = (−1)k dn ũ .
+   This gives rise to the canonical parametrization of the ellipse e with semi-
+axes (ae , be ) as
+                                                                π
+                                                                
+                   (−ae sn ũ, be cn ũ) for 0 ≤ ũ < 4K = 4ũ     .
+                                                               2
+On the Motion of Billiards in Ellipses                                           11
+
+
+As an alternative, we can proceed with elliptic coordinates. From (4.4) and
+           dX       ∂X         ∂X       p                          ∂X
+              = k̇e      + k̇h      = −2 kh (a2c + kh )(b2c + kh )
+           du       ∂ ke       ∂ kh                                ∂ kh
+follows for the orbits of the Lie group k̇e = 0 and
+                                 p
+                        k̇h = −2 kh (a2c + kh )(b2c + kh ) .
+As expected, the orbits are confocal ellipses. In order to express the action of
+γ(u) ∈ Γ on an initial point X(ke|0 , kh|0 ), we have to integrate the differential
+equation
+                                  dkh
+                       p                           = −2 du                    (4.9)
+                         kh (a2c + kh )(b2c + kh )
+with any initial condition. Again, we face an elliptic integral, this time in the
+socalled Riemannian form.
+Theorem 2. p  1. Let c be the ellipse c with semiaxes (ac , bc ) and linear eccen-
+  tricity d = a2c − b2c . Then for all confocal ellipses e with semiaxes (ae , be ),
+  the inscribed billiards with the caustic c can be canonically parametrized us-
+  ing the Jacobian elliptic functions to the modulus m = d/ac (= numerical
+  eccentricity of c) as
+                                (−ae sn ũ, be cn ũ) .
+   This means that, if bc = be cn(∆ũ), then the vertices of the billiards in e
+   have the canonical parameters ũ = (ũ0 + 2k∆ũ) for k ∈ Z and any given
+   initial ũ0 .
+2. Conversely, we obtain an ellipse e for which the billiards with caustic c are
+   N -periodic with turning number τ , where gcd(N, τ ) = 1, by the choice
+                                                     2τ K
+                                             ∆ũ =
+                                                      N
+    with K as the complete elliptic integral of the first kind to the modulus m,
+    provided that
+                           ac dn(∆ũ)                   bc
+                     ae =               and be =              .            (4.10)
+                             cn(∆ũ)                 cn(∆ũ)
+
+
+                                                             y
+                                                                 P1 (0)
+      PSfrag replacements
+
+                                         e
+                                                 Q1 (∆ũ )
+                       P2 (2∆ũ)         c
+
+
+Fig. 5 Dependence between the minor semiaxes be , bc and the intervall ∆ũ.
+            12                                                                                                                                                    Hellmuth Stachel
+
+
+             Proof. If the first vertex P1 ∈ e of the billiard is chosen on the positive y-axis,
+             i.e., with canonical parameter ũ = 0 (see Figure 5), then the first contact
+             point Q1 has the parameter ∆ũ, and the tangent to c at Q1 passes through
+PSfrag replacements
+             P1 = (0, be ). Hence, the points P1 and Q1 are conjugate w.r.t. c, which means
+             by (4.5) that the product of the respective y-coordinates be and bc cn(∆ũ)
+             equals b2c .
+             In view of the major semiaxis ae follows from dn2 (∆ũ) = 1 − m2 sn2 (∆ũ) and
+             sn2 (∆ũ) + cn2 (∆ũ) = 1 that dn(∆ũ) = ae cn(∆ũ)/ac .                         ⊓
+                                                                                              ⊔
+
+            Corollary 3. If in the ellipse e with semiaxes (ae , be ) the billiard with caustic
+            c is N -periodic with turning number τ = 1 and ∆ũ = 2K           N , then the 
+                                                                                            associ-
+            ated Poncelet grid contains the ellipses e(1) , e(2) , . . . , e(k) , k = N2−3 , with
+            respective semiaxes
+
+                        ac dn(2∆ũ)              bc              ac dn(3∆ũ)             bc
+             ae|1 =                  , be|1 =          , ae|2 =              , be|2 =          ,
+                         cn(2∆ũ)             cn(2∆ũ)            cn(3∆ũ)            cn(3∆ũ)
+                                               ac dn(k∆ũ)              bc
+                                . . . , ae|k =             , be|k =            .
+                                                cn(k∆ũ)             cn(k∆ũ)
+
+
+
+                                                                                                                               (1)
+                                                                                                                                (1)
+                                                                                                                               (1)
+                                                                                                                                (1)
+                                                                                                                             S1(1)
+                                                                                                                             S
+                                                                                                                            SS
+                                                                                                                             S
+                                                                                                                                (1)
+                                                                                                                                (1)
+                                                                                                                               (1)
+                                                                                                                               1
+                                                                                                                                (1)
+                                                                                                                                1
+                                                                                                                                1
+                                                                                                                               11
+
+
+
+                    (1)
+                     (1)
+                    (1)
+                     (1)
+                  S2(1)
+                  S  (1)
+                     (1)
+                    (1)
+                     (1)                                                                                                                                      e(1)
+                 SS
+                  S 22
+                     2
+                    22
+                   2
+                   2
+                   2
+                   22
+                    2
+                                                                      P
+                                                                      P
+                                                                      P
+                                                                      P2222222
+                                                                      P                        ee
+                                                                                                ee             ′′′
+                             77
+                                                                                                 e       P111′11′′11′
+                                                                                                         P
+                                                                                                         P
+                                                                                                         P
+                                                                                                         P
+                  33       77
+                            77
+                 3333       44
+                           4444                     ′′′
+                 44
+                  44
+                   44
+                                      55       P222′2′′22′
+                                               P
+                                               P
+                                               P
+                                               P                           Q1′′′1′′′1′′1
+                                                                           Q
+                                                                           Q                   c
+                                     5555                                  Q
+                                                                           Q                         Q
+                                                                                                     Q111111
+                                                                                                     Q
+                                                                                                     Q
+                                                                                                     Q
+                             33
+                            3333     44
+                                      44
+                                       44
+                                        4                                       11                                                         P
+                                                                                                                                           P
+                                                                                                                                           P
+                                                                                                                                           P111111
+                                                                                                                                           P
+                            22
+                             22
+                              22   11
+                                    1                   Q
+                                                        Q222222
+                                                        Q
+                                    11111111
+                                    1                   Q
+                                                        Q                                                                   Q′0′′0′′′0′0
+                                                                                                                            Q
+                                                                                                                            Q
+                                       22
+                                                                                                                            Q
+                                                                                                                            Q
+                                        22
+                                         22                                                                                    00                                         (1)
+                                                                                                                                                                           (1)
+                                                                                                                                                                          (1)
+                                                                                                                                                                           (1)
+                                                                                                                                                           ′′′
+                                                                                                                                                                         S0(1)
+                                                                                                                                                                         S
+                                                                                                                                                                        SS
+                                                                                                                                                                         S
+                                                                                                                                                                           (1)
+                                                                                                                                                                            (1)
+                                                                                                                                                                           (1)
+                                                                                                                                                                           0
+                                                                                                                                                                           0
+                                                                                                                                                                            (1)
+                                                                                                                                                                            0
+                            vv
+                             v==
+                               =00
+                                 0                                                                                                                                         0
+                                                                                                                                                                           00
+                           vv  =
+                               = 0
+                                 0                                                                                               Q
+                                                                                                                                 Q
+                                                                                                                                 QQ000000
+                                                                                                                                  Q                  P000′0′00′
+                                                                                                                                                     P
+                                                                                                                                                     P
+                                                                                                                                                     P
+                                                                                                                                                     P
+                                                                                                                                                     P
+                                                  u=4             7         3              5         2                  3   1 21 0
+                                                                  2                        2                            2
+
+            Fig. 6 Canonical coordinates u (blue) for the confocal hyperbolas and v (red) for the
+            confocal ellipses exterior to the caustic c such that u ± v = const. represent the tangents of
+            the caustic.
+
+
+                Corollary 3 reveals that ∆ũ serves as a canonical coordinate for confocal
+            ellipses in the exterior of c. If ∆ũ corresponds by (4.10) to the ellipse e with
+            semiaxes (ae , be ), then 2∆ũ is the shift for the billiards in e with caustic c .
+            If these billiards have the turning number 1, then increasing the shift by ∆ũ
+            means to increase the turning number of the billiard in a confocal ellipse by
+            1, while the caustic c remains fixed (Figure 6). The billiard P1 P2 . . . and its
+            conjugate P1′ P2′ . . . in e (cf. [13, Sect. 3.2]) intersect each other along the ellipse
+            with the canonical coordinate ∆ũ/2 . Note that the ellipses e(j) and e(N −2−j)
+            coincide while the corresponding ∆ũ’s differ in their signs. For even N , the
+              On the Motion of Billiards in Ellipses                                                                              13
+
+                            (N/2−1)
+              points Si        are at infinity, and the line at infinity as a limit of a confocal
+              ellipse corresponds to ∆ũ = K.
+                  The following formulas express the elliptic coordinates (ke , kh ) of the point
+              P = (−ae sn ũ, be cn ũ) of e in terms of the canonical coordinate ũ on e and
+              the shift ∆ũ corresponding to e .
+
+                                                         a2c sn2 ∆ũ
+                      ke = ke (∆ũ) =                                (1 − m2 ),        kh = kh (ũ) = −a2c dn2 ũ .          (4.11)
+                                                           cn2 ∆ũ
+
+              This follows from
+
+                                                                         dn2 ∆ũ − cn2 ∆ũ     2
+                                                                                                             2
+                                                                                                        2 sn ∆ũ
+                                ke = a2e − a2c = a2c                                       = a c (1 − m  )
+                                                                              cn2 ∆ũ                      cn2 ∆ũ
+
+              and
+
+                           kh = −a2c cn2 ũ − b2c sn2 ũ = −a2c + d2 sn2 ũ = −a2c + m2 a2c sn2 ũ .
+
+              Note that kh = kh (ũ) is a solution of (4.9).
+                    In [10], an unordered pair of coordinates (r, s) is proposed for each point
+                P in the exterior of c, namely with r and s as canonical coordinates of the
+PSfrag replacements
+                tangency points for the tangent lines from P to c (see also [12, p. 358]). This
+                means for P = (−ae sn ũ, be cn ũ) that
+
+                                                                   r = ũ − ∆ũ ,   s = ũ + ∆ũ ,
+
+              where ∆ũ corresponds to e according to (4.10).
+                 If we keep the sum ũ + ∆ũ or the difference ũ − ∆ũ constant, the cor-
+              responding point P runs along a tangent of the caustic c (compare with [3,
+              Prop. 8.3]). For the sake of simplicity, we replace in the summary below ∆ũ
+              by ṽ .
+
+
+                 ṽ
+
+                 K                       (3)
+                                          (3)
+                                                                                                                      ∞
+                                         (3)
+                                          (3)             (3)
+                                                           (3)
+                                                          (3)
+                                                           (3)
+                                        S11(3)
+                                        S
+                                       SS
+                                        S
+                                            (3)
+                                           (3)
+                                           1
+                                            (3)
+                                            1
+                                            1
+                                                         S22(3)
+                                                         S
+                                                        SS
+                                                         S
+                                                             (3)
+                                                            (3)
+                                                            2
+                                                             (3)
+                                                             2
+                                                             2                                                        e(3) = e(4)
+                                           1
+                                           1                2
+                                                            2
+                                (2)
+                                (2)
+                                 (2)              (2)
+                                                  (2)
+                                                   (2)
+                             S1(2)
+                             S
+                             S
+                             S
+                             S
+                             S
+                                (2)
+                                (2)
+                               (2)
+                               1
+                                (2)
+                                (2)          S2(2)
+                                             S
+                                             S
+                                             S
+                                             S
+                                             S
+                                                (2)
+                                                (2)
+                                               (2)
+                                               2
+                                                (2)
+                                                (2)
+                                                                                                                      e(2)
+                               11
+                                1
+                                1              22
+                                                2
+                                                2
+                                          (1)
+                                           (1)             (1)
+                                                            (1)
+                                        S1(1)
+                                        S
+                                       SS
+                                        S 1
+                                            (1)
+                                           (1)
+                                           (1)
+                                           1
+                                           1
+                                                         S2(1)
+                                                         S
+                                                        SS
+                                                         S 2
+                                                             (1)
+                                                            (1)
+                                                            (1)
+                                                            2
+                                                            2                                                         e(1)
+                                          11               22
+                             P
+                             P
+                             P
+                             P111111
+                             P                P
+                                              P
+                                              P
+                                              P222222
+                                              P                P
+                                                               P
+                                                               P
+                                                               P333333
+                                                               P                                                      e
+
+                      Q9         Q1               Q2                                                    c        4K          ũ
+                                                                                            (j)
+              Fig. 7   The injective mapping Y sends the square grid of points Qi , Pi and Si , i = 1, . . . , 9 ,
+              j = 1, . . . , 3 , to the vertices and the diagonals to the confocal conics of the Poncelet grid
+              depicted in Figure 1.
+14                                                                      Hellmuth Stachel
+
+
+Theorem 4. Referring to the notation in Theorem 2, the injective mapping
+                                                                   
+                        2                    sn ũ dn ṽ      cn ũ
+        Y : U × V → R , (ũ, ṽ) 7→ −ac                  , bc
+                                                cn ṽ         cn ṽ
+            for U := {ũ | 0 ≤ ũ < 4K}, V := {ṽ | 0 ≤ ũ < K}
+parametrizes the exterior of the caustic c with semiaxes (ac , bc ) in such a way,
+that the lines ũ = const. are branches of confocal hyperbolas; ṽ = const. are
+confocal ellipses and ũ ± ṽ = const. tangents of c .
+    The domain of the mapping Y (Figure 7) can be extended to R2 and
+satisfies
+           Y((ũ + 4K), ṽ) = Y(ũ, (ṽ + 2K)) = Y(ũ, −ṽ) = Y(ũ, ṽ)
+and therefore Y(ũ, (K + ṽ)) = Y(ũ, (K − ṽ)) (Figure 7). The Liegroup Γ
+mentioned in Theorem 1 is the Y-transform of the group of translations along
+the ũ-axis.
+
+
+5 More about invariants of periodic billiards
+
+In this section we study how the infinitesimal motion induced by the vector
+field in (4.3) affects distances and angles of periodic billiards. As before, the
+dot means differentiation by the canonical parameter u, and we call the billiard
+motion canonical when it is parametrized by a canonical parameter like u .
+Lemma 5. Let P1 P2 . . . be a billiard in the ellipse e with Q1 , Q2 , . . . as contact
+points with its caustic, the ellipse c. If ti is the parameter of Pi and t′i that of
+Qi , then
+                                          √                                        √
+                  ktc (t′i−1 )k ktc (ti )k ke                ktc (ti )k ktc (t′i )k ke
+ ri = Qi−1 Pi =                               , li = Pi Qi =                           .
+                              ac b c                                    ac b c
+The canonical motion of the billiard induces for the side Pi Pi+1 the instant
+angular velocity
+                              ac b c       ac b c
+                       ωi =       ′    = p            .
+                            ktc (ti )k     −kh (t′i )
+
+Proof. Referring to Figure 8, if the tangent [Q1 , P2 ] rolls on c, then the vertex
+P2 receives the velocity vector vn2 satisfying (3.6), while the point of contact
+Q1 moves with the velocity vc (t′1 ) along c . We can express this velocity in
+terms of the radius of curvature ρc (t′1 ) of c as
+                                  vc (t′1 ) = ω1 ρc (t′1 ),
+where ρc (t) = kte (t)k3 /ac bc by [8, p. 79]. On the other hand, from vc = ṫ tc
+and (4.2) follows vc (t′1 ) = ktc (t′1 )k2 . This yields
+                    vc (t′1 )   ktc (t′1 )k2 ac bc     ac b c      ac b c
+             ω1 =         ′   =           ′   3
+                                                   =       ′    =p
+                    ρc (t1 )      ktc (t1 )k         ktc (t1 )k   −kh (t′1 )
+PSfrag replacements
+
+
+
+
+     On the Motion of Billiards in Ellipses                                                                                                                                    15
+
+
+                                                      vn1
+                   r2
+                        vt 1                                                P
+                                                                            P
+                                                                            P
+                                                                            P222222
+                                                                            P
+                                v2
+                                                      ω2
+                                                                                                       r2
+                         vt 2                 vn2                                                                                                                  ′′′
+                                                                 l2                                                                                         P111′11′1′
+                                                                                                                                                            P
+                                                                                                                                                            P
+                                                                                                                                                            P
+                                                                                                                                                            P
+                                                                                      Q1′′′1′′1′′1
+                                                                                      Q
+                                                                                      Q
+                                                                                      Q
+                                                                                      Q    11
+                        P2′          v
+                                     v
+                                     v
+                                           ′′
+                                      v1′1′11′1′11′                                                                                                          e
+                                     v
+                                     v                                                                                                           Q1
+                                     QQ
+                                      Q
+                                      Q
+                                      QQ2222222                                                         ω1
+                                                               ∗∗
+                                                            Q∗22∗2∗2∗22∗2
+                                                            Q
+                                                            Q
+                                                            Q
+                                                            Q
+                                                            Q                                                      ρρ              ′′′′′
+                                                                                                                                 (t1′1′11′1′11′111))))))
+                                                                                                                                (t
+                                                                                                                     ρρccccccccc(t
+                                                                                                                    ρρ           (t
+                                                                                                                                (t
+                                                                                                                                (t
+                                                                                                            Q∗1
+                                                        c
+
+     Fig. 8 Velocities v2 of the vertex P2 , v1′ of the affine image Q′1 with kv1′ k = kvn1 k = kvn2 k,
+     of the contact points Qi (with Q∗i as respective centers of curvature), and of vertices Pi′ of
+     the conjugate billiard, i = 1, 2 .
+
+
+     by (2.6). Thus, we obtain for the velocity vn|2 of P2 by (3.6)
+                                                                  √
+                                     p                 ktc (t2 )k ke
+            r2 ω1 = vn|2 = ktc (t2 )k ke , hence r2 =                ktc (t′1 )k.
+                                                            ac b c
+     Similarly follows from l2 ω2 = vn|2 the stated expression for the distance l2 .
+     Note that t1 , t′1 , t2 , t′2 , t3 , . . . is the sequence of consecutive parameters of the
+     points P1 , Q1 , P2 , Q2 , P3 , . . . The formulas for ri and li reveal again that the
+     same distances appear at the conjugate billiard.                                          ⊓
+                                                                                               ⊔
+
+        The angular velocity of the tangent to e at P2 equals the arithmetic mean
+     (ω1 + ω2 )/2 (Figure 8). On the other hand, it is defined by the radius of
+     curvature ρe of e at P2 and the velocity v2 by (3.6), since
+                                                                                                     ω1 + ω2
+                                                               v2 = ρe (t2 )                                 .
+                                                                                                        2
+     This means by Lemma 5
+                                                                    kte (t2 )k3 ac bc
+                                                                                                                                                                        
+                                                                                                                    1          1
+                   ktc (t2 )k kte (t2 )k =                                                                                +
+                                                                      ae b e     2                              ktc (t1 )k ktc (t′2 )k
+                                                                                                                      ′
+
+
+     and results by (2.7) in
+                       1           1         2ae be ktc (t2 )k      ae b e
+                              +            =                    =      √ sin θ2 .                                                                                            (5.1)
+                   ktc (t′1 )k ktc (t′2 )k    ac bc kte (t2 )k2   ac bc ke
+     Theorem 6. The exterior angles θi of an N -periodic billiard in an ellipse and
+     with an ellipse as caustic satisfy for N ≡ 0 (mod 2)
+             N                                                                                                                   N/2
+             X                                                                                                                   X
+                   (−1)i sin θi = 0 and for N ≡ 0 (mod 4)                                                                                             (−1)i sin θi = 0 .
+             i=1                                                                                                                  i=1
+16                                                                             Hellmuth Stachel
+
+
+Proof. By virtue of [13, Corollary 4.2], periodic billiards with even N = 2n
+are centrally symmetric, which implies θi = θi+n . For N ≡ 2 (mod 4) the sum
+from 1 to N must vanish since (−1)i = −(−1)(i+n) .
+In the remaining case N ≡ 0 (mod 4) follows from (5.1)
+                               √                              
+                          ac bc ke         1           1
+                 sin θi =                         +
+                            ae b e   ktc (t′i−1 )k ktc (t′i )k
+and further
+     N/2                   √
+     X                ac bc ke
+           sin θi =              ·
+      i=1
+                        ae b e
+                                                                               
+                1              1       1           1                   1
+                       +           −          −            + −···−               .
+           ktc (t′N )k ktc (t′1 )k ktc (t′1 )k ktc (t′2 )k         ktc (t′n )k
+This sum vanishes, since tc (t′n ) = −tc (t′N ) , due to the odd turning number τ
+because of gcd(N, τ ) = 1 .                                                     ⊓
+                                                                                ⊔
+
+     At the same token, from
+                                                                          
+                                                    1            1
+                  θ̇i = ωi − ωi−1 = ac bc                 −                              (5.2)
+                                                ktc (ti )k ktc (t′i−1 )k
+                                                      ′
+
+
+and (5.1) follows
+                                       √ 
+                                  a2 b2 ke
+                                                                         
+         d                                        1              1
+           cos θi = −θ̇i sin θi = c c                     −                .
+        du                          ae b e ktc (t′i−1 )k2   ktc (t′i )k2
+                   P                                     PN
+                 d     N
+This shows that du     1 cos θi vanishes and, therefore,     1 cos θi is invariant
+against billiard motions, which was first proved in [1].
+   For the sake of completeness, we also focus on the variation of the side
+lengths under the canonical billiard motion. We obtain
+         d
+           Pi Pi+1 = vt|i+1 − vt|i
+        du                                                                               (5.3)
+                   = ktc (ti+1 )k2 − ktc (ti )k2 = d2 (sin2 ti+1 − sin2 ti ).
+The vanishing sum over all i confirms again the constant perimeter. We like
+to recall that already in [2] some proofs for invariants were based on differen-
+tiation.
+    Finally we concentrate on the effects showing up when the vertex Pi tra-
+verses a quarter of the full period along the billiard.
+Lemma 7. As before, let t1 , t′1 , t2 , t′2 , . . . , t′N be the sequence of parameters of
+an N -periodic billiard in an ellipse e with an ellipse c as caustic. Then holds
+for N ≡ 0 (mod 2):
+                                                         p                
+          if N = 4n : ktc (ti )k ktc (ti+n )k = kh (ti ) kh (ti+n ) 
+                                                         q                   = ac b c ,
+       if N = 4n+2 : ktc (ti )k ktc (t′i+n )k = kh (ti ) kh (t′i+n ) 
+
+and the same after the parameter shift ti 7→ t′i and t′i 7→ ti+1 .
+On the Motion of Billiards in Ellipses                                                     17
+
+
+Proof. Based on the canonical parametrization by ũ, a quarter of the period
+4K corresponds to a shift by K. In the case N = 4n this shift effects ti 7→ ti+n
+and t′i 7→ t′i+n . If N = 4n + 2, then ti 7→ t′i+n and t′i 7→ ti+n+1 .
+According to (4.11) holds kh = −a2c dn2 ũ and by (2.6) ktc (t)k = −kh (t) =
+                                                                       p
+
+ac dn ũ . The identity                      √
+                                                 1 − m2
+                               dn(ũ + K) =
+                                                dn(ũ)
+implies
+                                 bc           p
+           dn(ũ) · dn(ũ + K) =     , hence kh (ũ) · kh (ũ + K) = ac bc .
+                                 ac
+This confirms the claim.                                                                   ⊓
+                                                                                           ⊔
+Theorem 8. If an N -periodic billiard in an ellipse e with an ellipse as caustic
+is given with N ≡ 0 (mod 2), then the distances ri = Qi−1 Pi and li = Pi Qi
+satisfy                                                )
+                  for N = 4n : ri · ri+n = li · li+n
+                                                          = ke .
+               for N = 4n+2 : ri · li+n = li · ri+n+1
+
+Proof. From the expressions for ri and li in Lemma 5 follows, by virtue of
+Lemma 7, for N = 4n
+                       ke
+        ri · ri+n =           ktc (t′i−1 )k ktc (ti )k ktc (t′i+n−1 )k ktc (ti+n )k = ke
+                      a2c b2c
+and the same result for li · li+n . In the case N = 4n + 2 we obtain similarly
+                              ri · li+n = li · ri+n+1 = ke ,
+as stated.                                                                                 ⊓
+                                                                                           ⊔
+    The following corollary is an immediate consequence of Theorem 8.
+Corollary 9. Let si = Pi Pi+1 = li + ri+1 for i = 1, . . . , N be the side lengths
+of the N -periodic billiard with even N and s′i = Pi′ Pi+1
+                                                        ′    = ri+1 + li+1 that of
+the conjugate billiard. Then,
+                                             si+n    li+n   ri+n+1
+                        for N = 4n :               =      =        ,
+                                               si    ri+1      li
+                                             si+n    li+n   ri+n+1
+                    for N = 4n+2 :                 =      =        .
+                                             s′i−1     li      ri
+
+    Finally we prove the invariance of k117 in [11, Table 2].
+Theorem 10. Referring to the notation in Lemma 5, for even N the products
+                            r1 r2 . . . rN = l1 l2 . . . lN = keN/2
+are invariant against billiard motions. For N ≡ 0 (mod 4) this is already true
+for the products
+                      r1 r2 . . . rN/2 = l1 l2 . . . lN/2 = keN/4 .
+18                                                                         Hellmuth Stachel
+
+
+Proof. For N ≡ 0 (mod 4) the statements are a direct consequence of Theo-
+rem 8 and the central symmetry of the billiard which exchanges ri with ri+N/2
+and li with li+N/2 .
+In the remaining case N = 2n + 2 we note that by (3.2) R(u) := r1 r2 . . . rN =
+l1 l2 . . . lN . Hence, by virtue of Theorem 8,
+                                         N
+                                         Y
+                              R2 (u) =         (ri li+n ) = keN ,
+                                         i=1
+
+which yields the stated result.                                                            ⊓
+                                                                                           ⊔
+
+
+References
+
+1. A. Akopyan, R. Schwartz, S. Tabachnikov, Billiards in ellipses revisited, Eur. J. Math.
+  2020, doi:10.1007/s40879-020-00426-9
+2. M. Bialy, S. Tabachnikov, Dan Reznik’s identities and more. Eur. J. Math. 2020,
+  doi:10.1007/s40879-020-00428-7
+3. A.I. Bobenko, W.K. Schief, Y.B. Suris, J. Techter, On a discretization of confocal
+  quadrics. A geometric approach to general parametrizations, Int. Math. Res. Not. IMRN
+  2020, no. 24, 10180–10230
+4. A. Chavez-Caliz, More about areas and centers of Poncelet polygons, Arnold Math. J.
+  7, 91–106 (2021).
+5. V. Dragović, M. Radnović, Integrable billiards and quadrics. Russian Math. Surveys
+  65/2, 319–379 (2010)
+6. V. Dragović, M. Radnović, Poncelet porisms and beyond. Integrable Billiards, Hyperel-
+  liptic Jacobians and Pencils of Quadrics. Birkhäuser/Springer Basel AG, Basel (2011)
+7. J.J. Duistermaat, Discrete Integrable Systems. QRT Maps and Elliptic Surfaces. Springer
+  Monographs in Mathematics 304, Springer, New York (2010)
+8. G. Glaeser, H. Stachel, B. Odehnal, The Universe of Conics, From the ancient Greeks to
+  21st century developments, Springer Spectrum, Berlin, Heidelberg (2016)
+9. R.      Hoppe,      Elliptische   Integrale     und     Funktionen       nach      Jacobi.
+  http://www.dfcgen.de/wpapers/elliptic.pdf (2004–2015), accessed May 2021
+10. I. Izmestiev, S. Tabachnikov, Ivory’s Theorem revisited, J. Integrable Syst. 2/1, xyx006
+  (2017)
+  R. Hoppe: Elliptische Integrale und Funktionen nach JACOBI M. Koecher, A. Krieg,
+  Elliptische Funktionen und Modulformen, 2. Aufl., Springer-Verlag, Berlin, Heidelberg
+  (2007)
+11. D. Reznik, R. Garcia, J. Koiller, Eighty New Invariants of N-Periodics in the Elliptic
+  Billiard, arXiv:2004.12497v11[math.DS] (2020)
+12. H. Stachel, Recalling Ivory’s Theorem, FME Transactions 47, No 2, 355–359 (2019)
+13. H. Stachel, The Geometry of Billiards in Ellipses and their Poncelet Grids.
+  arXiv:2105.03362[math.MG] (2021).
+14. S. Tabachnikov, Geometry and Billiards, American Mathematical Society, Provi-
+  dence/Rhode Island (2005)
+

@@ -1,0 +1,2914 @@
+             Diplomarbeit
+
+
+The Koopman Linearization of
+     Dynamical Systems
+
+      Kari Valentina Küster
+
+                März 2015
+
+
+
+
+              Betreuer
+      Dr. Roland Derndinger
+      Prof. Dr. Rainer Nagel
+
+    Arbeitsbereich Funktionalanalysis
+        Mathematisches Institut
+   Eberhard-Karls-Universität Tübingen
+Erklärung
+Hiermit erkläre ich, die vorliegende Arbeit selbstständig verfasst zu haben und keine
+anderen als die angegebenen Quellen und Hilfsmittel benutzt zu haben.
+
+
+
+Tübingen, den 18. März 2015
+
+                                                                 Kari Küster
+
+
+
+
+ii
+Danksagung
+An dieser Stelle möchte ich mich herzlich bei all jenen bedanken, die zum Entstehen
+dieser Arbeit beigetragen haben. Mein besonderer Dank gilt meinen Betreuern Rainer
+Nagel und Roland Derndinger, die mir eine Diplomarbeit zu einem hochaktuellen und
+spannenden Thema möglich gemacht haben.
+
+   Was ich durch Rainer Nagels Art Mathematik zu machen und zu sehen gelernt habe,
+ist für mich von unschätzbarem Wert. Für die vielen mathematischen Gespräche und De-
+batten (nicht nur) über Mathematik möchte ich mich herzlich bedanken. Rainer Nagel
+hat durch seine inspirierende Persönlichkeit und Unterstützung die Erstellung meiner
+Diplomarbeit zu einer für mich wegweisenden Erfahrung gemacht.
+
+   Die regelmäßigen mathematischen Diskussionen, die ich mit Roland Derndinger führen
+durfte, waren sehr hilfreich und haben mir viele Anregungen gegeben, welche diese Arbeit
+vorangetrieben haben. Mit seiner großen Geduld und Hilfsbereitschaft, steter Freund-
+lichkeit und Begeisterung für Mathematik hat er mich auf angenehme Weise auf dem
+langen Weg zur Fertigstellung meiner Diplomarbeit begleitet, wofür ich ihm sehr dankbar
+bin.
+
+   Mein großer Dank gilt auch der gesamten AG Funktionalanalysis“, die für mich
+                                               ”
+über viele Semester hinweg ein sehr fruchtbares Umfeld war. Ich freue mich über die
+Freundschaften, die ich dort schließen konnte und die vielen interessanten persönlichen
+Begegnungen.
+
+  Desweiteren möchte ich mich bei Frank Neubrander bedanken, der mir einen sowohl
+mathematisch als auch persönlich bereichernden und unvergesslichen USA-Aufenthalt
+im Rahmen meiner Diplomarbeit ermöglicht hat.
+
+  Meinen Eltern und Geschwistern danke ich von Herzen für ihre uneingeschränkte
+Unterstützung, den Rückhalt während des gesamten Studiums und darüber hinaus und
+dafür, dass sie mir Wurzeln gegeben“ und Flügel verliehen“ haben.
+                    ”                       ”
+
+
+
+
+iv
+Contents
+
+1 Introduction                                                                               2
+
+2 Dynamical systems and Koopman systems                                                      6
+  2.1 Dynamical systems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    6
+  2.2 Koopman systems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     12
+      2.2.1 The observable space C(K) . . . . . . . . . . . . . . . . . . . . . . .         12
+      2.2.2 The Koopman operator Tϕ . . . . . . . . . . . . . . . . . . . . . . .           15
+  2.3 From a dynamical system to a Koopman system and back . . . . . . . . .                19
+      2.3.1 Isomorphy of dynamical systems and Koopman systems . . . . . .                  19
+      2.3.2 From C(K) back to K . . . . . . . . . . . . . . . . . . . . . . . . . .         22
+      2.3.3 Transference of dynamical properties . . . . . . . . . . . . . . . . .          23
+
+3 Spectral properties of a Koopman operator                                                 32
+  3.1 Spectral properties of a Koopman operator of an affine finite dimensional
+      dynamical system . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    35
+  3.2 Partitioning of the state space . . . . . . . . . . . . . . . . . . . . . . . . . .   44
+
+4 The Jacobs-de-Leeuw-Glicksberg splitting of a Koopman operator                            52
+  4.1 The Jacobs-de-Leeuw-Glicksberg splitting of a Koopman operator . . . .                55
+  4.2 Conclusions from the reversible part in case of a Koopman operator . . .              60
+
+Bibliography                                                                                63
+
+Zusammenfassung in deutscher Sprache                                                        65
+
+
+
+
+vi
+1 Introduction
+  Nach unserer bisherigen Erfahrung sind wir zum Vertrauen berechtigt, dass die Natur
+”
+die Realisierung des mathematisch denkbar Einfachsten ist.“
+
+                                                                         Albert Einstein
+
+
+In Mathematics and Physics, people have always tried to model natural phenomena.
+With so called dynamical systems – in general non-linear – processes from various fields
+such as Biology, Physics and Economy can be described. Often we are interested in the
+longtime behavior of a system, such as the development of a population size in time.
+
+    From a mathematical point of view, a dynamical system is a self-map
+
+                                       ϕ∶S→S
+
+on a state space S which contains all possible states the system can take. By repeated
+application of the dynamics we can draw conclusions on the evolution of a system in time.
+
+  Dynamical systems are crucial objects in the mathematical discipline Ergodic Theory,
+which has its origin in Mathematical Statistics and the considerations of Maxwell and
+Boltzmann in thermodynamics. It was born as a mathematical field in the 1930s due
+to the path-breaking work of von Neumann and Birkhoff. Today, characteristic for Er-
+godic Theory is its interplay with diverse other mathematical fields like Number Theory,
+Probability Theory, Topology, Operator Theory and Functional Analysis.
+
+   At the intersection of Ergodic Theory and Operator Theory lies the so-called Koop-
+man linearization which is named after Birkhoff’s student Bernard Koopman. With
+this less common kind of linearization of dynamical systems the perspective is changed
+from the state space to an observable space. We consider how observables on the state
+space change after application of the dynamical system, which induces a bounded linear
+operator on a Banach space, the Koopman operator.
+
+   We demonstrate this change in three steps with an example. We call the lowest level
+of modelling the technical space. An object in the technical space could, e.g., be a bar
+where we are interested in the heat distribution on it, or a simple box containing mov-
+ing molecules of a gas. The question then becomes how to capture these objects in a
+mathematical language.
+
+
+
+
+2
+3                                                        CHAPTER 1. INTRODUCTION
+
+
+   In the mathematical model the box is a subset of R3 . Each of the n particles of
+the gas we assign three position and velocity components which depend on the time of
+measurement. All states which are in principle possible, thus in this case all vectors in
+R6n which consist of reasonable velocities and positions of all n particles in the box, are
+collected in the state space S. For the bar B which can be simplified to an interval in
+R a state space suggesting itself is the set C(B) of all continuous functions on B as set
+of heat distributions.
+
+   The change of the system is described by a dynamics ϕ ∶ S → S which gives how a state
+in S has developed after one time step. The snapshot of all particles in the box looks
+different after one time step and the heat distribution has gone over to another heat
+distribution, thus a new continuous function serves as its description. The development
+of the system after n time steps is found in the iterate ϕn .
+
+  However, with the model of the state space we quickly reach a limit: The problem is
+that a precise identification of the states is often not possible or even nonsensical. For
+example, it may not be possible to determine the position and velocity components of
+each particle in the box. Therefore, instead of considering the whole system, we only
+consider certain key figures of a state such as the total heat of the bar or the temperature
+at some point. If the observable f ∶ S → R yields the temperature at a certain point of
+the bar, we thus consider the temperature f (ϕ(x)) after one time step.
+
+  We have now changed from the state space to the observable space, which usually is
+a vector space F of yet unspecified functions
+
+                                     F ∶= {f ∶ S → R}.
+
+On this space operates the Koopman operator
+
+                                  Tϕ ∶ F → F,   f ↦f ○ϕ
+
+as a linear operator. Through the transition from (S; ϕ) to (F; Tϕ ), we change to a
+linear system. This is a global linearization, in contrast to conventional linearizations.
+Astonishingly – as we will see later – the Koopman system (F; Tϕ ) contains for a suitable
+choice of F in some sense all information about the dynamical system (S; ϕ).
+
+   Because of these and other reasons the Koopman linearization seems to be quite
+promising for applications e.g. in fluid mechanics. Igor Mezic (University of California,
+Santa Barbara) propagates an Applied Koopmanism“ (see [BMM12]), where conclu-
+                                ”
+sions are drawn from the Koopman operator and its eigenvalues to non-linear phenom-
+ena.
+
+  A relevant contribution from the standpoint of pure Mathematics is the forthcoming
+book Operator Theoretic Aspects of Ergodic Theory“ [EFHN15] by Tanja Eisner (Uni-
+      ”
+versität Leipzig), Bálint Farkas (Bergische Universität Wuppertal), Markus Haase (Delft
+                                                                                    4
+
+
+University of Technology) and Rainer Nagel (Eberhard-Karls-Universität Tübingen), on
+which this diploma thesis is based.
+
+  A first step to build the bridge from pure Mathematics to applications is to better
+understand what happens in the change from a dynamical system to the corresponding
+Koopman system. Inspired by the lecture Ergodentheorie“ by Dr. Roland Derndinger
+                                           ”
+during the fall semester 2014/2015 at the University of Tübingen, this diploma thesis
+shall be a small contribution to this untertaking.
+2 Dynamical systems and Koopman
+  systems
+2.1 Dynamical systems
+We begin with an introduction into the mathematical theory of dynamical systems and
+determine some of their crucial properties.
+
+
+    Definition 2.1.1. A topological dynamical system is a pair (K; ϕ) where K is a
+    nonempty compact space and ϕ ∶ K → K a continuous mapping.
+
+
+Remark 2.1.2. In this thesis we concentrate on topological dynamical systems and
+use the short form dynamical system“ or just system“ for a topological dynamical
+                     ”                            ”
+system. A measure-preserving dynamical system is a tuple (X, Σ, µ; ϕ) where (X, Σ, µ) is
+a probability space and ϕ ∶ X → X a measurable mapping which is measure-preserving,
+i.e., µ(ϕ−1 (A)) = µ(A) for every A ∈ Σ. For further information on measure-preserving
+dynamical systems we refer to [EFHN15, Chap. 5].
+
+Remark 2.1.3. Note that for a dynamical system (K; ϕ) with ϕ bijective, also (K; ϕ−1 )
+is a dynamical system, called the backward system.
+
+     We give some first examples of dynamical systems.
+
+Example 2.1.4. (i) Let K ∶= {1, ..., n}, n ∈ N, be a finite state space with the discrete
+   topology. Then every mapping ϕ ∶ K → K is continuous, thus (K; ϕ) is a system.
+
+    (ii) For K ∶= [0, 1] and ϕ ∶ K → K, x ↦ 4x(1 − x) a so-called logistic map, (K; ϕ) is
+         a dynamical system. The interested reader may find further information on this
+         system in [Dev03].
+
+(iii) Let K ∶= T be the torus in C and choose a ∈ T. Then the rotation
+
+                                        ϕ ∶ T → T, z ↦ az
+
+        is a continuous mapping, thus (K; ϕ) is a dynamical system also denoted by (T; a).
+        The rotation is called rational if the rotation element a is a root of unity and
+        irrational if a is not a root of unity.
+
+
+
+6
+7               CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+(iv) Consider the finite dimensional Banach space X ∶= (Ck ; ∥ ⋅ ∥), let A ∈ L(X) be a
+     contractive matrix, that is ∥A∥ ≤ 1, and consider its restriction A∣U to the closed
+                                                                            k
+
+       unit ball Uk ∶= {x ∈ Ck ∶ ∥x∥ ≤ 1}.Then (Uk ; A∣U ) is a dynamical system. This
+                                                         k
+       example will be studied in more detail in Section 3.1.
+  In the following we introduce several notions and properties which are fundamental
+to describe dynamical systems.
+To understand a dynamical system, a major question to investigate is: How does the
+system evolve in time, i.e., what can we say about the iterates ϕ, ϕ2 , ϕ3 , ...? Therefore,
+a useful object to consider is the orbit of a point x ∈ K.
+
+
+    Definition 2.1.5. Let (K; ϕ) be a dynamical system and x ∈ K. Then the orbit of x
+    is the set of the iterates
+                               orb(x) ∶= {ϕn (x) ∶ n ∈ N0 }.
+
+
+ The orbits of a dynamical system can be highly complex sets even if the map is simple.
+An important role also plays the closure of an orbit which we denote by
+
+                                     orb(x) ∶= orb(x).
+
+
+
+  Some dynamical systems have points from which basically the whole state space can
+be reached under repeated action of the dynamics ϕ. This behavior is expressed by the
+next definition.
+
+    Definition 2.1.6. Let (K; ϕ) be a dynamical system. A point x ∈ K is called
+    transitive if its orbit orb(x) is dense in K, i.e. orb(x) = K.
+    A dynamical system (K; ϕ) is called transitive if there is at least one transitive
+    point.
+
+
+Example 2.1.7. (i) For the one-point compactification K1 ∶= N ∪ {∞} and the two-
+   point compactification K2 ∶= Z ∪ {±∞} consider the shifts
+                                                 ⎧
+                                                 ⎪
+                                                 ⎪n + 1 for n ∈ N
+                              ϕ1 ∶ K1 → K1 , n ↦ ⎨
+                                                 ⎪
+                                                 ⎩∞
+                                                 ⎪      for n = ∞
+
+       and
+                                                ⎧
+                                                ⎪
+                                                ⎪n + 1 for n ∈ Z
+                             ϕ2 ∶ K2 → K2 , n ↦ ⎨
+                                                ⎪
+                                                ⎩±∞
+                                                ⎪        for n = ±∞.
+       Then (K1 ; ϕ1 ) is transitive since 1 is a transitive element, but (K2 ; ϕ2 ) is not
+       transitive.
+2.1. DYNAMICAL SYSTEMS                                                                       8
+
+
+ (ii) Consider the symmetric tent map on [0, 1],
+                                        ⎧
+                                        ⎪
+                                        ⎪2x         if 0 ≤ x < 21
+                                ϕ(x) ∶= ⎨
+                                        ⎪
+                                        ⎩2 − 2x if 2 ≤ x ≤ 1.
+                                        ⎪
+                                                       1
+
+
+      Then z ∈ [0, 1] where z contains all finite combinations of 0 and 1 in its represen-
+      tation in the binary numeral system, e.g. ordered the lexicographic order
+                                z ∶= (0, 0 1 00 01 10 11 000 001 ...)2 ,
+                                        ®®®®®®°°
+     is a transitive element.
+(iii) It is well-known that for z ∈ T, the set of powers {z n ∶ n ∈ N} is dense in T if and
+      only if z is not a root of unity. This implies that the torus rotation is transitive if
+      and only if the rotation is irrational (see e.g. [EFHN15, Ex. 2.37]).
+  The iterates of the irrational torus rotation at any point on the unit circle behave in a
+way that they never reach the same point twice, but come back arbitrarily close to any
+point. Points may show several ways of returning in some sense. Such behavior can be
+described by their orbits.
+
+  Definition 2.1.8. A point x ∈ K is called
+
+    (i) recurrent if for any open neighborhood U of x there exists some m ∈ N such
+        that ϕm (x) ∈ U .
+
+   (ii) almost periodic if for every open neighborhood U of x the set
+        M ∶= {m ∈ N ∶ ϕm (x) ∈ U } of return times has bounded gaps, i.e. there is N ∈ N
+        such that M ∩ [n, n + N ] ≠ ∅ for all n ∈ N.
+
+  (iii) periodic if there is some m ∈ N such that ϕm (x) = x.
+
+  A system (K; ϕ) is called periodic if there is m ∈ N such that ϕm (x) = x for all x ∈ K.
+  The period of ϕ is n ∶= min{m ∈ N ∶ ϕm = id}.
+
+   Obviously, a periodic point is almost periodic and an almost periodic point is recurrent,
+but the converse directions do not hold in general. A point x ∈ K is periodic if and only
+if its orbit orb(x) consists only of finitely many elements. This is the case if and only if
+x ∈ orb(ϕ(x)) ⊆ orb(x). It is recurrent if and only if x ∈ orb(ϕ(x)).
+Example 2.1.9. (i) Let X ∶= (Ck ; ∥ ⋅ ∥) for some norm ∥ ⋅ ∥ and A ∈ L(X) be a
+   contractive asymptotic periodic matrix. A matrix is called asymptotic periodic, if
+                                                              R 0
+   there is a partially periodic matrix R ∈ Ck×k , i.e., R = ( 0 ) for a periodic matrix
+                                                              0 0
+                                             n→∞
+   R0 ∈ C , 0 ≤ l ≤ k, such that ∥A − R ∥ Ð→ 0.
+          l×l                        n    n
+
+   Then every point x ∈ U is almost periodic for the restriction of A to the unit ball
+   U in X.
+9                 CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+        Proof. Let x ∈ U and Vx an arbitrary open neighborhood of x. Then Bε (x) ⊆ Vx
+        for some ε > 0. For this ε there exists some N ∈ N such that for all n ≥ N ,
+        ∥An x − Rn x∥ < ε. Hence {n ∈ N ∶ An x ∈ Vx } ∩ [n, n + N ] ≠ ∅ for all n ∈ N, i.e.
+        {n ∈ N ∶ An x ∈ Vx } has bounded gaps.
+
+    (ii) The torus rotation is periodic if and only if the rotation element is a root of unity.
+         It is always almost periodic and recurrent (see [EFHN15, Prop. 3.12 (d)]).
+
+     A particular role is played by fixed points, i.e. periodic points with period 1.
+
+Example 2.1.10. Consider the map ϕ(x) = x3 for x ∈ [−1, 1]. Obviously, 0, 1 and
+−1 are fixed points and there are no other periodic points. Here, the fixed point 0 is
+                                                n→∞
+an attractive“ fixed point, thus ϕn (x) = x3n Ð→ 0 for x ∈ (−1, 1), and −1 and 1 are
+    ”
+  repelling“ fixed points.
+”
+   Also fundamental for the investigation of a dynamical system is the question: How
+does it mix“ the points of its state space? For this purpose we call a set S ⊆ K invariant
+         ”
+if points in S stay in S under the action of ϕ, that is ϕ(S) ⊆ S. A closed ϕ-invariant
+set S gives rise to a subsystem (S; ϕ∣S ). Of particular interest are systems that lack
+nontrivial subsystems.
+
+
+    Definition 2.1.11. A dynamical system (K; ϕ) is called minimal if the only closed
+    ϕ-invariant sets are K and ∅.
+
+
+Example 2.1.12. (i) The torus rotation has no nontrivial rotation invariant sets if
+   and only if the rotation is irrational. If the torus element is a k th root of unity ζk ,
+   then the set {1, ζk , ..., ζkk−1 } is invariant under rotation.
+
+    (ii) The tent map (see Example 2.1.7 (ii)) is not minimal since for example {0}, {0, 12 , 1},
+         {0, 14 , 12 , 1},... are closed ϕ-invariant sets.
+
+Remark 2.1.13. If (K; ϕ) is minimal, then ϕ is surjective, that is ϕ(K) = K.
+
+Proof. Assume that ϕ(K) ⊊ K. Since ϕ (ϕ(K)) ⊆ ϕ(K), ϕ(K) is a nontrivial ϕ-
+invariant set and closed, since ϕ is continuous and K compact. This contradicts the
+minimality of (K; ϕ), hence ϕ(K) = K.
+2.1. DYNAMICAL SYSTEMS                                                               10
+
+
+  The importance of minimal systems is justified by the next theorem.
+
+
+  Theorem 2.1.14. Let (K; ϕ) be a topological dynamical system. Then (K; ϕ) has
+  at least one minimal subsystem, i.e., there is some closed ∅ ≠ A ⊆ K with ϕ(A) = A
+  and (A; ϕ∣A ) minimal.
+
+
+Proof. The proof is based on Zorn’s lemma and can be found in [EFHN15, Thm. 3.5].
+
+Example 2.1.15. For a torus rotation with rotation element ζk a k th root of unity, a
+minimal subsystem is, e.g., the system (A; ζk ) with A ∶= {1, ζk , ..., ζkk−1 }.
+
+  Having introduced these properties we ask how they are related to each other.
+
+
+  Theorem 2.1.16. If a dynamical system (K; ϕ) is minimal, then every point x ∈ K
+  is transitive and almost periodic.
+
+
+Proof. Assume there is a non-transitive point x ∈ K, thus orb(x) ≠ K. Then ϕ(orb(x)) ⊆
+orb(x), hence orb(x) is a nontrivial closed ϕ-invariant set, which contradicts the mini-
+mality of (K; ϕ). That every point is almost periodic see [EFHN15, Prop. 3.12 (b)].
+
+Remark 2.1.17. Note that Theorem 2.1.16 also shows that every point in a minimal
+dynamical system is recurrent. This means that in a system that does not contain a
+nontrivial subsystem, every point returns arbitrarily close to itself under the repeated
+action of ϕ.
+
+  The next proposition reveals that the converse of Theorem 2.1.16 holds true.
+
+  Proposition 2.1.18. If a topological system contains a transitive and almost peri-
+  odic point, then it is minimal.
+
+
+Proof. See [EFHN15, 3.12 (a)].
+  Theorem 2.1.16 and Proposition 2.1.18 give the following.
+
+
+  Lemma 2.1.19. A point x ∈ K is almost periodic if and only if (orb(x); ϕ∣orb(x) ) is
+  minimal.
+11           CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  Theorem 2.1.16 and the existence of a minimal subsystem in Theorem 2.1.14 yields
+the following famous theorem.
+
+
+ Theorem 2.1.20 (Birkhoff). Every topological dynamical system contains at least
+ one almost periodic, hence recurrent point.
+2.2. KOOPMAN SYSTEMS                                                                 12
+
+
+2.2 Koopman systems
+Every dynamical system gives rise to a Koopman system“ yielding a linearization of
+                                          ”
+the original dynamical system. This will be explained in more detail in the following
+sections. A major goal of this thesis is to achieve a better understanding of the change
+from a dynamical system to its Koopman system and vice versa. Having discussed
+dynamical systems in the previous section, we now introduce Koopman systems.
+
+
+  Definition 2.2.1. For a dynamical system (K; ϕ) the Koopman operator corre-
+  sponding to ϕ on the observable space F is
+
+                                 Tϕ ∶ F → F, f ↦ f ○ ϕ
+
+  for a subspace F ⊆ {f ∣ f ∶ K → C}, which is Tϕ -invariant. The Koopman system,
+  consisting of the observable space F and the Koopman operator Tϕ , is denoted by
+  (F; Tϕ ).
+
+
+Remark 2.2.2. For a topological dynamical system (K; ϕ) the natural choice of the
+observable space is F ∶= C(K) where C(K) denotes the space of continuous complex-
+valued functions on the compact set K.
+For a measure-preserving dynamical system (X, Σ, µ; ϕ) the space F ∶= Lp [X, µ] of p-
+integrable functions, 1 ≤ p ≤ ∞, suggests itself as observable space.
+
+Remark 2.2.3. Sometimes the Koopman operator is also referred to as composition
+operator.
+
+  The change from the dynamical system (K; ϕ) to its Koopman system (C(K); Tϕ )
+consists of two steps: The transition from the state space K to the observable space
+C(K) and the transition from the dynamics ϕ to the operator Tϕ . We first give some
+insights into what is gained by going from K to C(K).
+
+
+
+2.2.1 The observable space C(K)
+We consider the space
+
+                          C(K) ∶= {f ∶ K → C ∣ f continuous}
+
+for a compact set K as observable space and outline some of its crucial properties.
+If we endow C(K) with the supremum norm ∥⋅∥, defined by ∥f ∥ ∶= sups∈K ∣f (s)∣ for every
+f ∈ C(K), then it becomes a Banach space. But C(K) is even a so-called C ∗ -algebra.
+13                 CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  Definition 2.2.4. A vector space (A, +) over R or C is called an algebra if there is
+  a multiplication
+                               A × A → A, (a, b) ↦ ab
+  which is associative and bilinear, i.e., it satisfies
+
+                                            (ab)c = a(bc),
+
+                                        a(b + c) = ab + ac,
+                                           (b + c)a = ba + ca
+  and
+                                            (λa)b = a(λb)
+  for every a, b, c ∈ A and λ ∈ C. Moreover, there is a unit element e ∈ A satisfying
+
+                                              ea = ae = a
+
+  for every a ∈ A.
+  An algebra A which is also a Banach space for some norm ∥ ⋅ ∥ is called a Banach
+  algebra if
+                                   ∥ab∥ ≤ ∥a∥∥b∥
+  for all a, b ∈ A.
+  A complex Banach algebra A with an involution, that is, a mapping
+  ∗ ∶ A × A → A, a ↦ a∗ satisfying (a∗ )∗ = a, (a + b)∗ = a∗ + b∗ , (λa)∗ = λ̄a∗ and
+  (ab)∗ = b∗ a∗ for all a, b ∈ A, λ ∈ C, is called a C ∗ -algebra if
+
+                                             ∥a∥2 = ∥a∗ a∥
+
+  for all a ∈ A.
+
+
+Remark 2.2.5. In literature you find definitions of an algebra both with and without
+a unit element. We shall consider only algebras with a unit element.
+
+   We see that C(K) satisfies all these properties for the pointwise addition and multi-
+plication. It is a Banach space, has the unit element 1K , for f, g ∈ C(K) also f ⋅g ∈ C(K)
+and
+                    ∥f g∥ = sup ∣f (s)g(s)∣ ≤ sup ∣f (s)∣ sup ∣g(s)∣ = ∥f ∥∥g∥.
+                            s∈K                  s∈K         s∈K
+
+Moreover, the pointwise complex conjugation is an involution with
+                                                                                   2
+         ∥f f ∥ = sup ∣f (s)f (s)∣ = sup ∣∣f (s)∣2 ∣ = sup ∣f (s)∣2 = (sup ∣f (s)∣) = ∥f ∥2 .
+                    s∈K              s∈K               s∈K            s∈K
+
+Therefore, C(K) is a commutative C ∗ -algebra.
+2.2. KOOPMAN SYSTEMS                                                                  14
+
+
+  In the following we introduce ideals as important objects in C ∗ -algebras and charac-
+terize them in C(K).
+
+
+  Definition 2.2.6. An (algebra) ideal is a subspace I ⊆ A of a commutative Banach
+  algebra A such that for a ∈ I, b ∈ A also ab ∈ I.
+  An ideal I ≠ A is called maximal if for any ideal J ⊆ A with I ⊆ J, either J = I or
+  J = A.
+
+
+  In Section 2.3.3 we will see the importance of closed ideals in C(K) for the connection
+between a dynamical system and its Koopman operator.
+The closed ideals in C(K) are readily determined: For a closed subset M ⊆ K define
+
+                            IM ∶= {f ∈ C(K) ∶ f ≡ 0 on M }.
+
+Then IM is a closed ideal. The next theorem tells us that this gives all closed ideals in
+C(K).
+
+
+  Theorem 2.2.7. For every closed ideal I ⊆ C(K) there exists a closed subset M ⊆ K
+  such that I = IM .
+
+
+Proof. See [EFHN15, Thm. 4.8].
+
+  As a corollary we determine the maximal ideals in C(K).
+
+
+  Corollary 2.2.8. An ideal I ⊆ C(K) is maximal if and only if there is some x ∈ K
+  such that I = I{x} .
+
+
+Proof. See [EFHN15, Lemma 4.9].
+
+  We know that C(K) is a commutative C ∗ -algebra. The Gelfand-Naimark theorem
+states that, conversely, every commutative C ∗ -algebra is - up to isomorphy - a C(K)
+for some compact space K.
+
+
+  Theorem 2.2.9 (Gelfand-Naimark). Let A be a commutative C ∗ -algebra. Then
+  there is a unique compact space K and an isometric ∗-isomorphism such that
+
+                                       A ≅ C(K).
+
+
+Proof. See [EFHN15, Thm. 4.23].
+15              CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+Example 2.2.10. Consider the space X ∶= (B(S), ∥ ⋅ ∥), where B(S) is the space of
+bounded complex-valued functions on a set S with the usual supremum norm and point-
+wise addition and multiplication. Clearly, X is a commutative C ∗ -algebra. Therefore
+there exists some K such that B(S) ≅ C(K). This is remarkable since S is an arbitrary
+set without any topological structure.
+
+  The Gelfand-Naimark theorem is very useful since there are many important functional
+analytic results known about X ∶= (C(K), ∥ ⋅ ∥), like the Arzelà-Ascoli theorem, the
+Weierstraß theorem and its generalization, the Stone-Weierstraß theorem. We will
+briefly recall them to emphasize the rich structure of C(K).
+
+
+  Theorem 2.2.11 (Arzelà-Ascoli). Let K be a compact space and M ⊆ C(K). Then
+  the following assertions are equivalent:
+
+     (i) The set M is relatively compact, i.e., M is compact.
+
+     (ii) The set M is bounded and equicontinuous.
+
+
+Proof. The proof can be found in [DS58, Thm. IV.6.7]
+
+
+  Theorem 2.2.12 (Stone-Weierstraß). For a compact space K, let A ⊆ C(K) be a
+  conjugation invariant subalgebra of C(K) such that 1 ∈ A and A separates the points
+  of K. Then A is dense in C(K).
+
+
+Proof. See [Wer11, Thm. VIII.4.7].
+
+Remark 2.2.13. Besides the C ∗ -algebra structure, C(K) also carries the structure of a
+Banach lattice. A Banach lattice is a vector lattice, i.e., a vector space X with an order
+ ≤“ such that sup(f, g), inf(f, g) exist for every f, g ∈ X and ∣f ∣ ∶= sup(f, −f ), which is
+”
+also a Banach space such that ∣f ∣ ≤ ∣g∣ implies ∥f ∥ ≤ ∥g∥ for all f, g ∈ X.
+
+   We conclude that we can pass from a compact space K to the highly structured space
+C(K) which provides more mathematical tools to be used. This goes at the expense of
+changing to an infinite dimensional, hence very large vector space. Moreover, we pass
+from states“ – which potentially have a physical meaning – to observables.
+     ”
+
+2.2.2 The Koopman operator Tϕ
+Having discussed the transition from the state space K to the observable space C(K),
+we now turn towards the change from the dynamics ϕ to the Koopman operator Tϕ .
+First, we specify the basic properties of Tϕ .
+2.2. KOOPMAN SYSTEMS                                                                       16
+
+
+  Theorem 2.2.14. Let (K; ϕ) be a dynamical system and (C(K); Tϕ ) the corre-
+  sponding Koopman system, that is, Tϕ ∶ C(K) → C(K), f ↦ f ○ ϕ. Then the Koop-
+  man operator Tϕ has the following properties:
+
+    (i) Tϕ is linear and multiplicative.
+
+   (ii) Tϕ is contractive.
+
+  (iii) Tϕ is a lattice operator, i.e., Tϕ ∣f ∣ = ∣Tϕ f ∣ for every f ∈ C(K).
+
+  (iv) Tϕ is a Markov operator, i.e., Tϕ 1K = 1K .
+
+
+Proof. The Koopman operator Tϕ is linear since
+                    Tϕ (f + g) = (f + g) ○ ϕ = f ○ ϕ + g ○ ϕ = Tϕ f + Tϕ g
+for all f, g ∈ C(K) and
+                                  Tϕ (λf ) = λf ○ ϕ = λTϕ f
+for λ ∈ C. It is multiplicative since
+                                    Tϕ (f ⋅ g) = Tϕ f ⋅ Tϕ g
+for all f, g ∈ C(K) and a contraction since ∥Tϕ ∥ = sup∥f ∥≤1 ∥Tϕ f ∥ = sup∥f ∥≤1 ∥f ○ ϕ∥ ≤ 1.
+Moreover,
+                             Tϕ ∣f ∣ = ∣f ∣ ○ ϕ = ∣f ○ ϕ∣ = ∣Tϕ f ∣
+for every f ∈ C(K) and
+                                    Tϕ 1K = 1K ○ ϕ = 1K .
+
+
+Remark 2.2.15. From property (iv) in Theorem 2.2.14 follows that 1 always belongs
+to the point spectrum P σ(Tϕ ) with 1K as a corresponding eigenfunction. This implies
+that the fixed space of Tϕ is one-dimensional if and only if Fix(Tϕ ) = ⟨1K ⟩.
+Example 2.2.16. Consider the system (K; ϕ) and its Koopman system (C(K); Tϕ ),
+where
+                                K ∶= {1, ..., n}
+is a finite state space and
+                                  ϕ ∶ {1, ..., n} → {1, ..., n}.
+Since K is finite, C(K) ≅ Cn , thus every f ∈ C(K) can be seen as a vector f = (f (1), ..., f (n)).
+The action of the Koopman operator is Tϕ f = (f (ϕ(1)), ..., f (ϕ(n))), hence Tϕ can be
+represented by a matrix with entries 0 and 1 with exactly one 1 in every row. Conversely,
+a matrix corresponds to a Koopman operator if and only if it is of this form. If ϕ is a
+permutation, then Tϕ is a permutation matrix. Clearly, dim Fix(Tϕ ) = 1 if and only if
+ϕ is a cyclic permutation.
+17               CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+   As seen above, Tϕ is an algebra homomorphism on C(K), i.e. it is linear, multi-
+plicative and Tϕ 1K = 1K . Conversely, every algebra homomorphism is a Koopman
+operator.
+
+
+  Theorem 2.2.17. Let T ∶ C(K) → C(K) be a bounded linear operator. Then T is
+  an algebra homomorphism if and only if there is a continuous mapping ϕ ∶ K → K
+  such that T = Tϕ . In this case, ϕ is uniquely determined and ∥T ∥ = 1.
+
+
+Proof. The proof is based on Gelfand’s theorem and can be found in [EFHN15, Thm.
+4.13].
+   This theorem implies that important information is preserved when going from a
+dynamical system to its Koopman system. For more details see Section 2.3.1.
+The following lemma gives a first correspondence between properties of ϕ and properties
+of Tϕ .
+
+
+  Lemma 2.2.18. Let (K; ϕ) be a dynamical system with corresponding Koopman
+  system (C(K); Tϕ ). Then
+
+     (i) ϕ is surjective if and only if Tϕ is injective.
+
+     (ii) ϕ is injective if and only if Tϕ is surjective.
+
+
+Proof. (i) Let f , g ∈ C(K) with f (x) ≠ g(x) for some x ∈ K. If ϕ is surjective, then
+there is y ∈ K such that ϕ(y) = x, and the injectivity of Tϕ follows from
+                      Tϕ f (y) = f (ϕ(y)) = f (x) ≠ g(x) = g(ϕ(y)) = Tϕ g(y).
+
+
+Conversely, assume that there is x ∈ K such that x ∉ Im ϕ. By Urysohn’s lemma there
+is f ∈ C(K) with f ∣   = 0 and f (x) ≠ 0. Then Tϕ f = f ○ ϕ = 0, which contradicts the
+                        ϕ(K)
+injectivity of Tϕ .
+
+(ii) If ϕ is not injective, i.e. ϕ(x) = ϕ(y) for some x ≠ y ∈ K, then for f ∈ Im Tϕ
+                      f (x) = Tϕ g(x) = g(ϕ(x)) = g(ϕ(y)) = Tϕ g(y) = f (y)
+for some g ∈ C(K), thus Im Tϕ ≠ C(K).
+                                                         l ○ϕ = idK . For an arbitrary f ∈ C(K)
+If ϕ is injective it has a left inverse, i.e. ϕl−1 with ϕ−1
+choose g ∈ C(K) with g∣ϕ(K) = f ○ ϕ−1     l  . Then
+
+                                  Tϕ g = g ○ ϕ = f ○ ϕ−1
+                                                      l ○ ϕ = f,
+
+hence Tϕ is surjective.
+2.2. KOOPMAN SYSTEMS                                                                           18
+
+
+  Depending on the dynamics ϕ, the Koopman operator Tϕ can have the following
+useful property.
+
+  Definition 2.2.19. The Koopman operator Tϕ is called mean ergodic if the Cesàro
+  means An ∶= n1 ∑n−1      i
+                    i=0 Tϕ are convergent in the strong operator topology, i.e., An f is
+  convergent in ∥ ⋅ ∥ for every f ∈ C(K).
+
+
+  We refer to [EFHN15, Chap. 8 and 10] for a systematic study of mean ergodic oper-
+ators on Banach spaces.
+
+Remark 2.2.20. If T is mean ergodic, then the limit in the strong operator topology
+P ∶= limn→∞ An is a projection and Im P = Fix(Tϕ ).
+
+Proof. For f ∈ C(K),
+                               n−1                     n−1
+            Tϕ P f = lim n1 ∑ Tϕ i+1 f = lim n1 ∑ Tϕ i f − n1 f + n1 Tϕ n f = P f,
+                       n→∞                     n→∞
+                               i=0                     i=0
+
+thus Im P ⊆ Fix(Tϕ ). Conversely, for f ∈ Fix(Tϕ ), An f = f for all n ∈ N, thus P f = f .
+This also implies P 2 = P , thus P is a projection.
+
+Example 2.2.21. Consider the rotation system (T; a) for some a ∈ T and its corre-
+sponding Koopman system (C(T); Ta ). We show that Ta is mean ergodic (cf. [EFHN15,
+Prop. 10.10]):
+If a = ζk for a k th root of unity, then we obtain for any n ∶= mk + l with m ∈ N0 and
+0≤l ≤k−1
+
+                                       n−1                 k−1       l−1
+                                                   1
+                         An =        1
+                                       ∑   T i
+                                               =        (m ∑   T i
+                                                                   + ∑   Tai )
+                                     n
+                                       i=0
+                                            a
+                                                 mk + l    i=0
+                                                                a
+                                                                     i=0
+
+                                        1 k−1 i         1 l−1 i
+                               =             ∑ a T +        ∑T .
+                                     k + ml i=0      mk + l i=0 a
+         n→∞
+Then An Ð→ k1 (∑k−1
+                i=0 Ta ) even in the operator norm.
+                     i
+
+
+
+   If a is not a root of unity, then consider the monoms gk ∶ T → T, z ↦ z k for k ∈ Z. Then
+lin{gk ∶ k ∈ Z} is a conjugation invariant subalgebra which contains 1T and separates
+the points of T, thus it is dense in C(T) by the Stone-Weierstraß theorem. Since Tϕ is a
+contraction, also each An is a contraction and it is therefore sufficient to show that the
+An converge on lin{gk ∶ k ∈ Z}. Indeed,
+                             n−1                       n−1
+                                                                             1 − akn n→∞
+          ∥An gk ∥ = sup ∣ n1 ∑ Tai gk (z)∣ = sup ∣ n1 ∑ aik z∣ = sup ∣ n1          z∣ Ð→ 0.
+                      z∈T    i=0                z∈T    i=0         z∈T       1 − ak
+19            CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+2.3 From a dynamical system to a Koopman system
+    and back
+2.3.1 Isomorphy of dynamical systems and Koopman systems
+In this section we shall discuss in which sense information about a dynamical system
+(K; ϕ) is preserved in the corresponding Koopman system (C(K); Tϕ ). Before doing so,
+we have to specify which kind of properties of a dynamical system are relevant.
+Dynamical systems that are isomorphic“, i.e. basically the same, should have the same
+                              ”
+properties. This means that properties are considered as relevant if they are invariant
+under isomorphy. What isomorphy means shall be be specified now.
+
+  Definition 2.3.1. Two topological dynamical systems (K; ϕ) and (L; ψ) are called
+  isomorphic if there is a homeomorphism θ ∶ K → L such that the diagram
+                                                             ψ
+                                      L ........................................................ L
+                                             .                                                 .
+                                         .........                                         .........
+                                              ....                                              ....
+                                                 ...                                               ...
+                                                   ...                                               ...
+                                     θ               ...
+                                                       ...
+                                                         ...
+                                                                                                       ...
+                                                                                                         ...
+                                                                                                           ...
+                                                                                                                     θ
+                                                           ...                                               ...
+                                                             ...                                               ...
+                                                               .                                                 .
+
+                                                             ..................................
+                                     K ......................ϕ                                  K
+
+  commutes. We denote the isomorphy by (K; ϕ) ≅ (L; ψ).
+
+
+
+
+Example 2.3.2. Consider the tent map
+                                     ⎧
+                                     ⎪
+                                     ⎪2x     if 0 ≤ x < 21
+                             ϕ(x) ∶= ⎨
+                                     ⎪
+                                     ⎩2 − 2x if 2 ≤ x ≤ 1.
+                                     ⎪
+                                                1
+
+
+
+and the logistic map
+                          ψ ∶ [0, 1] → [0, 1], ψ(x) ∶= 4x(1 − x).
+
+                                                                      2
+Consider θ ∶ [0, 1] → [0, 1], θ(x) ∶= (sin( πx
+                                             2 )) which √
+                                                        is a continuous mapping with con-
+tinuous inverse θ ∶ [0, 1] → [0, 1], θ (x) ∶= π arcsin x, thus θ is an isomorphism.
+                  −1                   −1        2
+
+
+
+Then for any x ∈ [0, 1] the addition theorem yields
+
+                            πx 2            πx 2           πx     πx 2
+         ψ(θ(x)) = 4 (sin(     )) (1 − (sin( )) ) = (2 sin( ) cos( ))
+                             2               2              2      2
+                                 2
+                            πx
+                    = (sin(2 )) = (sin(πx)) .
+                                             2
+                             2
+2.3. FROM A DYNAMICAL SYSTEM TO A KOOPMAN SYSTEM AND BACK 20
+
+
+Moreover,
+
+                          ⎧
+                          ⎪                                  ⎫
+                          ⎪(sin(πx))           if 0 ≤ x < 21 ⎪
+                                     2
+                                                             ⎪
+                θ(ϕ(x)) = ⎨                                  ⎬ = (sin(πx)) ,
+                                                                          2
+                          ⎪                    if 2 ≤ x ≤ 1 ⎪
+                          ⎩(sin(π − πx))
+                                        2
+                          ⎪                                  ⎪
+                                                  1
+                                                             ⎭
+thus ψ ○ θ = θ ○ ϕ, hence ([0, 1]; ϕ) ≅ ([0, 1]; ψ).
+
+
+
+  It follows a list of properties that are invariant under isomorphy.
+
+Example 2.3.3. Let (K; ϕ) ≅ (L; ψ) be two dynamical systems with corresponding
+homeomorphism θ ∶ K → L. Then the following assertions hold.
+
+  (i) (K; ϕ) is minimal if and only if (L; ψ) is minimal.
+
+ (ii) (K; ϕ) is periodic if and only if (L; ψ) is periodic.
+
+(iii) A point x ∈ K is periodic if and only if θ(x) ∈ L is periodic.
+
+(iv) A point x ∈ K is almost periodic if and only if θ(x) ∈ L is almost periodic.
+
+ (v) A point x ∈ K is recurrent if and only if θ(x) ∈ L is recurrent.
+
+(vi) A point x ∈ K is transitive if and only if θ(x) ∈ L is transitive.
+
+Proof. (i) Let (K; ϕ) be minimal. Then for B ⊆ L with ψ(B) ⊆ B, also θ ○ ϕ ○ θ−1 (B) ⊆ B,
+     hence also ϕ(θ−1 (B)) ⊆ θ−1 (B). Since (K; ϕ) is minimal, we have θ−1 (B) = K or
+     θ−1 (B) = ∅ which implies B = θ(K) = L or B = θ(∅) = ∅. Therefore, also (L; ψ) is
+     minimal.
+
+ (ii) If ϕm = id for some m ∈ N, then ψ m ○ θ = θ ○ ϕm = θ which implies that also ψ m = id.
+
+(iii) If ϕm (x) = x for some m ∈ N, then ψ m (θ(x)) = θ(ϕm (x)) = θ(x).
+
+(iv) - (vi) are shown similarly.
+21             CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  Now we need to clarify what we mean by isomorphy in the case of two Koopman
+systems.
+
+  Definition 2.3.4. Two Koopman systems (C(K); Tϕ ) and (C(L); Tψ ) are called
+  isomorphic if there is an C ∗ -algebra isomorphism T ∶ C(L) → C(K) such that the
+  diagram
+                                                     Tψ
+                                      C(L) ......................................... C(L)
+                                                  ...                                ...
+                                                    ...                                ...
+                                                      ...                                ...
+                                                        ...                                ...
+                                                          ...                                ...
+                                                            ...                                ...
+                                       T                      ...
+                                                                ...
+                                                                  ...
+                                                                                                 ...
+                                                                                                   ...
+                                                                                                     ...
+                                                                                                            T
+                                                                    ..                                 ..
+                                            ..........                         ..........
+                                                .                                  .
+
+                                     C(K).........................................C(K)
+                                                    Tϕ
+
+  is commutative.
+
+
+
+  We relate these two notions of isomorphy.
+
+
+  Theorem 2.3.5. Two dynamical systems (K; ϕ) and (L; ψ) are isomorphic if and
+  only if the corresponding Koopman systems (C(K); Tϕ ) and (C(L); Tψ ) are isomor-
+  phic.
+
+
+Proof. If θ ○ ϕ = ψ ○ θ, choose T ∶= Tθ . Then
+
+                         Tϕ ○ Tθ f = f ○ θ ○ ϕ = f ○ ψ ○ θ = Tθ ○ Tψ f
+
+for all f ∈ C(L), hence Tϕ ○ Tθ = Tθ ○ Tψ .
+Conversely, if there is a C ∗ -algebra isomorphism T ∶ C(L) → C(K), Theorem 2.2.17
+implies that there are continuous θ ∶ K → L and θ̃ ∶ L → K such that T = Tθ and
+T −1 = Tθ̃ . Then
+                            f ○ θ̃ ○ θ = Tθ ○ Tθ̃ f = T ○ T −1 f = f
+for every f ∈ C(L) and
+                             g ○ θ ○ θ̃ = Tθ̃ ○ Tθ g = T −1 ○ T g = g
+for every g ∈ C(K), thus θ̃ = θ−1 .
+Moreover,
+                       f ○ θ ○ ϕ = Tϕ ○ Tθ f = Tθ ○ Tψ f = f ○ ψ ○ θ
+for every f ∈ C(L). Then by Urysohn’s lemma θ ○ ϕ = ψ ○ θ.
+  This theorem reveals that two dynamical systems are the same“ if and only if
+                                                            ”
+their corresponding Koopman systems are the same“ which means that by considering
+                                          ”
+(C(K); Tϕ ) in place of (K; ϕ) no important information is lost. This is remarkable and
+2.3. FROM A DYNAMICAL SYSTEM TO A KOOPMAN SYSTEM AND BACK 22
+
+
+allows us to switch from the non-linear system (K; ϕ) to the linear system (C(K); Tϕ ).
+Thus, we can work with the well-developed theory on linear operators offering a large
+toolbox of deep results. Note that the advantage of the Koopman linearization in com-
+parison to other linearizations is that it is not only local but global.
+
+  It is our goal to investigate how dynamical properties that are preserved under isomor-
+phy (see Example 2.3.3) are translated from ”downstairs” to ”upstairs”, that is, from
+the dynamical system to the Koopman system, and the other way round.
+
+2.3.2 From C(K) back to K
+In Section 2.2.1 we explained what is gained by going from K to C(K). Now we want
+to investigate the other direction, that is, going back from C(K) to K. Indeed, K can
+be recovered if C(K) is known. How to accomplish this is described in the following.
+
+  Consider the evaluation functionals δx ∈ C(K)′ , where
+
+                             δx ∶ C(K) → C, ⟨f, δx ⟩ ∶= f (x)
+
+for f ∈ C(K) and some x ∈ K. Since C(K) separates the points of K, i.e. for every
+x, y ∈ K, x ≠ y, there exists some f ∈ C(K) such that f (x) ≠ f (y), the map
+
+                                 δ ∶ K → C(K)′ , x ↦ δx
+
+is injective. Moreover, δ is continuous with respect to the weak* topology in C(K)′ ,
+hence δ is a homeomorphism onto its image. Therefore, K can be represented by the
+evaluation functionals,
+
+
+                                  K ≅ {δx ∶ x ∈ K}.                                 (2.1)
+
+   We notice that every δx is an algebra homomorphism between C(K) and C. The
+following lemma gives the converse.
+
+
+  Lemma 2.3.6. A nonzero mapping ψ ∶ C(K) → C is linear and multiplicative if
+  and only if there exists x ∈ K such that ψ = δx .
+
+
+Proof. We refer to [EFHN15, Lemma 4.10].
+  By this we can now state 2.1 as
+
+
+                 K ≅ {γ ∶ C(K) → C ∶ γ algebra homomorphism},                       (2.2)
+
+  where {γ ∶ C(K) → C ∶ γ algebra homomorphism} is endowed with the weak* topo-
+logy.
+23                CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  For another characterization of K by means of C(K), note that any maximal ideal
+I{x} = {f ∈ C(K) ∶ f (x) = 0} for x ∈ K can be expressed as I{x} = ker δx .
+Then the map Φ ∶ {δx ∶ x ∈ K} → {I{x} ⊆ C(K) ∶ x ∈ K}, δx ↦ I{x} is clearly a bijection
+and a homeomorphism if we define M ⊆ {I{x} ⊆ C(K) ∶ x ∈ K} as open if and only if
+Φ−1 (M ) is open in the weak* topology.
+  This leads to the representation
+
+
+                                 K ≅ {I{x} ⊆ C(K) ∶ x ∈ K}                            (2.3)
+
+  or alternatively to
+
+
+                       K ≅ {I ⊆ C(K) ∶ I maximal ideal in C(K)}.                      (2.4)
+
+  These characterizations mean that by knowing either the maximal ideals in C(K) or
+the algebra homomorphisms between C(K) and C, we get back K.
+
+2.3.3 Transference of dynamical properties
+In Section 2.3.1 we gave a list of properties of dynamical systems that are invariant under
+isomorphy. We now investigate how these properties are reflected in the corresponding
+Koopman system and the other way around.
+Before doing so we point out the role of the action of the Koopman operator on the
+closed ideals in C(K) which – as described in the previous section – give back the state
+space K. Indeed, from the action of Tϕ on the closed ideals we obtain the complete
+action of ϕ on K.
+
+  Lemma 2.3.7. Let n ∈ N and A, B ⊆ K closed. Then
+
+      (i) ϕn (A) ⊆ B if and only if IB ⊆ Tϕ −n IA .
+
+     (ii) A ⊆ ϕn (B) if and only if Tϕ −n IB ⊆ IA .
+
+     (iii) ϕn (A) = B if and only if IB = Tϕ −n IA .
+
+
+Proof. (i) follows from
+
+             Tϕ −n IA = {f ∈ C(K) ∶ f (ϕn (A)) ≡ 0} ⊇ {f ∈ C(K) ∶ f (B) ≡ 0} = IB
+
+if and only if ϕn (A) ⊆ B. (ii) follows from
+
+             Tϕ −n IB = {f ∈ C(K) ∶ f (ϕn (B)) ≡ 0} ⊆ {f ∈ C(K) ∶ f (A) ≡ 0} = IA
+
+if and only if A ⊆ ϕn (B). (i) and (ii) then imply (iii).
+2.3. FROM A DYNAMICAL SYSTEM TO A KOOPMAN SYSTEM AND BACK 24
+
+
+  Considering images of closed ideals under Tϕ instead of preimages yields the following
+weaker conditions.
+
+  Lemma 2.3.8. Let n ∈ N and A, B ⊆ K closed. Then
+
+   (i) if Tϕ n IB ⊆ IA , then ϕn (A) ⊆ B,
+
+   (ii) if A ⊆ ϕn (B), then IB ⊆ Tϕ n IA ,
+
+  (iii) if A = ϕn (B), then IB = Tϕ n IA .
+
+
+Proof. The condition Tϕ n IB ⊆ IA means that for any f ∈ IB it follows that f ○ ϕn ∈ IA ,
+thus ϕn (A) ⊆ B which proves (i). Clearly, for A ⊆ ϕn (B), we obtain for any f ∈ C(K)
+with f (B) ≡ 0 that f (ϕn (A)) ≡ 0, hence IB ⊆ Tϕ n IA which shows (ii). Since for
+ϕn (B) = A it follows Tϕ n IA = {f ○ ϕn ∈ C(K) ∶ f (A) ≡ 0} = {f ∈ C(K) ∶ f (B) ≡ 0} = IB
+we obtain (iii).
+  The following lemma, based on Lemma 2.3.7 and 2.3.8, gives more insight how to
+recover ϕ from Tϕ .
+
+
+  Lemma 2.3.9. (i) For any x, y ∈ K, ϕ(x) = y if and only if Tϕ I{y} = I{x} if and
+     only if I{y} = Tϕ −1 I{x} .
+
+   (ii) For every n ∈ N, Tϕ −n I{x} = I{ϕn (x)} and I{ϕn (x)} ⊆ Tϕ n I{x} .
+
+
+  In Section 2.1 we pointed out that invariant sets play an important role. They corre-
+spond to invariant ideals as a consequence of Lemma 2.3.7 and 2.3.8.
+
+  Lemma 2.3.10. For A ⊆ K the following assertions are equivalent.
+
+   (i) A is ϕ-invariant, i.e., ϕ(A) ⊆ A.
+
+   (ii) The closed ideal IA is Tϕ -invariant, that is Tϕ IA ⊆ IA .
+
+  (iii) IA ⊆ Tϕ −1 IA .
+
+
+Proof. It remains to show that (i) implies (ii). If A is ϕ-invariant, then for each f ∈ IA
+we obtain Tϕ f (A) = f (ϕ(A)) ≡ 0, thus also Tϕ f ∈ IA .
+25               CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  We now turn towards the translation of the dynamical properties. Closely connected
+to the notion of invariant sets are minimal dynamical systems. They are expressed by
+means of the Koopman system as the following.
+
+
+  Lemma 2.3.11. A system (K; ϕ) is minimal if and only if {0} and C(K) are the
+  only closed Tϕ -invariant ideals.
+
+
+Proof. By Lemma 2.3.10, K and ∅ are the only ϕ-invariant sets if and only if IK and
+I∅ are the only Tϕ -invariant closed ideals. The assertion follows from IK = {0} and
+I∅ = C(K).
+
+Remark 2.3.12. Such Koopman operators are called irreducible. For further informa-
+tion we refer to [Sch74, Chap. III, §8].
+
+  Also transitivity of a dynamical system can be characterized by the Koopman opera-
+tor.
+
+  Lemma 2.3.13. A system (K; ϕ) is transitive if and only if there is some x ∈ K
+  with ⋂n∈N0 Tϕ −n I{x} = {0} for the maximal ideal I{x} ⊆ K.
+
+
+Proof. First remark that
+                                     ⋂ Tϕ
+                                            −n
+                                                 I{x} = {0}
+                                     n∈N0
+
+if and only if
+
+                 ⋂ Iϕn (x) = {f ∈ C(K) ∶ f (ϕn (x)) = 0 for all n ∈ N0 } = {0}
+                 n∈N0
+
+
+and this holds if and only if for every 0 ≠ f ∈ C(K) there is some n ∈ N0 such that
+f (ϕn (x)) ≠ 0.
+Assume that (K, ϕ) is not transitive, i.e., there exists some y ∈ K/orb(x). Then by
+Urysohn’s Lemma we find f ∈ C(K) with f (y) = 1 and f (orb(x)) = 0, thus f (ϕn (x)) = 0
+for every n ∈ N0 . This is a contradiction, hence (K, ϕ) is transitive.
+Conversely, if (K; ϕ) is transitive, assume that there is some 0 ≠ f ∈ C(K) such that
+f (ϕn (x)) = 0 for all n ∈ N0 , that is f (orb(x)) ≡ 0. Hence f vanishes on a dense set
+in K, thus, since f is continuous, f ≡ 0 on K. This contradicts f ≠ 0 and therefore
+⋂n∈N0 Tϕ I{x} = {0}.
+         −n
+2.3. FROM A DYNAMICAL SYSTEM TO A KOOPMAN SYSTEM AND BACK 26
+
+
+  A crucial implication of transitivity is the following.
+
+
+  Lemma 2.3.14. (i) If (K; ϕ) is transitive, then the fixed space Fix(Tϕ ) is one-
+     dimensional.
+
+   (ii) If (K; ϕ) is bijective and there exists some x ∈ K such that the set
+        {ϕm (x) ∶ m ∈ Z} is dense in K, then the fixed space Fix(Tϕ ) is one-dimensional.
+
+
+Proof. To show (i), consider f ∈ Fix(Tϕ ) and x ∈ K. Then
+
+                                f (ϕn (x)) = Tϕ n f (x) = f (x)
+
+for every n ≥ 0, that is, f is constant on orb(x).
+If orb(x) = K for some x ∈ K, then since f is continuous also f (orb(x)) is dense in
+f (K). Hence every fixed function must be constant, which implies that Fix(Tϕ ) is
+one-dimensional. (ii) follows similarly.
+  To show that (ii) in 2.3.14 is a weaker condition than (i), consider the following
+example.
+
+Example 2.3.15. Let K ∶= Z ∪ {±∞} be the two-point compactification of Z. Consider
+the left-shift
+                                     ⎧
+                                     ⎪
+                                     ⎪z + 1 if z ∈ Z
+                      ϕ ∶ K → K, z ↦ ⎨
+                                     ⎪
+                                     ⎪       if z ∈ {±∞}
+                                     ⎩z
+which is continuous and bijective.
+Then {ϕm (z) ∶ m ∈ Z} = K but orb(z) = {x ∈ Z ∶ x ≥ z} ∪ {±∞} ≠ K for z ∈ Z.
+
+Remark 2.3.16. Theorem 2.1.16 implies that for a minimal dynamical system the fixed
+space Fix(Tϕ ) is one-dimensional.
+
+   The opposite direction in Lemma 2.3.14 is not true in general as illustrated by the
+following example.
+
+Example 2.3.17. Consider K ∶= [0, 1] and ϕ(x) = x2 for x ∈ [0, 1]. Then ϕ is clearly
+not transitive since orb(x) ⊆ [0, x] for any x ∈ [0, 1), thus orb(x) is not dense in [0, 1].
+The point 1 is not transitive since it is a fixed point.
+Any fixed function f ∈ Fix(Tϕ ) is constant on all orbits, f ∣orb(x) ≡ f (x) for all x ∈ K.
+Since 0 ∈ orb(x) for all x ≠ 1, this implies f (x) = f (0) for all x ∈ [0, 1). The continuitiy
+of f then implies that f is constant on [0, 1], thus that dim Fix(Tϕ ) = 1.
+27               CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  If Tϕ is mean ergodic, then the following characterization of a one-dimensional fixed
+space holds true.
+
+
+  Proposition 2.3.18. Let (K; ϕ) be a dynamical system and Tϕ be mean ergodic.
+  Then the following assertions are equivalent:
+
+      (i) dim Fix(Tϕ ) = 1
+
+     (ii) orb(x) ∩ orb(y) ≠ ∅ for every x, y ∈ K.
+
+
+Proof. For dim Fix(Tϕ ) = 1 assume that there exist x, y ∈ K such that orb(x) ∩ orb(y) = ∅.
+By Urysohn’s lemma there is some f ∈ C(K) such that f ∣orb(x) ≡ 0 and f ∣orb(y) ≡ 1. Then
+
+                                               1 n−1
+                                 An f (x) =      ∑ f (ϕi (x)) = 0
+                                               n i=0
+and
+                                              1 n−1
+                                 An f (y) =     ∑ f (ϕi (y)) = 1,
+                                              n i=0
+hence for P ∶= stop − limn→∞ also P f ∣orb(x) ≡ 0 and P f ∣orb(y) ≡ 1.
+Since Im P = Fix(Tϕ ) (confer Remark 2.2.20) this means that there is some g ∈ Fix(Tϕ )
+with g∣orb(x) ≡ 0 and g∣orb(y) ≡ 1. This contradicts Fix(Tϕ ) = ⟨1⟩.
+Conversely, let f ∈ Fix(Tϕ ). Clearly, f ∣orb(x) is constant for every x ∈ K, thus since
+orb(x) ∩ orb(y) ≠ ∅ for every x, y ∈ K, f is constant on K.
+Example 2.3.19. Consider K ∶= {± n1 ∶ n ∈ N} ∪ {0} ⊆ R which is compact in the
+subspace topology and the dynamics
+                                           1        1
+                                        ϕ(± ) ∶= ±
+                                           n       n+1
+for all n ∈ N and
+                                              ϕ(0) ∶= 0.
+Clearly limi→∞ Tϕi f (s) = f (ϕi (s)) = f (0) for every f ∈ C(K) and s ∈ K. The continuity
+of f in 0 implies
+                                                                         i→∞
+                      ∥Tϕi f ∥ = sup ∣f (ϕi (s)) =      sup        ∣f (s)∣ Ð→ f (0).
+                                s∈K                           1
+                                                     s∈K, s≤ i+1
+
+
+Thus, (Tϕ i f )i∈N is convergent in ∥⋅∥ for every f ∈ C(K), hence also the means n1 ∑n−1   i
+                                                                                     i=0 Tϕ f
+are convergent, i.e. Tϕ is mean ergodic.
+If f ∈ C(K) is a fixed function of Tϕ , then f (± n1 ) = f (± n+1 1
+                                                                    ) for all n ∈ N and the
+continuity of f implies that f ∣orb(± 1 ) is constant. For every n ∈ N, 0 ∈ orb(± n1 ), thus
+                                        n
+Fix(Tϕ ) = ⟨1⟩ by Proposition 2.3.18.
+Clearly, there is no transitive element in (K; ϕ).
+2.3. FROM A DYNAMICAL SYSTEM TO A KOOPMAN SYSTEM AND BACK 28
+
+
+   Another connection between mean ergodicity and a one-dimensional fixed space is the
+following.
+
+
+  Proposition 2.3.20. Let (K; ϕ) be a dynamical system with corresponding Koop-
+  man system (C(K); Tϕ ). Then the following assertions are equivalent.
+
+   (i) (K; ϕ) is minimal and Tϕ is mean ergodic.
+
+   (ii) Fix(Tϕ′ ) = ⟨µ⟩ for a strictly positive probability measure µ.
+
+
+Proof. We refer to [EFHN15, Cor. 10.9].
+   To give another characterization of a one-dimensional fixed space, consider a dy-
+namical system (K; ϕ) and denote by T the topology on K. Define a coarser topology
+T ′ ∶= {A ∈ T ∶ ϕ(A) ⊆ A}.
+
+
+  Theorem 2.3.21. The following assertions are equivalent:
+
+   (i) Fix(Tϕ ) = ⟨1⟩
+
+   (ii) Every continuous function f ∶ (K; T ′ ) → C is constant.
+
+
+Proof. We show
+
+               Fix(Tϕ ) = {f ∶ K → C ∶ f continuous with respect to T ′ }.
+
+Take f ∈ Fix(Tϕ ). For A ∈ T ′ also f −1 (A) ∈ T since f is continuous with respect to T .
+From Tϕ f = f follows f (ϕ(B)) = f (B) for every B ⊆ K. Thus for the choice B ∶= f −1 (A)
+we obtain f (ϕ(f −1 (A))) = f (f −1 (A)) ⊆ A, hence f −1 (f (ϕ(f −1 (A)))) ⊆ f −1 (A).
+From ϕ(f −1 (A)) ⊆ f −1 (f (ϕ(f −1 (A)))) then follows ϕ(f −1 (A)) ⊆ f −1 (A). Therefore
+f −1 (A) ∈ T ′ and f continuous with respect to T ′ .
+
+   Conversely, take any T ′ -continuous f ∈ C(K), α ∈ C and x ∈ f −1 ({α}). Consider for
+n ∈ N the open ball B 1 (α) ⊆ C. Then the preimage f −1 (B 1 (α)) is open with respect to
+                         n                                      n
+T ′ , thus it is ϕ-invariant. This implies ϕ(x) ∈ f −1 (B 1 (α)) for all n ∈ N, thus
+                                                        n
+
+
+                  ϕ(x) ∈ ⋂ f −1 (B 1 (α)) = f −1 ( ⋂ B 1 (α)) = f −1 ({α}).
+                                    n                  n
+                          n∈N                    n∈N
+
+Hence ϕ(f −1 ({α})) ⊆ f −1 ({α}). This implies that for any x ∈ K with f (x) = α also
+f (ϕ(x)) = α, i.e. Tϕ f (x) = α. Since α ∈ C was arbitrary, we obtain f ∈ Fix(Tϕ ).
+29              CHAPTER 2. DYNAMICAL SYSTEMS AND KOOPMAN SYSTEMS
+
+
+  We turn to further properties of ϕ introduced in Section 2.1.
+
+
+  Lemma 2.3.22. Let (K; ϕ) be a topological dynamical system and (C(K), Tϕ ) the
+  corresponding Koopman system. Then the orbits of Tϕ are relatively strongly com-
+  pact if and only if {ϕn ∶ n ∈ N0 } is equicontinuous.
+
+
+Proof. By the Arzelà-Ascoli theorem, {Tϕn f ∶ n ∈ N0 } = {f ○ ϕn ∶ n ∈ N0 } is strongly com-
+pact for every f ∈ C(K) if and only if it is bounded and equicontinous for every f ∈ C(K).
+Since Tϕ is a contraction and by the continuity of f , this implies that {Tϕn f ∶ n ∈ N0 } is
+strongly compact if and only if {ϕn ∶ n ∈ N0 } is equicontinuous.
+
+  The different notions that describe the returning“ of a point – recurrent, almost
+                                           ”
+periodic and periodic – are found in the Koopman system as the following.
+
+
+  Lemma 2.3.23. A point x ∈ K is recurrent if and only if ⋂n∈N Tϕ −n I{x} ⊆ I{x} .
+
+
+Proof. First notice that for f ∈ C(K), f ∣orb(ϕ(x)) = 0 if and only if f ∣orb(ϕ(x)) = 0.
+Then we have
+
+                         ⋂ Tϕ
+                                −n
+                                     I{x} = ⋂ Iϕn (x)
+                        n∈N                  n∈N
+                                          = {f ∈ C(K) ∶ f ∣orb(ϕ(x))=0 }
+                                          = {f ∈ C(K) ∶ f ∣orb(ϕ(x))=0 }
+                                          = Iorb(ϕ(x))
+                                          ⊆ I{x}
+
+if and only if {x} ⊆ orb(ϕ(x)), that is, x is recurrent.
+
+
+  Lemma 2.3.24. A point x ∈ K is almost periodic if and only if I = {0} and I = C(L)
+  are the only Tϕ∣L -invariant closed ideals contained in C(L) for L ∶= orb(x).
+
+
+Proof. This follows from Lemma 2.3.11.
+
+
+  Lemma 2.3.25. A point x ∈ K is periodic with period m ∈ N if and only if
+  Tϕm I{x} = I{x} .
+2.3. FROM A DYNAMICAL SYSTEM TO A KOOPMAN SYSTEM AND BACK 30
+
+
+Proof. For a periodic point x ∈ K the set {x} is closed and ϕm -invariant, thus
+Tϕm I{x} ⊆ I{x} by Lemma 2.3.10.         For the other inclusion, let f ∈ I{x} , then
+Tϕm f (x) = f (ϕm (x)) = f (x) = 0. Hence also Tϕm f ∈ I{x} , which implies I{x} ⊆ Tϕm I{x} .
+Conversely, if Tϕm I{x} = I{x} for some x ∈ K, assume that ϕm (x) ≠ x. Then by Urysohn’s
+lemma there is some f ∈ I{x} with f (x) = 0 and f (ϕm (x)) ≠ 0, hence Tϕm f (x) ≠ 0. This
+is a contradiction, thus x is a periodic point of ϕ.
+  The periodicity of the map ϕ, that is ϕm = id for some m ∈ N, is directly translated
+to the Koopman operator and backwards.
+
+  Lemma 2.3.26. The map ϕ is periodic if and only if Tϕ is periodic.
+
+
+Proof. For some m ∈ N we have Tϕ m f = ϕm ○ f = f for any f ∈ C(K) if and only if
+ϕm = id.
+3 Spectral properties of a Koopman
+  operator
+In this section we discuss how spectral properties of a Koopman operator are reflected
+in the underlying dynamical system and vice versa. Before doing so, we give a brief
+introduction to the spectral properties of a Koopman operator.
+First, we recall the definition of the spectrum of a linear bounded operator and some
+important parts of it.
+
+  Definition 3.0.1. Let T ∶ X → X be a linear bounded operator on a Banach space
+  X. Then the spectrum of T is the set
+
+                           σ(T ) ∶= {λ ∈ C ∶ λ − T is not bijective}
+
+  which is always nonempty and closed.
+  The most important subset is the point spectrum of T ,
+
+                         P σ(T ) ∶= {λ ∈ σ(T ) ∶ λ − T is not injective}
+
+  and, more general, the approximative point spectrum of T is defined as
+                                                                                   n→∞
+     Aσ(T ) ∶= {λ ∈ C ∶ ∃ (xn )n∈N ⊆ X with ∥xn ∥ = 1 for all n ∈ N and (λ − T ) xn Ð→ 0}.
+
+  Elements in P σ(T ) are called eigenvalues. The spectral radius of T is
+
+                                 r(T ) ∶= sup{∣λ∣ ∶ λ ∈ σ(T )}.
+
+
+  We give several observations concerning the spectrum of a Koopman operator.
+
+
+  Theorem 3.0.2. Let (K; ϕ) be a dynamical system with corresponding Koopman
+  system (C(K); Tϕ ). Then the following assertions hold true.
+
+      (i) r(Tϕ ) = 1, hence the spectrum σ(Tϕ ) is contained in the unit disk D.
+
+     (ii) Let Tϕ be bijective. Then σ(Tϕ ) is a cyclic closed subset of T.
+
+     (iii) Let Tϕ be not bijective. Then σ(Tϕ ) = {0} ∪ M for M ⊆ T cyclic or σ(Tϕ ) = D.
+
+
+
+
+32
+33           CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+Proof. (i) Clearly, r(Tϕ ) ≤ ∥ Tϕ ∥ = 1. From Tϕ 1K = 1K follows that 1 ∈ P σ(Tϕ ), thus
+     r(Tϕ ) = 1.
+
+ (ii) By assumption, 0 ∉ σ(Tϕ ). The injectivity of Tϕ implies that ϕ is surjective which
+      yields that Tϕ is isometric. Now assume that there is some λ ∈ σ(Tϕ ) such that
+      0 < ∣λ∣ < 1. Since ∂σ(Tϕ ) ⊆ Aσ(Tϕ ) (see e.g. [Sch74, above Thm. V.1.4]), assume
+      without loss of generality that λ ∈ Aσ(Tϕ ). By definition, there is a sequence
+      (fn )n∈N ⊆ C(K) with ∥fn ∥ = 1 for every n ∈ N such that
+                         n→∞
+                       0 ←Ð ∥ Tϕ fn − λfn ∥ ≥ ∣∥ Tϕ fn ∥ − ∣λ∣ ⋅ ∥fn ∥∣ = ∣1 − ∣λ∣∣ > 0.
+
+        This contradiction implies σ(Tϕ ) ⊆ T. Since Tϕ is a lattice operator, σ(Tϕ ) is
+        cyclic (see [Sch74, Thm. V.4.4]).
+
+(iii) If Tϕ is not bijective, then clearly 0 ∈ σ(Tϕ ).
+      If ϕ is surjective, then Tϕ is isometric. The same argument as in the proof of (ii)
+      gives ∂σ(Tϕ ) ⊆ T. As σ(Tϕ ) is closed, σ(Tϕ ) = D.
+      For the proof of the case that ϕ is not surjective, we refer to [Sch71, Thm. 2.7].
+
+
+   Theorem 3.0.2 reveals that there are only very few possibilities for σ(Tϕ ). This pre-
+vents it from being particularly useful for the distinction of different Koopman operators.
+Therefore, we now turn towards the point spectrum P σ(Tϕ ) which can give more in-
+sights.
+
+
+  Theorem 3.0.3.           (i) 1 ∈ P σ(Tϕ ).
+
+     (ii) If λ ∈ P σ(Tϕ ), then λk ∈ P σ(Tϕ ) for every k ∈ N0 .
+
+     (iii) P σ(Tϕ ) is cyclic, that is, for every λ = ∣λ∣eiϕλ ∈ P σ(Tϕ ) also ∣λ∣eiϕλ k ∈ P σ(Tϕ )
+           for all k ∈ Z.
+
+
+Proof. (i) follows from Tϕ 1K = 1K . The multiplicativity of Tϕ implies (ii), since if
+0 ≠ f ∈ C(K) is an eigenfunction corresponding to λ, then 0 ≠ f k is an eigenfunction
+corresponding to λk . (iii) follows from the fact that Tϕ is a lattice operator (see [Sch74,
+Cor. V.4.2])
+                                                                                           34
+
+
+  The next theorem concerns the number of eigenvalues on the unit circle.
+
+
+  Theorem 3.0.4. Let (K; ϕ) be a dynamical system with corresponding Koopman
+  system (C(K); Tϕ ). If K is metrizable, then Tϕ has at most a countable number of
+  eigenvalues on the unit circle T.
+
+
+Proof. Since K is a metrizable compact space if and only if C(K) is separable (see
+[EFHN15, Thm. 4.7]) and Tϕ is powerbounded, the assertion follows by the Jamison
+Theorem (see [Jam65]).
+
+Remark 3.0.5. Since Tϕ is a lattice operator, i.e., Tϕ ∣f ∣ = ∣ Tϕ f ∣ for every f ∈ C(K),
+we obtain for a unimodular eigenvalue λ ∈ T of Tϕ with corresponding eigenfunction
+g ∈ C(K) that
+                             Tϕ ∣g∣ = ∣ Tϕ g∣ = ∣λg∣ = ∣g∣.
+This is interesting since it reveals a connection between the eigenspaces of unimodular
+eigenvalues and the fixed space Fix(Tϕ ).
+
+Example 3.0.6. (i) Clearly, for the system (K; idK ) the corresponding Koopman
+   system is (C(K); IdC(K) ), thus P σ(Tϕ ) = {1} which is the smallest possible point
+   spectrum of a Koopman operator.
+
+ (ii) Consider `∞ (N) ∶= {x ∶= (xi )i∈N sequence in C ∶ ∥x∥∞ = supi∈N ∣xi ∣ < ∞} and the left
+      shift
+                            T ∶ `∞ (N) → `∞ (N), (xi )i∈N ↦ (xi+1 )i∈N .
+     Clearly, `∞ (N) is a commutative C ∗ -algebra. Thus by the Gelfand-Naimark theo-
+     rem there exists a compact space K such that `∞ (N) ≅ C(K) where K is isomor-
+     phic to the Stone-Ĉech compactification of N, see e.g. [Wer11, IX.5]. Since T is a
+     C ∗ -algebra homomorphism, there is a dynamics ϕ ∶ K → K such that T = Tϕ (see
+     Theorem 2.2.17).
+     Take any λ ∈ C with ∣λ∣ ≤ 1. Then (xi )i∈N ∶= (λi )i∈N ∈ `∞ (N) is an eigenfunction
+     in `∞ (N) corresponding to λ, thus P σ(Tϕ ) = D which is the largest possible point
+     spectrum of a Koopman operator. Note that this is not a contradiction to Theorem
+     3 since `∞ (N) is not separable.
+
+(iii) Now consider `∞ (Z) ∶= {x ∶= (xi )i∈Z ⊆ C ∶ ∥x∥∞ = supi∈Z ∣xi ∣ < ∞} and the left shift
+
+                            T ∶ `∞ (Z) → `∞ (Z), (xi )i∈Z ↦ (xi+1 )i∈Z .
+
+     Analogously to (ii), there exists a compact space K – which is isomorphic to the
+     Stone-Ĉech compactification of Z – such that `∞ (Z) ≅ C(K) and T = Tϕ for some
+     ϕ ∶ K → K. By Theorem 3.0.2, σ(Tϕ ) ⊆ T. By means of eigenfunctions constructed
+     as in (ii), we see λ ∈ P σ(Tϕ ) for all λ ∈ T. Thus P σ(Tϕ ) = σ(Tϕ ) = T.
+35                 CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+3.1 Spectral properties of a Koopman operator of an
+    affine finite dimensional dynamical system
+In this section we always take X ∶= (Ck ; ∥ ⋅ ∥) and a contractive matrix A ∈ L(X), i.e.,
+∥A∥ ≤ 1 for the induced operator norm. Consider the restriction of A to the closed unit
+ball U in X,
+                                     A∣U ∶ U → U,
+and the associated Koopman operator
+                                                      TA ∶ C(U ) → C(U ),                          f ↦ f ○ A∣U .
+The so constructed system is called an affine finite dimensional system.
+
+  Here the underlying dynamics comes from a linear mapping which has its own spec-
+trum. The obvious question to ask is: How is the spectrum of the corresponding Koop-
+man operator determined by the spectrum of the dynamics A?
+Remark 3.1.1. The Koopman linearization of such a dynamical system (U ; A∣U ) is
+useful to consider even if the system comes from a linear map because linearity is not
+an isomorphy invariant. This means that (U ; A∣U ) can be isomorphic to many non-
+linear systems. For (U ; A∣U ) ≅ (K; ϕ) where (K; ϕ) is a potentially non-linear system
+we have P σ(TA ) = P σ(Tϕ ) since two dynamical systems are isomorphic if and only
+if their corresponding Koopman systems are isomorphic and the point spectrum is an
+isomorphy invariant. Thus, if we draw conclusions from σ(A) on P σ(TA ), we also obtain
+conclusions on P σ(Tϕ ) (cf. [MM14]).
+Remark 3.1.2. Take any power bounded matrix on (Ck , ∥ ⋅ ∥), i.e., there exists some
+C ∈ R such that supn∈N0 ∥An ∥ ≤ C. Consider the equivalent norm 9 ⋅ 9 defined by
+9x9 ∶= supn∈N ∥An x∥ for x ∈ Ck . Then A is a contraction with respect to the norm 9 ⋅ 9.
+Thus the following results hold true even for power bounded matrices.
+    We now compare the spectra of A and TA .
+
+
+    Theorem 3.1.3. The spectrum σ(A) of the matrix A is contained in the point
+    spectrum P σ(TA ) of the corresponding Koopman operator.
+
+
+Proof. Let σ(A) = {λ1 , ..., λm } be the spectrum of A with pairwise distinct eigenvalues
+λ1 , ..., λm . The Jordan canonical form gives a decomposition of X into A-invariant cyclic
+subspaces,
+                    X=      V11 ⊕ ... ⊕ Vd11                                                  ⊕... ⊕ V1m ⊕ ... ⊕ Vdmm                                                             .
+                            ´¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹¸¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹¶        ´¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¸ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¶
+                                          subspaces associated with λ1                             subspaces associated with λm
+
+Take λ ∈ σ(A). After renumbering, let V ∶= V11 be a subspace associated with λ, hence
+                                                        X = V ⊕ V21 ⊕ ... ⊕ Vdmm =∶ V ⊕ W
+3.1. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR OF AN AFFINE
+FINITE DIMENSIONAL DYNAMICAL SYSTEM                         36
+
+where V, W are A-invariant subspaces. This decomposition admits a basis (x1 , ..., xk )
+such that (xd+1 , ..., xk ) is a basis of W and (x1 , ..., xd ) a basis of V and such that if d = 1,
+then
+                                             Ax1 = λx1
+and, if d > 1, then
+
+
+                                        Ax1 = λx1 ,
+                                        Ax2 = λx2 + x1 ,
+                                           ⋮
+                                        Axd = λxd + xd−1 .
+
+   The matrix representation of A∣V with respect to this basis is a Jordan block of size d,
+            ⎛ λ 1         ⎞
+            ⎜    ⋱        ⎟
+          ˆ⎜
+i.e., A∣V =               ⎟.
+            ⎜       λ 1 ⎟
+            ⎝           λ ⎠
+Define a linear form f˜ on X on this basis by
+
+                                       f˜(xd ) = 1,        f˜(xi ) = 0
+
+for 1 ≤ i ≤ k and i ≠ d.
+
+Then
+
+
+                                              f ∶= f˜∣U                                       (3.1)
+
+is an eigenfunction of TA to the eigenvalue λ.
+Indeed, let x = ∑ki=1 αi xi ∈ U be arbitrary. Then Ax ∈ U and if d = 1, then
+
+                                                      k                  k
+                      TA f (x) = f (Ax) = f˜(∑ αi Axi ) = ∑ αi f˜(Axi )
+                                                     i=1                 i=1
+                                                       k
+                                = α1 f˜(λx1 ) + ∑ αi f˜(Axi )
+                                                i=2  ´¹ ¹ ¹ ¹ ¸ ¹ ¹ ¹ ¹ ¶
+                                                              =0, since W
+                                                              is A-invariant
+
+                                                                               k
+                                = α1 λ f˜(x1 ) = α1 λf˜(x1 ) + λ ∑ αi f˜(xi )
+                                       ²                         i=2  ²
+                                             =1                                    =0
+
+                                = λf˜(x)
+                                = λf (x).
+37         CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+If d > 1, then
+                                              k               k
+                 TA f (x) = f (Ax) = f˜(∑ αi Axi ) = ∑ αi f˜(Axi )
+                                             i=1              i=1
+                                               d                           k
+                          = α1 f˜(λx1 ) + ∑ αi f˜(λxi + xi−1 ) + ∑ αi f˜(Axi )
+                               ´¹ ¹ ¹ ¹ ¸¹ ¹ ¹ ¹ ¶ i=2          i=d+1 ´¹ ¹ ¹ ¹ ¸ ¹ ¹ ¹ ¹ ¶
+                                     =0                                              =0, since W
+                                                                                     is A-invariant
+
+                               d
+                          = ∑ αi (λf˜(xi ) + f˜(xi−1 ))
+                              i=2
+                                                   k
+                          = αd λf˜(xd ) + λ ∑ αi f˜(xi )
+                                           i=1,i≠d ²
+                                                              =0
+
+                          = λf˜(x)
+                          = λf (x).
+Therefore,
+                                          f ≠ 0 and TA f = λf.
+
+
+
+
+ In the following we discuss the point spectrum of the Koopman operator for special
+matrices.
+
+  Theorem 3.1.4. If A is unitary, then P σ(TA ) = ⟨σ(A)⟩, where ⟨σ(A)⟩ denotes the
+  group generated by σ(A).
+
+
+Proof. We first show that λ1 ⋅ ... ⋅ λm ∈ P σ(TA ) for λ1 , ..., λm ∈ σ(A) and m ≤ k. For
+λi = λj for all i, j ∈ {1, ..., m} this follows since TA is multiplicative.
+Therefore let λi ≠ λj for some i, j and fλ1 , ..., fλm eigenfunctions associated with λ1 , ..., λm
+such that fλj (xj ) = 1, fλj (xi ) = 0, for i ≠ j and basis vectors x1 , ..., xm (constructed as
+in the proof above, after potentially a resorting of the basis vectors). It follows that
+                           TA (fλ1 ⋅ ... ⋅ fλm ) = λ1 ⋅ ... ⋅ λm fλ1 ⋅ ... ⋅ fλm .
+Moreover, fλ1 ⋅ ... ⋅ fλm ≠ 0, since for x = m1 (x1 + ... + xm ) ∈ U ,
+          (fλ1 ⋅ ... ⋅ fλm )(x) = fλ1 ( m1 (x1 + ... + xm )) ⋅ ... ⋅ fλm ( m1 (x1 + ... + xm ))
+                                                                       1
+                                = m1m fλ1 (x1 ) ⋅ ... ⋅ fλm (xm ) = m ≠ 0.
+                                                                      m
+We always have 1 ∈ P σ(TA ). Moreover, for λ ∈ P σ(TA ), λ−1 = λ̄ ∈ P σ(TA ) since P σ(TA )
+is cyclic (confer Theorem 3.0.3 (iii)) and σ(A) ⊆ T. This shows ⟨σ(A)⟩ ⊆ P σ(TA ).
+3.1. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR OF AN AFFINE
+FINITE DIMENSIONAL DYNAMICAL SYSTEM                         38
+
+
+  To show the converse inclusion, consider
+
+          S ∶= {f ∈ C(U ) ∶ f eigenfunction of TA corresponding to λ ∈ ⟨σ(A)⟩}
+
+and its linear hull
+                                                A ∶= lin S.
+Clearly, A is a conjugation invariant C ∗ -algebra. It separates the points of U , since for
+x, y ∈ U with x ≠ y, there are eigenfunctions f1 and f2 corresponding to λ1 , λ2 ∈ σ(A),
+constructed as (3.1) in the proof of Theorem 3.1.3, such that f1 (x) ≠ f2 (y). Hence by
+the Stone-Weierstraß theorem, A is dense in C(U ) with respect to ∥ ⋅ ∥∞ on C(U ).
+
+  Let µ2k be the 2k-dimensional Lebesgue measure on (U, B(U )), where B(U ) denotes
+the Borel σ-algebra on U ⊆ R2k ≅ Ck . Since A is unitary, it leaves µ2k invariant, i.e.
+µ2k (A−1 M ) = µ2k (M ) for all M ∈ B(U ) (see [Bau90, Satz I.8.3]). Therefore, we consider
+TA as a Koopman operator on L2 (U, λ2k ) corresponding to the measure-preserving dy-
+namical system (U, B(U ), λ2k ; A∣U ).
+                                                                                           2
+ Note that C(U ) is dense in L2 (U, λ2k ) with respect to the ∥⋅∥2 -norm and lin S ⊆ lin S.
+                                                                                       ∞
+
+Moreover, we showed that lin S is dense in C(U ) with respect to ∥ ⋅ ∥∞ . Hence,
+                                            2
+                                        lin S = L2 (U, λ2k ) .
+
+Since the Hilbert space L2 (U, λ2k ) allows the decomposition
+                                                         2
+                                     L2 (U, λ2k ) = lin S ⊕ S ⊥ ,
+
+we obtain S ⊥ = {0}. Assume that there is an eigenvalue λ0 ∉ ⟨σ(A)⟩ of Tϕ with corre-
+sponding eigenfunction f0 ∈ C(U ). Then for any λ ∈ ⟨σ(A)⟩ with eigenfunction f ∈ A
+the unitarity of A implies that
+
+                      (f0 ∣ f ) = (TA f0 ∣ TA f ) = (λ0 f0 ∣ λf ) = λ0 λ (f0 ∣ f ) ,
+
+thus (f0 ∣ f ) = 0. Hence f0 ∈ S ⊥ which is a contradiction. Therefore, P σ(TA ) = ⟨σ(A)⟩.
+
+
+  We can even generalize Theorem 3.1.4.
+
+
+  Theorem 3.1.5. If A is a contraction and σ(A) ⊆ T, then P σ(TA ) = ⟨σ(A)⟩.
+
+
+Proof. Consider the Jordan canonical form of A = SJS −1 . Since A is power bounded,
+every Jordan block has size one which implies that J is a diagonal matrix. Since every
+                                                                  t
+entry on the diagonal of J is unimodular, it follows that J −1 = J , i.e., J is unitary.
+39        CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+  Theorem 3.1.6. Let (K; ϕ) be a dynamical system with ∣K∣ ≥ 2. If there exists
+  some x0 ∈ K and m ∈ N such that ϕm (K) = {x0 }, then P σ(Tϕ ) = {0, 1}.
+
+
+Proof. Clearly, {0, 1} ⊆ P σ(Tϕ ) since ∣K∣ ≥ 2. For the other inclusion take λ ∈ P σ(Tϕ )
+with corresponding eigenfunction f ∈ C(K). Then
+
+                              Tϕ m f (x) = f ○ ϕm (x) = λm f (x)
+
+and hence λm f (x) = f (x0 ) for every x ∈ K. If f (x0 ) = 0, it follows λ = 0 as f ≠ 0.
+If f (x0 ) ≠ 0, then we obtain λm f (x0 ) = f (x0 ) for x ∶= x0 . This implies λm = 1. Since
+λm+1 f (ϕ(x0 )) = f (ϕ(x0 )), also λm+1 = 1, hence λ = 1.
+  This implies the following.
+
+
+  Proposition 3.1.7. For a nilpotent contractive matrix A, P σ(TA ) = {0, 1}.
+
+
+Example 3.1.8. Consider K ∶= {a, b, c} and the dynamics ϕ ∶ K → K with ϕ(a) = ϕ(b) = a
+and ϕ(c) = b. Then ϕ2 (K) = {a} and the corresponding Koopman operator is the matrix
+     ⎛1 0 0⎞
+Tϕ = ⎜1 0 0⎟ which has spectrum σ(Tϕ ) = {0, 1}.
+     ⎝0 1 0⎠
+
+
+
+  Theorem 3.1.9. If there is λ ∈ σ(A) with ∣λ∣ < 1, then 0 ∈ P σ(TA ).
+
+
+Proof. If 0 ∈ σ(A), the statement is true according to Theorem 3.1.3. So let λ ≠ 0 for all
+λ ∈ σ(A), hence A is injective. We first show that A∣U ∶ U → U is not surjective.
+Let λ ∈ σ(A) with 0 < ∣λ∣ < 1, and x an associated eigenvector. Assume that x ∈ rg(A∣U ).
+Then there is y ∈ U such that Ay = x. By the linearity of A, we have A(λy) = λx = Ax,
+and therefore A(λy − x) = 0. The injectivity of A implies y = λx , hence ∥y∥ = ∣λ∣ 1
+                                                                                      ∥x∥ > 1.
+This contradicts y ∈ U , so x ∉ rg(A∣U ). Therefore A∣U is not surjective and so TA is not
+injective 2.2.18. Hence there exists 0 ≠ f ∈ C(U ) with TA f = 0, i.e., 0 ∈ P σ(TA ).
+
+
+In the following we assume that A has an eigenvalue in the interior of the unit disk. Then
+all interior points of D belong to P σ(TA ). We begin with the one-dimensional case.
+
+
+  Theorem 3.1.10. Consider the linear mapping A ∶ C → C, x ↦ αx for some α ∈ C.
+  If 0 < ∣α∣ < 1, then D○ = {λ ∈ C ∶ ∣λ∣ < 1} ⊆ P σ(TA ).
+3.1. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR OF AN AFFINE
+FINITE DIMENSIONAL DYNAMICAL SYSTEM                         40
+
+
+Proof. Let λ ∈ D○ . As seen in Theorem 3.1.9, we have 0 ∈ P σ(TA ). Thus take λ ≠ 0 and
+construct an eigenfunction f corresponding to λ as follows:
+Construct f piecewise on the circular rings Un,n+1 ∶= {x ∈ D ∶ ∣αn+1 ∣ ≤ ∣x∣ ≤ ∣αn ∣} and write
+fn,n+1 for a function on Un,n+1 , n ∈ N0 .
+Start on the outmost circular ring U0,1 and define f0,1 first on the circles T and αT as
+                                            f0,1 (z) ∶= z
+                                            f0,1 (αz) ∶= λz
+
+
+for z ∈ T. Then extend f0,1 continuously to the ring U0,1 .
+Now define fn,n+1 for x ∈ Un,n+1 , n ≥ 1, as
+                                  fn,n+1 (x) ∶= λn f0,1 (α−n x)
+and
+                                            f (0) ∶= 0.
+A simple calculation shows that f is indeed continuous on U and satisfies f (1) = 1.
+Moreover, for any n ≥ 0 and x ∈ Un,n+1 we have
+                   TA f (x) = f (Ax) = f ( αx ) = fn+1,n+2 (αx)
+                                           ¯
+                                               ∈Un+1,n+2
+
+                              = λ f0,1 (α
+                                   n+1         −(n+1)
+                                                        αx) = λ ⋅ λn f0,1 (α−n x)
+                              = λfn,n+1 (x)
+                              = λf (x).
+Therefore, f is an eigenfunction corresponding to λ, thus λ ∈ P σ(TA ).
+
+
+Remark 3.1.11. Clearly dim Eig(λ, TA ) = ∞ for every 0 < ∣λ∣ < 1.
+Example 3.1.12. We give an explicit example for an eigenfunction corresponding to
+0 < ∣λ∣ < 1.
+First note that for every x0 ∈ U0,1 = {x ∈ D ∶ ∣α∣ ≤ ∣x∣ ≤ ∣1∣} there is some z = eiϕz ∈ T such
+that x0 lies on the continuous path α(t)eiϕz (t) from z to αz, where α(t) ∶= 1 + (∣α∣ − 1)t
+and ϕz (t) ∶= ϕz + ϕα t for 0 ≤ t ≤ 1, 0 ≤ ϕz , ϕα , ϕx0 ≤ 2π. This is shown by solving
+∣x0 ∣eiϕx0 = α(s)eϕz (s) , hence by solving the linear system
+                                    ∣x0 ∣ = 1 + (∣α∣ − 1)s
+                                    ϕx0 = ϕz + ϕα s.
+We obtain the unique solution
+                                           ∣x0 ∣ − 1
+                                    s =                                                  (3.2)
+                                            ∣α∣ − 1
+                                               ∣x0 ∣ − 1
+                                  ϕz     = ϕα            − ϕx0 .                         (3.3)
+                                                ∣α∣ − 1
+41        CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+By extending this to the unit ball U , we obtain for any x ∈ U a unique representation
+x = αn α(s)eiϕz (s) , where n ≥ 0 is the unique number such that x ∈ Un,n+1 . Even this n
+can be given explicitely. Since ∣αn+1 ∣ ≤ ∣x∣ ≤ αn , (n + 1) ln ∣α∣ ≤ ln ∣x∣ ≤ n ln ∣α∣, thus
+                                                  ln ∣x∣
+                                         n=⌊             ⌋.                                  (3.4)
+                                                  ln ∣α∣
+By means of this representation define
+
+                              f ∶ U → C, x ↦ λn (1 + (λ − 1)s) z
+
+and
+                                                f (0) ∶= 0.
+Then f is as in the proof of Theorem 3.1.10 with f0,1 (α(s)eiϕz (s) ) = (1 + (λ − 1)s) z.
+Using (3.2), (3.3) and (3.4), we obtain
+                                      ln ∣x∣                    ∣x∣ − 1 i(ϕα ∣α∣−1
+                                                                             ∣x∣−1
+                  f ∶ U → C, x ↦ λ⌊ ln ∣α∣ ⌋ (1 + (λ − 1)               )e         −ϕx )
+                                                                                         .
+                                                                ∣α∣ − 1
+
+
+
+  Next we show that the result in Theorem 3.1.10 can be extended to the space Ck .
+
+
+  Theorem 3.1.13. Consider X ∶= (Ck ; ∥ ⋅ ∥) for some norm ∥ ⋅ ∥ and a contractive
+  linear mapping A ∈ L(X). If there is α ∈ σ(A) with 0 < ∣α∣ < 1, then
+
+                               D○ = {λ ∈ C ∶ ∣λ∣ < 1} ⊆ P σ(TA ).
+
+
+Proof. Let (x1 , ..., xk ) be a basis of Ck such that for α ∈ σ(A) with 0 < ∣α∣ < 1 we have
+
+                                     Ax1 = αx1
+                                     Ax2 = αx2 + x1
+                                        ⋮
+                                     Axd = αxd + xd−1 ,
+
+i.e., the matrix representation of (x1 , ..., xd ) is a Jordan block associated to α (cf. Jordan
+canonical form in the proof of Theorem 3.1.3). Without loss of generality assume ∥xi ∥ ≤ 1
+for i = 1, .., k.
+Then 0 ∈ P σ(TA ) according to Theorem 3.1.9. Thus take 0 ≠ λ ∈ D○ and show λ ∈
+P σ(TA ). To do so we construct an eigenfunction F corresponding to λ by an analogous
+procedure as in the one-dimensional case.
+Define Fn,n+1 on Un,n+1 ∶= {x ∈ U ∶ x = ∑ki=1 µi xi with ∣αn+1 ∣ ≤ ∣µd ∣ ≤ ∣αn ∣}.
+For x ∈ U with x = ∑ki=1 µi xi and µd ∈ T, define
+
+                                               F0,1 (x) ∶= µd
+3.1. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR OF AN AFFINE
+FINITE DIMENSIONAL DYNAMICAL SYSTEM                         42
+
+
+and
+                                                                                               F0,1 (αx) ∶= λµd .
+Now extend F0,1 continuously to U0,1 such that F0,1 (x) = F0,1 (µd xd ), hence F0,1 is inde-
+pendent of the coefficients µ1 , ..., µd−1 , µd+1 , ..., µk .
+For x ∈ Un,n+1 , n ≥ 1, define
+
+                                                                Fn,n+1 (x) ∶= λn F0,1 (α−n x)
+
+and for x ∈ U0 ∶= {x ∈ U ∶ x = ∑ki=1 µi xi with µd = 0}
+
+                                                                                                                 F (x) ∶= 0.
+
+Then F ≠ 0 is continuous which can be calculated as in Theorem 3.1.10.
+Moreover, for k ≥ 1 and x = ∑ki=1 µi xi ∈ Un,n+1 ,
+                                                                                                                                                  k
+                TA F (x) = F (Ax) = F (A ∑ µi xi )
+                                                                                                                                              i=1
+
+                              ⎛                                                                        d                                                                                                                                                    k ­⎞
+                                                                                                                                                                                                                                                                                   ∉lin{xd }
+
+                           = F⎜
+                              ⎜αµ1 x1 + ∑ αµi xi + µi−1 xi−1 + ∑ Aµi xi ⎟
+                                                                                                                                                                                                                                                                                                                                  ⎟
+                              ⎝                                                                  i=2                                                                                                                                           i=d+1                                                                              ⎠
+                              ´¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹¸¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¹ ¶
+                                                                                                                                                                         ∈Un+1,n+2
+
+                           =                   Fn+1,n+2 (αµd xd )
+                           =                   λn+1 F0,1 (α−(n+1) αµd xd )
+                           =                   λ ⋅ λn F0,1 (α−n µd xd )
+                           =                   λFn,n+1 (µd xd )
+                                                                                                           k
+                           = λFn,n+1 (∑ µi xi )
+                                                                                                       i=1
+                           = λFn,n+1 (x)
+                           = λF (x) .
+
+Therefore, F is an eigenfunction corresponding to λ, thus λ ∈ P σ(TA ).
+43         CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+  From the results above we obtain the following.
+
+
+  Theorem 3.1.14. Consider X ∶= (Ck ; ∥ ⋅ ∥) for some norm ∥ ⋅ ∥ and a contractive
+  linear mapping A ∈ L(X).
+
+     (i) If there is λ ∈ σ(A) such that 0 < ∣λ∣ < 1 and σ(A) ∩ T ≠ ∅, then
+
+                                   D○ ∪ ⟨σ(A) ∩ T⟩ ⊆ P σ(TA ).
+
+     (ii) If there is λ ∈ σ(A) such that 0 < ∣λ∣ < 1 and σ(A) ∩ T = ∅, then
+
+                                       P σ(TA ) = D○ ∪ {1}.
+
+
+Proof. It remains to show P σ(TA ) ⊆ D○ ∪ {1} in (ii). This shall be proved in 4.1.9.
+  It remains open, whether the converse inclusion in 3.1.14 (i) holds true.
+3.2. PARTITIONING OF THE STATE SPACE                                                              44
+
+
+3.2 Partitioning of the state space
+We consider a dynamical system (K; ϕ) with corresponding Koopman system (C(K); Tϕ )
+and show that the point spectrum of the Koopman operator allows us to draw conclu-
+sions on the structure of K and the dynamics ϕ. In this section, ζk denotes a primitive
+k th root of unity. We first show that the dimension of the fixed space dominates the di-
+mension of eigenspaces corresponding to roots of unity. To do so, we prove the following
+more general lemma. I thank Pavel Zorin for providing the proof.
+
+
+  Lemma 3.2.1. Let K be a compact space and f1 , ..., fn ∈ C(K) linearly independent.
+  Denote M ∶= lin{f1 , ..., fn } and M k ∶= lin{g k ∶ g ∈ M } for some k ∈ N. Then
+
+                                         dim M ≤ dim M k .
+
+
+Proof. Our aim is to find n linearly independent functions in M k . For this, we first
+show that there exists some K ′ ⊆ K with ∣K ′ ∣ = n such that dim M ∣K ′ = n, where
+M ∣K ′ ∶= {f ∣K ′ ∶ f ∈ M }.
+We give a proof by induction over n. Clearly, the assertion is true for n = 1.
+For M = lin{f1 , ..., fn }, we know by induction hypothesis that there is Kn−1
+                                                                           ′
+                                                                               = {x1 , ..., xn−1 }
+such that dim lin{f1 , ..., fn−1 }∣K ′ = n − 1. Define
+                                   n−1
+
+
+                                                  n−1
+                                      f˜n ∶= fn − ∑ αi fi ∈ M
+                                                   i=1
+
+
+where the choice of α1 , ..., αn−1 is such that f˜n (xi ) = 0 for i = 1, ..., n − 1. This is possible
+since
+
+                                  ⎛ f1 (x1 ) ... fn−1 (x1 ) ⎞
+                                  ⎜     ⋮               ⋮     ⎟
+                                  ⎝f1 (xn−1 ) ... fn−1 (xn−1 )⎠
+is invertible by induction hypothesis and hence
+
+                      ⎛ fn (x1 ) ⎞ ⎛ f1 (x1 ) ... fn−1 (x1 ) ⎞ ⎛ α1 ⎞
+                      ⎜     ⋮    ⎟=⎜     ⋮               ⋮     ⎟⎜ ⋮ ⎟
+                      ⎝fn (xn−1 )⎠ ⎝f1 (xn−1 ) ... fn−1 (xn−1 )⎠ ⎝αn−1 ⎠
+has a solution.
+Now choose xn ∈ K such that f˜n (xn ) ≠ 0. Then for K ′ ∶= {x1 , ..., xn } we have
+
+                          dim lin{f1 , ..., fn−1 , f˜n }∣K ′ = dim M ∣K ′ = n.
+
+This means that M ∣K ′ = C(K ′ ) ≅ Cn and hence 1{xj } ∈ M ∣K ′ for j = 1, ..., n, i.e., there is
+λij , i, j = 1, ..., n, such that 1{xj } = ∑ni=1 λij fi ∣K ′ .
+45         CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+Clearly, 1{x1 } , ..., 1{xn } are linearly independent. Define
+                                                      n
+                                             fxj ∶= ∑ λij fi ∈ M
+                                                      i=1
+
+
+for every j = 1, ..., n. Then f{x1 } , ..., f{xn } are linearly independent since fxj ∣K ′ = 1xj .
+Since 1kxj = 1xj , also fxk1 , ..., fxkn are linearly independent for every k ∈ N. Hence we have
+constructed n linearly independent functions in M k , thus
+
+                                             dim M ≤ dim M k .
+
+
+
+Remark 3.2.2. Note that in the proof of Lemma 3.2.1, we have shown that for every
+m ∈ N with dim M ≥ m, also dim M k ≥ m for k ∈ N. This means that Lemma 3.2.1
+does not only hold true for M finite dimensional but can be generalized to M infinite
+dimensional. The same is the case for the following lemma, which follows from Lemma
+3.2.1.
+
+
+  Lemma 3.2.3. If {1, ζk , ..., ζkk−1 } ⊆ P σ(Tϕ ) and dim Fix(Tϕ ) < ∞, then
+
+                                     dim Eig(ζkl , Tϕ ) ≤ dim Fix(Tϕ )
+
+  for every l = 1, ..., k − 1.
+
+
+Proof. Let f ∈ Eig(ζkl , Tϕ ) for any 1 ≤ l ≤ k − 1. Then
+                                                             k
+                                 Tϕ f k = (Tϕ f ) = (ζkl f ) = ζkl⋅k f k = f k .
+                                                  k
+
+
+Thus,
+                                   {f k ∶ f ∈ Eig(ζkl , Tϕ )} ⊆ Fix(Tϕ ).
+By Lemma 3.2.1 it follows dim Fix(Tϕ ) ≥ dim Eig(ζkl , Tϕ ).
+Based on this, we now work out a partitioning of the state space K and describe the
+behavior of the dynamics ϕ on the components in the case of a one-dimensional fixed
+space.
+
+
+  Theorem 3.2.4. Let (K; ϕ) be a dynamical system with corresponding Koopman
+  system (C(K); Tϕ ). Let {1, ζk , ζk2 , ..., ζkk−1 } ⊆ P σ(Tϕ ) and dim Fix(Tϕ ) = 1.
+  Then K is a union of k pairwise disjoint, open and closed sets K1 , ..., Kk and
+
+                           ϕ(K1 ) ⊆ K2 , ϕ(K2 ) ⊆ K3 , ..., ϕ(Kk ) ⊆ K1 .
+3.2. PARTITIONING OF THE STATE SPACE                                                              46
+
+
+Proof. Let f be an eigenfunction corresponding to ζk , hence fl ∶= f l is an eigenfunction
+to ζkl , and Eig(ζkl ) = lin{fl } since dim Eig(ζkl ) ≤ dim Fix(Tϕ ) = 1 for every l = 0, ..., k − 1
+according to Lemma 3.2.3.
+Consider the closed subspace
+                                         A ∶= lin{f1 , ..., fk },
+which is a C ∗ -algebra.
+Indeed, (A, +, ∥ ⋅ ∥∞ ) is a Banach space by definition and a Banach algebra since for arbi-
+trary g ∶= ∑ki=1 αi fi and h ∶= ∑kj=1 βj fj ∈ A, we have g⋅h = ∑ki=1 ∑kj=1 αi βj f i+j ∈ A. Moreover,
+                                                                        i
+ḡ = ∑ki=1 ᾱi f̄i ∈ A since f¯i is an eigenfunction associated with ζk = ζk−i ∈ P σ(Tϕ ). Because
+of dim Fix(Tϕ ) = 1, it follows that f k = c ⋅ 1 for some c ∈ C, hence 1 ∈ A.
+
+  Thus, by the theorem of Gelfand-Naimark [EFHN15, Theorem 4.23] there exists a
+compact space L such that
+                                   A ≅ C(L).
+Because of dim A = k, it follows that
+
+                                         L ≅ {1, 2, ..., k}.
+
+Since A ⊆ C(K), there is an injective algebra homomorphism J ∶ C(L) → C(K). By
+[EFHN15, Theorem 4.13], J is a Koopman operator, that is J = JΦ for a surjective
+continuous mapping Φ ∶ K → L.
+The continuity of Φ implies that each Φ−1 ({i}) is both open and closed in K. Since
+Φ−1 ({i}) ∩ Φ−1 ({j}) = ∅ for every i ≠ j, K can be written as a disjoint union of open
+and closed sets, i.e.,
+                                      K = ⊍ Ki ,
+                                               i∈{1,...,k}
+
+for Ki ∶= Φ−1 ({i}).
+
+  It remains to show the cyclic behavior of ϕ on K1 , ..., Kk .
+Consider the restriction Tϕ ∣C(L) which is an algebra homomorphism on C(L), hence
+
+                                           Tϕ ∣C(L) = Tψ
+
+is a Koopman operator for a continuous mapping ψ ∶ L → L [EFHN15, Theorem 4.13].
+Moreover, Tψ ∶ A → A is surjective since for any g ∶= ∑ki=1 αi fi ∈ A we have Tψ f = g
+for f ∶= ∑ki=1 αζ ii fi . It follows that ψ is injective, hence bijective as L is finite, that is,
+                 k
+ψ ∶ L → L is a permutation.
+   As L is discrete, the Koopman operator Tψ is a permutation matrix (cf. Example
+                                                                       P 0
+2.2.16). Assume that ψ has more than one cycle, i.e., Tψ = ( 1                ) with P1 and P2
+                                                                        0 P2
+                                       1         0
+permutation matrices. Then ( ) and ( ) are non-constant fixed points of Tψ which
+                                       0         1
+47        CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+contradicts dim Fix(Tϕ ) = 1.
+So ψ is a cyclic permutation without fixed points.
+  Without loss of generality, assume ψ(i) = i+1 for i = 1, ..., k −1 and ψ(k) = 1. Consider
+the following diagram
+
+                                                         Tψ
+                                          C(L) ......................................... C(L)
+                                                      .........                                         .........
+                                                        ...                                               ...
+                                                          ...                                               ...
+                                                            ...                                               ...
+                                                              ...                                               ...
+                                            J                   ...
+                                                                  ...
+                                                                    ...
+                                                                                                                  ...
+                                                                                                                    ...
+                                                                                                                      ...
+                                                                                                                               J
+                                                                      ..                                                ..
+                                                ..........                                          ..........
+                                                    .                                                   .
+
+                                         C(K).........................................C(K)
+                                                        Tϕ
+
+
+which is commutative since J is an embedding and Tψ = Tϕ ∣C(L) .
+By [EFHN15, Lemma 4.14, Cor. 4.15] this implies that also
+
+                                                                      ψ
+                                               L ........................................................ L
+                                                   ......                                              ......
+                                                ............                                        ............
+                                                       .....                                               .....
+                                                           ..                                                  ..
+                                                            ...                                                 ...
+                                           Φ                  ...
+                                                                ...
+                                                                                                                  ...
+                                                                                                                    ...
+                                                                                                                               Φ
+                                                                  ...                                                 ...
+                                                                    ...                                                 ...
+                                                                      ..                                                  ..
+
+                                                                      ..................................
+                                              K ......................ϕ                                  K
+
+
+is commutative. From Φ ○ ϕ = ψ ○ Φ, it follows that
+                                                 ⎧
+                                                 ⎪
+                                                 ⎪i + 1 for i = 1, ..., k − 1
+                Φ(ϕ(Ki )) = ψ(Φ(Ki )) = ψ({i}) = ⎨
+                                                 ⎪
+                                                 ⎪      for i = k
+                                                 ⎩1
+and therefore
+                                   ϕ(Ki ) ⊆ Φ−1 ({i + 1}) = Ki+1
+for every i = 1, ..., k − 1 and ϕ(Kk ) ⊆ K1 .
+
+
+
+  We give two examples illustrating this assertion.
+
+Example 3.2.5. Let K1 , ..., Kk be k copies of {z, ζk+1 z, ..., ζk+1
+                                                                 k
+                                                                     z} for some z ∈ T, k ≥ 1,
+and K ∶= ⊍i=1 Ki . Define
+          k
+
+                                ϕ ∶ K → K, zi ↦ ζk zi+1 ,
+where zi+1 ∈ Ki+1 mod k is a copy of zi ∈ Ki .
+Then {1, ζk , ..., ζkk−1 } ⊆ P σ(Tϕ ), because for f ∈ C(K) with f                                                                      = ζk         ⋅ 1,
+                                                                                                                                           (i−1)⋅l
+                                                                                                                                   ∣K
+                                                                                                                                    i
+
+
+
+                       Tϕ f (ζk+1
+                              j
+                                  zi ) = f (ζk+1
+                                             j+1
+                                                 zi+1 ) = ζkil ⋅ 1 = ζk f (ζk+1
+                                                                            j
+                                                                                zi )
+3.2. PARTITIONING OF THE STATE SPACE                                                             48
+
+
+for all i = 1, ..., k and j = 1, ..., k + 1 and f ≠ 0. Thus, f is an eigenfunction corresponding
+to ζkl .
+Now we show that (K; ϕ) is transitive, i.e. there is some x ∈ K such that orb(x) = K.
+Choose x = z1 . Then for any ζk+1      j
+                                          zi ∈ K for n ∶= i − 1 + (i − 1 − j)k,
+
+
+                            ϕn (z1 ) = ζk+1
+                                        n
+                                            zn−1 mod k
+                                      = ζk+1
+                                           i−1+(i−1−j)k
+                                                          zi+(i−1−j)k mod k
+                                      = ζk+1
+                                           (k+1)(i−1−j)−(i−1−j)+i−1
+                                                                         zi
+                                      = ζk+1
+                                         j
+                                             zi ,
+        j
+hence ζk+1 zi ∈ orb(z1 ) for all j = 0, ..., k, i = 1, ..., k. Therefore, (K; ϕ) is transitive which
+implies dim Fix(Tϕ ) = 1.
+Hence the conditions for Theorem 3.2.4 are fulfilled. Indeed, K = ⊍ki=1 Ki is a union of
+disjoint open and closed sets and also ϕ(K1 ) ⊆ K2 , ..., ϕ(Kk ) ⊆ K1 .
+Example 3.2.6. Let K1 , ..., Kk be k copies of T, K ∶= ⊍ki=1 Ki and
+                                      ϕ ∶ K → K, zi ↦ αzi+1
+an irrational torus rotation for zi ∈ Ki mod k , i = 1, ..., k. Clearly, there are no non-
+trivial ϕ-invariant sets, so (K; ϕ) is minimal. This implies dim Fix(Tϕ ) = 1. Moreover,
+{1, ζk , ..., ζkk−1 } ⊆ P σ(Tϕ ) since for f ∈ C(K) with f ∣T ≡ ζkil ,
+                                                                i
+
+
+                  Tϕ f (zi ) = f (ϕ(zi )) = f (αzi+1 ) = ζk          = ζkl ζkil = ζkl f (zi ),
+                                                            (i+1)l
+
+
+for every zi ∈ Ti , i = 1, ..., k.
+Hence (K; ϕ) satisfies the assumptions of Theorem 3.2.4. As we see in the definition, K
+is a disjoint union of open and closed sets and ϕ(Ki ) ⊆ Ki+1 mod k .
+
+
+
+  In the following assertion we show that for a finite dimensional fixed space a similar
+partitioning can be obtained. In general, the periodic property of ϕ gets lost.
+
+
+  Theorem 3.2.7. Let (K, ϕ) be a dynamical system with corresponding Koopman
+  system (C(K), Tϕ ). Let {1, ζk , ζk2 , ..., ζkk−1 } ⊆ P σ(Tϕ ) and dim Fix(Tϕ ) < ∞.
+  Then K is a union of d pairwise disjoint, open and closed sets K1 , ..., Kd , where
+  d ∶= ∑kl=1 dl with dl ∶= dim Eig(ζkl , Tϕ ) for every l = 1, ..., k.
+
+
+Proof. As dim Fix(Tϕ ) < ∞, also dim Eig(ζkl , Tϕ ) < ∞ for every l = 1, ..., k (see Lemma
+3.2.3). Consider the subspace
+                                                k
+                                      A ∶= lin ⋃ Eig(ζki , Tϕ )
+                                               i=1
+49         CHAPTER 3. SPECTRAL PROPERTIES OF A KOOPMAN OPERATOR
+
+
+which is a C ∗ -algebra.
+Indeed, for {f1 , ..., fd } basis of A, where fi ∈ Eig(ζkli ) for i = 1, ...d, for any g ∶= ∑di=1 αi fi
+                                                                                            l +l
+and h ∶= ∑dj=1 βj fj ∈ A also g ⋅ h = ∑di=1 ∑dj=1 αi βj fi fj ∈ A, since fi ⋅ fj ∈ Eig(ζki j , Tϕ ).
+Moreover, ḡ = ∑di=1 ᾱi f̄i ∈ A since f¯i is an eigenfunction associated with ζkli ∈ P σ(Tϕ ).
+Since 1 ∈ Eig(1, Tϕ ), 1 ∈ A.
+Continue analogously as in the proof of Theorem 3.2.4 with k = d.
+
+
+  That the periodic behavior of ϕ is in general not preserved if dim Fix(Tϕ ) ≠ 1 is pointed
+out by the next two examples.
+
+Example 3.2.8. Consider a space K consisting of elements, say, a, b, c and ϕ ∶ K → K
+with
+                          ϕ(a) ∶= b, ϕ(b) ∶= a, ϕ(c) ∶= c.
+Then C(K) ≅ C3 and
+                                Tϕ ∶ C3 → C3 , (x, y, z) ↦ (y, x, z) .
+We have {1, −1} ⊆ P σ(Tϕ ) with
+
+                                   Eig(−1, Tϕ ) = lin{(−1, 1, 0)}
+
+and
+                                Fix(Tϕ ) = lin{(0, 0, 1) , (1, 1, 1)},
+hence dim Fix(Tϕ ) = 2.
+Since K is discrete, there is a disjoint splitting of K in three open and closed sets,
+but since z is a fixed point, ϕ is not minimal, hence a periodic behavior of ϕ on the
+components is not possible.
+
+Example 3.2.9. Let K1 , ..., Kk be k copies of T and K ∶= ⊍ki=1 Ki .
+Define for α ∈ T with αn ≠ 1 for n = 1, 2, .. and zi ∈ Ki , i = 1, .., k,
+                                   ⎧
+                                   ⎪
+                                   ⎪αzi+1 mod (k−1)         for i = 1, ..., k − 1
+                   ϕ ∶ K → K, zi ↦ ⎨                                                .
+                                   ⎪
+                                   ⎪                       for i = k
+                                   ⎩αzi
+Then {1, ζk , ..., ζkk−1 } ⊆ P σ(Tϕ ) since for f ∈ C(K) with f ∣K ≡ ζkil , i ≠ k, and f ∣K = 0 we
+                                                                  i                        k
+have f ∈ Eig(ζkl , Tϕ ).
+3.2. PARTITIONING OF THE STATE SPACE                                                        50
+
+
+ The following example shows that the condition dim Eig(ζkl ) < ∞ for l = 1, ..., k in
+Theorem 3.2.7 is necessary.
+
+Example 3.2.10. Consider the rotation system (T; ζk ),
+
+                                     ϕ ∶ T → T, z ↦ ζk z
+
+and corresponding Koopman system (C(T); Tϕ ) with Tϕ f (z) = f (ζk z) for every z ∈ T.
+The fixed space is Fix(Tϕ ) = {f ∈ C(T) ∶ f is ζk -periodic}, thus dim Fix(Tϕ ) = ∞.
+Obviously, there is no non-trivial decomposition of T in disjoint open and closed sets.
+
+   By a similar example we show that Theorem 3.2.7 is in general only valid for a subset
+of the form {1, ζk , ζk2 , ..., ζkk−1 } ⊆ P σ(Tϕ ).
+
+Example 3.2.11. Let (T; α) be an irrational torus rotation, i.e., α ∈ T is not a root
+of unity. Then {1, α, α2 , ..., αk } ⊆ P σ(Tϕ ) for all k ≥ 0. We have Eig(αl , Tϕ ) = lin{pl }
+for the polynomials pl ∶ T → T, pl (z) = z l for l = 0, ..., k. Thus, all eigenspaces are
+one-dimensional, but there is no such decomposition of T as in Theorem 3.2.7.
+4 The Jacobs-de-Leeuw-Glicksberg
+  splitting of a Koopman operator
+In Chapter 1 we pointed out that the advantage of working with the Koopman system is
+that we can use the well-developed linear theory. In this chapter we apply an operator
+theoretic result – the Jacobs-de-Leeuw-Glicksberg splitting – to the Koopman system
+and draw conclusions on the underlying dynamics. Before doing so we give the general
+theory.
+
+
+     Definition 4.0.1. Let T ∈ L(X) for a Banach space (X, ∥ ⋅ ∥). Then there exists a
+     Jacobs-de-Leeuw-Glicksberg splitting if
+
+                                                X = Xs ⊕ Xr
+
+     with stable part
+                                                                                  i→∞
+            Xs ∶= {x ∈ X ∶ ∃ (ni )i∈N ⊆ N with density1 1 such that T ni x Ð→ 0 weakly}
+
+     and reversible part
+
+                            Xr ∶= lin{x ∈ X ∶ ∃ λ ∈ T such that T x = λx}.
+
+
+Remark 4.0.2. Clearly, Xs and Xr are T -invariant.
+     The question now is, when the Jacobs-de-Leeuw-Glicksberg decomposition exists.
+
+
+     Theorem 4.0.3. Let T ∈ L(X) for a Banach space (X, ∥ ⋅ ∥). If T has relatively
+     weakly compact orbits, then there exists a projection Q ∈ L(X) which commutes with
+     T and induces the Jacobs-de-Leeuw-Glicksberg decomposition with
+
+                                                Xs = ker(Q)
+
+     and
+                                                Xr = Im(Q).
+
+
+ 1
+     The density d(M ) of a set M ⊆ N is defined as d(M ) ∶= limn→∞ ∣M ∩[1,n]∣
+                                                                        n
+                                                                               if the limit exists.
+
+
+
+
+52
+        CHAPTER 4. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A
+53                                           KOOPMAN OPERATOR
+
+
+Proof. We refer to [Eis10, Thm. I.1.11] and [Eis10, Thm. II.4.1] for the proof.
+Notation 4.0.4. If the Jacobs-de-Leeuw-Glicksberg splitting exists for a Banach space
+(X, ∥ ⋅ ∥), then for x ∈ X we denote x = xs + xr where xs ∈ Xs and xr ∈ Xr .
+Remark 4.0.5. The splitting gives insight into the asymptotic behavior of the powers
+T n of the operator T . The terminology reversible part for Xr comes from the identity
+                                                   σ                    σ
+                 Xr = {x ∈ X ∶ y ∈ {T n x ∶ n ∈ N} ⇒ x ∈ {T n y ∶ n ∈ N} }
+(cf. [EFHN15, Thm. 16.24]) in case that T has relatively weakly compact orbits, which
+describes a way of returning to each point. Clearly, Xs is called the stable part since
+       n→∞
+ T n x Ð→ 0“ in some sence for x ∈ Xs .
+”
+   We now give some examples for which a Jacobs-de-Leeuw-Glicksberg splitting exists.
+Example 4.0.6. Let T ∈ L(X) for a Banach space (X, ∥ ⋅ ∥). If T has relatively strongly
+compact orbits, then
+                                  X = Xs ⊕ Xr
+where
+                                                       n→∞
+                               Xs = {x ∈ X ∶ ∥T n x∥ Ð→ 0}
+and
+                       Xr = lin{x ∈ X ∶ ∃ λ ∈ T such that T x = λx}.
+Proof. We follow [Eis10, Thm. I.1.16 and II.2.4]. Clearly, if T has relatively strongly
+compact orbits, it has relatively weakly compact orbits and hence T has a Jacobs-de-
+Leeuw-Glicksberg splitting.
+Assume that supn∈N0 ∥T n ∥ = ∞. By the principle of uniform boundedness there exists
+some x ∈ X such that supn∈N0 ∥T n x∥ = ∞ which implies that for every m ∈ N0 there
+is some jm ∈ N0 such that ∥T jm x∥ > m. Then (T jm x)m∈N0 has no convergent subse-
+quence which contradicts the relatively strong compactness of {T n x ∶ n ∈ N0 }. Therefore
+M ∶= supn∈N ∥T n ∥ < ∞.
+                                      n→∞
+To show that Xs = {x ∈ X ∶ ∥T n x∥ Ð→ 0}, we first note that if limi→∞ ∥T ni x∥ = 0 for a
+subsequence (ni )i∈N of N, then limn→∞ ∥T n x∥ = 0, since for any ε > 0 and k > 0 such that
+∥T nk x∥ ≤ ε, we have for n ≥ nk that
+                              ∥T n x∥ ≤ ∥T n−nk ∥∥T nk x∥ ≤ M ε.
+
+
+Now take x ∈ Xs . Then there is a subsequence (ni )i∈N of N with density 1 such that
+       i→∞
+T ni x Ð→ 0 weakly. The relatively strong compactness of the orbit {T n x ∶ n ∈ N0 } implies
+limk→∞ ∥T nik x∥ = 0 for a subsequence (nik )k∈N of (ni )i∈N . Hence limn→∞ ∥T n x∥ = 0.
+Conversely, if T n x converges strongly to 0, it clearly converges weakly to 0.
+  In fact, for a power bounded operator we have equivalence in Example 4.0.6. For a
+not power bounded operator this is in general not equivalent. A counterexample can be
+found in [EN00, Ex. V.2.12].
+                                                                                           54
+
+
+Remark 4.0.7. If T ∈ L(X) is power bounded, then the existence of the Jacobs-de-
+Leeuw-Glicksberg splitting
+                                X = Xs ⊕ Xr
+in the strong sense (see Example 4.0.6) implies that T has relatively strongly compact
+orbits.
+Proof. It is sufficient to show that the orbits of a dense subset of X are relatively strongly
+compact (see e.g. [EFHN15, Ex. 16.10]).
+Clearly, the orbit of any x ∈ Xs is relatively strongly compact, thus it remains to show
+the assertion for any x ∈ lin{x ∈ X ∶ ∃ λ ∈ T such that T x = λx}.
+Take x ∈ lin{x ∈ X ∶ there exists some λ ∈ T such that T x = λx} and (ni )i∈N0 ⊆ N0 . If
+T x = λx for some λ ∈ T, then (T ni x)i∈N0 = (λni x)i∈N0 has clearly a convergent subse-
+quence, since for λ = ζk , where ζk is a root of unity, it takes a finite number of values
+and for λ not a root of unity, the set of the powers of λ is dense in T. By a diago-
+nal argument we obtain that also an arbitrary sequence (yi )i∈N0 ⊆ {T n x ∶ n ∈ N0 } has a
+strong cluster point. By the preceding considerations we now see that the orbit of any
+x ∈ lin{x ∈ X ∶ ∃ λ ∈ T such that T x = λx} is relatively strongly compact.
+Remark 4.0.8. Remark 4.0.7 reveals that for Koopman operators Example 4.0.6 is an
+equivalence statement.
+Example 4.0.9. Let X be a reflexive Banach space and T ∈ L(X) powerbounded. Then
+T has relatively weakly compact orbits and hence X = Xr ⊕ Xs .
+Proof. Since X is reflexive, it follows by the theorem of Banach Alaoglu that the unit
+ball U in X is weakly compact.
+The boundedness of (T n )n∈N0 implies that ∥T n x∥ ≤ Cx for every x ∈ X and a constant Cx .
+                                                           σ
+Hence {T n x ∶ n ∈ N0 } ⊆ Cx ⋅ U and also {T n x ∶ n ∈ N0 } ⊆ Cx ⋅ U . The weak compactness
+                                        σ
+of U implies that also {T n x ∶ n ∈ N0 } is weakly compact for every x ∈ X. Therefore
+X = Xr ⊕ Xs holds.
+Remark 4.0.10. Example 4.0.9 implies that for powerbounded dynamics on finite di-
+mensional Banach spaces the Jacobs-de-Leeuw-Glicksberg splitting is possible.
+  A consequence of relatively weakly compact orbits is the following.
+
+
+  Proposition 4.0.11. Let X be a Banach space and T ∈ L(X) with relatively weakly
+  compact orbits. Then T is mean ergodic.
+
+
+Proof. If Sx ∶= {T n x ∶ n ∈ N0 } is weakly compact, then by the Kreı̌n-Šmulian theorem
+also the closed convex hull co Sx is weakly compact.
+This implies for An x ∶= n1 ∑n−1
+                              i=0 T x ∈ co Sx that {An x ∶ n ∈ N0 } has a weak cluster point
+                                    i
+
+for every x ∈ X. Since T has relatively weakly compact orbits, it is powerbounded (see
+[Eis10, Lemma I.1.6]). It follows that T is mean ergodic (see [EFHN15, Thm. 8.20]).
+       CHAPTER 4. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A
+55                                          KOOPMAN OPERATOR
+
+
+4.1 The Jacobs-de-Leeuw-Glicksberg splitting of a
+    Koopman operator
+We now turn to the Jacobs-de-Leeuw-Glicksberg decomposition in case of Koopman
+operators. Example 4.0.9 gives the following result for measure-preserving dynamical
+systems (see Remark 2.1.2).
+
+
+  Proposition 4.1.1. Let (Ω, Σ, µ; ϕ) be a measure-preserving dynamical system with
+  corresponding Koopman system (Lp [Ω, µ]; Tϕ ) for 1 ≤ p < ∞. Then
+
+                            Lp [Ω, µ] = Lp [Ω, µ]r ⊕ Lp [Ω, µ]s .
+
+
+Proof. Since Lp [Ω, µ] is reflexive for 1 < p < ∞, we only have to consider the case p = 1.
+In this case the Jacobs-de-Leeuw-Glicksberg spitting follows because Tϕ is a Dunford-
+Schwarz operator on L1 [Ω, µ] and µ is a finite measure. We refer to [EFHN15, Thm.
+8.24.] for further details.
+
+   Is there a similar result for Koopman systems with observable space C(K)? The
+following shows that this case is more complex since it depends on the dynamics whether
+the orbits of Tϕ are relatively weakly compact.
+
+
+  Proposition 4.1.2. Let (K; ϕ) be a dynamical system with corresponding Koopman
+  system (C(K); Tϕ ). If the Jacobs-de-Leeuw-Glicksberg splitting exists, then Tϕ is
+  mean ergodic.
+
+
+Proof. We first show the convergence of the Cesàro means An on Xs .
+Take f ∈ Xs . By definition there is a sequence (ni )i∈N0 with density 1 such that
+            i→∞
+⟨T ni f, µ⟩ Ð→ 0 for every µ ∈ C(K)′ . Then
+
+                                 1 n−1 i      1 n−1          i→∞
+                    ⟨An f, µ⟩ = ⟨ ∑ Tϕ f, µ⟩ = ∑ ⟨Tϕ i f, µ⟩ Ð→ 0
+                                 n i=0        n i=0
+
+by the Koopman-von Neumann lemma (see e.g. [Eis10, Lemma II.4.2 S.61]), hence Tϕ
+is weakly mean ergodic on Xs . By [EFHN15, Thm. 8.20] Tϕ then is also strongly mean
+ergodic on Xs .
+Now let f ∈ Xr such that Tϕ f = λf for some λ ∈ T. Analogously to Example 2.2.21, we
+obtain if λ is a k th root of unity that
+                                               k−1
+                                 An f Ð→ k1 ( ∑ Tϕ i f ) .
+                                        ∥⋅∥
+                                      n→∞
+                                               i=0
+4.1. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A KOOPMAN
+OPERATOR                                                   56
+
+
+If λ is not a root of unity it follows that
+                         n−1                       n−1
+                                                                             1 − λn        n→∞
+       ∥An f ∥ = sup ∣ n1 ∑ Tϕ i f (s))∣ = sup ∣ n1 ∑ λi f (s)∣ = sup ∣ n1          f (s)∣ Ð→ 0.
+                  s∈K    i=0                s∈K     i=0            s∈K       1−λ
+
+Clearly, this implies that also An g is convergent for g ∈ lin{f ∈ X ∶ there exists some λ ∈ C,
+∣λ∣ = 1, such that T f = λf }. Since all An are contractive, they are also convergent on
+the closure, thus on Xr (see [Sch66, III.4.5]).
+
+Example 4.1.3. Proposition 4.1.2 reveals that there is no Jacobs-de-Leeuw-Glicksberg
+decomposition of a Koopman system (C(K); Tϕ ) if Tϕ is not mean ergodic.
+As an example we choose the dynamics
+
+                                    ϕ ∶ [0, 1] → [0, 1], x ↦ x2
+
+and show that Tϕ is not mean ergodic on C([0, 1]). By [EFHN15, Thm. 8.20] it is
+sufficient to show that Fix(Tϕ ) does not separate Fix(Tϕ ′ ). Clearly, Fix(Tϕ ) = ⟨1⟩ (cf.
+Example 2.3.17).
+Now consider the Dirac measures δ0 and δ1 ∈ C([0, 1])′ . Then δ0 , δ1 ∈ Fix(Tϕ ′ ) since
+
+                        Tϕ ′ δ0 (f ) = δ0 (Tϕ f ) = Tϕ f (0) = f (0) = δ0 (f )
+
+and analogously
+                                         Tϕ ′ δ1 (f ) = δ1 (f )
+for every f ∈ C([0, 1]). Clearly, δ0 ≠ δ1 and for any f = c ⋅ 1 ∈ Fix(Tϕ ) we have
+δ0 (f ) = c = δ1 (f ), hence Fix(Tϕ ) does not separate Fix(Tϕ ′ ).
+
+   It is still open how to characterize weakly compact orbits of Tϕ by means of the un-
+derlying dynamics whereas the case of strongly compact orbits of Tϕ is well understood:
+We recall from Lemma 2.3.22 that for a topological dynamical system (K; ϕ) with corres-
+ponding Koopman system (C(K), Tϕ ), the orbits of Tϕ are relatively strongly compact
+if and only if {ϕn ∶ n ∈ N0 } is equicontinuous.
+This immediately gives the following.
+
+
+  Proposition 4.1.4. Let (K; ϕ) be a topological dynamical system and (C(K); Tϕ )
+  the corresponding Koopman system. If {ϕn ∶ n ∈ N0 } is equicontinuous, then the
+  Jacobs-de-Leeuw-Glicksberg splitting is possible in the strong sense (confer Example
+  4.0.6).
+       CHAPTER 4. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A
+57                                          KOOPMAN OPERATOR
+
+
+   We give an example which shows that relatively weakly compact orbits and relatively
+strongly compact orbits do not coincide on C(K).
+
+Example 4.1.5. Consider the one-point compactification K ∶= Z ∪ {∞} with dynamics
+                                           ⎧
+                                           ⎪
+                                           ⎪x + 1 if x ∈ Z
+                            ϕ ∶ K → K, x ↦ ⎨
+                                           ⎪
+                                           ⎩∞
+                                           ⎪      if x = ∞
+
+and corresponding Koopman system (C(K); Tϕ ) where
+
+                        C(K) = {(xz )z∈Z ∈ `∞ ∶ lim x−z = lim xz }
+                                                    z→∞     z→∞
+
+and
+                        Tϕ ∶ C(K) → C(K), (xz )z∈Z ↦ (xz+1 )z∈Z .
+  Then Tϕ has relatively weakly compact orbits by [DS58, Cor. IV.6.4], since clearly for
+any x ∈ C(K) the orbit {Tϕ n x ∶ n ∈ N0 } is bounded and Tϕ n x = (xz+n )z∈Z is pointwise
+convergent, i.e., (xz+n )n∈N0 converges for n → ∞.
+  Not all orbits of Tϕ are relatively strongly compact.
+Take e.g. x ∶= (..., 0, 0, 1, 0, 0, ...) ∈ C(K). Then for any n, m ∈ N0 we have
+
+                         ∥ Tϕ n x − Tϕ m x∥ = sup ∣xz+n − xz+m ∣ = 1
+                                              z∈Z
+
+for n ≠ m, thus there is no subsequence (ni )i∈N0 of N0 such that (T ni x)i∈N0 is convergent
+in ∥ ⋅ ∥. Hence {Tϕ n x ∶ n ∈ N0 } is not relatively strongly compact.
+
+  We summarize the previous considerations to the following.
+
+Remark 4.1.6. Let (K; ϕ) be a dynamical system with corresponding Koopman system
+(C(K); Tϕ ). Consider the following conditions.
+
+ (i) Tϕ has relatively strongly compact orbits.
+
+ (ii) Tϕ has relatively weakly compact orbits.
+
+(iii) The Jacobs-de-Leeuw-Glicksberg decomposition exists.
+
+(iv) Tϕ is mean ergodic.
+
+Clearly, (i) ⇒ (ii) ⇒ (iii) ⇒ (iv) but, presumably, the converse implications are false.
+Example 4.1.5 shows that (ii) does not imply (i). It would be interesting to find coun-
+terexamples for the other implications.
+4.1. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A KOOPMAN
+OPERATOR                                                   58
+
+
+  We now turn to the Jacobs-de-Leeuw-Glicksberg splitting in case of affine dynamical
+systems considered in Section 3.1.
+
+Example 4.1.7. Consider X ∶= (Ck , ∥ ⋅ ∥) for some norm ∥ ⋅ ∥ and a contractive matrix
+A ∈ L(X). Then the set of iterates of the affine dynamical system (U ; A∣U ) is equicon-
+tinuous since for any x ∈ U , ε > 0, y ∈ Ck with ∥x − y∥ < δ ∶= ε, we have
+
+                               ∥An x − An y∥ ≤ ∥An ∥∥x − y∥ ≤ δ = ε.
+
+By Proposition 4.1.4 there is a Jacobs-de-Leeuw-Glicksberg decomposition of (C(U ); TA ).
+Clearly, A has relatively compact orbits, thus there is a Jacobs-de-Leeuw-Glicksberg de-
+composition also for (X; A).
+An open question is how these decompositions are related to each other. We give some
+remarks.
+
+Remark 4.1.8. (i) Let ∥A∥ = 1, An ≠ 0 for all n ∈ N and (An )n∈N convergent, i.e.,
+                                          n→∞
+   there is P ∈ Ck×k such that ∥An − P ∥ Ð→ 0. Then σ(A) ∩ T = 1 and there is a
+   Jacobs-de-Leeuw-Glicksberg splitting Ck = XsA ⊕ XrA .
+   Clearly, XsA = ker(P ) which implies XrA = Im(P ) = Fix(A) since P is a projection
+   onto Fix(A).
+   For the Jacobs-de-Leeuw-Glicksberg splitting C(U ) = XsTA ⊕ XrTA we obtain
+                                                              n
+                                 XsTA = {f ∈ C(U ) ∶ f ○ A∣U Ð→ 0}
+                                                                  ∥⋅∥
+                                                                  n→∞
+                                         = {f ∈ C(U ) ∶ f ○ P ∣U ≡ 0}
+                                         = I
+                                            Im(P ∣ )
+                                                  U
+
+
+
+     where I             denotes the closed ideal of functions which vanish on Im(P ∣U ).
+              Im(P ∣ )
+                   U
+
+
+ (ii) Let ∥A∥ = 1 and A periodic, i.e., there is m ∈ N such that Am = A. Moreover, for
+      λ ∈ σ(A), either λm−1 = 1 or λ = 0.
+      Then there is a Jacobs-de-Leeuw-Glicksberg splitting Ck = XsA ⊕ XrA .
+      Clearly, XsA = ker(A) which implies XrA = Im(A). Since for f ∈ C(U ) we have
+          n            n mod m ∥⋅∥                                      n
+     f ○A∣U = f ○A∣U           Ð→ 0 for n → ∞ if and only if f ○A∣U ≡ 0 for all n = 1, ..., m−1,
+     we obtain
+
+
+                                     XsTA = {f ∈ C(U ) ∶ f ○ A∣U ≡ 0}
+                                          = I        .
+                                             Im(A∣ )
+                                                  U
+       CHAPTER 4. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A
+59                                          KOOPMAN OPERATOR
+
+
+   Which conclusions can we draw from the Jacobs-de-Leeuw-Glicksberg splitting? The
+following answers Theorem 3.1.14 (ii) which we left open in Chapter 3.
+
+Example 4.1.9. Let X ∶= (Ck , ∥ ⋅ ∥) for some norm ∥ ⋅ ∥, A ∈ L(X) such that ∥A∥ < 1 and
+(C(U ); TA ) the Koopman system of the affine dynamical system (U ; A∣U ).
+By Example 4.1.7 there is a Jacobs-de-Leeuw-Glicksberg decomposition of (C(U ); TA ).
+Since An Ð→ 0 for n → ∞, we obtain
+          ∥⋅∥
+
+
+
+       C(U )s = {f ∈ C(U ) ∶ TAn f Ð→ 0 for n → ∞} = {f ∈ C(U ) ∶ f (0) = 0} = I{0} .
+                                     ∥⋅∥
+
+
+
+This implies
+
+       C(U )r = {f ∈ C(U ) ∶ there is λ ∈ T such that TA f = λf } = ⟨1U ⟩ = Fix(TA )
+
+and therefore P σ(TA ) = D○ ∪ {1}.
+
+  Further investigation should be done on how the Jacobs-de-Leeuw-Glicksberg decom-
+position describes the longterm behavior of the Koopman operator and of the dynamics.
+We give one observation which follows directly from Example 4.0.6
+
+
+  Proposition 4.1.10. Let (K; ϕ) be a topological dynamical system with correspond-
+  ing Koopman system (C(K); Tϕ ) where Tϕ has relatively strongly compact orbits.
+  Then ∥ Tϕ n f − Tϕ n fr ∥ Ð→ 0 for n Ð→ ∞.
+4.2. CONCLUSIONS FROM THE REVERSIBLE PART IN CASE OF A
+KOOPMAN OPERATOR                                                                                      60
+
+
+4.2 Conclusions from the reversible part in case of a
+    Koopman operator
+Even for a Koopman system that does not allow the Jacobs-de-Leeuw-Glicksberg split-
+ting we can define the reversible part Xr and draw conclusions on the structure of the
+underlying dynamical system.
+
+
+  Proposition 4.2.1. Let (K; ϕ) be a topological dynamical system with corresponding
+  Koopman system (C(K); Tϕ ). Define
+
+                 Xr ∶= lin{f ∈ X ∶ ∃ λ ∈ C, ∣λ∣ = 1, such that T f = λf }.
+
+  Then there is a compact space L such that Xr ≅ C(L).
+  If (K; ϕ) is minimal, then L = G for a compact monothetic group G and
+
+                                                        Tϕ ∣X = Tψ
+                                                                     r
+
+
+  for a group rotation ψ ∶ G → G, ψ(g) = g0 g for some generating g0 ∈ G.
+
+
+Proof. By the Gelfand-Naimark theorem (see Theorem 2.2.9) there is an isometric iso-
+morphism Φ ∶ C(L) → Xr for some compact space L, hence Xr ≅ C(L).
+To show the second assertion, define
+
+                            T ∶= Φ−1 ○ Tϕ ○ Φ ∶ C(L) → C(L)
+
+which is a C ∗ −algebra homomorphism and well-defined since Xr is Tϕ -invariant. Thus
+by Theorem 2.2.17 there is some continuous map ψ ∶ L → L such that T = Tψ .
+We show that the system (L; ψ) is minimal and Tψ has discrete spectrum, i.e.,
+
+                C(L) = lin{f ∈ X ∶ ∃ λ ∈ C, ∣λ∣ = 1, such that Tψ f = λf }
+
+and apply the Halmos-von Neumann theorem (see e.g. [DNP87, Thm. VIII.2]) which
+gives the second assertion.
+Clearly, J ∶= idC(K) ○ Φ ∶ C(L) → C(K) is an embedding, hence by Theorem 2.2.17 there
+is some surjective continuous map θ ∶ K → L such that J = Tθ . The diagram
+
+                                                   Tψ
+                                    C(L) ......................................... C(L)
+                                                .........                        .........
+                                                  ...                              ...
+                                                    ...                              ...
+                                                      ...                              ...
+                                                        ...                              ...
+                                    Tθ                    ...
+                                                            ...
+                                                              ...
+                                                                                             Tθ
+                                                                                           ...
+                                                                                             ...
+                                                                                               ...
+                                                                ..                               ..
+                                          ..........                         ..........
+                                              .                                  .
+
+                                   C(K).........................................C(K)
+                                                  Tϕ
+
+is commutative, hence
+        CHAPTER 4. THE JACOBS-DE-LEEUW-GLICKSBERG SPLITTING OF A
+61                                           KOOPMAN OPERATOR
+
+                                                                   ψ
+                                            L ........................................................ L
+                                                      ..                                                 ..
+                                              ...............                                    ...............
+                                                      ...                                                ...
+                                                        ..                                                 ..
+                                                         ...                                                ...
+                                                           ...                                                ...
+                                          θ                  ...
+                                                               ...
+                                                                                                                ...
+                                                                                                                  ...
+                                                                                                                             θ
+                                                                 ...                                                ...
+                                                                   ...                                                ...
+                                                                     ..                                                 ..
+
+                                                                   ..................................
+                                           K ......................ϕ                                  K
+
+
+is also commutative, thus ψ ○ θ = θ ○ ϕ.
+Now let M ⊆ L be closed and ψ-invariant, i.e., ψ(M ) ⊆ M . Then θ(ϕ(θ−1 (M ))) ⊆ M
+and hence ϕ(θ−1 (M )) ⊆ θ−1 (M ). The minimality of (K; ϕ) implies θ−1 (M ) = K or
+θ−1 (M ) = ∅, thus M = θ(K) = L or M = θ(∅) = ∅ which shows the minimality of (L; ψ).
+Take f ∈ C(L). Then there is some g = ∑∞            i=0 gi ∈ Xr where Tϕ gi = λi gi for λi ∈ T, i ∈ N0 ,
+such that f = Φ (g) = ∑i=0 Φ (gi ). Clearly, Tψ f = ∑∞
+                −1       ∞     −1
+                                                                 i=0 λi fi since Φ is an isomorphism.
+                           ´¹ ¹ ¹ ¹ ¹ ¸ ¹ ¹ ¹ ¹ ¹ ¶
+                                   ∶=fi
+This implies that C(L) has discrete spectrum.
+
+Remark 4.2.2. Note that in general there is no projection Q ∈ L(X) such that Xr = Im(Q).
+
+
+  Proposition 4.2.3. Let (K; ϕ) be a topological dynamical system with corresponding
+  Koopman system (C(K); Tϕ ). Then there is a decomposition of the state space as
+
+                                                ˙
+                                              K=⋃ s∈L Ks ,
+
+  where Ks ∶= ψ −1 (s) for a surjective continuous mapping ψ ∶ K → L and Xr ≅ C(L).
+  Moreover, for all s ∈ L exists some ts ∈ L such that
+
+                                                     ϕ(Ks ) ⊆ Kts
+
+  and Kts1 ≠ Kts2 for s1 ≠ s2 .
+
+
+Proof. We basically repeat the proof of Theorem 3.2.4. Since Xr ⊆ C(K), there is
+an injective algebra homomorphism J ∶ C(L) → C(K). By Theorem 2.2.17 there is a
+surjective continuous mapping ψ ∶ K → L such that J = Tψ . Clearly, K = ⋃            ˙ s∈L Ks for
+Ks ∶= ψ −1 (s).
+Consider the restriction Tϕ ∶ Xr → Xr which is an algebra isomorphism. Hence there
+exists a continuous mapping θ ∶ L → L such that Tϕ ∣X can be represented as Tθ . Since Tθ
+                                                         r
+is an isomorphism, θ is a homeomorphism. Analogously as in Theorem 3.2.4, we obtain
+θ ○ ψ = ψ ○ ϕ and hence ψ(ϕ(Ks )) = θ(ψ(Ks )) = θ({s}) = {t} for t ∶= θ(s). Therefore,
+ϕ(Ks ) ⊆ ψ −1 (t) = Kt . From the injectivity of θ follows Kts1 ≠ Kts2 for s1 ≠ s2 .
+Bibliography
+[Bau90]   Heinz Bauer. Maß- und Integrationstheorie. De Gruyter Lehrbuch. Walter
+          de Gruyter, 1990.
+
+[BMM12] Marko Budišić, Ryan Mohr, and Igor Mezić. Applied Koopmanism. Chaos:
+        An Interdisciplinary Journal of Nonlinear Science, 22(4): 047510–1–047510–
+        33, 2012.
+
+[Dev03]   Robert L. Devaney. An Introduction to Chaotic Dynamical Systems. Addison-
+          Wesley Studies in Nonlinearity. Westview Press, 2003.
+
+[DNP87]   Roland Derndinger, Rainer Nagel, and Günther Palm. Ergodic Theory in the
+          Perspective of Functional Analysis – 13 Lectures. unpublished, 1987.
+
+[DS58]    Nelson Dunford and Jacob T. Schwartz. Linear Operators: Part I – General
+          Theory. Pure and Applied Mathematics. Interscience Publishers, 1958.
+
+[EFHN15] Tanja Eisner, Balint Farkas, Markus Haase, and Rainer Nagel. Operator
+         Theoretic Aspects of Ergodic Theory. Springer, to appear 2015.
+
+[Eis10]   Tanja Eisner. Stability of Operators and Operator Semigroups, volume 209
+          of Operator Theory: Advances and Applications. Birkhäuser Verlag, Basel,
+          2010.
+
+[EN00]    Klaus-Jochen Engel and Rainer Nagel. One-Parameter Semigroups for Lin-
+          ear Evolution Equations, volume 194 of Graduate Texts in Mathematics.
+          Springer, New York, 2000.
+
+[Jam65]   Benton Jamison. Eigenvalues of Modulus 1.        Proc. Amer. Math. Soc.,
+          16(3): 375–377, 1965.
+
+[LM94]    Andrzej Lasota and Michael C. Mackey. Chaos, Fractals, and Noise, vol-
+          ume 97 of Applied Mathematical Sciences. Springer, New York, 1994.
+
+[MM14]    Ryan Mohr and Igor Mezić. Construction of Eigenfunctions for Scalar-type
+          Operators via Laplace Averages with Connections to the Koopman Operator .
+          arXiv/1403.6559, 2014.
+
+[Sch66]   Helmut H. Schaefer. Topological Vector Spaces. Macmillan Series in Advanced
+          Mathematics and Theoretical Physics. Macmillan, New York, 1966.
+
+
+
+62
+63                                                                        Bibliography
+
+
+[Sch71]   Egon Scheffold. Das Spektrum von Verbandsoperatoren in Banachverbänden.
+          Mathematische Zeitschrift, 123: 177–190, 1971.
+
+[Sch74]   Helmut H. Schaefer. Banach Lattices and Positive Operators. Springer, New
+          York, 1974.
+
+[Wer11]   Dirk Werner. Funktionalanalysis. Springer, 7. print. corr. edition, 2011.
+Zusammenfassung in deutscher
+Sprache
+Diese Arbeit beschäftigt sich mit der Koopman-Linearisierung von dynamischen Syste-
+men, die eine bislang weniger gebräuchliche Art der Linearisierung darstellt. Der Vorteil
+an dieser ist, dass sie im Gegensatz zu herkömmlichen Linearisierungen global ist und
+in gewisser Weise die vollständige Information über das zugrundeliegende dynamische
+System erhält.
+
+   Nach einer Einleitung und Motivation als Kapitel 1 wird in Kapitel 2 zunächst ein
+Überblick über topologisch dynamische Systeme und relevante Eigenschaften – beispiels-
+weise Periodizität, Transitivität und Rekurrenz – von diesen gegeben. Anschließend wer-
+den Koopmansysteme bestehend aus dem Observablenraum C(K) der stetigen Funk-
+tionen auf einem Kompaktum K und dem zu einer Dynamik zugehörigen Koopman-
+operator eingeführt. Nach Einführung des jeweiligen Isomorphiebegriffes von dyna-
+mischen Systemen und Koopmansystemen und der Feststellung, dass dynamische Sys-
+teme genau dann isomorph sind, wenn die zugehörigen Koopmansysteme isomorph sind,
+werden in einer Art Wörterbuch“ die Entsprechungen von Eigenschaften eines dyna-
+                       ”
+mischen Systems im zugehörigen Koopmansystem und umgekehrt dargestellt.
+
+  Kapitel 3 beschäftigt sich mit spektralen Eigenschaften von Koopmanoperatoren.
+Nach einer generellen Übersicht über diese werden Koopmansysteme von affinen endlich-
+dimensionalen Dynamiken betrachtet, die von einer k × k-Matrix herrühren. Es wird un-
+tersucht, wie sich spektrale Eigenschaften dieser Matrizen in den zugehörigen Koopman-
+systemen widerspiegeln. Umgekehrt wird anschließend untersucht, wie man von spek-
+tralen Eigenschaften eines Koopmansystems auf die unterliegende Dynamik schließen
+kann, wobei Partitionen des Zustandsraumes erhalten werden.
+
+  Kapitel 4 greift als Anwendung eines Theorems aus der Operatorentheorie auf Koop-
+manoperatoren die Jacobs-de-Leeuw-Glicksberg-Zerlegung auf, die den Grundraum des
+Operators in einen stabilen und einen reversiblen Teil zerlegt. Zunächst erfolgt eine
+Darstellung der allgemeinen Theorie welche dann auf Koopmansysteme übertragen wird.
+Es werden Untersuchungen angestellt, wie sich die Existenz der Zerlegung mithilfe des
+dynamischen Systems charakterisieren lässt und welche Schlussfolgerungen man aus der
+Existenz der Jacobs-de-Leeuw-Glicksberg-Zerlegung ziehen kann. Auch hier werden
+wieder endlichdimensionale lineare Dynamiken und ihre zugehörigen Koopmansysteme
+betrachtet. Eine Reihe von offenen Fragen wird formuliert.
+
+
+
+
+64
+
