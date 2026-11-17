@@ -1,0 +1,1 @@
+2026-11-17T10:05:41.349638+00:00 — Original-only root reconstruction and boundary checks saved; five actual outerPDF pages/text and fullTeX read, no peer or primary consultation. Completion35%, conditional deductions accepted so far; centralupstream and analyticinputs outstanding. No scientific script run. All further work after freeze must use a sibling continuation.
