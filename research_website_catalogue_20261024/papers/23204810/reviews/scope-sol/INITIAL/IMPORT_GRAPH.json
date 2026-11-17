@@ -1,0 +1,101 @@
+{
+  "schema": "scope-source-only-conditional-import-graph-v1",
+  "UTC": "2026-11-17T19:11:48.911443+00:00",
+  "record": "23204810",
+  "gate": "INITIAL_ONLY_NO_FOREIGN_PRIMARY_OR_SUPPORT",
+  "external_upstream_status": "ASSUMED_UNREAD_UNVERIFIED",
+  "target": "Full all-ideal Sperner equality over every characteristic-zero field for standard graded Artinian homogeneous complete intersections; includes n0/degree1/all-linear/unit/zero/nonhomogeneous ideals and last-peak witness",
+  "nodes": [
+    {
+      "id": "EGH_C_HF",
+      "type": "external unverified assumption",
+      "claim": "For every full complex homogeneous regular sequence with all degrees at least2, every homogeneous containing ideal has a pure-power-containing homogeneous Hilbert counterpart in every degree",
+      "source_claimed_by_native": "OpenAI EGH Theorem1.1/Corollary1.2/Corollary1.3; actual body and theorem hypotheses remain unopened"
+    },
+    {
+      "id": "FIELD",
+      "type": "own source-only deduction",
+      "claim": "Per-ideal finitely generated coefficient field, faithful-flat regularity descent, complex embedding and monomial initial-ideal exponents transfer the Hilbert counterpart to arbitrary characteristic-zero k",
+      "parents": [
+        "EGH_C_HF"
+      ]
+    },
+    {
+      "id": "LINEARS",
+      "type": "own source-only reduction with standard CM input",
+      "claim": "Independent linear generators eliminated; nonzero remaining homogeneous forms retain degrees and form a full regular sequence; q0 handled separately"
+    },
+    {
+      "id": "CI_DUALITY",
+      "type": "identified standard algebraic input",
+      "claim": "Koszul Hilbert product, one-dimensional top socle, nondegenerate graded multiplication pairings; not a new canonical-module construction"
+    },
+    {
+      "id": "MONOMIAL_MATCH",
+      "type": "own source-only hand proof",
+      "claim": "Symmetric saturated chain decomposition plus multiplicative leading monomials proves the monomial matching inequality; no Lefschetz input"
+    },
+    {
+      "id": "MATCH_TRANSFER",
+      "type": "own source-only deduction",
+      "claim": "Adjacent ideal Hilbert dimensions and the ideal property transfer matching from B to A; no generator-count equality through EGH",
+      "parents": [
+        "FIELD",
+        "MONOMIAL_MATCH",
+        "LINEARS"
+      ]
+    },
+    {
+      "id": "HOMOGENEOUS_BOUND",
+      "type": "own source-only hand lemma",
+      "claim": "Last-peak truncation and Frobenius annihilator reversal bound every homogeneous ideal by the peak",
+      "parents": [
+        "MATCH_TRANSFER",
+        "CI_DUALITY"
+      ]
+    },
+    {
+      "id": "ALL_IDEALS",
+      "type": "own filtered-dimension deduction",
+      "claim": "m*gr(I) contained in gr(mI) gives mu(I)<=mu(gr I); strict-containment hand control recorded",
+      "parents": [
+        "HOMOGENEOUS_BOUND"
+      ]
+    },
+    {
+      "id": "WITNESS",
+      "type": "own standard-grading deduction",
+      "claim": "m^p/m^(p+1) is A_p; p0 field boundaries included",
+      "parents": [
+        "CI_DUALITY"
+      ]
+    },
+    {
+      "id": "TARGET_CONDITIONAL",
+      "type": "conditional only, not final disposition",
+      "parents": [
+        "ALL_IDEALS",
+        "WITNESS",
+        "FIELD",
+        "LINEARS"
+      ]
+    }
+  ],
+  "attribution_interfaces_not_logically_substituted_for_proof": [
+    "Actual HWW Theorem11 and Propositions7/8 scope",
+    "Actual HWW Definition2 and Watanabe Lemma2.4 all-ideal reduction scope",
+    "OpenAI theorem body/commit/date and target hypothesis match",
+    "Release chronology/priority and companion LPP claims"
+  ],
+  "unneeded_imports": [
+    "Companion lex-plus-powers Betti inequalities",
+    "Equality of ideal generator counts under Hilbert counterparts",
+    "Weak or strong Lefschetz property",
+    "General-length Artinian EGH reduction",
+    "Whole-field embedding k into C",
+    "Descent of every ideal after scalar extension"
+  ],
+  "success_criterion_before_final_scientific_verdict": "Read and assess the actual controlling upstream primary input after parent checkpoint. If its exact required EGH assertion is unavailable or centrally unsupported, conditional downstream closure cannot fill that gap.",
+  "final_paper_verdict": null,
+  "novelty_or_priority_certificate": false
+}

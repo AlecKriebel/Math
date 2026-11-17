@@ -1,0 +1,5 @@
+# Fano cited-primary acquisition custody
+
+2026-11-17T18:26:41.100272+00:00 — Root authorized opaque7-primary lookup/authentication/private copies and Poppler extraction only. Scoped metadata supplied exact existing cached PDF identities; no current peer report/scientific verdict read. Browser opened all7 cited URLs; two DOI resolver opens were unavailable in browser, fallback publisher/author PDFs requested. No direct curl or source/scientific execution. Native Fano196/21 and ROOTINITIAL18/1 require full before/after guards. Task20%; Fano review35% original-only at seal; programme active/incomplete.
+
+2026-11-17T18:31:22.954607+00:00 — One fully saved/read acquisition script returned0; cache identities and protected whole guards authenticated. Actual status COMPLETE_PINNED_PRIMARY_ACQUISITION;7cachedPDFs,14single Poppler invocations with literal histories retained; no source/scientific execution or directcurl. Private bodies only; unversioned edition limits explicit. Finite acquisition 100%; programme active/incomplete.

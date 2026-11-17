@@ -1,0 +1,31 @@
+--- V2/release_overlay.py
++++ V3/release_overlay.py
+@@ -36,11 +36,11 @@
+ 
+     P=Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+     M=P.parent
+-    N=P/'verification/gram-thompson-d4-production-prepare-corrected-sol-20261117'
++    N=P/'verification/gram-thompson-d4-production-prepare-v3-sol-20261117'
+     RUN=P/'verification/gram-thompson-d4-runtime-sol-20261117'
+     W=Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+     S=P/'verification/gram-thompson-d4-overlay-sol-20261117'
+-    PLAN_SHA='8268a30ba9b6a09c2b0e14886c89b29bcee67d4c5e75504818936c0241e89eae'
++    PLAN_SHA='f01b666bfd446e7ea10c1a8694bacd2d2046af1800c77ead0ecb25b620492137'
+     TARGETS=frozenset(["public/research/binary-gram-locus-polynomial-obstruction/citation.bib","public/research/binary-gram-locus-polynomial-obstruction/gram_locus_note.pdf","public/research/binary-gram-locus-polynomial-obstruction/gram_locus_support.zip","public/research/binary-gram-locus-polynomial-obstruction/index.html","public/research/d4-canonical-potential-exponent-converse/Canonical_W_D4_Note_v1.0.pdf","public/research/d4-canonical-potential-exponent-converse/Canonical_W_D4_Verification_v1.0.zip","public/research/d4-canonical-potential-exponent-converse/citation.bib","public/research/d4-canonical-potential-exponent-converse/index.html","public/research/index.html","public/research/sitemap.xml","public/research/thompson-reduced-cstar-consequences/citation.bib","public/research/thompson-reduced-cstar-consequences/index.html","public/research/thompson-reduced-cstar-consequences/paper.pdf","public/research/thompson-reduced-cstar-consequences/thompson-cstar-source.zip","public/research/thompson-reduced-cstar-consequences/thompson-cstar-verification.zip"])
+     REPLACEMENTS=["public/research/index.html","public/research/sitemap.xml"]
+     NEW_DIRS=["research/binary-gram-locus-polynomial-obstruction","research/thompson-reduced-cstar-consequences","research/d4-canonical-potential-exponent-converse"]
+@@ -1529,9 +1529,12 @@
+         return result,index
+ 
+     def bounded_live_get(opener,request,expected,stem):
+-        # This ordinary main-thread Unix timer interrupts blocking urllib I/O.
+-        # It is not a SIGKILL/power-loss or hard-real-time scheduling guarantee.
++        # This ordinary main-thread Unix timer requires SIGALRM unblocked.
++        # No uninterruptible-OS, SIGKILL/power-loss or hard-real-time guarantee.
+         need(signal.getitimer(signal.ITIMER_REAL)==(0.0,0.0),'no inherited real timer to replace')
++        need(callable(getattr(signal,'pthread_sigmask',None)) and hasattr(signal,'SIG_BLOCK'),'POSIX signal-mask inspection required before live GET')
++        # SIG_BLOCK with an empty set inspects without changing inherited masks.
++        need(signal.SIGALRM not in signal.pthread_sigmask(signal.SIG_BLOCK,set()),'live GET requires inherited SIGALRM unblocked; no mask changes')
+         previous_handler=signal.getsignal(signal.SIGALRM)
+         body_path=Path(str(stem)+'.body')
+         body_fd=os.open(body_path,os.O_RDWR|os.O_CREAT|os.O_EXCL|os.O_NOFOLLOW,0o600)
