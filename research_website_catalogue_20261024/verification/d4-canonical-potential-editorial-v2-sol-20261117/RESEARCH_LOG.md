@@ -1,0 +1,9 @@
+# D4 separate private preparation V2
+
+2026-11-17 16:28:41 UTC — Root setup disposition read in full and pinned. Prior original failed packet22/0 is frozen and not edited. Root separately authorized exact path/literal HTML-brace changes and one new V2 invocation; root-createdV2directory0755 exists. The generic prior creation failure and capacity-observation limit remain recorded by root. No V2 builder has run. Overall private-editorial estimate20%; full-source/capture reading and bounded custody follow.
+
+2026-11-17 16:30 UTC — New sources copied as inert data to actualV2lane, only exact own-path/literalset changes made in builder, savedtwo-hunkdiff personally read. Diffexit1is expected data difference, stderr0. Full final168-linebuilder, capturewrapper and revised passivecustody code personally read. Beforeguard authenticates source72/7, fixedrootinputs/localCSS, old22/0 androotsetupreceipt. No oldbuilder or source/scientific program executed.
+
+2026-11-17 16:30:40.833569–16:30:40.871965 UTC — One separately authorizedV2builder invocation, exit0, stdout228B/stderr0,0.038303875s. Newbuilder19835B/cf44edb2fb5bc478e8e72ec2b13867f52a2a5af6b8a35241fb48b0cdf69172ad unchanged. Draft14855B/24bff5057a9f09fdfbc85020bb48c676c7940bf622cac8728dfb0dcb0f47ea0a. Nativeassets/CSS exact, completeabstract/staticmetadata/link checks passed. No new failure/repair/retry. Estimate85%, actualcopyreading and closure remained.
+
+2026-11-17 16:31:28 UTC — Personally read all generatedHTML/model/Bib/receipt; exact historicalscope/credit/coordinate limits/fullabstract/rights/disclosures retained, no public audit replay. Afterguard exit0: all complete source72/7, oldfailed22/0, planningthreefiles/rootreview/clearance/CSS/setupreceipt exact beforeafter. Estimate100%privateeditorialpreparation, independentroot/factreview separate. Terminalseal follows once, then no further writes/actions.

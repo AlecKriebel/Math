@@ -1,0 +1,5 @@
+# Root continuation: regular-pentagon fifth torsion
+
+2026-11-17T16:38Z: resumed only after verified b510aecb checkpoint of frozen original-only INITIAL17/1, root35%. Ten committed leaves plus committed hashes for seven actually ignored local PNGs. Actual root INITIAL contains all482TeX/all7text/all7viewedrasters/nativeAPI and twelve independent hand deductions before primary/support/currentfamily bodies. Prior goal turn was progress: native144 transition, completed source/copy/publication checks and this frozen original-only review. Programme144/203 scientific/native dispositions,136PASS8defer59remaining,70.935961%; active/incomplete.
+
+Initial fresh web accesses: Verdure cited URL502; AIM www PDF404; Fisher DOI inaccessible in this tool; actual Morton v4 abstract/history retrieved (19Dec2016 initial,11Jun2018v4, notes v4corrected formulas). These access failures are not scientific evidence. Existing actual primary extraction/rasters will be read if fresh official access remains unavailable. Current family mathematical reports remain unread. Scientific programs executed by root:0.

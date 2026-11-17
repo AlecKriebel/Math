@@ -1,0 +1,5 @@
+# Pentagon frozen-input custody
+
+2026-11-17T17:03:44.689928+00:00 — Root authorized one passive authentication of source97/7, rootINITIAL17/1, adversarial47/4 and scope81/3 (242files/15childdirs). No scientific verdict, source execution, current root/progress/W/Git/network access. Existing heterogeneous controls inspected; exact original recursion terminals retained. ADV uses an isolated arithmetic copy; SCOPE records direct-source geometry execution and has no isolated geometry copy. Checker not yet invoked. Finite custody estimate20%; scientific programme remains active/incomplete, reviewed144/203=70.935961%.
+
+2026-11-17T17:07:31.472247+00:00 — One fully saved/read passive datareader returned0; literal stdout/stderr retained. Fixed242/15 authenticated against eight external controls and heterogeneous manifests; before/after wholebytes/modes/topology exact. Historical arithmetic parsed output and geometry normalized1715-byte output match actual published expectations. Scope direct-source route qualified; no isolated copy fabricated. Finite custody100%; scientific review144/203=70.935961%, programme active/incomplete; no new scientific verdict.
