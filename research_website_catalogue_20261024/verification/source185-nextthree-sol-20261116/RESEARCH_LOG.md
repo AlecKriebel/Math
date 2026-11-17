@@ -1,0 +1,6 @@
+# Opaque source acquisition log
+
+- 2026-11-17 03:26:20 UTC — 20%: all three source namespaces initially absent; generic code fully read and narrow fixed-ID copy authored/read. Literal initial shell-locator failure retained in GROUP_INITIAL. No GET or scientific/native execution yet. Protected native M/W metadata plus frozen306source/production12/fact18317 scopes observed by whole OS hashes/modes only.
+- 2026-11-17 03:31:45 UTC — 30%: after complete guarded-helper read and bounded second static review, began exactly three independent fixed-ID ordinary acquisition routes. Original230-line draft remains unexecuted; pre-parser resource finding and disposition retained.
+- 2026-11-17T03:32:18Z — 85%: all three acquisition calls and exclusive seals exited0; six stderr streams empty. No access/version mismatch/retry/bypass. SOURCE_READY metadata only; all scientific bodies remain closed.
+- 2026-11-17 03:34:51 UTC — 100% source custody/group closure: three finite sources162/23,56/10,65/11, total283regular files/44child dirs. Native dates/versions/order/MD5/SHA/raw responses retained. Four distinct PDF identities inspected only with pdfinfo; no text/pixels. Exact before/after protected344whole-file guards and383objects unchanged, including native M/W and frozen306sources/production12/fact18317. Scientific review0%, verdict=null; close group FINAL then quiesce.

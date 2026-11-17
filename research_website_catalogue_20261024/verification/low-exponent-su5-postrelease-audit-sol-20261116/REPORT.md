@@ -1,0 +1,35 @@
+# Independent actual postrelease audit — rows167/169
+
+**Literal verdict: PASS — actual local15-path postrelease state.** This is an executed read-only verification after explicit ROOT_PUBLISH_READY, not the earlier static preparation. No production helper or old checker was replayed. No deployment, Sheet, browser, native-reader/download or live-publication certificate is supplied by this lane.
+
+Actual immutable commit b767102567ad89aff909f9f11c0e8b7d72b75c40 has the sole expected parent3a6e0709bda08d8c913078b4eaa4e591fed7f3c6 and tree16d2f9a43462df50ca505d07153df115b4e6e8eb. The exact15leaf delta is13 additions/two modifications; every untargeted old HEAD leaf is identical. All15target modes/blob OIDs match the actual adopted stage buffers. Current existing master points at that commit.
+
+## Native raw preservation and independent cache/tree validation
+
+The retained actual RUN publish shared-index.before is the original9054454B/index71ea221a2bcd9f3919f430d785bbcb940ef2348d9596932778568940fc59d14c. Current shared index equals the retained native-successor bytes:9056134B/SHA2566e57311ffb524aabe230dec4962ebfa6983085674882606f5b8594aa1d4cee18, mode0644, valid native v2/checksum,58700records. Exactly13paths were added to the original58687records.
+
+Every58685untargeted WHOLE raw record compares equal, including original stat-cache fields, native flags, modes, OIDs, stages and padding. Their concatenation digest9ec676efa40c447716daf8386b93a3dc63830f8fe8843291210700bacab0a65f agrees with my independent prepublication INITIAL, not only a producer result field. Foreign staging differences relative to original/successor commit trees are unchanged; actual difference count is0 in this case.
+
+The audit independently reconstructs Git tree serialization/hashes recursively from the raw native mode/path/OID records, without invoking Git write-tree or modifying any index/object. The complete current native semantic tree hashes exactly to16d2f9a43462df50ca505d07153df115b4e6e8eb. It also parses the complete actual TREE cache payload and checks every valid cached subtree OID and entry count against those independent hashes/counts. Before and after each have977valid nodes and6invalid nodes; every valid node matches. Both complete extensions are unchanged35878B/SHA256f12d2a0b795034ce5cab45ad6fa5da31b4d7ad6f4b22a5999ce27841b41350b3, matching the actual runtime delta changed=false. Thus the permitted derived-cache exception was not needed here, and unchanged cache bytes are supported by actual coherence checks, not assumed correct merely because unchanged.
+
+## Filesystem, metadata and protected inputs
+
+The complete actual760public buffers/modes and368child-directory paths/modes equal the old747-file/366-directory baseline overlaid with only the15adopted payloads and two specified new directories. All17DSStore objects, original public-root0750, unchangedCSS and unrelated public bytes/modes survive. Both aggregates are exactly the adopted123index/124sitemap buffers, whose old-unit preservation was already independently audited; no new copy, redirect or global hosting edit appeared. Hosting configs and the actual Math native branch/index/config/packed-ref/absence guards remain exact. The current native index and complete public snapshot compare unchanged across this audit's read-only operation.
+
+The actual frozen34/4stage and12-flat production preparation were authenticated by complete control/payload/mode/directory comparisons. All375source/editorial buffers and whole modes/topology in the adopted custody snapshot (306native plus47current writers and22original167writer files) remain exact. Earlier independent audit packets are pinned/reused by reference and were not written. This is bounded protection of the specified namespaces and native metadata, not a new census of every unrelated working tree.
+
+## Actual execution and chronology
+
+The PREP_ONLY assignment began before publication; actual ROOT_PUBLISH_READY arrived during auditor design before the helper was written. I therefore make no claim of an earlier PREP_READY seal. I first read actual root PUBLISH stdout/empty stderr/exit0 and runtime SUCCESS1153B/82dc3ce881a910255ce7e49f7148c6644d3c9ea3e837f82c5ce5a20afa6fdfdd, then bound their exact actual commit/tree/index/transaction values. No code or authority was inferred for future cases.
+
+The complete final223-line15093B own audit_actual_release.py, SHA25668fe176281f424cea2bce04640992323c29eb74b0b8e007b9ba2ef7f6c28c354, was personally read before its one ordinary /usr/bin/python3 -I -B invocation. A preexecution own source review added explicit frozen-directory topology/mode checking; the complete revised body was reread before any run. No failed invocation, retry, installation, environment repair or producer replay occurred.
+
+Actual execution03:30:39.904103–03:30:41.516520UTC on17November2026 exited0, literal stdout3414B, stderr0. CHECK_READ, EXECUTION and both literal own streams are retained. Three fixed read-only local Git object commands ran: cat-file for the immutable commit, and ls-tree for parent/current commit. Each exited0/empty stderr. InheritedGIT_* are stripped; optional locks, lazy fetch, replacement-object interpretation, hooks, fsmonitor and maintenance are controlled. No status/index refresh/read-tree/write-tree/hash-object/update-index/ref/push/fetch/GC command ran.
+
+Large tree-list stdout bodies were fully parsed in memory; their exact byte counts/SHA256 and immutable object IDs are retained, not a duplicate archive of the16.56MB raw listings. Actual command stderr literals are retained in own stdout. This explicit retention limit is not a claim that every nested command stdout byte was copied to this packet. The595710guard count is mostly per-record/file/serialization regularity, not independent scientific cases or a quality score.
+
+Actual root PUBLISH stdout1202B/e0ff738274d85d517ac054d99297b73eaf9b37b3c2621dcab7a507fe039a96ab equals the pinned runtime success semantically; root exit is0 and stderr empty. No fresh independent remote lookup was needed or performed. Remote success is attributed to those actual root receipts and literal handoff, separately from this independently checked local state. No worldwide/current-availability or live-hosting claim follows.
+
+Root separately authorized Firebase deployment while this audit ran; its .firebase cache outside public is outside this local-public/native-index scope. The audit verified every public buffer and hosting configuration and did not deploy, read a browser, change Sheet/AA, contact anyone or prepare outreach. No science/native program, CUA or old production/helper execution. Its own helper makes no filesystem writes; only the capture wrapper and finite report/seal preparation write this owned folder.
+
+Complete100%. The finite packet includes all actual owned files, the empty stderr and every reference/control; no future or subtree exclusion. All prior packets and source/W/native indices remain untouched by this lane. No active handle or further check remains; freeze and become quiescent. Root live/deployment/Sheet decisions remain separate.

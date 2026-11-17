@@ -1,0 +1,39 @@
+{
+  "schema": "preexecution-source-custody-parser-safety-continuation-v1",
+  "UTC": "2026-11-17 03:30:55 UTC",
+  "preserved_unexecuted_draft": {
+    "path": "acquire_sources.py",
+    "lines": 230,
+    "bytes": 27198,
+    "SHA256": "c5823d7f2bb7cf604ea89b76550e50f77e0c2a75b44238788ccd87aa19600ce9",
+    "invocations": 0
+  },
+  "read_only_same_model_child_review": {
+    "complete_actual_draft_read": true,
+    "writes": 0,
+    "imports_compile_execution": 0,
+    "network": 0,
+    "scientific_bodies": 0,
+    "concrete_finding": "Inherited archive parser preceded resource guards: compressed TAR metadata and ZIP central directories could allocate/expand before member/count limits.",
+    "other_guard_disposition": "No concrete defect identified in fixed IDs, default-noaction, no-overwrite, mismatch stop, returned-link routing, traversal/link/collision logic.",
+    "availability_limit": "Original pdfinfo had no timeout/output cap."
+  },
+  "new_helper": {
+    "path": "acquire_sources_guarded.py",
+    "lines": 266,
+    "bytes": 29789,
+    "SHA256": "92d815768e9d7f62edef732998e211958da79cf04992045fc0cd169ef9cb46d0",
+    "entire_actual_current_saved_body_personally_read_before_any_invocation": true,
+    "changes": [
+      "Bound physical ZIP central-directory count and8MiB directory bytes before ZipFile allocation; ordinary single-disk non-ZIP64 only.",
+      "Bound compressed envelope before any TAR parse; preinspect ordinary TAR physical headers and payload sizes; extended/sparse/link TAR metadata rejected, with no workaround.",
+      "pdfinfo30s timeout preserves any captured partial streams and literal TIMEOUT exit stream."
+    ],
+    "unsupported_formats_policy": "Stop route and preserve original bytes/failure. No install, retry, format workaround or bypass.",
+    "not_a_security_or_scientific_certificate": true
+  },
+  "actual_GETs_so_far": 0,
+  "source_namespaces_so_far_created": 0,
+  "scientific_verdict": null,
+  "completion_percent": 25
+}
