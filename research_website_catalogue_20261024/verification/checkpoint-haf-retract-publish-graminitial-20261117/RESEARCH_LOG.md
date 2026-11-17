@@ -1,0 +1,9 @@
+# Checkpoint research log
+
+2026-11-17T13:37:10.681727+00:00 — Preparation only. Root write hold remains active. Read the actual programme policy and complete authorized helper source inertly; no helper or current programme snapshot has run. Existing own directory was absent before creation. Goal remains active and incomplete; catalogue review 141/203 = 69.458128%, with 123 verified, 7 deployed, 3 preparing, 9 under review, 51 queued, 2 holds and 8 deferred. Checkpoint completion estimate: 15%.
+
+2026-11-17T13:49:18.346691+00:00 — Root explicit WRITEHOLD_RELEASE_TO_CHECKPOINT received; current programme/paper/log/Sheet receipt writers quiescent. Root metadata pins match; six frozen originals-only INITIALs and three source closures are listed for durable tree authentication. Current totals now 123 verified, 7 deployed, 3 preparing, 10 under review, 50 queued, 2 holds, 8 deferred; overall 141/203 = 69.458128%, goal active/incomplete. Static adapter audit still precedes any execution. Checkpoint completion estimate: 30%.
+
+2026-11-17T13:52:56.654022+00:00 — Single helper dry run 0 and tree/closure metadata audit 0; 403 scoped changed paths, 159 remote sibling entries including docs preserved, 40 key actual files and 19 durable packet/source closures verified. One ordinary actual helper push is now authorized by the saved root release and bounded dry approval. Checkpoint completion estimate: 65%; overall review remains 69.458128%, goal active/incomplete.
+
+2026-11-17T13:54:29.258032+00:00 — All six guarded execution/verification steps returned 0. Ordinary scoped checkpoint a4267dc5366bb693dd565421271276677a060320 verified against actual remote main, parent, tree, changed paths/blobs/modes, 159 siblings/docs, durable closures and native/public guards. Checkpoint completion: 100%; overall catalogue review: 69.458128%; research goal active and incomplete.

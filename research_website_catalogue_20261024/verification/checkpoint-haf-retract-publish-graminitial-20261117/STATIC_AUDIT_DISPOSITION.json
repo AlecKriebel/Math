@@ -1,0 +1,45 @@
+{
+  "UTC": "2026-11-17T13:50:10.267906+00:00",
+  "independent_agent": "/root/checkpoint141_published130/checkpoint_wrapper_audit",
+  "method": "Source-only full rereads; no execution/Git/network/writes by auditor",
+  "findings_and_dispositions": [
+    {
+      "finding": "Parent binding was after potential push",
+      "disposition": "Adapter validates fetched origin/main before helper proceeds and inspects actual push parent/tree before publication"
+    },
+    {
+      "finding": "Dry to actual tree could drift before publication",
+      "disposition": "Adapter compares complete root entries plus programme recursive tree entries including empty trees; only captured dry receipt blob and ancestor tree OIDs may differ"
+    },
+    {
+      "finding": "Excluded leaves did not prove excluded root tree identity",
+      "disposition": "Added exact nonrecursive root-entry/OID equality"
+    },
+    {
+      "finding": "Negated ignore rule could be accepted",
+      "disposition": "Reject negated cache-ignore matches"
+    },
+    {
+      "finding": "Durable root scope metadata lacked validation",
+      "disposition": "Require relative path without traversal and resolved location inside P"
+    },
+    {
+      "finding": "Helper alteration only asserted at final seal",
+      "disposition": "Assert full helper pin before invocation and again before actual push"
+    },
+    {
+      "finding": "Final directory topology not rechecked",
+      "disposition": "Recheck exact directories/modes and root mode"
+    },
+    {
+      "finding": "Timeout may orphan a child or lose receipt to exit race",
+      "disposition": "Handle missing process group; always attempt group SIGKILL after grace/reap; timeout exits124 and no retry"
+    },
+    {
+      "finding": "Python optimization can disable assertions",
+      "disposition": "Every fresh source fails closed without __debug__; child PYTHONOPTIMIZE=0 and explicit unoptimized launches"
+    }
+  ],
+  "source_history": "sources-before-final-static-corrections",
+  "history_note": "Full immediately pre-final-correction sources retained; earlier unexecuted preparation drafts are represented by recorded source hashes/tool records. No execution used an earlier draft."
+}

@@ -1,0 +1,94 @@
+--- /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/mink-riesz-k3-stage-audit-sol-20261117/audit_private.py
++++ /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/mink-riesz-k3-stage-audit-continuation-sol-20261117/audit_private.py
+@@ -17,7 +17,9 @@
+ M = P.parent
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ S = P / 'verification/mink-riesz-k3-stage-sol-20261117'
+-A = P / 'verification/mink-riesz-k3-stage-audit-sol-20261117'
++A = P / 'verification/mink-riesz-k3-stage-audit-continuation-sol-20261117'
++O = P / 'verification/mink-riesz-k3-stage-audit-sol-20261117'
++D = P / 'verification/root-mink-riesz-k3-audit-head-diagnosis-20261117.json'
+ BASE = S / 'baseline-public'
+ CAND = S / 'candidate-public'
+ PINS = {
+@@ -294,7 +296,9 @@
+                        ('<meta name="citation_pdf_url" content="' + canonical + 'assets/paper.pdf">').encode())]
+     script_token = b'<script type="application/ld+json">'
+     require(head.count(script_token) == 1, 'unique original article JSON script ' + record)
+-    pos = head.index(script_token)
++    style_token = b'<link rel="stylesheet" href="/research/research.css">\n'
++    require(head.count(style_token) == 1, 'unique unchanged approved stylesheet anchor ' + record)
++    pos = head.index(style_token)
+     spans.append({'start_byte': pos, 'end_byte': pos, 'old_UTF8': '',
+                   'new_UTF8': '<link rel="canonical" href="' + canonical + '">\n<meta property="og:url" content="' + canonical + '">\n'})
+     assets = model['native_asset_order']
+@@ -464,6 +468,29 @@
+             'old_visible_concatenated_data_bytes': [len(v.encode()) for v in before['visible_data']],
+             'XML_comparison_includes_root_children_text_tail_attribute_order': True}
+ 
++def verify_prior_failed(snapshot):
++    expected = {'FINAL.json': (1477, '3dab7883aaf53c71b8afcb49a5599fb0ead3d54d87e2c5d1a4d17919e2a37e04'),
++                'MANIFEST.json': (6455, 'ab248a8f6e16c18bf2e6c2fee3b6df674c2c05ca731a06cf82498c647452f945')}
++    for name, (size, sha) in expected.items():
++        require(pin(O / name) == {'bytes': size, 'SHA256': sha, 'mode': '0644'}, 'prior failed audit external terminal pin ' + name)
++    manifest = load(O / 'MANIFEST.json')
++    terminal = load(O / 'FINAL.json')
++    require((snapshot['regular_files'], snapshot['child_directories']) == (28, 0), 'prior failed finite namespace28/0')
++    require(set(snapshot['files']) == {r['path'] for r in manifest['payload_files']} | set(expected), 'prior failed complete file topology')
++    require(manifest['exact_already_created_terminal_recursive_hash_exclusions'] == ['MANIFEST.json', 'FINAL.json'] and
++            not manifest['other_exclusions'], 'prior failed only exact circular terminal pair')
++    for row in manifest['payload_files']:
++        verify_pin(O / relative(row['path']), row, 'prior failed preserved payload ' + row['path'])
++    require({r['path']: {'mode': r['mode'], 'empty': r['empty']} for r in manifest['directories']} == snapshot['directories'],
++            'prior failed root-inclusive mode and empty topology')
++    require(terminal['manifest'] == pin(O / 'MANIFEST.json') and terminal['original_audit_exit'] == 1 and
++            terminal['completion_percent_assigned_original_audit_only'] == 60 and terminal['no_PASS_retroclaim'],
++            'prior failed original exit1/incomplete60 remains literal')
++    require(pin(O / 'audit_private.py') == {'bytes': 41491, 'SHA256': '39fe5f73831676dca34930af27c4e1dc6315556e1f2cbedbbe2317a4353a34d8', 'mode': '0644'},
++            'original failed592line reader immutable never imported or rerun')
++    require(pin(D) == {'bytes': 2877, 'SHA256': '7a3a3f3d4768b754511ac739ef297d26c15c8e6d94d8ed1d21c009a8550ebb6d', 'mode': '0644'},
++            'root independent diagnosis external pin')
++
+ def main():
+     require(Path(__file__).resolve() == A / 'audit_private.py', 'fixed own reader path')
+     require(not (A / 'RESULTS.json').exists(), 'single audit invocation fresh result')
+@@ -471,7 +498,11 @@
+     guard = load(S / 'GUARDS_BEFORE.json')
+     stage_before = snap(S)
+     before = protected(guard)
+-    write('BEFORE.json', {'UTC': started, 'stage': stage_before, 'protected': before})
++    prior_failed_before = snap(O)
++    verify_prior_failed(prior_failed_before)
++    diagnosis_before = pin(D)
++    write('BEFORE.json', {'UTC': started, 'stage': stage_before, 'protected': before,
++                          'prior_failed': prior_failed_before, 'root_diagnosis': diagnosis_before})
+     final = verify_stage(stage_before)
+     require((S / 'GUARDS_BEFORE.json').read_bytes() == (S / 'GUARDS_AFTER.json').read_bytes(), 'literal successful build guard bytes identical')
+     require(before == guard, 'all actual protected trees/native controls match authenticated build guard')
+@@ -544,16 +575,22 @@
+             len((S / 'build_private.py').read_bytes().splitlines()) == 435, 'frozen producer file bytes/lines only never executed or parsed as code')
+     after = protected(guard)
+     stage_after = snap(S)
+-    require(after == before and stage_after == stage_before, 'audit whole protected boundary and stage before/after exact')
+-    write('AFTER.json', {'UTC': utc(), 'stage': stage_after, 'protected': after})
++    prior_failed_after = snap(O)
++    diagnosis_after = pin(D)
++    require(after == before and stage_after == stage_before and prior_failed_after == prior_failed_before and
++            diagnosis_after == diagnosis_before, 'audit whole protected boundary stage original failed lane and diagnosis before/after exact')
++    write('AFTER.json', {'UTC': utc(), 'stage': stage_after, 'protected': after,
++                         'prior_failed': prior_failed_after, 'root_diagnosis': diagnosis_after})
+     write('DETAILS.json', DETAIL)
+     write('RESULTS.json', {'schema': 'independent-private-mink-riesz-k3-stage-audit-result-v1',
+-                           'UTC_start': started, 'UTC_end': utc(), 'status': 'PASS_PRIVATE_STAGE_AUDIT_ONLY',
++                           'UTC_start': started, 'UTC_end': utc(), 'status': 'PASS_SEPARATE_PRIVATE_STAGE_AUDIT_CONTINUATION_ONLY',
+                            'completion_percent_assigned_audit_only': 100, 'checks_passed': len(CHECKS),
+                            'checks': list(CHECKS), 'follow_up': None, 'AA': None, 'actual_publication_date': None,
+                            'future_action_authority': False, 'actual_UI_render_live_or_production_certificate': False,
+                            'source_science_or_producer_execution': False, 'network_Git_writes_deploy_Sheet_redirect_outreach': False})
+-    report = ('Independent private stage audit PASS. Completion 100% applies only to this assigned audit; '
++    report = ('Separate corrected private stage audit PASS. The original audit remains frozen exit 1, incomplete 60%; '
++              'this distinct reader uses the approved unchanged stylesheet insertion anchor. '
++              'Completion 100% applies only to this assigned continuation audit; '
+               'follow_up null and no later action authority.\n\n'
+               'The externally pinned 1635-file/770-child-directory stage and entire 790-file website baseline / '
+               '803-file candidate pass whole-tree bytes, actual inherited modes, hidden/empty topology, '

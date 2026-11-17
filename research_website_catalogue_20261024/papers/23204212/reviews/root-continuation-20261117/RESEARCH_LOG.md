@@ -1,0 +1,3 @@
+# Research log
+
+2026-11-17T14:36:25.420877+00:00 — After original-only INITIAL and a426checkpoint, rawprimary75files(68MainimportLean+7PDFs) copied/authenticated from fixed224/3adversarialrawcache only. Sourcebodies remainunchanged; no currentpeerreports/opinions opened. Copydoesnotimplyproofreading. SevenPopplertextcommands0; no source/Lean/scientificprogram executed. Fullreviewestimate25%; actualupstream13-pageproofreading next. Thirdpartyprivatecache explicitlyignored. Firstdatareader/followup failures retained; correction distinguishes extra project-lakefileconfig from68sourceimportclosure.
