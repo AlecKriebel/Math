@@ -1,0 +1,522 @@
+--- inert_reference_release_two.py
++++ fresh_release_three.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Fresh fixed11 production preparation. ALL MODES UNEXECUTED at authoring.
++"""Fresh fixed15 production preparation. ALL MODES UNEXECUTED at authoring.
+ 
+ The literal default precedes data/environment access. Import defines functions
+ and constants only. Active modes require separate exact root authorities.
+@@ -12,6 +12,8 @@
+     raise SystemExit(0)
+ 
+ def _run_explicit_mode():
++    if sys.flags.optimize or sys.version_info[:2] != (3, 14) or sys.implementation.name != 'cpython':
++        raise RuntimeError('ACTIVE_MODES_REQUIRE_UNOPTIMIZED_CPYTHON_3_14')
+     from pathlib import Path
+     import base64
+     import ctypes
+@@ -27,23 +29,27 @@
+ 
+     P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+     M = P.parent
+-    N = P / 'verification/hafnian-retract-production-prepare-sol-20261117'
+-    RUN = P / 'verification/hafnian-retract-runtime-sol-20261117'
++    N = P / 'verification/mink-riesz-k3-production-prepare-sol-20261117'
++    RUN = P / 'verification/mink-riesz-k3-runtime-sol-20261117'
+     W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+-    S = P / 'verification/hafnian-retract-stage-corrected-sol-20261117'
+-    PLAN_SHA = '682ae4747c3004aef1b74fb8bce7f43b76984c427353419a7e8c770e941fa2a1'
++    S = P / 'verification/mink-riesz-k3-stage-sol-20261117'
++    PLAN_SHA = '7ae4db13a10f9bb03de008fd9f06688bf44b9af54bb5b40c82dd7713d30e6654'
+     TARGETS = frozenset({
+-        'public/research/complex-polynomial-retract-five-variables/assets/source-and-verification.zip',
+-        'public/research/complex-polynomial-retract-five-variables/assets/paper.pdf',
+-        'public/research/complex-polynomial-retract-five-variables/citation.bib',
+-        'public/research/complex-polynomial-retract-five-variables/index.html',
+-        'public/research/index.html',
+-        'public/research/nonnegative-rational-hafnians/assets/README.md',
+-        'public/research/nonnegative-rational-hafnians/assets/paper.pdf',
+-        'public/research/nonnegative-rational-hafnians/assets/source-and-verification.zip',
+-        'public/research/nonnegative-rational-hafnians/citation.bib',
+-        'public/research/nonnegative-rational-hafnians/index.html',
+-        'public/research/sitemap.xml',
++        "public/research/even-minkowski-uniqueness/assets/README.md",
++        "public/research/even-minkowski-uniqueness/assets/paper.pdf",
++        "public/research/even-minkowski-uniqueness/assets/source-and-verification.zip",
++        "public/research/even-minkowski-uniqueness/citation.bib",
++        "public/research/even-minkowski-uniqueness/index.html",
++        "public/research/hypersingular-riesz-surface-constants/assets/paper.pdf",
++        "public/research/hypersingular-riesz-surface-constants/assets/source-and-verification.zip",
++        "public/research/hypersingular-riesz-surface-constants/citation.bib",
++        "public/research/hypersingular-riesz-surface-constants/index.html",
++        "public/research/index.html",
++        "public/research/mixed-k3-moduli-hodge-classes/assets/paper.pdf",
++        "public/research/mixed-k3-moduli-hodge-classes/assets/source-and-verification.zip",
++        "public/research/mixed-k3-moduli-hodge-classes/citation.bib",
++        "public/research/mixed-k3-moduli-hodge-classes/index.html",
++        "public/research/sitemap.xml",
+     })
+     REPLACEMENTS = ['public/research/index.html', 'public/research/sitemap.xml']
+     LOG = None
+@@ -79,8 +85,12 @@
+         return result
+ 
+ 
++    def invalid_json_constant(value):
++        raise ValueError('non-finite JSON constant rejected: ' + value)
++
++
+     def strict_json(raw):
+-        return json.loads(raw, object_pairs_hook=unique_pairs)
++        return json.loads(raw, object_pairs_hook=unique_pairs, parse_constant=invalid_json_constant)
+ 
+ 
+     def inode(info):
+@@ -285,9 +295,9 @@
+     def authenticate_manifest(root, manifest, final_pin, manifest_pin, family):
+         terminals = {'FINAL.json': final_pin, 'OWNED_MANIFEST.json': manifest_pin}
+         names, files = set(), []
+-        need(family == 'stage' and manifest['schema'] == 'finite-hafnian-retract-private-stage-manifest-v1' and manifest['root'] == str(root) and manifest['root_mode'] == '0755', 'actual corrected-stage manifest identity')
++        need(family == 'stage' and manifest['schema'] == 'finite-mink-riesz-k3-private-stage-manifest-v1' and manifest['root'] == str(root) and manifest['root_mode'] == '0755', 'actual three-page stage manifest identity')
+         need(sorted(manifest['exact_already_created_terminal_recursive_hash_exclusions']) == sorted(str(root / name) for name in terminals) and manifest['other_exclusions'] == [] and manifest['all_hidden_ignored_empty_bytes_modes_topology_included'] is True and manifest['no_future_subtree_or_basename_exclusions'] is True, 'only actual exact two stage terminal exclusions')
+-        need((manifest['regular_files'], manifest['child_directories']) == (1598, 760) and manifest['terminal_modes'] == {name: '0644' for name in terminals}, 'actual1598/760 finite stage/control modes')
++        need((manifest['regular_files'], manifest['child_directories']) == (1635, 770) and manifest['terminal_modes'] == {name: '0644' for name in terminals}, 'actual1635/770 finite stage/control modes')
+         for row in manifest['payload_files']:
+             need(set(row) == {'path', 'bytes', 'SHA256', 'mode', 'hidden', 'empty'} and row['path'] not in terminals and row['path'] not in names, 'unique complete stage payload row')
+             relative(row['path'])
+@@ -301,7 +311,7 @@
+             need(row['path'] == '.' or relative(row['path']), 'actual stage directory path')
+             need(type(row['hidden']) is bool and row['hidden'] == any(part.startswith('.') for part in Path(row['path']).parts if part != '.'), 'stage directory hidden flag')
+             dirs[row['path']] = {key: row[key] for key in ('mode', 'empty')}
+-        expected = normalize_snapshot({'root': str(root), 'files': {row['path']: {key: row[key] for key in ('bytes', 'SHA256', 'mode')} for row in files}, 'directories': dirs, 'regular_files': 1598, 'child_directories': 760})
++        expected = normalize_snapshot({'root': str(root), 'files': {row['path']: {key: row[key] for key in ('bytes', 'SHA256', 'mode')} for row in files}, 'directories': dirs, 'regular_files': 1635, 'child_directories': 770})
+         whole_snapshot(expected)
+         return expected
+ 
+@@ -311,7 +321,7 @@
+         result = []
+         for key, root, branch in [('M', M, 'refs/heads/main'), ('W', W, 'refs/heads/master')]:
+             item = native[key]
+-            need(set(item) == {'HEAD', 'index', 'config', 'HEAD_text', 'local_loose_heads', 'packed_local_heads', 'resolved_native_HEAD'} and set(item['packed_local_heads']) == {'file_mode', 'raw_lines'}, 'actual corrected-stage native-control dictionary schema')
++            need(set(item) == {'HEAD', 'index', 'config', 'HEAD_text', 'local_loose_heads', 'packed_local_heads', 'resolved_native_HEAD', 'optional_worktree_config'} and set(item['packed_local_heads']) == {'file_mode', 'raw_lines'}, 'actual corrected-stage native-control dictionary schema')
+             need(item['HEAD_text'] == 'ref: ' + branch + '\n' and item['resolved_native_HEAD'] == (p['Math_native_main'] if root == M else p['website_HEAD']), 'accepted current raw native branch and resolution')
+             heads = {}
+             for raw_line in item['packed_local_heads']['raw_lines']:
+@@ -321,6 +331,7 @@
+                 need(match is not None and match[2] not in heads, 'unique raw packed local-head lines')
+                 heads[match[2]] = {'OID': match[1], 'raw_line': line}
+             row = {'root': str(root), **{leaf: canonical_pin(item[leaf]) for leaf in ('HEAD', 'index', 'config')}, 'local_branch': branch, 'local_branch_OID': item['resolved_native_HEAD'], 'loose_local_heads': normalize_snapshot(item['local_loose_heads']), 'packed_local_heads': heads, 'packed_refs_mode': mode_value(item['packed_local_heads']['file_mode']), 'remote_tracking_FETCH_HEAD_and_nonlocal_packed_lines_deliberately_not_bound': True}
++            row['optional_worktree_config'] = None if item['optional_worktree_config'] is None else canonical_pin(item['optional_worktree_config'])
+             row['HEAD']['raw'] = item['HEAD_text']
+             need(row['HEAD']['bytes'] == len(row['HEAD']['raw'].encode()) and row['HEAD']['SHA256'] == sha(row['HEAD']['raw'].encode()), 'actual raw native symbolic HEAD binding')
+             if root == W:
+@@ -329,20 +340,20 @@
+         return result
+ 
+     def load_plan():
+-        need(Path(__file__).absolute() == N / 'release_two.py', 'fixed fresh helper location')
++        need(Path(__file__).absolute() == N / 'release_three.py', 'fixed fresh helper location')
+         raw = read(N / 'PLAN.json')
+         need(sha(raw) == PLAN_SHA and permissions(N / 'PLAN.json') == '0644', 'exact fresh PLAN bytes/mode')
+         p = strict_json(raw)
+-        need(p['schema'] == 'fixed-hafnian-retract11-production-source-preparation-v1', 'actual fresh PLAN schema')
+-        fixed = {'project': str(P), 'Math': str(M), 'website': str(W), 'preparation_root': str(N), 'runtime_root': str(RUN), 'stage_root': str(S), 'helper_name': 'release_two.py', 'branch': 'refs/heads/master', 'website_HEAD': '7d5ac8ea5dc8d6cddee457da7a5b40042d36d344', 'website_tree': 'c59d0d0a542f20bceb3556b1e936e86b22626434', 'origin': 'https://github.com/AlecKriebel/aleckriebel.com.git', 'git_binary': '/usr/bin/git', 'author_name': 'Alec Kriebel', 'author_email': 'me@aleckriebel.com'}
++        need(p['schema'] == 'fixed-mink-riesz-k3-15-production-source-preparation-v1', 'actual fresh PLAN schema')
++        fixed = {'project': str(P), 'Math': str(M), 'website': str(W), 'preparation_root': str(N), 'runtime_root': str(RUN), 'stage_root': str(S), 'helper_name': 'release_three.py', 'branch': 'refs/heads/master', 'website_HEAD': '217d41c0a9344aed9caacee7aed31d4f23b77e47', 'website_tree': 'cb7ae0adb22dc34b9c36b9d1e8efcf94f89f44e3', 'origin': 'https://github.com/AlecKriebel/aleckriebel.com.git', 'git_binary': '/usr/bin/git', 'author_name': 'Alec Kriebel', 'author_email': 'me@aleckriebel.com'}
+         need(all(p[key] == value for key, value in fixed.items()), 'current fixed roots/parent/transport/author')
+-        need(p['scope_paths'] == sorted(TARGETS) and p['replacement_paths'] == REPLACEMENTS, 'literal exact11 scope')
+-        need((p['paths'], p['new_leaves'], p['replacements']) == (11, 9, 2) and p['rows'] == [186, 188] and p['record_ids'] == [23205294, 23203270], 'exact11/9A2M rows and records')
+-        need(permissions(N / 'release_two.py') == '0644', 'fresh ordinary0644 helper')
++        need(p['scope_paths'] == sorted(TARGETS) and p['replacement_paths'] == REPLACEMENTS, 'literal exact15 scope')
++        need((p['paths'], p['new_leaves'], p['replacements']) == (15, 13, 2) and p['rows'] == [189, 190, 191] and p['record_ids'] == [23203081, 23202994, 23204176], 'exact15/13A2M rows and records')
++        need(permissions(N / 'release_three.py') == '0644', 'fresh ordinary0644 helper')
+         return p
+ 
+     def bindings(p):
+-        return {'helper': {'path': str(N / 'release_two.py'), **row_for(N / 'release_two.py')}, 'PLAN': {'path': str(N / 'PLAN.json'), **row_for(N / 'PLAN.json')}, 'controls': p['controls'], 'record_ids': p['record_ids'], 'scope_paths': p['scope_paths'], 'runtime_root': str(RUN), 'website_HEAD': p['website_HEAD'], 'website_tree': p['website_tree'], 'website_index': p['website_index'], 'Math_native_main': p['Math_native_main'], 'stage_review_pending_during_preparation': True}
++        return {'helper': {'path': str(N / 'release_three.py'), **row_for(N / 'release_three.py')}, 'PLAN': {'path': str(N / 'PLAN.json'), **row_for(N / 'PLAN.json')}, 'controls': p['controls'], 'record_ids': p['record_ids'], 'scope_paths': p['scope_paths'], 'runtime_root': str(RUN), 'website_HEAD': p['website_HEAD'], 'website_tree': p['website_tree'], 'website_index': p['website_index'], 'Math_native_main': p['Math_native_main'], 'stage_review_pending_during_preparation': True}
+ 
+ 
+     def timestamp(value):
+@@ -374,12 +385,12 @@
+     def stage_review(review, p):
+         need(set(review) == {'root_adoption', 'root_adoption_semantics', 'audit_FINAL', 'audit_manifest', 'audit_snapshot', 'actual_schema_present', 'actual_schema', 'actual_status_present', 'actual_status', 'root_resolution'}, 'future exact actual stage audit/root disposition schema')
+         adopted = strict_json(bound(review['root_adoption']))
+-        need(adopted == review['root_adoption_semantics'], 'whole actual future root stage-adoption object')
++        need(packed(adopted) == packed(review['root_adoption_semantics']), 'whole actual future root stage-adoption object and JSON types')
+         audit = strict_json(bound(review['audit_FINAL']))
+         bound(review['audit_manifest'])
+         audit_path = Path(review['audit_FINAL']['path'])
+         adoption_path = Path(review['root_adoption']['path'])
+-        need(audit_path.name == 'FINAL.json' and audit_path.is_relative_to(P / 'verification') and adoption_path.is_relative_to(P / 'verification') and not any(audit_path.is_relative_to(root) for root in (N, RUN, S)), 'actual distinct stage audit/root-adoption locations')
++        need(audit_path.name == 'FINAL.json' and audit_path.is_relative_to(P / 'verification') and adoption_path.is_relative_to(P / 'verification') and not any(audit_path.is_relative_to(root) or adoption_path.is_relative_to(root) for root in (N, RUN, S)), 'actual distinct stage audit/root-adoption locations')
+         audit_snapshot = normalize_snapshot(review['audit_snapshot'])
+         need(audit_snapshot['root'] == str(audit_path.parent), 'future audit full custody root')
+         whole_snapshot(audit_snapshot)
+@@ -391,26 +402,27 @@
+             present = review['actual_' + key + '_present']
+             need(type(present) is bool and (key in audit) == present and review['actual_' + key] == (audit[key] if present else None), 'actual future audit literal field/presence: ' + key)
+         resolution = review['root_resolution']
+-        need(set(resolution) == {'classification', 'rationale', 'criterion_count', 'all_criteria_accepted', 'root_personally_read_complete_stage_and_audit', 'stage_FINAL', 'stage_manifest', 'audit_FINAL', 'audit_manifest'} and resolution['classification'] == 'ALL_28_STAGE_CRITERIA_ACCEPTED_FOR_EXACT_STAGE' and resolution['criterion_count'] == 28 and resolution['all_criteria_accepted'] is True and resolution['root_personally_read_complete_stage_and_audit'] is True and isinstance(resolution['rationale'], str) and resolution['rationale'].strip(), 'explicit future root disposition of actual28criteria')
++        need(set(resolution) == {'classification', 'rationale', 'actual_criteria_summary', 'all_criteria_accepted', 'root_personally_read_complete_stage_and_audit', 'stage_FINAL', 'stage_manifest', 'stage_builder', 'audit_FINAL', 'audit_manifest'} and resolution['classification'] == 'ALL_ACTUAL_STAGE_FINDINGS_ACCEPTED_FOR_EXACT_STAGE' and isinstance(resolution['actual_criteria_summary'], str) and resolution['actual_criteria_summary'].strip() and resolution['all_criteria_accepted'] is True and resolution['root_personally_read_complete_stage_and_audit'] is True and isinstance(resolution['rationale'], str) and resolution['rationale'].strip(), 'explicit root disposition of complete actual stage audit, with no guessed criterion count/status')
++        need(resolution['stage_builder'] == p['controls']['stage_builder'], 'root personally read exact saved stage builder')
+         need(resolution['stage_FINAL'] == p['controls']['stage_FINAL'] and resolution['stage_manifest'] == p['controls']['stage_manifest'] and resolution['audit_FINAL'] == review['audit_FINAL'] and resolution['audit_manifest'] == review['audit_manifest'], 'future root disposition binds exact current stage and actual audit')
+         return audit_snapshot
+ 
+ 
+     def authorization(kind, p, phase):
+         path = Path(p['authority_paths'][kind])
+-        expected_path = P / ('verification/root-hafnian-retract-' + ('readonly' if kind == 'readonly' else kind) + '-authorization-20261117.json')
++        expected_path = P / ('verification/root-mink-riesz-k3-' + ('readonly' if kind == 'readonly' else kind) + '-authorization-20261117.json')
+         need(path == expected_path, 'fixed root authority path')
+         raw = read(path)
+         need(permissions(path) == '0644', 'root authority0644')
+         a = strict_json(raw)
+         b = bindings(p)
+-        action = {'readonly': 'READONLY_EXACT11_PREFLIGHT', 'install': 'INSTALL_EXACT11_FILESYSTEM', 'publish': 'PUBLISH_EXACT11_GIT'}[kind]
++        action = {'readonly': 'READONLY_EXACT15_PREFLIGHT', 'install': 'INSTALL_EXACT15_FILESYSTEM', 'publish': 'PUBLISH_EXACT15_GIT'}[kind]
+         fixed = {'schema': p['authority_schema'], 'action': action, 'phase': phase, 'bindings': b, 'concurrency': 'ROOT_SERIALIZED_NO_OTHER_W_WRITER', 'root_asserts_nonce_fresh': True, 'root_asserts_no_other_W_writer': True, 'deployment_authorized': False, 'Sheet_authorized': False, 'AA': None, 'follow_up': None}
+         extras = {'issued_UTC', 'expires_UTC', 'nonce', 'helper_review', 'stage_review'}
+         extras |= {'request_fingerprint_SHA256'} if kind == 'readonly' else {'preflight_SHA256'}
+         if kind == 'publish':
+             extras |= {'installation_SUCCESS', 'author_name', 'author_email', 'commit_date'}
+-        need(set(a) == set(fixed) | extras and all(a[key] == value for key, value in fixed.items()), 'exact separate current root action authority')
++        need(set(a) == set(fixed) | extras and packed({key: a[key] for key in fixed}) == packed(fixed), 'exact separate current root action authority including JSON types')
+         issued, expiry = timestamp(a['issued_UTC']), timestamp(a['expires_UTC'])
+         need(issued <= utc() < expiry and 0 < (expiry - issued).total_seconds() <= p['authority_max_lifetime_seconds'] == 3600, 'currently issued short expiring root authority')
+         need(isinstance(a['nonce'], str) and re.fullmatch('[0-9a-f]{64}', a['nonce']), 'fresh root64hex nonce')
+@@ -445,13 +457,13 @@
+         path = Path(row['path'])
+         need(path.name == 'SUCCESS.json' and path.parent.parent == RUN / 'install' and re.fullmatch('[0-9a-f]{64}', path.parent.name), 'this fresh effort installation SUCCESS only')
+         result = strict_json(bound(row))
+-        need(result['schema'] == 'hafnian-retract-install-success-v1' and result['status'] == 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'completed exact11 installation snapshot')
+-        need(result['bindings'] == current_bindings and result['counts'] == [790, 381, 130, 131] and result['targets'] == sorted(TARGETS), 'installed exact current payloads and counts')
++        need(result['schema'] == 'mink-riesz-k3-install-success-v1' and result['status'] == 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'completed exact15 installation snapshot')
++        need(result['bindings'] == current_bindings and result['counts'] == [803, 387, 133, 134] and result['targets'] == sorted(TARGETS), 'installed exact current payloads and counts')
+         need(result['authorization_SHA256'] == path.parent.name and result['nonce'] != publish_nonce and result['runtime_root'] == str(RUN), 'separate publish nonce and current install transaction')
+         install_raw = read(path.parent / 'authorization.json')
+         need(sha(install_raw) == result['authorization_SHA256'], 'retained exact original install authority')
+         installed_authority = strict_json(install_raw)
+-        need(installed_authority['action'] == 'INSTALL_EXACT11_FILESYSTEM' and installed_authority['nonce'] == result['nonce'] and installed_authority['bindings'] == current_bindings, 'original distinct installation action binding')
++        need(installed_authority['action'] == 'INSTALL_EXACT15_FILESYSTEM' and installed_authority['nonce'] == result['nonce'] and installed_authority['bindings'] == current_bindings, 'original distinct installation action binding')
+         lock = strict_json(read(RUN / 'ACTIVE_INSTALL.lock'))
+         need(lock['authorization_SHA256'] == result['authorization_SHA256'] and lock['nonce'] == result['nonce'] and lock['action'] == installed_authority['action'], 'retained current runtime install lock')
+         need(permissions(RUN) == '0700' and permissions(RUN / 'install') == '0700' and permissions(path.parent) == '0700', 'private fresh runtime modes')
+@@ -511,6 +523,8 @@
+         for row in guards:
+             root = Path(row['root'])
+             need(row['remote_tracking_FETCH_HEAD_and_nonlocal_packed_lines_deliberately_not_bound'] is True, 'actual local-only native guard semantics')
++            optional = root / '.git/config.worktree'
++            need((not os.path.lexists(optional)) if row['optional_worktree_config'] is None else row_for(optional) == row['optional_worktree_config'], 'phase-appropriate optional native worktree config/absence')
+             for name in ('HEAD', 'config'):
+                 need(row_for(root / '.git' / name) == {key: row[name][key] for key in ('bytes', 'SHA256', 'mode')}, 'native raw ' + name + ' unchanged')
+             need(read(root / '.git/HEAD').decode('ascii') == row['HEAD']['raw'] == 'ref: ' + row['local_branch'] + '\n', 'exact symbolic native HEAD')
+@@ -538,7 +552,7 @@
+         body = script.group(1)
+         typed = strict_json(body)
+         start = body.index('[', body.index('"itemListElement"'))
+-        decoder = json.JSONDecoder(object_pairs_hook=unique_pairs)
++        decoder = json.JSONDecoder(object_pairs_hook=unique_pairs, parse_constant=invalid_json_constant)
+         items, close = decoder.raw_decode(body, start)
+         pos = start + 1
+         spans = []
+@@ -554,7 +568,8 @@
+ 
+ 
+     def adopted_aggregates(buffers, evidence, stage_files):
+-        need(evidence['schema'] == 'whole-buffer-reversible-aggregate-fidelity-v1' and evidence['whole_byte_reversal_both'] is True and evidence['no_aggregate_reserialization'] is True, 'actual whole-buffer reversible stage evidence')
++        need(evidence['schema'] == 'three-page-whole-buffer-reversible-aggregate-fidelity-v1' and evidence['no_old_aggregate_reserialization'] is True and evidence['whole_old130_rawHTML_concat_visible_rawJSON_typed_and131_raw_fullparsedXML_prefix_exact'] is True, 'actual whole-buffer reversible stage evidence')
++        need(set(evidence['whole_forward_reverse']) == {'index', 'XML'} and all(row['whole_forward_exact'] is True and row['whole_reverse_exact'] is True for row in evidence['whole_forward_reverse'].values()) and len(evidence['index_spans']) == 3 and len(evidence['XML_spans']) == 1, 'actual three index/one XML closed spans and complete reversal evidence')
+         old_buffers = [read(S / name) for name in ['ORIGINAL_RESEARCH_INDEX.html', 'ORIGINAL_RESEARCH_SITEMAP.xml']]
+         new_buffers = [buffers[name] for name in REPLACEMENTS]
+         for old, new, spans in zip(old_buffers, new_buffers, [evidence['index_spans'], evidence['XML_spans']], strict=True):
+@@ -576,79 +591,78 @@
+         old_index, new_index = [raw.decode('utf-8') for raw in [old_buffers[0], new_buffers[0]]]
+         old_script, old_body, old_units, old_close, old_typed = script_units(old_index)
+         new_script, new_body, new_units, new_close, new_typed = script_units(new_index)
+-        need(len(old_units) == old_typed['mainEntity']['numberOfItems'] == 128 and len(new_units) == new_typed['mainEntity']['numberOfItems'] == 130, 'actual128-to130 counts')
+-        need([old_body[a:b] for a, b, value in old_units] == [new_body[a:b] for a, b, value in new_units[:128]] and [value for a, b, value in old_units] == [value for a, b, value in new_units[:128]] and [value for a, b, value in new_units[128:]] == evidence['new_typed_units'], 'all128 whole raw/typed JSON prefix and exact two appends')
++        need(len(old_units) == old_typed['mainEntity']['numberOfItems'] == 130 and len(new_units) == new_typed['mainEntity']['numberOfItems'] == 133, 'actual130-to133 counts')
++        need([old_body[a:b] for a, b, value in old_units] == [new_body[a:b] for a, b, value in new_units[:130]] and [value for a, b, value in old_units] == [value for a, b, value in new_units[:130]] and [value for a, b, value in new_units[130:]] == evidence['new_typed_units'], 'all130 whole raw/typed JSON prefix and exact three appends')
+         old_html = re.findall(r'<li\b[^>]*>.*?</li>', re.search(r'<ul>(.*?)</ul>', old_index, re.S)[1], re.S)
+         new_html = re.findall(r'<li\b[^>]*>.*?</li>', re.search(r'<ul>(.*?)</ul>', new_index, re.S)[1], re.S)
+-        need(len(old_html) == 128 and new_html[:128] == old_html and new_html[128:] == evidence['new_visible_units'], 'all128 whole raw HTML prefix and exact appends; visible events inherited through byte equality')
++        need(len(old_html) == 130 and new_html[:130] == old_html and new_html[130:] == evidence['new_visible_units'], 'all130 whole raw HTML prefix and exact appends; visible events inherited through byte equality')
+         def xml_value(node):
+             return {'tag': node.tag, 'attributes': dict(node.attrib), 'text': node.text, 'tail': node.tail, 'children': [xml_value(child) for child in node]}
+         old_xml, new_xml = old_buffers[1], new_buffers[1]
+         old_nodes, new_nodes = [re.findall(rb'<url>.*?</url>', raw, re.S) for raw in [old_xml, new_xml]]
+-        need(len(old_nodes) == 129 and len(new_nodes) == 131 and new_nodes[:129] == old_nodes and [row.decode() for row in new_nodes[129:]] == evidence['new_XML_units'], 'all129 whole raw XML prefix and exact appends')
+-        need([xml_value(node) for node in ET.fromstring(old_xml)] == [xml_value(node) for node in list(ET.fromstring(new_xml))[:129]], 'all129 full namespace-aware parsed XML nodes')
+-        return {'whole_buffer_forward_and_reverse_rechecked': True, 'old128raw_typed_HTML_and129XML_prefixes_exact': True, 'visible_text_events_inherited_from_exact_raw_HTML_and_pinned_stage_units': True}
++        need(len(old_nodes) == 131 and len(new_nodes) == 134 and new_nodes[:131] == old_nodes and [row.decode() for row in new_nodes[131:]] == evidence['new_XML_units'], 'all131 whole raw XML prefix and exact appends')
++        need([xml_value(node) for node in ET.fromstring(old_xml)] == [xml_value(node) for node in list(ET.fromstring(new_xml))[:131]], 'all131 full namespace-aware parsed XML nodes')
++        return {'whole_buffer_forward_and_reverse_rechecked': True, 'old130raw_typed_HTML_and131XML_prefixes_exact': True, 'visible_text_events_inherited_from_exact_raw_HTML_and_pinned_stage_units': True}
+ 
+     def contract(p):
+         controls = p['controls']
+-        reading = strict_json(bound(controls['root_stage_reading']))
+-        need(reading['schema'] == 'root-hafnian-retract-corrected-private-stage-reading-v1' and reading['FINAL_SHA256'] == controls['stage_FINAL']['SHA256'] and reading['manifest_SHA256'] == controls['stage_manifest']['SHA256'] and reading['W_installation_or_production_action_authority'] is False, 'actual bounded stage reading is not installation authority')
+-        need(reading['builder_lines'] == 670 and reading['builder_SHA256'] == controls['stage_builder']['SHA256'], 'actual fully root-read builder binding')
+         for row in controls.values():
+             bound(row)
+         stage_final = strict_json(bound(controls['stage_FINAL']))
+         stage = authenticate_manifest(S, strict_json(bound(controls['stage_manifest'])), controls['stage_FINAL'], controls['stage_manifest'], 'stage')
+         stage_files, stage_dirs = tables(stage)
+-        need(stage_final['schema'] == 'private-hafnian-retract-stage-final-v1' and stage_final['status'] == 'PASS_PRIVATE_STAGE_FROZEN_AWAITING_INDEPENDENT_IMPLEMENTATION_AUDIT' and stage_final['publication_authority'] is False, 'actual frozen stage FINAL/no action grant')
+-        need(stage_final['execution']['invocations'] == 1 and stage_final['execution']['exit_code'] == 0 and stage_final['corrected_continuation_history']['old_failed_attempt_exit'] == 1 and stage_final['corrected_continuation_history']['old_failed_attempt_immutable_not_reclassified'] is True, 'separate corrected success and retained original exit1')
+-        need('_stage_review' in p, 'future actual stage audit must be supplied by explicit authority')
++        need(stage_final['schema'] == 'private-mink-riesz-k3-stage-FINAL-v1' and stage_final['status'] == 'PRIVATE_STAGE_FROZEN_AWAITING_ROOT_AND_INDEPENDENT_AUDIT', 'actual frozen stage identity; future adoption is separately required')
++        need(stage_final['builder_lines'] == 435 and stage_final['builder'] == {key: controls['stage_builder'][key] for key in ('bytes', 'SHA256', 'mode')}, 'actual complete saved stage builder')
++        history = stage_final['literal_history']
++        need(history == {'builder_exit': 0, 'first_functions_seal_failure_status': 1, 'first_seal_native_process_exit_code': None, 'separate_v2_passive_exit_at_normal_completion': 0, 'external_tool_exit_observation_required': True, 'first_seal_failure_not_retroactively_passed': True, 'no_builder_retry_repair_import_AST_compile_help': True}, 'literal distinct builder0/administrative seal1/native-null/separate metadata0 history')
++        need('_stage_review' in p, 'future actual independent stage audit and root adoption required')
+         audit = stage_review(p['_stage_review'], p)
+         guard_raw = bound(controls['build_guards_before'])
+-        need(guard_raw == bound(controls['build_guards_after']), 'complete frozen before/after guards exact')
++        need(guard_raw == bound(controls['build_guards_after']), 'complete frozen build before/after guards exact')
+         raw_guards = strict_json(guard_raw)
+-        need(set(raw_guards) == {'roots', 'controls', 'public', 'native_M', 'native_W', 'old_failed_lane', 'frozen_diagnostic_lane', 'binding_lane', 'stage_control_pins'}, 'actual corrected-stage complete guard schema')
+-        for path, row in {**raw_guards['controls'], **raw_guards['stage_control_pins']}.items():
++        need(set(raw_guards) == {'schema', 'roots', 'controls', 'public', 'native_M', 'native_W'} and raw_guards['schema'] == 'complete-private-three-stage-protected-dict-snapshots-v1', 'actual three-page complete guard schema')
++        need(len(raw_guards['controls']) == 6, 'three actual editorial adoptions and three scientific clearances')
++        for path, row in raw_guards['controls'].items():
+             bound({'path': path, **canonical_pin(row)})
+         roots = raw_guards['roots']
+-        need(len(roots) == 9 and all(path == row['root'] for path, row in roots.items()), 'actual nine keyed source/private/INITIAL roots')
++        need(len(roots) == 12 and all(path == row['root'] for path, row in roots.items()), 'actual twelve keyed native-source/private input roots')
+         sources = [normalize_snapshot(row) for path, row in roots.items() if path.endswith('/sources')]
+         private = [normalize_snapshot(row) for path, row in roots.items() if not path.endswith('/sources')]
+-        six = [row for row in private if not row['root'].endswith('/hafnian-retract-stage-initial-sol-20261117')]
+-        need(len(six) == 6 and sum(row['regular_files'] for row in six) == 204 and sum(row['child_directories'] for row in six) == 13 and len(sources) == 2 and sum(row['regular_files'] for row in sources) == 153 and sum(row['child_directories'] for row in sources) == 22, 'actual source153/22 and six private204/13 extents')
+-        private += [normalize_snapshot(raw_guards[key]) for key in ['old_failed_lane', 'frozen_diagnostic_lane', 'binding_lane']]
++        need(len(sources) == 3 and sum(row['regular_files'] for row in sources) == 133 and sum(row['child_directories'] for row in sources) == 34 and len(private) == 9 and sum(row['regular_files'] for row in private) == 378 and sum(row['child_directories'] for row in private) == 25, 'actual three-source133/34 and nine-private378/25 extents')
+         for namespace in private + sources:
+             whole_snapshot(namespace)
+         guards = {'native': normalized_native({'M': raw_guards['native_M'], 'W': raw_guards['native_W']}, p), 'public': normalize_snapshot(raw_guards['public']), 'adopted_inputs': private, 'original_sources': sources}
+         need(guards['public']['root'] == str(W / 'public'), 'actual baseline public root identity')
+         target_plan = strict_json(bound(controls['target_plan']))
+-        need(target_plan['schema'] == 'explicit-hafnian-retract-private-stage-targets-v1' and target_plan['append_order'] == ['23205294', '23203270'], 'actual explicit target schema/order')
++        need(target_plan['schema'] == 'explicit-three-private-stage-targets-v1' and target_plan['append_order'] == ['23203081', '23202994', '23204176'] and target_plan['publication_authority'] is False, 'actual ordered private stage target schema; no action authority')
+         names = target_plan['additions_public_relative'] + target_plan['modifications_public_relative']
+-        need(len(set(names)) == 11 and all(not name.startswith('public/') for name in names), 'actual public-root-relative targets, no double prefix')
++        need(len(names) == len(set(names)) == 15 and len(target_plan['additions_public_relative']) == 13 and len(target_plan['modifications_public_relative']) == 2 and all(not name.startswith('public/') for name in names), 'actual public-root-relative13A2M targets, no duplicate/double prefix')
+         for name in names:
+             relative(name)
+-        need({'public/' + name for name in names} == TARGETS and ['public/' + name for name in target_plan['modifications_public_relative']] == REPLACEMENTS and sorted(target_plan['new_directories_public_relative']) == p['new_directories'] and target_plan['Git_relative_targets'] == ['public/' + name for name in names], 'prepend public exactly once; exact Git scope and four dirs')
++        need({'public/' + name for name in names} == TARGETS and ['public/' + name for name in target_plan['modifications_public_relative']] == REPLACEMENTS and sorted(target_plan['new_directories_public_relative']) == p['new_directories'] and target_plan['Git_relative_targets'] == ['public/' + name for name in names], 'prepend public exactly once; exact fifteen Git paths and six dirs')
+         old_files, old_dirs = tables(guards['public'])
+-        need((len(old_files), len(old_dirs), guards['public']['root_mode']) == (781, 377, '0750') and sum(Path(name).name == '.DS_Store' for name in old_files) == 17, 'actual781/377 baseline and17DSStore')
++        need((len(old_files), len(old_dirs), guards['public']['root_mode']) == (790, 381, '0750') and sum(Path(name).name == '.DS_Store' for name in old_files) == 17, 'actual790/381 baseline and17DSStore')
++        need({mode: sum(row['mode'] == mode for row in old_files.values()) for mode in ('0644', '0600', '0666')} == {'0644': 764, '0600': 24, '0666': 2}, 'actual inherited baseline file modes, including0600/0666')
+         candidate = normalize_snapshot(strict_json(bound(controls['candidate_manifest'])))
+         need(candidate['root'] == str(S / 'candidate-public'), 'explicit actual stage candidate root')
+         whole_snapshot(candidate)
+         candidate_files, candidate_dirs = tables(candidate)
+         buffers = {}
+         for name in sorted(TARGETS):
+-            need((name[7:] in old_files) == (name in REPLACEMENTS), 'exact nine additions and only two existing target leaves')
++            need((name[7:] in old_files) == (name in REPLACEMENTS), 'exact thirteen additions and only two existing aggregate leaves')
+             path = S / 'candidate-public' / relative(name[7:])
+             raw = read(path)
+             row = {**pin(raw), 'mode': permissions(path)}
+-            need(row == candidate_files[name[7:]] == stage_files['candidate-public/' + name[7:]] and row['mode'] == '0644', 'whole frozen0644 target bytes')
++            need(row == candidate_files[name[7:]] == stage_files['candidate-public/' + name[7:]] and row['mode'] == '0644', 'whole frozen0644 selected target bytes')
+             buffers[name] = raw
+         necessary = set()
+         for name in buffers:
+             necessary.update(parent.as_posix() for parent in Path(name[7:]).parents if parent.as_posix() != '.' and parent.as_posix() not in old_dirs)
+-        need(necessary == set(p['new_directories']) and len(necessary) == 4, 'exact four necessary new directories')
++        need(necessary == set(p['new_directories']) and len(necessary) == 6, 'exact six necessary new directories')
+         expected_files = dict(old_files)
+         expected_files.update({name[7:]: {**pin(raw), 'mode': '0644'} for name, raw in buffers.items()})
+         expected_dirs = {**old_dirs, **{name: '0755' for name in necessary}}
+-        need(candidate_files == expected_files and candidate_dirs == expected_dirs and candidate['root_mode'] == '0750' and (len(candidate_files), len(candidate_dirs)) == (790, 381), 'all779 untargeted old files and377 directory modes preserved')
++        need(candidate_files == expected_files and candidate_dirs == expected_dirs and candidate['root_mode'] == '0750' and (len(candidate_files), len(candidate_dirs)) == (803, 387), 'all788 untargeted old files and381 directory modes preserved')
+         aggregate = strict_json(bound(controls['aggregate_preservation']))
+         aggregate_proof = adopted_aggregates(buffers, aggregate, stage_files)
+         for original, name in [('ORIGINAL_RESEARCH_INDEX.html', REPLACEMENTS[0]), ('ORIGINAL_RESEARCH_SITEMAP.xml', REPLACEMENTS[1])]:
+@@ -670,7 +684,7 @@
+         index = read(W / 'public/research/index.html').decode('utf-8')
+         entity = script_units(index)[4]['mainEntity']
+         counts = [len(files), len(dirs), entity['numberOfItems'], len(ET.fromstring(read(W / 'public/research/sitemap.xml')))]
+-        need(type(entity['numberOfItems']) is int and len(entity['itemListElement']) == counts[2] and counts == p['after_counts_files_childdirs_articles_sitemap' if installed else 'before_counts_files_childdirs_articles_sitemap'], 'exact phase781/377/128/129 or790/381/130/131 structured counts')
++        need(type(entity['numberOfItems']) is int and len(entity['itemListElement']) == counts[2] and counts == p['after_counts_files_childdirs_articles_sitemap' if installed else 'before_counts_files_childdirs_articles_sitemap'], 'exact phase790/381/130/131 or803/387/133/134 structured counts')
+         return actual, counts
+ 
+ 
+@@ -726,16 +740,16 @@
+ 
+     def native_successor(raw, oids):
+         records, extension = index_entries(raw)
+-        need(set(oids) == TARGETS and len(records) == 58721, 'current exact selected successor scope')
++        need(set(oids) == TARGETS and len(records) == 58730, 'current exact selected successor scope')
+         selected = {name.encode(): zero_stat_record(name.encode(), oid) for name, oid in oids.items()}
+         bodies = {name: row[0] for name, row in records.items()}
+         bodies.update(selected)
+-        need(len(bodies) == 58730, 'exact nine new native records')
++        need(len(bodies) == 58743, 'exact thirteen new native records')
+         body = b'DIRC' + struct.pack('>II', 2, len(bodies)) + b''.join(bodies[name] for name in sorted(bodies)) + extension
+         successor = body + hashlib.sha1(body).digest()
+         after, after_extension = index_entries(successor)
+         need(after_extension == extension and all(after[name][0] == value for name, value in selected.items()), 'whole exact selected zero-stat buffers and old TREE bytes')
+-        need(all(after[name] == row for name, row in records.items() if name not in selected) and len(set(records) - set(selected)) == 58719, 'all58719 whole untouched raw records exact')
++        need(all(after[name] == row for name, row in records.items() if name not in selected) and len(set(records) - set(selected)) == 58728, 'all58728 whole untouched raw records exact')
+         return successor
+ 
+ 
+@@ -828,6 +842,7 @@
+             need(response[pos:pos + length] == trees[path][2] and response[pos + length:pos + length + 1] == b'\n', 'actual Git tree object bytes equal independently reconstructed native semantics')
+             pos += length + 1
+         need(pos == len(response), 'complete finite cached-object batch consumed')
++        need(pin(extension) == p['baseline_TREE_whole'] and pin(payload) == p['baseline_TREE_payload'] and len(seen) == p['baseline_TREE_nodes'] == 983 and len(valid) == p['baseline_TREE_valid_nodes'] == 977, 'whole TREE/payload distinct pins and all983nodes/977valid/six existing invalid exact')
+         return {'whole_extension': pin(extension), 'payload': pin(payload), 'nodes': len(seen), 'valid_nodes': len(valid), 'invalidated_paths_no_OID': invalid, 'native_root_tree': trees[b''][1], 'valid_cached_nodes': [{'path_hex': path.hex(), 'OID': oid, 'entries': entries, 'subtrees': children} for path, oid, entries, children in valid]}
+ 
+ 
+@@ -842,10 +857,10 @@
+         need(tree == p['website_tree'], 'exact current native parent root tree')
+         route = routing(p)
+         old = read(W / '.git/index')
+-        need(row_for(W / '.git/index') == {key: p['website_index'][key] for key in ('bytes', 'SHA256', 'mode')}, 'exact9059206B current native index baseline')
++        need(row_for(W / '.git/index') == {key: p['website_index'][key] for key in ('bytes', 'SHA256', 'mode')}, 'exact9060430B current native index baseline')
+         records, extension = index_entries(old)
+         target_bytes = {name.encode() for name in TARGETS}
+-        need(len(records) == 58721 and set(records) & target_bytes == {name.encode() for name in REPLACEMENTS} and len(set(records) - target_bytes) == 58719, 'exact58721 records/58719 protected and full pinned native TREE baseline')
++        need(len(records) == 58730 and set(records) & target_bytes == {name.encode() for name in REPLACEMENTS} and len(set(records) - target_bytes) == 58728, 'exact58730 records/58728 protected and full pinned native TREE baseline')
+         cache = cache_semantics(p, records, extension)
+         lock = W / '.git/index.lock'
+         need(not os.path.lexists(lock) if owned_index_lock is None else os.path.lexists(lock) and inode(lock.lstat()) == owned_index_lock, 'exclusive native index lock state')
+@@ -862,10 +877,14 @@
+             info = (W / name).lstat()
+             identities[name] = [*inode(info), info.st_mtime_ns, info.st_ctime_ns]
+         protected = b''.join(records[name][0] for name in sorted(set(records) - target_bytes))
+-        ignore_line = '/verification/hafnian-retract-runtime-sol-20261117/'
++        ignore_line = '/verification/mink-riesz-k3-runtime-sol-20261117/'
+         ignore_lines = [line for line in read(P / '.gitignore').decode().splitlines() if line.strip() and not line.lstrip().startswith('#')]
+-        need(ignore_lines and ignore_lines[-1] == ignore_line, 'future root must first apply exact inert runtime-ignore.patch; no ignore mutation by helper')
+-        state = {'installed': installed, 'bindings': bindings(p), 'W_HEAD': p['website_HEAD'], 'W_tree': tree, 'W_index': pin(old), 'routing': route, 'public_snapshot_SHA256': sha(packed(actual)), 'counts': counts, 'aggregate_identities': identities, 'protected_raw_records': pin(protected), 'protected_count': 58719, 'baseline_TREE_extension': pin(extension), 'baseline_TREE_payload': pin(extension[8:]), 'TREE_cache_proof_SHA256': sha(packed(cache)), 'stage_snapshot_SHA256': sha(packed(context['stage_snapshot'])), 'audit_snapshot_SHA256': sha(packed(context['audit_snapshot'])), 'source_guard_SHA256': sha(packed(context['guards']['adopted_inputs'] + context['guards']['original_sources'])), 'runtime_ignore_line': ignore_line}
++        need(ignore_lines and ignore_lines[-1] == ignore_line == p['runtime_ignore_line'], 'root must separately record/apply exact runtime ignore prerequisite; helper never changes ignores')
++        ignored = git(p, '-C', str(M), 'check-ignore', '--no-index', '-v', '--', str(RUN) + '/')
++        ignore_source, ignored_path = ignored.decode('utf-8').rstrip('\n').split('\t')
++        source, line_number, pattern = ignore_source.rsplit(':', 2)
++        need(source == str((P / '.gitignore').relative_to(M)) and line_number.isdecimal() and pattern == ignore_line and ignored_path == str(RUN) + '/', 'actual effective anchored Math ignore rule for only planned new runtime')
++        state = {'installed': installed, 'bindings': bindings(p), 'W_HEAD': p['website_HEAD'], 'W_tree': tree, 'W_index': pin(old), 'routing': route, 'public_snapshot_SHA256': sha(packed(actual)), 'counts': counts, 'aggregate_identities': identities, 'protected_raw_records': pin(protected), 'protected_count': 58728, 'baseline_TREE_extension': pin(extension), 'baseline_TREE_payload': pin(extension[8:]), 'TREE_cache_proof_SHA256': sha(packed(cache)), 'stage_snapshot_SHA256': sha(packed(context['stage_snapshot'])), 'audit_snapshot_SHA256': sha(packed(context['audit_snapshot'])), 'source_guard_SHA256': sha(packed(context['guards']['adopted_inputs'] + context['guards']['original_sources'])), 'runtime_ignore_line': ignore_line, 'runtime_ignore_file': row_for(P / '.gitignore'), 'effective_runtime_ignore_SHA256': sha(ignored)}
+         context.update(old_index=old, old_records=records, old_extension=extension, cache_proof=cache, tree=tree, state=state, fingerprint=sha(packed(state)))
+         return context
+ 
+@@ -881,7 +900,7 @@
+             need(stat.S_ISDIR(RUN.lstat().st_mode) and permissions(RUN) == '0700', 'this existing successful-install runtime only')
+         need(RUN.stat().st_dev == W.stat().st_dev, 'actual runtime and website share filesystem before website mutation')
+         lock = RUN / ('ACTIVE_INSTALL.lock' if kind == 'install' else 'ACTIVE_PUBLISH.lock')
+-        body = packed({'schema': 'hafnian-retract-runtime-lock-v1', 'action': authority['data']['action'], 'authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'PID': os.getpid()})
++        body = packed({'schema': 'mink-riesz-k3-runtime-lock-v1', 'action': authority['data']['action'], 'authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'PID': os.getpid()})
+         new_file(lock, body)
+         lock_fd = os.open(lock, os.O_RDONLY | os.O_NOFOLLOW)
+         owner = inode(os.fstat(lock_fd))
+@@ -959,15 +978,15 @@
+                 need({**pin(raw), 'mode': permissions(W / name)} == context['old_files'][name[7:]], 'complete exact original aggregate')
+                 private_relative_backup(backups, name, raw)
+             absent = sorted(TARGETS - set(REPLACEMENTS))
+-            need(len(absent) == 9 and all(not os.path.lexists(W / name) for name in absent), 'exact9 original leaf absences')
+-            need(all(not os.path.lexists(W / 'public' / name) for name in context['new_dirs']), 'exact4 original directory absences')
+-            recovery = {'schema': 'hafnian-retract-durable-install-recovery-v1', 'replacement_backups': {name: context['old_files'][name[7:]] for name in REPLACEMENTS}, 'new_leaves_before': {name: 'ABSENT' for name in absent}, 'new_directories_before': {name: 'ABSENT' for name in sorted(context['new_dirs'])}, 'native_index_before': pin(context['old_index']), 'native_guards_before': context['guards']['native'], 'public_before': context['guards']['public'], 'recovery': 'STOP_AND_ROOT_REVIEW_NO_AUTOMATIC_ROLLBACK_OR_RETRY'}
++            need(len(absent) == 13 and all(not os.path.lexists(W / name) for name in absent), 'exact13 original leaf absences')
++            need(all(not os.path.lexists(W / 'public' / name) for name in context['new_dirs']), 'exact6 original directory absences')
++            recovery = {'schema': 'mink-riesz-k3-durable-install-recovery-v1', 'replacement_backups': {name: context['old_files'][name[7:]] for name in REPLACEMENTS}, 'new_leaves_before': {name: 'ABSENT' for name in absent}, 'new_directories_before': {name: 'ABSENT' for name in sorted(context['new_dirs'])}, 'native_index_before': pin(context['old_index']), 'native_guards_before': context['guards']['native'], 'public_before': context['guards']['public'], 'recovery': 'STOP_AND_ROOT_REVIEW_NO_AUTOMATIC_ROLLBACK_OR_RETRY'}
+             new_file(t / 'rollback.before.json', packed(recovery))
+             new_file(t / 'preflight.before.json', packed(context['state']))
+             sync_dir(staged)
+             sync_dir(backups)
+             sync_dir(t)
+-            event('ALL11_BUFFERS_2_RELATIVE_BACKUPS_9_LEAF_4_DIRECTORY_ABSENCES_AND_NATIVE_ROLLBACK_MATERIAL_DURABLE')
++            event('ALL15_BUFFERS_2_RELATIVE_BACKUPS_13_LEAF_6_DIRECTORY_ABSENCES_AND_NATIVE_ROLLBACK_MATERIAL_DURABLE')
+             check()
+             need(preflight(p, False)['fingerprint'] == context['fingerprint'], 'whole repeat fence after durable staging before first website write')
+             root_fd = os.open(W, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+@@ -1032,9 +1051,9 @@
+                         os.close(fd)
+             check()
+             verified = preflight(p, True)
+-            need(verified['old_index'] == context['old_index'] and not list(staged.iterdir()) and set(made) == {'public/' + name for name in context['new_dirs']}, 'native index unchanged; exact11 buffers/four dirs completed')
++            need(verified['old_index'] == context['old_index'] and not list(staged.iterdir()) and set(made) == {'public/' + name for name in context['new_dirs']}, 'native index unchanged; exact15 buffers/six dirs completed')
+             check()
+-            result = {'schema': 'hafnian-retract-install-success-v1', 'status': 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'UTC': utc().isoformat(), 'bindings': authority['bindings'], 'counts': verified['state']['counts'], 'targets': sorted(TARGETS), 'authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'runtime_root': str(RUN), 'transaction': str(t), 'installed_preflight_SHA256': verified['fingerprint'], 'W_native_HEAD_index_config_unchanged': True, 'Math_all_native_guards_unchanged': True, 'source_stage_audit_all_guards_unchanged': True, 'Git_object_ref_index_network_deploy_Sheet_changes': False, 'runtime_install_lock_retained': True, 'automatic_rollback_or_retry': False}
++            result = {'schema': 'mink-riesz-k3-install-success-v1', 'status': 'FILESYSTEM_INSTALL_VERIFIED_SNAPSHOT', 'UTC': utc().isoformat(), 'bindings': authority['bindings'], 'counts': verified['state']['counts'], 'targets': sorted(TARGETS), 'authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'runtime_root': str(RUN), 'transaction': str(t), 'installed_preflight_SHA256': verified['fingerprint'], 'W_native_HEAD_index_config_unchanged': True, 'Math_all_native_guards_unchanged': True, 'source_stage_audit_all_guards_unchanged': True, 'Git_object_ref_index_network_deploy_Sheet_changes': False, 'runtime_install_lock_retained': True, 'automatic_rollback_or_retry': False}
+             new_file(t / 'SUCCESS.json', packed(result), 0o644)
+             event('FILESYSTEM_INSTALL_SUCCESS', **result)
+             return result
+@@ -1101,10 +1120,10 @@
+             need(after_extension == before_extension, 'successor preserves exact whole actual TREE extension and six pre-existing invalidated nodes')
+             after_cache = cache_semantics(p, after, after_extension)
+             targets = {name.encode() for name in TARGETS}
+-            need(len(after) == 58730 and set(after) == set(before) | targets and len(set(before) - targets) == 58719, 'exact58730 successor and58719 untargeted records')
+-            need(all(after[name] == record for name, record in before.items() if name not in targets), 'all58719 WHOLE raw stat/path/OID/mode/flag/padding records byte-exact')
+-            need(all(after[name.encode()][1:] == (struct.pack('>I', 0o100644), bytes.fromhex(oids[name])) for name in TARGETS), 'all11 successor target blob/mode semantics exact')
+-            need(all(after[name.encode()][0] == zero_stat_record(name.encode(), oids[name]) for name in TARGETS), 'all11 whole selected zero-stat/flags/name/OID/mode/NUL/padding buffers exact; no lstat-cache equality assumption')
++            need(len(after) == 58743 and set(after) == set(before) | targets and len(set(before) - targets) == 58728, 'exact58743 successor and58728 untargeted records')
++            need(all(after[name] == record for name, record in before.items() if name not in targets), 'all58728 WHOLE raw stat/path/OID/mode/flag/padding records byte-exact')
++            need(all(after[name.encode()][1:] == (struct.pack('>I', 0o100644), bytes.fromhex(oids[name])) for name in TARGETS), 'all15 successor target blob/mode semantics exact')
++            need(all(after[name.encode()][0] == zero_stat_record(name.encode(), oids[name]) for name in TARGETS), 'all15 whole selected zero-stat/flags/name/OID/mode/NUL/padding buffers exact; no lstat-cache equality assumption')
+             before_check, after_check = t / 'before-semantic.index', t / 'after-semantic.index'
+             new_file(before_check, context['old_index'], 0o644)
+             new_file(after_check, staged, 0o644)
+@@ -1120,20 +1139,20 @@
+             foreign_before = foreign_rows(native_before, parent_tree, targets)
+             foreign_after = foreign_rows(native_after, commit_tree, targets)
+             need(foreign_before == foreign_after, 'every foreign staging difference preserved relative to old and successor HEAD')
+-            need(set(commit_tree) == set(parent_tree) | targets and all(commit_tree[name] == record for name, record in parent_tree.items() if name not in targets), 'all untargeted HEAD tree leaves exact; only9 additions')
++            need(set(commit_tree) == set(parent_tree) | targets and all(commit_tree[name] == record for name, record in parent_tree.items() if name not in targets), 'all untargeted HEAD tree leaves exact; only13 additions')
+             delta = git(p, 'diff-tree', '--raw', '-r', '--no-commit-id', '--no-abbrev', '--no-renames', '--no-ext-diff', '-z', context['tree'], tree).split(b'\0')
+-            need(delta.pop() == b'' and len(delta) == 22 and {delta[index + 1] for index in range(0, 22, 2)} == targets, 'exact11-path commit delta')
+-            for index in range(0, 22, 2):
++            need(delta.pop() == b'' and len(delta) == 30 and {delta[index + 1] for index in range(0, 30, 2)} == targets, 'exact15-path commit delta')
++            for index in range(0, 30, 2):
+                 header, name = delta[index].split(), delta[index + 1].decode()
+-                need(header[1] == b'100644' and header[3].decode() == oids[name] and header[4] == (b'M' if name in REPLACEMENTS else b'A'), 'exact9A2M frozen blob delta; no other path/action')
++                need(header[1] == b'100644' and header[3].decode() == oids[name] and header[4] == (b'M' if name in REPLACEMENTS else b'A'), 'exact13A2M frozen blob delta; no other path/action')
+             for name, mapping in [('before-native-semantics.json', native_before), ('after-native-semantics.json', native_after), ('parent-HEAD-tree.json', parent_tree), ('successor-commit-tree.json', commit_tree)]:
+                 new_file(t / name, packed(semantic_rows(mapping)))
+             for name, mapping in [('foreign-staging.before.json', foreign_before), ('foreign-staging.after.json', foreign_after)]:
+                 new_file(t / name, packed(foreign_serialized(mapping)))
+-            proof = {'schema': 'hafnian-retract-native-index-proof-v1', 'before_index': pin(context['old_index']), 'after_index': pin(staged), 'before_records': 58721, 'after_records': 58730, 'protected_whole_raw_records': 58719, 'selected_zero_stat_records': 11, 'before_TREE': pin(before_extension), 'after_TREE': pin(after_extension), 'before_TREE_payload': pin(before_extension[8:]), 'after_TREE_payload': pin(after_extension[8:]), 'before_TREE_semantics': context['cache_proof'], 'after_TREE_semantics': after_cache, 'TREE_changed': before_extension != after_extension, 'private_before_semantic_tree': before_tree, 'private_after_semantic_tree': native_tree, 'parent_commit_tree': context['tree'], 'successor_commit_tree': tree, 'delta': '9A2M', 'foreign_staging_exact': True, 'all_untargeted_HEAD_tree_leaves_exact': True, 'no_broad_refresh_or_unknown_extension_waiver': True}
++            proof = {'schema': 'mink-riesz-k3-native-index-proof-v1', 'before_index': pin(context['old_index']), 'after_index': pin(staged), 'before_records': 58730, 'after_records': 58743, 'protected_whole_raw_records': 58728, 'selected_zero_stat_records': 15, 'before_TREE': pin(before_extension), 'after_TREE': pin(after_extension), 'before_TREE_payload': pin(before_extension[8:]), 'after_TREE_payload': pin(after_extension[8:]), 'before_TREE_semantics': context['cache_proof'], 'after_TREE_semantics': after_cache, 'TREE_changed': before_extension != after_extension, 'private_before_semantic_tree': before_tree, 'private_after_semantic_tree': native_tree, 'parent_commit_tree': context['tree'], 'successor_commit_tree': tree, 'delta': '13A2M', 'foreign_staging_exact': True, 'all_untargeted_HEAD_tree_leaves_exact': True, 'no_broad_refresh_or_unknown_extension_waiver': True}
+             new_file(t / 'native-index-proof.json', packed(proof))
+             new_file(t / 'commit-delta.raw', b'\0'.join(delta) + b'\0')
+-            event('PRIVATE_INDEX_AND_EXACT11_COMMIT_TREE_PROVED', **proof)
++            event('PRIVATE_INDEX_AND_EXACT15_COMMIT_TREE_PROVED', **proof)
+             check()
+             gitdir_fd = os.open(W / '.git', os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+             lock = W / '.git/index.lock'
+@@ -1186,8 +1205,8 @@
+                 public_fence(fresh, True)
+                 need(git(p, 'symbolic-ref', 'HEAD').strip().decode() == p['branch'] and git(p, 'rev-parse', p['branch']).strip().decode() == commit, 'master retained at exact successor commit')
+                 need(read(W / '.git/index') == staged and index_entries(read(W / '.git/index')) == (after, after_extension), 'complete successor index/raw record/extension equality after native publication')
+-                need(tree_entries(p, commit) == commit_tree and all(native_after[name] == commit_tree[name] for name in targets), 'published commit exact11 targets and protected tree')
+-                need(foreign_rows(record_tree(after), commit_tree, targets) == foreign_before and all(after[name] == before[name] for name in before if name not in targets), 'postpublication foreign staging and58719 whole records exact')
++                need(tree_entries(p, commit) == commit_tree and all(native_after[name] == commit_tree[name] for name in targets), 'published commit exact15 targets and protected tree')
++                need(foreign_rows(record_tree(after), commit_tree, targets) == foreign_before and all(after[name] == before[name] for name in before if name not in targets), 'postpublication foreign staging and58728 whole records exact')
+                 need(not os.path.lexists(W / '.git/index.lock'), 'native index lock consumed only by own atomic replacement')
+ 
+             final_local()
+@@ -1208,9 +1227,9 @@
+             remote_parent(p, commit)
+             final_local()
+             check()
+-            result = {'schema': 'hafnian-retract-publication-success-v1', 'status': 'SCOPED11_COMMIT_AND_PUSH_VERIFIED_SNAPSHOT', 'UTC': utc().isoformat(), 'bindings': authority['bindings'], 'authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'installation_SUCCESS': authority['data']['installation_SUCCESS'], 'commit': commit, 'tree': tree, 'parent': p['website_HEAD'], 'branch': p['branch'], 'paths': 11, 'delta': '9A2M', 'protected_whole_raw_records': 58719, 'successor_index_records': 58730, 'index': {**pin(staged), 'mode': '0644'}, 'native_successor_semantic_tree': native_tree, 'TREE_before': pin(before_extension), 'TREE_after': pin(after_extension), 'foreign_staging_semantics_preserved': True, 'Math_all_native_guards_unchanged': True, 'stage_audit_sources_all_guards_unchanged': True, 'all_old781_public_buffers_retained_except2_planned_replacements': True, 'all_old377_directory_modes_and17DSStore_retained': True, 'postpush_exact_remote_and_whole_local_verification': True, 'deployment_or_Sheet_or_AA_actions': False, 'runtime_publish_lock_retained': True, 'automatic_rollback_or_retry': False}
++            result = {'schema': 'mink-riesz-k3-publication-success-v1', 'status': 'SCOPED15_COMMIT_AND_PUSH_VERIFIED_SNAPSHOT', 'UTC': utc().isoformat(), 'bindings': authority['bindings'], 'authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'installation_SUCCESS': authority['data']['installation_SUCCESS'], 'commit': commit, 'tree': tree, 'parent': p['website_HEAD'], 'branch': p['branch'], 'paths': 15, 'delta': '13A2M', 'protected_whole_raw_records': 58728, 'successor_index_records': 58743, 'index': {**pin(staged), 'mode': '0644'}, 'native_successor_semantic_tree': native_tree, 'TREE_before': pin(before_extension), 'TREE_after': pin(after_extension), 'foreign_staging_semantics_preserved': True, 'Math_all_native_guards_unchanged': True, 'stage_audit_sources_all_guards_unchanged': True, 'all_old790_public_buffers_retained_except2_planned_replacements': True, 'all_old381_directory_modes_and17DSStore_retained': True, 'postpush_exact_remote_and_whole_local_verification': True, 'deployment_or_Sheet_or_AA_actions': False, 'runtime_publish_lock_retained': True, 'automatic_rollback_or_retry': False}
+             new_file(t / 'SUCCESS.json', packed(result), 0o644)
+-            event('SCOPED11_PUBLICATION_SUCCESS', **result)
++            event('SCOPED15_PUBLICATION_SUCCESS', **result)
+             return result
+         except BaseException as error:
+             event('STOPPED_PUBLICATION_STATE_RETAINED', error=repr(error), CAS_attempted=ref_attempted, push_returned_success=pushed, native_index_lock_owner=native_owner, automatic_rollback=False, automatic_retry=False)
+@@ -1243,7 +1262,7 @@
+         elif kind == 'publish':
+             result = publish(context, authority)
+         else:
+-            result = {'schema': 'hafnian-retract-readonly-preflight-v1', 'status': 'READONLY_INSTALLED_PREFLIGHT' if installed else 'READONLY_PREINSTALL_PREFLIGHT', 'UTC': utc().isoformat(), 'preflight_SHA256': context['fingerprint'], 'state': context['state'], 'readonly_authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'filesystem_writes': 0, 'remote_calls': 0, 'authority_inferred': False, 'read_events': list(TRACE)}
++            result = {'schema': 'mink-riesz-k3-readonly-preflight-v1', 'status': 'READONLY_INSTALLED_PREFLIGHT' if installed else 'READONLY_PREINSTALL_PREFLIGHT', 'UTC': utc().isoformat(), 'preflight_SHA256': context['fingerprint'], 'state': context['state'], 'readonly_authorization_SHA256': sha(authority['raw']), 'nonce': authority['data']['nonce'], 'filesystem_writes': 0, 'remote_calls': 0, 'authority_inferred': False, 'read_events': list(TRACE)}
+         print(json.dumps(result, sort_keys=True))
+ 
+ 

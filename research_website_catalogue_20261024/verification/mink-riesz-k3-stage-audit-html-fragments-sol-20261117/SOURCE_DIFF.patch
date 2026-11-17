@@ -1,0 +1,109 @@
+--- /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/mink-riesz-k3-stage-audit-continuation-sol-20261117/audit_private.py
++++ /Users/alec/Documents/Math/research_website_catalogue_20261024/verification/mink-riesz-k3-stage-audit-html-fragments-sol-20261117/audit_private.py
+@@ -17,7 +17,9 @@
+ M = P.parent
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ S = P / 'verification/mink-riesz-k3-stage-sol-20261117'
+-A = P / 'verification/mink-riesz-k3-stage-audit-continuation-sol-20261117'
++A = P / 'verification/mink-riesz-k3-stage-audit-html-fragments-sol-20261117'
++T = P / 'verification/mink-riesz-k3-stage-audit-continuation-sol-20261117'
++E = P / 'verification/root-mink-riesz-k3-audit-pdf-fragment-diagnosis-20261117.json'
+ O = P / 'verification/mink-riesz-k3-stage-audit-sol-20261117'
+ D = P / 'verification/root-mink-riesz-k3-audit-head-diagnosis-20261117.json'
+ BASE = S / 'baseline-public'
+@@ -369,7 +371,20 @@
+                 target = target / 'index.html'
+             require(target.resolve().is_relative_to(CAND.resolve()) and target.is_file(), 'local asset/path resolves ' + record + ': ' + attrs[key])
+             if u.fragment:
+-                require(unquote(u.fragment) in HTML(target.read_text()).ids, 'local fragment resolves ' + record + ': ' + attrs[key])
++                if target.suffix.lower() in {'.html', '.htm'}:
++                    html_bytes = target.read_bytes()
++                    require(b'<html' in html_bytes[:100].lower(), 'actual HTML fragment target ' + record)
++                    require(unquote(u.fragment) in HTML(html_bytes.decode('utf-8')).ids,
++                            'local HTML fragment ID resolves ' + record + ': ' + attrs[key])
++                elif target.suffix.lower() == '.pdf':
++                    require(target.resolve() == (current / 'assets/paper.pdf').resolve(), 'correct native PDF viewer path ' + record)
++                    require(unquote(u.fragment) == 'view=FitH', 'exact accepted PDF viewer parameter ' + record)
++                    pdf_bytes = target.read_bytes()
++                    require(pdf_bytes.startswith(b'%PDF-') and pdf_bytes ==
++                            (P / ('papers/' + record + '/sources/zenodo-files/paper.pdf')).read_bytes(),
++                            'whole native PDF bytes and binary header for viewer URL ' + record)
++                else:
++                    raise AssertionError('unsupported actual local fragment target type ' + str(target))
+     require(model['follow_up'] is None and model['AA'] is None and model['actual_publication_date'] is None,
+             'accepted model follow-up and publication null ' + record)
+     entry = re.search(r'<p class="entry-meta">(.*?)</p>', (root / 'main.html').read_text(), re.S).group(1)
+@@ -491,6 +506,29 @@
+     require(pin(D) == {'bytes': 2877, 'SHA256': '7a3a3f3d4768b754511ac739ef297d26c15c8e6d94d8ed1d21c009a8550ebb6d', 'mode': '0644'},
+             'root independent diagnosis external pin')
+ 
++def verify_second_failed(snapshot):
++    expected = {'FINAL.json': (1487, '2dcda99d4e5577405d9fefceb4efdab9d3f895998dbe868d897f2f3c6660c7f6'),
++                'MANIFEST.json': (6911, '11f217ddb3065106e0c1b6692ba7dbe7f923d3f1999c679bbcaaa2a6f19991e2')}
++    for name, (size, sha) in expected.items():
++        require(pin(T / name) == {'bytes': size, 'SHA256': sha, 'mode': '0644'}, 'second failed audit external terminal pin ' + name)
++    manifest = load(T / 'MANIFEST.json')
++    terminal = load(T / 'FINAL.json')
++    require((snapshot['regular_files'], snapshot['child_directories']) == (30, 0), 'second failed finite namespace30/0')
++    require(set(snapshot['files']) == {r['path'] for r in manifest['payload_files']} | set(expected), 'second failed complete file topology')
++    require(manifest['exact_already_created_terminal_recursive_hash_exclusions'] == ['MANIFEST.json', 'FINAL.json'] and
++            not manifest['other_exclusions'], 'second failed only exact circular terminal pair')
++    for row in manifest['payload_files']:
++        verify_pin(T / relative(row['path']), row, 'second failed preserved payload ' + row['path'])
++    require({r['path']: {'mode': r['mode'], 'empty': r['empty']} for r in manifest['directories']} == snapshot['directories'],
++            'second failed root-inclusive mode and empty topology')
++    require(terminal['manifest'] == pin(T / 'MANIFEST.json') and terminal['original_audit_exit'] == 1 and
++            terminal['completion_percent_assigned_original_audit_only'] == 60 and terminal['no_PASS_retroclaim'],
++            'second failed original exit1/incomplete60 remains literal')
++    require(pin(T / 'audit_private.py') == {'bytes': 44562, 'SHA256': '1923a70e3eb716920f96b12facbae4fa0b12337eac320da650fd558f4c7d88fb', 'mode': '0644'},
++            'second failed629line reader immutable never imported or rerun')
++    require(pin(E) == {'bytes': 2165, 'SHA256': '700257c3ce91aa281fe730fdd5a360763fef974dfbb10e95512f9fd32063f49a', 'mode': '0644'},
++            'root PDF fragment type diagnosis external pin')
++
+ def main():
+     require(Path(__file__).resolve() == A / 'audit_private.py', 'fixed own reader path')
+     require(not (A / 'RESULTS.json').exists(), 'single audit invocation fresh result')
+@@ -501,8 +539,12 @@
+     prior_failed_before = snap(O)
+     verify_prior_failed(prior_failed_before)
+     diagnosis_before = pin(D)
++    second_failed_before = snap(T)
++    verify_second_failed(second_failed_before)
++    pdf_diagnosis_before = pin(E)
+     write('BEFORE.json', {'UTC': started, 'stage': stage_before, 'protected': before,
+-                          'prior_failed': prior_failed_before, 'root_diagnosis': diagnosis_before})
++                          'prior_failed': prior_failed_before, 'root_diagnosis': diagnosis_before,
++                          'second_failed': second_failed_before, 'pdf_diagnosis': pdf_diagnosis_before})
+     final = verify_stage(stage_before)
+     require((S / 'GUARDS_BEFORE.json').read_bytes() == (S / 'GUARDS_AFTER.json').read_bytes(), 'literal successful build guard bytes identical')
+     require(before == guard, 'all actual protected trees/native controls match authenticated build guard')
+@@ -577,19 +619,24 @@
+     stage_after = snap(S)
+     prior_failed_after = snap(O)
+     diagnosis_after = pin(D)
++    second_failed_after = snap(T)
++    pdf_diagnosis_after = pin(E)
+     require(after == before and stage_after == stage_before and prior_failed_after == prior_failed_before and
+-            diagnosis_after == diagnosis_before, 'audit whole protected boundary stage original failed lane and diagnosis before/after exact')
++            diagnosis_after == diagnosis_before and second_failed_after == second_failed_before and
++            pdf_diagnosis_after == pdf_diagnosis_before, 'audit whole protected boundary stage both failed lanes and both diagnoses before/after exact')
+     write('AFTER.json', {'UTC': utc(), 'stage': stage_after, 'protected': after,
+-                         'prior_failed': prior_failed_after, 'root_diagnosis': diagnosis_after})
++                         'prior_failed': prior_failed_after, 'root_diagnosis': diagnosis_after,
++                         'second_failed': second_failed_after, 'pdf_diagnosis': pdf_diagnosis_after})
+     write('DETAILS.json', DETAIL)
+     write('RESULTS.json', {'schema': 'independent-private-mink-riesz-k3-stage-audit-result-v1',
+-                           'UTC_start': started, 'UTC_end': utc(), 'status': 'PASS_SEPARATE_PRIVATE_STAGE_AUDIT_CONTINUATION_ONLY',
++                           'UTC_start': started, 'UTC_end': utc(), 'status': 'PASS_TYPED_FRAGMENT_PRIVATE_STAGE_AUDIT_ONLY',
+                            'completion_percent_assigned_audit_only': 100, 'checks_passed': len(CHECKS),
+                            'checks': list(CHECKS), 'follow_up': None, 'AA': None, 'actual_publication_date': None,
+                            'future_action_authority': False, 'actual_UI_render_live_or_production_certificate': False,
+                            'source_science_or_producer_execution': False, 'network_Git_writes_deploy_Sheet_redirect_outreach': False})
+-    report = ('Separate corrected private stage audit PASS. The original audit remains frozen exit 1, incomplete 60%; '
+-              'this distinct reader uses the approved unchanged stylesheet insertion anchor. '
++    report = ('Separate typed-fragment private stage audit PASS. Both earlier audits remain frozen exit 1 each, incomplete 60%; '
++              'this distinct reader uses the approved unchanged stylesheet insertion anchor and checks IDs only on actual HTML targets. '
++              'PDF viewer parameters bind to the native PDF path, complete bytes and binary header; no embedded display certificate. '
+               'Completion 100% applies only to this assigned continuation audit; '
+               'follow_up null and no later action authority.\n\n'
+               'The externally pinned 1635-file/770-child-directory stage and entire 790-file website baseline / '
