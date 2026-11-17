@@ -1,0 +1,543 @@
+"""One passive INITIAL reader: explicit accepted data only; stdout JSON only.
+No subprocess, network, project imports or source execution. Only two explicit\nowned guard-JSON destinations are written; stdout/stderr are redirected by root.
+"""
+from pathlib import Path
+from datetime import datetime, timezone
+from html.parser import HTMLParser
+import hashlib
+import html
+import json
+import os
+import re
+import stat
+import struct
+import xml.etree.ElementTree as ET
+import zlib
+
+P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+M = Path('/Users/alec/Documents/Math')
+W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+V = P / 'verification'
+N = V/'hafnian-retract-stage-initial-bindings-sol-20261117'
+INITIAL = V/'hafnian-retract-stage-initial-sol-20261117'
+INITIAL_PINS = {'OWNED_MANIFEST.json': '4c1eba39f92228f0a4c5bfc4b332f643e4ee6c656c5f80d7c3f6551865a2d608',
+                'FINAL.json': '0db6f7b28f0b5b6df5270a9f9894347c4cbdbb13e56c32fd51dfe8a46a50f406'}
+ADOPTIONS = {
+    'root-hafnian-editorial-adoption-20261117.json': '775b1ef8b9592e55d21fcd45e4bf381f3965a27282f41277ac7ab8e9880c07dc',
+    'root-complex-retract-editorial-adoption-20261117.json': 'ea048b2f612c2c6a7593fcd51184ad72918200dc88d2565d307dec44a8284df5',
+}
+LANES = [
+    ('hafnian-editorial-sol-20261117', 'MANIFEST.json', 'FINAL.json', 23, 1),
+    ('hafnian-fact-sol-20261117', 'MANIFEST.json', 'FINAL.json', 10, 0),
+    ('hafnian-legacy-sol-20261117', 'FINAL_MANIFEST.json', 'FINAL_SEAL.json', 16, 11),
+    ('complex-retract-editorial-sol-20261117', 'MANIFEST.json', 'FINAL.json', 22, 1),
+    ('complex-retract-fact-sol-20261117', 'MANIFEST.json', 'FINAL.json', 10, 0),
+    ('complex-retract-legacy-sol-20261117', 'OWNED_MANIFEST.json', 'FINAL.json', 123, 0),
+]
+SOURCES = [(P/'papers/23205294/sources', 56, 10), (P/'papers/23203270/sources', 97, 12)]
+SLUGS = ['nonnegative-rational-hafnians', 'complex-polynomial-retract-five-variables']
+TERMINALS = {str(V/n): (m,t) for n,m,t,_,_ in LANES}
+TERMINALS.update({str(p): ('SOURCE_MANIFEST.json','SOURCE_FINAL.json') for p,_,_ in SOURCES})
+SCHEMAS = {
+    'finite-private-editorial-manifest-v1': 'payload_files',
+    'finite-private-fact-review-manifest-v1': 'payload_files',
+    'hafnian-legacy-finite-final-manifest-v1': 'entries',
+    'finite-complex-retract-legacy-correspondence-manifest-v1': 'files',
+    'finite-source-manifest-v1': 'files',
+    'source-custody-finite-manifest-v1': 'entries',
+    'finite-hafnian-retract-stage-INITIAL-manifest-v1': 'payload_files',
+}
+EXPECTED_SCHEMAS = {
+    'hafnian-editorial-sol-20261117': 'finite-private-editorial-manifest-v1',
+    'hafnian-fact-sol-20261117': 'finite-private-fact-review-manifest-v1',
+    'hafnian-legacy-sol-20261117': 'hafnian-legacy-finite-final-manifest-v1',
+    'complex-retract-editorial-sol-20261117': 'finite-private-editorial-manifest-v1',
+    'complex-retract-fact-sol-20261117': 'finite-private-fact-review-manifest-v1',
+    'complex-retract-legacy-sol-20261117': 'finite-complex-retract-legacy-correspondence-manifest-v1',
+    str(SOURCES[0][0]): 'finite-source-manifest-v1',
+    str(SOURCES[1][0]): 'source-custody-finite-manifest-v1',
+    INITIAL.name: 'finite-hafnian-retract-stage-INITIAL-manifest-v1',
+}
+
+def now():
+    return datetime.now(timezone.utc).isoformat()
+
+def sha(b):
+    return hashlib.sha256(b).hexdigest()
+
+def mode(v):
+    if isinstance(v, str):
+        assert re.fullmatch(r'(?:0o)?[0-7]{3,4}', v), v
+        v = int(v.removeprefix('0o'), 8)
+    assert type(v) is int and 0 <= v <= 0o7777, v
+    return format(v, '04o')
+
+def pairhook(pairs):
+    result = {}
+    for k, v in pairs:
+        assert k not in result, ('duplicate JSON key', k)
+        result[k] = v
+    return result
+
+def load(s):
+    return json.loads(s, object_pairs_hook=pairhook,
+                      parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
+
+def filepin(p):
+    st = p.lstat()
+    assert stat.S_ISREG(st.st_mode), str(p)
+    b = p.read_bytes()
+    return {'bytes': len(b), 'SHA256': sha(b), 'mode': mode(stat.S_IMODE(st.st_mode))}
+
+def relpath(s, root_allowed=False):
+    assert isinstance(s, str) and '\\' not in s and '\x00' not in s
+    assert (root_allowed and s == '.') or (s and not s.startswith('/') and
+           all(x not in ('', '.', '..') for x in s.split('/'))), s
+    return s
+
+def census(root):
+    st = root.lstat()
+    assert stat.S_ISDIR(st.st_mode), str(root)
+    files, dirs = {}, {}
+    for base, ds, fs in os.walk(root, topdown=True, followlinks=False):
+        base = Path(base)
+        r = base.relative_to(root).as_posix()
+        ds.sort(); fs.sort()
+        assert all(not (base/x).is_symlink() for x in ds + fs)
+        dirs[r] = {'mode': mode(stat.S_IMODE(base.lstat().st_mode)), 'empty': not ds and not fs}
+        for n in ds:
+            assert stat.S_ISDIR((base/n).lstat().st_mode)
+        for n in fs:
+            q = base/n
+            files[relpath(q.relative_to(root).as_posix())] = filepin(q)
+    assert not (set(files) & set(dirs))
+    return {'root': str(root), 'files': files, 'directories': dirs,
+            'regular_files': len(files), 'child_directories': len(dirs)-1}
+
+def native(root):
+    g = root/'.git'
+    assert g.is_dir() and not g.is_symlink()
+    ans = {n: filepin(g/n) for n in ('HEAD', 'index', 'config')}
+    ans['HEAD_text'] = (g/'HEAD').read_text()
+    ans['local_loose_heads'] = census(g/'refs/heads')
+    packed = g/'packed-refs'
+    local = []
+    if packed.exists():
+        lines = packed.read_text().splitlines(keepends=True)
+        for i, line in enumerate(lines):
+            if re.fullmatch(r'[0-9a-f]{40} refs/heads/[^\n]+\n?', line):
+                local.append(line)
+                if i+1 < len(lines) and lines[i+1].startswith('^'):
+                    local.append(lines[i+1])
+        ans['packed_local_heads'] = {'file_mode': mode(stat.S_IMODE(packed.stat().st_mode)), 'raw_lines': local}
+    else:
+        ans['packed_local_heads'] = {'absent': True}
+    ref = ans['HEAD_text'].strip().removeprefix('ref: ')
+    assert ref.startswith('refs/heads/')
+    if (g/ref).exists():
+        oid = (g/ref).read_text().strip()
+    else:
+        matches = [x.split()[0] for x in local if x.rstrip().endswith(' '+ref)]
+        assert len(matches) == 1
+        oid = matches[0]
+    assert re.fullmatch('[0-9a-f]{40}', oid)
+    ans['resolved_native_HEAD'] = oid
+    return ans
+
+def guards():
+    roots = {str(V/n): census(V/n) for n, _, _, _, _ in LANES}
+    roots.update({str(s): census(s) for s, _, _ in SOURCES})
+    roots[str(INITIAL)] = census(INITIAL)
+    controls = {str(V/n): filepin(V/n) for n in ADOPTIONS}
+    for record in ('23205294', '23203270'):
+        c = V/('root-clearance-'+record+'-20261117.json')
+        d = load(c.read_text())
+        controls[str(c)] = filepin(c)
+        review = P/d['root_review']['path']
+        controls[str(review)] = filepin(review)
+        assert controls[str(review)]['SHA256'] == d['root_review']['SHA256']
+    return {'roots': roots, 'controls': controls, 'public': census(W/'public'),
+            'native_M': native(M), 'native_W': native(W)}
+
+def check_manifest(root, snap, name, terminal, external_pins):
+    for control in (name, terminal):
+        assert filepin(root/control)['SHA256'] == external_pins[str(root/control)]
+    d = load((root/name).read_text())
+    expected_schema = EXPECTED_SCHEMAS.get(str(root), EXPECTED_SCHEMAS.get(root.name))
+    assert d['schema'] == expected_schema
+    row_key = SCHEMAS[d['schema']]
+    assert sum(k in d for k in ('payload_files','files','entries')) == 1
+    rows = d[row_key]
+    assert isinstance(rows, list), str(root)
+    entries = row_key == 'entries'
+    seen, seen_dirs, terminal_rows = set(), set(), []
+    for row in rows:
+        assert isinstance(row, dict) and 'path' in row
+        r = relpath(row['path'], root_allowed=entries)
+        assert r not in seen and r not in seen_dirs, r
+        m = mode(row.get('mode', row.get('mode_octal')))
+        if entries and row['kind'] == 'directory':
+            assert set(row) == {'path','kind','mode_octal','empty'} and type(row['empty']) is bool
+            assert snap['directories'][r]['mode'] == m
+            assert snap['directories'][r]['empty'] == row['empty']
+            seen_dirs.add(r)
+            continue
+        assert not entries or row['kind'] == 'file'
+        seen.add(r)
+        actual = snap['files'][r]
+        assert actual['mode'] == m
+        if row.get('terminal_control') is True:
+            assert r in (name, terminal) and set(row) == {'path', 'mode', 'terminal_control'}
+            assert actual['SHA256'] == external_pins[str(root/r)]
+            terminal_rows.append(r)
+            continue
+        allowed = ({'path','kind','mode_octal','bytes','sha256','md5','git_blob_sha1'}
+                   if entries else {'path','bytes','SHA256','MD5','mode'})
+        required = ({'path','kind','mode_octal','bytes','sha256','md5'}
+                    if entries else {'path','bytes','SHA256','mode'})
+        assert required <= set(row) <= allowed
+        assert re.fullmatch('[0-9a-f]{64}', row.get('SHA256',row.get('sha256')))
+        assert type(row['bytes']) is int and row['bytes'] >= 0
+        assert actual['bytes'] == row['bytes']
+        assert actual['SHA256'] == row.get('SHA256', row.get('sha256'))
+        md5 = row.get('MD5', row.get('md5'))
+        if md5 is not None:
+            assert hashlib.md5((root/r).read_bytes()).hexdigest() == md5
+    if terminal_rows:
+        assert set(terminal_rows) == {name, terminal}
+        assert seen == set(snap['files'])
+    else:
+        assert seen == set(snap['files']) - {name, terminal}
+    if not entries:
+        assert snap['directories']['.']['mode'] == mode(d['root_mode'])
+        seen_dirs = {'.'}
+        for row in d['directories']:
+            r = relpath(row['path'])
+            assert r not in seen_dirs and r not in seen
+            assert snap['directories'][r]['mode'] == mode(row['mode'])
+            if 'empty' in row:
+                assert snap['directories'][r]['empty'] == row['empty']
+            seen_dirs.add(r)
+    assert seen_dirs == set(snap['directories'])
+    for r in seen:
+        assert Path(r).parent.as_posix() in seen_dirs
+    for r in seen_dirs - {'.'}:
+        assert Path(r).parent.as_posix() in seen_dirs
+    if 'counts' in d:
+        assert d['counts']['payload_regular_files'] == len(seen)
+        assert d['counts']['directories_including_root'] == len(seen_dirs)
+    for k, actual in (('file_count',len(seen)), ('directory_count',len(seen_dirs)),
+                      ('regular_files',len(snap['files'])), ('child_directories',len(seen_dirs)-1),
+                      ('regular_files_after_terminal_creation',len(snap['files']))):
+        if k in d:
+            assert type(d[k]) is int and d[k] == actual
+    return {'schema': d['schema'], 'manifest': filepin(root/name),
+            'terminal': filepin(root/terminal), 'complete_actual_namespace': True,
+            'payload_rows': len(rows), 'terminal_control_rows': terminal_rows}
+
+def dictionary_snapshot(expected, actual):
+    assert isinstance(expected,dict) and set(expected) == {'files','directories'}
+    fs, ds = expected['files'], expected['directories']
+    assert isinstance(fs,dict) and isinstance(ds,dict) and '.' in ds
+    assert not set(fs) & set(ds)
+    normalized_files, normalized_dirs = {}, {}
+    for r,x in fs.items():
+        relpath(r)
+        assert isinstance(x,dict) and set(x) == {'bytes','SHA256','mode'}
+        assert type(x['bytes']) is int and x['bytes'] >= 0
+        assert isinstance(x['SHA256'],str) and re.fullmatch('[0-9a-f]{64}',x['SHA256'])
+        normalized_files[r] = {'bytes':x['bytes'],'SHA256':x['SHA256'],'mode':mode(x['mode'])}
+    for r,x in ds.items():
+        relpath(r,True)
+        assert isinstance(x,dict) and set(x) == {'mode','empty'} and type(x['empty']) is bool
+        normalized_dirs[r] = {'mode':mode(x['mode']),'empty':x['empty']}
+    for r in fs:
+        assert Path(r).parent.as_posix() in ds
+    for r in set(ds)-{'.'}:
+        assert Path(r).parent.as_posix() in ds
+    # Complete dictionary rows are compared only after schema/path/topology validation.
+    assert normalized_files == actual['files'] and normalized_dirs == actual['directories']
+
+def original_closing_snapshot(root, actual):
+    hashes = {}
+    for line in (INITIAL/'CLOSING_HASHES.txt').read_text().splitlines():
+        h,p = line.split('  ',1)
+        assert re.fullmatch('[0-9a-f]{64}',h) and p not in hashes
+        hashes[p] = h
+    empty = set((INITIAL/'CLOSING_EMPTY_DIRECTORIES.txt').read_text().splitlines())
+    fs,ds = {},{}
+    for line in (INITIAL/'CLOSING_TOPOLOGY.txt').read_text().splitlines():
+        kind,mo,size,p = line.split('|',3)
+        if p != str(root) and not p.startswith(str(root)+'/'):
+            continue
+        r = Path(p).relative_to(root).as_posix()
+        if kind == 'Regular File':
+            assert r not in fs
+            fs[r] = {'bytes':int(size),'SHA256':hashes[p],'mode':mode(mo)}
+        else:
+            assert kind == 'Directory' and r not in ds
+            ds[r] = {'mode':mode(mo),'empty':p in empty}
+    dictionary_snapshot({'files':fs,'directories':ds},actual)
+
+class VisibleText(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.data = []
+    def handle_data(self,data):
+        self.data.append(data)
+
+def visible_text(raw):
+    reader = VisibleText(); reader.feed(raw); reader.close()
+    # Concatenate real data events first; whitespace collapse is a separate step.
+    return ' '.join(''.join(reader.data).split())
+
+class AttrReader(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.tags = []
+        self.ids = set()
+    def handle_starttag(self, tag, attrs):
+        names = [x[0] for x in attrs]
+        assert len(names) == len(set(names)), ('duplicate HTML attribute', tag, attrs)
+        values = dict(attrs)
+        if 'id' in values:
+            assert values['id'] not in self.ids, ('duplicate HTML id',values['id'])
+            self.ids.add(values['id'])
+        self.tags.append((tag, attrs))
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+
+def raw_json_units(s):
+    m = re.search(r'"itemListElement"\s*:\s*\[', s)
+    assert m
+    decoder = json.JSONDecoder(object_pairs_hook=pairhook)
+    pos, out = m.end(), []
+    while True:
+        while s[pos].isspace():
+            pos += 1
+        if s[pos] == ']':
+            return out
+        start = pos
+        _, pos = decoder.raw_decode(s, pos)
+        out.append(s[start:pos])
+        while s[pos].isspace():
+            pos += 1
+        if s[pos] == ',':
+            pos += 1
+        else:
+            assert s[pos] == ']'
+
+def authenticate(before):
+    started = now()
+    adoptions = {n: load((V/n).read_text()) for n in ADOPTIONS}
+    for n, expected in ADOPTIONS.items():
+        assert before['controls'][str(V/n)]['SHA256'] == expected
+    assert adoptions['root-hafnian-editorial-adoption-20261117.json']['status'] == 'ADOPTED_PRIVATE_EDITORIAL_FOR_LATER_STAGING'
+    assert adoptions['root-complex-retract-editorial-adoption-20261117.json']['status'] == 'PRIVATE_EDITORIAL_FIDELITY_ACCEPTED_FOR_LATER_SEPARATE_STAGING'
+    external_pins = {}
+    ha = adoptions['root-hafnian-editorial-adoption-20261117.json']
+    for row in ha['fresh_finite_authentication']:
+        root = Path(row['root'])
+        manifest,terminal = TERMINALS[str(root)]
+        external_pins[str(root/manifest)] = row['manifest_SHA256']
+        external_pins[str(root/terminal)] = row['FINAL_SHA256']
+    ca = adoptions['root-complex-retract-editorial-adoption-20261117.json']
+    for row in ca['finite_packet_authentication']:
+        root = P/relpath(row['root'])
+        manifest,terminal = TERMINALS[str(root)]
+        external_pins[str(root/manifest)] = row['manifest_SHA256']
+        external_pins[str(root/terminal)] = row['FINAL_SHA256']
+    external_pins.update({str(INITIAL/n):h for n,h in INITIAL_PINS.items()})
+    initial = before['roots'][str(INITIAL)]
+    assert (initial['regular_files'],initial['child_directories']) == (14,0)
+    assert initial['files']['CONTRACT.json']['SHA256'] == 'f88a8adef0a2960ea6a3a91afa6d64f88dde8ecfe7ed8cabbbadbce562bea49c'
+    bindings = {str(INITIAL):check_manifest(INITIAL,initial,'OWNED_MANIFEST.json','FINAL.json',external_pins)}
+    for n, manifest, terminal, nf, nd in LANES:
+        snap = before['roots'][str(V/n)]
+        assert (snap['regular_files'], snap['child_directories']) == (nf, nd)
+        bindings[str(V/n)] = check_manifest(V/n, snap, manifest, terminal, external_pins)
+    ha = adoptions['root-hafnian-editorial-adoption-20261117.json']
+    for row in ha['fresh_finite_authentication']:
+        root = Path(row['root'])
+        b = bindings[str(root)]
+        assert b['manifest']['SHA256'] == row['manifest_SHA256']
+        assert b['terminal']['SHA256'] == row['FINAL_SHA256']
+    ca = adoptions['root-complex-retract-editorial-adoption-20261117.json']
+    for row in ca['finite_packet_authentication']:
+        root = P/row['root']
+        snap = before['roots'][str(root)]
+        expected = row['complete_before_after']
+        dictionary_snapshot(expected,snap)
+    hs = load((V/'hafnian-editorial-sol-20261117/SOURCE_GUARDS_FINAL.json').read_text())
+    for label,filename in (('source_manifest','SOURCE_MANIFEST.json'),('source_final','SOURCE_FINAL.json')):
+        external_pins[str(SOURCES[0][0]/filename)] = hs['pins'][label]['SHA256']
+    for root, nf, nd in SOURCES:
+        snap = before['roots'][str(root)]
+        assert (snap['regular_files'], snap['child_directories']) == (nf, nd)
+        bindings[str(root)] = check_manifest(root, snap, 'SOURCE_MANIFEST.json', 'SOURCE_FINAL.json',external_pins)
+    hs = load((V/'hafnian-editorial-sol-20261117/SOURCE_GUARDS_FINAL.json').read_text())
+    hsource = hs['source']
+    assert set(hsource) == {'root','root_mode','files','directories'}
+    hdirs = {'.':{'mode':hsource['root_mode'],'empty':False}}
+    for r,mo in hsource['directories'].items():
+        relpath(r); hdirs[r] = {'mode':mo,'empty':False}
+    dictionary_snapshot({'files':hsource['files'],'directories':hdirs},before['roots'][str(SOURCES[0][0])])
+    for root,actual in [(Path(r),x) for r,x in before['roots'].items() if r != str(INITIAL)]:
+        original_closing_snapshot(root,actual)
+    original_closing_snapshot(W/'public',before['public'])
+    pages = []
+    for family, slug in zip(('hafnian', 'complex-retract'), SLUGS):
+        root = V/(family+'-editorial-sol-20261117')
+        article = (root/'article.html').read_bytes().decode('utf-8')
+        head = re.search(r'<head>.*?</head>', article, re.S).group()+'\n'
+        main = re.search(r'<main\b[^>]*>.*?</main>', article, re.S).group()+'\n'
+        body = re.search(r'<body>.*</body>', article, re.S).group()
+        assert head == (root/'head.html').read_bytes().decode('utf-8')
+        assert main == (root/'main.html').read_bytes().decode('utf-8')
+        parser = AttrReader(); parser.feed(article); parser.close()
+        scripts = re.findall(r'<script type="application/ld\+json">(.*?)</script>', head, re.S)
+        assert len(scripts) == 1
+        scholarly = load(scripts[0]); model = load((root/'page-model.json').read_text())
+        assert model['schema'] == 'private-editorial-page-model-v1'
+        assert scholarly['@type'] == 'ScholarlyArticle' and '@graph' not in scholarly
+        abstract = html.unescape(re.search(r'<p id="abstract-text">(.*?)</p>', main, re.S).group(1))
+        dc = [dict(a)['content'] for t,a in parser.tags if t == 'meta' and dict(a).get('name') == 'DC.description']
+        assert dc == [model['abstract']] and abstract == scholarly['abstract'] == model['abstract']
+        assert model['deployment_proposal']['slug'] == slug
+        assets = []
+        for row, encoding in zip(model['native_asset_order'], scholarly['encoding'], strict=True):
+            pin = filepin(root/row['local_path'])
+            assert pin == {'bytes': row['bytes'], 'SHA256': row['SHA256'], 'mode': mode(row['mode'])}
+            assert encoding['contentUrl'] == row['local_path'] and encoding['name'] == row['name']
+            assert encoding['contentSize'] == str(pin['bytes'])+' bytes'
+            assert encoding['sameAs'] == row['native_url'] and encoding['encodingFormat'] == row['format']
+            matches = [r for r,x in before['roots'][str(SOURCES[len(pages)][0])]['files'].items()
+                       if (x['bytes'], x['SHA256']) == (pin['bytes'], pin['SHA256'])]
+            assert matches
+            assets.append({'relative_path': row['local_path'], **pin, 'native_source_matches': matches})
+        pages.append({'family': family, 'slug': slug, 'model_schema': model['schema'],
+                      'article': filepin(root/'article.html'), 'head': filepin(root/'head.html'),
+                      'MAIN': filepin(root/'main.html'), 'BODY': {'bytes': len(body.encode()), 'SHA256': sha(body.encode())},
+                      'Bib': filepin(root/'citation.bib'), 'abstract': abstract,
+                      'head_shape': 'wrapped', 'schema_object': scholarly,
+                      'native_encoding_names': [x['name'] for x in scholarly['encoding']], 'assets': assets,
+                      'whole_assembly_and_strict_JSON_HTML_attributes': True})
+    public = before['public']
+    assert (public['regular_files'], public['child_directories'], public['directories']['.']['mode']) == (781,377,'0750')
+    assert sum(Path(r).name == '.DS_Store' for r in public['files']) == 17
+    index = (W/'public/research/index.html').read_bytes().decode('utf-8')
+    parser = AttrReader(); parser.feed(index); parser.close()
+    js = re.findall(r'<script type="application/ld\+json">(.*?)</script>', index, re.S)
+    assert len(js) == 1
+    collection = load(js[0]); itemlist = collection['mainEntity']; typed = itemlist['itemListElement']
+    assert collection['@type'] == 'CollectionPage' and itemlist['@type'] == 'ItemList'
+    assert itemlist['numberOfItems'] == len(typed) == 128
+    assert [r['position'] for r in typed] == list(range(1,129))
+    assert len({r['url'] for r in typed}) == 128
+    ul = re.findall(r'<ul>(.*?)</ul>', index, re.S)
+    assert len(ul) == 1
+    visible = re.findall(r'<li\b[^>]*>.*?</li>', ul[0], re.S)
+    assert len(visible) == 128
+    raw_json = raw_json_units(js[0]); assert len(raw_json) == 128
+    assert [load(r) for r in raw_json] == typed
+    for raw, obj in zip(visible, typed, strict=True):
+        a = re.search(r'<a href="([^"]+)">(.*?)</a>', raw, re.S)
+        assert obj['url'] == 'https://aleckriebel.com'+a.group(1)
+        assert visible_text(a.group(2)) == ' '.join(obj['name'].split())
+    xml = (W/'public/research/sitemap.xml').read_bytes().decode('utf-8')
+    assert '<!DOCTYPE' not in xml and '<!ENTITY' not in xml
+    tree = ET.fromstring(xml); ns = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
+    assert tree.tag == ns+'urlset'
+    nodes = list(tree); assert len(nodes) == 129 and all(x.tag == ns+'url' for x in nodes)
+    locs = [x.find(ns+'loc').text for x in nodes]; assert len(set(locs)) == 129
+    raw_xml = re.findall(r'<url>.*?</url>', xml, re.S); assert len(raw_xml) == 129
+    parsed_xml = [{'tag':x.tag, 'attributes':x.attrib, 'children':[
+        {'tag':y.tag, 'attributes':y.attrib, 'text':y.text, 'tail':y.tail} for y in x]} for x in nodes]
+    new_leaves, new_dirs = [], []
+    for page in pages:
+        base = 'research/'+page['slug']
+        new_dirs.extend([base, base+'/assets'])
+        new_leaves.extend([base+'/index.html', base+'/citation.bib']+[base+'/'+x['relative_path'] for x in page['assets']])
+    for r in new_leaves + new_dirs:
+        assert r not in public['files'] and r not in public['directories'] and not (W/'public'/r).exists()
+    assert len(new_leaves) == 9 and len(new_dirs) == 4
+    wi = (W/'.git/index').read_bytes()
+    assert len(wi) == 9059206 and sha(wi) == '592a25281b63a357fbe4fe2580e2c9764ba2b4836650d8751ac573ff8117c365'
+    assert wi[:4] == b'DIRC' and struct.unpack('!II',wi[4:12]) == (2,58721)
+    assert hashlib.sha1(wi[:-20]).digest() == wi[-20:]
+    assert before['native_W']['resolved_native_HEAD'] == '7d5ac8ea5dc8d6cddee457da7a5b40042d36d344'
+    assert before['native_M']['resolved_native_HEAD'] == 'a4ce3c37dad209339e490d18dcced6c48cf912d2'
+    assert before['native_M']['index']['SHA256'] == '91b10d938f7d737226662bbff3b07016dcc0e501376a045811ab4e930c6fbb11'
+    old_hashes = dict(line.split('  ',1)[::-1] for line in (INITIAL/'CLOSING_HASHES.txt').read_text().splitlines())
+    old_modes = {line.split('|',3)[3]:mode(line.split('|',3)[1]) for line in (INITIAL/'CLOSING_TOPOLOGY.txt').read_text().splitlines()}
+    old_head_lines = (INITIAL/'CLOSING_LOCAL_HEADS.txt').read_text().splitlines()
+    for p,descriptor in before['controls'].items():
+        assert descriptor['SHA256'] == old_hashes[p] and descriptor['mode'] == old_modes[p]
+    for repo,label in ((M,'native_M'),(W,'native_W')):
+        g = repo/'.git'; n = before[label]
+        for name in ('HEAD','index','config'):
+            assert n[name]['SHA256'] == old_hashes[str(g/name)]
+            assert n[name]['mode'] == old_modes[str(g/name)]
+        original_closing_snapshot(g/'refs/heads',n['local_loose_heads'])
+        expected_lines = [line.split('|',1)[1]+'\n' for line in old_head_lines if line.startswith(str(g/'packed-refs')+'|')]
+        assert n['packed_local_heads']['raw_lines'] == expected_lines
+        assert n['packed_local_heads']['file_mode'] == old_modes[str(g/'packed-refs')]
+    oid = before['native_W']['resolved_native_HEAD']
+    loose = W/'.git/objects'/oid[:2]/oid[2:]
+    obj = zlib.decompress(loose.read_bytes())
+    assert hashlib.sha1(obj).hexdigest() == oid and obj.startswith(b'commit ')
+    header,commit_body = obj.split(b'\x00',1)
+    assert header == b'commit '+str(len(commit_body)).encode()
+    native_tree = commit_body.splitlines()[0].decode().removeprefix('tree ')
+    assert native_tree == 'c59d0d0a542f20bceb3556b1e936e86b22626434'
+    tree_object = zlib.decompress((W/'.git/objects'/native_tree[:2]/native_tree[2:]).read_bytes())
+    assert hashlib.sha1(tree_object).hexdigest() == native_tree
+    tree_header,tree_body = tree_object.split(b'\x00',1)
+    assert tree_header == b'tree '+str(len(tree_body)).encode()
+    native_entries = []; pos = 0
+    while pos < len(tree_body):
+        end = tree_body.index(b'\x00',pos)
+        prefix = tree_body[pos:end]; mo,name = prefix.split(b' ',1)
+        assert re.fullmatch(b'[0-7]+',mo) and name and b'/' not in name
+        assert end+21 <= len(tree_body)
+        native_entries.append({'mode':mo.decode(),'name':name.decode('utf-8'),'OID':tree_body[end+1:end+21].hex()})
+        pos = end+21
+    assert pos == len(tree_body)
+    out = {'schema':'independent-hafnian-retract-stage-INITIAL-binding-continuation-inputs-v1', 'UTC_start':started, 'UTC_end':now(),
+           'status':'PASS_INPUT_BINDINGS_ONLY', 'guard_schema':'complete dictionaries keyed by canonical relative path; full bytes/SHA256/mode and all directory modes/emptiness; root is dot',
+           'guards_before':before, 'original_INITIAL14_complete_exact':True,
+           'adoptions':adoptions, 'authenticated_finite_manifests':bindings, 'pages':pages,
+           'aggregate_baseline':{'index_whole_UTF8':index,'sitemap_whole_UTF8':xml,
+              'raw_visible_HTML_units':visible,'visible_text_units':[visible_text(r) for r in visible],
+              'visible_text_rule':'concatenate HTMLParser data events, then whitespace collapse',
+              'raw_JSON_units':raw_json,'typed_ItemList_units':typed,
+              'raw_XML_units':raw_xml,'parsed_XML_units':parsed_xml,'XML_locations':locs,
+              'counts':{'visible_HTML':128,'raw_JSON':128,'typed_JSON':128,'XML':129}},
+           'new_public_relative_leaves':new_leaves,'new_public_relative_directories':new_dirs,
+           'expected_candidate_derived_not_observed':{'files':790,'child_directories':381,'index_units':130,'sitemap_nodes':131},
+           'exact_Git_relative_targets':['public/'+r for r in new_leaves+['research/index.html','research/sitemap.xml']],
+           'native_W_commit_tree':native_tree, 'native_W_commit_body':commit_body.decode('utf-8'),
+           'native_W_tree_entries':native_entries, 'native_W_tree_body_hex':tree_body.hex(), 'native_index':{'version':2,'records':58721,'bytes':len(wi),'SHA256':sha(wi),'checksum_valid':True},
+           'new_producer_or_candidate_opened':False,'production_or_scientific_execution':False,
+           'Git_network_W_source_otherpacket_writes':False,'future_persistence_or_live_certificate':False}
+    return out
+
+def save_owned_guard(name,value):
+    assert name in ('GUARDS_BEFORE.json','GUARDS_AFTER.json')
+    # Exclusive creation preserves any prior attempt; only this new owned lane is written.
+    with (N/name).open('x',encoding='utf-8') as stream:
+        stream.write(json.dumps(value,indent=2,ensure_ascii=False)+'\n')
+
+started = now()
+before = guards()
+save_owned_guard('GUARDS_BEFORE.json',before)
+try:
+    out = authenticate(before)
+finally:
+    # Closing observation is required even when the first assertion fails.
+    after = guards()
+    save_owned_guard('GUARDS_AFTER.json',after)
+    assert before == after, 'protected bytes/modes/topology changed during passive attempt'
+out.update({'UTC_start':started,'UTC_end':now(),'guards_after_exact_equal':True,
+            'after_guard_digest':sha(json.dumps(after,sort_keys=True).encode())})
+print(json.dumps(out,indent=2,ensure_ascii=False))
