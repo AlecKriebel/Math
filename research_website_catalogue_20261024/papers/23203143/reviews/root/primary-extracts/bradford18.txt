@@ -1,0 +1,302 @@
+58    Page 18 of 28                                                        H. Bradford, F. Fournier-Facio
+
+
+     In particular we obtain Corollary 1.9 from the Introduction:
+
+Corollary 3.25 Surjunctive groups satisfy Kaplansky’s stable finiteness conjecture. In partic-
+ular, sofic groups satisfy Kaplansky’s stable finiteness conjecture.
+
+Proof Surjunctive groups are clearly A-surjunctive, thus L-surjunctive by Theorem 3.24. We
+conclude by Theorem 3.22. The last statement follows from the Gromov–Weiss Theorem
+[22, 50].                                                                                
+                                                                                         
+
+Remark 3.26 Our argument went through A-surjunctivity, which in turn used the result for L-
+surjunctivity from [10]. However, the corollary for surjunctive groups is really an elementary
+consequence of Corollary 3.15: indeed, it was noticed already in [18] that surjunctive groups
+satisfy the direct finiteness conjecture over group rings, and virtually surjunctive groups are
+surjunctive [2].
+
+   Corollary 3.25 was recently independently proven by Phung [45] using methods from the
+theory of symbolic algebraic varieties. Still, the blueprint of his proof is similar to ours, in
+that it goes through the surjunctivity property for an algebro-geometric category of cellular
+automata.
+   Let us end this section by pointing out that surjunctivity and Hopficity are in some sense
+dual to each other. In one case, injectivity implies surjectivity, and in the other case surjectivity
+implies injectivity. The relation between the two only occurs via direct finiteness, which is
+a symmetric property. In fact, in the results of the next section (for instance in the proof of
+Theorem 4.2) one direction is elementary and follows a similar approach as the proof that
+surjunctivity implies stable finiteness; but the other direction will need an ad-hoc approach,
+which is moreover only possible thanks to the preliminary work in Sect. 2.
+
+
+4 Wreath products and stable finiteness
+
+In this section we prove Theorem 4.4, which combined with Proposition 2.13 and Corollary
+4.3 gives Theorem 1.5 from the Introduction. Using Corollary 3.15 we then deduce Theorem
+1.3 (Theorem 4.11 below).
+   The following observation appears as Exercise 8.13 in [14]. Since (a special case of) this
+observation is essential for our purposes, we give a self-contained proof. For R a ring and
+d ≥ 1, we write elements of R d as row-vectors (so that matrices act on the right).
+
+Lemma 4.1 Let R be a unital ring and let d ≥ 1. Then R d is a Hopfian left R-module if and
+only if the ring Md (R) is directly finite.
+
+Proof First suppose that Md (R) is directly finite and that ϕ : R d → R d is a surjective left
+R-module endomorphism. Let B be the standard free basis for R d . For each b ∈ B, let
+cb ∈ ϕ −1 (b). Let ψ : R d → R d be the (unique) left R-module endomorphism of R d given
+by ψ(b) = cb for all b ∈ B. Then ϕ ◦ ψ = id R d . Since End R (R d ) ∼  = Md (R), we deduce
+ψ ◦ ϕ = id R d also, and ϕ is an isomorphism.
+    Conversely suppose that X , Y ∈ Md (R) satisfy X Y = Id but Y X  = Id . Define ϕ : R d →
+R by ϕ(v) = vY . Then ϕ is clearly a left R-module homomorphism. Moreover v = ϕ(v X ),
+  d
+
+so ϕ is surjective. Since Y X  = Id , there exists v ∈ R d such that vY X  = v. Let 0  = u =
+vY X − v ∈ R d . Then uY = 0 so u ∈ ker(ϕ), so ϕ is not injective, and R d is not Hopfian.   
+
+123
+Hopfian wreath products and the stable...                                       Page 19 of 28   58
+
+
+   Next, we examine the special case in which the base group is a power of a fixed cyclic
+group, which will serve as the basis of an induction in the general case. We use the convention
+that Z/nZ = Z when n = 0.
+
+Theorem 4.2 Let  be a finitely generated Hopfian group; let n ≥ 0, and let d ≥ 1. Then
+ (Z/nZ)d   is Hopfian if and only if Md (Z/nZ)[] is directly finite.
+
+Proof If  is finite, then (Z/nZ)d   is Hopfian, being finitely generated and residually
+finite by [23] (note that (Z/nZ)d   is not necessarily finite, since n is allowed to be equal
+to 0). Moreover (Z/nZ)[] is stably finite: this is immediate when n ≥ 1 since finite rings
+are stably finite, and it is Corollary 3.5 in case n = 0. Therefore we may assume that  is
+infinite, which allows us to use the results from Sect. 2.
+    Let R = (Z/nZ)[]. Then (Z/nZ)d [] is naturally a left R-module. Indeed, it is isomor-
+phic to R d as a left R-module: given f ∈ (Z/nZ)d [], write:
+
+                                       f (g) = f (g)1 , . . . , f (g)d
+
+for g ∈  (with f (g)i ∈ Z/nZ), and identify f with ( f 1 , . . . f d ) ∈ R d , where f i ∈ R =
+(Z/nZ)[] is given by f i (g) = f (g)i . Under this identification, we have (Z/nZ)d   ∼     =
+R d  , where the group operation is given by:
+
+                                 (v1 g1 )(v2 , g2 ) = (v1 + g1 · v2 , g1 g2 )
+
+(where g1 · v2 denotes the left action of  on R d under the left (Z/nZ)[]-module structure
+of R d ). For the remainder of the proof we work with R d  .
+   First suppose that R d  is non-Hopfian, and that ϕ : R d  → R d  is a non-injective
+group epimorphism. Let ψ : R d   → R d   be as in Proposition 2.15; that is ψ(v, γ ) =
+(ϕ(v), γ ), and ψ is also a non-injective group epimorphism. Then the homomorphism relation
+implies:
+
+                  ϕ(g · v), g = ψ(g · v, g) = ψ(0, g)ψ(v, 1 ) = g · ϕ(v), g
+
+for all v ∈ R d and g ∈ , so the restriction of ϕ to R d is in fact a left R-module homo-
+morphism, which by Proposition 2.15 is surjective but not injective. In other words, R d is a
+non-Hopfian left R-module, and by Lemma 4.1, Md (R) is not directly finite.
+    Conversely suppose that Md (R) is not directly finite, so that by Lemma 4.1 there exists
+a surjective left R-module homomorphism ψ : R d → R d which is not injective. Define
+ϕ : R d   → R d   by ϕ(v, g) = (ψ(v), g). Then ϕ is a homomorphism of groups, which
+is surjective but not injective.                                                           
+                                                                                           
+
+   This already implies the full solution to our problem for free abelian groups:
+
+Corollary 4.3 Let A be a free abelian group of finite rank, and let  be a finitely generated
+group. Then  is Hopfian if and only if A   is Hopfian.
+
+Proof Let A = Zd . If A   is Hopfian, then by Lemma 2.5, so too is . Conversely, if 
+is Hopfian and A   is non-Hopfian, then Theorem 4.2 (applied with n = 0) implies that
+Md (Z[]) is not directly finite, contradicting Corollary 3.5.                         
+                                                                                       
+
+    Thanks to Proposition 2.13, we are left to understand when P   is Hopfian, where P is
+a finite abelian p-group.
+
+                                                                                     123
+58   Page 20 of 28                                                        H. Bradford, F. Fournier-Facio
+
+
+Theorem 4.4 Let  be a finitely generated Hopfian group. Let P = (Z/ pZ)d1 ⊕ · · · ⊕
+(Z/ p m Z)dm be a finite abelian p-group. Then P  is Hopfian if and only if Mmaxi (di ) F p []
+is directly finite.
+
+   Note that Theorems 4.2 and 4.4 combine to immediately yield the following conclusion
+about directly finite rings.
+
+Corollary 4.5 Let  be a finitely generated Hopfian group and let d, m ≥ 1. Then Md F p []
+is directly finite iff Md (Z/ p m Z)[] is directly finite.
+
+   As a first step towards Theorem 4.4, we have the following reduction, which is essentially
+an application of Hensel’s Lemma.
+
+Lemma 4.6 Let  be a group and let d, m ≥ 1. If Md (Z/ p m+1 Z)[] is directly finite, then
+so is Md (Z/ p m Z)[] .
+
+Proof Let X , Y ∈ Md (Z/ p m Z)[] and suppose X Y = Id . Let X̃ , Ỹ ∈ Md Z[] with
+X̃ ≡ X , Ỹ ≡ Y mod p m , so that there exists Z ∈ Md Z[] such that X̃ Ỹ = Id + p m Z . Set
+X = X̃ , Y = Ỹ (Id − p m Z ), so that X Y = Id − p 2 m Z ≡ Id mod p m+1 . By direct finiteness
+of Md (Z/ p m+1 Z)[] , we have Y X ≡ Id mod p m+1 , but X ≡ X , Y ≡ Y mod p m , so
+Y X = Id also.                                                                               
+                                                                                             
+
+Notation 4.7 For d = (d1 , . . . , dm ) ∈ Nm ; D = d1 + · · · + dm , and R a unital ring, let
+Bd (R) ≤ M D (R) be the subring given by:
+                               ⎧⎛                  ⎞                 ⎫
+                               ⎪     A1 ∗ · · · ∗                    ⎪
+                               ⎪
+                               ⎪                                     ⎪
+                                                                     ⎪
+                               ⎨⎜
+                               ⎪              .  . ⎟                 ⎪
+                                                                     ⎬
+                                  ⎜ 0 A2 . . .. ⎟
+                  Bd (R) := ⎜     ⎜ . . .
+                                                   ⎟ : Ai ∈ Md (R) .
+                                                   ⎟
+                               ⎪
+                               ⎪  ⎝ .. . . . . ∗ ⎠
+                                                               i
+                                                                     ⎪
+                                                                     ⎪
+                               ⎪
+                               ⎪                                     ⎪
+                                                                     ⎪
+                               ⎩                                     ⎭
+                                      0 · · · 0 Am
+
+Lemma 4.8 Keep the terminology from Notation 4.7. Suppose that Mmaxi (di ) (R) is directly
+finite. Let X ∈ Bd (R) and Y ∈ M D (R) be such that Y X = I D . Then Y ∈ Bd (R).
+
+Proof We proceed by induction on m; the base case m = 1 is vacuous. Write X =
+(X i, j )1≤i, j≤m and Y = (Yi, j )1≤i, j≤m as block-matrices, with X i, j , Yi, j ∈ Mdi ×d j (R) and
+X i, j = 0 for i > j. We have Y1,1 X 11 = Id1 , so by the direct finiteness hypothesis and
+Lemma 3.2, X 1,1 is invertible. Now, Y j,1 X 1,1 = 0 for 2 ≤ j ≤ m, so Y j,1 = 0. Thus, letting
+X , Y ∈ M D−d1 (R) be the bottom-right blocks of X and Y , we have X Y = I D−d1 . Since
+X ∈ Bd (R), where d = (d2 , . . . , dm ), we have Y ∈ Bd (R) by inductive hypothesis, so
+Y ∈ Bd (R).                                                                                        
+                                                                                                   
+
+Lemma 4.9 Let R be a unital ring and let U D (R) be the set of D-by-D upper-unitriangular
+matrices over R. Then U D (R) forms a group under matrix multiplication.
+
+Proof For 0 ≤ k ≤ (D − 1) let U D,k (R) ⊆ U D (R) be the set of matrices A ∈ U D (R)
+satisfying Ai, j = 0 for 1 ≤ j − i ≤ k, so that U D,0 (R) = U D (R); U D,k+1 (R) ⊆ U D,k (R)
+and U D,D−1 (R) = {I D }. We claim that every element of U D (R) has a right-inverse. By
+induction on k, it suffices to show that, if A ∈ U D,k (R) then there exists B ∈ U D,k (R) such
+that AB ∈ U D,k+1 (R). Taking B = 2I D − A suffices.                                          
+                                                                                              
+
+
+123
+Hopfian wreath products and the stable...                                          Page 21 of 28   58
+
+
+Lemma 4.10 Keeping the terminology from Notation 4.7, Bd (R) is directly finite if and only
+if Mmaxi (di ) (R) is directly finite.
+Proof The forward direction is an application of Lemma 3.2.
+   Conversely, let U D (R) be the group of upper-unitriangular matrices over R (by Lemma
+4.9 this is indeed a group); let:
+                    ⎛                  ⎞         ⎛               ⎞
+                       A1 ∗ · · · ∗                B1 ∗ · · · ∗
+                    ⎜                . ⎟         ⎜             . ⎟
+                    ⎜ 0 A2 . . . .. ⎟            ⎜ 0 B2 . . . .. ⎟
+                    ⎜                  ⎟         ⎜               ⎟ ∈ Bd (R)
+               X =⎜ .                  ⎟ and Y = ⎜ . . .         ⎟
+                    ⎝ .. . . . . . . ∗ ⎠         ⎝ .. . . . . ∗ ⎠
+                       0 · · · 0 Am                0 · · · 0 Bm
+(with Ai , Bi ∈ Mdi (R)), and suppose that X Y = I D . Then for 1 ≤ i ≤ m, Ai Bi = Idi , so
+by direct finiteness of Mdi (R), all Bi Ai = Idi also, hence Y X ∈ U D (R). It follows that Y
+has a right-inverse X (Y X )−1 , but since X is a left-inverse to Y , X = X (Y X )−1 by Lemma
+3.1. Thus Y X = I D also.                                                                   
+                                                                                            
+Proof of Theorem 4.4 The case in which  is finite can be dealt with as in the beginning of
+the proof of Theorem 4.2, so once again we may assume that  is infinite and use the results
+from Sect. 2.
+    For 1 ≤ i ≤ m and 1 ≤ j ≤ di , let ai, j ∈ P generate the jth (Z/ pi Z)-factor of P. Let
+Q ≤ P be the set of elements of P of order dividing p. Then Q is an elementary abelian
+p-group with basis {bi, j : 1 ≤ i ≤ m, 1 ≤ j ≤ di }, where bi, j = pi−1 ai, j , and Q[] is a
+free left F p []-module of rank D, with free basis B = {bi, j 1 : 1 ≤ i ≤ m, 1 ≤ j ≤ di }. For
+1 ≤ i ≤ m let Wi ≤ Q[] be the left F p []-submodule generated by {bi, j 1 : 1 ≤ j ≤ di },
+and let Vi = Wi + Wi+1 + . . . + Wm ≤ Q[].
+    Suppose first that Mmaxi (di ) F p [] is directly finite. By Lemma 4.10, Bd F p [] is
+directly finite. We proceed by induction on the exponent of P. The base case exp(P) = p
+follows from Theorem 4.2. Let ϕ : P   → P   be an epimorphism. By Proposition 2.15,
+we may assume that there is a left--equivariant epimorphism ψ : P[] → P[] such that
+for all v ∈ P[] and g ∈ , ϕ(v, g) = (ψ(v), g) (see the proof of Theorem 4.2). The set of
+elements of P[] of additive order dividing p is precisely Q[], so ψ(Q[]) ≤ Q[]. Thus
+ϕ descends to a well-defined surjective homomorphism ϕ from (P )/Q[] ∼          = (P/Q) to
+itself. Since P/Q ∼ = (Z/ pZ)d2 ⊕ · · · ⊕ (Z/ p m−1 Z)dm has smaller exponent than P, and by
+assumption Bdi F p [] is directly finite for 2 ≤ i ≤ m, ϕ is an isomorphism, by induction.
+It follows that ker(ϕ) ≤ Q[].
+    We claim that ψ(Q[]) = Q[]. Let v ∈ Q[]. Since ϕ(P[]) = P[] ≥ Q[], there
+exists u ∈ P[] with ϕ(u) = v. Thus ϕ(u + Q[]) = v + Q[] = 0, so by injectivity of ϕ,
+u ∈ Q[], as required. Thus the restriction of ψ to Q[] is a left--equivariant epimorphism,
+hence an epimorphism of left F p []-modules.
+    As in the proof of Lemma 4.1, the left F p []-module homomorphism ψ| Q[] has a right-
+inverse ρ : Q[] → Q[]. Let X and Y be the matrices of ψ| Q[] and ρ, respectively, with
+respect to the basis B, so that Y X = I D (note that our matrices act on the right, to ensure
+left--equivariance, so the order of matrix multiplication is the reverse of that for function
+composition). We claim that X ∈ Bd1 F p [] . It will then follow from Lemma 4.8 and direct
+finiteness of Bd1 F p [] that X Y = I D and ρ ◦(ψ| Q[] ) = id Q[] , so that ψ| Q[] is injective.
+Since, from the above, ker(ϕ) = ker(ψ| Q[] ), ϕ is an isomorphism, and we conclude that
+P   is Hopfian.
+    It suffices then to show that X ∈ Bd1 F p [] . In other words, it suffices to show that
+for each 1 ≤ i ≤ m, ψ(Wi ) ≤ Vi . Recall that Wi is generated as an abelian group by the
+
+                                                                                        123
+58   Page 22 of 28                                                     H. Bradford, F. Fournier-Facio
+
+
+elements bi, j g = pi−1 ai, j g (for 1 ≤ j ≤ di and g ∈ ), which are pi−1 th powers in the
+group P[]. Thus ψ(bi, j g) is a pi−1 th power in P[]. Since P[] is generated as an abelian
+group by all elements of the form ak,l h (for 1 ≤ k ≤ m; 1 ≤ l ≤ dk and h ∈ ), and
+pi−1 ak,l h = 0 for k ≤ i − 1, it follows that ψ(bi, j g) lies in:
+                                                                     
+                       Q[] ∩ pi−1 ak,l h : k ≥ i, 1 ≤ l ≤ dk , h ∈ 
+which is precisely Vi , as desired.
+   Conversely suppose that P   is Hopfian. Then by Lemma 2.16, (Z/ pi Z)di   is Hopfian
+for each 1 ≤ i ≤ m. Thus by Theorem 4.2, each ring Mdi (Z/ pi Z)[] is directly finite.
+Finally, by Lemma 4.6, each ring Mdi F p [] is directly finite.                          
+                                                                                          
+
+  We conclude our study of wreath products with abelian bases by completing the proof of
+Theorem 1.3 from the Introduction, the statement of which we recall here.
+
+Theorem 4.11 The following are equivalent:
+1. For every finitely generated abelian group A and every finitely generated Hopfian group
+   , the wreath product A   is Hopfian.
+2. Kaplansky’s direct finiteness conjecture holds.
+
+Proof Kaplansky’s direct finiteness conjecture is equivalent to Kaplansky’s stable finiteness
+conjecture by Theorem 3.3. By Theorem 1.5 and Corollary 3.15 the first item is equivalent
+to the fact that for every finitely generated Hopfian group  and every field F, the group ring
+F[] is stably finite. By Lemma 3.2, it suffices to notice that every finitely generated group
+embeds into a finitely generated Hopfian group [39].                                          
+                                                                                              
+
+
+5 Beyond abelian bases
+
+We end by considering cases in which the base is not abelian. We start by looking at certain
+centreless bases, in which case the structure will be such that Hopficity is much easier to
+show, and in particular we will obtain examples of Hopfian wreath products    where 
+is non-Hopfian (Theorem 5.3). Secondly, we extend the results on abelian bases to nilpotent
+bases (Theorem 5.5).
+
+5.1 Centreless bases
+
+The proof of the following proposition is essentially contained in the literature [23, 26]. We
+include a proof for the reader’s convenience.
+
+Proposition 5.1 Let N ≤    be a normal subgroup.
+1. Suppose N is not basic. Then N contains  [].
+2. Suppose N is basic, and let K be the projection of N onto (e) . Then K is a nontrivial
+   normal subgroup of , and ([K , ])[] ≤ N ≤ K [].
+
+Proof For the first part, suppose N is not basic, and let ( f , γ ) ∈ N with 1  = γ . Then for
+any δ, η ∈  and g ∈ ,
+                               −1 
+                    ( f , γ ), δ(g)  = f (γ g)δ −1 f (γ g)−1 (γ g) · δ(g) ∈ N
+
+123
+

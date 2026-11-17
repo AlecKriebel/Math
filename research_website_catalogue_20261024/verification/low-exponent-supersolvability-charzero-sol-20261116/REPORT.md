@@ -1,0 +1,15 @@
+# Private COPY-1 revision: characteristic zero
+
+Record 23331709, row 167. This separate packet corrects only the approved short description in five locations: the description and Open Graph description in `index.html` and `HEAD.html`, and the top-level `description` in `model.json`.
+
+The exact replacement is: Supersolvability in characteristic zero for finite central free arrangements of distinct hyperplanes with nonzero exponents 1 or 2 and at most one 3.
+
+The complete original 22-file packet remains frozen and is pinned by `ORIGINAL_REFERENCE.json`, including its terminal controls. The revision is checked by exact byte transformations against that packet. `MAIN.html`, the complete body in `index.html`, the full abstract, schema data, native record description, BibTeX, PDF and ZIP remain byte-for-byte unchanged. Private noindex status, null current deployment authority and the full proposed URL plan remain unchanged.
+
+The pinned root clearance is the inherited scientific authority. This agent has not opened current independent fact reports, performed a new scientific review, run native or scientific programs, executed old helpers, rendered or browsed HTML, used a network, changed Git/Sheet/W/deployment, or prepared external contact. Old fact evidence is not represented as certification of this revision. Independent fact review of this frozen revision remains for the parent to obtain.
+
+The checker is a new bounded read-only data checker. It authenticates all 22 original files, their exact finite extent and modes, the root clearance, eight deliverables, five replacements, unchanged body/abstract/native assets, preserved private metadata and the exact current owned extent. The entire saved current checker body (176 lines; 8,853 bytes; SHA256 13511db9a009351ad63c1c7af275583e51fa1a2ada2d5a2b756376fa19b3150b) was personally read before its sole ordinary invocation. That invocation passed with exit 0; full stdout and empty stderr were read and retained. Final finite closure covers 21 regular files, zero child directories, every owned hidden, ignored, empty and stream file and mode, with only the two exact already-created terminal controls excluded from recursive byte hashing. No second checker invocation occurred.
+
+No live preview, download, iframe, native-reader, hosting, journal or human peer-review certification is made. The source corpus is not re-reviewed or independently re-authenticated by this metadata-only revision. Its 120-file / 17-child-directory frozen extent is inherited from the pinned root clearance and original packet; this agent makes no changes to it.
+
+The final manifest hashes 19 payload files and records the two exact terminal controls. `FINAL.json` binds the completed manifest. Caller finalization changed only execution/report/log and terminal closure after the passing check; the checker result accurately states that it does not hash those final metadata contents. The final manifest supplies those pins. All files have mode 0644 and the owned root has mode 0755; no symlinks or special objects exist. The packet is now frozen and this agent is quiescent.

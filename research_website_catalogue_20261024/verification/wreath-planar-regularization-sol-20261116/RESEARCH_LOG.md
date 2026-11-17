@@ -1,0 +1,7 @@
+# Focused planar functional-analysis interface audit
+
+2026-11-17T01:31:42UTC — New owned verification folder. Earlier row164scope role/source/proof exposure disclosed; current focused source-first audit is informed, not blank-slate or a whole-paper re-review. Began actual full manuscript/native metadata reading. Estimate0%.
+
+Source checkpoint — Read all212controllingTeX lines, all8PDFtext pages and all8fresh owned120dpi source-page pixels. Read native record/files/Description, authored metadata and actual rights/code licence. Own fully read data-only custody utility authenticated121sourcefiles/20dirs including empty streams and native size/MD5 identities. Authentication was before INITIAL, after the first source text reads. Poppler conversion completed normally; no support/native science code execution. Estimate25%.
+
+INITIAL boundary — Precise sign programs, measure/kernel cones, trace/volume normalizations and edge/boundary cases reconstructed. Actual hand deductions include continuous restriction tests, correlation regularity and compact-support Schwartz regularization checks; exact cited strong-duality interface remains to inspect. Current root/peer/old local opinions and foreign proof bodies remain closed until this seal. Informed-source gate100%; focused assignment estimate40%. INITIAL/log immutable after seal; later work uses a continuation log. Follow-up null; no publication authority.

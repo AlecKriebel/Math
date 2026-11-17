@@ -1,0 +1,173 @@
+
+5.1 Two-point bounds
+The Lovász  \vartheta -number is a two-point bound originally
+defined for finite graphs. Bachoc, Nebe, Oliveira, and
+Vallentin [4] generalized this to
+the spherical code graph, and they showed that it is equivalent to the
+linear programming bound of Delsarte, Goethals, and
+Seidel [12]. The following generalization
+of the  \vartheta^{\prime} -number for compact topological packing graphs  G 
+is natural:
+ \displaystyle\vartheta^{\prime}(G)^{*}=\inf\Big\{a:\; 
+ \displaystyle a\in\mathbb{R},\,F\in\mathcal{C}(V\times V)_{\succeq 0}, 
+ \displaystyle F(x,x)\leq a-1\text{ for }x\in V, 
+ \displaystyle F(x,y)\leq-1\text{ for }\{x,y\}\in I_{=2}\Big\}. 
+Lemma 7
+Let  G  be a compact topological packing graph. Then  \vartheta^{\prime}(G)^{*} 
+has a feasible solution.
+For finite graphs one can show  \vartheta^{\prime}(G)^{*}  admits a feasible
+solution by selecting a matrix  F  with  F(x,y)=-1  for  \{x,y\}\in I_{=2}  and the diagonal of  F  large enough so as to make it
+diagonally dominant and hence positive semidefinite. For infinite
+graphs it is not clear how to adapt this argument, so we use a different
+approach.
+Proof (of Lemma 7 )
+By the topological packing graph condition there is for each  x\in V  an open clique  C_{x}  containing  x . Since  V  is a compact
+Hausdorff space, it is a normal space, so there exists an open
+neighborhood  U_{x}  of  x  such that its closure does not intersect
+ V\setminus C_{x} . By compactness there exists an  S\subseteq V 
+such that  \{U_{x}:x\in S\}  is a finite open cover of  V . By
+Urysohn’s lemma there is a function  f_{x}\in\mathcal{C}(V)  such that
+ f_{x}(y)\begin{cases}=|S|&\text{ if }y\in U_{x},\\
+\in[-1,|S|]&\text{ if }y\in C_{x}\setminus U_{x},\\
+=-1&\text{ if }y\in V\setminus C_{x}.\end{cases} 
+Define
+ F\in\mathcal{C}(V\times V)_{\succeq 0}\text{ by }F=\sum_{x\in S}f_{x}\otimes f_{x},\;\text{ and }a=|S|^{3}+1. 
+Then,
+ F(y,y)=\sum_{x\in S}f_{x}(y)^{2}\leq|S|^{3}=a-1\text{ for all }y\in V. 
+Moreover, if  \{y,y^{\prime}\}\in I_{=2} , then at most one of  y  and  y^{\prime}  lies in  C_{x}  for every given
+ x\in S . So,  f_{x}(y)f_{x}(y^{\prime})=-|S|  if either  y  or  y^{\prime}  lies in  U_{x} 
+and  f_{x}(y)f_{x}(y^{\prime})\leq 1  if neither  y  nor  y^{\prime}  lies in
+ U_{x} . Hence,  F(y,y^{\prime})\leq-1  for all  \{y,y^{\prime}\}\in I_{=2} , and
+it follows that  (a,F)  is feasible for  \vartheta^{\prime}(G)^{*} .
+∎
+Now we show that the first step of our hierarchy equals the
+ \vartheta^{\prime} -number for compact topological packing graphs, as it is
+known for finite graphs.
+Theorem 5.1
+Let  G  be a compact topological packing graph. Then
+ \mathrm{las}_{1}(G)^{*}=\vartheta^{\prime}(G)^{*}. 
+We prove this theorem by Lemma 8 and
+Lemma 10. We first show the easy inequality.
+Lemma 8
+ \mathrm{las}_{1}(G)^{*}\leq\vartheta^{\prime}(G)^{*}. 
+Proof
+Assume  (a,F)  is feasible for  \vartheta^{\prime}(G)^{*}  and define  K\in\mathcal{C}(I_{1}\times I_{1})_{\text{sym}}  by
+ \displaystyle K(\emptyset,\emptyset)=a, 
+ \displaystyle K(\emptyset,\{x\})=K(\{x\},\emptyset)=-1\text{ for }x\in V, 
+ \displaystyle K(\{x\},\{y\})=(F(x,y)+1)/a\text{ for }x,y\in V. 
+To show that  K  is positive definite we show that the matrix
+ (K(J_{i},J_{j}))_{i,j=1}^{m}  is positive semidefinite for all  m\in\mathbb{N}  and  J_{1},\ldots,J_{m}\in I_{1}  pairwise different. If none of
+the  J_{i} ’s is empty, then it follows directly. Otherwise we may assume
+that there are  x_{2},\ldots,x_{m}\in V  such that  J_{1}=\emptyset  and
+ J_{i}=\{x_{i}\}  for  i=2,\ldots,m . We have
+ \Big(K(J_{i},J_{j})-K(J_{i},J_{1})K(J_{1},J_{1})^{-1}K(J_{1},J_{j})\Big)_{i,j=2}^{m}=a^{-1}\big(F(x_{i},x_{j})\big)_{i,j=2}^{m}, 
+so by the Schur complement  \big(K(J_{i},J_{j})\big)_{i,j=1}^{m}  is positive semidefinite.
+For  x\in V  we have
+ A_{1}K(\{x\})=K(\{x\},\{x\})+K(\{x\},\emptyset)+K(\emptyset,\{x\})=(F(x,x)+1)/a-2\leq-1, 
+and for  \{x,y\}\in I_{=2}  we have
+ \displaystyle A_{1}K(\{x,y\}) 
+ \displaystyle=K(\{x\},\{y\})+K(\{y\},\{x\}) 
+ \displaystyle=(F(x,y)+1)/a+(F(y,x)+1)/a\leq 0. 
+So  K  is feasible for  \mathrm{las}_{t}(G)^{*}  and since  K(\emptyset,\emptyset)=a  we have  \mathrm{las}_{t}(G)^{*}\leq\vartheta^{\prime}(G)^{*} .
+∎
+Remark 3
+From this lemma we can see that for each  t\in\mathbb{N}  the optimization
+problem  \mathrm{las}_{t}(G)^{*}  has a feasible solution and so by
+strong duality the maximum in
+ \mathrm{las}_{t}(G)  is attained: By Lemma 7,  \vartheta^{\prime}(G)^{*}  has a feasible solution, hence by the
+lemma above  \mathrm{las}_{1}(G)^{*}  also has one. Then this can be extended
+trivially to a feasible solution for every
+ \mathrm{las}_{t}(G)^{*} .
+To prove the other inequality we will use the following generalization of
+the Schur complement.
+Lemma 9
+Let  X  be a compact Hausdorff space and let  x_{1},\ldots,x_{n}\in X  be
+elements such that the singletons  \{x_{i}\}  are open. Suppose  \mu\in\mathcal{M}(X\times X)_{\text{sym}}  is such that the matrix  A=(\mu(\{(x_{i},x_{j})\}))_{i,j=1}^{n}  is positive definite. Denote by
+ \mathcal{F}\subseteq\mathcal{C}(X)  the set of functions which are zero on
+ \{x_{1},\ldots,x_{n}\}  and for  g\in\mathcal{F}  define the vector
+ v_{g}\in\mathbb{R}^{n}  by  (v_{g})_{i}=\mu(1_{\{x_{i}\}}\otimes g) . Then  \mu 
+is positive definite if and only if
+ \mu(g\otimes g)-v_{g}^{\sf T}A^{-1}v_{g}\geq 0\quad\text{for all}\quad g\in\mathcal{F}. 
+Proof
+Mercer’s theorem says that a kernel  K\in\mathcal{C}(X\times X)_{\text{sym}}  is positive definite if and only if there exist
+sequences  (f_{i})_{i}  and  (\lambda_{i})_{i}  in  \mathcal{C}(X)  and  \mathbb{R}_{\geq 0}  such that  K(x,y)=\sum_{i=1}^{\infty}\lambda_{i}f_{i}\otimes f_{i}(x,y) , where convergence is uniform and absolute. It follows
+that  \mu\in\mathcal{M}(X\times X)_{\succeq 0}  if and only if
+ \mu(f\otimes f)\geq 0  for all  f\in\mathcal{C}(X) . Now we use the
+technique as described in for instance the book by Boyd and Vandenberghe
+(8, Appendix A.5.5) and note that the
+measure  \mu  is positive definite if and only if the function  p\colon\mathbb{R}^{n}\times\mathcal{F}\to\mathbb{R}  given by
+ \displaystyle p(r,g) 
+ \displaystyle=\mu((r_{1}1_{\{x_{1}\}}+\cdots+r_{n}1_{\{x_{n}\}}+g)\otimes(r_{1}1_{\{x_{1}\}}+\cdots+r_{n}1_{\{x_{n}\}}+g)) 
+ \displaystyle=\mu(g\otimes g)+r^{\sf T}Ar+2r^{\sf T}v_{g} 
+is nonnegative on its domain. We have  \nabla\!_{r}\,p(r,g)=2Ar+2v_{g} , so for fixed  g , the minimum of  p  is attained for  r=-A^{-1}v_{g} . Hence  p  is nonnegative on its domain if and only if
+ \mu(g\otimes g)-v_{g}^{\sf T}A^{-1}v_{g}\geq 0  for all  g\in\mathcal{F} .
+∎
+Lemma 10
+ \mathrm{las}_{1}(G)^{*}\geq\vartheta^{\prime}(G)^{*}. 
+Proof
+We will use the duals of  \vartheta^{\prime}(G)^{*}  and
+ \mathrm{las}_{1}(G)^{*} . We derive the dual  \vartheta^{\prime}(G)  of
+ \vartheta^{\prime}(G)^{*}  similarly to
+Section 3.1. We have
+ \displaystyle\vartheta^{\prime}(G)=\sup\Big\{\eta(I_{2}\setminus\{\emptyset\}):\; 
+ \displaystyle\eta\in\mathcal{M}(I_{2}\setminus\{\emptyset\})_{\geq 0}, 
+ \displaystyle\eta(I_{=1})=1,\;T^{*}\eta\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0}\Big\}, 
+where  T\colon\mathcal{C}(I_{=1}\times I_{=1})\to\mathcal{C}(I_{2}\setminus\{\emptyset\})  is the operator defined by
+ TF(S)=\begin{cases}F(\{x\},\{x\})&\text{if $S=\{x\}$},\\
+\frac{1}{2}(F(\{x\},\{y\})+F(\{y\},\{x\}))&\text{if $S=\{x,y\}$}.\end{cases} 
+Now we prove strong duality:  \vartheta^{\prime}(G)=\vartheta^{\prime}(G)^{*}  and the
+optimum in  \vartheta^{\prime}(G)  is attained. Following the approach from
+Section 3.2 we first observe that every
+probability measure on  I_{=1}  is feasible for  \vartheta^{\prime}(G) . To
+complete the proof we show that
+ \displaystyle K=\{(T^{*}\eta-\nu,\eta(I_{2}\setminus\{\emptyset\})):\; 
+ \displaystyle\nu\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0}, 
+ \displaystyle\eta\in\mathcal{M}(I_{2}\setminus\{\emptyset\})_{\geq 0},\,\eta(I_{=1})=0\} 
+is closed in  \mathcal{M}(I_{=1}\times I_{=1})_{\text{sym}}\times\mathbb{R} . We decompose  K  as the Minkowski difference of
+ K_{1}=\{(T^{*}\eta,\eta(I_{2}\setminus\{\emptyset\})):\eta\in\mathcal{M}(I_{2}\setminus\{\emptyset\})_{\geq 0},\,\eta(I_{=1})=0\} 
+and
+ K_{2}=\{(\nu,0):\nu\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0}\}. 
+It is immediate that  K_{1}\cap K_{2}=\{0\}  and again using the
+approach from Section 3.2 we see that  K_{1}  and
+ K_{2}  are closed and that  K_{1}  is locally compact.
+Now we show the inequality  \vartheta^{\prime}(G)\leq\mathrm{las}_{1}(G) . Let
+ \eta  be an optimal solution for  \vartheta^{\prime}(G)  and define  \lambda\in\mathcal{M}(I_{2})  by  \lambda(\{\emptyset\})=1  and
+ \lambda(L)=\begin{cases}\vartheta^{\prime}(G)\eta(L)&\text{if $L$ is a Borel set in $I_{=1}$},\\
+\frac{1}{2}\vartheta^{\prime}(G)\eta(L)&\text{if $L$ is a Borel set in $I_{=2}$}.\end{cases} 
+Then
+ \lambda(I_{=1})=\vartheta^{\prime}(G)\eta(I_{=1})=\vartheta^{\prime}(G). 
+To complete the proof we have to show  A_{1}^{*}\lambda\in\mathcal{M}(I_{1}\times I_{1})_{\succeq 0} . We apply our generalized Schur
+complement: Let  g\in\mathcal{C}(I_{1})  be a function with  g(\emptyset)=0 . We have
+ A_{1}^{*}\lambda(g\otimes g)=\vartheta^{\prime}(G)T^{*}\eta(g\otimes g). 
+The symmetric bilinear form  (h,g)\mapsto T^{*}\eta(h\otimes g)  is
+positive semidefinite because  T^{*}\eta\in\mathcal{M}(I_{=1}\times I_{=1})_{\succeq 0} , so we can apply the Cauchy-Schwarz inequality
+and optimality of  \eta  to obtain
+ \vartheta^{\prime}(G)T^{*}\eta(g\otimes g)\geq\frac{\vartheta^{\prime}(G)}{T^{*}\eta(1_{I_{=1}}\otimes 1_{I_{=1}})}(T^{*}\eta(1_{I_{=1}}\otimes g))^{2}=(T^{*}\eta(1_{I_{=1}}\otimes g))^{2}. 
+In the remainder of this proof we show
+ T^{*}\eta(1_{I_{=1}}\otimes g)=\vartheta^{\prime}(G)\eta(g). 
+Since
+ \vartheta^{\prime}(G)\eta(g)=\lambda(g)=A_{1}^{*}\lambda(1_{\emptyset}\otimes g) 
+the proof is then complete by using the generalized Schur complement,
+Lemma 9.
+Inspired by Schrijver (34, Theorem 67.10) we use
+Lagrange multipliers. First observe that
+ T(1_{I_{=1}}\otimes 1_{I_{=1}})=1_{I_{2}\setminus\{\emptyset\}}\quad\text{and}\quad T^{*}\eta(1_{I_{=1}}\otimes 1_{I_{=1}})=\eta(I_{2}\setminus\{\emptyset\}). 
+For  u\in\mathbb{R}^{2}  define  g_{u}\in\mathcal{C}(I_{=1}) 
+by  g_{u}=u_{1}g+u_{2}(1_{I_{=1}}-g) . For each  u\in\mathbb{R}^{2}  with
+ \eta(g_{u}^{2})=1 , the measure  \tilde{\eta}  defined by  d\tilde{\eta}(S)=T(g_{u}\otimes g_{u})(S)d\eta(S)  is feasible for  \vartheta^{\prime}(G) . So,
+if we consider the problem of maximizing  T^{*}\eta(g_{u}\otimes g_{u}) 
+over all  u\in\mathbb{R}^{2}  for which  \eta(g_{u}^{2})=1 , then optimality of
+ \eta  implies that an optimal solution is attained for  u=1 .
+It follows that there exists a Lagrange multiplier  c\in\mathbb{R}  such that
+ \frac{\partial}{\partial u_{i}}\bigg|_{u=(1,1)}T^{*}\eta(g_{u}\otimes g_{u})=c\frac{\partial}{\partial u_{i}}\bigg|_{u=(1,1)}\eta(g_{u}^{2})\quad\text{for}\quad i=1,2. 
+Since
+ T^{*}\eta(g_{u}\otimes g_{u})=u^{\sf T}\begin{pmatrix}T^{*}\eta(g\otimes g)&T^{*}\eta(g\otimes(1_{I_{=1}}-g))\\
+T^{*}\eta(g\otimes(1_{I_{=1}}-g))&T^{*}\eta((1_{I_{=1}}-g)\otimes(1_{I_{=1}}-g))\end{pmatrix}u 
+and
+ \eta(g_{u}^{2})=u^{\sf T}\begin{pmatrix}\eta(g^{2})&\eta(g(1_{I_{=1}}-g))\\
+\eta(g(1_{I_{=1}}-g))&\eta((1_{I_{=1}}-g)^{2})\end{pmatrix}u 
+we have
+ T^{*}\eta(g\otimes 1_{I_{=1}})=c\eta(g)\quad\text{and}\quad T^{*}\eta((1_{I_{=1}}-g)\otimes 1_{I_{=1}})=c\eta(1_{I_{=1}}-g). 
+By summing the last two equations we see that  c=\vartheta^{\prime}(G) , hence
+we have the desired equality  T^{*}\eta(g\otimes 1_{I_{=1}})=\vartheta^{\prime}(G)\eta(g) .
+∎

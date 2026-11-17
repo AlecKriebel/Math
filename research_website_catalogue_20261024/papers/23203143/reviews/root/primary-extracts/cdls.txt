@@ -1,0 +1,667 @@
+14                 HENRY COHN, DAVID DE LAAT, AND ANDREW SALMON
+
+
+     Finally, we can write
+                                                                             
+                                                                x − z −z
+        Z                    Z    Z
+            f (x, 0, ∅) dx =                               1+K        ,    , ∅ dz dx.
+         Rn                  Rn        n (x)∩B n (0)\{0,x}
+                                      BR      R
+                                                               |x − z| |z|
+This integral is finite because the integrand is bounded, as is the domain of integration.
+The contribution from K is nonnegative, and therefore
+        Z                    Z Z
+            f (x, 0, ∅) dx ≥                         dz dx
+           Rn                    Rn     n (x)∩B n (0)\{0,x}
+                                       BR      R
+                                                  n      n
+                           = vol({(x, z) ∈ R × R : |z| ≤ R and |x − z| ≤ R})
+                                  n 2
+                           = vol(BR ) .
+                              n 2
+Rescaling by a factor of vol(BR ) therefore yields a function satisfying the conditions
+in Definition 2.2 and proving that
+                                  vol(B1n ) vol(BRn
+                                                    )M
+                       ∆k,Rn ≤                n 2
+                                                       = sinn (θ/2)M,
+                                       vol(BR )
+as desired.                                                                             
+
+                3. Duality theory for linear programming bounds
+   In our study of the three-point lattice bound, we will use dual bounds for
+infinite-dimensional linear programs. This theory is subtle, because unlike the
+finite-dimensional case, there can be a duality gap between the optimal primal
+and dual bounds. In this section, we will show that there is no duality gap in the
+linear programs that arise in our work. One consequence of this analysis is that the
+ordinary linear programming bound has no duality gap, which was conjectured in
+[7, Section 4] but has not previously been proved.
+   Let C be a closed subset of Rn . The C-constrained linear programming bound is
+the infimum of f (0) over all Schwartz functions f : Rn → R satisfying f (x) ≤ 0 for
+all x ∈ C, fb(y) ≥ 0 for all y, and fb(0) = 1. Aside from the restriction to Schwartz
+functions, which we will address in Proposition 3.5, the ordinary linear programming
+bound for sphere packing is the case C = {x ∈ Rn : |x| ≥ 1}, and the three-point
+lattice bound and the disjunctive product bound from Section 4 are also special
+cases. Furthermore, when Rn \ C is a convex body that is symmetric with respect
+to the origin, f (0) vol(Rn \ C)/2n is an upper bound for the packing density in Rn
+using translates of Rn \ C (see Theorem B.1 in [8]). We will assume 0 6∈ C, since
+otherwise no such f exists. Conversely, a feasible f always exists when 0 6∈ C, for
+example by rescaling the input variable to a feasible f in the linear programming
+bound for sphere packing.
+   The dual C-constrained linear programming bound is the supremum over all real
+numbers c such that there exists a tempered distribution T on Rn that satisfies
+T = δ0 + µ with µ ≥ 0, supp(µ) ⊆ C, and Tb ≥ cδ0 . For all auxiliary functions f as
+above and distributions T ,
+                                      Z        Z
+                              f (0) ≥ T f = Tbfb ≥ c,
+
+and we say there is no duality gap if the infimum of f (0) and the supremum of c are
+equal. Note that we make no assertion as to whether the infimum and supremum
+are attained.
+                    THREE-POINT BOUNDS FOR SPHERE PACKING                          15
+
+
+Theorem 3.1. For every closed subset C of Rn with 0 6∈ C, the C-constrained
+linear programming bound has no duality gap.
+   To prove this theorem, we will adapt a finite-dimensional proof based on hyper-
+plane separation. The main technical obstacle will be showing that the point used
+for hyperplane separation lies outside of the closure of the convex set encoding the
+C-constrained linear programming bound.
+   Let S(Rn ) be the Schwartz space on Rn , with the usual topology defined by
+the Schwartz seminorms, and let K be the closure K0 of the convex subset K0 of
+S(Rn ) × S(Rn ) given by
+     K0 = {(a, b) : there exists f ∈ S(Rn ) with fb(0) = 1 such that
+             a(x) ≥ f (x) for all x ∈ C ∪ {0} and fb(y) ≥ b(y) for all y ∈ Rn }.
+This convex set encodes the C-constrained linear programming bound in terms of
+the points (g, 0), where g ∈ S(Rn ) satisfies g|C = 0. If such a point (g, 0) lies in
+K0 , then the function f from the definition of K0 is an auxiliary function satisfying
+f (0) ≤ g(0).
+   To prove Theorem 3.1, let c be any real number that is strictly less than the
+infimum in the C-constrained linear programming bound. Then our goal is to
+construct a tempered distribution T satisfying T = δ0 + µ with µ ≥ 0, supp(µ) ⊆ C,
+and Tb ≥ c0 δ0 with c0 ≥ c.
+   Let g be any Schwartz function on Rn such that g(0) = c and g|C = 0. We have
+seen that then (g, 0) 6∈ K0 . In fact, we will show that it is not even contained in
+the closure K of K0 . This assertion is the most technical part of the proof. Before
+checking it, we will first show how to deduce Theorem 3.1 from it.
+Proof of Theorem 3.1 assuming (g, 0) 6∈ K. By hyperplane separation (for example,
+Theorem III.3.4 in [5]), the point (g, 0) is separated from K by a closed hyperplane.
+In other words, there exist tempered distributions T1 and T2 such that for all
+(a, b) ∈ K,                   Z         Z         Z
+                                T1 a +    T2 b >   T1 g.
+
+Because this inequality holds regardless of what a does in Rn \ (C ∪ {0}), we must
+have supp(T1 ) ⊆ {0} ∪ C. Furthermore, increasing a or decreasing b does not affect
+the inequality, and so we must have T1 ≥ 0 and T2 ≤ 0. In particular, T1 = λδ0 + µ
+and T2 = −ν for some real number λ ≥ 0 and nonnegative Radon measures µ and ν
+on Rn with supp(µ) ⊆ C. In other words,
+                                   Z         Z
+                           λa(0) + a dµ − b dν > λc
+
+for all (a, b) ∈ K.
+   First, we will check that λ cannot be zero. If it were, then we would have
+                                  Z        Z
+                                    f dµ > fbdν
+
+whenever f ∈ S(Rn ) satisfies fb(0) = 1, because (f, fb) ∈ K. However, that is
+impossible, since it would rule out the existence of feasible auxiliary functions for
+the C-constrained linear programming bound. Thus, λ > 0, and by rescaling we
+can assume that λ = 1.
+16               HENRY COHN, DAVID DE LAAT, AND ANDREW SALMON
+
+
+   Now let T = δ0 + µ. Then for f ∈ S(Rn ),
+                                Z
+(3.1)                             (Tb − ν)fb > c
+
+whenever fb(0) = 1. Because (3.1) holds regardless of what fb does away from the
+origin, Tb − ν must be supported only at the origin, so it is a finite linear combination
+of derivatives of δ0 . The only way such a linear combination can satisfy (3.1) is if
+Tb − ν = c0 δ0 with c0 > c, as desired.                                                 
+     All that remains is to prove that (g, 0) 6∈ K. Suppose instead that a sequence
+of points (aj , bj ) ∈ K0 converges to (g, 0) as j → ∞. Each point (aj , bj ) has
+a corresponding function fj ∈ S(Rn ) satisfying fj (x) ≤ aj (x) for x ∈ C ∪ {0},
+fbj (y) ≥ bj (y) for all y ∈ Rn , and fb(0) = 1. We can think of these functions fj
+as feasible points in a perturbed version of the C-constrained linear programming
+bound, where instead of the inequalities fj (x) ≤ 0 and fbj (y) ≥ 0, we perturb the
+right sides by functions aj and bj . What we must verify is a form of continuity,
+namely that these perturbations do not change the optimum in the limit as j → ∞.
+We will complete the proof with Lemma 3.4 below.
+     To analyze the perturbations, we study Schwartz envelopes of rapidly decreas-
+ing functions, by using small modifications of the constructions in [17] and [16,
+Lemma 18] to prove Lemma 3.2 below. We call a function g : Rn → R rapidly
+decreasing if supx∈Rn |x|k |g(x)| < ∞ for all integers k ≥ 0, and we say that a
+sequence g1 , g2 , . . . of rapidly decreasing functions converges to zero if
+                                 lim sup |x|k |gj (x)| = 0
+                                j→∞ x∈Rn
+
+for each integer k ≥ 0. Note that this notion of convergence differs from the Schwartz
+topology, because it does not take derivatives into account. When we say a sequence
+of Schwartz functions converges, we will always mean it converges in the Schwartz
+topology, while this notion will be reserved for functions that are not assumed to be
+Schwartz functions.
+Lemma 3.2. For every rapidly decreasing function g : Rn → R, there exists a
+Schwartz function f : Rn → R such that f (x) ≥ |g(x)| for all x ∈ Rn and supp(fb) ⊆
+B1n (0). Furthermore, this construction can be done continuously in the appropriate
+topologies. In other words, given a sequence g1 , g2 , . . . of rapidly decreasing functions
+with gj → 0, the corresponding functions fj can be chosen so that fj → 0 in the
+Schwartz topology.
+Proof. Define G : Rn → R by
+                                 G(y) =        sup       |g(x)|.
+                                             |x|≥|y|−1
+
+Then G is measurable because it is radially decreasing, and it is rapidly decreasing
+because
+                 sup |y|k |g(y)| = sup |y|k sup |g(x)|
+                       y                 y          |x|≥|y|−1
+
+                                    ≤ sup(1 + |x|)k |g(x)|
+                                         x
+                                        k  
+                                        X  k
+                                    ≤                sup |x|j |g(x)| < ∞.
+                                        j=0
+                                                j     x
+                     THREE-POINT BOUNDS FOR SPHERE PACKING                             17
+
+
+   Now let h : Rn → R be a Schwartz function such that h(x) ≥ 0 for all x, h(0) > 0,
+and supp(b h) ⊆ B1n (0). For example, we can take h = ϕ      b2 , where ϕ : Rn → R is
+                                                      n
+a smooth, nonnegative function with supp(ϕ) ⊆ B1/2 (0) (and such that ϕ is not
+identically zero). Given such a function h, let ε ∈ (0, 1] be such that h(x) ≥ ε
+whenever |x| ≤ ε, and let f = (G ∗ h)/(ε vol(Bεn (0))). Then f is rapidly decreasing
+because G and h are rapidly decreasing, and the same holds for all derivatives of f
+because they are convolutions of G/(ε vol(Bεn (0))) with the same derivatives of h.
+Thus, f is a Schwartz function. For all x ∈ Rn ,
+                                         R
+                                                  G(y)h(x − y) dy
+                  R
+                    Rn
+                       G(y)h(x − y) dy    B n (x)
+          f (x) =             n
+                                       ≥ ε                          ≥ |g(x)|,
+                       ε vol(Bε (0))            ε vol(Bεn (0))
+because G(y) ≥ |g(x)| and h(x − y) ≥ ε whenever |x − y| ≤ ε. Finally, fb =
+G h/(ε vol(Bεn (0))), and so supp(fb) ⊆ supp(b
+ bb                                          h) ⊆ B1n (0).
+   All that remains is to check continuity. Given a sequence g1 , g2 , . . . of functions,
+we set Gj (y) = sup|x|≥|y|−1 |gj (x)|, and then gj → 0 implies Gj → 0. If we
+take fj = (Gj ∗ h)/(ε vol(Bεn (0))), then the derivatives of fj all converge to 0 in
+the topology on rapidly decreasing functions, and thus fj → 0 in the Schwartz
+topology.                                                                               
+Lemma 3.3. For all rapidly decreasing functions g, h : Rn → R, there exists a
+Schwartz function f : Rn → R such that f (x) ≤ −|g(x)| for |x| ≥ 1 and fb(y) ≥ |h(y)|
+for all y. Furthermore, this construction can be done continuously: given a sequence
+of rapidly decreasing functions gj , hj with gj → 0 and hj → 0, the corresponding
+functions fj can be chosen so that fj → 0 in the Schwartz topology.
+Proof. By Lemma 3.2, there exist Schwartz functions g0 , h0 : Rn → R such that
+g0 (x) ≤ −|g(x)| for all x, b                  g0 (y)| for all y, and supp(h0 ) ⊆ B1n (0).
+                            h0 (y) ≥ |h(y)| + |b
+Then we can take f = g0 + h0 .                                                         
+Lemma 3.4. Let C be a closed subset of Rn not containing 0, let c be strictly less
+than the infimum in the C-constrained linear programming bound, and let g ∈ S(Rn )
+satisfy g(0) = c and g|C = 0. Then (g, 0) 6∈ K.
+Proof. Without loss of generality, we can assume that C ⊆ {x ∈ Rn : |x| ≥ 1},
+by rescaling Rn . Now suppose (g, 0) ∈ K. That means there exist sequences
+aj , bj , fj of Schwartz functions on Rn such that aj (0) ≥ fj (0), aj (x) ≥ fj (x) for
+x ∈ C, fbj (y) ≥ bj (y) for all y, and fbj (0) = 1, with aj → g and bj → 0 in the
+Schwartz topology. By Lemma 3.3, there exist Schwartz functions gj : Rn → R
+such that gj (x) ≤ −|aj (x)| for x ∈ C, gbj (y) ≥ |bj (y)| for all y, and gj → 0 in
+the Schwartz topology. Now let Fj = fj + gj . Then Fj is a Schwartz function
+such that Fj (x) ≤ 0 for x ∈ C, Fbj (y) ≥ 0 for all y, Fbj (0) → 1 as j → ∞, and
+lim inf j→∞ Fj (0) = lim inf j→∞ fj (0) ≤ c, which contradicts the hypothesis that c is
+strictly less than the infimum in the linear programming bound.                      
+   Now that we have a proof of strong duality, we can deduce that continuous,
+integrable functions do no better than Schwartz functions in the C-constrained
+linear programming bound:
+Proposition 3.5. Suppose T is a tempered distribution on Rn such that T = δ0 + µ
+with µ ≥ 0 and Tb = cδ0 + ν with ν ≥ 0, and suppose f : Rn → R is a continuous,
+18               HENRY COHN, DAVID DE LAAT, AND ANDREW SALMON
+
+
+integrable function such that f (x) ≤ 0 for x ∈ supp(µ), fb(y) ≥ 0 for all y, and
+fb(0) = 1. Then f (0) ≥ c.
+Proof. Let ϕ : Rn → R be a smooth, even, nonnegative function with ϕ ≥ 0, ϕ        b ≥ 0,
+supp(ϕ) ⊆ B1n (0), and b   ϕ(0) = 1, and for ε > 0 let ϕε (x) = ε−n ϕ(x/ε), so that
+ϕ
+bε (y) = b ϕ(εy). Then ϕε forms an approximate identity, i.e., g ∗ ϕε → g pointwise
+as ε → 0 for every continuous function g : Rn → R.
+    Because f is positive definite, |f | is bounded above by f (0). It follows that
+f ·ϕ bε1 is rapidly decreasing and h := (f · ϕ
+                                             bε1 ) ∗ ϕε2 is a Schwartz function for every
+ε1 , ε2 > 0.
+    Every nonnegative tempered distribution is a Borel measure for which x 7→
+1/(1 + |x|)k is integrable for some k, by Chapter I, §4, Theorem V and Chapter 7,
+§4, Theorem VII in [39]. Thus, f · ϕ  bε1 is integrable with respect to µ.
+    By the Plancherel theorem,
+                                   Z          Z
+                                       Th =        Tb b
+                                                      h;
+                                        Rn       Rn
+equivalently,
+                                    Z                     Z
+(3.2)                      h(0) +        h dµ = cb
+                                                 h(0) +       h dν.
+                                                              b
+
+Because b h = (fb ∗ ϕε1 ) · ϕ
+                            bε2 ≥ 0, the right side of (3.2) is greater than or equal
+                                                                        R
+to ch(0) = c(fb ∗ ϕε1 )(0). The left side of (3.2) converges to f (0) + f · ϕ
+    b                                                                        bε1 dµ as
+ε2 → 0 by dominated convergence, since the functions ϕε2 form an approximate
+identity. (Note that domination holds because f · ϕ    bε1 is rapidly decreasing and
+h(x) = ((f · ϕ                                              bε1 )(y) over y ∈ Bεn2 (x).)
+             bε1 ) ∗ ϕε2 )(x) is a weighted average of (f · ϕ
+Thus,                             Z
+                          f (0) + f · ϕbε dµ ≥ c(fb ∗ ϕε )(0).
+                                             1                1
+
+
+Now the left side is at most f (0) because f (x) ≤ 0 for x ∈ supp(µ), while the right
+side converges to cfb(0) = c as ε1 → 0, again because the functions ϕε1 form an
+approximate identity. We conclude that f (0) ≥ c, as desired.                      
+   For the ordinary linear programming bound for sphere packing, one can convert a
+continuous, integrable auxiliary function to a rapidly decreasing function via direct
+mollification (see, for example, Section 4 in [7]). However, for C-constrained linear
+programming bounds, and in particular the three-point lattice bound, we do not
+know how to carry out a direct mollification. Fortunately, Proposition 3.5 provides
+a substitute.
+Proposition 3.6. Let C be a closed subset of Rn with 0 6∈ C. Then the supremum
+in the dual C-constrained linear programming bound is attained by a tempered
+distribution.
+Proof. Let T1 , T2 , . . . be a sequence of tempered distributions with Tbj ≥ cj δ0 , where
+the sequence c1 , c2 , . . . converges to the dual C-constrained linear programming
+bound c. We will obtain a tempered distribution T satisfying the hypotheses of the
+bound and Tb ≥ cδ0 via a compactness argument.
+   Let U be set of Schwartz functions f : Rn → R satisfying
+                            sup (1 + |x|2 )(n+1)/2 |f (x)| < 1.
+                            x∈Rn
+                    THREE-POINT BOUNDS FOR SPHERE PACKING                             19
+
+
+Thanks to the Schwartz seminorms, U is an open subset of S(Rn ). By the Banach-
+Alaoglu theorem (e.g., Theorem 3.15 in [35]), the set
+                                     Z                       
+                  ◦           0  n
+                U = D ∈ S (R ) :         Df ≤ 1 for all f ∈ U
+
+is a compact subset of the space S 0 (Rn ) of tempered distributions on Rn . Further-
+more, it is sequentially compact, since S(Rn ) is separable. (Using a countable, dense
+subset of S(Rn ), one can put a metric on S 0 (Rn ) that defines a subset of the usual
+topology. Then the identity map on U ◦ is a continuous bijection from the usual
+topology to the metric topology, and it is therefore a homeomorphism. However,
+compactness is equivalent to sequential compactness in metrizable spaces.)          
+   We do not know whether there is an analogue of Proposition 3.6 for the primal
+bound. In the special case of the linear programming bound for sphere packing,
+adapting the proof of Theorem 3 in [19] shows that there exists a continuous,
+integrable function that attains the optimum (see Proposition A.1). However, we do
+not know whether there exists an optimal Schwartz function, or how to generalize
+this proof to the C-constrained linear programming bound.
+
+     4. Three-point bound for the lattice sphere packing problem
+Proof of Theorem 1.4. By Theorem 3.1 and Proposition 3.5, Schwartz functions
+come arbitrarily close to the optimal bound, and so we can assume without loss of
+generality that f is a Schwartz function.
+   Let Λ be the set of sphere centers of a lattice sphere packing in Rn by spheres of
+radius r/2. Then Λ is a lattice with minimal vector length r. By Poisson summation,
+    X                    1        X                    1                    1
+         f (x, y) =      n     2
+                                       fb(x, y) ≥       n /Λ)2
+                                                               fb(0) =       n /Λ)2
+                                                                                    .
+                    vol(R /Λ)        ∗
+                                                  vol(R                vol(R
+   x,y∈Λ                          x,y∈Λ
+
+For x ∈ Λ \ {0} we have |x| ≥ r, so f (x, ±x) ≤ 0, f (x, 0) ≤ 0, and f (0, x) ≤ 0. For
+x, y ∈ Λ \ {0} with x 6= ±y we have |x|, |y|, |x − y|, |x + y| ≥ r, so f (x, y) ≤ 0. It
+thus follows that
+                            1          X
+                                   ≤        f (x, y) ≤ f (0, 0),
+                       vol(Rn /Λ)2
+                                          x,y∈Λ
+and the result follows by noting that the sphere packing density of Λ is
+                                           n
+                                    vol(Br/2 )
+                                          n
+                                               .                                      
+                                    vol(R /Λ)
+   By symmetrization it follows that the same infimum is obtained if we restrict to
+functions f satisfying
+                          f (x1 , x2 ) = f (s1 γxσ(1) , s2 γxσ(2) ).
+for all x1 , x2 ∈ Rn , σ in the symmetric group S2 , s ∈ {±1}2 , and γ in the orthogonal
+group O(n).
+Remark 4.1. We note that the bound in Theorem 1.4 can be strengthened by
+shrinking the set Slat,n by imposing conditions of the form |ax + by| ∈ {0} ∪ [r, ∞)
+for integers a and b. If we add all such conditions for coprime integers (a, b) to
+Slat , then the problem acquires a symmetry under the action of GL2 (Z). While one
+cannot naively average over this infinite group to produce feasible solutions, it is
+possible to produce dual solutions that are invariant under GL2 (Z) by using genus
+20               HENRY COHN, DAVID DE LAAT, AND ANDREW SALMON
+
+
+2 Siegel modular forms to produce summation formulas. This is a generalization
+of how modular forms produce feasible dual solutions to the linear programming
+problem for sphere packing [11].
+4.1. Interpretation via disjunctive products. In this subsection, we show that
+the three-point lattice bound strengthens the linear programming bound as an
+upper bound on lattice packing. Let ∆2 (n) be the linear programming bound
+bound for the n-dimensional sphere packing density and ∆lat (n) the upper bound
+on n-dimensional lattice packing density given by Theorem 1.4.
+Theorem 4.2. The lattice three-point bound is at least as strong as the two-point
+bound:
+                              ∆lat (n) ≤ ∆2 (n).
+    The proof will follow by constructing a bound ∆prod (n, n) that is manifestly an
+upper bound on ∆lat (n)2 and is precisely equal to ∆2 (n)2 . We do this by relating
+the Delsarte program on compact spaces G and H to the theta prime number ϑ0
+of the disjunctive product of these spaces G ∗ H, viewed as a topological packing
+graph. The Cohn-Elkies program is a scaling limit of the Delsarte program in a
+precise way, while ∆prod (n, m) is a scaling limit of disjunctive product.
+    Recall that the disjunctive product of graphs G1 and G2 , denoted G1 ∗ G2 , has
+vertex set V (G1 )×V (G2 ), and two distinct vertices (x1 , x2 ) and (y1 , y2 ) are adjacent
+if x1 y1 ∈ E(G1 ) or x2 y2 ∈ E(G2 ), inclusively. In particular, the disjunctive product
+of topological packing graphs is a topological packing graph. The name “disjunctive
+product” simply distinguishes it from other graph products by how the conditions
+x1 y1 ∈ E(G1 ) and x2 y2 ∈ E(G2 ) are combined.
+    The independence number α is multiplicative under the disjunctive product:
+Proposition 4.3. For all graphs G1 and G2 ,
+                              α(G1 ∗ G2 ) = α(G1 )α(G2 ).
+Proof. We can take the Cartesian product of independent sets to prove that α(G1 ∗
+G2 ) ≥ α(G1 )α(G2 ). For the other direction, if C is an independent set of the
+disjunctive product, then the projections πi (C) onto the factors are independent
+sets, and C ⊆ π1 (C) × π2 (C).                                                 
+    We now prove the analogous result for ϑ0 , the theta prime number for compact
+topological packing graphs [28, 29, 37, 3, 26]. It is noteworthy that this construction
+lifts to ϑ0 (and, moreover, should lift to the whole Lasserre hierarchy, although we
+do not consider this).
+    Recall that for a topological packing graph G with vertex set V , ϑ0 (G) considers
+Borel measures over V × V . The vertex set V embeds diagonally into the product,
+and its image is denoted ∆(V ). The theta prime number ϑ0 (G) is defined as the
+maximum value of µ(V × V ) over all Borel measures µ on V × V that are positive
+and positive definite, that satisfy µ(∆(V )) = 1, and for which the support of µ
+consists of pairs (x, y) such that xy 6∈ E(G).
+    The dual bound ϑ0 (G)∗ is defined as the infimum of maxx K(x, x) over all
+continuous kernels K on V 2 such that K(x, y) − 1 is a positive definite kernel and
+K(x, y) ≤ 0 for all xy 6∈ E(G). For infinite graphs, this can be viewed the value of
+as an infinite-dimensional semidefinite program, whose optimal value is an upper
+bound on the largest cardinality of an independent set in V . It follows from [26,
+                      THREE-POINT BOUNDS FOR SPHERE PACKING                               21
+
+
+Theorem 1] that the maximum in the definition of ϑ0 (G) is actually achieved and
+that strong duality holds, i.e., ϑ0 (G) = ϑ0 (G)∗ .
+Theorem 4.4. The ϑ0 number is multiplicative for the disjunctive product: for
+compact topological packing graphs G1 and G2 ,
+                              ϑ0 (G1 ∗ G2 ) = ϑ0 (G1 )ϑ0 (G2 ).
+Proof. For one direction, taking the outer tensor product of measures shows that
+ϑ0 (G1 )ϑ0 (G2 ) ≤ ϑ0 (G1 ∗ G2 ).
+    For the other direction, consider any feasible measure µ for G1 ∗ G2 . Let V1 =
+V (G1 ) and V2 = V (G2 ), and consider the projections πi : V1 × V2 × V1 × V2 →
+Vi × Vi for i = 1, 2. If µ is feasible for ϑ0 (G1 ∗ G2 ), then the pushforward measure
+(π1 )∗ µ (defined by ((π1 )∗ µ)(A) = µ(π1−1 (A))) is a positive measure, and (x1 , y1 ) ∈
+supp((π1 )∗ µ) only when x1 y1 6∈ E. Furthermore, it is positive definite, because
+       Z                                   Z
+          K(x1 , y1 ) d(π1 )∗ µ(x1 , y1 ) = K(x1 , y1 )1(x2 , y2 ) dµ(x1 , x2 , y1 , y2 ) ≥ 0
+
+for any positive definite kernel K, where 1(x2 , y2 ) denotes the constant function 1,
+and so (π1 )∗ µ/µ(∆(V1 ) × V2 × V2 ) is a feasible measure for ϑ0 (G1 ). (Technically
+the product ∆(V1 ) × V2 × V2 is an abuse of notation, since it reorders the factors
+relative to V1 × V2 × V1 × V2 , but we will identify these spaces as needed to simplify
+the notation.)
+   Define µ2 by µ2 (B) = µ(∆(V1 ) × B). For a positive definite kernel K on V2 × V2 ,
+          Z                              Z
+             K(x2 , y2 ) dµ2 (x2 , y2 ) = K(x2 , y2 )∆(x1 , y1 ) dµ(x1 , x2 , y1 , y2 ),
+
+where                                       (
+                                                1 if x1 = y1 , and
+                            ∆(x1 , y1 ) =
+                                                0 otherwise.
+This integral is nonnegative, because the Kronecker product of positive definite
+kernels is positive definite, and therefore µ2 is feasible as well.
+   To summarize, we have constructed two measures (π1 )∗ µ/µ(∆(V1 ) × V22 ) and
+µ2 that give feasible solutions for ϑ0 (G1 ) and ϑ0 (G2 ) such that the product of their
+values is µ(V12 × V22 ). We conclude that ϑ0 (G1 )ϑ0 (G2 ) ≥ ϑ0 (G1 ∗ G2 ), as desired. 
+
+   The linear programming bound for sphere packing is the scaling limit of ϑ0 in
+Euclidean space of dimension n by Theorem 5.7 in [10], and it is natural to consider
+the scaling limit of ϑ0 for disjunctive products ϑ0 (G1 ∗ G2 ).
+Definition 4.5. Let ∆prod (m, n) be the infimum of
+                                                       f (0, 0)
+                                 vol(B1m ) vol(B1n )
+                                                       fb(0, 0)
+over all continuous, integrable functions f : Rm × Rn → R such that
+    (1) f is positive definite, i.e, fb(x, y) ≥ 0 for all x ∈ Rm and y ∈ Rn ,
+    (2) fb(0, 0) > 0,
+    (3) f (x, y) ≤ 0 for all x and y such that |x| ≥ 2 and |y| ≥ 2, and
+    (4) f (x, 0) ≤ 0 and f (0, y) ≤ 0 for all |x| ≥ 2 and |y| ≥ 2.
+22                 HENRY COHN, DAVID DE LAAT, AND ANDREW SALMON
+
+
+    Note that without loss of generality, we can assume these functions f are invariant
+under O(m) × O(n) (by averaging under these rotations), because the constraints
+and objective functions are invariant under this action. Furthermore, we can assume
+that f has compact support by mollifying a feasible function f as follows. The
+                                                                                 n
+convolution 1BR/2
+                n  (0) ∗ 1BR/2
+                           n   (0) is a continuous function supported in BR (0), and it
+                                                                        2
+is positive semidefinite since its Fourier transform is b     1BR/2
+                                                                 n   (0) . If we normalize it
+                                                   n
+by setting gR,n := 1BR/2n  (0) ∗ 1BR/2
+                                    n  (0) / vol(BR/2 (0)) so that gR,n (0) = 1, then gR,n
+converges pointwise to 1 everywhere as R → ∞. Now the product fR := f · gR,m gR,n
+                                    m         n
+is continuous and supported in BR     (0)×BR    (0), it is positive semidefinite by the Schur
+product theorem (Theorem 7.5.3 in [20]), and limR→∞ fbR (0) = fb(0) by dominated
+convergence. By replacing f with fR , we can come arbitrarily close to the ratio
+f (0)/fb(0) using compactly supported functions.
+    Any function f that satisfies the hypotheses of Definition 4.5 with m = n
+automatically satisfies the hypotheses of Theorem 1.4 with r = 2. Thus, we obtain
+the following upper bound for ∆lat (n):
+Proposition 4.6. The lattice three-point bound satisfies
+                                 ∆lat (n)2 ≤ ∆prod (n, n).
+   Theorem 4.2 follows immediately from this upper bound and the following
+proposition:
+Proposition 4.7. For all positive integers m and n,
+                              ∆prod (m, n) = ∆2 (m)∆2 (n).
+   To prove Proposition 4.7, we will need the following lemma, which shows that
+∆prod is related to ϑ0 (C1 ∗ C2 ) for compact spaces C1 and C2 in the same way that
+∆2 is related to ϑ0 (C1 ) or ϑ0 (C2 ) individually. Recall that we give a compact subset
+C of Rn a topological packing graph structure by letting xy ∈ E(C) if and only if
+0 < |x − y| < 1.
+Lemma 4.8. Let C1 and C2 be compact, Jordan-measurable subsets of Rm and Rn ,
+respectively. Then
+                                        ϑ0 (C1 ∗ C2 )
+                  vol(B1m ) vol(B1n )                   ≥ ∆prod (m, n).
+                                      vol(C1 ) vol(C2 )
+Proof. Let K be a feasible kernel for ϑ0 (C1 ∗C2 ) satisfying K((x1 , x2 ), (x1 , x2 )) ≤ M
+for xi ∈ Ci , and define f : (Rm × Rn )2 → R by f (x, y) = K(x, y) when this is
+defined and 0 otherwise. To produce a feasible function for ∆prod (m, n), we define
+g : Rm × Rn → R by                  Z
+                            g(x) =          f (z + x, z) dz.
+                                        Rm+n
+  To show that g is feasible, we first note that it is positive definite because f is;
+specifically,
+             X                     Z    X
+               cj ck g(xj − xk ) =         cj ck f (z + xj , z + xk ) dz ≥ 0.
+             j,k                      Rm+n j,k
+
+The inequality g(x1 , x2 ) ≤ 0 if both |x1 | ≥ 2 and |x2 | ≥ 2 follows from the
+corresponding fact for f (z + x, z), since in that case (z + x, z) is never an edge of
+the disjunctive product graph C1 ∗ C2 . Similarly, g(x1 , 0) ≤ 0 and g(0, x2 ) ≤ 0.
+                        THREE-POINT BOUNDS FOR SPHERE PACKING                          23
+
+
+   The solution satisfies
+                                    Z
+                        g(0, 0) =       f (z, z) dz ≤ M vol(C1 ) vol(C2 )
+
+and                     Z                   ZZ
+           gb(0, 0) =           g(x) dx =        f (x, y) dx dy ≥ vol(C1 ) vol(C2 ),
+                         Rm+n
+because K − 1 is by assumption a positive definite kernel on C1 × C2 . Thus,
+vol(B1m ) vol(B1n )M is an upper bound for ∆prod (m, n).                  
+
+Proof of Proposition 4.7. To prove that ∆2 (m)∆2 (n) ≤ ∆prod (m, n), we will use
+the framework of Section 3. If we let
+                  C = {(x, y) ∈ Rm × Rn : |x|, |y| ∈ {0} ∪ [1, ∞)},
+then ∆prod (m, n) is the C \ {(0, 0)}-constrained linear programming bound. A
+feasible dual solution is a measure µ supported on C such that µ({(0, 0)}) = 1 and
+b ≥ cδ(0,0) . In particular, feasible solutions ν1 , ν2 for the dual linear programming
+µ
+bounds in Rm and Rn give a feasible solution for the dual of ∆prod (m, n) by letting
+µ = ν1 ⊗ ν2 . Because there is no duality gap (Theorem 3.1), this shows that
+∆2 (m)∆2 (n) ≤ ∆prod (m, n).
+   To prove the other direction, we will combine Lemma 4.8 with Theorem 5.7 from
+[10], which tells us that
+                                                        ϑ0 (rI n )
+                                ∆2 (n) = vol(B1n ) lim             ,
+                                                    r→∞     rn
+where I n is a unit cube in Rn and as usual rI n = {rx : x ∈ I n }. By Lemma 4.8,
+                                           ϑ0 (rI m ∗ rI n )
+                   vol(B1m ) vol(B1n )                       ≥ ∆prod (m, n).
+                                                rm+n
+By Theorem 4.4,
+                             ϑ0 (rI m ∗ rI n ) = ϑ0 (rI m )ϑ0 (rI n ),
+and taking the limit as r → ∞ shows that ∆2 (m)∆2 (n) ≥ ∆prod (m, n).                  
+
+Remark 4.9. For m, n ∈ {1, 8, 24}, the exact optimum is known for the linear
+programming bound, and therefore ∆prod (m, n) can also be determined exactly. We
+do not know whether there is a single feasible function that attains the optimum in
+each case. If so, it would be interesting to construct these functions explicitly.
+
+
+                 5. Semidefinite programming formulations
+   To obtain numerical results, we produce good feasible solutions to the three-point
+and lattice bounds using semidefinite programming. To do so, we parametrize the
+functions by polynomials times Gaussians and use sums of squares to model the
+inequality constraints. In what follows, Lα   n is the Laguerre polynomial of degree
+n with parameter α (see, for example, [2, Section 6.2]), and P`n is the Jacobi
+              ((n−3)/2,(n−3)/2)
+polynomial P`                   of degree ` with parameters ((n − 3)/2, (n − 3)/2) (see
+[2, Section 6.3]).
+24                 HENRY COHN, DAVID DE LAAT, AND ANDREW SALMON
+
+
+5.1. Sum-of-squares formulation for the truncated three-point bound. We
+parametrize the two-point function f2 by
+                                                                2
+                                        f2 (x) = p2 (|x|2 )e−π|x|
+for a single-variable polynomial p2 with
+                              p2 (w) = −s1 (w) − (w − R2 )s2 (w),
+where s1 and s2 are sum-of-squares polynomials of degree 2d2 − 2. By construction
+f2 (x) is nonpositive for |x| ≥ R. To ensure that the Fourier transform of f2 is
+nonnegative we add linear constraints (by equating coefficients in the monomial
+basis) for the identity
+                              F(p2 ) = s3 (u) + w s4 (u),
+where s3 and s4 are sum-of-squares polynomials of degree 2d2 − 2, and where F is
+the linear operator defined by
+                                        k! n/2−1
+                              F(uk ) = k Lk       (πu),
+                                        π
+                                    2                                                  2
+so that x 7→ F(p)(|x|2 )e−π|x| is the Fourier transform of x 7→ p(|x|2 )e−π|x| .
+   For the parametrization of the three-point function f3 we use the following lemma.
+Lemma 5.1. Let p ∈ R[x, y] be a polynomial of degree 4d3 − 2 in variables
+x1 , . . . , xn , y1 , . . . , yn . Suppose p is positive definite as a kernel on Rn × Rn and is
+invariant under the diagonal action of O(n). Then there are positive semidefinite
+matrices A(0) , . . . , A(2d3 −1) such that
+                                    2d3 −1 d3 −b`/2c−1                            
+                                     X         X        (`)   k+`/2 k0 +`/2 n   t
+                     p(x, y) =                         Ak,k0 u     v       P` √      ,
+                                                 0
+                                                                                uv
+                              `=0       k,k =0
+               2          2
+where u = |x| , v = |y| , and t = hx, yi.
+   Here A(`) is a (d3 − b`/2c) × (d3 − b`/2c) matrix, whose entries are indexed
+starting with 0.
+Proof. Consider the operator Tp : C([0, 1]n ) → C([0, 1]n ) defined by
+                                    Z
+                         Tp f (x) =         p(x, y)f (y) dy.
+                                                 [0,1]n
+
+Since p defines a continuous, positive definite kernel [0, 1]n × [0, 1]n → R, by
+Mercer’s theorem [40, Theorem 3.11.9] there exists an orthonormal basis {ei } of
+L2 ([0, 1]n ) consisting of eigenfunctions of Tp with nonnegative eigenvalues λi . The
+eigenfunctions corresponding to nonzero eigenvalues are continuous, and
+                                          X
+(5.1)                           p(x, y) =     λi ei (x)ei (y),
+                                                 λi >0
+
+where convergence is uniform and absolute.
+   Since p is a polynomial of degree 4d3 − 2, the image of Tp consists of polynomials
+of degree at most 4d3 − 2, and so the eigenfunctions corresponding to nonzero
+eigenvalues are polynomials of degree at most 4d3 − 2. This implies the terms on
+the right hand side of (5.1) are polynomials of degree at most 4d3 − 2, which shows
+that (5.1) holds for all x, y ∈ Rn . Since p(x, x) has degree 4d3 − 2, it follows that
+each ei has degree at most 2d3 − 1.
+                        THREE-POINT BOUNDS FOR SPHERE PACKING                                                     25
+
+
+  Let Y`1 , . . . , Y`m` be a basis for the real spherical harmonics of degree `, with
+                            Z
+                                              0
+                                  Y`m (x)Y`m0 (x) dx = δ`,`0 δm,m0 .
+                                S n−1
+Since ei is a polynomial of degree 2d3 − 1, it is a linear combination of functions of
+the form                                              
+                                                        x
+                            φ`,m,k (x) = |x|2k+` Y`m
+                                                       |x|
+for nonnegative integers k and ` satisfying 2k + ` ≤ 2d3 − 1 and m = 1, . . . , m` . The
+conditions on k and ` amount to 0 ≤ ` ≤ 2d3 − 1 and 0 ≤ k ≤ d3 − b`/2c − 1. This
+shows p is of the form
+            2d3 −1 X̀
+                   m  m`0 d3 −b`/2c−1 d3 −b`0 /2c−1
+             X        X       X           X
+p(x, y) =                                                           A(`,m,k),(`0 ,m0 ,k0 ) φ`,m,k (x)φ`0 ,k0 ,m0 (y)
+            `,`0 =0 m=1 m0 =1          k=0             k0 =0
+
+for some positive semidefinite matrix A.
+   By O(n)-invariance of p,
+                                                                R
+                    X        X                                  O(n)
+                                                                        φ`,m,k (γx)φ`0 ,k0 ,m0 (γy) dγ
+        p(x, y) =                      A(`,m,k),(`0 ,m0 ,k0 )                 R                        ,
+                                                                                O(n)
+                                                                                     dγ
+                    `,m,k `0 ,m0 ,k0
+
+and so the result follows from the identity
+                Z
+                                   0
+                       Y`m (γx)Y`m                           n
+                                 0 (γy) dγ = c` δ`,`0 δm,m0 P` (hx, yi),
+                     O(n)
+
+which holds for some constant c` .                                                                                
+  Define f3 by
+                                                                                2     2
+                         f3 (x, y) = p3 (|x|2 , |y|2 , hx, yi)e−π(|x| +|y| ) ,
+where
+                               2d3 −1 d3 −b`/2c−1                                                 
+                                X         X               (`)            0                     t
+              p3 (u, v, t) =                             Ak,k0 uk+`/2 v k +`/2 P`n            √     ,
+                                                                                                uv
+                                 `=0         k,k0 =0
+
+and where A(`) is a positive semidefinite matrix for each `.
+  Let φ : R2n → R3 be the map φ(x, y) = (|x|2 , |y|2 , hx, yi). In the following lemma
+we give polynomials describing the semialgebraic set
+                       S = φ({(x, y) : r ≤ |x|, |y| ≤ R, |x − y| ≥ r}).
+These polynomials are invariant under permutation of u and v, which allows us to
+use invariant sum-of-squares polynomials (see Section 5.3).
+Lemma 5.2. The set S consists of the tuples (u, v, t) satisfying
+                                       (u − r2 )(v − r2 ) ≥ 0,
+                                       u + v − 2r2 ≥ 0,
+                                       uv − t2 ≥ 0,
+                                       u + v − 2t − r2 ≥ 0,
+                                       (R2 − u)(R2 − v) ≥ 0, and
+                                       2R2 − u − v ≥ 0.
+
