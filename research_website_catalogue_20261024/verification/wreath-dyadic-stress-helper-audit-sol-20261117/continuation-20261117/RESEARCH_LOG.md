@@ -1,0 +1,13 @@
+# Static production-helper audit research log
+
+2026-11-17T05:32:23.865887+00:00 — Resumed on explicit fresh root handoff. Personally read all1070 saved helper lines in bounded ranges1–180,181–360,361–540,541–720,721–900,901–1070; complete341-line PLAN, complete FINAL/manifest, preparation report, read limits,261-line schema notes and author log. Verified all15 complete control pins and authenticated the entire14-file/one-child-directory producer packet, including all original six files, exact hidden/empty extent and modes. Original five INITIAL files remain exact.
+
+Checkpoint estimate:90% of static audit. Preliminary strongest result: no concrete implementation defect found after full source/authority/install/native-index/publication tracing. Exact remaining gap: final contract classification, read-limit disclosure and finite audit artifact sealing. No runtime conclusion is supported. Informed technical support independently scrutinized raw-index, CAS and push sections without file writes; it found no definite defect and confirmed the remote-parent snapshot limitation.
+
+Two inspection limitations were corrected: the first document-read command attempted nonexistent REPORT.md (the actual name is PREPARATION_REPORT.md); one combined display was truncated. All required content was subsequently read in bounded ranges. These were read-only inspection failures, with no production-code execution or mutation. No data hidden by truncation is credited as personally read.
+
+Unknown index extensions fail closed for this exact known TREE-only baseline. An ordinary non-force push has no expected-parent lease: it terminates on rejection, but a remote rewind/delete race can evade exact-parent equality. Parent observations and postpush verification are snapshots, and the author packet discloses this. The contract requires exact observed parent and terminal rejection handling, not atomic server-side expected-parent CAS.
+
+No production mode/import/AST/compiler/test/preflight, source/native/old helper execution, Git/network/browser/W/Sheet/deploy/source/other-packet write, external contact or prepared outreach occurred. Data-only inspection used standard-library reads/hashes and writes only this owned continuation.
+
+2026-11-17T05:34:53.021117+00:00 — FINAL checkpoint. Classified all32 original criteria PASS_STATIC_SCOPED, with zero concrete corrections. Static audit completion100%. Runtime/action completion remains outside this assignment and unestablished. Prepared finite whole-lane manifest and FINAL, preserving all five INITIAL files unchanged; quiescent after terminal seal. Exact remaining gap is root semantic adoption and separately authorized actual execution/live work.

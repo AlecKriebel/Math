@@ -1,0 +1,88 @@
+<main id="main">
+  <article aria-labelledby="paper-title">
+    <h1 id="paper-title">A designed tree model with a sharp congestion–fragmentation transition</h1>
+    <p class="entry-meta"><a href="https://orcid.org/0009-0001-9320-500X">Alec Kriebel</a>, independent researcher · <time datetime="2026-10-21">21 October 2026</time> · Version 1.0 · Unrefereed preprint</p>
+    <p>When demand grows, a network can admit less of each extra unit of traffic. At the same time, its unused capacity can break into small pieces. This paper gives an explicit tree example in which both changes occur in the same shrinking interval, with a guarantee covering every optimal way to admit traffic.</p>
+    <p>The example responds to <a href="https://www.stat.berkeley.edu/~aldous/Research/OP/congestion.html">David Aldous’s conceptual request for a tractable congestion model</a>. The physical tree is sparse, but its traffic is dense. Its capacities grow with network size, and its fixed random growth rates give quadratic time variance. These choices are part of the result’s scope.</p>
+
+    <section id="abstract" aria-labelledby="abstract-heading">
+      <h2 id="abstract-heading">Original abstract</h2>
+      <p id="abstract-text">We construct a bounded-degree physical tree model in which the normalized marginal admitted demand drops from one to zero while the spare-capacity graph changes from the entire tree to isolated vertices. Capacities arise from the unique cheapest fixed-topology enlargement supporting doubled initial traffic. Each of the k² cross-root streams has an independent, fixed-law exponential growth rate. An all-cuts estimate confines both changes, with probability tending to one, to an interval of width 16√(log k/k) around mean doubled demand. Both outer-phase conclusions hold for every optimizer. This is a specialized existence response to Aldous's conceptual congestion toy-model request. The width is an upper bound; no critical profile or universal traffic law is asserted.</p>
+    </section>
+
+    <section id="model" aria-labelledby="model-heading">
+      <h2 id="model-heading">The designed network</h2>
+      <p>Take a complete rooted binary tree of height <var>H</var> ≥ 2. Each root side has <var>k</var> = 2<sup><var>H</var>−1</sup> leaves, and the whole tree has <var>N</var> = 4<var>k</var>−1 vertices and maximum degree three. Every left leaf sends one initial unit to every right leaf: <var>k</var>² streams in total. Each stream follows its unique tree path.</p>
+      <p>An edge with <var>k</var><sub>e</sub> descendant leaves initially carries <var>k</var><var>k</var><sub>e</sub> units and has that capacity. Increase capacities just enough to carry doubled initial traffic, charging a strictly positive linear price for each increment. The paths force the unique cheapest design:</p>
+      <p class="equation"><var>C</var><sub>e</sub> = 2<var>k</var><var>k</var><sub>e</sub>.</p>
+      <p>Each terminal edge has capacity 2<var>k</var>; each of the two root edges has capacity 2<var>k</var>². The topology and these capacities then stay fixed.</p>
+      <p>Independently sample one rate <var>X</var><sub>ij</sub> from the rate-one exponential distribution for each stream. Keep these samples fixed as time changes, and set its offered demand to <var>d</var><sub>ij</sub>(<var>t</var>) = 1 + (<var>t</var>−1)<var>X</var><sub>ij</sub>, for <var>t</var> ≥ 1. Each stream has mean <var>t</var> and variance (<var>t</var>−1)².</p>
+      <p>Let <var>F</var><sub>k</sub>(<var>t</var>) be the largest total demand that can be admitted, allowing partial admission of each stream. The normalized marginal admission is its right derivative divided by the <em>realized</em> total offered slope <var>S</var><sub>k</sub> = ∑<sub>ij</sub><var>X</var><sub>ij</sub>, which is positive almost surely:</p>
+      <p class="equation"><var>r</var><sub>k</sub>(<var>t</var>) = <var>F</var>′<sub>k,+</sub>(<var>t</var>)/<var>S</var><sub>k</sub>.</p>
+      <p>For any optimizing admitted flow, keep exactly the physical edges whose load is strictly below capacity. This spare-capacity graph retains all <var>N</var> original vertices. Write <var>M</var><sub>k</sub> for its largest component size. Inside the transition window, this graph can depend on which optimizer is selected.</p>
+    </section>
+
+    <section id="result" aria-labelledby="result-heading">
+      <h2 id="result-heading">The joint transition, uniformly over optimizers</h2>
+      <p>Put δ<sub>k</sub> = 8√(log <var>k</var>/<var>k</var>) and</p>
+      <p class="equation">ε<sub>k</sub> = 2<var>k</var><sup>−31</sup> + 2<var>k</var><sup>−2</sup>/(1−<var>k</var><sup>−2</sup>)² + (4/<var>k</var>²)<sup><var>k</var></sup>.</p>
+      <p>For every binary <var>k</var> large enough that δ<sub>k</sub> &lt; 1, with probability at least 1−ε<sub>k</sub>, the following two statements hold <strong>simultaneously for every indicated time and every optimizer</strong>:</p>
+      <ul>
+        <li>For every 1 ≤ <var>t</var> ≤ 2−δ<sub>k</sub>, all offered demand is admitted, <var>r</var><sub>k</sub>(<var>t</var>) = 1, and the entire tree has spare capacity. Thus <var>M</var><sub>k</sub>(<var>t</var>) = <var>N</var>.</li>
+        <li>For every <var>t</var> ≥ 2+δ<sub>k</sub>, admitted throughput is <var>F</var><sub>k</sub>(<var>t</var>) = 2<var>k</var>², <var>r</var><sub>k</sub>(<var>t</var>) = 0, and every physical edge is saturated. The spare graph consists of isolated vertices, so <var>M</var><sub>k</sub>(<var>t</var>) = 1.</li>
+      </ul>
+      <p>The sufficient interval has total width 16√(log <var>k</var>/<var>k</var>) around <var>t</var> = 2, the point of mean doubled demand. Throughput saturates; its marginal drops.</p>
+      <p>For each fixed 1 ≤ <var>t</var> &lt; 2, both <var>r</var><sub>k</sub>(<var>t</var>) and <var>M</var><sub>k</sub>(<var>t</var>)/<var>N</var> converge in probability to one. For each fixed <var>t</var> &gt; 2, both converge to zero. The component statement applies to any measurable choice of an optimizer. For every fixed <var>t</var> ≥ 1, including <var>t</var> = 2, <var>F</var><sub>k</sub>(<var>t</var>)/<var>k</var>² converges in probability to min(<var>t</var>, 2). Along the binary sizes, the outer-phase events also hold eventually almost surely under any common coupling.</p>
+    </section>
+
+    <section id="argument" aria-labelledby="argument-heading">
+      <h2 id="argument-heading">Why the proof reduces to cuts</h2>
+      <p>Every internal edge load is the sum of its descendant terminal loads. Physical feasibility therefore reduces exactly to a transportation problem: each left row and right column has capacity 2<var>k</var>, and each stream is bounded by its offered demand. Classical max-flow/min-cut expresses admitted throughput as the minimum of finitely many affine cut capacities. Their active slopes give the right derivative, including ties.</p>
+      <p>Before the window, exponential concentration makes every offered terminal total strictly smaller than its capacity. Full admission then leaves every physical edge slack. After the window, a bound over <em>all</em> transportation cuts shows that total throughput reaches 2<var>k</var>². Every optimizer must fill every terminal capacity and hence every physical edge. Monotonicity extends the two endpoint events to all earlier and later times simultaneously. The proof is analytic; finite controls in the supplement support checks of the reduction and do not establish the asymptotic theorem.</p>
+    </section>
+
+    <section id="limits" aria-labelledby="limits-heading">
+      <h2 id="limits-heading">Scope and limitations</h2>
+      <p>The displayed width is a sufficient upper bound. There is no matching lower bound, exact critical scale, asserted limit for <var>r</var><sub>k</sub>(2), or critical component-size profile. The theorem applies to the stated binary sizes with δ<sub>k</sub> &lt; 1.</p>
+      <p>The physical network is sparse while its <var>k</var>² traffic streams are dense. Capacities increase with <var>k</var>; paths cannot reroute; internal constraints reduce to terminal constraints. The exponential slopes are sampled once, and their time variance is quadratic. Dividing by the realized offered slope is essential to the marginal statement. No adaptive growth, arbitrary cyclic-network result, linear-variance growth process or universal congestion law is supplied.</p>
+      <p>Aldous’s <a href="https://www.stat.berkeley.edu/~aldous/Talks/Ottawa.pdf">2005 discussion, slide 5</a>, already notes the explanatory limitations of easy tree models and expresses a preference for mean-field models. This example retains that limitation. It establishes one explicit existence result; suitability as the uniquely right conceptual model and historical priority remain unresolved.</p>
+    </section>
+
+    <section id="paper" aria-labelledby="paper-heading">
+      <h2 id="paper-heading">Original files and manuscript</h2>
+      <ol id="native-assets">
+        <li><a href="assets/congestion-fragmentation-verification.zip" download>Source and verification package (ZIP, 245,047 bytes)</a> · <a href="https://zenodo.org/api/records/23527793/files/congestion-fragmentation-verification.zip/content">Zenodo original ZIP</a></li>
+        <li><a href="assets/congestion-fragmentation.pdf" download>Manuscript (PDF, 79,981 bytes)</a> · <a href="https://zenodo.org/api/records/23527793/files/congestion-fragmentation.pdf/content">Zenodo original PDF</a></li>
+      </ol>
+      <p><a href="assets/congestion-fragmentation.pdf">Open the original five-page PDF</a> · <a href="assets/congestion-fragmentation.pdf" download>Download PDF</a> · <a href="https://doi.org/10.5281/zenodo.23527793">Zenodo record</a></p>
+      <iframe class="paper-pdf" src="assets/congestion-fragmentation.pdf#view=FitH" title="Original manuscript: A designed tree model with a sharp congestion–fragmentation transition" loading="lazy"></iframe>
+      <p>The local PDF and ZIP are unchanged copies of the published originals, listed in the record’s order. The PDF is dated 21 October 2026 and prints version 1.0. Use the direct PDF link if the embedded reader is unavailable. The supplement documents its replay assumptions and limitations.</p>
+    </section>
+
+    <section id="credit" aria-labelledby="credit-heading">
+      <h2 id="credit-heading">Prior work and source limits</h2>
+      <p>Aldous supplies the conceptual request and doubled-demand design suggestion. Max-flow/min-cut and exponential concentration are classical ingredients. Capacitated random transportation, the highly optimized tolerance design paradigm, and congestion-related fragmentation are established antecedents. The contribution here is the explicit cheapest-design tree construction with its simultaneous marginal-admission and every-optimizer spare-connectivity theorem.</p>
+      <ul>
+        <li>D. Aldous, <a href="https://www.stat.berkeley.edu/~aldous/Research/OP/congestion.html"><cite>Congestion in networks: SOC, HOT and the percolation-fragmentation phase transition</cite></a>; <a href="https://www.stat.berkeley.edu/~aldous/Research/OP/index.html">conceptual problem index</a>.</li>
+        <li>L. R. Ford Jr. and D. R. Fulkerson, <cite>Maximal flow through a network</cite> (1956). <a href="https://doi.org/10.4153/CJM-1956-045-5">DOI</a>.</li>
+        <li>R. Hassin and E. Zemel, <cite>Probabilistic analysis of the capacitated transportation problem</cite> (1988). <a href="https://doi.org/10.1287/moor.13.1.80">DOI</a>.</li>
+        <li>R. M. Karp, R. Motwani and N. Nisan, <cite>Probabilistic analysis of network flow algorithms</cite>: <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/1988/CSD-88-392.pdf">December 1988 Berkeley report CSD-88-392</a>; <a href="https://doi.org/10.1287/moor.18.1.71">1993 journal article</a>.</li>
+        <li>J. M. Carlson and J. Doyle, <cite>Complexity and robustness</cite> (2002), for the HOT/design background. <a href="https://doi.org/10.1073/pnas.012582499">DOI</a>.</li>
+        <li>M. Kim and F. Radicchi, <cite>Shortest-path percolation on random networks</cite> (2024), a related model that removes requested shortest paths sequentially. <a href="https://doi.org/10.1103/PhysRevLett.133.047402">DOI</a>.</li>
+      </ul>
+      <p>Hassin–Zemel’s sufficient exponent separation does not directly cover this balanced near-capacity regime. The directed theorem in the actual 1988 Karp–Motwani–Nisan report assumes bounded integer capacities and positive constant mean surplus. Here the transportation reduction has continuous unbounded stream capacities and vanishing normalized surplus. The final 1993 journal body was not inspected. These comparisons do not rule out every deduction from older transportation results. Uninspected editions and unindexed or unpublished work remain limits on priority assessment; no worldwide firstness claim is made.</p>
+    </section>
+
+    <section id="citation" aria-labelledby="citation-heading">
+      <h2 id="citation-heading">Citation and rights</h2>
+      <p>Kriebel, Alec. (2026). <cite>A designed tree model with a sharp congestion–fragmentation transition</cite> (Version 1.0) [Unrefereed preprint]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23527793">doi:10.5281/zenodo.23527793</a>. <a href="citation.bib" download>Download BibTeX</a>.</p>
+      <p>The authored manuscript and supplement are licensed <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a>, as stated in the original LICENSE.txt. Third-party works retain their own rights.</p>
+    </section>
+
+    <section id="status" aria-labelledby="status-heading">
+      <h2 id="status-heading">Status and collaboration</h2>
+      <p>AI tools were used extensively in the research, proof development, computation, literature review and writing. This is an unrefereed preprint; internal AI reviews do not constitute independent human peer review. The author is responsible for the claims.</p>
+      <p>Independent verification of the all-cuts argument, substantive comparison with the transportation literature, and work toward a journal version would be useful contributions. Collaboration and authorship would be based on actual contributions.</p>
+    </section>
+  </article>
+</main>
