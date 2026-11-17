@@ -1,0 +1,9 @@
+# Editorial fact audit research log
+
+2026-11-17T17:55:44.554242+00:00 — 10% complete. Read the entire controlling root review and clearance first, then pinned the unchanged 97-file/7-child-directory native source, 19-file/1-child-directory private writer packet, and the two controlling review records. Scope is factual private-copy review; no scientific program, network, Git, or protected write is authorized.
+
+2026-11-17T17:57:18.197447+00:00 — 65% complete. Personally read all 482 native TeX lines, full native API/Description and license, and complete actual private HTML, MODEL, BibTeX, editorial report, FINAL and manifest. Semantic scope, source attribution, rights and disclosures match the controlling review. An independent read-only semantic challenge is running while a fresh one-execution passive data checker is prepared.
+
+2026-11-17T18:01:05.232590+00:00 — 85% complete. Independent gpt-6.1-sol ultra read-only semantic challenge returned bounded PASS with no concrete factual copy issue. Fresh 367-line passive reader personally read in full before execution; exactly one execution follows, with literal streams and exit retained. It checks all manifest payload hash fields, explicit terminal exclusions and externally pinned terminal controls; null is not accepted as a general hash exemption.
+
+2026-11-17T18:02:38.613286+00:00 — 100% complete. Sole passive checker execution passed, exit 0, stdout 1409 bytes, stderr empty; source97/7, writer19/1 and fixed review/clearance before/after exact. The pre-execution log estimate of 367 checker lines was inaccurate: EXECUTION.json measures 358 lines/19243 bytes. No execution failure, retry or hidden repair occurred. Full saved report and finite seal now close this private copy audit; no scientific/human/formal/publication certificate is issued. Freeze and stop after external terminal pins are returned.

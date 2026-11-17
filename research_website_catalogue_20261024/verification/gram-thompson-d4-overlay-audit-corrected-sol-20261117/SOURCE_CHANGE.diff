@@ -1,0 +1,106 @@
+--- verification/gram-thompson-d4-overlay-audit-sol-20261117/audit_overlay_once.py	2026-11-17 09:49:35
++++ verification/gram-thompson-d4-overlay-audit-corrected-sol-20261117/audit_overlay_once.py	2026-11-17 10:00:37
+@@ -17,7 +17,8 @@
+ P = Path('/Users/alec/Documents/Math/research_website_catalogue_20261024')
+ W = Path('/Users/alec/Desktop/alec-dev/aleckriebel.com')
+ S = P / 'verification/gram-thompson-d4-overlay-sol-20261117'
+-A = P / 'verification/gram-thompson-d4-overlay-audit-sol-20261117'
++A = P / 'verification/gram-thompson-d4-overlay-audit-corrected-sol-20261117'
++OLD = P / 'verification/gram-thompson-d4-overlay-audit-sol-20261117'
+ BASE = 'https://aleckriebel.com'
+ CSS = 'f8cc0b3df011584d4e0266047af9c7c930266d0378909c0ca14e69e642653a6a'
+ PAPERS = [
+@@ -99,11 +100,28 @@
+         path = W / relative
+         native[relative] = meta(path, relative) if os.path.lexists(path) else {'path': relative, 'absent': True}
+     native['local_heads'] = tree(W / '.git/refs/heads')
+-    return {'fixed': fixed, 'website': {'public': tree(W / 'public'), 'native_and_configuration': native}, 'stage': tree(S)}
++    return {'fixed': fixed, 'website': {'public': tree(W / 'public'), 'native_and_configuration': native}, 'stage': tree(S), 'original_failed_lane': tree(OLD)}
+ 
+ def entries(snapshot):
+     return {x['path']: x for x in snapshot['entries']}
+ 
++def declared_terminal_hash_exclusion(root, row, excluded, key, value):
++    pair = {'FINAL_MANIFEST.json', 'FINAL_SEAL.json'}
++    declared = len(excluded) == 2 and set(excluded) == pair and row['path'] in pair
++    if root.name == 'binary-gram-locus-editorial-sol-20261117':
++        return declared and key == 'SHA256' and value == 'EXCLUDED_TERMINAL_RECURSIVE_HASH'
++    contracts = {
++        'binary-gram-locus-editorial-fact-sol-20261117':
++            ('SHA256', 'recursive_content_hash_excluded', True),
++        'thompson-cstar-corrected-fact-sol-20261117':
++            ('sha256', 'content_hash_exclusion', 'Already-created terminal pair only; exact object, mode, timestamp, bytes and topology retained'),
++        'd4-canonical-potential-editorial-fact-sol-20261117':
++            ('sha256', 'content_hash_exclusion', 'Already-created terminal pair only; exact objects/modes/timestamps/bytes/topology retained')}
++    if root.name not in contracts or value is not None:
++        return False
++    expected_key, marker_key, marker = contracts[root.name]
++    return declared and key == expected_key and row.get(marker_key) == marker
++
+ def verify_rows(root, actual, rows, excluded, directories=None):
+     mapped = entries(actual)
+     names = set()
+@@ -114,8 +132,18 @@
+         current = mapped[name]
+         for key, value in row.items():
+             translated = {'mode_octal': 'mode', 'sha256': 'SHA256', 'hidden_component': 'hidden'}.get(key, key)
+-            if translated in ['path', 'kind', 'bytes', 'empty', 'hidden', 'mtime_ns', 'ctime_ns', 'SHA256']:
++            if translated == 'SHA256':
++                if declared_terminal_hash_exclusion(root, row, excluded, key, value):
++                    require(name in excluded, 'only exact declared terminal content hash excluded')
++                else:
++                    require(isinstance(value, str) and re.fullmatch('[0-9a-f]{64}', value) is not None and
++                            current['SHA256'] == value, 'every unlisted or ordinary complete SHA256 ' + name)
++            elif translated in ['path', 'kind', 'bytes', 'empty', 'hidden', 'mtime_ns', 'ctime_ns']:
+                 require(current[translated] == value, 'declared manifest field ' + name + ':' + translated)
++            elif translated in ['recursive_content_hash_excluded', 'self_recursive_hash_excluded', 'recursive_hash_excluded']:
++                require(name in excluded and value is True, 'actual exact terminal Boolean exclusion marker')
++            elif translated == 'content_hash_exclusion':
++                require(name in excluded and isinstance(value, str) and bool(value), 'actual exact terminal text exclusion marker')
+             elif translated == 'mode':
+                 require(int(current['mode'], 8) == int(value, 8), 'declared individual mode ' + name)
+             elif translated.lower() == 'md5':
+@@ -138,10 +166,12 @@
+         rows = [{'path': name, **value} for name, value in payload.items()] if isinstance(payload, dict) else payload
+         if 'terminal_pair' in manifest:
+             excluded = [x['path'] for x in manifest['terminal_pair']]
++            rows += manifest['terminal_pair']
+             directories = manifest['directories']
+         else:
+             excluded = manifest['exact_already_created_terminal_recursive_hash_exclusions']
+-            directories = {x['path']: x['mode'] for x in manifest['directories']}
++            rows += manifest['directories']
++            directories = None
+         verify_rows(root, actual, rows, excluded, directories)
+         require(int(entries(actual)['.']['mode'], 8) == int(manifest['root_mode'], 8), 'actual declared root mode')
+     else:
+@@ -151,6 +181,16 @@
+         verify_rows(root, actual, rows, manifest['root_controls_excluded_from_own_list'])
+ 
+ def authenticate(before):
++    old = before['original_failed_lane']
++    require((old['files'], old['child_directories']) == (12, 0), 'whole frozen original failed lane12/0')
++    require(sha((OLD / 'FINAL.json').read_bytes()) == 'dd7eae47db1dfb53e788aa60b5853904ec1d885b9a6ca529b25a126379c5395c' and
++            sha((OLD / 'MANIFEST.json').read_bytes()) == 'd403419579bc571f86f821d11f02993cfad2de5de0633d43404649028d019110',
++            'externally pinned original failed terminal pair')
++    verify_manifest(OLD, old, 'MANIFEST.json')
++    failed = load(OLD / 'FINAL.json')
++    require(failed['status'] == 'FAILED_INCOMPLETE_FROZEN' and failed['reader_invocations'] == 1 and failed['reader_exit'] == 1 and
++            all(not (OLD / name).exists() for name in ['AFTER.json', 'DETAILS.json', 'RESULTS.json']),
++            'original failure remains incomplete forever, no retro-PASS')
+     for name, expected in STAGE_PINS.items():
+         require(sha((S / name).read_bytes()) == expected, 'external complete stage control pin ' + name)
+     receipt = load(S / 'BUILDER_RUN.json')
+@@ -525,10 +565,10 @@
+         'aggregates': aggregate, 'projection': projected, 'source_files_childdirs': [[95, 16], [55, 14], [72, 7]],
+         'accepted_packets': 9, 'accepted_packet_files': 366, 'stage_files_childdirs': [41, 6],
+         'physical_overlay_files_childdirs': [15, 4], 'whole_public_copy_created': False,
+-        'all_manifest_terminal_pairs_externally_pinned': True, 'private_opaque_control_bytes_copied': False,
++        'all_manifest_terminal_pairs_externally_pinned': True, 'original_failed_lane_files_childdirs': [12, 0], 'private_opaque_control_bytes_copied': False,
+         'page_publication_date': None, 'AA': None, 'redirect': None, 'follow_up': None})
+     save('RESULTS.json', {'schema': 'independent-three-page-private-overlay-result-v1', 'UTC_start': started, 'UTC_end': utc(),
+-        'status': 'PASS_PRIVATE_OVERLAY_AUDIT_ONLY', 'completion_percent_assigned_private_audit_only': 100,
++        'status': 'PASS_CORRECTED_PRIVATE_OVERLAY_AUDIT_ONLY', 'original_failed_lane_whole_before_after_exact': True, 'completion_percent_assigned_private_audit_only': 100,
+         'whole_projection_files_childdirs_articles_XML': [816, 390, 136, 137], 'targets_A_M': [13, 2],
+         'whole_guard_before_after_exact': True, 'fresh_passive_checker_invocations': 1, 'checks_passed': CHECKS,
+         'independent_article_HEAD_BODY_spans': [[4, 1], [4, 0], [4, 0]], 'PDF_page_counts': [5, 4, 5],

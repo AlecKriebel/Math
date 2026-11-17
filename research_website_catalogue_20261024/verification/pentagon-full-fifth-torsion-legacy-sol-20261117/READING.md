@@ -1,0 +1,5 @@
+# Personal reading before the one passive invocation
+
+2026-11-17 18:01:37 UTC. Personally read the complete saved 202-line read_legacy_once.py, in actual saved lines1–120 and121–202, including all nested Git/object parsing, archive traversal, fixed-input authentication, closing-guard and finite-seal bodies. Read the entire earlier D4 legacy reader as text only; no old reader is imported or invoked. The new reader imports standard-library data facilities only, runs network-disabled read-only local cat-file, never runs project/scientific sources, and pauses within the same invocation for personal whole-candidate reading and directly authored disposition/report. The later SEAL input closes that same invocation; it is not a second reader run or action authority.
+
+Read the whole actual root review/clearance, native API/Description and all seven fresh native PDF text pages before collection. Native exact asset identities and their original PDF→ZIP order are recorded in the reader; this is legacy identity work only. Unexpected exceptions preserve literal traceback and available local Git stream and stop; no repair or retry is authorized.

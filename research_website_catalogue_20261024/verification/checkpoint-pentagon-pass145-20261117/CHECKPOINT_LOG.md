@@ -1,0 +1,13 @@
+# Pentagon PASS145 / native144 checkpoint
+
+2026-11-17T17:46:17.233987+00:00 — Root writehold acknowledged; fresh current pins discovered separately for programme and M-root ignore files. No checker/helper/network attempt. Finite checkpoint10%; scientific145/203=71.428571%, native144; programme active/incomplete.
+
+2026-11-17T17:48:52.112547+00:00 — Root administrative disposition before first constructor/guard/helper: retain V1 constructor+PLAN unexecuted and save distinct scopeV2. Newly frozen pentagonwriter19/1 included; final exclusions actualoverlayauditor+productionprepare+own. No execution failed or was retried. Full V2 source reading next; checkpoint20%, scientific145/native144 distinct.
+
+2026-11-17T17:50:01.091183+00:00 — Fresh programme mutable3 pins and separate nativeM ignore pin exact before inherited immutable assertions. Release metadata and full saved-source reading bound; only actual overlayauditor/productionprepare/own excluded; frozen pentagonwriter19/1 included. Earlier constructor/PLAN V1 retained unexecuted; root authorized administrative scope V2 before first invocation. No checker/helper/Git/network attempt yet. Checkpoint30%; scientific145/203=71.428571%, native144; programme active/incomplete.
+
+2026-11-17T17:51:37.826418+00:00 — Single dryhelper0 and fulltreeaudit0;223 paths,64closures175keys,159siblings/docs exact. Actual private rootprimary and Fishertext ignore boundaries authenticated; noforceadd. Approved one ordinary parent/tree-bound push. Checkpoint65%; scientific145/203=71.428571%, native144; programme active/incomplete.
+
+2026-11-17T17:54:06.513987+00:00 — Actual remote bbfb7abf5c56e3f8d090e125784ff357138076fb/tree9292edc3ce873cf8ecc809ba2f7e88fc4b324817 posttreeaudit0 and wholeclosingguard0; currentP/W writehold RELEASED.64closures175keys159siblings/docs exact. Scientific145/native144 distinction retained,137PASS8defer58remain,71.428571%; programme active/incomplete. PentagonrootINITIAL physical17/1 remains10committed+7actualignoredPNGs hashbound. Currentrootcontinuation12physical/7committed/5ignored; challenge23physical/17committed/6ignored; frozenpentagoneditorial19/1 all19committed. No forceadd. Ownonlyseal next; checkpoint95%.
+
+2026-11-17T17:54:12.289812+00:00 — All six guarded execution/verification steps returned 0. Ordinary scoped checkpoint bbfb7abf5c56e3f8d090e125784ff357138076fb verified against actual remote main, parent, tree, changed paths/blobs/modes, 159 siblings/docs, durable closures and native/public guards. Checkpoint completion: 100%; overall scientific review: 71.428571%; research goal active and incomplete.
