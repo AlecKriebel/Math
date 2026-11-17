@@ -1,0 +1,13 @@
+# Private editorial handoff — row164 /23203143
+
+READY for independent copy-fidelity review. Informed editorial work follows the actual full-original root clearance and whole root report; it is not another scientific family. The complete native abstract is visible and identical in ScholarlyArticle.abstract/DC.description after explicit TeX-to-Unicode math rendering. Both separate consequences, restricted regular C₂ lamp model, explicit split/kernel, exact distance-one Schwartz programs and planar infima limits are retained. OpenAI's two substantive inputs are prominent, with established Bradford–Fournier-Facio, embedding, CDLS/Cohn–Elkies/de Laat–Vallentin and lattice credit; no firstness or breakthrough is asserted.
+
+Native PDF then ZIP bytes/order, original publication6October2026/version1.0.0 versus record creation7OctoberUTC, ORCID, actual CC BY4/MIT split, complete raw native metadata/Description and licence objects are preserved. The native Description is archived rather than duplicated visibly. Passive contribution-based collaboration, concise AI/unrefereed status and follow-up null are included.
+
+One fully read fixed data-only assembly/static pass succeeded. Source121files/20dirs match the frozen source guard before and after; CSS1170bytes is unchanged; local links, whole MAIN/head, Bib and private noindex/null identity gates passed. Literal stdout/stderr are empty. No new science/native/old-helper execution, render/browser/CUA/server/network, W/Git/Sheet/deployment/source/older-packet mutation or outreach occurred.
+
+The proposed path is /research/wreath-products-planar-triangle-bounds/, absent in a readonly W check; it grants no canonical/AA or production authority. article.html is a private noindex document, with canonical/base/production/AA null in the model. A future wrapper requires separate adoption/integration/publication and actual reader/live verification.
+
+Reader limits: eight native manuscript source pages were personally read previously as fresh own pixels and reused by reference; full current TeX/PDF text/native objects were reread. One initial combined text display truncated, followed by an untruncated whole PDF-text read. No new article desktop/mobile view, actual iframe/PDF-reader display, live link/download or deployment check is claimed. Whole raw primary-source science is outside this copy task; root authority and prior roles are disclosed.
+
+Final packet includes all regular files, ignored/empty literal streams, byte hashes and modes, plus every child directory; terminal controls exclude only themselves. Preserve this packet for independent review; quiescent after FINAL.

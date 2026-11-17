@@ -1,0 +1,253 @@
+                        A type-D4 counterexample to the
+                      canonical-potential exponent converse
+                                              Alec Kriebel
+                                       Independent researcher
+                                     ORCID: 0009-0001-9320-500X
+
+                                  17 October 2026            Version 1.0
+
+
+                                                 Abstract
+         The exponent-bound converse stated for canonical GHKK potentials in Schumann’s 2021
+     Oberwolfach report is false. For an explicit reduced word in type D4 , the canonical potential
+     has 22 combined monomials, all of coeﬃcient one, and all 22 inequalities deﬁne distinct facets,
+     although two monomials have exponent −2 in one canonical coordinate. The reduced word
+     and its complete string-coordinate support occur in earlier public computations; we extract the
+     consequence for the historical formulation and supply an independent canonical calculation and
+     exact integer certiﬁcates. The chamber-ansatz pullback has all exponents in {−1, 0, 1}, so the
+     later string-coordinate converse is not refuted. No ﬁrst-priority or current-openness claim is
+     made.
+
+Status. Extensively AI-assisted, unrefereed research note. There has been no external human peer
+review or proof-assistant certiﬁcation.
+
+
+1    The historical assertion and the result
+Schumann’s report [1, printed p. 1125] formulates a converse for the canonical potential W restricted
+to the dual cluster torus designated by a reduced word i for the longest Weyl group element. In that
+formulation, the monomial inequalities are irredundant precisely when every coordinate exponent
+of W has absolute value at most one. The correspondence with the string cone is unimodular
+[3, 2]. An invertible monomial change preserves irredundancy, but need not preserve that exponent
+bound.
+    We use the reduced-word seed and X -mutation conventions of [2, Eq. (3), Defs. 7–9], including
+Dynkin adjacency in the inclined-arrow rule as speciﬁed in [3, §4.2.2]. These are the designated
+canonical coordinates, not an arbitrary change chosen to create a large exponent.
+
+Theorem 1. Let G = Spin8 (C), with Dynkin edges 1−2, 2−3, 2−4, and
+
+                                   i = (1, 2, 3, 2, 4, 2, 1, 2, 3, 2, 4, 2).
+
+In its canonical reduced-word X -coordinates, W has 22 distinct monomials, each with coeﬃcient
+one. Their 22 tropical inequalities deﬁne distinct facets of a full-dimensional cone in R12 . Two
+monomials have X6 -exponent −2. Consequently the necessary direction of the canonical-W converse
+in [1] fails.
+
+
+
+                                                      1
+    The word and its complete chamber-pullback support already occur in the earlier computational
+data [4, Case 267]; see Section 5. We do not claim ﬁrst computation of these objects. The theorem
+is conﬁned to the historical canonical-coordinate assertion. It does not refute the later ς-coordinate
+converse or coeﬃcient conjecture in [2].
+
+
+2    The canonical potential
+Put yk = Xk−1 . The frozen positions are 7, 9, 11, 12. The complete arrow set, with all multiplicities
+one, is
+             1 → 7,     2 → 4,        3 → 2,      3 → 9,       4 → 6,    5 → 4,       5 → 11,    6 → 1,
+          6 → 8,    7 → 6,      8 → 3,       8 → 10,       9 → 8,       10 → 5,    10 → 12,      11 → 10.
+For completeness, let k + be the next occurrence of ik , or 13. Horizontal arrows are k → k + when
+k + ≤ 12. There is an inclined arrow ℓ → k for k < ℓ < k + < ℓ+ when ik , iℓ are Dynkin neighbors.
+Arrows between frozen vertices are omitted.
+    The inversion roots, in the ordered simple-root basis, are
+                               (1, 0, 0, 0), (1, 1, 0, 0), (1, 1, 1, 0), (0, 0, 1, 0),
+                               (1, 1, 1, 1), (1, 1, 0, 1), (1, 2, 1, 1), (0, 1, 1, 0),
+                               (0, 1, 1, 1), (0, 0, 0, 1), (0, 1, 0, 1), (0, 1, 0, 0).
+These are all twelve positive D4 roots, and the product of the simple reﬂections is −I4 , so the word
+is reduced for w0 .
+    Set bab = #(a → b) − #(b → a). Mutation at a mutable position k gives
+                                                  {
+                                                   ya (1 + yk )bak            bak ≥ 0, a ̸= k,
+                      yk′ = yk−1 ,        ya′ =                                                             (1)
+                                                   ya yk−bak (1 + yk )bak     bak < 0, a ̸= k.
+The exchange matrix changes by sign reversal in row/column k and otherwise
+                                b′ab = bab + [bak ]+ [bkb ]+ − [−bak ]+ [−bkb ]+ ,
+with frozen–frozen entries erased. All right-hand sides use the old matrix. An optimized frozen
+position has only incoming mutable arrows; its canonical summand is the inverse frozen coordinate
+in that seed [2, Def. 7].
+Lemma 1. Writing
+                                     A = 1 + y3 + y2 y3 ,         B = y2 y3 y4 y5 ,
+the canonical potential is
+                                                           (                                     )
+                   F7 = 1 + y6 + y6 y8 A + y6 y8 y10 (1 + y5 )A + B(1 + y6 + y1 y6 ) ,
+                   F9 = 1 + y8 + y8 y10 (1 + y5 + y4 y5 ),
+                   W = y7 F7 + y9 F9 + y11 (1 + y10 ) + y12 .                                               (2)
+Proof. The following ﬁxed-label sequences, read left to right, optimize the indicated frozen position:
+                                            f     mutation sequence
+                                            7     (2, 6, 1, 3, 4, 8, 5, 10)
+                                             9    (4, 8, 5, 10)
+                                            11    (10)
+                                            12    ()
+
+                                                           2
+Every entry is mutable. In each case the ﬁnal frozen row has its only nonzero entry bf,10 = −1, as
+follows by the displayed matrix rule. Thus the ﬁnal seed is optimized, and the canonical summand
+is yf there.
+    Pull back that monomial, in reverse order, by (1). For f = 7, after the reverse steps 10, 5, 8, 4
+the quotient by y7 is
+                               1 + y8 + y8 y10 + y5 y8 y10 + y4 y5 y8 y10 .
+The next step, at 3, gives
+
+                          1 + y8 + y3 y8 + y8 y10 (1 + y5 + y3 + y3 y5 + y3 y4 y5 ).
+
+The step at 1 adds y1 y3 y4 y5 y8 y10 . After the step at 6 it is
+
+                     1 + y6 + y6 y8 (1 + y3 ) + y6 y8 y10 (1 + y5 + y3 + y3 y5 + y3 y4 y5 )
+                                                  + (1 + y1 )y3 y4 y5 y62 y8 y10 .
+
+The ﬁnal step at 2 gives F7 . The four-step f = 9 pullback gives F9 ; the last two summands are
+immediate. These exact rational identities identify the canonical normalized potential, rather than
+merely a polynomial deﬁning the same cone.
+
+   The summands in (2) contain 14, 5, 2, 1 distinct terms. Every term has exactly one frozen
+marker, and the coeﬃcients are all one. In particular
+
+                               y2 y3 y4 y5 y62 y7 y8 y10 ,        y1 y2 y3 y4 y5 y62 y7 y8 y10
+
+occur. They have X6 -exponent −2.
+
+
+3    An exact certiﬁcate for every facet
+                             (j)
+Write the 22 terms as y a . In X-cocharacter coordinates t the inequality is −a(j) · t ≥ 0. Put
+z = −t; the cone becomes
+
+                                   C = {z ∈ R12 : a(j) · z ≥ 0,            1 ≤ j ≤ 22}.
+
+The following table gives its complete exponent support and integer vectors z (j) . Each exponent
+row is encoded as twelve consecutive single digits in position order 1, . . . , 12; no entry has more
+than one digit.
+
+                               j    a(j)              z (j)
+                              1     000000000001      (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, −1)
+                              2     000000000010      (0, 0, 0, 0, −1, 0, 0, 0, 0, 1, −1, 0)
+                              3     000000000110      (0, 0, 0, 0, 0, 0, 0, 1, 0, −1, 0, 0)
+                              4     000000001000      (0, 0, −1, 0, 0, 0, 0, 1, −1, 0, 0, 0)
+                              5     000000011000      (−2, 0, 0, 0, 0, 1, 0, −1, 0, 1, 0, 0)
+                              6     000000011100      (−2, 0, 0, 0, 1, 1, 0, 0, 0, −1, 1, 0)
+                              7     000000100000      (−1, 0, 0, 0, 0, 1, −1, 0, 0, 0, 0, 0)
+                              8     000001100000      (0, 2, 0, −1, 0, −1, 0, 1, 0, 0, 0, 0)
+                              9     000001110000      (0, 0, 1, −1, 0, 0, 0, −1, 1, 1, 0, 0)
+                             10     000001110100      (0, 0, 1, −1, 1, 0, 0, 0, 1, −1, 1, 0)
+                             11     000010011100      (−2, 0, 0, 1, −1, 1, 0, 0, 0, 0, 0, 0)
+                             12     000011110100      (0, 0, 1, 0, −1, 0, 0, 0, 1, 0, 0, 0)
+
+
+
+                                                              3
+                              j   a(j)                z (j)
+                            13    000110011100        (0, 1, 0, −1, 0, 0, 0, 0, 0, 0, 0, 0)
+                            14    001001110000        (0, 1, −1, −1, 0, 0, 0, 0, 0, 1, 0, 0)
+                            15    001001110100        (−1, 1, −1, −1, 1, 1, 0, 0, 1, −1, 1, 0)
+                            16    001011110100        (−1, 1, −1, 0, −1, 1, 0, 0, 1, 0, 0, 0)
+                            17    011001110000        (0, −1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0)
+                            18    011001110100        (−1, −1, 0, 0, 1, 1, 0, 0, 1, −1, 1, 0)
+                            19    011011110100        (−1, −1, 0, 1, −1, 1, 0, 0, 1, 0, 0, 0)
+                            20    011111110100        (0, 0, 0, −1, −1, 1, 0, 0, 2, 0, 0, 0)
+                            21    011112110100        (1, 0, 0, 0, 0, −1, 1, 0, 0, 0, 0, 0)
+                            22    111112110100        (−1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+
+    Direct integer multiplication of the displayed rows and columns gives
+                               a(j) · z (j) = −1,             a(r) · z (j) ≥ 0   (r ̸= j).                 (3)
+This is a complete ﬁnite certiﬁcate: no optimization tolerance or unprovided historical computation
+is a premise. Omitting the jth inequality admits z (j) , proving irredundancy.
+    There is also a strict facet certiﬁcate. Set
+                                         u = (0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1).
+Every exponent row has a(j) · u = 1, so C has a strict interior point and is full-dimensional. For
+pj = z (j) + u,
+                             a(j) · pj = 0,  a(r) · pj ≥ 1 (r ̸= j).
+A neighborhood of pj in the hyperplane (a(j) )⊥ satisﬁes all the other inequalities strictly. Thus the
+selected face has dimension 11. The certiﬁcates separate every pair of selected inequalities, so the
+22 facets are distinct. Together with Lemma 1, this proves Theorem 1.
+
+
+4    The chamber map and the scope boundary
+Let H be the D4 Cartan matrix. The chamber-ansatz map of [2, Def. 9] can be written
+                                                          
+                                                          
+                                                                      ℓ = k or ℓ = k + ≤ 12,
+                            ∏
+                            12                            1
+                     yk =         xK kℓ
+                                   ℓ ,          Kkℓ =         H
+                                                             ik ,iℓ    k < ℓ < k+ ,
+                                                          
+                                                          
+                            ℓ=1                           0           otherwise.
+The upper-triangular matrix K has diagonal one, hence determinant one. A monomial row a pulls
+back to aK. For every one of the 22 rows in the table, all entries of aK lie in {−1, 0, 1}. In
+particular rows 21, 22 give, respectively,
+                   (0, 1, 0, 1, 0, 1, −1, 0, 0, 0, 0, 0),          (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).
+The monomial isomorphism therefore preserves the inequality presentation but does not preserve
+its coordinatewise exponent bound.
+    The later ς-coordinate converse in [2, Conj. 3] is not refuted: this example satisﬁes its exponent
+condition. Nor is its separate coeﬃcient criterion refuted, since all coeﬃcients here are one and all
+inequalities are essential. The computation contradicts the assertion in the proof of [2, Thm. 2,
+p. 1046] that the two exponent bounds are equivalent under the chamber map. It does not contradict
+that theorem’s conclusion, and supplies no general replacement proof for its aﬀected step. Our direct
+facet proof does not use that assertion or that theorem.
+
+                                                              4
+5    Prior computations and reproducibility
+The primary-author dataset [4, Case 267] already records this word and its complete 14 + 1 + 5 + 2
+string-coordinate support. The relevant Git commit is dated 6 March 2020; a Git date is provenance
+metadata, not independent proof of the date of public availability. The repository is cited by the
+later computational work [5], providing a public pre-PR citation trail. We attribute the earlier word
+and support computations accordingly. The published minuscule nonredundancy results [1, 2] also
+cover the three leaf-root summands; the central summand here is a single monomial.
+    The contribution of this note is to spell out the consequence for the speciﬁed historical canonical-
+W assertion, independently reconstruct the canonical potential, and give complete directly check-
+able facet certiﬁcates. A bounded literature audit found no earlier explicit statement of this refu-
+tation, but cannot establish ﬁrst priority, current openness, or exhaustive coverage of inaccessible
+or unindexed sources. No claim is made that the original converse remained open in October 2026.
+    The accompanying veriﬁcation archive includes the manuscript source, the complete exponent
+and certiﬁcate data, a Python standard-library veriﬁer that reconstructs the seed and optimized
+pullbacks over exact integer Laurent arithmetic, and a separate SymPy reconstruction using two
+reduced-word braid-graph searches. That reviewer inherited candidate context; its freeze before
+a local ﬁle comparison does not establish blindness. A further reviewer received only the word,
+Dynkin diagram and primary references in a fresh context, froze its support before comparison,
+and checked all 12,504 directed braid-graph edges and 22 separate facet certiﬁcates. Its replay
+and original input-boundary receipt are included. Source examples, mutation involutivity and
+deliberately corrupted inputs provide implementation controls. The written formulas and displayed
+certiﬁcates, rather than sampled numerical experiments, establish the result. Downloaded source
+documents, third-party programs, and the original unlicensed dataset are not redistributed.
+
+AI use and review status. AI tools were used extensively to develop, solve, reconstruct, verify
+and adversarially review the arguments, search the literature, and prepare this note and its code.
+Independent internal AI reviews are not external human peer review. This preprint is unrefereed
+and is not a formal proof-assistant certiﬁcate.
+
+
+References
+[1] B. Schumann (joint work with G. Koshevoy), Optimality of string cone inequalities and potential
+    functions, Oberwolfach Report 20/2021, pp. 1123–1125. doi:10.4171/OWR/2021/20.
+
+[2] G. Koshevoy and B. Schumann, Redundancy in string cone inequalities and multiplici-
+    ties in potential functions on cluster varieties, J. Algebraic Combin. 56 (2022), 1031–1053.
+    doi:10.1007/s10801-022-01144-z.
+
+[3] V. Genz, G. Koshevoy and B. Schumann, Polyhedral parametrizations of canonical bases &
+    cluster duality, Adv. Math. 369 (2020), 107178. doi:10.1016/j.aim.2020.107178.
+
+[4] D. Mironov, crystal, public computational repository, crystal_D_4.out.xz, Case 267. Pinned
+    commit 0d6e564cf5e69d79c1074d5d1e3e72ac700904d6 (commit dated 6 March 2020). https:
+    //github.com/mironovd/crystal.
+
+[5] G. Koshevoy and D. Mironov, F -polynomials and Newton polytopes, EasyChair Preprint 8975
+    (3 October 2022). https://easychair.org/publications/preprint/z55N.
+
+
+
+                                                   5
+
