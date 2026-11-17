@@ -1,0 +1,58 @@
+{
+  "utc": "2026-11-17T04:41:23.375635+00:00",
+  "single_route": "python3 -B <immutable-native-tree>/reproduce.py --output <owned-continuation>/native-reproduction-receipt.json",
+  "whole_program_inputs_personally_read": [
+    "reproduce.py",
+    "PAYLOAD_SHA256.json",
+    "code/gadget.py",
+    "code/sampling.py",
+    "code/test_gadget.py",
+    "code/test_sampling.py",
+    "code/upstream_cell_checks.py"
+  ],
+  "inputs": "Fixtures are literals in the three checks; code reads own source bytes for hashes. Manifest verifies and copies 28 payload files; stored result JSON is overwritten only in the temporary copy, then read into receipt. Other copied proof/audit/text files are not executed. No upstream tree/runtime is imported.",
+  "module_closure": "All imports are Python standard library or the fully read local gadget.py/sampling.py modules. No network APIs, installation, shell invocation or external messaging in selected program closure.",
+  "native_fallback": "Unmodified reproduce.py first tries isolated Python -I -B script execution and, only for a ModuleNotFoundError, uses its provided bounded sibling-import launcher. This built-in fallback is part of the one ordinary native route, not an agent repair/retry campaign. Its receipt records final successes, not the intermediate import diagnostic; do not infer absent intermediate diagnostics from empty top-level streams. No agent retry is authorized.",
+  "io": "Native files are read/hashed only; all copied files and data rewrites live in TemporaryDirectory under the continuation output parent; temp directory is removed by original script; final receipt atomically replaced within continuation. Bytecode disabled with -B for parent and children.",
+  "existing_receipts_inspected": "Old INITIAL native_scientific_program_runs=0, POST_INITIAL_RESUME native_scientific_routes_executed=0, POST_INITIAL_LOG contains dependency locator opening only; parent process check reports no live route. No terminal route to replay.",
+  "native_scientific_route_attempts_before_this": 0,
+  "selected_native_files": [
+    {
+      "path": "reproduce.py",
+      "bytes": 4225,
+      "sha256": "ac0c2ad6f0520ef46eb6f3dc6cb4216d956cea9e72450e089a2063b70c074631"
+    },
+    {
+      "path": "PAYLOAD_SHA256.json",
+      "bytes": 2776,
+      "sha256": "ac2e90408d24dbc1102d9d2de13448dbc47cead50f7a5a0d9d86748918352baf"
+    },
+    {
+      "path": "code/gadget.py",
+      "bytes": 9965,
+      "sha256": "fb5bda83d3474d2c123c58c6213879928bdb27bb25ef6cff43e7a1b447444225"
+    },
+    {
+      "path": "code/sampling.py",
+      "bytes": 11281,
+      "sha256": "cdeb6a842c9fbafa26d516236b18ee597554220d1c951c726d0b381c86ebe2f9"
+    },
+    {
+      "path": "code/test_gadget.py",
+      "bytes": 8105,
+      "sha256": "6372ed3b61ac1e9946b7c57a263206d2f6467f8bfe47be61fdf3107e5bbe57cc"
+    },
+    {
+      "path": "code/test_sampling.py",
+      "bytes": 10470,
+      "sha256": "b165cc3ec2d52d83ad3d7c765fce84671677c91f9757a8025a8df9332c36c6ee"
+    },
+    {
+      "path": "code/upstream_cell_checks.py",
+      "bytes": 4895,
+      "sha256": "a76f07664f352aff59320f05994b94f7abb565afb29c70a2ff0611cfaa284b14"
+    }
+  ],
+  "review_completion_estimate_percent": 70,
+  "follow_up": null
+}

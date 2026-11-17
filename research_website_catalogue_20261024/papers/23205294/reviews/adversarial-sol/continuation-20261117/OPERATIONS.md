@@ -1,0 +1,11 @@
+# Operations and execution boundary
+
+UTC 2026-11-17T04:53:10.512379+00:00. Review completion estimate: 100%, pending immediate finite freeze.
+
+Original34 files and1 image directory remain unchanged. Sources remain exact56 regular files and10 directories. The fresh source-only seal and all8 of its listed payloads remain exact. The two final terminal exclusions will be precisely FINAL_MANIFEST.json and FINAL.json at the lane root; all original terminal controls and the continuation/source-only terminal controls are payload for that final manifest. No subtree or future-file exclusion is used.
+
+One direct ordinary native scientific test was executed, after complete path/input inspection, with exit0 and empty stderr; it is recorded in native-run/EXECUTION.json. No package-wide reproduce.py run, installation, retries, repairs or second scientific run occurred. Other Python commands were custody, inventory, input copying and research-note writing. The fetched primary serializer added one newline; its failed expected-hash assertion was retained/disclosed by keeping that serialization and a separately authenticated exact body, as documented in primary/FETCH_RECEIPT.json. This was an acquisition/custody issue, not a mathematical source change or scientific retry.
+
+All six authenticated original PDF page images were viewed on this continuation. Each successful view returned its own complete image; complete text/TeX were also read. Combined textual output truncations were explicitly overcome by subsequent complete separate reads for all selected native code. Partially displayed supporting gadget proof is not claimed as fully read. Full substantive central primary proof Sections1-9 was read in complete consecutive ranges. No opposite-family or current-root mathematical findings were read.
+
+No individual was contacted or outreach prepared. No Git, website, spreadsheet, deployment, release or publication operation occurred. No new background process or open execution handle remains. A child creation attempt failed at the thread limit and created no child. Freeze scripts emit no standard output or errors; their empty streams are included. Root adoption must happen outside this frozen lane.

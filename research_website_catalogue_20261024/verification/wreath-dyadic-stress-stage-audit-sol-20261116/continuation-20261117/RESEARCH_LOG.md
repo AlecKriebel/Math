@@ -1,0 +1,7 @@
+# Continuation research log
+
+- 2026-11-17 04:39:29 UTC — Resumed existing informed audit; found only17 sealed INITIAL files, no terminal. Whole INITIAL/source contract read before actual stage discovery. Actual root READY/adoption, corrected builder, complete three candidate HTML outputs and private heads/models/Bibs, exact plan and retained history/erratum read. Completion65%. No producer/native/old helper/Git/network/reader execution or external mutation.
+
+- 2026-11-17 04:48:04 UTC — Entire own audit body read in bounded calls. Read-only Sol6.1Ultra adversarial review found no concrete current-schema runtime blocker, and identified three robustness gaps before any run: index newline normalization, permissive duplicate JSON keys, and incomplete checks of new XML node structure. Corrected all three using raw bytes, shared strict JSON loading and exact new raw XML nodes; the current changes were personally read. Direct stdout/stderr capture and terminal sealing inspected. Root confirmed no concurrent Git/index/ref changes during the bounded audit. Completion85%; one audit execution and terminal read remain.
+
+- 2026-11-17T04:48:27.389685+00:00 — One wholly read own data-only audit executed once. CORRECTIONS_REQUIRED; 187 checks; 1 failed. Complete original17 INITIAL and815 producer/155 adopted/323 source/760 W preservation rechecked. Completion100% of finite audit decision, whether PASS or precise correction. Production/reader authority remains false. Freeze after final seal.

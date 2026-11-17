@@ -1,0 +1,23 @@
+# Informed adversarial continuation intake
+
+UTC 2026-11-17T04:37:41.350523+00:00. Review completion estimate: 35%.
+
+This is an informed continuation of the earlier independently sealed adversarial family, not a new blind proof or a replacement for its INITIAL. The earlier 34 files and one image directory are immutable. Its INITIAL_SEAL SHA256 is df5f4aa31839b17cee7c5fb603759531ae8a5205641eae9e157b97b9ecf6b715, as pinned by the parent. On this resumed turn, no earlier INITIAL.md, INITIAL_HAND_RESULTS.md, LOG.md or supporting proof/code/review body has yet been opened. Original metadata and native README contain the author's prior audit opinions; these are disclosures, not independent evidence. No opposite-family or current-root mathematical findings have been opened.
+
+## Exact original and provenance
+
+Zenodo record 23205294, concept 23205293, DOI 10.5281/zenodo.23205294; title Nonnegative binary rational hafnians: an exact reduction and approximation and sampling consequences; author Alec Kriebel, ORCID 0009-0001-9320-500X; version 1.0.0, publication date 2026-10-06. Record created 2026-10-07T06:42:49.819570+00:00 and modified 2026-10-10T21:23:15.943574+00:00, revision 4, published/open. One version was listed. Native deposit order is source-and-verification.zip (183748 bytes), README.md (6238), paper.pdf (75751); explicit files-endpoint order is empty, so no additional order is inferred. Native MD5 checksums match the acquisition and existing custody. The embedded and native PDFs are byte-identical (SHA256 8c93b0f14bc4fd935dbc3a489c5ecca63a8262ba4560a09822b7f65e1036bee7).
+
+The only deposited TeX is 165 newline-terminated lines, 18376 bytes, SHA256 fd84468f33be9164afb796192b397fbbe7165333912603fbef680940f90a247c. It was read completely. The entire 6-page PDF extraction was read and all six existing authenticated own-family images were viewed, including all references. The PDF and TeX correspond in title, author/date, every displayed theorem/formula, proofs, limits, and references. This is a semantic correspondence check, not a new PDF build. PDF has six letter pages, no encryption, no JavaScript or forms.
+
+Rights: newly authored prose/proofs/audits/data CC BY 4.0; newly authored Python MIT. The source archive excludes third-party manuscripts and upstream proof trees; their rights are reserved. No ownership of inherited theorems is claimed. Native materials disclose extensive AI use and absence of conventional human peer review. Rights files and native README were read completely.
+
+## Claims and success criteria
+
+The exact original comprises (1) a logarithmic positive-integer edge gadget and polynomial-bit rational hafnian count/fiber reduction; (2) an unrestricted nonnegative binary rational hafnian FPRAS, exact zero on every tape, conditional on the cited *general-graph* FPRAS; (3) a bounded-bit sampler with unconditional total-variation error less than eta and weighted projection, also conditional on that same FPRAS. The domain is finite symmetric even matrices with nonnegative rational off-diagonal entries; no signed, complex, density, expansion, or minimum-positive-weight promise is allowed. Empty matrix, no support, infeasible support, W=1, fractions below one, and denominators with large binary encodings are mandatory boundaries.
+
+Success requires checking the full original, not narrowing it to an exact lemma. The cited theorem is a substantive imported input: its actual algorithm/proof and precise general-graph, rational-output, relative-error, probability-amplification and every-execution bit-time properties must be examined. An abstract, theorem title, author audit, static Lean statement, or finite test cannot stand in for that input. The strongest source-only conclusions are the explicit deductions in CONTROLS.md; the imported theorem remains unverified at this seal.
+
+## Falsifiable attack plan
+
+Attack exact four-state signatures and gluing parity; uniqueness and the W=1 zero-internal-vertex case; denominator clearing and size/bit bounds; general rather than bipartite global H; all failed-zero replacement tapes; sampler feasibility/fallback, adaptive failure union and dyadic rounding, call and bit budgets, and projection TV. After explicit reopening, inspect own earlier terminal history before selecting at most one meaningful ordinary native run; do not replay it. Read the entire selected code, imports, actual inputs, outputs and safety behavior first. No install, repairs, retries, replacement theorem, extended proof repair, or external communication. A central unresolved gap produces precise full-original deferral with follow_up null.
