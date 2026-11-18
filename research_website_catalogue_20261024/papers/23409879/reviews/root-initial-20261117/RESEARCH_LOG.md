@@ -1,0 +1,3 @@
+# Root original-only elliptic billiards INITIAL
+
+2026-11-17 21:06:23 UTC — Complete original393line TeX, whole nativeAPI, all6 original PDF text pages and images personally read. Twelve independent written deductions include exact tangent geometry, paired factor algebra, full divisor/parity/odd-period argument and both physical six-period fixtures with exact focal products. Only scope mechanical text/images reused; no reviewer findings/support/foreign primary body read. Source-first reading100%; full review35%, no verdict, scientific executions0. Source custody/INITIAL seal next; checkpoint before foreign continuation. Native147/20372.413793%, goalactive/incomplete.
