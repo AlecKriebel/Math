@@ -1,0 +1,87 @@
+{
+  "row": 233,
+  "record": 23430776,
+  "title": "An explicit Frobenius corollary of established marginal entropy bounds for permanents",
+  "utc": "2026-11-18T06:02:52.499Z",
+  "completion_percent": 100,
+  "verdict": "PASS for the stated upper bound for all nonnegative row-stochastic square matrices of order at least one.",
+  "native": {
+    "files": [
+      {
+        "name": "support.zip",
+        "bytes": 658533,
+        "sha256": "d1646f1c72d8ef64cfa07f0d66ba2c2e4b1523b030a494578e90362919af6355",
+        "md5": "md5:5486a992e45cdf3f67903c850ee965f6",
+        "matches": true
+      },
+      {
+        "name": "paper.pdf",
+        "bytes": 74898,
+        "sha256": "67f07f64a5b06c9a4372c285ed438e735fb780d8477b25652bea4f7f6c72e072",
+        "md5": "md5:b27f573190b0287886369d9eb5c28c11",
+        "matches": true
+      }
+    ],
+    "date": "2026-10-14",
+    "version": "1.0",
+    "created": "2026-10-17T05:06:09.845238+00:00",
+    "updated": "2026-10-17T05:06:10.397006+00:00",
+    "texSHA": "22b01481733113dee52f7c6e2e160f519d580110ee7a9665b2117f77705d2a31",
+    "doi": "10.5281/zenodo.23430776",
+    "printed": "version 1.0, 14 October 2026",
+    "controller": "paper.tex"
+  },
+  "actual": {
+    "complete_source": true,
+    "complete_pdf_text_and_pixels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "support": "Conditional Jensen, high-precision finite checker and full fault matrix reviewed; independent verifier matched 211 archive payloads."
+  },
+  "proof": [
+    "Independent random-priority exposure and KL comparison of the actual conditional law to the marginal restricted to unused columns gives the entropy bound. Jensen on the unused marginal mass conditional on the full permutation integrates log over t∈[0,1], yielding q(b)=−b²log(b)/(1−b), with correct limits at 0 and 1. Only positive histories are sampled.",
+    "Apply this to Gibbs permutation weights from A after treating zero permanent separately. The entry-mass KL is computed between B/n and A/n, and the summands d(0,a)=a must remain until total linear terms cancel. Sequential KL of permutation distributions is a separate quantity.",
+    "The split at b=e²a absorbs q(b) using d≥b when b is large relative to a, otherwise monotonicity of h(a)=a²log(e/a) and the factor e⁴. The weights a²/S yield an entropy bound on at most n² points. This proves both displayed bounds; the actual intermediate expression S(1+log n−0.5 log S) uses S≥1 and is stronger.",
+    "Uniform k-block doubly stochastic examples have S=k and product with growth n^(k/2)e^(−n). At n=1 the bare polynomial factor needs the stated separate constant. A row-stochastic matrix with a zero column cannot have a positive uniform lower bound."
+  ],
+  "primary": [
+    {
+      "name": "Barvinok–Samorodnitsky problem 9, actual OWR extract",
+      "url": "https://ems.press/content/serial-article-files/46191"
+    },
+    {
+      "name": "Anari–Rezaei random-order Eq. (6)",
+      "url": "https://arxiv.org/pdf/1811.02933v2"
+    },
+    {
+      "name": "Anari Lemma 7, distinct sequential divergence",
+      "url": "https://arxiv.org/pdf/2608.28031v2"
+    },
+    {
+      "name": "Dong–Jain Theorem 3.1 at g=4",
+      "url": "https://arxiv.org/pdf/2609.02017v1"
+    }
+  ],
+  "reproduction": {
+    "valid_baselines": 2,
+    "meaningful_fault_rejections": 14,
+    "matrix_cases": 11,
+    "arbitrary_laws": 2,
+    "histories": 1573,
+    "scalar_pairs": 201,
+    "script_sha256": "35a36504a75acb5d87ec074ffbf4841f81f270c01222a6d68d2ceb7e8987fe3d",
+    "scope": "Exact enumeration and 120-digit Decimal transcendental diagnostics, not interval certification."
+  },
+  "independent": {
+    "model": "GPT-6.1 Sol Ultra",
+    "initial_utc": "2026-11-18T05:35:25Z",
+    "final_utc": "2026-11-18T05:44:34Z",
+    "own_controls": "5,374 finite inequalities with exact fractions plus verified rational log enclosures, including 1,017 small stochastic matrices, arbitrary permutation laws and two KL distinctions.",
+    "checker_sha256": "56b7b69217a97bae7377de07312e7048b7c88f7d160bd18c882b8b16e58e5a67"
+  },
+  "scope": "Historical bound concerns all doubly stochastic matrices with fixed unnormalized Frobenius norm. The paper entails the upper bound for the larger row-stochastic class and credits previous broad entropy results. No claim of sharpness or priority. An exact extremal exponent question was considered but left off pending sufficient literature and structural analysis."
+}
