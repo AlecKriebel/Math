@@ -1890,7 +1890,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1879 | 30001553 / OWR-4425-008 | Sharp Bounds for Alternating Involution Periods | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1880 | 30001558 / OWR-4425-014 | Fragile and Robust Squarefree Infinite Words | 0.0491 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 1881 | 30002208 / OWR-12173-004 | Additive Sets Preserving Piecewise Syndeticity | 0.0490 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 1882 | 30002506 / OWR-12866-016 | Bohr-Radius Characterization of $\ell^1$ | 0.0488 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 1882 | 30002506 / OWR-12866-016 | Bohr-Radius Characterization of $\ell^1$ | 0.0488 | 5.0 | 3 | 2014 | unsolved | 5/5 |  | Scoped partial result: arbitrary-p finite-block ell1-sum characterization and rigorous obstructions to growth-bound, projection-constant, and fundamental-function shortcuts. General Bohr characterization remains unresolved; Lorentz example is not a Bohr counterexample; no novelty claim. [Audited package](attempts/30002506/README.md). |  |
 | 1883 | 30002965 / OWR-13941-005 | Volume of the Boolean Quadric Polytope | 0.0486 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 1884 | 10400211 / AMR-103-0211 | Conjecture 12.5 — (Y. | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1885 | 10400212 / AMR-103-0212 | Problem 12.6 — Find a new proof of the existence of a universal Vassiliev in- variant of knots, presenting them by KTG’s and their o… | 0.0480 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
