@@ -1,0 +1,116 @@
+{
+  "record": 23430681,
+  "row": 219,
+  "title": "Cyclic self-sumset recognition: a credited corollary of the integer hardness theorem",
+  "utc": "2026-11-18T05:00:30.972Z",
+  "completion_percent": 100,
+  "verdict": "PASS — exact two-encoding cyclic complexity corollary",
+  "native": {
+    "doi": "10.5281/zenodo.23430681",
+    "date": "2026-10-14",
+    "created": "2026-10-17T05:05:21.015378Z",
+    "version": "1.0",
+    "printed_version": "1.0",
+    "license": "CC BY 4.0",
+    "assets": [
+      {
+        "name": "pr1052_support_v1_0.zip",
+        "bytes": 1681157,
+        "sha256": "0bb83d60cc0454870282dc251e1f459bced13165634933d0b5bf853b172b6a6d",
+        "md5": "3cc9123dcb35224d924a9c1b4258853b"
+      },
+      {
+        "name": "paper.pdf",
+        "bytes": 58570,
+        "sha256": "e2be83ab3c334c8352f1c6a256c6038b59ed834d3beaa50ed7602f3c24f292a6",
+        "md5": "f8b66f46c39440cc1d589fe576f02785"
+      }
+    ]
+  },
+  "actual": {
+    "source_bytes": 13600,
+    "source_sha256": "ca8812d3e7d07193ecd0d7ff7f7cadcc04d078a3bab591b260b4fef39a5e7973",
+    "pdf_pages": 4,
+    "all_zip_crc": true
+  },
+  "initial": {
+    "utc": "2026-11-18T04:56:35.013Z",
+    "fullTeX": true,
+    "pdf_pages": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "proof_read": "Elementary zero-anchor odd order lift sound: opposite diagonal residues sum to a multiple of n in [0,2M], hence vanish; invertibility of 2 forces exact zero in every cyclic root. Then every root coordinate is itself in B, and every pair remains below n. Explicit bound for dense reduction is distinct operative dependency. Sparse witness size injection uses one translate and includes repeats and singleton n=1. Need actual AFWS bounded reduction including v2 slips and literal OWR interpretation."
+  },
+  "proof": [
+    "For finite nonempty integer target, a root is also finite by injective translate and its extrema double. Parity and translation therefore normalize exactly. Under the odd lower-half promise, any pair witnessing zero gives diagonal residues summing to zero modulo n and less than n, so both are zero and the root contains zero. Every canonical root then lies in the prescribed target and no sums wrap. Empty, odd-minimum, zero-span and malformed branches have the required analogous fixed YES/NO exactly.",
+    "For sparse NP membership, one translate injects a root into its sumset, so witness length and all pair sums are polynomial in input bit length. The dense vector case accepts polynomial witness and computation because the n bits are explicit. Dense hardness follows separately by writing at most 2^58 q^4+1 bits under the credited bounded 3SAT compression, after relabeling occurring variables. It does not follow from arbitrary sparse length."
+  ],
+  "primary": [
+    [
+      "https://arxiv.org/pdf/2410.18661v2",
+      "Actual Theorem1.2 and pp.21–23 bound from Lemmas5.3,1.5,1.4. Verified printed constants 2^8 q², 2^17 span², and 2^24 expansion multiply to 2^57 q^4. Exact original PDF and independent archive reconstruction of several presentation slips are distinct from asserting complete final SODA identity."
+    ],
+    [
+      "https://publications.mfo.de/bitstream/handle/mfo/3964/OWR_2022_22.pdf",
+      "Printed p.1228 Problem15 asks ordinary same-group A+A. Uses no specific computational encoding or formal model."
+    ],
+    [
+      "https://ecroot.math.gatech.edu/E2S-01-11.pdf",
+      "Croot–Lev author copy antecedent; independent review also verified fixed Dose and Antoniou–Tringali earlier mechanism scopes."
+    ]
+  ],
+  "replay": {
+    "path": "verification/check_claim.py",
+    "stdout_exact": true,
+    "stdout_sha256": "b36820e318606a01607134f835b551484b62ecb8be3593024fb5f16806bf53ab",
+    "stable_result": {
+      "all_checks_passed": true,
+      "anchored_targets": 63,
+      "cyclic_roots": 4094,
+      "formula_relabeling_and_source_constants_checked": true,
+      "huge_sparse_n_bits": 8195,
+      "invalid_encoding_controls": 9,
+      "signed_source_branch_checks": 512,
+      "strong_root_checks": 14,
+      "universal_proof_role": "finite corroboration only",
+      "valid_encoding_controls": 5
+    }
+  },
+  "independent": {
+    "initial_utc": "2026-11-18T04:40:39.905Z",
+    "initial_sha256": "493cf6674b61316d4fd48ca646ce4bbb2e11b91f82f6d2768fb2c1c5cd82003c",
+    "packet_sha256": "7b7ba9c4b1b03b51f8e151799e7adbb68e6f7855854252bf42822624c0dd9e2f",
+    "verdict": "PASS — complete stated mathematical scope",
+    "imported_presentation_slips_and_reconstruction": [
+      {
+        "where": "AFWSv2 Lemma5.1,p21",
+        "issue": "The literal all-p-point parabola lift does not justify the displayed size-n/4n² bound, and its parabola argument requires odd characteristic.",
+        "resolution": "For k≥2 choose an odd prime k≤p<2k (p=3 works at k=2), and use only x=0,…,k−1 in2px+(x² modp); k=1 uses{0}. No-carry integer equality reduces to the odd-field parabola argument, giving Sidon uniqueness. The maximum is≤p(2k−1)−1<4k². This restores the exact stated bound without changing the gadget or asymptotic interface."
+      },
+      {
+        "where": "AFWSv2 Lemma4.1 inverse,p16",
+        "issue": "The inverse paragraph’s translated/doubled coordinates are not stated consistently.",
+        "resolution": "Recover the original core as(A′∩[4h,6h]−4h)/2. The0 and16h endpoint requirements isolate the middle2X+8h sum range, establishing the stated constrained equivalence and bounds."
+      },
+      {
+        "where": "AFWSv2 positioning,pp8–10",
+        "issue": "The abbreviated normalization needs empty/odd/extremal handling; the bare parity assertion omits endpoint cases; the displayed(4m+2)h count does not follow from indexmaxm.",
+        "resolution": "Handle constant/NO cases directly, restrict U to[minX/2,maxX/2], require even extrema present inU, and translate. For nonconstant normalized span h>0, the actual fixed skeleton has minI=1 inI″ and maxI=4·5^8. Its least full target block contains both its minimum and minimum+1, forcing a root’s least element and that element+1. Sum with the least root and diagonal constraints leave canonical residues mod4h in[0,h]∪{2h}; the+1 root excludes2h, giving the required uniform block placement. Actual outputmax≤(8·4·5^8+2)h=12,500,002h<2^24h. The constant skeleton’s special representation counts follow from the base5 powers: auxiliary j terms cannot cancel except into the five intended filler values; primitive uniqueness follows from Lemma3.2."
+      },
+      {
+        "where": "AFWSv2 masking,pp16–18",
+        "issue": "The text’s512N²=2^17n drops the square on n; an equality-preserving shift must move target by twice the root shift.",
+        "resolution": "N=16h gives512N²=2^17h², matching the actual lemma statement. Raw root support lies within[−80N²,80N²+N], and target support within[−160N²,160N²+2N]. Shift root by128N² and target by256N²; both fit[0,512N²] and self-sum equality is preserved. Actual nonempty outer-cell ranges are separated, while inner spacing4N exceeds pair-offset width2N, so the cellwise argument has no hidden carry."
+      },
+      {
+        "where": "AFWSv2 masking/SAT displayed identities",
+        "issue": "Minor union-versus-sum and clause-index slips occur in otherwise explicit formulas.",
+        "resolution": "Opposite signed mask cells contribute their pair sum{z}, not their union; missing0-core values can only be supplied by the core. The SAT witness representation uses the same target clause indexk. Sidon separation proves that precisely the allowed literal pairs can represent each target and that both assignments of one variable cannot coexist. These readings preserve the construction and numeric composition."
+      }
+    ]
+  },
+  "scope": "Credited corollary only. No new gadget, firstness, worldwide openness, distinct-summand, succinct, randomized, approximation or restricted-prime classification asserted. No public follow-up."
+}
