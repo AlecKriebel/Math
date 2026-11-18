@@ -1,0 +1,161 @@
+{
+  "schema": "independent-general-cyclotomic-Hecke-analytic-review-v1",
+  "record": 23205034,
+  "row": 26,
+  "model": "GPT-6.1 Sol Ultra",
+  "verdict": "PASS_FOR_THE_PINNED_GENERAL_HECKE_AND_MELLIN_DEPENDENCY_SCOPE",
+  "assessment": "The operative proof of family029 Theorem1.2 and its quantitative Mellin/auxiliary-prime use withstand this independent analytic pass. No substantive unsupported step or counterexample was found in the inspected dependency chain. This assessment discharges this reviewer's analytic-coverage task only; it is not an independent whole-paper verdict on every primitive-root or factorization chapter, a formal proof certificate, or an attribution/priority finding.",
+  "native_interface": {
+    "title": "Output-sensitive sparse factorization over finite fields from dense factorization",
+    "edition": "Deposited October6,2026 preprint; native record CC BY4.0",
+    "DOI": "10.5281/zenodo.23205034",
+    "PDF_SHA256": "6e04d462b5229ad310558afd868f21666377e7b5136fad514a7752b20ea4ea10",
+    "ZIP_SHA256": "96c4bdf7d2944b8e741fefa0fad6c112b25672af700ef5aa837e61353ef5ba68",
+    "controlling_TeX_SHA256": "fbabb3ecaf36fa49416e6b7c0bbc32e73be26902bda9d66e9f85228ef6733d58",
+    "read_scope": "Original Corollary3, proof and adjacent upstream-dependency discussion in controllingTeX and native PDF text pages7–8. No claim here to re-review all native sparse/dense algebraic reductions.",
+    "dependency": "Corollary3 substitutes family142's prime-field polynomial bound. Its unconditional theorem imports family029's general cyclotomic finite-order Hecke strip. The48-page algebraic reduction conditional on auxiliary primes is a separate review lane."
+  },
+  "exact_companion": {
+    "repository": "openai/math",
+    "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+    "title": "Primitive roots for every admissible integer base",
+    "date": "October4,2026",
+    "PDF_pages": 92,
+    "PDF_bytes": 891737,
+    "PDF_SHA256": "671ac4b3ece879f614ed8f4b782e61a07805e533f385a694fe4d7afbda3c9365",
+    "PDF_URL": "https://raw.githubusercontent.com/openai/math/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf",
+    "authentication": "Native assets freshly matched sizes, nativeMD5 and priorSHA256 pins. Companion PDF freshly matched exactbytecount/SHA256. All nine analytic/source sections authenticated against exact pinnedGitHub blob identities using independent generic blob hashing, not Git commands or imports.",
+    "claim": "For EVERY cyclotomicF containingmu12 and EVERY finite-order idele-class Hecke charactereta ofF, L_F(s,eta) has no zeros inRe(s)>1-10^-6, with the principalpole at1 permitted. There is no conductor or height cutoff.",
+    "scope_check": "The proof fixes arbitraryF andeta before choosing finiteS, vectors and weights. Only the numerical exponent is common; fixed-field constants/onsets may vary. Eta is never assumed cubic/sextic: only the moving Kummer twists have order dividing6, whileeta is a fixed arbitrary finite-order twist."
+  },
+  "proof_map": [
+    {
+      "node": "1 — arithmetic and correction characters",
+      "locator": "build/sections/02-arithmetic.tex, complete626lines; key lemmasS-lattice,balanced-generators,kummer-characters,gauss-characters",
+      "checks": "Including the trace-character different, primes over6 and all target-conductor primes in finiteS makesR=O_S selfdual with covolume1 and permitsPID after adding class-group generators. Local2/3 power-class dimensions and the S-unit injection makeE Lagrangian; an isotropic complementB gives generators unique moduloU_S^6 and exact sextic reciprocity. Balanced generators use a compact norm-one quotient, so elements per ideal are bounded at fixed shape. Global Kummer characters have conductor normO_(F,S,eta)(q_u), injectively indexed by six-power classes. Extra zero prime-values are explicit deleted factors, not silently primitive characters.",
+      "critical_calculation": "For exterior primesQ≡1(mod12), the cubic Gauss cube is additive-sign independent. Eisenstein Jacobi sums and Davenport–Hasse lift underNorm_(F/Q(omega)) yieldgamma2(p)^3=-Lambda(p), withLambda angular exponent±1 at each complex place. Quadratic Weil indices give a finite-order correctionG, and sextic duplication givesgamma1(p)gamma2(p)=-Lambda(p)G(p). Thusvartheta=barLambda*barG*eta satisfiesgamma1gamma2*vartheta=-eta. This exact negative coefficient, rather than a mere phase assertion, supplies the reciprocal targetL factor.",
+      "status": "Checked directly; named classical class-field, Hilbert-symbol, Weil-index and finite-field identities are used as standard theorem inputs."
+    },
+    {
+      "node": "2 — cubic theta normalization and archimedean profiles",
+      "locator": "03-theta.tex complete775lines and10-whittaker-calculation.tex complete495lines; actual PDF theorem5.1/appA",
+      "checks": "The chosen(c,d,n)=(2,2,3) determinant-modified cover has split central scalars and descends toPGL2. The exceptional datum is compatible with rational splitting. Actual KP local/global uniqueness statements apply, including complex places. Normalizing a nonzero global functional on a pure tensor establishes exterior Whittaker factorization without the erratum's withdrawn vanishing assertion.",
+      "critical_calculation": "The shell integral givesJ_(3k)=Q^-k J0, J_(3k+1)=Q^(-k-1/2)g2 J0, J_(3k+2)=0; the Weyl-conjugate inducing factorQ^1/2 and modular factorQ^-3/2 explain the triple-valuationQ^-1. Unit values arechi(u)^(2e), coherently with the torus cocycle. This gives the exterior coefficientgamma2(c)/(sqrt(q_c)q_n), INCLUDINGc,n overlap. The complex derivative vector supplies angular exponent±1 and radial|y|K_(1/3); constant terms have no angular part. Finite cutoff vectors and complete absolute sheet bounds justify unfolding.",
+      "smoothing": "Vhat(s)=C*A^s[Gamma(s+5/6)Gamma(s+7/6)]^r. The entire ratioexp(s^2)/Vhat(s) defines an exact Gaussian smoothing kernel with all absolute Mellin moments. Its field-dependent verticalfactor exp(pi*r*|t|) is dominated by exp(-t^2); it changes constants, not power exponents.",
+      "status": "Local calculations independently reconstructed; external governing KP theorem bodies and1985 correction inspected."
+    },
+    {
+      "node": "3 — reflection, unit descent and the quadratic pairing",
+      "locator": "04-reflection.tex complete1228lines; actual PDF Lemma6.2 and reflected expansion",
+      "checks": "Masked zeroth residue-character powers retain unit support. The j=0 digit has both zero and nonzero contributions. Combined digit sums descend underGamma=U_S^6 before integration. Weighted constant terms vanish by angular Haar invariance; a rational Weyl operation then legitimately reflects the average.",
+      "critical_calculation": "At a valuation-one row prime the nonzero-digit Weyl formula produceschi_p(t)^1. At a squarefree column prime, the reflected denominatord^-2 enters with exponent-4. Exact allowed-generator reciprocity combines them into1-4≡3(mod6), the quadratic symbol. All remaining row/column coefficients separate after freezing powerful-part data and finiteclass slices. The S-orbit substitutionv=nu/y has no multiplicative norm Jacobian and leaves only a finiteclass-dependent profile, not a hidden continuous joint weight.",
+      "hard_case": "Active powerful primes, unrestricted cube factors and sharedc',n' primes are retained explicitly. The cutoff lengthR0≈Z^epsilon D^2P/Z is common to a dyad. WhenR0<1 the retained range is empty and the absolute tail bound, not a large sieve below length1, handles the whole sum.",
+      "status": "All local/global formulas and tail/retained estimates read and checked."
+    },
+    {
+      "node": "4 — large sieve and reflected moment",
+      "locator": "04-reflection.tex lines933–1228; Goldmakher–Louvelv2 Definition1 andTheorem1.1 actualpages1–3",
+      "checks": "The primitive quadratic Kummer family has conductorc*s_c withs_c dividing one fixed S-modulus. Its infinity type is trivial. Finite ray-class data supply reciprocity and cancel S-conductors in products of coprime equal-class members, satisfying the exact external family hypotheses. Row deletion/column weighting is applied after the full-family theorem.",
+      "critical_calculation": "For a fixed powerful part, the quadratic sieve and columnmass sum_(q_c~C)q_c^-1=O_F(1) give(D+C)^1/2. Summing frozen cube factors costs logarithms, active factorsq_h^epsilon, and counting powerful ideals costsP^1/2. Squared mass isZ^epsilon P^1/2(D+D^2P/Z). PD<=Z^M0 withM0=1.033 implies totalZ^(2M0-1+epsilon). Shape/unitclass constants are fixed-field quantities, not degree-dependent powers ofZ.",
+      "status": "Checked; actual external theorem has the claimed(C+D)(CD)^epsilon strength."
+    },
+    {
+      "node": "5 — Poisson and localEuler factorization",
+      "locator": "05-poisson.tex complete765lines; proposition7.3/Equation7.12 and localcorrection",
+      "checks": "The additive lattice sieve uses norm separationV^-2 and a Fourier majorant scaled at all complex places, givingN+V^2. Probe additive mass isO(Y^-1). W0 has compact annular support, Fourierzero at0 and nonzero Mellinvalue at1/6, so the original zero row and transformed zero frequency vanish without killing the needed residue.",
+      "critical_calculation": "The finite Fourier transform modulo sA works WITHOUT(s,A)=1. Poisson normalization isX^1/2/q_A. Nonzero frequenciesh=u r^6 unfold with no shape factor. Chinese-remainder unit factors cancel across primes because2(e+3l)(e'+3l')+4ee'≡0(mod6). The stripped local sums retain absent-modulus versus unit-mask conventions; k>=2 terms vanish by a full additive lift sum. The first squarefree term is exactly-eta(p)barchi_p(u)Q^-xi.",
+      "Euler": "The series factors aszeta_F^S(6z)*L^S(w,chi_u)/L^S(xi,eta*barchi_u)*H_u. The good-prime correction differs from1 byO(Q^-1-1/4000) on the two stated neighborhoods. At primesdividingu it is1+O(Q^-1/4000), sufficient forq_u^epsilon. In the PRINCIPALu=1 row, all remaining primes are good after a fixed cutoff is put inS; the convergent Euler logarithm makesH_eta holomorphic, bounded and nowherezero nearRe(xi)>=.998, uniformly inheight.",
+      "status": "Checked normalizations, shared-prime cases, exponent margins and nonvanishing domain."
+    },
+    {
+      "node": "6 — zero detector, good reciprocals and nonprincipal rows",
+      "locator": "06-zero-free.tex lines1–646",
+      "checks": "The conductor sieve hasN+U^2 and primitive zero extension. MultiplyingL by a Möbius polynomial oflengthU^2 annihilates coefficients1<N<=U^2. At a zero withbeta>=.996, theGamma-contour shift gainsU^-3.46 before a field-dependent heightloss; a sufficiently small positive rho_F makes it negligible. Large detectable prefixes inU^2<N<=U^11 yield at mostU^(.088+rho_F+epsilon) exceptional rows, safely belowU^1/2.",
+      "critical_calculation": "For good rows the zero-free rectangles plusBorel–Carathéodory and threecircles give1/L=U^epsilon onRe(xi)>=.998 and|Im(xi)|<=2U^rho_F. Small rows and exceptional rows stay on an absolute-convergence reciprocal line; only good central rows shiftxi. Every shifted reciprocal is controlled on its exact rectangle; tails use arbitrary weight derivatives after rho_F is fixed.",
+      "margins": "Witha=.9,b=.133,h0=.1, the good central relative exponent is-.001256666..., principal remainders are below-.0006665..., and a fixedz-line350000 gives far-row exponent.44901<7/15. The tiny field-dependent rho_F changes tail constants/required derivative order, not the final numerical saving.",
+      "status": "Checked including principal denominator possibility and arbitrarily large heights."
+    },
+    {
+      "node": "7 — Mellin continuation and the exact strip",
+      "locator": "06-zero-free.tex lines647–764; actualPDFpages58–60",
+      "checks": "Reflection boundsI byZ^(933/2000+epsilon), while principal residues giveI=c0 f_eta+O(Z^(7/15-.0004)), c0 nonzero. Since7/15-933/2000=1/6000, smalllosses leavef_eta=O_(F,S,eta)(Z^(7/15-1/20000)). Shifting the original inverse Mellin line RIGHT givesf_eta=O_A(Z^A) atzero using only absolute convergence.",
+      "critical_calculation": "The transformintegral_0^infinity f_eta(Z)Z^(-s+8/15)dZ/Z is holomorphic inRe(s)>1-1/20000. Fourier inversion onRe(s)=2 identifies it with exp((s-5/6)^2)H_eta(s)/L^S(s,eta). Its numerator is nowherezero throughout that region, so a targetL zero would be an impossible pole. A principalL pole creates only a reciprocalzero. Removed finiteEuler factors have zeros onRe(s)=0 and do not change this region.",
+      "uniformity": "A fixed-field onset affects a finite integral interval and cannot shrink the convergence half-plane. Arbitrary fixedF,eta therefore give the common strip, stronger than the stated1-10^-6. This conclusion does not assert uniform theta constants or a uniform rho_F.",
+      "status": "Independent analytic implication checked; no circular use of target zero-freeness in the original/right contour."
+    },
+    {
+      "node": "8 — uniform explicitformula and nativeCorollary3 bridge",
+      "locator": "07-splitting.tex complete; family142/build/sections/10-analytic.tex complete7603bytes",
+      "checks": "Abelian Artin–Hecke factorization overF=Q(mu_(12q)) transfers the common strip toM=F(p^(1/q)). The large-characteristic condition makesp unramified inF, so X^q-p is Eisenstein at a prime abovep and[M:F]=q. Standard discriminant bounds give logD_M+[M:Q]=O(B^3), uniformly forp,q,n,L in the application.",
+      "critical_calculation": "The smoothed logarithmic-derivative explicitformula shifts to-1/2 and sums zeros absolutely. A unit-height zero countO(logD+d log(2+|T|)) and Mellin rapiddecay givePsi_M(x)=xPhi(1)+O_phi(x^(1-delta)(logD_M+d_M)), with a field-independent constant. The fixed-width theorem is used only to locate zeros; no field-dependent theta constant enters this bound.",
+      "prime_bound": "ForPsi_F(x)-q^-1Psi_M(x), the main term is(1-1/q)xPhi(1). Withx=T B^20000000 anddelta=10^-6, relativeerror isO(T^-delta B^-17). Prime powers, higher residue degrees and the finitely many bad rational primes contributeo(x) uniformly. Every other degreeone prime completely splitting inM cancels exactly, so positivity forces an auxiliaryell in(x,2x), henceell<=c0 B^20000000 with absolutec0. The search does not need to knowc0. This supplies the analytic witness bound needed by the separately reviewed algebraic reduction.",
+      "status": "Uniformity and quantifiers checked; no GRH or integer-factorization oracle inserted."
+    }
+  ],
+  "adversarial_controls": [
+    "Arbitrary finite-order eta, including order not dividing6: the moving Kummer characters have orderdividing6, but fixedeta only changes the finite excludedset and unitarytwist; its complex component is trivial. No hidden reduction to Dirichlet or a single Eisenstein field was used.",
+    "Principaleta and a possibly principal denominator row: the reciprocalzero at1 is harmless; at most one principal denominator row is included in the exceptional set. Onlyu=1 has a principal numerator.",
+    "Wild primes and smallnorm primes: they lie in finiteS, fixed before the family. Their deletion produces no positive-real-part zeros; all moving badprimes atdivisorsu are estimated separately.",
+    "Shared cube/squarefree prime: c=p,n=p gives valuation4 with Whittaker valueQ^-3/2*g2, agreeing withgamma2(c)/(sqrt(q_c)q_n). Cubefactors were not silently made coprime.",
+    "Maskedj=0 at a positive modulus differs from an absent modulus; the former remains zero on nonunits and retains both zero/nonzero Fourierdigits. Dropping this distinction would invalidate several local sums; the source preserves it.",
+    "Reflected lengthbelow1: the retained set is empty and profiledecay bounds the tail. No invocation of the quadratic sieve with a fictitious fractional column is needed.",
+    "HighdegreeF: gamma reciprocal vertical growth, S-unitclass counts and onset may be enormous, but fixedF is held constant in the first analytic argument. The later primebound uses a fresh uniform zero-count/functional-equation estimate, avoiding a nonuniformbigO substitution.",
+    "Unbounded height: zerodetection uses a field-dependent growing rectangle, while final meromorphic continuation excludes zeros on the ENTIRE half-plane, with no remaining height cutoff."
+  ],
+  "external_primary_checks": {
+    "KP": {
+      "id": "kp",
+      "URL": "https://www.numdam.org/item/PMIHES_1984__59__35_0.pdf",
+      "HTTP": 200,
+      "bytes": 10023375,
+      "SHA256": "0f91142e8fc3814981fb77e3a3f05a7359ebd4a5e9afdf5386eb357cb4f2b57e",
+      "pages": 109,
+      "read_scope": "Actual printedpp72,79,104–105,118–119,122 theorem/model bodies. CorollaryI.3.6 andTheoremII.2.5 supply the exact(d,n,c) uniqueness and global/non-tame implications;TheoremI.6.4(c)/I.6.5(c) cover complex places. Standard representation-theory proofs are imported rather than all108printedpages re-proved."
+    },
+    "KP_erratum": {
+      "id": "erratum",
+      "URL": "https://www.numdam.org/item/PMIHES_1985__62__203_0.pdf",
+      "HTTP": 200,
+      "bytes": 157152,
+      "SHA256": "4f6eb1ed12f8bd25ff54349bfd2cbd778b36d5c0fbb8ff6ddd763a0d1868e77d",
+      "pages": 2,
+      "read_scope": "Complete actual one-page correction, physicalpage2. It withdraws the auxiliary spherical vanishing assertion and replaces stabilization byC_S*T(S), ranktwoT(S)=product(1+Q_v^-1). The companion explicitly avoids the withdrawn assertion and uses nonzero global/local uniqueness normalization."
+    },
+    "Goldmakher_Louvel": {
+      "id": "gl",
+      "URL": "https://arxiv.org/pdf/1112.1642v2",
+      "HTTP": 200,
+      "bytes": 266049,
+      "SHA256": "5cc5f03388d3996b4333f07be51f989f60779fe172f8bd24c7aa6ddad64dd304",
+      "pages": 21,
+      "read_scope": "Actual fixedv2 PDFpages1–3: Definition1, Theorem1.1, primitive conductor-product convention and familyconstruction scope; no claim to re-prove its full21-page theorem."
+    },
+    "uniform_Dedekind_zero_count": {
+      "UTC": "2026-11-18T05:32:41.233864+00:00",
+      "URL": "https://arxiv.org/pdf/2102.04663v3",
+      "HTTP": 200,
+      "bytes": 231556,
+      "SHA256": "f86bc699394c6c64c06bfab787c3daec8995293f4e1ca1e930c45dbc884f4022",
+      "pages": 15,
+      "edition": "arXiv2102.04663v3,3May2021; not asserted finalpublisherPDF",
+      "read_scope": "Actual arXivv3 pages1–2, especiallyCorollary1.2 Eq1.3, not just anabstract. This explicit field-uniform bound supports the source's unit-height count by subtracting counts atT-1 andT+2; bounded heights useN_K(3). The exact same numerical estimate appears in the official AMS publicationabstract; finalpublisherPDF is not claimed obtained."
+    },
+    "access_failure_record": "An initial request to the author-offprint hostwww.math.nsysu.edu.tw failed defaultTLS hostname verification. Certificate verification was not disabled and that endpoint was not retried. The independently versioned arXivv3 primary body was then used successfully."
+  },
+  "findings": {
+    "substantive_unsupported_steps_found": [],
+    "counterexample_found": false,
+    "scope_mismatch_found": false,
+    "repairs_proposed": false,
+    "interpretation": "No scientific defect demonstrated in this inspected chain. A PASS is bounded mathematical review evidence, not proof-assistant certification or a theorem-novelty/priority adjudication."
+  },
+  "read_limits": [
+    "Read all operative analytic source sections listed above, not every line of the92-page manuscript. Unrelated controlled-predecessor, TypeII and prime-construction chapters are outside the native factorization dependency reviewed here.",
+    "The entire48-page factorization algorithm was not re-reviewed in this lane; only its exact analytic auxiliary-prime chapter was read. Parent reported the conditional algebraic lane complete.",
+    "Classical class-field theory, Hecke continuation/functional equation, Gauss–Jacobi/Davenport–Hasse and Weil identities remain named standard theorem inputs. Their use and hypotheses were examined; this report does not claim to re-prove every cited classical monograph.",
+    "No archived review conclusions, finite replay outputs, root/peer theorem verdicts or toy experiments were used as proof substitutes. Dedicated disposition was read after the new INITIAL seal to establish the hold's coverage scope.",
+    "No native scientific code or formalization was imported, compiled or executed. No empirical validation claim is made."
+  ],
+  "completion_percent": 100,
+  "UTC": "2026-11-18 05:36:25 UTC"
+}

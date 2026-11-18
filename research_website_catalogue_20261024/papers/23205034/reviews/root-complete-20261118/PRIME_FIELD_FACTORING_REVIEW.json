@@ -1,0 +1,120 @@
+{
+  "schema": "independent-bounded-family142-review-v1",
+  "inventory_row": 26,
+  "native_note_doi": "10.5281/zenodo.23205034",
+  "completed_utc": "2026-11-18T05:11:50Z",
+  "assigned_scope_completion_percent": 100,
+  "verdict": "PASS for the conditional algebraic auxiliary-prime reduction; no substantive algebraic defect found. Unconditional note Corollary 3 remains subject to the separate general cyclotomic Hecke dependency.",
+  "source": {
+    "title": "Deterministic Polynomial Factorization over Prime Fields",
+    "author": "OpenAI",
+    "date": "2026-10-04",
+    "commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+    "url": "https://raw.githubusercontent.com/openai/math/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf",
+    "pages": 48,
+    "bytes": 662250,
+    "md5": "3b0fcf6cfc684d5799ae4d14523d9831",
+    "sha256": "ed88aa5ba802311a21c4f265bcef43515a16019f4b5afdd7f52ecbd36ce0204d"
+  },
+  "native_note_bindings": {
+    "pdf_sha256": "6e04d462b5229ad310558afd868f21666377e7b5136fad514a7752b20ea4ea10",
+    "zip_sha256": "96c4bdf7d2944b8e741fefa0fad6c112b25672af700ef5aa837e61353ef5ba68"
+  },
+  "reading": {
+    "parent": "All 48 PDF pages read. Substantive independent scrutiny of finite-field tools/table, class-lift filtration and lattice separation, divisor/norm/class-division machinery, driver and uniform complexity. Pixels inspected on pp. 17, 18, 36.",
+    "independent_subreview": "Sections 5–7 completely pp. 19–34; prerequisites pp. 6–9; complete Section 10 pp. 40–44; pixels pp. 29, 31. No historical audit conclusions used."
+  },
+  "checks": [
+    {
+      "mechanism": "Dynamic evaluation, primary digits and increasing-prime table",
+      "evidence": "Zero tests expose component divergence; q comparisons per digit; distinct-degree decomposition suffices; table factorization calls have degreeq−1 and use earlier entries."
+    },
+    {
+      "mechanism": "Rational class lifts",
+      "evidence": "Frobenius minus the identity lowers the lambda filtration by one; multiplication by q lowers it by q−1. The binomial induction fixes T_m under the q^r-th power of Frobenius, where m=1+(q−1)r and q^r≤N."
+    },
+    {
+      "mechanism": "Infinity-lattice separator",
+      "evidence": "Ne belongs to lambda^(m−1)Lambda but not lambda^mLambda. Equal labels force an additional actual lattice division, contradicting this exact valuation; no prior equality of class and lattice chains is assumed."
+    },
+    {
+      "mechanism": "Divisors and promised norm equations",
+      "evidence": "Fractional ideals, compression, finite Riemann–Roch ansatz, local matrix orders and full global-section calculation avoid factoring supports. The fiber algebra is block upper triangular; trace-pairing radical gives rank-one idempotent; b^q lifts it and Ve=he gives the norm."
+    },
+    {
+      "mechanism": "Effective class division and uniform cost",
+      "evidence": "Ramification normalization proves the norm promise. Orbit partial-sum maximum solves (1−sigma)V=E. Binary correcting-function circuits handle large infinity coefficients. Explicit dimension, degree, precision and scalar-grid bounds give O(B^500000+B^100 E^20), with numericalE."
+    }
+  ],
+  "fresh_controls": {
+    "literal_primary_digit_cube_extraction": [
+      {
+        "base_prime": 13,
+        "extension": "Fp[X]/(X^3−2)",
+        "all_unit_cube_inputs": 732,
+        "primary_order": 9,
+        "pass": true
+      },
+      {
+        "base_prime": 19,
+        "extension": "Fp[X]/(X^3−2)",
+        "all_unit_cube_inputs": 2286,
+        "primary_order": 27,
+        "pass": true
+      }
+    ],
+    "augmentation_lattice_cases": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        3,
+        27
+      ],
+      [
+        3,
+        15
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        5,
+        25
+      ],
+      [
+        7,
+        7
+      ]
+    ],
+    "lattice_result": "Exactly m−1 integral divisions, followed by failure of the next division, in every listed case.",
+    "independent_rank_one_controls": {
+      "conjugated_presentations": 360,
+      "characteristic_divides_block_size_cases": 84,
+      "result": "PASS"
+    }
+  },
+  "independent_subreview_checkpoint": {
+    "utc": "2026-11-18T05:09:37.217286+00:00",
+    "sha256": "3baa9fcba3b61d4c112ec1bc05f118a4a700633927f8f24e04ff4f48ff6d4233",
+    "completed_utc": "2026-11-18T05:10:48Z"
+  },
+  "limits": [
+    "No end-to-end implementation of NormSolve, LambdaDivide or OddSplit was executed. Finite controls supplement the proof.",
+    "The 92-page family 029 general cyclotomic finite-order Hecke zero-free theorem was outside this assignment and remains a separate proof obligation.",
+    "No historical priority or proof-assistant certification was established."
+  ],
+  "conduct": {
+    "filesystem_writes": false,
+    "archive_program_replay": false,
+    "repo_site_sheet_changes": false,
+    "outreach": false
+  },
+  "receipt_origin": "Compact restoration from the completed review in conversation; no proof work redone."
+}
