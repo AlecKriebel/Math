@@ -1,0 +1,131 @@
+{
+  "record": 23384007,
+  "row": 229,
+  "title": "A parity-selected endpoint theorem for the regular dodecahedron",
+  "utc": "2026-11-18T05:37:52.513Z",
+  "completion_percent": 100,
+  "verdict": "PASS for the explicitly adopted parity-selected class and the exact two-face-diagonal discrepancy under the bare-angle reading.",
+  "native": {
+    "files": [
+      {
+        "name": "dodecahedron_endpoint.pdf",
+        "bytes": 80971,
+        "sha256": "6f4779ae15e880d49cee8aa1b964dd8c596f6c4ad3ec38665ff953f6d5f09a84",
+        "md5": "bdaca2df43a0ddef59741fc9efbb5f43"
+      },
+      {
+        "name": "dodecahedron_endpoint.tex",
+        "bytes": 15080,
+        "sha256": "e482ba7f9292e4156a8e59229c725c21adc3deed2e703bc97e888e81886c942f",
+        "md5": "9c52abb9c9857234dbc7cc9f2165615a"
+      },
+      {
+        "name": "verification-package.zip",
+        "bytes": 417021,
+        "sha256": "cd78548782ae9d5081f252672ed061a5d8892e920d598b121de356886441bcfb",
+        "md5": "b2ba761878ee549e85b2557ccfb70737"
+      }
+    ],
+    "doi": "10.5281/zenodo.23384007",
+    "version": "1.0",
+    "date": "2026-10-15",
+    "created": "2026-10-15T04:05:08.787502+00:00",
+    "updated": "2026-10-15T04:05:09.127510+00:00",
+    "nativeOrder": [
+      "dodecahedron_endpoint.pdf",
+      "verification-package.zip",
+      "dodecahedron_endpoint.tex"
+    ],
+    "printed": "15 October 2026; no numeric version in PDF"
+  },
+  "actual": {
+    "controlling": "dodecahedron_endpoint.tex",
+    "pdf_pages_text_and_rendered": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "support_verified": "255 members; canonical code and four mathematical replay entries inspected. Standalone TeX and PDF byte-match ZIP counterparts."
+  },
+  "proof": [
+    "For odd numbers of face pieces, the difference and sum conditions force initial angles in multiples of π/5. In the initial corner sector these four rays reach the two adjacent vertices and the two proper diagonals before any further face crossing. The diagonals give precisely the two extra bare-angle paths.",
+    "For even numbers of face pieces, the transported clockwise terminal edge direction −2π/5 determines q1=h(p0) on the double pentagon. Reflection and reversal return the same corner sector and tangent, removing any ambiguity from multiple sectors at the translation-surface singularity. The regular midpoint is fixed by h, so it lies at a glued-edge midpoint.",
+    "The physical half-turn about that edge midpoint reverses both intrinsic tangent coordinates and exchanges the two endpoint vertices. If these vertices were at distance two, the unique common neighbor in the girth-five graph would be fixed, contrary to the order-three rotational vertex stabilizer. Edge paths themselves have distance one.",
+    "The public face word is regular up to its first terminal vertex, at graph distance two. Its transported outgoing ray leads to relative angle 144 degrees; outward physical boundary gives a different ray. Separately the displayed coordinate identity evaluates to (425+189√5)/2, exceeding the valid word norm by 59+26√5."
+  ],
+  "primary": [
+    {
+      "url": "https://amj.math.stonybrook.edu/pdf-Springer-final/020-0170.pdf",
+      "coverage": "Figure 8 and immediately following parity paragraph, Definition 2.1, diagonal calibration and 506 shorthand, and Conjecture 3.2 on p.515."
+    },
+    {
+      "url": "https://arxiv.org/pdf/1811.04131v2",
+      "coverage": "Proposition 4.4, Theorem 4.5 and §5 midpoint mechanism. The triangle/square proposition does not supply the pentagon terminal check."
+    },
+    {
+      "url": "https://arxiv.org/pdf/2202.04892v3",
+      "coverage": "Related physical half-turn and refolding for other Platonic solids."
+    },
+    {
+      "url": "https://eulersolve.org/papers/amr-049/paper.pdf?v=ff6b9ba5f9ba",
+      "coverage": "October 9 overlapping Remark 1.2, Theorem G and Remark 7.4. Same parity distinction, endpoint theorem, mechanism and transported-type correction."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DannyExperiments/dodecahedron-short-geodesic-counterexample/7b403decdc9317f6ba3dc2c4a91243a0bf0c9ff9/proof/PROBLEM_AND_PROOF.md",
+      "coverage": "Pinned literal face data and separately advertised coordinates read."
+    }
+  ],
+  "reproduction": {
+    "check_manifest.py": {
+      "sha256_stdout": "cc1bf3a5f1961df78fb2853a695656d55206c0d8bc3d8598b26bc54e908a8bd8",
+      "stdout_bytes": 151,
+      "status": "PASS"
+    },
+    "current/run_verification.py": {
+      "sha256_stdout": "e4e2615101aeada8769261c706f2941b80dd523fe3321a088c3cd3509d20e634",
+      "stdout_bytes": 3762,
+      "status": "PASS",
+      "baselines": 8,
+      "wrong_science_rejections": 10
+    },
+    "independent/independent_exact.py": {
+      "sha256_stdout": "f1c54cba6071acc45328a4d287c3416821e9751594797c9c7685aadb73050f94",
+      "stdout_bytes": 17010,
+      "status": "checked",
+      "axes": 15,
+      "faces": 12,
+      "crossings": 15,
+      "angle": 144,
+      "length_squared_pair": [
+        "307/2",
+        "137/2"
+      ]
+    },
+    "independent/independent_face_word.py": {
+      "sha256_stdout": "ff29e3efac480de264a77cc9f357e1daa39d9ec38dc8dfb8ab26fcaf91ba7092",
+      "stdout_bytes": 2215,
+      "status": "all exact assertions passed",
+      "faces": 16,
+      "crossings": 15,
+      "interior_vertex_hits": 0
+    },
+    "independent/independent_double_pentagon.py": {
+      "sha256_stdout": "04a582f635dfe0419f7a05f1ae83c65fb261d7c6e3c5462a81fb4d008c792c49",
+      "stdout_bytes": 1450,
+      "status": "all exact assertions passed",
+      "corners": [
+        1
+      ],
+      "glued_edges": 5
+    }
+  },
+  "independent": {
+    "model": "GPT-6.1 Sol Ultra",
+    "initial_seal": "2026-11-18T05:16:14Z",
+    "mathematical_seal": "2026-11-18T05:26:23Z",
+    "primary_addendum": "2026-11-18T05:29:20Z",
+    "result": "Independent exact code checks over cyclotomic and quadratic fields, plus separate local initial-germ adversary sealed at 05:22:25: PASS. No archived-code execution claimed by that reviewer."
+  },
+  "scope": "An adopted parity disambiguation of Fuchs’s printed formulations, without author authentication or a priority or novelty claim. “Short” means first subsequent vertex, not a length bound. Self-intersections and coincident endpoints are allowed by the definition. No follow-up cleared the required bar."
+}
