@@ -1913,7 +1913,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1902 | 2308019 / AMR-022-8019 | Research Problems in Function Theory — Problem 8.19 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1903 | 2361 / EP-881 | Erdős Problem #881 | 0.0450 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1904 | 2464 / EP-1063 | Erdős Problem #1063 | 0.0450 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1905 | 3000085 / AMR-029-0085 | Strongly minimal edge cover | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1905 | 3000085 / AMR-029-0085 | Strongly minimal edge cover | 0.0450 | 5.0 | 3 | unknown | already_solved | 1/5 |  | Audited van der Zypen (2022), Lemma 2.1: existing counterexample to the individually-finite-edge target; complete credited proof and finite exchange regression in attempts/3000085_strong_edge_cover. No novelty claim; later 3-uniform theorem statement only, not independently audited. |  |
 | 1906 | 30006520 / OWR-14299904-002 | Upward Closure of Grothendieck Schubert Supports | 0.0450 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1907 | 8800088 / AMR-087-0088 | Converting between divisor-class and infrastructure discrete logarithms | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1908 | 30005119 / OWR-10252930-032 | Uncommon Pairs of Linear Equations | 0.0442 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
