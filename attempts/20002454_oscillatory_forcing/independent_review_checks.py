@@ -1,0 +1,61 @@
+"""Independent nonconvex-flux checks; numerical evidence, not proof."""
+import hashlib, json
+from pathlib import Path
+import numpy as np
+from numpy.polynomial.legendre import leggauss
+from scipy.optimize import brentq
+P = Path(__file__).resolve().parent
+
+def f(u):
+    return u * u / 2 + 2 * (1 - np.cos(u))
+
+def invf(q):
+    return brentq(lambda u: f(u) - q, 0, np.sqrt(2 * q) + 1, xtol=5e-15)
+nodes, weights = leggauss(180)
+rng = np.random.default_rng(1901002)
+checks = []
+for N in [1, 11]:
+    for edges in [np.array([0.0, 1.0]), np.array([0.0, 0.17, 0.61, 1.0])]:
+        d = np.diff(edges)
+        m = len(d)
+        hs = [1 - np.cos(2 * np.pi * N * ((a + b) / 2 + (b - a) / 2 * nodes)) for a, b in zip(edges, edges[1:])]
+        lo, hi = (2.0, 12.0)
+        L = np.sqrt(2 * (hi + 2)) + 2
+        dt = min(d) / L
+        for s in [1, -1]:
+
+            def E(C):
+                return np.array([s * np.dot(weights, [invf(C + h) for h in hcell]) / 2 for hcell in hs])
+            elo, ehi = (E(lo), E(hi))
+            bottom = np.minimum(elo, ehi)
+            top = np.maximum(elo, ehi)
+
+            def invert(u):
+                return np.array([brentq(lambda c: E(c)[i] - u[i], lo, hi, xtol=1e-12) for i in range(m)])
+
+            def T(u):
+                c = invert(u)
+                return u - dt / d * (c - np.roll(c, 1) if s == 1 else np.roll(c, -1) - c)
+            e = E(6.0)
+            u = bottom + (top - bottom) * rng.uniform(0.1, 0.9, m)
+            v = bottom + (top - bottom) * rng.uniform(0.1, 0.9, m)
+            tu, tv = (T(u), T(v))
+            c = invert(u)
+            q = np.abs(c - 6) if s == 1 else -np.abs(np.roll(c, -1) - 6)
+            residual = np.abs(tu - e) - np.abs(u - e) + dt / d * (q - np.roll(q, 1))
+            if not (np.min(tu - bottom) > -1e-10 and np.min(top - tu) > -1e-10):
+                raise RuntimeError('independent mathematical check failed: np.min(tu - bottom) > -1e-10 and np.min(top - tu) > -1e-10')
+            if not abs(d @ (tu - u)) < 1e-10:
+                raise RuntimeError('independent mathematical check failed: abs(d @ (tu - u)) < 1e-10')
+            if not d @ np.abs(tu - tv) <= d @ np.abs(u - v) + 1e-10:
+                raise RuntimeError('independent mathematical check failed: d @ np.abs(tu - tv) <= d @ np.abs(u - v) + 1e-10')
+            if not max(residual) < 1e-10:
+                raise RuntimeError('independent mathematical check failed: max(residual) < 1e-10')
+            if not max(abs(T(e) - e)) < 1e-10:
+                raise RuntimeError('independent mathematical check failed: max(abs(T(e) - e)) < 1e-10')
+            if not min(T(np.maximum(u, v)) - T(np.minimum(u, v))) > -1e-10:
+                raise RuntimeError('independent mathematical check failed: min(T(np.maximum(u, v)) - T(np.minimum(u, v))) > -1e-10')
+            checks.append(dict(N=N, cells=m, branch=s, entropy_residual=float(max(residual))))
+result = dict(status='PASS', scope='Independent nonconvex-flux numerical checks only', checks=checks, bindings={name: hashlib.sha256((P / name).read_bytes()).hexdigest() for name in ['MATHEMATICAL_AUDIT.md', 'verify.py', 'independent_review_checks.py']})
+(P / 'INDEPENDENT_CHECK_RESULTS.json').write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps(result, indent=2))
