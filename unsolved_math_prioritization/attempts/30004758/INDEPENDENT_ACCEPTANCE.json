@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "audit_date_utc": "2026-10-21",
+  "audit_type": "Independent mathematical acceptance review",
+  "decision": "ACCEPTED_AS_PARTIAL_RESULT",
+  "reviewed_report": {
+    "path": "research_nonpolyhedral_1887_20261021/AUDIT_AND_FIVE_APPROACHES.md",
+    "sha256": "acd7597cc351e15516db0e30a6c6b9525160e7a6c9a81d567c23ada3e4079519",
+    "bytes": 14105
+  },
+  "scope": {
+    "full_report_read": true,
+    "broad_problem_resolved": false,
+    "novelty_certified": false,
+    "theorem_1_5_refuted": false,
+    "new_issue_requiring_report_change": false,
+    "acceptance_statement": "The report is accepted as a restricted proof repair, explicit examples, and carefully delimited audit findings. The broad original problem remains unresolved. This acceptance is not a novelty certification or a validation of unrestricted C1 existence."
+  },
+  "source_checks": [
+    {
+      "source": "OWR 35/2021, printed pages 1884-1886",
+      "url": "https://ems.press/content/serial-article-files/46911",
+      "checked": "The original problems include higher dimensions, persistence under changes of masses, geometry of the singular-solution locus, and tangent behavior. Problem 5 extends these questions to nonpolyhedral obstacles. The report does not collapse this program into an existence example."
+    },
+    {
+      "source": "Mooney-Rakshit, arXiv:2204.11365v1, Proposition 2.1 and Remark 2.2",
+      "url": "https://arxiv.org/html/2204.11365v1",
+      "checked": "Inspected the original Perron assumptions and the explicitly permitted class with outer boundary inequality. Also verified that the source treats polyhedral examples and stability, not unrestricted curved-boundary regularity."
+    },
+    {
+      "source": "Rakshit-Sen, arXiv:2605.19142v3, Theorem 1.5, Theorem 2.2, Lemma 2.3 and section 4.4",
+      "url": "https://arxiv.org/html/2605.19142v3",
+      "checked": "Independently inspected the supplied source text. Theorem 1.5 permits an open convex C1 set without boundedness; section 4.4 gives the short quadratic-or-smooth-convex-obstacle reduction. The exterior regularity statement quoted in section 2 has a bounded convex excluded set."
+    }
+  ],
+  "checks": [
+    {
+      "claim": "Exact finite-ball Perron hypotheses",
+      "status": "PASS",
+      "details": [
+        "Use n>=2, a compact full-dimensional convex body K with C2 boundary, 0 in int K, and K contained strictly in B_epsilon. Choose R>1 with epsilon<rho<1<R. The Perron domain U=B_R is bounded and strictly convex.",
+        "The outer data phi=W_n+10 extend continuously to the closed ball. The obstacle equals q on the closed set boundary K and +infinity elsewhere; it is lower semicontinuous. On boundary B_R it is infinite and therefore strictly exceeds phi. The measure dx is finite on B_R.",
+        "The radial D=W_n-W_n(epsilon) is continuous and convex, has MA at least dx, is at most zero on K, and has outer values below phi. It is admissible in the boundary-inequality class justified by the original Remark 2.2; equality of its outer data is not required.",
+        "Perron maximality gives MA=dx away from the obstacle support. This fact alone is not used to assert regularity on arbitrary geometries; the interior comparison and bounded-exterior regularity arguments are separate."
+      ]
+    },
+    {
+      "claim": "Compact-C2 barrier construction and comparison",
+      "status": "PASS",
+      "details": [
+        "Phi=q+a dist(.,K) is convex and strongly convex with quadratic modulus, so its absolutely continuous MA density is at least one and any singular part is nonnegative. It is a lower admissible barrier, not an exact det=1 solution outside K.",
+        "There are simultaneous choices of parameters satisfying the strict patch inequality. For example, rho<=1/8, a=1/16, epsilon<=rho/8 give W_n(epsilon)<=2 epsilon, D(rho)>=3rho/4, and Phi on boundary B_rho at most rho^2/2+a(rho+epsilon)<D(rho). Shrink the original body to fit strictly inside B_epsilon.",
+        "The strict inequality makes max(Phi,D) agree with D in a neighborhood of the patch sphere. Thus the pasted function is globally convex, retains MA>=dx, and satisfies the obstacle and outer inequalities.",
+        "The lower barrier equals q at every boundary point of K, forcing full Perron contact. The Perron equation inside K and boundary comparison with q give u_R=q throughout K.",
+        "Because 0 is in int K, u_R=q on a fixed neighborhood of the origin. Comparison with W_n+10 on punctured balls is therefore legitimate and produces uniform upper bounds. Together with D these yield finite locally uniform convex subsequential limits.",
+        "The limit has MA=dx off boundary K. It equals q inside K, and the cited exterior smoothness theorem applies on the open exterior of the bounded convex body. It is not being applied to an unbounded excluded set or across the singular boundary."
+      ]
+    },
+    {
+      "claim": "Boundary subgradients and normal-tube mass",
+      "status": "PASS",
+      "details": [
+        "The differentiable quadratic trace fixes every tangential component of a boundary subgradient. Interior equality with q rules out inward normal offsets and supplies the endpoint x. The touching lower barrier supplies every offset t in [0,a].",
+        "Consequently the boundary subdifferential is x+[0,T(x)]nu(x), with a<=T(x)<=M. Finiteness and local convex bounds near the compact boundary give a uniform M; the resulting endpoint function is measurable.",
+        "For t>=0, the map F(x,t)=x+t nu(x) has nearest-point projection x onto K and is injective. With the outward normal convention for convex K its Jacobian is product_i(1+t kappa_i).",
+        "The area formula therefore gives f(x)=integral_0^T(x) product_i(1+t kappa_i(x)) dt. Compact C2 curvature bounds imply a<=f<=M(1+M kappa_max)^(n-1). No curvature lower bound or strict positive curvature is needed."
+      ]
+    },
+    {
+      "claim": "Quadratic scaling, spherical family, and affine covariance",
+      "status": "PASS",
+      "details": [
+        "For y=lambda x and U(x)=lambda^(-2)u(lambda x), D2U(x)=D2u(lambda x). Its surface density is f_U(x)=lambda^(-1)f_u(lambda x). Positivity and finite upper bounds persist on scaling back.",
+        "For the radial exterior derivative p(r)=(r^n+C)^(1/n), p prime times (p/r)^(n-1)=1. The interior quadratic avoids a point mass at zero. The boundary gradient annulus has volume omega_n C; dividing by n omega_n R^(n-1) gives f=C/(n R^(n-1)).",
+        "The radial function is convex, strictly convex, and smooth away from the shell. The normal jump is (R^n+C)^(1/n)-R. Its n>=3 tail is -C/[n(n-2)] r^(2-n) after an additive constant; for n=2 the correction is (C/2) log r+O(1).",
+        "For det A=1 and v(y)=u(A^(-1)y), the bulk determinant remains one. The surface Jacobian is |A^(-T)nu|, so the transported surface density is f/|A^(-T)nu|. Affine additions and translations do not change the stated determinant computation.",
+        "The same quadratic asymptote does not fix the shell mass when the right-hand side is allowed to vary. The report does not claim failure of uniqueness for a fixed right-hand side with fully specified asymptotics."
+      ]
+    },
+    {
+      "claim": "Unrestricted-obstacle and C1-method limitations",
+      "status": "PASS",
+      "details": [
+        "A finite convex function bounded above on a whole hyperplane has constant trace there. For zero affine obstacle its boundary subgradient union has only normal components, hence zero n-dimensional measure in n>=2. This defeats the unrestricted any-smooth-convex-obstacle parenthetical, not the existence theorem with another obstacle.",
+        "In dimension two the boundary MA of q+a dist(.,K) is a ds+(a^2/2)dtheta. This follows from the normal strip formula, including its curvature-measure version for convex C1 curves.",
+        "A continuous nondecreasing Cantor tangent angle spanning pi on one unit arclength interval, followed by its centrally symmetric copy, gives a closed convex regular C1 curve. Its turning measure is nonzero on an arclength-null set E. The positive-width normal tube over E has area (a^2/2)dtheta(E).",
+        "A fixed-width touching lower barrier transfers those subgradients to the Perron solution, forcing positive MA(E), incompatible with a surface measure f ds alone. This is a rigorous limitation of this particular C1 extension mechanism. It is not a proof that Theorem 1.5 is false or that no other trace or construction could succeed."
+      ]
+    },
+    {
+      "claim": "Transmission, stability, and tangent conclusions",
+      "status": "PASS_WITH_STATED_LIMITS",
+      "details": [
+        "The transmission integral is strictly increasing in T, but it supplies only a pointwise algebraic jump condition. The report properly leaves compatibility with the exterior Dirichlet problem and infinity data unresolved.",
+        "Local uniform convex convergence gives weak MA convergence, not an L-infinity surface-density estimate or automatic persistence of the full nonsmooth locus. The exact family with C decreasing to zero demonstrates disappearance of the shell singularity.",
+        "The proposed deformation program does not claim proved invertibility, a moduli theorem, or general shape stability. The cofactor linearization is correct.",
+        "The first directional convex blow-up is the support function of the subdifferential. For the segment at the boundary it is x0 dot z+T(x0)max(nu(x0) dot z,0). The exact radial exterior Hessian eigenvalues are (R/beta)^(n-1) normally and beta/R tangentially.",
+        "These first-order and exact radial second-order computations do not resolve general Hessian asymptotics, junction geometry, or the original point-mass tangent questions."
+      ]
+    }
+  ],
+  "qualifications": [
+    "The independent review checks the supplied report and the mathematical use of the cited Perron/exterior results; it does not reprove those established external theorems.",
+    "The report remains partial. General C1 or unbounded-domain existence, prescribed density, arbitrary-shape persistence, moduli classification, and the broad original tangent questions are not accepted as resolved.",
+    "This file records mathematical acceptance only. It does not authorize or certify publication, queue completion, priority, or novelty.",
+    "Acceptance is bound to the exact SHA256 and byte count above. Any later report change requires a new or updated review."
+  ]
+}
