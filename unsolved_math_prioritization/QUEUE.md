@@ -1919,7 +1919,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1908 | 30005119 / OWR-10252930-032 | Uncommon Pairs of Linear Equations | 0.0442 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 1909 | 30001941 / OWR-11453-002 | Sharp Free-Energy Decay for Fast Diffusion | 0.0441 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 1910 | 30002271 / OWR-12330-013 | Counterexamples to Averaged Local Fractional-Coloring Bounds | 0.0440 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 1911 | 30003699 / OWR-15987-008 | Coefficient Complexity of Braid-Matroid Kazhdan–Lusztig Polynomials | 0.0434 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 1911 | 30003699 / OWR-15987-008 | Coefficient Complexity of Braid-Matroid Kazhdan–Lusztig Polynomials | 0.0434 | 5.0 | 3 | 2018 | unsolved | 1/5 |  | Partly superseded / scope blocked: original leading-coefficient subquestion resolved by credited prior literature. Proved scoped PREFIX-KL upper bound using established Z recurrence: O(N^3) integer operations and O(N^5 log^2(N+1)) schoolbook bit time for numerical N. Unspecified original complexity target is not closed; no novel algorithm or full solution claimed. One integrated audit, not five attempts or three research turns. Audit: attempts/30003699_braid_complexity. |  |
 | 1912 | 30004105 / OWR-16775-009 | Theta Invariants and New Families of MRD Codes | 0.0432 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1913 | 30004511 / OWR-1703875-003 | Sharp Waiting-Time Estimates for Variational PDE Discretizations | 0.0431 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 1914 | 30004931 / OWR-8415360-010 | Optimal Neural-Network Depth for Sparse Recovery | 0.0429 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
