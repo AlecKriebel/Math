@@ -1,0 +1,68 @@
+{
+  "checked_utc": "2026-11-22T18:53:41.249039+00:00",
+  "rebuild_command": "python3 scripts/run_lean.py",
+  "project_module_count": 68,
+  "fresh_project_build": "passed",
+  "protected_source_files_equal_working_tree_and_october_ci": 104,
+  "public_theorems_axiom_audited": 826,
+  "union_of_proof_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "statement_contract_examples": {
+    "validation/FiniteLabelContracts.lean": 12,
+    "validation/FiniteStochasticContracts.lean": 5,
+    "validation/HilbertContracts.lean": 13,
+    "validation/HilbertFiniteLabelContracts.lean": 13,
+    "validation/PhysicalContracts.lean": 11,
+    "validation/Statements.lean": 14,
+    "validation/StochasticContracts.lean": 10
+  },
+  "fresh_expanded_physical_endpoint": {
+    "source": "hardening_audit_20261024/MainEndpointProbe.lean",
+    "sha256": "8bd0aae0d46442f47c8978bd735ea50825aa86c586b9c45c96c9207bf5456d5b",
+    "exit_code": 0,
+    "result": [
+      "'Bell.two_input_convex_equality' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'Bell.HilbertFiniteLabels.finite_source_projective_simulation' depends on axioms: [propext,",
+      " Classical.choice,",
+      " Quot.sound]",
+      "'Bell.HilbertFiniteLabels.at_most_two_input_equality' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    ]
+  },
+  "replay_command": "python3 hardening_audit_20261024/run_replay.py --root /path/to/fresh/bell_lean",
+  "replay_endpoints": [
+    "Bell.two_input_convex_equality",
+    "Bell.HilbertFiniteLabels.at_most_two_input_equality",
+    "Bell.HilbertFiniteLabels.finite_source_projective_simulation"
+  ],
+  "replay_controls": [
+    "CONTROL valid accepted",
+    "CONTROL malformed proof rejected: (kernel) declaration type mismatch, 'ReplayFixture.invalid' has type",
+    "CONTROL retyped standard axiom rejected: Standard axiom signature mismatch: propext",
+    "CONTROL changed core inductive rejected: Trusted Init declaration differs: True",
+    "PASS positive, malformed-proof, retyped-axiom, and changed-core controls"
+  ],
+  "replayed_declarations": 33644,
+  "replayed_modules": 1271,
+  "project_command_logs_match_receipt": true,
+  "replay_command_logs_match_receipt": true,
+  "original_artifact_sha256": {
+    "axiom_audit.json": "4c52edb5ee69fdd23b13cd4643a23c7618be02409402c6714edc13f2a877627e",
+    "statement_audit.json": "585ee042e50fb1dfa6d50ddc7b1c841ba5163634e98dbc2fde46be226e6ce541",
+    "source_snapshot.json": "2d29e8d89047dc53e5a680cddb3b8126a8d53169972011f6aa02d0bfc0229eb0",
+    "lean_kernel_20261122.json": "780b80932864576a86eb2bc30bedb4d8fbcbf32f8e34ce49817e9bcf386f7b31",
+    "lean_replay_20261122.json": "a7aa01f58df3b7bc4faf0a90e8cb1f66d164d44a8e2bd1722db9e5d74b6594d5",
+    "lean_endpoint_20261122.txt": "3cd47f9b1edabf9d1ea9b2b9671402f81e10b9303cc35ab6be5e6a739a2fb3c8",
+    "replay/compiled_input_hashes.json": "3923a2739ae24160c74bb5762659428a8abe5cfd364efc9f89a328c85b1de455",
+    "replay/compiler_commit.log": "4402afd860f233a20da602a3020feb7bf662fe0406ffbeacf7de66716f6521f3",
+    "replay/compiler_version.log": "adae83ba7663543abb21a1527013239eb469a7dbff15bea8c52d90901b42cc65",
+    "replay/controls.log": "bc06846427d24f51a08d65c378ef8bf1dce3f337b27264f2f1e7ea3030df423f",
+    "replay/inventory.log": "fe814949b04e886b12fe1c202a6ff4c9a79dff57400cd42b5508a3cf2ea6dde4",
+    "replay/inventory_before.json": "d8ad01ab9db409011d99053189e32431628fc9fa413f1700b464febc38f9c57a",
+    "replay/inventory_replayed.json": "d8ad01ab9db409011d99053189e32431628fc9fa413f1700b464febc38f9c57a",
+    "replay/main.log": "edb9f50c7a4c914cf3003e37bda8a20cdd3b109675e95691e023672dd0f2e36a"
+  },
+  "trust_boundary": "Fresh project outputs and contracts on pinned Lean 4.19.0 with the nine pinned dependency checkouts and prepared compiled dependency artifacts. Three equality/simulation endpoints additionally replayed into the same empty kernel. This run did not independently rebuild Mathlib from source or use a second kernel."
+}
