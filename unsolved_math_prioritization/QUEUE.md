@@ -1875,7 +1875,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1864 | 20001237 / AIM-COMPUTATION-0075 | Saturation-aware exceptional likelihood fibers and the 2x2 independence locus | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1865 | 20001341 / AIM-CRYPTOGRAPHY-0028 | Explicit near-minimal units from the golden-ratio radical | 0.0495 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1866 | 2218 / EP-624 | Erdős Problem #624 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1867 | 2225 / EP-635 | Erdős Problem #635 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1867 | 2225 / EP-635 | Erdős Problem #635 | 0.0495 | 5.0 | 1 | unknown | unsolved | 5/5 |  | 2026-10-21: UNSOLVED after five approaches for sharper unrestricted excess; fixed-threshold half-density result attributed as previously solved. Scoped all-odds/powers optimum, spaced-valuation lower bound, rational restricted finite-state slope, weak doubling-forest upper bound and matching obstruction. 305 witnesses,108 independent subset optima and232 constructions are distinct bounded checks. No unrestricted sharp bound or novelty claim. [Research and audit](../divisible_difference_sets_2225/RESEARCH_REPORT.md). |  |
 | 1868 | 2285 / EP-734 | Erdős Problem #734 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1869 | 2299 / EP-776 | Erdős Problem #776 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1870 | 2401 / EP-949 | Erdős Problem #949 | 0.0495 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
