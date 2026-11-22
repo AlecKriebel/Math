@@ -2,10 +2,65 @@
 {Exact algebra for the \(3\times2\) separation}
 \label{app:separation-algebra}
 
-We record the scalar identities in the manuscript projective-bound route.
-The formal physical bound instead uses the operator SOS certificate described
-in \cref{sec:separation}; not every physical-to-scalar step below is a
-separate Lean theorem. For a pair involving auxiliary label \(2\), let
+\subsection{Rational Gram certificate for the projective bound}
+\label{app:sos-gram}
+
+For the auxiliary labels \(\{0,2\}\), choose the sign of \(A_2\) so that
+its positive outcome has label \(0\). Use the ordered words
+\[
+W=(\id,A_0,A_1,A_2,B_0,B_1,A_0B_0,A_0B_1,A_1B_0,A_1B_1,A_2B_0,A_2B_1).
+\]
+Operators on opposite parties commute. Let \(\widehat{\Bell}_{02}\) denote the
+Bell operator on this support, as in \cref{sec:separation}. Its gap from
+\(289/10\) has the identity
+\[
+\frac{289}{10}\id-\widehat{\Bell}_{02}
+ =\frac{1}{600}\sum_{i,j=1}^{12}G_{ij} W_i^\dagger W_j ,
+\]
+where the integer numerator is
+\begingroup
+\small
+\setlength{\arraycolsep}{2pt}
+\[
+G=\left(\begin{array}{*{12}{r}}
+5127 & -24 & 1 & 7 & -9 & -19 & -1810 & -1809 & -1788 & 1788 & -23 & 30 \\
+-24 & 1670 & 1 & -2 & -1190 & -1191 & 8 & -8 & 20 & -13 & -3 & -3 \\
+1 & 1 & 1718 & 11 & -1212 & 1212 & -20 & 13 & -39 & -39 & 2 & -2 \\
+7 & -2 & 11 & 27 & -22 & 30 & 3 & 3 & -2 & 2 & -5 & 6 \\
+-9 & -1190 & -1212 & -22 & 1712 & -18 & 3 & -2 & 26 & 17 & 3 & 0 \\
+-19 & -1191 & 1212 & 30 & -18 & 1723 & 2 & 21 & -17 & -27 & 0 & 5 \\
+-1810 & 8 & -20 & 3 & 3 & 2 & 1283 & 644 & 628 & 0 & 18 & 0 \\
+-1809 & -8 & 13 & 3 & -2 & 21 & 644 & 1277 & 0 & -629 & 0 & -16 \\
+-1788 & 20 & -39 & -2 & 26 & -17 & 628 & 0 & 1273 & -625 & -8 & 0 \\
+1788 & -13 & -39 & 2 & 17 & -27 & 0 & -629 & -625 & 1269 & 0 & -3 \\
+-23 & -3 & 2 & -5 & 3 & 0 & 18 & 0 & -8 & 0 & 25 & -1 \\
+30 & -3 & -2 & 6 & 0 & 5 & 0 & -16 & 0 & -3 & -1 & 26 \\
+\end{array}\right).
+\]
+\endgroup
+The identity can be checked by moving each \(B_y\) past the \(A_x\)'s
+and cancelling adjacent copies of the same involution. In particular the
+constant coefficient on the right is
+\(\Tr(G)/600=289/10-7/20\). For a positivity check, let
+\(\Delta_k=\det G_{1:k,1:k}\) and \(\Delta_0=1\).
+Exact elimination on the displayed integers gives
+\[
+\begin{aligned}
+(\lfloor 10\Delta_k/\Delta_{k-1}\rfloor)_{k=1}^{6}
+ &= (51270,16698,17179,269,8,10),\\
+(\lfloor 10\Delta_k/\Delta_{k-1}\rfloor)_{k=7}^{12}
+ &= (4199,5263,242,252,5,11).
+\end{aligned}
+\]
+All the ratios are positive. Sylvester's criterion gives \(G>0\), so the
+right side of the operator identity is positive semidefinite. The exact
+Gram factorization and the word-by-word identity are also verified in
+\path{Bell/SOSCertificate.lean} and \path{Bell/ProjectiveSOS.lean}.
+
+\subsection{Scalar estimates for the analytic bound}
+
+For the alternative bound \(U\) in \cref{sec:separation}, consider
+a pair involving auxiliary label \(2\). Let
 \[
 K_{\bm n}=\frac35D \Pi(\bm n)D,\qquad
 K_{\bm m}=\frac45D \Pi(\bm m)D,
@@ -139,8 +194,15 @@ dual operator
 \operatorname{diag}\!\left(
 \frac25(1+\eta),\frac6{25}(1-\eta)\right)
 \]
-dominates all three weighted steered score operators and annihilates the
-corresponding effect ranges. Hence
+dominates the three weighted steered score operators \(K_j\) from
+\cref{sec:separation}. Indeed, for \(v_\pm=(1,\pm k)^T\) the slacks are
+\[
+\Gamma-K_0=\frac{1+\eta}{4}v_-v_-^T,\qquad
+\Gamma-K_1=\frac{1+\eta}{4}v_+v_+^T,\qquad
+\Gamma-K_2=\frac6{25}(1-\eta)|1\rangle\langle1|.
+\]
+Each slack annihilates the range of its matching effect \(M_j\).
+Consequently \(T=\sum_j\Tr(K_jM_j)=\sum_j\Tr(\Gamma M_j)\), giving
 \[
 T=\Tr\Gamma=\frac{16+4\eta}{25},
 \qquad
@@ -164,7 +226,11 @@ prove \(L_1>U\).
 The attained value in \cref{prop:strengthened-strategy} is a formal endpoint.
 The particular dual-slack calculation above and the differentiation and
 uniqueness argument below are retained manuscript calculations.
-Within the one-parameter family used above,
+Vary \(\eta\in[0,1]\) in the construction above, keeping Bob's observables,
+taking \(k(\eta)=\frac35\sqrt{(1-\eta)/(1+\eta)}\), and choosing Alice's
+first two observables to maximize the CHSH value, which is then
+\(2\sqrt{2-\eta^2}\). The dual-slack identities hold for every such
+\(\eta\). Within this one-parameter family the Bell value
 \[
 f(\eta)=20\sqrt{2-\eta^2}+\frac{16+4\eta}{25}
 \]
@@ -188,18 +254,15 @@ Bloch lift in the plane of the two axes has norm one; a perpendicular
 component would exceed the Bloch ball. Thus the positive lift in
 \(\operatorname{span}_{\R}\{\id,B_0,B_1\}\) is unique and rank one.
 
-If the Bloch axes are parallel or antiparallel, the image is the cone over an
-interval and has two extreme rays. Every positive relation reduces to
-one-versus-one cancellations or a two-versus-two relation with repeated
-zero-padded outcomes. The same purification construction applies.
-
-If one observable is scalar and the other nondegenerate, the image is again
-two-dimensional; the scalar input is deterministic and does not add a
-coordinate. If both are scalar, Bob is deterministic on both inputs and the
-behavior is local. A rank-deficient circuit sum \(\Omega\) forces all lifted
-rays to be collinear and is realized by a product purification. Zero effects
-receive zero projectors. These cases also show that circuit weights remain
-nonnegative and sum to one at the boundary.
+Parallel or antiparallel axes and scalar observables all give commuting
+\(B_0,B_1\). Choose a common eigenbasis. Measuring in this basis gives
+a hidden variable whose value fixes Bob's outcome for each input. Alice
+uses her response distribution conditional on that value. Sampling a
+response for each of Alice's two inputs gives a finite mixture of
+deterministic behaviors, including the case of two scalar observables.
+In the noncommuting case, a rank-one circuit sum \(\Omega\) forces its
+nonzero positive summands to lie on the same ray and admits a product
+purification. A circuit of zero weight can be omitted.
 
 \section{Extremal qubit POVMs and the rank-square bound}
 \label{app:extremal-povm}
@@ -225,15 +288,22 @@ three-dimensional span, it leaves exactly three rank-one effects.
 \section{Finite-dimensional POVM duality}
 \label{app:duality}
 
-This general dual-attainment and complementary-slackness argument is
-retained as a manuscript proof. It is not used by the formal proof of
-strict multiplier positivity, which uses \eqref{eq:deterministic-score-gap}.
+At a fixed input the POVM optimization has a dual formulation.
+The strict sign in the main proof follows from the deterministic
+replacement identity \eqref{eq:deterministic-score-gap}.
 
-Let
+\begin{lemma}[Finite POVM duality]
+\label{lem:povm-duality}
+Let \(K_j\) be Hermitian operators on a finite-dimensional Hilbert space \(\mathcal H\),
+indexed by a nonempty finite set. If a POVM \((N_j)_j\) attains
 \[
-V=\max_{\substack{N_j\ge0\\\sum_jN_j=\id}}
-\sum_j\Tr(K_jN_j).
+V=\max_{\substack{N'_j\ge0\\\sum_jN'_j=\id}}\sum_j\Tr(K_jN'_j),
 \]
+there exists a Hermitian \(\Gamma\) such that \(\Tr\Gamma=V\),
+\(\Gamma\ge K_j\), and \((\Gamma-K_j)N_j=0\) for every \(j\).
+\end{lemma}
+
+\begin{proof}
 Weak duality says that every \(\Gamma\ge K_j\) obeys
 \[
 \sum_j\Tr(K_jN_j)\le\Tr\Gamma.
@@ -243,10 +313,12 @@ For the reverse direction, consider the closed cone
 \mathcal C=
 \left\{\left(\sum_jX_j,\sum_j\Tr(K_jX_j)-t\right):
 X_j\ge0,\ t\ge0\right\}
-\subset\Herm(2)\times\R.
+\subset\Herm(\mathcal H)\times\R.
 \]
-Closedness follows because convergence of \(\sum_jX_j\) bounds every
-\(0\le X_j\le\sum_kX_k\).
+Closedness follows by passing to a convergent subsequence of the
+finitely many \(X_j\). Convergence of \(\sum_j X_j\) bounds each
+\(0\le X_j\le\sum_kX_k\), and convergence of the second coordinate then
+determines the limit of \(t\).
 
 The point \((\id,V+\eps)\) is outside \(\mathcal C\). Nearest-point
 separation provides a nonzero functional
@@ -276,6 +348,52 @@ At a primal optimum,
 Each term is nonnegative, hence zero. For \(A,B\ge0\),
 \(\Tr(AB)=0\) implies \(A^{1/2}BA^{1/2}=0\), and therefore \(AB=0\).
 This proves complementary slackness.
+\end{proof}
+
+\begin{lemma}[Determinant pullback for one input]
+\label{lem:determinant-pullback}
+At a stationary residual strategy, fix one Bob input \(y\), write its effects
+as \(N_{j|y}\), and let \(K_{j|y}\) be their Bell score operators. There is a
+Hermitian normalization multiplier \(\widehat\Gamma_y\) such that
+\begin{equation}
+\label{eq:effect-kkt}
+K_{j|y}-\widehat\Gamma_y+
+4|\det\Xi|^2\lambda_{j|y}\operatorname{adj}(N_{j|y})=0
+\end{equation}
+for every outcome \(j\). Here, for
+\(N=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)\),
+\[
+\operatorname{adj}(N):=
+\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
+\]
+is the matrix adjugate.
+\end{lemma}
+
+\begin{proof}
+By \cref{lem:lorentz-representation},
+\[
+F_j=(Pr_j)^Tg^{-1}(Pr_j)
+=4|\det\Xi|^2r_j^Thr_j
+=4|\det\Xi|^2\det N_{j|y}.
+\]
+For an arbitrary Hermitian variation \(\Delta N\),
+\[
+d(\det)_N[\Delta N]=\Tr(\operatorname{adj}(N)\Delta N),
+\]
+as follows by differentiating \(ad-bc\). Hold the state, Alice's
+measurements, and Bob's other input fixed. The first variation of the Bell
+objective is \(\sum_j\Tr(K_{j|y}\Delta N_{j|y})\). For variations
+satisfying \(\sum_j\Delta N_{j|y}=0\), normalization contributes zero to
+the pullback of \eqref{eq:lagrange}. It follows that
+\[
+\sum_j\Tr\!\left[
+\left(K_{j|y}+4|\det\Xi|^2\lambda_{j|y}\operatorname{adj}(N_{j|y})\right)
+\Delta N_{j|y}\right]=0 .
+\]
+Vary any two outcomes by opposite arbitrary Hermitian matrices. The trace
+pairing shows that the two coefficients coincide. Their common value is
+the required \(\widehat\Gamma_y\).
+\end{proof}
 
 \section{Square completion for the incidence Hessian}
 \label{app:square-completion}
@@ -321,239 +439,57 @@ This expansion also fixes the sign convention used at a Bell maximum.
 \section{Projective fibers of the quadratic null-ray map}
 \label{app:fibers}
 
-Let
-\[
-\mathcal N_g=\{[x]\in\mathbb{RP}^3:x^Tgx=0\}
-\]
-for a strict metric \eqref{eq:metric}. To avoid collisions with the state and
-metric notation, write
-\[
-\Phi(x)=
-\bigl(\xi_0(x),\xi_1(x),\xi_2(x),\xi_3(x)\bigr),
-\]
-where
-\[
-\begin{aligned}
-\xi_0(x)&=x_2(x_0+x_3),&
-\xi_1(x)&=x_3(x_0+x_2),\\
-\xi_2(x)&=x_2(x_1+x_3),&
-\xi_3(x)&=x_3(x_1+x_2).
-\end{aligned}
-\]
-For a fixed target we suppress the argument \(x\).
+Fix a strict metric \(g\) of the form \eqref{eq:metric}. We prove
+\cref{prop:fiber} on its real projective null quadric. Write
+\(R=[r_1\ \cdots\ r_5]\). Any four columns are independent because
+the first four are the standard basis and \(r_5=(1,1,-1,-1)^T\)
+has all coordinates nonzero.
 
-\subsection{Base locus and generic inverse}
+Consider the space \(\mathcal V\) of real symmetric \(4\times4\)
+matrices \(D\) such that \(r_i^TDr_i=0\) for all \(i\). Under the trace
+pairing, \(\mathcal V^\perp=\operatorname{span}\{r_i r_i^T:1\le i\le5\}\).
+The first four matrices span the diagonal and the fifth has nonzero
+off-diagonal entries, so the five are independent. Hence \(\dim\mathcal V=5\).
+A basis is \(g,H_a,H_b,H_c,H_d\), where \(H_p=\partial g/\partial p\).
+Indeed, \(r_i^Tg r_i=0\) holds identically in the parameters, so all five
+forms vanish on the frame. The four derivatives are independent by
+inspection of the upper-right \(2\times2\) block of \eqref{eq:metric}.
+The binary--binary off-diagonal entry is \(1/2\) in \(g\) and zero in
+each derivative. In the order \(a,b,c,d\), the four values \(x^T H_p x\)
+are precisely the entries of \(2\Phi(x)\).
 
-If \(x_2=x_3=0\), nullness gives \(x_0x_1=0\), hence \(r_1,r_2\).
-If exactly one of \(x_2,x_3\) vanishes, the remaining equations give
-\(r_3\) or \(r_4\). If \(x_2x_3\ne0\), all four components of \(\Phi\)
-vanish only when
-\[
-x_0=x_1=-x_2=-x_3,
-\]
-the ray \(r_5\). Thus the base locus consists exactly of the five coefficient
-rays.
+For \(D=\sum_i c_i r_i r_i^T\), let \(S=\{i:c_i\ne0\}\) and \(s=|S|\).
+If \(s\le4\), then \(D=R_S\operatorname{diag}(c_i)_{i\in S}R_S^T\)
+has rank \(s\). The transpose \(R_S^T\) is surjective and \(R_S\) is
+injective, regardless of the signs of the \(c_i\). If \(s=5\),
+Sylvester's rank inequality gives \(\rank D\ge4+4-5=3\).
 
-The identities
-\[
-\begin{aligned}
-\xi_0-\xi_1&=x_0(x_2-x_3),&
-\xi_2-\xi_3&=x_1(x_2-x_3),\\
-\xi_0-\xi_2&=x_2(x_0-x_1),&
-\xi_1-\xi_3&=x_3(x_0-x_1),\\
-\xi_0\xi_3-\xi_1\xi_2
-&=x_2x_3(x_0-x_1)(x_2-x_3)
-\end{aligned}
-\]
-give
-\[
-\begin{pmatrix}
-(\xi_0-\xi_1)(\xi_0-\xi_2)(\xi_1-\xi_3)\\
-(\xi_2-\xi_3)(\xi_0-\xi_2)(\xi_1-\xi_3)\\
-(\xi_0\xi_3-\xi_1\xi_2)(\xi_0-\xi_2)\\
-(\xi_0\xi_3-\xi_1\xi_2)(\xi_1-\xi_3)
-\end{pmatrix}
-=\omega(x)x,
-\]
-where
-\[
-\omega(x)=x_2x_3(x_2-x_3)(x_0-x_1)^2.
-\]
-Hence \([x]\) is recovered from \([\Phi(x)]\) whenever \(\omega(x)\ne0\).
+For a nonzero null vector \(x\) with \(\Phi(x)=0\), the rank-one matrix
+\(xx^T\) is orthogonal to every basis element of \(\mathcal V\). The
+rank bound forces \(s=1\), so its image is a frame ray's linear span.
+The converse follows by evaluation. This proves the base-locus assertion.
 
-\subsection[Exceptional divisor x2=0]{Exceptional divisor \(x_2=0\)}
-
-Fix a nonbase source with \(x_2=0\). The base-locus analysis shows that
-\(x_3\ne0\), and its nonzero target has the form
-\([0:\xi_1:0:\xi_3]\). For a candidate preimage \(z\), the two target zeros
-give
+Now suppose distinct null rays have representatives \(x,y\) with
+\(\Phi(x)=t\Phi(y)\ne0\). Then \(t\ne0\) and
+\(D=xx^T-t yy^T\) lies in \(\mathcal V^\perp\).
+Since \(x,y\) are independent, \(D\) has rank two and image
+\(\operatorname{span}\{x,y\}\). The same rank bound forces \(s=2\).
+Thus the image is also \(\operatorname{span}\{r_i,r_j\}\) for some
+\(i\ne j\). On this plane,
 \[
-z_2(z_0+z_3)=z_2(z_1+z_3)=0.
+ (\alpha r_i+\beta r_j)^Tg(\alpha r_i+\beta r_j)
+ =2\alpha\beta\,r_i^Tg r_j .
 \]
-
-On the direct branch \(z_2=0\), a nonzero target forces \(z_3\ne0\).
-Scale \(z_3=1\). Equality of target ratios then gives
-\((z_0,z_1)=t(\xi_1,\xi_3)\), and nullness is
-\[
-t^2\xi_1\xi_3+2t(b\xi_1+d\xi_3)=0.
-\]
-The root \(t=0\) is \(r_4\); after removing it, the remaining equation is
-linear in \(t\). It cannot vanish identically: if
-\(\xi_1\xi_3=0\), positivity of \(b,d\) and
-\((\xi_1,\xi_3)\ne(0,0)\) gives
-\(b\xi_1+d\xi_3\ne0\). Hence there is at most one nonbase direct preimage.
-
-On the cross branch \(z_2\ne0\), the target zeros force
-\(z_0=z_1=-z_3\). A nonzero target also forces \(z_3\ne0\), so scale
-\(z_3=1\) and write \(z_2=t\). The two nonzero target coordinates of this
-branch are equal, so a cross preimage can occur only if
-\(\xi_1=\xi_3\). Its null equation is
-\[
-z^Tgz=(1-2(b+d))(1-t).
-\]
-Strictness \(b+d<1/2\) gives only \(t=1\), for which \(z=-r_5\) and
-\(\Phi(z)=0\). Thus the cross branch contributes no nonbase preimage.
-
-\subsection[Exceptional divisor x3=0]{Exceptional divisor \(x_3=0\)}
-
-Now fix a nonbase source with \(x_3=0\). Then \(x_2\ne0\) and the target is
-\([\xi_0:0:\xi_2:0]\). The target zeros give either the direct branch
-\(z_3=0\), or, when \(z_3\ne0\), the cross equations
-\(z_0=z_1=-z_2\).
-
-On the direct branch, a nonzero target permits the scale \(z_2=1\), and
-\((z_0,z_1)=t(\xi_0,\xi_2)\). Nullness is
-\[
-t^2\xi_0\xi_2+2t(a\xi_0+c\xi_2)=0.
-\]
-As above, \(t=0\) is the base ray \(r_3\), and positivity of \(a,c\) excludes
-an identically zero residual linear equation. Thus there is at most one
-nonbase direct preimage.
-
-On the cross branch, scale \(z_2=1\) and write \(z_3=t\). Such a target must
-satisfy \(\xi_0=\xi_2\), and nullness becomes
-\[
-(1-2(a+c))(1-t)=0.
-\]
-Strictness \(a+c<1/2\) again leaves only \(t=1\), the base ray \(-r_5\).
-Thus this cross branch also contributes no nonbase preimage.
-
-\subsection[Exceptional divisor x0=x1]{Exceptional divisor \(x_0=x_1\)}
-
-If \(x_0=x_1=0\), nullness reduces to \(2e x_2x_3=0\). Since \(e>0\),
-the point is \(r_3\) or \(r_4\), hence in the base locus. A nonbase point may
-therefore be scaled to \(x_0=x_1=1\). Put \(p=x_2,q=x_3\). The null and
-target-ratio equations are
-\[
-N_{01}=1+2(a+c)p+2(b+d)q+2epq=0,
-\]
-\[
-R_{01}=\xi_1p(1+q)-\xi_0q(1+p)=0.
-\]
-Here the target is
-\([\xi_0:\xi_1:\xi_0:\xi_1]\) and is nonzero. Conversely, equality of the
-first and third, and of the second and fourth, target coordinates for a
-candidate \(z\) gives
-\[
-z_2(z_0-z_1)=z_3(z_0-z_1)=0.
-\]
-If \(z_0\ne z_1\), then \(z_2=z_3=0\), so nullness makes \(z\) a base ray and
-\(\Phi(z)=0\). Thus every nonbase candidate is on the direct branch
-\(z_0=z_1\), and the preceding zero-coordinate check justifies the scale
-\(z_0=z_1=1\).
-
-The exact resultant in \(p\) is
-\[
-\operatorname{Res}_p(N_{01},R_{01})
-=-(q+1)\left[
-\xi_1+q\bigl(\xi_0(2a+2c-1)+2\xi_1(b+d)\bigr)
-\right].
-\]
-At \(q=-1\),
-\[
-N_{01}=(1-2(b+d))(1+p),
-\]
-so strictness gives \(p=-1\), the base ray \(r_5\). The second resultant
-factor is not identically zero: if \(\xi_1\ne0\), its constant term is
-nonzero; if \(\xi_1=0\), then \(\xi_0\ne0\) and
-\(2(a+c)-1\ne0\). It therefore supplies at most one nonbase value of \(q\).
-
-For fixed \(q\), the null equation is linear in \(p\), with coefficient
-\(2(a+c)+2eq\) and constant term \(1+2(b+d)q\). Both could vanish only if
-\[
-2(a+c)(b+d)=a+b+c+d-\tfrac12,
-\]
-equivalent to
-\[
-(2(a+c)-1)(2(b+d)-1)=0,
-\]
-which strictness excludes.
-Thus \(N_{01}\) determines at most one \(p\) for the remaining \(q\), proving
-uniqueness on this divisor.
-
-\subsection[Exceptional divisor x2=x3]{Exceptional divisor \(x_2=x_3\)}
-
-If \(x_2=x_3=0\), nullness gives \(x_0x_1=0\), hence the base rays
-\(r_1,r_2\). For a nonbase point scale \(x_2=x_3=1\) and put
-\(p=x_0,q=x_1\). The equations are
-\[
-N_{23}=pq+2(a+b)p+2(c+d)q+2e=0,
-\]
-\[
-R_{23}=\xi_2(p+1)-\xi_0(q+1)=0.
-\]
-The target is
-\([\xi_0:\xi_0:\xi_2:\xi_2]\) and is nonzero. A candidate with these equal
-coordinate pairs obeys
-\[
-z_0(z_2-z_3)=z_1(z_2-z_3)=0.
-\]
-The direct branch is \(z_2=z_3\), where the base-locus check above justifies
-the scale \(z_2=z_3=1\). On the cross branch \(z_2\ne z_3\), one has
-\(z_0=z_1=0\); nullness becomes \(2ez_2z_3=0\). Since \(e>0\), the candidate
-is \(r_3\) or \(r_4\) and has zero target. Hence no nonbase cross preimage
-exists.
-
-On the direct branch the exact resultant is
-\[
-\operatorname{Res}_p(N_{23},R_{23})
-=-(q+1)\left[
-\xi_0q+2\xi_0(a+b)+2\xi_2(c+d)-\xi_2
-\right].
-\]
-At \(q=-1\),
-\[
-N_{23}=(2(a+b)-1)(1+p),
-\]
-so strictness gives \(p=-1\), the base ray \(r_5\). The second factor is not
-identically zero: if \(\xi_0\ne0\), its coefficient of \(q\) is nonzero; if
-\(\xi_0=0\), then \(\xi_2\ne0\) and its constant term
-\(\xi_2(2(c+d)-1)\) is nonzero.
-
-For fixed \(q\), \(N_{23}\) is linear in \(p\), with coefficient
-\(q+2(a+b)\) and constant term \(2(c+d)q+2e\). Both could vanish only if
-\[
-2(a+b)(c+d)=a+b+c+d-\tfrac12,
-\]
-equivalently
-\[
-(2(a+b)-1)(2(c+d)-1)=0,
-\]
-which strictness excludes. Thus there is at most one nonbase direct preimage.
-
-Finally, \(\omega(x)=0\) is exactly the union of the four divisors just
-treated. Their zero-coordinate intersections were included before each scale
-choice: \(x_2=x_3=0\) gives \(r_1,r_2\), while
-\(x_0=x_1=0\) gives \(r_3,r_4\). All other intersections remain within the
-direct/cross alternatives above; none of those arguments divides by a target
-coordinate, and the cases \(\xi_i=0\) were retained in the resultant
-analysis. The four analyses therefore exhaust every exceptional intersection
-and prove projective injectivity away from the five-ray base locus.
+Strictness gives \(r_i^Tg r_j>0\). The only null directions of the
+plane are therefore the two frame rays. Both have zero image under
+\(\Phi\), a contradiction. This proves projective injectivity everywhere
+outside the base locus.
 
 \section{Bounded transportation and the rank-zero simulation}
 \label{app:transport}
 
-For three ternary labels, let \(c_{ij}=c_{ji}\ge0\), \(c_{ii}=0\), and assume
+For three ternary labels, let \(a_i,b_i\ge0\), let
+\(c_{ij}=c_{ji}\ge0\) with \(c_{ii}=0\), and assume
 \[
 \sum_{j\ne i}c_{ij}=a_i+b_i,\qquad
 \sum_i a_i=\sum_i b_i=\frac12.
@@ -593,31 +529,21 @@ intersections have a common point: the largest left endpoint does not exceed
 the smallest right endpoint. Any common \(t\) gives the required bounded
 transportation matrix.
 
-The deterministic branch construction in
-\cref{prop:rank-zero} then reproduces all four input blocks simultaneously.
-The supplied rational simulator independently checks the construction on an
-interior symmetric instance; generality follows from the interval proof, not
-from that one executable example.
+The deterministic construction in \cref{prop:rank-zero} now reproduces all
+four input blocks simultaneously, including zero-capacity cases.
 
-\section{Verification boundary}
+\section{Formal verification and reproducibility}
 \label{app:verification}
 
 \subsection{Formal conclusions and model}
 
-The Lean development proves the principal conclusions in the explicit
-complex-qubit matrix model. Local effects are positive semidefinite
-\(2\times2\) complex matrices summing to the identity; the shared state is
-an arbitrary positive semidefinite trace-one \(4\times4\) complex matrix.
-Probabilities are Born traces. A projective strategy additionally requires
-idempotent effects. Zero and identity effects are allowed, and every
-mixture selects one complete state-and-measurement strategy for all inputs.
-Output cardinalities may depend on the input. Convex hull means the
-ordinary finite convex hull, not its topological closure.
-
-The following are exact declaration names, with namespace prefix
-\texttt{Bell.}; their statements and physical hypotheses are expanded in
-\path{validation/Statements.lean} and
-\path{validation/PhysicalContracts.lean}.
+The Lean development starts from a positive semidefinite trace-one
+\(4\times4\) complex density matrix and normalized families of positive
+semidefinite \(2\times2\) effects. It computes each probability by the
+Born trace. A projective measurement has mutually orthogonal idempotent
+effects, including zero projections. Each branch of a finite convex
+mixture specifies one state and all measurements. The main theorems below
+are in the namespace \texttt{Bell}~\cite{kriebel2026verification}.
 \begin{center}
 \small
 \begin{tabular}{@{}
@@ -630,201 +556,93 @@ Arbitrary finite-output two-input hull equality &
 \path{universal_two_input_equality}\\
 One finite mixture of complete PVM strategies &
 \path{finite_projective_simulation}\\
-One input; at most two inputs per party &
+One input or at most two inputs per party &
 \path{one_input_equality}; \path{at_most_two_input_equality}\\
 Exact simple witness &
 \path{witness_mem_raw}; \path{witness_value}\\
 Universal rational PVM bound \(289/10\) &
 \path{projective_strategy_rational_upper};
 \path{convex_projective_rational_upper}\\
-Paper bound and strict \(3\times2\) separation &
+Scalar bound \(U\) and strict \(3\times2\) separation &
 \path{projective_global_upper_bound}; \path{three_by_two_separation}\\
 Minimum input requirement and attainment &
 \path{minimum_inputs}; \path{minimum_inputs_attained}\\
-Strengthened physical value in Appendix B &
+Strengthened value in \cref{app:strengthened} &
 \path{strengthened_attainment}\\
-Combined principal conclusions &
+Equality, one-input case, bound \(U\), separation and strengthened value combined &
 \path{main_claims_with_strengthening}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-These statements do not assert same-state simulation, equality of the raw
-nonconvex ranges, a global POVM optimum, or bibliographic priority.
+\paragraph{Hilbert spaces and outcomes.}
+\path{Bell/HilbertFiniteLabels.lean} relates this matrix model to
+measurements on arbitrary finite-dimensional complex local Hilbert spaces
+of dimension at most two, with arbitrary finite input-dependent outcome
+types. Isometric embedding into \(\C^2\) preserves the Born probabilities.
+Allocating the unused orthogonal complement to one outcome of each
+measurement preserves normalization and projectivity. Trace one excludes
+zero-dimensional local spaces. An empty outcome alphabet at an existing
+input gives an empty strategy set. Relabeling by finite-type equivalences
+preserves the complete table and its finite convex combinations.
+The theorem
+\path{Bell.HilbertFiniteLabels.finite_source_projective_simulation}
+gives a common finite distribution of complete projective strategies
+whose mixture equals the source table on its original outcome labels.
+Local stochastic channels decompose into deterministic relabelings, as
+verified in \path{Bell/StochasticProcessing.lean}.
 
-\subsection{Explicit model-convention bridges}
+\paragraph{Correspondence with the mathematical proof.}
+The formal proof obtains strictly positive multipliers by the physical
+deterministic reset in \eqref{eq:deterministic-score-gap}.
+\path{Bell/ImplicitCurve.lean} constructs differentiable feasible curves,
+and \path{Bell/IncidenceAlgebra.lean} supplies an exact score-gap identity.
+Together they establish improvement in the positive tangent direction of
+\path{Bell/UphillDirection.lean}. The low-rank proof uses direct
+coordinate identities for the projective fibers in
+\path{Bell/ProjectiveFiber.lean} and the explicit rank-zero simulation.
+Thus the proof of \cref{prop:fiber} in \cref{app:fibers} and the
+formal proof establish the same conclusion by different arguments.
+\path{Bell/ResidualClosure.lean} combines the three rank cases, and
+\path{Bell/Assembly.lean} combines the resulting support cases to prove the
+arbitrary-output equality. For the separating functional,
+\path{Bell/ProjectiveBound.lean} applies the operator SOS bound to
+every projective support.
 
-Arbitrary finite local stochastic output channels are formalized in
-\path{Bell/StochasticProcessing.lean}. The theorem
-\path{Bell.StochasticChannel.decomposition} expresses a channel as a finite
-mixture of deterministic maps. Theorems
-\path{Bell.StochasticProcessing.behavior_decomposition} and
-\path{Bell.StochasticProcessing.mem_convexPVM} use one common random
-selector for all inputs and both parties to reconstruct the entire table
-and preserve the PVM convex hull. Zero-probability outcomes remain allowed.
-An empty source alphabet admits the empty channel, whereas a nonempty
-source cannot be normalized into an empty target alphabet; these cases
-are covered without assuming positive channel entries. The expanded
-contracts are in \path{validation/StochasticContracts.lean}.
-This is convex-hull closure under processing, not closure of the raw PVM
-range under arbitrary stochastic processing.
+The formal development specializes the cone, common-span and rank-square
+lemmas to the cases required by the qubit reduction. The general duality and determinant-pullback
+lemmas in \cref{app:duality}, the full smooth-manifold and Hessian-inertia
+calculations, the alternative derivation of \(U\), and the
+particular dual-slack and one-parameter optimality calculations in
+\cref{app:strengthened} are manuscript arguments.
+The two-angle and Schmidt-number results in \cref{sec:operational} are
+manuscript deductions from the verified equality and are not themselves
+formalized. The accompanying
+\path{bell_lean/docs/CERTIFIED_COVERAGE.md} maps the formal results to
+their declarations.
 
-For finite input-dependent outcome types, \path{Bell/FiniteLabels.lean}
-defines matrix-valued POVMs and PVMs directly on those types. Its
-\path{Bell.FiniteLabels.behaviorEquiv} transports the complete Born table
-linearly to the \texttt{Fin}-indexed model; the corresponding
-\path{rawPOVM_transport}, \path{rawPVM_transport},
-\path{convexPOVM_transport}, and \path{convexPVM_transport} theorems
-transport the raw sets and finite convex hulls. In this namespace,
-\path{two_input_equality} and \path{at_most_two_input_equality} therefore
-apply to arbitrary finite outcome labels, including input-dependent ones.
-A declared empty output alphabet at an existing input admits no normalized
-qubit measurement; empty input sets impose no measurement obligations.
-The contracts in \path{validation/FiniteLabelContracts.lean} check both
-boundaries. Inputs remain indexed by \texttt{Fin} of their cardinality.
-\path{Bell/FiniteStochastic.lean} transports the stochastic-processing
-construction through the same equivalence, with full-table decomposition
-and convex-PVM closure checked in
-\path{validation/FiniteStochasticContracts.lean}.
-
-The dimension convention is also an explicit formal bridge.
-\path{Bell/HilbertCorrespondence.lean} defines effects as endomorphisms of
-arbitrary finite-dimensional complex inner-product spaces \(E,F\), and the
-state as a positive trace-one endomorphism of \(E\otimes_{\C}F\).
-The tensor inner product is proved independent of the orthonormal bases
-used to construct it. For \(\dim E,\dim F\le2\), linear isometries into
-\(\C^2\) preserve the state trace and every Born probability. Each
-measurement assigns the unused orthogonal complement to one of its
-outcomes, preserving normalization and, for PVMs, projectivity.
-The behavior-preservation theorems are
-\path{Bell.Hilbert.Strategy.toQubit_behavior} and
-\path{Bell.Hilbert.ProjectiveStrategy.toQubit_behavior}.
-Trace one rules out a zero-dimensional local space; normalization supplies
-a selectable outcome at every existing input, without an extra
-nonempty-output hypothesis.
-
-Conversely, the matrix strategies have realizations as operators on
-\(\C^2\). Consequently \path{Bell.Hilbert.rawPOVM_eq_matrix} and
-\path{Bell.Hilbert.rawPVM_eq_matrix} identify the respective raw ranges
-of the union over local spaces of dimension at most two with the fixed
-matrix model. They do not identify the raw POVM and PVM ranges with each
-other, or assert that a fixed one-dimensional carrier realizes every
-qubit behavior. \path{Bell.Hilbert.two_input_convex_equality} and
-\path{Bell.Hilbert.Strategy.finite_projective_simulation} then transfer the
-principal theorem and complete-strategy mixture to this source model.
-The physical matrix properties, one-dimensional example, degenerate cases,
-and simulation statement are expanded in
-\path{validation/HilbertContracts.lean}.
-
-Finally, \path{Bell/HilbertFiniteLabels.lean} composes both conventions in
-one independently defined source model: arbitrary complex local spaces
-and arbitrary finite input-dependent outcome types. In namespace
-\texttt{Bell.HilbertFiniteLabels}, the theorems
-\path{rawPOVM_eq_fixed}, \path{rawPVM_eq_fixed}, and
-\path{at_most_two_input_equality} establish the corresponding raw-model
-transport and convexified equality. The endpoint
-\path{finite_source_projective_simulation} returns one finite mixture of
-complete projective Hilbert-space strategies on \(\C^2\), retaining the
-original outcome labels and reproducing every entry of the source Born
-table. Its statement and the combined boundary cases are expanded in
-\path{validation/HilbertFiniteLabelContracts.lean}.
-
-\subsection{Why the formal route proves the endpoints}
-
-The formal chain begins with physical matrices and includes compactness,
-finite convexity, the qubit measurement reductions, complex purification
-and steering, and physical incidence reconstruction. The residual
-obstruction is proved by three rank cases, not supplied as an axiom.
-Three differences from the original manuscript route are material.
-
-First, the formal multiplier proof derives stationarity at a physical
-maximum and identifies each coefficient reset with a physical deterministic
-measurement replacement. The replacement is local and lies in the PVM
-hull. Its strict score deficit and the positive future pairing in
-\eqref{eq:deterministic-score-gap} imply \(\lambda_j>0\).
-The source modules are \path{Bell/DeterministicGap.lean},
-\path{Bell/IncidenceScores.lean}, and
-\path{Bell/IncidenceStationarity.lean}. No general SDP dual-attainment or
-complementary-slackness theorem is needed for this implication.
-
-Second, \path{Bell/ImplicitCurve.lean} obtains differentiable feasible
-curves from a surjective strict derivative using the implicit-function
-theorem. An exact polynomial score-gap identity from
-\path{Bell/IncidenceAlgebra.lean} and its quadratic limit prove strict
-improvement along the positive direction constructed in
-\path{Bell/UphillDirection.lean}. Thus the high-rank obstruction does not
-require a standalone smooth \(14\)-manifold theorem or the full
-inverse-metric Hessian inertia \((4,12)\). The lower-rank cases use the
-checked projective-fiber identities and explicit rank-zero simulation.
-\path{Bell/ResidualClosure.lean} joins the three cases to the physical
-maximum, and \path{Bell/Assembly.lean} closes the arbitrary-output theorem.
-
-Third, \path{Bell/ProjectiveSOS.lean} and
-\path{Bell/ProjectiveBound.lean} prove an exact operator SOS bound for all
-physical PVM strategies. The bound \(289/10\) is strictly below both the
-paper's upper bound \(U\) and the attained witness value \(L_0\).
-The original scalar-deficit proof is an alternative manuscript route.
-
-\subsection{Retained manuscript-only arguments}
-
-Formal verification of those endpoints does not certify every statement of
-an unused argument. The following broader statements or particular
-calculations remain manuscript arguments; only the specializations or
-replacements just described are needed by the formal proof:
-\begin{itemize}[leftmargin=*]
-\item the general finite-POVM dual-attainment and complementary-slackness
-  lemma and determinant-pullback interpretation;
-\item the full smooth \(14\)-dimensional incidence-manifold statement and
-  inverse-metric Hessian formula with ambient inertia \((4,12)\);
-\item the arbitrary pointed-cone circuit formulation, general mixed-state
-  common-span formulation, and arbitrary extremal-POVM rank-square bound,
-  beyond the qubit specializations used in the formal reduction;
-\item the original physical-to-scalar derivation of the projective bound,
-  the ideal auxiliary PVM discrimination bound \(3/5\), and selected
-  individual spectral and coordinate identities;
-\item Appendix B's particular dual slacks and its differentiation and
-  unique-critical-point calculation, as distinct from its formally proved
-  attained value.
-\end{itemize}
-The full correspondence table is \path{docs/CERTIFIED_COVERAGE.md} in the
-Lean package. These exclusions identify the scope of formal verification;
-they are not deductions that the retained statements are false. Those
-statements must be assessed on their displayed mathematical arguments.
-
-\subsection{Reproduction and trust}
-
-The pinned environment uses Lean \texttt{4.19.0} and Mathlib commit
-\path{c44e0c8ee63ca166450922a373c7409c5d26b00b}; the remaining dependency
-revisions are fixed in \path{lake-manifest.json}. From the
-\path{bell_lean} directory, the advertised complete check is
+\paragraph{Reproducing the checks.}
+The verification snapshot~\cite{kriebel2026verification} specifies
+Lean~4.19.0 and pins the dependency revisions in \path{lake-manifest.json}.
+With the pinned toolchain installed, run the following command from
+\path{qubit_povm_pvm_minimum_settings/bell_lean} in that checkout:
 \begin{quote}
 \texttt{bash scripts/check.sh --bootstrap --serial}
 \end{quote}
-The bootstrap option requires network access for pinned dependencies;
-with those dependencies already installed it may be omitted.
-The package's \path{CERTIFICATION.md} identifies the authoritative named
-run, protected source fingerprints, compiler controls, statement contracts,
-and axiom audit. Run-specific receipts are preserved separately from
-convenience copies identifying the latest run. A historical receipt
-certifies its own source snapshot, not later edited files.
+The bootstrap option downloads pinned dependencies and their build cache.
+It may be omitted with the prepared dependencies installed.
+The November 2026 run rebuilt all 68 project modules, checked 78
+statement examples, and audited the axiom dependencies of 826 public
+theorems. These use only \path{propext}, \path{Classical.choice}, and
+\path{Quot.sound}. A further replay checked 33,644 declarations across
+1,271 compiled modules in a fresh environment of the same Lean kernel for
+the fixed-matrix two-input equality, the Hilbert-space finite-label
+equality, and its complete-strategy simulation theorem. The compiler/runtime and the
+correspondence between the cached Mathlib artifacts and their pinned
+sources remain trusted.
 
-The checked principal development uses only the standard logical axioms
-\path{propext}, \path{Classical.choice}, and \path{Quot.sound}; it
-contains no admitted proofs or custom mathematical axioms. The trust
-boundary includes the Lean kernel/compiler and runtime, the machine and
-filesystem, and the pinned dependency build artifacts. This is not a
-bootstrap verification of the entire third-party software stack.
-Independent adversarial agent reviews supplement the kernel checks and
-statement review; they are not external expert peer review.
-
-\subsection{Supplementary exact computations}
-
-The separate algebra scripts check dense and sparse Bell coefficients,
-explicit strategy values, normalization and rank-one factorizations,
-discrimination certificates, scalar identities for the projective bound,
-Lorentz-coordinate identities, generic and exceptional fiber formulas,
-constraint-independence witnesses, and bounded-flow/rank-zero examples.
-Some checks are exact regression instances rather than general theorems.
-They supplement the Lean development and retained prose arguments; they do
-not by themselves prove compactness, global physical reconstruction,
-exhaustion of cases, or the behavior-set equality.
+The separate symbolic checks reproduce the Bell coefficients, exact
+witness probabilities, discrimination certificates, scalar identities,
+and the SOS matrix and word identity in \cref{app:sos-gram}. They also
+test Lorentz-coordinate identities and bounded-flow examples. The
+universal behavior-set results follow from the mathematical proofs.

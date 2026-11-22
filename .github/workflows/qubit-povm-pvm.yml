@@ -32,7 +32,12 @@ jobs:
       - uses: wtfjoke/setup-tectonic@v4.0.5
         with:
           tectonic-version: "0.16.9"
-      - run: ./paper/build.sh
+      - name: Rebuild the paper and check the uploaded source archive
+        run: |
+          archive=submission/arxiv_source.tar.gz
+          gzip -cd "$archive" > "$RUNNER_TEMP/submitted-source.tar"
+          ./paper/build.sh --submission
+          gzip -cd "$archive" | cmp "$RUNNER_TEMP/submitted-source.tar" -
       - uses: actions/upload-artifact@v7
         with:
           name: qubit-povm-pvm-pdfs

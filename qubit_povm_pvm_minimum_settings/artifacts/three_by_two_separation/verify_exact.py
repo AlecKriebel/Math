@@ -8,6 +8,9 @@ proof step.  The optional numerical values printed at the end are display only.
 """
 from __future__ import annotations
 
+if not __debug__:
+    raise RuntimeError("Exact verification requires assertions. Run Python without -O, -OO or PYTHONOPTIMIZE.")
+
 import csv
 import json
 from pathlib import Path
@@ -64,6 +67,7 @@ def load_coefficients():
     with (ROOT / "bell_coefficients_dense.csv").open(newline="") as f:
         for row in csv.DictReader(f):
             key = tuple(int(row[k]) for k in ("x", "y", "a", "b"))
+            assert key not in dense, f"Duplicate dense Bell coefficient: {key}"
             dense[key] = parse_expr(row["c_abxy"])
     assert len(dense) == 36
     assert set(dense) == set(product(range(3), range(2), range(3), range(2)))
@@ -72,6 +76,7 @@ def load_coefficients():
     with (ROOT / "bell_coefficients_sparse.csv").open(newline="") as f:
         for row in csv.DictReader(f):
             key = tuple(int(row[k]) for k in ("x", "y", "a", "b"))
+            assert key not in sparse, f"Duplicate sparse Bell coefficient: {key}"
             sparse[key] = parse_expr(row["c_abxy"])
     assert sparse == {k: v for k, v in dense.items() if v != 0}
 
@@ -180,13 +185,17 @@ def verify_strengthened_strategy(coeff):
     a = sqrt((q + 1) / (2 * q))
     b = sqrt((q - 1) / (2 * q))
     k = R(3, 5) * sqrt((q - 1) / (q + 1))
-    env = {"q": q, "eta": eta, "s": s, "a": a, "b": b, "k": k}
-    for name, text in raw["definitions"].items():
-        if name in env:
-            assert sp.simplify(parse_expr(text, env) - env[name]) == 0
+    expected = {"q": q, "eta": eta, "s": s, "a": a, "b": b, "k": k}
+    definitions = raw["definitions"]
+    assert definitions.keys() == expected.keys(), "Strengthened witness scalar definitions differ"
+    env = {}
+    for name, value in expected.items():
+        parsed = parse_expr(definitions[name], env)
+        assert sp.simplify(parsed - value) == 0, f"Incorrect strengthened witness scalar: {name}"
+        env[name] = parsed
 
     psi = sp.Matrix([parse_expr(x, env) for x in raw["state"]])
-    assert sp.simplify((psi.T * psi)[0]) == 1
+    assert sp.simplify((psi.T.conjugate() * psi)[0]) == 1
     A0 = parse_matrix(raw["alice_observables"]["A0"], env)
     A1 = parse_matrix(raw["alice_observables"]["A1"], env)
     B0 = parse_matrix(raw["bob_observables"]["B0"], env)
