@@ -1907,7 +1907,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1896 | 20000162 / AIM-ALGEBRAIC_GEOMETRY-0162 | A modern étale criterion and an all-characteristic constant-functor test | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1897 | 20000726 / AIM-ANALYTIC_NUMBER_THEORY-0090 | A rational j-equation for a mixed mock Kaneko-Zagier solution | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1898 | 20000750 / AIM-ANALYTIC_NUMBER_THEORY-0114 | Alternative GPY weights: exact perturbation geometry and a radial escape | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1899 | 20001232 / AIM-COMPUTATION-0070 | Arbitrary logistic cell gaps with positive margins and ordinary-margin obstructions | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1899 | 20001232 / AIM-COMPUTATION-0070 | Arbitrary logistic cell gaps with positive margins and ordinary-margin obstructions | 0.0450 | 5.0 | 3 | unknown | UNSOLVED | 5/5 |  | Five residual approaches; logistic varying-design subclause settled and exact restricted-family obstructions established. Ordinary positive-two-margin arbitrary gaps remain unresolved. [Audit package](attempts/20001232/README.md). |  |
 | 1900 | 20002401 / AIM-PDES-0013 | A two-level validated certificate for Maslov indices of planar elliptic problems | 0.0450 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1901 | 20002454 / AIM-PDES-0066 | Branch-aware well balancing and a resonance obstruction for oscillatory forcing | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1902 | 2308019 / AMR-022-8019 | Research Problems in Function Theory — Problem 8.19 | 0.0450 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
