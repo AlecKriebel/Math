@@ -12,7 +12,7 @@
 \usetikzlibrary{arrows.meta,positioning}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
-\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage[nameinlink,noabbrev,capitalise]{cleveref}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{xcolor}
 \ifdefined\REVIEWVERSION
@@ -68,7 +68,8 @@ per setting, every bipartite qubit behavior admits a finite shared-randomness
 mixture of projective qubit strategies. Thus the qubit bound of any such
 Bell functional can be computed by enumerating pairs of output labels and
 maximizing the largest eigenvalue of a real \(4\times4\) matrix over two
-angles. A value above this bound certifies Schmidt number at least three.
+angles. A value above this bound certifies Schmidt number at least three
+in any finite-dimensional realization.
 With three settings on one side and two on the other, V\'ertesi and Bene
 exhibited a qubit advantage for generalized measurements. The two-setting
 theorem proves that this input architecture is minimal, up to exchanging
@@ -84,9 +85,14 @@ Brunner \emph{et al.}\ optimized a family of Bell expressions with two
 settings and three outcomes per party to distinguish qubits from systems
 of higher dimension. Although their numerical search allowed arbitrary qubit
 measurements, two-outcome projective measurements attained the largest values
-they found \cite{brunner2008dim}. We prove that the restriction to projective
-measurements gives the exact qubit bound for \emph{every} two-setting Bell
-functional, regardless of the number of outcomes. The result concerns the
+they found \cite{brunner2008dim}. Navascu\'es \emph{et al.}\ recorded the
+corresponding conjecture for the two-setting, three-outcome inequality of
+Collins \emph{et al.}\ \cite{collins2002}, namely that general measurements do
+not improve its projective qubit bound, and reported that their semidefinite
+hierarchy could not confirm it \cite{navascues2015}. We prove that the
+restriction to projective measurements gives the exact qubit bound for
+\emph{every} two-setting Bell functional, regardless of the number of outcomes.
+The result concerns the
 usual Bell model in which shared randomness can select the state and both
 parties' measurements before the inputs arrive.
 
@@ -95,9 +101,14 @@ give access to more behaviors than a projection-valued measurement (PVM).
 Naimark dilation can require a larger local Hilbert space. Gisin asked
 whether a Bell inequality could exhibit this measurement advantage, observing
 that binary outcomes alone always allow projective measurements to attain
-the optimum \cite{gisin2007}. V\'ertesi and Bene exhibited a two-qubit
-example with three settings for Alice and two for Bob \cite{vertesi2010}.
-Our theorem supplies the matching lower bound on the number of settings.
+the optimum \cite{gisin2007,cleve2004,liang2007}. V\'ertesi and Bene
+exhibited a two-qubit example with three settings for Alice and two for Bob
+\cite{vertesi2010}. Whether two settings per party can suffice was left
+open: Cerf and Ollivier proposed two-setting Bell functionals as a route to
+such an advantage \cite{cerf2026}, and Zhu \emph{et al.}\ note that their
+three-setting construction does not settle that question \cite{zhu2026}.
+Our theorem answers it in the negative for two parties and qubits, and so
+supplies the matching lower bound on the number of settings.
 
 \begin{maintheorem}
 Write \(\Qset^{\POVM}_2\) and \(\Qset^{\PVM}_2\) for the behaviors
@@ -124,11 +135,13 @@ Averaging the \emph{same} finite ensemble of projective strategies gives
 the correct probabilities for every input pair. The states in these
 branches may differ from the state of the original POVM strategy.
 This makes the theorem applicable even when a local POVM itself admits
-no decomposition into projective measurements \cite{oszmaniec2017,guerini2017}.
-Section~\ref{sec:operational} gives the resulting two-angle optimization
+no decomposition into projective measurements
+\cite{oszmaniec2017,guerini2017,kotowski2026,brinster2026}.
+\Cref{sec:operational} gives the resulting two-angle optimization
 and its application to certifying the Schmidt number of an unknown state.
+\Cref{fig:threshold} summarizes the threshold.
 
-\begin{figure}[t]
+\begin{figure}[!ht]
 \centering
 \input{figures/threshold.tex}
 \caption{The minimum number of Bell settings needed to separate qubit POVMs
@@ -139,23 +152,35 @@ ternary measurement.}
 \end{figure}
 
 \paragraph{Related work.}
-P\'al and V\'ertesi distinguished raw sets of fixed-dimensional behaviors
-under their projective-measurement convention \cite{palvertesi2009}.
+Without shared randomness the sets of fixed-dimensional behaviors are not
+convex \cite{palvertesi2009,donohue2015}, and P\'al and V\'ertesi showed
+that POVMs then reach behaviors that projective measurements of the same
+dimension cannot \cite{palvertesi2009}.
 Rout \emph{et al.}\ studied fixed-dimension tests allowing stochastic
 relabelling of a single projective measurement \cite{rout2025}.
 The distinction from shared-randomness convexification is illustrated by
-the trine example in \cref{rem:trine}. Cerf and Ollivier analyze perturbations
-of dichotomic strategies near deterministic correlations \cite{cerf2026}.
+the trine example in \cref{rem:trine}. Cerf and Ollivier analyze how
+two-setting Bell functionals with any number of outcomes and parties respond
+to perturbations of a strategy near deterministic correlations, and propose
+this analysis as a way to find a POVM advantage at fixed local dimension
+\cite{cerf2026}. For two parties and local dimension two, the equality proved
+here excludes such a functional; more parties and larger local dimensions
+remain open.
 Masanes and others obtained dimension reductions for dichotomic observables
 \cite{masanes2005,toner2006}. Panahi \emph{et al.}\ show that if one party
 has two binary settings, every convexly extremal quantum behavior admits a
 two-qubit realization even when the other party has arbitrary settings and
-outcomes \cite{panahi2025}. Our two-setting simulation permits arbitrary
+outcomes \cite{panahi2025}, and Ramanathan characterizes the quantum set of
+such scenarios by an uncertainty--disturbance condition
+\cite{ramanathan2026}. Our two-setting simulation permits arbitrary
 outcomes on both sides and imposes projectivity on every branch.
 
 Subsequent work on the V\'ertesi--Bene example refined its violation and
 detection efficiency \cite{barra2012}, and larger input architectures can
-certify nonprojective qubit measurements \cite{gomez2016}.
+certify nonprojective qubit measurements \cite{gomez2016}. In the
+prepare-and-measure scenario such certification is also possible
+\cite{tavakoli2020}, and its minimal scheme uses three preparations and two
+measurements \cite{steinberg2021}.
 Zhu \emph{et al.}\ give a different rational \(3\times2\) functional, an
 analytic bound for all shared two-qubit projective strategies, and a Lean
 separation certificate. They also determine the unrestricted finite-dimensional
@@ -181,18 +206,22 @@ strategy by a \(4\times4\) probability block \(P\) and a four-parameter
 metric \(g\), subject to five quadratic null equations. At a hypothetical
 strict separator, replacing one input by a deterministic measurement gives
 an exact score gap that forces each determinant multiplier to be positive.
-If the metric differential has rank at least two, a compatible rank-one
-variation gives an uphill direction. Rank one contradicts positivity through
+If the metric differential has rank at least two, a dimension count gives a
+compatible uphill direction. Rank one contradicts positivity through
 an exact projective-fiber theorem, while rank zero has an explicit
 deterministic decomposition.
 
-The machine-checked route realizes the uphill direction by a differentiable
-feasible curve and proves improvement from an exact finite score-gap
-identity. It does not require the full smooth-manifold or Hessian-inertia
-statements retained below as geometric explanations. The general
+The written proof in \cref{sec:reductions,sec:incidence,sec:physical,%
+sec:multipliers,sec:second-variation,sec:closure} is self-contained. It
+uses the smooth incidence manifold and the inertia of the second variation.
+The machine-checked proof reaches the same contradiction without
+formalizing those two statements: it realizes the uphill direction by a
+differentiable feasible curve and proves improvement from an exact finite
+score-gap identity. The general
 POVM-duality and determinant-pullback results are given in \cref{app:duality}.
-After the equality proof we establish separation by combining a CHSH term
-with a three-state discrimination task.
+After the equality proof we establish separation by combining a
+Clauser--Horne--Shimony--Holt (CHSH) term \cite{clauser1969} with a
+three-state discrimination task.
 \Cref{app:verification} identifies the checked endpoints and the retained
 manuscript-only claims. Formal verification of the endpoints does not
 certify every intermediate statement of an alternative prose proof.
@@ -266,8 +295,8 @@ Linearity gives
 A finite stochastic map is a convex combination of deterministic maps.
 Absorb all deterministic choices into the shared variable. A deterministic
 map merges mutually orthogonal projectors assigned to the same displayed
-label and inserts zero projectors for unused labels, hence remains a declared-
-output PVM.
+label and inserts zero projectors for unused labels, hence remains a
+declared-output PVM.
 \end{proof}
 
 For fixed finite alphabets, all strategy spaces above are compact. Indeed,
@@ -335,7 +364,8 @@ labels realizes all four input-pair tables simultaneously.
 
 The main theorem reduces an arbitrary-output optimization to a qubit spectral
 problem. It also gives a bound that can be used without assuming the
-dimension of the devices.
+dimension of the devices. Device-independent certification of the Schmidt
+number is discussed in Ref.~\cite{hirsch2020}.
 
 \begin{corollary}[Two-angle optimization]
 For a real Bell tensor \(c\) with two settings per party and finite nonempty
@@ -367,8 +397,8 @@ operators.
 
 \begin{corollary}[Schmidt number witness]
 For two settings per party with finite output alphabets, the behaviors
-attainable in arbitrary finite local dimensions with states of Schmidt
-number at most two are exactly \(\Qbar^{\PVM}_2\). In particular a value
+attainable with arbitrary POVMs in arbitrary finite local dimensions on
+states of Schmidt number at most two are exactly \(\Qbar^{\PVM}_2\). In particular a value
 above the two-angle bound certifies Schmidt number at least three.
 \end{corollary}
 
@@ -393,7 +423,12 @@ flags preserves that rank.
 \begin{lemma}[Circuits of a three-dimensional pointed cone]
 \label{lem:lorentz-circuit}
 Let \(K\) be a pointed convex cone of real dimension at most three.
-In a positive relation between nonzero extreme-ray vectors, first combine
+A \emph{positive relation} is an equality between two sums of nonzero
+vectors on extreme rays of \(K\). It is \emph{support-minimal} if no
+positive relation is obtained by keeping a proper nonempty subfamily of
+its rays, each on its original side, and rescaling them by positive
+factors.
+In a positive relation, first combine
 repeated occurrences of each ray, then cancel any common ray between the
 two sides. Every nontrivial support-minimal relation remaining
 after this cancellation has four distinct rays, \(\dim K=3\), and, after
@@ -555,10 +590,12 @@ point of \(\conv K\) belongs to \(K\).
 
 \begin{proof}
 Every point of \(\conv K\) is a finite convex combination of points of \(K\).
-If an extreme point \(p\) had a representation containing two distinct
-positive-weight points, separating one term from the normalized sum of the
-others would express \(p\) as a nontrivial convex combination. Hence every
-positive-weight point in the representation equals \(p\), and \(p\in K\).
+If an extreme point \(p\) had a representation containing a
+positive-weight point \(k\ne p\), the weight of \(k\) would be less than
+one, and separating \(k\) from the normalized sum of the other terms would
+express \(p\) as a nontrivial convex combination of two distinct points.
+Hence every positive-weight point in the representation equals \(p\), and
+\(p\in K\).
 \end{proof}
 
 \begin{lemma}[Common-span filtering]
@@ -652,6 +689,9 @@ V_0\cap V_1=\R\id.
 \]
 
 Since \(\dim_{\R}\Herm(2)=4\), one of \(V_0,V_1\) has dimension at most two.
+A one-dimensional span consists of scalar effects \(M_a=q(a)\id\), a stochastic
+postprocessing of the trivial PVM \(\{\id\}\); the deterministic-postprocessing
+step below then applies with \(P_+=\id\) and \(P_-=0\).
 Every two-dimensional real operator system containing \(\id\) has the form
 \(\operatorname{span}_{\R}\{\id,H\}\) for a nonscalar Hermitian \(H\).
 All of its elements commute. If
@@ -679,8 +719,12 @@ independent; otherwise \cref{lem:common-span} with \(H=0\) splits the extreme
 behavior. One nonzero effect would be \(\id\), a deterministic PVM. An
 extremal two-effect POVM is a PVM: diagonalizing one effect and perturbing
 either eigenvalue strictly between \(0\) and \(1\) would decompose it, so its
-eigenvalues are \(0\) or \(1\). A genuine nonprojective residual measurement
-therefore has at least three nonzero effects, while linear independence in a
+eigenvalues are \(0\) or \(1\). If this second measurement were a PVM,
+both measurements of the party would have at most two nonzero effects.
+Deleting the zero labels, \cref{thm:binary-party} would place the behavior
+in the PVM hull, and the labels can be reinserted afterwards. At a strict
+separator the second measurement is therefore not projective. It has at
+least three nonzero effects, while linear independence in a
 three-dimensional span gives at most three.
 
 For an extremal qubit POVM, support-preserving perturbations give
@@ -690,10 +734,10 @@ For an extremal qubit POVM, support-preserving perturbations give
 The standard extremality criterion \cite{dariano2005,haapasalo2012} is
 reproved in \cref{app:extremal-povm} for completeness. With three nonzero
 effects, any rank-two effect would make the rank-square sum at least
-\(4+1+1>4\); hence all three effects have rank one. If both spans on one party were
-at most two, \cref{thm:binary-party} would make the full behavior
-PVM-simulable. Apply the argument to both parties, then reinsert any deleted
-zero-output labels.
+\(4+1+1>4\); hence all three effects have rank one. Apply the argument to
+both parties, then reinsert any deleted zero-output labels. Reducing one
+party changes only that party's measurements, so it does not disturb the
+form already obtained for the other.
 \end{proof}
 
 \section{Lorentz incidence model}
@@ -718,7 +762,7 @@ In the residual architecture label one party's two binary effects by
 r_1=e_1,\ r_2=e_2,\ r_3=e_3,\ r_4=e_4,\quad
 r_5=(1,1,-1,-1)^T,\quad u=(1,1,0,0)^T.
 \]
-Their unique coefficient circuit is
+Their unique coefficient circuit, depicted in \cref{fig:circuit}, is
 \[
 r_1+r_2=r_3+r_4+r_5=u.
 \]
@@ -754,8 +798,12 @@ b&d&e&0
 \end{pmatrix},
 \qquad e=a+b+c+d-\tfrac12.
 \end{equation}
-On the genuine residual stratum all distinct-ray products are positive; in
-particular \(a,b,c,d,e>0\) and
+The five effects lie on pairwise distinct rays: the ternary effects are
+linearly independent, and a ternary effect proportional to a binary one
+would lie in \(V_0\cap V_1=\R\id\). Two future-null vectors on distinct rays
+have positive Lorentz product.
+On the genuine residual stratum all distinct-ray products are therefore
+positive; in particular \(a,b,c,d,e>0\) and
 \[
 a+b,c+d,a+c,b+d<\frac12.
 \]
@@ -855,8 +903,9 @@ F_j(P,g):=(Pr_j)^TQ(Pr_j)=0,\qquad j=1,\ldots,5.
 Near every genuine residual point, every nearby \((P,g)\) satisfying
 \eqref{eq:metric}, the five incidence equations \eqref{eq:incidence},
 normalization, Lorentz signature, and the strict time-orientation inequalities
-is realized by a genuine residual two-qubit strategy. Every incidence tangent
-therefore integrates to a two-sided physical curve.
+is realized by a genuine residual two-qubit strategy; positive marginals and
+full rank of the reduced state persist nearby. Every incidence tangent
+therefore integrates to a smooth two-sided physical curve.
 \end{theorem}
 
 \begin{proof}
@@ -983,15 +1032,29 @@ objective
 =\Tr(\mathsf B_c^TP),\qquad
 \mathsf B_c:=\sum_{i,j}\gamma_{ij}r_ir_j^T.
 \]
-At a stationary point, the six constraint gradients are linearly independent.
-Thus there are unique multipliers
-\(\alpha,\lambda_1,\ldots,\lambda_5\), with sign convention
+Let \((P,g)\) represent a residual strategy attaining the global maximum of
+the Bell functional. By \cref{thm:physical-completeness}, every nearby point
+of the normalized incidence set is realized by a qubit POVM strategy with
+table \(r_i^TPr_j\), so \(\mathcal L_c\) has a local maximum at \((P,g)\) on
+that set, which is a smooth manifold there by \cref{prop:smooth}. The six
+constraint differentials are linearly independent. The Lagrange multiplier
+rule therefore gives unique multipliers
+\(\alpha,\lambda_1,\ldots,\lambda_5\) with
+\begin{equation}
+\label{eq:lagrange-differential}
+d\mathcal L_c=\alpha\,d(u^TPu)-\sum_{j=1}^5\lambda_j\,dF_j
+\end{equation}
+on all variations \((\delta P,H)\) of the sixteen entries of \(P\) and the
+four metric parameters. With \(y_j=QPr_j\) one has
+\(dF_j=2y_j^T\delta P\,r_j-y_j^THy_j\). The \(P\)-component of
+\eqref{eq:lagrange-differential} is
 \begin{equation}
 \label{eq:lagrange}
 \mathsf B_c-\alpha uu^T=-2QP\Lambda,\qquad
 \Lambda=\sum_{j=1}^5\lambda_jr_jr_j^T.
 \end{equation}
-Stationarity in the four metric variables says
+Its metric component is \(\sum_j\lambda_jy_j^THy_j=0\) for every metric
+variation \(H\), that is,
 \(\lambda\in\ker\cD^T\), where \(\cD\) is defined in
 \cref{sec:second-variation}.
 
@@ -1044,13 +1107,11 @@ for every \(j\). Since the first four rays span, \(\Lambda>0\).
 \section{Exact second variation}
 \label{sec:second-variation}
 
-The inverse-metric Hessian and its ambient inertia below describe the
-original geometric route. These full statements are not formal endpoints.
-The formal route instead constructs a compatible uphill direction,
+This section computes the second variation of the Bell value along
+feasible curves and its inertia. The Lean development does not formalize
+the Hessian or its inertia. It constructs a compatible uphill direction,
 integrates it using a first-order implicit-function theorem, and combines
-an exact polynomial score-gap identity with its quadratic limit. This
-proves the required failure of local maximality without assuming a full
-manifold theorem or computing the full Hessian inertia; see
+an exact polynomial score-gap identity with its quadratic limit; see
 \cref{app:verification}.
 
 A tangent metric variation has the form
@@ -1122,6 +1183,9 @@ independent, suppose a combination indexed by \(\nu\in K\) vanishes for every
 
 \begin{proposition}[Weighted second form]
 \label{prop:second-form}
+At the stationary point of \cref{prop:positive-multipliers}, set
+\(\delta P=PW+HQP\) and let \(D^2F_j\) denote the second derivative of
+\(F_j\) along the straight line \(t\mapsto(P+t\,\delta P,\,g+tH)\). Then
 \[
 \sum_j\lambda_jD^2F_j=2q(W),\qquad
 q(W)=\Tr(SW\Lambda W^T),
@@ -1141,8 +1205,8 @@ Differentiating \(g^{-1}\) twice and completing the square after
 D^2F_j=2(PWr_j)^TQ(PWr_j),
 \]
 and summing against \(\lambda_j\) yields the trace formula. The exact
-expansion is recorded in \cref{app:square-completion} and independently
-checked by the verifier.
+expansion is recorded in \cref{app:square-completion} and is among the
+identities checked by the symbolic scripts \cite{kriebel2026verification}.
 
 The matrix \(S\) has signature \((1,3)\), while \(\Lambda>0\).
 Invertible congruences therefore reduce \(q\) to
@@ -1168,11 +1232,27 @@ t\,u^TPu=t,
 so choose \(t\) to impose \(u^T\delta P\,u=0\).
 \end{proof}
 
-With the convention \eqref{eq:lagrange}, a normalized physical curve has
+Feasible curves are not straight lines, so their accelerations must be
+accounted for. Consider a smooth curve \((P(t),g(t))\) in the normalized
+incidence set that passes through the stationary point at \(t=0\). Write
+\((\delta P,H)\) for its velocity and \((P'',g'')\) for its acceleration
+there. Differentiating the constraints \(F_j\equiv0\) and
+\(u^TPu\equiv1\) twice gives
 \[
-\frac{d^2}{dt^2}\mathcal L_c(P(t))\big|_{t=0}=2q(W).
+dF_j[(P'',g'')]+D^2F_j=0,\qquad u^TP''u=0 .
 \]
-Hence local maximality requires \(q\le0\) on every normalized tangent.
+The acceleration \(g''\) is again a metric variation, so
+\eqref{eq:lagrange-differential} applies to \((P'',g'')\). Since
+\(\mathcal L_c\) is linear,
+\[
+\frac{d^2}{dt^2}\mathcal L_c(P(t))\big|_{t=0}
+=d\mathcal L_c[(P'',g'')]
+=-\sum_j\lambda_j\,dF_j[(P'',g'')]
+=\sum_j\lambda_jD^2F_j=2q(W).
+\]
+The same identity applied to the velocity gives a vanishing first
+derivative. Hence local maximality requires \(q\le0\) on every normalized
+tangent.
 
 \section{Rank trichotomy and universal equality}
 \label{sec:closure}
@@ -1233,11 +1313,12 @@ contradicts \(\lambda_j>0\).
 \subsection{Rank zero}
 
 If \(\rank\cD=0\), every \(y_j\) belongs to the five-ray base locus.
-Invertibility gives
+Since \(QP\) is invertible, the five \(y_j\) are pairwise nonproportional, so
 \[
-y_j=t_jr_{\pi(j)},\qquad t_j>0,
+y_j=t_jr_{\pi(j)},\qquad t_j\ne0,
 \]
-for a permutation \(\pi\). Let
+for a permutation \(\pi\). Moreover \(u^Tgy_j=u^TPr_j>0\) is a Bob marginal
+and \(u^Tgr_{\pi(j)}>0\), so every \(t_j\) is positive. Let
 \(\varepsilon=(1,1,-1,-1,-1)^T\). The \(4\times5\) matrix
 \([r_1\ \cdots\ r_5]\) has one-dimensional kernel
 \(\R\varepsilon\). Applying the invertible map \(QP\) to its circuit gives
@@ -1249,7 +1330,11 @@ This coefficient vector, reordered by \(\pi\), must be a scalar multiple of
 cardinalities of the positive and negative parts of \(\varepsilon\), forces
 \(\pi\) to preserve the binary pair \(\{1,2\}\) and ternary triple
 \(\{3,4,5\}\); coefficient comparison then forces every \(t_j\) to have one
-common positive value \(t\). After relabeling, \(QP=t\id\), hence \(P=tg\).
+common positive value \(t\). Relabel Bob's outcomes within each of his two
+measurements according to \(\pi\). This replaces \(P\) by \(P\Pi\), where
+the linear map \(\Pi\) sends \(r_{\pi(j)}\) to \(r_j\) and is well defined
+because \(\pi\) preserves the circuit, and it does not affect membership in
+the PVM hull. After this relabeling, \(QP=t\id\), hence \(P=tg\).
 Since \(u^TPu=u^Tgu=1\), one has \(t=1\), and therefore
 \[
 QP=\id,\qquad P=g.
@@ -1332,10 +1417,13 @@ The nearest-point argument in \cref{lem:nearest} would give a Bell functional
 whose global POVM maximum strictly exceeds its PVM maximum. Choose an extreme
 point of its exposed maximizing face. By
 \cref{thm:residual-reduction}, a maximizing component lies in the genuine
-residual architecture. Every local measurement is therefore globally optimal
-with the other variables fixed, so \cref{prop:positive-multipliers} applies.
+residual architecture. Its point \((P,g)\) is a local maximizer of
+\(\mathcal L_c\) on the normalized incidence set, so the stationarity
+identities of \cref{sec:multipliers} hold and
+\cref{prop:positive-multipliers} applies.
 
-The metric differential has rank \(0,1,2,3,\) or \(4\). Rank at least two has
+The metric differential has rank \(0,1,2,3,\) or \(4\); \cref{fig:trichotomy}
+summarizes the three cases. Rank at least two has
 an uphill physical direction; rank one cannot carry the required positive
 multiplier; rank zero is PVM-simulable by \cref{prop:rank-zero}. Every case
 contradicts a strict value above the PVM support function.
@@ -1501,24 +1589,32 @@ satisfies the identity
    =\frac1{600}\sum_{i,j}G_{ij}W_i^\dagger W_j\succeq0 .
 \]
 It follows by multiplying the listed words, using involutivity of each
-observable and commutation between parties. For support \(\{1,2\}\), label
+observable and commutation between parties. Certificates of this
+sum-of-squares form underlie the hierarchy of Navascu\'es, Pironio and
+Ac\'in \cite{navascues2007,navascues2008}. This one holds in every
+dimension when each setting is a two-outcome projective measurement; the
+qubit hypothesis enters only through the first sentence of this subsection.
+For support \(\{1,2\}\), label
 1 now denotes the \(+1\) outcome of \(A_2\). Substituting
 \((-A_1,-A_0,A_2,-B_0,B_1)\) for
 \((A_0,A_1,A_2,B_0,B_1)\) preserves \(\widehat S\) and gives the required
 Bell operator from \(\widehat{\Bell}_{02}\).
 For support \(\{0,1\}\), the auxiliary term is at most \(3/5\), since
 the two joint events in it are disjoint at the same input pair.
-The CHSH bound then gives \(20\sqrt2+3/5<289/10\).
+The Tsirelson bound \(\widehat S\preceq2\sqrt2\,\id\) \cite{tsirelson1980}
+then gives \(20\sqrt2+3/5<289/10\).
 Taking expectations and using \cref{lem:convexification} proves the stated
 bound over the full PVM hull.
 
 \subsection{An alternative analytic projective bound}
 
-Write \(\Bell=10S+T\). For a PVM strategy, the displayed CHSH observables are
+Write \(\Bell=10S+T\), where \(S=E_{00}+E_{01}+E_{10}-E_{11}\) is the
+expectation of the CHSH operator \(\widehat S\) and \(T\) is the auxiliary
+term. For a PVM strategy, the displayed CHSH observables are
 Hermitian unitaries, including possible values \(\pm\id\). If either
 party's two observables commute, the CHSH identity
 \[
-C_{\rm CHSH}^2
+\widehat S^{\,2}
 =4\id-[A_0,A_1]\otimes[B_0,B_1]
 \]
 gives \(S\le2\). As \(T\le7/5\), one has \(\Bell\le20+7/5<U\).
@@ -1592,10 +1688,13 @@ K_2=\frac45D\Pi(\widetilde{\bm b}_1)D.
 The reflection preserves \(z\)-coordinates, dot products, and \(u\). In a
 pair involving label \(2\), write the two selected score operators as
 \[
-G=\frac35D \Pi(\bm n)D,\qquad
-H=\frac45D \Pi(\bm m)D.
+K_{\bm n}=\frac35D \Pi(\bm n)D,\qquad
+K_{\bm m}=\frac45D \Pi(\bm m)D,
 \]
-With \(x=n_z\), \(y=m_z\), and \(r=\bm n\cdot\bm m\),
+and let \(F_\eta\) be the largest value of
+\(\Tr(K_{\bm n}\Pi)+\Tr[K_{\bm m}(\id-\Pi)]\) over projections \(\Pi\).
+With \(x=n_z\), \(y=m_z\), and \(r=\bm n\cdot\bm m\), \cref{app:separation-algebra}
+gives
 \[
 20F_\eta
 =7+\eta(3x+4y)
@@ -1666,7 +1765,12 @@ the third for a discrimination task.
 
 The minimum in higher local dimensions, the exact qubit optima of
 \eqref{eq:bell-functional}, and the measurement choices that yield the most
-noise-tolerant separation at \(3\times2\) remain natural questions. For the
+noise-tolerant separation at \(3\times2\) remain natural questions. For
+qutrits, numerical evidence suggests that general measurements do not raise
+the value of a two-setting, four-outcome inequality \cite{cai2016}, which
+is consistent with a two-setting equality beyond qubits. The perturbative
+program of Ref.~\cite{cerf2026} remains open there and for more than two
+parties. For the
 two-setting simulation the proof guarantees a finite ensemble. A practical
 algorithm to find such an ensemble for a given behavior, and sharp bounds on
 the amount of shared randomness it needs, would make the simulation
@@ -1693,6 +1797,10 @@ The author directed the research questions and selection of claims and
 used generative AI for mathematical exploration and derivations, literature
 review, writing, programming, and Lean formalization. OpenAI Codex
 (GPT-6 family) assisted with the pre-submission review and revision.
+Anthropic Claude (Claude Fable 5.2, used through Claude Code) then
+refereed the revised manuscript independently, audited the bibliography
+and the formal theorem statements against the text, and made the
+resulting corrections.
 The retained records for the earlier research stages do not identify
 the model versions. Verification included independent agent attempts to
 falsify the claims, exact arithmetic on the supplied states and Bell

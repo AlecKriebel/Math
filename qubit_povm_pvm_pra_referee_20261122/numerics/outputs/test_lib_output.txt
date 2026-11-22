@@ -1,0 +1,26 @@
+== test 1: exact qubit POVM step ==
+  n=2: found 40/40; max (brute - exact) so far 2.22e-15; max (exact - brute) 6.08e-14; min eig -2.5e-16, norm err 1.1e-15
+  n=3: found 40/40; max (brute - exact) so far 2.22e-15; max (exact - brute) 7.89e-13; min eig -2.7e-16, norm err 6.7e-16
+  n=4: found 40/40; max (brute - exact) so far 2.22e-15; max (exact - brute) 5.94e-12; min eig -2.1e-16, norm err 6.7e-16
+  n=5: found 40/40; max (brute - exact) so far 2.22e-15; max (exact - brute) 2.75e-11; min eig -2.3e-16, norm err 2.2e-16
+  not-found total 0/160.  Exact value must be >= brute (brute is a lower bound): worst brute-exact = 2.22e-15
+  n=3, N=20000: found 100.000%  max|primal-dual| 4.74e-12  min eig -3.8e-16 norm err 9.8e-14  time 0.09s; #nonzero-effects histogram [0, 1453, 14975, 3572, 0]
+  n=4, N=20000: found 100.000%  max|primal-dual| 1.42e-12  min eig -3.8e-16 norm err 3.5e-14  time 0.28s; #nonzero-effects histogram [0, 816, 13352, 5592, 240]
+  n=6, N=20000: found 100.000%  max|primal-dual| 2.26e-11  min eig -4.3e-16 norm err 1.9e-13  time 1.57s; #nonzero-effects histogram [0, 343, 11112, 7726, 819]
+== test 1b: PVM step ==
+  primal==reported: 3.552713678800501e-15  projective: True  PVM<=POVM: True  fraction with POVM>PVM: 0.1655
+== test 2: two-angle PVM bound ==
+  CHSH: 2.8284271247461916 vs 2*sqrt2 = 2.8284271247461903  assign (0, 1, 1, 0) (0, 1, 1, 0) 1.570796315091552 1.5707963384982413
+  trial 0: reduced 5.329863522360 (0.23s, 26244 cfgs)  literal-ordered fine-grid 5.329863522360 (1.81s, 893025 cfgs)  diff -1.78e-15
+  trial 1: reduced 5.146589717633 (0.20s, 9720 cfgs)  literal-ordered fine-grid 5.146589717633 (0.99s, 306180 cfgs)  diff -8.88e-16
+  trial 2: reduced 4.809031710121 (0.21s, 26244 cfgs)  literal-ordered fine-grid 4.809031710121 (1.80s, 893025 cfgs)  diff -2.66e-15
+  trial 3: reduced 7.022339897724 (0.20s, 9720 cfgs)  literal-ordered fine-grid 7.022339897724 (0.98s, 306180 cfgs)  diff -8.88e-16
+  trial 4: reduced 3.905593345204 (0.22s, 26244 cfgs)  literal-ordered fine-grid 3.905593345204 (1.85s, 893025 cfgs)  diff +0.00e+00
+  trial 5: reduced 5.526878955859 (0.20s, 9720 cfgs)  literal-ordered fine-grid 5.526878955859 (0.99s, 306180 cfgs)  diff +0.00e+00
+  max |reduced - literal| = 2.6645352591003757e-15
+== test 3: see-saw ==
+  mode=pvm: 34 iters, 1.0s, nfail=0, monotone violations (max decrease) -7.11e-15, |certified - seesaw| max 0.00e+00
+   all projective: True
+  mode=povm: 32 iters, 1.3s, nfail=541, monotone violations (max decrease) -4.44e-15, |certified - seesaw| max 4.44e-15
+  two-angle PVM bound - PVM see-saw best (>=0 expected): [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  POVM see-saw best - two-angle PVM bound (<=0 expected by theorem): [-0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0, -0.0]

@@ -10,10 +10,11 @@ its positive outcome has label \(0\). Use the ordered words
 \[
 W=(\id,A_0,A_1,A_2,B_0,B_1,A_0B_0,A_0B_1,A_1B_0,A_1B_1,A_2B_0,A_2B_1).
 \]
-Operators on opposite parties commute. Let \(\mathcal B_{02}\) denote the
-Bell operator on this support. Its gap from \(289/10\) has the identity
+Operators on opposite parties commute. Let \(\widehat{\Bell}_{02}\) denote the
+Bell operator on this support, as in \cref{sec:separation}. Its gap from
+\(289/10\) has the identity
 \[
-\frac{289}{10}\id-\mathcal B_{02}
+\frac{289}{10}\id-\widehat{\Bell}_{02}
  =\frac{1}{600}\sum_{i,j=1}^{12}G_{ij} W_i^\dagger W_j ,
 \]
 where the integer numerator is
@@ -225,7 +226,11 @@ prove \(L_1>U\).
 The attained value in \cref{prop:strengthened-strategy} is a formal endpoint.
 The particular dual-slack calculation above and the differentiation and
 uniqueness argument below are retained manuscript calculations.
-Within the one-parameter family used above,
+Vary \(\eta\in[0,1]\) in the construction above, keeping Bob's observables,
+taking \(k(\eta)=\frac35\sqrt{(1-\eta)/(1+\eta)}\), and choosing Alice's
+first two observables to maximize the CHSH value, which is then
+\(2\sqrt{2-\eta^2}\). The dual-slack identities hold for every such
+\(\eta\). Within this one-parameter family the Bell value
 \[
 f(\eta)=20\sqrt{2-\eta^2}+\frac{16+4\eta}{25}
 \]
@@ -564,7 +569,7 @@ Minimum input requirement and attainment &
 \path{minimum_inputs}; \path{minimum_inputs_attained}\\
 Strengthened value in \cref{app:strengthened} &
 \path{strengthened_attainment}\\
-Combined principal conclusions &
+Equality, one-input case, bound \(U\), separation and strengthened value combined &
 \path{main_claims_with_strengthening}\\
 \bottomrule
 \end{tabular}
@@ -598,7 +603,8 @@ coordinate identities for the projective fibers in
 \path{Bell/ProjectiveFiber.lean} and the explicit rank-zero simulation.
 Thus the proof of \cref{prop:fiber} in \cref{app:fibers} and the
 formal proof establish the same conclusion by different arguments.
-\path{Bell/Assembly.lean} combines all rank cases to prove the
+\path{Bell/ResidualClosure.lean} combines the three rank cases, and
+\path{Bell/Assembly.lean} combines the resulting support cases to prove the
 arbitrary-output equality. For the separating functional,
 \path{Bell/ProjectiveBound.lean} applies the operator SOS bound to
 every projective support.
@@ -610,7 +616,8 @@ calculations, the alternative derivation of \(U\), and the
 particular dual-slack and one-parameter optimality calculations in
 \cref{app:strengthened} are manuscript arguments.
 The two-angle and Schmidt-number results in \cref{sec:operational} are
-deductions from the verified equality. The accompanying
+manuscript deductions from the verified equality and are not themselves
+formalized. The accompanying
 \path{bell_lean/docs/CERTIFIED_COVERAGE.md} maps the formal results to
 their declarations.
 

@@ -19,5 +19,6 @@ The journal form should use the title, abstract, data availability statement and
 | [main.pdf](../paper/main.pdf) | Publication manuscript with appendices and references |
 | [arxiv_source.tar.gz](arxiv_source.tar.gz) | TeX source archive for the manuscript |
 | [review.pdf](../paper/review.pdf) | Line-numbered version for review |
+| [cover_letter.md](cover_letter.md) | Cover letter text for the submission form |
 
 The earlier public preprint is [version 1.1.0 on Zenodo](https://doi.org/10.5281/zenodo.21699161). Cite the software snapshot listed in the current manuscript when identifying the Lean formalization.

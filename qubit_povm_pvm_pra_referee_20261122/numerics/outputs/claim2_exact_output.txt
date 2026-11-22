@@ -1,0 +1,37 @@
+== simple strategy (main text) ==
+  Alice x=0: all effects PSD: True; sums to identity: True
+  Alice x=1: all effects PSD: True; sums to identity: True
+  Alice x=2: all effects PSD: True; sums to identity: True
+  Bob y=0: all effects PSD: True; sums to identity: True
+  Bob y=1: all effects PSD: True; sums to identity: True
+  A0^2=I: True  A1^2=I: True
+  printed rank-one factorizations match M_0,M_1,M_2: [True, True, True]
+  nonzero eigenvalues (traces of rank-one effects): [17/25, 17/25, 16/25]  -> not a PVM
+  state normalized: True
+  p(0,0|2,0), p(1,1|2,0), p(2,0|2,1) = 8/25 8/25 8/25
+  Bell value = 16/25 + 20*sqrt(2)   equals 20*sqrt2+16/25: True  (~28.9242712475)
+  dual operator Gamma >= W_i and (Gamma-W_i)M_i=0: True ; Tr Gamma = 16/25
+== strengthened strategy (Appendix B) ==
+  s == 6*sqrt(217)/q: True ; 36*217+7813 == 125^2: True
+  Alice x=0: all effects PSD: True; sums to identity: True
+  Alice x=1: all effects PSD: True; sums to identity: True
+  Alice x=2: all effects PSD: True; sums to identity: True
+  Bob y=0: all effects PSD: True; sums to identity: True
+  Bob y=1: all effects PSD: True; sums to identity: True
+  A0^2=I: True  A1^2=I: True
+  k^2 = 3907/10850 - sqrt(7813)/10850 ~ 0.35194551372993643  (<1 so M_2>=0)
+  dets of M_0,M_1,M_2 (rank one): [0, 0, 0]
+  state normalized: True
+  Bell value ~ 28.9251763296607362691290830663 ; L1 ~ 28.9251763296607362691290830663
+  exact difference simplifies to: 0  (60-digit numeric: 0 )
+  10*S == 2500/q: True ; T == (16+4*eta)/25: True  numeric T diff: 0.e-161
+  exact equality val == (16+8*sqrt(7813))/25: True
+  K_j (float): [[[0.15169700197165345, 0.14999040030718033], [0.14999040030718033, 0.14830299802834654]], [[0.15169700197165345, -0.14999040030718033], [-0.14999040030718033, 0.14830299802834654]], [[0.40452533859107587, 0.0], [0.0, 0.0]]]
+  dual slacks Gamma-K_j equal printed rank-one forms: True ; slack*M_j = 0: True ; Tr Gamma - (16+4 eta)/25 = 0
+== exact comparisons ==
+  (16*sqrt(7813)-1413)/50 > 0.02517  <=> 256*7813 > (1414.2585)^2: True  [2000128 vs 2000127.104822]  value ~ 0.025176330
+  L1 - 289/10 == (16 sqrt(7813)-1413)/50: True
+  L0 > 289/10  <=> 800 > 798.6276 : True   L0-28.9 ~ 0.024271247
+  U ~ 28.917241810210378 ; L0-U == 3(2-sqrt2)/250: True ; L1 > U: True ; 289/10 < U: True
+  (6+80 sqrt7813)^2 - 2*5003^2 == -56782+960 sqrt7813: True ; 960^2*7813-56782^2 = 3976265276
+{'simple_value_ok': True, 'simple_dual_ok': True, 'strengthened_value_ok': True, 'strengthened_dual_ok': True, 'gap_gt_0.02517': True, 'L0_gt_289_10': True, 'L0': 28.924271247461903, 'L1': 28.925176329660736, 'U': 28.917241810210378, 'gap_L1': 0.025176329660737906}

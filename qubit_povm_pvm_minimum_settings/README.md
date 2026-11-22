@@ -6,7 +6,7 @@ For two inputs per party, every two-qubit POVM behavior with arbitrary finite de
 
 [Manuscript PDF](paper/main.pdf) · [Line-numbered PDF](paper/review.pdf) · [TeX source archive](submission/arxiv_source.tar.gz) · [Submission metadata](submission/journal_metadata.md)
 
-From this directory, run `bash paper/build.sh --submission` to rebuild the manuscript, line-numbered copy and upload archive. The paper source and bibliography are in [paper/](paper/). The [pre-submission review](../qubit_povm_pvm_pra_review_20261122/PRA_REVIEW.md) assesses the previous manuscript and derives the shorter proof of the projective-fiber proposition used in this revision.
+From this directory, run `bash paper/build.sh --submission` to rebuild the manuscript, line-numbered copy and upload archive. The paper source and bibliography are in [paper/](paper/). The [pre-submission review](../qubit_povm_pvm_pra_review_20261122/PRA_REVIEW.md) assesses the previous manuscript and derives the shorter proof of the projective-fiber proposition used in this revision. The [independent referee report](../qubit_povm_pvm_pra_referee_20261122/REFEREE_REPORT.md) records a second review of the revision, its falsification attempts, and the resulting corrections.
 
 ## Verification
 
