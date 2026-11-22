@@ -51,8 +51,8 @@ for Qubit POVM--PVM Separation}
 \author{Alec Kriebel\\
 \small Independent Researcher\\
 \small \texttt{me@aleckriebel.com}\\
-\small \url{https://aleckriebel.com/}}
-\date{Version 2.0.0 working revision --- September 2026}
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{}
 
 \begin{document}
 \ifdefined\REVIEWVERSION
@@ -61,179 +61,115 @@ for Qubit POVM--PVM Separation}
 \maketitle
 
 \begin{abstract}
-V\'ertesi and Bene exhibited a \(3\times2\) Bell scenario in which qubit
-positive-operator-valued measurements (POVMs) outperform qubit
-projection-valued measurements (PVMs). We prove the matching setting lower
-bound. For arbitrary finite, input-dependent output alphabets, the
-shared-randomness convex hulls of bipartite qubit-POVM and qubit-PVM behaviors
-are equal when both parties have two inputs. Equivalently, no two-input
-linear Bell functional separates the two convexified sets. We also give a
-rational \(3\times2\) functional, an exact qubit-POVM strategy, and a global
-analytic qubit-PVM upper bound with a strict exact gap. Hence \(3\times2\) is
-the minimum input architecture, up to exchanging the parties. The equality
-proof combines a one-binary-party Lorentz-cone simulation, an extremal
-binary--ternary reduction, physical Lorentz incidence coordinates, and a
-rank trichotomy. A Lean formalization proves the principal results using
-deterministic score gaps, differentiable feasible curves, and an exact
-quadratic score identity. The result concerns convexified behavior sets; it does not assert
-equality of the raw nonconvex strategy images or same-state simulation.
+How many measurement settings does a Bell experiment need to distinguish
+generalized from projective measurements on qubits?
+We prove that with two settings per party and any finite number of outcomes
+per setting, every bipartite qubit behavior admits a finite shared-randomness
+mixture of projective qubit strategies. Thus the qubit bound of any such
+Bell functional can be computed by enumerating pairs of output labels and
+maximizing the largest eigenvalue of a real \(4\times4\) matrix over two
+angles. A value above this bound certifies Schmidt number at least three.
+With three settings on one side and two on the other, V\'ertesi and Bene
+exhibited a qubit advantage for generalized measurements. The two-setting
+theorem proves that this input architecture is minimal, up to exchanging
+the parties. We also give a rational Bell functional with an attained
+value \((16+8\sqrt{7813})/25\) for generalized qubit measurements,
+while all projective qubit strategies score at most \(289/10\). A Lean formalization proves the two-setting simulation,
+the separation, and the minimum.
 \end{abstract}
 
+\section{Introduction}
+
+Brunner \emph{et al.}\ optimized a family of Bell expressions with two
+settings and three outcomes per party to distinguish qubits from systems
+of higher dimension. Although their numerical search allowed arbitrary qubit
+measurements, two-outcome projective measurements attained the largest values
+they found \cite{brunner2008dim}. We prove that the restriction to projective
+measurements gives the exact qubit bound for \emph{every} two-setting Bell
+functional, regardless of the number of outcomes. The result concerns the
+usual Bell model in which shared randomness can select the state and both
+parties' measurements before the inputs arrive.
+
+At fixed local dimension, a positive-operator-valued measurement (POVM) can
+give access to more behaviors than a projection-valued measurement (PVM).
+Naimark dilation can require a larger local Hilbert space. Gisin asked
+whether a Bell inequality could exhibit this measurement advantage, observing
+that binary outcomes alone always allow projective measurements to attain
+the optimum \cite{gisin2007}. V\'ertesi and Bene exhibited a two-qubit
+example with three settings for Alice and two for Bob \cite{vertesi2010}.
+Our theorem supplies the matching lower bound on the number of settings.
+
 \begin{maintheorem}
-For every finite input-dependent output architecture
-\((A_0,A_1;B_0,B_1)\),
+Write \(\Qset^{\POVM}_2\) and \(\Qset^{\PVM}_2\) for the behaviors
+of bipartite POVM and PVM strategies on complex local spaces of dimension
+at most two. For two inputs per party and all finite declared output
+alphabets \(\mathbf A=(A_0,A_1)\), \(\mathbf B=(B_0,B_1)\),
 \[
 \conv\Qset^{\POVM}_2(\mathbf A,\mathbf B)
 =
 \conv\Qset^{\PVM}_2(\mathbf A,\mathbf B).
 \]
-For the rational \(3\times2\) Bell functional in
-\cref{eq:bell-functional},
+For the rational \(3\times2\) Bell functional \(\Bell\) in
+\eqref{eq:bell-functional},
 \[
-\beta_{\POVM}\ge
-L_0:=20\sqrt2+\frac{16}{25}
->
-U:=20\sqrt2+\frac35+\frac{4+3\sqrt2}{250}
-\ge\beta_{\PVM}.
+\beta_{\POVM}(\Bell)\ \ge\ \frac{16+8\sqrt{7813}}{25}
+\ >\ \frac{289}{10}\ \ge\ \beta_{\PVM}(\Bell).
 \]
-Consequently, up to exchanging the parties, three inputs for one party and
-two for the other are necessary and sufficient for a strict fixed-qubit
-POVM--PVM separation by a linear Bell functional.
+Consequently \(3\times2\), up to exchanging the parties, is the minimum
+input architecture in which a linear Bell functional can separate qubit
+POVMs from qubit PVMs.
 \end{maintheorem}
 
-\noindent
-Throughout, ``\(m\times n\)'' counts Bell inputs (measurement settings), not
-measurement outcomes.
-
-\section{Introduction}
-
-A positive-operator-valued measurement (POVM) is more general than a
-projection-valued measurement (PVM) on a fixed Hilbert space. Naimark dilation
-represents a POVM projectively only after adding degrees of freedom, so it
-does not preserve a fixed local dimension. Bell experiments therefore offer
-an operational question: how many measurement inputs are needed before
-generalized measurements on local qubits generate correlations unavailable
-to projective qubit measurements? This belongs to the broader study of Bell
-nonlocality and dimension-constrained quantum behavior
-\cite{brunner2014,navascues2015}.
-
-Gisin asked whether some Bell inequality and quantum state can require
-nonprojective measurements for optimal violation, noting that binary outcomes
-cannot furnish such an example \cite{gisin2007}. V\'ertesi and Bene answered
-that existence question for two qubits using three inputs on Alice and two on Bob
-\cite{vertesi2010}; subsequent work refined that family
-\cite{barra2012}, and related device-independent constructions certify
-nonprojective qubit measurements with larger input architectures
-\cite{gomez2016}. These results do not settle the two-input behavior-set
-question.
-
-Two recent results approach nearby boundaries from different directions.
-Cerf and Ollivier develop a second-order perturbative method for
-\((n,2,d)\) Bell scenarios near deterministic correlations and propose,
-without resolving, a route to distinguish raw fixed-dimensional POVM and PVM
-correlation sets \cite{cerf2026}. Their proved qubit result concerns local
-dichotomic geometry and neither establishes nor implies the global,
-convexified arbitrary-output equality proved here. Panahi \emph{et al.},
-using an intermediate reduction attributed to Masanes together with Schmidt
-compression, show that when one party has two binary settings, every
-bipartite convexly extremal quantum correlation admits a two-qubit
-realization even if the other party has arbitrary settings and outcomes
-\cite{panahi2025}. That is a Hilbert-space dimension theorem, not a
-projectivization of the arbitrary-output measurements. The
-one-binary-party theorem below instead supplies a common PVM mixture of the
-complete fixed-qubit behavior.
-
-Zhu \emph{et al.}\ provide a recent rational \(3\times2\) functional with
-a fully analytic bound over arbitrary shared two-qubit projective strategies
-and a Lean separation certificate \cite{zhu2026}. They also give a separate
-exact sum-of-squares certificate for the unrestricted finite-dimensional
-quantum optimum of their functional. These are separation and optimization
-results for a particular functional; they do not establish the universal
-two-input equality studied here.
-
-To our knowledge, equality of the shared-randomness-convexified fixed-qubit
-POVM and PVM behavior sets for all bipartite two-input architectures with
-finite, input-dependent output alphabets, and the resulting \(3\times2\)
-minimum-input classification, were not previously known.
-It also differs from operator-level projective simulability of individual
-POVMs \cite{oszmaniec2017,guerini2017}: a Bell behavior may admit a projective
-realization using a different state even when the original local POVM is not
-itself a mixture of PVMs.
-
-Strong reductions are known when every measurement is dichotomic
-\cite{masanes2005,toner2006}; genuine ternary effects are precisely what those
-arguments do not address. They also make exhaustive PVM conventions
-essential. A published ternary-measurement claim was later corrected after a
-qubit PVM with a zero effect was found to attain the same value
-\cite{schwarz2016,schwarz2018corrigendum}. We therefore retain zero
-projectors, deterministic inputs, every support pattern, and stochastic
-postprocessing throughout.
-
-\subsection*{Contributions}
-
-We work throughout with local Hilbert-space dimension at most two and with
-shared-randomness convexification. Our results are:
-
-\begin{enumerate}[leftmargin=*,itemsep=3pt]
-\item If one party has binary outcomes on both of its two inputs, every qubit
-  POVM behavior is a common convex mixture of complete qubit-PVM behaviors
-  (\cref{thm:binary-party}).
-\item Any remaining strict two-input separator reduces to a pure entangled
-  strategy with one binary PVM and one ternary rank-one POVM per party
-  (\cref{thm:residual-reduction}).
-\item The residual architecture cannot strictly exceed the PVM support
-  function (\cref{thm:two-input-equality}). The proof treats every smooth and
-  singular rank of an exact Lorentz incidence model.
-\item An explicit rational \(3\times2\) Bell functional has an exact
-  algebraic qubit-POVM strategy above a global analytic upper bound for all
-  qubit-PVM strategies (\cref{thm:separation}).
-\item Consequently \(3\times2\) is the minimum input architecture, up to
-  exchanging the parties (\cref{cor:minimality}).
-\end{enumerate}
+Averaging the \emph{same} finite ensemble of projective strategies gives
+the correct probabilities for every input pair. The states in these
+branches may differ from the state of the original POVM strategy.
+This makes the theorem applicable even when a local POVM itself admits
+no decomposition into projective measurements \cite{oszmaniec2017,guerini2017}.
+Section~\ref{sec:operational} gives the resulting two-angle optimization
+and its application to certifying the Schmidt number of an unknown state.
 
 \begin{figure}[t]
 \centering
 \input{figures/threshold.tex}
-\caption{The minimum input threshold at fixed local dimension two. Equality
-means equality after shared-randomness convexification for each fixed finite
-declared-output architecture.}
+\caption{The minimum number of Bell settings needed to separate qubit POVMs
+from qubit PVMs with shared randomness. The two-setting equality holds for
+each choice of finite output alphabets. The three-setting witness uses one
+ternary measurement.}
 \label{fig:threshold}
 \end{figure}
 
-The equality is not an operator identity between POVMs and PVMs, nor does it
-assert simulation on the same state. It is an equality of convex behavior
-sets. The distinction is central.
+\paragraph{Related work.}
+P\'al and V\'ertesi distinguished raw sets of fixed-dimensional behaviors
+under their projective-measurement convention \cite{palvertesi2009}.
+Rout \emph{et al.}\ studied fixed-dimension tests allowing stochastic
+relabelling of a single projective measurement \cite{rout2025}.
+The distinction from shared-randomness convexification is illustrated by
+the trine example in \cref{rem:trine}. Cerf and Ollivier analyze perturbations
+of dichotomic strategies near deterministic correlations \cite{cerf2026}.
+Masanes and others obtained dimension reductions for dichotomic observables
+\cite{masanes2005,toner2006}. Panahi \emph{et al.}\ show that if one party
+has two binary settings, every convexly extremal quantum behavior admits a
+two-qubit realization even when the other party has arbitrary settings and
+outcomes \cite{panahi2025}. Our two-setting simulation permits arbitrary
+outcomes on both sides and imposes projectivity on every branch.
 
-\begin{table}[t]
-\centering
-\small
-\caption{The earlier \(3\times2\) separator and the present exact
-classification. Both use the heterogeneous output architecture
-\((2,2,3)\)-by-\((2,2)\).}
-\label{tab:comparison}
-\begin{tabular}{@{}
->{\raggedright\arraybackslash}p{0.20\linewidth}
->{\raggedright\arraybackslash}p{0.33\linewidth}
->{\raggedright\arraybackslash}p{0.39\linewidth}@{}}
-\toprule
-Feature & V\'ertesi--Bene \cite{vertesi2010} & Present work\\
-\midrule
-Role & Establishes fixed-qubit POVM advantage at \(3\times2\) &
-Proves arbitrary-output convexified equality at \(2\times2\), then combines it
-with an exact \(3\times2\) witness\\
-Bell coefficients & Algebraic \(I_{CH3}\) family & Rational functional\\
-Unrestricted-state PVM comparison & Numerical optimization supported by an
-NPA upper bound for the displayed parameter choice & Analytic upper bound
-covering every two-qubit state and every PVM support\\
-Setting minimality & Not addressed & \(3\times2\), up to party exchange\\
-\bottomrule
-\end{tabular}
-\end{table}
+Subsequent work on the V\'ertesi--Bene example refined its violation and
+detection efficiency \cite{barra2012}, and larger input architectures can
+certify nonprojective qubit measurements \cite{gomez2016}.
+Zhu \emph{et al.}\ give a different rational \(3\times2\) functional, an
+analytic bound for all shared two-qubit projective strategies, and a Lean
+separation certificate. They also determine the unrestricted finite-dimensional
+quantum optimum for their functional \cite{zhu2026}. The contribution here
+is the universal two-setting equality and resulting minimum. Our
+three-setting witness, like theirs, gives an independent certificate at this
+minimum. Our projective bounds include zero projectors and deterministic
+settings, which can alter an apparent ternary measurement advantage
+\cite{schwarz2016,schwarz2018corrigendum}. For the broader context of
+dimension-constrained Bell correlations see \cite{brunner2014,navascues2015}.
 
 \subsection*{Proof roadmap}
 
-The exact separation combines a CHSH locking term with a three-state
-discrimination task. For the equality theorem, convex separation first turns
+For the equality theorem, convex separation first turns
 any counterexample into a global Bell maximizer. A Lorentz-cone circuit
 argument handles every case in which one party is binary. A common-span
 filtering perturbation and extremal-POVM dimension bound reduce all other
@@ -253,9 +189,10 @@ deterministic decomposition.
 The machine-checked route realizes the uphill direction by a differentiable
 feasible curve and proves improvement from an exact finite score-gap
 identity. It does not require the full smooth-manifold or Hessian-inertia
-statements retained below as geometric explanations. Likewise, the general
-POVM-duality and determinant-pullback lemmas are retained as supplementary
-manuscript arguments, not prerequisites of the formal multiplier proof.
+statements retained below as geometric explanations. The general
+POVM-duality and determinant-pullback results are given in \cref{app:duality}.
+After the equality proof we establish separation by combining a CHSH term
+with a three-state discrimination task.
 \Cref{app:verification} identifies the checked endpoints and the retained
 manuscript-only claims. Formal verification of the endpoints does not
 certify every intermediate statement of an alternative prose proof.
@@ -295,13 +232,15 @@ We denote the shared-randomness hulls by
 \Qbar^{\PVM}_2(\mathbf A,\mathbf B)
  :=\conv\Qset^{\PVM}_2(\mathbf A,\mathbf B).
 \]
-Local stochastic postprocessing is included on the PVM side.
+The raw sets are the images of individual strategies with the indicated
+effects. Their convex hulls allow a common classical variable to select the
+state and all measurements simultaneously. The PVM hull also allows local
+stochastic processing of output labels, by \cref{lem:convexification}.
 
-The raw sets \(\Qset^{\POVM}_2\) and \(\Qset^{\PVM}_2\) are strategy images
-and need not be convex: a single strategy has no external shared-randomness
-register. Their barred versions are convex hulls and do permit a common
-classical variable selecting the state and all local measurements
-simultaneously. For a Bell tensor \(c\), define the support values
+When defining support values, assume the output alphabet at each existing
+input is nonempty. If one of these alphabets is empty, no normalized
+measurement exists there and both behavior sets are empty, so hull equality
+holds trivially. For nonempty alphabets and a real Bell tensor \(c\), define
 \[
 \beta_{\mathsf X}(c)
 :=\max_{p\in\Qbar^{\mathsf X}_2}\langle c,p\rangle,
@@ -312,9 +251,9 @@ of all support values determines only the convex hulls, not the raw sets.
 
 \begin{lemma}[Convexification and postprocessing]
 \label{lem:convexification}
-For a linear Bell functional, shared randomness and stochastic
-postprocessing do not increase the optimum beyond one deterministic
-projective component.
+The optimum of a linear Bell functional over shared-randomness mixtures
+of locally postprocessed qubit PVMs is attained by a single projective
+strategy with deterministic output processing.
 \end{lemma}
 
 \begin{proof}
@@ -356,7 +295,7 @@ For \(p\in\cP\), differentiate
 
 \begin{proposition}[Convex hulls and Bell support functions]
 \label{prop:support-functions}
-For fixed finite alphabets,
+For fixed finite nonempty output alphabets,
 \[
 \Qbar^{\POVM}_2=\Qbar^{\PVM}_2
 \quad\Longleftrightarrow\quad
@@ -375,329 +314,76 @@ functional with unequal maxima. Finally, a linear functional has the same
 maximum on a compact set and on its convex hull.
 \end{proof}
 
-\begin{remark}[Notation for arbitrary outputs]
-The shorthand
-\(\Qbar^{\POVM}_2(2,2)=\Qbar^{\PVM}_2(2,2)\) means an equality schema:
-the equality holds separately for every choice of finite
-\((A_0,A_1;B_0,B_1)\). It is not an identification of behavior vectors
-living in different ambient spaces.
+\begin{remark}[A raw-set separation]
+\label{rem:trine}
+Let both parties measure a singlet with the same planar trine POVM,
+\(E_i=(\id+\bm n_i\cdot\bm\sigma)/3\), where the three unit Bloch vectors
+are \(120^\circ\) apart \cite{rout2025}. The joint probabilities are
+\(p(i,j)=(1-\bm n_i\cdot\bm n_j)/9\). The resulting \(3\times3\) matrix
+has zero diagonal and off-diagonal entries \(1/6\), so its determinant is
+\(1/108\). For one pair of qubit PVMs with independent stochastic
+output processing the joint matrix has the form \(K_A Q K_B^T\), where
+\(Q\) is the joint table of the at most two active projectors on each side.
+Its rank is at most two, excluding the trine table. Repeat the measurements
+on the second inputs to obtain a two-setting example. With shared randomness
+the uniform mixture of the six deterministic ordered pairs of distinct
+labels realizes all four input-pair tables simultaneously.
 \end{remark}
 
-\begin{table}[p]
-\centering
-\small
-\caption{Notation used in the separation and equality arguments.}
-\label{tab:notation}
-\begin{tabular}{@{}p{0.22\linewidth}p{0.70\linewidth}@{}}
-\toprule
-Symbol & Meaning\\
-\midrule
-\(\Qset^{\mathsf X}_2\) & Raw behavior set from one fixed-qubit strategy of
-type \(\mathsf X\in\{\POVM,\PVM\}\)\\
-\(\Qbar^{\mathsf X}_2\) & Shared-randomness convex hull
-\(\conv\Qset^{\mathsf X}_2\)\\
-\(\beta_{\mathsf X}(c)\) & Support value of Bell tensor \(c\) on the
-convexified set\\
-\(\Bell,S,T\) & The \(3\times2\) Bell functional, its CHSH term, and its
-auxiliary term\\
-\(\Xi\) & \(2\times2\) coefficient matrix of a pure two-qubit state\\
-\(\Theta_\Xi,L_\Xi\) & Steering map \(N\mapsto\Xi N^T\Xi^\dagger\) and its
-Lorentz-coordinate matrix\\
-\(J\) & Minkowski matrix \(\operatorname{diag}(1,-1,-1,-1)\)\\
-\(\mathsf E_A,\mathsf E_B\) & Lorentz-coordinate frames formed by four local
-effects\\
-\(g,h,Q\) & Alice and Bob Gram metrics and \(Q=g^{-1}\)\\
-\(r_1,\ldots,r_5,u\) & Coefficient rays and their common normalization vector\\
-\(P\) & \(4\times4\) block of joint probabilities in the two local effect
-bases\\
-\(F_j\) & Null-incidence constraint
-\((Pr_j)^Tg^{-1}(Pr_j)=0\)\\
-\(\mathsf B_c\) & Matrix representing Bell tensor \(c\) in the incidence
-coordinates\\
-\(\lambda,\Lambda\) & Determinant multipliers and
-\(\Lambda=\sum_j\lambda_jr_jr_j^T\)\\
-\(\cD,K\) & Metric differential and \(K=\ker\cD^T\)\\
-\(\mathcal H_K,q\) & Compatible \(W\)-space and weighted second form\\
-\(K_{j|y},\Gamma_y\) & Local score operators and finite-POVM dual operators\\
-\bottomrule
-\end{tabular}
-\end{table}
+\section{Two-setting Bell bounds and Schmidt number}
+\label{sec:operational}
 
-\section[An exact rational 3-by-2 separation]
-{An exact rational \(3\times2\) separation}
-\label{sec:separation}
+The main theorem reduces an arbitrary-output optimization to a qubit spectral
+problem. It also gives a bound that can be used without assuming the
+dimension of the devices.
 
-This section supplies a supporting exact certificate at the already known
-\(3\times2\) architecture of V\'ertesi and Bene \cite{vertesi2010}. Both
-constructions combine a dominant CH/CHSH contribution with a ternary
-measurement advantage. The contribution here is the displayed rational
-functional, explicit witness, and analytic all-state PVM certificate used
-with the two-input equality theorem. We do not claim the first existence of
-a \(3\times2\) separation, a new architecture, or a globally optimal value.
+\begin{corollary}[Two-angle optimization]
+For a real Bell tensor \(c\) with two settings per party and finite nonempty
+output alphabets, its qubit POVM bound is
+\[
+ \max_{\ell}\ \max_{0\le\theta_A,\theta_B\le\pi}
+ \lambda_{\max}\!\left(\sum_{x,y,a,b} c_{abxy}
+      M^x_a(\ell,\theta_A)\otimes N^y_b(\ell,\theta_B)\right).
+\]
+Here \(\ell\) assigns an ordered pair of displayed labels to each setting,
+allowing both labels to coincide. For each party, the two settings measure
+\(Z\) and \(\cos\theta\,Z+\sin\theta\,X\), respectively. Their two spectral
+projectors are assigned to the chosen labels and added if the labels
+coincide. Unused labels receive the zero projector.
+\end{corollary}
 
-For this section take Alice inputs \(x=0,1,2\), Bob inputs \(y=0,1\), Alice
-labels \(a=0,1,2\), and Bob labels \(b=0,1\). Define signs
-\[
-\alpha_0=\alpha_2=1,\quad\alpha_1=-1,\qquad
-\beta_0=1,\quad\beta_1=-1
-\]
-and correlators
-\[
-E_{xy}=\sum_{a,b}\alpha_a\beta_b\,p(a,b|x,y).
-\]
-For \(x=0,1\), Alice's labels \(0\) and \(2\) have identical coefficients
-and may be deterministically coarse-grained. Thus the common three-label
-notation is equivalent to the heterogeneous architecture
-\((2,2,3)\)-by-\((2,2)\).
-Set
-\begin{equation}
-\label{eq:bell-functional}
-\begin{aligned}
-\Bell(p)={}&10(E_{00}+E_{01}+E_{10}-E_{11})\\
-&+\frac35p(0,0|2,0)+\frac35p(1,1|2,0)
- +\frac45p(2,0|2,1).
-\end{aligned}
-\end{equation}
-For this declared-output architecture, write
-\[
-\beta_{\POVM}(\Bell)
-:=\sup_{p\in\Qbar^{\POVM}_2}\Bell(p),\qquad
-\beta_{\PVM}(\Bell)
-:=\sup_{p\in\Qbar^{\PVM}_2}\Bell(p).
-\]
+\begin{proof}
+By \cref{thm:two-input-equality,lem:convexification} it suffices to maximize
+over single projective strategies. On each qubit a local unitary puts the
+first nondegenerate axis along \(Z\), and a rotation about \(Z\) puts the
+second axis in the \(XZ\)-plane with nonnegative \(X\)-component. A scalar
+setting assigns both spectral projectors to one label and imposes no
+condition on its axis. Thus the parametrization includes all two-setting
+PVMs up to local unitaries, which may be absorbed into the state.
+For fixed axes and labels the Bell operator is real symmetric of size
+\(4\times4\); its largest eigenvalue is precisely the maximum over density
+operators.
+\end{proof}
 
-\begin{theorem}[Exact fixed-qubit separation]
-\label{thm:separation}
-For the rational functional \eqref{eq:bell-functional},
-\[
-\beta_{\POVM}(\Bell)\ge
-L_0:=20\sqrt2+\frac{16}{25}
->
-U:=20\sqrt2+\frac35+\frac{4+3\sqrt2}{250}
-\ge\beta_{\PVM}(\Bell).
-\]
-The certified gap is
-\[
-L_0-U=\frac{3(2-\sqrt2)}{250}>0.
-\]
-These are an attained POVM lower bound and a global PVM upper bound; neither
-is asserted to be the corresponding exact optimum.
-\end{theorem}
+\begin{corollary}[Schmidt number witness]
+For two settings per party with finite output alphabets, the behaviors
+attainable in arbitrary finite local dimensions with states of Schmidt
+number at most two are exactly \(\Qbar^{\PVM}_2\). In particular a value
+above the two-angle bound certifies Schmidt number at least three.
+\end{corollary}
 
-\begin{remark}[Alternative formal projective certificate]
-The Lean proof establishes the stronger bound
-\[
-\beta_{\PVM}(\Bell)\le\frac{289}{10}<U<L_0.
-\]
-It uses an exact operator sum-of-squares certificate for each possible
-missing label of Alice's ternary qubit PVM, including deterministic
-measurements. Positivity then bounds the expectation for every two-qubit
-state, and linearity extends the bound to shared randomness. Thus the
-formal proof of \cref{thm:separation} does not depend on formalizing the
-physical-to-scalar deficit estimates given later in this section.
-The rational bound is not asserted to be the exact PVM optimum.
-\end{remark}
-
-\subsection{The simple exact strategy}
-
-Let \(X,Z\) be Pauli matrices and
-\[
-|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2.
-\]
-Bob uses \(B_0=Z\), \(B_1=X\). Alice uses
-\[
-A_0=(Z+X)/\sqrt2,\qquad A_1=(Z-X)/\sqrt2
-\]
-for her first two binary measurements, with a zero third label. Her final
-measurement is
-\[
-\begin{aligned}
-M_0&=(17\id-8X+15Z)/50,\\
-M_1&=(17\id-8X-15Z)/50,\\
-M_2&=(16\id+16X)/50.
-\end{aligned}
-\]
-The rank-one factorizations
-\[
-M_0=\frac1{25}\binom4{-1}(4,-1),\quad
-M_1=\frac1{25}\binom1{-4}(1,-4),\quad
-M_2=\frac8{25}\binom11(1,1)
-\]
-prove positivity. Direct addition of the displayed matrices gives
-\[
-M_0+M_1+M_2=\id,
-\]
-which proves normalization separately. Their nonzero eigenvalues are
-\(17/25,17/25,16/25\), so the measurement is not a PVM.
-
-The identity
-\[
-\langle\Phi^+|R\otimes S|\Phi^+\rangle
-=\frac12\Tr(R^TS)
-\]
-gives CHSH value \(2\sqrt2\) and
-\[
-p(0,0|2,0)=p(1,1|2,0)=p(2,0|2,1)=\frac8{25}.
-\]
-Thus the simpler value
-\[
-L_0=20\sqrt2+\frac{16}{25}
-\]
-already exceeds \(U\), since
-\[
-L_0-U=\frac{3(2-\sqrt2)}{250}>0.
-\]
-
-At the ideal point the auxiliary term is a state-discrimination problem with
-\[
-W_0=\frac3{20}(\id+Z),\quad
-W_1=\frac3{20}(\id-Z),\quad
-W_2=\frac15(\id+X).
-\]
-The dual operator
-\[
-\Gamma=\frac8{25}\id+\frac2{25}X
-\]
-satisfies \(\Gamma\ge W_i\) and
-\((\Gamma-W_i)M_i=0\), so the POVM value is \(16/25\).
-Explicitly,
-\[
-\begin{aligned}
-\Gamma-W_0&=\frac1{50}\binom14(1,4),&
-\Gamma-W_1&=\frac1{50}\binom41(4,1),\\
-\Gamma-W_2&=\frac3{25}\binom1{-1}(1,-1),
-\end{aligned}
-\]
-so dual feasibility is positive-semidefinite by inspection.
-Every one- or two-label qubit PVM support scores at most \(3/5\). The ideal
-discrimination advantage is therefore \(1/25\).
-
-\subsection{Global projective bound}
-
-Write \(\Bell=10S+T\). For a PVM strategy, the displayed CHSH observables are
-Hermitian unitaries, including possible values \(\pm\id\). If one is
-degenerate, the CHSH identity
-\[
-C_{\rm CHSH}^2
-=4\id-[A_0,A_1]\otimes[B_0,B_1]
-\]
-gives \(S\le2\), while \(T\le7/5\), which is below \(U\).
-
-Otherwise optimize the state to a pure state and put it in Schmidt form
-\[
-|\psi_\eta\rangle=
-\sqrt{\frac{1+\eta}{2}}|00\rangle+
-\sqrt{\frac{1-\eta}{2}}|11\rangle,\qquad0\le\eta\le1.
-\]
-Its correlation matrix is
-\[
-R=\operatorname{diag}(\sqrt{1-\eta^2},-\sqrt{1-\eta^2},1).
-\]
-If \(u=|\bm b_0\cdot\bm b_1|\) and
-\(\delta=2\sqrt2-S\), optimizing Alice's directions first gives
-\[
-S\le
-\lVert R(\bm b_0+\bm b_1)\rVert+
-\lVert R(\bm b_0-\bm b_1)\rVert.
-\]
-The normalized sum and difference directions are orthogonal. Since the two
-largest eigenvalues of \(R^TR\) sum to \(2-\eta^2\), Cauchy--Schwarz gives
-\[
-S\le2\sqrt{2-\eta^2}
-\le2\sqrt2-\frac{\eta^2}{\sqrt2}.
-\]
-The last comparison follows by squaring two nonnegative sides; their squared
-difference is \(\eta^4/2\). Independently, \(R\) is a contraction, so
-\[
-\begin{aligned}
-S&\le\sqrt{2+2u}+\sqrt{2-2u}\\
-&=\sqrt{4+4\sqrt{1-u^2}}
-\le\sqrt{8-2u^2}
-\le2\sqrt2-\frac{u^2}{2\sqrt2}.
-\end{aligned}
-\]
-Here \(\sqrt{1-u^2}\le1-u^2/2\) and
-\(\sqrt{4-u^2}\le2-u^2/4\); the exact squared differences and their
-nonnegative right sides are recorded in
-\cref{app:separation-algebra}. Hence
-\begin{equation}
-\label{eq:deficit-bounds}
-S\le2\sqrt2-\frac{\eta^2}{\sqrt2},\qquad
-S\le2\sqrt2-\frac{u^2}{2\sqrt2},
-\end{equation}
-hence
-\[
-\eta\le2^{1/4}\sqrt\delta,\qquad
-u\le2^{3/4}\sqrt\delta.
-\]
-
-A ternary qubit PVM has one of the six labeled rank patterns obtained by
-permuting \((2,0,0)\) or \((1,1,0)\). For every singleton support and the
-pair \(\{0,1\}\), \(T\le3/5+2(\eta+u)/5\). A pair involving label \(2\)
-reduces to binary discrimination between
-\[
-\Pi(\bm v):=\frac12(\id+\bm v\cdot\bm\sigma),\qquad
-D=\operatorname{diag}\!\left(
-\sqrt{\frac{1+\eta}{2}},\sqrt{\frac{1-\eta}{2}}\right).
-\]
-Writing \(\widetilde{\bm b}_y\) for the reflection of \(\bm b_y\) induced by
-matrix transposition, the three score operators are
-\[
-K_0=\frac35D\Pi(\widetilde{\bm b}_0)D,\quad
-K_1=\frac35D\Pi(-\widetilde{\bm b}_0)D,\quad
-K_2=\frac45D\Pi(\widetilde{\bm b}_1)D.
-\]
-The reflection preserves \(z\)-coordinates, dot products, and \(u\). In a
-pair involving label \(2\), write the two selected score operators as
-\[
-G=\frac35D \Pi(\bm n)D,\qquad
-H=\frac45D \Pi(\bm m)D.
-\]
-With \(x=n_z\), \(y=m_z\), and \(r=\bm n\cdot\bm m\),
-\[
-20F_\eta
-=7+\eta(3x+4y)
-+\sqrt{[-1+\eta(3x-4y)]^2+24(1-\eta^2)(1-r)}.
-\]
-The exact comparison
-\[
-F_\eta\le F_0(r)+\frac{2\eta}{5}
-\le\frac35+\frac25(\eta+u)
-\]
-is proved by the manifestly nonnegative polynomial certificate in
-\cref{app:separation-algebra}. Consequently
-\begin{center}
-\small
-\begin{tabular}{@{}lll@{}}
-\toprule
-Nonzero labels & Rank pattern & Bound used for \(T\)\\
-\midrule
-\(\{0\}\) & \((2,0,0)\) & \(\Tr K_0\le3(1+\eta)/10\)\\
-\(\{1\}\) & \((0,2,0)\) & \(\Tr K_1\le3(1+\eta)/10\)\\
-\(\{2\}\) & \((0,0,2)\) & \(\Tr K_2\le2(1+\eta)/5\)\\
-\(\{0,1\}\) & \((1,1,0)\) & \(\Tr(K_0+K_1)\le3/5\)\\
-\(\{0,2\}\) & \((1,0,1)\) & \(F_\eta\le3/5+2(\eta+u)/5\)\\
-\(\{1,2\}\) & \((0,1,1)\) & \(F_\eta\le3/5+2(\eta+u)/5\)\\
-\bottomrule
-\end{tabular}
-\end{center}
-Each of the first four displayed estimates is no larger than the common
-bound \(3/5+2(\eta+u)/5\). Therefore
-\[
-T\le\frac35+\frac25(\eta+u)
-\le\frac35+\kappa\sqrt\delta,
-\quad
-\kappa=\frac25(2^{1/4}+2^{3/4}),
-\]
-where \(\kappa^2=(16+12\sqrt2)/25\). Completing the square,
-\[
-\Bell\le20\sqrt2+\frac35+\kappa\sqrt\delta-10\delta
-\le20\sqrt2+\frac35+\frac{\kappa^2}{40}=U.
-\]
-This covers every state, support pattern, direction, relabeling, and
-degeneracy. \Cref{lem:convexification} covers shared randomness and
-postprocessing. A stronger algebraic strategy and its exact gap comparison
-are given separately in \cref{app:strengthened}.
+\begin{proof}
+A state of Schmidt number at most two is a mixture of pure states of
+Schmidt rank at most two \cite{terhal2000schmidt}. In each component, compress all local effects to
+the two local Schmidt supports. They remain positive, sum to the identities
+on those supports, and give the original Born probabilities on that
+component. Apply the two-input equality and average over the components.
+Conversely, give each branch of a finite qubit-PVM mixture an orthogonal
+local classical flag on each side. The block-diagonal measurements and
+correlated flagged state reproduce the mixture. Within each branch every
+pure-state component has Schmidt rank at most two, and adding its local
+flags preserves that rank.
+\end{proof}
 
 \section{Two-input reductions}
 \label{sec:reductions}
@@ -765,12 +451,18 @@ p(a,b|x,y)=\frac12\left[
 \]
 No-signaling gives equality of the sums of the two compressed ensembles.
 
-If \(\id,B_0,B_1\) are linearly independent, the image of the positive
-qubit cone is a three-dimensional Lorentz cone: the cone over the elliptical
-projection of the Bloch ball onto the span of the two Bloch axes. Parallel,
-antiparallel, or scalar observables give a two-dimensional simplicial cone or
-a local deterministic degeneration; these cases are included in
-\cref{app:binary-degeneracies}.
+If \(B_0\) and \(B_1\) commute, measuring their common eigenbasis once
+provides a classical variable determining both Bob outcomes. Its
+distribution is Bob's marginal, and Alice's probabilities conditioned on
+the eigenbasis outcome are local response functions. Decomposing those
+responses into deterministic ones gives a mixture of identity-and-zero
+PVM strategies. This covers scalar, parallel and antiparallel observables
+(see also \cref{app:binary-degeneracies}).
+
+It remains to consider noncommuting \(B_0,B_1\). Their independent
+Bloch axes span a plane. The image of the positive qubit cone is the
+three-dimensional cone over the elliptical projection of the Bloch ball
+onto these two expectation coordinates.
 
 Decompose every compressed positive vector into extreme rays, retaining its
 original output label. Repeatedly extract a support-minimal positive
@@ -782,11 +474,14 @@ nontrivial circuit is
 r_0+r_1=s_0+s_1.
 \]
 The original positive coefficients have been absorbed into the displayed ray
-vectors. One-versus-one, repeated-ray, zero-ray, and lower-dimensional cases
-produce only the degenerate components described below.
+vectors. One-versus-one relations and repeated or zero terms produce the
+degenerate components described below.
 
-Every extreme compressed ray has a unique positive rank-one lift inside
-\(\operatorname{span}_{\R}\{\id,B_0,B_1\}\). Thus the circuit lifts to
+Each nonzero extreme compressed vector lifts uniquely in
+\(\operatorname{span}_{\R}\{\id,B_0,B_1\}\). At fixed trace, the two
+expectations fix the planar Bloch projection. On the boundary ellipse this
+projection has unit Bloch length after normalization, so its positive lift
+has rank one. Thus the circuit lifts to
 \[
 R_0+R_1=S_0+S_1=\Omega
 \]
@@ -1300,87 +995,9 @@ Stationarity in the four metric variables says
 \(\lambda\in\ker\cD^T\), where \(\cD\) is defined in
 \cref{sec:second-variation}.
 
-The next two lemmas record the original duality interpretation. Their
-general dual-attainment and determinant-pullback statements remain
-manuscript-only. The proof of strict multiplier positivity below instead
-uses the deterministic replacements appearing in the Lean development.
-
-\begin{lemma}[Finite POVM duality]
-\label{lem:povm-duality}
-For
-\[
-\max_{N_j\ge0,\ \sum_jN_j=\id}\sum_j\Tr(K_jN_j),
-\]
-there is a Hermitian \(\Gamma\) such that
-\[
-\Gamma\ge K_j,\qquad(\Gamma-K_j)N_j=0.
-\]
-\end{lemma}
-
-\begin{proof}
-Weak duality is immediate. Strong duality follows by separating the closed
-finite-dimensional cone
-\[
-\left\{\left(\sum_jX_j,\sum_j\Tr(K_jX_j)-t\right):
-X_j\ge0,\ t\ge0\right\}
-\]
-from \((\id,V+\eps)\), where \(V\) is the primal optimum, and taking
-\(\eps\downarrow0\). Equality of primal and dual values gives
-\[
-\sum_j\Tr[(\Gamma-K_j)N_j]=0.
-\]
-Every summand is nonnegative, hence zero; for positive matrices,
-\(\Tr(AB)=0\) implies \(AB=0\). Full details are included in
+The multiplier signs follow from deterministic replacements of one input.
+A complementary interpretation via finite POVM duality is given in
 \cref{app:duality}.
-\end{proof}
-
-\begin{lemma}[Determinant pullback for one input]
-\label{lem:determinant-pullback}
-At a stationary residual strategy, fix one Bob input \(y\), write its effects
-as \(N_{j|y}\), and let \(K_{j|y}\) be their Bell score operators. There is a
-Hermitian normalization multiplier \(\widehat\Gamma_y\) such that
-\begin{equation}
-\label{eq:effect-kkt}
-K_{j|y}-\widehat\Gamma_y+
-4|\det\Xi|^2\lambda_{j|y}\operatorname{adj}(N_{j|y})=0
-\end{equation}
-for every outcome \(j\). Here, for
-\(N=\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)\),
-\[
-\operatorname{adj}(N):=
-\begin{pmatrix}d&-b\\-c&a\end{pmatrix}
-\]
-is the matrix adjugate.
-\end{lemma}
-
-\begin{proof}
-By \cref{lem:lorentz-representation},
-\[
-F_j=(Pr_j)^Tg^{-1}(Pr_j)
-=4|\det\Xi|^2r_j^Thr_j
-=4|\det\Xi|^2\det N_{j|y}.
-\]
-For an arbitrary Hermitian variation \(\Delta N\),
-\[
-d(\det)_N[\Delta N]=\Tr(\operatorname{adj}(N)\Delta N),
-\]
-as follows by differentiating \(ad-bc\). Hold the state, Alice's
-measurements, and Bob's other input fixed. The first variation of the Bell
-objective is
-\(\sum_j\Tr(K_{j|y}\Delta N_{j|y})\). Pulling the incidence Lagrangian
-\eqref{eq:lagrange} back to these effect variables, and imposing
-\(\sum_j\Delta N_{j|y}=0\) with a separate Hermitian multiplier
-\(\widehat\Gamma_y\), gives
-\[
-\sum_j\Tr\!\left[
-\left(K_{j|y}-\widehat\Gamma_y+
-4|\det\Xi|^2\lambda_{j|y}\operatorname{adj}(N_{j|y})\right)
-\Delta N_{j|y}\right]=0.
-\]
-The unconstrained outcome variations are arbitrary after introduction of the
-normalization multiplier, so every coefficient vanishes, proving
-\eqref{eq:effect-kkt}.
-\end{proof}
 
 \begin{proposition}[Strict multiplier positivity]
 \label{prop:positive-multipliers}
@@ -1593,17 +1210,14 @@ y_2(y_1+y_3),\,y_3(y_1+y_2)\bigr)^T.
 \label{prop:fiber}
 On the strict \(g\)-null quadric, the base locus of \(\Phi\) is exactly the
 five coefficient rays \([r_1],\ldots,[r_5]\). Away from the base locus,
-\(\Phi\) is projectively injective, including on the exceptional divisors
-\[
-y_2=0,\quad y_3=0,\quad y_0=y_1,\quad y_2=y_3.
-\]
+\(\Phi\) is projectively injective.
 \end{proposition}
 
 \begin{proof}
-The generic rational inverse and the exact exceptional-divisor calculations
-are given in \cref{app:fibers}. Each resultant and factorization is reproduced
-by the exact verifier. The strict metric inequalities exclude extra null
-roots without excluding any genuine residual point.
+As shown in \cref{app:fibers}, two distinct null rays with proportional
+nonzero images would span the same plane as two coefficient rays. On that
+plane the coefficient rays are the only null directions, and their images
+vanish. This excludes every such pair.
 \end{proof}
 
 If \(\rank\cD=1\), all nonzero \(\Phi(y_j)\) are projectively equal.
@@ -1727,6 +1341,306 @@ multiplier; rank zero is PVM-simulable by \cref{prop:rank-zero}. Every case
 contradicts a strict value above the PVM support function.
 \end{proof}
 
+\section[An exact rational 3-by-2 separation]
+{An exact rational \(3\times2\) separation}
+\label{sec:separation}
+
+We exhibit a rational functional at the minimum architecture. Its CHSH
+term fixes the geometry near the qubit optimum, while a three-outcome
+measurement on Alice's third input exploits a state-discrimination
+advantage.
+
+For this section take Alice inputs \(x=0,1,2\), Bob inputs \(y=0,1\), Alice
+labels \(a=0,1,2\), and Bob labels \(b=0,1\). Define signs
+\[
+\alpha_0=\alpha_2=1,\quad\alpha_1=-1,\qquad
+\beta_0=1,\quad\beta_1=-1
+\]
+and correlators
+\[
+E_{xy}=\sum_{a,b}\alpha_a\beta_b\,p(a,b|x,y).
+\]
+For \(x=0,1\), Alice's labels \(0\) and \(2\) have identical coefficients
+and may be deterministically coarse-grained. Thus the common three-label
+notation is equivalent to the heterogeneous architecture
+\((2,2,3)\)-by-\((2,2)\).
+Set
+\begin{equation}
+\label{eq:bell-functional}
+\begin{aligned}
+\Bell(p)={}&10(E_{00}+E_{01}+E_{10}-E_{11})\\
+&+\frac35p(0,0|2,0)+\frac35p(1,1|2,0)
+ +\frac45p(2,0|2,1).
+\end{aligned}
+\end{equation}
+For this declared-output architecture, write
+\[
+\beta_{\POVM}(\Bell)
+:=\sup_{p\in\Qbar^{\POVM}_2}\Bell(p),\qquad
+\beta_{\PVM}(\Bell)
+:=\sup_{p\in\Qbar^{\PVM}_2}\Bell(p).
+\]
+
+\begin{theorem}[Exact fixed-qubit separation]
+\label{thm:separation}
+A qubit POVM strategy attains \(L_0=20\sqrt2+16/25\), and a second attains
+\(L_1=(16+8\sqrt{7813})/25\). Every qubit PVM strategy has
+\(\Bell\le289/10\). Consequently
+\[
+ \beta_{\POVM}(\Bell)-\beta_{\PVM}(\Bell)
+ \ \ge\ \frac{16\sqrt{7813}-1413}{50}>0.02517.
+\]
+The exact optima are undetermined.
+\end{theorem}
+
+The first construction below uses a maximally entangled state.
+\Cref{app:strengthened} gives the second construction. We give a rational
+operator certificate for the projective bound and an independent analytic
+derivation of the weaker upper bound
+\[
+ U=20\sqrt2+\frac35+\frac{4+3\sqrt2}{250}<L_0 .
+\]
+
+\subsection{The simple exact strategy}
+
+Let \(X,Z\) be Pauli matrices and
+\[
+|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2.
+\]
+Bob uses \(B_0=Z\), \(B_1=X\). Alice uses
+\[
+A_0=(Z+X)/\sqrt2,\qquad A_1=(Z-X)/\sqrt2
+\]
+for her first two binary measurements, with a zero third label. Her final
+measurement is
+\[
+\begin{aligned}
+M_0&=(17\id-8X+15Z)/50,\\
+M_1&=(17\id-8X-15Z)/50,\\
+M_2&=(16\id+16X)/50.
+\end{aligned}
+\]
+The rank-one factorizations
+\[
+M_0=\frac1{25}\binom4{-1}(4,-1),\quad
+M_1=\frac1{25}\binom1{-4}(1,-4),\quad
+M_2=\frac8{25}\binom11(1,1)
+\]
+prove positivity. Direct addition of the displayed matrices gives
+\[
+M_0+M_1+M_2=\id,
+\]
+which proves normalization separately. Their nonzero eigenvalues are
+\(17/25,17/25,16/25\), so the measurement is not a PVM.
+
+The identity
+\[
+\langle\Phi^+|R\otimes S|\Phi^+\rangle
+=\frac12\Tr(R^TS)
+\]
+gives CHSH value \(2\sqrt2\) and
+\[
+p(0,0|2,0)=p(1,1|2,0)=p(2,0|2,1)=\frac8{25}.
+\]
+Thus the simpler value
+\[
+L_0=20\sqrt2+\frac{16}{25}
+\]
+already exceeds \(U\), since
+\[
+L_0-U=\frac{3(2-\sqrt2)}{250}>0.
+\]
+
+At the ideal point the auxiliary term is a state-discrimination problem with
+\[
+W_0=\frac3{20}(\id+Z),\quad
+W_1=\frac3{20}(\id-Z),\quad
+W_2=\frac15(\id+X).
+\]
+The dual operator
+\[
+\Gamma=\frac8{25}\id+\frac2{25}X
+\]
+satisfies \(\Gamma\ge W_i\) and
+\((\Gamma-W_i)M_i=0\), so the POVM value is \(16/25\).
+Explicitly,
+\[
+\begin{aligned}
+\Gamma-W_0&=\frac1{50}\binom14(1,4),&
+\Gamma-W_1&=\frac1{50}\binom41(4,1),\\
+\Gamma-W_2&=\frac3{25}\binom1{-1}(1,-1),
+\end{aligned}
+\]
+so dual feasibility is positive-semidefinite by inspection.
+Every one- or two-label qubit PVM support scores at most \(3/5\). The ideal
+discrimination advantage is therefore \(1/25\).
+
+\subsection{The rational projective bound}
+
+A three-label qubit PVM has at most two nonzero projectors. Its support is
+therefore contained in \(\{0,2\}\), \(\{1,2\}\), or \(\{0,1\}\), including
+when the measurement is deterministic. Let \(A_0,A_1,B_0,B_1\) be the
+signed observables in the CHSH term and
+\(\widehat S=A_0(B_0+B_1)+A_1(B_0-B_1)\), with tensor products implicit
+between parties. For support contained in \(\{0,2\}\) put
+\(M_0=(\id+A_2)/2\), \(M_2=(\id-A_2)/2\). Expansion of
+\eqref{eq:bell-functional} gives the Bell operator
+\[
+ \widehat{\Bell}_{02}=10\widehat S+
+ \tfrac7{20}\id+\tfrac3{20}B_0+\tfrac15 B_1-\tfrac1{20} A_2
+   +\tfrac3{20}A_2 B_0-\tfrac15 A_2 B_1 .
+\]
+Use the ordered word vector
+\[
+ W=(\id,A_0,A_1,A_2,B_0,B_1,A_0B_0,A_0B_1,A_1B_0,A_1B_1,A_2B_0,A_2B_1)^T .
+\]
+The positive definite integer matrix \(G\) in \cref{app:sos-gram}
+satisfies the identity
+\[
+ \frac{289}{10}\id-\widehat{\Bell}_{02}
+   =\frac1{600}\sum_{i,j}G_{ij}W_i^\dagger W_j\succeq0 .
+\]
+It follows by multiplying the listed words, using involutivity of each
+observable and commutation between parties. For support \(\{1,2\}\), label
+1 now denotes the \(+1\) outcome of \(A_2\). Substituting
+\((-A_1,-A_0,A_2,-B_0,B_1)\) for
+\((A_0,A_1,A_2,B_0,B_1)\) preserves \(\widehat S\) and gives the required
+Bell operator from \(\widehat{\Bell}_{02}\).
+For support \(\{0,1\}\), the auxiliary term is at most \(3/5\), since
+the two joint events in it are disjoint at the same input pair.
+The CHSH bound then gives \(20\sqrt2+3/5<289/10\).
+Taking expectations and using \cref{lem:convexification} proves the stated
+bound over the full PVM hull.
+
+\subsection{An alternative analytic projective bound}
+
+Write \(\Bell=10S+T\). For a PVM strategy, the displayed CHSH observables are
+Hermitian unitaries, including possible values \(\pm\id\). If either
+party's two observables commute, the CHSH identity
+\[
+C_{\rm CHSH}^2
+=4\id-[A_0,A_1]\otimes[B_0,B_1]
+\]
+gives \(S\le2\). As \(T\le7/5\), one has \(\Bell\le20+7/5<U\).
+This covers scalar observables and the case of parallel or antiparallel
+Bloch axes. In the remaining case both parties have noncommuting pairs.
+
+Optimize the state to a pure state and put it in Schmidt form
+\[
+|\psi_\eta\rangle=
+\sqrt{\frac{1+\eta}{2}}|00\rangle+
+\sqrt{\frac{1-\eta}{2}}|11\rangle,\qquad0\le\eta\le1.
+\]
+Its correlation matrix is
+\[
+R=\operatorname{diag}(\sqrt{1-\eta^2},-\sqrt{1-\eta^2},1).
+\]
+If \(u=|\bm b_0\cdot\bm b_1|\) and
+\(\delta=2\sqrt2-S\), optimizing Alice's directions first gives
+\[
+S\le
+\lVert R(\bm b_0+\bm b_1)\rVert+
+\lVert R(\bm b_0-\bm b_1)\rVert.
+\]
+The normalized sum and difference directions are orthogonal. Since the two
+largest eigenvalues of \(R^TR\) sum to \(2-\eta^2\), Cauchy--Schwarz gives
+\[
+S\le2\sqrt{2-\eta^2}
+\le2\sqrt2-\frac{\eta^2}{\sqrt2}.
+\]
+The last comparison follows by squaring two nonnegative sides; their squared
+difference is \(\eta^4/2\). Independently, \(R\) is a contraction, so
+\[
+\begin{aligned}
+S&\le\sqrt{2+2u}+\sqrt{2-2u}\\
+&=\sqrt{4+4\sqrt{1-u^2}}
+\le\sqrt{8-2u^2}
+\le2\sqrt2-\frac{u^2}{2\sqrt2}.
+\end{aligned}
+\]
+Here \(\sqrt{1-u^2}\le1-u^2/2\) and
+\(\sqrt{4-u^2}\le2-u^2/4\); the exact squared differences and their
+nonnegative right sides are recorded in
+\cref{app:separation-algebra}. Hence
+\begin{equation}
+\label{eq:deficit-bounds}
+S\le2\sqrt2-\frac{\eta^2}{\sqrt2},\qquad
+S\le2\sqrt2-\frac{u^2}{2\sqrt2},
+\end{equation}
+hence
+\[
+\eta\le2^{1/4}\sqrt\delta,\qquad
+u\le2^{3/4}\sqrt\delta.
+\]
+
+A ternary qubit PVM has one of the six labeled rank patterns obtained by
+permuting \((2,0,0)\) or \((1,1,0)\). For every singleton support and the
+pair \(\{0,1\}\), \(T\le3/5+2(\eta+u)/5\). A pair involving label \(2\)
+reduces to binary discrimination between
+\[
+\Pi(\bm v):=\frac12(\id+\bm v\cdot\bm\sigma),\qquad
+D=\operatorname{diag}\!\left(
+\sqrt{\frac{1+\eta}{2}},\sqrt{\frac{1-\eta}{2}}\right).
+\]
+Writing \(\widetilde{\bm b}_y\) for the reflection of \(\bm b_y\) induced by
+matrix transposition, the three score operators are
+\[
+K_0=\frac35D\Pi(\widetilde{\bm b}_0)D,\quad
+K_1=\frac35D\Pi(-\widetilde{\bm b}_0)D,\quad
+K_2=\frac45D\Pi(\widetilde{\bm b}_1)D.
+\]
+The reflection preserves \(z\)-coordinates, dot products, and \(u\). In a
+pair involving label \(2\), write the two selected score operators as
+\[
+G=\frac35D \Pi(\bm n)D,\qquad
+H=\frac45D \Pi(\bm m)D.
+\]
+With \(x=n_z\), \(y=m_z\), and \(r=\bm n\cdot\bm m\),
+\[
+20F_\eta
+=7+\eta(3x+4y)
++\sqrt{[-1+\eta(3x-4y)]^2+24(1-\eta^2)(1-r)}.
+\]
+The exact comparison
+\[
+F_\eta\le F_0(r)+\frac{2\eta}{5}
+\le\frac35+\frac25(\eta+u)
+\]
+is proved by the manifestly nonnegative polynomial certificate in
+\cref{app:separation-algebra}. Consequently
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Nonzero labels & Rank pattern & Bound used for \(T\)\\
+\midrule
+\(\{0\}\) & \((2,0,0)\) & \(\Tr K_0\le3(1+\eta)/10\)\\
+\(\{1\}\) & \((0,2,0)\) & \(\Tr K_1\le3(1+\eta)/10\)\\
+\(\{2\}\) & \((0,0,2)\) & \(\Tr K_2\le2(1+\eta)/5\)\\
+\(\{0,1\}\) & \((1,1,0)\) & \(\Tr(K_0+K_1)\le3/5\)\\
+\(\{0,2\}\) & \((1,0,1)\) & \(F_\eta\le3/5+2(\eta+u)/5\)\\
+\(\{1,2\}\) & \((0,1,1)\) & \(F_\eta\le3/5+2(\eta+u)/5\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Each of the first four displayed estimates is no larger than the common
+bound \(3/5+2(\eta+u)/5\). Therefore
+\[
+T\le\frac35+\frac25(\eta+u)
+\le\frac35+\kappa\sqrt\delta,
+\quad
+\kappa=\frac25(2^{1/4}+2^{3/4}),
+\]
+where \(\kappa^2=(16+12\sqrt2)/25\). Completing the square,
+\[
+\Bell\le20\sqrt2+\frac35+\kappa\sqrt\delta-10\delta
+\le20\sqrt2+\frac35+\frac{\kappa^2}{40}=U.
+\]
+This covers every state, support pattern, direction, relabeling, and
+degeneracy. \Cref{lem:convexification} covers shared randomness and
+postprocessing. A stronger algebraic strategy and its exact gap comparison
+are given separately in \cref{app:strengthened}.
+
 \begin{corollary}[Minimum input architecture]
 \label{cor:minimality}
 Up to exchanging the parties, \(3\times2\) is the minimum input architecture
@@ -1740,79 +1654,51 @@ parties are excluded by \cref{thm:two-input-equality}.
 \Cref{thm:separation} supplies an exact \(3\times2\) separation.
 \end{proof}
 
-\section{Operational consequences and limitations}
-
-For every Bell functional with two inputs per party, optimizing over
-fixed-qubit PVMs already
-provides the fixed-qubit POVM bound. Thus a value above that bound excludes
-all local-qubit realizations, not merely projective ones.
-
-Likewise, no qubit behavior with two inputs per party can certify that a
-nonprojective local
-measurement was indispensable: after shared-randomness convexification, a
-shared-randomness mixture of PVM realizations always exists. This does not identify the state or
-measurements in a particular laboratory realization, and it does not assert
-raw-set equality without shared randomness.
-
-Equivalently, the theorem rules out every two-input linear Bell-functional
-separation for bipartite qubits after shared-randomness convexification. It
-does not prove equality of the raw nonconvex behavior sets.
-
-We do not claim the exact global POVM or PVM optimum of
-\eqref{eq:bell-functional}. We also do not infer a private-randomness entropy
-bound: such a statement requires an adversarial extension of the convex
-decomposition, not only equality of observed behavior sets.
-
 \section{Discussion}
 
-The threshold result is special to local dimension two. Natural open
-questions include minimum-input laws in dimension three and higher,
-multipartite scenarios, equality without convexification, constructive
-simulation algorithms for generic two-input behaviors, instruments and
-sequential measurements, and experimentally robust exact \(3\times2\)
-witnesses. Determining the exact two-qubit POVM and PVM optima of
-\eqref{eq:bell-functional} is also open but unnecessary for the separation.
+The equality theorem optimizes over states and measurements jointly. In a
+two-setting Bell test a family of genuine nonprojective qubit measurements
+may produce a table that no single pair of projective devices can realize,
+as in \cref{rem:trine}. Permitting a shared classical variable suffices to
+recover the whole table with projective qubit strategies. At three settings
+one can use two to constrain the state and measurement axes while reserving
+the third for a discrimination task.
 
-The proof illustrates a distinction between operator-level and behavioral
-generality. Ternary qubit POVMs are genuine generalized measurements, yet two
-inputs do not provide enough Bell structure to make them indispensable after
-the state and shared-randomness decomposition may change. A third input can
-lock the state and steering geometry while reserving another measurement for
-a discrimination advantage.
+The minimum in higher local dimensions, the exact qubit optima of
+\eqref{eq:bell-functional}, and the measurement choices that yield the most
+noise-tolerant separation at \(3\times2\) remain natural questions. For the
+two-setting simulation the proof guarantees a finite ensemble. A practical
+algorithm to find such an ensemble for a given behavior, and sharp bounds on
+the amount of shared randomness it needs, would make the simulation
+constructive at experimentally relevant sizes.
 
-\section*{Data, code, and verification}
+\section*{Data availability}
 
-The accompanying repository contains the Lean formalization in
-\path{qubit_povm_pvm_minimum_settings/bell_lean}, together with the exact
-algebra scripts and explicit strategies. The principal equality,
-whole-strategy finite simulation, minimum-input classification, separation,
-and strengthened attained value are formalized in the complex-qubit matrix
-model. Explicit bridges cover finite outcome labels, stochastic output
-processing, and arbitrary complex local Hilbert spaces of dimension at most
-two. The formalization includes the reductions and physical
-reconstruction used by its proof; it is not only a check of the final
-scalar constants. Reproduction instructions, pinned dependencies, named
-verification receipts, and the theorem-to-manuscript map accompany the
-sources. \Cref{app:verification} gives the precise scope and trust boundary.
-The separate symbolic and numerical scripts remain supplementary checks;
-they are not substitutes for kernel-checked proofs.
-
-\section*{AI-assisted research and verification}
-
-Generative-AI systems were used substantively throughout the research
-workflow, including mathematical exploration and derivation, adversarial
-proof analysis, symbolic and software work, literature support, and
-manuscript preparation. The work was developed through an iterative,
-human-directed research process. The author determined the scope and claims
-released here, curated the resulting package, and assumes responsibility for
-the submitted manuscript and public verification materials. The proof and
-exact artifacts are supplied to make the AI-mediated research independently
-checkable; no claim of prior independent expert human verification is made.
+The exact Bell coefficients, both physical strategies, the rational
+sum-of-squares certificate, the symbolic verification scripts, and the
+Lean~4 proof sources are available in a versioned public software
+snapshot \cite{kriebel2026verification}. The same revision includes the
+\href{https://github.com/AlecKriebel/Math/tree/9528ad33e13d4467704426d465795b774bff6495/qubit_povm_pvm_pra_review_20261122}{independent input checker and November verification records}.
+\Cref{app:verification} identifies the kernel-checked results and the
+auxiliary manuscript arguments.
 
 \section*{Competing interests and funding}
 
-The author declares no competing interests. This research received no
-external funding.
+The author declares no competing interests and received no external
+funding for this research.
+
+\section*{AI Use Disclosure}
+
+The author directed the research questions and selection of claims and
+used generative AI for mathematical exploration and derivations, literature
+review, writing, programming, and Lean formalization. OpenAI Codex
+(GPT-6 family) assisted with the pre-submission review and revision.
+The retained records for the earlier research stages do not identify
+the model versions. Verification included independent agent attempts to
+falsify the claims, exact arithmetic on the supplied states and Bell
+coefficients, and a pinned Lean build with checks of the physical theorem
+statements and their proof dependencies. The author takes responsibility
+for the manuscript.
 
 \appendix
 \input{appendices.tex}

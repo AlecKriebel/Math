@@ -1,34 +1,19 @@
 # Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation
 
-The principal results concern complex local Hilbert spaces of dimension at most two, finite input-dependent output alphabets, and ordinary finite shared randomness selecting complete strategies:
+For two inputs per party, every two-qubit POVM behavior with arbitrary finite declared outputs is a finite mixture of complete qubit projective strategies. For three inputs against two, a physical POVM achieves $(16+8\sqrt{7813})/25$ on the paper's rational Bell functional, while every qubit projective strategy scores at most $289/10$. This establishes the minimum input architecture up to party exchange.
 
-1. With two inputs per party, the POVM and PVM behavior convex hulls coincide.
-2. A physical 3×2 POVM strategy strictly exceeds the bound for every PVM strategy and its convex hull.
-3. Consequently the minimum separating input architecture is (3,2), up to exchanging the parties.
+## PRA manuscript and files
 
-The Lean source includes explicit basis/dimension, finite-label, and stochastic-output bridges. Read [the certificate](bell_lean/CERTIFICATION.md), [claim-to-declaration map](bell_lean/docs/CERTIFIED_COVERAGE.md), and [source-model conventions](bell_lean/docs/MODEL_CONVENTIONS.md) for exact scope and evidence. The conclusion does not assert same-state simulation, equality of raw strategy sets, or a global POVM optimum.
+[Manuscript PDF](paper/main.pdf) · [Line-numbered PDF](paper/review.pdf) · [TeX source archive](submission/arxiv_source.tar.gz) · [Submission metadata](submission/journal_metadata.md)
 
-## Version 2 local package
+From this directory, run `bash paper/build.sh --submission` to rebuild the manuscript, line-numbered copy and upload archive. The paper source and bibliography are in [paper/](paper/). The [pre-submission review](../qubit_povm_pvm_pra_review_20261122/PRA_REVIEW.md) assesses the previous manuscript and derives the shorter proof of the projective-fiber proposition used in this revision.
 
-[VERSION_2.md](VERSION_2.md) describes the concrete review package and complete clean-extraction reproduction. It is prepared locally; no new immutable release or DOI is claimed.
+## Verification
 
-- `paper/`: LaTeX source, bibliography, publication PDF and line-numbered review PDF.
-- `artifacts/`: exact symbolic certificates and machine-readable data.
-- `bell_lean/`: Lean proofs, pinned environment, compiled statement contracts and run-specific receipts.
-- `referee_2026-09-11/` and `referee_response_20260911/`: historical public review evidence.
-- `version2_completion_20260921/`: current direct archive comparison and independent semantic review.
-- `reproduce.py`: shipment integrity, exact checks, fresh Lean verification and PDF builds.
+- The [exact artifacts](artifacts/) contain the physical strategies, rational Bell coefficients and symbolic checks. With the packages in `requirements.txt` installed, run `bash run_all.sh`. The [independent verifier](../qubit_povm_pvm_pra_review_20261122/check_artifacts.py) recomputes the scores and checks the rational certificate across input formats.
+- The [Lean project](bell_lean/) contains the proofs, pinned dependencies, and theorem-to-claim map. From that directory, run `python scripts/run_lean.py --bootstrap --serial` for a source build and axiom audit. The [November verification record](../qubit_povm_pvm_pra_review_20261122/evidence/lean_summary_20261122.json) identifies the expanded physical statement and the dependency replay for the equality and finite-simulation theorems.
+- The [formal coverage](bell_lean/docs/CERTIFIED_COVERAGE.md) distinguishes the kernel-checked conclusions from the auxiliary arguments in the manuscript. The machine proof and the manuscript include independent routes to the projective-fiber result and the global projective bound.
 
-From a clean extraction of the staged package, after installing prerequisites:
+The [September version 2 package](VERSION_2.md), [earlier referee packet](review_packet/README.md), and [v1.1.0 publication deposit](https://doi.org/10.5281/zenodo.21699161) document earlier versions. The September archive's online bootstrap uses the preparatory step described in `VERSION_2.md`.
 
-```sh
-python reproduce.py --bootstrap
-```
-
-For exact symbolic checks only, use `./run_all.sh`; for only the Lean build, use `python scripts/run_lean.py --serial` from `bell_lean`. Neither subset is the complete release verification.
-
-The formal proof follows some different routes from the manuscript. The remaining auxiliary manuscript-only mathematics is listed explicitly in the coverage map. Formal checking does not establish bibliographic priority or replace review of the translation from scientific conventions into the stated mathematical models.
-
-Alec Kriebel, Independent Researcher. ORCID: <https://orcid.org/0009-0001-9320-500X>.
-
-Manuscript/data: CC BY 4.0. Verification code and Lean sources: MIT. See [LICENSE](LICENSE).
+Alec Kriebel, Independent Researcher. [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). The manuscript and data use CC BY 4.0, and the verification code and Lean sources use MIT. [Licenses](LICENSE)

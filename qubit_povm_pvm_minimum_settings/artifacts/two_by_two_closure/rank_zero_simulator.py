@@ -9,6 +9,10 @@ Input data are rational Gram entries:
 The function returns deterministic local components.  Fractions are used throughout.
 """
 from __future__ import annotations
+
+if not __debug__:
+    raise RuntimeError("Rank-zero verification requires assertions. Run Python without -O, -OO or PYTHONOPTIMIZE.")
+
 from fractions import Fraction
 from typing import Iterable
 
