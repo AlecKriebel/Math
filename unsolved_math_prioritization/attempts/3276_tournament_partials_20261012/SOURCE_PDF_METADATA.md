@@ -1,0 +1,73 @@
+# Public scholarly metadata: source pdf metadata
+
+Public scholarly document identities and retrieval/inspection history only. Third-party documents and extracted source text are not distributed. A successful response or checksum is not a proof audit.
+
+- recovery_notice: Verified reconstruction of historical source-inspection metadata against retained original record hashes. Retrieval, stored_pdf, inspection and prior-capture-match fields describe the historical 12 October 2026 inspection, completed before 13:04 UTC. No fresh retrieval or source-proof reading occurred during recovery. Only the restored Georgakopoulos–Spruessel PDF was freshly checked for local byte identity; current availability of other PDFs is not asserted. Failed non-PDF response hashes are intentionally omitted.
+- verified_date_utc: 2026-10-12
+- sources / 1 / source_id: 2009_georgakopoulos_spruessel
+- sources / 1 / title: On 3-coloured tournaments
+- sources / 1 / pdf_url: https://arxiv.org/pdf/0904.1967v2
+- sources / 1 / source_date: 2009-04-17
+- sources / 1 / bytes: 142691
+- sources / 1 / sha256: 37c70064ec08aba920ed480061d68328341e61a0ddb2738a7100fb0d75660279
+- sources / 1 / pages: 9
+- sources / 1 / inspection: all text read; Section2 arguments and hypotheses inspected; Section3 read, full proof not independently certified
+- sources / 1 / prior_capture_date: 2026-10-11
+- sources / 1 / exact_prior_capture_match: true
+- sources / 1 / submitted_v1: 2009-04-13T16:53:01Z
+- sources / 1 / submitted_v2: 2009-04-17T09:54:06Z
+- sources / 1 / title_page_date: 2018-11-16
+- sources / 1 / pdf_creation_metadata_date: 2021-07-06
+- sources / 1 / current_author_list_status: Preprint
+- sources / 1 / author_list_url: https://agelos.neocities.org/pubs
+- sources / 2 / source_id: 2019_aikin_bland
+- sources / 2 / title: Monochromatic sinks in 3-switched tournaments
+- sources / 2 / pdf_url: https://ajc.maths.uq.edu.au/pdf/73/ajc_v73_p071.pdf
+- sources / 2 / source_date: 2019
+- sources / 2 / bytes: 156319
+- sources / 2 / sha256: 157b26853d7e0b687cf9c2b399b697a8007e68fe9eaa321d7ff3fc2c45c664f3
+- sources / 2 / pages: 13
+- sources / 2 / inspection: definitions, main theorem, structural lemma and selected arguments inspected; full proof not audited
+- sources / 2 / prior_capture_date: 2026-10-11
+- sources / 2 / exact_prior_capture_match: true
+- sources / 3 / source_id: 2017_bousquet_lochet_thomasse
+- sources / 3 / title: A proof of the Erdos-Sands-Sauer-Woodrow conjecture
+- sources / 3 / pdf_url: https://arxiv.org/pdf/1703.08123
+- sources / 3 / source_date: 2017-03-23
+- sources / 3 / bytes: 82131
+- sources / 3 / sha256: fe7d4c57cb1ebe82f752b45b383891359c3a2dbce4779e52e07d434ea8cc6fb1
+- sources / 3 / pages: 4
+- sources / 3 / inspection: definitions and theorem scope inspected; full proof not audited
+- sources / 3 / publication: JCTB137(2019),316-319
+- sources / 3 / publication_doi: 10.1016/j.jctb.2018.11.005
+- sources / 4 / source_id: 2024_yuster
+- sources / 4 / title: Path-monochromatic bounded depth rooted trees in (random) tournaments
+- sources / 4 / pdf_url: https://arxiv.org/pdf/2404.03752
+- sources / 4 / source_date: 2024-04-04
+- sources / 4 / bytes: 364327
+- sources / 4 / sha256: e3ee9915efc3ce3906448d9f90713c075d9fb79a1dc04c62ff786687238f939e
+- sources / 4 / pages: 13
+- sources / 4 / inspection: introduction, main theorem statements, relevant construction inspected; full proof not audited
+- sources / 5 / source_id: 2010_pastrana_sanchez
+- sources / 5 / title: Kernels by Monochromatic Directed Paths in 3-Colored Tournaments and Quasi-Tournaments
+- sources / 5 / pdf_url: https://m-hikari.com/ijcms-2010/33-36-2010/sanchezIJCMS33-36-2010.pdf
+- sources / 5 / source_date: 2010
+- sources / 5 / bytes: 254087
+- sources / 5 / sha256: 678e4c16f243188bdc77a0ea501103eae5eacb54a2b214bcd729ea8077e66a96
+- sources / 5 / pages: 16
+- sources / 5 / inspection: introduction and Theorem2.1 statement inspected; full proof not audited
+- sources / 6 / source_id: 2016_color_perfect
+- sources / 6 / title: Kernels by monochromatic paths and color-perfect digraphs
+- sources / 6 / pdf_url: https://bibliotekanauki.pl/articles/31340961.pdf
+- sources / 6 / source_date: 2016
+- sources / 6 / bytes: 175755
+- sources / 6 / sha256: c614b2b0ac841b7bde16dde13c8bc624d9eca70f8fd06e2c8030417fa9d92bbc
+- sources / 6 / pages: 13
+- sources / 6 / inspection: all text read; definitions, Theorem10 and Cor19/20 inspected; full-proof certification withheld for scope/reference concerns
+- recovery_local_byte_check / source_id: 2009_georgakopoulos_spruessel
+- recovery_local_byte_check / checked_at_utc: 2026-10-12T20:06:19.632861+00:00
+- recovery_local_byte_check / bytes: 142691
+- recovery_local_byte_check / sha256: 37c70064ec08aba920ed480061d68328341e61a0ddb2738a7100fb0d75660279
+- recovery_local_byte_check / matches_historical_pdf: true
+- recovery_local_byte_check / fresh_retrieval: false
+- recovery_local_byte_check / fresh_proof_reading: false
