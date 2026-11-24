@@ -1,0 +1,48 @@
+{
+  "schema": "aggregate-verification-summary-v1",
+  "problem": "database 2449 / EP-1038",
+  "status": "PASS_INDEPENDENT_FIXED_CANDIDATE_UPPER_BOUND_ONLY",
+  "scope": "Exact rational witness arithmetic and implementation replay, plus complete analytic recovery proof; not global lower-bound certification.",
+  "python_modes": [
+    "normal",
+    "-O",
+    "-OO"
+  ],
+  "audit_and_preparation_replay_passed": true,
+  "identical_results_across_modes": true,
+  "exact_output_bytes": 2820,
+  "exact_output_sha256": "b8fb956611313159f8e03f87fef65e0c8cadeb03f2117a9ed7cc4b159b6885bf",
+  "independent_checker_sha256": "8294a4939276a441352b144f721dacb060760fb1f5c796c11d57ead3d58265cc",
+  "implementation_change": "Recorded rational root centers replace proposal regeneration; explicit ArithmeticError gates replace assertions. Exact inputs, inequalities and output unchanged.",
+  "exact_method": "90-term atanh series after exact power-of-two scaling, positive geometric remainder, rational interval products/division and endpoint signs",
+  "accepted_checks": {
+    "candidate_parameter_domain": true,
+    "positive_probability_density_condition": true,
+    "root_branches": 2,
+    "root_endpoint_signs": 4,
+    "strict_upper_comparisons": 2,
+    "positive_small_k_rational_margins": 4
+  },
+  "exact_negative_controls": {
+    "control_kinds": 6,
+    "modes": [
+      "normal",
+      "-O",
+      "-OO"
+    ],
+    "rejections": 18,
+    "scope": "Mutated independent-checker inputs; all rejected before output generation."
+  },
+  "accepted_upper_bound": "infimum < 1.834430475762662",
+  "one_sided_comparator": "Lambda(q) < LSTAR_HI only; no LSTAR_LO linkage or global-minimum enclosure is claimed.",
+  "author_verifier_executed": false,
+  "linked_lean_project_executed": false,
+  "global_certificates_independently_accepted": {
+    "6.1": false,
+    "7.1": false
+  },
+  "supremum_dependency": "External Tao Theorem 2.1, not fully re-proved in this audit.",
+  "public_exact_witnesses": "Parameter, root brackets and arithmetic formulas are in the proof appendix.",
+  "public_executable_replay_available": false,
+  "integrity_note": "Hashes identify reviewed bytes and execution outputs; they do not replace the mathematical proof."
+}
