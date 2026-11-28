@@ -493,7 +493,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 482 | 30005041 / OWR-9790362-012 | Interval Structure of Cohomology-Vanishing Exponents | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 483 | 30005075 / OWR-9790367-005 | Affine–Virasoro Derivation of Nekrasov Blow-Up Identities | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 484 | 30005144 / OWR-10252937-007 | CMC Min–Max Width Under Nonnegative Scalar Curvature | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 485 | 30005220 / OWR-11101920-004 | Sylow Restrictions and Character Fields of Values | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 485 | 30005220 / OWR-11101920-004 | Sylow Restrictions and Character Fields of Values | 0.1263 | 6.0 | 3 | 2022 | unsolved | 5/5 |  |  |  |
 | 486 | 30005248 / OWR-11695855-001 | Local Complexity of Functional Estimation | 0.1263 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 487 | 2305057 / AMR-022-5057 | Research Problems in Function Theory — Problem 5.57 | 0.1260 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 488 | 30005507 / OWR-13750328-012 | Frobenius–Schur Indicators in Real Nilpotent Blocks | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
