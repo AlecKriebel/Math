@@ -1,0 +1,35 @@
+Contextual correction; removed hunks are REJECTED / SUPERSEDED wording.
+Only added hunks and unchanged context carry the accepted corrected meaning.
+The complete superseded REPORT.md is intentionally not distributed. This patch
+is evidence of the correction, not a standalone original-report replay input.
+REPORT_CORRECTED.md is the accepted current report. The private original is
+preserved unchanged. The original complete bundle is not this public delivery.
+
+--- REPORT.md (original frozen)
++++ REPORT.md (audited correction)
+@@ -75,9 +75,9 @@
+ ## 4. A stationary joining reduction, and failure of generic purification
+ 
+ A Markov coupling here means a time-homogeneous Markov process Z=(X,Y) whose transition kernel has the prescribed marginal kernels from every starting pair. A Feller semigroup below is strongly continuous on continuous functions on the compact state space.
+ 
+-**Proposition 4.** Let Z be a Feller Markov coupling on S×S, where S is compact metric, and suppose the marginal semigroup has a unique invariant probability m. If
++**Proposition 4.** Let Z be a jointly measurable Feller Markov coupling on S×S, where S is compact metric, and suppose the marginal semigroup has a unique invariant probability m. If
+ 
+     P(Z_t in K for every t >= 0)>0
+ 
+ for a closed set K in S×S, then there is an invariant probability nu of the joint semigroup supported on K, and both marginals of nu are m.
+@@ -186,9 +186,13 @@
+ **Proposition 7.** On a stochastic interval during which both particles remain interior, if |X-Y| is constant, their Brownian increments are synchronous there: J=I and K=0 almost everywhere in time, almost surely.
+ 
+ **Proof.** There is no reflection term on that interval. A constant |Z|^2 makes the local-martingale-plus-finite-variation decomposition above identically zero. Thus integral tr(Sigma)dt=0. Sigma is a sum of positive-semidefinite matrices, so I-J=0 and K=0 almost everywhere. □
+ 
+-This is a fixed-distance statement, much stronger than a positive lower bound. Radial noise cancellation does not imply synchronous noise: in dimension two, J=diag(1,-1), K=0 and Z=(r,0) give Z^T Sigma Z=0 but Sigma=diag(0,4), with positive drift of |Z|^2. The checker verifies this identity exactly. At reflected boundary times, normal-local-time terms can compensate the drift, and their signs depend on geometry. No Lyapunov function or invariant-support theorem establishing the desired symmetry in arbitrary nonconvex domains has been obtained. Conditioning on never approaching must not be used to change marginal Brownian laws without proof.
++This is a fixed-distance statement, much stronger than a positive lower bound. Radial noise cancellation does not imply synchronous noise: in dimension two, J=diag(1,-1), K=0 and Z=(r,0) give Z^T Sigma Z=0 but Sigma=diag(0,4), with positive drift of |Z|^2. The checker verifies this identity exactly. For ordinary normal reflection in the stated C2 setting, boundary-time sets have zero Lebesgue measure almost surely, while the local-time measures are supported on those sets. Thus the normal-local-time terms are singular with respect to dt and cannot cancel an absolutely continuous covariance drift in an identically constant-distance identity.
++
++**Audit corollary to Proposition 7.** The same synchronous-increments conclusion holds across boundary visits whenever the distance is almost surely constant throughout a fixed interval, or throughout an interval between stopping times where the stopped semimartingale statement is valid. Indeed, uniqueness of the continuous local-martingale/finite-variation decomposition first makes the martingale part vanish. The remaining finite-variation identity has absolutely continuous part tr(Sigma)dt and a singular part carried by the boundary-time sets. Uniqueness of the Lebesgue decomposition forces tr(Sigma)=0 almost everywhere, hence J=I and K=0 there. The boundary-time assertion follows from the absence of boundary mass at each positive time and Tonelli. This is a correction and corollary within the fifth existing approach, not a sixth approach.
++
++For a varying distance, reflection terms can affect cumulative distance balances, and their signs depend on geometry. A positive lower bound on distance does not supply the constant-distance hypothesis. No Lyapunov function or invariant-support theorem establishing the desired symmetry in arbitrary nonconvex domains has been obtained. Conditioning on never approaching must not be used to change marginal Brownian laws without proof.
+ 
+ ## 8. Exact remaining problem
+ 
+ The five routes above leave the central implication untouched in its full scope. A complete positive solution would need to obtain a function coupling from an arbitrary shy reflected-Brownian coupling, with source-compatible hypotheses; a negative solution would need one bounded connected Euclidean domain with shyness and a proof excluding every admissible f. Neither has been supplied.
